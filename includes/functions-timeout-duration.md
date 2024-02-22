@@ -4,12 +4,12 @@ ms.service: azure-functions
 ms.custom:
   - build-2024
 ms.topic: include
-ms.date: 08/29/2025
+ms.date: 01/20/2026
 ms.author: glenga
 ---
 ## <a name="timeout"></a>Function app time-out duration 
 
-The time-out duration for functions in a function app is defined by the `functionTimeout` property in the [host.json](../articles/azure-functions/functions-host-json.md#functiontimeout) project file. This property applies specifically to function executions. After the trigger starts function execution, the function needs to return/respond within the time-out duration. To avoid timeouts, it's important to [write robust functions](../articles/azure-functions/functions-best-practices.md#write-robust-functions). For more information, see [Improve Azure Functions performance and reliability](../articles/azure-functions/performance-reliability.md#make-sure-background-tasks-complete). 
+The time-out duration for functions in a function app is defined by the `functionTimeout` property in the [host.json](../articles/azure-functions/functions-host-json.md#functiontimeout) project file. This property applies specifically to function executions. After the trigger starts function execution, the function needs to return/respond within the time-out duration. When an execution exceeds this duration, a timeout error occurs and the language worker process restarts. For C# apps running in-process, the host process itself restarts. To avoid timeouts and subsequent process restarts, it's important to [write robust functions](../articles/azure-functions/functions-best-practices.md#write-robust-functions). For more information, see [Improve Azure Functions performance and reliability](../articles/azure-functions/performance-reliability.md#make-sure-background-tasks-complete). 
 
 The following table shows the default and maximum values (in minutes) for specific plans:
 
