@@ -1,19 +1,21 @@
 ---
 title: Securing Azure Functions
 description: Learn how to secure your Azure Functions code against common attacks by using best practices and built-in security features.
-ms.date: 05/05/2025
-ms.topic: conceptual
+ms.date: 01/20/2026
+ms.topic: concept-article
 
 #Customer intent: As a developer, I want to understand the security features and principles of Azure Functions so that I can make my cloud-based function code as secure as possible.
 ---
 
 # Securing Azure Functions
 
-In many ways, planning for secure development, deployment, and operation of serverless functions is much the same as for any web-based or cloud-hosted application. [Azure App Service](../app-service/index.yml) provides the hosting infrastructure for your function apps. This article provides security strategies for running your function code, and how App Service can help you secure your functions.
+[Azure App Service](../app-service/index.yml) provides the hosting infrastructure for your function apps. This article provides security strategies for running your function code, and how App Service can help you secure your functions.
 
 [!INCLUDE [app-service-security-intro](../../includes/app-service-security-intro.md)]
 
 For a set of security recommendations that follow the [Microsoft cloud security benchmark](/security/benchmark/azure/introduction), see [Azure Security Baseline for Azure Functions](/security/benchmark/azure/baselines/functions-security-baseline).
+
+While planning for secure development, deployment, and operation of serverless functions is much the same as for any web-based or cloud-hosted application, serverless applications are likely vulnerable to variations of traditional attacks. To learn more about potential attacks on serverless infrastructure, see the [OWASP Top 10: Serverless Interpretation](https://owasp.org/www-project-serverless-top-10/).
 
 ## Secure operation
 
