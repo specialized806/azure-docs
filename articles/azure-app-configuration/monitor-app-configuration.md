@@ -27,7 +27,7 @@ App Configuration collects the same kinds of monitoring data as other Azure reso
 ## Collection and routing
 Platform metrics and the activity log are collected and stored automatically, but can be routed to other locations by using a diagnostic setting.
 
-Resource Logs are not collected and stored until you create a diagnostic setting and route them to one or more locations. For example, to view logs and metrics for a configuration store in near real-time in Azure Monitor, collect the resource logs in a Log Analytics workspace. If you do not already have one, create a [Log Analytics Workspace](/azure/azure-monitor/logs/quick-create-workspace) and follow these steps to create and enable a diagnostic setting. 
+Resource Log are not collected and stored until you create a diagnostic setting and route them to one or more locations. For example, to view logs and metrics for a configuration store in near real-time in Azure Monitor, collect the resource logs in a Log Analytics workspace. If you do not already have one, create a [Log Analytics Workspace](/azure/azure-monitor/logs/quick-create-workspace) and follow these steps to create and enable a diagnostic setting. 
 
  #### [Portal](#tab/portal)
 
