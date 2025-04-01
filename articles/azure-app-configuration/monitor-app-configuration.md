@@ -37,7 +37,7 @@ App Configuration provides two types of resource logs:
 ## Collection and routing
 Platform metrics and the activity log are collected and stored automatically, but can be routed to other locations by using a diagnostic setting.
 
-Resource Logs (including audit logs and http request logs) are not collected and stored until you create a diagnostic setting and route them to one or more locations. For example, to view logs and metrics for a configuration store in near real-time in Azure Monitor, collect the resource logs in a Log Analytics workspace. If you do not already have one, create a [Log Analytics Workspace](/azure/azure-monitor/logs/quick-create-workspace) and follow these steps to create and enable a diagnostic setting.
+Resource Logs (including audit logs and HTTP request logs) are not collected and stored until you create a diagnostic setting and route them to one or more locations. For example, to view logs and metrics for a configuration store in near real-time in Azure Monitor, collect the resource logs in a Log Analytics workspace. If you do not already have one, create a [Log Analytics Workspace](/azure/azure-monitor/logs/quick-create-workspace) and follow these steps to create and enable a diagnostic setting.
 
  #### [Portal](#tab/portal)
 
@@ -136,7 +136,7 @@ The [Activity log](/azure/azure-monitor/essentials/activity-log) is a platform l
 
 For a list of the types of resource logs collected for App Configuration, see [Monitoring App Configuration data reference](./monitor-app-configuration-reference.md#resourcelogs). For a list of the tables used by Azure Monitor Logs and queryable by Log Analytics, see [Monitoring App Configuration data reference](./monitor-app-configuration-reference.md#azuremonitorlogstables)
 
-If you have created diagnostic setting for audit logs and http request logs, you can view them in Azure Monitor Logs.
+If you have created diagnostic setting for audit logs and HTTP request logs, you can view them in Azure Monitor Logs.
 
 >[!IMPORTANT]
 > When you select **Logs** from the App Configuration menu, Log Analytics is opened with the query scope set to the current app configuration resource. This means that log queries will only include data from that resource. 
@@ -145,12 +145,12 @@ If you have created diagnostic setting for audit logs and http request logs, you
 If you want to run a query that includes data from other configuration or data from other Azure services, select **Logs** from the **Azure Monitor** menu. See [Log query scope and time range in Azure Monitor Log Analytics](/azure/azure-monitor/log-query/scope/) for details.
 
 ### Http Request Log
-In the portal, navigate to the **Logs** section, and then to the query editor. On the left under the **Tables** tab, select **AACHttpRequest** to see the http request logs of your configuration store. Enter a Kusto query into the editor and results will be displayed below.
+In the portal, navigate to the **Logs** section, and then to the query editor. On the left under the **Tables** tab, select **AACHttpRequest** to see the HTTP request logs of your configuration store. Enter a Kusto query into the editor and results will be displayed below.
 
 > [!div class="mx-imgBorder"]
 > ![Writing kusto queries in our logs](./media/monitoring-writing-queries.png)
 
-Following are sample queries that you can use to help you monitor your App Configuration resource through http request logs. 
+Following are sample queries that you can use to help you monitor your App Configuration resource through HTTP request logs. 
 
 
 
@@ -221,7 +221,7 @@ HTTP logs can provide additional context about request patterns and performance,
     | sort by TimeGenerated desc
     ```
 
-* Identify key-value modifications in http request logs in the last 7 days, extracting method, resource, status code, client IP address, user agent:
+* Identify key-value modifications in HTTP request logs in the last 7 days, extracting method, resource, status code, client IP address, user agent:
 
     ```Kusto
     AACHttpRequest
