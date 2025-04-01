@@ -30,7 +30,7 @@ The Activity log provides insight into subscription-level events and shows manag
 To monitor data plane operations, you need to enable diagnostic settings and route resource logs (audit logs and HTTP request logs) to a destination like Log Analytics workspace. This allows you to see the history of key-value modifications and other operations performed within your App Configuration store.
 
 #### Types of resource logs
-App Configuration provides two types of resource logs:
+App Configuration provides two types of resource logs, reference [Monitoring App Configuration data reference](./monitor-app-configuration-reference.md#resourcelogs):
 - **Audit logs**: Capture data plane write operations (create, update, delete) on your key-values. Audit logs don't include data plane read operations but include management plane operations. Logs are not aggregated.
 - **HTTP request logs**: Capture both write and read operations on key-values, with operations being aggregated for better performance and reducing log volume. Logs are aggregated based on http method and status code, each log entry may represent multiple similar operations within a certain time window.
 
@@ -101,7 +101,7 @@ Resource Logs (including audit logs and HTTP request logs) are not collected and
 ---
 For more information on creating a diagnostic setting using the Azure portal, CLI, or PowerShell, see [create a diagnostic setting to collect platform logs and metrics in Azure](/azure/azure-monitor/essentials/diagnostic-settings). 
 
-When you create a diagnostic setting, you specify which categories of logs to collect. For further information on the categories of logs for App Configuration, reference [App Configuration monitoring data reference](./monitor-app-configuration-reference.md#resourcelogs).
+When you create a diagnostic setting, you specify which categories of logs to collect. For further information on the categories of logs for App Configuration, reference [Monitoring App Configuration data reference](./monitor-app-configuration-reference.md#resourcelogs).
 
 ### Access control for Log Analytics
 To control who can access the Log Analytics workspace to view logs, you need to assign appropriate Azure roles. The following built-in roles provide different levels of access:
@@ -209,7 +209,7 @@ Following are sample queries that you can use to help you monitor your App Confi
 
 ### Tracking key-value modifications
 For tracking key-value modifications, audit logs are the recommended approach as they specifically focus on these operations. Audit logs provide details including the identity of requestor, caller's ip address, the action taken, and the affected key-value.
-HTTP logs can provide additional context about request patterns and performance, such as user agent, duration, request traffic volume.
+HTTP logs can provide additional context about request patterns and performance, such as user agent, request duration, request traffic volume.
 
 * Identify key-value modifications in audit logs in the last 7 days, extracting operation name, resource, the principal identifier (CallerIdentity), source IP address (CallerIPAddress):
 
@@ -228,6 +228,7 @@ HTTP logs can provide additional context about request patterns and performance,
     | where TimeGenerated > ago(7d)
     | where Method in ("PUT", "DELETE")
     | project TimeGenerated, Method, _ResourceId, RequestURI, StatusCode, ClientIPAddress, UserAgent, HitCount
+    | sort by TimeGenerated desc
     ```
 
 ## Alerts
