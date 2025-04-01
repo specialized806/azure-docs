@@ -51,7 +51,8 @@ This section lists the category types of resource log collected for App
 
 | Resource log type | Further information|
 |-------|-----|
-| HttpRequest | [App Configuration Resource Log Category Information](/azure/azure-monitor/essentials/resource-logs-categories) |
+| [HttpRequest](/azure/azure-monitor/reference/tables/AACHttpRequest) | [App Configuration Resource Log Category Information](/azure/azure-monitor/essentials/resource-logs-categories) |
+| [Audit](/azure/azure-monitor/reference/tables/AACAudit) | [App Configuration Resource Log Category Information](/azure/azure-monitor/essentials/resource-logs-categories) |
 
 For more information, see a list of [all resource logs category types supported in Azure Monitor](/azure/azure-monitor/essentials/resource-logs-schema).
  

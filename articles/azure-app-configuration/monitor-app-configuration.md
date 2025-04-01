@@ -24,10 +24,20 @@ The **Overview** page in the Azure portal includes a brief view of the resource 
 ## Monitoring data 
 App Configuration collects the same kinds of monitoring data as other Azure resources that are described in [Monitoring data from Azure resources](/azure/azure-monitor/essentials/monitor-azure-resource#monitoring-data). See [Monitoring App Configuration data reference](./monitor-app-configuration-reference.md) for detailed information on the metrics and logs metrics created by App Configuration.
 
+### Understanding Activity Logs and Resource Logs
+The Activity log provides insight into subscription-level events and shows management plane activities (create, update, delete operations on your App Configuration resource). However, it doesn't capture data plane operations like key-value reads and writes.
+
+To monitor data plane operations, you need to enable diagnostic settings and route resource logs (audit logs and HTTP request logs) to a destination like Log Analytics workspace. This allows you to see the history of key-value modifications and other operations performed within your App Configuration store.
+
+#### Types of resource logs
+App Configuration provides two types of resource logs:
+- **Audit logs**: Capture data plane write operations (create, update, delete) on your key-values. Audit logs don't include data plane read operations but include management plane operations. Logs are not aggregated.
+- **HTTP request logs**: Capture both write and read operations on key-values, with operations being aggregated for better performance and reducing log volume. Logs are aggregated based on http method and status code, each log entry may represent multiple similar operations within a certain time window.
+
 ## Collection and routing
 Platform metrics and the activity log are collected and stored automatically, but can be routed to other locations by using a diagnostic setting.
 
-Resource Log are not collected and stored until you create a diagnostic setting and route them to one or more locations. For example, to view logs and metrics for a configuration store in near real-time in Azure Monitor, collect the resource logs in a Log Analytics workspace. If you do not already have one, create a [Log Analytics Workspace](/azure/azure-monitor/logs/quick-create-workspace) and follow these steps to create and enable a diagnostic setting. 
+Resource Logs (including audit logs and http request logs) are not collected and stored until you create a diagnostic setting and route them to one or more locations. For example, to view logs and metrics for a configuration store in near real-time in Azure Monitor, collect the resource logs in a Log Analytics workspace. If you do not already have one, create a [Log Analytics Workspace](/azure/azure-monitor/logs/quick-create-workspace) and follow these steps to create and enable a diagnostic setting.
 
  #### [Portal](#tab/portal)
 
@@ -39,8 +49,8 @@ Resource Log are not collected and stored until you create a diagnostic setting 
     > [!div class="mx-imgBorder"]
     > ![Add a diagnostic setting](./media/diagnostic-settings-add.png)
 
-1. In the **Diagnostic setting** page, enter a name for your setting, then select **HttpRequest** and choose the destination to send your logs to. To send them to a Log Analytics workspace, choose **Send to Log Analytics workspace**.
- 
+1. In the **Diagnostic setting** page, enter a name for your setting, then select the log categories you want to collect (such as **HttpRequest** or **Audit**) and choose the destination to send your logs to. Available destinations include Log Analytics workspace, Azure storage account, and Event Hub. We recommend leveraging Log Analytics. To send them to a Log Analytics workspace, choose **Send to Log Analytics workspace**.
+
     > [!div class="mx-imgBorder"]
     > ![Details of the diagnostic settings](./media/monitoring-diagnostic-settings-details.png)
 
@@ -81,7 +91,7 @@ Resource Log are not collected and stored until you create a diagnostic setting 
 1. To enable logs for a Log Analytics Workspace, use the [Set-AzDiagnosticSetting PowerShell](/previous-versions/azure/mt631625(v=azure.100)?redirectedfrom=MSDN) cmdlet. 
 
     ```PowerShell
-    Set-AzDiagnosticSetting -ResourceId <app-configuration-resource-id> -WorkspaceId <log-analytics-workspace-resource-id> -Enabled $true
+    Set-AzDiagnosticSetting -ResourceId <app-configuration-resource-id> -WorkspaceId <log-analytics-workspace-resource-id> -Enabled $true -Category HttpRequest,Audit
     ```
 1. Verify that your diagnostic setting is correctly set and log categories are enabled. 
 
@@ -92,6 +102,13 @@ Resource Log are not collected and stored until you create a diagnostic setting 
 For more information on creating a diagnostic setting using the Azure portal, CLI, or PowerShell, see [create a diagnostic setting to collect platform logs and metrics in Azure](/azure/azure-monitor/essentials/diagnostic-settings). 
 
 When you create a diagnostic setting, you specify which categories of logs to collect. For further information on the categories of logs for App Configuration, reference [App Configuration monitoring data reference](./monitor-app-configuration-reference.md#resourcelogs).
+
+### Access control for Log Analytics
+To control who can access the Log Analytics workspace to view logs, you need to assign appropriate Azure roles. The following built-in roles provide different levels of access:
+- **Log Analytics Reader**: Can view and query all log data
+- **Log Analytics Contributor**: Can view and query all log data, as well as perform advanced operations
+
+For detailed information on Log Analytics workspace access control, see [Manage access to Log Analytics workspace data](/azure/azure-monitor/logs/manage-access#built-in-roles).
 
 ## Analyzing metrics
 
@@ -115,8 +132,11 @@ For a list of the platform metrics collected for App Configuration, see [Monitor
 ## Analyzing logs
 Data in Azure Monitor Logs is stored in tables where each table has its own set of unique properties. The common schema is outlined in [Azure Monitor resource log schema](/azure/azure-monitor/essentials/resource-logs-schema#top-level-common-schema). 
 
-The [Activity log](/azure/azure-monitor/essentials/activity-log) is a platform log in Azure that provides insight into subscription-level events. You can view it independently or route it to Azure Monitor Logs, where you can do much more complex queries using Log Analytics.  
-For a list of the types of resource logs collected for App Configuration, see [Monitoring App Configuration data reference](./monitor-app-configuration-reference.md#resourcelogs). For a list of the tables used by Azure Monitor Logs and queryable by Log Analytics, see [Monitoring App Configuration data reference](./monitor-app-configuration-reference.md#azuremonitorlogstables)  
+The [Activity log](/azure/azure-monitor/essentials/activity-log) is a platform log in Azure that provides insight into subscription-level events. You can view it independently or route it to Azure Monitor Logs, where you can do much more complex queries using Log Analytics.
+
+For a list of the types of resource logs collected for App Configuration, see [Monitoring App Configuration data reference](./monitor-app-configuration-reference.md#resourcelogs). For a list of the tables used by Azure Monitor Logs and queryable by Log Analytics, see [Monitoring App Configuration data reference](./monitor-app-configuration-reference.md#azuremonitorlogstables)
+
+If you have created diagnostic setting for audit logs and http request logs, you can view them in Azure Monitor Logs.
 
 >[!IMPORTANT]
 > When you select **Logs** from the App Configuration menu, Log Analytics is opened with the query scope set to the current app configuration resource. This means that log queries will only include data from that resource. 
@@ -124,12 +144,13 @@ For a list of the types of resource logs collected for App Configuration, see [M
 
 If you want to run a query that includes data from other configuration or data from other Azure services, select **Logs** from the **Azure Monitor** menu. See [Log query scope and time range in Azure Monitor Log Analytics](/azure/azure-monitor/log-query/scope/) for details.
 
-In the portal, navigate to the **Logs** section, and then to the query editor. On the left under the **Tables** tab, select **AACHttpRequest** to see the logs of your configuration store. Enter a Kusto query into the editor and results will be displayed below.  
+### Http Request Log
+In the portal, navigate to the **Logs** section, and then to the query editor. On the left under the **Tables** tab, select **AACHttpRequest** to see the http request logs of your configuration store. Enter a Kusto query into the editor and results will be displayed below.
 
 > [!div class="mx-imgBorder"]
 > ![Writing kusto queries in our logs](./media/monitoring-writing-queries.png)
 
-Following are sample queries that you can use to help you monitor your App Configuration resource. 
+Following are sample queries that you can use to help you monitor your App Configuration resource through http request logs. 
 
 
 
@@ -170,6 +191,43 @@ Following are sample queries that you can use to help you monitor your App Confi
         | extend Day = startofday(TimeGenerated)
         | summarize requestcount=sum(HitCount) by Day
         | order by Day desc  
+    ```
+
+### Audit Log
+On the left under the **Tables** tab, select **AACAudit** to see the audit logs of your configuration store. Enter a Kusto query into the editor and results will be displayed below.
+
+> [!div class="mx-imgBorder"]
+> ![Audit log](./media/monitoring/monitoring-audit-log.png)
+
+Following are sample queries that you can use to help you monitor your App Configuration resource through audit logs.
+
+* List all Audit Requests in the last three days 
+    ```Kusto
+    AACAudit
+    | where TimeGenerated > ago(3d)
+    ```
+
+### Tracking key-value modifications
+For tracking key-value modifications, audit logs are the recommended approach as they specifically focus on these operations. Audit logs provide details including the identity of requestor, caller's ip address, the action taken, and the affected key-value.
+HTTP logs can provide additional context about request patterns and performance, such as user agent, duration, request traffic volume.
+
+* Identify key-value modifications in audit logs in the last 7 days, extracting operation name, resource, the principal identifier (CallerIdentity), source IP address (CallerIPAddress):
+
+    ```Kusto
+    AACAudit
+    | where TimeGenerated > ago(7d)
+    | where OperationName in ("set-keyvalue", "delete-keyvalue")
+    | project TimeGenerated, OperationName, TargetResource, CallerIdentity, CallerIPAddress, _ResourceId
+    | sort by TimeGenerated desc
+    ```
+
+* Identify key-value modifications in http request logs in the last 7 days, extracting method, resource, status code, client IP address, user agent:
+
+    ```Kusto
+    AACHttpRequest
+    | where TimeGenerated > ago(7d)
+    | where Method in ("PUT", "DELETE")
+    | project TimeGenerated, Method, _ResourceId, RequestURI, StatusCode, ClientIPAddress, UserAgent, HitCount
     ```
 
 ## Alerts
