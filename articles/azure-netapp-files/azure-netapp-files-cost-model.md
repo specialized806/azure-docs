@@ -14,6 +14,8 @@ Understanding the cost model for Azure NetApp Files helps you manage your expens
 
 For cost model specific to cross-region replication, see [Cost model for cross-region replication](cross-region-replication-introduction.md#cost-model-for-cross-region-replication).
 
+<!-- ZRS update -->
+
 ## Calculation of capacity consumption
 
 Azure NetApp Files is billed on provisioned storage capacity, which is allocated by creating capacity pools. Capacity pools are billed monthly based on a set cost per allocated GiB per hour. Capacity pool allocation is measured hourly.  

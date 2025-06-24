@@ -14,6 +14,8 @@ ms.custom:
 
 Creating a capacity pool enables you to create volumes within it. 
 
+<!-- ZRS update -->
+
 ## Before you begin 
 
 * You need a [NetApp account](azure-netapp-files-create-netapp-account.md).   

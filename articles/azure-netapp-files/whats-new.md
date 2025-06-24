@@ -16,6 +16,10 @@ ms.author: anfdocs
 
 Azure NetApp Files is updated regularly. This article provides a summary about the latest new features and enhancements.
 
+* [Zone-redundant storage]()
+
+    Azure NetApp Files now supports zone-redundant storage. 
+
 ## June 2025
 
 * The ability to [transition an existing volume to customer-managed keys](configure-customer-managed-keys.md#transition) is now generally available (GA)

@@ -52,6 +52,8 @@ These features work together to provide a high-performance file storage solution
 
 ## Simplicity and availability
 
+<!-- ZRS storage update -->
+
 Azure NetApp Files is designed to provide simplicity and high availability for your file storage needs. Key features include:
 
 | Functionality | Description | Benefit | 
