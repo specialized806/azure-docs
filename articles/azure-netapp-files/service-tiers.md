@@ -45,7 +45,7 @@ Zone-redundant storage is currently in preview. You must register for both the `
     Register-AzProviderFeature -ProviderNamespace Microsoft.NetApp -FeatureName ANFZoneRedundant
     ```
 
-        ```azurepowershell-interactive
+    ```azurepowershell-interactive
     Register-AzProviderFeature -ProviderNamespace Microsoft.NetApp -FeatureName ANFScaleOptimized
     ```
 

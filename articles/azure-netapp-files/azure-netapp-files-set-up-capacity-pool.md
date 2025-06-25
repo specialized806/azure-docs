@@ -20,7 +20,7 @@ Creating a capacity pool enables you to create volumes within it.
 
 * You need a [NetApp account](azure-netapp-files-create-netapp-account.md). Ensure the NetApp account is aligned to the correct [service tier](service-tiers.md).
 
-    [!INCLUDE [Zone-redundant storage preview](includes/service-tiers.md)]
+    [!INCLUDE [Zone-redundant storage preview](includes/zone-redundant-preview.md)]
     
 * If you're using Azure CLI, ensure that you're using the latest version. For more information, see [How to update the Azure CLI](/cli/azure/update-azure-cli).
 * To enable cool access, ensure you are registered to use [cool access](manage-cool-access.md).

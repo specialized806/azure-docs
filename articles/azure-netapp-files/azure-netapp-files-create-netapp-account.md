@@ -18,7 +18,9 @@ Creating a NetApp account enables you to set up a capacity pool so that you can 
 * You must register your subscription for using the NetApp Resource Provider. For more information, see [Register the NetApp Resource Provider](azure-netapp-files-register.md).
 * NetApp accounts must be dedicated to a service tier. Confirm you understand the difference between [hardwared-based and zone-redundant storage](storage-tiers.md) before creating you create your NetApp account.
 
-[!INCLUDE [Zone-redundant storage preview](includes/service-tiers.md)]
+[!INCLUDE [Zone-redundant storage preview](includes/zone-redundant-preview.md)]
+[!INCLUDE [PowerShell & CLI call-out](includes/application-volume-group-powershell.md)]
+
 
 ## Steps
 
