@@ -5,7 +5,7 @@ services: azure-netapp-files
 author: b-hchen
 ms.service: azure-netapp-files
 ms.topic: how-to
-ms.date: 02/04/2025
+ms.date: 06/25/2025
 ms.author: anfdocs
 ---
 
@@ -15,7 +15,10 @@ Creating a NetApp account enables you to set up a capacity pool so that you can 
 
 ## Before you begin
 
-You must register your subscription for using the NetApp Resource Provider. For more information, see [Register the NetApp Resource Provider](azure-netapp-files-register.md).
+* You must register your subscription for using the NetApp Resource Provider. For more information, see [Register the NetApp Resource Provider](azure-netapp-files-register.md).
+* NetApp accounts must be dedicated to a service tier. Confirm you understand the difference between [hardwared-based and zone-redundant storage](storage-tiers.md) before creating you create your NetApp account.
+
+[!INCLUDE [Zone-redundant storage preview](includes/service-tiers.md)]
 
 ## Steps
 
@@ -34,6 +37,7 @@ You must register your subscription for using the NetApp Resource Provider. For 
    * **Subscription**: Select a subscription from your existing subscriptions.
    * **Resource group**: Use an existing resource group or create a new one.
    * **Location**: Select the region where you want the account and its child resources to be located.
+   * **Service tier**: For standard Azure NetApp Files storage, select **Other**. For zone-redundant, select **Zone redundant**. 
 
      ![Screenshot that shows New NetApp account.](./media/azure-netapp-files-create-netapp-account/azure-netapp-files-new-netapp-account.png)
 

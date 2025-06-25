@@ -1,5 +1,5 @@
 ---
-title: Cost model for Azure NetApp Files | Microsoft Docs
+title: Cost model for Azure NetApp Files
 description: Describes the cost model for Azure NetApp Files for managing expenses from the service.
 services: azure-netapp-files
 author: b-hchen
@@ -76,6 +76,8 @@ In this case, when costs are billed at $0.000202 per GiB/hour (Standard), $0.000
 [ ![Bar chart that shows static versus dynamic service level change cost model.](./media/azure-netapp-files-cost-model/cost-model-example-two-pricing.png) ](./media/azure-netapp-files-cost-model/cost-model-example-two-pricing.png#lightbox)
 
 This scenario constitutes a monthly savings of $3,965.39 compared to static provisioning.
+
+#### Example 3: zone-redundant storage
 
 ## Capacity consumption of snapshots 
 
