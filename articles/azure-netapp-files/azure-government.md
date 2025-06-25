@@ -26,6 +26,7 @@ All [Azure NetApp Files features](whats-new.md) available on Azure public cloud 
 |:--- |:--- |:--- |
 | Azure NetApp Files customer-managed key with managed Hardware Security Module | Generally available | No |
 | Azure NetApp Files file access logs | Public preview | No |
+| Azure NetApp Files zone-redundant storage | Public preview | No |
 
 ## Portal access
 
