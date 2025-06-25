@@ -16,7 +16,7 @@ ms.author: anfdocs
 
 Azure NetApp Files is updated regularly. This article provides a summary about the latest new features and enhancements.
 
-* [Zone-redundant storage]()
+* [Zone-redundant storage](service-tiers.md)
 
     Azure NetApp Files now supports zone-redundant storage. 
 

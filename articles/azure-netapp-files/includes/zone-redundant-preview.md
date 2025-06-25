@@ -8,7 +8,8 @@ ms.custom: include file
 
 # azure-netapp-files-create-netapp-account.md
 # azure-netapp-files-set-up-capacity-pool.md
-
+# azure-netapp-files-create-volumes.md
+# azure-netapp-files-create-volumes-smb.md
 ---
 
 >[!IMPORTANT]

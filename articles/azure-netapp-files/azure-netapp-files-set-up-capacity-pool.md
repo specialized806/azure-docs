@@ -18,7 +18,7 @@ Creating a capacity pool enables you to create volumes within it.
 
 ## Before you begin 
 
-* You need a [NetApp account](azure-netapp-files-create-netapp-account.md). Ensure the NetApp account is aligned to the correct [service-tier](service-tiers.md).
+* You need a [NetApp account](azure-netapp-files-create-netapp-account.md). Ensure the NetApp account is aligned to the correct [service tier](service-tiers.md).
 
     [!INCLUDE [Zone-redundant storage preview](includes/service-tiers.md)]
     
@@ -47,15 +47,30 @@ Creating a capacity pool enables you to create volumes within it.
     
 ## Considerations
 
-* If you're using the **Flexible** service level:
-    * The Flexible service level is only available for manual QoS capacity pools. 
-    * The Flexible service level is only available on newly created capacity pools. You can't convert an existing capacity pool to use the Flexible service level. 
-        * Flexible service level capacity pools can't be converted to the Standard, Premium, or Ultra service level. 
-    * The minimum throughput for Flexible service level capacity pools is 128 MiB/second. Maximum throughput is calculated based on the size of the capacity pool using the formula 5 x 128 MiB/second/TiB  x capacity pool size in TiB. If your capacity pool is 1 TiB, the maximum is 640 MiB/second (5 x 128 x 1). For more examples, see [Service levels for Azure NetApp Files](azure-netapp-files-service-levels.md#flexible-examples).
-    * You can increase the throughput of a Flexible service level pool at any time. Decreases to throughput on Flexible service level capacity pools can only occur following a 24-hour cool-down period. The 24-hour cool-down period initiates after any change to the throughput of the Flexible service level capacity pool.
-    * Cool access isn't currently supported with the Flexible service level. 
-    * Only single encryption is currently supported for Flexible service level capacity pools. 
-    * Volumes in Flexible service level capacity pools can't be moved to capacity pools of a different service level. Similarly, you can't move volumes from capacity pools with different service levels into a Flexible service level capacity pool.
+Review the following considerations for the Flexible service level and the zone-redundant service tier. 
+
+### Considerations for the Flexible service level 
+
+* The Flexible service level is only available for manual QoS capacity pools. 
+* The Flexible service level is only available on newly created capacity pools. You can't convert an existing capacity pool to use the Flexible service level. 
+    * Flexible service level capacity pools can't be converted to the Standard, Premium, or Ultra service level. 
+* The minimum throughput for Flexible service level capacity pools is 128 MiB/second. Maximum throughput is calculated based on the size of the capacity pool using the formula 5 x 128 MiB/second/TiB  x capacity pool size in TiB. If your capacity pool is 1 TiB, the maximum is 640 MiB/second (5 x 128 x 1). For more examples, see [Service levels for Azure NetApp Files](azure-netapp-files-service-levels.md#flexible-examples).
+* You can increase the throughput of a Flexible service level pool at any time. Decreases to throughput on Flexible service level capacity pools can only occur following a 24-hour cool-down period. The 24-hour cool-down period initiates after any change to the throughput of the Flexible service level capacity pool.
+* Cool access isn't currently supported with the Flexible service level. 
+* Only single encryption is currently supported for Flexible service level capacity pools. 
+* Volumes in Flexible service level capacity pools can't be moved to capacity pools of a different service level. Similarly, you can't move volumes from capacity pools with different service levels into a Flexible service level capacity pool.
+
+### Considerations for zone-redundant storage 
+
+* Capacity pools can only use auto QoS.  
+* You must use [Standard network features](configure-network-features.md).  
+* Capacity pools for the zone-redundant storage level can be created at sizes between 512 GiB to 16 TiB. After increasing from 512 GiB to 1 TiB, capacity pools can only be created and grow in 1-TiB increments. For example, you can create a 512-GiB capacity pool and resize it to 1-TiB or 2-TiB, or you can create a 2-TiB capacity pool and resize it to 3 TiB then 4 TiB; a capacity pool cannot be resized to 3.5 TiB. 
+* After creating a capacity pool, you can't reduce the quota of the capacity pool. 
+* When creating capacity pools, you must designate the failover order for three zones. The order cannot be changed after creating the capacity pools. Capacity pools wautomatically failover if a zonal outage occurs. You can also manually perform failovers.  
+    * Failback is not supported.  
+* Zone-redundant capacity pools provide throughput at 32 MiB/s per 1 TiB and 1 I/OPS per GiB. With the maximum capacity pool size of 16 TiB, throughput maxes out at 512 MiB/s and 16,384 I/OPS. QoS is shared across all volumes in a capacity pool.  
+* A zone-redundant capacity pool can contain a maximum of 50 volumes.  
+* Volumes in zone-redundant storage capacity pools can't be moved out of the capacity pool they're created in. 
 
 ## Steps 
 
@@ -74,9 +89,12 @@ Creating a capacity pool enables you to create volumes within it.
    * **Service level**   
      This field shows the target performance for the capacity pool.  
      Specify the service level for the capacity pool: [**Ultra**](azure-netapp-files-service-levels.md#Ultra), [**Premium**](azure-netapp-files-service-levels.md#Premium), [**Standard**](azure-netapp-files-service-levels.md#Standard), or [**Flexible**](azure-netapp-files-service-levels.md#Flexible).
+     <!-- ZRS -->
 
     >[!NOTE]
     >The **Flexible** service level is only supported for manual QoS capacity pools.
+    >
+    >Zone-redundant storage is only available with auto QoS capacity pools. 
 
     * **Size**     
      Specify the size of the capacity pool that you're purchasing.        
@@ -86,24 +104,27 @@ Creating a capacity pool enables you to create volumes within it.
     >[!INCLUDE [Limitations for capacity pool minimum of 1 TiB](includes/2-tib-capacity-pool.md)]
 
     * **Throughput** 
-        This option is only available for Flexible service level capacity pools. The minimum value is 128 MiB/second. Maximum throughput depends on the size of the capacity pool. For calculation details, see [Considerations](#considerations).  
+    This option is only available for Flexible service level capacity pools. The minimum value is 128 MiB/second. Maximum throughput depends on the size of the capacity pool. For calculation details, see [Considerations](#considerations).  
 
     * **Enable cool access**
-        This option specifies whether volumes in the capacity pool support cool access. For details about using this option, see [Manage Azure NetApp Files storage with cool access](manage-cool-access.md). Cool access isn't currently supported on Flexible service level. 
+    This option specifies whether volumes in the capacity pool support cool access. For details about using this option, see [Manage Azure NetApp Files storage with cool access](manage-cool-access.md). Cool access isn't currently supported on Flexible service level. 
 
     * **QoS**   
-        Specify whether the capacity pool should use the **Manual** or **Auto** QoS type.  See [Storage Hierarchy](azure-netapp-files-understand-storage-hierarchy.md) and [Performance Considerations](azure-netapp-files-performance-considerations.md) to understand the QoS types.  
+    Specify whether the capacity pool should use the **Manual** or **Auto** QoS type.  See [Storage Hierarchy](azure-netapp-files-understand-storage-hierarchy.md) and [Performance Considerations](azure-netapp-files-performance-considerations.md) to understand the QoS types.  
 
-        > [!IMPORTANT] 
-        > Setting **QoS type** to **Manual** is permanent. You cannot convert a manual QoS capacity pool to use auto QoS. However, you can convert an auto QoS capacity pool to use manual QoS. See [Change a capacity pool to use manual QoS](manage-manual-qos-capacity-pool.md#change-to-qos).   
+    > [!IMPORTANT] 
+    > Setting **QoS type** to **Manual** is permanent. You cannot convert a manual QoS capacity pool to use auto QoS. However, you can convert an auto QoS capacity pool to use manual QoS. See [Change a capacity pool to use manual QoS](manage-manual-qos-capacity-pool.md#change-to-qos).   
 
     * **Encryption type** <a name="encryption_type"></a>      
-        Specify whether you want the volumes in this capacity pool to use **single** or **double** encryption. See [Azure NetApp Files double encryption at rest](double-encryption-at-rest.md) for details.   
+    Specify whether you want the volumes in this capacity pool to use **single** or **double** encryption. See [Azure NetApp Files double encryption at rest](double-encryption-at-rest.md) for details.   
         
-        > [!IMPORTANT] 
-        > Azure NetApp Files double encryption at rest supports [Standard network features](azure-netapp-files-network-topologies.md#configurable-network-features), but not Basic network features. See [considerations](double-encryption-at-rest.md#considerations) for using Azure NetApp Files double encryption at rest.  
-        >
-        > After the capacity pool is created, you can’t modify the setting (switching between `single` or `double`) for the encryption type.  
+    > [!IMPORTANT] 
+    > Azure NetApp Files double encryption at rest supports [Standard network features](azure-netapp-files-network-topologies.md#configurable-network-features), but not Basic network features. See [considerations](double-encryption-at-rest.md#considerations) for using Azure NetApp Files double encryption at rest.  
+    >
+    > After the capacity pool is created, you can’t modify the setting (switching between `single` or `double`) for the encryption type.  
+
+    * **Failover**
+    If you're using zone-redundant storage, organized the availability zones into your preferred failover order. 
 
     :::image type="content" source="./media/azure-netapp-files-set-up-capacity-pool/flexible-service.png" alt-text="Screenshot showing the New Capacity Pool window.":::
 

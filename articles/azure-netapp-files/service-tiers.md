@@ -12,7 +12,6 @@ ms.custom: references-regions
 
 # Understand Azure NetApp Files service tiers
 
-
 Azure NetApp Files supports two service tiers: hardware-based and zone-redundant (or software-based.)
 
 You must define the service tier of your NetApp account when you create the account. The service tier of an account can't be changed after you create it. 
@@ -21,15 +20,19 @@ You must define the service tier of your NetApp account when you create the acco
 
 <!-- -->
 
-Hardware-based storage is available in all regions with A
+Hardware-based storage is available in all regions enabled for Azure NetApp Files. 
 
 ## Zone-redundant service (preview)
+
+The purpose of this private preview program is to provide users of Azure NetApp Files early access to the Zone-redundant service level. In comparison to existing Azure NetApp Files service levels, zone-redundant service level offers:  
+
+- Zone redundancy that can persist if a zonal outage occurs in a single region 
+- Transparent failover in case of a zonal outage 
+- Seamless growth from 1 GiB without specialized hardware 
 
 Azure NetApp Files zone-redudnant storage is currently in preview. During preview, there you can create snapshots, backups, and enable customer-managed keys. 
 
 Cool access, dual-protocol volume support, cross-region replication, short-term clones, and AzAcSnap aren't currently supported with zone-redundant storage.  
-
-
 
 ### Register for zone-redundant storage 
 
@@ -71,3 +74,9 @@ You can also use [Azure CLI commands](/cli/azure/feature) `az feature register` 
 * South Central US
 * West Europe
 * West US 2
+
+## Next steps 
+
+- [Storage hierarchy of Azure NetApp Files](azure-netapp-files-understand-storage-hierarchy.md)
+- [Create a NetApp account](azure-netapp-files-create-netapp-account.md)
+- [Set up a capacity pool](azure-netapp-files-set-up-capacity-pool.md)
