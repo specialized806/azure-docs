@@ -34,6 +34,8 @@ Azure NetApp Files zone-redudnant storage is currently in preview. During previe
 
 Cool access, dual-protocol volume support, cross-region replication, short-term clones, and AzAcSnap aren't currently supported with zone-redundant storage.  
 
+If you're using custom RBAC roles, ensure you've configure the [correct permissions](manage-availability-zone-volume-placement.md#configure-custom-rbac-roles).
+
 ### Register for zone-redundant storage 
 
 Zone-redundant storage is currently in preview. You must register for both the `ANFZoneRedundant` and `ANFScaleOptimized` AFECs before using zone-redundant storage for the first time. 
