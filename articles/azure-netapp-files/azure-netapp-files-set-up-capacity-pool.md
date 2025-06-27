@@ -18,7 +18,7 @@ Creating a capacity pool enables you to create volumes within it.
 
 ## Before you begin 
 
-* You need a [NetApp account](azure-netapp-files-create-netapp-account.md). Ensure the NetApp account is aligned to the correct [service tier](service-tiers.md).
+* You need a [NetApp account](azure-netapp-files-create-netapp-account.md). Ensure the NetApp account is aligned to the correct [service tier](zone-redundant.md).
 
     [!INCLUDE [Zone-redundant storage preview](includes/zone-redundant-preview.md)]
     

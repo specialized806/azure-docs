@@ -13,4 +13,4 @@ ms.custom: include file
 ---
 
 >[!IMPORTANT]
->The zone-redundant storage tier is currently in preview. You must [register for the feature](../service-tiers.md#register-for-zone-redundant-storage). No registration is required to use hardware-based Azure NetApp Files. 
+>The zone-redundant storage tier is currently in preview. You must [register for the feature](../zone-redundant.md#register-for-zone-redundant-storage). No registration is required to use hardware-based Azure NetApp Files. 
