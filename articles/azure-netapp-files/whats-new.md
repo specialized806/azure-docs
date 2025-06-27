@@ -18,7 +18,7 @@ Azure NetApp Files is updated regularly. This article provides a summary about t
 
 * [Zone-redundant storage](zone-redundant.md)
 
-    Azure NetApp Files now supports zone-redundant storage. 
+    Azure NetApp Files now supports a new [service level: zone-redundant storage](azure-netapp-files-service-levels.md). 
 
 ## June 2025
 
