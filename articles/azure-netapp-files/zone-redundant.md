@@ -86,6 +86,16 @@ You can also use [Azure CLI commands](/cli/azure/feature) `az feature register` 
 GET https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.NetApp/locations/{location}/regionInfo?api-version=2025-03-01
 ```
 
+## Comparison of hardware-based and zone-redundant storage
+
+| Feature | Hardware-based storage |  Zone-redundant storage | 
+| - | - | - | 
+| Performance | High performance storage optimized for enterprise workloads | Optimized for lower-performanced NAS workloads | 
+| Data management | Snapshots, cross-zone replication | Snapshots, cross-zone and cross-region replication, backups | 
+| Protocol support | NFS, SMB, and dual-protocol (NFS and SMB) | NFS and SMB | 
+| Integrated backup | Integrated backup and recovery | Limited backup and recovery ? | 
+| Price | Premium pricing for enterprise features | Cost-optimized for smaller workloads |
+
 ## Next steps 
 
 - [Storage hierarchy of Azure NetApp Files](azure-netapp-files-understand-storage-hierarchy.md)
