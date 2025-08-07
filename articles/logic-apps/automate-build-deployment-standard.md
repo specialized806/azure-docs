@@ -80,7 +80,7 @@ For more information, see the following documentation:
 
 1. Follow the prompts to complete the following tasks:
 
-   1. Select the folder to create your workspace.
+   1. To create your workspace, select the folder.
 
    1. Enter your workspace name.
 
@@ -98,7 +98,7 @@ For more information, see the following documentation:
 
    1. In your logic app project, expand the folder with your workflow name.
 
-   1. If not already open, open the **workflow.json** file, open the file's shortcut menu, and select **Open Designer**.
+   1. If not already open, open the **workflow.json** file, open the file's shortcut menu, and select **Open designer**.
 
    1. When you're prompted to allow parameterizations for connections when your project loads, select **Yes**.
 
@@ -184,7 +184,7 @@ After you create and locally test your workflow, create your deployment scripts.
 
    1. In the **Source Control** window, select **Open Repository**.
 
-   1. From the prompt menu, select the repository that you just created.
+   1. From the prompt menu, select the repository that you created.
 
    For more information, see [Visual Studio Code - Initialize a repository in a local folder](https://code.visualstudio.com/docs/sourcecontrol/intro-to-git#_initialize-a-repository-in-a-local-folder).
 
@@ -212,7 +212,7 @@ After you create and locally test your workflow, create your deployment scripts.
 
 1. At the prompt, paste your copied URL, and enter a name for the remote, which is usually **origin**.
 
-   You've now created a connection between Visual Studio Code and your repository.
+   You created a connection between Visual Studio Code and your repository.
 
 1. Before you set up your pipelines in the next section, open the **CD-pipeline.yml** file, and rename the **CI Pipeline** in the **`source`** attribute to match the CI pipeline name that you want to use.
 
