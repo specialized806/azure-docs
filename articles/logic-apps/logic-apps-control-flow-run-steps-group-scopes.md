@@ -16,15 +16,15 @@ To run a group of actions only after another group of actions succeed or fail, y
 
 To check a scope's status, you can use the same criteria 
 that you use to determine a logic apps' run status, 
-such as **Succeeded**, **Failed**, **Cancelled**, and so on. 
+such as **Succeeded**, **Failed**, **Canceled**, and so on. 
 By default, when all the scope's actions succeed, 
 the scope's status is marked as **Succeeded**. 
 But when any action in the scope fails or is canceled, 
 the scope's status is marked **Failed**. 
 For limits on scopes, see 
-[Limits and config](../logic-apps/logic-apps-limits-and-config.md). 
+Limits and configuration reference](../logic-apps/logic-apps-limits-and-config.md). 
 
-For example, here is a high-level logic app that uses a scope to 
+For example, here's a high-level logic app that uses a scope to 
 run specific actions and a condition to check the scope's status. 
 If any actions in the scope fail or end unexpectedly, 
 the scope is marked **Failed** or **Aborted** respectively, 
@@ -221,7 +221,7 @@ Rename the condition with this description: **If scope failed**
    ![Add condition to check scope status](./media/logic-apps-control-flow-run-steps-group-scopes/add-condition-check-scope-status.png)
   
 1. In the condition, add these expressions that check whether 
-the scope's status is equal to "Failed" or "Aborted".
+the scope's status is equal to *Failed* or *Aborted*.
 
    1. To add another row, select **Add**.
 
