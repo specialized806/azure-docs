@@ -9,7 +9,6 @@ ms.custom:
   - devdivchpfy22
   - ignite-2024
   - build-2025
-zone_pivot_groups: python-mode-functions
 ---
 
 # Azure Functions Developer Reference Guide (Python)
