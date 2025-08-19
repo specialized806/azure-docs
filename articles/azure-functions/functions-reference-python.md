@@ -49,7 +49,7 @@ In the Python v2 programming model, Azure Functions uses a **decorator-based app
 and bindings directly in your code. Each function is implemented as a **global, stateless method** within 
 a `function_app.py` file.
 
-#### Example
+**Example**
 Here's a simple function that responds to an HTTP request:
 ```python
 import azure.functions as func
@@ -71,7 +71,7 @@ def http_trigger(req: func.HttpRequest) -> str:
 For larger or modular apps, use **blueprints** to define functions in separate Python files 
 and register them with your main app. This keeps your code organized and reusable.
 
-#### Step 1: Define a blueprint in another file (e.g., `http_blueprint.py`):
+**Step 1: Define a blueprint in another file (e.g., `http_blueprint.py`):**
 ```python
 import azure.functions as func
 
@@ -82,7 +82,7 @@ def default_template(req: func.HttpRequest) -> func.HttpResponse:
     return func.HttpResponse("Hello World!")
 ```
 
-#### Step 2: Register the blueprint in `function_app.py`:
+**Step 2: Register the blueprint in `function_app.py`:**
 ```python
 import azure.functions as func
 from http_blueprint import bp
@@ -127,7 +127,7 @@ A Python Azure Functions project is recommended to have the following structure:
 ├── Dockerfile               # (Optional) For custom container deployment
 ```
 
-#### Key Files and Folders
+**Key Files and Folders**
 | File / Folder           | Description                                                                                           |
 |-------------------------|-------------------------------------------------------------------------------------------------------|
 | `.venv/`                | Local virtual environment for Python (excluded from deployment).                                      |
@@ -142,7 +142,7 @@ A Python Azure Functions project is recommended to have the following structure:
 | `requirements.txt`      | Python dependencies installed during publish.                                                         |
 | `Dockerfile`            | Defines a custom container for deployment (optional).                                                 |
 
-#### Deployment Notes
+**Deployment Notes**
 - When deploying to Azure, the **contents** of your project folder are packaged — not the folder itself.
 - Ensure `host.json` is at the **root of the deployment package**, not nested in a subfolder.
 - Keep `tests/`, `.vscode/`, and `.venv/` excluded using `.funcignore`.
@@ -162,7 +162,7 @@ There are two main types of bindings:
 Bindings rely on connection strings, which are typically defined in `local.settings.json` for local development, 
 and in application settings when deployed to Azure.
 
-#### Example: HTTP Trigger with Blob Input and Output Binding
+**Example: HTTP Trigger with Blob Input and Output Binding**
 This function:
 - Triggers on an HTTP request
 - Reads from a Cosmos DB
@@ -198,7 +198,7 @@ def http_trigger_with_blob(req: func.HttpRequest, documents: func.DocumentList, 
         status_code=200
     )
 ```
-#### Key Concepts
+**Key Concepts**
 - Use `@route()` or trigger-specific decorators (`@timer_trigger`, `@queue_trigger`, etc.) to define how your function is invoked.
 - Inputs are added via decorators like `@blob_input`, `@queue_input`, etc.
 - Outputs can be:
@@ -213,11 +213,11 @@ SDK.
 > [!IMPORTANT]  
 > SDK type bindings support for Python is only supported in the Python v2 programming model.
 
-#### Prerequisites
+**Prerequisites**
 * [Azure Functions runtime version](functions-versions.md?pivots=programming-language-python) version 4.34, or a later version.
 * [Python](https://www.python.org/downloads/) version 3.10, or a later [supported version](#python-version).
 
-#### SDK Types
+**SDK Types**
 | Service                                   | Trigger                          | Input binding                 | Output binding                           | Samples                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 |-------------------------------------------|----------------------------------|-------------------------------|------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | [Azure Blobs][blob-sdk-types]             | **Generally available**          | **Generally available**       | _SDK types not recommended.<sup>1</sup>_ | [Quickstart](https://github.com/Azure-Samples/azure-functions-blob-sdk-bindings-python),<br/>[`BlobClient`](https://github.com/Azure/azure-functions-python-extensions/blob/dev/azurefunctions-extensions-bindings-blob/samples/blob_samples_blobclient/function_app.py),<br/>[`ContainerClient`](https://github.com/Azure/azure-functions-python-extensions/blob/dev/azurefunctions-extensions-bindings-blob/samples/blob_samples_containerclient/function_app.py),<br/>[`StorageStreamDownloader`](https://github.com/Azure/azure-functions-python-extensions/blob/dev/azurefunctions-extensions-bindings-blob/samples/blob_samples_storagestreamdownloader/function_app.py)             |
@@ -256,6 +256,7 @@ Azure Functions supports the following Python versions:
 
 For more general information, see the [Azure Functions runtime support policy](./language-support-policy.md) 
 and [Supported languages in Azure Functions](./supported-languages.md).
+
 ---
 
 ## Observability and Testing
@@ -266,7 +267,7 @@ messages written using this logger are automatically sent to **Application Insig
 in Azure.
 
 This allows you to capture runtime information and diagnose issues without needing any additional setup.
-#### Logging Example with an HTTP Trigger
+**Logging Example with an HTTP Trigger**
 ```python
 import logging
 
@@ -278,7 +279,7 @@ in the Azure portal under Logs or Application Insights.
 
 For more information on monitoring Azure Functions in the portal, see [Monitor Azure Functions](TODO:link).
 
-#### Logging from Background Threads
+**Logging from Background Threads**
 If your function starts a new thread and needs to log from that thread, make sure to pass the `context` 
 argument into the thread. The `context` contains thread-local storage and the current `invocation_id`, 
 which must be set on the worker thread in order for logs to be associated properly with the function execution.
@@ -298,7 +299,7 @@ def log_from_thread(context):
     logging.info("Logging from a background thread")
 ```
 
-#### OpenTelemetry Support
+### OpenTelemetry Support
 Azure Functions for Python also supports **OpenTelemetry**, which enables you to emit traces, metrics, and logs 
 in a standardized format. This is especially valuable for distributed applications or scenarios where you want 
 to export telemetry to tools outside of Application Insights (such as Grafana or Jaeger).
