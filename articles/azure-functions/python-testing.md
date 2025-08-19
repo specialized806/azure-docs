@@ -1,6 +1,6 @@
 ---
-title: Python developer reference for Azure Functions
-description: Understand how to develop, validate, and deploy your Python code projects to Azure Functions using the Python library for Azure Functions.
+title: Unit Testing Python Azure Functions
+description: Understand how to test your Python code projects to Azure Functions using the Python library for Azure Functions.
 ms.topic: article
 ms.date: 12/29/2024
 ms.devlang: python
@@ -12,7 +12,7 @@ ms.custom:
 zone_pivot_groups: python-mode-functions
 ---
 
-# Deploying Python Azure Functions
+# Unit Testing Python Azure Functions
 
 ## Unit testing through pytest
 
