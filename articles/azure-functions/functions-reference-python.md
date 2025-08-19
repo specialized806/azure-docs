@@ -16,7 +16,7 @@ zone_pivot_groups: python-mode-functions
 
 Azure Functions is a serverless compute service that enables you to run event-driven code without provisioning or 
 managing infrastructure. Functions are triggered by events such as HTTP requests, queue messages, timers, or 
-changes in storage — and scale automatically based on demand.
+changes in storage—and scale automatically based on demand.
 
 This guide focuses specifically on building Python-based Azure Functions and is intended to help you:
 - Create and run function apps locally
@@ -25,7 +25,7 @@ This guide focuses specifically on building Python-based Azure Functions and is 
 - Deploy and monitor your app in Azure
 - Apply best practices for scaling and performance
 
-If you’re completely new to Azure Functions, we recommend starting with the [Quickstart tutorials](TODO:link) in 
+If you’re new to Azure Functions, we recommend starting with the [Quickstart tutorials](TODO:link) in 
 the next section.
 > Looking for a conceptual overview? See the [Azure Functions Developer Reference](TODO:link).
 >
@@ -36,7 +36,7 @@ Jump into Azure Functions for Python with the most common entry points:
 
 ### Quickstarts
 Choose the environment that fits your workflow:
-- [VS Code](TODO:link)
+- [Visual Studio Code](TODO:link)
 - [Core Tools](TODO:link)
 - [Portal](TODO:link)
 
@@ -69,9 +69,9 @@ def http_trigger(req: func.HttpRequest) -> str:
 
 ### Organizing with Blueprints
 For larger or modular apps, use **blueprints** to define functions in separate Python files 
-and register them with your main app. This keeps your code organized and reusable.
+and register them with your main app. This separation keeps your code organized and reusable.
 
-**Step 1: Define a blueprint in another file (e.g., `http_blueprint.py`):**
+**Step 1: Define a blueprint in another file (for example, `http_blueprint.py`):**
 ```python
 import azure.functions as func
 
@@ -128,22 +128,23 @@ A Python Azure Functions project is recommended to have the following structure:
 ```
 
 **Key Files and Folders**
-| File / Folder           | Description                                                                                           |
-|-------------------------|-------------------------------------------------------------------------------------------------------|
-| `.venv/`                | Local virtual environment for Python (excluded from deployment).                                      |
-| `.vscode/`              | Editor config for VS Code. Not required for deployment.                                               |
-| `function_app.py`       | Main script where Azure Functions and triggers are defined using decorators.                          |
-| `shared/`               | Holds helper code shared across the Function App project                                              |
-| `additional_functions/` | Used for modular code organization—typically with [blueprints](TODO:blueprints).                      |
-| `tests/`                | Unit tests for your function app. Not published to Azure.                                             |
-| `.funcignore`           | Specifies files/folders to exclude from deployment (e.g., `.venv/`, `tests/`, `local.settings.json`). |
-| `host.json`             | Global configuration for all functions in the app. Required and published.                            |
-| `local.settings.json`   | Local-only app settings and secrets (never published).                                                |
-| `requirements.txt`      | Python dependencies installed during publish.                                                         |
-| `Dockerfile`            | Defines a custom container for deployment (optional).                                                 |
+
+| File / Folder           | Description                                                                                                  |
+|-------------------------|--------------------------------------------------------------------------------------------------------------|
+| `.venv/`                | Local virtual environment for Python (excluded from deployment).                                             |
+| `.vscode/`              | Editor config for VS Code. Not required for deployment.                                                      |
+| `function_app.py`       | Main script where Azure Functions and triggers are defined using decorators.                                 |
+| `shared/`               | Holds helper code shared across the Function App project                                                     |
+| `additional_functions/` | Used for modular code organization—typically with [blueprints](TODO:blueprints).                             |
+| `tests/`                | Unit tests for your function app. Not published to Azure.                                                    |
+| `.funcignore`           | Specifies files/folders to exclude from deployment (for example, `.venv/`, `tests/`, `local.settings.json`). |
+| `host.json`             | Global configuration for all functions in the app. Required and published.                                   |
+| `local.settings.json`   | Local-only app settings and secrets (never published).                                                       |
+| `requirements.txt`      | Python dependencies installed during publish.                                                                |
+| `Dockerfile`            | Defines a custom container for deployment (optional).                                                        |
 
 **Deployment Notes**
-- When deploying to Azure, the **contents** of your project folder are packaged — not the folder itself.
+- When you're deploying the app to Azure, the **contents** of your project folder are packaged—not the folder itself.
 - Ensure `host.json` is at the **root of the deployment package**, not nested in a subfolder.
 - Keep `tests/`, `.vscode/`, and `.venv/` excluded using `.funcignore`.
 > For guidance on unit testing, see [Unit Testing](TODO:unit testing link).
@@ -157,7 +158,7 @@ like storage, queues, and databases. Bindings are declared using decorators in t
 
 There are two main types of bindings:
 - **Triggers** (input that starts the function)
-- **Inputs & Outputs** (additional data sources or destinations)
+- **Inputs & Outputs** (extra data sources or destinations)
 
 Bindings rely on connection strings, which are typically defined in `local.settings.json` for local development, 
 and in application settings when deployed to Azure.
@@ -218,6 +219,7 @@ SDK.
 * [Python](https://www.python.org/downloads/) version 3.10, or a later [supported version](#python-version).
 
 **SDK Types**
+
 | Service                                   | Trigger                          | Input binding                 | Output binding                           | Samples                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 |-------------------------------------------|----------------------------------|-------------------------------|------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | [Azure Blobs][blob-sdk-types]             | **Generally available**          | **Generally available**       | _SDK types not recommended.<sup>1</sup>_ | [Quickstart](https://github.com/Azure-Samples/azure-functions-blob-sdk-bindings-python),<br/>[`BlobClient`](https://github.com/Azure/azure-functions-python-extensions/blob/dev/azurefunctions-extensions-bindings-blob/samples/blob_samples_blobclient/function_app.py),<br/>[`ContainerClient`](https://github.com/Azure/azure-functions-python-extensions/blob/dev/azurefunctions-extensions-bindings-blob/samples/blob_samples_containerclient/function_app.py),<br/>[`StorageStreamDownloader`](https://github.com/Azure/azure-functions-python-extensions/blob/dev/azurefunctions-extensions-bindings-blob/samples/blob_samples_storagestreamdownloader/function_app.py)             |
@@ -266,7 +268,7 @@ Azure Functions exposes a root logger that you can use directly with Python’s 
 messages written using this logger are automatically sent to **Application Insights** when your app is running 
 in Azure.
 
-This allows you to capture runtime information and diagnose issues without needing any additional setup.
+Logging allows you to capture runtime information and diagnose issues without needing any more setup.
 **Logging Example with an HTTP Trigger**
 ```python
 import logging
@@ -274,7 +276,7 @@ import logging
 def main(req):
     logging.info("Python HTTP trigger function processed a request.")
 ```
-You can use the full set of logging levels (`debug`, `info`, `warning`, `error`, `critical`) and they will appear 
+You can use the full set of logging levels (`debug`, `info`, `warning`, `error`, `critical`) and they appear 
 in the Azure portal under Logs or Application Insights.
 
 For more information on monitoring Azure Functions in the portal, see [Monitor Azure Functions](TODO:link).
@@ -301,7 +303,7 @@ def log_from_thread(context):
 
 ### OpenTelemetry Support
 Azure Functions for Python also supports **OpenTelemetry**, which enables you to emit traces, metrics, and logs 
-in a standardized format. This is especially valuable for distributed applications or scenarios where you want 
+in a standardized format. Using OpenTelemetry is especially valuable for distributed applications or scenarios where you want 
 to export telemetry to tools outside of Application Insights (such as Grafana or Jaeger).
 > See our [OpenTelemetry Quickstart for Azure Functions (Python)](TODO:link) for setup instructions and sample code.
 

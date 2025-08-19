@@ -22,34 +22,34 @@ requirements.
 
 ## Quick Comparison
 
-| Deployment Type            | Where dependencies are installed             | Typical Use Case                            |
-|----------------------------|----------------------------------------------|---------------------------------------------|
-| Remote Build               | Azure (App Service)                          | Default, recommended for most users         |
-| Local Build                | Your machine                                 | Linux/macOS devs, limited Windows scenarios |
-| Zip Deploy (Prebuilt Deps) | Already packaged locally                     | CI/CD pipelines, custom prebuilds           |
-| Custom Dependencies        | Handled via extra index URL or local install | Non-PyPI dependencies                       |
-| Custom Container           | Fully self-managed image                     | Native libraries, full control              |
-| CI / CD                    | Automated in pipelines                       | Enterprise deployments                      |
+| Deployment Type                    | Where dependencies are installed             | Typical Use Case                            |
+|------------------------------------|----------------------------------------------|---------------------------------------------|
+| Remote Build                       | Azure (App Service)                          | Default, recommended for most users         |
+| Local Build                        | Your machine                                 | Linux/macOS devs, limited Windows scenarios |
+| Zip Deploy (Prebuilt Dependencies) | Already packaged locally                     | CI/CD pipelines, custom prebuilds           |
+| Custom Dependencies                | Handled via extra index URL or local install | Non-PyPI dependencies                       |
+| Custom Container                   | Fully self-managed image                     | Native libraries, full control              |
+| CI / CD                            | Automated in pipelines                       | Enterprise deployments                      |
 
 ## Remote Build (Recommended)
 Remote build installs your dependencies on the Azure platform, ensuring compatibility with the 
-runtime environment. This results in a smaller deployment package.
+runtime environment. This process results in a smaller deployment package.
 ```bash
 func azure functionapp publish <APP_NAME>
 ```
 Remote build is the default for:
 - Azure Functions Core Tools
-- VS Code publish actions
+- Visual Studio Code publish actions
 
 Remote build also supports [custom package indexes](TODO:link below) via `PIP_EXTRA_INDEX_URL`.
 
 ## Local Build
 Local build installs dependencies on your machine, then deploys the entire app, including 
-dependencies. This results in a larger package upload.
+dependencies. Using local build results in a larger package upload.
 ```bash
 func azure functionapp publish <APP_NAME> --build local
 ```
-Use this when:
+Use local build when:
 - You’re developing on Linux/macOS.
 - Remote build is unavailable or restricted.
 > This is not recommended on Windows, as the local environment may differ from Azure's Linux runtime.
@@ -79,7 +79,7 @@ az functionapp config appsettings set \
   --resource-group <RESOURCE_GROUP> \
   --settings PIP_EXTRA_INDEX_URL=https://your-private-feed.example.com/simple
 ```
-Azure’s remote build will use this feed during deployment.
+Azure’s remote build uses this feed during deployment.
 
 ### Local Packages or Wheels
 If dependencies are only available locally:
@@ -108,7 +108,7 @@ Build and deploy your app as a Docker image when you need:
 
 Learn more: [Deploy with a custom container](TODO:link)
 
-## CIO / CD Pipelines
+## CI / CD Pipelines
 You can automate deployments using:
 - GitHub Actions
 - Azure Pipelines

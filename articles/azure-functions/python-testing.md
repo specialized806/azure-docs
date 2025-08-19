@@ -18,7 +18,7 @@ zone_pivot_groups: python-mode-functions
 
 Functions that are written in Python can be tested like other Python code by using standard testing frameworks. For most bindings, it's possible to create a mock input object by creating an instance of an appropriate class from the `azure.functions` package. Since the [`azure.functions`](https://pypi.org/project/azure-functions/) package isn't immediately available, be sure to install it via your *requirements.txt* file.
 
-With *my_second_function* as an example, the following is a mock test of an HTTP-triggered function:
+With *my_second_function* as an example, the following example is a mock test of an HTTP-triggered function:
 
 First, create the *<project_root>/function_app.py* file and implement the  `my_second_function` function as the HTTP trigger and `shared_code.my_second_helper_function`.
 
@@ -86,7 +86,7 @@ class TestFunction(unittest.TestCase):
     )
 ```
 
-Inside your *.venv* Python virtual environment folder, install your favorite Python test framework, such as `pip install pytest`. Then run `pytest tests` to check the test result.
+Inside your Python virtual environment folder, install your favorite Python test framework, such as `pip install pytest`. Then run `pytest tests` to check the test result.
 
 ## Unit testing by invoking the function directly
 With `azure-functions >= 1.21.0`, functions can also be called directly using the Python interpreter. This example shows how to unit test an HTTP trigger using the v2 programming model:
@@ -104,10 +104,10 @@ def http_trigger(req: func.HttpRequest) -> func.HttpResponse:
 print(http_trigger(None))
 ```
 
-Note that with this approach, no additional package or setup is required. The function can be tested by calling `python function_app.py`, and it results in `Hello, World!` output in the terminal.
+With this approach, no extra package or setup is required. The function can be tested by calling `python function_app.py`, and it results in `Hello, World!` output in the terminal.
 
 > [!NOTE]
-> Durable Functions require special syntax for unit testing. For more information, refer to [Unit Testing Durable Functions in Python](durable/durable-functions-unit-testing-python.md)
+> Durable Functions require special syntax for unit testing. For more information, see [Unit Testing Durable Functions in Python](durable/durable-functions-unit-testing-python.md)
 
 ## Testing through Docker
 tbd
