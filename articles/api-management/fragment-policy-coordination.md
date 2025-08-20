@@ -49,7 +49,7 @@ Product and API policy definitions serve as orchestrators that inject fragments 
 
 **Injection concepts:**
 
-- **Sequential Order**: Fragments execute in the order they are included, with data dependencies between fragments defined by context variables.
+- **Sequential Order**: Fragments execute in the order they're included, with data dependencies between fragments defined by context variables.
 - **Phase Placement**: Fragments are injected into appropriate policy phases (inbound, backend, outbound, on-error) based on their functionality.
 - **Dependency Management**: Later fragments can rely on context variables set by earlier fragments in the sequence.
 
@@ -154,7 +154,7 @@ Implement conditional logic within main policies to dynamically include fragment
 
 ## Testing and debugging
 
-Effective debugging of the fragment pipeline requires a systematic approach to understand execution flow and variable state. APIM provides several debugging mechanisms designed to minimize performance impact while maximizing visibility into request processing.
+Effective debugging of the fragment pipeline requires a systematic approach to understand execution flow and variable state. This section shows debugging approaches that minimize performance impact while maximizing visibility into request processing.
 
 ### Enable debug headers
 
@@ -219,7 +219,7 @@ Build execution breadcrumb trails to verify fragment sequencing and identify whi
 }" />
 ```
 
-To view the breadcrumb trail, use APIM's built-in [trace](trace-policy.md) policy to log the execution flow (see the documentation for information on where to access and view trace output):
+To view the breadcrumb trail, use the built-in [trace](trace-policy.md) policy to log the execution flow (see the documentation for information on where to access and view trace output):
 
 ```xml
 <trace source="Fragment-Execution" severity="information">

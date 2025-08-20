@@ -15,23 +15,23 @@ ms.author: nicolela
 
 **Applies to:** All Azure API Management tiers
 
-[Context variables](api-management-policy-expressions.md#ContextVariables) enable sequential communication between policy fragments when building advanced pipeline scenarios in Azure API Management (APIM). Proper variable management is critical for building reliable, performant pipelines. Improper handling can lead to runtime errors, performance issues, and unpredictable behavior. Following these best practices ensures your pipelines execute properly with optimal performance.
+[Context variables](api-management-policy-expressions.md#ContextVariables) enable sequential communication between policy fragments when building advanced pipeline scenarios. Proper variable management is critical for building reliable, performant pipelines. Improper handling can lead to runtime errors, performance issues, and unpredictable behavior. Following these best practices ensures your pipelines execute properly with optimal performance.
 
 ## Variable fundamentals
 
-Context variables provide thread-safe communication between policy fragments and are created using the built-in [set-variable](set-variable-policy.md) policy. Each request maintains its own isolated variable context, ensuring that concurrent requests cannot interfere with each other.
+Context variables provide thread-safe communication between policy fragments and are created using the built-in [set-variable](set-variable-policy.md) policy. Each request maintains its own isolated variable context, ensuring that concurrent requests don't interfere with each other.
 
 ### Variable lifecycle management
 
-- **Request Scope**: Variables exist only for the duration of a single request and are automatically garbage collected when the request completes.
+- **Request Scope**: Variables exist only during a single request and are automatically garbage collected when the request completes.
 
 - **Phase Persistence**: Variables set in the inbound phase remain available throughout backend, outbound, and error phase within the same request.  
 
-- **Thread Isolation**: APIM enforces strict thread isolation - each request runs on its own thread with its own context object, preventing cross-request data leakage.
+- **Thread Isolation**: Strict thread isolation ensures each request runs on its own thread with its own context object, preventing cross-request data leakage.
 
 - **Sequential Updates**: Any fragment can modify existing variables, with subsequent fragments overwriting previous values. Sequential execution eliminates the need for locking mechanisms.
 
-- **Storage Threshold**: APIM stores context variables in a dictionary that is optimized for small collections, typically less than 50 variables per request.
+- **Storage Threshold**: The platform optimizes context variable management for small collections, typically 50 variables per request or fewer.
 
 ### Set and retrieve variables in fragments
 

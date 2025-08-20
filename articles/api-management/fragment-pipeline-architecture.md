@@ -36,19 +36,19 @@ Design each fragment with a single, well-defined responsibility.
 
 Establish clear communication patterns between fragments.
 
-- **Define Communication**: Create well-defined input/output contracts through [context variables](api-management-policy-expressions.md#ContextVariables) to enable fragments to communicate without tight coupling. Each request maintains its own isolated `context.Variables` dictionary, ensuring thread-safe communication between fragments. See [Variable Management for Policy Fragments](fragment-variable-mgmt.md) for details.
+- **Define Communication**: To enable fragments to communicate without tight coupling, create input/output contracts through [context variables](api-management-policy-expressions.md#ContextVariables). Each request maintains its own isolated `context.Variables` dictionary, ensuring thread-safe communication between fragments. See [Variable Management for Policy Fragments](fragment-variable-mgmt.md) for details.
 
-- **Cache Common Metadata**: Use a central metadata cache to store common data accessed across fragments. This reduces parsing overhead and improves performance. See [Central Metadata Cache for Policy Fragments](fragment-metadata-cache.md) for implementation guidance.
+- **Cache Common Metadata**: Use a central metadata cache to store common data accessed across fragments. This approach reduces parsing overhead and improves performance. See [Central Metadata Cache for Policy Fragments](fragment-metadata-cache.md) for implementation guidance.
 
 #### 3. Policy coordination
 
-Coordinate fragments across [Product and API policies](api-management-howto-policies.md#scopes) to handle request processing effectively.
+To handle request processing effectively, coordinate fragments across [Product and API policies](api-management-howto-policies.md#scopes).
 
 - **Sequential Execution**: Inject fragments in the order they need to execute, enabling workflows where later fragments depend on variables set by earlier fragments.
 
 - **Policy Division**: Divide fragments across Product and API policies according to scope of custom logic.
 
-- **Shared Fragments**: Include common fragments in both Product and API policy levels to avoid duplication while maintaining consistent behavior.
+- **Shared Fragments**: To avoid duplication and maintain consistent behavior, include common fragments in both Product and API policy levels.
 
 For detailed guidance on coordinating fragments across policy scopes, see [Policy Injection and Coordination with Fragments](fragment-policy-coordination.md).
 
@@ -61,12 +61,12 @@ Optimize fragments for maximum performance.
   - Use shorter variable names.
   - Split complex fragments into smaller, focused ones.
 
-- **Apply Recommended Patterns**: Follow the modularity, data sharing, and coordination patterns outlined earlier to ensure optimal fragment design and execution. Most importantly:
-  - Implement central cached configuration to eliminate redundant parsing.
+- **Apply Recommended Patterns**: Follow the modularity, data sharing, and coordination patterns outlined previously to ensure optimal fragment design and execution. Most importantly:
+  - Implement a central metadata cache to eliminate redundant parsing.
   - Use early exit patterns for health checks, authentication failures, variable existence, and other scenarios where definitive responses can be determined without further processing.
   - Follow processing optimizations such as minimizing variable access.
 
-For comprehensive implementation details, see the specialized guidance referenced in the [Next Steps](#next-steps) section below.
+For comprehensive implementation details, see the specialized guidance in the [Next Steps](#next-steps) section.
 
 ## Next steps
 
