@@ -17,7 +17,7 @@ ms.author: nicolela
 
 Efficient access to shared metadata is key for advanced pipelines with multiple policy fragments. Rather than parsing metadata repeatedly in each fragment, use a parse-once, cache-everywhere approach that dramatically improves performance while ensuring data consistency.
 
-Using a central metadata cache eliminates redundant parsing across fragments while providing consistent access to configuration data throughout the execution pipeline. The key performance benefit is that metadata is **parsed once** when the cache is empty, then **reused from the cache** for all subsequent requests until the cache expires.
+Using a central metadata cache eliminates redundant parsing across fragments while providing consistent access to configuration data throughout the execution pipeline. The performance benefit is that metadata is **parsed once** when the cache is empty, then **reused from the cache** for all subsequent requests until the cache expires.
 
 ## Recommended approach
 
