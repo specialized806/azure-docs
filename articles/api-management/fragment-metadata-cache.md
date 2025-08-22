@@ -27,20 +27,20 @@ To apply this approach, use a two-fragment architecture that separates raw metad
 
 The metadata fragment serves as the single source of truth for common configuration accessed by other fragments in the pipeline:
 - **Centralized JSON storage**: The system stores all configuration metadata as JSON so that other fragments in the pipeline can access it.
-- **Version Control**: Includes cache settings with metadata versioning for cache invalidation and duration (TTL) management.
+- **Version control**: Includes cache settings with metadata versioning for cache invalidation and duration (TTL) management.
 
 ### 2. Cache fragment
 
 The cache fragment provides parsing and caching:
 
-- **Single Parse Operation**: Uses `JObject.Parse()` to parse the JSON metadata once at the start of each pipeline request if the cache is empty.
-- **Cross-Request Caching**: Stores and retrieves parsed metadata sections as a `JObject` using the built-in [cache-store-value](cache-store-value-policy.md) and [cache-lookup-value](cache-lookup-value-policy.md) policies across multiple requests.
-- **Cache-First Access**: Subsequent requests retrieve a parsed `JObject` directly from the cache, providing immediate access to all fragments without reparsing.
-- **Version-Based Invalidation**: Forces cache refresh when metadata version changes.
+- **Single parse operation**: Uses `JObject.Parse()` to parse the JSON metadata once at the start of each pipeline request if the cache is empty.
+- **Cross-request caching**: Stores and retrieves parsed metadata sections as a `JObject` using the built-in [cache-store-value](cache-store-value-policy.md) and [cache-lookup-value](cache-lookup-value-policy.md) policies across multiple requests.
+- **Cache-first access**: Subsequent requests retrieve a parsed `JObject` directly from the cache, providing immediate access to all fragments without reparsing.
+- **Version-based invalidation**: Forces cache refresh when metadata version changes.
 
 ## Implementation details
 
-To implement this pattern, inject both fragments into your Product or API policy definition at the beginning of the inbound phase:
+To implement this pattern, inject both fragments into your product or API policy definition at the beginning of the inbound phase:
 
 1. **First**: Inject the metadata fragment (provides raw JSON metadata).
 2. **Second**: Inject the cache fragment (parses and caches the `JObject` metadata).
@@ -297,4 +297,4 @@ This approach ensures the original request body remains available for forwarding
 
 - **[Architecture for building advanced execution pipelines with policy fragments](fragment-pipeline-architecture.md)** - Foundational patterns for designing modular, scalable policy fragment architectures with clear separation of concerns.
 - **[Variable management for policy fragments](fragment-variable-mgmt.md)** - Comprehensive guidance on context variable handling, safe access patterns, and inter-fragment communication.
-- **[Policy injection and coordination with fragments](fragment-policy-coordination.md)** - Fragment injection patterns and coordination between Product and API policies.
+- **[Policy injection and coordination with fragments](fragment-policy-coordination.md)** - Fragment injection patterns and coordination between product and API policies.

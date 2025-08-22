@@ -23,15 +23,15 @@ Context variables provide thread-safe communication between policy fragments and
 
 ### Variable lifecycle management
 
-- **Request Scope**: Variables exist only during a single request and are automatically garbage collected when the request completes.
+- **Request scope**: Variables exist only during a single request and are automatically garbage collected when the request completes.
 
-- **Phase Persistence**: Variables set in the inbound phase remain available throughout backend, outbound, and error phase within the same request.  
+- **Phase persistence**: Variables set in the inbound phase remain available throughout backend, outbound, and error phase within the same request.  
 
-- **Thread Isolation**: Strict thread isolation ensures each request runs on its own thread with its own context object, preventing cross-request data leakage.
+- **Thread isolation**: Strict thread isolation ensures each request runs on its own thread with its own context object, preventing cross-request data leakage.
 
-- **Sequential Updates**: Any fragment can modify existing variables, with subsequent fragments overwriting previous values. Sequential execution eliminates the need for locking mechanisms.
+- **Sequential updates**: Any fragment can modify existing variables, with subsequent fragments overwriting previous values. Sequential execution eliminates the need for locking mechanisms.
 
-- **Storage Threshold**: The platform optimizes context variable management for small collections, typically 50 variables per request or fewer.
+- **Storage threshold**: The platform optimizes context variable management for small collections, typically 50 variables per request or fewer.
 
 ### Set and retrieve variables in fragments
 
@@ -75,7 +75,7 @@ Always exercise caution with potential null values, use safe access with `GetVal
 
 Ensure variables created by prerequisite fragments exist before accessing them. When dependencies are missing, choose from two strategies:
 
-**Strategy 1:** Fail Fast (Critical Dependencies)
+**Strategy 1:** Fail fast (critical dependencies)
 
 Return an error response when critical dependencies are missing:
 
@@ -98,7 +98,7 @@ Return an error response when critical dependencies are missing:
 </choose>
 ```
 
-**Strategy 2:** Handle Gracefully (Optional Dependencies)
+**Strategy 2:** Handle gracefully (optional dependencies)
 
 Continue execution with appropriate fallback behavior when optional dependencies are missing:
 
@@ -143,7 +143,7 @@ Reduce context variable lookups by consolidating multiple accesses into single e
 
 ### Maintain consistent types
 
-Use explicit type handling for optimal performance and reliability. When using [policy expressions](api-management-policy-expressions.md) with the `@{}` operator, specify the expected type:
+Use explicit type handling for optimal performance and reliability. When working with [policy expressions](api-management-policy-expressions.md), specify the expected type with the `@{}` operator:
 
 ```xml
 <!-- Set as boolean, use as boolean -->
@@ -159,4 +159,4 @@ Use explicit type handling for optimal performance and reliability. When using [
 
 - **[Architecture for building advanced execution pipelines with policy fragments](fragment-pipeline-architecture.md)** - Foundational patterns for designing modular, scalable policy fragment architectures with clear separation of concerns.
 - **[Central metadata cache for policy fragments](fragment-metadata-cache.md)** - Implementation guidance for shared metadata caching patterns across fragments.
-- **[Policy injection and coordination with fragments](fragment-policy-coordination.md)** - Fragment injection patterns and coordination between Product and API policies.
+- **[Policy injection and coordination with fragments](fragment-policy-coordination.md)** - Fragment injection patterns and coordination between product and API policies.

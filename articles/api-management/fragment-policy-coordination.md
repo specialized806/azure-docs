@@ -1,7 +1,7 @@
 ---
 title: Policy injection and coordination with fragments
 titleSuffix: Azure API Management
-description: Fragment injection patterns and coordination between Product and API policies.
+description: Fragment injection patterns and coordination between product-scoped and API-scoped policies in Azure API Management.
 services: api-management
 author: nicolela
 
@@ -15,15 +15,15 @@ ms.author: nicolela
 
 **Applies to:** All Azure API Management tiers
 
-Policy injection and coordination enable sophisticated pipelines through strategic placement of policy fragments at different scopes. Policy injection is the mechanism by which central policies at Product and API levels include policy fragments using the [include-fragment](include-fragment-policy.md) policy.
+Policy injection and coordination enable sophisticated pipelines through strategic placement of policy fragments at different scopes. Policy injection is the mechanism by which central policies at product and API levels include policy fragments using the [include-fragment](include-fragment-policy.md) policy.
 
-This injection mechanism allows fragments to be shared between [Product and API policies](api-management-howto-policies.md#scopes). Effective coordination ensures that Product and API policies work together seamlessly, with each handling appropriate responsibilities without duplication.
+This injection mechanism allows fragments to be shared between [product and API policies](api-management-howto-policies.md#scopes). Effective coordination ensures that product and API policies work together seamlessly, with each handling appropriate responsibilities without duplication.
 
 ## Policy injection
 
 ### Central policies inject policy fragments
 
-Product and API policy definitions serve as orchestrators that inject fragments in a specific order to create the complete processing pipeline. The following example shows fragments injected by a policy definition:
+product and API policy definitions serve as orchestrators that inject fragments in a specific order to create the complete processing pipeline. The following example shows fragments injected by a policy definition:
 
 ```xml
 <policies>
@@ -49,13 +49,13 @@ Product and API policy definitions serve as orchestrators that inject fragments 
 
 **Injection concepts:**
 
-- **Sequential Order**: Fragments execute in the order they're included, with data dependencies between fragments defined by context variables.
-- **Phase Placement**: Fragments are injected into appropriate policy phases (inbound, backend, outbound, on-error) based on their functionality.
-- **Dependency Management**: Later fragments can rely on context variables set by earlier fragments in the sequence.
+- **Sequential order**: Fragments execute in the order they're included, with data dependencies between fragments defined by context variables.
+- **Phase placement**: Fragments are injected into appropriate policy phases (inbound, backend, outbound, on-error) based on their functionality.
+- **Dependency management**: Later fragments can rely on context variables set by earlier fragments in the sequence.
 
 ### Fragment sharing between product and API policies
 
-When the same logic needs to be applied across Product and API policy scopes, policy fragments eliminate duplication through sharing.
+When the same logic needs to be applied across product and API policy scopes, policy fragments eliminate duplication through sharing.
 
 In this example, the `Circuit-Breaker` fragment is shared between both policies, eliminating duplication of custom timeout handling and error conversion logic:
 
@@ -94,10 +94,10 @@ In this example, the `Circuit-Breaker` fragment is shared between both policies,
 
 **Policy coordination concepts:**
 
-Policy coordination ensures that Product and API policies work together effectively by dividing responsibilities appropriately:
+Policy coordination ensures that product and API policies work together effectively by dividing responsibilities appropriately:
 
-- **Product Policy**: Injects fragments that perform product-specific behavior that varies across products.
-- **API Policy**: Contains fragments that remain consistent across all products.
+- **product policy**: Injects fragments that perform product-specific behavior that varies across products.
+- **API policy**: Contains fragments that remain consistent across all products.
 
 This division maintains clear boundaries while maximizing the benefits of fragment sharing.
 
@@ -176,7 +176,7 @@ Use debug headers to capture variable state at a specific point in the pipeline 
 </fragment>
 ```
 
-**Pipeline Placement:**
+**Pipeline placement:**
 
 Include the header management fragment in the **outbound** section of your product policy, after all processing fragments have completed:
 
@@ -192,7 +192,7 @@ Include the header management fragment in the **outbound** section of your produ
 </policies>
 ```
 
-**Alternative - Inline Debug Headers:**
+**Alternative - inline debug headers:**
 
 For simple scenarios or when testing individual fragments, you can add debug headers directly:
 
@@ -210,7 +210,7 @@ For simple scenarios or when testing individual fragments, you can add debug hea
 
 ### Track fragment execution
 
-Build execution breadcrumb trails to verify fragment sequencing and identify which fragments execute across Product and API policy boundaries. This technique is crucial for debugging conditional logic and understanding why certain fragments were skipped. Add this code to the beginning of each fragment, replacing "Fragment-Name" with the actual fragment name:
+Build execution breadcrumb trails to verify fragment sequencing and identify which fragments execute across product and API policy boundaries. This technique is crucial for debugging conditional logic and understanding why certain fragments were skipped. Add this code to the beginning of each fragment, replacing "Fragment-Name" with the actual fragment name:
 
 ```xml
 <set-variable name="execution-trace" value="@{
