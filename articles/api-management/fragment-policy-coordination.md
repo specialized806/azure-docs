@@ -13,7 +13,7 @@ ms.author: nicolela
 
 # Policy injection and coordination with fragments
 
-**Applies to:** All Azure API Management tiers
+[!INCLUDE [api-management-availability-all-tiers](../../includes/api-management-availability-all-tiers.md)]
 
 Policy injection and coordination enable sophisticated pipelines through strategic placement of policy fragments at different scopes. Policy injection is the mechanism by which central policies at product and API levels include policy fragments using the [include-fragment](include-fragment-policy.md) policy.
 
@@ -227,7 +227,7 @@ To view the breadcrumb trail, use the built-in [trace](trace-policy.md) policy t
 </trace>
 ```
 
-## Next steps
+## Related content
 
 - **[Architecture for building advanced execution pipelines with policy fragments](fragment-pipeline-architecture.md)** - Foundational patterns for designing modular, scalable policy fragment architectures with clear separation of concerns.
 - **[Variable management for policy fragments](fragment-variable-mgmt.md)** - Comprehensive guidance on context variable handling, safe access patterns, and inter-fragment communication.

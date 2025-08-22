@@ -1,7 +1,7 @@
 ---
 title: Central metadata cache for policy fragments
 titleSuffix: Azure API Management
-description: Implementation guidance for shared metadata caching patterns across fragments.
+description: Implementation guidance for shared metadata caching patterns across policy fragments in Azure API Management.
 services: api-management
 author: nicolela
 
@@ -13,7 +13,7 @@ ms.author: nicolela
 
 # Central metadata cache for policy fragments
 
-**Applies to:** All Azure API Management tiers
+[!INCLUDE [api-management-availability-all-tiers](../../includes/api-management-availability-all-tiers.md)]
 
 Efficient access to shared metadata is key for advanced pipelines with multiple policy fragments. Rather than parsing metadata repeatedly in each fragment, use a parse-once, cache-everywhere approach that dramatically improves performance while ensuring data consistency.
 
@@ -293,8 +293,9 @@ When extracting metadata from request bodies for caching, always use `preserveCo
 
 This approach ensures the original request body remains available for forwarding to backend services while allowing you to parse and analyze the content.
 
-## Next steps
+## Related content
 
 - **[Architecture for building advanced execution pipelines with policy fragments](fragment-pipeline-architecture.md)** - Foundational patterns for designing modular, scalable policy fragment architectures with clear separation of concerns.
 - **[Variable management for policy fragments](fragment-variable-mgmt.md)** - Comprehensive guidance on context variable handling, safe access patterns, and inter-fragment communication.
 - **[Policy injection and coordination with fragments](fragment-policy-coordination.md)** - Fragment injection patterns and coordination between product and API policies.
+- **[Custom caching in Azure API Management](api-management-sample-cache-by-key.md)** - Learn how to cache items by key and modify the key using request headers.

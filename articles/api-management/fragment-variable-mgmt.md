@@ -1,7 +1,7 @@
 ---
 title: Variable management for policy fragments
 titleSuffix: Azure API Management
-description: Comprehensive guidance on context variable handling, safe access patterns, and inter-fragment communication.
+description: Comprehensive guidance on context variable handling, safe access patterns, and inter-fragment communication in Azure API Management policies.
 services: api-management
 author: nicolela
 
@@ -13,7 +13,7 @@ ms.author: nicolela
 
 # Variable management for policy fragments
 
-**Applies to:** All Azure API Management tiers
+[!INCLUDE [api-management-availability-all-tiers](../../includes/api-management-availability-all-tiers.md)]
 
 [Context variables](api-management-policy-expressions.md#ContextVariables) enable sequential communication between policy fragments when building advanced pipeline scenarios. Proper variable management is critical for building reliable, performant pipelines. Improper handling can lead to runtime errors, performance issues, and unpredictable behavior. Following these best practices ensures your pipelines execute properly with optimal performance.
 
@@ -155,7 +155,7 @@ Use explicit type handling for optimal performance and reliability. When working
 </choose>
 ```
 
-## Next steps
+## Related content
 
 - **[Architecture for building advanced execution pipelines with policy fragments](fragment-pipeline-architecture.md)** - Foundational patterns for designing modular, scalable policy fragment architectures with clear separation of concerns.
 - **[Central metadata cache for policy fragments](fragment-metadata-cache.md)** - Implementation guidance for shared metadata caching patterns across fragments.

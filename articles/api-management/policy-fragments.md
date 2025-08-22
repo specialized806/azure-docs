@@ -113,4 +113,24 @@ After you create a policy fragment, you can view and update its properties or de
 1. Review **Policy document references** for policy definitions that include the fragment. Before you delete a fragment, you must remove the fragment references from all policy definitions.
 1. After all references are removed, select **Delete**.
 
+## Build advanced pipelines with policy fragments
+
+Policy fragments enable sophisticated pipelines with custom business logic. Advanced pipeline designs use fragments to create modular, reusable components that work together to handle complex processing.
+
+Key patterns for fragment-based pipelines:
+
+* **Modularity** - Design each fragment with a single, well-defined responsibility focused on one specific concern.
+* **Data sharing** - Use context variables and central metadata caching for efficient inter-fragment communication.
+* **Policy coordination** - Coordinate fragments across product and API policy scopes for optimal request processing.
+* **Performance optimization** - Follow performance guidelines for maximum efficiency.
+
+### Advanced pipeline guidance
+
+For complete guidance on building advanced policy fragment designs, see these articles:
+
+* **[Architecture for building advanced execution pipelines with policy fragments](fragment-pipeline-architecture.md)** - Core patterns for designing modular, scalable policy fragment designs with clear separation of concerns
+* **[Variable management for policy fragments](fragment-variable-mgmt.md)** - Best practices for context variable handling, safe access patterns, and inter-fragment communication
+* **[Central metadata cache for policy fragments](fragment-metadata-cache.md)** - Implementation guidance for shared metadata caching patterns across fragments
+* **[Policy injection and coordination with fragments](fragment-policy-coordination.md)** - Fragment injection patterns and coordination between product and API policies
+
 [!INCLUDE [api-management-policy-ref-next-steps](../../includes/api-management-policy-ref-next-steps.md)]

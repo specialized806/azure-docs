@@ -1,7 +1,7 @@
 ---
 title: Architecture for building advanced execution pipelines with policy fragments
 titleSuffix: Azure API Management
-description: Foundational patterns for designing modular, scalable policy fragment architectures with clear separation of concerns.
+description: Foundational patterns for designing modular, scalable policy fragment architectures in Azure API Management with clear separation of concerns.
 services: api-management
 author: nicolela
 
@@ -13,7 +13,7 @@ ms.author: nicolela
 
 # Architecture for building advanced execution pipelines with policy fragments
 
-**Applies to:** All Azure API Management tiers
+[!INCLUDE [api-management-availability-all-tiers](../../includes/api-management-availability-all-tiers.md)]
 
 Advanced pipeline scenarios often need custom logic and behavior applied throughout the request lifecycle. [Policy fragments](policy-fragments.md) provide the building blocks to create these pipelines while maintaining performance and reliability. Fragments enable sophisticated workflows through these capabilities:
 
@@ -64,9 +64,9 @@ Optimize fragments for maximum performance.
   - Use early exit patterns for health checks, authentication failures, variable existence, and other scenarios where definitive responses can be determined without further processing.
   - Follow processing optimizations such as minimizing variable access.
 
-For comprehensive implementation details, see the specialized guidance in the [Next Steps](#next-steps) section.
+For comprehensive implementation details, see the specialized guidance in the [Related content](#related-content) section.
 
-## Next steps
+## Related content
 
 - **[Variable management for policy fragments](fragment-variable-mgmt.md)** - Comprehensive guidance on context variable handling, safe access patterns, and inter-fragment communication.
 - **[Central metadata cache for policy fragments](fragment-metadata-cache.md)** - Implementation guidance for shared metadata caching patterns across fragments.
