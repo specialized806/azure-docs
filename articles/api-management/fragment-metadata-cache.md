@@ -272,7 +272,7 @@ Implement robust error handling for JSON parsing operations to prevent fragment 
 
 ### Preserve request body for metadata extraction
 
-When extracting metadata from request bodies for caching, always use `preserveContent: true` to keep the original request body intact for backend forwarding:
+When extracting metadata from request bodies for caching, always use [preserveContent: true](set-body-policy) to keep the original request body intact for backend forwarding:
 
 ```xml
 <set-variable name="request-metadata" value="@{

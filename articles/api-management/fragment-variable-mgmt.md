@@ -143,7 +143,7 @@ Reduce context variable lookups by consolidating multiple accesses into single e
 
 ### Maintain consistent types
 
-Use explicit type handling for optimal performance and reliability. When working with [policy expressions](api-management-policy-expressions.md), specify the expected type with the `@{}` operator:
+Use explicit type handling for optimal performance and reliability. When working with [policy expressions](api-management-policy-expressions.md), specify the expected type with the `@()` operator:
 
 ```xml
 <!-- Set as boolean, use as boolean -->
