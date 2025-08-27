@@ -1,23 +1,23 @@
 ---
-title: Automate build and deployment for Standard workflows
-description: Automate build and deployment for Standard logic apps with Azure DevOps.
+title: Automate Build and Deployment for Standard Workflows
+description: Learn how to automate build and deployment for Standard logic apps with Azure DevOps using Visual Studio Code.
 services: logic-apps
 ms.suite: integration
 ms.reviewer: estfan, azla
 ms.topic: how-to
-ms.date: 03/29/2024
-## Customer intent: As a developer, I want to automate builds and deployments for my Standard logic app workflows.
+ms.date: 08/28/2025
+## Customer intent: As a logic app developer, I want to automate builds and deployments for my Standard logic app workflows.
 ---
 
 # Automate build and deployment for Standard logic app workflows with Azure DevOps
 
-For Standard logic app workflows that run in single-tenant Azure Logic Apps, you can use Visual Studio Code with the Azure Logic Apps (Standard) extension to locally develop, test, and store your logic app project using any source control system. However, to get the full benefits of easily and consistently deploying your workflows across different environments and platforms, you must also automate your build and deployment process.
+For Standard logic app workflows that run in single-tenant Azure Logic Apps, you can use Visual Studio Code with the Azure Logic Apps (Standard) extension to locally develop, test, and store your logic app project using any source control system. To get the full benefits of easily and consistently deploying your workflows across different environments and platforms, you must also automate your build and deployment process.
 
-The Azure Logic Apps (Standard) extension provides tools for you to create and maintain automated build and deployment processes using Azure DevOps. However, before you start this automation, consider the following elements:
+The Azure Logic Apps (Standard) extension provides tools for you to create and maintain automated build and deployment processes using Azure DevOps. Before you start this automation, consider the following elements:
 
 - The Azure logic app resource where you create your workflows
 
-- The Azure-hosted connections that workflows use and are created from Microsoft-managed connectors.
+- The Azure-hosted connections that workflows use and are created from Microsoft-managed connectors
 
   These connections differ from the connections that directly and natively run with the Azure Logic Apps runtime.
 
@@ -43,7 +43,7 @@ This guide shows how to complete the following tasks:
 
 1. Create pipelines in Azure DevOps.
 
-For more information, see the following documentation:
+For more information:
 
 - [What is Azure DevOps?](/azure/devops/user-guide/what-is-azure-devops)
 - [What is Azure Pipelines?](/azure/devops/pipelines/get-started/what-is-azure-pipelines)
@@ -52,7 +52,7 @@ For more information, see the following documentation:
 
 - This capability supports only Standard logic app projects. If your Visual Studio Code workspace contains both a Standard logic app project and a Functions custom code project, both have deployment scripts generated, but custom code projects are currently ignored. The capability to create build pipelines for custom code are on the roadmap.
 
-- The extension creates pipelines for infrastructure deployment, continuous integration (CI), and continuous deployment (CD). However, you're responsible for connecting the pipelines to Azure DevOps and create the relevant triggers.
+- The extension creates pipelines for infrastructure deployment, continuous integration (CI), and continuous deployment (CD). You're responsible for connecting the pipelines to Azure DevOps and create the relevant triggers.
 
 - Currently, the extension supports only Azure Resource Management templates (ARM templates) for infrastructure deployment scripts. Other templates are in planning.
 
@@ -60,7 +60,7 @@ For more information, see the following documentation:
 
 - An Azure account and subscription. If you don't have a subscription, [sign up for a free Azure account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
 
-- Visual Studio Code with the Azure Logic Apps (Standard) extension. To meet these requirements, see the prerequisites for [Create Standard workflows with Visual Studio Code](create-single-tenant-workflows-visual-studio-code.md#prerequisites).
+- Visual Studio Code with the Azure Logic Apps (Standard) extension. See the prerequisites for [Create Standard workflows with Visual Studio Code](create-single-tenant-workflows-visual-studio-code.md#prerequisites).
 
 - Azure Logic Apps (Standard) Build and Release tasks for Azure DevOps Tasks. You can find these tasks in the [Azure DevOps Marketplace](https://marketplace.visualstudio.com/search?term=azure%20logic%20apps&target=AzureDevOps&category=Azure%20Pipelines&visibilityQuery=all&sortBy=Relevance).
 
@@ -84,11 +84,15 @@ For more information, see the following documentation:
 
    1. Enter your workspace name.
 
-   1. Select the project type: **Logic app**
+   1. Select the project type: **Logic app**.
 
    1. Enter your logic app project name.
 
-   1. Select the workflow template. Enter your workflow name.
+   1. Select visual or codeful workflow type.
+
+   1. Select the workflow template.
+   
+   1. Enter your workflow name.
 
    1. Select whether to open your workspace in the current Visual Studio Code window or a new window. 
 
@@ -110,14 +114,13 @@ For more information, see the following documentation:
 
         > [!NOTE]
         >
-        > If you skip this step, you can use only the [built-in connectors that are runtime-hosted](../connectors/built-in.md). 
-        > To enable the Microsoft-managed, Azure-hosted connectors at a later time, follow these steps:
+        > If you skip this step, you can use only the [built-in connectors that are runtime-hosted](../connectors/built-in.md). To enable the Microsoft-managed, Azure-hosted connectors at a later time, follow these steps:
         >
         > 1. Open the shortcut menu for the **workflow.json** file, and select **Use Connectors from Azure**.
         >
-        > 2. Select an existing Azure resource group that you want to use for your logic app.
+        > 1. Select an existing Azure resource group that you want to use for your logic app.
         >
-        > 3. Reload the workflow designer.
+        > 1. Reload the workflow designer.
 
       - The existing Azure resource group that you want to use for your logic app
 
@@ -137,7 +140,9 @@ After you create and locally test your workflow, create your deployment scripts.
 
 1. Follow the prompts to complete these steps:
 
-   1. Select the existing Azure resource group to use for your logic app.
+   1. If prompted, select the existing Azure resource group to use for your logic app.
+
+   1. Enter a deployment script type. For this example, use **Azure DevOps Pipeline**.
 
    1. Enter a unique name for your logic app resource.
 
@@ -145,20 +150,11 @@ After you create and locally test your workflow, create your deployment scripts.
 
    1. Enter a unique name to use for your App Service Plan.
 
-   1. Select the workspace folder where you want to generate the files.
-
-      | Deployment folder location | Description |
-      |----------------------------|-------------|
-      | **New deployment folder** (Default) | Create a new folder in the current workspace. |
-      | **Choose a different folder** | Select a different folder in the current workspace. |
-
    When you're done, Visual Studio Code creates a folder named **deployment/{*logic-app-name*}** at your workspace's root. This folder uses the same logic app name that you provided in these steps.
 
    > [!NOTE]
    >
-   > The values of variables, app settings, and parameters in the following files are prepopulated 
-   > based on the input that you provided in these steps. When you target a different environment, 
-   > make sure that you update the values for the created parameters and variable files.
+   > The values of variables, app settings, and parameters in the following files are prepopulated based on the input that you provided in these steps. When you target a different environment, make sure that you update the values for the created parameters and variable files.
 
    :::image type="content" source="media/automate-build-deployment-standard/deployment-folder.png" alt-text="Screenshot shows Visual Studio Code, Explorer icon selected on left menu, logic app project, and highlighted deployment scripts folder with contents." lightbox="media/automate-build-deployment-standard/deployment-folder.png":::
 
@@ -166,13 +162,13 @@ After you create and locally test your workflow, create your deployment scripts.
 
    | Folder name | File name and description |
    |-------------|---------------------------|
-   | **ADOPipelineScripts** | - **CD-pipeline.yml**: The continuous delivery pipeline that contains the instructions to deploy the logic app code to the logic app resource in Azure. <br><br>- **CD-pipeline-variables.yml**: A YAML file that contains the variables used by the **CD-pipeline.yml** file. <br><br>- **CI-pipeline.yml**: The continuous integration pipeline that contains the instructions to build and generate the artifacts required to deploy the logic app resource to Azure. <br><br>- **CI-pipeline-variables.yml**: A YAML file that contains the variables used by the **CI-pipeline.yml** file. <br><br>- **infrastructure-pipeline.yml**: A YAML "Infrastructure-as-Code" pipeline that contains the instructions to load all the ARM templates to Azure and to execute the steps in the **infrastructure-pipeline-template.yml** file. <br><br>- **infrastructure-pipeline-template.yml**: A YAML pipeline file that contains the steps to deploy a logic app resource with all required dependencies and to deploy each managed connection required by the source code. <br><br>- **infrastructure-pipeline-variables.yml**: A YAML pipeline that contains all the variables required to execute the steps in the **infrastructure-pipeline-template.yml** file. |
-   | **ArmTemplates** | - **{*connection-type*}.parameters.json**: A Resource Manager parameters file that contains the parameters required to deploy an Azure-hosted connection named **{*connection-type*}** to Azure. This file exists for each Azure-hosted connection in your workflow. <br><br>- **{*connection-type*}.template.json**: A Resource Manager template file that represents an Azure-hosted connection named **{*connection-reference*}** and contains the information used to deploy the corresponding connection resource to Azure. This file exists for each Azure-hosted connection in your workflow. <br><br>- **{*logic-app-name*}.parameters.json**: A Resource Manager parameters file that contains the parameters required to deploy the Standard logic app resource named **{*logic-app-name*}** to Azure, including all the dependencies. <br><br>- **{*logic-app-name*}.template.json**: A Resource Manager template file that represents the Standard logic app resource named **{*logic-app-name*}** and contains the information used to deploy the logic app resource to Azure. |
-   | **WorkflowParameters** | **parameters.json**: This JSON file is a copy of the local parameters file and contains a copy of all the user-defined parameters plus the cloud version of any parameters created by the extension to parameterize Azure-hosted connections. This file is used to build the package that deploys to Azure. |
+   | **pipelines** | - **CD-pipeline.yml**: The continuous delivery pipeline that contains the instructions to deploy the logic app code to the logic app resource in Azure. <br><br>- **CD-pipeline-variables.yml**: A YAML file that contains the variables used by the **CD-pipeline.yml** file. <br><br>- **CI-pipeline.yml**: The continuous integration pipeline that contains the instructions to build and generate the artifacts required to deploy the logic app resource to Azure. <br><br>- **CI-pipeline-variables.yml**: A YAML file that contains the variables used by the **CI-pipeline.yml** file. <br><br>- **infrastructure-pipeline.yml**: A YAML *Infrastructure-as-Code* pipeline that contains the instructions to load all the ARM templates to Azure and to run the steps in the **infrastructure-pipeline-template.yml** file. <br><br>- **infrastructure-pipeline-variables.yml**: A YAML pipeline that contains all the variables required to run the steps in the **infrastructure-pipeline-template.yml** file. |
+   | **infrastructure** | - **{*connection-type*}.parameters.json**: A Resource Manager parameters file that contains the parameters required to deploy an Azure-hosted connection named **{*connection-type*}** to Azure. This file exists for each Azure-hosted connection in your workflow. <br><br>- **{*connection-type*}.template.json**: A Resource Manager template file that represents an Azure-hosted connection named **{*connection-reference*}** and contains the information used to deploy the corresponding connection resource to Azure. This file exists for each Azure-hosted connection in your workflow. <br><br>- **{*logic-app-name*}.parameters.json**: A Resource Manager parameters file that contains the parameters required to deploy the Standard logic app resource named **{*logic-app-name*}** to Azure, including all the dependencies. <br><br>- **{*logic-app-name*}.template.json**: A Resource Manager template file that represents the Standard logic app resource named **{*logic-app-name*}** and contains the information used to deploy the logic app resource to Azure. |
+   | **workflowparameters** | **parameters.json**: This JSON file is a copy of the local parameters file and contains a copy of all the user-defined parameters plus the cloud version of any parameters created by the extension to parameterize Azure-hosted connections. This file is used to build the package that deploys to Azure. |
 
 ## Connect your workspace to your Git repository
 
-1. Follow these steps to initialize your repository:
+1. If necessary, follow these steps to initialize your repository:
 
    1. In Visual Studio Code, on the Activity bar, select the **Source Control** icon.
 
@@ -238,10 +234,6 @@ To create the infrastructure along with the CI and CD pipelines in Azure DevOps,
 
    :::image type="content" source="media/automate-build-deployment-standard/set-up-build.png" alt-text="Screenshot shows Azure DevOps team project, Git repository, and selected option named Set up build." lightbox="media/automate-build-deployment-standard/set-up-build.png":::
 
-1. On the **Inventory your pipeline** pane, confirm the repository information, and select **Configure pipeline**.
-
-   :::image type="content" source="media/automate-build-deployment-standard/inventory-pipeline.png" alt-text="Screenshot shows Inventory page with repo information for your pipeline." lightbox="media/automate-build-deployment-standard/inventory-pipeline.png":::
-
 1. On the **Configure your pipeline** pane, select **Existing Azure Pipelines YAML file**.
 
    :::image type="content" source="media/automate-build-deployment-standard/configure-pipeline.png" alt-text="Screenshot shows Configure page for selecting a pipeline type." lightbox="media/automate-build-deployment-standard/configure-pipeline.png":::
@@ -260,12 +252,7 @@ To create the infrastructure along with the CI and CD pipelines in Azure DevOps,
 
 1. On the **Configure your pipeline** pane, select **Review pipeline**.
 
-1. On the **Review your governed pipeline** pane, provide the following information:
-
-   - **Pipeline Name**: Enter a name for the pipeline.
-   - **Pipeline folder**: Select the folder for where to save your pipeline, which is named **./deployment/{*logic-app-name*}/pipelines**.
-
-1. When you're done, select **Save**.
+1. Select **Run** > **Save**.
 
    :::image type="content" source="media/automate-build-deployment-standard/review-pipeline.png" alt-text="Screenshot shows pane named Review governed pipeline." lightbox="media/automate-build-deployment-standard/review-pipeline.png":::
 
@@ -283,10 +270,8 @@ To find and run your pipeline, follow these steps:
 
 For more information, see [Create your first pipeline](/azure/devops/pipelines/create-first-pipeline).
 
-## See also
+## Related content
 
 - [Customize your pipeline](/azure/devops/pipelines/customize-pipeline)
-
 - [Manage your pipeline with Azure CLI](/azure/devops/pipelines/get-started/manage-pipelines-with-azure-cli)
-
 - [Continuous integration with Azure Pipelines in Visual Studio Code](https://code.visualstudio.com/api/working-with-extensions/continuous-integration)
