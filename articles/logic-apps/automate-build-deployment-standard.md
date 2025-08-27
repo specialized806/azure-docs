@@ -76,7 +76,7 @@ For more information:
 
 1. In the **Azure** window, on the **Workspace** toolbar, open the **Azure Logic Apps** menu, and select **Create new logic app workspace**.
 
-   :::image type="content" source="media/automate-build-deployment-standard/create-workspace.png" alt-text="Screenshot shows Visual Studio Code, Azure icon selected on left menu, Workspace section, and selected option for Create new logic app workspace." lightbox="media/automate-build-deployment-standard/create-workspace.png":::
+   :::image type="content" source="media/automate-build-deployment-standard/create-workspace.png" alt-text="Screenshot shows Visual Studio Code, Azure icon selected on left menu, Workspace section, and selected option for Create new logic app workspace.":::
 
 1. Follow the prompts to complete the following tasks:
 
@@ -126,7 +126,7 @@ For more information:
 
 1. When you're done, reload the workflow designer. If prompted, sign in to Azure.
 
-   :::image type="content" source="media/automate-build-deployment-standard/created-project.png" alt-text="Screenshot shows Visual Studio Code, Explorer icon selected on left menu, logic app project, and workflow designer." lightbox="media/automate-build-deployment-standard/created-project.png":::
+   :::image type="content" source="media/automate-build-deployment-standard/created-project.png" alt-text="Screenshot shows Visual Studio Code, Explorer icon selected on left menu, logic app project, and workflow designer.":::
 
 You can now edit the workflow in any way that you want and locally test your workflow along the way. To create and test a sample workflow, see [Create Standard workflows with Visual Studio Code](create-single-tenant-workflows-visual-studio-code.md).
 
@@ -136,7 +136,7 @@ After you create and locally test your workflow, create your deployment scripts.
 
 1. From the blank area under all your project files, open your project's shortcut menu, and select **Generate deployment scripts**.
 
-   :::image type="content" source="media/automate-build-deployment-standard/generate-deployment-scripts.png" alt-text="Screenshot shows Visual Studio Code, Explorer icon selected on left menu, logic app project, opened project window shortcut menu, and selected option for Generate deployment scripts." lightbox="media/automate-build-deployment-standard/generate-deployment-scripts.png":::
+   :::image type="content" source="media/automate-build-deployment-standard/generate-deployment-scripts.png" alt-text="Screenshot shows Visual Studio Code, Explorer icon selected on left menu, logic app project, opened project window shortcut menu, and selected option for Generate deployment scripts.":::
 
 1. Follow the prompts to complete these steps:
 
@@ -156,7 +156,7 @@ After you create and locally test your workflow, create your deployment scripts.
    >
    > The values of variables, app settings, and parameters in the following files are prepopulated based on the input that you provided in these steps. When you target a different environment, make sure that you update the values for the created parameters and variable files.
 
-   :::image type="content" source="media/automate-build-deployment-standard/deployment-folder.png" alt-text="Screenshot shows Visual Studio Code, Explorer icon selected on left menu, logic app project, and highlighted deployment scripts folder with contents." lightbox="media/automate-build-deployment-standard/deployment-folder.png":::
+   :::image type="content" source="media/automate-build-deployment-standard/deployment-folder.png" alt-text="Screenshot shows Visual Studio Code, Explorer icon selected on left menu, logic app project, and highlighted deployment scripts folder with contents.":::
 
    Under the **{*logic-app-name*}** folder, you have the following structure:
 
@@ -176,7 +176,7 @@ After you create and locally test your workflow, create your deployment scripts.
 
    1. From the prompt menu, select **Choose Folder**. Select the workspace root folder, and then select **Initialize Repository**.
 
-      :::image type="content" source="media/automate-build-deployment-standard/initialize-repo.png" alt-text="Screenshot shows Visual Studio Code, Source Control window, and selected option named Initialize Repository." lightbox="media/automate-build-deployment-standard/initialize-repo.png":::
+      :::image type="content" source="media/automate-build-deployment-standard/initialize-repo.png" alt-text="Screenshot shows Visual Studio Code, Source Control window, and selected option named Initialize Repository.":::
 
    1. In the **Source Control** window, select **Open Repository**.
 
@@ -204,7 +204,7 @@ After you create and locally test your workflow, create your deployment scripts.
 
    1. Under **Source Control Repositories**, from your repository's toolbar, open the ellipses (**...**) menu, and select **Remote** > **Add remote**.
 
-      :::image type="content" source="media/automate-build-deployment-standard/add-remote.png" alt-text="Screenshot shows Visual Studio Code, Source control window, and selected option named Add remote." lightbox="media/automate-build-deployment-standard/add-remote.png":::
+      :::image type="content" source="media/automate-build-deployment-standard/add-remote.png" alt-text="Screenshot shows Visual Studio Code, Source control window, and selected option named Add remote.":::
 
 1. At the prompt, paste your copied URL, and enter a name for the remote, which is usually **origin**.
 
@@ -212,7 +212,7 @@ After you create and locally test your workflow, create your deployment scripts.
 
 1. Before you set up your pipelines in the next section, open the **CD-pipeline.yml** file, and rename the **CI Pipeline** in the **`source`** attribute to match the CI pipeline name that you want to use.
 
-   :::image type="content" source="media/automate-build-deployment-standard/rename-ci-pipeline.png" alt-text="Screenshot shows Visual Studio Code, Source control window, opened CD-pipeline.yml file, and highlighted source field for CI pipeline name." lightbox="media/automate-build-deployment-standard/rename-ci-pipeline.png":::
+   :::image type="content" source="media/automate-build-deployment-standard/rename-ci-pipeline.png" alt-text="Screenshot shows Visual Studio Code, Source control window, opened CD-pipeline.yml file, and highlighted source field for CI pipeline name.":::
 
 1. In the **Source Control** window, commit your changes, and publish them to the repository.
 
@@ -232,7 +232,7 @@ To create the infrastructure along with the CI and CD pipelines in Azure DevOps,
 
 1. On the **Files** pane, select **Set up build**.
 
-   :::image type="content" source="media/automate-build-deployment-standard/set-up-build.png" alt-text="Screenshot shows Azure DevOps team project, Git repository, and selected option named Set up build." lightbox="media/automate-build-deployment-standard/set-up-build.png":::
+   :::image type="content" source="media/automate-build-deployment-standard/set-up-build.png" alt-text="Screenshot shows Azure DevOps team project, Git repository, and selected option named Set up build.":::
 
 1. On the **Configure your pipeline** pane, select **Existing Azure Pipelines YAML file**.
 
