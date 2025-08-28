@@ -222,7 +222,7 @@ After you create and locally test your workflow, create your deployment scripts.
 
 To create the infrastructure along with the CI and CD pipelines in Azure DevOps, repeat the following steps for each of the following pipeline files:
 
-- **infrastructure-pipeline.yml** for the "Infrastructure-as-Code" pipeline.
+- **infrastructure-pipeline.yml** for the Infrastructure-as-Code pipeline.
 - **CI-pipeline.yml** for the Continuous Integration pipeline.
 - **CD-pipeline.yml** for the Continuous Delivery pipeline.
 
@@ -232,23 +232,21 @@ To create the infrastructure along with the CI and CD pipelines in Azure DevOps,
 
 1. On the **Files** pane, select **Set up build**.
 
-   :::image type="content" source="media/automate-build-deployment-standard/set-up-build.png" alt-text="Screenshot shows Azure DevOps team project, Git repository, and selected option named Set up build.":::
+   :::image type="content" source="media/automate-build-deployment-standard/set-up-build.png" alt-text="Screenshot shows Azure DevOps team project, Git repository, and selected option named Set up build." lightbox="media/automate-build-deployment-standard/set-up-build.png":::
 
 1. On the **Configure your pipeline** pane, select **Existing Azure Pipelines YAML file**.
 
-   :::image type="content" source="media/automate-build-deployment-standard/configure-pipeline.png" alt-text="Screenshot shows Configure page for selecting a pipeline type." lightbox="media/automate-build-deployment-standard/configure-pipeline.png":::
+   :::image type="content" source="media/automate-build-deployment-standard/configure-pipeline.png" alt-text="Screenshot shows Configure page for selecting a pipeline type.":::
 
 1. On the **Select an existing YAML file** pane, follow these steps to select your **Infrastructure-pipeline.yml** file:
 
    1. For **Branch**, select the branch where you committed your changes, for example, **main** or your release branch.
 
-   1. For **Path**, select the path to use for your pipeline. The following path is the default value:
-
-      **deployment/{*logic-app-name*}/ADOPipelineScripts/{*infrastructure-pipeline-name*}.yml**
+   1. For **Path**, select the path to use for your pipeline. This path is the default value: **deployment/{*logic-app-name*}/ADOPipelineScripts/{*infrastructure-pipeline-name*}.yml**.
 
    1. When you're ready, select **Continue**.
 
-      :::image type="content" source="media/automate-build-deployment-standard/select-infrastructure-pipeline.png" alt-text="Screenshot shows pane for Select an existing YAML file." lightbox="media/automate-build-deployment-standard/select-infrastructure-pipeline.png":::
+      :::image type="content" source="media/automate-build-deployment-standard/select-infrastructure-pipeline.png" alt-text="Screenshot shows pane for Select an existing YAML file.":::
 
 1. On the **Configure your pipeline** pane, select **Review pipeline**.
 
