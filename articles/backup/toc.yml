@@ -1,15 +1,19 @@
 - name: Azure Backup documentation
   href: index.yml
-- name: Overview
+- name: About Azure Backup
+  expanded: true
   items:
   - name: Overview of Azure Backup
     href: backup-overview.md
+  - name: Azure Backup architecture  
+    href: backup-architecture.md  
   - name: What's new in Azure Backup
     href: whats-new.md
   - name: Pricing
     href: https://azure.microsoft.com/pricing/details/backup/
-- name: Quickstarts
-  expanded: true
+- name: Backup management control planes
+  items:    
+- name: Quickstarts  
   items:
   - name: Back up a VM - Azure portal
     href: quick-backup-vm-portal.md
