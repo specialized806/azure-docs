@@ -31,13 +31,10 @@ the next section.
 > Interested in real-world use cases? Explore the [Scenarios & Samples](TODO:link) page.
 
 ## Getting Started
-Jump into Azure Functions for Python with the most common entry points:
-
-### Quickstarts
-Choose the environment that fits your workflow:
-- [Visual Studio Code](TODO:link)
-- [Core Tools](TODO:link)
-- [Portal](TODO:link)
+Choose the environment that fits your workflow and jump into Azure Functions for Python:
+- [Visual Studio Code Quickstart](TODO:link)
+- [Core Tools Quickstart](TODO:link)
+- [Portal Quickstart](TODO:link)
 
 ---
 
@@ -49,6 +46,7 @@ and bindings directly in your code. Each function is implemented as a **global, 
 a `function_app.py` file.
 
 **Example**
+
 Here's a simple function that responds to an HTTP request:
 ```python
 import azure.functions as func
@@ -56,7 +54,7 @@ import azure.functions as func
 app = func.FunctionApp()
 
 @app.function_name(name="HttpTrigger1")
-@app.route(route="req")
+@app.route(route="http_trigger")
 def http_trigger(req):
     user = req.params.get("user")
     return f"Hello, {user}!"
@@ -129,25 +127,25 @@ A Python Azure Functions project is recommended to have the following structure:
 
 **Key Files and Folders**
 
-| File / Folder           | Description                                                                                                  |
-|-------------------------|--------------------------------------------------------------------------------------------------------------|
-| `.venv/`                | (Optional) Local virtual environment for Python (excluded from deployment).                                  |
-| `.vscode/`              | (Optional) Editor config for VS Code. Not required for deployment.                                           |
-| `function_app.py`       | Main script where Azure Functions and triggers are defined using decorators.                                 |
-| `shared/`               | (Optional) Holds helper code shared across the Function App project                                          |
-| `additional_functions/` | (Optional) Used for modular code organization—typically with [blueprints](TODO:blueprints).                  |
-| `tests/`                | (Optional) Unit tests for your function app. Not published to Azure.                                         |
-| `.funcignore`           | Specifies files/folders to exclude from deployment (for example, `.venv/`, `tests/`, `local.settings.json`). |
-| `host.json`             | Global configuration for all functions in the app. Required and published.                                   |
-| `local.settings.json`   | Local-only app settings and secrets (never published).                                                       |
-| `requirements.txt`      | Python dependencies installed during publish.                                                                |
-| `Dockerfile`            | (Optional) Defines a custom container for deployment.                                                        |
+| File / Folder           | Description                                                                                                  | Required in Production             |
+|-------------------------|--------------------------------------------------------------------------------------------------------------|------------------------------------|
+| `.venv/`                | Local virtual environment for Python (excluded from deployment).                                             | ❌                                  |
+| `.vscode/`              | Editor config for VS Code. Not required for deployment.                                                      | ❌                                  |
+| `function_app.py`       | Main script where Azure Functions and triggers are defined using decorators.                                 | ✅                                  |
+| `shared/`               | Holds helper code shared across the Function App project                                                     | ❌                                  |
+| `additional_functions/` | Used for modular code organization—typically with [blueprints](TODO:blueprints).                             | ❌                                  |
+| `tests/`                | Unit tests for your function app. Not published to Azure.                                                    | ❌                                  |
+| `.funcignore`           | Specifies files/folders to exclude from deployment (for example, `.venv/`, `tests/`, `local.settings.json`). | ❌ (recommended)                    |
+| `host.json`             | Global configuration for all functions in the app. Required and published.                                   | ✅                                  |
+| `local.settings.json`   | Local-only app settings and secrets (never published).                                                       | ❌ (required for local development) |
+| `requirements.txt`      | Python dependencies installed during publish.                                                                | ✅                                  |
+| `Dockerfile`            | Defines a custom container for deployment.                                                                   | ❌                                  |
 
 **Deployment Notes**
 - When you're deploying the app to Azure, the **contents** of your project folder are packaged—not the folder itself.
 - Ensure `host.json` is at the **root of the deployment package**, not nested in a subfolder.
 - Keep `tests/`, `.vscode/`, and `.venv/` excluded using `.funcignore`.
-> For guidance on unit testing, see [Unit Testing](TODO:unit testing link).
+> For guidance on unit testing, see [Unit Testing](TODO:link).
 > For container deployments, see [Deploy with custom containers](TODO:link)
 
 ---
@@ -163,6 +161,7 @@ There are two main types of bindings:
 To learn more about the available triggers and bindings, visit [Triggers and Bindings in Azure Functions](TODO:link).
 
 **Example: HTTP Trigger with Cosmos DB Input and Event Hub Output**
+
 This function:
 - Triggers on an HTTP request
 - Reads from a Cosmos DB
@@ -171,28 +170,27 @@ This function:
 
 ```python
 import azure.functions as func
-import logging
 
 app = func.FunctionApp()
 
 @app.function_name(name="HttpTriggerWithCosmosDB")
 @app.route(route="file")
-@app.cosmos_db_input(
-    arg_name="docs",
-    database_name="test",
-    container_name="items",
-    id="cosmosdb-input-test",
-    connection="COSMOSDB_CONNECTION_SETTING")
+@app.cosmos_db_input(arg_name="docs",
+                     database_name="test",
+                     container_name="items",
+                     connection="COSMOSDB_CONNECTION_SETTING")
 @app.event_hub_output(arg_name="event",
                       event_hub_name="my-test-eventhub",
                       connection="EVENTHUB_CONNECTION_SETTING")
-def http_trigger_with_cosmosdb(req: func.HttpRequest, documents: func.DocumentList, event: func.Out[str]) -> func.HttpResponse:
-    logging.info(f"Executing function...")
-    
-    http_content = req.params.get('body') # Content from HttpRequest
-    doc_id = documents[0]['id'] # Content from CosmosDB input
+def http_trigger_with_cosmosdb(req: func.HttpRequest,
+                               documents: func.DocumentList,
+                               event: func.Out[str]) -> func.HttpResponse:
+    # Content from HttpRequest and Cosmos DB input
+    http_content = req.params.get('body')
+    doc_id = documents[0]['id']
 
-    event.set("HttpRequest content: " + http_content + " | CosmosDB ID: " + doc_id)
+    event.set("HttpRequest content: " + http_content
+              + " | CosmosDB ID: " + doc_id)
     
     return func.HttpResponse(
         f"Function executed successfully.",
@@ -209,17 +207,15 @@ def http_trigger_with_cosmosdb(req: func.HttpRequest, documents: func.DocumentLi
 
 
 **Example: Timer Trigger with Blob Input**
+
 This function:
 - Triggers every 10 minutes
 - Reads from a Blob using [SDK Type Bindings](TODO:link)
-- Writes to a temporary file in `tmp/`
-- Accesses the function invocation ID
-- Uses global and environment variables
+- Caches results and writes to a temporary file
 
 ```python
 import azure.functions as func
 import azurefunctions.extensions.bindings.blob as blob
-
 import logging
 import os
 import tempfile
@@ -229,37 +225,30 @@ CACHED_BLOB_DATA = None
 app = func.FunctionApp()
 
 @app.function_name(name="TimerTriggerWithBlob")
-@app.schedule(schedule="0 */10 * * * *",
-              arg_name="mytimer",
-              run_on_startup=False,
-              use_monitor=False)
+@app.schedule(schedule="0 */10 * * * *", arg_name="mytimer")
 @app.blob_input(arg_name="client",
                 path="PATH/TO/BLOB",
                 connection="BLOB_CONNECTION_SETTING")
-def timer_trigger_with_blob(mytimer: func.TimerRequest, client: blob.BlobClient, context: func.Context) -> None:
-    logging.info(f"Executing function...")
-    
+def timer_trigger_with_blob(mytimer: func.TimerRequest,
+                            client: blob.BlobClient,
+                            context: func.Context) -> None:
     global CACHED_BLOB_DATA
     if CACHED_BLOB_DATA is None:
-        CACHED_BLOB_DATA = client.download_blob(encoding='utf-8').readall() # Set global variable
-        temp_file_path = tempfile.gettempdir()
-        temp_file = tempfile.NamedTemporaryFile()
+        # Download blob and save as a global variable
+        CACHED_BLOB_DATA = client.download_blob().readall()
+
+        # Create temp file prefix and suffix
+        my_prefix = context.invocation_id
+        my_suffix = os.getenv("BLOB_SUFFIX")
+        temp_file = tempfile.NamedTemporaryFile(prefix=my_prefix,
+                                                suffix=my_suffix)
         temp_file.write(CACHED_BLOB_DATA)
-        logging.info(f"Files list: {os.listdir(temp_file_path)}")
-
-    invocation_id = context.invocation_id # Content from `context` arg
-    logging.info(f'Current function invocation ID:{invocation_id}')
-
-    my_app_setting_value = os.environ["myAppSetting"] # Reading from a setting named 'myAppSetting'
-    my_second_app_setting = os.getenv("mySecondAppSetting") # Reading from a setting named 'mySecondAppSetting'
-    logging.info(f'My app setting value:{my_app_setting_value}, and my second app setting value: {my_second_app_setting}')
-    
-    
+        logging.info(f"Cached data written to {temp_file.name}")
 ```
 **Key Concepts**
 - SDK type Bindings are used to work with rich types. See more: [SDK type bindings](TODO:link).
 - Global variables can be used to cache expensive computations, but their state isn’t guaranteed to persist across function executions.
-- Use `tempfile.getemptydir()`, which returns `tmp/`, to store temporary files. However, those files aren't guaranteed to persist across invocations or scale-out instances.
+- Temporary files are stored in `tmp/` and aren't guaranteed to persist across invocations or scale-out instances.
 - Invocation context of a function can be accessed through the [Context class](TODO:link).
 - [Application Settings](TODO:link) are exposed as environment variables when the app is running. You can access them through `os.environ[]` or `os.getenv()`. For local development,
 app settings are [maintained in the local.settings.json file](TODO:link).
@@ -271,9 +260,6 @@ SDK.
 > [!IMPORTANT]  
 > SDK type bindings support for Python is only supported in the Python v2 programming model.
 
-**Prerequisites**
-* [Azure Functions runtime version](functions-versions.md?pivots=programming-language-python) version 4.34, or a later version.
-* A [supported version](#supported-python-versions) of [Python](https://www.python.org/downloads/).
 
 **SDK Types**
 
@@ -291,14 +277,8 @@ SDK.
 <sup>1</sup> For output scenarios in which you would use an SDK type, you should create and work with SDK clients directly instead of using an output binding.
 <sup>2</sup> The Cosmos DB trigger uses the [Azure Cosmos DB change feed](/azure/cosmos-db/change-feed) and exposes change feed items as JSON-serializable types. The absence of SDK types is by-design for this scenario.
 
-### Learn More
-For a full list of supported triggers and bindings, configuration options, and code examples, 
-see the [Triggers & Bindings reference page](TODO:link).
-- For secure connection handling, see [Connections](TODO:link).
-- For optimizing storage use, see [Storage account guidance](TODO:link).
-
 ### Package Management
-To use third-party Python packages in your Azure Functions app, list them in a requirements.txt file at the root of your project. Those packages can then be referenced 
+To use third-party Python packages in your Azure Functions app, list them in a requirements.txt file at the root of your project. Those packages can then be referenced as normal.
 To learn more about building and deployment options with external dependencies, see [Deployment Options for Python Function Apps](TODO:link).
 
 For example, the following sample shows how the `requests` module is included and used in the function app.
@@ -362,6 +342,7 @@ in Azure.
 
 Logging allows you to capture runtime information and diagnose issues without needing any more setup.
 **Logging Example with an HTTP Trigger**
+
 ```python
 import logging
 import azure.functions as func
@@ -382,6 +363,7 @@ in the Azure portal under Logs or Application Insights. For `debug` logs to appe
 To learn more about monitoring Azure Functions in the portal, see [Monitor Azure Functions](TODO:link).
 
 **Logging from Background Threads**
+
 If your function starts a new thread and needs to log from that thread, make sure to pass the `context` 
 argument into the thread. The `context` contains thread-local storage and the current `invocation_id`, 
 which must be set on the worker thread in order for logs to be associated properly with the function execution.
@@ -390,10 +372,14 @@ import azure.functions as func
 import logging
 import threading
 
-def main(req, context):
+app = func.FunctionApp()
+
+@app.route(route="http_trigger")
+def http_trigger(req, context) -> func.HttpResponse:
     logging.info("Function started")
     t = threading.Thread(target=log_from_thread, args=(context,))
     t.start()
+    return "okay"
 
 def log_from_thread(context):
     # Associate the thread with the current invocation
