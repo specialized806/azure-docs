@@ -160,8 +160,7 @@ There are two main types of bindings:
 - **Triggers** (input that starts the function)
 - **Inputs & Outputs** (extra data sources or destinations)
 
-Bindings rely on connection strings, which are typically defined in `local.settings.json` for local development, 
-and in application settings when deployed to Azure.
+To learn more about the available triggers and bindings, visit [Triggers and Bindings in Azure Functions](TODO:link).
 
 **Example: HTTP Trigger with Cosmos DB Input and Event Hub Output**
 This function:
