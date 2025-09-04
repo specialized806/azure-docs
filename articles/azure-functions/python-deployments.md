@@ -13,7 +13,7 @@ ms.custom:
 
 # Deploying Python Azure Functions
 
-Azure Functions supports multiple deployment options for Python apps. Choose your 
+Azure Functions supports multiple build and deployment options for Python apps. Choose your 
 deployment method based on your build environment, dependency needs, and runtime 
 requirements.
 >  **Recommended for most apps:** Remote build using `func azure functionapp publish`.
@@ -26,6 +26,7 @@ requirements.
 | Remote Build                       | Azure (App Service)                          | Default, recommended for most users         |
 | Local Build                        | Your machine                                 | Linux/macOS devs, limited Windows scenarios |
 | Zip Deploy (Prebuilt Dependencies) | Already packaged locally                     | CI/CD pipelines, custom prebuilds           |
+| Portal Creation                    | External dependencies are NOT supported      | Editing without third-party dependencies    |
 | Custom Dependencies                | Handled via extra index URL or local install | Non-PyPI dependencies                       |
 | Custom Container                   | Fully self-managed image                     | Native libraries, full control              |
 | CI / CD                            | Automated in pipelines                       | Enterprise deployments                      |
@@ -66,6 +67,13 @@ Deploy with:
 ```bash
 func azure functionapp publish <APP_NAME> --no-build
 ```
+
+## Portal Creation
+You can instantly create and test a basic Azure Function directly within the Azure portal, which saves setup time 
+and is useful for quick experiments or demos. To do this, follow the [Getting Started in the Azure Portal Guide](TODO:link).
+
+> Portal editing does not support third-party dependencies. You can't install or reference packages outside `azure-functions` 
+and the built-in Python standard library.
 
 ## Custom Dependencies (Non-PyPI, Local, Wheels)
 Azure Functions supports non-PyPI dependencies in two ways:
