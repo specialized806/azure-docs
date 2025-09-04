@@ -148,7 +148,7 @@ A Python Azure Functions project is recommended to have the following structure:
 - Ensure `host.json` is at the **root of the deployment package**, not nested in a subfolder.
 - Keep `tests/`, `.vscode/`, and `.venv/` excluded using `.funcignore`.
 > For guidance on unit testing, see [Unit Testing](TODO:unit testing link).
-> For container deployments, see [Deploy with custom containers](TODO:link here)
+> For container deployments, see [Deploy with custom containers](TODO:link)
 
 ---
 
@@ -163,11 +163,11 @@ There are two main types of bindings:
 Bindings rely on connection strings, which are typically defined in `local.settings.json` for local development, 
 and in application settings when deployed to Azure.
 
-**Example: HTTP Trigger with CosmosDB Input and EventHub Output**
+**Example: HTTP Trigger with Cosmos DB Input and Event Hub Output**
 This function:
 - Triggers on an HTTP request
 - Reads from a Cosmos DB
-- Writes to an EventHub output
+- Writes to an Event Hub output
 - Returns an HTTP response
 
 ```python
@@ -294,13 +294,13 @@ SDK.
 
 ### Learn More
 For a full list of supported triggers and bindings, configuration options, and code examples, 
-see the [Triggers & Bindings reference page](TODO:link here).
-- For secure connection handling, see [Connections](TODO:link here).
-- For optimizing storage use, see [Storage account guidance](TODO:link here).
+see the [Triggers & Bindings reference page](TODO:link).
+- For secure connection handling, see [Connections](TODO:link).
+- For optimizing storage use, see [Storage account guidance](TODO:link).
 
 ### Package Management
 To use third-party Python packages in your Azure Functions app, list them in a requirements.txt file at the root of your project. Those packages can then be referenced 
-To learn more about building and deployment options with external dependencies, see [Deployment and Build Options for Python Function Apps](TODO:link).
+To learn more about building and deployment options with external dependencies, see [Deployment Options for Python Function Apps](TODO:link).
 
 For example, the following sample shows how the `requests` module is included and used in the function app.
 ```text
@@ -325,14 +325,13 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
 
 **Key Considerations:**
 - Conflicts with built-in modules:
-   - Avoid naming your project folders after Python standard libraries (e.g., `email/`, `json/`).
-   - Do not include Python native libraries (like `logging`) in `requirements.txt.`
+   - Avoid naming your project folders after Python standard libraries (for example, `email/`, `json/`).
+   - Don't include Python native libraries (like `logging`) in `requirements.txt.`
 - Deployment:
-   - Ensure all required dependencies are listed in `requirements.txt` to prevent ModuleNotFound errors.
+   - To prevent ModuleNotFound errors, you should ensure all required dependencies are listed in `requirements.txt`.
    - If you update your app's Python version, you should rebuild and redeploy your app on the new Python version to avoid dependency conflicts with previously built packages.
 - Non-PyPI Dependencies:
-   - If your app relies on dependencies that aren’t available on PyPI (for example, local packages, wheel files, or private feeds), you can still include them in your app. See [Custom dependencies in Python  Azure Functions](TODO: link)
- for setup instructions.
+   - You can include dependencies that aren’t available on PyPI in your app. For example, this can include local packages, wheel files, or private feeds. See [Custom dependencies in Python  Azure Functions](TODO: link) for setup instructions.
 
 ---
 
@@ -379,9 +378,9 @@ def http_trigger(req) -> func.HttpResponse:
     return func.HttpResponse("OK")
 ```
 You can use the full set of logging levels (`debug`, `info`, `warning`, `error`, `critical`), and they appear 
-in the Azure portal under Logs or Application Insights. For `debug` logs to appear, more setup is required. See [Enable Debug Logging in Python Function Apps](TODO:link) for more information.
+in the Azure portal under Logs or Application Insights. For `debug` logs to appear, more setup is required. For more information, see [Enable Debug Logging in Python Function Apps](TODO:link).
 
-For more information on monitoring Azure Functions in the portal, see [Monitor Azure Functions](TODO:link).
+To learn more about monitoring Azure Functions in the portal, see [Monitor Azure Functions](TODO:link).
 
 **Logging from Background Threads**
 If your function starts a new thread and needs to log from that thread, make sure to pass the `context` 
