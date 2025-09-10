@@ -33,7 +33,7 @@ Azure NetApp Files supports four service levels: *Standard*, *Premium*, *Ultra*,
     >[!IMPORTANT]
     >The Flexible service level is only supported for new _manual QoS_ capacity pools.
 
-* <a name="zrs"></a> Zone-redundant storage (preview):
+* <a name="zrs"></a> Elastic one-redundant storage (preview):
 
     <!-- TBD -->
 
