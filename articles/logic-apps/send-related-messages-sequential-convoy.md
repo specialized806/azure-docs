@@ -5,7 +5,7 @@ services: logic-apps
 ms.suite: integration
 ms.reviewer: apseth, divswa, azla
 ms.topic: how-to
-ms.date: 09/08/2025
+ms.date: 09/12/2025
 #Customer intent: As an integration developer, I need to process messages from different Service Bus sessions using Azure Logic Apps workflows in a specific order using a sequential convoy.
 ---
 
@@ -13,7 +13,7 @@ ms.date: 09/08/2025
 
 [!INCLUDE [logic-apps-sku-consumption](includes/logic-apps-sku-consumption.md)]
 
-You might need to send correlated messages in a specific order. *Correlated messages* have a property that defines the relationship between those messages, such as the ID for the [session](../service-bus-messaging/message-sessions.md). When you use [Azure Logic Apps](../logic-apps/logic-apps-overview.md) with [Azure Service Bus connector](../connectors/connectors-create-api-servicebus.md), you can use the *sequential convoy*.
+You might need to send correlated messages in a specific order. *Correlated messages* have a property that defines the relationship between those messages, such as the ID for the [session](../service-bus-messaging/message-sessions.md). When you use [Azure Logic Apps](../logic-apps/logic-apps-overview.md) with [Azure Service Bus connector](../connectors/connectors-create-api-servicebus.md), you can use the *sequential convoy* pattern.
 
 For example, suppose that you have 10 messages for a session named *Session 1* and 5 messages for a session named *Session 2*. All the messages are sent to the same [Service Bus queue](../service-bus-messaging/service-bus-queues-topics-subscriptions.md). You can create a logic app that processes messages from the queue so that a single trigger run handles all messages from Session 1. The next trigger run handles all messages from Session 2.
 
@@ -49,7 +49,7 @@ If you're not sure whether your logic app has permissions to access your Service
 
 1. On the namespace menu, under **Settings**, select **Shared access policies**. Check that you have **Manage** permissions for that namespace.
 
-   :::image type="content" source="./media/send-related-messages-sequential-convoy/check-service-bus-permissions.png" alt-text="Screenshot shows the Shared access policies page for a Service Bus namespace.":::
+   :::image type="content" source="./media/send-related-messages-sequential-convoy/check-service-bus-permissions.png" alt-text="Screenshot shows the Shared access policies page for a Service Bus namespace." lightbox="./media/send-related-messages-sequential-convoy/check-service-bus-permissions.png":::
 
 1. Get the connection string for your Service Bus namespace. You can use this string later when you create a connection to the namespace from your logic app.
 
@@ -238,15 +238,15 @@ This [**Until** loop](../logic-apps/logic-apps-control-flow-loops.md#until-loop)
 
    - The **Process messages if we got any** condition checks whether the number of remaining messages is zero. If false and more messages exist, continue processing. If true and no more messages exist, the workflow sets the `isDone` variable to `true`.
 
-   :::image type="content" source="./media/send-related-messages-sequential-convoy/process-messages-if-any.png" alt-text="Screenshot shows the condition Process messages if any.":::
+   :::image type="content" source="./media/send-related-messages-sequential-convoy/process-messages-if-any.png" alt-text="Screenshot shows the condition Process messages if any." lightbox="./media/send-related-messages-sequential-convoy/process-messages-if-any.png":::
 
-   In the **If false** section, a **For each** loop processes each message in first-in, first-out order (FIFO). In the loop's **Settings**, the **Concurrency Control** setting is set to `1`, so only a single message is processed at a time.
+   In the **If false** section, a **For each** loop processes each message in first-in, first-out order. In the loop's **Settings**, the **Concurrency Control** setting is set to `1`, so only a single message is processed at a time.
 
-   :::image type="content" source="./media/send-related-messages-sequential-convoy/for-each-additional-message.png" alt-text="Screenshot shows the for-each loop process each message one at a time.":::
+   :::image type="content" source="./media/send-related-messages-sequential-convoy/for-each-additional-message.png" alt-text="Screenshot shows the for-each loop process each message one at a time." lightbox="./media/send-related-messages-sequential-convoy/for-each-additional-message.png":::
 
 1. For the Service Bus actions, **Complete the message in a queue** and **Abandon the message in a queue**, provide the name for your Service Bus queue.
 
-   :::image type="content" source="./media/send-related-messages-sequential-convoy/abandon-or-complete-message-in-queue.png" alt-text="Screenshot shows the Service Bus actions Complete the message in a queue and Abandon the message in a queue.":::
+   :::image type="content" source="./media/send-related-messages-sequential-convoy/abandon-or-complete-message-in-queue.png" alt-text="Screenshot shows the Service Bus actions Complete the message in a queue and Abandon the message in a queue." lightbox="./media/send-related-messages-sequential-convoy/abandon-or-complete-message-in-queue.png":::
 
    After **While there are more messages for the session in the queue** is done, the workflow sets the `isDone` variable to `true`.
 
@@ -278,7 +278,7 @@ This Service Bus action renews the lock on the session in the queue while the wo
 
 - In the Service Bus action, **Renew lock on the session in a queue**, provide the name for your Service Bus queue.
 
-  :::image type="content" source="./media/send-related-messages-sequential-convoy/renew-lock-on-session-in-queue.png" alt-text="Screenshot shows the Service Bus action Renew lock on session in the queue.":::
+  :::image type="content" source="./media/send-related-messages-sequential-convoy/renew-lock-on-session-in-queue.png" alt-text="Screenshot shows the Service Bus action Renew lock on session in the queue." lightbox="./media/send-related-messages-sequential-convoy/renew-lock-on-session-in-queue.png":::
 
 Next, provide the necessary information for the Service Bus action, **Close a session in a queue and succeed**.
 
@@ -290,7 +290,7 @@ This Service Bus action closes the session in the queue after either the workflo
 
 - In the Service Bus action, **Close a session in a queue and succeed**, provide the name for your Service Bus queue.
 
-  :::image type="content" source="./media/send-related-messages-sequential-convoy/close-session-in-queue-succeed.png" alt-text="Screenshot shows the Service Bus action Close a session in a queue and succeed.":::
+  :::image type="content" source="./media/send-related-messages-sequential-convoy/close-session-in-queue-succeed.png" alt-text="Screenshot shows the Service Bus action Close a session in a queue and succeed." lightbox="./media/send-related-messages-sequential-convoy/close-session-in-queue-succeed.png":::
 
 The following sections describe the actions in the `Catch` section, which handle errors and exceptions that happen in your workflow.
 
@@ -302,7 +302,7 @@ This Service Bus action always runs as the first action in the `Catch` scope and
 
 - In the Service Bus action, **Close a session in a queue and fail**, provide the name for your Service Bus queue.
 
-  :::image type="content" source="./media/send-related-messages-sequential-convoy/close-session-in-queue-fail.png" alt-text="Screenshot shows the Service Bus action Close a session in a queue and fail.":::
+  :::image type="content" source="./media/send-related-messages-sequential-convoy/close-session-in-queue-fail.png" alt-text="Screenshot shows the Service Bus action Close a session in a queue and fail." lightbox="./media/send-related-messages-sequential-convoy/close-session-in-queue-fail.png":::
 
 The workflow creates an array that has the inputs and outputs from all the actions in the `Try` scope so that the logic app can access information about the error or failure that happened.
 
@@ -312,7 +312,7 @@ The workflow creates an array that has the inputs and outputs from all the actio
 
 This [**Filter Array** action](../logic-apps/logic-apps-perform-data-operations.md#filter-array-action) creates an array that has the inputs and outputs from all the actions inside the `Try` scope based on the specified criteria by using the [`result()` function](../logic-apps/workflow-definition-language-functions-reference.md#result). In this case, this action returns the outputs from the actions that have `Failed` status by using the [`equals()` function](../logic-apps/workflow-definition-language-functions-reference.md#equals) and [`item()` function](../logic-apps/workflow-definition-language-functions-reference.md#item).
 
-:::image type="content" source="./media/send-related-messages-sequential-convoy/find-failure-message.png" alt-text="Screenshot shows the Filter array action Find failure msg from Try block.":::
+:::image type="content" source="./media/send-related-messages-sequential-convoy/find-failure-message.png" alt-text="Screenshot shows the Filter array action Find failure msg from Try block." lightbox="./media/send-related-messages-sequential-convoy/find-failure-message.png":::
 
 Here's the JSON definition for this action:
 
@@ -339,7 +339,7 @@ The workflow creates an array with a JSON object that contains the error informa
 
 This [**Select** action](../logic-apps/logic-apps-perform-data-operations.md#select-action) creates an array that contains JSON objects based on the input array that's output from the previous action, `Find failure msg from 'Try' block`. Specifically, this action returns an array that has only the specified properties for each object in the array. In this case, the array contains the action name and error result properties.
 
-:::image type="content" source="./media/send-related-messages-sequential-convoy/select-error-details.png" alt-text="Screenshot shows the Select action Select error details.":::
+:::image type="content" source="./media/send-related-messages-sequential-convoy/select-error-details.png" alt-text="Screenshot shows the Select action Select error details." lightbox="./media/send-related-messages-sequential-convoy/select-error-details.png":::
 
 Here's the JSON definition for this action:
 
@@ -369,7 +369,7 @@ The workflow stops the logic app run and returns the run status along with more 
 
 This [**Terminate** action](../logic-apps/logic-apps-workflow-actions-triggers.md#terminate-action) stops the logic app run and returns `Failed` as the status for this run along with the session ID and the error result from the `Select error details` action.
 
-:::image type="content" source="./media/send-related-messages-sequential-convoy/terminate-logic-app-run.png" alt-text="Screenshot shows the Terminate action to stop logic app run.":::
+:::image type="content" source="./media/send-related-messages-sequential-convoy/terminate-logic-app-run.png" alt-text="Screenshot shows the Terminate action to stop logic app run." lightbox="./media/send-related-messages-sequential-convoy/terminate-logic-app-run.png":::
 
 Here's the JSON definition for this action:
 
