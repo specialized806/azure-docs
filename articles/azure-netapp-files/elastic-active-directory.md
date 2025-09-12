@@ -54,4 +54,4 @@ To create SMB volumes, you must configure an Active Directory account then assoc
 ## Next steps
 
 * [Understand the Elastic zone-redundant service level](elastic-zone-redundant-concept.md)
-* [Create an SMB volume for the Elastic service level](elastic-volume-server.md)
+* [Create an SMB volume for the Elastic service level](elastic-volume-server-message-block.md)

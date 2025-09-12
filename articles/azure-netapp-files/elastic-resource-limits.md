@@ -9,7 +9,7 @@ ms.date: 06/10/2025
 ms.author: anfdocs
 # Customer intent: As an IT administrator managing Azure NetApp Files, I want to understand the resource limits for the elastic service level so I can effectively plan and allocate storage resources for my organization’s needs.
 ---
-# Resource limits for Azure NetApp Files
+# Resource limits for Azure NetApp Files Elastic service level
 
 Understanding resource limits for Azure NetApp Files helps you manage your volumes.
 

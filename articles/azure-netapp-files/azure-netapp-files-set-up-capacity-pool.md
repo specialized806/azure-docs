@@ -20,7 +20,7 @@ Creating a capacity pool enables you to create volumes within it.
 
 ## Before you begin 
 
-* You need a [NetApp account](azure-netapp-files-create-netapp-account.md). Ensure the NetApp account is aligned to the correct [service tier](zone-redundant.md).   
+* You need a [NetApp account](azure-netapp-files-create-netapp-account.md). Ensure the NetApp account is aligned to the correct [service tier](elastic-zone-redundant-concept.md).   
 * If you're using Azure CLI, ensure that you're using the latest version. For more information, see [How to update the Azure CLI](/cli/azure/update-azure-cli).
 * To enable cool access, ensure you are registered to use [cool access](manage-cool-access.md).
 * If you're using PowerShell, ensure that you're using the latest version of the Az.NetAppFiles module. To update to the latest version, use the 'Update-Module Az.NetAppFiles' command. For more information, see [Update-Module](/powershell/module/powershellget/update-module).
@@ -44,10 +44,9 @@ Creating a capacity pool enables you to create volumes within it.
     
     You can also use [Azure CLI commands](/cli/azure/feature) `az feature show` to register the feature and display the registration status. 
     
-## Considerations for the Flexible service level
+## <a name="considerations"> Considerations for the Flexible service level
 
 If you're using the Flexible service level, be aware of the following considerations: 
-
 
 * The Flexible service level is only available for manual QoS capacity pools. 
 * The Flexible service level is only available on newly created capacity pools. You can't convert an existing capacity pool to use the Flexible service level. 

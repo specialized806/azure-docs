@@ -1,6 +1,6 @@
 ---
 title: Create a capacity pool for Elastic Zone-Redundant service in Azure NetApp Files
-description: Describes how to create a capacity pool so that you can create volumes within it.
+description: Learn how to create a capacity pool for the Elastic service level so that you can create volumes within it.
 services: azure-netapp-files
 author: b-ahibbard
 ms.service: azure-netapp-files

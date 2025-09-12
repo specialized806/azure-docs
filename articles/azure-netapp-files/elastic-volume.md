@@ -1,5 +1,5 @@
 ---
-title: Create an SMB volume for the Elastic service level in Azure NetApp Files 
+title: Create an NFS volume for the Elastic service level in Azure NetApp Files 
 description: Learn about the requirements and steps to create an NFS volume for the Elastic service level in Azure NetApp Files. 
 services: azure-netapp-files
 author: b-ahibbard
@@ -19,7 +19,7 @@ Learn how to create an NFS volume for the Elastic service level.
 
 * You must have an Azure NetApp Files account configured to use the Elastic service level. 
 * You must have configured a capacity pool for the Elastic service level. 
-* If you're configuring cross-zone-region replication, the Elastic service level NetApp account must be placed in a region that adheres to supported regional pairs. For more information, see [supported regional pairs](reliability.md#supported-cross-region-replication-pairs). 
+* If you're configuring cross-zone-region replication, the Elastic service level NetApp account must be placed in a region that adheres to supported regional pairs. For more information, see [supported regional pairs](replication.md#supported-cross-region-replication-pairs). 
 
 ## Considerations 
 
@@ -43,7 +43,7 @@ Learn how to create an NFS volume for the Elastic service level.
 1. In the Protection tab, configure you protection settings.
     <!-- are these default -->
     * For snapshots, select **Enable local protection**. 
-        Choose your **Snapshot policy**. If you haven't created a policy, select **Create one** to [create a snapshot policy](snapshot-manage-policy.md).
+        Choose your **Snapshot policy**. If you haven't created a policy, select **Create one** to [create a snapshot policy](snapshots-manage-policy.md).
     * For backups, select **Enable backups**. 
         * Select the **Backup vault** or select **Create new** to create one. For more information, see [Create a backup vault](backup-vault-manage.md).
         * Select the **Backup policy** or select **Create new** to create one. For more information, see [Create a backup policy](backup-manage-policies.md).
@@ -63,7 +63,7 @@ Learn how to create an NFS volume for the Elastic service level.
             * To configure a secondary replication source, select **Add another destination**.  
     Select **Next**.
 
-    :::image type="content" source="./media/shared/elastic-create-volume-protection.png" alt-text="Screenshot the volume creation protection tab." lightbox="./media/shared/elastic-create-volume-protection.png":::
+    :::image type="content" source="./media/shared/elastic-create-volume-protection.png" alt-text="Screenshot showing the volume creation protection tab." lightbox="./media/shared/elastic-create-volume-protection.png":::
 
 
 1. Configure the **Protocol**. 
@@ -73,8 +73,7 @@ Learn how to create an NFS volume for the Elastic service level.
     Select **Review + create**. 
 
     <!-- change protocol -->
-    :::image type="content" source="./media/shared/elastic-create-volume-protection.png" alt-text="Screenshot the volume creation protection tab." lightbox="./media/shared/elastic-create-volume-protection.png":::
-
+    :::image type="content" source="./media/shared/elastic-create-volume-protection.png" alt-text="Screenshot of the volume creation protocol tab." lightbox="./media/shared/elastic-create-volume-protection.png":::
 
 1. Review your selections. Select **Create** to finalize the volume.
 1. Return to the **Volume** menu then select your volume to view it. 

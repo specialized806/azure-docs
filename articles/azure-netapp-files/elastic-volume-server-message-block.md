@@ -24,7 +24,7 @@ Learn how to create an SMB volume for the Elastic service level.
 * You must have an Azure NetApp Files account configured to use the Elastic service level. 
 * You must have configured a capacity pool for the Elastic service level. 
     * If you're creating SMB volumes, you must have configured Active Directory on the capacity pool. 
-* If you're configuring cross-zone-region replication, the Elastic service level NetApp account must be placed in a region that adheres to supported regional pairs. For more information, see [supported regional pairs](reliability.md#supported-cross-region-replication-pairs). 
+* If you're configuring cross-zone-region replication, the Elastic service level NetApp account must be placed in a region that adheres to supported regional pairs. For more information, see [supported regional pairs](replication.md#supported-cross-region-replication-pairs). 
 
 ## Considerations 
 
@@ -55,7 +55,7 @@ You can create an NFSv3, NFSv4.1, or SMB volume. Dual-protocol volumes aren't cu
     Snapshots, backup, and replication are enabled by default for volumes, however you must have appropriate policies and resources configured to protection. To disable any type of protection, uncheck the box before proceeding. 
     <!-- are these default -->
     * For snapshots, select **Enable local protection**. 
-        Choose your **Snapshot policy**. If you haven't created a policy, select **Create one** to [create a snapshot policy](snapshot-manage-policy.md).
+        Choose your **Snapshot policy**. If you haven't created a policy, select **Create one** to [create a snapshot policy](snapshots-manage-policy.md).
     * For backups, select **Enable backups**. 
         * Select the **Backup vault** or select **Create new** to create one. For more information, see [Create a backup vault](backup-vault-manage.md).
         * Select the **Backup policy** or select **Create new** to create one. For more information, see [Create a backup policy](backup-manage-policies.md).
@@ -75,14 +75,14 @@ You can create an NFSv3, NFSv4.1, or SMB volume. Dual-protocol volumes aren't cu
             * To configure a secondary replication source, select **Add another destination**.  
     Select **Next**.
 
-    :::image type="content" source="./media/shared/elastic-create-volume-protection.png" alt-text="Screenshot the volume creation protection tab." lightbox="./media/shared/elastic-create-volume-protection.png":::
+    :::image type="content" source="./media/shared/elastic-create-volume-protection.png" alt-text="Screenshot of the volume creation protection tab." lightbox="./media/shared/elastic-create-volume-protection.png":::
 
 1. Configure the **Protocol**. 
     * Choose **SMB**. 
     * The **Active Directory** account is set to the capacity pool configured for the account. 
     * Enter the **Share Name**. 
 
-    :::image type="content" source="./media/shared/elastic-create-volume-protocol.png" alt-text="Screenshot the volume creation protection tab." lightbox="./media/shared/elastic-create-volume-protocol.png":::
+    :::image type="content" source="./media/shared/elastic-create-volume-protocol.png" alt-text="Screenshot of the volume creation protocol tab." lightbox="./media/shared/elastic-create-volume-protocol.png":::
 
 1. Select **Review + create**. 
 1. Review your selections. Select **Create** to finalize the volume.
