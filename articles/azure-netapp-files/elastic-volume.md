@@ -19,7 +19,7 @@ Learn how to create an NFS volume for the Elastic service level.
 
 * You must have an Azure NetApp Files account configured to use the Elastic service level. 
 * You must have configured a capacity pool for the Elastic service level. 
-* If you're configuring cross-zone-region replication, the Elastic service level NetApp account must be placed in a region that adheres to supported regional pairs. For more information, see [supported regional pairs](replication.md#supported-cross-region-replication-pairs). 
+* If you're configuring cross-zone-region replication, the Elastic service level NetApp account must be placed in a region that adheres to supported regional pairs. For more information, see [supported regional pairs](replication.md#supported-region-pairs). 
 
 ## Considerations 
 
@@ -54,7 +54,7 @@ Learn how to create an NFS volume for the Elastic service level.
             * Enter the **Volume name**. 
             * Select the **Region**.
                 If you're configuring cross-zone replication, choose the current region. For cross-region replication 
-                Region selections must adhere to supported [cross-region replication pairs](replication.md#supported-cross-region-replication-pairs). 
+                Region selections must adhere to supported [cross-region replication pairs](replication.md#supported-region-pairs). 
             * Select the **Zone**. 
                 The zone is required for cross-zone replication. It's optional for cross-region replication. 
             * Select the **NetApp account** in the correct region. 

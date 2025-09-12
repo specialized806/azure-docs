@@ -14,7 +14,7 @@
   - name: Set up Azure NetApp Files and create an NFS volume
     href: azure-netapp-files-quickstart-set-up-account-create-volumes.md
   - name: Set up Elastic Zone Redundant Azure NetApp Files
-    href: quickstart-elastic.md
+    href: elastic-quickstart.md
 # - name: Tutorials 
 # - name: Samples
 - name: Concepts
@@ -500,27 +500,27 @@
       - name: SDKs, CLI tools, and ARM templates
         href: azure-netapp-files-sdk-cli.md
     - name: Troubleshoot
-    items:
-    - name: Troubleshoot using diagnose and solve problems tool 
-      href: troubleshoot-diagnose-solve-problems.md
-    - name: Troubleshoot capacity pool errors 
-      href: troubleshoot-capacity-pools.md
-    - name: Troubleshoot volume errors
-      href: troubleshoot-volumes.md
-    - name: Troubleshoot application volume group errors
-      href: troubleshoot-application-volume-groups.md
-    - name: Troubleshoot snapshot policy errors
-      href: troubleshoot-snapshot-policies.md
-    - name: Troubleshoot cross-region replication errors
-      href: troubleshoot-cross-region-replication.md
-    - name: Troubleshoot customer-managed keys 
-      href: troubleshoot-customer-managed-keys.md
-    - name: Troubleshoot Resource Provider errors
-      href: azure-netapp-files-troubleshoot-resource-provider-errors.md
-    - name: Troubleshoot user access on LDAP volumes
-      href: troubleshoot-user-access-ldap.md
-    - name: Troubleshoot file locks
-      href: troubleshoot-file-locks.md
+      items:
+      - name: Troubleshoot using diagnose and solve problems tool 
+        href: troubleshoot-diagnose-solve-problems.md
+      - name: Troubleshoot capacity pool errors 
+        href: troubleshoot-capacity-pools.md
+      - name: Troubleshoot volume errors
+        href: troubleshoot-volumes.md
+      - name: Troubleshoot application volume group errors
+        href: troubleshoot-application-volume-groups.md
+      - name: Troubleshoot snapshot policy errors
+        href: troubleshoot-snapshot-policies.md
+      - name: Troubleshoot cross-region replication errors
+        href: troubleshoot-cross-region-replication.md
+      - name: Troubleshoot customer-managed keys 
+        href: troubleshoot-customer-managed-keys.md
+      - name: Troubleshoot Resource Provider errors
+        href: azure-netapp-files-troubleshoot-resource-provider-errors.md
+      - name: Troubleshoot user access on LDAP volumes
+        href: troubleshoot-user-access-ldap.md
+      - name: Troubleshoot file locks
+        href: troubleshoot-file-locks.md
 - name: FAQs
   items:
   - name: Networking FAQs

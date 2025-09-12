@@ -20,8 +20,8 @@ Understanding resource limits for Azure NetApp Files helps you manage your volum
 
 The following table outlines resource limits for the Elastic service level of Azure NetApp Files:
 
-|  Resource  |  Default limit  |  Adjustable via support request  |
-| -------- | ---- | -- |
+| Resource | Default limit | Adjustable via support request? |
+| ---- | -- | - |
 | Maximum number of Elastic Zone-Redundant NetApp accounts per subscription | 10 | No | 
 | Number of capacity pools per NetApp account | 50 | No |
 | Number of Elastic capacity pools per region per subscription  | 50 | No | 
@@ -32,7 +32,6 @@ The following table outlines resource limits for the Elastic service level of Az
 | Minimum size of a volume | 1 GiB | No | 
 | Maximum size of a volume | Maximum size of capacity pool | No |
 | Maximum number of snapshots per volume | - | No | 
-<!-- the same as other service levels -->
 |  Maximum number of `maxfiles` per volume | See [`maxfiles`](maxfiles-concept.md)  | Yes |    
 |  Maximum number of export policy rules per volume | 5 | No | 
 |  Maximum number of quota rules per volume | 1,000| No | 

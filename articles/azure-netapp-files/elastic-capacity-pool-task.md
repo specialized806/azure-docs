@@ -31,7 +31,7 @@ You must create a capacity pool before you can create volumes in Azure NetApp Fi
 * In the Elastic service level, capacity pools can only use auto QoS.
 * You must use [Standard network features](configure-network-features.md).  
 * Capacity pools for the Elastic zone-redundant service level can be created at sizes between 512 GiB to 16 TiB. After increasing from 512 GiB to 1 TiB, capacity pools can only be created and grow in 1-TiB increments. For example, you can create a 512-GiB capacity pool and resize it to 1-TiB or 2-TiB, or you can create a 2-TiB capacity pool and resize it to 3 TiB then 4 TiB; a capacity pool can't be resized to 3.5 TiB. 
-    * See [Elastic service level](elastic-service-levels.md) for resource limits. 
+    * See [Elastic service level](elastic-resource-limits.md) for resource limits. 
 * After creating a capacity pool, you can't reduce the quota of the capacity pool. 
 * When creating capacity pools, you must designate the failover order for three zones. The order cannot be changed after creating the capacity pools. Capacity pools automatically failover if a zonal outage occurs. You can also manually perform failovers.  
     * Failback is not supported.  
@@ -85,4 +85,4 @@ You must create a capacity pool before you can create volumes in Azure NetApp Fi
 
 * [Understand the Elastic zone-redundant service level](elastic-zone-redundant-concept.md)
 * [Create an NFS volume for the Elastic Zone-Redundant service level](elastic-volume.md)
-* [Create an SMB volume for the Elastic Zone-Redundant service level](elastic-create-volume-server-message-block.md)
+* [Create an SMB volume for the Elastic Zone-Redundant service level](elastic-volume-server-message-block.md)

@@ -24,7 +24,7 @@ Learn how to create an SMB volume for the Elastic service level.
 * You must have an Azure NetApp Files account configured to use the Elastic service level. 
 * You must have configured a capacity pool for the Elastic service level. 
     * If you're creating SMB volumes, you must have configured Active Directory on the capacity pool. 
-* If you're configuring cross-zone-region replication, the Elastic service level NetApp account must be placed in a region that adheres to supported regional pairs. For more information, see [supported regional pairs](replication.md#supported-cross-region-replication-pairs). 
+* If you're configuring cross-zone-region replication, the Elastic service level NetApp account must be placed in a region that adheres to supported regional pairs. For more information, see [supported regional pairs](replication.md#supported-region-pairs). 
 
 ## Considerations 
 
@@ -66,7 +66,7 @@ You can create an NFSv3, NFSv4.1, or SMB volume. Dual-protocol volumes aren't cu
             * Enter the **Volume name**. 
             * Select the **Region**.
                 If you're configuring cross-zone replication, choose the current region. For cross-region replication 
-                Region selections must adhere to supported [cross-region replication pairs](replication.md#supported-cross-region-replication-pairs). 
+                Region selections must adhere to supported [cross-region replication pairs](replication.md#supported-region-pairs). 
             * Select the **Zone**. 
                 The zone is required for cross-zone replication in the same region. It's optional for cross-region replication. 
             * Select the **NetApp account** in the correct region. 

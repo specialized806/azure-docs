@@ -64,8 +64,8 @@ GET https://management.azure.com/subscriptions/{subscriptionId}/providers/Micros
 Elastic zone-redundant storage requires the use of [availability zones](../reliability/reliability-netapp-files.md). The service level also supports:
 
 * [Azure NetApp Files backup](backup-introduction.md)
-* [Customer-managed keys](customer-managed-keys-configure.md)
-* [Snapshots](snapshot-introduction.md)
+* [Customer-managed keys](configure-customer-managed-keys.md)
+* [Snapshots](snapshots-introduction.md)
 * [Cross-zone and cross-region replication](replication.md)
 
 <!-- SMB CA shares, other SMB features -->
