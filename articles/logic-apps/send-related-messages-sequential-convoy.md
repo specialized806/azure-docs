@@ -71,7 +71,7 @@ In this section, create a logic app by using the **Correlated in-order delivery 
 
 1. After you create the logic app, in the resource menu, under **Development Tools**, select **Logic app templates**.
 
-   :::image type="content" source="./media/send-related-messages-sequential-convoy/select-correlated-in-order-delivery-template.png" alt-text="Screenshot shows a page where you can select a service bus sessions template.":::
+   :::image type="content" source="./media/send-related-messages-sequential-convoy/select-correlated-in-order-delivery-template.png" alt-text="Screenshot shows a page where you can select a service bus sessions template." lightbox="./media/send-related-messages-sequential-convoy/select-correlated-in-order-delivery-template.png":::
 
 1. When the template gallery appears, select the template, **Correlated in-order delivery using service bus sessions**. Then select **Use this template**.
 
