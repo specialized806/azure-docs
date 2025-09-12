@@ -13,6 +13,9 @@ ms.author: anfdocs
 
 Understanding resource limits for Azure NetApp Files helps you manage your volumes.
 
+>[!IMPORTANT]
+>These limits pertain to the Flexible, Standard, Premium, and Ultra service level. For resource limits for the **Elastic Zone-Redundant** service level, see [Elastic Zone-Redundant resource limits](elastic-resource-limits.md).
+
 ## Resource limits
 
 The following table describes resource limits for Azure NetApp Files:
@@ -37,15 +40,8 @@ The following table describes resource limits for Azure NetApp Files:
 |  Maximum size of a single regular volume     |    100 TiB    |    No    |
 |  Minimum size of a single [large volume](large-volumes-requirements-considerations.md) | 50 TiB |     No |
 | Large volume size increase | 30% of lowest provisioned size | Yes |
-<<<<<<< HEAD
-|  Maximum size of a single [large volume](large-volumes-requirements-considerations.md)    | 1,024 TiB |    Yes**    |
-|  Minimum size of a single regular volume with zone-redundant storage | 1 GiB | No | 
-| Maximum size of a single regular volume with zone-redundant storage | Maximum size of capacity pool | No |
-| Maximum size of a single large volume on dedicated capacity (preview) | 2,048 TiB | No |
-=======
 |  Maximum size of a single [large volume](large-volumes-requirements-considerations.md)    | 1 PiB |    Yes**    |
 | Maximum size of a single large volume on dedicated capacity (preview) | 2 PiB | No |
->>>>>>> f758de8018b0bb69bf7d9a325fd6c50ef4b3ddd3
 |  Maximum size of a single file     |    16 TiB    |    No    |    
 |  Maximum size of directory metadata in a single directory      |    320 MB    |    No    |    
 |  Maximum number of files in a single directory  | *Approximately* 4 million. <br> See [Determine if a directory is approaching the limit size](directory-sizes-concept.md#directory-limit).  |    No    |   
@@ -61,7 +57,8 @@ The following table describes resource limits for Azure NetApp Files:
 |  Maximum number of volumes that can be backed up per subscription   |  500  |  No  |
 |  Maximum number of manual backups per volume per day |  5  |  No  |
 |  Maximum number of volumes supported for cool access per subscription per region |  500  |  Yes  |
-
+| Maximum number of [short-term clones](create-short-term-clone.md) per volume | 5 | No | 
+| Maximum number of [short-term clones](create-short-term-clone.md) per subscription | 16 | No | 
 
 \* [!INCLUDE [Limitations for capacity pool minimum of 1 TiB](includes/2-tib-capacity-pool.md)]
 

@@ -1,0 +1,42 @@
+---
+title: Resource limits for Azure NetApp Files Elastic Zone-Redundant service level
+description: Describes limits for Azure NetApp Files Elastic Zone-Redundant service level
+services: azure-netapp-files
+author: b-ahibbard
+ms.service: azure-netapp-files
+ms.topic: concept-article
+ms.date: 06/10/2025
+ms.author: anfdocs
+# Customer intent: As an IT administrator managing Azure NetApp Files, I want to understand the resource limits for the elastic service level so I can effectively plan and allocate storage resources for my organization’s needs.
+---
+# Resource limits for Azure NetApp Files
+
+Understanding resource limits for Azure NetApp Files helps you manage your volumes.
+
+>[!IMPORTANT]
+>These limits pertain to the Elastic service level. For resource limits for the Flexible, Standard, Premium, and Ultra service levels, see [Azure NetApp Files resource limits](azure-netapp-files-resource-limits.md).
+
+## Resource limits
+
+The following table describes resource limits for Azure NetApp Files:
+
+|  Resource  |  Default limit  |  Adjustable via support request  |
+| -------- | ---- | -- |
+| Maximum number of Elastic Zone-Redundant NetApp accounts per subscription | 10 | No | 
+| Number of capacity pools per NetApp account | 50 | No |
+| Number of Elastic capacity pools per region per subscription  | 50 | No | 
+| Number of volumes per subscription | - | No |
+| Number of volumes per capacity pool | 50 | No |
+| Minimum size of a capacity pool | 512 GiB | No | 
+| Maximum size of a capacity pool | 16 TiB | No | 
+| Minimum size of a volume | 1 GiB | No | 
+| Maximum size of a volume | Maximum size of capacity pool | No |
+| Maximum number of snapshots per volume | - | No | 
+<!-- the same as other service levels -->
+|  Maximum number of `maxfiles` per volume | See [`maxfiles`](maxfiles-concept.md)  | Yes |    
+|  Maximum number of export policy rules per volume | 5 | No | 
+|  Maximum number of quota rules per volume | 1,000| No | 
+
+<!-- file, throughput, regional capacity per subscription, number of IPs / VNet, backups per day, backups, snapshots, -->
+
+To request an increase where applicable, learn how to [Create a support request](azure-netapp-files-resource-limits.md#request-limit-increase).

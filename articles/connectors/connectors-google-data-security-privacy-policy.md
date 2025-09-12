@@ -4,8 +4,9 @@ description: Learn about the impact that Google security and privacy policies ha
 services: logic-apps
 ms.suite: integration
 ms.reviewer: estfan, azla
-ms.topic: conceptual
-ms.date: 01/04/2024
+ms.topic: concept-article
+ms.date: 05/04/2025
+ms.custom: sfi-image-nochange
 ---
 
 # Data security and privacy policies for Google connectors in Azure Logic Apps

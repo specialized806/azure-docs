@@ -1,11 +1,11 @@
 ---
-title: Create an NFS volume for Azure NetApp Files | Microsoft Docs
+title: Create an NFS volume for Azure NetApp Files
 description: This article shows you how to create an NFS volume in Azure NetApp Files. Learn about considerations, like which version to use, and best practices.
 services: azure-netapp-files
 author: b-hchen
 ms.service: azure-netapp-files
 ms.topic: how-to
-ms.date: 12/10/2024
+ms.date: 06/10/2025
 ms.author: anfdocs
 # Customer intent: As a cloud architect, I want to create an NFS volume in Azure NetApp Files, so that I can support my application’s data management requirements and ensure optimized performance through proper version selection and configuration.
 ---
@@ -24,7 +24,7 @@ This article shows you how to create an NFS volume. For SMB volumes, see [Create
 * A subnet must be delegated to Azure NetApp Files.  
     See [Delegate a subnet to Azure NetApp Files](azure-netapp-files-delegate-subnet.md).
 
-[!INCLUDE [Zone-redundant storage preview](includes/zone-redundant-preview.md)]
+[!INCLUDE [Zone-redundant storage preview](includes/elastic-zone-redundant-preview.md)]
 
 ## Considerations 
 
@@ -98,7 +98,7 @@ This article shows you how to create an NFS volume. For SMB volumes, see [Create
         In supported regions, you can specify whether you want to use **Basic** or **Standard** network features for the volume. See [Configure network features for a volume](configure-network-features.md) and [Guidelines for Azure NetApp Files network planning](azure-netapp-files-network-topologies.md) for details.
 
         >[!NOTE]
-        >Zone-redundant storage requires you select Standard network features. 
+        >Elastic zone-redundant storage requires you select Standard network features. 
 
     * **Encryption key source** 
         You can select Microsoft Managed Key or Customer Managed Key. See [Configure customer-managed keys for Azure NetApp Files volume encryption](configure-customer-managed-keys.md) and [Azure NetApp Files double encryption at rest](double-encryption-at-rest.md) about using this field. 

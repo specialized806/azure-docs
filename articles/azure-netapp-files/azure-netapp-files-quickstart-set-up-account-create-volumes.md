@@ -31,8 +31,6 @@ To see all features that you can enable for an NFS volume and relevant considera
 > [!NOTE]
 > The registration process can take some time to complete.
 
-<!-- ZRS update -->
-
 # [Portal](#tab/azure-portal)
 
 For registration steps using Portal, open a Cloud Shell session as indicated above and follow these Azure CLI steps:

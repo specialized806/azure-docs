@@ -4,7 +4,7 @@ description: Learn about AI integration examples, samples, and other resources u
 services: logic-apps
 ms.suite: integration
 ms.reviewers: estfan, azla
-ms.topic: conceptual
+ms.topic: concept-article
 ms.collection: ce-skilling-ai-copilot
 ms.date: 05/21/2025
 ms.update-cycle: 180-days
@@ -70,7 +70,7 @@ For more information, see the following resources:
 
 | Resource type | Link |
 |---------------|------|
-| **Video overview** | - [Modernize enterprise integration with Azure Integration Services](https://ignite.microsoft.com/sessions/BRK150) <br><br>- [Integrate AI into your workflows with Azure Logic Apps](https://www.youtube.com/live/Lxw9epgl_FM) <br><br>- [Accelerate generative AI development with Azure Logic Apps - Integrate 2024](https://youtu.be/HSl8OI-aT3A) |
+| **Video overview** | - [Modernize enterprise integration with Azure Integration Services](https://www.youtube.com/watch?v=FneX7J4Zj_k) <br><br>- [Integrate AI into your workflows with Azure Logic Apps](https://www.youtube.com/live/Lxw9epgl_FM) <br><br>- [Accelerate generative AI development with Azure Logic Apps - Integrate 2024](https://youtu.be/HSl8OI-aT3A) |
 
 #### Prep your content
 

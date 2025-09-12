@@ -4,9 +4,9 @@ description: This article lists the Azure built-in roles for Azure role-based ac
 ms.service: role-based-access-control
 ms.topic: generated-reference
 ms.workload: identity
-author: jenniferf-skc
+author: rolyon
 manager: pmwongera
-ms.author: jfields
+ms.author: rolyon
 ms.date: 05/25/2025
 ms.custom: generated
 ---
@@ -522,7 +522,7 @@ Provides access to manage project resources.
 }
 ```
 
-## DevOps Infrastructure Contributor Role
+## DevOps Infrastructure Contributor
 
 Read, write, delete and perform actions on Managed DevOps Pools
 
