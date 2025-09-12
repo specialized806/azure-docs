@@ -16,9 +16,9 @@ Understanding resource limits for Azure NetApp Files helps you manage your volum
 >[!IMPORTANT]
 >These limits pertain to the Elastic service level. For resource limits for the Flexible, Standard, Premium, and Ultra service levels, see [Azure NetApp Files resource limits](azure-netapp-files-resource-limits.md).
 
-## Resource limits
+## Elastic service level resource limits
 
-The following table describes resource limits for Azure NetApp Files:
+The following table outlines resource limits for the Elastic service level of Azure NetApp Files:
 
 |  Resource  |  Default limit  |  Adjustable via support request  |
 | -------- | ---- | -- |
@@ -40,3 +40,7 @@ The following table describes resource limits for Azure NetApp Files:
 <!-- file, throughput, regional capacity per subscription, number of IPs / VNet, backups per day, backups, snapshots, -->
 
 To request an increase where applicable, learn how to [Create a support request](azure-netapp-files-resource-limits.md#request-limit-increase).
+
+## Next steps
+
+* [Understand the Elastic zone-redundant service level](elastic-zone-redundant-concept.md)

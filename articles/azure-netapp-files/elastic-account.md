@@ -25,6 +25,8 @@ Creating a NetApp account enables you to set up a capacity pool so that you can 
 
 The Elastic zone-redundant service level is currently in preview. You must register for both the `ANFZoneRedundant` and `ANFScaleOptimized` AFECs before using zone-redundant storage for the first time. 
 
+<!-- change afec -->
+
 1.  Register the feature:
 
     ```azurepowershell-interactive
@@ -60,16 +62,18 @@ You can also use [Azure CLI commands](/cli/azure/feature) `az feature register` 
    To make the Azure NetApp Files pane a favorite, select the star icon next to it.
 
 1. Select **+ Add** to create a new NetApp account.
-   The **New NetApp account** window appears.
-1. Select the **Subscription** the NetApp account belongs to. 
-1. Assign a create the **Resource group**. 
-1. Enter a **Name** for the NetApp account. 
-1. Select **NetApp Elastic Files** to designate the account for the Elastic service level. 
-1. Select the **Region**. 
-1. Select **Create**. 
+1. Provide the following information: 
+    * Select the **Subscription** the NetApp account belongs to. 
+    * Assign a create the **Resource group**. 
+    * Enter a **Name** for the NetApp account. 
+    * Select **NetApp Elastic Files** to designate the account for the Elastic service level. 
+    * Select the **Region**. 
 
-<!-- image -->
+    :::image type="content" source="./media/elastic-account/netapp-account-elastic.png" alt-text="Screenshot of application volume group creation menu." lightbox="./media/elastic-account/netapp-account-elastic.png":::
+
+1. To finalize account creation, select **Create**. 
 
 ## Next steps 
 
+* [Understand the Elastic zone-redundant service level](elastic-zone-redundant-concept.md)
 * [Create an Elastic service level capacity pool](elastic-capacity-pool-create-task.md)

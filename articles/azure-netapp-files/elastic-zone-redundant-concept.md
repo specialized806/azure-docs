@@ -14,7 +14,7 @@ ms.custom: references-regions
 
 Azure NetApp Files zone-redundant storage is a software-based alternative to hardware-based Azure NetApp Files 
 
-When creating your NetApp account, you must designate that the account is for zone-redundant storage. A NetApp account configured for zone-redundant storage can't be converted to use another service level after it's created. 
+When creating your NetApp account, you must designate that the account is for zone-redundant storage. A NetApp account configured for the Elastic zone-redundant service level can only be used for the Elastic service level.
 
 ## Elastic zone-redundant service
 
@@ -24,15 +24,11 @@ In comparison to existing Azure NetApp Files service levels, the Elastic zone-re
 - Transparent failover in case of a zonal outage 
 - Seamless growth from 1 GiB without specialized hardware 
 
-create snapshots, backups, and enable customer-managed keys. 
-
-Zone-redundant storage is design for small workloads, offering capacity pools that scale from 512 GiB to 16 TiB. Volumes can scale from 1 GiB to the maximum size of the capacity pool. 
+Zone-redundant storage is designed for small workloads, offering capacity pools that scale from 512 GiB to 16 TiB. Volumes can scale from 1 GiB to the maximum size of the capacity pool. 
 
 <!-- short-term clone timing -->
-Cool access, dual-protocol volume support, cross-region replication, short-term clones, and AzAcSnap aren't currently supported with zone-redundant storage.  
 
-If you're using custom RBAC roles, ensure you've configure the [correct permissions](manage-availability-zone-volume-placement.md#configure-custom-rbac-roles).
-
+If you're using custom RBAC roles, ensure you configure the [correct permissions](manage-availability-zone-volume-placement.md#configure-custom-rbac-roles).
 
 ## Supported regions
 
@@ -47,20 +43,20 @@ If you're using custom RBAC roles, ensure you've configure the [correct permissi
 
 ## Best practices
 
-* Because some regions only have two availability zones, confirm supported availability zones in the region before deplying zone-redundant storage. Use the Azure CLI command `az netappfiles resource query-region-info` or the REST API call: 
+* Because some regions only have two availability zones, confirm supported availability zones in the region before deploying zone-redundant storage. Use the Azure CLI command `az netappfiles resource query-region-info` or the REST API call: 
 
 ```https
 GET https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.NetApp/locations/{location}/regionInfo?api-version=2025-03-01
 ```
 
-## Comparison of hardware-based and zone-redundant storage
+## Comparison of service levels
 
-| Feature | Hardware-based storage |  Zone-redundant storage | 
+| Feature | Flexible, Standard, Premium, and Ultra service levels | Elastic service level | 
 | - | - | - | 
-| Performance | High performance storage optimized for enterprise workloads | Optimized for lower-performanced NAS workloads | 
-| Data management | Snapshots, cross-zone replication | Snapshots, cross-zone and cross-region replication, backups | 
+| Performance | High performance storage optimized for enterprise workloads | Optimized for lower-performanc NAS workloads | 
+| Data management | Snapshots, cross-zone and cross-region replication, backups | Snapshots, cross-zone and cross-region replication, backups | 
 | Protocol support | NFS, SMB, and dual-protocol (NFS and SMB) | NFS and SMB | 
-| Integrated backup | Integrated backup and recovery | Limited backup and recovery ? | 
+| Integrated backup | Integrated backup and recovery | Limited backup and recovery | 
 | Price | Premium pricing for enterprise features | Cost-optimized for smaller workloads |
 
 ## Supported features 
@@ -70,7 +66,7 @@ Elastic zone-redundant storage requires the use of [availability zones](../relia
 * [Azure NetApp Files backup](backup-introduction.md)
 * [Customer-managed keys](customer-managed-keys-configure.md)
 * [Snapshots](snapshot-introduction.md)
-* [Cross-region replication](replication.md#cross-region-replication)
+* [Cross-zone and cross-region replication](replication.md)
 
 <!-- SMB CA shares, other SMB features -->
 <!-- migration assistant, cool access -->

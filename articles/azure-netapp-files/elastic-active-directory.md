@@ -17,6 +17,7 @@ To create SMB volumes, you must configure an Active Directory account then assoc
 
 * You should store your Active Directory password in an Azure Key Vault then percolate the key vault details and secret name to Azure NetApp Files. 
 * You can only add one Active Directory account per NetApp subscription. 
+* The Active Directory resource is limited to the Elastic service level. The Active Directory resource is only available with capacity pools in the Elastic service level. 
 
 ## Steps
 <!-- check 1 and 2 -->
@@ -28,8 +29,8 @@ To create SMB volumes, you must configure an Active Directory account then assoc
     * Enter the **DNS domain name**. 
     * Enter the **Site name**. 
     Select **Next**. 
-
-    <!-- image -->
+    
+    :::image type="content" source="./media/elastic-active-directory/elastic-active-directory-networking.png" alt-text="Screenshot of the networking tab." lightbox="./media/elastic-active-directory/elastic-active-directory-networking.png":::
 
 1. In the **Identity and access** tab: 
     * Enter the **SMB server prefix**.
@@ -37,17 +38,20 @@ To create SMB volumes, you must configure an Active Directory account then assoc
     * Enter the **Security privilege users**, **Administrators**, and **Backup users**. 
     * Enter the **Azure Key Vault resource**. 
     * Enter the **Username**. 
-    * Enter the **Passerword secret**. 
+    * Enter the **Password secret**. 
     * Enter the **User assigned identity**. 
     Select **Next**. 
 
-    <!-- image -->
+    :::image type="content" source="./media/elastic-active-directory/elastic-active-directory-access.png" alt-text="Screenshot of the identity & access management tab." lightbox="./media/elastic-active-directory/elastic-active-directory-access.png":::
 
-1. To enable AES encryption, select the box. 
+1. To enable AES encryption, select the **AES encryption** box. 
+
+    :::image type="content" source="./media/create-active-directory-connections/active-directory-aes-encryption.png" alt-text="Screenshot of the AES encryption checkbox.":::
 
 <!-- image -->
 1. Select **Review + create**. 
 
 ## Next steps
 
+* [Understand the Elastic zone-redundant service level](elastic-zone-redundant-concept.md)
 * [Create an SMB volume for the Elastic service level](elastic-volume-server.md)

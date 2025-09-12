@@ -288,9 +288,9 @@
       - name: Create an Elastic capacity pool 
         href: elastic-capacity-pool-task.md
       - name: Create an NFS volume 
-        href: elastic-volume-network.md
+        href: elastic-volume.md
       - name: Create an SMB volume 
-        href: elastic-volume-server.md
+        href: elastic-volume-server-message-block.md
   - name: Flexible, Standard, Premium, and Ultra Service levels
     items: 
     - name: Register and set up
