@@ -28,6 +28,9 @@ To create SMB volumes, you must configure an Active Directory account then assoc
     * Enter the **DNS domain name**. 
     * Enter the **Site name**. 
     Select **Next**. 
+
+    <!-- image -->
+
 1. In the **Identity and access** tab: 
     * Enter the **SMB server prefix**.
     * Enter the **Organizational unit path**. 
@@ -37,7 +40,12 @@ To create SMB volumes, you must configure an Active Directory account then assoc
     * Enter the **Passerword secret**. 
     * Enter the **User assigned identity**. 
     Select **Next**. 
+
+    <!-- image -->
+
 1. To enable AES encryption, select the box. 
+
+<!-- image -->
 1. Select **Review + create**. 
 
 ## Next steps

@@ -10,7 +10,7 @@ ms.author: anfdocs
 # Customer intent: As an IT administrator, I want to create a NetApp account in Azure NetApp Files, so that I can set up a capacity pool and manage storage volumes effectively.
 ---
 
-# Create a NetApp account for the Elastic service level in Azure NetApp Files
+# Create a NetApp account for the Elastic service level in Azure NetApp Files (preview)
 
 Creating a NetApp account enables you to set up a capacity pool so that you can create a volume. You use the Azure NetApp Files pane to create a new NetApp account.
 
@@ -21,6 +21,34 @@ Creating a NetApp account enables you to set up a capacity pool so that you can 
 
 [!INCLUDE [Zone-redundant storage preview](includes/elastic-zone-redundant-preview.md)]
 
+## Register for the Elastic zone-redundant service level 
+
+The Elastic zone-redundant service level is currently in preview. You must register for both the `ANFZoneRedundant` and `ANFScaleOptimized` AFECs before using zone-redundant storage for the first time. 
+
+1.  Register the feature:
+
+    ```azurepowershell-interactive
+    Register-AzProviderFeature -ProviderNamespace Microsoft.NetApp -FeatureName ANFZoneRedundant
+    ```
+
+    ```azurepowershell-interactive
+    Register-AzProviderFeature -ProviderNamespace Microsoft.NetApp -FeatureName ANFScaleOptimized
+    ```
+
+2. Check the status of the feature registration: 
+
+    > [!NOTE]
+    > The **RegistrationState** may be in the `Registering` state for up to 60 minutes before changing to `Registered`. Wait until the status is `Registered` before continuing.
+
+    ```azurepowershell-interactive
+    Get-AzProviderFeature -ProviderNamespace Microsoft.NetApp -FeatureName ANFZoneRedundant
+    ```
+
+    ```azurepowershell-interactive
+    Get-AzProviderFeature -ProviderNamespace Microsoft.NetApp -FeatureName ANFScaleOptimized
+    ```
+
+You can also use [Azure CLI commands](/cli/azure/feature) `az feature register` and `az feature show` to register the feature and display the registration status. 
 
 ## Steps
 
