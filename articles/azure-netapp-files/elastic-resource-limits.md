@@ -26,9 +26,9 @@ The following table outlines resource limits for the Elastic service level of Az
 | Number of capacity pools per NetApp account | 50 | No |
 | Number of Elastic capacity pools per region per subscription  | 50 | No | 
 | Number of volumes per subscription | - | No |
-| Number of volumes per capacity pool | 50 | No |
+| Number of volumes per capacity pool | 1,000 | No |
 | Minimum size of a capacity pool | 512 GiB | No | 
-| Maximum size of a capacity pool | 16 TiB | No | 
+| Maximum size of a capacity pool | 128 TiB | No | 
 | Minimum size of a volume | 1 GiB | No | 
 | Maximum size of a volume | Maximum size of capacity pool | No |
 | Maximum number of snapshots per volume | - | No | 

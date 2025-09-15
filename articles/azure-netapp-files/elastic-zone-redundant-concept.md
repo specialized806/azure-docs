@@ -33,13 +33,19 @@ If you're using custom RBAC roles, ensure you configure the [correct permissions
 ## Supported regions
 
 * Australia East
+* Canada Central 
 * Central US 
 * East US
 * East US 2 
+* France Central 
+* Germany West Central 
 * North Europe
 * South Central US
+* Spain Central 
+* UK South 
 * West Europe
 * West US 2
+* West US 3 
 
 ## Best practices
 
@@ -66,7 +72,7 @@ Elastic zone-redundant storage requires the use of [availability zones](../relia
 * [Azure NetApp Files backup](backup-introduction.md)
 * [Customer-managed keys](configure-customer-managed-keys.md)
 * [Snapshots](snapshots-introduction.md)
-* [Cross-zone and cross-region replication](replication.md)
+* [Cross-zone, cross-region, and cross-zone-region replication](replication.md)
 
 <!-- SMB CA shares, other SMB features -->
 <!-- migration assistant, cool access -->

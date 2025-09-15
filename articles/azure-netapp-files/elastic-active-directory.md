@@ -5,7 +5,7 @@ services: azure-netapp-files
 author: b-ahibbard
 ms.service: azure-netapp-files
 ms.topic: how-to
-ms.date: 07/30/2025
+ms.date: 09/15/2025
 ms.author: anfdocs
 # Customer intent: As an Azure NetApp Files administrator, I want to create and manage Active Directory connections for the Elastic service level, so that I can enable proper authentication and access control for my SMB volumes.
 ---

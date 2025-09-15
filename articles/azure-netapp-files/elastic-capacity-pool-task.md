@@ -22,16 +22,17 @@ You must create a capacity pool before you can create volumes in Azure NetApp Fi
 
 * You must have a NetApp account designated for use with the Elastic Zone-Redundant service level. 
 * If you're using Azure CLI, ensure that you're using the latest version.
-* If you're using PowerShell, ensure that you're using the latest version of the Az.NetAppFiles module. To update to the latest version, use the 'Update-Module Az.NetAppFiles' command. For more information, see [Update-Module](/powershell/module/powershellget/update-module).
+* If you're using PowerShell, ensure that you're using the latest version of the Az.NetAppFiles module. To update to the latest version, use the `Update-Module Az.NetAppFiles` command. For more information, see [Update-Module](/powershell/module/powershellget/update-module).
 * If you're using the Azure REST API, ensure that you specify the latest version.
-    >[!IMPORTANT]
+* Elastic capacity pools enable you to create a failover preference order of three availability zones. Some of the regions that support the Elastic service level only offer two availability zones. You should query the region for availability zone with the REST API before creating the capacity pool: `GET https://management.azure.com/providers/Microsoft.NetApp/locations/{location}/availabilityZones?api-version=2025-05-01`.
+
+[!INCLUDE [Availability zone role-based access control call-out.](includes/availability-zone-roles.md)]
 
 ## Considerations for Elastic service level capacity pools
 
-* In the Elastic service level, capacity pools can only use auto QoS.
+<!-- manual & auto qos-->
 * You must use [Standard network features](configure-network-features.md).  
-* Capacity pools for the Elastic zone-redundant service level can be created at sizes between 512 GiB to 16 TiB. After increasing from 512 GiB to 1 TiB, capacity pools can only be created and grow in 1-TiB increments. For example, you can create a 512-GiB capacity pool and resize it to 1-TiB or 2-TiB, or you can create a 2-TiB capacity pool and resize it to 3 TiB then 4 TiB; a capacity pool can't be resized to 3.5 TiB. 
-    * See [Elastic service level](elastic-resource-limits.md) for resource limits. 
+* Elastic service levels have different limits than other Azure NetApp Files service levels. See [Elastic service level](elastic-resource-limits.md) for resource limits. 
 * After creating a capacity pool, you can't reduce the quota of the capacity pool. 
 * When creating capacity pools, you must designate the failover order for three zones. The order cannot be changed after creating the capacity pools. Capacity pools automatically failover if a zonal outage occurs. You can also manually perform failovers.  
     * Failback is not supported.  

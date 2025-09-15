@@ -26,6 +26,8 @@ Learn how to create an SMB volume for the Elastic service level.
     * If you're creating SMB volumes, you must have configured Active Directory on the capacity pool. 
 * If you're configuring cross-zone-region replication, the Elastic service level NetApp account must be placed in a region that adheres to supported regional pairs. For more information, see [supported regional pairs](replication.md#supported-region-pairs). 
 
+[!INCLUDE [Availability zone role-based access control call-out.](includes/availability-zone-roles.md)]
+
 ## Considerations 
 
 * You cannot change the protocol of a volume after creating it. 
