@@ -1,6 +1,6 @@
 ---
 title: Web Application Firewall Insights Dashboards
-description: 
+description: Learn how to use Azure Application Gateway WAF insights dashboards to monitor, investigate, and report on web application firewall activity.
 author: halkazwini
 ms.author: halkazwini
 ms.service: azure-web-application-firewall
