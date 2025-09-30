@@ -12,7 +12,7 @@ ms.date: 09/30/2025
 
 # Azure Application Gateway Web Application Firewall (WAF) insights dashboards
 
-The WAF Insights dashboards for Azure Application Gateway provide a centralized experience for monitoring, investigation, and reporting of WAF activity. They are designed to help security and operations teams:
+The WAF Insights dashboards for Azure Application Gateway provide a centralized experience for monitoring, investigation, and reporting of WAF activity. They're designed to help security and operations teams:
 
 - Detect attack patterns and malicious traffic trends.
 - Validate WAF policy effectiveness.
@@ -45,7 +45,7 @@ The dashboards combine **Metrics** and **Logs**, which complement each other:
 | **Logs (Azure Diagnostics)** | Full per-request event data from WAF diagnostic logging. | Controlled by Log Analytics Workspace retention policy. | Deep forensic investigation, compliance, and auditing. |
 
 > [!IMPORTANT]
-> - Metrics are ideal for fast anomaly detection but do not contain full request details.
+> - Metrics are ideal for fast anomaly detection but don't contain full request details.
 > - Logs contain full forensic information but may take longer to query for large datasets.
 
 ## Dashboard structure
@@ -60,7 +60,7 @@ Each tab offers a different perspective and is often used together: monitor over
 
 ### Triage Tab
 
-The **Triage tab** is designed for investigation and troubleshooting of WAF events. Data is sourced from **AzureDiagnostics** in Log Analytics Workspace (LAW).  It supports two modes:
+The **Triage tab** is designed for investigation and troubleshooting of WAF events. Data is sourced from **AzureDiagnostics** in Log Analytics Workspace (LAW). It supports two modes:
 
 - **Triage by rule**: start from a rule and drill down.
 
@@ -221,9 +221,9 @@ The **WAF Metrics** view provides near real-time visibility into Application Gat
 
 - Use the **Monitor tab daily** for operational awareness, and the **Triage tab on demand** during incidents.
 
-- Periodically review “noisy rules” in the **Triage by Rule** view to fine-tune WAF configuration.
+- Periodically review *noisy rules* in the **Triage by Rule** view to fine-tune WAF configuration.
 
-- Configure alerts on **sudden spikes** in WAF Metrics (e.g., challenge requests or blocked requests).
+- Configure alerts on **sudden spikes** in WAF Metrics (for example, challenge requests or blocked requests).
 
 - Align dashboard use with **incident response workflows**, ensuring security and networking teams collaborate using the same views.
 
