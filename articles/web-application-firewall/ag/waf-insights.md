@@ -23,9 +23,9 @@ By combining high-level visibility with detailed request-level insights, these d
 
 The Insights solution consists of two primary dashboards:
 
-- **Triage Tab** - designed for investigation. It provides drill-down views to identify affected hosts, URLs, requests, and rules involved in a specific security event. This supports root cause analysis and faster incident response.
+- **Triage tab** - designed for investigation. It provides drill-down views to identify affected hosts, URLs, requests, and rules involved in a specific security event. This supports root cause analysis and faster incident response.
 
-- **Monitor Tab** - designed for continuous visibility. It surfaces high-level metrics and trends such as total request volumes, managed rule matches, custom rule matches, and JavaScript challenge activity. The Monitor tab helps operators detect anomalies, track the effectiveness of WAF protections, and understand overall application security posture at a glance.
+- **Monitor tab** - designed for continuous visibility. It surfaces high-level metrics and trends such as total request volumes, managed rule matches, custom rule matches, and JavaScript challenge activity. The Monitor tab helps operators detect anomalies, track the effectiveness of WAF protections, and understand overall application security posture at a glance.
 
 ## Prerequisites
 
@@ -58,7 +58,7 @@ The WAF Insights experience is divided into two main tabs:
 
 Each tab offers a different perspective and is often used together: monitor overall health in the **Monitor tab**, then use the **Triage tab** to investigate anomalies.
 
-### Triage Tab
+### Triage tab
 
 The **Triage tab** is designed for investigation and troubleshooting of WAF events. Data is sourced from **AzureDiagnostics** in Log Analytics Workspace (LAW). It supports two modes:
 
