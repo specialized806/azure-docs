@@ -41,8 +41,8 @@ The dashboards combine **Metrics** and **Logs**, which complement each other:
 
 | Source | Description | Retention | Best for |
 |----|----|----|----|
-| **Metrics** | Aggregated counters collected at minute intervals. Optimized for trend analysis. | Controlled by Azure Monitor Metrics retention settings. | Near real-time anomaly detection, activity trends. |
-| **Logs (Azure Diagnostics)** | Full per-request event data from WAF diagnostic logging. | Controlled by Log Analytics Workspace retention policy. | Deep forensic investigation, compliance, and auditing. |
+| **Metrics** | Aggregated counters collected at minute intervals. Optimized for trend analysis. | Controlled by Azure Monitor metrics retention settings. | Near real-time anomaly detection, activity trends. |
+| **Logs (Azure diagnostics)** | Full per-request event data from WAF diagnostic logging. | Controlled by Log Analytics Workspace retention policy. | Deep forensic investigation, compliance, and auditing. |
 
 > [!IMPORTANT]
 > - Metrics are ideal for fast anomaly detection but don't contain full request details.
@@ -120,7 +120,7 @@ The Monitor tab is designed for visibility and reporting. It provides both **WAF
 
 #### WAF logs
 
-The **WAF logs** view provides a detailed, request-level perspective of WAF activity. Unlike Metrics, which focus on aggregated counters, this tab is designed for forensic analysis and auditing. Data is sourced from **AzureDiagnostics** in Log Analytics Workspace (LAW).
+The **WAF logs** view provides a detailed, request-level perspective of WAF activity. Unlike metrics, which focus on aggregated counters, this tab is designed for forensic analysis and auditing. Data is sourced from **AzureDiagnostics** in Log Analytics Workspace (LAW).
 
 #### Visuals and tables
 
@@ -140,13 +140,13 @@ The **WAF logs** view provides a detailed, request-level perspective of WAF acti
 
 - **Requests by rule over time**: Trend visualization showing request volumes per rule over time.
 
-- **Filter by Tracking ID / Rule for Tracking ID**: Linked tables to investigate triggered rules by a tracking ID.
+- **Filter by tracking ID / Rule for tracking ID**: Linked tables to investigate triggered rules by a tracking ID.
 
 - **Top 10 sources (IPs) (select to filter)**: Bar chart of client IPs with the highest triggered rules.
 
 - **Requests (from selected IPs)**: Table of requests from the top IPs, with host, rule, and URIs.
 
-#### Use Cases
+#### Use cases
 
 - Identify attack sources and top offenders.
 
@@ -156,9 +156,9 @@ The **WAF logs** view provides a detailed, request-level perspective of WAF acti
 
 - Support auditing and compliance needs.
 
-### WAF Metrics
+### WAF metrics
 
-The **WAF Metrics** view provides near real-time visibility into Application Gateway WAF activity using Azure Monitor Metrics. It surfaces aggregated counters at minute-level granularity and is optimized for detecting anomalies, monitoring trends, and validating WAF configuration.
+The **WAF metrics** view provides near real-time visibility into Application Gateway WAF activity using Azure Monitor metrics. It surfaces aggregated counters at minute-level granularity and is optimized for detecting anomalies, monitoring trends, and validating WAF configuration.
 
 #### Visuals
 
@@ -174,7 +174,7 @@ The **WAF Metrics** view provides near real-time visibility into Application Gat
 
 - **WAF custom rules matched by association**: Displays the total number of custom rule matches across associations.
 
-#### Use Cases
+#### Use cases
 
 - Detect traffic surges or anomalies in total requests.
 
@@ -190,10 +190,10 @@ The **WAF Metrics** view provides near real-time visibility into Application Gat
 
 | **Dashboard** | **Purpose** | **Investigation flow** | **Example use cases** |
 |----|----|----|----|
-| **Triage by Rule** | Investigate by rule ID | Scope → Rule → Hosts → URLs → Requests | Identify noisy rules, analyze blocks, fine-tune rules |
+| **Triage by rule** | Investigate by rule ID | Scope → Rule → Hosts → URLs → Requests | Identify noisy rules, analyze blocks, fine-tune rules |
 | **Triage by URL** | Investigate by URL path | Scope → URL → Hosts → Rules → Requests | Investigate attacks on sensitive endpoints, validate rule effectiveness |
-| **WAF Logs** | Log-based monitoring | Pulls structured data from LAW | Validate policy effectiveness, perform audits, investigate requests |
-| **WAF Metrics** | Metric-based monitoring | Uses Azure Monitor metrics | Near real-time monitoring, detect anomalies, track trends |
+| **WAF logs** | Log-based monitoring | Pulls structured data from LAW | Validate policy effectiveness, perform audits, investigate requests |
+| **WAF metrics** | Metric-based monitoring | Uses Azure Monitor metrics | Near real-time monitoring, detect anomalies, track trends |
 
 ## Glossary
 
@@ -203,7 +203,7 @@ The **WAF Metrics** view provides near real-time visibility into Application Gat
 
 - **Rule ID**: Identifier of a managed rule triggered by the WAF.
 
-- **LAW (Log Analytics Workspace)**: Repository where logs are stored and queried.
+- **LAW (Log Analytics workspace)**: Repository where logs are stored and queried.
 
 - **Metrics**: Aggregated counters optimized for fast monitoring.
 
@@ -217,13 +217,13 @@ The **WAF Metrics** view provides near real-time visibility into Application Gat
 
 ## Best practices
 
-- Always enable **both Metrics and Logs** to balance visibility and detail.
+- Always enable **both metrics and logs** to balance visibility and detail.
 
 - Use the **Monitor tab daily** for operational awareness, and the **Triage tab on demand** during incidents.
 
-- Periodically review *noisy rules* in the **Triage by Rule** view to fine-tune WAF configuration.
+- Periodically review *noisy rules* in the **Triage by rule** view to fine-tune WAF configuration.
 
-- Configure alerts on **sudden spikes** in WAF Metrics (for example, challenge requests or blocked requests).
+- Configure alerts on **sudden spikes** in WAF metrics (for example, challenge requests or blocked requests).
 
 - Align dashboard use with **incident response workflows**, ensuring security and networking teams collaborate using the same views.
 
