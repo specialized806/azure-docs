@@ -402,7 +402,7 @@ action().outputs.body.<property>
 
 | Return value | Type | Description |
 | ------------ | -----| ----------- |
-| <*action-output*> | String | The output from the current action or property |
+| <*action-output*> | Object | The JSON object output from the current action or property |
 
 <a name="actions"></a>
 
@@ -414,9 +414,6 @@ which you can assign to an expression. By default,
 the function references the entire action object,
 but you can optionally specify a property whose value that you want.
 For shorthand versions, see [body()](#body). For the current action, see [action()](#action).
-
-> [!TIP]
-> The `actions()` function returns output as a string. If you need to work with a returned value as a JSON object, you first need to convert the string value. You can transform the string value into a JSON object using the [Parse JSON action](logic-apps-perform-data-operations.md#parse-json-action).
 
 > [!NOTE]
 > Previously, you could use the `actions()` function or
@@ -439,7 +436,7 @@ actions('<actionName>').outputs.body.<property>
 
 | Return value | Type | Description |
 | ------------ | -----| ----------- |
-| <*action-output*> | String | The output from the specified action or property |
+| <*action-output*> | Object | The JSON object output from the specified action or property |
 
 *Example*
 
@@ -1959,6 +1956,19 @@ float('10.000,333', 'de-DE')
 
 And returns this result: `10000.333`
 
+*Example 3*
+
+Examples of unexpectedly valid inputs:
+
+```
+float('12,3,4,5678')  //Returns   12345678
+float('1234567,8+')   //Returns   12345678
+float('12345,6,78,-') //Returns  -12345678
+float('-12,345,678,') //Returns  -12345678
+float('12345678.-')   //Returns  -12345678
+float('.12345678')    //Returns 0.12345678
+```
+
 <a name="formatDateTime"></a>
 
 ### formatDateTime
@@ -2079,7 +2089,7 @@ formatNumber(<number>, <format>, <locale>?)
 Suppose that you want to format the number `1234567890`. This example formats that number as the string "1,234,567,890.00".
 
 ```
-formatNumber(1234567890, '0,0.00', 'en-us')
+formatNumber(1234567890, '#,##0.00', 'en-US')
 ```
 
 *Example 2"
@@ -2087,7 +2097,7 @@ formatNumber(1234567890, '0,0.00', 'en-us')
 Suppose that you want to format the number `1234567890`. This example formats the number to the string "1.234.567.890,00".
 
 ```
-formatNumber(1234567890, '0,0.00', 'is-is')
+formatNumber(1234567890, '#,##0.00', 'is-IS')
 ```
 
 *Example 3*
@@ -2103,7 +2113,7 @@ formatNumber(17.35, 'C2')
 Suppose that you want to format the number `17.35`. This example formats the number to the string "17,35 kr".
 
 ```
-formatNumber(17.35, 'C2', 'is-is')
+formatNumber(17.35, 'C2', 'is-IS')
 ```
 
 ## G
@@ -4811,27 +4821,20 @@ Optionally, you can specify a different format with the <*format*> parameter.
 | ------------ | ---- | ----------- |
 | <*current-timestamp*> | String | The current date and time |
 
-*Example 1*
-
-Suppose today is April 15, 2018 at 1:00:00 PM.
-This example gets the current timestamp:
+*Examples*
 
 ```
-utcNow()
+utcNow()                  // Returns 2025-09-25T05:18:31.3384797Z
+utcNow('u')               // Returns 2025-09-25 05:18:31Z
+utcNow('U')               // Returns Thursday, September 25, 2025 5:18:31 AM
+utcNow('d')               // Returns 9/25/2025
+utcNow('D')               // Returns Thursday, September 25, 2025
+utcNow('t')               // Returns 5:18 AM
+utcNow('T')               // Returns 5:18:31 AM
+utcNow('y')               // Returns September 2025
+utcNow('yyyy')            // Returns 2025
+utcNow('ddd, d MMM yyyy') // Returns Thu, 25 Sep 2025
 ```
-
-And returns this result: `"2018-04-15T13:00:00.0000000Z"`
-
-*Example 2*
-
-Suppose today is April 15, 2018 at 1:00:00 PM.
-This example gets the current timestamp using the optional "D" format:
-
-```
-utcNow('D')
-```
-
-And returns this result: `"Sunday, April 15, 2018"`
 
 ## V
 

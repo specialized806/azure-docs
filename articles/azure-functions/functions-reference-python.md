@@ -329,6 +329,7 @@ and [Supported languages in Azure Functions](./supported-languages.md).
 
 ### Deployment
 Learn more about the recommended deployment mechanism for your scenario: [Deployment Options](./python-deployments.md)
+[!INCLUDE [functions-linux-consumption-retirement](../../includes/functions-linux-consumption-retirement.md)]
 
 ---
 

@@ -895,6 +895,15 @@ groups:
     title: Front end (Static Web App)
   - id: backend
     title: Back end (Azure Container App)
+# Owner: sipa
+- id: azure-maps-search
+  title: Azure Maps search
+  prompt: Choose the search version
+  pivots:
+  - id: search-previous
+    title: Previous
+  - id: search-latest
+    title: Latest
 # Owner: farazgis
 - id: azure-maps-coverage
   title: Azure Maps coverage
@@ -959,7 +968,7 @@ groups:
     title: drawing package 1.0
   - id: drawing-package-v2
     title: drawing package 2.0
-# Owner: veyalla
+# Owner: sethm
 - id: how-to-troubleshoot-monitoring-and-faq-zpg
   title: Azure Monitor for IoT Edge FAQ
   prompt: Choose a topic
@@ -972,7 +981,7 @@ groups:
     title: Alerts
   - id: workbooks
     title: Workbooks
-# Owner: patricka
+# Owner: sethm
 - id: iotedge-dev
   title: IoT Edge development option
   prompt: Choose an Azure IoT Edge development option
@@ -1084,6 +1093,15 @@ groups:
     title: Mobile Numbers
   - id: alphanumeric-senderid
     title: Alphanumeric Sender ID
+# Owner: cshoe
+- id: sre-agent-code-repo
+  title: Code repository
+  prompt: Select a code repository hosting platform
+  pivots:
+  - id: azure-devops
+    title: Azure DevOps
+  - id: github
+    title: GitHub
 # Owner: cshoe
 - id: container-apps
   title: Template language
@@ -1272,6 +1290,14 @@ groups:
     title: Virtual network
   - id: network-security-group
     title: Network security group
+- id: web-application-firewall-types
+  title: Web Application Firewall types
+  prompt: "Select the Web Application Firewall type:"
+  pivots:
+  - id: application-gateway
+    title: Application Gateway
+  - id: front-door
+    title: Front Door
 # Owner: hmb
 - id: front-door-dev-exp-portal-ps-cli
   title: Front Door deployment method
@@ -1554,10 +1580,10 @@ groups:
   title: Select your version of the Pipelines task
   prompt: Choose an option
   pivots:
-  - id: v1
-    title: AzureFunctionApp@1
   - id: v2
     title: AzureFunctionApp@2
+  - id: v1
+    title: AzureFunctionApp@1
 # Owner: juliakm, ggailey777
 - id: github-actions-deployment-options
   title: GitHub Actions deployment options
@@ -1936,3 +1962,12 @@ groups:
     title: Elastic Observability
   - id: elastic-security
     title: Elastic Security
+# Owner: jodowns
+- id: sql-managed-instance-tiers
+  title: Tier
+  prompt: Choose a service tier
+  pivots:
+  - id: general-purpose
+    title: General Purpose
+  - id: business-critical
+    title: Business Critical

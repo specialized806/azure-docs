@@ -33,6 +33,40 @@ To configure devices and assets, you need a running preview instance of Azure Io
 
 A camera connected to your network and accessible from your Azure IoT Operations cluster. The camera must support the Real Time Streaming Protocol for video streaming. You also need the camera's username and password to authenticate with it.
 
+## Media source types
+
+The media connector can connect to various sources, including:
+
+| Media source | Example URLs | Notes |
+|--------------| ---------------|-------|
+| Edge attached camera | `file://host/dev/video0`<br/>`file://host/dev/usb0` | No authentication required. The URL refers to the device file. Connects to a node using USB, FireWire, MIPI, or proprietary interface. |
+| IP camera | `rtsp://192.168.178.45:554/stream1` | JPEG over HTTP for snapshots, RTSP/RTCP/RTP/MJPEG-TS for video streams. An IP camera might also expose a standard ONVIF control interface. |
+| Media server | `rtsp://192.168.178.45:554/stream1` | JPEG over HTTP for snapshots, RTSP/RTCP/RTP/MJPEG-TS for video streams. A media server can also serve images and videos using URLs such as `ftp://host/path` or `smb://host/path` |
+| Media file | `http://camera1/snapshot/profile1`<br/>`nfs://server/path/file.extension`<br/>` file://localhost/media/path/file.mkv`  | Any media file with a URL accessible from the cluster. |
+| Media folder | `file://host/path/to/folder/`<br/>`ftp://server/path/to/folder/` | A folder, accessible from the cluster, that contains media files such as snapshots or clips. |
+
+## Task types
+
+The media connector supports the following task types:
+
+| Task type | Description |
+|-----------|-------------|
+| snapshot-to-mqtt | Captures a snapshot from a media source and publishes it to an MQTT topic. |
+| clip-to-fs | Saves a video clip from a media source to the file system. |
+| snapshot-to-fs | Saves a snapshot from a media source to the file system. |
+| stream-to-rtsp | Proxies a live video stream from a media source to an RTSP endpoint. |
+| stream-to-rtsps | Proxies a live video stream from a media source to an RTSPs endpoint. |
+
+## Example uses
+
+Example uses of the media connector include:
+
+- Capture snapshots from a video stream or from an image URL and publish them to an MQTT topic. A subscriber to the MQTT topic can use the captured images for further processing or analysis.
+
+- Save video streams to a local file system on your cluster. Use [Azure Container Storage enabled by Azure Arc](/azure/azure-arc/container-storage/overview) to provide a reliable and fault-tolerant solution for uploading the captured video to the cloud for storage or processing.
+
+- Proxy a live video stream from a camera to an endpoint that an operator can access. For security and performance reasons, only the media connector should have direct access to an edge camera. The media connector uses a separate media server component to stream video to an operator's endpoint. This media server can transcode to various protocols such as RTSP, RTCP, SRT, and HLS. You need to deploy your own media server to provide these capabilities.
+
 ## Deploy the media connector
 
 [!INCLUDE [deploy-preview-media-connectors](../includes/deploy-preview-media-connectors.md)]
@@ -50,6 +84,8 @@ To configure the media connector, first create a device that defines the connect
 1. Add the details of the endpoint for the media connector including any authentication credentials:
 
     :::image type="content" source="media/howto-use-media-connector/add-media-connector-endpoint.png" alt-text="Screenshot that shows how to add a media connector endpoint." lightbox="media/howto-use-media-connector/add-media-connector-endpoint.png":::
+
+    To learn how to configure **Username password** authentication, see [Manage secrets for your Azure IoT Operations deployment](../secure-iot-ops/howto-manage-secrets.md).
 
     Select **Apply** to save the endpoint.
 
@@ -93,9 +129,12 @@ To define a namespace asset that publishes an image snapshot from the media sour
 
 1. On the **Streams** page, select **Add stream** to add a stream for the asset.
 
-1. Add a name for the stream, such as `mysnapshots`. Set MQTT as the destination and add a name for the MQTT topic to publish to such as `mysnapshots`. Select `snapshot-to-mqtt` as the task type.
+1. Add a name for the stream, such as `mysnapshots`. Set MQTT as the destination and add a name for the MQTT topic to publish to such as `azure-iot-operations/data/snapshots`. Select `snapshot-to-mqtt` as the task type.
 
-    :::image type="content" source="media/howto-use-media-connector/add-snapshot-stream.png" alt-text="Screenshot that shows how to add a snapshot stream." lightbox="media/howto-use-media-connector/add-snapshot-stream.png":::
+    > [!IMPORTANT]
+    > Currently, the media connector always publishes to a topic called `azure-iot-operations/data/<asset name>/<stream name>`.
+
+    :::image type="content" source="media/howto-use-media-connector/add-snapshot-stream.png" alt-text="Screenshot that shows how to add a snapshot stream that publishes to an MQTT topic." lightbox="media/howto-use-media-connector/add-snapshot-stream.png":::
 
     Select **Add** to save the stream.
 
@@ -114,6 +153,26 @@ az iot ops ns asset media create --name mymediaasset --instance {your instance n
 To learn more, see [az iot ops ns asset rest](/cli/azure/iot/ops/ns/asset/rest).
 
 ---
+
+### Verify the published messages
+
+To verify that the connector is publishing messages, you can use an MQTT client to subscribe to the topic `azure-iot-operations/data/{asset name}/{stream name}`. If the device and namespace asset are configured correctly, you receive messages containing JPEG image snapshots when you subscribe to this topic.
+
+The following steps show you how to run the **mosquitto_sub** tool in the cluster. To learn more about this tool and alternative approaches, see [MQTT tools](../troubleshoot/tips-tools.md#mqtt-tools):
+
+[!INCLUDE [deploy-mqttui](../includes/deploy-mqttui.md)]
+
+To save the payload of a single message, use a command like the following:
+
+```bash
+mosquitto_sub --host aio-broker --port 18883 --topic "azure-iot-operations/data/my-camera/#" -C 1 -F %p --cafile /var/run/certs/
+ca.crt -D CONNECT authentication-method 'K8S-SAT' -D CONNECT authentication-data $(cat /var/run/secrets/tokens/broker-sat) > image1.
+jpeg
+```
+
+The following screenshot shows the topic name that uses the asset name and stream name:
+
+:::image type="content" source="media/howto-use-media-connector/snapshot-topic.png" alt-text="A screenshot that shows the published data in a topic called `azure-iot-operations/data/{asset name}/{stream name}`.":::
 
 ## Add a stream to save a video clip
 
@@ -144,3 +203,18 @@ az iot ops ns asset media stream add --asset mymediaasset --instance {your insta
 ```
 
 ---
+
+### Verify the saved messages
+
+The following steps assume that you configured a persistent volume claim (PVC) to save the clips to your Azure Blob storage account with these settings:
+
+| Setting | Value |
+| ------- | ----- |
+| Storage container | `pvc` |
+| Edge sub volume path | `exampleSubDir` |
+| Connector template mount path | `/data` |
+| Stream path in operations experience | `/data/exampleSubDir/clips` |
+
+After the connector captures the clips, it uploads them to the `/pvc/clips` folder in your container:
+
+:::image type="content" source="media/howto-use-media-connector/captured-streams.png" alt-text="Screenshot that shows the captured streams in Blob storage.":::
