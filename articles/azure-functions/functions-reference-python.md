@@ -129,7 +129,7 @@ A Python Azure Functions project is recommended to have the following structure:
 | File / Folder           | Description                                                                                                  | Required in Production             |
 |-------------------------|--------------------------------------------------------------------------------------------------------------|------------------------------------|
 | `.venv/`                | Local virtual environment for Python (excluded from deployment).                                             | ❌                                  |
-| `.vscode/`              | Editor config for VS Code. Not required for deployment.                                                      | ❌                                  |
+| `.vscode/`              | Editor config for Visual Studio Code. Not required for deployment.                                           | ❌                                  |
 | `function_app.py`       | Main script where Azure Functions and triggers are defined using decorators.                                 | ✅                                  |
 | `shared/`               | Holds helper code shared across the Function App project                                                     | ❌                                  |
 | `additional_functions/` | Used for modular code organization—typically with [blueprints](#organizing-with-blueprints).                 | ❌                                  |
@@ -309,7 +309,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
    - To prevent ModuleNotFound errors, you should ensure all required dependencies are listed in `requirements.txt`.
    - If you update your app's Python version, you should rebuild and redeploy your app on the new Python version to avoid dependency conflicts with previously built packages.
 - Non-PyPI Dependencies:
-   - You can include dependencies that aren’t available on PyPI in your app. For example, this can include local packages, wheel files, or private feeds. See [Custom dependencies in Python  Azure Functions](./python-deployments.md#custom-dependencies-non-pypi-local-wheels) for setup instructions.
+   - You can include dependencies that aren’t available on PyPI in your app, such as local packages, wheel files, or private feeds. See [Custom dependencies in Python  Azure Functions](./python-deployments.md#custom-dependencies-non-pypi-local-wheels) for setup instructions.
 
 ---
 
