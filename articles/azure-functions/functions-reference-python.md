@@ -24,21 +24,20 @@ This guide focuses specifically on building Python-based Azure Functions and is 
 - Deploy and monitor your app in Azure
 - Apply best practices for scaling and performance
 
-If you’re new to Azure Functions, we recommend starting with the [Quickstart tutorials](TODO:link) in 
+If you’re new to Azure Functions, we recommend starting with the [Quickstart tutorials](#getting-started) in 
 the next section.
-> Looking for a conceptual overview? See the [Azure Functions Developer Reference](TODO:link).
+> Looking for a conceptual overview? See the [Azure Functions Developer Reference](functions-reference.md).
 >
-> Interested in real-world use cases? Explore the [Scenarios & Samples](TODO:link) page.
+> Interested in real-world use cases? Explore the [Scenarios & Samples](functions-scenarios.md?pivots=programming-language-python) page.
 
 ## Getting Started
 Choose the environment that fits your workflow and jump into Azure Functions for Python:
-- [Visual Studio Code Quickstart](TODO:link)
-- [Core Tools Quickstart](TODO:link)
-- [Portal Quickstart](TODO:link)
+- [Visual Studio Code Quickstart](./how-to-create-function-vs-code.md?pivot=programming-language-python?pivots=python-mode-decorators)
+- [Core Tools Quickstart](./how-to-create-function-azure-cli.md?pivots=programming-language-python,python-mode-decorators)
 
 ---
 
-## Building Your Function App 
+## Building Your Function App
 
 ### Programming Model
 In the Python v2 programming model, Azure Functions uses a **decorator-based approach** to define triggers 
@@ -133,7 +132,7 @@ A Python Azure Functions project is recommended to have the following structure:
 | `.vscode/`              | Editor config for VS Code. Not required for deployment.                                                      | ❌                                  |
 | `function_app.py`       | Main script where Azure Functions and triggers are defined using decorators.                                 | ✅                                  |
 | `shared/`               | Holds helper code shared across the Function App project                                                     | ❌                                  |
-| `additional_functions/` | Used for modular code organization—typically with [blueprints](TODO:blueprints).                             | ❌                                  |
+| `additional_functions/` | Used for modular code organization—typically with [blueprints](#organizing-with-blueprints).                 | ❌                                  |
 | `tests/`                | Unit tests for your function app. Not published to Azure.                                                    | ❌                                  |
 | `.funcignore`           | Specifies files/folders to exclude from deployment (for example, `.venv/`, `tests/`, `local.settings.json`). | ❌ (recommended)                    |
 | `host.json`             | Global configuration for all functions in the app. Required and published.                                   | ✅                                  |
@@ -145,8 +144,8 @@ A Python Azure Functions project is recommended to have the following structure:
 - When you're deploying the app to Azure, the **contents** of your project folder are packaged—not the folder itself.
 - Ensure `host.json` is at the **root of the deployment package**, not nested in a subfolder.
 - Keep `tests/`, `.vscode/`, and `.venv/` excluded using `.funcignore`.
-> For guidance on unit testing, see [Unit Testing](TODO:link).
-> For container deployments, see [Deploy with custom containers](TODO:link)
+> For guidance on unit testing, see [Unit Testing](./python-testing.md).
+> For container deployments, see [Deploy with custom containers](./functions-how-to-custom-container.md)
 
 ---
 
@@ -158,7 +157,7 @@ There are two main types of bindings:
 - **Triggers** (input that starts the function)
 - **Inputs & Outputs** (extra data sources or destinations)
 
-To learn more about the available triggers and bindings, visit [Triggers and Bindings in Azure Functions](TODO:link).
+To learn more about the available triggers and bindings, visit [Triggers and Bindings in Azure Functions](./functions-triggers-bindings.md).
 
 **Example: HTTP Trigger with Cosmos DB Input and Event Hub Output**
 
@@ -210,7 +209,7 @@ def http_trigger_with_cosmosdb(req: func.HttpRequest,
 
 This function:
 - Triggers every 10 minutes
-- Reads from a Blob using [SDK Type Bindings](TODO:link)
+- Reads from a Blob using [SDK Type Bindings](#sdk-type-bindings)
 - Caches results and writes to a temporary file
 
 ```python
@@ -246,12 +245,12 @@ def timer_trigger_with_blob(mytimer: func.TimerRequest,
         logging.info(f"Cached data written to {temp_file.name}")
 ```
 **Key Concepts**
-- SDK type Bindings are used to work with rich types. See more: [SDK type bindings](TODO:link).
+- SDK type Bindings are used to work with rich types. See more: [SDK type bindings](#sdk-type-bindings).
 - Global variables can be used to cache expensive computations, but their state isn’t guaranteed to persist across function executions.
 - Temporary files are stored in `tmp/` and aren't guaranteed to persist across invocations or scale-out instances.
-- Invocation context of a function can be accessed through the [Context class](TODO:link).
-- [Application Settings](TODO:link) are exposed as environment variables when the app is running. You can access them through `os.environ[]` or `os.getenv()`. For local development,
-app settings are [maintained in the local.settings.json file](TODO:link).
+- Invocation context of a function can be accessed through the [Context class](/python/api/azure-functions/azure.functions.context).
+- [Application Settings](functions-how-to-use-azure-function-app-settings.md#settings) are exposed as environment variables when the app is running. You can access them through `os.environ[]` or `os.getenv()`. For local development,
+app settings are [maintained in the local.settings.json file](functions-develop-local.md#local-settings-file).
 
 ### SDK type bindings
 For select triggers and bindings, you can work with data types implemented by the underlying Azure SDKs and 
@@ -279,7 +278,7 @@ SDK.
 
 ### Package Management
 To use third-party Python packages in your Azure Functions app, list them in a requirements.txt file at the root of your project. Those packages can then be referenced as normal.
-To learn more about building and deployment options with external dependencies, see [Deployment Options for Python Function Apps](TODO:link).
+To learn more about building and deployment options with external dependencies, see [Deployment Options for Python Function Apps](./python-deployments.md).
 
 For example, the following sample shows how the `requests` module is included and used in the function app.
 ```text
@@ -310,7 +309,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
    - To prevent ModuleNotFound errors, you should ensure all required dependencies are listed in `requirements.txt`.
    - If you update your app's Python version, you should rebuild and redeploy your app on the new Python version to avoid dependency conflicts with previously built packages.
 - Non-PyPI Dependencies:
-   - You can include dependencies that aren’t available on PyPI in your app. For example, this can include local packages, wheel files, or private feeds. See [Custom dependencies in Python  Azure Functions](TODO: link) for setup instructions.
+   - You can include dependencies that aren’t available on PyPI in your app. For example, this can include local packages, wheel files, or private feeds. See [Custom dependencies in Python  Azure Functions](./python-deployments.md#custom-dependencies-non-pypi-local-wheels) for setup instructions.
 
 ---
 
@@ -329,7 +328,7 @@ For more general information, see the [Azure Functions runtime support policy](.
 and [Supported languages in Azure Functions](./supported-languages.md).
 
 ### Deployment
-Learn more about the recommended deployment mechanism for your scenario: [Deployment Options](TODO:link)
+Learn more about the recommended deployment mechanism for your scenario: [Deployment Options](./python-deployments.md)
 
 ---
 
@@ -358,9 +357,9 @@ def http_trigger(req) -> func.HttpResponse:
     return func.HttpResponse("OK")
 ```
 You can use the full set of logging levels (`debug`, `info`, `warning`, `error`, `critical`), and they appear 
-in the Azure portal under Logs or Application Insights. For `debug` logs to appear, more setup is required. For more information, see [Enable Debug Logging in Python Function Apps](TODO:link).
+in the Azure portal under Logs or Application Insights.
 
-To learn more about monitoring Azure Functions in the portal, see [Monitor Azure Functions](TODO:link).
+To learn more about monitoring Azure Functions in the portal, see [Monitor Azure Functions](functions-monitoring.md).
 
 **Logging from Background Threads**
 
@@ -391,11 +390,11 @@ def log_from_thread(context):
 Azure Functions for Python also supports **OpenTelemetry**, which enables you to emit traces, metrics, and logs 
 in a standardized format. Using OpenTelemetry is especially valuable for distributed applications or scenarios where you want 
 to export telemetry to tools outside of Application Insights (such as Grafana or Jaeger).
-> See our [OpenTelemetry Quickstart for Azure Functions (Python)](TODO:link) for setup instructions and sample code.
+> See our [OpenTelemetry Quickstart for Azure Functions (Python)](./opentelemetry-howto.md?pivot=programming-language-python) for setup instructions and sample code.
 
 ### Unit Testing
 Write and run unit tests for your functions using `pytest` or invoking the function directly.
-→ [Guide: Unit Testing in Python Azure Functions](TODO:link)
+→ [Guide: Unit Testing in Python Azure Functions](./python-testing.md)
 
 ---
 
