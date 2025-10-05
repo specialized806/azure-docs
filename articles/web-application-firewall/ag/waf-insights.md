@@ -12,28 +12,21 @@ ms.date: 09/30/2025
 
 # Azure Application Gateway Web Application Firewall (WAF) insights dashboards
 
-The WAF Insights dashboards for Azure Application Gateway provide a centralized experience for monitoring, investigation, and reporting of WAF activity. They're designed to help security and operations teams:
+The WAF Insights dashboards for Azure Application Gateway provide a unified experience for monitoring, investigation, and reporting of WAF activity. They help security and operations teams detect attack patterns, validate WAF policy effectiveness, identify misconfigurations, and accelerate incident response through deep drill-down analysis. By combining high-level visibility with detailed request-level insights, the dashboards support both strategic monitoring and hands-on troubleshooting.
 
-- Detect attack patterns and malicious traffic trends.
-- Validate WAF policy effectiveness.
-- Identify misconfigurations and fine-tune rules.
-- Accelerate incident response with drill-down forensic capabilities.
+The solution includes two main dashboards:
 
-By combining high-level visibility with detailed request-level insights, these dashboards support both strategic monitoring and hands-on troubleshooting.
+**Triage tab** - designed for investigation. It provides drill-down views to identify affected hosts, URLs, requests, and rules involved in a specific security event. This supports root cause analysis and faster incident response.
 
-The Insights solution consists of two primary dashboards:
-
-- **Triage tab** - designed for investigation. It provides drill-down views to identify affected hosts, URLs, requests, and rules involved in a specific security event. This supports root cause analysis and faster incident response.
-
-- **Monitor tab** - designed for continuous visibility. It surfaces high-level metrics and trends such as total request volumes, managed rule matches, custom rule matches, and JavaScript challenge activity. The Monitor tab helps operators detect anomalies, track the effectiveness of WAF protections, and understand overall application security posture at a glance.
+**Monitor tab** - designed for continuous visibility. It surfaces high-level metrics and trends such as total request volumes, managed rule matches, custom rule matches, and JavaScript challenge activity. The Monitor tab helps operators detect anomalies, track the effectiveness of WAF protections, and understand overall application security posture at a glance.
 
 ## Prerequisites
 
-To view WAF data in the dashboards, you must enable **Diagnostic settings** for the Application Gateway associations you want to monitor. Without diagnostic logs, no WAF data will be available in the dashboards. To learn more about how to enable diagnostic settings, see [Monitor logs for Azure Web Application Firewall](/azure/web-application-firewall/ag/web-application-firewall-logs?tabs=AppGW) and [Diagnostic logs - Azure Application Gateway](/azure/application-gateway/application-gateway-diagnostics)
+To view WAF data in the dashboards, **Diagnostic Settings** must be enabled for the Application Gateway associations you want to monitor. Without diagnostic logs, no WAF data will be available in the dashboards. To learn more about how to enable diagnostic settings, see [Monitor logs for Azure Web Application Firewall](/azure/web-application-firewall/ag/web-application-firewall-logs?tabs=AppGW) and [Diagnostic logs - Azure Application Gateway](/azure/application-gateway/application-gateway-diagnostics)
 
 ## Azure workbooks
 
-The dashboards are workbook-based in Azure Monitor. This provides flexibility to explore, customize, and extend the visualizations according to operational and security needs.
+Both dashboards are implemented as Azure Monitor workbooks, allowing customization, exploration, and extension of visualizations based on operational and security needs.
 
 ## Data sources and architecture
 
@@ -60,131 +53,23 @@ Each tab offers a different perspective and is often used together: monitor over
 
 ### Triage tab
 
-The **Triage tab** is designed for investigation and troubleshooting of WAF events. Data is sourced from **AzureDiagnostics** in Log Analytics Workspace (LAW). It supports two modes:
-
-- **Triage by rule**: start from a rule and drill down.
-
-- **Triage by URL**: start from a URL and drill down.
-
-**Key Behavior**: Except for the first visualization, each component is dynamically filtered based on selections in the previous step. Each component (besides the first visualization) is filtered in real time, depending on the selections from the prior step. This drill-down approach helps narrow down from the overall scope to individual impacted requests.
+The Triage tab is built for investigation and troubleshooting of WAF events. It uses data from AzureDiagnostics within the Log Analytics Workspace (LAW) and supports two investigation modes: **Triage by Rule** and **Triage by URL**.
+Except for the first visualization, each component dynamically filters based on selections from the previous step, allowing a natural drill-down flow that narrows from a broad scope to specific impacted requests.
 
 ### Triage by rule
 
-Investigates activity starting from triggered rules.
+In **Triage by Rule**, investigation starts from a triggered rule. The flow begins with selecting the WAF policy scope (Listener, URI Path, or Global). Next, you can view an overview of triggered rules, including rule ID, action, ruleset version, scope, and the number of impacted requests. From there, the investigation drills down to the affected hosts, URLs, and individual transactions. This approach helps identify which rules are responsible for most of the blocked traffic, detect false positives, and understand which hosts and URLs are most affected.
 
-#### Visuals and flow
-
-- Scope selection: Choose the WAF policy scope (Listener, URI Path, or Global).
-
-- Blocked / Detected / Matched counts: High-level statistics of triggered rules.
-
-- Rules triggered for selected scope: View rule ID, action, ruleset version, scope, and impacted requests.
-
-- Impacted hosts: IP addresses affected by the rule.
-
-- Impacted URLs per host: Drill down to individual URLs and requests.
-
-#### Use cases
-
-- Identify which rules generate the most blocks.
-
-- Investigate false positives or fine-tune custom rules.
-
-- Understand which hosts and URLs are most impacted by a specific rule.
-
-### Triage by URL
-
-Investigates activity starting from a URL path.
-
-#### Visuals and flow
-
-- Scope selection: Select the relevant Application Gateway and policy scope.
-
-- Impacted hosts per URL: Identify clients or attack sources targeting specific URLs.
-
-- Rules triggered for impacted requests: Drill down to rule details and logs.
-
-- Selection summary: Quick overview of what triggered the WAF response.
-
-#### Use cases
-
-- Investigate suspicious traffic against login pages or sensitive endpoints.
-
-- Verify whether blocked requests are legitimate or malicious.
-
-- Map attack patterns across URLs.
+In **Triage by URL**, investigation begins with a URL path. Analysts select the relevant Application Gateway and policy scope, identify the hosts or IPs targeting specific URLs, and view the rules triggered for those impacted requests. This approach is useful for investigating suspicious activity on sensitive endpoints such as login pages, verifying whether blocked requests are legitimate or malicious, and mapping attack patterns across URLs.
 
 ### Monitor tab
 
-The Monitor tab is designed for visibility and reporting. It provides both **WAF metrics** and **WAF logs** views.
+The Monitor tab provides visibility and reporting through two main views – **WAF logs** and **WAF metrics**.
 
-#### WAF logs
 
-The **WAF logs** view provides a detailed, request-level perspective of WAF activity. Unlike metrics, which focus on aggregated counters, this tab is designed for forensic analysis and auditing. Data is sourced from **AzureDiagnostics** in Log Analytics Workspace (LAW).
+The **WAF logs** view gives a detailed request-level perspective sourced from the AzureDiagnostics table in LAW. It includes visualizations such as total WAF requests by rule group, WAF actions by type (for example, Blocked), top blocked URIs, top triggered rules, rules over time, and details of triggered rule events with timestamps, hosts, AppGW instances, and client IPs. Analysts can also correlate data by tracking ID, review top offending IPs, and inspect related requests to detect targeted attacks, validate rule effectiveness, and support audits or compliance reviews.
 
-#### Visuals and tables
-
-- **Total WAF requests by rule group (select to filter)**: Pie charts of total number of requests group by Rule Group.
-
-- **WAF actions (select to filter)**: Pie chart of WAF actions (Blocked, others)
-
-- **Top 50 blocked requests URIs (select to filter)**: Frequent blocked request URIs with counts.
-
-- **Top 50 WAF rules (select to filter)**: Ranked table of rules by trigger count, including Rule ID and description.
-
-- **Rules over time**: Time-series visualization of triggered rules across the selected period.
-
-- **Rules details**: Table of triggered rule events (timestamp, host, AppGW instance, client IP, action).
-
-- **Requests by rule (select to filter)**: Summarized counts of requests per triggered rule.
-
-- **Requests by rule over time**: Trend visualization showing request volumes per rule over time.
-
-- **Filter by tracking ID / Rule for tracking ID**: Linked tables to investigate triggered rules by a tracking ID.
-
-- **Top 10 sources (IPs) (select to filter)**: Bar chart of client IPs with the highest triggered rules.
-
-- **Requests (from selected IPs)**: Table of requests from the top IPs, with host, rule, and URIs.
-
-#### Use cases
-
-- Identify attack sources and top offenders.
-
-- Correlate IPs, hosts, and rules to detect targeted attacks.
-
-- Validate rule effectiveness and tune the WAF policy.
-
-- Support auditing and compliance needs.
-
-### WAF metrics
-
-The **WAF metrics** view provides near real-time visibility into Application Gateway WAF activity using Azure Monitor metrics. It surfaces aggregated counters at minute-level granularity and is optimized for detecting anomalies, monitoring trends, and validating WAF configuration.
-
-#### Visuals
-
-- **WAF total requests**: Displays the total number of requests processed by the WAF across associations.
-
-- **WAF managed rule matches by association**: Shows all managed rule matches, broken down by association.
-
-- **WAF managed rule matches by association - block**: Requests blocked by managed rules, grouped by association.
-
-- **WAF managed rule matches by association - others**: Requests that were evaluated by managed rules but were **not blocked** - including those that were allowed, logged, or challenged, grouped by association.
-
-- **WAF JS challenge request count by association**: Total number of JavaScript (JS) challenges triggered, aggregated per association.
-
-- **WAF custom rules matched by association**: Displays the total number of custom rule matches across associations.
-
-#### Use cases
-
-- Detect traffic surges or anomalies in total requests.
-
-- Understand managed rules behavior across associations.
-
-- Monitor the effectiveness of JS challenge enforcement.
-
-- Track custom rule usage and confirm correct policy configuration.
-
-- Support operational reporting with aggregated counters that complement detailed log data.
+The **WAF metrics** view provides near real-time visibility into WAF activity using Azure Monitor metrics. It includes visualizations showing total WAF requests, managed rule matches by association (both blocked and non-blocked), JS challenge request counts, and custom rule matches. This data helps detect sudden traffic surges, monitor rule behavior, evaluate JS challenge enforcement, and verify correct policy configuration. Metrics offer an operational perspective that complements the detailed forensic insights provided by logs.
 
 ## Summary of dashboards
 
@@ -197,15 +82,15 @@ The **WAF metrics** view provides near real-time visibility into Application Gat
 
 ## Glossary
 
-- **Association**: The binding between a WAF policy and an Application Gateway listener or path.
+**Association**: The binding between a WAF policy and an Application Gateway listener or path.
 
-- **Scope**: The level at which a WAF policy applies (Listener, URI Path, Global).
+**Scope**: The level at which a WAF policy applies (Listener, URI Path, Global).
 
-- **Rule ID**: Identifier of a managed rule triggered by the WAF.
+**Rule ID**: Identifier of a managed rule triggered by the WAF.
 
-- **LAW (Log Analytics workspace)**: Repository where logs are stored and queried.
+**LAW (Log Analytics workspace)**: Repository where logs are stored and queried.
 
-- **Metrics**: Aggregated counters optimized for fast monitoring.
+**Metrics**: Aggregated counters optimized for fast monitoring.
 
 ## Limitations and considerations
 
@@ -236,10 +121,6 @@ The **WAF metrics** view provides near real-time visibility into Application Gat
 - [Diagnostic logs - Azure Application Gateway](/azure/application-gateway/application-gateway-diagnostics)
 
 - [Azure Monitor metrics for Application Gateway](/azure/application-gateway/application-gateway-metrics)
-
-- [Azure Monitor metrics for Application Gateway](/azure/application-gateway/application-gateway-metrics)
-
-- [Azure Workbooks overview - Azure Monitor](/azure/azure-monitor/visualize/workbooks-overview)
 
 - [Azure Workbooks overview - Azure Monitor](/azure/azure-monitor/visualize/workbooks-overview)
 
