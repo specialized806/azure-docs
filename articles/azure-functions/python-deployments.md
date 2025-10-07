@@ -41,7 +41,7 @@ Remote build is the default for:
 - Azure Functions Core Tools
 - Visual Studio Code publish actions
 
-Remote build also supports [custom package indexes](TODO:link) via `PIP_EXTRA_INDEX_URL`.
+Remote build also supports custom package indexes via `PIP_EXTRA_INDEX_URL`.
 
 ## Local Build
 Local build installs dependencies on your machine, then deploys the entire app, including 
@@ -70,7 +70,7 @@ func azure functionapp publish <APP_NAME> --no-build
 
 ## Portal Creation
 You can instantly create and test a basic Azure Function directly within the Azure portal, which saves setup time 
-and is useful for quick experiments or demos. To learn more, follow the [Getting Started in the Azure portal Guide](TODO:link).
+and is useful for quick experiments or demos. To learn more, follow the [Getting Started in the Azure portal Guide](./functions-create-function-app-portal.md).
 
 > Portal editing does not support third-party dependencies. You can't install or reference packages outside `azure-functions` 
 and the built-in Python standard library.
@@ -113,7 +113,7 @@ Build and deploy your app as a Docker image when you need:
 - Full control of the runtime
 - Preconfigured language versions
 
-Learn more: [Deploy with a custom container](TODO:link)
+Learn more: [Deploy with a custom container](./functions-how-to-custom-container.md)
 
 ## CI / CD Pipelines
 You can automate deployments using:
@@ -125,6 +125,6 @@ Your pipeline can:
 - Run local builds
 - Deploy with `--no-build` if prebuilding dependencies
 - Publish to Azure using managed identity
-Learn more: [Continuous delivery with Azure Pipelines](TODO:link)
+Learn more: [Continuous delivery with Azure Pipelines](./functions-how-to-azure-devops.md)
 
 
