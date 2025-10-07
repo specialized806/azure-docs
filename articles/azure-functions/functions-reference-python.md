@@ -523,6 +523,51 @@ and [Supported languages in Azure Functions](./supported-languages.md).
 Learn more about the recommended deployment mechanism for your scenario: [Deployment Options](./python-deployments.md)
 [!INCLUDE [functions-linux-consumption-retirement](../../includes/functions-linux-consumption-retirement.md)]
 
+### Python 3.13+ Updates
+Starting with Python 3.13, Azure Functions introduces several major runtime and performance improvements that affect how your apps are built and run.
+Key changes include:
+
+::: zone pivot="python-mode-decorators"
+
+- Runtime version control: You can now optionally pin or upgrade your app to specific Python worker versions by referencing `azure-functions-runtime` package in your `requirements.txt`.
+   - Without version control enabled, your app continues to run on a default version of the Python runtime, which is managed by Functions. You must modify your *requirements.txt* file to instead request the latest released version, a prereleased version, or to be able to pin your app to a specific version of the Python runtime.
+   - You enable runtime version control by adding a reference to the Python runtime package to your *requirements.txt* file, where the value assigned to the package determines the runtime version used.
+   - Avoid pinning any production app to prerelease (alpha, beta, or dev) runtime versions.
+   - Review [Python runtime release notes](https://github.com/Azure/azure-functions-python-worker/releases) regularly to be aware of changes that are being applied to your app's Python runtime or to determine when to update a pinned version.  
+   - The following table indicates the versioning behavior based on the version value of this setting in your *requirements.txt* file:
+      
+      | Version                      | Example                          | Behavior                                                                                                                                                                                                                                                                                                                                                                                                                            |
+      |------------------------------|----------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+      | No value set                 | `azure-functions-runtime`        | Your Python 3.13+ app runs on the latest available version of the Functions Python runtime. This option is best for staying current with platform improvements and features, since your app automatically receives the latest stable runtime updates.                                                                                                                                                                               |
+      | Pinned to a specific version | `azure-functions-runtime==1.2.0` | Your Python 3.13+ app stays on the pinned runtime version and doesn't receive automatic updates. You must instead manually update your pinned version to take advantage of new features, fixes, and improvements in the runtime. Pinning is recommended for critical production workloads where stability and predictability are essential. Pinning also lets you test your app on prereleased runtime versions during development. |
+      | No package reference         | n/a                              | By not setting the `azure-functions-runtime`, your Python 3.13+ app runs on a default version of the Python runtime that is behind the latest released version. Updates are made periodically by Functions. This option ensures stability and broad compatibility. However, access to the newest features and fixes are delayed until the default version is updated.                                                               |
+
+- Dependency isolation: Your app’s dependencies (like `grpcio` or `azure-functions`) are fully isolated from the worker’s dependencies by default, preventing version conflicts.
+- Simplified HTTP streaming setup—no special app settings required.
+- Removed support for worker extensions and shared memory features.
+
+::: zone-end
+
+::: zone pivot="python-mode-configuration"
+
+- Runtime version control: You can now optionally pin or upgrade your app to specific Python worker versions by referencing `azure-functions-runtime-v1` package in your `requirements.txt`.
+   - Without version control enabled, your app continues to run on a default version of the Python runtime, which is managed by Functions. You must modify your *requirements.txt* file to instead request the latest released version, a prereleased version, or to be able to pin your app to a specific version of the Python runtime.
+   - You enable runtime version control by adding a reference to the Python runtime package to your *requirements.txt* file, where the value assigned to the package determines the runtime version used.
+   - Avoid pinning any production app to prerelease (alpha, beta, or dev) runtime versions.
+   - Review [Python runtime release notes](https://github.com/Azure/azure-functions-python-worker/releases) regularly to be aware of changes that are being applied to your app's Python runtime or to determine when to update a pinned version.  
+   - The following table indicates the versioning behavior based on the version value of this setting in your *requirements.txt* file:
+      
+      | Version                      | Example                             | Behavior                                                                                                                                                                                                                                                                                                                                                                                                                            |
+      |------------------------------|-------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+      | No value set                 | `azure-functions-runtime-v1`        | Your Python 3.13+ app runs on the latest available version of the Functions Python runtime. This option is best for staying current with platform improvements and features, since your app automatically receives the latest stable runtime updates.                                                                                                                                                                               |
+      | Pinned to a specific version | `azure-functions-runtime-v1==1.2.0` | Your Python 3.13+ app stays on the pinned runtime version and doesn't receive automatic updates. You must instead manually update your pinned version to take advantage of new features, fixes, and improvements in the runtime. Pinning is recommended for critical production workloads where stability and predictability are essential. Pinning also lets you test your app on prereleased runtime versions during development. |
+      | No package reference         | n/a                                 | By not setting the `azure-functions-runtime-v1`, your Python 3.13+ app runs on a default version of the Python runtime that is behind the latest released version. Updates are made periodically by Functions. This option ensures stability and broad compatibility. However, access to the newest features and fixes are delayed until the default version is updated.                                                            |
+
+- Dependency isolation: Your app’s dependencies (like `grpcio` or `azure-functions`) are fully isolated from the worker’s dependencies by default, preventing version conflicts.
+- Removed support for worker extensions and shared memory features.
+
+::: zone-end
+
 ---
 
 ## Observability and Testing
