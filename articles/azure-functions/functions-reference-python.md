@@ -694,7 +694,7 @@ Write and run unit tests for your functions using `pytest` or invoking the funct
 
 ## Optimization and Advanced Topics
 - [Scaling & Performance](./python-scale-performance-reference.md)
-- [Using Flask Framework with Azure Functions](https://learn.microsoft.com/en-us/samples/azure-samples/flask-app-on-azure-functions/azure-functions-python-create-flask-app/)
+- [Using Flask Framework with Azure Functions](/samples/azure-samples/flask-app-on-azure-functions/azure-functions-python-create-flask-app/)
 - [Durable Functions](./durable/durable-functions-overview.md)
 - [HTTP Streaming](./functions-bindings-http-webhook-trigger.md?tabs=python-v2&pivots=programming-language-python#http-streams-1)
 
