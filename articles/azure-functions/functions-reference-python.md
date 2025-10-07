@@ -409,11 +409,9 @@ def timer_trigger_with_blob(mytimer: func.TimerRequest,
         # Download blob and save as a global variable
         CACHED_BLOB_DATA = client.download_blob().readall()
 
-        # Create temp file prefix and suffix
+        # Create temp file prefix
         my_prefix = context.invocation_id
-        my_suffix = os.getenv("BLOB_SUFFIX")
-        temp_file = tempfile.NamedTemporaryFile(prefix=my_prefix,
-                                                suffix=my_suffix)
+        temp_file = tempfile.NamedTemporaryFile(prefix=my_prefix)
         temp_file.write(CACHED_BLOB_DATA)
         logging.info(f"Cached data written to {temp_file.name}")
 ```
@@ -422,8 +420,6 @@ def timer_trigger_with_blob(mytimer: func.TimerRequest,
 - Global variables can be used to cache expensive computations, but their state isn’t guaranteed to persist across function executions.
 - Temporary files are stored in `tmp/` and aren't guaranteed to persist across invocations or scale-out instances.
 - Invocation context of a function can be accessed through the [Context class](/python/api/azure-functions/azure.functions.context).
-- [Application Settings](functions-how-to-use-azure-function-app-settings.md#settings) are exposed as environment variables when the app is running. You can access them through `os.environ[]` or `os.getenv()`. For local development,
-app settings are [maintained in the local.settings.json file](functions-develop-local.md#local-settings-file).
 
 ### SDK type bindings
 For select triggers and bindings, you can work with data types implemented by the underlying Azure SDKs and 
@@ -449,6 +445,19 @@ SDK.
 <sup>1</sup> For output scenarios in which you would use an SDK type, you should create and work with SDK clients directly instead of using an output binding.
 <sup>2</sup> The Cosmos DB trigger uses the [Azure Cosmos DB change feed](/azure/cosmos-db/change-feed) and exposes change feed items as JSON-serializable types. The absence of SDK types is by-design for this scenario.
 ::: zone-end
+
+### Environment Variables
+Environment variables in Azure Functions let you securely manage configuration values, connection strings, and app secrets without hardcoding them in your function code.
+
+You can define environment variables:
+- Locally: in the [local.settings.json file](functions-develop-local.md#local-settings-file)] file during local development.
+- In Azure: as [Application Settings](functions-how-to-use-azure-function-app-settings.md#settings) in your Function App’s configuration page in the Azure portal.
+
+You can access the variables directly in your code using `os.environ` or `os.getenv`.
+```python
+setting_value = os.getenv("myAppSetting", "default_value")
+```
+
 
 ### Package Management
 To use third-party Python packages in your Azure Functions app, list them in a requirements.txt file at the root of your project. Those packages can then be referenced as normal.

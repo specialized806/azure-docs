@@ -420,7 +420,7 @@ Push-OutputBinding -Name Response -Value ([HttpResponseContext]@{
 ::: zone pivot="programming-language-python"  
 # [v2](#tab/python-v2)
 
-This example is an HTTP triggered function that uses [HTTP streams](functions-reference-python.md#http-streams) to return chunked response data. You might use these capabilities to support scenarios like sending event data through a pipeline for real time visualization or detecting anomalies in large sets of data and providing instant notifications.
+This example is an HTTP triggered function that uses [HTTP streams](functions-bindings-http-webhook-trigger.md?tabs=python-v2&pivots=programming-language-python#http-streams-1) to return chunked response data. You might use these capabilities to support scenarios like sending event data through a pipeline for real time visualization or detecting anomalies in large sets of data and providing instant notifications.
 
 :::code language="python" source="~/functions-python-extensions/azurefunctions-extensions-http-fastapi/samples/fastapi_samples_streaming_download/function_app.py" range="5-26" ::: 
 
@@ -1022,7 +1022,7 @@ HTTP streams support in Python lets you accept and return data from your HTTP en
 ### Prerequisites
 
 * [Azure Functions runtime](functions-versions.md?pivots=programming-language-python) version 4.34.1, or a later version.
-* [Python](https://www.python.org/downloads/) version 3.8, or a later [supported version](functions-reference-python.md?tabs=get-started&pivots=python-mode-decorators#python-version).
+* [Python](https://www.python.org/downloads/) version 3.8, or a later [supported version](functions-reference-python.md?tabs=get-started&pivots=python-mode-decorators#supported-python-versions).
 
 ### Enable HTTP streams
 

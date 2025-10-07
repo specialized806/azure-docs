@@ -127,7 +127,7 @@ There are many aspects of a function app that impacts how it scales, including h
 
 If your app has more than 100 functions that use event-based triggers, consider breaking the app into one or more apps, where each app has less than 100 event-based functions.
 
-For more information on scaling in Python and Node.js, see [Azure Functions Python developer guide - Scaling and concurrency](functions-reference-python.md#scaling-and-performance) and [Azure Functions Node.js developer guide - Scaling and concurrency](functions-reference-node.md#scaling-and-concurrency).
+For more information on scaling in Python and Node.js, see [Azure Functions Python developer guide - Scaling and concurrency](./python-scale-performance-reference.md) and [Azure Functions Node.js developer guide - Scaling and concurrency](functions-reference-node.md#scaling-and-concurrency).
 
 ## Next steps
 
