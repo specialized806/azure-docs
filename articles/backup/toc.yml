@@ -53,10 +53,46 @@
     items:
     - name: Overview
       href: backup-azure-recovery-services-vault-overview.md
+    - name: FAQs for Recovery Services vault
+      href: backup-azure-backup-faq.yml
+    - name: Create and manage the vault
+      items:
+      - name: Create
+        href: backup-create-recovery-services-vault.md
+      - name: Delete
+        href: backup-azure-delete-vault.md
+      - name: Relocate
+        href: ../azure-resource-manager/management/relocation/relocation-backup.md?toc=/azure/backup/toc.json
+      - name: Manage
+        href: backup-azure-manage-windows-server.md      
   - name: Backup vault
     items:
     - name: Overview
       href: backup-vault-overview.md
+    - name: Create and manage the vault
+      items:
+      - name: Create and delete
+        href: create-manage-backup-vault.md
+      - name: Manage
+        href: manage-backup-vault.md
+  - name: Backup Center
+    items:
+    - name: Overview
+      href: backup-center-overview.md
+    - name: FAQ-Backup center
+      href: backup-center-faq.yml  
+    - name: Backup center support matrix
+      href: backup-center-support-matrix.md  
+    - name: Manage operations in the control plane
+      items:
+      - name: Monitor and Operate
+        href: backup-center-monitor-operate.md
+      - name: Obtain insights
+        href: backup-center-obtain-insights.md
+      - name: Govern environment
+        href: backup-center-govern-environment.md
+      - name: Perform actions
+        href: backup-center-actions.md              
 - name: Quickstarts  
   items:
   - name: Back up a VM - Azure portal
@@ -222,8 +258,6 @@
     items:
     - name: Azure Backup support matrix
       href: backup-support-matrix.md
-    - name: Backup center support matrix
-      href: backup-center-support-matrix.md
     - name: Azure VM backup support matrix
       href: backup-support-matrix-iaas.md
     - name: DPM/Azure Backup Server (MABS) support matrix
@@ -262,10 +296,6 @@
       href: backup-support-automation.md
   - name: Frequently asked questions (FAQ)
     items:
-    - name: FAQ-Recovery Services vaults
-      href: backup-azure-backup-faq.yml
-    - name: FAQ-Backup center
-      href: backup-center-faq.yml
     - name: FAQ-Azure VM backup
       href: backup-azure-vm-backup-faq.yml
     - name: FAQ-MARS agent
@@ -290,8 +320,6 @@
       href: protect-backups-from-ransomware-faq.yml
     - name: FAQ-Soft Delete
       href: soft-delete-azure-backup-faq.yml
-  - name: Backup center
-    href: backup-center-overview.md
   - name: Azure VM backup
     items:
     - name: Overview
@@ -356,34 +384,6 @@
     href: azure-backup-glossary.md
 - name: How-to guides
   items:
-  - name: Vaults
-    items:
-    - name: Recovery Services vault
-      items:
-      - name: Create
-        href: backup-create-recovery-services-vault.md
-      - name: Delete
-        href: backup-azure-delete-vault.md
-      - name: Relocate
-        href: ../azure-resource-manager/management/relocation/relocation-backup.md?toc=/azure/backup/toc.json
-      - name: Manage
-        href: backup-azure-manage-windows-server.md
-    - name: Backup vault
-      items:
-      - name: Create and delete
-        href: create-manage-backup-vault.md
-      - name: Manage
-        href: manage-backup-vault.md
-  - name: Backup center
-    items:
-    - name: Monitor and Operate
-      href: backup-center-monitor-operate.md
-    - name: Obtain insights
-      href: backup-center-obtain-insights.md
-    - name: Govern environment
-      href: backup-center-govern-environment.md
-    - name: Perform actions
-      href: backup-center-actions.md
   - name: Azure VM backup
     items:
     - name: Backup
