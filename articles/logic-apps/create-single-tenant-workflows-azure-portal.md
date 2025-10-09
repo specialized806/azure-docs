@@ -9,6 +9,7 @@ ms.collection: ce-skilling-ai-copilot
 ms.topic: how-to
 ms.date: 08/06/2025
 ms.update-cycle: 180-days
+ms.custom: sfi-image-nochange
 # Customer intent: As a developer, I want to create my first example Standard logic app workflow that runs in single-tenant Azure Logic Apps using the Azure portal.
 ---
 
@@ -53,7 +54,7 @@ For more information, see the following documentation:
 
 ## Prerequisites
 
-* An Azure account and subscription. If you don't have a subscription, [sign up for a free Azure account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+* An Azure account and subscription. If you don't have a subscription, [sign up for a free Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 * An [Azure Storage account](../storage/common/storage-account-overview.md). If you don't have one, you can either create a storage account in advance or during logic app creation.
 

@@ -6,7 +6,9 @@ ms.suite: integration
 ms.reviewer: estfan, azla
 ms.topic: how-to
 ms.date: 06/19/2025
-ms.custom: devx-track-js
+ms.custom:
+  - devx-track-js
+  - sfi-image-nochange
 # Customer intent: As a logic app workflow developer, I want to write and run my own JavaScript code snippets so that I can perform custom integration tasks in Standard workflows for Azure Logic Apps.
 ---
 
@@ -38,7 +40,7 @@ The following diagram shows the highlights from an example workflow:
 
 ## Prerequisites
 
-* An Azure account and subscription. If you don't have a subscription, [sign up for a free Azure account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+* An Azure account and subscription. If you don't have a subscription, [sign up for a free Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 * The logic app resource with the workflow where you want to add your code snippet. The workflow must already start with a trigger.
 

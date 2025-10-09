@@ -33,7 +33,9 @@
         href: ../business-continuity-center/manage-protection-policy.md?toc=/azure/backup/toc.json&bc=/azure/backup/breadcrumb/toc.json    
       - name: Configure protection for datasources
         href: ../business-continuity-center/tutorial-configure-protection-datasource.md?toc=/azure/backup/toc.json&bc=/azure/backup/breadcrumb/toc.json
-      - name: Recover an item
+      - name: Reconfigure backup in an alternate vault
+        href: ../business-continuity-center/tutorial-reconfigure-backup-alternate-vault.md?toc=/azure/backup/toc.json&bc=/azure/backup/breadcrumb/toc.json  
+- name: Recover an item
         href: ../business-continuity-center/tutorial-recover-deleted-item.md?toc=/azure/backup/toc.json&bc=/azure/backup/breadcrumb/toc.json
       - name: View protected items and perform actions
         href: ../business-continuity-center/tutorial-view-protected-items-and-perform-actions.md?toc=/azure/backup/toc.json&bc=/azure/backup/breadcrumb/toc.json

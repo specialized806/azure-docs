@@ -7,9 +7,13 @@ ms.author: sonialopez
 ms.date: 03/12/2024
 ms.topic: tutorial
 ms.service: azure-iot-hub
-ms.custom: devx-track-extended-java, devx-track-python, devx-track-js
 zone_pivot_groups: iot-dps-set1
 ms.subservice: azure-iot-hub-dps
+ms.custom:
+  - devx-track-extended-java
+  - devx-track-python
+  - devx-track-js
+  - sfi-image-nochange
 ---
 
 # Tutorial: Provision devices using symmetric key enrollment groups
@@ -45,7 +49,7 @@ This tutorial is oriented toward a Windows-based workstation. However, you can p
 
 ## Prerequisites
 
-* If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?ref=microsoft.com&utm_source=microsoft.com&utm_medium=docs&utm_campaign=visualstudio) before you begin.
+* If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 
 * Complete the steps in [Set up IoT Hub Device Provisioning Service with the Azure portal](./quick-setup-auto-provision.md).
 ::: zone pivot="programming-language-ansi-c"

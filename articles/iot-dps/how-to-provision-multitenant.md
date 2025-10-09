@@ -7,8 +7,11 @@ ms.author: sonialopez
 ms.topic: tutorial
 ms.date: 08/24/2022
 ms.service: azure-iot-hub
-ms.custom: devx-track-azurecli, linux-related-content
 ms.subservice: azure-iot-hub-dps
+ms.custom:
+  - devx-track-azurecli
+  - linux-related-content
+  - sfi-image-nochange
 ---
 
 # Tutorial: Provision for geo latency
@@ -31,7 +34,7 @@ This tutorial uses a simulated device sample from the [Azure IoT C SDK](https://
 
 ## Prerequisites
 
-* If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?ref=microsoft.com&utm_source=microsoft.com&utm_medium=docs&utm_campaign=visualstudio) before you begin.
+* If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 
 * Complete the steps in [Set up IoT Hub Device Provisioning Service with the Azure portal](./quick-setup-auto-provision.md).
 

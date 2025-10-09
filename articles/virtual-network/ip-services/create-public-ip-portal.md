@@ -8,7 +8,10 @@ ms.service: azure-virtual-network
 ms.subservice: ip-services
 ms.topic: quickstart
 ms.date: 04/16/2024
-ms.custom: template-quickstart, mode-ui
+ms.custom:
+  - template-quickstart
+  - mode-ui
+  - sfi-image-nochange
 # Customer intent: As a cloud administrator, I want to create a public IP address of either Standard or Basic SKU using the portal, so that I can establish public connections to my Azure resources for various workloads.
 ---
 
@@ -20,7 +23,7 @@ In this quickstart, you learn how to create Azure public IP addresses, which you
 
 ## Prerequisites
 
-- An Azure account with an active subscription. You can [create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+- An Azure account with an active subscription. You can [create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 ## Sign in to Azure
 

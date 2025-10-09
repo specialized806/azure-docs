@@ -8,6 +8,7 @@ ms.date: 05/14/2019
 ms.author: normesta
 ms.reviewer: seguler
 ms.subservice: storage-common-concepts
+ms.custom: sfi-image-nochange
 #Customer intent: As a customer with data, I want to move my data from its existing location so that I can have access to that data in my storage account.
 # Customer intent: "As an IT administrator, I want to migrate on-premises data to cloud storage using a command-line tool, so that I can ensure efficient data access and management in my organization's storage account."
 ---
@@ -24,7 +25,7 @@ In this tutorial, you learn how to:
 > - Modify the data for test purposes.
 > - Create a scheduled task or cron job to identify new files to upload.
 
-If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
+If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 
 ## Prerequisites
 

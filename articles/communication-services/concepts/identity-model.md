@@ -2,11 +2,11 @@
 title: Identity model
 titleSuffix: An Azure Communication Services article
 description: This article describes identities and access tokens.
-author: FarrukhGhaffar
+author: kirmadi
 manager: cassidyfein
 services: azure-communication-services
 
-ms.author: faghaffa
+ms.author: jorgegarc
 ms.date: 01/02/2024
 ms.topic: conceptual
 ms.service: azure-communication-services
@@ -139,7 +139,7 @@ Azure App Service or Azure Functions are two alternatives for operating the iden
 
 * To issue tokens, see [Create and manage access tokens for end users](../quickstarts/identity/access-tokens.md).
 * For an introduction to authentication, see [Authenticate to Azure Communication Services](./authentication.md).
-* For details on how authentication works in single-tenant and multitenant Microsoft Entra ID scenarios, refer to [Tenancy in Microsoft Entra ID](https://learn.microsoft.com/entra/identity-platform/single-and-multi-tenant-apps).
+* For details on how authentication works in single-tenant and multitenant Microsoft Entra ID scenarios, refer to [Tenancy in Microsoft Entra ID](/entra/identity-platform/single-and-multi-tenant-apps).
 * To read about data residency and privacy, see [Region availability and data residency](./privacy.md).
 * For a full sample of a simple identity management service, see [Trusted service tutorial](../tutorials/trusted-service-tutorial.md).
 * For a more advanced identity management sample which integrates with Entra ID and Microsoft Graph, see [Authentication service hero sample](../samples/trusted-auth-sample.md).

@@ -8,8 +8,15 @@ ms.date: 08/19/2025
 ms.update-cycle: 1095-days
 ms.author: karler
 ms.reviewer: v-shilichen
-ms.custom: devx-track-java, devx-track-extended-java, mode-other, engagement-fy23, devx-track-extended-azdevcli, devx-track-azurecli
 zone_pivot_groups: spring-apps-enterprise-or-consumption-plan-selection
+ms.custom:
+  - devx-track-java
+  - devx-track-extended-java
+  - mode-other
+  - engagement-fy23
+  - devx-track-extended-azdevcli
+  - devx-track-azurecli
+  - sfi-ga-nochange
 ---
 
 # Quickstart: Deploy RESTful API application to Azure Spring Apps
@@ -40,7 +47,7 @@ The following diagram shows the architecture of the system:
 
 ### [Azure portal + Maven plugin](#tab/Azure-portal-maven-plugin-ent)
 
-- An Azure subscription. If you don't have an Azure subscription, create an [Azure free account](https://azure.microsoft.com/free/) before you begin.
+- An Azure subscription. If you don't have an Azure subscription, create an [Azure free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 - One of the following roles:
   - Global Administrator or Privileged Role Administrator, for granting consent for apps requesting any permission, for any API.
   - Cloud Application Administrator or Application Administrator, for granting consent for apps requesting any permission for any API, except Microsoft Graph app roles (application permissions).
@@ -54,7 +61,7 @@ The following diagram shows the architecture of the system:
 
 ### [Azure CLI](#tab/Azure-CLI)
 
-- An Azure subscription, If you don't have an Azure subscription, create an [Azure free account](https://azure.microsoft.com/free/) before you begin.
+- An Azure subscription, If you don't have an Azure subscription, create an [Azure free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 - One of the following roles:
   - Global Administrator or Privileged Role Administrator, for granting consent for apps requesting any permission, for any API.
   - Cloud Application Administrator or Application Administrator, for granting consent for apps requesting any permission for any API, except Microsoft Graph app roles (application permissions).
@@ -75,7 +82,7 @@ The following diagram shows the architecture of the system:
 
 ### [Azure portal + Maven plugin](#tab/Azure-portal-maven-plugin)
 
-- An Azure subscription, If you don't have an Azure subscription, create an [Azure free account](https://azure.microsoft.com/free/) before you begin.
+- An Azure subscription, If you don't have an Azure subscription, create an [Azure free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 - One of the following roles:
   - Global Administrator or Privileged Role Administrator, for granting consent for apps requesting any permission, for any API.
   - Cloud Application Administrator or Application Administrator, for granting consent for apps requesting any permission for any API, except Microsoft Graph app roles (application permissions).
@@ -88,7 +95,7 @@ The following diagram shows the architecture of the system:
 
 ### [Azure Developer CLI](#tab/Azure-Developer-CLI)
 
-- An Azure subscription, If you don't have an Azure subscription, create an [Azure free account](https://azure.microsoft.com/free/) before you begin.
+- An Azure subscription, If you don't have an Azure subscription, create an [Azure free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 - One of the following roles:
   - Global Administrator or Privileged Role Administrator, for granting consent for apps requesting any permission, for any API.
   - Cloud Application Administrator or Application Administrator, for granting consent for apps requesting any permission for any API, except Microsoft Graph app roles (application permissions).

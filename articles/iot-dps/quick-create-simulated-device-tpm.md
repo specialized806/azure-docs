@@ -8,9 +8,17 @@ ms.topic: quickstart
 ms.service: azure-iot-hub
 services: iot-dps
 zone_pivot_groups: iot-dps-set1
-ms.custom: mvc, amqp, mqtt, mode-other, devx-track-extended-java, devx-track-python, devx-track-js
 #Customer intent: As a new IoT developer, I want simulate a TPM device to learn how secure provisioning works.
 ms.subservice: azure-iot-hub-dps
+ms.custom:
+  - mvc
+  - amqp
+  - mqtt
+  - mode-other
+  - devx-track-extended-java
+  - devx-track-python
+  - devx-track-js
+  - sfi-image-nochange
 ---
 
 # Quickstart: Provision a simulated TPM device
@@ -37,7 +45,7 @@ Trusted Platform Module (TPM) attestation isn't supported in the Python SDK. Wit
 
 ## Prerequisites
 
-* If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?ref=microsoft.com&utm_source=microsoft.com&utm_medium=docs&utm_campaign=visualstudio) before you begin.
+* If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 
 * Complete the steps in [Set up IoT Hub Device Provisioning Service with the Azure portal](./quick-setup-auto-provision.md).
 

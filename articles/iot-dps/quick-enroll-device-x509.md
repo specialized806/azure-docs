@@ -9,9 +9,14 @@ ms.service: azure-iot-hub
 services: iot-dps
 ms.devlang: csharp
 # ms.devlang: csharp, java, nodejs
-ms.custom: mvc, mode-other, devx-track-extended-java, devx-track-js
 zone_pivot_groups: iot-dps-set2
 ms.subservice: azure-iot-hub-dps
+ms.custom:
+  - mvc
+  - mode-other
+  - devx-track-extended-java
+  - devx-track-js
+  - sfi-image-nochange
 ---
  
 # Programmatically create a Device Provisioning Service enrollment group for X.509 certificate attestation
@@ -20,7 +25,7 @@ This article shows you how to programmatically create an [enrollment group](conc
 
 ## Prerequisites
 
-* If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?ref=microsoft.com&utm_source=microsoft.com&utm_medium=docs&utm_campaign=visualstudio) before you begin.
+* If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 
 * Complete the steps in [Set up IoT Hub Device Provisioning Service with the Azure portal](./quick-setup-auto-provision.md).
 
