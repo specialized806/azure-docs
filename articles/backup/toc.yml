@@ -55,6 +55,8 @@
     items:
     - name: Overview
       href: backup-azure-recovery-services-vault-overview.md
+    - name: FAQ- Recovery Services vault
+      href: backup-azure-backup-faq.yml  
     - name: Create and manage the vault
       items:
       - name: Create
