@@ -26,7 +26,7 @@ Learn how to create an NFS volume for the Elastic service level.
 ## Considerations 
 
 * You can't change the protocol of a volume after creating it. 
-* Each volume in a capacity pool must have an unique name.
+* Each volume in a capacity pool must have a unique name.
 * In the Elastic service level, you can't move volumes between capacity pools. 
 
 ## Steps 
@@ -55,8 +55,7 @@ Learn how to create an NFS volume for the Elastic service level.
         * Configure the destination volume: 
             * Enter the **Volume name**. 
             * Select the **Region**.
-                If you're configuring cross-zone replication, choose the current region. For cross-region replication 
-                Region selections must adhere to supported [cross-region replication pairs](replication.md#supported-region-pairs). 
+                If you're configuring cross-zone replication, choose the current region. For cross-region replication, the chosen regions must adhere to supported [cross-region replication pairs](replication.md#supported-region-pairs). 
             * Select the **Zone**. 
                 The zone is required for cross-zone replication. It's optional for cross-region replication. 
             * Select the **NetApp account** in the correct region. 
