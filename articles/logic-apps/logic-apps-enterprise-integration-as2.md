@@ -8,6 +8,7 @@ ms.author: divswa
 ms.reviewer: estfan, azla
 ms.topic: how-to
 ms.date: 01/10/2024
+ms.custom: sfi-image-nochange
 ---
 
 # Exchange AS2 messages using workflows in Azure Logic Apps
@@ -42,7 +43,7 @@ The **AS2 (v2)** connector has no triggers. The following table describes the ac
 
 ## Prerequisites
 
-* An Azure account and subscription. If you don't have a subscription yet, [sign up for a free Azure account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+* An Azure account and subscription. If you don't have a subscription yet, [sign up for a free Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 * The logic app resource and workflow where you want to use the AS2 operations.
 

@@ -5,7 +5,7 @@ services: azure-netapp-files
 author: b-hchen
 ms.service: azure-netapp-files
 ms.topic: concept-article
-ms.date: 08/22/2025
+ms.date: 09/16/2025
 ms.author: anfdocs
 # Customer intent: "As a cloud storage administrator, I want to understand the throughput capabilities of different service levels in Azure NetApp Files, so that I can choose the right configuration to meet my application's performance requirements."
 ---
@@ -21,7 +21,7 @@ Azure NetApp Files supports four service levels: *Flexible*, *Standard*, *Premiu
 
     <!-- tbd -->
 
-* <a name="Flexible"></a>Flexible storage (preview):
+* <a name="Flexible"></a>Flexible storage:
 
     The Flexible service level enables you to adjust throughput and size limits independently. You can use the Flexible service level to create high-capacity volumes with low throughput requirements or the reverse: low-capacity volumes with high throughput requirements. The Flexible service level is designed for demanding applications such as Oracle or SAP HANA.
     

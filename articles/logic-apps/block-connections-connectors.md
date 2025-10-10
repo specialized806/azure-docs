@@ -6,6 +6,7 @@ ms.suite: integration
 ms.reviewer: deli, estfan, azla
 ms.topic: how-to
 ms.date: 01/10/2024
+ms.custom: sfi-image-nochange
 ---
 
 # Block connector usage in Azure Logic Apps
@@ -18,7 +19,7 @@ This article shows how to set up a policy that blocks specific connections by us
 
 ## Prerequisites
 
-* An Azure account and subscription. If you don't have a subscription, [create a free Azure account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+* An Azure account and subscription. If you don't have a subscription, [create a free Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 * The reference ID for the connector that you want to block. For more information, see [Find the connector reference ID](#connector-reference-ID).
 
