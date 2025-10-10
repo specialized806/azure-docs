@@ -76,7 +76,25 @@
       - name: Create and delete
         href: create-manage-backup-vault.md
       - name: Manage
-        href: manage-backup-vault.md          
+        href: manage-backup-vault.md     
+  - name: Backup Center
+    items:
+    - name: Overview
+      href: backup-center-overview.md
+    - name: FAQ-Backup center
+      href: backup-center-faq.yml  
+    - name: Backup center support matrix
+      href: backup-center-support-matrix.md  
+    - name: Manage operations in the control plane
+      items:
+      - name: Monitor and Operate
+        href: backup-center-monitor-operate.md
+      - name: Obtain insights
+        href: backup-center-obtain-insights.md
+      - name: Govern environment
+        href: backup-center-govern-environment.md
+      - name: Perform actions
+        href: backup-center-actions.md                                     
 - name: Quickstarts  
   items:
   - name: Back up a VM - Azure portal
