@@ -51,6 +51,20 @@
         href: ../business-continuity-center/tutorial-govern-monitor-compliance.md?toc=/azure/backup/toc.json&bc=/azure/backup/breadcrumb/toc.json  
       - name: Manage the business continuity and disaster recovery estate using Copilot
         href: ../business-continuity-center/tutorial-manage-data-using-copilot.md?toc=/azure/backup/toc.json&bc=/azure/backup/breadcrumb/toc.json  
+  - name: Recovery Services vault
+    items:
+    - name: Overview
+      href: backup-azure-recovery-services-vault-overview.md
+    - name: Create and manage the vault
+      items:
+      - name: Create
+        href: backup-create-recovery-services-vault.md
+      - name: Delete
+        href: backup-azure-delete-vault.md
+      - name: Relocate
+        href: ../azure-resource-manager/management/relocation/relocation-backup.md?toc=/azure/backup/toc.json
+      - name: Manage
+        href: backup-azure-manage-windows-server.md                    
 - name: Quickstarts  
   items:
   - name: Back up a VM - Azure portal
