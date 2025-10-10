@@ -304,16 +304,15 @@
       - name: Request region access
         href: request-region-access.md
     - name: Manage Active Directory 
-      - name: Manage Active Directory 
-        items:
-        - name: Create and manage Active Directory connections
-          href: create-active-directory-connections.md
-        - name: Modify Active Directory connections
-          href: modify-active-directory-connections.md
-        - name: Configure AD DS LDAP authentication for NFS volumes
-          href: configure-ldap-over-tls.md
-        - name: Join a Linux VM to an Active Directory Domain
-          href: join-active-directory-domain.md
+      items:
+      - name: Create and manage Active Directory connections
+        href: create-active-directory-connections.md
+      - name: Modify Active Directory connections
+        href: modify-active-directory-connections.md
+      - name: Configure AD DS LDAP authentication for NFS volumes
+        href: configure-ldap-over-tls.md
+      - name: Join a Linux VM to an Active Directory Domain
+        href: join-active-directory-domain.md
     - name: Manage capacity pools
       items:
       - name: Set up a capacity pool
