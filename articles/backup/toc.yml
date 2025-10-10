@@ -67,6 +67,16 @@
         href: ../azure-resource-manager/management/relocation/relocation-backup.md?toc=/azure/backup/toc.json
       - name: Manage
         href: backup-azure-manage-windows-server.md                    
+  - name: Backup vault
+    items:
+    - name: Overview
+      href: backup-vault-overview.md
+    - name: Create and manage the vault
+      items:
+      - name: Create and delete
+        href: create-manage-backup-vault.md
+      - name: Manage
+        href: manage-backup-vault.md          
 - name: Quickstarts  
   items:
   - name: Back up a VM - Azure portal
