@@ -33,6 +33,7 @@ and to describe the task the article covers.
 
 - Access to a Microsoft Entra ID tenant
 - Azure Subscription with permissions to manage app registrations
+- Azure CLI or access to the Azure Cloud Shell
 - (Optional) The Client ID for the 3P enterprise application you are adding (for verification)
 <!-- Optional: Prerequisites - H2
 
@@ -50,12 +51,21 @@ provide instructions and a link.
 
 [Introduce the procedure.]
 
+### Using the admin consent URL
 1. Grant admin consent using the URL provided by your 3P application vendor, e.g.: `https://login.microsoftonline.com/{your-customer-tenant-id}/adminconsent?client_id=YOUR_APP_CLIENT_ID`
 
     [ ![Screenshot showing the dialog box for granting admin consent](media/grant-admin-consent-external-application.png) ](media/grant-admin-consent-external-application.png#lightbox)
 
+### Using the Azure CLI
 
-1. Procedure step
+1. Open a terminal window with Azure CLI and use `az login` to login to Azure
+    1. Optionally, you can open an [Azure Cloud Shell](/azure/cloud-shell/overview) instance from the Azure Portal.
+1. Create the application service principal by running the following command:
+    
+    ```shell
+    az ad sp create --id <CLIENT_ID>
+    ```
+    
 1. Procedure step
 
 <!-- Required: Steps to complete the task - H2
