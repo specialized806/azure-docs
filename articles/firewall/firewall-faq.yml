@@ -268,7 +268,7 @@ sections:
 
       - question: Is forced tunneling/chaining to a Network Virtual Appliance supported?
         answer: |
-          Forced tunneling is supported when you create a new firewall. You can't configure an existing firewall for forced tunneling. For more information, see [Azure Firewall forced tunneling](forced-tunneling.md).
+          Forced tunneling is supported when creating a new firewall, and it is also supported for existing firewalls by adding a management NIC for forced tunneling. For more details about new deployments, see [Azure Firewall forced tunneling](forced-tunneling.md). For existing firewalls, see [Azure Firewall Management NIC](management-nic.md).
 
           Azure Firewall must have direct Internet connectivity. If your AzureFirewallSubnet learns a default route to your on-premises network via BGP, you must override this with a 0.0.0.0/0 UDR with the **NextHopType** value set as **Internet** to maintain direct Internet connectivity.
 
