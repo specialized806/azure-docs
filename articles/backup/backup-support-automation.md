@@ -1,7 +1,7 @@
 ---
 title: Automation in Azure Backup support matrix
 description: This article summarizes automation tasks related to Azure Backup support.
-ms.date: 03/05/2025
+ms.date: 10/17/2025
 ms.topic: reference
 ms.service: azure-backup
 author: AbhishekMallick-MS
@@ -60,12 +60,12 @@ You  can automate most backup related tasks using programmatic methods in Azure 
 | **Category** | **Operation** | **PowerShell** | **CLI** | **REST API** | **Azure Policy** | **ARM Template** | **Bicep** | **Terraform** | 
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | Backup | Create backup policy and configure backup | Currently not supported | Supported    <br><br> [See the examples](./tutorial-sap-hana-backup-cli.md#register-and-protect-the-sap-hana-instance). | Supported | Currently not supported | N/A | Supported | Currently not supported | 
-| Backup | Run on-demand backup | Currently not supported | Supported    <br><br> [See the examples](./tutorial-sap-hana-backup-cli.md#trigger-an-on-demand-backup). | Supported | N/A | Supported – Examples   <br><br> [See the examples](./backup-rm-template-samples.md). | N/A | Currently not supported |
-| Restore | Restore to a distinct full/ differential/ incremental recovery point | Currently not supported | Supported    <br><br> [See the examples](./tutorial-sap-hana-restore-cli.md#restore-a-database). | Supported | N/A | N/A | N/A | N/A |
-| Restore | Restore to a point in time | Currently not supported  | Supported    <br><br> [See the examples](./tutorial-sap-hana-restore-cli.md#restore-a-database). | Supported | N/A | N/A | N/A | N/A |
+| Backup | Run on-demand backup | Currently not supported | Supported    <br><br> [See the examples](./tutorial-sap-hana-backup-cli.md#trigger-an-on-demand-backup-for-sap-hana-database). | Supported | N/A | Supported – Examples   <br><br> [See the examples](./backup-rm-template-samples.md). | N/A | Currently not supported |
+| Restore | Restore to a distinct full/ differential/ incremental recovery point | Currently not supported | Supported    <br><br> [See the examples](./tutorial-sap-hana-restore-cli.md#restore-an-sap-hana-database). | Supported | N/A | N/A | N/A | N/A |
+| Restore | Restore to a point in time | Currently not supported  | Supported    <br><br> [See the examples](./tutorial-sap-hana-restore-cli.md#restore-an-sap-hana-database). | Supported | N/A | N/A | N/A | N/A |
 | Restore | Cross-region restore | Currently not supported | Supported | Supported | N/A | N/A | N/A | N/A |
 | Manage | Monitor jobs | Currently not supported  | Supported | Supported | N/A | N/A | N/A | N/A |
-| Manage | Modify backup policy | Currently not supported | Supported    <br><br> [See the examples](./tutorial-sap-hana-manage-cli.md#change-policy). | Supported | N/A | N/A | N/A | Currently not supported |
+| Manage | Modify backup policy | Currently not supported | Supported    <br><br> [See the examples](./tutorial-sap-hana-manage-cli.md#change-policy-for-sap-hana-database-backup). | Supported | N/A | N/A | N/A | Currently not supported |
 | Manage | Stop protection and retain backup data | Currently not supported  | Supported    <br><br> [See the examples](./tutorial-sap-hana-manage-cli.md#stop-protection-with-retain-data) | Supported    <br><br> [See the examples](./backup-azure-arm-userestapi-createorupdatepolicy.md). | N/A | N/A | N/A | N/A |
 | Manage | Stop protection and delete backup data | Currently not supported  | Supported    <br><br> [See the examples](./tutorial-sap-hana-manage-cli.md#stop-protection-without-retain-data). | Supported    <br><br> [See the examples](/rest/api/backup/protected-items/delete). | N/A | N/A | N/A | N/A |
 | Manage | Unregister instance | Currently not supported  | Supported | Supported | N/A | N/A | N/A | N/A |

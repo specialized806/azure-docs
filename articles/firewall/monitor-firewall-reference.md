@@ -25,6 +25,18 @@ The following table lists the metrics available for the Microsoft.Network/azureF
 
 [!INCLUDE [Microsoft.Network/azureFirewalls](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/microsoft-network-azurefirewalls-metrics-include.md)]
 
+
+### Observed capacity
+The Observed Capacity metric is the primary tool for understanding how your firewall is scaling in practice.
+
+Best practices for using it:
+- Validate your prescaling setup: Confirm that your firewall consistently maintains the minCapacity you’ve defined.
+- Track real-time scaling behavior: Use the Max aggregation to see the highest capacity units reached during peak events.
+- Forecast future needs: Combine historical Observed Capacity with traffic trends (e.g., monthly spikes, seasonal events) to refine your capacity planning.
+- Set proactive alerts: Configure Azure Monitor alerts on Observed Capacity thresholds (e.g., “alert me if scaling > 80% of maxCapacity”).
+- Correlate with performance metrics: Pair Observed Capacity with Throughput, Latency Probe, and SNAT Port Utilization to diagnose whether scaling is keeping up with demand.
+
+
 ### Firewall health state
 
 In the preceding table, the *Firewall health state* metric has two dimensions:
@@ -98,12 +110,6 @@ The latency probe currently uses Microsoft's Ping Mesh technology, which is base
 ### Supported resource logs for Microsoft.Network/azureFirewalls
 
 [!INCLUDE [Microsoft.Network/azureFirewalls](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-network-azurefirewalls-logs-include.md)]
-
-Azure Firewall has two specialized diagnostic logs that can help monitor your firewall, but these logs currently do not show application rule details.
-- Top flows
-- Flow trace
-
-
 
 ## Top flows
 
@@ -219,4 +225,5 @@ To create a diagnostic setting and enable Resource Specific Table, see [Create d
 ## Related content
 
 - See [Monitor Azure Firewall](monitor-firewall.md) for a description of monitoring Azure Firewall.
+- See [Track rule set changes](rule-set-change-tracking.md) for detailed Azure Resource Graph queries to track firewall rule modifications.
 - See [Monitor Azure resources with Azure Monitor](/azure/azure-monitor/essentials/monitor-azure-resource) for details on monitoring Azure resources.
