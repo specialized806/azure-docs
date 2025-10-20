@@ -291,6 +291,8 @@
         href: elastic-volume.md
       - name: Create an SMB volume 
         href: elastic-volume-server-message-block.md
+      - name: Back up Elastic service level volumes 
+        href: elastic-backup.md
   - name: Flexible, Standard, Premium, and Ultra Service levels
     items: 
     - name: Register and set up
