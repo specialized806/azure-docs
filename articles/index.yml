@@ -1,9 +1,7 @@
 ### YamlMime:Hub
-
 title: Azure documentation
 summary: Learn how to build and manage powerful applications using Microsoft Azure cloud services. Get documentation, example code, tutorials, and more.
 brand: azure
-
 metadata:
   title: Azure documentation
   description: Learn how to build and manage powerful applications using Microsoft Azure cloud services. Get documentation, example code, tutorials, and more.
@@ -35,7 +33,6 @@ highlightedContent:
     - title: Achieve organizational goals with the Cloud Adoption Framework
       itemType: overview
       url: /azure/cloud-adoption-framework/
-
 productDirectory:
   title: Browse Azure products
   items:
@@ -54,7 +51,7 @@ productDirectory:
         - featured
         - ai-machine-learning
         - mobile
-      url: /azure/ai-studio/
+      url: /azure/ai-foundry/
     # Card
     - title: Speech
       summary: Speech to text, text to speech, translation, and speaker recognition
@@ -263,11 +260,12 @@ productDirectory:
         - management-and-governance
       url: /purview/index
     # Card
-    - title: Data Factory
+    - title: Azure Data Factory
       summary: Hybrid data integration at enterprise scale, made easy
       imageSrc: ./media/index/data-factory.svg
       azureCategories:
         - analytics
+        - databases
       url: data-factory/index.yml
     # Card
     - title: Data Lake Analytics
@@ -290,14 +288,6 @@ productDirectory:
       azureCategories:
         - analytics
       url: hdinsight/index.yml
-    # Card
-    - title: Log Analytics
-      summary: Full observability into your applications, infrastructure, and network
-      imageSrc: ./media/index/log-analytics.svg
-      azureCategories:
-        - analytics
-        - management-and-governance
-      url: /azure/azure-monitor/
     # Card
     - title: Power BI Embedded
       summary: Embed fully interactive, stunning data visualizations in your applications
@@ -375,7 +365,7 @@ productDirectory:
         - containers
       url: /azure/aks/
     # Card
-    - title: Azure Kubernetes Fleet Manager (Fleet)
+    - title: Azure Kubernetes Fleet Manager
       summary: Enable multi-cluster and at-scale scenarios for Azure Kubernetes Service clusters
       imageSrc: ./media/index/kubernetes-fleet-manager.svg
       azureCategories:
@@ -472,7 +462,7 @@ productDirectory:
         - compute
       url: /azure/virtual-machine-scale-sets/
     # Card
-    - title: Service Fabric
+    - title: Azure Service Fabric
       summary: Develop microservices and orchestrate containers on Windows or Linux
       imageSrc: ./media/index/service-fabric-clusters.svg
       azureCategories:
@@ -599,14 +589,6 @@ productDirectory:
         - databases
       url: /azure/azure-sql/managed-instance/index
     # Card
-    - title: Azure SQL Edge
-      summary: Small-footprint, edge-optimized data engine with built-in AI
-      imageSrc: ./media/index/sql-database-edge.svg
-      azureCategories:
-        - databases
-        - iot
-      url: azure-sql-edge/index.yml
-    # Card
     - title: Table Storage
       summary: NoSQL key-value store using semi-structured datasets
       imageSrc: ./media/index/storage-accounts.svg
@@ -625,13 +607,6 @@ productDirectory:
         - web
       url: azure-app-configuration/index.yml
     # Card
-    - title: Azure Data Studio
-      summary: A lightweight editor that can run serverless SQL pool queries and view and save results as text, JSON, or Excel.
-      imageSrc: ./media/index/azure-data-studio.svg
-      azureCategories:
-        - developer-tools
-      url: /azure-data-studio/
-    # Card
     - title: Azure DevOps
       summary: Services for teams to share code, track work, and ship software
       imageSrc: ./media/index/devops.svg
@@ -648,13 +623,6 @@ productDirectory:
         - developer-tools
         - devops
       url: devtest-labs/index.yml
-    # Card
-    - title: Azure Lab Services
-      summary: Set up labs for classrooms, trials, development and testing, and other scenarios
-      imageSrc: ./media/index/lab-services.svg
-      azureCategories:
-        - developer-tools
-      url: lab-services/index.yml
     # Card
     - title: Azure Pipelines
       summary: Continuously build, test, and deploy to any platform and cloud
@@ -690,11 +658,12 @@ productDirectory:
       imageSrc: ./media/index/boards.svg
       azureCategories:
         - devops
+        - developer-tools
       url: /azure/devops/boards/
     # Card
     - title: Azure Deployment Environments
       summary: Quickly spin up app infrastructure environments with project-based templates 
-      imageSrc: ./media/index/deployment-environments.svg
+      imageSrc: ./media/index/azure.svg
       azureCategories:
         - devops
       url: deployment-environments/index.yml
@@ -744,14 +713,6 @@ productDirectory:
         - devops
         - management-and-governance
       url: managed-grafana/index.yml
-    # Card
-    - title: GitHub Actions for Azure
-      summary: Build, test, and deploy any app from GitHub to Azure
-      imageSrc: ./media/index/github-actions-icon.svg
-      azureCategories:
-        - devops
-        - developer-tools
-      url: /azure/developer/github/github-actions
     # Card
     - title: Microsoft Dev Box
       summary: Streamline development with secure, ready-to-code workstations in the cloud 
@@ -1389,7 +1350,7 @@ productDirectory:
    # Card
     - title: Azure Lab Services
       summary: Set up virtual labs for classes, training, hackathons, and other related scenarios
-      imageSrc: ./media/index/azure.svg
+      imageSrc: ./media/index/lab-services.svg
       azureCategories:
        - azure-virtual-desktop
       url: /azure/lab-services/
@@ -1422,7 +1383,6 @@ productDirectory:
        - featured 
        - management-and-governance
       url: /azure/copilot
-      
 tools:
   title: Languages and tools
   items:
@@ -1474,10 +1434,6 @@ tools:
     - title: Terraform
       imageSrc: /media/logos/logo_terraform.svg
       url: /azure/developer/terraform/
-    # Card
-
-
-
 additionalContent:
   sections:
     - title: Azure clouds
@@ -1500,3 +1456,83 @@ additionalContent:
         - title: Azure Native ISV Services
           summary: Integrated partner solutions that you can use in Azure to enhance your cloud infrastructure.
           url: ./partner-solutions/index.yml
+# Azure experiment content, don't edit/remove below
+hero:
+  componentType: hero-product
+  title: Azure Hub
+  summary:
+    'Learn how to build and manage powerful applications using Microsoft Azure cloud services. Get documentation, example code, tutorials, and more.'
+  size: small
+  heroImage:
+    lightImageSrc: '/media/hubs/azure/hero-light.jpg'
+    darkImageSrc: '/media/hubs/azure/hero-dark.jpg'
+  links:
+    - componentType: link
+      text: Portal
+      url: https://portal.azure.com
+    - componentType: link
+      text: Free account
+      url: https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn-exp1
+      color: primary
+getStarted:
+  title: Get started with Azure
+  blocks:
+    - componentType: icon-card
+      title: What's new
+      summary: Explore the latest Azure updates from the past three months.
+      url: /azure/developer/intro/whats-new
+      icon:
+        componentType: image
+        src: '/media/hubs/azure/whats-new.svg'
+    - componentType: icon-card
+      title: Overview
+      summary: Learn about key services used to build on Azure
+      url: /azure/developer/intro/azure-developer-key-services
+      icon:
+        componentType: image
+        src: '/media/hubs/azure/overview.svg'
+    - componentType: icon-card
+      title: For developers
+      summary: Step-by-step guide for first-time developers
+      url: /azure/developer/intro/azure-developer-overview
+      icon:
+        componentType: image
+        src: '/media/hubs/azure/for-developers.svg'
+    - componentType: icon-card
+      title: Troubleshooting
+      summary: Troubleshoot common issues in Azure
+      url: /troubleshoot/azure/
+      icon:
+        componentType: image
+        src: '/media/hubs/azure/troubleshooting.svg'
+recommendedContent:
+  title: Recommended resources
+  blocks:
+    - componentType: icon-card
+      title: Azure architectures
+      summary: Find architecture diagrams and real world examples of cloud solutions
+      url: /azure/architecture/browse/
+      icon:
+        componentType: image
+        src: '/media/hubs/azure/azure-architectures.svg'
+    - componentType: icon-card
+      title: All Azure training
+      summary: Grow your skills to build and manage applications in the cloud
+      url: /training/browse/?products=azure
+      icon:
+        componentType: image
+        src: '/media/hubs/azure/all-azure-training.svg'
+    - componentType: icon-card
+      title: Azure concepts
+      summary: Learn how to create and manage resources
+      url: /azure/developer/intro/azure-developer-key-concepts
+      icon:
+        componentType: image
+        src: '/media/hubs/azure/azure-concepts.svg'
+    - componentType: icon-card
+      title: Your career path
+      summary: Receive training based on your career path
+      url: /training/career-paths/
+      icon:
+        componentType: image
+        src: '/media/hubs/azure/your-career-path.svg'

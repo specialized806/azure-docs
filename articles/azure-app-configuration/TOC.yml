@@ -182,6 +182,8 @@
       href: howto-chat-completion-config.md
     - name: .NET
       href: quickstart-chat-completion-dotnet.md
+    - name: Go
+      href: quickstart-chat-completion-go.md
 - name: Feature management
   items:
   - name: Overview
@@ -394,11 +396,13 @@
         href: https://go.microsoft.com/fwlink/?linkid=2180917
       - name: Azure SDK for Java
         href: https://go.microsoft.com/fwlink/?linkid=2098196
-      - name: Migration guide to version 4.7
+      - name: Upgrade guide to version 6
         href: howto-convert-to-the-new-spring-boot.md
     - name: Python
       items:
       - name: Feature reference
+        href: ./reference-python-provider.md
+      - name: Pypi
         href: https://pypi.org/project/azure-appconfiguration-provider/
       - name: Azure SDK for Python
         href: https://go.microsoft.com/fwlink/?linkid=2103727
