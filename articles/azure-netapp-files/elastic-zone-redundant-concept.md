@@ -65,6 +65,26 @@ GET https://management.azure.com/subscriptions/{subscriptionId}/providers/Micros
 | Integrated backup | Integrated backup and recovery | Limited backup and recovery | 
 | Price | Premium pricing for enterprise features | Cost-optimized for smaller workloads |
 
+### API endpoints
+
+New API endpoints have been introduced that are specific to the Elastic service level. Consult the table for the different endpoints:
+
+| Resource type | Elastic endpoint | Flexible, Standard, Premium, and Ultra endpoint 
+| - | -- | -- |
+| Accounts | elasticAccounts | netAppAccounts |
+| Backups | /elasticAccounts/<accountName>/elasticBackupVaults/<vaultName>/elasticBackups
+| Backups policies | /elasticAccounts/<accountName>/elasticBackupPolicies | netAppAccounts/{accountName}/backupPolicies |
+| Backup vaults | /elasticAccounts/<accountName>/elasticBackupVaults | /netAppAccounts/{accountName}/backupVaults | netAppAccounts/{accountName}/backupVaults/{backupVaultName}/backups |
+| Capacity pools | /elasticAccounts/elasticCapacityPools | /netAppAccounts/capacityPools |
+| Change zone | elasticCapacityPools/<poolName>/changeZone | N/A |
+| Region info | elasticRegionInfos | locations/{location}/regionInfo
+| Snapshots | elasticAccounts/<accountName>/elasticCapacityPools/elasticVolumes/<volumeName>/elasticSnapshots | /netAppAccounts/{accountName}/capacityPools/{poolName}/volumes/{volumeName}/snapshots
+| Snapshot policies | elasticAccounts/<accountName>/elasticCapacityPools/elasticVolumes/<volumeName>/elasticSnapshotPolicies | netAppAccounts/{accountName}/snapshotPolicies/{snapshotPolicyName} |
+| Volumes | elasticAccounts/<accountName>/elasticCapacityPools/elasticVolumes | /netAppAccounts/{accountName}/capacityPools/{poolName}/volumes/{volumeName} |
+| Volume file path availability | elasticCapacityPools/<poolName>/checkVolumeFilePathAvailability | /locations/{location}/checkFilePathAvailability |
+
+For more detailed information, see [Azure NetApp Files REST API](/rest/api/netapp).
+
 ## Supported features 
 
 Elastic zone-redundant storage requires the use of [availability zones](../reliability/reliability-netapp-files.md). The service level also supports:

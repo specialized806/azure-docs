@@ -25,7 +25,7 @@ Azure NetApp Files backups in the Elastic service level require a backup vault. 
 
 ### Manual backups 
 
-[!INCLUDE [Policy-based backups](includes/backup-manual-.md)]
+[!INCLUDE [Policy-based backups](includes/backup-manual.md)]
 
 ## Considerations
 
@@ -37,7 +37,7 @@ Azure NetApp Files backups in the Elastic service level require a backup vault. 
 <!-- snapshots or backups? -->
 
 * Reverting a volume to state before existing backups results in an error. To proceed with reverting the volume, delete the backups causing the error then proceed with the revert. 
-* In the Elastic Elastic Zone-Redundant service level account, backups aren't currently supported with cross-region replication. 
+* In the Elastic Zone-Redundant service level account, backups aren't currently supported with cross-region replication. 
 
 
 ## Create a backup vault
@@ -48,14 +48,15 @@ Backup vaults store the backups for your Azure NetApp Files subscription. Althou
 1. Select **+ Create backup vault**. 
 1. Enter a **Name** for the backup vault.
 1. Optionally, assign Elastic volumes to the backup vault. Enter specific volume names and select or **Assign**. Alternately, select **Browse** to view a list of all volumes. Select the volumes you want to assign then **Assign selected volumes**. 
-1. Review the lsit of volumes then select **Create**. 
+1. Review the list of volumes then select **Create**. 
 
 ## Modify a backup vault
 
 1. In your Azure NetApp Files account, select **Data protection** then **Backup vaults**. 
 1. Identify the backup vault you want to modify, select the action menu `...` then **Edit**. 
+<!-- confirm unassign -->
 1. To assign Elastic volumes to the backup vault, enter specific volume names and select or **Assign**. Alternately, select **Browse** to view a list of all volumes. Select the volumes you want to assign then **Assign selected volumes**. 
-<!-- is this right -->
+
     To remove volumes, select **Browse**. Select the action menu `...` next to an individual volume name then **Unassign**. 
 1. Select **Save**. 
 
@@ -68,6 +69,10 @@ Backup vaults store the backups for your Azure NetApp Files subscription. Althou
 
 ## Modify a backup policy 
 
+## Restore a backup
+
 ## Delete a backup policy 
 
 ## Delete a backup 
+
+

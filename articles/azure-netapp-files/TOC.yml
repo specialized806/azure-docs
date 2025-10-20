@@ -281,6 +281,16 @@
       href: /security/benchmark/azure/baselines/azure-netapp-files-security-baseline?toc=/azure/azure-netapp-files/TOC.json
 - name: How-to guides
   items: 
+  - name: Register and set up
+    items:
+      - name: Register for NetApp Resource Provider
+        href: azure-netapp-files-register.md
+      - name: Create a NetApp account
+        href: azure-netapp-files-create-netapp-account.md
+      - name: Delegate a subnet to Azure NetApp Files
+        href: azure-netapp-files-delegate-subnet.md
+      - name: Request region access
+        href: request-region-access.md
   - name: Elastic service level
     items: 
       - name: Register for Elastic service level 
@@ -297,16 +307,6 @@
         href: elastic-backup.md
   - name: Flexible, Standard, Premium, and Ultra Service levels
     items: 
-    - name: Register and set up
-      items:
-      - name: Register for NetApp Resource Provider
-        href: azure-netapp-files-register.md
-      - name: Create a NetApp account
-        href: azure-netapp-files-create-netapp-account.md
-      - name: Delegate a subnet to Azure NetApp Files
-        href: azure-netapp-files-delegate-subnet.md
-      - name: Request region access
-        href: request-region-access.md
     - name: Manage Active Directory 
       items:
       - name: Create and manage Active Directory connections
@@ -319,7 +319,6 @@
         href: join-active-directory-domain.md
     - name: Manage capacity pools
       items:
-<<<<<<< HEAD
       - name: Set up a capacity pool
         href: azure-netapp-files-set-up-capacity-pool.md
       - name: Manage a manual QoS capacity pool
@@ -327,23 +326,6 @@
       - name: Manage billing by using tags
         href: manage-billing-tags.md
     - name: Manage volumes
-=======
-      - name: Create a dual-protocol volume 
-        href: create-volumes-dual-protocol.md
-    - name: Manage object REST API access
-      items:
-      - name: Configure object REST API access
-        href: object-rest-api-access-configure.md
-      - name: Connect to Azure Databricks 
-        href: object-rest-api-databricks.md
-      - name: Connect to OneLake
-        href: object-rest-api-onelake.md
-      - name: Access volumes with an S3-compatible client 
-        href: object-rest-api-browser.md
-    - name: Migrate volumes to Azure NetApp Files
-      href: migrate-volumes.md
-    - name: Manage volume access and encryption 
->>>>>>> 16e84377f981c217a7cf2dc1fd01aa8e714e5b9e
       items:
       - name: Manage NFS volumes
         items:
@@ -373,6 +355,16 @@
         items:
         - name: Create a dual-protocol volume 
           href: create-volumes-dual-protocol.md
+      - name: Manage object REST API access
+        items:
+        - name: Configure object REST API access
+          href: object-rest-api-access-configure.md
+        - name: Connect to Azure Databricks 
+          href: object-rest-api-databricks.md
+        - name: Connect to OneLake
+          href: object-rest-api-onelake.md
+        - name: Access volumes with an S3-compatible client 
+          href: object-rest-api-browser.md
       - name: Migrate volumes to Azure NetApp Files
         href: migrate-volumes.md
       - name: Manage volume access and encryption 
