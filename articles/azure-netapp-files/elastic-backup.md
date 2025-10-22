@@ -7,8 +7,6 @@ ms.service: azure-netapp-files
 ms.topic: how-to
 ms.date: 08/14/2025
 ms.author: anfdocs
-
-# Customer intent: "As a cloud storage administrator, I want to create a capacity pool for Azure NetApp Files so that I can manage the storage volumes and configure their performance requirements effectively."
 ---
 # Back up Elastic Zone-Redundant volumes in Azure NetApp Files
 
@@ -68,8 +66,6 @@ Backup vaults store the backups for your Azure NetApp Files subscription. Althou
 
 
 ## Modify a backup policy 
-
-## Restore a backup
 
 ## Delete a backup policy 
 

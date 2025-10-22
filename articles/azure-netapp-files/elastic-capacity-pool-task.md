@@ -16,7 +16,7 @@ ms.custom:
 You must create a capacity pool before you can create volumes in Azure NetApp Files. Capacity pools determine quota and throughput for volumes. 
 
 >[!IMPORTANT]
->To create a capacity pool for the Elastic zone-redundant service level, see [Create an Elastic zone-redundant capacity pool](elastic-capacity-pool-task.md).
+>To create a capacity pool for the Flexible, Standard, Premium, or Ultra service level, see [Set up a capacity pool](azure-netapp-files-set-up-capacity-pool.md).
 
 ## Before you begin 
 
