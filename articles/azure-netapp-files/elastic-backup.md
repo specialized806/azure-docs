@@ -33,7 +33,6 @@ Azure NetApp Files backups in the Elastic service level require a backup vault. 
 * If you delete a volume while a backup is in progress, the backup operation is terminated. 
 * You can't delete the snapshot used for the most recent backup if there are backups on the volume. 
 <!-- snapshots or backups? -->
-
 * Reverting a volume to state before existing backups results in an error. To proceed with reverting the volume, delete the backups causing the error then proceed with the revert. 
 * In the Elastic Zone-Redundant service level account, backups aren't currently supported with cross-region replication. 
 
