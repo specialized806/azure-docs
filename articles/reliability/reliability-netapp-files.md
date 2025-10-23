@@ -49,10 +49,10 @@ Azure NetApp Files supports *zonal* deployments of volumes across all service le
 >[!NOTE]
 >In the [Elastic zone-redundant service level of Azure NetApp Files](../azure-netapp-files/elastic-zone-redundant-concept.md), availability zone placement is required. With this service level, you configure availability zone placement when you create a capacity pool.  
 
-In the following diagram, blue arrows represent how all virtual machines (VMs) within the region in peered virtual networks can access all Azure NetApp Files resources. Green arrows represent how VMs that access Azure NetApp Files volumes in the same zone share the availability zone failure domain. There's no replication between the different volumes at the platform level.
+In the following diagram, orange arrows with solid arrowheads represent how all virtual machines (VMs) within the region in peered virtual networks can access all Azure NetApp Files resources. Green arrows represent how VMs that access Azure NetApp Files volumes in the same zone share the availability zone failure domain. There's no replication between the different volumes at the platform level.
 
 :::image type="complex" border="false" source="./media/reliability-netapp-files/availability-zone-diagram.svg" alt-text="Diagram that shows Azure NetApp Files availability zone volume placement.":::
-   The diagram shows three availability zones in an Azure region. Blue arrows connect icons that represent VMs and Azure NetApp Files resources across availability zones. Green arrows connect VMs and Azure NetApp Files volumes in the same availability zone.
+   The diagram shows three availability zones in an Azure region. Orange arrows with solid arrowheads connect icons that represent VMs and Azure NetApp Files resources across availability zones. Green arrows connect VMs and Azure NetApp Files volumes in the same availability zone.
 :::image-end:::
 
 A single-zone deployment isn't sufficient to meet high reliability requirements. To asynchronously replicate data between volumes in different availability zones, you can use [cross-zone replication](../azure-netapp-files/replication.md). You must configure cross-zone replication separately from availability zone volume placement.
