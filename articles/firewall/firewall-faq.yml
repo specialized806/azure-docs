@@ -126,7 +126,7 @@ sections:
 
           This configuration allows ESP packets (IP protocol number 50) and other non-TCP/UDP traffic to match the rule. However, note that Azure Firewall does not inspect ESP payloads.
 
-          **<Reference> If using NSG (Network Security Group) instead of Azure Firewall:**
+          **Reference : If using NSG (Network Security Group) instead of Azure Firewall:**
           NSG does not provide a direct option to specify ESP (IP protocol number 50), but ESP packets can be allowed by using the following settings:
           - Protocol: Any
           - Port: * (Any)
