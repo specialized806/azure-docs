@@ -52,22 +52,57 @@ Backup vaults store the backups for your Azure NetApp Files subscription. Althou
 1. In your Azure NetApp Files account, select **Data protection** then **Backup vaults**. 
 1. Identify the backup vault you want to modify, select the action menu `...` then **Edit**. 
 <!-- confirm unassign -->
-1. To assign Elastic volumes to the backup vault, enter specific volume names and select or **Assign**. Alternately, select **Browse** to view a list of all volumes. Select the volumes you want to assign then **Assign selected volumes**. 
+1. To assign Elastic volumes to the backup vault, enter specific volume names then select **Assign**. Alternately, select **Browse** to view a list of all volumes. Select the volumes you want to assign then **Assign selected volumes**. 
 
     To remove volumes, select **Browse**. Select the action menu `...` next to an individual volume name then **Unassign**. 
 1. Select **Save**. 
+
+## Create an on-demand backup
+
+1. In your Azure NetApp Files account, select **Backups**. 
+1. Select **+ Create**. 
+1. Assign a **Name** to the backup. 
+    If you select **Use existing snapshot**, the backup is created based on the most recently created snapshot. If you leave this option unchecked, Azure NetApp Files creates a new snapshot for the backups. 
+
+1. Select **Create**. Once the backup is created, you can view it in the **Backups** menu. 
+
 
 ## Create a backup policy
 
 <!-- backups to keep: the number of backups retained on the volume. Once the number of backups exceeds this number, older backups are automatically deleted. -->
 
-## Create an on-demand backup
-
+1. In your Elastic service level Azure NetApp Files account, select **Backup policies** under the Data protection navigation menu. 
+1. Select **Create**. 
+1. Specify the **Backup policy name** and select **Enabled** to activate the policy.
+1. Choose the backup schedule (daily, weekly, or monthly) and the number of backups to retain for schedule. To add a secondary schedule, select **Add schedule and provide the information. 
+<!--     The minimum value for **Daily Backups to Keep** is 2. -->
+1. Select **Create** to finish creating the policies.
+1. To assign volumes, select the action menu `...` at the end of the row with the backup policy name then **Assign volumes**. 
+1. To assign the policy to specific volumes, enter specific volume names then select **Assign**. Alternately, select **Browse** to view a list of all volumes. Select the volumes you want to assign then **Assign selected volumes**. 
+1. Select **Save** to activate the backup policy on the volumes. 
 
 ## Modify a backup policy 
 
+You can modify the schedule and retention count or a backup or disable it. 
+
+1. In your Elastic service level Azure NetApp Files account, select **Backup policies** under the Data protection navigation menu.
+1. Select the action menu `...` at the end of the row with the backup policy name then **Assign volumes**.
+
+    * **To disable a policy or re-enable a policy**:
+        Select **Disable** or **Enable**. 
+
+    * **To modify the backup schedule**:
+        Choose the backup schedule (daily, weekly, or monthly) and the number of backups to retain for schedule. To add a secondary schedule, select **Add schedule and provide the information. 
+
+1. Select **Save**. 
+
 ## Delete a backup policy 
 
-## Delete a backup 
+<!-- considerations -->
+
+1. In your Elastic service level Azure NetApp Files account, select **Backup policies** under the Data protection navigation menu.
+1. Select the action menu `...` at the end of the row with the backup policy name then **Assign volumes**.
+1. Select **Delete** to remove the backup policy. 
+
 
 

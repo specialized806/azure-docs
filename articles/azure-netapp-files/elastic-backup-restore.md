@@ -10,4 +10,8 @@ ms.author: anfdocs
 ---
 # Restore a backup of an Elastic Zone-Redundant volume in Azure NetApp Files
 
-<!-- TBD>
+<!-- TBD -->
+
+## Restore a volume from a backup
+
+## Delete a backup 
