@@ -26,8 +26,6 @@ In comparison to existing Azure NetApp Files service levels, the Elastic zone-re
 
 Zone-redundant storage is designed for small workloads, offering capacity pools that scale from 512 GiB to 16 TiB. Volumes can scale from 1 GiB to the maximum size of the capacity pool. 
 
-<!-- short-term clone timing -->
-
 If you're using custom RBAC roles, ensure you configure the [correct permissions](manage-availability-zone-volume-placement.md#configure-custom-rbac-roles).
 
 ## Supported regions
@@ -57,6 +55,9 @@ GET https://management.azure.com/subscriptions/{subscriptionId}/providers/Micros
 
 ## Comparison of service levels
 
+>[!IMPORTANT]
+>Elastic Zone-Redundant storage has [dedicated endpoints](#api-endpoints). Workflows for the this service level are different than other service levels. Ensure you are following the correct guidelines for your service level. 
+
 | Feature | Flexible, Standard, Premium, and Ultra service levels | Elastic service level | 
 | - | - | - | 
 | Performance | High performance storage optimized for enterprise workloads | Optimized for lower-performanc NAS workloads | 
@@ -72,16 +73,16 @@ New API endpoints have been introduced that are specific to the Elastic service 
 | Resource type | Elastic endpoint | Flexible, Standard, Premium, and Ultra endpoint 
 | - | -- | -- |
 | Accounts | elasticAccounts | netAppAccounts |
-| Backups | /elasticAccounts/<accountName>/elasticBackupVaults/<vaultName>/elasticBackups
-| Backups policies | /elasticAccounts/<accountName>/elasticBackupPolicies | netAppAccounts/{accountName}/backupPolicies |
-| Backup vaults | /elasticAccounts/<accountName>/elasticBackupVaults | /netAppAccounts/{accountName}/backupVaults | netAppAccounts/{accountName}/backupVaults/{backupVaultName}/backups |
+| Backups | /elasticAccounts/{accountName}/elasticBackupVaults/{vaultName}/elasticBackups
+| Backups policies | /elasticAccounts/{accountName}/elasticBackupPolicies | netAppAccounts/{accountName}/backupPolicies |
+| Backup vaults | /elasticAccounts/{accountName}/elasticBackupVaults | /netAppAccounts/{accountName}/backupVaults | netAppAccounts/{accountName}/backupVaults/{backupVaultName}/backups |
 | Capacity pools | /elasticAccounts/elasticCapacityPools | /netAppAccounts/capacityPools |
-| Change zone | elasticCapacityPools/<poolName>/changeZone | N/A |
+| Change zone | elasticCapacityPools/{poolName}/changeZone | N/A |
 | Region info | elasticRegionInfos | locations/{location}/regionInfo
-| Snapshots | elasticAccounts/<accountName>/elasticCapacityPools/elasticVolumes/<volumeName>/elasticSnapshots | /netAppAccounts/{accountName}/capacityPools/{poolName}/volumes/{volumeName}/snapshots
-| Snapshot policies | elasticAccounts/<accountName>/elasticCapacityPools/elasticVolumes/<volumeName>/elasticSnapshotPolicies | netAppAccounts/{accountName}/snapshotPolicies/{snapshotPolicyName} |
-| Volumes | elasticAccounts/<accountName>/elasticCapacityPools/elasticVolumes | /netAppAccounts/{accountName}/capacityPools/{poolName}/volumes/{volumeName} |
-| Volume file path availability | elasticCapacityPools/<poolName>/checkVolumeFilePathAvailability | /locations/{location}/checkFilePathAvailability |
+| Snapshots | elasticAccounts/{accountName}/elasticCapacityPools/elasticVolumes/{volumeName}/elasticSnapshots | /netAppAccounts/{accountName}/capacityPools/{poolName}/volumes/{volumeName}/snapshots
+| Snapshot policies | elasticAccounts/{accountName}/elasticCapacityPools/elasticVolumes/{volumeName}/elasticSnapshotPolicies | netAppAccounts/{accountName}/snapshotPolicies/{snapshotPolicyName} |
+| Volumes | elasticAccounts/{accountName}/elasticCapacityPools/elasticVolumes | /netAppAccounts/{accountName}/capacityPools/{poolName}/volumes/{volumeName} |
+| Volume file path availability | elasticCapacityPools/{poolName}/checkVolumeFilePathAvailability | /locations/{location}/checkFilePathAvailability |
 
 For more detailed information, see [Azure NetApp Files REST API](/rest/api/netapp).
 
@@ -96,11 +97,11 @@ Elastic zone-redundant storage requires the use of [availability zones](../relia
 
 <!-- SMB CA shares, other SMB features -->
 <!-- migration assistant, cool access -->
-
+<!-- short term clones -->
 
 ## Next steps 
 
 - [Storage hierarchy of Azure NetApp Files](azure-netapp-files-understand-storage-hierarchy.md)
 - [Create a NetApp account](azure-netapp-files-create-netapp-account.md)
 - [Set up a capacity pool](azure-netapp-files-set-up-capacity-pool.md)
-- [Azure NetApp Files resource limits](azure-netapp-files-resource-limits.md)
+- [Azure NetApp Files resource limits](elastic-resource-limits.md)

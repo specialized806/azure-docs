@@ -299,6 +299,8 @@
           href: elastic-account.md 
         - name: Configure Active Directory 
           href: elastic-active-directory.md 
+        - name: Configure customer-managed keys
+          href: elastic-customer-managed-keys.md
         - name: Create an Elastic capacity pool 
           href: elastic-capacity-pool-task.md
         - name: Create an NFS volume 
