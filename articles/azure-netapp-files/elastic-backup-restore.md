@@ -14,4 +14,6 @@ ms.author: anfdocs
 
 ## Restore a volume from a backup
 
+See [Restore a backup to a new volume](backup-restore-new-volume.md).
+
 ## Delete a backup 

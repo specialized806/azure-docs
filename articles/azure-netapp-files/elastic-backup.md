@@ -98,7 +98,7 @@ You can modify the schedule and retention count or a backup or disable it.
 
 ## Delete a backup policy 
 
-<!-- considerations -->
+<!-- import from backup-delete.md -->
 
 1. In your Elastic service level Azure NetApp Files account, select **Backup policies** under the Data protection navigation menu.
 1. Select the action menu `...` at the end of the row with the backup policy name then **Assign volumes**.
