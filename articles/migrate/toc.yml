@@ -79,7 +79,7 @@ items:
     #       href: add-server-credentials.md
     #     - name: Appliance diagnostics
     #       href: troubleshoot-appliance-diagnostic.md 
-    - name: Discover softwares and workloads
+    - name: Discover software and workloads
       href: how-to-discover-applications.md
     - name: Deep discover database workloads
       items:
@@ -115,6 +115,8 @@ items:
       href: how-to-review-discovered-inventory.md
     - name: Tags 
       href: resource-tagging.md
+    - name: Insights
+      href: insights-overview.md  
 - name: Create Business case
   items:
   - name: Business case overview
