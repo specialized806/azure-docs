@@ -21,7 +21,7 @@ When creating your NetApp account, you must designate that the account is for zo
 In comparison to existing Azure NetApp Files service levels, the Elastic zone-redundant service level offers:  
 
 - Zone redundancy that can persist if a zonal outage occurs in a single region 
-- Transparent failover in case of a zonal outage 
+- Transparent failover if a zonal outage occurs
 - Seamless growth from 1 GiB without specialized hardware 
 
 Zone-redundant storage is designed for small workloads, offering capacity pools that scale from 512 GiB to 16 TiB. Volumes can scale from 1 GiB to the maximum size of the capacity pool. 
@@ -45,7 +45,7 @@ If you're using custom RBAC roles, ensure you configure the [correct permissions
 * West US 2
 * West US 3 
 
-## Best practices
+### Best practices
 
 * Because some regions only have two availability zones, confirm supported availability zones in the region before deploying zone-redundant storage. Use the Azure CLI command `az netappfiles resource query-region-info` or the REST API call: 
 
@@ -56,7 +56,7 @@ GET https://management.azure.com/subscriptions/{subscriptionId}/providers/Micros
 ## Comparison of service levels
 
 >[!IMPORTANT]
->Elastic Zone-Redundant storage has [dedicated endpoints](#api-endpoints). Workflows for the this service level are different than other service levels. Ensure you are following the correct guidelines for your service level. 
+>Elastic Zone-Redundant storage has [dedicated endpoints](#api-endpoints). Workflows for this service level are different than other service levels. Ensure you follow the correct guidelines for your service level. 
 
 | Feature | Flexible, Standard, Premium, and Ultra service levels | Elastic service level | 
 | - | - | - | 

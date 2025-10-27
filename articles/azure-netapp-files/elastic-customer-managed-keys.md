@@ -55,7 +55,7 @@ For more information about Azure Key Vault and Azure Private Endpoint, see:
 1. Provide the Encryption Key. 
     * If you have the URI, select **Enter key URI** then enter manually the **Key URI** and **Subscription**. 
 
-    :::image type="content" source="./media/elastic-customer-managed-keys/enter-key.png" alt-text="Screenshot of manually enterring key URI and subscription." lightbox="./media/elastic-customer-managed-keys/enter-key.png":::
+    :::image type="content" source="./media/elastic-customer-managed-keys/enter-key.png" alt-text="Screenshot of manually entering key URI and subscription." lightbox="./media/elastic-customer-managed-keys/enter-key.png":::
 
     * To select the key from a list, choose **Select key vault** then **Select a key vault and key**. 
     In the dropdown menus, select the **Subscription**, **Key vault**, and **Key** then **Select** to confirm your choices. 
@@ -75,7 +75,7 @@ For more information about Azure Key Vault and Azure Private Endpoint, see:
 
 ## Next steps
 
-After you configure encryption settings for your Elastic NetApp account, [Create an Elastic Zone-Redundant capacity pool](elastic-capacity-pool-task.md). Ensure you select **Customer Managed** for the encryption key source, then provide the configure Azure key vault in the key vault private endpoint. 
+After you configure encryption settings for your Elastic NetApp account, [Create an Elastic Zone-Redundant capacity pool](elastic-capacity-pool-task.md). Ensure you select **Customer Managed** for the encryption key source, then provide the configured Azure key vault in the key vault private endpoint. 
 
 After the capacity pool is created with customer-managed keys, volumes created in the capacity pool automatically inherit customer-managed key encryption settings. 
 
