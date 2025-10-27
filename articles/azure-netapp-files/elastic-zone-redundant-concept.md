@@ -70,16 +70,16 @@ GET https://management.azure.com/subscriptions/{subscriptionId}/providers/Micros
 
 New API endpoints have been introduced that are specific to the Elastic service level. Consult the table for the different endpoints:
 
-| Resource type | Elastic endpoint | Flexible, Standard, Premium, and Ultra endpoint 
+| Resource type | Elastic endpoint | Flexible, Standard, Premium, and Ultra endpoint |
 | - | -- | -- |
 | Accounts | elasticAccounts | netAppAccounts |
-| Backups | /elasticAccounts/{accountName}/elasticBackupVaults/{vaultName}/elasticBackups
+| Backups | /elasticAccounts/{accountName}/elasticBackupVaults/{vaultName}/elasticBackups | /netAppAccounts/{accountName}/backupVaults/{vaultName}/backups |
 | Backups policies | /elasticAccounts/{accountName}/elasticBackupPolicies | netAppAccounts/{accountName}/backupPolicies |
-| Backup vaults | /elasticAccounts/{accountName}/elasticBackupVaults | /netAppAccounts/{accountName}/backupVaults | netAppAccounts/{accountName}/backupVaults/{backupVaultName}/backups |
+| Backup vaults | /elasticAccounts/{accountName}/elasticBackupVaults | /netAppAccounts/{accountName}/backupVaults | 
 | Capacity pools | /elasticAccounts/elasticCapacityPools | /netAppAccounts/capacityPools |
 | Change zone | elasticCapacityPools/{poolName}/changeZone | N/A |
 | Region info | elasticRegionInfos | locations/{location}/regionInfo
-| Snapshots | elasticAccounts/{accountName}/elasticCapacityPools/elasticVolumes/{volumeName}/elasticSnapshots | /netAppAccounts/{accountName}/capacityPools/{poolName}/volumes/{volumeName}/snapshots
+| Snapshots | elasticAccounts/{accountName}/elasticCapacityPools/elasticVolumes/{volumeName}/elasticSnapshots | /netAppAccounts/{accountName}/capacityPools/{poolName}/volumes/{volumeName}/snapshots |
 | Snapshot policies | elasticAccounts/{accountName}/elasticCapacityPools/elasticVolumes/{volumeName}/elasticSnapshotPolicies | netAppAccounts/{accountName}/snapshotPolicies/{snapshotPolicyName} |
 | Volumes | elasticAccounts/{accountName}/elasticCapacityPools/elasticVolumes | /netAppAccounts/{accountName}/capacityPools/{poolName}/volumes/{volumeName} |
 | Volume file path availability | elasticCapacityPools/{poolName}/checkVolumeFilePathAvailability | /locations/{location}/checkFilePathAvailability |

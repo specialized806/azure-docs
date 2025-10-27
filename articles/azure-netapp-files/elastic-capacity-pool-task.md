@@ -23,7 +23,7 @@ You must create a capacity pool before you can create volumes in Azure NetApp Fi
 * You must have a NetApp account designated for use with the Elastic Zone-Redundant service level. 
 * If you're using Azure CLI, ensure that you're using the latest version.
 * If you're using PowerShell, ensure that you're using the latest version of the Az.NetAppFiles module. To update to the latest version, use the `Update-Module Az.NetAppFiles` command. For more information, see [Update-Module](/powershell/module/powershellget/update-module).
-* If you're using customer-managed keys, ensure you've configured encryption before creating the capacity pool. For more information, see [Configure customer-managed keys for the Elastic Zone-Redundant service level](elastic-configure-customer-managed-keys.md).
+* If you're using customer-managed keys, ensure you've configured encryption before creating the capacity pool. For more information, see [Configure customer-managed keys for the Elastic Zone-Redundant service level](elastic-customer-managed-keys.md).
 * If you're using the Azure REST API, ensure that you specify the latest version.
 * Elastic capacity pools enable you to create a failover preference order of three availability zones. Some of the regions that support the Elastic service level only offer two availability zones. You should query the region for availability zone with the REST API before creating the capacity pool: `GET https://management.azure.com/providers/Microsoft.NetApp/locations/{location}/availabilityZones?api-version=2025-05-01`.
 
