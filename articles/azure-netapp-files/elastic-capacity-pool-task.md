@@ -60,7 +60,7 @@ You must create a capacity pool before you can create volumes in Azure NetApp Fi
         Select or create a delegated subnet. 
     * **Encryption key source**
         Select **Platform Managed**
-        For **Customer Managed**, you must have first configured your key vault settings. 
+        For **Customer Managed**, you must have first configured your [key vault settings](elastic-customer-managed-keys.md). 
     * **Key vault private endpoint**
         If you select **Customer Managed** for the encryption key source, choose the Azure key vault you configured in your encryption settings. 
     * **Active Directory configuration**
