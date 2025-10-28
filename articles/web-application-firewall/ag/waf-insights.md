@@ -16,9 +16,10 @@ The WAF Insights dashboards for Azure Application Gateway provide a unified expe
 
 The solution includes two main dashboards:
 
+**Monitor tab** - designed for continuous visibility. It surfaces high-level metrics and trends such as total request volumes, managed rule matches, custom rule matches, and JavaScript challenge activity. The Monitor tab helps operators detect anomalies, track the effectiveness of WAF protections, and understand overall application security posture at a glance.
+
 **Triage tab** - designed for investigation. It provides drill-down views to identify affected hosts, URLs, requests, and rules involved in a specific security event. This supports root cause analysis and faster incident response.
 
-**Monitor tab** - designed for continuous visibility. It surfaces high-level metrics and trends such as total request volumes, managed rule matches, custom rule matches, and JavaScript challenge activity. The Monitor tab helps operators detect anomalies, track the effectiveness of WAF protections, and understand overall application security posture at a glance.
 
 ## Prerequisites
 
@@ -45,22 +46,13 @@ The dashboards combine **Metrics** and **Logs**, which complement each other:
 
 The WAF Insights experience is divided into two main tabs:
 
+- **Monitor** - High-level reporting and trend tracking.
+
 - **Triage** - Drill-down investigations of events.
 
-- **Monitor** - High-level reporting and trend tracking.
 
 Each tab offers a different perspective and is often used together: monitor overall health in the **Monitor tab**, then use the **Triage tab** to investigate anomalies.
 
-### Triage tab
-
-The Triage tab is built for investigation and troubleshooting of WAF events. It uses data from AzureDiagnostics within the Log Analytics Workspace (LAW) and supports two investigation modes: **Triage by Rule** and **Triage by URL**.
-Except for the first visualization, each component dynamically filters based on selections from the previous step, allowing a natural drill-down flow that narrows from a broad scope to specific impacted requests.
-
-### Triage by rule
-
-In **Triage by Rule**, investigation starts from a triggered rule. The flow begins with selecting the WAF policy scope (Listener, URI Path, or Global). Next, you can view an overview of triggered rules, including rule ID, action, ruleset version, scope, and the number of impacted requests. From there, the investigation drills down to the affected hosts, URLs, and individual transactions. This approach helps identify which rules are responsible for most of the blocked traffic, detect false positives, and understand which hosts and URLs are most affected.
-
-In **Triage by URL**, investigation begins with a URL path. Analysts select the relevant Application Gateway and policy scope, identify the hosts or IPs targeting specific URLs, and view the rules triggered for those impacted requests. This approach is useful for investigating suspicious activity on sensitive endpoints such as login pages, verifying whether blocked requests are legitimate or malicious, and mapping attack patterns across URLs.
 
 ### Monitor tab
 
@@ -71,14 +63,29 @@ The **WAF logs** view gives a detailed request-level perspective sourced from th
 
 The **WAF metrics** view provides near real-time visibility into WAF activity using Azure Monitor metrics. It includes visualizations showing total WAF requests, managed rule matches by association (both blocked and non-blocked), JS challenge request counts, and custom rule matches. This data helps detect sudden traffic surges, monitor rule behavior, evaluate JS challenge enforcement, and verify correct policy configuration. Metrics offer an operational perspective that complements the detailed forensic insights provided by logs.
 
+### Triage tab
+
+The Triage tab is built for investigation and troubleshooting of WAF events. It uses data from AzureDiagnostics within the Log Analytics Workspace (LAW) and supports two investigation modes: **Triage by Rule** and **Triage by URL**.
+Except for the first visualization, each component dynamically filters based on selections from the previous step, allowing a natural drill-down flow that narrows from a broad scope to specific impacted requests.
+
+#### Triage by rule
+
+In **Triage by Rule**, investigation starts from a triggered rule. The flow begins with selecting the WAF policy scope (Listener, URI Path, or Global). Next, you can view an overview of triggered rules, including rule ID, action, ruleset version, scope, and the number of impacted requests. From there, the investigation drills down to the affected hosts, URLs, and individual transactions. This approach helps identify which rules are responsible for most of the blocked traffic, detect false positives, and understand which hosts and URLs are most affected.
+
+#### Triage by URL
+
+In **Triage by URL**, investigation begins with a URL path. Analysts select the relevant Application Gateway and policy scope, identify the hosts or IPs targeting specific URLs, and view the rules triggered for those impacted requests. This approach is useful for investigating suspicious activity on sensitive endpoints such as login pages, verifying whether blocked requests are legitimate or malicious, and mapping attack patterns across URLs.
+
+
 ## Summary of dashboards
 
 | **Dashboard** | **Purpose** | **Investigation flow** | **Example use cases** |
 |----|----|----|----|
+| **Monitor - WAF logs** | Log-based monitoring | Pulls structured data from LAW | Validate policy effectiveness, perform audits, investigate requests |
+| **Monitor - WAF metrics** | Metric-based monitoring | Uses Azure Monitor metrics | Near real-time monitoring, detect anomalies, track trends |
 | **Triage by rule** | Investigate by rule ID | Scope → Rule → Hosts → URLs → Requests | Identify noisy rules, analyze blocks, fine-tune rules |
 | **Triage by URL** | Investigate by URL path | Scope → URL → Hosts → Rules → Requests | Investigate attacks on sensitive endpoints, validate rule effectiveness |
-| **WAF logs** | Log-based monitoring | Pulls structured data from LAW | Validate policy effectiveness, perform audits, investigate requests |
-| **WAF metrics** | Metric-based monitoring | Uses Azure Monitor metrics | Near real-time monitoring, detect anomalies, track trends |
+
 
 ## Glossary
 
