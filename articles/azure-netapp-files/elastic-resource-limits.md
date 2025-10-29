@@ -32,9 +32,9 @@ The following table outlines resource limits for the Elastic service level of Az
 | Minimum size of a volume | 1 GiB | No | 
 | Maximum size of a volume | Maximum size of capacity pool | No |
 | Maximum number of snapshots per volume | - | No | 
-|  Maximum number of `maxfiles` per volume | See [`maxfiles`](maxfiles-concept.md)  | Yes |    
-|  Maximum number of export policy rules per volume | 5 | No | 
-|  Maximum number of quota rules per volume | 1,000| No | 
+| Maximum number of `maxfiles` per volume | See [`maxfiles`](maxfiles-concept.md)  | Yes |    
+| Maximum number of export policy rules per volume | 5 | No | 
+| Maximum number of quota rules per volume | 1,000| No | 
 
 <!-- file, throughput, regional capacity per subscription, number of IPs / VNet, backups per day, backups, snapshots, -->
 
