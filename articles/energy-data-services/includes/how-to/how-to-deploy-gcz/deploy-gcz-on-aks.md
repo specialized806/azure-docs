@@ -6,7 +6,7 @@ ms.custom: devx-track-azurecli
 ms.topic: how-to
 ms.author: eihaugho
 author: EirikHaughom
-ms.date: 10/29/2025
+ms.date: 05/30/2024
 ---
 
 # Deploy Geospatial Consumption Zone (GCZ) on Azure Kubernetes Service (AKS)
