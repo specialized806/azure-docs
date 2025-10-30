@@ -58,7 +58,11 @@ Gen 2 is available in the following Azure public regions.
 - Canada Central
 - Canada East
 - North Europe
+- Norway East
+
 - UK West
+
+- West US 2
 
 Beyond these regions, SLAs are region specific. Contact your Microsoft account team or Microsoft Support to confirm coverage.
 

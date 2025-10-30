@@ -9,7 +9,7 @@ ms.author: normesta
 ms.subservice: storage-common-concepts
 ms.custom: ai-video-demo
 ai-usage: ai-assisted
-# Customer intent: As a cloud administrator, I want to use AzCopy to transfer data to and from Azure Storage, so that I can efficiently manage storage operations across my cloud environment.
+#customer intent: As a cloud administrator, I want to use AzCopy to transfer data to and from Azure Storage, so that I can efficiently manage storage operations across my cloud environment.
 ---
 
 # Get started with AzCopy
@@ -256,8 +256,10 @@ AzCopy uses the `--from-to` parameter to explicitly define the source and destin
 | `FileBlob`             | Copy from Azure File Storage to Azure Blob Storage                                    |
 | `FileBlobFS`           | Copy from Azure File Storage to Azure Data Lake Gen2 (BlobFS)                         |
 | `FileSMBFileSMB`       | Copy between two SMB shares in Azure File Storage                                     |
+| `FileSMBFileNFS`       | Copy from Azure File Storage SMB to Azure Files Storage NFS                           |
 | `FileSMBLocal`         | Download from SMB share in Azure File Storage to local file system                    |
 | `FileNFSFileNFS`       | Copy between two NFS shares in Azure File Storage                                     |
+| `FileNFSFileSMB`       | Copy from Azure File Storage NFS to Azure Files Storage SMB                           |
 | `FileNFSLocal`         | Download from NFS share in Azure File Storage to local file system (Linux only)       |
 | `FilePipe`             | Stream data from Azure File Storage to a pipe                                         |
 | `FileSMBFileSMB`       | Copy between SMB shares (duplicate of above for completeness)                         |

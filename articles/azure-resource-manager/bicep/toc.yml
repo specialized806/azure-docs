@@ -267,6 +267,7 @@ items:
         href: variables.md
         displayName: configuration
       - name: Resources (resource)
+        displayName: batchsize,onlyifnotexists,description,decorators
         href: resource-declaration.md
       - name: Outputs (output)
         href: outputs.md
@@ -621,7 +622,7 @@ items:
         href: /azure/templates/
       - name: Bicep CLI
         href: bicep-cli.md
-        displayName: build,decompile,install,list-versions,list versions,upgrade,version,module,registry
+        displayName: build,decompile,decompile-params, format,generate-params,install,jsonrpc,lint,list-versions,list versions,publish,restore,upgrade,version,module,registry
       - name: Azure CLI
         href: /cli/azure/resource
       - name: Azure PowerShell
