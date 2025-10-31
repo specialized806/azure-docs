@@ -7,7 +7,7 @@ ms.service: azure-netapp-files
 ms.topic: how-to
 ms.date: 06/25/2025
 ms.author: anfdocs
-# Customer intent: As an IT administrator, I want to create a NetApp account in Azure NetApp Files, so that I can set up a capacity pool and manage storage volumes effectively.
+# Customer intent: As an IT administrator, I want to create an Elastic Zone-Redundant NetApp account in Azure NetApp Files, so that I can set up a capacity pool and manage storage volumes effectively.
 ---
 
 # Create a NetApp account for the Elastic service level in Azure NetApp Files (preview)

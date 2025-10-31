@@ -39,6 +39,11 @@ You must create a capacity pool before you can create volumes in Azure NetApp Fi
     * Failback is not supported.  
 * Zone-redundant capacity pools provide throughput at 32 MiB/s per 1 TiB and 1 I/OPS per GiB. With the maximum capacity pool size of 16 TiB, throughput maxes out at 512 MiB/s and 16,384 I/OPS. QoS is shared across all volumes in a capacity pool.  
 * Volumes in zone-redundant storage capacity pools can't be moved out of the capacity pool they're created in. 
+* Review the [maximum and minimum sizes](elastic-resource-limits.md) for the Elastic Zone-Redundant service level. 
+<!-- bugs -->
+* If you've created a 512-GiB capacity pool, you can resize it to 1 TiB. All subsequent resizing must be done in 1-TiB increments.
+    * If you've create a capacity pool at a size under 16 TiB, you can't resize it beyond 16 TiB, however you can create a 24 TiB capacity pool and resize it up to the maximum capacity pool size. 
+* When you resize a capacity pool, the capacity pool might revert to the availability zone it was originally created in. Confirm the capacity pool and [change the zone] after resizing if necessary.
 
 ## Network planning
 

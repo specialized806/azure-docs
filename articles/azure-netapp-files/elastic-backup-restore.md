@@ -5,15 +5,19 @@ services: azure-netapp-files
 author: b-ahibbard
 ms.service: azure-netapp-files
 ms.topic: how-to
-ms.date: 08/14/2025
+ms.date: 10/31/2025
 ms.author: anfdocs
 ---
-# Restore a backup of an Elastic Zone-Redundant volume in Azure NetApp Files
+# Restore to a new volume with a backup of an Elastic Zone-Redundant volume in Azure NetApp Files
 
-<!-- TBD -->
+If you need to restore from a backup, you can create a new volume in the same account with the same protocol as the backup. 
+
+## Considerations
+
+[!INCLUDE [Backup restore considerations](includes/backup-restore-considerations.md)]
 
 ## Restore a volume from a backup
 
-See [Restore a backup to a new volume](backup-restore-new-volume.md).
+[!INCLUDE [Backup restore steps](includes/backup-restore-steps.md)]
 
 ## Delete a backup 

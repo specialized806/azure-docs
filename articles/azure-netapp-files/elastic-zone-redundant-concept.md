@@ -12,13 +12,21 @@ ms.custom: references-regions
 
 # Understand Azure NetApp Files zone-redundant storage (preview)
 
-Azure NetApp Files zone-redundant storage is a software-based alternative to hardware-based Azure NetApp Files 
+Azure NetApp Files zone-redundant storage is cost‑optimized landing zone for unstructured data, built for modern workloads. 
+
+It delivers built‑in local redundancy, shared QoS, and native multi‑tenancy with global regional availability—making it a natural fit for ISVs and SaaS solution providers. ​
+
+Scale smaller volumes with flexible throughput, power backups, analytics staging, and AI datasets—all at an affordable price without compromising reliability.
+
+Elastic ZRS offers built-in high-availability and zero recovery point objective (RPO). 
 
 When creating your NetApp account, you must designate that the account is for zone-redundant storage. A NetApp account configured for the Elastic zone-redundant service level can only be used for the Elastic service level.
 
 ## Elastic zone-redundant service
 
 In comparison to existing Azure NetApp Files service levels, the Elastic zone-redundant service level offers:  
+
+// Elastic ZR volumes write synchronously across Availability Zones (AZ) for zero‑data‑loss continuity and trigger platform‑managed failover in under two minutes—
 
 - Zone redundancy that can persist if a zonal outage occurs in a single region 
 - Transparent failover if a zonal outage occurs

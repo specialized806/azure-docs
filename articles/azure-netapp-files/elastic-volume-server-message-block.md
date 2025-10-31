@@ -35,7 +35,9 @@ Learn how to create an SMB volume for the Elastic service level.
 * In the Elastic service level, you can't move volumes between capacity pools. 
 * Access-based enumeration and non-browsable shares aren't currently supported for SMB volumes in the Elastic service level. 
 
-<!-- one create volume topic. use tabs -->
+<!-- bugs  -->
+
+* If SMB volume creation fails with the error "Error when creating. A problem occurred. Please try again after some time. If the issue persists, please contact support," the Active Directory password has expired and needs to be reset. Reset the password then try to create the password again. 
 
 ## Steps 
 
