@@ -119,7 +119,7 @@ This guide explains how to deploy Geospatial Consumption Zone (GCZ) as an **add-
    $CHART="osdu-gcz-service"
    $CHART_VERSION="1.28.0"
    $VERSION="0.28.2"
-```
+   ```
 
 1. Create the HELM chart:
 
@@ -127,60 +127,60 @@ This guide explains how to deploy Geospatial Consumption Zone (GCZ) as an **add-
 
    ```bash
    cat > osdu_gcz_custom_values.yaml << EOF
-# GCZ Configuration - Azure Deployment
+   # GCZ Configuration - Azure Deployment
 
-global:
-  ignite:
-    namespace: $NAMESPACE
-    name: ignite
-    image:
-      name: gridgain/community
-      tag: 8.8.43
-    configuration:
-      gcz_ignite_namespace: "$GCZ_IGNITE_NAMESPACE"
-      gcz_ignite_service: "$GCZ_IGNITE_SERVICE"
+   global:
+     ignite:
+       namespace: $NAMESPACE
+       name: ignite
+       image:
+         name: gridgain/community
+         tag: 8.8.43
+       configuration:
+         gcz_ignite_namespace: "$GCZ_IGNITE_NAMESPACE"
+         gcz_ignite_service: "$GCZ_IGNITE_SERVICE"
 
-  provider:
-    namespace: $NAMESPACE
-    entitlementsGroupsURL: "https://$AZURE_DNS_NAME/api/entitlements/v2/groups"
-    image:
-      repository: community.opengroup.org:5555
-      name: osdu/platform/consumption/geospatial/geospatial-provider-master
-      tag: latest
-    service:
-      type: LoadBalancer
-    configuration:
-      privateNetwork: "$PRIVATE_NETWORK"
+     provider:
+       namespace: $NAMESPACE
+       entitlementsGroupsURL: "https://$AZURE_DNS_NAME/api/entitlements/v2/groups"
+       image:
+         repository: community.opengroup.org:5555
+         name: osdu/platform/consumption/geospatial/geospatial-provider-master
+         tag: latest
+       service:
+         type: LoadBalancer
+       configuration:
+         privateNetwork: "$PRIVATE_NETWORK"
 
-  transformer:
-    namespace: $NAMESPACE
-    image:
-      repository: community.opengroup.org:5555
-      name: osdu/platform/consumption/geospatial/geospatial-transformer-master
-      tag: latest
-    service:
-      type: LoadBalancer
-    configuration:
-      privateNetwork: "$PRIVATE_NETWORK"
-      datapartitionid: $DATA_PARTITION_ID
-      clientId: $AZURE_CLIENT_ID
-      tenantId: $AZURE_TENANT_ID
-      callbackURL: $CALLBACK_URL
-      scope: $SCOPE
-      searchQueryURL: "https://$AZURE_DNS_NAME/api/search/v2/query"
-      searchCursorURL: "https://$AZURE_DNS_NAME/api/search/v2/query_with_cursor"
-      schemaURL: "https://$AZURE_DNS_NAME/api/schema-service/v1/schema"
-      entitlementsURL: "https://$AZURE_DNS_NAME/api/entitlements/v2"
-      fileRetrievalURL: "https://$AZURE_DNS_NAME/api/dataset/v1/retrievalInstructions"
-      crsconvertorURL: "https://$AZURE_DNS_NAME/api/crs/converter/v3/convertTrajectory"
-      storageURL: "https://$AZURE_DNS_NAME/api/storage/v2/records"
-      clientSecret: $(echo "$AZURE_CLIENT_SECRET" | base64)
-      gcz_ignite_namespace: "$GCZ_IGNITE_NAMESPACE"
-      gcz_ignite_service: "$GCZ_IGNITE_SERVICE"
-EOF
-```
+     transformer:
+       namespace: $NAMESPACE
+       image:
+         repository: community.opengroup.org:5555
+         name: osdu/platform/consumption/geospatial/geospatial-transformer-master
+         tag: latest
+       service:
+         type: LoadBalancer
+       configuration:
+         privateNetwork: "$PRIVATE_NETWORK"
+         datapartitionid: $DATA_PARTITION_ID
+         clientId: $AZURE_CLIENT_ID
+         tenantId: $AZURE_TENANT_ID
+         callbackURL: $CALLBACK_URL
+         scope: $SCOPE
+         searchQueryURL: "https://$AZURE_DNS_NAME/api/search/v2/query"
+         searchCursorURL: "https://$AZURE_DNS_NAME/api/search/v2/query_with_cursor"
+         schemaURL: "https://$AZURE_DNS_NAME/api/schema-service/v1/schema"
+         entitlementsURL: "https://$AZURE_DNS_NAME/api/entitlements/v2"
+         fileRetrievalURL: "https://$AZURE_DNS_NAME/api/dataset/v1/retrievalInstructions"
+         crsconvertorURL: "https://$AZURE_DNS_NAME/api/crs/converter/v3/convertTrajectory"
+         storageURL: "https://$AZURE_DNS_NAME/api/storage/v2/records"
+         clientSecret: $(echo "$AZURE_CLIENT_SECRET" | base64)
+         gcz_ignite_namespace: "$GCZ_IGNITE_NAMESPACE"
+         gcz_ignite_service: "$GCZ_IGNITE_SERVICE"
+   EOF
+   ```
 
-   ### [Windows PowerShell](#tab/windows-powershell)
+   ### [Windows PowerShell](#tab/windows-powershell-2)
 
    ```powershell
    @"
@@ -189,54 +189,54 @@ EOF
    ################################################################################
    # Specify the values for each service.
    #
-  global:
-  ignite:
-    namespace: $NAMESPACE
-    name: ignite
-    image:
-      name: gridgain/community
-      tag: 8.8.43
-    configuration:
-      gcz_ignite_namespace: "$GCZ_IGNITE_NAMESPACE"
-      gcz_ignite_service: "$GCZ_IGNITE_SERVICE"
+   global:
+     ignite:
+       namespace: $NAMESPACE
+       name: ignite
+       image:
+         name: gridgain/community
+         tag: 8.8.43
+       configuration:
+         gcz_ignite_namespace: "$GCZ_IGNITE_NAMESPACE"
+         gcz_ignite_service: "$GCZ_IGNITE_SERVICE"
 
-  provider:
-    namespace: $NAMESPACE
-    entitlementsGroupsURL: "https://$AZURE_DNS_NAME/api/entitlements/v2/groups"
-    image:
-      repository: community.opengroup.org:5555
-      name: osdu/platform/consumption/geospatial/geospatial-provider-master
-      tag: latest
-    service:
-      type: LoadBalancer
-    configuration:
-      privateNetwork: "$PRIVATE_NETWORK"
+     provider:
+       namespace: $NAMESPACE
+       entitlementsGroupsURL: "https://$AZURE_DNS_NAME/api/entitlements/v2/groups"
+       image:
+         repository: community.opengroup.org:5555
+         name: osdu/platform/consumption/geospatial/geospatial-provider-master
+         tag: latest
+       service:
+         type: LoadBalancer
+       configuration:
+         privateNetwork: "$PRIVATE_NETWORK"
 
-  transformer:
-    namespace: $NAMESPACE
-    image:
-      repository: community.opengroup.org:5555
-      name: osdu/platform/consumption/geospatial/geospatial-transformer-master
-      tag: latest
-    service:
-      type: LoadBalancer
-    configuration:
-      privateNetwork: "$PRIVATE_NETWORK"
-      datapartitionid: $DATA_PARTITION_ID
-      clientId: $AZURE_CLIENT_ID
-      tenantId: $AZURE_TENANT_ID
-      callbackURL: $CALLBACK_URL
-      scope: $SCOPE
-      searchQueryURL: "https://$AZURE_DNS_NAME/api/search/v2/query"
-      searchCursorURL: "https://$AZURE_DNS_NAME/api/search/v2/query_with_cursor"
-      schemaURL: "https://$AZURE_DNS_NAME/api/schema-service/v1/schema"
-      entitlementsURL: "https://$AZURE_DNS_NAME/api/entitlements/v2"
-      fileRetrievalURL: "https://$AZURE_DNS_NAME/api/dataset/v1/retrievalInstructions"
-      crsconvertorURL: "https://$AZURE_DNS_NAME/api/crs/converter/v3/convertTrajectory"
-      storageURL: "https://$AZURE_DNS_NAME/api/storage/v2/records"
-      clientSecret: $(echo "$AZURE_CLIENT_SECRET" | base64)
-      gcz_ignite_namespace: "$GCZ_IGNITE_NAMESPACE"
-      gcz_ignite_service: "$GCZ_IGNITE_SERVICE"
+     transformer:
+       namespace: $NAMESPACE
+       image:
+         repository: community.opengroup.org:5555
+         name: osdu/platform/consumption/geospatial/geospatial-transformer-master
+         tag: latest
+       service:
+         type: LoadBalancer
+       configuration:
+         privateNetwork: "$PRIVATE_NETWORK"
+         datapartitionid: $DATA_PARTITION_ID
+         clientId: $AZURE_CLIENT_ID
+         tenantId: $AZURE_TENANT_ID
+         callbackURL: $CALLBACK_URL
+         scope: $SCOPE
+         searchQueryURL: "https://$AZURE_DNS_NAME/api/search/v2/query"
+         searchCursorURL: "https://$AZURE_DNS_NAME/api/search/v2/query_with_cursor"
+         schemaURL: "https://$AZURE_DNS_NAME/api/schema-service/v1/schema"
+         entitlementsURL: "https://$AZURE_DNS_NAME/api/entitlements/v2"
+         fileRetrievalURL: "https://$AZURE_DNS_NAME/api/dataset/v1/retrievalInstructions"
+         crsconvertorURL: "https://$AZURE_DNS_NAME/api/crs/converter/v3/convertTrajectory"
+         storageURL: "https://$AZURE_DNS_NAME/api/storage/v2/records"
+         clientSecret: $(echo "$AZURE_CLIENT_SECRET" | base64)
+         gcz_ignite_namespace: "$GCZ_IGNITE_NAMESPACE"
+         gcz_ignite_service: "$GCZ_IGNITE_SERVICE"
    "@ | Out-File -FilePath osdu_gcz_custom_values.yaml
    ```
 
@@ -244,6 +244,7 @@ EOF
 
    ### [Unix Shell](#tab/unix-shell)
 
+   {% raw %}
    ```bash
    cat > ../provider/templates/service.yaml << EOF
    apiVersion: v1
@@ -281,9 +282,11 @@ EOF
        type: {{ $.Values.global.transformer.service.type }}
    EOF
    ```
+   {% endraw %}
 
    ### [Windows PowerShell](#tab/windows-powershell)
 
+   {% raw %}
    ```powershell
    @"
    apiVersion: v1
@@ -321,6 +324,7 @@ EOF
        type: {{ $.Values.global.transformer.service.type }}
    "@ | Out-File -FilePath ../transformer/templates/service.yaml
    ```
+   {% endraw %}
 
 1. Review the transformer configuration file `application.yml` to ensure the correct schemas are included.
 
@@ -356,7 +360,7 @@ EOF
 
    ```bash
    helm upgrade -i "$CHART" . -n "$NAMESPACE" -f osdu_gcz_custom_values.yaml \
-  --set-file global.provider.configLoaderJs="../../../../gcz-provider/gcz-provider-core/config/configLoader.js"
+     --set-file global.provider.configLoaderJs="../../../../gcz-provider/gcz-provider-core/config/configLoader.js"
    ```
 
 1. Verify the deployment:
