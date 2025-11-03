@@ -180,7 +180,7 @@ global:
 EOF
 ```
 
-   ### [Windows PowerShell](#tab/windows-powershell)
+   ### [Windows PowerShell](#tab/deploy-gcz)
 
    ```powershell
    @"
