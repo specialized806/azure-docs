@@ -68,10 +68,14 @@ This guide explains how to deploy Geospatial Consumption Zone (GCZ) as an **add-
 
    # Data Partition for GCZ
    DATA_PARTITION_ID="<YOUR_DATA_PARTITION_ID>"  # Example: opendes
+   SCOPE="<SCOPE_of_AppRegistration>"            # Example: 00001111-aaaa-2222-bbbb-3333cccc4444/.default
 
    # AKS Deployment Configuration
+   RESOURCE_GROUP="<YOUR_AKS_RESOURCE_GROUP>"
+   AKS_NAME="<YOUR_AKS_CLUSTER_NAME>"
    NAMESPACE="ignite"  # Recommended default namespace
    GCZ_IGNITE_SERVICE="osdu-gcz-service-gridgain-headless"  # Default Ignite Service name
+   GCZ_IGNITE_NAMESPACE="$NAMESPACE"
 
    # Helm Release Settings
    CHART="osdu-gcz-service"
@@ -110,10 +114,14 @@ This guide explains how to deploy Geospatial Consumption Zone (GCZ) as an **add-
 
    # Data Partition
    $DATA_PARTITION_ID="<YOUR_DATA_PARTITION_ID>"  # Example: opendes
+   $SCOPE="<SCOPE_of_AppRegistration>"
 
    # AKS Deployment Details
+   $RESOURCE_GROUP="<YOUR_AKS_RESOURCE_GROUP>"
+   $AKS_NAME="<YOUR_AKS_CLUSTER_NAME>"
    $NAMESPACE="ignite"
    $GCZ_IGNITE_SERVICE="osdu-gcz-service-gridgain-headless"
+   $GCZ_IGNITE_NAMESPACE=$NAMESPACE
 
    # Helm Release Details
    $CHART="osdu-gcz-service"
@@ -123,7 +131,7 @@ This guide explains how to deploy Geospatial Consumption Zone (GCZ) as an **add-
 
 1. Create the HELM chart:
 
-   ### [Unix Shell](#tab/unix-shell-2)
+   ### [Unix Shell](#tab/unix-shell)
 
    ```bash
    cat > osdu_gcz_custom_values.yaml << EOF
@@ -180,7 +188,7 @@ This guide explains how to deploy Geospatial Consumption Zone (GCZ) as an **add-
    EOF
    ```
 
-   ### [Windows PowerShell](#tab/windows-powershell-2)
+   ### [Windows PowerShell](#tab/windows-powershell)
 
    ```powershell
    @"
@@ -244,7 +252,6 @@ This guide explains how to deploy Geospatial Consumption Zone (GCZ) as an **add-
 
    ### [Unix Shell](#tab/unix-shell)
 
-   {% raw %}
    ```bash
    cat > ../provider/templates/service.yaml << EOF
    apiVersion: v1
@@ -282,11 +289,9 @@ This guide explains how to deploy Geospatial Consumption Zone (GCZ) as an **add-
        type: {{ $.Values.global.transformer.service.type }}
    EOF
    ```
-   {% endraw %}
 
    ### [Windows PowerShell](#tab/windows-powershell)
 
-   {% raw %}
    ```powershell
    @"
    apiVersion: v1
@@ -324,7 +329,6 @@ This guide explains how to deploy Geospatial Consumption Zone (GCZ) as an **add-
        type: {{ $.Values.global.transformer.service.type }}
    "@ | Out-File -FilePath ../transformer/templates/service.yaml
    ```
-   {% endraw %}
 
 1. Review the transformer configuration file `application.yml` to ensure the correct schemas are included.
 
