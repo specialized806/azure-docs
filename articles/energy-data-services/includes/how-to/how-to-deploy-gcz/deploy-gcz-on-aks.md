@@ -52,6 +52,7 @@ This guide explains how to deploy Geospatial Consumption Zone (GCZ) as an **add-
 
    # OAuth Redirect URL
    CALLBACK_URL="<CALLBACK_URL_configured_in_Entra_ID_App>"  # Example: http://localhost:8080
+   PRIVATE_NETWORK="true"
 
    # Container Registry + GCZ Images
    AZURE_ACR="msosdu.azurecr.io"
@@ -60,10 +61,10 @@ This guide explains how to deploy Geospatial Consumption Zone (GCZ) as an **add-
    GCZ_TRANSFORMER_IMAGE_NAME="geospatial-transformer"
    GCZ_TRANSFORMER_IMAGE_TAG="0.28.2"
 
-   # Istio Configuration (Enable ONLY if Istio is enabled in AKS)
-   ISTIO_ENABLED="false"  # Set "true" if Istio exists on AKS cluster
-   ISTIO_GCZ_DNS_HOST="<YOUR_GCZ_ISTIO_HOSTNAME>"    # Example: gcz.contoso.com
-   ISTIO_GATEWAY_NAME="<YOUR_ISTIO_GATEWAY_NAME>"    # Example: istio-system/ingressgateway
+   # Istio Configuration (Enable ONLY if Istio exists on AKS)
+   ISTIO_ENABLED="false"
+   ISTIO_GCZ_DNS_HOST="<YOUR_GCZ_ISTIO_HOSTNAME>"   # Example: gcz.contoso.com
+   ISTIO_GATEWAY_NAME="<YOUR_ISTIO_GATEWAY_NAME>"   # Example: istio-system/ingressgateway
 
    # Data Partition for GCZ
    DATA_PARTITION_ID="<YOUR_DATA_PARTITION_ID>"  # Example: opendes
@@ -93,6 +94,7 @@ This guide explains how to deploy Geospatial Consumption Zone (GCZ) as an **add-
 
    # OAuth Redirect URL
    $CALLBACK_URL="<CALLBACK_URL_configured_in_Entra_ID_App>" # Example: http://localhost:8080
+   $PRIVATE_NETWORK="true"
 
    # Container Registry + GCZ Image Configuration
    $AZURE_ACR="msosdu.azurecr.io"
@@ -102,7 +104,7 @@ This guide explains how to deploy Geospatial Consumption Zone (GCZ) as an **add-
    $GCZ_TRANSFORMER_IMAGE_TAG="0.28.2"
 
    # Istio Configuration (Enable ONLY if Istio exists on AKS)
-   $ISTIO_ENABLED="true"
+   $ISTIO_ENABLED="false"
    $ISTIO_GCZ_DNS_HOST="<YOUR_GCZ_ISTIO_HOSTNAME>"   # Example: gcz.contoso.com
    $ISTIO_GATEWAY_NAME="<YOUR_ISTIO_GATEWAY_NAME>"   # Example: istio-system/ingressgateway
 
