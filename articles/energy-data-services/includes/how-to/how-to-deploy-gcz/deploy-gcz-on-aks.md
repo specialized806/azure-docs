@@ -180,7 +180,7 @@ global:
 EOF
 ```
 
-   ### [Windows PowerShell](#tab/deploy-gcz)
+   ### [Windows PowerShell](#tab/windows-powershell)
 
    ```powershell
    @"
@@ -189,7 +189,7 @@ EOF
    ################################################################################
    # Specify the values for each service.
    #
-   global:
+  global:
   ignite:
     namespace: $NAMESPACE
     name: ignite
