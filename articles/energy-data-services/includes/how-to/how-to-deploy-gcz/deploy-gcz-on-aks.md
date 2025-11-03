@@ -123,7 +123,7 @@ This guide explains how to deploy Geospatial Consumption Zone (GCZ) as an **add-
 
 1. Create the HELM chart:
 
-   ### [Unix Shell](#tab/unix-shell)
+   ### [Unix Shell](#tab/unix-shell-2)
 
    ```bash
    cat > osdu_gcz_custom_values.yaml << EOF
