@@ -29,7 +29,7 @@ Learn how to create an NFS volume for the Elastic service level.
 * Each volume in a capacity pool must have a unique name.
 * In the Elastic service level, you can't move volumes between capacity pools. 
 
-<!-- unix permissions -->
+<!-- unix permissions, chwon root access -->
 
 ## Steps 
 

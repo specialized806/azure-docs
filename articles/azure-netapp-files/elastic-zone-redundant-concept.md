@@ -14,6 +14,8 @@ ms.custom: references-regions
 
 Azure NetApp Files zone-redundant storage is cost‑optimized landing zone for unstructured data, built for modern workloads. 
 
+<!-- mission critical, cost effective, agile, durable -->
+
 It delivers built‑in local redundancy, shared QoS, and native multi‑tenancy with global regional availability—making it a natural fit for ISVs and SaaS solution providers. ​
 
 Scale smaller volumes with flexible throughput, power backups, analytics staging, and AI datasets—all at an affordable price without compromising reliability.
@@ -26,7 +28,25 @@ When creating your NetApp account, you must designate that the account is for zo
 
 In comparison to existing Azure NetApp Files service levels, the Elastic zone-redundant service level offers:  
 
-// Elastic ZR volumes write synchronously across Availability Zones (AZ) for zero‑data‑loss continuity and trigger platform‑managed failover in under two minutes—
+<!-- Elastic ZR volumes write synchronously across Availability Zones (AZ) for zero‑data‑loss continuity and trigger platform‑managed failover in under two minutes -->
+<!-- 
+
+What is Azure NetApp Files zone redundant? 
+
+Azure NetApp Files zone redundant ensures robust data resiliency and availability through synchronous replication across multiple zones within a region. It offers automated and transparent failover and user-defined availability zones, allowing for tailored operational continuity. This feature provides enterprise-grade storage to protect against zonal outages and ensures availability for mission-critical applications, combined with the ability to dynamically scaling to meet workload demands. 
+
+Why Azure NetApp Files zone redundant? 
+
+Organizations today face increasing demands for robust data resilience and scalability in their cloud infrastructures. Azure NetApp Files zone redundant addresses these challenges by fortifying system reliability, reducing downtime risks and improving operational excellence. By ensuring continuous data availability and access across Azure availability zones, this new capability aligns with the principles of reliability, operational excellence, and performance efficiency. 
+
+Key Benefits 
+
+Reliability: Offers automated failover and synchronous data mirroring across zones, ensuring continuity during zonal outages. 
+
+User-Defined Availability Zones: Flexibly define failover priorities, tailoring the system to your specific needs. 
+
+Operational excellence: Enables flexible management of resources with scalable capacity pools, allowing shared QoS across volumes to adapt to changing workloads seamlessly. 
+-->
 
 - Zone redundancy that can persist if a zonal outage occurs in a single region 
 - Transparent failover if a zonal outage occurs
@@ -73,6 +93,8 @@ GET https://management.azure.com/subscriptions/{subscriptionId}/providers/Micros
 | Protocol support | NFS, SMB, and dual-protocol (NFS and SMB) | NFS and SMB | 
 | Integrated backup | Integrated backup and recovery | Limited backup and recovery | 
 | Price | Premium pricing for enterprise features | Cost-optimized for smaller workloads |
+
+<!-- for a comparison of features, between service levels, see, comparison -->
 
 ### API endpoints
 
