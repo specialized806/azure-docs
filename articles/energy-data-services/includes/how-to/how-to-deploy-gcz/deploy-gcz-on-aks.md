@@ -380,6 +380,28 @@ This guide explains how to deploy Geospatial Consumption Zone (GCZ) as an **add-
    ```bash
    kubectl get service -n $NAMESPACE
    ```
+1. Port-forward to the GCZ Provider service and test the FeatureServer layers:
+
+   ```bash
+   kubectl port-forward -n $NAMESPACE service/gcz-provider 8083:8083
+   curl "http://localhost:8083/ignite-provider/FeatureServer/layers/info"
+   ```
+1. Restart the GCZ Provider deployment (if needed):
+
+   ```bash
+   kubectl rollout restart deployment gcz-provider -n $NAMESPACE
+   ```
+1. Port-forward to the GCZ Transformer service and test the API documentation endpoint:
+
+   ```bash
+   kubectl port-forward -n $NAMESPACE service/gcz-transformer 8080:8080
+   curl "http://localhost:8080/gcz/transformer/admin/v3/api-docs"
+   ```
+1. Restart the GCZ Transformer deployment (if needed):
+
+   ```bash
+   kubectl rollout restart deployment gcz-transformer -n $NAMESPACE
+   ```
 
    These IPs are used to connect to the GCZ API endpoints.
 
