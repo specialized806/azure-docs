@@ -3,7 +3,7 @@ title: Use Bicep to create Azure role-based access control (Azure RBAC) resource
 description: Learn how to use Bicep to create role assignments and definitions.
 ms.topic: conceptual
 ms.custom: devx-track-bicep
-ms.date: 03/25/2025
+ms.date: 10/30/2025
 ---
 
 # Use Bicep to create Azure role-based access control (Azure RBAC) resources 
@@ -93,7 +93,7 @@ When you create the role assignment resource, you need to specify a fully qualif
 ```bicep
 param principalId string
 
-@description('This is the built-in Contributor role. See https://docs.microsoft.com/azure/role-based-access-control/built-in-roles#contributor')
+@description('This is the built-in Contributor role. See https://learn.microsoft.com/azure/role-based-access-control/built-in-roles#contributor')
 resource contributorRoleDefinition 'Microsoft.Authorization/roleDefinitions@2022-04-01' existing = {
   scope: subscription()
   name: 'b24988ac-6180-42a0-ab88-20f7382dd24c'

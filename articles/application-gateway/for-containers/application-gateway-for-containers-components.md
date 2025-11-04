@@ -2,11 +2,12 @@
 title: Application Gateway for Containers components
 description: This article provides information about how Application Gateway for Containers accepts incoming requests and routes them to a backend target.
 services: application-gateway
-author: greg-lindsay
+author: mbender-ms
 ms.service: azure-appgw-for-containers
 ms.topic: concept-article
-ms.date: 10/15/2024
-ms.author: greglin
+ms.date: 10/23/2025
+ms.author: mbender
+# Customer intent: "As a cloud architect, I want to understand the components of Application Gateway for Containers, so that I can effectively configure and manage traffic routing to backend services in my cloud deployment."
 ---
 
 # Application Gateway for Containers components
@@ -24,16 +25,16 @@ This article provides detailed descriptions and requirements for components of A
 
 - An Application Gateway for Containers frontend resource is an Azure child resource of the Application Gateway for Containers parent resource.
 - An Application Gateway for Containers frontend defines the entry point client traffic should be received by a given Application Gateway for Containers.
-  - A frontend can't be associated to multiple Application Gateway for Containers.
+  - A frontend can't be associated to more than one Application Gateway for Containers.
   - Each frontend provides a unique FQDN that can be referenced by a customer's CNAME record.
   - Private IP addresses are currently unsupported.
-- A single Application Gateway for Containers can support multiple frontends.
+- A single Application Gateway for Containers can support more than one frontends.
 
 ### Application Gateway for Containers associations
 
 - An Application Gateway for Containers association resource is an Azure child resource of the Application Gateway for Containers parent resource.
 - An Application Gateway for Containers association defines a connection point into a virtual network. An association is a 1:1 mapping of an association resource to an Azure Subnet that has been delegated.
-- Application Gateway for Containers is designed to allow for multiple associations.
+- Application Gateway for Containers is designed to allow for more than one associations.
   - At this time, the current number of associations is currently limited to 1.
 - During creation of an association, the underlying data plane is provisioned and connected to a subnet within the defined virtual network's subnet.
 - Each association should assume at least 256 addresses are available in the subnet at time of provisioning.
@@ -48,6 +49,14 @@ This article provides detailed descriptions and requirements for components of A
 - ALB Controller consists of two running pods.
   - alb-controller pod is responsible for orchestrating customer intent to Application Gateway for Containers load balancing configuration.
   - alb-controller-bootstrap pod is responsible for management of CRDs.
+ 
+### Application Gateway for Containers security policy
+
+- An Application Gateway for Containers security policy defines security configurations, such as WAF, for the ALB Controller to consume.
+- More than one security policy may be referred by a single Application Gateway for Containers resource.
+- At this time, the only security policy type offered is `waf` for web application firewall capabilities.
+- The `waf` security policy is a one-to-one mapping between the security policy resource and a Web Application Firewall policy.
+  - Only one web application firewall policy may be referenced in any number of security policies for a defined Application Gateway for Containers resource.
 
 ## Azure / general concepts
 
@@ -98,7 +107,7 @@ Application Gateway for Containers inserts three extra headers to all requests b
 - x-forwarded-proto
 - x-request-id
 
-**x-forwarded-for** is the original requestor's client IP address. If the request is coming through a proxy, the header value appends the address received, comma delimited. In example: 1.2.3.4,5.6.7.8; where 1.2.3.4 is the client IP address to the proxy in front of Application Gateway for Containers, and 5.6.7.8 is the address of the proxy forwarding traffic to Application Gateway for Containers.
+**x-forwarded-for** is the original requester's client IP address. If the request is coming through a proxy, the header value appends the address received, comma delimited. In example: 1.2.3.4,5.6.7.8; where 1.2.3.4 is the client IP address to the proxy in front of Application Gateway for Containers, and 5.6.7.8 is the address of the proxy forwarding traffic to Application Gateway for Containers.
 
 **x-forwarded-proto** returns the protocol received by Application Gateway for Containers from the client. The value is either http or https.
 
@@ -114,3 +123,6 @@ Application Gateway for Containers enforces the following timeouts as requests a
 | HTTP Idle Timeout | 5 minutes | idle timeout before closing an HTTP connection. |
 | Stream Idle Timeout | 5 minutes | idle timeout before closing an individual stream carried by an HTTP connection. |
 | Upstream Connect Timeout | 5 seconds | time for establishing a connection to the backend target. |
+
+>[!Note]
+>Request timeout strictly enforces the request to complete in the defined time irrespective if data is actively streaming or the request has started to idle. For example, if you are serving large file downloads and you expect tranfers to take greater than 60 seconds due to size or slow transfer rates, consider increasing the request timeout value or setting it to 0.

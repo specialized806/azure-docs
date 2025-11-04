@@ -1,12 +1,12 @@
 ---
 title: "Quickstart: Azure Health de-identification client library for .NET"
 description: A quickstart guide to de-identify health data with the .NET client library
-author: GrahamMThomas
-ms.author: gthomas
+author: kimiamavon
+ms.author: kimiamavon
 ms.service: azure-health-data-services
 ms.subservice: deidentification-service
 ms.topic: quickstart-sdk
-ms.date: 08/05/2024
+ms.date: 06/19/2025
 ---
 
 
@@ -18,7 +18,7 @@ Get started with the Azure Health De-identification client library for .NET to d
 
 
 ## Prerequisites
-* An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+* An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * An Azure Storage Account (only for job workflow).
 
 ## Setting up

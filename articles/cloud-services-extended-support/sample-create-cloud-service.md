@@ -2,7 +2,7 @@
 title: Azure PowerShell samples - Create an Azure Cloud Service (extended support)
 description: Sample scripts for creating Azure Cloud Service (extended support) deployments
 ms.topic: sample
-ms.service: azure-cloud-services-extended-support
+ms.service: azure-virtual-machines
 author: gachandw
 ms.author: gachandw
 ms.reviewer: mimckitt
@@ -12,6 +12,10 @@ ms.custom: devx-track-azurepowershell
 ---
 
 # Create a new Azure Cloud Service (extended Support)
+
+> [!IMPORTANT]
+> As of March 31, 2025, cloud Services (extended support) is deprecated and will be fully retired on March 31, 2027. [Learn more](https://aka.ms/csesretirement) about this deprecation and [how to migrate](https://aka.ms/cses-retirement-march-2025).
+
 These samples cover various ways to create a new Azure Cloud Service (extended support) deployment.
 
 ## Create new Cloud Service with single role

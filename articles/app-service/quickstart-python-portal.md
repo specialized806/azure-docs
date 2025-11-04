@@ -6,17 +6,22 @@ author: msangapu-msft
 ms.topic: quickstart
 ms.date: 04/01/2021
 ms.devlang: python
-ms.custom: devx-track-python, mode-ui, linux-related-content
 ROBOTS: noindex
+ms.service: azure-app-service
+ms.custom:
+  - devx-track-python
+  - mode-ui
+  - linux-related-content
+  - sfi-image-nochange
 ---
 
 # Quickstart: Create a Python app using Azure App Service on Linux (Azure portal)
 
-In this quickstart, you deploy a Python web app to [App Service on Linux](overview.md#app-service-on-linux), Azure's highly scalable, self-patching web hosting service. You use the Azure portal to deploy a sample with either the Flask or Django frameworks. The web app you configure uses a basic App Service tier that incurs a small cost in your Azure subscription.
+In this quickstart, you deploy a Python web app to [App Service on Linux](overview.md), Azure's highly scalable, self-patching web hosting service. You use the Azure portal to deploy a sample with either the Flask or Django frameworks. The web app you configure uses a basic App Service tier that incurs a small cost in your Azure subscription.
 
 ## Configure accounts
 
-- If you don't yet have an Azure account with an active subscription, [create an account for free](https://azure.microsoft.com/free/?ref=microsoft.com&utm_source=microsoft.com&utm_medium=docs&utm_campaign=visualstudio).
+- If you don't yet have an Azure account with an active subscription, [create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 - If you don't have a GitHub account, visit [github.com](https://github.com) to create one. 
 

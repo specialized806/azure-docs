@@ -2,7 +2,7 @@
 title: Generate ARM Template for Cloud Services (extended support) using the Azure portal
 description: Generate and download ARM Template and parameter file for Cloud Services (extended support) using the Azure portal
 ms.topic: how-to
-ms.service: azure-cloud-services-extended-support
+ms.service: azure-virtual-machines
 author: surbhijain
 ms.author: surbhijain
 ms.reviewer: gachandw
@@ -12,6 +12,9 @@ ms.custom: devx-track-arm-template
 ---
 
 # Generate ARM Template for Cloud Services (extended support) using the Azure portal
+
+> [!IMPORTANT]
+> As of March 31, 2025, cloud Services (extended support) is deprecated and will be fully retired on March 31, 2027. [Learn more](https://aka.ms/csesretirement) about this deprecation and [how to migrate](https://aka.ms/cses-retirement-march-2025).
 
 This article explains how to download the ARM template and parameter file from the [Azure portal](https://portal.azure.com) for your Cloud Service. The ARM template and parameter file can be used in deployments via PowerShell to create or update a cloud service
 

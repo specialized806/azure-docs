@@ -14,7 +14,7 @@ For more information about containerized applications in a serverless environmen
 
 ## Prerequisites
 
-- An [Azure account](https://azure.microsoft.com/free/?utm_source=campaign&utm_campaign=vscode-tutorial-docker-extension&mktingSource=vscode-tutorial-docker-extension).
+- An [Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - [Docker](https://www.docker.com/community-edition).
 - [Visual Studio Code](https://code.visualstudio.com/).
 - The [Azure App Service extension for VS Code](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azureappservice). You can use this extension to create, manage, and deploy Linux Web Apps on the Azure Platform as a Service (PaaS).
@@ -27,7 +27,7 @@ This quickstart uses Azure Container Registry as the registry. You can use other
 Create a container registry by following the instructions in [Quickstart: Create a private container registry using the Azure portal](/azure/container-registry/container-registry-get-started-portal).
 
 > [!IMPORTANT]
-> Be sure to set the **Admin User** option to **Enable** when you create the Azure container registry. You can also set it from the **Access keys** section of your registry page in the Azure portal. This setting is required for App Service access. For managed identity, see [Deploy from ACR tutorial](../../tutorial-custom-container.md?pivots=container-linux#vi-configure-the-web-app).
+> Be sure to set the **Admin User** option to **Enable** when you create the Azure Container Registry. You can also set it from the **Access keys** section of your registry page in the Azure portal. This setting is required for App Service access. For managed identity, see [Deploy from ACR tutorial](../../tutorial-custom-container.md?pivots=container-linux#configure-the-web-app).
 
 ## Sign in
 
@@ -132,7 +132,7 @@ docker --version
 1. Make sure the image tag begins with `<acr-name>.azurecr.io` and press **Enter**.
 1. When Visual Studio Code finishes pushing the image to your container registry, select **Refresh** at the top of the **REGISTRIES** explorer and verify that the image is pushed successfully.
 
-    :::image type="content" source="../../media/quickstart-docker/image-in-registry.png" alt-text="Screenshot shows the image deployed to Azure container registry.":::
+    :::image type="content" source="../../media/quickstart-docker/image-in-registry.png" alt-text="Screenshot shows the image deployed to Azure Container Registry.":::
 
 ## Deploy to App Service
 

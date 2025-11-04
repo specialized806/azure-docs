@@ -22,7 +22,7 @@ A platform engineering team typically sets up a dev center, attaches external ca
 
 |Category|Requirements|
 |-|-|
-|Azure|- An [Azure subscription](https://azure.microsoft.com/free/).<br>- An Azure role-based access control role that has permissions to create and manage resources in the subscription, such as [Contributor](../role-based-access-control/built-in-roles.md#contributor) or [Owner](../role-based-access-control/built-in-roles.md#owner).<br>-The [Azure CLI devcenter extension](how-to-install-devcenter-cli-extension.md).|
+|Azure|- An [Azure subscription](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).<br>- An Azure role-based access control role that has permissions to create and manage resources in the subscription, such as [Contributor](../role-based-access-control/built-in-roles.md#contributor) or [Owner](../role-based-access-control/built-in-roles.md#owner).<br>-The [Azure CLI devcenter extension](how-to-install-devcenter-cli-extension.md).|
 |GitHub|A GitHub account and a [personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) with repo access.| 
 
 ## Create a dev center
@@ -169,15 +169,15 @@ You can use this [sample catalog](https://github.com/Azure/deployment-environmen
 1. Retrieve the secret identifier:
 
    ```azurecli
-   SECRETID=$(az keyvault secret show --vault-name <keyvaultName> --name GHPAT --query id -o tsv)
-   echo $SECRETID
+   $SECRETID = az keyvault secret show --vault-name <keyvaultName> --name GHPAT --query id -o tsv
+   Write-Output $SECRETID
    ```
 
 1. Add the catalog:
 
    ```azurecli
    # Sample catalog example
-   REPO_URL="<clone URL that you copied earlier>"
+   $REPO_URL = "<clone URL that you copied earlier>"
    az devcenter admin catalog create --git-hub path="/Environments" branch="main" secret-identifier=$SECRETID uri=$REPO_URL -n <catalogName> -d <devcenterName>
    ```
 

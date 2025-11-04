@@ -7,6 +7,8 @@ ms.service: azure-expressroute
 ms.topic: how-to
 ms.date: 01/31/2025
 ms.author: duau
+ms.custom: sfi-image-nochange
+# Customer intent: "As a network engineer, I want to configure Connection Monitor for Azure ExpressRoute, so that I can monitor connectivity and performance between Azure and on-premises locations to quickly identify and resolve potential network issues."
 ---
 
 # Configure Connection Monitor for Azure ExpressRoute
@@ -118,7 +120,7 @@ Install the Log Analytics agent on at least two servers on both sides of the Exp
     * [Windows](/azure/azure-monitor/agents/agent-windows#install-the-agent)
     * [Linux](/azure/azure-monitor/agents/agent-linux)
 
-1. After installation, the Microsoft Monitoring Agent appears in the Control Panel. Review your configuration and [verify the agent connectivity](/azure/azure-monitor/agents/agent-windows#verify-agent-connectivity-to-azure-monitor) to Azure Monitor logs.
+1. After installation, the Microsoft Monitoring Agent appears in the Control Panel. Review your configuration and [verify the agent connectivity](/azure/azure-monitor/agents/agent-windows-troubleshoot?tabs=UpdateMMA#connectivity-issues) to Azure Monitor logs.
 
 1. Repeat steps 1 and 2 for other on-premises machines you wish to monitor.
 

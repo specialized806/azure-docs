@@ -13,7 +13,7 @@ This quickstart shows you how to deploy an ASP.NET app in a Windows image from [
 
 ## Prerequisites
 
-- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/dotnet).
+- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - [Azure CLI](/cli/azure/install-azure-cli)
 
 ## Connect to Azure
@@ -89,6 +89,7 @@ The App Service app pulls from the container registry each time it starts. If yo
 - [Secure with custom domain and certificate](../../tutorial-secure-domain-certificate.md)
 - [Integrate your app with an Azure virtual network](../../overview-vnet-integration.md)
 - [Use Private Endpoints for App Service apps](../../networking/private-endpoint.md)
+- [Use Azure Container Registry with Private Link](/azure/container-registry/container-registry-private-link)
 - [Migrate to Windows container in Azure](../../tutorial-custom-container.md)
 - [Deploy a container with Azure Pipelines](../../deploy-container-azure-pipelines.md)
 - [Deploy a container with GitHub Actions](../../deploy-container-github-action.md)

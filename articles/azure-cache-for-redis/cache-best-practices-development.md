@@ -7,9 +7,14 @@ ms.topic: conceptual
 ms.custom:
   - ignite-2024
 ms.date: 04/18/2024
+appliesto:
+  - ✅ Azure Cache for Redis
+
 ---
 
 # Development
+
+[!INCLUDE [cache-retirement-alert](includes/cache-retirement-alert.md)]
 
 ## Connection resilience and server load
 
@@ -49,7 +54,7 @@ Resolutions for large response sizes are varied but include:
 
 ## Key distribution
 
-If you're planning to use Redis clustering, first read [Redis Clustering Best Practices with Keys](https://redislabs.com/blog/redis-clustering-best-practices-with-keys/).
+If you're planning to use Redis clustering, first read [Redis Clustering Best Practices with Keys](https://redis.io/blog/redis-clustering-best-practices-with-keys/).
 
 ## Use pipelining
 

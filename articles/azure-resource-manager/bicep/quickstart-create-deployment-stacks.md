@@ -1,7 +1,7 @@
 ---
 title: Create and deploy a deployment stack with Bicep
 description: Learn how to use Bicep to create and deploy a deployment stack in your Azure subscription.
-ms.date: 01/15/2025
+ms.date: 10/30/2025
 ms.topic: quickstart
 ms.custom: mode-api, devx-track-azurecli, devx-track-azurepowershell, devx-track-bicep
 # Customer intent: As a developer I want to use Bicep to create a deployment stack.
@@ -13,7 +13,7 @@ This quickstart describes how to create a [deployment stack](deployment-stacks.m
 
 ## Prerequisites
 
-- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - Azure PowerShell [version 12.0.0 or later](/powershell/azure/install-az-ps) or Azure CLI [version 2.61.0 or later](/cli/azure/install-azure-cli).
 - [Visual Studio Code](https://code.visualstudio.com/) with the [Bicep extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-bicep).
 

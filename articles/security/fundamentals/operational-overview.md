@@ -58,7 +58,7 @@ For more information, see the [Azure Backup components table](../../backup/backu
 Microsoft Entra ID also includes a full suite of [identity management capabilities](./identity-management-overview.md#security-monitoring-alerts-and-machine-learning-based-reports), including these:
 
 - [Multi-factor authentication](../../active-directory/authentication/concept-mfa-howitworks.md)
-- [Self-service password management](https://azure.microsoft.com/resources/videos/self-service-password-reset-azure-ad/)
+- [Self-service password management](/shows/azure/how-to-configure-self-service-password-reset-users-in-windows-azure-ad)
 - [Self-service group management](https://support.microsoft.com/account-billing/reset-your-work-or-school-password-using-security-info-23dde81f-08bb-4776-ba72-e6b72b9dda9e)
 - [Privileged account management](../../active-directory/privileged-identity-management/pim-configure.md)
 - [Azure role-based access control (Azure RBAC)](../../role-based-access-control/overview.md)
@@ -80,7 +80,7 @@ With Microsoft Entra ID, all applications that you publish for your partners and
 - Disk encryption validation.
 - Network-based attacks.
 
-Defender for Cloud uses [Azure role-based access control (Azure RBAC)](../../role-based-access-control/role-assignments-portal.yml). Azure RBAC provides [built-in roles](../../role-based-access-control/built-in-roles.md) that can be assigned to users, groups, and services in Azure.
+Defender for Cloud uses [Azure role-based access control (Azure RBAC)](/azure/role-based-access-control/role-assignments-portal). Azure RBAC provides [built-in roles](../../role-based-access-control/built-in-roles.md) that can be assigned to users, groups, and services in Azure.
 
 Defender for Cloud assesses the configuration of your resources to identify security issues and vulnerabilities. In Defender for Cloud, you see information related to a resource only when you're assigned the role of owner, contributor, or reader for the subscription or resource group that a resource belongs to.
 

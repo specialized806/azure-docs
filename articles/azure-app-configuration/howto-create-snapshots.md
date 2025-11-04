@@ -5,7 +5,7 @@ author: Muksvso
 ms.author: mubatra
 ms.service: azure-app-configuration
 ms.topic: how-to 
-ms.date: 03/19/2025
+ms.date: 09/26/2025
 ---
 
 # Manage and use snapshots
@@ -14,7 +14,7 @@ In this article, learn how to create, use and manage snapshots in Azure App Conf
 
 ## Prerequisites
 
-- An App Configuration store. [Create a store](./quickstart-azure-app-configuration-create.md#create-an-app-configuration-store).
+- An App Configuration store, as shown in the [tutorial for creating a store](./quickstart-azure-app-configuration-create.md#create-an-app-configuration-store).
 - "DataOwner" role in the App Configuration store. Details on required [role and permissions for snapshots](./concept-snapshots.md)
 
 ### Add key-values to the App configuration store
@@ -113,10 +113,12 @@ configurationBuilder.AddAzureAppConfiguration(options =>
 
 ### [Spring](#tab/spring)
 
-Update the `bootstrap.yml` file of your application with the following configurations.
+Update the `application.yml` file of your application with the following configurations.
 
 ```yml
 spring:
+  config:
+    import: azureAppConfiguration
   cloud:
     azure:
       appconfiguration:

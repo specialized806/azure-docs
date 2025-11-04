@@ -6,7 +6,7 @@ ms.reviewer: jkinma
 ms.service: cost-management-billing
 ms.subservice: billing
 ms.topic: conceptual
-ms.date: 01/22/2025
+ms.date: 07/24/2025
 ms.author: jkinma
 
 ---
@@ -42,12 +42,12 @@ If you're not sure who the account billing administrator is for a subscription, 
 
 1. Open the [Subscriptions page in the Azure portal](https://portal.azure.com/#blade/Microsoft_Azure_Billing/SubscriptionsBlade).
 1. Select the subscription you want to check, and then look under **Settings**.
-1. Select **Properties**. The account billing administrator of the subscription is displayed in the **Account Admin** box.
+1. Select **Billing properties**. The account billing administrator of the subscription is displayed in the **Account Admin** box.
 
 ### To assign a user as an administrator
 
 - Assign the Owner role to a user at the subscription scope.  
-     For detailed steps, see [Assign Azure roles using the Azure portal](../../role-based-access-control/role-assignments-portal.yml).
+     For detailed steps, see [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal).
 
 ## Need help? Contact support
 

@@ -2,7 +2,7 @@
 title: Azure PowerShell samples - Update an Azure Cloud Service (extended support)
 description: Sample scripts for updating Azure Cloud Service (extended support) deployments
 ms.topic: sample
-ms.service: azure-cloud-services-extended-support
+ms.service: azure-virtual-machines
 author: gachandw
 ms.author: gachandw
 ms.reviewer: mimckitt
@@ -12,6 +12,9 @@ ms.custom: devx-track-azurepowershell
 ---
 
 # Update an Azure Cloud Service (extended support)
+
+> [!IMPORTANT]
+> As of March 31, 2025, cloud Services (extended support) is deprecated and will be fully retired on March 31, 2027. [Learn more](https://aka.ms/csesretirement) about this deprecation and [how to migrate](https://aka.ms/cses-retirement-march-2025).
 
 These samples cover various ways to update an existing Azure Cloud Service (extended support) deployment.
 

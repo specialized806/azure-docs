@@ -8,6 +8,7 @@ ms.service: azure-nat-gateway
 ms.topic: tutorial
 ms.date: 08/30/2024
 ms.custom: template-tutorial, linux-related-content
+# Customer intent: "As a cloud architect, I want to integrate a NAT gateway with an internal load balancer, so that I can enhance outbound connectivity and manage resources efficiently without deploying a public load balancer or public IPs on virtual machines."
 ---
 
 # Tutorial: Integrate a NAT gateway with an internal load balancer using the Azure portal
@@ -32,7 +33,7 @@ In this tutorial, you learn how to:
 
 ## Prerequisites
 
-An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 Sign in to the [Azure portal](https://portal.azure.com) with your Azure account.
 

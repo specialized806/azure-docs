@@ -5,9 +5,10 @@ description: Azure storage offers different access tiers so that you can store y
 author: normesta
 
 ms.author: normesta
-ms.date: 03/10/2025
+ms.date: 06/13/2025
 ms.service: azure-blob-storage
-ms.topic: conceptual
+ms.topic: concept-article
+# Customer intent: As a cloud storage manager, I want to select the appropriate access tier for my blob data, so that I can optimize storage costs based on the frequency of access and retention requirements.
 ---
 
 # Access tiers for blob data
@@ -208,7 +209,7 @@ The cold tier requires the following minimum versions of REST, SDKs, and tools
 
 | Environment | Minimum version |
 |---|---|
-| [REST API](/rest/api/storageservices/blob-service-rest-api)| 2021-21-02 |
+| [REST API](/rest/api/storageservices/blob-service-rest-api)| 2021-12-02 |
 | [.NET](/dotnet/api/azure.storage.blobs) | 12.15.0 |
 | [Java](/java/api/overview/azure/storage-blob-readme) | 12.21.0 |
 | [Python](/python/api/azure-storage-blob/) | 12.15.0 |

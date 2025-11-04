@@ -1,12 +1,13 @@
 ---
 title: Monitoring data reference for Azure Firewall
 description: This article contains important reference material you need when you monitor Azure Firewall by using Azure Monitor.
-ms.date: 10/26/2024
+ms.date: 09/29/2025
 ms.custom: horz-monitor
 ms.topic: reference
 author: duongau
 ms.author: duau
 ms.service: azure-firewall
+# Customer intent: As a network administrator, I want to monitor metrics and logs for Azure Firewall, so that I can ensure its performance and proactively identify any issues affecting traffic management.
 ---
 # Azure Firewall monitoring data reference
 
@@ -23,6 +24,18 @@ The following table lists the metrics available for the Microsoft.Network/azureF
 [!INCLUDE [horz-monitor-ref-metrics-tableheader](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-ref-metrics-tableheader.md)]
 
 [!INCLUDE [Microsoft.Network/azureFirewalls](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/microsoft-network-azurefirewalls-metrics-include.md)]
+
+
+### Observed capacity
+The Observed Capacity metric is the primary tool for understanding how your firewall is scaling in practice.
+
+Best practices for using it:
+- Validate your prescaling setup: Confirm that your firewall consistently maintains the minCapacity you’ve defined.
+- Track real-time scaling behavior: Use the Max aggregation to see the highest capacity units reached during peak events.
+- Forecast future needs: Combine historical Observed Capacity with traffic trends (e.g., monthly spikes, seasonal events) to refine your capacity planning.
+- Set proactive alerts: Configure Azure Monitor alerts on Observed Capacity thresholds (e.g., “alert me if scaling > 80% of maxCapacity”).
+- Correlate with performance metrics: Pair Observed Capacity with Throughput, Latency Probe, and SNAT Port Utilization to diagnose whether scaling is keeping up with demand.
+
 
 ### Firewall health state
 
@@ -43,7 +56,7 @@ For the *SNAT port utilization* metric, when you add more public IP addresses to
 
 Effectively, a given percentage of SNAT ports utilization might go down without you adding any public IP addresses, just because the service scaled out. You can directly control the number of public IP addresses available to increase the ports available on your firewall. But, you can't directly control firewall scaling.
 
-If your firewall is running into SNAT port exhaustion, you should add at least five public IP address. This increases the number of SNAT ports available. For more information, see [Azure Firewall features](features.md#multiple-public-ip-addresses).
+If your firewall is running into SNAT port exhaustion, you should add at least five public IP addresses. This increases the number of SNAT ports available. For more information, see [Azure Firewall features](features.md#multiple-public-ip-addresses).
 
 #### AZFW Latency Probe
 
@@ -57,7 +70,7 @@ The *AZFW Latency Probe* metric measures the overall or average latency of Azure
 
 - What it measures: The latency of the Azure Firewall within the Azure platform
 - What it doesn't measure: The metric does not capture end-to-end latency for the entire network path. Instead, it reflects the performance within the firewall, rather than how much latency Azure Firewall introduces into the network. 
-- Error reporting: If the latency metric isn't functioning correct, it reports a value of 0 in the metrics dashboard, indicating a probe failure or interruption.
+- Error reporting: If the latency metric isn't functioning correctly, it reports a value of 0 in the metrics dashboard, indicating a probe failure or interruption.
 
 **Factors that impact latency:**
 - High CPU utilization
@@ -65,13 +78,17 @@ The *AZFW Latency Probe* metric measures the overall or average latency of Azure
 - Networking issues within the Azure platform
 
 **Latency Probes: From ICMP to TCP**
-The latency probe currently uses Microsoft's Ping Mesh technology, which is based on ICMP (Internet Control Message Protocol). ICMP is suitable for quick health checks, like ping requests, but it may not accurately represent real-world application traffic, which typically relis on TCP.However, ICMP probes prioritize differently across the Azure platform, which can result in variation across SKUs. To reduce these discrepancies, Azure Firewall plans to transition to TCP-based probes. 
+The latency probe currently uses Microsoft's Ping Mesh technology, which is based on ICMP (Internet Control Message Protocol). ICMP is suitable for quick health checks, like ping requests, but it may not accurately represent real-world application traffic, which typically relies on TCP. However, ICMP probes prioritize differently across the Azure platform, which can result in variation across SKUs. To reduce these discrepancies, Azure Firewall plans to transition to TCP-based probes. 
 
 - Latency spikes: With ICMP probes, intermittent spikes are normal and are part of the host network's standard behavior. These should not be misinterpreted as firewall issues unless they are persistent.
 - Average latency: On average, the latency of Azure Firewall is expected to range from 1ms to 10 ms, depending on the Firewall SKU and deployment size.
 
 **Best Practices for Monitoring Latency**
 - Set a baseline: Establish a latency baseline under light traffic conditions for accurate comparisons during normal or peak usage.
+
+  > [!NOTE]
+  > When establishing your baseline, expect occasional metric spikes due to recent infrastructure changes. These temporary spikes are normal and result from metric reporting adjustments, not actual issues. Only submit a support request if spikes persist over time.
+  
 - Monitor for patterns: Expect occasional latency spikes as part of normal operations. If high latency persists beyond these normal variations, it may indicate a deeper issue requiring investigation.
 - Recommended latency threshold: A recommended guideline is that latency should not exceed 3x the baseline. If this threshold is crossed, further investigation is recommended.
 - Check the rule limit: Ensure that the network rules are within the 20K rule limit. Exceeding this limit can affect performance. 
@@ -93,12 +110,6 @@ The latency probe currently uses Microsoft's Ping Mesh technology, which is base
 ### Supported resource logs for Microsoft.Network/azureFirewalls
 
 [!INCLUDE [Microsoft.Network/azureFirewalls](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-network-azurefirewalls-logs-include.md)]
-
-Azure Firewall has two new diagnostic logs that can help monitor your firewall, but these logs currently do not show application rule details.
-- Top flows
-- Flow trace
-
-
 
 ## Top flows
 
@@ -148,7 +159,7 @@ The following properties can be added:
 - SYN-ACK: ACK flag that indicates acknowledgment of SYN packet.
 - FIN: Finished flag of the original packet flow. No more data is transmitted in the TCP flow.
 - FIN-ACK: ACK flag that indicates acknowledgment of FIN packet.
-- RST: The Reset the flag indicates the original sender doesn't receive more data.
+- RST: The Reset flag indicates the original sender doesn't receive more data.
 - INVALID (flows): Indicates packet can’t be identified or don't have any state.
 
   For example:
@@ -175,10 +186,14 @@ To check the status of the AzResourceProvider registration, you can run the Azur
 Get-AzProviderFeature -FeatureName "AFWEnableTcpConnectionLogging" -ProviderNamespace "Microsoft.Network"
 ```
 
-To disable the log, you can unregister it using the following command or select unregister in the previous portal example.
+To disable the log, you can use the following Azure PowerShell commands:
 
 ```powershell
-Unregister-AzProviderFeature -FeatureName AFWEnableTcpConnectionLogging -ProviderNamespace Microsoft.Network
+Connect-AzAccount 
+Select-AzSubscription -Subscription <subscription_id> or <subscription_name>
+$firewall = Get-AzFirewall -ResourceGroupName <ResourceGroupName> -Name <FirewallName>
+$firewall.EnableTcpConnectionLogging = $false
+Set-AzFirewall -AzureFirewall $firewall
 ```
 
 To create a diagnostic setting and enable Resource Specific Table, see [Create diagnostic settings in Azure Monitor](/azure/azure-monitor/essentials/create-diagnostic-settings).
@@ -210,4 +225,5 @@ To create a diagnostic setting and enable Resource Specific Table, see [Create d
 ## Related content
 
 - See [Monitor Azure Firewall](monitor-firewall.md) for a description of monitoring Azure Firewall.
+- See [Track rule set changes](rule-set-change-tracking.md) for detailed Azure Resource Graph queries to track firewall rule modifications.
 - See [Monitor Azure resources with Azure Monitor](/azure/azure-monitor/essentials/monitor-azure-resource) for details on monitoring Azure resources.

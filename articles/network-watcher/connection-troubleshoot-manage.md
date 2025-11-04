@@ -9,6 +9,7 @@ ms.topic: how-to
 ms.date: 03/18/2025
 
 #CustomerIntent: As an Azure administrator, I want to learn how to use Connection Troubleshoot to diagnose outbound connectivity issues in Azure using the Azure portal, Powershell, or Azure CLI.
+# Customer intent: As a network administrator, I want to learn how to use the connection troubleshoot feature to diagnose outbound connectivity issues in Azure, so that I can ensure seamless communication between virtual machines and external endpoints.
 ---
 
 # Troubleshoot outbound connections
@@ -19,7 +20,7 @@ In this article, you learn how to use the connection troubleshoot feature of Azu
 
 # [**Portal**](#tab/portal)
 
-- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 - Network Watcher enabled in the region of the virtual machine (VM) you want to troubleshoot. By default, Azure enables Network Watcher in a region when you create a virtual network in it. For more information, see [Enable or disable Azure Network Watcher](network-watcher-create.md).
 
@@ -31,7 +32,7 @@ In this article, you learn how to use the connection troubleshoot feature of Azu
 
 # [**PowerShell**](#tab/powershell)
 
-- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 - Network Watcher enabled in the region of the virtual machine (VM) you want to troubleshoot. By default, Azure enables Network Watcher in a region when you create a virtual network in it. For more information, see [Enable or disable Azure Network Watcher](network-watcher-create.md).
 
@@ -49,7 +50,7 @@ In this article, you learn how to use the connection troubleshoot feature of Azu
 
 # [**Azure CLI**](#tab/cli)
 
-- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 - Network Watcher enabled in the region of the virtual machine (VM) you want to troubleshoot. By default, Azure enables Network Watcher in a region when you create a virtual network in it. For more information, see [Enable or disable Azure Network Watcher](network-watcher-create.md).
 

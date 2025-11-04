@@ -2,7 +2,7 @@
 title: Deploy Azure Cloud Services (extended support) - Azure PowerShell
 description: Deploy Azure Cloud Services (extended support) by using Azure PowerShell.
 ms.topic: quickstart
-ms.service: azure-cloud-services-extended-support
+ms.service: azure-virtual-machines
 author: gachandw
 ms.author: gachandw
 ms.reviewer: mimckitt
@@ -12,6 +12,9 @@ ms.custom: devx-track-azurepowershell
 ---
 
 # Deploy Cloud Services (extended support) by using Azure PowerShell
+
+> [!IMPORTANT]
+> As of March 31, 2025, cloud Services (extended support) is deprecated and will be fully retired on March 31, 2027. [Learn more](https://aka.ms/csesretirement) about this deprecation and [how to migrate](https://aka.ms/cses-retirement-march-2025).
 
 This article shows you how to use the Az.CloudService Azure PowerShell module to create an Azure Cloud Services (extended support) deployment that has multiple roles (WebRole and WorkerRole).
 

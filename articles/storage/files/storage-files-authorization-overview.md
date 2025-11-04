@@ -1,14 +1,18 @@
 ---
-title: Overview - Azure Files authorization and access control
+title: Overview - Azure Files Authorization and Access Control
 description: Azure Files enforces authorization on user access at both the share level and the directory/file level. You can assign share-level permissions through Azure RBAC.
 author: khdownie
 ms.service: azure-file-storage
 ms.topic: overview
-ms.date: 01/24/2025
+ms.date: 10/16/2025
 ms.author: kendownie
+# Customer intent: As a cloud administrator, I want to configure authorization and access control for SMB Azure file shares, so that I can manage user permissions at both the share and directory/file levels effectively.
 ---
 
+
 # Overview of Azure Files authorization and access control
+
+**Applies to:** :heavy_check_mark: SMB Azure file shares
 
 Regardless of which identity source you choose for [identity-based authentication](storage-files-active-directory-overview.md) on your storage account, you'll need to configure authorization and access control. Azure Files enforces authorization on user access at both the share level and the directory/file levels.
 
@@ -20,18 +24,22 @@ At the directory/file level, Azure Files supports preserving, inheriting, and en
 
 Once you've enabled an identity source on your storage account, you must do one of the following to access the file share:
 
-- Set a default share-level permission that applies to all authenticated users and groups
+- Set a [default share-level permission](storage-files-identity-assign-share-level-permissions.md#share-level-permissions-for-all-authenticated-identities) that applies to all authenticated users and groups
 - Assign built-in Azure RBAC roles to users and groups, or 
 - Configure custom roles for Microsoft Entra identities and assign access rights to file shares in your storage account.
 
 The assigned share-level permission allows the granted identity to get access to the share only, nothing else, not even the root directory. You still need to separately configure directory and file-level permissions.
+
+For more information, see [Assign share-level permissions](storage-files-identity-assign-share-level-permissions.md).
 
 > [!NOTE]
 > You can't assign share-level permissions to computer accounts (machine accounts) using Azure RBAC, because computer accounts can't be synced to an identity in Microsoft Entra ID. If you want to allow a computer account to access Azure file shares using identity-based authentication, [use a default share-level permission](storage-files-identity-assign-share-level-permissions.md#share-level-permissions-for-all-authenticated-identities) or consider using a service logon account instead.
 
 ## Configure directory and file-level permissions
 
-Azure file shares enforce standard Windows ACLs at both the directory and file level, including the root directory. Configuration of directory or file-level permissions is supported over both SMB and REST. Mount the target file share from your VM and configure permissions using Windows File Explorer, Windows [icacls](/windows-server/administration/windows-commands/icacls), or the [Set-ACL](/powershell/module/microsoft.powershell.security/get-acl) command.
+Azure file shares enforce standard Windows ACLs at both the directory and file level, including the root directory. Configuration of directory or file-level permissions is supported over both SMB and REST.
+
+For more information, see [Configure directory and file-level permissions](storage-files-identity-configure-file-level-permissions.md).
 
 ### Preserve directory and file ACLs when importing data to Azure Files
 

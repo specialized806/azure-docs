@@ -2,7 +2,7 @@
 title: Store and use certificates in Azure Cloud Services (extended support)
 description: Processes for storing and using certificates in Azure Cloud Services (extended support)
 ms.topic: how-to
-ms.service: azure-cloud-services-extended-support
+ms.service: azure-virtual-machines
 author: gachandw
 ms.author: gachandw
 ms.reviewer: mimckitt
@@ -11,6 +11,9 @@ ms.date: 07/24/2024
 ---
 
 # Use certificates with Azure Cloud Services (extended support)
+
+> [!IMPORTANT]
+> As of March 31, 2025, cloud Services (extended support) is deprecated and will be fully retired on March 31, 2027. [Learn more](https://aka.ms/csesretirement) about this deprecation and [how to migrate](https://aka.ms/cses-retirement-march-2025).
 
 Key Vault is used to store certificates that are associated to Cloud Services (extended support). Key Vaults can be created through the [Azure portal](/azure/key-vault/general/quick-create-portal) and [PowerShell](/azure/key-vault/general/quick-create-powershell). Add the certificates to Key Vault, then reference the certificate thumbprints in Service Configuration file. You also need to enable Key Vault for appropriate permissions so that Cloud Services (extended support) resource can retrieve certificate stored as secrets from Key Vault.
 

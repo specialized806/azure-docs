@@ -93,7 +93,7 @@ There are some important considerations when defining your resource group:
 
 * The resources in a resource group can be located in different regions than the resource group, but we recommend that you use the same location. See [What location should I use for my resource group?](#which-location-should-i-use-for-my-resource-group).
 
-* A resource group can be used to scope access control for administrative actions. You can use Azure [policies](../../governance/policy/overview.md), [roles](../../role-based-access-control/role-assignments-portal.yml), or [resource locks](lock-resources.md) to manage a resource group.
+* A resource group can be used to scope access control for administrative actions. You can use Azure [policies](../../governance/policy/overview.md), [roles](/azure/role-based-access-control/role-assignments-portal), or [resource locks](lock-resources.md) to manage a resource group.
 
 * You can [apply tags](tag-resources.md) to a resource group. The resources in the resource group don't inherit those tags.
 
@@ -117,9 +117,9 @@ The resource group stores metadata about resources. When you specify a location 
 
 Routing all [control plane operations](./control-plane-and-data-plane.md) through the resource group's location can help the resource group to remain in a consistent state. When selecting a resource group location, it's recommended that you select a location close to where your control operations originate. Typically, this location is the one closest to you. This routing requirement only applies to control plane operations for the resource group. It doesn't affect requests that are sent to your applications.
 
-If a resource group's region isn't available temporarily, you might not be able to update resources in the resource group because the metadata isn't available. The resources in other regions will still function as expected, but you might not be able to update them. This condition might also apply to global resources like Azure DNS, Azure Private DNS zones, Azure Traffic Manager, and Azure Front Door. See the [Azure Resource Graph table and resource type reference](../../governance/resource-graph/reference/supported-tables-resources.md#resources) list to view the resources and metadata that Resource Manager manages.
+If a resource group's region is temporarily unavailable, your resource requests will failover to a secondary region. However, if multiple regions are experiencing an outage or the resource's location is also unavailable, you may still be impacted. To reduce the impact of regional outages, it's recommended that you locate your resources and resource group in the same region. See the [Azure Resource Graph table and resource type reference](../../governance/resource-graph/reference/supported-tables-resources.md#resources) list to view the resources and metadata that Resource Manager manages.
 
-When a resource group's region isn't available, Resource Manager can't update your resource's metadata and blocks your write calls. To reduce the impact of regional outages, it's recommended that you locate your resources and resource group in the same region. This reduces the likelihood of a region not being available because your resources and metadata exist in one region instead of multiple ones.
+Azure Resource Manager enhances reliability during regional outages, ensuring high availability for both reads and writes with minimal disruption to customers. Service interruptions would only occur in the rare event that both the primary and backup regions of the resource group are affected.
 
 For more information about building reliable applications, see the [Resiliency checklist for specific Azure services](/azure/architecture/checklist/resiliency-per-service).
 
@@ -136,6 +136,11 @@ Resource Manager is designed for resiliency and continuous availability. Resourc
 * Are not taken down for maintenance activities.
 
 This resiliency applies to services that receive requests through Resource Manager. Azure Key Vault is one service that benefits from this consistency.
+
+
+Using the global endpoint `management.azure.com` is recommended for Azure Resource Manager routing because it enables DNS-based traffic distribution, automatic failover, and optimal routing to the closest or healthiest region, which improves latency and reliability for users worldwide.
+Global endpoints typically result in faster response times, as users are directed to the nearest available region, reducing network hops and delays.
+
 
 ## Resolve concurrent operations
 

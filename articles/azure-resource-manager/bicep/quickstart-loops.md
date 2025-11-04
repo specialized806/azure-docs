@@ -1,7 +1,7 @@
 ---
 title: Create multiple resource instances in Bicep
 description: Use different methods to create multiple resource instances in Bicep
-ms.date: 09/26/2024
+ms.date: 04/28/2025
 ms.topic: quickstart
 ms.custom: mode-api, devx-track-bicep
 #Customer intent: As a developer new to Azure deployment, I want to learn how to create multiple resources in Bicep.
@@ -21,7 +21,7 @@ This article contains the following topics:
 
 ## Prerequisites
 
-If you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/free/) before you begin.
+If you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 
 To set up your environment for Bicep development, see [Install Bicep tools](install.md). After completing those steps, you'll have [Visual Studio Code](https://code.visualstudio.com/) and the [Bicep extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-bicep). You also have either the latest [Azure CLI](/cli/azure/) or the latest [Azure PowerShell module](/powershell/azure/new-azureps-module-az).
 

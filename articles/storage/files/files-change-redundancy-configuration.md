@@ -7,6 +7,7 @@ ms.topic: how-to
 ms.date: 01/15/2025
 ms.author: kendownie
 ms.custom: references_regions, devx-track-azurepowershell
+# Customer intent: "As a cloud storage administrator, I want to change the redundancy configuration for Azure Files so that I can optimize data protection and cost based on my organization’s specific availability and disaster recovery needs."
 ---
 
 # Change how Azure Files data is replicated
@@ -229,7 +230,7 @@ To track the current migration status of the conversion initiated on your storag
 ```azurecli-interactive
 az storage account migration show \
     --account-name <string> \
-    - g <sting> \
+    - g <string> \
     -n "default"
 ```
 

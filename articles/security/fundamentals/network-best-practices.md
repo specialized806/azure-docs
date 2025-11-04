@@ -13,7 +13,7 @@ ms.author: mbaldwin
 
 ---
 # Azure best practices for network security
-This article discusses a collection of Azure best practices to enhance your network security. These best practices are derived from our experience with Azure networking and the experiences of customers like yourself.
+This article discusses a collection of Azure best practices to enhance your network security. These best practices are derived from our experience with Azure networking, and the experiences of customers like yourself.
 
 For each best practice, this article explains:
 
@@ -80,18 +80,16 @@ When you put a virtual machine on an Azure virtual network, the VM can connect t
 
 Although the default system routes are useful for many deployment scenarios, there are times when you want to customize the routing configuration for your deployments. You can configure the next-hop address to reach specific destinations.
 
-We recommend that you configure [user-defined routes](../../virtual-network/virtual-networks-udr-overview.md#custom-routes) when you deploy a security appliance for a virtual network. We talk about this recommendation in a later section titled [secure your critical Azure service resources to only your virtual networks](network-best-practices.md#secure-your-critical-azure-service-resources-to-only-your-virtual-networks).
+We recommend that you configure [user-defined routes](../../virtual-network/virtual-networks-udr-overview.md#custom-routes) when you deploy a security appliance for a virtual network. We talk about this recommendation in a later section titled [secure your critical Azure service resources to only your virtual networks](#secure-your-critical-azure-service-resources-to-only-your-virtual-networks).
 
 > [!NOTE]
 > User-defined routes aren't required, and the default system routes usually work.
->
->
+
 
 ## Use virtual network appliances
 Network security groups and user-defined routing can provide a certain measure of network security at the network and transport layers of the [OSI model](https://en.wikipedia.org/wiki/OSI_model). But in some situations, you want or need to enable security at high levels of the stack. In such situations, we recommend that you deploy virtual network security appliances provided by Azure partners.
 
 Azure network security appliances can deliver better security than what network-level controls provide. Network security capabilities of virtual network security appliances include:
-
 
 * Firewalling
 * Intrusion detection/intrusion prevention
@@ -105,6 +103,7 @@ Azure network security appliances can deliver better security than what network-
 To find available Azure virtual network security appliances, go to the [Azure Marketplace](https://azure.microsoft.com/marketplace/) and search for "security" and "network security."
 
 ## Deploy perimeter networks for security zones
+
 A [perimeter network](/azure/architecture/vdc/networking-virtual-datacenter) (also known as a DMZ) is a physical or logical network segment that provides an extra layer of security between your assets and the internet. Specialized network access control devices on the edge of a perimeter network allow only desired traffic into your virtual network.
 
 Perimeter networks are useful because you can focus your network access control management, monitoring, logging, and reporting on the devices at the edge of your Azure virtual network. A perimeter network is where you typically enable [distributed denial of service (DDoS) protection](../../ddos-protection/ddos-protection-overview.md), intrusion detection/intrusion prevention systems (IDS/IPS), firewall rules and policies, web filtering, network antimalware, and more. The network security devices sit between the internet and your Azure virtual network and have an interface on both networks.
@@ -190,7 +189,8 @@ Point-to-site VPN is more secure than direct RDP or SSH connections because the 
 Use Azure Private Link to access Azure PaaS Services (for example, Azure Storage and SQL Database) over a private endpoint in your virtual network. Private Endpoints allow you to secure your critical Azure service resources to only your virtual networks. Traffic from your virtual network to the Azure service always remains on the Microsoft Azure backbone network. Exposing your virtual network to the public internet is no longer necessary to consume Azure PaaS Services. 
 
 Azure Private Link provides the following benefits:
-- **Improved security for your Azure service resources**: With Azure Private Link, Azure service resources can be secured to your virtual network using private endpoint. Securing service resources to a private endpoint in virtual network provides improved security by fully removing public internet access to resources, and allowing traffic only from  private endpoint in your virtual network.
+- **Improved security for your Azure service resources**: With Azure Private Link, Azure service resources can be secured to your virtual network using private endpoint. Securing service resources to a private endpoint in virtual network provides improved security by fully removing public internet access to resources, and allowing traffic only from private endpoint in your virtual network.
+
 - **Privately access Azure service resources on the Azure platform**: Connect your virtual network to services in Azure using private endpoints. There's no need for a public IP address. The Private Link platform will handle the connectivity between the consumer and services over the Azure backbone network.
 - **Access from On-premises and peered networks**: Access services running in Azure from on-premises over ExpressRoute private peering, VPN tunnels, and peered virtual networks using private endpoints. There's no need to configure ExpressRoute Microsoft peering or traverse the internet to reach the service. Private Link provides a secure way to migrate workloads to Azure.
 - **Protection against data leakage**: A private endpoint is mapped to an instance of a PaaS resource instead of the entire service. Consumers can only connect to the specific resource. Access to any other resource in the service is blocked. This mechanism provides protection against data leakage risks.

@@ -7,7 +7,9 @@ ms.suite: integration
 ms.reviewer: estfan, azla
 ms.collection: ce-skilling-ai-copilot
 ms.topic: how-to
-ms.date: 02/07/2025
+ms.date: 08/06/2025
+ms.update-cycle: 180-days
+ms.custom: sfi-image-nochange
 # Customer intent: As a developer, I want to create my first example Standard logic app workflow that runs in single-tenant Azure Logic Apps using the Azure portal.
 ---
 
@@ -52,7 +54,7 @@ For more information, see the following documentation:
 
 ## Prerequisites
 
-* An Azure account and subscription. If you don't have a subscription, [sign up for a free Azure account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+* An Azure account and subscription. If you don't have a subscription, [sign up for a free Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 * An [Azure Storage account](../storage/common/storage-account-overview.md). If you don't have one, you can either create a storage account in advance or during logic app creation.
 
@@ -194,6 +196,21 @@ For optimal designer responsiveness and performance, review and follow these gui
    1. On the **Monitoring** tab, under **Application Insights**, set **Enable Application Insights** to **Yes**.
 
    1. For the **Application Insights** setting, either select an existing Application Insights instance, or if you want to create a new instance, select **Create new** and provide the name that you want to use.
+  
+1. On the **Authentication** tab, under **Authentication type**, select the authentication to use for connecting to the host storage account resource (**Host storage (AzureWebJobsStorage)**).
+
+   > [!IMPORTANT]
+   >
+   > If you select **Managed identity** for authentication, you must specify the managed identity to use. Choose one of the following options:
+   >
+   > - If you select **Create new managed identity**, the portal creates this identity and automatically assigns the correct role-based access
+   > permissions to the identity on the host storage account for your logic app. After you create your logic app, you might have to wait a few
+   > minutes for the permissions to propagate onto your new managed identity. You can then restart your logic app. If no option exists to create
+   > a managed identity, you need the lowest level of permissions that permits you to complete this task.
+   >
+   > - If you select an existing managed identity, you must manually assign the roles in the **Minimum roles required column** to the managed
+   > identity on the host storage account resource. Consider completing this assignment before you deploy your logic app. Otherwise, you get 
+   > errors when you open your new logic app resource. For more information, see [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal).
 
 1. After Azure validates your logic app settings, on the **Review + create** tab, select **Create**, for example:
 
@@ -437,7 +454,7 @@ By default, your Standard logic app authenticates access to your Azure Storage a
       - **Storage Queue Data Contributor**
       - **Storage Table Data Contributor**
 
-   For more information, see [Assign Azure roles using the Azure portal](../role-based-access-control/role-assignments-portal.yml) and [Understand role assignments](../role-based-access-control/role-assignments.md).
+   For more information, see [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal) and [Understand role assignments](../role-based-access-control/role-assignments.md).
 
 1. [Follow these steps to add the user-assigned managed identity to your Standard logic app resource](authenticate-with-managed-identity.md?tabs=standard#add-user-assigned-identity-to-logic-app-in-the-azure-portal).
 
