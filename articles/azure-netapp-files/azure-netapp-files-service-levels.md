@@ -17,12 +17,14 @@ Service levels are an attribute of a capacity pool. Service levels are defined a
 
 Azure NetApp Files supports four service levels: *Flexible*, *Standard*, *Premium*, and *Ultra*.   
 
-* <a name="Elastic"></a>Elastic zone-redundant storage (preview):
-
+* <a name="Elastic"></a>Elastic Zone-Redundant storage (preview):
     <!-- tbd -->
+    Elastic Zone-Redundant storage provides flexible management of resources with scalable capacity pools.It's designed for smaller workloads scaling to the cloud, with automated and transparent failover and user-defined availability zones, allowing for tailored operational continuity. With Elastic Zone-Redundant storage, you can create capacity pools at sizes between 512 GiB and 128 TiB with shared QoS across volumes to adapt to changing workloads seamlessly. Elastic Zone-Redundant storage offers throughput of 32 MiB/s per 1 TiB. For more information, see [Understand Elastic Zone-Redundant storage](elastic-zone-redundant-concept.md).
+
+    >[!IMPORTANT]
+    >Elastic Zone-Redundant offers a different subset of features than the other service levels. For more information, see [Understand Elastic Zone-Redundant storage](elastic-zone-redundant-concept.md).
 
 * <a name="Flexible"></a>Flexible storage:
-
     The Flexible service level enables you to adjust throughput and size limits independently. You can use the Flexible service level to create high-capacity volumes with low throughput requirements or the reverse: low-capacity volumes with high throughput requirements. The Flexible service level is designed for demanding applications such as Oracle or SAP HANA.
     
     The minimum throughput you can assign a Flexible capacity pool is 128 MiB/second regardless of the pool quota. The maximum throughput is 5 x 128 MiB/second/TiB x the size of the capacity pool in TiB. For more information, see [Flexible service level throughput examples](#flexible-examples) and [considerations for the Flexible service level](azure-netapp-files-set-up-capacity-pool.md#considerations).

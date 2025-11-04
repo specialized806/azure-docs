@@ -36,7 +36,7 @@ The following table outlines resource limits for the Elastic service level of Az
 | Maximum number of export policy rules per volume | 5 | No | 
 | Maximum number of quota rules per volume | 1,000| No | 
 
-<!-- file, throughput, regional capacity per subscription, number of IPs / VNet, backups per day, backups, snapshots, -->
+<!-- file, throughput, regional capacity per subscription, number of IPs / VNet, backups per day, backups, snapshots, |  # of CRR/CZR DP volumes --> 
 
 To request an increase where applicable, learn how to [Create a support request](azure-netapp-files-resource-limits.md#request-limit-increase).
 

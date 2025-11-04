@@ -31,22 +31,22 @@ You must create a capacity pool before you can create volumes in Azure NetApp Fi
 
 ## Considerations for Elastic service level capacity pools
 
-<!-- manual & auto qos-->
-* You must use [Standard network features](configure-network-features.md).  
+* Elastic Zone-Redundant capacity pools by default only support [Standard network features](configure-network-features.md) and [auto QoS](azure-netapp-files-understand-storage-hierarchy.md#qos_types). 
 * Elastic service levels have different limits than other Azure NetApp Files service levels. See [Elastic service level](elastic-resource-limits.md) for resource limits. 
 * After creating a capacity pool, you can't reduce the quota of the capacity pool. 
 * When creating capacity pools, you must designate the failover order for three zones. The order cannot be changed after creating the capacity pools. Capacity pools automatically failover if a zonal outage occurs. You can also manually perform failovers.  
     * Failback is not supported.  
-* Zone-redundant capacity pools provide throughput at 32 MiB/s per 1 TiB and 1 I/OPS per GiB. With the maximum capacity pool size of 16 TiB, throughput maxes out at 512 MiB/s and 16,384 I/OPS. QoS is shared across all volumes in a capacity pool.  
+* Zone-redundant capacity pools provide throughput at 32 MiB/s per 1 TiB and 1 I/OPS per GiB. With the maximum capacity pool size of 128, throughput maxes out at 4,096 MiB/s and 131,072 I/OPS. QoS is shared across all volumes in a capacity pool.  
 * Volumes in zone-redundant storage capacity pools can't be moved out of the capacity pool they're created in. 
 * Review the [maximum and minimum sizes](elastic-resource-limits.md) for the Elastic Zone-Redundant service level. 
 <!-- bugs -->
-* If you've created a 512-GiB capacity pool, you can resize it to 1 TiB. All subsequent resizing must be done in 1-TiB increments.
-    * If you've create a capacity pool at a size under 16 TiB, you can't resize it beyond 16 TiB, however you can create a 24 TiB capacity pool and resize it up to the maximum capacity pool size. 
-* When you resize a capacity pool, the capacity pool might revert to the availability zone it was originally created in. Confirm the capacity pool and [change the zone] after resizing if necessary.
+* When resizing capacity pools: 
+    * If you've created a 512-GiB capacity pool, you can resize it to 1 TiB. You can resize it up to 16 TiB in 1-TiB increments. 
+    * If you create a 16-TiB capacity pool, you can increase its size in 8-TiB increments. 
+    * Any capacity pool created at a size less than 16 TiB cannot be resized beyond 16 TiB. If you need a larger capacity pool, create a new one. 
+* When you resize a capacity pool, the capacity pool might revert to the availability zone it was originally created in. Confirm the capacity pool and [change the zone](elastic-change-zones.md) after resizing if necessary.
 
 ## Network planning
-
 <!-- network planning -->
 
 ## Steps
