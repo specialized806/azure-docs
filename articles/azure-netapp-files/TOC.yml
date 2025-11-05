@@ -313,8 +313,6 @@
         items:
         - name: Configure snapshots 
           href: elastic-snapshots.md
-        - name: Configure cross-region replication 
-          href: elastic-cross-region-replication.md 
         - name: Back up Elastic service level volumes 
           href: elastic-backup.md
         - name: Restore a backup

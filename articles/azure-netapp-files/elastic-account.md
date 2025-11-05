@@ -17,7 +17,7 @@ Creating a NetApp account enables you to set up a capacity pool so that you can 
 ## Before you begin
 
 * You must register your subscription for using the NetApp Resource Provider. For more information, see [Register the NetApp Resource Provider](azure-netapp-files-register.md).
-* NetApp accounts must be dedicated to a service tier. Confirm you understand the difference between [hardwared-based and zone-redundant storage](elastic-zone-redundant-concept.md) before creating you create your NetApp account.
+* NetApp accounts must be dedicated to a service tier. Confirm you understand the difference between [Elastic Zone-Redundant storage](elastic-zone-redundant-concept.md) and [other service levels](azure-netapp-files-service-levels.md) before creating you create your NetApp account.
 
 ## Register for the Elastic zone-redundant service level 
 
@@ -41,24 +41,7 @@ You can also use [Azure CLI commands](/cli/azure/feature) `az feature register` 
 
 ## Steps
 
-1. Log into the Azure portal.
-1. Access the Azure NetApp Files pane by using one of the following methods:
-   * Search for **Azure NetApp Files** in the Azure portal search box.
-   * Select **All services** in the navigation, and then filter to Azure NetApp Files.
-
-   To make the Azure NetApp Files pane a favorite, select the star icon next to it.
-
-1. Select **+ Add** to create a new NetApp account.
-1. Provide the following information: 
-    * Select the **Subscription** the NetApp account belongs to. 
-    * Assign a create the **Resource group**. 
-    * Enter a **Name** for the NetApp account. 
-    * Select **NetApp Elastic Files** to designate the account for the Elastic service level. 
-    * Select the **Region**. 
-
-    :::image type="content" source="./media/elastic-account/netapp-account-elastic.png" alt-text="Screenshot of application volume group creation menu." lightbox="./media/elastic-account/netapp-account-elastic.png":::
-
-1. To finalize account creation, select **Create**. 
+[!INCLUDE [Create an Elastic Zone-Redundant account.](includes/elastic-account-create.md)]
 
 ## Next steps 
 
