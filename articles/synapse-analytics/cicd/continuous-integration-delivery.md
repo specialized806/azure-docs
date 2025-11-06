@@ -254,10 +254,10 @@ You can choose the operation types based on the use case. Following part is an e
 >           
 > Currently, the DevOps Service Connection with **Workload Identity Federation (WIF)** is not supported in Synapse Workspace deployment extension. Switch to secret mode to make the connection successful.
 > For secure, secret-less alternatives that fully support Workload Identity Federation (WIF),
-> use the [AzureCLI@2](https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/reference/azure-cli-v2)
-> or [PowerShell](https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/reference/powershell-v2)
+> use the [AzureCLI@2](https://learn.microsoft.com/azure/devops/pipelines/tasks/reference/azure-cli-v2)
+> or [PowerShell](https://learn.microsoft.com/azure/devops/pipelines/tasks/reference/powershell-v2)
 > pipeline tasks with a federated service connection, as described in
-> [Connect to Azure using Workload Identity Federation](https://learn.microsoft.com/en-us/azure/devops/pipelines/library/connect-to-azure?view=azure-devops#workload-identity-federation).
+> [Connect to Azure using Workload Identity Federation](https://learn.microsoft.com/azure/devops/pipelines/library/connect-to-azure?view=azure-devops#workload-identity-federation).
 >
 > These tasks support secret-less authentication and can execute Synapse deployment commands
 > (`az synapse pipeline create`, `az synapse artifact publish`) while maintaining the same deployment flow.
