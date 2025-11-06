@@ -5021,7 +5021,7 @@ xml(
 )
 ```
 
-Option 4: Similar to option 3, but uses `addProperty()` instead of concat() function to build the JSON object before passing the result to the xml() function, for example: 
+Option 4: Similar to option 3, but uses `addProperty()` instead of the `concat()` function to create the JSON object before passing it to the `xml()` function, for example: 
 
 ```
 xml(
