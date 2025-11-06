@@ -4993,7 +4993,7 @@ xml(
 )
 ```
 
-Option 2: Store the JSON array in a **Compose** action named **Compose1**. Then use the `outputs()` function to return a JSON object from **Compose1**.
+Option 2: Store the JSON array in a **Compose** action named **Compose1**. Then use the `outputs()` function to return a JSON object from **Compose1**, and store the returned JSON object in another **Compose** action named **Compose2**.
 
 ```
 {
@@ -5001,7 +5001,7 @@ Option 2: Store the JSON array in a **Compose** action named **Compose1**. Then 
 }
 ```
 
-Store the returned JSON object in another action named **Compose2**. You can then use the `xml()` and `outputs()` functions to create XML from the JSON object output from **Compose2**, for example: 
+You can then use the `xml()` and `outputs()` functions to create XML from the JSON object output from **Compose2**, for example: 
 
 ```
 xml(outputs('Compose2'))
