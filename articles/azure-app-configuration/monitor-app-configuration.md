@@ -215,7 +215,7 @@ Following are sample queries that you can use to help you monitor your App Confi
     ```
 
 ### Data access tracking
-For tracking key-value modifications, audit logs provide details including the caller identity, caller's ip address, action performed, and the affected key-value. The **CallerIdentity** field lets you correlate the change with the caller.
+For tracking key-value access history, audit logs provide details including the caller identity, caller's ip address, action performed, and the affected key-value. The **CallerIdentity** field lets you correlate the change with the caller.
 HTTP request logs provide context related to request patterns and performance, for example, user agent, request duration, request volume. **ClientObjectId**, **ClientTenantId**, **AccessKeyId** supply caller information and help you determine whether the request used AAD or access key.
 2 authentication methods are supported, which are AAD and access key (HMAC/connection string). If you use AAD, you should see information about caller or client. If you use access key, you should see information related to access key. To enforce AAD authentication and remove access key usage, please [disable access key based authentication](/azure/azure-app-configuration/howto-disable-access-key-authentication?tabs=portal#disable-access-key-authentication).
 
@@ -231,7 +231,7 @@ HTTP request logs provide context related to request patterns and performance, f
     ```
 
 #### HTTP request logs
-* Identify key-value modifications and reads in HTTP request logs in the last 7 days, extracting method, resource, status code, client object id, client tenant id, access key id, client IP address, user agent:
+* Identify key-value writes and reads in HTTP request logs in the last 7 days, extracting method, resource, status code, client object id, client tenant id, access key id, client IP address, user agent:
 
     ```Kusto
     AACHttpRequest

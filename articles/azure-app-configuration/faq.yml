@@ -117,7 +117,11 @@ sections:
               Standard tier stores have a daily usage charge, which includes the first 200,000 requests each day. Requests beyond this daily allocation incur an overage charge.
 
               Premium tier stores also have a daily usage charge and include a replica. The first 800,000 requests for the origin and the first 800,000 requests for the replica each day are included in the daily charge. Requests exceeding this daily allocation incur an overage charge.
-          
+
+      - question: How can I view the detailed data access history for key-values?
+        answer: |
+          If you want to see the key-value access history for a configuration store (create, update, delete, read), enable log collection by creating a diagnostic setting and routing the HTTP request logs and Audit logs to a Log Analytics workspace. You can then view them in the `Logs` blade under `Monitoring` section. For detailed guide and query samples, see [Monitoring App Configuration](./monitor-app-configuration.md#Logs) and [Data access tracking](./monitor-app-configuration.md#data-access-tracking).
+
       - question: Can I upgrade or downgrade an App Configuration store?
         answer: |
           You can upgrade an App Configuration store at any time, for example, from the Free tier to the Developer, Standard or Premium tier, or from the Developer, Standard tier to the Premium tier.
