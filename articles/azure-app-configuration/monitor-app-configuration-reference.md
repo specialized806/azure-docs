@@ -20,13 +20,13 @@ This article is a reference for the monitoring data collected by App Configurati
 
 | Metric | Unit | Description |
 |-------|-----| ----- |
-| HTTP Incoming Request Count	| Count	| Total number of incoming HTTP Request |
+| HTTP Incoming Request Count	| Count	| Total number of incoming HTTP Requests |
 | HTTP Incoming Request Duration | Milliseconds | Server side duration of an HTTP Request |
 | Throttled HTTP Request Count | Count |	Throttled requests are HTTP requests that receive a response with a status code of 429 |
 | Daily Storage Usage | Percent |	Represents the amount of storage in use as a percentage of the maximum allowance. This metric is updated at least once daily. |
 | Request Quota Usage | Percent |	Represents the current total request usage in percentage. |
 | Replication Latency | Milliseconds |	Represents the average time it takes for a replica to be consistent with current state. |
-| Snapshot Storage Size | Count | Represents the total storage usage of configuration snapshot(s) in bytes. |
+| Snapshot Storage Size | Count | Represents the total storage usage of configuration snapshots in bytes. |
 
 For more information, see a list of [all platform metrics supported in Azure Monitor](/azure/azure-monitor/essentials/metrics-supported).
 
@@ -38,10 +38,10 @@ App Configuration has the following dimensions associated with its metr
 | HTTP Incoming Request Count | The supported dimensions are the **HttpStatusCode**, **AuthenticationScheme**, and **Endpoint** of each request. **AuthenticationScheme** can be filtered by "AAD" or "HMAC" authentication.   |
 | HTTP Incoming Request Duration | The supported dimensions are the **HttpStatusCode**, **AuthenticationScheme**, and **Endpoint** of each request. **AuthenticationScheme** can be filtered by "AAD" or "HMAC" authentication. |
 | Throttled HTTP Request Count | The **Endpoint** of each request is included as a dimension.  |
-| Daily Storage Usage | This metric does not have any dimensions.  |
+| Daily Storage Usage | This metric doesn't have any dimensions.  |
 | Request Quota Usage | The supported dimensions are the **OperationType** ("Read"or "Write") and **Endpoint** of each request.  |
-| Replication Latency | The **Endpoint** of the replica that data was replicated to is included as a dimension.  |
-| Snapshot Storage Size | This metric does not have any dimensions.  |
+| Replication Latency | This metric includes a dimension which is the **Endpoint** of the replica that data was replicated to.  |
+| Snapshot Storage Size | This metric doesn't have any dimensions.  |
 
  For more information on what metric dimensions are, see [Multi-dimensional metrics](/azure/azure-monitor/essentials/data-platform-metrics#multi-dimensional-metrics).
 
@@ -77,7 +77,7 @@ App Configuration uses the [AACHttpRequest Table](/azure/azure-monitor/refere
 |-------|-----| ----- |
 |AccessKeyId	|string	|Access Key ID provided by client when authenticated via HMAC.
 |Category	|string	|The log category of the event, always HttpRequest.
-|ClientIPAddress |	string|	IP Address of the client that sents the request.
+|ClientIPAddress |	string|	IP Address of the client that sends the request.
 |ClientObjectId	|string	|Object ID provided by client when authenticated via AAD.
 |ClientRequestId|	string|	Request ID provided by client.
 |ClientTenantId	|string	|Tenant ID provided by client when authenticated via AAD.
