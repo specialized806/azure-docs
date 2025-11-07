@@ -325,7 +325,7 @@ A list of functions that the job host runs. An empty array means run all functio
 
 ## functionTimeout
 
-Indicates the timeout duration for all function executions. It follows the [timespan string format](https://learn.microsoft.com/en-us/dotnet/fundamentals/runtime-libraries/system-timespan-parse). A value of `-1` indicates unbounded execution, but keeping a fixed upper bound is recommended.
+Indicates the timeout duration for all function executions. It follows the [timespan string format](https://learn.microsoft.com/dotnet/fundamentals/runtime-libraries/system-timespan-parse). A value of `-1` indicates unbounded execution, but keeping a fixed upper bound is recommended.
 
 ```json
 {
