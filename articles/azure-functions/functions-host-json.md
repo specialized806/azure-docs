@@ -335,8 +335,8 @@ Indicates the timeout duration for all function executions. It follows the [time
 The format of the timespan string needs to follow the syntax `[d.]hh:mm:ss` and the valid values are:
 - d = days (optional)
 - hh = hours (0–23)
-- mm = minutes (0-59)
-- ss = seconds (0-59)
+- mm = minutes (0–59)
+- ss = seconds (0–59)
 
 > [!TIP]
 > If you want to set a 24 hours timeout you cannot define it as `"24:00:00"` instead you need to use  `"1.00:00:00"` or  `"23:59:59"`
