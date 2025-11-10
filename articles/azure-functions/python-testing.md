@@ -2,20 +2,17 @@
 title: Unit Testing Python Azure Functions
 description: Understand how to test your Python code projects to Azure Functions using the Python library for Azure Functions.
 ms.topic: article
-ms.date: 12/29/2024
+ms.date: 11/10/2025
 ms.devlang: python
 ms.custom:
-  - devx-track-python
-  - devdivchpfy22
-  - ignite-2024
-  - build-2025
+  - py-devguide-refactor
 ---
 
-# Unit Testing Python Azure Functions
+# Unit testing Python Azure Functions
 
 ## Unit testing through pytest
 
-Functions that are written in Python can be tested like other Python code by using standard testing frameworks. For most bindings, it's possible to create a mock input object by creating an instance of an appropriate class from the `azure.functions` package. Since the [`azure.functions`](https://pypi.org/project/azure-functions/) package isn't immediately available, be sure to install it via your *requirements.txt* file.
+You can test Python functions like other Python code by using standard testing frameworks. For most bindings, you can create a mock input object by creating an instance of an appropriate class from the `azure.functions` package. Since the [`azure.functions`](https://pypi.org/project/azure-functions/) package isn't immediately available, be sure to install it via your *requirements.txt* file.
 
 With *my_second_function* as an example, the following example is a mock test of an HTTP-triggered function:
 
@@ -88,7 +85,7 @@ class TestFunction(unittest.TestCase):
 Inside your Python virtual environment folder, install your favorite Python test framework, such as `pip install pytest`. Then run `pytest tests` to check the test result.
 
 ## Unit testing by invoking the function directly
-With `azure-functions >= 1.21.0`, functions can also be called directly using the Python interpreter. This example shows how to unit test an HTTP trigger using the v2 programming model:
+With `azure-functions >= 1.21.0`, you can also call functions directly by using the Python interpreter. This example shows how to unit test an HTTP trigger by using the v2 programming model:
 ```python
 # <project_root>/function_app.py
 import azure.functions as func
@@ -103,10 +100,10 @@ def http_trigger(req: func.HttpRequest) -> func.HttpResponse:
 print(http_trigger(None))
 ```
 
-With this approach, no extra package or setup is required. The function can be tested by calling `python function_app.py`, and it results in `Hello, World!` output in the terminal.
+With this approach, you don't need any extra package or setup. You can test the function by calling `python function_app.py`, and it results in `Hello, World!` output in the terminal.
 
 > [!NOTE]
-> Durable Functions require special syntax for unit testing. For more information, see [Unit Testing Durable Functions in Python](durable/durable-functions-unit-testing-python.md)
+> Durable Functions require special syntax for unit testing. For more information, see [Unit Testing Durable Functions in Python](durable/durable-functions-unit-testing-python.md).
 
 ## Testing through Docker
 tbd

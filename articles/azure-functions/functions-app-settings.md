@@ -571,7 +571,7 @@ This setting lets you override the base URL of the Python Package Index, which b
 |---|------------|
 |PIP\_INDEX\_URL|`http://my.custom.package.repo/simple` |
 
-To learn more, see [`pip` documentation for `--index-url`](https://pip.pypa.io/en/stable/cli/pip_wheel/?highlight=index%20url#cmdoption-i) and using [Custom dependencies](./python-deployments.md#remote-build-with-extra-index-url) in the Python developer reference.
+To learn more, see [`pip` documentation for `--index-url`](https://pip.pypa.io/en/stable/cli/pip_wheel/?highlight=index%20url#cmdoption-i) and using [Custom dependencies](./python-deployments.md#remote-build-with-an-extra-index-url) in the Python deployments reference.
 
 ## PIP\_EXTRA\_INDEX\_URL
 
@@ -581,7 +581,7 @@ The value for this setting indicates an extra index URL for custom packages for 
 |---|------------|
 |PIP\_EXTRA\_INDEX\_URL|`http://my.custom.package.repo/simple` |
 
-To learn more, see [`pip` documentation for `--extra-index-url`](https://pip.pypa.io/en/stable/cli/pip_wheel/?highlight=index%20url#cmdoption-extra-index-url) and [Custom dependencies](./python-deployments.md#remote-build-with-extra-index-url) in the Python developer reference.
+To learn more, see [`pip` documentation for `--extra-index-url`](https://pip.pypa.io/en/stable/cli/pip_wheel/?highlight=index%20url#cmdoption-extra-index-url) and [Custom dependencies](./python-deployments.md#remote-build-with-an-extra-index-url) in the Python deployments reference.
 
 ## PROJECT
 

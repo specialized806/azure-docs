@@ -514,7 +514,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
    - To prevent `ModuleNotFound` errors, ensure all required dependencies are listed in `requirements.txt`.
    - If you update your app's Python version, rebuild and redeploy your app on the new Python version to avoid dependency conflicts with previously built packages.
 - Non-PyPI Dependencies:
-   - You can include dependencies that aren't available on PyPI in your app, such as local packages, wheel files, or private feeds. See [Custom dependencies in Python  Azure Functions](./python-deployments.md#custom-dependencies-non-pypi-local-wheels) for setup instructions.
+   - You can include dependencies that aren't available on PyPI in your app, such as local packages, wheel files, or private feeds. See [Custom dependencies in Python  Azure Functions](./python-deployments.md#custom-dependencies) for setup instructions.
 
 ---
 
