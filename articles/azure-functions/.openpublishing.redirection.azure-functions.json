@@ -664,6 +664,11 @@
             "source_path_from_root": "/articles/azure-functions/create-first-function-vs-code-node.md",
             "redirect_url": "/azure/azure-functions/how-to-create-function-vs-code?pivots=programming-language-javascript",
             "redirect_document_id": false
+        },
+                {
+            "source_path_from_root": "articles/azure-functions/python-313-changes.md",
+            "redirect_url": "/azure/azure-functions/functions-reference-python#python-313-updates",
+            "redirect_document_id": false
         } 
     ]
 }
