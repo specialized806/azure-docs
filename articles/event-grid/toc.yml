@@ -415,6 +415,8 @@ items:
               href: event-schema-resources.md
             - name: Container Service Event Resources
               href: event-schema-containerservice-resources.md
+            - name: AKS resources
+              href: event-schema-aks-resources.md
           - name: Azure Service Bus
             href: event-schema-service-bus.md
           - name: Azure SignalR
