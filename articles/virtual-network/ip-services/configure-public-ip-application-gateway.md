@@ -9,6 +9,7 @@ ms.subservice: ip-services
 ms.topic: how-to 
 ms.date: 01/07/2025
 ms.custom: template-how-to 
+# Customer intent: As a cloud architect, I want to manage a public IP address with an Application Gateway, so that I can efficiently route and balance web traffic to my applications.
 ---
 
 # Manage a public IP address with an Azure Application Gateway
@@ -21,7 +22,7 @@ In this article, you learn how to create an Application Gateway using an existin
 
 ## Prerequisites
 
-- An Azure account with an active subscription. [Create one for free](https://azure.microsoft.com/free/?ref=microsoft.com&utm_source=microsoft.com&utm_medium=docs&utm_campaign=visualstudio).
+- An Azure account with an active subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - Two standard SKU public IP addresses in your subscription. The IP addresses can't be associated with any resources. For more information on creating a standard SKU public IP address, see [Create a public IP - Azure portal](./create-public-ip-portal.md).
     - For the purposes of the examples in this article, name the new public IP addresses **myStandardPublicIP-1** and **myStandardPublicIP-2**.
 

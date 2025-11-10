@@ -1,8 +1,9 @@
 ---
 title: Best practices
 description: Learn best practices and useful tips for developing your Azure Batch solutions.
-ms.date: 06/27/2024
-ms.topic: conceptual
+ms.date: 02/28/2025
+ms.topic: concept-article
+# Customer intent: As a cloud solution architect, I want to implement best practices for Azure Batch services, so that I can optimize performance, ensure reliability, and enhance security for my batch processing workloads.
 ---
 
 # Azure Batch best practices
@@ -64,6 +65,10 @@ supported indefinitely. An EOL date may be added or updated in the future at any
 #### Isolation boundary
 
 For the purposes of isolation, if your scenario requires isolating jobs or tasks from each other, do so by having them in separate pools. A pool is the security isolation boundary in Batch, and by default, two pools aren't visible or able to communicate with each other. Avoid using separate Batch accounts as a means of security isolation unless the larger environment from which the Batch account operates in requires isolation.
+
+If desired, proper access control must be applied on the Batch account and APIs to prevent access to all pools under the Batch account.
+It's recommended to disable shared key access and only allow Entra-based authentication to enable
+[role-based access control](batch-role-based-access-control.md).
 
 #### Batch Node Agent updates
 

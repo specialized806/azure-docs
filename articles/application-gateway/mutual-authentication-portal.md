@@ -2,18 +2,19 @@
 title: Configure mutual authentication on Azure Application Gateway through portal
 description: Learn how to configure an Application Gateway to have mutual authentication through portal 
 services: application-gateway
-author: greg-lindsay
+author: mbender-ms
 ms.service: azure-application-gateway
 ms.topic: how-to
 ms.date: 02/18/2022
-ms.author: greglin
+ms.author: mbender
+# Customer intent: "As a cloud architect, I want to configure mutual authentication on my Application Gateway using the portal, so that I can securely validate client requests through client certificates."
 ---
 
 # Configure mutual authentication with Application Gateway through portal 
 
 This article describes how to use the Azure portal to configure mutual authentication on your Application Gateway. Mutual authentication means Application Gateway authenticates the client sending the request using the client certificate you upload onto the Application Gateway. 
 
-If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
+If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 
 ## Before you begin
 

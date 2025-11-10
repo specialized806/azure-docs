@@ -1,25 +1,21 @@
 ---
-title: Secure and view DNS traffic - Azure DNS (Preview)
+title: Secure and view DNS traffic - Azure DNS
 description: Learn how to filter and view Azure DNS traffic
-author: greg-lindsay
+author: asudbring
 ms.service: azure-dns
 ms.topic: how-to
-ms.date: 01/29/2025
-ms.author: greglin
+ms.date: 07/02/2025
+ms.author: allensu
+# Customer intent: "As a network administrator, I want to configure and view DNS traffic security policies, so that I can monitor and control DNS queries in my virtual network for enhanced security and compliance."
 ---
 
-# Secure and view DNS traffic (Preview)
+# Secure and view DNS traffic
 
 This article shows you how to view and filter DNS traffic at the virtual network with [DNS security policy](dns-security-policy.md).
 
-> [!NOTE]
-> DNS security policy is in PREVIEW.<br> 
-> See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.<br><br>
-> This DNS security policy preview is offered without a requirement to enroll in a pre-release feature preview.
-
 ## Prerequisites
 
-* If you don’t have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
+* If you don’t have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 * A virtual network is required. For more information, see [Create a virtual network](../virtual-network/quick-create-portal.md).
 
 ## Create a security policy
@@ -115,6 +111,9 @@ Multiple domain lists can be dynamically added or removed from a single DNS traf
 ## Configure DNS traffic rules
 
 Now that you have a DNS domain list, configure the diagnostic settings in your security policy to use this workspace.
+
+> [!NOTE]
+> CNAME chains are examined ("chased") to determine if the traffic rules that are associated with a domain should apply. For example, a rule that applies to **malicious.contoso.com** also applies to **adatum.com** if **adatum.com** maps to **malicious.contoso.com** or if **malicious.contoso.com** appears anywhere in a CNAME chain for **adatum.com**.
 
 To configure diagnostic settings:
 

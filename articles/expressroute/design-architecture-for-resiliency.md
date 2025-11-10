@@ -8,6 +8,7 @@ ms.topic: concept-article
 ms.date: 07/16/2024
 ms.author: duau
 ms.custom: ai-usage
+# Customer intent: As a network architect, I want to design Azure ExpressRoute for maximum resiliency, so that I can ensure high availability and reliability for our on-premises connections to Azure, supporting critical workloads without interruption.
 ---
 
 # Design and architect Azure ExpressRoute for resiliency
@@ -131,7 +132,7 @@ ExpressRoute uses [Azure Service Health](/azure/service-health/overview) to noti
 
 #### Configure connection monitor for ExpressRoute 
 
-[Connection Monitor](how-to-configure-connection-monitor.md) is a cloud-based network monitoring solution that monitors connectivity between Azure cloud deployments and on-premises locations (Branch offices, etc.). Connection Monitor is an agent-based solution.
+[Connection Monitor](configure-connection-monitor.md) is a cloud-based network monitoring solution that monitors connectivity between Azure cloud deployments and on-premises locations (Branch offices, etc.). Connection Monitor is an agent-based solution.
 
 #### Configure gateway health monitoring & alerting 
 

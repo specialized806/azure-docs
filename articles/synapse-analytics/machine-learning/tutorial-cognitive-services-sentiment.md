@@ -4,7 +4,7 @@ description: Learn how to use Azure AI Language for sentiment analysis in Azure 
 ms.service: azure-synapse-analytics
 ms.subservice: machine-learning
 ms.topic: tutorial
-ms.reviewer: whhender, garye
+
 ms.date: 12/20/2024
 author: nelgson
 ms.author: negust
@@ -22,7 +22,7 @@ This tutorial covers:
 > - Steps for getting a Spark table dataset that contains a text column for sentiment analysis.
 > - Using a wizard experience in Azure Synapse to enrich data by using Text Analytics in Azure AI Language.
 
-If you don't have an Azure subscription, [create a free account before you begin](https://azure.microsoft.com/free/).
+If you don't have an Azure subscription, [create a free account before you begin](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 ## Prerequisites
 

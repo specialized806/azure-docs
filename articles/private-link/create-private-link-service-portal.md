@@ -6,10 +6,11 @@ services: private-link
 author: abell
 ms.service: azure-private-link
 ms.topic: quickstart
-ms.date: 12/04/2024
+ms.date: 04/10/2025
 ms.author: abell
 ms.custom: mode-ui, template-quickstart
 #Customer intent: As someone with a basic network background who's new to Azure, I want to create an Azure Private Link service by using the Azure portal
+# Customer intent: "As a network engineer new to Azure, I want to create a Private Link service using the Azure portal, so that I can provide secure private access to services deployed behind an Azure Load Balancer."
 ---
 
 # Quickstart: Create a Private Link service by using the Azure portal
@@ -20,7 +21,7 @@ Get started creating a Private Link service that refers to your service. Give Pr
 
 ## Prerequisites
 
-* An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+* An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 ## <a name="create-a-virtual-network"></a> Sign in to Azure
 
@@ -83,7 +84,10 @@ During the creation of the load balancer, you configure:
 
 1. Enter **backend-pool** for **Name**.
 
-1. Select **NIC** or **IP Address** for **Backend Pool Configuration**.
+1. Select **NIC** for **Backend Pool Configuration**.
+
+    > [!NOTE]
+    > Private Link service is supported on Standard Load Balancers with backend pools configured by NICs. It is not supported when backend pools are configured using IP addresses. For more information, see [Private Link service limitations](private-link-service-overview.md#limitations).
 
 1. Select **Save**.
 

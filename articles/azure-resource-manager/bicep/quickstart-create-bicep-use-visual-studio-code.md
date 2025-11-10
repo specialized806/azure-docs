@@ -2,8 +2,11 @@
 title: 'Quickstart: Create Bicep files with Visual Studio Code'
 description: Learn how to use Visual Studio Code and the Bicep extension to create Bicep files and deploy Azure resources.
 ms.topic: quickstart
-ms.date: 01/10/2025
-ms.custom: mode-ui, devx-track-bicep
+ms.date: 10/30/2025
+ms.custom:
+  - mode-ui
+  - devx-track-bicep
+  - sfi-image-nochange
 #customer intent: As a developer new to Azure deployment, I want to learn how to use Visual Studio Code to create and edit Bicep files so that I can use them to deploy Azure resources.
 ---
 
@@ -15,7 +18,7 @@ Visual Studio supports a similar authoring experience. See [Quickstart: Create B
 
 ## Prerequisites
 
-If you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/free/) before you start.
+If you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you start.
 
 To set up your environment for Bicep development, see [Install Bicep tools](install.md). After completing those steps, you have [Visual Studio Code](https://code.visualstudio.com/) and the [Bicep extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-bicep) installed. You also have either the latest [Azure CLI](/cli/azure/) version or [Azure PowerShell module](/powershell/azure/new-azureps-module-az).
 
@@ -28,12 +31,12 @@ Launch Visual Studio Code, and create a new file named _main.bicep_. In _main.bi
 :::image type="content" source="./media/quickstart-create-bicep-use-visual-studio-code/add-snippet.png" alt-text="Screenshot of adding snippet for virtual network.":::
 
 > [!TIP]
-> If you don't see those IntelliSense options in Visual Studio Code, make sure you've installed the Bicep extension as specified in [Prerequisites](#prerequisites). If you have installed the extension, give the Bicep language service some time to start after opening your Bicep file. It usually starts quickly, and you won't have IntelliSense options until it starts. A notification in the lower right corner indicates that the service is starting. When that notification disappears, the service is running.
+> If you don't see those IntelliSense options in Visual Studio Code, make sure you've installed the Bicep extension as specified in [Prerequisites](#prerequisites). If you have installed the extension, give the Bicep language service some time to start after opening your Bicep file. It usually starts quickly, and you won't have IntelliSense options until it starts. A notification in the lower-right corner indicates that the service is starting. When that notification disappears, the service is running.
 
 Your Bicep file now contains the following code:
 
 ```bicep
-resource virtualNetwork 'Microsoft.Network/virtualNetworks@2019-11-01' = {
+resource virtualNetwork 'Microsoft.Network/virtualNetworks@2025-01-01' = {
   name: 'name'
   location: location
   properties: {
@@ -60,7 +63,7 @@ resource virtualNetwork 'Microsoft.Network/virtualNetworks@2019-11-01' = {
 }
 ```
 
-Within this snippet, you find all the necessary values for defining a virtual network. You might notice two curly underlines. A yellow one denotes a warning related to an outdated API version, while a red curly underline signals an error caused by a missing parameter definition. The [Bicep linter](./linter.md) checks Bicep files for syntax errors and best practice violations. Hover your cursor over `@2019-11-01`, a popup pane shows **Use more recent API version for 'Microsoft.Network/virtualNetworks'**. Select **Quick fix** from the popup pane, and then select **Replace with 2024-05-01** to update the API version.
+Within this snippet, you find all the necessary values for defining a virtual network. You might notice two curly underlines. A yellow one denotes a warning related to an outdated API version, while a red curly underline signals an error caused by a missing parameter definition. The [Bicep linter](./linter.md) checks Bicep files for syntax errors and best practice violations. Hover your cursor over `@2019-11-01`, and a popup pane shows **Use more recent API version for 'Microsoft.Network/virtualNetworks'**. Select **Quick fix** from the popup pane, and then select **Replace with 2024-05-01** to update the API version.
 
 Alternatively, remove `@2019-11-01`, and replace it with `@`. Select the latest API version.
 
@@ -154,7 +157,7 @@ After the single quote for the resource type, add **=** and a space. You're pres
 This option adds all of the properties for the resource type that are required for deployment. After selecting this option, your storage account has the following properties:
 
 ```bicep
-resource storageAccount 'Microsoft.Storage/storageAccounts@2023-05-01' = {
+resource storageAccount 'Microsoft.Storage/storageAccounts@2025-06-01' = {
   name:
   location:
   sku: {
@@ -181,7 +184,7 @@ When finished, you have:
 param storageAccountName string = 'store${uniqueString(resourceGroup().id)}'
 param location string = resourceGroup().location
 
-resource virtualNetwork 'Microsoft.Network/virtualNetworks@2024-05-01' = {
+resource virtualNetwork 'Microsoft.Network/virtualNetworks@2025-01-01' = {
   name: 'exampleVNet'
   location: location
   properties: {
@@ -207,7 +210,7 @@ resource virtualNetwork 'Microsoft.Network/virtualNetworks@2024-05-01' = {
   }
 }
 
-resource storageAccount 'Microsoft.Storage/storageAccounts@2023-05-01' = {
+resource storageAccount 'Microsoft.Storage/storageAccounts@2025-06-01' = {
   name: storageAccountName
   location: location
   sku: {

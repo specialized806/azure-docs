@@ -7,7 +7,8 @@ ms.subservice: fhir
 ms.topic: tutorial
 ms.author: kesheth
 author: expekesheth
-ms.date: 11/10/2022
+ms.date: 10/10/2025
+ms.custom: sfi-image-nochange
 ---
 
 # SMART on FHIR
@@ -31,7 +32,7 @@ The following tutorials provide steps to enable SMART on FHIR applications with 
 ## SMART on FHIR using Azure Health Data Services Samples (SMART on FHIR (Enhanced))
 
 ### Step 1: Set up FHIR SMART user role 
-Follow the steps listed in section [Manage Users: Assign Users to Role](../../role-based-access-control/role-assignments-portal.yml). Any user added to this role will be able to access the FHIR Service, provided their requests comply with the SMART on FHIR implementation Guide. The access granted to the users in this role will then be limited by the resources associated to their fhirUser compartment and the restrictions in the clinical scopes.
+Follow the steps listed in section [Manage Users: Assign Users to Role](/azure/role-based-access-control/role-assignments-portal). Any user added to this role will be able to access the FHIR Service, provided their requests comply with the SMART on FHIR implementation Guide. The access granted to the users in this role will then be limited by the resources associated to their fhirUser compartment and the restrictions in the clinical scopes.
 
 > [!NOTE]
 > SMART on FHIR Implementation Guide defines access to FHIR resource types with scopes. These scopes impact the access an application may have to FHIR resources. A user with the SMART user role has access to perform read API interactions on FHIR service. SMART user role does not grant write access to FHIR service.
@@ -105,7 +106,7 @@ Add the reply URL to the public client application that you created previously f
 
 ### Step 3:  Get a test patient
 
-To test the FHIR service and the SMART on FHIR proxy, you need to have at least one patient in the database. If you've not used the API yet, and you don't have data in the database, see [Access the FHIR service using Postman](./../fhir/use-postman.md) to load a patient. Make a note of the ID of a specific patient.
+To test the FHIR service and the SMART on FHIR proxy, you need to have at least one patient in the database. If you've not used the API yet, and you don't have data in the database, see [Access the FHIR service using REST Client](./../fhir/using-rest-client.md) to load a patient. Make a note of the ID of a specific patient.
 
 ### Step 4:  Download the SMART on FHIR app launcher
 

@@ -1,13 +1,13 @@
 ---
 title: Create and delete routes and endpoints by using Azure Resource Manager
 description: Learn how to create and delete routes and endpoints in Azure IoT Hub by using an Azure Resource Manager template in the Azure portal.
-author: kgremban
+author: SoniaLopezBravo
 ms.service: azure-iot-hub
 ms.custom: devx-track-arm-template
 services: iot-hub
 ms.topic: how-to
 ms.date: 12/05/2024
-ms.author: kgremban
+ms.author: sonialopez
 ---
 
 # Create and delete routes and endpoints by using Azure Resource Manager
@@ -37,7 +37,7 @@ Review the prerequisites for this article based on the type of endpoint you want
 
 ### [Event Hubs](#tab/eventhubs)
 
-* An Azure subscription. If you don't have an Azure subscription, create a [free Azure account](https://azure.microsoft.com/free/) before you begin.
+* An Azure subscription. If you don't have an Azure subscription, create a [free Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 
 * An IoT hub. If you don't have a hub, you can follow the steps to [create an IoT hub](create-hub.md).
 
@@ -47,7 +47,7 @@ Review the prerequisites for this article based on the type of endpoint you want
 
 ### [Service Bus queue](#tab/servicebusqueue)
 
-* An Azure subscription. If you don't have an Azure subscription, create a [free Azure account](https://azure.microsoft.com/free/) before you begin.
+* An Azure subscription. If you don't have an Azure subscription, create a [free Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 
 * An IoT hub. If you don't have a hub, you can follow the steps to [create an IoT hub](create-hub.md).
 
@@ -57,7 +57,7 @@ Review the prerequisites for this article based on the type of endpoint you want
 
 ### [Service Bus topic](#tab/servicebustopic)
 
-* An Azure subscription. If you don't have an Azure subscription, create a [free Azure account](https://azure.microsoft.com/free/) before you begin.
+* An Azure subscription. If you don't have an Azure subscription, create a [free Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 
 * An IoT hub. If you don't have a hub, you can follow the steps to [create an IoT hub](create-hub.md).
 
@@ -67,7 +67,7 @@ Review the prerequisites for this article based on the type of endpoint you want
 
 ### [Azure Storage](#tab/azurestorage)
 
-* An Azure subscription. If you don't have an Azure subscription, create a [free Azure account](https://azure.microsoft.com/free/) before you begin.
+* An Azure subscription. If you don't have an Azure subscription, create a [free Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 
 * An IoT hub. If you don't have a hub, you can follow the steps to [create an IoT hub](create-hub.md).
 
@@ -77,7 +77,7 @@ Review the prerequisites for this article based on the type of endpoint you want
 
 ### [Cosmos DB](#tab/cosmosdb)
 
-* An Azure subscription. If you don't have an Azure subscription, create a [free Azure account](https://azure.microsoft.com/free/) before you begin.
+* An Azure subscription. If you don't have an Azure subscription, create a [free Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 
 * An IoT hub. If you don't have a hub, you can follow the steps to [create an IoT hub](create-hub.md).
 
@@ -411,12 +411,12 @@ Add a route definition to your Resource Manager template. For more information, 
    | Property | Value |
    | -------- | ----- |
    | name | Provide a unique value to name your route. |
-   | source | Select the message or event logs source to route to the endpoint. For a list of source options, see [az iot hub route](/cli/azure/iot/hub/route#az-iot-hub-route-create-required-parameters). |
+   | source | Select the message or event logs source to route to the endpoint. For a list of source options, see [az iot hub message-route](/cli/azure/iot/hub/message-route). |
    | condition | A query to filter the source data. If no condition is required, say `true`. For more information, see [IoT Hub message routing query syntax](./iot-hub-devguide-routing-query-syntax.md). |
    | endpointNames | The name of the existing endpoint where this data will be routed. Currently only one endpoint is allowed. |
    | isEnabled | Set to `true` to enable the route, or `false` to disable the route. |
 
-1. Save your JSON file.
+2. Save your JSON file.
 
 ## Deploy the Resource Manager template
 

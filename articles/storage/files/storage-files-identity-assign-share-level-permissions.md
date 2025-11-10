@@ -1,30 +1,21 @@
 ---
-title: Assign share-level permissions for Azure Files
+title: Assign Share-Level Permissions for Azure Files
 description: Learn how to control access to Azure Files by assigning share-level permissions to control user access to Azure file shares with identity-based authentication.
 author: khdownie
 ms.service: azure-file-storage
 ms.topic: how-to
-ms.date: 10/18/2024
+ms.date: 11/06/2025
 ms.author: kendownie 
 ms.custom: devx-track-azurepowershell, subject-rbac-steps, devx-track-azurecli, engagement-fy23
 ms.devlang: azurecli
-recommendations: false
+# Customer intent: As a cloud administrator, I want to assign share-level permissions for Azure File shares, so that I can control user access to shared files and ensure secure and effective file management within my organization.
 ---
 
 # Assign share-level permissions for Azure file shares
 
-Once you've enabled an Active Directory (AD) source for your storage account, you must configure share-level permissions in order to get access to your file share. There are two ways you can assign share-level permissions. You can assign them to [specific Microsoft Entra users/groups](#share-level-permissions-for-specific-azure-ad-users-or-groups), and you can assign them to all authenticated identities as a [default share-level permission](#share-level-permissions-for-all-authenticated-identities).
+**Applies to:** :heavy_check_mark: SMB Azure file shares
 
-> [!IMPORTANT]
-> Full administrative control of a file share, including the ability to take ownership of a file, requires using the storage account key. Full administrative control isn't supported with identity-based authentication.
-
-## Applies to
-
-| File share type | SMB | NFS |
-|-|:-:|:-:|
-| Standard file shares (GPv2), LRS/ZRS | ![Yes](../media/icons/yes-icon.png) | ![No](../media/icons/no-icon.png) |
-| Standard file shares (GPv2), GRS/GZRS | ![Yes](../media/icons/yes-icon.png) | ![No](../media/icons/no-icon.png) |
-| Premium file shares (FileStorage), LRS/ZRS | ![Yes](../media/icons/yes-icon.png) | ![No](../media/icons/no-icon.png) |
+Once you've enabled an identity source for your storage account, you must configure share-level permissions in order to get access to your file share. There are two ways you can assign share-level permissions. You can assign them to [specific Microsoft Entra users/groups](#share-level-permissions-for-specific-azure-ad-users-or-groups), and you can assign them to all authenticated identities as a [default share-level permission](#share-level-permissions-for-all-authenticated-identities).
 
 ## Choose how to assign share-level permissions
 
@@ -35,14 +26,14 @@ Most users should assign share-level permissions to specific Microsoft Entra use
 There are three scenarios where we instead recommend using a [default share-level permission](#share-level-permissions-for-all-authenticated-identities) to allow reader, contributor, elevated contributor, privileged contributor, or privileged reader access to all authenticated identities:
 
 - If you're unable to sync your on-premises AD DS to Microsoft Entra ID, you can use a default share-level permission. Assigning a default share-level permission allows you to work around the sync requirement because you don't need to specify the permission to identities in Microsoft Entra ID. Then you can use Windows ACLs for granular permission enforcement on your files and directories.
-    - Identities that are tied to an AD but aren't synching to Microsoft Entra ID can also leverage the default share-level permission. This could include standalone Managed Service Accounts (sMSA), group Managed Service Accounts (gMSA), and computer accounts.
+    - Identities that are tied to an AD but aren't syncing to Microsoft Entra ID can also leverage the default share-level permission. This could include standalone Managed Service Accounts (sMSA), group Managed Service Accounts (gMSA), and computer accounts.
 - The on-premises AD DS you're using is synched to a different Microsoft Entra ID than the Microsoft Entra ID the file share is deployed in.
     - This is typical when you're managing multitenant environments. Using a default share-level permission allows you to bypass the requirement for a Microsoft Entra ID [hybrid identity](../../active-directory/hybrid/whatis-hybrid-identity.md). You can still use Windows ACLs on your files and directories for granular permission enforcement.
 - You prefer to enforce authentication only using Windows ACLs at the file and directory level.
 
 ## Azure RBAC roles for Azure Files
 
-There are five built-in Azure role-based access control (RBAC) roles for Azure Files, some of which allow granting share-level permissions to users and groups. If you're using Azure Storage Explorer, you'll also need the [Reader and Data Access](../../role-based-access-control/built-in-roles.md#reader-and-data-access) role in order to read/access the Azure file share.
+There are built-in Azure role-based access control (RBAC) roles for Azure Files, some of which allow granting share-level permissions to users and groups. If you're using Azure Storage Explorer, you'll also need the [Reader and Data Access](../../role-based-access-control/built-in-roles.md#reader-and-data-access) role in order to read/access the Azure file share.
 
 > [!NOTE]
 > Because computer accounts don't have an identity in Microsoft Entra ID, you can't configure Azure RBAC for them. However, computer accounts can access a file share by using a [default share-level permission](#share-level-permissions-for-all-authenticated-identities).
@@ -118,6 +109,9 @@ az role assignment create --role "<role-name>" --assignee <user-principal-name> 
 ## Share-level permissions for all authenticated identities
 
 You can add a default share-level permission on your storage account, instead of configuring share-level permissions for Microsoft Entra users or groups. A default share-level permission assigned to your storage account applies to all file shares contained in the storage account.
+
+> [!IMPORTANT]
+> If you set a default share-level permission on the storage account, you aren't required to sync your on-premises identities to Microsoft Entra ID.
 
 When you set a default share-level permission, all authenticated users and groups will have the same permission. Authenticated users or groups are identified as the identity can be authenticated against the on-premises AD DS the storage account is associated with. The default share-level permission is set to **None** at initialization, implying that no access is allowed to files or directories in the Azure file share.
 

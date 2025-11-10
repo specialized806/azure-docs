@@ -1,15 +1,15 @@
 ---
 title: Reliability in Azure Cosmos DB for MongoDB vCore
-description: Find out about reliability in Azure Cosmos DB for MongoDB vCore
+description: Learn how to achieve high availability with Azure Cosmos DB for MongoDB vCore by using availability zones, replicas, and disaster recovery.
 author: anaharris-ms
 ms.author: gahllevy
 ms.reviewer: sidandrews
 ms.service: azure-cosmos-db
 ms.subservice: mongodb
-ms.topic: concept-article
+ms.topic: reliability-article
 ms.date: 03/11/2024
-ms.custom: references_regions, subject-reliability
-CustomerIntent: As a cloud architect/engineer, I need general guidance reliability in Azure Cosmos DB for MongoDB vCore
+ms.custom: subject-reliability
+# CustomerIntent: As a cloud architect/engineer, I need general guidance reliability in Azure Cosmos DB for MongoDB vCore
 ---
 
 # Reliability in Azure Cosmos DB for MongoDB vCore

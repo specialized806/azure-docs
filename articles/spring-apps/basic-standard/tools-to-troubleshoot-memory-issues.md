@@ -3,10 +3,12 @@ title: Tools to Troubleshoot Memory Issues
 titleSuffix: Azure Spring Apps
 description: Provides a list of tools for troubleshooting Java memory issues.
 author: KarlErickson
-ms.author: kaiqianyang
+ms.author: karler
+ms.reviewer: kaiqianyang
 ms.service: azure-spring-apps
 ms.topic: conceptual
-ms.date: 06/27/2024
+ms.date: 08/19/2025
+ms.update-cycle: 1095-days
 ms.custom: devx-track-java, devx-track-extended-java
 ---
 
@@ -46,7 +48,7 @@ In the Azure portal, you can find **Memory Usage** under **Diagnose and solve pr
 
 ### Metrics
 
-The following sections describe metrics that cover issues including high memory usage, heap memory that's too large, and abnormal garbage collection abnormal (too frequent or not frequent enough). For more information, see [Quickstart: Monitoring Azure Spring Apps apps with logs, metrics, and tracing](quickstart-logs-metrics-tracing.md?pivots=programming-language-java).
+The following sections describe metrics that cover issues including high memory usage, heap memory that's too large, and abnormal garbage collection (too frequent or not frequent enough). For more information, see [Quickstart: Monitoring Azure Spring Apps apps with logs, metrics, and tracing](quickstart-logs-metrics-tracing.md?pivots=programming-language-java).
 
 #### App memory usage
 

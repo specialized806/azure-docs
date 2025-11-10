@@ -2,11 +2,11 @@
 title: Add an API to Azure Static Web Apps with Azure Functions
 description: Get started with Azure Static Web Apps by adding a Serverless API to your static web app using Azure Functions.
 services: static-web-apps
-author: craigshoemaker
+author: v1212
 ms.service: azure-static-web-apps
 ms.topic:  how-to
 ms.date: 11/25/2024
-ms.author: cshoe
+ms.author: wujia
 ms.custom:
 ---
 
@@ -101,7 +101,7 @@ You create an Azure Functions project for your static web app's API. By default,
         methods: ['GET', 'POST'],
         authLevel: 'anonymous',
         handler: async (request, context) => {
-            return { body: `Hello, from the API!` };
+            return { body: JSON.stringify({ "text": `Hello, from the API!` }) };
         }
     });
     ```

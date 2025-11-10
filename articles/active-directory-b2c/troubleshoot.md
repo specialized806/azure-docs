@@ -11,8 +11,11 @@ ms.topic: troubleshooting
 ms.date: 01/11/2024
 ms.author: kengaderdus
 ms.subservice: b2c
-ms.custom: b2c-docs-improvements
 zone_pivot_groups: b2c-policy-type
+ms.custom:
+  - b2c-docs-improvements
+  - sfi-image-nochange
+  - sfi-ropc-nochange
 
 
 #Customer intent: As a developer using Azure AD B2C custom policies and user flows, I want to troubleshoot and handle common errors that occur during the authentication process, so that I can ensure a smooth user experience and resolve any issues that may arise.
@@ -20,6 +23,7 @@ zone_pivot_groups: b2c-policy-type
 ---
 
 # Troubleshoot Azure AD B2C custom policies and user flows
+[!INCLUDE [active-directory-b2c-end-of-sale-notice-b](../../includes/active-directory-b2c-end-of-sale-notice-b.md)]
 
 [!INCLUDE [active-directory-b2c-choose-user-flow-or-custom-policy](../../includes/active-directory-b2c-choose-user-flow-or-custom-policy.md)]
 
@@ -155,11 +159,11 @@ The following screenshot shows an example of the Application Insights trace log 
 
 ![Screenshot of Azure AD B2C extension Azure AD B2C trace report.](./media/troubleshoot-custom-policies/vscode-extension-application-insights-report.png)
 
-## Troubleshoot JWT tokens
+## Troubleshoot JWTs
 
-For JWT token validation and debugging purposes, your can decode JWTs using a site like [https://jwt.ms](https://jwt.ms). Create a test application that can redirect to `https://jwt.ms` for token inspection. If you haven't already done so, [register a web application](tutorial-register-applications.md), and [enable ID token implicit grant](tutorial-register-applications.md#enable-id-token-implicit-grant). 
+For JWT validation and debugging purposes, your can decode JWTs using a site like [https://jwt.ms](https://jwt.ms). Create a test application that can redirect to `https://jwt.ms` for token inspection. If you haven't already done so, [register a web application](tutorial-register-applications.md), and [enable ID token implicit grant](tutorial-register-applications.md#enable-id-token-implicit-grant). 
 
-![Screenshot of JWT token preview.](./media/troubleshoot-custom-policies/jwt-token-preview.png)
+![Screenshot of JWT preview.](./media/troubleshoot-custom-policies/jwt-token-preview.png)
 
 Use **Run now** and `https://jwt.ms` to test your policies independently of your web or mobile application. This website acts like a relying party application. It displays the contents of the JSON web token (JWT) that your Azure AD B2C policy generates.
 

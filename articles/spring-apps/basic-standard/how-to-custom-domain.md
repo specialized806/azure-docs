@@ -4,7 +4,8 @@ description: Learn how to map an existing custom Distributed Name Service (DNS) 
 author: KarlErickson
 ms.service: azure-spring-apps
 ms.topic: how-to
-ms.date: 08/28/2024
+ms.date: 08/19/2025
+ms.update-cycle: 1095-days
 ms.author: karler
 ms.custom: devx-track-java, devx-track-extended-java, devx-track-azurecli
 ---
@@ -23,7 +24,7 @@ Certificates encrypt web traffic. These TLS/SSL certificates can be stored in Az
 
 ## Prerequisites
 
-- An Azure subscription. If you don't have a subscription, create a [free account](https://azure.microsoft.com/free/) before you begin.
+- An Azure subscription. If you don't have a subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 - (Optional) [Azure CLI](/cli/azure/install-azure-cli) version 2.45.0 or higher. Use the following command to install the Azure Spring Apps extension: `az extension add --name spring`
 - An application deployed to Azure Spring Apps (see [Quickstart: Launch an existing application in Azure Spring Apps using the Azure portal](./quickstart.md), or use an existing app). If your application is deployed using the Basic plan, be sure to upgrade to the Standard plan.
 - A domain name with access to the DNS registry for a domain provider, such as GoDaddy.
@@ -400,7 +401,7 @@ By default, anyone can still access your app using HTTP, but you can redirect al
 
 #### [Azure portal](#tab/Azure-portal)
 
-In your app page, in the navigation, select **Custom Domain**. Then, set **HTTPS Only** to `Yes`.
+In your app page, in the navigation, select **Custom Domain**. Then, set **HTTPS Only** to **Yes**.
 
 :::image type="content" source="./media/how-to-custom-domain/enforce-https.png" alt-text="Screenshot of an SSL binding with the Https Only option highlighted.":::
 

@@ -1,19 +1,23 @@
 ---
-title: "Quickstart: Deploy a Dapr application to Azure Container Apps with an Azure Resource Manager or Bicep template"
-description: Deploy a Dapr application to Azure Container Apps with an Azure Resource Manager or Bicep template.
+title: "Quickstart: Deploy a Dapr application to Azure Container Apps with an Azure Resource Manager or Bicep file"
+description: Deploy a Dapr application to Azure Container Apps with an Azure Resource Manager or Bicep file.
 services: container-apps
 author: hhunter-ms
 ms.service: azure-container-apps
 ms.topic: quickstart
-ms.date: 12/11/2024
+ms.date: 08/28/2025
 ms.author: cshoe
-ms.custom: devx-track-bicep, devx-track-arm-template, devx-track-azurepowershell
+ms.custom:
+  - devx-track-bicep
+  - devx-track-arm-template
+  - devx-track-azurepowershell
+  - build-2025
 zone_pivot_groups: container-apps
 ---
 
-# Quickstart: Deploy a Dapr application to Azure Container Apps with an Azure Resource Manager or Bicep template
+# Quickstart: Deploy a Dapr application to Azure Container Apps with an Azure Resource Manager or Bicep file
 
-[Dapr](./dapr-overview.md) (Distributed Application Runtime) helps developers build resilient, reliable microservices. In this quickstart, you enable Dapr sidecars to run alongside two container apps that produce and consume messages, stored in an Azure Blob Storage state store. Using either Azure Resource Manager or Bicep templates,  you'll:
+[Dapr](./dapr-overview.md) (Distributed Application Runtime) helps developers build resilient, reliable microservices. In this quickstart, you enable Dapr sidecars to run alongside two container apps that produce and consume messages, stored in an Azure Blob Storage state store. Using either Azure Resource Manager or Bicep files,  you'll:
 
 > [!div class="checklist"]
 >
@@ -35,7 +39,7 @@ This quickstart mirrors the applications you deploy in the open-source Dapr [Hel
 
 ::: zone-end
 
-- An Azure account with an active subscription is required. If you don't already have one, you can [create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+- An Azure account with an active subscription is required. If you don't already have one, you can [create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A GitHub Account. If you don't already have one, sign up for [free](https://github.com/join).
 
 [!INCLUDE [container-apps-create-cli-steps.md](../../includes/container-apps-create-cli-steps.md)]
@@ -46,7 +50,7 @@ This quickstart mirrors the applications you deploy in the open-source Dapr [Hel
 
 ## Prepare the GitHub repository
 
-Go to the repository holding the ARM and Bicep templates that's used to deploy the solution.
+Go to the repository holding the ARM and Bicep files that's used to deploy the solution.
 
 Select the **Fork** button at the top of the [repository](https://github.com/Azure-Samples/Tutorial-Deploy-Dapr-Microservices-ACA) to fork the repo to your account.
 
@@ -73,12 +77,11 @@ az deployment group create \
   --parameters environment_name="$CONTAINERAPPS_ENVIRONMENT"
 ```
 
-# [Azure PowerShell](#tab/azure-powershell)
+# [PowerShell](#tab/powershell)
 
 ```azurepowershell
 $params = @{
   environment_name = $ContainerAppsEnvironment
-
 }
 
 New-AzResourceGroupDeployment `
@@ -103,7 +106,7 @@ az deployment group create \
   --parameters environment_name="$CONTAINERAPPS_ENVIRONMENT"
 ```
 
-# [Azure PowerShell](#tab/azure-powershell)
+# [PowerShell](#tab/powershell)
 
 ```azurepowershell
 $params = @{
@@ -126,10 +129,10 @@ This command deploys:
 
 - The Container Apps environment and associated Log Analytics workspace for hosting the hello world Dapr solution.
 - An Application Insights instance for Dapr distributed tracing.
-- The `nodeapp` app server running on `targetPort: 3000` with Dapr enabled and configured using: 
-   - `"appId": "nodeapp"`
-   - `"appPort": 3000`
-   - A user-assigned identity with access to the Azure Blob storage via a Storage Data Contributor role assignment
+- The `nodeapp` app server running on `targetPort: 3000` with Dapr enabled and configured using:
+  - `"appId": "nodeapp"`
+  - `"appPort": 3000`
+  - A user-assigned identity with access to the Azure Blob storage via a Storage Data Contributor role assignment
 - A Dapr component of `"type": "state.azure.blobstorage"` scoped for use by the `nodeapp` for storing state.
 - The Dapr-enabled, headless `pythonapp` that invokes the `nodeapp` service using Dapr service invocation.
 - A Microsoft Entra ID role assignment for the Node.js app used by the Dapr component to establish a connection to Blob storage.
@@ -175,7 +178,7 @@ az monitor log-analytics query \
   --out table
 ```
 
-# [Azure PowerShell](#tab/azure-powershell)
+# [PowerShell](#tab/powershell)
 
 ```azurepowershell
 $WorkspaceId = (Get-AzContainerAppManagedEnv -ResourceGroupName $ResourceGroupName -EnvName $ContainerAppsEnvironment).LogAnalyticConfigurationCustomerId
@@ -213,7 +216,7 @@ az group delete \
   --resource-group $RESOURCE_GROUP
 ```
 
-# [Azure PowerShell](#tab/azure-powershell)
+# [PowerShell](#tab/powershell)
 
 ```azurepowershell
 Remove-AzResourceGroup -Name $RESOURCE_GROUP -Force

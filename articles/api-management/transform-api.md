@@ -4,17 +4,22 @@ description: In this tutorial, you learn how to protect your API in API Manageme
 
 author: dlepow    
 ms.service: azure-api-management
-ms.custom: mvc, devdivchpfy22
 ms.topic: tutorial
 ms.date: 11/25/2024
 ms.author: danlep
+ms.custom:
+  - mvc
+  - devdivchpfy22
+  - sfi-image-nochange
 ---
 
 # Tutorial: Transform and protect your API
 
 [!INCLUDE [api-management-availability-all-tiers](../../includes/api-management-availability-all-tiers.md)]
 
-In this tutorial, you learn about configuring [policies](api-management-howto-policies.md) to protect or transform your API. Policies are a collection of statements that are run sequentially on the request or response of an API that modify the API's behavior. 
+In this tutorial, you learn about configuring [policies](api-management-howto-policies.md) to protect or transform your API. Policies are a collection of statements that are run sequentially on the request or response of an API that modify the API's behavior.
+
+[!INCLUDE [api-management-workspace-try-it](../../includes/api-management-workspace-try-it.md)] 
 
 For example, you might want to set a custom response header. Or, protect your backend API by configuring a rate limit policy, so that the API isn't overused by developers. These examples are a simple introduction to API Management policies. For more policy options, see [API Management policies](api-management-policies.md).
 
@@ -152,6 +157,8 @@ The rest of this section tests policy transformations that you set in this artic
     :::image type="content" source="media/transform-api/test-throttling-new.png" alt-text="Screenshot showing Too Many Requests in the response in the portal.":::
 
 1. Wait for 15 seconds or more and then select **Send** again. This time you should get a **200 OK** response.
+
+[!INCLUDE [api-management-policies-azure-copilot](../../includes/api-management-policies-azure-copilot.md)]
 
 ## Summary
 

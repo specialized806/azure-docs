@@ -6,8 +6,9 @@ ms.author: sidontha
 ms.service: azure-data-share
 ms.custom: devx-track-azurecli, devx-track-azurepowershell
 ms.topic: tutorial
-ms.date: 12/19/2023
+ms.date: 02/12/2025
 ---
+
 # Tutorial: Accept and receive data using Azure Data Share  
 
 In this tutorial, you'll learn how to accept a data share invitation using Azure Data Share. You'll learn how to receive data being shared with you, and how to enable a regular refresh interval to ensure that you always have the most recent snapshot of the data being shared with you. 
@@ -24,7 +25,7 @@ Before you can accept a data share invitation, you must create some Azure resour
 
 Ensure that all prerequisites are complete before accepting a data share invitation. 
 
-* Azure Subscription: If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/) before you begin.
+* Azure Subscription: If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 * A Data Share invitation: An invitation from Microsoft Azure with a subject titled "Azure Data Share invitation from **<yourdataprovider@domain.com>**".
 * Register the [Microsoft.DataShare resource provider](concepts-roles-permissions.md#resource-provider-registration) in the Azure subscription where you'll create a Data Share resource and the Azure subscription where your target Azure data stores are located.
 
@@ -108,7 +109,7 @@ Start by preparing your environment for the Azure CLI:
 Run the [az datashare consumer-invitation list-invitation](/cli/azure/datashare/consumer-invitation) command to see your current invitations:
 
 ```azurecli
-az datashare consumer consumer-invitation list-invitation
+az datashare consumer-invitation list-invitation
 ```
 
 Copy your invitation ID for use in the next section.
@@ -395,6 +396,7 @@ This step only applies to snapshot-based sharing. To view history of your snapsh
 When the resource is no longer needed, go to the Data Share Overview page, and select **Delete** to remove it.
 
 ## Next steps
+
 In this tutorial, you learned how to accept and receive an Azure Data Share. To learn more about Azure Data Share concepts, continue to Azure Data Share Terminology.
 
 > [!div class="nextstepaction"]

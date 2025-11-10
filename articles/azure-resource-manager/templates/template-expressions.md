@@ -3,7 +3,7 @@ title: Template syntax and expressions
 description: Describes the declarative JSON syntax for Azure Resource Manager templates (ARM templates).
 ms.topic: conceptual
 ms.custom: devx-track-arm-template
-ms.date: 09/26/2024
+ms.date: 04/28/2025
 ---
 
 # Syntax and expressions in ARM templates
@@ -106,7 +106,7 @@ In resource definition, double-escape values within an expression. The `scriptOu
   "resources": [
     {
       "type": "Microsoft.Resources/deploymentScripts",
-      "apiVersion": "2020-10-01",
+      "apiVersion": "2023-08-01",
       "name": "escapingTest",
       "location": "[resourceGroup().location]",
       "kind": "AzurePowerShell",
@@ -145,7 +145,7 @@ With [languageVersion 2.0](./syntax.md#languageversion-20), double-escape is on 
   "resources": {
     "escapingTest": {
       "type": "Microsoft.Resources/deploymentScripts",
-      "apiVersion": "2020-10-01",
+      "apiVersion": "2023-08-01",
       "name": "escapingTest",
       "location": "[resourceGroup().location]",
       "kind": "AzurePowerShell",

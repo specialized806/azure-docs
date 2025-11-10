@@ -2,12 +2,11 @@
 title: Migrate Azure CDN from Edgio to Azure Front Door
 titleSuffix: Azure Content Delivery Network
 description: Learn how to migrate your workloads from Azure CDN from Edgio to Azure Front Door using Azure Traffic Manager.
-services: frontdoor
-author: duongau
+author: halkazwini
+ms.author: halkazwini
 ms.service: azure-frontdoor
 ms.topic: how-to
 ms.date: 12/18/2024
-ms.author: duau
 ---
 
 # Migrate Azure CDN from Edgio to Azure Front Door
@@ -34,7 +33,7 @@ We recommend that your plan this migration well in advance and test the function
     
 ## Migrate your workloads
 
-The followings steps assume you're using an Azure Blob Storage account as your origin. If you're using a different origin, adjust the steps accordingly.
+The following steps assume you're using an Azure Blob Storage account as your origin. If you're using a different origin, adjust the steps accordingly.
 
 :::image type="content" source="./media/migrate-cdn-to-front-door/cdn-traffic-manager.png" alt-text="Diagram of Azure Traffic Manager distributing traffic between Azure Front Door and Azure CDN from Edgio.":::
 

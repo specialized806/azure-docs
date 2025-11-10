@@ -4,7 +4,7 @@ ms.service: azure-functions
 ms.custom:
   - build-2024
 ms.topic: include
-ms.date: 05/10/2024
+ms.date: 01/03/2025
 ms.author: glenga
 ---
 
@@ -49,7 +49,7 @@ Before you begin, you must have the following requirements in place:
 -->
 + [Azure CLI](/cli/azure/install-azure-cli) version 2.4 or a later version.
 
-If you don't have an [Azure subscription](../articles/guides/developer/azure-developer-guide.md#understanding-accounts-subscriptions-and-billing), create an [Azure free account](https://azure.microsoft.com/free/?ref=microsoft.com&utm_source=microsoft.com&utm_medium=docs&utm_campaign=visualstudio) before you begin.
+If you don't have an [Azure subscription](../articles/guides/developer/azure-developer-guide.md#understanding-accounts-subscriptions-and-billing), create an [Azure free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 
 <!---Requirements specific to Docker -->
 To publish the containerized function app image you create to a container registry, you need a Docker ID and [Docker](https://docs.docker.com/install/) running on your local computer. If you don't have a Docker ID, you can [create a Docker account](https://hub.docker.com/signup).
@@ -225,7 +225,7 @@ After verifying the function app in the container, press **Ctrl**+**C** (**Comma
 
 ## Publish the container image to a registry 
 
-To make your container image available for deployment to a hosting environment, you must push it to a container registry.
+To make your container image available for deployment to a hosting environment, you must push it to a container registry. As a security best practice, you should use an Azure Container Registry instance and enforce managed identity-based connections. Docker Hub requires you to authenticate using shared secrets, which make your deployments more vulnerable.   
 
 ### [Azure Container Registry](#tab/acr)
 

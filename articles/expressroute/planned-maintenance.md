@@ -6,6 +6,7 @@ ms.author: duau
 ms.service: azure-expressroute
 ms.topic: concept-article
 ms.date: 05/10/2023
+# Customer intent: "As a network administrator, I want to understand the planned maintenance process for ExpressRoute circuits, so that I can ensure reliable connectivity and minimize service disruptions during maintenance events."
 ---
 
 # Planned maintenance guidance for ExpressRoute
@@ -78,7 +79,7 @@ You should track the status of connections through ExpressRoute circuits. Tracki
 
 Review the available metrics for [ExpressRoute monitoring](expressroute-monitoring-metrics-alerts.md) for ExpressRoute circuit and Direct ports. At the minimum you should configure alerts to trigger for **ARP availability**, **BGP availability** and **Line Protocol**. Then configure email notifications to be sent when an out of service occurs.  
 
-You can elevate the monitor information by using [Connection Monitor for ExpressRoute](how-to-configure-connection-monitor.md). Connection monitor is a cloud-based network monitoring solution that monitors connectivity between on-premises networks (branch offices, etc.) and Azure cloud deployments. This service is used to track not only service disruptions but also end-to-end performance degradation for your services.
+You can elevate the monitor information by using [Connection Monitor for ExpressRoute](configure-connection-monitor.md). Connection monitor is a cloud-based network monitoring solution that monitors connectivity between on-premises networks (branch offices, etc.) and Azure cloud deployments. This service is used to track not only service disruptions but also end-to-end performance degradation for your services.
 
 ## Next steps
 

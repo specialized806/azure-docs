@@ -1,13 +1,14 @@
 ---
 title: Troubleshoot Hyper-V disaster recovery with Azure Site Recovery 
 description: Describes how to troubleshoot disaster recovery issues with Hyper-V to Azure replication using Azure Site Recovery.
-author: ankitaduttaMSFT
+author: Jeronika-MS
 ms.service: azure-site-recovery
 ms.topic: troubleshooting
 ms.date: 12/20/2024
-ms.author: ankitadutta
+ms.author: v-gajeronika
 ms.custom: engagement-fy23
 
+# Customer intent: "As an IT administrator managing Hyper-V disaster recovery, I want to troubleshoot replication issues to Azure, so that I can ensure seamless backup and recovery of virtual machines."
 ---
 # Troubleshoot Hyper-V to Azure replication and failover
 
@@ -139,7 +140,7 @@ An app-consistent snapshot is a point-in-time snapshot of the application data i
 2. To generate VSS snapshots for the VM, check that Hyper-V Integration Services is installed on the VM, and that the Backup (VSS) Integration Service is enabled.
     - Ensure that the Integration Services VSS service/daemons are running on the guest, and are in an **OK** state.
     - You can check this from an elevated PowerShell session on the Hyper-V host with command **Get-VMIntegrationService -VMName\<VMName>-Name VSS** You can also get this information by logging into the guest VM. [Learn more](/windows-server/virtualization/hyper-v/manage/manage-hyper-v-integration-services).
-    - Ensure that the Backup/VSS integration Services on the VM is running and in healthy state. If not, restart these services, and the Hyper-V Volume Shadow Copy requestor service on the Hyper-V host server.
+    - Ensure that the Backup/VSS integration Services on the VM is running and in healthy state. If not, restart these services, and the Hyper-V Volume Shadow Copy requester service on the Hyper-V host server.
 
 ### Common errors
 
@@ -177,4 +178,4 @@ All Hyper-V replication events are logged in the Hyper-V-VMMS\Admin log, located
 This tool can help with advanced troubleshooting:
 
 -	For VMM, perform Site Recovery log collection using the [Support Diagnostics Platform (SDP) tool](https://social.technet.microsoft.com/wiki/contents/articles/28198.asr-data-collection-and-analysis-using-the-vmm-support-diagnostics-platform-sdp-tool.aspx).
-- [Enable logging](https://learn.microsoft.com/troubleshoot/azure/site-recovery/backup/asr-enable-debug-logging) for the Azure Site Recovery in Hyper-V Site Protection. 
+- [Enable logging](/troubleshoot/azure/site-recovery/backup/asr-enable-debug-logging) for the Azure Site Recovery in Hyper-V Site Protection. 

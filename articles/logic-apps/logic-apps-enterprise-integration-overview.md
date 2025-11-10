@@ -7,7 +7,7 @@ author: divyaswarnkar
 ms.author: divswa
 ms.reviewer: estfan, azla
 ms.topic: overview
-ms.date: 01/04/2024
+ms.date: 02/19/2025
 ---
 
 # B2B enterprise integration workflows with Azure Logic Apps and Enterprise Integration Pack
@@ -27,7 +27,7 @@ Although organizations use different protocols and formats for B2B communication
 
 ## What do I need to get started?
 
-* An Azure account and subscription. If you don't have an Azure subscription, [sign up for a free Azure account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+* An Azure account and subscription. If you don't have an Azure subscription, [sign up for a free Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 * An [integration account](logic-apps-enterprise-integration-create-integration-account.md) to store the B2B artifacts that you define and want to use.
 

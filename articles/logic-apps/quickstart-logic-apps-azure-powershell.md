@@ -7,7 +7,7 @@ ms.reviewer: estfan, azla
 ms.topic: quickstart
 ms.tool: azure-powershell
 ms.custom: mvc, mode-api, devx-track-azurepowershell
-ms.date: 01/04/2024
+ms.date: 02/20/2025
 ---
 
 # Quickstart: Create and manage workflows with Azure PowerShell in Azure Logic Apps
@@ -26,7 +26,7 @@ If you're new to Azure Logic Apps, learn how to create your first Consumption lo
 
 ## Prerequisites
 
-* An Azure account with an active subscription. If you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+* An Azure account with an active subscription. If you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 * The [Az PowerShell](/powershell/azure/install-azure-powershell) module installed on your local computer.
 

@@ -5,8 +5,10 @@ services: expressroute
 author: duongau
 ms.service: azure-expressroute
 ms.topic: how-to
-ms.date: 10/01/2024
+ms.date: 03/31/2025
 ms.author: duau
+ms.custom: sfi-image-nochange
+ai-usage: ai-assisted
 ---
 
 # Connect a virtual network to ExpressRoute circuits using the Azure portal
@@ -54,13 +56,9 @@ This article helps you create a connection to link a virtual network (virtual ne
 
 3. You can now start provisioning a connection to link your virtual network gateway to your ExpressRoute circuit. Select **Connection** > **Add** to open the **Create connection** page.
 
-    :::image type="content" source="./media/expressroute-howto-linkvnet-portal-resource-manager/add-connection.png" alt-text="Add connection screenshot":::
-
 4. Select the **Connection type** as **ExpressRoute** and then select **Next: Settings >**.
 
-    :::image type="content" source="./media/expressroute-howto-linkvnet-portal-resource-manager/create-connection-basic.png" alt-text="Screenshot of create a connection basic page.":::
-
-5. Select the resiliency type for your connection. You can choose **Maximum resiliency** or **Standard resiliency**.
+5. Select the resiliency type for your connection. You can choose **Maximum resiliency**, **High resiliency**, or **Standard resiliency**.
 
     **Maximum resiliency (Recommended)** - This option provides the highest level of resiliency to your virtual network. It provides two redundant connections from the virtual network gateway to two different ExpressRoute circuits in different ExpressRoute locations.
     
@@ -80,9 +78,7 @@ This article helps you create a connection to link a virtual network (virtual ne
 
     :::image type="content" source="./media/expressroute-howto-linkvnet-portal-resource-manager/standard-resiliency.png" alt-text="Diagram of a virtual network gateway connected to a single ExpressRoute circuit via one peering location.":::
     
-6. Enter the following information for the respective resiliency type and then select **Review + create**. Then select **Create** after validation completes.
-
-    :::image type="content" source="./media/expressroute-howto-linkvnet-portal-resource-manager/create-connection-configuration.png" alt-text="Screenshot of the settings page for maximum resiliency ExpressRoute connections to a virtual network gateway.":::
+6. Enter the following information for the respective resiliency type:
 
     **Maximum resiliency**
 
@@ -104,11 +100,25 @@ This article helps you create a connection to link a virtual network (virtual ne
 
     **High/Standard resiliency**
 
-    For high or standard resiliency, you only need to enter information for one connection. For high resiliency the connection you need to attach a metro circuit.  For standard resiliency the connection you need to attach a regular (non-metro) circuit.  
+    For high or standard resiliency, you only need to enter information for one connection. For high resiliency the connection you need to attach a metro circuit.  For standard resiliency the connection you need to attach a regular (non-metro) circuit.
 
-7. After your connection has been successfully configured, your connection object will show the information for the connection.
+7. (Optional) Select **Next: Monitoring >** to configure Connection Monitor for your ExpressRoute connection. Connection Monitor tracks the health and performance of your connection by continuously testing network paths between on-premises and Azure endpoints.
 
-    :::image type="content" source="./media/expressroute-howto-linkvnet-portal-resource-manager/connection-object.png" alt-text="Screenshot of a created connection resource.":::
+    :::image type="content" source="./media/how-to-configure-connection-monitor/connection-monitor.png" alt-text="Screenshot showing the Monitoring tab configuration page for Connection Monitor settings." lightbox="./media/how-to-configure-connection-monitor/connection-monitor.png":::
+
+    Configure the following settings:
+    * **Enable Connection Monitor**: Selected by default. Clear this checkbox if you don't want to enable monitoring.
+    * **On-premises endpoint**: Select your Azure Arc-enabled server or enter an external IP address.
+    * **Azure endpoint**: Select your Azure Virtual Machine or Virtual Machine Scale Set.
+    * **Protocol**: TCP is used for testing connectivity.
+    * **Destination port**: Enter the port your application uses.
+    * **Test Frequency**: Select how often Connection Monitor checks your connection.
+    
+    For detailed configuration guidance, see [Configure Connection Monitor](configure-connection-monitor.md).
+
+8. Select **Review + create** to validate your configuration. Review the settings and then select **Create** to deploy the connection.
+
+9. After your connection has been successfully configured, your connection object will show the information for the connection.
 
 ## Connect a virtual network to a circuit - different subscription
 
@@ -129,7 +139,7 @@ The 'circuit owner' is an authorized Power User of the ExpressRoute circuit reso
 The circuit owner has the power to modify and revoke authorizations at any time. Revoking an authorization results in all link connections being deleted from the subscription whose access was revoked.
 
   > [!NOTE]
-  > Circuit owner is not an built-in RBAC role or defined on the ExpressRoute resource.
+  > Circuit owner is not a built-in RBAC role or defined on the ExpressRoute resource.
   > The definition of the circuit owner is any role with the following access:
   > - Microsoft.Network/expressRouteCircuits/authorizations/write
   > - Microsoft.Network/expressRouteCircuits/authorizations/read
@@ -149,8 +159,6 @@ The circuit owner creates an authorization, which creates an authorization key t
 
 1. In the ExpressRoute page, select **Authorizations** and then type a **name** for the authorization and select **Save**.
 
-    :::image type="content" source="./media/expressroute-howto-linkvnet-portal-resource-manager/authorization.png" alt-text="Authorizations":::
-
 2. Once the configuration is saved, copy the **Resource ID** and the **Authorization Key**.
 
     :::image type="content" source="./media/expressroute-howto-linkvnet-portal-resource-manager/authorization-key.png" alt-text="Authorization key":::
@@ -166,8 +174,6 @@ If you want to delete the connection but retain the authorization key, you can d
 > [!NOTE]
 > To view your Gateway connections, go to your ExpressRoute circuit in Azure portal. From there, navigate to *Connections* underneath *Settings* for your ExpressRoute circuit. This will show you each ExpressRoute gateway that your circuit is connected to. If the gateway is under a different subscription than the circuit, the *Peer* field will display the circuit authorization key.
 
-:::image type="content" source="./media/expressroute-howto-linkvnet-portal-resource-manager/delete-connection-owning-circuit.png" alt-text="Delete connection owning circuit":::
-
 ### Circuit user operations
 
 The circuit user needs the resource ID and an authorization key from the circuit owner.
@@ -176,17 +182,12 @@ The circuit user needs the resource ID and an authorization key from the circuit
 
 1. Select the **+ Create a resource** button. Search for **Connection** and select **Create**.
 
-    :::image type="content" source="./media/expressroute-howto-linkvnet-portal-resource-manager/create-new-resources.png" alt-text="Create new resources":::
-
 1. In the **Basics** page, make sure the *Connection type* is set to **ExpressRoute**. Select the *Resource group*, and then select **Next: Settings>**.
-
-
-    :::image type="content" source="./media/expressroute-howto-linkvnet-portal-resource-manager/connection-basics.png" alt-text="Basics page":::
 
 1. In the **Settings** page, select **High Resiliency** or **Standard Resiliency**, and then select the *Virtual network gateway*. Check the **Redeem authorization** check box. Enter the *Authorization key* and the *Peer circuit URI* and give the connection a name.
  
     > [!NOTE]
-    > - Connecting to circuits in a different subscription isn't supported under Maximum Resiliency.
+    > - Connecting to circuits in a different subscription is supported under Maximum Resiliency; however, there is a limitation within the portal, and authorization must be redeemed individually for each circuit.
     > - You can connect a virtual network to a Metro circuit in a different subscription when choosing High Resiliency.
     > - You can connect a virtual network to a regular (non-metro) circuit in a different subscription when choosing Standard Resiliency.
     > - The *Peer Circuit URI* is the Resource ID of the ExpressRoute circuit (which you can find under the Properties Setting pane of the ExpressRoute Circuit).
@@ -197,11 +198,12 @@ The circuit user needs the resource ID and an authorization key from the circuit
 
 1. Review the information in the **Summary** page and select **Create**.
 
-    :::image type="content" source="./media/expressroute-howto-linkvnet-portal-resource-manager/connection-summary.png" alt-text="Summary page":::
-
 ## Configure ExpressRoute FastPath
 
 [FastPath](expressroute-about-virtual-network-gateways.md) improves data path performance such as packets per second and connections per second between your on-premises network and your virtual network. You can enable FastPath if your virtual network gateway is Ultra Performance or ErGw3AZ.
+
+> [!NOTE]
+> When you enable FastPath on new or existing connections, the Gateway bypass is enabled after the ExpressRoute Gateway and Circuit connection is established. This will briefly route the on-premises traffic through the gateway.
 
 ### Configure FastPath on a new connection
 
@@ -209,8 +211,6 @@ When adding a new connection for your ExpressRoute gateway, select the checkbox 
 
 :::image type="content" source="./media/expressroute-howto-linkvnet-portal-resource-manager/enable-fastpath-portal.png" alt-text="Screenshot of FastPath checkbox in add a connection page.":::
 
-> [!NOTE]
-> Enabling FastPath for a new connection is only available through creating a connection from the gateway resource. New connections created from the ExpressRoute circuit or from the Connection resource page is not supported.
 
 ### Configure FastPath on an existing connection
 
@@ -221,19 +221,14 @@ When adding a new connection for your ExpressRoute gateway, select the checkbox 
     :::image type="content" source="./media/expressroute-howto-linkvnet-portal-resource-manager/enable-fastpath-connection.png" alt-text="Screenshot of FastPath checkbox on connection configuration page.":::
 
 > [!NOTE]
-> You can use [Connection Monitor](how-to-configure-connection-monitor.md) to verify that your traffic is reaching the destination using FastPath.
+> You can use [Connection Monitor](configure-connection-monitor.md) to verify that your traffic is reaching the destination using FastPath.
 
 ## Clean up resources
 
 You can delete a connection and unlink your virtual network to an ExpressRoute circuit by selecting the **Delete** icon on the page for your connection.
 
-:::image type="content" source="./media/expressroute-howto-linkvnet-portal-resource-manager/delete-connection.png" alt-text="Delete connection":::
-
 ## Next step
 
 In this tutorial, you learned how to connect a virtual network to a circuit in the same subscription and in a different subscription. For more information about ExpressRoute gateways, see: [ExpressRoute virtual network gateways](expressroute-about-virtual-network-gateways.md).
 
-To learn how to configure, route filters for Microsoft peering using the Azure portal, advance to the next tutorial.
-
-> [!div class="nextstepaction"]
-> [Configure route filters for Microsoft peering](how-to-routefilter-portal.md)
+After connecting your virtual network to an ExpressRoute circuit, you can set up monitoring to track the health and performance of your connection. For more information, see [Connection Monitor overview](connection-monitor-overview.md), [Configure Connection Monitor](configure-connection-monitor.md), and [Configure alerts](connection-monitor-alerts.md).

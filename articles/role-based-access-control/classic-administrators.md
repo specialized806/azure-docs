@@ -2,19 +2,20 @@
 title: Azure classic subscription administrators
 description: Describes the retirement of the Co-Administrator and Service Administrator roles and how to convert these role assignments.
 author: rolyon
-manager: amycolannino
+manager: pmwongera
 
 ms.service: role-based-access-control
 ms.topic: how-to
-ms.date: 09/23/2024
+ms.date: 10/15/2025
 ms.author: rolyon
 ms.reviewer: bagovind
+ms.custom: sfi-image-nochange
 ---
 
 # Azure classic subscription administrators
 
 > [!IMPORTANT]
-> As of **August 31, 2024**, Azure classic administrator roles (along with Azure classic resources and Azure Service Manager) are retired and no longer supported. If you still have active Co-Administrator or Service Administrator role assignments, convert these role assignments to Azure RBAC immediately.
+> As of **August 31, 2024**, Azure classic administrator roles (along with Azure classic resources and Azure Service Manager) are retired and no longer supported. Starting on **April 30, 2025**, any Co-Administrator or Service Administrator role assignments will lose access. If you still have active Co-Administrator or Service Administrator role assignments, convert these role assignments to Azure RBAC immediately.
 
 Microsoft recommends that you manage access to Azure resources using Azure role-based access control (Azure RBAC). If you're still using the classic deployment model, you'll need to migrate your resources from classic deployment to Resource Manager deployment. For more information, see [Azure Resource Manager vs. classic deployment](../azure-resource-manager/management/deployment-models.md).
 
@@ -25,6 +26,10 @@ This article describes the retirement of the Co-Administrator and Service Admini
 What happens to classic administrator role assignments after August 31, 2024?
 
 - Co-Administrator and Service Administrator roles are retired and no longer supported. You should convert these role assignments to Azure RBAC immediately.
+
+What happens to classic administrator role assignments after April 30, 2025?
+
+- Co-Administrator and Service Administrator role assignments will lose access. If you don't have an Owner role assignment at subscription scope, you will lose access to manage the subscription.
 
 How do I know what subscriptions have classic administrators?
 
@@ -142,7 +147,7 @@ Most users don't need the same permissions as a Co-Administrator. Consider a job
 
 1. Determine the [scope](scope-overview.md) user needs.
 
-1. Follow steps to [assign a job function role to user](role-assignments-portal.yml).
+1. Follow steps to [assign a job function role to user](/azure/role-based-access-control/role-assignments-portal).
 
 1. [Remove Co-Administrator](#how-to-remove-a-co-administrator).
 
@@ -152,7 +157,7 @@ Some users might need more access than what a job function role can provide. If 
 
 1. Assign the Owner role with conditions.
 
-    For example, assign the [Owner role at subscription scope with conditions](role-assignments-portal-subscription-admin.yml). If you have PIM, make the user [eligible for Owner role assignment](/entra/id-governance/privileged-identity-management/pim-resource-roles-assign-roles).
+    For example, assign the [Owner role at subscription scope with conditions](/azure/role-based-access-control/role-assignments-portal-subscription-admin). If you have PIM, make the user [eligible for Owner role assignment](/entra/id-governance/privileged-identity-management/pim-resource-roles-assign-roles).
 
 1. [Remove Co-Administrator](#how-to-remove-a-co-administrator).
 
@@ -230,7 +235,7 @@ Your Service Administrator might be a Microsoft account or a Microsoft Entra acc
 
 1. If Service Administrator user is a Microsoft Entra account and you want this user to keep the same permissions, [convert the Service Administrator to Owner role](#how-to-convert-the-service-administrator-to-owner-role).
 
-1. If you want to change the Service Administrator user to a different user, [assign the Owner role](role-assignments-portal.yml) to this new user at subscription scope without conditions. Then, [remove the Service Administrator](#how-to-remove-the-service-administrator).
+1. If you want to change the Service Administrator user to a different user, [assign the Owner role](/azure/role-based-access-control/role-assignments-portal) to this new user at subscription scope without conditions. Then, [remove the Service Administrator](#how-to-remove-the-service-administrator).
 
 ### How to convert the Service Administrator to Owner role
 
@@ -276,5 +281,5 @@ The easiest way to convert the Service Administrator role assignment to the [Own
 ## Next steps
 
 - [Understand the different roles](../role-based-access-control/rbac-and-directory-admin-roles.md)
-- [Assign Azure roles using the Azure portal](../role-based-access-control/role-assignments-portal.yml)
+- [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal)
 - [Understand Microsoft Customer Agreement administrative roles in Azure](../cost-management-billing/manage/understand-mca-roles.md)

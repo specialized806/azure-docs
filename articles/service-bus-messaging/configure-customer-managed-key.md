@@ -3,6 +3,7 @@ title: Configure your own key for encrypting Azure Service Bus data at rest
 description: This article provides information on how to configure your own key for encrypting Azure Service Bus data rest. 
 ms.topic: conceptual
 ms.date: 02/03/2025
+ms.custom: sfi-image-nochange
 ---
 
 # Configure customer-managed keys for encrypting Azure Service Bus data at rest
@@ -15,6 +16,13 @@ There are some caveats to the customer managed key for service side encryption.
 You can use Azure Key Vault (including Azure Key Vault Managed Hardware Security Module (HSM)) to manage your keys and audit your key usage. You can either create your own keys and store them in a key vault, or you can use the Azure Key Vault APIs to generate keys. For more information about Azure Key Vault, see [What is Azure Key Vault?](/azure/key-vault/general/overview)
 
 If you only need to encrypt certain properties of your messages, consider using a library like [NServiceBus](https://docs.particular.net/nservicebus/security/property-encryption).
+
+> [!NOTE]
+> A customer-managed keys for is considered disabled in the following scenarios:
+> - Revoking access: If Service Bus no longer has permission to access the key in Azure Key Vault.
+> - Disabling the key: Manually disabling the key in Key Vault renders it unusable.
+> - Letting the key expire: If the key reaches its expiration date without renewal. Letting a key expire has the same effect as revoking or disabling it. Always rotate or renew keys before they expire to avoid unintended outages.
+> - Deleting the key: Once deleted, the key is permanently inaccessible.
 
 ## Enable customer-managed keys (Azure portal)
 
@@ -616,7 +624,9 @@ If you require a higher level of assurance that your data is secure, you can ena
 
 When infrastructure encryption is enabled, data in the Azure Service Bus is encrypted twice, once at the service level and once at the infrastructure level, using two different encryption algorithms and two different keys. Hence, infrastructure encryption of Azure Service Bus data protects against a scenario where one of the encryption algorithms or keys can be compromised.
 
-You can enable infrastructure encryption by updating the Azure Resource Manager template with `requireInfrastructureEncryption` property in the **UpdateServiceBusNamespaceWithEncryption.json** as shown in the following example. 
+Also, infrastructure encryption can be enabled only while switching from "Microsoft-managed key" to "Customer-managed key". 
+
+You can enable infrastructure encryption later even by updating the Azure Resource Manager template with `requireInfrastructureEncryption` property in the **UpdateServiceBusNamespaceWithEncryption.json** as shown in the following example. 
 
 ```json
 "properties":{

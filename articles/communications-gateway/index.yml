@@ -5,10 +5,8 @@ summary: The Azure Communications Gateway service will retire on October 30, 202
 metadata:
   title: Azure Communications Gateway documentation
   description: Azure Communications Gateway enables telecommunications operators to provide Operator Connect, Teams Phone Mobile, Microsoft Teams Direct Routing and Zoom Phone Cloud Peering services.
-  ms.service: azure-communications-gateway
+  ms.service: azure-application-gateway
   ms.topic: landing-page
-  author: GemmaWakeford 
-  ms.author: gwakeford
   ms.date: 04/25/2024
 
 # linkListType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | tutorial | whats-new

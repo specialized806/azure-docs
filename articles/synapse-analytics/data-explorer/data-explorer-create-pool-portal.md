@@ -2,16 +2,20 @@
 title: 'Quickstart: Create a Data Explorer pool using the Azure portal (Preview)'
 description: Create a Data Explorer pool using the Azure portal by following the steps in this guide.
 ms.topic: quickstart
-ms.date: 11/02/2021
+ms.date: 03/24/2025
 author: shsagir
 ms.author: shsagir
 ms.reviewer: shsagir
 ms.service: azure-synapse-analytics
 ms.subservice: data-explorer
-ms.custom: mode-ui
+ms.custom:
+  - mode-ui
+  - sfi-image-nochange
 ---
 
 # Quickstart: Create a Data Explorer pool using the Azure portal (Preview)
+
+[!INCLUDE [data-explorer-deprecation-notice](includes/data-explorer-deprecation-notice.md)]
 
 Azure Synapse Data Explorer is a fast, fully managed data analytics service for real-time analysis on large volumes of data streaming from applications, websites, IoT devices, and more. To use Data Explorer, you first create a Data Explorer pool.
 
@@ -20,11 +24,11 @@ This article describes the steps to create a Data Explorer pool in a Synapse wor
 > [!IMPORTANT]
 > Billing for Data Explorer instances is prorated per minute, whether you are using them or not. Be sure to shutdown your Data Explorer instance after you have finished using it, or set a short timeout. For more information, see **Clean up resources**.
 
-If you don't have an Azure subscription, [create a free account before you begin](https://azure.microsoft.com/free/).
+If you don't have an Azure subscription, [create a free account before you begin](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 ## Prerequisites
 
-- You'll need an Azure subscription. If needed, [create a free Azure account](https://azure.microsoft.com/free/)
+- You'll need an Azure subscription. If needed, [create a free Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 - [Synapse workspace](../quickstart-create-workspace.md)
 
 ## Sign in to the Azure portal

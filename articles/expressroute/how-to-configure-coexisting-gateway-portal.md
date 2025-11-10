@@ -7,6 +7,8 @@ ms.service: azure-expressroute
 ms.topic: how-to
 ms.date: 01/31/2025
 ms.author: duau
+ms.custom: sfi-image-nochange
+# Customer intent: "As a network engineer, I want to configure both ExpressRoute and Site-to-Site VPN connections to coexist, so that I can ensure a secure failover path and connect to additional sites as needed."
 ---
 
 # Configure ExpressRoute and Site-to-Site coexisting connections using the Azure portal
@@ -77,8 +79,6 @@ This procedure guides you through creating a virtual network and configuring coe
 1. On the top left-hand side of the screen, select **+ Create a resource** and search for *Virtual network*.
 
 1. Select **Create** to begin configuring the virtual network.
-
-    :::image type="content" source="media/how-to-configure-coexisting-gateway-portal/create-vnet.png" alt-text="Screenshot of the create a virtual network page.":::
 
 1. On the *Basics* tab, select or create a new **resource group** to store the virtual network. Enter the **name** and select the **region** to deploy the virtual network. Select **Next: IP Addresses >** to configure the address space and subnets.
 

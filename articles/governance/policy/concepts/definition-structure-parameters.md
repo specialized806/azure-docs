@@ -1,7 +1,7 @@
 ---
 title: Details of the policy definition structure parameters
 description: Describes how policy definition parameters are used to establish conventions for Azure resources in your organization.
-ms.date: 04/01/2024
+ms.date: 03/04/2025
 ms.topic: conceptual
 ---
 
@@ -192,7 +192,7 @@ The non _resource type_ allowed values for `strongType` are:
 
 - For more information about policy definition structure, go to [basics](./definition-structure-basics.md), [policy rule](./definition-structure-policy-rule.md), and [alias](./definition-structure-alias.md).
 - For initiatives, go to [initiative definition structure](./initiative-definition-structure.md).
-- Review examples at [Azure Policy samples](../samples/index.md).
+- Review examples at [Azure Policy samples](/azure/governance/policy/samples/index).
 - Review [Understanding policy effects](effect-basics.md).
 - Understand how to [programmatically create policies](../how-to/programmatically-create.md).
 - Learn how to [get compliance data](../how-to/get-compliance-data.md).

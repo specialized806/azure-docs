@@ -12,7 +12,7 @@ In this quickstart, you use the Azure portal and Marketplace to find and create 
 
 ## Prerequisites
 
-- An Azure account. If you don't have an active Azure subscription, [create a free account](https://azure.microsoft.com/free/). Make sure you're an _Owner_ or a _Contributor_ in the subscription.
+- An Azure account. If you don't have an active Azure subscription, [create a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn). Make sure you're an _Owner_ or a _Contributor_ in the subscription.
 
 ## Create an Informatica organization
 
@@ -71,7 +71,7 @@ You can specify custom tags for the new Informatica resource in Azure by adding 
 
     :::image type="content" source="media/informatica-create/informatica-deploy.png" alt-text="Screenshot of a completed Informatica deployment.":::
 
-1. Select **Overview** in the Resource menu to see information on the deployed resources.
+1. Select **Overview** in the service menu to see information on the deployed resources.
 
     :::image type="content" source="media/informatica-create/informatica-overview-pane.png" alt-text="Screenshot of information on the Informatica resource overview.":::
 

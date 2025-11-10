@@ -2,10 +2,12 @@
 title: Move an Azure Spring Apps Service Instance to Another Region
 description: Learn how to move an Azure Spring Apps service instance to another region.
 author: KarlErickson
-ms.author: wepa
+ms.author: karler
+ms.reviewer: wepa
 ms.service: azure-spring-apps
 ms.topic: how-to
-ms.date: 06/27/2024
+ms.date: 08/19/2025
+ms.update-cycle: 1095-days
 ms.custom: devx-track-java, devx-track-extended-java, engagement-fy23
 ---
 

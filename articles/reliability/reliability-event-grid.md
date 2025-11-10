@@ -1,6 +1,6 @@
 ---
-title: Reliability in Azure Event Grid and Event Grid namespace
-description: Find out about reliability in Azure Event Grid and Event Grid namespace
+title: Reliability in Azure Event Grid and Event Grid Namespace
+description: Learn how to ensure event-driven reliability with Azure Event Grid by using automatic failover, availability zones, and geo disaster recovery strategies.
 author: anaharris-ms
 ms.author: anaharris
 ms.topic: reliability-article
@@ -29,7 +29,7 @@ Event Grid resource definitions for topics, system topics, domains, and event su
  
 ### Prerequisites
 
-For availability zone support, your Event Grid resources must be in a region that supports availability zones. To review which regions support availability zones, see the [list of supported regions](availability-zones-region-support.md). 
+For availability zone support, your Event Grid resources must be in a region that supports availability zones. To review which regions support availability zones, see the [list of supported regions](regions-list.md). 
 
 
 ### Pricing

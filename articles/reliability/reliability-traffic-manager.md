@@ -1,10 +1,10 @@
 ---
 title: Reliability in Azure Traffic Manager
-description: Learn about reliability in Azure Traffic Manager.
+description: Learn how to ensure reliability in Azure Traffic Manager by using failover, disaster recovery, DNS health checks, and high availability for global load balancing.
 author: anaharris-ms
 ms.author: anaharris
-ms.topic: overview
-ms.custom: subject-reliability, references-regions
+ms.topic: reliability-article
+ms.custom: subject-reliability
 ms.service: azure-traffic-manager
 ms.date: 10/31/2024
 ---

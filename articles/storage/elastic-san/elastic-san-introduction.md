@@ -8,6 +8,7 @@ ms.date: 05/31/2024
 ms.author: rogarana
 ms.custom:
   - ignite-2023-elastic-SAN
+# Customer intent: "As a cloud architect, I want to deploy and manage a centralized storage solution using Elastic SAN, so that I can optimize performance and reduce costs for my organization's multiple compute resources."
 ---
 
 # What is Azure Elastic SAN?
@@ -74,7 +75,7 @@ The status of items in this table might change over time.
 | Private endpoints |	✔️ |
 | Grant network access to specific Azure virtual networks|  ✔️  |
 | Soft delete | ⛔  |
-| Snapshots (preview) | ✔️ |
+| Snapshots | ✔️ |
 
 ## Next steps
 

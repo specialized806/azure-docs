@@ -1,12 +1,14 @@
 ---
 title: Reliability in Azure Notification Hubs
-description: Find out about reliability in Azure Notification Hubs. 
+description: Learn how to ensure reliability in Azure Notification Hubs by using zone redundancy, cross-region disaster recovery, notifications, and device registration backup.
 author: sethmanheim
 ms.author: sethm
 ms.service: azure-notification-hubs
 ms.topic: reliability-article
-ms.custom: subject-reliability, references_regions
 ms.date: 03/06/2024
+ms.custom:
+  - subject-reliability
+  - sfi-image-nochange
 
 ---
 
@@ -25,7 +27,7 @@ In a region that supports availability zones, Notification Hubs supports a zone-
 
 ### Prerequisites
 
-- Azure Notification Hubs uses [availability zones](availability-zones-overview.md#zonal-and-zone-redundant-services) in regions where they're available. For a list of regions that support availability zones, see [Azure regions with availability zones](availability-zones-region-support.md).
+- Azure Notification Hubs uses [availability zones](availability-zones-overview.md#zonal-and-zone-redundant-services) in regions where they're available. For a list of regions that support availability zones, see [Azure regions with availability zones](regions-list.md).
 
 - Availability zones are supported by default only in specific tiers. To learn which tiers support availability zone deployments, see [Notification Hubs pricing](https://azure.microsoft.com/pricing/details/notification-hubs).
 

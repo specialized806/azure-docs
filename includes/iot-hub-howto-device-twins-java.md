@@ -2,13 +2,17 @@
 title: Get started with Azure IoT Hub device twins (Java)
 titleSuffix: Azure IoT Hub
 description: How to use the Azure IoT SDK for Java to create device and backend service application code for device twins.
-author: kgremban
-ms.author: kgremban
+author: SoniaLopezBravo
+ms.author: sonialopez
 ms.service: azure-iot-hub
 ms.devlang: java
 ms.topic: include
 ms.date: 07/20/2024
-ms.custom: mqtt, devx-track-java, devx-track-extended-java
+ms.custom:
+  - mqtt
+  - devx-track-java
+  - devx-track-extended-java
+  - sfi-ropc-nochange
 ---
 
   * Requires [Java SE Development Kit 8](/azure/developer/java/fundamentals/). Make sure you select **Java 8** under **Long-term support** to navigate to downloads for JDK 8.

@@ -1,8 +1,8 @@
 ---
 title: CEF via AMA connector - Configure appliances and devices
 description: Learn how to configure specific devices that use the Common Event Format (CEF) via AMA data connector for Microsoft Sentinel.
-author: cwatson-cat
-ms.author: cwatson
+author: EdB-MSFT
+ms.author: edbaynash
 ms.topic: reference
 ms.custom: linux-related-content
 ms.date: 06/27/2024
@@ -380,7 +380,7 @@ Configure Palo Alto Networks to forward syslog messages in CEF format to your Mi
 
 ## PingFederate
 
-[Follow these steps](https://docs.pingidentity.com/bundle/pingfederate-102/page/gsn1564002980953.html) to configure PingFederate sending audit log via syslog in CEF format.
+[Follow these steps](https://docs.pingidentity.com/) to configure PingFederate sending audit log via syslog in CEF format.
 
 ## RidgeSecurity
 

@@ -1,9 +1,9 @@
 ---
 title: How does Azure IoT Operations work in layered network?
-description: Use the Layered Network Management (preview) service to enable Azure IoT Operations in industrial network environment.
-author: PatAltimore
+description: Use the Layered Network Management service to enable Azure IoT Operations in industrial network environment.
+author: SoniaLopezBravo
 ms.subservice: layered-network-management
-ms.author: patricka
+ms.author: sonialopez
 ms.topic: concept-article
 ms.date: 10/22/2024
 
@@ -13,7 +13,7 @@ ms.service: azure-iot-operations
 
 # How does Azure IoT Operations work in layered network?
 
-You can deploy Azure IoT Operations in a layered network environment by using the Azure IoT Layered Network Management (preview) service. This service enables Azure IoT Operations to function in industrial network environments that have multiple isolated network layers.
+You can deploy Azure IoT Operations in a layered network environment by using the Azure IoT Layered Network Management service. This service enables Azure IoT Operations to function in industrial network environments that have multiple isolated network layers.
 
 ## Industrial scenario for Azure IoT Operations
 
@@ -29,7 +29,7 @@ In some cases, the network design includes a single isolated network that is loc
 
 Azure IoT Layered Network Management is designed for facilitating connections between Azure and clusters in different kinds of isolated network environments. Enabling Azure IoT Operations to function in top-level isolated layers and nested isolated layers as needed.
 
-## How does Layered Network Management (preview) work?
+## How does Layered Network Management work?
 
 The following diagram describes the mechanism to redirect traffic from an isolated network to Azure Arc. It explains the underlying logic. For information on specific steps to achieve this mechanism, see [Configure Azure IoT Layered Network Management](howto-configure-l4-cluster-layered-network.md).
 
@@ -53,10 +53,10 @@ The following diagram is an example of Azure IoT Operations being deployed to mu
 In the pictured example, Azure IoT Operations is deployed to level 2 through 4. At level 3 and level 4, the **Layered Network Management services** are configured to receive and forward the network traffic from the layer that is one level below. With this forwarding mechanism, all the clusters illustrated in this deployment are able to connect to Azure and become Arc-enabled. The connection to Arc enables users to manage any Arc-enabled endpoint such as the servers, the cluster and the Arc-enabled service workloads from the cloud. 
 
 With extra configurations, the Layered Network Management service can also direct east-west traffic. This route enables Azure IoT Operations components to send data to other components at upper level and form data pipelines from the bottom layer to the cloud. 
-In a multi-layer network, the Azure IoT Operations components can be deployed across layers based on your architecture and dataflow needs. This example provides some general ideas of where individual components will be placed.
+In a multi-layer network, the Azure IoT Operations components can be deployed across layers based on your architecture and data flow needs. This example provides some general ideas of where individual components will be placed.
 - The **connector for OPC UA** may locate at the lower layer that is closer to your assets and OPC UA servers.
 - The data shall be transferred towards the cloud side through the **MQ** components in each layer.
-- The **Dataflows** component is generally placed at the top layer as the most likely layer to have significant compute capacity and as a final stop for the data to get prepared before being sent to the cloud.
+- The **Data flows** component is generally placed at the top layer as the most likely layer to have significant compute capacity and as a final stop for the data to get prepared before being sent to the cloud.
 
 ## Next steps
 

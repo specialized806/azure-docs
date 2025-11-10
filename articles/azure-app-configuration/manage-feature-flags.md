@@ -6,7 +6,7 @@ services: azure-app-configuration
 author: maud-lv
 ms.service: azure-app-configuration
 ms.topic: quickstart
-ms.date: 04/10/2024
+ms.date: 03/24/2025
 ms.author: malev
 ms.custom: "devx-track-csharp, mvc"
 
@@ -21,8 +21,8 @@ The Feature manager in the Azure portal provides a UI for creating and managing 
 
 ## Prerequisites
 
-- An Azure account with an active subscription. [Create one for free](https://azure.microsoft.com/free/).
-- An App Configuration store. [Create a store](./quickstart-azure-app-configuration-create.md#create-an-app-configuration-store).
+- An Azure account with an active subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+- An App Configuration store, as shown in the [tutorial for creating a store](./quickstart-azure-app-configuration-create.md#create-an-app-configuration-store).
 
 ## Create a feature flag
 
@@ -159,6 +159,9 @@ To start using feature flags with Azure App Configuration, continue to the follo
 
 > [!div class="nextstepaction"]
 > [Python](./quickstart-feature-flag-python.md)
+
+> [!div class="nextstepaction"]
+> [JavaScript](./quickstart-feature-flag-javascript.md)
 
 > [!div class="nextstepaction"]
 > [Azure Kubernetes Service](./quickstart-feature-flag-azure-kubernetes-service.md)

@@ -7,6 +7,8 @@ ms.service: azure-expressroute
 ms.topic: how-to
 ms.date: 01/31/2025
 ms.author: duau
+ms.custom: sfi-image-nochange
+# Customer intent: "As a network administrator, I want to configure custom BGP community values for my Azure ExpressRoute private peering so that I can optimize routing decisions and manage outbound traffic effectively between Azure and my on-premises network."
 ---
 
 # Configure custom BGP communities for Azure ExpressRoute private peering using the Azure portal
@@ -27,11 +29,7 @@ BGP communities are groupings of IP prefixes tagged with a community value, whic
 
 1. Select the virtual network you want to update the BGP community value for.
 
-    :::image type="content" source="./media/how-to-configure-custom-bgp-communities-portal/virtual-network-list.png" alt-text="Screenshot of the list of virtual networks.":::
-
 1. Select the **configure** link below the *BGP community string*.
-
-    :::image type="content" source="./media/how-to-configure-custom-bgp-communities-portal/virtual-network-overview.png" alt-text="Screenshot of the overview page of a virtual network.":::
 
 1. On the *BGP community string* page, enter the BGP value you want to configure for this virtual network, then select **Save**.
 

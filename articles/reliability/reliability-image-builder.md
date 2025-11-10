@@ -1,8 +1,8 @@
 ---
 title: Reliability in Azure Image Builder
-description: Find out about reliability in Azure Image Builder
-author: ericd-mst-github
-ms.author: csudrisforresiliency
+description: Learn how to ensure VM image template resilience in Azure VM Image Builder by using multi-region replication and Azure Resource Graph for recovery.
+author: anaharris-ms
+ms.author: anaharris
 ms.topic: reliability-article
 ms.custom: subject-reliability
 ms.service: azure-virtual-machines
@@ -47,17 +47,17 @@ It's recommended that you create an AIB resource in another nearby region, into 
 
 ### Single-region geography disaster recovery
 
-In the case of a diaster for single-region, you still need to get an image template resource from that region even when that region isn't available. You can either maintain a copy of an image template locally or can use [Azure Resource Graph](../governance/resource-graph/index.yml) from the Azure portal to get an image template resource.
+In the case of a disaster for single-region, you still need to get an image template resource from that region even when that region isn't available. You can either maintain a copy of an image template locally or can use [Azure Resource Graph](../governance/resource-graph/index.yml) from the Azure portal to get an image template resource.
 
 To get an image template resource using Resource Graph from the Azure portal:
 
 1. Go to the search bar in Azure portal and search for *resource graph explorer*.
 
-    ![Screenshot of Azure Resource Graph Explorer in the portal.](media/resource-graph-explorer-portal.png#lightbox)
+    ![Screenshot of Azure Resource Graph Explorer in the portal.](media/image-builder/resource-graph-explorer-portal.png#lightbox)
 
 1. Use the search bar on the far left to search resource by type and name to see how the details give you properties of the image template. The *See details* option on the bottom right shows the image template's properties attribute and tags separately. Template name, location, ID, and tenant ID can be used to get the correct image template resource.
 
-    ![Screenshot of using Azure Resource Graph Explorer search.](media/resource-graph-explorer-search.png#lightbox)
+    ![Screenshot of using Azure Resource Graph Explorer search.](media/image-builder/resource-graph-explorer-search.png#lightbox)
 
 
 ### Capacity and proactive disaster recovery resiliency

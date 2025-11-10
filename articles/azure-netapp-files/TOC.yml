@@ -25,6 +25,8 @@
         href: network-attached-storage-protocols.md
       - name: Understand SMB support 
         href: sever-message-block-support.md
+      - name: Understand Object REST API 
+        href: object-rest-api-introduction.md
       - name: Understand NAS permissions 
         items:
         - name: Understand NAS share permissions 
@@ -51,8 +53,16 @@
         href: understand-guidelines-active-directory-domain-service-site.md
       - name: Understand DNS 
         href: domain-name-system-concept.md
-      - name: Understand the use of LDAP
-        href: lightweight-directory-access-protocol.md
+      - name: Understand LDAP
+        items:
+        - name: Understand LDAP basics
+          href: lightweight-directory-access-protocol.md
+        - name: Understand name mapping using LDAP
+          href: lightweight-directory-access-protocol-name-mapping.md
+        - name: Understand the allow local NFS users with LDAP option
+          href: lightweight-directory-access-protocol-local-users.md
+        - name: Understand LDAP schemas
+          href: lightweight-directory-access-protocol-schemas.md
       - name: Understand NFS group memberships and supplemental groups
         href: network-file-system-group-memberships.md
       - name: Understand file locking
@@ -71,6 +81,8 @@
       href: azure-netapp-files-network-topologies.md
     - name: Resource limits for Azure NetApp Files
       href: azure-netapp-files-resource-limits.md
+    - name: Migrating data into Azure NetApp Files
+      href: migrate-data.md
     - name: Understand large volumes 
       href: large-volumes.md
     - name: Requirements and considerations for large volumes
@@ -145,6 +157,8 @@
         href: performance-benchmarks-linux.md
       - name: Large volume performance benchmarks for Linux
         href: performance-large-volumes-linux.md
+      - name: Large volume breakthrough mode performance benchmarks for Linux
+        href: performance-large-volume-breakthrough-mode-linux.md
       - name: Oracle database performance on Azure NetApp Files single volumes
         href: performance-oracle-single-volumes.md
       - name: Oracle database performance on Azure NetApp Files multiple volumes
@@ -167,32 +181,30 @@
           href: application-volume-group-oracle-introduction.md
         - name: Requirements and considerations for application volume group for Oracle
           href: application-volume-group-oracle-considerations.md
-  - name: Data protection and resiliency
+  - name: Hybrid data mobility and protection
     items:
+    - name: Reliability in Azure NetApp Files 
+      href: ../reliability/reliability-netapp-files.md?toc=azure/azure-netapp-files/toc.json&bc=/azure/azure-netapp-files/breadcrumb/toc.json
     - name: Understand data protection and disaster recovery options
       href: data-protection-disaster-recovery-options.md
     - name: How Azure NetApp Files snapshots work
       href: snapshots-introduction.md
+    - name: Azure NetApp Files caching
+      items: 
+      - name: Understand Azure NetApp Files cache volumes
+        href: cache-volumes.md    
     - name: Azure NetApp Files backup
       items: 
       - name: Understand Azure NetApp Files backup
         href: backup-introduction.md  
       - name: Requirements and considerations for Azure NetApp Files backup
         href: backup-requirements-considerations.md
-    - name: Disaster recovery with cross-region replication
+    - name: Replication 
       items: 
-      - name: Understand cross-region replication
-        href: cross-region-replication-introduction.md
-      - name: Requirements and considerations for cross-region replication
-        href: cross-region-replication-requirements-considerations.md
-    - name: High availability and resiliency with availability zones and cross-zone replication
-      items: 
-      - name: Use availability zones for high availability 
-        href: use-availability-zones.md
-      - name: Understand cross-zone replication 
-        href: cross-zone-replication-introduction.md
-      - name: Requirements and considerations for cross-zone replication 
-        href: cross-zone-replication-requirements-considerations.md
+      - name: Replication in Azure NetApp Files 
+        href: replication.md
+      - name: Replication requirements and considerations
+        href: replication-requirements.md
     - name: Azure Application Consistent Snapshot (AzAcSnap) tool
       items: 
       - name: What is AzAcSnap?
@@ -217,8 +229,8 @@
             href: azacsnap-configure-database.md?tabs=oracle
           - name: IBM Db2
             href: azacsnap-configure-database.md?tabs=db2
-          - name: Microsoft SQL Server (PREVIEW)
-            href: azacsnap-preview.md?tabs=mssql#microsoft-sql-server
+          - name: Microsoft SQL Server
+            href: azacsnap-configure-database.md?tabs=mssql
         - name: Configure Storage
           items:
           - name: All storage
@@ -307,6 +319,8 @@
         href: configure-kerberos-encryption.md
       - name: Configure AD DS LDAP with extended groups for NFS
         href: configure-ldap-extended-groups.md
+      - name: Configure LDAP server 
+        href: configure-directory-server.md
       - name: Configure an NFS client for Azure NetApp Files
         href: configure-nfs-clients.md
       - name: Convert an NFS volume between NFSv3 and NFSv4.1
@@ -325,6 +339,18 @@
       items:
       - name: Create a dual-protocol volume 
         href: create-volumes-dual-protocol.md
+    - name: Manage object REST API 
+      items:
+      - name: Configure object REST API
+        href: object-rest-api-access-configure.md
+      - name: Connect to Azure Databricks 
+        href: object-rest-api-databricks.md
+      - name: Connect to OneLake
+        href: object-rest-api-onelake.md
+      - name: Access volumes with an S3-compatible client 
+        href: object-rest-api-browser.md
+    - name: Migrate volumes to Azure NetApp Files
+      href: migrate-volumes.md
     - name: Manage volume access and encryption 
       items:
       - name: Configure export policy for NFS or dual protocol
@@ -341,6 +367,8 @@
         href: configure-customer-managed-keys.md
       - name: Configure customer-managed keys with managed HSM
         href: configure-customer-managed-keys-hardware.md
+      - name: Configure cross-tenant customer-managed keys 
+        href: customer-managed-keys-cross-tenant.md
       - name: Configure Virtual WAN
         href: configure-virtual-wan.md
     - name: Mount volumes
@@ -361,6 +389,8 @@
         href: manage-default-individual-user-group-quotas.md
       - name: Manage storage with cool access 
         href: manage-cool-access.md
+      - name: Manage file access logs 
+        href: manage-file-access-logs.md
     - name: Update Terraform-managed volume
       href: terraform-manage-volume.md
   - name: Manage application volume groups 
@@ -391,7 +421,7 @@
           href: configure-application-volume-oracle-azure-resource-manager.md 
       - name: Delete an application volume group
         href: application-volume-group-delete.md
-  - name: Manage data protection  
+  - name: Manage hybrid data mobility and protection  
     items:
     - name: Manage volume snapshots
       items:
@@ -405,10 +435,14 @@
         href: snapshots-restore-new-volume.md
       - name: Restore individual files using single-file snapshot restore
         href: snapshots-restore-file-single.md
+      - name: Restore individual files from backup
+        href: restore-single-file-backup.md
       - name: Restore a file from a snapshot using a client
         href: snapshots-restore-file-client.md
       - name: Restore a volume using snapshot revert
         href: snapshots-revert-volume.md
+      - name: Create a short-term clone
+        href: create-short-term-clone.md
       - name: Delete snapshots
         href: snapshots-delete.md
     - name: Manage volume backups
@@ -431,7 +465,7 @@
         href: backup-delete.md 	
     - name: Manage replication
       items:
-      - name: Create cross-region replication
+      - name: Create volume replication
         href: cross-region-replication-create-peering.md
       - name: Display health and monitor status of replication relationship
         href: cross-region-replication-display-health-status.md
@@ -443,16 +477,22 @@
         href: reestablish-deleted-volume-relationships.md
       - name: Test disaster recovery with cross-region replication
         href: test-disaster-recovery.md
+    - name: Manage caching
+      items:
+      - name: Configure a cache volume  
+        href: configure-cache-volumes.md   
     - name: Manage availability zones and cross-zone replication
       items: 
       - name: Manage availability zone volume placement
         href: manage-availability-zone-volume-placement.md
       - name: Create cross-zone replication 
         href: create-cross-zone-replication.md
+    - name: Configure cross-zone-region replication 
+      href: cross-zone-region-replication-configure.md
   - name: Relocate
     items:
     - name: Relocate volume to another region
-      href: ../operational-excellence/relocation-netapp.md?toc=/azure/azure-netapp-files/toc.json
+      href: ../azure-resource-manager/management/relocation/relocation-netapp.md?toc=/azure/azure-netapp-files/toc.json
   - name: Develop
     items:
     - name: REST API
@@ -475,6 +515,8 @@
       href: troubleshoot-snapshot-policies.md
     - name: Troubleshoot cross-region replication errors
       href: troubleshoot-cross-region-replication.md
+    - name: Troubleshoot customer-managed keys 
+      href: troubleshoot-customer-managed-keys.md
     - name: Troubleshoot Resource Provider errors
       href: azure-netapp-files-troubleshoot-resource-provider-errors.md
     - name: Troubleshoot user access on LDAP volumes
@@ -542,7 +584,7 @@
   - name: Regional availability
     href: https://azure.microsoft.com/explore/global-infrastructure/products-by-region/?products=netapp&rar=true&regions=all
   - name: Feature availability
-    href: https://aka.ms/anfmap
+    href: https://azure.github.io/azure-netapp-files/map/
   - name: SLA
     href: https://azure.microsoft.com/support/legal/sla/netapp/
   - name: Videos

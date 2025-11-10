@@ -1,7 +1,7 @@
 ---
-title: Create functions in Azure using the Azure Developer CLI
-description: "Learn how to use the Azure Developer CLI (azd) to create resources and deploy the local project to a Flex Consumption plan on Azure."
-ms.date: 10/19/2024
+title: Build a scalable web API using Azure Functions
+description: "Learn how to use the Azure Developer CLI (azd) to create resources and deploy a scalable web API project to a Flex Consumption plan on Azure."
+ms.date: 08/02/2025
 ms.topic: quickstart
 ms.custom:
   - ignite-2024
@@ -9,9 +9,9 @@ zone_pivot_groups: programming-languages-set-functions
 #Customer intent: As a developer, I need to know how to use the Azure Developer CLI to create and deploy my function code securely to a new function app in the Flex Consumption plan in Azure by using azd templates and the azd up command.
 ---
 
-# Quickstart: Create and deploy functions to Azure Functions using the Azure Developer CLI
+# Quickstart: Build a scalable web API using Azure Functions
 
-In this Quickstart, you use Azure Developer command-line tools to create functions that respond to HTTP requests. After testing the code locally, you deploy it to a new serverless function app you create running in a Flex Consumption plan in Azure Functions. 
+In this Quickstart, you use Azure Developer command-line tools to build a scalable web API with function endpoints that respond to HTTP requests. After testing the code locally, you deploy it to a new serverless function app you create running in a Flex Consumption plan in Azure Functions. 
 
 The project source uses the Azure Developer CLI (azd) to simplify deploying your code to Azure. This deployment follows current best practices for secure and scalable Azure Functions deployments.
 
@@ -19,34 +19,14 @@ By default, the Flex Consumption plan follows a _pay-for-what-you-use_ billing m
 
 ## Prerequisites
 
-+ An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?ref=microsoft.com&utm_source=microsoft.com&utm_medium=docs&utm_campaign=visualstudio).
++ An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
-+ [Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd).
++ [Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd)
 
-+ [Azure Functions Core Tools](functions-run-local.md#install-the-azure-functions-core-tools).
++ [Azure Functions Core Tools](functions-run-local.md#install-the-azure-functions-core-tools)
 
-::: zone pivot="programming-language-csharp"  
-+ [.NET 8.0 SDK](https://dotnet.microsoft.com/download)
+[!INCLUDE [functions-requirements-azure-cli](../../includes/functions-requirements-azure-cli.md)]
 
-+ [Azurite storage emulator](../storage/common/storage-use-azurite.md?tabs=npm#install-azurite) 
-::: zone-end  
-::: zone pivot="programming-language-java"  
-+ [Java 17 Developer Kit](/azure/developer/java/fundamentals/java-support-on-azure)
-    + If you use another [supported version of Java](supported-languages.md?pivots=programming-language-java#languages-by-runtime-version), you must update the project's pom.xml file. 
-    + The `JAVA_HOME` environment variable must be set to the install location of the correct version of the JDK.
-+ [Apache Maven 3.8.x](https://maven.apache.org)  
-::: zone-end  
-::: zone pivot="programming-language-javascript,programming-language-typescript"  
-+ [Node.js 20](https://nodejs.org/)  
-::: zone-end  
-::: zone pivot="programming-language-powershell"  
-+ [PowerShell 7.2](/powershell/scripting/install/installing-powershell-core-on-windows)
-
-+ [.NET 6.0 SDK](https://dotnet.microsoft.com/download)  
-::: zone-end
-::: zone pivot="programming-language-python" 
-+ [Python 3.11](https://www.python.org/).
-::: zone-end  
 + A [secure HTTP test tool](functions-develop-local.md#http-test-tools) for sending requests with JSON payloads to your function endpoints. This article uses `curl`.
 
 ## Initialize the project
@@ -57,7 +37,7 @@ You can use the `azd init` command to create a local Azure Functions code projec
 1. In your local terminal or command prompt, run this `azd init` command in an empty folder:
  
     ```console
-    azd init --template functions-quickstart-dotnet-azd -e flexquickstart-dotnet
+    azd init --template functions-quickstart-dotnet-azd -e httpendpoint-dotnet
     ```
 
     This command pulls the project files from the [template repository](https://github.com/Azure-Samples/functions-quickstart-dotnet-azd) and initializes the project in the current folder. The `-e` flag sets a name for the current environment. In `azd`, the environment is used to maintain a unique deployment context for your app, and you can define more than one. It's also used in the name of the resource group you create in Azure. 
@@ -86,7 +66,7 @@ You can use the `azd init` command to create a local Azure Functions code projec
 1. In your local terminal or command prompt, run this `azd init` command in an empty folder:
  
     ```console
-    azd init --template azure-functions-java-flex-consumption-azd -e flexquickstart-java 
+    azd init --template azure-functions-java-flex-consumption-azd -e httpendpoint-java 
     ```
 
     This command pulls the project files from the [template repository](https://github.com/Azure-Samples/azure-functions-java-flex-consumption-azd) and initializes the project in the current folder. The `-e` flag sets a name for the current environment. In `azd`, the environment is used to maintain a unique deployment context for your app, and you can define more than one. It's also used in the name of the resource group you create in Azure. 
@@ -115,7 +95,7 @@ You can use the `azd init` command to create a local Azure Functions code projec
 1. In your local terminal or command prompt, run this `azd init` command in an empty folder:
  
     ```console
-    azd init --template functions-quickstart-javascript-azd -e flexquickstart-js
+    azd init --template functions-quickstart-javascript-azd -e httpendpoint-js
     ```
 
     This command pulls the project files from the [template repository](https://github.com/Azure-Samples/functions-quickstart-javascript-azd) and initializes the project in the root folder. The `-e` flag sets a name for the current environment. In `azd`, the environment is used to maintain a unique deployment context for your app, and you can define more than one. It's also used in the name of the resource group you create in Azure. 
@@ -138,7 +118,7 @@ You can use the `azd init` command to create a local Azure Functions code projec
 1. In your local terminal or command prompt, run this `azd init` command in an empty folder:
  
     ```console
-    azd init --template functions-quickstart-powershell-azd -e flexquickstart-ps
+    azd init --template functions-quickstart-powershell-azd -e httpendpoint-ps
     ```
 
     This command pulls the project files from the [template repository](https://github.com/Azure-Samples/functions-quickstart-powershell-azd) and initializes the project in the root folder. The `-e` flag sets a name for the current environment. In `azd`, the environment is used to maintain a unique deployment context for your app, and you can define more than one. It's also used in the name of the resource group you create in Azure. 
@@ -168,7 +148,7 @@ You can use the `azd init` command to create a local Azure Functions code projec
 1. In your local terminal or command prompt, run this `azd init` command in an empty folder:
  
     ```console
-    azd init --template functions-quickstart-typescript-azd -e flexquickstart-ts
+    azd init --template functions-quickstart-typescript-azd -e httpendpoint-ts
     ```
 
     This command pulls the project files from the [template repository](https://github.com/Azure-Samples/functions-quickstart-typescript-azd) and initializes the project in the root folder. The `-e` flag sets a name for the current environment. In `azd`, the environment is used to maintain a unique deployment context for your app, and you can define more than one. It's also used in the name of the resource group you create in Azure. 
@@ -191,7 +171,7 @@ You can use the `azd init` command to create a local Azure Functions code projec
 1. In your local terminal or command prompt, run this `azd init` command in an empty folder:
  
     ```console
-    azd init --template functions-quickstart-python-http-azd -e flexquickstart-py
+    azd init --template functions-quickstart-python-http-azd -e httpendpoint-py
     ```
         
     This command pulls the project files from the [template repository](https://github.com/Azure-Samples/functions-quickstart-python-http-azd) and initializes the project in the root folder. The `-e` flag sets a name for the current environment. In `azd`, the environment is used to maintain a unique deployment context for your app, and you can define more than one. It's also used in the name of the resource group you create in Azure. 
@@ -542,6 +522,7 @@ azd down --no-prompt
 
 ## Related content
 
++ [Azure Functions scenarios](functions-scenarios.md)
 + [Flex Consumption plan](flex-consumption-plan.md)
 + [Azure Developer CLI (azd)](/azure/developer/azure-developer-cli/)
 + [azd reference](/azure/developer/azure-developer-cli/reference)

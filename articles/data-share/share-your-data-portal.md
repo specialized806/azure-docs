@@ -5,7 +5,7 @@ author: sidontha
 ms.author: sidontha
 ms.service: azure-data-share
 ms.topic: quickstart
-ms.date: 12/19/2023
+ms.date: 02/12/2025
 ms.custom: mode-ui
 ---
 
@@ -15,7 +15,7 @@ In this quickstart, you'll learn how to set up a new Azure Data Share to share d
 
 ## Prerequisites
 
-* Azure Subscription: If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/) before you begin.
+* Azure Subscription: If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 * Your recipient's Azure sign in e-mail address (using their e-mail alias won't work).
 * If the source Azure data store is in a different Azure subscription than the one you'll use to create Data Share resource, register the [Microsoft.DataShare resource provider](concepts-roles-permissions.md#resource-provider-registration) in the subscription where the Azure data store is located.
 
@@ -100,6 +100,6 @@ Your Azure Data Share has now been created and the recipient of your Data Share 
 
 When the resource is no longer needed, go to the Data Share Overview page, and select **Delete** to remove it.
 
-## Next steps
+## Next step
 
 In this quickstart, you learned how to create an Azure Data Share. To learn about how a Data Consumer can accept and receive a data share, continue to the [accept and receive data](subscribe-to-data-share.md) tutorial.

@@ -2,10 +2,11 @@
 title: Archive for What's new in Azure Site Recovery
 description: An archive for features and updates in the Azure Site Recovery service.
 ms.topic: overview
-ms.author: ankitadutta
+ms.author: v-gajeronika
 ms.service: azure-site-recovery
-author: ankitaduttaMSFT
-ms.date: 12/27/2023
+author: Jeronika-MS
+ms.date: 08/19/2025
+# Customer intent: "As a system administrator, I want to review the latest updates and feature enhancements for the disaster recovery service, so that I can optimize our organization's backup strategy and ensure compatibility with our systems."
 ---
 
 # Archive for What's new in Site Recovery
@@ -641,7 +642,7 @@ Features added this month are summarized in the table.
 
 **Feature** | **Details**
 --- | ---
-**Linux support** | Support was added for Redhat Enterprise Linux 7.6, RedHat Workstation 6/7, Oracle Linux 6.10 and Oracle Linux 7.6, and new kernel versions for Ubuntu, Debian, and SUSE.
+**Linux support** | Support was added for Red Hat Enterprise Linux 7.6, RedHat Workstation 6/7, Oracle Linux 6.10 and Oracle Linux 7.6, and new kernel versions for Ubuntu, Debian, and SUSE.
 
 
 ### Update rollup 31
@@ -762,7 +763,7 @@ Features added this month are summarized in the table.
 
 ### Update rollup 27 (July 2018)
 
-[Update rollup 27](https://support.microsoft.com/help/4055712/update-rollup-27-for-azure-site-recovery) provides the following updates.
+[Update rollup 27](https://support.microsoft.com/topic/update-rollup-27-for-azure-site-recovery-4050853f-0d11-e557-c7c3-57990de0bc0b) provides the following updates.
 
 **Update** | **Details**
 --- | ---

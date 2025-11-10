@@ -4,9 +4,11 @@ description: Learn how to deploy the FHIR service in Azure Health Data Services 
 author: EXPEkesheth
 ms.service: azure-health-data-services
 ms.topic: quickstart
-ms.date: 04/30/2024
+ms.date: 10/01/2025
 ms.author: kesheth
-ms.custom: mode-api
+ms.custom:
+  - mode-api
+  - sfi-image-nochange
 ---
 
 # Deploy the FHIR service by using the Azure portal
@@ -71,7 +73,7 @@ To replicate settings between FHIR instance, you can follow below steps
 
 ## Related content
 
-[Access the FHIR service by using Postman](../fhir/use-postman.md)
+[Access the FHIR service](../fhir/get-started-with-fhir.md#access-the-fhir-service)
 
 [!INCLUDE [FHIR trademark statement](../includes/healthcare-apis-fhir-trademark.md)]
 
