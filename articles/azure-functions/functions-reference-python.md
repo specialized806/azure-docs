@@ -9,6 +9,7 @@ ms.custom:
   - devdivchpfy22
   - ignite-2024
   - build-2025
+  - py-devguide-refactor
 zone_pivot_groups: python-mode-functions
 #customer intent: As a Python developer, I want to reference the supported features, syntax, and limitations for developing Azure Functions so that I can build and deploy Python serverless apps effectively.
 ---
