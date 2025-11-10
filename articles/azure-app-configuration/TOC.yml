@@ -185,7 +185,7 @@
     - name: Go
       href: quickstart-chat-completion-go.md
   - name: Agent Configuration
-    items: 
+    items:
     - name: Python
       href: howto-agent-config-python.md
 - name: Feature management
