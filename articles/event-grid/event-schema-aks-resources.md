@@ -11,7 +11,7 @@ Azure Kubernetes Fleet is designed to help customers upgrade multiple AKS cluste
 This article provides the properties and the schema for Azure Resource Notifications AKS Resources events. For an introduction to event schemas in general, see [Azure Event Grid event schema](event-schema.md). In addition, you can find samples of generated events and a link to a related article on how to create system topic for this topic type. 
 
 ## Event types
-Health Resources offers three event types for consumption:
+AKS Resources offers three event types for consumption:
 
 | Event type | Description |
 | ---------- | ----------- |
@@ -155,9 +155,9 @@ The `properties` object has the following properties:
 | -------- | ---- | ----------- | 
 | `displayName` | String | The optional name provided when defining the approval Gate in the update strategy.. |
 | `gateType` | String | 	The type of the Gate. There's only one valid choice of "Approval" for now. |
-| `provisioningState` | String | .|
+| `provisioningState` | String | Provisioning state of the Gate resource.|
 | `state` | String | The state of the Gate. "Pending" = waiting approval; "Completed" = approval applied.. |
-| `target`| Object |
+| `target`| Object | The target that the Gate is controlling |
 
 The `target` object has the following properties. 
 
@@ -181,10 +181,10 @@ Description of the properties in `target` object
 
 | Property | Type | Description |
 |----------|------|-------------|
-| `group` | String | The name of the update group where the gate is applied. Only present for groups.    |
+| `group` | String | The name of the update group where the Gate is applied. Only present for groups.    |
 | `name` | String | The name of the update run generating the event.     |
 | `stage`| String | The name of the update stage. Can appear for stage gates and group gates within the stage.      |
-| `timing`| String |  Denotes if the gate is applied before or after the stage or group.    |
+| `timing`| String |  Denotes if the Gate is applied before or after the stage or group.    |
 
 
 ## Example events
@@ -276,7 +276,7 @@ The following example shows the schema of a key-value modified event:
 
 # [Cloud event schema](#tab/cloud-event-schema)
 
-The following example shows the schema of a key-value modified event: 
+The following example shows the schema of a FleetGateUpdated event: 
 
 ```json
   {
@@ -360,7 +360,7 @@ The following example shows the schema of a key-value modified event:
 
 # [Cloud event schema](#tab/cloud-event-schema)
 
-The following example shows the schema of a key-value modified event: 
+The following example shows the schema of a FleetGateDeleted modified event: 
 
 ```json
   {

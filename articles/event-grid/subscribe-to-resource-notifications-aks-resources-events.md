@@ -23,6 +23,7 @@ This article explains the steps needed to subscribe to events published by Azure
     ```azurecli-interactive
     az eventgrid system-topic create --name SYSTEMTOPICNAME --resource-group RESOURCEGROUPNAME --source /subscriptions/AZURESUBSCRIPTIONID --topic-type microsoft.resourcenotifications.AKSResources --location Global        
     ```
+
 # [Azure PowerShell](#tab/azure-powershell)
 
 1. Set the account to the Azure subscription where you wish to create the system topic. 
@@ -35,24 +36,6 @@ This article explains the steps needed to subscribe to events published by Azure
     ```azurepowershell-interactive
     New-AzEventGridSystemTopic -name SYSTEMTOPICNAME -resourcegroup RESOURCEGROUPNAME -source /subscriptions/AZURESUBSCRIPTIONID -topictype microsoft.resourcenotifications.AKSResources -location global    
     ```
-
-# [Azure portal](#tab/azure-portal)
-
-1. Sign into the [Azure portal](https://portal.azure.com).
-1. In the search bar, type **Event Grid System Topics**, and select it from the drop-down list. 
-1. On the **Event Grid system topics** page, select **+ Create** on the toolbar. 
-1. On the **Create Event Grid System Topic** page, select **Azure Resource Notifications - Health events** for **Topic type**.    
-
-    :::image type="content" source="./media/subscribe-to-resource-notifications-health-resources-events/create-topic.png" alt-text="Screenshot that shows the Create topic page in the Azure portal." lightbox="./media/subscribe-to-resource-notifications-health-resources-events/create-topic.png" :::
-1. Select the **resource group** in which you want to create the system topic.
-1. Enter a **name** for the system topic.
-1. Select **Review + create** 
-
-    :::image type="content" source="./media/subscribe-to-resource-notifications-health-resources-events/create-topic-full.png" alt-text="Screenshot that shows the full Create topic page with details in the Azure portal.":::    
-1. On the **Review + create** page, select **Create**. 
-1. On the successful deployment page, select **Go to resource** to navigate to the page for your system topic. You see the details about your system topic on this page. 
-
-    :::image type="content" source="./media/subscribe-to-resource-notifications-health-resources-events/system-topic-home-page.png" alt-text="Screenshot that shows the System topic page in the Azure portal." lightbox="./media/subscribe-to-resource-notifications-health-resources-events/system-topic-home-page.png" :::
     
 ---
 
@@ -137,25 +120,6 @@ New-AzEventGridSubscription `
   -SubjectBeginsWith "/subscriptions/AZURESUBSCRIPTIONID/resourceGroups/RESOURCEGROUPNAME/"
 ```
 
-# [Azure portal](#tab/azure-portal)
-
-1. On the **Event Grid System Topic** page, select **+ Event Subscription**  on the toolbar. 
-1. Confirm that the **Topic Type**, **Source Resource**, and **Topic Name** are automatically populated. 
-1. Enter a name for the event subscription. 
-1. For **Filter to event types**, select the event, for example, **FleetGateCreated** or **FleetGateUpdated** or **FleetGateDeleted**. 
-
-    :::image type="content" source="./media/subscribe-to-resource-notifications-health-resources-events/create-event-subscription-select-event.png" alt-text="Screenshot that shows the Create Event Subscription page." lightbox="./media/subscribe-to-resource-notifications-health-resources-events/create-event-subscription-select-event.png":::
-1. Select **endpoint type**. 
-1. Configure event handler based no the endpoint type you selected. In the following example, an Azure function is selected. 
-
-    :::image type="content" source="./media/subscribe-to-resource-notifications-health-resources-events/select-endpoint.png" alt-text="Screenshot that shows the Create Event Subscription page with an event handler." lightbox="./media/subscribe-to-resource-notifications-health-resources-events/select-endpoint.png":::
-1. Select the **Filters** tab to provide subject filtering and advanced filtering. For example, to filter for events from resources in a specific resource group, follow these steps:
-    1. Select **Enable subject filtering**. 
-    1. In the **Subject Filters** section, for **Subject begins with**, provide the value of the resource group in this format: `/subscriptions/{subscription-id}/resourceGroups/{resourceGroup-id}`.
-
-        :::image type="content" source="./media/subscribe-to-resource-notifications-health-resources-events/filter.png" alt-text="Screenshot that shows the Filters tab of the Create Event Subscription page." lightbox="./media/subscribe-to-resource-notifications-health-resources-events/filter.png":::
-1. Then, select **Create** to create the event subscription.
-
 ---
 
 ## Delete event subscription and system topic
@@ -186,14 +150,6 @@ To delete the system topic, use the [`Remove-AzEventGridSystemTopic`](/powershel
 ```azurepowershell-interactive
 Remove-AzEventGridSystemTopic -ResourceGroupName RESOURCEGROUPNAME -Name SYSTEMTOPICNAME
 ```
-
-
-# [Azure portal](#tab/azure-portal)
-
-1. Sign in to the [Azure portal](https://portal.azure.com).
-1. In the search bar, type **Event Grid System Topics**, and press ENTER.
-1. Select the system topic.
-1. On the **Event Grid System Topic** page, select **Delete**  on the toolbar. 
 
 ---
 
@@ -289,30 +245,6 @@ New-AzEventGridSubscription `
   -EndpointType EventHub `
 
 ```
-
-
-# [Azure portal](#tab/azure-portal)
-
-1. Choose **FleetGateCreated** as the event type. 
-1. In the **Filters** tab of the event subscription, choose the following advanced filters.
-
-    ```
-    - Key = data.resourceInfo.properties.gateType 
-    - Operator = StringIn 
-    - Value = Approval
-
-        AND
-
-    - Key = data.resourceInfo.properties.state 
-    - Operator = StringIn 
-    - Value = Pending
-    
-        AND
-
-    - Key = data.resourceInfo.properties.displayName 
-    - Operator = StringContains 
-    - Value = Check With Sales
-    ```
 
 ---
 
