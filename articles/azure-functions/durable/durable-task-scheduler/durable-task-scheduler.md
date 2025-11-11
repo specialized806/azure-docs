@@ -154,7 +154,6 @@ Stale orchestration data should be purged periodically to ensure efficient stora
 
     Some features might not be available in the Durable Task Scheduler backend yet, such as:
 
-    - [Orchestration rewind](../durable-functions-instance-management.md#rewind-instances-preview)
     - [Extended sessions](../durable-functions-azure-storage-provider.md#extended-sessions)
 
     > [!NOTE]
