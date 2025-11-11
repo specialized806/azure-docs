@@ -20,7 +20,7 @@ This article is a reference for the monitoring data collected by App Configurati
 
 | Metric | Unit | Description |
 |-------|-----| ----- |
-| HTTP Incoming Request Count	| Count	| Total number of incoming HTTP Requests |
+| HTTP Incoming Request Count	| Count	| Total number of incoming HTTP requests |
 | HTTP Incoming Request Duration | Milliseconds | Server side duration of an HTTP Request |
 | Throttled HTTP Request Count | Count |	Throttled requests are HTTP requests that receive a response with a status code of 429 |
 | Daily Storage Usage | Percent |	Represents the amount of storage in use as a percentage of the maximum allowance. This metric is updated at least once daily. |
@@ -40,7 +40,7 @@ App Configuration has the following dimensions associated with its metr
 | Throttled HTTP Request Count | The **Endpoint** of each request is included as a dimension.  |
 | Daily Storage Usage | This metric doesn't have any dimensions.  |
 | Request Quota Usage | The supported dimensions are the **OperationType** ("Read"or "Write") and **Endpoint** of each request.  |
-| Replication Latency | This metric includes a dimension which is the **Endpoint** of the replica that data was replicated to.  |
+| Replication Latency | This metric includes an **Endpoint** dimension that identifies the replica to which data was replicated.  |
 | Snapshot Storage Size | This metric doesn't have any dimensions.  |
 
  For more information on what metric dimensions are, see [Multi-dimensional metrics](/azure/azure-monitor/essentials/data-platform-metrics#multi-dimensional-metrics).
@@ -50,8 +50,8 @@ This section lists the category types of resource log collected for App
 
 | Resource log type | Further information|
 |-------|-----|
-| [AACHttpRequest](/azure/azure-monitor/reference/tables/AACHttpRequest) | [App Configuration Resource Log Category Information](/azure/azure-monitor/essentials/resource-logs-categories) |
-| [AACAudit](/azure/azure-monitor/reference/tables/AACAudit) | [App Configuration Resource Log Category Information](/azure/azure-monitor/essentials/resource-logs-categories) |
+| [AACHttpRequest](/azure/azure-monitor/reference/tables/AACHttpRequest) | [App Configuration resource log category information](/azure/azure-monitor/essentials/resource-logs-categories) |
+| [AACAudit](/azure/azure-monitor/reference/tables/AACAudit) | [App Configuration resource log category information](/azure/azure-monitor/essentials/resource-logs-categories) |
 
 For more schema information, see a list of [Common and service-specific schemas for Azure resource logs](/azure/azure-monitor/essentials/resource-logs-schema).
  

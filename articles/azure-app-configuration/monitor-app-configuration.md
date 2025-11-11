@@ -28,7 +28,7 @@ The **Overview** page in the Azure portal includes a brief view of the resource 
 
 ### Metrics analysis
 
-You can analyze metrics for App Configuration with metrics from other Azure services using metrics explorer by opening **Metrics** from the **Azure Monitor** menu. See [Analyze metrics with Azure Monitor metrics explorer](/azure/azure-monitor/essentials/analyze-metrics) for details on using this tool. For App Configuration, the following metrics are collected: 
+You can analyze App Configuration metrics alongside other Azure service metrics using the metrics explorer by opening **Metrics** in your Azure Monitor resource. See [Analyze metrics with Azure Monitor metrics explorer](/azure/azure-monitor/essentials/analyze-metrics) for details on using this tool. For App Configuration, the following metrics are collected: 
 
 * HTTP Incoming Request Count
 * HTTP Incoming Request Duration
@@ -151,7 +151,7 @@ If you have created diagnostic settings for audit logs and HTTP request logs, yo
 
 If you want to run a query that includes data from other configuration or data from other Azure services, select **Logs** from the **Azure Monitor** menu. See [Log query scope and time range in Azure Monitor Log Analytics](/azure/azure-monitor/log-query/scope/) for details.
 
-#### Http request Log
+#### HTTP request log
 In the portal, navigate to **Logs** under **Monitoring** section, and then go to the query editor. Expand **Tables** and select **AACHttpRequest** to see the HTTP request logs of your configuration store. Enter a Kusto query into the editor and results are displayed below.
 
 > [!div class="mx-imgBorder"]
@@ -201,7 +201,7 @@ Following are sample queries that you can use to help you monitor your App Confi
     ```
 
 #### Audit Log
-In the portal, navigate to **Logs** under **Monitoring** section, and then go to the query editor. Expand **Tables** and select **AACAudit** to see the audit logs of your configuration store. Enter a Kusto query into the editor and results are displayed below.
+In the portal, navigate to **Monitoring** >**Logs**, and then go to the query editor. Expand **Tables** and select **AACAudit** to see the audit logs of your configuration store. Enter a Kusto query into the editor and results are displayed below.
 
 > [!div class="mx-imgBorder"]
 > ![Audit log](./media/monitoring/monitoring-audit-log.png)
@@ -231,7 +231,7 @@ Two authentication methods are supported, which are AAD and access key (HMAC/con
     ```
 
 #### HTTP request logs
-* Identify key-value writes and reads in HTTP request logs in the last 7 days, extracting method, resource, status code, client object id, client tenant id, access key id, client IP address, user agent:
+* Identify key-value writes and reads in HTTP request logs in the last 7 days, extracting method, resource, status code, client object ID, client tenant ID, access key ID, client IP address, user agent:
 
     ```Kusto
     AACHttpRequest

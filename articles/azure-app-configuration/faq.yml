@@ -120,7 +120,7 @@ sections:
 
       - question: How can I view the detailed data access history for key-values?
         answer: |
-          If you want to see the key-value access history for a configuration store (create, update, delete, read), enable log collection by creating a diagnostic setting and routing the HTTP request logs and Audit logs to a Log Analytics workspace. You can then view them in the `Logs` blade under `Monitoring` section. For detailed guide and query samples, see [Monitoring App Configuration](./monitor-app-configuration.md#logs) and [Data access tracking](./monitor-app-configuration.md#dataaccesstracking).
+          To view the key-value access history for a configuration store (create, update, delete, and read operations), enable log collection by creating a diagnostic setting and routing the HTTP request logs and audit logs to a Log Analytics workspace. You can then query the logs in **Monitoring** > **Logs**. For a detailed guide and query samples, see [Monitoring App Configuration](./monitor-app-configuration.md#logs) and [Data access tracking](./monitor-app-configuration.md#dataaccesstracking).
 
       - question: Can I upgrade or downgrade an App Configuration store?
         answer: |
