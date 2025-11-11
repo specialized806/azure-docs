@@ -193,7 +193,7 @@ Description of the properties in `target` object
 
 # [Cloud event schema](#tab/cloud-event-schema)
 
-The following example shows the schema of a key-value modified event: 
+The following example shows the schema of a FleetGateCreated modified event: 
 
 ```json
   {
