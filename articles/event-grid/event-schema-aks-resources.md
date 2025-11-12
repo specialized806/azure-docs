@@ -6,7 +6,7 @@ ms.date: 10/29/2025
 ---
 
 # Azure Resource Notifications - AKS Resources events in Azure Event Grid (Preview)
-Azure Kubernetes Fleet is designed to help customers upgrade multiple AKS clusters in a safe and controlled manner. The Fleet service enables the creation of workflows that upgrade Kubernetes clusters in a specific sequence. Because upgrades carry significant risk, customers typically verify health metrics before and after each upgrade to prevent downtime or regressions. To enhance this process, a new Gate resource is being introduced. This resource allows customers to approve upgrades as the workflow progresses, providing greater control over the multi-cluster upgrade experience. AKS Resources offers 3 event types for consumption: `FleetGateCreated`, `FleetGateUpdated` and `FleetGateDeleted`.
+Azure Kubernetes Fleet Manager is designed to help customers upgrade multiple AKS clusters in a safe and controlled manner. The Fleet Manager service enables the creation of workflows that upgrade Kubernetes clusters in a specific sequence. Because upgrades carry significant risk, customers typically verify health metrics before and after each upgrade to prevent downtime or regressions. To enhance this process, Fleet Manager supports approvals via the use of a Gate resource. Gates allow customers to approve upgrades as the workflow progresses, providing greater control over the multi-cluster upgrade experience. AKS Resources offers 3 event types for Azure Kubernetes Fleet Manager Update Run Gates: `FleetGateCreated`, `FleetGateUpdated` and `FleetGateDeleted`.
 
 This article provides the properties and the schema for Azure Resource Notifications AKS Resources events. For an introduction to event schemas in general, see [Azure Event Grid event schema](event-schema.md). In addition, you can find samples of generated events and a link to a related article on how to create system topic for this topic type. 
 
@@ -15,9 +15,9 @@ AKS Resources offers three event types for consumption:
 
 | Event type | Description |
 | ---------- | ----------- |
-| `Microsoft.ResourceNotifications.AKSResources.FleetGateCreated` | Raised when an update run reaches an instance of a Gate resource.|
-| `Microsoft.ResourceNotifications.AKSResources.FleetGateUpdated` | Raised when the status of a Gate changes (Pending to Completed).|
-| `Microsoft.ResourceNotifications.AKSResources.FleetGateDeleted` |  Raised when an update run that contains an instance of a Gate is deleted.|
+| `Microsoft.ResourceNotifications.AKSResources.FleetGateCreated` | Raised when an Azure Kubernetes Fleet Manager Update Run reaches an instance of a Gate resource.|
+| `Microsoft.ResourceNotifications.AKSResources.FleetGateUpdated` | Raised when the status of an Azure Kubernetes Fleet Manager Update Run Gate resource changes (Pending to Completed).|
+| `Microsoft.ResourceNotifications.AKSResources.FleetGateDeleted` |  Raised when an Azure Kubernetes Fleet Manager Update Run which contains an instance of a Gate is deleted.|
 
 
 ## Role-based access control
@@ -153,11 +153,11 @@ The `properties` object has the following properties:
 
 | Property | Type | Description |
 | -------- | ---- | ----------- | 
-| `displayName` | String | The optional name provided when defining the approval Gate in the update strategy.. |
+| `displayName` | String | The optional name provided when defining the approval Gate in the update strategy.|
 | `gateType` | String | 	The type of the Gate. There's only one valid choice of "Approval" for now. |
 | `provisioningState` | String | Provisioning state of the Gate resource.|
-| `state` | String | The state of the Gate. "Pending" = waiting approval; "Completed" = approval applied.. |
-| `target`| Object | The target that the Gate is controlling |
+| `state` | String | The state of the Gate. "Pending" = waiting approval; "Completed" = approval applied.|
+| `target`| Object | The target that the Gate is controlling.|
 
 The `target` object has the following properties. 
 

@@ -625,7 +625,7 @@ items:
           - name: Subscribe to Azure Resource Notifications - Container Service events
             href: subscribe-to-resource-notifications-containerservice-events.md
           - name: Subscribe to Azure Resource Notifications - AKS events
-            href: subscribe-to-resource-notifications-aks-events.md
+            href: subscribe-to-resource-notifications-aks-resources-events.md
           - name: Track asynchronous REST operations
             href: ../azure-resource-manager/management/async-operations.md?toc=/azure/event-grid/toc.json
           - name: Relocate
