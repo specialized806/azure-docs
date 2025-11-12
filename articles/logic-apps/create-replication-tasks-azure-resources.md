@@ -258,23 +258,23 @@ This example shows how to create a replication task for Service Bus queues.
 
 1. On the namespace navigation menu, in the **Automation** section, select **Tasks**.
 
-   :::image type="content" source="./media/create-replication-tasks-azure-resources/service-bus-automation-menu.png" alt-text="Screenshot shows the Azure portal displaying an Azure Service Bus namespace with Tasks selected.":::
+   :::image type="content" source="./media/create-replication-tasks-azure-resources/service-bus-automation-menu.png" alt-text="Screenshot shows the Azure portal displaying an Azure Service Bus namespace with Tasks selected." lightbox="./media/create-replication-tasks-azure-resources/service-bus-automation-menu.png":::
 
 1. On the **Tasks** pane, select **Add a task** so that you can select a task template.
 
-   :::image type="content" source="./media/create-replication-tasks-azure-resources/add-replication-task.png" alt-text="Screenshot shows the Tasks pane with Add a task highlighted.":::
+   :::image type="content" source="./media/create-replication-tasks-azure-resources/add-replication-task.png" alt-text="Screenshot shows the Tasks pane with Add a task highlighted." lightbox="./media/create-replication-tasks-azure-resources/add-replication-task.png":::
 
 1. On the **Add a task** pane, under **Select a template**, in the template for the replication task that you want to create, select **Select**. If the next page doesn't appear, select **Next: Authenticate**.
 
    This example uses the **Replicate from Service Bus queue to queue** task template, which replicates content between Service Bus queues.
 
-   :::image type="content" source="./media/create-replication-tasks-azure-resources/select-replicate-service-bus-template.png" alt-text="Screenshot shows the Add a task pane with Replicate from Service Bus queue to queue template highlighted.":::
+   :::image type="content" source="./media/create-replication-tasks-azure-resources/select-replicate-service-bus-template.png" alt-text="Screenshot shows the Add a task pane with Replicate from Service Bus queue to queue template highlighted." lightbox="./media/create-replication-tasks-azure-resources/select-replicate-service-bus-template.png":::
 
 1. On the **Authenticate** tab, in the **Connections** section, select **Create** for every connection that appears in the task. Provide authentication credentials for all the connections. The types of connections in each task vary based on the task.
 
    This example shows the prompt to create the connection to the target Service Bus namespace where the target queue exists. The connection exists for the source Service Bus namespace.
 
-   :::image type="content" source="./media/create-replication-tasks-azure-resources/create-authenticate-connections.png" alt-text="Screenshot shows the Create option for the connection to the target Service Bus namespace.":::
+   :::image type="content" source="./media/create-replication-tasks-azure-resources/create-authenticate-connections.png" alt-text="Screenshot shows the Create option for the connection to the target Service Bus namespace." lightbox="./media/create-replication-tasks-azure-resources/create-authenticate-connections.png":::
 
 1. Provide the necessary information about the target, and then select **Create**.
 
@@ -292,7 +292,7 @@ This example shows how to create a replication task for Service Bus queues.
 
    The following example shows the successfully created connection:
 
-   :::image type="content" source="./media/create-replication-tasks-azure-resources/connected-service-bus-namespaces.png" alt-text="Screenshot shows Add a task pane with finished connection to Service Bus namespace.":::
+   :::image type="content" source="./media/create-replication-tasks-azure-resources/connected-service-bus-namespaces.png" alt-text="Screenshot shows Add a task pane with finished connection to Service Bus namespace." lightbox="./media/create-replication-tasks-azure-resources/connected-service-bus-namespaces.png":::
 
 1. After you finish all the connections, select **Next: Configure**.
 
@@ -312,7 +312,7 @@ This example shows how to create a replication task for Service Bus queues.
 
    1. When you're done, select **Review + create**.
 
-   :::image type="content" source="./media/create-replication-tasks-azure-resources/configure-replication-task.png" alt-text="Screenshot shows Add a task pane with task name, source and target queue names, and name to use for the logic app resource.":::
+   :::image type="content" source="./media/create-replication-tasks-azure-resources/configure-replication-task.png" alt-text="Screenshot shows Add a task pane with task name, source and target queue names, and name to use for the logic app resource." lightbox="./media/create-replication-tasks-azure-resources/configure-replication-task.png":::
 
 1. On **Review + create**, confirm the Azure resources that the replication task requires for operation.
 
@@ -320,13 +320,13 @@ This example shows how to create a replication task for Service Bus queues.
 
      The following example shows the **Review + create** tab if you chose to create a new logic app:
 
-     :::image type="content" source="./media/create-replication-tasks-azure-resources/validate-replication-task-new-logic-app.png" alt-text="Screenshot shows Review + create pane with resource information when creating a new logic app.":::
+     :::image type="content" source="./media/create-replication-tasks-azure-resources/validate-replication-task-new-logic-app.png" alt-text="Screenshot shows Review + create pane with resource information when creating a new logic app." lightbox="./media/create-replication-tasks-azure-resources/validate-replication-task-new-logic-app.png":::
 
    - If you chose to reuse an existing logic app resource for the replication task, the pane shows the Azure resources that the replication reuses to operate.
 
      The following example shows the **Review + create** tab if you chose to reuse an existing logic app:
 
-     :::image type="content" source="./media/create-replication-tasks-azure-resources/validate-replication-task-existing-logic-app.png" alt-text="Screenshot shows Review + create pane with resource information when reusing an existing logic app.":::
+     :::image type="content" source="./media/create-replication-tasks-azure-resources/validate-replication-task-existing-logic-app.png" alt-text="Screenshot shows Review + create pane with resource information when reusing an existing logic app." lightbox="./media/create-replication-tasks-azure-resources/validate-replication-task-existing-logic-app.png":::
 
    > [!NOTE]
    >
@@ -340,7 +340,7 @@ This example shows how to create a replication task for Service Bus queues.
    >
    > If the task doesn't appear immediately, try refreshing the tasks list or wait a little before you refresh. On the toolbar, select **Refresh**.
 
-   :::image type="content" source="./media/create-replication-tasks-azure-resources/created-replication-task.png" alt-text="Screenshot shows Tasks pane with created replication task.":::
+   :::image type="content" source="./media/create-replication-tasks-azure-resources/created-replication-task.png" alt-text="Screenshot shows Tasks pane with created replication task." lightbox="./media/create-replication-tasks-azure-resources/created-replication-task.png":::
 
 1. If your resources are behind a virtual network, remember to set up permissions for the logic app resource and workflow to access those resources.
 
@@ -362,7 +362,7 @@ This example shows how to view a task's history of workflow runs along with thei
 
 1. On the **Tasks** pane, find the task that you want to review. In that task's **Runs** column, select **View**.
 
-   :::image type="content" source="./media/create-replication-tasks-azure-resources/view-runs-for-task.png" alt-text="Screenshot shows the Tasks pane with the created replication task and a link to view runs.":::
+   :::image type="content" source="./media/create-replication-tasks-azure-resources/view-runs-for-task.png" alt-text="Screenshot shows the Tasks pane with the created replication task and a link to view runs." lightbox="./media/create-replication-tasks-azure-resources/view-runs-for-task.png":::
 
    This step opens the **Overview** pane for the underlying stateless workflow, which is included in a Standard logic app resource.
 
@@ -524,7 +524,7 @@ Manually clean up any legacy information from the original source and reconfigur
 
       This example shows how to find the name for this storage account, which is **storagefabrikamreplb0c** here:
 
-      :::image type="content" source="./media/create-replication-tasks-azure-resources/find-storage-account-name.png" alt-text="Screenshot shows the underlying logic app resource's Configuration pane with the app setting and connection string with the storage account name.":::
+      :::image type="content" source="./media/create-replication-tasks-azure-resources/find-storage-account-name.png" alt-text="Screenshot shows the underlying logic app resource's Configuration pane with the app setting and connection string with the storage account name." lightbox="./media/create-replication-tasks-azure-resources/find-storage-account-name.png":::
 
    1. To confirm that the storage account resource exists, in the Azure portal search box, enter the name. Select the storage account:
 
@@ -548,13 +548,13 @@ Manually clean up any legacy information from the original source and reconfigur
       >
       > If the **azure-webjobs-eventhub** folder doesn't exist, the replication task hasn't run yet. The folder appears only after the replication task runs at least one time.
 
-      :::image type="content" source="./media/create-replication-tasks-azure-resources/azure-webjobs-eventhub-storage-explorer.png" alt-text="Screenshot shows the Azure Storage Explorer with the storage account and blob container open to show the selected azure-webjobs-eventhub folder.":::
+      :::image type="content" source="./media/create-replication-tasks-azure-resources/azure-webjobs-eventhub-storage-explorer.png" alt-text="Screenshot shows the Azure Storage Explorer with the storage account and blob container open to show the selected azure-webjobs-eventhub folder." lightbox="./media/create-replication-tasks-azure-resources/azure-webjobs-eventhub-storage-explorer.png":::
 
    1. In the **azure-webjobs-eventhub** pane that opens, select the Event Hubs namespace folder. The name has the following format: `<source-Event-Hubs-namespace-name>.servicebus.windows.net`.
 
    1. After the namespace folder opens, in the **azure-webjobs-eventhub** pane, select the <*former-source-entity-name*> folder. From either the toolbar or folder's shortcut menu, select **Delete**:
 
-      :::image type="content" source="./media/create-replication-tasks-azure-resources/delete-former-source-entity-folder-storage-explorer.png" alt-text="Screenshot shows the former source Event Hubs entity folder selected with Delete also highlighted.":::
+      :::image type="content" source="./media/create-replication-tasks-azure-resources/delete-former-source-entity-folder-storage-explorer.png" alt-text="Screenshot shows the former source Event Hubs entity folder selected with Delete also highlighted." lightbox="./media/create-replication-tasks-azure-resources/delete-former-source-entity-folder-storage-explorer.png":::
 
    1. Confirm that you want to delete the folder.
 
@@ -577,7 +577,7 @@ For more information about geo-disaster recovery, see the following documentatio
 
 1. On the logic app resource menu, under **Settings**, select **Scale out (App Service Plan)**.
 
-   :::image type="content" source="./media/create-replication-tasks-azure-resources/edit-app-service-plan-settings.png" alt-text="Screenshot shows the hosting plan settings for maximum bursts, minimum instances, always ready instances, and scale out limit enforcement.":::
+   :::image type="content" source="./media/create-replication-tasks-azure-resources/edit-app-service-plan-settings.png" alt-text="Screenshot shows the hosting plan settings for maximum bursts, minimum instances, always ready instances, and scale out limit enforcement." lightbox="./media/create-replication-tasks-azure-resources/edit-app-service-plan-settings.png":::
 
 1. Based on your scenario's needs, under **Plan Scale out** and **App Scale out**, change the values for the maximum burst and always ready instances, respectively.
 
