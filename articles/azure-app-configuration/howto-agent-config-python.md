@@ -17,9 +17,7 @@ Agents are software systems that autonomously perform tasks using Large Language
 
 Here are some agent configurations that can be stored on Azure App Configuration:
 
- - Model deployment name
  - Instructions
- - Endpoint
  - Agent name
  - Model parameters - temperature, top_p, max_tokens, frequency_penalty, presence_penalty, response_format and stop sequences.
 
