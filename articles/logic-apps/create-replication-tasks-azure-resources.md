@@ -5,7 +5,7 @@ services: logic-apps
 ms.suite: integration
 ms.reviewer: estfan, azla
 ms.topic: how-to
-ms.date: 08/20/2025
+ms.date: 11/16/2025
 ms.custom: sfi-image-nochange
 #Customer intent: As a developer responsible for Azure services, I want to know how to implement replication in case of communication problems to keep my services available.
 ---
@@ -68,7 +68,7 @@ The following diagram shows the topology and replication task workflow between E
 
 For information about replication and federation in Azure Event Hubs, see:
 
-- [Event Hubs multi-site and multi-region federation](../event-hubs/event-hubs-federation-overview.md)
+- [Multi-site and multi-region federation](../event-hubs/event-hubs-federation-overview.md)
 - [Event replication tasks patterns](../event-hubs/event-hubs-federation-patterns.md)
 
 #### Replication topology for Service Bus
@@ -79,7 +79,7 @@ The following diagram shows the topology and replication task workflow between S
 
 For information about replication and federation in Azure Service Bus, see:
 
-- [Service Bus message replication and cross-region federation](../service-bus-messaging/service-bus-federation-overview.md)
+- [Message replication and cross-region federation](../service-bus-messaging/service-bus-federation-overview.md)
 - [Message replication tasks patterns](../service-bus-messaging/service-bus-federation-patterns.md)
 
 <a name="replication-properties"></a>
@@ -398,7 +398,7 @@ This example shows how to view a task's history of workflow runs along with thei
 
    :::image type="content" source="./media/create-replication-tasks-azure-resources/view-trigger-inputs-outputs-properties.png" alt-text="Screenshot shows the trigger inputs, outputs, and properties.":::
 
-You can build your own automated workflows to integrate apps, data, services, and systems apart from the context of replication tasks for Azure resources. See [Create an example Standard logic app workflow using the Azure portal](create-single-tenant-workflows-azure-portal.md).
+You can build your own automated workflows to integrate apps, data, services, and systems apart from the context of replication tasks for Azure resources. See [Create a Standard logic app workflow](create-single-tenant-workflows-azure-portal.md).
 
 <a name="monitor"></a>
 
@@ -454,7 +454,7 @@ To change a task, you have these options:
 
 You can edit the underlying workflow behind a replication task. Your edits change the original configuration for the task that you created but not the task template itself. After you make and save your changes, your edited task no longer performs the same function as the original task. If you want a task that performs the original functionality, you might have to create a new task with the same template.
 
-If you don't want to recreate the original task, avoid changing the workflow behind the task using the designer. Instead, create a Standard Logic App stateless workflow to meet your integration needs. For more information, see [Create a Standard logic app workflow using the Azure portal](create-single-tenant-workflows-azure-portal.md).
+If you don't want to recreate the original task, avoid changing the workflow behind the task using the designer. Instead, create a Standard Logic App stateless workflow to meet your integration needs. For more information, see [Create a Standard logic app workflow](create-single-tenant-workflows-azure-portal.md).
 
 1. In the [Azure portal](https://portal.azure.com), find the resource that has the task that you want to update.
 
@@ -488,13 +488,15 @@ If you don't want to recreate the original task, avoid changing the workflow beh
 
    :::image type="content" source="./media/create-replication-tasks-azure-resources/view-updated-run-details-trigger-inputs.png" alt-text="Screenshot shows the workflow's run details with the trigger's inputs, outputs, and properties.":::
 
-1. To disable the workflow so that the task doesn't continue to run, on the **Overview** toolbar, select **Disable**. For more information, see [Edit and manage logic app workflows in the Azure portal](manage-logic-apps-with-azure-portal.md#disable-or-enable-a-deployed-logic-app).
+1. To disable the workflow so that the task doesn't continue to run, on the **Overview** toolbar, select **Disable**. For more information, see [Disable or enable a deployed logic app](manage-logic-apps-with-azure-portal.md#disable-or-enable-a-deployed-logic-app).
 
 <a name="failover"></a>
 
 ## Set up failover for Azure Event Hubs
 
-For Azure Event Hubs replication between the same entity types, geo-disaster recovery requires failing over from the source entity to the target entity. Then the process informs affected event consumers and producers to use the endpoint for the target entity. The target entity becomes the new source. So, if a disaster happens, and the source entity fails over, consumers and producers, including your replication task, are redirected to the new source. Your replication task creates a storage account that contains checkpoint information. It also contains the position or offset in the stream where the source entity stops if the source region is disrupted or becomes unavailable.
+For Azure Event Hubs replication between the same entity types, geo-disaster recovery requires failing over from the source entity to the target entity. Then the process informs affected event consumers and producers to use the endpoint for the target entity. The target entity becomes the new source.
+
+If a disaster happens, and the source entity fails over, consumers and producers, including your replication task, are redirected to the new source. Your replication task creates a storage account that contains checkpoint information. It also contains the position or offset in the stream where the source entity stops if the source region is disrupted or becomes unavailable.
 
 Manually clean up any legacy information from the original source and reconfigure the replication task. This operation ensures that the storage account doesn't contain any legacy information from the original source. It also ensures that your replication task begins reading and replicating events from the start of the new source stream.
 
