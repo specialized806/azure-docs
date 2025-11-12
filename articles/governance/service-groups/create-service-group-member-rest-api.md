@@ -2,7 +2,7 @@
 title: "Quickstart: Add Service Group members using the REST API - Azure Governance"
 description: In this quickstart, you use REST API to add a resource to a service group with a service group member relationship.
 author: rthorn17
-ms.author: rithorn
+ms.author: kenieva
 ms.service: azure-policy
 ms.topic: quickstart
 ms.date: 5/19/2025
@@ -21,7 +21,7 @@ To add resources, resource groups, or subscriptions to a Service Group (preview)
 
 ## Prerequisites
 
-- If you don't have an Azure subscription, create a [free](https://azure.microsoft.com/free/)
+- If you don't have an Azure subscription, create a [free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
   account before you begin.
 
 - If you haven't already, install [ARMClient](https://github.com/projectkudu/ARMClient). It's a tool
