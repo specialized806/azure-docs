@@ -6,7 +6,7 @@ ms.suite: integration
 ms.reviewer: apseth, divswa, azla
 ms.topic: how-to
 ms.custom: sfi-image-nochange
-ms.date: 09/15/2025
+ms.date: 11/14/2025
 #Customer intent: As an integration developer, I need to process messages from different Service Bus sessions using Azure Logic Apps workflows in a specific order using a sequential convoy.
 ---
 
