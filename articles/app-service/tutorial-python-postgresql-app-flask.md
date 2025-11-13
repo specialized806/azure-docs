@@ -15,7 +15,7 @@ ms.service: azure-app-service
 
 # Deploy a Python (Flask) web app with PostgreSQL in Azure
 
-In this tutorial, you'll deploy a data-driven Python web app (**[Flask](https://flask.palletsprojects.com/)**) to **[Azure App Service](./overview.md)** with the **[Azure Database for PostgreSQL](/azure/postgresql/)** relational database service. Azure App Service supports [Python](https://www.python.org/downloads/) in a Linux server environment. If you want, see the [Django tutorial](tutorial-python-postgresql-app-django.md) or the [FastAPI tutorial](tutorial-python-postgresql-app-fastapi.md) instead.
+In this tutorial, you deploy a data-driven Python web app (**[Flask](https://flask.palletsprojects.com/)**) to **[Azure App Service](./overview.md)** with the **[Azure Database for PostgreSQL](/azure/postgresql/)** relational database service. Azure App Service supports [Python](https://www.python.org/downloads/) in a Linux server environment. If you want, see the [Django tutorial](tutorial-python-postgresql-app-django.md) or the [FastAPI tutorial](tutorial-python-postgresql-app-fastapi.md) instead.
 
 :::image type="content" border="False" source="./media/tutorial-python-postgresql-app-flask/python-postgresql-app-architecture-240px.png" lightbox="./media/tutorial-python-postgresql-app-flask/python-postgresql-app-architecture.png" alt-text="An architecture diagram showing an App Service with a PostgreSQL database in Azure.":::
 
@@ -70,7 +70,7 @@ azd up
 First, you set up a sample data-driven app as a starting point. For your convenience, the [sample repository](https://github.com/Azure-Samples/msdocs-flask-postgresql-sample-app), includes a [dev container](https://docs.github.com/codespaces/setting-up-your-project-for-codespaces/adding-a-dev-container-configuration/introduction-to-dev-containers) configuration. The dev container has everything you need to develop an application, including the database, cache, and all environment variables needed by the sample application. The dev container can run in a [GitHub codespace](https://docs.github.com/en/codespaces/overview), which means you can run the sample on any computer with a web browser.
 
 > [!NOTE]
-> If you are following along with this tutorial with your own app, look at the *requirements.txt* file description in [README.md](https://github.com/Azure-Samples/msdocs-flask-postgresql-sample-app/blob/main/README.md) to see what packages you'll need.
+> If you're following along with this tutorial with your own app, look at the *requirements.txt* file description in [README.md](https://github.com/Azure-Samples/msdocs-flask-postgresql-sample-app/blob/main/README.md) to see what packages you need.
 
 :::row:::
     :::column span="2":::
@@ -124,7 +124,7 @@ Having issues? Check the [Troubleshooting section](#troubleshooting).
 In this step, you create the Azure resources. The steps used in this tutorial create a set of secure-by-default resources that include App Service and Azure Database for PostgreSQL. For the creation process, you specify:
 
 * The **Name** for the web app. It's used as part of the DNS name for your app.
-* The **Region** to run the app physically in the world. It's also used as part of the DNS name for your app.
+* The **Region** to run the app physically in the world. It's also part of the DNS name for your app.
 * The **Runtime stack** for the app. It's where you select the version of Python to use for your app.
 * The **Hosting plan** for the app. It's the pricing tier that includes the set of features and scaling capacity for your app.
 * The **Resource Group** for the app. A resource group lets you group (in a logical container) all the Azure resources needed for the application.
@@ -177,7 +177,7 @@ Sign in to the [Azure portal](https://portal.azure.com/) and follow these steps 
 
 ## 3. Secure connection secrets
 
-The creation wizard generated the connectivity variables for you already as [app settings](configure-common.md#configure-app-settings). However, the security best practice is to keep secrets out of App Service completely. You'll move your secrets to a key vault and change your app setting to [Key Vault references](app-service-key-vault-references.md) with the help of Service Connectors.
+The creation wizard generated the connectivity variables for you already as [app settings](configure-common.md#configure-app-settings). However, the security best practice is to keep secrets out of App Service completely. Move your secrets to a key vault and change your app setting to [Key Vault references](app-service-key-vault-references.md) with the help of Service Connectors.
 
 :::row:::
     :::column span="2":::
@@ -186,7 +186,7 @@ The creation wizard generated the connectivity variables for you already as [app
         1. Select **AZURE_POSTGRESQL_CONNECTIONSTRING**. 
         1. In **Add/Edit application setting**, in the **Value** field, find the *password=* part at the end of the string.
         1. Copy the password string after *Password=* for use later.
-        This app setting lets you connect to the Postgres database secured behind a private endpoint. However, the secret is saved directly in the App Service app, which isn't the best. You'll change this.
+        This app setting lets you connect to the Postgres database secured behind a private endpoint. However, the secret is saved directly in the App Service app, which isn't the best. You'll change this configuration.
     :::column-end:::
     :::column:::
         :::image type="content" source="./media/tutorial-python-postgresql-app-flask/azure-portal-secure-connection-secrets-1.png" alt-text="A screenshot showing how to see the value of an app setting." lightbox="./media/tutorial-python-postgresql-app-flask/azure-portal-secure-connection-secrets-1.png":::
@@ -302,7 +302,7 @@ In this step, you configure GitHub deployment using GitHub Actions. It's just on
         1. Sign in to your GitHub account and follow the prompt to authorize Azure.
         1. In **Organization**, select your account.
         1. In **Repository**, select **msdocs-flask-postgresql-sample-app**.
-        1. In **Branch**, select **starter-no-infra**. This is the same branch that you worked in with your sample app, without any Azure-related files or configuration.
+        1. In **Branch**, select **starter-no-infra**. This branch is the same one that you worked in with your sample app, without any Azure-related files or configuration.
         1. For **Authentication type**, select **User-assigned identity**.
         1. In the top menu, select **Save**. 
         App Service commits a workflow file into the chosen GitHub repository, in the `.github/workflows` directory.
@@ -315,7 +315,7 @@ In this step, you configure GitHub deployment using GitHub Actions. It's just on
 :::row:::
     :::column span="2":::
         **Step 3:** Back in the GitHub codespace of your sample fork, run `git pull origin starter-no-infra`. 
-        This pulls the newly committed workflow file into your codespace.
+        This command pulls the newly committed workflow file into your codespace.
     :::column-end:::
     :::column:::
         :::image type="content" source="./media/tutorial-python-postgresql-app-flask/azure-portal-deploy-sample-code-flask-3.png" alt-text="A screenshot showing git pull inside a GitHub codespace." lightbox="./media/tutorial-python-postgresql-app-flask/azure-portal-deploy-sample-code-flask-3.png":::
@@ -326,7 +326,7 @@ In this step, you configure GitHub deployment using GitHub Actions. It's just on
         **Step 4 (Option 1: with GitHub Copilot):**  
         1. Start a new chat session by selecting the **Chat** view, then selecting **+**.
         1. Ask, "*@workspace How does the app connect to the database?*" Copilot might give you some explanation about `SQLAlchemy` how its connection URI is configured in *azureproject/development.py* and *azureproject/production.py*. 
-        1. Ask, "*@workspace In production mode, my app is running in an App Service web app, which uses Azure Service Connector to connect to a PostgreSQL flexible server using the Django client type. What are the environment variable names I need to use?*" Copilot might give you a code suggestion similar to the one in the **Option 2: without GitHub Copilot** steps below and even tell you to make the change in the *azureproject/production.py* file. 
+        1. Ask, "*@workspace In production mode, my app is running in an App Service web app, which uses Azure Service Connector to connect to a PostgreSQL flexible server using the Django client type. What are the environment variable names I need to use?*" Copilot might give you a code suggestion similar to the one in the **Option 2: without GitHub Copilot** steps and even tell you to make the change in the *azureproject/production.py* file. 
         1. Open *azureproject/production.py* in the explorer and add the code suggestion.
         GitHub Copilot doesn't give you the same response every time, and it's not always correct. You might need to ask more questions to fine-tune its response. For tips, see [What can I do with GitHub Copilot in my codespace?](#what-can-i-do-with-github-copilot-in-my-codespace).
     :::column-end:::
@@ -339,7 +339,7 @@ In this step, you configure GitHub deployment using GitHub Actions. It's just on
         **Step 4 (Option 2: without GitHub Copilot):**  
         1. Open *Program.cs* in the explorer.
         1. Find the commented code (lines 3-8) and uncomment it. 
-        This creates a connection string for SQLAlchemy by using `AZURE_POSTGRESQL_USER`, `AZURE_POSTGRESQL_PASSWORD`, `AZURE_POSTGRESQL_HOST`, and `AZURE_POSTGRESQL_NAME`.
+        This change creates a connection string for SQLAlchemy by using `AZURE_POSTGRESQL_USER`, `AZURE_POSTGRESQL_PASSWORD`, `AZURE_POSTGRESQL_HOST`, and `AZURE_POSTGRESQL_NAME`.
     :::column-end:::
     :::column:::
         :::image type="content" source="./media/tutorial-python-postgresql-app-flask/azure-portal-deploy-sample-code-flask-4.png" alt-text="A screenshot showing a GitHub codespace and azureproject/production.py opened." lightbox="./media/tutorial-python-postgresql-app-flask/azure-portal-deploy-sample-code-flask-4.png":::
@@ -431,7 +431,7 @@ Having issues? Check the [Troubleshooting section](#troubleshooting).
 
 ## 7. Stream diagnostic logs
 
-Azure App Service captures all console logs to help you diagnose issues with your application. The sample app includes `print()` statements to demonstrate this capability as shown below.
+Azure App Service captures all console logs to help you diagnose issues with your application. The sample app includes `print()` statements to demonstrate this capability as shown here.
 
 :::code language="python" source="~/msdocs-flask-postgresql-sample-app/app.py" range="37-41" highlight="3":::
 
@@ -482,7 +482,7 @@ When you're finished, you can delete all of the resources from your Azure subscr
 :::row:::
     :::column span="2":::
         **Step 3:** 
-        1. Enter the resource group name to confirm your deletion.
+        1. To confirm your deletion, enter the resource group name.
         1. Select **Delete**.
         1. Confirm with **Delete** again.
     :::column-end:::
@@ -510,7 +510,7 @@ The dev container already has the [Azure Developer CLI](/azure/developer/azure-d
     
     |Question  |Answer  |
     |---------|---------|
-    |The current directory is not empty. Would you like to initialize a project here in '\<your-directory>'?     | **Y**        |
+    |The current directory isn't empty. Would you like to initialize a project here in '\<your-directory>'?     | **Y**        |
     |What would you like to do with these files?     | **Keep my existing files unchanged**        |
     |Enter a new environment name     | Type a unique name. The AZD template uses this name as part of the DNS name of your web app in Azure (`<app-name>-<hash>.azurewebsites.net`). Alphanumeric characters and hyphens are allowed.          |
 
@@ -526,7 +526,7 @@ The dev container already has the [Azure Developer CLI](/azure/developer/azure-d
     azd provision
     ```  
 
-    The `azd provision` command takes about 15 minutes to complete (the Redis cache takes the most time). Later, you'll modify your code to work with App Service and deploy the changes with `azd deploy`. While it's running, the command provides messages about the provisioning and deployment process, including a link to the deployment in Azure.
+    The `azd provision` command takes about 15 minutes to complete (the Redis cache takes the most time). Later, you modify your code to work with App Service and deploy the changes with `azd deploy`. While it's running, the command provides messages about the provisioning and deployment process, including a link to the deployment in Azure.
 
     This AZD template contains files (*azure.yaml* and the *infra* directory) that generate a secure-by-default architecture with the following Azure resources:
 
@@ -542,7 +542,7 @@ The dev container already has the [Azure Developer CLI](/azure/developer/azure-d
     - **Azure Cache for Redis**: Accessible only from behind its private endpoint.
     - **Key vault**: Accessible only from behind its private endpoint. Used to manage secrets for the App Service app.
 
-    Once the command finishes creating resources and deploying the application code the first time, the deployed sample app doesn't work yet because you must make small changes to make it connect to the database in Azure.
+    After the command finishes creating resources and deploying the application code the first time, the deployed sample app doesn't work yet. You must make small changes to make it connect to the database in Azure.
 
 Having issues? Check the [Troubleshooting section](#troubleshooting).
 
@@ -575,7 +575,7 @@ Having issues? Check the [Troubleshooting section](#troubleshooting).
 
 1. Ask, "*@workspace How does the app connect to the database?*" Copilot might give you some explanation about `SQLAlchemy` how its connection URI is configured in *azureproject/development.py* and *azureproject/production.py*. 
 
-1. Ask, "*@workspace In production mode, my app is running in an App Service web app, which uses Azure Service Connector to connect to a PostgreSQL flexible server using the Django client type. What are the environment variable names I need to use?*" Copilot might give you a code suggestion similar to the one in the **Option 2: without GitHub Copilot** steps below and even tell you to make the change in the *azureproject/production.py* file. 
+1. Ask, "*@workspace In production mode, my app is running in an App Service web app, which uses Azure Service Connector to connect to a PostgreSQL flexible server using the Django client type. What are the environment variable names I need to use?*" Copilot might give you a code suggestion similar to the one in the **Option 2: without GitHub Copilot** steps and even tell you to make the change in the *azureproject/production.py* file. 
 
 1. Open *azureproject/production.py* in the explorer and add the code suggestion.
 
@@ -609,7 +609,7 @@ Having issues? Check the [Troubleshooting section](#troubleshooting).
     ```
 
 > [!NOTE]
-> If you run `azd up`, it combines `azd package`, `azd provision`, and `azd deploy`. The reason you didn't do it at the beginning was because you didn't have the PostgreSQL connection settings to modify your code with yet. If you ran `azd up` then, the deploy stage would stall because the Gunicorn server wouldn't be able to start the app without valid connection settings.
+> If you run `azd up`, it combines `azd package`, `azd provision`, and `azd deploy`. The reason you didn't do it at the beginning was because you didn't have the PostgreSQL connection settings to modify your code with yet. If you run `azd up` then, the deploy stage would stall because the Gunicorn server wouldn't be able to start the app without valid connection settings.
 
 -----
 
@@ -681,11 +681,11 @@ azd down
 
 ## Troubleshooting
 
-Listed below are issues you might encounter while trying to work through this tutorial and steps to resolve them.
+Listed here are issues you might encounter while trying to work through this tutorial and steps to resolve them.
 
 #### I can't connect to the SSH session
 
-If you can't connect to the SSH session, then the app itself has failed to start. Check the [diagnostic logs](#7-stream-diagnostic-logs) for details. For example, if you see an error like `KeyError: 'AZURE_POSTGRESQL_HOST'`, it might mean that the environment variable is missing (you might have removed the app setting).
+If you can't connect to the SSH session, then the app itself failed to start. Check the [diagnostic logs](#7-stream-diagnostic-logs) for details. For example, if you see an error like `KeyError: 'AZURE_POSTGRESQL_HOST'`, it might mean that the environment variable is missing. Perhaps you removed the app setting.
 
 #### I get an error when running database migrations
 
@@ -735,7 +735,7 @@ See [Set up GitHub Actions deployment from the Deployment Center](deploy-github-
 
 #### What can I do with GitHub Copilot in my codespace?
 
-You might have noticed that the GitHub Copilot chat view was already there for you when you created the codespace. For your convenience, we include the GitHub Copilot chat extension in the container definition (see *.devcontainer/devcontainer.json*). However, you need a [GitHub Copilot account](https://docs.github.com/copilot/using-github-copilot/using-github-copilot-code-suggestions-in-your-editor) (30-day free trial available). 
+You might notice that the GitHub Copilot chat view was already there for you when you created the codespace. For your convenience, we include the GitHub Copilot chat extension in the container definition (see *.devcontainer/devcontainer.json*). However, you need a [GitHub Copilot account](https://docs.github.com/copilot/using-github-copilot/using-github-copilot-code-suggestions-in-your-editor) (30-day free trial available). 
 
 A few tips for you when you talk to GitHub Copilot:
 
