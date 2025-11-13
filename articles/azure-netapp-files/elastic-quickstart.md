@@ -48,11 +48,12 @@ For registration steps using Portal, open a Cloud Shell session as indicated abo
 1. Create a dedicated account for zone-redundant storage. Specify the `serviceTier` as `ZoneRedundant`.
 
 ```rest
-PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetApp/elasticAccounts/{accountName}?api-version=2025-09-01-preview 
+POST https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetApp/elasticAccounts/{accountName}?api-version=2025-09-01-preview 
     { 
         "location": "<location>", 
         "properties": { 
-        "serviceTier": "ZoneRedundant", 
+            "serviceTier": "ZoneRedundant", 
+        }
     } 
 ```
 
@@ -72,14 +73,15 @@ PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{
 PUT https://management.azure.com/subscriptions/<subscription>/resourceGroups/<resource-group>/providers/Microsoft.NetApp/elasticAccounts/<account>/elasticCapacityPools/<pool-name>?api-version=2025-09-01-preview 
     {
         "location": "<location>", 
-        “zones”: ["2", "1", "3"] 
+        "zones": ["2", "1", "3"] 
         "properties": { 
-        "size": <size>, 
-        "serviceLevel": "ZoneRedundant", 
-        "qosType": "Auto", 
-        “encryptionType": "single", 
-        "subnetId": "/subscription/<subscriptionID>/resourceGroup/<group-name>/Microsoft.Network/virtualNetworks/<vnet-name>/subnets/<subnet-name>", 
-    } 
+            "size": <size>, 
+            "serviceLevel": "ZoneRedundant", 
+            "qosType": "Auto", 
+            "encryptionType": "single", 
+            "subnetId": "/subscription/<subscriptionID>/resourceGroup/<group-name>/Microsoft.Network/virtualNetworks/<vnet-name>/subnets/<subnet-name>", 
+        }
+    }
 ```
 ---
 
@@ -89,6 +91,25 @@ PUT https://management.azure.com/subscriptions/<subscription>/resourceGroups/<re
 
 # [REST API](#tab/rest-api)
 
+1. Send a PUT request to create the NFS volume: 
+
+```rest
+PUT https://management.azure.com/subscriptions/<subscription>/resourceGroups/<resource-group>/providers/Microsoft.NetApp/elasticAccounts/<account>/elasticcCapacityPools/<pool-name>/ealsticVolumes/<volume-name>?api-version=2025-09-01-preview 
+
+{
+    "location": "<location>", 
+    "properties": { 
+        "creationToken": "<file-path>", 
+        "serviceLevel": "ZoneRedundant", 
+        "networkFeatures": "Standard", 
+        "subnetId": "/subscription/<subscriptionID>/resourceGroup/<group-name>/Microsoft.Network/virtualNetworks/<vnet-name>/subnets/<subnet-name", 
+        "usageThreshhold": <size>, 
+        "protocolTypes": "NFSv3", 
+        "securityStyle": ""unix",  
+        "unixPermissions": "0770" 
+    }
+} 
+```
 ---
 
 ## Change the availability zone 
@@ -96,6 +117,15 @@ PUT https://management.azure.com/subscriptions/<subscription>/resourceGroups/<re
 # [Portal](#tab/azure-portal)
 
 # [REST API](#tab/rest-api)
+
+1. Change the availability zone. 
+
+```rest
+PUT https://management.azure.com/subscriptions/<subscription>/resourceGroups/<resource-group>/providers/Microsoft.NetApp/elasticAccounts/<account>/elasticCapacityPools/<poolName>/changeZone?api-version=2025-09-01-preview 
+    {
+        "newZone": "<zoneNumber>",
+    }
+```
 
 ---
 
