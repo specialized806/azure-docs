@@ -315,8 +315,12 @@
           href: elastic-volume-server-message-block.md
       - name: Manage data protection 
         items:
-        - name: Configure snapshots 
-          href: elastic-snapshots.md
+        - name: Configure snapshot policies 
+          href: elastic-snapshots-policy.md
+        - name: Manage snapshots 
+          href: elastic-snapshots-manage.md
+        - name: Restore from a snapshot
+          href: elastic-snapshot-restore.md
         - name: Back up Elastic service level volumes 
           href: elastic-backup.md
         - name: Restore a backup
