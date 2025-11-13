@@ -7,7 +7,7 @@ ms.date: 11/03/2025
 ---
 
 # Subscribe to events raised by Azure Resource Notifications - AKS Resources system topic (Preview)
-This article explains the steps needed to subscribe to events published by Azure Resource Notifications - AKS Resources. For detailed information about these events, see [Azure Resource Notifications - AKS Resources events](event-schema-aks-resources.md).
+This article explains the steps needed to subscribe to events published by Azure Resource Notifications - AKS Resources. For detailed information about these events, see [Azure Resource Notifications - AKS Resources events](event-schema-azurekubernetesservice-resources.md).
 
 ## Create AKS Resources system topic
 
@@ -21,7 +21,14 @@ This article explains the steps needed to subscribe to events published by Azure
 2. Create a system topic of type `microsoft.resourcenotifications.AKSResources` using the [`az eventgrid system-topic create`](/cli/azure/eventgrid/system-topic#az-eventgrid-system-topic-create) command.
 
     ```azurecli-interactive
-    az eventgrid system-topic create --name SYSTEMTOPICNAME --resource-group RESOURCEGROUPNAME --source /subscriptions/AZURESUBSCRIPTIONID --topic-type microsoft.resourcenotifications.AKSResources --location Global        
+
+    az eventgrid system-topic create \
+        --name SYSTEMTOPICNAME \
+        --resource-group RESOURCEGROUPNAME \
+        --source /subscriptions/AZURESUBSCRIPTIONID \
+        --topic-type microsoft.resourcenotifications.AKSResources\
+        --location Global   
+     
     ```
 
 # [Azure PowerShell](#tab/azure-powershell)
@@ -34,7 +41,13 @@ This article explains the steps needed to subscribe to events published by Azure
 2. Create a system topic of type `microsoft.resourcenotifications.AKSResources` using the [New-AzEventGridSystemTopic](/powershell/module/az.eventgrid/new-azeventgridsystemtopic) command.
 
     ```azurepowershell-interactive
-    New-AzEventGridSystemTopic -name SYSTEMTOPICNAME -resourcegroup RESOURCEGROUPNAME -source /subscriptions/AZURESUBSCRIPTIONID -topictype microsoft.resourcenotifications.AKSResources -location global    
+
+    New-AzEventGridSystemTopic`
+      -name SYSTEMTOPICNAME` 
+      -resourcegroup RESOURCEGROUPNAME` 
+      -source /subscriptions/AZURESUBSCRIPTIONID -topictype microsoft.resourcenotifications.AKSResources`
+      -location global    
+
     ```
     
 # [Azure portal](#tab/azure-portal)
@@ -44,16 +57,16 @@ This article explains the steps needed to subscribe to events published by Azure
 1. On the **Event Grid system topics** page, select **+ Create** on the toolbar. 
 1. On the **Create Event Grid System Topic** page, select **Azure Resource Notifications - AKS Resources events** for **Topic type**.    
 
-    :::image type="content" source="./media/subscribe-to-resource-notifications-aksresources-events/create-topic.png" alt-text="Screenshot that shows the Create topic page in the Azure portal." lightbox="./media/subscribe-to-resource-notifications-aksresources-events/create-topic.png" :::
+    :::image type="content" source="./media/subscribe-to-resource-notifications-azurekubernetesservice-resources-events/create-topic.png" alt-text="Screenshot that shows the Create topic page in the Azure portal." lightbox="./media/subscribe-to-resource-notifications-azurekubernetesservice-resources-events/create-topic.png" :::
 1. Select the **resource group** in which you want to create the system topic.
 1. Enter a **name** for the system topic.
 1. Select **Review + create** 
 
-    :::image type="content" source="./media/subscribe-to-resource-notifications-aksresources-events/create-topic-full.png" alt-text="Screenshot that shows the full Create topic page with details in the Azure portal.":::    
+    :::image type="content" source="./media/subscribe-to-resource-notifications-azurekubernetesserviceresources-events/create-topic-full.png" alt-text="Screenshot that shows the full Create topic page with details in the Azure portal.":::    
 1. On the **Review + create** page, select **Create**. 
 1. On the successful deployment page, select **Go to resource** to navigate to the page for your system topic. You see the details about your system topic on this page. 
 
-    :::image type="content" source="./media/subscribe-to-resource-notifications-aksresources-events/system-topic-home-page.png" alt-text="Screenshot that shows the System topic page in the Azure portal." lightbox="./media/subscribe-to-resource-notifications-aksresources-events/system-topic-home-page.png" :::
+    :::image type="content" source="./media/subscribe-to-resource-notifications-azurekuberneteservice-resources-events/system-topic-home-page.png" alt-text="Screenshot that shows the System topic page in the Azure portal." lightbox="./media/subscribe-to-resource-notifications-azurekubernetesservice-resources-events/system-topic-home-page.png" :::
         
 ---
 
@@ -65,6 +78,7 @@ Create an event subscription for the above topic using the [`az eventgrid system
 The following sample command creates an event subscription for the **FleetGateCreated** event. 
 
 ```azurecli-interactive
+
 az eventgrid system-topic event-subscription create \
   --name stes-fleet-gates-sales-before-dev \
   --resource-group $GROUP \
@@ -119,7 +133,8 @@ New-AzEventGridSubscription `
   ) `
   -EndpointType AzureFunction `
   -Endpoint "/subscriptions/$SUBSCRIPTION_ID/resourceGroups/$GROUP/providers/Microsoft.Web/sites/fap-process-fleet-events/functions/fa-handle-pre-dev-events" `
-  -MaxDeliveryAttempt 10 `
+  -MaxDeliveryAttempt 10 
+
 ```
 If you don’t specify -IncludedEventType, all event types are included by default
 
@@ -144,16 +159,16 @@ New-AzEventGridSubscription `
 1. Enter a name for the event subscription. 
 1. For **Filter to event types**, select the event, for example, **FleetGateCreated**. 
 
-    :::image type="content" source="./media/subscribe-to-resource-notifications-aksresources-events/create-event-subscription-select-event.png" alt-text="Screenshot that shows the Create Event Subscription page." lightbox="./media/subscribe-to-resource-notifications-health-resources-events/create-event-subscription-select-event.png":::
+    :::image type="content" source="./media/subscribe-to-resource-notifications-azurekubernetesserviceresources-events/create-event-subscription-select-event.png" alt-text="Screenshot that shows the Create Event Subscription page." lightbox="./media/subscribe-to-resource-notifications-health-resources-events/create-event-subscription-select-event.png":::
 1. Select **endpoint type**. 
 1. Configure event handler based on the endpoint type you selected. In the following example, an Azure event hub is selected. 
 
-    :::image type="content" source="./media/subscribe-to-resource-notifications-aksresources-events/select-endpoint.png" alt-text="Screenshot that shows the Create Event Subscription page with an event handler." lightbox="./media/subscribe-to-resource-notifications-health-resources-events/select-endpoint.png":::
+    :::image type="content" source="./media/subscribe-to-resource-notifications-azurekubernetesservice-resources-events/select-endpoint.png" alt-text="Screenshot that shows the Create Event Subscription page with an event handler." lightbox="./media/subscribe-to-resource-notifications-health-resources-events/select-endpoint.png":::
 1. Select the **Filters** tab to provide subject filtering and advanced filtering. For example, to filter for events from resources in a specific resource group, follow these steps:
     1. Select **Enable subject filtering**. 
     1. In the **Subject Filters** section, for **Subject begins with**, provide the value of the resource group in this format: `/subscriptions/{subscription-id}/resourceGroups/{resourceGroup-id}`.
 
-        :::image type="content" source="./media/subscribe-to-resource-notifications-aksresources-events/filter.png" alt-text="Screenshot that shows the Filters tab of the Create Event Subscription page." lightbox="./media/subscribe-to-resource-notifications-health-resources-events/filter.png":::
+        :::image type="content" source="./media/subscribe-to-resource-notifications-azurekubernetesservice-resources-events/filter.png" alt-text="Screenshot that shows the Filters tab of the Create Event Subscription page." lightbox="./media/subscribe-to-resource-notifications-health-resources-events/filter.png":::
 1. Then, select **Create** to create the event subscription.
 
 ---
@@ -165,20 +180,28 @@ New-AzEventGridSubscription `
 To delete the event subscription, use the [`az eventgrid system-topic event-subscription delete`](/cli/azure/eventgrid/system-topic/event-subscription#az-eventgrid-system-topic-event-subscription-delete) command. Here's an example:
 
 ```azurecli-interactive
-az eventgrid system-topic event-subscription delete --name EVENTSUBSCRIPTIONNAME --resourcegroup RESOURCEGROUPNAME --system-topic-name SYSTEMTOPICNAME
+az eventgrid system-topic event-subscription delete \
+   --name EVENTSUBSCRIPTIONNAME \
+   --resourcegroup RESOURCEGROUPNAME \
+  --system-topic-name SYSTEMTOPICNAME
 ```
 
 To delete the system topic, use the [`az eventgrid system-topic delete`](/cli/azure/eventgrid/system-topic#az-eventgrid-system-topic-delete) command. Here's an example:
 
 ```azurecli-interactive
-az eventgrid system-topic delete --name SYSTEMTOPICNAME --resource-group RESOURCEGROUPNAME
+az eventgrid system-topic delete \
+  --name SYSTEMTOPICNAME \
+  --resource-group RESOURCEGROUPNAME
 ```
 
 # [Azure PowerShell](#tab/azure-powershell)
 To delete an event subscription, use the [`Remove-AzEventGridSystemTopicEventSubscription`](/powershell/module/az.eventgrid/remove-azeventgridsystemtopiceventsubscription) command. Here's an example:
 
 ```azurepowershell-interactive
-Remove-AzEventGridSystemTopicEventSubscription -EventSubscriptionName EVENTSUBSCRIPTIONNAME -ResourceGroupName RESOURCEGROUPNAME -SystemTopicName SYSTEMTOPICNAME
+Remove-AzEventGridSystemTopicEventSubscription`
+       -EventSubscriptionName EVENTSUBSCRIPTIONNAME`
+       -ResourceGroupName RESOURCEGROUPNAME`
+       -SystemTopicName SYSTEMTOPICNAME
 ```
 
 To delete the system topic, use the [`Remove-AzEventGridSystemTopic`](/powershell/module/az.eventgrid/remove-azeventgridsystemtopic) command. Here's an example:

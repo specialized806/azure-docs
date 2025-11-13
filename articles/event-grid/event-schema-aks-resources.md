@@ -35,7 +35,7 @@ Here's the schema:
     "id": string,
     "source": string,
     "subject": string,
-    "type": "Microsoft.ResourceNotifications.AKSResources.FleetGateCreated | Microsoft.ResourceNotifications.AKSResources.FleetGateUpdated | Microsoft.ResourceNotifications.AKSResources.FleetGateDeleted ",
+    "type": string,
     "time ": string, 
     "data": {
         "resourceInfo": {
@@ -61,7 +61,7 @@ An event has the following top-level data:
 | `id` | String | Unique identifier of the event |
 | `source` | String | The Azure subscription for which this system topic is being created. |
 | `subject` | String | Publisher defined path to the base resource on which this event is emitted. |
-| `type` | String | Registered event type of this system topic type |
+| `type` | String | Registered event type of this system topic type. Value is one of Microsoft.ResourceNotifications.AKSResources.FleetGateCreated or Microsoft.ResourceNotifications.AKSResources.FleetGateUpdated or Microsoft.ResourceNotifications.AKSResources.FleetGateDeleted|
 | `time` | String <br/> Format: `2022-11-07T18:43:09.2894075Z` | The time the event is generated based on the provider's UTC time |
 | `data` | Object | Contains event data specific to the resource provider. For more information, see the next table. |
 | `specversion` | String | CloudEvents schema specification version. |
