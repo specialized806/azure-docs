@@ -325,7 +325,7 @@
           href: elastic-backup.md
         - name: Restore a backup
           href: elastic-backup-restore.md
-  - name: Flexible, Standard, Premium, and Ultra Service levels
+  - name: Flexible, Standard, Premium, and Ultra service levels
     items: 
     - name: Manage Active Directory 
       items:
