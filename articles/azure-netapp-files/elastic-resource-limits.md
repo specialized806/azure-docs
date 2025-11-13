@@ -22,19 +22,20 @@ The following table outlines resource limits for the Elastic service level of Az
 
 | Resource | Default limit | Adjustable via support request? |
 | ---- | -- | - |
-| Maximum number of Elastic Zone-Redundant NetApp accounts per subscription | 10 | No | 
+| Maximum number of Elastic Zone-Redundant NetApp accounts per subscription | 10 | Yes | 
 | Number of capacity pools per NetApp account | 50 | No |
-| Number of Elastic capacity pools per region per subscription  | 50 | No | 
+| Number of Elastic capacity pools per region per subscription  | 5 | Yes | 
 | Number of volumes per subscription | - | No |
-| Number of volumes per capacity pool | 1,000 | No |
+| Number of volumes per capacity pool | 50 | No |
 | Minimum size of a capacity pool | 512 GiB | No | 
 | Maximum size of a capacity pool | 128 TiB | No | 
 | Minimum size of a volume | 1 GiB | No | 
 | Maximum size of a volume | Maximum size of capacity pool | No |
-| Maximum number of snapshots per volume | - | No | 
-| Maximum number of `maxfiles` per volume | See [`maxfiles`](maxfiles-concept.md)  | Yes |    
+| Maximum number of snapshots per volume | 255 | No | 
+| Maximum number of `maxfiles` per volume | See [`maxfiles`](maxfiles-concept.md) | Yes |    
 | Maximum number of export policy rules per volume | 5 | No | 
 | Maximum number of quota rules per volume | 1,000| No | 
+
 
 <!-- file, throughput, regional capacity per subscription, number of IPs / VNet, backups per day, backups, snapshots, |  # of CRR/CZR DP volumes --> 
 
