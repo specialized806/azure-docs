@@ -287,6 +287,7 @@
   items: 
   - name: Register and set up
     items:
+<<<<<<< HEAD
       - name: Register for NetApp Resource Provider
         href: azure-netapp-files-register.md
       - name: Create a NetApp account
@@ -298,6 +299,125 @@
   - name: Elastic service level
     items: 
       - name: Manage storage 
+=======
+    - name: Register for NetApp Resource Provider
+      href: azure-netapp-files-register.md
+    - name: Create a NetApp account
+      href: azure-netapp-files-create-netapp-account.md
+    - name: Delegate a subnet to Azure NetApp Files
+      href: azure-netapp-files-delegate-subnet.md
+    - name: Request region access
+      href: request-region-access.md
+  - name: Manage Active Directory 
+    items:
+    - name: Create and manage Active Directory connections
+      href: create-active-directory-connections.md
+    - name: Modify Active Directory connections
+      href: modify-active-directory-connections.md
+    - name: Configure AD DS LDAP authentication for NFS volumes
+      href: configure-ldap-over-tls.md
+    - name: Join a Linux VM to an Active Directory Domain
+      href: join-active-directory-domain.md
+  - name: Manage capacity pools
+    items:
+    - name: Set up a capacity pool
+      href: azure-netapp-files-set-up-capacity-pool.md
+    - name: Manage a manual QoS capacity pool
+      href: manage-manual-qos-capacity-pool.md
+    - name: Manage billing by using tags
+      href: manage-billing-tags.md
+  - name: Manage volumes
+    items:
+    - name: Manage NFS volumes
+      items:
+      - name: Create an NFS volume
+        href: azure-netapp-files-create-volumes.md
+      - name: Configure NFSv4.1 ID domain
+        href: azure-netapp-files-configure-nfsv41-domain.md
+      - name: Configure NFSv4.1 Kerberos encryption
+        href: configure-kerberos-encryption.md
+      - name: Configure AD DS LDAP with extended groups for NFS
+        href: configure-ldap-extended-groups.md
+      - name: Configure LDAP server 
+        href: configure-directory-server.md
+      - name: Configure an NFS client for Azure NetApp Files
+        href: configure-nfs-clients.md
+      - name: Convert an NFS volume between NFSv3 and NFSv4.1
+        href: convert-nfsv3-nfsv41.md
+      - name: Disable showmount
+        href: disable-showmount.md
+    - name: Manage SMB volumes
+      items:
+      - name: Create an SMB volume
+        href: azure-netapp-files-create-volumes-smb.md
+      - name: Enable Continuous Availability on existing SMB volumes
+        href: enable-continuous-availability-existing-SMB.md
+      - name: Use DFS-N and DFS Root Consolidation with Azure NetApp Files
+        href: use-dfs-n-and-dfs-root-consolidation-with-azure-netapp-files.md
+    - name: Manage dual-protocol volumes
+      items:
+      - name: Create a dual-protocol volume 
+        href: create-volumes-dual-protocol.md
+    - name: Manage object REST API 
+      items:
+      - name: Configure object REST API
+        href: object-rest-api-access-configure.md
+      - name: Connect to Azure Databricks 
+        href: object-rest-api-databricks.md
+      - name: Connect to OneLake
+        href: object-rest-api-onelake.md
+      - name: Access volumes with an S3-compatible client 
+        href: object-rest-api-browser.md
+    - name: Migrate volumes to Azure NetApp Files
+      href: migrate-volumes.md
+    - name: Manage volume access and encryption 
+      items:
+      - name: Configure export policy for NFS or dual protocol
+        href: azure-netapp-files-configure-export-policy.md
+      - name: Configure Unix permissions and change ownership mode
+        href: configure-unix-permissions-change-ownership-mode.md
+      - name: Configure access control lists for NFSv4.1
+        href: configure-access-control-lists.md
+      - name: Manage SMB share ACLs in Azure NetApp Files
+        href: manage-smb-share-access-control-lists.md
+      - name: Configure network features for a volume
+        href: configure-network-features.md
+      - name: Configure customer-managed keys 
+        href: configure-customer-managed-keys.md
+      - name: Configure customer-managed keys with managed HSM
+        href: configure-customer-managed-keys-hardware.md
+      - name: Configure cross-tenant customer-managed keys 
+        href: customer-managed-keys-cross-tenant.md
+      - name: Configure Virtual WAN
+        href: configure-virtual-wan.md
+    - name: Mount volumes
+      items:
+      - name: Mount an NFS volume for Windows or Linux VMs
+        href: azure-netapp-files-mount-unmount-volumes-for-virtual-machines.md
+      - name: Mount an SMB volume for Windows VMs
+        href: mount-volumes-vms-smb.md
+    - name: Manage volume capacity and performance 
+      items:
+      - name: Monitor the capacity of a volume
+        href: monitor-volume-capacity.md
+      - name: Resize a capacity pool or a volume
+        href: azure-netapp-files-resize-capacity-pools-or-volumes.md
+      - name: Dynamically change the service level of a volume
+        href: dynamic-change-volume-service-level.md
+      - name: Manage default and individual user and group quotas for a volume
+        href: manage-default-individual-user-group-quotas.md
+      - name: Generate user and group quota reports for a volume 
+        href: generate-user-group-quota-reports.md 
+      - name: Manage storage with cool access 
+        href: manage-cool-access.md
+      - name: Manage file access logs 
+        href: manage-file-access-logs.md
+    - name: Update Terraform-managed volume
+      href: terraform-manage-volume.md
+  - name: Manage application volume groups 
+    items:
+      - name: Manage application volume groups for SAP HANA
+>>>>>>> 96a45fcb448d9ac273014c97077b6d50a597637d
         items: 
         - name: Register for Elastic service level 
           href: elastic-account.md 

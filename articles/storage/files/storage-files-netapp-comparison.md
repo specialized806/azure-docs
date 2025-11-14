@@ -5,7 +5,7 @@ author: khdownie
 services: storage
 ms.service: azure-file-storage
 ms.topic: concept-article
-ms.date: 10/22/2025
+ms.date: 11/11/2025
 ms.author: kendownie
 recommendations: false
 # Customer intent: "As a cloud architect, I want to compare Azure Files and Azure NetApp Files, so that I can choose the best file storage solution to meet my workload scalability and performance requirements."
@@ -38,8 +38,8 @@ Most workloads that require cloud file storage work well on either Azure Files o
 
 | Category | Azure Files | Azure NetApp Files |
 |---------|---------|---------|
-| Minimum Share/Volume Size | Premium<br><ul><li>100 GiB</li></ul><br>Standard<br><ul><li>No minimum (SMB only - NFS requires Premium shares).</li></ul> | Standard, Premium, Ultra, and Flexible tiers<br><ul><li>50 GiB (Minimum capacity pool size: 1 TiB)</li></ul><br>ZRS<ul><li>1 GiB (Minimum capacity pool size: 512 GiB</li></ul> |
-| Maximum Share/Volume Size | 100 TiB | Standard, Premium, Ultra, and Flexible tiers<br><ul><li>100 TiB (regular volume)</li><li>2 PiB (large volume)</li><li>2,048 TiB capacity pool size limit</li></ul><br>Up to 12.5 PiB per Azure NetApp account <br>ZRS<ul><li>16 TiB (maximum capacity pool size)</li></ul>|
+| Minimum Share/Volume Size | Premium<br><ul><li>100 GiB</li></ul><br>Standard<br><ul><li>No minimum (SMB only - NFS requires Premium shares).</li></ul> | Standard, Premium, Ultra, and Flexible tiers<br><ul><li>50 GiB (Minimum capacity pool size: 1 TiB)</li></ul><br>Elastic Zone-Redundant storage<ul><li>1 GiB (Minimum capacity pool size: 512 GiB)</li></ul> |
+| Maximum Share/Volume Size | 100 TiB | Standard, Premium, Ultra, and Flexible tiers<br><ul><li>100 TiB (regular volume)</li><li>2 PiB (large volume)</li><li>7.2 PiB (large volume with cool access enabled)</li><li>2,048 TiB capacity pool size limit</li></ul><br>Up to 12.5 PiB per Azure NetApp account <br>ZRS<ul><li>16 TiB (maximum capacity pool size)</li></ul>|
 | Maximum Share/Volume IOPS | Premium<br><ul><li>Up to 100k</li></ul><br>Standard<br><ul><li>Up to 20k</li></ul> | Ultra, Premium, and Flexible<br><ul><li>Up to 450k </li></ul><br>Standard<br><ul><li>Up to 320k</li></ul> |
 | Maximum Share/Volume Throughput | Premium<br><ul><li>Up to 10 GiB/s</li></ul><br>Standard<br><ul><li>Up to [storage account limits](./storage-files-scale-targets.md).</li></ul> | Ultra<br><ul><li>4.5 GiB/s (regular volume)</li><li>12.5 GiB/s (large volume)</li></ul><br>Premium<br><ul><li>Up to 4.5 GiB/s (regular volume)</li><li>12.5 GiB/s (large volume)</li></ul><br>Standard<br><ul><li>Up to 1.6 GiB/s (regular volume)</li><li>12.5 GiB/s (large volume)</li></ul><br>Flexible<ul><li>[5 x 128 MiB/second/TiB x size of capacity pool in TiB](../../azure-netapp-files/azure-netapp-files-service-levels.md#flexible-service-level-throughput-examples)</li></ul><br>Elastic Zone-Redundant<ul><li>4,096 MiB/s</li></ul> |
 | Maximum File Size | 4 TiB | 16 TiB |
