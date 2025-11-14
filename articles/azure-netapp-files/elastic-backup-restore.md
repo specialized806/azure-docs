@@ -20,4 +20,7 @@ If you need to restore from a backup, you can create a new volume in the same ac
 
 [!INCLUDE [Backup restore steps](includes/backup-restore-steps.md)]
 
-## Delete a backup 
+## Next steps
+
+- [Understand Azure NetApp Files backup](backup-introduction.md)
+- [Manage backups for the Elastic Zone-Redundant service level](elastic-backup.md)

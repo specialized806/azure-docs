@@ -104,5 +104,7 @@ You can modify the schedule and retention count or a backup or disable it.
 1. Select the action menu `...` at the end of the row with the backup policy name then **Assign volumes**.
 1. Select **Delete** to remove the backup policy. 
 
+## Next steps 
 
-
+- [Restore from a backup for for the Elastic Zone-Redundant service levle](elastic-backup-restore.md)
+- [Understand Azure NetApp Files backup](backup-introduction.md)

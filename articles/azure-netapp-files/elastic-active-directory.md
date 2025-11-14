@@ -13,6 +13,9 @@ ms.author: anfdocs
 
 To create SMB volumes, you must configure an Active Directory account then associate it with a capacity pool in the NetApp account for the Elastic service level. 
 
+>[!IMPORTANT]
+>For the Flexible, Standard, Premium, and Ultra service levels, follow the instructions in [Create and Manage Active Directory connections](create-active-directory-connections.md).
+
 ## Considerations
 
 * You should store your Active Directory password in an Azure Key Vault then percolate the key vault details and secret name to Azure NetApp Files. 
@@ -20,14 +23,20 @@ To create SMB volumes, you must configure an Active Directory account then assoc
 * The Active Directory resource is limited to the Elastic service level. The Active Directory resource is only available with capacity pools in the Elastic service level. 
 
 ## Steps
+
+>[!TIP]
+>For guidance on these fields, see [Create and Manage Active Directory connections](create-active-directory-connections.md).
+
 <!-- check 1 and 2 -->
 1. From your NetApp account for the Elastic service level, select **Active Directory policies**. 
 1. Select **Create policy**. 
-1. In the Networking tab: 
+1. In the Networking tab, provide the following information.
+
     * Assign the **Active Directory policy name**. 
     * Enter the **DNS addresses** as a comma-separated list. 
     * Enter the **DNS domain name**. 
     * Enter the **Site name**. 
+
     Select **Next**. 
     
     :::image type="content" source="./media/elastic-active-directory/elastic-active-directory-networking.png" alt-text="Screenshot of the networking tab." lightbox="./media/elastic-active-directory/elastic-active-directory-networking.png":::
@@ -53,5 +62,5 @@ To create SMB volumes, you must configure an Active Directory account then assoc
 
 ## Next steps
 
-* [Understand the Elastic zone-redundant service level](elastic-zone-redundant-concept.md)
+* [Understand the Elastic Zone-Redundant service level](elastic-zone-redundant-concept.md)
 * [Create an SMB volume for the Elastic service level](elastic-volume-server-message-block.md)

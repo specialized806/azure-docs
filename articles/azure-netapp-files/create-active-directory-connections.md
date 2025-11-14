@@ -97,6 +97,9 @@ For more information about the relationship between NetApp accounts and subscrip
 
 ## Create an Active Directory connection
 
+>[!IMPORTANT]
+>If you're using the Elastic Zone-Redundant service level, follow the instructions in [Create an Active Directory connection for an Elastic Zone-Redundant deployment](elastic-active-directory.md).
+
 1. From your NetApp account, select **Active Directory connections** then **Join**.
 
     ![Screenshot showing the Active Directory connections menu. The join button is highlighted.](./media/create-active-directory-connections/azure-netapp-files-active-directory-connections.png)
