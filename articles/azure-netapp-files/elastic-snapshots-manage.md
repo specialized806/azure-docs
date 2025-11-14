@@ -17,4 +17,13 @@ With the Elastic Zone-Redundant service level, you can create snapshots on-deman
 
 ## Create an on-demand snapshot
 
+[!INCLUDE [Create an on-demand snapshot](includes/snapshot-create.md)]
+
 ## Delete a snapshot
+
+* You can't delete a snapshot if it's part of an active file-restore operation.
+* You can't delete a replication generated snapshot that is used for volume baseline data replication.
+
+### Steps
+
+[!INCLUDE [Delete a snapshot](includes/snapshot-delete.md)]

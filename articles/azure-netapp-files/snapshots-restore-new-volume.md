@@ -5,7 +5,7 @@ services: azure-netapp-files
 author: b-hchen
 ms.service: azure-netapp-files
 ms.topic: how-to
-ms.date: 08/28/2025
+ms.date: 11/14/2025
 ms.author: anfdocs
 # Customer intent: "As a cloud administrator, I want to restore a volume from a snapshot so that I can recover data to a specific point in time and maintain system integrity."
 ---
@@ -30,10 +30,11 @@ ms.author: anfdocs
 
 ## Steps
 
-1. Select **Snapshots** from the Volume page to display the snapshot list. 
+1. Navigate to the volume hosting the snapshot you want to restore. Select **Snapshots** from the Volume page to display the snapshot list. 
+
 2. Right-click the snapshot to restore and select **Restore to new volume** from the menu option.  
 
-    ![Screenshot that shows the Restore New Volume menu.](./media/snapshots-restore-new-volume/azure-netapp-files-snapshot-restore-to-new-volume.png)
+    :::image type="content" source="./media/shared/snapshot-actions.png" alt-text="Screenshot showing the options when right-clicking a snapshot."::: 
 
 3. In the **Create a Volume** page, provide information for the new volume.  
 
