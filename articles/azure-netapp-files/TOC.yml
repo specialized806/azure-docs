@@ -147,7 +147,7 @@
           href: performance-linux-nfs-read-ahead.md
         - name: SMB performance best practices
           href: azure-netapp-files-smb-performance.md
-        - name: Azure virtual machine SKUs best practices
+        - name: Azure virtual machine SKU best practices
           href: performance-virtual-machine-sku.md 
         - name: Performance considerations for cool access tiering
           href: performance-considerations-cool-access.md
@@ -251,7 +251,7 @@
           href: azacsnap-cmd-ref-configure.md
         - name: Test configuration of AzAcSnap
           href: azacsnap-cmd-ref-test.md
-        - name: Backup your database with AzAcSnap
+        - name: Back up your database with AzAcSnap
           href: azacsnap-cmd-ref-backup.md
       - name: Disaster recovery using AzAcSnap
         href: azacsnap-disaster-recovery.md
