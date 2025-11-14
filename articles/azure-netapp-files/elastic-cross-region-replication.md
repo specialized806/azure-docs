@@ -34,7 +34,7 @@ When you configure cross-region replication on a source volume, the replication 
 
 ## Supported cross-region replication pairs
 
-Azure NetApp Files volume replication is supported between various [Azure regional pairs](../../reliability/cross-region-replication-azure.md#paired-regions) and nonstandard pairs. Azure NetApp Files volume replication for the _Elastic Zone-Redundant Service Level_ is currently available between the following regions. You can replicate Azure NetApp Files volumes from Regional Pair A to Regional Pair B and from Regional Pair B to Regional Pair A.
+Azure NetApp Files volume replication is supported between various Azure regional pairs and nonstandard pairs. Azure NetApp Files volume replication for the _Elastic Zone-Redundant Service Level_ is currently available between the following regions. You can replicate Azure NetApp Files volumes from Regional Pair A to Regional Pair B and from Regional Pair B to Regional Pair A.
 
 ### Azure regional pairs
 

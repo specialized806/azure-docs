@@ -23,7 +23,7 @@ Ensure you've registered for [Elastic Zone-Redundant storage](elastic-account.md
 
 For registration steps using Portal, open a Cloud Shell session as indicated above and follow these Azure CLI steps:
 
-[!INCLUDE [azure-netapp-files-cloudshell-include](../../includes/azure-netapp-files-azure-cloud-shell-window.md)]
+[! INCLUDE [azure-netapp-files-cloudshell-include](../../includes/azure-netapp-files-azure-cloud-shell-window.md)]
 
 
 # [REST API](#tab/rest-api)

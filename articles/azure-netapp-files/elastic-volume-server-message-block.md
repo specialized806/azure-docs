@@ -16,9 +16,6 @@ Learn how to create an SMB volume for the Elastic service level.
 >[!NOTE]
 >This workflow is for the Elastic service level. For Flexible, Standard, Premium, and Ultra volumes, see [Create an SMB volume](azure-netapp-files-create-volumes-smb.md).
 
-[!INCLUDE [Windows Server 2025 warning](includes/windows-server-2025.md)]
-
-
 ## Before you begin 
 
 * You must have an Azure NetApp Files account configured to use the Elastic service level. 
@@ -30,7 +27,7 @@ Learn how to create an SMB volume for the Elastic service level.
 
 ## Considerations 
 
-* You cannot change the protocol of a volume after creating it. 
+* You can't change the protocol of a volume after creating it. 
 * Each volume in a capacity pool must have a unique name.
 * In the Elastic service level, you can't move volumes between capacity pools. 
 * Access-based enumeration and non-browsable shares aren't currently supported for SMB volumes in the Elastic service level. 
@@ -64,6 +61,7 @@ You can create an NFSv3, NFSv4.1, or SMB volume. Dual-protocol volumes aren't cu
         * Select the **Backup vault** or select **Create new** to create one. For more information, see [Create a backup vault](backup-vault-manage.md).
         * Select the **Backup policy** or select **Create new** to create one. For more information, see [Create a backup policy](backup-manage-policies.md).
         * Enter the retention period. Choose weeks or months. 
+        <!-- delete this section -->
     * For replication across zones and/or regions, provide the following details. 
         * Enter the <!-- $source-name? --> and select the frequency: hourly, daily, or weekly. 
         * Configure the destination volume: 

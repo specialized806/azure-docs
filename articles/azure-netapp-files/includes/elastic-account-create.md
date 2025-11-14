@@ -16,6 +16,6 @@
     * Select the **Region**. 
     * Select **NetApp Elastic Files** to designate the account for the Elastic service level. 
 
-    :::image type="content" source="../media/shared/elastic-account.png" alt-text="Screenshot of application volume group creation menu." lightbox="./media/shared/elastic-account.png":::
+    :::image type="content" source="./media/shared/elastic-account.png" alt-text="Screenshot of application volume group creation menu." lightbox="./media/shared/elastic-account.png":::
 
 1. To finalize account creation, select **Create**. 

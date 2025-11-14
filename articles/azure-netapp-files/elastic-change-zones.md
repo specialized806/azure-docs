@@ -5,12 +5,12 @@ services: azure-netapp-files
 author: b-ahibbard
 ms.service: azure-netapp-files
 ms.topic: how-to
-ms.date: 08/14/2025
+ms.date: 11/14/2025
 ms.author: anfdocs
 ---
 # Change availability zones for Elastic Zone-Redundant capacity in Azure NetApp Files
 
-With the Elastic Zone-Redundant (ZRS) service level, you can easily change the availability zone of a capacity pool and its volumes. 
+With the Elastic Zone-Redundant service level, you can easily change the availability zone of a capacity pool and its volumes to continue service in the event of a zonal outage. 
 
 <!-- HA, durability -->
 
@@ -23,5 +23,5 @@ With the Elastic Zone-Redundant (ZRS) service level, you can easily change the a
 
 1. In the Azure portal, select your capacity pool. 
 1. In the capacity pool overview, select **Edit Current Availability Zone**. 
-1. In the Edit Current Availability Zone blade, select a zone to failover to in the Availability Zone dropdown menu then **OK** to confirm your selection.  
+1. In the Edit Current Availability Zone blade, select the new zone the Availability Zone dropdown menu then **OK** to confirm your selection.  
 1. Reload the page to confirm the availability zone change was successful in the capacity pool overview's **Current zone** field.

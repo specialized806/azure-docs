@@ -1,6 +1,6 @@
 ---
 title: Create snapshot policies for Elastic Zone-Redundant volumes in Azure NetApp Files
-description: Learn how to create a snapshot policy for Elastic service level volumes for data protection.
+description: Learn how to create a snapshot policy to automate snapshot creation for volumes in the Elastic Zone-Redundant service level.
 services: azure-netapp-files
 author: b-ahibbard
 ms.service: azure-netapp-files
@@ -17,19 +17,19 @@ ms.author: anfdocs
 
 ## Create a snapshot policy
 
-You can create snapshot policies when you create an [NFS](elastic-volume.md) or [SMB](elastic-server-message-block.md) volume. You can create new policy 
+You can create snapshot policies when you create an [NFS](elastic-volume.md) or [SMB](elastic-volume-server-message-block.md) volume. You can create new policy 
 
 1. Under Data protection, select **Snapshot policies**. 
 1. Select **+ Create**. 
 1. Provide inputs for the following fields: 
     - **Policy name** - Assign
-    - **Snapshot schedule** - Select hourly, daily, weekly or monthly.
+    - **Snapshot schedule** - Select hourly, daily, weekly, or monthly.
     - **Retention** - Select the number of snapshots to preserve in storage.
     - Select when you want Azure NetApp Files to create your snapshots. If you choose hourly, select when in the hour. If you choose daily, select the time of day. If you choose weekly, choose the day of the week and time. If you choose monthly, select the days of the month (numerical) and time of day. 
 
     To create a secondary frequency for the snapshots, select **Add schedule** then provide the aforementioned inputs. 
 
-    :::image type="content" source="./media/elastic-snapshots-policy/create-policy-elastic.png" alt-text="Screenshot to create a snapshot policy." lightbox="./media/elastic-snapshots-policy/create-policy-elastic.png":::
+    :::image type="content" source="./media/elastic-snapshots-policy/create-policy-elastic.png" alt-text="Screenshot showing how to create a snapshot policy." lightbox="./media/elastic-snapshots-policy/create-policy-elastic.png":::
 
 1. Select **Create** to finalize the policy. 
 
@@ -40,7 +40,7 @@ You can create snapshot policies when you create an [NFS](elastic-volume.md) or 
 1. Go to the **Volumes** page, right-click the volume that you want to apply a snapshot policy to, then select **Edit**.
 1. In the Edit window, select the **Snapshot policy** dropdown. Choose the policy you want to add to the volume. 
 
-    :::image type="content" source="./media/elastic-snapshots-policy/edit-volume.png" alt-text="Screenshot to create a snapshot policy." lightbox="./media/elastic-snapshots-policy/edit-volume.png":::
+    :::image type="content" source="./media/elastic-snapshots-policy/edit-volume.png" alt-text="Screenshot showing how to edit a snapshot policy." lightbox="./media/elastic-snapshots-policy/edit-volume.png":::
 
 1. Select **Save** to apply the policy. 
 
@@ -49,7 +49,7 @@ You can create snapshot policies when you create an [NFS](elastic-volume.md) or 
 1. Under Data protection, select **Snapshot policies**. 
 1. Identify the snapshot policy you want to edit. Select the actions menu `...` at the end of the row for the policy then **Edit**.
 1. To edit the name, enter a new name in the **Policy name** field.
-1. To edit add a new snapshot schedule, select the snapshot frequency in the **Select type** dropdown, then **Add schedule**. 
+1. To add a new snapshot schedule, select the snapshot frequency in the **Select type** dropdown, then **Add schedule**. 
     1. Enter a value in **Retention** for the number of snapshots you want to save. When the number of snapshots for the volume exceeds the retention count, Azure NetApp Files deletes the oldest snapshot. 
     1. Select when want Azure NetApp Files to create your snapshots. If you choose hourly, select when in the hour. If you choose daily, select the time of day. If you choose weekly, choose the day of the week and time. If you choose monthly, select the days of the month (numerical) and time of day. 
 1. To edit an existing snapshot schedule, select the actions menu `...` at the end of the row with the schedule type. Choose **Edit**. 
