@@ -44,7 +44,7 @@ Reverting a volume using snapshot revert isn't supported on Azure NetApp Files v
 
     Optionally, select **Show advanced options** where you can assign a snapshot policy to the volume and choose to hide the snapshot path. 
 
-    :::image type="content" source=".media/elastic-snapshot-restore/elastic-restore-new-volume.png" alt-text="Screenshot Restore to a new field option.":::
+    :::image type="content" source="./media/elastic-snapshot-restore/elastic-restore-new-volume.png" alt-text="Screenshot Restore to a new field option.":::
 
     The new volume uses the same protocol that the snapshot uses.   
     For information about the fields in the Create a Volume page, see: 

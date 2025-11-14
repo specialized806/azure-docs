@@ -85,8 +85,6 @@ This article shows you how to create an NFS volume. For SMB volumes, see [Create
 
         The Virtual Network you specify must have a subnet delegated to Azure NetApp Files. The Azure NetApp Files service can be accessed only from the same Virtual Network or from a virtual network that's in the same region as the volume through virtual network peering. You can also access the volume from your on-premises network through Express Route.  
 
-        <!-- ZRS scaleVolumes endpoint --> 
-
     * **Subnet**  
         Specify the subnet that you want to use for the volume.  
         The subnet you specify must be delegated to Azure NetApp Files. 
@@ -99,9 +97,6 @@ This article shows you how to create an NFS volume. For SMB volumes, see [Create
 
     * **Network features**  
         In supported regions, you can specify whether you want to use **Basic** or **Standard** network features for the volume. See [Configure network features for a volume](configure-network-features.md) and [Guidelines for Azure NetApp Files network planning](azure-netapp-files-network-topologies.md) for details.
-
-        >[!NOTE]
-        >Elastic zone-redundant storage requires you select Standard network features. 
 
     * **Encryption key source** 
         You can select Microsoft Managed Key or Customer Managed Key. See [Configure customer-managed keys for Azure NetApp Files volume encryption](configure-customer-managed-keys.md) and [Azure NetApp Files double encryption at rest](double-encryption-at-rest.md) about using this field. 

@@ -41,7 +41,7 @@ To see all features that you can enable for an NFS volume and relevant considera
 
 For registration steps using Portal, open a Cloud Shell session as indicated above and follow these Azure CLI steps:
 
-[!INCLUDE [azure-netapp-files-cloudshell-include](../../includes/azure-netapp-files-azure-cloud-shell-window.md)]
+[!INCLUDE [azure-netapp-files-cloudshell-include](./includes/azure-netapp-files-azure-cloud-shell-window.md)]
 
 # [PowerShell](#tab/azure-powershell)
 
@@ -63,7 +63,7 @@ Prepare your environment for the Azure CLI.
 
 [!INCLUDE [azure-cli-prepare-your-environment-no-header.md](~/reusable-content/azure-cli/azure-cli-prepare-your-environment-no-header.md)]
 
-[!INCLUDE [azure-netapp-files-cloudshell-include](../../includes/azure-netapp-files-azure-cloud-shell-window.md)]
+[!INCLUDE [azure-netapp-files-cloudshell-include](./includes/azure-netapp-files-azure-cloud-shell-window.md)]
 
 # [Template](#tab/template)
 
