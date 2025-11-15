@@ -7,7 +7,7 @@ ms.date: 11/03/2025
 ---
 
 # Subscribe to events raised by Azure Resource Notifications - AKS Resources system topic (Preview)
-This article explains the steps needed to subscribe to events published by Azure Resource Notifications - AKS Resources. For detailed information about these events, see [Azure Resource Notifications - AKS Resources events](event-schema-azurekubernetesservice-resources.md).
+This article explains the steps needed to subscribe to events published by Azure Resource Notifications - AKS Resources. For detailed information about these events, see [Azure Resource Notifications - AKS Resources events](event-schema-aks-resources.md).
 
 ## Create AKS Resources system topic
 
@@ -62,11 +62,11 @@ This article explains the steps needed to subscribe to events published by Azure
 1. Enter a **name** for the system topic.
 1. Select **Review + create** 
 
-    :::image type="content" source="./media/subscribe-to-resource-notifications-azurekubernetesserviceresources-events/create-topic-full.png" alt-text="Screenshot that shows the full Create topic page with details in the Azure portal.":::    
+    :::image type="content" source="./media/subscribe-to-resource-notifications-azurekubernetesservice-resources-events/create-topic-full.png" alt-text="Screenshot that shows the full Create topic page with details in the Azure portal.":::    
 1. On the **Review + create** page, select **Create**. 
 1. On the successful deployment page, select **Go to resource** to navigate to the page for your system topic. You see the details about your system topic on this page. 
 
-    :::image type="content" source="./media/subscribe-to-resource-notifications-azurekuberneteservice-resources-events/system-topic-home-page.png" alt-text="Screenshot that shows the System topic page in the Azure portal." lightbox="./media/subscribe-to-resource-notifications-azurekubernetesservice-resources-events/system-topic-home-page.png" :::
+    :::image type="content" source="./media/subscribe-to-resource-notifications-azurekubernetesservice-resources-events/system-topic-home-page.png" alt-text="Screenshot that shows the System topic page in the Azure portal." lightbox="./media/subscribe-to-resource-notifications-azurekubernetesservice-resources-events/system-topic-home-page.png" :::
         
 ---
 
@@ -159,16 +159,16 @@ New-AzEventGridSubscription `
 1. Enter a name for the event subscription. 
 1. For **Filter to event types**, select the event, for example, **FleetGateCreated**. 
 
-    :::image type="content" source="./media/subscribe-to-resource-notifications-azurekubernetesserviceresources-events/create-event-subscription-select-event.png" alt-text="Screenshot that shows the Create Event Subscription page." lightbox="./media/subscribe-to-resource-notifications-health-resources-events/create-event-subscription-select-event.png":::
+    :::image type="content" source="./media/subscribe-to-resource-notifications-azurekubernetesservice-resources-events/create-event-subscription-select-event.png" alt-text="Screenshot that shows the Create Event Subscription page." lightbox="./media/subscribe-to-resource-notifications-azurekubernetesservice-resources-events/create-event-subscription-select-event.png":::
 1. Select **endpoint type**. 
 1. Configure event handler based on the endpoint type you selected. In the following example, an Azure event hub is selected. 
 
-    :::image type="content" source="./media/subscribe-to-resource-notifications-azurekubernetesservice-resources-events/select-endpoint.png" alt-text="Screenshot that shows the Create Event Subscription page with an event handler." lightbox="./media/subscribe-to-resource-notifications-health-resources-events/select-endpoint.png":::
+    :::image type="content" source="./media/subscribe-to-resource-notifications-azurekubernetesservice-resources-events/select-endpoint.png" alt-text="Screenshot that shows the Create Event Subscription page with an event handler." lightbox="./media/subscribe-to-resource-notifications-azurekubernetesservice-resources-events/select-endpoint.png":::
 1. Select the **Filters** tab to provide subject filtering and advanced filtering. For example, to filter for events from resources in a specific resource group, follow these steps:
     1. Select **Enable subject filtering**. 
     1. In the **Subject Filters** section, for **Subject begins with**, provide the value of the resource group in this format: `/subscriptions/{subscription-id}/resourceGroups/{resourceGroup-id}`.
 
-        :::image type="content" source="./media/subscribe-to-resource-notifications-azurekubernetesservice-resources-events/filter.png" alt-text="Screenshot that shows the Filters tab of the Create Event Subscription page." lightbox="./media/subscribe-to-resource-notifications-health-resources-events/filter.png":::
+        :::image type="content" source="./media/subscribe-to-resource-notifications-azurekubernetesservice-resources-events/filter.png" alt-text="Screenshot that shows the Filters tab of the Create Event Subscription page." lightbox="./media/subscribe-to-resource-notifications-azurekubernetesservice-resources-events/filter.png":::
 1. Then, select **Create** to create the event subscription.
 
 ---
