@@ -40,7 +40,7 @@ You can create snapshot policies when you create an [NFS](elastic-volume.md) or 
 1. Go to the **Volumes** page, right-click the volume that you want to apply a snapshot policy to, then select **Edit**.
 1. In the Edit window, select the **Snapshot policy** dropdown. Choose the policy you want to add to the volume. 
 
-    :::image type="content" source="./media/elastic-snapshots-policy/edit-volume.png" alt-text="Screenshot showing how to edit a snapshot policy." lightbox="./media/elastic-snapshots-policy/edit-volume.png":::
+    :::image type="content" source="./media/shared/edit-volume.png" alt-text="Screenshot showing how to edit a snapshot policy." lightbox="./media/shared/edit-volume.png":::
 
 1. Select **Save** to apply the policy. 
 

@@ -23,8 +23,6 @@ Learn how to create an SMB volume for the Elastic service level.
     * If you're creating SMB volumes, you must have configured Active Directory on the capacity pool. 
 * If you're configuring cross-zone-region replication, the Elastic service level NetApp account must be placed in a region that adheres to supported regional pairs. For more information, see [supported regional pairs](replication.md#supported-region-pairs). 
 
-[!INCLUDE [Availability zone role-based access control call-out.](includes/availability-zone-roles.md)]
-
 ## Considerations 
 
 * You can't change the protocol of a volume after creating it. 
@@ -34,11 +32,9 @@ Learn how to create an SMB volume for the Elastic service level.
 
 <!-- bugs  -->
 
-* If SMB volume creation fails with the error "Error when creating. A problem occurred. Please try again after some time. If the issue persists, please contact support," the Active Directory password has expired and needs to be reset. Reset the password then try to create the password again. 
+* If SMB volume creation fails with the error "Error when creating. A problem occurred. Please try again after some time. If the issue persists, please contact support." the Active Directory password has expired and needs to be reset. Reset the password then try to create the password again. 
 
 ## Steps 
-
-You can create an NFSv3, NFSv4.1, or SMB volume. Dual-protocol volumes aren't currently supported in the Elastic service level. 
 
 1. In you NetApp account, select **Volumes**. 
 1. Select **+ Add Volume**. 
@@ -62,29 +58,20 @@ You can create an NFSv3, NFSv4.1, or SMB volume. Dual-protocol volumes aren't cu
         * Select the **Backup policy** or select **Create new** to create one. For more information, see [Create a backup policy](backup-manage-policies.md).
         * Enter the retention period. Choose weeks or months. 
         <!-- delete this section -->
-    * For replication across zones and/or regions, provide the following details. 
-        * Enter the <!-- $source-name? --> and select the frequency: hourly, daily, or weekly. 
-        * Configure the destination volume: 
-            * Enter the **Volume name**. 
-            * Select the **Region**.
-                If you're configuring cross-zone replication, choose the current region. For cross-region replication 
-                Region selections must adhere to supported [cross-region replication pairs](replication.md#supported-region-pairs). 
-            * Select the **Zone**. 
-                The zone is required for cross-zone replication in the same region. It's optional for cross-region replication. 
-            * Select the **NetApp account** in the correct region. 
-            * Select the **Capacity pool** for the destination volume. 
-            * Optionally, assign maximum throughput (MiB/s).
-            * To configure a secondary replication source, select **Add another destination**.  
+
     Select **Next**.
 
     :::image type="content" source="./media/shared/elastic-create-volume-protection.png" alt-text="Screenshot of the volume creation protection tab." lightbox="./media/shared/elastic-create-volume-protection.png":::
 
 1. Configure the **Protocol**. 
+
     * Choose **SMB**. 
     * The **Active Directory** account is set to the capacity pool configured for the account. 
     * Enter the **Share Name**. 
 
-    :::image type="content" source="./media/shared/elastic-create-volume-protocol.png" alt-text="Screenshot of the volume creation protocol tab." lightbox="./media/shared/elastic-create-volume-protocol.png":::
+    <!-- Optionally, enable enable-continuous-availability-existing-SMB.md>
+
+    :::image type="content" source="./media/elastic-volume-server-message-block/elastic-create-volume-protocol.png" alt-text="Screenshot of the volume creation protocol tab." lightbox="./media/elastic-volume-server-message-block/elastic-create-volume-protocol.png":::
 
 1. Select **Review + create**. 
 1. Review your selections. Select **Create** to finalize the volume.
@@ -95,13 +82,13 @@ You can create an NFSv3, NFSv4.1, or SMB volume. Dual-protocol volumes aren't cu
 1. In your NetApp account, select **Volumes**. 
 1. Locate the volume you want to resize. Select the three dots `...` then **Modify volume**. 
 1. Enter the new **Quota** value.
+
+    :::image type="content" source="./media/shared/edit-volume.png" alt-text="Screenshot showing how to edit a snapshot policy." lightbox="./media/shared/edit-volume.png":::
+
 1. Select **Save**. 
 
 ## Next steps 
 
 * [Understand the Elastic zone-redundant service level](elastic-zone-redundant-concept.md)
 
-<!-- what can you do -->
-
-
-    
+   

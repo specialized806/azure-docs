@@ -21,15 +21,13 @@ Learn how to create an NFS volume for the Elastic service level.
 * You must have configured a capacity pool for the Elastic service level. 
 * If you're configuring cross-zone-region replication, the Elastic service level NetApp account must be placed in a region that adheres to supported regional pairs. For more information, see [supported regional pairs](replication.md#supported-region-pairs). 
 
-[!INCLUDE [Availability zone role-based access control call-out.](includes/availability-zone-roles.md)]
-
 ## Considerations 
 
 * You can't change the protocol of a volume after creating it. 
 * Each volume in a capacity pool must have a unique name.
-* In the Elastic service level, you can't move volumes between capacity pools. 
+* In the Elastic Zone-Redundant service level, you can't move volumes between capacity pools. 
 
-<!-- unix permissions, chwon root access -->
+<!-- unix permissions, chown root access -->
 
 ## Steps 
 
@@ -52,41 +50,38 @@ Learn how to create an NFS volume for the Elastic service level.
         * Select the **Backup vault** or select **Create new** to create one. For more information, see [Create a backup vault](backup-vault-manage.md).
         * Select the **Backup policy** or select **Create new** to create one. For more information, see [Create a backup policy](backup-manage-policies.md).
         * Enter the retention period. Choose weeks or months. 
-    * For replication across zones and/or regions, select **Enable replication**. 
-        * Enter the <!-- $source-name? --> and select the frequency: hourly, daily, or weekly. 
-        * Configure the destination volume: 
-            * Enter the **Volume name**. 
-            * Select the **Region**.
-                If you're configuring cross-zone replication, choose the current region. For cross-region replication, the chosen regions must adhere to supported [cross-region replication pairs](replication.md#supported-region-pairs). 
-            * Select the **Zone**. 
-                The zone is required for cross-zone replication. It's optional for cross-region replication. 
-            * Select the **NetApp account** in the correct region. 
-            * Select the **Capacity pool** for the destination volume. 
-            * Optionally, assign maximum throughput (MiB/s).
-            * To configure a secondary replication source, select **Add another destination**.  
+
     Select **Next**.
 
     :::image type="content" source="./media/shared/elastic-create-volume-protection.png" alt-text="Screenshot showing the volume creation protection tab." lightbox="./media/shared/elastic-create-volume-protection.png":::
 
-
 1. Configure the **Protocol**. 
-    * Choose **NFS** then NFSv3 or NFSv4.1
-    <!-- unix permissions -->
+    * For the Protocol type, choose **NFS**.
+    * Enter the **File path**. 
+    * In the Version dropdown, choose either **NFSv3** or **NFSv4.1**.
+        For information on the difference between NFS versions, see [Understand NAS protocols](network-attached-storage-protocols.md#network-file-system-nfs).
+    * Optionally, [configure export policy for the NFS volume](azure-netapp-files-configure-export-policy.md)
 
     Select **Review + create**. 
 
-    <!-- change protocol -->
-    :::image type="content" source="./media/shared/elastic-create-volume-protection.png" alt-text="Screenshot of the volume creation protocol tab." lightbox="./media/shared/elastic-create-volume-protection.png":::
+    :::image type="content" source="./media/elastic-volume/volume-protocol.png" alt-text="Screenshot of the volume creation protocol tab." lightbox="./media/elastic-volume/volume-protocol.png":::
 
 1. Review your selections. Select **Create** to finalize the volume.
 1. Return to the **Volume** menu then select your volume to view it. 
+
+    >[!NOTE]
+    >You can't perform any operations on the volume until it has created successfully. 
 
 ## Resize a volume 
 
 1. In your NetApp account, select **Volumes**. 
 1. Locate the volume you want to resize. Select the three dots `...` then **Modify volume**. 
 1. Enter the new **Quota** value.
+
+    :::image type="content" source="./media/shared/edit-volume.png" alt-text="Screenshot showing how to edit a snapshot policy." lightbox="./media/shared/edit-volume.png":::
+
 1. Select **Save**. 
 
 ## Next steps 
 * [Understand the Elastic zone-redundant service level](elastic-zone-redundant-concept.md) 
+* [Mount an NFS volume](azure-netapp-files-mount-unmount-volumes-for-virtual-machines.md)

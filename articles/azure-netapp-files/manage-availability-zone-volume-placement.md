@@ -18,7 +18,7 @@ You can deploy new volumes in the logical availability zone of your choice. You 
 
 ## Requirements and considerations 
 
-[!INCLUDE [Availability zone role-based access control call-out.](includes/availability-zone-roles.md)]
+[!INCLUDE [Availability zone role-based access control call-out.](includes/availability-zone-important.md)]
 
 * This feature doesn't guarantee free capacity in the availability zone. For example, even if you can deploy a VM in availability zone 3 of the East US region, it doesn’t guarantee free Azure NetApp Files capacity in that zone. If no sufficient capacity is available, volume creation fails.
 
@@ -100,51 +100,7 @@ The populate availability zone features requires a `zone` property on the volume
 
 If you need to delete and recreate the volume in a different availability zone, remove the `ignore_changes = [zone]` line in the configuration file then run `terraform plan` followed by `terraform apply`.
 
-## Configure custom RBAC roles
-
-If you're using a custom RBAC role or the [built-in Contributor role](../role-based-access-control/built-in-roles.md#contributor) and managing availability zones _in the Azure portal_, you might not be able to access network features and Availability Zone options in the Azure portal. To ensure you have the appropriate access, add the `Microsoft.NetApp/locations/*` permission. The wildcard encompasses the following permissions: 
-
-* `Microsoft.NetApp/locations/{location}/checkNameAvailability`
-* `Microsoft.NetApp/locations/{location}/checkFilePathAvailability`
-* `Microsoft.NetApp/locations/{location}/checkQuotaAvailability`
-* `Microsoft.NetApp/locations/{location}/quotaLimits`
-* `Microsoft.NetApp/locations/{location}/quotaLimits/{quotaLimitName}`
-* `Microsoft.NetApp/locations/{location}/regionInfo`
-* `Microsoft.NetApp/locations/{location}/regionInfos`
-* `Microsoft.NetApp/locations/{location}/queryNetworkSiblingSet`
-* `Microsoft.NetApp/locations/{location}/updateNetworkSiblingSet`
-
-### Steps
-
-1. In your Azure NetApp Files subscription, select **Access control (IAM)**.
-1. Select **Roles** then choose the custom role you want to modify. Select the three dots (`...`) then **Edit**. 
-1. To update the custom role, select **JSON**. Modify the JSON file to include the locations wild card permission (`Microsoft.NetApp/locations/*`). For example: 
-
-    ```json
-    {
-    	"properties": {
-    	    "roleName": "",
-    	    "description": "",
-    	    "assignableScopes": ["/subscription/<subscriptionID>"
-            ],
-            "permissions": [
-                {
-                "actions": [
-                    "Microsoft.NetApp/locations/*",
-                    "Microsoft.NetApp/netAppAccounts/read",
-                    "Microsoft.NetApp/netAppAccounts/renewCredentials/action",
-                    "Microsoft.NetApp/netAppAccounts/capacityPools/read"
-                    ],
-                "notActions": [],
-                "dataActions": [],
-                "notDataActions": []
-            }]
-        }
-    }
-    ```
-
-1. Select **Review + update**.
-1. Sign out of your Azure account, and then log back in to confirm that the permissions are in effect and the options are visible.
+[!INCLUDE [Availability zone role-based access control call-out.](includes/availability-zone-roles.md)]
 
 ## Next steps  
 

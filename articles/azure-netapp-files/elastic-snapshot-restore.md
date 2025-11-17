@@ -16,7 +16,7 @@ With the Elastic Zone-Redundant service level, you can use snapshots to restore 
 
 ## Revert a volume 
 
-Reverting a volume using snapshot revert isn't supported on Azure NetApp Files volumes that have backups
+Reverting a volume using snapshot revert isn't supported on Azure NetApp Files volumes that have backups.
 
 > [!IMPORTANT]
 > Active filesystem data and snapshots taken after the selected snapshot will be lost. The snapshot revert operation replaces *all* the data in the targeted volume with the data in the selected snapshot. You should pay attention to the snapshot contents and creation date when you select a snapshot. You can't undo reverting a snapshot.
@@ -27,7 +27,10 @@ Reverting a volume using snapshot revert isn't supported on Azure NetApp Files v
 
 ## Restore to a new volume
 
-[Snapshots](snapshots-introduction.md) enable point-in-time recovery of volumes. Follow this workflow to restore to a new volume.
+[Snapshots](snapshots-introduction.md) enable point-in-time recovery of volumes. You can use a snapshot to restore the data to a new volume. 
+
+The new volume must be in the same capacity pool that contains the source snapshot. 
+
 
 >[TIP]
 >To avoid unnecessary slowness in the restore operation, only restore one snapshot to a new volume at a time. 
