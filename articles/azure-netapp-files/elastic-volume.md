@@ -62,6 +62,8 @@ Learn how to create an NFS volume for the Elastic service level.
         For information on the difference between NFS versions, see [Understand NAS protocols](network-attached-storage-protocols.md#network-file-system-nfs).
     * Optionally, [configure export policy for the NFS volume](azure-netapp-files-configure-export-policy.md)
 
+    <!-- Kerberos & LDAP -->
+
     Select **Review + create**. 
 
     :::image type="content" source="./media/elastic-volume/volume-protocol.png" alt-text="Screenshot of the volume creation protocol tab." lightbox="./media/elastic-volume/volume-protocol.png":::

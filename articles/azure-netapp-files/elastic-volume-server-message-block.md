@@ -5,7 +5,7 @@ services: azure-netapp-files
 author: b-ahibbard
 ms.service: azure-netapp-files
 ms.topic: how-to
-ms.date: 09/11/2025
+ms.date: 11/18/2025
 ms.author: anfdocs
 # Customer intent: As a cloud administrator, I want to create an SMB volume in Azure NetApp Files, so that I can leverage scalable storage solutions that meet my organization’s data management and sharing requirements.
 ---
@@ -66,10 +66,11 @@ Learn how to create an SMB volume for the Elastic service level.
 1. Configure the **Protocol**. 
 
     * Choose **SMB**. 
-    * The **Active Directory** account is set to the capacity pool configured for the account. 
+        When you choose SMB, the **Active Directory** account is automatically set to the Active Directory account configured for the account. If the account is not assigned and you have an Active Directory account for the account, select **Refresh**.  
     * Enter the **Share Name**. 
+    * Select **Enable SMB3 Protocol Encryption** to encrypt SMB3 data in-flight. 
 
-    <!-- Optionally, enable enable-continuous-availability-existing-SMB.md>
+        If you enable SMB3 encyrption, SMB clients not using SMB3 encryption can't access this volume. Data at rest is encrypted regardless of this setting. For more information, see [SMB encryption](azure-netapp-files-smb-performance.md#smb-encryption).
 
     :::image type="content" source="./media/elastic-volume-server-message-block/elastic-create-volume-protocol.png" alt-text="Screenshot of the volume creation protocol tab." lightbox="./media/elastic-volume-server-message-block/elastic-create-volume-protocol.png":::
 
