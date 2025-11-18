@@ -30,7 +30,7 @@ In this quickstart, you deploy a Python web app to [App Service on Linux](overvi
 1. Install <a href="https://www.python.org/downloads/" target="_blank">Python</a>.
 1. Install the <a href="/cli/azure/install-azure-cli" target="_blank">Azure CLI</a> 2.0.80 or higher, with which you run commands in any shell to provision and configure Azure resources.
 
-Open a terminal window and check your Python version is 3.6 or higher:
+Open a terminal window and check your Python version is 3.14 or higher:
 
 # [Bash](#tab/bash)
 
