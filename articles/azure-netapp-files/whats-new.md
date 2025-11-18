@@ -19,7 +19,7 @@ Azure NetApp Files is updated regularly. This article provides a summary about t
 
 * [Elastic Zone-Redundant service level](elastic-zone-redundant-concept.md)
 
-    Azure NetApp Files now supports a new [service level: Elastic Zone Redundant](azure-netapp-files-service-levels.md#Elastic).
+    Azure NetApp Files now supports a new [service level: Elastic Zone-Redundant](azure-netapp-files-service-levels.md#Elastic).
 
 ## November 2025
 
