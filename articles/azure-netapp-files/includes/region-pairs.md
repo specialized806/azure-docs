@@ -8,7 +8,6 @@ ms.custom: include file, references_regions
 
 # azure-netapp-files/replication.md
 # replication-requirements-considerations.md
-# see Elastic ZRS-scoped list in elastic-cross-region-replication.md
 
 # Customer intent: As a cloud architect, I want to understand Azure NetApp Files volume replication across different regional pairs, so that I can plan and implement resilient data storage solutions for multi-region applications.
 ---

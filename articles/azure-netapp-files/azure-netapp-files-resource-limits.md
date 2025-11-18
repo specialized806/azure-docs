@@ -27,13 +27,10 @@ The following table describes resource limits for Azure NetApp Files:
 |  Number of capacity pools per NetApp account   |    25     |   Yes   |
 |  Number of volumes per subscription   |    500     |   Yes   |
 |  Number of volumes per capacity pool     |    500   |    Yes     |
-| Number of volumes per capacity in zone-redundant storage | 1,000 | No |
 |  Number of snapshots per volume       |    255     |    No        |
 |  Number of IPs in a virtual network (including immediately peered virtual networks [VNets]) accessing volumes in an Azure NetApp Files hosting VNet    |   <ul><li>**Basic**: 1000</li><li>**Standard**: [Same standard limits as VMs](../azure-resource-manager/management/azure-subscription-service-limits.md#azure-resource-manager-virtual-networking-limits)</li></ul>  |    No    |
 |  Minimum size of a single capacity pool   |  1 TiB*     |    No  |
 |  Maximum size of a single capacity pool    |  2,048 TiB   |   No   |
-| Minimum size of a single zone-redundant capacity pool | 512 GiB | No | 
-| Maximum size of a single zone-redundant capacity pool | 16 TiB | No|
 | Minimum throughput of a Flexible service level capacity pool | 128 MiB/second | No |
 | Maximum throughput of a Flexible service level capacity pool | [5 x 128 MiB/second/TiB x Size of capacity pool in TiB](azure-netapp-files-set-up-capacity-pool.md#considerations) | No |
 |  Minimum size of a single regular volume    |    50 GiB    |    No    |
