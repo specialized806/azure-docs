@@ -328,7 +328,7 @@ In this step, you configure GitHub deployment using GitHub Actions. It's just on
         1. Ask, "*@workspace How does the app connect to the database?*" Copilot might give you some explanation about `SQLAlchemy` how its connection URI is configured in *azureproject/development.py* and *azureproject/production.py*. 
         1. Ask, "*@workspace In production mode, my app is running in an App Service web app, which uses Azure Service Connector to connect to a PostgreSQL flexible server using the Django client type. What are the environment variable names I need to use?*" Copilot might give you a code suggestion similar to the one in the **Option 2: without GitHub Copilot** steps and even tell you to make the change in the *azureproject/production.py* file. 
         1. Open *azureproject/production.py* in the explorer and add the code suggestion.
-        GitHub Copilot doesn't give you the same response every time, and it's not always correct. You might need to ask more questions to fine-tune its response. For tips, see [What can I do with GitHub Copilot in my codespace?](#what-can-i-do-with-github-copilot-in-my-codespace).
+        GitHub Copilot doesn't give you the same response every time, and it's not always correct. You might need to ask more questions to fine-tune its response. For tips, see [What can I do with GitHub Copilot in my codespace?](#what-can-i-do-with-github-copilot-in-my-codespace)
     :::column-end:::
     :::column:::
         :::image type="content" source="media/tutorial-python-postgresql-app-flask/github-copilot-1.png" alt-text="A screenshot showing how to ask a question in a new GitHub Copilot chat session." lightbox="media/tutorial-python-postgresql-app-flask/github-copilot-1.png":::
@@ -455,7 +455,7 @@ Azure App Service captures all console logs to help you diagnose issues with you
     :::column-end:::
 :::row-end:::
 
-Learn more about logging in Python apps in the series on [setting up Azure Monitor for your Python application](/azure/azure-monitor/app/opencensus-python).
+To learn more about logging in Python apps, see [Set up Azure Monitor for your Python application](/azure/azure-monitor/app/opencensus-python).
 
 ## 8. Clean up resources
 
@@ -744,7 +744,7 @@ A few tips for you when you talk to GitHub Copilot:
 - To let GitHub Copilot have access to all of the files in the repository when preparing its answers, begin your question with `@workspace`. For more information, see [Use the @workspace agent](https://github.blog/2024-03-25-how-to-use-github-copilot-in-your-ide-tips-tricks-and-best-practices/#10-use-the-workspace-agent).
 - In the chat session, GitHub Copilot can suggest changes and (with `@workspace`) even where to make the changes, but it's not allowed to make the changes for you. It's up to you to add the suggested changes and test it.
 
-## Next steps
+## Related content
 
 Advance to the next tutorial to learn how to secure your app with a custom domain and certificate.
 
@@ -753,5 +753,4 @@ Advance to the next tutorial to learn how to secure your app with a custom domai
 
 Learn how App Service runs a Python app:
 
-> [!div class="nextstepaction"]
-> [Configure Python app](configure-language-python.md)
+- [Configure Python app](configure-language-python.md)
