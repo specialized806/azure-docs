@@ -5,7 +5,7 @@ services: azure-netapp-files
 author: b-ahibbard
 ms.service: azure-netapp-files
 ms.topic: how-to
-ms.date: 09/11/2025
+ms.date: 11/18/2025
 ms.author: anfdocs
 ---
 # Create an NFS volume for the Elastic service level in Azure NetApp Files 
