@@ -95,6 +95,25 @@ The `func new` action supports the following options:
 
 To learn more, see [Create a function](functions-run-local.md#create-func).
 
+## `func pack`
+
+Creates a deployment package that contains your project code in a runable state. Use this method when you need to manually create a deployment package for your app on your local computer outside of the `func azure functionapp publish` command. By default, `func pack` builds your project when required. 
+
+```
+func pack
+``` 
+
+By default, `func pack` packages the current directory, and the output.zip file has the same name as the root folder of your project. Run `func pack` in the directory that contains your `host.json` project file. If you need to run `func pack` in another directory, you can set the path to the project root after the command, like `func pack ./myprojectroot`. If the specific .zip file already exists, it's first deleted and then replaced when an updated version.
+
+The `func pack` action supports these options:
+
+| Option     | Description                            |
+| ------------------------------------------ | -------------------------------------- |
+| **`--output`** | Sets the path to the location where the deployment .zip package file is created.   |
+| **`--no-build`** | Project isn't built before packing. For C# apps, use only when you have already generated your binaries. For Node.js apps, both `npm install` and `npm run build` are skipped. |
+| **`--skip-install`** | Skips running `npm install` when packing Node.js-based function app. Used to avoid overwriting custom npm modules. |
+| **`--build-native-deps`** | Installs Python dependencies locally using an image that matches the environment used in Azure. When enabled, Core Tools starts a Docker container, builds the app inside that container, and creates a .zip file with all dependencies restored in .python_packages. Use this option when running on Windows to avoid potential library issues when deployed to Linux in Azure. |
+
 ## `func run`
 
 *Version 1.x only.*
