@@ -105,6 +105,47 @@ Log signature: N/A
 
 When using secret sync, ensure that secret names are globally unique. If a local secret with the same name exists, connectors might fail to retrieve the intended secret.
 
+### ONVIF asset event destination can only be configured on group or asset level
+
+---
+
+Issue ID: 9545
+
+---
+
+Log signature similar to:
+
+`No matching event subscription for topic: "tns1:RuleEngine/CellMotionDetector/Motion"`
+
+---
+
+Currently, ONVIF asset event destinations are only recognized at the event group or asset level. Configuring destinations at the individual event level results in log entries similar to the example, and no event data is published to the MQTT broker.
+
+As a workaround, configure the event destination at the event group or asset level instead of the individual event level. For example, using `defaultEventsDestinations` at the event group level:
+
+```yaml
+eventGroups:
+  - dataSource: ""
+    events:
+    - dataSource: tns1:RuleEngine/CellMotionDetector/Motion
+      destinations:
+      - configuration:
+          qos: Qos1
+          retain: Never
+          topic: azure-iot-operations/data/motion
+          ttl: 5
+        target: Mqtt
+      name: Motion
+    name: Default
+    defaultEventsDestinations:
+    - configuration:
+        qos: Qos1
+        retain: Never
+        topic: azure-iot-operations/data/motion
+        ttl: 5
+      target: Mqtt
+```
+
 ## Data flows issues
 
 This section lists current known issues for data flows.
@@ -168,7 +209,7 @@ For more information about data flow graphs, see [Use WebAssembly (WASM) with da
 
 ---
 
-Issue ID: N/A
+Issue ID: 1352
 
 ---
 
@@ -214,49 +255,3 @@ You create a chained graph scenario by using the output of one data flow graph a
 ```
 
 To solve this error, push the graph definition to the ACR as many times as needed with the scenario with a different name or tag each time. For example, in the scenario described, the graph definition need to be pushed twice with either a different name or a different tag, such as `graph-passthrough-one:1.3.6` and `graph-passthrough-two:1.3.6`.
-
-### Can't use the same module within a graph multiple times
-
----
-
-Issue ID: N/A
-
----
-
-Failed to send config
-
----
-
-You create a data flow graph that uses the same module multiple times. For example, the following declared the `"module-passthrough/filter"` operation once, but fails when using it twice in the connections.
-
-```yaml
-- operationType: "filter"
-  name: "module-passthrough/filter"
-  module: "module-passthrough:1.3.6"
-- operationType: "synk"
-  name: "synk"
-connections: 
-- from:
-    name: "source"
-  to:
-    name: "module-passthrough/filter"
-- from:
-    name: "module-passthrough/filter"
-  to:
-    name: "module-passthrough/filter"
-- from:
-    name: "module-passthrough/filter"
-  to:
-    name: "synk"
-```
-
-To resolve this issue, declare each operation as a separate instance with a unique name every time it is used. For example, in the scenario described, define the operation twice with distinct names, such as `"module-passthrough-one/filter"` and `"module-passthrough-two/filter"`.
-
-```yaml
-- operationType: "filter"
-  name: "module-passthrough-one/filter"
-  module: "module-passthrough:1.3.6"
-- operationType: "filter"
-  name: "module-passthrough-two/filter"
-  module: "module-passthrough:1.3.6"
-```

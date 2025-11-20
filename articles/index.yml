@@ -44,7 +44,7 @@ productDirectory:
         - ai-machine-learning
       url: /azure/ai-services/openai/
     # Card
-    - title: Azure AI Foundry
+    - title: Microsoft Foundry
       summary: Build market-ready applications for your organization with AI
       imageSrc: ./media/index/ai-studio.svg
       azureCategories:
@@ -1376,7 +1376,7 @@ productDirectory:
        - hybrid
       url: /azure/aks/hybrid/aks-edge-overview  
     # Card
-    - title: Microsoft Copilot in Azure
+    - title: Azure Copilot
       summary: Simplify operations and management from cloud to edge with an AI companion
       imageSrc: ./media/index/azure-copilot.svg
       azureCategories:

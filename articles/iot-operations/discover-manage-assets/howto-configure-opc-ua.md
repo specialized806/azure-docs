@@ -158,6 +158,8 @@ A dataset defines where the connector sends the data it collects from a collecti
 
     :::image type="content" source="media/howto-configure-opc-ua/create-dataset.png" alt-text="Screenshot that shows how to create a dataset in the operations experience." lightbox="media/howto-configure-opc-ua/create-dataset.png":::
 
+    Use the **Start instance** field to specify the starting node for resolving relative browse paths for data points in the dataset. For more information, see [Resolve nodes dynamically using browse paths](overview-opc-ua-connector.md#resolve-nodes-dynamically-using-browse-paths).
+
 1. Select **Create and next** to create the dataset.
 
 > [!TIP]
@@ -188,6 +190,9 @@ Now you can define the data points associated with the dataset. To add OPC UA da
     | ns=3;s=FastUInt10 | Temperature |
     | ns=3;s=FastUInt100 | Humidity |
 
+    > [!NOTE]
+    > If you're using relative browse paths to resolve dynamic nodes, the **Data source** field contains a relative browse path. For more information, see [Resolve nodes dynamically using browse paths](overview-opc-ua-connector.md#resolve-nodes-dynamically-using-browse-paths).
+
 1. On the **data points** page, select **Next** to go to the **Add events** page.
 
 # [Azure CLI](#tab/cli)
@@ -202,8 +207,8 @@ az iot ops ns asset opcua create --name thermostat --instance {your instance nam
 az iot ops ns asset opcua dataset add --asset thermostat --instance {your instance name} -g {your resource group name} --name oven --data-source "ns=3;s=FastUInt10" --dest topic="azure-iot-operations/data/thermostat" retain=Keep qos=Qos1 ttl=3600
 
 # Add the data points
-az iot ops ns asset opcua dataset point add --asset thermostat --instance {your instance name} -g {your resource group name} --dataset oven --name temperature --data-source "ns=3;s=FastUInt10"
-az iot ops ns asset opcua dataset point add --asset thermostat --instance {your instance name} -g {your resource group name} --dataset oven --name humidity --data-source "ns=3;s=FastUInt100"
+az iot ops ns asset opcua datapoint add --asset thermostat --instance {your instance name} -g {your resource group name} --dataset oven --name temperature --data-source "ns=3;s=FastUInt10"
+az iot ops ns asset opcua datapoint add --asset thermostat --instance {your instance name} -g {your resource group name} --dataset oven --name humidity --data-source "ns=3;s=FastUInt100"
 
 # Show the dataset and datapoints
 az iot ops ns asset opcua dataset show --asset thermostat -n default -g {your resource group name} --instance {your instance name}
@@ -231,9 +236,7 @@ When you create an asset by using the Azure CLI, you can define:
 
 ### Add individual events to an asset
 
-# [Operations experience](#tab/portal)
-
-Now you can define the events associated with the asset. To add OPC UA events:
+Now you can define the events associated with the asset. To add OPC UA events in the operations experience:
 
 1. Create an event group by selecting **Create event group**.
 
@@ -249,6 +252,9 @@ Now you can define the events associated with the asset. To add OPC UA events:
       - Key frame count. You can override the default value for this data point.
 
     :::image type="content" source="media/howto-configure-opc-ua/add-event.png" alt-text="Screenshot that shows adding events in the operations experience." lightbox="media/howto-configure-opc-ua/add-event.png":::
+
+    > [!NOTE]
+    > To resolve node IDs dynamically, use the **Start instance** field to specify the starting node ID, and the **Data source** field to specify the relative browse path. For more information, see [Resolve nodes dynamically using browse paths](overview-opc-ua-connector.md#resolve-nodes-dynamically-using-browse-paths).
 
 1. Select **Manage default settings** to configure default event settings for the asset. These settings apply to all the OPC UA events that belong to the asset. You can override these settings for each event that you add. Default event settings include:
 
@@ -313,25 +319,6 @@ The resulting message forwarded by the connector now looks like the following:
 Review your asset and OPC UA data point and event details and make any adjustments you need:
 
 :::image type="content" source="media/howto-configure-opc-ua/review-asset.png" alt-text="A screenshot that shows how to review your asset, data points, and events in the operations experience." lightbox="media/howto-configure-opc-ua/review-asset.png":::
-
-# [Azure CLI](#tab/cli)
-
-When you create an asset by using the Azure CLI, you can define multiple events by using the `--event` parameter multiple times:
-
-```azurecli
-az iot ops ns asset opcua event add --asset thermostat -g {your resource group name} --instance {your instance name} --event_notifier='ns=3;s=FastUInt12', name=warning
-```
-
-For each event that you define, you can specify the:
-
-- Event notifier. This value is the event notifier from the OPC UA server.
-- Event name. This value is the friendly name that you want to use for the event. If you don't specify an event name, the event notifier is used as the event name.
-- Observability mode.
-- Queue size.
-
-You can also use the [az iot ops ns asset opcua event](/cli/azure/iot/ops/asset/event) commands to add and remove events from an asset.
-
----
 
 ## Update an asset
 

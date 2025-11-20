@@ -5,7 +5,7 @@ services: application gateway
 author: mbender-ms
 ms.service: azure-appgw-for-containers
 ms.topic: concept-article
-ms.date: 7/21/2025
+ms.date: 11/10/2025
 ms.author: mbender
 # Customer intent: As a cloud architect, I want to understand how Azure Application Gateway pricing works, so that I can accurately budget for my application infrastructure costs.
 ---
@@ -32,7 +32,7 @@ Application Gateway for Containers consists of four billable items:
 - Association resource 
 - Capacity units
 
-When you enable Web Application Firewall (WAF) on your Application Gateway for Containers resource you're billed at the higher WAF rates for each meter and will incur higher capacity unit usage to run the WAF.
+When you enable Web Application Firewall (WAF) on your Application Gateway for Containers resource, you're billed at the higher WAF rates for each meter and will incur higher capacity unit usage to run the WAF.
 
 #### Application Gateway for Containers hour
 

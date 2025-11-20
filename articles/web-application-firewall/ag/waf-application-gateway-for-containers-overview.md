@@ -5,7 +5,7 @@ author: halkazwini
 ms.author: halkazwini
 ms.service: azure-web-application-firewall
 ms.topic: overview
-ms.date: 10/21/2025
+ms.date: 11/10/2025
 
 #CustomerIntent: As a developer, I want to secure my containerized applications so that I can protect them from web vulnerabilities.
 ---

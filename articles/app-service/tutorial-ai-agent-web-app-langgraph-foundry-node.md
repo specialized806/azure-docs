@@ -6,10 +6,11 @@ author: cephalin
 ms.author: cephalin
 ms.devlang: javascript
 ms.topic: tutorial
-ms.date: 06/25/2025
+ms.date: 11/10/2025
 ms.custom:
   - devx-track-javascript
 ms.collection: ce-skilling-ai-copilot
+ms.update-cycle: 180-days
 ---
 
 # Tutorial: Build an agentic web app in Azure App Service with LangGraph or Azure AI Foundry Agent Service (Node.js)

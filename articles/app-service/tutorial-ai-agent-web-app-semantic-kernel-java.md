@@ -6,10 +6,11 @@ author: cephalin
 ms.author: cephalin
 ms.devlang: csharp
 ms.topic: tutorial
-ms.date: 07/16/2025
+ms.date: 11/10/2025
 ms.custom:
   - devx-track-java
 ms.collection: ce-skilling-ai-copilot
+ms.update-cycle: 180-days
 ---
 
 # Tutorial: Build an agentic web app in Azure App Service with Microsoft Semantic Kernel (Spring Boot)
