@@ -97,22 +97,22 @@ To learn more, see [Create a function](functions-run-local.md#create-func).
 
 ## `func pack`
 
-Creates a deployment package that contains your project code in a runable state. Use this method when you need to manually create a deployment package for your app on your local computer outside of the `func azure functionapp publish` command. By default, `func pack` builds your project when required. 
+Creates a deployment package that contains your project code in a runnable state. Use this method when you need to manually create a deployment package for your app on your local computer outside of the `func azure functionapp publish` command. By default, `func pack` builds your project when required. 
 
 ```
 func pack
 ``` 
 
-By default, `func pack` packages the current directory, and the output.zip file has the same name as the root folder of your project. Run `func pack` in the directory that contains your `host.json` project file. If you need to run `func pack` in another directory, you can set the path to the project root after the command, like `func pack ./myprojectroot`. If the specific .zip file already exists, it's first deleted and then replaced when an updated version.
+Run `func pack` in the directory that contains your `host.json` project file, which is the root directory of your app. The generated output (.zip) file has the same name as folder being packaged. If a .zip file with that name already exists, it's first deleted and then replaced with an updated version. By default, `func pack` packages the directory in which it runs. You can run `func pack` to package a different directory by setting the path to the project root after the command, like `func pack ./myprojectroot`. When the directory against which `func pack` runs doesn't contain a `host.json` file, an error is returned. 
 
 The `func pack` action supports these options:
 
 | Option     | Description                            |
 | ------------------------------------------ | -------------------------------------- |
-| **`--output`** | Sets the path to the location where the deployment .zip package file is created.   |
-| **`--no-build`** | Project isn't built before packing. For C# apps, use only when you have already generated your binaries. For Node.js apps, both `npm install` and `npm run build` are skipped. |
+| **`--output`** | Sets a path to the location in which the deployment .zip package file is created.   |
+| **`--no-build`** | Project isn't built before packing. For C# apps, use only when you have already generated your binaries. For Node.js apps, both `npm install` and `npm run build` are skipped. You can use this option when requesting a remote build on the package contents. |
 | **`--skip-install`** | Skips running `npm install` when packing Node.js-based function app. Used to avoid overwriting custom npm modules. |
-| **`--build-native-deps`** | Installs Python dependencies locally using an image that matches the environment used in Azure. When enabled, Core Tools starts a Docker container, builds the app inside that container, and creates a .zip file with all dependencies restored in .python_packages. Use this option when running on Windows to avoid potential library issues when deployed to Linux in Azure. |
+| **`--build-native-deps`** | Installs Python dependencies locally using an image that matches the environment used in Azure, which requires Docker tools. When enabled, Core Tools starts a Docker container, builds the app inside that container, and creates a .zip file with all dependencies restored in `.python_packages`. Use this option when running on Windows as a way to avoid potential library issues when deployed to Linux in Azure. |
 
 ## `func run`
 
