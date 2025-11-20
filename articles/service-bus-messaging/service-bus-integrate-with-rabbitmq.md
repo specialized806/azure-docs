@@ -129,6 +129,10 @@ By following the previous steps, you integrated areas of your org that were outs
 
 In the end, messaging is about enabling connections, and with this technique we just opened a new one.
 
+## Bridging other messaging systems
+
+If you need to connect Azure Service Bus with a wider range of messaging systems, the [NServiceBus Messaging Bridge](https://docs.particular.net/nservicebus/bridge/) offers a unified bridging approach that supports several enterprise messaging platforms beyond RabbitMQ.
+
 ## Next steps
 
 - Learn more about [Azure Service Bus](./service-bus-messaging-overview.md)
