@@ -103,9 +103,9 @@ Creates a deployment package that contains your project code in a runnable state
 func pack
 ``` 
 
-Run `func pack` in the directory that contains your `host.json` project file, which is the root directory of your app. The generated output (.zip) file has the same name as folder being packaged. If a .zip file with that name already exists, it's first deleted and then replaced with an updated version. 
+Run `func pack` in the directory that contains your `host.json` project file, which is the root directory of your app. The generated output (.zip) file has the same name as the folder being packaged. If a .zip file with that name already exists, it's first deleted and then replaced with an updated version. 
 
-By default, `func pack` packages the directory in which it runs. You can run `func pack` to package a different directory by setting the path to the project root after the command, like `func pack ./myprojectroot`. When the directory against which `func pack` runs doesn't contain a `host.json` file, an error is returned. 
+By default, `func pack` builds and packages the Functions project in the directory in which it runs. You can run `func pack` to package a different directory by setting the path to the project root after the command, like `func pack ./myprojectroot`. When the directory against which `func pack` runs doesn't contain a `host.json` file, an error is returned. 
 
 By default, `func pack` builds all projects and installs dependencies for all languages. Use the `--no-build` and `--skip-install` options modify this behavior. 
 
