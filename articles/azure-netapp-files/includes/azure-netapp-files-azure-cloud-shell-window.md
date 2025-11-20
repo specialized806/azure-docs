@@ -1,6 +1,4 @@
 ---
-title: include file
-services: azure-netapp-files
 author: b-juche
 ms.service: azure-netapp-files
 ms.topic: include
