@@ -35,8 +35,7 @@ Azure NetApp Files backups in the Elastic service level require a backup vault. 
 <!-- snapshots or backups? -->
 * Reverting a volume to state before existing backups results in an error. To proceed with reverting the volume, delete the backups causing the error then proceed with the revert. 
 * In the Elastic Zone-Redundant service level account, backups aren't currently supported with cross-region replication. 
-<!-- incorrect timestamp of 1970 on backups -->
-
+* Backup start times and duration might display incorrect values with a year of 1970. Incorrect dates will be fixed in a separate release. 
 
 ## Create a backup vault
 
