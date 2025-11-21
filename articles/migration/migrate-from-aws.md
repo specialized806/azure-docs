@@ -52,9 +52,9 @@ The migration of a workload can span several weeks or months. The duration depen
 **During migration:** implementation and execution 3-7 weeks
 - This phase includes the setup of infrastructure, deployment of resources, migration of data and apps, workload testing, and cutover.
 **Post-migration:** validate and decommission 1-2 weeks
-- Validate performance, optimize infrastructure and configuration, monitor stability, decommission AWS resources
+- This phase includes performance and reliability validation of the Azure environment, infrastructure optimization and configuration, and decommissioning AWS resources.
 
-*Guideline for a single moderately complex workload.*
+*Guidelines for a moderately complex workload.*
 
 ## Prerequisites
 
