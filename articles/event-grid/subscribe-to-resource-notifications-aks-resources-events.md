@@ -168,7 +168,7 @@ New-AzEventGridSubscription `
     1. Select **Enable subject filtering**. 
     1. In the **Subject Filters** section, for **Subject begins with**, provide the value of the resource group in this format: `/subscriptions/{subscription-id}/resourceGroups/{resourceGroup-id}`.
 
-        :::image type="content" source="./media/subscribe-to-resource-notifications-azure-kubernetes-service-resources-events/filter.png" alt-text="Screenshot that shows the Filters tab of the Create Event Subscription page." lightbox="./media/subscribe-to-resource-notifications-azure-kubernetes-service-resources-events/filter.png":::
+        :::image type="content" source="./media/subscribe-to-resource-notifications-azure-kubernetes-service-resources-events/filter.png" alt-text="Screenshot that shows the Filters tab of the Create Event Subscription page." lightbox="./media/subscribe-to-resource-notifications-azure-kubernetes-servicegit -resources-events/filter.png":::
 1. Then, select **Create** to create the event subscription.
 
 ---
