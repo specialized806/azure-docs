@@ -22,7 +22,7 @@ Choosing the right **migration strategy** for your workload is crucial. The most
 | **Modern, cloud-ready application (like containerized microservices and stateless apps)**       | **Replatform (minor modifications)**             | Take advantage of Azure’s managed services (AKS, App Service, Azure SQL Database, and others) to reduce operational burden and to improve scalability. The app can be moved with minor updates, leveraging cloud offerings for databases, caching, and other functions.    |
 | **Mixed components (combining legacy and modern components)**                                        | **Hybrid approach** (Mix of rehost & replatform) | You might rehost certain components and replatform others. For example, migrate the database to Azure via rehost, but move the front-end to an Azure App Service. Take the simplest approach for each component.               |
 
-In some cases, combining migration strategies is the best solution. For example, rehosting a VM-hosted database can be easier than moving to a managed database service if it relieves the need to make significant schema changes. You can still re-platform your application servers to a managed compute service if you don't need to perform major code changes.
+In some cases, combining migration strategies is the best solution. For example, rehosting0 0a VM-hosted database can be easier than moving to a managed database service if it relieves the need to make significant schema changes. You can still re-platform your application servers to a managed compute service if you don't need to perform major code changes.
 
 
 **Cutover strategy**
@@ -44,15 +44,7 @@ Learn more about migration strategies for [databases](/azure/migration/migrate-d
 
 The migration of a workload can span several weeks or months. The duration depends on the complexity of the workload and your migration strategy. The timeline below shows a typical workload migration for a moderately complex workload. The chosen migration strategy is lift-and-shift and/or light re-platforming. Timelines can extend by a few weeks if significant refactoring is needed.
 
-![[Pasted image 20251120133135.png]]
-- [ ] include timeline and details in graphic
-
-**Pre-migration:** plan and prepare 2-4 weeks
-- This phase includes requirements gathering, design of the goal architecture, landing zone adjustments and assessments, as well as proof of concept deployments.
-**During migration:** implementation and execution 3-7 weeks
-- This phase includes the setup of infrastructure, deployment of resources, migration of data and apps, workload testing, and cutover.
-**Post-migration:** validate and decommission 1-2 weeks
-- This phase includes performance and reliability validation of the Azure environment, infrastructure optimization and configuration, and decommissioning AWS resources.
+:::image type="content" source="./images/migrate-from-aws-phases.svg" alt-text="Diagram showing three phases of migrating workloads from AWS to Microsoft Azure. Across the top, three labeled boxes indicate phases with durations: Before migration (2–4 weeks), During migration (3–7 weeks), and After migration (1–2 weeks). Each box includes a summary of key activities such as planning, infrastructure setup, and optimization. Below, a horizontal sequence of five icons represents steps: Plan, Prepare, Execute, Optimize, and Decommission." lightbox="./images/migrate-from-aws-phases.svg" border="false":::
 
 *Guidelines for a moderately complex workload.*
 
