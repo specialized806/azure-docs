@@ -38,7 +38,7 @@ Here are some agent configurations that can be stored on Azure App Configuration
 | *Agent:ProjectEndpoint*    | *Paste the project endpoint*                                        |                                              |
 | *Agent:ModelDeploymentName*| *Paste the model deployment name*                                   |                                              |
 | *Agent:Instructions*       | *"You are a helpful assistant"*                                     |                                              |
-| *Agent:Conditions*         | [{"name": "stormy", "message":"Warning: Stay indoors!"},{"name":"sunny", "message":"Don't forget sunscreen!"},{"name":"rainy", "message":"☔ Bring an umbrella!"}]|application/json
+| *Agent:Conditions*         | [{"name": "stormy", "message":"Warning: Stay indoors!"},{"name":"sunny", "message":"Don't forget sunscreen!"},{"name":"rainy", "message":"Bring an umbrella!"}]|application/json
 
 ## Console application
 
@@ -78,7 +78,7 @@ In this section, you create a console application and load your agent configurat
     config = load(endpoint=endpoint, credential=credential, selects=[SettingSelector(key_filter="Agent:*")], refresh_on=[WatchKey("Agent:Conditions")])
     ```
 
-1. Create the agent:
+1. Initialize the agent:
 
     ```python
     async def main()-> None:
@@ -111,7 +111,7 @@ In this section, you create a console application and load your agent configurat
         asyncio.run(main())
     ```
 
-1. Define the `get_weather` tool:
+1. Define the `get_weather` tool function:
     ```python
     def get_weather(
         location: Annotated[str, Field(description="The location to get the weather for.")]
@@ -221,11 +221,11 @@ In this section, you create a console application and load your agent configurat
 
 1. In Azure portal, select the App Configuration store instance that you created. From the **Operations** menu, select **Configuration explorer**, and update the **Agent:Conditions** value to:
 
-| Key                        | Value                                                                                                         |
-|----------------------------|---------------------------------------------------------------------------------------------------------------|
-| *Agent:Conditions*         | [{"name": "stormy", "message":"Warning: Stay indoors!"},{"name":"sunny", "message":"Don't forget sunscreen!"}]|
+    | Key                        | Value                                                                                                         |
+    |----------------------------|---------------------------------------------------------------------------------------------------------------|
+    | *Agent:Conditions*         | [{"name": "stormy", "message":"Warning: Stay indoors!"},{"name":"sunny", "message":"Don't forget sunscreen!"}]|
 
-1. Press the Enter key and type the same message when prompted with "How can I help?". Be sure to wait a few moments for the refresh interval to elapse, and then press the Enter key to see the updated AI response in the output.
+1.  Press the Enter key and type the same message when prompted with "How can I help?". Be sure to wait a few moments for the refresh interval to elapse, and then press the Enter key to see the updated AI response in the output.
 
     ```Output
     How can I help? (type 'quit' to exit): What is the weather in Seattle ?
