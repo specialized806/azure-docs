@@ -205,6 +205,7 @@ Consider conducting a [Well-Architected Review](/azure/well-architected/) of you
 - [Migrate to Azure Database for PostgreSQL](/training/modules/migrate-azure-database-postgresql-flexible-server/)
 
 
+
 ## Example workload migrations
 
 - [Migrate AWS Lambda to Azure Functions](/azure/azure-functions/migration/lambda-functions-migration-overview)
