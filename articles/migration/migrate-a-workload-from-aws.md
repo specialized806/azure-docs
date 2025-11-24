@@ -9,6 +9,9 @@ ms.collection:
  - migration
  - aws-to-azure
 ---
+
+# Migrate a workload
+
 ## Overview
 
 This article provides architects and engineers with actionable, prescriptive guidance to migrate a single workload from Amazon Web Services (AWS) to Azure.
@@ -82,10 +85,10 @@ The goal of this phase is to **assess** the current state of the workload and th
 - **Existing workload architecture:** Ensure you have a fully documented workload architecture that is well understood by the migration team. This includes all workload dependencies (network configurations, data flows, external integrations). 
 - **Identify critical workload flows:** Map out essential user, as well as system interactions and [workflows.](/azure/well-architected/reliability/identify-flows) When designing the target architecture in the next step, this helps prioritize reliability efforts and ensures that the most important and impactful components are protected against failure.
 - **Create a detailed inventory** of your current AWS environment that is required for running the workload (all servers, storage, database, and services), along with usage patterns, performance metrics and licensing requirements.
-- **Success criteria and KPIs:** Define what good looks like in terms of your workload running in Azure after a successful migration. This should include performance metrics (like throughput and response times), security and reliability targets and costs. You can use your inventory to estimate Azure costs and potential savings with [Azure Migrate assessments](/azure/migrate/cost-estimation) or the [Azure pricing calculator](https://azure.microsoft.com/en-us/pricing/calculator).
+- **Success criteria and KPIs:** Define what good looks like in terms of your workload running in Azure after a successful migration. This should include performance metrics (like throughput and response times), security and reliability targets and costs. You can use your inventory to estimate Azure costs and potential savings with [Azure Migrate assessments](/azure/migrate/cost-estimation) or the [Azure pricing calculator](https://azure.microsoft.com/pricing/calculator).
 - **Assess your team's skills:** Include Azure training in your project timeline to ensure that the workload and operations teams are prepared.
 
-For detailed guidance, see the [CAF Plan migration](azure/cloud-adoption-framework/migrate/plan-migration) guide.
+For detailed guidance, see the [CAF Plan migration](/azure/cloud-adoption-framework/migrate/plan-migration) guide.
 
 **Design your target architecture**
 
