@@ -22,7 +22,7 @@ Choosing the right **migration strategy** for your workload is crucial. The most
 | **Modern, cloud-ready application (like containerized microservices and stateless apps)**       | **Replatform (minor modifications)**             | Take advantage of Azure’s managed services (AKS, App Service, Azure SQL Database, and others) to reduce operational burden and to improve scalability. The app can be moved with minor updates, leveraging cloud offerings for databases, caching, and other functions.    |
 | **Mixed components (combining legacy and modern components)**                                        | **Hybrid approach** (Mix of rehost & replatform) | You might rehost certain components and replatform others. For example, migrate the database to Azure via rehost, but move the front-end to an Azure App Service. Take the simplest approach for each component.               |
 
-In some cases, combining migration strategies is the best solution. For example, rehosting0 0a VM-hosted database can be easier than moving to a managed database service if it relieves the need to make significant schema changes. You can still re-platform your application servers to a managed compute service if you don't need to perform major code changes.
+In some cases, combining migration strategies is the best solution. For example, rehosting a VM-hosted database can be easier than moving to a managed database service if it relieves the need to make significant schema changes. You can still re-platform your application servers to a managed compute service if you don't need to perform major code changes.
 
 
 **Cutover strategy**
