@@ -18,6 +18,7 @@ Agents are software systems that autonomously perform tasks using Large Language
 Here are some agent configurations that can be stored on Azure App Configuration:
 
  - Instructions
+ - Endpoint
  - Agent name
  - Model parameters - temperature, top_p, max_tokens, frequency_penalty, presence_penalty, response_format and stop sequences.
 
@@ -30,17 +31,18 @@ Here are some agent configurations that can be stored on Azure App Configuration
 
 ## Add key-values
 
-1. Navigate to your App Configuration store and add the following key-values. Leave **Label** and **Content Type** with their default values. For more information about how to add key-values to a store using the Azure portal or the CLI, go to [Create a key-value](./quickstart-azure-app-configuration-create.md#create-a-key-value).
+1. Navigate to your App Configuration store and add the following key-values. Leave **Label** with its default value. For more information about how to add key-values to a store using the Azure portal or the CLI, go to [Create a key-value](./quickstart-azure-app-configuration-create.md#create-a-key-value).
 
-| Key                              | Value                                                               |
-|----------------------------------|---------------------------------------------------------------------|
-| *Agent:ProjectEndpoint*          | *Paste the project endpoint*                                        |
-| *Agent:ModelDeploymentName*      | *Paste the model deployment name*                                  |
-| *Agent:Instructions*             | *"You are a helpful assistant"*                                     |
+| Key                        | Value                                                               |Content type                                  |
+|----------------------------|---------------------------------------------------------------------|----------------------------------------------|
+| *Agent:ProjectEndpoint*    | *Paste the project endpoint*                                        |                                              |
+| *Agent:ModelDeploymentName*| *Paste the model deployment name*                                   |                                              |
+| *Agent:Instructions*       | *"You are a helpful assistant"*                                     |                                              |
+| *Agent:Conditions*         | [{"name": "stormy", "message":"Warning: Stay indoors!"},{"name":"sunny", "message":"Don't forget sunscreen!"},{"name":"rainy", "message":"☔ Bring an umbrella!"}]|application/json
 
 ## Console application
 
-In this section, you create a console application and load your agent configurations from your App Configuration store.
+In this section, you create a console application and load your agent configurations from your App Configuration store. This console app builds on the [Azure AI Agent basic sample](https://github.com/microsoft/agent-framework/blob/main/python/samples/getting_started/agents/azure_ai_agent/azure_ai_basic.py). By storing your agent configuration in App Configuration, you can update your agent's behavior in real-time without redeploying or restarting your application.
 
 1. Create a new folder for your project. In the new folder, install the following packages by using the `pip install` command:
 
@@ -58,6 +60,9 @@ In this section, you create a console application and load your agent configurat
     from azure.identity import DefaultAzureCredential
     from azure.identity.aio import AzureCliCredential
     from azure.appconfiguration.provider import (load, SettingSelector, WatchKey)
+    from typing import Annotated
+    from pydantic import Field
+    from random import randint
     import os
     ```
 
@@ -70,7 +75,7 @@ In this section, you create a console application and load your agent configurat
     credential = DefaultAzureCredential()
 
     # Use the default refresh interval of 30 seconds. It can be overridden via refresh_interval
-    config = load(endpoint=endpoint, credential=credential, selects=[SettingSelector(key_filter="Agent:*")], feature_flag_enabled=True, feature_flag_refresh_enabled=True)
+    config = load(endpoint=endpoint, credential=credential, selects=[SettingSelector(key_filter="Agent:*")], refresh_on=[WatchKey("Agent:Conditions")])
     ```
 
 1. Create the agent:
@@ -78,13 +83,16 @@ In this section, you create a console application and load your agent configurat
     ```python
     async def main()-> None:
         async with (
-            AzureAIAgentClient(project_endpoint=config["Agent:ProjectEndpoint"], model_deployment_name=config["Agent:ModelDeploymentName"] ,async_credential=AzureCliCredential()).create_agent() as agent
+            AzureAIAgentClient(
+                project_endpoint=config["Agent:ProjectEndpoint"], 
+                model_deployment_name=config["Agent:ModelDeploymentName"],
+                async_credential=AzureCliCredential()).create_agent(
+                    instructions=config["Agent:Instructions"],
+                    store=True
+                ) as agent
         ):
     
             while True:
-                # Refresh the configuration from Azure App Configuration
-                config.refresh()
-
                 user_input = input("How can I help? (type 'quit' to exit): ")
                 
                 if user_input.lower() in ['quit', 'exit', 'bye']:
@@ -92,7 +100,7 @@ In this section, you create a console application and load your agent configurat
 
                 print(f"User: {user_input}")
 
-                response = await agent.run(messages=user_input, additional_chat_options={"instructions": config["Agent:Instructions"]})
+                response = await agent.run(messages=user_input, tools=get_weather)
 
                 print(f"Agent: {response.text}\n")
                 input("Press Enter to continue...")
@@ -103,6 +111,20 @@ In this section, you create a console application and load your agent configurat
         asyncio.run(main())
     ```
 
+1. Define the `get_weather` tool:
+    ```python
+    def get_weather(
+        location: Annotated[str, Field(description="The location to get the weather for.")]
+    ) -> str:
+        """Get the weather for a given location."""
+        # Refresh the configuration from Azure App Configuration 
+        config.refresh()
+        conditions = config["Agent:Conditions"]
+        condition = conditions[-1]
+        
+        return f"The weather in {location} is {condition["name"]} with a high of {randint(10, 30)}°C. {condition["message"]}"
+    ```
+
 1. After completing the previous steps, your _app.py_ file should now contain the complete implementation as shown below:
     ```python
     import asyncio
@@ -110,6 +132,9 @@ In this section, you create a console application and load your agent configurat
     from azure.identity import DefaultAzureCredential
     from azure.identity.aio import AzureCliCredential
     from azure.appconfiguration.provider import (load, SettingSelector, WatchKey)
+    from typing import Annotated
+    from pydantic import Field
+    from random import randint
     import os
 
     endpoint = os.environ["AZURE_APPCONFIGURATION_ENDPOINT"]
@@ -118,24 +143,37 @@ In this section, you create a console application and load your agent configurat
     credential = DefaultAzureCredential()
 
     # Use the default refresh interval of 30 seconds. It can be overridden via refresh_interval
-    config = load(endpoint=endpoint, credential=credential, selects=[SettingSelector(key_filter="Agent:*")], refresh_on=[WatchKey("Agent:Instructions")])
+    config = load(endpoint=endpoint, credential=credential, selects=[SettingSelector(key_filter="Agent:*")], refresh_on=[WatchKey("Agent:Conditions")])
 
+    def get_weather(
+        location: Annotated[str, Field(description="The location to get the weather for.")]
+    ) -> str:
+        """Get the weather for a given location."""
+        # Refresh the configuration from Azure App Configuration 
+        config.refresh()
+        conditions = config["Agent:Conditions"]
+        condition = conditions[-1]
+        
+        return f"The weather in {location} is {condition["name"]} with a high of {randint(10, 30)}°C. {condition["message"]}"
+        
     async def main()-> None:
         async with (
-            AzureAIAgentClient(project_endpoint=config["Agent:ProjectEndpoint"], model_deployment_name=config["Agent:ModelDeploymentName"] ,async_credential=AzureCliCredential()).create_agent() as agent
+            AzureAIAgentClient(
+                project_endpoint=config["Agent:ProjectEndpoint"], 
+                model_deployment_name=config["Agent:ModelDeploymentName"],
+                async_credential=AzureCliCredential()).create_agent(
+                    instructions=config["Agent:Instructions"],
+                    store=True) as agent
         ):
         
             while True:
-                # Refresh the configuration from Azure App Configuration
-                config.refresh()
-
                 user_input = input("How can I help? (type 'quit' to exit): ")
                 
                 if user_input.lower() in ['quit', 'exit', 'bye']:
                     break
 
                 print(f"User: {user_input}")
-                response = await agent.run(messages=user_input, additional_chat_options={"instructions": config["Agent:Instructions"]})
+                response = await agent.run(messages=user_input, tools=get_weather)
                 print(f"Agent: {response.text}\n")
                 input("Press Enter to continue...")
                 
@@ -171,29 +209,35 @@ In this section, you create a console application and load your agent configurat
     python app.py
     ```
 
-1. Type the message "What is your name?" when prompted with "How can I help?" and then press the Enter key.
+1. Type the message "What is the weather in Seattle?" when prompted with "How can I help?" and then press the Enter key.
 
     ```Output
-    How can I help? (type 'quit' to exit): What is your name?
-    User: What is your name?
-    Agent: I'm called ChatGPT! I'm an AI assistant created by OpenAI. How can I help you today?
+    How can I help? (type 'quit' to exit): What is the weather in Seattle ?
+    User: What is the weather in Seattle ?
+    Agent:The current weather in Seattle is rainy with a high of 21°C. You might want to bring an umbrella!
+
+    Press enter to continue...
     ```
 
-1. In Azure portal, select the App Configuration store instance that you created. From the **Operations** menu, select **Configuration explorer**, and update the **Agent:Instructions** value to "You are French and your name is Jon Pierre."
+1. In Azure portal, select the App Configuration store instance that you created. From the **Operations** menu, select **Configuration explorer**, and update the **Agent:Conditions** value to:
+    | Key                        | Value                                                                                                         |
+    |----------------------------|---------------------------------------------------------------------------------------------------------------|
+    | *Agent:Conditions*         | [{"name": "stormy", "message":"Warning: Stay indoors!"},{"name":"sunny", "message":"Don't forget sunscreen!"}]|
 
 1. Press the Enter key and type the same message when prompted with "How can I help?". Be sure to wait a few moments for the refresh interval to elapse, and then press the Enter key to see the updated AI response in the output.
 
     ```Output
-    How can I help? (type 'quit' to exit): What is your name?
-    User: What is your name?
-    Agent: I'm called ChatGPT! I'm an AI assistant created by OpenAI. How can I help you today?
+    How can I help? (type 'quit' to exit): What is the weather in Seattle ?
+    User: What is the weather in Seattle ?
+    Agent:The current weather in Seattle is rainy with a high of 21°C. You might want to bring an umbrella!
 
-    Press Enter to continue...
-    How can I help? (type 'quit' to exit): What is your name?
-    User: What is your name?
-    Agent: Bonjour ! Mon nom est Jon Pierre. Comment puis-je vous aider aujourd'hui?
+    Press enter to continue...
+    How can I help? (type 'quit' to exit): What is the weather in Seattle ?
+    User: What is the weather in Seattle ?
+    Agent:The weather in Seattle is sunny with a high of 15°C. Don't forget sunscreen!
+
+    Press enter to continue...
     ```
-
 
 ## Next steps
 
