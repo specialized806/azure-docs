@@ -52,7 +52,7 @@ The migration of a workload can span several weeks or months. The duration depen
 
 Before you begin migration planning and execution, ensure you have the following in place:
 
-- An **[Azure platform and application landing zone](/azure/cloud-adoption-framework/ready/enterprise-scale/implementation)**.
+- *Existing landing zone:* Ensure you have an existing **[Azure platform and application landing zone](/azure/cloud-adoption-framework/ready/enterprise-scale/implementation)**.
 - *Stakeholder alignment:* Share timelines, budget estimates, and project milestones with stakeholders to ensure that all parties are aligned.
 - *Project plan and timeline:* Collaborate with the platform and operations teams to develop a thorough overall migration plan with your estimated timeline.
 - *Tooling:* Ensure all workload tooling is documented and understood by necessary project teams.  Investigate and train on new tooling to adopt for the Azure environment.
