@@ -58,7 +58,7 @@ Before you begin migration planning and execution, ensure you have the following
 - *Tooling:* Ensure all workload tooling is documented and understood by necessary project teams.  Investigate and train on new tooling to adopt for the Azure environment.
 - *Support strategy in place:* Purchase a Microsoft support plan and investigate options for free/community support.
 
-In addition to these measures, consider completing a [[Migration Readiness Assessment]]. This assessment scores your readiness to migrate across 10 dimensions.
+In addition to these measures, consider completing a [Migration Readiness Assessment](/assessments/Strategic-Migration-Assessment/). This assessment scores your readiness to migrate across 10 dimensions.
 
 To help with planning and successful executing your workload migration, work through the following five phases.
 
