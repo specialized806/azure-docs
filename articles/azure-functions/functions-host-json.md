@@ -339,7 +339,7 @@ The format of the timespan string needs to follow the syntax `[d.]hh:mm:ss` and 
 - ss = seconds (0–59)
 
 > [!TIP]
-> If you want to set a 24 hours timeout you cannot define it as `"24:00:00"` instead you need to use  `"1.00:00:00"` or  `"23:59:59"`
+> When you need to set a 24-hour timeout, you must define it as one day (`"1.00:00:00"`) instead of 24 hours (`"24:00:00"`). You might also use `"23:59:59"`.
 
 For more information on the default and maximum values for specific plans, see [Function app timeout duration](./functions-scale.md#timeout).
 
