@@ -6,7 +6,7 @@ author: jianleishen
 ms.author: jianleishen
 ms.subservice: data-movement
 ms.topic: conceptual
-ms.date: 06/30/2025
+ms.date: 11/24/2025
 ms.custom:
   - synapse
   - sfi-image-nochange
@@ -289,8 +289,6 @@ Here are steps that help you upgrade your linked service and related queries:
     |:--- |:--- |
     | `SELECT * FROM users` | `db.users.find({})` |
     | `SELECT username, age FROM users` |`db.users.find({}, {username: 1, age: 1})` |
-    | `SELECT username AS User, age AS Age, statusNumber AS Status, CASE WHEN Status = 0 THEN "Pending" CASE WHEN Status = 1 THEN "Finished" ELSE "Unknown" END AS statusEnum LastUpdatedTime + interval '2' hour AS NewLastUpdatedTime FROM users` | `db.users.aggregate([{ $project: { _id: 0, User: "$username", Age: "$age", Status: "$statusNumber", statusEnum: { $switch: { branches: [ { case: { $eq: ["$Status", 0] }, then: "Pending" }, { case: { $eq: ["$Status", 1] }, then: "Finished" } ], default: "Unknown" } }, NewLastUpdatedTime: { $add: ["$LastUpdatedTime", 2 * 60 * 60 * 1000] } } }])`|
-    | `SELECT employees.name, departments.name AS department_name FROM employees LEFT JOIN departments ON employees.department_id = departments.id;`|`db.employees.aggregate([ { $lookup: { from: "departments", localField: "department_id", foreignField: "_id", as: "department" } }, { $unwind: "$department" }, { $project: { _id: 0, name: 1, department_name: "$department.name" } } ])` |
 
 
 ## Related content
