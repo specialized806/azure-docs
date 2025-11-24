@@ -47,7 +47,7 @@ There is a cost trade-off to this approach. You will incur costs for both cloud 
 
 **Data strategy**
 
-Determine the right data migration for your workload. Your choice depends on the amount of data, type of data storage and usage requirements. Decide between offline migration (backup-and-restore), live replication and/or file storage. 
+Determine the right data migration strategy for your workload. Your choice depends on the amount of data, type of data storage and usage requirements. Decide between offline migration (backup-and-restore), live replication and/or file storage. 
 
 Learn more about migration strategies for [databases](/azure/migration/migrate-databases-from-aws) or [storage](/azure/migration/migrate-storage-from-aws).
 
@@ -149,9 +149,11 @@ Congratulations, your workload is now running on Azure! In this final phase, foc
 - **Celebrate milestones**: Sign-off when your minimum viable cutover has been achieved and all tests validate a successful migration outcome.
 
 **Tools**
+
 Microsoft Defender for Cloud
 
 For additional recommendations for post-migration tuning and cost optimization, see the [CAF Optimize workloads after migration](/azure/cloud-adoption-framework/migrate/optimize-workloads-after-migration) guide.
+
 ## Decommission
 
 This is the final step in the workload migration. Proceed once you are confident in how your workload operates in Azure. 
@@ -165,12 +167,12 @@ For a thorough review of decommissioning steps, see the [CAF Decommission source
 
 **Checklist**
 
-- [ ] Confirm cutover success
-- [ ] Notify stakeholders
-- [ ] Archive backups
-- [ ] Turn off replication
-- [ ] Delete AWS resources
-- [ ] Update internal documents
+- Confirm cutover success
+- Notify stakeholders
+- Archive backups
+- Turn off replication
+- Delete AWS resources
+- Update internal documents
 
 
 ## Conclusion
