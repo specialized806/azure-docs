@@ -82,27 +82,16 @@ The goal of this phase is to **assess** the current state of the workload and th
 - **Existing workload architecture:** Ensure you have a fully documented workload architecture that is well understood by the migration team. This includes all workload dependencies (network configurations, data flows, external integrations). 
 - **Identify critical workload flows:** Map out essential user, as well as system interactions and [workflows.](/azure/well-architected/reliability/identify-flows) When designing the target architecture in the next step, this helps prioritize reliability efforts and ensures that the most important and impactful components are protected against failure.
 - **Create a detailed inventory** of your current AWS environment that is required for running the workload (all servers, storage, database, and services), along with usage patterns, performance metrics and licensing requirements.
-- **Success criteria and KPIs:** Define what good looks like in terms of your workload running in Azure after a successful migration. This should include performance metrics (like throughput and response times), security and reliability targets and costs. You can use your inventory to estimate Azure costs and potential savings with [Azure Migrate assessments](/azure/migrate/cost-estimation) or the [Azure pricing calculator](https://azure.microsoft.com/en-us/pricing/calculator/).
+- **Success criteria and KPIs:** Define what good looks like in terms of your workload running in Azure after a successful migration. This should include performance metrics (like throughput and response times), security and reliability targets and costs. You can use your inventory to estimate Azure costs and potential savings with [Azure Migrate assessments](/azure/migrate/cost-estimation) or the [Azure pricing calculator](https://azure.microsoft.com/en-us/pricing/calculator).
 - **Assess your team's skills:** Include Azure training in your project timeline to ensure that the workload and operations teams are prepared.
 
 For detailed guidance, see the [CAF Plan migration](azure/cloud-adoption-framework/migrate/plan-migration) guide.
 
 **Design your target architecture**
 
-**Start with networking:** Provide the networking requirements for your workload to the platform team for a new spoke network. Your request should include not only the target architecture, but also the migration connectivity. Learn more about how to [migrate networking from AWS](/azure/migration/migrate-networking-from-aws). 
-
-**Choose your migration cutover model as a first step:** When practical, prefer an active-active design over a hot-cold or hot-warm design. Once you have made that determination, design your workload architecture accordingly.
-
-To **identify Azure services** that you can use to build your workload in Azure, refer to the AWS to Azure resource comparison guides:
-
-- [Azure compute services comparison](/azure/architecture/aws-professional/compute)
-- [Azure data and AI services comparison](/azure/architecture/aws-professional/data-ai)
-- [Azure database services comparison](/azure/architecture/aws-professional/databases)
-- [Azure messaging services comparison](/azure/architecture/aws-professional/messaging)
-- [Azure networking services comparison](/azure/architecture/aws-professional/networking)
-- [Azure security services comparison](/azure/architecture/aws-professional/security-identity)
-- [Azure storage services comparison](/azure/architecture/aws-professional/storage)
-
+- **Start with networking:** Provide the networking requirements for your workload to the platform team for a new spoke network. Your request should include not only the target architecture, but also the migration connectivity. Learn more about how to [migrate networking from AWS](/azure/migration/migrate-networking-from-aws). 
+- **Choose your migration cutover model as a first step:** When practical, prefer an active-active design over a hot-cold or hot-warm design. Once you have made that determination, design your workload architecture accordingly.
+- To **identify Azure services** that you can use to build your workload in Azure, refer to the [AWS to Azure resource comparison guides](/azure/architecture/aws-professional).
 - **Document your migration decisions:** Document the resources that you won’t migrate and any architecture decisions you made. 
 - **Reduce risks:** Identify any high-risk components or flows and build out POCs as needed to test and mitigate those risks. Consider performing a [failure mode analysis](/azure/well-architected/reliability/failure-mode-analysis) to proactively uncover potential points of failure and assess their impact on the reliability of your workload. 
 - **Check availability:** Check Azure service availability and capacity in your preferred region, specifically if you plan to use specialized resource types.
