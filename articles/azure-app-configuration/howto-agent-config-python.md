@@ -220,9 +220,10 @@ In this section, you create a console application and load your agent configurat
     ```
 
 1. In Azure portal, select the App Configuration store instance that you created. From the **Operations** menu, select **Configuration explorer**, and update the **Agent:Conditions** value to:
-    | Key                        | Value                                                                                                         |
-    |----------------------------|---------------------------------------------------------------------------------------------------------------|
-    | *Agent:Conditions*         | [{"name": "stormy", "message":"Warning: Stay indoors!"},{"name":"sunny", "message":"Don't forget sunscreen!"}]|
+
+| Key                        | Value                                                                                                         |
+|----------------------------|---------------------------------------------------------------------------------------------------------------|
+| *Agent:Conditions*         | [{"name": "stormy", "message":"Warning: Stay indoors!"},{"name":"sunny", "message":"Don't forget sunscreen!"}]|
 
 1. Press the Enter key and type the same message when prompted with "How can I help?". Be sure to wait a few moments for the refresh interval to elapse, and then press the Enter key to see the updated AI response in the output.
 
