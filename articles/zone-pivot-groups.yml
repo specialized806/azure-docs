@@ -2039,3 +2039,14 @@ groups:
     title: Azure ExpressRoute gateway
   - id: vpn
     title: Azure VPN Gateway
+# Owner: cwatson
+- id: iot-hub-deployment-methods
+  title: IoT Hub deployment methods
+  prompt: Choose a deployment method
+  pivots:
+  - id: portal
+    title: Portal
+  - id: azure-cli
+    title: Azure CLI
+  - id: script
+    title: Script

@@ -25,10 +25,6 @@ The setup process in this article includes the following steps:
 > [!IMPORTANT]
 > During the preview period, IoT Hub with ADR and Certificate Management features enabled on top of IoT Hub are available **free of charge**. Device Provisioning Service (DPS) is billed separately and isn't included in the preview offer. For details on DPS pricing, see [Azure IoT Hub pricing](https://azure.microsoft.com/pricing/details/iot-hub/).
 
-## Prerequisites
-
-Have an Azure account. If you don't have an Azure account, create a [free account](https://azure.microsoft.com/free/).
-
 ## Create an IoT hub and ADR namespace in Azure portal
 
 In this section, you create a new IoT hub instance with a new ADR namespace and user-assigned managed identity assigned to it.

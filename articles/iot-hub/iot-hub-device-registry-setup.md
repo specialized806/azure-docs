@@ -8,7 +8,7 @@ ms.service: azure-iot-hub
 services: iot-hub
 ms.topic: how-to
 ms.date: 11/24/2025
-zone_pivot_groups: service-azcli-script
+zone_pivot_groups: iot-hub-deployment-methods
 #Customer intent: As a developer new to IoT, I want to understand what Azure Device Registry is and how it can help me manage my IoT devices.
 ---
 
@@ -68,8 +68,6 @@ To set up your IoT Hub with ADR integration and certificate management, you can 
 | Select **Azure Portal** at the top of the page | Use the Azure Portal to create a new IoT Hub, DPS instance, and ADR namespace and configure all necessary settings. |
 | Select **Azure CLI** at the top of the page | Use the Azure CLI to create a new IoT Hub, DPS instance, and ADR namespace and configure all necessary settings. |
 | Select **PowerShell script** at the top of the page | Use a PowerShell script (Windows only) to automate the creation of a new IoT Hub, DPS instance, and ADR namespace and configure all necessary settings. |
-
-
 
 :::zone pivot="portal"
 
