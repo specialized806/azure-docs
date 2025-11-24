@@ -10,7 +10,7 @@ items:
     items:
     - name: Getting started
       href: ./migrate-from-aws.yml
-    - name: Migrate a workload from AWS
+    - name: Migrate a workload
       href: ./migrate-a-workload-from-aws.md
 #    - name: Workload migration process
 #      items:
