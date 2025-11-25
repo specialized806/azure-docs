@@ -42,7 +42,7 @@ To help with planning and successful executing your workload migration, work thr
 
 ## Plan
 
-The goal of this phase is to **assess** the current state of the workload and the environment it is running in and then **design** the target state and architecture.
+The goal of this phase is to **assess** the current state of the workload and the environment it is running in and then **design** the target state and architecture. The last step in the planning phase is to document your design and migration strategies as well as create a runbook. Ensure to take your time in the planning phase and follow the steps in order. Once the plan is reviewed and agreed, move to the prepare phase.
 
 **Assess your AWS workload**
 
@@ -73,7 +73,7 @@ When practical, prefer an active-active design over a hot-cold or hot-warm desig
 
 There is a cost trade-off to this approach. You will incur costs for both cloud providers during the transition. For most teams, the additional costs are worth taking on due to the reduction of risk and operational burden.
 
-Document the sequence of steps at a high level. If you are planning a one-time all-at-once cutover, define the exact steps, sequence, and timing of the move. Include the  planned outage window in your documentation. Consider including a dry-run, especially for complex cutovers. Document your rollback strategy, DNS TTLs and how to test success metrics.
+**Document in a runbook:** Document the sequence of steps at a high level. If you are planning a one-time all-at-once cutover, define the exact steps, sequence, and timing of the move. Include the  planned outage window in your documentation. Consider including a dry-run, especially for complex cutovers. Document your rollback strategy, DNS TTLs and how to test success metrics.
 
 Review the plan with stakeholders and reconcile differing expectations. Include IT security and risk management teams from the start and ensure they sign off on the plan. A joint workshop at this stage can help minimize delays in later stages.
 
