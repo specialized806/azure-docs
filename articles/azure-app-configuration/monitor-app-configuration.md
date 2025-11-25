@@ -50,6 +50,7 @@ Azure Monitor logs include activity logs and resource logs.
 
 ### Activity logs
 The activity log provides insight into subscription-level events and shows management plane activities (create, update, delete operations on your App Configuration resource). However, it doesn't capture data plane operations like key-value reads and writes.
+
 For more information, refer to [Activity logs reference](#activity-logs-reference).
 
 ### Resource logs
@@ -155,7 +156,7 @@ If you have created diagnostic settings for audit logs and HTTP request logs, yo
 If you want to run a query that includes data from other configuration or data from other Azure services, select **Logs** from the **Azure Monitor** menu. See [Log query scope and time range in Azure Monitor Log Analytics](/azure/azure-monitor/log-query/scope/) for details.
 
 #### HTTP request log
-In the portal, navigate to **Logs** under **Monitoring** section, and then go to the query editor. Expand **Tables** and select **AACHttpRequest** to see the HTTP request logs of your configuration store. Enter a Kusto query into the editor and results are displayed below.
+In the portal, navigate to **Monitoring** > **Logs**, and then go to the query editor. Expand **Tables** and select **AACHttpRequest** to see the HTTP request logs of your configuration store. Enter a Kusto query into the editor and results are displayed below.
 
 > [!div class="mx-imgBorder"]
 > ![Writing kusto queries in our logs](./media/monitoring/monitoring-http-request-log.png)
@@ -166,45 +167,45 @@ Following are sample queries that you can use to help you monitor your App Confi
 
 * List all HTTP Requests in the last three days 
     ```Kusto
-       AACHttpRequest
-        | where TimeGenerated > ago(3d)
+    AACHttpRequest
+    | where TimeGenerated > ago(3d)
     ```
 
 * List all throttled requests (returned HTTP status code 429 for too many requests) in the last three days 
     ```Kusto
-       AACHttpRequest
-        | where TimeGenerated > ago(3d)
-        | where StatusCode == "429"
+    AACHttpRequest
+    | where TimeGenerated > ago(3d)
+    | where StatusCode == "429"
     ```
 
 * List the number of requests sent in the last three days by IP Address 
     ```Kusto
-       AACHttpRequest
-        | where TimeGenerated > ago(3d)
-        | summarize requestCount=sum(HitCount) by ClientIPAddress
-        | order by requestCount desc 
+    AACHttpRequest
+    | where TimeGenerated > ago(3d)
+    | summarize requestCount=sum(HitCount) by ClientIPAddress
+    | order by requestCount desc 
     ```
 
 * Create a pie chart of the types of status codes received in the last three days
     ```Kusto
-       AACHttpRequest
-        | where TimeGenerated > ago(3d)
-        | summarize requestCount=sum(HitCount) by StatusCode
-        | order by requestCount desc 
-        | render piechart 
+    AACHttpRequest
+    | where TimeGenerated > ago(3d)
+    | summarize requestCount=sum(HitCount) by StatusCode
+    | order by requestCount desc 
+    | render piechart 
     ```
 
 * List the number of requests sent by day for the last 14 days
     ```Kusto
     AACHttpRequest
-        | where TimeGenerated > ago(14d)
-        | extend Day = startofday(TimeGenerated)
-        | summarize requestcount=sum(HitCount) by Day
-        | order by Day desc  
+    | where TimeGenerated > ago(14d)
+    | extend Day = startofday(TimeGenerated)
+    | summarize requestcount=sum(HitCount) by Day
+    | order by Day desc  
     ```
 
 #### Audit Log
-In the portal, navigate to **Monitoring** >**Logs**, and then go to the query editor. Expand **Tables** and select **AACAudit** to see the audit logs of your configuration store. Enter a Kusto query into the editor and results are displayed below.
+In the portal, navigate to **Monitoring** > **Logs**, and then go to the query editor. Expand **Tables** and select **AACAudit** to see the audit logs of your configuration store. Enter a Kusto query into the editor and results are displayed below.
 
 > [!div class="mx-imgBorder"]
 > ![Audit log](./media/monitoring/monitoring-audit-log.png)
@@ -219,7 +220,9 @@ Following are sample queries that you can use to help you monitor your App Confi
 
 ### Data access tracking
 For tracking key-value access history, audit logs provide details including the caller identity, caller's ip address, action performed, and the affected key-value. The **CallerIdentity** field lets you correlate the change with the caller.
+
 HTTP request logs provide context related to request patterns and performance, for example, user agent, request duration, request volume. **ClientObjectId**, **ClientTenantId**, **AccessKeyId** supply caller information and help you determine whether the request used AAD or access key.
+
 Two authentication methods are supported, which are AAD and access key (HMAC/connection string). If you use AAD, you should see information about caller or client. If you use access key, you should see information related to access key. To enforce AAD authentication and remove access key usage, see [disable access key based authentication](/azure/azure-app-configuration/howto-disable-access-key-authentication?tabs=portal#disable-access-key-authentication).
 
 #### Audit logs
@@ -247,6 +250,7 @@ Two authentication methods are supported, which are AAD and access key (HMAC/con
 ## Alerts
 
 Azure Monitor alerts proactively notify you when important conditions are found in your monitoring data. They allow you to identify and address issues in your system before your customers notice them. You can set alerts on [metrics](/azure/azure-monitor/alerts/alerts-metric-overview), [logs](/azure/azure-monitor/alerts/alerts-unified-log), and the [activity log](/azure/azure-monitor/alerts/activity-log-alerts). Different types of alerts have benefits and drawbacks.
+
 The following table lists common and recommended alert rules for App Configuration.
 
 | Alert type | Condition | Description  |
@@ -264,10 +268,9 @@ For more information on what metric dimensions are, see [Multi-dimensio
 
 ### Logs reference
 
-#### Activity logs reference
-
 This section refers to all of the Azure Monitor Logs Kusto tables relevant to App Configuration and available for query by Log Analytics.
 
+#### Activity logs reference
 |Resource type | Notes |
 |-------|-----|
 | [AzureActivity](/azure/azure-monitor/reference/tables/AzureActivity) | Entries from the Azure Activity log that provide insight into any subscription-level or management group level events that have occurred in Azure. |
