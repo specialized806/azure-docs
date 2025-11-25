@@ -34,7 +34,6 @@ Before you begin migration planning and execution, ensure you have the following
 
 - *Existing landing zone:* Ensure you have an existing **[Azure platform and application landing zone](/azure/cloud-adoption-framework/ready/enterprise-scale/implementation)**.
 - *Stakeholder alignment:* Share timelines, budget estimates, and project milestones with stakeholders to ensure that all parties are aligned.
-- *Tooling:* Ensure all workload tooling is documented and understood by necessary project teams.  Investigate and train on new tooling to adopt for the Azure environment.
 - *Support strategy in place:* Purchase a Microsoft support plan and investigate options for free/community support.
 
 In addition to these measures, consider completing a [Migration Readiness Assessment](/assessments/Strategic-Migration-Assessment/). This assessment scores your readiness to migrate across 10 dimensions.
