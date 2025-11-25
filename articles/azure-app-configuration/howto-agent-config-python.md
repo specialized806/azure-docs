@@ -56,7 +56,7 @@ In this section, you create a console application and load your agent configurat
     credential = DefaultAzureCredential()
 
     # Use the default refresh interval of 30 seconds. It can be overridden via refresh_interval
-    config = load(endpoint=endpoint, credential=credential, selects=[SettingSelector(key_filter="Agent:*")], refresh_on=[WatchKey("Agent:WeatherTool")])
+    config = load(endpoint=endpoint, credential=credential, selects=[SettingSelector(key_filter="Agent:*")], refresh_on=[WatchKey("Agent:WeatherTool:Forecast")])
     ```
 
 1. Initialize the agent:
@@ -102,7 +102,7 @@ In this section, you create a console application and load your agent configurat
         # Refresh the configuration from Azure App Configuration 
         config.refresh()
 
-        condition = config["Agent:WeatherTool"]
+        condition = config["Agent:WeatherTool:Forecast"]
         
         return f"The weather in {location} is {condition["name"]} with a high of {randint(10, 30)}°C. {condition["message"]}"
     ```
@@ -125,7 +125,7 @@ In this section, you create a console application and load your agent configurat
     credential = DefaultAzureCredential()
 
     # Use the default refresh interval of 30 seconds. It can be overridden via refresh_interval
-    config = load(endpoint=endpoint, credential=credential, selects=[SettingSelector(key_filter="Agent:*")], refresh_on=[WatchKey("Agent:WeatherTool")])
+    config = load(endpoint=endpoint, credential=credential, selects=[SettingSelector(key_filter="Agent:*")], refresh_on=[WatchKey("Agent:WeatherTool:Forecast")])
 
     def get_weather(
             location: Annotated[str, Field(description="The location to get the weather for.")]
@@ -135,7 +135,7 @@ In this section, you create a console application and load your agent configurat
         # Refresh the configuration from Azure App Configuration 
         config.refresh()
 
-        condition = config["Agent:WeatherTool"]
+        condition = config["Agent:WeatherTool:Forecast"]
         
         return f"The weather in {location} is {condition["name"]} with a high of {randint(10, 30)}°C. {condition["message"]}"
         
@@ -202,11 +202,11 @@ In this section, you create a console application and load your agent configurat
     Press Enter to continue...
     ```
 
-1. In the Azure portal, select the App Configuration store instance that you created. From the **Operations** menu, select **Configuration explorer**, and update the **Agent:WeatherTool** value to:
+1. In the Azure portal, select the App Configuration store instance that you created. From the **Operations** menu, select **Configuration explorer**, and update the **Agent:WeatherTool:Forecast** value to:
 
-    | Key                        | Value                                                                                                         |
-    |----------------------------|---------------------------------------------------------------------------------------------------------------|
-    | *Agent:WeatherTool*        | {"name": "stormy", "message":"Warning: Stay indoors!"}                                                        |
+    | Key                          | Value                                                                                                         |
+    |------------------------------|---------------------------------------------------------------------------------------------------------------|
+    | *Agent:WeatherTool:Forecast* | {"name": "stormy", "message":"Warning: Stay indoors!"}                                                        |
 
 1.  Press the Enter key and type the same message when prompted with "How can I help?". Be sure to wait a few moments for the refresh interval to elapse, and then press the Enter key to see the updated AI response in the output.
 

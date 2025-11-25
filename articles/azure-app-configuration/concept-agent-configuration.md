@@ -26,12 +26,12 @@ Here are some agent settings that can be stored on Azure App Configuration:
 
 1. Navigate to your App Configuration store and add the following key-values. Leave **Label** with its default value. For more information about how to add key-values to a store using the Azure portal or the CLI, go to [Create a key-value](./quickstart-azure-app-configuration-create.md#create-a-key-value).
 
-    | Key                        | Value                                                               | Content type                                  |
-    |----------------------------|---------------------------------------------------------------------|----------------------------------------------|
-    | *Agent:ProjectEndpoint*    | *Paste the project endpoint*                                        |                                              |
-    | *Agent:ModelDeploymentName*| *Paste the model deployment name*                                   |                                              |
-    | *Agent:Instructions*       | *You're a helpful weather agent*                                    |                                              |
-    | *Agent:WeatherTool*        | *{"name":"sunny", "message":"Don't forget sunscreen!"}*             |application/json                              |
+    | Key                            | Value                                                               | Content type                                  |
+    |--------------------------------|---------------------------------------------------------------------|----------------------------------------------|
+    | *Agent:ProjectEndpoint*        | *Paste the project endpoint*                                        |                                              |
+    | *Agent:ModelDeploymentName*    | *Paste the model deployment name*                                   |                                              |
+    | *Agent:Instructions*           | *You're a helpful weather agent*                                    |                                              |
+    | *Agent:WeatherTool:Forecast*   | *{"name":"sunny", "message":"Don't forget sunscreen!"}*             | application/json                             |
 
 
 1. Continue to the following instructions to implement the agent configuration into your application for the language or platform you're using.
