@@ -50,7 +50,7 @@ Azure Monitor logs include activity logs and resource logs.
 
 ### Activity logs
 The activity log provides insight into subscription-level events and shows management plane activities (create, update, delete operations on your App Configuration resource). However, it doesn't capture data plane operations like key-value reads and writes.
-For more information, refer to [Logs reference](#logs-reference).
+For more information, refer to [Activity logs reference](#activity-logs-reference).
 
 ### Resource logs
 Resource logs record data plane operations. To monitor data plane operations (including key-value changes and request patterns), you need to enable diagnostic settings and route resource logs (audit logs and HTTP request logs) to a destination like Log Analytics workspace. It allows you to see the key-value access history and other operations performed within your App Configuration store.
@@ -58,6 +58,7 @@ Resource logs record data plane operations. To monitor data plane operations (in
 App Configuration provides two types of resource logs.
 - **Audit logs**: Capture data plane write operations (create, update, delete) on your key-values. Audit logs don't include data plane read operations but include management plane operations. Entries are unaggregated. Query them in the **AACAudit** table.
 - **HTTP request logs**: Capture both write and read operations on key-values, with operations being aggregated for better performance and reducing log volume. Logs are aggregated based on http method and status code, each log entry may represent multiple similar operations within a certain time window. Query them in the **AACHttpRequest** table.
+
 For more information, refer to [Resource logs reference](#resource-logs-reference).
 
 ### Log collection
@@ -141,7 +142,9 @@ Data in Azure Monitor Logs is stored in tables where each table has its own set 
 
 The [Activity log](/azure/azure-monitor/essentials/activity-log) is a platform log in Azure that provides insight into subscription-level events. You can view it independently or route it to Azure Monitor logs, where you can do much more complex queries using Log Analytics.
 
-For a list of the types of resource logs collected for App Configuration, see [Resource logs reference](#resource-logs-reference). For a list of the tables used by Azure Monitor logs and queryable by Log Analytics, see [Logs reference](#logs-reference).
+For a list of the types of resource logs collected for App Configuration, see [Resource logs reference](#resource-logs-reference).
+
+For a list of the tables used by Azure Monitor logs and queryable by Log Analytics, see [Logs reference](#logs-reference).
 
 If you have created diagnostic settings for audit logs and HTTP request logs, you can view them in **Logs** blade.
 
@@ -260,6 +263,9 @@ For more information, see a list of [all platform metrics supported i
 For more information on what metric dimensions are, see [Multi-dimensional metrics](/azure/azure-monitor/essentials/data-platform-metrics#multi-dimensional-metrics).
 
 ### Logs reference
+
+#### Activity logs reference
+
 This section refers to all of the Azure Monitor Logs Kusto tables relevant to App Configuration and available for query by Log Analytics.
 
 |Resource type | Notes |
@@ -271,6 +277,8 @@ This section refers to all of the Azure Monitor Logs Kusto tables re
 |-------|-----|
 | [AACAudit](/azure/azure-monitor/reference/tables/AACAudit) | Azure App Configuration audit logs. |
 | [AACHttpRequest](/azure/azure-monitor/reference/tables/AACHttpRequest) | Entries of every HTTP request sent to a selected app configuration resource. |
+
+For more schema information, see a list of [Common and service-specific schemas for Azure resource logs](/azure/azure-monitor/essentials/resource-logs-schema).
 
 For a reference of all Azure Monitor Logs / Log Analytics tables for App Configuration, see the [Log Analytics tables for microsoft.appconfiguration/configurationstores](/azure/azure-monitor/reference/tables/microsoft-appconfiguration_configurationstores).
 
