@@ -18,7 +18,7 @@ ms.collection: ce-skilling-ai-copilot
 - An Azure account with an active subscription. [Create one for free](https://azure.microsoft.com/free).
 - An App Configuration store, as shown in the [tutorial for creating a store](./quickstart-azure-app-configuration-create.md#create-an-app-configuration-store).
 - Python 3.8 or later - for information on setting up Python on Windows, see the [Python on Windows documentation](/windows/python/).
-- Review the [example agent settings](./concept-agent-configuration.md#example-agent-settings)
+- Create the _example agent settings_ discussed in the [overview](./concept-agent-configuration.md#example-agent-settings)
 - A model. [Add and configure models to Azure AI Foundry Models](/azure/ai-foundry/foundry-models/how-to/create-model-deployments).
 
 ## Console application
