@@ -20,42 +20,9 @@ The scope of this article covers the full migration lifecycle, from planning and
 
 Migrating a workload from AWS is a strategic initiative that requires careful planning and stakeholder alignment. This article focuses on workloads that range from simple to moderately complex and can benefit from a pragmatic migration strategy. 
 
-## Migration strategies to consider
-
-When planning a workload migration, you should consider three types of strategies.  The **migration strategy** refers to how a workload is moved to Azure. This is the overall migration approach from a technical perspective. The **cutover strategy** is how production traffic is moved from the AWS to environment to the Azure environment. Finally, the **data strategy** focuses on how to move the data itself from AWS to Azure. 
- 
-Choosing the right **migration strategy** for your workload is crucial. The most common strategies are: rehost (aka lift-and-shift), replatform, and (less commonly) refactor. Choose the least impactful strategy for your workload. 
-
-
-**Migration Strategy**
-
-| **Workload characteristics**                                                                 | **Recommended strategy**                         | **Rationale and notes**                                                                                                                                                                                                     |
-| -------------------------------------------------------------------------------------------- | ------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Legacy or tightly-coupled system (like older enterprise apps on VMs, or monolithic apps)** | **Rehost (lift-and-shift)**                      | Easiest and safest: recreate the workload on Azure VMs or equivalent services with minimal changes. Use this when speed is a priority or application changes are not feasible. Plan for modernization after a successful move. |
-| **Modern, cloud-ready application (like containerized microservices and stateless apps)**       | **Replatform (minor modifications)**             | Take advantage of Azure’s managed services (AKS, App Service, Azure SQL Database, and others) to reduce operational burden and to improve scalability. The app can be moved with minor updates, leveraging cloud offerings for databases, caching, and other functions.    |
-| **Mixed components (combining legacy and modern components)**                                        | **Hybrid approach** (Mix of rehost & replatform) | You might rehost certain components and replatform others. For example, migrate the database to Azure via rehost, but move the front-end to an Azure App Service. Take the simplest approach for each component.               |
-
-In some cases, combining migration strategies is the best solution. For example, rehosting a VM-hosted database can be easier than moving to a managed database service if it relieves the need to make significant schema changes. You can still re-platform your application servers to a managed compute service if you don't need to perform major code changes.
-
-
-**Cutover strategy**
-
-If your budget and timeline allows, perform the migration in small incremental steps rather than all at once. An active-active multi-cloud design during migration lets you migrate and test gradually and with reduced risk.  In this scenario, you run your workload in AWS as normal throughout the migration, moving traffic over to Azure in a deliberate, incremental way. Both environments run in parallel throughout the migration, allowing you to shift traffic back to AWS if issues arise in the Azure environment.
-
-This approach also enables live testing under real-world conditions to catch issues early with minimal user impact.
-
-There is a cost trade-off to this approach. You will incur costs for both cloud providers during the transition. For most teams, the additional costs are worth taking on due to the reduction of risk and operational burden.
-
-
-**Data strategy**
-
-Determine the right data migration strategy for your workload. Your choice depends on the amount of data, type of data storage and usage requirements. Decide between offline migration (backup-and-restore), live replication and/or file storage. 
-
-Learn more about migration strategies for [databases](/azure/migration/migrate-databases-from-aws) or [storage](/azure/migration/migrate-storage-from-aws).
-
 ## Timeline assumptions
 
-The migration of a workload can span several weeks or months. The duration depends on the complexity of the workload and your migration and cutover strategy. The timeline below shows a typical workload migration for a moderately complex workload. 
+The migration of a workload can span several weeks or months. The duration depends on the complexity of the workload and your migration and cutover strategy. The timeline below shows a typical workload migration for a moderately complex workload using a like-for-like or lift-and-shift approach. 
 
 :::image type="content" source="./images/migrate-from-aws-phases.svg" alt-text="Diagram showing three phases of migrating workloads from AWS to Microsoft Azure. Across the top, three labeled boxes indicate phases with durations: Before migration (2–4 weeks), During migration (3–7 weeks), and After migration (1–2 weeks). Each box includes a summary of key activities such as planning, infrastructure setup, and optimization. Below, a horizontal sequence of five icons represents steps: Plan, Prepare, Execute, Optimize, and Decommission." lightbox="./images/migrate-from-aws-phases.svg" border="false":::
 
@@ -89,23 +56,25 @@ The goal of this phase is to **assess** the current state of the workload and th
 **Design a like-for-like architecture in Azure**
 
 - **Start with networking:** Provide the networking requirements for your workload to the platform team for a new spoke network. Your request should include not only the target architecture, but also the migration connectivity. Learn more about how to [migrate networking from AWS](/azure/migration/migrate-networking-from-aws). 
-- **Choose your migration cutover model as a first step:** When practical, prefer an active-active design over a hot-cold or hot-warm design. Once you have made that determination, design your workload architecture accordingly.
 - To **identify Azure services** that you can use to build your workload in Azure, refer to the [AWS to Azure resource comparison guides](/azure/architecture/aws-professional).
 - **Document your migration decisions:** Document the resources that you won’t migrate and any architecture decisions you made. 
 - **Reduce risks:** Identify any high-risk components or flows and build out POCs as needed to test and mitigate those risks. Consider performing a [failure mode analysis](/azure/well-architected/reliability/failure-mode-analysis) to proactively uncover potential points of failure and assess their impact on the reliability of your workload. 
 - **Check availability:** Check Azure service availability and capacity in your preferred region, specifically if you plan to use specialized resource types.
 - Ensure **compliance and security** requirements are addressed. Learn more about [migrating security from AWS](/azure/migration/migrate-security-from-aws).
-- **Choose migration approaches per component:** Determine whether you need to use different approaches for different components. Use the decision framework above and decide your strategy for each component. Allocate time for refactoring of any code. 
 
 **Develop a migration plan and runbook**
 
 Collaborate with the platform and operations teams to develop a thorough overall migration plan with your estimated timeline.
 
-Document the sequence of steps at a high level. When practical, take a phased approach, including a phased cutover.  If you are planning a one-time all-at-once cutover, define the exact steps, sequence, and timing of the move. Include the  planned outage window in your documentation. Consider including a dry-run, especially for complex cutovers. Document your rollback strategy, DNS TTLs and how to test success metrics.
+**Choose your data migration strategy:** Your choice depends on the amount of data, type of data storage and usage requirements. Decide between offline migration (backup-and-restore), live replication and/or file storage. Learn more about migration strategies for [databases](/azure/migration/migrate-databases-from-aws) or [storage](/azure/migration/migrate-storage-from-aws).
 
+**Choose your cutover strategy**: This is how production traffic is moved from the AWS to environment to the Azure environment. 
 
+When practical, prefer an active-active design over a hot-cold or hot-warm design. If your budget and timeline allows, plan to perform the migration in small incremental steps rather than all at once. An active-active multi-cloud design during migration lets you migrate and test gradually and with reduced risk. In this scenario, you run your workload in AWS as normal throughout the migration, moving traffic over to Azure in a deliberate, incremental way. Both environments run in parallel throughout the migration, allowing you to shift traffic back to AWS if issues arise in the Azure environment. This approach also enables live testing under real-world conditions to catch issues early with minimal user impact.
 
-**Review**
+There is a cost trade-off to this approach. You will incur costs for both cloud providers during the transition. For most teams, the additional costs are worth taking on due to the reduction of risk and operational burden.
+
+Document the sequence of steps at a high level. If you are planning a one-time all-at-once cutover, define the exact steps, sequence, and timing of the move. Include the  planned outage window in your documentation. Consider including a dry-run, especially for complex cutovers. Document your rollback strategy, DNS TTLs and how to test success metrics.
 
 Review the plan with stakeholders and reconcile differing expectations. Include IT security and risk management teams from the start and ensure they sign off on the plan. A joint workshop at this stage can help minimize delays in later stages.
 
