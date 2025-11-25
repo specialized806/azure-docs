@@ -186,6 +186,8 @@
       href: quickstart-chat-completion-go.md
   - name: Agent Configuration
     items:
+    - name: Overview
+      href: concept-agent-configuration.md
     - name: Python
       href: howto-agent-config-python.md
 - name: Feature management

@@ -11,34 +11,15 @@ ms.update-cycle: 180-days
 ms.collection: ce-skilling-ai-copilot
 ---
 
-# Agent configuration in Azure App Configuration
-
-Agents are software systems that autonomously perform tasks using Large Language Models (LLMs) to process user input and execute actions on behalf of users. These agents use tools and Model Context Protocol (MCP) servers to carry out operations and generate intelligent responses. Agent configuration enables you to define and manage how these agents behave and respond within your application environment. Storing agent configurations in Azure App Configuration provides a centralized store where configurations for your agent are kept in one place and can be consumed by multiple application instances. App Configuration lets you update your agent's settings dynamically without redeploying or restarting your application, and use feature flags to safely roll out new agent features or behaviors to targeted environments.
-
-Here are some agent configurations that can be stored on Azure App Configuration:
-
- - Instructions
- - Endpoint
- - Agent name
- - Model parameters - temperature, top_p, max_tokens, frequency_penalty, presence_penalty, response_format and stop sequences.
+# Use agent configuration in a Python console app
 
 ## Prerequisites
 
 - An Azure account with an active subscription. [Create one for free](https://azure.microsoft.com/free).
 - An App Configuration store, as shown in the [tutorial for creating a store](./quickstart-azure-app-configuration-create.md#create-an-app-configuration-store).
 - Python 3.8 or later - for information on setting up Python on Windows, see the [Python on Windows documentation](/windows/python/).
+- Review the [example agent settings](./concept-agent-configuration.md#example-agent-settings)
 - A model. [Add and configure models to Azure AI Foundry Models](/azure/ai-foundry/foundry-models/how-to/create-model-deployments).
-
-## Add key-values
-
-1. Navigate to your App Configuration store and add the following key-values. Leave **Label** with its default value. For more information about how to add key-values to a store using the Azure portal or the CLI, go to [Create a key-value](./quickstart-azure-app-configuration-create.md#create-a-key-value).
-
-| Key                        | Value                                                               |Content type                                  |
-|----------------------------|---------------------------------------------------------------------|----------------------------------------------|
-| *Agent:ProjectEndpoint*    | *Paste the project endpoint*                                        |                                              |
-| *Agent:ModelDeploymentName*| *Paste the model deployment name*                                   |                                              |
-| *Agent:Instructions*       | *"You are a helpful assistant"*                                     |                                              |
-| *Agent:Conditions*         | [{"name": "stormy", "message":"Warning: Stay indoors!"},{"name":"sunny", "message":"Don't forget sunscreen!"},{"name":"rainy", "message":"Bring an umbrella!"}]|application/json
 
 ## Console application
 
@@ -66,7 +47,7 @@ In this section, you create a console application and load your agent configurat
     import os
     ```
 
-1. You can connect to App Configuration using either Microsoft Entra ID (recommended) or a connection string. In this example, you can use Microsoft Entra ID with `DefaultAzureCredential` to authenticate to your App Configuration store. Follow these instructions to assign the **App Configuration Data Reader** role to the identity represented by `DefaultAzureCredential`. Be sure to allow sufficient time for the permission to propagate before running the application.
+1. You can connect to App Configuration using either Microsoft Entra ID (recommended) or a connection string. In this example, you use Microsoft Entra ID with `DefaultAzureCredential` to authenticate to your App Configuration store. Follow these [instructions](./concept-enable-rbac.md#authentication-with-token-credentials) to assign the **App Configuration Data Reader** role to the identity represented by `DefaultAzureCredential`. Be sure to allow sufficient time for the permission to propagate before running your application.
 
     ```python
     endpoint = os.environ["AZURE_APPCONFIGURATION_ENDPOINT"]
@@ -75,13 +56,13 @@ In this section, you create a console application and load your agent configurat
     credential = DefaultAzureCredential()
 
     # Use the default refresh interval of 30 seconds. It can be overridden via refresh_interval
-    config = load(endpoint=endpoint, credential=credential, selects=[SettingSelector(key_filter="Agent:*")], refresh_on=[WatchKey("Agent:Conditions")])
+    config = load(endpoint=endpoint, credential=credential, selects=[SettingSelector(key_filter="Agent:*")], refresh_on=[WatchKey("Agent:WeatherTool")])
     ```
 
 1. Initialize the agent:
 
     ```python
-    async def main()-> None:
+    async def main() -> None:
         async with (
             AzureAIAgentClient(
                 project_endpoint=config["Agent:ProjectEndpoint"], 
@@ -114,13 +95,14 @@ In this section, you create a console application and load your agent configurat
 1. Define the `get_weather` tool function:
     ```python
     def get_weather(
-        location: Annotated[str, Field(description="The location to get the weather for.")]
+            location: Annotated[str, Field(description="The location to get the weather for.")]
     ) -> str:
         """Get the weather for a given location."""
+
         # Refresh the configuration from Azure App Configuration 
         config.refresh()
-        conditions = config["Agent:Conditions"]
-        condition = conditions[-1]
+
+        condition = config["Agent:WeatherTool"]
         
         return f"The weather in {location} is {condition["name"]} with a high of {randint(10, 30)}°C. {condition["message"]}"
     ```
@@ -143,20 +125,21 @@ In this section, you create a console application and load your agent configurat
     credential = DefaultAzureCredential()
 
     # Use the default refresh interval of 30 seconds. It can be overridden via refresh_interval
-    config = load(endpoint=endpoint, credential=credential, selects=[SettingSelector(key_filter="Agent:*")], refresh_on=[WatchKey("Agent:Conditions")])
+    config = load(endpoint=endpoint, credential=credential, selects=[SettingSelector(key_filter="Agent:*")], refresh_on=[WatchKey("Agent:WeatherTool")])
 
     def get_weather(
-        location: Annotated[str, Field(description="The location to get the weather for.")]
+            location: Annotated[str, Field(description="The location to get the weather for.")]
     ) -> str:
         """Get the weather for a given location."""
+
         # Refresh the configuration from Azure App Configuration 
         config.refresh()
-        conditions = config["Agent:Conditions"]
-        condition = conditions[-1]
+
+        condition = config["Agent:WeatherTool"]
         
         return f"The weather in {location} is {condition["name"]} with a high of {randint(10, 30)}°C. {condition["message"]}"
         
-    async def main()-> None:
+    async def main() -> None:
         async with (
             AzureAIAgentClient(
                 project_endpoint=config["Agent:ProjectEndpoint"], 
@@ -212,32 +195,32 @@ In this section, you create a console application and load your agent configurat
 1. Type the message "What is the weather in Seattle?" when prompted with "How can I help?" and then press the Enter key.
 
     ```Output
-    How can I help? (type 'quit' to exit): What is the weather in Seattle ?
-    User: What is the weather in Seattle ?
-    Agent:The current weather in Seattle is rainy with a high of 21°C. You might want to bring an umbrella!
+    How can I help? (type 'quit' to exit): What is the weather in Seattle?
+    User: What is the weather in Seattle?
+    Agent: The weather in Seattle is currently sunny with a high of 17°C. It's a great day to be outside—don't forget sunscreen!
 
-    Press enter to continue...
+    Press Enter to continue...
     ```
 
-1. In Azure portal, select the App Configuration store instance that you created. From the **Operations** menu, select **Configuration explorer**, and update the **Agent:Conditions** value to:
+1. In the Azure portal, select the App Configuration store instance that you created. From the **Operations** menu, select **Configuration explorer**, and update the **Agent:WeatherTool** value to:
 
     | Key                        | Value                                                                                                         |
     |----------------------------|---------------------------------------------------------------------------------------------------------------|
-    | *Agent:Conditions*         | [{"name": "stormy", "message":"Warning: Stay indoors!"},{"name":"sunny", "message":"Don't forget sunscreen!"}]|
+    | *Agent:WeatherTool*        | {"name": "stormy", "message":"Warning: Stay indoors!"}                                                        |
 
 1.  Press the Enter key and type the same message when prompted with "How can I help?". Be sure to wait a few moments for the refresh interval to elapse, and then press the Enter key to see the updated AI response in the output.
 
     ```Output
-    How can I help? (type 'quit' to exit): What is the weather in Seattle ?
-    User: What is the weather in Seattle ?
-    Agent:The current weather in Seattle is rainy with a high of 21°C. You might want to bring an umbrella!
+    How can I help? (type 'quit' to exit): What is the weather in Seattle?
+    User: What is the weather in Seattle?
+    Agent: The weather in Seattle is currently sunny with a high of 17°C. It's a great day to be outside—don't forget sunscreen!
 
-    Press enter to continue...
-    How can I help? (type 'quit' to exit): What is the weather in Seattle ?
-    User: What is the weather in Seattle ?
-    Agent:The weather in Seattle is sunny with a high of 15°C. Don't forget sunscreen!
+    Press Enter to continue...
+    How can I help? (type 'quit' to exit): What is the weather in Seattle?
+    User: What is the weather in Seattle?
+    Agent: The weather in Seattle is currently stormy with a high of 29°C. There is a warning to stay indoors due to the stormy conditions.
 
-    Press enter to continue...
+    Press Enter to continue...
     ```
 
 ## Next steps
