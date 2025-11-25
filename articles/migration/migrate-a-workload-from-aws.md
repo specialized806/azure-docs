@@ -32,7 +32,6 @@ The migration of a workload can span several weeks or months. The duration depen
 
 Before you begin migration planning and execution, ensure you have the following in place:
 
-- *Existing landing zone:* Ensure you have an existing **[Azure platform and application landing zone](/azure/cloud-adoption-framework/ready/enterprise-scale/implementation)**.
 - *Stakeholder alignment:* Share timelines, budget estimates, and project milestones with stakeholders to ensure that all parties are aligned.
 - *Support strategy in place:* Purchase a Microsoft support plan and investigate options for free/community support.
 
@@ -88,9 +87,15 @@ Before moving to the next stage, ensure all plans have been agreed upon by stake
 
 In this phase you build out your Azure environment, implement any changes if refactoring is required, setup your CI/CD tooling and pipelines and perform tests.
 
+**Prepare your environment**
+
+- **Provision landing zones:** Ensure the **[Azure platform and application landing zones](/azure/cloud-adoption-framework/ready/enterprise-scale/implementation)** are provisioned by the platform team for your development and production workload environments.
+- **Test your networking**: Validate your Virtual WAN or hub network and any other foundational services like ExpressRoute or VPN connections are configured to support both the target workload and the migration process. Validate that connectivity is working end-end across your Azure and AWS environments.
 - **Deploy and configure Azure infrastructure**: Use Infrastructure as Code (IaC) to deploy your resources, to ensure consistency and repeatability. If your teams use Terraform on AWS, they can continue using it, however you will need to write new Terraform scripts and modules for your Azure resources. Focus on non-production environments first and validate everything before moving on to staging and production environments.
-- **Test your application landing zone and networking**: Ensure that your Virtual WAN or hub network and any other foundational services like ExpressRoute or VPN connections are configured to support both the target workload and the migration process. Validate that connectivity is working end-end across your Azure and AWS environments.
-- **Refactor your workload early**: Use feature flags to simplify version management between the AWS and Azure environments.
+
+**Prepare your workload**
+
+- **Refactor your workload**: Use feature flags to simplify version management between the AWS and Azure environments.
 - **Prepare your operational functions**: Build CI/CD pipelines and work with the platform team to implement workload monitoring. Collaborate with the security team to implement security monitoring and validate the Azure architecture.
 
 For guidance on preparing your workloads and building your Azure environment, see the [CAF Prepare workloads](/azure/cloud-adoption-framework/migrate/prepare-workloads-cloud) guide.
