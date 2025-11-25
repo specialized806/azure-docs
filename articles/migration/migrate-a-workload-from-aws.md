@@ -1,5 +1,5 @@
 ---
-title: Migrate a Workload
+title: Migrate a Workload from Azure Web Services (AWS)
 description: Learn how to migrate a single workload from AWS to Azure
 ms.author: rhackenberg
 ms.date: 11/24/2025
@@ -10,7 +10,7 @@ ms.collection:
  - aws-to-azure
 ---
 
-# Migrate a workload
+# Migrate a workload from Azure Web Services (AWS)
 
 ## Overview
 
@@ -87,8 +87,6 @@ The goal of this phase is to **assess** the current state of the workload and th
 - **Create a detailed inventory** of your current AWS environment that is required for running the workload (all servers, storage, database, and services), along with usage patterns, performance metrics and licensing requirements.
 - **Success criteria and KPIs:** Define what good looks like in terms of your workload running in Azure after a successful migration. This should include performance metrics (like throughput and response times), security and reliability targets and costs. You can use your inventory to estimate Azure costs and potential savings with [Azure Migrate assessments](/azure/migrate/cost-estimation) or the [Azure pricing calculator](https://azure.microsoft.com/pricing/calculator).
 - **Assess your team's skills:** Include Azure training in your project timeline to ensure that the workload and operations teams are prepared.
-
-For detailed guidance, see the [CAF Plan migration](/azure/cloud-adoption-framework/migrate/plan-migration) guide.
 
 **Design your target architecture**
 
