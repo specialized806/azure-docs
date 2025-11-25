@@ -20,7 +20,6 @@ The scope of this article covers the full migration lifecycle, from planning and
 
 Migrating a workload from AWS is a strategic initiative that requires careful planning and stakeholder alignment. This article focuses on workloads that range from simple to moderately complex and can benefit from a pragmatic migration strategy. 
 
-
 ## Migration strategies to consider
 
 When planning a workload migration, you should consider three types of strategies.  The **migration strategy** refers to how a workload is moved to Azure. This is the overall migration approach from a technical perspective. The **cutover strategy** is how production traffic is moved from the AWS to environment to the Azure environment. Finally, the **data strategy** focuses on how to move the data itself from AWS to Azure. 
@@ -56,7 +55,7 @@ Learn more about migration strategies for [databases](/azure/migration/migrate-d
 
 ## Timeline assumptions
 
-The migration of a workload can span several weeks or months. The duration depends on the complexity of the workload and your migration strategy. The timeline below shows a typical workload migration for a moderately complex workload. The chosen migration strategy is lift-and-shift and/or light re-platforming. Timelines can extend by a few weeks if significant refactoring is needed.
+The migration of a workload can span several weeks or months. The duration depends on the complexity of the workload and your migration and cutover strategy. The timeline below shows a typical workload migration for a moderately complex workload. 
 
 :::image type="content" source="./images/migrate-from-aws-phases.svg" alt-text="Diagram showing three phases of migrating workloads from AWS to Microsoft Azure. Across the top, three labeled boxes indicate phases with durations: Before migration (2–4 weeks), During migration (3–7 weeks), and After migration (1–2 weeks). Each box includes a summary of key activities such as planning, infrastructure setup, and optimization. Below, a horizontal sequence of five icons represents steps: Plan, Prepare, Execute, Optimize, and Decommission." lightbox="./images/migrate-from-aws-phases.svg" border="false":::
 
@@ -68,7 +67,6 @@ Before you begin migration planning and execution, ensure you have the following
 
 - *Existing landing zone:* Ensure you have an existing **[Azure platform and application landing zone](/azure/cloud-adoption-framework/ready/enterprise-scale/implementation)**.
 - *Stakeholder alignment:* Share timelines, budget estimates, and project milestones with stakeholders to ensure that all parties are aligned.
-- *Project plan and timeline:* Collaborate with the platform and operations teams to develop a thorough overall migration plan with your estimated timeline.
 - *Tooling:* Ensure all workload tooling is documented and understood by necessary project teams.  Investigate and train on new tooling to adopt for the Azure environment.
 - *Support strategy in place:* Purchase a Microsoft support plan and investigate options for free/community support.
 
@@ -80,7 +78,7 @@ To help with planning and successful executing your workload migration, work thr
 
 The goal of this phase is to **assess** the current state of the workload and the environment it is running in and then **design** the target state and architecture.
 
-**Assess your AWS environment**
+**Assess your AWS workload**
 
 - **Existing workload architecture:** Ensure you have a fully documented workload architecture that is well understood by the migration team. This includes all workload dependencies (network configurations, data flows, external integrations). 
 - **Identify critical workload flows:** Map out essential user, as well as system interactions and [workflows.](/azure/well-architected/reliability/identify-flows) When designing the target architecture in the next step, this helps prioritize reliability efforts and ensures that the most important and impactful components are protected against failure.
@@ -88,7 +86,7 @@ The goal of this phase is to **assess** the current state of the workload and th
 - **Success criteria and KPIs:** Define what good looks like in terms of your workload running in Azure after a successful migration. This should include performance metrics (like throughput and response times), security and reliability targets and costs. You can use your inventory to estimate Azure costs and potential savings with [Azure Migrate assessments](/azure/migrate/cost-estimation) or the [Azure pricing calculator](https://azure.microsoft.com/pricing/calculator).
 - **Assess your team's skills:** Include Azure training in your project timeline to ensure that the workload and operations teams are prepared.
 
-**Design your target architecture**
+**Design a like-for-like architecture in Azure**
 
 - **Start with networking:** Provide the networking requirements for your workload to the platform team for a new spoke network. Your request should include not only the target architecture, but also the migration connectivity. Learn more about how to [migrate networking from AWS](/azure/migration/migrate-networking-from-aws). 
 - **Choose your migration cutover model as a first step:** When practical, prefer an active-active design over a hot-cold or hot-warm design. Once you have made that determination, design your workload architecture accordingly.
@@ -101,7 +99,11 @@ The goal of this phase is to **assess** the current state of the workload and th
 
 **Develop a migration plan and runbook**
 
+Collaborate with the platform and operations teams to develop a thorough overall migration plan with your estimated timeline.
+
 Document the sequence of steps at a high level. When practical, take a phased approach, including a phased cutover.  If you are planning a one-time all-at-once cutover, define the exact steps, sequence, and timing of the move. Include the  planned outage window in your documentation. Consider including a dry-run, especially for complex cutovers. Document your rollback strategy, DNS TTLs and how to test success metrics.
+
+
 
 **Review**
 
