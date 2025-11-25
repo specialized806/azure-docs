@@ -52,7 +52,7 @@ The goal of this phase is to **assess** the current state of the workload and th
 
 **Design a like-for-like architecture in Azure**
 
-- **Start with networking:** Provide the networking requirements for your workload to the platform team for a new spoke network. Your request should include not only the target architecture, but also the migration connectivity. Learn more about how to [migrate networking from AWS](/azure/migration/migrate-networking-from-aws). 
+- **Start with networking:** Discuss your workload's networking requirements for your workload to the platform team. Your request should include not only the target architecture, but also the migration connectivity. Learn more about how to [migrate networking from AWS](/azure/migration/migrate-networking-from-aws). 
 - To **identify Azure services** that you can use to build your workload in Azure, refer to the [AWS to Azure resource comparison guides](/azure/architecture/aws-professional).
 - **Document your migration decisions:** Document the resources that you won’t migrate and any architecture decisions you made. 
 - **Reduce risks:** Identify any high-risk components or flows and build out POCs as needed to test and mitigate those risks. Consider performing a [failure mode analysis](/azure/well-architected/reliability/failure-mode-analysis) to proactively uncover potential points of failure and assess their impact on the reliability of your workload. 
@@ -70,6 +70,8 @@ Collaborate with the platform and operations teams to develop a thorough overall
 When practical, prefer an active-active design over a hot-cold or hot-warm design. If your budget and timeline allows, plan to perform the migration in small incremental steps rather than all at once. An active-active multi-cloud design during migration lets you migrate and test gradually and with reduced risk. In this scenario, you run your workload in AWS as normal throughout the migration, moving traffic over to Azure in a deliberate, incremental way. Both environments run in parallel throughout the migration, allowing you to shift traffic back to AWS if issues arise in the Azure environment. This approach also enables live testing under real-world conditions to catch issues early with minimal user impact.
 
 There is a cost trade-off to this approach. You will incur costs for both cloud providers during the transition. For most teams, the additional costs are worth taking on due to the reduction of risk and operational burden.
+
+Consider applying the [Strangler Fig façade](/azure/architecture/patterns/strangler-fig) as part of a controlled and phased cutover strategy.
 
 **Document in a runbook:** Document the sequence of steps at a high level. If you are planning a one-time all-at-once cutover, define the exact steps, sequence, and timing of the move. Include the  planned outage window in your documentation. Consider including a dry-run, especially for complex cutovers. Document your rollback strategy, DNS TTLs and how to test success metrics.
 
@@ -89,13 +91,13 @@ In this phase you build out your Azure environment, implement any changes if ref
 
 **Prepare your environment**
 
-- **Provision landing zones:** Ensure the **[Azure platform and application landing zones](/azure/cloud-adoption-framework/ready/enterprise-scale/implementation)** are provisioned by the platform team for your development and production workload environments.
-- **Test your networking**: Validate your Virtual WAN or hub network and any other foundational services like ExpressRoute or VPN connections are configured to support both the target workload and the migration process. Validate that connectivity is working end-end across your Azure and AWS environments.
+- **Provision application landing zones:** Ensure the **[Azure application landing zones](/azure/cloud-adoption-framework/ready/enterprise-scale/implementation)** are provisioned by the platform team for your pre-production and production workload environments.
 - **Deploy and configure Azure infrastructure**: Use Infrastructure as Code (IaC) to deploy your resources, to ensure consistency and repeatability. If your teams use Terraform on AWS, they can continue using it, however you will need to write new Terraform scripts and modules for your Azure resources. Focus on non-production environments first and validate everything before moving on to staging and production environments.
+- **Test your infrastructure**: Validate your Virtual WAN or hub network and any other foundational services like ExpressRoute or VPN connections are configured to support both the target workload and the migration process. Validate that connectivity is working end-end across your Azure and AWS environments.
 
-**Prepare your workload**
+**Prepare your application**
 
-- **Refactor your workload**: Use feature flags to simplify version management between the AWS and Azure environments.
+- **Refactor your application's code**: Use feature flags to simplify version management between the AWS and Azure environments.
 - **Prepare your operational functions**: Build CI/CD pipelines and work with the platform team to implement workload monitoring. Collaborate with the security team to implement security monitoring and validate the Azure architecture.
 
 For guidance on preparing your workloads and building your Azure environment, see the [CAF Prepare workloads](/azure/cloud-adoption-framework/migrate/prepare-workloads-cloud) guide.
@@ -114,7 +116,7 @@ For guidance on preparing your workloads and building your Azure environment, se
 
 For detailed cutover guidance, see the [CAF Execute migration](/azure/cloud-adoption-framework/migrate/execute-migration) guide.
 
-## Validate and optimize
+## Evaluate
 
 Congratulations, your workload is now running on Azure! In this final phase, focus on validating workload stability and efficiency, and the shutdown of resources in AWS.
 
