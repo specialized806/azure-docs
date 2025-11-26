@@ -120,7 +120,7 @@ sections:
 
       - question: How do I track who is accessing my App Configuration store?
         answer: |
-          Azure App Configuration provides logs that can help track who is accessing your App Configuration store. To learn how to enable log collection see the [log collection](./monitor-app-configuration.md#log-collection) section in the 'Monitoring App Configuration' document. For considerations on which specific logs to use to track access, refer to the [./monitor-app-configuration.md#data-access-tracking] section.
+          Azure App Configuration provides logs that can help track who is accessing your App Configuration store. To learn how to enable log collection see the [log collection](./monitor-app-configuration.md#log-collection) section in the 'Monitoring App Configuration' document. For considerations on which specific logs to use to track access, refer to the [data access tracking](./monitor-app-configuration.md#data-access-tracking) section.
 
       - question: Can I upgrade or downgrade an App Configuration store?
         answer: |
