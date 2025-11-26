@@ -332,7 +332,7 @@
         - name: Analyze the generated report
           href: site-recovery-vmware-deployment-planner-analyze-report.md
         - name: Analyze the cost estimation report
-          href: site-recovery-vmware-deployment-planner-cost-estimation.md
+          href: deployment-planner-cost-estimation.md
     - name: Set up disaster recovery
       items:
       - name: Set up the source environment
@@ -464,7 +464,7 @@
         - name: Analyze the generated report
           href: hyper-v-deployment-planner-analyze-report.md
         - name: Analyze the cost estimation report
-          href: hyper-v-deployment-planner-cost-estimation.md
+          href: deployment-planner-cost-estimation.md
   - name: Azure Stack VM disaster recovery
     items:
     - name: Walkthrough-Set up disaster recovery for Azure Stack Hub
@@ -652,8 +652,12 @@
   - name: Learning path
     href: /training/azure/
   - name: Pricing
-    href: https://azure.microsoft.com/pricing/details/site-recovery/
-  - name: Pricing calculator
-    href: https://azure.microsoft.com/pricing/calculator/
+    items:
+    - name: Estimate cost
+      href: deployment-planner-cost-estimation.md
+    - name: Pricing
+      href: https://azure.microsoft.com/pricing/details/site-recovery/
+    - name: Pricing calculator
+      href: https://azure.microsoft.com/pricing/calculator/
   - name: Service updates
     href: https://azure.microsoft.com/updates/?product=site-recovery
