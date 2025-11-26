@@ -219,9 +219,9 @@ Following are sample queries that you can use to help you monitor your App Confi
     ```
 
 ### Data access tracking
-For tracking key-value access history, audit logs provide details including the caller identity, caller's ip address, action performed, and the affected key-value. The **CallerIdentity** field lets you correlate the change with the caller.
+To identify who is accessing your App Configuration store, the most recommended way is to use audit logs. Audit logs include caller identity, caller IP address, the action performed, and the affected key-value. Use **CallerIdentity** to correlate a change with the specific caller.
 
-HTTP request logs provide context related to request patterns and performance, for example, user agent, request duration, request volume. **ClientObjectId**, **ClientTenantId**, **AccessKeyId** supply caller information and help you determine whether the request used AAD or access key.
+Use HTTP request logs to analyze read operations. Because these logs are aggregated by HTTP method and status code, some caller identity details may be lost during aggregation. HTTP request logs are best for understanding request patterns and performance characteristics such as user agent, request duration, and request volume. The **ClientObjectId**, **ClientTenantId**, and **AccessKeyId** fields provide caller context and help you determine whether the request used AAD or an access key.
 
 Two authentication methods are supported, which are AAD and access key (HMAC/connection string). If you use AAD, you should see information about caller or client. If you use access key, you should see information related to access key. To enforce AAD authentication and remove access key usage, see [disable access key based authentication](/azure/azure-app-configuration/howto-disable-access-key-authentication?tabs=portal#disable-access-key-authentication).
 

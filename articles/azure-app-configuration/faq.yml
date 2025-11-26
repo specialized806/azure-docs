@@ -118,9 +118,9 @@ sections:
 
               Premium tier stores also have a daily usage charge and include a replica. The first 800,000 requests for the origin and the first 800,000 requests for the replica each day are included in the daily charge. Requests exceeding this daily allocation incur an overage charge.
 
-      - question: How to check who accessed key-value in App Configuration store?
+      - question: How do I track who is accessing my App Configuration store?
         answer: |
-          To identify who accessed key-value for an App Configuration store (create, update, delete, and read operations), enable log collection by creating a diagnostic setting and routing the HTTP request logs and audit logs to a Log Analytics workspace. You can then query the logs in **Monitoring** > **Logs**. For a detailed guide and query samples, see [Monitoring App Configuration](./monitor-app-configuration.md#logs) and [Data access tracking](./monitor-app-configuration.md#data-access-tracking).
+          Azure App Configuration provides logs that can help track who is accessing your App Configuration store. To learn how to enable log collection see the [log collection](./monitor-app-configuration.md#log-collection) section in the 'Monitoring App Configuration' document. For considerations on which specific logs to use to track access, refer to the [./monitor-app-configuration.md#data-access-tracking] section.
 
       - question: Can I upgrade or downgrade an App Configuration store?
         answer: |
