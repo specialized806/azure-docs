@@ -18,6 +18,14 @@ This article provides architects and engineers with actionable, prescriptive gui
 
 The scope of this article covers the full migration lifecycle, from planning and preparation, to execution and validation, to decommissioning of AWS resources.
 
+**Workload migration strategy**
+
+A like-for-like workload migration strategy is the fastest path to Azure and has the least risk. This approach keeps the existing architecture and operational patterns. The goal is that the migrated workload will meet the same key performance indicators (KPIs) on Azure as it did on AWS. Minimize changes during the migration and focus on validating performance and stability. Once the migration of your workload is completed, optimization can be explored.
+
+**Recommended tools**
+
+We recommend to leverage AWS as well as Azure tools where appropriate to augment your migration process. The tools support upfront discovery, planning by using AWS's data to inform the design of your Azure architecture, data and VM transfer, and post-migration validation and resource cleanup. 
+
 Migrating a workload from AWS is a strategic initiative that requires careful planning and stakeholder alignment. This article focuses on workloads that range from simple to moderately complex and can benefit from a pragmatic migration strategy. 
 
 ## Timeline assumptions
@@ -34,6 +42,7 @@ Before you begin migration planning and execution, ensure you have the following
 
 - *Stakeholder alignment:* Share timelines, budget estimates, and project milestones with stakeholders to ensure that all parties are aligned.
 - *Support strategy in place:* Purchase a Microsoft support plan and investigate options for free/community support.
+- *Platform strategy in place:* This article covers how to migrate a single workload and assumes your platform foundation is in place and overall migration strategy are defined and in alignment with the [Cloud Adoption Framework](/azure/cloud-adoption-framework/strategy).
 
 In addition to these measures, consider completing a [Migration Readiness Assessment](/assessments/Strategic-Migration-Assessment/). This assessment scores your readiness to migrate across 10 dimensions.
 
@@ -49,6 +58,7 @@ The goal of this phase is to **assess** the current state of the workload and th
 - **Identify critical workload flows:** Map out essential user, as well as system interactions and [workflows.](/azure/well-architected/reliability/identify-flows) When designing the target architecture in the next step, this helps prioritize reliability efforts and ensures that the most important and impactful components are protected against failure.
 - **Create a detailed inventory** of your current AWS environment that is required for running the workload (all servers, storage, database, and services), along with usage patterns, performance metrics and licensing requirements.
 - **Assess your team's skills:** Include Azure training in your project timeline to ensure that the workload and operations teams are prepared. Focus on like-for-like capability mapping. Identify the skills your team uses already in AWS and align them with the equivalent Azure services and tools. This approach reduces friction and accelerates adoption. It builds confidence with Azure as existing experience in AWS translates directly to the new environment.
+- **Document existing KPIs:** Document the defined performance baseline of your workload, such as throughput, latency, error rates, resource utilization. If these are not available, collect these metric from your AWS environment to establish this baseline. These KPIs will be used post-migration in the evaluation phase, to validate that the workload in Azure performs as well as it did in AWS. This supports the like-for-like migration strategy and reduces risks.
 
 **Design a like-for-like architecture in Azure**
 
@@ -104,11 +114,16 @@ For guidance on preparing your workloads and building your Azure environment, se
 
 ## Execute
 
+**Before cutover**
+
 - **Execute your data migration:** Align the order of operations with the migration model you have selected. For active replication scenarios, start with the setup of your continuous data synchronization between AWS and Azure. This ensures minimal downtime and data consistency during cutover. For backup-and-restore models, start with a full backup of your AWS data, transfer it securely to Azure, and then restore it into the target environment. Validate the integrity of the data before you proceed with the next step.
 - **Configure your application's components:** Point components to their dependencies, some of which might still be on AWS initially. In an incremental migration approach, your database might still be in AWS and will be replicated later.
 - **Connectivity and networking modifications:** Ensure that your Azure resources can reach anything that still remains in AWS and vice versa if needed. Adjust your firewall and Network Security Groups (NSGs) rules and policies as well as routing as required. Troubleshooting this component can be tricky. Take your time and check everything step-by-step. Security group misconfigurations are a common pitfall.
 - **Testing** includes functional testing, performance testing, and failure testing. Use [**Azure Chaos Studio**](/azure/chaos-studio/) to simulate potential faults (such as VM or networking outages) and validate that the migrated workload remains resilient under those circumstances.
 - **Iterate and fix** any issues you encounter. Common pitfalls include paths in scripts or APIs calls, Azure service limits and quotas that might need increasing. Some Azure resource features may require different implementations in Terraform.
+
+**Cutover and post-migration transition**
+
 - **Cutover to Azure:** How you execute this step depends on your chosen strategy. In the recommended, incremental active-active approach, you gradually shift traffic from AWS to Azure based on a given criteria (criteria could include regions, user types, or application features). In the all-at-once approach, you switch all traffic at once during a cutover time. You must ensure that all data is synced and all components are prepared to accept production traffic. Then you switch all connections to Azure and bring up your Azure environment as primary. A maintenance window is recommended in which you briefly pause traffic/the application to avoid inconsistencies. Automate any health checks and monitor in real time during the cutover.
 - **Follow your runbook**: In either scenario, follow your runbook and communicate with stakeholders about cutover progress and any expected impact to the timeline or any other issues they should be aware of.
 - **Take advantage of the active-active design**: Deallocate AWS components gradually without downtime.
@@ -121,7 +136,7 @@ For detailed cutover guidance, see the [CAF Execute migration](/azure/cloud-adop
 Congratulations, your workload is now running on Azure! In this final phase, focus on validating workload stability and efficiency, and the shutdown of resources in AWS.
 
 - **Monitor and fine-tune:** Closely track your workload trends for any errors, performance bottlenecks or unusual patterns, especially in the first 1-2 weeks. This step includes right-sizing components, ensuring your scaling strategy is working as intended, watching budget thresholds, and checking/validating your disaster recovery configurations and backups. Prioritize the remediation of any security issues.
-- **Measure against baselines**: Verify that the agreed upon KPIs, like throughput, latency, and error rates, are being met and compare favorably to the AWS measurements.
+- **Measure against baselines**: Verify that the baseline KPIs you documented in the planning phase, like throughput, latency, and error rates, are being met and compare favorably to the AWS measurements.
 - **Plan for future improvements:** Create a work backlog for any non-urgent improvements like opportunities for cost optimization and added resilience.
 - **Celebrate milestones**: Sign-off when your minimum viable cutover has been achieved and all tests validate a successful migration outcome.
 
@@ -150,7 +165,6 @@ For a thorough review of decommissioning steps, see the [CAF Decommission source
 - Turn off replication
 - Delete AWS resources
 - Update internal documents
-
 
 ## Conclusion
 
@@ -191,7 +205,3 @@ Consider conducting a [Well-Architected Review](/azure/well-architected/) of you
 - [Connect AWS and Azure using a BGP-enabled VPN gateway](/azure/vpn-gateway/vpn-gateway-howto-aws-bgp)
 - [Migrate Amazon API Gateway to Azure API Management](/azure/api-management/migrate-amazon-api-gateway-to-api-management)
 - [Discover, assess, and migrate Amazon Web Services (AWS) VMs to Microsoft Azure](/azure/migrate/tutorial-migrate-aws-virtual-machines)
-
-
-
-
