@@ -24,7 +24,7 @@ A like-for-like workload migration strategy is the fastest path to Azure and has
 
 **Recommended tools**
 
-We recommend to leverage AWS as well as Azure tools where appropriate to augment your migration process. The tools support upfront discovery, planning by using AWS's data to inform the design of your Azure architecture, data and VM transfer, and post-migration validation and resource cleanup. 
+Leverage AWS and Azure tools where appropriate to augment your migration process. These tools support upfront discovery, planning your Azure architecture (based on data gathered about your AWS workload), data and VM transfer, and post-migration validation and resource cleanup. 
 
 Migrating a workload from AWS is a strategic initiative that requires careful planning and stakeholder alignment. This article focuses on workloads that range from simple to moderately complex and can benefit from a pragmatic migration strategy. 
 
@@ -50,7 +50,7 @@ To help with planning and successful executing your workload migration, work thr
 
 ## Plan
 
-The planning phase consists of three sections: assess, design, and document your decisions. Ensure to take your time in the planning phase and follow the steps in order. An incomplete discovery or unclear migration objectives risks misaligned expectations and missed dependencies and gaps. 
+The planning phase consists of three steps: assess, design, and document your decisions. Ensure to take your time in the planning phase and follow the steps in order. An incomplete discovery or unclear migration objectives risks misaligned expectations and missed dependencies and gaps. 
 
 ### Assess your AWS workload
 
@@ -101,7 +101,7 @@ Once the plan and runbook have been reviewed and agreed upon by stakeholders and
 - AWS tools
 ## Prepare
 
-The prepare phase consists of two sections: Preparing your environment and preparing your application. During this phase you build out your Azure environment, implement any changes if refactoring is required, setup your CI/CD tooling and pipelines and perform tests to support a smooth and secure migration. Take your time during this phase as any misconfigured infrastructure, insufficient testing or lack of your team's readiness can result in delays, security vulnerabilities, or failed deployments during execution.
+The prepare phase consists of two steps: Preparing your environment and preparing your application. During this phase you build out your Azure environment, implement any changes if refactoring is required, setup your CI/CD tooling and pipelines and perform tests to support a smooth and secure migration. Take your time during this phase as any misconfigured infrastructure, insufficient testing or lack of your team's readiness can result in delays, security vulnerabilities, or failed deployments during execution.
 
 ### Prepare your environment
 
@@ -118,7 +118,7 @@ For guidance on preparing your workloads and building your Azure environment, se
 
 ## Execute
 
-The execute phase consists of three sections: Before cutover, during cutover, and after cutover. 
+The execute phase consists of three steps: Before cutover, during cutover, and after cutover. 
 
 ### Before cutover
 
