@@ -10,7 +10,7 @@ ms.collection:
  - aws-to-azure
 ---
 
-# Migrate a workload from Azure Web Services (AWS)
+# Migrate a workload from Amazon Web Services (AWS)
 
 ## Overview
 
@@ -106,7 +106,7 @@ The prepare phase consists of two steps: Preparing your environment and preparin
 ### Prepare your environment
 
 - **Provision application landing zones:** Ensure the **[Azure application landing zones](/azure/cloud-adoption-framework/ready/enterprise-scale/implementation)** are provisioned by the platform team for your preproduction and production workload environments.
-- **Deploy and configure Azure infrastructure**: To deploy your resources, use Infrastructure as Code (IaC). This will ensure consistency and repeatability. If your teams use Terraform on AWS, they can continue using it, however you need to write new Terraform scripts and modules for your Azure resources. Focus on nonproduction environments first and validate everything before moving on to staging and production environments.
+- **Deploy and configure Azure infrastructure**: To deploy your resources, use Infrastructure as Code (IaC). This ensures consistency and repeatability. If your teams use Terraform on AWS, they can continue using it, however you need to write new Terraform scripts and modules for your Azure resources. Focus on nonproduction environments first and validate everything before moving on to staging and production environments.
 - **Test your infrastructure**: Validate your Virtual WAN or hub network and any other foundational services like ExpressRoute or VPN connections are configured to support both the target workload and the migration process. Validate that connectivity is working end-end across your Azure and AWS environments.
 
 ### Prepare your application
