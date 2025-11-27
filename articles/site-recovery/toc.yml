@@ -645,12 +645,6 @@
   items:
   - name: Azure updates
     href: https://azure.microsoft.com/updates/?searchterms=Azure+Site+Recovery
-  - name: Blog
-    href: https://azure.microsoft.com/blog/tag/azure-site-recovery/
-  - name: Microsoft Q&A question page
-    href: /answers/topics/azure-site-recovery.html
-  - name: Learning path
-    href: /training/azure/
   - name: Pricing
     items:
     - name: Estimate cost
@@ -659,5 +653,11 @@
       href: https://azure.microsoft.com/pricing/details/site-recovery/
     - name: Pricing calculator
       href: https://azure.microsoft.com/pricing/calculator/
+  - name: Blog
+    href: https://azure.microsoft.com/blog/tag/azure-site-recovery/
+  - name: Microsoft Q&A question page
+    href: /answers/topics/azure-site-recovery.html
+  - name: Learning path
+    href: /training/azure/
   - name: Service updates
     href: https://azure.microsoft.com/updates/?product=site-recovery
