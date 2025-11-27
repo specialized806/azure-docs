@@ -78,7 +78,11 @@ The goal of this section is to replicate the existing workload's structure, beha
 
 The goal of this section is to document your design and migration strategies and create a runbook. Collaborate with the platform and operations teams to develop a thorough overall migration plan with your estimated timeline.
 
-**Choose your data migration strategy:** Your choice depends on the amount of data, type of data storage, and usage requirements. Decide between offline migration (backup-and-restore), live replication, and file storage. Learn more about migration strategies for [databases](/azure/migration/migrate-databases-from-aws) or [storage](/azure/migration/migrate-storage-from-aws).
+**Choose your data migration strategy:** Your choice depends on the amount of data, type of data storage, and usage requirements. Decide between offline migration (backup-and-restore), live replication, and file storage. 
+
+- **Database migration:** In regards to your [database migration](/azure/migration/migrate-databases-from-aws) you can use AWS as well as Azure tooling. For example, Azure Data Studio allows you to [replicate Amazon RDS for SQL Server to Azure SQL Database and cut over with minimal downtime](/azure/dms/tutorial-sql-server-azure-sql-online.). This allows continuous replication from Amazon RDS to Azure SQL Database. Alternatively you can use[ AWS DMS](https://docs.aws.amazon.com/dms/latest/userguide/Welcome.html) which offers continuous replication and change data capture until you cutover. 
+
+- **Storage:** To transfer storage data from [Amazon S3 to Azure](/azure/migration/migrate-storage-from-aws) you have multiple options. For fast bulk-transfer using the CLI, you can use [AzCopy](/azure/storage/common/storage-use-azcopy-s3). For Enterprise-grade orchestration and transform-heavy data transfer, use [Azure Data Factory](/azure/data-factory/data-migration-guidance-s3-azure-storage). You can also use [AWS DataSync](https://aws.amazon.com/datasync/features/) to automate the transfer. If you chose AWS DataSync, the DataSync agent needs to be deployed in Azure during the prepare phase. 
 
 **Choose your cutover strategy:** This strategy moves production traffic from the AWS environment to the Azure environment. 
 
