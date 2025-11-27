@@ -131,6 +131,14 @@ ROUTE_CONFIG_NAME="my-route-config"
 
     This configuration defines two routing rules for HTTP traffic.
 
+> [!NOTE]
+> The order of the routing rules matter.
+> 
+> More specific prefixes need to be before less specific prefixes.
+> 
+> For example, if the first rule matches the prefix /api, that will be used even if the second rule uses the prefix /api/v1.
+
+
     | Property | Description |
     |---|---|
     | `description` | Human-readable label for the rule |
