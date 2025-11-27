@@ -138,7 +138,6 @@ ROUTE_CONFIG_NAME="my-route-config"
 > 
 > For example, if the first rule matches the prefix /api, that will be used even if the second rule uses the prefix /api/v1.
 
-
     | Property | Description |
     |---|---|
     | `description` | Human-readable label for the rule |
