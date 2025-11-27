@@ -110,7 +110,8 @@ The prepare phase consists of two steps: Preparing your environment and preparin
 ### Prepare your environment
 
 - **Provision application landing zones:** Ensure the platform team provisions the **[Azure application landing zones](/azure/cloud-adoption-framework/ready/enterprise-scale/implementation)** for your preproduction and production workload environments.
-- **Deploy and configure Azure infrastructure:** Use Infrastructure as Code (IaC) to deploy your resources. This approach ensures consistency and repeatability. If your teams use Terraform on AWS, they can continue using it. However, you need to write new Terraform scripts and modules for your Azure resources. Focus on nonproduction environments first and validate everything before moving on to staging and production environments.
+- **Deploy and configure Azure infrastructure:** Use Infrastructure as Code (IaC) to deploy your resources. This approach ensures consistency and repeatability. If your teams use Terraform on AWS, they can continue using it. However, you need to write new Terraform scripts and modules for your Azure resources. If your existing deployment scripts are using [CloudFormation](https://docs.aws.amazon.com/cloudformation/), consider using [Bicep](/azure/azure-resource-manager/bicep/) to deploy on Azure. Focus on nonproduction environments first and validate everything before moving on to staging and production environments.
+- **Update CI/CD pipelines for Azure:** Modify your deployment pipelines to target Azure Services. Configure the service connections and validate that your build and release workflows can deploy your selected Azure compute (such as AppService, AKS, or VMs). During the migration and while using and active-active migration, make sure that your scripts deploy to both AWS and Azure. This will maintain parity and reduce risk.
 - **Test your infrastructure:** Validate your Virtual WAN or hub network and any other foundational services like ExpressRoute or VPN connections. Ensure they're configured to support both the target workload and the migration process. Validate that connectivity works end-to-end across your Azure and AWS environments.
 
 ### Prepare your application
@@ -141,6 +142,7 @@ The execute phase consists of three steps: before cutover, during cutover, and a
 ### After cutover
 
 - **Take advantage of the active-active design**: Deallocate AWS components gradually without downtime.
+- **Update CI/CD pipelines for Azure:** Update deployment pipelines to stop targeting AWS and only target Azure.
 - **Post-cutover verification:** Closely monitor your workload metrics in Azure, and if they degrade severely or if you detect a critical bug, execute your rollback plan and be ready to revert traffic back to AWS. Run a full regression test in production if possible and check all components. Run smoke tests for critical functions, watch your security logs, and ensure all monitoring signals and alerts are green. After a day or two, monitor costs and usage to ensure there are no runaway resources incurring costs. 
 
 For detailed cutover guidance, see the [CAF Execute migration](/azure/cloud-adoption-framework/migrate/execute-migration) guide.
