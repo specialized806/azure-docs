@@ -1,5 +1,6 @@
 ---
 title: Review the Azure Site Recovery Deployment Planner cost estimation report
+ms.reviewer: v-gajeronika
 description: This article describes how to review the cost estimation report generated the Azure Site Recovery Deployment Planner for Hyper-V disaster recovery to Azure.
 services: site-recovery
 author: Jeronika-MS
@@ -21,9 +22,9 @@ The Azure Site Recovery Deployment Planner Report provides the cost estimation s
 
 The graph shows the summary view of the estimated total disaster recovery (DR) cost to Azure of your chosen target region and the currency that you specified for report generation.
 
-![Cost estimation summary](media/hyper-v-azure-deployment-planner-cost-estimation/cost-estimation-summary-h2a.png)
+:::image type="content" source="media/hyper-v-azure-deployment-planner-cost-estimation/cost-estimation-summary-h2a.png" alt-text="Cost estimation summary.":::
 
-![Cost estimation summary](media/site-recovery-vmware-deployment-planner-analyze-report/cost-estimation-summary-v2a.png)
+:::image type="content" source="media/site-recovery-vmware-deployment-planner-analyze-report/cost-estimation-summary-v2a.png" alt-text="Cost estimation summary.":::
 
 The summary helps you to understand the cost that you need to pay for storage, compute, network, and license when you protect your compatible VMs by using Azure Site Recovery. The cost is calculated for compatible VMs and not on all the profiled VMs. 
  
@@ -47,7 +48,7 @@ This section shows the subscription ID and offer ID that you used for report gen
 
 In the whole report, the cells marked in gray are read-only. Cells in white can be modified according to your requirements.
 
-![Cost estimation details](media/hyper-v-azure-deployment-planner-cost-estimation/cost-estimation1-h2a.png)
+:::image type="content" source="media/hyper-v-azure-deployment-planner-cost-estimation/cost-estimation1-h2a.png" alt-text="Cost estimation details.":::
 
 ### Overall DR costs by components
 
@@ -108,7 +109,7 @@ This table shows the number of Windows and non-Windows VMs and the DR-drill comp
 
 ## Detailed cost analysis table
 
-![Detailed cost analysis](media/hyper-v-azure-deployment-planner-cost-estimation/detailed-cost-analysis-h2a.png)
+:::image type="content" source="media/hyper-v-azure-deployment-planner-cost-estimation/detailed-cost-analysis-h2a.png" alt-text="Detailed cost analysis.":::
 
 The table lists the cost breakdown for each compatible VM. You also can use this table to get the estimated Azure DR cost of nonprofiled VMs by manually adding VMs. This information is useful in cases where you need to estimate Azure costs for a new DR deployment without detailed profiling.
 
