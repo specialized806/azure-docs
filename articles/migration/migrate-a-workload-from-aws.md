@@ -101,6 +101,11 @@ There's a cost trade-off to this approach. You incur costs for both cloud provid
 
 **Document in a runbook:** Document the sequence of steps at a high level. If you're planning a one-time all-at-once cutover, define the exact steps, sequence, and timing of the move. Include the planned outage window in your documentation. Consider including a dry-run, especially for complex cutovers. Document your rollback strategy, DNS TTLs, and how to test success metrics.
 
+Plan and document your traffic switchover in detail. Define exactly how DNS records, load balancer configurations, and routing rules will be updated to direct traffic to Azure. Take into consideration and TTL that you might have configured. 
+
+> [!NOTE]
+> Neglecting to explicitly plan traffic routing is a common pitfall that can lead to unexpected downtime. 
+
 Review the plan with stakeholders and reconcile differing expectations. Include IT security and risk management teams from the start and ensure they sign off on the plan. A joint workshop at this stage can help minimize delays in later stages.
 
 Once the plan and runbook are reviewed and agreed upon by stakeholders and decision-makers, move on to the prepare phase.
