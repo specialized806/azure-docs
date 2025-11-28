@@ -168,8 +168,6 @@
       href: azure-to-azure-architecture.md
     - name: Azure trusted launch VMs
       href: concepts-trusted-vm.md
-    - name: Azure to Azure - Costs
-      href: site-recovery-cost.md
     - name: Configure Failover for Multiple IP addresses
       href: concepts-multiple-ip-address-failover.md
     - name: Configure Mobility Service Proxy Settings
@@ -647,9 +645,11 @@
     href: https://azure.microsoft.com/updates/?searchterms=Azure+Site+Recovery
   - name: Pricing
     items:
+    - name: Azure to Azure - Costs
+      href: site-recovery-cost.md
     - name: Estimate cost
       href: deployment-planner-cost-estimation.md
-    - name: Pricing
+    - name: Azure Site Recovery Pricing
       href: https://azure.microsoft.com/pricing/details/site-recovery/
     - name: Pricing calculator
       href: https://azure.microsoft.com/pricing/calculator/
