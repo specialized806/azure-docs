@@ -134,119 +134,133 @@ This guide explains how to deploy Geospatial Consumption Zone (GCZ) as an **add-
    ### [Unix Shell](#tab/unix-shell)
 
    ```bash
-   cat > osdu_gcz_custom_values.yaml << EOF
-   # GCZ Configuration - Azure Deployment
+  cat > osdu_gcz_custom_values.yaml << EOF
+# GCZ Configuration - Azure Deployment
 
-   global:
-     ignite:
-       namespace: $NAMESPACE
-       name: ignite
-       image:
-         name: gridgain/community
-         tag: 8.8.43
-       configuration:
-         gcz_ignite_namespace: "$GCZ_IGNITE_NAMESPACE"
-         gcz_ignite_service: "$GCZ_IGNITE_SERVICE"
+global:
+  ignite:
+    namespace: $NAMESPACE
+    name: ignite
+    image:
+      repository: "{{ .Values.global.ignite.image.repository }}"
+      name: "{{ .Values.global.ignite.image.name }}"
+      tag: "{{ .Values.global.ignite.image.tag }}"
+    configuration:
+      gcz_ignite_namespace: "$GCZ_IGNITE_NAMESPACE"
+      gcz_ignite_service: "$GCZ_IGNITE_SERVICE"
+      gcz_persistence_enabled: true
+      gcz_persistence_folder: "/persistence/storage"
+      gcz_ignite_replicas: 3
+      gcz_ignite_cpu: "2"
+      gcz_ignite_memory: "4Gi"
 
-     provider:
-       namespace: $NAMESPACE
-       entitlementsGroupsURL: "https://$AZURE_DNS_NAME/api/entitlements/v2/groups"
-       image:
-         repository: community.opengroup.org:5555
-         name: osdu/platform/consumption/geospatial/geospatial-provider-master
-         tag: latest
-       service:
-         type: LoadBalancer
-       configuration:
-         privateNetwork: "$PRIVATE_NETWORK"
+  provider:
+    namespace: $NAMESPACE
+    entitlementsGroupsURL: "https://$AZURE_DNS_NAME/api/entitlements/v2/groups"
+    image:
+      repository: "{{ .Values.global.provider.image.repository }}"
+      name: "{{ .Values.global.provider.image.name }}"
+      tag: "{{ .Values.global.provider.image.tag }}"
+    service:
+      type: LoadBalancer
+    configuration:
+      privateNetwork: "$PRIVATE_NETWORK"
+      gcz_persistence_enabled: true
 
-     transformer:
-       namespace: $NAMESPACE
-       image:
-         repository: community.opengroup.org:5555
-         name: osdu/platform/consumption/geospatial/geospatial-transformer-master
-         tag: latest
-       service:
-         type: LoadBalancer
-       configuration:
-         privateNetwork: "$PRIVATE_NETWORK"
-         datapartitionid: $DATA_PARTITION_ID
-         clientId: $AZURE_CLIENT_ID
-         tenantId: $AZURE_TENANT_ID
-         callbackURL: $CALLBACK_URL
-         scope: $SCOPE
-         searchQueryURL: "https://$AZURE_DNS_NAME/api/search/v2/query"
-         searchCursorURL: "https://$AZURE_DNS_NAME/api/search/v2/query_with_cursor"
-         schemaURL: "https://$AZURE_DNS_NAME/api/schema-service/v1/schema"
-         entitlementsURL: "https://$AZURE_DNS_NAME/api/entitlements/v2"
-         fileRetrievalURL: "https://$AZURE_DNS_NAME/api/dataset/v1/retrievalInstructions"
-         crsconvertorURL: "https://$AZURE_DNS_NAME/api/crs/converter/v3/convertTrajectory"
-         storageURL: "https://$AZURE_DNS_NAME/api/storage/v2/records"
-         clientSecret: $(echo "$AZURE_CLIENT_SECRET" | base64)
-         gcz_ignite_namespace: "$GCZ_IGNITE_NAMESPACE"
-         gcz_ignite_service: "$GCZ_IGNITE_SERVICE"
+  transformer:
+    namespace: $NAMESPACE
+    image:
+      repository: "{{ .Values.global.transformer.image.repository }}"
+      name: "{{ .Values.global.transformer.image.name }}"
+      tag: "{{ .Values.global.transformer.image.tag }}"
+    service:
+      type: LoadBalancer
+    configuration:
+      privateNetwork: "$PRIVATE_NETWORK"
+      datapartitionid: $DATA_PARTITION_ID
+      clientId: $AZURE_CLIENT_ID
+      tenantId: $AZURE_TENANT_ID
+      callbackURL: $CALLBACK_URL
+      scope: $SCOPE
+      searchQueryURL: "https://$AZURE_DNS_NAME/api/search/v2/query"
+      searchCursorURL: "https://$AZURE_DNS_NAME/api/search/v2/query_with_cursor"
+      schemaURL: "https://$AZURE_DNS_NAME/api/schema-service/v1/schema"
+      entitlementsURL: "https://$AZURE_DNS_NAME/api/entitlements/v2"
+      fileRetrievalURL: "https://$AZURE_DNS_NAME/api/dataset/v1/retrievalInstructions"
+      crsconvertorURL: "https://$AZURE_DNS_NAME/api/crs/converter/v3/convertTrajectory"
+      storageURL: "https://$AZURE_DNS_NAME/api/storage/v2/records"
+      clientSecret: $(echo "$AZURE_CLIENT_SECRET" | base64)
+      gcz_ignite_namespace: "$GCZ_IGNITE_NAMESPACE"
+      gcz_ignite_service: "$GCZ_IGNITE_SERVICE"
+      gcz_persistence_enabled: true
    EOF
    ```
 
    ### [Windows PowerShell](#tab/windows-powershell)
 
    ```powershell
-   @"
-   # This file contains the essential configs for the gcz on azure helm chart
+  @"
+# This file contains the essential configs for the GCZ Azure Helm chart
+################################################################################
+# Specify the values for each service.
 
-   ################################################################################
-   # Specify the values for each service.
-   #
-   global:
-     ignite:
-       namespace: $NAMESPACE
-       name: ignite
-       image:
-         name: gridgain/community
-         tag: 8.8.43
-       configuration:
-         gcz_ignite_namespace: "$GCZ_IGNITE_NAMESPACE"
-         gcz_ignite_service: "$GCZ_IGNITE_SERVICE"
+global:
+  ignite:
+    namespace: $NAMESPACE
+    name: ignite
+    image:
+      name: gridgain/community
+      tag: 8.8.43
+    configuration:
+      gcz_ignite_namespace: "$GCZ_IGNITE_NAMESPACE"
+      gcz_ignite_service: "$GCZ_IGNITE_SERVICE"
+      gcz_persistence_enabled: true
+      gcz_persistence_folder: "/persistence/storage"
+      gcz_ignite_replicas: 3
+      gcz_ignite_cpu: "2"
+      gcz_ignite_memory: "4Gi"
 
-     provider:
-       namespace: $NAMESPACE
-       entitlementsGroupsURL: "https://$AZURE_DNS_NAME/api/entitlements/v2/groups"
-       image:
-         repository: community.opengroup.org:5555
-         name: osdu/platform/consumption/geospatial/geospatial-provider-master
-         tag: latest
-       service:
-         type: LoadBalancer
-       configuration:
-         privateNetwork: "$PRIVATE_NETWORK"
+  provider:
+    namespace: $NAMESPACE
+    entitlementsGroupsURL: "https://$AZURE_DNS_NAME/api/entitlements/v2/groups"
+    image:
+      repository: community.opengroup.org:5555
+      name: osdu/platform/consumption/geospatial/geospatial-provider-master
+      tag: latest
+    service:
+      type: LoadBalancer
+    configuration:
+      privateNetwork: "$PRIVATE_NETWORK"
+      gcz_persistence_enabled: true
 
-     transformer:
-       namespace: $NAMESPACE
-       image:
-         repository: community.opengroup.org:5555
-         name: osdu/platform/consumption/geospatial/geospatial-transformer-master
-         tag: latest
-       service:
-         type: LoadBalancer
-       configuration:
-         privateNetwork: "$PRIVATE_NETWORK"
-         datapartitionid: $DATA_PARTITION_ID
-         clientId: $AZURE_CLIENT_ID
-         tenantId: $AZURE_TENANT_ID
-         callbackURL: $CALLBACK_URL
-         scope: $SCOPE
-         searchQueryURL: "https://$AZURE_DNS_NAME/api/search/v2/query"
-         searchCursorURL: "https://$AZURE_DNS_NAME/api/search/v2/query_with_cursor"
-         schemaURL: "https://$AZURE_DNS_NAME/api/schema-service/v1/schema"
-         entitlementsURL: "https://$AZURE_DNS_NAME/api/entitlements/v2"
-         fileRetrievalURL: "https://$AZURE_DNS_NAME/api/dataset/v1/retrievalInstructions"
-         crsconvertorURL: "https://$AZURE_DNS_NAME/api/crs/converter/v3/convertTrajectory"
-         storageURL: "https://$AZURE_DNS_NAME/api/storage/v2/records"
-         clientSecret: $(echo "$AZURE_CLIENT_SECRET" | base64)
-         gcz_ignite_namespace: "$GCZ_IGNITE_NAMESPACE"
-         gcz_ignite_service: "$GCZ_IGNITE_SERVICE"
-   "@ | Out-File -FilePath osdu_gcz_custom_values.yaml
-   ```
+  transformer:
+    namespace: $NAMESPACE
+    image:
+      repository: community.opengroup.org:5555
+      name: osdu/platform/consumption/geospatial/geospatial-transformer-master
+      tag: latest
+    service:
+      type: LoadBalancer
+    configuration:
+      privateNetwork: "$PRIVATE_NETWORK"
+      datapartitionid: $DATA_PARTITION_ID
+      clientId: $AZURE_CLIENT_ID
+      tenantId: $AZURE_TENANT_ID
+      callbackURL: $CALLBACK_URL
+      scope: $SCOPE
+      searchQueryURL: "https://$AZURE_DNS_NAME/api/search/v2/query"
+      searchCursorURL: "https://$AZURE_DNS_NAME/api/search/v2/query_with_cursor"
+      schemaURL: "https://$AZURE_DNS_NAME/api/schema-service/v1/schema"
+      entitlementsURL: "https://$AZURE_DNS_NAME/api/entitlements/v2"
+      fileRetrievalURL: "https://$AZURE_DNS_NAME/api/dataset/v1/retrievalInstructions"
+      crsconvertorURL: "https://$AZURE_DNS_NAME/api/crs/converter/v3/convertTrajectory"
+      storageURL: "https://$AZURE_DNS_NAME/api/storage/v2/records"
+      clientSecret: $(echo "$AZURE_CLIENT_SECRET" | base64)
+      gcz_ignite_namespace: "$GCZ_IGNITE_NAMESPACE"
+      gcz_ignite_service: "$GCZ_IGNITE_SERVICE"
+      gcz_persistence_enabled: true
+"@ | Out-File -FilePath osdu_gcz_custom_values.yaml
+```
 
 1. Change service type to `LoadBalancer` for the `provider` and `transformer` services configuration files.
 
@@ -254,81 +268,81 @@ This guide explains how to deploy Geospatial Consumption Zone (GCZ) as an **add-
 
    ```bash
    cat > ../provider/templates/service.yaml << EOF
-   apiVersion: v1
-   kind: Service
-   metadata:
-       name: gcz-provider
-       namespace: {{ $.Values.global.provider.namespace }}
-       annotations:
-           service.beta.kubernetes.io/azure-load-balancer-internal: "{{ $.Values.global.provider.configuration.privateNetwork }}"
-   spec:
-       selector:
-           app: provider
-       ports:
-       - port: 80
-         protocol: TCP
-         targetPort: 8083
-       type: {{ $.Values.global.provider.service.type }}
-   EOF
+apiVersion: v1
+kind: Service
+metadata:
+    name: gcz-provider
+    namespace: {{ $.Values.global.provider.namespace }}
+    annotations:
+        service.beta.kubernetes.io/azure-load-balancer-internal: "{{ $.Values.global.provider.configuration.privateNetwork }}"
+spec:
+    selector:
+        app: provider
+    ports:
+    - port: 80
+      protocol: TCP
+      targetPort: 8083
+    type: {{ $.Values.global.provider.service.type }}
+EOF
 
-   cat > ../transformer/templates/service.yaml << EOF
-   apiVersion: v1
-   kind: Service
-   metadata:
-       name: gcz-transformer
-       namespace: {{ $.Values.global.transformer.namespace }}
-       annotations:
-           service.beta.kubernetes.io/azure-load-balancer-internal: "{{ $.Values.global.transformer.configuration.privateNetwork }}"
-   spec:
-       selector:
-           app: transformer
-       ports:
-       - port: 80
-         protocol: TCP
-         targetPort: 8080
-       type: {{ $.Values.global.transformer.service.type }}
-   EOF
-   ```
+cat > ../transformer/templates/service.yaml << EOF
+apiVersion: v1
+kind: Service
+metadata:
+    name: gcz-transformer
+    namespace: {{ $.Values.global.transformer.namespace }}
+    annotations:
+        service.beta.kubernetes.io/azure-load-balancer-internal: "{{ $.Values.global.transformer.configuration.privateNetwork }}"
+spec:
+    selector:
+        app: transformer
+    ports:
+    - port: 80
+      protocol: TCP
+      targetPort: 8080
+    type: {{ $.Values.global.transformer.service.type }}
+EOF
+```
 
    ### [Windows PowerShell](#tab/windows-powershell)
 
    ```powershell
    @"
-   apiVersion: v1
-   kind: Service
-   metadata:
-       name: gcz-provider
-       namespace: {{ $.Values.global.provider.namespace }}
-       annotations:
-           service.beta.kubernetes.io/azure-load-balancer-internal: "{{ $.Values.global.provider.configuration.privateNetwork }}"
-   spec:
-       selector:
-           app: provider
-       ports:
-       - port: 80
-         protocol: TCP
-         targetPort: 8083
-       type: {{ $.Values.global.provider.service.type }}
-   "@ | Out-File -FilePath ../provider/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+    name: gcz-provider
+    namespace: {{ $.Values.global.provider.namespace }}
+    annotations:
+        service.beta.kubernetes.io/azure-load-balancer-internal: "{{ $.Values.global.provider.configuration.privateNetwork }}"
+spec:
+    selector:
+        app: provider
+    ports:
+    - port: 80
+      protocol: TCP
+      targetPort: 8083
+    type: {{ $.Values.global.provider.service.type }}
+"@ | Out-File -FilePath ../provider/templates/service.yaml
 
-   @"
-   apiVersion: v1
-   kind: Service
-   metadata:
-       name: gcz-transformer
-       namespace: {{ $.Values.global.transformer.namespace }}
-       annotations:
-           service.beta.kubernetes.io/azure-load-balancer-internal: "{{ $.Values.global.transformer.configuration.privateNetwork }}"
-   spec:
-       selector:
-           app: transformer
-       ports:
-       - port: 80
-         protocol: TCP
-         targetPort: 8080
-       type: {{ $.Values.global.transformer.service.type }}
-   "@ | Out-File -FilePath ../transformer/templates/service.yaml
-   ```
+@"
+apiVersion: v1
+kind: Service
+metadata:
+    name: gcz-transformer
+    namespace: {{ $.Values.global.transformer.namespace }}
+    annotations:
+        service.beta.kubernetes.io/azure-load-balancer-internal: "{{ $.Values.global.transformer.configuration.privateNetwork }}"
+spec:
+    selector:
+        app: transformer
+    ports:
+    - port: 80
+      protocol: TCP
+      targetPort: 8080
+    type: {{ $.Values.global.transformer.service.type }}
+"@ | Out-File -FilePath ../transformer/templates/service.yaml
+```
 
 1. Review the transformer configuration file `application.yml` to ensure the correct schemas are included.
 
