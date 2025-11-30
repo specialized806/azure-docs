@@ -134,7 +134,7 @@ This guide explains how to deploy Geospatial Consumption Zone (GCZ) as an **add-
    ### [Unix Shell](#tab/unix-shell)
 
    ```bash
-  cat > osdu_gcz_custom_values.yaml << EOF
+cat > osdu_gcz_custom_values.yaml << EOF
 # GCZ Configuration - Azure Deployment
 
 global:
@@ -166,6 +166,7 @@ global:
     configuration:
       privateNetwork: "$PRIVATE_NETWORK"
       gcz_persistence_enabled: true
+      gcz_persistence_folder: "/persistence/storage"
 
   transformer:
     namespace: $NAMESPACE
@@ -190,27 +191,25 @@ global:
       crsconvertorURL: "https://$AZURE_DNS_NAME/api/crs/converter/v3/convertTrajectory"
       storageURL: "https://$AZURE_DNS_NAME/api/storage/v2/records"
       clientSecret: $(echo "$AZURE_CLIENT_SECRET" | base64)
-      gcz_ignite_namespace: "$GCZ_IGNITE_NAMESPACE"
-      gcz_ignite_service: "$GCZ_IGNITE_SERVICE"
       gcz_persistence_enabled: true
-   EOF
-   ```
+      gcz_persistence_folder: "/persistence/storage"
+EOF
+```
 
    ### [Windows PowerShell](#tab/windows-powershell)
 
    ```powershell
   @"
-# This file contains the essential configs for the GCZ Azure Helm chart
-################################################################################
-# Specify the values for each service.
+# GCZ Configuration - Azure Deployment
 
 global:
   ignite:
     namespace: $NAMESPACE
     name: ignite
     image:
-      name: gridgain/community
-      tag: 8.8.43
+      repository: "{{ .Values.global.ignite.image.repository }}"
+      name: "{{ .Values.global.ignite.image.name }}"
+      tag: "{{ .Values.global.ignite.image.tag }}"
     configuration:
       gcz_ignite_namespace: "$GCZ_IGNITE_NAMESPACE"
       gcz_ignite_service: "$GCZ_IGNITE_SERVICE"
@@ -224,21 +223,22 @@ global:
     namespace: $NAMESPACE
     entitlementsGroupsURL: "https://$AZURE_DNS_NAME/api/entitlements/v2/groups"
     image:
-      repository: community.opengroup.org:5555
-      name: osdu/platform/consumption/geospatial/geospatial-provider-master
-      tag: latest
+      repository: "{{ .Values.global.provider.image.repository }}"
+      name: "{{ .Values.global.provider.image.name }}"
+      tag: "{{ .Values.global.provider.image.tag }}"
     service:
       type: LoadBalancer
     configuration:
       privateNetwork: "$PRIVATE_NETWORK"
       gcz_persistence_enabled: true
+      gcz_persistence_folder: "/persistence/storage"
 
   transformer:
     namespace: $NAMESPACE
     image:
-      repository: community.opengroup.org:5555
-      name: osdu/platform/consumption/geospatial/geospatial-transformer-master
-      tag: latest
+      repository: "{{ .Values.global.transformer.image.repository }}"
+      name: "{{ .Values.global.transformer.image.name }}"
+      tag: "{{ .Values.global.transformer.image.tag }}"
     service:
       type: LoadBalancer
     configuration:
@@ -255,10 +255,9 @@ global:
       fileRetrievalURL: "https://$AZURE_DNS_NAME/api/dataset/v1/retrievalInstructions"
       crsconvertorURL: "https://$AZURE_DNS_NAME/api/crs/converter/v3/convertTrajectory"
       storageURL: "https://$AZURE_DNS_NAME/api/storage/v2/records"
-      clientSecret: $(echo "$AZURE_CLIENT_SECRET" | base64)
-      gcz_ignite_namespace: "$GCZ_IGNITE_NAMESPACE"
-      gcz_ignite_service: "$GCZ_IGNITE_SERVICE"
+      clientSecret: [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes($AZURE_CLIENT_SECRET))
       gcz_persistence_enabled: true
+      gcz_persistence_folder: "/persistence/storage"
 "@ | Out-File -FilePath osdu_gcz_custom_values.yaml
 ```
 
