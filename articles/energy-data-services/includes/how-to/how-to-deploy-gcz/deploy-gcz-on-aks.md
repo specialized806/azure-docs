@@ -134,8 +134,8 @@ This guide explains how to deploy Geospatial Consumption Zone (GCZ) as an **add-
    ### [Unix Shell](#tab/unix-shell)
 
    ```bash
-cat > osdu_gcz_custom_values.yaml << EOF
-# GCZ Configuration - Azure Deployment
+   cat > osdu_gcz_custom_values.yaml << EOF
+   # GCZ Configuration - Azure Deployment
 
 global:
   ignite:
