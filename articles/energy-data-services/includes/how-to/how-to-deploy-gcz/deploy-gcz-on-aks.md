@@ -283,6 +283,7 @@ spec:
       targetPort: 8083
     type: {{ $.Values.global.provider.service.type }}
 EOF
+```
 
 cat > ../transformer/templates/service.yaml << EOF
 apiVersion: v1
