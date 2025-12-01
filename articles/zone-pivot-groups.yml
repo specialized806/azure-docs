@@ -2045,7 +2045,7 @@ groups:
   prompt: Choose a deployment method
   pivots:
   - id: portal
-    title: Portal
+    title: Azure portal
   - id: azure-cli
     title: Azure CLI
   - id: script
