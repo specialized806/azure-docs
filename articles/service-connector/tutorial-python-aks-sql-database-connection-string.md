@@ -7,7 +7,7 @@ author: maud-lv
 ms.author: malev
 ms.service: service-connector
 ms.topic: tutorial
-ms.date: 11/21/2025
+ms.date: 12/01/2025
 zone_pivot_group_filename: service-connector/zone-pivot-groups.json
 zone_pivot_groups: aks-authtype
 ---
