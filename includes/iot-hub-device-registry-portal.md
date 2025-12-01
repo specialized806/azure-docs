@@ -150,7 +150,6 @@ Once your IoT hub and your namespace are created, you can create a new DPS insta
     |**Resource group**|Select the same resource group that contains the IoT hub that you created in the previous steps. By putting all related resources in a group together, you can manage them together.|
     |**Name**|Provide a unique name for your new Device Provisioning Service instance. If the name you enter is available, a green check mark appears.|
     |**Region**|Select the same region where you created your IoT hub and ADR namespace in the previous steps.|
-    |**Device registry**|Select the ADR namespace you created in the previous steps from the dropdown list.|
 
     :::image type="content" source="../articles/iot-hub/media/device-registry/iot-hub-link-namespace.png" alt-text="Screenshot of the basics tab for a new Device Provisioning Service instance with the Azure Device Registry namespace selected." lightbox="../articles/iot-hub/media/device-registry/iot-hub-link-namespace.png":::
 
