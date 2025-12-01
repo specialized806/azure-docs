@@ -88,7 +88,7 @@ First, you set up a sample data-driven app as a starting point. For your conveni
     :::column span="2":::
         **Step 2:** In the GitHub fork:
         1. Select **main** > **starter-no-infra** for the starter branch. This branch contains just the sample project and no Azure-related files or configuration.
-        1. Select **Code** > **Create codespace on starter-no-infra**.
+        1. Select **Code**. In the **codespaces** tab, select **Create codespace on starter-no-infra**.
         The codespace takes a few minutes to set up, and it runs `pip install -r requirements.txt` for your repository at the end.
     :::column-end:::
     :::column:::
