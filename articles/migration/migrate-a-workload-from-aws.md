@@ -48,11 +48,11 @@ In addition to these measures, consider completing a [Migration Readiness Assess
 
 To help with planning and successfully executing your workload migration, work through the following five phases:
 
-- [ ] Plan
-- [ ] Prepare
-- [ ] Execute
-- [ ] Evaluate
-- [ ] Decommission
+- [Plan](/azure/migration/migrate-a-workload-from-aws#plan)
+- [Prepare](/azure/migration/migrate-a-workload-from-aws#prepare)
+- [Execute](/azure/migration/migrate-a-workload-from-aws#execute)
+- [Evaluate](/azure/migration/migrate-a-workload-from-aws#evaluate)
+- [Decommission](/azure/migration/migrate-a-workload-from-aws#decommission)
 
 ## Plan
 
