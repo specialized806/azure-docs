@@ -11,7 +11,7 @@
     href: whats-new.md
   - name: Pricing
     href: https://azure.microsoft.com/pricing/details/backup/
-- name: Backup management control planes
+- name: Backup management planes
   items:
   - name: Resiliency
     items:
@@ -95,6 +95,59 @@
         href: backup-center-govern-environment.md
       - name: Perform actions
         href: backup-center-actions.md                                     
+- name: Security and Ransomware protection
+  items:
+  - name: Overview
+    href: security-overview.md
+  - name: Save and manage MARS agent passphrase in Azure Key Vault
+    href: save-backup-passphrase-securely-in-azure-key-vault.md
+  - name: Azure role-based access control
+    href: backup-rbac-rs-vault.md
+  - name: Configure Multi-user authorization using Resource Guard
+    href: multi-user-authorization.md
+  - name: Manage Immutable vaults
+    href: backup-azure-immutable-vault-how-to-manage.md
+  - name: Soft delete
+    items:
+    - name: For virtual machines
+      href: soft-delete-virtual-machines.md
+    - name: For SQL Server and SAP HANA in Azure VMs
+      href: soft-delete-sql-saphana-in-azure-vm.md
+  - name: Configure and manage enhanced soft delete
+    href: backup-azure-enhanced-soft-delete-configure-manage.md
+  - name: Delete protection for Azure files
+    href: soft-delete-azure-file-share.md
+  - name: Ransomware protection
+    items:
+    - name: Overview
+      href: ../security/fundamentals/backup-plan-to-protect-against-ransomware.md?toc=/azure/backup/toc.json&bc=/azure/backup/breadcrumb/toc.json
+    - name: Integrate with Microsoft Defender's ransomware alerts
+      href: backup-azure-integrate-microsoft-defender-using-logic-apps.md
+    - name: FAQ-Protection against Ransomware
+      href: protect-backups-from-ransomware-faq.yml
+  - name: Security for hybrid backups
+    href: backup-azure-security-feature.md
+  - name: Private Endpoints
+    items:
+    - name: V1 experience
+      href: private-endpoints.md
+    - name: V2 experience
+      href: backup-azure-private-endpoints-configure-manage.md
+  - name: Encryption in Azure Backup
+    href: backup-encryption.md
+  - name: Encryption using customer-managed keys
+    items:
+    - name: Recovery Services vault
+      href: encryption-at-rest-with-cmk.md
+    - name: Backup vault
+      href: encryption-at-rest-with-cmk-for-backup-vault.md
+  - name: Transport Layer Security
+    href: transport-layer-security.md
+  - name: Security controls by Azure Policy
+    displayName: regulatory, compliance, standards, domains
+    href: ./security-controls-policy.md
+  - name: Security baseline
+    href: /security/benchmark/azure/baselines/backup-security-baseline?toc=/azure/backup/toc.json&bc=/azure/backup/breadcrumb/toc.json
 - name: Quickstarts  
   items:
   - name: Back up a VM - Azure portal
@@ -913,59 +966,6 @@
       href: query-backups-using-azure-resource-graph.md
     - name: Resource Manager and Bicep files
       href: backup-rm-template-samples.md
-  - name: Security and Ransomware protection
-    items:
-    - name: Overview
-      href: security-overview.md
-    - name: Save and manage MARS agent passphrase in Azure Key Vault
-      href: save-backup-passphrase-securely-in-azure-key-vault.md
-    - name: Azure role-based access control
-      href: backup-rbac-rs-vault.md
-    - name: Configure Multi-user authorization using Resource Guard
-      href: multi-user-authorization.md
-    - name: Manage Immutable vaults
-      href: backup-azure-immutable-vault-how-to-manage.md
-    - name: Soft delete
-      items:
-      - name: For virtual machines
-        href: soft-delete-virtual-machines.md
-      - name: For SQL Server and SAP HANA in Azure VMs
-        href: soft-delete-sql-saphana-in-azure-vm.md
-    - name: Configure and manage enhanced soft delete
-      href: backup-azure-enhanced-soft-delete-configure-manage.md
-    - name: Delete protection for Azure files
-      href: soft-delete-azure-file-share.md
-    - name: Ransomware protection
-      items:
-      - name: Overview
-        href: ../security/fundamentals/backup-plan-to-protect-against-ransomware.md?toc=/azure/backup/toc.json&bc=/azure/backup/breadcrumb/toc.json
-      - name: Integrate with Microsoft Defender's ransomware alerts
-        href: backup-azure-integrate-microsoft-defender-using-logic-apps.md
-      - name: FAQ-Protection against Ransomware
-        href: protect-backups-from-ransomware-faq.yml
-    - name: Security for hybrid backups
-      href: backup-azure-security-feature.md
-    - name: Private Endpoints
-      items:
-      - name: V1 experience
-        href: private-endpoints.md
-      - name: V2 experience
-        href: backup-azure-private-endpoints-configure-manage.md
-    - name: Encryption in Azure Backup
-      href: backup-encryption.md
-    - name: Encryption using customer-managed keys
-      items:
-      - name: Recovery Services vault
-        href: encryption-at-rest-with-cmk.md
-      - name: Backup vault
-        href: encryption-at-rest-with-cmk-for-backup-vault.md
-    - name: Transport Layer Security
-      href: transport-layer-security.md
-    - name: Security controls by Azure Policy
-      displayName: regulatory, compliance, standards, domains
-      href: ./security-controls-policy.md
-    - name: Security baseline
-      href: /security/benchmark/azure/baselines/backup-security-baseline?toc=/azure/backup/toc.json&bc=/azure/backup/breadcrumb/toc.json
   - name: Archive tier
     items:
     - name: Overview
