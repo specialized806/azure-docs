@@ -136,9 +136,9 @@ After you complete the **Basics** tab, configure your IoT hub by following these
 
 At this point, you created an IoT hub with an ADR namespace and user-assigned managed identity.
 
-## Create a new DPS instance and assign the ADR namespace
+## Create a new DPS instance
 
-Once your IoT hub and your namespace are created, you can create a new DPS instance and link your namespace to enable device provisioning with Certificate Management.
+After your IoT hub and your namespace are created,  create a new DPS instance.
 
 1. In the [Azure portal](https://portal.azure.com), search for and select **Device Provisioning Service**.
 1. In the **Device Provisioning Services** page, select **+ Create** to create a new DPS instance.
@@ -157,7 +157,6 @@ Once your IoT hub and your namespace are created, you can create a new DPS insta
 1. Select **Review + create** to validate your provisioning service.
 1. Select **Create** to start the deployment of your Device Provisioning Service instance.
 1. After the deployment successfully completes, select **Go to resource** to view your Device Provisioning Service instance.
-
 
 ## Link the IoT hub and your Device Provisioning Service instance
 
