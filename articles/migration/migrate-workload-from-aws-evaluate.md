@@ -2,6 +2,7 @@
 title: Migrate a Workload from Amazon Web Services (AWS) - Evaluate
 description: Learn how to evaluate the migration of a single workload from AWS to Azure
 ms.author: rhackenberg
+ai-usage: ai-assisted
 ms.date: 11/24/2025
 ms.topic: concept-article
 ms.service: azure

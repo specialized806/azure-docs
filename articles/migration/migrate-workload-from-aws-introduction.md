@@ -2,6 +2,7 @@
 title: Migrate a Workload from Amazon Web Services (AWS) - Introduction
 description: Learn how to migrate a single workload from AWS to Azure
 ms.author: rhackenberg
+ai-usage: ai-assisted
 ms.date: 11/24/2025
 ms.topic: concept-article
 ms.service: azure
@@ -46,11 +47,11 @@ In addition to these measures, consider completing a [Migration Readiness Assess
 
 To help with planning and successfully executing your workload migration, work through the following five phases:
 
-- [Plan](/azure/migration/migrate-a-workload-from-aws-plan)
-- [Prepare](/azure/migration/migrate-a-workload-from-aws-prepare)
-- [Execute](/azure/migration/migrate-a-workload-from-aws-execute)
-- [Evaluate](/azure/migration/migrate-a-workload-from-aws-evaluate)
-- [Decommission](/azure/migration/migrate-a-workload-from-aws-decommission)
+- [Plan](/azure/migration/migrate-workload-from-aws-plan)
+- [Prepare](/azure/migration/migrate-workload-from-aws-prepare)
+- [Execute](/azure/migration/migrate-workload-from-aws-execute)
+- [Evaluate](/azure/migration/migrate-workload-from-aws-evaluate)
+- [Decommission](/azure/migration/migrate-workload-from-aws-decommission)
 Each phase includes detailed steps and checklists to guide you through the migration process.
 
 ## Next steps
