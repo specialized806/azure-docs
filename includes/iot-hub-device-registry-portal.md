@@ -5,7 +5,7 @@ author: cwatson-cat
 ms.author: cwatson
 ms.service: azure-iot-hub
 ms.topic: include
-ms.date: 12/01/2025
+ms.date: 12/02/2025
 ---
 
 ## Overview
@@ -23,7 +23,7 @@ The setup process in this article includes the following steps:
 1. Assign an ADR role, set up the right privileges, and create a user-assigned managed identity.
 
 > [!IMPORTANT]
-> During the preview period, IoT Hub with ADR and Certificate Management features enabled on top of IoT Hub are available **free of charge**. Device Provisioning Service (DPS) is billed separately and isn't included in the preview offer. For details on DPS pricing, see [Azure IoT Hub pricing](https://azure.microsoft.com/pricing/details/iot-hub/).
+> During the preview period, IoT Hub with ADR integration and certificate management features enabled on top of IoT Hub are available **free of charge**. Device Provisioning Service (DPS) is billed separately and isn't included in the preview offer. For details on DPS pricing, see [Azure IoT Hub pricing](https://azure.microsoft.com/pricing/details/iot-hub/).
 
 ## Create an ADR namespace with system-assigned managed identity
 
@@ -39,7 +39,7 @@ When you create a namespace with a system-assigned managed identity, the process
     | **Subscription** | Select the subscription to use for your ADR namespace. |
     | **Resource group** | Select or create the resource group that you want to use for your IoT hub. |
     |**Name**| Enter a name for your ADR namespace. Your namespace name can only contain lowercase letters and hyphens ('-') in the middle of the name, but not at the beginning or end. For example, the name "msft-namespace" is valid. |
-    |**Region**|ADR and Certificate Management functionalities are in **preview** and only available in **certain regions**. See the [supported regions](../articles/iot-hub/iot-hub-what-is-new.md#supported-regions). Select the region, closest to you, where you want your hub to be located.|
+    |**Region**|ADR integration and certificate management functionalities are in **preview** and only available in **certain regions**. See the [supported regions](../articles/iot-hub/iot-hub-what-is-new.md#supported-regions). Select the region, closest to you, where you want your hub to be located.|
 
     :::image type="content" source="../articles/iot-hub/media/device-registry/iot-hub-namespace-1.png" alt-text="Screen capture that shows how to fill the basics tab for an ADR namespace in the Azure portal.":::
 
@@ -75,7 +75,7 @@ In this section, you create a new IoT hub instance with the ADR namespace and a 
    | **Subscription** | Select the subscription to use for your hub. |
    | **Resource group** | Select a resource group or create a new one. To create a new one, select **Create new** and fill in the name you want to use.|
    | **IoT hub name** | Enter a name for your hub. This name must be globally unique, with a length between 3 and 50 alphanumeric characters. The name can also include the dash (`'-'`) character.|
-   | **Region** | ADR and Certificate Management functionalities are in **preview** and only available in **certain regions**. See the [supported regions](../articles/iot-hub/iot-hub-what-is-new.md#supported-regions). Select the region, closest to you, where you want your hub to be located.|
+   | **Region** | ADR integration and certificate management functionalities are in **preview** and only available in **certain regions**. See the [supported regions](../articles/iot-hub/iot-hub-what-is-new.md#supported-regions). Select the region, closest to you, where you want your hub to be located.|
    | **Tier** | Select the **Preview** tier. To compare the features available to each tier, select **Compare tiers**.|
    | **Daily message limit** | Select the maximum daily quota of messages for your hub. The available options depend on the tier you select for your hub. To see the available messaging and pricing options, select **See all options** and select the option that best matches the needs of your hub. For more information, see [IoT Hub quotas and throttling](/azure/iot-hub/iot-hub-devguide-quotas-throttling).|
    | **Device Registry Namespace** | Select the ADR namespace you created in the previous section.|
@@ -243,5 +243,5 @@ Synchronize a policy you created within your ADR namespace to the IoT hub linked
 
     :::image type="content" source="../articles/iot-hub/media/device-registry/sync-policies.png" alt-text="Screenshot of the namespace page in Azure portal that shows the sync option." lightbox="../articles/iot-hub/media/device-registry/sync-policies.png":::
 
-If you select to sync more than one policy, the process syncs policies to their respective IoT hubs. You can't undo a sync operation after it's done.
+If you select to sync more than one policy, the process syncs policies to their respective IoT hubs. You can't undo a sync operation.
 
