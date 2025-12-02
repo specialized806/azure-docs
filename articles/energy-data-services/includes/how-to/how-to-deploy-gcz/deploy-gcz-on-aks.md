@@ -31,13 +31,13 @@ This guide explains how to deploy Geospatial Consumption Zone (GCZ) as an **add-
    git clone https://community.opengroup.org/osdu/platform/consumption/geospatial.git
    ```
 
-1. Change directory to the `geospatial` folder:
+2. Change directory to the `geospatial` folder:
 
    ```bash
    cd geospatial/devops/azure/charts/geospatial
    ```
 
-1. Define variables for the deployment:
+3. Define variables for the deployment:
 
    ### [Unix Shell](#tab/unix-shell)
 
@@ -128,10 +128,11 @@ This guide explains how to deploy Geospatial Consumption Zone (GCZ) as an **add-
    $CHART_VERSION="1.28.0"
    $VERSION="0.28.2"
    ```
- 1. Create the HELM chart:
-
-  ### [Unix Shell](#tab/unix-shell-1)
-   ```bash
+4. Create the HELM chart:
+ 
+ ### [Unix Shell](#tab/unix-shell-1)
+ 
+ ```bash
    cat > osdu_gcz_custom_values.yaml << EOF
    # GCZ Configuration - Azure Deployment
 
@@ -258,7 +259,7 @@ global:
 "@ | Out-File -FilePath osdu_gcz_custom_values.yaml
 ```
 
-1. Change service type to `LoadBalancer` for the `provider` and `transformer` services configuration files.
+5. Change service type to `LoadBalancer` for the `provider` and `transformer` services configuration files.
 
    ### [Unix Shell](#tab/unix-shell-2)
 
@@ -340,44 +341,44 @@ global:
     type: {{ $.Values.global.transformer.service.type }}
    "@ | Out-File -FilePath ../transformer/templates/service.yaml
    ```
-1. Review the transformer configuration file `application.yml` to ensure the correct schemas are included.
+6. Review the transformer configuration file `application.yml` to ensure the correct schemas are included.
 
    ```bash
    nano ../transformer/application.yml
    ```
 
-1. Review the provider configuration file `koop-config.json`.
+7. Review the provider configuration file `koop-config.json`.
 
    ```bash
    nano ../provider/koop-config.json
    ```
 
-1. Authenticate to the Azure Kubernetes Service (AKS) cluster:
+8. Authenticate to the Azure Kubernetes Service (AKS) cluster:
 
    ```bash
    az aks get-credentials --resource-group $RESOURCE_GROUP --name $AKS_NAME --admin
    ```
 
-1. Create AKS Namespace:
+9. Create AKS Namespace:
 
    ```bash
    kubectl create namespace $NAMESPACE
    ```
 
-1. Deploy HELM dependencies:
+10. Deploy HELM dependencies:
 
    ```bash
    helm dependency build
    ```
 
-1. Deploy the GCZ HELM chart:
+11. Deploy the GCZ HELM chart:
 
    ```bash
    helm upgrade -i "$CHART" . -n "$NAMESPACE" -f osdu_gcz_custom_values.yaml \
      --set-file global.provider.configLoaderJs="../../../../gcz-provider/gcz-provider-core/config/configLoader.js"
    ```
 
-1. Verify the deployment:
+12. Verify the deployment:
 
    ```bash
    kubectl get pods -n $NAMESPACE
@@ -385,39 +386,40 @@ global:
 
    Now you should see the pods for the `ignite`, `provider`, and `transformer` services.
 
-1. Next get note the External IPs for the `provider` and `transformer` services.
+13. Next get note the External IPs for the `provider` and `transformer` services.
 
    ```bash
    kubectl get service -n $NAMESPACE
    ```
    
-1. Test the gcz-provider endpoint by port forwarding
+14. Test the gcz-provider endpoint by port forwarding
 
    ```bash
    kubectl port-forward -n $NAMESPACE service/gcz-provider 8083:8083
    curl "http://localhost:8083/ignite-provider/FeatureServer/layers/info"   
    ```
    
-1. If you encounter issues with the gcz-provider endpoint, try restarting the deployment
+15. If you encounter issues with the gcz-provider endpoint, try restarting the deployment
 
    ```bash
    kubectl rollout restart deployment gcz-provider -n $NAMESPACE
    ```
    
-1. Test the gcz-transformer endpoint by port forwarding
+16. Test the gcz-transformer endpoint by port forwarding
 
    ```bash
    kubectl port-forward -n $NAMESPACE service/gcz-transformer 8080:8080
    curl "http://localhost:8080/gcz/transformer/admin/v3/api-docs"
    ```
    
-1. If you encounter issues with the gcz-transformer endpoint, try restarting the deployment
+17. If you encounter issues with the gcz-transformer endpoint, try restarting the deployment
 
    ```bash
    kubectl rollout restart deployment gcz-transformer -n $NAMESPACE
    ```
-
    These IPs are used to connect to the GCZ API endpoints.
+
+   
 
 > [!IMPORTANT]
 > If you wish to update the configuration files (e.g., `application.yml` or `koop-config.json`), you must update the AKS configuration (configmap) and then delete the existing pods for the `provider` and `transformer` services. The pods will be recreated with the new configuration. If you change the configuration using the GCZ APIs, the changes **will not** persist after a pod restart.
