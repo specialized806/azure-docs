@@ -27,7 +27,7 @@ The setup process in this article includes the following steps:
 
 ## Create an ADR namespace with system-assigned managed identity
 
-Creating namespace with system-assigned managed identity also creates a credential, known as root CA, and a default policy, known as intermediate CA. [Certificate Management](../articles/iot-hub/iot-hub-certificate-management-overview.md) uses these credentials and policies to onboard devices to the namespace.
+When you create a namespace with a system-assigned managed identity, the process also creates a credential known as root CA and a default policy known as intermediate CA. [Certificate Management](../articles/iot-hub/iot-hub-certificate-management-overview.md) uses these credentials and policies to onboard devices to the namespace.
 
 1. Sign in to the [Azure portal](https://portal.azure.com).
 1. Search for and select **Azure Device Registry**.
@@ -54,11 +54,11 @@ Creating namespace with system-assigned managed identity also creates a credenti
 1. Select **Next**.
 1. In the Tags tab, you can optionally **add tags** to organize your ADR namespace. Tags are key-value pairs that help you manage and identify your resources. Use tags to filter and group your resources in the Azure portal.
 
-1. Select **Next**..
-1. Review your settings, and then select **Create** to create your ADR namespace.
+1. Select **Next**.
+1. Review your settings, then select **Create** to create your ADR namespace.
 
     > [!NOTE]
-    > The creation of the namespace with system-assigned managed identity might take up to 5 minutes.
+    > The creation of the namespace with system-assigned managed identity might take up to five minutes.
 
 ## Create an IoT hub in Azure portal
 
@@ -97,7 +97,7 @@ After you complete the **Basics** tab, configure your IoT hub by following these
    | Property | Value |
    | ----- | ----- |
    | **Connectivity configuration** | Choose the endpoints that devices can use to connect to your IoT hub. Accept the default setting, **Public access**, for this example. You can change this setting after the IoT hub is created. For more information, see [IoT Hub endpoints](/azure/iot-hub/iot-hub-devguide-endpoints). |
-   | **Minimum TLS Version** | Select the minimum [TLS version](/azure/iot-hub/iot-hub-tls-support#tls-12-enforcement-available-in-select-regions) supported by your IoT hub. Once the IoT hub is created, this value can't be changed. Accept the default setting, **1.2**, for this example. |
+   | **Minimum TLS Version** | Select the minimum [TLS version](/azure/iot-hub/iot-hub-tls-support#tls-12-enforcement-available-in-select-regions) supported by your IoT hub. Once the IoT hub is created, you can't change this value. Accept the default setting, **1.2**, for this example. |
 
    :::image type="content" source="./media/iot-hub-include-create-hub/iot-hub-create-network-screen.png" alt-text="Screen capture that shows how to choose the endpoints that can connect to a new IoT hub.":::
 
@@ -127,7 +127,7 @@ After you complete the **Basics** tab, configure your IoT hub by following these
 
 1. Select **Next: Tags** to continue to the next screen.
 
-    Tags are name/value pairs. You can assign the same tag to multiple resources and resource groups to categorize resources and consolidate billing. In this document, you don't add any tags. For more information, see [Use tags to organize your Azure resources and management hierarchy](/azure/azure-resource-manager/management/tag-resources).
+    Tags are name/value pairs. You can assign the same tag to multiple resources and resource groups to categorize resources and consolidate billing. In this article, you don't add any tags. For more information, see [Use tags to organize your Azure resources and management hierarchy](/azure/azure-resource-manager/management/tag-resources).
 
     :::image type="content" source="./media/iot-hub-include-create-hub/iot-hub-create-tags.png" alt-text="Screen capture that shows how to assign tags for a new IoT hub.":::
 
@@ -138,10 +138,10 @@ At this point, you created an IoT hub with an ADR namespace and user-assigned ma
 
 ## Create a new DPS instance
 
-After your IoT hub and your namespace are created,  create a new DPS instance.
+After you create your IoT hub and your namespace, create a new DPS instance.
 
 1. In the [Azure portal](https://portal.azure.com), search for and select **Device Provisioning Service**.
-1. In the **Device Provisioning Services** page, select **+ Create** to create a new DPS instance.
+1. In **Device Provisioning Services**, select **+ Create** to create a new DPS instance.
 1. On the **Basics** tab, complete the fields as follows:
 
     |Property|Value|
@@ -156,7 +156,7 @@ After your IoT hub and your namespace are created,  create a new DPS instance.
 
 1. Select **Review + create** to validate your provisioning service.
 1. Select **Create** to start the deployment of your Device Provisioning Service instance.
-1. After the deployment successfully completes, select **Go to resource** to view your Device Provisioning Service instance.
+1. After the deployment completes, select **Go to resource** to view your Device Provisioning Service instance.
 
 ## Link the IoT hub and your Device Provisioning Service instance
 
@@ -188,7 +188,7 @@ Create custom policies within your ADR namespace to define how certificates are 
 
     :::image type="content" source="../articles/iot-hub/media/device-registry/custom-policy.png" alt-text="Screenshot of Azure Device Registry custom policy page in the Azure portal." lightbox="../articles/iot-hub/media/device-registry/custom-policy.png":::
 
-1. Select **Enable**  to turn on credential policies for your namespace, if they aren’t already active.
+1. Select **Enable**  to turn on credential policies for your namespace, if they aren't already active.
 1. In the **Credential policies** page, select **+ Create** to create a new policy.
 1. A pane appears where you can configure the policy settings. In the **Basics** tab, complete the fields as follows:
     
@@ -208,7 +208,7 @@ At this point, you created a new hub, a new Device Provisioning Service (DPS) in
 
 ## Create an enrollment group and assign a policy
 
-To provision devices with leaf certificates, you need to create an enrollment group and assign the policy created within your ADR namespace. The allocation-policy defines the onboarding authentication mechanism DPS uses before issuing a leaf certificate. The default attestation mechanism is a symmetric key.
+To provision devices with leaf certificates, you need to create an enrollment group and assign the policy you created within your ADR namespace. The allocation-policy defines the onboarding authentication mechanism DPS uses before issuing a leaf certificate. The default attestation mechanism is a symmetric key.
 
 1. In the **Settings** menu of your DPS instance, select **Manage enrollment**.
 1. In the **Manage enrollments** page, select either the **Enrollment groups** or **Individual enrollments** tab based on your provisioning needs.
@@ -232,16 +232,16 @@ To provision devices with leaf certificates, you need to create an enrollment gr
 
 ## Sync policies to IoT hubs
 
-Synchronize a policy created within your ADR namespace to the IoT hub linked to that namespace. This synchronization enables IoT Hub to trust any devices authenticating with a leaf certificate issued by the policy's issuing CA (ICA).
+Synchronize a policy you created within your ADR namespace to the IoT hub linked to that namespace. This synchronization enables IoT Hub to trust any devices authenticating with a leaf certificate issued by the policy's issuing CA (ICA).
 
 1. Go to the **Namespaces** page.
 1. Select the namespace you want to sync policies for.
 1. In the namespace page, under **Namespace resources**, select **Credential policies (Preview)**.
-1. In the **Credential policies** page, you can view your policies, validity periods, intervals, and status.
+1. In the **Credential policies** page, view your policies, validity periods, intervals, and status.
 1. Select the policies you want to sync. You can sync more than one policy at a time.
 1. Select **Sync**.
 
     :::image type="content" source="../articles/iot-hub/media/device-registry/sync-policies.png" alt-text="Screenshot of the namespace page in Azure portal that shows the sync option." lightbox="../articles/iot-hub/media/device-registry/sync-policies.png":::
 
-If you select to sync more than one policy, policies are synced to their respective IoT hubs. You can't undo a sync operation after it's done.
+If you select to sync more than one policy, the process syncs policies to their respective IoT hubs. You can't undo a sync operation after it's done.
 
