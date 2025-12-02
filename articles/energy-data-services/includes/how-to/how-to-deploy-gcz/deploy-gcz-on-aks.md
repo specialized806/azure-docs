@@ -128,16 +128,15 @@ This guide explains how to deploy Geospatial Consumption Zone (GCZ) as an **add-
    $CHART_VERSION="1.28.0"
    $VERSION="0.28.2"
    ```
-
-1. Create the HELM chart:
+ 1. Create the HELM chart:
 
    ### [Unix Shell](#tab/unix-shell-1)
    ```bash
    cat > osdu_gcz_custom_values.yaml << EOF
    # GCZ Configuration - Azure Deployment
 
-global:
-  ignite:
+   global:
+   ignite:
     namespace: $NAMESPACE
     name: ignite
     image:
@@ -153,8 +152,8 @@ global:
       gcz_ignite_cpu: "2"
       gcz_ignite_memory: "4Gi"
 
-  provider:
-    namespace: $NAMESPACE
+    provider:
+      namespace: $NAMESPACE
     entitlementsGroupsURL: "https://$AZURE_DNS_NAME/api/entitlements/v2/groups"
     image:
       repository: "{{ .Values.global.provider.image.repository }}"
@@ -167,7 +166,7 @@ global:
       gcz_persistence_enabled: true
       gcz_persistence_folder: "/persistence/storage"
 
-  transformer:
+    transformer:
     namespace: $NAMESPACE
     image:
       repository: "{{ .Values.global.transformer.image.repository }}"
@@ -194,12 +193,12 @@ global:
       gcz_persistence_folder: "/persistence/storage"
 EOF
 ```
-### [Windows PowerShell](#tab/windows-powershell-1)
- 
 
+   ### [Windows PowerShell](#tab/windows-powershell-1)
+ 
    ```powershell
   @"
-# GCZ Configuration - Azure Deployment
+  # GCZ Configuration - Azure Deployment
 
 global:
   ignite:
@@ -266,33 +265,33 @@ global:
 
    ```bash
    cat > ../provider/templates/service.yaml << EOF
-apiVersion: v1
-kind: Service
-metadata:
+    apiVersion: v1
+    kind: Service
+    metadata:
     name: gcz-provider
     namespace: {{ $.Values.global.provider.namespace }}
     annotations:
         service.beta.kubernetes.io/azure-load-balancer-internal: "{{ $.Values.global.provider.configuration.privateNetwork }}"
-spec:
-    selector:
+    spec:
+     selector:
         app: provider
     ports:
     - port: 80
       protocol: TCP
       targetPort: 8083
     type: {{ $.Values.global.provider.service.type }}
-EOF
-```
+   EOF
+   
 
-cat > ../transformer/templates/service.yaml << EOF
-apiVersion: v1
-kind: Service
-metadata:
+   cat > ../transformer/templates/service.yaml << EOF
+    apiVersion: v1
+    kind: Service
+    metadata:
     name: gcz-transformer
     namespace: {{ $.Values.global.transformer.namespace }}
     annotations:
         service.beta.kubernetes.io/azure-load-balancer-internal: "{{ $.Values.global.transformer.configuration.privateNetwork }}"
-spec:
+    spec:
     selector:
         app: transformer
     ports:
@@ -300,21 +299,21 @@ spec:
       protocol: TCP
       targetPort: 8080
     type: {{ $.Values.global.transformer.service.type }}
-EOF
-```
+   EOF
+   ```
 
    ### [Windows PowerShell](#tab/windows-powershell-2)
 
    ```powershell
    @"
-apiVersion: v1
-kind: Service
-metadata:
+    apiVersion: v1
+    kind: Service
+    metadata:
     name: gcz-provider
     namespace: {{ $.Values.global.provider.namespace }}
     annotations:
         service.beta.kubernetes.io/azure-load-balancer-internal: "{{ $.Values.global.provider.configuration.privateNetwork }}"
-spec:
+    spec:
     selector:
         app: provider
     ports:
@@ -322,17 +321,17 @@ spec:
       protocol: TCP
       targetPort: 8083
     type: {{ $.Values.global.provider.service.type }}
-"@ | Out-File -FilePath ../provider/templates/service.yaml
+   "@ | Out-File -FilePath ../provider/templates/service.yaml
 
-@"
-apiVersion: v1
-kind: Service
-metadata:
+   @"
+   apiVersion: v1
+   kind: Service
+   metadata:
     name: gcz-transformer
     namespace: {{ $.Values.global.transformer.namespace }}
     annotations:
         service.beta.kubernetes.io/azure-load-balancer-internal: "{{ $.Values.global.transformer.configuration.privateNetwork }}"
-spec:
+    spec:
     selector:
         app: transformer
     ports:
@@ -340,9 +339,8 @@ spec:
       protocol: TCP
       targetPort: 8080
     type: {{ $.Values.global.transformer.service.type }}
-"@ | Out-File -FilePath ../transformer/templates/service.yaml
-```
-
+   "@ | Out-File -FilePath ../transformer/templates/service.yaml
+   ```
 1. Review the transformer configuration file `application.yml` to ensure the correct schemas are included.
 
    ```bash
