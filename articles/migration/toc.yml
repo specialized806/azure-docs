@@ -26,7 +26,7 @@ items:
         href: ./migrate-workload-from-aws-evaluate.md
       - name: 5. Decommission
         href: ./migrate-workload-from-aws-decommission.md
-      - name: 6. Next steps
+      - name: Next steps
         href: ./migrate-workload-from-aws-next-steps.md
     - name: Compute
       href: ./migrate-compute-from-aws.md
