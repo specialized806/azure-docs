@@ -11,7 +11,7 @@ ms.author: anfdocs
 ---
 # Create Active Directory connections for the Azure NetApp Files Elastic service level
 
-To create SMB volumes, you must configure an Active Directory account then associate it with a capacity pool in the NetApp account for the Elastic service level. 
+For SMB volume deployment, you must configure an Active Directory account to associated with a capacity pool. 
 
 >[!IMPORTANT]
 >For the Flexible, Standard, Premium, and Ultra service levels, follow the instructions in [Create and Manage Active Directory connections](create-active-directory-connections.md).

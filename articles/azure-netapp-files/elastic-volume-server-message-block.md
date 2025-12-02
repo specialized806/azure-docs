@@ -32,7 +32,7 @@ Learn how to create an SMB volume for the Elastic service level.
 
 <!-- bugs  -->
 
-* If SMB volume creation fails with the error "Error when creating. A problem occurred. Please try again after some time. If the issue persists, please contact support." the Active Directory password has expired and needs to be reset. Reset the password then try to create the password again. 
+* If SMB volume creation fails with the error "Error when creating. A problem occurred. Please try again after some time. If the issue persists, please contact support.", the issue might be that the Active Directory password has expired and needs to be reset. Reset the password then try to create the volume again. 
 
 ## Steps 
 
@@ -46,23 +46,21 @@ Learn how to create an SMB volume for the Elastic service level.
     Select **Next**. 
 
     :::image type="content" source="./media/shared/elastic-create-volume.png" alt-text="Screenshot the volume creation Basic tab." lightbox="./media/shared/elastic-create-volume.png":::
-
+<!-- 
 1. In the Protection tab, provide the following details.
 
     Snapshots, backup, and replication are enabled by default for volumes, however you must have appropriate policies and resources configured to protection. To disable any type of protection, uncheck the box before proceeding. 
-    <!-- are these default -->
     * For snapshots, select **Enable local protection**. 
         Choose your **Snapshot policy**. If you haven't created a policy, select **Create one** to [create a snapshot policy](snapshots-manage-policy.md).
     * For backups, select **Enable backups**. 
         * Select the **Backup vault** or select **Create new** to create one. For more information, see [Create a backup vault](backup-vault-manage.md).
         * Select the **Backup policy** or select **Create new** to create one. For more information, see [Create a backup policy](backup-manage-policies.md).
         * Enter the retention period. Choose weeks or months. 
-        <!-- delete this section -->
 
     Select **Next**.
 
     :::image type="content" source="./media/shared/elastic-create-volume-protection.png" alt-text="Screenshot of the volume creation protection tab." lightbox="./media/shared/elastic-create-volume-protection.png":::
-
+-->
 1. Configure the **Protocol**. 
 
     * Choose **SMB**. 

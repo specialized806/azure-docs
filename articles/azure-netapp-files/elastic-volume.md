@@ -37,13 +37,13 @@ Learn how to create an NFS volume for the Elastic service level.
     * Select the **Capacity pool** the volume belongs to. 
     * Enter the **Volume name**. 
     * Assign the **Quota** in GiB. 
-        For sizing limits, see [Azure NetApp Files Elastic service level resource limits](elastic-resource-limits.md). Maximum size is contingent on the capacity pool's quota. 
+        For sizing limits, see [Azure NetApp Files Elastic service level resource limits](elastic-resource-limits.md). 
     Select **Next**. 
 
     :::image type="content" source="./media/shared/elastic-create-volume.png" alt-text="Screenshot the volume creation Basic tab." lightbox="./media/shared/elastic-create-volume.png":::
 
-1. In the Protection tab, configure you protection settings.
-    <!-- are these default -->
+<!-- 1. In the Protection tab, configure you protection settings.
+
     * For snapshots, select **Enable local protection**. 
         Choose your **Snapshot policy**. If you haven't created a policy, select **Create one** to [create a snapshot policy](snapshots-manage-policy.md).
     * For backups, select **Enable backups**. 
@@ -54,7 +54,7 @@ Learn how to create an NFS volume for the Elastic service level.
     Select **Next**.
 
     :::image type="content" source="./media/shared/elastic-create-volume-protection.png" alt-text="Screenshot showing the volume creation protection tab." lightbox="./media/shared/elastic-create-volume-protection.png":::
-
+-->
 1. Configure the **Protocol**. 
     * For the Protocol type, choose **NFS**.
     * Enter the **File path**. 

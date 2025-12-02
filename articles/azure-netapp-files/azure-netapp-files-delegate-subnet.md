@@ -39,8 +39,6 @@ You must delegate a subnet to Azure NetApp Files. When you create a volume, you 
 <!-- ZRS --> 
 * The subnet size should be large enough to accommodate placement of all your resources; in most cases, /24 works, however you should assess based on your specific needs. You can't update the subnet after creating the capacity pool.  
 * The subnet must be delegated to the `Microsoft.NetApp/elasticVolumes` service.
-* Only use lowercase characters when naming the subnet.  
-* You must use Standard network features for Elastic Zone-Redundant storage. 
 
 ## Steps
 

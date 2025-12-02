@@ -20,13 +20,13 @@ It delivers built‑in local redundancy, shared QoS, and native multi‑tenancy 
 
 Scale smaller volumes with flexible throughput, power backups, analytics staging, and AI datasets—all at an affordable price without compromising reliability.
 
-Elastic ZRS offers built-in high-availability and zero recovery point objective (RPO). 
+The Elastic Zone-Redundant service level offers built-in high-availability and zero recovery point objective (RPO). 
 
-When creating your NetApp account, you must designate that the account is for zone-redundant storage. A NetApp account configured for the Elastic zone-redundant service level can only be used for the Elastic service level.
+When creating your NetApp account, you must designate that the account is for zone-redundant storage. A NetApp account configured for the Elastic Zone-Redundant service level can only be used for the Elastic Zone-Redundant service level.
 
 ## Elastic zone-redundant service
 
-In comparison to existing Azure NetApp Files service levels, the Elastic zone-redundant service level offers:  
+In comparison to existing Azure NetApp Files service levels, the Elastic Zone-Redundant service level offers:  
 
 <!-- Elastic ZR volumes write synchronously across Availability Zones (AZ) for zero‑data‑loss continuity and trigger platform‑managed failover in under two minutes -->
 <!-- 
@@ -52,7 +52,7 @@ Operational excellence: Enables flexible management of resources with scalable c
 - Transparent failover if a zonal outage occurs
 - Seamless growth from 1 GiB without specialized hardware 
 
-Zone-redundant storage is designed for small workloads, offering capacity pools that scale from 512 GiB to 16 TiB. Volumes can scale from 1 GiB to the maximum size of the capacity pool. 
+Zone-redundant storage is designed for small workloads, offering capacity pools that scale from 1 TiB to 128 TiB.
 
 If you're using custom RBAC roles, ensure you configure the [correct permissions](manage-availability-zone-volume-placement.md#configure-custom-rbac-roles).
 
@@ -78,7 +78,7 @@ If you're using custom RBAC roles, ensure you configure the [correct permissions
 * Because some regions only have two availability zones, confirm supported availability zones in the region before deploying zone-redundant storage. Use the Azure CLI command `az netappfiles resource query-region-info` or the REST API call: 
 
 ```https
-GET https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.NetApp/locations/{location}/regionInfo?api-version=2025-03-01
+GET https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.NetApp/locations/{location}/elasticRegionInfo?api-version=2025-09-01-preview
 ```
 
 ## Comparison of service levels
@@ -89,7 +89,7 @@ GET https://management.azure.com/subscriptions/{subscriptionId}/providers/Micros
 | Feature | Flexible, Standard, Premium, and Ultra service levels | Elastic service level | 
 | - | - | - | 
 | Performance | High performance storage optimized for enterprise workloads | Optimized for lower-performanc NAS workloads | 
-| Data management | Snapshots, cross-zone and cross-region replication, backups | Snapshots, cross-zone and cross-region replication, backups | 
+| Data management | Snapshots, cross-zone and cross-region replication, backups | Snapshots and backups | 
 | Protocol support | NFS, SMB, and dual-protocol (NFS and SMB) | NFS and SMB | 
 | Integrated backup | Integrated backup and recovery | Limited backup and recovery | 
 | Price | Premium pricing for enterprise features | Cost-optimized for smaller workloads |
