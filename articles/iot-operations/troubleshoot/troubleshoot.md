@@ -1,8 +1,8 @@
 ---
 title: Troubleshoot Azure IoT Operations
 description: Troubleshoot your Azure IoT Operations deployment and configuration
-author: SoniaLopezBravo
-ms.author: sonialopez
+author: dominicbetts
+ms.author: dobett
 ms.topic: troubleshooting-general
 ms.custom:
   - ignite-2023
@@ -97,7 +97,9 @@ This error occurs when Azure IoT Operations tries to synchronize a secret from A
 
 When you use the operations experience to add secrets or certificates, you might see permissions-related error messages if your Microsoft Entra ID account doesn't have the required permissions.
 
-When you use the operations experience to add secrets or certificates, it adds them as secrets in your Azure Key Vault. Your Microsoft Entra ID account needs **Secrets officer** permissions at the resource level for the Azure Key Vault used by your Azure IoT Operations instance. For information about assigning roles to users, see [Steps to assign an Azure role](../../role-based-access-control/role-assignments-steps.md).
+When you use the operations experience to add secrets or certificates, it adds them as secrets in your Azure Key Vault. Your Microsoft Entra ID account needs **Key Vault Secrets Officer** permissions at the resource level for the Azure Key Vault used by your Azure IoT Operations instance.
+
+For more information about assigning the required permissions, see [Configure Azure Key Vault permissions](../secure-iot-ops/howto-manage-secrets.md#configure-azure-key-vault-permissions).
 
 ## Troubleshoot device and asset discovery
 

@@ -20,7 +20,7 @@ In this article, you learn how to use premium ingress with Azure Container Apps.
 ## Prerequisites
 
 - Azure account with an active subscription.
-  - If you don't have one, you [can create one for free](https://azure.microsoft.com/free/).
+  - If you don't have one, you [can create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - Install the [Azure CLI](/cli/azure/install-azure-cli).
 
 ## Create resource group
@@ -71,8 +71,6 @@ az containerapp env workload-profile add \
   --name my-container-apps-env \
   --workload-profile-name Ingress-D4 \
   --workload-profile-type D4 \
-  --min-nodes 2 \
-  --max-nodes 4
 ````
 
 Your workload profile must have at least two nodes to use premium ingress.
@@ -120,8 +118,6 @@ az containerapp env premium-ingress update \
   --resource-group my-resource-group \
   --name my-container-apps-env \
   --workload-profile-name Ingress-D4 \
-  --min-nodes 3 \
-  --max-nodes 6 \
   --termination-grace-period 500 \
   --request-idle-timeout 4 \
   --header-count-limit 100
@@ -159,7 +155,7 @@ az containerapp env workload-profile remove \
 ## Prerequisites
 
 - Azure account with an active subscription.
-  - If you don't have one, you [can create one for free](https://azure.microsoft.com/free/).
+  - If you don't have one, you [can create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - Install the [Azure CLI](/cli/azure/install-azure-cli).
 - Install [Bicep](/azure/azure-resource-manager/bicep/install)
 
