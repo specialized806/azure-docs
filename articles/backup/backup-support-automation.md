@@ -1,7 +1,7 @@
 ---
 title: Automation in Azure Backup support matrix
 description: This article summarizes automation tasks related to Azure Backup support.
-ms.date: 10/17/2025
+ms.date: 11/26/2025
 ms.topic: reference
 ms.service: azure-backup
 author: AbhishekMallick-MS
@@ -31,7 +31,7 @@ You  can automate most backup related tasks using programmatic methods in Azure 
 | Restore | Create a VM from restored disks | Supported   <br><br> [See the examples](./backup-azure-vms-automation.md#using-managed-identity-to-restore-disks). | Supported   <br><br> [See the examples](./tutorial-restore-disk.md#using-managed-identity-to-restore-disks). | Supported   <br><br> [See the examples](/rest/api/backup/restores/trigger). | N/A | N/A | N/A | N/A |
 | Restore | Restore files | Supported   <br><br> [See the examples](./backup-azure-vms-automation.md#create-a-vm-from-restored-disks). | Supported   <br><br> [See the examples](./tutorial-restore-disk.md#create-a-vm-from-the-restored-disk). | Supported   <br><br> [See the examples](./backup-azure-arm-userestapi-restoreazurevms.md#restore-disks). | N/A | N/A | N/A | N/A |
 | Manage | Monitor jobs | Supported   <br><br> [See the examples](./backup-azure-vms-automation.md#restore-files-from-an-azure-vm-backup). | Supported   <br><br> [See the examples](./tutorial-restore-files.md). | N/A | N/A | N/A | N/A |
-| Manage | Modify backup policy | Supported   <br><br> [See the examples](./backup-azure-vms-automation.md#monitoring-a-backup-job). | Supported   <br><br> [See the examples](./quick-backup-vm-cli.md#monitor-the-backup-job). | Supported   <br><br> [See the examples](./backup-azure-arm-userestapi-managejobs.md#track-the-job). | N/A | N/A | N/A | N/A |
+| Manage | Modify backup policy | Supported   <br><br> [See the examples](./backup-azure-vms-automation.md#monitor-an-azure-vm-backup-job). | Supported   <br><br> [See the examples](./quick-backup-vm-cli.md#monitor-the-backup-job). | Supported   <br><br> [See the examples](./backup-azure-arm-userestapi-managejobs.md#track-the-job). | N/A | N/A | N/A | N/A |
 | Manage | Stop protection and retain backup data | Supported   <br><br> [See the examples](./backup-azure-vms-automation.md#retain-data). | Supported   <br><br> [See the examples](/cli/azure/backup/protection#az-backup-protection-disable). | Supported   <br><br> [See the examples](./backup-azure-arm-userestapi-backupazurevms.md#stop-protection-but-retain-existing-data). | N/A | N/A | N/A | N/A |
 | Manage | Stop protection and delete backup data | Supported   <br><br> [See the examples](./backup-azure-vms-automation.md#delete-backup-data). | Supported   <br><br> [See the examples](/cli/azure/backup/protection#az-backup-protection-disable). | Supported   <br><br> [See the examples](./backup-azure-arm-userestapi-backupazurevms.md#stop-protection-and-delete-data). | N/A | N/A | N/A | N/A |
 | Manage | Resume protection | Supported   <br><br> [See the examples](./backup-azure-vms-automation.md#resume-backup).    | Supported    <br><br> [See the examples](/cli/azure/backup/protection#az-backup-protection-resume). | Supported    <br><br> [See the examples](./backup-azure-arm-userestapi-backupazurevms.md#undo-the-deletion) | N/A | N/A | N/A | N/A |
@@ -40,12 +40,12 @@ You  can automate most backup related tasks using programmatic methods in Azure 
 
 | **Category** | **Operation** | **PowerShell** | **CLI** | **REST API** | **Azure Policy** | **ARM Template** | **Bicep** | **Terraform** |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Backup | Create backup policy and configure backup | Supported    <br><br> [See the examples](./backup-azure-sql-automation.md#configure-a-backup-policy). | Supported | Supported | Currently not supported | Supported    <br><br> [See the examples](./backup-rm-template-samples.md). | Supported | Currently not supported |
-| Backup | Enable auto-protection | Supported    <br><br> [See the examples](./backup-azure-sql-automation.md#enable-autoprotection) | Supported | Supported | N/A | N/A | N/A | Currently not supported |
+| Backup | Create backup policy and configure backup | Supported    <br><br> [See the examples](./backup-azure-sql-automation.md#configure-a-backup-policy-for-sql-databases). | Supported | Supported | Currently not supported | Supported    <br><br> [See the examples](./backup-rm-template-samples.md). | Supported | Currently not supported |
+| Backup | Enable auto-protection | Supported    <br><br> [See the examples](./backup-azure-sql-automation.md#enable-autoprotection-for-future-sql-databases) | Supported | Supported | N/A | N/A | N/A | Currently not supported |
 | Backup | Run on-demand backup | Supported    <br><br> [See the examples](./backup-azure-sql-automation.md#on-demand-backup). | Supported | Supported | N/A | N/A | N/A | Currently not supported |
 | Restore | Restore to a distinct full/differential recovery point | Supported    <br><br> [See the examples](./backup-azure-sql-automation.md#original-restore-with-distinct-recovery-point). | Supported | Supported | N/A | N/A | N/A | N/A |
 | Restore | Restore to a point in time | Supported    <br><br> [See the examples](./backup-azure-sql-automation.md#original-restore-with-log-point-in-time). | Supported | Supported | N/A | N/A | N/A | N/A |
-| Restore | Cross-region restore | Supported    <br><br> [See the examples](./backup-azure-sql-automation.md#alternate-workload-restore-to-a-vault-in-secondary-region). | Supported | Supported | N/A | N/A | N/A | N/A |
+| Restore | Cross-region restore | Supported    <br><br> [See the examples](./backup-azure-sql-automation.md#alternate-workload-restores-to-a-vault-in-secondary-region). | Supported | Supported | N/A | N/A | N/A | N/A |
 | Manage | Monitor jobs | Supported    <br><br> [See the examples](./backup-azure-sql-automation.md#track-azure-backup-jobs). | Supported | Supported | N/A | N/A | N/A | N/A |
 | Manage | Manage Azure Monitor Alerts (preview) | Supported    <br><br> [See the examples](/azure/azure-monitor/powershell-samples). | Supported | Supported | N/A | N/A | N/A | N/A |
 | Manage | Manage Azure Monitor Metrics (preview) | Supported    <br><br> [See the examples](/azure/azure-monitor/powershell-samples). | Supported | Supported | N/A | N/A | N/A | N/A |
@@ -124,7 +124,7 @@ You  can automate most backup related tasks using programmatic methods in Azure 
 
 | **Category** | **Operation** | **PowerShell** | **CLI** | **REST API** | **Azure Policy** | **ARM Template** |
 | --- | --- | --- | --- | --- | --- | --- |
-| Manage | Create Recovery Services vault | Supported    <br><br> [See the examples](./backup-azure-vms-automation.md#create-a-recovery-services-vault). | Supported    <br><br> [See the examples](./quick-backup-vm-cli.md#create-a-recovery-services-vault). | Supported    <br><br> [See the examples](./backup-azure-arm-userestapi-createorupdatevault.md). | N/A | Supported    <br><br> [See the examples](./backup-rm-template-samples.md). |
+| Manage | Create Recovery Services vault | Supported    <br><br> [See the examples](./backup-azure-vms-automation.md#create-a-recovery-services-vault-for-azure-vm-backup). | Supported    <br><br> [See the examples](./quick-backup-vm-cli.md#create-a-recovery-services-vault). | Supported    <br><br> [See the examples](./backup-azure-arm-userestapi-createorupdatevault.md). | N/A | Supported    <br><br> [See the examples](./backup-rm-template-samples.md). |
 | Manage | Create Backup vault | Supported    <br><br> [See the examples](./backup-blobs-storage-account-ps.md#create-a-backup-vault). | Supported    <br><br> [See the examples](./backup-blobs-storage-account-cli.md#create-a-backup-vault). | Supported    <br><br> [See the examples](./backup-azure-dataprotection-use-rest-api-create-update-backup-vault.md). | N/A | Supported |
 | Manage | Move Recovery Services vault | Supported    <br><br> [See the examples](./backup-azure-move-recovery-services-vault.md#use-powershell-to-move-recovery-services-vault). | Supported    <br><br> [See the examples](./backup-azure-move-recovery-services-vault.md#use-powershell-to-move-recovery-services-vault). | Supported | N/A | N/A |
 | Manage | Move Backup vault | Supported | Supported | Supported | N/A | N/A |
