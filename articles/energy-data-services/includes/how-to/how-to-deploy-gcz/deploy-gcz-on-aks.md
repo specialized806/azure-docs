@@ -130,7 +130,7 @@ This guide explains how to deploy Geospatial Consumption Zone (GCZ) as an **add-
    ```
  1. Create the HELM chart:
 
-   ### [Unix Shell](#tab/unix-shell-1)
+  ### [Unix Shell](#tab/unix-shell-1)
    ```bash
    cat > osdu_gcz_custom_values.yaml << EOF
    # GCZ Configuration - Azure Deployment
@@ -193,8 +193,7 @@ This guide explains how to deploy Geospatial Consumption Zone (GCZ) as an **add-
       gcz_persistence_folder: "/persistence/storage"
 EOF
 ```
-
-   ### [Windows PowerShell](#tab/windows-powershell-1)
+ ### [Windows PowerShell](#tab/windows-powershell-1)
  
    ```powershell
   @"
