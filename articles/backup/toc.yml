@@ -99,40 +99,70 @@
   items:
   - name: Overview
     href: security-overview.md
+  - name: FAQ-Protection against Ransomware
+    href: protect-backups-from-ransomware-faq.yml
   - name: Save and manage MARS agent passphrase in Azure Key Vault
     href: save-backup-passphrase-securely-in-azure-key-vault.md
   - name: Azure role-based access control
     href: backup-rbac-rs-vault.md
-  - name: Configure Multi-user authorization using Resource Guard
-    href: multi-user-authorization.md
-  - name: Manage Immutable vaults
-    href: backup-azure-immutable-vault-how-to-manage.md
-  - name: Soft delete
+  - name: Multi-user authorization
+    items:  
+    - name: Overview
+      href: multi-user-authorization-concept.md
+    - name: Enable Multi-user authorization (MUA)
+      href: enable-multi-user-authorization-quickstart.md    
+    - name: Configure Multi-user authorization using Resource Guard
+      href: multi-user-authorization.md
+    - name: Immutable vault
+      items:
+      - name: Overview  
+        href: backup-azure-immutable-vault-concept.md  
+      - name: Manage
+        href: backup-azure-immutable-vault-how-to-manage.md
+  - name: Soft delete and enhanced soft delete
     items:
-    - name: For virtual machines
-      href: soft-delete-virtual-machines.md
-    - name: For SQL Server and SAP HANA in Azure VMs
-      href: soft-delete-sql-saphana-in-azure-vm.md
-  - name: Configure and manage enhanced soft delete
-    href: backup-azure-enhanced-soft-delete-configure-manage.md
+    - name: Overview of soft delete
+      href: secure-by-default.md
+    - name: Overview of enhanced soft delete
+      href: backup-azure-enhanced-soft-delete-about.md  
+    - name: FAQ-Soft Delete
+      href: soft-delete-azure-backup-faq.yml    
+    - name: Manage soft deleted data
+      items:
+      - name: Manage soft deleted items
+        href: backup-azure-enhanced-soft-delete-configure-manage.md  
+      - name: Soft delete backups for virtual machines
+        href: soft-delete-virtual-machines.md
+      - name: Soft delete backups for SQL Server and SAP HANA in Azure VMs
+        href: soft-delete-sql-saphana-in-azure-vm.md
   - name: Delete protection for Azure files
     href: soft-delete-azure-file-share.md
   - name: Ransomware protection
     items:
     - name: Overview
       href: ../security/fundamentals/backup-plan-to-protect-against-ransomware.md?toc=/azure/backup/toc.json&bc=/azure/backup/breadcrumb/toc.json
-    - name: Integrate with Microsoft Defender's ransomware alerts
-      href: backup-azure-integrate-microsoft-defender-using-logic-apps.md
     - name: FAQ-Protection against Ransomware
       href: protect-backups-from-ransomware-faq.yml
+    - name: Integrate with Microsoft Defender's ransomware alerts
+      href: backup-azure-integrate-microsoft-defender-using-logic-apps.md
   - name: Security for hybrid backups
     href: backup-azure-security-feature.md
   - name: Private Endpoints
     items:
     - name: V1 experience
-      href: private-endpoints.md
+      items:
+      - name: Overview
+        href: private-endpoints-overview.md
+      - name: Create and manage  
+        href: private-endpoints.md
     - name: V2 experience
-      href: backup-azure-private-endpoints-configure-manage.md
+      items:
+      - name: Overview
+        href: backup-azure-private-endpoints-concept.md
+      - name: Create and manage
+        href: backup-azure-private-endpoints-configure-manage.md
+  - name: Threat Detection with Microsoft Defender for Cloud integration 
+    href: threat-detection-overview.md
   - name: Encryption in Azure Backup
     href: backup-encryption.md
   - name: Encryption using customer-managed keys
@@ -235,8 +265,6 @@
       href: quick-backup-azure-files-vault-tier-bicep.md
     - name: With Terraform
       href: quick-backup-azure-files-vault-tier-terraform.md
-  - name: Enable Multi-user authorization (MUA)
-    href: enable-multi-user-authorization-quickstart.md
   - name: Backup SAP HANA System Replication database
     items:
     - name: Backup
@@ -378,10 +406,6 @@
       href: backup-azure-dpm-azure-server-faq.yml
     - name: FAQ-Azure Backup Monitoring and Reporting
       href: backup-azure-monitor-alert-faq.yml
-    - name: FAQ-Protection against Ransomware
-      href: protect-backups-from-ransomware-faq.yml
-    - name: FAQ-Soft Delete
-      href: soft-delete-azure-backup-faq.yml
   - name: Azure VM backup
     items:
     - name: Overview
@@ -422,24 +446,6 @@
       href: about-restore-microsoft-azure-recovery-services.md
   - name: Monitoring and Reporting
     href: monitoring-and-alerts-overview.md
-  - name: Security
-    items:
-    - name: Enhanced soft delete
-      href: backup-azure-enhanced-soft-delete-about.md
-    - name: Multi-user authorization
-      href: multi-user-authorization-concept.md
-    - name: Immutable vault
-      href: backup-azure-immutable-vault-concept.md
-    - name: Secure by Default with Azure Backup
-      href: secure-by-default.md
-    - name: Private endpoints
-      items:
-      - name: V1 experience
-        href: private-endpoints-overview.md
-      - name: V2 experience
-        href: backup-azure-private-endpoints-concept.md
-    - name: Threat Detection with Microsoft Defender for Cloud integration 
-      href: threat-detection-overview.md
   - name: Backup architecture
     href: backup-architecture.md
   - name: Guidance and best practices
