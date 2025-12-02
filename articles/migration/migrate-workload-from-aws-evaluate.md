@@ -1,0 +1,37 @@
+---
+title: Migrate a Workload from Azure Web Services (AWS)
+description: Learn how to migrate a single workload from AWS to Azure
+ms.author: rhackenberg
+ms.date: 11/24/2025
+ms.topic: concept-article
+ms.service: azure
+ms.collection:
+ - migration
+ - aws-to-azure
+---
+
+# Migrate a workload from Amazon Web Services (AWS) - Evaluate
+
+Congratulations, your workload is now running on Azure! 
+
+The evaluate phase consists of three steps: **validate cutover**, **sign-off**, and **decommission**.
+
+The goal of this phase is to confirm your workload in Azure meets functional, performance, reliability, security, and cost baselines you established in the planning phase on AWS.
+
+Incomplete monitoring, insufficient performance testing, or weak cost and security reviews can hide issues that only surface later as outages, data exposure, or budget overruns.
+
+## Validate successful cutover
+
+- **Monitor and fine-tune:** Closely track your workload trends for any errors, performance bottlenecks, or unusual patterns, especially in the first one to two weeks. This step includes right-sizing components, ensuring your scaling strategy works as intended, watching budget thresholds, and checking and validating your disaster recovery configurations and backups. Prioritize the remediation of any security issues.
+- **Measure against baselines**: Verify that the baseline KPIs you documented in the planning phase, like throughput, latency, and error rates, are met and compare favorably to the AWS measurements.
+- **Validate cutover via AWS logs:** [AWS CloudTrail](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html) logs every API call and console action in your AWS account. Check and validate that these logs don't show any unintended workload traffic. If any of your workload's components still call any of the AWS services, CloudTrail exposes this.
+
+## Sign-off
+
+- **Sign-off milestones**: Sign-off when you achieve your minimum viable cutover and all tests validate a successful migration outcome.
+- **Plan for future improvements:** Create a work backlog for any nonurgent improvements like opportunities for cost optimization and added resilience.
+
+## Next step
+
+> [!div class="nextstepaction"]
+> [Decommission your AWS resources](./migrate-workload-from-aws-decommission.md)

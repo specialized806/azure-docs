@@ -1,0 +1,62 @@
+---
+title: Migrate a Workload from Azure Web Services (AWS)
+description: Learn how to migrate a single workload from AWS to Azure
+ms.author: rhackenberg
+ms.date: 11/24/2025
+ms.topic: concept-article
+ms.service: azure
+ms.collection:
+ - migration
+ - aws-to-azure
+---
+
+# Migrate a workload from Amazon Web Services (AWS) - Introduction
+
+This article provides architects and engineers with actionable, prescriptive guidance to migrate a single workload from Amazon Web Services (AWS) to Azure.
+
+The scope of this article covers the full migration lifecycle, from planning and preparation, to execution and evaluation, to decommissioning of AWS resources.
+
+**Workload migration strategy**
+
+A like-for-like workload migration strategy is the fastest path to Azure and has the least risk. This approach keeps the existing architecture and operational patterns. The goal is that the migrated workload meets the same key performance indicators (KPIs) on Azure as it did on AWS. Minimize changes during the migration and focus on validating performance and stability. Once the migration of your workload is completed, you can explore optimization.
+
+**Recommended tools**
+
+Use AWS and Azure tools where appropriate to augment your migration process. These tools support upfront discovery, planning your Azure architecture (based on data gathered about your AWS workload), data and virtual machine (VM) transfer, and post-migration validation and resource cleanup. 
+
+Migrating a workload from AWS is a strategic initiative that requires careful planning and stakeholder alignment. This article focuses on workloads that range from simple to moderately complex and can benefit from a pragmatic migration strategy. 
+
+## Timeline assumptions
+
+The migration of a workload can span several weeks or months. The duration depends on the complexity of the workload and your migration and cutover strategy. The timeline shows a typical workload migration for a moderately complex workload using a like-for-like approach. 
+
+:::image type="content" source="./images/migrate-from-aws-phases.svg" alt-text="Diagram showing three phases of migrating workloads from AWS to Microsoft Azure. Across the top, three labeled boxes indicate phases with durations: Before migration (2–4 weeks), During migration (3–7 weeks), and After migration (1–2 weeks). Each box includes a summary of key activities such as planning, infrastructure setup, and optimization. Below, a horizontal sequence of five icons represents steps: Plan, Prepare, Execute, Optimize, and Decommission." lightbox="./images/migrate-from-aws-phases.svg" border="false":::
+
+*Guidelines for a moderately complex workload.*
+
+## Prerequisites
+
+Before you begin migration planning and execution, ensure you have the following prerequisites in place:
+
+- *Stakeholder alignment:* Share timelines, budget estimates, and project milestones with stakeholders to ensure that all parties are aligned.
+- *Support strategy in place:* Purchase a Microsoft support plan and investigate options for free or community support.
+- *Platform strategy in place:* This article covers how to migrate a single workload. It assumes your platform foundation is in place and your migration strategy is defined and in alignment with the [Cloud Adoption Framework](/azure/cloud-adoption-framework/strategy).
+
+In addition to these measures, consider completing a [Migration Readiness Assessment](/assessments/Strategic-Migration-Assessment/). This assessment scores your readiness to migrate across 10 dimensions.
+
+To help with planning and successfully executing your workload migration, work through the following five phases:
+
+- [Plan](/azure/migration/migrate-a-workload-from-aws#plan)
+- [Prepare](/azure/migration/migrate-a-workload-from-aws#prepare)
+- [Execute](/azure/migration/migrate-a-workload-from-aws#execute)
+- [Evaluate](/azure/migration/migrate-a-workload-from-aws#evaluate)
+- [Decommission](/azure/migration/migrate-a-workload-from-aws#decommission)
+
+Each phase includes detailed steps and checklists to guide you through the migration process.
+
+## Next steps
+
+
+
+> [!div class="nextstepaction"]
+> [Go to next phase](./migrate-workload-from-aws-plan.md)
