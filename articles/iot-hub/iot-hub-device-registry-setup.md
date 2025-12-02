@@ -1,20 +1,20 @@
 ---
-title: Get Started with ADR and Certificate Management in IoT Hub (Preview)
+title: Deploy IoT Hub with ADR integration and certificate management (Preview)
 titleSuffix: Azure IoT Hub
 description: This article explains how to create an IoT Hub with ADR integration and Microsoft-backed X.509 certificate management.
-author: SoniaLopezBravo
-ms.author: sonialopez
+author: cwatson-cat
+ms.author: cwatson
 ms.service: azure-iot-hub
 services: iot-hub
 ms.topic: how-to
-ms.date: 11/24/2025
+ms.date: 12/02/2025
 zone_pivot_groups: iot-hub-deployment-methods
 #Customer intent: As a developer new to IoT, I want to understand what Azure Device Registry is and how it can help me manage my IoT devices.
 ---
 
-# Get started with ADR integration and Microsoft-backed X.509 certificate management in IoT Hub (preview)
+# Deploy Azure IoT Hub with ADR integration and certificate management (preview)
 
-This article explains how to create a new IoT Hub with [Azure Device Registry (ADR)](iot-hub-device-registry-overview.md) integration and [Microsoft-backed X.509 certificate management](iot-hub-certificate-management-overview.md). 
+This article explains how to deploy IoT Hub with [Azure Device Registry (ADR)](iot-hub-device-registry-overview.md) integration and [Microsoft-backed X.509 certificate management](iot-hub-certificate-management-overview.md).
 
 [!INCLUDE [iot-hub-public-preview-banner](includes/public-preview-banner.md)]
 
