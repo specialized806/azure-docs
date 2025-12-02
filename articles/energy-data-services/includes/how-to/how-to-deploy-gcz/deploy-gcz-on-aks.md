@@ -131,7 +131,7 @@ This guide explains how to deploy Geospatial Consumption Zone (GCZ) as an **add-
 
 1. Create the HELM chart:
 
-   ### [Unix Shell](#tab/unix-shell)
+   ### [Unix Shell](#tab/unix-shell-1)
    ```bash
    cat > osdu_gcz_custom_values.yaml << EOF
    # GCZ Configuration - Azure Deployment
@@ -194,8 +194,8 @@ global:
       gcz_persistence_folder: "/persistence/storage"
 EOF
 ```
-
-   ### [Windows PowerShell](#tab/windows-powershell)
+### [Windows PowerShell](#tab/windows-powershell-1)
+ 
 
    ```powershell
   @"
@@ -262,7 +262,7 @@ global:
 
 1. Change service type to `LoadBalancer` for the `provider` and `transformer` services configuration files.
 
-   ### [Unix Shell](#tab/unix-shell)
+   ### [Unix Shell](#tab/unix-shell-2)
 
    ```bash
    cat > ../provider/templates/service.yaml << EOF
@@ -303,7 +303,7 @@ spec:
 EOF
 ```
 
-   ### [Windows PowerShell](#tab/windows-powershell)
+   ### [Windows PowerShell](#tab/windows-powershell-2)
 
    ```powershell
    @"
