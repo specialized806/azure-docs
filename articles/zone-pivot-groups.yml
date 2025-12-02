@@ -2049,4 +2049,4 @@ groups:
   - id: azure-cli
     title: Azure CLI
   - id: script
-    title: Script
+    title: PowerShell script
