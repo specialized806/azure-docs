@@ -8,7 +8,7 @@ ms.service: security
 ms.subservice: security-fundamentals
 ms.custom: linux-related-content
 ms.topic: article
-ms.date: 09/06/2024
+ms.date: 12/03/2025
 ms.author: mbaldwin
 ms.reviewer: mattmcinnes
 ---
