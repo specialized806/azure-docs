@@ -1,6 +1,6 @@
 ---
 title: Create an IoT hub with Certificate Management in Azure Device Registry using Azure portal
-description: This article explains how to create an IoT hub with Azure Device Registry and Certificate Management integration using the Azure portal.
+description: This article explains how to create an IoT hub with Azure Device Registry and certificate management integration using the Azure portal.
 author: cwatson-cat
 ms.author: cwatson
 ms.service: azure-iot-hub
@@ -17,7 +17,7 @@ Before you begin, make sure you have:
 
 ## Overview
 
-Use the Azure portal to create an IoT hub with Azure Device Registry and Certificate Management integration.
+Use the Azure portal to create an IoT hub with Azure Device Registry and certificate management integration.
 
 The setup process in this article includes the following steps:
 
@@ -38,7 +38,7 @@ In this section, you set up your Azure Device Registry (ADR) namespace, enable m
 
 ### Create an ADR namespace with system-assigned managed identity
 
-When you create a namespace with a system-assigned managed identity, the process also creates a credential known as root CA and a default policy known as intermediate CA. [Certificate Management](../articles/iot-hub/iot-hub-certificate-management-overview.md) uses these credentials and policies to onboard devices to the namespace.
+When you create a namespace with a system-assigned managed identity, the process also creates a credential known as root CA and a default policy known as intermediate CA. [Certificate management](../articles/iot-hub/iot-hub-certificate-management-overview.md) uses these credentials and policies to onboard devices to the namespace.
 
 1. Sign in to the [Azure portal](https://portal.azure.com).
 1. Search for and select **Azure Device Registry**.
@@ -55,7 +55,7 @@ When you create a namespace with a system-assigned managed identity, the process
     :::image type="content" source="../articles/iot-hub/media/device-registry/iot-hub-namespace-1.png" alt-text="Screen capture that shows how to fill the basics tab for an ADR namespace in the Azure portal.":::
 
 1. Select **Next**.
-1. In the **Identity** tab, enable a system-assigned managed identity and a credential resource for your namespace. For more information about how ADR works with managed identities and credential resources, see [What is Certificate Management](../articles/iot-hub/iot-hub-certificate-management-overview.md).
+1. In the **Identity** tab, enable a system-assigned managed identity and a credential resource for your namespace. For more information about how ADR works with managed identities and credential resources, see [What is certificate management](../articles/iot-hub/iot-hub-certificate-management-overview.md).
 
     - Managed identities allow your namespace to authenticate to Azure services without storing credentials in your code.
     - Credential resources securely store and manage device authentication credentials, such as API keys or certificates, for devices connecting to your namespace. When you enable this feature, you can set policies to control how certificates are issued and managed for your devices.
