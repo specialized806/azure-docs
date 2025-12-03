@@ -52,6 +52,7 @@ To help with planning and successfully executing your workload migration, work t
 - [Execute](/azure/migration/migrate-workload-from-aws-execute)
 - [Evaluate](/azure/migration/migrate-workload-from-aws-evaluate)
 - [Decommission](/azure/migration/migrate-workload-from-aws-decommission)
+
 Each phase includes detailed steps and checklists to guide you through the migration process.
 
 ## Next steps

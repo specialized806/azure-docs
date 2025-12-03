@@ -17,7 +17,11 @@ The execute phase consists of three steps: **before** cutover, **during** cutove
 
 The goal of this phase is to migrate your workload to Azure with minimal downtime and disruption. Follow your runbook closely and communicate with stakeholders throughout the process.
 
-The execute phase carries the highest risk of service disruption. Data synchronization issues, network misconfigurations, or unexpected application behaviors can cause outages or data loss. Don't rush testing or skip validation steps.
+> [!WARNING]
+> Don't rush testing or skip validation steps. 
+> 
+> The execute phase carries the highest risk of service disruption. Data synchronization issues, network misconfigurations, or unexpected application behaviors can cause outages or data loss. 
+
 
 ## Before cutover
 
