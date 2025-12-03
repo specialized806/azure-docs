@@ -7,19 +7,24 @@ ms.date: 11/24/2025
 ms.topic: concept-article
 ms.service: azure
 ms.collection:
- - migration
- - aws-to-azure
+  - migration
+  - aws-to-azure
 ---
 
 # Migrate a workload from Amazon Web Services (AWS) - Evaluate
 
 Congratulations, your workload is now running on Azure! 
 
-The evaluate phase consists of three steps: **validate cutover**, **sign-off**, and **decommission**.
+The evaluate phase consists of two steps: 
+
+> [!div class="checklist"]
+> * validate cutover
+> * sign-off
 
 The goal of this phase is to confirm your workload in Azure meets functional, performance, reliability, security, and cost baselines you established in the planning phase on AWS.
 
-Incomplete monitoring, insufficient performance testing, or weak cost and security reviews can hide issues that only surface later as outages, data exposure, or budget overruns.
+> [!WARNING]
+> Incomplete monitoring, insufficient performance testing, or weak cost and security reviews can hide issues that only surface later as outages, data exposure, or budget overruns.
 
 ## Validate successful cutover
 

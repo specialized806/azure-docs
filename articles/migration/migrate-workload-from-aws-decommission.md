@@ -17,7 +17,7 @@ This step is the final step in the workload migration. Proceed when you're confi
 
 The goal of this phase is to safely retire AWS dependencies, remove redundant resources, and complete the transition to Azure.
 
-> [!IMPORTANT]
+> [!WARNING]
 >
 > If you prematurely delete AWS resources, overlook hidden dependencies, or skip final data and access checks, you risk data loss, unexpected downtime, compliance violations, or lingering cost from orphaned assets.
 

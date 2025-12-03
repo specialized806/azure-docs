@@ -7,8 +7,8 @@ ms.date: 11/24/2025
 ms.topic: concept-article
 ms.service: azure
 ms.collection:
- - migration
- - aws-to-azure
+  - migration
+  - aws-to-azure
 ---
 
 # Migrate a workload from Amazon Web Services (AWS) - Introduction
@@ -17,11 +17,14 @@ This article provides architects and engineers with actionable, prescriptive gui
 
 The scope of this article covers the full migration lifecycle, from planning and preparation, to execution and evaluation, to decommissioning of AWS resources.
 
-**Workload migration strategy**
+## Workload migration strategy
 
-A like-for-like workload migration strategy is the fastest path to Azure and has the least risk. This approach keeps the existing architecture and operational patterns. The goal is that the migrated workload meets the same key performance indicators (KPIs) on Azure as it did on AWS. Minimize changes during the migration and focus on validating performance and stability. Once the migration of your workload is completed, you can explore optimization.
+ A like-for-like workload migration strategy is the fastest path to Azure and has the least risk. This approach keeps the existing architecture and operational patterns. The goal is that the migrated workload meets the same key performance indicators (KPIs) on Azure as it did on AWS. 
+ 
+> [!TIP]
+>Minimize changes during the migration and focus on validating performance and stability. Once the migration of your workload is completed, you can explore optimization.
 
-**Recommended tools**
+## Recommended tools
 
 Use AWS and Azure tools where appropriate to augment your migration process. These tools support upfront discovery, planning your Azure architecture (based on data gathered about your AWS workload), data and virtual machine (VM) transfer, and post-migration validation and resource cleanup. 
 
@@ -47,11 +50,13 @@ In addition to these measures, consider completing a [Migration Readiness Assess
 
 To help with planning and successfully executing your workload migration, work through the following five phases:
 
-- [Plan](/azure/migration/migrate-workload-from-aws-plan)
-- [Prepare](/azure/migration/migrate-workload-from-aws-prepare)
-- [Execute](/azure/migration/migrate-workload-from-aws-execute)
-- [Evaluate](/azure/migration/migrate-workload-from-aws-evaluate)
-- [Decommission](/azure/migration/migrate-workload-from-aws-decommission)
+> [!div class="checklist"]
+> * [Plan](/azure/migration/migrate-workload-from-aws-plan)
+> * [Prepare](/azure/migration/migrate-workload-from-aws-prepare)
+> * [Execute](/azure/migration/migrate-workload-from-aws-execute)
+> * [Evaluate](/azure/migration/migrate-workload-from-aws-evaluate)
+> * [Decommission](/azure/migration/migrate-workload-from-aws-decommission)
+
 
 Each phase includes detailed steps and checklists to guide you through the migration process.
 

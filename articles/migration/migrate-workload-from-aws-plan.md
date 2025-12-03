@@ -13,7 +13,6 @@ ms.collection:
 # Plan your workload migration from Amazon Web Services (AWS) to Azure - Plan
 
 The planning phase consists of three steps: 
-**assess**, **design**, and **document**. 
 
 > [!div class="checklist"]
 > * assess
