@@ -1,7 +1,7 @@
 ---
 title: Tutorial - Export and use Azure portal templates 
 description: Learn how to export a template from the Azure portal to use sample templates from Azure Quickstart Templates.
-ms.date: 10/27/2025
+ms.date: 10/29/2025
 ms.topic: tutorial
 ms.custom:
 ---
@@ -55,7 +55,7 @@ At the end of the previous tutorial, your template had the following JSON file:
   "resources": [
     {
       "type": "Microsoft.Storage/storageAccounts",
-      "apiVersion": "2021-09-01",
+      "apiVersion": "2025-06-01",
       "name": "[variables('uniqueStorageName')]",
       "location": "[parameters('location')]",
       "sku": {
@@ -163,7 +163,7 @@ Copy the whole file, and replace your template with its contents:
   "resources": [
     {
       "type": "Microsoft.Storage/storageAccounts",
-      "apiVersion": "2021-09-01",
+      "apiVersion": "2025-06-01",
       "name": "[variables('uniqueStorageName')]",
       "location": "[parameters('location')]",
       "sku": {
@@ -176,7 +176,7 @@ Copy the whole file, and replace your template with its contents:
     },
     {
       "type": "Microsoft.Web/serverfarms",
-      "apiVersion": "2021-03-01",
+      "apiVersion": "2025-03-01",
       "name": "[parameters('appServicePlanName')]",
       "location": "[parameters('location')]",
       "sku": {

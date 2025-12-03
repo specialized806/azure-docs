@@ -3,7 +3,7 @@ title: Create portal forms for template spec
 description: Learn how to create forms that are displayed in the Azure portal forms. Use the form to deploy a template spec.
 ms.topic: tutorial
 ms.custom: devx-track-azurepowershell, devx-track-azurecli
-ms.date: 01/30/2025
+ms.date: 10/29/2025
 ---
 
 # Tutorial: Create Azure portal forms for a template spec
@@ -137,7 +137,7 @@ Copy this file and save it locally. This tutorial assumes you named it **keyvaul
   "resources": [
     {
       "type": "Microsoft.KeyVault/vaults",
-      "apiVersion": "2022-07-01",
+      "apiVersion": "2025-05-01",
       "name": "[parameters('keyVaultName')]",
       "location": "[parameters('location')]",
       "properties": {
@@ -167,7 +167,7 @@ Copy this file and save it locally. This tutorial assumes you named it **keyvaul
     },
     {
       "type": "Microsoft.KeyVault/vaults/secrets",
-      "apiVersion": "2022-07-01",
+      "apiVersion": "2025-05-01",
       "name": "[format('{0}/{1}', parameters('keyVaultName'), parameters('secretName'))]",
       "dependsOn": [
         "[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]"

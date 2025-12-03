@@ -1,7 +1,7 @@
 ---
 title: Tutorial - Add a resource to your Azure Resource Manager template
 description: Understand the steps to create your first Azure Resource Manager template. Learn about the template file syntax and how to deploy a storage account.
-ms.date: 10/27/2025
+ms.date: 10/29/2025
 ms.topic: tutorial
 ms.custom: devx-track-arm-template
 ---
@@ -32,7 +32,7 @@ Replace `{provide-unique-name}` and the curly braces `{}` with a unique storage 
   "resources": [
     {
       "type": "Microsoft.Storage/storageAccounts",
-      "apiVersion": "2021-09-01",
+      "apiVersion": "2025-06-01",
       "name": "{provide-unique-name}",
       "location": "eastus",
       "sku": {

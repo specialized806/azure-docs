@@ -1,7 +1,7 @@
 ---
 title: Tutorial - Use parameter files to deploy Azure Resource Manager templates
 description: Use parameter files that contain the values to use for deploying your Azure Resource Manager template.
-ms.date: 10/27/2025
+ms.date: 10/29/2025
 ms.topic: tutorial
 ms.custom: devx-track-arm-template
 ---
@@ -81,7 +81,7 @@ Your template has many parameters you can provide during deployment. At the end 
   "resources": [
     {
       "type": "Microsoft.Storage/storageAccounts",
-      "apiVersion": "2021-09-01",
+      "apiVersion": "2025-06-01",
       "name": "[variables('uniqueStorageName')]",
       "location": "[parameters('location')]",
       "tags": "[parameters('resourceTags')]",
@@ -95,7 +95,7 @@ Your template has many parameters you can provide during deployment. At the end 
     },
     {
       "type": "Microsoft.Web/serverfarms",
-      "apiVersion": "2021-03-01",
+      "apiVersion": "2025-03-01",
       "name": "[parameters('appServicePlanName')]",
       "location": "[parameters('location')]",
       "tags": "[parameters('resourceTags')]",
@@ -116,7 +116,7 @@ Your template has many parameters you can provide during deployment. At the end 
     },
     {
       "type": "Microsoft.Web/sites",
-      "apiVersion": "2021-03-01",
+      "apiVersion": "2025-03-01",
       "name": "[variables('webAppPortalName')]",
       "location": "[parameters('location')]",
       "dependsOn": [

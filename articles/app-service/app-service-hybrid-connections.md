@@ -138,7 +138,7 @@ In addition to there being an App Service plan SKU requirement, there's an extra
 
 The Hybrid Connections feature requires a relay agent in the network that hosts your Hybrid Connection endpoint. That relay agent is called the Hybrid Connection Manager (HCM). To download the Hybrid Connection Manager, follow the instructions for your client.
 
-This tool runs on both Windows and Linux. On Windows, the Hybrid Connection Manager requires Windows Server 2012 and later. The Hybrid Connection Manager runs as a service and connects outbound to Azure Relay on port 443.
+This tool runs on both Windows and Linux. The Hybrid Connection Manager runs as a service and connects outbound to Azure Relay on port 443. On Windows, the current version requires Windows Server 2012 or later, but only supports the CLI interface on Windows Server 2012 (the GUI requires Windows Server 2016 or later). A legacy version that supports the GUI on Windows Server 2012 is available but not recommended - see the note in the troubleshooting section for details.
 
 > [!NOTE]
 > As of October 20, 2025, [Azure Service Bus no longer supports TLS 1.0 and TLS 1.1][ServiceBus]. The minimum TLS version is now 1.2 for all Service Bus deployments. Hybrid Connections use Service Bus for connectivity. App Service Hybrid Connection Manager version 0.7.7 and later supports TLS 1.2. If you are on a previous version, **you must update to the new version of the Hybrid Connection Manager as soon as possible to prevent service disruption.**
@@ -396,7 +396,9 @@ In App Service, the *tcpping* command-line tool can be invoked from the Advanced
 If you have a command-line client for your endpoint, you can test connectivity from the app console. For example, you can test access to web server endpoints by using curl.
 
 > [!NOTE]
-> For questions and support specific to App Service Hybrid Connections and App Service Hybrid Connection Manager, contact [hcmsupport@service.microsoft.com](mailto:hcmsupport@service.microsoft.com).
+> **Legacy Hybird Connection Manager availability:** The legacy version of the Hybrid Connection Manager is available if needed and can be [downloaded here](https://download.microsoft.com/download/0/e/4/0e48d57b-c563-4877-8acb-cb740c7c6a78/HybridConnectionManager.msi). This version is no longer being updated and only supports Windows clients. It's recommended that you use the latest version of the Hybrid Connection Manager for all new installations and upgrades to existing installations.
+
+*For questions and support specific to App Service Hybrid Connections and App Service Hybrid Connection Manager, contact [hcmsupport@service.microsoft.com](mailto:hcmsupport@service.microsoft.com).*
 
 <!--Links-->
 [HCService]: /azure/service-bus-relay/relay-hybrid-connections-protocol/

@@ -1,7 +1,7 @@
 ---
 title: Tutorial - Add variables to your Azure Resource Manager template
 description: Learn how to add variables to your Azure Resource Manager template to simplify the syntax.
-ms.date: 10/27/2025
+ms.date: 10/29/2025
 ms.topic: tutorial
 ms.custom: devx-track-arm-template
 ---
@@ -52,7 +52,7 @@ At the end of the previous tutorial, your template had the following JSON file:
   "resources": [
     {
       "type": "Microsoft.Storage/storageAccounts",
-      "apiVersion": "2021-09-01",
+      "apiVersion": "2025-06-01",
       "name": "[parameters('storageName')]",
       "location": "[parameters('location')]",
       "sku": {
@@ -108,7 +108,7 @@ The following example shows the changes to add a variable to your template that 
   "resources": [
     {
       "type": "Microsoft.Storage/storageAccounts",
-      "apiVersion": "2021-09-01",
+      "apiVersion": "2025-06-01",
       "name": "[variables('uniqueStorageName')]",
       "location": "[parameters('location')]",
       "sku": {

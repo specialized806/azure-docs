@@ -1,7 +1,7 @@
 ---
 title: Tutorial - Use Azure Quickstart Templates
 description: Learn how to use Azure Quickstart Templates to complete your template development.
-ms.date: 10/27/2025
+ms.date: 10/29/2025
 ms.topic: tutorial
 ms.custom:
 ---
@@ -59,7 +59,7 @@ At the end of the previous tutorial, your template had the following JSON file:
   "resources": [
     {
       "type": "Microsoft.Storage/storageAccounts",
-      "apiVersion": "2021-09-01",
+      "apiVersion": "2025-06-01",
       "name": "[variables('uniqueStorageName')]",
       "location": "[parameters('location')]",
       "sku": {
@@ -72,7 +72,7 @@ At the end of the previous tutorial, your template had the following JSON file:
     },
     {
       "type": "Microsoft.Web/serverfarms",
-      "apiVersion": "2021-03-01",
+      "apiVersion": "2025-03-01",
       "name": "[parameters('appServicePlanName')]",
       "location": "[parameters('location')]",
       "sku": {
@@ -170,7 +170,7 @@ Merge the quickstart template with the existing template:
   "resources": [
     {
       "type": "Microsoft.Storage/storageAccounts",
-      "apiVersion": "2021-09-01",
+      "apiVersion": "2025-06-01",
       "name": "[variables('uniqueStorageName')]",
       "location": "[parameters('location')]",
       "sku": {
@@ -183,7 +183,7 @@ Merge the quickstart template with the existing template:
     },
     {
       "type": "Microsoft.Web/serverfarms",
-      "apiVersion": "2021-03-01",
+      "apiVersion": "2025-03-01",
       "name": "[parameters('appServicePlanName')]",
       "location": "[parameters('location')]",
       "sku": {
@@ -203,7 +203,7 @@ Merge the quickstart template with the existing template:
     },
     {
       "type": "Microsoft.Web/sites",
-      "apiVersion": "2021-03-01",
+      "apiVersion": "2025-03-01",
       "name": "[variables('webAppPortalName')]",
       "location": "[parameters('location')]",
       "dependsOn": [
