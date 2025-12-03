@@ -431,6 +431,33 @@ groups:
     title: Windows code
   - id: platform-windows-container
     title: Windows container
+# Owner: sonialopez
+- id: service-portal-azcli
+  title: App Service deployment method
+  prompt: Choose a deployment method
+  pivots:
+  - id: azure-portal
+    title: Azure portal
+  - id: azure-cli
+    title: Azure CLI
+- id: service-azcli-script
+  title: App Service deployment method
+  prompt: Choose a deployment method
+  pivots:
+  - id: azure-cli
+    title: Azure CLI
+  - id: script
+    title: PowerShell script
+- id: service-portal-azcli-powershell
+  title: App Service deployment method
+  prompt: Choose a deployment method
+  pivots:
+  - id: azure-portal
+    title: Azure portal
+  - id: azure-cli
+    title: Azure CLI
+  - id: powershell
+    title: Azure PowerShell
 # Owner: msangapu
 - id: app-service-portal-azd
   title: App Service deployment method
@@ -1364,15 +1391,6 @@ groups:
   - id: sc-enterprise
     title: Enterprise
 # Owner: karler
-- id: spring-apps-enterprise-or-consumption-plan-selection
-  title: Azure Spring Apps plan
-  prompt: Select an Azure Spring Apps plan
-  pivots:
-    - id: sc-enterprise
-      title: Enterprise
-    - id: sc-consumption-plan
-      title: Standard consumption and dedicated (Preview)
-# Owner: karler
 - id: spring-apps-plan-selection
   title: Azure Spring Apps plan
   prompt: Select an Azure Spring Apps plan
@@ -1381,8 +1399,6 @@ groups:
     title: Basic/Standard
   - id: sc-enterprise
     title: Enterprise
-  - id: sc-consumption-plan
-    title: Standard consumption and dedicated (Preview)
  # Owner: rahulmehta
 - id: azure-red-hat-openshift
   title: ARM and Bicep-OpenShift
@@ -2014,3 +2030,12 @@ groups:
     title: Business Critical
   - id: hyperscale
     title: Hyperscale
+# Owner: jodowns
+- id: virtual-network-gateway-types
+  title: Gateway type
+  prompt: Choose a virtual network gateway type
+  pivots:
+  - id: expressroute
+    title: Azure ExpressRoute gateway
+  - id: vpn
+    title: Azure VPN Gateway

@@ -52,7 +52,7 @@
         },
         {
             "source_path_from_root": "/articles/reliability/reliability-spring-apps.md",
-            "redirect_url": "/azure/reliability/overview-reliability-guidance",
+            "redirect_url": "/azure/spring-apps/basic-standard/reliability-spring-apps",
             "redirect_document_id": false
         },
         {
@@ -139,6 +139,16 @@
             "source_path_from_root": "/articles/reliability/migrate-workload-aks-mysql.md",
             "redirect_url": "/azure/reliability/availability-zones-migration-overview",
             "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/reliability/reliability-sustainability-data-solutions-fabric.md",
+            "redirect_url": "/azure/reliability/overview",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/reliability/migrate-vm.md",
+            "redirect_url": "/azure/reliability/reliability-virtual-machines",
+            "redirect_document_id": false
         }
     ]
 }
