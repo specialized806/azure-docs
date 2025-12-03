@@ -13,7 +13,7 @@ ms.date: 12/03/2025
 
 Before you begin, make sure you have:
 
-- An Azure resource group with the [Contributor](/azure/role-based-access-control/built-in-roles/privileged#contributor) role assigned for the role assignment member **Azure IoT Hub** at the resource group scope. For more information, see [Assign Azure roles using the Azure portal](/role-based-access-control/role-assignments-portal).
+- An Azure resource group with the [Contributor](/azure/role-based-access-control/built-in-roles/privileged#contributor) role assigned for the role assignment member **Azure IoT Hub** at the resource group scope. For more information, see [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal).
 
 ## Overview
 
