@@ -190,8 +190,7 @@ This guide explains how to deploy Geospatial Consumption Zone (GCZ) as an **add-
       crsconvertorURL: "https://$AZURE_DNS_NAME/api/crs/converter/v3/convertTrajectory"
       storageURL: "https://$AZURE_DNS_NAME/api/storage/v2/records"
       clientSecret: $(echo "$AZURE_CLIENT_SECRET" | base64)
-      gcz_persistence_enabled: true
-      gcz_persistence_folder: "/persistence/storage"
+      gcz_persistence_enabled: true      
 EOF
 ```
  ### [Windows PowerShell](#tab/windows-powershell-1)
@@ -254,8 +253,7 @@ global:
       crsconvertorURL: "https://$AZURE_DNS_NAME/api/crs/converter/v3/convertTrajectory"
       storageURL: "https://$AZURE_DNS_NAME/api/storage/v2/records"
       clientSecret: [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes($AZURE_CLIENT_SECRET))
-      gcz_persistence_enabled: true
-      gcz_persistence_folder: "/persistence/storage"
+      gcz_persistence_enabled: true      
 "@ | Out-File -FilePath osdu_gcz_custom_values.yaml
 ```
 
