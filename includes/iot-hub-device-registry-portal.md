@@ -21,16 +21,16 @@ Use the Azure portal to create an IoT hub with Azure Device Registry and Certifi
 
 The setup process in this article includes the following steps:
 
-1. Set up an ADR namespace.
-1. Create an IoT hub with a linked namespace.
-1. Create a DPS instance linked to the ADR namespace and IoT hub.
-1. Sync your credential and policies to ADR namespace.
-1. Create an enrollment group and link to your policy to enable device onboarding.
-1. Assign an ADR role, set up the right privileges, and create a user-assigned managed identity.
+1. Set up your ADR namespace with system-assigned managed identity and assign necessary roles.
+1. Create a custom credential policy for your namespace.
+1. Create an IoT hub linked to your ADR namespace with a user-assigned managed identity.
+1. Create a DPS instance and link it to your ADR namespace.
+1. Link your IoT hub to the DPS instance.
+1. Sync credential policies from your namespace to your IoT hubs.
+1. Create an enrollment group and assign a policy to enable device onboarding.
 
 > [!IMPORTANT]
 > During the preview period, IoT Hub with ADR integration and certificate management features enabled on top of IoT Hub are available **free of charge**. Device Provisioning Service (DPS) is billed separately and isn't included in the preview offer. For details on DPS pricing, see [Azure IoT Hub pricing](https://azure.microsoft.com/pricing/details/iot-hub/).
-
 
 ## Set up your ADR namespace
 
@@ -211,7 +211,7 @@ After you create your IoT hub, you need to associate your user-assigned managed 
 1. Select **Associate**.
 1. Choose the user-assigned managed identity you used with your namespace and select **Add**.
 
-### Assign roles to the ADR namespace Principal ID on your IoT hub
+### Assign roles to the ADR namespace principal ID on your IoT hub
 
 To enable secure integration between your IoT hub and ADR namespace,  assign roles to the ADR namespace principal ID on your IoT hub instance. This step ensures the ADR namespace can manage device identities and registry operations in your hub.
 
@@ -288,11 +288,23 @@ Add a configuration to the DPS instance that sets the IoT hub to which the insta
 1. Select **Save**.
 1. Select **Refresh**. You should now see the selected hub under the list of **Linked IoT hubs**.
 
+## Sync policies to IoT hubs
+
+Synchronize a policy you created within your ADR namespace to the IoT hub linked to that namespace. This synchronization enables IoT Hub to trust any devices authenticating with a leaf certificate issued by the policy's issuing CA (ICA).
+
+1. In the [Azure portal](https://portal.azure.com), go to the ADR namespace resource you created earlier.
+1. In the left pane, select **Namespace resources** > **Credential policies (Preview)**.
+1. In the list, select the credential policy you want to synchronize.
+1. At the top, select **Sync all**.
+1. Wait for the confirmation message that indicates the synchronization succeeded.
+
+If you select to sync more than one policy, the process syncs policies to their respective IoT hubs. You can't undo a sync operation.
+
 ## Create an enrollment group and assign a policy
 
 To provision devices with leaf certificates, you need to create an enrollment group and assign the policy you created within your ADR namespace. The allocation-policy defines the onboarding authentication mechanism DPS uses before issuing a leaf certificate. The default attestation mechanism is a symmetric key.
 
-1. In the Azure portal, search for and select **Device Provisioning Services**.
+1. In the [Azure portal](https://portal.azure.com), search for and select **Device Provisioning Services**.
 1. Search for and select the DPS instance you created previously.
 1. In the **Settings** menu of your DPS instance, select **Manage enrollments**.
 1. In the **Manage enrollments** page, select either the **Enrollment groups** or **Individual enrollments** tab based on your provisioning needs.
@@ -307,25 +319,10 @@ To provision devices with leaf certificates, you need to create an enrollment gr
     | **Provisioning status** | Select **Enabled** to enable the enrollment from provisioning. |
     | **Reprovision policy** | Specify the reprovisioning policy for the enrollment. This policy determines how the enrollment behaves during device reprovisioning. |
 
-1. Go to the **Credential policies (Preview)** tab.
-1. Select the **policy** you want to assign to the enrollment group or individual enrollment.
+1. Select and complete **IoT hubs** and **Device settings** tabs as appropriate for your environment.
+1. Select the **Credential policies (Preview)** tab and the **Policy** you want to assign to the enrollment group or individual enrollment.
 
     :::image type="content" source="../articles/iot-hub/media/device-registry/add-enrollment-group-policy.png" alt-text="Screenshot of Azure Device Registry assigning a policy to an enrollment group in the Azure portal." lightbox="../articles/iot-hub/media/device-registry/add-enrollment-group-policy.png":::
 
-1. Complete the remaining fields in the enrollment creation process and select **Create** to finalize the enrollment.
-
-## Sync policies to IoT hubs
-
-Synchronize a policy you created within your ADR namespace to the IoT hub linked to that namespace. This synchronization enables IoT Hub to trust any devices authenticating with a leaf certificate issued by the policy's issuing CA (ICA).
-
-1. Go to the **Namespaces** page.
-1. Select the namespace you want to sync policies for.
-1. In the namespace page, under **Namespace resources**, select **Credential policies (Preview)**.
-1. In the **Credential policies** page, view your policies, validity periods, intervals, and status.
-1. Select the policies you want to sync. You can sync more than one policy at a time.
-1. Select **Sync**.
-
-    :::image type="content" source="../articles/iot-hub/media/device-registry/sync-policies.png" alt-text="Screenshot of the namespace page in Azure portal that shows the sync option." lightbox="../articles/iot-hub/media/device-registry/sync-policies.png":::
-
-If you select to sync more than one policy, the process syncs policies to their respective IoT hubs. You can't undo a sync operation.
+1. Select **Review + create** and **Create** to finalize the enrollment.
 
