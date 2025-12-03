@@ -102,6 +102,8 @@
       href: ./durable-task-scheduler/quickstart-durable-task-scheduler.md
     - name: Migrate from In-Process to Isolated model
       href: durable-functions-migrate.md
+    - name: Publish to Event Grid
+      href: durable-functions-event-publishing.md
   - name: Azure Container Apps
     items:
     - name: Overview
@@ -180,8 +182,6 @@
     href: ./durable-task-scheduler/durable-task-scheduler-dashboard.md
   - name: Auto-purge 
     href: ./durable-task-scheduler/durable-task-scheduler-auto-purge.md
-  - name: Throughput benchmark
-    href: ./durable-task-scheduler/durable-task-scheduler-work-item-throughput.md
   - name: Billing
     href: ./durable-task-scheduler/durable-task-scheduler-dedicated-sku.md
   - name: Troubleshoot
@@ -198,14 +198,6 @@
     href: durable-functions-monitor-python.md
   - name: Human interaction
     href: durable-functions-phone-verification.md
-  - name: Publish to Event Grid
-    href: durable-functions-event-publishing.md
-- name: Samples
-  items:
-  - name: Code samples
-    href: /samples/browse/?term=durable%20functions
-  - name: Azure CLI
-    href: ../functions-cli-samples.md
 - name: Architecture guides
   items:
   - name: Durable Functions + Durable Task Scheduler
@@ -216,6 +208,16 @@
     href: ../functions-compare-logic-apps-ms-flow-webjobs.md?toc=/azure/azure-functions/durable/toc.json
   - name: Orchestration frameworks comparison
     href: ./durable-task-scheduler/choose-orchestration-framework.md
+  - name: Throughput benchmark
+    href: ./durable-task-scheduler/durable-task-scheduler-work-item-throughput.md
+  - name: When to use Azure Durable
+    href: durable-use-cases.md
+- name: Samples
+  items:
+  - name: Code samples
+    href: /samples/browse/?term=durable%20functions
+  - name: Azure CLI
+    href: ../functions-cli-samples.md
 - name: How-to guides
   items:
   - name: Develop
