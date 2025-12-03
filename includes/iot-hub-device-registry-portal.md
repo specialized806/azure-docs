@@ -5,8 +5,15 @@ author: cwatson-cat
 ms.author: cwatson
 ms.service: azure-iot-hub
 ms.topic: include
+ai-usage: ai-assisted
 ms.date: 12/02/2025
 ---
+
+## Prerequisites (Azure portal)
+
+Before you begin, make sure you have:
+
+- A resource group with the [Contributor](/azure/role-based-access-control/built-in-roles/privileged#contributor) role assigned for the role assignment member **Azure IoT Hub** at the resource group scope.
 
 ## Overview
 
@@ -14,7 +21,7 @@ Use the Azure portal to create an IoT hub with Azure Device Registry and Certifi
 
 The setup process in this article includes the following steps:
 
-1. Create and configure an ADR namespace.
+1. Set up an ADR namespace.
 1. Create an IoT hub with a linked namespace.
 1. Create a DPS instance linked to the ADR namespace and IoT hub.
 1. Sync your credential and policies to ADR namespace.
@@ -23,6 +30,7 @@ The setup process in this article includes the following steps:
 
 > [!IMPORTANT]
 > During the preview period, IoT Hub with ADR integration and certificate management features enabled on top of IoT Hub are available **free of charge**. Device Provisioning Service (DPS) is billed separately and isn't included in the preview offer. For details on DPS pricing, see [Azure IoT Hub pricing](https://azure.microsoft.com/pricing/details/iot-hub/).
+
 
 ## Set up your ADR namespace
 
@@ -63,13 +71,20 @@ When you create a namespace with a system-assigned managed identity, the process
     > [!NOTE]
     > The creation of the namespace with system-assigned managed identity might take up to five minutes.
 
-### Assign the roles to your managed identity
+### Get the principal ID for your namespace
+
+To complete some configuration steps after you create the IoT hub, you need the principal ID for your ADR namespace. This value is used to grant permissions and link resources securely.
+
+1. In the Azure portal, go to the ADR namespace you created.
+1. On the **Overview** page, at the top right-hand side, select **JSON view**.
+1. Locate the identity section and find the value for `principalId`.
+1. Copy the principal ID value to use with role assignments for your IoT hub instance.
+
+### Assign roles to your managed identity
 
 After you create your ADR namespace, grant the required permissions to your user-assigned managed identity. The user-assigned managed identity is used to securely access other Azure resources, such as ADR namespace and DPS. If you don't have a user-assigned managed identity, create one in the Azure portal. For more information, see [Create a user-assigned managed identity in the Azure portal](/entra/identity/managed-identities-azure-resources/manage-user-assigned-managed-identities-azure-portal).
 
-#### Assign the Azure Device Registry Onboarding role
-
-To enable device onboarding with ADR credential policies, you need to grant your managed identity the Azure Device Registry Onboarding role. This role lets your managed identity provision devices securely using the policies you define.
+First grant your user-managed identity the **Azure Device Registry Onboarding** role:
 
 1. In the same **Access control (IAM)** pane for your ADR namespace, select **+ Add** > **Add role assignment** again.
 1. In the **Role** field, search for and select **Azure Device Registry Onboarding**. This role allows your managed identity to onboard devices using ADR credential policies.
@@ -78,9 +93,7 @@ To enable device onboarding with ADR credential policies, you need to grant your
 1. Select **Select members**, then choose **User-assigned managed identity**. Search for your identity and select it.
 1. Select **Review + assign** to finish. After the assignment propagates, your managed identity will have the necessary onboarding permissions.
 
-#### Assign the Azure Device Registry Contributor role
-
-Your managed identity also needs the Azure Device Registry Contributor role to manage and configure your ADR namespace. Assigning this role gives your managed identity the permissions required for setup and ongoing operations.
+Repeat these steps to assign the **Azure Device Registry Contributor** role:
 
 1. In the [Azure portal](https://portal.azure.com), go to **Home** > **Azure Device Registry** > select your ADR namespace.
 1. In the left pane, select **Access control (IAM)**.
@@ -188,9 +201,37 @@ After you complete the **Basics** tab, configure your IoT hub by following these
 1. Select **Next: Review + create** to review your choices.
 1. Select **Create** to start the deployment of your new hub. Your deployment might progress for a few minutes while the hub is being created. Once the deployment is complete, select **Go to resource** to open the new hub.
 
+### Link your user-assigned managed identity to the IoT hub
 
-At this point, you created an IoT hub with an ADR namespace and user-assigned managed identity.
+After you create your IoT hub, you need to associate your user-assigned managed identity with the hub. This step enables the IoT hub to use the managed identity for secure access to other Azure resources, such as the ADR namespace.
 
+1. In the [Azure portal](https://portal.azure.com), go to your IoT hub resource.
+1. In the left pane, under **Security settings**, select **Identity**.
+1. At the top of the **Identity** pane, select the **User-assigned** tab.
+1. Select **Associate**.
+1. Choose the user-assigned managed identity you used with your namespace and select **Add**.
+
+### Assign roles to the ADR namespace Principal ID on your IoT hub
+
+To enable secure integration between your IoT hub and ADR namespace,  assign roles to the ADR namespace principal ID on your IoT hub instance. This step ensures the ADR namespace can manage device identities and registry operations in your hub.
+
+1. In the [Azure portal](https://portal.azure.com), go to your IoT hub resource.
+1. In the left pane, select **Access control (IAM)**.
+1. Select **+ Add** > **Add role assignment**.
+1. In the **Role** field, select the **Privileged administrator roles** tab.
+1. Search for and select **Contributor**.
+1. Select **Next**.
+1. Select **Select members**, then paste in the ADR namespace principal ID you copied in a previous step. Select the matching identity.
+1. Select **Review + assign** to finish.
+
+Repeat these steps to assign the **IoT Hub Registry Contributor** role:
+
+1. Select **+ Add** > **Add role assignment** again.
+1. In the **Role** field, search for and select **IoT Hub Registry Contributor**.
+1. Select **Next**.
+1. In **Assign access to**, choose **Managed identity**.
+1. Select **Select members**, then paste in the ADR namespace principal ID you copied in a previous step. Select the matching identity.
+1. Select **Review + assign** to finish.
 
 ## Create a DPS instance
 
@@ -213,17 +254,20 @@ After you create your IoT hub and your namespace, create a new DPS instance.
 1. Select **Create** to start the deployment of your Device Provisioning Service instance.
 1. After the deployment completes, select **Go to resource** to view your Device Provisioning Service instance.
 
-### Add namespace to DPS
+### Add your namespace to DPS
 
 After you create your DPS instance, link it to your ADR namespace so devices can be provisioned using ADR credential policies.
 
 1. In the  [Azure portal](https://portal.azure.com), go to the DPS instance you just created.
-1. On the Overview page, find the ADR namespace section in the center pane.
-1. Select Add link to namespace.
-1. In the dialog, select your ADR namespace and the user-assigned managed identity you created earlier.
-1. Select Save to complete the link.
-!. After the link is established, your DPS instance can use the ADR namespace for device provisioning and certificate management.
+1. On the Overview page, find the **ADR namespace** section.
+1. Select the link to add the namespace.
 
+   :::image type="content" source="../articles/iot-hub/media/device-registry/add-namespace-iot-hub.png" alt-text="Screenshot of the IoT hub overview page with the ADR namespace section selected." lightbox="../articles/iot-hub/media/device-registry/add-namespace-iot-hub.png":::
+
+1. Select your ADR namespace and the user-assigned managed identity.
+1. Select **Save**.
+
+After the link is established, your DPS instance can use the ADR namespace for device provisioning and certificate management.
 
 ## Link the IoT hub and your Device Provisioning Service instance
 
