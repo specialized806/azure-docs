@@ -46,27 +46,13 @@ Learn how to create an SMB volume for the Elastic service level.
     Select **Next**. 
 
     :::image type="content" source="./media/shared/elastic-create-volume.png" alt-text="Screenshot the volume creation Basic tab." lightbox="./media/shared/elastic-create-volume.png":::
-<!-- 
-1. In the Protection tab, provide the following details.
 
-    Snapshots, backup, and replication are enabled by default for volumes, however you must have appropriate policies and resources configured to protection. To disable any type of protection, uncheck the box before proceeding. 
-    * For snapshots, select **Enable local protection**. 
-        Choose your **Snapshot policy**. If you haven't created a policy, select **Create one** to [create a snapshot policy](snapshots-manage-policy.md).
-    * For backups, select **Enable backups**. 
-        * Select the **Backup vault** or select **Create new** to create one. For more information, see [Create a backup vault](backup-vault-manage.md).
-        * Select the **Backup policy** or select **Create new** to create one. For more information, see [Create a backup policy](backup-manage-policies.md).
-        * Enter the retention period. Choose weeks or months. 
-
-    Select **Next**.
-
-    :::image type="content" source="./media/shared/elastic-create-volume-protection.png" alt-text="Screenshot of the volume creation protection tab." lightbox="./media/shared/elastic-create-volume-protection.png":::
--->
 1. Configure the **Protocol**. 
 
     * Choose **SMB**. 
         When you choose SMB, the **Active Directory** account is automatically set to the Active Directory account configured for the account. If the account is not assigned and you have an Active Directory account for the account, select **Refresh**.  
     * Enter the **Share Name**. 
-    * Select **Enable SMB3 Protocol Encryption** to encrypt SMB3 data in-flight. 
+    * To encrypt SMB3 data in flight, select **Enable SMB3 Protocol Encryption**.
 
         If you enable SMB3 encyrption, SMB clients not using SMB3 encryption can't access this volume. Data at rest is encrypted regardless of this setting. For more information, see [SMB encryption](azure-netapp-files-smb-performance.md#smb-encryption).
 

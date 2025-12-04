@@ -42,19 +42,6 @@ Learn how to create an NFS volume for the Elastic service level.
 
     :::image type="content" source="./media/shared/elastic-create-volume.png" alt-text="Screenshot the volume creation Basic tab." lightbox="./media/shared/elastic-create-volume.png":::
 
-<!-- 1. In the Protection tab, configure you protection settings.
-
-    * For snapshots, select **Enable local protection**. 
-        Choose your **Snapshot policy**. If you haven't created a policy, select **Create one** to [create a snapshot policy](snapshots-manage-policy.md).
-    * For backups, select **Enable backups**. 
-        * Select the **Backup vault** or select **Create new** to create one. For more information, see [Create a backup vault](backup-vault-manage.md).
-        * Select the **Backup policy** or select **Create new** to create one. For more information, see [Create a backup policy](backup-manage-policies.md).
-        * Enter the retention period. Choose weeks or months. 
-
-    Select **Next**.
-
-    :::image type="content" source="./media/shared/elastic-create-volume-protection.png" alt-text="Screenshot showing the volume creation protection tab." lightbox="./media/shared/elastic-create-volume-protection.png":::
--->
 1. Configure the **Protocol**. 
     * For the Protocol type, choose **NFS**.
     * Enter the **File path**. 
@@ -62,11 +49,10 @@ Learn how to create an NFS volume for the Elastic service level.
         For information on the difference between NFS versions, see [Understand NAS protocols](network-attached-storage-protocols.md#network-file-system-nfs).
     * Optionally, [configure export policy for the NFS volume](azure-netapp-files-configure-export-policy.md)
 
-    <!-- Kerberos & LDAP -->
-
-    Select **Review + create**. 
-
     :::image type="content" source="./media/elastic-volume/volume-protocol.png" alt-text="Screenshot of the volume creation protocol tab." lightbox="./media/elastic-volume/volume-protocol.png":::
+
+
+1. Select **Review + create**. 
 
 1. Review your selections. Select **Create** to finalize the volume.
 1. Return to the **Volume** menu then select your volume to view it. 

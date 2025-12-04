@@ -46,7 +46,6 @@ You must create a capacity pool before you can create volumes in Azure NetApp Fi
 * After creating a capacity pool, you can't reduce the quota of the capacity pool. 
 * When you resize a capacity pool, the capacity pool might revert to the availability zone it was originally created in. Confirm the capacity pool and [change the zone](elastic-change-zones.md) after resizing if necessary.
 
-## Network planning
 <!-- network planning -->
 
 ## Steps

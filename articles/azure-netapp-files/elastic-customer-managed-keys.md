@@ -65,11 +65,12 @@ For more information about Azure Key Vault and Azure Private Endpoint, see:
 1. Choose the identity type for authentication with the Azure Key Vault. 
     
     If your Azure Key Vault is configured to use Vault access policy as its permission model, both options are available. Otherwise, only the user-assigned option is available. 
-    1. If you choose **User-assigned**, you must select an identity. Choose **Select an identity** to open a context pane. Select the appropriate user-assigned managed identity. 
+
+    1. If you choose **User-assigned**, select an identity. Choose **Select an identity** to open a context pane. Select the appropriate user-assigned managed identity. 
 
     :::image type="content" source="./media/elastic-customer-managed-keys/select-identity.png" alt-text="Screenshot of selecting user assigned managed identity." lightbox="./media/elastic-customer-managed-keys/select-identity.png":::
 
-    * If you choose **System-assigned**, skip to the next step. When you select **Save**, the Azure portal configures the NetApp account automatically by adding a system-assigned identity to your NetApp account and creating an access policy on your Azure Key Vault with key permissions Get, Encrypt, Decrypt. 
+    1. If you choose **System-assigned**, skip to the next step. When you save your encryption settings, Azure configures the NetApp account automatically by adding a system-assigned identity to your NetApp account and creates an access policy on your Azure Key Vault with key permissions Get, Encrypt, Decrypt. 
 
 1. Select **Save**. 
 

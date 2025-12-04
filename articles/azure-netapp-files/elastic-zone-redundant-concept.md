@@ -4,7 +4,7 @@ description: Understand the difference between hardware-based and zone-redundant
 services: azure-netapp-files
 author: b-ahibbard
 ms.service: azure-netapp-files
-ms.topic: conceptual
+ms.topic: article
 ms.date: 06/25/2025
 ms.author: anfdocs
 ms.custom: references-regions 

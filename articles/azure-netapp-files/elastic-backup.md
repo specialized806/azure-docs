@@ -32,7 +32,6 @@ Azure NetApp Files backups in the Elastic service level require a backup vault. 
 * Deleting a volume does _note_ delete its backups. You must manually delete the backups. 
 * If you delete a volume while a backup is in progress, the backup operation is terminated. 
 * You can't delete the snapshot used for the most recent backup if there are backups on the volume. 
-<!-- snapshots or backups? -->
 * Reverting a volume to state before existing backups results in an error. To proceed with reverting the volume, delete the backups causing the error then proceed with the revert. 
 * In the Elastic Zone-Redundant service level account, backups aren't currently supported with cross-region replication. 
 * Backup start times and duration might display incorrect values with a year of 1970. Incorrect dates will be fixed in a separate release. 
@@ -51,7 +50,6 @@ Backup vaults store the backups for your Azure NetApp Files subscription. Althou
 
 1. In your Azure NetApp Files account, select **Data protection** then **Backup vaults**. 
 1. Identify the backup vault you want to modify, select the action menu `...` then **Edit**. 
-<!-- confirm unassign -->
 1. To assign Elastic volumes to the backup vault, enter specific volume names then select **Assign**. Alternately, select **Browse** to view a list of all volumes. Select the volumes you want to assign then **Assign selected volumes**. 
 
     To remove volumes, select **Browse**. Select the action menu `...` next to an individual volume name then **Unassign**. 
