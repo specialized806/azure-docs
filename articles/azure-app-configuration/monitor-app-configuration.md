@@ -49,16 +49,16 @@ For a list of the platform metrics collected for App Configuration, see [Metrics
 Azure Monitor logs include activity logs and resource logs.
 
 ### Activity logs
-The activity log provides insight into subscription-level events and shows management plane activities (create, update, delete operations on your App Configuration resource). However, it doesn't capture data plane operations like key-value reads and writes.
+Activity logs provide insight into subscription-level events and show management plane activities (create, update, delete operations on your App Configuration resource). However, they don't capture data plane operations like key-value reads and writes.
 
 For more information, refer to [Activity logs reference](#activity-logs-reference).
 
 ### Resource logs
-Resource logs record data plane operations. To monitor data plane operations (including key-value changes and request patterns), you need to enable diagnostic settings and route resource logs (audit logs and HTTP request logs) to a destination like Log Analytics workspace. It allows you to see the key-value access history and other operations performed within your App Configuration store.
+Resource logs record data plane operations. To monitor data plane operations (including key-value changes and request patterns), you need to enable diagnostic settings and route resource logs to a destination like Log Analytics workspace. It allows you to see the key-value access history and other operations performed within your App Configuration store.
 
 App Configuration provides two types of resource logs.
-- **Audit logs**: Capture data plane write operations (create, update, delete) on your key-values. Audit logs don't include data plane read operations but include management plane operations. Entries are unaggregated. Query them in the **AACAudit** table.
-- **HTTP request logs**: Capture both write and read operations on key-values, with operations being aggregated for better performance and reducing log volume. Logs are aggregated based on http method and status code, each log entry may represent multiple similar operations within a certain time window. Query them in the **AACHttpRequest** table.
+- **Audit logs**: Capture write operations (create, update, delete) on your data plane resources, such as key-values. Audit logs don't include data plane read operations but include management plane operations. Entries are unaggregated. Query them in the **AACAudit** table.
+- **HTTP request logs**: Capture both read and write operations on your data plane resources, such as key-values. Operations are aggregated for better performance and to reduce log volume. Aggregation is based on HTTP method and status code. Each log entry may represent multiple similar operations within a certain time window. Query them in the **AACHttpRequest** table.
 
 For more information, refer to [Resource logs reference](#resource-logs-reference).
 
@@ -147,7 +147,7 @@ For a list of the types of resource logs collected for App Configuration, see [R
 
 For a list of the tables used by Azure Monitor logs and queryable by Log Analytics, see [Logs reference](#logs-reference).
 
-If you have created diagnostic settings for audit logs and HTTP request logs, you can view them in **Logs** blade.
+If you have created diagnostic settings for audit logs and HTTP request logs, you can view them in the **Logs** blade.
 
 >[!IMPORTANT]
 > When you select **Logs** from the App Configuration menu, Log Analytics is opened with the query scope set to the current app configuration resource. This means that log queries will only include data from that resource. 
@@ -210,7 +210,7 @@ In the portal, navigate to **Monitoring** > **Logs**, and then go to the query e
 > [!div class="mx-imgBorder"]
 > ![Audit log](./media/monitoring/monitoring-audit-log.png)
 
-Following are sample queries that you can use to help you monitor your App Configuration resource through audit logs.
+The following queries are samples that you can use to help you monitor your App Configuration resource through audit logs.
 
 * List all audit requests in the last three days 
     ```Kusto
@@ -219,11 +219,11 @@ Following are sample queries that you can use to help you monitor your App Confi
     ```
 
 ### Data access tracking
-To identify who is accessing your App Configuration store, the most recommended way is to use audit logs. Audit logs include caller identity, caller IP address, the action performed, and the affected key-value. Use **CallerIdentity** to correlate a change with the specific caller.
+To identify who is making changes to your App Configuration store, the recommended way is to use audit logs. Audit logs include caller identity, caller IP address, the action performed, and the target resource. Use **CallerIdentity** to correlate a change with the specific caller. Audit logs are only produced for write operations.
 
-Use HTTP request logs to analyze read operations. Because these logs are aggregated by HTTP method and status code, some caller identity details may be lost during aggregation. HTTP request logs are best for understanding request patterns and performance characteristics such as user agent, request duration, and request volume. The **ClientObjectId**, **ClientTenantId**, and **AccessKeyId** fields provide caller context and help you determine whether the request used AAD or an access key.
+Use HTTP request logs to analyze read operations. Because these logs are aggregated by HTTP method and status code, some caller identity details may be lost during aggregation. HTTP request logs are best for understanding request patterns and performance characteristics such as user agent, request duration, and request volume. The **ClientObjectId**, **ClientTenantId**, and **AccessKeyId** fields provide caller context and help you determine whether the request used Extra ID or an access key.
 
-Two authentication methods are supported, which are AAD and access key (HMAC/connection string). If you use AAD, you should see information about caller or client. If you use access key, you should see information related to access key. To enforce AAD authentication and remove access key usage, see [disable access key based authentication](/azure/azure-app-configuration/howto-disable-access-key-authentication?tabs=portal#disable-access-key-authentication).
+Two authentication methods are supported, which are Extra ID and access key (HMAC/connection string). If you use Extra ID, you should see information about caller or client. If you use access key, you should see information related to access key. To enforce Extra ID authentication and remove access key usage, see [disable access key based authentication](/azure/azure-app-configuration/howto-disable-access-key-authentication?tabs=portal#disable-access-key-authentication).
 
 #### Audit logs
 * Identify key-value modifications in audit logs in the last 7 days, extracting operation name, resource, the principal identifier (CallerIdentity), source IP address (CallerIPAddress):
@@ -276,10 +276,13 @@ This section refers to all of the Azure Monitor Logs Kusto tables re
 | [AzureActivity](/azure/azure-monitor/reference/tables/AzureActivity) | Entries from the Azure Activity log that provide insight into any subscription-level or management group level events that have occurred in Azure. |
 
 #### Resource logs reference
-|Resource type | Notes |
-|-------|-----|
-| [AACAudit](/azure/azure-monitor/reference/tables/AACAudit) | Azure App Configuration audit logs. |
-| [AACHttpRequest](/azure/azure-monitor/reference/tables/AACHttpRequest) | Entries of every HTTP request sent to a selected app configuration resource. |
+This section lists the category types of resource log collected for App Configuration. 
+
+##### Supported logs for Microsoft.AppConfiguration/configurationStores
+| Category | Category display name | Log table |
+|-------|-----|-----|
+| `HttpRequest` | HTTP Requests | [AACHttpRequest](/azure/azure-monitor/reference/tables/AACHttpRequest)<br>Incoming requests to Azure App Configuration. The records in this table are aggregated. The 'HitCount' field describes the number of requests that each record accounts for. |
+| `Audit` | Audit | [AACAudit](/azure/azure-monitor/reference/tables/AACAudit)<br>Azure App Configuration audit logs. |
 
 For more schema information, see a list of [Common and service-specific schemas for Azure resource logs](/azure/azure-monitor/essentials/resource-logs-schema).
 

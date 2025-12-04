@@ -48,10 +48,11 @@ App Configuration has the following dimensions associated with its metr
 ## Resource logs
 This section lists the category types of resource log collected for App Configuration. 
 
-| Resource log type | Further information|
-|-------|-----|
-| [AACHttpRequest](/azure/azure-monitor/reference/tables/AACHttpRequest) | [App Configuration resource log category information](/azure/azure-monitor/essentials/resource-logs-categories) |
-| [AACAudit](/azure/azure-monitor/reference/tables/AACAudit) | [App Configuration resource log category information](/azure/azure-monitor/essentials/resource-logs-categories) |
+### Supported logs for Microsoft.AppConfiguration/configurationStores
+| Category | Category display name | Log table |
+|-------|-----|-----|
+| `HttpRequest` | HTTP Requests | [AACHttpRequest](/azure/azure-monitor/reference/tables/AACHttpRequest)<br>Incoming requests to Azure App Configuration. The records in this table are aggregated. The 'HitCount' field describes the number of requests that each record accounts for. |
+| `Audit` | Audit | [AACAudit](/azure/azure-monitor/reference/tables/AACAudit)<br>Azure App Configuration audit logs. |
 
 For more schema information, see a list of [Common and service-specific schemas for Azure resource logs](/azure/azure-monitor/essentials/resource-logs-schema).
  
