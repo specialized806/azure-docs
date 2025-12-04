@@ -26,8 +26,8 @@ items:
         href: ./migrate-workload-from-aws-evaluate.md
       - name: 5. Decommission
         href: ./migrate-workload-from-aws-decommission.md
-      - name: Next steps
-        href: ./migrate-workload-from-aws-next-steps.md
+      - name: Conclusion
+        href: ./migrate-workload-from-aws-conclusion.md
     - name: Compute
       href: ./migrate-compute-from-aws.md
     - name: Databases

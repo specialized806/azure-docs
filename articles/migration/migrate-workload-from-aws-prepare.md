@@ -31,6 +31,17 @@ During this phase, the goal is to build out your Azure environment, implement an
 
 For guidance on preparing your workloads and building your Azure environment, see the [CAF Prepare workloads](/azure/cloud-adoption-framework/migrate/prepare-workloads-cloud) guide.
 
+## Checklist
+
+| &nbsp;  | Deliverable tasks                         |
+| ------- | ----------------------------------------- |
+| &#9744; | Provision application landing zones       |
+| &#9744; | Deploy and configure Azure infrastructure |
+| &#9744; | Update CI/CD pipelines for Azure          |
+| &#9744; | Test infrastructure                       |
+| &#9744; | Refactor application's code               |
+| &#9744; | Prepare operational functions             |
+
 
 ## Next step
 

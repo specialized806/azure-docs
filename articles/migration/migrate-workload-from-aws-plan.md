@@ -72,6 +72,18 @@ Review the plan with stakeholders and reconcile differing expectations. Include 
 
 Once the plan and runbook are reviewed and agreed upon by stakeholders and decision-makers, move on to the prepare phase.
 
+## Checklist
+
+| &nbsp;  | Deliverable tasks                         |
+| ------- | ----------------------------------------- |
+| &#9744; | Provision application landing zones       |
+| &#9744; | Deploy and configure Azure infrastructure |
+| &#9744; | Update CI/CD pipelines for Azure          |
+| &#9744; | Test infrastructure                       |
+| &#9744; | Refactor application's code               |
+| &#9744; | Prepare operational functions             |
+
+
 ## Next step
 
 > [!div class="nextstepaction"]
