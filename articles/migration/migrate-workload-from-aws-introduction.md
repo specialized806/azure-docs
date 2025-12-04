@@ -10,13 +10,11 @@ ms.collection:
   - migration
   - aws-to-azure
 ---
-
 # Migrate a workload from Amazon Web Services (AWS) - Introduction
 
 This article provides architects and engineers with actionable, prescriptive guidance to migrate a single workload from Amazon Web Services (AWS) to Azure.
 
-The scope of this article covers the full migration lifecycle, from planning and preparation, to execution and evaluation, to decommissioning of AWS resources.
-
+The scope of this article covers the full migration lifecycle of a single workload, from planning and preparation, to execution and evaluation, to decommissioning of AWS resources.
 ## Workload migration strategy
 
  A like-for-like workload migration strategy is the fastest path to Azure and has the least risk. This approach keeps the existing architecture and operational patterns. The goal is that the migrated workload meets the same key performance indicators (KPIs) on Azure as it did on AWS. 

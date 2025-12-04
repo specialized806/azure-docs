@@ -13,7 +13,7 @@ ms.collection:
 
 # Migrate a workload from Amazon Web Services (AWS) - Execute
 
-The execute phase consists of three steps: **before** cutover, **during** cutover, and **after** cutover. 
+The execute phase consists of three steps: 
 
 > [!div class="checklist"]
 > * before cutover

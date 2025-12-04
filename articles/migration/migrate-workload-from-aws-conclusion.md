@@ -10,7 +10,6 @@ ms.collection:
  - migration
  - aws-to-azure
 ---
-
 # Migrate a workload from Amazon Web Services (AWS) - Conclusion
 
 

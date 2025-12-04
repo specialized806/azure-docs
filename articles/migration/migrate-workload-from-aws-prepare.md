@@ -7,13 +7,17 @@ ms.date: 11/24/2025
 ms.topic: concept-article
 ms.service: azure
 ms.collection:
- - migration
- - aws-to-azure
+  - migration
+  - aws-to-azure
 ---
 
 # Migrate a workload from Amazon Web Services (AWS) - Prepare
 
-The prepare phase consists of two steps: Preparing your **environment** and preparing your **application**. 
+The prepare phase consists of two steps: 
+
+> [!div class="checklist"]
+> * prepare environment
+> * prepare application
 
 During this phase, the goal is to build out your Azure environment, implement any changes if refactoring is required, set up your CI/CD tooling and pipelines, and perform tests to support a smooth and secure migration. Take your time during this phase as any misconfigured infrastructure, insufficient testing, or lack of your team's readiness can result in delays, security vulnerabilities, or failed deployments during execution.
 
