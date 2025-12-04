@@ -1,5 +1,5 @@
 ---
-title: 'Tutorial: Python function with Azure Blob Storage as input'
+title: 'Tutorial: Python Function with Azure Blob Storage as input'
 description: Learn how you can connect a Python function to a storage blob as input using Service Connector in Azure.
 author: houk-ms
 ms.author: honc
@@ -31,7 +31,7 @@ An overview of the function project components in this tutorial:
 | Cloud Function Auth Type | System-Assigned Managed Identity     |
 
 > [!WARNING]
-> Microsoft recommends that you use the most secure authentication flow available. The authentication flow described in this procedure requires a very high degree of trust in the application, and carries risks that are not present in other flows. You should only use this flow when other more secure flows, such as managed identities, aren't viable.
+> Microsoft recommends that you use the most secure authentication flow available. The authentication flow described in this procedure requires a high degree of trust in the application, and carries risks that aren't present in other flows. You should only use this flow when other more secure flows, such as managed identities, aren't viable.
 
 ## Prerequisites
 
@@ -42,7 +42,7 @@ An overview of the function project components in this tutorial:
 
 ## Create a Python function project
 
-Follow the [tutorial to create a local Azure Functions project](../azure-functions/how-to-create-function-vs-code.md?pivot=programming-language-python?pivots=python-mode-configuration#create-an-azure-functions-project), and provide the following information at the prompts:
+Follow the [tutorial to create a local Azure Functions project](../azure-functions/how-to-create-function-vs-code.md?pivot=programming-language-python?pivots=python-mode-configuration#create-an-azure-functions-project). Provide the following information at the prompts:
 
 | Prompt                                                                | Selection                                                                                                        |
 | --------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
@@ -52,11 +52,11 @@ Follow the [tutorial to create a local Azure Functions project](../azure-functio
 | **Provide a function name**                                     | Enter `BlobStorageInputFunc`.                                                                                  |
 | **Authorization level**                                         | Choose `Anonymous`, which lets anyone call your function endpoint.                                            |
 
-You have created a Python function project with an HTTP trigger.
+With this information, Visual Studio Code generates a Python function project with an HTTP trigger.
 
 ## Add a Blob Storage input binding
 
-Binding attributes are defined in the *function.json* file for a given function. To create a binding, right-click (Ctrl+click on macOS) the `function.json` file in your function folder and choose  **Add binding...** . Follow the prompts to define the following binding properties for the new binding:
+Binding attributes are defined in the *function.json* file for a given function. To create a binding, right-click the `function.json` file in your function folder and choose  **Add binding...**. Follow the prompts to define the following binding properties for the new binding:
 
 | Prompt                                                                          | Value                             | Description                                                                                                                                                                                                        |
 | ------------------------------------------------------------------------------- | --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -68,8 +68,8 @@ Binding attributes are defined in the *function.json* file for a given function.
 
 To check the binding was added successfully,
 
-1. Open the `BlobStorageInputFunc/function.json` file, check that a new binding with `type: blob` and `direction: in` was added into this file.
-1. Open the `local.settings.json` file, check that a new key-value pair `<your-storage-account-name>_STORAGE: <your-storage-account-connection-string>` that contains your storage account connection string was added into this file.
+1. Open the `BlobStorageInputFunc/function.json` file, and check that a new binding with `type: blob` and `direction: in` was added into this file.
+1. Open the `local.settings.json` file, and check that a new key-value pair `<your-storage-account-name>_STORAGE: <your-storage-account-connection-string>` that contains your storage account connection string was added into this file.
 
 After the binding is added, update your function codes to consume the binding by replacing `BlobStorageInputFunc/__init__.py` with the Python file here.
 
@@ -88,15 +88,15 @@ Follow the [tutorial](../azure-functions/how-to-create-function-vs-code.md?pivot
 
 1. Select the storage account you used when creating the Azure Function resource if you're prompted to connect to Storage. It is for Azure Function runtime's internal use, and isn't necessarily the same with the one you use for input.
 1. To start the function locally, press `<kbd>`F5 `</kbd>` or select the **Run and Debug** icon in the left-hand side Activity bar.
-1. To verify the function can read the blob, right click `Execute Function Now...` on the function in the Visual Studio Code **WORKSPACE** and check the function response. The response message should contain the content in your blob file.
+1. To verify the function can read the blob, right-click `Execute Function Now...` on the function in the Visual Studio Code **WORKSPACE** and check the function response. The response message should contain the content in your blob file.
 
 ## Create a connection using Service Connector
 
-You just ran the project and verified the function locally, and your local project connects to your storage blob using a connection string.
+In the last step, you ran the function locally and verified that your local project connects to your storage blob using a connection string.
 
-Now you'll learn how to configure the connection between the Azure Function and Azure Blob Storage, so that your function can read the blob after being deployed to the cloud. In the cloud environment, we demonstrate how to authenticate using a system-assigned managed identity.
+Next, you learn how to configure the connection between the Azure Function and Azure Blob Storage. Once your function is deployed to the cloud, this connection allows your function to read the blob. In the cloud environment, we demonstrate how to authenticate using a system-assigned managed identity.
 
-1. Open the `function.json` file in your local project, change the value of the `connection` property in `bindings` to be `MyBlobInputConnection`.
+1. Open the `function.json` file in your local project, and change the value of the `connection` property in `bindings` to be `MyBlobInputConnection`.
 1. Run the following Azure CLI command to create a connection between your Azure Function and your Azure Storage.
 
 ```azurecli
@@ -106,7 +106,7 @@ az functionapp connection create storage-blob --source-id "<your-function-resour
 * `--source-id` format: `/subscriptions/{subscription}/resourceGroups/{source_resource_group}/providers/Microsoft.Web/sites/{site}`
 * `--target-id` format: `/subscriptions/{subscription}/resourceGroups/{target_resource_group}/providers/Microsoft.Storage/storageAccounts/{account}/blobServices/default`
 
-You have created a connection between Azure Function and Azure Blob Storage using Service Connector, with a system-assigned managed identity.
+This step creates a connection between Azure Function and Azure Blob Storage using Service Connector, with a system-assigned managed identity.
 
 Service Connector configured a `MyBlobInputConnection__serviceUri` variable in the function's app settings used by the function binding runtime to connect to the storage, so that the function can read data from the blob storage. You can learn more about [how Service Connector helps Azure Functions connect to services](./how-to-use-service-connector-in-function.md).
 
@@ -115,11 +115,11 @@ Service Connector configured a `MyBlobInputConnection__serviceUri` variable in t
 Now you can deploy your function to Azure and verify the storage blob input binding works.
 
 1. Follow the [tutorial](../azure-functions/how-to-create-function-vs-code.md?pivot=programming-language-python?pivots=python-mode-configuration#deploy-the-project-to-azure) to deploy your function to Azure.
-1. To verify the function can read the blob, right click `Execute Function Now...` on the function in the Visual Studio Code **RESOURCES** view and check the function response. The response message should contain the content in your blob file.
+1. To verify the function can read the blob, right-click `Execute Function Now...` on the function in the Visual Studio Code **RESOURCES** view and check the function response. The response message should contain the content in your blob file.
 
 ## Troubleshoot
 
-If there are any errors related with storage host, such as `No such host is known (<account-name>.blob.core.windows.net:443)`, you need to check whether the connection string you use to connect to Azure Storage contains the blob endpoint or not. If it doesn't, go to Azure Storage in the Azure portal, copy the connection string from the `Access keys` blade, and replace the values.
+If there are any errors related with storage host, such as `No such host is known (<account-name>.blob.core.windows.net:443)`, you need to check whether the connection string you use to connect to Azure Storage contains the blob endpoint or not. If it doesn't, go to Azure Storage in the Azure portal, copy the connection string from the `Access keys` tab, and replace the values.
 
 If the error happens when you start the project locally, check the `local.settings.json` file.
 
@@ -146,7 +146,7 @@ az functionapp delete --name <function-name> --resource-group <resource-group>
 
 ## Next steps
 
-Read the articles below to learn more about Service Connector concepts and how it helps Azure Functions connect to other cloud services.
+Read the following articles to learn more about Service Connector concepts and how it helps Azure Functions connect to other cloud services.
 
 > [!div class="nextstepaction"]
 > [Learn about Service Connector concepts](./concept-service-connector-internals.md)
