@@ -50,8 +50,23 @@ How you execute this step depends on your chosen strategy. In the recommended, i
 - **Take advantage of the active-active design**: Deallocate AWS components gradually without downtime.
 - **Update CI/CD pipelines for Azure:** Update deployment pipelines to stop targeting AWS and only target Azure.
 - **Post-cutover verification:** Closely monitor your workload metrics in Azure, and if they degrade severely or if you detect a critical bug, execute your rollback plan and be ready to revert traffic back to AWS. Run a full regression test in production if possible and check all components. Run smoke tests for critical functions, watch your security logs, and ensure all monitoring signals and alerts are green. After a day or two, monitor costs and usage to ensure there are no runaway resources incurring costs. 
-I realized we don't talk about post-mortems. It could fit here or in the conclusion article...I think here might be better because the conclusion probably won't get the level of attention that this article will.
+
 For detailed cutover guidance, see the [CAF Execute migration](/azure/cloud-adoption-framework/migrate/execute-migration) guide.
+
+## Checklist
+
+| &nbsp;  | Deliverable tasks                   |
+| ------- | ----------------------------------- |
+| &#9744; | Execute data migration              |
+| &#9744; | Configure application components    |
+| &#9744; | Modify connectivity and networking  |
+| &#9744; | Perform functional tests            |
+| &#9744; | Perform performance tests           |
+| &#9744; | Perform failure testing             |
+| &#9744; | Fix all issues                      |
+| &#9744; | Deallocate AWS components gradually |
+| &#9744; | Update CI/CD pipelines for Azure    |
+| &#9744; | Perform post-cutover verification   |
 
 ## Next step
 

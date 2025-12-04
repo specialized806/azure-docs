@@ -74,15 +74,25 @@ Once the plan and runbook are reviewed and agreed upon by stakeholders and decis
 
 ## Checklist
 
-| &nbsp;  | Deliverable tasks                         |
-| ------- | ----------------------------------------- |
-| &#9744; | Provision application landing zones       |
-| &#9744; | Deploy and configure Azure infrastructure |
-| &#9744; | Update CI/CD pipelines for Azure          |
-| &#9744; | Test infrastructure                       |
-| &#9744; | Refactor application's code               |
-| &#9744; | Prepare operational functions             |
-
+| &nbsp;  | Deliverable tasks                            |
+| ------- | -------------------------------------------- |
+| &#9744; | Document existing workload architecture      |
+| &#9744; | Use discovery tooling                        |
+| &#9744; | Identify critical flows                      |
+| &#9744; | Create detailed inventory                    |
+| &#9744; | Assess skills                                |
+| &#9744; | Document KPIs                                |
+| &#9744; | Address networking                           |
+| &#9744; | Identify matching Azure services             |
+| &#9744; | Document migration decisions                 |
+| &#9744; | Reduce risks                                 |
+| &#9744; | Check resource availability                  |
+| &#9744; | Validate requirements if using Azure Migrate |
+| &#9744; | Address compliance & security requirements   |
+| &#9744; | Choose database migration strategy           |
+| &#9744; | Choose storage migration strategy            |
+| &#9744; | Choose cutover strategy                      |
+| &#9744; | Document in runbook                          |
 
 ## Next step
 
