@@ -256,12 +256,12 @@
   items:
   - name: Azure Durable vs. Alternatives
     href: durable-comparison-alternatives.md
-  - name: Orchestration frameworks comparison
+  - name: When to use Azure Durable
+    href: durable-use-cases.md
+  - name: Choosing an orchestration framework
     href: ./durable-task-scheduler/choose-orchestration-framework.md
   - name: Throughput benchmark
     href: ./durable-task-scheduler/durable-task-scheduler-work-item-throughput.md
-  - name: When to use Azure Durable
-    href: durable-use-cases.md
 - name: Samples
   items:
   - name: Code samples

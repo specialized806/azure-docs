@@ -15,6 +15,9 @@ ms.subservice: durable
 
 When building workflows and distributed applications on Azure, you have several options. This guide compares Azure Durable to other Azure-native alternatives to help you choose the right tool for your scenario.
 
+> [!TIP]
+> Already decided on Azure Durable? See [When to use Azure Durable](durable-use-cases.md) for industry-specific implementation examples and patterns.
+
 ## Quick comparison
 
 | Feature | Azure Durable | Azure Logic Apps | Azure Service Bus | Orleans |
