@@ -105,6 +105,8 @@
       href: monitor-azure-netapp-files.md
     - name: Metrics for Azure NetApp Files
       href: azure-netapp-files-metrics.md
+    - name: Metrics for Elastic Zone-Redundant Storage
+      href: elastic-metrics.md
     - name: Azure Policy definitions for Azure NetApp Files
       href: azure-policy-definitions.md
     - name: Storage service add-ons
