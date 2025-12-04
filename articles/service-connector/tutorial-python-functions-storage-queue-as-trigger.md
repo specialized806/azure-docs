@@ -6,7 +6,7 @@ ms.author: honc
 ms.service: service-connector
 ms.custom: devx-track-python
 ms.topic: tutorial
-ms.date: 10/22/2024
+ms.date: 12/04/2025
 ---
 # Tutorial: Python function with Azure Queue Storage as trigger
 
@@ -29,7 +29,7 @@ An overview of the function project components in this tutorial:
 | Cloud Function Auth Type | Connection String        |
 
 > [!WARNING]
-> Microsoft recommends that you use the most secure authentication flow available. The authentication flow described in this procedure requires a very high degree of trust in the application, and carries risks that aren't present in other flows. You should only use this flow when other more secure flows, such as managed identities, aren't viable.
+> Microsoft recommends that you use the most secure authentication flow available. The authentication flow described in this procedure requires a high degree of trust in the application, and carries risks that aren't present in other flows. You should only use this flow when other more secure flows, such as managed identities, aren't viable.
 
 ## Prerequisites
 
@@ -62,7 +62,7 @@ Follow the [tutorial](../azure-functions/how-to-create-function-vs-code.md?pivot
 
 ## Create a connection using Service Connector
 
-In last step, you verified the function project locally. Next, you learn how to configure the connection between the Azure Function and Azure Storage Queue. Once your function is deployed to the cloud, this connection allows your function to be triggered by the storage queue.
+In the last step, you verified the function project locally. Next, you learn how to configure the connection between the Azure Function and Azure Storage Queue. Once your function is deployed to the cloud, this connection allows your function to receive triggers from the storage queue.
 
 1. Open the `function.json` file in your local project, and change the value of the `connection` property in `bindings` to be `AZURE_STORAGEQUEUE_CONNECTIONSTRING`.
 1. Run the following Azure CLI command to create a connection between your Azure Function and your Azure storage account.
