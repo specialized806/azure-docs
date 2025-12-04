@@ -45,6 +45,8 @@ The goal of this phase is to migrate your workload to Azure with minimal downtim
 
 How you execute this step depends on your chosen strategy. In the recommended, incremental active-active approach, you gradually shift traffic from AWS to Azure based on a given criteria (criteria could include regions, user types, or application features). In the all-at-once approach, you switch all traffic at once during a cutover time. You must ensure that all data is synced and all components are prepared to accept production traffic. Then you switch all connections to Azure and bring up your Azure environment as primary. A maintenance window is recommended in which you briefly pause traffic or the application to avoid inconsistencies. Automate any health checks and monitor in real time during the cutover.
 
+Work closely with operations teams to ensure that any emerging issues are addressed immediately and prepare to roll-back if issues cannot be resolved within your roll-back criteria which was defined in the [planning phase](/azure/migration/migrate-workload-from-aws-plan).
+
 ## After cutover
 
 - **Take advantage of the active-active design**: Deallocate AWS components gradually without downtime.
