@@ -162,6 +162,11 @@ public class OrderActivities
 ```
 
 ::: zone-end
+::: zone pivot="programming-language-javascript"
+
+todo
+
+::: zone-end
 ::: zone pivot="programming-language-python"
 
 ```python
@@ -218,6 +223,16 @@ def send_confirmation(request: dict) -> None:
         body="Thank you for your order!"
     )
 ```
+
+::: zone-end
+::: zone pivot="programming-language-powershell"
+
+todo
+
+::: zone-end
+::: zone pivot="programming-language-java"
+
+todo
 
 ::: zone-end
 ::: zone pivot="programming-language-java"
@@ -348,6 +363,26 @@ await context.CallActivityAsync("SendEmail", new EmailRequest(
 ```
 
 ::: zone-end
+::: zone pivot="programming-language-javascript"
+
+todo
+
+::: zone-end
+::: zone pivot="programming-language-python"
+
+todo
+
+::: zone-end
+::: zone pivot="programming-language-powershell"
+
+todo
+
+::: zone-end
+::: zone pivot="programming-language-java"
+
+todo
+
+::: zone-end
 
 ---
 
@@ -373,6 +408,11 @@ var result = await context.CallActivityAsync<string>(
 ```
 
 ::: zone-end
+::: zone pivot="programming-language-javascript"
+
+todo
+
+::: zone-end
 ::: zone pivot="programming-language-python"
 
 ```python
@@ -387,6 +427,16 @@ result = yield context.call_activity_with_retry(
     input
 )
 ```
+
+::: zone-end
+::: zone pivot="programming-language-powershell"
+
+todo
+
+::: zone-end
+::: zone pivot="programming-language-java"
+
+todo
 
 ::: zone-end
 

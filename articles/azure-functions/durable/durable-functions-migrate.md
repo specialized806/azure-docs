@@ -48,7 +48,7 @@ Before starting the migration, make sure you have the following prerequisites:
 - **Azure Functions Core Tools v4.x** or later
 - **.NET 8.0 SDK** (or your target .NET version)
 - **Visual Studio 2022** or **VS Code with Azure Functions extension**
-- Familiarity with [Durable Functions concepts](../../concepts/orchestrators.md)
+- Familiarity with [Durable Functions concepts](./durable-functions-orchestrations.md)
 
 ## Migration overview
 
@@ -554,13 +554,13 @@ Use this checklist to ensure a complete migration:
 
 ## Next steps
 
-- [Learn about the Isolated Worker Model →](https://learn.microsoft.com/azure/azure-functions/dotnet-isolated-process-guide)
-- [Explore Durable Functions Patterns →](../../patterns/index.md)
-- [Configure Durable Task Scheduler →](../../durable-task-scheduler/setup.md)
-- [View Code Samples →](./samples.md)
+- [Learn about the Isolated Worker Model →](../dotnet-isolated-process-guide.md)
+- [Explore Durable Functions Patterns →](./durable-functions-overview.md#application-patterns)
+- [Configure Durable Task Scheduler →](./durable-task-scheduler/develop-with-durable-task-scheduler.md)
+- [View Code Samples →](/samples/browse/?term=durable%20functions)
 
 ## Additional resources
 
-- [Official Microsoft Migration Guide](https://learn.microsoft.com/azure/azure-functions/migrate-dotnet-to-isolated-model)
-- [Isolated Worker Model Differences](https://learn.microsoft.com/azure/azure-functions/dotnet-isolated-in-process-differences)
-- [Durable Functions for .NET Isolated](https://learn.microsoft.com/azure/azure-functions/durable/durable-functions-dotnet-isolated-overview)
+- [Official Microsoft Migration Guide](../migrate-dotnet-to-isolated-model.md)
+- [Isolated Worker Model Differences](../dotnet-isolated-in-process-differences.md)
+- [Durable Functions for .NET Isolated](./durable-functions-dotnet-isolated-overview.md)

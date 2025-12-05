@@ -58,9 +58,9 @@ flowchart TB
 
 ### ⚠️ Consider Alternatives
 
-- **Simpler deployments** → [Azure Container Apps](../container-apps/)
-- **Serverless with pay-per-execution** → [Azure Functions](../azure-functions/)
-- **Quick prototyping** → Azure Functions with Durable Functions
+- **Simpler deployments** → [Azure Container Apps](./durable-functions-container-apps-hosting.md)
+- **Serverless with pay-per-execution** → [Azure Functions with Durable Functions](./durable-functions-overview.md)
+- **Quick prototyping** → A[Azure Functions with Durable Functions](./durable-functions-overview.md)
 
 ## Architecture patterns
 
@@ -193,8 +193,8 @@ EOF
 
 | Guide | Description |
 |:------|:------------|
-| [Deployment Guide](deployment.md) | Complete AKS deployment walkthrough |
-| [Scaling](scaling.md) | Configure HPA and KEDA scaling |
+| [Deployment Guide](./durable-task-scheduler/quickstart-aks-durable-task-sdk.md) | Complete AKS deployment walkthrough |
+| [Scaling](./durable-task-scheduler/durable-task-scheduler-auto-scaling-aks.md) | Configure HPA and KEDA scaling |
 
 ## Next steps
 

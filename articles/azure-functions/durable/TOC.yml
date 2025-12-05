@@ -191,8 +191,6 @@
           href: durable-functions-troubleshooting-guide.md
   - name: SDKs
     items: 
-    - name: Versioning
-      href: ./durable-task-scheduler/durable-task-scheduler-versioning.md
     - name: .NET API
       items:
       - name: WebJobs.Extensions.DurableTask 
@@ -230,6 +228,8 @@
     href: ./durable-task-scheduler/develop-with-durable-task-scheduler.md
   - name: Identity
     href: ./durable-task-scheduler/durable-task-scheduler-identity.md
+  - name: Versioning
+    href: ./durable-task-scheduler/durable-task-scheduler-versioning.md
   - name: Monitoring dashboard
     href: ./durable-task-scheduler/durable-task-scheduler-dashboard.md
   - name: Auto-purge 

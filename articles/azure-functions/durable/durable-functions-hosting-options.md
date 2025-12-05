@@ -123,14 +123,6 @@ flowchart TB
     AKS --> DTS
 ```
 
-## In this section
-
-| Guide | Description |
-|:------|:------------|
-| [Azure Functions (Durable Functions)](azure-functions/) | Serverless orchestrations with Azure Functions |
-| [Azure Container Apps](container-apps/) | Containerized workers with managed Kubernetes |
-| [Azure Kubernetes Service](kubernetes/) | Full Kubernetes deployment |
-
 ## Next steps
 
 - [Host a Durable Task SDK app on Azure Container Apps](durable-task-scheduler/quickstart-container-apps-durable-task-sdk.md)

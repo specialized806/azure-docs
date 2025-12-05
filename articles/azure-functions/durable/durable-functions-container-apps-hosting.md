@@ -55,8 +55,8 @@ flowchart TB
 
 ### ⚠️ Consider alternatives
 
-- **Scale to zero with pay-per-execution** → [Azure Functions](../azure-functions/)
-- **Full Kubernetes control** → [Azure Kubernetes Service](../kubernetes/)
+- **Scale to zero with pay-per-execution** → [Azure Functions](./durable-functions-overview.md)
+- **Full Kubernetes control** → [Azure Kubernetes Service](./durable-functions-aks-hosting.md)
 - **Legacy VM-based workloads** → Virtual Machines with Durable Task SDK
 
 ## Architecture patterns
@@ -160,15 +160,7 @@ az containerapp create \
 | **Cost Model** | Per vCPU-second | Per execution | Node-based |
 | **Scaling** | KEDA/Rules | Automatic | HPA/KEDA |
 
-## In this section
-
-| Guide | Description |
-|:------|:------------|
-| [Deployment Guide](deployment.md) | Complete deployment walkthrough |
-| [Scaling](scaling.md) | Configure autoscaling with KEDA |
-
 ## Next steps
 
-- [Deploy to Container Apps →](./deployment.md)
-- [Configure Scaling →](./scaling.md)
-- [Explore Developer Guide →](../../developer-guide/)
+- [Deploy to Container Apps →](./durable-task-scheduler/quickstart-container-apps-durable-task-sdk.md)
+- [Configure Scaling →](./durable-task-scheduler/durable-task-scheduler-auto-scaling-aks.md)
