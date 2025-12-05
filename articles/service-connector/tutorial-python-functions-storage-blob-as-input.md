@@ -87,7 +87,7 @@ def main(req: func.HttpRequest, inputBlob: bytes) -> func.HttpResponse:
 Follow the [tutorial](../azure-functions/how-to-create-function-vs-code.md?pivot=programming-language-python?pivots=python-mode-configuration#run-the-function-locally) to run the function locally and verify the blob input.
 
 1. If you're prompted to connect to storage, select the storage account you chose when creating the Azure Function resource. This storage account is used for Azure Function's internal use, and isn't necessarily the same as the storage account you use for the input.
-1. To start the function locally, press `<kbd>`F5`</kbd>` or select the **Run and Debug** icon in the left-hand side Activity bar.
+1. To start the function locally, press <kbd>F5</kbd> or select the **Run and Debug** icon in the left-hand side Activity bar.
 1. To verify the function can read the blob, right-click `Execute Function Now...` on the function in the Visual Studio Code **WORKSPACE** and check the function response. The response message should contain the content in your blob file.
 
 ## Create a connection using Service Connector
