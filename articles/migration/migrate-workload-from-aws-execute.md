@@ -45,13 +45,13 @@ The goal of this phase is to migrate your workload to Azure with minimal downtim
 
 How you execute this step depends on your chosen strategy. In the recommended, incremental active-active approach, you gradually shift traffic from AWS to Azure based on a given criteria (criteria could include regions, user types, or application features). In the all-at-once approach, you switch all traffic at once during a cutover time. You must ensure that all data is synced and all components are prepared to accept production traffic. Then you switch all connections to Azure and bring up your Azure environment as primary. A maintenance window is recommended in which you briefly pause traffic or the application to avoid inconsistencies. Automate any health checks and monitor in real time during the cutover.
 
-Work closely with operations teams to ensure that any emerging issues are addressed immediately and prepare to roll-back if issues cannot be resolved within your roll-back criteria which was defined in the [planning phase](/azure/migration/migrate-workload-from-aws-plan).
+Work closely with operations teams to ensure that you address any emerging issues immediately. Prepare to roll back if you can't resolve issues within your roll-back criteria, which you defined in the [planning phase](/azure/migration/migrate-workload-from-aws-plan).
 
 ## After cutover
 
 - **Take advantage of the active-active design**: Deallocate AWS components gradually without downtime.
 - **Update CI/CD pipelines for Azure:** Update deployment pipelines to stop targeting AWS and only target Azure.
-- **Post-cutover verification:** Closely monitor your workload metrics in Azure, and if they degrade severely or if you detect a critical bug, execute your rollback plan and be ready to revert traffic back to AWS. Run a full regression test in production if possible and check all components. Run smoke tests for critical functions, watch your security logs, and ensure all monitoring signals and alerts are green. After a day or two, monitor costs and usage to ensure there are no runaway resources incurring costs. 
+- **Post-cutover verification:** Closely monitor your workload metrics in Azure. If they degrade severely or if you detect a critical bug, execute your rollback plan and be ready to revert traffic back to AWS. Run a full regression test in production if possible and check all components. Run smoke tests for critical functions, watch your security logs, and ensure all monitoring signals and alerts are green. After a day or two, monitor costs and usage to ensure there are no runaway resources incurring costs. 
 
 For detailed cutover guidance, see the [CAF Execute migration](/azure/cloud-adoption-framework/migrate/execute-migration) guide.
 

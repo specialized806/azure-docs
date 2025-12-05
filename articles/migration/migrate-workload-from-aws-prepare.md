@@ -19,7 +19,7 @@ The prepare phase consists of two steps:
 > * prepare environment
 > * prepare application
 
-During this phase, the goal is to build out your Azure environment, implement any changes if refactoring is required, set up your CI/CD tooling and pipelines, and perform tests to support a smooth and secure migration. Take your time during this phase as any misconfigured infrastructure, insufficient testing, or lack of your team's readiness can result in delays, security vulnerabilities, or failed deployments during execution.
+During this phase, you build out your Azure environment, implement any changes if refactoring is required, set up your CI/CD tooling and pipelines, and perform tests to support a smooth and secure migration. Take your time during this phase as any misconfigured infrastructure, insufficient testing, or lack of your team's readiness can result in delays, security vulnerabilities, or failed deployments during execution.
 
 ## Prepare your environment
 

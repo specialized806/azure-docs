@@ -34,7 +34,7 @@ The goal of this phase is to confirm your workload in Azure meets functional, pe
 ## Sign-off
 
 - **Sign-off milestones**: Sign-off when you achieve your minimum viable cutover and all tests validate a successful migration outcome. Refer back to your sign-off acceptance criteria you defined in the [planning phase](/azure/migration/migrate-workload-from-aws-plan).
-- **Conduct a post-mortem/retrospective:** Conduct a post-mortem that captures lessons learned from the workload migration. Have the migration team and discuss what went well, what can be improved next time, and any unexpected issues that came up. Document the findings and share them with the stakeholders.
+- **Conduct a post-mortem/retrospective:** Conduct a post-mortem that captures lessons learned from the workload migration. Have the migration team discuss what went well, what can be improved next time, and any unexpected issues that came up. Document the findings and share them with the stakeholders.
 - **Plan for future improvements:** Create a work backlog for any nonurgent improvements like opportunities for cost optimization and added resilience. Incorporate the lessons learned from the post-mortem in your processes for future workload migrations.
 
 ## Checklist

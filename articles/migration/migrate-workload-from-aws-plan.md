@@ -22,7 +22,7 @@ The planning phase consists of three steps:
 The goal is to understand the current state of the workload, design your existing workload’s architecture like-for-like in Azure, and create a runbook.
 
 > [!IMPORTANT]
-> Take your time in the planning phase and follow the steps in order. An incomplete discovery or unclear migration objectives, risk misaligned expectations and missed dependencies and gaps. 
+> Take your time in the planning phase and follow the steps in order. An incomplete discovery or unclear migration objectives risk misaligned expectations and missed dependencies and gaps. 
 
 ## Assess your AWS workload
 
@@ -61,22 +61,22 @@ There's a cost trade-off to this approach. You incur costs for both cloud provid
 
 Your choice depends on the amount of data, type of data storage, and usage requirements. Decide between offline migration (backup-and-restore) and live replication.
 
-**Define your RPO (recovery point objective) :** If you chose an active-active design, define an acceptable RPO for data loss and document it. You will refer to this in the [decommission phase](/azure/migration/migrate-workload-from-aws-decommission) and your database migration strategy depends on it as well. RPO is the maximum window of data you are willing to lose in case something goes wrong. The lower the RPO is, the more you have to consider continuous replication or very recent backups as well as maintenance windows. The lower the RPO the higher the cost and effort to migrate your data.
+**Define your RPO (recovery point objective) :** If you choose an active-active design, define an acceptable RPO for data loss and document it. You refer to this RPO in the [decommission phase](/azure/migration/migrate-workload-from-aws-decommission) and your database migration strategy depends on it as well. RPO is the maximum window of data you're willing to lose in case something goes wrong. The lower the RPO is, the more you have to consider continuous replication or very recent backups as well as maintenance windows. The lower the RPO, the higher the cost and effort to migrate your data.
 
 **Database migration:** For your [database migration](/azure/migration/migrate-databases-from-aws) you can use AWS as well as Azure tooling. For example, Azure Data Studio allows you to [replicate Amazon RDS for SQL Server to Azure SQL Database and cut over with minimal downtime](/azure/data-factory/connector-amazon-rds-for-sql-server?tabs=data-factory). This feature enables continuous replication from Amazon RDS to Azure SQL Database. Alternatively, you can use [AWS DMS](https://docs.aws.amazon.com/dms/latest/userguide/Welcome.html) which offers continuous replication and change data capture until you cutover. 
 
-**Storage:** To transfer storage data from [Amazon S3 to Azure](/azure/migration/migrate-storage-from-aws) you have multiple options. For fast bulk-transfer using the CLI, you can use [AzCopy](/azure/storage/common/storage-use-azcopy-s3). For enterprise-grade orchestration and transform-heavy data transfer, use [Azure Data Factory](/azure/data-factory/data-migration-guidance-s3-azure-storage). You can also use [AWS DataSync](https://aws.amazon.com/datasync/features/) to automate the transfer. If you chose AWS DataSync, the DataSync agent needs to be deployed in Azure during the [prepare phase](./migrate-workload-from-aws-prepare.md).
+**Storage:** To transfer storage data from [Amazon S3 to Azure](/azure/migration/migrate-storage-from-aws) you have multiple options. For fast bulk-transfer using the CLI, you can use [AzCopy](/azure/storage/common/storage-use-azcopy-s3). For enterprise-grade orchestration and transform-heavy data transfer, use [Azure Data Factory](/azure/data-factory/data-migration-guidance-s3-azure-storage). You can also use [AWS DataSync](https://aws.amazon.com/datasync/features/) to automate the transfer. If you choose AWS DataSync, the DataSync agent needs to be deployed in Azure during the [prepare phase](./migrate-workload-from-aws-prepare.md).
 
 **Plan a maintenance window:** Schedule a dedicated window for your final cutover and decommissioning steps, document and communicate it with your stakeholders before you start migration.
 ### Document in a runbook
 
 **Sequence of steps:** Document the sequence of steps at a high level. If you're planning a one-time all-at-once cutover, define the exact steps, sequence, and timing of the move. Include the planned outage window in your documentation. Consider including a dry-run, especially for complex cutovers. Document your rollback strategy, DNS TTLs, and how to test success metrics.
 
-**Sign-off acceptance criteria:** Define what a *stable operation* means and make it measurable. For example, agree that after cutover Azure must run for at least X minutes/hours without issues and errors and all tests have been passed. 
+**Sign-off acceptance criteria:** Define what a *stable operation* means and make it measurable. For example, agree that after cutover Azure must run for at least X minutes or hours without issues and errors and all tests have been passed. 
 
-**Rollback trigger criteria and steps:** Document the exact conditions that will trigger a rollback to the AWS environment. For example: if any critical functionality is down, or the system is in a degraded state (x below baseline) for more than x minutes, we will initiate a rollback. Document the rollback steps.
+**Rollback trigger criteria and steps:** Document the exact conditions that trigger a rollback to the AWS environment. For example: if any critical functionality is down, or the system is in a degraded state (x below baseline) for more than x minutes, you initiate a rollback. Document the rollback steps.
 
-**Traffic and routing changes:** Plan and document your traffic routing changes in detail. Define exactly how DNS records, load balancer configurations, and routing rules will be updated to direct traffic to Azure. Take into consideration any TTL that you might have configured. 
+**Traffic and routing changes:** Plan and document your traffic routing changes in detail. Define exactly how DNS records, load balancer configurations, and routing rules are updated to direct traffic to Azure. Take into consideration any TTL that you configured. 
 
 > [!CAUTION]
 > Neglecting to explicitly plan traffic routing is a common pitfall that can lead to unexpected downtime. 
@@ -101,7 +101,7 @@ Once the plan and runbook are reviewed and agreed upon by stakeholders and decis
 | &#9744; | Reduce risks                                 |
 | &#9744; | Check resource availability                  |
 | &#9744; | Validate requirements if using Azure Migrate |
-| &#9744; | Address compliance & security requirements   |
+| &#9744; | Address compliance and security requirements   |
 | &#9744; | Choose cutover strategy                      |
 | &#9744; | Choose database migration strategy           |
 | &#9744; | Choose storage migration strategy            |
