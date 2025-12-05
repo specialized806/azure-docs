@@ -13,7 +13,7 @@ ms.collection:
 
 # Migrate a workload from Amazon Web Services (AWS) - Decommission
 
-This step is the final step in the workload migration. Proceed when you're confident in how your workload operates in Azure. 
+This step is the final step in the workload migration. Proceed when you're confident in how your workload operates in Azure by making sure that the evaluation phase was successful.
 
 The goal of this phase is to safely retire AWS dependencies, remove redundant resources, and complete the transition to Azure.
 

@@ -19,13 +19,16 @@ The prepare phase consists of two steps:
 > * prepare environment
 > * prepare application
 
-During this phase, you build out your Azure environment, implement any changes if refactoring is required, set up your CI/CD tooling and pipelines, and perform tests to support a smooth and secure migration. Take your time during this phase as any misconfigured infrastructure, insufficient testing, or lack of your team's readiness can result in delays, security vulnerabilities, or failed deployments during execution.
+During this phase, you build out your Azure environment, implement any changes if refactoring is required, set up your CI/CD tooling and pipelines, and perform tests to complete a successful migration. Take your time during this phase as any misconfigured infrastructure, insufficient testing, or lack of your team's readiness can result in delays, security vulnerabilities, or failed deployments during execution.
 
 ## Prepare your environment
 
 - **Provision application landing zones:** Ensure the platform team provisions the **[Azure application landing zones](/azure/cloud-adoption-framework/ready/enterprise-scale/implementation)** for your preproduction and production workload environments.
-- **Deploy and configure Azure infrastructure:** Use Infrastructure as Code (IaC) to deploy your resources. This approach ensures consistency and repeatability. If your teams use Terraform on AWS, they can continue using it. However, you need to write new Terraform scripts and modules for your Azure resources. If your existing deployment scripts use [CloudFormation](https://docs.aws.amazon.com/cloudformation/), consider using [Bicep](/azure/azure-resource-manager/bicep/) to deploy on Azure. Focus on nonproduction environments first and validate everything before moving on to production environments.
-- **Update CI/CD pipelines for Azure:** Modify your deployment pipelines to target Azure Services. Configure the service connections and validate that your build and release workflows can deploy your selected Azure compute resources, such as AppService, AKS, or VMs. During the migration and while using an active-active migration, make sure that your scripts deploy to both AWS and Azure. This approach maintains parity and reduces risk.
+- **Deploy and configure Azure infrastructure:** Use Infrastructure as Code (IaC) to deploy your resources. This approach ensures consistency and repeatability. If your teams are used to Terraform on AWS and want to continue using it, they must write new Terraform scripts and modules for your Azure resources. If your existing deployment scripts use [CloudFormation](https://docs.aws.amazon.com/cloudformation/), consider using [Bicep](/azure/azure-resource-manager/bicep/) to deploy on Azure. Focus on nonproduction environments first and validate everything before moving on to production environments.
+- **Update CI/CD pipelines for Azure to keep environments aligned:** 
+	- Modify your deployment pipelines to target Azure Services
+	- Configure the service connections and validate that your build and release workflows can deploy your selected Azure compute resources, such as AppService, AKS, or VMs. 
+	- Make sure that your scripts deploy to both AWS and Azure during the migration and while using an active-active migration.
 - **Test your infrastructure:** Validate your Virtual WAN or hub network and any other foundational services like DirectConnect on AWS and ExpressRoute on Azure or VPN connections. Ensure they're configured to support both the target workload and the migration process. Validate that connectivity works end-to-end across your Azure and AWS environments.
 
 ## Prepare your application
