@@ -4,6 +4,8 @@
   items:
   - name: About Azure Functions
     href: ../functions-overview.md
+  - name: About Azure Durable
+    href: durable-overview.md
 - name: Core concepts
   items:
   - name: Functions 
