@@ -395,5 +395,5 @@ result = yield context.call_activity_with_retry(
 ## Next Steps
 
 - [Learn about Entity functions](./durable-functions-entities.md)
-- [Explore Fan-Out/Fan-In Pattern](../patterns/fan-out-fan-in.md)
-- [View Code Samples](../sdks/samples.md)
+- [Explore Fan-Out/Fan-In Pattern](./durable-functions-overview.md#pattern-2-fan-outfan-in)
+- [View Code Samples](/samples/browse/?term=durable%20functions)
