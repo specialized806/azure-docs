@@ -27,16 +27,12 @@ Learn how to create an SMB volume for the Elastic service level.
 
 * You can't change the protocol of a volume after creating it. 
 * Each volume in a capacity pool must have a unique name.
-* In the Elastic service level, you can't move volumes between capacity pools. 
-* Access-based enumeration and non-browsable shares aren't currently supported for SMB volumes in the Elastic service level. 
-
-<!-- bugs  -->
-
+* You must have configured a capacity pool for the Zone-Redundant service level. 
 * If SMB volume creation fails with the error "Error when creating. A problem occurred. Please try again after some time. If the issue persists, please contact support.", the issue might be that the Active Directory password has expired and needs to be reset. Reset the password then try to create the volume again. 
 
 ## Steps 
 
-1. In you NetApp account, select **Volumes**. 
+1. In your NetApp account, select **Volumes**. 
 1. Select **+ Add Volume**. 
 1. In the Basics tab: 
     * Select the **Capacity pool** the volume belongs to. 

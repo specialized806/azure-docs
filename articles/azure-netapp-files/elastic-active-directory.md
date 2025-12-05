@@ -53,11 +53,6 @@ For SMB volume deployment, you must configure an Active Directory account to ass
 
     :::image type="content" source="./media/elastic-active-directory/elastic-active-directory-access.png" alt-text="Screenshot of the identity & access management tab." lightbox="./media/elastic-active-directory/elastic-active-directory-access.png":::
 
-1. To enable AES encryption, select the **AES encryption** box. 
-
-    :::image type="content" source="./media/create-active-directory-connections/active-directory-aes-encryption.png" alt-text="Screenshot of the AES encryption checkbox.":::
-
-<!-- image -->
 1. Select **Review + create**. 
 
 ## Next steps

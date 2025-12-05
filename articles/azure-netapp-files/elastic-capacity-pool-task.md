@@ -55,7 +55,7 @@ You must create a capacity pool before you can create volumes in Azure NetApp Fi
 1. Provide the following information: 
     * **Name**
     * **Service level**
-        Choose **Elastic**
+        Choose **Zone-Redundant**
     * **Quota** 
         Assign the quota. See Resource limits for more information about maximums and minimums. 
     * **Virtual network**

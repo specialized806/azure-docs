@@ -28,4 +28,4 @@ ms.custom: include file
 
     Select **Review + Create** to begin restoring the backup to a new volume.
 
-4. The Volumes page displays the new volume. In the Volumes page, the **Originated from** field identifies the name of the snapshot used to create the volume.
+4. The Volumes page displays the new volume. In the Volumes page, the **Originated from** field identifies the name of the backup used to create the volume.

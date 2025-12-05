@@ -18,8 +18,15 @@ Service levels are an attribute of a capacity pool. Service levels are defined a
 Azure NetApp Files supports four service levels: *Flexible*, *Standard*, *Premium*, and *Ultra*.   
 
 * <a name="Elastic"></a>Elastic Zone-Redundant storage (preview):
-    <!-- tbd -->
-    Elastic Zone-Redundant storage provides flexible management of resources with scalable capacity pools.It's designed for smaller workloads scaling to the cloud, with automated and transparent failover and user-defined availability zones, allowing for tailored operational continuity. With Elastic Zone-Redundant storage, you can create capacity pools at sizes between 512 GiB and 128 TiB with shared QoS across volumes to adapt to changing workloads seamlessly. Elastic Zone-Redundant storage offers throughput of 32 MiB/s per 1 TiB. For more information, see [Understand Elastic Zone-Redundant storage](elastic-zone-redundant-concept.md).
+    Azure NetApp Files Elastic zone-redundant storage is an advanced, high-availability service level designed to deliver continuous data access with zero data loss even if an entire Azure Availability Zone becomes unavailable. This service eliminates single points of failure, making it ideal for mission-critical workloads that require uncompromising resilience and in-region data protection.
+    
+    With Elastic Zone-Redundant Storage, you can:
+
+    - Create capacity pools from 1 TiB to 128 TiB with shared QoS across volumes for seamless workload adaptation.
+    - Provision volumes as small as 1 GiB, giving you flexibility to optimize storage for workloads of any size.
+    - Achieve throughput of 32 MiB/s per 1 TiB, ensuring predictable performance at scale.
+
+    For more information, see [Understand Elastic Zone-Redundant storage](elastic-zone-redundant-concept.md).
 
     >[!IMPORTANT]
     >Elastic Zone-Redundant offers a different subset of features than the other service levels. For more information, see [Understand Elastic Zone-Redundant storage](elastic-zone-redundant-concept.md).

@@ -22,4 +22,4 @@ ms.custom: include file
 
 * For volumes greater than 10 TiB, it can take multiple hours to transfer all the data from the backup media.
 
-* In the Volume overview page, refer to the **Originated from** field to see the name of the snapshot used to create the volume. 
+* In the Volume overview page, refer to the **Originated from** field to see the name of the backup used to create the volume. 
