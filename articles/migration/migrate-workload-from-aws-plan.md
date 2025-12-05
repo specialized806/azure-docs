@@ -61,7 +61,7 @@ There's a cost trade-off to this approach. You incur costs for both cloud provid
 
 Your choice depends on the amount of data, type of data storage, and usage requirements. Decide between offline migration (backup-and-restore) and live replication.
 
-**Define your RPO (recovery point objective) :** If you choose an active-active design, define an acceptable RPO for data loss and document it. You refer to this RPO in the [decommission phase](/azure/migration/migrate-workload-from-aws-decommission) and your database migration strategy depends on it as well. RPO is the maximum window of data you're willing to lose in case something goes wrong. The lower the RPO is, the more you have to consider continuous replication or very recent backups as well as maintenance windows. The lower the RPO, the higher the cost and effort to migrate your data.
+**Define your RPO (recovery point objective) :** If you choose an active-active design, define an acceptable RPO for data loss and document it. You refer to this RPO in the [decommission phase](/azure/migration/migrate-workload-from-aws-decommission) and your database migration strategy depends on it as well. RPO is the maximum window of data you're willing to lose in case something goes wrong. The lower the RPO is, the more you have to consider continuous replication or very recent backups as well as maintenance windows. It also increases cost and effort to migrate your data.
 
 **Database migration:** For your [database migration](/azure/migration/migrate-databases-from-aws) you can use AWS as well as Azure tooling. For example, Azure Data Studio allows you to [replicate Amazon RDS for SQL Server to Azure SQL Database and cut over with minimal downtime](/azure/data-factory/connector-amazon-rds-for-sql-server?tabs=data-factory). This feature enables continuous replication from Amazon RDS to Azure SQL Database. Alternatively, you can use [AWS DMS](https://docs.aws.amazon.com/dms/latest/userguide/Welcome.html) which offers continuous replication and change data capture until you cutover. 
 
@@ -72,11 +72,11 @@ Your choice depends on the amount of data, type of data storage, and usage requi
 
 **Sequence of steps:** Document the sequence of steps at a high level. If you're planning a one-time all-at-once cutover, define the exact steps, sequence, and timing of the move. Include the planned outage window in your documentation. Consider including a dry-run, especially for complex cutovers. Document your rollback strategy, DNS TTLs, and how to test success metrics.
 
-**Sign-off acceptance criteria:** Define what a *stable operation* means and make it measurable. For example, agree that after cutover Azure must run for at least X minutes or hours without issues and errors and all tests have been passed. 
+**Sign-off acceptance criteria:** Define what a *stable operation* means and make it measurable. For example, agree that after cutover Azure must run for at least X minutes or hours without errors and the workload passes all tests. 
 
-**Rollback trigger criteria and steps:** Document the exact conditions that trigger a rollback to the AWS environment. For example: if any critical functionality is down, or the system is in a degraded state (x below baseline) for more than x minutes, you initiate a rollback. Document the rollback steps.
+**Rollback trigger criteria and steps:** Document the exact conditions that trigger a rollback to the AWS environment. For example, if any critical functionality is down, or the system is in a degraded state (x below baseline) for more than x minutes, initiate a rollback. Document the rollback steps.
 
-**Traffic and routing changes:** Plan and document your traffic routing changes in detail. Define exactly how DNS records, load balancer configurations, and routing rules are updated to direct traffic to Azure. Take into consideration any TTL that you configured. 
+**Traffic and routing changes:** Plan and document your traffic routing changes in detail. Define exactly how to update DNS records, load balancer configuration, and routing rules to direct traffic to Azure. Take into consideration any TTL that you configured as it determines how long DNS changes take to propagate. 
 
 > [!CAUTION]
 > Neglecting to explicitly plan traffic routing is a common pitfall that can lead to unexpected downtime. 
