@@ -24,16 +24,18 @@ landingContent:
         links:
           - text: What is Azure Durable?
             url: durable-functions-overview.md
-          - text: Compare serverless options
-            url: ../functions-compare-logic-apps-ms-flow-webjobs.md  
-          - text: Usage scenarios
-            url: ../functions-scenarios.md#build-a-serverless-workflow
+          - text: Compare Azure workflow solutions
+            url: durable-comparison-alternatives.md  
+          - text: When to use Azure Durable
+            url: durable-use-cases.md
       - linkListType: concept
         links:
           - text: Durable Function types
             url: durable-functions-types-features-overview.md
-          - text: Azure Durable storage providers
-            url: durable-functions-storage-providers.md
+          - text: Hosting options
+            url: durable-functions-hosting-options.md
+          - text: Durable Task Scheduler
+            url: ./durable-task-scheduler/durable-task-scheduler.md
 
   # Card (optional)
   - title: Get started
@@ -42,10 +44,10 @@ landingContent:
         links:
           - text: Create a Durable Functions app (C#)
             url: durable-functions-isolated-create-first-csharp.md
-          - text: Create a Durable Functions app (JavaScript)
-            url: quickstart-js-vscode.md
-          - text: Create a Durable Functions app (Python)
-            url: quickstart-python-vscode.md
+          - text: Host a Durable Task SDK app on Azure Container Apps
+            url: ./durable-task-scheduler/quickstart-container-apps-durable-task-sdk.md
+          - text: Host a Durable Task SDK app on Azure Kubernetes Service
+            url: ./durable-task-scheduler/quickstart-aks-durable-task-sdk.md
       - linkListType: learn
         links:
           - text: Create a long-running serverless workflow
