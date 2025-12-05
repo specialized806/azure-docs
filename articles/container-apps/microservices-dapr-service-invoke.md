@@ -1,5 +1,5 @@
 ---
-title: "Tutorial: Microservices communication using Dapr Service Invocation"
+title: "Tutorial: Use Dapr Service Invocation for Microservices Communication"
 titleSuffix: "Azure Container Apps"
 description: Enable two sample Dapr applications to communicate and leverage Azure Container Apps.
 author: hhunter-ms
@@ -16,7 +16,7 @@ ms.custom:
   - sfi-image-nochange
 ---
 
-# Tutorial: Microservices communication using Dapr Service Invocation
+# Tutorial: Use Dapr Service Invocation for microservices communication 
 
 In this tutorial, you create and run two microservices that communicate securely using auto-mTLS and reliably using built-in retries via [the Dapr Service Invocation API](./dapr-overview.md#supported-dapr-apis-components-and-tooling). You'll:
 
@@ -32,16 +32,16 @@ The sample service invocation project includes:
 
 ## Prerequisites
 
-- Install [Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd)
-- [Install](https://docs.dapr.io/getting-started/install-dapr-cli/) and [init](https://docs.dapr.io/getting-started/install-dapr-selfhost/) Dapr
+- The [Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd)
+- The Dapr CLI, [installed](https://docs.dapr.io/getting-started/install-dapr-cli/) and [initialized](https://docs.dapr.io/getting-started/install-dapr-selfhost/)
 - [Docker Desktop](https://www.docker.com/products/docker-desktop/)
-- Install [Git](https://git-scm.com/downloads)
+- [Git](https://git-scm.com/downloads)
 
 ::: zone pivot="nodejs"
 
 ## Run the Node.js applications locally
 
-Before deploying the application to Azure Container Apps, start by running the `order-processor` and `checkout` services locally with Dapr.
+Before you deploy the application to Container Apps, take the steps in the following sections to run the `order-processor` and `checkout` services locally with Dapr.
 
 ### Prepare the project
 
@@ -51,17 +51,17 @@ Before deploying the application to Azure Container Apps, start by running the `
    git clone https://github.com/Azure-Samples/svc-invoke-dapr-nodejs.git
    ```
 
-1. Navigate into the sample's root directory.
+1. Go to the sample root directory.
 
    ```bash
    cd svc-invoke-dapr-nodejs
    ```
 
-### Run the applications using the Dapr CLI
+### Run the applications by using the Dapr CLI
 
-Start by running the `order-processor` service.
+Take the following steps to run the `order-processor` service and the `checkout` service.
 
-1. From the sample's root directory, change directories to `order-processor`.
+1. From the sample root directory, go to the *order-processor* directory.
 
    ```bash
    cd order-processor
@@ -78,7 +78,7 @@ Start by running the `order-processor` service.
    dapr run --app-port 5001 --app-id order-processor --app-protocol http --dapr-http-port 3501 -- npm start
    ```
 
-1. In a new terminal window, from the sample's root directory, navigate to the `checkout` caller service.
+1. In a new terminal window, from the sample root directory, go to the `checkout` caller service.
 
    ```bash
    cd checkout
@@ -261,7 +261,7 @@ Upon successful completion of the `azd up` command:
 
 ## Run the Python applications locally
 
-Before deploying the application to Azure Container Apps, start by running the `order-processor` and `checkout` services locally with Dapr.
+Before you deploy the application to Container Apps, take the steps in the following sections to run the `order-processor` and `checkout` services locally with Dapr.
 
 ### Prepare the project
 
@@ -277,11 +277,11 @@ Before deploying the application to Azure Container Apps, start by running the `
    cd svc-invoke-dapr-python
    ```
 
-### Run the applications using the Dapr CLI
+### Run the applications by using the Dapr CLI
 
-Start by running the `order-processor` service.
+Take the following steps to run the `order-processor` service and the `checkout` service.
 
-1. From the sample's root directory, change directories to `order-processor`.
+1. From the sample root directory, go to the *order-processor* directory.
 
    ```bash
    cd order-processor
@@ -480,7 +480,7 @@ Upon successful completion of the `azd up` command:
 
 ## Run the .NET applications locally
 
-Before deploying the application to Azure Container Apps, start by running the `order-processor` and `checkout` services locally with Dapr.
+Before you deploy the application to Container Apps, take the steps in the following sections to run the `order-processor` and `checkout` services locally with Dapr.
 
 ### Prepare the project
 
@@ -498,9 +498,9 @@ Before deploying the application to Azure Container Apps, start by running the `
 
 ### Run the applications using the Dapr CLI
 
-Start by running the `order-processor` callee service.
+Take the following steps to run the `order-processor` service and the `checkout` service.
 
-1. From the sample's root directory, change directories to `order-processor`.
+1. From the sample root directory, go to the *order-processor* directory.
 
    ```bash
    cd order-processor
