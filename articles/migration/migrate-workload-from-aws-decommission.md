@@ -31,13 +31,13 @@ For a thorough review of decommissioning steps, see the [CAF Decommission source
 
 ## Checklist
 
-| &nbsp;  | Deliverable tasks                |     |
-| ------- | -------------------------------- | --- |
-| &#9744; | Finalize data cutover            |     |
-| &#9744; | Take final backups and snapshots |     |
-| &#9744; | Retire AWS resources             |     |
-| &#9744; | Check successful deletion        |     |
-| &#9744; | Clean up artifacts               |     |
+| &nbsp;  | Deliverable tasks                |
+| ------- | -------------------------------- |
+| &#9744; | Finalize data cutover            |
+| &#9744; | Take final backups and snapshots |
+| &#9744; | Retire AWS resources             |
+| &#9744; | Check successful deletion        |
+| &#9744; | Clean up artifacts               |
 
 ## Next step
 
