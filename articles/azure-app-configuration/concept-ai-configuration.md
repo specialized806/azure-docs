@@ -60,4 +60,4 @@ Continue to the following instructions to use AI configuration in your applicati
 > [Chat completion configuration](./howto-chat-completion-config.md)
 
 > [!div class="nextstepaction"]
-> [Agent configuration](./howto-agent-config-python.md)
+> [AI Agent configuration](./howto-ai-agent-config.md)

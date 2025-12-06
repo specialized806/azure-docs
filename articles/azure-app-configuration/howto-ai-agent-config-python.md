@@ -1,5 +1,5 @@
 ---
-title: Agent configuration
+title: Use AI agent configuration in a Python console app
 titleSuffix: Azure App Configuration
 description: Learn how to store agent configuration in Azure App Configuration.
 ms.service: azure-app-configuration
@@ -11,15 +11,16 @@ ms.update-cycle: 180-days
 ms.collection: ce-skilling-ai-copilot
 ---
 
-# Use agent configuration in a Python console app
+# Use AI agent configuration in a Python console app
+
+In this guide, you build an AI agent chat application and iterate on the agent specifications using configuration dynamically loaded from Azure App Configuration. 
+
+The full sample source code is available in the [Azure App Configuration GitHub repository](https://github.com/Azure/AppConfiguration/tree/main/examples/Python)
 
 ## Prerequisites
 
-- An Azure account with an active subscription. [Create one for free](https://azure.microsoft.com/free).
-- An App Configuration store, as shown in the [tutorial for creating a store](./quickstart-azure-app-configuration-create.md#create-an-app-configuration-store).
+- Create the _example agent settings_ discussed in the [overview](./howto-ai-agent-config.md#example-agent-settings)
 - Python 3.8 or later - for information on setting up Python on Windows, see the [Python on Windows documentation](/windows/python/).
-- Create the _example agent settings_ discussed in the [overview](./concept-agent-configuration.md#example-agent-settings)
-- A model. [Add and configure models to Azure AI Foundry Models](/azure/ai-foundry/foundry-models/how-to/create-model-deployments).
 
 ## Console application
 
@@ -73,20 +74,24 @@ In this section, you create a console application and load your agent configurat
                 ) as agent
         ):
     
-            while True:
-                user_input = input("How can I help? (type 'quit' to exit): ")
+        while True:
+            print("How can I help? (type 'quit' to exit)")
+
+            user_input = input("User: ")
+            
+            if user_input.lower() in ['quit', 'exit', 'bye']:
+                break
+            
+            # Refresh the configuration from Azure App Configuration 
+            config.refresh()
+
+            response = await agent.run(messages=user_input, tools=get_weather)
+
+            print(f"Agent: {response.text}\n")
+
+            input("Press enter to continue...")
                 
-                if user_input.lower() in ['quit', 'exit', 'bye']:
-                    break
-
-                print(f"User: {user_input}")
-
-                response = await agent.run(messages=user_input, tools=get_weather)
-
-                print(f"Agent: {response.text}\n")
-                input("Press Enter to continue...")
-                
-            print("Exiting.. Goodbye.")
+        print("Exiting.. Goodbye.")
 
     if __name__ == "__main__":
         asyncio.run(main())
@@ -98,9 +103,6 @@ In this section, you create a console application and load your agent configurat
             location: Annotated[str, Field(description="The location to get the weather for.")]
     ) -> str:
         """Get the weather for a given location."""
-
-        # Refresh the configuration from Azure App Configuration 
-        config.refresh()
 
         condition = config["Agent:WeatherTool:Forecast"]
         
@@ -132,9 +134,6 @@ In this section, you create a console application and load your agent configurat
     ) -> str:
         """Get the weather for a given location."""
 
-        # Refresh the configuration from Azure App Configuration 
-        config.refresh()
-
         condition = config["Agent:WeatherTool:Forecast"]
         
         return f"The weather in {location} is {condition["name"]} with a high of {randint(10, 30)}°C. {condition["message"]}"
@@ -149,18 +148,24 @@ In this section, you create a console application and load your agent configurat
                     store=True) as agent
         ):
         
-            while True:
-                user_input = input("How can I help? (type 'quit' to exit): ")
-                
-                if user_input.lower() in ['quit', 'exit', 'bye']:
-                    break
+        while True:
+            print("How can I help? (type 'quit' to exit)")
+            
+            user_input = input("User: ")
+            
+            if user_input.lower() in ['quit', 'exit', 'bye']:
+                break
+            
+            # Refresh the configuration from Azure App Configuration 
+            config.refresh()
 
-                print(f"User: {user_input}")
-                response = await agent.run(messages=user_input, tools=get_weather)
-                print(f"Agent: {response.text}\n")
-                input("Press Enter to continue...")
+            response = await agent.run(messages=user_input, tools=get_weather)
+
+            print(f"Agent: {response.text}\n")
+
+            input("Press enter to continue...")
                 
-            print("Exiting.. Goodbye.")
+        print("Exiting.. Goodbye.")
 
     if __name__ == "__main__":
         asyncio.run(main())
@@ -195,7 +200,7 @@ In this section, you create a console application and load your agent configurat
 1. Type the message "What is the weather in Seattle?" when prompted with "How can I help?" and then press the Enter key.
 
     ```Output
-    How can I help? (type 'quit' to exit): What is the weather in Seattle?
+    How can I help? (type 'quit' to exit)
     User: What is the weather in Seattle?
     Agent: The weather in Seattle is currently sunny with a high of 17°C. It's a great day to be outside—don't forget sunscreen!
 
@@ -211,12 +216,12 @@ In this section, you create a console application and load your agent configurat
 1.  Press the Enter key and type the same message when prompted with "How can I help?". Be sure to wait a few moments for the refresh interval to elapse, and then press the Enter key to see the updated AI response in the output.
 
     ```Output
-    How can I help? (type 'quit' to exit): What is the weather in Seattle?
+    How can I help? (type 'quit' to exit)
     User: What is the weather in Seattle?
     Agent: The weather in Seattle is currently sunny with a high of 17°C. It's a great day to be outside—don't forget sunscreen!
 
     Press Enter to continue...
-    How can I help? (type 'quit' to exit): What is the weather in Seattle?
+    How can I help? (type 'quit' to exit)
     User: What is the weather in Seattle?
     Agent: The weather in Seattle is currently stormy with a high of 29°C. There is a warning to stay indoors due to the stormy conditions.
 
