@@ -5,7 +5,7 @@ services: api-management
 author: dlepow
 ms.service: azure-api-management
 ms.topic: concept-article
-ms.date: 11/14/2025
+ms.date: 11/20/2025
 ms.author: danlep
 ms.custom:
   - build-2024
@@ -51,7 +51,7 @@ Configure and manage backend entities in the Azure portal, or by using Azure API
 You can create a backend in the Azure portal, or by using Azure APIs or tools.
 
 > [!NOTE]
-> When you import certain APIs, such as APIs from Azure AI Foundry or other AI services, API Management automatically configures a backend entity.
+> When you import certain APIs, such as APIs from Microsoft Foundry or other AI services, API Management automatically configures a backend entity.
 
 To create a backend in the portal:
 
@@ -112,6 +112,8 @@ To add CA certificate details, follow these steps:
     * **Subject name and issuer thumbprint** - Enter the subject name that uniquely identifies the CA and the thumbprint of the CA.
 1. Select **Add**.
 1. Select **Create**.
+
+  :::image type="content" source="media/backends/ca-certificate.png" alt-text="Screenshot of configuring CA certificate details for a backend in the portal.":::
 
 > [!NOTE]
 > When you configure details of a custom CA certificate in the backend entity, API Management always validates the certificate name and certificate chain, regardless of whether you enable or disable validation settings in the backend's `backendTlsProperties`.
@@ -307,7 +309,7 @@ With any of the preceding load balancing options, you can enable **session aware
 
 When you use session awareness, the client must handle cookies appropriately. The client needs to store the `Set-Cookie` header value and send it with subsequent requests to maintain session state.
 
-You can use API Management policies to help set cookies for session awareness. For example, for the case of the Assistants API (a feature of [Azure OpenAI in Azure AI Foundry Models](/azure/ai-services/openai/concepts/models)), the client needs to keep the session ID, extract the thread ID from the body, and keep the pair and send the right cookie for each call. Moreover, the client needs to know when to send a cookie or when not to send a cookie header. These requirements can be handled appropriately by defining the following example policies:
+You can use API Management policies to help set cookies for session awareness. For example, for the case of the Assistants API (a feature of [Azure OpenAI in Microsoft Foundry Models](/azure/ai-services/openai/concepts/models)), the client needs to keep the session ID, extract the thread ID from the body, and keep the pair and send the right cookie for each call. Moreover, the client needs to know when to send a cookie or when not to send a cookie header. These requirements can be handled appropriately by defining the following example policies:
 
 
 ```xml

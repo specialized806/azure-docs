@@ -7,7 +7,7 @@ author: maud-lv
 ms.author: malev
 ms.service: azure-managed-grafana
 ms.topic: how-to 
-ms.date: 12/19/2024
+ms.date: 11/21/2025
 ms.custom:
   - how-to
   - devx-track-azurecli
@@ -20,7 +20,7 @@ In this guide, you'll learn how to disable public access to your Azure Managed G
 
 ## Prerequisites
 
-- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free).
+- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - An existing Azure Managed Grafana workspace in the Standard tier. [Create one if you haven't already](quickstart-managed-grafana-portal.md).
 
 ## Disable public access to a workspace
