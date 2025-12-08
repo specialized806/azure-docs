@@ -412,8 +412,8 @@ curl https://$API_URL/orders/<instanceId>
 
 ## Next steps
 
-- [Configure identity](./durable-task-scheduler/identity.md)
-- [Use the dashboard](./durable-task-scheduler/dashboard.md)
+- [Configure identity](./durable-task-scheduler-identity.md)
+- [Use the dashboard](./durable-task-scheduler-dashboard.md)
 - [Implement patterns](../durable-functions-overview.md#application-patterns)
 
 ## Troubleshooting
