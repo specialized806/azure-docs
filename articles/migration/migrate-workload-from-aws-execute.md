@@ -30,7 +30,7 @@ The goal of this phase is to migrate your workload to Azure with minimal downtim
 
 ## Before cutover
 
-1. **Execute your data migration:** Align the order of operations with the cutover model you selected.
+1. **Execute your data migration:** Align the order of operations with your cutover model.
 	- For active replication scenarios, start with the setup of your continuous data synchronization between AWS and Azure. This approach ensures minimal downtime and data consistency during cutover. 
 	- For backup-and-restore models, start with a full backup of your AWS data. Securely transfer the backup to Azure, then restore it into the target environment. Validate the integrity of the data before you proceed with the next step.
 2. **Configure your application's components:** Point components to their dependencies, some of which might still be on AWS initially. In an incremental migration approach, your database might still be in AWS and will be replicated later.
@@ -43,7 +43,7 @@ The goal of this phase is to migrate your workload to Azure with minimal downtim
 > [!IMPORTANT]
 > Follow your runbook and communicate with stakeholders about cutover progress and any expected impact to the timeline or any other issues they should be aware of.
 
-How you execute this step depends on your chosen strategy. In the recommended, incremental active-active approach, you gradually shift traffic from AWS to Azure based on a given criteria (criteria could include regions, user types, or application features). In the all-at-once approach, you switch all traffic at once during a cutover time. You must ensure that all data is synced and all components are prepared to accept production traffic. Then you switch all connections to Azure and bring up your Azure environment as primary. A maintenance window is recommended in which you briefly pause traffic or the application to avoid inconsistencies. Automate any health checks and monitor in real time during the cutover.
+How you execute this step depends on your chosen strategy. In the recommended, incremental active-active approach, you gradually shift traffic from AWS to Azure based on a given criteria (criteria could include regions, user types, or application features). In the all-at-once approach, you switch all traffic at once during a cutover time. You must ensure that you sync all data and prepare components to accept production traffic. Then you switch all connections to Azure and bring up your Azure environment as primary. We recommend a maintenance window in which you briefly pause traffic or the application to avoid inconsistencies. Automate any health checks and monitor in real time during the cutover.
 
 Work closely with operations teams to ensure that you address any emerging issues immediately. Prepare to roll back if you can't resolve issues within your roll-back criteria, which you defined in the [planning phase](/azure/migration/migrate-workload-from-aws-plan).
 

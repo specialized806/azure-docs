@@ -7,19 +7,18 @@ ms.date: 11/24/2025
 ms.topic: concept-article
 ms.service: azure
 ms.collection:
- - migration
- - aws-to-azure
+  - migration
+  - aws-to-azure
 ---
 # Plan your workload migration from Amazon Web Services (AWS) to Azure - Plan
 
-The planning phase consists of three steps: 
+The goal of the planning phase is to: 
 
 > [!div class="checklist"]
 > * assess your workload
 > * design a like-for-like architecture
 > * develop and document migration plan
 
-The goal is to understand the current state of the workload, design your existing workload’s architecture like-for-like in Azure, and create a runbook.
 
 > [!IMPORTANT]
 > Take your time in the planning phase and follow the steps in order. An incomplete discovery or unclear migration objectives risk misaligned expectations and missed dependencies and gaps. 
@@ -28,22 +27,22 @@ The goal is to understand the current state of the workload, design your existin
 
 You can use native AWS tools, Azure Migrate, or a manual approach to support the discovery phase.
 
-1. **Existing workload architecture:** Ensure you have a fully documented workload architecture and the migration team is aligned. Make sure it includes all workload dependencies, such as network configurations, data flows, and external integrations. 
+1. **Existing workload architecture:** Fully document and verify your workload architecture with your migration team. Make sure it includes all workload dependencies, such as network configurations, data flows, and external integrations. 
 2. **Use discovery tooling:** To speed up assessment, use [Workload Discovery on AWS](https://aws.amazon.com/solutions/implementations/workload-discovery-on-aws/) to visualize your AWS workload. It uses AWS Config and AWS Systems Manager data to help identify your workload's components, dependencies, and relationships. 
 3. **Identify critical flows:** Map out essential user and system interactions and [workflows](/azure/well-architected/reliability/identify-flows). When you design the target architecture in the next step, this information helps prioritize reliability efforts and ensures that the most important and impactful components are protected against failure.
-4. **Create a detailed inventory** of your current AWS environment that's required for running the workload (all servers, storage, database, and services), along with usage patterns, performance metrics, and licensing requirements. Use [Azure Migrate](/azure/migrate/tutorial-assess-aws) to assess AWS instances for migration to Azure.
-5. **Assess your team's skills:** Focus on like-for-like capability mapping. Identify the skills your team already uses in AWS and align them with the equivalent Azure services and tools. Include Azure training in your project timeline to ensure that the workload and operations teams are prepared. This approach reduces friction and accelerates adoption. It builds confidence with Azure as existing experience in AWS translates directly to the new environment.
+4. **Create a detailed inventory**: Make a list of your current AWS environment that's required for running the workload (all servers, storage, database, and services), along with usage patterns, performance metrics, and licensing requirements. Use [Azure Migrate](/azure/migrate/tutorial-assess-aws) to assess AWS instances for migration to Azure.
+5. **Assess your team's skills:** Focus on like-for-like capability mapping. Identify the skills your team already uses in AWS and align them with the equivalent Azure services and tools. Include Azure training in your project timeline to prepare your workload and operations teams. This approach reduces friction and accelerates adoption. It also builds confidence with Azure as existing experience in AWS translates directly to the new environment.
 6. **Document existing KPIs:** Document the defined performance baseline of your workload, such as throughput, latency, error rates, and resource utilization. If these KPIs aren't available, collect these metrics from your AWS environment to establish this baseline. Use these KPIs in the evaluation phase after migration to validate that the workload in Azure performs as it did in AWS. This strategy supports the like-for-like migration strategy and reduces risks.
 
 ## Design a like-for-like architecture in Azure
 
 1. **Start with networking:** Discuss your workload's networking requirements with the platform team. Your request should include not only the target architecture, but also the migration connectivity. AWS uses the concept of a Transit Gateway as the network hub with Amazon VPCs as the spoke networks. In the Azure application landing zone design, the platform team provisions spoke virtual networks to workload teams. These spoke networks communicate to other internal and external networks through the hub or Azure Virtual WAN network. Learn more about how to [migrate networking from AWS](/azure/migration/migrate-networking-from-aws).   
-2. To **identify Azure services** that you can use to build your workload in Azure, refer to the [AWS to Azure resource comparison guides](/azure/architecture/aws-professional).
+2. **Identify Azure services:** Use the [AWS to Azure resource comparison guide](/azure/architecture/aws-professional) to help you build your workload in Azure.
 3. **Document your migration decisions:** Document the resources that you don't migrate and any architecture decisions you make. 
 4. **Reduce risks:** Identify any high-risk components or flows and build out proof of concepts (POCs) as needed to test and mitigate those risks. Consider performing a [failure mode analysis](/azure/well-architected/reliability/failure-mode-analysis) to proactively uncover potential points of failure and assess their impact on the reliability of your workload. 
 5. **Check availability:** Check Azure service availability and capacity in your preferred region, specifically if you plan to use specialized resource types.
 6. **Validate requirements:** If you decide to use Azure Migrate, review the [Azure Migrate support matrix](/azure/migrate/migrate-support-matrix-physical) to ensure your AWS instances meet OS and configuration requirements.
-7. Ensure **compliance and security** requirements are addressed. Learn more about [migrating security from AWS](/azure/migration/migrate-security-from-aws).
+7. **Compliance and security** Ensure you meet your security requirements. Learn more about [migrating security from AWS](/azure/migration/migrate-security-from-aws).
 
 ## Develop and document a migration plan and create a runbook
 
@@ -61,11 +60,21 @@ There's a cost trade-off to this approach. You incur costs for both cloud provid
 
 Your choice depends on the amount of data, type of data storage, and usage requirements. Decide between offline migration (backup-and-restore) and live replication.
 
-**Define your RPO (recovery point objective) :** If you choose an active-active design, define an acceptable RPO for data loss and document it. You refer to this RPO in the [decommission phase](/azure/migration/migrate-workload-from-aws-decommission) and your database migration strategy depends on it as well. RPO is the maximum window of data you're willing to lose in case something goes wrong. The lower the RPO is, the more you have to consider continuous replication or very recent backups as well as maintenance windows. It also increases cost and effort to migrate your data.
+**Define your RPO (recovery point objective) :** If you choose an active-active design, define an acceptable RPO for data loss and document it. You refer to this RPO in the [decommission phase](/azure/migration/migrate-workload-from-aws-decommission) and your database migration strategy depends on it as well. RPO is the maximum window of data you're willing to lose in case something goes wrong. For example, a RPO could be "no more than 5 minutes of data loss". This would mean only up to 5 minutes of data could be lost during the cutover. The lower the RPO is, the more you have to consider continuous replication or very recent backups as well as maintenance windows. Lower RPOs can also increase cost and effort to migrate your data.
 
 **Database migration:** For your [database migration](/azure/migration/migrate-databases-from-aws) you can use AWS as well as Azure tooling. For example, Azure Data Studio allows you to [replicate Amazon RDS for SQL Server to Azure SQL Database and cut over with minimal downtime](/azure/data-factory/connector-amazon-rds-for-sql-server?tabs=data-factory). This feature enables continuous replication from Amazon RDS to Azure SQL Database. Alternatively, you can use [AWS DMS](https://docs.aws.amazon.com/dms/latest/userguide/Welcome.html) which offers continuous replication and change data capture until you cutover. 
 
-**Storage:** To transfer storage data from [Amazon S3 to Azure](/azure/migration/migrate-storage-from-aws) you have multiple options. For fast bulk-transfer using the CLI, you can use [AzCopy](/azure/storage/common/storage-use-azcopy-s3). For enterprise-grade orchestration and transform-heavy data transfer, use [Azure Data Factory](/azure/data-factory/data-migration-guidance-s3-azure-storage). You can also use [AWS DataSync](https://aws.amazon.com/datasync/features/) to automate the transfer. If you choose AWS DataSync, the DataSync agent needs to be deployed in Azure during the [prepare phase](./migrate-workload-from-aws-prepare.md).
+**Storage:** To transfer storage data from [Amazon S3 to Azure](/azure/migration/migrate-storage-from-aws) you have multiple options. 
+
+| Tool                                                                               | Purpose                                                          |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| [AzCopy](/azure/storage/common/storage-use-azcopy-s3)                              | fast bulk-transfer using the CLI                                 |
+| [Azure Data Factory](/azure/data-factory/data-migration-guidance-s3-azure-storage) | enterprise-grade orchestration and transform-heavy data transfer |
+| [AWS DataSync](https://aws.amazon.com/datasync/)                                   | automates the transfer                                           |
+
+> [!TIP]
+> If you choose AWS DataSync, the DataSync agent needs to be deployed in Azure during the [prepare phase](./migrate-workload-from-aws-prepare.md).
+
 
 **Plan a maintenance window:** Schedule a dedicated window for your final cutover and decommissioning steps, document and communicate it with your stakeholders before you start migration.
 ### Document in a runbook
@@ -101,7 +110,7 @@ Once the plan and runbook are reviewed and agreed upon by stakeholders and decis
 | &#9744; | Reduce risks                                 |
 | &#9744; | Check resource availability                  |
 | &#9744; | Validate requirements if using Azure Migrate |
-| &#9744; | Address compliance and security requirements   |
+| &#9744; | Address compliance and security requirements |
 | &#9744; | Choose cutover strategy                      |
 | &#9744; | Choose database migration strategy           |
 | &#9744; | Choose storage migration strategy            |

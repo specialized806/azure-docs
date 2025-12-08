@@ -22,7 +22,7 @@ The goal of this phase is to safely retire AWS dependencies, remove redundant re
 > If you prematurely delete AWS resources, overlook hidden dependencies, or skip final data and access checks, you risk data loss, unexpected downtime, compliance violations, or lingering cost from orphaned assets.
 
 - **Finalize your data cutover:** If you took an active-active approach with AWS and Azure running in parallel, and especially if you kept your primary database instance in AWS, decide when to fully remove the AWS instance from the workflow and switch your apps to only use the Azure database. Take into consideration the RPO you documented in the planning phase. Decommission any data synchronization or replication processes.
-- **Take any final backups and snapshots** for archival purposes or just in case.
+- **Take any final backups and snapshots** for archival purposes.
 - **Retire AWS workload resources:**  Plan the sunset date. Stop and delete any AWS EC2 instances, databases, and services that you no longer need. Ensure that nothing critical is still running in AWS before deleting.
 - **Check everything is deleted:** [AWS Config](https://docs.aws.amazon.com/config/latest/developerguide/WhatIsConfig.html) maintains an inventory of all your AWS resources and you can use it during the decommission phase to ensure no resources related to your workload are left active.
 - **Clean up artifacts:** Update your configuration management database (CMDB), billing, and documentation.
