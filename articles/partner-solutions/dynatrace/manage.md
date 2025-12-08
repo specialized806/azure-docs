@@ -92,6 +92,17 @@ To monitor resources for Azure Arc Machines, select **Dynatrace environment conf
 
 ## Monitor multiple subscriptions
 
+When you add or remove subscriptions for Dynatrace monitoring, the system updates the Monitoring Reader role assignment on the system-managed identity that's linked to the resource. 
+
+**Prerequisites**
+
+- To perform these actions, you must have both of the following Azure permissions:
+
+   - `Microsoft.Authorization/roleAssignments/write`
+   - `Microsoft.Authorization/roleAssignments/delete`
+
+- The resource provider for Dynatrace (Dynatrace.Observability) must be registered in the target subscription.
+
 To monitor multiple subscriptions: 
 
 1. In the left pane, select **Dynatrace environment config** > **Monitored Subscriptions**. 
