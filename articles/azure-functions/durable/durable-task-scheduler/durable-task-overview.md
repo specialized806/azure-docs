@@ -10,7 +10,7 @@ ms.service: azure-functions
 ms.subservice: durable-task-scheduler
 ---
 
-# SDK overview
+# Durable Task SDK overview
 
 Understanding the different Durable Task SDK flavors and when to use each.
 

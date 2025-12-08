@@ -91,7 +91,7 @@ A fully managed Azure service that serves as the orchestration engine and state 
 
 Portable client libraries (.NET, Python, Java) for building durable orchestrations that can run on any compute platform, not just Azure Functions.
 
-**See also**: [SDKs overview](./durable-sdks-overview.md)
+**See also**: [SDKs overview](./durable-task-scheduler/durable-task-overview.md)
 
 ### Durable Timer
 

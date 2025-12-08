@@ -190,7 +190,9 @@
         - name: Durable Functions Troubleshooting Guide
           href: durable-functions-troubleshooting-guide.md
   - name: SDKs
-    items: 
+    items:
+    - name: Overview
+      href: ./durable-task-overview.md 
     - name: .NET API
       items:
       - name: WebJobs.Extensions.DurableTask 
