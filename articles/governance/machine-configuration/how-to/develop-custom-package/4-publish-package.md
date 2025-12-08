@@ -3,7 +3,9 @@ title: How to publish custom machine configuration package artifacts
 description: Learn how to publish a machine configuration package file to Azure blob storage and get a SAS token for secure access.
 ms.date: 02/01/2024
 ms.topic: how-to
-ms.custom: devx-track-azurepowershell
+ms.custom:
+  - devx-track-azurepowershell
+  - sfi-ropc-nochange
 ---
 # How to publish custom machine configuration package artifacts
 
@@ -110,7 +112,8 @@ $contentUri = New-AzStorageBlobSASToken @tokenParams
 ## Next step
 
 > [!div class="nextstepaction"]
-> [Sign a custom machine configuration package](./5-sign-package.md)
+> [Provide secure access to a custom machine configuration package](./5-access-package.md)
+
 
 <!-- Reference link definitions -->
 [01]: ../../overview.md

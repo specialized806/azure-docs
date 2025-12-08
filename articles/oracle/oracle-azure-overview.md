@@ -4,9 +4,10 @@ description: Oracle on Azure offerings
 author: jjaygbay1
 ms.author: jacobjaygbay
 ms.service: oracle-on-azure
-ms.topic: article
+ms.topic: overview
 ms.custom: engagement-fy23
 ms.date: 12/12/2023
+# Customer intent: "As an IT manager overseeing Oracle workloads, I want to migrate our on-premises Oracle databases to a cloud platform, so that I can leverage scalability and managed services while ensuring secure and high-performance operations."
 ---
 
 # Oracle on Azure

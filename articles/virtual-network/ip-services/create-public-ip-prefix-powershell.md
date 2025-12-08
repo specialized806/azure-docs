@@ -8,8 +8,9 @@ ms.author: mbender
 ms.service: azure-virtual-network
 ms.subservice: ip-services
 ms.topic: quickstart
-ms.date: 08/24/2023
+ms.date: 01/09/2025
 ms.custom: mode-api, devx-track-azurepowershell
+# Customer intent: "As a cloud administrator, I want to create and manage public IP address prefixes using PowerShell, so that I can efficiently allocate static IP addresses for my Azure resources."
 ---
 
 # Quickstart: Create a public IP address prefix using PowerShell
@@ -20,7 +21,7 @@ When you create a public IP address resource, you can assign a static public IP 
 
 ## Prerequisites
 
-- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - Azure PowerShell installed locally or Azure Cloud Shell
 
 If you choose to install and use PowerShell locally, this article requires the Azure PowerShell module version 5.4.1 or later. Run `Get-Module -ListAvailable Az` to find the installed version. If you need to upgrade, see [Install Azure PowerShell module](/powershell/azure/install-azure-powershell). If you're running PowerShell locally, you also need to run `Connect-AzAccount` to create a connection with Azure.
@@ -29,19 +30,19 @@ If you choose to install and use PowerShell locally, this article requires the A
 
 An Azure resource group is a logical container into which Azure resources are deployed and managed.
 
-Create a resource group with [New-AzResourceGroup](/powershell/module/az.resources/new-azresourcegroup) named **QuickStartCreateIPPrefix-rg** in the **eastus2** location.
+Create a resource group with [New-AzResourceGroup](/powershell/module/az.resources/new-azresourcegroup) named **QuickStartCreateIPPrefix-rg** in the **westus2** location.
 
 ```azurepowershell-interactive
 $rg =@{
     Name = 'QuickStartCreateIPPrefix-rg'
-    Location = 'eastus2'
+    Location = 'westus2'
 }
 New-AzResourceGroup @rg
 ```
 
 ## Create a public IP address prefix
 
-In this section, you create a zone redundant, zonal, and non-zonal public IP prefix using Azure PowerShell. 
+In this section, you create a zone redundant and zonal public IP prefix using Azure PowerShell. 
 
 The prefixes in the examples are:
 
@@ -51,19 +52,19 @@ The prefixes in the examples are:
 
 For more information on available prefix sizes, see [Prefix sizes](public-ip-address-prefix.md#prefix-sizes).
 
-Create a public IP prefix with [New-AzPublicIpPrefix](/powershell/module/az.network/new-azpublicipprefix) named **myPublicIpPrefix** in the **eastus2** location.
+Create a public IP prefix with [New-AzPublicIpPrefix](/powershell/module/az.network/new-azpublicipprefix) named **myPublicIpPrefix** in the **westus2** location.
 
 ## IPv4
 
 # [**Zone redundant IPv4 prefix**](#tab/ipv4-zone-redundant)
 
-To create a IPv4 public IP prefix, enter **IPv4** in the **`-IpAddressVersion`** parameter. To create a zone redundant IPv4 prefix, enter **1,2,3** in the **`-Zone`** parameter.
+To create a IPv4 public IP prefix, enter **IPv4** in the `-IpAddressVersion` parameter. To create a zone redundant IPv4 prefix, enter **1,2,3** in the `-Zone` parameter.
 
 ```azurepowershell-interactive
 $ipv4 =@{
     Name = 'myPublicIpPrefix'
     ResourceGroupName = 'QuickStartCreateIPPrefix-rg'
-    Location = 'eastus2'
+    Location = 'westus2'
     PrefixLength = '28'
     IpAddressVersion = 'IPv4'
     Zone = 1,2,3
@@ -73,14 +74,14 @@ New-AzPublicIpPrefix @ipv4
 
 # [**Zonal IPv4 prefix**](#tab/ipv4-zonal)
 
-To create a IPv4 public IP prefix, enter **IPv4** in the **`-IpAddressVersion`** parameter. Enter **2** in the **`-Zone`** parameter to create a zonal IP prefix in zone 2.
+To create a IPv4 public IP prefix, enter **IPv4** in the `-IpAddressVersion` parameter. Enter **2** in the `-Zone` parameter to create a zonal IP prefix in zone 2.
 
 ```azurepowershell-interactive
 $ipv4 =@{
     Name = 'myPublicIpPrefix-zonal'
     ResourceGroupName = 'QuickStartCreateIPPrefix-rg'
-    Location = 'eastus2'
-    PrefixLength = '28'
+    Location = 'westus2'
+    PrefixLength '28'
     IpAddressVersion = 'IPv4'
     Zone = 2
 }
@@ -88,26 +89,9 @@ New-AzPublicIpPrefix @ipv4
 ```
 
 >[!NOTE]
->The above options for zones are only valid selections in regions with [Availability Zones](../../availability-zones/az-overview.md?toc=%2fazure%2fvirtual-network%2ftoc.json#availability-zones).
+>The above options for zones are only valid selections in regions with [Availability Zones](../../reliability/availability-zones-overview.md?toc=%2fazure%2fvirtual-network%2ftoc.json).
 
-# [**Non-zonal IPv4 prefix**](#tab/ipv4-non-zonal)
-
-To create a IPv4 public IP prefix, enter **IPv4** in the **`-IpAddressVersion`** parameter. Remove the **`-Zone`** parameter to create a non-zonal IP prefix.
-
-```azurepowershell-interactive
-$ipv4 =@{
-    Name = 'myPublicIpPrefix-nozone'
-    ResourceGroupName = 'QuickStartCreateIPPrefix-rg'
-    Location = 'eastus2'
-    PrefixLength = '28'
-    IpAddressVersion = 'IPv4'
-}
-New-AzPublicIpPrefix @ipv4
-```
-
-The removal of the **`-Zone`** parameter in the command is valid in all regions.  
-
-The removal of the **`-Zone`** parameter is the default selection for standard public IP addresses in regions without [Availability Zones](../../availability-zones/az-overview.md?toc=%2fazure%2fvirtual-network%2ftoc.json#availability-zones).
+The removal of the `-Zone` parameter is the default selection for standard public IP addresses in regions without [Availability Zones](../../reliability/availability-zones-overview.md?toc=%2fazure%2fvirtual-network%2ftoc.json).
 
 # [**Routing Preference Internet IPv4 prefix**](#tab/ipv4-routing-pref)
 
@@ -122,8 +106,8 @@ $routingprefinternettag = New-Object -TypeName Microsoft.Azure.Commands.Network.
 $ipv4 =@{
     Name = 'myPublicIpPrefix-routingprefinternet'
     ResourceGroupName = 'QuickStartCreateIPPrefix-rg'
-    Location = 'eastus2'
-    PrefixLength = '28'
+    Location = 'westus2'
+    PrefixLength '28'
     IpAddressVersion = 'IPv4'
     IpTag = $routingprefinternettag
 }
@@ -135,13 +119,13 @@ New-AzPublicIpPrefix @ipv4
 
 # [**Zone redundant IPv6 prefix**](#tab/ipv6-zone-redundant)
 
-To create a IPv4 public IP prefix, enter **IPv6** in the **`-IpAddressVersion`** parameter. To create a zone redundant IPv6 prefix, enter **1,2,3** in the **`-Zone`** parameter.
+To create a IPv4 public IP prefix, enter **IPv6** in the `-IpAddressVersion` parameter. To create a zone redundant IPv6 prefix, enter **1,2,3** in the `-Zone` parameter.
 
 ```azurepowershell-interactive
 $ipv6 =@{
     Name = 'myPublicIpPrefix'
     ResourceGroupName = 'QuickStartCreateIPPrefix-rg'
-    Location = 'eastus2'
+    Location = 'westus2'
     PrefixLength = '124'
     IpAddressVersion = 'IPv6'
     Zone = 1,2,3
@@ -151,13 +135,13 @@ New-AzPublicIpPrefix @ipv6
 
 # [**Zonal IPv6 prefix**](#tab/ipv6-zonal)
 
-To create a IPv6 public IP prefix, enter **IPv6** in the **`-IpAddressVersion`** parameter. Enter **2** in the **`-Zone`** parameter to create a zonal IP prefix in zone 2.
+To create a IPv6 public IP prefix, enter **IPv6** in the `-IpAddressVersion` parameter. Enter **2** in the `-Zone` parameter to create a zonal IP prefix in zone 2.
 
 ```azurepowershell-interactive
 $ipv6 =@{
     Name = 'myPublicIpPrefix-zonal'
     ResourceGroupName = 'QuickStartCreateIPPrefix-rg'
-    Location = 'eastus2'
+    Location = 'westus2'
     PrefixLength = '124'
     IpAddressVersion = 'IPv6'
     Zone = 2
@@ -166,26 +150,9 @@ New-AzPublicIpPrefix @ipv6
 ```
 
 >[!NOTE]
->The above options for zones are only valid selections in regions with [Availability Zones](../../availability-zones/az-overview.md?toc=%2fazure%2fvirtual-network%2ftoc.json#availability-zones).
+>The above options for zones are only valid selections in regions with [Availability Zones](../../reliability/availability-zones-overview.md?toc=%2fazure%2fvirtual-network%2ftoc.json).
 
-# [**Non-zonal IPv6 prefix**](#tab/ipv6-non-zonal)
-
-To create a IPv6 public IP prefix, enter **IPv6** in the **`-IpAddressVersion`** parameter. Remove the **`-Zone`** parameter to create a non-zonal IP prefix.
-
-```azurepowershell-interactive
-$ipv6 =@{
-    Name = 'myPublicIpPrefix-nozone'
-    ResourceGroupName = 'QuickStartCreateIPPrefix-rg'
-    Location = 'eastus2'
-    PrefixLength = '124'
-    IpAddressVersion = 'IPv6'
-}
-New-AzPublicIpPrefix @ipv6
-```
-
-The removal of the **`-Zone`** parameter in the command is valid in all regions.  
-
-The removal of the **`-Zone`** parameter is the default selection for standard public IP addresses in regions without [Availability Zones](../../availability-zones/az-overview.md?toc=%2fazure%2fvirtual-network%2ftoc.json#availability-zones).
+The removal of the `-Zone` parameter is the default selection for standard public IP addresses in regions without [Availability Zones](../../reliability/availability-zones-overview.md?toc=%2fazure%2fvirtual-network%2ftoc.json).
 
 ---
 
@@ -197,7 +164,7 @@ Create a public IP address with [New-AzPublicIpAddress](/powershell/module/az.ne
 
 # [**IPv4 address**](#tab/ipv4-address)
 
-To create a IPv4 public IP address, enter **IPv4** in the **`-IpAddressVersion`** parameter.
+To create a IPv4 public IP address, enter **IPv4** in the `-IpAddressVersion` parameter.
 
 ```azurepowershell-interactive
 $pf =@{
@@ -209,7 +176,7 @@ $prefix = Get-AzPublicIpPrefix @pf
 $ipv4 =@{
     Name = 'myPublicIpAddress'
     ResourceGroupName = 'QuickStartCreateIPPrefix-rg'
-    Location = 'eastus2'
+    Location = 'westus2'
     Sku = 'Standard'
     Tier = 'Regional'
     AllocationMethod = 'Static'
@@ -221,7 +188,7 @@ New-AzPublicIpAddress @ipv4
 
 # [**IPv6 address**](#tab/ipv6-address)
 
-To create a IPv6 public IP address, enter **IPv6** in the **`-IpAddressVersion`** parameter.
+To create a IPv6 public IP address, enter **IPv6** in the `-IpAddressVersion` parameter.
 ```azurepowershell-interactive
 $pf =@{
     Name = 'myPublicIpPrefix'
@@ -232,7 +199,7 @@ $prefix = Get-AzPublicIpPrefix @pf
 $ipv6 =@{
     Name = 'myPublicIpAddress'
     ResourceGroupName = 'QuickStartCreateIPPrefix-rg'
-    Location = 'eastus2'
+    Location = 'westus2'
     Sku = 'Standard'
     Tier = 'Regional'
     AllocationMethod = 'Static'

@@ -2,12 +2,12 @@
 title: Azure built-in roles for Mixed reality - Azure RBAC
 description: This article lists the Azure built-in roles for Azure role-based access control (Azure RBAC) in the Mixed reality category. It lists Actions, NotActions, DataActions, and NotDataActions.
 ms.service: role-based-access-control
-ms.topic: reference
+ms.topic: generated-reference
 ms.workload: identity
 author: rolyon
-manager: amycolannino
+manager: pmwongera
 ms.author: rolyon
-ms.date: 09/20/2024
+ms.date: 05/25/2025
 ms.custom: generated
 ---
 
@@ -19,8 +19,6 @@ This article lists the Azure built-in roles in the Mixed reality category.
 ## Remote Rendering Administrator
 
 Provides user with conversion, manage session, rendering and diagnostics capabilities for Azure Remote Rendering
-
-[Learn more](/azure/remote-rendering/how-tos/authentication)
 
 > [!div class="mx-tableFixed"]
 > | Actions | Description |
@@ -75,8 +73,6 @@ Provides user with conversion, manage session, rendering and diagnostics capabil
 
 Provides user with manage session, rendering and diagnostics capabilities for Azure Remote Rendering.
 
-[Learn more](/azure/remote-rendering/how-tos/authentication)
-
 > [!div class="mx-tableFixed"]
 > | Actions | Description |
 > | --- | --- |
@@ -115,157 +111,6 @@ Provides user with manage session, rendering and diagnostics capabilities for Az
     }
   ],
   "roleName": "Remote Rendering Client",
-  "roleType": "BuiltInRole",
-  "type": "Microsoft.Authorization/roleDefinitions"
-}
-```
-
-## Spatial Anchors Account Contributor
-
-Lets you manage spatial anchors in your account, but not delete them
-
-[Learn more](/azure/spatial-anchors/concepts/authentication)
-
-> [!div class="mx-tableFixed"]
-> | Actions | Description |
-> | --- | --- |
-> | *none* |  |
-> | **NotActions** |  |
-> | *none* |  |
-> | **DataActions** |  |
-> | [Microsoft.MixedReality](../permissions/mixed-reality.md#microsoftmixedreality)/SpatialAnchorsAccounts/create/action | Create spatial anchors |
-> | [Microsoft.MixedReality](../permissions/mixed-reality.md#microsoftmixedreality)/SpatialAnchorsAccounts/discovery/read | Discover nearby spatial anchors |
-> | [Microsoft.MixedReality](../permissions/mixed-reality.md#microsoftmixedreality)/SpatialAnchorsAccounts/properties/read | Get properties of spatial anchors |
-> | [Microsoft.MixedReality](../permissions/mixed-reality.md#microsoftmixedreality)/SpatialAnchorsAccounts/query/read | Locate spatial anchors |
-> | [Microsoft.MixedReality](../permissions/mixed-reality.md#microsoftmixedreality)/SpatialAnchorsAccounts/submitdiag/read | Submit diagnostics data to help improve the quality of the Azure Spatial Anchors service |
-> | [Microsoft.MixedReality](../permissions/mixed-reality.md#microsoftmixedreality)/SpatialAnchorsAccounts/write | Update spatial anchors properties |
-> | **NotDataActions** |  |
-> | *none* |  |
-
-```json
-{
-  "assignableScopes": [
-    "/"
-  ],
-  "description": "Lets you manage spatial anchors in your account, but not delete them",
-  "id": "/providers/Microsoft.Authorization/roleDefinitions/8bbe83f1-e2a6-4df7-8cb4-4e04d4e5c827",
-  "name": "8bbe83f1-e2a6-4df7-8cb4-4e04d4e5c827",
-  "permissions": [
-    {
-      "actions": [],
-      "notActions": [],
-      "dataActions": [
-        "Microsoft.MixedReality/SpatialAnchorsAccounts/create/action",
-        "Microsoft.MixedReality/SpatialAnchorsAccounts/discovery/read",
-        "Microsoft.MixedReality/SpatialAnchorsAccounts/properties/read",
-        "Microsoft.MixedReality/SpatialAnchorsAccounts/query/read",
-        "Microsoft.MixedReality/SpatialAnchorsAccounts/submitdiag/read",
-        "Microsoft.MixedReality/SpatialAnchorsAccounts/write"
-      ],
-      "notDataActions": []
-    }
-  ],
-  "roleName": "Spatial Anchors Account Contributor",
-  "roleType": "BuiltInRole",
-  "type": "Microsoft.Authorization/roleDefinitions"
-}
-```
-
-## Spatial Anchors Account Owner
-
-Lets you manage spatial anchors in your account, including deleting them
-
-[Learn more](/azure/spatial-anchors/concepts/authentication)
-
-> [!div class="mx-tableFixed"]
-> | Actions | Description |
-> | --- | --- |
-> | *none* |  |
-> | **NotActions** |  |
-> | *none* |  |
-> | **DataActions** |  |
-> | [Microsoft.MixedReality](../permissions/mixed-reality.md#microsoftmixedreality)/SpatialAnchorsAccounts/create/action | Create spatial anchors |
-> | [Microsoft.MixedReality](../permissions/mixed-reality.md#microsoftmixedreality)/SpatialAnchorsAccounts/delete | Delete spatial anchors |
-> | [Microsoft.MixedReality](../permissions/mixed-reality.md#microsoftmixedreality)/SpatialAnchorsAccounts/discovery/read | Discover nearby spatial anchors |
-> | [Microsoft.MixedReality](../permissions/mixed-reality.md#microsoftmixedreality)/SpatialAnchorsAccounts/properties/read | Get properties of spatial anchors |
-> | [Microsoft.MixedReality](../permissions/mixed-reality.md#microsoftmixedreality)/SpatialAnchorsAccounts/query/read | Locate spatial anchors |
-> | [Microsoft.MixedReality](../permissions/mixed-reality.md#microsoftmixedreality)/SpatialAnchorsAccounts/submitdiag/read | Submit diagnostics data to help improve the quality of the Azure Spatial Anchors service |
-> | [Microsoft.MixedReality](../permissions/mixed-reality.md#microsoftmixedreality)/SpatialAnchorsAccounts/write | Update spatial anchors properties |
-> | **NotDataActions** |  |
-> | *none* |  |
-
-```json
-{
-  "assignableScopes": [
-    "/"
-  ],
-  "description": "Lets you manage spatial anchors in your account, including deleting them",
-  "id": "/providers/Microsoft.Authorization/roleDefinitions/70bbe301-9835-447d-afdd-19eb3167307c",
-  "name": "70bbe301-9835-447d-afdd-19eb3167307c",
-  "permissions": [
-    {
-      "actions": [],
-      "notActions": [],
-      "dataActions": [
-        "Microsoft.MixedReality/SpatialAnchorsAccounts/create/action",
-        "Microsoft.MixedReality/SpatialAnchorsAccounts/delete",
-        "Microsoft.MixedReality/SpatialAnchorsAccounts/discovery/read",
-        "Microsoft.MixedReality/SpatialAnchorsAccounts/properties/read",
-        "Microsoft.MixedReality/SpatialAnchorsAccounts/query/read",
-        "Microsoft.MixedReality/SpatialAnchorsAccounts/submitdiag/read",
-        "Microsoft.MixedReality/SpatialAnchorsAccounts/write"
-      ],
-      "notDataActions": []
-    }
-  ],
-  "roleName": "Spatial Anchors Account Owner",
-  "roleType": "BuiltInRole",
-  "type": "Microsoft.Authorization/roleDefinitions"
-}
-```
-
-## Spatial Anchors Account Reader
-
-Lets you locate and read properties of spatial anchors in your account
-
-[Learn more](/azure/spatial-anchors/concepts/authentication)
-
-> [!div class="mx-tableFixed"]
-> | Actions | Description |
-> | --- | --- |
-> | *none* |  |
-> | **NotActions** |  |
-> | *none* |  |
-> | **DataActions** |  |
-> | [Microsoft.MixedReality](../permissions/mixed-reality.md#microsoftmixedreality)/SpatialAnchorsAccounts/discovery/read | Discover nearby spatial anchors |
-> | [Microsoft.MixedReality](../permissions/mixed-reality.md#microsoftmixedreality)/SpatialAnchorsAccounts/properties/read | Get properties of spatial anchors |
-> | [Microsoft.MixedReality](../permissions/mixed-reality.md#microsoftmixedreality)/SpatialAnchorsAccounts/query/read | Locate spatial anchors |
-> | [Microsoft.MixedReality](../permissions/mixed-reality.md#microsoftmixedreality)/SpatialAnchorsAccounts/submitdiag/read | Submit diagnostics data to help improve the quality of the Azure Spatial Anchors service |
-> | **NotDataActions** |  |
-> | *none* |  |
-
-```json
-{
-  "assignableScopes": [
-    "/"
-  ],
-  "description": "Lets you locate and read properties of spatial anchors in your account",
-  "id": "/providers/Microsoft.Authorization/roleDefinitions/5d51204f-eb77-4b1c-b86a-2ec626c49413",
-  "name": "5d51204f-eb77-4b1c-b86a-2ec626c49413",
-  "permissions": [
-    {
-      "actions": [],
-      "notActions": [],
-      "dataActions": [
-        "Microsoft.MixedReality/SpatialAnchorsAccounts/discovery/read",
-        "Microsoft.MixedReality/SpatialAnchorsAccounts/properties/read",
-        "Microsoft.MixedReality/SpatialAnchorsAccounts/query/read",
-        "Microsoft.MixedReality/SpatialAnchorsAccounts/submitdiag/read"
-      ],
-      "notDataActions": []
-    }
-  ],
-  "roleName": "Spatial Anchors Account Reader",
   "roleType": "BuiltInRole",
   "type": "Microsoft.Authorization/roleDefinitions"
 }

@@ -4,9 +4,10 @@ description: Learn the best security practices using Azure DDoS Protection.
 services: ddos-protection
 author: AbdullahBell
 ms.service: azure-ddos-protection
-ms.topic: conceptual
-ms.date: 07/17/2024
+ms.topic: concept-article
+ms.date: 10/13/2025
 ms.author: abell
+# Customer intent: As a security architect, I want to implement best practices for Azure DDoS Protection, so that I can ensure my applications are resilient and secure against denial-of-service attacks while optimizing scalability and minimizing risk.
 ---
 # Azure DDoS Protection fundamental best practices
 
@@ -41,8 +42,3 @@ You should deploy Azure services in a [virtual network](../virtual-network/virtu
 
 We often see customers' on-premises resources getting attacked along with their resources in Azure. If you're connecting an on-premises environment to Azure, we recommend that you minimize exposure of on-premises resources to the public internet. You can use the scale and advanced DDoS protection capabilities of Azure by deploying your well-known public entities in Azure. Because these publicly accessible entities are often a target for DDoS attacks, putting them in Azure reduces the impact on your on-premises resources.
 
-
-
-## Next steps
-
-* Learn more about [business continuity](ddos-disaster-recovery-guidance.md).

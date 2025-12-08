@@ -4,11 +4,11 @@ description: Describes critical open issues and resolutions for the Azure Data B
 services: databox
 author: stevenmatthew
  
-ms.service: databox
-ms.subservice: gateway
+ms.service: azure-data-box-gateway
 ms.topic: article
 ms.date: 09/26/2024
 ms.author: shaas
+# Customer intent: "As a system administrator, I want to review the release notes for Azure Data Box Gateway 2409, so that I can understand critical issues and enhancements to ensure a successful deployment and minimize potential downtime during the upgrade process."
 ---
 
 # Azure Data Box Gateway 2409 release notes

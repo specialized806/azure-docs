@@ -8,9 +8,10 @@ ms.date: 06/24/2024
 ms.service: azure-synapse-analytics
 ms.subservice: spark
 ms.topic: overview
+zone_pivot_groups: programming-languages-spark-all-minus-sql-r
 ms.custom:
   - devx-track-python
-zone_pivot_groups: programming-languages-spark-all-minus-sql-r
+  - sfi-ropc-nochange
 ---
 
 # Secure credentials with linked services using the mssparkutils
@@ -286,7 +287,7 @@ display(df.limit(10))
 
 #### Use MSAL to acquire tokens (using custom app credentials)
 
-When the ABFS storage driver is [configured](https://hadoop.apache.org/docs/current/hadoop-azure/abfs.html) to use MSAL directly for authentications, the provider doesn't cache tokens. This can result in reliability issues. We recommend using the `ClientCredsTokenProvider` is part of the Synapse Spark.
+When the ABFS storage driver is [configured](https://hadoop.apache.org/docs/current/hadoop-azure/index.html#Configuring_ABFS) to use MSAL directly for authentications, the provider doesn't cache tokens. This can result in reliability issues. We recommend using the `ClientCredsTokenProvider` is part of the Synapse Spark.
 
 ::: zone pivot = "programming-language-scala"
 
@@ -494,9 +495,6 @@ While Azure Synapse Analytics supports various linked service connections (from 
 | `Azure Data Lake Store` | `DataLakeStore`                       |
 | `Azure Data Factory` | `ADF`        |
 | `Azure Data Explorer` | `AzureDataExplorer`                   |
-| `Azure Database for MySQL` | `AzureOSSDB` |
-| `Azure Database for MariaDB` | `AzureOSSDB` |
-| `Azure Database for PostgreSQL` | `AzureOSSDB` |
 
 #### Unsupported linked service access from the Spark runtime
 

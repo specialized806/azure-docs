@@ -5,7 +5,8 @@ description: This article explains how to create a Workflow Orchestration Manage
 ms.topic: conceptual
 author: nabhishek
 ms.author: abnarain
-ms.date: 10/20/2023
+ms.date: 10/03/2024
+ms.subservice: orchestration
 ---
 
 # How does Azure Data Factory Workflow Orchestration Manager work?
@@ -25,7 +26,7 @@ To use this feature, you need to provide your DAGs and plugins in Azure Blob Sto
 The following steps set up and configure your Workflow Orchestration Manager environment.
 
 ### Prerequisites
-**Azure subscription**: If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/) before you begin.
+**Azure subscription**: If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
     Create or select an existing Data Factory in the region where the Workflow Orchestration Manager preview is supported.
 
 ### Steps to create the environment

@@ -4,7 +4,7 @@ titleSuffix: Azure NAT gateway
 description: Get started learning how to deploy and configure a new Azure NAT Gateway for resources moved to another region.
 author: asudbring
 ms.author: allensu
-ms.service: nat-gateway
+ms.service: azure-nat-gateway
 ms.topic: how-to
 ms.date: 08/12/2024
 ms.custom: template-how-to
@@ -20,7 +20,7 @@ In this article, you'll learn how to set up a NAT gateway after moving resources
 
 ## Prerequisites
 
-- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 - **Owner** access in the subscription in which resources you want to move are located. 
 

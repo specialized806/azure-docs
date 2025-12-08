@@ -6,7 +6,7 @@ author: msmbaldwin
 ms.service: security
 ms.subservice: security-fundamentals
 ms.topic: article
-ms.date: 04/26/2024
+ms.date: 09/23/2025
 ms.author: mbaldwin
 ---
 # Azure encryption overview
@@ -45,6 +45,8 @@ The three server-side encryption models offer different key management character
 - **Service-managed keys in customer-controlled hardware**: Enables you to manage keys in your proprietary repository, outside of Microsoft control. This characteristic is called Host Your Own Key (HYOK). However, configuration is complex, and most Azure services don’t support this model.
 
 ### Azure disk encryption
+
+[!INCLUDE [Azure Disk Encryption retirement notice](~/reusable-content/ce-skilling/azure/includes/security/azure-disk-encryption-retirement.md)]
 
 All Managed Disks, Snapshots, and Images are encrypted using Storage Service Encryption using a service-managed key. Azure also offers options to protect temp disks, caches, and manage keys in Azure Key Vault. For more information, see [Overview of managed disk encryption options](/azure/virtual-machines/disk-encryption-overview).
 
@@ -160,7 +162,7 @@ You can configure a point-to-site VPN connection to a virtual network by using t
 
 To learn more about point-to-site VPN connections to Azure virtual networks, see:
 
-[Configure a point-to-site connection to a virtual network by using certification authentication: Azure portal](../../vpn-gateway/vpn-gateway-howto-point-to-site-resource-manager-portal.md) 
+[Configure a point-to-site connection to a virtual network by using certification authentication: Azure portal](../../vpn-gateway/point-to-site-certificate-gateway.md) 
 
 [Configure a point-to-site connection to a virtual network by using certificate authentication: PowerShell](../../vpn-gateway/vpn-gateway-howto-point-to-site-rm-ps.md)
 

@@ -8,12 +8,13 @@ ms.date: 08/27/2024
 ms.service: azure-virtual-network
 ms.subservice: ip-services
 ms.topic: how-to
+# Customer intent: "As a cloud administrator, I want to upgrade public IP addresses attached to VMs in an Availability Set from Basic to Standard SKU, so that I can ensure compliance with upcoming retirement policies and benefit from enhanced security features."
 ---
 
 # Upgrade all public IP addresses attached to VMs in an Availability Set from Basic to Standard
 
 >[!Important]
->On September 30, 2025, Basic SKU public IPs will be retired. For more information, see the [official announcement](https://azure.microsoft.com/updates/upgrade-to-standard-sku-public-ip-addresses-in-azure-by-30-september-2025-basic-sku-will-be-retired/). If you are currently using Basic SKU public IPs, make sure to upgrade to Standard SKU public IPs prior to the retirement date. This article will help guide you through the upgrade process.
+>On September 30, 2025, Basic SKU public IPs were retired. For more information, see the [official announcement](https://azure.microsoft.com/updates/upgrade-to-standard-sku-public-ip-addresses-in-azure-by-30-september-2025-basic-sku-will-be-retired/). If you are currently using Basic SKU public IPs, make sure to upgrade to Standard SKU public IPs as soon as possible. This article will help guide you through the upgrade process.
 
 For more information about the retirement of Basic SKU Public IPs and the benefits of Standard SKU Public IPs, see [here](public-ip-basic-upgrade-guidance.md)
 
@@ -83,7 +84,7 @@ If a migration fails due to a transient issue, such as a network outage or clien
 To recover from a failed upgrade, pass the recovery log file path to the script with the `-recoverFromFile` parameter and identify the Availability Set to recover with the `-AvailabilitySetName` parameter, as shown in this example.
 
 ```powershell
-Start-VMPublicIPUpgrade -RecoverFromFile ./AvSetPublicIPUpgrade_Recovery_2020-01-01-00-00.csv -AvailabilitySetName myAvSet -ResourceGroupName rg-myrg
+Start-AzAvSetPublicIPUpgrade -RecoverFromFile ./AvSetPublicIPUpgrade_Recovery_2020-01-01-00-00.csv -AvailabilitySetName myAvSet -ResourceGroupName rg-myrg
 ```
 
 ## Common questions

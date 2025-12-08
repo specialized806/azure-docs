@@ -10,7 +10,7 @@ ms.custom: references_regions
 ## Prerequisites
 
 - An Azure account with an active subscription.
-  - If you don't have one, you [can create one for free](https://azure.microsoft.com/free/).
+  - If you don't have one, you [can create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - Install the [Azure CLI](/cli/azure/install-azure-cli).
 - Refer to [jobs restrictions](../articles/container-apps/jobs.md#jobs-restrictions) for a list of limitations.
 
@@ -34,11 +34,12 @@ ms.custom: references_regions
     az extension add --name containerapp --upgrade
     ```
 
-1. Register the `Microsoft.App` and `Microsoft.OperationalInsights` namespaces if you haven't already registered them in your Azure subscription.
+1. Register the `Microsoft.App`, `Microsoft.OperationalInsights`, and `Microsoft.Storage` namespaces if you haven't already registered them in your Azure subscription.
 
     ```azurecli
     az provider register --namespace Microsoft.App
     az provider register --namespace Microsoft.OperationalInsights
+    az provider register --namespace Microsoft.Storage
     ```
 
 1. Now that your Azure CLI setup is complete, you can define the environment variables that are used throughout this article.

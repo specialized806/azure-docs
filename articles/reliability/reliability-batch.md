@@ -1,6 +1,6 @@
 ---
 title: Reliability in Azure Batch
-description: Learn about reliability in Azure Batch
+description: Improve reliability in Azure Batch by using availability zones, zone redundancy, and disaster recovery strategies. Design more resilient batch processing workloads.
 author: anaharris-ms
 ms.author: anaharris
 ms.topic: reliability-article
@@ -14,8 +14,7 @@ ms.date: 03/09/2023
 
 # Reliability in Azure Batch
 
-This article describes reliability support in Azure Batch and covers both intra-regional resiliency with [availability zones](#availability-zone-support) and links to information on [cross-region recovery and business continuity](#cross-region-disaster-recovery-and-business-continuity). 
-
+This article describes reliability support in Azure Batch. It covers how to improve intra-regional resiliency by using [availability zones](#availability-zone-support), batch pools, and compute nodes to minimize downtime and data loss. It also links to information about [cross-region recovery and business continuity](#cross-region-disaster-recovery-and-business-continuity).
 
 ## Availability zone support
 
@@ -30,7 +29,7 @@ Batch maintains parity with Azure on supporting availability zones.
 
 - Because InfiniBand doesn't support inter-zone communication, you can't create a pool with a zonal policy if it has inter-node communication enabled and uses a [VM SKU that supports InfiniBand](/azure/virtual-machines/workloads/hpc/enable-infiniband).
 
-- Batch maintains parity with Azure on supporting availability zones. To use the zonal option, your pool must be created in an [Azure region with availability zone support](availability-zones-service-support.md#azure-regions-with-availability-zone-support).
+- Batch maintains parity with Azure on supporting availability zones. To use the zonal option, your pool must be created in an [Azure region with availability zone support](regions-list.md).
 
 - To allocate your Batch pool across availability zones, the Azure region in which the pool was created must support the requested VM SKU in more than one zone. To validate that the region supports the requested VM SKU in more than one zone, call the [Resource Skus List API](/rest/api/compute/resource-skus/list?tabs=HTTP) and check the `locationInfo` field of `resourceSku`. Ensure that more than one zone is supported for the requested VM SKU. You can also use the [Azure CLI](/rest/api/compute/resource-skus/list?tabs=CLI) to list all available Resource SKUs with the following command:
 

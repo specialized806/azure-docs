@@ -4,11 +4,11 @@ description: Describes an overview of clustering on your Azure Stack Edge Pro GP
 services: databox
 author: alkohli
 
-ms.service: databox
-ms.subservice: edge
+ms.service: azure-stack-edge
 ms.topic: conceptual
 ms.date: 03/21/2024
 ms.author: alkohli
+ms.custom: sfi-image-nochange
 ---
 
 # Clustering on your Azure Stack Edge Pro GPU device

@@ -8,6 +8,8 @@ ms.subservice: process-automation
 ms.custom: mvc, mode-ui, engagement-fy24
 #Customer intent: As an administrator, I want to create an Automation account so that I can further use the Automation services.
 ms.service: azure-automation
+ms.author: v-jasmineme
+author: jasminemehndir
 ---
 
 # Quickstart: Create an Automation account using the Azure portal
@@ -16,7 +18,7 @@ You can create an Azure [Automation account](../automation-security-overview.md)
 
 ## Prerequisites
 
-An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 ## Create Automation account
 

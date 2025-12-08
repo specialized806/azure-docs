@@ -4,11 +4,11 @@ description: Tutorial to deploy Azure Stack Edge Mini R instructs you to set up 
 services: databox
 author: alkohli
 
-ms.service: databox
-ms.subservice: edge
+ms.service: azure-stack-edge
 ms.topic: tutorial
 ms.date: 10/14/2020
 ms.author: alkohli
+ms.custom: sfi-image-nochange
 # Customer intent: As an IT admin, I need to understand how to connect and activate Azure Stack Edge Mini R  so I can use it to transfer data to Azure. 
 ---
 # Tutorial: Configure the device settings for Azure Stack Edge Mini R

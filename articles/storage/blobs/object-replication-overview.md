@@ -5,10 +5,11 @@ description: Object replication asynchronously copies block blobs between a sour
 author: normesta
 
 ms.service: azure-blob-storage
-ms.topic: conceptual
-ms.date: 12/08/2023
-ms.author: nachakra
+ms.topic: concept-article
+ms.date: 09/09/2025
+ms.author: normesta
 ms.custom: engagement-fy23
+# Customer intent: As a cloud storage administrator, I want to implement object replication for block blobs, so that I can improve data availability, reduce read latency, and optimize cost-efficiency across multiple regions.
 ---
 
 # Object replication for block blobs
@@ -43,6 +44,8 @@ Object replication isn't supported for blobs in the source account that are encr
 
 Customer-managed failover isn't supported for either the source or the destination account in an object replication policy.
 
+Object replication is not yet supported in accounts that have a hierarchical namespace enabled.
+
 Object replication is not supported for blobs that are uploaded by using [Data Lake Storage](/rest/api/storageservices/data-lake-storage-gen2) APIs.
 
 ## How object replication works
@@ -75,7 +78,7 @@ Object replication does not copy the source blob's index tags to the destination
 
 ### Blob tiering
 
-Object replication is supported when the source and destination accounts are in the hot or cool tier. The source and destination accounts may be in different tiers. However, object replication will fail if a blob in either the source or destination account has been moved to the archive tier. For more information on blob tiers, see [Access tiers for blob data](access-tiers-overview.md).
+Object replication is supported when the source and destination accounts are in any online tier (hot, cool or cold). The source and destination accounts may be in different tiers. However, object replication will fail if a blob in either the source or destination account has been moved to the archive tier. For more information on blob tiers, see [Access tiers for blob data](access-tiers-overview.md).
 
 ### Immutable blobs
 
@@ -191,6 +194,31 @@ By default, the **AllowCrossTenantReplication** property is set to false for a s
 
 You can use Azure Policy to audit a set of storage accounts to ensure that the **AllowCrossTenantReplication** property is set to prevent cross-tenant object replication. You can also use Azure Policy to enforce governance for a set of storage accounts. For example, you can create a policy with the deny effect to prevent a user from creating a storage account where the **AllowCrossTenantReplication** property is set to *true*, or from modifying an existing storage account to change the property value to *true*.
 
+## Replication metrics
+> [!IMPORTANT]
+> Object replication metrics is currently in PREVIEW and available in all regions.
+> To opt in to the preview, see [Set up preview features in Azure subscription](/azure/azure-resource-manager/management/preview-features) and specify AllowObjectReplicationMetrics as the feature name. The provider name for this preview feature is Microsoft.Storage.
+> 
+> See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
+
+Object replication supports two metrics to provide you with insights into the replication progress:
+
+- **Operations pending for replication**: Total number of operations pending replication from source to destination storage account emitted per the time buckets
+- **Bytes pending for replication**: Sum of bytes pending replication from source to destination storage accounts emitted per the time buckets
+
+Each of the metrics above can be viewed with the dimension of time buckets. This enables insights into how many bytes or operations are pending for replication per time buckets as follows:
+
+- 0-5 mins
+- 5-10 mins
+- 10-15 mins
+- 15-30 mins
+- 30 mins-2 hrs
+- 2-8 hrs
+- 8-24 hrs
+- `>`24 hrs  
+
+You can enable replication metrics on the source account for monitoring pending bytes and pending operations. For more information, see [Configure replication metrics](object-replication-configure.md#configure-replication-metrics).
+
 ## Replication status
 
 You can check the replication status for a blob in the source account. For more information, see [Check the replication status of a blob](object-replication-configure.md#check-the-replication-status-of-a-blob).
@@ -224,7 +252,7 @@ Here's a breakdown of the costs. To find the price of each cost component, see [
 |Transaction cost of a write operation|Transaction cost to read a change feed record|
 |Storage cost of the blob and each blob version<sup>1</sup>|Transaction cost to read the blob and blob versions<sup>2</sup>|
 |Cost to add a change feed record|Transaction cost to write the blob and blob versions<sup>2</sup>|
-||Storage cost of the blob and each blob version<sup>1</sup>|
+|Data retrieval costs on cool and cold tiers|Storage cost of the blob and each blob version<sup>1</sup>|
 ||Cost of network egress<sup>3</sup>|
 
 <sup>1</sup>    On the source account, if you haven't changed a blob or version's tier, then you're billed for unique blocks of data across that blob, its versions. See [Blob versioning pricing and Billing](versioning-overview.md#pricing-and-billing). At the destination account, for a version, you're billed for all of the blocks of a version whether or not those blocks are unique.

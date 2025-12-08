@@ -1,13 +1,15 @@
 ---
 title: Order device connection events from Azure IoT Hub w/Azure Cosmos DB
 description: This article describes how to order and record device connection events from Azure IoT Hub using Azure Cosmos DB to maintain the latest connection state.
-author: kgremban
+author: SoniaLopezBravo
 
-ms.author: kgremban
-ms.service: iot-hub
-ms.custom: devx-track-azurecli
+ms.author: sonialopez
+ms.service: azure-iot-hub
 ms.topic: how-to
 ms.date: 04/11/2019
+ms.custom:
+  - devx-track-azurecli
+  - sfi-image-nochange
 ---
 
 # Order device connection events from Azure IoT Hub using Azure Cosmos DB
@@ -35,7 +37,7 @@ The sequence number is a string representation of a hexadecimal number. You can 
 
 * A collection in your database. See [Add a collection](/azure/cosmos-db/create-sql-api-java#add-a-container) for a walkthrough. When you create your collection, use `/id` for the partition key.
 
-* An Azure subscription. If you don't have an Azure subscription, [create one for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
+* An Azure subscription. If you don't have an Azure subscription, [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 
 * An IoT hub in your Azure subscription. If you don't have a hub yet, you can follow the steps in [Create an IoT hub](create-hub.md).
 
@@ -91,7 +93,7 @@ A trigger is a specific event that starts your logic app. For this tutorial, the
    [{
     "id": "fbfd8ee1-cf78-74c6-dbcf-e1c58638ccbd",
     "topic":
-      "/SUBSCRIPTIONS/DEMO5CDD-8DAB-4CF4-9B2F-C22E8A755472/RESOURCEGROUPS/EGTESTRG/PROVIDERS/MICROSOFT.DEVICES/IOTHUBS/MYIOTHUB",
+      "/SUBSCRIPTIONS/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/RESOURCEGROUPS/EGTESTRG/PROVIDERS/MICROSOFT.DEVICES/IOTHUBS/MYIOTHUB",
     "subject": "devices/Demo-Device-1",
     "eventType": "Microsoft.Devices.DeviceConnected",
     "eventTime": "2018-07-03T23:20:11.6921933+00:00",

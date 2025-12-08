@@ -9,11 +9,7 @@ ms.date: 03/29/2024
 ## Customer intent: As a developer, I want to automate builds and deployments for my Standard logic app workflows.
 ---
 
-# Automate build and deployment for Standard logic app workflows with Azure DevOps (preview)
-
-> [!NOTE]
-> This capability is in preview and is subject to the 
-> [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+# Automate build and deployment for Standard logic app workflows with Azure DevOps
 
 For Standard logic app workflows that run in single-tenant Azure Logic Apps, you can use Visual Studio Code with the Azure Logic Apps (Standard) extension to locally develop, test, and store your logic app project using any source control system. However, to get the full benefits of easily and consistently deploying your workflows across different environments and platforms, you must also automate your build and deployment process.
 
@@ -62,7 +58,7 @@ For more information, see the following documentation:
 
 ## Prerequisites
 
-- An Azure account and subscription. If you don't have a subscription, [sign up for a free Azure account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+- An Azure account and subscription. If you don't have a subscription, [sign up for a free Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 - Visual Studio Code with the Azure Logic Apps (Standard) extension. To meet these requirements, see the prerequisites for [Create Standard workflows with Visual Studio Code](create-single-tenant-workflows-visual-studio-code.md#prerequisites).
 
@@ -102,7 +98,7 @@ For more information, see the following documentation:
 
    1. In your logic app project, expand the folder with your workflow name.
 
-   1. If not already open, open the **workflow.json** file, open the file's shortcut men, and select **Open Designer**.
+   1. If not already open, open the **workflow.json** file, open the file's shortcut menu, and select **Open Designer**.
 
    1. When you're prompted to allow parameterizations for connections when your project loads, select **Yes**.
 

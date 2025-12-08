@@ -2,15 +2,19 @@
 title: Use threat indicators in analytics rules
 titleSuffix: Microsoft Sentinel
 description: This article explains how to generate alerts and incidents with threat intelligence indicators in Microsoft Sentinel.
-author: austinmccollum
+author: guywi-ms
 ms.topic: how-to
 ms.date: 3/14/2024
-ms.author: austinmc
+ms.author: guywild
 appliesto:
-    - Microsoft Sentinel in the Azure portal
     - Microsoft Sentinel in the Microsoft Defender portal
+    - Microsoft Sentinel in the Azure portal
 ms.collection: usx-security
-#Customer intent: As an SOC analyst, I want to connect the threat intelligence available to analytics rules so that I can generate alerts and incidents.
+ms.custom: sfi-image-nochange
+
+
+#Customer intent: As a security analyst, I want to configure analytics rules using threat indicators so that I can automatically generate and investigate security alerts based on integrated threat intelligence from various data sources.
+
 ---
 
 # Use threat indicators in analytics rules
@@ -74,7 +78,7 @@ According to the default settings, each time the rule runs on its schedule, any 
 In Microsoft Sentinel, the alerts generated from analytics rules also generate security incidents. On the Microsoft Sentinel menu, under **Threat Management**, select **Incidents**. Incidents are what your security operations teams triage and investigate to determine the appropriate response actions. For more information, see [Tutorial: Investigate incidents with Microsoft Sentinel](./investigate-cases.md).
 
 > [!NOTE]
-> Because analytic rules constrain lookups beyond 14 days, Microsoft Sentinel refreshes indicators every 12 days to make sure they're available for matching purposes through the analytic rules.
+> Because analytic rules constrain lookups beyond 14 days, Microsoft Sentinel refreshes indicators every seven to 10 days to make sure they're available for matching purposes through the analytic rules.
 
 ## Related content
 

@@ -2,10 +2,11 @@
 title: Troubleshoot SAP HANA databases back up errors
 description: Describes how to troubleshoot common errors that might occur when you use Azure Backup to back up SAP HANA databases.
 ms.topic: troubleshooting
-ms.date: 09/30/2024
+ms.date: 10/14/2025
 ms.service: azure-backup
 author: AbhishekMallick-MS
-ms.author: v-abhmallick
+ms.author: v-mallicka
+# Customer intent: As a database administrator, I want to troubleshoot backup errors for SAP HANA databases on Azure so that I can ensure successful backup and restore operations without data loss or downtime.
 ---
 
 # Troubleshoot backup of SAP HANA databases on Azure
@@ -16,7 +17,7 @@ This article provides troubleshooting information to back up SAP HANA databases 
 
 See the [prerequisites](tutorial-backup-sap-hana-db.md#prerequisites) and [What the preregistration script does](tutorial-backup-sap-hana-db.md#what-the-pre-registration-script-does) sections before configuring backups.
 
-## Common user errors
+## Common user errors for backup and restore of SAP HANA databases
 
 ### UserErrorHANAInternalRoleNotPresent
 
@@ -219,7 +220,16 @@ See the [prerequisites](tutorial-backup-sap-hana-db.md#prerequisites) and [What 
 | **Possible Causes** | Restore as files is failing due to *directory* that is selected for restore doesn't exist on the Target server or isn't accessible.
 | **Recommended action** | Verify the directory that you selected is available on the target server and ensure you have selected the correct target server at the time of restore. |
 
-## Restore checks
+### JobCancelledOnExtensionUpgrade
+
+| Error message | The Backup job was canceled because the workload backup extension service restarted for an upgrade. |
+| --- | --- |
+| **Possible cause** | The backup and restore job fails due to automatic Extension upgrade when the backup/restore operation is in progress. |
+| **Recommended action** | Wait for the extension upgrade to complete. HANA then re-triggers the failed log backups, if any. <br><br> However, the failed Full/ Differential/ Incremental backups won't be re-triggered by Azure Backup and you need to manually retrigger this operation. |
+
+## Restore checks for SAP HANA databases
+
+When you restore an SAP HANA database, ensure that you follow these guidelines:
 
 ### Single Container Database (SDC) restore
 
@@ -339,7 +349,7 @@ These symptoms might arise for one or more of the following reasons:
 
 In the preceding scenarios, we recommend that you trigger a re-register operation on the VM.
 
-## Back up SAP HANA database logs
+## Common issue for backup of SAP HANA database logs
 
 ### Log backup isn't triggered despite the full backup's success.
 
@@ -353,6 +363,6 @@ In the preceding scenarios, we recommend that you trigger a re-register operatio
 - `log_mode`： normal
 - `log_backup_timeout_s`： Same as Azure portal's log backup policy (frequency is in  seconds).
 
-## Next step
+## Next steps
 
 - Review the [frequently asked questions](./sap-hana-faq-backup-azure-vm.yml) about the backup of SAP HANA databases on Azure VMs.

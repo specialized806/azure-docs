@@ -8,8 +8,12 @@ ms.subservice: fhir
 ms.topic: overview
 ms.date: 09/27/2023
 ms.author: kesheth
-ms.custom: devx-track-azurepowershell, devx-track-azurecli, devx-track-arm-template
 ms.devlang: azurecli
+ms.custom:
+  - devx-track-azurepowershell
+  - devx-track-azurecli
+  - devx-track-arm-template
+  - sfi-image-nochange
 ---
 
 # Configure customer-managed keys at rest
@@ -146,6 +150,11 @@ New-AzResourceGroupDeployment `
     -location $accountLocation `
     -keyVaultKeyUri $keyVaultKeyUri
 ```
+## Frequently asked questions
+
+**Is the 'cosmosdb_key_vault_key_versionless_id' used in the FHIR API designed to connect to FHIR service managed Cosmos DB?**
+
+Yes, when you are enabling customer-managed keys on FHIR APIs, selecting 'cosmosdb_key_vault_key_versionless_id' connects to FHIR service managed Cosmos DB.
 
 ## Next steps
 

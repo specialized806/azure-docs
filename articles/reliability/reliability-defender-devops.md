@@ -1,12 +1,12 @@
 ---
-title: Reliability in Microsoft Defender for Cloud for DevOps security
-description: Find out about reliability in Defender for DevOps
+title: Reliability in Microsoft Defender for Cloud for DevOps Security
+description: Learn how to ensure DevOps security continuity with Microsoft Defender for Cloud by using cross-region disaster recovery and connector migration strategies.
 author: anaharris-ms
 ms.service: azure
 ms.topic: reliability-article
 ms.date: 10/24/2023
 ms.author: anaharris
-ms.custom: references_regions, subject-reliability
+ms.custom: subject-reliability
 CustomerIntent: As a cloud architect/engineer, I need general guidance reliability in Defender for DevOps
 ---
 
@@ -59,7 +59,7 @@ To request recovery of a connector created in a downed region:
    resources
     | extend connectorType = tostring(parse_json(properties["environmentName"]))
     | where type == "microsoft.security/securityconnectors"
-    | where connectorType in ("AzureDevOps", "Github", "GitLab")
+    | where connectorType in ("AzureDevOps", "GitHub", "GitLab")
     | project connectorResourceId = id, region = location
 
 1. Once the DevOps resources have been released from the old connector and appear for the new connector, [reconfigure the pull request annotations](/azure/defender-for-cloud/enable-pull-request-annotations) as needed.

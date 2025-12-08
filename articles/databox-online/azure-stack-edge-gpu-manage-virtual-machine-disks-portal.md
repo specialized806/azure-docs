@@ -4,11 +4,11 @@ description: Learn how to manage disks including add, resize, detach, and delete
 services: databox
 author: alkohli
 
-ms.service: databox
-ms.subservice: edge
+ms.service: azure-stack-edge
 ms.topic: how-to
 ms.date: 08/02/2021
 ms.author: alkohli
+ms.custom: sfi-image-nochange
 #Customer intent: As an IT admin, I need to understand how to manage disks on a VM running on an Azure Stack Edge Pro device so that I can use it to run applications using Edge compute before sending it to Azure.
 ---
 

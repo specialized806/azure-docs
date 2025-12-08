@@ -6,11 +6,12 @@ services: storage
 author: stevenmatthew
 
 ms.service: azure-storage
-ms.topic: conceptual
-ms.date: 08/05/2024
+ms.topic: concept-article
+ms.date: 01/06/2025
 ms.author: shaas
 ms.subservice: storage-common-concepts
 ms.custom: references_regions
+# Customer intent: As a cloud architect, I want to develop a comprehensive disaster recovery plan for Azure Storage, so that I can ensure high availability and minimize data loss during service outages or regional failures.
 ---
 
 <!--
@@ -36,7 +37,7 @@ Azure Storage maintains multiple copies of your storage account to ensure that a
 
 Locally redundant storage (LRS), the lowest-cost redundancy option, automatically stores and replicates three copies of your storage account within a single datacenter. Although LRS protects your data against server rack and drive failures, it doesn't account for disasters such as fire or flooding within a datacenter. In the face of such disasters, all replicas of a storage account configured to use LRS might be lost or unrecoverable.
 
-By comparison, zone-redundant storage (ZRS) retains a copy of a storage account and replicates it in each of three separate availability zones within the same region. For more information about availability zones, see [Azure availability zones](../../availability-zones/az-overview.md).
+By comparison, zone-redundant storage (ZRS) retains a copy of a storage account and replicates it in each of three separate availability zones within the same region. For more information about availability zones, see [Azure availability zones](../../reliability/availability-zones-overview.md).
 
 <!--Recovery of a single copy of a storage account occurs automatically with both LRS and ZRS.-->
 
@@ -65,13 +66,13 @@ Each type of failover has a unique set of use cases, corresponding expectations 
 
 | Type                                   | Failover Scope  | Use case | Expected data loss | Hierarchical Namespace (HNS) supported |
 |----------------------------------------|-----------------|----------|--------------------|----------------------------------------|
-| Customer-managed planned failover (preview) | Storage account | The storage service endpoints for the primary and secondary regions are available, and you want to perform disaster recovery testing. <br></br> The storage service endpoints for the primary region are available, but another service is preventing your workloads from functioning properly.<br><br>To proactively prepare for large-scale disasters, such as a hurricane, that may impact a region. | [No](#anticipate-data-loss-and-inconsistencies)  | [Yes <br> *(In preview)*](#hierarchical-namespace-hns) |
-| Customer-managed (unplanned) failover              | Storage account | The storage service endpoints for the primary region become unavailable, but the secondary region is available. <br></br> You received an Azure Advisory in which Microsoft advises you to perform a failover operation of storage accounts potentially affected by an outage. | [Yes](#anticipate-data-loss-and-inconsistencies) | [Yes <br> *(In preview)*](#hierarchical-namespace-hns) |
-| Microsoft-managed                      | Entire region   | The primary region becomes unavailable due to a significant disaster, but the secondary region is available. | [Yes](#anticipate-data-loss-and-inconsistencies) | [Yes](#hierarchical-namespace-hns) |
+| Customer-managed planned failover (preview) | Storage account | The storage service endpoints for the primary and secondary regions are available, and you want to perform disaster recovery testing. <br></br> The storage service endpoints for the primary region are available, but another service is preventing your workloads from functioning properly.<br><br>To proactively prepare for large-scale disasters, such as a hurricane, that might affect a region. | [No](#anticipate-data-loss-and-inconsistencies)  | Yes <br> *(In preview)* |
+| Customer-managed (unplanned) failover              | Storage account | The storage service endpoints for the primary region become unavailable, but the secondary region is available. <br></br> You received an Azure Advisory in which Microsoft advises you to perform a failover operation of storage accounts potentially affected by an outage. | [Yes](#anticipate-data-loss-and-inconsistencies) | Yes |
+| Microsoft-managed                      | Entire region   | The primary region becomes unavailable due to a significant disaster, but the secondary region is available. | [Yes](#anticipate-data-loss-and-inconsistencies) | Yes |
 
 The following table compares a storage account's redundancy state after each type of failover:
 
-| Result of failover on...                | Customer-managed planned failover (preview)  | Customer-managed (unplanned) failover                                               |
+| Result of failover on...                | Customer-managed planned failover (preview)  | Customer-managed (unplanned) failover                                   |
 |-----------------------------------------|----------------------------------------------|-------------------------------------------------------------------------|
 | ...the secondary region                 | The secondary region becomes the new primary | The secondary region becomes the new primary                            |
 | ...the original primary region          | The original primary region becomes the new secondary |The copy of the data in the original primary region is deleted  |
@@ -93,7 +94,7 @@ The following table summarizes the resulting redundancy configuration at every s
 
 ### Customer-managed planned failover (preview)
 
-Planned failover can be utilized in multiple scenarios including planned disaster recovery testing, a proactive approach to large scale disasters, or to recover from non-storage related outages.
+Planned failover can be utilized in multiple scenarios including planned disaster recovery testing, a proactive approach to large scale disasters, or to recover from nonstorage related outages.
 
 During the planned failover process, the primary and secondary regions are swapped. The original primary region is demoted and becomes the new secondary region. At the same time, the original secondary region is promoted and becomes the new primary. After the failover completes, users can proceed to access data in the new primary region and administrators can validate their disaster recovery plan. The storage account must be available in both the primary and secondary regions before a planned failover can be initiated.
 
@@ -103,7 +104,7 @@ To understand the effect of this type of failover on your users and applications
 
 [!INCLUDE [storage-failover.planned-preview](../../../includes/storage-failover.planned-preview.md)]
 
-[!INCLUDE [storage-failover-user-unplanned-preview-lst](../../../includes/storage-failover-user-unplanned-preview-lst.md)]
+<!--[!INCLUDE [storage-failover-user-unplanned-preview-lst](../../../includes/storage-failover-user-unplanned-preview-lst.md)]-->
 
 ### Customer-managed (unplanned) failover
 
@@ -113,7 +114,7 @@ To understand the effect of this type of failover on your users and applications
 
 ### Microsoft-managed failover
 
-Microsoft may initiate a regional failover in extreme circumstances, such as a catastrophic disaster that impacts an entire geo region. During these events, no action on your part is required. If your storage account is configured for RA-GRS or RA-GZRS, your applications can read from the secondary region during a Microsoft-managed failover. However, you don't have write access to your storage account until the failover process is complete.
+Microsoft might initiate a regional failover in extreme circumstances, such as a catastrophic disaster that impacts an entire geo region. During these events, no action on your part is required. If your storage account is configured for RA-GRS or RA-GZRS, your applications can read from the secondary region during a Microsoft-managed failover. However, you don't have write access to your storage account until the failover process is complete.
 
 > [!IMPORTANT]
 > Use customer-managed failover options to develop, test, and implement your disaster recovery plans. **Do not** rely on Microsoft-managed failover, which might only be used in extreme circumstances.
@@ -157,7 +158,7 @@ Customer-managed (unplanned) failover of storage accounts with [change feed](../
 
 For more information about change feed, see [How the change feed works](../blobs/storage-blob-change-feed.md#how-the-change-feed-works).
 
-Keep in mind that other storage account features also require the change feed to be enabled. These features include [operational backup of Azure Blob Storage](../../backup/blob-backup-support-matrix.md#limitations), [Object replication](../blobs/object-replication-overview.md), and [Point-in-time restore for block blobs](../blobs/point-in-time-restore-overview.md).
+Keep in mind that other storage account features also require the change feed to be enabled. These features include [operational backup of Azure Blob Storage](../../backup/blob-backup-support-matrix.md#supported-and-unsupported-scenarios-for-azure-blob-backup), [Object replication](../blobs/object-replication-overview.md), and [Point-in-time restore for block blobs](../blobs/point-in-time-restore-overview.md).
 
 #### Point-in-time restore inconsistencies
 
@@ -200,10 +201,6 @@ All geo-redundant offerings support Microsoft-managed failover. In addition, som
 >
 > During a disaster that affects the primary region, Microsoft will manage the failover for classic storage accounts. For more information, see [Microsoft-managed failover](#microsoft-managed-failover).
 
-#### Hierarchical namespace (HNS)
-
-[!INCLUDE [updated-for-az](../../../includes/storage-failover-unplanned-hns-preview-include.md)]
-
 ### Unsupported features and services
 
 The following features and services aren't supported for customer-managed failover:
@@ -217,17 +214,19 @@ The following table can be used to reference feature support.
 
 |                                  | Planned failover    | Unplanned failover  |
 |----------------------------------|---------------------|---------------------|
-| **Azure Data Lake Storage**                    | Supported (preview) | Supported (preview) |
+| **Azure Data Lake Storage**                    | Supported (preview) | Supported |
 | **Change Feed**                  | Unsupported         | Supported           |
 | **Object Replication**           | Unsupported         | Unsupported         |
-| **SFTP**                         | Supported (preview) | Supported (preview) |
+| **SFTP**                         | Supported (preview) | Supported           |
 | **NFSv3**                        | GRS is unsupported  | GRS is unsupported  |
-| **Storage Actions**              | Unsupported         | Unsupported         |
+| **Storage Actions**              | Supported<sup>1</sup> | Supported<sup>1</sup> | 
 | **Point-in-time restore (PITR)** | Unsupported         | Supported           |
+
+<sup>1</sup> If you initiate a customer-managed planned or unplanned failover, storage tasks can't operate on the account until it fails back to the original primary region. [Learn more](../../reliability/reliability-storage-actions.md#cross-region-disaster-recovery-and-business-continuity).
 
 ### Failover isn't for account migration
 
-Storage account failovers are a temporary solution which can be used to either help plan and test your DR plans, or to recover from a service outage. Failover shouldn't be used as part of your data migration strategy. For information about how to  migrate your storage accounts, see [Azure Storage migration overview](storage-migration-overview.md).
+Storage account failovers are a temporary solution used to develop and test your disaster recovery (DR) plans, or to recover from a service outage. Failover shouldn't be used as part of your data migration strategy. For information about how to  migrate your storage accounts, see [Azure Storage migration overview](storage-migration-overview.md).
 
 ### Storage accounts containing archived blobs
 
@@ -237,9 +236,9 @@ Storage accounts containing archived blobs support account failover. However, af
 
 Microsoft provides two REST APIs for working with Azure Storage resources. These APIs form the basis of all actions you can perform against Azure Storage. The Azure Storage REST API enables you to work with data in your storage account, including blob, queue, file, and table data. The Azure Storage resource provider REST API enables you to manage the storage account and related resources.
 
-After a failover is complete, clients can again read and write Azure Storage data in the new primary region. However, the Azure Storage resource provider does not fail over, so resource management operations must still take place in the primary region. If the primary region is unavailable, you will not be able to perform management operations on the storage account.
+After a failover is complete, clients can once again read and write Azure Storage data in the new primary region. However, the Azure Storage resource provider doesn't fail over, so resource management operations must still take place in the primary region. If the primary region is unavailable, you aren't be able to perform management operations on the storage account.
 
-Because the Azure Storage resource provider does not fail over, the [Location](/dotnet/api/microsoft.azure.management.storage.models.trackedresource.location) property will return the original primary location after the failover is complete.
+Because the Azure Storage resource provider doesn't fail over, the [Location](/dotnet/api/microsoft.azure.management.storage.models.trackedresource.location) property will return the original primary location after the failover is complete.
 
 ### Azure virtual machines
 

@@ -5,9 +5,10 @@ author:  sidontha
 ms.author: sidontha
 ms.service: azure-data-share
 ms.topic: overview
-ms.date: 12/19/2023
+ms.date: 02/12/2025
 ms.custom: references_regions
 ---
+
 # What is Azure Data Share?
 
 Azure Data Share enables organizations to securely share data with multiple customers and partners. Data providers are always in control of the data that they've shared and Azure Data Share makes it simple to manage and monitor what data was shared, when and by whom.
@@ -18,7 +19,7 @@ Using Data Share, a data provider can share data and manage their shares all in 
 
 Azure Data Share helps enhance insights by making it easy to combine data from third parties to enrich analytics and AI scenarios. Easily use the power of Azure analytics tools to prepare, process, and analyze data shared with Azure Data Share. 
 
-Both the data provider and data consumer must have an Azure subscription to share and receive data. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/).
+Both the data provider and data consumer must have an Azure subscription to share and receive data. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 ## Scenarios for Azure Data Share
 
@@ -82,6 +83,6 @@ For metadata stored by Azure Data Share, in Southeast Asia (Singapore), it's sto
 
 The Azure Data Share service doesn't have to be available in your region to use the service. For example, if you have data stored in an Azure Storage account located in a region where Azure Data Share isn't yet available, you can still use the service to share your data. 
 
-## Next steps
+## Next step
 
 To learn how to start sharing data, continue to the [share your data](share-your-data.md) tutorial.

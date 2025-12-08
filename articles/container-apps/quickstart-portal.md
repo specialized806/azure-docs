@@ -18,7 +18,7 @@ In this quickstart, you create a secure Container Apps environment and deploy yo
 
 ## Prerequisites
 
-- An Azure account with an active subscription is required. If you don't already have one, you can [create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+- An Azure account with an active subscription is required. If you don't already have one, you can [create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 - Register the `Microsoft.App` resource provider.
 
@@ -47,6 +47,7 @@ In the *Basics* tab, do the following actions.
     | Subscription | Select your Azure subscription. |
     | Resource group | Select **Create new** and enter **my-container-apps**. |
     | Container app name |  Enter **my-container-app**. |
+    | Optimize for Azure Functions |  Leave the checkbox unchecked. Select it only if you want to [create a Functions app](../container-apps/functions-usage.md). |
     | Deployment source | Select **Container image**. |
 
 1. Enter the following values in the "Container Apps Environment" section.
@@ -58,18 +59,14 @@ In the *Basics* tab, do the following actions.
 
 1. Select the **Container** tab.
 
-1. Select *Use quickstart image*.
+1. Select **Use quickstart image**.
 
 <!-- Deploy the container app -->
 [!INCLUDE [container-apps-create-portal-deploy.md](../../includes/container-apps-create-portal-deploy.md)]
 
-### Verify deployment
+4. The following message appears in your browser.
 
-Select **Go to resource** to view your new container app.
-
-Select the link next to *Application URL* to view your application. The following message appears in your browser.
-
-:::image type="content" source="media/get-started/azure-container-apps-quickstart.png" alt-text="Your first Azure Container Apps deployment.":::
+    :::image type="content" source="media/get-started/azure-container-apps-quickstart.png" alt-text="Your first Azure Container Apps deployment.":::
 
 ## Clean up resources
 

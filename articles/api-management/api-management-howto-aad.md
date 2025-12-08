@@ -5,20 +5,23 @@ description: Learn how to enable user sign-in to the API Management developer po
 
 author: dlepow
 ms.service: azure-api-management
-ms.topic: article
-ms.date: 09/19/2024
+ms.topic: how-to
+ms.date: 09/30/2025
 ms.author: danlep
-ms.custom: engagement-fy23, devx-track-azurecli
+ms.custom:
+  - engagement-fy23
+  - devx-track-azurecli
+  - sfi-image-nochange
 ---
 
 # Authorize developer accounts by using Microsoft Entra ID in Azure API Management
 
-[!INCLUDE [premium-dev-standard-standardv2-basicv2.md](../../includes/api-management-availability-premium-dev-standard-standardv2-basicv2.md)]
+[!INCLUDE [premium-dev-standard-premiumv2-standardv2-basicv2.md](../../includes/api-management-availability-premium-dev-standard-premiumv2-standardv2-basicv2.md)]
 
 
 In this article, you'll learn how to:
 > [!div class="checklist"]
-> * Enable access to the developer portal for users from Microsoft Entra ID.
+> * Enable access to the developer portal for users from Microsoft Entra ID in your organization.
 > * Manage groups of Microsoft Entra users by adding external groups that contain the users.
 
 For an overview of options to secure the developer portal, see [Secure access to the API Management developer portal](secure-developer-portal-access.md).
@@ -26,6 +29,9 @@ For an overview of options to secure the developer portal, see [Secure access to
 > [!IMPORTANT]
 > * This article has been updated with steps to configure a Microsoft Entra app using the Microsoft Authentication Library ([MSAL](../active-directory/develop/msal-overview.md)). 
 > * If you previously configured a Microsoft Entra app for user sign-in using the Azure AD Authentication Library (ADAL), we recommend that you [migrate to MSAL](#migrate-to-msal).
+
+> [!NOTE]
+> For information about using Microsoft External ID to allow external identities to sign in to the developer portal, see [Authorize access to API Management developer portal by using Microsoft Entra External ID](api-management-howto-entra-external-id.md).
  
 
 ## Prerequisites
@@ -33,6 +39,8 @@ For an overview of options to secure the developer portal, see [Secure access to
 - Complete the [Create an Azure API Management instance](get-started-create-service-instance.md) quickstart.
 
 - [Import and publish](import-and-publish.md) an API in the Azure API Management instance.
+
+- If you created your instance in a v2 tier, enable the developer portal. For more information, see [Tutorial: Access and customize the developer portal](api-management-howto-developer-portal-customize.md).
 
 [!INCLUDE [azure-cli-prepare-your-environment-no-header.md](~/reusable-content/azure-cli/azure-cli-prepare-your-environment-no-header.md)]
 

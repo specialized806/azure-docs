@@ -10,7 +10,7 @@ ms.custom: devx-track-azurepowershell, mode-api, devx-track-dotnet
 In this quickstart, you create an event hub using Azure PowerShell.
 
 ## Prerequisites
-An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 [!INCLUDE [cloud-shell-try-it.md](~/reusable-content/ce-skilling/azure/includes/cloud-shell-try-it.md)]
 
@@ -43,7 +43,7 @@ Run the following command to create an Event Hubs namespace in the resource grou
 
 ```azurepowershell-interactive
 $namespaceName="myNamespace$(Get-Random)"
-New-AzEventHubNamespace -ResourceGroupName $rgName -NamespaceName $namespaceName -Location $region
+New-AzEventHubNamespace -ResourceGroupName $rgName -Name $namespaceName -Location $region
 ```
 
 You see the output similar to the following one. You see the name of the namespace in the `Name` field. 

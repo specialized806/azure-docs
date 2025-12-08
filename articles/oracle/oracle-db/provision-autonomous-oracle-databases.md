@@ -4,10 +4,11 @@ description: Provision Oracle Autonomous Databases.
 author: jjaygbay1
 ms.service: oracle-on-azure
 ms.collection: linux
-ms.topic: article
+ms.topic: how-to
 ms.date: 06/3/2024
 ms.custom: engagement-fy24
 ms.author: jacobjaygbay
+# Customer intent: As a database administrator, I want to provision an Oracle Autonomous Database instance from the Azure portal, so that I can efficiently manage and scale my database resources according to my project requirements.
 ---
 
 # Provision Oracle Autonomous Databases

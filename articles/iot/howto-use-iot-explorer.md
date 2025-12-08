@@ -1,17 +1,20 @@
 ---
-title: Install and use Azure IoT explorer | Microsoft Docs
-description: Install the Azure IoT explorer tool and use it to interact with IoT Plug and Play devices connected to IoT hub. Although this article focuses on working with IoT Plug and Play devices, you can use the tool with any device connected to your hub.
+title: Install and use Azure IoT explorer
+description: Install the Azure IoT explorer tool and use it to interact with devices (including IoT Plug and Play devices) connected to your IoT hub.
 author: dominicbetts
 ms.author: dobett
-ms.date: 09/29/2023
+ms.date: 10/14/2024
+ms.update-cycle: 1095-days
 ms.topic: how-to
-ms.service: iot-develop
-services: iot-develop
+ms.service: azure-iot
+services: azure-iot
 
 #Customer intent: As a solution builder, I want to use a GUI tool to interact with IoT Plug and Play devices connected to an IoT hub to test and verify their behavior.
 ---
 
 # Install and use Azure IoT explorer
+
+[!INCLUDE [iot-authentication-service-connection-string](../../includes/iot-authentication-service-connection-string.md)]
 
 The Azure IoT explorer is a graphical tool for interacting with devices connected to your IoT hub. This article focuses on using the tool to test your IoT Plug and Play devices. After installing the tool on your local machine, you can use it to connect to a hub. You can use the tool to view the telemetry the devices are sending, work with device properties, and invoke commands.
 
@@ -24,7 +27,7 @@ For more general information about using the tool, see the GitHub [readme](https
 
 To use the Azure IoT explorer tool, you need:
 
-- An Azure IoT hub. There are many ways to add an IoT hub to your Azure subscription, such as [Creating an IoT hub by using the Azure CLI](../iot-hub/iot-hub-create-using-cli.md). You need the IoT hub connection string to run the Azure IoT explorer tool. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
+- An Azure IoT hub. There are many ways to add an IoT hub to your Azure subscription, such as [Creating an IoT hub by using the Azure CLI](../iot-hub/iot-hub-create-using-cli.md). You need the IoT hub connection string to run the Azure IoT explorer tool. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 - A device registered in your IoT hub. You can use IoT Explorer to create and manage device registrations in your IoT Hub.
 
 ## Install Azure IoT explorer
@@ -36,7 +39,7 @@ Go to [Azure IoT explorer releases](https://github.com/Azure/azure-iot-explorer/
 
 ## Use Azure IoT explorer
 
-For a device, you can either connect your own device, or use one of the sample simulated devices. For some example simulated devices written in different languages, see the [Connect a sample IoT Plug and Play device application to IoT Hub](./tutorial-connect-device.md) tutorial.
+For a device, you can either connect your own device, or use one of the sample simulated devices.
 
 ### Connect to your hub
 
@@ -105,13 +108,13 @@ You can view the read-only properties defined in an interface on the **Propertie
 1. Preview the payload to be sent to the device.
 1. Submit the change.
 
-After you submit a change, you can track the update status: **synching**, **success**, or **error**. When the synching is complete, you see the new value of your property in the **Reported Value** column. If you navigate to other pages before the synching completes, the tool still notifies you when the update is complete. You can also use the tool's notification center to see the notification history.
+After you submit a change, you can track the update status: **syncing**, **success**, or **error**. When the syncing is complete, you see the new value of your property in the **Reported Value** column. If you navigate to other pages before the syncing completes, the tool still notifies you when the update is complete. You can also use the tool's notification center to see the notification history.
 
 #### Commands
 
 To send a command to a device, go to the **Commands** tab:
 
-1. In the list of commands, expand the command you want to trigger.
+1. Expand the command you want to trigger in the list of commands.
 1. Enter any required values for the command.
 1. Preview the payload to be sent to the device.
 1. Submit the command.
@@ -123,7 +126,3 @@ To view the telemetry for the selected interface, go to its **Telemetry** tab. S
 #### Known Issues
 
 For a list of the IoT features supported by the latest version of the tool, see [Feature list](https://github.com/Azure/azure-iot-explorer/wiki).
-
-## Next steps
-
-In this how-to article, you learned how to install and use Azure IoT explorer to interact with your IoT Plug and Play devices. A suggested next step is to learn how to [Manage IoT Plug and Play digital twins](./howto-manage-digital-twin.md).

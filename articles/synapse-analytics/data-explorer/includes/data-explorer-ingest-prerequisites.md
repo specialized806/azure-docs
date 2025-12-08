@@ -1,12 +1,12 @@
 ---
 ms.topic: include
-ms.date: 11/02/2021
+ms.date: 03/24/2025
 author: shsagir
 ms.author: shsagir
 ms.service: azure-synapse-analytics
 ms.subservice: data-explorer
 ---
-- An Azure subscription. Create a [free Azure account](https://azure.microsoft.com/free/).
+- An Azure subscription. Create a [free Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 - Create a Data Explorer pool using [Synapse Studio](../data-explorer-create-pool-studio.md) or [the Azure portal](../data-explorer-create-pool-portal.md)
 - Create a Data Explorer database.

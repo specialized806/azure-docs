@@ -1,26 +1,24 @@
 ---
-title: The Advanced Security Information Model (ASIM) Audit Events normalization schema reference (Public preview) | Microsoft Docs
+title: The Advanced Security Information Model (ASIM) Audit Events normalization schema reference | Microsoft Docs
 description: This article displays the Microsoft Sentinel Audit Events normalization schema.
 author: oshezaf
 ms.topic: reference
 ms.date: 12/12/2022
 ms.author: ofshezaf
 
+
+
+#Customer intent: As a security analyst, I want to understand the ASIM Audit Events normalization schema so that I can effectively monitor and analyze audit trails across various information systems.
+
 ---
 
-# The Advanced Security Information Model (ASIM) Audit Events normalization schema reference (Public preview)
+# The Advanced Security Information Model (ASIM) Audit Events normalization schema reference
 
 The Microsoft Sentinel Audit events normalization schema represents events associated with the audit trail of information systems. The audit trail logs system configuration activities and policy changes. Such changes are often performed by system administrators, but can also be performed by users when configuring the settings of their own applications.
 
 Every system logs audit events alongside its core activity logs. For example, a Firewall will log events about the network sessions is processes, and audit events about configuration changes applied to the Firewall itself.
 
 For more information about normalization in Microsoft Sentinel, see [Normalization and the Advanced Security Information Model (ASIM)](normalization.md).
-
-> [!IMPORTANT]
-> The Audit Event normalization schema is currently in *preview*. This feature is provided without a service level agreement. We don't recommend it for production workloads.
->
-> The [Azure Preview Supplemental Terms](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) include additional legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
->
 
 ## Schema overview
 
@@ -34,7 +32,7 @@ Audit events also reference the following entities, which are involved in the co
 
 - **Actor** - The user performing the configuration operation.
 - **TargetApp** - The application or system for which the configuration operation applies.
-- **Target** - The system on which **TaregtApp*** is running.
+- **Target** - The system on which **TargetApp*** is running.
 - **ActingApp** - The application used by the **Actor** to perform the configuration operation.
 - **Src** - The system used by the **Actor** to initiate the configuration operation, if different than **Target**.
 
@@ -72,11 +70,11 @@ The following filtering parameters are available:
 | **object_has_any** | dynamic/string | Filter only events in which [Object](#object) field includes any of the terms provided. | 
 | **newvalue_has_any** | dynamic/string | Filter only events in which [NewValue](#object) field includes any of the terms provided. | 
 
-Some parameter can accept both list of values of type `dynamic` or a single string value. To pass a literal list to parameters that expect a dynamic value, explicitly use a [dynamic literal](/azure/data-explorer/kusto/query/scalar-data-types/dynamic#dynamic-literals.md). For example: `dynamic(['192.168.','10.'])`
+Some parameter can accept both list of values of type `dynamic` or a single string value. To pass a literal list to parameters that expect a dynamic value, explicitly use a [dynamic literal](/kusto/query/scalar-data-types/dynamic?view=microsoft-sentinel&preserve-view=true#dynamic-literals). For example: `dynamic(['192.168.','10.'])`
 
 For example, to filter only audit events with the terms `install` or `update` in their [Operation](#operation) field, from the last day , use:
 
-```kql
+```kusto
 imAuditEvent (operation_has_any=dynamic(['install','update']), starttime = ago(1d), endtime=now())
 ```
 
@@ -156,7 +154,7 @@ Fields that appear in the table are common to all ASIM schemas. Any of guideline
 
 | Field          | Class        | Type       | Description   |
 |---------------|--------------|------------|-----------------|
-| <a name="dst"></a>**Dst** | Alias       | String     |    A unique identifier of the authentication target. <br><br>This field may alias the [TargerDvcId](#targetdvcid), [TargetHostname](#targethostname), [TargetIpAddr](#targetipaddr), [TargetAppId](#targetappid), or [TargetAppName](#targetappname) fields. <br><br>Example: `192.168.12.1` |
+| <a name="dst"></a>**Dst** | Alias       | String     |    A unique identifier of the authentication target. <br><br>This field may alias the [TargetDvcId](#targetdvcid), [TargetHostname](#targethostname), [TargetIpAddr](#targetipaddr), [TargetAppId](#targetappid), or [TargetAppName](#targetappname) fields. <br><br>Example: `192.168.12.1` |
 | <a name="targethostname"></a>**TargetHostname** | Recommended | Hostname | The target device hostname, excluding domain information.<br><br>Example: `DESKTOP-1282V4D` |
 | <a name="targetdomain"></a>**TargetDomain** | Recommended | String | The domain of the target device.<br><br>Example: `Contoso` |
 | <a name="targetdomaintype"></a>**TargetDomainType** | Conditional | Enumerated | The type of [TargetDomain](#targetdomain). For a list of allowed values and further information, refer to [DomainType](normalization-about-schemas.md#domaintype) in the [Schema Overview article](normalization-about-schemas.md).<br><br>Required if [TargetDomain](#targetdomain) is used. |
@@ -201,8 +199,8 @@ Fields that appear in the table are common to all ASIM schemas. Any of guideline
 | **SrcDvcIdType** | Conditional | DvcIdType | The type of [SrcDvcId](#srcdvcid). For a list of allowed values and further information, refer to [DvcIdType](normalization-about-schemas.md#dvcidtype) in the [Schema Overview article](normalization-about-schemas.md). <br><br>**Note**: This field is required if [SrcDvcId](#srcdvcid) is used. |
 | **SrcDeviceType** | Optional | DeviceType | The type of the source device. For a list of allowed values and further information, refer to [DeviceType](normalization-about-schemas.md#devicetype) in the [Schema Overview article](normalization-about-schemas.md). |
 | <a name="srcsubscriptionid"></a>**SrcSubscriptionId** | Optional | String | The cloud platform subscription ID the source device belongs to. **SrcSubscriptionId** map to a subscription ID on Azure and to an account ID on AWS. | 
-| **SrcGeoCountry** | Optional | Country | The country associated with the source IP address.<br><br>Example: `USA` |
-| **SrcGeoRegion** | Optional | Region | The region within a country associated with the source IP address.<br><br>Example: `Vermont` |
+| **SrcGeoCountry** | Optional | Country | The country/region associated with the source IP address.<br><br>Example: `USA` |
+| **SrcGeoRegion** | Optional | Region | The region within a country/region associated with the source IP address.<br><br>Example: `Vermont` |
 | **SrcGeoCity** | Optional | City | The city associated with the source IP address.<br><br>Example: `Burlington` |
 | **SrcGeoLatitude** | Optional | Latitude | The latitude of the geographical coordinate associated with the source IP address.<br><br>Example: `44.475833` |
 | **SrcGeoLongitude** | Optional | Longitude | The longitude of the geographical coordinate associated with the source IP address.<br><br>Example: `73.211944` |

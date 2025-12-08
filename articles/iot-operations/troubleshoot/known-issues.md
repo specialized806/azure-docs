@@ -1,106 +1,207 @@
 ---
-title: "Known issues: Azure IoT Operations Preview"
-description: Known issues for the MQTT broker, Layered Network Management, connector for OPC UA, OPC PLC simulator, dataflows, and operations experience web UI.
+title: "Known issues: Azure IoT Operations"
+description: Known issues for the MQTT broker, connector for OPC UA, OPC PLC simulator, data flows, and operations experience web UI.
 author: dominicbetts
 ms.author: dobett
 ms.topic: troubleshooting-known-issue
-ms.custom:
-  - ignite-2023
-ms.date: 09/19/2024
+ms.custom: sfi-ropc-nochange
+ms.date: 09/17/2025
 ---
 
-# Known issues: Azure IoT Operations Preview
+# Known issues: Azure IoT Operations
 
-[!INCLUDE [public-preview-note](../includes/public-preview-note.md)]
+This article lists the current known issues you might encounter when using Azure IoT Operations. The guidance helps you identify these issues and provides workarounds where available.
 
-This article lists the known issues for Azure IoT Operations Preview.
+For general troubleshooting guidance, see [Troubleshoot Azure IoT Operations](troubleshoot.md).
 
-## Deploy and uninstall issues
+## MQTT broker issues
 
-- If you prefer to have no updates made to your cluster without giving explicit consent, you should disable Arc updates when you enable the cluster. This is due to the fact that some system extensions are automatically updated by the Arc agent.
+This section lists current known issues for the MQTT broker.
 
-- Using your own cert-manager issuer is only supported for cert-manager versions less than 1.13.
+### MQTT broker resources aren't visible in the Azure portal
 
-- The Azure storage account that you use for the schema registry must have public network access enabled.
+---
 
-- If your deployment fails with the `"code":"LinkedAuthorizationFailed"` error, it means that you don't have **Microsoft.Authorization/roleAssignments/write** permissions on the resource group that contains your cluster.
+Issue ID: 4257
 
-  To resolve this issue, either request the required permissions or make the following adjustments to your deployment steps:
+---
 
-  - If deploying with an Azure Resource Manager template, set the `deployResourceSyncRules` parameter to `false`.
-  - If deploying with the Azure CLI, include the `--disable-rsync-rules` flag with the [az iot ops init](/cli/azure/iot/ops#az-iot-ops-init) command.
+Log signature: N/A
 
-- Directly editing **SecretProviderClass** and **SecretSync** custom resources in your Kubernetes cluster can the break secrets flow in Azure IoT Operations. For any operations related to secrets, use the operations experience UI.
+---
 
-- By default, the `az iot ops check` command displays warning about missing dataflows until you create a dataflow.
+MQTT broker resources created in your cluster using Kubernetes aren't visible in the Azure portal. This result is expected because [managing Azure IoT Operations components using Kubernetes is in preview](../deploy-iot-ops/howto-manage-update-uninstall.md#manage-components-using-kubernetes-deployment-manifests-preview), and synchronizing resources from the edge to the cloud isn't currently supported.
 
-## MQTT broker
+There's currently no workaround for this issue.
 
-- You can't update the Broker custom resource after the initial deployment. You can't make configuration changes to cardinality, memory profile, or disk buffer.
+## Connector for OPC UA issues
 
-  As a workaround, when deploying Azure IoT Operations with the [az iot ops init](/cli/azure/iot/ops#az-iot-ops-init) command, you can include the `--broker-config-file` parameter with a JSON configuration file for the MQTT broker. For more information, see [Advanced MQTT broker config](https://github.com/Azure/azure-iot-ops-cli-extension/wiki/Advanced-Mqtt-Broker-Config) and [Configure core MQTT broker settings](../manage-mqtt-broker/howto-configure-availability-scale.md).
+This section lists current known issues for the connector for OPC UA.
 
-- Even though the MQTT broker's [diagnostics](../manage-mqtt-broker/howto-configure-availability-scale.md#configure-mqtt-broker-diagnostic-settings) produces telemetry on its own topic, you might still get messages from the self-test when you subscribe to `#` topic.
+### An OPC UA server modeled as a device can only have one inbound endpoint of type "Microsoft.OpcUa"
 
-- Deployment might fail if the **cardinality** and **memory profile** values are set to be too large for the cluster. To resolve this issue, set the replicas count to `1` and use a smaller memory profile, like `low`.
+---
 
-## Azure IoT Layered Network Management Preview
+Issue ID: 2411
 
-- If the Layered Network Management service doesn't get an IP address while running K3S on Ubuntu host, reinstall K3S without _trafeik ingress controller_ by using the `--disable=traefik` option.
+---
 
-    ```bash
-    curl -sfL https://get.k3s.io | sh -s - --disable=traefik --write-kubeconfig-mode 644
-    ```
+`2025-07-24T13:29:30.280Z aio-opc-supervisor-85b8c78df5-26tn5 - Maintaining the new asset test-opcua-asset | - | 1 is skipped because the endpoint profile test-opcua.opcplc-e2e-anon-000000 is not present`
 
-    For more information, see [Networking | K3s](https://docs.k3s.io/networking#traefik-ingress-controller).
+---
 
-- If DNS queries don't resolve to the expected IP address while using [CoreDNS](../manage-layered-network/howto-configure-layered-network.md#configure-coredns) service running on child network level, upgrade to Ubuntu 22.04 and reinstall K3S.
+When you create an OPC UA device, you can only have one inbound endpoint of type `Microsoft.OpcUa`. Currently, any other endpoints aren't used.
 
-## Connector for OPC UA
+Workaround: Create multiple devices with a single endpoint each if you want to use namespace assets.
 
-- Azure Device Registry asset definitions let you use numbers in the attribute section while OPC supervisor expects only strings.
+An OPC UA namespaced asset can only have a single dataset. Currently, any other datasets aren't used.
 
-- When you add a new asset with a new asset endpoint profile to the OPC UA broker and trigger a reconfiguration, the deployment of the `opc.tcp` pods changes to accommodate the new secret mounts for username and password. If the new mount fails for some reason, the pod does not restart and therefore the old flow for the correctly configured assets stops as well.
+Workaround: Create multiple namespace assets each with a single dataset.
 
-## OPC PLC simulator
+### Application error BadUnexpectedError
 
-If you create an asset endpoint for the OPC PLC simulator, but the OPC PLC simulator isn't sending data to the MQTT broker, run the following command to set `autoAcceptUntrustedServerCertificates=true` for the asset endpoint:
+---
 
-```bash
-ENDPOINT_NAME=<name-of-you-endpoint-here>
-kubectl patch AssetEndpointProfile $ENDPOINT_NAME \
--n azure-iot-operations \
---type=merge \
--p '{"spec":{"additionalConfiguration":"{\"applicationName\":\"'"$ENDPOINT_NAME"'\",\"security\":{\"autoAcceptUntrustedServerCertificates\":true}}"}}'
+Issue ID: 9044
+
+---
+
+Log signature: `BadUnexpectedError`
+
+---
+
+In the process control sample application, if you call the `Switch` method on the demo asset `demo-method-call.asset.yaml` then currently you receive a `BadUnexpectedError` application error.
+
+## Connector for media and connector for ONVIF issues
+
+This section lists current known issues for the connector for media and the connector for ONVIF.
+
+### Secret sync conflict
+
+---
+
+Issue ID: 0606
+
+---
+
+Log signature: N/A
+
+---
+
+When using secret sync, ensure that secret names are globally unique. If a local secret with the same name exists, connectors might fail to retrieve the intended secret.
+
+## Data flows issues
+
+This section lists current known issues for data flows.
+
+### Data flow resources aren't visible in the operations experience web UI
+
+---
+
+Issue ID: 8724
+
+---
+
+Log signature: N/A
+
+---
+
+Data flow custom resources created in your cluster using Kubernetes aren't visible in the operations experience web UI. This result is expected because [managing Azure IoT Operations components using Kubernetes is in preview](../deploy-iot-ops/howto-manage-update-uninstall.md#manage-components-using-kubernetes-deployment-manifests-preview), and synchronizing resources from the edge to the cloud isn't currently supported.
+
+There's currently no workaround for this issue.
+
+### A data flow profile can't exceed 70 data flows
+
+---
+
+Issue ID: 1028
+
+---
+
+Log signature:
+
+`exec /bin/main: argument list too long`
+
+---
+
+If you create more than 70 data flows for a single data flow profile, deployments fail with the error `exec /bin/main: argument list too long`.
+
+To work around this issue, create multiple data flow profiles and distribute the data flows across them. Don't exceed 70 data flows per profile.
+
+### The request persistence flag is not set for MQTT sessions created for data flow graphs (WASM)
+
+---
+
+Issue ID: 6415
+
+---
+
+Log signature: N/A
+
+---
+
+When you create a data flow graph using the WASM, the MQTT session doesn't have the request persistence flag set.
+
+To work around this issue, set MQTT broker **Retained messages** mode to `All`. For more information, see [Configure MQTT broker persistence](../manage-mqtt-broker/howto-broker-persistence.md).
+
+### Data flow graphs only support specific endpoint types
+
+---
+
+Issue ID: 5693
+
+---
+
+Log signature: N/A
+
+---
+
+Data flow graphs (WASM) currently only support MQTT, Kafka, and OpenTelemetry (OTel) data flow endpoints. OpenTelemetry endpoints can only be used as destinations in data flow graphs. Other endpoint types like Data Lake, Microsoft Fabric OneLake, Azure Data Explorer, and Local Storage are not supported for data flow graphs.
+
+To work around this issue, use one of the supported endpoint types:
+- [MQTT endpoints](../connect-to-cloud/howto-configure-mqtt-endpoint.md) for bi-directional messaging with MQTT brokers
+- [Kafka endpoints](../connect-to-cloud/howto-configure-kafka-endpoint.md) for bi-directional messaging with Kafka brokers, including Azure Event Hubs
+- [OpenTelemetry endpoints](../connect-to-cloud/howto-configure-opentelemetry-endpoint.md) for sending metrics and logs to observability platforms (destination only)
+
+For more information about data flow graphs, see [Use WebAssembly (WASM) with data flow graphs](../connect-to-cloud/howto-dataflow-graph-wasm.md).
+
+### Complex data might be flattened when enriching data in a data flow
+
+---
+
+Issue ID: 7385
+
+---
+
+Log signature: N/A
+
+---
+
+When enriching data using complex object DSS reference data, the output might be moved to the root level instead of preserving the original structure.
+
+For example, if you have a complex object with properties like:
+
+```json
+{
+  "complex_property_1": {
+      "field1": 12,
+      "field2": 13 
+  },
+  "complex_property_2": {
+     "field2": 24
+  }
+}
 ```
 
-> [!CAUTION]
-> Don't use this configuration in production or preproduction environments. Exposing your cluster to the internet without proper authentication might lead to unauthorized access and even DDOS attacks.
+The output might look like:
 
-You can patch all your asset endpoints with the following command:
-
-```bash
-ENDPOINTS=$(kubectl get AssetEndpointProfile -n azure-iot-operations --no-headers -o custom-columns=":metadata.name")
-for ENDPOINT_NAME in `echo "$ENDPOINTS"`; do \
-kubectl patch AssetEndpointProfile $ENDPOINT_NAME \
-   -n azure-iot-operations \
-   --type=merge \
-   -p '{"spec":{"additionalConfiguration":"{\"applicationName\":\"'"$ENDPOINT_NAME"'\",\"security\":{\"autoAcceptUntrustedServerCertificates\":true}}"}}'; \
-done
+```json
+{
+  "property_1": 2,
+  "property_2": 3,
+  "field1": 12,
+  "field2": 24,
+}
 ```
 
-If the OPC PLC simulator isn't sending data to the MQTT broker after you create a new asset, restart the OPC PLC simulator pod. The pod name looks like `aio-opc-opc.tcp-1-f95d76c54-w9v9c`. To restart the pod, use the `k9s` tool to kill the pod, or run the following command:
-
-```bash
-kubectl delete pod aio-opc-opc.tcp-1-f95d76c54-w9v9c -n azure-iot-operations
-```
-
-## Dataflows
-
-- You can't use anonymous authentication for MQTT and Kafka endpoints when you deploy dataflow endpoints from the operations experience UI. The current workaround is to use a YAML configuration file and apply it by using `kubectl`.
-
-- Changing the instance count in a dataflow profile on an active dataflow might result in new messages being discarded or in messages being duplicated on the destination.
-
-- When you create a dataflow, if you set the `dataSources` field as an empty list, the dataflow crashes. The current workaround is to always enter at least one value in the data sources.
-
-- Dataflow custom resources created in your cluster aren't visible in the operations experience UI. This is expected because synchronizing dataflow resources from the edge to the cloud isn't currently supported.
+The complex properties are flattened to the root, and the original structure is lost. If fields with the same name exist in the complex objects or the root, the values might overwrite the root values. In the example, `field2` from `complex_property_2` overwrites the `field2` from `complex_property_1`.

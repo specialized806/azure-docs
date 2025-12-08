@@ -1,17 +1,14 @@
 ---
 title: Tutorial - Add authentication to a web app on Azure App Service | Azure
 description: In this tutorial, you learn how to enable authentication and authorization for a web app running on Azure App Service. Limit access to the web app to users in your organization​.
-services: active-directory, app-service-web
-author: rwike77
-manager: CelesteDG
-
+author: cephalin
+ms.author: cephalin
 ms.service: azure-app-service
 ms.topic: include
-ms.date: 05/16/2024
-ms.author: ryanwi
-ms.reviewer: stsoneff
-ms.custom: azureday1
-ms.subservice: web-apps
+ms.date: 11/29/2024
+ms.custom:
+  - azureday1
+  - sfi-image-nochange
 #Customer intent: As an application developer, enable authentication and authorization for a web app running on Azure App Service.
 ---
 
@@ -57,6 +54,8 @@ Now that you have a web app running on App Service, enable authentication and au
 
 1. Enter a display **Name** for your application. Users of your application might see the display name when they use the app, for example during sign-in.
 
+1. For **Client secret expiration**, select **Recommended: 180 days**.
+
 1. For **App registration** > **Supported account types**, select **Current tenant-single tenant** so only users in your organization can sign in to the web app.
 
 1. In the **Additional checks** section, select:
@@ -98,7 +97,7 @@ Now that you have a web app running on App Service, enable authentication and au
 
 1. Select an existing tenant to use from the drop-down, or select **Create new** to create a new [external tenant](/entra/external-id/customers/quickstart-tenant-setup).
 
-    :::image type="content" alt-text="Screenshot that shows the Select a tenent dropdown." source="../../media/scenario-secure-app-authentication-app-service/configure-authentication-external-select.png":::
+    :::image type="content" alt-text="Screenshot that shows the Select a tenant dropdown." source="../../media/scenario-secure-app-authentication-app-service/configure-authentication-external-select.png":::
 
 1. (Optional) In the **Create a tenant** page, add the *Tenant Name** and **Domain Name**.  Select a **Location** and select **Review and create** and then **Create**.
 
@@ -154,7 +153,7 @@ When you enabled the App Service authentication/authorization module in the prev
 1. Select the app registration that was created. 
 1. In the overview, verify that **Supported account types** is set to **My organization only**.
     
-1. To verify that access to your app is limited to users in your organization, go to your web app **Overview** and select the **Default domain** link.  Or, start a browser in incognito or private mode and go to `https://<app-name>.azurewebsites.net` (see [note at top](#dnl-note)).
+1. To verify that access to your app is limited to users in your organization, go to your web app **Overview** and select the **Default domain** link.
 
     :::image type="content" alt-text="Screenshot that shows verifying access." source="../../media/scenario-secure-app-authentication-app-service/verify-access.png":::
 

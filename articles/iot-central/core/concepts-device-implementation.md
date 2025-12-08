@@ -3,9 +3,9 @@ title: Device implementation
 description: This article introduces the key concepts and best practices for implementing a device that connects to your IoT Central application.
 author: dominicbetts
 ms.author: dobett
-ms.date: 06/06/2023
+ms.date: 10/14/2024
 ms.topic: conceptual
-ms.service: iot-central
+ms.service: azure-iot-central
 services: iot-central
 
 ms.custom:  [amqp, mqtt, device-developer]
@@ -13,9 +13,9 @@ ms.custom:  [amqp, mqtt, device-developer]
 # This article applies to device developers.
 ---
 
-# Device implementation and best practices for IoT central
+# Device implementation and best practices for IoT Central
 
-This article provides information about how to implement devices that connect to your IoT central application. It also includes some best practices. To learn more about the overall connection process, see [Connect a device](overview-iot-central-developer.md#how-devices-connect).
+This article provides information about how to implement devices that connect to your IoT Central application. It also includes some best practices. To learn more about the overall connection process, see [Connect a device](overview-iot-central-developer.md#how-devices-connect).
 
 For sample device implementation code, see [Tutorial: Create and connect a client application to your Azure IoT Central application](tutorial-connect-device.md).
 
@@ -45,7 +45,7 @@ For IoT Central, a device model is defined by using the [DTDL v2](https://github
 
 A DTDL model can be a _no-component_ or a _multi-component_ model:
 
-- No-component model: A simple model doesn't use embedded or cascaded components. All the telemetry, properties, and commands are defined a single _root component_. For an example, see the [Thermostat](https://github.com/Azure/opendigitaltwins-dtdl/blob/master/DTDL/v2/samples/Thermostat.json) model.
+- No-component model: A simple model doesn't use embedded or cascaded components. All the telemetry, properties, and commands are defined as a single _root component_. For an example, see the [Thermostat](https://github.com/Azure/opendigitaltwins-dtdl/blob/master/DTDL/v2/samples/Thermostat.json) model.
 - Multi-component model. A more complex model that includes two or more components. These components include a single root component, and one or more nested components. For an example, see the [Temperature Controller](https://github.com/Azure/opendigitaltwins-dtdl/blob/master/DTDL/v2/samples/TemperatureController.json) model.
 
 > [!TIP]
@@ -71,11 +71,11 @@ To learn more about the format of the JSON messages that a device exchanges with
 
 ### Device SDKs
 
-Use one of the [Azure IoT device SDKs](../../iot-hub/iot-hub-devguide-sdks.md#azure-iot-hub-device-sdks) to implement the behavior of your device. The code should:
+To implement the code that runs on your device, you should use one of the [Azure IoT device SDKs](../../iot-hub/iot-hub-devguide-sdks.md#azure-iot-hub-device-sdks). Actions your code should implement include:
 
 - Register the device with DPS and use the information from DPS to connect to the internal IoT hub in your IoT Central application.
 - Announce the DTMI of the model the device implements.
-- Send telemetry in the format that the device model specifies. IoT Central uses the model in the device template to determine how to use the telemetry for visualizations and analysis.
+- Send telemetry in the format that the device model specifies. To determine how to use the telemetry for visualizations and analysis, IoT Central uses the model in the device template.
 - Synchronize property values between the device and IoT Central. The model specifies the property names and data types so that IoT Central can display the information.
 - Implement command handlers for the commands specified in the model. The model specifies the command names and parameters that the device should use.
 
@@ -123,7 +123,7 @@ To learn more about registration and provisioning in IoT Central, see [IoT Centr
 
 ### Handle connection failures
 
-For scaling or disaster recovery purposes, IoT Central may update its underlying IoT hubs. To maintain connectivity, your device code should handle specific connection errors by establishing a connection to a new IoT Hub endpoint.
+When IoT Central automatically scales or handles a disaster recovery scenario, it might update its underlying IoT hubs. To maintain connectivity, your device code should handle specific connection errors by establishing a connection to a new IoT Hub endpoint.
 
 If the device gets any of the following errors when it connects, it should reprovision the device with DPS to get a new connection string. These errors mean the connection string is no longer valid:
 
@@ -173,7 +173,7 @@ To learn more about the CLI command, see [az iot central device manual-failover]
 You can now check that telemetry from the device still reaches your IoT Central application.
 
 > [!TIP]
-> To see sample device code that handles failovers in various programing languages, see [IoT Central high availability clients](/samples/azure-samples/iot-central-high-availability-clients/iotc-high-availability-clients/).
+> To see sample device code that handles failovers in various programming languages, see [IoT Central high availability clients](/samples/azure-samples/iot-central-high-availability-clients/iotc-high-availability-clients/).
 
 ## Next steps
 

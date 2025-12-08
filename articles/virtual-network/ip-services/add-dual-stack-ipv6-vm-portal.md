@@ -9,6 +9,7 @@ ms.subservice: ip-services
 ms.topic: how-to 
 ms.date: 07/24/2024
 ms.custom: template-how-to, powershell, cli
+# Customer intent: As a cloud infrastructure administrator, I want to configure an existing virtual machine with both IPv4 and IPv6 addresses, so that I can enable dual-stack networking and enhance compatibility with modern applications and services.
 ---
 
 # Add a dual-stack network to an existing virtual machine
@@ -19,7 +20,7 @@ In this article, you add IPv6 support to an existing virtual network. You config
 
 # [Azure portal](#tab/azureportal)
 
-- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 - An existing virtual network, public IP address, and virtual machine in your subscription that is configured for IPv4 support only. For more information about creating a virtual network, public IP address, and a virtual machine, see [Quickstart: Create a Linux virtual machine in the Azure portal](/azure/virtual-machines/linux/quick-create-portal).
 
@@ -31,7 +32,7 @@ In this article, you add IPv6 support to an existing virtual network. You config
 
 # [Azure CLI](#tab/azurecli/)
 
-- An Azure account with an active subscription. [Create one for free](https://azure.microsoft.com/free/?ref=microsoft.com&utm_source=microsoft.com&utm_medium=docs&utm_campaign=visualstudio).
+- An Azure account with an active subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 [!INCLUDE [azure-cli-prepare-your-environment-no-header.md](~/reusable-content/azure-cli/azure-cli-prepare-your-environment-no-header.md)]
 
@@ -47,7 +48,7 @@ In this article, you add IPv6 support to an existing virtual network. You config
 
 # [Azure PowerShell](#tab/azurepowershell/)
 
-- An Azure account with an active subscription. [Create one for free](https://azure.microsoft.com/free/?ref=microsoft.com&utm_source=microsoft.com&utm_medium=docs&utm_campaign=visualstudio).
+- An Azure account with an active subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 - Azure PowerShell installed locally or Azure Cloud Shell
 

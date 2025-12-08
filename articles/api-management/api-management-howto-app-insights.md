@@ -6,9 +6,14 @@ author: dlepow
 
 ms.service: azure-api-management
 ms.topic: how-to
-ms.date: 09/04/2024
+ms.date: 04/09/2025
 ms.author: danlep
-ms.custom: engagement-fy23, devx-track-arm-template, devx-track-bicep
+ms.custom:
+  - engagement-fy23
+  - devx-track-arm-template
+  - devx-track-bicep
+  - build-2025
+  - sfi-image-nochange
 ---
 
 # How to integrate Azure API Management with Azure Application Insights
@@ -40,7 +45,7 @@ You can easily integrate Azure Application Insights with Azure API Management. A
     
         * If you enable a user-assigned managed identity, take note of the identity's **Client ID**.
     
-    1. Assign the identity the **Monitoring Metrics Publisher** role, scoped to the Application Insights resource. To assign the role, use the [Azure portal](../role-based-access-control/role-assignments-portal.yml) or other Azure tools.
+    1. Assign the identity the **Monitoring Metrics Publisher** role, scoped to the Application Insights resource. To assign the role, use the [Azure portal](/azure/role-based-access-control/role-assignments-portal) or other Azure tools.
     
 ## Scenario overview
 
@@ -121,7 +126,7 @@ Use the API Management [Logger - Create or Update](/rest/api/apimanagement/curre
 
 #### [Bicep](#tab/bicep)
 
-Include a snippet similar to the following in your Bicep template.
+Include a snippet similar to the following in your Bicep file.
 
 ```Bicep
 resource aiLoggerWithSystemAssignedIdentity 'Microsoft.ApiManagement/service/loggers@2022-08-01' = {
@@ -181,7 +186,7 @@ Use the API Management [Logger - Create or Update](/rest/api/apimanagement/curre
 
 #### [Bicep](#tab/bicep)
 
-Include a snippet similar the following in your Bicep template.
+Include a snippet similar the following in your Bicep file.
 
 ```Bicep
 resource aiLoggerWithUserAssignedIdentity 'Microsoft.ApiManagement/service/loggers@2022-08-01' = {
@@ -244,7 +249,7 @@ If you are configuring the logger for a workspace, use the [Workspace Logger - C
 
 #### [Bicep](#tab/bicep)
 
-Include a snippet similar to the following in your Bicep template.
+Include a snippet similar to the following in your Bicep file.
 
 If you are configuring the logger for a workspace, create a `Microsoft.ApiManagement/service.workspace/loggers@2023-09-01-preview` resource instead.
 
@@ -293,14 +298,14 @@ If you are configuring the logger for a workspace, create a `Microsoft.ApiManage
 Use the following steps to enable Application Insights logging for an API. You can also enable Application Insights logging for all APIs.
 
 1. Navigate to your **Azure API Management service instance** in the **Azure portal**.
-1. Select **APIs** from the menu on the left.
-1. Click on your API, in this case **Demo Conference API**. If configured, select a version.
+1. Select **APIs** > **APIs** from the menu on the left.
+1. Select an API, such as **Swagger Petstore**. If configured, select a version.
 
    > [!TIP]
    > To enable logging for all APIs, select **All APIs**.
 1. Go to the **Settings** tab from the top bar.
 1. Scroll down to the **Diagnostics Logs** section.  
-    :::image type="content" source="media/api-management-howto-app-insights/apim-app-insights-api-1.png" alt-text="App Insights logger":::
+    :::image type="content" source="media/api-management-howto-app-insights/apim-app-insights-api-1.png" alt-text="Screenshot of Diagnostic Logs configuration in the portal.":::
 1. Check the **Enable** box.
 1. Select your attached logger in the **Destination** dropdown.
 1. Input **100** as **Sampling (%)** and select the **Always log errors** checkbox.
@@ -397,7 +402,7 @@ To improve performance issues, skip:
 
 ## Video
 
-> [!VIDEO https://www.microsoft.com/en-us/videoplayer/embed/RE2pkXv]
+> [!VIDEO https://learn-video.azurefd.net/vod/player?id=85acedcd-4200-4788-b7c0-41a11286fcab]
 >
 >
 

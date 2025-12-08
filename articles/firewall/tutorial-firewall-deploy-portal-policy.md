@@ -2,13 +2,14 @@
 title: 'Tutorial: Deploy & configure Azure Firewall and policy using the Azure portal'
 description: In this tutorial, you learn how to deploy and configure Azure Firewall and policy rules using the Azure portal. 
 services: firewall
-author: vhorne
+author: duongau
 ms.service: azure-firewall
 ms.topic: tutorial
 ms.date: 06/06/2024
-ms.author: victorh
+ms.author: duau
 ms.custom: template-tutorial, mvc, engagement-fy23
 #Customer intent: As an administrator new to this service, I want to control outbound network access from resources located in an Azure subnet.
+# Customer intent: "As a network administrator, I want to deploy and configure Azure Firewall with policy rules, so that I can manage and control outbound network access from resources within an Azure subnet effectively."
 ---
 
 # Tutorial: Deploy and configure Azure Firewall and policy using the Azure portal
@@ -46,7 +47,7 @@ If you prefer, you can complete this procedure using [Azure PowerShell](deploy-p
 
 ## Prerequisites
 
-If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
+If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 
 ## Set up the network
 
@@ -154,6 +155,7 @@ Deploy the firewall into the VNet.
    | Choose a virtual network | Select **Use existing**, and then select **Test-FW-VN**. |
    | Public IP address     | Select **Add new**, and enter **fw-pip** for the **Name**. |
 
+1. Clear the **Enable Firewall Management NIC** check box.
 5. Accept the other default values, then select **Next: Tags**.
 1. Select **Next : Review + create**.
 1. Review the summary, and then select **Create** to create the firewall.

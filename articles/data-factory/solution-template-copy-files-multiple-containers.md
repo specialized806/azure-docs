@@ -4,7 +4,9 @@ description: Learn how to use a solution template to copy files from multiple co
 author: dearandyxu
 ms.author: yexu
 ms.topic: conceptual
-ms.date: 05/15/2024
+ms.date: 10/03/2024
+ms.subservice: data-movement
+ms.custom: sfi-image-nochange
 ---
 
 # Copy multiple folders with Azure Data Factory

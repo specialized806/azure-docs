@@ -5,7 +5,7 @@ author:  sidontha
 ms.author: sidontha
 ms.service: azure-data-share
 ms.topic: how-to
-ms.date: 12/19/2023
+ms.date: 02/12/2025
 ---
 
 # Share and receive data from Azure Blob Storage and Azure Data Lake Storage
@@ -39,7 +39,7 @@ Azure Data Share supports sharing data from Azure Data Lake Gen1, Azure Data Lak
 ||Containers|
 
 >[!NOTE]
-> *Block, append, and page blobs are all supported. However, when they are shared they will be received as **block blobs**.
+> *Block, append, and page blobs are all supported. However, when they're shared they'll be received as **block blobs**.
 
 Data shared from these sources can be received by Azure Data Lake Gen2 or Azure Blob Storage.
 
@@ -55,7 +55,7 @@ Existing files that have the same name are overwritten during a snapshot. A file
 
 ## Prerequisites to share data
 
-- If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/) before you begin.
+- If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 - [An Azure Data Share account](share-your-data-portal.md#create-a-data-share-account).
 - Your data recipient's Azure sign-in e-mail address (using their e-mail alias won't work).
 - If your Azure SQL resource is in a different Azure subscription than your Azure Data Share account, register the [Microsoft.DataShare resource provider](concepts-roles-permissions.md#resource-provider-registration) in the subscription where your source Azure SQL resource is located.
@@ -63,8 +63,8 @@ Existing files that have the same name are overwritten during a snapshot. A file
 ### Prerequisites for the source storage account
 
 - An Azure Storage account. If you don't already have an account, [create one](../storage/common/storage-account-create.md).
-- Permission to write to the storage account. Write permission is in *Microsoft.Storage/storageAccounts/write*. It's part of the Contributor role.
 - Permission to add role assignment to the storage account. This permission is in *Microsoft.Authorization/role assignments/write*. It's part of the Owner role.
+- Grant your Azure Data Share managed identity permission to write to the storage account. Grant it [Storage Blob Data Contributor](/azure/role-based-access-control/built-in-roles/storage#storage-blob-data-contributor) or any other role that grants *Microsoft.Storage/storageAccounts/blobServices/containers/write*.
 
 ### Create a share
 
@@ -118,7 +118,7 @@ You've now created your Azure data share. The recipient of your data share can a
 
 Before you accept a data share invitation, make sure you have the following prerequisites:
 
-- An Azure subscription. If you don't have a subscription, create a [free account](https://azure.microsoft.com/free/).
+- An Azure subscription. If you don't have a subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - An invitation from Azure. The email subject should be "Azure Data Share invitation from *\<yourdataprovider\@domain.com>*".
 - A registered [Microsoft.DataShare resource provider](concepts-roles-permissions.md#resource-provider-registration) in:
   - The Azure subscription where you'll create a Data Share resource.
@@ -127,8 +127,8 @@ Before you accept a data share invitation, make sure you have the following prer
 ### Prerequisites for a target storage account
 
 - An Azure Storage account. If you don't already have one, [create an account](../storage/common/storage-account-create.md).
-- Permission to write to the storage account. This permission is in *Microsoft.Storage/storageAccounts/write*. It's part of the Contributor role.
-- Permission to add role assignment to the storage account. This assignment is in *Microsoft.Authorization/role assignments/write*. It's part of the Owner role.  
+- Permission to add role assignment to the storage account. This assignment is in *Microsoft.Authorization/role assignments/write*. It's part of the Owner role.
+- Grant your Azure Data Share managed identity permission to write to the storage account. Grant it [Storage Blob Data Contributor](/azure/role-based-access-control/built-in-roles/storage#storage-blob-data-contributor) or any other role that grants *Microsoft.Storage/storageAccounts/blobServices/containers/write*.
 
 ## Receive shared data
 
@@ -204,6 +204,6 @@ Storage snapshot performance is impacted by many factors in addition to number o
 - Location of source and target data stores.
 - For incremental snapshot, the number of files in the shared dataset can affect the time it takes to find the list of files with last modified time after the last successful snapshot.
 
-## Next steps
+## Related content
 
 You've learned how to share and receive data from a storage account by using the Azure Data Share service. To learn about sharing from other data sources, see the [supported data stores](supported-data-stores.md).
