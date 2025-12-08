@@ -178,21 +178,93 @@
     href: ./security-controls-policy.md
   - name: Security baseline
     href: /security/benchmark/azure/baselines/backup-security-baseline?toc=/azure/backup/toc.json&bc=/azure/backup/breadcrumb/toc.json
+- name: Azure VM backup
+  items:
+  - name: Overview
+    href: backup-azure-vms-introduction.md
+  - name: Agentless multi-disk crash-consistent VM backup
+    href: backup-azure-vms-agentless-multi-disk-crash-consistent-overview.md  
+  - name: FAQ-Azure VM backup
+    href: backup-azure-vm-backup-faq.yml
+  - name: Support matrix  
+    href: backup-support-matrix-iaas.md 
+  - name: Supported VM SKUs for Azure Policy
+    href: backup-azure-policy-supported-skus.md   
+  - name: Quickstarts  
+    items:
+    - name: Back up a VM - Azure portal
+      href: quick-backup-vm-portal.md
+    - name: Back up a VM - PowerShell
+      href: quick-backup-vm-powershell.md
+    - name: Back up a VM - CLI
+      href: quick-backup-vm-cli.md
+    - name: Back up a VM - ARM template
+      displayName: Resource Manager
+      href: quick-backup-vm-template.md
+    - name: Back up a VM - Bicep file
+      href: quick-backup-vm-bicep-file.md
+    - name: Back up a VM - Terraform
+      href: quick-backup-vm-terraform.md
+  - name: Tutorials
+    items:
+    - name: Back up multiple Azure VMs
+      href: tutorial-backup-vm-at-scale.md
+    - name: Back up Azure VMs with PowerShell
+      href: tutorial-backup-azure-vm.md
+    - name: Restore a VM with Azure CLI
+      href: tutorial-restore-disk.md
+    - name: Restore individual files
+      href: tutorial-restore-files.md
+  - name: Backup scenarios
+    items:
+    - name: Backup
+      items:
+      - name: Back up and restore Azure VMs with Azure Backup Instant Restore
+        href: backup-instant-restore-capability.md
+      - name: Enable backup when you create an Azure VM
+        href: backup-during-vm-creation.md
+      - name: Back up an Azure VM using Enhanced policy
+        href: backup-azure-vms-enhanced-policy.md
+      - name: Back up an Azure VM in Azure extended zones
+        href: backup-azure-vms-extended-zones.md
+      - name: Back up Azure VM with agentless multi-disk crash-consistent backup
+        href: backup-azure-vms-agentless-multi-disk-crash-consistent.md
+      - name: Back up an Azure VM from VM settings
+        href: backup-azure-vms-first-look-arm.md
+      - name: Set up a vault and enable backup for Azure VMs
+        href: backup-azure-arm-vms-prepare.md
+      - name: Back up encrypted Azure VMs
+        href: backup-azure-vms-encryption.md
+      - name: Configure app-consistent backups of Azure VMs running Linux
+        href: backup-azure-linux-app-consistent.md
+      - name: Selective disk backup
+        href: selective-disk-backup-restore.md
+      - name: Using Azure VM backup for database consistent snapshots
+        href: backup-azure-linux-database-consistent-enhanced-pre-post.md
+    - name: Restore
+      items:
+      - name: About Azure VM restore
+        href: about-azure-vm-restore.md
+      - name: Restore Azure VMs in the portal
+        href: backup-azure-arm-restore-vms.md
+      - name: Recover files from Azure VM backups
+        href: backup-azure-restore-files-from-vm.md
+      - name: Restore encrypted VMs
+        href: restore-azure-encrypted-virtual-machines.md
+      - name: Restore keys and secret for encrypted VMs
+        href: backup-azure-restore-key-secret.md
+    - name: Manage
+      items:
+      - name: Manage Azure VM backups
+        href: backup-azure-manage-vms.md
+      - name: Manage recovery points
+        href: manage-recovery-points.md
+      - name: Migrate backups from standard to enhanced policy
+        href: backup-azure-vm-migrate-enhanced-policy.md
+      - name: Modify backup policy with Azure CLI
+        href: modify-vm-policy-cli.md
 - name: Quickstarts  
   items:
-  - name: Back up a VM - Azure portal
-    href: quick-backup-vm-portal.md
-  - name: Back up a VM - PowerShell
-    href: quick-backup-vm-powershell.md
-  - name: Back up a VM - CLI
-    href: quick-backup-vm-cli.md
-  - name: Back up a VM - ARM template
-    displayName: Resource Manager
-    href: quick-backup-vm-template.md
-  - name: Back up a VM - Bicep file
-    href: quick-backup-vm-bicep-file.md
-  - name: Back up a VM - Terraform
-    href: quick-backup-vm-terraform.md
   - name: Back up Azure PostgreSQL Database
     items:
     - name: Back up the database - Azure portal
@@ -278,14 +350,6 @@
   expanded: true
 - name: Tutorials
   items:
-  - name: Back up multiple Azure VMs
-    href: tutorial-backup-vm-at-scale.md
-  - name: Back up Azure VMs with PowerShell
-    href: tutorial-backup-azure-vm.md
-  - name: Restore a VM with Azure CLI
-    href: tutorial-restore-disk.md
-  - name: Restore individual files
-    href: tutorial-restore-files.md
   - name: Back up SQL Server on Azure VM
     href: tutorial-sql-backup.md
   - name: Back up SAP HANA databases in Azure VMs
@@ -348,8 +412,6 @@
     items:
     - name: Azure Backup support matrix
       href: backup-support-matrix.md
-    - name: Azure VM backup support matrix
-      href: backup-support-matrix-iaas.md
     - name: DPM/Azure Backup Server (MABS) support matrix
       href: backup-support-matrix-mabs-dpm.md
     - name: MARS agent support matrix
@@ -374,8 +436,6 @@
       href: azure-data-lake-storage-backup-support-matrix.md  
     - name: Active Directory domain controllers
       href: active-directory-backup-restore.md
-    - name: Supported VM SKUs for Azure Policy
-      href: backup-azure-policy-supported-skus.md
     - name: Azure Database for PostgreSQL backup support matrix
       href: backup-azure-database-postgresql-support-matrix.md
     - name: Azure Database for PostgreSQL -Flexible server backup support matrix
@@ -386,8 +446,6 @@
       href: backup-support-automation.md
   - name: Frequently asked questions (FAQ)
     items:
-    - name: FAQ-Azure VM backup
-      href: backup-azure-vm-backup-faq.yml
     - name: FAQ-MARS agent
       href: backup-azure-file-folder-backup-faq.yml
     - name: FAQ-Back up Azure Files
@@ -406,12 +464,6 @@
       href: backup-azure-dpm-azure-server-faq.yml
     - name: FAQ-Azure Backup Monitoring and Reporting
       href: backup-azure-monitor-alert-faq.yml
-  - name: Azure VM backup
-    items:
-    - name: Overview
-      href: backup-azure-vms-introduction.md
-    - name: Agentless multi-disk crash-consistent VM backup
-      href: backup-azure-vms-agentless-multi-disk-crash-consistent-overview.md
   - name: SAP HANA database on Azure VM backup
     items:
     - name: Overview
@@ -454,54 +506,6 @@
     href: azure-backup-glossary.md
 - name: How-to guides
   items:
-  - name: Azure VM backup
-    items:
-    - name: Backup
-      items:
-      - name: Back up and restore Azure VMs with Azure Backup Instant Restore
-        href: backup-instant-restore-capability.md
-      - name: Enable backup when you create an Azure VM
-        href: backup-during-vm-creation.md
-      - name: Back up an Azure VM using Enhanced policy
-        href: backup-azure-vms-enhanced-policy.md
-      - name: Back up an Azure VM in Azure extended zones
-        href: backup-azure-vms-extended-zones.md
-      - name: Back up Azure VM with agentless multi-disk crash-consistent backup
-        href: backup-azure-vms-agentless-multi-disk-crash-consistent.md
-      - name: Back up an Azure VM from VM settings
-        href: backup-azure-vms-first-look-arm.md
-      - name: Set up a vault and enable backup for Azure VMs
-        href: backup-azure-arm-vms-prepare.md
-      - name: Back up encrypted Azure VMs
-        href: backup-azure-vms-encryption.md
-      - name: Configure app-consistent backups of Azure VMs running Linux
-        href: backup-azure-linux-app-consistent.md
-      - name: Selective disk backup
-        href: selective-disk-backup-restore.md
-      - name: Using Azure VM backup for database consistent snapshots
-        href: backup-azure-linux-database-consistent-enhanced-pre-post.md
-    - name: Restore
-      items:
-      - name: About Azure VM restore
-        href: about-azure-vm-restore.md
-      - name: Restore Azure VMs in the portal
-        href: backup-azure-arm-restore-vms.md
-      - name: Recover files from Azure VM backups
-        href: backup-azure-restore-files-from-vm.md
-      - name: Restore encrypted VMs
-        href: restore-azure-encrypted-virtual-machines.md
-      - name: Restore keys and secret for encrypted VMs
-        href: backup-azure-restore-key-secret.md
-    - name: Manage
-      items:
-      - name: Manage Azure VM backups
-        href: backup-azure-manage-vms.md
-      - name: Manage recovery points
-        href: manage-recovery-points.md
-      - name: Migrate backups from standard to enhanced policy
-        href: backup-azure-vm-migrate-enhanced-policy.md
-      - name: Modify backup policy with Azure CLI
-        href: modify-vm-policy-cli.md
   - name: SQL Server database on Azure VM backup
     items:
     - name: Overview
