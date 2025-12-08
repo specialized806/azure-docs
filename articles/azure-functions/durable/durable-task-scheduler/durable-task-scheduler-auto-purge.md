@@ -1,7 +1,7 @@
 ---
 title: Set autopurge retention policies for Azure Functions Durable Task Scheduler
 description: Learn about how and why you'd want to configure autopurge retention policies for Durable Task Scheduler.
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 10/02/2025
 ---
 

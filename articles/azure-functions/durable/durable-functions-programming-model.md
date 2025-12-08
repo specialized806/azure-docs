@@ -15,7 +15,7 @@ ms.subservice: durable
 Durable Functions extends Azure Functions with a stateful programming model. This model allows you to write workflows (orchestrations) and stateful entities using code.
 
 > [!WARNING]
-> **Important for .NET Developers:** Support for the in-process model ends on **November 10, 2026**. This documentation focuses on the **isolated worker model**, which is the recommended approach for all new and existing .NET projects. If you're using the in-process model, see our [Migration Guide](./migration-guide.md).
+> **Important for .NET Developers:** Support for the in-process model ends on **November 10, 2026**. This documentation focuses on the **isolated worker model**, which is the recommended approach for all new and existing .NET projects. If you're using the in-process model, see our [Migration Guide](./durable-functions-migrate.md).
 
 ## Triggers and bindings
 
@@ -101,7 +101,7 @@ Entities provide a way to define stateful objects. They're similar to actors in 
 
 ## Next steps
 
-- [Learn about Orchestrators →](../../concepts/orchestrators.md)
-- [Learn about Activities →](../../concepts/activities.md)
-- [Learn about Entities →](../../concepts/entities.md)
-- [Explore Patterns →](../../patterns/index.md)
+- [Learn about Orchestrators →](./durable-functions-orchestrations.md)
+- [Learn about Activities →](./durable-functions-activities.md)
+- [Learn about Entities →](./durable-functions-entities.md)
+- [Explore Patterns →](./durable-functions-overview.md#application-patterns)

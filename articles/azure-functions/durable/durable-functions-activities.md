@@ -445,5 +445,5 @@ todo
 ## Next Steps
 
 - [Learn about Entity functions](./durable-functions-entities.md)
-- [Explore Fan-Out/Fan-In Pattern](./durable-functions-overview.md#pattern-2-fan-outfan-in)
+- [Explore Fan-Out/Fan-In Pattern](./durable-functions-overview.md#fan-in-out)
 - [View Code Samples](/samples/browse/?term=durable%20functions)

@@ -1,7 +1,7 @@
 ---
 title: Choosing an orchestration framework
 description: Learn which orchestration framework works for your scenario.
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 10/28/2025
 ---
 

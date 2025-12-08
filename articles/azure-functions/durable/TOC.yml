@@ -264,6 +264,8 @@
     href: ./durable-task-scheduler/choose-orchestration-framework.md
   - name: Throughput benchmark
     href: ./durable-task-scheduler/durable-task-scheduler-work-item-throughput.md
+- name: Glossary
+  href: durable-glossary.md
 - name: Samples
   items:
   - name: Code samples

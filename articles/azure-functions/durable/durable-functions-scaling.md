@@ -306,6 +306,6 @@ az monitor metrics alert create \
 
 ## Next steps
 
-- [Configure Deployment →](./deployment.md)
-- [Learn about Patterns →](../../patterns/index.md)
-- [Monitor with Dashboard →](../../durable-task-scheduler/dashboard.md)
+- [Configure Deployment →](./durable-task-scheduler/develop-with-durable-task-scheduler-functions.md)
+- [Learn about Patterns →](./durable-functions-overview.md#application-patterns)
+- [Monitor with Dashboard →](./durable-task-scheduler/durable-task-scheduler-dashboard.md)

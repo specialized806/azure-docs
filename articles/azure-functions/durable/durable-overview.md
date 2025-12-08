@@ -18,13 +18,13 @@ Azure Durable is Microsoft's durable execution platform for building fault-toler
 
 | Component | Description | Best For |
 |-----------|-------------|----------|
-| **[Durable Task Scheduler](./durable-task-scheduler/overview.md)** | Fully managed orchestration backend | Production workloads requiring high performance |
-| **[Hosting Options](./hosting-options/index.md)** | Azure Functions, Container Apps, or Kubernetes | Choose based on your deployment needs |
-| **[Developer Guide](./developer-guide/index.md)** | SDKs for .NET, Python, and Java | Build orchestrations in your preferred language |
+| **[Durable Task Scheduler](./durable-task-scheduler/durable-task-scheduler.md)** | Fully managed orchestration backend | Creating production workloads requiring high performance |
+| **[Hosting options](./durable-functions-hosting-options.md)** | Azure Functions, Container Apps, or Kubernetes | Choosing based on your deployment needs |
+| **[Durable Task SDK guide](./durable-task-scheduler/quickstart-portable-durable-task-sdks.md)** | SDKs for .NET, Python, and Java | Building orchestrations in your preferred language |
 
 ## Choose your path
 
-### ⚡ Serverless with Azure Functions
+### Serverless with Azure Functions
 
 Event-driven, pay-per-execution workloads:
 
@@ -33,7 +33,7 @@ func init MyApp --worker-runtime dotnet-isolated
 dotnet add package Microsoft.Azure.Functions.Worker.Extensions.DurableTask
 ```
 
-### 🐳 Containers & Kubernetes
+### Containers and Kubernetes
 
 Full control over infrastructure and scaling:
 
@@ -43,34 +43,25 @@ dotnet add package Microsoft.DurableTask.Worker.AzureManaged
 
 ## Key benefits
 
-- ✅ **Automatic state persistence** — Orchestration state survives crashes and restarts
-- ✅ **Built-in fault tolerance** — Automatic retries with configurable policies
-- ✅ **Horizontal scalability** — Handle thousands of concurrent orchestrations
-- ✅ **Monitoring dashboard** — Visual debugging and execution history
-- ✅ **Multi-platform** — Run on Functions, Container Apps, AKS, or VMs
-
-## Why Azure Durable?
-
-| Challenge | Azure Durable Solution |
-|-----------|------------------------|
-| **Workflows fail mid-execution** | Automatic state persistence and recovery |
-| **Manual retry logic is error-prone** | Built-in retry policies with exponential backoff |
-| **Long-running processes timeout** | Durable timers that survive restarts |
-| **Scaling stateful workloads is hard** | Managed infrastructure that scales automatically |
-| **Debugging distributed workflows** | Built-in monitoring dashboard with execution history |
+- **Automatic state persistence** - Orchestration state is automatically persisted and recovered, surviving crashes and restarts
+- **Built-in fault tolerance** - Automatic retries with configurable policies and replay on failures
+- **Horizontal scalability** - Managed infrastructure that scales automatically to handle thousands of concurrent orchestrations
+- **Built-in monitoring** - Visual debugging dashboard with execution history for troubleshooting
+- **Multi-platform flexibility** - Run on Azure Functions, Container Apps, Kubernetes, or VMs
+- **Durable timers** - Timers that survive restarts for long-running processes
 
 ## Quick navigation
 
 | I want to... | Go to... |
 |--------------|----------|
-| **Understand the concepts** | [📘 Core Concepts](./concepts/index.md) |
-| **Choose a hosting platform** | [🏠 Hosting Options](./hosting-options/index.md) |
-| **Build serverless workflows** | [⚡ Azure Functions Quickstart](./hosting-options/azure-functions/quickstart.md) |
-| **Run on containers/Kubernetes** | [🔧 Developer Guide Quickstart](./developer-guide/quickstart.md) |
-| **Learn orchestration patterns** | [🔄 Patterns](./patterns/index.md) |
-| **Choose the right approach** | [⚖️ When to Use What](./comparison/when-to-use.md) |
-| **Set up the managed backend** | [☁️ Durable Task Scheduler](./durable-task-scheduler/overview.md) |
-| **Look up terminology** | [📖 Glossary](./glossary.md) |
+| **Understand the concepts** | [Core concepts](./durable-functions-types-features-overview.md) |
+| **Choose a hosting platform** | [Hosting options](./durable-functions-hosting-options.md) |
+| **Build serverless workflows** | [Durable Functions quickstart](./durable-task-scheduler/quickstart-durable-task-scheduler.md) |
+| **Run using the Durable Task SDKs** | [Durable Task SDK quickstart](./durable-task-scheduler/quickstart-portable-durable-task-sdks.md) |
+| **Learn orchestration patterns** | [Patterns](./durable-functions-overview.md#application-patterns) |
+| **Choose the right workflow approach** | [Azure Durable vs. other Azure workflow solutions](./durable-comparison-alternatives.md) |
+| **Set up the Azure-managed backend** | [Durable Task Scheduler](./durable-task-scheduler/durable-task-scheduler.md) |
+| **Look up terminology** | [Glossary](./durable-glossary.md) |
 
 ## Getting started
 
@@ -78,7 +69,10 @@ Choose your path based on your deployment needs:
 
 ### Option 1: Azure Functions (Serverless)
 
-**Best for:** Event-driven workloads, pay-per-execution, Azure-native development
+**Best for:** 
+- Event-driven workloads
+- Pay-per-execution
+- Azure-native development
 
 ```bash
 # Create a new Durable Functions project
@@ -87,23 +81,29 @@ cd MyDurableFunctionsApp
 dotnet add package Microsoft.Azure.Functions.Worker.Extensions.DurableTask
 ```
 
-[📖 Azure Functions Quickstart →](./hosting-options/azure-functions/quickstart.md)
+[Durable Functions quickstart](./durable-task-scheduler/quickstart-durable-task-scheduler.md)
 
 ### Option 2: Azure Container Apps
 
-**Best for:** Containerized microservices, KEDA autoscaling, no Kubernetes management
+**Best for:** 
+- Containerized microservices
+- KEDA autoscaling
+- No Kubernetes management
 
-[📖 Container Apps Deployment Guide →](./hosting-options/container-apps/deployment.md)
+[Container Apps quickstart](./durable-task-scheduler/quickstart-container-apps-durable-task-sdk.md)
 
 ### Option 3: Azure Kubernetes Service
 
-**Best for:** Full orchestration control, existing Kubernetes infrastructure
+**Best for:** 
+- Full orchestration control
+- Existing Kubernetes infrastructure
 
-[📖 Kubernetes Deployment Guide →](./hosting-options/kubernetes/deployment.md)
+[Kubernetes quickstart](./durable-task-scheduler/quickstart-aks-durable-task-sdk.md)
 
-### Durable Task SDKs (All Platforms)
+### Durable Task SDKs (all platforms)
 
-**Best for:** Building orchestrations in .NET, Python, or Java
+**Best for:** 
+- Building orchestrations in .NET, Python, or Java
 
 ```bash
 # .NET
@@ -116,7 +116,7 @@ pip install durabletask-azure
 # Java - Add to pom.xml
 ```
 
-[📖 Developer Guide Quickstart →](./developer-guide/quickstart.md)
+[Durable Task SDK quickstart](./durable-task-scheduler/quickstart-portable-durable-task-sdks.md)
 
 ## How it works
 
@@ -135,23 +135,6 @@ flowchart TB
 
     App --> DTS
 ```
-
-**Key Benefits:**
-
-| Benefit | Description |
-|---------|-------------|
-| ✅ **Automatic State Management** | Your orchestration state is automatically persisted and recovered |
-| ✅ **Fault Tolerance** | Automatic retries and replay on failures |
-| ✅ **Scalability** | Handle thousands of concurrent orchestrations |
-| ✅ **Observability** | Built-in dashboard for monitoring and debugging |
-| ✅ **Flexibility** | Run on Azure Functions, Container Apps, Kubernetes, or VMs |
-
-## Related resources
-
-- [Azure Durable Functions Documentation (Microsoft Learn)](https://learn.microsoft.com/azure/azure-functions/durable/)
-- [Durable Task Scheduler Documentation (Microsoft Learn)](https://learn.microsoft.com/azure/azure-functions/durable/durable-task-scheduler/)
-- [Durable Task SDK for .NET (GitHub)](https://github.com/microsoft/durabletask-dotnet)
-- [Durable Task Samples (GitHub)](https://github.com/Azure-Samples/Durable-Task-Scheduler)
 
 ## Next steps
 
