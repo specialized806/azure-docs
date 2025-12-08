@@ -7,7 +7,7 @@ author: mbender-ms
 ms.service: azure-appgw-for-containers
 ms.custom: devx-track-azurecli
 ms.topic: quickstart
-ms.date: 1/27/2026
+ms.date: 2/7/2026
 ms.author: mbender
 # Customer intent: As a Kubernetes administrator, I want to install the Application Gateway for Containers ALB Controller on my AKS cluster, so that I can efficiently manage load balancing rules and enhance application traffic handling.
 ---
@@ -104,7 +104,9 @@ You need to complete the following tasks before deploying Application Gateway fo
     RESOURCE_GROUP='<your resource group name>'
     AKS_NAME='<your aks cluster name>'
     IDENTITY_RESOURCE_NAME='azure-alb-identity'
-
+    FEDERATED_IDENTITY_NAME='azure-alb-identity'
+    CONTROLLER_NAMESPACE='azure-alb-system' # the namespace the controller will be provisioned to
+    
     mcResourceGroup=$(az aks show --resource-group $RESOURCE_GROUP --name $AKS_NAME --query "nodeResourceGroup" -o tsv)
     mcResourceGroupId=$(az group show --name $mcResourceGroup --query id -otsv)
 
@@ -120,14 +122,12 @@ You need to complete the following tasks before deploying Application Gateway fo
 
     echo "Set up federation with AKS OIDC issuer"
     AKS_OIDC_ISSUER="$(az aks show -n "$AKS_NAME" -g "$RESOURCE_GROUP" --query "oidcIssuerProfile.issuerUrl" -o tsv)"
-    az identity federated-credential create --name "azure-alb-identity" \
+    az identity federated-credential create --name $FEDERATED_IDENTITY_NAME \
         --identity-name "$IDENTITY_RESOURCE_NAME" \
         --resource-group $RESOURCE_GROUP \
         --issuer "$AKS_OIDC_ISSUER" \
-        --subject "system:serviceaccount:azure-alb-system:alb-controller-sa"
+        --subject "system:serviceaccount:$CONTROLLER_NAMESPACE:alb-controller-sa"
     ```
-    ALB Controller requires a federated credential with the name of `azure-alb-identity`. Any other federated credential name is unsupported.
-
    > [!Note]
    > Assignment of the managed identity immediately after creation may result in an error that the principalId does not exist. Allow about a minute of time to elapse for the identity to replicate in Microsoft Entra ID before delegating the identity.
 
@@ -143,13 +143,13 @@ You need to complete the following tasks before deploying Application Gateway fo
 
     ```azurecli-interactive
     HELM_NAMESPACE='<namespace for deployment>'
-    CONTROLLER_NAMESPACE='azure-alb-system'
+    CONTROLLER_NAMESPACE='azure-alb-system' # ensure this matches the namespace provided in your managed identity
     az aks get-credentials --resource-group $RESOURCE_GROUP --name $AKS_NAME
     helm install alb-controller oci://mcr.microsoft.com/application-lb/charts/alb-controller \
          --namespace $HELM_NAMESPACE \
          --version 1.9.11 \
          --set albController.namespace=$CONTROLLER_NAMESPACE \
-         --set albController.podIdentity.clientID=$(az identity show -g $RESOURCE_GROUP -n azure-alb-identity --query clientId -o tsv)
+         --set albController.podIdentity.clientID=$(az identity show -g $RESOURCE_GROUP -n $IDENTITY_RESOURCE_NAME --query clientId -o tsv)
     ```
 
 
@@ -167,7 +167,7 @@ You need to complete the following tasks before deploying Application Gateway fo
         --namespace $HELM_NAMESPACE \
         --version 1.9.11 \
         --set albController.namespace=$CONTROLLER_NAMESPACE \
-        --set albController.podIdentity.clientID=$(az identity show -g $RESOURCE_GROUP -n azure-alb-identity --query clientId -o tsv)
+        --set albController.podIdentity.clientID=$(az identity show -g $RESOURCE_GROUP -n $IDENTITY_RESOURCE_NAME --query clientId -o tsv)
     ```
 
 ### Verify the ALB Controller installation
