@@ -103,7 +103,7 @@ When you add or remove subscriptions for Dynatrace monitoring, the system update
 
 - The resource provider for Dynatrace (Dynatrace.Observability) must be registered in the target subscription.
 
-### Add subsrciptions 
+### Add subsricptions 
 
 > [!IMPORTANT]
 > When you link a subscription to a Dynatrace resource, ensure that the subscription isn't scope locked (read-only or delete locks). Scope locks can prevent the addition and removal of diagnostic settings. For more information, see [Lock your Azure resources](../../azure-resource-manager/management/lock-resources.md).
