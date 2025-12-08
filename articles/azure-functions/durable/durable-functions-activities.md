@@ -53,7 +53,7 @@ flowchart LR
 
 Activities execute **at least once**. If an activity fails after completing its work but before reporting success, it might run again.
 
-**Implication**: Make your activities **idempotent** when possible — running them multiple times with the same input should produce the same result.
+**Implication**: Make your activities **idempotent** when possible; running them multiple times with the same input should produce the same result.
 
 ```csharp
 // ✅ Idempotent - Uses upsert pattern
@@ -164,7 +164,7 @@ public class OrderActivities
 ::: zone-end
 ::: zone pivot="programming-language-javascript"
 
-todo
+Todo
 
 ::: zone-end
 ::: zone pivot="programming-language-python"
@@ -227,12 +227,12 @@ def send_confirmation(request: dict) -> None:
 ::: zone-end
 ::: zone pivot="programming-language-powershell"
 
-todo
+Todo
 
 ::: zone-end
 ::: zone pivot="programming-language-java"
 
-todo
+Todo
 
 ::: zone-end
 ::: zone pivot="programming-language-java"
@@ -365,22 +365,22 @@ await context.CallActivityAsync("SendEmail", new EmailRequest(
 ::: zone-end
 ::: zone pivot="programming-language-javascript"
 
-todo
+Todo
 
 ::: zone-end
 ::: zone pivot="programming-language-python"
 
-todo
+Todo
 
 ::: zone-end
 ::: zone pivot="programming-language-powershell"
 
-todo
+Todo
 
 ::: zone-end
 ::: zone pivot="programming-language-java"
 
-todo
+Todo
 
 ::: zone-end
 
@@ -410,7 +410,7 @@ var result = await context.CallActivityAsync<string>(
 ::: zone-end
 ::: zone pivot="programming-language-javascript"
 
-todo
+Todo
 
 ::: zone-end
 ::: zone pivot="programming-language-python"
@@ -431,12 +431,12 @@ result = yield context.call_activity_with_retry(
 ::: zone-end
 ::: zone pivot="programming-language-powershell"
 
-todo
+Todo
 
 ::: zone-end
 ::: zone pivot="programming-language-java"
 
-todo
+Todo
 
 ::: zone-end
 

@@ -13,6 +13,6 @@ ms.subservice: durable
 # Client functions in Azure Durable
 
 Holder text:
-Orchestrator functions are triggered by an orchestration trigger binding and entity functions are triggered by an entity trigger binding. Both of these triggers work by reacting to messages that are enqueued into a task hub. The primary way to deliver these messages is by using an orchestrator client binding or an entity client binding from within a client function. Any non-orchestrator function can be a client function. For example, You can trigger the orchestrator from an HTTP-triggered function, an Azure Event Hub triggered function, etc. What makes a function a client function is its use of the durable client output binding.
+Orchestrator trigger bindings kick off orchestration functions and entity trigger bindings trigger entity functions. Both of these triggers work by reacting to messages that are enqueued into a task hub. The primary way to deliver these messages is by using an orchestrator client binding or an entity client binding from within a client function. Any nonorchestrator function can be a client function. For example, You can trigger the orchestrator from an HTTP-triggered function, an Azure Event Hub triggered function, etc. What makes a function a client function is its use of the durable client output binding.
 
 ## Next steps

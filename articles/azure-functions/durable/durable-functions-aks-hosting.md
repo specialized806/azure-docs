@@ -42,19 +42,19 @@ flowchart TB
 | **Custom Networking** | Advanced networking configurations and policies |
 | **HPA & KEDA** | Multiple scaling options including custom metrics |
 | **Multi-tenant** | Run multiple task hubs in different namespaces |
-| **Existing Investment** | Leverage existing Kubernetes expertise and tools |
+| **Existing Investment** | Apply existing Kubernetes expertise and tools |
 | **Observability** | Integration with Prometheus, Grafana, and other K8s tools |
 
 ## When to use AKS
 
 ### ✅ Great For
 
-- **Existing Kubernetes workloads** — Integrate with existing clusters
-- **Advanced networking** — Custom network policies and configurations
-- **Multi-tenant scenarios** — Isolate workloads in namespaces
-- **Custom scaling** — Complex HPA or KEDA configurations
-- **Compliance requirements** — Full control over security configurations
-- **GitOps workflows** — Flux, ArgoCD, and other GitOps tools
+- **Existing Kubernetes workloads:** Integrate with existing clusters
+- **Advanced networking:** Custom network policies and configurations
+- **Multi-tenant scenarios:** Isolate workloads in namespaces
+- **Custom scaling:** Complex HPA or KEDA configurations
+- **Compliance requirements:** Full control over security configurations
+- **GitOps workflows:** Flux, ArgoCD, and other GitOps tools
 
 ### ⚠️ Consider Alternatives
 
@@ -118,7 +118,7 @@ AKS works with the Durable Task SDKs in any language:
 
 - Azure subscription
 - Azure CLI with aks-preview extension
-- kubectl configured
+- kubectl is configured
 - Docker
 
 ### 1. Create AKS cluster
