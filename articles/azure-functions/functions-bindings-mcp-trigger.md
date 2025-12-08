@@ -177,21 +177,15 @@ Example code for JavaScript isn't currently available. See the TypeScript exampl
 This code creates an endpoint to expose a tool named `savesnippet` that tries to persist a named code snippet to blob storage.
 
 ```typescript
+import { app, InvocationContext, input, output, arg } from "@azure/functions";
+
 app.mcpTool("saveSnippet", {
   toolName: SAVE_SNIPPET_TOOL_NAME,
   description: SAVE_SNIPPET_TOOL_DESCRIPTION,
-  toolProperties: [
-    {
-      propertyName: SNIPPET_NAME_PROPERTY_NAME,
-      propertyType: PROPERTY_TYPE,
-      description: SNIPPET_NAME_PROPERTY_DESCRIPTION,
-    },
-    {
-      propertyName: SNIPPET_PROPERTY_NAME,
-      propertyType: PROPERTY_TYPE,
-      description: SNIPPET_PROPERTY_DESCRIPTION,
-    },
-  ],
+  toolProperties: {
+    [SNIPPET_NAME_PROPERTY_NAME]: arg.string().describe(SNIPPET_NAME_PROPERTY_DESCRIPTION),
+    [SNIPPET_PROPERTY_NAME]: arg.string().describe(SNIPPET_PROPERTY_DESCRIPTION)
+  },
   extraOutputs: [blobOutputBinding],
   handler: saveSnippet,
 });
@@ -234,16 +228,14 @@ export async function saveSnippet(
 This code creates an endpoint to expose a tool named `getsnippet` that tries to retrieve a code snippet by name from blob storage.
  
 ```typescript
+import { app, InvocationContext, input, output, arg } from "@azure/functions";
+
 app.mcpTool("getSnippet", {
   toolName: GET_SNIPPET_TOOL_NAME,
   description: GET_SNIPPET_TOOL_DESCRIPTION,
-  toolProperties: [
-    {
-      propertyName: SNIPPET_NAME_PROPERTY_NAME,
-      propertyType: PROPERTY_TYPE,
-      description: SNIPPET_NAME_PROPERTY_DESCRIPTION,
-    },
-  ],
+  toolProperties: {
+    [SNIPPET_NAME_PROPERTY_NAME]: arg.string().describe(SNIPPET_NAME_PROPERTY_DESCRIPTION)
+  },
   extraInputs: [blobInputBinding],
   handler: getSnippet,
 });
@@ -429,7 +421,7 @@ The MCP tool trigger can bind to the following types:
 | [ToolInvocationContext] | An object representing the tool call, including the tool name and arguments for the call. |
 | JSON serializable types | Functions attempts to deserialize the tool arguments into a plain-old CLR object (POCO) type. This type is also used to [define tool properties](#tool-properties).<br/><br/>When binding to a JSON serializable type, you can optionally also include a parameter of type [ToolInvocationContext] to access the tool call information. |
 
-[ToolInvocationContext]: https://github.com/Azure/azure-functions-mcp-extension/blob/main/src/Microsoft.Azure.Functions.Worker.Extensions.Mcp/ToolInvocationContext.cs
+[ToolInvocationContext]: https://github.com/Azure/azure-functions-mcp-extension/blob/main/src/Microsoft.Azure.Functions.Worker.Extensions.Mcp/Abstractions/ToolInvocationContext.cs
 
 ::: zone-end
 
@@ -555,6 +547,18 @@ The fields of a `ToolProperty` object are:
 | **isArray** | (Optional) If set to `true`, the tool property is an array of the specified property type. Defaults to `false`. |
 
 ::: zone-end  
+
+::: zone pivot="programming-language-javascript,programming-language-typescript"
+
+You can provide the `toolProperties` field as an array of `ToolProperty` objects, or you can use the `arg` helpers from `@azure/functions` to define properties in a more type-safe way:
+
+```typescript
+  toolProperties: {
+    [SNIPPET_NAME_PROPERTY_NAME]: arg.string().describe(SNIPPET_NAME_PROPERTY_DESCRIPTION)
+  }
+```
+
+::: zone-end
 
 For more information, see [Examples](#example).
 

@@ -531,11 +531,13 @@ items:
         href: ../common/redundancy-migration.md?toc=/azure/storage/blobs/toc.json&bc=/azure/storage/blobs/breadcrumb/toc.json
       - name: Change redundancy configuration - FAQs
         href: ../common/storage-redundancy-change-faq.md?toc=/azure/storage/blobs/toc.json&bc=/azure/storage/blobs/breadcrumb/toc.json
+      - name: Geo Priority replication
+        href: ../common/storage-redundancy-priority-replication.md?toc=/azure/storage/blobs/toc.json&bc=/azure/storage/blobs/breadcrumb/toc.json
     - name: Disaster recovery
       items:
       - name: Disaster recovery planning and failover
         href: ../common/storage-disaster-recovery-guidance.md?toc=/azure/storage/blobs/toc.json&bc=/azure/storage/blobs/breadcrumb/toc.json
-      - name: How customer-managed planned failover (preview) works
+      - name: How customer-managed planned failover works
         href: ../common/storage-failover-customer-managed-planned.md?toc=/azure/storage/blobs/toc.json&bc=/azure/storage/blobs/breadcrumb/toc.json
       - name: How customer-managed (unplanned) failover works
         href: ../common/storage-failover-customer-managed-unplanned.md?toc=/azure/storage/blobs/toc.json&bc=/azure/storage/blobs/breadcrumb/toc.json
@@ -547,14 +549,15 @@ items:
         href: ../common/last-sync-time-get.md?toc=/azure/storage/blobs/toc.json&bc=/azure/storage/blobs/breadcrumb/toc.json
       - name: Failover considerations for storage accounts with private endpoints
         href: ../common/storage-failover-private-endpoints.md?toc=/azure/storage/blobs/toc.json&bc=/azure/storage/blobs/breadcrumb/toc.json
-
   - name: Performance and scale
     items:
-    - name: Performance and scalability checklist
+    - name: Performance checklist
       href: storage-performance-checklist.md
+    - name: Optimize data partitions
+      href: storage-performance-blob-partitions.md
     - name: Latency in Blob storage
       href: storage-blobs-latency.md
-    - name: Scalability and performance targets
+    - name: Performance and scale targets
       items:
       - name: Blob storage
         href: scalability-targets.md
@@ -570,6 +573,8 @@ items:
       items:
       - name: Object replication
         href: object-replication-overview.md
+      - name: Object replication priority replication
+        href: object-replication-priority-replication.md
       - name: Configure object replication policies
         href: object-replication-configure.md
       - name: Prevent object replication across tenants
@@ -611,6 +616,8 @@ items:
         items:
         - name: Best practices
           href: access-tiers-best-practices.md
+        - name: Smart tiering
+          href: access-tiers-smart.md
         - name: Change a blob's access tier
           href: access-tiers-online-manage.md
         - name: Archive and rehydrate
@@ -1047,6 +1054,8 @@ items:
         href: storage-blob-event-quickstart.md
     - name: Data Movement library (.NET)
       href: ../common/storage-use-data-movement-library.md?toc=/azure/storage/blobs/toc.json&bc=/azure/storage/blobs/breadcrumb/toc.json
+    - name: Performance checklist for developers
+      href: storage-performance-checklist-developers.md
   - name: Troubleshooting
     href: /troubleshoot/azure/azure-storage/welcome-azure-storage?toc=/azure/storage/blobs/toc.json&bc=/azure/storage/blobs/breadcrumb/toc.json
   - name: Samples

@@ -127,15 +127,13 @@ This table shows the language stack versions that are currently supported for Fl
 
 | Language stack  | Required version |
 | --- | :-----: |
-| C# (isolated process mode)<sup>1</sup> | .NET 8<sup>2</sup>, .NET 9<sup>3</sup> |
+| C# (isolated worker model)<sup>1</sup> | .NET 8, .NET 9, .NET 10 |
 | Java | Java 11, Java 17, Java 21 |
 | Node.js | Node.js 20, Node.js 22   |
 | PowerShell | PowerShell 7.4   |
 | Python | Python 3.10, Python 3.11, Python 3.12  | 
 
-1. [C# in-process mode](./functions-dotnet-class-library.md) isn't supported. You instead need to [migrate your .NET code project to run in the isolated worker model](migrate-dotnet-to-isolated-model.md).  
-2. Requires version `1.20.0` or later of [Microsoft.Azure.Functions.Worker](https://www.nuget.org/packages/Microsoft.Azure.Functions.Worker) and version `1.16.2` or later of [Microsoft.Azure.Functions.Worker.Sdk](https://www.nuget.org/packages/Microsoft.Azure.Functions.Worker.Sdk).
-3. Requires version `2.0.0` or later of both [Microsoft.Azure.Functions.Worker](https://www.nuget.org/packages/Microsoft.Azure.Functions.Worker) and [Microsoft.Azure.Functions.Worker.Sdk](https://www.nuget.org/packages/Microsoft.Azure.Functions.Worker.Sdk).
+1. The [C# in-process model](./functions-dotnet-class-library.md) isn't supported. You instead need to [migrate your .NET project to the isolated worker model](migrate-dotnet-to-isolated-model.md).  
 
 ## Regional subscription memory quotas
 
@@ -166,7 +164,8 @@ Keep these other considerations in mind when using Flex Consumption plan:
 + **Virtual network integration** Ensure that the `Microsoft.App` Azure resource provider is enabled for your subscription by [following these instructions](/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider). The subnet delegation required by Flex Consumption apps is `Microsoft.App/environments`.
 + **Triggers**: While all triggers are fully supported in a Flex Consumption plan, the Blob storage trigger only supports the [Event Grid source](./functions-event-grid-blob-trigger.md). Non-C# function apps must use version `[4.0.0, 5.0.0)` of the [extension bundle](./extension-bundles.md), or a later version. 
 + **Regions**: Not all regions are currently supported. To learn more, see [View currently supported regions](flex-consumption-how-to.md#view-currently-supported-regions).
-+ **Deployments**: Deployment slots aren't currently supported.
++ **Deployments**: Deployment slots aren't currently supported. For zero downtime deployments with Flex Consumption, see [Site update strategies in Flex Consumption](flex-consumption-site-updates.md).
++ **Azure Storage as a local share**: NFS file shares are not available for Flex Consumption. Only SMB and Azure Blobs (read-only) are supported.
 + **Scale**: The lowest maximum scale is currently `40`. The highest currently supported value is `1000`. 
 + **Managed dependencies**: [Managed dependencies in PowerShell](functions-reference-powershell.md#managed-dependencies-feature) aren't supported by Flex Consumption. You must instead [upload modules with app content](functions-reference-powershell.md#including-modules-in-app-content).
 + **Certificates**: Loading certificates with the WEBSITE_LOAD_CERTIFICATES app setting, managed certificates, app service certificates, and other platform certificate-based features like endToEndEncryptionEnabled are currently not supported.

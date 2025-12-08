@@ -207,12 +207,21 @@ Security insights are enabled by default for all users. To manage access, create
 |  | `Microsoft.OffAzure/vmwareSites/machines/inventoryinsights/vulnerabilities/*` | Read vulnerabilities of VMware machine |
 
 
+You can also implement built-in roles for Azure Migrate to manage access to view Insights. [Learn more](/azure/migrate/prepare-azure-accounts?view=migrate)
+
 Below error message is displayed when a user does not have permissions to view Insights:
 
 :::image type="content" source="./media/security-insights-overview/permissions.png" alt-text="Screenshot shows that you don't have permissions to view." lightbox="./media/security-insights-overview/permissions.png":::
 
 >[!Note]
 > Support status for operating systems and software is a machine-level property. User access to this information is determined by the permissions assigned at the machine level.
+
+## Explore Azure services to mitigate security risks
+
+Azure offers integrated solutions to identify and mitigate security risks and strengthen cloud security posture:
+
+- [Microsoft Defender for Cloud](/azure/defender-for-cloud/defender-for-cloud-introduction) delivers unified security management and advanced threat protection. It continuously evaluates resources for misconfigurations and vulnerabilities, providing actionable recommendations to harden your infrastructure. By aligning with industry compliance standards, it ensures your workloads remain secure and compliant.
+- [Azure Update Manager](/azure/update-manager/overview?view=migrate) streamlines operating system patching without additional infrastructure. It automates update schedules to minimize security risks from unpatched systems and offers detailed compliance reporting. With granular control over deployments, it helps maintain system integrity and resilience against evolving threats.
 
 ## Next steps
 
