@@ -25,8 +25,6 @@ The goal of the planning phase is to:
 
 ## Assess your AWS workload
 
-You can use native AWS tools, Azure Migrate, or a manual approach to support the discovery phase.
-
 1. **Existing workload architecture:** Fully document and verify your workload architecture with your migration team. Make sure it includes all workload dependencies, such as network configurations, data flows, and external integrations. 
 2. **Use discovery tooling:** To speed up assessment, use [Workload Discovery on AWS](https://aws.amazon.com/solutions/implementations/workload-discovery-on-aws/) to visualize your AWS workload. It uses AWS Config and AWS Systems Manager data to help identify your workload's components, dependencies, and relationships. 
 3. **Identify critical flows:** Map out essential user and system interactions and [workflows](/azure/well-architected/reliability/identify-flows). When you design the target architecture in the next step, this information helps prioritize reliability efforts and ensures that the most important and impactful components are protected against failure.
