@@ -105,6 +105,19 @@ If you have existing New Relic resources that are linked to the account for moni
 
 The tag rules and logs that you defined for the New Relic resource apply to all the subscriptions that you select to be monitored.
 
+### Remove subscriptions
+
+> [!IMPORTANT]
+> When you unlink a subscription from a New Relic resource, ensure that the subscription isn't scope locked (read-only or delete locks). Scope locks can prevent the addition and removal of diagnostic settings. For more information, see [Lock your Azure resources](../../azure-resource-manager/management/lock-resources.md). 
+
+To unlink subscriptions from a New Relic resource:
+
+1. Select **New Relic account config** > **Monitored Subscriptions** from the service menu. 
+1. Select the subscription you want to remove.
+1. Select **Remove subscriptions**. 
+
+To view the updated list of monitored subscriptions, select **Refresh** from the Command bar.
+
 ## Connected New Relic resources
 
 To view and manage all your New Relic Resources, select **New Relic account config** > **Connected New Relic Resources** from the *Service menu*. 
