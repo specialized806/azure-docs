@@ -171,6 +171,8 @@ You need to complete the following tasks before deploying Application Gateway fo
 
 1. Create a user managed identity for ALB controller and federate the identity as Workload Identity to use in the AKS cluster.
 
+    # [Azure CLI](#tab/azure-cli)
+   
     ```azurecli-interactive
     RESOURCE_GROUP='<your resource group name>'
     AKS_NAME='<your aks cluster name>'
@@ -202,7 +204,47 @@ You need to complete the following tasks before deploying Application Gateway fo
    > [!Note]
    > Assignment of the managed identity immediately after creation may result in an error that the principalId does not exist. Allow about a minute of time to elapse for the identity to replicate in Microsoft Entra ID before delegating the identity.
 
-2. Install ALB Controller using Helm
+    # [Azure PowerShell](#tab/azure-powershell)
+
+    ```azurepowershell-interactive
+    $RESOURCE_GROUP = '<your resource group name>'
+    $AKS_NAME = '<your aks cluster name>'
+    $IDENTITY_RESOURCE_NAME = 'azure-alb-identity'
+    $FEDERATED_IDENTITY_NAME = 'azure-alb-identity'
+    $CONTROLLER_NAMESPACE = 'azure-alb-system' # the namespace the controller will be provisioned to
+    
+    # Get the node resource group
+    $cluster = Get-AzAksCluster -ResourceGroupName $RESOURCE_GROUP -Name $AKS_NAME
+    $mcResourceGroup = $cluster.NodeResourceGroup
+    $mcResourceGroupId = (Get-AzResourceGroup -Name $mcResourceGroup).ResourceId
+    
+    Write-Host "Creating identity $IDENTITY_RESOURCE_NAME in resource group $RESOURCE_GROUP"
+    $identity = New-AzUserAssignedIdentity -ResourceGroupName $RESOURCE_GROUP -Name $IDENTITY_RESOURCE_NAME
+    $principalId = $identity.PrincipalId
+    
+    Write-Host "Waiting 60 seconds to allow for replication of the identity..."
+    Start-Sleep -Seconds 60
+    
+    Write-Host "Apply Reader role to the AKS managed cluster resource group for the newly provisioned identity"
+    New-AzRoleAssignment `
+        -ObjectId $principalId `
+        -RoleDefinitionId "acdd72a7-3385-48ef-bd42-f606fba81ae7" `
+        -Scope $mcResourceGroupId
+    
+    Write-Host "Set up federation with AKS OIDC issuer"
+    $AKS_OIDC_ISSUER = $cluster.OidcIssuerProfile.IssuerUrl
+    
+    New-AzFederatedIdentityCredential `
+        -Name $FEDERATED_IDENTITY_NAME `
+        -IdentityName $IDENTITY_RESOURCE_NAME `
+        -ResourceGroupName $RESOURCE_GROUP `
+        -Issuer $AKS_OIDC_ISSUER `
+        -Subject "system:serviceaccount:${CONTROLLER_NAMESPACE}:alb-controller-sa"
+    ```
+
+    ---
+
+3. Install ALB Controller using Helm
 
     ### For new deployments
     
@@ -211,6 +253,8 @@ You need to complete the following tasks before deploying Application Gateway fo
     When the `helm install` command is run, it deploys the helm chart to the  _default_ namespace. When alb-controller is deployed, it deploys to the `azure-alb-system` namespace. Both of these namespaces may be overridden independently as desired. To override the namespace the helm chart is deployed to, you may specify the --namespace (or -n) parameter. To override the `azure-alb-system` namespace used by alb-controller, you may set the albController.namespace property during installation (`--set albController.namespace`). If neither the `--namespace` or the `--set albController.namespace` parameters are defined, the _default_ namespace is used for the helm chart and the `azure-alb-system` namespace is used for the ALB controller components. Lastly, if the namespace for the helm chart resource isn't yet defined, ensure the `--create-namespace` parameter is also specified along with the `--namespace` or `-n` parameters.
     
     ALB Controller can be installed by running the following commands:
+
+    # [Azure CLI](#tab/azure-cli)
 
     ```azurecli-interactive
     HELM_NAMESPACE='<namespace for deployment>'
@@ -222,13 +266,37 @@ You need to complete the following tasks before deploying Application Gateway fo
          --set albController.namespace=$CONTROLLER_NAMESPACE \
          --set albController.podIdentity.clientID=$(az identity show -g $RESOURCE_GROUP -n $IDENTITY_RESOURCE_NAME --query clientId -o tsv)
     ```
+    
+    # [Azure PowerShell](#tab/azure-powershell)
 
+    ```azurepowershell-interactive
+    $HELM_NAMESPACE = '<namespace for deployment>'
+    $CONTROLLER_NAMESPACE = 'azure-alb-system' # ensure this matches the namespace provided in your managed identity
+    
+    # Get AKS credentials
+    Import-AzAksCredential -ResourceGroupName $RESOURCE_GROUP -Name $AKS_NAME
+    
+    # Get the client ID of the managed identity
+    $identity = Get-AzUserAssignedIdentity -ResourceGroupName $RESOURCE_GROUP -Name $IDENTITY_RESOURCE_NAME
+    $clientId = $identity.ClientId
+    
+    # Install Helm chart
+    helm install alb-controller oci://mcr.microsoft.com/application-lb/charts/alb-controller `
+        --namespace $HELM_NAMESPACE `
+        --version 1.8.12 `
+        --set albController.namespace=$CONTROLLER_NAMESPACE `
+        --set albController.podIdentity.clientID=$clientId
+    ```
+
+    ---
 
     ### For existing deployments
     ALB can be upgraded by running the following commands:
     
     > [!Note]
     > During upgrade, please ensure you specify the `--namespace` or `--set albController.namespace` parameters if the namespaces were overridden in the previously installed installation. To determine the previous namespaces used, you may run the `helm list` command for the helm namespace and `kubectl get pod -A -l app=alb-controller` for the ALB controller.
+
+    # [Azure CLI](#tab/azure-cli)
 
     ```azurecli-interactive
     HELM_NAMESPACE='<your cluster name>'
@@ -240,6 +308,29 @@ You need to complete the following tasks before deploying Application Gateway fo
         --set albController.namespace=$CONTROLLER_NAMESPACE \
         --set albController.podIdentity.clientID=$(az identity show -g $RESOURCE_GROUP -n $IDENTITY_RESOURCE_NAME --query clientId -o tsv)
     ```
+    
+    # [Azure PowerShell](#tab/azure-powershell)
+
+    ```azurepowershell-interactive
+    $HELM_NAMESPACE = '<your cluster name>'
+    $CONTROLLER_NAMESPACE = 'azure-alb-system'
+    
+    # Get AKS credentials
+    Import-AzAksCredential -ResourceGroupName $RESOURCE_GROUP -Name $AKS_NAME
+    
+    # Get the client ID of the managed identity
+    $identity = Get-AzUserAssignedIdentity -ResourceGroupName $RESOURCE_GROUP -Name $IDENTITY_RESOURCE_NAME
+    $clientId = $identity.ClientId
+    
+    # Upgrade Helm chart
+    helm upgrade alb-controller oci://mcr.microsoft.com/application-lb/charts/alb-controller `
+        --namespace $HELM_NAMESPACE `
+        --version 1.8.12 `
+        --set albController.namespace=$CONTROLLER_NAMESPACE `
+        --set albController.podIdentity.clientID=$clientId
+    ```
+    
+    ---
 
 ### Verify the ALB Controller installation
 
@@ -301,17 +392,27 @@ If you wish to uninstall the ALB Controller, complete the following steps.
 
 1. Delete the Application Gateway for Containers, you can delete the Resource Group containing the Application Gateway for Containers resources:
 
-   ```azurecli-interactive
-   az group delete --resource-group $RESOURCE_GROUP
-   ```
+    # [Azure CLI](#tab/azure-cli)
 
-2. Uninstall ALB Controller and its resources from your cluster run the following commands:
+    ```azurecli-interactive
+    az group delete --resource-group $RESOURCE_GROUP
+    ```
 
-   ```azurecli-interactive
-   helm uninstall alb-controller
-   kubectl delete ns azure-alb-system
-   kubectl delete gatewayclass azure-alb-external
-   ```
+    # [Azure PowerShell](#tab/azure-powershell)
+
+    ```azurepowershell-interactive
+    Remove-AzResourceGroup -Name $RESOURCE_GROUP -Force
+    ```
+
+   ---
+
+3. Uninstall ALB Controller and its resources from your cluster run the following commands:
+    
+    ```azurecli-interactive
+    helm uninstall alb-controller
+    kubectl delete ns azure-alb-system
+    kubectl delete gatewayclass azure-alb-external
+    ```
 
 > [!Note]
 > If a different namespace was used for alb-controller installation, ensure you specify the -n parameter on the helm uninstall command to define the proper namespace to be used. For example: `helm uninstall alb-controller -n unique-namespace`
