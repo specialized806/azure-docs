@@ -189,8 +189,11 @@ This guide explains how to deploy Geospatial Consumption Zone (GCZ) as an **add-
       fileRetrievalURL: "https://$AZURE_DNS_NAME/api/dataset/v1/retrievalInstructions"
       crsconvertorURL: "https://$AZURE_DNS_NAME/api/crs/converter/v3/convertTrajectory"
       storageURL: "https://$AZURE_DNS_NAME/api/storage/v2/records"
+      partitionURL: http://partition.osdu-azure/api/partition/v1
       clientSecret: $(echo "$AZURE_CLIENT_SECRET" | base64)
-      gcz_persistence_enabled: true      
+      gcz_persistence_enabled: true
+      azureAppResourceId: $AZURE_APP_ID
+      gcz_ignite_service: $GCZ_IGNITE_SERVICE 
 EOF
 ```
  ### [Windows PowerShell](#tab/windows-powershell-1)
@@ -252,8 +255,11 @@ global:
       fileRetrievalURL: "https://$AZURE_DNS_NAME/api/dataset/v1/retrievalInstructions"
       crsconvertorURL: "https://$AZURE_DNS_NAME/api/crs/converter/v3/convertTrajectory"
       storageURL: "https://$AZURE_DNS_NAME/api/storage/v2/records"
+      partitionURL: http://partition.osdu-azure/api/partition/v1
       clientSecret: [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes($AZURE_CLIENT_SECRET))
-      gcz_persistence_enabled: true      
+      gcz_persistence_enabled: true
+      azureAppResourceId: $AZURE_APP_ID
+      gcz_ignite_service: $GCZ_IGNITE_SERVICE
 "@ | Out-File -FilePath osdu_gcz_custom_values.yaml
 ```
 
