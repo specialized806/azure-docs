@@ -354,7 +354,7 @@ In this step, you configure GitHub deployment using GitHub Actions. It's just on
         1. Select **Sync changes 1**, then confirm with **OK**.
     :::column-end:::
     :::column:::
-        :::image type="content" source="./media/tutorial-python-postgresql-app-flask/azure-portal-deploy-sample-code-flask-6.png" alt-text="A screenshot showing the changes being committed and pushed to GitHub." lightbox="./media/tutorial-python-postgresql-app-flask/azure-portal-deploy-sample-code-flask-5.png":::
+        :::image type="content" source="./media/tutorial-python-postgresql-app-flask/azure-portal-deploy-sample-code-flask-5.png" alt-text="A screenshot showing the changes being committed and pushed to GitHub." lightbox="./media/tutorial-python-postgresql-app-flask/azure-portal-deploy-sample-code-flask-5.png":::
     :::column-end:::
 :::row-end:::
 :::row:::
