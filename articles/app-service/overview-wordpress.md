@@ -7,7 +7,7 @@ ai-usage: ai-assisted
 ms.service: azure-app-service
 ms.topic: overview
 ms.date: 12/09/2025
-ms.update-cycle: 180-days
+ms.update-cycle: 3-years
 # ms.devlang: wordpress
 ms.author: msangapu
 ms.custom: mvc, linux-related-content
