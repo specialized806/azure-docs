@@ -263,6 +263,70 @@
         href: backup-azure-vm-migrate-enhanced-policy.md
       - name: Modify backup policy with Azure CLI
         href: modify-vm-policy-cli.md
+- name: Azure Disk backup
+  items:
+  - name: Overview
+    href: disk-backup-overview.md
+  - name: Backup scenarios
+    items:  
+    - name: From the Azure portal
+      items:
+      - name: Backup
+        href: backup-managed-disks.md
+      - name: Restore
+        href: restore-managed-disks.md
+      - name: Manage
+        href: manage-azure-managed-disks.md
+    - name: With PowerShell
+      items:
+      - name: Backup
+        href: backup-managed-disks-ps.md
+      - name: Restore
+        href: restore-managed-disks-ps.md
+    - name: With CLI
+      items:
+      - name: Backup
+        href: backup-managed-disks-cli.md
+      - name: Restore
+        href: restore-managed-disks-cli.md
+    - name: With REST API
+      items:
+      - name: Policy
+        href: backup-azure-dataprotection-use-rest-api-create-update-disk-policy.md
+      - name: Backup
+        href: backup-azure-dataprotection-use-rest-api-backup-disks.md
+      - name: Restore
+        href: backup-azure-dataprotection-use-rest-api-restore-disks.md
+- name: Azure Blob backup
+  items:
+  - name: Backup scenarios
+    items:
+    - name: From the Azure portal
+      items:
+      - name: Configure and manage
+        href: blob-backup-configure-manage.md
+      - name: Restore
+        href: blob-restore.md
+    - name: With PowerShell
+      items:
+      - name: Backup
+        href: backup-blobs-storage-account-ps.md
+      - name: Restore
+        href: restore-blobs-storage-account-ps.md
+    - name: With CLI
+      items:
+      - name: Backup
+        href: backup-blobs-storage-account-cli.md
+      - name: Restore
+        href: restore-blobs-storage-account-cli.md
+    - name: With REST API
+      items:
+      - name: Policy
+        href: backup-azure-dataprotection-use-rest-api-create-update-blob-policy.md
+      - name: Backup
+        href: backup-azure-dataprotection-use-rest-api-backup-blobs.md
+      - name: Restore
+        href: backup-azure-dataprotection-use-rest-api-restore-blobs.md
 - name: Quickstarts  
   items:
   - name: Back up Azure PostgreSQL Database
@@ -660,66 +724,6 @@
         href: backup-azure-restore-system-state.md
     - name: Manage
       href: backup-azure-manage-mars.md
-  - name: Azure Disk backup
-    items:
-    - name: Overview
-      href: disk-backup-overview.md
-    - name: From the Azure portal
-      items:
-      - name: Backup
-        href: backup-managed-disks.md
-      - name: Restore
-        href: restore-managed-disks.md
-      - name: Manage
-        href: manage-azure-managed-disks.md
-    - name: With PowerShell
-      items:
-      - name: Backup
-        href: backup-managed-disks-ps.md
-      - name: Restore
-        href: restore-managed-disks-ps.md
-    - name: With CLI
-      items:
-      - name: Backup
-        href: backup-managed-disks-cli.md
-      - name: Restore
-        href: restore-managed-disks-cli.md
-    - name: With REST API
-      items:
-      - name: Policy
-        href: backup-azure-dataprotection-use-rest-api-create-update-disk-policy.md
-      - name: Backup
-        href: backup-azure-dataprotection-use-rest-api-backup-disks.md
-      - name: Restore
-        href: backup-azure-dataprotection-use-rest-api-restore-disks.md
-  - name: Azure Blob backup
-    items:
-    - name: From the Azure portal
-      items:
-      - name: Configure and manage
-        href: blob-backup-configure-manage.md
-      - name: Restore
-        href: blob-restore.md
-    - name: With PowerShell
-      items:
-      - name: Backup
-        href: backup-blobs-storage-account-ps.md
-      - name: Restore
-        href: restore-blobs-storage-account-ps.md
-    - name: With CLI
-      items:
-      - name: Backup
-        href: backup-blobs-storage-account-cli.md
-      - name: Restore
-        href: restore-blobs-storage-account-cli.md
-    - name: With REST API
-      items:
-      - name: Policy
-        href: backup-azure-dataprotection-use-rest-api-create-update-blob-policy.md
-      - name: Backup
-        href: backup-azure-dataprotection-use-rest-api-backup-blobs.md
-      - name: Restore
-        href: backup-azure-dataprotection-use-rest-api-restore-blobs.md
   - name: Azure Data Lake Storage vaulted backup
     items:
     - name: Configure vaulted backup
