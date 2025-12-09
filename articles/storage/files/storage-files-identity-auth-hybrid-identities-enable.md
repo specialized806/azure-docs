@@ -4,9 +4,8 @@ description: Learn how to enable identity-based Kerberos authentication over Ser
 author: khdownie
 ms.service: azure-file-storage
 ms.topic: how-to
-ms.date: 11/07/2025
+ms.date: 11/26/2025
 ms.author: kendownie
-recommendations: false
 # Customer intent: As a storage administrator, I want to enable Microsoft Entra Kerberos authentication on Azure Files, so that hybrid and cloud-only users can securely access file shares with their Microsoft Entra credentials.
 ---
 
@@ -49,6 +48,11 @@ The following prerequisites are mandatory. Without these, you can't authenticate
 
 - With Microsoft Entra Kerberos, the Kerberos ticket encryption is always AES-256. But you can set the SMB channel encryption that best fits your needs.
 
+- Azure Files SMB support for external identities is currently limited to FSLogix scenarios running on Azure Virtual Desktop (AVD). This applies to external users invited to a Microsoft Entra ID tenant in the public cloud, with the exception of cross-cloud users (those invited into the tenant from Azure Government or Azure operated by 21Vianet). Government cloud scenarios aren't supported. Non-AVD scenarios aren't supported for business-to-business guest users or users from other Microsoft Entra tenants.
+
+> [!IMPORTANT]
+> Cloud-only identities support (preview) is only available using a [default share-level permission](storage-files-identity-assign-share-level-permissions.md#share-level-permissions-for-all-authenticated-identities).
+
 ### Operating system and domain prerequisites
 
 The following prerequisites are required for the standard Microsoft Entra Kerberos authentication flow as described in this article. If some or all of your client machines don't meet these, you can still enable Microsoft Entra Kerberos authentication for SMB file shares, but you'll also need to [configure a cloud trust](storage-files-identity-auth-hybrid-cloud-trust.md) to allow these clients to access file shares.
@@ -71,7 +75,9 @@ Clients must be Microsoft Entra joined or [Microsoft Entra hybrid joined](../../
 
 ## Regional availability
 
-This feature is supported in the [Azure Public, Azure US Gov, and Azure China 21Vianet clouds](https://azure.microsoft.com/global-infrastructure/locations/).
+Support for hybrid identities is available in the [Azure Public, Azure US Gov, and Azure China 21Vianet clouds](https://azure.microsoft.com/global-infrastructure/locations/).
+
+Support for cloud-only identities (preview) is available only in the Azure Public clouds and is limited to using a [default share-level permission](storage-files-identity-assign-share-level-permissions.md#share-level-permissions-for-all-authenticated-identities) for all authenticated identities.
 
 <a name='enable-azure-ad-kerberos-authentication'></a>
 
@@ -167,7 +173,13 @@ You can configure the API permissions from the [Azure portal](https://portal.azu
 
 If you're connecting to a storage account via a private endpoint/private link using Microsoft Entra Kerberos authentication, you'll also need to add the private link FQDN to the storage account's Microsoft Entra application. For instructions, see our [troubleshooting guide](/troubleshoot/azure/azure-storage/files-troubleshoot-smb-authentication?toc=/azure/storage/files/toc.json#error-1326---the-username-or-password-is-incorrect-when-using-private-link).
 
-If you have more than 1,010 security identifiers (SIDs) in a Microsoft Entra group, you might need to take [additional steps](/troubleshoot/windows-server/windows-security/logging-on-user-account-fails) in order to overcome the Kerberos ticket limit.
+## Enable cloud-only groups support (mandatory for cloud-only identities)
+
+Kerberos tickets can include a maximum of 1,010 Security Identifiers (SIDs) for groups. Now that Microsoft Entra Kerberos supports Entra-only identities (preview), tickets must include both on-premises group SIDs and cloud group SIDs. If the combined group SIDs exceed 1,010, the Kerberos ticket can't be issued. 
+
+If you're using Microsoft Entra Kerberos to authenticate cloud-only identities, you'll need to update the Tags in your application manifest file, or authentication will fail. 
+
+Follow [these instructions](/entra/identity/authentication/kerberos#group-sid-limit-in-entra-kerberos-preview) to update the tag in your application manifest.
 
 ## Disable multifactor authentication on the storage account
 

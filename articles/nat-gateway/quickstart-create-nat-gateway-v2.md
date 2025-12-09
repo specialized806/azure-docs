@@ -26,11 +26,11 @@ In this quickstart, learn how to create a Standard V2 Azure NAT Gateway by using
 
 ### [Portal](#tab/portal)
 
-- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 ### [PowerShell](#tab/powershell)
 
-- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 - Azure Cloud Shell or Azure PowerShell.
 
@@ -114,13 +114,12 @@ Azure NAT Gateway supports multiple deployment options for IP addresses and redu
 
 - [Zone redundant IPv4 address](#zone-redundant-ipv4-address)
 - [Zone redundant IPv4 prefix](#zone-redundant-ipv4-prefix)
-- [Zone redundant virtual network level](#zone-redundant-virtual-network-level)
 
 ### Zone redundant IPv4 address
 
 ### [Portal](#tab/portal)
 
-1. Sign in to the [Azure portal](https://portal.azure.com).
+1. Sign in to the [Azure preview portal](https://preview.portal.azure.com).
 
 1. In the search box at the top of the Azure portal, enter **Public IP address**. Select **Public IP addresses** in the search results.
 
@@ -238,7 +237,7 @@ az network nat gateway create \
 
 ### [Portal](#tab/portal)
 
-1. Sign in to the [Azure portal](https://portal.azure.com).
+1. Sign in to the [Azure preview portal](https://preview.portal.azure.com).
 
 1. In the search box at the top of the Azure portal, enter **Public IP prefix**. Select **Public IP Prefixes** in the search results.
 
@@ -350,227 +349,9 @@ az network nat gateway create \
 
 ---
 
-### Zone redundant virtual network level
-
-Standard V2 NAT Gateway has a feature that allows you to associate the NAT gateway resource with a virtual network instead of the subnet level. Each subnet contained within the virtual network can then use the NAT gateway for outbound internet connectivity.
-
-Create a public IP address or prefix to your preference from the previous steps, then proceed to create the virtual network, subnets, and NAT gateway resource.
-
-### [Portal](#tab/portal)
-
-#### Create the virtual network
-
-1. Sign in to the [Azure portal](https://portal.azure.com).
-
-1. In the search box at the top of the Azure portal, enter **Virtual network**. Select **Virtual networks** in the search results.
-
-1. Select **Create**.
-
-1. Enter or select the following information in the **Basics** tab of **Create virtual network**.
-
-    | Setting | Value |
-    | ------- | ----- |
-    | **Project details** |  |
-    | Subscription | Select your subscription. |
-    | Resource group | Select **test-rg** or your resource group. |
-    | **Instance details** |  |
-    | Name | Enter **vnet-1**. |
-    | Region | Select your region. This example uses **East US**. |
-
-1. Select the **IP Addresses** tab, or select **Next: Security**, then **Next: IP Addresses**.
-
-1. In **Subnets** select the **default** subnet.
-
-1. Enter or select the following information in **Edit subnet**.
-
-    | Setting | Value |
-    | ------- | ----- |
-    | Subnet purpose | Leave the default. |
-    | Name | Enter **subnet-1**. |
-
-1. Leave the rest of the settings as default, then select **Save**.
-
-1. Select **+ Add a subnet**.
-
-1. In **Add a subnet** enter or select the following information.
-
-    | Setting | Value |
-    | ------- | ----- |
-    | Subnet purpose | Select **Azure Bastion**. |
-
-1. Leave the rest of the settings as default, then select **Add**.
-
-1. Select **Review + create**, then select **Create**.
-
-#### Create the NAT gateway
-
-1. In the search box at the top of the Azure portal, enter **NAT gateway**. Select **NAT gateways** in the search results.
-
-1. Select **Create**.
-
-1. Enter or select the following information in the **Basics** tab of **Create network address translation (NAT) gateway**.
-
-    | Setting | Value |
-    | ------- | ----- |
-    | **Project details** |  |
-    | Subscription | Select your subscription. |
-    | Resource group | Select **test-rg** or your resource group. |
-    | **Instance details** |  |
-    | NAT gateway name | Enter **nat-gateway**. |
-    | Region | Select your region. This example uses **East US**. |
-    | SKU | Select **Standard V2**. |
-    | TCP idle timeout (minutes) | Leave the default of **4**. |
-
-1. Select **Next**.
-
-1. In the **Outbound IP** tab, select **+ Add public IP addresses or prefixes**.
-
-1. In **Add public IP addresses or prefixes**, select **Public IP addresses**. Select the public IP address you created earlier, **public-ip-nat**.
-
-1. Select **Next**.
-
-1. In the **Networking** tab, in **Virtual network**, select **vnet-1**.
-
-1. Check the box for **Default to all subnets**.
-
-1. Select **Review + create**, then select **Create**.
-
-### [PowerShell](#tab/powershell)
-
-Use [New-AzVirtualNetworkSubnetConfig](/powershell/module/az.network/new-azvirtualnetworksubnetconfig) to create the subnet configurations. Use [New-AzVirtualNetwork](/powershell/module/az.network/new-azvirtualnetwork) to create the virtual network.
-
-```azurepowershell
-## Create subnet config ##
-$subnet = @{
-    Name = 'subnet-1'
-    AddressPrefix = '10.0.0.0/24'
-    DefaultOutboundAccess = $false
-}
-$subnetConfig = New-AzVirtualNetworkSubnetConfig @subnet 
-
-## Create Azure Bastion subnet ##
-$bastsubnet = @{
-    Name = 'AzureBastionSubnet' 
-    AddressPrefix = '10.0.1.0/26'
-}
-$bastsubnetConfig = New-AzVirtualNetworkSubnetConfig @bastsubnet
-
-## Create the virtual network ##
-$net = @{
-    Name = 'vnet-1'
-    ResourceGroupName = 'test-rg'
-    Location = 'eastus'
-    AddressPrefix = '10.0.0.0/16'
-    Subnet = $subnetConfig,$bastsubnetConfig
-}
-$vnet = New-AzVirtualNetwork @net
-```
-
-### Create the NAT gateway
-
-Use [New-AzNatGateway](/powershell/module/az.network/new-aznatgateway) to create the NAT gateway resource.
-
-#### Public IP address
-
-```azurepowershell
-## Create NAT gateway resource ##
-$nat = @{
-    ResourceGroupName = 'test-rg'
-    Name = 'nat-gateway'
-    IdleTimeoutInMinutes = '4'
-    PublicIpAddress = $publicIPIPv4
-    Sku = 'StandardV2'
-    Location = 'eastus'
-    SourceVirtualNetwork = $vnet
-    Zone = 1,2,3
-}
-$natGateway = New-AzNatGateway @nat
-```
-
-#### Public IP prefix
-
-```azurepowershell
-## Create NAT gateway resource ##
-$nat = @{
-    ResourceGroupName = 'test-rg'
-    Name = 'nat-gateway'
-    IdleTimeoutInMinutes = '4'
-    PublicIpPrefix = $publicIPIPv4prefix
-    Sku = 'StandardV2'
-    Location = 'eastus'
-    SourceVirtualNetwork = $vnet
-    Zone = 1,2,3
-}
-$natGateway = New-AzNatGateway @nat
-```
-
-### [CLI](#tab/cli)
-
-Use [az network vnet create](/cli/azure/network/vnet#az-network-vnet-create) to create the virtual network. Use [az network vnet subnet create](/cli/azure/network/vnet/subnet#az-network-vnet-subnet-create) to create the subnet configurations.
-
-```azurecli-interactive
-## Create the virtual network ##
-az network vnet create \
-    --resource-group test-rg \
-    --name vnet-1 \
-    --location eastus \
-    --address-prefix 10.0.0.0/16 \
-    --subnet-name subnet-1 \
-    --subnet-prefix 10.0.0.0/24
-
-## Create Azure Bastion subnet ##
-az network vnet subnet create \
-    --resource-group test-rg \
-    --vnet-name vnet-1 \
-    --name AzureBastionSubnet \
-    --address-prefix 10.0.1.0/26
-```
-
-### Create the NAT gateway
-
-Use [az network nat gateway create](/cli/azure/network/nat/gateway#az-network-nat-gateway-create) to create the NAT gateway resource.
-
-#### Public IP address
-
-```azurecli-interactive
-## Create source VNet variable ##
-vnetId=$(az network vnet show --resource-group test-rg --name vnet-1 --query id -o tsv)
-sourceVnet="{\"id\":\"$vnetId\"}"
-
-az network nat gateway create \
-    --resource-group test-rg \
-    --name nat-gateway \
-    --location eastus \
-    --public-ip-addresses public-ip-nat \
-    --idle-timeout 4 \
-    --sku StandardV2 \
-    --source-vnet "$sourceVnet" \
-    --zone 1 2 3
-```
-
-#### Public IP prefix
-
-```azurecli-interactive
-## Create source VNet variable ##
-vnetId=$(az network vnet show --resource-group test-rg --name vnet-1 --query id -o tsv)
-sourceVnet="{\"id\":\"$vnetId\"}"
-
-az network nat gateway create \
-    --resource-group test-rg \
-    --name nat-gateway \
-    --location eastus \
-    --public-ip-prefixes public-ip-prefix-nat \
-    --idle-timeout 4 \
-    --sku StandardV2 \
-    --source-vnet "$sourceVnet" \
-    --zone 1 2 3
-```
-
----
-
 ## Create virtual network and subnet configurations
 
-Create the virtual network and subnets needed for this quickstart. You can skip this section if you created a network level NAT gateway from the previous step.
+Create the virtual network and subnets needed for this quickstart.
 
 ### [Portal](#tab/portal)
 

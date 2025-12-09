@@ -4,7 +4,7 @@ description: Learn how to ensure reliability and availability in Azure Database 
 author: gaurikasar
 ms.author: gkasar
 ms.reviewer: maghan, gbowerman
-ms.date: 10/21/2025
+ms.date: 12/03/2025
 ms.service: azure-database-postgresql
 ms.topic: concept-article
 ms.custom:
@@ -50,9 +50,9 @@ You can configure high availability (HA) in two ways: zone-redundant HA, which p
 
 To simplify configuration and ensure zonal resiliency, the portal provides a Zonal Resiliency option with two radio buttons: Enabled and Disabled. Selecting Enabled attempts to create the standby server in a different availability zone (zone-redundant HA mode). If the region doesn't support zone-redundant HA, you can select the fallback checkbox (highlighted in the following image) to enable same-zone HA instead.
 
-:::image type="content" source="media/reliability-azure-database-postgresql/multi-availability-zones.png" alt-text="Screenshot of the zonal resiliency experience in the portal." lightbox="./media/reliability-azure-database-postgresql/same-zone-high-availability-architecture.png":::
+:::image type="content" source="media/reliability-azure-database-postgresql/multi-availability-zones.png" alt-text="Screenshot of the zonal resiliency experience in the portal." lightbox="./media/reliability-azure-database-postgresql/multi-availability-zones.png":::
 
-When you select the fallback checkbox, the system creates the standby server in the same zone and later triggers an automatic migration workflow during a maintenance window to move it to a different zone once capacity becomes available. If you don't select the checkbox and zonal capacity is unavailable, HA enablement fails. This design enforces zone-redundant HA as the default while providing a controlled fallback for same-zone HA, ensuring workloads eventually achieve full zone resiliency without manual intervention.
+When you select the fallback checkbox, the system creates the standby server in the same zone. If zonal capacity later becomes available, Azure will notify you so you can choose to migrate to a zone-redundant HA configuration using [PITR or read replicas](/azure/postgresql/flexible-server/how-to-configure-high-availability).  If you don't select the checkbox and zonal capacity is unavailable, HA enablement fails. This design enforces zone-redundant HA as the default while providing a controlled fallback for same-zone HA, ensuring workloads eventually achieve full zone resiliency without manual intervention.
 
 ### High availability features
 
@@ -77,7 +77,7 @@ When you select the fallback checkbox, the system creates the standby server in 
 - Periodic maintenance activities such as minor version upgrades happen at the standby first. To reduce downtime, the standby is promoted to primary so that workloads can keep on while the maintenance tasks are applied on the remaining node.
 
 > [!NOTE]  
-> To ensure high availability functions properly, configure the `max_replication_slots` and `max_wal_senders` server parameter values. High availability requires four of each to handle failovers and seamless upgrades. For a high availability setup with 5 read replicas and 12 logical replication slots, set both `max_replication_slots` and `max_wal_senders` parameter values to 21. This configuration is necessary because each read replica and logical replication slot requires one of each, plus the four needed for high availability to function properly. For more information about `max_replication_slots` and `max_wal_senders` parameters, refer to the [documentation](/azure/postgresql/flexible-server/server-parameters-table-replication-sending-servers).
+> To ensure high availability functions properly, configure the `max_replication_slots` and `max_wal_senders` server parameter values. High availability requires four of each to handle failovers and seamless upgrades. For a high availability setup with five read replicas and 12 logical replication slots, set both `max_replication_slots` and `max_wal_senders` parameter values to 21. This configuration is necessary because each read replica and logical replication slot requires one of each, plus the four needed for high availability to function properly. For more information about `max_replication_slots` and `max_wal_senders` parameters, refer to the [documentation](/azure/postgresql/flexible-server/server-parameters-table-replication-sending-servers).
 
 ### Monitor high-availability health
 
@@ -109,7 +109,7 @@ For a detailed guide on configuring and interpreting HA health statuses, see [Hi
 
 - Planned events such as scale computing and scale storage happen on the standby first and then on the primary server. Currently, the server doesn't failover for these planned operations.
 
-- If logical decoding or logical replication is configured on an HA-enabled flexible server. 
+- If you configure logical decoding or logical replication on an HA-enabled flexible server: 
     - In **PostgreSQL 16** and earlier, logical replication slots aren't preserved on the standby server after a failover by default.
     - To ensure logical replication continues to function after failover, you need to enable the `pg_failover_slots` extension and configure supporting settings such as `hot_standby_feedback = on`.
     - Starting with **PostgreSQL 17**, slot synchronization is supported natively. If you enable the correct PostgreSQL configurations (`sync_replication_slots`, `hot_standby_feedback`), logical replication slots are preserved automatically after failover, and no extension is required.
@@ -121,9 +121,9 @@ For a detailed guide on configuring and interpreting HA health statuses, see [Hi
 
 ### SLA
 
-- The **Zonal** model offers an uptime for an [SLA for about 99%](https://azure.microsoft.com/support/legal/sla/postgresql).
+- The **Zonal** model offers an uptime for an [SLA for about 99.95%](https://azure.microsoft.com/support/legal/sla/postgresql).
 
-- The **Zone-redundancy** model offers an uptime for an [SLA for about 99%](https://azure.microsoft.com/support/legal/sla/postgresql).
+- The **Zone-redundancy** model offers an uptime for an [SLA for about 99.99%](https://azure.microsoft.com/support/legal/sla/postgresql).
 
 ### Create an Azure Database for PostgreSQL with availability zone enabled
 
@@ -137,7 +137,7 @@ To learn how to enable or disable high availability configuration in your flexib
 
 #### Transaction completion
 
-Application transaction-triggered write and commits first log to the WAL on the primary server. The primary server streams these logs to the standby server by using the Postgres streaming protocol. When the standby server storage persists the logs, the primary server acknowledges write completion. The application commits its transaction only after this acknowledgment. This extra round-trip adds latency to your application. The impact percentage depends on the application. This acknowledgment process doesn't wait for the logs to be applied to the standby server. The standby server stays in recovery mode until it's promoted.
+An application transaction triggers a write and commit that first logs to the WAL on the primary server. The primary server streams these logs to the standby server by using the Postgres streaming protocol. When the standby server storage persists the logs, the primary server acknowledges write completion. The application commits its transaction only after this acknowledgment. This extra round-trip adds latency to your application. The impact percentage depends on the application. This acknowledgment process doesn't wait for the logs to be applied to the standby server. The standby server stays in recovery mode until it's promoted.
 
 #### Health check
 
@@ -292,7 +292,7 @@ The following picture shows the transition between VM and storage failure.
 
 ## Cross-region disaster recovery and business continuity
 
-If a region-wide disaster, Azure can provide protection from regional or large geography disasters with disaster recovery by making use of another region. For more information on Azure disaster recovery architecture, see [Azure to Azure disaster recovery architecture](../site-recovery/azure-to-azure-architecture.md).
+If a region-wide disaster occurs, Azure can provide protection from regional or large geography disasters with disaster recovery by making use of another region. For more information on Azure disaster recovery architecture, see [Azure to Azure disaster recovery architecture](../site-recovery/azure-to-azure-architecture.md).
 
 Flexible server provides features that protect data and mitigate downtime for your mission-critical databases during planned and unplanned downtime events. Built on top of the Azure infrastructure that offers robust resiliency and availability, flexible server offers business continuity features that provide fault-protection, address recovery time requirements, and reduce data loss exposure. As you architect your applications, consider the downtime tolerance - the recovery time objective (RTO), and data loss exposure - the recovery point objective (RPO). For example, your business-critical database requires stricter uptime than a test database.
 
