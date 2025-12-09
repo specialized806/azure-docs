@@ -177,7 +177,7 @@ This guide explains how to deploy Geospatial Consumption Zone (GCZ) as an **add-
       type: LoadBalancer
     configuration:
       privateNetwork: "$PRIVATE_NETWORK"
-      datapartitionid: $DATA_PARTITION_ID
+      dataPartitionId: $DATA_PARTITION_ID
       clientId: $AZURE_CLIENT_ID
       tenantId: $AZURE_TENANT_ID
       callbackURL: $CALLBACK_URL
@@ -240,7 +240,7 @@ global:
       type: LoadBalancer
     configuration:
       privateNetwork: "$PRIVATE_NETWORK"
-      datapartitionid: $DATA_PARTITION_ID
+      dataPartitionId: $DATA_PARTITION_ID
       clientId: $AZURE_CLIENT_ID
       tenantId: $AZURE_TENANT_ID
       callbackURL: $CALLBACK_URL
