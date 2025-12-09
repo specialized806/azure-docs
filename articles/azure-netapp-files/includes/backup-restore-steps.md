@@ -19,11 +19,7 @@ ms.custom: include file
 3. In the Create a Volume page, provide information for the fields in the page as applicable. 
 
     * The **Protocol** field is pre-populated from the original volume and cannot be changed.    
-        If you restore a volume from the backup list at the NetApp account level, you must specify the protocol. The **Protocol** field must match the protocol of the original volume. Otherwise, the restore operation fails with the following error:  
-        `Protocol Type value mismatch between input and source volume of backupId <backup-id of the selected backup>. Supported protocol type : <Protocol Type of the source volume>`
-
     * The **Quota** value must be **at least 20% greater** than the size of the backup from which the restore is triggered. Once the restore is complete, the volume can be resized depending on the size used. 
-
     * The **Capacity pool** that the backup is restored into must have sufficient unused capacity to host the new restored volume. Otherwise, the restore operation fails.
 
     Select **Review + Create** to begin restoring the backup to a new volume.
