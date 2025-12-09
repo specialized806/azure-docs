@@ -22,6 +22,8 @@ You need to complete the following tasks before deploying Application Gateway fo
 
 1. Prepare your Azure subscription and your `az-cli` client.
 
+    # [Azure CLI](#tab/azure-cli)
+   
     ```azurecli-interactive
     # Sign in to your Azure subscription.
     SUBSCRIPTION_ID='<your subscription id>'
@@ -37,6 +39,24 @@ You need to complete the following tasks before deploying Application Gateway fo
     # Install Azure CLI extensions.
     az extension add --name alb
     ```
+    # [Azure PowerShell](#tab/azure-powershell)
+
+    ```azurepowershell-interactive
+    # Sign in to your Azure subscription.
+    $SUBSCRIPTION_ID = '<your subscription id>'
+    Connect-AzAccount
+    Set-AzContext -SubscriptionId $SUBSCRIPTION_ID
+    
+    # Register required resource providers on Azure.
+    Register-AzResourceProvider -ProviderNamespace Microsoft.ContainerService
+    Register-AzResourceProvider -ProviderNamespace Microsoft.Network
+    Register-AzResourceProvider -ProviderNamespace Microsoft.NetworkFunction
+    Register-AzResourceProvider -ProviderNamespace Microsoft.ServiceNetworking
+    
+    # Install Azure PowerShell module for Application Gateway for Containers (ALB).
+    Install-Module -Name Az.Alb -Force -AllowClobber
+    ```
+    ---
 
 2. Set an AKS cluster for your workload.
 
@@ -47,13 +67,35 @@ You need to complete the following tasks before deploying Application Gateway fo
 
     If using an existing cluster, ensure you enable Workload Identity support on your AKS cluster. Workload identities can be enabled via the following commands:
 
+    # [Azure CLI](#tab/azure-cli)
+
     ```azurecli-interactive
     AKS_NAME='<your cluster name>'
     RESOURCE_GROUP='<your resource group name>'
     az aks update -g $RESOURCE_GROUP -n $AKS_NAME --enable-oidc-issuer --enable-workload-identity --no-wait
     ```
 
+     # [Azure PowerShell](#tab/azure-powershell)
+
+    ```azurepowershell-interactive
+    $AKS_NAME = '<your cluster name>'
+    $RESOURCE_GROUP = '<your resource group name>'
+    
+    # Get the AKS cluster object
+    $cluster = Get-AzAksCluster -ResourceGroupName $RESOURCE_GROUP -Name $AKS_NAME
+    
+    # Set security profile
+    $cluster.SecurityProfile.WorkloadIdentity = $True
+    
+    # Update the cluster
+    Set-AzAksCluster -InputObject $cluster -EnableOidcIssuer
+    ```
+
+    ---
+
     If you don't have an existing cluster, use the following commands to create a new AKS cluster with Azure CNI and workload identity enabled.
+
+    # [Azure CLI](#tab/azure-cli)
 
     ```azurecli-interactive
     AKS_NAME='<your cluster name>'
@@ -73,7 +115,36 @@ You need to complete the following tasks before deploying Application Gateway fo
         --generate-ssh-key
     ```
 
-3. Install Helm
+    # [Azure PowerShell](#tab/azure-powershell)
+
+    ```azurepowershell-interactive
+    $AKS_NAME = '<your cluster name>'
+    $RESOURCE_GROUP = '<your resource group name>'
+    $LOCATION = 'northeurope'
+    $VM_SIZE = '<the size of the vm in AKS>' # The size needs to be available in your location
+    
+    # Create resource group
+    New-AzResourceGroup -Name $RESOURCE_GROUP -Location $LOCATION
+    
+    # Create AKS cluster with OIDC Issuer
+    New-AzAksCluster `
+        -ResourceGroupName $RESOURCE_GROUP `
+        -Name $AKS_NAME `
+        -Location $LOCATION `
+        -NodeVmSize $VM_SIZE `
+        -NetworkPlugin azure `
+        -EnableOidcIssuer `
+        -GenerateSshKey
+
+    # Enable workload identity on the cluster
+    $cluster = Get-AzAksCluster -ResourceGroupName $RESOURCE_GROUP -Name $AKS_NAME
+    $cluster.SecurityProfile.WorkloadIdentity = $True
+    Set-AzAksCluster -InputObject $cluster
+    ```
+
+    ---
+
+4. Install Helm
 
     [Helm](https://github.com/helm/helm) is an open-source packaging tool that is used to install ALB controller. 
 
