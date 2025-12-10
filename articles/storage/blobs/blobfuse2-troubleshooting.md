@@ -2,12 +2,15 @@
 title: Troubleshoot issues in BlobFuse2
 titleSuffix: Azure Storage
 description: Learn how to troubleshoot issues in BlobFuse2.
-author: akashdubey-ms
-ms.author: akashdubey
+author: normesta
+ms.author: normesta
 
 ms.service: azure-blob-storage
-ms.topic: how-to
+ms.topic: troubleshooting
 ms.date: 12/02/2022
+
+ms.custom: linux-related-content
+
 # Customer intent: "As a cloud administrator, I want to access troubleshooting resources for BlobFuse2, so that I can efficiently resolve any issues that arise during its use."
 ---
 
