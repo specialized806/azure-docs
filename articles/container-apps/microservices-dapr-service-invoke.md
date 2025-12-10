@@ -19,14 +19,14 @@ ms.custom:
 
 # Tutorial: Use Dapr Service Invocation for microservices communication 
 
-In a microservice-based application, you can use Distributed Application Runtime (Dapr) for improved security and reliability in communication between microservices. To encrypt data in transit, the [Dapr Service Invocation API](https://learn.microsoft.com/azure/container-apps/dapr-overview#supported-dapr-apis-components-and-tooling) uses automatic mutual Transport Layer Security (mTLS). For reliability, this API offers a resiliency feature that performs automatic retries after call failures and transient errors.
+In a microservice-based application, you can use Distributed Application Runtime (Dapr) for improved security and reliability in communication between microservices. To encrypt data in transit, the [Dapr Service Invocation API](dapr-overview.md#supported-dapr-apis-components-and-tooling) uses automatic mutual Transport Layer Security (mTLS). For reliability, this API offers a resiliency feature that performs automatic retries after call failures and transient errors.
 
 This tutorial uses a sample service invocation project that includes the following components:
 
 - A `checkout` caller service that uses HTTP proxying on a loop to invoke a request on an `order-processor` service via the Dapr Service Invocation API
 - An `order-processor` callee service that receives the request from the `checkout` service via the Dapr Service Invocation API
 
-:::image type="content" source="media/microservices-dapr-azd/service-invocation-quickstart.png" alt-text="Diagram of communication between checkout and order-processor services. The communication flows through Dapr and uses mTSL encryption and retries.":::
+:::image type="content" source="media/microservices-dapr-azd/service-invocation-quickstart.png" alt-text="Diagram of communication between checkout and order-processor services. The communication flows through Dapr and uses mTLS encryption and retries.":::
 
 In this tutorial, you:
 
