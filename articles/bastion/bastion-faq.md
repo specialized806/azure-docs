@@ -202,7 +202,7 @@ Azure Bastion currently doesn't support timezone redirection and isn't timezone 
 
 ### <a name="disconnect"></a>Will an existing session disconnect during maintenance on the Bastion host?
 
-Yes, existing sessions on the target Bastion resource disconnects during maintenance on the Bastion resource.
+Yes, existing sessions disconnect during maintenance on the Bastion resource.
 
 ## <a name="peering"></a>Virtual network peering FAQs
 
