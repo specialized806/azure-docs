@@ -2,10 +2,10 @@
   href: index.yml
 - name: Overview
   items:
-  - name: About Azure Functions
-    href: ../functions-overview.md
-  - name: About Azure Durable
+  - name: What is Azure Durable?
     href: durable-overview.md
+  - name: When to use Azure Durable
+    href: durable-use-cases.md
 - name: Core concepts
   items:
   - name: Functions 
@@ -48,6 +48,8 @@
       href: durable-functions-versioning.md
     - name: Orchestration versioning
       href: durable-functions-orchestration-versioning.md
+    - name: Versioning
+      href: ./durable-task-scheduler/durable-task-scheduler-versioning.md
   - name: Storage providers
     href: durable-functions-storage-providers.md
   - name: Performance and scale
@@ -60,6 +62,8 @@
   items:
   - name: Choose your hosting option
     href: durable-functions-hosting-options.md
+  - name: Choose your orchestration framework
+    href: ./durable-task-scheduler/choose-orchestration-framework.md
   - name: Durable Functions in Azure Functions
     items:
     - name: Overview
@@ -125,7 +129,7 @@
       href: ./durable-task-scheduler/durable-task-scheduler-auto-scaling-aks.md
 - name: Developer reference
   items:
-  - name: Azure Functions
+  - name: Durable Functions
     items: 
     - name: Host.json settings
       href: durable-functions-bindings.md#host-json
@@ -193,6 +197,12 @@
     items:
     - name: Overview
       href: ./durable-task-scheduler/durable-task-overview.md 
+    - name: Quickstarts
+      items:
+      - name: Deploy Durable Task SDK workers to Azure Container Apps
+        href: ./durable-task-scheduler/deploy-durable-task-sdk-container-apps.md
+      - name: Deploy Durable Task SDK workers to Azure Kubernetes Service
+        href: ./durable-task-scheduler/deploy-durable-task-sdk-aks.md 
     - name: .NET API
       items:
       - name: WebJobs.Extensions.DurableTask 
@@ -223,15 +233,18 @@
   items:
   - name: Overview
     href: ./durable-task-scheduler/durable-task-scheduler.md
-  - name: Quickstart
-    displayName: get started, durable task scheduler
-    href: ./durable-task-scheduler/quickstart-portable-durable-task-sdks.md
+  - name: Durable Task SDKs vs. Durable Task Framework
+    href: durable-task-kits-vs-framework.md
+  - name: Quickstarts
+    item:
+    - name: Create an app with the Durable SDKs 
+      href: ./durable-task-scheduler/quickstart-portable-durable-task-sdks.md
+    - name: Create a scheduler in Durable Functions
+      href: ./durable-task-scheduler/develop-with-durable-task-scheduler-functions.md
   - name: Develop with Durable Task Scheduler
     href: ./durable-task-scheduler/develop-with-durable-task-scheduler.md
   - name: Identity
     href: ./durable-task-scheduler/durable-task-scheduler-identity.md
-  - name: Versioning
-    href: ./durable-task-scheduler/durable-task-scheduler-versioning.md
   - name: Monitoring dashboard
     href: ./durable-task-scheduler/durable-task-scheduler-dashboard.md
   - name: Auto-purge 
@@ -252,25 +265,13 @@
     href: durable-functions-monitor-python.md
   - name: Human interaction
     href: durable-functions-phone-verification.md
-- name: Architecture guides
-  items:
-  - name: Durable Functions + Durable Task Scheduler
-    href: ./durable-task-scheduler/develop-with-durable-task-scheduler-functions.md
-  - name: Azure Container Apps + Durable Task Scheduler
-    href: ./durable-task-scheduler/develop-with-durable-task-scheduler-aks.md
-  - name: Azure Kubernetes Service + Durable Task Scheduler
-    href: ./durable-task-scheduler/develop-with-durable-task-scheduler-container-apps.md
 - name: Comparison
   items:
   - name: Azure Durable vs. Alternatives
     href: durable-comparison-alternatives.md
-  - name: When to use Azure Durable
-    href: durable-use-cases.md
-  - name: Choosing an orchestration framework
-    href: ./durable-task-scheduler/choose-orchestration-framework.md
-  - name: Durable Task SDKs vs. Durable Task Framework
-    href: durable-task-kits-vs-framework.md
-  - name: Throughput benchmark
+- name: Performance
+  items:
+  - name: Durable Task Scheduler benchmark
     href: ./durable-task-scheduler/durable-task-scheduler-work-item-throughput.md
 - name: Glossary
   href: durable-glossary.md

@@ -48,10 +48,6 @@ landingContent:
             url: ./durable-task-scheduler/quickstart-container-apps-durable-task-sdk.md
           - text: Host a Durable Task SDK app on Azure Kubernetes Service
             url: ./durable-task-scheduler/quickstart-aks-durable-task-sdk.md
-      - linkListType: learn
-        links:
-          - text: Create a long-running serverless workflow
-            url: /training/modules/create-long-running-serverless-workflow-with-durable-functions/
         
   # Card
   - title: Application patterns
