@@ -161,12 +161,14 @@ public class OrderActivities
 }
 ```
 
-::: zone-end
+::: zone-end  
+
 ::: zone pivot="programming-language-javascript"
 
 Todo
 
-::: zone-end
+::: zone-end  
+
 ::: zone pivot="programming-language-python"
 
 ```python
@@ -224,17 +226,20 @@ def send_confirmation(request: dict) -> None:
     )
 ```
 
-::: zone-end
+::: zone-end  
+
 ::: zone pivot="programming-language-powershell"
 
 Todo
 
-::: zone-end
+::: zone-end  
+
 ::: zone pivot="programming-language-java"
 
 Todo
 
-::: zone-end
+::: zone-end  
+
 ::: zone pivot="programming-language-java"
 
 ```java
@@ -362,22 +367,26 @@ await context.CallActivityAsync("SendEmail", new EmailRequest(
 ));
 ```
 
-::: zone-end
+::: zone-end  
+
 ::: zone pivot="programming-language-javascript"
 
 Todo
 
-::: zone-end
+::: zone-end  
+
 ::: zone pivot="programming-language-python"
 
 Todo
 
-::: zone-end
+::: zone-end  
+
 ::: zone pivot="programming-language-powershell"
 
 Todo
 
-::: zone-end
+::: zone-end  
+
 ::: zone pivot="programming-language-java"
 
 Todo
@@ -407,12 +416,14 @@ var result = await context.CallActivityAsync<string>(
 );
 ```
 
-::: zone-end
+::: zone-end  
+
 ::: zone pivot="programming-language-javascript"
 
 Todo
 
-::: zone-end
+::: zone-end  
+
 ::: zone pivot="programming-language-python"
 
 ```python
@@ -428,12 +439,14 @@ result = yield context.call_activity_with_retry(
 )
 ```
 
-::: zone-end
+::: zone-end  
+
 ::: zone pivot="programming-language-powershell"
 
 Todo
 
-::: zone-end
+::: zone-end  
+
 ::: zone pivot="programming-language-java"
 
 Todo

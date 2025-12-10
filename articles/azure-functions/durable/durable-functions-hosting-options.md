@@ -172,7 +172,7 @@ public static class MyOrchestrator
 - Uses `IDurableOrchestrationContext` interface
 - Package: `Microsoft.Azure.WebJobs.Extensions.DurableTask`
 
-> **Important**: The in-process model is in [maintenance mode](../../functions-versions.md). New projects should use the **isolated worker model**.
+> **Important**: The in-process model is in [maintenance mode](../functions-versions.md). New projects should use the **isolated worker model**.
 
 #### Isolated worker model (recommended)
 
