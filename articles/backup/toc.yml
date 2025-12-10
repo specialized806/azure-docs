@@ -267,6 +267,12 @@
   items:
   - name: Overview
     href: disk-backup-overview.md
+  - name: FAQ-Azure Disk Backup
+    href: disk-backup-faq.yml
+  - name: support matrix
+    href: disk-backup-support-matrix.md
+  - name: Tutorial to back up Azure Managed Disks
+    href: back-up-managed-disks-tutorial.md
   - name: Backup scenarios
     items:  
     - name: From the Azure portal
@@ -456,8 +462,6 @@
     href: tutorial-configure-sap-hana-database-instance-snapshot-backup.md
   - name: Back up SAP ASE database on Azure VMs
     href: sap-ase-database-backup-tutorial.md
-  - name: Back up Azure Managed Disks
-    href: back-up-managed-disks-tutorial.md
   - name: Configure Multi-user authorization (MUA)
     href: multi-user-authorization-tutorial.md
   - name: Recover soft deleted items with enhanced soft delete
@@ -492,8 +496,6 @@
       href: azure-file-share-support-matrix.md
     - name: Azure Elastic SAN backup support matrix
       href: azure-elastic-san-backup-support-matrix.md
-    - name: Azure Disk Backup support matrix
-      href: disk-backup-support-matrix.md
     - name: Azure Blobs backup support matrix
       href: blob-backup-support-matrix.md
     - name: Azure Data Lake Storage vaulted backup support matrix
@@ -514,8 +516,6 @@
       href: backup-azure-file-folder-backup-faq.yml
     - name: FAQ-Back up Azure Files
       href: backup-azure-files-faq.yml
-    - name: FAQ-Azure Disk Backup
-      href: disk-backup-faq.yml
     - name: FAQ-Azure Backup for AKS
       href: aks-backup-faq.yml
     - name: FAQ-Back up SQL Server databases on Azure VMs
