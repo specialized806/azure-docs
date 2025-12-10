@@ -53,6 +53,6 @@ Think of **DTFx** as the low-level engine that powers the platform, and **Durabl
 
 ## Next steps
 
-- [Durable Task SDK overview](./durable-sdks-overview.md)
+- [Durable Task SDK overview](./durable-task-scheduler/durable-task-overview.md)
 - [Durable Task Scheduler overview](./durable-task-scheduler/durable-task-scheduler.md)
 - [Durable Functions overview](./durable-functions-overview.md)

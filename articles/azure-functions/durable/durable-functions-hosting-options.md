@@ -172,7 +172,7 @@ public static class MyOrchestrator
 - Uses `IDurableOrchestrationContext` interface
 - Package: `Microsoft.Azure.WebJobs.Extensions.DurableTask`
 
-> **Important**: The in-process model is in [maintenance mode](https://learn.microsoft.com/azure/azure-functions/functions-versions). New projects should use the **isolated worker model**.
+> **Important**: The in-process model is in [maintenance mode](../../functions-versions.md). New projects should use the **isolated worker model**.
 
 #### Isolated worker model (recommended)
 
@@ -326,7 +326,7 @@ flowchart TD
 
 ## Migration: In-process to isolated
 
-If you have an existing in-process Durable Functions app, Microsoft provides a [migration guide](https://learn.microsoft.com/azure/azure-functions/durable/durable-functions-dotnet-isolated-overview).
+If you have an existing in-process Durable Functions app, Microsoft provides a [migration guide](durable-functions-dotnet-isolated-overview.md).
 
 ### Key changes
 

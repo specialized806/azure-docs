@@ -200,9 +200,9 @@
     - name: Quickstarts
       items:
       - name: Deploy Durable Task SDK workers to Azure Container Apps
-        href: ./durable-task-scheduler/deploy-durable-task-sdk-container-apps.md
+        href: ./durable-task-scheduler/develop-with-durable-task-scheduler-container-apps.md
       - name: Deploy Durable Task SDK workers to Azure Kubernetes Service
-        href: ./durable-task-scheduler/deploy-durable-task-sdk-aks.md 
+        href: ./durable-task-scheduler/develop-with-durable-task-scheduler-aks.md 
     - name: .NET API
       items:
       - name: WebJobs.Extensions.DurableTask 
