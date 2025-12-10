@@ -305,6 +305,24 @@
         href: backup-azure-dataprotection-use-rest-api-restore-disks.md
 - name: Azure Blob backup
   items:
+  - name: Overview
+    href: blob-backup-overview.md
+  - name: Support matrix
+    href: blob-backup-support-matrix.md  
+  - name: Quickstarts to configure vaulted blob backup
+    items:
+    - name: From the Azure portal
+      href: blob-backup-configure-quick.md
+    - name: Using PowerShell
+      href: quick-blob-vaulted-backup-powershell.md
+    - name: Using Azure CLI
+      href: quick-blob-vaulted-backup-cli.md
+    - name: Using ARM template
+      href: backup-blobs-storage-account-arm-template.md
+    - name: Using Bicep
+      href: backup-blobs-storage-account-bicep.md
+  - name: Tutorial to back up Azure Blob
+    href: blob-backup-configure-tutorial.md
   - name: Backup scenarios
     items:
     - name: From the Azure portal
@@ -375,18 +393,6 @@
       href: quick-backup-postgresql-flexible-server-arm.md
     - name: With Azure Bicep file
       href: quick-backup-postgresql-flexible-server-bicep.md
-  - name: Configure vaulted backup for Azure Blob
-    items:
-    - name: From the Azure portal
-      href: blob-backup-configure-quick.md
-    - name: Using PowerShell
-      href: quick-blob-vaulted-backup-powershell.md
-    - name: Using Azure CLI
-      href: quick-blob-vaulted-backup-cli.md
-    - name: Using ARM template
-      href: backup-blobs-storage-account-arm-template.md
-    - name: Using Bicep
-      href: backup-blobs-storage-account-bicep.md
   - name: Create a vaulted backup policy for Azure Data Lake Storage using Azure portal/ PowerShell/ Azure CLI
     href: azure-data-lake-storage-backup-create-policy-quickstart.md
   - name: Configure Azure Data Lake Storage vaulted backup using ARM/ Bicep template
@@ -438,8 +444,6 @@
       href: tutorial-restore-postgresql-flex.md
   - name: Configure item level backup of an AKS cluster
     href: tutorial-configure-backup-aks.md
-  - name: Configure vaulted backup for Azure Blob
-    href: blob-backup-configure-tutorial.md  
   - name: Back up Azure Data Lake Storage
     href: azure-data-lake-storage-backup-tutorial.md  
   - name: Restore vaulted backups for AKS clusters in a secondary region
@@ -496,8 +500,6 @@
       href: azure-file-share-support-matrix.md
     - name: Azure Elastic SAN backup support matrix
       href: azure-elastic-san-backup-support-matrix.md
-    - name: Azure Blobs backup support matrix
-      href: blob-backup-support-matrix.md
     - name: Azure Data Lake Storage vaulted backup support matrix
       href: azure-data-lake-storage-backup-support-matrix.md  
     - name: Active Directory domain controllers
@@ -546,8 +548,6 @@
       href: azure-kubernetes-service-backup-overview.md
     - name: Prerequisites
       href: azure-kubernetes-service-cluster-backup-concept.md
-  - name: Azure Blob backup
-    href: blob-backup-overview.md
   - name: Azure Data Lake Storage vaulted backup
     href: azure-data-lake-storage-backup-overview.md  
   - name: Azure Elastic SAN backup
