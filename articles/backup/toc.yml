@@ -263,6 +263,94 @@
         href: backup-azure-vm-migrate-enhanced-policy.md
       - name: Modify backup policy with Azure CLI
         href: modify-vm-policy-cli.md
+- name: Azure Disk backup
+  items:
+  - name: Overview
+    href: disk-backup-overview.md
+  - name: FAQ-Azure Disk Backup
+    href: disk-backup-faq.yml
+  - name: Support matrix
+    href: disk-backup-support-matrix.md
+  - name: Tutorial to back up Azure Managed Disks
+    href: back-up-managed-disks-tutorial.md
+  - name: Backup scenarios
+    items:  
+    - name: From the Azure portal
+      items:
+      - name: Backup
+        href: backup-managed-disks.md
+      - name: Restore
+        href: restore-managed-disks.md
+      - name: Manage
+        href: manage-azure-managed-disks.md
+    - name: With PowerShell
+      items:
+      - name: Backup
+        href: backup-managed-disks-ps.md
+      - name: Restore
+        href: restore-managed-disks-ps.md
+    - name: With CLI
+      items:
+      - name: Backup
+        href: backup-managed-disks-cli.md
+      - name: Restore
+        href: restore-managed-disks-cli.md
+    - name: With REST API
+      items:
+      - name: Policy
+        href: backup-azure-dataprotection-use-rest-api-create-update-disk-policy.md
+      - name: Backup
+        href: backup-azure-dataprotection-use-rest-api-backup-disks.md
+      - name: Restore
+        href: backup-azure-dataprotection-use-rest-api-restore-disks.md
+- name: Azure Blob backup
+  items:
+  - name: Overview
+    href: blob-backup-overview.md
+  - name: Support matrix
+    href: blob-backup-support-matrix.md  
+  - name: Quickstarts to configure vaulted blob backup
+    items:
+    - name: From the Azure portal
+      href: blob-backup-configure-quick.md
+    - name: Using PowerShell
+      href: quick-blob-vaulted-backup-powershell.md
+    - name: Using Azure CLI
+      href: quick-blob-vaulted-backup-cli.md
+    - name: Using ARM template
+      href: backup-blobs-storage-account-arm-template.md
+    - name: Using Bicep
+      href: backup-blobs-storage-account-bicep.md
+  - name: Tutorial to back up Azure Blob
+    href: blob-backup-configure-tutorial.md
+  - name: Backup scenarios
+    items:
+    - name: From the Azure portal
+      items:
+      - name: Configure and manage
+        href: blob-backup-configure-manage.md
+      - name: Restore
+        href: blob-restore.md
+    - name: With PowerShell
+      items:
+      - name: Backup
+        href: backup-blobs-storage-account-ps.md
+      - name: Restore
+        href: restore-blobs-storage-account-ps.md
+    - name: With CLI
+      items:
+      - name: Backup
+        href: backup-blobs-storage-account-cli.md
+      - name: Restore
+        href: restore-blobs-storage-account-cli.md
+    - name: With REST API
+      items:
+      - name: Policy
+        href: backup-azure-dataprotection-use-rest-api-create-update-blob-policy.md
+      - name: Backup
+        href: backup-azure-dataprotection-use-rest-api-backup-blobs.md
+      - name: Restore
+        href: backup-azure-dataprotection-use-rest-api-restore-blobs.md
 - name: Quickstarts  
   items:
   - name: Back up Azure PostgreSQL Database
@@ -305,18 +393,6 @@
       href: quick-backup-postgresql-flexible-server-arm.md
     - name: With Azure Bicep file
       href: quick-backup-postgresql-flexible-server-bicep.md
-  - name: Configure vaulted backup for Azure Blob
-    items:
-    - name: From the Azure portal
-      href: blob-backup-configure-quick.md
-    - name: Using PowerShell
-      href: quick-blob-vaulted-backup-powershell.md
-    - name: Using Azure CLI
-      href: quick-blob-vaulted-backup-cli.md
-    - name: Using ARM template
-      href: backup-blobs-storage-account-arm-template.md
-    - name: Using Bicep
-      href: backup-blobs-storage-account-bicep.md
   - name: Create a vaulted backup policy for Azure Data Lake Storage using Azure portal/ PowerShell/ Azure CLI
     href: azure-data-lake-storage-backup-create-policy-quickstart.md
   - name: Configure Azure Data Lake Storage vaulted backup using ARM/ Bicep template
@@ -368,8 +444,6 @@
       href: tutorial-restore-postgresql-flex.md
   - name: Configure item level backup of an AKS cluster
     href: tutorial-configure-backup-aks.md
-  - name: Configure vaulted backup for Azure Blob
-    href: blob-backup-configure-tutorial.md  
   - name: Back up Azure Data Lake Storage
     href: azure-data-lake-storage-backup-tutorial.md  
   - name: Restore vaulted backups for AKS clusters in a secondary region
@@ -392,8 +466,6 @@
     href: tutorial-configure-sap-hana-database-instance-snapshot-backup.md
   - name: Back up SAP ASE database on Azure VMs
     href: sap-ase-database-backup-tutorial.md
-  - name: Back up Azure Managed Disks
-    href: back-up-managed-disks-tutorial.md
   - name: Configure Multi-user authorization (MUA)
     href: multi-user-authorization-tutorial.md
   - name: Recover soft deleted items with enhanced soft delete
@@ -428,10 +500,6 @@
       href: azure-file-share-support-matrix.md
     - name: Azure Elastic SAN backup support matrix
       href: azure-elastic-san-backup-support-matrix.md
-    - name: Azure Disk Backup support matrix
-      href: disk-backup-support-matrix.md
-    - name: Azure Blobs backup support matrix
-      href: blob-backup-support-matrix.md
     - name: Azure Data Lake Storage vaulted backup support matrix
       href: azure-data-lake-storage-backup-support-matrix.md  
     - name: Active Directory domain controllers
@@ -450,8 +518,6 @@
       href: backup-azure-file-folder-backup-faq.yml
     - name: FAQ-Back up Azure Files
       href: backup-azure-files-faq.yml
-    - name: FAQ-Azure Disk Backup
-      href: disk-backup-faq.yml
     - name: FAQ-Azure Backup for AKS
       href: aks-backup-faq.yml
     - name: FAQ-Back up SQL Server databases on Azure VMs
@@ -482,8 +548,6 @@
       href: azure-kubernetes-service-backup-overview.md
     - name: Prerequisites
       href: azure-kubernetes-service-cluster-backup-concept.md
-  - name: Azure Blob backup
-    href: blob-backup-overview.md
   - name: Azure Data Lake Storage vaulted backup
     href: azure-data-lake-storage-backup-overview.md  
   - name: Azure Elastic SAN backup
@@ -660,66 +724,6 @@
         href: backup-azure-restore-system-state.md
     - name: Manage
       href: backup-azure-manage-mars.md
-  - name: Azure Disk backup
-    items:
-    - name: Overview
-      href: disk-backup-overview.md
-    - name: From the Azure portal
-      items:
-      - name: Backup
-        href: backup-managed-disks.md
-      - name: Restore
-        href: restore-managed-disks.md
-      - name: Manage
-        href: manage-azure-managed-disks.md
-    - name: With PowerShell
-      items:
-      - name: Backup
-        href: backup-managed-disks-ps.md
-      - name: Restore
-        href: restore-managed-disks-ps.md
-    - name: With CLI
-      items:
-      - name: Backup
-        href: backup-managed-disks-cli.md
-      - name: Restore
-        href: restore-managed-disks-cli.md
-    - name: With REST API
-      items:
-      - name: Policy
-        href: backup-azure-dataprotection-use-rest-api-create-update-disk-policy.md
-      - name: Backup
-        href: backup-azure-dataprotection-use-rest-api-backup-disks.md
-      - name: Restore
-        href: backup-azure-dataprotection-use-rest-api-restore-disks.md
-  - name: Azure Blob backup
-    items:
-    - name: From the Azure portal
-      items:
-      - name: Configure and manage
-        href: blob-backup-configure-manage.md
-      - name: Restore
-        href: blob-restore.md
-    - name: With PowerShell
-      items:
-      - name: Backup
-        href: backup-blobs-storage-account-ps.md
-      - name: Restore
-        href: restore-blobs-storage-account-ps.md
-    - name: With CLI
-      items:
-      - name: Backup
-        href: backup-blobs-storage-account-cli.md
-      - name: Restore
-        href: restore-blobs-storage-account-cli.md
-    - name: With REST API
-      items:
-      - name: Policy
-        href: backup-azure-dataprotection-use-rest-api-create-update-blob-policy.md
-      - name: Backup
-        href: backup-azure-dataprotection-use-rest-api-backup-blobs.md
-      - name: Restore
-        href: backup-azure-dataprotection-use-rest-api-restore-blobs.md
   - name: Azure Data Lake Storage vaulted backup
     items:
     - name: Configure vaulted backup
