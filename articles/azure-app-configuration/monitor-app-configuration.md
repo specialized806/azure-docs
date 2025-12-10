@@ -219,9 +219,14 @@ The following queries are samples that you can use to help you monitor your App 
     ```
 
 ### Data access tracking
-To identify who is making changes to your App Configuration store, the recommended way is to use audit logs. Audit logs include caller identity, caller IP address, the action performed, and the target resource. Use **CallerIdentity** to correlate a change with the specific caller. Audit logs are only produced for write operations.
+Caller identity information is present in Azure App Configuration's HTTP request and Audit logs. Identify who is making changes to your App Configuration store, the recommended way is to use audit logs. Audit logs include caller identity, caller IP address, the action performed, and the target resource. Use **CallerIdentity** to correlate a change with the specific caller. Audit logs are only produced for write operations.
 
-Use HTTP request logs to analyze read operations. Because these logs are aggregated by HTTP method and status code, some caller identity details may be lost during aggregation. HTTP request logs are best for understanding request patterns and performance characteristics such as user agent, request duration, and request volume. The **ClientObjectId**, **ClientTenantId**, and **AccessKeyId** fields provide caller context and help you determine whether the request used Extra ID or an access key.
+Unlike Audit logs, HTTP request logs are emitted for read operations. Due to the fact these logs are aggregated, some caller identity details may be lost as part of the aggregation process. HTTP request logs are best for understanding request patterns and performance characteristics such as user agent, request duration, and request volume. The **ClientObjectId**, **ClientTenantId**, and **AccessKeyId** fields provide caller context and help you determine whether the request used Extra ID or an access key.
+
+| Log type | Logged operations | Is aggregated |
+|-------|-----|-----|
+| Audit | Write | No |
+| HTTP Requests | Read, Write | Yes |
 
 Two authentication methods are supported, which are Extra ID and access key (HMAC/connection string). If you use Extra ID, you should see information about caller or client. If you use access key, you should see information related to access key. To enforce Extra ID authentication and remove access key usage, see [disable access key based authentication](/azure/azure-app-configuration/howto-disable-access-key-authentication?tabs=portal#disable-access-key-authentication).
 
