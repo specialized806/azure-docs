@@ -115,7 +115,7 @@ This section describes common virtual network peering issues and their resolutio
 
 |Issue  |Description  |Resolution  |
 |---------|---------|------|
-|Can't see VM in peered virtual network|You have access to the peered virtual network, but you can't see the VM deployed there.|Make sure you have **read** access to both the VM and the peered virtual network. Additionally, check under IAM that you have **read** access to the following resources:<br><br>• Reader role on the virtual machine<br>• Reader role on the NIC with private IP of the virtual machine<br>• Reader role on the Azure Bastion resource<br>• Reader role on the virtual network (not needed if there isn't a peered virtual network)<br><br>For a complete list of required permissions, see the [virtual network peering permissions table](#vnet-peering-permissions).|
+|Can't see VM in peered virtual network|You have access to the peered virtual network, but you can't see the VM deployed there.|Make sure you have **read** access to both the VM and the peered virtual network. Additionally, check under IAM that you have **read** access to the following resources:<br><br>• Reader role on the virtual machine<br>• Reader role on the NIC with private IP of the virtual machine<br>• Reader role on the Azure Bastion resource<br>• Reader role on the virtual network (not needed if there isn't a peered virtual network)<br><br>For a complete list of required permissions, see the [virtual network peering permissions table](#virtual-network-peering-permissions).|
 
 ### Virtual network peering permissions
 
