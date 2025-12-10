@@ -6,7 +6,7 @@ author: hhunter-ms
 ms.author: hannahhunter
 ms.service: azure-container-apps
 ms.topic: how-to
-ms.date: 12/09/2025
+ms.date: 12/10/2025
 zone_pivot_group_filename: container-apps/dapr-zone-pivot-groups.json
 zone_pivot_groups: dapr-languages-set
 ms.custom:
