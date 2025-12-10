@@ -269,7 +269,7 @@
     href: disk-backup-overview.md
   - name: FAQ-Azure Disk Backup
     href: disk-backup-faq.yml
-  - name: support matrix
+  - name: Support matrix
     href: disk-backup-support-matrix.md
   - name: Tutorial to back up Azure Managed Disks
     href: back-up-managed-disks-tutorial.md
