@@ -60,6 +60,15 @@ This guide explains how to deploy Geospatial Consumption Zone (GCZ) as an **add-
    GCZ_PROVIDER_IMAGE_TAG="0.28.2"
    GCZ_TRANSFORMER_IMAGE_NAME="geospatial-transformer"
    GCZ_TRANSFORMER_IMAGE_TAG="0.28.2"
+   PROVIDER_IMAGE_REPO=myregistry.azurecr.io/provider
+   PROVIDER_IMAGE_NAME=gcz-provider
+   PROVIDER_IMAGE_TAG=v1.0.0
+   IGNITE_IMAGE_REPO=myregistry.azurecr.io/gridgain
+   IGNITE_IMAGE_NAME=ignite
+   IGNITE_IMAGE_TAG=8.9.11
+   TRANSFORMER_IMAGE_REPO=myregistry.azurecr.io/transformer
+   TRANSFORMER_IMAGE_NAME=gcz-transformer
+   TRANSFORMER_IMAGE_TAG=v1.0.0
 
    # Istio Configuration (Enable ONLY if Istio exists on AKS)
    ISTIO_ENABLED="false"
@@ -106,6 +115,15 @@ This guide explains how to deploy Geospatial Consumption Zone (GCZ) as an **add-
    $GCZ_PROVIDER_IMAGE_TAG="0.28.2"
    $GCZ_TRANSFORMER_IMAGE_NAME="geospatial-transformer"
    $GCZ_TRANSFORMER_IMAGE_TAG="0.28.2"
+   PROVIDER_IMAGE_REPO=myregistry.azurecr.io/provider
+   PROVIDER_IMAGE_NAME=gcz-provider
+   PROVIDER_IMAGE_TAG=v1.0.0
+   IGNITE_IMAGE_REPO=myregistry.azurecr.io/gridgain
+   IGNITE_IMAGE_NAME=ignite
+   IGNITE_IMAGE_TAG=8.9.11
+   TRANSFORMER_IMAGE_REPO=myregistry.azurecr.io/transformer
+   TRANSFORMER_IMAGE_NAME=gcz-transformer
+   TRANSFORMER_IMAGE_TAG=v1.0.0
 
    # Istio Configuration (Enable ONLY if Istio exists on AKS)
    $ISTIO_ENABLED="false"
@@ -133,50 +151,51 @@ This guide explains how to deploy Geospatial Consumption Zone (GCZ) as an **add-
  ### [Unix Shell](#tab/unix-shell-1)
  
  ```bash
-   cat > osdu_gcz_custom_values.yaml << EOF
-   # GCZ Configuration - Azure Deployment
+cat > osdu_gcz_custom_values.yaml <<EOF
+# GCZ Configuration - Azure Deployment
 
-   global:
-   ignite:
+global:
+  ignite:
     namespace: $NAMESPACE
     name: ignite
     image:
-      repository: "{{ .Values.global.ignite.image.repository }}"
-      name: "{{ .Values.global.ignite.image.name }}"
-      tag: "{{ .Values.global.ignite.image.tag }}"
+      repository: $IGNITE_IMAGE_REPO
+      name: $IGNITE_IMAGE_NAME
+      tag: $IGNITE_IMAGE_TAG
     configuration:
-      gcz_ignite_namespace: "$GCZ_IGNITE_NAMESPACE"
-      gcz_ignite_service: "$GCZ_IGNITE_SERVICE"
+      gcz_ignite_namespace: $GCZ_IGNITE_NAMESPACE
+      gcz_ignite_service: $GCZ_IGNITE_SERVICE
       gcz_persistence_enabled: true
       gcz_persistence_folder: "/persistence/storage"
       gcz_ignite_replicas: 3
       gcz_ignite_cpu: "2"
       gcz_ignite_memory: "4Gi"
 
-    provider:
-      namespace: $NAMESPACE
+  provider:
+    namespace: $NAMESPACE
     entitlementsGroupsURL: "https://$AZURE_DNS_NAME/api/entitlements/v2/groups"
     image:
-      repository: "{{ .Values.global.provider.image.repository }}"
-      name: "{{ .Values.global.provider.image.name }}"
-      tag: "{{ .Values.global.provider.image.tag }}"
+      repository: $PROVIDER_IMAGE_REPO
+      name: $PROVIDER_IMAGE_NAME
+      tag: $PROVIDER_IMAGE_TAG
     service:
       type: LoadBalancer
     configuration:
-      privateNetwork: "$PRIVATE_NETWORK"
+      privateNetwork: $PRIVATE_NETWORK
       gcz_persistence_enabled: true
       gcz_persistence_folder: "/persistence/storage"
+    configLoaderJs: ""
 
-    transformer:
+  transformer:
     namespace: $NAMESPACE
     image:
-      repository: "{{ .Values.global.transformer.image.repository }}"
-      name: "{{ .Values.global.transformer.image.name }}"
-      tag: "{{ .Values.global.transformer.image.tag }}"
+      repository: $TRANSFORMER_IMAGE_REPO
+      name: $TRANSFORMER_IMAGE_NAME
+      tag: $TRANSFORMER_IMAGE_TAG
     service:
       type: LoadBalancer
     configuration:
-      privateNetwork: "$PRIVATE_NETWORK"
+      privateNetwork: $PRIVATE_NETWORK
       dataPartitionId: $DATA_PARTITION_ID
       clientId: $AZURE_CLIENT_ID
       tenantId: $AZURE_TENANT_ID
@@ -193,26 +212,27 @@ This guide explains how to deploy Geospatial Consumption Zone (GCZ) as an **add-
       clientSecret: $(echo "$AZURE_CLIENT_SECRET" | base64)
       gcz_persistence_enabled: true
       azureAppResourceId: $AZURE_APP_ID
-      gcz_ignite_service: $GCZ_IGNITE_SERVICE 
+      gcz_ignite_service: $GCZ_IGNITE_SERVICE
 EOF
 ```
+
  ### [Windows PowerShell](#tab/windows-powershell-1)
  
    ```powershell
   @"
-  # GCZ Configuration - Azure Deployment
+# GCZ Configuration - Azure Deployment
 
 global:
   ignite:
     namespace: $NAMESPACE
     name: ignite
     image:
-      repository: "{{ .Values.global.ignite.image.repository }}"
-      name: "{{ .Values.global.ignite.image.name }}"
-      tag: "{{ .Values.global.ignite.image.tag }}"
+      repository: $IGNITE_IMAGE_REPO
+      name: $IGNITE_IMAGE_NAME
+      tag: $IGNITE_IMAGE_TAG
     configuration:
-      gcz_ignite_namespace: "$GCZ_IGNITE_NAMESPACE"
-      gcz_ignite_service: "$GCZ_IGNITE_SERVICE"
+      gcz_ignite_namespace: $GCZ_IGNITE_NAMESPACE
+      gcz_ignite_service: $GCZ_IGNITE_SERVICE
       gcz_persistence_enabled: true
       gcz_persistence_folder: "/persistence/storage"
       gcz_ignite_replicas: 3
@@ -223,26 +243,27 @@ global:
     namespace: $NAMESPACE
     entitlementsGroupsURL: "https://$AZURE_DNS_NAME/api/entitlements/v2/groups"
     image:
-      repository: "{{ .Values.global.provider.image.repository }}"
-      name: "{{ .Values.global.provider.image.name }}"
-      tag: "{{ .Values.global.provider.image.tag }}"
+      repository: $PROVIDER_IMAGE_REPO
+      name: $PROVIDER_IMAGE_NAME
+      tag: $PROVIDER_IMAGE_TAG
     service:
       type: LoadBalancer
     configuration:
-      privateNetwork: "$PRIVATE_NETWORK"
+      privateNetwork: $PRIVATE_NETWORK
       gcz_persistence_enabled: true
       gcz_persistence_folder: "/persistence/storage"
+    configLoaderJs: ""
 
   transformer:
     namespace: $NAMESPACE
     image:
-      repository: "{{ .Values.global.transformer.image.repository }}"
-      name: "{{ .Values.global.transformer.image.name }}"
-      tag: "{{ .Values.global.transformer.image.tag }}"
+      repository: $TRANSFORMER_IMAGE_REPO
+      name: $TRANSFORMER_IMAGE_NAME
+      tag: $TRANSFORMER_IMAGE_TAG
     service:
       type: LoadBalancer
     configuration:
-      privateNetwork: "$PRIVATE_NETWORK"
+      privateNetwork: $PRIVATE_NETWORK
       dataPartitionId: $DATA_PARTITION_ID
       clientId: $AZURE_CLIENT_ID
       tenantId: $AZURE_TENANT_ID
@@ -256,11 +277,11 @@ global:
       crsconvertorURL: "https://$AZURE_DNS_NAME/api/crs/converter/v3/convertTrajectory"
       storageURL: "https://$AZURE_DNS_NAME/api/storage/v2/records"
       partitionURL: http://partition.osdu-azure/api/partition/v1
-      clientSecret: [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes($AZURE_CLIENT_SECRET))
+      clientSecret: $( [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes($AZURE_CLIENT_SECRET)) )
       gcz_persistence_enabled: true
       azureAppResourceId: $AZURE_APP_ID
       gcz_ignite_service: $GCZ_IGNITE_SERVICE
-"@ | Out-File -FilePath osdu_gcz_custom_values.yaml
+"@ | Out-File -FilePath osdu_gcz_custom_values.yaml -Encoding utf8
 ```
 
 5. Change service type to `LoadBalancer` for the `provider` and `transformer` services configuration files.
@@ -268,43 +289,42 @@ global:
    ### [Unix Shell](#tab/unix-shell-2)
 
    ```bash
-   cat > ../provider/templates/service.yaml << EOF
-    apiVersion: v1
-    kind: Service
-    metadata:
-    name: gcz-provider
-    namespace: {{ $.Values.global.provider.namespace }}
-    annotations:
-        service.beta.kubernetes.io/azure-load-balancer-internal: "{{ $.Values.global.provider.configuration.privateNetwork }}"
-    spec:
-     selector:
-        app: provider
-    ports:
+cat > ../provider/templates/service.yaml << 'EOF'
+apiVersion: v1
+kind: Service
+metadata:
+  name: gcz-provider
+  namespace: {{ $.Values.global.provider.namespace }}
+  annotations:
+    service.beta.kubernetes.io/azure-load-balancer-internal: "{{ $.Values.global.provider.configuration.privateNetwork }}"
+spec:
+  selector:
+    app: provider
+  ports:
     - port: 80
       protocol: TCP
       targetPort: 8083
-    type: {{ $.Values.global.provider.service.type }}
-   EOF
+  type: {{ $.Values.global.provider.service.type }}
+EOF
    
-
-   cat > ../transformer/templates/service.yaml << EOF
-    apiVersion: v1
-    kind: Service
-    metadata:
-    name: gcz-transformer
-    namespace: {{ $.Values.global.transformer.namespace }}
-    annotations:
-        service.beta.kubernetes.io/azure-load-balancer-internal: "{{ $.Values.global.transformer.configuration.privateNetwork }}"
-    spec:
-    selector:
-        app: transformer
-    ports:
+cat > ../transformer/templates/service.yaml << 'EOF'
+apiVersion: v1
+kind: Service
+metadata:
+  name: gcz-transformer
+  namespace: {{ $.Values.global.transformer.namespace }}
+  annotations:
+    service.beta.kubernetes.io/azure-load-balancer-internal: "{{ $.Values.global.transformer.configuration.privateNetwork }}"
+spec:
+  selector:
+    app: transformer
+  ports:
     - port: 80
       protocol: TCP
       targetPort: 8080
-    type: {{ $.Values.global.transformer.service.type }}
-   EOF
-   ```
+  type: {{ $.Values.global.transformer.service.type }}
+EOF
+```
 
    ### [Windows PowerShell](#tab/windows-powershell-2)
 
