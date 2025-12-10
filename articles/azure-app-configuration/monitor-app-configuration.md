@@ -26,7 +26,7 @@ The **Overview** page in the Azure portal includes a brief view of the resource 
 > [!div class="mx-imgBorder"]
 > ![Monitoring on the Overview Page](./media/monitoring-overview-page.png)
 
-### Metrics analysis
+### Metric analysis
 
 You can analyze App Configuration metrics alongside other Azure service metrics using the metrics explorer by opening **Metrics** in your Azure Monitor resource. See [Analyze metrics with Azure Monitor metrics explorer](/azure/azure-monitor/essentials/analyze-metrics) for details on using this tool. For App Configuration, the following metrics are collected: 
 
