@@ -5,7 +5,7 @@ services: logic-apps
 ms.suite: integration
 ms.reviewer: rohithah, laveeshb, rarayudu, azla
 ms.topic: reference
-ms.date: 07/31/2025
+ms.date: 12/05/2025
 ms.custom: sfi-image-nochange
 ---
 
@@ -407,11 +407,9 @@ The following tables list the values for a single inbound or outbound call:
 
 ### Time-out duration
 
-By default, the HTTP action and API connection actions follow the [standard asynchronous operation pattern](/azure/architecture/patterns/async-request-reply), while the Response action follows the *synchronous operation pattern*. Some managed connector operations make asynchronous calls or listen for webhook requests, so the time-out for these operations might be longer than the following limits. For more information, review [each connector's technical reference page](/connectors/connector-reference/connector-reference-logicapps-connectors) and also the [Workflow triggers and actions](../logic-apps/logic-apps-workflow-actions-triggers.md#http-action) documentation.
+By default, the HTTP action and API connection actions follow the [standard asynchronous operation pattern](/azure/architecture/patterns/async-request-reply), while the Response action follows the *synchronous operation pattern*. Some managed connector operations make asynchronous calls or listen for webhook requests, so the time-out for these operations might be longer than the following limits. For more information, see [each connector's technical reference page](/connectors/connector-reference/connector-reference-logicapps-connectors) and the [Workflow triggers and actions page](logic-apps-workflow-actions-triggers.md#http-action).
 
-> [!NOTE]
->
-> For a Standard logic app resource in single-tenant Azure Logic Apps, stateless workflows can only run *synchronously*.
+For Standard logic app resources in single-tenant Azure Logic Apps, stateless workflows can only run *synchronously*. Stateless workflows only save each action's inputs, outputs, and states in memory, not external storage. As a result, stateless workflows perform faster with quicker response times, provide higher throughput, reduce running costs from not using external storage, and shorter runs usually finish in 5 minutes or less. However, if outages happen, interrupted runs aren't automatically restored. The caller must manually resubmit interrupted runs. For the best performance, make sure that a stateless workflow handles data or content that doesn't exceed 64 KB in total file size. Larger sizes, such as multiple large attachments, might significantly slow workflow performance or even cause the workflow to crash from out-of-memory exceptions. If you require a workflow to handle larger file sizes, create a stateful workflow instead.
 
 | Name | Multitenant | Single-tenant | Notes |
 |------|-------------|---------------|-------|
@@ -599,7 +597,7 @@ Before you set up your firewall with IP addresses, review these considerations:
   | Service tag | Description |
   |-------------|-------------|
   | **LogicAppsManagement** | Inbound IP address prefixes for the Azure Logic Apps service. |
-  | **LogicApps** | Outbound IP address prefixes for the Azure Logic Apps service. |
+  | **LogicApps** | Outbound IP address prefixes for the multitenant Azure Logic Apps service. |
   | **AzureConnectors** | IP address prefixes required for managed connectors that make inbound webhook callbacks to the Azure Logic Apps service and outbound calls to their respective services, such as Azure Blob Storage or Azure Event Hubs. This tag and its IP addresses also apply to any customer connector operations in your workflows. |
 
 * For Standard logic app workflows in single-tenant Azure Logic Apps, you must allow access for any trigger or action connections in your workflows. To allow traffic, use [service tags](/azure/virtual-network/service-tags-overview) and the same level of restrictions or policies as Azure App Service. You must also find and use the fully qualified domain names (FQDNs) for your connections. For more information, see the corresponding sections in the following documentation:

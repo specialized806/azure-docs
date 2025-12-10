@@ -158,7 +158,7 @@ groups:
   - id: programming-language-typescript
     title: TypeScript
   - id: programming-language-other
-    title: Other
+    title: Other (Go/Rust)
 - id: programming-languages-set-functions-nodejs
   title: Programming languages
   prompt: Choose a programming language
@@ -2038,4 +2038,4 @@ groups:
   - id: expressroute
     title: Azure ExpressRoute gateway
   - id: vpn
-    title: Azure VPN Gateway
+    title: Azure VPN gateway
