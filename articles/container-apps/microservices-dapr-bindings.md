@@ -25,16 +25,16 @@ The service listens to input binding events from a system CRON and then outputs 
 
 ## Prerequisites
 
-- Install [Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd)
-- [Install](https://docs.dapr.io/getting-started/install-dapr-cli/) and [init](https://docs.dapr.io/getting-started/install-dapr-selfhost/) Dapr
+- The [Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd)
+- The Dapr CLI, [installed](https://docs.dapr.io/getting-started/install-dapr-cli/) and [initialized](https://docs.dapr.io/getting-started/install-dapr-selfhost/)
 - [Docker Desktop](https://www.docker.com/products/docker-desktop/)
-- Install [Git](https://git-scm.com/downloads)
+- [Git](https://git-scm.com/install)
 
 ::: zone pivot="nodejs"
 
 ## Run the Node.js application locally
 
-Before deploying the application to Azure Container Apps, start by running the PostgreSQL container and JavaScript service locally with [Docker Compose](https://docs.docker.com/compose/) and Dapr.
+Before you deploy the application to Container Apps, take the steps in the following sections to run the PostgreSQL container and JavaScript service locally with [Docker Compose](https://docs.docker.com/compose/) and Dapr.
 
 ### Prepare the project
 
@@ -44,15 +44,15 @@ Before deploying the application to Azure Container Apps, start by running the P
    git clone https://github.com/Azure-Samples/bindings-dapr-nodejs-cron-postgres.git
    ```
 
-1. Navigate into the sample's root directory.
+1. Go to the sample root directory.
 
    ```bash
    cd bindings-dapr-nodejs-cron-postgres
    ```
 
-### Run the application using the Dapr CLI
+### Run the application by using the Dapr CLI
 
-1. From the sample's root directory, change directories to `db`.
+1. From the sample root directory, go to the *db* directory.
 
    ```bash
    cd db
@@ -63,7 +63,7 @@ Before deploying the application to Azure Container Apps, start by running the P
    docker compose up -d
    ```
 
-1. Open a new terminal window and navigate into `/batch` in the sample directory.
+1. In a new terminal window, go to the sample root directory, and then go to the *batch* directory.
 
    ```bash
    cd bindings-dapr-nodejs-cron-postgres/batch
@@ -81,11 +81,11 @@ Before deploying the application to Azure Container Apps, start by running the P
    dapr run --app-id batch-sdk --app-port 5002 --dapr-http-port 3500 --resources-path ../components -- node index.js
    ```
 
-   The `dapr run` command runs the binding application locally. Once the application is running successfully, the terminal window shows the output binding data.
+   The `dapr run` command runs the binding application locally. When the application is running successfully, the terminal window shows the output-binding data.
 
-   #### Expected output
+#### Expected output
    
-   The batch service listens to input binding events from a system CRON and then outputs the contents of local data to a PostgreSQL output binding.
+The batch service listens to input-binding events from a system CRON and then outputs the contents of local data to a PostgreSQL output binding.
    
    ```
    == APP == {"sql": "insert into orders (orderid, customer, price) values (1, 'John Smith', 100.32);"}
@@ -221,17 +221,17 @@ Upon successful completion of the `azd up` command:
    git clone https://github.com/Azure-Samples/bindings-dapr-python-cron-postgres.git
    ```
 
-1. Navigate into the sample's root directory.
+1. Go to the sample root directory.
 
    ```bash
    cd bindings-dapr-python-cron-postgres
    ```
 
-### Run the application using the Dapr CLI
+### Run the application by using the Dapr CLI
 
-Before deploying the application to Azure Container Apps, start by running the PostgreSQL container and Python service locally with [Docker Compose](https://docs.docker.com/compose/) and Dapr.
+Before you deploy the application to Container Apps, take the steps in the following sections to run the PostgreSQL container and Python service locally with [Docker Compose](https://docs.docker.com/compose/) and Dapr.
 
-1. From the sample's root directory, change directories to `db`.
+1. From the sample root directory, go to the *db* directory.
 
    ```bash
    cd db
@@ -242,7 +242,7 @@ Before deploying the application to Azure Container Apps, start by running the P
    docker compose up -d
    ```
 
-1. Open a new terminal window and navigate into `/batch` in the sample directory.
+1. In a new terminal window, go to the sample root directory, and then go to the *batch* directory.
 
    ```bash
    cd bindings-dapr-python-cron-postgres/batch
@@ -260,9 +260,9 @@ Before deploying the application to Azure Container Apps, start by running the P
    dapr run --app-id batch-sdk --app-port 5001 --dapr-http-port 3500 --resources-path ../components -- python3 app.py
    ```
 
-   The `dapr run` command runs the binding application locally. Once the application is running successfully, the terminal window shows the output binding data.
+   The `dapr run` command runs the binding application locally. When the application is running successfully, the terminal window shows the output-binding data.
 
-   #### Expected output
+#### Expected output
    
    The batch service listens to input binding events from a system CRON and then outputs the contents of local data to a PostgreSQL output binding.
    
@@ -398,17 +398,17 @@ Upon successful completion of the `azd up` command:
    git clone https://github.com/Azure-Samples/bindings-dapr-csharp-cron-postgres.git
    ```
 
-1. Navigate into the sample's root directory.
+1. Go to the sample root directory.
 
    ```bash
    cd bindings-dapr-csharp-cron-postgres
    ```
 
-### Run the application using the Dapr CLI
+### Run the application by using the Dapr CLI
 
-Before deploying the application to Azure Container Apps, start by running the PostgreSQL container and .NET service locally with [Docker Compose](https://docs.docker.com/compose/) and Dapr.
+Before you deploy the application to Container Apps, take the steps in the following sections to run the PostgreSQL container and .NET service locally with [Docker Compose](https://docs.docker.com/compose/) and Dapr.
 
-1. From the sample's root directory, change directories to `db`.
+1. From the sample root directory, go to the *db* directory.
 
    ```bash
    cd db
@@ -419,7 +419,7 @@ Before deploying the application to Azure Container Apps, start by running the P
    docker compose up -d
    ```
 
-1. Open a new terminal window and navigate into `/batch` in the sample directory.
+1. In a new terminal window, go to the sample root directory, and then go to the *batch* directory.
 
    ```bash
    cd bindings-dapr-csharp-cron-postgres/batch
@@ -437,9 +437,9 @@ Before deploying the application to Azure Container Apps, start by running the P
    dapr run --app-id batch-sdk --app-port 7002 --resources-path ../components -- dotnet run
    ```
 
-   The `dapr run` command runs the binding application locally. Once the application is running successfully, the terminal window shows the output binding data.
+   The `dapr run` command runs the binding application locally. When the application is running successfully, the terminal window shows the output-binding data.
 
-   #### Expected output
+#### Expected output
    
    The batch service listens to input binding events from a system CRON and then outputs the contents of local data to a PostgreSQL output binding.
    
