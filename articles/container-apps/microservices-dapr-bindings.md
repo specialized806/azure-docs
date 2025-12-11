@@ -1,15 +1,16 @@
 ---
 title: "Tutorial: Use Dapr Bindings for Event-Driven Work"
 titleSuffix: "Azure Container Apps"
-description: Deploy a sample application to Azure Container Apps that leverages the Dapr Bindings API.
+description: Find out how a microservice can use the Dapr Bindings API to work with external systems. Follow steps for deploying the service to Azure Container Apps.
 author: hhunter-ms
 ms.author: hannahhunter
 ms.service: azure-container-apps
 ms.custom: devx-track-dotnet, devx-track-js, devx-track-python
 ms.topic: how-to
-ms.date: 08/02/2024
+ms.date: 12/11/2025
 zone_pivot_group_filename: container-apps/dapr-zone-pivot-groups.json
 zone_pivot_groups: dapr-languages-set
+# customer intent: As a developer, I want to find out how to use the Dapr Bindings API so that I can streamline the interaction between my microservices and external systems.
 ---
 
 # Tutorial: Use Dapr Bindings for event-driven work  
@@ -21,7 +22,7 @@ This tutorial uses a sample service application:
 - The service listens to input-binding events from system `cron` jobs.
 - The service uses a PostgreSQL output binding to insert data into a database.
 
-:::image type="content" source="media/microservices-dapr-azd/bindings-quickstart.png" alt-text="Diagram of a batch service that uses a Dapr sidecar. Input flows from cron to the service. Output flows from the service to a database.":::
+:::image type="content" source="media/microservices-dapr-azd/bindings-quickstart.png" alt-text="Diagram of a batch service that uses a Dapr sidecar. Input flows from cron jobs to the service. Output flows from the service to a database.":::
 
 In this tutorial, you:
 
@@ -118,7 +119,7 @@ docker compose stop
 
 ## Deploy the application template by using the Azure Developer CLI
 
-To deploy the bindings application to Container Apps by using [`azd`](/azure/developer/azure-developer-cli/overview) commands, take the steps in the following sections. Instead of the local PostgreSQL container, the deployment uses an instance of Azure Database for PostgreSQL.
+To deploy the bindings application to Container Apps by using [`azd`](/azure/developer/azure-developer-cli/overview) commands, take the steps in the following sections. The deployment replaces the local PostgreSQL container with an instance of Azure Database for PostgreSQL.
 
 ### Prepare the project
 
@@ -148,7 +149,7 @@ cd bindings-dapr-nodejs-cron-postgres
 
    | Parameter | Description |
    | --------- | ----------- |
-   | Azure location  | The Azure location for your resources. Select a Select a [location where Azure Database for PostgreSQL is available](/azure/postgresql/flexible-server/overview#azure-regions). |
+   | Azure location  | The Azure location for your resources. Select a [location where Azure Database for PostgreSQL is available](/azure/postgresql/flexible-server/overview#azure-regions). |
    | Azure subscription | The Azure subscription for your resources. |
 
    This process can take some time to run. While the `azd up` command runs, the output displays two Azure portal links that you can use to monitor the deployment progress. The output also demonstrates how `azd up`:
@@ -222,7 +223,7 @@ SUCCESS: Your up workflow to provision and deploy to Azure completed in 9 minute
 
 ### Confirm successful deployment 
 
-To verify that the batch container app is logging an insert operation into Azure Database for PostgreSQL every 10 seconds, take the following steps.
+After deployment, the batch container app uses an output binding to insert data into Azure Database for PostgreSQL every 10 seconds. To check the logs for these insert operations, take the following steps.
 
 1. In the terminal output, copy the container app name.
 
@@ -260,7 +261,7 @@ To verify that the batch container app is logging an insert operation into Azure
 
 When the `azd up` command runs successfully:
 
-- The Azure Developer CLI creates the Azure resources referenced in the [sample project ./infra directory](https://github.com/Azure-Samples/bindings-dapr-nodejs-cron-postgres-/tree/master/infra) in the Azure subscription you specify. You can find those Azure resources in the Azure portal.
+- The Azure Developer CLI creates the Azure resources referenced in the [sample project ./infra directory](https://github.com/Azure-Samples/bindings-dapr-nodejs-cron-postgres/tree/master/infra) in the Azure subscription you specify. You can find those resources in the Azure portal.
 - The app is deployed to Container Apps. In the Azure portal, you can access the fully functional app.
 
 ::: zone-end
@@ -363,7 +364,7 @@ docker compose stop
 
 ## Deploy the application template by using the Azure Developer CLI
 
-To deploy the bindings application to Container Apps by using [`azd`](/azure/developer/azure-developer-cli/overview) commands, take the steps in the following sections. Instead of the local PostgreSQL container, the deployment uses an instance of Azure Database for PostgreSQL.
+To deploy the bindings application to Container Apps by using [`azd`](/azure/developer/azure-developer-cli/overview) commands, take the steps in the following sections. The deployment replaces the local PostgreSQL container with an instance of Azure Database for PostgreSQL.
 
 ### Prepare the project
 
@@ -461,7 +462,7 @@ SUCCESS: Your up workflow to provision and deploy to Azure completed in 8 minute
 
 ### Confirm successful deployment 
 
-To verify that the batch container app is logging an insert operation into Azure Database for PostgreSQL every 10 seconds, take the following steps.
+After deployment, the batch container app uses an output binding to insert data into Azure Database for PostgreSQL every 10 seconds. To check the logs for these insert operations, take the following steps.
 
 1. In the terminal output, copy the container app name.
 
@@ -504,7 +505,7 @@ To verify that the batch container app is logging an insert operation into Azure
 
 When the `azd up` command runs successfully:
 
-- The Azure Developer CLI creates the Azure resources referenced in the [sample project ./infra directory](https://github.com/Azure-Samples/bindings-dapr-python-cron-postgres-/tree/master/infra) in the Azure subscription you specify. You can find those Azure resources in the Azure portal.
+- The Azure Developer CLI creates the Azure resources referenced in the [sample project ./infra directory](https://github.com/Azure-Samples/bindings-dapr-python-cron-postgres/tree/master/infra) in the Azure subscription you specify. You can find those resources in the Azure portal.
 - The app is deployed to Container Apps. In the Azure portal, you can access the fully functional app.
 
 ::: zone-end
@@ -594,7 +595,7 @@ docker compose stop
 
 ## Deploy the application template by using the Azure Developer CLI
 
-To deploy the bindings application to Container Apps by using [`azd`](/azure/developer/azure-developer-cli/overview) commands, take the steps in the following sections. Instead of the local PostgreSQL container, the deployment uses an instance of Azure Database for PostgreSQL.
+To deploy the bindings application to Container Apps by using [`azd`](/azure/developer/azure-developer-cli/overview) commands, take the steps in the following sections. The deployment replaces the local PostgreSQL container with an instance of Azure Database for PostgreSQL.
 
 ### Prepare the project
 
@@ -698,7 +699,7 @@ SUCCESS: Your up workflow to provision and deploy to Azure completed in 10 minut
 
 ### Confirm successful deployment 
 
-To verify that the batch container app is logging an insert operation into Azure Database for PostgreSQL every 10 seconds, take the following steps.
+After deployment, the batch container app uses an output binding to insert data into Azure Database for PostgreSQL every 10 seconds. To check the logs for these insert operations, take the following steps.
 
 1. In the terminal output, copy the container app name.
 
@@ -739,7 +740,7 @@ To verify that the batch container app is logging an insert operation into Azure
 
 When the `azd up` command runs successfully:
 
-- The Azure Developer CLI creates the Azure resources referenced in the [sample project ./infra directory](https://github.com/Azure-Samples/bindings-dapr-csharp-cron-postgres-/tree/master/infra) in the Azure subscription you specify. You can find those Azure resources in the Azure portal.
+- The Azure Developer CLI creates the Azure resources referenced in the [sample project ./infra directory](https://github.com/Azure-Samples/bindings-dapr-csharp-cron-postgres/tree/master/infra) in the Azure subscription you specify. You can find those resources in the Azure portal.
 - The app is deployed to Container Apps. In the Azure portal, you can access the fully functional app.
 
 ::: zone-end
@@ -754,7 +755,7 @@ azd down
 
 ## Related content
 
-- For more information about deploying microservices that use Dapr to Container Apps, see [Quickstart: Deploy a Dapr application to Azure Container Apps using the Azure CLI](./microservices-dapr.md).
+- For more information about deploying Dapr microservices to Container Apps, see [Quickstart: Deploy a Dapr application to Azure Container Apps using the Azure CLI](./microservices-dapr.md).
 - For information about using a token to check that requests to your app come from Dapr, see [Enable token authentication for Dapr requests](./dapr-authentication-token.md).
 - For information about making your applications compatible with `azd`, see [Create Azure Developer CLI templates overview](/azure/developer/azure-developer-cli/make-azd-compatible).
 
