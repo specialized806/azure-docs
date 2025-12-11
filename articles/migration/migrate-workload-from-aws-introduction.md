@@ -24,7 +24,7 @@ The scope of this article covers the full migration lifecycle of a single worklo
 
 ## Recommended tools
 
-Use AWS and Azure tools where appropriate to augment your migration process. These tools support upfront discovery, planning your Azure architecture (based on data gathered about your AWS workload), data and virtual machine (VM) transfer, and post-migration validation and resource cleanup. For example you can use [Workload Discovery on AWS](https://aws.amazon.com/solutions/implementations/workload-discovery-on-aws/) to speed up assessment and use [Azure Migrate](/azure/migrate/tutorial-assess-aws) to assess AWS instances for migration to Azure.
+Use AWS and Azure tools where appropriate to augment your migration process. These tools support upfront discovery, planning your Azure architecture (based on data gathered about your AWS workload), data and virtual machine (VM) transfer, and post-migration validation and resource cleanup. For example you can use [Workload Discovery on AWS](https://aws.amazon.com/solutions/implementations/workload-discovery-on-aws/) to speed up assessment and use [Azure Migrate](/azure/migrate/tutorial-assess-aws) to assess AWS instances and provide sizing recommendations for Azure resources.
 
 Migrating a workload from AWS is a strategic initiative that requires careful planning and stakeholder alignment. This article focuses on workloads that range from simple to moderately complex and can benefit from a pragmatic migration strategy. 
 
