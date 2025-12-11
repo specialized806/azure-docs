@@ -182,18 +182,16 @@ items:
                 items:
                   - name: Overview
                     href: blobfuse2-what-is.md
-                  - name: Install
+                  - name: Install BlobFuse2
                     href: blobfuse2-install.md
-                  - name: Configure
+                  - name: Configure BlobFuse2
                     href: blobfuse2-configure.md
-                  - name: Choose between streaming or caching
+                  - name: Stream versus cache mode
                     href: blobfuse2-choose-data-transfer-mode.md
                   - name: Mount a container
                     href: blobfuse2-mount-container.md
-                  - name: Commands
+                  - name: BlobFuse2 command set
                     href: blobfuse2-commands.md
-                  - name: Preload and filter
-                    href: blobfuse2-preload-filter.md
                   - name: BlobFuse2 and Linux file system compared
                     href: blobfuse2-compare-linux-file-system.md
                   - name: Monitor activity and resource use
