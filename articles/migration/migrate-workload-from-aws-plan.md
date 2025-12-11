@@ -34,18 +34,22 @@ The goal of the planning phase is to:
 
 ## Design a like-for-like architecture in Azure
 
-1. **Start with networking:** Discuss your workload's networking requirements with the platform team. Your request should include not only the target architecture, but also the migration connectivity. AWS uses the concept of a Transit Gateway as the network hub with Amazon VPCs as the spoke networks. In the Azure application landing zone design, the platform team provisions spoke virtual networks to workload teams. These spoke networks communicate to other internal and external networks through the hub or Azure Virtual WAN network. To exchange data during the migration, you can use either Site-to-Site VPN or an ExpressRoute and DirectConnect. Relying on VPN is suitable for smaller or text migrations, while ExpressRoute and DirectConnect is recommended for production-scale migrations or large data transfers. Consider using both for reliability.
+**Start with networking:** Discuss your workload's networking requirements with the platform team. Your request should include not only the target architecture, but also the migration connectivity. AWS uses the concept of a Transit Gateway as the network hub with Amazon VPCs as the spoke networks. In the Azure application landing zone design, the platform team provisions spoke virtual networks to workload teams. These spoke networks communicate to other internal and external networks through the hub or Azure Virtual WAN network. 
+
+To exchange data during the migration, you can use either Site-to-Site VPN or an ExpressRoute and DirectConnect. Relying on VPN is suitable for smaller or text migrations, while ExpressRoute and DirectConnect is recommended for production-scale migrations or large data transfers. Consider using both for reliability in which case you rely on VPN for failover.
 
 :::image type="content" source="./images/migrate-from-aws-connectivity.svg" alt-text="Diagram showing network connectivity between AWS and Azure clouds. At the top, a DNS icon connects to two boxes: on the left, AWS Cloud with a Virtual Private Cloud (VPC); on the right, Azure Cloud with a Virtual Network (VNet). A bidirectional arrow between the boxes is labeled Site-to-Site VPN and Direct Connect + ExpressRoute, indicating secure connectivity options." lightbox="./images/migrate-from-aws-phases.svg" border="false"::: 
  
 Learn more about how to [migrate networking from AWS](/azure/migration/migrate-networking-from-aws).
 
-2. **Identify Azure services:** Use the [AWS to Azure resource comparison guide](/azure/architecture/aws-professional) to help you build your workload in Azure.
-3. **Document your migration decisions:** Document the resources that you don't migrate and any architecture decisions you make. 
-4. **Reduce risks:** Identify any high-risk components or flows and build out proof of concepts (POCs) as needed to test and mitigate those risks. Consider performing a [failure mode analysis](/azure/well-architected/reliability/failure-mode-analysis) to proactively uncover potential points of failure and assess their impact on the reliability of your workload. 
-5. **Check availability:** Check Azure service availability and capacity in your preferred region, specifically if you plan to use specialized resource types.
-6. **Validate requirements:** If you decide to use Azure Migrate, review the [Azure Migrate support matrix](/azure/migrate/migrate-support-matrix-physical) to ensure your AWS instances meet OS and configuration requirements.
-7. **Compliance and security** Ensure you meet your security requirements. Learn more about [migrating security from AWS](/azure/migration/migrate-security-from-aws).
+After planning your networking, follow these steps:
+
+1. **Identify Azure services:** Use the [AWS to Azure resource comparison guide](/azure/architecture/aws-professional) to help you build your workload in Azure.
+2. **Document your migration decisions:** Document the resources that you don't migrate and any architecture decisions you make. 
+3. **Reduce risks:** Identify any high-risk components or flows and build out proof of concepts (POCs) as needed to test and mitigate those risks. Consider performing a [failure mode analysis](/azure/well-architected/reliability/failure-mode-analysis) to proactively uncover potential points of failure and assess their impact on the reliability of your workload. 
+4. **Check availability:** Check Azure service availability and capacity in your preferred region, specifically if you plan to use specialized resource types.
+5. **Validate requirements:** If you decide to use Azure Migrate, review the [Azure Migrate support matrix](/azure/migrate/migrate-support-matrix-physical) to ensure your AWS instances meet OS and configuration requirements.
+6. **Compliance and security** Ensure you meet your security requirements. Learn more about [migrating security from AWS](/azure/migration/migrate-security-from-aws).
 
 ## Develop and document a migration plan and create a runbook
 
