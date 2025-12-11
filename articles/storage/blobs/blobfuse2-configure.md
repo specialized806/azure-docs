@@ -1,7 +1,7 @@
 ---
 title: Configure BlobFuse2 settings
-titleSuffix: Learn how to configure BlobFuse2 settings before mounting an Azure Blob Storage container through the Linux file system.
-description: Description goes here
+titleSuffix: Azure Storage
+description: Learn how to configure BlobFuse2 settings before mounting an Azure Blob Storage container through the Linux file system.
 author: normesta
 ms.author: normesta
 

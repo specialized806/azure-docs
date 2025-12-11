@@ -182,27 +182,27 @@ items:
                 items:
                   - name: Overview
                     href: blobfuse2-what-is.md
-                  - name: Install BlobFuse2
+                  - name: Install
                     href: blobfuse2-install.md
-                  - name: Configure settings
+                  - name: Configure
                     href: blobfuse2-configure.md
-                  - name: Choose a data transfer mode
+                  - name: Choose between streaming or caching
                     href: blobfuse2-choose-data-transfer-mode.md
-                  - name: Preload and filter data to enhance performance
-                    href: blobfuse2-preload-filter.md
                   - name: Mount a container
                     href: blobfuse2-mount-container.md
-                  - name: BlobFuse2 commands
+                  - name: Commands
                     href: blobfuse2-commands.md
+                  - name: Preload and filter
+                    href: blobfuse2-preload-filter.md
                   - name: BlobFuse2 and Linux file system compared
                     href: blobfuse2-compare-linux-file-system.md
-                  - name: Monitor health
+                  - name: Monitor activity and resource use
                     href: blobfuse2-health-monitor.md
                   - name: Enable logging
                     href: blobfuse2-enable-logs.md
                   - name: Limitations and known issues
                     href: blobfuse2-known-issues.md
-                  - name: Troubleshoot BlobFuse2
+                  - name: Troubleshooting
                     href: blobfuse2-troubleshooting.md
               - name: BlobFuse1
                 items:
