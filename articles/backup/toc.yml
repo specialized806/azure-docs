@@ -351,6 +351,52 @@
         href: backup-azure-dataprotection-use-rest-api-backup-blobs.md
       - name: Restore
         href: backup-azure-dataprotection-use-rest-api-restore-blobs.md
+- name: Azure Data Lake Storage vaulted backup
+  items:
+  - name: Backup scenarios
+    items:
+    - name: Configure vaulted backup
+      href: azure-data-lake-storage-configure-backup.md
+    - name: Restore
+      href: azure-data-lake-storage-restore.md
+    - name: Manage
+      href: azure-data-lake-storage-backup-manage.md
+- name: Azure Files backup
+  items:
+  - name: From the Azure portal
+    items:
+    - name: Backup scenarios
+      items:
+      - name: Configure backup
+        href: backup-azure-files.md
+      - name: Restore
+        href: restore-afs.md
+      - name: Manage
+        href: manage-afs-backup.md
+    - name: With Azure CLI
+      items:
+      - name: Backup
+        href: backup-afs-cli.md
+      - name: Restore
+        href: restore-afs-cli.md
+      - name: Manage
+        href: manage-afs-backup-cli.md
+    - name: With PowerShell
+      items:
+      - name: Backup
+        href: backup-azure-afs-automation.md
+      - name: Restore
+        href: restore-afs-powershell.md
+      - name: Manage
+        href: manage-afs-powershell.md
+    - name: With REST API
+      items:
+      - name: Backup
+        href: backup-azure-file-share-rest-api.md
+      - name: Restore
+        href: restore-azure-file-share-rest-api.md
+      - name: Manage
+        href: manage-azure-file-share-rest-api.md
 - name: Quickstarts  
   items:
   - name: Back up Azure PostgreSQL Database
@@ -724,48 +770,6 @@
         href: backup-azure-restore-system-state.md
     - name: Manage
       href: backup-azure-manage-mars.md
-  - name: Azure Data Lake Storage vaulted backup
-    items:
-    - name: Configure vaulted backup
-      href: azure-data-lake-storage-configure-backup.md
-    - name: Restore
-      href: azure-data-lake-storage-restore.md
-    - name: Manage
-      href: azure-data-lake-storage-backup-manage.md
-  - name: Azure Files backup
-    items:
-    - name: From the Azure portal
-      items:
-      - name: Configure backup
-        href: backup-azure-files.md
-      - name: Restore
-        href: restore-afs.md
-      - name: Manage
-        href: manage-afs-backup.md
-    - name: With Azure CLI
-      items:
-      - name: Backup
-        href: backup-afs-cli.md
-      - name: Restore
-        href: restore-afs-cli.md
-      - name: Manage
-        href: manage-afs-backup-cli.md
-    - name: With PowerShell
-      items:
-      - name: Backup
-        href: backup-azure-afs-automation.md
-      - name: Restore
-        href: restore-afs-powershell.md
-      - name: Manage
-        href: manage-afs-powershell.md
-    - name: With REST API
-      items:
-      - name: Backup
-        href: backup-azure-file-share-rest-api.md
-      - name: Restore
-        href: restore-azure-file-share-rest-api.md
-      - name: Manage
-        href: manage-azure-file-share-rest-api.md
   - name: Azure Elastic SAN backup
     items:
     - name: Configure backup
