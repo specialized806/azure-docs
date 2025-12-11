@@ -53,13 +53,15 @@ After planning your networking, follow these steps:
 
 ## Develop and document a migration plan and create a runbook
 
-### Choose your cutover strategy
+### Your cutover strategy
 
 This strategy moves production traffic from the AWS environment to the Azure environment. 
 
-When practical, choose an active-active design over a hot-cold or hot-warm design. If your budget and timeline allow, plan to perform the migration in small incremental steps rather than all at once. An active-active multicloud design during migration lets you migrate and test gradually and with reduced risk. In this scenario, you run your workload in AWS as normal throughout the migration, moving traffic over to Azure in a deliberate, incremental way. Both environments run in parallel throughout the migration, allowing you to shift traffic back to AWS if issues arise in the Azure environment. 
+If your SLA allows for a maintenance window, a blue/green approach is preferred. In this case you maintain two environments. Blue is the current environment (AWS) and Green is the new (Azure).
 
-This approach also enables live testing under real-world conditions to catch issues early with minimal impact on the user. For best results, use AWS Transit Gateway to simplify routing between VPCs and Azure, and AWS Route 53 or Azure Traffic Manager for a DNS-based traffic management. Consider applying the [Strangler Fig façade](/azure/architecture/patterns/strangler-fig) as part of a controlled and phased cutover strategy.
+In this scenario, you plan a migration window, run your workload in AWS as normal throughout the migration, and move traffic over to Azure after a successful dry run. Both environments run in parallel throughout the migration, allowing you to shift traffic back to AWS if issues arise in the Azure environment.
+
+Consider applying the [Strangler Fig façade](/azure/architecture/patterns/strangler-fig) as part of a controlled cutover strategy.
 
 There's a cost trade-off to this approach. You incur costs for both cloud providers during the transition. For most teams, the extra costs are worth taking on due to the reduction of risk and operational burden.
 
@@ -83,7 +85,7 @@ Your choice depends on the amount of data, type of data storage, and usage requi
 > If you choose AWS DataSync, the DataSync agent needs to be deployed in Azure during the [prepare phase](./migrate-workload-from-aws-prepare.md).
 
 
-**Plan a maintenance window:** Schedule a dedicated window for your final cutover and decommissioning steps, document and communicate it with your stakeholders before you start migration.
+**Plan a maintenance window:** Schedule a dedicated window for your final cutover and decommissioning steps, document and communicate it with your stakeholders before you start migration. Include time for a possible rollback and DNS switch.
 ### Document in a runbook
 
 **Sequence of steps:** Document the sequence of steps at a high level. If you're planning a one-time all-at-once cutover, define the exact steps, sequence, and timing of the move. Include the planned outage window in your documentation. Consider including a dry-run, especially for complex cutovers. Document your rollback strategy, DNS TTLs, and how to test success metrics.
