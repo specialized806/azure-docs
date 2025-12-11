@@ -152,7 +152,7 @@ cd bindings-dapr-nodejs-cron-postgres
    | Azure location  | The Azure location for your resources. Select a [location where Azure Database for PostgreSQL is available](/azure/postgresql/flexible-server/overview#azure-regions). |
    | Azure subscription | The Azure subscription for your resources. |
 
-   This process can take some time to run. While the `azd up` command runs, the output displays two Azure portal links that you can use to monitor the deployment progress. The output also demonstrates how `azd up`:
+   This process can take some time to run. While the `azd up` command runs, the output displays an Azure portal link that you can use to monitor the deployment progress. The output also demonstrates how `azd up`:
 
    - Creates and configures all necessary Azure resources via the Bicep files in the *./infra* directory by using `azd provision`. After the Azure Developer CLI deploys these resources, you can use the Azure portal to access them. The files that are used to configure the Azure resources include:
      - *main.parameters.json*.
@@ -397,7 +397,7 @@ cd bindings-dapr-python-cron-postgres
    | Azure location  | The Azure location for your resources. Select a [location where Azure Database for PostgreSQL is available](/azure/postgresql/flexible-server/overview#azure-regions). |
    | Azure subscription | The Azure subscription for your resources. |
 
-   This process can take some time to run. While the `azd up` command runs, the output displays two Azure portal links that you can use to monitor the deployment progress. The output also demonstrates how `azd up`:
+   This process can take some time to run. While the `azd up` command runs, the output displays an Azure portal link that you can use to monitor the deployment progress. The output also demonstrates how `azd up`:
 
    - Creates and configures all necessary Azure resources via the Bicep files in the *./infra* directory by using `azd provision`. After the Azure Developer CLI deploys these resources, you can use the Azure portal to access them. The files that are used to configure the Azure resources include:
      - *main.parameters.json*.
@@ -628,7 +628,7 @@ cd bindings-dapr-csharp-cron-postgres
    | Azure location  | The Azure location for your resources. Select a [location where Azure Database for PostgreSQL is available](/azure/postgresql/flexible-server/overview#azure-regions). |
    | Azure subscription | The Azure subscription for your resources. |
 
-   This process can take some time to run. While the `azd up` command runs, the output displays two Azure portal links that you can use to monitor the deployment progress. The output also demonstrates how `azd up`:
+   This process can take some time to run. While the `azd up` command runs, the output displays an Azure portal link that you can use to monitor the deployment progress. The output also demonstrates how `azd up`:
 
    - Creates and configures all necessary Azure resources via the Bicep files in the *./infra* directory by using `azd provision`. After the Azure Developer CLI deploys these resources, you can use the Azure portal to access them. The files that are used to configure the Azure resources include:
      - *main.parameters.json*.
