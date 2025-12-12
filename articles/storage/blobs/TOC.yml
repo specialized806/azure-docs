@@ -192,7 +192,7 @@ items:
                     href: blobfuse2-configure.md
                   - name: Stream versus cache mode
                     href: blobfuse2-choose-data-transfer-mode.md
-              - name: Mount containers and use data
+              - name: Mount storage
                 items:
                   - name: Mount a container
                     href: blobfuse2-mount-container.md
