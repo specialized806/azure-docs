@@ -14,136 +14,90 @@ ms.custom: linux-related-content
 
 # What is BlobFuse? - BlobFuse2
 
-BlobFuse is a virtual file system driver for Azure Blob Storage. Use BlobFuse to access your existing Azure **block blob** data through the Linux file system. **Page blob**s are not supported.
+**BlobFuse** is an open-source virtual file system driver that enables seamless integration of Azure Blob Storage with Linux environments. It allows users to mount Azure storage account containers as a file system, making blob data accessible through standard Linux file operations. BlobFuse translates these operations into Azure Blob REST API calls, allowing your applications to leverage the scalability and durability of Azure Blob Storage.
 
-## About the BlobFuse2 open source project
+BlobFuse provides several caching mechanisms (file, metadata, attribute caching) to enhance performance and minimize network traffic charges. Users can configure cache location, size, and retention policies for optimal performance.
 
-BlobFuse2 is an open source project that uses the libfuse open source library (fuse3) to communicate with the Linux FUSE kernel module. BlobFuse2 implements file system operations by using the Azure Storage REST APIs.
+## Key Use cases
 
-The open source BlobFuse2 project is on GitHub:
+**Model training and checkpointing for AI and ML -** Azure BlobFuse boosts AI/ML workflows by providing fast access to multi-petabyte datasets in Azure Blob Storage with caching. It allows compute nodes (VMs, containers, AKS pods) to efficiently load training data and save model checkpoints. Preloading data withBlobfuse2 ensures quick access before training starts, helping optimize GPU usage. BlobFuse have been validated with distributed ML frameworks like **PyTorch and Ray** for greater workflow portability.
 
-- [BlobFuse2 repository](https://github.com/Azure/azure-storage-fuse/tree/main)
-- [BlobFuse2 README](https://github.com/Azure/azure-storage-fuse/blob/main/README.md)
-- [Report BlobFuse2 issues](https://github.com/Azure/azure-storage-fuse/issues)
+**High-Performance Computing (HPC) -** Enables rapid, scalable access to Azure Blob Storage in HPC settings, supporting efficient data processing across domains such as:
 
-> [!IMPORTANT]
-> BlobFuse v1 support will be discontinued in September 2026. Migrate to BlobFuse v2 using the provided [instructions](https://github.com/Azure/azure-storage-fuse/blob/main/MIGRATION.md).
+- Autonomous driving workloads (ADAS)using **Azure Kubernetes services** (**AKS)**, leveraging BlobFuse for large-scale simulation and model training data.
 
-### Licensing
+- Hydrofoil simulations, where BlobFuse manages computational files and results for streamlined engineering analysis.
 
-The BlobFuse2 project is [licensed under the MIT license](https://github.com/Azure/azure-storage-fuse/blob/main/LICENSE).
+- Genomics sequencing, benefiting from BlobFuse’s ability to handle large datasets and accelerate data sharing.
+
+- Gaming simulations, relying on quick data access with BlobFuse to boost parallel processing and scale complex scenarios.
+
+**Cloud-Native Workload Integration -** BlobFuse is used as a persistent storage layer for containers and stateful workloads in Kubernetes using the CSI driver. It allows applications to share large files, model weights, or logs using Azure Blob Storage’s scalable capacity, and is well suited for ReadWrite or ReadOnly access modes in shared cluster scenarios.
+
+**Big Data Analytics/AI training data pre-processing -** Enhances analytics workload by integrating with tools like Hadoop and Spark for efficient data storage and retrieval. BlobFuse is also useful for pre-processing data on blobs for AI data cleaning, validating and pre-processing.
+
+**Data backup and Archiving -** BlobFuse streamlines the backup and archiving of large datasets by allowing direct storage in Azure Blob Storage. It supports major backup tasks, such as RMAN database and enterprise system backups, and provides secure, scalable storage for surveillance video, reducing manual data management.
+
+## How BlobFuse works
+
+BlobFuse leverages the libfuse (fuse3) library to interface with the Linux FUSE kernel module and performs file system operations using Azure Storage REST APIs. It translates Azure Blob Storage object names into a directory-like structure using path conventions, allowing files to be accessed as if residing locally. Operations such as mkdir, opendir, readdir, rmdir, open, read, create, write, close, unlink, truncate, stat, rename are supported. Chmod is also supported for HNS accounts.
+
+BlobFuse has two operating modes:
+
+- Caching (File Cache)
+
+- Streaming (Block cache)
+
+### Caching (File Cache)
+
+In this mode, Blobfuse downloads the entire file from Azure Blob Storage into a **local cache directory** before making it available to the application. All subsequent reads and writes are served from this local cache until the file is evicted or invalidated. If the file was created or modified, then close of file-handles from application end will trigger upload of this file to storage container. This mode is suitable for workloads with repeated reads of files or datasets which can fit in local disk.
+
+### Streaming (Block Cache)
+
+Unlike traditional file caching, which downloads the entire file before serving, block cache mode **streams data in chunks (blocks)** and serves it as it downloads. This is designed for workloads involving **large files**, such as AI/ML training datasets, genomic sequencing, and HPC simulations.
+
+[Recommendations for using Block cache](https://github.com/Azure/azure-storage-fuse/wiki/How-Blobfuse2-Works#recommendations-for-using-block-cache)
+
+> [!NOTE]
+> Due to known data consistency issues when using older versions of Blobfuse2 in streaming with `block-cache` mode, it is strongly recommended that all Blobfuse2 installations be upgraded to version 2.3.2 or higher. For more information, see **[this](https://github.com/Azure/azure-storage-fuse/wiki/Blobfuse2-Known-issues)**.
+
+## Supported operations
+
+The general format of the Blobfuse2 commands is `blobfuse2 [command] [arguments] --[flag-name]=[flag-value]`
+
+For detailed information, refer [this page](/azure/storage/blobs/blobfuse2-commands?toc=%2Fazure%2Fstorage%2Fblobs%2Ftoc.json).
+
+<!-- 5th Section -->
+
+## Performance Benchmarks
+
+Refer the [page](https://azure.github.io/azure-storage-fuse/) to check the various performance benchmarks of BlobFuse.
 
 ## Features
 
-A full list of BlobFuse2 features is in the [BlobFuse2 README](https://github.com/Azure/azure-storage-fuse/blob/main/README.md#features). These are some of the key tasks you can perform by using BlobFuse2:
+A full list of BlobFuse2 features is at [BlobFuse2 README](https://github.com/Azure/azure-storage-fuse/wiki/BlobFuse2-Features). Some key features include:
 
-- Mount an Azure Blob Storage container or Azure Data Lake Storage file system on Linux.  (BlobFuse2 supports storage accounts with either flat namespaces or hierarchical namespace configured.)
-- Use basic file system operations like `mkdir`, `opendir`, `readdir`, `rmdir`, `open`, `read`, `create`, `write`, `close`, `unlink`, `truncate`, `stat`, and `rename`.
-- Use local file caching to improve subsequent access times.
-- Gain insights into mount activities and resource usage by using BlobFuse2 Health Monitor.
+- Gain insights into mount activities and resource usage by using [Health Monitor](https://github.com/Azure/azure-storage-fuse/blob/main/tools/health-monitor/README.md)
 
-Other key features in BlobFuse2 include:
+- Restrict what all blobs a mount can see or operate upon using [Blob Filter](https://github.com/Azure/azure-storage-fuse/wiki/Blobfuse2%E2%80%90Blob-Filter)
 
-- Streaming to support reading and writing large files
-- Parallel downloads and uploads to improve access time for large files
-- Multiple mounts to the same container for read-only workloads
+- Downloading entire containers or sub-directories to the local cache when you mount BlobFuse with [Preload Data](https://github.com/Azure/azure-storage-fuse/wiki/Blobfuse2%E2%80%90Preload)
 
-> [!IMPORTANT]
-> Due to known data consistency issues when using older versions of Blobfuse2 in streaming with `block-cache` mode, it is strongly recommended that all Blobfuse2 installations be upgraded to version 2.3.2 or higher. For more information, see [this](https://github.com/Azure/azure-storage-fuse/wiki/Blobfuse2-Known-issues).
+## Logging
 
+Refer [this page](https://github.com/Azure/azure-storage-fuse/wiki/Blobfuse2-Logging) for details on available logging options when using BlobFuse.
 
-## BlobFuse2 enhancements from BlobFuse v1
+### Differences between the Linux file system and BlobFuse2
 
-BlobFuse2 has more feature support and improved performance in multiple user scenarios from BlobFuse v1. For the extensive list of improvements, see the [BlobFuse2 README](https://github.com/Azure/azure-storage-fuse/blob/main/README.md#distinctive-features-compared-to-blobfuse-v1x). Here's a summary of enhancements in BlobFuse2 from BlobFuse v1:
+BlobFuse2 doesn't guarantee 100% POSIX compliance because BlobFuse2 simply translates requests into [Blob REST APIs](/rest/api/storageservices/blob-service-rest-api). For example, rename operations are atomic in POSIX but not in BlobFuse2. See [the full list of differences between a native file system and BlobFuse2](https://github.com/Azure/azure-storage-fuse/wiki/Blobfuse2-Limitations-Issues#differences-between-the-linux-file-system-and-blobfuse2).
 
-- Improved caching
-- More management support through new Azure CLI commands
-- More logging support
-- The addition of write-streaming for large files (previously, only read-streaming was supported)
-- New BlobFuse2 Health Monitor to help you gain insights into mount activities and resource usage
-- Compatibility and upgrade options for existing BlobFuse v1 users
-- Version checking and upgrade prompting
-- Support for configuration file encryption
+## Limitations and Known Issues
 
-See the [list of BlobFuse2 performance enhancements](https://github.com/Azure/azure-storage-fuse/blob/main/README.md#blobfuse2-performance-compared-to-blobfusev1xx) from BlobFuse v1.
-
-### For BlobFuse v1 users
-
-The enhancements provided by BlobFuse2 are compelling reasons to upgrade and migrate to BlobFuse2. If you aren't ready to migrate, you can use BlobFuse2 to [mount a blob container by using the same configuration options and Azure CLI parameters you use with BlobFuse v1](blobfuse2-commands-mountv1.md).
-
-The [BlobFuse2 migration guide](https://github.com/Azure/azure-storage-fuse/blob/main/MIGRATION.md) provides all the details you need for compatibility and migrating your current workloads.
+Please refer the [page](https://github.com/Azure/azure-storage-fuse/wiki/Blobfuse2-Limitations-Issues).
 
 ## Support
 
 BlobFuse2 is supported by Microsoft if it's used within the specified [limits](#limitations). If you encounter an issue, [report it on GitHub](https://github.com/Azure/azure-storage-fuse/issues).
-
-## Limitations
-
-BlobFuse2 doesn't guarantee 100% POSIX compliance because BlobFuse2 simply translates requests into [Blob REST APIs](/rest/api/storageservices/blob-service-rest-api). For example, rename operations are atomic in POSIX but not in BlobFuse2.
-
-See [the full list of differences between a native file system and BlobFuse2](#differences-between-the-linux-file-system-and-blobfuse2).
-
-### Differences between the Linux file system and BlobFuse2
-
-In many ways, you can use BlobFuse2-mounted storage just like the native Linux file system. The virtual directory scheme is the same and uses a forward slash (`/`) as a delimiter. Basic file system operations like `mkdir`, `opendir`, `readdir`, `rmdir`, `open`, `read`, `create`, `write`, `close`, `unlink`, `truncate`, `stat`, and `rename` work the same as in the Linux file system.
-
-BlobFuse2 is different from the Linux file system in some key ways:
-
-- **Readdir count of hard links**:
-
-  For performance reasons, BlobFuse2 doesn't correctly report the hard links inside a directory. The number of hard links for empty directories returns as 2. The number for non-empty directories always returns as 3, regardless of the actual number of hard links.
-
-- **Non-atomic renames**:
-
-  Azure Blob Storage doesn't support atomic rename operations. Single-file renames are actually two operations: a copy, and then a deletion of the original. Directory renames recursively enumerate all files in the directory and renames each file.
-
-- **Special files**:
-
-  BlobFuse2 supports only directories, regular files, and symbolic links. Special files like device files, pipes, and sockets aren't supported.
-
-- **mkfifo**:
-
-  Fifo creation isn't supported by BlobFuse2. Attempting this action results in a "function not implemented" error.
-
-- **chown and chmod**:
-
-  BlobFuse2 does not support `chown` operations for either block blob storage (FNS) or Data Lake Storage (HNS). FNS storage accounts do not support `chmod` operations, HNS storage accounts do support `chmod` operations but only on child objects inside of the mount directory, not on the root mount directory.
-  
-- **Device files or pipes**:
-
-  BlobFuse2 doesn't support creating device files or pipes.
-
-- **Extended-attributes (x-attrs)**:
-
-  BlobFuse2 doesn't support extended-attributes (`x-attrs`) operations.
-
-- **Write-streaming**:
-
-  Concurrent streaming of read and write operations on large file data might produce unpredictable results. Simultaneously writing to the same blob from different threads isn't supported.
-
-### Data integrity
-
-File caching plays an important role in the integrity of data that's read and written to a Blob Storage file system mount. We recommend streaming mode for use with large files, which supports streaming for both read and write operations. BlobFuse2 caches blocks of streaming files in memory. For smaller files that don't consist of blocks, the entire file is stored in memory. File cache is the second mode. We recommend file cache for workloads that don't contain large files, such as when files are stored on disk in their entirety.
-
-BlobFuse2 supports read and write operations. Continuous synchronization of data written to storage by using other APIs or other mounts of BlobFuse2 isn't guaranteed. For data integrity, we recommend that multiple sources don't modify the same blob, especially at the same time. If one or more applications attempt to write to the same file simultaneously, the results might be unexpected. Depending on the timing of multiple write operations and the freshness of the cache for each operation, the result might be that the last writer wins and previous writes are lost, or generally that the updated file isn't in the intended state.
-
-#### File caching on disk
-
-When a file is the subject of a write operation, the data is first persisted to cache on a local disk. The data is written to Blob Storage only after the file handle is closed. If an issue attempting to persist the data to Blob Storage occurs, an error message appears.
-
-#### Streaming
-
-For streaming during read and write operations, blocks of data are cached in memory as they're read or updated. Updates are flushed to Azure Storage when a file is closed or when the buffer is filled with dirty blocks.
-
-Reading the same blob from multiple simultaneous threads is supported. However, simultaneous write operations might result in unexpected file data outcomes, including data loss. Performing simultaneous read operations and a single write operation is supported, but the data being read from some threads might not be current.
-
-### Permissions
-
-When a container is mounted with the default options, all files get 770 permissions and are accessible only by the user who does the mounting. To allow any user to access the BlobFuse2 mount, mount BlobFuse2 by using the `--allow-other` option. You also can configure this option in the YAML config file.
-
-As stated earlier, `chown` operations are not supported for either block blob storage (FNS) or Data Lake Storage (HNS). FNS storage accounts do not support `chmod` operations, HNS storage accounts do support `chmod` operations but only on child objects inside of the mount directory, not on the root mount directory. `chmod` may appear to succeed on mounted FNS containers or the HNS root mount directory, but the operation doesn't actually succeed.
-
-## Feature support
 
 This table shows how this feature is supported in your account and the effect on support when you enable certain capabilities.
 
@@ -153,6 +107,12 @@ This table shows how this feature is supported in your account and the effect on
 | Premium block blobs          | ![Yes](../media/icons/yes-icon.png)|![Yes](../media/icons/yes-icon.png) | ![Yes](../media/icons/yes-icon.png) | ![Yes](../media/icons/yes-icon.png) |
 
 <sup>1</sup> Data Lake Storage, the NFS 3.0 protocol, and SFTP support all require a storage account that has a hierarchical namespace enabled.
+
+## Licensing
+
+The BlobFuse2 project is [licensed under the MIT license](https://github.com/Azure/azure-storage-fuse/blob/main/LICENSE)
+
+[About the BlobFuse2 open source project](https://github.com/Azure/azure-storage-fuse/wiki#about-the-blobfuse2-open-source-project)
 
 ## See also
 

@@ -33,7 +33,7 @@ Using a configuration file is the preferred method, but the other methods might 
 
 ## Configuration file
 
-Creating a configuration file is the preferred method to establish settings for BlobFuse2. When you've specified the settings you want in the configuration file, reference the configuration file when you use `blobfuse2 mount` or other commands. 
+Creating a configuration file is the preferred method to establish settings for BlobFuse2. When you've specified the settings you want in the configuration file, reference the configuration file when you use `blobfuse2 mount` or other commands.
 
 Here's an example:
 

@@ -18,9 +18,43 @@ ms.custom: linux-related-content
 
 Introduction goes here.
 
-## Subheading goes here
+## Differences between the Linux file system and BlobFuse2
 
-Subheading info goes here.
+In many ways, you can use BlobFuse2-mounted storage just like the native Linux file system. The virtual directory scheme is the same and uses a forward slash (`/`) as a delimiter. Basic file system operations like `mkdir`, `opendir`, `readdir`, `rmdir`, `open`, `read`, `create`, `write`, `close`, `unlink`, `truncate`, `stat`, and `rename` work the same as in the Linux file system.
+
+BlobFuse2 is different from the Linux file system in some key ways:
+
+- **Readdir count of hard links**:
+
+  For performance reasons, BlobFuse2 doesn't correctly report the hard links inside a directory. The number of hard links for empty directories returns as 2. The number for non-empty directories always returns as 3, regardless of the actual number of hard links.
+
+- **Non-atomic renames**:
+
+  Azure Blob Storage doesn't support atomic rename operations. Single-file renames are actually two operations: a copy, and then a deletion of the original. Directory renames recursively enumerate all files in the directory and renames each file.
+
+- **Special files**:
+
+  BlobFuse2 supports only directories, regular files, and symbolic links. Special files like device files, pipes, and sockets aren't supported.
+
+- **mkfifo**:
+
+  Fifo creation isn't supported by BlobFuse2. Attempting this action results in a "function not implemented" error.
+
+- **chown and chmod**:
+
+  BlobFuse2 does not support `chown` operations for either block blob storage (FNS) or Data Lake Storage (HNS). FNS storage accounts do not support `chmod` operations, HNS storage accounts do support `chmod` operations but only on child objects inside of the mount directory, not on the root mount directory.
+  
+- **Device files or pipes**:
+
+  BlobFuse2 doesn't support creating device files or pipes.
+
+- **Extended-attributes (x-attrs)**:
+
+  BlobFuse2 doesn't support extended-attributes (`x-attrs`) operations.
+
+- **Write-streaming**:
+
+  Concurrent streaming of read and write operations on large file data might produce unpredictable results. Simultaneously writing to the same blob from different threads isn't supported.
 
 ## Next steps
 
