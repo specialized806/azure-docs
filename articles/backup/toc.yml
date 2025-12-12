@@ -377,9 +377,33 @@
       href: azure-data-lake-storage-backup-manage.md
 - name: Azure Files backup
   items:
-  - name: From the Azure portal
+  - name: Overview
+    href: azure-file-share-backup-overview.md
+  - name: FAQ-Back up Azure Files
+    href: backup-azure-files-faq.yml
+  - name: Support matrix
+    href: azure-file-share-support-matrix.md
+  - name: Quickstarts
     items:
-    - name: Backup scenarios
+    - name: Create a backup policy for Azure Files
+      href: quick-backup-azure-files-vault-tier-portal.md
+    - name: Configure vaulted backup for Azure Files
+      items:
+      - name: With Azure PowerShell
+        href: quick-backup-azure-files-vault-tier-powershell.md
+      - name: With Azure CLI
+        href: quick-backup-azure-files-vault-tier-cli.md
+      - name: With Azure Resource Manager
+        href: quick-backup-azure-files-vault-tier-arm.md
+      - name: With Azure Bicep
+        href: quick-backup-azure-files-vault-tier-bicep.md
+      - name: With Terraform
+        href: quick-backup-azure-files-vault-tier-terraform.md  
+  - name: Tutorial - Back up Azure Files using Azure portal
+    href: tutorial-backup-azure-files-vault-tier-portal.md
+  - name: Backup scenarios
+    items:
+    - name: From the Azure portal
       items:
       - name: Configure backup
         href: backup-azure-files.md
@@ -455,20 +479,6 @@
       href: quick-backup-postgresql-flexible-server-bicep.md
   - name: Install Backup extension in AKS cluster
     href: quick-install-backup-extension.md
-  - name: Create a backup policy for Azure Files
-    href: quick-backup-azure-files-vault-tier-portal.md
-  - name: Configure vaulted backup for Azure Files
-    items:
-    - name: With Azure PowerShell
-      href: quick-backup-azure-files-vault-tier-powershell.md
-    - name: With Azure CLI
-      href: quick-backup-azure-files-vault-tier-cli.md
-    - name: With Azure Resource Manager
-      href: quick-backup-azure-files-vault-tier-arm.md
-    - name: With Azure Bicep
-      href: quick-backup-azure-files-vault-tier-bicep.md
-    - name: With Terraform
-      href: quick-backup-azure-files-vault-tier-terraform.md
   - name: Backup SAP HANA System Replication database
     items:
     - name: Backup
@@ -502,8 +512,6 @@
     href: tutorial-configure-backup-aks.md
   - name: Restore vaulted backups for AKS clusters in a secondary region
     href: tutorial-restore-aks-backups-across-regions.md
-  - name: Back up Azure Files using Azure portal
-    href: tutorial-backup-azure-files-vault-tier-portal.md
   - name: Back up Windows Server
     href: tutorial-backup-windows-server-to-azure.md
   - name: Restore files to Windows Server
@@ -550,8 +558,6 @@
       href: sap-ase-backup-support-matrix.md
     - name: Azure Database for MySQL - Flexible Server long-term retention support matrix
       href: backup-azure-mysql-flexible-server-support-matrix.md
-    - name: Azure files backup support matrix
-      href: azure-file-share-support-matrix.md
     - name: Azure Elastic SAN backup support matrix
       href: azure-elastic-san-backup-support-matrix.md
     - name: Active Directory domain controllers
@@ -568,8 +574,6 @@
     items:
     - name: FAQ-MARS agent
       href: backup-azure-file-folder-backup-faq.yml
-    - name: FAQ-Back up Azure Files
-      href: backup-azure-files-faq.yml
     - name: FAQ-Azure Backup for AKS
       href: aks-backup-faq.yml
     - name: FAQ-Back up SQL Server databases on Azure VMs
@@ -602,8 +606,6 @@
       href: azure-kubernetes-service-cluster-backup-concept.md
   - name: Azure Elastic SAN backup
     href: azure-elastic-san-backup-overview.md
-  - name: Azure Files backup
-    href: azure-file-share-backup-overview.md
   - name: Windows backup using MARS agent
     items:
     - name: Overview
