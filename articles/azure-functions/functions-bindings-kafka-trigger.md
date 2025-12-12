@@ -3,16 +3,15 @@ title: Apache Kafka trigger for Azure Functions
 description: Use Azure Functions to run your code based on events from an Apache Kafka stream.
 ms.topic: reference
 ms.custom: devx-track-extended-java, devx-track-js, devx-track-python
-ms.date: 05/14/2022
+ms.date: 12/11/2025
 zone_pivot_groups: programming-languages-set-functions-lang-workers
 ---
 
 # Apache Kafka trigger for Azure Functions
 
-You can use the Apache Kafka trigger in Azure Functions to run your function code in response to messages in Kafka topics. You can also use a [Kafka output binding](functions-bindings-kafka-output.md) to write from your function to a topic. For information on setup and configuration details, see [Apache Kafka bindings for Azure Functions overview](functions-bindings-kafka.md).
+Use the Apache Kafka trigger in Azure Functions to run your function code in response to messages in Kafka topics. You can also use a [Kafka output binding](functions-bindings-kafka-output.md) to write from your function to a topic. For information on setup and configuration details, see [Apache Kafka bindings for Azure Functions overview](functions-bindings-kafka.md).
 
-> [!IMPORTANT]
-> Kafka bindings are only available for Functions on the [Elastic Premium Plan](functions-premium-plan.md) and [Dedicated (App Service) plan](dedicated-plan.md). They are only supported on version 3.x and later version of the Functions runtime.
+[!INCLUDE [functions-binding-kafka-plan-support-note](../../includes/functions-binding-kafka-plan-support-note.md)]
 
 ## Example
 ::: zone pivot="programming-language-csharp"
@@ -21,13 +20,13 @@ The usage of the trigger depends on the C# modality used in your function app, w
 
 # [Isolated worker model](#tab/isolated-process)
 
-An [isolated worker process class library](dotnet-isolated-process-guide.md) compiled C# function runs in a process isolated from the runtime.  
+A compiled C# function that uses an [isolated worker process class library](dotnet-isolated-process-guide.md) that runs in a process that's separate from the runtime.   
 
 # [In-process model](#tab/in-process)
 
 [!INCLUDE [functions-in-process-model-retirement-note](../../includes/functions-in-process-model-retirement-note.md)]
 
-An [in-process class library](functions-dotnet-class-library.md) is a compiled C# function runs in the same process as the Functions runtime.
+A compiled C# function that uses an [in-process class library](functions-dotnet-class-library.md) that runs in the same process as the Functions runtime.
  
 ---
 
@@ -55,7 +54,7 @@ In the following function, an instance of `GenericRecord` is available in the `K
 
 :::code language="csharp" source="~/azure-functions-kafka-extension/samples/dotnet/KafkaFunctionSample/AvroGenericTriggers.cs" range="43-60" :::
 
-You can define a specific [Avro schema] for the event passed to the trigger. The following defines the `UserRecord` class:
+You can define a specific [Avro schema] for the event passed to the trigger. The following code defines the `UserRecord` class:
 
 :::code language="csharp" source="~/azure-functions-kafka-extension/samples/dotnet/KafkaFunctionSample/User.cs" range="9-32" :::
 
@@ -87,7 +86,7 @@ In the following function, an instance of `GenericRecord` is available in the `K
 
 :::code language="csharp" source="~/azure-functions-kafka-extension/samples/dotnet/KafkaFunctionSample/AvroGenericTriggers.cs" range="43-60" :::
 
-You can define a specific [Avro schema] for the event passed to the trigger. The following defines the `UserRecord` class:
+You can define a specific [Avro schema] for the event passed to the trigger. The following code defines the `UserRecord` class:
 
 :::code language="csharp" source="~/azure-functions-kafka-extension/samples/dotnet/KafkaFunctionSample/User.cs" range="9-32" :::
 
@@ -135,11 +134,11 @@ For a complete set of working .NET examples, see the [Kafka extension repository
 ::: zone pivot="programming-language-javascript"
 
 > [!NOTE]
-> For an equivalent set of TypeScript examples, see the [Kafka extension repository](https://github.com/Azure/azure-functions-kafka-extension/tree/dev/samples/typescript)
+> For an equivalent set of TypeScript examples, see the [Kafka extension repository](https://github.com/Azure/azure-functions-kafka-extension/tree/dev/samples/typescript).
 
-The specific properties of the function.json file depend on your event provider, which in these examples are either Confluent or Azure Event Hubs. The following examples show a Kafka trigger for a function that reads and logs a Kafka message.
+The specific properties of the `function.json` file depend on your event provider. In these examples, the event providers are either Confluent or Azure Event Hubs. The following examples show a Kafka trigger for a function that reads and logs a Kafka message.
 
-The following function.json defines the trigger for the specific provider:
+The following `function.json` file defines the trigger for the specific provider:
 
 # [Confluent](#tab/confluent)
 
@@ -151,7 +150,7 @@ The following function.json defines the trigger for the specific provider:
 
 ---
 
-The following code then runs when the function is triggered:
+The following code runs when the function is triggered:
 
 :::code language="javascript" source="~/azure-functions-kafka-extension/samples/javascript/KafkaTrigger/index.js" :::
 
@@ -167,11 +166,11 @@ To receive events in a batch, set the `cardinality` value to `many` in the funct
 
 ---
 
-The following code then parses the array of events and logs the event data:
+The following code parses the array of events and logs the event data:
 
 :::code language="javascript" source="~/azure-functions-kafka-extension/samples/javascript/KafkaTriggerMany/index.js" :::
 
-The following code also logs the header data:
+The following code logs the header data:
 
 :::code language="javascript" source="~/azure-functions-kafka-extension/samples/javascript/KafkaTriggerManyWithHeaders/index.js" :::
 
@@ -187,7 +186,7 @@ You can define a generic [Avro schema] for the event passed to the trigger. The 
 
 ---
 
-The following code then runs when the function is triggered:
+The following code runs when the function is triggered:
 
 :::code language="javascript" source="~/azure-functions-kafka-extension/samples/javascript/KafkaTriggerAvroGeneric/index.js" :::
 
@@ -196,9 +195,9 @@ For a complete set of working JavaScript examples, see the [Kafka extension repo
 ::: zone-end  
 ::: zone pivot="programming-language-powershell" 
 
-The specific properties of the function.json file depend on your event provider, which in these examples are either Confluent or Azure Event Hubs. The following examples show a Kafka trigger for a function that reads and logs a Kafka message.
+The specific properties of the `function.json` file depend on your event provider. In these examples, the event providers are either Confluent or Azure Event Hubs. The following examples show a Kafka trigger for a function that reads and logs a Kafka message.
 
-The following function.json defines the trigger for the specific provider:
+The following `function.json` file defines the trigger for the specific provider:
 
 # [Confluent](#tab/confluent)
 
@@ -210,7 +209,7 @@ The following function.json defines the trigger for the specific provider:
 
 ---
 
-The following code then runs when the function is triggered:
+The following code runs when the function is triggered:
 
 :::code language="powershell" source="~/azure-functions-kafka-extension/samples/powershell/KafkaTrigger/run.ps1" :::
 
@@ -226,11 +225,11 @@ To receive events in a batch, set the `cardinality` value to `many` in the funct
 
 ---
 
-The following code then parses the array of events and logs the event data:
+The following code parses the array of events and logs the event data:
 
 :::code language="powershell" source="~/azure-functions-kafka-extension/samples/powershell/KafkaTriggerMany/run.ps1" :::
 
-The following code also logs the header data:
+The following code logs the header data:
 
 :::code language="powershell" source="~/azure-functions-kafka-extension/samples/powershell/KafkaTriggerManyWithHeaders/run.ps1" :::
 
@@ -246,7 +245,7 @@ You can define a generic [Avro schema] for the event passed to the trigger. The 
 
 ---
 
-The following code then runs when the function is triggered:
+The following code runs when the function is triggered:
 
 :::code language="powershell" source="~/azure-functions-kafka-extension/samples/powershell/KafkaTriggerAvroGeneric/run.ps1" :::
 
@@ -255,9 +254,9 @@ For a complete set of working PowerShell examples, see the [Kafka extension repo
 ::: zone-end   
 ::: zone pivot="programming-language-python"  
 
-The specific properties of the function.json file depend on your event provider, which in these examples are either Confluent or Azure Event Hubs. The following examples show a Kafka trigger for a function that reads and logs a Kafka message.
+The specific properties of the `function.json` file depend on your event provider. In these examples, the event providers are either Confluent or Azure Event Hubs. The following examples show a Kafka trigger for a function that reads and logs a Kafka message.
 
-The following function.json defines the trigger for the specific provider:
+The following `function.json` file defines the trigger for the specific provider:
 
 # [Confluent](#tab/confluent)
 
@@ -269,7 +268,7 @@ The following function.json defines the trigger for the specific provider:
 
 ---
 
-The following code then runs when the function is triggered:
+The following code runs when the function is triggered:
 
 :::code language="python" source="~/azure-functions-kafka-extension/samples/python/KafkaTrigger/main.py" :::
 
@@ -285,11 +284,11 @@ To receive events in a batch, set the `cardinality` value to `many` in the funct
 
 ---
 
-The following code then parses the array of events and logs the event data:
+The following code parses the array of events and logs the event data:
 
 :::code language="python" source="~/azure-functions-kafka-extension/samples/python/KafkaTriggerMany/main.py" :::
 
-The following code also logs the header data:
+The following code logs the header data:
 
 :::code language="python" source="~/azure-functions-kafka-extension/samples/python/KafkaTriggerManyWithHeaders/__init__.py" :::
 
@@ -305,7 +304,7 @@ You can define a generic [Avro schema] for the event passed to the trigger. The 
 
 ---
 
-The following code then runs when the function is triggered:
+The following code runs when the function is triggered:
 
 :::code language="powershell" source="~/azure-functions-kafka-extension/samples/python/KafkaTriggerAvroGeneric/main.py" :::
 
@@ -364,22 +363,37 @@ For a complete set of working Java examples for Event Hubs, see the [Kafka exten
 
 Both [in-process](functions-dotnet-class-library.md) and [isolated worker process](dotnet-isolated-process-guide.md) C# libraries use the `KafkaTriggerAttribute` to define the function trigger. 
 
-The following table explains the properties you can set using this trigger attribute:
+The following table explains the properties you can set by using this trigger attribute:
 
 | Parameter |Description|
 | --- | --- |
 | **BrokerList** | (Required) The list of Kafka brokers monitored by the trigger. See [Connections](#connections) for more information. |
 | **Topic** | (Required) The topic monitored by the trigger. |
 | **ConsumerGroup** | (Optional) Kafka consumer group used by the trigger. |
-| **AvroSchema** | (Optional) Schema of a generic record when using the Avro protocol. |
-| **AuthenticationMode** | (Optional) The authentication  mode when using Simple Authentication and Security Layer (SASL) authentication. The supported values are `Gssapi`, `Plain` (default), `ScramSha256`, `ScramSha512`. |
+| **AvroSchema** | (Optional) Schema of a generic record of message value when using the Avro protocol. |
+| **KeyAvroSchema** | (Optional) Schema of a generic record of message key when using the Avro protocol. |
+| **KeyDataType** | (Optional) Data type to receive the message key as from Kafka Topic. If `KeyAvroSchema` is set, this value is generic record. Accepted values are `Int`, `Long`, `String`, and `Binary`. |
+| **AuthenticationMode** | (Optional) The authentication mode when using Simple Authentication and Security Layer (SASL) authentication. The supported values are `NotSet` (default), `Gssapi`, `Plain`, `ScramSha256`, `ScramSha512`, and `OAuthBearer`. |
 | **Username** | (Optional) The username for SASL authentication. Not supported when `AuthenticationMode` is `Gssapi`. See [Connections](#connections) for more information.| 
 | **Password** | (Optional) The password for SASL authentication. Not supported when `AuthenticationMode` is `Gssapi`. See [Connections](#connections) for more information.| 
-| **Protocol** | (Optional) The security protocol used when communicating with brokers. The supported values are `plaintext` (default), `ssl`, `sasl_plaintext`, `sasl_ssl`. |
+| **Protocol** | (Optional) The security protocol used when communicating with brokers. The supported values are `NotSet` (default), `plaintext`, `ssl`, `sasl_plaintext`, `sasl_ssl`. |
 | **SslCaLocation** | (Optional) Path to CA certificate file for verifying the broker's certificate. |
 | **SslCertificateLocation** | (Optional) Path to the client's certificate. |
 | **SslKeyLocation** | (Optional) Path to client's private key (PEM) used for authentication. |
 | **SslKeyPassword** | (Optional) Password for client's certificate. |
+| **SslCertificatePEM** | (Optional) Client certificate in PEM format as a string. See [Connections](#connections) for more information. |
+| **SslKeyPEM** | (Optional) Client private key in PEM format as a string. See [Connections](#connections) for more information. |
+| **SslCaPEM** | (Optional) CA certificate in PEM format as a string. See [Connections](#connections) for more information. |
+| **SslCertificateandKeyPEM** | (Optional) Client certificate and key in PEM format as a string. See [Connections](#connections) for more information. |
+| **SchemaRegistryUrl** | (Optional) URL for the Avro Schema Registry. See [Connections](#connections) for more information. |
+| **SchemaRegistryUsername** | (Optional) Username for the Avro Schema Registry. See [Connections](#connections) for more information. |
+| **SchemaRegistryPassword** | (Optional) Password for the Avro Schema Registry. See [Connections](#connections) for more information. |
+| **OAuthBearerMethod** | (Optional) OAuth Bearer method. Accepted values are `oidc` and `default`. |
+| **OAuthBearerClientId** | (Optional) When `OAuthBearerMethod` is set to `oidc`, this specifies the OAuth bearer client ID. See [Connections](#connections) for more information. |
+| **OAuthBearerClientSecret** | (Optional) When `OAuthBearerMethod` is set to `oidc`, this specifies the OAuth bearer client secret. See [Connections](#connections) for more information. |
+| **OAuthBearerScope** | (Optional) Specifies the scope of the access request to the broker. |
+| **OAuthBearerTokenEndpointUrl** | (Optional) OAuth/OIDC issuer token endpoint HTTP(S) URI used to retrieve token when `oidc` method is used. See [Connections](#connections) for more information. |
+| **OAuthBearerExtensions** | (Optional) Comma-separated list of key=value pairs to be provided as additional information to broker when `oidc` method is used. For example: `supportFeatureX=true,organizationId=sales-emea`. |
 
 
 ::: zone-end  
@@ -387,29 +401,33 @@ The following table explains the properties you can set using this trigger attri
 
 ## Annotations
 
-The `KafkaTrigger` annotation allows you to create a function that runs when a topic is received. Supported options include the following elements:
+The `KafkaTrigger` annotation enables you to create a function that runs when it receives a topic. Supported options include the following elements:
 
-|Element | Description|
+| Element | Description |
 |---------|----------------------|
-|**name** | (Required) The name of the variable that represents the queue or topic message in function code. |
+| **name** | (Required) The name of the variable that represents the queue or topic message in function code. |
 | **brokerList** | (Required) The list of Kafka brokers monitored by the trigger. See [Connections](#connections) for more information. |
 | **topic** | (Required) The topic monitored by the trigger. |
 | **cardinality** | (Optional) Indicates the cardinality of the trigger input. The supported values are `ONE` (default) and `MANY`. Use `ONE` when the input is a single message and `MANY` when the input is an array of messages. When you use `MANY`, you must also set a `dataType`. |
 | **dataType** | Defines how Functions handles the parameter value. By default, the value is obtained as a string and Functions tries to  deserialize the string to actual plain-old Java object (POJO). When `string`, the input is treated as just a string. When `binary`, the message is received as binary data, and Functions tries to deserialize it to an actual parameter type byte[]. | 
 | **consumerGroup** | (Optional) Kafka consumer group used by the trigger. |
 | **avroSchema** | (Optional) Schema of a generic record when using the Avro protocol. |
-| **authenticationMode** | (Optional) The authentication  mode when using Simple Authentication and Security Layer (SASL) authentication. The supported values are `Gssapi`, `Plain` (default), `ScramSha256`, `ScramSha512`. |
+| **authenticationMode** | (Optional) The authentication mode when using Simple Authentication and Security Layer (SASL) authentication. The supported values are `NotSet` (default), `Gssapi`, `Plain`, `ScramSha256`, `ScramSha512`. |
 | **username** | (Optional) The username for SASL authentication. Not supported when `AuthenticationMode` is `Gssapi`. See [Connections](#connections) for more information.| 
 | **password** | (Optional) The password for SASL authentication. Not supported when `AuthenticationMode` is `Gssapi`. See [Connections](#connections) for more information.| 
-| **protocol** | (Optional) The security protocol used when communicating with brokers. The supported values are `plaintext` (default), `ssl`, `sasl_plaintext`, `sasl_ssl`. |
+| **protocol** | (Optional) The security protocol used when communicating with brokers. The supported values are `NotSet` (default), `plaintext`, `ssl`, `sasl_plaintext`, `sasl_ssl`. |
 | **sslCaLocation** | (Optional) Path to CA certificate file for verifying the broker's certificate. |
 | **sslCertificateLocation** | (Optional) Path to the client's certificate. |
 | **sslKeyLocation** | (Optional) Path to client's private key (PEM) used for authentication. |
 | **sslKeyPassword** | (Optional) Password for client's certificate. |
+| **lagThreshold** | (Optional) Lag threshold for the trigger. |
+| **schemaRegistryUrl** | (Optional) URL for the Avro Schema Registry. See [Connections](#connections) for more information. |
+| **schemaRegistryUsername** | (Optional) Username for the Avro Schema Registry. See [Connections](#connections) for more information. |
+| **schemaRegistryPassword** | (Optional) Password for the Avro Schema Registry. See [Connections](#connections) for more information. |
 
 
 ::: zone-end  
-::: zone pivot="programming-language-javascript,programming-language-python,programming-language-powershell"  
+::: zone pivot="programming-language-javascript,programming-language-powershell"  
 
 ## Configuration
 
@@ -417,23 +435,77 @@ The following table explains the binding configuration properties that you set i
 
 | _function.json_ property |Description|
 | --- | --- |
-|**type** | (Required) Must be set to `kafkaTrigger`. |
-|**direction** | (Required) Must be set to `in`. |
+|**type** | (Required) Set to `kafkaTrigger`. |
+|**direction** | (Required) Set to `in`. |
 |**name** | (Required) The name of the variable that represents the brokered data in function code. |
 | **brokerList** | (Required) The list of Kafka brokers monitored by the trigger.  See [Connections](#connections) for more information.|
 | **topic** | (Required) The topic monitored by the trigger. |
 | **cardinality** | (Optional) Indicates the cardinality of the trigger input. The supported values are `ONE` (default) and `MANY`. Use `ONE` when the input is a single message and `MANY` when the input is an array of messages. When you use `MANY`, you must also set a `dataType`. |
-| **dataType** | Defines how Functions handles the parameter value. By default, the value is obtained as a string and Functions tries to  deserialize the string to actual plain-old Java object (POJO). When `string`, the input is treated as just a string. When `binary`, the message is received as binary data, and Functions tries to deserialize it to an actual parameter type byte[]. | 
+| **dataType** | Defines how Functions handles the parameter value. By default, the value is obtained as a string and Functions tries to  deserialize the string to actual plain-old Java object (POJO). When `string`, the input is treated as just a string. When `binary`, the message is received as binary data, and Functions tries to deserialize it to an actual byte array parameter type. | 
 | **consumerGroup** | (Optional) Kafka consumer group used by the trigger. |
 | **avroSchema** | (Optional) Schema of a generic record when using the Avro protocol. |
-| **authenticationMode** | (Optional) The authentication  mode when using Simple Authentication and Security Layer (SASL) authentication. The supported values are `Gssapi`, `Plain` (default), `ScramSha256`, `ScramSha512`. |
+| **keyAvroSchema** | (Optional) Schema of a generic record of message key when using the Avro protocol. |
+| **keyDataType** | (Optional) Data type to receive the message key as from Kafka Topic. If `keyAvroSchema` is set, this value is generic record. Accepted values are `Int`, `Long`, `String`, and `Binary`. |
+| **authenticationMode** | (Optional) The authentication mode when using Simple Authentication and Security Layer (SASL) authentication. The supported values are `NotSet` (default), `Gssapi`, `Plain`, `ScramSha256`, `ScramSha512`. |
 | **username** | (Optional) The username for SASL authentication. Not supported when `AuthenticationMode` is `Gssapi`. See [Connections](#connections) for more information. | 
 | **password** | (Optional) The password for SASL authentication. Not supported when `AuthenticationMode` is `Gssapi`. See [Connections](#connections) for more information.| 
-| **protocol** | (Optional) The security protocol used when communicating with brokers. The supported values are `plaintext` (default), `ssl`, `sasl_plaintext`, `sasl_ssl`. |
+| **protocol** | (Optional) The security protocol used when communicating with brokers. The supported values are `NotSet` (default), `plaintext`, `ssl`, `sasl_plaintext`, `sasl_ssl`. |
 | **sslCaLocation** | (Optional) Path to CA certificate file for verifying the broker's certificate. |
 | **sslCertificateLocation** | (Optional) Path to the client's certificate. |
 | **sslKeyLocation** | (Optional) Path to client's private key (PEM) used for authentication. |
 | **sslKeyPassword** | (Optional) Password for client's certificate. |
+| **sslCertificatePEM** | (Optional) Client certificate in PEM format as a string. See [Connections](#connections) for more information. |
+| **sslKeyPEM** | (Optional) Client private key in PEM format as a string. See [Connections](#connections) for more information. |
+| **sslCaPEM** | (Optional) CA certificate in PEM format as a string. See [Connections](#connections) for more information. |
+| **sslCertificateandKeyPEM** | (Optional) Client certificate and key in PEM format as a string. See [Connections](#connections) for more information. |
+| **lagThreshold** | (Optional) Lag threshold for the trigger. |
+| **schemaRegistryUrl** | (Optional) URL for the Avro Schema Registry. See [Connections](#connections) for more information. |
+| **schemaRegistryUsername** | (Optional) Username for the Avro Schema Registry. See [Connections](#connections) for more information. |
+| **schemaRegistryPassword** | (Optional) Password for the Avro Schema Registry. See [Connections](#connections) for more information. |
+| **oAuthBearerMethod** | (Optional) OAuth Bearer method. Accepted values are `oidc` and `default`. |
+| **oAuthBearerClientId** | (Optional) When `oAuthBearerMethod` is set to `oidc`, this specifies the OAuth bearer client ID. See [Connections](#connections) for more information. |
+| **oAuthBearerClientSecret** | (Optional) When `oAuthBearerMethod` is set to `oidc`, this specifies the OAuth bearer client secret. See [Connections](#connections) for more information. |
+| **oAuthBearerScope** | (Optional) Specifies the scope of the access request to the broker. |
+| **oAuthBearerTokenEndpointUrl** | (Optional) OAuth/OIDC issuer token endpoint HTTP(S) URI used to retrieve token when `oidc` method is used. See [Connections](#connections) for more information. |
+
+::: zone-end
+::: zone pivot="programming-language-python"
+
+## Configuration
+
+The following table explains the binding configuration properties that you set in the *function.json* file. Python uses snake_case naming conventions for configuration properties.
+
+| _function.json_ property |Description|
+| --- | --- |
+|**type** | (Required) Set to `kafkaTrigger`. |
+|**direction** | (Required) Set to `in`. |
+|**name** | (Required) The name of the variable that represents the brokered data in function code. |
+| **broker_list** | (Required) The list of Kafka brokers monitored by the trigger. See [Connections](#connections) for more information.|
+| **topic** | (Required) The topic monitored by the trigger. |
+| **cardinality** | (Optional) Indicates the cardinality of the trigger input. The supported values are `ONE` (default) and `MANY`. Use `ONE` when the input is a single message and `MANY` when the input is an array of messages. When you use `MANY`, you must also set a `data_type`. |
+| **data_type** | Defines how Functions handles the parameter value. By default, the value is obtained as a string and Functions tries to deserialize the string to actual plain-old Java object (POJO). When `string`, the input is treated as just a string. When `binary`, the message is received as binary data, and Functions tries to deserialize it to an actual parameter type byte[]. | 
+| **consumerGroup** | (Optional) Kafka consumer group used by the trigger. |
+| **avroSchema** | (Optional) Schema of a generic record when using the Avro protocol. |
+| **authentication_mode** | (Optional) The authentication mode when using Simple Authentication and Security Layer (SASL) authentication. The supported values are `NOTSET` (default), `Gssapi`, `Plain`, `ScramSha256`, `ScramSha512`. |
+| **username** | (Optional) The username for SASL authentication. Not supported when `authentication_mode` is `Gssapi`. See [Connections](#connections) for more information. | 
+| **password** | (Optional) The password for SASL authentication. Not supported when `authentication_mode` is `Gssapi`. See [Connections](#connections) for more information.| 
+| **protocol** | (Optional) The security protocol used when communicating with brokers. The supported values are `NOTSET` (default), `plaintext`, `ssl`, `sasl_plaintext`, `sasl_ssl`. |
+| **sslCaLocation** | (Optional) Path to CA certificate file for verifying the broker's certificate. |
+| **sslCertificateLocation** | (Optional) Path to the client's certificate. |
+| **sslKeyLocation** | (Optional) Path to client's private key (PEM) used for authentication. |
+| **sslKeyPassword** | (Optional) Password for client's certificate. |
+| **lag_threshold** | (Optional) Lag threshold for the trigger. |
+| **schema_registry_url** | (Optional) URL for the Avro Schema Registry. See [Connections](#connections) for more information. |
+| **schema_registry_username** | (Optional) Username for the Avro Schema Registry. See [Connections](#connections) for more information. |
+| **schema_registry_password** | (Optional) Password for the Avro Schema Registry. See [Connections](#connections) for more information. |
+| **o_auth_bearer_method** | (Optional) OAuth Bearer method. Accepted values are `oidc` and `default`. |
+| **o_auth_bearer_client_id** | (Optional) When `o_auth_bearer_method` is set to `oidc`, this specifies the OAuth bearer client ID. See [Connections](#connections) for more information. |
+| **o_auth_bearer_client_secret** | (Optional) When `o_auth_bearer_method` is set to `oidc`, this specifies the OAuth bearer client secret. See [Connections](#connections) for more information. |
+| **o_auth_bearer_scope** | (Optional) Specifies the scope of the access request to the broker. |
+| **o_auth_bearer_token_endpoint_url** | (Optional) OAuth/OIDC issuer token endpoint HTTP(S) URI used to retrieve token when `oidc` method is used. See [Connections](#connections) for more information. |
+
+> [!NOTE]
+> Certificate PEM-related properties and Avro key-related properties aren't yet available in the Python library.
 
 ::: zone-end
 
@@ -443,24 +515,24 @@ The following table explains the binding configuration properties that you set i
 
 # [Isolated worker model](#tab/isolated-process)
 
-Kafka events are currently supported as strings and string arrays that are JSON payloads.
+The Kafka trigger currently supports Kafka events as strings and string arrays that are JSON payloads.
 
 # [In-process model](#tab/in-process)
 
-Kafka events are passed to the function as `KafkaEventData<string>` objects or arrays. Strings and string arrays that are JSON payloads are also supported.
+The Kafka trigger passes Kafka events to the function as `KafkaEventData<string>` objects or arrays. The trigger also supports strings and string arrays that are JSON payloads.
  
 ---
 
 ::: zone-end 
 ::: zone pivot="programming-language-javascript,programming-language-python,programming-language-powershell" 
 
-Kafka messages are passed to the function as strings and string arrays that are JSON payloads.
+The Kafka trigger passes Kafka messages to the function as strings. The trigger also supports string arrays that are JSON payloads.
 
 ::: zone-end 
 
-In a Premium plan, you must enable runtime scale monitoring for the Kafka output to be able to scale out to multiple instances. To learn more, see [Enable runtime scaling](functions-bindings-kafka.md#enable-runtime-scaling). 
+In a Premium plan, you must enable runtime scale monitoring for the Kafka output to scale out to multiple instances. To learn more, see [Enable runtime scaling](functions-bindings-kafka.md#enable-runtime-scaling). 
 
-You can't use the **Test/Run** feature of the **Code + Test** page in the Azure Portal to work with Kafka triggers. You must instead send test events directly to the topic being monitored by the trigger.  
+You can't use the **Test/Run** feature of the **Code + Test** page in the Azure portal to work with Kafka triggers. You must instead send test events directly to the topic being monitored by the trigger.  
 
 For a complete set of supported host.json settings for the Kafka trigger, see [host.json settings](functions-bindings-kafka.md#hostjson-settings). 
 
