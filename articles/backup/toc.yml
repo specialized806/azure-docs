@@ -353,6 +353,88 @@
         href: backup-azure-dataprotection-use-rest-api-backup-blobs.md
       - name: Restore
         href: backup-azure-dataprotection-use-rest-api-restore-blobs.md
+- name: Azure Data Lake Storage vaulted backup
+  items:
+  - name: Overview
+    href: azure-data-lake-storage-backup-overview.md
+  - name: Support matrix
+    href: azure-data-lake-storage-backup-support-matrix.md
+  - name: Quickstarts
+    items:
+    - name: Create a vaulted backup policy for Azure Data Lake Storage using Azure portal/ PowerShell/ Azure CLI
+      href: azure-data-lake-storage-backup-create-policy-quickstart.md
+    - name: Configure Azure Data Lake Storage vaulted backup using ARM/ Bicep template
+      href: azure-data-lake-storage-backup-configure-quickstart-arm-bicep.md  
+  - name: Tutorial - Back up Azure Data Lake Storage
+    href: azure-data-lake-storage-backup-tutorial.md        
+  - name: Backup scenarios
+    items:
+    - name: Configure vaulted backup
+      href: azure-data-lake-storage-configure-backup.md
+    - name: Restore
+      href: azure-data-lake-storage-restore.md
+    - name: Manage
+      href: azure-data-lake-storage-backup-manage.md
+- name: Azure Files backup
+  items:
+  - name: Overview
+    href: azure-file-share-backup-overview.md
+  - name: FAQ-Back up Azure Files
+    href: backup-azure-files-faq.yml
+  - name: Support matrix
+    href: azure-file-share-support-matrix.md
+  - name: Quickstarts
+    items:
+    - name: Create a backup policy for Azure Files
+      href: quick-backup-azure-files-vault-tier-portal.md
+    - name: Configure vaulted backup for Azure Files
+      items:
+      - name: With Azure PowerShell
+        href: quick-backup-azure-files-vault-tier-powershell.md
+      - name: With Azure CLI
+        href: quick-backup-azure-files-vault-tier-cli.md
+      - name: With Azure Resource Manager
+        href: quick-backup-azure-files-vault-tier-arm.md
+      - name: With Azure Bicep
+        href: quick-backup-azure-files-vault-tier-bicep.md
+      - name: With Terraform
+        href: quick-backup-azure-files-vault-tier-terraform.md  
+  - name: Tutorial - Back up Azure Files using Azure portal
+    href: tutorial-backup-azure-files-vault-tier-portal.md
+  - name: Backup scenarios
+    items:
+    - name: From the Azure portal
+      items:
+      - name: Configure backup
+        href: backup-azure-files.md
+      - name: Restore
+        href: restore-afs.md
+      - name: Manage
+        href: manage-afs-backup.md
+    - name: With Azure CLI
+      items:
+      - name: Backup
+        href: backup-afs-cli.md
+      - name: Restore
+        href: restore-afs-cli.md
+      - name: Manage
+        href: manage-afs-backup-cli.md
+    - name: With PowerShell
+      items:
+      - name: Backup
+        href: backup-azure-afs-automation.md
+      - name: Restore
+        href: restore-afs-powershell.md
+      - name: Manage
+        href: manage-afs-powershell.md
+    - name: With REST API
+      items:
+      - name: Backup
+        href: backup-azure-file-share-rest-api.md
+      - name: Restore
+        href: restore-azure-file-share-rest-api.md
+      - name: Manage
+        href: manage-azure-file-share-rest-api.md
 - name: Quickstarts  
   items:
   - name: Back up Azure PostgreSQL Database
@@ -395,26 +477,8 @@
       href: quick-backup-postgresql-flexible-server-arm.md
     - name: With Azure Bicep file
       href: quick-backup-postgresql-flexible-server-bicep.md
-  - name: Create a vaulted backup policy for Azure Data Lake Storage using Azure portal/ PowerShell/ Azure CLI
-    href: azure-data-lake-storage-backup-create-policy-quickstart.md
-  - name: Configure Azure Data Lake Storage vaulted backup using ARM/ Bicep template
-    href: azure-data-lake-storage-backup-configure-quickstart-arm-bicep.md  
   - name: Install Backup extension in AKS cluster
     href: quick-install-backup-extension.md
-  - name: Create a backup policy for Azure Files
-    href: quick-backup-azure-files-vault-tier-portal.md
-  - name: Configure vaulted backup for Azure Files
-    items:
-    - name: With Azure PowerShell
-      href: quick-backup-azure-files-vault-tier-powershell.md
-    - name: With Azure CLI
-      href: quick-backup-azure-files-vault-tier-cli.md
-    - name: With Azure Resource Manager
-      href: quick-backup-azure-files-vault-tier-arm.md
-    - name: With Azure Bicep
-      href: quick-backup-azure-files-vault-tier-bicep.md
-    - name: With Terraform
-      href: quick-backup-azure-files-vault-tier-terraform.md
   - name: Backup SAP HANA System Replication database
     items:
     - name: Backup
@@ -446,12 +510,8 @@
       href: tutorial-restore-postgresql-flex.md
   - name: Configure item level backup of an AKS cluster
     href: tutorial-configure-backup-aks.md
-  - name: Back up Azure Data Lake Storage
-    href: azure-data-lake-storage-backup-tutorial.md  
   - name: Restore vaulted backups for AKS clusters in a secondary region
     href: tutorial-restore-aks-backups-across-regions.md
-  - name: Back up Azure Files using Azure portal
-    href: tutorial-backup-azure-files-vault-tier-portal.md
   - name: Back up Windows Server
     href: tutorial-backup-windows-server-to-azure.md
   - name: Restore files to Windows Server
@@ -498,12 +558,8 @@
       href: sap-ase-backup-support-matrix.md
     - name: Azure Database for MySQL - Flexible Server long-term retention support matrix
       href: backup-azure-mysql-flexible-server-support-matrix.md
-    - name: Azure files backup support matrix
-      href: azure-file-share-support-matrix.md
     - name: Azure Elastic SAN backup support matrix
       href: azure-elastic-san-backup-support-matrix.md
-    - name: Azure Data Lake Storage vaulted backup support matrix
-      href: azure-data-lake-storage-backup-support-matrix.md  
     - name: Active Directory domain controllers
       href: active-directory-backup-restore.md
     - name: Azure Database for PostgreSQL backup support matrix
@@ -518,8 +574,6 @@
     items:
     - name: FAQ-MARS agent
       href: backup-azure-file-folder-backup-faq.yml
-    - name: FAQ-Back up Azure Files
-      href: backup-azure-files-faq.yml
     - name: FAQ-Azure Backup for AKS
       href: aks-backup-faq.yml
     - name: FAQ-Back up SQL Server databases on Azure VMs
@@ -550,12 +604,8 @@
       href: azure-kubernetes-service-backup-overview.md
     - name: Prerequisites
       href: azure-kubernetes-service-cluster-backup-concept.md
-  - name: Azure Data Lake Storage vaulted backup
-    href: azure-data-lake-storage-backup-overview.md  
   - name: Azure Elastic SAN backup
     href: azure-elastic-san-backup-overview.md
-  - name: Azure Files backup
-    href: azure-file-share-backup-overview.md
   - name: Windows backup using MARS agent
     items:
     - name: Overview
@@ -726,48 +776,6 @@
         href: backup-azure-restore-system-state.md
     - name: Manage
       href: backup-azure-manage-mars.md
-  - name: Azure Data Lake Storage vaulted backup
-    items:
-    - name: Configure vaulted backup
-      href: azure-data-lake-storage-configure-backup.md
-    - name: Restore
-      href: azure-data-lake-storage-restore.md
-    - name: Manage
-      href: azure-data-lake-storage-backup-manage.md
-  - name: Azure Files backup
-    items:
-    - name: From the Azure portal
-      items:
-      - name: Configure backup
-        href: backup-azure-files.md
-      - name: Restore
-        href: restore-afs.md
-      - name: Manage
-        href: manage-afs-backup.md
-    - name: With Azure CLI
-      items:
-      - name: Backup
-        href: backup-afs-cli.md
-      - name: Restore
-        href: restore-afs-cli.md
-      - name: Manage
-        href: manage-afs-backup-cli.md
-    - name: With PowerShell
-      items:
-      - name: Backup
-        href: backup-azure-afs-automation.md
-      - name: Restore
-        href: restore-afs-powershell.md
-      - name: Manage
-        href: manage-afs-powershell.md
-    - name: With REST API
-      items:
-      - name: Backup
-        href: backup-azure-file-share-rest-api.md
-      - name: Restore
-        href: restore-azure-file-share-rest-api.md
-      - name: Manage
-        href: manage-azure-file-share-rest-api.md
   - name: Azure Elastic SAN backup
     items:
     - name: Configure backup
