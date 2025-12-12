@@ -13,18 +13,18 @@ ms.collection:
 
 # Migrate a workload from Amazon Web Services (AWS) - Decommission
 
-This step is the final step in the workload migration. Proceed when you're confident in how your workload operates in Azure by making sure that the evaluation phase was successful.
+This is the final step in the workload migration. Proceed after the evaluation phase is complete and you've confirmed that your workload operates as expected in Azure.
 
 The goal of this phase is to safely retire AWS dependencies, remove redundant resources, and complete the transition to Azure.
 
 > [!WARNING]
 >
-> If you prematurely delete AWS resources, overlook hidden dependencies, or skip final data and access checks, you risk data loss, unexpected downtime, compliance violations, or lingering cost from orphaned assets.
+> If you prematurely delete AWS resources, overlook hidden dependencies, or skip final data and access checks, you risk data loss, unexpected downtime, compliance violations, or ongoing cost from orphaned assets.
 
-- **Finalize your data cutover:** If you took an active-active approach with AWS and Azure running in parallel, and especially if you kept your primary database instance in AWS, decide when to fully remove the AWS instance from the workflow and switch your apps to only use the Azure database. Take into consideration the RPO you documented in the planning phase. Decommission any data synchronization or replication processes.
+- **Finalize your data cutover:** Confirm that all production writes and reads are served from Azure (based on your cutover strategy). If you're using continuous replication or synchronization, stop it after you confirm Azure has the authoritative copy of the data.
 - **Take any final backups and snapshots** for archival purposes.
 - **Retire AWS workload resources:**  Plan the sunset date. Stop and delete any AWS EC2 instances, databases, and services that you no longer need. Ensure that nothing critical is still running in AWS before deleting.
-- **Check everything is deleted:** [AWS Config](https://docs.aws.amazon.com/config/latest/developerguide/WhatIsConfig.html) maintains an inventory of all your AWS resources and you can use it during the decommission phase to ensure no resources related to your workload are left active.
+- **Confirm deletion:** [AWS Config](https://docs.aws.amazon.com/config/latest/developerguide/WhatIsConfig.html) maintains an inventory of all your AWS resources and you can use it during the decommission phase to ensure no resources related to your workload are left active.
 - **Clean up artifacts:** Update your configuration management database (CMDB), billing, and documentation.
 
 For a thorough review of decommissioning steps, see the [CAF Decommission source workload](/azure/cloud-adoption-framework/migrate/decommission-source-workload) guide.

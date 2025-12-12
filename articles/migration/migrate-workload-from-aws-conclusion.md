@@ -12,16 +12,15 @@ ms.collection:
 ---
 # Migrate a workload from Amazon Web Services (AWS) - Conclusion
 
-
 Migrating a workload, especially if it's your first workload, is an intense project.
 
-With this guide and the right approach, you can execute it smoothly and with confidence. With a concrete and well thought out plan, relevant stakeholders on board, a solid target architecture, the right migration strategy for each component of the workload, and following a phased approach with clear checklists, you set the stage for success. 
+With this guide and the right approach, you can execute it smoothly and with confidence. With a concrete and well-thought-out plan, relevant stakeholders on board, a solid target architecture, the right migration strategy for each component of the workload, and a phased approach with clear checklists, you set the stage for success.
 
-Migrations require much work, coordination, and cooperation across teams, with often late hours to verify everything works as intended. In the end, after a successful migration and after decommissioning your AWS workloads, **celebrate your win**! 
+Migrations require a lot of work, coordination, and cooperation across teams, often with late hours to verify everything works as intended. In the end, after a successful migration and after decommissioning your AWS workloads, **celebrate your win**!
 
 ## Next steps
 
-Now that you completed your workload's migration, learn more about recommendations for post-migration tuning and cost optimization in the [CAF Optimize workloads after migration](/azure/cloud-adoption-framework/migrate/optimize-workloads-after-migration) guide. Consider conducting a [Well-Architected Review](/azure/well-architected/) of your new Azure workload to ensure your workload and team's practices align with industry best practices. 
+Now that you've completed your workload's migration, learn more about recommendations for post-migration tuning and cost optimization in the [CAF Optimize workloads after migration](/azure/cloud-adoption-framework/migrate/optimize-workloads-after-migration) guide. Consider conducting a [Well-Architected Review](/azure/well-architected/) of your new Azure workload to ensure your workload and your team's practices align with industry best practices.
 
 ## Tools and references 
 

@@ -17,11 +17,11 @@ The goal of the planning phase is to:
 > [!div class="checklist"]
 > * assess your workload
 > * design a like-for-like architecture
-> * develop and document migration plan
+> * develop and document a migration plan
 
 
 > [!IMPORTANT]
-> Take your time in the planning phase and follow the steps in order. An incomplete discovery or unclear migration objectives risk misaligned expectations and missed dependencies and gaps. 
+> Take your time in the planning phase and follow the steps in order. Incomplete discovery or unclear migration objectives risk misaligned expectations and missed dependencies.
 
 ## Assess your AWS workload
 
@@ -36,9 +36,9 @@ The goal of the planning phase is to:
 
 **Start with networking:** Discuss your workload's networking requirements with the platform team. Your request should include not only the target architecture, but also the migration connectivity. AWS uses the concept of a Transit Gateway as the network hub with Amazon VPCs as the spoke networks. In the Azure application landing zone design, the platform team provisions spoke virtual networks to workload teams. These spoke networks communicate to other internal and external networks through the hub or Azure Virtual WAN network. 
 
-To exchange data during the migration, you can use either Site-to-Site VPN or an ExpressRoute and DirectConnect. Relying on VPN is suitable for smaller or text migrations, while ExpressRoute and DirectConnect is recommended for production-scale migrations or large data transfers. Consider using both for reliability in which case you rely on VPN for failover.
+To exchange data during the migration, you can use either Site-to-Site VPN or ExpressRoute with AWS Direct Connect. Relying on VPN is suitable for smaller or proof-of-concept migrations, while ExpressRoute with AWS Direct Connect is recommended for production-scale migrations or large data transfers. Consider using both for reliability. In that case, use VPN for failover.
 
-:::image type="content" source="./images/migrate-from-aws-connectivity.svg" alt-text="Diagram showing network connectivity between AWS and Azure clouds. At the top, a DNS icon connects to two boxes: on the left, AWS Cloud with a Virtual Private Cloud (VPC); on the right, Azure Cloud with a Virtual Network (VNet). A bidirectional arrow between the boxes is labeled Site-to-Site VPN and Direct Connect + ExpressRoute, indicating secure connectivity options." lightbox="./images/migrate-from-aws-phases.svg" border="false"::: 
+:::image type="content" source="./images/migrate-from-aws-connectivity.svg" alt-text="Diagram showing network connectivity between AWS and Azure clouds. At the top, a DNS icon connects to two boxes: on the left, AWS Cloud with a Virtual Private Cloud (VPC); on the right, Azure Cloud with a Virtual Network (VNet). A bidirectional arrow between the boxes is labeled Site-to-Site VPN and Direct Connect + ExpressRoute, indicating secure connectivity options." lightbox="./images/migrate-from-aws-connectivity.svg" border="false":::
  
 Learn more about how to [migrate networking from AWS](/azure/migration/migrate-networking-from-aws).
 
@@ -57,7 +57,7 @@ After planning your networking, follow these steps:
 
 This strategy moves production traffic from the AWS environment to the Azure environment. 
 
-If your SLA allows for a maintenance window, a blue/green approach is preferred. In this case you maintain two environments. Blue is the current environment (AWS) and Green is the new (Azure).
+If your SLA allows for a maintenance window, a blue/green approach is preferred. In this case, you maintain two environments. Blue is the current environment (AWS) and green is the new environment (Azure).
 
 In this scenario, you plan a migration window, run your workload in AWS as normal throughout the migration, and move traffic over to Azure after a successful dry run. Both environments run in parallel throughout the migration, allowing you to shift traffic back to AWS if issues arise in the Azure environment.
 
@@ -69,7 +69,7 @@ There's a cost trade-off to this approach. You incur costs for both cloud provid
 
 Your choice depends on the amount of data, type of data storage, and usage requirements. Decide between offline migration (backup-and-restore) and live replication.
 
-**Define your RPO (recovery point objective) :** If you choose an active-active design, define an acceptable RPO for data loss and document it. You refer to this RPO in the [decommission phase](/azure/migration/migrate-workload-from-aws-decommission) and your database migration strategy depends on it as well. RPO is the maximum window of data you're willing to lose in case something goes wrong. For example, a RPO could be "no more than 5 minutes of data loss". This would mean only up to 5 minutes of data could be lost during the cutover. The lower the RPO is, the more you have to consider continuous replication or very recent backups as well as maintenance windows. Lower RPOs can also increase cost and effort to migrate your data.
+**Define your RPO (recovery point objective):** Define an acceptable RPO for data loss and document it. You'll refer to this RPO in the [decommission phase](/azure/migration/migrate-workload-from-aws-decommission), and your database migration strategy depends on it as well. RPO is the maximum window of data you're willing to lose in case something goes wrong. For example, an RPO could be "no more than 5 minutes of data loss". This would mean only up to 5 minutes of data could be lost during the cutover. The lower the RPO is, the more you have to consider continuous replication or very recent backups as well as maintenance windows. Lower RPOs can also increase cost and effort to migrate your data.
 
 **Database migration:** For your [database migration](/azure/migration/migrate-databases-from-aws) you can use AWS as well as Azure tooling. For example, Azure Data Studio allows you to [replicate Amazon RDS for SQL Server to Azure SQL Database and cut over with minimal downtime](/azure/data-factory/connector-amazon-rds-for-sql-server?tabs=data-factory). This feature enables continuous replication from Amazon RDS to Azure SQL Database. Alternatively, you can use [AWS DMS](https://docs.aws.amazon.com/dms/latest/userguide/Welcome.html) which offers continuous replication and change data capture until you cutover. 
 
@@ -92,7 +92,7 @@ Your choice depends on the amount of data, type of data storage, and usage requi
 
 **Sign-off acceptance criteria:** Define what a *stable operation* means and make it measurable. For example, agree that after cutover Azure must run for at least X minutes or hours without errors and the workload passes all tests. 
 
-**Rollback trigger criteria and steps:** Document the exact conditions that trigger a rollback to the AWS environment. For example, if any critical functionality is down, or the system is in a degraded state (x below baseline) for more than x minutes, initiate a rollback. Document the rollback steps.
+**Rollback trigger criteria and steps:** Document the exact conditions that trigger a rollback to the AWS environment. For example, if any critical functionality is down or the system is in a degraded state (for example, X% below baseline) for more than X minutes, initiate a rollback. Document the rollback steps.
 
 **Traffic and routing changes:** Plan and document your traffic routing changes in detail. Define exactly how to update DNS records, load balancer configuration, and routing rules to direct traffic to Azure. Take into consideration any TTL that you configured as it determines how long DNS changes take to propagate. 
 

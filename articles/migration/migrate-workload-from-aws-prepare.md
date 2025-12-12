@@ -23,13 +23,13 @@ During this phase, you build out your Azure environment, refactor any code if re
 ## Prepare your environment
 
 - **Provision application landing zones:** Ensure the platform team designs and provisions the **[Azure application landing zones](/azure/cloud-adoption-framework/ready/enterprise-scale/implementation)** for your preproduction and production workload environments with proper segregation of duties.
-- **Setup migration tools:** If you plan to use Azure Migrate for the execution phase, deploy the Azure Migrate appliance early and configure your Azure Migrate project. This ensures all target Azure resources and discovery processes are ready before cutover.
+- **Set up migration tools:** If you plan to use Azure Migrate for the execution phase, deploy the Azure Migrate appliance early and configure your Azure Migrate project. This ensures all target Azure resources and discovery processes are ready before cutover.
 - **Deploy and configure Azure infrastructure:** Use Infrastructure as Code (IaC) to deploy your resources. This approach ensures consistency and repeatability. If your teams want to continue writing deployment scripts using Terraform, they must write new scripts and modules for your Azure resources. If your existing deployment scripts use [CloudFormation](https://docs.aws.amazon.com/cloudformation/), consider using [Bicep](/azure/azure-resource-manager/bicep/) to deploy on Azure. Focus on nonproduction environments first and validate everything before moving on to production environments.
 - **Update CI/CD pipelines for Azure to keep environments aligned:** 
-	- Modify your deployment pipelines to target Azure Services
-	- Configure the service connections and validate that your build and release workflows can deploy your selected Azure compute resources, such as AppService, AKS, or VMs. 
-	- Make sure that your scripts deploy to both AWS and Azure during the migration and while using an active-active migration.
-- **Test your infrastructure:** Validate your Virtual WAN or hub network and any other foundational services like DirectConnect on AWS and ExpressRoute on Azure and/or VPN connections. Ensure they're configured to support both the target workload and the migration process. Validate that connectivity works end-to-end across your Azure and AWS environments.
+	- Modify your deployment pipelines to target Azure services.
+	- Configure the service connections and validate that your build and release workflows can deploy your selected Azure compute resources, such as Azure App Service, AKS, or VMs.
+	- If you're using a blue/green approach, make sure you can deploy to both AWS and Azure during the transition (for example, to apply an urgent fix or to support a rollback).
+- **Test your infrastructure:** Validate your Virtual WAN or hub network and any other foundational services like AWS Direct Connect and Azure ExpressRoute and/or VPN connections. Ensure they're configured to support both the target workload and the migration process. Validate that connectivity works end-to-end across your Azure and AWS environments.
 
 ## Prepare your application
 
