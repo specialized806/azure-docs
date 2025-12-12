@@ -184,7 +184,7 @@ items:
                     href: blobfuse2-what-is.md
                   - name: Install BlobFuse2
                     href: blobfuse2-install.md
-              - name: Configure
+              - name: Configure settings
                 items:
                   - name: How to configure BlobFuse2
                     href: blobfuse2-configuration.md?toc=/azure/storage/blobs/toc.json
