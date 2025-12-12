@@ -204,7 +204,7 @@ cd svc-invoke-dapr-nodejs
    If this step causes [error BCP420](https://aka.ms/bicep/core-diagnostics#BCP420), go to your cloned repo, open the *svc-invoke-dapr-nodejs/infra/core/host/container-apps.bicep* file, and replace line 28 with the following line:
 
    ```bicep
-   scope: resourceGroup()
+   scope: resourceGroup(!empty(containerRegistryResourceGroupName) ? containerRegistryResourceGroupName : resourceGroup().name)
    ```
 
 #### Expected output
@@ -864,7 +864,7 @@ cd svc-invoke-dapr-csharp
    If this step causes [error BCP420](https://aka.ms/bicep/core-diagnostics#BCP420), go to your cloned repo, open the *svc-invoke-dapr-csharp/infra/core/host/container-apps.bicep* file, and replace line 28 with the following line:
 
    ```bicep
-   scope: resourceGroup()
+   scope: resourceGroup(!empty(containerRegistryResourceGroupName) ? containerRegistryResourceGroupName : resourceGroup().name)
    ```
 
 #### Expected output
