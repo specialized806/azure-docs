@@ -164,7 +164,7 @@ cd bindings-dapr-nodejs-cron-postgres
    If this step causes [error BCP420](https://aka.ms/bicep/core-diagnostics#BCP420), go to your cloned repo, open the *bindings-dapr-nodejs-cron-postgres/infra/core/host/container-apps.bicep* file, and replace line 28 with the following line:
 
    ```bicep
-   scope: resourceGroup()
+   scope: resourceGroup(!empty(containerRegistryResourceGroupName) ? containerRegistryResourceGroupName : resourceGroup().name)
    ```
 
 #### Expected output
@@ -640,7 +640,7 @@ cd bindings-dapr-csharp-cron-postgres
    If this step causes [error BCP420](https://aka.ms/bicep/core-diagnostics#BCP420), go to your cloned repo, open the *bindings-dapr-csharp-cron-postgres/infra/core/host/container-apps.bicep* file, and replace line 28 with the following line:
 
    ```bicep
-   scope: resourceGroup()
+   scope: resourceGroup(!empty(containerRegistryResourceGroupName) ? containerRegistryResourceGroupName : resourceGroup().name)
    ```
 
 #### Expected output
