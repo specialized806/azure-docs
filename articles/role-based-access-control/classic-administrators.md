@@ -15,7 +15,7 @@ ms.custom: sfi-image-nochange
 # Azure classic subscription administrators
 
 > [!IMPORTANT]
-> As of **August 31, 2024**, Azure classic administrator roles (along with Azure classic resources and Azure Service Manager) are retired and no longer supported. If you still have active Co-Administrator or Service Administrator role assignments, convert these role assignments to Azure RBAC immediately. Starting in **December 2025**, Azure will begin to automatically assign the Owner role at subscription scope to users who are still assigned the Co-Administrator or Service Administrator role.
+> As of **August 31, 2024**, Azure classic administrator roles (along with Azure classic resources and Azure Service Manager) are retired and no longer supported. If you still have active Co-Administrator or Service Administrator role assignments, convert these role assignments to Azure RBAC immediately. Starting in **December 2025**, Azure will begin to automatically assign the Owner role at subscription scope to users in the public cloud who are still assigned the Co-Administrator or Service Administrator role.
 
 Microsoft recommends that you manage access to Azure resources using Azure role-based access control (Azure RBAC). If you're still using the classic deployment model, you'll need to migrate your resources from classic deployment to Resource Manager deployment. For more information, see [Azure Resource Manager vs. classic deployment](../azure-resource-manager/management/deployment-models.md).
 
@@ -29,7 +29,7 @@ What happens to classic administrator role assignments after August 31, 2024?
 
 What happens to classic administrator role assignments after December 2025?
 
-- Azure will begin to automatically assign the Owner role at subscription scope to users who are still assigned the Co-Administrator or Service Administrator role. For more information, see [Automatic assignment to Owner role](#automatic-assignment-to-owner-role).
+- Azure will begin to automatically assign the Owner role at subscription scope to users in the public cloud who are still assigned the Co-Administrator or Service Administrator role. For more information, see [Automatic assignment to Owner role](#automatic-assignment-to-owner-role).
 
 How do I know what subscriptions have classic administrators?
 
@@ -61,7 +61,7 @@ What should I do if I lose access to a subscription?
 
 ## Automatic assignment to Owner role
 
-After December 2025, if you don't take any action and you still have classic administrators, Azure will begin to automatically assign the classic administrators the Owner role at subscription scope. These role assignments will have the following properties:
+Starting in December 2025, if you don't take any action and you still have classic administrators in the public cloud, Azure will begin to automatically assign the classic administrators the Owner role at subscription scope. These role assignments will have the following properties:
 
 - description: `The Classic Admin role was converted to an Azure Owner role on behalf of the user due to Classic Admin retirement`
 - createdBy: `0469d4cd-df37-4d93-8a61-f8c75b809164`
