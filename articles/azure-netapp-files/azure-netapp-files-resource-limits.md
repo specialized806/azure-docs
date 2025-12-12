@@ -33,7 +33,6 @@ The following table describes resource limits for Azure NetApp Files:
 |  Minimum size of a single regular volume    |    50 GiB    |    No    |
 |  Maximum size of a single regular volume     |    100 TiB    |    No    |
 |  Minimum size of a single [large volume](large-volumes-requirements-considerations.md) | 50 TiB | No |
-| Large volume size increase | 30% of lowest provisioned size | Yes |
 |  Maximum size of a single [large volume](large-volumes-requirements-considerations.md) | 1 PiB | Yes** |
 | Maximum size of a single large volume with breakthrough mode (preview) | 2,400 TiB | No |
 | Maximum size of a large volume up to 7.2 PiB** | 7.2 PiB | Yes** |
