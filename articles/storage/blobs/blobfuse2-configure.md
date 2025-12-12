@@ -16,7 +16,101 @@ ms.custom: linux-related-content
 
 # Configure BlobFuse2 settings
 
-Introduction goes here.
+A BlobFuse configuration file is used to define how BlobFuse connects to Azure Blob Storage and manages its behavior when mounting a container as a filesystem on Linux. 
+
+
+**** From the wiki *****
+
+## How to create a config file (from WIKI)
+
+BlobFuse needs following important configuration to mount Blob Storage account
+
+BlobFuse has a feature to auto generate configuration file with some pre-filled details using command mentioned below.
+Generate Caching (File cache) mode configuration file: 
+
+# blobfuse2 gen-config --tmp-path=<local cache path> --o <path to save generated config>
+
+Generate Streaming (Block cache) mode configuration file: 
+
+# blobfuse2 gen-config --streaming --o <path to save generated config>
+
+Note: After generating the file, details like Azure storage credentials needs to be added in the file before using it for mounting.
+
+
+1. Pipeline configuration: Helps to determine the components to be engaged. For example:
+
+```
+components:
+- libfuse
+- block_cache
+- file_cache
+- attr_cache
+- azstorage
+                                                                 
+```
+
+> [!NOTE]
+> Only one of filecache or blockcache can be used.
+
+2. Cache configuration: BlobFuse2 has 2 modes - Caching (File Cache) and Streaming (Block cache). Choosing the caching mode is crucial in getting optimal performance for your workload. Details about caching modes are present [here](./How-Blobfuse2-Works). 
+
+   Note: You should only mention component related to one caching mode in pipeline configuration. For example:
+
+```
+file_cache:
+  path: /tmp/blobfusecache
+  timeout-sec: 120 
+```
+
+ or
+
+```
+block_cache:
+  block-size-mb: 16
+  mem-size-mb: 80
+  disk-timeout-sec: 120
+```
+
+3. Azure storage configuration: It contains settings for connecting to an Azure Storage account. This includes parameters for storage account name, account key, blob container name, endpoint URL, and authentication mode (such as key, msi, or spn). For example:
+
+```
+azstorage:
+  type: adls
+  account-name: myaccount
+  container: mycontainer
+  endpoint: blob.core.windows.net
+  mode: msi
+  appid: myappid
+```
+
+In addition, there are other optional configuration setting which can be used to fine tune the mount. For details about the configuration options, refer the [baseSampalConfig](https://github.com/Azure/azure-storage-fuse/blob/main/setup/baseConfig.yaml) and [config file best practices.](https://github.com/Azure/azure-storage-fuse/wiki/Config-File-Best-Practices)
+
+> Tip: BlobFuse2 also supports auto-generating configs using blobfuse2 gen-config and allows overrides via CLI parameters or environment variables.
+
+Config File Best Practices
+
+- If `type` is **not provided** in the `azstorage` section of the config file:  
+  - **Blobfuse** will auto-detect the account type and set the respective endpoint.  
+  - For **private endpoints**, exposing the DFS endpoint is required, otherwise the mount will fail.  
+- If `type` **is provided** in the `azstorage` section of the config file:  
+  - **HNS account** should **not** be mounted with `type: block` (used to specify FNS) in the `azstorage` section.  
+    - This will result in failure of certain directory operations.  
+  - **FNS account** should **not** be mounted with `type: adls` (used to specify HNS) in the `azstorage` section.  
+    - This will cause mount failures.
+- To disable all forms of caching at kernel as well as at Blobfuse level, set `-o direct_io` CLI parameter.
+  - This option forces every operation to call the storage service directly, ensuring you always have the most up-to-date data.
+  - This configuration will lead to increased storage costs, as it generates more transactions.
+- To disable only kernel cache but keep Blobfuse cache (data and metadata), set `disable-kernel-cache: true` in common configurations.
+  - Both `direct-io: true` and `disable-kernel-cache: true` should not be use together.
+  - To control metadata caching at blobfuse set `attr-cache-timeout`.
+  - To control data caching at blobfuse set `file-cache-timeout`.
+  - For e.g. if your workflow requires file contents to be refreshed within 3 seconds of update, then set both above timeouts to 3.
+  - Setting them to 0 may give your instant refresh of contents but at cost of higher REST calls to storage.
+
+For details on the correct format, please refer to this [config file](https://github.com/Azure/azure-storage-fuse/blob/ba815585e3ce3b2d08f0009de26c212e655af50c/setup/advancedConfig.yaml#L37).
+
+
+****** Not sure what to do with this material *****
 
 ## How to configure BlobFuse2
 
