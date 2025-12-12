@@ -299,9 +299,8 @@ Milestones are predefined financial targets within the MACC framework that must 
 
 **Key points about MACC milestones:**
 
-- Customers work with field sellers to define MACC milestones (due date and milestone commitment amount) when signing a MACC agreement.
-- If a milestone is not met by its due date, a shortfall charge will be issued as a monetary credit for the remaining amount to fulfill the milestone commitment.
-- If the total MACC commitment amount is not met by the MACC end date, a shortfall charge will be issued as a monetary credit for the remaining balance.
+- When a milestone target is missed, you will be charged for the shortfall in the form of Azure prepayment credits applied to your account.
+- When the overall MACC commitment is unmet at term end, you will be charged for the remaining balance as Azure prepayment credits.
 
 ---
 
@@ -327,7 +326,7 @@ If your MACC includes milestones, email alerts will be sent to Billing Account A
 
 ### Shortfall charges
 
-If the MACC or MACC milestone target is not met by the end date, an email alert will be sent notifying you that a shortfall charge for the remaining balance will be applied. This shortfall charge is a monetary credit applied to your account to fulfill the commitment obligation.
+If the MACC or MACC milestone target is not met by the end date, an email alert will be sent notifying you that a shortfall charge for the remaining balance will be applied. This shortfall charge is an Azure prepayment credits that is applied to your account to fulfil your remaining commitment.
 
 ---
 
