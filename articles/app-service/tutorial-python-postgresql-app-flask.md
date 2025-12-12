@@ -16,7 +16,7 @@ ms.service: azure-app-service
 
 # Deploy a Python (Flask) web app with PostgreSQL in Azure
 
-In this tutorial, you deploy a data-driven Python web app to [Azure App Service](./overview.md) with the [Azure Database for PostgreSQL](/azure/postgresql/) relational database service. Azure App Service supports [Python](https://www.python.org/downloads/) in a Linux server environment. This article uses a ([Flask](https://flask.palletsprojects.com/)) app. Alternatives include [Django](tutorial-python-postgresql-app-django.md) or the [FastAPI tutorial](tutorial-python-postgresql-app-fastapi.md).
+In this tutorial, you deploy a data-driven Python web app to [Azure App Service](./overview.md) with the [Azure Database for PostgreSQL](/azure/postgresql/) relational database service. Azure App Service supports [Python](https://www.python.org/downloads/) in a Linux server environment. This article uses a [Flask](https://flask.palletsprojects.com/) app. Alternatives include [Django](tutorial-python-postgresql-app-django.md) or the [FastAPI tutorial](tutorial-python-postgresql-app-fastapi.md).
 
 :::image type="content" border="False" source="./media/tutorial-python-postgresql-app-flask/python-postgresql-app-architecture-240px.png" lightbox="./media/tutorial-python-postgresql-app-flask/python-postgresql-app-architecture.png" alt-text="Diagram shows the architecture of an App Service with a PostgreSQL database in Azure.":::
 
@@ -187,7 +187,7 @@ The deployment process generates the connectivity variables for you as [app sett
         1. Select **AZURE_POSTGRESQL_CONNECTIONSTRING**. 
         1. In **Add/Edit application setting**, in the **Value** field, find *password=* at the end of the string.
         1. Copy the password string after *password=* for use later.
-        This app setting lets you connect to the Postgres database secured behind a private endpoint. The secret is saved directly in the App Service app, which isn't the best practice. You'll change this configuration.
+        This app setting lets you connect to the Postgres database secured behind a private endpoint. The secret is saved directly in the App Service app, which isn't the best practice. Later, you change this configuration.
     :::column-end:::
     :::column:::
         :::image type="content" source="./media/tutorial-python-postgresql-app-flask/azure-portal-secure-connection-secrets-1.png" alt-text="Screenshot shows how to see the value of an app setting." lightbox="./media/tutorial-python-postgresql-app-flask/azure-portal-secure-connection-secrets-1.png":::
@@ -254,7 +254,7 @@ The deployment process generates the connectivity variables for you as [app sett
 :::row:::
     :::column span="2":::
         **Step 6:** Finalize the PostgreSQL connector settings:
-        1. You're back in the edit dialog for **defaultConnector**. In the **Authentication** tab, wait for the key vault connector to be created. When it's finished, the **Key Vault Connection** dropdown automatically selects it.
+        1. You're back in the edit dialog for **defaultConnector**. In the **Authentication** tab, wait for the key vault connector to be created. When the creation finishes, the **Key Vault Connection** dropdown automatically selects it.
         1. Select **Next: Networking**.
         1. Select **Save**. Wait until the **Update succeeded** notification appears.
     :::column-end:::
@@ -319,7 +319,7 @@ In this section, you configure GitHub deployment using GitHub Actions. It's one 
         This command pulls the newly committed workflow file into your codespace.
     :::column-end:::
     :::column:::
-        :::image type="content" source="./media/tutorial-python-postgresql-app-flask/azure-portal-deploy-sample-code-flask-3.png" alt-text="Screenshot shows git pull inside a GitHub codespace." lightbox="./media/tutorial-python-postgresql-app-flask/azure-portal-deploy-sample-code-flask-3.png":::
+        :::image type="content" source="./media/tutorial-python-postgresql-app-flask/azure-portal-deploy-sample-code-flask-3.png" alt-text="Screenshot shows a pull action inside a GitHub codespace." lightbox="./media/tutorial-python-postgresql-app-flask/azure-portal-deploy-sample-code-flask-3.png":::
     :::column-end:::
 :::row-end:::
 :::row:::
@@ -610,7 +610,7 @@ Having issues? Check the [Troubleshooting section](#troubleshooting).
     ```
 
 > [!NOTE]
-> If you run `azd up`, it combines `azd package`, `azd provision`, and `azd deploy`. The reason you didn't do run that command at the beginning is because you didn't have the PostgreSQL connection settings to modify your code with yet. If you run `azd up` then, the deploy stage would stall because the Gunicorn server wouldn't be able to start the app without valid connection settings.
+> If you run `azd up`, it combines `azd package`, `azd provision`, and `azd deploy`. The reason you didn't do run that command at the beginning is because you didn't have the PostgreSQL connection settings to modify your code with yet. If you run the `azd up` command then, the deploy stage would stall because the Gunicorn server wouldn't be able to start the app without valid connection settings.
 
 -----
 
@@ -684,7 +684,7 @@ Here are some issues you might encounter while trying to work through this tutor
 
 #### I can't connect to the SSH session
 
-If you can't connect to the SSH session, then the app itself failed to start. Check the [diagnostic logs](#7-stream-diagnostic-logs) for details. For example, if you see an error like `KeyError: 'AZURE_POSTGRESQL_HOST'`, it might mean that the environment variable is missing. Perhaps you removed the app setting.
+If you can't connect to the SSH session, then the app itself failed to start. Check the [diagnostic logs](#stream-diagnostic-logs) for details. For example, if you see an error like `KeyError: 'AZURE_POSTGRESQL_HOST'`, it might mean that the environment variable is missing. Perhaps you removed the app setting.
 
 #### I get an error when running database migrations
 
@@ -711,12 +711,12 @@ Pricing for the created resources is as follows:
 #### How do I connect to the PostgreSQL server that's secured behind the virtual network with other tools?
 
 - For basic access from a command-line tool, you can run `psql` from the app's SSH session.
-- To connect from a desktop tool, your computer must be in the virtual network. For example, it could be an Azure virtual machine that's connected to one of the subnets, or a computer in an on-premises network that has a [site-to-site VPN](../vpn-gateway/vpn-gateway-about-vpngateways.md) connection with the Azure virtual network.
+- To connect from a desktop tool, your computer must be in the virtual network. For example, it could be an Azure virtual machine connected to one of the subnets or a computer in an on-premises network that has a [site-to-site VPN](../vpn-gateway/vpn-gateway-about-vpngateways.md) connection with the Azure virtual network.
 - You can also [integrate Azure Cloud Shell](../cloud-shell/private-vnet.md) with the virtual network.
 
 #### How does local app development work with GitHub Actions?
 
-Using the autogenerated workflow file from App Service as an example, each `git push` kicks off a new build and deployment run. From a local clone of the GitHub repository, you make the desired updates and push to GitHub. For example:
+For the autogenerated workflow file from App Service as an example, each `git push` kicks off a new build and deployment run. From a local clone of the GitHub repository, you make the desired updates and push to GitHub. For example:
 
 ```terminal
 git add .
@@ -726,7 +726,7 @@ git push origin main
 
 #### How do I debug errors during the GitHub Actions deployment?
 
-If a step fails in the autogenerated GitHub workflow file, try modifying the failed command to generate more verbose output. For example, you can get more output from the `python` command by adding the `-d` option. Commit and push your changes to trigger another deployment to App Service.
+If a step fails in the autogenerated GitHub workflow file, try modifying the failed command to generate more verbose output. For example, you can get verbose output from the `python` command by adding the `-d` option. Commit and push your changes to trigger another deployment to App Service.
 
 #### I don't have permissions to create a user-assigned identity
 
@@ -734,14 +734,14 @@ See [Set up GitHub Actions deployment from the Deployment Center](deploy-github-
 
 #### What can I do with GitHub Copilot in my codespace?
 
-You might notice that the GitHub Copilot chat view was already there for you when you created the codespace. For your convenience, we include the GitHub Copilot chat extension in the container definition (see *.devcontainer/devcontainer.json*). You need a [GitHub Copilot account](https://docs.github.com/copilot/using-github-copilot/using-github-copilot-code-suggestions-in-your-editor). A 30-day free trial is available.
+You might notice that the GitHub Copilot chat view was already there for you when you created the codespace. For your convenience, we include the GitHub Copilot chat extension in the container definition. See *.devcontainer/devcontainer.json*. You need a [GitHub Copilot account](https://docs.github.com/copilot/using-github-copilot/using-github-copilot-code-suggestions-in-your-editor). A 30-day free trial is available.
 
 A few tips for you when you talk to GitHub Copilot:
 
 - In a single chat session, the questions and answers build on each other. You can adjust your questions to fine-tune the answer you get.
 - By default, GitHub Copilot doesn't have access to any file in your repository. To ask questions about a file, open the file in the editor first.
 - To let GitHub Copilot have access to all of the files in the repository when preparing its answers, begin your question with `@workspace`. For more information, see [Use the @workspace agent](https://github.blog/2024-03-25-how-to-use-github-copilot-in-your-ide-tips-tricks-and-best-practices/#10-use-the-workspace-agent).
-- In the chat session, GitHub Copilot can suggest changes and (with `@workspace`) even where to make the changes, but it's not allowed to make the changes for you. It's up to you to add the suggested changes and test it.
+- In the chat session, GitHub Copilot can suggest changes and, with `@workspace`, even where to make the changes, but it's not allowed to make the changes for you. It's up to you to add the suggested changes and test it.
 
 ## Related content
 
