@@ -307,6 +307,8 @@
   items:
   - name: Overview
     href: blob-backup-overview.md
+  - name: FAQ-Azure Blob Backup  
+    href: blob-backup-faq.yml
   - name: Support matrix
     href: blob-backup-support-matrix.md  
   - name: Quickstarts to configure vaulted blob backup
