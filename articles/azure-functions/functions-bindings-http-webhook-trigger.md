@@ -1024,6 +1024,9 @@ HTTP streams support in Python lets you accept and return data from your HTTP en
 * [Azure Functions runtime](functions-versions.md?pivots=programming-language-python) version 4.34.1, or a later version.
 * [Python](https://www.python.org/downloads/) version 3.8, or a later [supported version](functions-reference-python.md?tabs=get-started&pivots=python-mode-decorators#supported-python-versions).
 
+>[!IMPORTANT]  
+> HTTP streams is only supported for the Python v2 programming model.
+
 ### Enable HTTP streams
 
 HTTP streams are disabled by default. You need to enable this feature in your application settings and also update your code to use the FastAPI package. Note that when enabling HTTP streams, the function app will default to using HTTP streaming, and the original HTTP functionality will not work.
@@ -1095,7 +1098,7 @@ if __name__ == "__main__":
 
 
 >[!IMPORTANT]  
-> HTTP streams support for Python is generally available and is only supported for the Python v2 programming model.
+> If you are using HTTP streams, all HTTP functions in the app need to use streaming. Combining streaming and non-streaming HTTP functions within the same app is not supported.
 
 ::: zone-end  
 ### Working with client identities

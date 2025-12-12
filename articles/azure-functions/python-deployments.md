@@ -8,162 +8,101 @@ ms.custom:
   - py-devguide-refactor
 ---
 
-# Deploy your Python apps to Azure Functions
+# Build your Python Azure Functions apps
 
-Azure Functions supports several build and deployment options for publishing your Python apps to Azure. Choose your deployment method based on your build environment, app dependencies, and runtime requirements. 
+Azure Functions supports three build options for publishing your Python apps to Azure. Choose your build method based on your local environment, app dependencies, and runtime requirements. 
 
-## Quick comparison
+## Quick comparison for build actions
 
-| Deployment type                    | Where dependencies are installed             | Typical use case                            |
-|------------------------------------|----------------------------------------------|---------------------------------------------|
-| [Remote build](#remote-build) (recommended)         | Azure (App Service)                          | Default, recommended for most users         |
-| [Local build](#local-build)                        | Your machine                                 | Linux/macOS devs, limited Windows scenarios |
-| [Zip deploy with prebuilt dependencies](#zip-deploy) | Already packaged locally                  | Pipelines, GitHub Actions, custom prebuilds           |
-| [Portal create](#portal-create)                    | External dependencies aren't supported       | Editing without third-party dependencies    |
-| [Custom dependencies](#custom-dependencies)                | Handled via extra index URL or local install | Non-PyPI dependencies                       |
-| [Custom containers](#custom-containers)                  | Fully self-managed image                     | Native libraries, when full control is required   |
-| [Continuous](./functions-continuous-deployment.md)             | Automated in pipelines                       | Enterprise deployments                      |
+| Deployment type                                      | Where dependencies are installed             | Typical use case                                |
+|------------------------------------------------------|----------------------------------------------|-------------------------------------------------|
+| [Remote build](#remote-build) (recommended)          | Azure (App Service)                          | Default, recommended for most users             |
+| [Local build](#local-build)                          | Your machine                                 | Linux/macOS devs, limited Windows scenarios     |
+| [Custom dependencies](#custom-dependencies)          | Handled via extra index URL or local install | Non-PyPI dependencies                           |
 
-The rest of this article details deployment options for your Python apps. For a general overview of deployment, see [Deployment technologies in Azure Functions](functions-deployment-technologies.md).
 
-## Remote Build 
+## Deployment package considerations
 
+When deploying your Python function app to Azure, keep these packaging requirements in mind:
+
+- **Package contents, not the folder**: Deploy the contents of your project folder, not the folder itself.
+- **Root-level `host.json`**: Ensure a single `host.json` file is at the root of the deployment package, not nested in a subfolder.
+- **Exclude development files**: You can exclude folders like `tests/`, `.vscode/`, and `.venv*/` from the deployed package by including them in `.funcignore`.
+- **The build environment must match the production environment**: Your dependencies must be built on an ubuntu machine using the same python version as the production app. [Remote build](#remote-build-) handles this automatically.
+- **Dependencies must be installed into `./.python_packages/lib/site-packages`**: Remote build handles this by installing all dependencies listed in `requirements.txt` into the correct directory.
+
+## Remote build
 > Remote build is the recommended approach for a code-only deployment of your Python app to Functions.
 
 When you choose a remote build, package dependencies are installed in Azure by Functions. This ensures compatibility with the remote 
 runtime environment and results in a smaller deployment package.
 
-Remote build is used by default when you publish your Python app using these tools: 
+You can use remote build when you publish your Python app using these tools: 
 
-- [**Azure Functions Core Tools**](./functions-run-local.md): the [`func azure functionapp publish`](./functions-core-tools-reference.md#func-azure-functionapp-publish) requests a remote build by default when publishing Python apps. 
-
+- [**Azure Functions Core Tools**](./functions-run-local.md): the [`func azure functionapp publish`](./functions-core-tools-reference.md#func-azure-functionapp-publish) command requests a remote build by default when publishing Python apps.
+- [**AZ CLI**](/cli/azure/functionapp): [`az functionapp deployment source config-zip`](/cli/azure/functionapp/deployment/source#az-functionapp-deployment-source-config-zip) uses remote build by default when deploying Python apps.
 - [**Visual Studio Code**](./functions-develop-vs-code.md): the **Azure Functions: Deploy to Azure...** command always uses a remote build.
+- [**Continuous delivery with Azure Pipelines**](./functions-how-to-azure-devops.md): the **AzureFunctionApp@2** task uses remote build by default.
+- [**Continuous delivery by using GitHub Actions**](./functions-how-to-github-actions.md): the **Azure/functions-action@v1** action uses remote build when the `remote-build` parameter is set to `true`.
 
 Remote build also supports custom package indexes when by using the [`PIP_EXTRA_INDEX_URL`](./functions-app-settings.md#pip_extra_index_url) app setting. For more information, see [Remote build](functions-deployment-technologies.md#remote-build).
 
+>[!IMPORTANT]  
+> Remote build will install all dependencies listed in `requirements.txt`. To ensure all required packages are installed, be sure to include those dependencies in your `requirements.txt` file.
+
+
 ## Local build
+If you don't request a remote build, then dependencies are instead installed on your machine. The entire local project and dependencies are then packaged locally and deployed to your function app. Using local build results in a larger package upload.
 
-If you don't request a remote build, then dependencies are instead installed on your machine. The entire local project and dependencies are then packaged locally and deployed to your function app. Using local build results in a larger package upload. 
-
+You will also need to install dependencies into the correct directory. Use `pip install --target="./.python_packages/lib/site-packages"` to install required dependencies into your local `.python_packages/lib/site-packages` folder.
+For example, if you have your dependencies listed in a `requirements.txt` file, you can run this command:
 
 ```bash
-func azure functionapp publish <APP_NAME> --build local
+pip install --target="./.python_packages/lib/site-packages" -r requirements.txt
 ```
 Use local build when:
 
 - You're developing locally on Linux or macOS.
 - Remote build isn't available or is restricted.
+- You want to define dependencies in a file other than `requirements.txt`, such as `pyproject.toml`.
+
+The following tools can be configured to use local build:
+- [**Azure Functions Core Tools**](./functions-run-local.md): use [`func azure functionapp publish`](./functions-core-tools-reference.md#func-azure-functionapp-publish) with the `--no-build` flag.
+- [**AZ CLI**](/cli/azure/functionapp): [`az functionapp deployment source config-zip`](/cli/azure/functionapp/deployment/source#az-functionapp-deployment-source-config-zip) with the `--build-remote=false` flag.
+- [**Continuous delivery by using GitHub Actions**](./functions-how-to-github-actions.md): set the `remote-build` parameter to `false`.
 
 >[!IMPORTANT]  
->When developing your Python apps on a Windows computer, don't use local build. Packages built on a Windows computer often have issues being deployed to and running on Linux in Azure Functions. 
+>When developing your Python apps on a Windows computer, don't use local build. Packages built on a Windows computer often have issues being deployed to and running on Linux in Azure Functions. It is only
+recommended to use local build if you are confident the package will run on Linux based systems.
 
-## Zip deploy 
-
-Zip deployment is the method for publishing your code to Azure. You can create a compressed package (.zip) of your app directory, with dependencies already installed, and deploy it by using deployment APIs. 
-
-To create and deploy your app by using zip deployment:
-
-1. Run this `pip` command to install required dependencies in the local `site-packages` folder:
-
-    ```bash
-    pip install --target="./.python_packages/lib/site-packages" -r requirements.txt
-    ```
-
-    >[!IMPORTANT]  
-    >When developing your Python apps on a Windows computer, don't build your deployment package by using locally installed dependencies. Packages built on a Windows computer often have issues being deployed to and running on Linux in Azure Functions.     
-
-1. Run the `func pack` command from the project root to create the deployment package based on the local project folder: 
-
-    ```bash
-    func pack
-    ```
-
-1. Deploy the package by using [`az functionapp deployment source config-zip`](/cli/azure/functionapp/deployment/source#az-functionapp-deployment-source-config-zip) command, which initiates a [push deployment](./deployment-zip-push.md):
-
-    ```azure-cli 
-    az functionapp deployment source config-zip --src <ZIP_FILE_PATH>
-    ```
-
-You can also package and deploy prebuilt dependencies in one step by using the `--no-build` option in Core Tools:
-
-```bash
-func azure functionapp publish <APP_NAME> --no-build
-```
-
-## Portal create
-
-You can create and test a basic function directly within the [Azure portal](https://portal.azure.com), which saves setup time and is useful for quick experiments or demos. To learn more, follow the [Getting Started in the Azure portal Guide](./functions-create-function-app-portal.md).
-
-> [!NOTE]  
-> Portal editing doesn't support third-party dependencies, and it isn't recommended for creating production apps. You can't install or reference packages outside `azure-functions` and the built-in Python standard library.
-
-## Custom dependencies 
-
+## Custom dependencies
 Azure Functions supports custom and other non-PyPI dependencies by using the [`PIP_EXTRA_INDEX_URL`] app setting or by creating a local build on a Linux or macOS computer.
 
 ### Remote build with an extra index URL
-
-When your private packages are available online, you can request a remote build after setting the private package location by using the [`PIP_EXTRA_INDEX_URL`] app setting. Use this [`az functionapp config appsettings set`](/cli/azure/functionapp/config/appsettings#az-functionapp-config-appsettings-set) command to set a remote package URL:
-
-```azure-cli
-az functionapp config appsettings set \
-  --name <APP_NAME> \
-  --resource-group <RESOURCE_GROUP> \
-  --settings PIP_EXTRA_INDEX_URL=https://your-private-feed.contoso.com/simple
-```
-When you set [`PIP_EXTRA_INDEX_URL`], remote builds use this package feed during deployment.
+When your private packages are available online, you can request a remote build after setting the private package location by using the [`PIP_EXTRA_INDEX_URL`] app setting.
+When you set [`PIP_EXTRA_INDEX_URL`], remote builds use this package feed during deployment. It is recommended to use [`PIP_EXTRA_INDEX_URL`] over [`PIP_INDEX_URL`](./functions-app-settings.md#pip_index_url).
 
 ### Local packages or wheels
+Local packages and wheels are supported when building python Azure Function apps.
 
-Use these steps on a Linux or macOS computer when your dependencies are only available locally:
+To install these packages or wheels using [remote build](#remote-build-), you can include the dependencies in your `requirements.txt` file and deploy with [remote build enabled](#remote-build-).
 
-1. Set the dependencies in your `requirements.txt` file, which might look like this:
+For example, your `requirements.txt` file might look like the following:
+```text
+ # Installing a custom wheel
+ <my_package_wheel>.whl
+ 
+ # Installing a local package
+ path/to/my/package
+ ```
 
-    ```text
-    # Installing a custom wheel
-    <my_package_wheel>.whl
-    
-    # Installing a local package
-    path/to/my/package
-    ```
+To install these dependencies using [local build](#local-build), install the dependencies into your local `.python_packages/lib/site-packages` folder and deploy with [remote build disabled](#local-build)
+For example, if you have the packages defined in your `requirements.txt` file, you can install and publish using the following commands and Core Tools:
+ ```bash
+ pip install --target="./.python_packages/lib/site-packages" -r requirements.txt
+ func azure functionapp publish <APP_NAME> --no-build
+ ```
 
-1. Run this `pip` command to install custom packages in your local project:
-
-    ```bash
-    pip install --target="./.python_packages/lib/site-packages" -r requirements.txt
-    ```
-
-1. Build and publish the deployment package by using the `--no-build` option in Core Tools:
-
-    ```bash
-    func azure functionapp publish <APP_NAME> --no-build
-    ```
-
-## Custom containers
-
-Create and deploy your Python app in a custom container when you need:
-
-- Native operating system-level dependencies
-- Full control of the runtime environment
-- Preconfigured language versions
-
-For more information, see [Deploy with a custom container](./functions-how-to-custom-container.md).
-
-## Continuous publishing 
-
-Automate deployment of your app by using these continuous technologies:
-
-- [GitHub Actions](./functions-how-to-github-actions.md)
-- [Azure Pipelines](./functions-how-to-azure-devops.md)
-- [Other continuous integration tools](./functions-continuous-deployment.md)
-
-Your deployment pipeline can:
-
-- Run local builds.
-- Deploy with `--no-build` when using prebuilt dependencies.
-- Deploy to Azure by using managed identities.
-
-For more information, see [Continuous delivery with Azure Pipelines](./functions-how-to-azure-devops.md).
 
 ## Related articles
 

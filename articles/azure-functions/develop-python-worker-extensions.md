@@ -8,6 +8,9 @@ ms.custom: devx-track-python, py-fresh-zinc
 
 # Develop Python worker extensions for Azure Functions
 
+> [!NOTE]  
+> Starting with Python 3.13, python worker extensions will no longer be supported.
+
 Azure Functions lets you integrate custom behaviors as part of Python function execution. This feature enables you to create business logic that customers can easily use in their own function apps. Worker extensions are supported in both the v1 and v2 Python programming models.
 
 In this tutorial, you'll learn how to: 

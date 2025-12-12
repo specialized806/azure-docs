@@ -343,11 +343,9 @@
       - name: Build and Deployment Options
         displayName: python
         href: python-deployments.md
-      - name: Unit Testing
+      - name: Scale and performance recommendations
         displayName: python
-        href: python-testing.md
-      - name: Python SDK API reference
-        href: /python/api/azure-functions/azure.functions
+        href: python-scale-performance-reference.md
       - name: Samples
         displayName: python
         href: /samples/browse/?products=azure-functions&languages=python
@@ -361,9 +359,8 @@
           - name: Memory profiling
             displayName: python
             href: python-memory-profiler-reference.md
-          - name: Scale and performance recommendations
-            displayName: python
-            href: python-scale-performance-reference.md
+      - name: Python SDK API reference
+        href: /python/api/azure-functions/azure.functions
 - name: How-to guides
   items:
   - name: Develop
