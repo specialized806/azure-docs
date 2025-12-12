@@ -338,7 +338,7 @@ In this section, you configure GitHub deployment using GitHub Actions. It's one 
 :::row:::
     :::column span="2":::
         **Step 4 (Option 2: without GitHub Copilot):**  
-        1. Open *Program.cs* in the explorer.
+        1. Open *azureproject/production.py* in the explorer.
         1. Find the commented code (lines 3-8) and uncomment it. 
         This change creates a connection string for SQLAlchemy by using `AZURE_POSTGRESQL_USER`, `AZURE_POSTGRESQL_PASSWORD`, `AZURE_POSTGRESQL_HOST`, and `AZURE_POSTGRESQL_NAME`.
     :::column-end:::
