@@ -56,7 +56,7 @@ To create a dedicated subnet for Private Link, see [Add, change, or delete a vir
 
 ## Disable network policies on the Private Link subnet
 
-To allow Private Link connectivity, you must [disable the Private Link Service Network Policies](../private-link//disable-private-link-service-network-policy.md) on the subnet designated for Private Link IP configurations.
+To allow Private Link connectivity, you must [disable the Private Link Service Network Policies](../private-link/disable-private-link-service-network-policy.md) on the subnet designated for Private Link IP configurations.
 
 When you use the portal to create an instance of the Private Link service, this setting is automatically disabled as part of the creation process. Deployments using any Azure client (PowerShell, Azure CLI, or templates) require an extra step to change this property.
 
