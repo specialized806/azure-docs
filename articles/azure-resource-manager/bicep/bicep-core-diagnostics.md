@@ -139,7 +139,7 @@ If you need more information about a particular diagnostic code, select the **Fe
 | <a id='BCP127' />[BCP127](./diagnostics/bcp127.md) | Error | Function `<function-name>` can't be used as a resource decorator. |
 | <a id='BCP128' />[BCP128](./diagnostics/bcp128.md) | Error | Function `<function-name>` can't be used as a module decorator. |
 | <a id='BCP129' />[BCP129](./diagnostics/bcp129.md) | Error | Function `<function-name>` can't be used as an output decorator. |
-| <a id='BCP130' />BCP130 | Error | Decorators aren't allowed here. |
+| <a id='BCP130' />[BCP130](./diagnostics/bcp130.md) | Error | Decorators aren't allowed here. |
 | <a id='BCP132' />[BCP132](./diagnostics/bcp132.md) | Error | Expected a declaration after the decorator. |
 | <a id='BCP133' />BCP133 | Error | The unicode escape sequence isn't valid. Valid unicode escape sequences range from \\u{0} to \\u{10FFFF}. |
 | <a id='BCP134' />BCP134 | Error | Scope `<scope-name>` isn't valid for this module. Permitted scopes: `<scope-name>`. |
@@ -285,7 +285,7 @@ If you need more information about a particular diagnostic code, select the **Fe
 | <a id='BCP290' />[BCP290](./diagnostics/bcp290.md) | Error | Expected a parameter or type declaration after the decorator. |
 | <a id='BCP291' />BCP291 | Error | Expected a parameter or output declaration after the decorator. |
 | <a id='BCP292' />[BCP292](./diagnostics/bcp292.md) | Error | Expected a parameter, output, or type declaration after the decorator. |
-| <a id='BCP293' />BCP293 | Error | All members of a union type declaration must be literal values. |
+| <a id='BCP293' />[BCP293](./diagnostics/bcp293.md) | Error | All members of a union type declaration must be literal values. |
 | <a id='BCP294' />[BCP294](./diagnostics/bcp294.md) | Error | Type unions must be reducible to a single ARM type (such as `string`, `int`, or `bool`).      |
 | <a id='BCP295' />BCP295 | Error | The `{decoratorName}` decorator may not be used on targets of a union or literal type. The allowed values for this parameter or type definition will be derived from the union or literal type automatically. |
 | <a id='BCP296' />BCP296 | Error | Property names on types must be compile-time constant values. |
