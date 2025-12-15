@@ -30,11 +30,15 @@ Base your decision on whether the workload is read-only or read-write
 
 ### Read only workloads
 
-Diagram goes here
+Brief description goes here.
+
+Diagram goes here:::image type="content" source="media/blobfuse2-choose-data-transfer-mode/read-workload-decision-tree.png" alt-text="Diagram that helps you choose between block cache or file cache for read-only workloads." lightbox="media/blobfuse2-choose-data-transfer-mode/read-workload-decision-tree.png":::
 
 ### Read-write workloads
 
-Diagram goes here
+Brief description goes here.
+
+:::image type="content" source="media/blobfuse2-choose-data-transfer-mode/read-write-workload-decision-tree.png" alt-text="Diagram that shows how to choose between block cache and file cache mode for read-write workloads." lightbox="media/blobfuse2-choose-data-transfer-mode/read-write-workload-decision-tree.png":::
 
 ## Caching mode
 
@@ -42,7 +46,7 @@ When a file is the subject of a write operation, the data is first persisted to 
 
 Use the following diagram as a guide to choosing an optimal file caching configuration.
 
-Diagram goes here.
+:::image type="content" source="media/blobfuse2-choose-data-transfer-mode/file-cache-configuration-decision-tree.png" alt-text="Diagram that shows how to configure file caching mode based on various factors." lightbox="media/blobfuse2-choose-data-transfer-mode/file-cache-configuration-decision-tree.png":::
 
 ## Steaming mode (Block cache)
 
@@ -52,7 +56,7 @@ Reading the same blob from multiple simultaneous threads is supported. However, 
 
 Use the following diagram as a guide to choosing an optimal block cache configuration.
 
-Diagram goes here.
+:::image type="content" source="media/blobfuse2-choose-data-transfer-mode/block-cache-configuration-decision-tree.png" alt-text="Diagram that shows how to configure block cache mode based on various factors." lightbox="media/blobfuse2-choose-data-transfer-mode/block-cache-configuration-decision-tree.png":::
 
 ### Recommendations for using Block cache
 
