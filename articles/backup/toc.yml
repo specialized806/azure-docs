@@ -435,6 +435,80 @@
         href: restore-azure-file-share-rest-api.md
       - name: Manage
         href: manage-azure-file-share-rest-api.md
+- name: Azure Kubernetes Service backup
+  items:
+  - name: Overview
+    href: azure-kubernetes-service-backup-overview.md
+  - name: Prerequisites
+    href: azure-kubernetes-service-cluster-backup-concept.md
+  - name: FAQ-Azure Backup for AKS
+    href: aks-backup-faq.yml
+  - name: Support matrix
+    href: azure-kubernetes-service-cluster-backup-support-matrix.md
+  - name: Quickstarts
+    items:
+    - name: Install Backup extension in AKS cluster
+      href: quick-install-backup-extension.md    
+    - name: Configure AKS cluster backup
+      items:
+      - name: From the Azure portal
+        href: quick-backup-aks.md
+      - name: With Azure CLI
+        href: quick-kubernetes-backup-cli.md
+      - name: With PowerShell
+        href: quick-kubernetes-backup-powershell.md
+      - name: With Azure Resource Manager
+        href: quick-kubernetes-backup-arm.md
+      - name: With Bicep
+        href: quick-kubernetes-backup-bicep.md
+      - name: With Terraform
+        href: quick-kubernetes-backup-terraform.md      
+  - name: Tutorials
+    items: 
+    - name: Configure item level backup of an AKS cluster
+      href: tutorial-configure-backup-aks.md
+    - name: Restore vaulted backups for AKS clusters in a secondary region
+      href: tutorial-restore-aks-backups-across-regions.md
+  - name: Backup scenarios
+    items:
+    - name: From the Azure portal
+      items:
+      - name: Backup
+        href: azure-kubernetes-service-cluster-backup.md
+      - name: Restore
+        href: azure-kubernetes-service-cluster-restore.md
+      - name: Manage
+        href: azure-kubernetes-service-cluster-manage-backups.md
+      - name: Cross Region Restore for WebLogic Server on AKS
+        href: /azure/developer/java/migration/migrate-weblogic-to-aks-with-ha-geo-redundancy?toc=/azure/backup/toc.json&bc=/azure/backup/breadcrumb/toc.json
+      - name: Cross Region Restore for Liberty on AKS
+        href: /azure/developer/java/migration/migrate-liberty-to-aks-with-ha-dr?toc=/azure/backup/toc.json&bc=/azure/backup/breadcrumb/toc.json
+    - name: With PowerShell
+      items:
+      - name: Backup
+        href: azure-kubernetes-service-cluster-backup-using-powershell.md
+      - name: Restore
+        href: azure-kubernetes-service-cluster-restore-using-powershell.md
+    - name: With CLI
+      items:
+      - name: Backup
+        href: azure-kubernetes-service-cluster-backup-using-cli.md
+      - name: Restore
+        href: azure-kubernetes-service-cluster-restore-using-cli.md
+- name: Azure Elastic SAN backup
+  items:
+  - name: Overview
+    href: azure-elastic-san-backup-overview.md
+  - name: Support matrix
+    href: azure-elastic-san-backup-support-matrix.md
+  - name: Backup scenarios
+    items:
+    - name: Configure backup
+      href: azure-elastic-san-backup-configure.md
+    - name: Restore
+      href: azure-elastic-san-backup-restore.md
+    - name: manage
+      href: azure-elastic-san-backup-manage.md
 - name: Quickstarts  
   items:
   - name: Back up Azure PostgreSQL Database
@@ -447,20 +521,6 @@
         href: quick-cross-region-restore.md
       - name: With Azure PowerShell
         href: quick-secondary-region-restore-postgresql-powershell.md
-  - name: Configure AKS cluster backup
-    items:
-    - name: From the Azure portal
-      href: quick-backup-aks.md
-    - name: With Azure CLI
-      href: quick-kubernetes-backup-cli.md
-    - name: With PowerShell
-      href: quick-kubernetes-backup-powershell.md
-    - name: With Azure Resource Manager
-      href: quick-kubernetes-backup-arm.md
-    - name: With Bicep
-      href: quick-kubernetes-backup-bicep.md
-    - name: With Terraform
-      href: quick-kubernetes-backup-terraform.md
   - name: Create a backup policy for Azure Database for PostgreSQL - Flexible Server
     items:
     - name: With Azure portal
@@ -477,8 +537,6 @@
       href: quick-backup-postgresql-flexible-server-arm.md
     - name: With Azure Bicep file
       href: quick-backup-postgresql-flexible-server-bicep.md
-  - name: Install Backup extension in AKS cluster
-    href: quick-install-backup-extension.md
   - name: Backup SAP HANA System Replication database
     items:
     - name: Backup
@@ -508,10 +566,6 @@
       href: tutorial-create-first-backup-azure-database-postgresql-flex.md
     - name: Restore
       href: tutorial-restore-postgresql-flex.md
-  - name: Configure item level backup of an AKS cluster
-    href: tutorial-configure-backup-aks.md
-  - name: Restore vaulted backups for AKS clusters in a secondary region
-    href: tutorial-restore-aks-backups-across-regions.md
   - name: Back up Windows Server
     href: tutorial-backup-windows-server-to-azure.md
   - name: Restore files to Windows Server
@@ -558,24 +612,18 @@
       href: sap-ase-backup-support-matrix.md
     - name: Azure Database for MySQL - Flexible Server long-term retention support matrix
       href: backup-azure-mysql-flexible-server-support-matrix.md
-    - name: Azure Elastic SAN backup support matrix
-      href: azure-elastic-san-backup-support-matrix.md
     - name: Active Directory domain controllers
       href: active-directory-backup-restore.md
     - name: Azure Database for PostgreSQL backup support matrix
       href: backup-azure-database-postgresql-support-matrix.md
     - name: Azure Database for PostgreSQL -Flexible server backup support matrix
       href: backup-azure-database-postgresql-flex-support-matrix.md
-    - name: Azure Kubernetes Service backup support matrix
-      href: azure-kubernetes-service-cluster-backup-support-matrix.md
     - name: Automation in Azure Backup
       href: backup-support-automation.md
   - name: Frequently asked questions (FAQ)
     items:
     - name: FAQ-MARS agent
       href: backup-azure-file-folder-backup-faq.yml
-    - name: FAQ-Azure Backup for AKS
-      href: aks-backup-faq.yml
     - name: FAQ-Back up SQL Server databases on Azure VMs
       href: faq-backup-sql-server.yml
     - name: FAQ-Back up SAP HANA databases on Azure VMs
@@ -598,14 +646,6 @@
     href: backup-azure-database-postgresql-flex-overview.md
   - name: SAP ASE database on Azure VM backup
     href: sap-ase-database-about.md
-  - name: Azure Kubernetes Service backup
-    items:
-    - name: Overview
-      href: azure-kubernetes-service-backup-overview.md
-    - name: Prerequisites
-      href: azure-kubernetes-service-cluster-backup-concept.md
-  - name: Azure Elastic SAN backup
-    href: azure-elastic-san-backup-overview.md
   - name: Windows backup using MARS agent
     items:
     - name: Overview
@@ -726,32 +766,6 @@
         href: backup-azure-database-postgresql-flex-use-rest-api.md
       - name: Restore
         href: backup-azure-database-postgresql-flex-use-rest-api-restore.md
-  - name: Azure Kubernetes Service backup
-    items:
-    - name: From the Azure portal
-      items:
-      - name: Backup
-        href: azure-kubernetes-service-cluster-backup.md
-      - name: Restore
-        href: azure-kubernetes-service-cluster-restore.md
-      - name: Manage
-        href: azure-kubernetes-service-cluster-manage-backups.md
-      - name: Cross Region Restore for WebLogic Server on AKS
-        href: /azure/developer/java/migration/migrate-weblogic-to-aks-with-ha-geo-redundancy?toc=/azure/backup/toc.json&bc=/azure/backup/breadcrumb/toc.json
-      - name: Cross Region Restore for Liberty on AKS
-        href: /azure/developer/java/migration/migrate-liberty-to-aks-with-ha-dr?toc=/azure/backup/toc.json&bc=/azure/backup/breadcrumb/toc.json
-    - name: With PowerShell
-      items:
-      - name: Backup
-        href: azure-kubernetes-service-cluster-backup-using-powershell.md
-      - name: Restore
-        href: azure-kubernetes-service-cluster-restore-using-powershell.md
-    - name: With CLI
-      items:
-      - name: Backup
-        href: azure-kubernetes-service-cluster-backup-using-cli.md
-      - name: Restore
-        href: azure-kubernetes-service-cluster-restore-using-cli.md
   - name: Windows backup using MARS agent
     items:
     - name: Install or upgrade
@@ -776,14 +790,6 @@
         href: backup-azure-restore-system-state.md
     - name: Manage
       href: backup-azure-manage-mars.md
-  - name: Azure Elastic SAN backup
-    items:
-    - name: Configure backup
-      href: azure-elastic-san-backup-configure.md
-    - name: Restore
-      href: azure-elastic-san-backup-restore.md
-    - name: manage
-      href: azure-elastic-san-backup-manage.md
   - name: SAP HANA database on Azure VM backup
     items:
     - name: Backup
