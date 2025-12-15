@@ -155,7 +155,7 @@ If you mounted a Blob container successfully, but failed to create a directory, 
 **3. Unexplainably high Storage Account list usage. Costs $$**
 The mostly likely reason is scanning triggered automatically using updatedb by the built-in mlocation service that is deployed with Linux VMs. "mlocation" is a built-in service that acts as a search tool. It is added under /etc/cron.daily to run on daily basis and it triggers the "updatedb" service to scan every directory on the server to rebuild the index of files in database in order to get the search result up-to-date.
 
-Solution: Do an 'ls -l /etc/cron.daily/mlocate' at the shell prompt. If "mlocate" is added to the /etc/cron.daily then Blobfuse2 must be whitelisted, so that the Blobfuse2 mount directory is not scanned by updatedb. This is done by updating the updatedb.conf file .
+Solution: Do an 'ls -l /etc/cron.daily/mlocate' at the shell prompt. If "mlocate" is added to the /etc/cron.daily then Blobfuse2 must be added to the allowed list, so that the Blobfuse2 mount directory is not scanned by updatedb. This is done by updating the updatedb.conf file .
 cat /etc/updatedb.conf
 It should look like this.
 PRUNE_BIND_MOUNTS="yes"
