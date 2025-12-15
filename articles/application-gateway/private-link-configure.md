@@ -87,7 +87,7 @@ This section describes how to disable subnet private endpoint policies by using 
 ```azurecli
 az network vnet subnet update \
     --name default \
-    --vnet-name MyVnet \
+    --vnet-name myVNet \
     --resource-group myResourceGroup \
     --disable-private-link-service-network-policies yes
 ```
