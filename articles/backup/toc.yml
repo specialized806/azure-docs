@@ -495,6 +495,20 @@
         href: azure-kubernetes-service-cluster-backup-using-cli.md
       - name: Restore
         href: azure-kubernetes-service-cluster-restore-using-cli.md
+- name: Azure Elastic SAN backup
+  items:
+  - name: Overview
+    href: azure-elastic-san-backup-overview.md
+  - name: Support matrix
+    href: azure-elastic-san-backup-support-matrix.md
+  - name: Backup scenarios
+    items:
+    - name: Configure backup
+      href: azure-elastic-san-backup-configure.md
+    - name: Restore
+      href: azure-elastic-san-backup-restore.md
+    - name: manage
+      href: azure-elastic-san-backup-manage.md
 - name: Quickstarts  
   items:
   - name: Back up Azure PostgreSQL Database
@@ -598,8 +612,6 @@
       href: sap-ase-backup-support-matrix.md
     - name: Azure Database for MySQL - Flexible Server long-term retention support matrix
       href: backup-azure-mysql-flexible-server-support-matrix.md
-    - name: Azure Elastic SAN backup support matrix
-      href: azure-elastic-san-backup-support-matrix.md
     - name: Active Directory domain controllers
       href: active-directory-backup-restore.md
     - name: Azure Database for PostgreSQL backup support matrix
@@ -634,8 +646,6 @@
     href: backup-azure-database-postgresql-flex-overview.md
   - name: SAP ASE database on Azure VM backup
     href: sap-ase-database-about.md
-  - name: Azure Elastic SAN backup
-    href: azure-elastic-san-backup-overview.md
   - name: Windows backup using MARS agent
     items:
     - name: Overview
@@ -780,14 +790,6 @@
         href: backup-azure-restore-system-state.md
     - name: Manage
       href: backup-azure-manage-mars.md
-  - name: Azure Elastic SAN backup
-    items:
-    - name: Configure backup
-      href: azure-elastic-san-backup-configure.md
-    - name: Restore
-      href: azure-elastic-san-backup-restore.md
-    - name: manage
-      href: azure-elastic-san-backup-manage.md
   - name: SAP HANA database on Azure VM backup
     items:
     - name: Backup
