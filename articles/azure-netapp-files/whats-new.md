@@ -17,6 +17,13 @@ ms.author: anfdocs
 
 Azure NetApp Files is updated regularly. This article provides a summary about the latest new features and enhancements.
 
+
+## January 2026
+
+* [Large volumes (preview) improvement:](large-volumes-requirements-considerations.md#requirements-and-considerations) volume size increase beyond 30% default limit
+
+    For capacity and resources planning purposes, the Azure NetApp Files large volume feature has removed the volume size increase limit of up to 30% of the lowest provisioned size.
+
 ## December 2025
 
 * [Cross-zone-region replication](cross-zone-region-replication-configure.md) is now generally available (GA)

@@ -25,7 +25,6 @@ The following requirements and considerations apply to large volumes. For perfor
 * A regular volume can’t be converted to a large volume.
 * You must create a large volume at a size of 50 TiB or larger. The maximum size of a large volume is 1,024 TiB.
 * You can't resize a large volume to less than 50 TiB.
-    * This limit is adjustable via [a support request](azure-netapp-files-resource-limits.md#resource-limits). When requesting the resize, specify the desired size in TiB. 
     * When reducing the size of a large volume, the size depends on the size of files written to the volume and the snapshots currently active on the volumes. 
 * You can't create a large volume with application volume groups.
 * Currently, large volumes aren't suited for database (HANA, Oracle, SQL Server, etc.) data and log volumes. For database workloads requiring more than a single volume’s throughput limit, consider deploying multiple regular volumes. To optimize multiple volume deployments for databases, use [application volume groups](application-volume-group-concept.md).
