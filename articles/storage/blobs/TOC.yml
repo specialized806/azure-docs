@@ -182,23 +182,27 @@ items:
                 items:
                   - name: Overview
                     href: blobfuse2-what-is.md
-                  - name: Install BlobFuse2
+                  - name: Install BlobFuse
                     href: blobfuse2-install.md
-              - name: Configure settings
+              - name: Configure BlobFuse
                 items:
-                  - name: How to configure BlobFuse2
+                  - name: How to configure BlobFuse
                     href: blobfuse2-configuration.md?toc=/azure/storage/blobs/toc.json
                   - name: Create a configuration file
                     href: blobfuse2-configure.md
                   - name: Stream versus cache mode
                     href: blobfuse2-choose-data-transfer-mode.md
+                  - name: Configure streaming mode
+                    href: blobfuse2-configure-streaming-mode.md
+                  - name: Configure caching mode
+                    href: blobfuse2-configure-file-cache.md
               - name: Mount storage
                 items:
                   - name: Mount a container
                     href: blobfuse2-mount-container.md
-                  - name: BlobFuse2 command set
+                  - name: BlobFuse command set
                     href: blobfuse2-commands.md
-                  - name: BlobFuse2 and Linux file system compared
+                  - name: BlobFuse and Linux file system compared
                     href: blobfuse2-compare-linux-file-system.md
               - name: Metrics and logs
                 items:

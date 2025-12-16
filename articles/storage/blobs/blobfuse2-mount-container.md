@@ -104,7 +104,7 @@ echo "hello world" > test/blob.txt
 
 Generally, you can work with the BlobFuse2-mounted storage like you would work with the native Linux file system. It uses the virtual directory scheme with a forward slash (`/`) as a delimiter in the file path and supports basic file system operations such as `mkdir`, `opendir`, `readdir`, `rmdir`, `open`, `read`, `create`, `write`, `close`, `unlink`, `truncate`, `stat`, and `rename`.
 
-However, you should be aware of some key [differences in functionality](blobfuse2-what-is.md#limitations):
+However, you should be aware of some key [BlobFuse2 and Linux file systems compared](blobfuse2-compare-linux-file-system.md):
 
 - [Differences between the Linux file system and BlobFuse2](blobfuse2-what-is.md#differences-between-the-linux-file-system-and-blobfuse2)
 - [Data integrity](blobfuse2-what-is.md#data-integrity)

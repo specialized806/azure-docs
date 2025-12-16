@@ -25,8 +25,6 @@ Introduction goes here.
 
 - In case of `mount all` system may limit on number of containers you can mount in parallel (when you go above 100 containers). To increase this system limit use below command `echo 256 | sudo tee /proc/sys/fs/inotify/max_user_instances`
 
-- Refer [this](#limitations-in-block-cache) for block-cache limitations.
-
 ### Syslog security warning
 
 By default, Blobfuse2 will log to syslog. The default settings will, in some cases, log relevant file paths to syslog. 

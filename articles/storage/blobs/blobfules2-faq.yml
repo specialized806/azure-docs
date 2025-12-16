@@ -9,7 +9,8 @@ metadata:
   author: normesta
 title: BlobFuse2 frequently asked questions
 summary: |
-  This article provides a list of frequently asked questions (FAQ) for BlobFuse2.</br></br>  
+  This article provides a list of frequently asked questions (FAQ) for BlobFuse2.</br></br>
+    
 sections:
   - name: FAQ
     questions:
@@ -17,7 +18,7 @@ sections:
           How do I generate a SAS with permissions for rename?
         answer: |
           az cli has a command to generate a sas token. Open a command prompt and make sure you are logged in to az cli. Run the following command and the sas token will be displayed in the command prompt. 
-          az storage container generate-sas --account-name <account name ex:myadlsaccount> --account-key <accountKey> -n <container name> --permissions dlrwac --start <today's date ex: 2021-03-26> --expiry <date greater than the current time ex:2021-03-28>
+          `az storage container generate-sas --account-name <account name ex:myadlsaccount> --account-key <accountKey> -n <container name> --permissions dlrwac --start <today's date ex: 2021-03-26> --expiry <date greater than the current time ex:2021-03-28>`
       - question: |
           Why do I get EINVAL on opening a file with WRONLY or APPEND flags?
         answer: |

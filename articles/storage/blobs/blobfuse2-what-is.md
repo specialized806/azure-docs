@@ -93,7 +93,7 @@ BlobFuse2 doesn't guarantee 100% POSIX compliance because BlobFuse2 simply trans
 
 ## Limitations and Known Issues
 
-Please refer the [page](https://github.com/Azure/azure-storage-fuse/wiki/Blobfuse2-Limitations-Issues).
+Please refer the [pLimitations and known issues with BlobFuse2](blobfuse2-known-issues.md).
 
 ## Support
 
