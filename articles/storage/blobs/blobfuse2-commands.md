@@ -48,6 +48,7 @@ The supported commands for BlobFuse2 are:
 | [secure](blobfuse2-commands-secure.md)                 | Encrypts or decrypts a configuration file, or gets or sets values in an encrypted configuration file |
 | [version](blobfuse2-commands-version.md)               | Displays the current version of BlobFuse2 |
 | [help](blobfuse2-commands-help.md)                     | Gives help information about any command |
+| **gen-config**                                         | Auto generate recommended BlobFuse2 config file |
 
 ## Arguments
 

@@ -16,60 +16,25 @@ ms.custom: linux-related-content
 
 # Monitor BlobFuse2 mount activities and resource usage
 
-This article provides references to help you deploy and use BlobFuse2 Health Monitor to gain insights into BlobFuse2 mount activities and resource usage.
+_Health monitor_ is a tool that you can use to monitor mount activities and resource usage. This article describes what data you can obtain, as well as how to enable health monitor and view output reports.
 
-You can use BlobFuse2 Health Monitor to:
+## Health monitor data
 
-- Get statistics about internal activities related to BlobFuse2 mounts
-- Monitor CPU, memory, and network usage by BlobFuse2 mount processes
-- Track file cache usage and events
+The BlobFuse2 Health monitor provides these specialized health monitors (_BlobFuse stats_, _CPU profiler_, _Memory profiler_, and _File cache monitor_).
 
-## BlobFuse2 Health Monitor resources
+The following table describes each of these monitors and the data that you can obtain from them.
 
-For full details on how to deploy and use Health Monitor, refer to [the BlobFuse2 Health Monitor README on GitHub](https://github.com/Azure/azure-storage-fuse/blob/main/tools/health-monitor/README.md). The README file describes:
-
-- What Health Monitor collects
-- How to set it up in the configuration file used for mounting a storage container
-- The name, location, and contents of the output
-
-***** From Github
-
-## About
-
-Blobfuse2 Health Monitor is a tool which will help in monitoring Blobfuse2 mounts. It supports the following types of monitors:
-
-1. **Blobfuse2 Stats Monitor:** Monitor the different statistics of blobfuse2 components like,
-    - Total bytes uploaded and downloaded via blobfuse2
-    - Events like create, delete, rename, synchronize, truncate, etc. on files or directories in the mounted directory
-    - Progress of uploads or downloads of large files to/from Azure Storage
-    - Keep track of number of calls that were made to Azure Storage for operations like create, delete, rename, chmod, etc. in the mounted directory
-    - Total number of open handles on files
-    - Number of times an open file request was served from the file cache or downloaded from the Azure Storage  
-
-2. **CPU and Memory Monitor:** Monitor the CPU and memory usage of the Blobfuse2 process associated with the mount
-
-3. **File Cache Monitor:** Monitor the file cache directory specified while mounting. This monitor does the following,
-    - Monitor the different events like create, delete, rename, chmod, etc. of files and directories in the cache
-    - Keep track of the cache consumption with respect to the cache size specified during mounting
-
-> **Note:** Health Monitor runs as a separate process where one health monitor process is associated with monitoring one blobfuse2 mounted directory.
+| Health monitor     | Data available                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+|--------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| BlobFuse stats     | Total bytes uploaded and downloaded via BlobFuse2<br>br>Events like create, delete, rename, synchronize, truncate, etc. on files or directories in the mounted directory<br>br>Progress of uploads or downloads of large files to/from Azure Storage<br>br>Number of calls that were made to Azure Storage for operations like create, delete, rename, chmod, etc. in the mounted directory<br>br>Total number of open handles on files<br><br>Total number of open handles on files<br><br>Number of times an open file request was served from the file cache or downloaded from the Azure Storage |
+| CPU profiler       | CPU usage of the Blobfuse2 process associated with the mount                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| Memory profiler    | Memory usage of the Blobfuse2 process associated with the mount                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| File cache monitor | monitor the different events like create, delete, rename, chmod, etc. of files and directories in the cache<br><br>Keep track of the cache consumption with respect to the cache size specified during mounting                                                                                                                                                                                                                                                                                                                                                                                      |
 
 ## Enable Health Monitor
 
-The different configuration options for the health monitor are,
-- `enable-monitoring: true|false`: Boolean parameter to enable health monitor. By default it is disabled
-- `stats-poll-interval-sec: <TIME IN SECONDS>`: Blobfuse2 stats polling interval (in sec). Default is 10 seconds
-- `process-monitor-interval-sec: <TIME IN SECONDS>`: CPU and memory usage polling interval (in sec). Default is 30 sec
-- `output-path: <PATH>`: Path where health monitor will generate its output file. It takes the current directory as default, if not specified. Output file name will be `monitor_<pid>.json`
-- `monitor-disable-list: <LIST OF MONITORS>`: List of monitors to be disabled. To disable a monitor, add its corresponding name in the list
-    - `blobfuse_stats` - Disable blobfuse2 stats polling
-    - `cpu_profiler` - Disable CPU monitoring on blobfuse2 process
-    - `memory_profiler` - Disable memory monitoring on blobfuse2 process
-    - `file_cache_monitor` - Disable file cache directory monitor
+Enable health monitor by modifying the BlobFuse2 configuration file. The following table describes each configuration field. The following example shows sample configuration entries in the BlobFuse2 configuration file. In this example the file cache monitor and the memory profiler are disabled.
 
-### Sample Config
-
-Add the following section to your blobfuse2 config file. Here file cache and memory monitors are disabled.
 ```yaml
 health_monitor:
   enable-monitoring: true
@@ -81,11 +46,28 @@ health_monitor:
     - memory_profiler
 ```
 
+The following table describes each configuration field.
+
+| Field | Description |
+|-----------|------------|
+| `enable-monitoring` | (Boolean) parameter to enable health monitor. By default it is disabled |
+| `stats-poll-interval-sec`| BlobFuse2 stats polling interval (in sec). Default is 10 seconds |
+| `process-monitor-interval-sec`| CPU and memory usage polling interval express in seconds. Default is 30 seconds |
+| `output-path:`| The path where health monitor will generate its output file. It takes the current directory as default, if not specified. Output file name will be `monitor_<pid>.json` |
+| `monitor-disable-list` | List of monitors to be disabled. To disable a monitor, add its corresponding name in the list. |
+| `blobfuse_stats` |  Disable BlobFuse2 stats polling |
+| `cpu_profiler` | Disable CPU monitoring on BlobFuse2 process |
+| `memory_profiler` | Disable memory monitoring on BlobFuse2 process |
+| `file_cache_monitor` | Disable file cache directory monitor |
+
+> [!NOTE]
+> Health Monitor runs as a separate process where one health monitor process is associated with monitoring one BlobFuse2 mounted directory.
+
 ## Output Reports
 
 Health monitor will store its output reports in the path specified in the `output-path` config option. If this option is not specified, it takes the current directory as default. It stores the last 100MB of monitor data in 10 different files named as `monitor_<pid>_<index>.json` where `monitor_<pid>.json`(Zeroth index) is latest and `monitor_<pid>_9.json` is the oldest output file.
 
-### Sample Output
+The following JSON shows an example of the output file contents.
 
 ```
 {
@@ -129,13 +111,6 @@ Health monitor will store its output reports in the path specified in the `outpu
 }
 ```
 
-## See also
-
-- [Migrate to BlobFuse2 from BlobFuse v1](https://github.com/Azure/azure-storage-fuse/blob/main/MIGRATION.md)
-- [BlobFuse2 commands](blobfuse2-commands.md)
-- [Troubleshoot BlobFuse2 issues](blobfuse2-troubleshooting.md)
-
 ## Next steps
 
-- [Configure settings for BlobFuse2](blobfuse2-configuration.md)
-- [Use Health Monitor to gain insights into BlobFuse2 mount activities and resource usage](blobfuse2-health-monitor.md)
+Put something here.
