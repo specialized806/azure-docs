@@ -509,6 +509,66 @@
       href: azure-elastic-san-backup-restore.md
     - name: manage
       href: azure-elastic-san-backup-manage.md
+- name: Azure Database for PostgreSQL -Flexible server backup
+  items:
+  - name: Overview
+    href: backup-azure-database-postgresql-flex-overview.md
+  - name: Support matrix
+    href: backup-azure-database-postgresql-flex-support-matrix.md
+  - name: Quickstarts
+    items:
+    - name: Create a backup policy for Azure Database for PostgreSQL - Flexible Server
+      items:
+      - name: With Azure portal
+        href: quick-backup-postgresql-flexible-server-portal.md
+      - name: With Azure CLI
+        href: quick-backup-postgresql-flexible-server-cli.md
+      - name: With PowerShell
+        href: quick-backup-postgresql-flexible-server-powershell.md
+    - name: Configure backup for Azure Database for PostgreSQL  - Flexible Server
+      items:
+      - name: With Terraform
+        href: quick-backup-postgresql-flexible-server-terraform.md
+      - name: With Azure Resource Manager template
+        href: quick-backup-postgresql-flexible-server-arm.md
+      - name: With Azure Bicep file
+        href: quick-backup-postgresql-flexible-server-bicep.md
+  - name: Tutorials for Azure Database for PostgreSQL - Flexible Server backup
+    items:
+    - name: Backup
+      href: tutorial-create-first-backup-azure-database-postgresql-flex.md
+    - name: Restore
+      href: tutorial-restore-postgresql-flex.md
+  - name: Backup scenarios
+    items:
+    - name: From the Azure portal
+      items:
+      - name: Configure backup
+        href: backup-azure-database-postgresql-flex.md
+      - name: Restore
+        href: restore-azure-database-postgresql-flex.md
+      - name: Manage
+        href: backup-azure-database-postgresql-flex-manage.md
+    - name: With Azure CLI
+      items:
+      - name: Backup
+        href: back-up-azure-database-postgresql-flex-backup-cli.md
+      - name: Restore
+        href: backup-azure-database-postgresql-flex-restore-cli.md
+    - name: With PowerShell
+      items:
+      - name: Backup
+        href: back-up-azure-database-postgresql-flex-backup-powershell.md
+      - name: Restore
+        href: backup-azure-database-postgresql-flex-restore-powershell.md
+    - name: With REST API
+      items:
+      - name: Create a policy
+        href: backup-azure-database-postgresql-flex-use-rest-api-create-update-policy.md
+      - name: Backup
+        href: backup-azure-database-postgresql-flex-use-rest-api.md
+      - name: Restore
+        href: backup-azure-database-postgresql-flex-use-rest-api-restore.md
 - name: Quickstarts  
   items:
   - name: Back up Azure PostgreSQL Database
@@ -521,22 +581,6 @@
         href: quick-cross-region-restore.md
       - name: With Azure PowerShell
         href: quick-secondary-region-restore-postgresql-powershell.md
-  - name: Create a backup policy for Azure Database for PostgreSQL - Flexible Server
-    items:
-    - name: With Azure portal
-      href: quick-backup-postgresql-flexible-server-portal.md
-    - name: With Azure CLI
-      href: quick-backup-postgresql-flexible-server-cli.md
-    - name: With PowerShell
-      href: quick-backup-postgresql-flexible-server-powershell.md
-  - name: Configure backup for Azure Database for PostgreSQL  - Flexible Server
-    items:
-    - name: With Terraform
-      href: quick-backup-postgresql-flexible-server-terraform.md
-    - name: With Azure Resource Manager template
-      href: quick-backup-postgresql-flexible-server-arm.md
-    - name: With Azure Bicep file
-      href: quick-backup-postgresql-flexible-server-bicep.md
   - name: Backup SAP HANA System Replication database
     items:
     - name: Backup
@@ -560,12 +604,6 @@
       href: tutorial-postgresql-backup.md
     - name: Configure and run Cross Region Restore
       href: tutorial-cross-region-restore.md
-  - name: Back up Azure Database for PostgreSQL - Flexible Server
-    items:
-    - name: Backup
-      href: tutorial-create-first-backup-azure-database-postgresql-flex.md
-    - name: Restore
-      href: tutorial-restore-postgresql-flex.md
   - name: Back up Windows Server
     href: tutorial-backup-windows-server-to-azure.md
   - name: Restore files to Windows Server
@@ -616,8 +654,6 @@
       href: active-directory-backup-restore.md
     - name: Azure Database for PostgreSQL backup support matrix
       href: backup-azure-database-postgresql-support-matrix.md
-    - name: Azure Database for PostgreSQL -Flexible server backup support matrix
-      href: backup-azure-database-postgresql-flex-support-matrix.md
     - name: Automation in Azure Backup
       href: backup-support-automation.md
   - name: Frequently asked questions (FAQ)
@@ -642,8 +678,6 @@
       href: azure-backup-architecture-for-sap-hana-backup.md
   - name: Azure Database for MySQL - Flexible Server long-term retention
     href: backup-azure-mysql-flexible-server-about.md
-  - name: Azure Database for PostgreSQL -Flexible server backup
-    href: backup-azure-database-postgresql-flex-overview.md
   - name: SAP ASE database on Azure VM backup
     href: sap-ase-database-about.md
   - name: Windows backup using MARS agent
@@ -736,36 +770,6 @@
         href: backup-azure-data-protection-use-rest-api-backup-postgresql.md
       - name: Restore
         href: restore-postgresql-database-use-rest-api.md
-  - name: Azure Database for PostgreSQL -Flexible server backup
-    items:
-    - name: From the Azure portal
-      items:
-      - name: Configure backup
-        href: backup-azure-database-postgresql-flex.md
-      - name: Restore
-        href: restore-azure-database-postgresql-flex.md
-      - name: Manage
-        href: backup-azure-database-postgresql-flex-manage.md
-    - name: With Azure CLI
-      items:
-      - name: Backup
-        href: back-up-azure-database-postgresql-flex-backup-cli.md
-      - name: Restore
-        href: backup-azure-database-postgresql-flex-restore-cli.md
-    - name: With PowerShell
-      items:
-      - name: Backup
-        href: back-up-azure-database-postgresql-flex-backup-powershell.md
-      - name: Restore
-        href: backup-azure-database-postgresql-flex-restore-powershell.md
-    - name: With REST API
-      items:
-      - name: Create a policy
-        href: backup-azure-database-postgresql-flex-use-rest-api-create-update-policy.md
-      - name: Backup
-        href: backup-azure-database-postgresql-flex-use-rest-api.md
-      - name: Restore
-        href: backup-azure-database-postgresql-flex-use-rest-api-restore.md
   - name: Windows backup using MARS agent
     items:
     - name: Install or upgrade
