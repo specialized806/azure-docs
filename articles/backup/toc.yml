@@ -509,9 +509,87 @@
       href: azure-elastic-san-backup-restore.md
     - name: manage
       href: azure-elastic-san-backup-manage.md
-- name: Quickstarts  
+- name: Azure Database for PostgreSQL -Flexible server backup
   items:
-  - name: Back up Azure PostgreSQL Database
+  - name: Overview
+    href: backup-azure-database-postgresql-flex-overview.md
+  - name: Support matrix
+    href: backup-azure-database-postgresql-flex-support-matrix.md
+  - name: Quickstarts
+    items:
+    - name: Create a backup policy for Azure Database for PostgreSQL - Flexible Server
+      items:
+      - name: With Azure portal
+        href: quick-backup-postgresql-flexible-server-portal.md
+      - name: With Azure CLI
+        href: quick-backup-postgresql-flexible-server-cli.md
+      - name: With PowerShell
+        href: quick-backup-postgresql-flexible-server-powershell.md
+    - name: Configure backup for Azure Database for PostgreSQL  - Flexible Server
+      items:
+      - name: With Terraform
+        href: quick-backup-postgresql-flexible-server-terraform.md
+      - name: With Azure Resource Manager template
+        href: quick-backup-postgresql-flexible-server-arm.md
+      - name: With Azure Bicep file
+        href: quick-backup-postgresql-flexible-server-bicep.md
+  - name: Tutorials for Azure Database for PostgreSQL - Flexible Server backup
+    items:
+    - name: Backup
+      href: tutorial-create-first-backup-azure-database-postgresql-flex.md
+    - name: Restore
+      href: tutorial-restore-postgresql-flex.md
+  - name: Backup scenarios
+    items:
+    - name: From the Azure portal
+      items:
+      - name: Configure backup
+        href: backup-azure-database-postgresql-flex.md
+      - name: Restore
+        href: restore-azure-database-postgresql-flex.md
+      - name: Manage
+        href: backup-azure-database-postgresql-flex-manage.md
+    - name: With Azure CLI
+      items:
+      - name: Backup
+        href: back-up-azure-database-postgresql-flex-backup-cli.md
+      - name: Restore
+        href: backup-azure-database-postgresql-flex-restore-cli.md
+    - name: With PowerShell
+      items:
+      - name: Backup
+        href: back-up-azure-database-postgresql-flex-backup-powershell.md
+      - name: Restore
+        href: backup-azure-database-postgresql-flex-restore-powershell.md
+    - name: With REST API
+      items:
+      - name: Create a policy
+        href: backup-azure-database-postgresql-flex-use-rest-api-create-update-policy.md
+      - name: Backup
+        href: backup-azure-database-postgresql-flex-use-rest-api.md
+      - name: Restore
+        href: backup-azure-database-postgresql-flex-use-rest-api-restore.md
+- name: Azure Database for MySQL - Flexible Server backup retention
+  items:
+  - name: Overview
+    href: backup-azure-mysql-flexible-server-about.md
+  - name: Support matrix
+    href: backup-azure-mysql-flexible-server-support-matrix.md
+  - name: Backup scenarios
+    items:
+    - name: Backup
+      href: backup-azure-mysql-flexible-server.md
+    - name: Restore
+      href: backup-azure-mysql-flexible-server-restore.md
+- name: Azure Database for PostgreSQL backup
+  items:
+  - name: Overview
+    href: backup-azure-database-postgresql-overview.md
+  - name: Support matrix
+    href: backup-azure-database-postgresql-support-matrix.md  
+  - name: FAQ-Back up Azure Database for PostgreSQL server
+    href: backup-azure-database-postgresql-server-faq.yml
+  - name: Quickstarts for Azure PostgreSQL Database backup
     items:
     - name: Back up the database - Azure portal
       href: quick-backup-postgresql-database-portal.md
@@ -521,151 +599,54 @@
         href: quick-cross-region-restore.md
       - name: With Azure PowerShell
         href: quick-secondary-region-restore-postgresql-powershell.md
-  - name: Create a backup policy for Azure Database for PostgreSQL - Flexible Server
-    items:
-    - name: With Azure portal
-      href: quick-backup-postgresql-flexible-server-portal.md
-    - name: With Azure CLI
-      href: quick-backup-postgresql-flexible-server-cli.md
-    - name: With PowerShell
-      href: quick-backup-postgresql-flexible-server-powershell.md
-  - name: Configure backup for Azure Database for PostgreSQL  - Flexible Server
-    items:
-    - name: With Terraform
-      href: quick-backup-postgresql-flexible-server-terraform.md
-    - name: With Azure Resource Manager template
-      href: quick-backup-postgresql-flexible-server-arm.md
-    - name: With Azure Bicep file
-      href: quick-backup-postgresql-flexible-server-bicep.md
-  - name: Backup SAP HANA System Replication database
-    items:
-    - name: Backup
-      href: quick-backup-hana-cli.md
-    - name: Restore
-      href: quick-restore-hana-cli.md
-  - name: Restore the entire SAP HANA system to snapshot restore point
-    href: quick-sap-hana-database-instance-restore.md
-  - name: Run preregistration script for SAP ASE database backup
-    href: sap-ase-database-backup-run-preregistration-quickstart.md
-  expanded: true
-- name: Tutorials
-  items:
-  - name: Back up SQL Server on Azure VM
-    href: tutorial-sql-backup.md
-  - name: Back up SAP HANA databases in Azure VMs
-    href: tutorial-backup-sap-hana-db.md
-  - name: Back up PostgreSQL databases
+  - name: Tutorials for PostgreSQL databases backup
     items:
     - name: Back up the database
       href: tutorial-postgresql-backup.md
     - name: Configure and run Cross Region Restore
       href: tutorial-cross-region-restore.md
-  - name: Back up Azure Database for PostgreSQL - Flexible Server
-    items:
-    - name: Backup
-      href: tutorial-create-first-backup-azure-database-postgresql-flex.md
-    - name: Restore
-      href: tutorial-restore-postgresql-flex.md
-  - name: Back up Windows Server
-    href: tutorial-backup-windows-server-to-azure.md
-  - name: Restore files to Windows Server
-    href: tutorial-backup-restore-files-windows-server.md
-  - name: SAP HANA databases on Azure VMs – using CLI
-    items:
-    - name: Backup SAP HANA databases - CLI
-      href: tutorial-sap-hana-backup-cli.md
-    - name: Restore SAP HANA databases - CLI
-      href: tutorial-sap-hana-restore-cli.md
-    - name: Manage backed up SAP HANA databases - CLI
-      href: tutorial-sap-hana-manage-cli.md
-  - name: Configure SAP HANA database instance snapshot backup
-    href: tutorial-configure-sap-hana-database-instance-snapshot-backup.md
-  - name: Back up SAP ASE database on Azure VMs
-    href: sap-ase-database-backup-tutorial.md
-  - name: Configure Multi-user authorization (MUA)
-    href: multi-user-authorization-tutorial.md
-  - name: Recover soft deleted items with enhanced soft delete
-    href: backup-azure-enhanced-soft-delete-tutorial.md
-  - name: Configure Threat Detection and manage health of Azure VM Backups
-    href: threat-detection-configure-monitor-tutorial.md  
-- name: Concepts
+  - name: Backup scenarios
+    items:  
+    - name: From the Azure portal
+      items:
+      - name: Backup
+        href: backup-azure-database-postgresql.md
+      - name: Restore
+        href: restore-azure-database-postgresql.md
+      - name: Manage
+        href: manage-azure-database-postgresql.md
+    - name: With PowerShell
+      items:
+      - name: Backup
+        href: backup-postgresql-ps.md
+      - name: Restore
+        href: restore-postgresql-database-ps.md
+    - name: With CLI
+      items:
+      - name: Backup
+        href: backup-postgresql-cli.md
+      - name: Restore
+        href: restore-postgresql-database-cli.md
+    - name: With REST API
+      items:
+      - name: Policy
+        href: backup-azure-data-protection-use-rest-api-create-update-postgresql-policy.md
+      - name: Backup
+        href: backup-azure-data-protection-use-rest-api-backup-postgresql.md
+      - name: Restore
+        href: restore-postgresql-database-use-rest-api.md
+- name: SQL Server database on Azure VM backup
   items:
-  - name: Reliability
+  - name: Overview
+    href: backup-azure-sql-database.md
+  - name: FAQ-Back up SQL Server databases on Azure VMs
+    href: faq-backup-sql-server.yml
+  - name: Support matrix
+    href: sql-support-matrix.md  
+  - name: Tutorial for SQL Server on Azure VM backup
+    href: tutorial-sql-backup.md
+  - name: Backup scenarios
     items:
-    - name: Availability zone and disaster recovery
-      href: ../reliability/reliability-backup.md?toc=/azure/backup/toc.json&bc=/azure/backup/breadcrumb/toc.json
-    - name: Migrate to availability zone support
-      href: ../reliability/migrate-recovery-services-vault.md?toc=/azure/backup/toc.json&bc=/azure/backup/breadcrumb/toc.json
-  - name: Support matrices
-    items:
-    - name: Azure Backup support matrix
-      href: backup-support-matrix.md
-    - name: DPM/Azure Backup Server (MABS) support matrix
-      href: backup-support-matrix-mabs-dpm.md
-    - name: MARS agent support matrix
-      href: backup-support-matrix-mars-agent.md
-    - name: SQL Server Backup support matrix
-      href: sql-support-matrix.md
-    - name: SAP HANA Backup support matrix
-      href: sap-hana-backup-support-matrix.md
-    - name: SAP ASE Backup support matrix
-      href: sap-ase-backup-support-matrix.md
-    - name: Azure Database for MySQL - Flexible Server long-term retention support matrix
-      href: backup-azure-mysql-flexible-server-support-matrix.md
-    - name: Active Directory domain controllers
-      href: active-directory-backup-restore.md
-    - name: Azure Database for PostgreSQL backup support matrix
-      href: backup-azure-database-postgresql-support-matrix.md
-    - name: Azure Database for PostgreSQL -Flexible server backup support matrix
-      href: backup-azure-database-postgresql-flex-support-matrix.md
-    - name: Automation in Azure Backup
-      href: backup-support-automation.md
-  - name: Frequently asked questions (FAQ)
-    items:
-    - name: FAQ-MARS agent
-      href: backup-azure-file-folder-backup-faq.yml
-    - name: FAQ-Back up SQL Server databases on Azure VMs
-      href: faq-backup-sql-server.yml
-    - name: FAQ-Back up SAP HANA databases on Azure VMs
-      href: sap-hana-faq-backup-azure-vm.yml
-    - name: FAQ-Back up Azure Database for PostgreSQL server
-      href: backup-azure-database-postgresql-server-faq.yml
-    - name: FAQ-Azure Backup Server and DPM
-      href: backup-azure-dpm-azure-server-faq.yml
-    - name: FAQ-Azure Backup Monitoring and Reporting
-      href: backup-azure-monitor-alert-faq.yml
-  - name: SAP HANA database on Azure VM backup
-    items:
-    - name: Overview
-      href: sap-hana-database-about.md
-    - name: Architecture
-      href: azure-backup-architecture-for-sap-hana-backup.md
-  - name: Azure Database for MySQL - Flexible Server long-term retention
-    href: backup-azure-mysql-flexible-server-about.md
-  - name: Azure Database for PostgreSQL -Flexible server backup
-    href: backup-azure-database-postgresql-flex-overview.md
-  - name: SAP ASE database on Azure VM backup
-    href: sap-ase-database-about.md
-  - name: Windows backup using MARS agent
-    items:
-    - name: Overview
-      href: backup-azure-about-mars.md
-    - name: Restore
-      href: about-restore-microsoft-azure-recovery-services.md
-  - name: Monitoring and Reporting
-    href: monitoring-and-alerts-overview.md
-  - name: Backup architecture
-    href: backup-architecture.md
-  - name: Guidance and best practices
-    href: guidance-best-practices.md
-  - name: Glossary of terms
-    href: azure-backup-glossary.md
-- name: How-to guides
-  items:
-  - name: SQL Server database on Azure VM backup
-    items:
-    - name: Overview
-      href: backup-azure-sql-database.md
     - name: From the Azure portal
       items:
       - name: Backup
@@ -698,74 +679,128 @@
         href: restore-azure-sql-vm-rest-api.md
       - name: Manage
         href: manage-azure-sql-vm-rest-api.md
-  - name: Azure Database for MySQL - Flexible Server backup retention
+- name: SAP HANA database on Azure VM backup
+  items:
+  - name: Overview
+    href: sap-hana-database-about.md
+  - name: Architecture
+    href: azure-backup-architecture-for-sap-hana-backup.md
+  - name: FAQ-Back up SAP HANA databases on Azure VMs
+    href: sap-hana-faq-backup-azure-vm.yml
+  - name: Support matrix
+    href: sap-hana-backup-support-matrix.md
+  - name: Quickstarts for SAP HANA database backup
+    items:
+    - name: Back up HANA System Replication database
+      href: quick-backup-hana-cli.md
+    - name: Restore HANA System Replication database
+      href: quick-restore-hana-cli.md
+    - name: Restore the entire SAP HANA system to snapshot restore point
+      href: quick-sap-hana-database-instance-restore.md
+  - name: Tutorials for SAP HANA databases on Azure VMs backup
+    items:
+    - name: Back up SAP HANA databases using the Azure portal
+      href: tutorial-backup-sap-hana-db.md
+    - name: Back up SAP HANA databases using CLI
+      href: tutorial-sap-hana-backup-cli.md
+    - name: Restore SAP HANA databases using CLI
+      href: tutorial-sap-hana-restore-cli.md
+    - name: Manage backed up SAP HANA databases using CLI
+      href: tutorial-sap-hana-manage-cli.md
+    - name: Configure SAP HANA database instance snapshot backup
+      href: tutorial-configure-sap-hana-database-instance-snapshot-backup.md
+  - name: Backup scenarios
     items:
     - name: Backup
-      href: backup-azure-mysql-flexible-server.md
+      items:
+      - name: Database
+        href: backup-azure-sap-hana-database.md
+      - name: HANA System Replication database
+        href: sap-hana-database-with-hana-system-replication-backup.md
+      - name: Instance snapshot
+        href: sap-hana-database-instances-backup.md
     - name: Restore
-      href: backup-azure-mysql-flexible-server-restore.md
-  - name: Azure Database for PostgreSQL backup
+      items:
+      - name: Database and HANA System Replication database
+        href: sap-hana-database-restore.md
+      - name: Instance snapshot
+        href: sap-hana-database-instances-restore.md
+    - name: Manage
+      href: sap-hana-database-manage.md
+- name: SAP ASE database on Azure VM backup
+  items:
+  - name: Overview
+    href: sap-ase-database-about.md
+  - name: Support matrix
+    href: sap-ase-backup-support-matrix.md
+  - name: Quickstart to run preregistration script for the database backup
+    href: sap-ase-database-backup-run-preregistration-quickstart.md
+  - name: Tutorial for SAP ASE database on Azure VMs backup
+    href: sap-ase-database-backup-tutorial.md
+  - name: Backup scenarios
+    items:
+    - name: Configure backup
+      href: sap-ase-database-backup.md
+    - name: Restore
+      href: sap-ase-database-restore.md
+    - name: Manage
+      href: sap-ase-database-manage.md
+- name: Tutorials
+  items:
+  - name: Back up Windows Server
+    href: tutorial-backup-windows-server-to-azure.md
+  - name: Restore files to Windows Server
+    href: tutorial-backup-restore-files-windows-server.md
+  - name: Configure Multi-user authorization (MUA)
+    href: multi-user-authorization-tutorial.md
+  - name: Recover soft deleted items with enhanced soft delete
+    href: backup-azure-enhanced-soft-delete-tutorial.md
+  - name: Configure Threat Detection and manage health of Azure VM Backups
+    href: threat-detection-configure-monitor-tutorial.md  
+- name: Concepts
+  items:
+  - name: Reliability
+    items:
+    - name: Availability zone and disaster recovery
+      href: ../reliability/reliability-backup.md?toc=/azure/backup/toc.json&bc=/azure/backup/breadcrumb/toc.json
+    - name: Migrate to availability zone support
+      href: ../reliability/migrate-recovery-services-vault.md?toc=/azure/backup/toc.json&bc=/azure/backup/breadcrumb/toc.json
+  - name: Support matrices
+    items:
+    - name: Azure Backup support matrix
+      href: backup-support-matrix.md
+    - name: DPM/Azure Backup Server (MABS) support matrix
+      href: backup-support-matrix-mabs-dpm.md
+    - name: MARS agent support matrix
+      href: backup-support-matrix-mars-agent.md
+    - name: Active Directory domain controllers
+      href: active-directory-backup-restore.md
+    - name: Automation in Azure Backup
+      href: backup-support-automation.md
+  - name: Frequently asked questions (FAQ)
+    items:
+    - name: FAQ-MARS agent
+      href: backup-azure-file-folder-backup-faq.yml
+    - name: FAQ-Azure Backup Server and DPM
+      href: backup-azure-dpm-azure-server-faq.yml
+    - name: FAQ-Azure Backup Monitoring and Reporting
+      href: backup-azure-monitor-alert-faq.yml
+  - name: Windows backup using MARS agent
     items:
     - name: Overview
-      href: backup-azure-database-postgresql-overview.md
-    - name: From the Azure portal
-      items:
-      - name: Backup
-        href: backup-azure-database-postgresql.md
-      - name: Restore
-        href: restore-azure-database-postgresql.md
-      - name: Manage
-        href: manage-azure-database-postgresql.md
-    - name: With PowerShell
-      items:
-      - name: Backup
-        href: backup-postgresql-ps.md
-      - name: Restore
-        href: restore-postgresql-database-ps.md
-    - name: With CLI
-      items:
-      - name: Backup
-        href: backup-postgresql-cli.md
-      - name: Restore
-        href: restore-postgresql-database-cli.md
-    - name: With REST API
-      items:
-      - name: Policy
-        href: backup-azure-data-protection-use-rest-api-create-update-postgresql-policy.md
-      - name: Backup
-        href: backup-azure-data-protection-use-rest-api-backup-postgresql.md
-      - name: Restore
-        href: restore-postgresql-database-use-rest-api.md
-  - name: Azure Database for PostgreSQL -Flexible server backup
-    items:
-    - name: From the Azure portal
-      items:
-      - name: Configure backup
-        href: backup-azure-database-postgresql-flex.md
-      - name: Restore
-        href: restore-azure-database-postgresql-flex.md
-      - name: Manage
-        href: backup-azure-database-postgresql-flex-manage.md
-    - name: With Azure CLI
-      items:
-      - name: Backup
-        href: back-up-azure-database-postgresql-flex-backup-cli.md
-      - name: Restore
-        href: backup-azure-database-postgresql-flex-restore-cli.md
-    - name: With PowerShell
-      items:
-      - name: Backup
-        href: back-up-azure-database-postgresql-flex-backup-powershell.md
-      - name: Restore
-        href: backup-azure-database-postgresql-flex-restore-powershell.md
-    - name: With REST API
-      items:
-      - name: Create a policy
-        href: backup-azure-database-postgresql-flex-use-rest-api-create-update-policy.md
-      - name: Backup
-        href: backup-azure-database-postgresql-flex-use-rest-api.md
-      - name: Restore
-        href: backup-azure-database-postgresql-flex-use-rest-api-restore.md
+      href: backup-azure-about-mars.md
+    - name: Restore
+      href: about-restore-microsoft-azure-recovery-services.md
+  - name: Monitoring and Reporting
+    href: monitoring-and-alerts-overview.md
+  - name: Backup architecture
+    href: backup-architecture.md
+  - name: Guidance and best practices
+    href: guidance-best-practices.md
+  - name: Glossary of terms
+    href: azure-backup-glossary.md
+- name: How-to guides
+  items:
   - name: Windows backup using MARS agent
     items:
     - name: Install or upgrade
@@ -790,32 +825,6 @@
         href: backup-azure-restore-system-state.md
     - name: Manage
       href: backup-azure-manage-mars.md
-  - name: SAP HANA database on Azure VM backup
-    items:
-    - name: Backup
-      items:
-      - name: Database
-        href: backup-azure-sap-hana-database.md
-      - name: HANA System Replication database
-        href: sap-hana-database-with-hana-system-replication-backup.md
-      - name: Instance snapshot
-        href: sap-hana-database-instances-backup.md
-    - name: Restore
-      items:
-      - name: Database and HANA System Replication database
-        href: sap-hana-database-restore.md
-      - name: Instance snapshot
-        href: sap-hana-database-instances-restore.md
-    - name: Manage
-      href: sap-hana-database-manage.md
-  - name: SAP ASE database on Azure VM backup
-    items:
-    - name: Configure backup
-      href: sap-ase-database-backup.md
-    - name: Restore
-      href: sap-ase-database-restore.md
-    - name: Manage
-      href: sap-ase-database-manage.md
   - name: Azure Backup Server (MABS)
     items:
     - name: Protection matrices
