@@ -1,0 +1,210 @@
+### YamlMime:FAQ
+metadata:
+  title: Apache Kafka & Apache Flink on Confluent Cloud FAQ
+  description: Frequently asked questions about creating, managing, and using Apache Kafka & Apache Flink on Confluent Cloud in Azure.
+  ms.topic: faq
+  ai-usage: ai-generated
+  ms.date: 12/16/2025
+
+title: "FAQ: Apache Kafka & Apache Flink on Confluent Cloud"
+summary: |
+  This FAQ provides answers to common questions about Apache Kafka & Apache Flink on Confluent Cloud, an Azure Native Integrations service. Use this guide to understand how to create, manage, and optimize your Confluent Cloud deployment on Azure.
+
+sections:
+  - name: Getting started and general information
+    questions:
+      - question: What is Apache Kafka & Apache Flink on Confluent Cloud?
+        answer: |
+          Apache Kafka & Apache Flink on Confluent Cloud is an Azure Native Integrations service available in Azure Marketplace. It's a fully managed service that combines Apache Kafka and Apache Flink, allowing you to focus on building applications instead of managing infrastructure. The service provides integrated provisioning from Azure to Confluent Cloud with a consolidated experience for managing Confluent resources directly from the Azure portal.
+
+      - question: How do I subscribe to Confluent Cloud on Azure?
+        answer: |
+          You can subscribe to Apache Kafka & Apache Flink on Confluent Cloud through the Azure portal or Azure Marketplace. In the Azure portal, select **Create a resource** and search for "Apache Kafka & Apache Flink on Confluent Cloud." Select the application tile and follow the creation process. You can either create a new Confluent organization or link to an existing one.
+
+      - question: What are the key capabilities of Confluent Cloud on Azure?
+        answer: |
+          Key capabilities include:
+          - Provisioning new Confluent Cloud organizations from the Azure portal with fully managed infrastructure
+          - Single sign-on (SSO) from Azure to Confluent Cloud using Microsoft Entra ID
+          - Unified billing of Confluent Cloud consumption through Azure subscription invoicing
+          - Managing Confluent resources from the Azure portal alongside other Azure resources
+
+      - question: What is a Confluent organization?
+        answer: |
+          A Confluent organization is a resource that provides mapping between your Azure resources and your Confluent Cloud resources. It's the parent resource for other Confluent Cloud resources like environments, clusters, and topics. Each Azure subscription can contain multiple Confluent plans, and each plan maps to a unique Confluent organization for billing purposes.
+
+  - name: Creating and deploying resources
+    questions:
+      - question: How do I create a Confluent Cloud resource?
+        answer: |
+          You can create a Confluent Cloud resource through the Azure portal. Navigate to **Create a resource**, search for "Apache Kafka & Apache Flink on Confluent Cloud," and select the application tile. On the **Basics** tab, enter or select values for subscription, resource group, resource name, region, and Confluent organization details. You can create a new organization or select an existing one. Complete the process by adding tags and reviewing your configuration before creation.
+
+      - question: Can I create Confluent resources using Azure CLI or PowerShell?
+        answer: |
+          Yes. You can create and manage Confluent resources using Azure CLI or Azure PowerShell. These command-line tools allow you to automate the creation and management of your Confluent Cloud resources as part of your infrastructure-as-code practices.
+
+      - question: What billing options are available?
+        answer: |
+          Confluent Cloud on Azure offers two billing options:
+          - **Pay-as-you-go monthly plan**: Your Confluent Cloud consumption charges appear on your Azure monthly bill.
+          - **Commitment plan**: You sign up for a minimum spend amount and receive a discount on your committed usage of Confluent Cloud. You can choose your billing option when you create the service.
+
+      - question: What is an environment in Confluent Cloud?
+        answer: |
+          An environment is a logical container within a Confluent organization where you can clearly separate resources deployed for different teams or projects. It's a best practice to create multiple environments. When creating an environment, you can choose between **Essentials** (supporting up to 100 free schemas) or **Advanced** (supporting up to 20,000 free schemas with enterprise-level support and additional cost).
+
+      - question: What are the different cluster types available?
+        answer: |
+          Confluent Cloud supports several cluster types: **Basic**, **Standard**, **Enterprise**, and **Dedicated**. Each type offers different configurations, pricing, and feature support. You can choose the appropriate cluster type based on your workload requirements and scale.
+
+  - name: Managing resources and access
+    questions:
+      - question: How do I manage my Confluent Cloud resource settings?
+        answer: |
+          You can manage your Confluent Cloud resource settings from the Azure portal. On your resource's overview page, you'll find details including resource group, location, subscription information, tags, SSO URL, status, plan, and billing term. The **Get started** tab provides links for configuring connectors, managing user access, and managing Confluent. The **Tutorials** tab displays links to free courses and video tutorials.
+
+      - question: How do I add users to my Confluent organization?
+        answer: |
+          To add a user to a Confluent organization:
+          1. In the Azure portal, go to your Confluent organization.
+          2. In the left pane, under **Confluent entity management**, select **Account and Access**.
+          3. Select **Add User**, choose the user to add, and select **Add User**.
+          
+          You must have the Owner or Contributor role for the Azure subscription and at least AccountAdmin permissions for your Confluent organization.
+
+      - question: How do I manage user permissions in Confluent?
+        answer: |
+          To manage user permissions:
+          1. Go to the **Confluent Account and Access** page in the Azure portal.
+          2. Select **Manage Permissions** next to the user whose permissions you want to modify.
+          3. Select **Add Role** to grant new permissions or **Remove Role** to revoke permissions.
+          
+          You can assign various role permissions to control what actions users can perform on your Confluent Cloud resources.
+
+      - question: What is Single Sign-On (SSO) for Confluent Cloud?
+        answer: |
+          Single Sign-On enables you to use your Azure credentials to access the Confluent Cloud SaaS portal without requiring separate authentication. When you sign in to the Azure portal, your credentials are automatically used to sign in to Confluent Cloud. This uses Microsoft Entra ID and Microsoft Entra SSO to provide secure and convenient access.
+
+      - question: How do I delete a Confluent resource?
+        answer: |
+          To delete a Confluent resource from the Azure portal:
+          1. Navigate to your Confluent organization resource.
+          2. Select **Delete** from the resource menu.
+          3. Confirm the deletion.
+          
+          Important: The cluster and all data in the cluster are permanently deleted. You're billed for prorated usage up to the time the cluster is deleted. If your contract includes a data retention clause, Confluent keeps your data for the specified time period.
+
+      - question: Can I delete an environment I created in Confluent?
+        answer: |
+          Azure supports deleting only environments that you created in Azure. To delete an environment:
+          1. Ensure that none of the connectors nested in the environment are running (delete running connectors first).
+          2. Select the ellipsis (**…**) next to the environment name.
+          3. Select **Delete environment** and confirm.
+          
+          To delete an environment created in Confluent, use the Confluent UI directly.
+
+  - name: Connectors
+    questions:
+      - question: What are Confluent Connectors?
+        answer: |
+          Confluent Connectors are pre-built integrations that enable you to connect Apache Kafka with other systems and services. They allow you to seamlessly integrate Confluent Cloud with Azure services and third-party applications. Azure provides specialized connectors for services like Cosmos DB.
+
+      - question: How do I create and manage Confluent Connectors?
+        answer: |
+          You can create and manage Confluent Connectors from the Azure portal:
+          1. Navigate to your Confluent organization.
+          2. Use the **Get started** tab to access connector configuration options.
+          3. Follow the creation wizard to set up connectors for specific Azure services or applications.
+          
+          Ensure that your Confluent organization is active, you have the correct permissions, and all required fields contain the correct values.
+
+      - question: How do I connect Confluent Cloud to Cosmos DB?
+        answer: |
+          To create a Cosmos DB connector:
+          1. Create a service connection through the Azure portal.
+          2. Ensure your Confluent organization is active and running.
+          3. If using schema-based data types like Avro, configure the schema registry.
+          4. Complete the connector configuration with the required Cosmos DB connection details.
+
+      - question: What should I do if I can't create a connector?
+        answer: |
+          If connector creation fails:
+          1. Verify that you have the required permissions (Owner or Contributor role for the Azure subscription).
+          2. Ensure that all required fields contain the correct values.
+          3. Verify that the Azure service you're trying to connect to is configured properly.
+          4. Ensure your Confluent organization is active and not in an unsubscribed status.
+          
+          If the issue persists, contact Confluent support.
+
+      - question: Why doesn't my newly created connector appear in the list?
+        answer: |
+          If your Confluent connector doesn't appear in the list:
+          1. Select **Refresh** to update the connector list.
+          2. If it still doesn't appear, verify that the connector was created successfully by checking your Confluent organization status.
+          
+          If the problem continues, contact Confluent support.
+
+  - name: Troubleshooting and support
+    questions:
+      - question: How do I contact support for Confluent Cloud?
+        answer: |
+          You can contact Confluent support in two ways:
+          1. **Via Azure Help and Support**: In the Azure portal, select **Help + support**, then **Create a support request**. Search for "Confluent on Azure" and follow the link to the Confluent support portal.
+          2. **From your resource**: Navigate to your Confluent organization, select **New support request** under **Support + troubleshooting**, and select the link to the Confluent portal.
+          
+          You can also contact [Confluent support](https://support.confluent.io) directly. If you don't have an account, email `cloud-support@confluent.io`.
+
+      - question: Can't find the offer in Azure Marketplace?
+        answer: |
+          To find the offer in Azure Marketplace:
+          1. In the Azure portal, select **Create a resource**.
+          2. Search for "Apache Kafka & Apache Flink on Confluent Cloud".
+          3. Select the application tile.
+          
+          If you don't see the offer, your Microsoft Entra tenant ID may not be on the list of allowed tenants. Contact Confluent support for assistance.
+
+      - question: What should I do if I get a Conflict error?
+        answer: |
+          If you previously registered for Confluent Cloud and receive a **Conflict** error, you must use a different email address to create another Confluent Cloud organization resource. Register again with a new email address.
+
+      - question: What does the DeploymentFailed error mean?
+        answer: |
+          If you see a **DeploymentFailed** error:
+          1. Check the status of your Azure subscription.
+          2. Ensure the subscription isn't suspended.
+          3. Verify there are no billing issues associated with the subscription.
+          
+          If issues persist after checking these items, contact Confluent support.
+
+      - question: Why does resource creation take a long time?
+        answer: |
+          Resource deployment typically takes 2 to 3 minutes. If deployment takes more than three hours, contact support. If deployment fails with a status of `Failed`, delete the resource and try creating it again.
+
+      - question: Why can't I delete a Confluent resource?
+        answer: |
+          If you can't delete a resource:
+          1. Verify that you have permissions to delete the resource. You must be allowed to take `Microsoft.Confluent/*/Delete` actions.
+          2. Check your Azure role assignments.
+          
+          If you have the correct permissions but still can't delete, contact Confluent support. This might be related to the Confluent retention policy.
+
+      - question: Why doesn't Single Sign-On work?
+        answer: |
+          If SSO doesn't work:
+          1. Verify that you're using the correct Microsoft Entra ID email address.
+          2. Ensure you've consented to allow access for the Confluent Cloud SaaS portal.
+          
+          If the problem persists, contact Confluent support.
+
+      - question: What is the Confluent schema registry?
+        answer: |
+          The Confluent schema registry is a centralized repository for managing schemas in your Confluent Cloud environment. It's used when working with schema-based data types like Avro. Currently, Azure doesn't support schema registry configuration from the Azure portal; you must access this directly in the Confluent UI.
+
+additionalContent: |
+    ## Related content
+    - [Overview of Apache Kafka & Apache Flink on Confluent Cloud](overview.md)
+    - [Create a Confluent Cloud resource in the Azure portal](create.md)
+    - [Manage a Confluent Cloud resource](manage.md)
+    - [Manage users and permissions in a Confluent organization](manage-access.md)
+    - [Troubleshoot Apache Kafka & Apache Flink on Confluent Cloud](troubleshoot.md)
+    - [Get support for Confluent Cloud resources](get-support.md)
