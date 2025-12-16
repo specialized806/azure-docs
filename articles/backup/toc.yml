@@ -569,6 +569,18 @@
         href: backup-azure-database-postgresql-flex-use-rest-api.md
       - name: Restore
         href: backup-azure-database-postgresql-flex-use-rest-api-restore.md
+- name: Azure Database for MySQL - Flexible Server backup retention
+  items:
+  - name: Overview
+    href: backup-azure-mysql-flexible-server-about.md
+  - name: Support matrix
+    href: backup-azure-mysql-flexible-server-support-matrix.md
+  - name: Backup scenarios
+    items:
+    - name: Backup
+      href: backup-azure-mysql-flexible-server.md
+    - name: Restore
+      href: backup-azure-mysql-flexible-server-restore.md
 - name: Quickstarts  
   items:
   - name: Back up Azure PostgreSQL Database
@@ -648,8 +660,6 @@
       href: sap-hana-backup-support-matrix.md
     - name: SAP ASE Backup support matrix
       href: sap-ase-backup-support-matrix.md
-    - name: Azure Database for MySQL - Flexible Server long-term retention support matrix
-      href: backup-azure-mysql-flexible-server-support-matrix.md
     - name: Active Directory domain controllers
       href: active-directory-backup-restore.md
     - name: Azure Database for PostgreSQL backup support matrix
@@ -676,8 +686,6 @@
       href: sap-hana-database-about.md
     - name: Architecture
       href: azure-backup-architecture-for-sap-hana-backup.md
-  - name: Azure Database for MySQL - Flexible Server long-term retention
-    href: backup-azure-mysql-flexible-server-about.md
   - name: SAP ASE database on Azure VM backup
     href: sap-ase-database-about.md
   - name: Windows backup using MARS agent
@@ -732,12 +740,6 @@
         href: restore-azure-sql-vm-rest-api.md
       - name: Manage
         href: manage-azure-sql-vm-rest-api.md
-  - name: Azure Database for MySQL - Flexible Server backup retention
-    items:
-    - name: Backup
-      href: backup-azure-mysql-flexible-server.md
-    - name: Restore
-      href: backup-azure-mysql-flexible-server-restore.md
   - name: Azure Database for PostgreSQL backup
     items:
     - name: Overview
