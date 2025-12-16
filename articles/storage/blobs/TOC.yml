@@ -190,10 +190,10 @@ items:
                     href: blobfuse2-configuration.md?toc=/azure/storage/blobs/toc.json
                   - name: Create a configuration file
                     href: blobfuse2-configure.md
-                  - name: Stream versus cache mode
-                    href: blobfuse2-choose-data-transfer-mode.md
+                  - name: Streaming versus caching mode
+                    href: blobfuse2-streaming-versus-caching.md
                   - name: Configure streaming mode
-                    href: blobfuse2-configure-streaming-mode.md
+                    href: blobfuse2-configure-streaming.md
                   - name: Configure caching mode
                     href: blobfuse2-configure-file-cache.md
               - name: Mount storage

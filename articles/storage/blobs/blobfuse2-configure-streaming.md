@@ -16,7 +16,7 @@ ms.custom: linux-related-content
 
 # Configure BlobFuse2 for streaming mode
 
-Introduction goes here.
+This article helps you configure streaming mode. To learn more about each mode, see [Streaming versus caching mode](blobfuse2-streaming-versus-caching.md).
 
 ## Choose how to configure streaming mode
 
@@ -24,7 +24,7 @@ For streaming during read and write operations, blocks of data are cached in mem
 
 Reading the same blob from multiple simultaneous threads is supported. However, simultaneous write operations might result in unexpected file data outcomes, including data loss. Performing simultaneous read operations and a single write operation is supported, but the data being read from some threads might not be current.
 
-Use the following diagram as a guide to choosing an optimal block cache configuration.
+Use the following diagram as a guide to choosing an optimal streaming configuration.
 
 :::image type="content" source="media/blobfuse2-choose-data-transfer-mode/block-cache-configuration-decision-tree.png" alt-text="Diagram that shows how to configure block cache mode based on various factors." lightbox="media/blobfuse2-choose-data-transfer-mode/block-cache-configuration-decision-tree.png":::
 
@@ -41,25 +41,27 @@ stream:
     buffer-size-mb: The size for each buffer
 ```
 
-### Recommendations for using Block cache
+### Recommendations for using streaming mode
 
-* User applications must check the returned code(success/failure) for filesystem calls like read, write, close, flush, etc. If error is returned, the application must abort their respective operation.
-* User applications must ensure that there is only one writer at a time for a given file.
-* When dealing with very large files (in TiB), the block-size must be configured accordingly. Azure Storage supports only [50,000blocks](https://learn.microsoft.com/en-us/rest/api/storageservices/put-block-list?tabs=microsoft-entra-id#remarks) per blob.
+- User applications must check the returned code(success/failure) for filesystem calls like read, write, close, flush, etc. If error is returned, the application must abort their respective operation.
 
-### Block cache should be used with following caveats
+- User applications must ensure that there is only one writer at a time for a given file.
 
-* Concurrent write operations on the same file using multiple handles is not checked for data consistency and may lead toincorrect data being written.
-* A read operation on a file that is being written to simultaneously by another process or handle will not return the mostup-to-date data.
-* When copying files with trailing null bytes using cp utility to a Blobfuse2 mounted path, use --sparse=never parameter to avoid data being trimmed. For example, cp--sparse=never src dest.
-* In write operations, data written is persisted(or committed) to the Azure Storage container only when close, sync or flushoperations are called by user application.
-* Files cannot be modified if they were originally created with block-size different than the one configured.
+- When dealing with very large files (in TiB), the block-size must be configured accordingly. Azure Storage supports only [50,000 blocks](/rest/api/storageservices/put-block-list?tabs=microsoft-entra-id#remarks) per blob.
+
+### Streaming mode should be used with following caveats
+
+- Concurrent write operations on the same file using multiple handles is not checked for data consistency and may lead toincorrect data being written.
+
+- A read operation on a file that is being written to simultaneously by another process or handle will not return the mostup-to-date data.
+
+- When copying files with trailing null bytes using cp utility to a Blobfuse2 mounted path, use --sparse=never parameter to avoid data being trimmed. For example, cp--sparse=never src dest.
+
+- In write operations, data written is persisted(or committed) to the Azure Storage container only when close, sync or flushoperations are called by user application.
+
+- Files cannot be modified if they were originally created with block-size different than the one configured.
 
 There is an option to disable caching either at both the Kernel and BlobFuse levels or exclusively at the Kernel level. Link to an article about how to do this.
-
-## Subtitle goes here
-
-Content goes here.
 
 ## Next steps
 

@@ -14,17 +14,21 @@ ms.custom: linux-related-content
 # Customer intent: "As a Linux user, I want to mount Azure Blob Storage as a file system using BlobFuse2, so that I can perform standard file operations and improve access to my data in a familiar environment."
 ---
 
-# Streaming versus caching mode (BlobFuse2)
+# Streaming versus caching mode for BlobFuse2 data transfers
 
-Introduction goes here. Brief description of each model
+BlobFuse2 has two modes for transferring data: _streaming mode_ and _caching mode_. This article helps you decide which mode is best suited for your workloads.
 
-In _caching mode_, Blobfuse downloads the entire file from Azure Blob Storage into a **local cache directory** before making it available to the application. All subsequent reads and writes are served from this local cache until the file is evicted or invalidated. If the file was created or modified, then close of file-handles from application end will trigger upload of this file to storage container. This mode is suitable for workloads with repeated reads of files or datasets which can fit in local disk.
+## Streaming mode
 
 In _streaming mode_ data is streamed in chunks (blocks) and serves it as it downloads. This is designed for workloads involving **large files**, such as AI/ML training datasets, genomic sequencing, and HPC simulations.
 
 File caching plays an important role in the integrity of data that's read and written to a Blob Storage file system mount. We recommend streaming mode for use with large files, which supports streaming for both read and write operations. BlobFuse2 caches blocks of streaming files in memory. For smaller files that don't consist of blocks, the entire file is stored in memory. File cache is the second mode. We recommend file cache for workloads that don't contain large files, such as when files are stored on disk in their entirety.
 
-## Choose between caching and streaming mode
+## Caching mode
+
+In _caching mode_, BlobFuse downloads the entire file from Azure Blob Storage into a **local cache directory** before making it available to the application. All subsequent reads and writes are served from this local cache until the file is evicted or invalidated. If the file was created or modified, then close of file-handles from application end will trigger upload of this file to storage container. This mode is suitable for workloads with repeated reads of files or datasets which can fit in local disk.
+
+## Choose between streaming and caching modes
 
 Base your decision on whether the workload is read-only or read-write
 
@@ -42,4 +46,5 @@ Brief description goes here.
 
 ## Next steps
 
-Put links here
+[Configure BlobFuse2 for streaming mode](blobfuse2-configure-streaming.md)
+[Configure BlobFuse2 for caching mode](blobfuse2-configure-caching.md)

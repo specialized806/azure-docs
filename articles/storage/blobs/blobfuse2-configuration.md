@@ -13,23 +13,15 @@ ms.date: 12/02/2022
 
 # How to configure settings for BlobFuse2
 
-You can use configuration settings to manage BlobFuse2 in your deployment. Through configuration settings, you can set these aspects of how BlobFuse2 works in your environment:
+You can configure BlobFuse2 by using various settings. Some of the typical settings include:
 
-- Access to a storage blob
-- Logging
-- Pipeline engagement
-- Caching behavior
-- Permissions
+- Logging location and options
+- Temporary file path for caching
+- Information about the Azure storage account and blob container to be mounted
 
-For a list of all BlobFuse2 settings and their descriptions, see the [base configuration file on GitHub](https://github.com/Azure/azure-storage-fuse/blob/main/setup/baseConfig.yaml).
+The settings can be configured in a YAML configuration file, using environment variables, or as parameters passed to the BlobFuse2 commands. The preferred method is to use the configuration file.
 
-To manage configuration settings for BlobFuse2, you have three options (in order of precedence):
-
-- [Configuration file](#configuration-file)
-- [Environment variables](#environment-variables)
-- [CLI parameters](#cli-parameters)
-
-Using a configuration file is the preferred method, but the other methods might be useful in some circumstances.
+For details about each of the configuration parameters for BlobFuse2 and how to specify them, see these articles:
 
 ## Configuration file
 
