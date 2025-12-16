@@ -47,6 +47,6 @@ ms.custom: include file
         The standalone Azure resource assigned to your service. 
     Select **Next**. 
 
-    :::image type="content" source="./media/shared/elastic-active-directory-access.png" alt-text="Screenshot of the identity & access management tab." lightbox="./media/shared/elastic-active-directory-access.png":::
+    :::image type="content" source="../media/shared/elastic-active-directory-access.png" alt-text="Screenshot of the identity & access management tab." lightbox="../media/shared/elastic-active-directory-access.png":::
 
 1. Select **Review + create**. 

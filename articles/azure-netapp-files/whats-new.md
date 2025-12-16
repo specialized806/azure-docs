@@ -17,12 +17,12 @@ ms.author: anfdocs
 
 Azure NetApp Files is updated regularly. This article provides a summary about the latest new features and enhancements.
 
-<<<<<<< HEAD
+## January 2026
+
 * [Elastic Zone-Redundant service level](elastic-zone-redundant-concept.md)
 
     Azure NetApp Files now supports a new [service level: Elastic Zone-Redundant](azure-netapp-files-service-levels.md#Elastic).
 
-=======
 ## December 2025
 
 * [Advanced ransomware protection](ransomware-configure.md) (preview)
@@ -33,7 +33,6 @@ Azure NetApp Files is updated regularly. This article provides a summary about t
 
     [Cross-zone-region replication](replication.md#cross-zone-region-replication) builds on the existing capabilities of cross-region replication and cross-zone replication. It enables you to replicate volumes across regions and across availability zones within the same region, combining disaster recovery and business continuance capabilities for volumes. To establish two protection volumes, you can create a cross-zone replication relationship and a cross-region replication relationship _or_ two cross-region replication relationships _or_ two cross-zone replication relationships. The source volume must in an availability zone for the cross-zone replication relationship. Cross-zone-region replication is now generally available.
     
->>>>>>> b71abcb4b52532f63d36bd597df1dd86b2c2e8e6
 ## November 2025
 
 * [Subscription quota metrics](azure-netapp-files-metrics.md#subscription-quota-metrics) are now generally available (GA)
