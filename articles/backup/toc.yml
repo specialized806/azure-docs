@@ -699,7 +699,9 @@
       href: quick-sap-hana-database-instance-restore.md
   - name: Tutorials for SAP HANA databases on Azure VMs backup
     items:
-    - name: Backup SAP HANA databases using CLI
+    - name: Back up SAP HANA databases using the Azure portal
+      href: tutorial-backup-sap-hana-db.md
+    - name: Back up SAP HANA databases using CLI
       href: tutorial-sap-hana-backup-cli.md
     - name: Restore SAP HANA databases using CLI
       href: tutorial-sap-hana-restore-cli.md
@@ -727,6 +729,14 @@
       href: sap-hana-database-manage.md
 - name: SAP ASE database on Azure VM backup
   items:
+  - name: Overview
+    href: sap-ase-database-about.md
+  - name: Support matrix
+    href: sap-ase-backup-support-matrix.md
+  - name: Quickstart to run preregistration script for the database backup
+    href: sap-ase-database-backup-run-preregistration-quickstart.md
+  - name: Tutorial for SAP ASE database on Azure VMs backup
+    href: sap-ase-database-backup-tutorial.md
   - name: Backup scenarios
     items:
     - name: Configure backup
@@ -735,21 +745,12 @@
       href: sap-ase-database-restore.md
     - name: Manage
       href: sap-ase-database-manage.md
-- name: Quickstarts  
-  items:
-  - name: Run preregistration script for SAP ASE database backup
-    href: sap-ase-database-backup-run-preregistration-quickstart.md
-  expanded: true
 - name: Tutorials
   items:
-  - name: Back up SAP HANA databases in Azure VMs
-    href: tutorial-backup-sap-hana-db.md
   - name: Back up Windows Server
     href: tutorial-backup-windows-server-to-azure.md
   - name: Restore files to Windows Server
     href: tutorial-backup-restore-files-windows-server.md
-  - name: Back up SAP ASE database on Azure VMs
-    href: sap-ase-database-backup-tutorial.md
   - name: Configure Multi-user authorization (MUA)
     href: multi-user-authorization-tutorial.md
   - name: Recover soft deleted items with enhanced soft delete
@@ -772,8 +773,6 @@
       href: backup-support-matrix-mabs-dpm.md
     - name: MARS agent support matrix
       href: backup-support-matrix-mars-agent.md
-    - name: SAP ASE Backup support matrix
-      href: sap-ase-backup-support-matrix.md
     - name: Active Directory domain controllers
       href: active-directory-backup-restore.md
     - name: Automation in Azure Backup
@@ -786,8 +785,6 @@
       href: backup-azure-dpm-azure-server-faq.yml
     - name: FAQ-Azure Backup Monitoring and Reporting
       href: backup-azure-monitor-alert-faq.yml
-  - name: SAP ASE database on Azure VM backup
-    href: sap-ase-database-about.md
   - name: Windows backup using MARS agent
     items:
     - name: Overview
