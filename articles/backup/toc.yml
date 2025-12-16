@@ -581,9 +581,15 @@
       href: backup-azure-mysql-flexible-server.md
     - name: Restore
       href: backup-azure-mysql-flexible-server-restore.md
-- name: Quickstarts  
+- name: Azure Database for PostgreSQL backup
   items:
-  - name: Back up Azure PostgreSQL Database
+  - name: Overview
+    href: backup-azure-database-postgresql-overview.md
+  - name: Support matrix
+    href: backup-azure-database-postgresql-support-matrix.md  
+  - name: FAQ-Back up Azure Database for PostgreSQL server
+    href: backup-azure-database-postgresql-server-faq.yml
+  - name: Quickstarts for Azure PostgreSQL Database backup
     items:
     - name: Back up the database - Azure portal
       href: quick-backup-postgresql-database-portal.md
@@ -593,6 +599,44 @@
         href: quick-cross-region-restore.md
       - name: With Azure PowerShell
         href: quick-secondary-region-restore-postgresql-powershell.md
+  - name: Tutorials for PostgreSQL databases backup
+    items:
+    - name: Back up the database
+      href: tutorial-postgresql-backup.md
+    - name: Configure and run Cross Region Restore
+      href: tutorial-cross-region-restore.md
+  - name: Backup scenarios
+    items:  
+    - name: From the Azure portal
+      items:
+      - name: Backup
+        href: backup-azure-database-postgresql.md
+      - name: Restore
+        href: restore-azure-database-postgresql.md
+      - name: Manage
+        href: manage-azure-database-postgresql.md
+    - name: With PowerShell
+      items:
+      - name: Backup
+        href: backup-postgresql-ps.md
+      - name: Restore
+        href: restore-postgresql-database-ps.md
+    - name: With CLI
+      items:
+      - name: Backup
+        href: backup-postgresql-cli.md
+      - name: Restore
+        href: restore-postgresql-database-cli.md
+    - name: With REST API
+      items:
+      - name: Policy
+        href: backup-azure-data-protection-use-rest-api-create-update-postgresql-policy.md
+      - name: Backup
+        href: backup-azure-data-protection-use-rest-api-backup-postgresql.md
+      - name: Restore
+        href: restore-postgresql-database-use-rest-api.md
+- name: Quickstarts  
+  items:
   - name: Backup SAP HANA System Replication database
     items:
     - name: Backup
@@ -610,12 +654,6 @@
     href: tutorial-sql-backup.md
   - name: Back up SAP HANA databases in Azure VMs
     href: tutorial-backup-sap-hana-db.md
-  - name: Back up PostgreSQL databases
-    items:
-    - name: Back up the database
-      href: tutorial-postgresql-backup.md
-    - name: Configure and run Cross Region Restore
-      href: tutorial-cross-region-restore.md
   - name: Back up Windows Server
     href: tutorial-backup-windows-server-to-azure.md
   - name: Restore files to Windows Server
@@ -662,8 +700,6 @@
       href: sap-ase-backup-support-matrix.md
     - name: Active Directory domain controllers
       href: active-directory-backup-restore.md
-    - name: Azure Database for PostgreSQL backup support matrix
-      href: backup-azure-database-postgresql-support-matrix.md
     - name: Automation in Azure Backup
       href: backup-support-automation.md
   - name: Frequently asked questions (FAQ)
@@ -674,8 +710,6 @@
       href: faq-backup-sql-server.yml
     - name: FAQ-Back up SAP HANA databases on Azure VMs
       href: sap-hana-faq-backup-azure-vm.yml
-    - name: FAQ-Back up Azure Database for PostgreSQL server
-      href: backup-azure-database-postgresql-server-faq.yml
     - name: FAQ-Azure Backup Server and DPM
       href: backup-azure-dpm-azure-server-faq.yml
     - name: FAQ-Azure Backup Monitoring and Reporting
@@ -740,38 +774,6 @@
         href: restore-azure-sql-vm-rest-api.md
       - name: Manage
         href: manage-azure-sql-vm-rest-api.md
-  - name: Azure Database for PostgreSQL backup
-    items:
-    - name: Overview
-      href: backup-azure-database-postgresql-overview.md
-    - name: From the Azure portal
-      items:
-      - name: Backup
-        href: backup-azure-database-postgresql.md
-      - name: Restore
-        href: restore-azure-database-postgresql.md
-      - name: Manage
-        href: manage-azure-database-postgresql.md
-    - name: With PowerShell
-      items:
-      - name: Backup
-        href: backup-postgresql-ps.md
-      - name: Restore
-        href: restore-postgresql-database-ps.md
-    - name: With CLI
-      items:
-      - name: Backup
-        href: backup-postgresql-cli.md
-      - name: Restore
-        href: restore-postgresql-database-cli.md
-    - name: With REST API
-      items:
-      - name: Policy
-        href: backup-azure-data-protection-use-rest-api-create-update-postgresql-policy.md
-      - name: Backup
-        href: backup-azure-data-protection-use-rest-api-backup-postgresql.md
-      - name: Restore
-        href: restore-postgresql-database-use-rest-api.md
   - name: Windows backup using MARS agent
     items:
     - name: Install or upgrade
