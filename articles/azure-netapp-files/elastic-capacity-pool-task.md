@@ -54,6 +54,7 @@ You must create a capacity pool before you can create volumes in Azure NetApp Fi
 1. Select **+ Add pools**.
 1. Provide the following information: 
     * **Name**
+        Consult the [naming rules and restrictions for Azure resources](../azure-resource-manager/management/resource-name-rules.md#microsoftnetapp) for character limits and other naming conventions.
     * **Service level**
         Choose **Zone-Redundant**
     * **Quota** 
@@ -68,7 +69,10 @@ You must create a capacity pool before you can create volumes in Azure NetApp Fi
     * **Key vault private endpoint**
         If you select **Customer Managed** for the encryption key source, choose the Azure key vault you configured in your encryption settings. 
     * **Active Directory configuration**
-        If you're going to add SMB volumes, you must add the AD configuration. 
+        If you've configured an Active Directory account on the NetApp Elastic account, select it from the dropdown menu. If you haven't configured one, select **Create new**.  
+
+        [!INCLUDE [Steps to configure the Active Directory connection.](includes/elastic-active-directory.md)]
+
     * **Availability zone**
         Drag and drop the availability zones in the ranked order for failover. 
 

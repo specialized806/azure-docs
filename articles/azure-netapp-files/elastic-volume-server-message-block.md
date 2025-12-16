@@ -18,17 +18,16 @@ Learn how to create an SMB volume for the Elastic service level.
 
 ## Before you begin 
 
-* You must have an Azure NetApp Files account configured to use the Elastic service level. 
+* You must have a NetApp Elastic account. 
 * You must have configured a capacity pool for the Elastic service level. 
     * If you're creating SMB volumes, you must have configured Active Directory on the capacity pool. 
-* If you're configuring cross-zone-region replication, the Elastic service level NetApp account must be placed in a region that adheres to supported regional pairs. For more information, see [supported regional pairs](replication.md#supported-region-pairs). 
 
 ## Considerations 
 
 * You can't change the protocol of a volume after creating it. 
 * Each volume in a capacity pool must have a unique name.
 * You must have configured a capacity pool for the Zone-Redundant service level. 
-* If SMB volume creation fails with the error "Error when creating. A problem occurred. Please try again after some time. If the issue persists, please contact support.", the issue might be that the Active Directory password has expired and needs to be reset. Reset the password then try to create the volume again. 
+* If you encounter the error message "Error when creating. A problem occurred. Please try again after some time. If the issue persists, please contact support.", the issue might be that the Active Directory password has expired and needs to be reset. Reset the password then try to create the volume again. 
 
 ## Steps 
 

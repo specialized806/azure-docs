@@ -1,5 +1,5 @@
 ---
-title: Create a NetApp account for the Elastic service level in Azure NetApp Files
+title: Create a NetApp Elastic account in Azure NetApp Files
 description: Learn how to access Azure NetApp Files and create a NetApp account so that you can set up a Elastic service level capacity pool and create a volume.
 services: azure-netapp-files
 author: b-ahibbard
@@ -10,7 +10,7 @@ ms.author: anfdocs
 # Customer intent: As an IT administrator, I want to create an Elastic Zone-Redundant NetApp account in Azure NetApp Files, so that I can set up a capacity pool and manage storage volumes effectively.
 ---
 
-# Create a NetApp account for the Elastic service level in Azure NetApp Files (preview)
+# Create a NetApp Elastic account in Azure NetApp Files (preview)
 
 Creating a NetApp account enables you to set up a capacity pool so that you can create a volume. You use the Azure NetApp Files pane to create a new NetApp account.
 

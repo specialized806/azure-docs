@@ -17,7 +17,7 @@ Learn how to create an NFS volume for the Elastic service level.
 
 ## Before you begin 
 
-* You must have an Azure NetApp Files account configured to use the Elastic service level. 
+* You must have a NetApp Elastic account. 
 * You must have configured a capacity pool for the Zone-Redundant service level. 
 
 ## Considerations 

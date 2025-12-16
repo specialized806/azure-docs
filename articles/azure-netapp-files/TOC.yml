@@ -301,13 +301,11 @@
     items: 
       - name: Manage storage 
         items: 
-        - name: Register for Elastic service level 
+        - name: Create a NetApp Elastic account
           href: elastic-account.md 
-        - name: Configure Active Directory 
-          href: elastic-active-directory.md 
         - name: Configure customer-managed keys
           href: elastic-customer-managed-keys.md
-        - name: Create an Elastic capacity pool 
+        - name: Manage Elastic capacity pools
           href: elastic-capacity-pool-task.md
         - name: Change zones for Elastic capacity pools 
           href: elastic-change-zones.md
