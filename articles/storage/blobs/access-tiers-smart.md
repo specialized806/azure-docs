@@ -23,13 +23,12 @@ Access behavior, performance characteristics, and SLAs of the underlying capacit
 
 ## Known issues and considerations
 
-- Smart tier is currently in Public Preview for account level tiering for zone redundancy (ZRS, GZRS, and RA-GZRS) for both flat and hierarchical namespaces. 
+- Smart tier is currently in Public Preview for account level tiering for zone redundancy (ZRS, GZRS, and RA-GZRS) for both flat and hierarchical namespaces including ADLS (Azure Data Lake Storage). 
+
 - Redundancy conversions to non-zone redundant (LRS or GRS) accounts aren't supported. 
 - When a GZRS account fails over, convert the LRS account to zone-redundant within 60 days to continue Smart tier support. 
 - Smart tier characteristics might change during or after the public preview phase.
 - Smart tier monitoring operations are billed based on the price displayed on the Azure pricing pages. This pricing will go into effect starting January 1, 2026.
-
-- The metrics view for smart tiered objects might display incomplete or wrong tiers until the first down-tiering occurred by smart tier in the subscription.
 
 ## Enabling smart tier
 Enable access to the smart tier public preview by registering the "Smart Tier (account level)" preview feature in the Azure portal [preview features blade](/azure/azure-resource-manager/management/preview-features?tabs=azure-portal/).
