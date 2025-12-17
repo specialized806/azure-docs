@@ -1,7 +1,7 @@
 ---
-title: Enable logging for BlobFuse2
+title: Configure logging for BlobFuse2
 titleSuffix: Azure Storage
-description: Learn how to enable logging for BlobFuse2 activity.
+description: Learn how to configure logging for BlobFuse2 activity.
 author: normesta
 ms.author: normesta
 
@@ -14,84 +14,85 @@ ms.custom: linux-related-content
 # Customer intent: "As a Linux user, I want to mount Azure Blob Storage as a file system using BlobFuse2, so that I can perform standard file operations and improve access to my data in a familiar environment."
 ---
 
-# Enable logging for BlobFuse2
+# Configure logging for BlobFuse2
 
-Introduction goes here.
+This article shows you how to configure the logging behavior for BlobFuse2. By default, BlobFuse2 logs warnings to the system log. However, you can route logs to a local directory, change which types of information you want to appear in logs, or disable logs entirely by changing the default configuration.
 
-[Here](https://github.com/Azure/azure-storage-fuse/blob/main/setup/baseConfig.yaml#L16) are the configuration options applicable to logging.
+## Log configuration settings
 
-## Type: Output Locations
+You can modify logging behavior by changing the values of field (_key_) in the [configuration file](https://github.com/Azure/azure-storage-fuse/blob/main/setup/baseConfig.yaml#L2) or by using [parameters](https://github.com/Azure/azure-storage-fuse/wiki/Blobfuse2%E2%80%90Cli%E2%80%90Parameters) along with BlobFuse2 commands in the command line interface (CLI).
 
-blobfuse2 supports 2 different types of log outputs, **syslog** which writes data to syslog and **base** which writes data to the output location of your choosing. 
+The following table describes each log setting, the allowable values, and the field or command you use to modify the value.
 
-If using syslog, simply grep for blobfuse:
+| Setting | Config file field | CLI parameter | Default value | Possible values |
+|----|---|----|---|----|
+| Output location | `type` | Not available | `syslog` | `silent` \| `base` |
+| Log Level  | `level` | `--log-level` | `log_warning` | `log_off`\|`log_crit`\|`log_err`\|`log_warning`\|`log_info`\|`log_trace`\|`log_debug` |
+| File path | `file-path` | `--log-file-path` | `$HOME/.blobfuse2/blobfuse2.log` | Any |
 
+## Configure settings
+
+The following example modifies the configuration file so that logs route errors to the path `$HOME/.mycustomdirectory/blobfuse2.log`.
+
+```yaml
+logging:
+  type: base
+  level: log_err
+  file-path: $HOME/.mycustomdirectory/blobfuse2.log
 ```
+
+The following example modifies log settings in the command line by using parameters with the `mount` command.
+
+```bash
+sudo blobfuse2 mount ~/mycontainer --log-level=log_err --file-path=$HOME/.mycustomdirectory/blobfuse2.log
+```
+
+>[!NOTE] You can modify logging behavior after you mount a container by changing settings in the configuration file and saving the file. If you use only Azure CLI to set behavior, you must first unmount the container and then mount the container again by using the `mount` command along with the correct parameters.  
+
+### Choose a log level
+
+The following table describes each log severity level. Choose the level most appropriate for your workload requirements.
+
+| Log level | Description |
+|---|---|
+| `log_off` | Shuts off logging. |
+| `log_crit` | Log issues that prevent BlobFuse2 from starting |
+| `log_err` |  Issues that will end up returning errors to the caller. For example, if you write some data and then try to close the file handle, but BlobFuse2 fails (for whatever reason) to properly connect to Azure Storage to commit the data, this event will be logged at level LOG_ERR (as well as returning a failure to the process attempting to close the file handle, of course.)
+| `log-warning` | Issues that BlobFuse2 encounters that may not be actual errors, but still may be valuable to log. For example, if a network operation fails but is retriable, a warning may be logged before automatic retries kick in. |
+| `log_info` | All operations relating to the uploading or downloading of blob data to Azure Storage are logged at LOG_INFO level. Some other operations are also logged at the level, that may be informative if problems are encountered. |
+| `log-trace` | Essentially trace statements for all calls into BlobFuse2. This is very verbose, and contains helpful debugging information such as line number, method name, method inputs and return values, etc. Probably only helpful if you are looking at the source code as well. |
+| `log-debug` | Contains additional helpful debugging information. |
+
+### Find logs in Syslog
+
+By default, logs are written to the `/var/log/syslog` file. If you choose to use syslog as the output location, you can find logs by using the `grep` command and pass the string `blobfuse` as a parameter. The following example shows how to find BlobFuse logs in the syslog.
+
+```bash
 grep blobfuse /var/log/syslog
 ```
 
-The default logging type is syslog.
+### Route logs to local directory
 
-## Level
+The simplest way to route logs to a location other than the `/var/log/syslog` file, is to configure output location to 'base' in your configuration file.
 
-blobfuse2 supports five levels of severity:
+However, if you want to keep output location set to `syslog`, you can instead redirect logs from the `/var/log/syslog` file to a separate file location. The following example shows an example. 
 
-log_off|log_crit|log_err|log_warning|log_info|log_trace|log_debug
+> [!NOTE]
+> The files required for these commands are part of the BlobFuse2 package. You can also find them in the source code under the `systemd` directory.
 
-1. **LOG_OFF** - Shuts off logging completely.
-
-2. **LOG_CRIT** - Issues that cause blobfuse2 to fail to start.
-
-3. **LOG_ERR** - Issues that will end up returning errors to the caller. For example, if you write some data and then try to close the file handle, but blobfuse2 fails (for whatever reason) to properly connect to Azure Storage to commit the data, this event will be logged at level LOG_ERR (as well as returning a failure to the process attempting to close the file handle, of course.)
-
-4. **LOG_WARNING** - Issues that blobfuse2 encounters that may not be actual errors, but still may be valuable to log. For example, if a network operation fails but is retriable, a warning may be logged before automatic retries kick in.
-
-5. **LOG_INFO** - All operations relating to the uploading or downloading of blob data to Azure Storage are logged at LOG_INFO level. Some other operations are also logged at the level, that may be informative if problems are encountered.
-
-6. **LOG_TRACE** - Essentially trace statements for all calls into blobfuse2. This is very verbose, and contains helpful debugging information such as line number, method name, method inputs and return values, etc. Probably only helpful if you are looking at the source code as well.
-
-7. **LOG_DEBUG** - Contains additional helpful debugging information. 
-
-The default log level is LOG_WARNING. You can set the log level when you mount blobfuse2 by 
-
-a. adding the CLI parameter:
---log-level=LOG_OFF|LOG_CRIT|LOG_ERR|LOG_WARNING|LOG_INFO|LOG_TRACE|LOG_DEBUG
-
-b. specifying the config file parameter
-logging.level: LOG_OFF|LOG_CRIT|LOG_ERR|LOG_WARNING|LOG_INFO|LOG_TRACE|LOG_DEBUG
-
-LOG_OFF will shut off logging completely (specifically, it sets the log threshold for the process to LOG_EMERG, which we do not use.) Other options include all worse levels of severity (meaning, if you specify LOG_INFO, blobfuse will log all INFO, WARNING, ERR, and CRIT level messages.)
-
-## Libfuse Logging
-
-libfuse library provides a '-d' option in mount command to enable its verbose logging on the console. This will enable debug logs in the library and print all system calls being made along with their return values on the console itself.
-
-Alternatively, enable libfuse logging by specifying the config file parameter 
-libfuse.fuse-trace: true
-
-## SDK Logging
-
-If the logs indicate that the issue is coming from the storage SDK, enable SDK logging to get detailed logs of the REST calls to be able to diagnose whether an issue is in blobfuse, SDK or service side. 
-SDK logging can be enabled by specifying the config file parameter
-azstorage.sdk-trace: true
-
-## Syslog Redirection
-
-By default blobfuse2 dumps its logs in `/var/log/syslog` file. To redirect logs to a separate file follow below instructions. Files required for these commands are part of the package or can be found in the source code under 'systemd' directory.
-
-```
-- copy setup/11-blobfuse2.conf to /etc/rsyslog.d/
-
-- copy setup/blobfuse2-logrotate to /etc/logrotate.d/
-
-- restart rsyslog service
-
-    - $> service rsyslog restart
+```bash
+copy setup/11-blobfuse2.conf to /etc/rsyslog.d/
+copy setup/blobfuse2-logrotate to /etc/logrotate.d/
+service rsyslog restart
 ```
 
-## Dynamic Logging
+## Enable libfuse Logging
 
-Default logging level of blobfuse is LOG_WARNING. User can set a different log level using the --log-level CLI parameter or the logging.level config file parameter. Once blobfuse is mounted if a customer is using a config file, this logging level can be changed without unmounting the container. Modify the logging.level parameter in the config file and save the config file to dynamically update the log level.
+LibFuse library provides a `-d` option in mount command to enable its verbose logging on the console. This will enable debug logs in the library and print all system calls being made along with their return values on the console itself. Alternatively, enable libfuse logging by specifying the config file parameter `libfuse.fuse-trace: true`.
+
+## Enable SDK Logging
+
+If the logs indicate that the issue is coming from the storage SDK, enable SDK logging to get detailed logs of the REST calls to be able to diagnose whether an issue is in blobfuse, SDK or service side. SDK logging can be enabled by specifying the config file parameter `azstorage.sdk-trace: true`.
 
 ## Next steps
 
