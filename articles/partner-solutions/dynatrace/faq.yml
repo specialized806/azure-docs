@@ -84,7 +84,7 @@ sections:
 
       - question: Why can’t I install OneAgent on a virtual machine?
         answer: |
-          OneAgent installation is disabled if the VM is stopped. Start the VM and try again. If a VM shows OneAgent installed and **Uninstall extension** is disabled, another Dynatrace resource configured the agent; make changes from that resource. See the VM tab in [Manage](manage.md#virtual-machines).
+          OneAgent installation is disabled if the VM is stopped. Start the VM and try again. If a VM shows OneAgent installed and **Uninstall extension** is disabled, another Dynatrace resource configured the agent; make changes from that resource. See the VM tab in [Manage](manage.md#monitor-resources-using-dynatrace-oneagent).
 
       - question: AKS installation or uninstallation options are inactive. What should I do?
         answer: |
