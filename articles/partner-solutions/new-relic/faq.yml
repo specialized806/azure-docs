@@ -3,6 +3,7 @@ metadata:
   title: Azure Native New Relic Service frequently asked questions
   description: Answers to common questions about using Azure Native New Relic Service
   ms.topic: faq 
+  ai-usage: ai-generated
   ms.date: 12/17/2025
 
 title: Azure Native New Relic Service FAQ
@@ -144,7 +145,7 @@ sections:
       - question: Can I uninstall the New Relic agent?
         answer: |
           Yes. You can uninstall the New Relic agent extension by selecting resources that have the agent installed and selecting **Uninstall Extension** from the command bar. Note that only resources with the agent currently installed can be selected for uninstallation.
-      - question: What does "Agent status: Partially Installed" mean for Virtual Machine Scale Sets?
+      - question: What does "Agent status Partially Installed" mean for Virtual Machine Scale Sets?
         answer: |
           This status appears when you have Virtual Machine Scale Sets with manual upgrade policy where preexisting instances didn't receive the extension automatically. To resolve this, manually install the New Relic agent for each preexisting virtual machine.
       - question: What is the difference between Web Apps and Function Apps?
