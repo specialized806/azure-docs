@@ -24,12 +24,8 @@ Event Hubs supports most Kafka client operations, but some features aren't avail
 | Compression (gzip) | ✅ Yes | Only gzip is supported |
 | Schema Registry | ✅ Yes | Use [Azure Schema Registry](schema-registry-overview.md) |
 | Kafka Connect | ✅ Yes | See [Kafka Connect integration](event-hubs-kafka-connect-tutorial.md) |
-| Compression (snappy, lz4, zstd) | ❌ No | Use gzip or none |
-| Kafka Transactions | ❌ No | Not supported |
-| Exactly-once semantics (EOS) | ❌ No | Not supported |
-| Kafka AdminClient (topic management) | ❌ No | Use Azure portal, CLI, or ARM |
-| Log compaction | ❌ No | Time-based retention only |
-| Quotas via Kafka API | ❌ No | Managed via Azure |
+| Compression (snappy, lz4, zstd) | ✅ Yes | Use gzip or none |
+| Kafka Transactions | ✅ Yes | Currently in Preview. |
 
 For the complete list of supported operations, see [Event Hubs for Apache Kafka](azure-event-hubs-apache-kafka-overview.md).
 
