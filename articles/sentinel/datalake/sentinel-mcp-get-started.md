@@ -4,7 +4,7 @@ titleSuffix: Microsoft Security
 description: Learn how to set up and use Microsoft Sentinel's Model Context Protocol (MCP) collection of security tools to enable natural language queries and AI-powered security investigations 
 author: poliveria
 ms.topic: get-started
-ms.date: 11/18/2025
+ms.date: 11/24/2025
 ms.author: pauloliveria
 ms.service: microsoft-sentinel
 
@@ -20,19 +20,28 @@ Sentinel's [collection](sentinel-mcp-tools-overview.md) of security tools works 
 - Retrieve data
 - Analyze entities
 - Create Security Copilot agents
+- Triage incidents
+- Hunt for threats
 
 ## Prerequisites
 
-To use Microsoft Sentinel MCP server and access its collection of tools, you need to be onboarded to [Microsoft Sentinel data lake](sentinel-lake-onboarding.md).
+To use Microsoft Sentinel MCP server and access its collection of tools, you need to be onboarded to at least one of the following products:
+- [Microsoft Sentinel data lake](sentinel-lake-onboarding.md)
+- [Microsoft Sentinel in Microsoft Defender portal](/unified-secops/microsoft-sentinel-onboard)
+- [Microsoft Defender XDR or Microsoft Defender for Endpoint](/unified-secops/overview-deploy)
 
-You also need the **Security reader** role to list and invoke Sentinel's collection of MCP tools. 
+For more information about a tool collection's specific product prerequisites, see their respective articles. 
+
+
+You also need the **Security reader** role to list and invoke Sentinel's collection of MCP tools. The [triage tool collection](sentinel-mcp-triage-tool.md) lets you use any tool your existing permissions grant you.
+
 
 
 ## Add Microsoft Sentinel's collection of MCP tools
 For more information on how to add Microsoft Sentinel's collection of MCP tools, see the articles for the following AI-powered code editors and agent-building platforms:
 - [Microsoft Security Copilot](sentinel-mcp-use-tool-security-copilot.md#add-a-microsoft-sentinel-tool-collection)
 - [Microsoft Copilot Studio](sentinel-mcp-use-tool-copilot-studio.md#add-a-microsoft-sentinel-tool-collection)
-- [Azure AI Foundry](sentinel-mcp-use-tool-azure-ai-foundry.md#add-a-microsoft-sentinel-tool-collection)
+- [Microsoft Foundry](sentinel-mcp-use-tool-azure-ai-foundry.md#add-a-microsoft-sentinel-tool-collection)
 - [Visual Studio Code](sentinel-mcp-use-tool-visual-studio-code.md)
 
 ## Test your added tools with sample prompts

@@ -2,7 +2,7 @@
 title: Create and configure Recovery Services vaults
 description: Learn how to create and configure Recovery Services vaults, and how to restore in a secondary region by using Cross Region Restore.
 ms.topic: how-to
-ms.date: 09/24/2025
+ms.date: 12/10/2025
 ms.custom: references_regions, engagement-fy23
 author: AbhishekMallick-MS
 ms.author: v-mallicka
@@ -41,7 +41,7 @@ Azure Backup automatically handles storage for the vault. You need to specify ho
    - If you need data availability without downtime in a region, guaranteeing data residency, choose [zone-redundant storage (ZRS)](../storage/common/storage-redundancy.md#zone-redundant-storage).
 
 >[!NOTE]
->The storage replication settings for the vault aren't relevant for Azure file share backup, because the current solution is snapshot based and no data is transferred to the vault. Snapshots are stored in the same storage account as the backed-up file share.
+>The storage replication settings for the vault aren't relevant for Azure file share snapshot backup, because the snapshots are stored in the same storage account as the backed-up file share. The storage replication settings for the vault only applies for the Azure file share vaulted backup.
 
 ## Set Cross Region Restore
 
