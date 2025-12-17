@@ -3,7 +3,7 @@ title: Apache Kafka developer guide for Event Hubs
 description: A comprehensive guide for Kafka developers building applications with Azure Event Hubs, including quickstarts, tutorials, and integration patterns.
 ms.date: 12/17/2025
 ms.subservice: kafka
-ms.topic: conceptual
+ms.topic: article
 ---
 
 # Apache Kafka developer guide for Azure Event Hubs
