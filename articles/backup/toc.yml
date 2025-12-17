@@ -745,6 +745,12 @@
       href: sap-ase-database-restore.md
     - name: Manage
       href: sap-ase-database-manage.md
+- name: Archive tier
+  items:
+  - name: Overview
+    href: archive-tier-support.md
+  - name: Use Archive tier
+    href: use-archive-tier-support.md
 - name: Tutorials
   items:
   - name: Back up Windows Server
@@ -1011,12 +1017,6 @@
       href: query-backups-using-azure-resource-graph.md
     - name: Resource Manager and Bicep files
       href: backup-rm-template-samples.md
-  - name: Archive tier
-    items:
-    - name: Overview
-      href: archive-tier-support.md
-    - name: Use Archive tier
-      href: use-archive-tier-support.md
   - name: Troubleshoot
     items:
     - name: Backup vault
