@@ -12,9 +12,7 @@ ms.collection:
 ---
 # Migrate a workload from Amazon Web Services (AWS) - Introduction
 
-This article provides architects and engineers with actionable, prescriptive guidance to migrate a single workload from Amazon Web Services (AWS) to Azure.
-
-The scope of this article covers the full migration lifecycle of a single workload, from planning and preparation, to execution and evaluation, to decommissioning of AWS resources.
+This article provides architects and engineers with actionable, prescriptive guidance to migrate a single workload from Amazon Web Services (AWS) to Azure. It covers the full migration lifecycle, from planning and preparation, to execution and evaluation, to decommissioning of AWS resources.
 
 ## Workload migration strategy
 
@@ -36,8 +34,6 @@ The migration of a workload can span several weeks or months. The duration depen
 :::image type="content" source="./images/migrate-from-aws-phases.svg" alt-text="Diagram showing three phases of migrating workloads from AWS to Microsoft Azure. Across the top, three labeled boxes indicate phases with durations: Before migration (2–4 weeks), During migration (3–7 weeks), and After migration (1–2 weeks). Each box includes a summary of key activities such as planning, infrastructure setup, and optimization. Below, a horizontal sequence of five icons represents steps: Plan, Prepare, Execute, Optimize, and Decommission." lightbox="./images/migrate-from-aws-phases.svg" border="false":::
 
 *Guidelines for a moderately complex workload.*
-
-This guide includes an Evaluate phase (validation and sign-off) after execution. It links to optimization guidance in the conclusion rather than covering optimization as a separate article.
 
 ## Prerequisites
 

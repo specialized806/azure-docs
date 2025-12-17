@@ -27,7 +27,7 @@ The goal of the planning phase is to:
 
 1. **Existing workload architecture:** Fully document and verify your workload architecture with your migration team. Make sure it includes all workload dependencies, such as network configurations, data flows, and external integrations. 
 2. **Use discovery tooling:** To speed up assessment, use [Workload Discovery on AWS](https://aws.amazon.com/solutions/implementations/workload-discovery-on-aws/) to visualize your AWS workload. It uses AWS Config and AWS Systems Manager data to help identify your workload's components, dependencies, and relationships. [Azure Migrate](/azure/migrate/tutorial-assess-aws) provides automated discovery and assessment of AWS workloads. This can help you right-size resources before migration.
-3. **Identify critical flows:** Map out essential user and system interactions and [workflows](/azure/well-architected/reliability/identify-flows). When you design the target architecture in the next step, this information helps prioritize reliability efforts and ensures that the most important and impactful components are protected against failure.
+3. **Identify critical flows:** Map out essential user and system interactions and [workflows](/azure/well-architected/reliability/identify-flows). When you design the target architecture in the next section, this information helps prioritize reliability efforts and ensures that the most important and impactful components are protected against failure.
 4. **Create a detailed inventory**: Make a list of your current AWS environment that's required for running the workload (all servers, storage, database, and services), along with usage patterns, performance metrics, and licensing requirements. Use [Azure Migrate](/azure/migrate/tutorial-assess-aws) to assess AWS instances for migration to Azure.
 5. **Assess your team's skills:** Focus on like-for-like capability mapping. Identify the skills your team already uses in AWS and align them with the equivalent Azure services and tools. Include Azure training in your project timeline to prepare your workload and operations teams. This approach reduces friction and accelerates adoption. It also builds confidence with Azure as existing experience in AWS translates directly to the new environment.
 6. **Document existing KPIs:** Document the defined performance baseline of your workload, such as throughput, latency, error rates, and resource utilization. If these KPIs aren't available, collect these metrics from your AWS environment to establish this baseline. Use these KPIs in the evaluation phase after migration to validate that the workload in Azure performs as it did in AWS. This strategy supports the like-for-like migration strategy and reduces risks.
@@ -36,9 +36,9 @@ The goal of the planning phase is to:
 
 **Start with networking:** Discuss your workload's networking requirements with the platform team. Your request should include not only the target architecture, but also the migration connectivity. AWS uses the concept of a Transit Gateway as the network hub with Amazon VPCs as the spoke networks. In the Azure application landing zone design, the platform team provisions spoke virtual networks to workload teams. These spoke networks communicate to other internal and external networks through the hub or Azure Virtual WAN network. 
 
-To exchange data during the migration, you can use either Site-to-Site VPN or ExpressRoute with AWS Direct Connect. Relying on VPN is suitable for smaller or proof-of-concept migrations, while ExpressRoute with AWS Direct Connect is recommended for production-scale migrations or large data transfers. Consider using both for reliability. In that case, use VPN for failover.
-
 :::image type="content" source="./images/migrate-from-aws-connectivity.svg" alt-text="Diagram showing network connectivity between AWS and Azure clouds. At the top, a DNS icon connects to two boxes: on the left, AWS Cloud with a Virtual Private Cloud (VPC); on the right, Azure Cloud with a Virtual Network (VNet). A bidirectional arrow between the boxes is labeled Site-to-Site VPN and Direct Connect + ExpressRoute, indicating secure connectivity options." lightbox="./images/migrate-from-aws-connectivity.svg" border="false":::
+
+To exchange data during the migration, you can use either Site-to-Site VPN or ExpressRoute with AWS Direct Connect. Relying on VPN is suitable for smaller or proof-of-concept migrations, while ExpressRoute with AWS Direct Connect is recommended for production-scale migrations or large data transfers. Consider using both for reliability. In that case, you use VPN for failover.
  
 Learn more about how to [migrate networking from AWS](/azure/migration/migrate-networking-from-aws).
 
@@ -55,11 +55,11 @@ After planning your networking, follow these steps:
 
 ### Your cutover strategy
 
-This strategy moves production traffic from the AWS environment to the Azure environment. 
+Plan how to will cutover production traffic from the AWS environment to the Azure environment. 
 
 If your SLA allows for a maintenance window, a blue/green approach is preferred. In this case, you maintain two environments. Blue is the current environment (AWS) and green is the new environment (Azure).
 
-In this scenario, you plan a migration window, run your workload in AWS as normal throughout the migration, and move traffic over to Azure after a successful dry run. Both environments run in parallel throughout the migration, allowing you to shift traffic back to AWS if issues arise in the Azure environment.
+In this scenario, you plan a migration window, run your workload in AWS as normal throughout the migration, and move traffic over to Azure after a successful dry run. Both environments run in parallel throughout the migration, allowing you to shift traffic back to AWS if issues arise in the Azure environment. In this case, you also need a rollback strategy specifically for any your database changes and/or messaging queue contents.
 
 Consider applying the [Strangler Fig façade](/azure/architecture/patterns/strangler-fig) as part of a controlled cutover strategy.
 
@@ -83,7 +83,6 @@ Your choice depends on the amount of data, type of data storage, and usage requi
 
 > [!TIP]
 > If you choose AWS DataSync, the DataSync agent needs to be deployed in Azure during the [prepare phase](./migrate-workload-from-aws-prepare.md).
-
 
 **Plan a maintenance window:** Schedule a dedicated window for your final cutover and decommissioning steps, document and communicate it with your stakeholders before you start migration. Include time for a possible rollback and DNS switch.
 ### Document in a runbook

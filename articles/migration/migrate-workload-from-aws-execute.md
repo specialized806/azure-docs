@@ -26,7 +26,6 @@ The goal of this phase is to migrate your workload to Azure with minimal downtim
 > 
 > The execute phase carries the highest risk of service disruption. Data synchronization issues, network misconfigurations, or unexpected application behaviors can cause outages or data loss. 
 
-
 ## Before cutover
 
 1. **Execute your data migration:** Align the order of operations with your cutover model.
