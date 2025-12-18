@@ -9,7 +9,8 @@ items:
     href: tools.md  
   - name: FAQ
     href: faq.yml
-  - name: Quickstarts
+
+- name: Quickstarts
   expanded: true
   items:
   - name: Create an Apache Airflow deployment on Astro
