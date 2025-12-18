@@ -178,16 +178,19 @@ items:
                 href: ../../data-factory/connector-azure-data-lake-storage.md?toc=/azure/storage/blobs/toc.json&bc=/azure/storage/blobs/breadcrumb/toc.json
           - name: BlobFuse
             items:
+              - name: Overview
+                href: blobfuse2-what-is.md
               - name: Get started
                 items:
-                  - name: Overview
-                    href: blobfuse2-what-is.md
+
                   - name: Install BlobFuse
                     href: blobfuse2-install.md
+                  - name: Mount a container
+                    href: blobfuse2-mount-container.md
+                  - name: BlobFuse and Linux file system compared
+                    href: blobfuse2-compare-linux-file-system.md
               - name: Configure BlobFuse
                 items:
-                  - name: How to configure BlobFuse
-                    href: blobfuse2-configuration.md?toc=/azure/storage/blobs/toc.json
                   - name: Create a configuration file
                     href: blobfuse2-configure.md
                   - name: Streaming versus caching mode
@@ -195,15 +198,7 @@ items:
                   - name: Configure streaming mode
                     href: blobfuse2-configure-streaming.md
                   - name: Configure caching mode
-                    href: blobfuse2-configure-file-cache.md
-              - name: Mount storage
-                items:
-                  - name: Mount a container
-                    href: blobfuse2-mount-container.md
-                  - name: BlobFuse command set
-                    href: blobfuse2-commands.md
-                  - name: BlobFuse and Linux file system compared
-                    href: blobfuse2-compare-linux-file-system.md
+                    href: blobfuse2-configure-caching.md
               - name: Metrics and logs
                 items:
                   - name: Health monitor
@@ -1170,6 +1165,8 @@ items:
                 items:
                   - name: Deploy BlobFuse v1 on Linux
                     href: storage-how-to-mount-container-linux.md
+              - name: Configure BlobFuse2
+                href: blobfuse2-configuration.md
               - name: Commands
                 items:
                   - name: BlobFuse2 mount
@@ -1559,7 +1556,7 @@ items:
           - name: Commands
             items:
               - name: The BlobFuse2 command set
-                href: blobfuse2-commands.md?toc=/azure/storage/blobs/toc.json
+                href: blobfuse2-commands.md
               - name: BlobFuse2 mount
                 href: blobfuse2-commands-mount.md?toc=/azure/storage/blobs/toc.json
                 items:

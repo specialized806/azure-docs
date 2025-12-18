@@ -11,128 +11,83 @@ ms.date: 12/10/2025
 
 ms.custom: linux-related-content
 
-# Customer intent: "As a Linux user, I want to mount Azure Blob Storage as a file system using BlobFuse2, so that I can perform standard file operations and improve access to my data in a familiar environment."
+# Customer intent: "As a Linux user, I want to install BlobFuse2 on my system, so that I can set up the necessary software to mount Azure Blob Storage containers as a file system."
 ---
 
 # Install BlobFuse2
 
-BlobFuse can be installed from Microsoft repository for Linux by using simple command to install the BlobFuse package. In addition, there is an option to build the binary from the source code. Refer [this page](https://github.com/Azure/azure-storage-fuse/wiki/Blobfuse2-Installation) for installation instructions.
+You can install BlobFuse2 from Microsoft repositories for Linux by using simple commands to install the BlobFuse package. If no package is available for your distribution and version, you can build the binary from source code.
 
-> [!IMPORTANT]
-> BlobFuse v1 support will be discontinued in September 2026. Migrate to BlobFuse v2 using the provided [instructions](https://github.com/Azure/azure-storage-fuse/blob/main/MIGRATION.md).
-> Visit [this](https://github.com/Azure/azure-storage-fuse/wiki/Blobfuse2-Supported-Platforms) page to see list of supported Linux distributions.
+## Determine if a package is available
 
-## How to install BlobFuse2
-
-You have two options for installing BlobFuse2:
-
-- [**Install BlobFuse2 from the Microsoft software repositories for Linux**](#option-1-install-blobfuse2-from-the-microsoft-software-repositories-for-linux) - This is the preferred method of installation. BlobFuse2 is available in the repositories for several common Linux distributions.
-
-- [**Build the BlobFuse2 binaries from source code**](#option-2-build-the-binaries-from-source-code) - You can build the BlobFuse2 binaries from source code if it is not available in the repositories for your distribution.
-
-### Option 1: Install BlobFuse2 from the Microsoft software repositories for Linux
-
-To see supported distributions, see [BlobFuse2 releases](https://github.com/Azure/azure-storage-fuse/releases).
-
-For information about libfuse support, see the [BlobFuse2 README](https://github.com/Azure/azure-storage-fuse/blob/main/README.md#distinctive-features-compared-to-blobfuse-v1x).
-
-To check your version of Linux, run the following command:
+First, check your Linux distribution and version by running the following command:
 
 ```bash
 cat /etc/*-release
 ```
 
-If no binaries are available for your distribution, you can [Option 2: Build the binaries from source code](#option-2-build-the-binaries-from-source-code).
+To determine if a package is available for your distribution and version, see [BlobFuse2 releases](https://github.com/Azure/azure-storage-fuse/releases).
 
-To install BlobFuse2 from the repositories:
+If no package is available for your distribution or version, you need to build the binary from source code. For detailed instructions, see the [Build the binaries from source code](#build-the-binaries-from-source-code) section of this article.
 
-> [Configure the Microsoft package repository](#configure-the-microsoft-package-repository)
->
-> [Install BlobFuse2](#install-blobfuse2)
+## Install BlobFuse2 from the Microsoft software repositories for Linux
 
-#### Configure the Microsoft package repository
+If a package is available for your Linux distribution and version, configure the [Linux Package Repository for Microsoft Products](/windows-server/administration/Linux-Package-Repository-for-Microsoft-Software). The following sections show example commands.
 
-Configure the [Linux Package Repository for Microsoft Products](/windows-server/administration/Linux-Package-Repository-for-Microsoft-Software).
+### [RHEL](#tab/RHEL)
 
-##### [RHEL](#tab/RHEL)
-
-As an example, on a Red Hat Enterprise Linux 8 distribution:
+For Red Hat Enterprise Linux distributions, run the following commands.
 
 ```bash
-sudo rpm -Uvh https://packages.microsoft.com/config/rhel/8/packages-microsoft-prod.rpm
+sudo rpm -Uvh https://packages.microsoft.com/config/rhel/<version-number>/packages-microsoft-prod.rpm
 sudo dnf update
+sudo yum install fuse3 fuse3-libs blobfuse2
 ```
 
-Similarly, change the URL to `.../rhel/7/...` to point to a Red Hat Enterprise Linux 7 distribution.
+Replace the `<version-number>` placeholder in this command with `8` or `7` depending on the version of your distribution.
 
-##### [Ubuntu](#tab/Ubuntu)
+### [Ubuntu](#tab/Ubuntu)
 
-Another example on an Ubuntu 20.04 distribution:
+For Ubuntu distributions, run the following commands.
 
 ```bash
-sudo wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb
+sudo wget https://packages.microsoft.com/config/ubuntu/<version-number>/packages-microsoft-prod.deb
 sudo dpkg -i packages-microsoft-prod.deb
 sudo apt-get update
+sudo apt-get install fuse3 blobfuse2
 ```
 
-Similarly, change the URL to `.../ubuntu/16.04/...` or `.../ubuntu/18.04/...` to reference another Ubuntu version.
+Replace the `<version-number>` placeholder with your Ubuntu version (for example: `20.04` or `22.04`).
 
-##### [SLES](#tab/SLES)
+### [SLES](#tab/SLES)
+
+For SUSE Linux Enterprise (SLES) distributions, run the following commands.
 
 ```bash
 sudo rpm -Uvh https://packages.microsoft.com/config/sles/15/packages-microsoft-prod.rpm
 sudo zypper refresh
+sudo zypper install fuse3 blobfuse2
 ```
 
-##### [Azure Linux](#tab/tdnf)
+### [Azure Linux](#tab/tdnf)
+
+For Azure Linux distributions, run the following commands.
 
 ```bash
 sudo tdnf install -y https://packages.microsoft.com/config/mariner/2.0/packages-microsoft-prod.rpm
 sudo tdnf repolist --refresh
-```
-
----
-
-#### Install BlobFuse2 and fuse
-
-##### [RHEL](#tab/RHEL)
-
-```bash
-sudo yum install fuse3 fuse3-libs blobfuse2
-```
-
-Similarly, change the package name to `blobfuse2-<version>` to install specific version. 
-
-##### [Ubuntu](#tab/Ubuntu)
-
-```bash
-sudo apt-get install fuse3 blobfuse2
-```
-Similarly, change the package name to `blobfuse2=<version>` to install specific version. 
-
-##### [SLES](#tab/SLES)
-
-```bash
-sudo zypper install fuse3 blobfuse2
-```
-
-Similarly, change the package name to `blobfuse2-<version>` to install specific version. 
-
-##### [Azure Linux](#tab/tdnf)
-
-```bash
 sudo tdnf install fuse fuse3 blobfuse2
 ```
 
 ---
 
-### Option 2: Build the binaries from source code
+## Build the binaries from source code
 
-First, install GoLang 1.20.X. See [Go](https://go.dev/doc/install). Then, clone the repository and install the dependencies.
+If no package is available for your distribution, you can build BlobFuse2 from source code. First, install `Go 1.20.x` or later. For installation instructions, see [Go](https://go.dev/doc/install). Then, follow these steps to clone the repository and build the binaries.
 
-#### Clone the repository
+### Step 1: Clone the repository
 
-Use the following commands to clone the BlobFuse2 repository.
+Use the following commands to clone the BlobFuse2 repository:
 
 ```bash
 git clone https://github.com/Azure/azure-storage-fuse/
@@ -140,29 +95,38 @@ cd azure-storage-fuse
 git checkout -b main origin/main
 ```
 
-If you do not have git, install git by using `sudo apt-get install git`
+> [!NOTE]
+> If Git isn't installed on your system, install it by running `sudo apt-get install git` (Ubuntu/Debian) or use the appropriate command for your distribution.
 
-#### Install the dependencies
+### Step 2: Install the dependencies
 
-##### [RHEL](#tab/RHEL)
+#### [RHEL](#tab/RHEL)
+
+For Red Hat Enterprise Linux distributions, run the following command.
 
 ```bash
 sudo yum install fuse3 fuse3-devel
 ```
 
-##### [Ubuntu](#tab/Ubuntu)
+#### [Ubuntu](#tab/Ubuntu)
+
+For Ubuntu distributions, run the following command.
 
 ```bash
 sudo apt-get install fuse3 libfuse3-dev 
 ```
 
-##### [SLES](#tab/SLES)
+#### [SLES](#tab/SLES)
+
+For SUSE Linux Enterprise (SLES) distributions, run the following command.
 
 ```bash
 sudo zypper install fuse3 libfuse3-dev 
 ```
 
-##### [Azure Linux](#tab/tdnf)
+#### [Azure Linux](#tab/tdnf)
+
+For Azure Linux distributions, run the following command.
 
 ```bash
 sudo tdnf install fuse libfuse-dev fuse3 libfuse3-dev 
@@ -170,29 +134,37 @@ sudo tdnf install fuse libfuse-dev fuse3 libfuse3-dev
 
 ---
 
-#### Build BlobFuse2
+### Step 3: Build BlobFuse2
 
 Run the build script located in the root folder of the repository.
 
-##### [RHEL](#tab/RHEL)
+#### [RHEL](#tab/RHEL)
+
+For Red Hat Enterprise Linux distributions, run the following command.
 
 ```bash
 ./build.sh
 ```
 
-##### [Ubuntu](#tab/Ubuntu)
+#### [Ubuntu](#tab/Ubuntu)
+
+For Ubuntu distributions, run the following command.
 
 ```bash
 ./build.sh fuse2
 ```
 
-##### [SLES](#tab/SLES)
+#### [SLES](#tab/SLES)
+
+For SUSE Linux Enterprise (SLES) distributions, run the following command.
 
 ```bash
 ./build.sh
 ```
 
-##### [Azure Linux](#tab/tdnf)
+#### [Azure Linux](#tab/tdnf)
+
+For Azure Linux distributions, run the following command.
 
 ```bash
 ./build.sh
@@ -200,7 +172,7 @@ Run the build script located in the root folder of the repository.
 
 ---
 
-If you would also like to build the health monitor binary, run the following command:
+To build the optional health monitor binary, run the following command:
 
 ```bash
 ./build.sh health
@@ -208,5 +180,7 @@ If you would also like to build the health monitor binary, run the following com
 
 ## Next steps
 
-Put links here.
+- [Configure BlobFuse2](blobfuse2-configure.md)
+- [Mount an Azure Blob Storage container](blobfuse2-mount-container.md)
+- [BlobFuse2 commands](blobfuse2-commands.md)
 
