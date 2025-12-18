@@ -14,7 +14,7 @@ ms.custom: linux-related-content
 # Customer intent: "As a Linux user, I want to mount Azure Blob Storage as a file system using BlobFuse2, so that I can perform standard file operations and improve access to my data in a familiar environment."
 ---
 
-# Configure BlobFuse2 settings
+# Create a BlobFuse2 configuration file
 
 A BlobFuse configuration file is used to define how BlobFuse connects to Azure Blob Storage and manages its behavior when mounting a container as a filesystem on Linux.
 
@@ -112,4 +112,7 @@ For details on the correct format, please refer to this [configuration file](htt
 
 ## Next steps
 
-Put links here.
+- [How to create a configuration file](https://github.com/Azure/azure-storage-fuse/wiki/BlobFuse2-ConfigFile)
+- [Sample file cache configuration](https://github.com/Azure/azure-storage-fuse/blob/main/sampleFileCacheConfig.yaml)
+- [Sample block cache configuration](https://github.com/Azure/azure-storage-fuse/blob/main/sampleBlockCacheConfig.yaml)
+- [All configuration options](https://github.com/Azure/azure-storage-fuse/blob/main/setup/baseConfig.yaml)

@@ -9,68 +9,53 @@ ms.service: azure-blob-storage
 ms.topic: how-to
 ms.date: 12/18/2025
 ms.custom: linux-related-content
-# Customer intent: As a Linux user, I want to mount an Azure Blob Storage container using BlobFuse2, so that I can efficiently access and manage blob data as if it were part of the local file system.
+# Customer intent: As a developer or system administrator using Linux, I want to learn how to mount Azure Blob Storage containers with BlobFuse2, so that I can access and work with blob data through the familiar Linux file system interface.
 ---
 
 # How to mount an Azure Blob Storage container on Linux with BlobFuse2
 
-You can mount a container using by using command-line parameters or by either the command-line interface (CLI) or a configuration file.
+You can mount a container by using the `mount` command. You can either include your desired configuration settings as command parameters or reference a configuration file that contains your settings.
 
-## Mount a container by using the command-line
+## Mount a container by including settings at the command line
 
-The simplest way to mount a container is by using the mount command. Parameters such as memory, disk limits, and parallelism are automatically configured based on your system configuration. For a complete list of CLI parameters, see [CLI Parameters](https://github.com/Azure/azure-storage-fuse/wiki/Blobfuse2-Cli-Parameters).
+The simplest way to mount a container is to use the `mount` command and specify the data transfer mode as a parameter. The command automatically configures other parameters, such as memory, disk limits, and parallelism, based on your system configuration.
 
-First, set the account name, container name, authentication type, and authentication details using environment variables. For a complete list of environment variables, see [Complete list of Environment Variables](https://github.com/Azure/azure-storage-fuse/wiki/Blobfuse-Environment-Variables).
+1. Set environment variables for the account name, container name, authentication type, and authentication details. See [BlobFuse environment variables](https://github.com/Azure/azure-storage-fuse/wiki/Blobfuse-Environment-Variables).
 
-Before mounting a container, choose whether you want to use streaming mode (block cache) or caching mode (file cache) for data transfer. See [Streaming versus caching mode](blobfuse2-streaming-versus-caching.md).
+1. Decide whether you want to mount the container in _caching mode_ or _streaming mode_. See [Streaming versus caching mode](blobfuse2-streaming-versus-caching.md).
 
-### Option 1: Mount the container in caching mode
+1. Use the `mount` command and specify the desired data mode as a parameter.
 
-To mount a Blob Storage container in caching (file cache) mode, use the `mount` command and specify the path of the local file cache.  
+   The following example mounts a container in caching mode:
 
-```bash
-sudo blobfuse2 mount <mount-path> --tmp-path=<local-cache-path>
-```
+   ```bash
+   sudo blobfuse2 mount <mount-path> --tmp-path=<local-cache-path>
+   ```
 
-- Replace the `<mount-path>` placeholder with the name of the Blob Storage container (For example: `~/mycontainer`).
+   The following example mounts a container in streaming mode:
 
-- Replace the `<local-cache-path>` placeholder with the path of the local file cache.
+   ```bash
+   sudo blobfuse2 mount <mount-path> --streaming
+   ```
 
-Or Streaming (block cache) mode using following command:
+   Replace `<mount-path>` with the path where you want to mount the container (for example: `~/mycontainer`). For caching mode, replace `<local-cache-path>` with the path for the local file cache.
 
-### Option 2: Mount the container in streaming mode
+For a complete list of `mount` command parameters, see [CLI Parameters](https://github.com/Azure/azure-storage-fuse/wiki/Blobfuse2-Cli-Parameters).
 
-To mount a Blob Storage container in streaming mode, use the `mount` command with the `--streaming` parameter.  
+## Mount a container by referencing a configuration file
 
-```bash
-sudo blobfuse2 mount <mount-path> --streaming
-```
-
-Replace the `<mount-path>` placeholder with the name of the Blob Storage container (For example: `~/mycontainer`).
-
-## Mount using a configuration file
-
-You can specify the necessary BlobFuse2 configuration and Azure Storage credentials in a YAML configuration file. BlobFuse2 can then use this file to mount the container with the following command:
+You can specify the necessary BlobFuse2 configuration and Azure Storage credentials in a YAML configuration file. The following example mounts a container by referencing a configuration file.
 
 ```bash
-sudo blobfuse2 mount <mount-path> –-config-file=<configuration-file>
+sudo blobfuse2 mount <mount-path> --config-file=<configuration-file>
 ```
 
-- Replace the `<mount-path>` placeholder with the name of the Blob Storage container (For example: `~/mycontainer`).
+Replace `<mount-path>` with the path where you want to mount the container and `<configuration-file>` with the path to your configuration file (for example: `./config.yaml`).
 
-- Replace the `<configuration-file>` placeholder with the path to your configuration file (for example: `./config.yaml`).
+To learn more about how to configure BlobFuse2 by using a configuration file, see [Create a BlobFuse2 configuration file](blobfuse2-configure.md).
 
 > [!NOTE]
 > For a full list of mount options, see [BlobFuse2 mount commands](blobfuse2-commands-mount.md).
-
-For detailed information about using a configuration file, see [Using a configuration file](https://github.com/Azure/azure-storage-fuse/wiki/Mount-Blobfuse#using-a-configuration-file-config-file).
-
-For additional configuration resources, see:
-
-- [How to create a configuration file](https://github.com/Azure/azure-storage-fuse/wiki/BlobFuse2-ConfigFile)
-- [Sample file cache configuration](https://github.com/Azure/azure-storage-fuse/blob/main/sampleFileCacheConfig.yaml)
-- [Sample block cache configuration](https://github.com/Azure/azure-storage-fuse/blob/main/sampleBlockCacheConfig.yaml)
-- [All configuration options](https://github.com/Azure/azure-storage-fuse/blob/main/setup/baseConfig.yaml)
 
 ## Work with data in a mounted container
 
@@ -84,11 +69,11 @@ echo "hello world" > test/blob.txt
 
 You can work with BlobFuse2-mounted storage similarly to how you work with the native Linux file system. It uses a virtual directory scheme with forward slashes (`/`) as delimiters in file paths and supports basic file system operations such as `mkdir`, `opendir`, `readdir`, `rmdir`, `open`, `read`, `create`, `write`, `close`, `unlink`, `truncate`, `stat`, and `rename`.
 
-However, there are some key differences between BlobFuse2 and Linux file systems. For more information, see [BlobFuse2 and Linux file systems compared](blobfuse2-compare-linux-file-system.md).
+However, some key differences exist between BlobFuse2 and Linux file systems. For more information, see [BlobFuse2 and Linux file systems compared](blobfuse2-compare-linux-file-system.md).
 
 ## Next steps
 
-Now that you've mounted your container, learn more about using BlobFuse2:
+Now that you mounted your container, learn more about using BlobFuse2:
 
 - [Configure BlobFuse2](blobfuse2-configure.md)
 - [BlobFuse2 commands](blobfuse2-commands.md)
