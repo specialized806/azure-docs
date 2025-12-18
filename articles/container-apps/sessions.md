@@ -78,25 +78,27 @@ Dynamic sessions are available in the following regions:
 | Region | Code interpreter | Custom container |
 |--------|------------------|------------------|
 | Australia East | ✔ | ✔ |
-| Brazil South | - | ✔ |
-| Canada East | - | ✔ |
+| Brazil South | ✔ | ✔ |
+| Canada Central | ✔ | ✔ |
+| Canada East | ✔ | ✔ |
+| Central US | ✔ | ✔ |
 | East Asia | ✔ | ✔ |
 | East US | ✔ | ✔ |
 | East US 2 | ✔ | ✔ |
-| France Central | - | ✔ |
+| France Central | ✔ | ✔ |
 | Germany West Central | ✔ | ✔ |
 | Italy North | ✔ | ✔ |
-| Japan East | ✔ | - |
-| Korea Central | - | ✔ |
+| Japan East | ✔ | ✔ |
+| Korea Central | ✔ | ✔ |
 | North Central US | ✔ | ✔ |
 | North Europe | ✔ | ✔ |
 | Norway East | ✔ | ✔ |
 | Poland Central | ✔ | ✔ |
-| South Africa North | - | ✔ |
-| South India | - | ✔ |
+| South Africa North | ✔ | ✔ |
+| South India | ✔ | ✔ |
 | Sweden Central | ✔ | ✔ |
 | Switzerland North | ✔ | ✔ |
-| UAE North | - | ✔ |
+| UAE North | ✔ | ✔ |
 | UK South | ✔ | ✔ |
 | West Central US | ✔ | ✔ |
 | West Europe | ✔ | ✔ |

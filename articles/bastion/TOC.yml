@@ -6,6 +6,8 @@
     href: bastion-overview.md
   - name: What's new in Bastion?
     href: whats-new.md
+  - name: Cost optimization principles
+    href: cost-optimization.md
 - name: Quickstarts & Tutorials
   expanded: true
   items:
@@ -45,6 +47,8 @@
       href: ../reliability/reliability-bastion.md?toc=/azure/bastion/TOC.json
 - name: Security
   items:
+  - name: Secure Bastion
+    href: secure-bastion.md
   - name: Security baseline
     href: /security/benchmark/azure/baselines/bastion-security-baseline?toc=/azure/bastion/TOC.json
   - name: Azure Security blog

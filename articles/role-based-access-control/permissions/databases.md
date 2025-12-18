@@ -3,9 +3,9 @@ title: Azure permissions for Databases - Azure RBAC
 description: Lists the permissions for the Azure resource providers in the Databases category.
 ms.service: role-based-access-control
 ms.topic: generated-reference
-author: jenniferf-skc
+author: rolyon
 manager: pmwongera
-ms.author: jfields
+ms.author: rolyon
 ms.date: 05/25/2025
 ms.custom: generated
 ---
@@ -85,6 +85,7 @@ Azure service: [Azure Cache for Redis](/azure/azure-cache-for-redis/)
 > | Microsoft.Cache/redisEnterprise/databases/listKeys/action | View the value of Redis Enterprise database access keys in the management portal |
 > | Microsoft.Cache/redisEnterprise/databases/regenerateKey/action | Change the value of Redis Enterprise database access keys in the management portal |
 > | Microsoft.Cache/redisEnterprise/databases/operationResults/read | View the result of Redis Enterprise database operations in the management portal |
+> | Microsoft.Cache/redisEnterprise/databases/accessPolicyAssignments/write | Create or update access policy assignments for a Redis Enterprise database |
 > | Microsoft.Cache/redisEnterprise/operationResults/read | View the result of Redis Enterprise operations in the management portal |
 > | Microsoft.Cache/redisEnterprise/privateEndpointConnectionProxies/validate/action | Validate the private endpoint connection proxy |
 > | Microsoft.Cache/redisEnterprise/privateEndpointConnectionProxies/read | Get the private endpoint connection proxy |

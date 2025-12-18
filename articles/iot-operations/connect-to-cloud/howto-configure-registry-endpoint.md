@@ -1,18 +1,18 @@
 ---
-title: Configure Registry Endpoints in Azure IoT Operations (Preview)
+title: Configure registry endpoints in Azure IoT Operations
 description: Learn how to configure registry endpoints for container registries in Azure IoT Operations data flow graphs.
-author: PatAltimore
-ms.author: patricka
+author: sethmanheim
+ms.author: sethm
 ms.service: azure-iot-operations
 ms.subservice: azure-data-flows
 ms.topic: how-to
-ms.date: 07/22/2025
+ms.date: 12/17/2025
 ai-usage: ai-assisted
 
 #CustomerIntent: As an operator, I want to understand how to configure registry endpoints in Azure IoT Operations so that I can pull WASM modules and graph definitions from container registries.
 ---
 
-# Configure registry endpoints (preview)
+# Configure registry endpoints
 
 [!INCLUDE [kubernetes-management-preview-note](../includes/kubernetes-management-preview-note.md)]
 
@@ -20,7 +20,7 @@ Data flow graphs use registry endpoints to pull WebAssembly (WASM) modules and g
 
 ## Prerequisites
 
-- An instance of [Azure IoT Operations](../deploy-iot-ops/howto-deploy-iot-operations.md), version 1.2 preview or later
+- An instance of [Azure IoT Operations](../deploy-iot-ops/howto-deploy-iot-operations.md), version 1.2 or later
 - Access to a container registry, such as Azure Container Registry
 
 ## Registry endpoint overview
@@ -28,7 +28,7 @@ Data flow graphs use registry endpoints to pull WebAssembly (WASM) modules and g
 A registry endpoint defines the connection details and authentication method for accessing a container registry. Registry endpoints are used by:
 
 - **Data flow graphs**: To pull WASM modules and graph definitions
-- **Akri connectors**: To pull custom discovery handlers and protocol adapters
+- **Akri connectors**: To pull custom connector templates
 
 Registry endpoints support authentication through:
 - System-assigned managed identity
@@ -39,6 +39,9 @@ Registry endpoints support authentication through:
 ## Create a registry endpoint
 
 You can create a registry endpoint using Bicep or Kubernetes.
+
+> [!IMPORTANT]
+> Currently, there's a known issue when using registry endpoint resources with Akri connectors. For more information, see [Akri connectors don't work with registry endpoint resources](../troubleshoot/known-issues.md#akri-connectors-dont-work-with-registry-endpoint-resources).
 
 <!-- 
 # [Operations experience](#tab/portal)
@@ -116,7 +119,7 @@ Deploy the Bicep file using Azure CLI:
 az deployment group create --resource-group <RESOURCE_GROUP> --template-file <FILE>.bicep
 ```
 
-# [Kubernetes](#tab/kubernetes)
+# [Kubernetes (preview)](#tab/kubernetes)
 
 Create a Kubernetes manifest `.yaml` file with the following content:
 
@@ -198,7 +201,7 @@ authentication: {
 }
 ```
 
-# [Kubernetes](#tab/kubernetes)
+# [Kubernetes (preview)](#tab/kubernetes)
 
 ```yaml
 authentication:
@@ -255,7 +258,7 @@ authentication: {
 }
 ```
 
-# [Kubernetes](#tab/kubernetes)
+# [Kubernetes (preview)](#tab/kubernetes)
 
 ```yaml
 authentication:
@@ -320,7 +323,7 @@ authentication: {
 }
 ```
 
-# [Kubernetes](#tab/kubernetes)
+# [Kubernetes (preview)](#tab/kubernetes)
 
 ```yaml
 authentication:
@@ -356,7 +359,7 @@ authentication: {
 }
 ```
 
-# [Kubernetes](#tab/kubernetes)
+# [Kubernetes (preview)](#tab/kubernetes)
 
 ```yaml
 authentication:
@@ -414,7 +417,7 @@ resource acrRegistryEndpoint 'Microsoft.IoTOperations/instances/registryEndpoint
 }
 ```
 
-# [Kubernetes](#tab/kubernetes)
+# [Kubernetes (preview)](#tab/kubernetes)
 
 ```yaml
 apiVersion: connectivity.iotoperations.azure.com/v1beta1

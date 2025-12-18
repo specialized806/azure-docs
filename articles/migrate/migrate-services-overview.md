@@ -6,6 +6,7 @@ ms.author: vibansa
 ms.manager: abhemraj
 ms.topic: overview
 ms.service: azure-migrate
+ms.reviewer: v-uhabiba
 ms.date: 03/20/2025
 ms.custom: mvc, engagement-fy25
 # Customer intent: "As an IT manager, I want to utilize Azure Migrate to assess and execute the migration of our on-premises workloads to Azure, so that I can minimize downtime and ensure a cost-effective and efficient transition to the cloud."
@@ -15,8 +16,11 @@ ms.custom: mvc, engagement-fy25
 
 Azure Migrate is a service that helps you decide on, plan, and execute your migration to Azure. Azure Migrate helps you find the best migration path, assess for Azure readiness and cost of hosting workloads on Azure, and perform the migration with minimal downtime and risk. Azure Migrate provides support for servers, databases, web apps, virtual desktops, and large-scale offline migration by using Azure Data Box.
 
+::: moniker range="migrate-classic"
 > [!NOTE]
 > *Azure Migrate Classic* is the classic Azure Migrate experience where you can discover, plan, and migrate workloads. This view doesn't support application and cross-workload views.
+::: moniker-end
+
 
 ## Migration phases
 
@@ -25,6 +29,12 @@ Azure Migrate provides a simplified migration, modernization, and optimization s
 A general migration journey includes the following phases. Azure Migrate provides support at each phase.
 
 :::image type="content" source="./media/migrate-services-overview/migrate-journey.png" alt-text="Screenshot that shows the phases of migrating workloads to Azure." lightbox="./media/migrate-services-overview/migrate-journey.png":::
+
+Watch the following video to learn about key phases of a typical migration: Decide, Plan, and Execute—and how Azure Migrate supports each step.
+
+
+> [!VIDEO https://learn-video.azurefd.net/vod/player?id=edd9a562-f4c1-49cb-8312-952f214a1cd6]
+
 
 ### Decide
 

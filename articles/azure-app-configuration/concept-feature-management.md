@@ -5,8 +5,8 @@ author: maud-lv
 ms.author: malev
 ms.service: azure-app-configuration
 ms.custom: devdivchpfy22
-ms.topic: conceptual
-ms.date: 03/24/2025
+ms.topic: concept-article
+ms.date: 11/21/2025
 ---
 
 # Feature management overview
