@@ -27,8 +27,8 @@ When deploying your Python function app to Azure, keep these packaging requireme
 
 - **Package contents, not the folder**: Deploy the contents of your project folder, not the folder itself.
 - **Root-level `host.json`**: Ensure a single `host.json` file is at the root of the deployment package, not nested in a subfolder.
-- **Exclude development files**: You can exclude folders like `tests/`, `.vscode/`, and `.venv*/` from the deployed package by including them in `.funcignore`.
-- **The build environment must match the production environment**: Your dependencies must be built on an ubuntu machine using the same python version as the production app. [Remote build](#remote-build-) handles this automatically.
+- **Exclude development files**: You can exclude folders like `tests/`, `.github/`, and `.venv*/` from the deployed package by including them in `.funcignore`.
+- **The build environment must match the production environment**: Your dependencies must be built on an ubuntu machine using the same python version as the production app. [Remote build](#remote-build) handles this automatically.
 - **Dependencies must be installed into `./.python_packages/lib/site-packages`**: Remote build handles this by installing all dependencies listed in `requirements.txt` into the correct directory.
 
 ## Remote build
@@ -85,7 +85,7 @@ When you set [`PIP_EXTRA_INDEX_URL`], remote builds use this package feed during
 ### Local packages or wheels
 Local packages and wheels are supported when building python Azure Function apps.
 
-To install these packages or wheels using [remote build](#remote-build-), you can include the dependencies in your `requirements.txt` file and deploy with [remote build enabled](#remote-build-).
+To install these packages or wheels using [remote build](#remote-build), you can include the dependencies in your `requirements.txt` file and deploy with [remote build enabled](#remote-build).
 
 For example, your `requirements.txt` file might look like the following:
 ```text
