@@ -1,7 +1,7 @@
 ### YamlMime:FAQ
 metadata:
   title: LambdaTest - HyperExecute FAQ
-  description: Answers to common questions about using LambdaTest - HyperExecute on Azure.
+  description: Answers to common questions about using LambdaTest - HyperExecute on Azure, such as resource creation and management.
   ms.service: partner-services
   ms.topic: faq
   ai-usage: ai-generated
@@ -30,7 +30,7 @@ sections:
     questions:
       - question: How do I create a LambdaTest - HyperExecute resource?
         answer: |
-          In the Azure portal, search for LambdaTest - HyperExecute and select **Create**. On the *Basics* tab, choose your subscription and resource group, provide a unique resource name, select a region, and enter your subscribed license count. Optionally configure single sign-on and tags, then review and create the resource.
+          In the Azure portal, search for LambdaTest - HyperExecute and select **Create**. On the **Basics** tab, choose your subscription and resource group, provide a unique resource name, select a region, and enter your subscribed license count. Optionally configure single sign-on and tags, then review and create the resource.
 
       - question: Which details are required on the Basics tab?
         answer: |
@@ -41,7 +41,7 @@ sections:
 
       - question: Can I configure single sign-on and tags during creation?
         answer: |
-          Yes. Use the *Single sign-on* tab to set up SSO and the *Tags* tab to add resource tags before you create the resource.
+          Yes. Use the **Single sign-on** tab to set up single sign-on and the **Tags** tab to add resource tags before you create the resource.
 
   - name: Resource management
     questions:
