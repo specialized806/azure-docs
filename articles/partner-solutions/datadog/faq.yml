@@ -1,7 +1,7 @@
 ### YamlMime:FAQ
 metadata:
   title: Datadog on Azure frequently asked questions
-  description: Answers to common questions about using Datadog on Azure
+  description: Answers to common questions about using Datadog on Azure, including features, billing, and troubleshooting.
   ms.service: partner-services
   ms.topic: faq
   ai-usage: ai-generated
@@ -24,7 +24,7 @@ sections:
 
       - question: Can I link to an existing Datadog organization or do I need to create a new one?
         answer: |
-          You can either [create a new Datadog organization](create.md) or [link to an existing Datadog organization](link-to-existing-organization.md). When linking to an existing organization, Azure authenticates with your Datadog account. By default, Azure links your current Datadog organization to your Datadog resource.
+          You can either [create a new Datadog organization](create.md) or [link to an existing Datadog organization](link-to-existing-organization.md). When you link to an existing organization, Azure authenticates with your Datadog account. By default, Azure links your current Datadog organization to your Datadog resource.
 
       - question: What are the prerequisites for creating a Datadog resource?
         answer: |
@@ -48,19 +48,19 @@ sections:
 
       - question: How do I configure metrics and logs?
         answer: |
-          You can configure resources to send metrics and logs to Datadog during resource creation or by selecting **Datadog organization configurations > Metrics and Logs** from the service menu. Configuration options include:
-          - Silence monitoring for expected Azure VM shutdowns
+          You can configure resources to send metrics and logs to Datadog during resource creation or by selecting **Datadog organization configurations** > **Metrics and Logs** from the service menu. Configuration options include:
+          - Silence monitoring for expected Azure virtual machine shutdowns
           - Collect custom metrics from App Insights
           - Send subscription activity logs
           - Send Azure resource logs for all defined sources
 
       - question: Can I monitor multiple Azure subscriptions with one Datadog resource?
         answer: |
-          Yes. You can add or remove subscriptions by selecting **Datadog organization configurations > Monitored Subscriptions**. To perform these actions, you must have both `Microsoft.Authorization/roleAssignments/write` and `Microsoft.Authorization/roleAssignments/delete` permissions. When you add subscriptions, the system updates the Monitoring Reader role assignment on the System Managed Identity linked to the resource.
+          Yes. You can add or remove subscriptions by selecting **Datadog organization configurations** > **Monitored Subscriptions**. To perform these actions, you must have both `Microsoft.Authorization/roleAssignments/write` and `Microsoft.Authorization/roleAssignments/delete` permissions. When you add subscriptions, the system updates the Monitoring Reader role assignment on the System Managed Identity linked to the resource.
 
       - question: Does Datadog support single sign-on?
         answer: |
-          Yes. If your organization uses Microsoft Entra ID as its identity provider, you can establish single sign-on from the Azure portal to Datadog. You configure this during resource creation or by selecting **Settings > Single sign-on** from the service menu.
+          Yes. If your organization uses Microsoft Entra ID as its identity provider, you can establish single sign-on from the Azure portal to Datadog. You configure this feature during resource creation or by selecting **Settings** > **Single sign-on** from the service menu.
 
       - question: How do I install Datadog agents on Azure resources?
         answer: |
@@ -90,11 +90,11 @@ sections:
 
       - question: Why are diagnostic settings still active after disabling the Datadog resource?
         answer: |
-          If there's a delete lock on the resources or resource group, it prevents cleanup of diagnostic settings. Remove the delete lock to stop log forwarding. If the lock is removed after the Datadog resource is deleted, you must clean up the diagnostic settings manually.
+          If there's a lock on the resources or resource group, it prevents cleanup of diagnostic settings. Remove the lock to stop log forwarding. If the lock is removed after the Datadog resource is deleted, you must clean up the diagnostic settings manually.
 
       - question: How do I get support for Datadog?
         answer: |
-          Contact [Datadog support](https://www.datadoghq.com/support) for customer support. You can also request support in the Azure portal by selecting **Support + Troubleshooting > New support request** from the service menu.
+          Contact [Datadog support](https://www.datadoghq.com/support) for customer support. You can also request support in the Azure portal by selecting **Support + Troubleshooting** > **New support request** from the service menu.
 
 additionalContent: |
   ## Related content
