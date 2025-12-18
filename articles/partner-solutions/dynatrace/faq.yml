@@ -1,7 +1,7 @@
 ### YamlMime:FAQ
 metadata:
   title: Azure Native Dynatrace Service FAQ
-  description: Answers to common questions about using Azure Native Dynatrace Service in Azure.
+  description: Answers to common questions about using Azure Native Dynatrace Service in Azure, including prerequisites, setup, and management.
   ms.service: partner-services
   ms.subservice: dynatrace
   ai-usage: ai-generated
@@ -28,9 +28,9 @@ sections:
       - question: What gets created for billing and monitoring?
         answer: |
           When you use the integrated experience, three entities are mapped:
-          - **Dynatrace resource in Azure** — Created in the subscription and resource group you select; used to manage the environment.
-          - **Dynatrace environment (SaaS)** — Created on Dynatrace SaaS when you create a new environment, or linked when you connect an existing environment.
-          - **Marketplace SaaS resource** — Created based on the plan you select; used for billing.
+          - **Dynatrace resource in Azure:** Created in the subscription and resource group you select; used to manage the environment.
+          - **Dynatrace environment (SaaS):** Created on Dynatrace SaaS when you create a new environment, or linked when you connect an existing environment.
+          - **Marketplace SaaS resource:** Created based on the plan you select; used for billing.
           For details, see [Overview](overview.md#billing).
 
   - name: Setup and access
@@ -74,7 +74,7 @@ sections:
 
       - question: Why do diagnostic settings persist after I disable the resource or change tag rules?
         answer: |
-          A delete lock on the resource or resource group can prevent cleanup of diagnostic settings. Remove the lock to stop forwarding. If the lock is removed after the Dynatrace resource is deleted, clean up diagnostic settings manually. See [Troubleshooting](troubleshoot.md#diagnostic-settings-are-active-even-after-disabling-the-dynatrace-resource-or-applying-necessary-tag-rules).
+          A delete lock on the resource or resource group can prevent cleanup of diagnostic settings. To stop forwarding, remove the lock. If the lock is removed after the Dynatrace resource is deleted, clean up diagnostic settings manually. See [Troubleshooting](troubleshoot.md#diagnostic-settings-are-active-even-after-disabling-the-dynatrace-resource-or-applying-necessary-tag-rules).
 
   - name: Monitoring with Dynatrace OneAgent
     questions:
@@ -84,7 +84,7 @@ sections:
 
       - question: Why can’t I install OneAgent on a virtual machine?
         answer: |
-          OneAgent installation is disabled if the VM is stopped. Start the VM and try again. If a VM shows OneAgent installed and **Uninstall extension** is disabled, another Dynatrace resource configured the agent; make changes from that resource. See the VM tab in [Manage](manage.md#monitor-resources-using-dynatrace-oneagent).
+          OneAgent installation is disabled if the virtual machine is stopped. Start the virtual machine and try again. If a virtual machine shows OneAgent installed and **Uninstall extension** is disabled, another Dynatrace resource configured the agent; make changes from that resource. See the virtual machine tab in [Manage](manage.md#monitor-resources-using-dynatrace-oneagent).
 
       - question: AKS installation or uninstallation options are inactive. What should I do?
         answer: |
@@ -138,7 +138,7 @@ sections:
     questions:
       - question: Why can’t I create a Dynatrace resource?
         answer: |
-          Ensure you have **Owner** or **Contributor** access on the subscription. Creation can also fail if the user profile in Microsoft Entra ID lacks a **Last Name** value; ask your tenant admin to update the profile and try again. See [Troubleshooting](troubleshoot.md#unable-to-create-dynatrace-resource).
+          Ensure you have **Owner** or **Contributor** access on the subscription. Creation can also fail if the user profile in Microsoft Entra ID lacks a **Last Name** value. Ask your tenant admin to update the profile and try again. See [Troubleshooting](troubleshoot.md#unable-to-create-dynatrace-resource).
 
       - question: How do I get support?
         answer: |
