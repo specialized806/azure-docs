@@ -46,7 +46,7 @@ Choose the environment that fits your workflow and jump into Azure Functions for
 
 ## Building your function app
 
-This section covers the essential components for creating and structuring your Python function app, including [programming models](#programming-model), [project organization](#folder-structure), [triggers and bindings](#triggers-and-bindings), and [dependency management](#package-management).
+This section covers the essential components for creating and structuring your Python function app. Topics include the [programming model](#programming-model), [project structure](#folder-structure), [triggers and bindings](#triggers-and-bindings), and [dependency management](#package-management).
 
 ### Programming model
 ::: zone pivot="python-mode-configuration"
@@ -72,7 +72,7 @@ Here's the corresponding `function.json` file:
 - To send a name in this example, append `?name={name}` to the exposed function URL. For example, if running locally, the full URL may look like `http://localhost:7071/api/http_trigger?name=Test`.
 For examples using bindings, see [Triggers and Bindings](#triggers-and-bindings).
 
-It's recommended to use **type annotations** to improve IntelliSense and editor support:
+Use **type annotations** to improve IntelliSense and editor support:
 ```python
 def http_trigger(req: func.HttpRequest) -> str:
 ```
@@ -172,7 +172,7 @@ def http_trigger(req):
 For examples using bindings, see [Triggers and Bindings](#triggers-and-bindings).
 
 
-It's recommended to use **type annotations** to improve IntelliSense and editor support:
+Use **type annotations** to improve IntelliSense and editor support:
 ```python
 def http_trigger(req: func.HttpRequest) -> str:
 ```
@@ -256,7 +256,7 @@ Use the following structure for a Python Azure Functions project:
 
 
 > For guidance on unit testing, see [Unit Testing](#unit-testing).
-> For container deployments, see [Deploy with custom containers](./functions-how-to-custom-container.md).
+> For container deployments, see [Deploy with custom containers](./functions-how-to-custom-container.md?pivots=azure-functions).
 
 ::: zone-end
 
@@ -431,7 +431,7 @@ def timer_trigger_with_blob(mytimer: func.TimerRequest,
 ### SDK type bindings
 For select triggers and bindings, you can work with data types implemented by the underlying Azure SDKs and 
 frameworks. These _SDK type bindings_ let you interact with binding data as if you were using the underlying service 
-SDK. For more information, see [supported SDK type bindings](./functions-triggers-bindings.md?pivots=programming-language-python#sdk-types)
+SDK. For more information, see [supported SDK type bindings](./functions-triggers-bindings.md?pivots=programming-language-python#sdk-types).
 > [!IMPORTANT]  
 > SDK type bindings support for Python is only available in the Python v2 programming model.
 
@@ -441,7 +441,7 @@ SDK. For more information, see [supported SDK type bindings](./functions-trigger
 Environment variables in Azure Functions let you securely manage configuration values, connection strings, and app secrets without hardcoding them in your function code.
 
 You can define environment variables:
-- Locally: in the [local.settings.json file](functions-develop-local.md#local-settings-file) file during local development.
+- Locally: in the [local.settings.json file](functions-develop-local.md#local-settings-file), during local development.
 - In Azure: as [Application Settings](functions-how-to-use-azure-function-app-settings.md#settings) in your Function App's configuration page in the Azure portal.
 
 You can access the variables directly in your code by using `os.environ` or `os.getenv`.
@@ -456,7 +456,7 @@ setting_value = os.getenv("myAppSetting", "default_value")
 ### Package management
 
 To use other Python packages in your Azure Functions app, list them in a `requirements.txt` file at the root of your project. You can then reference those packages as usual.
-To learn more about building and deployment options with external dependencies, see [Deployment Options for Python Function Apps](./python-deployments.md).
+To learn more about building and deployment options with external dependencies, see [Build Options for Python Function Apps](./python-build-options.md).
 
 For example, the following sample shows how the `requests` module is included and used in the function app.
 ```text
@@ -505,7 +505,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
    - To prevent `ModuleNotFound` errors, ensure all required dependencies are listed in `requirements.txt`.
    - If you update your app's Python version, rebuild and redeploy your app on the new Python version to avoid dependency conflicts with previously built packages.
 - Non-PyPI Dependencies:
-   - You can include dependencies that aren't available on PyPI in your app, such as local packages, wheel files, or private feeds. See [Custom dependencies in Python  Azure Functions](./python-deployments.md#custom-dependencies) for setup instructions.
+   - You can include dependencies that aren't available on PyPI in your app, such as local packages, wheel files, or private feeds. See [Custom dependencies in Python  Azure Functions](./python-build-options.md#custom-dependencies) for setup instructions.
 - Azure Functions Python worker dependencies:
    - If your package contains certain libraries that might collide with worker's dependencies (for example, `protobuf` or `grpcio`), configure [PYTHON_ISOLATE_WORKER_DEPENDENCIES](./functions-app-settings.md#python_isolate_worker_dependencies) to 1 in app settings to prevent your application from referring to worker's dependencies. For Python 3.13 and above, [this feature is enabled by default](#python-313-updates).
 
@@ -518,7 +518,7 @@ This section provides information about [running functions locally](#running-loc
 You can run and test your Python function app on your local machine before deploying to Azure. 
 
 #### Using Azure Functions Core Tools
-Install [Azure Functions Core Tools](./functions-run-local.md) and run the `func start` command from your project root to start the local runtime:
+Install [Azure Functions Core Tools](./functions-run-local.md) and start the local runtime by running the `func start` command from your project root:
 
 ```bash
 func start
@@ -553,7 +553,7 @@ def http_trigger(req: func.HttpRequest) -> func.HttpResponse:
 print(http_trigger(None))
 ```
 
-Run the file directly with Python to see the output:
+To see the output, run the file directly with Python:
 
 ```bash
 > python function_app.py
@@ -576,7 +576,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
 print(main(None))
 ```
 
-Run the file directly with Python to see the output:
+To see the output, run the file directly with Python:
 
 ```bash
 > python __init__.py
@@ -597,7 +597,7 @@ For more general information, see the [Azure Functions runtime support policy](.
 > Existing deployment artifacts and dependencies aren’t automatically rebuilt when the Python version changes.
 
 ## Build and Deployment
-Learn more about the recommended build mechanism for your scenario: [Build Options](./python-deployments.md). For a general overview of deployment, see [Deployment technologies in Azure Functions](functions-deployment-technologies.md).
+Learn more about the recommended build mechanism for your scenario: [Build Options](./python-build-options.md). For a general overview of deployment, see [Deployment technologies in Azure Functions](functions-deployment-technologies.md).
 
 **Deployment Mechanisms Quick Comparison**
 
@@ -628,7 +628,7 @@ Key changes include:
    - Without version control enabled, your app runs on a default version of the Python runtime, which Functions manages. You must modify your *requirements.txt* file to request the latest released version, a prereleased version, or to pin your app to a specific version of the Python runtime.
    - You enable runtime version control by adding a reference to the Python runtime package to your *requirements.txt* file, where the value assigned to the package determines the runtime version used.
    - Avoid pinning any production app to prerelease (alpha, beta, or dev) runtime versions.
-   - Review [Python runtime release notes](https://github.com/Azure/azure-functions-python-worker/releases) regularly to be aware of changes that are being applied to your app's Python runtime or to determine when to update a pinned version.  
+   - To be aware of changes, review [Python runtime release notes](https://github.com/Azure/azure-functions-python-worker/releases) regularly.  
    - The following table indicates the versioning behavior based on the version value of this setting in your *requirements.txt* file:
       
       | Version                      | Example                          | Behavior                                                                                                                                                                                                                                                                                                                                                                                                                            |
@@ -649,7 +649,7 @@ Key changes include:
    - Without version control enabled, your app runs on a default version of the Python runtime, which Functions manages. You must modify your *requirements.txt* file to request the latest released version, a prereleased version, or to pin your app to a specific version of the Python runtime.
    - You enable runtime version control by adding a reference to the Python runtime package to your *requirements.txt* file, where the value assigned to the package determines the runtime version used.
    - Avoid pinning any production app to prerelease (alpha, beta, or dev) runtime versions.
-   - Review [Python runtime release notes](https://github.com/Azure/azure-functions-python-worker/releases) regularly to be aware of changes that are being applied to your app's Python runtime or to determine when to update a pinned version.  
+   - To be aware of changes, review [Python runtime release notes](https://github.com/Azure/azure-functions-python-worker/releases) regularly.    
    - The following table indicates the versioning behavior based on the version value of this setting in your *requirements.txt* file:
       
       | Version                      | Example                             | Behavior                                                                                                                                                                                                                                                                                                                                                                                                                            |
@@ -719,7 +719,7 @@ in the Azure portal under Logs or Application Insights.
 To learn more about monitoring Azure Functions in the portal, see [Monitor Azure Functions](functions-monitoring.md).
 
 > [!NOTE]
-> To view debug logs in Application Insights, additional setup is required. You can enable this feature by setting [PYTHON_ENABLE_DEBUG_LOGGING](./functions-app-settings.md#python_enable_debug_logging) to `1` and setting `logLevel` to `trace` or `debug` in your [host.json file](./functions-host-json.md#logging). By default, debug logs are not visible in Application Insights.
+> To view debug logs in Application Insights, more setup is required. You can enable this feature by setting [PYTHON_ENABLE_DEBUG_LOGGING](./functions-app-settings.md#python_enable_debug_logging) to `1` and setting `logLevel` to `trace` or `debug` in your [host.json file](./functions-host-json.md#logging). By default, debug logs aren't visible in Application Insights.
 
 #### Logging from background threads
 
@@ -851,7 +851,7 @@ pip install pytest
 pytest test_my_function.py
 ```
 
-You'll see the `pytest` results in the terminal, like this:
+You see the `pytest` results in the terminal, like this:
 ```bash
 ============================================================================================================ test session starts ============================================================================================================
 collected 1 item                                                                                                                                                                                                                             

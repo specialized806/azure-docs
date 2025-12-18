@@ -28,14 +28,14 @@ When deploying your Python function app to Azure, keep these packaging requireme
 - **Package contents, not the folder**: Deploy the contents of your project folder, not the folder itself.
 - **Root-level `host.json`**: Ensure a single `host.json` file is at the root of the deployment package, not nested in a subfolder.
 - **Exclude development files**: You can exclude folders like `tests/`, `.github/`, and `.venv*/` from the deployed package by including them in `.funcignore`.
-- **The build environment must match the production environment**: Your dependencies must be built on an ubuntu machine using the same python version as the production app. [Remote build](#remote-build) handles this automatically.
-- **Dependencies must be installed into `./.python_packages/lib/site-packages`**: Remote build handles this by installing all dependencies listed in `requirements.txt` into the correct directory.
+- **The build environment must match the production environment**: Your dependencies must be built on an ubuntu machine using the same python version as the production app. [Remote build](#remote-build) handles this scenario automatically.
+- **Dependencies must be installed into `./.python_packages/lib/site-packages`**: Remote build installs all dependencies listed in `requirements.txt` into the correct directory.
 
 ## Remote build
 > Remote build is the recommended approach for a code-only deployment of your Python app to Functions.
 
-When you choose a remote build, package dependencies are installed in Azure by Functions. This ensures compatibility with the remote 
-runtime environment and results in a smaller deployment package.
+When you choose a remote build, the Functions platform handles package installation and ensures compatibility with the remote 
+runtime environment. Using remote build also results in a smaller deployment package.
 
 You can use remote build when you publish your Python app using these tools: 
 
@@ -48,13 +48,13 @@ You can use remote build when you publish your Python app using these tools:
 Remote build also supports custom package indexes when by using the [`PIP_EXTRA_INDEX_URL`](./functions-app-settings.md#pip_extra_index_url) app setting. For more information, see [Remote build](functions-deployment-technologies.md#remote-build).
 
 >[!IMPORTANT]  
-> Remote build will install all dependencies listed in `requirements.txt`. To ensure all required packages are installed, be sure to include those dependencies in your `requirements.txt` file.
+> Remote build installs all dependencies listed in `requirements.txt`. To ensure all required packages are installed, be sure to include those dependencies in your `requirements.txt` file.
 
 
 ## Local build
 If you don't request a remote build, then dependencies are instead installed on your machine. The entire local project and dependencies are then packaged locally and deployed to your function app. Using local build results in a larger package upload.
 
-You will also need to install dependencies into the correct directory. Use `pip install --target="./.python_packages/lib/site-packages"` to install required dependencies into your local `.python_packages/lib/site-packages` folder.
+You also need to install dependencies into the correct directory. Use `pip install --target="./.python_packages/lib/site-packages"` to install required dependencies into your local `.python_packages/lib/site-packages` folder.
 For example, if you have your dependencies listed in a `requirements.txt` file, you can run this command:
 
 ```bash
@@ -72,22 +72,22 @@ The following tools can be configured to use local build:
 - [**Continuous delivery by using GitHub Actions**](./functions-how-to-github-actions.md): set the `remote-build` parameter to `false`.
 
 >[!IMPORTANT]  
->When developing your Python apps on a Windows computer, don't use local build. Packages built on a Windows computer often have issues being deployed to and running on Linux in Azure Functions. It is only
-recommended to use local build if you are confident the package will run on Linux based systems.
+>When developing your Python apps on a Windows computer, don't use local build. Packages built on a Windows computer often have issues being deployed to and running on Linux in Azure Functions. It's only
+recommended to use local build if you're confident the package runs on Linux based systems.
 
 ## Custom dependencies
 Azure Functions supports custom and other non-PyPI dependencies by using the [`PIP_EXTRA_INDEX_URL`] app setting or by creating a local build on a Linux or macOS computer.
 
 ### Remote build with an extra index URL
 When your private packages are available online, you can request a remote build after setting the private package location by using the [`PIP_EXTRA_INDEX_URL`] app setting.
-When you set [`PIP_EXTRA_INDEX_URL`], remote builds use this package feed during deployment. It is recommended to use [`PIP_EXTRA_INDEX_URL`] over [`PIP_INDEX_URL`](./functions-app-settings.md#pip_index_url).
+When you set [`PIP_EXTRA_INDEX_URL`], remote builds use this package feed during deployment. It's recommended to use [`PIP_EXTRA_INDEX_URL`] over [`PIP_INDEX_URL`](./functions-app-settings.md#pip_index_url).
 
 ### Local packages or wheels
 Local packages and wheels are supported when building python Azure Function apps.
 
 To install these packages or wheels using [remote build](#remote-build), you can include the dependencies in your `requirements.txt` file and deploy with [remote build enabled](#remote-build).
 
-For example, your `requirements.txt` file might look like the following:
+For example, your `requirements.txt` file might look like the following snippet:
 ```text
  # Installing a custom wheel
  <my_package_wheel>.whl
@@ -96,7 +96,7 @@ For example, your `requirements.txt` file might look like the following:
  path/to/my/package
  ```
 
-To install these dependencies using [local build](#local-build), install the dependencies into your local `.python_packages/lib/site-packages` folder and deploy with [remote build disabled](#local-build)
+To install these dependencies using [local build](#local-build), install the dependencies into your local `.python_packages/lib/site-packages` folder and deploy with [remote build disabled](#local-build).
 For example, if you have the packages defined in your `requirements.txt` file, you can install and publish using the following commands and Core Tools:
  ```bash
  pip install --target="./.python_packages/lib/site-packages" -r requirements.txt

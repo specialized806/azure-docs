@@ -338,9 +338,9 @@
       - name: Developer reference guide
         displayName: python
         href: functions-reference-python.md
-      - name: Build and Deployment Options
+      - name: Build Options
         displayName: python
-        href: python-deployments.md
+        href: python-build-options.md
       - name: Scale and performance recommendations
         displayName: python
         href: python-scale-performance-reference.md
