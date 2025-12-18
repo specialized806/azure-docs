@@ -155,33 +155,33 @@ Set-AzAksCluster -InputObject $cluster -EnableOidcIssuer
 
 ---
 
-1. Install ALB Controller add-on
+#### Install ALB Controller add-on
 
-    ```azurecli-interactive
-    AKS_ID=$(az aks show -g $RESOURCE_GROUP -n $AKS_NAME --query id -o tsv)
+```azurecli-interactive
+AKS_ID=$(az aks show -g $RESOURCE_GROUP -n $AKS_NAME --query id -o tsv)
 
-    az rest \
-      --method put \
-      --uri "https://management.azure.com${AKS_ID}?api-version=2025-09-02-preview" \
-      --body '{
-        "location": "eastus2euap",
-        "properties": {
-          "ingressProfile": {
-            "applicationLoadBalancer": {
-              "enabled": true
-            },
-            "gatewayAPI": {
-              "installation": "Standard"
-            }
-          }
+az rest \
+  --method put \
+  --uri "https://management.azure.com${AKS_ID}?api-version=2025-09-02-preview" \
+  --body '{
+    "location": "eastus2euap",
+    "properties": {
+      "ingressProfile": {
+        "applicationLoadBalancer": {
+          "enabled": true
+        },
+        "gatewayAPI": {
+          "installation": "Standard"
         }
-      }' \
-      --verbose
-    ```
+      }
+    }
+  }' \
+  --verbose
+```
 
-2. Verify the ALB Controller installation
+#### Verify the ALB Controller installation
 
-### Verify ALB Controller Pods
+##### Verify ALB Controller Pods
 
 Verify the ALB Controller pods are running in the `kube-system` namespace:
 
@@ -196,11 +196,19 @@ You should see two `alb-controller` pods in `Running` state:
 | alb-controller-6648c5d5c-sdd9t           | 1/1   | Running | 0        | 4d6h |
 | alb-controller-6648c5d5c-au234           | 1/1   | Running | 0        | 4d6h |
 
-### Validate Add-on Resources in Azure Portal
+##### Verify GatewayClass
+
+Verify GatewayClass `azure-alb-external` is installed on your cluster:
+
+```azurecli-interactive
+kubectl get gatewayclass azure-alb-external -o yaml
+```
+
+##### Validate Add-on Resources in Azure Portal
 
 Navigate to the `MC_` (node) resource group for your AKS cluster. You should see the following resources automatically created by the add-on:
 
-#### Managed Identity
+###### Managed Identity
 
 An identity named `applicationloadbalancer-<cluster-name>` is created with the following role assignments:
 
@@ -219,17 +227,9 @@ The `applicationloadbalancer-<cluster-name>` identity will have a federated iden
 >[!Warning]
 >It is unsupported to modify the identity or namespace when provisioning integration with the add-on. If you wish to customize your deployment, consider [deployment with helm](quickstart-deploy-application-gateway-for-containers-alb-controller-helm.md).
 
-#### Subnet
+###### Subnet
 
 A subnet named `aks-appgateway` with subnet delegation enabled for `Microsoft.ServiceNetworking/TrafficController`
-
-### Verify GatewayClass
-
-Verify GatewayClass `azure-alb-external` is installed on your cluster:
-
-```azurecli-interactive
-kubectl get gatewayclass azure-alb-external -o yaml
-```
 
 You should see that the GatewayClass has a condition that reads **Valid GatewayClass**. This condition indicates that a default GatewayClass is set up and that any gateway resources that reference this GatewayClass is managed by ALB Controller automatically.
 
@@ -256,43 +256,17 @@ status:
 
 ## Next Steps
 
-Now that you have successfully enabled the ALB Controller add-on on your cluster, you can provision the Application Gateway for Containers resources in Azure.
+Now that you have successfully installed an ALB Controller on your cluster, you can provision the Application Gateway For Containers resources in Azure.
 
 The next step is to link your ALB controller to Application Gateway for Containers. How you create this link depends on your deployment strategy.
 
 There are two deployment strategies for management of Application Gateway for Containers:
+- **Bring your own (BYO) deployment:** In this deployment strategy, deployment and lifecycle of the Application Gateway for Containers resource, Association resource, and Frontend resource is assumed via Azure portal, CLI, PowerShell, Terraform, etc. and referenced in configuration within Kubernetes.
+   - To use a BYO deployment, see [Create Application Gateway for Containers - bring your own deployment](quickstart-create-application-gateway-for-containers-byo-deployment.md).
+- **Managed by ALB controller:** In this deployment strategy, ALB Controller deployed in Kubernetes is responsible for the lifecycle of the Application Gateway for Containers resource and its sub resources. ALB Controller creates an Application Gateway for Containers resource when an **ApplicationLoadBalancer** custom resource is defined on the cluster. The service lifecycle is based on the lifecycle of the custom resource.
+  - To use an ALB managed deployment, see [Create Application Gateway for Containers managed by ALB Controller](quickstart-create-application-gateway-for-containers-managed-by-alb-controller.md).
 
-### Bring your own (BYO) deployment
-
-In this deployment strategy, deployment and lifecycle of the Application Gateway for Containers resource, Association resource, and Frontend resource is assumed via Azure portal, CLI, PowerShell, Terraform, etc. and referenced in configuration within Kubernetes.
-
-**Important notes for add-on users:**
-- Use the `aks-appgateway` subnet created by the add-on.
-- Ensure the ALB managed identity (`applicationloadbalancer-<cluster-name>`) has the `AppGw for Containers Configuration Manager` role on the resource group used for Traffic Controller deployment.
-
-To use a BYO deployment, see [Create Application Gateway for Containers - bring your own deployment](quickstart-create-application-gateway-for-containers-byo-deployment.md).
-
-### Managed by ALB Controller
-
-In this deployment strategy, ALB Controller deployed in Kubernetes is responsible for the lifecycle of the Application Gateway for Containers resource and its sub resources. ALB Controller creates an Application Gateway for Containers resource when an **ApplicationLoadBalancer** custom resource is defined on the cluster.
-
-**Important notes for add-on users:**
-
-- The `aks-appgateway` subnet created by the add-on is used automatically.
-- You do **not** need to specify the subnet ID; the add-on auto-discovers it.
-- The simplified ApplicationLoadBalancer CRD is:
-
-```yaml
-apiVersion: alb.networking.azure.io/v1
-kind: ApplicationLoadBalancer
-metadata:
-  name: alb-test
-  namespace: alb-test-infra
-```
-
-To use an ALB managed deployment, see [Create Application Gateway for Containers managed by ALB Controller](quickstart-create-application-gateway-for-containers-managed-by-alb-controller.md).
-
-### Sample Scenarios to Try
+## Sample Scenarios to Try
 
 - [Backend MTLS](how-to-backend-mtls-gateway-api.md?tabs=alb-managed)
 - [SSL/TLS Offloading](how-to-ssl-offloading-gateway-api.md?tabs=alb-managed)
@@ -335,6 +309,14 @@ az rest \
 
 To fully clean up all resources including the Application Gateway for Containers, delete the resource group:
 
+# [Azure CLI](#tab/azure-cli)
+
 ```azurecli-interactive
 az group delete --resource-group $RESOURCE_GROUP
+```
+
+# [Azure PowerShell](#tab/azure-powershell)
+
+```azurepowershell-interactive
+Remove-AzResourceGroup -Name $RESOURCE_GROUP -Force
 ```
