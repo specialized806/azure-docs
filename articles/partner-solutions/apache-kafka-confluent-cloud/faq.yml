@@ -15,7 +15,7 @@ sections:
     questions:
       - question: What is Apache Kafka & Apache Flink on Confluent Cloud?
         answer: |
-          Apache Kafka & Apache Flink on Confluent Cloud is an Azure Marketplace offering that provides Apache Kafka and Apache Flink as a fully managed Azure Native Integrations service. It helps you focus on building your applications instead of managing clusters. The service provides integrated provisioning from Azure to Confluent Cloud, allowing you to manage Confluent Cloud resources directly from the Azure portal. For more information, see [What is Apache Kafka & Apache Flink on Confluent Cloud?](overview.md).
+          Apache Kafka & Apache Flink on Confluent Cloud is an Azure Marketplace offering that provides Apache Kafka and Apache Flink as a fully managed Azure Native Integrations service. It helps you focus on building your applications instead of managing clusters. The service provides integrated provisioning from Azure to Confluent Cloud, allowing you to manage Confluent Cloud resources directly from the Azure portal. For more information, see [What is Apache Kafka & Apache Flink on Confluent Cloud?](overview.md)
       
       - question: How does the integration between Azure and Confluent Cloud work?
         answer: |
