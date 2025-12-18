@@ -42,7 +42,8 @@ You can use remote build when you publish your Python app using these tools:
 - [**Azure Functions Core Tools**](./functions-run-local.md): the [`func azure functionapp publish`](./functions-core-tools-reference.md#func-azure-functionapp-publish) command requests a remote build by default when publishing Python apps.
 - [**AZ CLI**](/cli/azure/functionapp): [`az functionapp deployment source config-zip`](/cli/azure/functionapp/deployment/source#az-functionapp-deployment-source-config-zip) uses remote build by default when deploying Python apps.
 - [**Visual Studio Code**](./functions-develop-vs-code.md): the **Azure Functions: Deploy to Azure...** command always uses a remote build.
-- [**Continuous delivery by using GitHub Actions**](./functions-how-to-github-actions.md): the **Azure/functions-action@v1** action uses remote build when the `remote-build` parameter is set to `true`.
+- [**Continuous delivery by using GitHub Actions**](./functions-how-to-github-actions.md): the **Azure/functions-action@v1** action uses remote build when the `remote-build` parameter is set to `true` for the Flex Consumption plan or when 
+`scm-do-build-during-deployment` and `enable-oryx-build` are set to `true` for Dedicated plans.
 
 To enable remote build in other scenarios, like [**Continuous delivery with Azure Pipelines**](./functions-how-to-azure-devops.md), see [Enabling Remote Build](./functions-deployment-technologies.md#remote-build).
 
@@ -70,7 +71,8 @@ Use local build when:
 The following tools can be configured to use local build:
 - [**Azure Functions Core Tools**](./functions-run-local.md): use [`func azure functionapp publish`](./functions-core-tools-reference.md#func-azure-functionapp-publish) with the `--no-build` flag.
 - [**AZ CLI**](/cli/azure/functionapp): [`az functionapp deployment source config-zip`](/cli/azure/functionapp/deployment/source#az-functionapp-deployment-source-config-zip) with the `--build-remote=false` flag.
-- [**Continuous delivery by using GitHub Actions**](./functions-how-to-github-actions.md): set the `remote-build` parameter to `false`.
+- [**Continuous delivery by using GitHub Actions**](./functions-how-to-github-actions.md): set the `remote-build` parameter to `false` for the Flex Consumption plan or set 
+`scm-do-build-during-deployment` and `enable-oryx-build` to `false` for Dedicated plans.
 
 >[!IMPORTANT]  
 >When developing your Python apps on a Windows computer, don't use local build. Packages built on a Windows computer often have issues being deployed to and running on Linux in Azure Functions. 
