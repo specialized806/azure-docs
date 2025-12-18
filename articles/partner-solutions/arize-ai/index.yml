@@ -18,7 +18,7 @@ landingContent:
         links:
           - text: What is Arize AI?
             url: overview.md
-          - text: Fequently asked questions
+          - text: FAQ
             url: faq.yml
 
   # Card
