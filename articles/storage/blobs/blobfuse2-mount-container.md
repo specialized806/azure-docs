@@ -1,5 +1,5 @@
 ---
-title: How to mount an Azure Blob Storage container on Linux with BlobFuse2
+title: Mount an Azure Blob Storage container on Linux with BlobFuse2
 titleSuffix: Azure Storage
 description: Learn how to mount an Azure Blob Storage container on Linux with BlobFuse2.
 author: normesta
@@ -12,11 +12,11 @@ ms.custom: linux-related-content
 # Customer intent: As a developer or system administrator using Linux, I want to learn how to mount Azure Blob Storage containers with BlobFuse2, so that I can access and work with blob data through the familiar Linux file system interface.
 ---
 
-# How to mount an Azure Blob Storage container on Linux with BlobFuse2
+# Mount an Azure Blob Storage container on Linux with BlobFuse2
 
 You can mount a container by using the `mount` command. You can either include your desired configuration settings as command parameters or reference a configuration file that contains your settings.
 
-## Mount a container by including settings at the command line
+## Mount by using settings at the command line
 
 The simplest way to mount a container is to use the `mount` command and specify the data transfer mode as a parameter. The command automatically configures other parameters, such as memory, disk limits, and parallelism, based on your system configuration.
 
@@ -42,7 +42,7 @@ The simplest way to mount a container is to use the `mount` command and specify 
 
 For a complete list of `mount` command parameters, see [CLI Parameters](https://github.com/Azure/azure-storage-fuse/wiki/Blobfuse2-Cli-Parameters).
 
-## Mount a container by referencing a configuration file
+## Mount by using a configuration file
 
 You can specify the necessary BlobFuse2 configuration and Azure Storage credentials in a YAML configuration file. The following example mounts a container by referencing a configuration file.
 
