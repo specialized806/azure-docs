@@ -6,16 +6,6 @@
             "redirect_document_id": false
         },
         {
-            "source_path_from_root": "/articles/site-recovery/hyper-v-deployment-planner-cost-estimation.md",
-            "redirect_url": "/azure/site-recovery/deployment-planner-cost-estimation",
-            "redirect_document_id": false
-        },
-        {
-            "source_path_from_root": "/articles/site-recovery/site-recovery-vmware-deployment-planner-cost-estimation.md",
-            "redirect_url": "/azure/site-recovery/deployment-planner-cost-estimation",
-            "redirect_document_id": false
-        },
-        {
             "source_path_from_root": "/articles/site-recovery/upgrade-2012r2-to-2016.md",
             "redirect_url": "/azure/site-recovery/site-recovery-overview",
             "redirect_document_id": false

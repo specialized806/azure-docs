@@ -6,6 +6,16 @@
       "redirect_document_id": false
     },
     {
+      "source_path": "articles/site-recovery/shared-disks-common-questions.md",
+      "redirect_url": "/azure/site-recovery/azure-to-azure-common-questions",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/network-watcher/network-watcher-visualize-nsg-flow-logs-open-source-tools.md",
+      "redirect_url": "/previous-versions/azure/network-watcher/network-watcher-visualize-nsg-flow-logs-open-source-tools",
+      "redirect_document_id": false
+    },
+    {
       "source_path": "articles/network-watcher/network-watcher-nsg-grafana.md",
       "redirect_url": "/previous-versions/azure/network-watcher/network-watcher-nsg-grafana",
       "redirect_document_id": false
