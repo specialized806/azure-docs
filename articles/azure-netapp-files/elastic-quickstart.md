@@ -1,5 +1,5 @@
 ---
-title: 'Quickstart: Set up Azure NetApp Elastic Zone-Redundant storage'
+title: 'Quickstart: Set up Azure NetApp Elastic zone-redundant storage'
 description: Quickly understand the steps to set up an Azure NetApp Files account, capacity pool, delegated subnet, and virtual network on the Elastic zone-redundant storage level. 
 author: b-ahibbard
 ms.author: anfdocs
@@ -8,11 +8,11 @@ ms.topic: quickstart
 ms.date: 09/10/2025
 ---
 
-# Quickstart: Set up Azure NetApp Files Elastic Zone-Redundant storage (preview)
+# Quickstart: Set up Azure NetApp Files Elastic zone-redundant storage (preview)
 
 The Elastic zone-redundant service level offers a different approach to storage.
 
-Ensure you've registered for [Elastic Zone-Redundant storage](elastic-account.md#register-for-the-elastic-zone-redundant-service-level).
+Ensure you've registered for [Elastic zone-redundant storage](elastic-account.md#register-for-the-elastic-zone-redundant-service-level).
 
 ## Register for NetApp Resource Provider
 
@@ -39,7 +39,7 @@ For registration steps using Portal, open a Cloud Shell session as indicated abo
 
 2. Select **+ Create** to create a new NetApp account.
 
-[!INCLUDE [Create an Elastic Zone-Redundant account.](includes/elastic-account-create.md)]
+[!INCLUDE [Create an Elastic zone-redundant account.](includes/elastic-account-create.md)]
 
 
 # [REST API](#tab/rest-api)

@@ -1,6 +1,6 @@
 ---
-title: Back up Elastic Zone-Redundant volumes in Azure NetApp Files
-description: Learn how to create and manage backups of Elastic Zone-Redundant volumes in Azure NetApp Files.
+title: Back up Elastic zone-redundant volumes in Azure NetApp Files
+description: Learn how to create and manage backups of Elastic zone-redundant volumes in Azure NetApp Files.
 services: azure-netapp-files
 author: b-ahibbard
 ms.service: azure-netapp-files
@@ -8,12 +8,12 @@ ms.topic: how-to
 ms.date: 11/19/2025
 ms.author: anfdocs
 ---
-# Back up Elastic Zone-Redundant volumes in Azure NetApp Files
+# Back up Elastic zone-redundant volumes in Azure NetApp Files
 
 Azure NetApp Files backup expands the data protection capabilities of Azure NetApp Files by providing fully managed backup solution for long-term recovery, archive, and compliance. To learn more about backups, see [Azure NetApp Files backup](backup-introduction.md).
 
 >[!NOTE]
->With the Elastic Zone-Redundant service level, Azure NetApp Files backup is limited to regions that support the [Elastic Zone-Redundant service level](elastic-zone-redundant-concept.md#supported-regions). 
+>With the Elastic zone-redundant service level, Azure NetApp Files backup is limited to regions that support the [Elastic zone-redundant service level](elastic-zone-redundant-concept.md#supported-regions). 
 
 Azure NetApp Files backups in the Elastic service level require a backup vault. Backup vaults are the organization unit for backups. You can create manual (on-demand) or policy-based (scheduled) backups. 
 
@@ -27,12 +27,12 @@ Azure NetApp Files backups in the Elastic service level require a backup vault. 
 
 ## Considerations
 
-* For the Elastic Zone-Redundant service level, Azure NetApp Files backup is supported in all regions that support the [Elastic Zone-Redundant service level](elastic-zone-redundant-concept.md#supported-regions).
-* With the Elastic Zone-Redundant service level, Azure NetApp Files supports daily, weekly, and monthly schedules for backup policies. 
+* For the Elastic zone-redundant service level, Azure NetApp Files backup is supported in all regions that support the [Elastic zone-redundant service level](elastic-zone-redundant-concept.md#supported-regions).
+* With the Elastic zone-redundant service level, Azure NetApp Files supports daily, weekly, and monthly schedules for backup policies. 
 * Deleting a volume does _not_ delete its backups. You must manually delete the backups. 
 * You can't delete a volume when Backup is in progress* You can't delete the snapshot used for the most recent backup if there are backups on the volume. 
 * Reverting a volume to state before existing backups results in an error. To proceed with reverting the volume, delete the backups causing the error then proceed with the revert. 
-* In the Elastic Zone-Redundant service level account, backups aren't currently supported with cross-region replication. 
+* In the Elastic zone-redundant service level account, backups aren't currently supported with cross-region replication. 
 * Backup start times and duration might display incorrect values with a year of 1970. Incorrect dates will be fixed in a separate release. 
 
 ## Create a backup vault
@@ -100,5 +100,5 @@ You can modify the schedule and retention count or a backup or disable it.
 
 ## Next steps 
 
-- [Restore from a backup for for the Elastic Zone-Redundant service level](elastic-backup-restore.md)
+- [Restore from a backup for for the Elastic zone-redundant service level](elastic-backup-restore.md)
 - [Understand Azure NetApp Files backup](backup-introduction.md)

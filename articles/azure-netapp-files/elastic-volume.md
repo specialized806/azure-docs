@@ -24,7 +24,7 @@ Learn how to create an NFS volume for the Elastic service level.
 
 * You can't change the protocol of a volume after creating it. 
 * Each volume in a capacity pool must have a unique name.
-* In the Elastic Zone-Redundant service level, you can't move volumes between capacity pools. 
+* In the Elastic zone-redundant service level, you can't move volumes between capacity pools. 
 
 <!-- unix permissions, chown root access -->
 

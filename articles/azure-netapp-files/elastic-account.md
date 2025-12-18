@@ -7,7 +7,7 @@ ms.service: azure-netapp-files
 ms.topic: how-to
 ms.date: 06/25/2025
 ms.author: anfdocs
-# Customer intent: As an IT administrator, I want to create an Elastic Zone-Redundant NetApp account in Azure NetApp Files, so that I can set up a capacity pool and manage storage volumes effectively.
+# Customer intent: As an IT administrator, I want to create an Elastic zone-redundant NetApp account in Azure NetApp Files, so that I can set up a capacity pool and manage storage volumes effectively.
 ---
 
 # Create a NetApp Elastic account in Azure NetApp Files (preview)
@@ -17,7 +17,7 @@ Creating a NetApp account enables you to set up a capacity pool so that you can 
 ## Before you begin
 
 * You must register your subscription for using the NetApp Resource Provider. For more information, see [Register the NetApp Resource Provider](azure-netapp-files-register.md).
-* NetApp accounts must be dedicated to a service tier. Confirm you understand the difference between [Elastic Zone-Redundant storage](elastic-zone-redundant-concept.md) and [other service levels](azure-netapp-files-service-levels.md) before creating you create your NetApp account.
+* NetApp accounts must be dedicated to a service tier. Confirm you understand the difference between [Elastic zone-redundant storage](elastic-zone-redundant-concept.md) and [other service levels](azure-netapp-files-service-levels.md) before creating you create your NetApp account.
 
 ## Register for the Elastic zone-redundant service level 
 
@@ -41,7 +41,7 @@ You can also use [Azure CLI commands](/cli/azure/feature) `az feature register` 
 
 ## Steps
 
-[!INCLUDE [Create an Elastic Zone-Redundant account.](includes/elastic-account-create.md)]
+[!INCLUDE [Create an Elastic zone-redundant account.](includes/elastic-account-create.md)]
 
 ## Next steps 
 

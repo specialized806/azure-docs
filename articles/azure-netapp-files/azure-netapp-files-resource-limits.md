@@ -14,7 +14,7 @@ ms.author: anfdocs
 Understanding resource limits for Azure NetApp Files helps you manage your volumes.
 
 >[!IMPORTANT]
->These limits pertain to the Flexible, Standard, Premium, and Ultra service level. For resource limits for the **Elastic Zone-Redundant** service level, see [Elastic Zone-Redundant resource limits](elastic-resource-limits.md).
+>These limits pertain to the Flexible, Standard, Premium, and Ultra service level. For resource limits for the **Elastic zone-redundant** service level, see [Elastic zone-redundant resource limits](elastic-resource-limits.md).
 
 ## Resource limits
 

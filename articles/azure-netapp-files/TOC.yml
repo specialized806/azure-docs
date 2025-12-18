@@ -79,9 +79,9 @@
       href: azure-netapp-files-understand-storage-hierarchy.md
     - name: Service levels for Azure NetApp Files
       href: azure-netapp-files-service-levels.md
-    - name: Elastic Zone-Redundant service level 
+    - name: Elastic zone-redundant service level 
       items: 
-        - name: Understand Elastic Zone-Redundant storage 
+        - name: Understand Elastic zone-redundant storage 
           href: elastic-zone-redundant-concept.md
         - name: Resource limits for Elastic service level 
           href: elastic-resource-limits.md
@@ -105,7 +105,7 @@
       href: monitor-azure-netapp-files.md
     - name: Metrics for Azure NetApp Files
       href: azure-netapp-files-metrics.md
-    - name: Metrics for Elastic Zone-Redundant Storage
+    - name: Metrics for Elastic zone-redundant Storage
       href: elastic-metrics.md
     - name: Azure Policy definitions for Azure NetApp Files
       href: azure-policy-definitions.md

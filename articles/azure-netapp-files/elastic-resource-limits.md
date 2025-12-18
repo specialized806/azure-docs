@@ -1,6 +1,6 @@
 ---
-title: Resource limits for Azure NetApp Files Elastic Zone-Redundant service level
-description: Describes limits for Azure NetApp Files Elastic Zone-Redundant service level
+title: Resource limits for Azure NetApp Files Elastic zone-redundant service level
+description: Describes limits for Azure NetApp Files Elastic zone-redundant service level
 services: azure-netapp-files
 author: b-ahibbard
 ms.service: azure-netapp-files
@@ -22,7 +22,7 @@ The following table outlines resource limits for the Elastic service level of Az
 
 | Resource | Default limit | Adjustable via support request? |
 | ---- | -- | - |
-| Maximum number of Elastic Zone-Redundant NetApp accounts per subscription | 10 | Yes | 
+| Maximum number of Elastic zone-redundant NetApp accounts per subscription | 10 | Yes | 
 | Number of capacity pools per NetApp account | 50 | No |
 | Number of Elastic capacity pools per region per subscription  | 5 | Yes | 
 | Number of volumes per capacity pool | 50 | No |

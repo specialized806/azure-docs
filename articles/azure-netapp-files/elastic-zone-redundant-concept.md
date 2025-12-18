@@ -20,13 +20,13 @@ It delivers built‑in local redundancy, shared QoS, and native multi‑tenancy 
 
 Scale smaller volumes with flexible throughput, power backups, analytics staging, and AI datasets—all at an affordable price without compromising reliability.
 
-The Elastic Zone-Redundant service level offers built-in high-availability and zero recovery point objective (RPO). 
+The Elastic zone-redundant service level offers built-in high-availability and zero recovery point objective (RPO). 
 
-When creating your NetApp account, you must designate that the account is for zone-redundant storage. A NetApp account configured for the Elastic Zone-Redundant service level can only be used for the Elastic Zone-Redundant service level.
+When creating your NetApp account, you must designate that the account is for zone-redundant storage. A NetApp account configured for the Elastic zone-redundant service level can only be used for the Elastic zone-redundant service level.
 
 ## Elastic zone-redundant service
 
-In comparison to existing Azure NetApp Files service levels, the Elastic Zone-Redundant service level offers:  
+In comparison to existing Azure NetApp Files service levels, the Elastic zone-redundant service level offers:  
 
 <!-- Elastic ZR volumes write synchronously across Availability Zones (AZ) for zero‑data‑loss continuity and trigger platform‑managed failover in under two minutes -->
 <!-- 
@@ -84,7 +84,7 @@ GET https://management.azure.com/subscriptions/{subscriptionId}/providers/Micros
 ## Comparison of service levels
 
 >[!IMPORTANT]
->Elastic Zone-Redundant storage has [dedicated endpoints](#api-endpoints). Workflows for this service level are different than other service levels. Ensure you follow the correct guidelines for your service level. 
+>Elastic zone-redundant storage has [dedicated endpoints](#api-endpoints). Workflows for this service level are different than other service levels. Ensure you follow the correct guidelines for your service level. 
 
 | Feature | Flexible, Standard, Premium, and Ultra service levels | Elastic service level | 
 | - | - | - | 

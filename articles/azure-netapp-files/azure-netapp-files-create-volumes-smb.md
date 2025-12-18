@@ -17,7 +17,7 @@ Azure NetApp Files supports creating volumes using NFS (NFSv3 or NFSv4.1), SMB3,
 This article shows you how to create an SMB3 volume. For NFS volumes, see [Create an NFS volume](azure-netapp-files-create-volumes.md). For dual-protocol volumes, see [Create a dual-protocol volume](create-volumes-dual-protocol.md). 
 
 >[!IMPORTANT]
->To create an SMB volume for the Elastic Zone-Redundant service level, see [Create an SMB volume for the Elastic Zone-Redundant service level](elastic-volume-server-message-block.md).
+>To create an SMB volume for the Elastic zone-redundant service level, see [Create an SMB volume for the Elastic zone-redundant service level](elastic-volume-server-message-block.md).
 
 ## Before you begin 
 

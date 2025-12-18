@@ -17,19 +17,19 @@ Service levels are an attribute of a capacity pool. Service levels are defined a
 
 Azure NetApp Files supports four service levels: *Flexible*, *Standard*, *Premium*, and *Ultra*.   
 
-* <a name="Elastic"></a>Elastic Zone-Redundant storage (preview):
+* <a name="Elastic"></a>Elastic zone-redundant storage (preview):
     Azure NetApp Files Elastic zone-redundant storage is an advanced, high-availability service level designed to deliver continuous data access with zero data loss even if an entire Azure Availability Zone becomes unavailable. This service eliminates single points of failure, making it ideal for mission-critical workloads that require uncompromising resilience and in-region data protection.
     
-    With Elastic Zone-Redundant Storage, you can:
+    With Elastic zone-redundant storage, you can:
 
     - Create capacity pools from 1 TiB to 128 TiB with shared QoS across volumes for seamless workload adaptation.
     - Provision volumes as small as 1 GiB, giving you flexibility to optimize storage for workloads of any size.
     - Achieve throughput of 32 MiB/s per 1 TiB, ensuring predictable performance at scale.
 
-    For more information, see [Understand Elastic Zone-Redundant storage](elastic-zone-redundant-concept.md).
+    For more information, see [Understand Elastic zone-redundant storage](elastic-zone-redundant-concept.md).
 
     >[!IMPORTANT]
-    >Elastic Zone-Redundant offers a different subset of features than the other service levels. For more information, see [Understand Elastic Zone-Redundant storage](elastic-zone-redundant-concept.md).
+    >Elastic zone-redundant offers a different subset of features than the other service levels. For more information, see [Understand Elastic zone-redundant storage](elastic-zone-redundant-concept.md).
 
 * <a name="Flexible"></a>Flexible storage:
     The Flexible service level enables you to adjust throughput and size limits independently. You can use the Flexible service level to create high-capacity volumes with low throughput requirements or the reverse: low-capacity volumes with high throughput requirements. The Flexible service level is designed for demanding applications such as Oracle or SAP HANA.

@@ -1,6 +1,6 @@
 ---
-title: Manage snapshots for Elastic Zone-Redundant volumes in Azure NetApp Files
-description: Learn how to create on-demand snapshots and delete snapshots for volumes using the Elastic Zone-Redundant service level in Azure NetApp Files.
+title: Manage snapshots for Elastic zone-redundant volumes in Azure NetApp Files
+description: Learn how to create on-demand snapshots and delete snapshots for volumes using the Elastic zone-redundant service level in Azure NetApp Files.
 services: azure-netapp-files
 author: b-ahibbard
 ms.service: azure-netapp-files
@@ -11,9 +11,9 @@ ms.author: anfdocs
 # Customer intent: "As a cloud storage administrator, I want to manage snapshots for Elastic Azure NetApp Files volumes to create data protection."
 ---
 
-# Manage snapshots for Elastic Zone-Redundant volumes in Azure NetApp Files
+# Manage snapshots for Elastic zone-redundant volumes in Azure NetApp Files
 
-In addition to policy-based snapshots, you can also create a snapshot on demand with the Elastic Zone-Redundant service level to create an out-of-band restore point or clone. 
+In addition to policy-based snapshots, you can also create a snapshot on demand with the Elastic zone-redundant service level to create an out-of-band restore point or clone. 
 
 Managing snapshots also includes deleting unnecessary snapshots and managing the visibility of the snapshot path. 
 

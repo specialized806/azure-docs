@@ -1,21 +1,21 @@
 ---
-title: Metrics for Azure NetApp Files Elastic Zone-Redundant service level
-description: Learn about the metrics available for the Elastic Zone-Redundant service level.
+title: Metrics for Azure NetApp Files Elastic zone-redundant service level
+description: Learn about the metrics available for the Elastic zone-redundant service level.
 services: azure-netapp-files
 author: b-ahibbard
 ms.service: azure-netapp-files
 ms.topic: concept-article
 ms.date: 12/2/2025
 ms.author: anfdocs
-# Customer intent: As an IT administrator managing Azure NetApp Files, I want to understand the monitoring capabilities for my Elastic Zone-Redundant service level deployment. 
+# Customer intent: As an IT administrator managing Azure NetApp Files, I want to understand the monitoring capabilities for my Elastic zone-redundant service level deployment. 
 ---
 
-# Metrics for Azure NetApp Files' Elastic Zone-Redundant service level 
+# Metrics for Azure NetApp Files' Elastic zone-redundant service level 
 
 Azure NetApp Files provides metrics on allocated storage, actual storage usage, volume I/OPS, and latency. By analyzing these metrics, you can gain a better understanding on the usage pattern and volume performance of your NetApp accounts. 
 
 >[!IMPORTANT]
->These metrics are for Elastic Zone-Redundant service level. For the Flexible, Standard, Premium, and Ultra services levels, see [Azure NetApp Files metrics](azure-netapp-files-metrics.md).
+>These metrics are for Elastic zone-redundant service level. For the Flexible, Standard, Premium, and Ultra services levels, see [Azure NetApp Files metrics](azure-netapp-files-metrics.md).
 
 ## Usage metrics for capacity pools
 

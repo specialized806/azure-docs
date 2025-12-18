@@ -1,6 +1,6 @@
 ---
-title: Change availability zones for Elastic Zone-Redundant capacity pools in Azure NetApp Files
-description: Learn how to change the availability zone of a capacity pool in the Elastic Zone-Redundant service level. 
+title: Change availability zones for Elastic zone-redundant capacity pools in Azure NetApp Files
+description: Learn how to change the availability zone of a capacity pool in the Elastic zone-redundant service level. 
 services: azure-netapp-files
 author: b-ahibbard
 ms.service: azure-netapp-files
@@ -8,9 +8,9 @@ ms.topic: how-to
 ms.date: 11/14/2025
 ms.author: anfdocs
 ---
-# Change availability zones for Elastic Zone-Redundant capacity pools in Azure NetApp Files
+# Change availability zones for Elastic zone-redundant capacity pools in Azure NetApp Files
 
-With the Elastic Zone-Redundant service level, you can easily change the availability zone of a capacity pool and its volumes based on needs, for example co-locating storage in the same availability zone to reduce latency.
+With the Elastic zone-redundant service level, you can easily change the availability zone of a capacity pool and its volumes based on needs, for example co-locating storage in the same availability zone to reduce latency.
 
 >[!NOTE]
 >Capacity pools fail over to a new zone automatically in the event of a zonal outage. 

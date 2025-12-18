@@ -1,6 +1,6 @@
 ---
-title: Configure customer-managed keys for Elastic Zone-Redundant volume encryption in Azure NetApp Files
-description: Learn how to configure customer-managed keys for volume encryption with Azure NetApp Files' Elastic Zone-Redundant service level. 
+title: Configure customer-managed keys for Elastic zone-redundant volume encryption in Azure NetApp Files
+description: Learn how to configure customer-managed keys for volume encryption with Azure NetApp Files' Elastic zone-redundant service level. 
 services: azure-netapp-files
 author: b-ahibbard
 ms.service: azure-netapp-files
@@ -8,7 +8,7 @@ ms.topic: how-to
 ms.date: 08/14/2025
 ms.author: anfdocs
 ---
-# Configure customer-managed keys for Elastic Zone-Redundant volume encryption in Azure NetApp Files
+# Configure customer-managed keys for Elastic zone-redundant volume encryption in Azure NetApp Files
 
 Customer-managed keys for Azure NetApp Files volume encryption enable you to use your own keys rather than the platform-managed (Microsoft-managed) key when creating a new volume. With customer-managed keys, you can fully manage the relationship between a key's life cycle, key usage permissions, and auditing operations on keys.
 
@@ -76,11 +76,11 @@ For more information about Azure Key Vault and Azure Private Endpoint, see:
 
 ## Next steps
 
-After you configure encryption settings for your Elastic NetApp account, [Create an Elastic Zone-Redundant capacity pool](elastic-capacity-pool-task.md). Ensure you select **Customer Managed** for the encryption key source, then provide the configured Azure key vault in the key vault private endpoint. 
+After you configure encryption settings for your Elastic NetApp account, [Create an Elastic zone-redundant capacity pool](elastic-capacity-pool-task.md). Ensure you select **Customer Managed** for the encryption key source, then provide the configured Azure key vault in the key vault private endpoint. 
 
 After the capacity pool is created with customer-managed keys, volumes created in the capacity pool automatically inherit customer-managed key encryption settings. 
 
 ## More information 
 
-* [Create an Elastic Zone-Redundant capacity pool](elastic-capacity-pool-task.md)
+* [Create an Elastic zone-redundant capacity pool](elastic-capacity-pool-task.md)
 * [Troubleshoot customer-managed keys](troubleshoot-customer-managed-keys.md)

@@ -1,5 +1,5 @@
 ---
-title: Restore from snapshots for Azure NetApp Files Elastic Zone-Redundant volumes
+title: Restore from snapshots for Azure NetApp Files Elastic zone-redundant volumes
 description: Learn how to restore a volume from a snapshot in Azure NetApp Files' Elastic service level.
 services: azure-netapp-files
 author: b-ahibbard
@@ -8,11 +8,11 @@ ms.topic: how-to
 ms.date: 11/13/2025
 ms.author: anfdocs
 
-# Customer intent: "As a cloud storage administrator, I want to restore a volume using the Elastic Zone-Redundant storage level in Azure NetApp Files. 
+# Customer intent: "As a cloud storage administrator, I want to restore a volume using the Elastic zone-redundant storage level in Azure NetApp Files. 
 ---
-# Restore from snapshots for Azure NetApp Files Elastic Zone-Redundant volumes
+# Restore from snapshots for Azure NetApp Files Elastic zone-redundant volumes
 
-With the Elastic Zone-Redundant service level, you can use snapshots to restore to a new volume or revert the volume to its point-in-time snapshot. For more information, see [How Azure NetApp Files snapshots work](snapshots-introduction.md).
+With the Elastic zone-redundant service level, you can use snapshots to restore to a new volume or revert the volume to its point-in-time snapshot. For more information, see [How Azure NetApp Files snapshots work](snapshots-introduction.md).
 
 ## Revert a volume 
 
@@ -32,7 +32,7 @@ Reverting a volume using snapshot revert isn't supported on Azure NetApp Files v
 ### Considerations 
 
 * The new volume must be in the same capacity pool that contains the source snapshot. 
-* When restoring a snapshot to a new volume in the Elastic Zone-Redundant service level, the volume quota is set to 1 GiB instead of the source volume's quota. You must manually [modify the volume's quota](elastic-volume-server-message-block.md#resize-a-volume) to the correct value. 
+* When restoring a snapshot to a new volume in the Elastic zone-redundant service level, the volume quota is set to 1 GiB instead of the source volume's quota. You must manually [modify the volume's quota](elastic-volume-server-message-block.md#resize-a-volume) to the correct value. 
 
 >[!TIP]
 >To avoid unnecessary slowness in the restore operation, only restore one snapshot to a new volume at a time. 
