@@ -34,7 +34,7 @@ When deploying your Python function app to Azure, keep these packaging requireme
 ## Remote build
 > Remote build is the recommended approach for a code-only deployment of your Python app to Functions.
 
-When you choose a remote build, the Functions platform handles package installation and ensures compatibility with the remote 
+When you choose a [remote build](./functions-deployment-technologies.md#remote-build), the Functions platform handles package installation and ensures compatibility with the remote 
 runtime environment. Using remote build also results in a smaller deployment package.
 
 You can use remote build when you publish your Python app using these tools: 
@@ -42,8 +42,9 @@ You can use remote build when you publish your Python app using these tools:
 - [**Azure Functions Core Tools**](./functions-run-local.md): the [`func azure functionapp publish`](./functions-core-tools-reference.md#func-azure-functionapp-publish) command requests a remote build by default when publishing Python apps.
 - [**AZ CLI**](/cli/azure/functionapp): [`az functionapp deployment source config-zip`](/cli/azure/functionapp/deployment/source#az-functionapp-deployment-source-config-zip) uses remote build by default when deploying Python apps.
 - [**Visual Studio Code**](./functions-develop-vs-code.md): the **Azure Functions: Deploy to Azure...** command always uses a remote build.
-- [**Continuous delivery with Azure Pipelines**](./functions-how-to-azure-devops.md): the **AzureFunctionApp@2** task uses remote build by default.
 - [**Continuous delivery by using GitHub Actions**](./functions-how-to-github-actions.md): the **Azure/functions-action@v1** action uses remote build when the `remote-build` parameter is set to `true`.
+
+To enable remote build in other scenarios, like [**Continuous delivery with Azure Pipelines**](./functions-how-to-azure-devops.md), see [Enabling Remote Build](./functions-deployment-technologies.md#remote-build).
 
 Remote build also supports custom package indexes when by using the [`PIP_EXTRA_INDEX_URL`](./functions-app-settings.md#pip_extra_index_url) app setting. For more information, see [Remote build](functions-deployment-technologies.md#remote-build).
 
@@ -72,20 +73,21 @@ The following tools can be configured to use local build:
 - [**Continuous delivery by using GitHub Actions**](./functions-how-to-github-actions.md): set the `remote-build` parameter to `false`.
 
 >[!IMPORTANT]  
->When developing your Python apps on a Windows computer, don't use local build. Packages built on a Windows computer often have issues being deployed to and running on Linux in Azure Functions. It's only
-recommended to use local build if you're confident the package runs on Linux based systems.
+>When developing your Python apps on a Windows computer, don't use local build. Packages built on a Windows computer often have issues being deployed to and running on Linux in Azure Functions. 
+Only use local build if you're confident the package runs on Linux based systems.
 
 ## Custom dependencies
 Azure Functions supports custom and other non-PyPI dependencies by using the [`PIP_EXTRA_INDEX_URL`] app setting or by creating a local build on a Linux or macOS computer.
 
 ### Remote build with an extra index URL
 When your private packages are available online, you can request a remote build after setting the private package location by using the [`PIP_EXTRA_INDEX_URL`] app setting.
-When you set [`PIP_EXTRA_INDEX_URL`], remote builds use this package feed during deployment. It's recommended to use [`PIP_EXTRA_INDEX_URL`] over [`PIP_INDEX_URL`](./functions-app-settings.md#pip_index_url).
+When you set [`PIP_EXTRA_INDEX_URL`], remote builds use this package feed during deployment. [`PIP_INDEX_URL`](./functions-app-settings.md#pip_index_url) replaces the package index,
+so please consider using [`PIP_EXTRA_INDEX_URL`] instead to prevent unexpected behavior.
 
 ### Local packages or wheels
 Local packages and wheels are supported when building python Azure Function apps.
 
-To install these packages or wheels using [remote build](#remote-build), you can include the dependencies in your `requirements.txt` file and deploy with [remote build enabled](#remote-build).
+To install these packages or wheels using [remote build](#remote-build), you can include the dependencies in your `requirements.txt` file and deploy with [remote build enabled](./functions-deployment-technologies.md#remote-build).
 
 For example, your `requirements.txt` file might look like the following snippet:
 ```text
