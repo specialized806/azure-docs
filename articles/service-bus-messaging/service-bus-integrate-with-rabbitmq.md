@@ -129,9 +129,9 @@ By following the previous steps, you integrated areas of your org that were outs
 
 In the end, messaging is about enabling connections, and with this technique we just opened a new one.
 
-## Bridging other messaging systems
+## Advanced scenarios
 
-If you need to connect Azure Service Bus with a wider range of messaging systems, the [NServiceBus Messaging Bridge](https://docs.particular.net/nservicebus/bridge/) offers a unified bridging approach that supports several enterprise messaging platforms beyond RabbitMQ.
+If you need support for patterns like [request-reply](/architecture/patterns/async-request-reply), whether that is initiated by the RabbitMQ side and replied from the Azure Service Bus side, or vice-versa, then more advanced tooling is needed. The [NServiceBus Messaging Bridge](https://docs.particular.net/nservicebus/bridge/) offers support for request-reply as well as [publish-subscribe](/architecture/patterns/publisher-subscriber), across multiple other message broker technologies.
 
 ## Next steps
 
