@@ -35,13 +35,13 @@ To estimate the throughput that Azure Site Recovery can achieve from on-premises
 
 ## Analyze the Azure Site Recovery Deployment Planner report
 
-The summary worksheet provides an overview of the profiled environment. For more information, see Azure Site Recovery Deployment Planner for a [Hyper-V to Azure scenario](hyper-v-deployment-planner-analyze-report.md) and [VMware to Azure scenario](site-recovery-vmware-deployment-planner-analyze-report).
+The summary worksheet provides an overview of the profiled environment. For more information, see Azure Site Recovery Deployment Planner for a [Hyper-V to Azure scenario](hyper-v-deployment-planner-analyze-report.md) and [VMware to Azure scenario](site-recovery-vmware-deployment-planner-analyze-report.md).
 
 ## Analyze the cost estimation report
 
 The Azure Site Recovery Deployment Planner Report provides the cost estimation summary in Recommendations ([Hyper-V](hyper-v-deployment-planner-analyze-report.md#recommendations) and [VMware](site-recovery-vmware-deployment-planner-analyze-report.md#recommendations)) sheets and detailed cost analysis in the Cost Estimation sheet. It has the detailed cost analysis per VM. 
 
-For more information, see cost estimation report for [Hyper-V VMs](hyper-v-deployment-planner-cost-estimation.md) and [VMware VMs](site-recovery-vmware-deployment-planner-cost-estimation).
+For more information, see cost estimation report for [Hyper-V VMs](hyper-v-deployment-planner-cost-estimation.md) and [VMware VMs](site-recovery-vmware-deployment-planner-cost-estimation.md).
 
 ## Next steps
 
