@@ -63,7 +63,6 @@ You need to complete the following tasks before enabling the ALB Controller add-
 
 ## Setup an AKS cluster with the AKS add-on
 
-
 The AKS add-on can be enabled on new or existing clusters.
 
 > [!NOTE]
@@ -124,7 +123,6 @@ Set-AzAksCluster -InputObject $cluster
 
 ---
 
-
 ### Existing Clusters
 
 If using an existing cluster, ensure you enable Workload Identity support on your AKS cluster. Workload identities can be enabled via the following commands:
@@ -158,13 +156,16 @@ Set-AzAksCluster -InputObject $cluster -EnableOidcIssuer
 #### Install ALB Controller add-on
 
 ```azurecli-interactive
+AKS_NAME='<your cluster name>'
+RESOURCE_GROUP='<your resource group name>'
 AKS_ID=$(az aks show -g $RESOURCE_GROUP -n $AKS_NAME --query id -o tsv)
+AKS_REGION=$(az aks show -g $RESOURCE_GROUP -n $AKS_NAME --query location -o tsv)
 
 az rest \
   --method put \
   --uri "https://management.azure.com${AKS_ID}?api-version=2025-09-02-preview" \
   --body '{
-    "location": "eastus2euap",
+    "location": "${AKS_REGION}",
     "properties": {
       "ingressProfile": {
         "applicationLoadBalancer": {
@@ -290,7 +291,7 @@ az rest \
   --method put \
   --uri "https://management.azure.com${AKS_ID}?api-version=2025-09-02-preview" \
   --body '{
-    "location": "{AKS_REGION}",
+    "location": "${AKS_REGION}",
     "properties": {
       "ingressProfile": {
         "applicationLoadBalancer": {
