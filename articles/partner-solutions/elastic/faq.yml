@@ -1,7 +1,7 @@
 ### YamlMime:FAQ
 metadata:
   title: Elastic integration with Azure frequently asked questions
-  description: Answers to common questions about using Elastic Cloud (Elasticsearch), Elastic Observability, and Elastic Security in Azure
+  description: Answers to common questions about using Elastic Cloud (Elasticsearch), Elastic Observability, and Elastic Security in Azure.
   ms.topic: faq 
   ai-usage: ai-generated
   ms.date: 12/17/2025
@@ -15,9 +15,9 @@ sections:
       - question: What is Elastic in Azure?
         answer: |
             Elastic in Azure is a set of managed services that deliver search, log analytics, and security monitoring functions for Azure environments. Microsoft and Elastic developed these services and manage them together. The three services are:
-            - **Elastic Cloud (Elasticsearch)** – A managed Elasticsearch service for storing, searching, and analyzing structured and unstructured data.
-            - **Elastic Observability** – Collects and analyzes telemetry data (logs, metrics, traces) to monitor the performance and health of applications and infrastructure.
-            - **Elastic Security** – Collects and analyzes security-related data to support threat detection, investigation, and response across Azure resources.
+            - **Elastic Cloud (Elasticsearch):** A managed Elasticsearch service for storing, searching, and analyzing structured and unstructured data.
+            - **Elastic Observability:** Collects and analyzes telemetry data (logs, metrics, traces) to monitor the performance and health of applications and infrastructure.
+            - **Elastic Security:** Collects and analyzes security-related data to support threat detection, investigation, and response across Azure resources.
       - question: How do I subscribe to Elastic?
         answer: |
             You can subscribe to Elastic through Azure Marketplace. Choose from three offerings:
@@ -29,8 +29,8 @@ sections:
       - question: What are the differences between Serverless and Cloud Hosted deployment options?
         answer: |
             Elastic resources are available as Serverless and Cloud Hosted:
-            - **Serverless** – Usage-based scaling with automatic infrastructure management. Available for Elastic Search, Elastic Observability, and Elastic Security.
-            - **Cloud Hosted** – Dedicated, managed clusters with configurable versions and sizes. Provides more control over deployment specifications.
+            - **Serverless:** Usage-based scaling with automatic infrastructure management. Available for Elastic Search, Elastic Observability, and Elastic Security.
+            - **Cloud Hosted:** Dedicated, managed clusters with configurable versions and sizes. Provides more control over deployment specifications.
             
             For more information, see [Compare Elastic Cloud Hosted and Serverless](https://www.elastic.co/docs/deploy-manage/deploy/elastic-cloud/differences-from-other-elasticsearch-offerings).
       - question: Where can I learn more about Elastic integration with Azure?
@@ -54,7 +54,7 @@ sections:
             Common reasons include:
             - Only resources listed in [Azure Monitor resource log categories](/azure/azure-monitor/essentials/resource-logs-categories) emit logs to Elastic.
             - The resource doesn't support sending logs. Only resource types with monitoring log categories can be configured.
-            - The resource has reached the limit of five diagnostic settings.
+            - The resource reached the limit of five diagnostic settings.
             - A delete lock is applied to the resource or resource group, preventing diagnostic setting cleanup.
             - Export of metrics data isn't currently supported by partner solutions under Azure Monitor diagnostic settings.
       - question: Can I monitor multiple Azure subscriptions with one Elastic resource?
@@ -107,7 +107,7 @@ sections:
       - question: How can I suggest a new feature for Elastic integration with Azure?
         answer: |
             Select the **Suggest a feature** link at the top of the resource overview page in the Azure portal. This link takes you to the **Developer community forum** where you can suggest new features, view, upvote, or comment on feature suggestions from other customers.
-      - question: Where can I get additional support?
+      - question: Where can I get more support?
         answer: |
             For more help:
             - Review the [Elastic documentation](https://www.elastic.co/guide/en/cloud/current/ec-azure-marketplace-native.html) for Azure integration.
