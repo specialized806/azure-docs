@@ -15,7 +15,7 @@ sections:
     questions:
       - question: What is Apache Kafka & Apache Flink on Confluent Cloud?
         answer: |
-          Apache Kafka & Apache Flink on Confluent Cloud is an Azure Marketplace offering that provides Apache Kafka and Apache Flink as a fully managed Azure Native Integrations service. It's designed to help you focus on building your applications instead of managing clusters. The service provides integrated provisioning from Azure to Confluent Cloud, allowing you to manage Confluent Cloud resources directly from the Azure portal. For more information, see [What is Apache Kafka & Apache Flink on Confluent Cloud?](overview.md).
+          Apache Kafka & Apache Flink on Confluent Cloud is an Azure Marketplace offering that provides Apache Kafka and Apache Flink as a fully managed Azure Native Integrations service. It helps you focus on building your applications instead of managing clusters. The service provides integrated provisioning from Azure to Confluent Cloud, allowing you to manage Confluent Cloud resources directly from the Azure portal. For more information, see [What is Apache Kafka & Apache Flink on Confluent Cloud?](overview.md).
       
       - question: How does the integration between Azure and Confluent Cloud work?
         answer: |
@@ -23,7 +23,7 @@ sections:
       
       - question: Where can I learn more about Apache Kafka & Apache Flink on Confluent Cloud?
         answer: |
-          You can find comprehensive documentation on the [Confluent website](https://docs.confluent.io/home/overview.html). The documentation covers topics including creating clusters, managing environments, configuring connectors, and understanding billing options. Additional resources include the [Apache Kafka documentation](https://kafka.apache.org/documentation/) and [Apache Flink documentation](https://nightlies.apache.org/flink/flink-docs-lts/). You can also access [Confluent support](https://support.confluent.io) for assistance.
+          You can find comprehensive documentation on the [Confluent website](https://docs.confluent.io/home/overview.html). The documentation covers creating clusters, managing environments, configuring connectors, and understanding billing options. Other resources include the [Apache Kafka documentation](https://kafka.apache.org/documentation/) and [Apache Flink documentation](https://nightlies.apache.org/flink/flink-docs-lts/). You can also access [Confluent support](https://support.confluent.io) for assistance.
       
       - question: What are the prerequisites for creating a Confluent resource?
         answer: |
@@ -55,7 +55,7 @@ sections:
       
       - question: How do I delete a Confluent resource?
         answer: |
-          You can delete a Confluent resource from the Azure portal by selecting **Delete** from the resource's overview page. Deleting the Azure resource removes the Confluent organization from Azure but doesn't delete the corresponding organization from Confluent Cloud. To delete the resource on Confluent Cloud, see the documentation for [Confluent Cloud Environments](https://docs.confluent.io/current/cloud/using/environments.html) and [Confluent Cloud Basics](https://docs.confluent.io/current/cloud/using/cloud-basics.html). Note that the cluster and all data are permanently deleted, and you're billed for prorated usage up to the time the cluster is deleted.
+          You can delete a Confluent resource from the Azure portal by selecting **Delete** from the resource's overview page. Deleting the Azure resource removes the Confluent organization from Azure but doesn't delete the corresponding organization from Confluent Cloud. To delete the resource on Confluent Cloud, see the documentation for [Confluent Cloud Environments](https://docs.confluent.io/current/cloud/using/environments.html) and [Confluent Cloud Basics](https://docs.confluent.io/current/cloud/using/cloud-basics.html). The cluster and all data are permanently deleted, and you're billed for prorated usage up to the time the cluster is deleted.
 
   - name: Connectors and Integration
     questions:
@@ -95,7 +95,7 @@ sections:
       
       - question: Can I use Azure PowerShell to manage Confluent resources?
         answer: |
-          Yes, you can use Azure PowerShell to create and manage Confluent resources. The `Az.Confluent` PowerShell module provides cmdlets like `New-AzConfluentOrganization` and `Get-AzConfluentOrganization`. Note that the module is currently in preview. For more information, see [Quickstart: Create a Confluent Cloud resource by using Azure PowerShell](create-powershell.md).
+          Yes, you can use Azure PowerShell to create and manage Confluent resources. The `Az.Confluent` PowerShell module provides cmdlets like `New-AzConfluentOrganization` and `Get-AzConfluentOrganization`. The module is currently in preview. For more information, see [Quickstart: Create a Confluent Cloud resource by using Azure PowerShell](create-powershell.md).
       
       - question: What developer resources are available?
         answer: |
