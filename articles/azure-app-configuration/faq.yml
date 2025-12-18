@@ -118,9 +118,9 @@ sections:
 
               Premium tier stores also have a daily usage charge and include a replica. The first 800,000 requests for the origin and the first 800,000 requests for the replica each day are included in the daily charge. Requests exceeding this daily allocation incur an overage charge.
 
-      - question: How do I track who is accessing my App Configuration store?
+      - question: How do I identify who has accessed my App Configuration store?
         answer: |
-          Azure App Configuration provides logs that can help track who is accessing your App Configuration store. To learn how to enable log collection see the [log collection](./monitor-app-configuration.md#log-collection) section in the 'Monitoring App Configuration' document. For considerations on which specific logs to use to track access, refer to the [data access tracking](./monitor-app-configuration.md#data-access-tracking) section.
+          To see who has accessed your App Configuration store, see [Activity logs](./monitor-app-configuration.md#activity-logs). To see who has accessed your data plane resources, see [Resource logs](./monitor-app-configuration.md#resource-logs).
 
       - question: Can I upgrade or downgrade an App Configuration store?
         answer: |
@@ -128,7 +128,7 @@ sections:
           
           You can downgrade an App Configuration store from the Premium tier to the Standard tier, as both tiers are designed for production usage. However, downgrading to a non-production tier, such as the Free tier, isn't supported. To achieve this, you can create a new store in the desired tier and then [import configuration data into that store](howto-import-export-data.md).
           
-          Before downgrading an App Configuration store from the Premium tier to the Standard tier, ensure that your usage of regular storage and snapshot storage is below the limits of the Standard tier. You can verify your current usage through the [Azure Monitor metrics](monitor-app-configuration.md#metric-analysis), Daily Storage Usage and Snapshot Storage Size, of your App Configuration store in the Azure portal.
+          Before downgrading an App Configuration store from the Premium tier to the Standard tier, ensure that your usage of regular storage and snapshot storage is below the limits of the Standard tier. You can verify your current usage through the [Azure Monitor metrics](monitor-app-configuration.md#metrics-analysis), Daily Storage Usage and Snapshot Storage Size, of your App Configuration store in the Azure portal.
 
       - question: Where does data stored in App Configuration reside? 
         answer: |
