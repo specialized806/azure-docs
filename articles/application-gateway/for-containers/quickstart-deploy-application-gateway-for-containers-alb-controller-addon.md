@@ -16,6 +16,8 @@ ms.author: mbender
 
 The [ALB Controller](application-gateway-for-containers-components.md#application-gateway-for-containers-alb-controller) is responsible for translating Gateway API and Ingress API configuration within Kubernetes to load balancing rules within Application Gateway for Containers. The following guide walks through the steps needed to enable the ALB Controller add-on on a new or existing Azure Kubernetes Service (AKS) cluster.
 
+![Diagram depicting traffic from the Internet ingressing into Application Gateway for Containers and being sent to backend pods in AKS; installed by an AKS add-on.](./media/overview/application-gateway-for-containers-kubernetes-addon.svg)
+
 ## Benefits of the AKS Add-on
 
 The AKS add-on for Application Gateway for Containers provides several advantages over manual Helm installation:
