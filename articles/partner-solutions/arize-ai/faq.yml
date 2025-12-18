@@ -29,24 +29,24 @@ sections:
       - question: What are the key features of Azure Native Arize AI Cloud Service?
         answer: |
           Key features include:
-          - **Seamless Onboarding:** Integrate data into the Arize Ax platform with minimal setup
-          - **Cloud Data Integration:** Directly query trace data from Azure storage buckets
-          - **Unified Billing:** Manage all billing through your Azure subscription
-          - **Single Sign-On:** Access the service using your Azure credentials
-          - **Resource Management:** Provision and manage Arize AI resources from the Azure portal
+          - **Seamless Onboarding:** Integrate data into the Arize Ax platform with minimal setup.
+          - **Cloud Data Integration:** Directly query trace data from Azure storage buckets.
+          - **Unified Billing:** Manage all billing through your Azure subscription.
+          - **Single Sign-On:** Access the service using your Azure credentials.
+          - **Resource Management:** Provision and manage Arize AI resources from the Azure portal.
 
   - name: Getting Started
     questions:
       - question: How do I subscribe to Azure Native Arize AI Cloud Service?
         answer: |
-          You can subscribe to the service through the [Azure Marketplace](https://azuremarketplace.microsoft.com/marketplace/apps/arizeai1657829589668.arize-liftr-0?tab=Overview) online store or through the [Azure portal](https://portal.azure.com/#browse/arizeai.observabilityeval%2Forganizations). Search for it by name: **Arize AI Cloud Service**.
+          You can subscribe to the service through [Azure Marketplace](https://azuremarketplace.microsoft.com/marketplace/apps/arizeai1657829589668.arize-liftr-0?tab=Overview) online store or through the [Azure portal](https://portal.azure.com/#browse/arizeai.observabilityeval%2Forganizations). Search for it by name: **Arize AI Cloud Service**.
 
       - question: What prerequisites are required to create a resource?
         answer: |
           To create an Azure Native Arize AI Cloud Service resource, you need:
           - An active Azure subscription
           - A resource group in your Azure subscription
-          - An Arize AI subscription (available through the Azure Marketplace)
+          - An Arize AI subscription (available through Azure Marketplace)
           - Access to the Azure portal
 
       - question: How do I create a resource?
@@ -57,7 +57,7 @@ sections:
     questions:
       - question: How do I manage my Arize AI resource?
         answer: |
-          You can manage your Arize AI resource through the Azure portal. The resource overview page displays essential details such as resource group, location, subscription ID, tags, single sign-on configuration, status, pricing plan, and billing term. Select the links next to the corresponding details to modify settings. For more information, see [Manage an Arize AI resource through the Azure portal](manage.md).
+          You can manage your Arize AI resource through the Azure portal. The resource overview page displays essential details such as resource group, location, subscription ID, tags, single sign-on configuration, status, pricing plan, and billing term. To modify settings, select the links next to the corresponding details. For more information, see [Manage an Arize AI resource through the Azure portal](manage.md).
 
       - question: Can I delete my Arize AI resource?
         answer: |
@@ -81,7 +81,7 @@ sections:
     questions:
       - question: How do I get support for Azure Native Arize AI Cloud Service?
         answer: |
-          Contact [Arize](https://arize.com/contact/) directly for customer support. You can also visit the [Slack Support Community](https://arize-ai.slack.com/ssb/redirect) for additional help and community discussions.
+          Contact [Arize](https://arize.com/contact/) directly for customer support. You can also visit the [Slack Support Community](https://arize-ai.slack.com/ssb/redirect) for more help and community discussions.
 
       - question: Where can I learn more about Azure Native Arize AI Cloud Service?
         answer: |
