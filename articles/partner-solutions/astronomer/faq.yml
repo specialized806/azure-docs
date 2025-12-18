@@ -8,14 +8,14 @@ metadata:
 
 title: Apache Airflow on Astro FAQ
 summary: |
-  Find quick answers about subscribing to, creating, managing, and developing with Apache Airflow on Astro, the Azure Native ISV Service co-developed by Microsoft and Astronomer.
+  Find quick answers about subscribing to, creating, managing, and developing with Apache Airflow on Astro, the Azure Native Service codeveloped by Microsoft and Astronomer.
 
 sections:
   - name: General
     questions:
       - question: What is Apache Airflow on Astro?
         answer: |
-          Apache Airflow on Astro is a co-developed Azure Native ISV Service by Microsoft and Astronomer that lets you deploy and manage fully managed Apache Airflow resources in the Azure portal or Azure Marketplace. Astronomer owns and runs the SaaS application, while Azure handles billing and resource lifecycle through the `astronomer.astro` resource provider. Learn more in the [overview](overview.md).
+          Apache Airflow on Astro is a codeveloped Azure Native Service by Microsoft and Astronomer that lets you deploy and manage fully managed Apache Airflow resources in the Azure portal or Azure Marketplace. Astronomer owns and runs the SaaS application, while Azure handles billing and resource lifecycle through the `astronomer.astro` resource provider. Learn more in the [overview](overview.md).
 
       - question: How do I subscribe to Apache Airflow on Astro?
         answer: |
@@ -27,7 +27,7 @@ sections:
 
       - question: What Azure resource details do I need to provide during creation?
         answer: |
-          In the **Basics** tab you specify a subscription, resource group, unique resource name, and region, along with Astro organization and workspace information. Required fields are marked with a red asterisk. Steps are detailed in the [create guide](create.md#basics-tab).
+          In the **Basics** tab, you specify a subscription, resource group, unique resource name, and region, along with Astro organization and workspace information. Required fields are marked with a red asterisk. Steps are detailed in the [create guide](create.md#basics-tab).
 
       - question: How is billing handled for Apache Airflow on Astro?
         answer: |
@@ -35,7 +35,7 @@ sections:
 
       - question: Is single sign-on enabled for Astro?
         answer: |
-          Yes. Single sign-on with Microsoft Entra ID is enabled when you create the Astro resource. From the resource overview in the Azure portal, select the SSO URL to access Astro. The first sign-in might prompt for user or admin consent depending on your tenant settings. See [single sign-on details](manage.md#single-sign-on).
+          Yes. Single sign-on with Microsoft Entra ID is enabled when you create the Astro resource. From the resource overview in the Azure portal, select the single sign-on (SSO) URL to access Astro. The first sign-in might prompt for user or admin consent depending on your tenant settings. See [single sign-on details](manage.md#single-sign-on).
 
       - question: Where do I manage my Astro resource after creation?
         answer: |
