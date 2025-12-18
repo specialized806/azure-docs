@@ -5,22 +5,26 @@ author: Jeronika-MS
 ms.service: azure-site-recovery
 ms.topic: concept-article
 ms.author: v-gajeronika
-ms.date: 05/27/2021
+ms.date: 12/18/2025
 
 # Customer intent: As a disaster recovery planner, I want to analyze cost estimations for VMware disaster recovery in Azure, so that I can make informed decisions about budget allocation for storage, compute, and licensing costs.
 ---
+
 # Review cost estimations in the VMware Deployment Planner 
 
 The deployment planner report provides the cost estimation summary in [Recommendations](site-recovery-vmware-deployment-planner-analyze-report.md#recommendations) sheets and detailed cost analysis in Cost Estimation sheet. It has the detailed cost analysis per virtual machine. 
+
+[Generate](site-recovery-vmware-deployment-planner-run.md) and [analyse](site-recovery-vmware-deployment-planner-analyze-report.md) the report before you review the cost estimation summary.
 
 >[!Note]
 >The current version of Deployment planner tool v2.5 provides cost estimation for virtual machines replicating to Managed Disks.
 
 ### Cost estimation summary 
+
 The graph shows the summary view of the estimated total disaster recovery (DR) cost to Azure of your chosen target region and the currency that you have specified for report generation.
 Cost estimation summary
 
-![Cost estimation summary](media/site-recovery-vmware-deployment-planner-analyze-report/cost-estimation-summary-v2a.png)
+:::image type="content" source="media/site-recovery-vmware-deployment-planner-analyze-report/cost-estimation-summary-v2a.png" alt-text="Screenshot of Cost estimation summary.":::
 
 The summary helps you to understand the cost that you need to pay for storage, compute, network, and license when you protect all your compatible virtual machines to Azure using Azure Site Recovery. The cost is calculated on for compatible virtual machines and not on all the profiled virtual machines.  
  
@@ -40,14 +44,16 @@ The total disaster recovery (DR) cost is categories based on two different state
 It shows the total storage cost that is incurred for premium and standard storage for replication and DR drill.
 
 ## Detailed cost analysis
+
 Azure prices for compute, storage, network, etc. varies across Azure regions. You can generate a cost estimation report with the latest Azure prices based on your subscription, the offer that is associated with your subscription and for the specified target Azure region in the specified currency. By default, the tool uses West US 2 Azure region and US dollar (USD) currency. If you have used any other region and currency, the next time when you generate a report without subscription ID, offer ID, target region, and currency, it'll use prices of the last used target region and last used currency for cost estimation.
 This section shows the subscription ID and offer ID that you have used for report generation.  If not used, it's blank.
 
 In the whole report, the cells marked in gray are read only. Cells in white can be modified per your requirements.
 
-![Cost estimation details1](media/site-recovery-hyper-v-deployment-planner-cost-estimation/cost-estimation1-h2a.png)
+:::image type="content" source="media/site-recovery-hyper-v-deployment-planner-cost-estimation/cost-estimation1-h2a.png" alt-text="Screenshot of Cost estimation details.":::
 
 ### Overall DR cost by components
+
 The first section shows the overall DR cost by components and DR cost by states. 
 
 **Compute**: Cost of IaaS virtual machines that run on Azure for DR needs. It includes virtual machines that are created by Azure Site Recovery during DR-drills (test failovers) and virtual machines running on Azure like SQL Server with Always On Availability Groups and domain controllers / Domain Name Servers.
@@ -58,6 +64,7 @@ Network: ExpressRoute and Site to Site VPN cost for DR needs.
 **ASR license**: Azure Site Recovery license cost for all compatible virtual machines. If you have manually entered a virtual machine in the detailed cost analysis table, Azure Site Recovery license cost is also included for that virtual machine.
 
 ### Overall DR cost by states
+
 The total DR cost is categorized based on two different states - replication and DR-Drill.
 
 **Replication cost**: The cost incurs at the time of replication. It covers the cost of storage, network, and Azure Site Recovery license. 
@@ -68,10 +75,12 @@ The total DR cost is categorized based on two different states - replication and
 
 2.	Average DR drill cost (per month) = Total DR drill cost / 12
 
-### Storage cost table:
+### Storage cost table
+
 This table shows premium and standard storage cost incur for replication and DR drills with and without discount.
 
 ### Site to Azure network
+
 Select the appropriate setting as per your requirements. 
 
 **ExpressRoute**: By default, the tool selects the nearest ExpressRoute plan that matches with the required network bandwidth for delta replication. You can change the plan as per your requirements.
@@ -81,12 +90,15 @@ Select the appropriate setting as per your requirements.
 **Target Region**: Specified Azure region for DR. The price used in the report for compute, storage, network, and license is based on the Azure pricing for that region. 
 
 ### Virtual machine running on Azure
+
 If you have any domain controller or DNS virtual machine or SQL Server virtual machine with Always On Availability Groups  running on Azure for DR, you can provide the number of virtual machines and the size to consider their computing cost in the total DR cost. 
 
 ### Apply overall discount if applicable
+
 If you are an Azure partner or a customer and are entitled to any discount on overall Azure pricing, you can use this field. The tool applies the discount (in %) on all components.
 
 ### Number of virtual machines type and compute cost (per year)
+
 This table shows the number of Windows and non-Windows virtual machines and DR drill compute cost for them.
 
 ### Settings 
@@ -95,7 +107,9 @@ This table shows the number of Windows and non-Windows virtual machines and DR d
 Cost duration:  You can view all costs either for the month or for the whole year. 
 
 ## Detailed cost analysis table
-![Detailed cost analysis](media/site-recovery-hyper-v-deployment-planner-cost-estimation/detailed-cost-analysis-h2a.png)
+
+:::image type="content" source="media/site-recovery-hyper-v-deployment-planner-cost-estimation/detailed-cost-analysis-h2a.png" alt-text="Screenshot of detailed cost analysis.":::
+
 The table lists the cost breakup for each compatible virtual machine. 
 You can also use this table to get estimated Azure DR cost of nonprofiled virtual machines by manually adding virtual machines. It's useful in cases where you need to estimate Azure costs for a new disaster recovery deployment without detailed profiling being done.
 To manually add virtual machines: 
@@ -147,11 +161,13 @@ To manually add virtual machines:
 **ASR license cost**: Azure Site Recovery license cost.
 
 ## Supported target regions
+
 The Azure Site Recovery deployment planner provides cost estimation for the following Azure regions. If your region is not listed below, you can use any of the following regions whose pricing is nearest to your region.
 
 eastus, eastus2, westus, centralus, northcentralus, southcentralus, northeurope, westeurope, eastasia, southeastasia, japaneast, japanwest, australiaeast, australiasoutheast, brazilsouth, southindia, centralindia, westindia, canadacentral, canadaeast, westus2, westcentralus, uksouth, ukwest, koreacentral, koreasouth 
 
 ## Supported currencies
+
 The Azure Site Recovery Deployment Planner can generate the cost report with any of the following currencies.
 
 |Currency|Name|Currency|Name|Currency|Name|
@@ -166,4 +182,5 @@ The Azure Site Recovery Deployment Planner can generate the cost report with any
 |TRY|Turkish Lira (TL)|USD| US Dollar ($)|ZAR|South African Rand (R)|
 
 ## Next steps
+
 Learn more about protecting [VMware virtual machines to Azure using Azure Site Recovery](./vmware-azure-tutorial.md).
