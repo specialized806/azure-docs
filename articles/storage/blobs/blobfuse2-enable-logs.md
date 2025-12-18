@@ -47,7 +47,7 @@ The following example modifies log settings in the command line by using paramet
 sudo blobfuse2 mount ~/mycontainer --log-level=log_err --file-path=$HOME/.mycustomdirectory/blobfuse2.log
 ```
 
->[!NOTE] You can modify logging behavior after you mount a container by changing settings in the configuration file and saving the file. If you use only Azure CLI to set behavior, you must first unmount the container and then mount the container again by using the `mount` command along with the correct parameters.  
+> [!NOTE] You can modify logging behavior after you mount a container by changing settings in the configuration file and saving the file. If you use only Azure CLI to set behavior, you must first unmount the container and then mount the container again by using the `mount` command along with the correct parameters.  
 
 ### Choose a log level
 

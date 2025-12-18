@@ -93,11 +93,11 @@ BlobFuse2 doesn't guarantee 100% POSIX compliance because BlobFuse2 simply trans
 
 ## Limitations and Known Issues
 
-Please refer the [pLimitations and known issues with BlobFuse2](blobfuse2-known-issues.md).
+Please refer the [Limitations and known issues with BlobFuse2](blobfuse2-known-issues.md).
 
 ## Support
 
-BlobFuse2 is supported by Microsoft if it's used within the specified [limits](#limitations). If you encounter an issue, [report it on GitHub](https://github.com/Azure/azure-storage-fuse/issues).
+BlobFuse2 is supported by Microsoft if it's used within the specified [limitations](#limitations-and-known-issues). If you encounter an issue, [report it on GitHub](https://github.com/Azure/azure-storage-fuse/issues).
 
 This table shows how this feature is supported in your account and the effect on support when you enable certain capabilities.
 

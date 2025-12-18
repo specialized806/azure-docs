@@ -217,7 +217,7 @@ items:
                   - name: Troubleshooting
                     href: blobfuse2-troubleshooting.md
                   - name: FAQ
-                    href: blobfuse2-faq.md
+                    href: blobfuse2-faq.yml
           - name: NFS 3.0
             items:
               - name: Overview

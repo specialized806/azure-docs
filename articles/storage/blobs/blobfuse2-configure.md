@@ -48,10 +48,10 @@ Generate streaming (block cache) mode configuration file:
    > [!NOTE]
    > Only one of `file_cache` or `block_cache` can be used.
 
-1. Caching configuration: BlobFuse2 has 2 modes - caching (file cache) and streaming (block cache). Choosing the caching mode is crucial in getting optimal performance for your workload. See [Streaming versus caching mode](blobfuse2-choose-data-transfer-mode.md).
+1. Caching configuration: BlobFuse2 has 2 modes - caching (file cache) and streaming (block cache). Choosing the caching mode is crucial in getting optimal performance for your workload. See [Streaming versus caching mode](blobfuse2-streaming-versus-caching.md).
 
    > [!NOTE]
-   >  You should only mention component related to one caching mode in pipeline configuration. For example:
+   > You should only mention component related to one caching mode in pipeline configuration. For example:
 
    ```yaml
    file_cache:
