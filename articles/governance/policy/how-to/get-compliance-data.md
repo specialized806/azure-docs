@@ -161,21 +161,18 @@ Since a policy or initiative can be assigned to different scopes, the table incl
 
 :::image type="content" source="../media/getting-compliance-data/compliance-details.png" alt-text="Screenshot of Compliance Details page, including counts and resource compliant details." border="false":::
 
-The list of resources on the **Resource compliance** tab shows the evaluation status of existing resources for the current assignment. The tab defaults to **Non-compliant**, but can be filtered. Events (append, audit, deny, deploy, modify) triggered by the request to create a resource are shown under the **Events** tab.
+The list of resources on the **Resource compliance** tab shows the evaluation status of existing resources for the current assignment. The tab defaults to all compliance states, but can be filtered.
 
-:::image type="content" source="../media/getting-compliance-data/compliance-events.png" alt-text="Screenshot of the Events tab on Compliance Details page." border="false":::
-
-
-For [Resource Provider mode](../concepts/definition-structure-basics.md#resource-provider-modes) resources, on the **Resource compliance** tab, selecting the resource or right-clicking on the row and selecting **View compliance details** opens the component compliance details. This page also offers tabs to see the policies that are assigned to this resource, events, component events, and change history.
+For [Resource Provider mode](../concepts/definition-structure-basics.md#resource-provider-modes) resources, on the **Resource compliance** tab, selecting the resource opens the component compliance details. This page also offers tabs to see the policies that are assigned to this resource and change history.
 
 :::image type="content" source="../media/getting-compliance-data/compliance-components.png" alt-text="Screenshot of Component Compliance tab and compliance details for a Resource Provider mode assignment." border="false":::
 
-Back on the resource compliance page, select and hold (or right-click) on the row of the event you would like to gather more details on and select **Show activity logs**. The activity log page opens and is prefiltered to the search showing details for the assignment and the events. The activity log provides more context and information about those events.
+Back on the resource compliance page, right-click on the row of the event you would like to gather more details on and select **Show activity logs**. The activity log page opens and is prefiltered to the search showing details for the assignment and the events. The activity log provides more context and information about those events.
 
 :::image type="content" source="../media/getting-compliance-data/compliance-activitylog.png" alt-text="Screenshot of the Activity Log for Azure Policy activities and evaluations." border="false":::
 
 > [!NOTE]
-> Compliance results can be exported from the portal with [Azure Resource Graph queries](/azure/governance/policy/samples/resource-graph-samples).
+> Compliance results, even in the same format shown above, can be exported from the portal with [Azure Resource Graph queries](/azure/governance/policy/samples/resource-graph-samples).
 
 ## Command line
 
