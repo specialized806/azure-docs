@@ -21,7 +21,7 @@ Multiple strategies exist within the industry for achieving high availability (H
 
 The article also includes guidance for implementing HA patterns in production environments, establishing health monitoring, and creating operational runbooks to support ongoing readiness.
 
-## Key operational differences:
+## Key operational differences
 
 This guide presents two proven architectures using Azure Traffic Manager to provide automated failover. The following table summarizes key operational differences to consider:
 
@@ -66,9 +66,8 @@ When implementing high availability architectures for production workloads, cons
 - Regularly validate that failover endpoints remain functional (quarterly testing recommended).
 
 > [!NOTE]
-> - This guide uses Azure CLI (az) **sample** commands executed from within PowerShell.
+> - This guide uses Azure CLI sample commands executed from within PowerShell.
 > - Before proceeding, review the [Global routing redundancy for mission-critical web applications](/azure/architecture/guide/networking/global-web-applications/overview?tabs=cli)
-
 
 ## Scenario 1: Traffic Manager failover: Front Door to alternative CDN
 
@@ -82,7 +81,7 @@ This solution uses a single Traffic Manager profile with weighted/always serve r
 
 ### Key implementation steps
 
-#### Step1: Provision prerequisites
+#### Step 1: Provision prerequisites
 
 Configure your secondary CDN provider with:
 
@@ -119,7 +118,6 @@ Configure your secondary CDN provider with:
 - Configure custom domain to match your Front Door custom domain (for example, `www.contoso.com`).
 
 - Record the CDN edge hostname for Traffic Manager configuration (for example, `your-site.cdn.provider.net`).
-
 
 #### Step 3: Create Traffic Manager profile
 
@@ -167,7 +165,7 @@ Apply the following configuration to create the Traffic Manager profile. For mor
 #### Step 5: Update DNS CNAME to Traffic Manager and verify update
 
 > [!WARNING]
-> The following steps will redirect your production traffic from Front Door directly to Traffic Manager. Before proceeding:
+> **Step 5 configurations** will redirect your production traffic from Front Door directly to Traffic Manager. Before proceeding, ensure you have done the following steps:
 > - **Test these steps in a non-production environment first**
 > - **Reduce your DNS CNAME TTL to the lowest value possible** (for example, 60-300 seconds) at least 24-48 hours before making changes.
 > - **Plan for a maintenance window** during low-traffic periods if possible.
@@ -185,18 +183,18 @@ Apply the following configuration to create the Traffic Manager profile. For mor
 
 2. **Verify Traffic Manager resolution:** Wait for DNS propagation and test HTTPS connectivity. 
 
-```
-# Verify Traffic Manager profile is resolving
-nslookup "$ATM_CDN_DNS_NAME.trafficmanager.net"
-# Expected result: Should return IP address(es) of Front Door endpoint
-
-# Check DNS from different resolvers
-nslookup $CUSTOM_DOMAIN 8.8.8.8    # Google DNS
-
-# Test HTTPS connectivity
-Invoke-WebRequest -Uri "https://$CUSTOM_DOMAIN/index.html" -Method Head
-# Expected result: StatusCode 200
-```
+    ```
+    # Verify Traffic Manager profile is resolving
+    nslookup "$ATM_CDN_DNS_NAME.trafficmanager.net"
+    # Expected result: Should return IP address(es) of Front Door endpoint
+    
+    # Check DNS from different resolvers
+    nslookup $CUSTOM_DOMAIN 8.8.8.8    # Google DNS
+    
+    # Test HTTPS connectivity
+    Invoke-WebRequest -Uri "https://$CUSTOM_DOMAIN/index.html" -Method Head
+    # Expected result: StatusCode 200
+    ```
 
 3. **Monitor Front Door:** After the DNS cutover, actively monitor the following Azure Front Door metrics:
 
@@ -212,59 +210,59 @@ Invoke-WebRequest -Uri "https://$CUSTOM_DOMAIN/index.html" -Method Head
 
 1. Manual failover to alternative CDN
 
-```
-# Failover: Disable Front Door and enable CDN
-az network traffic-manager endpoint update `
-    --name "endpoint-afd-primary" `
-    --profile-name $ATM_CDN_PROFILE_NAME `
-    --resource-group $RESOURCE_GROUP `
-    --type externalEndpoints `
-    --endpoint-status Disabled
-
-az network traffic-manager endpoint update `
-    --name "endpoint-cdn-secondary" `
-    --profile-name $ATM_CDN_PROFILE_NAME `
-    --resource-group $RESOURCE_GROUP `
-    --type externalEndpoints `
-    --endpoint-status Enabled
-
-# Verify endpoint status
-az network traffic-manager profile show `
-    --name \$ATM_CDN_PROFILE_NAME `
-    --resource-group $RESOURCE_GROUP `
-    --query "endpoints[].{Name:name, Status:endpointStatus, Health:endpointMonitorStatus, Target:target}"
-
-# Flush local DNS cache and verify resolution
-ipconfig /flushdns
-nslookup "$ATM_CDN_DNS_NAME.trafficmanager.net"
-
-# Test HTTPS access
-curl --head https://$CUSTOM_DOMAIN/
-```
+    ```
+    # Failover: Disable Front Door and enable CDN
+    az network traffic-manager endpoint update `
+        --name "endpoint-afd-primary" `
+        --profile-name $ATM_CDN_PROFILE_NAME `
+        --resource-group $RESOURCE_GROUP `
+        --type externalEndpoints `
+        --endpoint-status Disabled
+    
+    az network traffic-manager endpoint update `
+        --name "endpoint-cdn-secondary" `
+        --profile-name $ATM_CDN_PROFILE_NAME `
+        --resource-group $RESOURCE_GROUP `
+        --type externalEndpoints `
+        --endpoint-status Enabled
+    
+    # Verify endpoint status
+    az network traffic-manager profile show `
+        --name \$ATM_CDN_PROFILE_NAME `
+        --resource-group $RESOURCE_GROUP `
+        --query "endpoints[].{Name:name, Status:endpointStatus, Health:endpointMonitorStatus, Target:target}"
+    
+    # Flush local DNS cache and verify resolution
+    ipconfig /flushdns
+    nslookup "$ATM_CDN_DNS_NAME.trafficmanager.net"
+    
+    # Test HTTPS access
+    curl --head https://$CUSTOM_DOMAIN/
+    ```
  
 2. Failback to Front Door
 
-```
-# Failback: Enable Front Door, Disable CDN
-
-az network traffic-manager endpoint update `
-    --name "endpoint-afd-primary" `
-    --profile-name $ATM_CDN_PROFILE_NAME `
-    --resource-group $RESOURCE_GROUP `
-    --type externalEndpoints `
-    --endpoint-status Enabled
-
-az network traffic-manager endpoint update `
-    --name "endpoint-cdn-secondary" `
-    --profile-name $ATM_CDN_PROFILE_NAME `
-    --resource-group $RESOURCE_GROUP `
-    --type externalEndpoints `
-    --endpoint-status Disabled
-
-# Verify
-az network traffic-manager profile show `
-    --name $ATM_CDN_PROFILE_NAME `
-    --resource-group $RESOURCE_GROUP `
-    --query "endpoints[].{Name:name, Status:endpointStatus, Health:endpointMonitorStatus}"
-```
+    ```
+    # Failback: Enable Front Door, Disable CDN
+    
+    az network traffic-manager endpoint update `
+        --name "endpoint-afd-primary" `
+        --profile-name $ATM_CDN_PROFILE_NAME `
+        --resource-group $RESOURCE_GROUP `
+        --type externalEndpoints `
+        --endpoint-status Enabled
+    
+    az network traffic-manager endpoint update `
+        --name "endpoint-cdn-secondary" `
+        --profile-name $ATM_CDN_PROFILE_NAME `
+        --resource-group $RESOURCE_GROUP `
+        --type externalEndpoints `
+        --endpoint-status Disabled
+    
+    # Verify
+    az network traffic-manager profile show `
+        --name $ATM_CDN_PROFILE_NAME `
+        --resource-group $RESOURCE_GROUP `
+        --query "endpoints[].{Name:name, Status:endpointStatus, Health:endpointMonitorStatus}"
+    ```
 
