@@ -1,7 +1,7 @@
 ### YamlMime:FAQ
 metadata:
   title: Azure Native NGINXaaS frequently asked questions
-  description: Answers to common questions about using NGINXaaS as an Azure Native ISV Service
+  description: Answers to common questions about using NGINXaaS as an Azure service, including capabilities, getting started, management, and support.
   ms.topic: faq
   ai-usage: ai-generated
   ms.date: 12/17/2025
@@ -15,7 +15,7 @@ sections:
     questions:
       - question: What is NGINXaaS?
         answer: |
-          NGINXaaS is a Cloud-Native Observability Platform developed and managed jointly by Microsoft and F5. It's offered as an integrated Azure Native ISV Service through Azure Marketplace. NGINXaaS provides secure, high-performance load balancing and reverse proxy capabilities that you can deploy and manage directly from the Azure portal.
+          NGINXaaS is a Cloud-Native Observability Platform developed and managed jointly by Microsoft and F5. It's an integrated Azure Native ISV Service through Azure Marketplace. NGINXaaS provides secure, high-performance load balancing and reverse proxy capabilities that you can deploy and manage directly from the Azure portal.
       - question: Where can I find NGINXaaS?
         answer: |
           You can find NGINXaaS in the [Azure portal](https://portal.azure.com/#view/HubsExtension/BrowseResource/resourceType/NGINX.NGINXPLUS%2FnginxDeployments) or get it from [Azure Marketplace](https://azuremarketplace.microsoft.com/marketplace/apps/f5-networks.f5-nginx-for-azure?tab=Overview). Search for *F5 NGINX as a Service* in either location.
@@ -30,30 +30,30 @@ sections:
           - Cloud-native observability for monitoring your workloads
       - question: Who manages NGINXaaS?
         answer: |
-          Microsoft and F5 jointly developed and manage NGINXaaS. F5 owns and runs the software as a service (SaaS) application, including the NGINX accounts created. You provision and manage NGINXaaS resources through the Azure portal using the Nginx.NginxPlus resource provider.
+          Microsoft and F5 jointly develop and manage NGINXaaS. F5 owns and runs the software as a service (SaaS) application, including the NGINX accounts created. You provision and manage NGINXaaS resources through the Azure portal using the Nginx.NginxPlus resource provider.
   - name: Getting started
     questions:
       - question: What do I need to get started with NGINXaaS?
         answer: |
           To create an NGINXaaS resource, you need:
           - An active Azure subscription
-          - A resource group (you can create one during setup)
+          - A resource group, which you can create during setup
           - Appropriate Azure permissions to create resources
           - A virtual network and subnet for deployment
       - question: How do I create an NGINXaaS resource?
         answer: |
           To create an NGINXaaS resource:
-          1. Search for *Marketplace* in the Azure portal global search bar
-          2. Search for *F5 NGINX as a Service* and subscribe
-          3. In the **Create NGINXaaS** dialog, select your subscription and resource group
-          4. Provide a name and select a region
-          5. Select a pricing plan and enter a support contact email
-          6. Configure networking by specifying a virtual network and subnet
-          7. Allow NGINX service provider access to your virtual network
-          8. Choose your IP address type (Public Only or Private Only)
-          9. Review and create the resource
+          1. Search for *Marketplace* in the Azure portal global search bar.
+          2. Search for *F5 NGINX as a Service* and subscribe.
+          3. In the **Create NGINXaaS** dialog, select your subscription and resource group.
+          4. Provide a name and select a region.
+          5. Select a pricing plan and enter a support contact email.
+          6. Configure networking by specifying a virtual network and subnet.
+          7. Allow NGINX service provider access to your virtual network.
+          8. Choose your IP address type: Public Only or Private Only.
+          9. Review and create the resource.
 
-          For detailed steps, see [QuickStart: Create an NGINXaaS resource](create.md).
+          For more information, see [QuickStart: Create an NGINXaaS resource](create.md).
       - question: Are there regional limitations for NGINXaaS?
         answer: |
           Not all marketplace plans are available for all regions. Check the available options when you select a region during resource creation.
@@ -71,14 +71,14 @@ sections:
           - Sending metrics to Azure Monitor
           - Enabling GitHub integration for CI/CD deployments
 
-          For detailed instructions, see [Manage your NGINXaaS integration through the Azure portal](manage.md).
+          For more information, see [Manage your NGINXaaS integration through the Azure portal](manage.md).
       - question: How do I update my NGINX configuration?
         answer: |
           To change your configuration:
-          1. In your NGINXaaS deployment, select **Settings** > **NGINXaaS configuration**
-          2. Select **Upload config package** to upload a new configuration file
-          3. Specify the root file for your configuration
-          4. Confirm to replace existing files and upload
+          1. In your NGINXaaS deployment, select **Settings** > **NGINXaaS configuration**.
+          2. Select **Upload config package** to upload a new configuration file.
+          3. Specify the root file for your configuration.
+          4. Confirm to replace existing files and upload.
 
           Alternatively, you can edit your configuration directly in the portal by selecting the pencil icon next to your configuration.
       - question: Can I use my existing NGINX configuration files?
@@ -87,27 +87,27 @@ sections:
       - question: How do I add a certificate to NGINXaaS?
         answer: |
           To add a certificate:
-          1. First, upload your certificate to Azure Key Vault (see [Import a certificate in Azure Key Vault](/azure/key-vault/certificates/tutorial-import-certificate))
-          2. In your NGINXaaS deployment, select **Settings** > **NGINXaaS certificates**
-          3. Select **Add certificate** and choose your certificate from Key Vault
-          4. Select **Add certificate** to apply it
+          1. First, upload your certificate to Azure Key Vault. See [Import a certificate in Azure Key Vault](/azure/key-vault/certificates/tutorial-import-certificate).
+          2. In your NGINXaaS deployment, select **Settings** > **NGINXaaS certificates**.
+          3. Select **Add certificate** and choose your certificate from Key Vault.
+          4. Select **Add certificate** to apply it.
       - question: What is a managed identity and how do I configure one?
         answer: |
           A managed identity allows your NGINXaaS resource to authenticate to other Azure services securely without storing credentials. To add a User Assigned Managed Identity:
-          1. In your NGINXaaS deployment, select **Settings** > **Identity**
-          2. Select **User assigned**, then select **Add**
-          3. Select your subscription and choose an identity
-          4. Select **Add** to apply the identity
+          1. In your NGINXaaS deployment, select **Settings** > **Identity**.
+          2. Select **User assigned**, then select **Add**.
+          3. Select your subscription and choose an identity.
+          4. Select **Add** to apply the identity.
   - name: Monitoring and observability
     questions:
       - question: How do I monitor my NGINXaaS deployment?
         answer: |
           You can send metrics from your NGINXaaS deployment to Azure Monitor:
-          1. In your NGINXaaS deployment, select **Settings** > **NGINXaaS Monitoring**
-          2. For **Send metrics to Azure Monitor**, select **On**
-          3. Select **Save**
+          1. In your NGINXaaS deployment, select **Settings** > **NGINXaaS Monitoring**.
+          2. For **Send metrics to Azure Monitor**, select **On**.
+          3. Select **Save**.
 
-          This lets you take advantage of Azure Monitor's full monitoring and alerting capabilities.
+          This procedure lets you take advantage of Azure Monitor's full monitoring and alerting capabilities.
       - question: What is cloud-native observability?
         answer: |
           Cloud-native observability in NGINXaaS provides visibility into your NGINX deployments and application performance. By integrating with Azure Monitor, you can collect and analyze metrics, logs, and traces to understand the health and performance of your load-balanced applications.
@@ -125,8 +125,8 @@ sections:
       - question: How do I get support for NGINXaaS?
         answer: |
           You can get support in two ways:
-          1. Contact [NGINX](https://my.f5.com/manage/s/) directly for customer support
-          2. Request support in the Azure portal from your resource's **Support + Troubleshooting** > **New support request** option, which links to the NGINX support portal
+          1. Contact [NGINX](https://my.f5.com/manage/s/) directly for customer support.
+          2. Request support in the Azure portal from your resource's **Support + Troubleshooting** > **New support request** option, which links to the NGINX support portal.
       - question: What happens to my data when I delete an NGINXaaS resource?
         answer: |
           When you delete an NGINXaaS resource, logs are no longer sent to NGINXaaS. The delete operation can only be completed if all subaccounts mapped to your main account have already been deleted.
