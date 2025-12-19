@@ -18,16 +18,6 @@ The [ALB Controller](application-gateway-for-containers-components.md#applicatio
 
 ![Diagram depicting traffic from the Internet ingressing into Application Gateway for Containers and being sent to backend pods in AKS; installed by an AKS add-on.](./media/overview/application-gateway-for-containers-kubernetes-addon.svg)
 
-## Benefits of the AKS Add-on
-
-The AKS add-on for Application Gateway for Containers provides several advantages over manual Helm installation:
-
-- **Managed updates:** No need to manually update Helm charts; updates are managed by AKS.
-- **Automated identity management:** The add-on automatically creates and configures the managed identity (`applicationloadbalancer-<cluster-name>`) with the required permissions.
-- **Simplified subnet configuration:** A dedicated subnet (`aks-appgateway`) is automatically provisioned with the correct delegation.
-- **Reduced configuration complexity:** No need to manually set up federated credentials or role assignments.
-- **AKS Automatic support:** Add-on deployment is required when using AKS Automatic clusters.
-
 ## Prerequisites
 
 You need to complete the following tasks before enabling the ALB Controller add-on on your cluster:
