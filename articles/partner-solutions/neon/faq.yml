@@ -1,14 +1,14 @@
 ### YamlMime:FAQ
 metadata:
   title: Neon Serverless Postgres frequently asked questions
-  description: Answers to common questions about using Neon Serverless Postgres
+  description: Answers to common questions about using Neon Serverless Postgres, including features, setup, integration, and management.
   ms.topic: faq 
   ai-usage: ai-generated
   ms.date: 12/17/2025
 
 title: Neon Serverless Postgres FAQ
 summary: |
-
+  Answers to common questions about using Neon Serverless Postgres, including features, setup, integration, and management.
 sections:
   - name: General
     questions:
@@ -52,7 +52,7 @@ sections:
             You can create a Neon Serverless Postgres resource through the Azure portal. The creation process includes configuring project details, Azure resource details, organization details, and project settings such as the database name, Postgres version, and project region. For step-by-step instructions, see [Create a Neon Serverless Postgres resource](create.md).
       - question: What is the difference between the Azure resource region and the project region?
         answer: |
-            The **Region** setting on the **Basics** tab specifies where your Azure resource is deployed. The **Project region** setting on the **Project** tab specifies where your database is located. These are separate configurations, so don't confuse them when setting up your resource.
+            The **Region** setting on the **Basics** tab specifies where your Azure resource is deployed. The **Project region** setting on the **Project** tab specifies where your database is located. These elements are separate configurations, so don't confuse them when setting up your resource.
       - question: What happens when I create my first Neon organization?
         answer: |
             When you create your first Neon organization, a default project is automatically created for you. Each project includes a default branch (called **main**) and a database to help you get started immediately.
@@ -60,7 +60,7 @@ sections:
     questions:
       - question: What is database branching in Neon?
         answer: |
-            Database branching allows you to create a copy-on-write clone of your data. You can create a branch from a current or past state. Each Neon project starts with a root branch called **main**, and you can create additional branches from the root branch or from previously created branches. This feature is ideal for testing and development without impacting production data.
+            Database branching allows you to create a copy-on-write clone of your data. You can create a branch from a current or past state. Each Neon project starts with a root branch called **main**, and you can create other branches from the root branch or from previously created branches. This feature is ideal for testing and development without impacting production data.
       - question: How does scale-to-zero work?
         answer: |
             Neon Serverless Postgres automatically scales down to zero when the database isn't in use, which reduces costs. When activity resumes, the database becomes instantly available again. This serverless architecture ensures you only pay for what you use while maintaining performance when needed.
@@ -100,9 +100,9 @@ sections:
       - question: How do I access my Neon account from Azure?
         answer: |
             To access your Neon account, select **Neon Console** from the resource overview pane in the Azure portal. If you don't have a Neon account for your Azure email address, you'll be prompted to configure your account and set a password.
-      - question: How do I create additional projects?
+      - question: How do I create more projects?
         answer: |
-            To create additional projects, go to the resource overview in the Azure portal and select **+ Create Project** from the menu bar. You can specify the project name, Postgres version, database name, and project region.
+            To create more projects, go to the resource overview in the Azure portal and select **+ Create Project** from the menu bar. You can specify the project name, Postgres version, database name, and project region.
       - question: Can I tag my Neon resources?
         answer: |
             Yes. You can add tags to your Neon resources during creation on the **Tags** tab, or manage them later through the Azure portal. Tags help you organize and manage your Azure resources.
