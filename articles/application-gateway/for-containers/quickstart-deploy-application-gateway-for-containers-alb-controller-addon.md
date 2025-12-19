@@ -72,11 +72,9 @@ The AKS add-on can be enabled on new or existing clusters.
 > AKS cluster should use [Azure CNI](/azure/aks/configure-azure-cni) or [Azure CNI Overlay](/azure/aks/concepts-network-azure-cni-overlay).
 > AKS cluster should have the workload identity feature enabled. [Learn how](/azure/aks/workload-identity-deploy-cluster#update-an-existing-aks-cluster) to enable workload identity on an existing AKS cluster.
 
-### New Clusters
+### New Cluster
 
-Use the following commands to create a new AKS cluster with Azure CNI, workload identity enabled, and the AKS add-on enabled.
-
-# [Azure CLI](#tab/azure-cli)
+Use the following commands to create a new AKS cluster with Azure CNI, workload identity enabled, gateway API add-on, and the Application Gateway for Containers add-on enabled.
 
 ```azurecli-interactive
 AKS_NAME='<your cluster name>'
@@ -93,39 +91,17 @@ az aks create \
     --network-plugin azure \
     --enable-oidc-issuer \
     --enable-workload-identity \
+    --enable-gateway-api \
+    --enable-application-load-balancer \
     --generate-ssh-key
 ```
 
-# [Azure PowerShell](#tab/azure-powershell)
+>[!Note]
+>To prevent conflict with other services using Gateway API, the Application Gateawy for Containers add-on requires use of the AKS Gateway API add-on.
 
-```azurepowershell-interactive
-$AKS_NAME = '<your cluster name>'
-$RESOURCE_GROUP = '<your resource group name>'
-$LOCATION = 'northeurope'
-$VM_SIZE = '<the size of the vm in AKS>' # The size needs to be available in your location
+### Existing Cluster
 
-# Create resource group
-New-AzResourceGroup -Name $RESOURCE_GROUP -Location $LOCATION
-
-# Create AKS cluster with OIDC Issuer
-New-AzAksCluster `
-    -ResourceGroupName $RESOURCE_GROUP `
-    -Name $AKS_NAME `
-    -Location $LOCATION `
-    -NodeVmSize $VM_SIZE `
-    -NetworkPlugin azure `
-    -EnableOidcIssuer `
-    -GenerateSshKey
-
-# Enable workload identity on the cluster
-$cluster = Get-AzAksCluster -ResourceGroupName $RESOURCE_GROUP -Name $AKS_NAME
-$cluster.SecurityProfile.WorkloadIdentity = $True
-Set-AzAksCluster -InputObject $cluster
-```
-
----
-
-### Existing Clusters
+#### Add prerequisites to an existing cluster
 
 If using an existing cluster, ensure you enable Workload Identity support on your AKS cluster. Workload identities can be enabled via the following commands:
 
@@ -157,6 +133,22 @@ Set-AzAksCluster -InputObject $cluster -EnableOidcIssuer
 
 #### Install ALB Controller add-on
 
+With an existing cluster, you can enable the Gateway API and Application Gateway for Containers add-ons with the following commands:
+
+# [Azure CLI](#tab/azure-cli)
+
+```azurecli-interactive
+AKS_NAME='<your cluster name>'
+RESOURCE_GROUP='<your resource group name>'
+
+# Update the AKS cluster
+az aks update --name ${AKS_NAME} --resource-group ${RESOURCE_GROUP} --enable-gateway-api --enable-application-load-balancer
+```
+
+# [Azure Rest](#tab/azure-rest)
+
+Using Azure CLI, here's how to update an existing AKS cluster.
+
 ```azurecli-interactive
 AKS_NAME='<your cluster name>'
 RESOURCE_GROUP='<your resource group name>'
@@ -181,6 +173,8 @@ az rest \
   }' \
   --verbose
 ```
+
+---
 
 #### Verify the ALB Controller installation
 
