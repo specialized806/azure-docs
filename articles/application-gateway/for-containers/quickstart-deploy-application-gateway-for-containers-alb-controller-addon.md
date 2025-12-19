@@ -333,3 +333,5 @@ az group delete --resource-group $RESOURCE_GROUP
 ```azurepowershell-interactive
 Remove-AzResourceGroup -Name $RESOURCE_GROUP -Force
 ```
+
+---
