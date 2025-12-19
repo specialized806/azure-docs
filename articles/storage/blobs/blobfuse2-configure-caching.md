@@ -41,6 +41,8 @@ path: /tmp/blobfusecache
 timeout-sec: 120 
 ```
 
+For complete example, see [Sample file cache configuration](https://github.com/Azure/azure-storage-fuse/blob/main/sampleFileCacheConfig.yaml).
+
 > [!NOTE]
 > BlobFuse2 stores all open file contents in the temporary path. Make sure you have enough space to contain all open files.
 
