@@ -1,7 +1,7 @@
 ---
-title: Configure BlobFuse2 for file caching mode
+title: Configure BlobFuse2 for caching mode
 titleSuffix: Azure Storage
-description: Learn how to configure BlobFuse2 for file caching mode
+description: Learn how to configure caching mode for BlobFuse2 mounts and optimize workloads for use with caching mode.
 author: normesta
 ms.author: normesta
 
@@ -11,47 +11,55 @@ ms.date: 12/10/2025
 
 ms.custom: linux-related-content
 
-# Customer intent: "As a Linux user, I want to mount Azure Blob Storage as a file system using BlobFuse2, so that I can perform standard file operations and improve access to my data in a familiar environment."
+# Customer intent: "As a developer using BlobFuse2, I want to configure caching mode for my Azure Blob Storage mount, so that I can optimize performance for workloads that require repeated access to files and benefit from local caching."
 ---
 
 # Configure BlobFuse2 for caching mode
 
-This article helps you configure streaming mode. To learn more about each mode, see [Streaming versus caching mode](blobfuse2-streaming-versus-caching.md).
+This article helps you configure BlobFuse2 to mount a container in _caching mode_. In _caching mode_, BlobFuse2 downloads the entire file from Azure Blob Storage into a local cache directory before making it available to the application.
 
-## Caching mode
+> [!TIP]
+> You can mount a container in either _streaming mode_ or _caching mode_. To learn more about each mode, see [Streaming versus caching mode](blobfuse2-streaming-versus-caching.md).
 
-When a file is the subject of a write operation, the data is first persisted to cache on a local disk. The data is written to Blob Storage only after the file handle is closed. If an issue attempting to persist the data to Blob Storage occurs, an error message appears.
+## Configuration parameters
 
-Use the following diagram as a guide to choosing an optimal caching configuration.
+Specify the path of the local cache and an optional timeout in seconds.
 
-:::image type="content" source="media/blobfuse2-choose-data-transfer-mode/file-cache-configuration-decision-tree.png" alt-text="Diagram that shows how to configure file caching mode based on various factors." lightbox="media/blobfuse2-choose-data-transfer-mode/file-cache-configuration-decision-tree.png":::
+The local cache (or _temporary path_) is where BlobFuse2 stores all open file contents. The timeout is the maximum time in seconds before data is refreshed after an update. For example, if your workflow requires file contents to be refreshed within three seconds of an update, set this timeout to `3`. If your workflow requires an instant refresh, then set the timeout to `0`. Setting the timeout to `0` gives you instant refresh of contents but at the cost of higher REST calls to storage.
 
-Smaller files are cached to a temporary path that's specified under `file_cache:` in the configuration file:
+The following example sets these values as parameters to the `mount` command.
 
-```yml
+```bash
+blobfuse2 mount ~/mycontainer --tmp-path=/tmp/blobfusecache --file-cache-timeout=120
+```
+
+The following example shows how these settings appear in the BlobFuse2 configuration file.
+
+```yaml
 file_cache:
-    path: <path to local disk cache>
+path: /tmp/blobfusecache
+timeout-sec: 120 
 ```
 
 > [!NOTE]
 > BlobFuse2 stores all open file contents in the temporary path. Make sure you have enough space to contain all open files.
 
-## Configure a temporary path
+## Configuring a temporary path
 
 You can configure a temporary path on a local high performing disk, a RAM disk, or a solid state drive (SSD).
 
 If you use an existing local disk for caching, choose a disk that provides the best performance possible, such as a solid-state disk (SSD).
 
-In Azure, you can use the SSD ephemeral disks that are available on your VMs to provide a low-latency buffer for BlobFuse2. Depending on the provisioning agent you use, mount the ephemeral disk on */mnt* for cloud-init or */mnt/resource* for Microsoft Azure Linux Agent (waagent) VMs.
+In Azure, you can use the SSD ephemeral disks that are available on your virutal machines (VMs) to provide a low-latency buffer for BlobFuse2. Depending on the provisioning agent you use, mount the ephemeral disk on `/mnt` for cloud-init or `/mnt/resource` for Microsoft Azure Linux Agent (waagent) VMs.
 
-Make sure that your user has access to the temporary path:
+Make sure that your user has access to the temporary path.
 
 ```bash
 sudo mkdir /mnt/resource/blobfuse2tmp -p
 sudo chown <youruser> /mnt/resource/blobfuse2tmp
 ```
 
-If you use a RAM disk, choose a size that meets your requirements. The following example creates a RAM disk of 16 GB and a directory for BlobFuse2.  BlobFuse2 uses the RAM disk to open files that are up to 16 GB in size.
+If you use a RAM disk, choose a size that meets your requirements. The following example creates a RAM disk of 16 GB and a directory for BlobFuse2. BlobFuse2 uses the RAM disk to open files that are up to 16 GB in size.
 
 ```bash
 sudo mkdir /mnt/ramdisk
@@ -60,21 +68,19 @@ sudo mkdir /mnt/ramdisk/blobfuse2tmp
 sudo chown <youruser> /mnt/ramdisk/blobfuse2tmp
 ```
 
-## Preload data
+## Optimize performance by preloading data
 
-In caching mode, BlobFuse waits for open file system call. On receiving the open call it downloads entire file to a local cache before using them. This can make the initial load slower, especially for AI/ML tasks, where application is processing many files.
+In caching mode, BlobFuse2 waits for an open file system call. Upon receiving the open call, BlobFuse2 downloads the entire file to a local cache before using it. This behavior can make the initial load slower, especially for AI and machine learning tasks where the application is processing many files.
 
-The Preload feature helps by downloading entire containers or sub-directories to the local cache when you mount it. Preload enhances data availability, boosting efficiency and reducing wait times. This is vital for AI training with large datasets as it prepares all necessary files in advance, saving GPU time and cutting costs. Combining preload with our blob filter feature allows customers to access specific files in a container or sub-directory, offering extensive flexibility and optimizing GPU cycles.
+The preload feature helps by downloading entire containers or subdirectories to the local cache when you mount them. Preload enhances data availability, boosting efficiency and reducing wait times. This improvement is vital for AI training with large datasets as it prepares all necessary files in advance, saving GPU time and reducing costs. By combining preload with the blob filter feature, you can access specific files in a container or subdirectory, offering extensive flexibility and optimizing GPU cycles.
 
-To enable preload with file-cache mode, use `--preload` parameter. Below is a sample command for reference:
+To enable preload with file-cache mode, use the `--preload` parameter. The following command shows an example:
 
 ```bash
 blobfuse2 mount --preload /mnt/blobfuse_mnt --tmp-path=/home/temp_path 
 ```
 
-`/mnt/blobfuse_mnt` is where the blob data can be accessed, and /home/temp_path serves as the cache for the BlobFuse mount.
-
-Preloading blob data makes the mount read-only and prevents file eviction. To access updated files, unmount and remount the volume. Newly added files can still be accessed by reading them. If blob filter is used along with preload, only the filtered files are pre-loaded and accessible via the BlobFuse mount.
+Preloading blob data makes the mount read-only and prevents file eviction. To access updated files, unmount and remount the volume. Newly added files can still be accessed by reading them. If a blob filter is used with preload, only the filtered files are preloaded and accessible via the BlobFuse2 mount.
 
 ### Considerations when using the preload feature
 
@@ -82,16 +88,17 @@ Preloading blob data makes the mount read-only and prevents file eviction. To ac
 
 - All file-caching options in CLI and config file are ignored except for the temporary path setting.
 
-- Ensure enough disk space for all or filtered contents in the container; insufficient space may cause partial loading and block new file access until manual deletion from the local cache.
+- Ensure sufficient disk space for all or filtered contents in the container. Insufficient space might cause partial loading and block new file access until you manually delete files from the local cache.
 
 - Accessing a file immediately after mounting prioritizes it for download while preloading continues in the background.
 
 - BlobFuse logs show preload status and disk warnings.
 
-- BlobFuse mount refreshes preloaded or opened files only if they are manually deleted from the local cache and reopened.
+- The BlobFuse2 mount refreshes preloaded or opened files only if you manually delete them from the local cache and reopen them.
 
-- Blobs added to the Storage container after preload are not automatically downloaded by BlobFuse but can be accessed by reading.
+- BlobFuse2 doesn't automatically download blobs added to the storage container after preload but can access them by reading.
 
 ## Next steps
 
-Put links here
+- [Configure BlobFuse2 for streaming mode](blobfuse2-configure-streaming.md)
+- [Streaming versus caching mode](blobfuse2-streaming-versus-caching.md)

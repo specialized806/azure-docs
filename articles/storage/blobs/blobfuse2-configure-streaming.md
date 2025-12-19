@@ -16,7 +16,30 @@ ms.custom: linux-related-content
 
 # Configure BlobFuse2 for streaming mode
 
-This article helps you configure streaming mode. To learn more about each mode, see [Streaming versus caching mode](blobfuse2-streaming-versus-caching.md).
+This article helps you configure BlobFuse2 to mount a container in _streaming mode_. In _streaming mode_, data is streamed in chunks (blocks) and served as it downloads.
+
+> [!TIP]
+> You can mount a container in either _streaming mode_ or _caching mode_. To learn more about each mode, see [Streaming versus caching mode](blobfuse2-streaming-versus-caching.md).
+
+## Configuration parameters
+
+Specify the block size, the memory size, and the disk timeout in seconds.
+
+
+The following example sets these values as parameters to the `mount` command.
+
+```bash
+blobfuse2 mount ~/mycontainer --tmp-path=/tmp/blobfusecache --file-cache-timeout=120
+```
+
+The following example shows how these settings appear in the BlobFuse2 configuration file.
+
+ ```yaml
+   block_cache:
+   block-size-mb: 16
+   mem-size-mb: 80
+   disk-timeout-sec: 120
+```
 
 ## Choose how to configure streaming mode
 
