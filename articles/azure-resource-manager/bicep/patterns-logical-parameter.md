@@ -1,9 +1,7 @@
----
+﻿---
 title: Logical parameter pattern
 description: Describes the logical parameter pattern.
-author: johndowns
-ms.author: jodowns
-ms.topic: conceptual
+ms.topic: article
 ms.custom: devx-track-bicep
 ms.date: 04/28/2025
 ---
@@ -83,3 +81,4 @@ Within the module, the tenant-specific resources are deployed.
 ## Next steps
 
 [Learn about the shared variable file pattern.](patterns-shared-variable-file.md)
+

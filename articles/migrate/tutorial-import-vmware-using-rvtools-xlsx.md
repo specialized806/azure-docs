@@ -17,7 +17,7 @@ As part of your migration journey to Azure, you discover your on-premises invent
 This tutorial shows you how to discover the servers that are running in your VMware environment by using RVTools XLSX (preview). When you use this tool, you can control the data shared in the file and there's no need to set up the Azure Migrate appliance to discover servers. [Learn more](migrate-support-matrix-vmware.md#import-servers-using-rvtools-xlsx-preview).
 
 > [!NOTE]
-> * RVTools has a supply chain attack on May 12, 2025. The attack injected malware to the RVTools installer. Customers should download RVTools only from official websites and verify that the installer’s file hash matches on the official website. Customers should run anti-malware software to find any harmful programs.
+> * RVTools had a supply chain attack on May 12, 2025. The attack injected malware to the RVTools installer. Customers should download RVTools only from official websites and verify that the installer’s file hash matches on the official website. Customers should run anti-malware software to find any harmful programs.
 > * Microsoft doesn't own or support RVTools. Customers use the software at their own risk.
 
 In this tutorial, you learn how to:
@@ -40,8 +40,11 @@ Before you begin this tutorial, ensure that you have the following prerequisites
 - The file format should be XLSX.
 - File sensitivity is set to **General** or file protection is set to **Any user**.
 - [Operating system names](tutorial-discover-import.md#supported-operating-system-names) specified in the RVTools XLSX (preview) file contains and matches the supported names.
-- The XLSX file should contain the vInfo, vPartition & vMemory sheets. The columns in these sheets are as follows:
+- The XLSX file should contain the vInfo, vHost, vDatastore, vSnapshot, vPartition & vMemory sheets. The columns in these sheets are as follows:
     - **vInfo** - VM, Powerstate, CPUs, Memory, Provisioned MiB, In use MiB, OS according to the configuration file, VM UUID.
+    - **vHost** - Host, Cluster, Datacenter, Config status, in Maintenance Mode, in Quarantine Mode, CPU Model, Speed, #CPU, Cores per CPU, # Cores, CPU usage %, # Memory, Memory usage %, VM Used memory, VM Memory Swapped, VM Memory Ballooned, #NICs, # vCPUs, vRAM, ESX Version, Vendor, Model, Object ID, UUID, 
+    - **vDatastore** - Name, Type, Hosts, Capacity MiB, Provisioned MiB, In Use MiB, Object ID
+    - **vSnapshot** - VM, Powerstate, Size MiB (vmsn), Size MiB (total), Quiesced, Datacenter, Cluster, Host, VM UUID
     - **vPartition** - VM, VM UUID, Capacity MiB, Consumed MiB.
     - **vMemory** - VM, VM UUID, Size MiB, Reservation.
 

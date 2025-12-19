@@ -55,6 +55,8 @@ items:
       href: environment.md
     - name: Containers
       href: containers.md
+    - name: Functions
+      href: functions-overview.md
     - name: Revisions
       href: revisions.md
     - name: Application lifecycle management
@@ -81,6 +83,8 @@ items:
       href: tutorial-deploy-from-code.md
     - name: Update a container app deployed from code
       href: tutorial-update-from-code.md
+    - name: Create a functions app deployed from code
+      href: functions-container-apps.md
     - name: Connect to apps & services
       items:
         - name: Communicate between multiple apps
@@ -127,12 +131,10 @@ items:
       items:
         - name: Overview
           href: functions-overview.md
-        - name: Create a Functions app
+        - name: Manage a Functions app through the portal and CLI
           href: functions-usage.md
         - name: Create your Azure functions on Azure Container Apps
           href: functions-container-apps.md
-        - name: Manage with Azure CLI
-          href: functions-cli.md
         - name: Migrate from Functions v1 to v2
           href: migrate-functions.md
         - name: Run event-driven and batch workloads
@@ -141,6 +143,8 @@ items:
       items:
         - name: With a job
           href: tutorial-event-driven-jobs.md
+        - name: With Azure Functions
+          href: functions-unified-platform.md
     - name: Workflow
       href: workflows-overview.md
     - name: Troubleshooting
@@ -315,7 +319,7 @@ items:
   items:
     - name: Reliability in Azure Container Apps
       href: ../reliability/reliability-container-apps.md?toc=/azure/container-apps/toc.json&bc=/azure/container-apps/breadcrumb/toc.json
-    - name: Create a zone redundant container app
+    - name: Create a zone-redundant container app
       href: how-to-zone-redundancy.md
 - name: Dedicated compute
   items:

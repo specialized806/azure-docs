@@ -2,8 +2,8 @@
 title: Get Started with ADR and Certificate Management in IoT Hub (Preview)
 titleSuffix: Azure IoT Hub
 description: This article explains how to create an IoT Hub with ADR integration and Microsoft-backed X.509 certificate management.
-author: SoniaLopezBravo
-ms.author: sonialopez
+author: cwatson-cat
+ms.author: cwatson
 ms.service: azure-iot-hub
 services: iot-hub
 ms.topic: how-to
@@ -20,7 +20,7 @@ This article explains how to create a new IoT Hub with [Azure Device Registry (A
 
 ## Prerequisites
 
-- An active Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/).
+- An active Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - If you don't have the Azure CLI installed, follow the steps to [install the Azure CLI](/cli/azure/install-azure-cli). 
 - Install the **Azure IoT CLI extension with previews enabled** to access the ADR integration and certificate management functionalities for IoT Hub:
 

@@ -1,9 +1,9 @@
----
+﻿---
 title: What is Bicep?
 description: Understand the Bicep language for deploying infrastructure to Azure. Gain an improved authoring experience over one with JSON to develop templates.
-ms.topic: conceptual
+ms.topic: article
 ms.custom: devx-track-bicep
-ms.date: 04/30/2025
+ms.date: 12/10/2025
 ---
 
 # What is Bicep?
@@ -144,7 +144,7 @@ To start with Bicep:
 
 1. **Install the tools**. For more information, see [Set up Bicep development and deployment environments](./install.md), or use the [VS Code devcontainer/Codespaces repository](https://github.com/Azure/vscode-remote-try-bicep) to get a preconfigured authoring environment.
 
-1. **Complete the [Quickstart](./quickstart-create-bicep-use-visual-studio-code.md) and [Learn modules for Bicep](./learn-bicep.md)**.
+1. **Complete the [Quickstart](./quickstart-create-bicep-use-visual-studio-code.md).
 
 To decompile an existing Resource Manager template to Bicep, see [Decompile a JSON Azure Resource Manager template to Bicep](./decompile.md). You can use [Bicep Playground](https://aka.ms/bicepdemo) to view Bicep and its equivalent, JSON, side by side.
 
@@ -189,3 +189,4 @@ Bicep is an open-source project. That means you can contribute to Bicep's develo
 
 - To get started, see the [Quickstart: Create Bicep files with Visual Studio Code](./quickstart-create-bicep-use-visual-studio-code.md).
 - For answers to common questions, see [Frequently asked questions for Bicep](frequently-asked-questions.yml).
+

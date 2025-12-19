@@ -2,7 +2,7 @@
 title: Quickstart - Enable Azure Change Tracking and Inventory for single and multiple machines from the portal
 description: In this quickstart, learn how to enable Azure Change Tracking and Inventory for single and multiple machines from the portal.
 services: automation
-ms.date: 11/06/2025
+ms.date: 12/09/2025
 ms.topic: quickstart
 #Customer intent: As a customer, I want to enable Azure Change Tracking and Inventory so that I can further use the CTI services.
 ms.service: azure-change-tracking-inventory
@@ -23,7 +23,7 @@ This article describes how you can enable [Azure Change Tracking and Inventory](
 
 Before you enable Azure Change Tracking and Inventory (CTI), ensure you meet these prerequisites:
 
-- An Azure subscription. If you don't have one yet, you can [activate your MSDN subscriber benefits](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/) or sign up for a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+- An Azure subscription. If you don't have one yet, you can [activate your MSDN subscriber benefits](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/) or sign up for a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A [virtual machine](/azure/virtual-machines/windows/quick-create-portal) configured in the specified region.
 
 ## Enable Azure CTI for single and multiple Arc-enabled VMs from Azure portal
@@ -97,10 +97,6 @@ To enable Azure CTI for multiple Azure VMs using portal, follow these steps:
 
    > [!NOTE]
    > You can enable CTI on up to 250 virtual machines at a time.
-
-1. On the **Enable Change Tracking** pane, select the banner at the top of the pane, **Click here to try new change tracking and inventory with Azure Monitoring Agent (AMA) experience**.
-
-   :::image type="content" source="media/create-data-collection-rule/enable-change-tracking-multiple-virtual-machines-inline.png" alt-text="Screenshot showing how to select enable change tracking for multiple Virtual Machines from the portal." lightbox="media/create-data-collection-rule/enable-change-tracking-multiple-virtual-machines-expanded.png":::
 
 1. On the **Enable Change Tracking** pane, you can view the list of machines that are enabled, ready to be enabled and the ones that you can't enable. You can use the filters to select the **Subscription**, **Location**, and **Resource groups**. You can select a maximum of three resource groups.
 

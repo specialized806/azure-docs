@@ -5,7 +5,7 @@ author: dlepow
 ms.author: danlep
 ms.service: azure-api-management
 ms.topic: how-to 
-ms.date: 03/20/2025
+ms.date: 10/08/2025
 ms.custom:
   - build-2025
 ---
@@ -64,13 +64,7 @@ The subnet needs to be delegated to the **Microsoft.Web/hostingEnvironments** se
 
 :::image type="content" source="media/virtual-network-injection-workspaces-resources/delegate-internal.png" alt-text="Screenshot showing subnet delegation to Microsoft.Web/hostingEnvironments in the portal.":::
 
-
-> [!NOTE]
-> You might need to register the `Microsoft.Web/hostingEnvironments` resource provider in the subscription so that you can delegate the subnet to the service.
-
-For more information about configuring subnet delegation, see [Add or remove a subnet delegation](../virtual-network/manage-subnet-delegation.md).
-
-[!INCLUDE [api-management-virtual-network-address-prefix](../../includes/api-management-virtual-network-address-prefix.md)]
+[!INCLUDE [api-management-virtual-network-v2-delegation-requirement](../../includes/api-management-virtual-network-v2-delegation-requirement.md)]
 
 ### Permissions
 

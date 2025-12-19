@@ -1,7 +1,7 @@
 ---
 title: Host servers built with MCP SDKs on Azure Functions
 description: "Learn how to host servers built with Anthropic MCP SDKs on Azure Functions. This quickstart shows how to deploy MCP SDK based servers as custom handlers in Azure Functions, using serverless scale and security features."
-ms.date: 11/11/2025
+ms.date: 12/02/2025
 ms.topic: quickstart
 ai-usage: ai-assisted
 ms.collection: 
@@ -25,7 +25,7 @@ Because the new server runs in a Flex Consumption plan, which follows a _pay-for
 
 ::: zone pivot="programming-language-java,programming-language-javascript,programming-language-powershell"  
 > [!IMPORTANT]  
-> This article is currently only supported in C#, Python, and TypeScript. To complete the quickstart, select one of these supported languages at the top of the article.
+> While [hosting your MCP servers using Custom Handlers](./self-hosted-mcp-servers.md) is supported for all languages, this quickstart scenario currently only has examples for C#, Python, and TypeScript. To complete this quickstart, select one of these supported languages at the top of the article. 
 ::: zone-end  
 ::: zone pivot="programming-language-csharp,programming-language-python,programming-language-typescript" 
 ## Prerequisites
@@ -202,23 +202,23 @@ Your MCP server is now running in Azure. To connect GitHub Copilot to your remot
 You can review the code that defines the MCP server:
 ::: zone-end  
 ::: zone pivot="programming-language-csharp"
-The MCP server code is defined in the project root. The server uses the official C# MCP SDK to define weather-related tools:
+The MCP server code is defined in the project root. The server uses the official C# MCP SDK to define these weather-related tools:
 
-:::code language="csharp" source="~/functions-host-mcp-sdk-dotnet/Program.cs" :::  
+:::code language="csharp" source="~/functions-host-mcp-sdk-dotnet/Tools/WeatherTools.cs" :::  
 
 You can view the complete project template in the [Azure Functions .NET MCP SDK hosting](https://github.com/Azure-Samples/mcp-sdk-functions-hosting-dotnet) GitHub repository.
 ::: zone-end  
 ::: zone pivot="programming-language-python"
-The MCP server code is defined in the `weather.py` file. The server uses the official Python MCP SDK to define weather-related tools:
+The MCP server code is defined in the `server.py` file. The server uses the official Python MCP SDK to define weather-related tools. This is the definition of the `get_forecast` tool:
 
-:::code language="python" source="~/functions-host-mcp-sdk-python/weather.py" :::
+:::code language="python" source="~/functions-host-mcp-sdk-python/server.py" range="1-13,23-29,76-110" :::
 
 You can view the complete project template in the [Azure Functions Python MCP SDK hosting](https://github.com/Azure-Samples/mcp-sdk-functions-hosting-python) GitHub repository.
 ::: zone-end   
 ::: zone pivot="programming-language-typescript"
-The MCP server code is defined in the `src` folder. The server uses the official Node.js MCP SDK to define weather-related tools:
+The MCP server code is defined in the `src` folder. The server uses the official Node.js MCP SDK to define weather-related tools. This is the definition of the `get-forecast` tool:
 
-:::code language="typescript" source="~/functions-host-mcp-sdk-node/src/index.ts" :::
+:::code language="typescript" source="~/functions-host-mcp-sdk-node/src/server.ts" range="1-13,60-137,218-219" :::
 
 You can view the complete project template in the [Azure Functions TypeScript MCP SDK hosting](https://github.com/Azure-Samples/mcp-sdk-functions-hosting-node) GitHub repository.  
 ::: zone-end  

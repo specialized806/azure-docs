@@ -98,6 +98,8 @@
       href: ./how-to/ccws/connect-to-login-node-with-bastion.md
     - name: How to connect to the CycleCloud Portal through Bastion
       href: ./how-to/ccws/connect-to-portal-with-bastion.md
+    - name: Submit job on CycleCloud with Slurm
+      href: ./how-to/ccws/submit-job-with-slurm.md  
   - name: Cluster Operations
     items:
     - name: Create a Cluster
@@ -256,10 +258,12 @@
         href: /previous-versions/azure/cyclecloud/release-notes-previous
       - name: Older Releases
         href: /previous-versions/azure/cyclecloud/release-notes-archive
+      - name: 8.8.1 Release Notes
+        href: ./release-notes/8-8-1.md
+      - name: 8.8.0 Release Notes
+        href: ./release-notes/8-8-0.md
   - name: Release Notes - CycleCloud Workspace for Slurm
-    items:
-    - name: Current Release - 2025.04.24
-      href: ./release-notes/ccws/release-notes.md       
+    href: ./release-notes/ccws/release-notes.md       
   - name: Service Policy
     href: service-policy.md
   - name: Data Usage Policy

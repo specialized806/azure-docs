@@ -178,9 +178,23 @@ The `AutomaticScalingInstanceCount` metric reports the number of virtual machine
 
 ### How does ARR Affinity affect automatic scaling?
 
-Azure App Service uses Application Request Routing cookies known as an ARR Affinity. ARR Affinity cookies restrict scaling because they send requests only to servers associated with the cookie, rather than any available instance. For apps that store state, it's better to scale up (increase resources on a single instance). For stateless apps, scaling out (adding more instances) offers more flexibility and scalability. ARR Affinity cookies are enabled by default on App Service. Depending on your application needs, you might choose to disable ARR affinity cookies when using automatic scaling.
+> [!NOTE]
+> When enabling Automatic Scaling on the App Service Plan, all pre-existing apps in the plan will automatically have ARR Affinity disabled. 
+
+Azure App Service uses Application Request Routing cookies known as an ARR Affinity. ARR Affinity cookies restrict scaling because they send requests only to servers associated with the cookie, rather than any available instance. For apps that store state, it's better to scale up (increase resources on a single instance). For stateless apps, scaling out (adding more instances) offers more flexibility and scalability. ARR Affinity cookies are enabled by default on App Service. However, when using automatic scaling, you should disable ARR affinity cookies to ensure proper scaling.
 
 To disable ARR Affinity cookies: select your App Service app, and under **Settings**, select **Configuration**. Next select the **General settings** tab. Under **Session affinity**, select **Off** and then select the **Save** button.
+
+### Why does my App Service plan show more assigned instances than the always ready settings in my apps?
+
+This can happen when the plan’s assigned instances are higher than the highest always ready instance count used by any app in the plan. The assigned instances represent the minimum number of instances the plan must run. If this value is higher than the always ready values, the plan continues to use that minimum.
+
+To correct this configuration, update the always ready instance count for any app in the plan. You must change the value. Saving the same value does not trigger recalculation. After the update, the plan sets its assigned instance count to the highest always ready value across all apps in the plan.
+
+You must complete this update by using [CLI](#set-the-minimum-number-of-web-app-instances) or Azure Resource Manager API. The Azure portal does not apply the recalculation correctly at this time.
+
+**Example:** A plan may have 7 assigned instances. The apps in the plan may have always ready values of 2, 3, and 5. Billing is based on 7 because that is the minimum number of instances. If you change any app’s always ready value, for example from 3 to 4, the plan recalculates. It then sets its assigned instance count to 5, which is the highest always ready value.
+
 
 <a name="Related content"></a>
 
