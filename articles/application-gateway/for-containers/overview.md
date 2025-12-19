@@ -53,6 +53,7 @@ Application Gateway for Containers offers an elastic and scalable ingress to AKS
 
 Application Gateway for Containers supports the following features for traffic management:
 
+- AKS managed add-on
 - Automatic retries
 - Autoscaling
 - Availability zone resiliency
