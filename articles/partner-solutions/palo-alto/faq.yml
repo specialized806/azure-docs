@@ -32,7 +32,7 @@ sections:
   - name: Deployment
     questions:
       - question: What deployment options are available for Cloud NGFW?
-        answer: Cloud NGFW supports two deployment architectures - hub-and-spoke virtual networks and Virtual WAN. For web applications, you can deploy Cloud NGFW behind Azure Application Gateway to combine reverse proxy, load balancing, and web application firewall capabilities with Cloud NGFW network security.
+        answer: Cloud NGFW supports two deployment architectures, which are hub-and-spoke virtual networks and Virtual WAN. For web applications, you can deploy Cloud NGFW behind Azure Application Gateway to combine reverse proxy, load balancing, and web application firewall capabilities with Cloud NGFW network security.
       - question: What is the recommended architecture for securing web applications?
         answer: |
               The recommended architecture uses Application Gateway as a reverse proxy and load balancer with Cloud NGFW for network security inspection. This combination provides:
@@ -95,14 +95,14 @@ sections:
   - name: Security Policy Considerations
     questions:
       - question: Is the X-Forwarded-For (XFF) HTTP header supported with Azure Rulestacks?
-        answer: Currently, use of the X-Forwarded-For (XFF) HTTP header field to enforce security policy isn't supported with Azure Rulestacks. This limitation is important to consider when configuring policies for Application Gateway traffic.
+        answer: Currently, use of the X-Forwarded-For HTTP header field to enforce security policy isn't supported with Azure Rulestacks. This limitation is important to consider when configuring policies for Application Gateway traffic.
       - question: How should I configure zone-based policies when using Panorama?
         answer: |
               When using Panorama with Cloud NGFW, configure two zones: private and public. Traffic flows are:
               - **Inbound**: from public to private
               - **Outbound**: from private to public
               - **East-West**: from private to private
-              Apply special considerations to zone-based policies to ensure traffic from Application Gateway (private IP source) is treated as inbound with appropriate security rules, threat prevention profiles, and inline cloud analysis.
+              Apply special considerations to zone-based policies to ensure traffic from Application Gateway private IP source is treated as inbound with appropriate security rules, threat prevention profiles, and inline cloud analysis.
       - question: How do I view and manage security rules in Azure Rulestack?
         answer: In the Cloud NGFW resource's **Security Policies** settings, select your rulestack name to access the rulestack management page. Select **Rules** to view existing rules and add, edit, or delete them. When editing rules, you can configure parameters and validate the configuration before saving.
 
@@ -119,7 +119,7 @@ sections:
   - name: Billing and Plans
     questions:
       - question: What billing plan options are available?
-        answer: Cloud NGFW is available under a pay-as-you-go (PAYG) billing model. Billing through Azure provides unified invoicing for both infrastructure and software costs in a single line item.
+        answer: Cloud NGFW is available under a pay-as-you-go billing model. Billing through Azure provides unified invoicing for both infrastructure and software costs in a single line item.
       - question: Can I change my billing plan after deployment?
         answer: Yes. You can change your billing plan by selecting **Change Plan** from the resource overview page in the Azure portal.
       - question: How is Cloud NGFW billed?
