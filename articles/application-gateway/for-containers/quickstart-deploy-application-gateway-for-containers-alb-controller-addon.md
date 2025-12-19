@@ -7,14 +7,14 @@ author: mbender-ms
 ms.service: azure-appgw-for-containers
 ms.custom: devx-track-azurecli
 ms.topic: quickstart
-ms.date: 12/09/2025
+ms.date: 12/19/2025
 ms.author: mbender
 # Customer intent: As a Kubernetes administrator, I want to install the Application Gateway for Containers ALB Controller on my AKS cluster using the AKS add-on, so that I can efficiently manage load balancing rules with simplified configuration and automated identity management.
 ---
 
 # Quickstart: Deploy Application Gateway for Containers ALB Controller using AKS Add-on
 
-The [ALB Controller](application-gateway-for-containers-components.md#application-gateway-for-containers-alb-controller) is responsible for translating Gateway API and Ingress API configuration within Kubernetes to load balancing rules within Application Gateway for Containers. The following guide walks through the steps needed to enable the ALB Controller add-on on a new or existing Azure Kubernetes Service (AKS) cluster.
+The [ALB Controller](application-gateway-for-containers-components.md#application-gateway-for-containers-alb-controller) is responsible for translating Gateway API and Ingress API configuration within Kubernetes to load balancing rules within Application Gateway for Containers. The following guide walks through the steps needed to enable both the AKS managed Gateway API and Application Gateway for Containers ALB Controller add-ons on a new or existing Azure Kubernetes Service (AKS) cluster.
 
 ![Diagram depicting traffic from the Internet ingressing into Application Gateway for Containers and being sent to backend pods in AKS; installed by an AKS add-on.](./media/overview/application-gateway-for-containers-kubernetes-addon.svg)
 
