@@ -39,7 +39,7 @@ When implementing high availability architectures for production workloads, cons
 
 - **Don't configure the primary Azure Traffic Manager for automatic failover:** Azure Traffic Manager health probes originate only from US-based Azure regions. Because of this, when probing Front Door endpoints (or any CDN using anycast routing), these U.S.-based probes will almost always reach U.S. POPs, leaving the health of non-U.S. POPs unverified. This prevents Traffic Manager from automatically failing over between Azure Front Door and another ingress service based on the true global health of anycast CDN such as Front Door. As such, for global workloads requiring health validation from multiple geographies, manual failover with weighted routing and monitoring disabled provides more reliable control than automated health-based routing.
 
-- **Certificates:** If you're currently using Front Door-managed certifications, you must migrate to BYO certificates. For more information, see [Configure HTTPS on an Azure Front Door custom domain](https://learn.microsoft.com/en-us/azure/frontdoor/standard-premium/how-to-configure-https-custom-domain).
+- **Certificates:** If you're currently using Front Door-managed certifications, you must migrate to BYO certificates. For more information, see [Configure HTTPS on an Azure Front Door custom domain](/azure/frontdoor/standard-premium/how-to-configure-https-custom-domain).
 
 - Always test failover procedures in non-production environments first.
 
