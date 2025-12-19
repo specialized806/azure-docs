@@ -147,7 +147,7 @@ az aks update --name ${AKS_NAME} --resource-group ${RESOURCE_GROUP} --enable-gat
 
 # [Azure Rest](#tab/azure-rest)
 
-Using Azure CLI, here's how to update an existing AKS cluster.
+Here's how to update an existing AKS cluster via REST api, through the use of the Azure CLI REST command.
 
 ```azurecli-interactive
 AKS_NAME='<your cluster name>'
@@ -277,6 +277,20 @@ If you wish to uninstall the ALB Controller add-on, complete the following steps
 
 Disable the ALB Controller add-on on your cluster:
 
+# [Azure CLI](#tab/azure-cli)
+
+```azurecli-interactive
+AKS_NAME='<your cluster name>'
+RESOURCE_GROUP='<your resource group name>'
+
+# Update the AKS cluster
+az aks update --name ${AKS_NAME} --resource-group ${RESOURCE_GROUP} --disable-gateway-api --disable-application-load-balancer
+```
+
+# [Azure Rest](#tab/azure-rest)
+
+Here's how to update an existing AKS cluster via REST api, through the use of the Azure CLI REST command.
+
 ```azurecli-interactive
 AKS_NAME='<your cluster name>'
 RESOURCE_GROUP='<your resource group name>'
@@ -301,6 +315,8 @@ az rest \
   }' \
   --verbose
 ```
+
+---
 
 ### Delete the Resource Group
 
