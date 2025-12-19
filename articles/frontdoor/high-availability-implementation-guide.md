@@ -1,5 +1,6 @@
 ---
-title: Azure Front Door Failover Strategies Explained
+title: High Availability Implementation Guide
+titleSuffix: Azure Front Door
 description: Learn how to implement manual failover for Azure Front Door using Azure Traffic Manager, ensuring high availability during rare service interruptions.
 author: halkazwini
 ms.author: halkazwini
@@ -12,7 +13,7 @@ ms.date: 12/19/2025
 
 # Azure Front Door high availability implementation guide
 
-Azure Front Door is designed to provide exceptional resiliency and availability for both external customers and Microsoft's internal properties. While Front Door's architecture meets or exceeds the needs of most production workloads, it's important to acknowledge that no distributed system is completely immune to failure.
+Azure Front Door is designed to provide exceptional resiliency and availability for both external customers and Microsoft's internal properties. While Front Door's architecture meets or exceeds the needs of most production workloads, it's important to acknowledge that no distributed system is immune to failure.
 
 This article provides high‑level, step‑by‑step instructions for implementing Azure Traffic Manager to enable manual failover from Front Door to either an alternate CDN or Application Gateway WAF during rare Front Door service interruptions. It supplements the guidance in [Global routing redundancy for mission-critical web applications](/azure/architecture/guide/networking/global-web-applications/overview?tabs=cli).
 
@@ -44,7 +45,7 @@ When implementing high availability architectures for production workloads, cons
 
 - **Traffic Manager doesn't support CNAME flattening at the DNS zone apex (root domain):** If you require Traffic Manager at the apex, you must use DNS providers that support alias records or similar mechanisms.
 
-- Use short DNS TTLs (300 - 600s) and monitor DNS TTL propagation times with your user base before setting aggressive TTLs.
+- Use short DNS TTLs (300 - 600 seconds) and monitor DNS TTL propagation times with your user base before setting aggressive TTLs.
 
 - **Security:** Lock down Application Gateway with NSGs/ACLs (allow required platform ranges and inbound application ports) and keep origins secured for all ingress paths. For more information, see [Configure network security groups for your Application Gateway](/azure/application-gateway/configuration-infrastructure#network-security-groups).
 
@@ -69,7 +70,7 @@ When implementing high availability architectures for production workloads, cons
 > - Before proceeding, review the [Global routing redundancy for mission-critical web applications](/azure/architecture/guide/networking/global-web-applications/overview?tabs=cli)
 
 
-## Senario 1: Traffic Manager failover: Front Door to alternative CDN
+## Scenario 1: Traffic Manager failover: Front Door to alternative CDN
 
 This solution uses a single Traffic Manager profile with weighted/always serve routing so that traffic can be manually switched over between Front Door and an alternative CDN:
 
@@ -83,7 +84,7 @@ This solution uses a single Traffic Manager profile with weighted/always serve r
 
 #### Step1: Provision prerequisites
 
-Configure your secondary CDN provider with the following:
+Configure your secondary CDN provider with:
 
 - Azure Front Door configured with custom domain and BYO Certificate.
 
@@ -101,7 +102,7 @@ Configure your secondary CDN provider with the following:
 
 #### Step 2: Configure alternative CDN
 
-Configure your secondary CDN provider with the following:
+Configure your secondary CDN provider with:
 
 - Set up CDN zone/property with your custom domain.
 
@@ -203,7 +204,7 @@ Invoke-WebRequest -Uri "https://$CUSTOM_DOMAIN/index.html" -Method Head
 
 - Response time: Should remain within normal ranges.
 
-- Error rates: 4xx/5xx errors should not increase.
+- Error rates: 4xx/5xx errors shouldn't increase.
 
 - Origin health: Backend health should remain Online.
 
