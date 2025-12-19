@@ -85,7 +85,7 @@ sudo tdnf install fuse fuse3 blobfuse2
 
 If no package is available for your distribution, you can build BlobFuse2 from source code. First, install `Go 1.20.x` or later. For installation instructions, see [Go](https://go.dev/doc/install). Then, follow these steps to clone the repository and build the binaries.
 
-### Step 1: Clone the repository
+### Clone the repository
 
 Use the following commands to clone the BlobFuse2 repository:
 
@@ -98,7 +98,7 @@ git checkout -b main origin/main
 > [!NOTE]
 > If Git isn't installed on your system, install it by running `sudo apt-get install git` (Ubuntu/Debian) or use the appropriate command for your distribution.
 
-### Step 2: Install the dependencies
+### Install the dependencies
 
 #### [RHEL](#tab/RHEL)
 
@@ -134,7 +134,7 @@ sudo tdnf install fuse libfuse-dev fuse3 libfuse3-dev
 
 ---
 
-### Step 3: Build BlobFuse2
+### Build BlobFuse2
 
 Run the build script located in the root folder of the repository.
 

@@ -26,7 +26,7 @@ The following table describes each parameter and its default setting.
 |-----------|-------------|---------------|
 | Log type | The type of logger used by the system | Syslog |
 | Log level | The severity level of logs | Warnings only |
-| File path | The path to store log files | $HOME/.blobfuse2/blobfuse2.log |
+| File path | The path to store log files | `$HOME/.blobfuse2/blobfuse2.log` |
 
 ### Log level parameter settings
 
