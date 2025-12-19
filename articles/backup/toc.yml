@@ -785,54 +785,16 @@
         href: backup-azure-restore-system-state.md
     - name: Manage
       href: backup-azure-manage-mars.md
-- name: Tutorials
+- name: Azure Backup Server (MABS)
   items:
-  - name: Back up Windows Server
-    href: tutorial-backup-windows-server-to-azure.md
-  - name: Restore files to Windows Server
-    href: tutorial-backup-restore-files-windows-server.md
-  - name: Configure Multi-user authorization (MUA)
-    href: multi-user-authorization-tutorial.md
-  - name: Recover soft deleted items with enhanced soft delete
-    href: backup-azure-enhanced-soft-delete-tutorial.md
-  - name: Configure Threat Detection and manage health of Azure VM Backups
-    href: threat-detection-configure-monitor-tutorial.md  
-- name: Concepts
-  items:
-  - name: Reliability
-    items:
-    - name: Availability zone and disaster recovery
-      href: ../reliability/reliability-backup.md?toc=/azure/backup/toc.json&bc=/azure/backup/breadcrumb/toc.json
-    - name: Migrate to availability zone support
-      href: ../reliability/migrate-recovery-services-vault.md?toc=/azure/backup/toc.json&bc=/azure/backup/breadcrumb/toc.json
-  - name: Support matrices
-    items:
-    - name: Azure Backup support matrix
-      href: backup-support-matrix.md
-    - name: DPM/Azure Backup Server (MABS) support matrix
-      href: backup-support-matrix-mabs-dpm.md
-    - name: Active Directory domain controllers
-      href: active-directory-backup-restore.md
-    - name: Automation in Azure Backup
-      href: backup-support-automation.md
-  - name: Frequently asked questions (FAQ)
-    items:
-    - name: FAQ-Azure Backup Server and DPM
-      href: backup-azure-dpm-azure-server-faq.yml
-    - name: FAQ-Azure Backup Monitoring and Reporting
-      href: backup-azure-monitor-alert-faq.yml
-  - name: Monitoring and Reporting
-    href: monitoring-and-alerts-overview.md
-  - name: Backup architecture
-    href: backup-architecture.md
-  - name: Guidance and best practices
-    href: guidance-best-practices.md
-  - name: Glossary of terms
-    href: azure-backup-glossary.md
-- name: How-to guides
-  items:
-  - name: Azure Backup Server (MABS)
-    items:
+  - name: What's New in MABS
+    href: backup-mabs-whats-new-mabs.md
+  - name: Release notes MABS
+    href: backup-mabs-release-notes-v3.md
+  - name: FAQ-Azure Backup Server and DPM
+    href: backup-azure-dpm-azure-server-faq.yml
+  - name: DPM/Azure Backup Server (MABS) support matrix
+    href: backup-support-matrix-mabs-dpm.md
     - name: Protection matrices
       items:
       - name: MABS V4 (and later) protection matrix
@@ -847,10 +809,6 @@
         href: backup-azure-microsoft-azure-backup.md
       - name: Add storage
         href: backup-mabs-add-storage.md
-      - name: What's New in MABS
-        href: backup-mabs-whats-new-mabs.md
-      - name: Release notes MABS
-        href: backup-mabs-release-notes-v3.md
       - name: Turn on/off telemetry settings
         href: manage-telemetry.md
       - name: Unattended installation
@@ -887,6 +845,48 @@
       href: restore-azure-backup-server-vmware.md
     - name: Back up the MABS server
       href: backup-the-mabs-server.md
+- name: Tutorials
+  items:
+  - name: Back up Windows Server
+    href: tutorial-backup-windows-server-to-azure.md
+  - name: Restore files to Windows Server
+    href: tutorial-backup-restore-files-windows-server.md
+  - name: Configure Multi-user authorization (MUA)
+    href: multi-user-authorization-tutorial.md
+  - name: Recover soft deleted items with enhanced soft delete
+    href: backup-azure-enhanced-soft-delete-tutorial.md
+  - name: Configure Threat Detection and manage health of Azure VM Backups
+    href: threat-detection-configure-monitor-tutorial.md  
+- name: Concepts
+  items:
+  - name: Reliability
+    items:
+    - name: Availability zone and disaster recovery
+      href: ../reliability/reliability-backup.md?toc=/azure/backup/toc.json&bc=/azure/backup/breadcrumb/toc.json
+    - name: Migrate to availability zone support
+      href: ../reliability/migrate-recovery-services-vault.md?toc=/azure/backup/toc.json&bc=/azure/backup/breadcrumb/toc.json
+  - name: Support matrices
+    items:
+    - name: Azure Backup support matrix
+      href: backup-support-matrix.md
+    - name: Active Directory domain controllers
+      href: active-directory-backup-restore.md
+    - name: Automation in Azure Backup
+      href: backup-support-automation.md
+  - name: Frequently asked questions (FAQ)
+    items:
+    - name: FAQ-Azure Backup Monitoring and Reporting
+      href: backup-azure-monitor-alert-faq.yml
+  - name: Monitoring and Reporting
+    href: monitoring-and-alerts-overview.md
+  - name: Backup architecture
+    href: backup-architecture.md
+  - name: Guidance and best practices
+    href: guidance-best-practices.md
+  - name: Glossary of terms
+    href: azure-backup-glossary.md
+- name: How-to guides
+  items:
   - name: Azure Backup Server on Azure Stack
     items:
     - name: Install Azure Backup Server
