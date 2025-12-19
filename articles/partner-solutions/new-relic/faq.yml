@@ -103,10 +103,10 @@ sections:
         answer: |
           To add subscriptions for monitoring:
           
-          1. Select **New Relic account config** > **Monitored Subscriptions** from the service menu
-          2. Select **Add subscriptions**
-          3. Select the subscriptions you want to monitor
-          4. Select the **Add** button
+          1. Select **New Relic account config** > **Monitored Subscriptions** from the service menu.
+          2. Select **Add subscriptions**.
+          3. Select the subscriptions you want to monitor.
+          4. Select the **Add** button.
           
           The tag rules and logs you defined for the New Relic resource apply to all selected subscriptions.
       - question: What should I do if I see duplicate data across subscriptions?
