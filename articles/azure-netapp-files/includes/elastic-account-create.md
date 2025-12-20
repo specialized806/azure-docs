@@ -14,7 +14,7 @@
     * Select the **Subscription** the NetApp account belongs to. 
     * Assign or create the **Resource group**. 
     * Select the **Region**. 
-    * Select **NetApp Elastic account** to designate the account for the Elastic service level. 
+    * Select **NetApp Elastic account** to designate the account for Elastic zone-redundant storage. 
 
     :::image type="content" source="../media/shared/elastic-account.png" alt-text="Screenshot of application volume group creation menu." lightbox="../media/shared/elastic-account.png":::
 

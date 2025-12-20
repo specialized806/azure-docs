@@ -31,8 +31,8 @@ Reverting a volume using snapshot revert isn't supported on Azure NetApp Files v
 
 ### Considerations 
 
-* The new volume must be in the same capacity pool that contains the source snapshot. 
-* When restoring a snapshot to a new volume in the Elastic zone-redundant service level, the volume quota is set to 1 GiB instead of the source volume's quota. You must manually [modify the volume's quota](elastic-volume-server-message-block.md#resize-a-volume) to the correct value. 
+* The new volume must be in the capacity pool that  contains the source snapshot. 
+* When restoring a snapshot to a new volume in the Zone-redundant service level, the volume quota is set to 1 GiB instead of the source volume's quota. You must manually [modify the volume's quota](elastic-volume-server-message-block.md#resize-a-volume) to the correct value. 
 
 >[!TIP]
 >To avoid unnecessary slowness in the restore operation, only restore one snapshot to a new volume at a time. 

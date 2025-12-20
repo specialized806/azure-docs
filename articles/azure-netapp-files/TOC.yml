@@ -307,6 +307,8 @@
           href: elastic-customer-managed-keys.md
         - name: Manage Elastic capacity pools
           href: elastic-capacity-pool-task.md
+        - name: Create Active Directory conection 
+          href: elastic-active-directory.md
         - name: Change zones for Elastic capacity pools 
           href: elastic-change-zones.md
         - name: Create an NFS volume 

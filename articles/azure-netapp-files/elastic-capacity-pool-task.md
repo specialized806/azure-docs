@@ -1,6 +1,6 @@
 ---
 title: Create a capacity pool for Elastic zone-redundant service in Azure NetApp Files
-description: Learn how to create a capacity pool for the Elastic service level so that you can create volumes within it.
+description: Learn how to create a capacity pool for Elastic zone-redundant storage so that you can create volumes within it.
 services: azure-netapp-files
 author: b-ahibbard
 ms.service: azure-netapp-files
@@ -51,34 +51,24 @@ You must create a capacity pool before you can create volumes in Azure NetApp Fi
 ## Steps
 
 1. From your Azure NetApp Files account, select **Capacity pools**. 
-1. Select **+ Add pools**.
+1. Select **+ Add pool**.
 1. Provide the following information: 
-    * **Name**
-        Consult the [naming rules and restrictions for Azure resources](../azure-resource-manager/management/resource-name-rules.md#microsoftnetapp) for character limits and other naming conventions.
-    * **Service level**
-        Choose **Zone-Redundant**
-    * **Quota** 
-        Assign the quota. See Resource limits for more information about maximums and minimums. 
-    * **Virtual network**
-        Select an existing or create a new VNet. 
-    * **Delegated subnet**
-        Select or create a delegated subnet. 
-    * **Encryption key source**
-        Select **Platform Managed**
-        For **Customer Managed**, you must have first configured your [key vault settings](elastic-customer-managed-keys.md). 
-    * **Key vault private endpoint**
-        If you select **Customer Managed** for the encryption key source, choose the Azure key vault you configured in your encryption settings. 
-    * **Active Directory configuration**
-        If you've configured an Active Directory account on the NetApp Elastic account, select it from the dropdown menu. If you haven't configured one, select **Create new**.  
+    * **Name**: Consult the [naming rules and restrictions for Azure resources](../azure-resource-manager/management/resource-name-rules.md#microsoftnetapp) for character limits and other naming conventions.
+    * **Service level**: **Zone-redundant** is automatically selected.
+    * **Quota**: Assign the quota value in TiB. See [Resource limits](elastic-resource-limits.md) for more information about maximums and minimums. 
+    * **Virtual network**: Select an existing VNet.
+    * **Delegated subnet**: Select a delegated subnet. 
+    * **Encryption key source**: If you've already configured a customer-managed key, you can select **Customer Managed**. For more information, see [Configure customer-managed keys](elastic-customer-managed-keys.md). Otherwise, select **NetApp Managed**.
+    * **Key vault private endpoint**: If you selected **Customer Managed** for the encryption key source, choose the Azure key vault you configured in your encryption settings. 
+    * **Active Directory configuration**: If you've configured an Active Directory account on the NetApp Elastic account, select it from the dropdown menu. If you haven't configured one, select **Create new**.  
 
-        [!INCLUDE [Steps to configure the Active Directory connection.](includes/elastic-active-directory.md)]
+    [!INCLUDE [Steps to configure the Active Directory connection.](includes/elastic-active-directory.md)]
 
-    * **Availability zone**
-        Drag and drop the availability zones in the ranked order for failover. 
+    * **Availability zone**: Drag and drop the availability zones in the ranked order for failover. 
 
     :::image type="content" source="./media/elastic-capacity-pool-task/capacity-pool-elastic.png" alt-text="Screenshot of creation for an Elastic capacity pool." lightbox="./media/elastic-capacity-pool-task/capacity-pool-elastic.png":::
 
-1. Select **Create**. 
+1. Select **Ok** to create the capacity pool. 
 
 ## Modify a capacity pool
 

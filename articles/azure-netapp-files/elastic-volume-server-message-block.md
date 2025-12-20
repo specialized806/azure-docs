@@ -1,6 +1,6 @@
 ---
-title: Create an SMB volume for the Elastic service level in Azure NetApp Files 
-description: Learn about the requirements and steps to create an SMB volume for the Elastic service level in Azure NetApp Files. 
+title: Create an SMB volume for Azure NetApp Files Elastic zone-redundant storage
+description: Learn about the requirements and steps to create an SMB volume for the Elastic zone-redundant service level in Azure NetApp Files. 
 services: azure-netapp-files
 author: b-ahibbard
 ms.service: azure-netapp-files
@@ -9,18 +9,19 @@ ms.date: 11/18/2025
 ms.author: anfdocs
 # Customer intent: As a cloud administrator, I want to create an SMB volume in Azure NetApp Files, so that I can leverage scalable storage solutions that meet my organization’s data management and sharing requirements.
 ---
-# Create an SMB volume for the Elastic service level in Azure NetApp Files 
+# Create an SMB volume for Azure NetApp Files Elastic zone-redundant storage
 
-Learn how to create an SMB volume for the Elastic service level. 
+Learn how to create an SMB volume for Elastic zone-redundant storage. 
 
 >[!NOTE]
->This workflow is for the Elastic service level. For Flexible, Standard, Premium, and Ultra volumes, see [Create an SMB volume](azure-netapp-files-create-volumes-smb.md).
+>This workflow is for Elastic zone-redundant storage. For Flexible, Standard, Premium, and Ultra volumes, see [Create an SMB volume](azure-netapp-files-create-volumes-smb.md).
 
 ## Before you begin 
 
 * You must have a NetApp Elastic account. 
-* You must have configured a capacity pool for the Elastic service level. 
+* You must have configured a capacity pool for Elastic zone-redundant storage. 
     * If you're creating SMB volumes, you must have configured Active Directory on the capacity pool. 
+* After you create an SMB volume, you can resize it. You can also assign a snapshot policy, edit the hide snapshot path option, or enable/disable SMB3 encryption. 
 
 ## Considerations 
 
@@ -45,9 +46,9 @@ Learn how to create an SMB volume for the Elastic service level.
 1. Configure the **Protocol**. 
 
     * Choose **SMB**. 
-        When you choose SMB, the **Active Directory** account is automatically set to the Active Directory account configured for the account. If the account is not assigned and you have an Active Directory account for the account, select **Refresh**.  
-    * Enter the **Share Name**. 
-    * To encrypt SMB3 data in flight, select **Enable SMB3 Protocol Encryption**.
+        When you choose SMB, the **Active Directory configuration** is automatically set to the Active Directory connection configured for the capacity pool.
+    * Enter a **Share aame**. 
+    * To encrypt SMB3 data in flight, select **SMB3 Protocol Encryption**.
 
         If you enable SMB3 encyrption, SMB clients not using SMB3 encryption can't access this volume. Data at rest is encrypted regardless of this setting. For more information, see [SMB encryption](azure-netapp-files-smb-performance.md#smb-encryption).
 
@@ -60,12 +61,13 @@ Learn how to create an SMB volume for the Elastic service level.
 ## Resize a volume 
 
 1. In your NetApp account, select **Volumes**. 
-1. Locate the volume you want to resize. Select the three dots `...` then **Modify volume**. 
-1. Enter the new **Quota** value.
+1. Select the volume you want to modify. 
+1. In the overview for the volume, select **Resize**. 
+1. Enter the new quota in GiB in the **Quota** field. The Available quota displays the available space in the capacity pool.
 
     :::image type="content" source="./media/shared/edit-volume.png" alt-text="Screenshot showing how to edit a snapshot policy." lightbox="./media/shared/edit-volume.png":::
 
-1. Select **Save**. 
+1. Select **OK** to confirm the new quota. 
 
 ## Next steps 
 

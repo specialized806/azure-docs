@@ -39,64 +39,84 @@ Azure NetApp Files backups in the Elastic service level require a backup vault. 
 
 Backup vaults store the backups for your Azure NetApp Files subscription. Although it's possible to create multiple backup vaults in your Azure NetApp Files account, it's recommended you have only one backup vault per account.
 
-1. In your Azure NetApp Files account, select **Data protection** then **Backup vaults**. 
+1. In your Azure NetApp Files account, select **Backup vaults** in the Data Protection section. 
 1. Select **+ Add backup vault**. 
 1. Enter a **Name** for the backup vault then select **OK** to create the vault. 
-
-## Assign volumes to a backup vault
-
-1. In your Azure NetApp Files account, select **Data protection** then **Backup vaults**. 
-<!-- >
-1. To assign Elastic volumes to the backup vault, enter specific volume names then select **Assign**. Alternately, select **Browse** to view a list of all volumes. Select the volumes you want to assign then **Assign selected volumes**. 
-
-    To remove volumes, select **Browse**. Select the action menu `...` next to an individual volume name then **Unassign**. 
-1. Select **Save**. 
--->
 
 ## Delete a backup vault 
 
 1. In your Azure NetApp Files account, select **Data protection** then **Backup vaults**. 
 1. Identify the backup vault you want to delete, select the action menu `...` then **Delete**. 
+1. In the pop-up, select **Yes** to confirm you want to create the backup vault. 
 
 
 ## Create an on-demand backup
 
-1. In your Azure NetApp Files account, select **Volumes** then **Backups**. 
-1. Select **+ Add**. 
-1. Assign a **Name** to the backup. 
-    If you select **Use existing snapshot**, choose the snapshot to use as the basis for the backup from the dropdown list. If you leave this option unchecked, Azure NetApp Files creates a new snapshot for the backup.
-1. Select **Create**. Once the backup is created, you can view it in the **Backups** menu. 
+>[!NOTE]
+>You must have created a backup vault before you can create an on-demand backup. 
 
+1. In your Azure NetApp Files account, select **Volumes**.
+1. Select the volume you want to create a back up for.
+1. From the volume overview, select **Backups**. 
+1. Select **+ Add Backup**. 
+1. Assign a **Name** to the backup. The backup name should be between 3 and 255 characters. As a best practices, assign a descriptive name that identifies the capacity pool, volume, 
+
+    Optionally, select **Use existing snapshot** to use an existing snapshot as the basis for the backup then choose the snapshot from the dropdown menu. If you leave this option unchecked, Azure NetApp Files creates a new snapshot for the backup.
+
+    :::image type="content" source="./media/elastic-backup/new-on-demand.png" alt-text="Screenshot of a new on-demand backup." lightbox="./media/elastic-backup/new-on-demand.png":::
+
+1. Select **Create**. Once the backup is created, you can view it in the **Backups** menu under the volume. 
 
 ## Create a backup policy
 
 <!-- backups to keep: the number of backups retained on the volume. Once the number of backups exceeds this number, older backups are automatically deleted. -->
 
-1. In your Elastic service level Azure NetApp Files account, select **Backup policies** under the Data protection navigation menu. 
+1. In your NetApp Elastic account, select **Backup policies** under the Data protection navigation menu. 
 1. Select **+ Add Backup Policy**. 
-1. Specify the **Backup Policy Name**. Enter values for the daily, weekly, and monthly backups you want to retain. 
-1. Select **Create** to finish creating the policy.
+1. Specify the **Backup Policy Name**.
+1. To activate the policy, toggle it to **Enabled**.
+1. Enter values for the number of daily, weekly, and monthly backups you want to retain. 
+1. Select **Save** to create the policy. 
 
 ## Modify a backup policy 
 
-You can modify the schedule and retention count or a backup or disable it. 
+You can modify the retention count of a backup policy or disable it. 
 
-1. In your Elastic service level Azure NetApp Files account, select **Backup Policies** under the Data protection navigation menu.
+1. In your NetApp Elastic account, select **Backup Policies** under the Data protection navigation menu.
 1. Select the action menu `...` at the end of the row with the backup policy name then **Edit**.
 
-    * To turn off backups with the policy, switch the policy state to **Disabled**. To enable backups, switch the policy state to **Enabled**. 
+    * To turn off backups with the policy, switch the policy state to **Disabled**. To activate backups, switch the policy state to **Enabled**. 
 
     * **To modify the backup schedule**:
         Choose backup schedule then modify the **Backups to keep** value.
 
 1. Select **Save**. 
 
+## Assign a backup policy to a volume
+
+1. Navigate to **Volumes** then select the volume for which you want to configure backups.
+1. From the selected volume, select **Backups** then **Configure Backups**.
+1. In the **Configure Backups** page, select the **Backup vault** for the backups. 
+    Select a **Backup policy** from the dropdown then select **Enabled** to activate the policy on the volume. 
+
+    :::image type="content" source="./media/elastic-backup/assign-policy.png" alt-text="Screenshot of assigning a backup policy." lightbox="./media/elastic-backup/assign-policy.png":::
+
+1. Select **OK** to start creating backups on the volume. 
+
+## Bulk assign a policy to volumes 
+
+1. In your NetApp Elastic account, select **Backup Policies** under the Data protection navigation menu.
+1. Identify the policy you want to assign to volumes. Select the three dots `...` in the Actions column for the policy then **Assign volumes**. 
+1. Select the volumes you want to back up with the policy.
+1. Select **Assign policy** to back up the volumes with the policy. Select **Yes** to confirm the assignment. 
+
 ## Delete a backup policy 
 
 <!-- import from backup-delete.md -->
 
-1. In your Elastic service level Azure NetApp Files account, select **Backup policies** under the Data protection navigation menu.
-1. Select **Delete** to remove the backup policy. 
+1. In your Elastic service level Azure NetApp Files account, select **Backup Policies** under the Data protection navigation menu.
+1. Identify the policy you want to delete then select the three dots `...` to see the action menu for the policy. Select **Delete** to remove the backup policy. 
+1. Select **Yes** to confirm you want to delete the policy. 
 
 ## Next steps 
 

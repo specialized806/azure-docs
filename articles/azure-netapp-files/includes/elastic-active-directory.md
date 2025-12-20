@@ -9,10 +9,11 @@ ms.custom: include file
 # azure-netapp-files/elastic-capacity-pool-task.md
 ---
 
+
 1. In the Networking tab, provide inputs for the following fields:
 
     >[!TIP]
-    >For deatiled guidance on Active Directory configuration, see [Create and Manage Active Directory connections](../create-active-directory-connections.md).
+    >For detailed guidance on Active Directory configuration, see [Create and Manage Active Directory connections](../create-active-directory-connections.md).
 
     * **Active Directory policy name**
         Enter a name for the Active Directory configuration. 
@@ -49,4 +50,5 @@ ms.custom: include file
 
     :::image type="content" source="../media/shared/elastic-active-directory-access.png" alt-text="Screenshot of the identity & access management tab." lightbox="../media/shared/elastic-active-directory-access.png":::
 
-1. Select **Review + create**. 
+1. Optionally, select **Next** to add tags. Otherwise, select the **Review + create** tab.
+1. Review your settings then select **Create** to add the Active Directory connection. 
