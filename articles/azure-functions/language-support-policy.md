@@ -1,7 +1,7 @@
 ---
 title: Azure Functions language stack support policy
 description: Learn about the support policy for the various language stacks that Azure Functions supports.
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 09/03/2025
 zone_pivot_groups: programming-languages-set-functions
 ---
