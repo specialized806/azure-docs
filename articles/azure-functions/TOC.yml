@@ -346,7 +346,7 @@
         href: python-scale-performance-reference.md
       - name: Samples
         displayName: python
-        href: samples/browse/?products=azure-functions&languages=python
+        href: /samples/browse/?products=azure-functions&languages=python
       - name: Python worker extensions
         href: develop-python-worker-extensions.md
       - name: Troubleshooting
@@ -358,7 +358,7 @@
             displayName: python
             href: python-memory-profiler-reference.md
       - name: Python SDK API reference
-        href: python/api/azure-functions/azure.functions
+        href: /python/api/azure-functions/azure.functions
 - name: How-to guides
   items:
   - name: Develop
