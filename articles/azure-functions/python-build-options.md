@@ -45,7 +45,7 @@ You can use remote build when you publish your Python app using these tools:
 - [**Continuous delivery by using GitHub Actions**](./functions-how-to-github-actions.md): the **Azure/functions-action@v1** action uses remote build when the `remote-build` parameter is set to `true` for the Flex Consumption plan or when 
 `scm-do-build-during-deployment` and `enable-oryx-build` are set to `true` for Dedicated plans.
 
-To enable remote build in other scenarios, like [**Continuous delivery with Azure Pipelines**](./functions-how-to-azure-devops.md), see [Enabling Remote Build](./functions-deployment-technologies.md#remote-build).
+To enable remote build for other scenarios, like [**Continuous delivery with Azure Pipelines**](./functions-how-to-azure-devops.md), see [Enabling Remote Build](./functions-deployment-technologies.md#remote-build).
 
 Remote build also supports custom package indexes when by using the [`PIP_EXTRA_INDEX_URL`](./functions-app-settings.md#pip_extra_index_url) app setting. For more information, see [Remote build](functions-deployment-technologies.md#remote-build).
 
@@ -84,7 +84,7 @@ Azure Functions supports custom and other non-PyPI dependencies by using the [`P
 ### Remote build with an extra index URL
 When your private packages are available online, you can request a remote build after setting the private package location by using the [`PIP_EXTRA_INDEX_URL`] app setting.
 When you set [`PIP_EXTRA_INDEX_URL`], remote builds use this package feed during deployment. [`PIP_INDEX_URL`](./functions-app-settings.md#pip_index_url) replaces the package index,
-so please consider using [`PIP_EXTRA_INDEX_URL`] instead to prevent unexpected behavior.
+so consider using [`PIP_EXTRA_INDEX_URL`] instead to prevent unexpected behavior.
 
 ### Local packages or wheels
 Local packages and wheels are supported when building python Azure Function apps.
