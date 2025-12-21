@@ -543,7 +543,7 @@ Azure service: [Power BI Embedded](/azure/power-bi-embedded/)
 > | --- | --- |
 > | Microsoft.PowerBIDedicated/register/action | Registers Power BI Dedicated resource provider. |
 > | Microsoft.PowerBIDedicated/register/action | Registers Power BI Dedicated resource provider. |
-> | Microsoft.PowerBIDedicated/autoScaleVCores/read | Retrieves the information of the specificed Power BI Auto Scale V-Core. |
+> | Microsoft.PowerBIDedicated/autoScaleVCores/read | Retrieves the information of the specified Power BI Auto Scale V-Core. |
 > | Microsoft.PowerBIDedicated/autoScaleVCores/write | Creates or updates the specified Power BI Auto Scale V-Core. |
 > | Microsoft.PowerBIDedicated/autoScaleVCores/delete | Deletes the Power BI Auto Scale V-Core. |
 > | Microsoft.PowerBIDedicated/capacities/read | Retrieves the information of the specified Power BI capacity. |
