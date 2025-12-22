@@ -1073,7 +1073,7 @@
     href: azure-backup-glossary.md
   - name: Azure Backup support matrix
     href: backup-support-matrix.md
-  - name: Active Directory domain controllers backup and restore
+  - name: Active Directory domain controllers backup /restore
     href: active-directory-backup-restore.md
   - name: Reliability
     items:
