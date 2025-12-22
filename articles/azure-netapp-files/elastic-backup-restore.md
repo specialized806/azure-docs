@@ -30,7 +30,7 @@ If you need to restore from a backup, you can create a new volume in the same ac
     * The **Volume name** must adhere to [naming rules and restrictions for Azure resources](../azure-resource-manager/management/resource-name-rules.md#microsoftnetapp) for character limits and other naming conventions.
     * The **Quota** value must be **at least 20% greater** than the size of the backup from which the restore is triggered. Once the restore is complete, the volume can be resized depending on the size used. 
     
-    :::image type="content" source="./media/elastic-backup-restore/create-volume.png" alt-text="Screenshot of selecting restore backup to new volume." lightbox="./media/elastic-backup-restore/create-volume.png":::
+    :::image type="content" source="./media/elastic-backup-restore/create-volume.png" alt-text="Screenshot of restoring a backup to a new volume." lightbox="./media/elastic-backup-restore/create-volume.png":::
 
     Select **Next**.
 
