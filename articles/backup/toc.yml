@@ -897,6 +897,10 @@
     href: offline-backup-server-previous-versions.md
 - name: Monitoring
   items:
+  - name: Overview
+    href: monitoring-and-alerts-overview.md
+  - name: FAQ-Azure Backup Monitoring and Reporting
+    href: backup-azure-monitor-alert-faq.yml
   - name: Review backup estate
     href: backup-azure-monitoring-built-in-monitor.md
   - name: Monitor Azure Backup
@@ -953,12 +957,6 @@
       href: active-directory-backup-restore.md
     - name: Automation in Azure Backup
       href: backup-support-automation.md
-  - name: Frequently asked questions (FAQ)
-    items:
-    - name: FAQ-Azure Backup Monitoring and Reporting
-      href: backup-azure-monitor-alert-faq.yml
-  - name: Monitoring and Reporting
-    href: monitoring-and-alerts-overview.md
   - name: Backup architecture
     href: backup-architecture.md
   - name: Guidance and best practices
