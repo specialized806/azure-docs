@@ -109,8 +109,10 @@
     items:  
     - name: Overview
       href: multi-user-authorization-concept.md
-    - name: Enable Multi-user authorization (MUA)
+    - name: Quickstart - Enable Multi-user authorization (MUA)
       href: enable-multi-user-authorization-quickstart.md    
+    - name: Tutorial - configure Multi-user authorization (MUA)
+      href: multi-user-authorization-tutorial.md
     - name: Configure Multi-user authorization using Resource Guard
       href: multi-user-authorization.md
     - name: Immutable vault
@@ -162,7 +164,11 @@
       - name: Create and manage
         href: backup-azure-private-endpoints-configure-manage.md
   - name: Threat Detection with Microsoft Defender for Cloud integration 
-    href: threat-detection-overview.md
+    items:
+    - name: Overview
+      href: threat-detection-overview.md
+    - name: Configure Threat Detection and manage health of Azure VM Backups
+      href: threat-detection-configure-monitor-tutorial.md  
   - name: Encryption in Azure Backup
     href: backup-encryption.md
   - name: Encryption using customer-managed keys
@@ -759,7 +765,13 @@
     href: backup-azure-file-folder-backup-faq.yml
   - name: Support matrix
     href: backup-support-matrix-mars-agent.md 
-  - name: Back up Windows server
+  - name: Tutorials for backup of Windows Server
+    items:
+    - name: Back up Windows Server
+      href: tutorial-backup-windows-server-to-azure.md
+    - name: Restore files to Windows Server
+      href: tutorial-backup-restore-files-windows-server.md
+  - name: Back up scenarios
     items:
     - name: Install or upgrade
       items:
@@ -925,18 +937,6 @@
       href: backup-reports-system-functions.md
   - name: Backup Explorer
     href: monitor-azure-backup-with-backup-explorer.md
-- name: Tutorials
-  items:
-  - name: Back up Windows Server
-    href: tutorial-backup-windows-server-to-azure.md
-  - name: Restore files to Windows Server
-    href: tutorial-backup-restore-files-windows-server.md
-  - name: Configure Multi-user authorization (MUA)
-    href: multi-user-authorization-tutorial.md
-  - name: Recover soft deleted items with enhanced soft delete
-    href: backup-azure-enhanced-soft-delete-tutorial.md
-  - name: Configure Threat Detection and manage health of Azure VM Backups
-    href: threat-detection-configure-monitor-tutorial.md  
 - name: Concepts
   items:
   - name: Reliability
