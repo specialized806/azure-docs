@@ -845,6 +845,86 @@
     href: restore-azure-backup-server-vmware.md
   - name: Back up the MABS server
     href: backup-the-mabs-server.md
+- name: Azure Backup Server on Azure Stack
+  items:
+  - name: Install Azure Backup Server
+    href: backup-mabs-install-azure-stack.md
+  - name: Protect files and applications
+    href: backup-mabs-files-applications-azure-stack.md
+  - name: Protect SharePoint farm
+    href: backup-mabs-sharepoint-azure-stack.md
+  - name: Protect SQL Server database
+    href: backup-mabs-sql-azure-stack.md
+- name: Data Protection Manager (DPM)
+  items:
+  - name: Prepare DPM workloads in the Azure portal
+    href: backup-azure-dpm-introduction.md
+  - name: Use DPM to back up Exchange server
+    href: backup-azure-backup-exchange-server.md
+  - name: Recover data to alternate DPM server
+    href: backup-azure-alternate-dpm-server.md
+  - name: Use DPM to back up SQL Server workloads
+    href: backup-azure-backup-sql.md
+  - name: Use DPM to back up a SharePoint farm
+    href: backup-azure-backup-sharepoint.md
+  - name: Replace your tape library
+    href: backup-azure-backup-cloud-as-tape.md
+- name: Offline backup
+  items:
+  - name: Overview
+    href: offline-backup-overview.md
+  - name: Offline Backup with Azure Data Box (MARS)
+    href: offline-backup-azure-data-box.md
+  - name: Offline Backup with Azure Data Box (DPM/MABS)
+    href: offline-backup-azure-data-box-dpm-mabs.md
+  - name: Offline Backup with Import/Export (MARS)
+    href: backup-azure-backup-import-export.md
+  - name: Offline Backup with Import/Export (DPM/MABS)
+    href: backup-azure-backup-server-import-export.md
+  - name: Offline Backup for DPM and MABS (previous versions)
+    href: offline-backup-server-previous-versions.md
+- name: Monitoring
+  items:
+  - name: Review backup estate
+    href: backup-azure-monitoring-built-in-monitor.md
+  - name: Monitor Azure Backup
+    href: monitor-backup.md
+  - name: Monitoring data reference
+    href: monitor-backup-reference.md
+  - name: Alerts
+    items:
+    - name: Azure Monitor alerts
+      href: backup-azure-monitoring-alerts.md
+    - name: Metrics
+      href: metrics-overview.md
+    - name: Logs
+      href: backup-azure-monitoring-use-azuremonitor.md
+    - name: Configure notifications
+      href: backup-azure-monitor-alerts-notification.md
+    - name: Classic Alerts
+      href: move-to-azure-monitor-alerts.md
+- name: Reporting
+  items:
+  - name: Configure Azure Backup reports
+    items:
+    - name: Configure Report
+      href: configure-reports.md
+    - name: View Report
+      href: view-reports.md
+    - name: Email Report
+      href: backup-reports-email.md
+  - name: Configure Diagnostics Events
+    items:
+    - name: Use Diagnostic Settings with Log Analytics
+      href: backup-azure-diagnostic-events.md
+    - name: Log Analytics Data Model for Resource Specific Diagnostic Events
+      href: backup-azure-reports-data-model.md
+    - name: Log Analytics Data Model for Legacy Diagnostic Events
+      href: backup-azure-diagnostics-mode-data-model.md
+    - name: System Functions
+      href: backup-reports-system-functions.md
+  - name: Backup Explorer
+    href: monitor-azure-backup-with-backup-explorer.md
 - name: Tutorials
   items:
   - name: Back up Windows Server
@@ -887,86 +967,6 @@
     href: azure-backup-glossary.md
 - name: How-to guides
   items:
-  - name: Azure Backup Server on Azure Stack
-    items:
-    - name: Install Azure Backup Server
-      href: backup-mabs-install-azure-stack.md
-    - name: Protect files and applications
-      href: backup-mabs-files-applications-azure-stack.md
-    - name: Protect SharePoint farm
-      href: backup-mabs-sharepoint-azure-stack.md
-    - name: Protect SQL Server database
-      href: backup-mabs-sql-azure-stack.md
-  - name: Data Protection Manager (DPM)
-    items:
-    - name: Prepare DPM workloads in the Azure portal
-      href: backup-azure-dpm-introduction.md
-    - name: Use DPM to back up Exchange server
-      href: backup-azure-backup-exchange-server.md
-    - name: Recover data to alternate DPM server
-      href: backup-azure-alternate-dpm-server.md
-    - name: Use DPM to back up SQL Server workloads
-      href: backup-azure-backup-sql.md
-    - name: Use DPM to back up a SharePoint farm
-      href: backup-azure-backup-sharepoint.md
-    - name: Replace your tape library
-      href: backup-azure-backup-cloud-as-tape.md
-  - name: Offline backup
-    items:
-    - name: Overview
-      href: offline-backup-overview.md
-    - name: Offline Backup with Azure Data Box (MARS)
-      href: offline-backup-azure-data-box.md
-    - name: Offline Backup with Azure Data Box (DPM/MABS)
-      href: offline-backup-azure-data-box-dpm-mabs.md
-    - name: Offline Backup with Import/Export (MARS)
-      href: backup-azure-backup-import-export.md
-    - name: Offline Backup with Import/Export (DPM/MABS)
-      href: backup-azure-backup-server-import-export.md
-    - name: Offline Backup for DPM and MABS (previous versions)
-      href: offline-backup-server-previous-versions.md
-  - name: Monitoring
-    items:
-    - name: Review backup estate
-      href: backup-azure-monitoring-built-in-monitor.md
-    - name: Monitor Azure Backup
-      href: monitor-backup.md
-    - name: Monitoring data reference
-      href: monitor-backup-reference.md
-    - name: Alerts
-      items:
-      - name: Azure Monitor alerts
-        href: backup-azure-monitoring-alerts.md
-      - name: Metrics
-        href: metrics-overview.md
-      - name: Logs
-        href: backup-azure-monitoring-use-azuremonitor.md
-      - name: Configure notifications
-        href: backup-azure-monitor-alerts-notification.md
-      - name: Classic Alerts
-        href: move-to-azure-monitor-alerts.md
-  - name: Reporting
-    items:
-    - name: Configure Azure Backup reports
-      items:
-      - name: Configure Report
-        href: configure-reports.md
-      - name: View Report
-        href: view-reports.md
-      - name: Email Report
-        href: backup-reports-email.md
-    - name: Configure Diagnostics Events
-      items:
-      - name: Use Diagnostic Settings with Log Analytics
-        href: backup-azure-diagnostic-events.md
-      - name: Log Analytics Data Model for Resource Specific Diagnostic Events
-        href: backup-azure-reports-data-model.md
-      - name: Log Analytics Data Model for Legacy Diagnostic Events
-        href: backup-azure-diagnostics-mode-data-model.md
-      - name: System Functions
-        href: backup-reports-system-functions.md
-    - name: Backup Explorer
-      href: monitor-azure-backup-with-backup-explorer.md
   - name: Automation
     items:
     - name: Overview
