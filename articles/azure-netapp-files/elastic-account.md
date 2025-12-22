@@ -19,9 +19,9 @@ Creating a NetApp account enables you to set up a capacity pool so that you can 
 * You must register your subscription for using the NetApp Resource Provider. For more information, see [Register the NetApp Resource Provider](azure-netapp-files-register.md).
 * NetApp accounts must be dedicated to a service tier. Confirm you understand the difference between [Elastic zone-redundant storage](elastic-zone-redundant-concept.md) and [other service levels](azure-netapp-files-service-levels.md) before creating you create your NetApp account.
 
-## Register for the Elastic zone-redundant service level 
+## Register for the Elastic zone-redundant storage
 
-The Elastic zone-redundant service level is currently in preview. You must register for the `ANFElasticZRS` AFEC before using zone-redundant storage for the first time. 
+Elastic zone-redundant storage is currently in preview. You must register for the `ANFElasticZRS` AFEC before using zone-redundant storage for the first time. 
 
 1.  Register the feature:
 
@@ -45,5 +45,5 @@ You can also use [Azure CLI commands](/cli/azure/feature) `az feature register` 
 
 ## Next steps 
 
-* [Understand the Elastic zone-redundant service level](elastic-zone-redundant-concept.md)
+* [Understand the Elastic zone-redundant storage](elastic-zone-redundant-concept.md)
 * [Create an Elastic service level capacity pool](elastic-capacity-pool-task.md)

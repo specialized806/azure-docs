@@ -24,7 +24,7 @@ Learn how to create an NFS volume for the Elastic zone-redundant storage.
 
 * You can't change the protocol of a volume after creating it. 
 * Each volume in a capacity pool must have a unique name.
-* In the Elastic zone-redundant service level, you can't move volumes between capacity pools. 
+* In Elastic zone-redundant storage, you can't move volumes between capacity pools. 
 
 <!-- unix permissions, chown root access -->
 
@@ -73,5 +73,5 @@ Learn how to create an NFS volume for the Elastic zone-redundant storage.
 1. Select **OK** to confirm the new quota. 
 
 ## Next steps 
-* [Understand the Elastic zone-redundant service level](elastic-zone-redundant-concept.md) 
+* [Understand Elastic zone-redundant storage](elastic-zone-redundant-concept.md) 
 * [Mount an NFS volume](azure-netapp-files-mount-unmount-volumes-for-virtual-machines.md)

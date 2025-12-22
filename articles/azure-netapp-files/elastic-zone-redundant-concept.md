@@ -20,13 +20,13 @@ It delivers built‑in local redundancy, shared QoS, and native multi‑tenancy 
 
 Scale smaller volumes with flexible throughput, power backups, analytics staging, and AI datasets—all at an affordable price without compromising reliability.
 
-The Elastic zone-redundant service level offers built-in high-availability and zero recovery point objective (RPO). 
+Elastic zone-redundant storage offers built-in high-availability and zero recovery point objective (RPO). 
 
-When creating your NetApp account, you must designate that the account is for zone-redundant storage. A NetApp account configured for the Elastic zone-redundant service level can only be used for the Elastic zone-redundant service level.
+When creating your NetApp account, you must designate that the account is for zone-redundant storage. An Elastic NetApp account can only be used for Elastic zone-redundant storage.
 
 ## Elastic zone-redundant service
 
-In comparison to existing Azure NetApp Files service levels, the Elastic zone-redundant service level offers:  
+In comparison to existing Azure NetApp Files service levels, Elastic zone-redundant storage offers:
 
 <!-- Elastic ZR volumes write synchronously across Availability Zones (AZ) for zero‑data‑loss continuity and trigger platform‑managed failover in under two minutes -->
 <!-- 

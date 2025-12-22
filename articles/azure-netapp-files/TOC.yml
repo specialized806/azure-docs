@@ -13,8 +13,6 @@
   items:
   - name: Set up Azure NetApp Files and create an NFS volume
     href: azure-netapp-files-quickstart-set-up-account-create-volumes.md
-  - name: Set up Elastic Zone Redundant Azure NetApp Files
-    href: elastic-quickstart.md
 # - name: Tutorials 
 # - name: Samples
 - name: Concepts
@@ -79,11 +77,11 @@
       href: azure-netapp-files-understand-storage-hierarchy.md
     - name: Service levels for Azure NetApp Files
       href: azure-netapp-files-service-levels.md
-    - name: Elastic zone-redundant service level 
+    - name: Elastic zone-redundant storage 
       items: 
         - name: Understand Elastic zone-redundant storage 
           href: elastic-zone-redundant-concept.md
-        - name: Resource limits for Elastic service level 
+        - name: Resource limits for Elastic zone-redundant storage 
           href: elastic-resource-limits.md
     - name: Guidelines for Azure NetApp Files network planning 
       href: azure-netapp-files-network-topologies.md
@@ -305,9 +303,9 @@
           href: elastic-account.md 
         - name: Configure customer-managed keys
           href: elastic-customer-managed-keys.md
-        - name: Manage Elastic capacity pools
+        - name: Create an Elastic capacity pools
           href: elastic-capacity-pool-task.md
-        - name: Create Active Directory conection 
+        - name: Create an Active Directory conection 
           href: elastic-active-directory.md
         - name: Change zones for Elastic capacity pools 
           href: elastic-change-zones.md

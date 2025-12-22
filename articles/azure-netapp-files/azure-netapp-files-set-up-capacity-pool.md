@@ -16,7 +16,7 @@ ms.custom:
 Creating a capacity pool enables you to create volumes within it. 
 
 >[!IMPORTANT]
->To create a capacity pool for the Elastic zone-redundant service level, see [Create an Elastic zone-redundant capacity pool](elastic-capacity-pool-task.md).
+>For a NetApp Elastic account, see [Create an Elastic zone-redundant capacity pool](elastic-capacity-pool-task.md).
 
 ## Before you begin 
 

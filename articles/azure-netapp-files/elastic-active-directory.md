@@ -1,6 +1,6 @@
 ---
-title: Create a capacity pool for Elastic zone-redundant service in Azure NetApp Files
-description: Learn how to create a capacity pool for Elastic zone-redundant storage so that you can create volumes within it.
+title: Create an Active Directory connection for Azure NetApp Files' Elastic zone-redundant storage
+description: Learn how to create an Active Direction connection for Azure NetApp Files Elastic zone-redundant storage.
 services: azure-netapp-files
 author: b-ahibbard
 ms.service: azure-netapp-files
@@ -11,7 +11,7 @@ ms.custom:
   - build-2025
 # Customer intent: "As a cloud storage administrator, I want to create a capacity pool for Azure NetApp Files so that I can manage the storage volumes and configure their performance requirements effectively."
 ---
-# Create an Active Directory connection for an Azure NetApp Files Elastic zone-redundant capacity pool
+# Create an Active Directory connection for Azure NetApp Files' Elastic zone-redundant storage
 
 If you're adding SMB volumes to your Elastic zone-redundant capacity pool, you must configure an Active Directory connection. 
 
@@ -22,7 +22,7 @@ If you're adding SMB volumes to your Elastic zone-redundant capacity pool, you m
 
 * You should store your Active Directory password in an Azure Key Vault then percolate the key vault details and secret name to Azure NetApp Files. 
 <!-- * You can only add one Active Directory account per NetApp subscription. -->
-* The Active Directory resource you create for the capacity pool is limited to the Elastic zone-redundant service level. The Active Directory resource is only available with capacity pools in the Elastic zone-redundant service level. 
+* The Active Directory resource you create for the capacity pool is limited to Elastic zone-redundant storage. The Active Directory resource is only available with capacity pools in Elastic zone-redundant storage. 
 
 ## Add a new Active Directory connection 
 

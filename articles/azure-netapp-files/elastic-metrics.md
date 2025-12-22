@@ -1,6 +1,6 @@
 ---
 title: Metrics for Azure NetApp Files Elastic zone-redundant service level
-description: Learn about the metrics available for the Elastic zone-redundant service level.
+description: Learn about the metrics available for Elastic zone-redundant storage.
 services: azure-netapp-files
 author: b-ahibbard
 ms.service: azure-netapp-files

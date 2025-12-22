@@ -56,7 +56,7 @@ If you choose to restore a backup of, for example, 600 GiB to a new volume, you'
 * [Restore a backup to a new volume](backup-restore-new-volume.md)
 * [Delete backups of a volume](backup-delete.md)
 * [Volume backup metrics](azure-netapp-files-metrics.md#volume-backup-metrics)
-- [Manage backups for the Elastic zone-redundant service level](elastic-backup.md)
+- [Manage backups](elastic-backup.md)
 - [Restore from a backup for for the Elastic zone-redundant service levle](elastic-backup-restore.md)
 * [Azure NetApp Files backup FAQs](faq-backup.md)
 * [How Azure NetApp Files snapshots work](snapshots-introduction.md)

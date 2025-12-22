@@ -12,7 +12,7 @@ ms.author: anfdocs
 ---
 # Restore from snapshots for Azure NetApp Files Elastic zone-redundant volumes
 
-With the Elastic zone-redundant service level, you can use snapshots to restore to a new volume or revert the volume to its point-in-time snapshot. For more information, see [How Azure NetApp Files snapshots work](snapshots-introduction.md).
+With Elastic zone-redundant storage, you can use snapshots to restore to a new volume or revert the volume to its point-in-time snapshot. For more information, see [How Azure NetApp Files snapshots work](snapshots-introduction.md).
 
 ## Revert a volume 
 
@@ -51,14 +51,18 @@ Reverting a volume using snapshot revert isn't supported on Azure NetApp Files v
 
     :::image type="content" source="./media/elastic-snapshot-restore/elastic-restore-new-volume.png" alt-text="Screenshot Restore to a new field option.":::
 
-    The new volume uses the same protocol that the snapshot uses.   
     For information about the fields in the Create a Volume page, see: 
     * [Create an NFS volume](elastic-volume.md)  
     * [Create an SMB volume](elastic-volume-server-message-block.md)    
 
     <!-- By default, the new volume includes a reference to the snapshot that was used for the restore operation from the original volume from Step 2, referred to as the *base snapshot*. This base snapshot does *not* consume any additional space because of [how snapshots work](snapshots-introduction.md). -->
 
-1. Select **Review + create** to review your choices. Select **Create** to begin the restore process. 
+    Select **Next**.
+
+1. The protocol is automatically selected; the new volume uses the same protocol that the snapshot uses. Enter the file path for the new volume then select **Review + create**. 
+
+1. Select **Create** to begin the restore process. 
+
     The Volumes page displays the new volume to which the snapshot restores. Refer to the **Originated from** field to see the name of the snapshot used to create the volume. 
 
 ## More information 

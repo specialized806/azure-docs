@@ -22,9 +22,8 @@ The following table outlines resource limits for Elastic zone-redundant storage 
 
 | Resource | Default limit | Adjustable via support request? |
 | ---- | -- | - |
-| Maximum number of Elastic zone-redundant NetApp accounts per subscription | 10 | Yes | 
-| Number of capacity pools per NetApp account | 50 | No |
-| Number of Elastic capacity pools per region per subscription  | 5 | Yes | 
+| Maximum number of Elastic NetApp accounts per subscription | 10 | Yes | 
+| Number of Elastic capacity pools per subscription  | 5 | Yes | 
 | Number of volumes per capacity pool | 50 | No |
 | Minimum size of a capacity pool | 1 TiB | No | 
 | Maximum size of a capacity pool | 128 TiB | No | 
@@ -41,4 +40,4 @@ To request an increase where applicable, learn how to [Create a support request]
 
 ## Next steps
 
-* [Understand the Elastic zone-redundant service level](elastic-zone-redundant-concept.md)
+* [Understand the Elastic zone-redundant storage](elastic-zone-redundant-concept.md)

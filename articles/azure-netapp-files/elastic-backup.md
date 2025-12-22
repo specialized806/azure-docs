@@ -13,7 +13,7 @@ ms.author: anfdocs
 Azure NetApp Files backup expands the data protection capabilities of Azure NetApp Files by providing fully managed backup solution for long-term recovery, archive, and compliance. To learn more about backups, see [Azure NetApp Files backup](backup-introduction.md).
 
 >[!NOTE]
->With the Elastic zone-redundant service level, Azure NetApp Files backup is limited to regions that support the [Elastic zone-redundant service level](elastic-zone-redundant-concept.md#supported-regions). 
+>With Elastic zone-redundant storage, Azure NetApp Files backup is limited to regions that support [Elastic zone-redundant storage](elastic-zone-redundant-concept.md#supported-regions). 
 
 Azure NetApp Files backups in the Elastic service level require a backup vault. Backup vaults are the organization unit for backups. You can create manual (on-demand) or policy-based (scheduled) backups. 
 
@@ -27,12 +27,12 @@ Azure NetApp Files backups in the Elastic service level require a backup vault. 
 
 ## Considerations
 
-* For the Elastic zone-redundant service level, Azure NetApp Files backup is supported in all regions that support the [Elastic zone-redundant service level](elastic-zone-redundant-concept.md#supported-regions).
-* With the Elastic zone-redundant service level, Azure NetApp Files supports daily, weekly, and monthly schedules for backup policies. 
+* Azure NetApp Files backup is supported in all regions that support [Elastic zone-redundant storage](elastic-zone-redundant-concept.md#supported-regions).
+* Azure NetApp Files supports daily, weekly, and monthly schedules for backup policies. 
 * Deleting a volume does _not_ delete its backups. You must manually delete the backups. 
 * You can't delete a volume when Backup is in progress* You can't delete the snapshot used for the most recent backup if there are backups on the volume. 
 * Reverting a volume to state before existing backups results in an error. To proceed with reverting the volume, delete the backups causing the error then proceed with the revert. 
-* In the Elastic zone-redundant service level account, backups aren't currently supported with cross-region replication. 
+* With a NetApp Elastic account, backups aren't currently supported with cross-region replication. 
 * Backup start times and duration might display incorrect values with a year of 1970. Incorrect dates will be fixed in a separate release. 
 
 ## Create a backup vault
@@ -92,7 +92,7 @@ You can modify the retention count of a backup policy or disable it.
 
 1. Select **Save**. 
 
-## Assign a backup policy to a volume
+## Assign a backup policy to a single volume
 
 1. Navigate to **Volumes** then select the volume for which you want to configure backups.
 1. From the selected volume, select **Backups** then **Configure Backups**.
@@ -103,7 +103,7 @@ You can modify the retention count of a backup policy or disable it.
 
 1. Select **OK** to start creating backups on the volume. 
 
-## Bulk assign a policy to volumes 
+## Assign a backup policy to multiple volumes 
 
 1. In your NetApp Elastic account, select **Backup Policies** under the Data protection navigation menu.
 1. Identify the policy you want to assign to volumes. Select the three dots `...` in the Actions column for the policy then **Assign volumes**. 
@@ -114,11 +114,11 @@ You can modify the retention count of a backup policy or disable it.
 
 <!-- import from backup-delete.md -->
 
-1. In your Elastic service level Azure NetApp Files account, select **Backup Policies** under the Data protection navigation menu.
+1. In your Elastic service level Azure NetApp Files account, select **Backup Policies**.
 1. Identify the policy you want to delete then select the three dots `...` to see the action menu for the policy. Select **Delete** to remove the backup policy. 
 1. Select **Yes** to confirm you want to delete the policy. 
 
 ## Next steps 
 
-- [Restore from a backup for for the Elastic zone-redundant service level](elastic-backup-restore.md)
+- [Restore from a backup for Elastic zone-redundant storage](elastic-backup-restore.md)
 - [Understand Azure NetApp Files backup](backup-introduction.md)

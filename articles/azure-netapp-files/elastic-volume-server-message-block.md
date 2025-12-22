@@ -1,6 +1,6 @@
 ---
 title: Create an SMB volume for Azure NetApp Files Elastic zone-redundant storage
-description: Learn about the requirements and steps to create an SMB volume for the Elastic zone-redundant service level in Azure NetApp Files. 
+description: Learn about the requirements and steps to create an SMB volume for Elastic zone-redundant storage in Azure NetApp Files. 
 services: azure-netapp-files
 author: b-ahibbard
 ms.service: azure-netapp-files
@@ -71,6 +71,6 @@ Learn how to create an SMB volume for Elastic zone-redundant storage.
 
 ## Next steps 
 
-* [Understand the Elastic zone-redundant service level](elastic-zone-redundant-concept.md)
+* [Understand Elastic zone-redundant storage](elastic-zone-redundant-concept.md)
 
    
