@@ -57,7 +57,7 @@ You can create the Active Directory connection when you [create the capacity poo
     * **Organizational unit path**
         The LDAP path for the organizational unit (OU) where SMB server computer accounts will be created. 
     * **Security privilege users**
-        This option grants security privilege (`SeSecurityPrivilege`) to Actie Directory domain users or groups that require elevated privileges to access Azure NetApp Files volumes.
+        This option grants security privilege (`SeSecurityPrivilege`) to Active Directory domain users or groups that require elevated privileges to access Azure NetApp Files volumes.
     * **Administrators**
         This option grants additional security privileges to Active Directory domain users or groups that require elevated privileges to access the Azure NetApp Files volumes.
     * **Backup users**

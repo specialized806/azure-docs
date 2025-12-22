@@ -33,7 +33,7 @@ Azure NetApp Files backups in the Elastic service level require a backup vault. 
 * You can't delete a volume when Backup is in progress* You can't delete the snapshot used for the most recent backup if there are backups on the volume. 
 * Reverting a volume to state before existing backups results in an error. To proceed with reverting the volume, delete the backups causing the error then proceed with the revert. 
 * With a NetApp Elastic account, backups aren't currently supported with cross-region replication. 
-* Backup start times and duration might display incorrect values with a year of 1970. Incorrect dates will be fixed in a separate release. 
+* Backup start times and duration might display incorrect values with a year of 1970. A fix is planned in a forthcoming release release. 
 
 ## Create a backup vault
 
@@ -56,10 +56,10 @@ Backup vaults store the backups for your Azure NetApp Files subscription. Althou
 >You must have created a backup vault before you can create an on-demand backup. 
 
 1. In your Azure NetApp Files account, select **Volumes**.
-1. Select the volume you want to create a back up for.
+1. Select the volume you want to create a backup for.
 1. From the volume overview, select **Backups**. 
 1. Select **+ Add Backup**. 
-1. Assign a **Name** to the backup. The backup name should be between 3 and 255 characters. As a best practices, assign a descriptive name that identifies the capacity pool, volume, 
+1. Assign a **Name** to the backup. The backup name should be between 3 and 255 characters. Assign a descriptive name that identifies the capacity pool, volume, 
 
     Optionally, select **Use existing snapshot** to use an existing snapshot as the basis for the backup then choose the snapshot from the dropdown menu. If you leave this option unchecked, Azure NetApp Files creates a new snapshot for the backup.
 

@@ -303,9 +303,9 @@
           href: elastic-account.md 
         - name: Configure customer-managed keys
           href: elastic-customer-managed-keys.md
-        - name: Create an Elastic capacity pools
+        - name: Create an Elastic capacity pool
           href: elastic-capacity-pool-task.md
-        - name: Create an Active Directory conection 
+        - name: Create an Active Directory connection 
           href: elastic-active-directory.md
         - name: Change zones for Elastic capacity pools 
           href: elastic-change-zones.md

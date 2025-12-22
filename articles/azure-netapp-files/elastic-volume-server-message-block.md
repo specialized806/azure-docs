@@ -47,10 +47,10 @@ Learn how to create an SMB volume for Elastic zone-redundant storage.
 
     * Choose **SMB**. 
         When you choose SMB, the **Active Directory configuration** is automatically set to the Active Directory connection configured for the capacity pool.
-    * Enter a **Share aame**. 
+    * Enter a **Share name**. 
     * To encrypt SMB3 data in flight, select **SMB3 Protocol Encryption**.
 
-        If you enable SMB3 encyrption, SMB clients not using SMB3 encryption can't access this volume. Data at rest is encrypted regardless of this setting. For more information, see [SMB encryption](azure-netapp-files-smb-performance.md#smb-encryption).
+        If you enable SMB3 encryption, SMB clients not using SMB3 encryption can't access this volume. Data at rest is encrypted regardless of this setting. For more information, see [SMB encryption](azure-netapp-files-smb-performance.md#smb-encryption).
 
     :::image type="content" source="./media/elastic-volume-server-message-block/elastic-create-volume-protocol.png" alt-text="Screenshot of the volume creation protocol tab." lightbox="./media/elastic-volume-server-message-block/elastic-create-volume-protocol.png":::
 
