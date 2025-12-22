@@ -945,6 +945,8 @@
   items:
   - name: Overview
     href: automation-backup.md
+  - name: Support matrix for automation
+    href: backup-support-automation.md
   - name: Built-in Azure Policy for Azure Backup
     items:
     - name: Auto-Enable Backup on VM Creation using Azure Policy
@@ -1045,30 +1047,6 @@
     href: backup-azure-alternate-dpm-server-troubleshoot.md
   - name: Monitoring and  alerts
     href: backup-azure-monitor-troubleshoot.md
-- name: Concepts
-  items:
-  - name: Reliability
-    items:
-    - name: Availability zone and disaster recovery
-      href: ../reliability/reliability-backup.md?toc=/azure/backup/toc.json&bc=/azure/backup/breadcrumb/toc.json
-    - name: Migrate to availability zone support
-      href: ../reliability/migrate-recovery-services-vault.md?toc=/azure/backup/toc.json&bc=/azure/backup/breadcrumb/toc.json
-  - name: Support matrices
-    items:
-    - name: Azure Backup support matrix
-      href: backup-support-matrix.md
-    - name: Active Directory domain controllers
-      href: active-directory-backup-restore.md
-    - name: Automation in Azure Backup
-      href: backup-support-automation.md
-  - name: Backup architecture
-    href: backup-architecture.md
-  - name: Guidance and best practices
-    href: guidance-best-practices.md
-  - name: Glossary of terms
-    href: azure-backup-glossary.md
-- name: How-to guides
-  items:
 - name: Script samples
   items:
   - name: Pre-Backup and Post-Backup Scripts
@@ -1089,6 +1067,20 @@
     href: ./scripts/set-system-state-backup-policy.md
 - name: Reference
   items:
+  - name: Azure Backup guidance and best practices
+    href: guidance-best-practices.md
+  - name: Azure Backup terminology
+    href: azure-backup-glossary.md
+  - name: Azure Backup support matrix
+    href: backup-support-matrix.md
+  - name: Active Directory domain controllers backup and restore
+    href: active-directory-backup-restore.md
+  - name: Reliability
+    items:
+    - name: Availability zone and disaster recovery
+      href: ../reliability/reliability-backup.md?toc=/azure/backup/toc.json&bc=/azure/backup/breadcrumb/toc.json
+    - name: Migrate to availability zone support
+      href: ../reliability/migrate-recovery-services-vault.md?toc=/azure/backup/toc.json&bc=/azure/backup/breadcrumb/toc.json
   - name: Archived release notes
     href: backup-release-notes-archived.md
   - name: .NET
