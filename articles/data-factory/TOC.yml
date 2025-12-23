@@ -1311,6 +1311,12 @@ items:
       - name: Hive
         href: connector-troubleshoot-hive.md
         displayName: troubleshooting
+      - name: Microsoft Fabric Lakehouse
+        href: connector-troubleshoot-microsoft-fabric-lakehouse.md
+        displayName: troubleshooting
+      - name: Microsoft Fabric Warehouse
+        href: connector-troubleshoot-microsoft-fabric-warehouse.md
+        displayName: troubleshooting
       - name: MongoDB
         href: connector-troubleshoot-mongodb.md
         displayName: troubleshooting
