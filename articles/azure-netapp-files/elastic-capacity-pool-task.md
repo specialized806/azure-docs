@@ -32,6 +32,7 @@ You must create a capacity pool before you can create volumes in Azure NetApp Fi
 ## Considerations for Elastic service level capacity pools
 
 * Creating and resizing a capacity pool can be a long-running operation. On average, creating a pool takes 5-7 minutes, but can take longer. 
+* Manually changing the zone of a capacity pool can be a long-running operation. 
 * When creating capacity pools, you must designate the failover order for three zones. The order can't be changed after creating the capacity pools.
     * Capacity pools automatically fail over if a zonal outage occurs. You can also manually fail over.  
     * If a zonal outage occurs, capacity pools don't automatically fail back. You can manually perform a fail back. For more information, see [Change the availability zone of an Elastic capacity pool](elastic-capacity-pool-task.md).
@@ -44,9 +45,7 @@ You must create a capacity pool before you can create volumes in Azure NetApp Fi
     * If you create a capacity pool larger than 16 TiB, you can increase its size in 8-TiB increments up to the maximum size. 
     * You can't decrease the size of a capacity pool in Elastic zone-redundant storage. 
 * After creating a capacity pool, you can't reduce the quota of the capacity pool. 
-* When you resize a capacity pool, the capacity pool might revert to the availability zone it was originally created in. Confirm the capacity pool and [change the zone](elastic-change-zones.md) after resizing if necessary.
-
-<!-- network planning -->
+* Capacity pools in the Elastic zone-redundant service level provide throughput at 32 MiB per second per 1 TiB and 1 I/OPS per GiB. With the maximum capacity pool size of 128 TiB, throughput maxes out at 4,096 MiB per second and 131,072 I/OPS. 
 
 ## Steps
 

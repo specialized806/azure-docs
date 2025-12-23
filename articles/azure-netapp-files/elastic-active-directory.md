@@ -21,8 +21,13 @@ If you're adding SMB volumes to your Elastic zone-redundant capacity pool, you m
 ## Considerations
 
 * You should store your Active Directory password in an Azure Key Vault then percolate the key vault details and secret name to Azure NetApp Files. 
-<!-- * You can only add one Active Directory account per NetApp subscription. -->
+* Currently, you can only add one Active Directory account per NetApp subscription. All capacity pools for SMB volumes in a subscription should share an Active Directory connection. 
 * The Active Directory resource you create for the capacity pool is limited to Elastic zone-redundant storage. The Active Directory resource is only available with capacity pools in Elastic zone-redundant storage. 
+* You can't update the resource ID of the Active Directory after it's connected. 
+* If you update the password of your Active Directory connection, you should ensure it's also updated in the resource provided. If you fail to update the Active Directory, creating SMB volumes can fail. 
+
+>[!IMPORTANT]
+>Currently, you can create an Active Directory using the Azure portal. Any other CRUD operations must be performed using the REST API. 
 
 ## Add a new Active Directory connection 
 

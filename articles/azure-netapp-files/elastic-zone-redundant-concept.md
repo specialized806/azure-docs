@@ -88,7 +88,7 @@ GET https://management.azure.com/subscriptions/{subscriptionId}/providers/Micros
 
 | Feature | Flexible, Standard, Premium, and Ultra service levels | Elastic service level | 
 | - | - | - | 
-| Performance | High performance storage optimized for enterprise workloads | Optimized for lower-performanc NAS workloads | 
+| Performance | High performance storage optimized for enterprise workloads | Optimized for lower-performance NAS workloads | 
 | Data management | Snapshots, cross-zone and cross-region replication, backups | Snapshots and backups | 
 | Protocol support | NFS, SMB, and dual-protocol (NFS and SMB) | NFS and SMB | 
 | Integrated backup | Integrated backup and recovery | Limited backup and recovery | 
@@ -106,13 +106,13 @@ New API endpoints have been introduced that are specific to the Elastic service 
 | Backups | /elasticAccounts/{accountName}/elasticBackupVaults/{vaultName}/elasticBackups | /netAppAccounts/{accountName}/backupVaults/{vaultName}/backups |
 | Backups policies | /elasticAccounts/{accountName}/elasticBackupPolicies | netAppAccounts/{accountName}/backupPolicies |
 | Backup vaults | /elasticAccounts/{accountName}/elasticBackupVaults | /netAppAccounts/{accountName}/backupVaults | 
-| Capacity pools | /elasticAccounts/elasticCapacityPools | /netAppAccounts/capacityPools |
+| Capacity pools | /elasticAccounts/{accountName}/elasticCapacityPools | /netAppAccounts/{account}/capacityPools |
 | Change zone | elasticCapacityPools/{poolName}/changeZone | N/A |
 | Region info | elasticRegionInfos | locations/{location}/regionInfo
-| Snapshots | elasticAccounts/{accountName}/elasticCapacityPools/elasticVolumes/{volumeName}/elasticSnapshots | /netAppAccounts/{accountName}/capacityPools/{poolName}/volumes/{volumeName}/snapshots |
-| Snapshot policies | elasticAccounts/{accountName}/elasticCapacityPools/elasticVolumes/{volumeName}/elasticSnapshotPolicies | netAppAccounts/{accountName}/snapshotPolicies/{snapshotPolicyName} |
-| Volumes | elasticAccounts/{accountName}/elasticCapacityPools/elasticVolumes | /netAppAccounts/{accountName}/capacityPools/{poolName}/volumes/{volumeName} |
-| Volume file path availability | elasticCapacityPools/{poolName}/checkVolumeFilePathAvailability | /locations/{location}/checkFilePathAvailability |
+| Snapshots | elasticAccounts/{accountName}/elasticCapacityPools/{poolName}/elasticVolumes/{volumeName}/elasticSnapshots | /netAppAccounts/{accountName}/capacityPools/{poolName}/volumes/{volumeName}/snapshots |
+| Snapshot policies | elasticAccounts/{accountName}/elasticCapacityPools/{poolName}/elasticVolumes/{volumeName}/elasticSnapshotPolicies | netAppAccounts/{accountName}/snapshotPolicies/{snapshotPolicyName} |
+| Volumes | elasticAccounts/{accountName}/elasticCapacityPools/{poolName}/elasticVolumes | /netAppAccounts/{accountName}/capacityPools/{poolName}/volumes/{volumeName} |
+| Volume file path availability | elasticAccounts/{accountName}/elasticCapacityPools/{poolName}/checkVolumeFilePathAvailability | /locations/{location}/checkFilePathAvailability |
 
 For more detailed information, see [Azure NetApp Files REST API](/rest/api/netapp).
 
@@ -123,7 +123,6 @@ Elastic zone-redundant storage requires the use of [availability zones](../relia
 * [Azure NetApp Files backup](backup-introduction.md)
 * [Customer-managed keys](configure-customer-managed-keys.md)
 * [Snapshots](snapshots-introduction.md)
-* [Cross-zone, cross-region, and cross-zone-region replication](replication.md)
 
 <!-- SMB CA shares, other SMB features -->
 <!-- migration assistant, cool access -->

@@ -74,12 +74,13 @@ You can't apply a snapshot policy to a destination volume in cross-region replic
 
 You can modify an existing snapshot policy to change the policy state, snapshot frequency (hourly, daily, weekly, or monthly), or number of snapshots to keep.
 
+<!-- 
 >[!IMPORTANT]
 >When modifying a snapshot policy, note the naming format. Snapshots created with policies modified before March 2022 have a long name, for example `daily-0-min-past-1am.2022-11-03_0100`, while snapshots created with policies after March 2022 have a shorter name, for example `daily.2022-11-29_0100`.
 >
 > If your snapshot policy is creating snapshots using the long naming convention, modifications to the snapshot policy aren't applied to existing snapshots. The snapshots created with the previous schedule aren't deleted or overwritten by the new schedule. You have to manually delete the old snapshots.
 >
-> If your snapshot policy is creating snapshots using the short naming convention, policy modifications are applied to the existing snapshots. 
+> If your snapshot policy is creating snapshots using the short naming convention, policy modifications are applied to the existing snapshots. -->
  
 1. From your NetApp account, select **Snapshot policy**.
 2. Right-click the snapshot policy you want to modify, then select **Edit**.
