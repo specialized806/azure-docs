@@ -26,9 +26,9 @@ Application Gateway doesn't maintain any session or cookie-based state. This app
 
 - **Token validation**: Validates JWT signature, issuer, tenant, audience, and lifetime. Tokens must be issued by Microsoft Entra ID.
 - **Identity propagation**: Injects the `x-msft-entra-identity` header with `tenantId:oid` to the backend.
-- **Flexible actions**: Configures `Deny` (return 401) or `Allow` (forward without identity header) for invalid tokens.
+- **Flexible actions**: Configures `Deny` (return 401 status) or `Allow` (forward without identity header) for invalid tokens.
 - **Multitenant support**: Supports common organizations and consumers' tenant configurations.
-- **HTTPS only**: Requires HTTPS listeners. (HTTP isn't supported.)
+- **HTTPS only**: Requires HTTPS listeners. HTTP isn't supported.
 
 ## Prerequisites
 
@@ -41,8 +41,8 @@ Application Gateway doesn't maintain any session or cookie-based state. This app
   - Outbound connectivity from the Application Gateway subnet to `login.microsoftonline.com` over TCP port 443.
 
 - Microsoft Entra ID requirements:
-  - Register your web API in Microsoft Entra ID.
-  - Make a call to Microsoft Entra ID to request access to a service. Microsoft Entra ID responds with an access token.
+  - Registration of your web API in Microsoft Entra ID.
+  - A call to Microsoft Entra ID to request access to a service. Microsoft Entra ID responds with an access token.
 
 - Configuration of JWT validation in Application Gateway.
 
@@ -55,6 +55,13 @@ Application Gateway doesn't maintain any session or cookie-based state. This app
 1. For **Name**, enter **MyWebAPI**.
 
 1. For **Supported account types**, select **Accounts in this organizational directory only (Microsoft only - Single tenant)**.
+
+   > [!NOTE]
+   > Supported account types are:
+   >
+   > - Single tenant (this directory only)
+   > - Multitenant (any Microsoft Entra ID directory)
+   > - Accounts in any Microsoft Entra ID directory and personal Microsoft accounts
 
 1. For **Redirect URI (optional)**, you can leave the boxes blank. This setting isn't required for API scenarios.
 
@@ -71,75 +78,70 @@ Application Gateway doesn't maintain any session or cookie-based state. This app
 
    - Go to **Expose an API** > **Add a scope**.
 
-   This is for future authorization features (not required for Public Preview)
-
-> [!NOTE]
-> Supported account types are:
->
-> Single tenant (This directory only)
->
-> Multitenant (Any Azure AD directory)
->
-> Accounts in any Azure AD directory + personal Microsoft accounts
+   This capability is for future authorization features. It's not required for the preview.
 
 ## Configure JWT validation in Application Gateway
 
 1. Open the [preview configuration portal](https://ms.portal.azure.com/?feature.applicationgatewayjwtvalidation=true#home).
 
-1. Open your Application Gateway, navigate to Settings in the left menu, and select the **JWT validation configuration** window.
+1. Open your Application Gateway instance, go to **Settings** on the left menu, and then select **JWT validation configurations**.
 
-   :::image type="content" source="media/json-web-token-overview/json-web-token-configuration.png" alt-text="Screenshot of JSON Web Token configuration window for Application Gateway.":::
+   :::image type="content" source="media/json-web-token-overview/json-web-token-configuration.png" alt-text="Screenshot of the pane for updating JSON Web Token configuration for Application Gateway.":::
 
 1. Provide the following details:
 
-   | Field                    | Example                        | Description                                                              |
-   | ------------------------ | ------------------------------ | ------------------------------------------------------------------------ |
-   | **Name**                 | `jwt-policy-1`                 | Friendly name for the validation configuration                           |
-   | **Unauthorized Request** | `Deny`                         | Reject requests with missing or invalid JWTs                             |
-   | **Tenant ID**            | `<your-tenant-id>`             | Must be a valid GUID or one of `common`, `organizations`, or `consumers` |
-   | **Client ID**            | `<your-client-id>`             | GUID of the app registered in Microsoft Entra                          |
-   | **Audiences**            | `<api://<client-id>`           | (Optional) Additional valid aud claim values (max 5)                     |  
+   | Setting | Example | Description |
+   | ------- | ------- | ----------- |
+   | **Name** | `jwt-policy-1` | Friendly name for the validation configuration                           |
+   | **Unauthorized Request** | `Deny` | Option to reject requests with missing or invalid JWTs                             |
+   | **Tenant ID** | `<your-tenant-id>` | Valid GUID or one of `common`, `organizations`, or `consumers` |
+   | **Client ID** | `<your-client-id>` | GUID of the app registered in Microsoft Entra                          |
+   | **Audiences** | `<api://<client-id>` | (Optional) Additional valid audience claim values (maximum 5) |  
 
-1. Associate the configuration with a **Routing rule** (see next section if new routing rule is needed).
+1. Associate the configuration with a routing rule as described in the following section, if you need a new routing rule.
 
-## Create a routing rule (if needed)
+## Create a routing rule (if necessary)
 
 1. Go to **Application Gateway** > **Rules** > **Add Routing rule**.
 
-1. Enter or select the following:
-   - **Listener:** Protocol `HTTPS`, assign certificate, or Key Vault secret.
-   - **Backend target:** Select or create a backend pool.
-   - **Backend settings:** Use appropriate HTTP/HTTPS port.
-   - **Rule name:** For example, `jwt-route-rule`.
+1. Enter or select the following items:
+   - **Listener**: Use the protocol `HTTPS`, an assigned certificate, or an Azure Key Vault secret.
+   - **Backend target**: Select or create a backend pool.
+   - **Backend settings**: Use an appropriate HTTP/HTTPS port.
+   - **Rule name**: Enter a name such as `jwt-route-rule`.
 
-1. Link this rule to your JWT validation configuration. Your JWT validation configuration is now attached to a secure HTTPS listener and routing rule.
+1. Link this rule to your JWT validation configuration.
+
+Your JWT validation configuration is now attached to a secure HTTPS listener and routing rule.
 
 ## Send a JWT access token with every request to the secure application
 
-To securely access an application protected by Application Gateway, the client must first obtain a JWT access token from the Microsoft Entra ID token endpoint. The client then includes this token in the authorization header (for example, Authorization: Bearer TOKEN) on every request it sends to Application Gateway. Application Gateway validates the token before forwarding the request to the backend application, ensuring that only authenticated and authorized traffic reaches the secure application.
+To securely access an application that Application Gateway helps protect, the client must first obtain a JWT access token from the Microsoft Entra ID token endpoint. The client then includes this token in the authorization header (for example, `Authorization: Bearer TOKEN`) on every request that it sends to Application Gateway.
 
-Learn more about [Access tokens in the Microsoft identity platform](/entra/identity-platform/access-tokens).
+Application Gateway validates the token before forwarding the request to the backend application. This validation ensures that only authenticated and authorized traffic reaches the secure application.
+
+For more information, see [Access tokens in the Microsoft identity platform](/entra/identity-platform/access-tokens).
 
 ## Expected outcomes of requests
 
-| Scenario                         | HTTP Status | Identity Header | Notes                               |
-| -------------------------------- | ----------- | --------------- | ----------------------------------- |
-| Valid token, action=Allow        | 200         | Present         | Token validated, identity forwarded |
-| Invalid token, action=Deny       | 401         | Absent          | Gateway blocks request              |
-| Missing token, action=Deny       | 401         | Absent          | No Authorization header             |
-| Missing `oid` claim, action=Deny | 403         | Absent          | Critical claim missing              |
+| Scenario | HTTP status | Identity header | Notes |
+| -------- | ----------- | --------------- |------ |
+| Valid token, `action=Allow` | 200 | Present | Token validated, identity forwarded |
+| Invalid token, `action=Deny` | 401 | Absent | Gateway blocks request |
+| Missing token, `action=Deny` | 401 | Absent | No authorization header |
+| Missing `oid` claim, `action=Deny` | 403 | Absent | Critical claim missing |
 
 ## Backend verification
 
-Check ``x-msft-entra-identity`` header to confirm authentication.
+Check the `x-msft-entra-identity` header to confirm authentication.
 
 ## Troubleshooting 401 and 403 responses
 
-If requests return **401** or **403**, verify:
+If requests return a status of 401 or 403, verify:
 
 - **Configuration**
-  - Tenant ID / Issuer (`iss`) matches your Microsoft Entra tenant.
-  - Audience (`aud`) matches the configured Client ID or audience list.
+  - Tenant ID or issuer (`iss`) matches your Microsoft Entra tenant.
+  - Audience (`aud`) matches the configured client ID or audience list.
 - **Token integrity**
   - Token isn't expired (`exp`) and `nbf` isn't in the future.
 - **Request formatting**
@@ -148,12 +150,12 @@ If requests return **401** or **403**, verify:
   - JWT validation is attached to the correct listener and routing rule.
 - **Still failing?**
   - Acquire a new token for the correct audience.
-  - Check Application Gateway access logs for detailed failure reason.
+  - Check Application Gateway access logs for a detailed failure reason.
 
 ## Related content
 
 To learn more about JWT validation and related identity features in Azure:
 
-- [Understand JSON Web Tokens (JWT) in Microsoft Entra ID](/entra/identity-platform/security-tokens)
+- [Tokens and claims overview](/entra/identity-platform/security-tokens)
 - [Register an application in Microsoft Entra ID](/entra/identity-platform/quickstart-register-app)
 - [Azure Application Gateway overview](overview.md)
