@@ -49,7 +49,7 @@ For more recommendations, see [Application resilience FAQs for Azure NetApp File
 Azure NetApp Files supports *zonal* deployments of volumes across all service levels. Use the [availability zone volume placement feature](../azure-netapp-files/replication.md#availability-zones) in Azure NetApp Files to deploy each volume in a single availability zone of your choice. You can use this feature only if Azure NetApp Files is present in that availability zone and has sufficient capacity. If you have latency-sensitive applications, you can deploy a volume to the same availability zone as your Azure compute resources and other services.
 
 >[!NOTE]
->In the [Elastic zone-redundant service level of Azure NetApp Files](../azure-netapp-files/elastic-zone-redundant-concept.md), availability zone placement is required. With this service level, you configure availability zone placement when you create a capacity pool.  
+>In the [Elastic zone-redundant service level](../azure-netapp-files/elastic-zone-redundant-concept.md), availability zone placement is required. With this service level, you configure availability zone placement when you create a capacity pool in addition to configuring a preferred zonal failover sequence. All volumes in the capacity pool are configured with that zonal placement. In the event of a zonal outage, the capacity pool and all its volumes automatically failover to another availability zone. 
 
 In the following diagram, orange arrows with solid arrowheads represent how all virtual machines (VMs) within the region in peered virtual networks can access all Azure NetApp Files resources. Green arrows represent how VMs that access Azure NetApp Files volumes in the same zone share the availability zone failure domain. There's no replication between the different volumes at the platform level.
 
@@ -114,11 +114,13 @@ This section describes what to expect when multiple Azure NetApp Files volumes a
 
 ### Behavior during a zone failure
 
-This section describes what to expect when multiple Azure NetApp Files volumes are deployed into separate availability zones, cross-zone replication is enabled, and there's an availability zone outage.
+This section describes what to expect when multiple Azure NetApp Files volumes in the Flexible, Standard, Premium, and Ultra service levels are deployed into separate availability zones, cross-zone replication is enabled, and there's an availability zone outage.
 
-- **Detection and response:** You're responsible for detecting the loss of an availability zone and initiating a failover.
+- **Detection and response:** For Flexible, Standard, Premium, and Ultra service level deployments, you're responsible for detecting the loss of an availability zone and initiating a failover.
 
     Failover is a manual process. When you need to activate the destination volume, such as when you want to fail over to the destination availability zone, you need to break the replication peering and then mount the destination volume. For more information, see [fail over to the destination volume](../azure-netapp-files/cross-region-replication-manage-disaster-recovery.md#fail-over-to-destination-volume).
+
+    For the Elastic zone-redundant service-level, failover is automatic if there's an outage in an availability zone. 
 
 - **Notification:** To monitor the health of your Azure NetApp Files volume, you can use Azure Monitor metrics. Azure Monitor detects any anomalies that indicate a zone-down scenario via real-time metrics such as input/output operations per second (IOPS), latency, and capacity usage. You can configure alerts and notifications to send to administrators so that they can immediately respond by rebalancing file shares or initiating failover or other disaster recovery protocols.
 
