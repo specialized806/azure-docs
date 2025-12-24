@@ -28,8 +28,8 @@ If you need to restore from a backup, you can create a new volume in the same ac
 
     * The **Capacity pool** that the backup is restored into must have sufficient unused capacity to host the new restored volume. Otherwise, the restore operation fails.
     * The **Volume name** must adhere to [naming rules and restrictions for Azure resources](../azure-resource-manager/management/resource-name-rules.md#microsoftnetapp) for character limits and other naming conventions.
-    * The **Quota** value must be **at least 20% greater** than the size of the backup from which the restore is triggered. Once the restore is complete, the volume can be resized depending on the size used. 
-    
+    * The **Quota** value of the new volume. The portal defaults to a quota of 1 GiB. The new volume must be greater than or equal to the size of the source volume. It's recommended you use a quota at least 20% greater than the quota of the source volume. The volume can be resized after its created. 
+
     :::image type="content" source="./media/elastic-backup-restore/create-volume.png" alt-text="Screenshot of restoring a backup to a new volume." lightbox="./media/elastic-backup-restore/create-volume.png":::
 
     Select **Next**.
