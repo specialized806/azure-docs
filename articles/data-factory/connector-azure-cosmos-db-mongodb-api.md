@@ -6,7 +6,7 @@ ms.author: jianleishen
 author: jianleishen
 ms.subservice: data-movement
 ms.topic: conceptual
-ms.date: 01/05/2024
+ms.date: 12/25/2025
 ms.custom:
   - synapse
   - sfi-image-nochange
@@ -265,6 +265,27 @@ After copy activity execution, below BSON ObjectId is generated in sink:
     "_id": ObjectId("592e07800000000000000000")
 }
 ``` 
+## Data type mapping for Azure Cosmos DB for MongoDB
+
+When copying data from Azure Cosmos DB for MongoDB, the following mappings are used from Azure Cosmos DB for MongoDB data types to interim data types used by the service internally. See [Schema and data type mappings](copy-activity-schema-and-type-mapping.md) to learn about how copy activity maps the source schema and data type to the sink.
+
+| Azure Cosmos DB for MongoDB data Type | Interim Service Data Type |
+| ------ | ------ |
+| Date | DateTime |
+| ObjectId | String |
+| Decimal128 | String |
+| TimeStamp | The most significant 32 bits -> DateTime<br>The least significant 32 bits -> Int64 |
+| String | String |
+| Double | Double |
+| Int32 | Int64 |
+| Int64 | Int64 |
+| Boolean | Boolean |
+| Null | Null |
+| JavaScript | String |
+| Regular Expression | String |
+| Min key | String |
+| Max key | String |
+| Binary | GUID (when SubType is "04" )<br>String |
 
 ## Related content
 
