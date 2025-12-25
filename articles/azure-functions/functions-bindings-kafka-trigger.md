@@ -131,66 +131,472 @@ For a complete set of working .NET examples, see the [Kafka extension repository
 ---
 
 ::: zone-end  
-::: zone pivot="programming-language-javascript"
+::: zone pivot="programming-language-javascript,programming-language-typescript"
+The usage of the trigger depends on your version of the Node.js programming model. 
 
-> [!NOTE]
-> For an equivalent set of TypeScript examples, see the [Kafka extension repository](https://github.com/Azure/azure-functions-kafka-extension/tree/dev/samples/typescript).
+# [Version 4](#tab/v4) 
 
-The specific properties of the `function.json` file depend on your event provider. In these examples, the event providers are either Confluent or Azure Event Hubs. The following examples show a Kafka trigger for a function that reads and logs a Kafka message.
+In the Node.js v4 model, you define your trigger directly in your function code. For more information, see the [Azure Functions Node.js developer guide](functions-reference-node.md?pivots=nodejs-model-v4).
 
-The following `function.json` file defines the trigger for the specific provider:
+# [Version 3](#tab/v3)
 
-# [Confluent](#tab/confluent)
-
-:::code language="json" source="~/azure-functions-kafka-extension/samples/javascript/KafkaTrigger/function.confluent.json" :::
-
-# [Event Hubs](#tab/event-hubs)
-
-:::code language="json" source="~/azure-functions-kafka-extension/samples/javascript/KafkaTrigger/function.eventhub.json" :::
+In the Node.js v3 model, you define your trigger in a `function.json` file with your code. For more information, see the [Azure Functions Node.js developer guide](functions-reference-node.md?pivots=nodejs-model-v3).
 
 ---
+
+In these examples, the event providers are either Confluent or Azure Event Hubs. These examples show how to define a Kafka trigger for a function that reads a Kafka message.  
+::: zone-end
+::: zone pivot="programming-language-javascript"  
+# [Confluent](#tab/confluent/v4)
+
+```javascript
+const { app } = require("@azure/functions");
+
+async function kafkaTrigger(event, context) {
+  context.log("Event Offset: " + event.Offset);
+  context.log("Event Partition: " + event.Partition);
+  context.log("Event Topic: " + event.Topic);
+  context.log("Event Timestamp: " + event.Timestamp);
+  context.log("Event Key: " + event.Key);
+  context.log("Event Value (as string): " + event.Value);
+
+  let event_obj = JSON.parse(event.Value);
+
+  context.log("Event Value Object: ");
+  context.log("   Value.registertime: ", event_obj.registertime.toString());
+  context.log("   Value.userid: ", event_obj.userid);
+  context.log("   Value.regionid: ", event_obj.regionid);
+  context.log("   Value.gender: ", event_obj.gender);
+}
+
+app.generic("Kafkatrigger", {
+  trigger: {
+    type: "kafkaTrigger",
+    direction: "in",
+    name: "event",
+    topic: "topic",
+    brokerList: "%BrokerList%",
+    username: "%ConfluentCloudUserName%",
+    password: "%ConfluentCloudPassword%",
+    consumerGroup: "$Default",
+    protocol: "saslSsl",
+    authenticationMode: "plain",
+    dataType: "string"
+  },
+  handler: kafkaTrigger,
+});
+```
+
+# [Event Hubs](#tab/event-hubs/v4)
+
+:::code language="javascript" source="~/azure-functions-kafka-extension/samples/javascript-v4/src/functions/kafkaTrigger.js" range="1-36":::
+
+# [Confluent](#tab/confluent/v3)
+
+This `function.json` file defines the trigger for the Confluent provider:
+
+:::code language="json" source="~/azure-functions-kafka-extension/samples/javascript/KafkaTrigger/function.confluent.json" :::
 
 The following code runs when the function is triggered:
 
 :::code language="javascript" source="~/azure-functions-kafka-extension/samples/javascript/KafkaTrigger/index.js" :::
 
-To receive events in a batch, set the `cardinality` value to `many` in the function.json file, as shown in the following examples:
+# [Event Hubs](#tab/event-hubs/v3)
 
-# [Confluent](#tab/confluent)
+This `function.json` file defines the trigger for the Event Hubs provider:
+
+:::code language="json" source="~/azure-functions-kafka-extension/samples/javascript/KafkaTrigger/function.eventhub.json" :::
+
+The following code runs when the function is triggered:
+
+:::code language="javascript" source="~/azure-functions-kafka-extension/samples/javascript/KafkaTrigger/index.js" :::
+
+---
+
+To receive events in a batch, set the `cardinality` value to `many`, as shown in these examples:
+
+# [Confluent](#tab/confluent/v4)
+
+```javascript
+const { app } = require("@azure/functions");
+
+async function kafkaTriggerMany(events, context) {
+  for (const event of events) {
+    context.log("Event Offset: " + event.Offset);
+    context.log("Event Partition: " + event.Partition);
+    context.log("Event Topic: " + event.Topic);
+    context.log("Event Key: " + event.Key);
+    context.log("Event Timestamp: " + event.Timestamp);
+    context.log("Event Value (as string): " + event.Value);
+
+    let event_obj = JSON.parse(event.Value);
+
+    context.log("Event Value Object: ");
+    context.log("   Value.registertime: ", event_obj.registertime.toString());
+    context.log("   Value.userid: ", event_obj.userid);
+    context.log("   Value.regionid: ", event_obj.regionid);
+    context.log("   Value.gender: ", event_obj.gender);
+  }
+}
+
+app.generic("kafkaTriggerMany", {
+  trigger: {
+    type: "kafkaTrigger",
+    direction: "in",
+    name: "event",
+    topic: "topic",
+    brokerList: "%BrokerList%",
+    username: "%ConfluentCloudUserName%",
+    password: "%ConfluentCloudPassword%",
+    consumerGroup: "$Default",
+    protocol: "saslSsl",
+    authenticationMode: "plain",
+    dataType: "string",
+    cardinality: "MANY"
+  },
+  handler: kafkaTriggerMany,
+});
+```
+
+# [Event Hubs](#tab/event-hubs/v4)
+
+:::code language="javascript" source="~/azure-functions-kafka-extension/samples/javascript-v4/src/functions/kafkaTriggerMany.js" range="1-39":::
+
+# [Confluent](#tab/confluent/v3)
 
 :::code language="json" source="~/azure-functions-kafka-extension/samples/javascript/KafkaTriggerMany/function.confluent.json" :::
 
-# [Event Hubs](#tab/event-hubs)
-
-:::code language="json" source="~/azure-functions-kafka-extension/samples/javascript/KafkaTriggerMany/function.eventhub.json" :::
-
----
-
-The following code parses the array of events and logs the event data:
+This code parses the array of events and logs the event data:
 
 :::code language="javascript" source="~/azure-functions-kafka-extension/samples/javascript/KafkaTriggerMany/index.js" :::
 
-The following code logs the header data:
+This code logs the header data:
 
 :::code language="javascript" source="~/azure-functions-kafka-extension/samples/javascript/KafkaTriggerManyWithHeaders/index.js" :::
 
-You can define a generic [Avro schema] for the event passed to the trigger. The following function.json defines the trigger for the specific provider with a generic Avro schema:
+# [Event Hubs](#tab/event-hubs/v3)
 
-# [Confluent](#tab/confluent)
+:::code language="json" source="~/azure-functions-kafka-extension/samples/javascript/KafkaTriggerMany/function.eventhub.json" :::
 
-:::code language="json" source="~/azure-functions-kafka-extension/samples/javascript/KafkaTriggerAvroGeneric/function.confluent.json" :::
+This code parses the array of events and logs the event data:
 
-# [Event Hubs](#tab/event-hubs)
+:::code language="javascript" source="~/azure-functions-kafka-extension/samples/javascript/KafkaTriggerMany/index.js" :::
 
-:::code language="json" source="~/azure-functions-kafka-extension/samples/javascript/KafkaTriggerAvroGeneric/function.eventhub.json" :::
+This code logs the header data:
+
+:::code language="javascript" source="~/azure-functions-kafka-extension/samples/javascript/KafkaTriggerManyWithHeaders/index.js" :::
 
 ---
+
+You can define a generic [Avro schema] for the event passed to the trigger. This example defines the trigger for the specific provider with a generic Avro schema:
+
+# [Confluent](#tab/confluent/v4)
+
+```javascript
+const { app } = require("@azure/functions");
+
+async function kafkaAvroGenericTrigger(event, context) {
+  context.log("Processed kafka event: ", event);
+  if (context.triggerMetadata?.key !== undefined) {
+    context.log("message key: ", context.triggerMetadata?.key);
+  }
+}
+
+app.generic("kafkaAvroGenericTrigger", {
+  trigger: {
+    type: "kafkaTrigger",
+    direction: "in",
+    name: "event",
+    protocol: "SASLSSL",
+    password: "EventHubConnectionString",
+    dataType: "string",
+    topic: "topic",
+    authenticationMode: "PLAIN",
+    avroSchema:
+      '{"type":"record","name":"Payment","namespace":"io.confluent.examples.clients.basicavro","fields":[{"name":"id","type":"string"},{"name":"amount","type":"double"},{"name":"type","type":"string"}]}',
+    consumerGroup: "$Default",
+    username: "$ConnectionString",
+    brokerList: "%BrokerList%",
+  },
+  handler: kafkaAvroGenericTrigger,
+});
+```
+
+# [Event Hubs](#tab/event-hubs/v4)
+
+:::code language="javascript" source="~/azure-functions-kafka-extension/samples/javascript-v4/src/functions/kafkaAvroGenericTrigger.js" range="1-28":::
+
+# [Confluent](#tab/confluent/v3)
+
+:::code language="json" source="~/azure-functions-kafka-extension/samples/javascript/KafkaTriggerAvroGeneric/function.confluent.json" :::
 
 The following code runs when the function is triggered:
 
 :::code language="javascript" source="~/azure-functions-kafka-extension/samples/javascript/KafkaTriggerAvroGeneric/index.js" :::
 
-For a complete set of working JavaScript examples, see the [Kafka extension repository](https://github.com/Azure/azure-functions-kafka-extension/blob/dev/samples/javascript/). 
+# [Event Hubs](#tab/event-hubs/v3)
+
+:::code language="json" source="~/azure-functions-kafka-extension/samples/javascript/KafkaTriggerAvroGeneric/function.eventhub.json" :::
+
+The following code runs when the function is triggered:
+
+:::code language="javascript" source="~/azure-functions-kafka-extension/samples/javascript/KafkaTriggerAvroGeneric/index.js" :::
+
+---
+
+# [Version 4](#tab/v4) 
+
+For a complete set of working JavaScript examples, see the [Kafka extension repository](https://github.com/Azure/azure-functions-kafka-extension/tree/dev/samples/javascript-v4/src/functions).
+
+# [Version 3](#tab/v3)
+
+For a complete set of working JavaScript examples, see the [Kafka extension repository](https://github.com/Azure/azure-functions-kafka-extension/blob/dev/samples/javascript/).
+
+--- 
+
+::: zone-end  
+::: zone pivot="programming-language-typescript"
+
+# [Confluent](#tab/confluent/v4)
+
+```typescript
+import { app, InvocationContext } from "@azure/functions";
+
+// This is a sample interface that describes the actual data in your event.
+interface EventData {
+  registertime: number;
+  userid: string;
+  regionid: string;
+  gender: string;
+}
+
+export async function kafkaTrigger(
+  event: any,
+  context: InvocationContext
+): Promise<void> {
+  context.log("Event Offset: " + event.Offset);
+  context.log("Event Partition: " + event.Partition);
+  context.log("Event Topic: " + event.Topic);
+  context.log("Event Timestamp: " + event.Timestamp);
+  context.log("Event Value (as string): " + event.Value);
+
+  let event_obj: EventData = JSON.parse(event.Value);
+
+  context.log("Event Value Object: ");
+  context.log("   Value.registertime: ", event_obj.registertime.toString());
+  context.log("   Value.userid: ", event_obj.userid);
+  context.log("   Value.regionid: ", event_obj.regionid);
+  context.log("   Value.gender: ", event_obj.gender);
+}
+
+app.generic("Kafkatrigger", {
+  trigger: {
+    type: "kafkaTrigger",
+    direction: "in",
+    name: "event",
+    topic: "topic",
+    brokerList: "%BrokerList%",
+    username: "%ConfluentCloudUserName%",
+    password: "%ConfluentCloudPassword%",
+    consumerGroup: "$Default",
+    protocol: "saslSsl",
+    authenticationMode: "plain",
+    dataType: "string"
+  },
+  handler: kafkaTrigger,
+});
+```
+
+# [Event Hubs](#tab/event-hubs/v4)
+
+:::code language="typescript" source="~/azure-functions-kafka-extension/samples/typescript-v4/src/functions/kafkaTrigger.ts" range="1-46":::
+
+# [Confluent](#tab/confluent/v3)
+
+This `function.json` file defines the trigger for the Confluent provider:
+
+:::code language="json" source="~/azure-functions-kafka-extension/samples/typescript/KafkaTrigger/function.confluent.json" :::
+
+The following code runs when the function is triggered:
+
+:::code language="typescript" source="~/azure-functions-kafka-extension/samples/typescript/KafkaTrigger/index.ts" :::
+
+# [Event Hubs](#tab/event-hubs/v3)
+
+This `function.json` file defines the trigger for the Event Hubs provider:
+
+:::code language="json" source="~/azure-functions-kafka-extension/samples/typescript/KafkaTrigger/function.eventhub.json" :::
+
+The following code runs when the function is triggered:
+
+:::code language="typescript" source="~/azure-functions-kafka-extension/samples/typescript/KafkaTrigger/index.ts" :::
+
+---
+
+To receive events in a batch, set the `cardinality` value to `many`, as shown in these examples:
+
+# [Confluent](#tab/confluent/v4)
+
+```typescript
+import { app, InvocationContext } from "@azure/functions";
+
+// This is a sample interface that describes the actual data in your event.
+interface EventData {
+    registertime: number;
+    userid: string;
+    regionid: string;
+    gender: string;
+}
+
+interface KafkaEvent {
+    Offset: number;
+    Partition: number;
+    Topic: string;
+    Timestamp: number;
+    Value: string;
+}
+
+export async function kafkaTriggerMany(
+    events: any,
+    context: InvocationContext
+): Promise<void> {
+    for (const event of events) {
+        context.log("Event Offset: " + event.Offset);
+        context.log("Event Partition: " + event.Partition);
+        context.log("Event Topic: " + event.Topic);
+        context.log("Event Timestamp: " + event.Timestamp);
+        context.log("Event Value (as string): " + event.Value);
+
+        let event_obj: EventData = JSON.parse(event.Value);
+
+        context.log("Event Value Object: ");
+        context.log("   Value.registertime: ", event_obj.registertime.toString());
+        context.log("   Value.userid: ", event_obj.userid);
+        context.log("   Value.regionid: ", event_obj.regionid);
+        context.log("   Value.gender: ", event_obj.gender);
+    }
+}
+
+app.generic("kafkaTriggerMany", {
+  trigger: {
+    type: "kafkaTrigger",
+    direction: "in",
+    name: "event",
+    topic: "topic",
+    brokerList: "%BrokerList%",
+    username: "%ConfluentCloudUserName%",
+    password: "%ConfluentCloudPassword%",
+    consumerGroup: "$Default",
+    protocol: "saslSsl",
+    authenticationMode: "plain",
+    dataType: "string",
+    cardinality: "MANY"
+  },
+  handler: kafkaTriggerMany,
+});
+```
+
+# [Event Hubs](#tab/event-hubs/v4)
+
+:::code language="typescript" source="~/azure-functions-kafka-extension/samples/typescript-v4/src/functions/kafkaTriggerMany.ts" range="1-57":::
+
+# [Confluent](#tab/confluent/v3)
+
+:::code language="json" source="~/azure-functions-kafka-extension/samples/typescript/KafkaTriggerMany/function.confluent.json" :::
+
+This code parses the array of events and logs the event data:
+
+:::code language="typescript" source="~/azure-functions-kafka-extension/samples/typescript/KafkaTriggerMany/index.ts" :::
+
+This code logs the header data:
+
+:::code language="typescript" source="~/azure-functions-kafka-extension/samples/typescript/KafkaTriggerManyWithHeaders/index.ts" :::
+
+# [Event Hubs](#tab/event-hubs/v3)
+
+:::code language="json" source="~/azure-functions-kafka-extension/samples/typescript/KafkaTriggerMany/function.eventhub.json" :::
+
+This code parses the array of events and logs the event data:
+
+:::code language="typescript" source="~/azure-functions-kafka-extension/samples/typescript/KafkaTriggerMany/index.ts" :::
+
+This code logs the header data:
+
+:::code language="typescript" source="~/azure-functions-kafka-extension/samples/typescript/KafkaTriggerManyWithHeaders/index.ts" :::
+
+---
+
+You can define a generic [Avro schema] for the event passed to the trigger. This example defines the trigger for the specific provider with a generic Avro schema:
+
+# [Confluent](#tab/confluent/v4)
+
+:::code language="typescript" source="~/azure-functions-kafka-extension/samples/typescript-v4/src/functions/kafkaAvroGenericTrigger.ts" range="1-34":::
+
+# [Event Hubs](#tab/event-hubs/v4)
+
+```typescript
+import { app, InvocationContext } from "@azure/functions";
+
+export async function kafkaAvroGenericTrigger(
+  event: any,
+  context: InvocationContext
+): Promise<void> {
+  context.log("Processed kafka event: ", event);
+  context.log(
+    `Message ID: ${event.id}, amount: ${event.amount}, type: ${event.type}`
+  );
+  if (context.triggerMetadata?.key !== undefined) {
+    context.log(`Message Key : ${context.triggerMetadata?.key}`);
+  }
+}
+
+app.generic("kafkaAvroGenericTrigger", {
+  trigger: {
+    type: "kafkaTrigger",
+    direction: "in",
+    name: "event",
+    protocol: "SASLSSL",
+    password: "EventHubConnectionString",
+    dataType: "string",
+    topic: "topic",
+    authenticationMode: "PLAIN",
+    avroSchema:
+      '{"type":"record","name":"Payment","namespace":"io.confluent.examples.clients.basicavro","fields":[{"name":"id","type":"string"},{"name":"amount","type":"double"},{"name":"type","type":"string"}]}',
+    consumerGroup: "$Default",
+    username: "$ConnectionString",
+    brokerList: "%BrokerList%",
+  },
+  handler: kafkaAvroGenericTrigger,
+});
+```
+
+# [Confluent](#tab/confluent/v3)
+
+:::code language="json" source="~/azure-functions-kafka-extension/samples/typescript/KafkaTriggerAvroGeneric/function.confluent.json" :::
+
+The following code runs when the function is triggered:
+
+:::code language="typescript" source="~/azure-functions-kafka-extension/samples/typescript/KafkaTriggerAvroGeneric/index.ts" :::
+
+# [Event Hubs](#tab/event-hubs/v3)
+
+:::code language="json" source="~/azure-functions-kafka-extension/samples/typescript/KafkaTriggerAvroGeneric/function.eventhub.json" :::
+
+The following code runs when the function is triggered:
+
+:::code language="typescript" source="~/azure-functions-kafka-extension/samples/typescript/KafkaTriggerAvroGeneric/index.ts" :::
+
+---
+
+# [Version 4](#tab/v4) 
+
+For a complete set of working TypeScript examples, see the [Kafka extension repository](https://github.com/Azure/azure-functions-kafka-extension/tree/dev/samples/typescript-v4/src/functions).
+
+# [Version 3](#tab/v3)
+
+For a complete set of working TypeScript examples, see the [Kafka extension repository](https://github.com/Azure/azure-functions-kafka-extension/blob/dev/samples/typescript/).
+
+--- 
 
 ::: zone-end  
 ::: zone pivot="programming-language-powershell" 
@@ -253,62 +659,127 @@ For a complete set of working PowerShell examples, see the [Kafka extension repo
 
 ::: zone-end   
 ::: zone pivot="programming-language-python"  
+The usage of the trigger depends on your version of the Python programming model. 
 
-The specific properties of the `function.json` file depend on your event provider. In these examples, the event providers are either Confluent or Azure Event Hubs. The following examples show a Kafka trigger for a function that reads and logs a Kafka message.
+# [Version 2](#tab/v2) 
 
-The following `function.json` file defines the trigger for the specific provider:
+In the Python v2 model, you define your trigger directly in your function code using decorators. For more information, see the [Azure Functions Python developer guide](functions-reference-python.md?pivots=python-mode-decorators).
 
-# [Confluent](#tab/confluent)
+# [Version 1](#tab/v1)
+
+In the Python v1 model, you define your trigger in the `function.json` with your function code. For more information, see the [Azure Functions Python developer guide](functions-reference-python.md?pivots=python-mode-configuration).
+
+---
+
+These examples show how to define a Kafka trigger for a function that reads a Kafka message.
+
+# [Confluent](#tab/confluent/v2)
+
+:::code language="python" source="~/azure-functions-kafka-extension/samples/python-v2/kafka_trigger.py" range="10-22" :::
+
+# [Event Hubs](#tab/event-hubs/v2)
+
+:::code language="python" source="~/azure-functions-kafka-extension/samples/python-v2/kafka_trigger.py" range="10-22" :::
+
+# [Confluent](#tab/confluent/v1)
+
+This `function.json` file defines the trigger for the Confluent provider:
 
 :::code language="json" source="~/azure-functions-kafka-extension/samples/python/KafkaTrigger/function.confluent.json" :::
 
-# [Event Hubs](#tab/event-hubs)
-
-:::code language="json" source="~/azure-functions-kafka-extension/samples/python/KafkaTrigger/function.eventhub.json" :::
-
----
-
-The following code runs when the function is triggered:
+This code runs when the function is triggered:
 
 :::code language="python" source="~/azure-functions-kafka-extension/samples/python/KafkaTrigger/main.py" :::
 
-To receive events in a batch, set the `cardinality` value to `many` in the function.json file, as shown in the following examples:
+# [Event Hubs](#tab/event-hubs/v1)
 
-# [Confluent](#tab/confluent)
+This `function.json` file defines the trigger for the Event Hubs provider:
+
+:::code language="json" source="~/azure-functions-kafka-extension/samples/python/KafkaTrigger/function.eventhub.json" :::
+
+This code runs when the function is triggered:
+
+:::code language="python" source="~/azure-functions-kafka-extension/samples/python/KafkaTrigger/main.py" :::
+
+---
+
+This example receives events in a batch by setting the `cardinality` value to `many`.
+
+# [Confluent](#tab/confluent/v2)
+
+:::code language="python" source="~/azure-functions-kafka-extension/samples/python-v2/kafka_trigger.py" range="24-38" :::
+
+# [Event Hubs](#tab/event-hubs/v2)
+
+:::code language="python" source="~/azure-functions-kafka-extension/samples/python-v2/kafka_trigger.py" range="24-38" :::
+
+# [Confluent](#tab/confluent/v1)
 
 :::code language="json" source="~/azure-functions-kafka-extension/samples/python/KafkaTriggerMany/function.confluent.json" :::
 
-# [Event Hubs](#tab/event-hubs)
-
-:::code language="json" source="~/azure-functions-kafka-extension/samples/python/KafkaTriggerMany/function.eventhub.json" :::
-
----
-
-The following code parses the array of events and logs the event data:
+This code parses the array of events and logs the event data:
 
 :::code language="python" source="~/azure-functions-kafka-extension/samples/python/KafkaTriggerMany/main.py" :::
 
-The following code logs the header data:
+This code logs the header data:
 
 :::code language="python" source="~/azure-functions-kafka-extension/samples/python/KafkaTriggerManyWithHeaders/__init__.py" :::
 
-You can define a generic [Avro schema] for the event passed to the trigger. The following function.json defines the trigger for the specific provider with a generic Avro schema:
+# [Event Hubs](#tab/event-hubs/v1)
 
-# [Confluent](#tab/confluent)
+:::code language="json" source="~/azure-functions-kafka-extension/samples/python/KafkaTriggerMany/function.eventhub.json" :::
 
-:::code language="json" source="~/azure-functions-kafka-extension/samples/python/KafkaTriggerAvroGeneric/function.confluent.json" :::
+This code parses the array of events and logs the event data:
 
-# [Event Hubs](#tab/event-hubs)
+:::code language="python" source="~/azure-functions-kafka-extension/samples/python/KafkaTriggerMany/main.py" :::
 
-:::code language="json" source="~/azure-functions-kafka-extension/samples/python/KafkaTriggerAvroGeneric/function.eventhub.json" :::
+This code logs the header data:
+
+:::code language="python" source="~/azure-functions-kafka-extension/samples/python/KafkaTriggerManyWithHeaders/__init__.py" :::
 
 ---
 
-The following code runs when the function is triggered:
+You can define a generic [Avro schema] for the event passed to the trigger. 
 
-:::code language="powershell" source="~/azure-functions-kafka-extension/samples/python/KafkaTriggerAvroGeneric/main.py" :::
+# [Confluent](#tab/confluent/v2)
 
-For a complete set of working Python examples, see the [Kafka extension repository](https://github.com/Azure/azure-functions-kafka-extension/blob/dev/samples/python/). 
+:::code language="python" source="~/azure-functions-kafka-extension/samples/python-v2/kafka_trigger_avro.py" range="24-37" :::
+
+# [Event Hubs](#tab/event-hubs/v2)
+
+:::code language="python" source="~/azure-functions-kafka-extension/samples/python-v2/kafka_trigger_avro.py" range="24-37" :::
+
+# [Confluent](#tab/confluent/v1)
+
+This `function.json` defines the trigger for the Confluent provider with a generic Avro schema:
+
+:::code language="json" source="~/azure-functions-kafka-extension/samples/python/KafkaTriggerAvroGeneric/function.confluent.json" :::
+
+This code runs when the function is triggered:
+
+:::code language="python" source="~/azure-functions-kafka-extension/samples/python/KafkaTriggerAvroGeneric/main.py" :::
+
+# [Event Hubs](#tab/event-hubs/v1)
+
+This `function.json` defines the trigger for the Confluent provider with a generic Avro schema:
+
+:::code language="json" source="~/azure-functions-kafka-extension/samples/python/KafkaTriggerAvroGeneric/function.eventhub.json" :::
+
+This code runs when the function is triggered:
+
+:::code language="python" source="~/azure-functions-kafka-extension/samples/python/KafkaTriggerAvroGeneric/main.py" :::
+
+---
+
+# [Version 2](#tab/v2) 
+
+For a complete set of working Python examples, see the [Kafka extension repository](https://github.com/Azure/azure-functions-kafka-extension/blob/dev/samples/python-v2/).
+
+# [Version 1](#tab/v1)
+
+For a complete set of working Python examples, see the [Kafka extension repository](https://github.com/Azure/azure-functions-kafka-extension/blob/dev/samples/python/).
+
+--- 
 
 ::: zone-end  
 ::: zone pivot="programming-language-java"  
