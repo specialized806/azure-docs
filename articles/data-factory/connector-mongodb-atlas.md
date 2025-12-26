@@ -251,23 +251,23 @@ To copy data from MongoDB Atlas to tabular sink or reversed, refer to [schema ma
 
 When copying data from MongoDB Atlas, the following mappings are used from MongoDB Atlas data types to interim data types used by the service internally. See [Schema and data type mappings](copy-activity-schema-and-type-mapping.md) to learn about how copy activity maps the source schema and data type to the sink.
 
-| MongoDB Atlas data Type | Interim Service Data Type |
+| MongoDB Atlas data type | Interim service data type |
 | ------ | ------ |
-| Date | DateTime |
+| Date | String |
 | ObjectId | String |
 | Decimal128 | String |
-| TimeStamp | The most significant 32 bits -> DateTime<br>The least significant 32 bits -> Int32 |
+| TimeStamp | The most significant 32 bits -> Int64<br>The least significant 32 bits -> Int64 |
 | String | String |
-| Double | Double |
-| Int32 | Int32 |
-| Int64 | Int64 |
+| Double | String |
+| Int32 | String |
+| Int64 | String |
 | Boolean | Boolean |
 | Null | Null |
 | JavaScript | String |
 | Regular Expression | String |
-| Min key | String |
-| Max key | String |
-| Binary | GUID (when SubType is "04" )<br>String |
+| Min key | Int64 |
+| Max key | Int64 |
+| Binary | String |
 
 ## Related content
 For a list of data stores supported as sources and sinks by the copy activity, see [supported data stores](copy-activity-overview.md#supported-data-stores-and-formats).
