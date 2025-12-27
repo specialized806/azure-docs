@@ -4,7 +4,7 @@ description: Use Azure Functions to write messages to an Apache Kafka stream.
 ms.topic: reference
 ms.custom: devx-track-extended-java, devx-track-js, devx-track-python
 ms.date: 12/11/2025
-zone_pivot_groups: programming-languages-set-functions-lang-workers
+zone_pivot_groups: programming-languages-set-functions
 ---
 
 # Apache Kafka output binding for Azure Functions
