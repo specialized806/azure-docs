@@ -116,38 +116,493 @@ For a complete set of working .NET examples, see the [Kafka extension repository
 ---
 
 ::: zone-end  
-::: zone pivot="programming-language-javascript"
+::: zone pivot="programming-language-javascript,programming-language-typescript"
+The usage of the output binding depends on your version of the Node.js programming model. 
 
-> [!NOTE]
-> For an equivalent set of TypeScript examples, see the [Kafka extension repository](https://github.com/Azure/azure-functions-kafka-extension/tree/dev/samples/typescript).
+# [Version 4](#tab/v4) 
 
-The specific properties of the function.json file depend on your event provider, which in these examples are either Confluent or Azure Event Hubs. The following examples show a Kafka output binding for a function that an HTTP request triggers and sends data from the request to the Kafka topic.
+In the Node.js v4 model, you define your output binding directly in your function code. For more information, see the [Azure Functions Node.js developer guide](functions-reference-node.md?pivots=nodejs-model-v4).
 
-The following function.json defines the trigger for the specific provider in these examples:
+# [Version 3](#tab/v3)
 
-# [Confluent](#tab/confluent)
-
-:::code language="json" source="~/azure-functions-kafka-extension/samples/javascript/KafkaOutput/function.confluent.json" :::
-
-# [Event Hubs](#tab/event-hubs)
-
-:::code language="json" source="~/azure-functions-kafka-extension/samples/javascript/KafkaOutput/function.eventhub.json" :::
+In the Node.js v3 model, you define your output binding in a `function.json` file with your code. For more information, see the [Azure Functions Node.js developer guide](functions-reference-node.md?pivots=nodejs-model-v3).
 
 ---
+
+In these examples, the event providers are either Confluent or Azure Event Hubs. These examples show a Kafka output binding for a function that an HTTP request triggers and sends data from the request to the Kafka topic.
+::: zone-end
+::: zone pivot="programming-language-javascript"  
+# [Confluent](#tab/confluent/v4)
+
+```javascript
+import {
+  app,
+  HttpRequest,
+  HttpResponseInit,
+  InvocationContext,
+  output,
+} from "@azure/functions";
+
+const kafkaOutput = output.generic({
+  type: "kafka",
+  direction: "out",
+  topic: "topic",
+  brokerList: "%BrokerList%",
+  username: "ConfluentCloudUsername",
+  password: "ConfluentCloudPassword",
+  protocol: "saslSsl",
+  authenticationMode: "plain",
+});
+
+export async function kafkaOutputWithHttp(
+  request: HttpRequest,
+  context: InvocationContext
+): Promise<HttpResponseInit> {
+  context.log(`Http function processed request for url "${request.url}"`);
+
+  const body = await request.text();
+  const queryName = request.query.get("name");
+  const parsedbody = JSON.parse(body);
+  const name = queryName || parsedbody.name || "world";
+  context.extraOutputs.set(kafkaOutput, `Hello, ${parsedbody.name}!`);
+  context.log(
+    `Sending message to kafka: ${context.extraOutputs.get(kafkaOutput)}`
+  );
+  return {
+    body: `Message sent to kafka with value: ${context.extraOutputs.get(
+      kafkaOutput
+    )}`,
+    status: 200,
+  };
+}
+
+const extraOutputs = [];
+extraOutputs.push(kafkaOutput);
+
+app.http("kafkaOutputWithHttp", {
+  methods: ["GET", "POST"],
+  authLevel: "anonymous",
+  extraOutputs,
+  handler: kafkaOutputWithHttp,
+});
+```
+
+# [Event Hubs](#tab/event-hubs/v4)
+
+:::code language="javascript" source="~/azure-functions-kafka-extension/samples/javascript-v4/src/functions/kafkaOutputWithHttpTrigger.js" range="1-20,33-63":::
+
+# [Confluent](#tab/confluent/v3)
+
+This `function.json` file defines the output binding for the Confluent provider:
+
+:::code language="json" source="~/azure-functions-kafka-extension/samples/javascript/KafkaOutput/function.confluent.json" :::
 
 The following code sends a message to the topic:
 
 :::code language="javascript" source="~/azure-functions-kafka-extension/samples/javascript/KafkaOutput/index.js" :::
 
-The following code sends multiple messages as an array to the same topic:
+# [Event Hubs](#tab/event-hubs/v3)
+
+This `function.json` file defines the output binding for the Event Hubs provider:
+
+:::code language="json" source="~/azure-functions-kafka-extension/samples/javascript/KafkaOutput/function.eventhub.json" :::
+
+The following code sends a message to the topic:
+
+:::code language="javascript" source="~/azure-functions-kafka-extension/samples/javascript/KafkaOutput/index.js" :::
+
+---
+
+To send events in a batch, send an array of messages, as shown in these examples:
+
+# [Confluent](#tab/confluent/v4)
+
+```javascript
+const { app, output } = require("@azure/functions");
+
+const kafkaOutput = output.generic({
+  type: "kafka",
+  direction: "out",
+  topic: "topic",
+  brokerList: "%BrokerList%",
+  username: "ConfluentCloudUsername",
+  password: "ConfluentCloudPassword",
+  protocol: "saslSsl",
+  authenticationMode: "plain",
+});
+
+async function kafkaOutputManyWithHttp(request, context) {
+  context.log(`Http function processed request for url "${request.url}"`);
+
+  const queryName = request.query.get("name");
+  const body = await request.text();
+  const parsedbody = body ? JSON.parse(body) : {};
+  parsedbody.name = parsedbody.name || "world";
+  const name = queryName || parsedbody.name;
+  context.extraOutputs.set(kafkaOutput, `Message one. Hello, ${name}!`);
+  context.extraOutputs.set(kafkaOutput, `Message two. Hello, ${name}!`);
+  return {
+    body: `Messages sent to kafka.`,
+    status: 200,
+  };
+}
+
+const extraOutputs = [];
+extraOutputs.push(kafkaOutput);
+
+app.http("kafkaOutputManyWithHttp", {
+  methods: ["GET", "POST"],
+  authLevel: "anonymous",
+  extraOutputs,
+  handler: kafkaOutputManyWithHttp,
+});
+```
+
+# [Event Hubs](#tab/event-hubs/v4)
+
+:::code language="javascript" source="~/azure-functions-kafka-extension/samples/javascript-v4/src/functions/kafkaOutputManyWithHttpTrigger.js" range="1-14,27-49":::
+
+# [Confluent](#tab/confluent/v3)
+
+This code sends multiple messages as an array to the same topic:
 
 :::code language="javascript" source="~/azure-functions-kafka-extension/samples/javascript/KafkaOutputMany/index.js" :::
 
-The following example shows how to send an event message with headers to the same Kafka topic: 
+# [Event Hubs](#tab/event-hubs/v3)
+
+This code sends multiple messages as an array to the same topic:
+
+:::code language="javascript" source="~/azure-functions-kafka-extension/samples/javascript/KafkaOutputMany/index.js" :::
+
+---
+
+These examples show how to send an event message with headers to a Kafka topic:
+
+# [Confluent](#tab/confluent/v4)
+
+```javascript
+import {
+  app,
+  HttpRequest,
+  HttpResponseInit,
+  InvocationContext,
+  output,
+} from "@azure/functions";
+
+const kafkaOutput = output.generic({
+  type: "kafka",
+  direction: "out",
+  topic: "topic",
+  brokerList: "%BrokerList%",
+  username: "ConfluentCloudUsername",
+  password: "ConfluentCloudPassword",
+  protocol: "saslSsl",
+  authenticationMode: "plain",
+});
+
+export async function kafkaOutputWithHttp(
+  request: HttpRequest,
+  context: InvocationContext
+): Promise<HttpResponseInit> {
+  context.log(`Http function processed request for url "${request.url}"`);
+
+  const body = await request.text();
+  const parsedbody = JSON.parse(body);
+  // assuming body is of the format { "key": "key", "value": {JSON object} }
+  context.extraOutputs.set(
+    kafkaOutput,
+    `{ "Offset":364,"Partition":0,"Topic":"test-topic","Timestamp":"2022-04-09T03:20:06.591Z", "Value": "${JSON.stringify(
+      parsedbody.value
+    ).replace(/"/g, '\\"')}", "Key":"${
+      parsedbody.key
+    }", "Headers": [{ "Key": "language", "Value": "javascript" }] }`
+  );
+  context.log(
+    `Sending message to kafka: ${context.extraOutputs.get(kafkaOutput)}`
+  );
+  return {
+    body: `Message sent to kafka with value: ${context.extraOutputs.get(
+      kafkaOutput
+    )}`,
+    status: 200,
+  };
+}
+
+const extraOutputs = [];
+extraOutputs.push(kafkaOutput);
+
+app.http("kafkaOutputWithHttp", {
+  methods: ["GET", "POST"],
+  authLevel: "anonymous",
+  extraOutputs,
+  handler: kafkaOutputWithHttp,
+});
+```
+
+# [Event Hubs](#tab/event-hubs/v4)
+
+:::code language="javascript" source="~/azure-functions-kafka-extension/samples/javascript-v4/src/functions/kafkaOutputWithHttpTriggerWithHeaders.js" range="1-20,33-69":::
+
+# [Confluent](#tab/confluent/v3)
 
 :::code language="javascript" source="~/azure-functions-kafka-extension/samples/javascript/KafkaOutputWithHeader/index.js" :::
 
-For a complete set of working JavaScript examples, see the [Kafka extension repository](https://github.com/Azure/azure-functions-kafka-extension/blob/dev/samples/javascript/). 
+# [Event Hubs](#tab/event-hubs/v3)
+
+:::code language="javascript" source="~/azure-functions-kafka-extension/samples/javascript/KafkaOutputWithHeader/index.js" :::
+
+---
+
+# [Version 4](#tab/v4) 
+
+For a complete set of working JavaScript examples, see the [Kafka extension repository](https://github.com/Azure/azure-functions-kafka-extension/tree/dev/samples/javascript-v4/src/functions).
+
+# [Version 3](#tab/v3)
+
+For a complete set of working JavaScript examples, see the [Kafka extension repository](https://github.com/Azure/azure-functions-kafka-extension/blob/dev/samples/javascript/).
+
+--- 
+
+::: zone-end  
+::: zone pivot="programming-language-typescript"
+
+# [Confluent](#tab/confluent/v4)
+
+```typescript
+import {
+  app,
+  HttpRequest,
+  HttpResponseInit,
+  InvocationContext,
+  output,
+} from "@azure/functions";
+
+const kafkaOutput = output.generic({
+  type: "kafka",
+  direction: "out",
+  topic: "topic",
+  brokerList: "%BrokerList%",
+  username: "ConfluentCloudUsername",
+  password: "ConfluentCloudPassword",
+  protocol: "saslSsl",
+  authenticationMode: "plain",
+});
+
+export async function kafkaOutputWithHttp(
+  request: HttpRequest,
+  context: InvocationContext
+): Promise<HttpResponseInit> {
+  context.log(`Http function processed request for url "${request.url}"`);
+
+  const body = await request.text();
+  const queryName = request.query.get("name");
+  const parsedbody = JSON.parse(body);
+  const name = queryName || parsedbody.name || "world";
+  context.extraOutputs.set(kafkaOutput, `Hello, ${parsedbody.name}!`);
+  context.log(
+    `Sending message to kafka: ${context.extraOutputs.get(kafkaOutput)}`
+  );
+  return {
+    body: `Message sent to kafka with value: ${context.extraOutputs.get(
+      kafkaOutput
+    )}`,
+    status: 200,
+  };
+}
+
+const extraOutputs = [];
+extraOutputs.push(kafkaOutput);
+
+app.http("kafkaOutputWithHttp", {
+  methods: ["GET", "POST"],
+  authLevel: "anonymous",
+  extraOutputs,
+  handler: kafkaOutputWithHttp,
+});
+```
+
+# [Event Hubs](#tab/event-hubs/v4)
+
+:::code language="typescript" source="~/azure-functions-kafka-extension/samples/typescript-v4/src/functions/kafkaOutputWithHttpTrigger.ts" range="1-20,33-63":::
+
+# [Confluent](#tab/confluent/v3)
+
+This `function.json` file defines the output binding for the Confluent provider:
+
+:::code language="json" source="~/azure-functions-kafka-extension/samples/typescript/KafkaOutput/function.confluent.json" :::
+
+The following code sends a message to the topic:
+
+:::code language="typescript" source="~/azure-functions-kafka-extension/samples/typescript/KafkaOutput/index.ts" :::
+
+# [Event Hubs](#tab/event-hubs/v3)
+
+This `function.json` file defines the output binding for the Event Hubs provider:
+
+:::code language="json" source="~/azure-functions-kafka-extension/samples/typescript/KafkaOutput/function.eventhub.json" :::
+
+The following code sends a message to the topic:
+
+:::code language="typescript" source="~/azure-functions-kafka-extension/samples/typescript/KafkaOutput/index.ts" :::
+
+---
+
+To send events in a batch, send an array of messages, as shown in these examples:
+
+# [Confluent](#tab/confluent/v4)
+
+```typescript
+import {
+  app,
+  HttpRequest,
+  HttpResponseInit,
+  InvocationContext,
+  output,
+} from "@azure/functions";
+
+const kafkaOutput = output.generic({
+  type: "kafka",
+  direction: "out",
+  topic: "topic",
+  brokerList: "%BrokerList%",
+  username: "ConfluentCloudUsername",
+  password: "ConfluentCloudPassword",
+  protocol: "saslSsl",
+  authenticationMode: "plain",
+});
+
+export async function kafkaOutputManyWithHttp(
+  request: HttpRequest,
+  context: InvocationContext
+): Promise<HttpResponseInit> {
+  context.log(`Http function processed request for url "${request.url}"`);
+
+  const queryName = request.query.get("name");
+  const body = await request.text();
+  const parsedbody = body ? JSON.parse(body) : {};
+  parsedbody.name = parsedbody.name || "world";
+  const name = queryName || parsedbody.name;
+  context.extraOutputs.set(kafkaOutput, `Message one. Hello, ${name}!`);
+  context.extraOutputs.set(kafkaOutput, `Message two. Hello, ${name}!`);
+  return {
+    body: `Messages sent to kafka.`,
+    status: 200,
+  };
+}
+
+const extraOutputs = [];
+extraOutputs.push(kafkaOutput);
+
+app.http("kafkaOutputManyWithHttp", {
+  methods: ["GET", "POST"],
+  authLevel: "anonymous",
+  extraOutputs,
+  handler: kafkaOutputManyWithHttp,
+});
+```
+
+# [Event Hubs](#tab/event-hubs/v4)
+
+:::code language="typescript" source="~/azure-functions-kafka-extension/samples/typescript-v4/src/functions/kafkaOutputManyWithHttpTrigger.ts" range="1-20,33-60":::
+
+# [Confluent](#tab/confluent/v3)
+
+This code sends multiple messages as an array to the same topic:
+
+:::code language="typescript" source="~/azure-functions-kafka-extension/samples/typescript/KafkaOutputMany/index.ts" :::
+
+# [Event Hubs](#tab/event-hubs/v3)
+
+This code sends multiple messages as an array to the same topic:
+
+:::code language="typescript" source="~/azure-functions-kafka-extension/samples/typescript/KafkaOutputMany/index.ts" :::
+
+---
+
+These examples show how to send an event message with headers to a Kafka topic:
+
+# [Confluent](#tab/confluent/v4)
+
+```typescript
+import {
+  app,
+  HttpRequest,
+  HttpResponseInit,
+  InvocationContext,
+  output,
+} from "@azure/functions";
+
+const kafkaOutput = output.generic({
+  type: "kafka",
+  direction: "out",
+  topic: "topic",
+  brokerList: "%BrokerList%",
+  username: "ConfluentCloudUsername",
+  password: "ConfluentCloudPassword",
+  protocol: "saslSsl",
+  authenticationMode: "plain",
+});
+
+export async function kafkaOutputWithHttp(
+  request: HttpRequest,
+  context: InvocationContext
+): Promise<HttpResponseInit> {
+  context.log(`Http function processed request for url "${request.url}"`);
+
+  const body = await request.text();
+  const parsedbody = JSON.parse(body);
+  // assuming body is of the format { "key": "key", "value": {JSON object} }
+  context.extraOutputs.set(
+    kafkaOutput,
+    `{ "Offset":364,"Partition":0,"Topic":"test-topic","Timestamp":"2022-04-09T03:20:06.591Z", "Value": "${JSON.stringify(
+      parsedbody.value
+    ).replace(/"/g, '\\"')}", "Key":"${
+      parsedbody.key
+    }", "Headers": [{ "Key": "language", "Value": "typescript" }] }`
+  );
+  context.log(
+    `Sending message to kafka: ${context.extraOutputs.get(kafkaOutput)}`
+  );
+  return {
+    body: `Message sent to kafka with value: ${context.extraOutputs.get(
+      kafkaOutput
+    )}`,
+    status: 200,
+  };
+}
+
+const extraOutputs = [];
+extraOutputs.push(kafkaOutput);
+
+app.http("kafkaOutputWithHttp", {
+  methods: ["GET", "POST"],
+  authLevel: "anonymous",
+  extraOutputs,
+  handler: kafkaOutputWithHttp,
+});
+```
+
+# [Event Hubs](#tab/event-hubs/v4)
+
+:::code language="typescript" source="~/azure-functions-kafka-extension/samples/typescript-v4/src/functions/kafkaOutputWithHttpTriggerWithHeaders.ts" range="1-20,33-74":::
+
+# [Confluent](#tab/confluent/v3)
+
+:::code language="typescript" source="~/azure-functions-kafka-extension/samples/typescript/KafkaOutputWithHeaders/index.ts" :::
+
+# [Event Hubs](#tab/event-hubs/v3)
+
+:::code language="typescript" source="~/azure-functions-kafka-extension/samples/typescript/KafkaOutputWithHeaders/index.ts" :::
+
+---
+
+# [Version 4](#tab/v4) 
+
+For a complete set of working TypeScript examples, see the [Kafka extension repository](https://github.com/Azure/azure-functions-kafka-extension/tree/dev/samples/typescript-v4/src/functions).
+
+# [Version 3](#tab/v3)
+
+For a complete set of working TypeScript examples, see the [Kafka extension repository](https://github.com/Azure/azure-functions-kafka-extension/blob/dev/samples/typescript/). 
 
 ::: zone-end  
 ::: zone pivot="programming-language-powershell" 
@@ -178,39 +633,109 @@ The following example shows how to send an event message with headers to the sam
 
 :::code language="powershell" source="~/azure-functions-kafka-extension/samples/powershell/KafkaOutputWithHeaders/run.ps1" :::
 
-For a complete set of working PowerShell examples, see the [Kafka extension repository](https://github.com/Azure/azure-functions-kafka-extension/blob/dev/samples/javascript/). 
+For a complete set of working PowerShell examples, see the [Kafka extension repository](https://github.com/Azure/azure-functions-kafka-extension/blob/dev/samples/powershell/). 
+
+--- 
 
 ::: zone-end 
 ::: zone pivot="programming-language-python"  
+The usage of the output binding depends on your version of the Python programming model. 
 
-The specific properties of the function.json file depend on your event provider, which in these examples are either Confluent or Azure Event Hubs. The following examples show a Kafka output binding for a function that an HTTP request triggers and sends data from the request to the Kafka topic.
+# [Version 2](#tab/v2) 
 
-The following function.json defines the trigger for the specific provider in these examples:
+In the Python v2 model, you define your output binding directly in your function code using decorators. For more information, see the [Azure Functions Python developer guide](functions-reference-python.md?pivots=python-mode-decorators).
 
-# [Confluent](#tab/confluent)
+# [Version 1](#tab/v1)
 
-:::code language="json" source="~/azure-functions-kafka-extension/samples/python/KafkaOutput/function.confluent.json" :::
-
-# [Event Hubs](#tab/event-hubs)
-
-:::code language="json" source="~/azure-functions-kafka-extension/samples/python/KafkaOutput/function.eventhub.json" :::
+In the Python v1 model, you define your output binding in the `function.json` with your function code. For more information, see the [Azure Functions Python developer guide](functions-reference-python.md?pivots=python-mode-configuration).
 
 ---
+
+These examples show a Kafka output binding for a function that an HTTP request triggers and sends data from the request to the Kafka topic.
+
+# [Confluent](#tab/confluent/v2)
+
+:::code language="python" source="~/azure-functions-kafka-extension/samples/python-v2/kafka_output.py" range="10-21" :::
+
+# [Event Hubs](#tab/event-hubs/v2)
+
+:::code language="python" source="~/azure-functions-kafka-extension/samples/python-v2/kafka_output.py" range="10-21" :::
+
+# [Confluent](#tab/confluent/v1)
+
+This `function.json` file defines the output binding for the Confluent provider:
+
+:::code language="json" source="~/azure-functions-kafka-extension/samples/python/KafkaOutput/function.confluent.json" :::
 
 The following code sends a message to the topic:
 
 :::code language="python" source="~/azure-functions-kafka-extension/samples/python/KafkaOutput/main.py" :::
 
-The following code sends multiple messages as an array to the same topic:
+# [Event Hubs](#tab/event-hubs/v1)
+
+This `function.json` file defines the output binding for the Event Hubs provider:
+
+:::code language="json" source="~/azure-functions-kafka-extension/samples/python/KafkaOutput/function.eventhub.json" :::
+
+The following code sends a message to the topic:
+
+:::code language="python" source="~/azure-functions-kafka-extension/samples/python/KafkaOutput/main.py" :::
+
+---
+
+To send events in a batch, send an array of messages, as shown in these examples:
+
+# [Confluent](#tab/confluent/v2)
+
+:::code language="python" source="~/azure-functions-kafka-extension/samples/python-v2/kafka_output.py" range="23-35" :::
+
+# [Event Hubs](#tab/event-hubs/v2)
+
+:::code language="python" source="~/azure-functions-kafka-extension/samples/python-v2/kafka_output.py" range="23-35" :::
+
+# [Confluent](#tab/confluent/v1)
+
+This code sends multiple messages as an array to the same topic:
 
 :::code language="python" source="~/azure-functions-kafka-extension/samples/python/KafkaOutputMany/main.py" :::
 
-The following example shows how to send an event message with headers to the same Kafka topic: 
+# [Event Hubs](#tab/event-hubs/v1)
+
+This code sends multiple messages as an array to the same topic:
+
+:::code language="python" source="~/azure-functions-kafka-extension/samples/python/KafkaOutputMany/main.py" :::
+
+---
+
+These examples show how to send an event message with headers to a Kafka topic:
+
+# [Confluent](#tab/confluent/v2)
+
+:::code language="python" source="~/azure-functions-kafka-extension/samples/python-v2/kafka_output.py" range="37-51" :::
+
+# [Event Hubs](#tab/event-hubs/v2)
+
+:::code language="python" source="~/azure-functions-kafka-extension/samples/python-v2/kafka_output.py" range="37-51" :::
+
+# [Confluent](#tab/confluent/v1)
 
 :::code language="python" source="~/azure-functions-kafka-extension/samples/python/KafkaOutputWithHeaders/__init__.py" :::
 
+# [Event Hubs](#tab/event-hubs/v1)
+
+:::code language="python" source="~/azure-functions-kafka-extension/samples/python/KafkaOutputWithHeaders/__init__.py" :::
+
+---
+
+# [Version 2](#tab/v2) 
+
+For a complete set of working Python examples, see the [Kafka extension repository](https://github.com/Azure/azure-functions-kafka-extension/blob/dev/samples/python-v2/).
+
+# [Version 1](#tab/v1)
+
 For a complete set of working Python examples, see the [Kafka extension repository](https://github.com/Azure/azure-functions-kafka-extension/blob/dev/samples/python/). 
 
+---
 
 ::: zone-end
 ::: zone pivot="programming-language-java"
