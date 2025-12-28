@@ -653,31 +653,17 @@ In the Python v1 model, you define your output binding in the `function.json` wi
 
 These examples show a Kafka output binding for a function that an HTTP request triggers and sends data from the request to the Kafka topic.
 
-# [Confluent](#tab/confluent/v2)
+# [Version 2](#tab/v2)
 
 :::code language="python" source="~/azure-functions-kafka-extension/samples/python-v2/kafka_output.py" range="10-21" :::
 
-# [Event Hubs](#tab/event-hubs/v2)
+# [Version 1](#tab/v1)
 
-:::code language="python" source="~/azure-functions-kafka-extension/samples/python-v2/kafka_output.py" range="10-21" :::
-
-# [Confluent](#tab/confluent/v1)
-
-This `function.json` file defines the output binding for the Confluent provider:
+This `function.json` file defines the output binding:
 
 :::code language="json" source="~/azure-functions-kafka-extension/samples/python/KafkaOutput/function.confluent.json" :::
 
-The following code sends a message to the topic:
-
-:::code language="python" source="~/azure-functions-kafka-extension/samples/python/KafkaOutput/main.py" :::
-
-# [Event Hubs](#tab/event-hubs/v1)
-
-This `function.json` file defines the output binding for the Event Hubs provider:
-
-:::code language="json" source="~/azure-functions-kafka-extension/samples/python/KafkaOutput/function.eventhub.json" :::
-
-The following code sends a message to the topic:
+This code sends a message to the topic:
 
 :::code language="python" source="~/azure-functions-kafka-extension/samples/python/KafkaOutput/main.py" :::
 
@@ -685,21 +671,11 @@ The following code sends a message to the topic:
 
 To send events in a batch, send an array of messages, as shown in these examples:
 
-# [Confluent](#tab/confluent/v2)
+# [Version 2](#tab/v2)
 
 :::code language="python" source="~/azure-functions-kafka-extension/samples/python-v2/kafka_output.py" range="23-35" :::
 
-# [Event Hubs](#tab/event-hubs/v2)
-
-:::code language="python" source="~/azure-functions-kafka-extension/samples/python-v2/kafka_output.py" range="23-35" :::
-
-# [Confluent](#tab/confluent/v1)
-
-This code sends multiple messages as an array to the same topic:
-
-:::code language="python" source="~/azure-functions-kafka-extension/samples/python/KafkaOutputMany/main.py" :::
-
-# [Event Hubs](#tab/event-hubs/v1)
+# [Version 1](#tab/v1)
 
 This code sends multiple messages as an array to the same topic:
 
@@ -709,19 +685,11 @@ This code sends multiple messages as an array to the same topic:
 
 These examples show how to send an event message with headers to a Kafka topic:
 
-# [Confluent](#tab/confluent/v2)
+# [Version 2](#tab/v2)
 
 :::code language="python" source="~/azure-functions-kafka-extension/samples/python-v2/kafka_output.py" range="37-51" :::
 
-# [Event Hubs](#tab/event-hubs/v2)
-
-:::code language="python" source="~/azure-functions-kafka-extension/samples/python-v2/kafka_output.py" range="37-51" :::
-
-# [Confluent](#tab/confluent/v1)
-
-:::code language="python" source="~/azure-functions-kafka-extension/samples/python/KafkaOutputWithHeaders/__init__.py" :::
-
-# [Event Hubs](#tab/event-hubs/v1)
+# [Version 1](#tab/v1)
 
 :::code language="python" source="~/azure-functions-kafka-extension/samples/python/KafkaOutputWithHeaders/__init__.py" :::
 
