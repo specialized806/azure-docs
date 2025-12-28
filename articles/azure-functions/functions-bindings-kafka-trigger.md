@@ -673,29 +673,15 @@ In the Python v1 model, you define your trigger in the `function.json` with your
 
 These examples show how to define a Kafka trigger for a function that reads a Kafka message.
 
-# [Confluent](#tab/confluent/v2)
+# [Version 2](#tab/v2)
 
 :::code language="python" source="~/azure-functions-kafka-extension/samples/python-v2/kafka_trigger.py" range="10-22" :::
 
-# [Event Hubs](#tab/event-hubs/v2)
+# [Version 1](#tab/v1)
 
-:::code language="python" source="~/azure-functions-kafka-extension/samples/python-v2/kafka_trigger.py" range="10-22" :::
-
-# [Confluent](#tab/confluent/v1)
-
-This `function.json` file defines the trigger for the Confluent provider:
+This `function.json` file defines the trigger:
 
 :::code language="json" source="~/azure-functions-kafka-extension/samples/python/KafkaTrigger/function.confluent.json" :::
-
-This code runs when the function is triggered:
-
-:::code language="python" source="~/azure-functions-kafka-extension/samples/python/KafkaTrigger/main.py" :::
-
-# [Event Hubs](#tab/event-hubs/v1)
-
-This `function.json` file defines the trigger for the Event Hubs provider:
-
-:::code language="json" source="~/azure-functions-kafka-extension/samples/python/KafkaTrigger/function.eventhub.json" :::
 
 This code runs when the function is triggered:
 
@@ -705,29 +691,13 @@ This code runs when the function is triggered:
 
 This example receives events in a batch by setting the `cardinality` value to `many`.
 
-# [Confluent](#tab/confluent/v2)
+# [Version 2](#tab/v2)
 
 :::code language="python" source="~/azure-functions-kafka-extension/samples/python-v2/kafka_trigger.py" range="24-38" :::
 
-# [Event Hubs](#tab/event-hubs/v2)
-
-:::code language="python" source="~/azure-functions-kafka-extension/samples/python-v2/kafka_trigger.py" range="24-38" :::
-
-# [Confluent](#tab/confluent/v1)
+# [Version 1](#tab/v1)
 
 :::code language="json" source="~/azure-functions-kafka-extension/samples/python/KafkaTriggerMany/function.confluent.json" :::
-
-This code parses the array of events and logs the event data:
-
-:::code language="python" source="~/azure-functions-kafka-extension/samples/python/KafkaTriggerMany/main.py" :::
-
-This code logs the header data:
-
-:::code language="python" source="~/azure-functions-kafka-extension/samples/python/KafkaTriggerManyWithHeaders/__init__.py" :::
-
-# [Event Hubs](#tab/event-hubs/v1)
-
-:::code language="json" source="~/azure-functions-kafka-extension/samples/python/KafkaTriggerMany/function.eventhub.json" :::
 
 This code parses the array of events and logs the event data:
 
@@ -741,29 +711,15 @@ This code logs the header data:
 
 You can define a generic [Avro schema] for the event passed to the trigger. 
 
-# [Confluent](#tab/confluent/v2)
+# [Version 2](#tab/v2)
 
 :::code language="python" source="~/azure-functions-kafka-extension/samples/python-v2/kafka_trigger_avro.py" range="24-37" :::
 
-# [Event Hubs](#tab/event-hubs/v2)
+# [Version 1](#tab/v1)
 
-:::code language="python" source="~/azure-functions-kafka-extension/samples/python-v2/kafka_trigger_avro.py" range="24-37" :::
-
-# [Confluent](#tab/confluent/v1)
-
-This `function.json` defines the trigger for the Confluent provider with a generic Avro schema:
+This `function.json` defines the trigger with a generic Avro schema:
 
 :::code language="json" source="~/azure-functions-kafka-extension/samples/python/KafkaTriggerAvroGeneric/function.confluent.json" :::
-
-This code runs when the function is triggered:
-
-:::code language="python" source="~/azure-functions-kafka-extension/samples/python/KafkaTriggerAvroGeneric/main.py" :::
-
-# [Event Hubs](#tab/event-hubs/v1)
-
-This `function.json` defines the trigger for the Confluent provider with a generic Avro schema:
-
-:::code language="json" source="~/azure-functions-kafka-extension/samples/python/KafkaTriggerAvroGeneric/function.eventhub.json" :::
 
 This code runs when the function is triggered:
 
