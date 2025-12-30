@@ -14,14 +14,14 @@ ms.custom: references_regions
 
 # Soft delete for containers
 
-Container soft delete protects your containers from being accidentally deleted by maintaining the deleted containers in the storage account for a specified period of time. During the retention period, you can restore a soft-deleted container and its contents to the container's state at the time it was deleted. After the retention period has expired, the container and its contents are permanently deleted.
+Container soft delete protects your containers from being accidentally deleted by maintaining the deleted containers in the storage account for a specified period of time. During the retention period, you can restore a soft-deleted container and its contents to the container's state at the time it was deleted. After the retention period expires, the container and its contents are permanently deleted.
 
 ## Recommended data protection configuration
 
 Container soft delete is part of a comprehensive data protection strategy. For optimal protection for your storage account, Microsoft recommends enabling the following data protection features:
 
-- Container soft delete, to restore a container that has been deleted. To learn how to enable container soft delete, see [Enable and manage soft delete for containers](soft-delete-container-enable.md).
-- Blob soft delete, to restore a blob, snapshot, or version that has been deleted. To learn how to enable blob soft delete, see [Enable and manage soft delete for blobs](soft-delete-blob-enable.md).
+- Container soft delete, to restore a deleted container. To learn how to enable container soft delete, see [Enable and manage soft delete for containers](soft-delete-container-enable.md).
+- Blob soft delete, to restore a deleted blob, snapshot, or version. To learn how to enable blob soft delete, see [Enable and manage soft delete for blobs](soft-delete-blob-enable.md).
 
 - Blob versioning, to automatically maintain previous versions of a blob. To learn how to enable blob versioning, see [Enable and manage blob versioning](versioning-enable.md).
 To learn more about Microsoft's recommendations for data protection, see [Data protection overview](data-protection-overview.md).
@@ -34,7 +34,7 @@ During the retention period, you can recover a deleted container by calling the 
 
 > [!WARNING]
 > Container soft delete can restore only whole containers and their contents at the time of deletion. To restore a deleted blob when its parent container hasn't been deleted, you must use blob soft delete or blob versioning.
-> When you restore a container, you must restore it to its original name. If the original name has been used to create a new container, then you will not be able to restore the soft-deleted container.
+> When you restore a container, you must restore it to its original name. If the original name is used to create a new container, then you cannot restore the soft-deleted container.
 
 The following diagram shows how a deleted container can be restored when container soft delete is enabled:
 
