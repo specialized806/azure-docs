@@ -28,7 +28,7 @@ To learn more about Microsoft's recommendations for data protection, see [Data p
 
 ## How container soft delete works
 
-When you enable container soft delete, you can specify a retention period for deleted containers that is between 1 and 365 days. The default retention period is seven days. We recommend a minimum of 7 days and increasing the retention period as needed based on data volume and how long it may take to detect and respond to data‑loss events. 
+When you enable container soft delete, you can specify a retention period for deleted containers that is between 1 and 365 days. The default retention period is seven days. We recommend a minimum of seven days and increasing the retention period as needed based on data volume and how long it may take to detect and respond to data‑loss events. 
 
 During the retention period, you can recover a deleted container by calling the **Restore Container** operation. When you restore a container, the container's blobs and any blob versions and snapshots are also restored. 
 
