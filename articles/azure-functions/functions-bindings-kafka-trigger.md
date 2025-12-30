@@ -189,7 +189,7 @@ app.generic("Kafkatrigger", {
 
 # [Event Hubs](#tab/event-hubs/v4)
 
-:::code language="javascript" source="~/azure-functions-kafka-extension/samples/javascript-v4/src/functions/kafkaTrigger.js" range="1-36,38":::
+:::code language="javascript" source="~/azure-functions-kafka-extension/samples/javascript-v4/src/functions/kafkaTrigger.js" range="1-19,21-36":::
 
 # [Confluent](#tab/confluent/v3)
 
@@ -260,7 +260,7 @@ app.generic("kafkaTriggerMany", {
 
 # [Event Hubs](#tab/event-hubs/v4)
 
-:::code language="javascript" source="~/azure-functions-kafka-extension/samples/javascript-v4/src/functions/kafkaTriggerMany.js" range="1-39,41":::
+:::code language="javascript" source="~/azure-functions-kafka-extension/samples/javascript-v4/src/functions/kafkaTriggerMany.js" range="1-21,23-39":::
 
 # [Confluent](#tab/confluent/v3)
 
@@ -324,7 +324,7 @@ app.generic("kafkaAvroGenericTrigger", {
 
 # [Event Hubs](#tab/event-hubs/v4)
 
-:::code language="javascript" source="~/azure-functions-kafka-extension/samples/javascript-v4/src/functions/kafkaAvroGenericTrigger.js" range="1-28,30":::
+:::code language="javascript" source="~/azure-functions-kafka-extension/samples/javascript-v4/src/functions/kafkaAvroGenericTrigger.js" range="1-9,11-28":::
 
 # [Confluent](#tab/confluent/v3)
 
@@ -409,7 +409,7 @@ app.generic("Kafkatrigger", {
 
 # [Event Hubs](#tab/event-hubs/v4)
 
-:::code language="typescript" source="~/azure-functions-kafka-extension/samples/typescript-v4/src/functions/kafkaTrigger.ts" range="1-46,48":::
+:::code language="typescript" source="~/azure-functions-kafka-extension/samples/typescript-v4/src/functions/kafkaTrigger.ts" range="1-29,31-46":::
 
 # [Confluent](#tab/confluent/v3)
 
