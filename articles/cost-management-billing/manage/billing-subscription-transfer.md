@@ -10,6 +10,7 @@ ms.subservice: billing
 ms.topic: how-to
 ms.date: 08/18/2025
 ms.custom: sfi-image-nochange
+service.tree.id: b69a7832-2929-4f60-bf9d-c6784a865ed8
 ---
 
 # Transfer billing ownership of an MOSP Azure subscription to another account

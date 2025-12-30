@@ -1906,6 +1906,142 @@ Get a user delegation key, which can then be used to create a shared access sign
 }
 ```
 
+## Storage Connector Contributor
+
+Allows creating and managing storage connectors to access remote data sources in-place in a storage account. This role is in preview and subject to change.
+
+> [!div class="mx-tableFixed"]
+> | Actions | Description |
+> | --- | --- |
+> | [Microsoft.Authorization](../permissions/management-and-governance.md#microsoftauthorization)/*/read | Read roles and role assignments |
+> | [Microsoft.Insights](../permissions/monitor.md#microsoftinsights)/alertRules/* | Create and manage a classic metric alert |
+> | [Microsoft.Resources](../permissions/management-and-governance.md#microsoftresources)/deployments/* | Create and manage a deployment |
+> | [Microsoft.Resources](../permissions/management-and-governance.md#microsoftresources)/subscriptions/resourceGroups/read | Gets or lists resource groups. |
+> | [Microsoft.Storage](../permissions/storage.md#microsoftstorage)/storageAccounts/read | Returns the list of storage accounts or gets the properties for the specified storage account. |
+> | [Microsoft.Storage](../permissions/storage.md#microsoftstorage)/storageAccounts/listServiceSas/action | Returns the Service SAS token for the specified storage account. |
+> | [Microsoft.Storage](../permissions/storage.md#microsoftstorage)/storageAccounts/blobServices/read | Returns blob service properties or statistics |
+> | [Microsoft.Storage](../permissions/storage.md#microsoftstorage)/storageAccounts/blobServices/containers/read | Returns list of containers |
+> | [Microsoft.Storage](../permissions/storage.md#microsoftstorage)/storageAccounts/blobServices/containers/write | Returns the result of put blob container |
+> | [Microsoft.Storage](../permissions/storage.md#microsoftstorage)/locations/DataManagementRPOperationStatuses/read | Get a DataManagamentRP operation status |
+> | [Microsoft.Storage](../permissions/storage.md#microsoftstorage)/locations/DataManagementRPOperationStatuses/write | Creates or updates a DataManagamentRP operation status |
+> | [Microsoft.Storage](../permissions/storage.md#microsoftstorage)/storageAccounts/connectors/read | Returns the list of storage connectors or gets the properties of specified storage connector. |
+> | [Microsoft.Storage](../permissions/storage.md#microsoftstorage)/storageAccounts/connectors/delete | Delete a storage connector. |
+> | [Microsoft.Storage](../permissions/storage.md#microsoftstorage)/storageAccounts/connectors/write | Creates or updates a storage connector. |
+> | [Microsoft.Storage](../permissions/storage.md#microsoftstorage)/storageAccounts/connectors/testExistingConnection/action | Test the connection of an existing storage connector. |
+> | **NotActions** |  |
+> | *none* |  |
+> | **DataActions** |  |
+> | [Microsoft.Storage](../permissions/storage.md#microsoftstorage)/storageAccounts/blobServices/containers/blobs/read | Returns a blob or a list of blobs |
+> | [Microsoft.Storage](../permissions/storage.md#microsoftstorage)/storageAccounts/blobServices/containers/blobs/write | Returns the result of writing a blob |
+> | **NotDataActions** |  |
+> | *none* |  |
+
+```json
+{
+  "assignableScopes": [
+    "/"
+  ],
+  "description": "Allows creating and managing storage connectors to access remote data sources in-place in a storage account. This role is in preview and subject to change.",
+  "id": "/providers/Microsoft.Authorization/roleDefinitions/9d819e60-1b9f-4871-b492-4e6cdee0b50a",
+  "name": "9d819e60-1b9f-4871-b492-4e6cdee0b50a",
+  "permissions": [
+    {
+      "actions": [
+        "Microsoft.Authorization/*/read",
+        "Microsoft.Insights/alertRules/*",
+        "Microsoft.Resources/deployments/*",
+        "Microsoft.Resources/subscriptions/resourceGroups/read",
+        "Microsoft.Storage/storageAccounts/read",
+        "Microsoft.Storage/storageAccounts/listServiceSas/action",
+        "Microsoft.Storage/storageAccounts/blobServices/read",
+        "Microsoft.Storage/storageAccounts/blobServices/containers/read",
+        "Microsoft.Storage/storageAccounts/blobServices/containers/write",
+        "Microsoft.Storage/locations/DataManagementRPOperationStatuses/read",
+        "Microsoft.Storage/locations/DataManagementRPOperationStatuses/write",
+        "Microsoft.Storage/storageAccounts/connectors/read",
+        "Microsoft.Storage/storageAccounts/connectors/delete",
+        "Microsoft.Storage/storageAccounts/connectors/write",
+        "Microsoft.Storage/storageAccounts/connectors/testExistingConnection/action"
+      ],
+      "notActions": [],
+      "dataActions": [
+        "Microsoft.Storage/storageAccounts/blobServices/containers/blobs/read",
+        "Microsoft.Storage/storageAccounts/blobServices/containers/blobs/write"
+      ],
+      "notDataActions": []
+    }
+  ],
+  "roleName": "Storage Connector Contributor",
+  "roleType": "BuiltInRole",
+  "type": "Microsoft.Authorization/roleDefinitions"
+}
+```
+
+## Storage DataShare Contributor
+
+Allows creating and managing storage dataShares to share data from storage accounts in-place. This role is in preview and subject to change.
+
+> [!div class="mx-tableFixed"]
+> | Actions | Description |
+> | --- | --- |
+> | [Microsoft.Authorization](../permissions/management-and-governance.md#microsoftauthorization)/*/read | Read roles and role assignments |
+> | [Microsoft.Insights](../permissions/monitor.md#microsoftinsights)/alertRules/* | Create and manage a classic metric alert |
+> | [Microsoft.Resources](../permissions/management-and-governance.md#microsoftresources)/deployments/* | Create and manage a deployment |
+> | [Microsoft.Resources](../permissions/management-and-governance.md#microsoftresources)/subscriptions/resourceGroups/read | Gets or lists resource groups. |
+> | [Microsoft.Storage](../permissions/storage.md#microsoftstorage)/storageAccounts/read | Returns the list of storage accounts or gets the properties for the specified storage account. |
+> | [Microsoft.Storage](../permissions/storage.md#microsoftstorage)/storageAccounts/listServiceSas/action | Returns the Service SAS token for the specified storage account. |
+> | [Microsoft.Storage](../permissions/storage.md#microsoftstorage)/storageAccounts/blobServices/read | Returns blob service properties or statistics |
+> | [Microsoft.Storage](../permissions/storage.md#microsoftstorage)/storageAccounts/blobServices/containers/read | Returns list of containers |
+> | [Microsoft.Storage](../permissions/storage.md#microsoftstorage)/locations/DataManagementRPOperationStatuses/read | Get a DataManagamentRP operation status |
+> | [Microsoft.Storage](../permissions/storage.md#microsoftstorage)/locations/DataManagementRPOperationStatuses/write | Creates or updates a DataManagamentRP operation status |
+> | [Microsoft.Storage](../permissions/storage.md#microsoftstorage)/storageAccounts/dataShares/read | Returns the list of storage data shares or gets the properties of specified storage data share. |
+> | [Microsoft.Storage](../permissions/storage.md#microsoftstorage)/storageAccounts/dataShares/delete | Delete a storage data share. |
+> | [Microsoft.Storage](../permissions/storage.md#microsoftstorage)/storageAccounts/dataShares/write | Creates or updates a storage data share. |
+> | **NotActions** |  |
+> | *none* |  |
+> | **DataActions** |  |
+> | [Microsoft.Storage](../permissions/storage.md#microsoftstorage)/storageAccounts/blobServices/containers/blobs/read | Returns a blob or a list of blobs |
+> | **NotDataActions** |  |
+> | *none* |  |
+
+```json
+{
+  "assignableScopes": [
+    "/"
+  ],
+  "description": "Allows creating and managing storage dataShares to share data from storage accounts in-place. This role is in preview and subject to change.",
+  "id": "/providers/Microsoft.Authorization/roleDefinitions/35c49d44-ccc1-4b18-8267-cfb3bacdd396",
+  "name": "35c49d44-ccc1-4b18-8267-cfb3bacdd396",
+  "permissions": [
+    {
+      "actions": [
+        "Microsoft.Authorization/*/read",
+        "Microsoft.Insights/alertRules/*",
+        "Microsoft.Resources/deployments/*",
+        "Microsoft.Resources/subscriptions/resourceGroups/read",
+        "Microsoft.Storage/storageAccounts/read",
+        "Microsoft.Storage/storageAccounts/listServiceSas/action",
+        "Microsoft.Storage/storageAccounts/blobServices/read",
+        "Microsoft.Storage/storageAccounts/blobServices/containers/read",
+        "Microsoft.Storage/locations/DataManagementRPOperationStatuses/read",
+        "Microsoft.Storage/locations/DataManagementRPOperationStatuses/write",
+        "Microsoft.Storage/storageAccounts/dataShares/read",
+        "Microsoft.Storage/storageAccounts/dataShares/delete",
+        "Microsoft.Storage/storageAccounts/dataShares/write"
+      ],
+      "notActions": [],
+      "dataActions": [
+        "Microsoft.Storage/storageAccounts/blobServices/containers/blobs/read"
+      ],
+      "notDataActions": []
+    }
+  ],
+  "roleName": "Storage DataShare Contributor",
+  "roleType": "BuiltInRole",
+  "type": "Microsoft.Authorization/roleDefinitions"
+}
+```
+
 ## Storage File Data Privileged Contributor
 
 Allows for read, write, delete, and modify ACLs on files/directories in Azure file shares by overriding existing ACLs/NTFS permissions. This role has no built-in equivalent on Windows file servers.

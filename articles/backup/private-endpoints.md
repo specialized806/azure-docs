@@ -53,7 +53,6 @@ Follow these steps:
    >[!Note]
    >- After you deny access, you can still access the vault, but you can't move data to/from networks that don't contain private endpoints. For more information, see [Create private endpoints for Azure Backup](#create-private-endpoints-for-azure-backup).
    >- If public access is denied and a private endpoint isn’t enabled, backups succeed, but restore operations fail for all workloads except Virtual Machines. However, Virtual Machine item-level recovery also fails. Ensure that you configure network restrictions carefully.
-   >- Denying public access is currently not supported for [vaults that have cross-regions restore](backup-create-rs-vault.md#set-cross-region-restore) enabled.
 
 3. Select **Apply** to save the changes.
 
