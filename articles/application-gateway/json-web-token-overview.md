@@ -84,7 +84,7 @@ Application Gateway doesn't maintain any session or cookie-based state. This app
 
 1. Open the [preview configuration portal](https://ms.portal.azure.com/?feature.applicationgatewayjwtvalidation=true#home).
 
-1. Open your Application Gateway instance, go to **Settings** on the left menu, and then select **JWT validation configurations**.
+1. Open your Application Gateway instance, go to **Settings** on the left menu, and then select **JWT validation configurations** > **Add JWT validation configuration**.
 
    :::image type="content" source="media/json-web-token-overview/json-web-token-configuration.png" alt-text="Screenshot of the pane for updating JSON Web Token configuration for Application Gateway.":::
 
