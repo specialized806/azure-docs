@@ -189,7 +189,7 @@ app.generic("Kafkatrigger", {
 
 # [Event Hubs](#tab/event-hubs/v4)
 
-:::code language="javascript" source="~/azure-functions-kafka-extension/samples/javascript-v4/src/functions/kafkaTrigger.js" range="1-36":::
+:::code language="javascript" source="~/azure-functions-kafka-extension/samples/javascript-v4/src/functions/kafkaTrigger.js" range="1-36,38":::
 
 # [Confluent](#tab/confluent/v3)
 
@@ -260,7 +260,7 @@ app.generic("kafkaTriggerMany", {
 
 # [Event Hubs](#tab/event-hubs/v4)
 
-:::code language="javascript" source="~/azure-functions-kafka-extension/samples/javascript-v4/src/functions/kafkaTriggerMany.js" range="1-39":::
+:::code language="javascript" source="~/azure-functions-kafka-extension/samples/javascript-v4/src/functions/kafkaTriggerMany.js" range="1-39,41":::
 
 # [Confluent](#tab/confluent/v3)
 
@@ -324,7 +324,7 @@ app.generic("kafkaAvroGenericTrigger", {
 
 # [Event Hubs](#tab/event-hubs/v4)
 
-:::code language="javascript" source="~/azure-functions-kafka-extension/samples/javascript-v4/src/functions/kafkaAvroGenericTrigger.js" range="1-28":::
+:::code language="javascript" source="~/azure-functions-kafka-extension/samples/javascript-v4/src/functions/kafkaAvroGenericTrigger.js" range="1-28,30":::
 
 # [Confluent](#tab/confluent/v3)
 
@@ -409,7 +409,7 @@ app.generic("Kafkatrigger", {
 
 # [Event Hubs](#tab/event-hubs/v4)
 
-:::code language="typescript" source="~/azure-functions-kafka-extension/samples/typescript-v4/src/functions/kafkaTrigger.ts" range="1-46":::
+:::code language="typescript" source="~/azure-functions-kafka-extension/samples/typescript-v4/src/functions/kafkaTrigger.ts" range="1-46,48":::
 
 # [Confluent](#tab/confluent/v3)
 
@@ -498,7 +498,7 @@ app.generic("kafkaTriggerMany", {
 
 # [Event Hubs](#tab/event-hubs/v4)
 
-:::code language="typescript" source="~/azure-functions-kafka-extension/samples/typescript-v4/src/functions/kafkaTriggerMany.ts" range="1-57":::
+:::code language="typescript" source="~/azure-functions-kafka-extension/samples/typescript-v4/src/functions/kafkaTriggerMany.ts" range="1-39,41-57":::
 
 # [Confluent](#tab/confluent/v3)
 
@@ -530,7 +530,7 @@ You can define a generic [Avro schema] for the event passed to the trigger. This
 
 # [Confluent](#tab/confluent/v4)
 
-:::code language="typescript" source="~/azure-functions-kafka-extension/samples/typescript-v4/src/functions/kafkaAvroGenericTrigger.ts" range="1-34":::
+:::code language="typescript" source="~/azure-functions-kafka-extension/samples/typescript-v4/src/functions/kafkaAvroGenericTrigger.ts" range="1-15,17-34":::
 
 # [Event Hubs](#tab/event-hubs/v4)
 
