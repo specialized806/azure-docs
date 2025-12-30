@@ -40,9 +40,9 @@ The following diagram shows how a deleted container can be restored when contain
 
 :::image type="content" source="media/soft-delete-container-overview/container-soft-delete-diagram.png" alt-text="Diagram showing how a soft-deleted container may be restored":::
 
-After the retention period has expired, the container is permanently deleted from Azure Storage and cannot be recovered. The clock starts on the retention period at the point that the container is deleted. You can change the retention period at any time, but the new setting applies only to containers deleted *after* the update. Containers that were already deleted will be permanently removed based on the retention period that was in effect when they were originally deleted.
+After the retention period expires, the container is permanently deleted from Azure Storage and cannot be recovered. The clock starts on the retention period at the point that the container is deleted. You can change the retention period at any time, but the new setting applies only to containers deleted *after* the update. Containers that were already deleted will be permanently removed based on the retention period that was in effect when they were originally deleted.
 
-Turning off container soft delete does not cause existing soft‑deleted containers to be permanently deleted. They will be permanently deleted based on the retention period that applied at the time they were deleted.
+Turning off container soft delete doesn't cause existing soft‑deleted containers to be permanently deleted. They will be permanently deleted based on the retention period that applied at the time they were deleted.
 
 Container soft delete is available for the following types of storage accounts:
 
@@ -55,7 +55,7 @@ Storage accounts with a hierarchical namespace enabled for use with Azure Data L
 Version 2019-12-12 or higher of the Azure Storage REST API supports container soft delete.
 
 > [!IMPORTANT]
-> Container soft delete does not protect against the deletion of a storage account, but only against the deletion of containers in that account. To protect a storage account from deletion, configure a lock on the storage account resource. For more information about locking Azure Resource Manager resources, see [Lock resources to prevent unexpected changes](../../azure-resource-manager/management/lock-resources.md).
+> Container soft delete doesn't protect against the deletion of a storage account, but only against the deletion of containers in that account. To protect a storage account from deletion, configure a lock on the storage account resource. For more information about locking Azure Resource Manager resources, see [Lock resources to prevent unexpected changes](../../azure-resource-manager/management/lock-resources.md).
 
 ## Feature support
 
