@@ -18,6 +18,7 @@ This article provides information about new features and documentation improveme
 
 | Date | Area | Description |
 | --- | --- | --- |
+| December 2025 | Roles | Added [Storage Connector Contributor](./built-in-roles/storage.md#storage-connector-contributor) and [Storage DataShare Contributor](./built-in-roles/storage.md#storage-datashare-contributor) roles. |
 | December 2025 | Classic administrators | Updates about automatic assignment to Owner role. See [Azure classic subscription administrators](classic-administrators.md). |
 | December 2025 | Roles | Added [Storage File Data SMB MI Admin](./built-in-roles/storage.md#storage-file-data-smb-mi-admin) role. |
 | November 2025 | Roles | Added [Storage File Data SMB Take Ownership](./built-in-roles/storage.md#storage-file-data-smb-take-ownership) role. |

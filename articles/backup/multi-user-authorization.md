@@ -3,7 +3,7 @@ title: Configure Multi-user authorization using Resource Guard
 description: This article explains how to configure Multi-user authorization using Resource Guard.
 ms.topic: how-to
 zone_pivot_groups: backup-vaults-recovery-services-vault-backup-vault
-ms.date: 11/21/2025
+ms.date: 12/30/2025
 ms.service: azure-backup
 ms.custom: devx-track-azurepowershell, devx-track-azurecli
 author: AbhishekMallick-MS
@@ -240,14 +240,23 @@ Once you have enabled MUA, the operations in scope will be restricted on the vau
  >[!NOTE]
  >We highly recommend that you test your setup after enabling MUA to ensure that protected operations are blocked as expected and to ensure that MUA is correctly configured.
 
-Depicted below is an illustration of what happens when the Backup admin tries to perform such a protected operation (For example, disabling soft delete is depicted here. Other protected operations have a similar experience). The following steps are performed by a Backup admin without required permissions.
+Depicted below is an illustration of what happens when the Backup admin tries to perform such a protected operation (For example, disabling immutability is depicted here. Other protected operations have a similar experience). The following steps are performed by a Backup admin without required permissions.
 
-1. To disable soft delete, go to the Recovery Services vault > **Properties** > **Security Settings** and select **Update**, which brings up the Security Settings.
-1. Disable the soft delete using the slider. You're informed that this is a protected operation, and you need to verify their access to the Resource Guard.
-1. Select the directory containing the Resource Guard and Authenticate yourself. This step may not be required if the Resource Guard is in the same directory as the vault.
-1. Proceed to select **Save**. The request fails with an error informing them about not having sufficient permissions on the Resource Guard to let you perform this operation.
+To disable immutability, follow these steps:
 
-   :::image type="content" source="./media/multi-user-authorization/test-vault-properties-security-settings-inline.png" alt-text="Screenshot showing the Test Vault properties security settings." lightbox="./media/multi-user-authorization/test-vault-properties-security-settings-expanded.png":::
+1. Go to the **Recovery Services vault** > **Properties**.
+1. On the **Properties** pane, under **Immutable vault**, select **Settings**.
+1. On the **Immutable Vault** pane, disable Immutability by clearing the **Enable vault immutability** checkbox.
+
+   You're informed that this is a protected operation, and you need to verify their access to the Resource Guard.
+1. Select the directory containing the Resource Guard and Authenticate yourself. 
+
+   >[!Note]
+   >This action isn't required if the Resource Guard is in the same directory as the vault.
+
+1. Select **Apply**. 
+
+   The request fails with an error you don't have sufficient permissions on the Resource Guard to perform this operation.
 
 <a name='authorize-critical-protected-operations-using-azure-active-directory-privileged-identity-management'></a>
 

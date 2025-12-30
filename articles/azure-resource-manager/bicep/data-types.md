@@ -484,7 +484,7 @@ output optionalValue int? = null
 
 Secure strings use the same format as string, and secure objects use the same format as object. With Bicep, you add the `@secure()` [decorator](./parameters.md#use-decorators) to a string or object.
 
-When you set a parameter (or an output) to a secure string or secure object, the value of the parameter (or the output) isn't saved to the deployment history or logged. If you set that secure value to a property that isn't expecting a secure value, the value isn't protected. For example, if you set a secure string to a tag, that value is stored as plain text. Use secure strings for passwords and secrets.
+When you set a parameter (or an output) to a secure string or secure object, the value of the parameter (or the output) isn't saved to the deployment history or logged (except if --debug parameter is used). If you set that secure value to a property that isn't expecting a secure value, the value isn't protected. For example, if you set a secure string to a tag, that value is stored as plain text. Use secure strings for passwords and secrets.
 
 The following example shows two secure parameters:
 

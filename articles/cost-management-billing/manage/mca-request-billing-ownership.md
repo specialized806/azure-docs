@@ -9,6 +9,7 @@ ms.reviewer: nicholak
 ms.service: cost-management-billing
 ms.subservice: billing
 ms.custom: sfi-image-nochange
+service.tree.id: b69a7832-2929-4f60-bf9d-c6784a865ed8
 ---
 
 # Transfer Azure product billing ownership to a Microsoft Customer Agreement
