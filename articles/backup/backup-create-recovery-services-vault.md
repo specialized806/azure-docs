@@ -22,7 +22,7 @@ Azure Backup automatically handles storage for the vault. You need to specify ho
 > [!NOTE]
 > Be sure to change the storage replication type for a Recovery Services vault before you configure a backup in the vault. After you configure a backup, the option to modify is disabled.
 >
-> If you haven't yet configured the backup, complete the following steps to review and modify the settings. If you already configured the backup and must change the storage replication type, [review these workarounds](#modify-default-settings).
+> If you still need to configure the backup, complete the following steps to review and modify the settings. If you already configured the backup and must change the storage replication type, [review these workarounds](#modify-default-settings).
 
 1. In the **Recovery Services vaults** pane, select the new vault. In the **Settings** section, select **Properties**.
 1. In **Properties**, under **Backup Configuration**, select **Update**.
@@ -53,7 +53,7 @@ Before you begin, consider the following information:
 - Cross Region Restore incurs extra charges for use. After you enable Cross Region Restore, it might take up to 48 hours for the backup items to be available in secondary regions. [Learn more about pricing](https://azure.microsoft.com/pricing/details/backup/).
 - Cross Region Restore currently can't be reverted to GRS or LRS after the protection starts for the first time.
 - Currently, the recovery point objective (RPO) for the secondary region is 36 hours. The RPO in the primary region is 24 hours and can take up to 12 hours to replicate the backup data from the primary to the secondary region.
-- Permissions are required to use Cross Region Restore. For more information, see [Use Azure role-based access control to manage Azure Backup recovery points](backup-rbac-rs-vault.md#minimum-role-requirements-for-azure-vm-backup).
+- Permissions are required to use Cross Region Restore. For more information, see [Use Azure role-based access control (RBAC) to manage Azure Backup recovery points](backup-rbac-rs-vault.md#minimum-role-requirements-for-azure-vm-backup).
 
 A vault created with GRS redundancy includes the option to configure Cross Region Restore. Every GRS vault has a banner that links to the documentation.
 
@@ -83,7 +83,7 @@ For more information about backup and restore with Cross Region Restore, see the
 
 Cross Subscription Restore allows you to restore data to a different subscription within the same tenant as the source subscription (as per the Azure RBAC capabilities) from restore points.
 
-Cross Subscription Restore is currently supported for Azure Virtual Machines, SQL Server in Azure Virtual Machines, SAP ASE and SAP HANA in Azure Virtual Machines, and Azure Files.
+Cross Subscription Restore is currently supported for Azure VMs, SQL Server in Azure VMs, SAP ASE and SAP HANA in Azure VMs, and Azure Files.
 
 To configure Cross Subscription Restore for the vault, follow these steps:
 
@@ -139,7 +139,7 @@ To stop and delete current protection on the GRS vault:
 
 If you need to keep the current protected data in the GRS vault and continue the protection in a new LRS vault, some of the workloads have limited options:
 
-- For Recovery Services, you can [stop protection with retained data](backup-azure-manage-mars.md#stop-protecting-files-and-folder-backup) and register the agent in the new LRS vault. Be aware that:
+- For Recovery Services, you can [stop protection with retained data](backup-azure-manage-mars.md#stop-protecting-files-and-folder-backup) and register the agent in the new LRS vault. Consider that:
 
   - You can retain all the existing recovery points of the GRS vault with Azure Backup.
   - You need to pay to keep the recovery points in the GRS vault.
@@ -148,7 +148,7 @@ If you need to keep the current protected data in the GRS vault and continue the
 
 - For an Azure VM, you can [stop protection with retained data](backup-azure-manage-vms.md#stop-protecting-a-vm) for the VM in the GRS vault, move the VM to another resource group, and then help protect the VM in the LRS vault. For information about moving a VM to another resource group, see the [guidance and limitations](../azure-resource-manager/management/move-limitations/virtual-machines-move-limitations.md).
 
-  You can add a VM to only one vault at a time. You can add the VM in the new resource group to the LRS vault because it's considered a different VM. Be aware that:
+  You can add a VM to only one vault at a time. You can add the VM in the new resource group to the LRS vault because it's considered a different VM. Consider that:
 
   - You can retain the recovery points that were backed up on the GRS vault with Azure Backup.
   - You need to pay to keep the recovery points in the GRS vault. For more information, see [Azure Backup pricing](azure-backup-pricing.md).
