@@ -20,7 +20,7 @@ ms.author: v-mallicka
 This article describes how to configure Multi-User Authorization (MUA) for Azure Backup to enhance the security of critical operations on Recovery Services vaults. It covers the creation of a Resource Guard in a separate tenant for maximum protection and demonstrates how to request and approve critical operation access using [Microsoft Entra Privileged Identity Management](../active-directory/privileged-identity-management/pim-configure.md) within the tenant hosting the Resource Guard. Alternatively, you can use other methods to manage just-in-time (JIT) permissions based on your organizational setup.
 
 >[!NOTE]
->- Multi-user authorization for Azure Backup is available in all public Azure regions.
+>- Multi-user authorization for Azure Backup is available in all global Azure regions.
 >- Multi-user authorization using Resource Guard for Backup vault is now generally available. [Learn more](multi-user-authorization.md?pivots=vaults-backup-vault).
 
 ## Prerequisites
@@ -52,7 +52,7 @@ To create the Resource Guard in a tenant different from the vault tenant, follow
    :::image type="content" source="./media/multi-user-authorization/resource-guards.png" alt-text="Screenshot shows how to search resource guards." lightbox="./media/multi-user-authorization/resource-guards.png":::
     
    - Select **Create** to start creating a Resource Guard.
-   - In the create pane, fill in the required details for this Resource Guard.
+   - On the **Create** pane, fill in the required details for the Resource Guard.
        - Make sure the Resource Guard is in the same Azure regions as the Recovery Services vault.
        - Also, it's helpful to add a description of how to get or request access to perform actions on associated vaults when needed. This description would also appear in the associated vaults to guide the backup admin on getting the required permissions. You can edit the description later if needed, but having a well-defined description at all times is encouraged.
        
@@ -99,7 +99,7 @@ To exempt operations, follow these steps:
 1. Optionally, you can also update the description for the Resource Guard using this pane. 
 1. Select **Save**.
 
-   :::image type="content" source="./media/multi-user-authorization/demo-resource-guard-properties.png" alt-text="Screenshot showing demo resource guard properties.":::
+   :::image type="content" source="./media/multi-user-authorization/demo-resource-guard-properties.png" alt-text="Screenshot shows the demo resource guard properties." lightbox="./media/multi-user-authorization/demo-resource-guard-properties.png":::
 
 # [PowerShell](#tab/powershell)
 
@@ -149,17 +149,17 @@ To enable MUA on a vault, the admin of the vault must have **Reader** role on th
 
 1. In the Resource Guard created above, go to the **Access Control (IAM)** pane, and then go to **Add role assignment**.
 
-   :::image type="content" source="./media/multi-user-authorization/demo-resource-guard-access-control.png" alt-text="Screenshot showing demo resource guard-access control.":::
+   :::image type="content" source="./media/multi-user-authorization/demo-resource-guard-access-control.png" alt-text="Screenshot shows the demo resource guard-access control." lightbox="./media/multi-user-authorization/demo-resource-guard-access-control.png":::
     
 1. Select **Reader** from the list of built-in roles, and select **Next**.
 
-   :::image type="content" source="./media/multi-user-authorization/demo-resource-guard-add-role-assignment-inline.png" alt-text="Screenshot showing demo resource guard-add role assignment." lightbox="./media/multi-user-authorization/demo-resource-guard-add-role-assignment-expanded.png":::
+   :::image type="content" source="./media/multi-user-authorization/demo-resource-guard-add-role-assignment.png" alt-text="Screenshot shows the add-role-assignment option for demo resource guard." lightbox="./media/multi-user-authorization/demo-resource-guard-add-role-assignment.png":::
 
 1. Click **Select members** and add the Backup admin’s email ID to add them as the **Reader**. As the Backup admin is in another  tenant in this case, they'll be added as guests to the tenant containing the Resource Guard.
 
 1. Click **Select** and then proceed to **Review + assign** to complete the role assignment.
 
-   :::image type="content" source="./media/multi-user-authorization/demo-resource-guard-select-members-inline.png" alt-text="Screenshot showing demo resource guard-select members." lightbox="./media/multi-user-authorization/demo-resource-guard-select-members-expanded.png":::
+   :::image type="content" source="./media/multi-user-authorization/demo-resource-guard-select-members.png" alt-text="Screenshot shows the demo resource guard-select members." lightbox="./media/multi-user-authorization/demo-resource-guard-select-members.png":::
 
 ## Enable MUA on a Recovery Services vault
 
@@ -192,7 +192,7 @@ To enable MUA on the vaults, follow these steps.
 
 1. Select **Save** once done to enable MUA.
 
-   :::image type="content" source="./media/multi-user-authorization/testvault1-enable-mua.png" alt-text="Screenshot showing how to enable Multi-user authentication.":::
+   :::image type="content" source="./media/multi-user-authorization/testvault1-enable-mua.png" alt-text="Screenshot shows how to enable Multi-user authentication." lightbox="./media/multi-user-authorization/testvault1-enable-mua.png":::
 
 # [PowerShell](#tab/powershell)
 
@@ -352,10 +352,6 @@ After the Backup admin’s request for the **Backup MUA Operator** role on the R
 >[!NOTE]
 > If the access was assigned using a JIT mechanism, the **Backup MUA Operator** role is retracted at the end of the approved period. Else, the Security admin manually removes the **Backup MUA Operator** role assigned to the Backup admin to perform the critical operation.
 
-The following screenshot shows an example of disabling soft delete for an MUA-enabled vault.
-
-:::image type="content" source="./media/multi-user-authorization/disable-soft-delete-inline.png" alt-text="Screenshot showing to disable soft delete." lightbox="./media/multi-user-authorization/disable-soft-delete-expanded.png":::
-
 ## Disable MUA on a Recovery Services vault
 
 Disabling MUA is a protected operation, so, so, vaults are protected using MUA. If you (the Backup admin) want to disable MUA, you must have the required **Backup MUA Operator** role in the Resource Guard.
@@ -426,7 +422,7 @@ This article describes how to configure Multi-User Authorization (MUA) for Azure
 
 >[!NOTE]
 >- Multi-user authorization using Resource Guard for Backup vault is now generally available.
->- Multi-user authorization for Azure Backup is available in all public Azure regions.
+>- Multi-user authorization for Azure Backup is available in all global Azure regions.
 
 ## Prerequisites
 
@@ -494,11 +490,11 @@ To assign the **Reader** role on the Resource Guard, follow these steps:
 
 1. In the Resource Guard created above, go to the **Access Control (IAM)** pane, and then go to **Add role assignment**.
 
-   :::image type="content" source="./media/multi-user-authorization/demo-resource-guard-access-control.png" alt-text="Screenshot showing demo resource guard-access control for Backup vault.":::
+   :::image type="content" source="./media/multi-user-authorization/demo-resource-guard-access-control.png" alt-text="Screenshot shows the demo resource guard-access control for Backup vault." lightbox="./media/multi-user-authorization/demo-resource-guard-access-control.png":::
     
 1. Select **Reader** from the list of built-in roles, and select **Next**.
 
-   :::image type="content" source="./media/multi-user-authorization/demo-resource-guard-add-role-assignment-inline.png" alt-text="Screenshot showing demo resource guard-add role assignment for Backup vault." lightbox="./media/multi-user-authorization/demo-resource-guard-add-role-assignment-expanded.png":::
+   :::image type="content" source="./media/multi-user-authorization/demo-resource-guard-add-role-assignment.png" alt-text="Screenshot shows the add-role-assignment option on demo resource guard for Backup vault." lightbox="./media/multi-user-authorization/demo-resource-guard-add-role-assignment.png":::
 
 1. Click **Select members** and add the Backup admin's email ID to assign the **Reader** role.
 
@@ -506,7 +502,7 @@ To assign the **Reader** role on the Resource Guard, follow these steps:
 
 1. Click **Select** > **Review + assign** to complete the role assignment.
 
-   :::image type="content" source="./media/multi-user-authorization/demo-resource-guard-select-members-inline.png" alt-text="Screenshot showing demo resource guard-select members to protect the backup items in Backup vault." lightbox="./media/multi-user-authorization/demo-resource-guard-select-members-expanded.png":::
+   :::image type="content" source="./media/multi-user-authorization/demo-resource-guard-select-members.png" alt-text="Screenshot shows the demo resource guard-select members to protect the backup items in Backup vault." lightbox="./media/multi-user-authorization/demo-resource-guard-select-members.png":::
 
 ## Enable MUA on a Backup vault
 
@@ -535,7 +531,7 @@ Once the Backup admin has the Reader role on the Resource Guard, they can enable
 
 1. Select **Save** to enable MUA.
 
-   :::image type="content" source="./media/multi-user-authorization/testvault1-enable-mua.png" alt-text="Screenshot showing how to enable Multi-user authentication.":::
+   :::image type="content" source="./media/multi-user-authorization/testvault1-enable-mua.png" alt-text="Screenshot shows how to enable Multi-user authentication." lightbox="./media/multi-user-authorization/testvault1-enable-mua.png":::
 
 ## Protected operations using MUA
 

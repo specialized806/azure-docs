@@ -5,7 +5,7 @@ author: rolyon
 manager: pmwongera
 ms.service: role-based-access-control
 ms.topic: whats-new
-ms.date: 12/11/2025
+ms.date: 12/30/2025
 ms.author: rolyon
 
 ---
@@ -18,6 +18,7 @@ This article provides information about new features and documentation improveme
 
 | Date | Area | Description |
 | --- | --- | --- |
+| December 2025 | Roles | Added Microsoft Foundry roles.<br/>[Azure AI Account Owner](./built-in-roles/ai-machine-learning.md#azure-ai-account-owner)<br/>[Azure AI Administrator](./built-in-roles/ai-machine-learning.md#azure-ai-administrator)<br/>[Azure AI Owner](./built-in-roles/ai-machine-learning.md#azure-ai-owner)<br/>[Azure AI Project Manager](./built-in-roles/ai-machine-learning.md#azure-ai-project-manager)<br/>[Azure AI User](./built-in-roles/ai-machine-learning.md#azure-ai-user) |
 | December 2025 | Roles | Added [Storage Connector Contributor](./built-in-roles/storage.md#storage-connector-contributor) and [Storage DataShare Contributor](./built-in-roles/storage.md#storage-datashare-contributor) roles. |
 | December 2025 | Classic administrators | Updates about automatic assignment to Owner role. See [Azure classic subscription administrators](classic-administrators.md). |
 | December 2025 | Roles | Added [Storage File Data SMB MI Admin](./built-in-roles/storage.md#storage-file-data-smb-mi-admin) role. |
