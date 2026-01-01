@@ -57,7 +57,7 @@ _This section describes using a [class library](./functions-dotnet-class-library
 
 This version of the Azure Cosmos DB bindings extension introduces the ability to [connect using an identity instead of a secret](./functions-reference.md#configure-an-identity-based-connection). For a tutorial on configuring your function apps with managed identities, see the [creating a function app with identity-based connections tutorial](./functions-identity-based-connections-tutorial.md). 
 
-This version also changes the types that you can bind to, replacing the types from the v2 SDK `Microsoft.Azure.DocumentDB` with newer types from the v3 SDK [Microsoft.Azure.Cosmos](/azure/cosmos-db/sql/sql-api-sdk-dotnet-standard). Learn more about how these new types are different and how to migrate to them from the [SDK migration guide](/azure/cosmos-db/sql/migrate-dotnet-v3), [trigger](./functions-bindings-cosmosdb-v2-trigger.md), [input binding](./functions-bindings-cosmosdb-v2-input.md), and [output binding](./functions-bindings-cosmosdb-v2-output.md) examples.
+This version also changes the types that you can bind to, replacing the types from the v2 SDK `Microsoft.Azure.DocumentDB` with newer types from the v3 SDK [Microsoft.Azure.Cosmos](/azure/cosmos-db/sql/sql-api-sdk-dotnet-standard). Learn more about how these new types are different and how to migrate to them from the [SDK migration guide](/azure/cosmos-db/migrate-dotnet-v3), [trigger](./functions-bindings-cosmosdb-v2-trigger.md), [input binding](./functions-bindings-cosmosdb-v2-input.md), and [output binding](./functions-bindings-cosmosdb-v2-output.md) examples.
 
 This extension version is available as a [NuGet package](https://www.nuget.org/packages/Microsoft.Azure.WebJobs.Extensions.CosmosDB), version 4.x.
 
