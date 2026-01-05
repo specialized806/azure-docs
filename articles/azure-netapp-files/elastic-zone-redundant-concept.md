@@ -67,7 +67,6 @@ If you're using custom RBAC roles, ensure you configure the [correct permissions
 * Germany West Central 
 * North Europe
 * South Central US
-* Spain Central 
 * UK South 
 * West Europe
 * West US 2
