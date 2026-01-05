@@ -67,7 +67,7 @@ Azure Backup currently doesn't support the movement of backup data from one Reco
 
 Make sure to reconfigure all associated settings that were captured from the source Recovery Services vault:
 
-- (Optional) Private endpoint: Follow the procedure to relocate a [virtual network](/technical-delivery-playbook/azure-services/networking/virtual-network/) as described, and create the private endpoint.
+- (Optional) Private endpoint: Relocate a virtual network and create a private endpoint.
 - Network firewall reconfiguration.
 - Alert notification.
 - Workbook to move, if configured.
@@ -77,12 +77,12 @@ Make sure to reconfigure all associated settings that were captured from the sou
 
 To continue to protect your resources, you must register and back them up to a Recovery Services vault in the new region. This section shows you how to back up the following resources:
 
-- [Azure VMs](#back-up-azure-virtual-machine)
-- [Azure file shares](#back-up-azure-file-share)
-- [SQL Server/SAP HANA in an Azure VM](#back-up-sql-serversap-hana-in-azure-vm)
+- [Azure VMs](#back-up-an-azure-virtual-machine)
+- [Azure file shares](#back-up-azure-file-shares)
+- [SQL Server/SAP HANA in an Azure VM](#back-up-sql-serversap-hana-in-an-azure-vm)
 - [On-premises resources](#back-up-services-for-on-premises-resources)
 
-### Back up an Azure VM
+### Back up an Azure virtual machine
 
 When an Azure VM protected by a Recovery Services vault is moved from one region to another, it can no longer be backed up to the older vault. The backups in the old vault might start failing with the errors `BCMV2VMNotFound` or [ResourceNotFound](../../../backup/backup-azure-vms-troubleshoot.md#320001-resourcenotfound---could-not-perform-the-operation-as-vm-no-longer-exists--400094-bcmv2vmnotfound---the-virtual-machine-doesnt-exist--an-azure-virtual-machine-wasnt-found).
 
