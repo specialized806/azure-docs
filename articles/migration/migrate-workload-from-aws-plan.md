@@ -1,5 +1,5 @@
 ---
-title: Migrate a Workload from Amazon Web Services (AWS) - Plan
+title: Migrate a Workload from Amazon Web Services (AWS) to Azure - Plan
 description: Learn how to plan migration of a single workload from AWS to Azure
 ms.author: rhackenberg
 ai-usage: ai-assisted

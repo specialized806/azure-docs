@@ -1,5 +1,5 @@
 ---
-title: Migrate a Workload from Amazon Web Services (AWS) - Execute
+title: Migrate a Workload from Amazon Web Services (AWS) to Azure - Execute
 description: Learn how to execute migration of a single workload from AWS to Azure
 ms.author: rhackenberg
 ai-usage: ai-assisted
@@ -10,7 +10,7 @@ ms.collection:
   - migration
   - aws-to-azure
 ---
-# Migrate a workload from Amazon Web Services (AWS) - Execute
+# Migrate a workload from Amazon Web Services (AWS) to Azure - Execute
 
 The execute phase consists of three steps: 
 

@@ -1,5 +1,5 @@
 ---
-title: Migrate a Workload from Amazon Web Services (AWS) - Prepare
+title: Migrate a Workload from Amazon Web Services (AWS) to Azure - Prepare
 description: Learn how to prepare migration of a single workload from AWS to Azure
 ms.author: rhackenberg
 ai-usage: ai-assisted
@@ -10,7 +10,7 @@ ms.collection:
   - migration
   - aws-to-azure
 ---
-# Migrate a workload from Amazon Web Services (AWS) - Prepare
+# Migrate a workload from Amazon Web Services (AWS) to Azure - Prepare
 
 The prepare phase consists of two steps: 
 
