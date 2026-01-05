@@ -20,7 +20,7 @@ Azure Functions is a serverless compute service that enables you to run event-dr
 
 This guide focuses specifically on building Python-based Azure Functions and helps you:
 - Create and run function apps locally
-- Understand the Python v2 programming model
+- Understand the Python programming model
 - Organize and configure your application
 - Deploy and monitor your app in Azure
 - Apply best practices for scaling and performance
@@ -50,6 +50,9 @@ This section covers the essential components for creating and structuring your P
 
 ### Programming model
 ::: zone pivot="python-mode-configuration"
+> [!IMPORTANT]  
+> It's recommended to use the v2 programming model.
+
 In the Python v1 programming model, each function is defined as a global, stateless `main()` method inside a file named `__init__.py`.
 The function’s triggers and bindings are configured separately in a `function.json` file, and the binding `name` values are used as parameters in your `main()` method.
 
@@ -72,10 +75,31 @@ Here's the corresponding `function.json` file:
 - To send a name in this example, append `?name={name}` to the exposed function URL. For example, if running locally, the full URL may look like `http://localhost:7071/api/http_trigger?name=Test`.
 For examples using bindings, see [Triggers and Bindings](#triggers-and-bindings).
 
-Use **type annotations** to improve IntelliSense and editor support:
+Use the `azure-functions` SDK and include **type annotations** to improve IntelliSense and editor support:
 ```python
+# __init__.py
+import azure.functions as func
+
 def http_trigger(req: func.HttpRequest) -> str:
 ```
+
+```text
+# requirements.txt
+azure-functions
+```
+
+#### The `azure-functions` library
+The `azure-functions` Python library provides the core types used to interact with the Azure Functions runtime. To see all types and methods available, visit the [`azure-functions` API](/python/api/azure-functions/).
+Your function code can use `azure-functions` to:
+- Access trigger input data (for example, `HttpRequest`, `TimerRequest`)
+- Create output values (such as `HttpResponse`)
+- Interact with runtime-provided context and binding data
+
+If you're using `azure-functions` in your app, it's required to include it in your project dependencies.
+
+[!NOTE]
+The `azure-functions` library defines the programming surface for Python Azure Functions, but it isn’t a general-purpose SDK. It’s designed specifically for authoring and running functions within the Azure Functions runtime.
+
 
 ### Alternative entry point
 
@@ -157,19 +181,36 @@ import azure.functions as func
 
 app = func.FunctionApp()
 
-@app.function_name(name="HttpTrigger1")
-@app.route(route="http_trigger")
+@app.route("hello")
 def http_trigger(req):
     user = req.params.get("user")
     return f"Hello, {user}!"
 ```
 
+```text
+# requirements.txt
+azure-functions
+```
 
 #### Key concepts
+- The code imports the `azure-functions` package and uses decorators and types to define the function app.
 - The function has a single HTTP trigger.
 - The [HttpRequest] object contains request headers, query parameters, route parameters, and the message body. This function obtains the value of the `name` query parameter from the `params` parameter of the [HttpRequest] object.
 - To send a name in this example, append `?name={name}` to the exposed function URL. For example, if running locally, the full URL may look like `http://localhost:7071/api/http_trigger?name=Test`.
 For examples using bindings, see [Triggers and Bindings](#triggers-and-bindings).
+
+#### The `azure-functions` library
+The `azure-functions` Python library is a core part of the Azure Functions programming model. It provides the decorators, trigger and binding types, and request/response objects used to define and interact with functions at runtime.
+To see all types and decorators available, visit the [`azure-functions` API](/python/api/azure-functions/).
+Your function app code depends on this library to:
+- Create the `FunctionApp` object to define all functions
+- Declare triggers and bindings (for example, `@app.route`, `@app.timer_trigger`)
+- Access strongly typed inputs and outputs (such as `HttpRequest` and `HttpResponse`, and Out`)
+
+The `azure-functions` must be included in your project dependencies. To learn more, see [package management](#package-management).
+
+[!NOTE]
+The `azure-functions` library defines the programming surface for Python Azure Functions, but it isn’t a general-purpose SDK. It’s designed specifically for authoring and running functions within the Azure Functions runtime.
 
 
 Use **type annotations** to improve IntelliSense and editor support:
@@ -271,6 +312,53 @@ There are two main types of bindings:
 - **Inputs and outputs** (extra data sources or destinations)
 
 To learn more about the available triggers and bindings, see [Triggers and Bindings in Azure Functions](./functions-triggers-bindings.md).
+
+::: zone pivot="python-mode-decorators"
+
+**Example: Timer Trigger with Blob Input**
+
+This function:
+- Triggers every 10 minutes
+- Reads from a Blob by using [SDK Type Bindings](#sdk-type-bindings)
+- Caches results and writes to a temporary file
+
+```python
+import azure.functions as func
+import azurefunctions.extensions.bindings.blob as blob
+import logging
+import tempfile
+
+CACHED_BLOB_DATA = None
+
+app = func.FunctionApp()
+
+@app.function_name(name="TimerTriggerWithBlob")
+@app.schedule(schedule="0 */10 * * * *", arg_name="mytimer")
+@app.blob_input(arg_name="client",
+                path="PATH/TO/BLOB",
+                connection="BLOB_CONNECTION_SETTING")
+def timer_trigger_with_blob(mytimer: func.TimerRequest,
+                            client: blob.BlobClient,
+                            context: func.Context) -> None:
+    global CACHED_BLOB_DATA
+    if CACHED_BLOB_DATA is None:
+        # Download blob and save as a global variable
+        CACHED_BLOB_DATA = client.download_blob().readall()
+
+        # Create temp file prefix
+        my_prefix = context.invocation_id
+        temp_file = tempfile.NamedTemporaryFile(prefix=my_prefix)
+        temp_file.write(CACHED_BLOB_DATA)
+        logging.info(f"Cached data written to {temp_file.name}")
+```
+#### Key concepts
+- Use SDK type bindings to work with rich types. For more information, see [SDK type bindings](#sdk-type-bindings).
+- You can use global variables to cache expensive computations, but their state isn't guaranteed to persist across function executions.
+- Temporary files are stored in `tmp/` and aren't guaranteed to persist across invocations or scale-out instances.
+- You can access the invocation context of a function through the [Context class](/python/api/azure-functions/azure.functions.context).
+
+::: zone-end
+
 
 **Example: HTTP Trigger with Cosmos DB Input and Event Hub Output**
 
@@ -386,48 +474,6 @@ def http_trigger_with_cosmosdb(req: func.HttpRequest,
 - You can access request details through the `HttpRequest` object and construct a custom `HttpResponse` with headers, status code, and body.
 
 
-**Example: Timer Trigger with Blob Input**
-
-This function:
-- Triggers every 10 minutes
-- Reads from a Blob by using [SDK Type Bindings](#sdk-type-bindings)
-- Caches results and writes to a temporary file
-
-```python
-import azure.functions as func
-import azurefunctions.extensions.bindings.blob as blob
-import logging
-import tempfile
-
-CACHED_BLOB_DATA = None
-
-app = func.FunctionApp()
-
-@app.function_name(name="TimerTriggerWithBlob")
-@app.schedule(schedule="0 */10 * * * *", arg_name="mytimer")
-@app.blob_input(arg_name="client",
-                path="PATH/TO/BLOB",
-                connection="BLOB_CONNECTION_SETTING")
-def timer_trigger_with_blob(mytimer: func.TimerRequest,
-                            client: blob.BlobClient,
-                            context: func.Context) -> None:
-    global CACHED_BLOB_DATA
-    if CACHED_BLOB_DATA is None:
-        # Download blob and save as a global variable
-        CACHED_BLOB_DATA = client.download_blob().readall()
-
-        # Create temp file prefix
-        my_prefix = context.invocation_id
-        temp_file = tempfile.NamedTemporaryFile(prefix=my_prefix)
-        temp_file.write(CACHED_BLOB_DATA)
-        logging.info(f"Cached data written to {temp_file.name}")
-```
-#### Key concepts
-- Use SDK type bindings to work with rich types. For more information, see [SDK type bindings](#sdk-type-bindings).
-- You can use global variables to cache expensive computations, but their state isn't guaranteed to persist across function executions.
-- Temporary files are stored in `tmp/` and aren't guaranteed to persist across invocations or scale-out instances.
-- You can access the invocation context of a function through the [Context class](/python/api/azure-functions/azure.functions.context).
-
 ### SDK type bindings
 For select triggers and bindings, you can work with data types implemented by the underlying Azure SDKs and 
 frameworks. These _SDK type bindings_ let you interact with binding data as if you were using the underlying service 
@@ -455,7 +501,7 @@ setting_value = os.getenv("myAppSetting", "default_value")
 
 ### Package management
 
-To use other Python packages in your Azure Functions app, list them in a `requirements.txt` file at the root of your project. You can then reference those packages as usual.
+To use other Python packages in your Azure Functions app, list them in a `requirements.txt` file at the root of your project. These packages will be imported by Python's import system, and you can then reference those packages as usual.
 To learn more about building and deployment options with external dependencies, see [Build Options for Python Function Apps](./python-build-options.md).
 
 For example, the following sample shows how the `requests` module is included and used in the function app.
@@ -500,9 +546,9 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
 #### Considerations
 - Conflicts with built-in modules:
    - Avoid naming your project folders after [Python standard libraries](https://docs.python.org/3/library/) (for example, `email/`, `json/`).
-   - Don't include Python native libraries (like `logging`) in `requirements.txt.`
+   - Don't include Python native libraries (like `logging`, `asyncio`, or `uuid`) in `requirements.txt`, since this will cause the app to break in production.
 - Deployment:
-   - To prevent `ModuleNotFound` errors, ensure all required dependencies are listed in `requirements.txt`.
+   - To prevent [`ModuleNotFound` errors](./recover-python-functions.md#troubleshoot-modulenotfounderror), ensure all required dependencies are listed in `requirements.txt`.
    - If you update your app's Python version, rebuild and redeploy your app on the new Python version to avoid dependency conflicts with previously built packages.
 - Non-PyPI Dependencies:
    - You can include dependencies that aren't available on PyPI in your app, such as local packages, wheel files, or private feeds. See [Custom dependencies in Python  Azure Functions](./python-build-options.md#custom-dependencies) for setup instructions.
@@ -586,7 +632,7 @@ Hello, World!
 
 ::: zone-end
 
-This approach doesn't require any extra packages or setup and is ideal for quick validation during development.
+This approach doesn't require any extra packages or setup and is ideal for quick validation during development. For more in-depth testing, see [Unit Testing](#unit-testing)
 
 ### Supported Python versions
 Azure Functions supports the following Python versions listed in [Supported languages in Azure Functions](./supported-languages.md).
@@ -601,15 +647,15 @@ Learn more about the recommended build mechanism for your scenario: [Build Optio
 
 **Deployment Mechanisms Quick Comparison**
 
-| **Tool / Platform**                                                                             | **Command / Action**                                                                                              | **Best Use Case**                                                                                                                                             |
-|-------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [**Azure Functions Core Tools**](./functions-run-local.md)                                      | [`func azure functionapp publish <APP_NAME>`](./functions-core-tools-reference.md#func-azure-functionapp-publish) | Ideal for CI runs, local automation, or when working cross-platform.                                                                                          |
-| [**AZ CLI**](/cli/azure/functionapp)                                                               | [`az functionapp deployment source config-zip`](/cli/azure/functionapp/deployment/source#az-functionapp-deployment-source-config-zip)                                              | Useful when scripting deployments outside of Core Tools. Works well in automated pipelines or cloud-based terminals (Azure Cloud Shell).                      |
-| [**Visual Studio Code (Azure Functions Extension)**](./functions-develop-vs-code.md)            | **Command Palette → “Azure Functions: Deploy to Azure…”**                                                         | Best for beginners or interactive deployments. Automatically handles packaging and build.                                                                     |
-| [**GitHub Actions**](./functions-how-to-github-actions.md)                                      | `Azure/functions-action@v1`                                                                                       | Ideal for GitHub-based CI/CD. Enables automated deployments on push or PR merges.                                                                             |
-| [**Azure Pipelines**](./functions-how-to-azure-devops.md)                                       | `AzureFunctionApp@2` task                                                                                         | Enterprise CI/CD using Azure DevOps. Best for controlled release workflows, gated builds, and multi-stage pipelines.                                          |
-| [**Custom Container Deployment**](./functions-how-to-custom-container.md?pivot=azure-functions) | Push container → `az functionapp create --image <container>`                                                      | Required when you need OS-level packages, custom Python builds, pinned runtimes, or unsupported dependencies (for example, system libraries, local binaries). |
-| [**Portal-based Function Creation**](./functions-create-function-app-portal.md)                 | Create function in the [Azure portal](https://portal.azure.com) → inline editor                                   | Use only for **simple**, dependency-free functions. Great for demos or learning, but **not recommended** for apps requiring third-party packages.             |
+| **Tool / Platform**                                                                             | **Command / Action**                                                                                                                  | **Best Use Case**                                                                                                                                             |
+|-------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [**Azure Functions Core Tools**](./functions-run-local.md)                                      | [`func azure functionapp publish <APP_NAME>`](./functions-core-tools-reference.md#func-azure-functionapp-publish)                     | Ideal for CI runs, local automation, or when working cross-platform.                                                                                          |
+| [**AZ CLI**](/cli/azure/functionapp)                                                            | [`az functionapp deployment source config-zip`](/cli/azure/functionapp/deployment/source#az-functionapp-deployment-source-config-zip) | Useful when scripting deployments outside of Core Tools. Works well in automated pipelines or cloud-based terminals (Azure Cloud Shell).                      |
+| [**Visual Studio Code (Azure Functions Extension)**](./functions-develop-vs-code.md)            | **Command Palette → “Azure Functions: Deploy to Azure…”**                                                                             | Best for beginners or interactive deployments. Automatically handles packaging and build.                                                                     |
+| [**GitHub Actions**](./functions-how-to-github-actions.md)                                      | `Azure/functions-action@v1`                                                                                                           | Ideal for GitHub-based CI/CD. Enables automated deployments on push or PR merges.                                                                             |
+| [**Azure Pipelines**](./functions-how-to-azure-devops.md)                                       | `AzureFunctionApp@2` task                                                                                                             | Enterprise CI/CD using Azure DevOps. Best for controlled release workflows, gated builds, and multi-stage pipelines.                                          |
+| [**Custom Container Deployment**](./functions-how-to-custom-container.md?pivot=azure-functions) | Push container → `az functionapp create --image <container>`                                                                          | Required when you need OS-level packages, custom Python builds, pinned runtimes, or unsupported dependencies (for example, system libraries, local binaries). |
+| [**Portal-based Function Creation**](./functions-create-function-app-portal.md)                 | Create function in the [Azure portal](https://portal.azure.com) → inline editor                                                       | Use only for **simple**, dependency-free functions. Great for demos or learning, but **not recommended** for apps requiring third-party packages.             |
 
 > [!NOTE]  
 > [**Portal-based Function Creation**](./functions-create-function-app-portal.md) doesn't support third-party dependencies, and it isn't recommended for creating production apps. You can't install or reference packages outside `azure-functions` and the built-in Python standard library.
@@ -665,11 +711,11 @@ Key changes include:
 
 ---
 
-## Observability and testing
+## Observability and Testing
 
 This section covers [logging](#logging-and-monitoring), [monitoring](#opentelemetry-support), and [testing capabilities](#unit-testing) to help you debug issues, track performance, and ensure the reliability of your Python function apps.
 
-### Logging and monitoring
+### Logging and Monitoring
 Azure Functions exposes a root logger that you can use directly with Python’s built-in `logging` module. Any 
 messages written using this logger are automatically sent to **Application Insights** when your app is running 
 in Azure.
@@ -863,7 +909,7 @@ test_my_function.py .                                                           
 
 ---
 
-## Optimization and advanced topics
+## Performance optimization and other advanced topics
 
 To learn more about optimizing your Python functions apps, see these articles:
 
@@ -886,7 +932,7 @@ For more information about Functions, see these articles:
 * [Queue Storage bindings](functions-bindings-storage-queue.md)
 * [Timer triggers](functions-bindings-timer.md)
 
-[Having issues with using Python? Tell us what's going on.](https://aka.ms/python-functions-ref-survey)
+[Having issues with using Python? Let us know and file an issue.](https://github.com/Azure/azure-functions-python-worker/issues)
 
 
 [HttpRequest]: /python/api/azure-functions/azure.functions.httprequest
