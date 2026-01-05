@@ -51,13 +51,13 @@ To monitor alerts or view management data about a Recovery Services vault, open 
 
 ## Monitor Backup jobs and alerts
 
-The Recovery Services vault **Overview** dashboard provides tiles for monitoring and use information. The tiles in the **Monitoring** section show **Critical** and **Warning** alerts and **In progress** and **Failed** jobs. Select a particular alert or job to open the **Backup Alerts** or **Backup Jobs** menu, filtered for that job or alert.
+The Recovery Services vault **Overview** dashboard provides tiles for monitoring and use information. The tiles in the **Monitoring** section show **Critical** and **Warning** alerts and **In progress** and **Failed** jobs. Select a particular alert or job to open the **Backup Alerts** or **Backup Jobs** menu filtered for that job or alert.
 
 ![Screenshot that shows the Backup dashboard tasks.](./media/backup-azure-manage-windows-server/monitor-dashboard-tiles-warning.png)
 
 [!INCLUDE [Classic alerts deprecation for Azure Backup.](../../includes/backup-azure-classic-alerts-deprecation.md)]
 
-The **Monitoring** section shows the results of predefined **Backup Alerts** and **Backup Jobs** queries. The **Monitoring** tiles provide up-to-date information about:
+The **Monitoring** section shows the results of predefined Backup alerts and Backup jobs queries. The **Monitoring** tiles provide up-to-date information about:
 
 * **Critical** and **Warning** alerts for Backup jobs in the last 24 hours.
 * Precheck status for Azure VMs. For complete information on the precheck status, see [Backup Pre-Check Status](#backup-pre-check-status).
@@ -79,18 +79,18 @@ To see the details of classic alerts, select the **Backup Alerts** tile.
 
 ### Backup Pre-Check Status
 
-Backup Pre-Checks check your VM configuration for issues that can adversely affect backups. They aggregate this information so that you can view it directly from the Recovery Services vault dashboard and provide recommendations for corrective measures to ensure successful file-consistent or application-consistent backups. They require no infrastructure and have no other cost.  
+Backup prechecks assess your VM configuration for issues that can adversely affect backups. They aggregate this information so that you can view it directly from the Recovery Services vault dashboard and provide recommendations for corrective measures to ensure successful file-consistent or application-consistent backups. They require no infrastructure and have no other cost.  
 
-Backup Pre-Checks run as part of the scheduled backup operations for your Azure VMs. They conclude with one of the following states:
+Backup prechecks run as part of the scheduled backup operations for your Azure VMs. They conclude with one of the following states:
 
 * **Passed**: This state indicates that your VM's configuration should lead to successful backups and no corrective action needs to be taken.
 * **Warning**: This state indicates one or more issues in the VM's configuration that *might* lead to backup failures. It provides *recommended* steps to ensure successful backups. For example, not having the latest VM Agent installed can cause backups to fail intermittently. This situation provides a Warning state.
 * **Critical**: This state indicates one or more critical issues in the VM's configuration that *will* lead to backup failures and provides *required* steps to ensure successful backups. For example, a network issue caused by an update to the network security group rules of a VM causes backups to fail. It prevents the VM from communicating with Azure Backup. This situation provides a Critical state.
 
-Follow these steps to start resolving any issues reported by Backup Pre-Checks for VM backups on your Recovery Services vault:
+Follow these steps to start resolving any issues reported by Backup prechecks for VM backups on your Recovery Services vault:
 
 * Select the **Backup Pre-Check Status (Azure VMs)** tile on the Recovery Services vault dashboard.
-* Select any VM with a Backup Pre-Check status of either **Critical** or **Warning** to open the **VM details** pane.
+* Select any VM with a Backup precheck status of either **Critical** or **Warning** to open the **VM details** pane.
 * Select the pane notification at the top of the pane to reveal the configuration issue description and remedial steps.
 
 ## Manage Backup alerts
@@ -123,7 +123,7 @@ To explore a specific type of protected instance, select the item in the Backup 
 The list of VMs has data like:
 
 - The associated resource group.
-- Previous [Backup Pre-Check](#backup-pre-check-status).
+- Previous [Backup precheck](#backup-pre-check-status).
 - Last backup status.
 - Date of the most recent restore point.
 

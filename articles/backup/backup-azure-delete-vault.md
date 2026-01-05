@@ -307,11 +307,11 @@ To access the PowerShell script for vault deletion, see [PowerShell script to de
 
   The script performs the following actions:
 
-  1. Disables soft delete and security features.
-  1. Deletes backup items.
-  1. Unregisters servers and storage accounts.
-  1. Deletes disaster recovery items.
-  1. Removes private endpoints.
+  - Disables soft delete and security features.
+  - Deletes backup items.
+  - Unregisters servers and storage accounts.
+  - Deletes disaster recovery items.
+  - Removes private endpoints.
 
 To delete an individual backup item or write your own script, use the following PowerShell commands:
 

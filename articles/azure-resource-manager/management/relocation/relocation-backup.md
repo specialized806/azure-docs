@@ -37,7 +37,7 @@ After you relocate your resources to the new region, you can choose to either ke
   - Azure Virtual Network.
   - Recovery Services vault.
 
-- Whether the VM is moved with the vault or not, you can always restore the VM from the retained backup history in the vault.
+- Restore the VM from the retained backup history in the vault, if necessary. You can always perform this task whether the VM is moved with the vault or not.
 - Copy the backup VM configuration metadata to validate after the relocation is finished.
 - Confirm that all services and features that are in use by the source vault are supported in the target region.
 
@@ -79,12 +79,12 @@ To continue to protect your resources, you must register and back them up to a R
 
 - [Azure VMs](#back-up-azure-virtual-machine)
 - [Azure file shares](#back-up-azure-file-share)
-- [SQL Server/SAP HANA in Azure VM](#back-up-sql-serversap-hana-in-azure-vm)
+- [SQL Server/SAP HANA in an Azure VM](#back-up-sql-serversap-hana-in-azure-vm)
 - [On-premises resources](#back-up-services-for-on-premises-resources)
 
 ### Back up an Azure VM
 
-When an Azure VM protected by a Recovery Services vault is moved from one region to another, it can no longer be backed up to the older vault. The backups in the old vault might start failing with the errors `BCMV2VMNotFound` or [`ResourceNotFound`](../../../backup/backup-azure-vms-troubleshoot.md#320001-resourcenotfound---could-not-perform-the-operation-as-vm-no-longer-exists--400094-bcmv2vmnotfound---the-virtual-machine-doesnt-exist--an-azure-virtual-machine-wasnt-found).
+When an Azure VM protected by a Recovery Services vault is moved from one region to another, it can no longer be backed up to the older vault. The backups in the old vault might start failing with the errors `BCMV2VMNotFound` or [ResourceNotFound](../../../backup/backup-azure-vms-troubleshoot.md#320001-resourcenotfound---could-not-perform-the-operation-as-vm-no-longer-exists--400094-bcmv2vmnotfound---the-virtual-machine-doesnt-exist--an-azure-virtual-machine-wasnt-found).
 
 You can also choose to write a customized script for bulk VM protection:
 
