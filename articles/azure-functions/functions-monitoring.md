@@ -2,7 +2,7 @@
 title: Monitor executions in Azure Functions
 description: Learn how to use Azure Application Insights with Azure Functions to monitor function executions. Application Insights collects log, performance, and error data.
 ms.assetid: 501722c3-f2f7-4224-a220-6d59da08a320
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 05/07/2025
 ms.custom:
   - devx-track-csharp
