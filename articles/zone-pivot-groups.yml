@@ -2039,3 +2039,12 @@ groups:
     title: Azure ExpressRoute gateway
   - id: vpn
     title: Azure VPN gateway
+# Owner: danlep
+- id: api-management-tiers
+  title: API Management service tier
+  prompt: "Select the API Management service tier:"
+  pivots:
+  - id: prem
+    title: Premium (classic)
+  - id: premv2
+    title: Premium v2
