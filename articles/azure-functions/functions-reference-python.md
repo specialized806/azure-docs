@@ -51,7 +51,7 @@ This section covers the essential components for creating and structuring your P
 ### Programming model
 ::: zone pivot="python-mode-configuration"
 > [!IMPORTANT]  
-> It's recommended to use the v2 programming model.
+> Use the v2 programming model for a **decorator-based approach** to define triggers and bindings directly in your code.
 
 In the Python v1 programming model, each function is defined as a global, stateless `main()` method inside a file named `__init__.py`.
 The function’s triggers and bindings are configured separately in a `function.json` file, and the binding `name` values are used as parameters in your `main()` method.
@@ -95,10 +95,10 @@ Your function code can use `azure-functions` to:
 - Create output values (such as `HttpResponse`)
 - Interact with runtime-provided context and binding data
 
-If you're using `azure-functions` in your app, it's required to include it in your project dependencies.
+If you're using `azure-functions` in your app, it must be included in your project dependencies.
 
-[!NOTE]
-The `azure-functions` library defines the programming surface for Python Azure Functions, but it isn’t a general-purpose SDK. It’s designed specifically for authoring and running functions within the Azure Functions runtime.
+> [!NOTE]
+> The `azure-functions` library defines the programming surface for Python Azure Functions, but it isn’t a general-purpose SDK. Use it specifically for authoring and running functions within the Azure Functions runtime.
 
 
 ### Alternative entry point
@@ -203,14 +203,14 @@ For examples using bindings, see [Triggers and Bindings](#triggers-and-bindings)
 The `azure-functions` Python library is a core part of the Azure Functions programming model. It provides the decorators, trigger and binding types, and request/response objects used to define and interact with functions at runtime.
 To see all types and decorators available, visit the [`azure-functions` API](/python/api/azure-functions/).
 Your function app code depends on this library to:
-- Create the `FunctionApp` object to define all functions
+- Define all functions using the `FunctionApp` object
 - Declare triggers and bindings (for example, `@app.route`, `@app.timer_trigger`)
-- Access strongly typed inputs and outputs (such as `HttpRequest` and `HttpResponse`, and Out`)
+- Access typed inputs and outputs (such as `HttpRequest` and `HttpResponse`, and Out`)
 
 The `azure-functions` must be included in your project dependencies. To learn more, see [package management](#package-management).
 
-[!NOTE]
-The `azure-functions` library defines the programming surface for Python Azure Functions, but it isn’t a general-purpose SDK. It’s designed specifically for authoring and running functions within the Azure Functions runtime.
+> [!NOTE]
+> The `azure-functions` library defines the programming surface for Python Azure Functions, but it isn’t a general-purpose SDK. Use it specifically for authoring and running functions within the Azure Functions runtime.
 
 
 Use **type annotations** to improve IntelliSense and editor support:
@@ -315,7 +315,7 @@ To learn more about the available triggers and bindings, see [Triggers and Bindi
 
 ::: zone pivot="python-mode-decorators"
 
-**Example: Timer Trigger with Blob Input**
+#### Example: Timer Trigger with Blob Input
 
 This function:
 - Triggers every 10 minutes
@@ -351,7 +351,7 @@ def timer_trigger_with_blob(mytimer: func.TimerRequest,
         temp_file.write(CACHED_BLOB_DATA)
         logging.info(f"Cached data written to {temp_file.name}")
 ```
-#### Key concepts
+**Key concepts**
 - Use SDK type bindings to work with rich types. For more information, see [SDK type bindings](#sdk-type-bindings).
 - You can use global variables to cache expensive computations, but their state isn't guaranteed to persist across function executions.
 - Temporary files are stored in `tmp/` and aren't guaranteed to persist across invocations or scale-out instances.
@@ -360,7 +360,7 @@ def timer_trigger_with_blob(mytimer: func.TimerRequest,
 ::: zone-end
 
 
-**Example: HTTP Trigger with Cosmos DB Input and Event Hub Output**
+#### Example: HTTP Trigger with Cosmos DB Input and Event Hub Output
 
 This function:
 - Triggers on an HTTP request
@@ -428,7 +428,7 @@ def main(req: func.HttpRequest,
 
 ```
 
-#### Key concepts
+**Key concepts**
 - Each function has a single trigger, but it can have multiple bindings.
 - Add inputs by specifying the `direction` as "in" in `function.json`. Outputs have a `direction` of `out`.
 - You can access request details through the `HttpRequest` object and construct a custom `HttpResponse` with headers, status code, and body.
@@ -465,7 +465,7 @@ def http_trigger_with_cosmosdb(req: func.HttpRequest,
         status_code=200
     )
 ```
-#### Key concepts
+**Key concepts**
 - Use `@route()` or trigger-specific decorators (`@timer_trigger`, `@queue_trigger`, etc.) to define how your function is invoked.
 - Add inputs by using decorators like `@blob_input`, `@queue_input`, and others.
 - Outputs can be:
@@ -501,7 +501,7 @@ setting_value = os.getenv("myAppSetting", "default_value")
 
 ### Package management
 
-To use other Python packages in your Azure Functions app, list them in a `requirements.txt` file at the root of your project. These packages will be imported by Python's import system, and you can then reference those packages as usual.
+To use other Python packages in your Azure Functions app, list them in a `requirements.txt` file at the root of your project. These packages are imported by Python's import system, and you can then reference those packages as usual.
 To learn more about building and deployment options with external dependencies, see [Build Options for Python Function Apps](./python-build-options.md).
 
 For example, the following sample shows how the `requests` module is included and used in the function app.
@@ -546,7 +546,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
 #### Considerations
 - Conflicts with built-in modules:
    - Avoid naming your project folders after [Python standard libraries](https://docs.python.org/3/library/) (for example, `email/`, `json/`).
-   - Don't include Python native libraries (like `logging`, `asyncio`, or `uuid`) in `requirements.txt`, since this will cause the app to break in production.
+   - Don't include Python native libraries (like `logging`, `asyncio`, or `uuid`) in `requirements.txt`.
 - Deployment:
    - To prevent [`ModuleNotFound` errors](./recover-python-functions.md#troubleshoot-modulenotfounderror), ensure all required dependencies are listed in `requirements.txt`.
    - If you update your app's Python version, rebuild and redeploy your app on the new Python version to avoid dependency conflicts with previously built packages.

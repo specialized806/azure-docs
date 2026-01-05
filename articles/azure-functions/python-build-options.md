@@ -31,7 +31,7 @@ When deploying your Python function app to Azure, keep these packaging requireme
 - **The build environment must match the production environment**: Your dependencies must be built on an ubuntu machine using the same python version as the production app. [Remote build](#remote-build) handles this scenario automatically.
 - **Dependencies must be installed into `./.python_packages/lib/site-packages`**: Remote build installs all dependencies listed in `requirements.txt` into the correct directory.
 - **Keep deployment package size in mind**: large dependency sets increase build time, cold start latency, and module import and initialization time. Applications with large scientific or ML libraries (including `pytorch`) are especially impacted.
-- **Remote build has a 60-second timeout**: If dependency installation exceeds this limit, the build fails. In that case, consider using a [local build](#local-build) and deploying with prebuilt dependencies.
+- **Remote build has a 60-second timeout**: If dependency installation exceeds the limit, the build fails. In that case, consider using a [local build](#local-build) and deploying with prebuilt dependencies.
 - **Module import has a 2-minute time limit**: Python module loading and function indexing during startup has a 2-minute limit for Python 3.13 and above, or for older python versions with `PYTHON_ENABLE_INIT_INDEXING` enabled. If your app exceeds this, reduce top-level imports or use lazy imports (import modules inside the function body instead of at the global scope).
 
 ## Remote build
