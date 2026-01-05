@@ -187,8 +187,14 @@ az containerapp ingress access-restriction list
 ::: zone-end
 
 ## Troubleshooting
-### Access Denied
-An `RBAC: Access Denied.` message returned to the client indicates the client is blocked by IP restrictions from the Container App. Ensure the client IP address requesting access is allowed based on either the "allow" or "deny" rules. If using an address range, make sure the blocked IP falls within an allowed range.
+
+Use the following information to help you troubleshoot IP-related issues in your container app.
+
+### Access denied
+
+An *RBAC: Access Denied* message returned to the client indicates the client is blocked by IP restrictions from the container app. To fix this, make sure the client IP address requesting access is allowed based on either the "allow" or "deny" rules.
+
+If using an address range, make sure the blocked IP falls within an allowed range.
 
 ## Next steps
 
