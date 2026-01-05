@@ -197,8 +197,12 @@
       href: data-protection-disaster-recovery-options.md
     - name: How Azure NetApp Files snapshots work
       href: snapshots-introduction.md
-    - name: Understand Azure NetApp Files cache volumes
-      href: cache-volumes.md    
+    - name: Azure NetApp Files caching
+      items: 
+      - name: Understand Azure NetApp Files cache volumes
+        href: cache-volumes.md    
+      - name: Understand resizing guidelines for cache volumes
+        href: cache-volumes-resize-guidelines.md  
     - name: Azure NetApp Files backup
       items: 
       - name: Understand Azure NetApp Files backup
