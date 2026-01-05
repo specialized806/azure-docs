@@ -2042,9 +2042,9 @@ groups:
 # Owner: danlep
 - id: api-management-tiers
   title: API Management service tier
-  prompt: "Select the API Management service tier:"
+  prompt: "Select the API Management service tier"
   pivots:
-  - id: prem
+  - id: premium-classic
     title: Premium (classic)
-  - id: premv2
+  - id: premium-v2
     title: Premium v2
