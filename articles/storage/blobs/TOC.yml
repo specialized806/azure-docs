@@ -178,11 +178,10 @@ items:
                 href: ../../data-factory/connector-azure-data-lake-storage.md?toc=/azure/storage/blobs/toc.json&bc=/azure/storage/blobs/breadcrumb/toc.json
           - name: BlobFuse
             items:
-              - name: What is BlobFuse?
-                href: blobfuse2-what-is.md
               - name: Get started
                 items:
-
+                  - name: What is BlobFuse?
+                    href: blobfuse2-what-is.md
                   - name: Install BlobFuse
                     href: blobfuse2-install.md
                   - name: Mount a container
