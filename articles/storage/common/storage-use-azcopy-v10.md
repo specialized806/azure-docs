@@ -18,7 +18,7 @@ AzCopy is a command-line utility that you can use to copy data to, from, or betw
 
 > [!VIDEO 4238a2be-881a-4aaa-8ccd-07a6557a05ef]
 
-AzCopy **V10** is the currently supported version of AzCopy. It's supported only on versions of Windows, Linux, or macOS that are officially maintained. If you need to use a previous version of AzCopy, see the [Use the previous version of AzCopy](#previous-version) section of this article.
+AzCopy **v10** is the currently supported version of AzCopy. It's supported only on versions of Windows, Linux, or macOS that are officially maintained. If you need to use a previous version of AzCopy, see the [Use the previous version of AzCopy](#previous-version) section of this article.
 
 ## AzCopy use cases
 
@@ -48,7 +48,7 @@ Installing AzCopy through your Linux distribution's package manager is the most 
 
 ### Download a portable binary
 
-An installation package is available only for Linux. For all other operating systems, you can download the AzCopy V10 executable file to any directory on your computer.
+An installation package is available only for Linux. For all other operating systems, you can download the AzCopy v10 executable file to any directory on your computer.
 
 - [Windows 64-bit](https://aka.ms/downloadazcopy-v10-windows) (zip)
 - [Windows 32-bit](https://aka.ms/downloadazcopy-v10-windows-32bit) (zip)
@@ -59,9 +59,6 @@ An installation package is available only for Linux. For all other operating sys
 - [macOS ARM64](https://aka.ms/downloadazcopy-v10-mac-arm64) (zip)
 
 These files are compressed as a zip file (Windows and Mac) or a tar file (Linux). To download and decompress the tar file on Linux, see the documentation for your Linux distribution.
-
-> [!NOTE]
-> If you want to copy data to and from your [Azure Table storage](../tables/table-storage-overview.md) service, install [AzCopy version 7.3](/previous-versions/azure/storage/storage-use-azcopy#azcopy-with-table-support-v73).
 
 ### Add AzCopy to your system path
 
@@ -81,7 +78,7 @@ By using Microsoft Entra ID, you can provide credentials once instead of having 
 
 | Security principal | Guidance |
 |-----|-----|
-| User identity | [Authorize access for AzCopy with a user identity](storage-use-azcopy-authorize-managed-identity.md) |
+| User identity | [Authorize access for AzCopy with a user identity](storage-use-azcopy-authorize-user-identity.md) |
 | Managed identity | [Authorize access for AzCopy with a managed identity](storage-use-azcopy-authorize-managed-identity.md) |
 | Service principal | [Authorize access for AzCopy with a service principal](storage-use-azcopy-authorize-service-principal.md) |
 
@@ -170,17 +167,6 @@ See any of the following resources:
 - [Troubleshoot problems with AzCopy v10](storage-use-azcopy-troubleshoot.md)
 
 <a id="previous-version"></a>
-
-## Use a previous version (deprecated)
-
-If you need to use a previous version of AzCopy, see either of the following links:
-
-- [AzCopy on Windows (v8)](/previous-versions/azure/storage/storage-use-azcopy)
-
-- [AzCopy on Linux (v7)](/previous-versions/azure/storage/storage-use-azcopy-linux)
-
-> [!NOTE]
-> These versions of AzCopy are deprecated. Microsoft recommends using AzCopy v10.
 
 ## Next steps
 

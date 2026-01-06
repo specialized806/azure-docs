@@ -15,7 +15,7 @@ ms.service: azure-app-service
 
 # App Service overview
 
-Azure App Service is a platform that lets you run web applications, mobile back ends, and RESTful APIs without worrying about managing the underlying infrastructure. Think of it as a powerful web hosting service that takes care of all the heavy lifting for you, so can focus on creating great applications.
+Azure App Service is a platform that lets you run web applications, mobile back ends, and RESTful APIs without worrying about managing the underlying infrastructure. Think of it as a powerful web hosting service that takes care of all the heavy lifting for you, so you can focus on creating great applications.
 
 App Service supports a variety of web stacks: .NET, Java (in Java SE, Tomcat, and JBoss flavors), Node.js, Python, and PHP, and can run them on both Windows and Linux. Or, if your app is containerized, you can just deploy it as a custom container.
 
@@ -25,7 +25,7 @@ Whether you're a student, a small business, a startup, or an enterprise, App Ser
 
 ### Students
 
-- **Free access**: In addition to the widely available [free tier](https://azure.microsoft.com/pricing/details/app-service/), students can take advantage of the [Azure for Students Starter](https://azure.microsoft.com/pricing/offers/ms-azr-0144p) program.
+- **Free access**: In addition to the widely available [free tier](https://azure.microsoft.com/pricing/purchase-options/azure-account), students can take advantage of the [Azure for Students Starter](https://azure.microsoft.com/pricing/offers/ms-azr-0144p) program.
 - **IDE support**: Purpose-built deployment tools are available for Visual Studio, Visual Studio Code, IntelliJ, and Eclipse.
 - **Easy to use**: Run your apps without needing experience in infrastructure management.
 - **Learning Resources**: Plenty of tutorials and guides to help you get started.

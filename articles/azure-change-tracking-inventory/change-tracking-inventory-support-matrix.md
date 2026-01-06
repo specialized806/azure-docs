@@ -2,7 +2,7 @@
 title: Azure Change Tracking and Inventory Support matrix
 description: Get a summary of support settings and limitations for enabling Azure CTI and tracking changes.
 services: automation
-ms.date: 11/06/2025
+ms.date: 12/03/2025
 ms.topic: overview
 ms.service: azure-change-tracking-inventory
 ms.author: v-jasmineme
@@ -12,7 +12,7 @@ author: jasminemehndir
 
 # Support matrix and regions for Azure Change Tracking and Inventory
 
-Azure Change Tracking and Inventory (CTI) monitors changes and provide inventory logs for servers across Azure, on-premises, and other cloud environments. This article summarizes support settings and limitations when you enable Azure CTI and track changes. It also provides information about the supported regions and mappings for Azure CTI using Azure Monitoring Agent.
+Azure Change Tracking and Inventory (CTI) monitors changes and provide inventory logs for servers across Azure, on-premises, and other cloud environments. This article summarizes support settings and limitations when you enable Azure CTI and track changes. It also provides information about the supported regions and mappings for Azure CTI using Azure Monitor Agent.
 
 ## Support matrix
 
@@ -21,6 +21,11 @@ Azure Change Tracking and Inventory (CTI) monitors changes and provide inventory
 |Operating systems| Windows </br> Linux | 
 |Resource types | Azure VMs </br> Azure Arc-enabled VMs </br> Virtual machines scale set|
 |Data types | Windows registry </br> Windows services </br> Linux Daemons </br> Files </br> Software
+
+> [!NOTE]
+> Change Tracking and Inventory (CTI) currently does not support configuration to collect data from only specific services (such as selected Windows services or Linux daemons). 
+> The service is designed to collect data from all services, and this behavior cannot be customized.
+> Additionally, DCR transformations are not supported for Change Tracking DCRs.
 
 ## Limits
 
@@ -67,6 +72,10 @@ The next table shows the data collection frequency for the types of changes supp
 | Windows software | 30 minutes |
 | Linux software | 5 minutes |
 | Linux Daemons | 5 minutes | 
+
+> [!NOTE]
+> The ability to customize data collection frequency is limited.
+> Currently, this option is available only for Windows Files and Windows Services, and must adhere to the ranges specified in the preceding table.
 
 The following table shows the tracked item limits per machine for Azure CTI.
 
@@ -115,7 +124,7 @@ The default collection frequency for Windows services is 30 minutes. To configur
 
 ## Current limitations
 
-Azure CTI using Azure Monitoring Agent doesn't support or has the following limitations:
+Azure CTI using Azure Monitor Agent doesn't support or has the following limitations:
 
 - Recursion for Windows registry tracking
 - Currently, only the HKEY_LOCAL_MACHINE is supported. You will encounter this limitation whenever you manually add the registry key.
@@ -149,7 +158,7 @@ A key capability of Azure CTI is alerting on changes to the configuration state 
 |ConfigurationChange <br>&#124; where RegistryKey == @"HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\QualityCompat"| Useful for tracking changes to crucial antivirus keys.|
 |ConfigurationChange <br>&#124; where RegistryKey contains @"HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\SharedAccess\\Parameters\\FirewallPolicy"| Useful for tracking changes to firewall settings.|
 
-## Supported regions and mappings for Change Tracking and Inventory with Azure Monitoring Agent
+## Supported regions and mappings for Change Tracking and Inventory with Azure Monitor Agent
 
 The following table lists the supported regions and mappings:
 
