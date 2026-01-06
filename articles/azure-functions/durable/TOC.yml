@@ -39,14 +39,20 @@
       href: ./durable-task-scheduler/develop-with-durable-task-scheduler-container-apps.md
     - name: Deploy to Azure Kubernetes Service
       href: ./durable-task-scheduler/develop-with-durable-task-scheduler-aks.md
-- name: Core concepts
+- name: Durable Functions
   items:
-  - name: Functions
+  - name: Overview
+    href: durable-functions-overview.md
+  - name: Versions
+    href: durable-functions-versions.md
+  - name: Function types
     items:
     - name: Overview
       href: durable-functions-types-features-overview.md
     - name: Orchestrator functions
       href: durable-functions-orchestrations.md
+    - name: Orchestrator code constraints
+      href: durable-functions-code-constraints.md
     - name: Activity functions
       href: durable-functions-activities.md
     - name: Entity functions
@@ -65,46 +71,6 @@
       href: durable-functions-monitor-python.md
     - name: Human interaction
       href: durable-functions-phone-verification.md
-  - name: Timers
-    href: durable-functions-timers.md
-  - name: External events
-    href: durable-functions-external-events.md
-  - name: Error handling
-    href: durable-functions-error-handling.md
-  - name: Task hubs
-    href: durable-functions-task-hubs.md
-  - name: Instance management
-    href: durable-functions-instance-management.md
-- name: Advanced concepts
-  items:
-  - name: Orchestrator code constraints
-    href: durable-functions-code-constraints.md
-  - name: Sub-orchestrations
-    href: durable-functions-sub-orchestrations.md
-  - name: Custom orchestration status
-    href: durable-functions-custom-orchestration-status.md
-  - name: Eternal orchestrations
-    href: durable-functions-eternal-orchestrations.md
-  - name: Singleton orchestrations
-    href: durable-functions-singletons.md
-  - name: Versioning
-    items:
-    - name: Versioning challenges and approaches
-      href: durable-functions-versioning.md
-    - name: Orchestration versioning
-      href: durable-functions-orchestration-versioning.md
-  - name: Performance and scale
-    href: durable-functions-perf-and-scale.md
-  - name: High availability
-    href: durable-functions-disaster-recovery-geo-distribution.md
-  - name: Data persistence and serialization
-    href: durable-functions-serialization-and-persistence.md
-- name: Development with Durable Functions
-  items:
-  - name: Overview
-    href: durable-functions-overview.md
-  - name: Versions
-    href: durable-functions-versions.md
   - name: Programming models
     items:
     - name: Overview
@@ -115,36 +81,6 @@
       href: durable-functions-packages.md
   - name: Configure and deploy
     items:
-    - name: Storage providers
-      items:
-      - name: Overview
-        href: durable-functions-storage-providers.md
-      - name: Azure Storage
-        href: durable-functions-azure-storage-provider.md
-      - name: MSSQL
-        href: quickstart-mssql.md
-      - name: Durable Task Scheduler
-        items:
-        - name: Overview
-          href: ./durable-task-scheduler/durable-task-scheduler.md
-        - name: Deploy to Durable Functions
-          href: ./durable-task-scheduler/quickstart-durable-task-scheduler.md
-        - name: Develop with Durable Task Scheduler
-          href: ./durable-task-scheduler/develop-with-durable-task-scheduler.md
-        - name: Create a scheduler in Durable Functions
-          href: ./durable-task-scheduler/develop-with-durable-task-scheduler-functions.md
-        - name: Identity
-          href: ./durable-task-scheduler/durable-task-scheduler-identity.md
-        - name: Monitoring dashboard
-          href: ./durable-task-scheduler/durable-task-scheduler-dashboard.md
-        - name: Auto-purge
-          href: ./durable-task-scheduler/durable-task-scheduler-auto-purge.md
-        - name: Versioning
-          href: ./durable-task-scheduler/durable-task-scheduler-versioning.md
-        - name: Billing
-          href: ./durable-task-scheduler/durable-task-scheduler-dedicated-sku.md
-        - name: Troubleshoot
-          href: ./durable-task-scheduler/troubleshoot-durable-task-scheduler.md
     - name: Configure with managed identity
       href: durable-functions-configure-managed-identity.md
     - name: Continuous deployment
@@ -221,7 +157,7 @@
       href: /python/api/azure-functions-durable/azure.durable_functions
     - name: Java API
       href: /java/api/com.microsoft.durabletask.azurefunctions
-- name: Development with Durable Task SDKs
+- name: Durable Task SDKs
   items:
   - name: Overview
     href: ./durable-task-scheduler/durable-task-overview.md
@@ -255,45 +191,118 @@
       href: /python/api/azure-mgmt-durabletask/azure.mgmt.durabletask
     - name: Java API
       href: /java/api/com.microsoft.durabletask
-- name: Comparison
+- name: Shared concepts
   items:
-  - name: Azure Durable vs. Alternatives
-    href: durable-comparison-alternatives.md
-- name: Performance
+  - name: Shared concepts Overview
+    href: durable-functions-overview.md #placeholder
+  - name: Orchestration
+    items:
+    - name: Fundamentals
+      items:
+      - name: What are orchestrations?
+        href: durable-functions-overview.md #placeholder
+      - name: Event sourcing
+        href: durable-functions-overview.md #placeholder
+      - name: Deterministic execution & replay
+        href: durable-functions-overview.md #placeholder
+      - name: Orchestration lifecycle
+        href: durable-functions-overview.md #placeholder
+    - name: Features
+      items:
+      - name: Sub-orchestrations
+        href: durable-functions-sub-orchestrations.md
+      - name: Custom orchestration status
+        href: durable-functions-custom-orchestration-status.md
+      - name: Eternal orchestrations
+        href: durable-functions-eternal-orchestrations.md
+      - name: Singleton orchestrations
+        href: durable-functions-singletons.md
+      - name: Timers
+        href: durable-functions-timers.md
+      - name: External events
+        href: durable-functions-external-events.md
+  - name: Error handling
+    href: durable-functions-error-handling.md
+  - name: Task hubs
+    href: durable-functions-task-hubs.md
+  - name: Instance management
+    href: durable-functions-instance-management.md
+  - name: Versioning
+    items:
+    - name: Versioning challenges and approaches
+      href: durable-functions-versioning.md
+    - name: Orchestration versioning
+      href: durable-functions-orchestration-versioning.md
+  - name: Performance and scale
+    href: durable-functions-perf-and-scale.md
+  - name: High availability
+    href: durable-functions-disaster-recovery-geo-distribution.md
+  - name: Data persistence and serialization
+    href: durable-functions-serialization-and-persistence.md
+- name: Backend providers
   items:
-  - name: Durable Task Scheduler benchmark
-    href: ./durable-task-scheduler/durable-task-scheduler-work-item-throughput.md
-- name: Glossary
-  href: durable-glossary.md
-- name: Samples
+  - name: Overview
+    href: durable-functions-storage-providers.md
+  - name: Durable Task Scheduler
+    items:
+    - name: Overview
+      href: ./durable-task-scheduler/durable-task-scheduler.md
+    - name: Deploy to Durable Functions
+      href: ./durable-task-scheduler/quickstart-durable-task-scheduler.md
+    - name: Develop with Durable Task Scheduler
+      href: ./durable-task-scheduler/develop-with-durable-task-scheduler.md
+    - name: Create a scheduler in Durable Functions
+      href: ./durable-task-scheduler/develop-with-durable-task-scheduler-functions.md
+    - name: Identity
+      href: ./durable-task-scheduler/durable-task-scheduler-identity.md
+    - name: Monitoring dashboard
+      href: ./durable-task-scheduler/durable-task-scheduler-dashboard.md
+    - name: Auto-purge
+      href: ./durable-task-scheduler/durable-task-scheduler-auto-purge.md
+    - name: Versioning
+      href: ./durable-task-scheduler/durable-task-scheduler-versioning.md
+    - name: Throughput benchmarks
+      href: ./durable-task-scheduler/durable-task-scheduler-work-item-throughput.md
+    - name: Billing
+      href: ./durable-task-scheduler/durable-task-scheduler-dedicated-sku.md
+    - name: Troubleshoot
+      href: ./durable-task-scheduler/troubleshoot-durable-task-scheduler.md
+  - name: Azure Storage
+    href: durable-functions-azure-storage-provider.md
+  - name: MSSQL
+    href: quickstart-mssql.md
+- Resources:
   items:
-  - name: Code samples
-    href: /samples/browse/?term=durable%20functions
-  - name: Azure CLI
-    href: ../functions-cli-samples.md
-- name: Resources
-  items:
-  - name: Build your skills with Microsoft Learn training
-    href: /training/browse/?products=azure-functions
-  - name: Azure Roadmap
-    href: https://azure.microsoft.com/updates/?category=compute
-  - name: Pricing
-    href: https://azure.microsoft.com/pricing/details/functions/
-  - name: Pricing calculator
-    href: https://azure.microsoft.com/pricing/calculator/
-  - name: Regional availability
-    href: https://azure.microsoft.com/global-infrastructure/services/
-  - name: Videos
-    href: https://www.youtube.com/c/AzureFunctions
-  - name: Microsoft Q&A question page
-    href: /answers/topics/azure-functions.html
-  - name: Stack Overflow
-    href: https://stackoverflow.com/questions/tagged/azure-functions
-  - name: X
-    href: https://x.com/hashtag/DurableFunctions?src=hash
-  - name: Provide product feedback
-    href: https://feedback.azure.com/d365community/forum/9df02822-f224-ec11-b6e6-000d3a4f0da0
-  - name: Durable Functions GitHub repository
-    href: https://github.com/Azure/azure-functions-durable-extension
-  - name: Service updates
-    href: https://azure.microsoft.com/updates/?product=functions&updatetype=&platform=
+  - name: Samples
+    items:
+    - name: Code samples
+      href: /samples/browse/?term=durable%20functions
+    - name: Azure CLI
+      href: ../functions-cli-samples.md
+  - name: Resources
+    items:
+    - name: Build your skills with Microsoft Learn training
+      href: /training/browse/?products=azure-functions
+    - name: Azure Roadmap
+      href: https://azure.microsoft.com/updates/?category=compute
+    - name: Pricing
+      href: https://azure.microsoft.com/pricing/details/functions/
+    - name: Pricing calculator
+      href: https://azure.microsoft.com/pricing/calculator/
+    - name: Regional availability
+      href: https://azure.microsoft.com/global-infrastructure/services/
+    - name: Videos
+      href: https://www.youtube.com/c/AzureFunctions
+    - name: Microsoft Q&A question page
+      href: /answers/topics/azure-functions.html
+    - name: Stack Overflow
+      href: https://stackoverflow.com/questions/tagged/azure-functions
+    - name: X
+      href: https://x.com/hashtag/DurableFunctions?src=hash
+    - name: Provide product feedback
+      href: https://feedback.azure.com/d365community/forum/9df02822-f224-ec11-b6e6-000d3a4f0da0
+    - name: Durable Functions GitHub repository
+      href: https://github.com/Azure/azure-functions-durable-extension
+    - name: Service updates
+      href: https://azure.microsoft.com/updates/?product=functions&updatetype=&platform=
+  
