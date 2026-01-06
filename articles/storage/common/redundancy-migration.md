@@ -151,7 +151,7 @@ To track the current migration status of the conversion initiated on your storag
 ```azurecli-interactive
 az storage account migration show \
     --account-name <string> \
-    - g <sting> \
+    - g <string> \
     -n "default"
 ```
 -->
@@ -255,8 +255,8 @@ To change between locally redundant and zone-redundant storage with Azure CLI, c
 
 ```azurecli-interactive
 az storage account migration start  \
-    -- account-name <string> \
-    -- g <string> \
+    --account-name <string> \
+    --resource-group <string> \
     --sku <string> \
     --no-wait
 ```
@@ -364,8 +364,8 @@ To track the current migration status of the conversion initiated on your storag
 ```azurecli-interactive
 az storage account migration show \
     --account-name <string> \
-    - g <string> \
-    -n "default"
+    --resource-group <string> \
+    --name "default"
 ```
 To monitor conversions for multiple storage accounts simultaneously, start by creating a CSV file that lists each account. For example, your columns might include:
 
@@ -465,12 +465,6 @@ Limitations apply to some replication change scenarios depending on:
 ### Region
 
 Make sure the region where your storage account is located supports all of the desired replication settings. For example, if you're converting your account to zone-redundant (ZRS, GZRS, or RA-GZRS), make sure your storage account is in a region that supports it. See the lists of supported regions for [Zone-redundant storage](storage-redundancy.md#zone-redundant-storage) and [Geo-zone-redundant storage](storage-redundancy.md#geo-zone-redundant-storage).
-
-> [!IMPORTANT]
-> [Customer-initiated conversion](#customer-initiated-conversion) is available in all public regions that support ZRS with the following exceptions:> - (Asia Pacific) Indonesia Central
-> - (Europe) Spain Central
-> - (North America) Mexico Central
-> - (South America) Chile Central
 
 ### Feature conflicts
 
