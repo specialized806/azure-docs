@@ -271,7 +271,7 @@
     href: durable-functions-azure-storage-provider.md
   - name: MSSQL
     href: quickstart-mssql.md
-- Resources:
+- name: Resources
   items:
   - name: Samples
     items:
