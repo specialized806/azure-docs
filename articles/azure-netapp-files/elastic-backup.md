@@ -23,7 +23,7 @@ Azure NetApp Files backups in the Elastic service level require a backup vault. 
 
 ### Manual backups 
 
-[!INCLUDE [Policy-based backups](includes/backup-manual.md)]
+[!INCLUDE [Manual backups](includes/backup-manual.md)]
 
 ## Considerations
 
