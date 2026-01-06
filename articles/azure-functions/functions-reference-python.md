@@ -145,19 +145,19 @@ Use the following structure for a Python Azure Functions project:
 ├── .funcignore              # Excludes files from being published
 ├── host.json                # Global function app configuration
 ├── local.settings.json      # Local-only app settings (not published)
-├── requirements.txt         # Python dependencies
+├── requirements.txt         # (Optional) Defines Python dependencies for remote build
 ├── Dockerfile               # (Optional) For custom container deployment
 ```
 
 #### Key files and folders
 
-| File / Folder           | Description                                                                                                      | Required in production                 |
+| File / Folder           | Description                                                                                                      | Required for app to run in Azure       |
 |-------------------------|------------------------------------------------------------------------------------------------------------------|----------------------------------------|
 | `my_first_function/`    | Directory for a single function.                                                                                 | ✅                                      |
 | `__init__.py/`          | Main script where the `my_first_function` function code is defined.                                              | ✅                                      |
 | `function.json/`        | Contains the binding configuration for the `my_first_function` function.                                         | ✅                                      |
-| `host.json`             | Global configuration for all functions in the app. Required and published.                                       | ✅                                      |
-| `requirements.txt`      | Python dependencies installed during publish.                                                                    | ❌ (recommended for package management) |
+| `host.json`             | Global configuration for all functions in the app.                                                               | ✅                                      |
+| `requirements.txt`      | Python dependencies installed during publish when using [remote build](./python-build-options.md#remote-build).  | ❌ (recommended for package management) |
 | `local.settings.json`   | Local-only app settings and secrets (never published).                                                           | ❌ (required for local development)     |
 | `.funcignore`           | Specifies files and folders to exclude from deployment (for example, `.venv/`, `tests/`, `local.settings.json`). | ❌ (recommended)                        |
 | `.venv/`                | Local virtual environment for Python (excluded from deployment).                                                 | ❌                                      |
@@ -275,17 +275,17 @@ Use the following structure for a Python Azure Functions project:
 ├── .funcignore              # Excludes files from being published
 ├── host.json                # Global function app configuration
 ├── local.settings.json      # Local-only app settings (not published)
-├── requirements.txt         # Python dependencies
+├── requirements.txt         # (Optional) Defines Python dependencies for remote build
 ├── Dockerfile               # (Optional) For custom container deployment
 ```
 
 #### Key files and folders
 
-| File / Folder           | Description                                                                                                      | Required in production                 |
+| File / Folder           | Description                                                                                                      | Required for app to run in Azure       |
 |-------------------------|------------------------------------------------------------------------------------------------------------------|----------------------------------------|
 | `function_app.py`       | Main script where Azure Functions and triggers are defined using decorators.                                     | ✅                                      |
-| `host.json`             | Global configuration for all functions in the app. Required and published.                                       | ✅                                      |
-| `requirements.txt`      | Python dependencies installed during publish.                                                                    | ❌ (recommended for package management) |
+| `host.json`             | Global configuration for all functions in the app.                                                               | ✅                                      |
+| `requirements.txt`      | Python dependencies installed during publish when using [remote build](./python-build-options.md#remote-build).  | ❌ (recommended for package management) |
 | `local.settings.json`   | Local-only app settings and secrets (never published).                                                           | ❌ (required for local development)     |
 | `.funcignore`           | Specifies files and folders to exclude from deployment (for example, `.venv/`, `tests/`, `local.settings.json`). | ❌ (recommended)                        |
 | `.venv/`                | Local virtual environment for Python (excluded from deployment).                                                 | ❌                                      |
@@ -295,11 +295,13 @@ Use the following structure for a Python Azure Functions project:
 | `tests/`                | Unit tests for your function app. Not published to Azure.                                                        | ❌                                      |
 | `Dockerfile`            | Defines a custom container for deployment.                                                                       | ❌                                      |
 
+::: zone-end
+
+> [NOTE!]
+> Include a `requirements.txt` file when you deploy with [remote build](./python-build-options.md#remote-build). If you don't use remote build or want to use another file for defining app dependencies, you can perform a [local build](./python-build-options.md#local-build) and deploy the app with pre-built dependencies.
 
 > For guidance on unit testing, see [Unit Testing](#unit-testing).
 > For container deployments, see [Deploy with custom containers](./functions-how-to-custom-container.md?pivots=azure-functions).
-
-::: zone-end
 
 ---
 
