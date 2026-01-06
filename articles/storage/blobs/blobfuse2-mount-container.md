@@ -1,7 +1,7 @@
 ---
-title: Mount an Azure Blob Storage container on Linux with BlobFuse2
+title: Mount an Azure Blob Storage container on Linux with BlobFuse
 titleSuffix: Azure Storage
-description: Learn how to mount an Azure Blob Storage container on Linux with BlobFuse2.
+description: Learn how to mount an Azure Blob Storage container on Linux with BlobFuse.
 author: normesta
 ms.author: normesta
 
@@ -9,10 +9,10 @@ ms.service: azure-blob-storage
 ms.topic: how-to
 ms.date: 12/18/2025
 ms.custom: linux-related-content
-# Customer intent: As a developer or system administrator using Linux, I want to learn how to mount Azure Blob Storage containers with BlobFuse2, so that I can access and work with blob data through the familiar Linux file system interface.
+# Customer intent: As a developer or system administrator using Linux, I want to learn how to mount Azure Blob Storage containers with BlobFuse, so that I can access and work with blob data through the familiar Linux file system interface.
 ---
 
-# Mount an Azure Blob Storage container on Linux with BlobFuse2
+# Mount an Azure Blob Storage container on Linux with BlobFuse
 
 You can mount a container by using the `mount` command. You can either include your desired configuration settings as command parameters or reference a configuration file that contains your settings.
 
@@ -44,7 +44,7 @@ For a complete list of `mount` command parameters, see [CLI Parameters](https://
 
 ## Mount by using a configuration file
 
-You can specify the necessary BlobFuse2 configuration and Azure Storage credentials in a YAML configuration file. The following example mounts a container by referencing a configuration file.
+You can specify the necessary BlobFuse configuration and Azure Storage credentials in a YAML configuration file. The following example mounts a container by referencing a configuration file.
 
 ```bash
 sudo blobfuse2 mount <mount-path> --config-file=<configuration-file>
@@ -52,10 +52,10 @@ sudo blobfuse2 mount <mount-path> --config-file=<configuration-file>
 
 Replace `<mount-path>` with the path where you want to mount the container and `<configuration-file>` with the path to your configuration file (for example: `./config.yaml`).
 
-To learn more about how to configure BlobFuse2 by using a configuration file, see [Create a BlobFuse2 configuration file](blobfuse2-configure.md).
+To learn more about how to configure BlobFuse by using a configuration file, see [Create a BlobFuse configuration file](blobfuse2-configure.md).
 
 > [!NOTE]
-> For a full list of mount options, see [BlobFuse2 mount commands](blobfuse2-commands-mount.md).
+> For a full list of mount options, see [BlobFuse mount commands](blobfuse2-commands-mount.md).
 
 ## Work with data in a mounted container
 
@@ -67,14 +67,14 @@ mkdir test
 echo "hello world" > test/blob.txt
 ```
 
-You can work with BlobFuse2-mounted storage similarly to how you work with the native Linux file system. It uses a virtual directory scheme with forward slashes (`/`) as delimiters in file paths and supports basic file system operations such as `mkdir`, `opendir`, `readdir`, `rmdir`, `open`, `read`, `create`, `write`, `close`, `unlink`, `truncate`, `stat`, and `rename`.
+You can work with BlobFuse-mounted storage similarly to how you work with the native Linux file system. It uses a virtual directory scheme with forward slashes (`/`) as delimiters in file paths and supports basic file system operations such as `mkdir`, `opendir`, `readdir`, `rmdir`, `open`, `read`, `create`, `write`, `close`, `unlink`, `truncate`, `stat`, and `rename`.
 
-However, some key differences exist between BlobFuse2 and Linux file systems. For more information, see [BlobFuse2 and Linux file systems compared](blobfuse2-compare-linux-file-system.md).
+However, some key differences exist between BlobFuse and Linux file systems. For more information, see [BlobFuse and Linux file systems compared](blobfuse2-compare-linux-file-system.md).
 
 ## Next steps
 
-Now that you mounted your container, learn more about using BlobFuse2:
+Now that you mounted your container, learn more about using BlobFuse:
 
-- [Configure BlobFuse2](blobfuse2-configure.md)
+- [Configure BlobFuse](blobfuse2-configure.md)
 - [BlobFuse2 commands](blobfuse2-commands.md)
-- [BlobFuse2 and Linux file systems compared](blobfuse2-compare-linux-file-system.md)
+- [BlobFuse and Linux file systems compared](blobfuse2-compare-linux-file-system.md)

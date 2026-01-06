@@ -1,15 +1,15 @@
 ### YamlMime:FAQ
 metadata:
-  title: Frequently asked questions - BlobFuse2 | Microsoft Docs
+  title: Frequently asked questions - BlobFuse | Microsoft Docs
   description: This article provides a list of frequently asked questions (FAQ) for Blob. 
   ms.topic: faq
   ms.service: azure-blob-storage
   ms.date: 11/25/2024
   ms.author: normesta
   author: normesta
-title: BlobFuse2 frequently asked questions
+title: BlobFuse frequently asked questions
 summary: |
-  This article provides a list of frequently asked questions (FAQ) for BlobFuse2.</br></br>
+  This article provides a list of frequently asked questions (FAQ) for BlobFuse.</br></br>
 
 sections:
   - name: FAQ
@@ -22,13 +22,13 @@ sections:
       - question: |
           Why do I get EINVAL on opening a file with WRONLY or APPEND flags?
         answer: |
-          To improve performance, BlobFuse2 by default enables writeback caching, which can produce unexpected behavior for files opened with WRONLY or APPEND flags, so BlobFuse2 returns EINVAL on open of a file with those flags. Either use disable-writeback-caching to turn off writeback caching (can potentially result in degraded performance) or ignore-open-flags (replace WRONLY with RDWR and ignore APPEND) based on your workload.
+          To improve performance, BlobFuse by default enables writeback caching, which can produce unexpected behavior for files opened with WRONLY or APPEND flags, so BlobFuse returns EINVAL on open of a file with those flags. Either use disable-writeback-caching to turn off writeback caching (can potentially result in degraded performance) or ignore-open-flags (replace WRONLY with RDWR and ignore APPEND) based on your workload.
       - question: |
-          How to mount BlobFuse2 inside a container?
+          How to mount BlobFuse inside a container?
         answer: Refer to 'docker' folder in this repo. It contains a sample 'Dockerfile'. If you wish to create your own container image, try 'buildandruncontainer.sh' script, it will create a container image and launch the container using current environment variables holding your storage account credentials. |
       - question: |
-          Why am I not able to see the updated contents of file(s), which were updated through means other than BlobFuse2 mount?
-        answer: If your use-case involves updating and uploading file(s) through other means and you wish to see the updated contents on BlobFuse2 mount then you need to disable kernel page-cache. `--disable-kernel-cache` CLI parameter is the option you need to use while mounting. Along with this, set `file-cache-timeout=0`. User shall be aware that disabling the cache will result into more calls to Azure Storage which will have cost and performance implications. |
+          Why am I not able to see the updated contents of file(s), which were updated through means other than BlobFuse mount?
+        answer: If your use-case involves updating and uploading file(s) through other means and you wish to see the updated contents on BlobFuse mount then you need to disable kernel page-cache. `--disable-kernel-cache` CLI parameter is the option you need to use while mounting. Along with this, set `file-cache-timeout=0`. User shall be aware that disabling the cache will result into more calls to Azure Storage which will have cost and performance implications. |
 additionalContent: |
 
   ## Next steps

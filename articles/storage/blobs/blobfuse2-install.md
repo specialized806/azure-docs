@@ -1,7 +1,7 @@
 ---
-title: Install BlobFuse2
+title: Install BlobFuse
 titleSuffix: Azure Storage
-description: Install BlobFuse2 to mount an Azure Blob Storage container through the Linux file system.
+description: Install BlobFuse to mount an Azure Blob Storage container through the Linux file system.
 author: normesta
 ms.author: normesta
 
@@ -11,12 +11,12 @@ ms.date: 12/10/2025
 
 ms.custom: linux-related-content
 
-# Customer intent: "As a Linux user, I want to install BlobFuse2 on my system, so that I can set up the necessary software to mount Azure Blob Storage containers as a file system."
+# Customer intent: "As a Linux user, I want to install BlobFuse on my system, so that I can set up the necessary software to mount Azure Blob Storage containers as a file system."
 ---
 
-# Install BlobFuse2
+# Install BlobFuse
 
-You can install BlobFuse2 from Microsoft repositories for Linux by using simple commands to install the BlobFuse package. If no package is available for your distribution and version, you can build the binary from source code.
+You can install BlobFuse from Microsoft repositories for Linux by using simple commands to install the BlobFuse package. If no package is available for your distribution and version, you can build the binary from source code.
 
 ## Determine if a package is available
 
@@ -30,7 +30,7 @@ To determine if a package is available for your distribution and version, see [B
 
 If no package is available for your distribution or version, you need to build the binary from source code. For detailed instructions, see the [Build the binaries from source code](#build-the-binaries-from-source-code) section of this article.
 
-## Install BlobFuse2 from the Microsoft software repositories for Linux
+## Install BlobFuse from the Microsoft software repositories for Linux
 
 If a package is available for your Linux distribution and version, configure the [Linux Package Repository for Microsoft Products](/windows-server/administration/Linux-Package-Repository-for-Microsoft-Software). The following sections show example commands.
 
@@ -83,11 +83,11 @@ sudo tdnf install fuse fuse3 blobfuse2
 
 ## Build the binaries from source code
 
-If no package is available for your distribution, you can build BlobFuse2 from source code. First, install `Go 1.20.x` or later. For installation instructions, see [Go](https://go.dev/doc/install). Then, follow these steps to clone the repository and build the binaries.
+If no package is available for your distribution, you can build BlobFuse from source code. First, install `Go 1.20.x` or later. For installation instructions, see [Go](https://go.dev/doc/install). Then, follow these steps to clone the repository and build the binaries.
 
 ### Clone the repository
 
-Use the following commands to clone the BlobFuse2 repository:
+Use the following commands to clone the BlobFuse repository:
 
 ```bash
 git clone https://github.com/Azure/azure-storage-fuse/
@@ -134,7 +134,7 @@ sudo tdnf install fuse libfuse-dev fuse3 libfuse3-dev
 
 ---
 
-### Build BlobFuse2
+### Build BlobFuse
 
 Run the build script located in the root folder of the repository.
 
@@ -180,7 +180,7 @@ To build the optional health monitor binary, run the following command:
 
 ## Next steps
 
-- [Configure BlobFuse2](blobfuse2-configure.md)
+- [Configure BlobFuse](blobfuse2-configure.md)
 - [Mount an Azure Blob Storage container](blobfuse2-mount-container.md)
 - [BlobFuse2 commands](blobfuse2-commands.md)
 

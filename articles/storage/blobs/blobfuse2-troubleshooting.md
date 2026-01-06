@@ -184,60 +184,61 @@ To resolve this issue, type the following command in the shell prompt: `ls -l /e
    To automate this configuration at pod creation, create a new `configmap` in the cluster, which contains the new configuration about the script. Then, create a `DaemonSet` with the new `configmap` which could apply the configuration changes to every node in the cluster.
 
    ```
-  Example:
-  configmap file: (testcm.yaml)
-  apiVersion: v1
-  kind: ConfigMap
-  metadata:
-  name: testcm
-  data:
-  updatedb.conf: |
-  PRUNE_BIND_MOUNTS="yes"
-  PRUNEPATHS="/tmp /var/spool /media /var/lib/os-prober /var/lib/ceph /home/.ecryptfs /var/lib/schroot /mnt /var/lib/kubelet"
-  PRUNEFS="NFS nfs nfs4 rpc_pipefs afs binfmt_misc proc smbfs autofs iso9660 ncpfs coda devpts ftpfs devfs devtmpfs fuse.mfs shfs sysfs cifs lustre tmpfs usbfs udf fuse.glusterfs use.sshfs curlftpfs ceph fuse.ceph fuse.rozofs ecryptfs fusesmb fuse Blobfuse2"
-  DaemonSet file: (testcmds.yaml)
-  apiVersion: apps/v1
-  kind: DaemonSet
-  metadata:
-  name: testcmds
-  labels:
-  test: testcmds
-  spec:
-  selector:
-  matchLabels:
-  name: testcmds
-  template:
-  metadata:
-  labels:
-  name: testcmds
-  spec:
-  tolerations:
-  - key: "kubernetes.azure.com/scalesetpriority"
-  operator: "Equal"
-  value: "spot"
-  effect: "NoSchedule"
-  containers:
-  - name: mypod
-  image: debian
-  volumeMounts:
-  - name: updatedbconf
-  mountPath: "/tmp"
-  - name: source
-  mountPath: "/etc"
-  command: ["/bin/bash","-c","cp /tmp/updatedb.conf /etc/updatedb.conf;while true; do sleep 30; done;"]
-  restartPolicy: Always
-  volumes:
-  - name: updatedbconf
-  configMap:
-  name: testcm
-  items:
-  - key: "updatedb.conf"
-  path: "updatedb.conf"
-  - name: source
-  hostPath:
-  path: /etc
-  type: Directory
-  ```
+   Example:
+   configmap file: (testcm.yaml)
+   apiVersion: v1
+   kind: ConfigMap
+   metadata:
+   name: testcm
+   data:
+   updatedb.conf: |
+   PRUNE_BIND_MOUNTS="yes"
+   PRUNEPATHS="/tmp /var/spool /media /var/lib/os-prober /var/lib/ceph /home/.ecryptfs /var/lib/schroot /mnt /var/lib/kubelet"
+   PRUNEFS="NFS nfs nfs4 rpc_pipefs afs binfmt_misc proc smbfs autofs iso9660 ncpfs coda devpts ftpfs devfs devtmpfs fuse.mfs shfs sysfs cifs lustre tmpfs usbfs udf fuse.glusterfs use.sshfs curlftpfs ceph fuse.ceph fuse.rozofs ecryptfs fusesmb fuse Blobfuse2"
+   DaemonSet file: (testcmds.yaml)
+   apiVersion: apps/v1
+   kind: DaemonSet
+   metadata:
+   name: testcmds
+   labels:
+   test: testcmds
+   spec:
+   selector:
+   matchLabels:
+   name: testcmds
+   template:
+   metadata:
+   labels:
+   name: testcmds
+   spec:
+   tolerations:
+   - key: "kubernetes.azure.com/scalesetpriority"
+   operator: "Equal"
+   value: "spot"
+   effect: "NoSchedule"
+   containers:
+   - name: mypod
+   image: debian
+   volumeMounts:
+   - name: updatedbconf
+   mountPath: "/tmp"
+   - name: source
+   mountPath: "/etc"
+   command: ["/bin/bash","-c","cp /tmp/updatedb.conf /etc/updatedb.conf;while true; do sleep 30; done;"]
+   restartPolicy: Always
+   volumes:
+   - name: updatedbconf
+   configMap:
+   name: testcm
+   items:
+   - key: "updatedb.conf"
+   path: "updatedb.conf"
+   - name: source
+   hostPath:
+   path: /etc
+   type: Directory
+  
+   ```
 
 ### File contents aren't in sync with storage
 

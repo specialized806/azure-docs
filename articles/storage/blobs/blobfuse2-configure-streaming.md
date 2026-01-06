@@ -1,7 +1,7 @@
 ---
-title: Configure BlobFuse2 for streaming mode
+title: Configure BlobFuse for streaming mode
 titleSuffix: Azure Storage
-description: Learn how to configure BlobFuse2 for streaming mode.
+description: Learn how to configure BlobFuse for streaming mode.
 author: normesta
 ms.author: normesta
 
@@ -11,17 +11,17 @@ ms.date: 12/10/2025
 
 ms.custom: linux-related-content
 
-# Customer intent: "As a developer working with large files or sequential data access patterns, I want to configure BlobFuse2 in streaming mode to optimize memory usage and performance for my specific workload requirements."
+# Customer intent: "As a developer working with large files or sequential data access patterns, I want to configure BlobFuse in streaming mode to optimize memory usage and performance for my specific workload requirements."
 ---
 
-# Configure BlobFuse2 for streaming mode
+# Configure BlobFuse for streaming mode
 
-This article shows you how to configure BlobFuse2 to mount a container in _streaming mode_.
+This article shows you how to configure BlobFuse to mount a container in _streaming mode_.
 
 > [!TIP]
 > You can mount a container in either _streaming mode_ or _caching mode_. To learn more about each mode, see [Streaming versus caching mode](blobfuse2-streaming-versus-caching.md).
 
-In _streaming mode_, BlobFuse2 caches data in chunks (blocks) in memory for both reading and writing. For streaming during read and write operations, it caches blocks of data in memory as they're read or updated. BlobFuse2 flushes updates to Azure Storage when you close a file or when the buffer fills with dirty blocks.
+In _streaming mode_, BlobFuse caches data in chunks (blocks) in memory for both reading and writing. For streaming during read and write operations, it caches blocks of data in memory as they're read or updated. BlobFuse flushes updates to Azure Storage when you close a file or when the buffer fills with dirty blocks.
 
 ## Configuration parameters
 
@@ -43,7 +43,7 @@ The following example sets these values as parameters to the `mount` command.
 blobfuse2 mount <mount-path> --streaming --block-cache-disk-size=16 --block-cache-block-size=80 --block-cache-disk-timeout=120
 ```
 
-The following example shows how these settings appear in the BlobFuse2 configuration file:
+The following example shows how these settings appear in the BlobFuse configuration file:
 
 ```yaml
 block_cache:
@@ -76,17 +76,17 @@ When you choose optimal configuration values, use the following diagram as a gui
 
 - A read operation on a file that another process or handle is writing to simultaneously doesn't return the most up-to-date data.
 
-- When copying files with trailing null bytes by using the `cp` utility to a BlobFuse2 mounted path, use the `--sparse=never` parameter to avoid data being trimmed. For example: `cp --sparse=never src dest`.
+- When copying files with trailing null bytes by using the `cp` utility to a BlobFuse mounted path, use the `--sparse=never` parameter to avoid data being trimmed. For example: `cp --sparse=never src dest`.
 
 - For write operations, the application persists (or commits) data to the Azure Storage container only when it calls `close`, `sync`, or `flush` operations.
 
 - You can't modify files if you originally created them with a block size different from the one currently configured.
 
-You can disable caching at both the kernel and BlobFuse2 levels, or exclusively at the kernel level. For more information, see [Configure BlobFuse2 caching options](blobfuse2-configure-caching.md).
+You can disable caching at both the kernel and BlobFuse levels, or exclusively at the kernel level. For more information, see [Configure BlobFuse caching options](blobfuse2-configure-caching.md).
 
 ## Next steps
 
-- [Configure BlobFuse2 for caching mode](blobfuse2-configure-caching.md)
+- [Configure BlobFuse for caching mode](blobfuse2-configure-caching.md)
 - [Compare streaming versus caching mode](blobfuse2-streaming-versus-caching.md)
-- [BlobFuse2 configuration reference](blobfuse2-configuration.md)
-- [BlobFuse2 frequently asked questions](blobfuse2-faq.yml)
+- [BlobFuse configuration reference](blobfuse2-configuration.md)
+- [BlobFuse frequently asked questions](blobfuse2-faq.yml)

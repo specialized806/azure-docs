@@ -1,7 +1,7 @@
 ---
-title: Create a BlobFuse2 configuration file
+title: Create a BlobFuse configuration file
 titleSuffix: Azure Storage
-description: Learn how to create a configuration file for BlobFuse2. 
+description: Learn how to create a configuration file for BlobFuse. 
 author: normesta
 ms.author: normesta
 
@@ -11,12 +11,12 @@ ms.date: 12/10/2025
 
 ms.custom: linux-related-content
 
-# Customer intent: "As a developer or system administrator using BlobFuse2, I want to learn how to create and customize configuration files, so that I can optimize BlobFuse2 settings for my specific storage requirements and performance needs."
+# Customer intent: "As a developer or system administrator using BlobFuse, I want to learn how to create and customize configuration files, so that I can optimize BlobFuse settings for my specific storage requirements and performance needs."
 ---
 
-# Create a BlobFuse2 configuration file
+# Create a BlobFuse configuration file
 
-Use a configuration file to define how BlobFuse2 connects to Azure Blob Storage and manages its behavior when mounting a container as a file system on Linux.
+Use a configuration file to define how BlobFuse connects to Azure Blob Storage and manages its behavior when mounting a container as a file system on Linux.
 
 This article shows you how to generate and customize a configuration file. After you create the file, reference it as a parameter in the `mount` command.  
 
@@ -56,7 +56,7 @@ This article shows you how to generate and customize a configuration file. After
 
    For complete example, see [Sample file cache configuration](https://github.com/Azure/azure-storage-fuse/blob/main/sampleFileCacheConfig.yaml).
 
-   For comprehensive guidance on configuring and optimizing transfers for caching mode, see [Configure BlobFuse2 for caching](blobfuse2-configure-caching.md).
+   For comprehensive guidance on configuring and optimizing transfers for caching mode, see [Configure BlobFuse for caching](blobfuse2-configure-caching.md).
 
    If you choose to mount a container in streaming mode, modify the `block_cache` block of settings. The following snippet shows an example configuration.
 
@@ -69,7 +69,7 @@ This article shows you how to generate and customize a configuration file. After
 
     For complete example, see [Sample block cache configuration](https://github.com/Azure/azure-storage-fuse/blob/main/sampleBlockCacheConfig.yaml).
 
-    For comprehensive guidance on configuring and optimizing transfers for streaming mode, see [Configure BlobFuse2 for streaming mode](blobfuse2-configure-streaming.md).
+    For comprehensive guidance on configuring and optimizing transfers for streaming mode, see [Configure BlobFuse for streaming mode](blobfuse2-configure-streaming.md).
 
 1. To configure Azure Storage and Azure Blob Storage container details, modify the `azstorage` block of settings. Provide the account type, storage account name, container name, storage account endpoint, and authentication mode (such as `key`, `msi`, or `spn`). The following snippet shows an example configuration:
 
@@ -89,22 +89,22 @@ You can override settings that you define in the configuration file by using env
 
 ## Configuration file best practices
 
-- If you **don't provide** `type` in the `azstorage` section of the configuration file, BlobFuse2 autodetects the account type and sets the respective endpoint. Therefore, if you use private endpoints, you must expose the Data Lake Storage endpoint; otherwise, the mount fails.
+- If you **don't provide** `type` in the `azstorage` section of the configuration file, BlobFuse autodetects the account type and sets the respective endpoint. Therefore, if you use private endpoints, you must expose the Data Lake Storage endpoint; otherwise, the mount fails.
 
 - If you **provide** `type` in the `azstorage` section of the configuration file, don't mount a hierarchical namespace enabled account with `type: block` in the `azstorage` section. Otherwise, some directory operations fail. Don't mount a flat namespace account with `type: adls` in the `azstorage` section. Otherwise, you receive mount failures.
 
-- To disable all forms of caching at the kernel and at the BlobFuse2 level, set the `-o direct_io` CLI parameter. This option forces every operation to call the storage service directly, ensuring you always have the most up-to-date data.
+- To disable all forms of caching at the kernel and at the BlobFuse level, set the `-o direct_io` CLI parameter. This option forces every operation to call the storage service directly, ensuring you always have the most up-to-date data.
   
   > [!WARNING]
   > This configuration leads to increased storage costs, as it generates more transactions.
 
-- To disable only kernel cache but keep BlobFuse2 cache (data and metadata), set `disable-kernel-cache: true` in common configurations.
+- To disable only kernel cache but keep BlobFuse cache (data and metadata), set `disable-kernel-cache: true` in common configurations.
 
   - Don't use both `direct-io: true` and `disable-kernel-cache: true` together.
   
-  - To control metadata caching at the BlobFuse2 level, set `attr-cache-timeout`.
+  - To control metadata caching at the BlobFuse level, set `attr-cache-timeout`.
   
-  - To control data caching at the BlobFuse2 level, set `file-cache-timeout`.
+  - To control data caching at the BlobFuse level, set `file-cache-timeout`.
   
   - For example, if your workflow requires file contents to be refreshed within 3 seconds of an update, set both timeouts to 3.
   
