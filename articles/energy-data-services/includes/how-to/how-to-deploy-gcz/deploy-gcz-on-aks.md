@@ -9,7 +9,7 @@ author: EirikHaughom
 ms.date: 05/30/2024
 ---
 
-## Deploy Geospatial Consumption Zone (GCZ) on Azure Kubernetes Service (AKS)
+### Deploy Geospatial Consumption Zone (GCZ) on Azure Kubernetes Service (AKS)
 
 This guide explains how to deploy Geospatial Consumption Zone (GCZ) as an **add-on extensibility service** for Azure Data Manager for Energy (ADME), using a **Helm chart** running on **Azure Kubernetes Service (AKS)**.
 
