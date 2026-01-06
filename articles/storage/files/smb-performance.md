@@ -4,7 +4,7 @@ description: Learn about ways to improve performance and throughput for SSD (pre
 author: khdownie
 ms.service: azure-file-storage
 ms.topic: concept-article
-ms.date: 07/21/2025
+ms.date: 01/06/2026
 ms.author: kendownie
 ms.custom:
   - build-2025
@@ -14,22 +14,9 @@ ms.custom:
 
 # Improve performance for SMB Azure file shares
 
+**Applies to:** :heavy_check_mark: SMB Azure file shares
+
 This article explains how you can improve performance for SSD (premium) SMB Azure file shares, including using SMB Multichannel and metadata caching.
-
-## Applies to
-
-| Management model | Billing model | Media tier | Redundancy | SMB | NFS |
-|-|-|-|-|:-:|:-:|
-| Microsoft.Storage | Provisioned v2 | HDD (standard) | Local (LRS) | ![Yes](../media/icons/yes-icon.png) | ![No](../media/icons/no-icon.png) |
-| Microsoft.Storage | Provisioned v2 | HDD (standard) | Zone (ZRS) | ![Yes](../media/icons/yes-icon.png) | ![No](../media/icons/no-icon.png) |
-| Microsoft.Storage | Provisioned v2 | HDD (standard) | Geo (GRS) | ![Yes](../media/icons/yes-icon.png) | ![No](../media/icons/no-icon.png) |
-| Microsoft.Storage | Provisioned v2 | HDD (standard) | GeoZone (GZRS) | ![Yes](../media/icons/yes-icon.png) | ![No](../media/icons/no-icon.png) |
-| Microsoft.Storage | Provisioned v1 | SSD (premium) | Local (LRS) | ![Yes](../media/icons/yes-icon.png) | ![No](../media/icons/no-icon.png) |
-| Microsoft.Storage | Provisioned v1 | SSD (premium) | Zone (ZRS) | ![Yes](../media/icons/yes-icon.png) | ![No](../media/icons/no-icon.png) |
-| Microsoft.Storage | Pay-as-you-go | HDD (standard) | Local (LRS) | ![Yes](../media/icons/yes-icon.png) | ![No](../media/icons/no-icon.png) |
-| Microsoft.Storage | Pay-as-you-go | HDD (standard) | Zone (ZRS) | ![Yes](../media/icons/yes-icon.png) | ![No](../media/icons/no-icon.png) |
-| Microsoft.Storage | Pay-as-you-go | HDD (standard) | Geo (GRS) | ![Yes](../media/icons/yes-icon.png) | ![No](../media/icons/no-icon.png) |
-| Microsoft.Storage | Pay-as-you-go | HDD (standard) | GeoZone (GZRS) | ![Yes](../media/icons/yes-icon.png) | ![No](../media/icons/no-icon.png) |
 
 ## Optimizing performance
 
@@ -39,7 +26,7 @@ The following tips might help you optimize performance:
 - Use multi-threaded applications and spread the load across multiple files.
 - Performance benefits of SMB Multichannel increase with the number of files distributing the load.
 - SSD share performance is bound by provisioned share size, including IOPS and throughput, and single file limits. For details, see [understanding the provisioning v1 model](understanding-billing.md#provisioned-v1-model).
-- Maximum performance of a single VM client is still bound to VM limits. For example, [Standard_D32s_v3](/azure/virtual-machines/dv3-dsv3-series) supports a maximum bandwidth of approximately 1.86 GiB/sec. Egress from the VM (writes to storage) is metered, but ingress (reads from storage) isn't. File share performance is subject to machine network limits, CPUs, internal storage available network bandwidth, IO sizes, parallelism, and other factors.
+- Maximum performance of a single virtual machine (VM) client is still bound to VM limits. For example, [Standard_D32s_v3](/azure/virtual-machines/dv3-dsv3-series) supports a maximum bandwidth of approximately 1.86 GiB/sec. Egress from the VM (writes to storage) is metered, but ingress (reads from storage) isn't. File share performance is subject to machine network limits, CPUs, internal storage available network bandwidth, IO sizes, parallelism, and other factors.
 - The initial test is usually a warm-up. Discard the results and repeat the test.
 - If performance is limited by a single client and workload is still below provisioned share limits, you can achieve higher performance by spreading the load over multiple clients.
 
@@ -51,10 +38,10 @@ Higher I/O sizes drive higher throughput and have higher latencies, resulting in
 
 ## SMB Multichannel
 
-SMB Multichannel enables an SMB client to establish multiple network connections to an SMB file share, improving throughput and resiliency. Azure Files supports SMB Multichannel on SSD file shares for both Windows and Linux SMB clients.
-For supported OS versions and detailed configuration, see the Linux SMB Multichannel section below.
+SMB Multichannel enables an SMB client to establish multiple network connections to an SMB file share, improving throughput and resiliency. Azure Files supports SMB Multichannel on SSD file shares for both Windows and Linux SMB clients. For supported Linux OS versions and detailed configuration, see the Linux SMB Multichannel section.
 
-### Linux SMB Multichannel Support
+### Linux SMB Multichannel support
+
 Azure Files supports SMB Multichannel with native Linux SMB clients on the following distributions:
 
 - *Ubuntu 22.04*
@@ -66,13 +53,19 @@ Azure Files supports SMB Multichannel with native Linux SMB clients on the follo
 These clients must be running the appropriate kernel stack and CIFS utilities that support multichannel. SMB Multichannel support on Linux enables performance scaling similar to Windows by establishing multiple parallel TCP connections to the same file share endpoint.
 
 #### Prerequisites
+
+The following are prerequisites to use SMB Multichannel with Linux.
+
 - Kernel with SMB multichannel support enabled (typically 6.8+ and up with *max_channel=4* mount flags)
 - SMB 3.1.1
 - Multiple network interfaces or network paths (if available)
 - Port 445/TCP open between client and Azure Files endpoint
 - Ensure client side receive-side scaling (RSS) is enabled for multi-queue support
 
-#### Example
+#### Example mount command
+
+The following is an example mount command for using SMB Multichannel with Linux.
+
 ```Bash
 mount -t cifs //<storageaccount>.file.core.windows.net/<share> /mnt/azfiles \
    -o vers=3.1.1,username=<account>,password=<key>,dir_mode=0777,file_mode=0777, \
@@ -112,7 +105,7 @@ SMB Multichannel for Azure file shares currently has the following restrictions:
 - Only supported on clients that are using SMB 3.1.1. Ensure SMB client operating systems are patched to recommended levels.
 - Maximum number of channels is four. For details, see [here](/troubleshoot/azure/azure-storage/files-troubleshoot-performance?toc=/azure/storage/files/toc.json#cause-4-number-of-smb-channels-exceeds-four).
 
-### Windows Configuration
+### Windows configuration
 
 SMB Multichannel only works when the feature is enabled on both client-side (your client) and service-side (your Azure storage account).
 
