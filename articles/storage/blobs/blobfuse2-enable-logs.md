@@ -95,7 +95,11 @@ If the logs indicate that the issue comes from the storage SDK, turn on SDK logg
 
 ## Next steps
 
-- [Configure BlobFuse](blobfuse2-configuration.md)
-- [Monitor BlobFuse mount activities and resource usage](blobfuse2-health-monitor.md)
-- [BlobFuse frequently asked questions](blobfuse2-faq.yml)
+- [Monitor BlobFuse mount activities and resource usage](blobfuse2-health-monitor.md).
+- [Troubleshooting BlobFuse](blobfuse2-troubleshooting.md)
 - [Known issues with BlobFuse](blobfuse2-known-issues.md)
+- [BlobFuse frequently asked questions](blobfuse2-faq.yml)
+
+## See also
+
+- [What is BlobFuse?](blobfuse2-what-is.md)

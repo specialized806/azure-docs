@@ -86,6 +86,11 @@ You can disable caching at both the kernel and BlobFuse levels, or exclusively a
 
 ## Next steps
 
+- [Mount an Azure Blob Storage container on Linux with BlobFuse](blobfuse2-mount-container.md)
+
+## See also
+
+- [What is BlobFuse?](blobfuse2-what-is.md)
 - [Configure BlobFuse for caching mode](blobfuse2-configure-caching.md)
 - [Compare streaming versus caching mode](blobfuse2-streaming-versus-caching.md)
 - [BlobFuse configuration reference](blobfuse2-configuration.md)

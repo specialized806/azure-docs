@@ -45,3 +45,7 @@ You can use BlobFuse2-mounted storage similarly to a native Linux file system. T
 - [Install BlobFuse2](blobfuse2-install.md)
 - [Configure BlobFuse2](blobfuse2-configure.md)
 - [Mount an Azure Blob Storage container](blobfuse2-mount-container.md)
+
+## See also
+
+- [What is BlobFuse?](blobfuse2-what-is.md)

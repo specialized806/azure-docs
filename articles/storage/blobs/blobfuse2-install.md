@@ -184,3 +184,6 @@ To build the optional health monitor binary, run the following command:
 - [Mount an Azure Blob Storage container](blobfuse2-mount-container.md)
 - [BlobFuse2 commands](blobfuse2-commands.md)
 
+## See also
+
+- [What is BlobFuse?](blobfuse2-what-is.md)

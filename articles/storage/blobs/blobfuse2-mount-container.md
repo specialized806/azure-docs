@@ -77,4 +77,8 @@ Now that you mounted your container, learn more about using BlobFuse:
 
 - [Configure BlobFuse](blobfuse2-configure.md)
 - [BlobFuse2 commands](blobfuse2-commands.md)
+
+## See also
+
 - [BlobFuse and Linux file systems compared](blobfuse2-compare-linux-file-system.md)
+- [What is BlobFuse?](blobfuse2-what-is.md)

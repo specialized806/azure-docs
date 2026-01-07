@@ -85,7 +85,7 @@ This article shows you how to generate and customize a configuration file. After
 
 In addition, there are other optional configuration settings that you can use to fine-tune the mount. For details about the configuration options, see the [base sample configuration](https://github.com/Azure/azure-storage-fuse/blob/main/setup/baseConfig.yaml).
 
-You can override settings that you define in the configuration file by using environment variables or by passing parameters as part of the command.
+You can override settings that you define in the configuration file by using environment variables or by passing parameters as part of the command. For more information about using environment variables and a list of all variables you can use, see the [BlobFuse README](https://github.com/Azure/azure-storage-fuse/tree/main#environment-variables).
 
 ## Configuration file best practices
 
@@ -115,3 +115,8 @@ For details about the correct format, see this [configuration file](https://gith
 ## Next steps
 
 - [All configuration options](https://github.com/Azure/azure-storage-fuse/blob/main/setup/baseConfig.yaml)
+- [Mount an Azure Blob Storage container](blobfuse2-mount-container.md)
+
+## See also
+
+- [What is BlobFuse?](blobfuse2-what-is.md)

@@ -33,6 +33,8 @@ Here's an example:
 blobfuse2 mount ./mount --config-file=./config.yaml
 ````
 
+To learn more about how to create a configuration file, see [Create a BlobFuse configuration file](blobfuse2-configure.md).
+
 The [BlobFuse base configuration file](https://github.com/Azure/azure-storage-fuse/blob/main/setup/baseConfig.yaml) contains a list of all settings and a brief explanation of each setting.
 
 Use the [sample file cache configuration file](https://github.com/Azure/azure-storage-fuse/blob/main/sampleFileCacheConfig.yaml) to get started quickly by using some basic settings for each of those scenarios.
@@ -53,13 +55,11 @@ blobfuse2 mount ./mount_dir --config-file=./config.yaml --container-name=blobfus
 
 For more information about the entire BlobFuse command set, including the `blobfuse2 mount` command, see [BlobFuse2 commands](blobfuse2-commands.md) and [BlobFuse2 mount commands](blobfuse2-commands-mount.md).
 
-## See also
-
-- [Migrate to BlobFuse2 from BlobFuse v1](https://github.com/Azure/azure-storage-fuse/blob/main/MIGRATION.md)
-- [BlobFuse2 commands](blobfuse2-commands.md)
-- [Troubleshoot BlobFuse issues](blobfuse2-troubleshooting.md)
-
 ## Next steps
 
-- [Mount an Azure Blob Storage container on Linux by using BlobFuse](blobfuse2-how-to-deploy.md)
-- [Use Health Monitor to gain insights into BlobFuse mount activities and resource usage](blobfuse2-health-monitor.md)
+- [Mount an Azure Blob Storage container on Linux by using BlobFuse](blobfuse2-mount-container.md)
+
+## See also
+
+- [What is BlobFuse?](blobfuse2-what-is.md)
+- [BlobFuse2 commands](blobfuse2-commands.md)

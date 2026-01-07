@@ -38,3 +38,7 @@ The following diagram helps you decide between these two modes when working with
 
 - [Configure BlobFuse for streaming mode](blobfuse2-configure-streaming.md)
 - [Configure BlobFuse for caching mode](blobfuse2-configure-caching.md)
+
+## See also
+
+- [What is BlobFuse?](blobfuse2-what-is.md)

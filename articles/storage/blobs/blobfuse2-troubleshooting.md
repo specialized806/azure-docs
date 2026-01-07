@@ -323,10 +323,8 @@ Hierarchical namespace-enabled storage accounts use separate endpoints for blob 
 
 ## See also
 
-- [Use Health Monitor to gain insights into BlobFuse2 mount activities and resource usage](blobfuse2-health-monitor.md)
-- [Migrate to BlobFuse2 from BlobFuse v1](https://github.com/Azure/azure-storage-fuse/blob/main/MIGRATION.md)
-
-## Next steps
-
-- [Configure settings for BlobFuse2](blobfuse2-configuration.md)
-- [BlobFuse2 commands](blobfuse2-commands.md)
+- [Enable logs for BlobFuse](blobfuse2-enable-logs.md)
+- [Troubleshooting BlobFuse](blobfuse2-troubleshooting.md)
+- [Known issues with BlobFuse](blobfuse2-known-issues.md)
+- [BlobFuse frequently asked questions](blobfuse2-faq.yml)
+- [What is BlobFuse?](blobfuse2-what-is.md)

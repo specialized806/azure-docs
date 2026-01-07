@@ -1,7 +1,7 @@
 ---
 title: Monitor BlobFuse mount activities and resource usage
 titleSuffix: Azure Storage
-description: Learn how to use Health monitor to gain insights into BlobFuse mount activities and resource usage.
+description: Learn how to use health monitor to gain insights into BlobFuse mount activities and resource usage.
 author: normesta
 ms.author: normesta
 
@@ -113,7 +113,11 @@ The following JSON shows an example of the output file contents.
 
 ## Next steps
 
-- [Configure BlobFuse](blobfuse2-configuration.md)
-- [BlobFuse frequently asked questions](blobfuse2-faq.yml)
-- [Known issues with BlobFuse](blobfuse2-known-issues.md)
 - [Enable logs for BlobFuse](blobfuse2-enable-logs.md)
+- [Troubleshooting BlobFuse](blobfuse2-troubleshooting.md)
+- [Known issues with BlobFuse](blobfuse2-known-issues.md)
+- [BlobFuse frequently asked questions](blobfuse2-faq.yml)
+
+## See also
+
+- [What is BlobFuse?](blobfuse2-what-is.md)
