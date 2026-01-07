@@ -255,6 +255,10 @@
       href: manage/supported-payment-methods.md
     - name: View payment history
       href: manage/view-payment-history.md
+  - name: Manage billing benefits
+     items:
+    - name: Overview
+      href: manage-billing-benefits/overview.md
   - name: Troubleshoot billing
     items:
     - name: Can't view or find invoices
