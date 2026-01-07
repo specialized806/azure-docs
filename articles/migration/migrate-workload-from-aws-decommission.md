@@ -13,7 +13,7 @@ ms.collection:
 
 # Migrate a workload from Amazon Web Services (AWS) to Azure - Decommission
 
-This is the final step in the workload migration. Proceed after the evaluation phase is complete and you've confirmed that your workload operates as expected in Azure.
+This step is the final step in the workload migration. Proceed after the evaluation phase is complete and you confirm that your workload operates as expected in Azure.
 
 The goal of this phase is to safely retire AWS dependencies, remove redundant resources, and complete the transition to Azure.
 
@@ -24,9 +24,9 @@ The goal of this phase is to safely retire AWS dependencies, remove redundant re
 - **Finalize your data cutover:** Confirm that all production writes and reads are served from Azure (based on your cutover strategy). If you're using continuous replication or synchronization, stop it after you confirm Azure has the authoritative copy of the data.
 - **Take any final backups and snapshots** for archival purposes.
 - **Retire AWS workload resources:**  Plan the sunset date. Stop and delete any AWS EC2 instances, databases, and services that you no longer need. Ensure that nothing critical is still running in AWS before deleting.
-- **Confirm deletion:** [AWS Config](https://docs.aws.amazon.com/config/latest/developerguide/WhatIsConfig.html) maintains an inventory of all your AWS resources and you can use it during the decommission phase to ensure no resources related to your workload are left active.
+- **Confirm deletion:** [AWS Config](https://docs.aws.amazon.com/config/latest/developerguide/WhatIsConfig.html) maintains an inventory of all your AWS resources. You can use it during the decommission phase to ensure no resources related to your workload are left active.
 - **Clean up artifacts:** Update your configuration management database (CMDB), billing, and documentation.
-- **Reset your TTL:** Configure your TTL back to it's original setting.
+- **Reset your TTL:** Configure your TTL back to its original setting.
 
 For a thorough review of decommissioning steps, see the [CAF Decommission source workload](/azure/cloud-adoption-framework/migrate/decommission-source-workload) guide.
 

@@ -46,22 +46,22 @@ Learn more about how to [migrate networking from AWS](/azure/migration/migrate-n
 After planning your networking, follow these steps:
 
 1. **Identify Azure services:** Use the [AWS to Azure resource comparison guide](/azure/architecture/aws-professional) to help you build your workload in Azure.
-2. **Plan identity management:** Plan how identity and access will be handled in Azure. If your workload uses AWS IAM roles or federated identity providers, determine how these will translate to Azure AD roles, managed identities, or service principals. Review any hardcoded ARNs, IAM policies, or identity integrations in the application. If you overlook identity mapping it can lead to post-migration access issues or broken integrations. Ensure any third-party identity providers (e.g., Okta, Auth0) are configured to trust Azure if needed.
+2. **Plan identity management:** Plan how identity and access will be handled in Azure. If your workload uses AWS IAM roles or federated identity providers, determine how these roles translate to Azure AD roles, managed identities, or service principals. Review any hardcoded ARNs, IAM policies, or identity integrations in the application. If you overlook identity mapping, it can lead to post-migration access issues or broken integrations. Ensure any third-party identity providers, such as Okta or Auth0, are configured to trust Azure if needed.
 3. **Document your migration decisions:** Document the resources that you don't migrate and any architecture decisions you make. 
-4. **Reduce risks:** Identify any high-risk components or flows and build out proof of concepts (POCs) as needed to test and mitigate those risks. Consider performing a [failure mode analysis](/azure/well-architected/reliability/failure-mode-analysis) to proactively uncover potential points of failure and assess their impact on the reliability of your workload. 
+4. **Reduce risks:** Identify any high-risk components or flows and build proof of concepts (POCs) as needed to test and mitigate those risks. Consider performing a [failure mode analysis](/azure/well-architected/reliability/failure-mode-analysis) to proactively uncover potential points of failure and assess their impact on the reliability of your workload.  
 5. **Check availability:** Check Azure service availability and capacity in your preferred region, specifically if you plan to use specialized resource types.
 6. **Validate requirements:** If you decide to use Azure Migrate, review the [Azure Migrate support matrix](/azure/migrate/migrate-support-matrix-physical) to ensure your AWS instances meet OS and configuration requirements.
-7. **Compliance and security** Ensure you meet your security requirements. Learn more about [migrating security from AWS](/azure/migration/migrate-security-from-aws). When designing security controls, strike a balance between protection and operability. Overly restrictive network policies, like  blocking all outbound traffic or overly tight Network Security Groups (NSGs), can cause application failures that are difficult to diagnose. Conversely, overly permissive settings (e.g., open ports or public IPs) can introduce security risks. Plan for security settings that meet compliance requirements while allowing necessary functionality.
+7. **Compliance and security:** Ensure you meet your security requirements. Learn more about [migrating security from AWS](/azure/migration/migrate-security-from-aws). When designing security controls, strike a balance between protection and operability. Overly restrictive network policies, like blocking all outbound traffic or overly tight Network Security Groups (NSGs), can cause application failures that are difficult to diagnose. Conversely, overly permissive settings, such as open ports or public IPs, can introduce security risks. Plan for security settings that meet compliance requirements while allowing necessary functionality.
 
 ## Develop and document a migration plan and create a runbook
 
 ### Your cutover strategy
 
-Plan how to will cutover production traffic from the AWS environment to the Azure environment. 
+Plan how to cut over production traffic from the AWS environment to the Azure environment. 
 
-If your SLA allows for a maintenance window, a blue/green approach is preferred. In this case, you maintain two environments. Blue is the current environment (AWS) and green is the new environment (Azure).
+If your SLA allows for a maintenance window, use a blue/green approach. In this case, you maintain two environments. Blue is the current environment (AWS) and green is the new environment (Azure).
 
-In this scenario, you plan a migration window, run your workload in AWS as normal throughout the migration, and move traffic over to Azure after a successful dry run. Both environments run in parallel throughout the migration, allowing you to shift traffic back to AWS if issues arise in the Azure environment. In this case, you also need a rollback strategy specifically for any your database changes and/or messaging queue contents.
+In this scenario, you plan a migration window, run your workload in AWS as normal throughout the migration, and move traffic over to Azure after a successful dry run. Both environments run in parallel throughout the migration, so you can shift traffic back to AWS if issues arise in the Azure environment. In this case, you also need a rollback strategy specifically for any your database changes and messaging queue contents.
 
 Consider applying the [Strangler Fig façade](/azure/architecture/patterns/strangler-fig) as part of a controlled cutover strategy.
 
@@ -69,9 +69,9 @@ There's a cost trade-off to this approach. You incur costs for both cloud provid
 
 ### Choose your data migration strategy
 
-Your choice depends on the amount of data, type of data storage, and usage requirements. Decide between offline migration (backup-and-restore) and live replication.
+Your choice depends on the amount of data, type of data storage, and usage requirements. Decide between offline migration (backup and restore) and live replication.
 
-**Define your RPO (recovery point objective):** Define an acceptable RPO for data loss and document it. You'll refer to this RPO in the [decommission phase](/azure/migration/migrate-workload-from-aws-decommission), and your database migration strategy depends on it as well. RPO is the maximum window of data you're willing to lose in case something goes wrong. For example, an RPO could be "no more than 5 minutes of data loss". This would mean only up to 5 minutes of data could be lost during the cutover. The lower the RPO is, the more you have to consider continuous replication or very recent backups as well as maintenance windows. Lower RPOs can also increase cost and effort to migrate your data.
+**Define your RPO (recovery point objective):** Define an acceptable RPO for data loss and document it. You'll refer to this RPO in the [decommission phase](/azure/migration/migrate-workload-from-aws-decommission), and your database migration strategy depends on it as well. RPO is the maximum window of data you're willing to lose in case something goes wrong. For example, an RPO could be "no more than 5 minutes of data loss". This definition means only up to five minutes of data can be lost during the cutover. The lower the RPO is, the more you have to consider continuous replication or very recent backups as well as maintenance windows. Lower RPOs can also increase cost and effort to migrate your data.
 
 **Database migration:** For your [database migration](/azure/migration/migrate-databases-from-aws) you can use AWS as well as Azure tooling. For example, Azure Data Studio allows you to [replicate Amazon RDS for SQL Server to Azure SQL Database and cut over with minimal downtime](/azure/data-factory/connector-amazon-rds-for-sql-server?tabs=data-factory). This feature enables continuous replication from Amazon RDS to Azure SQL Database. Alternatively, you can use [AWS DMS](https://docs.aws.amazon.com/dms/latest/userguide/Welcome.html) which offers continuous replication and change data capture until you cutover. 
 
@@ -84,16 +84,16 @@ Your choice depends on the amount of data, type of data storage, and usage requi
 | [AWS DataSync](https://aws.amazon.com/datasync/)                                   | automates the transfer                                           |
 
 > [!TIP]
-> If you choose AWS DataSync, the DataSync agent needs to be deployed in Azure during the [prepare phase](./migrate-workload-from-aws-prepare.md).
+> If you choose AWS DataSync, you need to deploy the DataSync agent in Azure during the [prepare phase](./migrate-workload-from-aws-prepare.md).
 
-**Plan a maintenance window:** Schedule a dedicated window for your final cutover and decommissioning steps, document and communicate it with your stakeholders before you start migration. Include time for a possible rollback and DNS switch.
+**Plan a maintenance window:** Schedule a dedicated window for your final cutover and decommissioning steps. Document and communicate it with your stakeholders before you start migration. Include time for a possible rollback and DNS switch.
 ### Document in a runbook
 
 **Sequence of steps:** Document the sequence of steps at a high level. If you're planning a one-time all-at-once cutover, define the exact steps, sequence, and timing of the move. Include the planned outage window in your documentation. Consider including a dry-run, especially for complex cutovers. Document your rollback strategy, DNS TTLs, and how to test success metrics.
 
-**Sign-off acceptance criteria:** Define what a *stable operation* means and make it measurable. For example, agree that after cutover Azure must run for at least X minutes or hours without errors and the workload passes all tests. 
+**Sign-off acceptance criteria:** Define what a *stable operation* means and make it measurable. For example, agree that after cutover Azure must run for at least a certain number of minutes or hours without errors and the workload passes all tests. 
 
-**Rollback trigger criteria and steps:** Document the exact conditions that trigger a rollback to the AWS environment. For example, if any critical functionality is down or the system is in a degraded state (for example, X% below baseline) for more than X minutes, initiate a rollback. Document the rollback steps.
+**Rollback trigger criteria and steps:** Document the exact conditions that trigger a rollback to the AWS environment. For example, if any critical functionality is down or the system is in a degraded state (for example, a certain percentage below baseline) for more than a certain number of minutes, initiate a rollback. Document the rollback steps.
 
 **Traffic and routing changes:** Plan and document your traffic routing changes in detail. Define exactly how to update DNS records, load balancer configuration, and routing rules to direct traffic to Azure. Take into consideration any TTL that you configured as it determines how long DNS changes take to propagate. 
 
@@ -102,7 +102,7 @@ Your choice depends on the amount of data, type of data storage, and usage requi
 
 Review the plan with stakeholders and reconcile differing expectations. Include IT security and risk management teams from the start and ensure they sign off on the plan. A joint workshop at this stage can help minimize delays in later stages.
 
-Once the plan and runbook are reviewed and agreed upon by stakeholders and decision-makers, move on to the prepare phase.
+Once stakeholders and decision-makers review and agree on the plan and runbook, move on to the prepare phase.
 
 ## Checklist
 
