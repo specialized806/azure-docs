@@ -12,7 +12,7 @@ ms.collection:
 ---
 # Migrate a Workload from Amazon Web Services (AWS) to Azure - Introduction
 
-This article provides architects and engineers with actionable, prescriptive guidance to migrate a single workload from Amazon Web Services (AWS) to Azure. It covers the full migration lifecycle, from planning and preparation, to execution and evaluation, to decommissioning of AWS resources.
+This article provides architects and engineers with actionable, prescriptive guidance to migrate a single workload from Amazon Web Services (AWS) to Azure. It covers the full migration lifecycle, from planning and preparation, execution and evaluation, to decommissioning of AWS resources.
 
 Migrating a workload from AWS is a strategic initiative that requires careful planning and stakeholder alignment. This article focuses on workloads that range from simple to moderately complex and can benefit from a pragmatic migration strategy. 
 
@@ -25,7 +25,7 @@ A like-for-like workload migration strategy is the fastest path to Azure and has
 
 ## Recommended tools
 
-Use AWS and Azure tools where appropriate to augment your migration process. These tools support upfront discovery, planning your Azure architecture (based on data gathered about your AWS workload), data and virtual machine (VM) transfer, and post-migration validation and resource cleanup. For example, you can use [Workload Discovery on AWS](https://aws.amazon.com/solutions/implementations/workload-discovery-on-aws/) to speed up assessment, and you can use [Azure Migrate](/azure/migrate/tutorial-assess-aws) to assess AWS instances and provide sizing recommendations for Azure resources.
+Use AWS and Azure tools where appropriate to augment your migration process. These tools support upfront discovery, planning your Azure architecture (based on data gathered about your AWS workload), data and virtual machine (VM) transfer, post-migration validation and resource cleanup. For example, you can use [Workload Discovery on AWS](https://aws.amazon.com/solutions/implementations/workload-discovery-on-aws/) to speed up assessment, and you can use [Azure Migrate](/azure/migrate/tutorial-assess-aws) to assess AWS instances and provide sizing recommendations for Azure resources.
 
 ## Timeline assumptions
 
@@ -37,7 +37,7 @@ The migration of a workload can span several weeks or months. The duration depen
 
 ## Prerequisites
 
-This article is intended for cloud architects, platform engineers, and IT professionals responsible for migration workloads from AWS to Azure. Before you begin migration planning and execution, ensure you have the following prerequisites in place:
+This article is intended for cloud architects, platform engineers, and IT professionals responsible for migrating workloads from AWS to Azure. Before you begin migration planning and execution, ensure you have the following prerequisites in place:
 
 - *Prior experience:* Prior experience with core cloud concepts, AWS and a basic understanding of Azure services and cloud migration processes.
 - *Stakeholder alignment:* Share timelines, budget estimates, and project milestones with stakeholders to ensure that all parties are aligned.

@@ -1,5 +1,5 @@
 ---
-title: Migrate a Workload from Amazon Web Services (AWS) to Azure - Execute
+title: Execute your workload migration from Amazon Web Services (AWS) to Azure
 description: Learn how to execute migration of a single workload from AWS to Azure
 ms.author: rhackenberg
 ai-usage: ai-assisted
@@ -10,7 +10,7 @@ ms.collection:
   - migration
   - aws-to-azure
 ---
-# Migrate a workload from Amazon Web Services (AWS) to Azure - Execute
+#  Execute your workload migration from Amazon Web Services (AWS) to Azure
 
 The execute phase consists of three steps: 
 
@@ -31,11 +31,12 @@ The goal of this phase is to migrate your workload to Azure with minimal downtim
 1. **Execute your data migration:** Align the order of operations with your cutover model.
 	- For active replication scenarios, start by setting up continuous data synchronization between AWS and Azure. This approach ensures minimal downtime and data consistency during cutover.
 	- For backup-and-restore models, start with a full backup of your AWS data. Securely transfer the backup to Azure, then restore it into the target environment. Validate the integrity of the data before you proceed with the next step.
-2. **Configure your application's components:** Point components to their dependencies, some of which might still be on AWS initially. In an incremental migration approach, your database might still be in AWS and will be replicated later.
+2. **Configure your application's components:** Point components to their dependencies, some of which might still be on AWS initially. In a phased migration approach, your database might still be on AWS and will be replicated later.
 3. **Connectivity and networking modifications:** Ensure that your Azure resources can reach anything that still remains in AWS and vice versa if needed. Adjust your firewall and Network Security Groups (NSGs) rules and policies as well as routing as required. Take your time as troubleshooting this component can be tricky. Security group misconfigurations are a common pitfall.
 4. **Testing:** Perform functional testing, performance testing, and failure testing. Use [**Azure Chaos Studio**](/azure/chaos-studio/) to simulate potential faults, such as VM or networking outages. Validate that the migrated workload remains resilient under those circumstances.
 5. **Iterate and fix:** Resolve any issues you encounter. Common pitfalls include paths in scripts or API calls, Azure service limits, and quotas that might need to increase. Some Azure resource features can require different implementations in Terraform.
 6. **Lower TTL:** Lower your TTL before cutover and account for propagation delay in your rollback planning.
+7. **Update FQDNs and DNS routing:** Apply the FQDN transition plan you defined during planning. Update DNS records to point existing FQDNs to Azure endpoints, or modify application configurations to use new Azure FQDNs. For public-facing services, coordinate DNS cutover carefully to minimize downtime.
 
 ## During cutover
 
@@ -56,18 +57,20 @@ For detailed cutover guidance, see the [CAF Execute migration](/azure/cloud-adop
 
 ## Checklist
 
-| &nbsp;  | Deliverable tasks                   |
-| ------- | ----------------------------------- |
-| &#9744; | Execute data migration              |
-| &#9744; | Configure application components    |
-| &#9744; | Modify connectivity and networking  |
-| &#9744; | Perform functional tests            |
-| &#9744; | Perform performance tests           |
-| &#9744; | Perform failure testing             |
-| &#9744; | Fix all issues                      |
-| &#9744; | Maintain rollback readiness         |
-| &#9744; | Update CI/CD pipelines for Azure    |
-| &#9744; | Perform post-cutover verification   |
+| &nbsp;  | Deliverable tasks                  |
+| ------- | ---------------------------------- |
+| &#9744; | Execute data migration             |
+| &#9744; | Configure application components   |
+| &#9744; | Modify connectivity and networking |
+| &#9744; | Perform functional tests           |
+| &#9744; | Perform performance tests          |
+| &#9744; | Perform failure testing            |
+| &#9744; | Fix all issues                     |
+| &#9744; | Lower TTL                          |
+| &#9744; | Update FQDNs and DNS routing       |
+| &#9744; | Maintain rollback readiness        |
+| &#9744; | Update CI/CD pipelines for Azure   |
+| &#9744; | Perform post-cutover verification  |
 
 ## Next step
 

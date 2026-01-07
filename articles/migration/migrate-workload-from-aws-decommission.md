@@ -1,5 +1,5 @@
 ---
-title: Migrate a Workload from Amazon Web Services (AWS) to Azure - Decommission
+title: Decommission your workload from Amazon Web Services (AWS) after migrating to Azure
 description: Learn how to decommission AWS resources after migrating a single workload from AWS to Azure
 ms.author: rhackenberg
 ai-usage: ai-assisted
@@ -11,7 +11,7 @@ ms.collection:
   - aws-to-azure
 ---
 
-# Migrate a workload from Amazon Web Services (AWS) to Azure - Decommission
+# Decommission your workload from Amazon Web Services (AWS) after migrating to Azure
 
 This step is the final step in the workload migration. Proceed after the evaluation phase is complete and you confirm that your workload operates as expected in Azure.
 

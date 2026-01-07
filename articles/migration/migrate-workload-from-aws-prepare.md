@@ -1,5 +1,5 @@
 ---
-title: Migrate a Workload from Amazon Web Services (AWS) to Azure - Prepare
+title: Prepare your workload migration from Amazon Web Services (AWS) to Azure
 description: Learn how to prepare migration of a single workload from AWS to Azure
 ms.author: rhackenberg
 ai-usage: ai-assisted
@@ -10,7 +10,7 @@ ms.collection:
   - migration
   - aws-to-azure
 ---
-# Migrate a workload from Amazon Web Services (AWS) to Azure - Prepare
+# Prepare your workload migration from Amazon Web Services (AWS) to Azure
 
 The prepare phase consists of two steps: 
 
@@ -35,6 +35,7 @@ During this phase, you build out your Azure environment, refactor any code if re
 ## Prepare your application
 
 - **Refactor your application's code:** Use feature flags to simplify version management between the AWS and Azure environments.
+- **Review AWS-specific libraries and SDKs**: Many applications rely on AWS-native libraries or SDKs (for example, for storage, messaging, or authentication). These may not be compatible with Azure services. During refactoring, identify and replace AWS-specific libraries with Azure equivalents or platform-agnostic alternatives. This step helps avoid runtime errors and ensures your application integrates cleanly with Azure services.
 - **Prepare your operational functions:** Work with the platform team to implement workload monitoring. Collaborate with the security team to implement security monitoring and validate the Azure architecture.
 
 For guidance on preparing your workloads and building your Azure environment, see the [CAF Prepare workloads](/azure/cloud-adoption-framework/migrate/prepare-workloads-cloud) guide.
@@ -48,6 +49,7 @@ For guidance on preparing your workloads and building your Azure environment, se
 | &#9744; | Update CI/CD pipelines for Azure          |
 | &#9744; | Test infrastructure                       |
 | &#9744; | Refactor application's code               |
+| &#9744; | Review AWS-specific libraries and SDKs    |
 | &#9744; | Prepare operational functions             |
 | &#9744; | Test your networking and security         |
 

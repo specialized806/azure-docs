@@ -1,5 +1,5 @@
 ---
-title: Migrate a Workload from Amazon Web Services (AWS) to Azure - Conclusion
+title: Conclude your workload migration from Amazon Web Services (AWS) to Azure
 description: Learn about the next steps after migrating a single workload from AWS to Azure
 ms.author: rhackenberg
 ai-usage: ai-assisted
@@ -10,7 +10,7 @@ ms.collection:
   - migration
   - aws-to-azure
 ---
-# Migrate a workload from Amazon Web Services (AWS) to Azure - Conclusion
+# Conclude your workload migration from Amazon Web Services (AWS) to Azure
 
 Migrating a workload, especially if it's your first workload, is an intense project.
 

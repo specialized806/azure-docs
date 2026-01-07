@@ -1,5 +1,5 @@
 ---
-title: Migrate a Workload from Amazon Web Services (AWS) to Azure - Plan
+title: Plan your workload migration from Amazon Web Services (AWS) to Azure
 description: Learn how to plan migration of a single workload from AWS to Azure
 ms.author: rhackenberg
 ai-usage: ai-assisted
@@ -10,7 +10,7 @@ ms.collection:
   - migration
   - aws-to-azure
 ---
-# Plan your workload migration from Amazon Web Services (AWS) to Azure - Plan
+# Plan your workload migration from Amazon Web Services (AWS) to Azure
 
 The goal of the planning phase is to: 
 
@@ -37,21 +37,21 @@ The goal of the planning phase is to:
 
 **Start with networking:** Discuss your workload's networking requirements with the platform team. Your request should include not only the target architecture, but also the migration connectivity. AWS uses the concept of a Transit Gateway as the network hub with Amazon VPCs as the spoke networks. In the Azure application landing zone design, the platform team provisions spoke virtual networks to workload teams. These spoke networks communicate to other internal and external networks through the hub or Azure Virtual WAN network. 
 
-:::image type="content" source="./images/migrate-from-aws-connectivity.svg" alt-text="Diagram showing network connectivity between AWS and Azure clouds. At the top, a DNS icon connects to two boxes: on the left, AWS Cloud with a Virtual Private Cloud (VPC); on the right, Azure Cloud with a Virtual Network (VNet). A bidirectional arrow between the boxes is labeled Site-to-Site VPN and Direct Connect + ExpressRoute, indicating secure connectivity options." lightbox="./images/migrate-from-aws-connectivity.svg" border="false":::
-
 To exchange data during the migration, you can use either Site-to-Site VPN or ExpressRoute with AWS Direct Connect. Relying on VPN is suitable for smaller or proof-of-concept migrations, while ExpressRoute with AWS Direct Connect is recommended for production-scale migrations or large data transfers. Consider using both for reliability. In that case, you use VPN for failover.
+
+:::image type="content" source="./images/migrate-from-aws-connectivity.svg" alt-text="Diagram showing network connectivity between AWS and Azure clouds. At the top, a DNS icon connects to two boxes: on the left, AWS Cloud with a Virtual Private Cloud (VPC); on the right, Azure Cloud with a Virtual Network (VNet). A bidirectional arrow between the boxes is labeled Site-to-Site VPN and Direct Connect + ExpressRoute, indicating secure connectivity options." lightbox="./images/migrate-from-aws-connectivity.svg" border="false":::
  
 Learn more about how to [migrate networking from AWS](/azure/migration/migrate-networking-from-aws).
 
 After planning your networking, follow these steps:
 
 1. **Identify Azure services:** Use the [AWS to Azure resource comparison guide](/azure/architecture/aws-professional) to help you build your workload in Azure.
-2. **Plan identity management:** Plan how identity and access will be handled in Azure. If your workload uses AWS IAM roles or federated identity providers, determine how these roles translate to Azure AD roles, managed identities, or service principals. Review any hardcoded ARNs, IAM policies, or identity integrations in the application. If you overlook identity mapping, it can lead to post-migration access issues or broken integrations. Ensure any third-party identity providers, such as Okta or Auth0, are configured to trust Azure if needed.
+2. **Plan identity management:** Plan how identity and access will be handled in Azure. If your workload uses AWS IAM roles or federated identity providers, determine how these roles translate to Entra ID (formerly Azure AD) roles, managed identities, or service principals. Review any hardcoded ARNs, IAM policies, or identity integrations in the application. If you overlook identity mapping, it can lead to post-migration access issues or broken integrations. Ensure any third-party identity providers, such as Okta or Auth0, are configured to trust Azure if needed.
 3. **Document your migration decisions:** Document the resources that you don't migrate and any architecture decisions you make. 
 4. **Reduce risks:** Identify any high-risk components or flows and build proof of concepts (POCs) as needed to test and mitigate those risks. Consider performing a [failure mode analysis](/azure/well-architected/reliability/failure-mode-analysis) to proactively uncover potential points of failure and assess their impact on the reliability of your workload.  
 5. **Check availability:** Check Azure service availability and capacity in your preferred region, specifically if you plan to use specialized resource types.
 6. **Validate requirements:** If you decide to use Azure Migrate, review the [Azure Migrate support matrix](/azure/migrate/migrate-support-matrix-physical) to ensure your AWS instances meet OS and configuration requirements.
-7. **Compliance and security:** Ensure you meet your security requirements. Learn more about [migrating security from AWS](/azure/migration/migrate-security-from-aws). When designing security controls, strike a balance between protection and operability. Overly restrictive network policies, like blocking all outbound traffic or overly tight Network Security Groups (NSGs), can cause application failures that are difficult to diagnose. Conversely, overly permissive settings, such as open ports or public IPs, can introduce security risks. Plan for security settings that meet compliance requirements while allowing necessary functionality.
+7. **Compliance and security:** Ensure you meet your security requirements. When designing security controls, strike a balance between protection and operability. Overly restrictive network policies, like blocking all outbound traffic or overly tight Network Security Groups (NSGs), can cause application failures that are difficult to diagnose. Conversely, overly permissive settings, such as open ports or public IPs, can introduce security risks. Plan for security settings that meet compliance requirements while allowing necessary functionality. Learn more about [migrating security from AWS](/azure/migration/migrate-security-from-aws). 
 
 ## Develop and document a migration plan and create a runbook
 
@@ -61,7 +61,7 @@ Plan how to cut over production traffic from the AWS environment to the Azure en
 
 If your SLA allows for a maintenance window, use a blue/green approach. In this case, you maintain two environments. Blue is the current environment (AWS) and green is the new environment (Azure).
 
-In this scenario, you plan a migration window, run your workload in AWS as normal throughout the migration, and move traffic over to Azure after a successful dry run. Both environments run in parallel throughout the migration, so you can shift traffic back to AWS if issues arise in the Azure environment. In this case, you also need a rollback strategy specifically for any your database changes and messaging queue contents.
+In this scenario, you plan a migration window, run your workload in AWS as normal throughout the migration, and move traffic over to Azure after a successful dry run. Both environments run in parallel throughout the migration, so you can shift traffic back to AWS if issues arise in the Azure environment. In this case, you also need a rollback strategy specifically for any database changes and messaging queue contents.
 
 Consider applying the [Strangler Fig façade](/azure/architecture/patterns/strangler-fig) as part of a controlled cutover strategy.
 
@@ -96,6 +96,8 @@ Your choice depends on the amount of data, type of data storage, and usage requi
 **Rollback trigger criteria and steps:** Document the exact conditions that trigger a rollback to the AWS environment. For example, if any critical functionality is down or the system is in a degraded state (for example, a certain percentage below baseline) for more than a certain number of minutes, initiate a rollback. Document the rollback steps.
 
 **Traffic and routing changes:** Plan and document your traffic routing changes in detail. Define exactly how to update DNS records, load balancer configuration, and routing rules to direct traffic to Azure. Take into consideration any TTL that you configured as it determines how long DNS changes take to propagate. 
+
+Many applications and scripts reference Fully Qualified Domain Names (FQDNs) for endpoints, APIs, and services. If these change unexpectedly during migration, integrations can break. As part of your routing and cutover planning, inventory all FQDNs used by your workload. Decide whether to retain existing names via DNS forwarding or update application configurations to use new Azure FQDNs. For public-facing services, plan DNS cutover carefully to minimize downtime and ensure a seamless transition.
 
 > [!CAUTION]
 > Neglecting to explicitly plan traffic routing is a common pitfall that can lead to unexpected downtime. 
