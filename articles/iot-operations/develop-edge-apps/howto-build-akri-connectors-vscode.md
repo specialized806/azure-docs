@@ -41,25 +41,31 @@ Development environment:
 
 Docker configuration:
 
-Images used by the extension must be pulled and tagged locally before you use the extension:
+- Images used by the extension must be pulled and tagged locally before you use the extension:
 
-```bash
-docker pull mcr.microsoft.com/azureiotoperations/devx-runtime:0.1.8
-docker tag mcr.microsoft.com/azureiotoperations/devx-runtime:0.1.8 devx-runtime
-```
+    ```bash
+    docker pull mcr.microsoft.com/azureiotoperations/devx-runtime:0.1.8
+    docker tag mcr.microsoft.com/azureiotoperations/devx-runtime:0.1.8 devx-runtime
+    ```
 
-All the containers the extension launches are configured to run on a custom network named `aio_akri_network` for network isolation purpose:
+- All the containers the extension launches are configured to run on a custom network named `aio_akri_network` for network isolation purpose:
 
-```bash
-docker network create aio_akri_network
-```
+    ```bash
+    docker network create aio_akri_network
+    ```
 
-The DevX container uses a custom volume `akri_devx_docker_volume` to store cluster configuration:
+- The DevX container uses a custom volume `akri_devx_docker_volume` to store cluster configuration:
 
-```bash
-docker volume rm akri_devx_docker_volume // delete the volume created from any previous release
-docker volume create akri_devx_docker_volume
-```
+    ```bash
+    docker volume rm akri_devx_docker_volume # delete the volume created from any previous release
+    docker volume create akri_devx_docker_volume
+    ```
+
+To deploy and use your connector with an Azure IoT Operations instance, you also need:
+
+- An instance of [Azure IoT Operations](../deploy-iot-ops/howto-deploy-iot-operations.md).
+- Access to a container registry, such as Azure Container Registry, to publish your connector images.
+- A container registry endpoint configured in your Azure IoT Operations instance to pull your connector images. For more information, see [Configure registry endpoints](howto-configure-registry-endpoint.md).
 
 ## Author and validate an Akri connector
 
@@ -350,7 +356,7 @@ Use the VS Code workspace created from the **Create an Akri Connector** command 
 
 ## Publish metadata artifacts
 
-Use the **Azure IoT Operations Akri connectors: Publish Akri Connector Image or Metadata** command to publish metadata folders to an ACR registry. The command uses the Azure CLI and `oras` commands. To publish to an ACR registry, you need your Azure subscription ID and ACR registry name. Currently, the extension expects files called `connector-metadata.json` and `additionalConfig.json` to be present in any folder you push.
+Use the **Azure IoT Operations Akri connectors: Publish Akri Connector Image or Metadata** command to publish metadata folders to an ACR registry. The command uses the Azure CLI and `oras` commands. To publish to an ACR registry, you need your Azure subscription ID and ACR registry name. Currently, the extension expects files called `connector-metadata.json` and optionally `additionalConfig.json` to be present in any folder you push.
 
 
 ## Known Issues
