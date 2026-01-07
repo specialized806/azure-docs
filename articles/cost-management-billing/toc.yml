@@ -256,7 +256,7 @@
     - name: View payment history
       href: manage/view-payment-history.md
   - name: Manage billing benefits
-     items:
+    items:
     - name: Overview
       href: manage-billing-benefits/overview.md
   - name: Troubleshoot billing
