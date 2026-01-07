@@ -22,7 +22,7 @@ Now, you can enable VCF portability directly through the Azure portal when you'r
 
 You now have full flexibility to apply portable VCF per Azure VMware Solution private cloud, instead of your entire Azure subscription. This flexibility means that you can run some Azure VMware Solution private clouds with your own portable VCF subscription and others with a Microsoft-provided VCF subscription, all under the same Azure subscription. This ability enables phased migrations and removes the need to convert everything at once.
 
-If you have an active reserved instance for VCF-included hosts and you want to add new hosts, you can register portable VCF only for those additional hosts. You can continue using your existing VCF-included hosts until the end of their reserved instance's term.
+If you have an active reserved instance for VCF-included hosts and you want to add new hosts, you can register portable VCF only for those added hosts. You can continue using your existing VCF-included hosts until the end of their reserved instance's term.
 
 VMware vDefend Firewall is an add-on feature for Azure VMware Solution. Customers who have active reserved instances for VCF-included hosts and vDefend Firewall enabled before October 16, 2025, can continue to use the same number of eligible vDefend firewall cores until the reserved instance expires.
 
@@ -37,7 +37,7 @@ When you use portable VCF, you must still request capacity (quotas) for Azure VM
 
 Always ensure that your Broadcom-purchased VCF core count covers the scale that you need.
 
-For more details on how to request host quotas for Azure VMware Solution, see [Request host quotas for Azure VMware Solution](./request-host-quota-azure-vmware-solution.md).
+For more information on how to request host quotas for Azure VMware Solution, see [Request host quotas for Azure VMware Solution](./request-host-quota-azure-vmware-solution.md).
 
 ## Trials on Azure VMware Solution
 
@@ -71,7 +71,7 @@ Select **Configure** and provide all the required details:
 
 :::image type="content" source="media/vmware-cloud-foundations-license-portability/portable-vcf-create-new-private-cloud-with-vcf-byol-side-pane.png" alt-text="Screenshot of the form to register a VCF portable subscription." border="true":::
 
-To use the VMware vDefend Firewall add-on on a Azure VMware Solution private cloud, you must pre-purchase it from Broadcom. You can also update your vDefend Firewall add-on license key after your Azure VMware Solution private cloud is created. Continue reading for more information.
+To use the VMware vDefend Firewall add-on on an Azure VMware Solution private cloud, you must pre-purchase it from Broadcom. You can also update your vDefend Firewall add-on license key after your Azure VMware Solution private cloud is created. Continue reading for more information.
 
 ### Enable portable VCF on an existing Azure VMware Solution private cloud
 
@@ -136,7 +136,7 @@ If you intend to use vDefend Firewall with Advanced Threat Prevention, submit a 
 
    In a mixed billing scenario:
 
-   * If your Azure VMware Solution private cloud has three AV36P hosts and you want to add four more AV36P VCF BYOL hosts, the total VCF cores required is: (3 * 36 = 108) from the Azure VMware Solution license + (4 * 36 = 144) from the BYOL license = 252.
+   * If your Azure VMware Solution private cloud has three AV36P hosts and you want to add four more AV36P VCF BYOL hosts, the total of VCF cores required is: (3 * 36 = 108) from the Azure VMware Solution license + (4 * 36 = 144) from the BYOL license = 252.
    * Register 144 cores *only* for BYOL, even though you purchased the license for more than 144 cores. This setup helps you receive the 100% utilization benefit for reserved instances.
 
 > [!NOTE]
@@ -150,7 +150,7 @@ The VMware vDefend Firewall add-on can be enabled in NSX Distributed Firewall an
 
 * *NSX Distributed Firewall*: The total number of cores is determined by the quantity of host cores within the Azure VMware Solution private cloud. For instance, if there are 10 AV36P hosts and the NSX distributed firewall feature is enabled, the corresponding count of firewall add-on cores is: 10 hosts * 36 cores per host = 360 cores.
 
-* *NSX Gateway Firewall*: The total number of cores is determined by the NSX Edge vCPU being used in the Azure VMware Solution private cloud. The count of Gateway Firewall add-on cores is calculated as: number of edges * number of vCPUs per edge * 4.
+* *NSX Gateway Firewall*: The total number of cores is determined by the NSX edge vCPU being used in the Azure VMware Solution private cloud. The count of Gateway Firewall add-on cores is calculated as: number of edges * number of vCPUs per edge * 4.
 
   For instance, for an Azure VMware Solution Generation 1 private cloud with the default two large NSX edges, the Gateway Firewall add-on core count is calculated as: 2 edges * 8 vCPUs * 4 = 64 Gateway Firewall cores.
   
@@ -226,7 +226,12 @@ Customers are accountable for managing their VCF subscription cores and ensuring
 
 ## Update your VCF BYOL configuration
 
-If you're an existing Azure VMware Solution customer, and you were using VCF BYOL before November 2025 and you registered your VCF keys through the [registration email](mailto:registeravsvcfbyol@microsoft.com), you need to update your configuration through the new Azure portal-based VCF BYOL system. You must finish the update by March 31, 2026. There's *no* disruption to your private cloud in this process.
+If you're an existing Azure VMware Solution customer, you need to update your configuration through the new Azure portal-based VCF BYOL system if both of these conditions apply:
+
+* You were using VCF BYOL before November 2025.
+* You registered your VCF keys through the [registration email](mailto:registeravsvcfbyol@microsoft.com).
+
+You must finish the update by March 31, 2026. There's *no* disruption to your private cloud in this process.
 
 Updating your configuration is important because:
 
