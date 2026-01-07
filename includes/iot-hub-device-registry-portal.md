@@ -6,14 +6,15 @@ ms.author: cwatson
 ms.service: azure-iot-hub
 ms.topic: include
 ai-usage: ai-assisted
-ms.date: 12/03/2025
+ms.date: 01/07/2026
 ---
 
 ## Additional prerequisites for Azure portal
 
 Before you begin, make sure you have:
 
-- An Azure resource group with the [Contributor](/azure/role-based-access-control/built-in-roles/privileged#contributor) role assigned for the role assignment member **Azure IoT Hub** at the resource group scope. For more information, see [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal).
+- An Azure resource group to organize your IoT hub and related resources. For more information, see [Create a resource group](/azure/azure-resource-manager/management/manage-resource-groups-portal).
+- Assigned the [Contributor](/azure/role-based-access-control/built-in-roles/privileged#contributor) role to the **Azure IoT Hub** service at the resource group level. When you select members during the role assignment, search for and select **Azure IoT Hub** from the list of service principals. For more information, see [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal).
 
 ## Overview
 
