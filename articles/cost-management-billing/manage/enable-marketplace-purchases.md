@@ -47,7 +47,7 @@ At a high level, here's how the process works.
 
 :::image type="content" source="./media/enable-marketplace-purchases/diagram-steps-enable-purchases.svg" alt-text="Diagram showing the enable purchase steps." border="false" lightbox="./media/enable-marketplace-purchases/diagram-steps-enable-purchases.svg":::
 
-### Enable the marketplace policy setting with a Microsoft Customer Agreement account
+### <a name = "mca--enable-the-marketplace-policy-setting"></a> Enable the marketplace policy setting with a Microsoft Customer Agreement account
 
 Users with the following permissions can enable the policy setting:
 
@@ -69,7 +69,7 @@ To enable the policy setting on the Billing Account Profile:
 
 For more information about Azure Marketplace policy setting, see [purchase control through the billing profile under a Microsoft Customer Agreement](/marketplace/purchase-control-options#purchase-control-through-the-billing-profile) .
 
-### Enable the marketplace policy setting with an Enterprise Agreement account
+### <a name = "ea--enable-the-marketplace-policy-setting"></a> Enable the marketplace policy setting with an Enterprise Agreement account
 
 Only users with the **Enterprise administrator** role can enable the policy setting. Users with **Enterprise administrator** role who have read-only permissions can't enable the proper policies to buy from the marketplace.
 
