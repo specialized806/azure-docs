@@ -124,7 +124,7 @@ To stop protection and delete the backup data, follow these steps:
       :::image type="content" source="./media/backup-azure-delete-vault/stop-backup-blade-delete-backup-data-inline.png" alt-text="Screenshot that shows the Delete Backup Data pane." lightbox="./media/backup-azure-delete-vault/stop-backup-blade-delete-backup-data-expanded.png":::
 
    This option deletes scheduled backups and also deletes on-demand backups.
-1. Check the **Notification** icon: ![The Notification icon.](./media/backup-azure-delete-vault/messages.png). After the process finishes, the service displays the following message: "Stopping backup and deleting backup data for Backup Item. Successfully completed the operation."
+1. Check the **Notification** icon: ![The Notification icon.](./media/backup-azure-delete-vault/messages.png). After the process finishes, the service displays the following message: **Stopping backup and deleting backup data for Backup Item. Successfully completed the operation.**
 1. On the **Backup Items** menu, select **Refresh** to make sure that the backup item was deleted.
 
    :::image type="content" source="./media/backup-azure-delete-vault/empty-items-list-inline.png" alt-text="Screenshot that shows the Backup Items page." lightbox="./media/backup-azure-delete-vault/empty-items-list-expanded.png":::
@@ -157,7 +157,7 @@ First, read the [Before you start](#before-you-start) section to understand the 
 
 1. Select the consent checkbox, and then select **Delete**.
 
-1. Check the **Notification** icon: ![Notification icon.](./media/backup-azure-delete-vault/messages.png). After the operation finishes, the service displays the following message: "Stopping backup and deleting backup data for Backup Item. Successfully completed the operation."
+1. Check the **Notification** icon: ![Notification icon.](./media/backup-azure-delete-vault/messages.png). After the operation finishes, the service displays the following message: **Stopping backup and deleting backup data for Backup Item. Successfully completed the operation.**
 1. On the **Backup Items** menu, select **Refresh** to make sure that the backup item is deleted.
 
 If you delete an on-premises protected item from a portal that contains dependencies, you receive the following warning: "Deleting server's registration is a destructive operation and cannot be undone. All backup data (recovery points required to restore the data) and Backup items associated with protected server will be permanently deleted."
@@ -172,7 +172,7 @@ After this process finishes, you can delete the backup items from the management
 If you deleted or lost the source machine without stopping the backup, the next scheduled backup fails. The old recovery point expires according to the policy, but the last single recovery point is always retained until you stop the backup and delete the data. Follow the steps in [this section](#delete-protected-items-on-premises).
 
 1. Open the MARS management console, go to the **Actions** pane, and select **Schedule Backup**.
-1. On the **Modify or Stop a Scheduled Backup** page, select **Stop using this backup schedule and delete all of the stored backups**. Then, select **Next**.
+1. On the **Modify or Stop a Scheduled Backup** pane, select **Stop using this backup schedule and delete all of the stored backups**. Then, select **Next**.
 
     ![Screenshot that shows modifying or stopping a scheduled backup.](./media/backup-azure-delete-vault/modify-schedule-backup.png)
 

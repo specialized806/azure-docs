@@ -222,9 +222,9 @@ The **Backup Storage** tile on the dashboard shows the storage consumed in Azure
 * Cloud LRS storage use associated with the vault.
 * Cloud GRS storage use associated with the vault.
 
-## Optimize backup and recovery with Resilience Copilot
+## Optimize backup and recovery with Resiliency Copilot
 
-Resilience Copilot introduces new capabilities in the Recovery Services vaults pane. You can use it to configure or manage a secure, resilient backup and recovery environment. You can:
+Resiliency Copilot introduces new capabilities in the Recovery Services vaults pane. You can use it to configure or manage a secure, resilient backup and recovery environment. You can:
 
 - [Increase security levels](../business-continuity-center/tutorial-manage-data-using-copilot.md#increase-security-level-of-recovery-service-vault-and-backup-vault) to strengthen protection for backup data and disaster recovery operations.
 - [Analyze job failures](../business-continuity-center/tutorial-manage-data-using-copilot.md#analyze-job-failures-for-recovery-service-vault-and-backup-vault) to gain insights into failures for precise analysis and faster resolution.
