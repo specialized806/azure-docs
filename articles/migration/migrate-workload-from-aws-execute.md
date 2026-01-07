@@ -34,7 +34,8 @@ The goal of this phase is to migrate your workload to Azure with minimal downtim
 2. **Configure your application's components:** Point components to their dependencies, some of which might still be on AWS initially. In an incremental migration approach, your database might still be in AWS and will be replicated later.
 3. **Connectivity and networking modifications:** Ensure that your Azure resources can reach anything that still remains in AWS and vice versa if needed. Adjust your firewall and Network Security Groups (NSGs) rules and policies as well as routing as required. Take your time as troubleshooting this component can be tricky. Security group misconfigurations are a common pitfall.
 4. **Testing:** Perform functional testing, performance testing, and failure testing. Use [**Azure Chaos Studio**](/azure/chaos-studio/) to simulate potential faults, such as VM or networking outages. Validate that the migrated workload remains resilient under those circumstances.
-5. **Iterate and fix** any issues you encounter. Common pitfalls include paths in scripts or API calls, Azure service limits, and quotas that might need to increase. Some Azure resource features can require different implementations in Terraform.
+5. **Iterate and fix:** Resolve any issues you encounter. Common pitfalls include paths in scripts or API calls, Azure service limits, and quotas that might need to increase. Some Azure resource features can require different implementations in Terraform.
+6. **Lower TTL:** Lower your TTL before cutover and account for propagation delay in your rollback planning.
 
 ## During cutover
 

@@ -26,6 +26,7 @@ The goal of this phase is to safely retire AWS dependencies, remove redundant re
 - **Retire AWS workload resources:**  Plan the sunset date. Stop and delete any AWS EC2 instances, databases, and services that you no longer need. Ensure that nothing critical is still running in AWS before deleting.
 - **Confirm deletion:** [AWS Config](https://docs.aws.amazon.com/config/latest/developerguide/WhatIsConfig.html) maintains an inventory of all your AWS resources and you can use it during the decommission phase to ensure no resources related to your workload are left active.
 - **Clean up artifacts:** Update your configuration management database (CMDB), billing, and documentation.
+- **Reset your TTL:** Configure your TTL back to it's original setting.
 
 For a thorough review of decommissioning steps, see the [CAF Decommission source workload](/azure/cloud-adoption-framework/migrate/decommission-source-workload) guide.
 
@@ -38,6 +39,7 @@ For a thorough review of decommissioning steps, see the [CAF Decommission source
 | &#9744; | Retire AWS resources             |
 | &#9744; | Check successful deletion        |
 | &#9744; | Clean up artifacts               |
+| &#9744; | Reset TTL                        |
 
 ## Next step
 

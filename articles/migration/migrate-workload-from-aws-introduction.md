@@ -16,8 +16,6 @@ This article provides architects and engineers with actionable, prescriptive gui
 
 Migrating a workload from AWS is a strategic initiative that requires careful planning and stakeholder alignment. This article focuses on workloads that range from simple to moderately complex and can benefit from a pragmatic migration strategy. 
 
-
-
 ## Workload migration strategy
 
 A like-for-like workload migration strategy is the fastest path to Azure and has the least risk. This approach keeps the existing architecture and operational patterns. The goal is that the migrated workload meets the same key performance indicators (KPIs) on Azure as it did on AWS.
@@ -45,8 +43,12 @@ This article is intended for cloud architects, platform engineers, and IT profes
 - *Stakeholder alignment:* Share timelines, budget estimates, and project milestones with stakeholders to ensure that all parties are aligned.
 - *Support strategy in place:* Purchase a Microsoft support plan and investigate options for free or community support.
 - *Platform strategy in place:* This article covers how to migrate a single workload. It assumes your platform foundation is in place and your migration strategy is defined and in alignment with the [Cloud Adoption Framework](/azure/cloud-adoption-framework/strategy).
+- *Existing landing zone:* Ensure you have a robust landing zone in place and subscriptions, management groups, networks, governance policies are configured to receive the workload.
+- *Invest in training or partner support:* Assess your team's Azure skills and plan for training or partner support as needed.
 
 In addition to these measures, consider completing a [Migration Readiness Assessment](/assessments/Strategic-Migration-Assessment/). This assessment scores your readiness to migrate across 10 dimensions.
+
+After the assessment, hold a kick-off workshop, including all stakeholders, to gather requirements and constraints and ensure buy-in.
 
 To help with planning and successfully executing your workload migration, work through the following five phases:
 

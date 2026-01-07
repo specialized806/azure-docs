@@ -29,8 +29,9 @@ The goal of the planning phase is to:
 2. **Use discovery tooling:** To speed up assessment, use [Workload Discovery on AWS](https://aws.amazon.com/solutions/implementations/workload-discovery-on-aws/) to visualize your AWS workload. It uses AWS Config and AWS Systems Manager data to help identify your workload's components, dependencies, and relationships. [Azure Migrate](/azure/migrate/tutorial-assess-aws) provides automated discovery and assessment of AWS workloads. This can help you right-size resources before migration.
 3. **Identify critical flows:** Map out essential user and system interactions and [workflows](/azure/well-architected/reliability/identify-flows). When you design the target architecture in the next section, this information helps prioritize reliability efforts and ensures that the most important and impactful components are protected against failure.
 4. **Create a detailed inventory**: Make a list of your current AWS environment that's required for running the workload (all servers, storage, database, and services), along with usage patterns, performance metrics, and licensing requirements. Use [Azure Migrate](/azure/migrate/tutorial-assess-aws) to assess AWS instances for migration to Azure.
-5. **Assess your team's skills:** Focus on like-for-like capability mapping. Identify the skills your team already uses in AWS and align them with the equivalent Azure services and tools. Include Azure training in your project timeline to prepare your workload and operations teams. This approach reduces friction and accelerates adoption. It also builds confidence with Azure as existing experience in AWS translates directly to the new environment.
-6. **Document existing KPIs:** Document the defined performance baseline of your workload, such as throughput, latency, error rates, and resource utilization. If these KPIs aren't available, collect these metrics from your AWS environment to establish this baseline. Use these KPIs in the evaluation phase after migration to validate that the workload in Azure performs as it did in AWS. This strategy supports the like-for-like migration strategy and reduces risks.
+5. **Involve application team:** In addition to automated discovery tools, engage the application team to uncover hidden dependencies. Critical components, like scheduled scripts, undocumented integrations, or legacy configurations, are often missed by tooling. A conversation with the app owners can reveal these nuances and prevent surprises during migration. Include their input in the migration plan and runbook.
+6. **Assess your team's skills:** Focus on like-for-like capability mapping. Identify the skills your team already uses in AWS and align them with the equivalent Azure services and tools. Include Azure training in your project timeline to prepare your workload and operations teams. This approach reduces friction and accelerates adoption. It also builds confidence with Azure as existing experience in AWS translates directly to the new environment.
+7. **Document existing KPIs:** Document the defined performance baseline of your workload, such as throughput, latency, error rates, and resource utilization. If these KPIs aren't available, collect these metrics from your AWS environment to establish this baseline. Use these KPIs in the evaluation phase after migration to validate that the workload in Azure performs as it did in AWS. This strategy supports the like-for-like migration strategy and reduces risks.
 
 ## Design a like-for-like architecture in Azure
 
@@ -45,11 +46,12 @@ Learn more about how to [migrate networking from AWS](/azure/migration/migrate-n
 After planning your networking, follow these steps:
 
 1. **Identify Azure services:** Use the [AWS to Azure resource comparison guide](/azure/architecture/aws-professional) to help you build your workload in Azure.
-2. **Document your migration decisions:** Document the resources that you don't migrate and any architecture decisions you make. 
-3. **Reduce risks:** Identify any high-risk components or flows and build out proof of concepts (POCs) as needed to test and mitigate those risks. Consider performing a [failure mode analysis](/azure/well-architected/reliability/failure-mode-analysis) to proactively uncover potential points of failure and assess their impact on the reliability of your workload. 
-4. **Check availability:** Check Azure service availability and capacity in your preferred region, specifically if you plan to use specialized resource types.
-5. **Validate requirements:** If you decide to use Azure Migrate, review the [Azure Migrate support matrix](/azure/migrate/migrate-support-matrix-physical) to ensure your AWS instances meet OS and configuration requirements.
-6. **Compliance and security** Ensure you meet your security requirements. Learn more about [migrating security from AWS](/azure/migration/migrate-security-from-aws).
+2. **Plan identity management:** Plan how identity and access will be handled in Azure. If your workload uses AWS IAM roles or federated identity providers, determine how these will translate to Azure AD roles, managed identities, or service principals. Review any hardcoded ARNs, IAM policies, or identity integrations in the application. If you overlook identity mapping it can lead to post-migration access issues or broken integrations. Ensure any third-party identity providers (e.g., Okta, Auth0) are configured to trust Azure if needed.
+3. **Document your migration decisions:** Document the resources that you don't migrate and any architecture decisions you make. 
+4. **Reduce risks:** Identify any high-risk components or flows and build out proof of concepts (POCs) as needed to test and mitigate those risks. Consider performing a [failure mode analysis](/azure/well-architected/reliability/failure-mode-analysis) to proactively uncover potential points of failure and assess their impact on the reliability of your workload. 
+5. **Check availability:** Check Azure service availability and capacity in your preferred region, specifically if you plan to use specialized resource types.
+6. **Validate requirements:** If you decide to use Azure Migrate, review the [Azure Migrate support matrix](/azure/migrate/migrate-support-matrix-physical) to ensure your AWS instances meet OS and configuration requirements.
+7. **Compliance and security** Ensure you meet your security requirements. Learn more about [migrating security from AWS](/azure/migration/migrate-security-from-aws). When designing security controls, strike a balance between protection and operability. Overly restrictive network policies, like  blocking all outbound traffic or overly tight Network Security Groups (NSGs), can cause application failures that are difficult to diagnose. Conversely, overly permissive settings (e.g., open ports or public IPs) can introduce security risks. Plan for security settings that meet compliance requirements while allowing necessary functionality.
 
 ## Develop and document a migration plan and create a runbook
 
@@ -104,29 +106,31 @@ Once the plan and runbook are reviewed and agreed upon by stakeholders and decis
 
 ## Checklist
 
-| &nbsp;  | Deliverable tasks                            |
-| ------- | -------------------------------------------- |
-| &#9744; | Document existing workload architecture      |
-| &#9744; | Use discovery tooling                        |
-| &#9744; | Identify critical flows                      |
-| &#9744; | Create detailed inventory                    |
-| &#9744; | Assess skills                                |
-| &#9744; | Document KPIs                                |
-| &#9744; | Address networking                           |
-| &#9744; | Identify matching Azure services             |
-| &#9744; | Document migration decisions                 |
-| &#9744; | Reduce risks                                 |
-| &#9744; | Check resource availability                  |
-| &#9744; | Validate requirements if using Azure Migrate |
-| &#9744; | Address compliance and security requirements |
-| &#9744; | Choose cutover strategy                      |
-| &#9744; | Choose database migration strategy           |
-| &#9744; | Choose storage migration strategy            |
-| &#9744; | Plan maintenance window                      |
-| &#9744; | Document sequence of steps                   |
-| &#9744; | Document sign-off acceptance criteria        |
-| &#9744; | Document rollback trigger criteria and steps |
-| &#9744; | Document traffic and routing changes         |
+| &nbsp;  | Deliverable tasks                            |     |
+| ------- | -------------------------------------------- | --- |
+| &#9744; | Document existing workload architecture      |     |
+| &#9744; | Use discovery tooling                        |     |
+| &#9744; | Identify critical flows                      |     |
+| &#9744; | Create detailed inventory                    |     |
+| &#9744; | Involve application team                     |     |
+| &#9744; | Assess skills                                |     |
+| &#9744; | Document KPIs                                |     |
+| &#9744; | Address networking                           |     |
+| &#9744; | Identify matching Azure services             |     |
+| &#9744; | Plan identity management                     |     |
+| &#9744; | Document migration decisions                 |     |
+| &#9744; | Reduce risks                                 |     |
+| &#9744; | Check resource availability                  |     |
+| &#9744; | Validate requirements if using Azure Migrate |     |
+| &#9744; | Address compliance and security requirements |     |
+| &#9744; | Choose cutover strategy                      |     |
+| &#9744; | Choose database migration strategy           |     |
+| &#9744; | Choose storage migration strategy            |     |
+| &#9744; | Plan maintenance window                      |     |
+| &#9744; | Document sequence of steps                   |     |
+| &#9744; | Document sign-off acceptance criteria        |     |
+| &#9744; | Document rollback trigger criteria and steps |     |
+| &#9744; | Document traffic and routing changes         |     |
 
 ## Next step
 

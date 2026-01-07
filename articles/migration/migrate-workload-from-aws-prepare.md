@@ -30,6 +30,7 @@ During this phase, you build out your Azure environment, refactor any code if re
 	- Configure the service connections and validate that your build and release workflows can deploy your selected Azure compute resources, such as Azure App Service, AKS, or VMs.
 	- If you're using a blue/green approach, make sure you can deploy to both AWS and Azure during the transition (for example, to apply an urgent fix or to support a rollback).
 - **Test your infrastructure:** Validate your Virtual WAN or hub network and any other foundational services like AWS Direct Connect and Azure ExpressRoute and/or VPN connections. Ensure they're configured to support both the target workload and the migration process. Validate that connectivity works end-to-end across your Azure and AWS environments.
+- **Test your networking and security:** As you configure NSGs, firewalls, and policies, validate that the application can communicate with all required services. Perform connectivity tests to ensure that security settings are neither too restrictive nor too permissive. Adjust as needed to maintain both security and functionality.
 
 ## Prepare your application
 
@@ -48,6 +49,7 @@ For guidance on preparing your workloads and building your Azure environment, se
 | &#9744; | Test infrastructure                       |
 | &#9744; | Refactor application's code               |
 | &#9744; | Prepare operational functions             |
+| &#9744; | Test your networking and security         |
 
 
 ## Next step
