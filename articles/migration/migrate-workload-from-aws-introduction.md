@@ -37,12 +37,12 @@ The migration of a workload can span several weeks or months. The duration depen
 
 ## Prerequisites
 
-This article is intended for cloud architects, platform engineers, and IT professionals responsible for migrating workloads from AWS to Azure. Before you begin migration planning and execution, ensure you have the following prerequisites in place:
+This article series is intended for cloud architects, platform engineers, and IT professionals responsible for migrating workloads from AWS to Azure. Before you begin migration planning and execution, ensure you have the following prerequisites in place:
 
 - *Prior experience:* Prior experience with core cloud concepts, AWS and a basic understanding of Azure services and cloud migration processes.
 - *Stakeholder alignment:* Share timelines, budget estimates, and project milestones with stakeholders to ensure that all parties are aligned.
 - *Support strategy in place:* Purchase a Microsoft support plan and investigate options for free or community support.
-- *Platform strategy in place:* This article covers how to migrate a single workload. It assumes your platform foundation is in place and your migration strategy is defined and in alignment with the [Cloud Adoption Framework](/azure/cloud-adoption-framework/strategy).
+- *Platform strategy in place:* This article series covers how to migrate a single workload. It assumes your platform foundation is in place and your migration strategy is defined and in alignment with the [Cloud Adoption Framework](/azure/cloud-adoption-framework/strategy).
 - *Existing landing zone:* Ensure you have a robust landing zone in place and subscriptions, management groups, networks, governance policies are configured to receive the workload.
 - *Invest in training or partner support:* Assess your team's Azure skills and plan for training or partner support as needed.
 
