@@ -3,6 +3,7 @@ title: AI agent configuration in Azure App Configuration
 description: Introduction to AI agent configuration support using App Configuration
 author: MaryanneNjeri
 ms.author: mgichohi
+ms.topic: how-to
 ms.service: azure-app-configuration
 ms.date: 11/25/2025
 ms.update-cycle: 180-days
@@ -28,8 +29,6 @@ Here are some agent settings that can be stored on Azure App Configuration:
 
 ## Example agent settings
 1. Follow the [Microsoft Foundry Quickstart](/azure/ai-foundry/quickstarts/get-started-code) to create a project in Foundry with a deployed gpt-4.1 model. Note down the Azure AI project endpoint for later use.
-
-1. Create a [Grounding with Bing Search resource](/azure/ai-foundry/agents/how-to/tools-classic/bing-grounding?view=foundry-classic#setup) and [connect the Grounding with Bing Search resource](/azure/ai-services/connect-services-foundry-portal#connect-foundry-tools-after-you-create-a-project) to your project.
 
 1. Navigate to your App Configuration store and add the following key-values. Leave **Label** with its default value. For more information about how to add key-values to a store using the Azure portal or the CLI, go to [Create a key-value](./quickstart-azure-app-configuration-create.md#create-a-key-value).
 
