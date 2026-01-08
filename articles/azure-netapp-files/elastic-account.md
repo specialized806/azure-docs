@@ -56,7 +56,7 @@ You can also use [Azure CLI commands](/cli/azure/feature) `az feature register` 
     * Select the **Region**. Ensure you select a [supported region](elastic-zone-redundant-concept.md#supported-regions).
     * Select **NetApp Elastic account** to designate the account for Elastic zone-redundant storage. 
 
-    :::image type="content" source="/media/shared/elastic-account.png" alt-text="Screenshot of application volume group creation menu." lightbox="/media/shared/elastic-account.png":::
+    :::image type="content" source="./media/shared/elastic-account.png" alt-text="Screenshot of application volume group creation menu." lightbox="./media/shared/elastic-account.png":::
 
 1. To finalize account creation, select **Create**. 
 
