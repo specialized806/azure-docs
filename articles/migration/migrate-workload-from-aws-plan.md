@@ -35,6 +35,10 @@ The goal of the planning phase is to:
 
 ## Design a like-for-like architecture in Azure
 
+Many cloud-based modern workloads use managed or serverless services instead of VMs for many of their functions. If your AWS workload uses manages services, for example EKS or ECS, you need to research Azure's offerings to find the best like-for-like match for your use case. In some cases, Azure might have multiple services that you can choose from, like containerized apps. Choose the service that is the most similar. Do not switch container orchestration platforms during migration.
+
+To begin mapping your like-for-like architecture, first establish a solid foundation.
+
 **Start with networking:** Discuss your workload's networking requirements with the platform team. Your request should include not only the target architecture, but also the migration connectivity. AWS uses the concept of a Transit Gateway as the network hub with Amazon VPCs as the spoke networks. In the Azure application landing zone design, the platform team provisions spoke virtual networks to workload teams. These spoke networks communicate to other internal and external networks through the hub or Azure Virtual WAN network. 
 
 To exchange data during the migration, you can use either Site-to-Site VPN or ExpressRoute with AWS Direct Connect. Relying on VPN is suitable for smaller or proof-of-concept migrations, while ExpressRoute with AWS Direct Connect is recommended for production-scale migrations or large data transfers. Consider using both for reliability. In that case, you use VPN for failover.
@@ -59,15 +63,29 @@ Be aware that the security model used in AWS differs from that of Azure in signi
 
 ### Your cutover strategy
 
-Plan how to cut over production traffic from the AWS environment to the Azure environment. 
+Plan how to cut over production traffic from the AWS environment to the Azure environment. The most common approaches are:
+
+- **Big Bang:** Everything is migrated and switched at the same time during a maintenance window
+- **Phased migration:** Workload components are migrated incrementally 
+- **Blue/Green (recommended):** Two environments run in parallel and traffic is switched over after validation.
+
+### **Key Differences at a Glance**
+
+| Strategy   | Downtime  | Risk Level | Cost Impact | Rollback Ease |
+| ---------- | --------- | ---------- | ----------- | ------------- |
+| Big Bang   | High      | High       | Low         | Hard          |
+| Canary     | Near-zero | Low        | Medium      | Moderate      |
+| Blue/Green | Near-zero | Medium     | High        | Easy          |
 
 If your SLA allows for a maintenance window, use a blue/green approach. In this case, you maintain two environments. Blue is the current environment (AWS) and green is the new environment (Azure).
 
 In this scenario, you plan a migration window, run your workload in AWS as normal throughout the migration, and move traffic over to Azure after a successful dry run. Both environments run in parallel throughout the migration, so you can shift traffic back to AWS if issues arise in the Azure environment. In this case, you also need a rollback strategy specifically for any database changes and messaging queue contents.
 
-Consider applying the [Strangler Fig façade](/azure/architecture/patterns/strangler-fig) as part of a controlled cutover strategy.
+ If your workload is more complex and you want to minimize risk, you can combine it with a canary approach for switching over traffic. With a canary approach you gradually route a small percentage of traffic to the new environment, then increase incrementally. It increases the complexity.
+ 
+ Consider applying the [Strangler Fig façade](/azure/architecture/patterns/strangler-fig) as part of a controlled cutover strategy.
 
-There's a cost trade-off to this approach. You incur costs for both cloud providers during the transition. For most teams, the extra costs are worth taking on due to the reduction of risk and operational burden.
+There's a cost trade-off to the Blue/Green approach. You incur costs for both cloud providers during the transition. For most teams, the extra costs are worth taking on due to the reduction of risk and operational burden.
 
 ### Choose your data migration strategy
 
