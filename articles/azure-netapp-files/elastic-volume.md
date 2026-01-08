@@ -25,6 +25,7 @@ Learn how to create an NFS volume for the Elastic zone-redundant storage.
 * You can't change the protocol of a volume after creating it. 
 * Each volume in a capacity pool must have a unique name.
 * In Elastic zone-redundant storage, you can't move volumes between capacity pools. 
+* After creating the volume, you can check its status in the volume's overview page to see if it's online or offline. 
 
 <!-- unix permissions, chown root access -->
 
@@ -36,7 +37,7 @@ Learn how to create an NFS volume for the Elastic zone-redundant storage.
     * Select the **Capacity pool** the volume belongs to. 
     * Enter the **Volume name**. 
     * Assign the **Quota** in GiB. 
-        For sizing limits, see [Azure NetApp Files Elastic service level resource limits](elastic-resource-limits.md). 
+        For sizing limits, see [Azure NetApp Files Elastic service level resource limits](azure-netapp-files-resource-limits.md). 
 
     Select **Show advanced section** to add a [configured snapshot policy](elastic-snapshots-policy.md) or [hide the snapshot path](elastic-snapshots-manage.md#edit-the-hide-snapshot-path-option). You can also change the options in the advanced section after you create the volume. 
 
@@ -48,8 +49,8 @@ Learn how to create an NFS volume for the Elastic zone-redundant storage.
 
     * For the Protocol type, choose **NFS**.
     * Enter the **File path**. 
-    * In the Version dropdown, choose either **NFSv3** or **NFSv4**. Azure NetApp Files supports NFSv3 and NFSv4.1. For information on the difference between NFS versions, see [Understand NAS protocols](network-attached-storage-protocols.md#network-file-system-nfs).
-    * Optionally, [configure export policy for the NFS volume](azure-netapp-files-configure-export-policy.md)
+    * In the Version dropdown, choose either **NFSv3** or **NFSv4**. For information on the difference between NFS versions, see [Understand NAS protocols](network-attached-storage-protocols.md#network-file-system-nfs).
+    * Optionally, [configure an export policy for the NFS volume](azure-netapp-files-configure-export-policy.md)
 
     :::image type="content" source="./media/elastic-volume/volume-protocol.png" alt-text="Screenshot of the volume creation protocol tab." lightbox="./media/elastic-volume/volume-protocol.png":::
 
@@ -59,7 +60,7 @@ Learn how to create an NFS volume for the Elastic zone-redundant storage.
 1. Return to the **Volume** menu then select your volume to view it. 
 
     >[!NOTE]
-    >You can't perform any operations on the volume until it has created successfully. 
+    >You can't perform any operations on the volume until it has created successfully.
 
 ## Resize a volume 
 
@@ -73,5 +74,6 @@ Learn how to create an NFS volume for the Elastic zone-redundant storage.
 1. Select **OK** to confirm the new quota. 
 
 ## Next steps 
+
 * [Understand Elastic zone-redundant storage](elastic-zone-redundant-concept.md) 
 * [Mount an NFS volume](azure-netapp-files-mount-unmount-volumes-for-virtual-machines.md)

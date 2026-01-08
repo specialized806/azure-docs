@@ -62,8 +62,6 @@ If you want a volume to use the snapshot policy, you need to [apply the policy t
 
 If you want a volume to use a snapshot policy that you created, you need to apply the policy to the volume. 
 
-You can't apply a snapshot policy to a destination volume in cross-region replication.  
-
 1. Go to the **Volumes** page, right-click the volume that you want to apply a snapshot policy to, and select **Edit**.
     ![Screenshot that shows the Volumes right-click menu.](../media/snapshots-manage-policy/volume-right-cick-menu.png) 
 
@@ -92,7 +90,7 @@ You can modify an existing snapshot policy to change the policy state, snapshot 
 
 ## Delete a snapshot policy 
 
-You can delete a snapshot policy that you no longer want to keep.   
+Before deleting a snapshot policy, the policy should be removed from all volumes. 
 
 1. From the NetApp Account view, select **Snapshot policy**.
 2. Right-click the snapshot policy you want to modify, then select **Delete**.

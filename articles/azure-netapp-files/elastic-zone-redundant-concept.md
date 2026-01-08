@@ -70,13 +70,14 @@ If you're using custom RBAC roles, ensure you configure the [correct permissions
 * UK South 
 * West Europe
 * West US 2
-* West US 3 
+* West US 3
+<!-- issues with France Central, Germany West Central, and Spain Central. Spain Central removed. --> 
 
-### Best practices
+### Best practice
 
-* Because some regions only have two availability zones, confirm supported availability zones in the region before deploying zone-redundant storage. Use the Azure CLI command `az netappfiles resource query-region-info` or the REST API call: 
+* Because some regions only have two availability zones, confirm supported availability zones in the region before deploying zone-redundant storage. Use the REST API call: 
 
-```https
+```rest
 GET https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.NetApp/locations/{location}/elasticRegionInfo?api-version=2025-09-01-preview
 ```
 
@@ -102,14 +103,15 @@ New API endpoints have been introduced that are specific to the Elastic service 
 | Resource type | Elastic endpoint | Flexible, Standard, Premium, and Ultra endpoint |
 | - | -- | -- |
 | Accounts | elasticAccounts | netAppAccounts |
+| Active Directory | /activeDirectoryConfigs
 | Backups | /elasticAccounts/{accountName}/elasticBackupVaults/{vaultName}/elasticBackups | /netAppAccounts/{accountName}/backupVaults/{vaultName}/backups |
 | Backups policies | /elasticAccounts/{accountName}/elasticBackupPolicies | netAppAccounts/{accountName}/backupPolicies |
 | Backup vaults | /elasticAccounts/{accountName}/elasticBackupVaults | /netAppAccounts/{accountName}/backupVaults | 
 | Capacity pools | /elasticAccounts/{accountName}/elasticCapacityPools | /netAppAccounts/{account}/capacityPools |
 | Change zone | elasticCapacityPools/{poolName}/changeZone | N/A |
-| Region info | elasticRegionInfos | locations/{location}/regionInfo
+| Region info | locations/{location}/elasticRegionInfos | locations/{location}/regionInfo
 | Snapshots | elasticAccounts/{accountName}/elasticCapacityPools/{poolName}/elasticVolumes/{volumeName}/elasticSnapshots | /netAppAccounts/{accountName}/capacityPools/{poolName}/volumes/{volumeName}/snapshots |
-| Snapshot policies | elasticAccounts/{accountName}/elasticCapacityPools/{poolName}/elasticVolumes/{volumeName}/elasticSnapshotPolicies | netAppAccounts/{accountName}/snapshotPolicies/{snapshotPolicyName} |
+| Snapshot policies | elasticAccounts/{accountName}/elasticSnapshotPolicies | netAppAccounts/{accountName}/snapshotPolicies/{snapshotPolicyName} |
 | Volumes | elasticAccounts/{accountName}/elasticCapacityPools/{poolName}/elasticVolumes | /netAppAccounts/{accountName}/capacityPools/{poolName}/volumes/{volumeName} |
 | Volume file path availability | elasticAccounts/{accountName}/elasticCapacityPools/{poolName}/checkVolumeFilePathAvailability | /locations/{location}/checkFilePathAvailability |
 
@@ -132,4 +134,4 @@ Elastic zone-redundant storage requires the use of [availability zones](../relia
 - [Storage hierarchy of Azure NetApp Files](azure-netapp-files-understand-storage-hierarchy.md)
 - [Create a NetApp account](azure-netapp-files-create-netapp-account.md)
 - [Set up a capacity pool](azure-netapp-files-set-up-capacity-pool.md)
-- [Azure NetApp Files resource limits](elastic-resource-limits.md)
+- [Azure NetApp Files resource limits](azure-netapp-files-resource-limits.md)

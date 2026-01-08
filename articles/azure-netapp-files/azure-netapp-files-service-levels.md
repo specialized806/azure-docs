@@ -15,10 +15,11 @@ Service levels are an attribute of a capacity pool. Service levels are defined a
 
 ## Supported service levels
 
-Azure NetApp Files supports five service levels: *Elastic*, *Flexible*, *Standard*, *Premium*, and *Ultra*.   
+Azure NetApp Files supports four service levels: *Flexible*, *Standard*, *Premium*, and *Ultra*. 
 
-* <a name="Elastic"></a>Elastic zone-redundant storage (preview):
-    Azure NetApp Files Elastic zone-redundant storage is an advanced, high-availability service level designed to deliver continuous data access with zero data loss even if an entire Azure Availability Zone becomes unavailable. This service eliminates single points of failure, making it ideal for mission-critical workloads that require uncompromising resilience and in-region data protection.
+Azure NetApp Files supports Elastic service levels that are not bare-metal flash and are based on Azure infrastructure. With Elastic zone-redundant storage, you can: 
+
+* **Elastic zone-redundant storage (preview)**: Azure NetApp Files Elastic zone-redundant storage is an advanced, high-availability service level designed to deliver continuous data access with zero data loss even if an entire Azure Availability Zone becomes unavailable. This service eliminates single points of failure, making it ideal for mission-critical workloads that require uncompromising resilience and in-region data protection.
     
     With Elastic zone-redundant storage, you can:
 
@@ -31,7 +32,6 @@ Azure NetApp Files supports five service levels: *Elastic*, *Flexible*, *Standar
     >[!IMPORTANT]
     >Elastic zone-redundant offers a different subset of features than the other service levels. For more information, see [Understand Elastic zone-redundant storage](elastic-zone-redundant-concept.md).
 
-    <!-- zone redundant -->
 
 * <a name="Flexible"></a>Flexible storage:
     The Flexible service level enables you to adjust throughput and size limits independently. You can use the Flexible service level to create high-capacity volumes with low throughput requirements or the reverse: low-capacity volumes with high throughput requirements. The Flexible service level is designed for demanding applications such as Oracle or SAP HANA.
@@ -114,6 +114,28 @@ As illustrated in the diagram, the SAP HANA backup volume receives baseline thro
 
 >[!NOTE]
 >Azure NetApp Files ensures a consistent baseline throughput regardless of capacity pool size. For example, both a 1-TiB capacity pool and a 10-TiB capacity pool receive the same complimentary baseline throughput of 128 MiB/s.
+
+
+### Throughput limits examples in a Shared QoS capacity pool 
+
+In a shared QoS capacity pool, all volumes draw from a common throughput pool instead of each volume having a fixed limit. The total throughput available for the pool is determined by the capacity pool's size (TiB) and Elastic service level. For example, a zone-redundant capacity pool provides 32 MiB/s of throughput per 1 TiB of provisioned capacity, scaling up linearly (a 128 TiB pool yields 4,096 MiB/s total). Volumes in a shared QoS pool don't have individual throughput limits. Instead any volume can consume throughput on demand up to the pool's total limit, if capacity is available. A volume's throughput consumption counts against the pools overall throughput budget, thereby reducing what remains for other volumes. 
+
+This dynamic allocation is managed by Azure NetApp Files to ensure each volume still meets its performance targets (throughput and latency) while staying within the pool’s total throughput. Shared QoS is only available for the Elastic service levels (for instance, when using the zone-redundant service level), and there is no way to convert to auto or manual QoS. For specific throughput values and limits at different pool sizes and tiers, refer to Resource limits for Azure NetApp Files.
+
+Throughput is allocated per the following table: 
+
+| Capacity pool size (TiB) | Total throughput (MiB/s) | 
+| - | - | 
+| 1 | 32 |
+| 4 | 128 | 
+| 8 | 256 | 
+| 16 | 512 | 
+| 32 | 1,024 | 
+| 128 | 4,096 | 
+
+:::image type="content" source="./media/azure-netapp-files-service-levels/elastic-throughput.png" alt-text="Diagram of Elastic zone-redundant service level throughput." lightbox="./media/azure-netapp-files-service-levels/elastic-throughput.png":::
+
+
 
 ## Next steps
 

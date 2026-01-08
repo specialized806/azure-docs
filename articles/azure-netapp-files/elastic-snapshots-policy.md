@@ -18,5 +18,5 @@ Snapshot policies enable you to schedule automatic point-in-time [snapshots](sna
 
 ## More information 
 
-- [Elastic resource limits](elastic-resource-limits.md)
+- [Elastic resource limits](azure-netapp-files-resource-limits.md)
 - [Understand Azure NetApp Files snapshots](snapshots-introduction.md).

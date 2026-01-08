@@ -29,6 +29,9 @@ Managing snapshots also includes deleting unnecessary snapshots and managing the
 
 The Hide snapshot path option controls whether the snapshot path of a volume is visible. During the creation of an [NFS](elastic-volume.md) or [SMB](elastic-volume-server-message-block.md) volume, you can specify whether the snapshot path should be hidden. After creating the volume, you can edit the Hide snapshot path option as needed.  
 
+>[!NOTE]
+>If you edit the hide snapshot path option, you have to remount the volume. 
+
 [!INCLUDE [Hide a snapshot's file path](includes/snapshot-hide-file-path.md)]
 
 ## More information

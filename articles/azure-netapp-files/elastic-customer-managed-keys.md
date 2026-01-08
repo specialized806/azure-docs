@@ -13,7 +13,7 @@ ms.author: anfdocs
 Customer-managed keys for Azure NetApp Files volume encryption enable you to use your own keys rather than the platform-managed (Microsoft-managed) key when creating a new volume. With customer-managed keys, you can fully manage the relationship between a key's life cycle, key usage permissions, and auditing operations on keys.
 
 >[!IMPORTANT]  
-> To configure customer-managed keys for the Flexible, Standard, Premium, or Ultra service level, see [Configure cross-region replication](configure-customer-managed-keys.md).
+> To configure customer-managed keys for the Flexible, Standard, Premium, or Ultra service level, see [Configure customer-managed keys](configure-customer-managed-keys.md).
 
 ## Considerations
 

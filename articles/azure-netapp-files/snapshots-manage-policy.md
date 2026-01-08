@@ -14,6 +14,9 @@ ms.author: anfdocs
 
 [Snapshots](snapshots-introduction.md) enable point-in-time recovery of volumes. You can schedule for [volume snapshots](snapshots-introduction.md) to be taken automatically by using snapshot policies. You can also modify a snapshot policy as needed, or delete a snapshot policy that you no longer need.  
 
+>[!NOTE]
+>You can't apply a snapshot policy to a destination volume in cross-region replication.  
+
 [!INCLUDE [Snapshot policy workflows](includes/snapshot-policy.md)]
 
 ## Edit the Hide snapshot path option

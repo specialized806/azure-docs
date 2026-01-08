@@ -42,7 +42,6 @@ The following table provides links to reliability guidance for Azure services. E
 
 | Service | Reliability guide | Other reliability documentation |
 |----------|---------|---------|
-|Azure AI Health Insights| [Reliability in AI Health Insights](reliability-health-insights.md)||
 |Azure AI Search| [Reliability in AI Search](reliability-ai-search.md) ||
 |Azure API Center| [Reliability in Azure API Center](reliability-api-center.md) ||
 |Azure API Management | [Reliability in API Management](reliability-api-management.md) ||
@@ -102,6 +101,7 @@ The following table provides links to reliability guidance for Azure services. E
 |Azure Media Services|| [High availability by using Media Services and video on demand (VOD)](/azure/media-services/latest/architecture-high-availability-encoding-concept)|
 |Azure Migrate | | [Azure Migrate and backup and disaster recovery](../migrate/resources-faq.md#does-azure-migrate-offer-backup-and-disaster-recovery)|
 |Azure Monitor Logs | | [Enhance data and service resilience in Azure Monitor Logs by using availability zones](/azure/azure-monitor/logs/availability-zones) </p> [Azure Monitor Logs workspace replication](/azure/azure-monitor/logs/workspace-replication) | 
+| Azure NAT Gateway | [Azure NAT Gateway](../nat-gateway/nat-availability-zones.md) ||
 |Azure NetApp Files|| [Reliability in Azure NetApp Files](reliability-netapp-files.md)|
 |Azure Network Watcher|| [Network Watcher service availability and redundancy](../network-watcher/frequently-asked-questions.yml#service-availability-and-redundancy)|
 |Azure Notification Hubs| [Reliability in Notification Hubs](reliability-notification-hubs.md)||
@@ -117,7 +117,7 @@ The following table provides links to reliability guidance for Azure services. E
 |Azure SQL Managed Instance| [Reliability in Azure SQL Managed Instance](./reliability-sql-managed-instance.md) ||
 |Azure Storage Actions| [Reliability in Storage Actions](reliability-storage-actions.md)||
 |Azure Storage Mover| [Reliability in Storage Mover](reliability-azure-storage-mover.md)||
-|Azure Stream Analytics|| [Achieve geo-redundancy for Stream Analytics jobs](../stream-analytics/geo-redundancy.md) |
+|Azure Stream Analytics| [Reliability in Azure Stream Analytics](./reliability-stream-analytics.md) ||
 |Azure Table Storage| [Reliability in Table Storage](reliability-storage-table.md)||
 |Azure Traffic Manager| [Reliability in Traffic Manager](reliability-traffic-manager.md)||
 |Azure Virtual Machines| [Reliability in Virtual Machines](reliability-virtual-machines.md)||

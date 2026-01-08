@@ -17,7 +17,8 @@ With Elastic zone-redundant storage, you can easily change the availability zone
 
 ## Considerations
 
-Manually changing the availability zone for a capacity pool can be a long-running operation. 
+* Manually changing the availability zone for a capacity pool can be a long-running operation. 
+* Change the availability zone for an Elastic zone-redundant capacity pool changes it for all volumes in the pool. You can't change the availability zone of individual volumes. 
 
 ## Change the availability zone 
 

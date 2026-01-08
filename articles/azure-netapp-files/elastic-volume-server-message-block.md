@@ -29,6 +29,7 @@ Learn how to create an SMB volume for Elastic zone-redundant storage.
 * Each volume in a capacity pool must have a unique name.
 * You must have configured a capacity pool for the Zone-Redundant service level. 
 * If you encounter the error message "Error when creating. A problem occurred. Please try again after some time. If the issue persists, please contact support.", the issue might be that the Active Directory password has expired and needs to be reset. Reset the password then try to create the volume again. 
+* After creating the volume, you can check its status in the volume's overview page to see if it's online or offline. 
 
 ## Steps 
 
@@ -38,7 +39,7 @@ Learn how to create an SMB volume for Elastic zone-redundant storage.
     * Select the **Capacity pool** the volume belongs to. 
     * Enter the **Volume name**. 
     * Assign the **Quota** in GiB. 
-        For sizing limits, see [Azure NetApp Files Elastic service level resource limits](elastic-resource-limits.md). Maximum size is contingent on the capacity pool's quota. 
+        For sizing limits, see [Azure NetApp Files Elastic service level resource limits](azure-netapp-files-resource-limits.md).
     Select **Next**. 
 
     :::image type="content" source="./media/shared/elastic-create-volume.png" alt-text="Screenshot the volume creation Basic tab." lightbox="./media/shared/elastic-create-volume.png":::
@@ -50,7 +51,7 @@ Learn how to create an SMB volume for Elastic zone-redundant storage.
     * Enter a **Share name**. 
     * To encrypt SMB3 data in flight, select **SMB3 Protocol Encryption**.
 
-        If you enable SMB3 encryption, SMB clients not using SMB3 encryption can't access this volume. Data at rest is encrypted regardless of this setting. For more information, see [SMB encryption](azure-netapp-files-smb-performance.md#smb-encryption).
+        If you enable SMB3 encryption, SMB clients not using SMB3 encryption can't access this volume. Data at rest is encrypted regardless of this setting.
 
     :::image type="content" source="./media/elastic-volume-server-message-block/elastic-create-volume-protocol.png" alt-text="Screenshot of the volume creation protocol tab." lightbox="./media/elastic-volume-server-message-block/elastic-create-volume-protocol.png":::
 
@@ -72,5 +73,4 @@ Learn how to create an SMB volume for Elastic zone-redundant storage.
 ## Next steps 
 
 * [Understand Elastic zone-redundant storage](elastic-zone-redundant-concept.md)
-
-   
+  
