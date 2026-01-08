@@ -13,8 +13,6 @@ ms.date: 05/30/2024
 
 Learn how to deploy Geospatial Consumption Zone (GCZ) on Azure Kubernetes Service (AKS).
 
-> ✅ Microsoft recommends deploying GCZ on a **dedicated AKS cluster** separate from ADME core services for optimal performance and isolation.
-
 ---
 
 ## ✅ Prerequisites
