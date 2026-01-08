@@ -24,7 +24,7 @@ Any entity trying to access Microsoft Entra identity services via the TLS/SSL pr
 
 - The Serial Number (top string in the table) contains the hexadecimal value of the certificate serial number.
 - The Thumbprint (bottom string in the table) is the SHA1 thumbprint.
-- CAs listed in italics are the most recently added CAs.
+- For those CAs that must be downloaded over HTTP and not HTTPS, copy the link and paste into the URL field on a new tab. 
 
 # [Root and Subordinate CAs list](#tab/root-and-subordinate-cas-list)
 
@@ -51,7 +51,7 @@ Any entity trying to access Microsoft Entra identity services via the TLS/SSL pr
 | [DigiCert Global G2 TLS RSA SHA256 2020 CA1](https://cacerts.digicert.com/DigiCertGlobalG2TLSRSASHA2562020CA1-1.crt) | 0cf5bd062b5602f47ab8502c23ccf066<br>1B511ABEAD59C6CE207077C0BF0E0043B1382612 |
 | [DigiCert Global G3 TLS ECC SHA384 2020 CA1](https://cacerts.digicert.com/DigiCertGlobalG3TLSECCSHA3842020CA1-2.crt) | 0b00e92d4d6d731fca3059c7cb1e1886<br>9577F91FE86C27D9912129730E8166373FC2EEB8 |
 | [DigiCert SHA2 Secure Server CA](http://cacerts.digicert.com/DigiCertSHA2SecureServerCA-2.crt) | 0x02742eaa17ca8e21c717bb1ffcfd0ca0<br>626D44E704D1CEABE3BF0D53397464AC8080142C |
-| [DigiCert TLS Hybrid ECC SHA384 2020 CA1](http://cacerts.digicert.com/DigiCertTLSHybridECCSHA3842020CA1-1.crt) | 0x0a275fe704d6eecb23d5cd5b4b1a4e04<br>51E39A8BDB08878C52D6186588A0FA266A69CF28 |
+| [DigiCert TLS Hybrid ECC SHA384 2020 CA1](http://cacerts.digicert.com/DigiCertTLSHybridECCSHA3842020CA1-1.crt) | 07f2f35c87a877af7aefe947993525bd<br>aec13cdd5ea6a3998aec14ac331ad96bedbb770f |
 | [DigiCert TLS RSA SHA256 2020 CA1](https://cacerts.digicert.com/DigiCertTLSRSASHA2562020CA1-1.crt) | 0x06d8d904d5584346f68a2fa754227ec4<br>1C58A3A8518E8759BF075B76B750D4F2DF264FCD |
 | [GeoTrust Global TLS RSA4096 SHA256 2022 CA1](https://cacerts.digicert.com/GeoTrustGlobalTLSRSA4096SHA2562022CA1.crt) | 0x0f622f6f21c2ff5d521f723a1d47d62d<br>7E6DB7B7584D8CF2003E0931E6CFC41A3A62D3DF |
 | [Microsoft Azure ECC TLS Issuing CA 03](https://www.microsoft.com/pkiops/certs/Microsoft%20Azure%20ECC%20TLS%20Issuing%20CA%2003%20-%20xsign.crt) | 0x01529ee8368f0b5d72ba433e2d8ea62d<br>56D955C849887874AA1767810366D90ADF6C8536 |
