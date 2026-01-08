@@ -175,11 +175,11 @@ sections:
       - question: What about support for ISV backup solutions?
         answer: As these backup solutions are installed and managed by customers, they can reach out to the respective ISV for support. 
 
-  - name: Reliability guidance
+  - name: Reliability and availability
     questions:
 
       - question: Can I deploy a stretched cluster across availability zones for higher availability?
-        answer: Azure VMware Solution supports stretched clusters across availability zones in supported Azure regions and configurations. Availability varies by Azure VMware Solution generation and region. For more information, see [Deploy a stretched cluster](deploy-stretched-cluster.md).
+        answer: Azure VMware Solution supports stretched clusters across availability zones in supported Azure regions and configurations. Availability varies by Azure VMware Solution generation and region. For more information, see [Deploy a stretched cluster](deploy-vsan-stretched-clusters.md).
 
       - question: Does Azure VMware Solution Gen2 support Availability Zones?
         answer: Yes. In Azure VMware Solution Gen2, you can select the Availability Zone where your private cloud is deployed (subject to capacity availability in that zone). You can also deploy separate private clouds in different Availability Zones as part of a disaster recovery (DR) or high-availability strategy.
