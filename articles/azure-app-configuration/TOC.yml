@@ -186,7 +186,7 @@
       href: quickstart-chat-completion-go.md
   - name: AI agent
     items:
-    - name: Overview
+    - name: Get started
       href: howto-ai-agent-config.md
     - name: Python
       href: howto-ai-agent-config-python.md

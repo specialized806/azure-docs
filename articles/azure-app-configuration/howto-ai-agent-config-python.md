@@ -13,24 +13,24 @@ ms.collection: ce-skilling-ai-copilot
 
 # Use AI agent configuration in a Python console app
 
-In this guide, you build an AI agent chat application and iterate on the agent specifications using configuration dynamically loaded from Azure App Configuration. 
+In this guide, you build an AI agent chat application using Azure App Configuration to load agent YAML specifications that define AI agent behavior, prompts and model configurations. 
 
-The full sample source code is available in the [Azure App Configuration GitHub repository](https://github.com/Azure/AppConfiguration/tree/main/examples/Python)
+The full sample source code is available in the [Azure App Configuration GitHub repository](https://github.com/Azure/AppConfiguration/tree/main/examples/Python/ChatAgent).
 
 ## Prerequisites
 
-- Create the _example agent settings_ discussed in the [overview](./howto-ai-agent-config.md#example-agent-settings)
-- Python 3.8 or later - for information on setting up Python on Windows, see the [Python on Windows documentation](/windows/python/).
+- Create the _example agent settings_ discussed in the [Get started](./howto-ai-agent-config.md#example-agent-settings) section.
+- Python 3.10 or later - for information on setting up Python on Windows, see the [Python on Windows documentation](/windows/python/).
 
 ## Console application
 
-In this section, you create a console application and load your agent configurations from your App Configuration store. This console app builds on the [Azure AI Agent basic sample](https://github.com/microsoft/agent-framework/blob/main/python/samples/getting_started/agents/azure_ai_agent/azure_ai_basic.py). By storing your agent configuration in App Configuration, you can update your agent's behavior in real-time without redeploying or restarting your application.
+In this section, you create a console application and load the agent YAML specification from your App Configuration store.
 
 1. Create a new folder for your project. In the new folder, install the following packages by using the `pip install` command:
 
     ```console
     pip install azure-appconfiguration-provider
-    pip install agent-framework --pre
+    pip install agent-framework-declarative --pre
     pip install azure-identity
     ```
 
@@ -38,42 +38,39 @@ In this section, you create a console application and load your agent configurat
 
     ```python
     import asyncio
-    from agent_framework_azure_ai import AzureAIAgentClient
-    from azure.identity import DefaultAzureCredential
-    from azure.identity.aio import AzureCliCredential
-    from azure.appconfiguration.provider import (load, SettingSelector, WatchKey)
-    from typing import Annotated
-    from pydantic import Field
-    from random import randint
     import os
+    from agent_framework.declarative import AgentFactory
+    from azure.identity import DefaultAzureCredential
+    from azure.appconfiguration.provider import load
     ```
 
 1. You can connect to Azure App Configuration using either Microsoft Entra ID (recommended) or a connection string. In this example, you use Microsoft Entra ID with `DefaultAzureCredential` to authenticate to your App Configuration store. Follow these [instructions](./concept-enable-rbac.md#authentication-with-token-credentials) to assign the **App Configuration Data Reader** role to the identity represented by `DefaultAzureCredential`. Be sure to allow sufficient time for the permission to propagate before running your application.
 
     ```python
-    endpoint = os.environ["AZURE_APPCONFIGURATION_ENDPOINT"]
+    async def main():
+        endpoint = os.environ["AZURE_APPCONFIGURATION_ENDPOINT"]
 
-    # Connect to Azure App Configuration using Microsoft Entra ID.
-    credential = DefaultAzureCredential()
+        # Connect to Azure App Configuration using Microsoft Entra ID.
+        credential = DefaultAzureCredential()
 
-    # Use the default refresh interval of 30 seconds. It can be overridden via refresh_interval
-    config = load(endpoint=endpoint, credential=credential, selects=[SettingSelector(key_filter="Agent:*")], refresh_on=[WatchKey("Agent:WeatherTool:Forecast")])
+        config = load(endpoint=endpoint, credential=credential)
     ```
 
-1. Initialize the agent:
+1. Update the code in _app.py_ to retrieve the agent specification from the configuration, create the agent from the YAML spec and handle user interaction:
 
     ```python
-    async def main() -> None:
-        async with (
-            AzureAIAgentClient(
-                project_endpoint=config["Agent:ProjectEndpoint"], 
-                model_deployment_name=config["Agent:ModelDeploymentName"],
-                async_credential=AzureCliCredential()).create_agent(
-                    instructions=config["Agent:Instructions"],
-                    store=True
-                ) as agent
-        ):
-    
+    async def main():
+        endpoint = os.environ["AZURE_APPCONFIGURATION_ENDPOINT"]
+
+        # Connect to Azure App Configuration using Microsoft Entra ID.
+        credential = DefaultAzureCredential()
+
+        config = load(endpoint=endpoint, credential=credential)
+
+        agent_spec = config["ChatAgent:Spec"]
+        
+        agent = AgentFactory(client_kwargs={"credential": credential, "project_endpoint": config["ChatAgent:ProjectEndpoint"]}).create_agent_from_yaml(agent_spec)
+
         while True:
             print("How can I help? (type 'quit' to exit)")
 
@@ -81,91 +78,50 @@ In this section, you create a console application and load your agent configurat
             
             if user_input.lower() in ['quit', 'exit', 'bye']:
                 break
-            
-            # Refresh the configuration from Azure App Configuration 
-            config.refresh()
-
-            response = await agent.run(messages=user_input, tools=get_weather)
-
-            print(f"Agent: {response.text}\n")
-
+        
+            response = await agent.run(user_input)
+            print("Agent response: ", response.text)
             input("Press enter to continue...")
-                
-        print("Exiting.. Goodbye.")
+            
+        print("Exiting... Goodbye...")
 
     if __name__ == "__main__":
         asyncio.run(main())
     ```
 
-1. Define the `get_weather` tool function:
-    ```python
-    def get_weather(
-            location: Annotated[str, Field(description="The location to get the weather for.")]
-    ) -> str:
-        """Get the weather for a given location."""
-
-        condition = config["Agent:WeatherTool:Forecast"]
-        
-        return f"The weather in {location} is {condition["name"]} with a high of {randint(10, 30)}°C. {condition["message"]}"
-    ```
-
 1. After completing the previous steps, your _app.py_ file should now contain the complete implementation as shown below:
     ```python
     import asyncio
-    from agent_framework_azure_ai import AzureAIAgentClient
-    from azure.identity import DefaultAzureCredential
-    from azure.identity.aio import AzureCliCredential
-    from azure.appconfiguration.provider import (load, SettingSelector, WatchKey)
-    from typing import Annotated
-    from pydantic import Field
-    from random import randint
     import os
+    from agent_framework.declarative import AgentFactory
+    from azure.identity import DefaultAzureCredential
+    from azure.appconfiguration.provider import load
 
-    endpoint = os.environ["AZURE_APPCONFIGURATION_ENDPOINT"]
+    async def main():
+        endpoint = os.environ["AZURE_APPCONFIGURATION_ENDPOINT"]
 
-    # Connect to Azure App Configuration using Microsoft Entra ID.
-    credential = DefaultAzureCredential()
+        # Connect to Azure App Configuration using Microsoft Entra ID.
+        credential = DefaultAzureCredential()
 
-    # Use the default refresh interval of 30 seconds. It can be overridden via refresh_interval
-    config = load(endpoint=endpoint, credential=credential, selects=[SettingSelector(key_filter="Agent:*")], refresh_on=[WatchKey("Agent:WeatherTool:Forecast")])
+        config = load(endpoint=endpoint, credential=credential)
 
-    def get_weather(
-            location: Annotated[str, Field(description="The location to get the weather for.")]
-    ) -> str:
-        """Get the weather for a given location."""
-
-        condition = config["Agent:WeatherTool:Forecast"]
+        agent_spec = config["ChatAgent:Spec"]
         
-        return f"The weather in {location} is {condition["name"]} with a high of {randint(10, 30)}°C. {condition["message"]}"
-        
-    async def main() -> None:
-        async with (
-            AzureAIAgentClient(
-                project_endpoint=config["Agent:ProjectEndpoint"], 
-                model_deployment_name=config["Agent:ModelDeploymentName"],
-                async_credential=AzureCliCredential()).create_agent(
-                    instructions=config["Agent:Instructions"],
-                    store=True) as agent
-        ):
-        
+        agent = AgentFactory(client_kwargs={"credential": credential, "project_endpoint": config["ChatAgent:ProjectEndpoint"]}).create_agent_from_yaml(agent_spec)
+
         while True:
             print("How can I help? (type 'quit' to exit)")
-            
+
             user_input = input("User: ")
             
             if user_input.lower() in ['quit', 'exit', 'bye']:
                 break
-            
-            # Refresh the configuration from Azure App Configuration 
-            config.refresh()
-
-            response = await agent.run(messages=user_input, tools=get_weather)
-
-            print(f"Agent: {response.text}\n")
-
+        
+            response = await agent.run(user_input)
+            print("Agent response: ", response.text)
             input("Press enter to continue...")
                 
-        print("Exiting.. Goodbye.")
+        print("Exiting... Goodbye...")
 
     if __name__ == "__main__":
         asyncio.run(main())
@@ -186,7 +142,7 @@ In this section, you create a console application and load your agent configurat
     $Env:AZURE_APPCONFIGURATION_ENDPOINT="<endpoint-of-your-app-configuration-store>"
     ```
 
-    If you use macOS or Linux run the following command:
+    If you use macOS or Linux, run the following command:
     ```bash
     export AZURE_APPCONFIGURATION_ENDPOINT='<endpoint-of-your-app-configuration-store>'
     ```
@@ -197,35 +153,17 @@ In this section, you create a console application and load your agent configurat
     python app.py
     ```
 
-1. Type the message "What is the weather in Seattle?" when prompted with "How can I help?" and then press the Enter key.
+1. Type the message "What is the weather today in Seattle?" when prompted with "How can I help?" and then press the Enter key.
 
     ```Output
     How can I help? (type 'quit' to exit)
-    User: What is the weather in Seattle?
-    Agent: The weather in Seattle is currently sunny with a high of 17°C. It's a great day to be outside—don't forget sunscreen!
-
-    Press Enter to continue...
-    ```
-
-1. In the Azure portal, select the App Configuration store instance that you created. From the **Operations** menu, select **Configuration explorer**, and update the **Agent:WeatherTool:Forecast** value to:
-
-    | Key                          | Value                                                                                                         |
-    |------------------------------|---------------------------------------------------------------------------------------------------------------|
-    | *Agent:WeatherTool:Forecast* | {"name": "stormy", "message":"Warning: Stay indoors!"}                                                        |
-
-1.  Press the Enter key and type the same message when prompted with "How can I help?". Be sure to wait a few moments for the refresh interval to elapse, and then press the Enter key to see the updated AI response in the output.
-
-    ```Output
-    How can I help? (type 'quit' to exit)
-    User: What is the weather in Seattle?
-    Agent: The weather in Seattle is currently sunny with a high of 17°C. It's a great day to be outside—don't forget sunscreen!
-
-    Press Enter to continue...
-    How can I help? (type 'quit' to exit)
-    User: What is the weather in Seattle?
-    Agent: The weather in Seattle is currently stormy with a high of 29°C. There is a warning to stay indoors due to the stormy conditions.
-
-    Press Enter to continue...
+    User: What is the weather today in Seattle?     
+    Agent response: Today in Seattle, expect steady rain throughout the day with patchy fog, and a high temperature around 57°F (14°C). 
+    Winds are from the south-southwest at 14 to 17 mph, with gusts as high as 29 mph.
+    Flood and wind advisories are in effect due to ongoing heavy rain and saturated conditions. 
+    Rain is likely to continue into the night, with a low near 49°F. 
+    Please stay aware of weather alerts if you are traveling or in low-lying areas [National Weather Service Seattle](https://forecast.weather.gov/zipcity.php?inputstring=Seattle%2CWA) [The Weather Channel Seattle Forecast](https://weather.com/weather/today/l/Seattle+Washington?canonicalCityId=1138ce33fd1be51ab7db675c0da0a27c).
+    Press enter to continue...
     ```
 
 ## Next steps

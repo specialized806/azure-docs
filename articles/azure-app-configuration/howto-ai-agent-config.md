@@ -11,7 +11,7 @@ ms.collection: ce-skilling-ai-copilot
 
 # AI agent configuration in Azure App Configuration
 
-Agents are software systems that autonomously perform tasks using Large Language Models (LLMs) to process user input and execute actions on behalf of users. These agents use tools and Model Context Protocol (MCP) servers to carry out operations and generate intelligent responses. Agent configuration enables you to define and manage how these agents behave and respond within your application environment. Azure App Configuration provides a centralized store where configurations for your agent are kept in one place and can be shared across multiple application instances. Using Azure App Configuration allows you to update your agent's settings dynamically without redeploying or restarting your application and use feature flags to safely roll out new agent features or behaviors to targeted environments.
+Agents are software systems that autonomously perform tasks using Large Language Models (LLMs) to process user input and execute actions on behalf of users. These agents use tools and Model Context Protocol (MCP) servers to carry out operations and generate intelligent responses. Agent configuration enables you to define and manage how these agents behave and respond within your application environment. Azure App Configuration provides a centralized store where configurations for your agent are kept in one place and can be shared across multiple application instances. Using Azure App Configuration allows you to update your agent's settings dynamically without redeploying or restarting your application, define agent behavior separate from your implementation code and use feature flags to safely roll out new agent features or behaviors to targeted environments.
 
 Here are some agent settings that can be stored on Azure App Configuration:
 
@@ -27,17 +27,34 @@ Here are some agent settings that can be stored on Azure App Configuration:
 
 
 ## Example agent settings
-1. Follow the [Microsoft Foundry Quickstart](/azure/ai-foundry/quickstarts/get-started-code) to create a project in Foundry and deploy a model. Note down the Foundry project endpoint and deployment name for later use.
+1. Follow the [Microsoft Foundry Quickstart](/azure/ai-foundry/quickstarts/get-started-code) to create a project in Foundry with a deployed gpt-4.1 model. Note down the Azure AI project endpoint for later use.
+
+1. Create a [Grounding with Bing Search resource](/azure/ai-foundry/agents/how-to/tools-classic/bing-grounding?view=foundry-classic#setup) and [connect the Grounding with Bing Search resource](/azure/ai-services/connect-services-foundry-portal#connect-foundry-tools-after-you-create-a-project) to your project.
 
 1. Navigate to your App Configuration store and add the following key-values. Leave **Label** with its default value. For more information about how to add key-values to a store using the Azure portal or the CLI, go to [Create a key-value](./quickstart-azure-app-configuration-create.md#create-a-key-value).
 
     | Key                            | Value                                                               | Content type                                 |
     |--------------------------------|---------------------------------------------------------------------|----------------------------------------------|
-    | *Agent:ProjectEndpoint*        | *Paste the foundry project endpoint*                                |                                              |
-    | *Agent:ModelDeploymentName*    | *Paste the model deployment name*                                   |                                              |
-    | *Agent:Instructions*           | *You're a helpful weather agent*                                    |                                              |
-    | *Agent:WeatherTool:Forecast*   | *{"name":"sunny", "message":"Don't forget sunscreen!"}*             | application/json                             |
+    | *ChatAgent:ProjectEndpoint*    | *Paste the Azure AI project endpoint*                               |                                              |
+    | *ChatAgent:Spec*               | *See YAML below*                                                    |                                              |
 
+
+    **YAML specification for ChatAgent:Spec**
+
+    ```yaml
+    kind: Prompt
+    name: ChatAgent
+    description: Agent example with web search
+    instructions: You are a helpful assistant with access to web search.
+    model:
+        id: gpt-4.1
+        connection:
+            kind: remote
+    tools:
+      - kind: web_search
+        name: WebSearchTool
+        description: Search the web for live information.
+    ```
 
 1. Continue to the following instructions to implement the AI agent configuration into your application for the language or platform you're using.
 
