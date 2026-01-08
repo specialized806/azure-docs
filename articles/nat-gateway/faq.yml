@@ -63,7 +63,7 @@ sections:
     questions:
       - question: What is StandardV2 NAT Gateway?
         answer: |
-          StandardV2 NAT Gateway is a new SKU offering of the Azure NAT Gateway service that is currently in **Public Preview**. StandardV2 NAT Gateway offers zone-redundancy support, enhanced data processing limits, IPv6 support, Flow logs, and increased scalability compared to the original Standard NAT Gateway. For more information, see [NAT Gateway SKUs](nat-sku.md).
+          StandardV2 NAT Gateway is a new SKU offering of the Azure NAT Gateway service. StandardV2 NAT Gateway offers zone-redundancy support, enhanced data processing limits, IPv6 support, Flow logs, and increased scalability compared to the original Standard NAT Gateway. For more information, see [NAT Gateway SKUs](nat-sku.md).
 
       - question: Can I upgrade my existing Standard NAT Gateway to StandardV2 NAT Gateway?
         answer: |

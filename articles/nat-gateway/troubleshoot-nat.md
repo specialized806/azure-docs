@@ -14,11 +14,7 @@ ms.customs: references_regions
 
 # Troubleshoot Azure NAT Gateway
 
-This article provides guidance on how to correctly configure your NAT gateway and troubleshoot common configuration and deployment related issues.  
-
-> [!IMPORTANT]
-> Standard V2 SKU Azure NAT Gateway is currently in PREVIEW.
-> See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.  
+This article provides guidance on how to correctly configure your NAT gateway and troubleshoot common configuration and deployment related issues.
 
 * [NAT gateway configuration basics](#nat-gateway-configuration-basics) 
 
