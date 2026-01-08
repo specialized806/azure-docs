@@ -16,7 +16,7 @@ items:
   - name: Reliability
     items:
       - name: Reliability in Azure NAT Gateway
-        href: ../reliability/nat-gateway-reliability.md?toc=/azure/nat-gateway/toc.json&bc=/azure/nat-gateway/breadcrumb/toc.json
+        href: ../reliability/reliability-nat-gateway.md?toc=/azure/nat-gateway/toc.json&bc=/azure/nat-gateway/breadcrumb/toc.json
   - name: Deploy
     items:
       - name: NAT gateway design guidance
