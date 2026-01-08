@@ -48,7 +48,7 @@ Any entity trying to access Microsoft Entra identity services via the TLS/SSL pr
 | [DigiCert Basic OV G3 TLS CN ECC P-384 SHA384 2022 CA1](http://cacerts.digicert.cn/DigiCertBasicOVG3TLSCNECCP-384SHA3842022CA1.crt) | 0x01484637b5aacf53c276a96852c2bf32<br>9355B7783FFF5DF69FE98FAF08F7B66CD4B94B99 |
 | [DigiCert Basic RSA CN CA G2](https://cacerts.digicert.com/DigiCertBasicRSACNCAG2.crt) | 0x02f7e1f982bad009aff47dc95741b2f6<br>4D1FA5D1FB1AC3917C08E43F65015E6AEA571179 |
 | [DigiCert Cloud Services CA-1](https://cacerts.digicert.com/DigiCertCloudServicesCA-1.crt) | 0x019ec1c6bd3f597bb20c3338e551d877<br>81B68D6CD2F221F8F534E677523BB236BBA1DC56 |
-| [DigiCert Global G2 TLS RSA SHA256 2020 CA1](https://cacerts.digicert.com/DigiCertGlobalG2TLSRSASHA2562020CA1-1.crt) | 0cf5bd062b5602f47ab8502c23ccf066<br>1B511ABEAD59C6CE207077C0BF0E0043B1382612 |
+| [DigiCert Global G2 TLS RSA SHA256 2020 CA1](http://cacerts.digicert.com/DigiCertGlobalG2TLSRSASHA2562020CA1-1.crt) | 0cf5bd062b5602f47ab8502c23ccf066<br>1B511ABEAD59C6CE207077C0BF0E0043B1382612 |
 | [DigiCert Global G3 TLS ECC SHA384 2020 CA1](https://cacerts.digicert.com/DigiCertGlobalG3TLSECCSHA3842020CA1-2.crt) | 0b00e92d4d6d731fca3059c7cb1e1886<br>9577F91FE86C27D9912129730E8166373FC2EEB8 |
 | [DigiCert SHA2 Secure Server CA](http://cacerts.digicert.com/DigiCertSHA2SecureServerCA-2.crt) | 0x02742eaa17ca8e21c717bb1ffcfd0ca0<br>626D44E704D1CEABE3BF0D53397464AC8080142C |
 | [DigiCert TLS Hybrid ECC SHA384 2020 CA1](http://cacerts.digicert.com/DigiCertTLSHybridECCSHA3842020CA1-1.crt) | 07f2f35c87a877af7aefe947993525bd<br>aec13cdd5ea6a3998aec14ac331ad96bedbb770f |
@@ -93,12 +93,12 @@ Any entity trying to access Microsoft Entra identity services via the TLS/SSL pr
 | └ [DigiCert Basic RSA CN CA G2](https://cacerts.digicert.com/DigiCertBasicRSACNCAG2.crt) | 0x02f7e1f982bad009aff47dc95741b2f6<br>4D1FA5D1FB1AC3917C08E43F65015E6AEA571179 |
 | └ [DigiCert Cloud Services CA-1](https://cacerts.digicert.com/DigiCertCloudServicesCA-1.crt) | 0x019ec1c6bd3f597bb20c3338e551d877<br>81B68D6CD2F221F8F534E677523BB236BBA1DC56 |
 | └ [DigiCert SHA2 Secure Server CA](http://cacerts.digicert.com/DigiCertSHA2SecureServerCA-2.crt) | 0x02742eaa17ca8e21c717bb1ffcfd0ca0<br>626D44E704D1CEABE3BF0D53397464AC8080142C |
-| └ [DigiCert TLS Hybrid ECC SHA384 2020 CA1](http://cacerts.digicert.com/DigiCertTLSHybridECCSHA3842020CA1-1.crt) | 0x0a275fe704d6eecb23d5cd5b4b1a4e04<br>51E39A8BDB08878C52D6186588A0FA266A69CF28 |
+| └ [DigiCert TLS Hybrid ECC SHA384 2020 CA1](http://cacerts.digicert.com/DigiCertTLSHybridECCSHA3842020CA1-1.crt) | 07f2f35c87a877af7aefe947993525bd<br>aec13cdd5ea6a3998aec14ac331ad96bedbb770f |
 | └ [DigiCert TLS RSA SHA256 2020 CA1](https://cacerts.digicert.com/DigiCertTLSRSASHA2562020CA1-1.crt) | 0x06d8d904d5584346f68a2fa754227ec4<br>1C58A3A8518E8759BF075B76B750D4F2DF264FCD |
 | └ [GeoTrust Global TLS RSA4096 SHA256 2022 CA1](https://cacerts.digicert.com/GeoTrustGlobalTLSRSA4096SHA2562022CA1.crt) | 0x0f622f6f21c2ff5d521f723a1d47d62d<br>7E6DB7B7584D8CF2003E0931E6CFC41A3A62D3DF |
 | **[DigiCert Global Root G2](https://cacerts.digicert.com/DigiCertGlobalRootG2.crt)** | 0x033af1e6a711a9a0bb2864b11d09fae5<br>DF3C24F9BFD666761B268073FE06D1CC8D4F82A4 |
 | └ [DigiCert Basic OV G2 TLS CN RSA406 SHA256 2022 CA1](http://cacerts.digicert.cn/DigiCertBasicOVG2TLSCNRSA4096SHA2562022CA1.crt) | 0x02361857392757c7ce46336cbc47cda2<br>60707270F2100EE2B771FEC9EFFAD8C9BFFE3358 |
-| └ [DigiCert Global G2 TLS RSA SHA256 2020 CA1](https://cacerts.digicert.com/DigiCertGlobalG2TLSRSASHA2562020CA1-1.crt) | 0x0cf5bd062b5602f47ab8502c23ccf066<br>1B511ABEAD59C6CE207077C0BF0E0043B1382612 |
+| └ [DigiCert Global G2 TLS RSA SHA256 2020 CA1](http://cacerts.digicert.com/DigiCertGlobalG2TLSRSASHA2562020CA1-1.crt) | 0x0cf5bd062b5602f47ab8502c23ccf066<br>1B511ABEAD59C6CE207077C0BF0E0043B1382612 |
 | └ [Microsoft Azure RSA TLS Issuing CA 03](https://www.microsoft.com/pkiops/certs/Microsoft%20Azure%20RSA%20TLS%20Issuing%20CA%2003%20-%20xsign.crt) | 0x05196526449a5e3d1a38748f5dcfebcc<br>F9388EA2C9B7D632B66A2B0B406DF1D37D3901F6 |
 | └ [Microsoft Azure RSA TLS Issuing CA 04](https://www.microsoft.com/pkiops/certs/Microsoft%20Azure%20RSA%20TLS%20Issuing%20CA%2004%20-%20xsign.crt) | 0x09f96ec295555f24749eaf1e5dced49d<br>BE68D0ADAA2345B48E507320B695D386080E5B25 |
 | └ [Microsoft Azure RSA TLS Issuing CA 07](https://www.microsoft.com/pkiops/certs/Microsoft%20Azure%20RSA%20TLS%20Issuing%20CA%2007%20-%20xsign.crt) | 0x0a43a9509b01352f899579ec7208ba50<br>3382517058A0C20228D598EE7501B61256A76442 |
