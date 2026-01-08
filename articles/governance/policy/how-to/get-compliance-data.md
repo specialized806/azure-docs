@@ -165,7 +165,7 @@ The list of resources on the **Resource compliance** tab shows the evaluation st
 
 For [Resource Provider mode](../concepts/definition-structure-basics.md#resource-provider-modes) resources, on the **Resource compliance** tab, selecting the resource opens the component compliance details. This page also offers tabs to see the policies that are assigned to this resource and change history.
 
-:::image type="content" source="../media/getting-compliance-data/compliance-components.png" alt-text="Screenshot of Component Compliance tab and compliance details for a Resource Provider mode assignment." border="false":::
+:::image type="content" source="../media/getting-compliance-data/compliance-components-sml.png" lightbox="../media/getting-compliance-data/compliance-components.png" alt-text="Screenshot of Component Compliance tab and compliance details for a Resource Provider mode assignment." border="false":::
 
 Back on the resource compliance page, right-click on the row of the event you would like to gather more details on and select **Show activity logs**. The activity log page opens and is prefiltered to the search showing details for the assignment and the events. The activity log provides more context and information about those events.
 
