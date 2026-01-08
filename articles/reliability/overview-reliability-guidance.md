@@ -74,7 +74,6 @@ The following table provides links to reliability guidance for Azure services. E
 |Azure Database for PostgreSQL| [Reliability in Azure Database for PostgreSQL](reliability-azure-database-postgresql.md)||
 |Azure Databricks | [Reliability in Azure Databricks](reliability-databricks.md)||
 |Azure DDoS Protection| [Reliability in DDoS Protection](reliability-ddos.md)||
-|Azure Deployment Environments| [Reliability in Deployment Environments](reliability-deployment-environments.md)||
 |Azure Device Registry |[Reliability in Device Registry](reliability-device-registry.md)||
 |Azure DevOps|| [Data protection overview](/azure/devops/organizations/security/data-protection#data-availability)|
 |Azure Disk Encryption|| [Redundancy options for managed disks](/azure/virtual-machines/disks-redundancy) |
@@ -94,7 +93,7 @@ The following table provides links to reliability guidance for Azure services. E
 |Azure IoT Hub| [Reliability in IoT Hub](reliability-iot-hub.md) ||
 |Azure Key Vault| [Reliability in Key Vault](./reliability-key-vault.md) ||
 |Azure Kubernetes Service (AKS)| [Reliability in AKS](reliability-aks.md)||
-|Azure Load Balancer| [Reliability in Load Balancer](reliability-load-balancer.md )||
+|Azure Load Balancer| [Reliability in Load Balancer](reliability-load-balancer.md)||
 |Azure Logic Apps|[Reliability in Logic Apps](reliability-logic-apps.md) ||
 |Azure Machine Learning|| [Failover for business continuity and disaster recovery](/azure/machine-learning/how-to-high-availability-machine-learning)|
 |Azure managed disks|| [Best practices for achieving high availability by using Azure virtual machines and managed disks](/azure/virtual-machines/disks-high-availability)|
