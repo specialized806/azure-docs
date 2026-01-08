@@ -34,7 +34,7 @@ Before you begin, make sure you know your billing account type. Learn how to [de
 
 To enable Marketplace purchases, you need to enable the Marketplace policy setting.
 
-Depending on your billing account type, this process and the permissions you need varies.
+Depending on your billing account type, the process and required permissions vary.
 
 You can enable Marketplace purchases with the following account types:
 

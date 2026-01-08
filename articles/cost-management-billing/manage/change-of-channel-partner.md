@@ -80,7 +80,7 @@ You can't use the self-service COCP process in the following situations:
      - **Current partner is being offboarded by Microsoft**
      - **Other**
 
-:::image type="content" source="../media/9350cd4c52e4430287886bf707b2dd03.png" alt-text="Screenshot that shows the Initiate change of partner page." lightbox="../media/9350cd4c52e4430287886bf707b2dd03.png":::
+:::image type="content" source="../media/9350cd4c52e4430287886bf707b2dd03.png" alt-text="Screenshot that shows Initiate change of partner." lightbox="../media/9350cd4c52e4430287886bf707b2dd03.png":::
 
 1. You can check to see if the partner is allowed to do business by entering the partner PCN and selecting the **Confirm partner** button in the lower-left corner. The partner organization name should display. If you get an error, you can reach out to the partner to make sure you have the correct PCN.
 
