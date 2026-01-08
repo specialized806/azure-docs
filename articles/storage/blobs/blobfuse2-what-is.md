@@ -47,7 +47,7 @@ By translating file system calls into Azure Blob REST API calls, BlobFuse provid
 
 ## Key capabilities
 
-Here are some of the key tasks that you perform by using BlobFuse capabilities.
+Here are some of the key tasks.
 
 - Mount an Azure Blob Storage container or Azure Data Lake Storage file system on Linux.
 
