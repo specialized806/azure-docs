@@ -686,7 +686,7 @@ Key changes include:
       | Pinned to a specific version | `azure-functions-runtime==1.2.0` | Your Python 3.13+ app stays on the pinned runtime version and doesn't receive automatic updates. You must instead manually update your pinned version to take advantage of new features, fixes, and improvements in the runtime. Pinning is recommended for critical production workloads where stability and predictability are essential. Pinning also lets you test your app on prereleased runtime versions during development. |
       | No package reference         | n/a                              | By not setting the `azure-functions-runtime`, your Python 3.13+ app runs on a default version of the Python runtime that is behind the latest released version. Updates are made periodically by Functions. This option ensures stability and broad compatibility. However, access to the newest features and fixes are delayed until the default version is updated.                                                               |
 
-- Dependency isolation: Your app’s dependencies (like `grpcio` or `protobuf`) are fully isolated from the worker’s dependencies by default, preventing version conflicts.
+- Dependency isolation: Your app’s dependencies (like `grpcio` or `protobuf`) are fully isolated from the worker’s dependencies, preventing version conflicts. The app setting `PYTHON_ISOLATE_WORKER_DEPENDENCIES` will have no impact for apps running on Python 3.13 or later.
 - Simplified [HTTP streaming](./functions-bindings-http-webhook-trigger.md?tabs=python-v2&pivots=programming-language-python#http-streams-1) setup—no special app settings required.
 - Removed support for worker extensions and shared memory features.
 
@@ -707,7 +707,7 @@ Key changes include:
       | Pinned to a specific version | `azure-functions-runtime-v1==1.2.0` | Your Python 3.13+ app stays on the pinned runtime version and doesn't receive automatic updates. You must instead manually update your pinned version to take advantage of new features, fixes, and improvements in the runtime. Pinning is recommended for critical production workloads where stability and predictability are essential. Pinning also lets you test your app on prereleased runtime versions during development. |
       | No package reference         | n/a                                 | By not setting the `azure-functions-runtime-v1`, your Python 3.13+ app runs on a default version of the Python runtime that is behind the latest released version. Updates are made periodically by Functions. This option ensures stability and broad compatibility. However, access to the newest features and fixes are delayed until the default version is updated.                                                            |
 
-- Dependency isolation: Your app’s dependencies (like `grpcio` or `protobuf`) are fully isolated from the worker’s dependencies by default, preventing version conflicts.
+- Dependency isolation: Your app’s dependencies (like `grpcio` or `protobuf`) are fully isolated from the worker’s dependencies, preventing version conflicts. The app setting `PYTHON_ISOLATE_WORKER_DEPENDENCIES` will have no impact for apps running on Python 3.13 or later.
 - Removed support for worker extensions and shared memory features.
 
 ::: zone-end
