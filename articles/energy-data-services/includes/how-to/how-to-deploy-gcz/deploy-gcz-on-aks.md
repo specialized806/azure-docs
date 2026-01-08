@@ -11,7 +11,7 @@ ms.date: 05/30/2024
 
 ## Deploy Geospatial Consumption Zone (GCZ) on Azure Kubernetes Service (AKS)
 
-This guide explains how to deploy Geospatial Consumption Zone (GCZ) as an **add-on extensibility service** for Azure Data Manager for Energy (ADME), using a **Helm chart** running on **Azure Kubernetes Service (AKS)**.
+Learn how to deploy Geospatial Consumption Zone (GCZ) on Azure Kubernetes Service (AKS).
 
 > ✅ Microsoft recommends deploying GCZ on a **dedicated AKS cluster** separate from ADME core services for optimal performance and isolation.
 
@@ -430,7 +430,7 @@ global:
    kubectl get pods -n $NAMESPACE
    ```
 
-   Now you should see the pods for the `ignite`, `provider`, gridgain, and `transformer` services.
+   Now you should see the pods for the `ignite`, `provider`, `gridgain`, and `transformer` services.
 
 15. Next get note the External IPs for the `provider` and `transformer` services.
 
