@@ -85,7 +85,7 @@ You can use snapshots of elastic SAN volumes to create new volumes using the Azu
 
 ```azurepowershell
 # create a volume with a snapshot id 
-New-AzElasticSanVolume -ElasticSanName $esname -ResourceGroupName $rgname -VolumeGroupName $vgname -Name $volname2 -CreationDataSourceId $snapshot.Id -SizeGiB 1
+New-AzElasticSanVolume -ElasticSanName $esname -ResourceGroupName $rgname -VolumeGroupName $vgname -Name $volname2 -CreationDataSourceId $snapshot.Id -CreationDataCreateSource VolumeSnapshot -SizeGiB 1
 ```
 
 # [Azure CLI](#tab/azure-cli)
