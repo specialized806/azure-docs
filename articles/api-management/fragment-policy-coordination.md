@@ -15,7 +15,7 @@ ms.author: nicolela
 
 [!INCLUDE [api-management-availability-all-tiers](../../includes/api-management-availability-all-tiers.md)]
 
-Advanced pipeline scenarios with custom behavior througough the request and response lifecycle are built using policy fragments. Central policies at the product and API levels insert fragments using the [include-fragment](include-fragment-policy.md) policy. Fragments can be shared between [product and API policies](api-management-howto-policies.md#scopes) to avoid duplication while maintaining clear separation of responsibilities.
+Advanced pipeline scenarios with custom behavior throughout the request and response lifecycle are built using policy fragments. Central policies at the product and API levels insert fragments using the [include-fragment](include-fragment-policy.md) policy. Fragments can be shared between [product and API policies](api-management-howto-policies.md#scopes) to avoid duplication while maintaining clear separation of responsibilities.
 
 ## Fragment insertion
 
@@ -202,7 +202,7 @@ Use debug headers to capture variable state at a specific point in the pipeline 
 
 **Pipeline placement:**
 
-Include the header management fragment in the **outbound** section of your product policy, after all processing fragments have completed:
+Include the header management fragment in the **outbound** section of your product policy, after all other fragments are done executing:
 
 ```xml
 <policies>

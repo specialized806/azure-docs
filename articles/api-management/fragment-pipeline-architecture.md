@@ -28,13 +28,13 @@ Follow these four recommended patterns to build advanced pipelines using policy 
 
 ### 1. Modularity
 
-Design each fragment with a single, well-defined responsibility. Each fragment should focus on one specific concern such as authenticatoin, logging, or rate limiting. For example, a fragment named `security-authentication` should only contain authentication behavior and logic.
+Design each fragment with a single, well-defined responsibility. Each fragment should focus on one specific concern such as authentication, logging, or rate limiting. For example, a fragment named `security-authentication` should only contain authentication behavior and logic.
 
 ### 2. Data sharing
 
 Share data between fragments using [context variables](api-management-policy-expressions.md#ContextVariables).
 
-- **Define data contracts**: Use context variables as data contracts for sequentially passing data between fragments. For example, a `security-suthentication` fragment can set a context variable called `user-id` that contains the authenticated user's extracted ID, making it available for downstream fragments in the pipeline. Under the covers, each request maintains its own isolated `context.Variables` dictionary for storing context variables, ensuring thread-safe communication between fragments. See [Variable Management for Policy Fragments](fragment-variable-mgmt.md) for details.
+- **Define data contracts**: Use context variables as data contracts for sequentially passing data between fragments. For example, a `security-authentication` fragment can set a context variable called `user-id` that contains the authenticated user's extracted ID, making it available for downstream fragments in the pipeline. Under the covers, each request maintains its own isolated `context.Variables` dictionary for storing context variables, ensuring thread-safe communication between fragments. See [Variable Management for Policy Fragments](fragment-variable-mgmt.md) for details.
 
 - **Cache shared data**: When multiple fragments need to access the same data, use cross-request caching to reduce parsing overhead and improve performance. See [Central Metadata Cache for Policy Fragments](fragment-metadata-cache.md) for implementation guidance.
 
@@ -54,13 +54,13 @@ For detailed guidance on coordinating fragment execution across policy scopes, s
 
 Optimize fragments for maximum performance.
 
-- **Keep fragments under 32 KB**: Stay within the [32 KB limit](policy-fragments.md) to ensure fast in-memory parsing and avoid slower file-based processing. The limit includes all whitespace, comments, and XML markup - not just the code logic. To stay under the limit:
+- **Keep fragments under 32-KB**: Stay within the [32-KB limit](policy-fragments.md) to ensure fast in-memory parsing and avoid slower file-based processing. The limit includes all whitespace, comments, and XML markup - not just the code logic. To stay under the limit:
   - Extract lengthy values, such as multi-line JSON, to [Named Values](api-management-howto-properties.md).
   - Use shorter variable names.
   - Split complex fragments into smaller ones.
 
 - **Apply recommended patterns**: Follow the recommendations outlined earlier in this article. Most importantly:
-  - Implement a central metadata cache to eliminate redundant parsing.
+  - Eliminate redundant parsing by implementing a metadata cache.
   - Use early exit patterns for health checks, authentication failures, variable existence, and other scenarios where definitive responses can be determined without further processing.
   - Follow processing optimizations such as minimizing variable access.
 

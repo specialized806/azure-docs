@@ -81,7 +81,7 @@ The `metadata-fragment.xml` fragment stores shared JSON metadata in a [context v
 
 ### Parsing and caching fragment example
 
-The `parse-cache-fragment.xml` fragment parses the JSON stored in the `metadata-config` context variable once and provides access to the resulting `JObject`. Note that `metadata-config` variable must already be set by `metadata-fragment.xml`:
+The `parse-cache-fragment.xml` fragment parses the JSON stored in the `metadata-config` context variable once and provides access to the resulting `JObject`. The `metadata-config` variable must already be set by `metadata-fragment.xml`:
 
 ```xml
 <fragment fragment-id="parse-cache-fragment">
