@@ -65,10 +65,10 @@ The Details section displays other important aspects of your commitment.
 
 Your MACC can have one of the following statuses:
 
-- **Active:** MACC is active. Any eligible spend contributes toward your MACC commitment.
-- **Completed:** You have fulfilled your MACC commitment.
-- **Expired:** MACC is past its end date. Contact your Microsoft Account team for more information.
-- **Canceled:** MACC is canceled. New Azure spend do not contribute toward your MACC commitment.
+- **Active:** The MACC is currently in effect. Eligible Azure spend contributes toward fulfilling your commitment.
+- **Completed:** You have successfully met your MACC commitment amount. No further action is required.
+- **Expired:** The MACC end date has passed without the commitment being fully met. Contact your Microsoft Account team for more information.
+- **Canceled:** The MACC was terminated before the end date. New Azure spend will not contribute toward your MACC commitment. Contact your Microsoft Account team for more information.
 
 #### Events
 
@@ -200,10 +200,10 @@ The API response returns lists of MACCs for your billing account.
 
 Your MACC can have one of the following statuses:
 
-- **Active:** MACC is active. Any eligible spend contributes toward your MACC commitment.
-- **Completed:** You have fulfilled your MACC commitment.
-- **Expired:** MACC is past its end date. Contact your Microsoft Account team for more information.
-- **Canceled:** MACC is canceled. New Azure spend does not contribute toward your MACC commitment.
+- **Active:** The MACC is currently in effect. Eligible Azure spend contributes toward fulfilling your commitment.
+- **Completed:** You have successfully met your MACC commitment amount. No further action is required.
+- **Expired:** The MACC end date has passed without the commitment being fully met. Contact your Microsoft Account team for more information.
+- **Canceled:** The MACC was terminated before the end date. New Azure spend will not contribute toward your MACC commitment. Contact your Microsoft Account team for more information.
 
 
 ### Get events that affected MACC commitment
