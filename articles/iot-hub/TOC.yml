@@ -20,7 +20,17 @@
       href: quickstart-send-telemetry-cli.md
       displayName: Azure CLI
 - name: Concepts
+  expanded: true
   items: 
+    - name: Azure Device Registry integration (preview)
+      href: iot-hub-device-registry-overview.md
+    - name: Certificate management (preview)
+      expanded: true
+      items:
+      - name: Overview
+        href: iot-hub-certificate-management-overview.md
+      - name: Key concepts for certificate management
+        href: iot-hub-certificate-management-concepts.md
     - name: Understand IoT Hub endpoints
       href: iot-hub-devguide-endpoints.md
       displayName: multitenant
@@ -156,18 +166,6 @@
           href: migrate-hub-arm.md
         - name: Bulk import and export IoT devices
           href: iot-hub-bulk-identity-mgmt.md
-- name: Azure Device Registry integration (preview)
-  expanded: true
-  items:
-    - name: Overview
-      href: iot-hub-device-registry-overview.md
-- name: Certificate management (preview)
-  expanded: true
-  items:
-    - name: Overview
-      href: iot-hub-certificate-management-overview.md
-    - name: Key concepts for certificate management
-      href: iot-hub-certificate-management-concepts.md
 - name: Device-to-cloud communications
   items:
     - name: Understand device-to-cloud guidance
