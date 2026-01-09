@@ -14,13 +14,13 @@ ms.custom:
 
 # Manage the configuration server for VMware VM/physical server disaster recovery
 
-You set up an on-premises configuration server when you use [Azure Site Recovery](site-recovery-overview.md) for disaster recovery of VMware virtual machines (VMs) and physical servers to Azure. The configuration server coordinates communications between on-premises VMware and Azure and manages data replication. This article summarizes common tasks for managing the configuration server after it's deployed.
+You set up an on-premises configuration server when you use [Azure Site Recovery](site-recovery-overview.md) for disaster recovery of VMware virtual machines (VMs) and physical servers to Azure. The configuration server coordinates communications between on-premises VMware and Azure and manages data replication. This article summarizes common tasks for managing the configuration server after it deploys.
 
 [!INCLUDE [updated-for-az](~/reusable-content/ce-skilling/azure/includes/updated-for-az.md)]
 
 ## Update Windows license
 
-The license provided with the Open Virtualization Format (OVF) template is an evaluation license valid for 180 days. For uninterrupted usage, you must activate Windows with a procured license. You can update a license either through a standalone key or a Key Management Services (KMS) standard key. Guidance is available at [Deployment Image Servicing and Management Windows command line for running OS](/windows-hardware/manufacture/desktop/dism-windows-edition-servicing-command-line-options). To obtain keys, refer to [KMS client setup](/windows-server/get-started/kmsclientkeys).
+The license provided with the Open Virtualization Format (OVF) template is an evaluation license valid for 180 days. For uninterrupted usage, you must activate Windows with a procured license. You can update a license either through a standalone key or a Key Management Services (KMS) standard key. For guidance, see [DISM Windows edition servicing command-line options](/windows-hardware/manufacture/desktop/dism-windows-edition-servicing-command-line-options). To obtain keys, refer to [KMS client setup](/windows-server/get-started/kmsclientkeys).
 
 ## Access configuration server
 
@@ -41,15 +41,15 @@ To access the configuration server:
 
     ![Screenshot that shows modifying VMware.](./media/vmware-azure-manage-configuration-server/modify-vmware-server.png)
 
-You can also modify the credentials through CSPSConfigtool.exe.
+You can also modify the credentials through `CSPSConfigtool.exe`.
 
-1. Sign in to the configuration server and start CSPSConfigtool.exe.
+1. Sign in to the configuration server and start `CSPSConfigtool.exe`.
 1. Choose the account that you want to modify and select **Edit**.
-1. Enter the modified credentials and select **OK**.
+1. Enter the modified credentials, and then select **OK**.
 
 ## Modify credentials for Mobility service installation
 
-Modify the credentials used to automatically install the Mobility service on the VMware VMs you enable for replication.
+Modify the credentials used to automatically install the Mobility service on the VMware VMs that you enable for replication.
 
 1. After [sign-in](#access-configuration-server), select **Manage virtual machine credentials**.
 1. Choose the account that you want to modify and select **Edit**.
@@ -57,9 +57,9 @@ Modify the credentials used to automatically install the Mobility service on the
 
     ![Screenshot that shows modifying Mobility service credentials.](./media/vmware-azure-manage-configuration-server/modify-mobility-credentials.png)
 
-You can also modify credentials through CSPSConfigtool.exe.
+You can also modify credentials through `CSPSConfigtool.exe`.
 
-1. Sign in to the configuration server and start CSPSConfigtool.exe.
+1. Sign in to the configuration server and start `CSPSConfigtool.exe`.
 1. Choose the account that you want to modify and select **Edit**.
 1. Enter the new credentials, and then select **OK**.
 
@@ -72,9 +72,9 @@ If you missed adding credentials during OVF deployment of the configuration serv
     ![Screenshot that shows the Manage virtual machine credentials pane with Add virtual machine credentials.](media/vmware-azure-manage-configuration-server/add-mobility-credentials.png)
 1. Enter the new credentials and select **Add**.
 
-You can also add credentials through CSPSConfigtool.exe.
+You can also add credentials through `CSPSConfigtool.exe`.
 
-1. Sign in to the configuration server and start CSPSConfigtool.exe.
+1. Sign in to the configuration server and start `CSPSConfigtool.exe`.
 1. Select **Add**, enter the new credentials, and select **OK**.
 
 ## Modify proxy settings
@@ -88,8 +88,8 @@ Modify the proxy settings used by the configuration server machine for internet 
 
 The OVF template deploys the configuration server VM with a single network adapter.
 
-- You can [add an additional adapter to the VM](vmware-azure-deploy-configuration-server.md#add-an-additional-adapter), but you must add it before you register the configuration server in the vault.
-- To add an adapter after you register the configuration server in the vault, add the adapter in the VM properties. Then you need to [re-register](#reregister-a-configuration-server-in-the-same-vault) the server in the vault.
+- You can [add another adapter to the VM](vmware-azure-deploy-configuration-server.md#add-an-additional-adapter), but you must add it before you register the configuration server in the vault.
+- To add an adapter after you register the configuration server in the vault, add the adapter in the VM properties. Then you need to [reregister](#reregister-a-configuration-server-in-the-same-vault) the server in the vault.
 
 ## Renew SSL certificates
 
@@ -97,11 +97,11 @@ The configuration server has an inbuilt web server, which orchestrates activitie
 
 ### Check expiry
 
-The expiry date appears under **Configuration Server health**. For configuration server deployments before May 2016, certificate expiry was set to one year. If you have a certificate that's going to expire, the following occurs:
+The expiry date appears under **Configuration Server health**. For configuration server deployments before May 2016, certificate expiry was set to one year. If you have a certificate that's going to expire, the following actions occur:
 
 - When the expiry date is two months or less, the service sends notifications in the portal and by email (if you subscribed to Site Recovery notifications).
 - A notification banner appears on the vault resource page. For more information, select the banner.
-- If you see **Upgrade Now**, it indicates that some components in your environment haven't been upgraded to 9.4.xxxx.x or later versions. Upgrade the components before you renew the certificate. You can't renew older versions.
+- If you see **Upgrade Now**, it indicates that some components in your environment need to be upgraded to 9.4.xxxx.x or later versions. Upgrade the components before you renew the certificate. You can't renew older versions.
 
 ### If certificates are yet to expire
 
@@ -113,7 +113,7 @@ The expiry date appears under **Configuration Server health**. For configuration
 ### If certificates are already expired
 
 1. Post expiry, certificates *can't be renewed from the Azure portal*. Before you proceed, ensure that all scale-out process servers for components, master target servers, and mobility agents on all protected machines are on the latest versions and in the connected state.
-1. *Follow this procedure only if certificates have already expired.* Sign in to the configuration server, go to C:\ProgramData\ASR\home\svsystems\bin, and run the `RenewCerts` executor tool as an administrator.
+1. *Follow this procedure only if certificates are already expired.* Sign in to the configuration server, go to C:\ProgramData\ASR\home\svsystems\bin, and run the `RenewCerts` executor tool as an administrator.
 1. A PowerShell execution window opens and triggers renewal of certificates. This process can take up to 15 minutes. Don't close the window until renewal is finished.
 
 :::image type="content" source="media/vmware-azure-manage-configuration-server/renew-certificates.png" alt-text="Screenshot that shows certificate renewal.":::
@@ -171,7 +171,7 @@ You run update rollups to update the configuration server. You can apply updates
 For the Site Recovery components support statement, refer to [Service updates in Site Recovery](./service-updates-how-to.md#support-statement-for-azure-site-recovery). Links to update rollups for upgrading to all versions of the configuration server are available in [Service updates in Site Recovery](/azure/site-recovery/service-updates-how-to#updates-support).
 
 > [!IMPORTANT]
-> With every new version N of a Site Recovery component that's released, all versions previous to N-4 are considered out of support. We recommend that you upgrade to the latest versions that are available.</br>
+> With every new release of a version N of a Site Recovery component, all versions previous to N-4 are considered out of support. We recommend that you upgrade to the latest versions that are available.</br>
 > For the Site Recovery components support statement, refer to [Service updates in Site Recovery](./service-updates-how-to.md#support-statement-for-azure-site-recovery).
 
 Upgrade the server:
@@ -213,24 +213,24 @@ Run the installation file:
 
 |Parameter name| Type | Description| Values|
 |-|-|-|-|
-| /ServerMode|Required|Specifies whether both the configuration and process servers should be installed, or the process server only|CS<br>PS|
-|/InstallLocation|Required|The folder in which the components are installed| Any folder on the computer|
-|/MySQLCredsFilePath|Required|The file path in which the MySQL server credentials are stored|The file should be the format specified below|
-|/VaultCredsFilePath|Required|The path of the vault credentials file|Valid file path|
-|/EnvType|Required|Type of environment that you want to protect |VMware<br>NonVMware|
-|/PSIP|Required|IP address of the NIC to be used for replication data transfer| Any valid IP Address|
-|/CSIP|Required|The IP address of the NIC on which the configuration server is listening on| Any valid IP Address|
-|/PassphraseFilePath|Required|The full path to location of the passphrase file|Valid file path|
-|/BypassProxy|Optional|Specifies that the configuration server connects to Azure without a proxy||
-|/ProxySettingsFilePath|Optional|Proxy settings (The default proxy requires authentication, or a custom proxy)|The file should be in the format specified below|
-|DataTransferSecurePort|Optional|Port number on the PSIP to be used for replication data| Valid Port Number (default value is 9433)|
-|/SkipSpaceCheck|Optional|Skip space check for cache disk| |
-|/AcceptThirdpartyEULA|Required|Flag implies acceptance of third-party EULA| |
-|/ShowThirdpartyEULA|Optional|Displays third-party EULA. If provided as input all other parameters are ignored| |
+| `/ServerMode`|Required|Specifies whether both the configuration and process servers should be installed or the process server only.|CS<br>PS|
+|`/InstallLocation`|Required|The folder in which the components are installed.| Any folder on the computer.|
+|`/MySQLCredsFilePath`|Required|The file path in which the MySQL server credentials are stored.|The file should be the format specified in the following section.|
+|`/VaultCredsFilePath`|Required|The path of the vault credentials file.|Valid file path.|
+|`/EnvType`|Required|Type of environment that you want to protect. |VMware<br>NonVMware|
+|`/PSIP`|Required|IP address of the network interface card (NIC) to be used for replication data transfer.| Any valid IP address.|
+|`/CSIP`|Required|The IP address of the NIC on which the configuration server is listening.| Any valid IP address.|
+|`/PassphraseFilePath`|Required|The full path to the location of the passphrase file.|Valid file path.|
+|`/BypassProxy`|Optional|Specifies that the configuration server connects to Azure without a proxy.||
+|`/ProxySettingsFilePath`|Optional|Proxy settings. (The default proxy requires authentication or a custom proxy.)|The file should be in the format specified in the following section.|
+|`DataTransferSecurePort`|Optional|Port number on the PSIP to be used for replication data.| Valid port number (default value is 9433).|
+|`/SkipSpaceCheck`|Optional|Skip space check for cache disk.| |
+|`/AcceptThirdpartyEULA`|Required|Flag implies acceptance of non-Microsoft EULA.| |
+|`/ShowThirdpartyEULA`|Optional|Displays non-Microsoft EULA. If provided as input, all other parameters are ignored.| |
 
 ### Create file input for MYSQLCredsFilePath
 
-The `MySQLCredsFilePath` parameter takes a file as input. Create the file using the following format and pass it as input `MySQLCredsFilePath` parameter.
+The `MySQLCredsFilePath` parameter takes a file as input. Create the file by using the following format, and pass it as the input `MySQLCredsFilePath` parameter.
 
 ```ini
 [MySQLCredentials]
@@ -240,7 +240,7 @@ MySQLUserPassword = "Password"
 
 ### Create file input for ProxySettingsFilePath
 
-The `ProxySettingsFilePath` parameter takes a file as input. Create the file using the following format and pass it as input `ProxySettingsFilePath` parameter.
+The `ProxySettingsFilePath` parameter takes a file as input. Create the file by using the following format, and pass it as the input `ProxySettingsFilePath` parameter.
 
 ```ini
 [ProxySettings]
@@ -290,14 +290,14 @@ You can optionally delete the configuration server by using PowerShell.
 > [!NOTE]
 > You can use the `-Force` option in `Remove-AzRecoveryServicesAsrFabric` for forced deletion of the configuration server.
 
-## Generate configuration server Passphrase
+## Generate a configuration server passphrase
 
 1. Sign in to your configuration server, and then open a command prompt window as an administrator.
 1. To change the directory to the bin folder, run the command `cd %ProgramData%\ASR\home\svsystems\bin`.
 1. To generate the passphrase file, run `genpassphrase.exe -v > MobSvc.passphrase`.
 1. Your passphrase is stored in the file located at `%ProgramData%\ASR\home\svsystems\bin\MobSvc.passphrase`.
 
-## Refresh Configuration server
+## Refresh the configuration server
 
 1. In the Azure portal, go to **Recovery Services Vault** > **Manage** > **Site Recovery Infrastructure** > **For VMware & Physical machines** > **Configuration Servers**.
 1. Select the configuration server that you want to refresh.
@@ -308,8 +308,8 @@ You can optionally delete the configuration server by using PowerShell.
 
 During reprotect and failback, the on-premises configuration server must be running and in a connected state. For successful failback, the VM being failed back must exist in the configuration server database.
 
-Ensure that you take regular scheduled backups of your configuration server. If a disaster occurs and the configuration server is lost, you must first restore the configuration server from a backup copy and ensure that the restored configuration server has the same IP address with which it was registered to the vault. Failback doesn't work if a different IP address is used for the restored configuration server.
+Ensure that you take regular scheduled backups of your configuration server. If a disaster occurs and the configuration server is lost, you must first restore the configuration server from a backup copy. Ensure that the restored configuration server has the same IP address with which it was registered to the vault. Failback doesn't work if a different IP address is used for the restored configuration server.
 
 ## Related content
 
-Review the tutorials for setting up disaster recovery of [VMware VMs](vmware-azure-tutorial.md) to Azure.
+- Review the tutorials on how to set up disaster recovery of [VMware VMs](vmware-azure-tutorial.md) to Azure.
