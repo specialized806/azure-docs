@@ -69,13 +69,12 @@ You can create the Active Directory connection when you [create the capacity poo
         This option grants additional security privileges to Active Directory domain users or groups that require elevated privileges to access the Azure NetApp Files volumes.
     * **Backup users**
         This option grants addition security privileges to Active Directory domain users or groups that require elevated backup privileges to support backup, restore, and migration workflows in Azure NetApp Files.
+    * **Credentials**
+        Select **User assigned identity** to use the standalone Azure resource assigned to your service. Currently, User assigned identity is the only supported option. 
     * **AKV resource**
-        The resource identity for your Azure Key Vault. 
+        Choose the resource identity for your Azure Key Vault. 
     * **User name**
     * **Password secret**
-    * **User assigned identity**
-        The standalone Azure resource assigned to your service. 
-    Select **Next**. 
 
     :::image type="content" source="./media/shared/elastic-active-directory-access.png" alt-text="Screenshot of the identity & access management tab." lightbox="./media/shared/elastic-active-directory-access.png":::
 

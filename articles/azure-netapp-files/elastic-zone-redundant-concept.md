@@ -14,8 +14,6 @@ ms.custom: references-regions
 
 Azure NetApp Files zone-redundant storage is cost‑optimized landing zone for unstructured data, built for modern workloads. 
 
-<!-- mission critical, cost effective, agile, durable -->
-
 It delivers built‑in local redundancy, shared QoS, and native multi‑tenancy with global regional availability—making it a natural fit for ISVs and SaaS solution providers. ​
 
 Scale smaller volumes with flexible throughput, power backups, analytics staging, and AI datasets—all at an affordable price without compromising reliability.
