@@ -30,9 +30,9 @@ In the scenario that a MACC commitment has been transacted prior to the expirati
 
 1. Sign in to the [Azure portal](https://portal.azure.com).
 2. Search for **Cost Management + Billing**.  
-    :::image type="content" source="./media/track-consumption-commitment/billing-search-cost-management-billing.png" alt-text="Screenshot showing search in portal for Cost Management + Billing." lightbox="./media/track-consumption-commitment/billing-search-cost-management-billing.png" :::
+    :::image type="content" source="../../manage/media/track-consumption-commitment/billing-search-cost-management-billing.png" alt-text="Screenshot showing search in portal for Cost Management + Billing." lightbox="../../manage/media/track-consumption-commitment/billing-search-cost-management-billing.png" :::
 3. In the billing scopes page, select the billing account for which you want to track the commitment. The billing account type must be **Microsoft Customer Agreement** for Microsoft Customer Agreement (MCA) customers or **Enterprise Agreement** for EA customers.   
-    :::image type="content" source="./media/track-consumption-commitment/list-of-scopes.png" alt-text="Screenshot that shows Billing Scopes." lightbox="./media/track-consumption-commitment/list-of-scopes.png" :::
+    :::image type="content" source="../../manage/media/track-consumption-commitment/list-of-scopes.png" alt-text="Screenshot that shows Billing Scopes." lightbox="../../manage/media/track-consumption-commitment/list-of-scopes.png" :::
     > [!NOTE]
      > Azure portal remembers the last billing scope that you access and displays the scope the next time you come to Cost Management + Billing page. You won't see the billing scopes page if you have visited Cost Management + Billing earlier. If so, check that you are in the [right scope](#check-access-to-a-microsoft-customer-agreement). If not, [switch the scope](view-all-accounts.md#switch-billing-scope-in-the-azure-portal) to select the billing account for a Microsoft Customer Agreement.
 4. Depending on your agreement type, do one of the following:
@@ -287,7 +287,7 @@ The API response returns all events that affected your MACC commitment.
 
 ## Azure Services and Marketplace offers that are eligible for MACC
 
-You can determine which Azure services and Marketplace offers are eligible for MACC decrement in the Azure portal. For more information, see [Determine which offers are eligible for Azure consumption commitments (MACC/CtC)](/marketplace/azure-consumption-commitment-benefit#determine-which-offers-are-eligible-for-azure-consumption-commitments-maccctc).
+You can determine which Azure services and Marketplace offers are eligible for MACC decrement in the Azure portal. For more information, see [Determine which offers are eligible for Azure consumption commitments (MACC/CtC)](../../../../marketplace/azure-consumption-commitment-benefit#determine-which-offers-are-eligible-for-azure-consumption-commitments-maccctc).
 
 ## Azure credits and MACC
 
@@ -307,4 +307,4 @@ If you need help, [contact support](https://portal.azure.com/?#blade/Microsoft_A
 ## Next steps
 
 - [Determine which offers are eligible for Azure consumption commitments (MACC/CTC)](/marketplace/azure-consumption-commitment-benefit#determine-which-offers-are-eligible-for-azure-consumption-commitments-maccctc)
-- [Track your Azure credits balance](mca-check-azure-credits-balance.md)
+- [Track your Azure credits balance](../../credits/mca-check-azure-credits-balance.md)
