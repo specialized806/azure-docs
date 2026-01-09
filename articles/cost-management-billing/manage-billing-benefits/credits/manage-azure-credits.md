@@ -110,9 +110,9 @@ By default, the user account that accepted the credit proposal has owner access 
 
 ## Next steps
 
-For information on checking the credit balance, see: [Track Azure credit balance for a Microsoft Customer Agreement](../../../cost-management-billing/manage/mca-check-azure-credits-balance.md).
+For information on checking the credit balance, see: [Track Azure credit balance for a Microsoft Customer Agreement](../../../cost-management-billing/manage-billing-benefits/credits/mca-check-azure-credits-balance.md).
 
 ## Related content
-- [Track Azure credit balance for a Microsoft Customer Agreement](../../../cost-management-billing/manage/mca-check-azure-credits-balance.md)
+- [Track Azure credit balance for a Microsoft Customer Agreement](../../../cost-management-billing/manage-billing-benefits/credits/mca-check-azure-credits-balance.md)
 - [What is a cloud subscription](../../../cost-management-billing/manage/cloud-subscription.md)
 - [Move Azure resources to a new resource group or subscription](../../../azure-resource-manager/management/move-resource-group-and-subscription.md)
