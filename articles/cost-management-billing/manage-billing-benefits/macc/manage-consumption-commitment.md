@@ -20,7 +20,7 @@ service.tree.id: b69a7832-2929-4f60-bf9d-c6784a865ed8
 
 When you accept a Microsoft Azure Consumption Commitment (MACC) in a Microsoft Customer Agreement, the MACC resource gets placed in a subscription and resource group. The resource contains the metadata related to the MACC. Including: status of the MACC, commitment amount, start date, end date, and System ID. You can view the metadata in the Azure portal.
 
-:::image type="content" source="../../media/manage-consumption-commitment/consumption-commitment-overview.png" border="true" alt-text="Screenshot showing the MACC overview page." lightbox="../../media/manage-consumption-commitment/consumption-commitment-overview.png" :::
+:::image type="content" source="../../manage/media/manage-consumption-commitment/consumption-commitment-overview.png" border="true" alt-text="Screenshot showing the MACC overview page." lightbox="../../manage/media/manage-consumption-commitment/consumption-commitment-overview.png" :::
 
 ## Move MACC across resource groups or subscriptions
 
@@ -50,7 +50,7 @@ After a MACC moves, its resource URI changes because of the move.
 
 Here's an example image:
 
-:::image type="content" source="./media/manage-consumption-commitment/consumption-commitment-uri.png" border="true" alt-text="Screenshot showing the MACC properties page URI." lightbox="./media/manage-consumption-commitment/consumption-commitment-uri.png" :::
+:::image type="content" source="../../manage/media/manage-consumption-commitment/consumption-commitment-uri.png" border="true" alt-text="Screenshot showing the MACC properties page URI." lightbox="../../manage/media/manage-consumption-commitment/consumption-commitment-uri.png" :::
 
 
 ## Rename MACC
