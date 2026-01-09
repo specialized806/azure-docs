@@ -26,7 +26,7 @@ Upon acceptance of a Microsoft Azure discount as part of a Microsoft Customer Ag
 ## Move a discount across resource groups or subscriptions
 You can move the discount resource between resource groups or subscriptions within the same billing account without affecting the discount, as only the metadata is updated.
 ### To move a discount resource
-Here are the high-level steps to move a discount resource. For more information on moving Azure resources, see: [Move Azure resources to a new resource group or subscription](../../azure-resource-manager/management/move-resource-group-and-subscription.md).
+Here are the high-level steps to move a discount resource. For more information on moving Azure resources, see: [Move Azure resources to a new resource group or subscription](../../../azure-resource-manager/management/move-resource-group-and-subscription.md).
 
 
 ### To move a discount resource to a new resource group
@@ -71,7 +71,7 @@ To see the additional discount metadata
 
 
 ## Rename a discount resource
-The discount’s resource name is a part of its Uniform Resource Identifier (URI) and can't be changed. However, you can use [tags](../../azure-resource-manager/management/tag-resources.md) to help identify the credit resource based on a nomenclature relevant to your organization.
+The discount’s resource name is a part of its Uniform Resource Identifier (URI) and can't be changed. However, you can use [tags](../../../azure-resource-manager/management/tag-resources.md) to help identify the credit resource based on a nomenclature relevant to your organization.
 
 
 ## Delete a discount resource 
@@ -113,8 +113,8 @@ The user who accepted the discount proposal automatically gets owner access to t
 <br>
 
 ## Related content
- - [Understand Cost Management data](../../cost-management-billing/costs/understand-cost-mgt-data.md)
- - [View and download your organization's Azure pricing](../../cost-management-billing/manage/ea-pricing.md)
- - [Terms in your Microsoft Customer Agreement price sheet](../../cost-management-billing/manage/mca-understand-pricesheet.md)
- - [What is a cloud subscription](../../cost-management-billing/manage/cloud-subscription.md)
- - [Move Azure resources to a new resource group or subscription](../../azure-resource-manager/management/move-resource-group-and-subscription.md)
+ - [Understand Cost Management data](../../../cost-management-billing/costs/understand-cost-mgt-data.md)
+ - [View and download your organization's Azure pricing](../../../cost-management-billing/manage/ea-pricing.md)
+ - [Terms in your Microsoft Customer Agreement price sheet](../../../cost-management-billing/manage/mca-understand-pricesheet.md)
+ - [What is a cloud subscription](../../../cost-management-billing/manage/cloud-subscription.md)
+ - [Move Azure resources to a new resource group or subscription](../../../azure-resource-manager/management/move-resource-group-and-subscription.md)
