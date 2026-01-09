@@ -334,7 +334,7 @@ Credits that you acquire are assigned to a billing profile. When an invoice is g
 - Azure support plans
 
 ## Check access to a Microsoft Customer Agreement
-[!INCLUDE [billing-check-mca](../../../includes/billing-check-mca.md)]
+[!INCLUDE [billing-check-mca](../../../../../includes/billing-check-mca.md)]
 
 ## Need help? Contact support.
 
