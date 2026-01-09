@@ -2,7 +2,7 @@
 title: Support matrix for Azure VM backups
 description: Get a summary of support settings and limitations for backing up Azure VMs by using the Azure Backup service.
 ms.topic: reference
-ms.date: 10/27/2025
+ms.date: 01/28/2026
 ms.custom:
   - references_regions
   - linux-related-content
@@ -101,6 +101,20 @@ Azure Backup provides the following support for customers to author their own pr
 |Supported database  |OS version  |Database version  |
 |---------|---------|---------|
 |Oracle in Azure VMs     |   [Oracle Linux](/azure/virtual-machines/linux/endorsed-distros)      |    Oracle 12.x or later     |
+
+
+
+## Support for Confidential VM backup (preview)
+
+The following table lists the supported scenarios for Confidential VM backup:
+
+| Scenario | Supportability |
+| --- | --- |
+| Region availability | Supported in UAE North, Korea Central, Switzerland North, West Central US, South Africa North, and UK South. |
+| Key rotation for backups | When key rotation occurs on a confidential virtual machine, the keys for the VM disks, related restore points, and snapshots update automatically. <br><br> The key rotation might fail due to the following scenarios: <br><br> - A large number of disks are linked to a single Disk Encryption Set (DES), including their restore points and snapshots. <br> - More than 40 disks are attached to one DES when only restore points are associated with these disks. <br> - Both restore points and snapshots are present for disks connected to the same DES, which lowers the safe threshold below 40 disks. <br> - Performance limitations during key rotation when multiple disks share one DES.
+ <br><br> Recommendation: Keep the number of disks connected to each DES to a minimum until the issue is resolved. |
+
+
 
 
 
