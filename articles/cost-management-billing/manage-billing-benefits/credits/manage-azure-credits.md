@@ -29,7 +29,7 @@ The new resource group or subscription must remain within the same billing profi
 
 ## To move a credit resource
 
-Here are the high-level steps to move a credit resource. For more information on moving Azure resources, see [Move Azure resources to a new resource group or subscription](../../azure-resource-manager/management/move-resource-group-and-subscription.md).
+Here are the high-level steps to move a credit resource. For more information on moving Azure resources, see [Move Azure resources to a new resource group or subscription](../../../azure-resource-manager/management/move-resource-group-and-subscription.md).
 
 
 ### To move a credit resource to a new resource group
@@ -67,7 +67,7 @@ When a credit is moved, the resource URI associated with it's updated to reflect
 
 ## Rename a credit resource
 
-The credit’s resource name is a part of its Uniform Resource Identifier (URI) and can't be changed. However, you can use [tags](../../azure-resource-manager/management/tag-resources.md) to help identify the credit resource based on a nomenclature relevant to your organization.
+The credit’s resource name is a part of its Uniform Resource Identifier (URI) and can't be changed. However, you can use [tags](../../../azure-resource-manager/management/tag-resources.md) to help identify the credit resource based on a nomenclature relevant to your organization.
 
 
 ## Delete a credit resource 
@@ -110,9 +110,9 @@ By default, the user account that accepted the credit proposal has owner access 
 
 ## Next steps
 
-For information on checking the credit balance, see: [Track Azure credit balance for a Microsoft Customer Agreement](../../cost-management-billing/manage/mca-check-azure-credits-balance.md).
+For information on checking the credit balance, see: [Track Azure credit balance for a Microsoft Customer Agreement](../../../cost-management-billing/manage/mca-check-azure-credits-balance.md).
 
 ## Related content
-- [Track Azure credit balance for a Microsoft Customer Agreement](../../cost-management-billing/manage/mca-check-azure-credits-balance.md)
-- [What is a cloud subscription](../../cost-management-billing/manage/cloud-subscription.md)
-- [Move Azure resources to a new resource group or subscription](../../azure-resource-manager/management/move-resource-group-and-subscription.md)
+- [Track Azure credit balance for a Microsoft Customer Agreement](../../../cost-management-billing/manage/mca-check-azure-credits-balance.md)
+- [What is a cloud subscription](../../../cost-management-billing/manage/cloud-subscription.md)
+- [Move Azure resources to a new resource group or subscription](../../../azure-resource-manager/management/move-resource-group-and-subscription.md)
