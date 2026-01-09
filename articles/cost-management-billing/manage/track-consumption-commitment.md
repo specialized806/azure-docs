@@ -299,8 +299,12 @@ Milestones are predefined financial targets within the MACC framework that must 
 
 **Key points about MACC milestones:**
 
-- When a milestone target is missed, you are charged for the shortfall in the form of Azure prepayment credits applied to your account.
-- When the overall MACC commitment is unmet at term end, you are charged for the remaining balance as Azure prepayment credits.
+- **Missed milestone:** If a milestone is not met by its due date, a shortfall charge in the form of Azure prepayment credit will be applied to your account to fulfill the milestone commitment.
+
+- **Missed MACC commitment:** If the total MACC commitment amount is not met by the MACC end date, a shortfall charge in the form of Azure prepayment credit will be applied to your account for the remaining balance.
+
+> [!IMPORTANT]
+> Consumption charges covered by shortfall credits do not accrue toward your MACC. For more information, see [Azure credits and MACC](#azure-credits-and-macc).
 
 ---
 
