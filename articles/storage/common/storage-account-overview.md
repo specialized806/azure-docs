@@ -1,5 +1,5 @@
 ---
-title: Storage account overview
+title: Storage Account Overview
 titleSuffix: Azure Storage
 description: Learn about the different types of storage accounts in Azure Storage. Review account naming, performance tiers, access tiers, redundancy, encryption, endpoints, and more.
 services: storage
@@ -13,7 +13,7 @@ ms.author: akashdubey
 #customer intent: As a cloud architect, I want to understand the different types of storage accounts and their features, so that I can choose the right account type based on my application's performance, redundancy, and cost requirements.
 ---
 
-# Storage account overview
+# Overview of Azure storage accounts
 
 An Azure storage account contains all of your Azure Storage data objects: blobs, files, queues, and tables. The storage account provides a unique namespace for your Azure Storage data that's accessible from anywhere in the world over HTTP or HTTPS. Data in your storage account is durable and highly available, secure, and massively scalable.
 
@@ -49,7 +49,7 @@ The service-level agreement (SLA) for Azure Storage accounts is available at [SL
 
 When naming your storage account, keep these rules in mind:
 
-- Storage account names must be between 3 and 24 characters in length and may contain numbers and lowercase letters only.
+- Storage account names must be between 3 and 24 characters in length and can contain only numbers and lowercase letters.
 - Your storage account name must be unique within Azure. No two storage accounts can have the same name.
 
 ## Storage account workloads 
@@ -76,10 +76,17 @@ Business continuity and disaster recovery (BCDR) is a business’s ability to re
 
 ### Machine learning and artificial intelligence
 
-Artificial intelligence (AI) is technology that simulates human intelligence and problem-solving capabilities in machines. Machine Learning (ML) is a sub-discipline of AI that uses algorithms to create models that enable machines to perform tasks. Both represent the newest workload on Azure which is growing at a rapid pace. This type of workload can be applied across every industry to improve metrics and meet performance goals. These types of technologies can lead to discoveries of life-saving drugs and practices in the field of medicine/health while also providing health assessments. Other everyday uses of ML and AI include fraud detection, image recognition, and the flagging of misinformation. These workloads typically need highly specialized compute (large numbers of GPU) and require high throughput and IOPS, low latency access to storage and POSIX file system access. Azure Storage supports these types of workloads by storing checkpoints and providing storage for large-scale datasets and models. These datasets and models read and write at a pace to keep GPUs utilized. 
+Artificial intelligence (AI) is technology that simulates human intelligence and problem-solving capabilities in machines. Machine Learning (ML) is a sub-discipline of AI that uses algorithms to create models that enable machines to perform tasks. Both represent the newest workload on Azure which is growing at a rapid pace.
+
+This type of workload can be applied across every industry to improve metrics and meet performance goals. These types of technologies can lead to discoveries of life-saving drugs and practices in the field of medicine/health while also providing health assessments. 
+
+Other everyday uses of ML and AI include fraud detection, image recognition, and the flagging of misinformation. These workloads typically need highly specialized compute (large numbers of GPU) and require high throughput and IOPS, low latency access to storage and POSIX file system access. 
+
+
+Azure Storage supports these types of workloads by storing checkpoints and providing storage for large-scale datasets and models. These datasets and models read and write at a pace to keep GPUs utilized.
 
 ### Recommended workload configurations
-The table below illustrates Microsoft's suggested storage account configurations for each workload. Changes in the configuration options (associated with each workload) have cost implications. Visit the [Block blob pricing](https://azure.microsoft.com/pricing/details/storage/blobs/) to view pricing. Enter the configuration options for the workload into the calculator and select the "Recommended" tab to view detailed pricing for the specific workload you are creating. 
+The table below illustrates Microsoft's suggested storage account configurations for each workload. Changes in the configuration options (associated with each workload) have cost implications. View pricing at [Block blob pricing](https://azure.microsoft.com/pricing/details/storage/blobs/). Enter the configuration options for the workload into the calculator and select the "Recommended" tab to view detailed pricing for the specific workload you are creating.
 
 |Workload |Account kind |Performance |Redundancy |Hierarchical namespace enabled |Default access tier |Soft delete enabled |
 |---|---|---|---|---|---|---|
@@ -107,9 +114,9 @@ Within a single subscription, you can create accounts with either standard or Az
 You can configure your storage account to use a custom domain for the Blob Storage endpoint. For more information, see [Configure a custom domain name for your Azure Storage account](../blobs/storage-custom-domain-name.md).
 
 > [!IMPORTANT]
-> When referencing a service endpoint in a client application, it's recommended that you avoid taking a dependency on a cached IP address. The storage account IP address is subject to change, and relying on a cached IP address may result in unexpected behavior.
+> When referencing a service endpoint in a client application, it's recommended that you avoid taking a dependency on a cached IP address. The storage account IP address is subject to change, and relying on a cached IP address might result in unexpected behavior.
 >
-> Additionally, it's recommended that you honor the time-to-live (TTL) of the DNS record and avoid overriding it. Overriding the DNS TTL may result in unexpected behavior.
+> Additionally, it's recommended that you honor the time-to-live (TTL) of the DNS record and avoid overriding it. Overriding the DNS TTL might result in unexpected behavior.
 
 ### Standard endpoints
 
@@ -152,7 +159,7 @@ The following table lists the format for Azure DNS Zone endpoints for each of th
 | Table Storage | `https://<storage-account>.z[00-50].table.storage.azure.net` |
 
 > [!IMPORTANT]
-> You can create up to 5000 accounts with Azure DNS Zone endpoints per region per subscription. However, you may need to update your application code to query for the account endpoint at runtime. You can call the [Get Properties](/rest/api/storagerp/storage-accounts/get-properties) operation to query for the storage account endpoints.
+> You can create up to 5000 accounts with Azure DNS Zone endpoints per region per subscription. However, you might need to update your application code to query for the account endpoint at runtime. You can call the [Get Properties](/rest/api/storagerp/storage-accounts/get-properties) operation to query for the storage account endpoints.
 
 Azure DNS zone endpoints are supported for accounts created with the Azure Resource Manager deployment model only. For more information, see [Azure Resource Manager overview](../../azure-resource-manager/management/overview.md).
 
@@ -216,7 +223,7 @@ The [Azure Storage pricing page](https://azure.microsoft.com/pricing/details/sto
 
 ## Legacy storage account types
 
-The following table describes the legacy storage account types. These account types aren’t recommended by Microsoft, but may be used in certain scenarios:
+The following table describes the legacy storage account types. These account types aren’t recommended by Microsoft, but might be used in certain scenarios:
 
 ## Retired storage account types
 
@@ -243,5 +250,3 @@ The following account types are retired or scheduled for retirement. They aren�
 - [Create a storage account](storage-account-create.md)
 - [Upgrade to a general-purpose v2 storage account](storage-account-upgrade.md)
 - [Recover a deleted storage account](storage-account-recover.md)
-
-
