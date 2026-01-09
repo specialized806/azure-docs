@@ -1,7 +1,7 @@
 ---
 title: Variable management for policy fragments
 titleSuffix: Azure API Management
-description: Comprehensive guidance on context variable handling, safe access patterns, and inter-fragment communication in Azure API Management policies.
+description: Comprehensive guidance on context variable handling, safe access patterns, and data sharing in Azure API Management policies.
 services: api-management
 author: nicolela
 
@@ -10,16 +10,16 @@ ms.topic: concept-article
 ms.date: 08/19/2025
 ms.author: nicolela 
 ---
-
+ 
 # Variable management for policy fragments
 
 [!INCLUDE [api-management-availability-all-tiers](../../includes/api-management-availability-all-tiers.md)]
 
-[Context variables](api-management-policy-expressions.md#ContextVariables) enable sequential communication between policy fragments when building advanced pipeline scenarios. Proper variable management is critical for building reliable, performant pipelines. Improper handling can lead to runtime errors, performance issues, and unpredictable behavior. Following these best practices ensures your pipelines execute properly with optimal performance.
+[Context variables](api-management-policy-expressions.md#ContextVariables) enable data sharing between policy fragments for advanced pipeline scenarios. Proper variable management is critical for building reliable pipelines with optimal performance. Improper handling can lead to runtime errors, performance issues, and unpredictable behavior.
 
 ## Variable fundamentals
 
-Context variables provide thread-safe communication between policy fragments and are created using the built-in [set-variable](set-variable-policy.md) policy. Each request maintains its own isolated variable context, ensuring that concurrent requests don't interfere with each other.
+Context variables provide thread-safe data sharing between policy fragments and are created using the built-in [set-variable](set-variable-policy.md) policy. Each request maintains its own isolated variable context, ensuring that concurrent requests don't interfere with each other.
 
 ### Variable lifecycle management
 
@@ -27,7 +27,7 @@ Context variables provide thread-safe communication between policy fragments and
 
 - **Phase persistence**: Variables set in the inbound phase remain available throughout backend, outbound, and error phase within the same request.  
 
-- **Thread isolation**: Strict thread isolation ensures each request runs on its own thread with its own context object, preventing cross-request data leakage.
+- **Thread isolation**: Strict thread isolation ensures each request runs on its own thread with its own context object, preventing cross-request data interference.
 
 - **Sequential updates**: Any fragment can modify existing variables, with subsequent fragments overwriting previous values. Sequential execution eliminates the need for locking mechanisms.
 
@@ -36,7 +36,7 @@ Context variables provide thread-safe communication between policy fragments and
 ### Set and retrieve variables in fragments
 
 ```xml
-<!-- Setting a context variable that is a prerequisite value for other fragments -->
+<!-- Example: Set a request-id context variable that is a required value for other fragments -->
 <set-variable name="request-id" value="@{
     var requestId = context.Request.Headers.GetValueOrDefault("X-Request-ID", "");
     if (string.IsNullOrEmpty(requestId)) {
@@ -45,7 +45,7 @@ Context variables provide thread-safe communication between policy fragments and
     return requestId;
 }" />
 
-<!-- Retrieving the same context variable safely in another fragment -->
+<!-- Example: Retrieve the same request-id context variable safely in another fragment -->
 <set-header name="X-Correlation-ID" value="@{
     return context.Variables.GetValueOrDefault<string>("request-id", "unknown");
 }" />
@@ -57,7 +57,7 @@ Context variables provide thread-safe communication between policy fragments and
 Always exercise caution with potential null values, use safe access with `GetValueOrDefault`, and provide meaningful default values for all variable access:
 
 ```xml
-<!-- Safe access with default -->
+<!-- Safe access with default value -->
 <set-variable name="log-level" value="@{
     return context.Variables.GetValueOrDefault<string>("config-log-level", "INFO");
 }" />
@@ -81,19 +81,18 @@ Return an error response when critical dependencies are missing:
 
 ```xml
 <choose>
-    <when condition="@(!context.Variables.ContainsKey("config-parsed"))">
+    <when condition="@(!context.Variables.ContainsKey("user-id"))">
         <!-- Critical dependency missing - fail immediately -->
         <return-response>
             <set-status code="500" reason="Internal Server Error" />
-            <set-body>{"error": "Configuration required", "missing_dependency": "config-parsed"}</set-body>
+            <set-body>{"error": "Required variable missing", "missing_dependency": "user-id"}</set-body>
         </return-response>
     </when>
     <otherwise>
-        <!-- Safe to proceed with parsed configuration -->
-        <set-variable name="config-logging" value="@{
-            var config = context.Variables.GetValueOrDefault<JObject>("config-parsed", new JObject());
-            return config["logging"] ?? new JObject();
-        }" />
+        <!-- Safe to proceed - use the user-id variable -->
+        <set-header name="X-User-ID" exists-action="override">
+            <value>@(context.Variables.GetValueOrDefault<string>("user-id", ""))</value>
+        </set-header>
     </otherwise>
 </choose>
 ```
@@ -104,21 +103,17 @@ Continue execution with appropriate fallback behavior when optional dependencies
 
 ```xml
 <choose>
-    <when condition="@(context.Variables.ContainsKey("config-parsed"))">
-        <!-- Optional config available - use configured log level -->
-        <set-variable name="config-logging" value="@{
-            var config = context.Variables.GetValueOrDefault<JObject>("config-parsed", new JObject());
-            return config["logging"] ?? new JObject();
-        }" />
-        
-        <set-variable name="log-level" value="@{
-            var loggingConfig = context.Variables.GetValueOrDefault<JObject>("config-logging", new JObject());
-            return loggingConfig["level"]?.ToString() ?? "INFO";
-        }" />
+    <when condition="@(context.Variables.ContainsKey("user-id"))">
+        <!-- Optional variable available - use it -->
+        <set-header name="X-User-ID" exists-action="override">
+            <value>@(context.Variables.GetValueOrDefault<string>("user-id", ""))</value>
+        </set-header>
     </when>
     <otherwise>
-        <!-- Fallback to default when config unavailable -->
-        <set-variable name="log-level" value="INFO" />
+        <!-- Fallback to default when variable unavailable -->
+        <set-header name="X-User-ID" exists-action="override">
+            <value>unknown</value>
+        </set-header>
     </otherwise>
 </choose>
 ```

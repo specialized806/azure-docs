@@ -15,40 +15,40 @@ ms.author: nicolela
 
 [!INCLUDE [api-management-availability-all-tiers](../../includes/api-management-availability-all-tiers.md)]
 
-Advanced pipeline scenarios often need custom logic and behavior applied throughout the request lifecycle. [Policy fragments](policy-fragments.md) provide the building blocks to create these pipelines while maintaining performance and reliability. Fragments enable sophisticated workflows through these capabilities:
+To build advanced pipeline scenarios with custom behavior executed throughout the request and response lifecycle, you can use [policy fragments](policy-fragments.md). Policy fragments are centrally managed, reusable XML snippets that can contain [policy](https://learn.microsoft.com/azure/api-management/api-management-howto-policies) configurations and [policy expressions](https://learn.microsoft.com/azure/api-management/api-management-policy-expressions). Policy fragments offer the following capabilities:
 
-- **Phases**: Custom logic and behavior can be distributed across inbound, backend, outbound, and error phases using fragments.
-- **Sequential processing**: Fragments execute in a deterministic order with clear dependencies, enabling business logic to unfold step by step. Each fragment must complete before the next starts, with no parallel execution.
+- **Phases**: Custom behavior can be distributed across inbound, backend, outbound, and error phases using fragments.
+- **Sequential processing**: Fragments execute in a defined order with clear dependencies, enabling business logic to unfold step by step. Each fragment completes before the next starts, with no parallel execution.
 - **Scalable architecture**: Fragments provide efficient execution and caching to support enterprise-scale scenarios. 
 - **Maintainable design**: Clear separation of concerns between fragments makes the system easier to understand and maintain.
 
 ## Recommended patterns
 
-Follow these four key patterns to build policy fragment pipelines:
+Follow these four recommended patterns to build advanced pipelines using policy fragments:
 
 ### 1. Modularity
 
-Design each fragment with a single, well-defined responsibility. Each fragment should focus on one specific concern such as authenticatoin, logging, or rate limiting. For example, a fragment named `Security-Authentication` should only contain authentication logic.
+Design each fragment with a single, well-defined responsibility. Each fragment should focus on one specific concern such as authenticatoin, logging, or rate limiting. For example, a fragment named `security-authentication` should only contain authentication behavior and logic.
 
 ### 2. Data sharing
 
-Establish clear communication patterns between fragments.
+Share data between fragments using [context variables](api-management-policy-expressions.md#ContextVariables).
 
-- **Define communication**: To enable fragments to communicate without tight coupling, create input/output contracts through [context variables](api-management-policy-expressions.md#ContextVariables). Each request maintains its own isolated `context.Variables` dictionary, ensuring thread-safe communication between fragments. See [Variable Management for Policy Fragments](fragment-variable-mgmt.md) for details.
+- **Define data contracts**: Use context variables as data contracts for sequentially passing data between fragments. For example, a `security-suthentication` fragment can set a context variable called `user-id` that contains the authenticated user's extracted ID, making it available for downstream fragments in the pipeline. Under the covers, each request maintains its own isolated `context.Variables` dictionary for storing context variables, ensuring thread-safe communication between fragments. See [Variable Management for Policy Fragments](fragment-variable-mgmt.md) for details.
 
-- **Cache common metadata**: Use a central metadata cache to store common data accessed across fragments. This approach reduces parsing overhead and improves performance. See [Central Metadata Cache for Policy Fragments](fragment-metadata-cache.md) for implementation guidance.
+- **Cache shared data**: When multiple fragments need to access the same data, use cross-request caching to reduce parsing overhead and improve performance. See [Central Metadata Cache for Policy Fragments](fragment-metadata-cache.md) for implementation guidance.
 
-### 3. Policy coordination
+### 3. Fragment execution behavior
 
-To handle request processing effectively, coordinate fragments across [product and API policies](api-management-howto-policies.md#scopes).
+Define execution behavior by inserting fragments sequentially in [product and API policy](api-management-howto-policies.md#scopes) definitions.
 
-- **Sequential execution**: Inject fragments in the order they need to execute, enabling workflows where later fragments depend on variables set by earlier fragments.
+- **Sequential execution**: Insert fragments in the order they need to execute, to enable workflows where later fragments depend on variables set by earlier fragments.
 
 - **Policy division**: Divide fragments across product and API policies according to scope of custom logic.
 
-- **Shared fragments**: To avoid duplication and maintain consistent behavior, include common fragments in both product and API policy levels.
+- **Shared fragments**: To avoid duplication and maintain consistent behavior, you can reuse the same fragment in both product and API policy levels.
 
-For detailed guidance on coordinating fragments across policy scopes, see [Policy Injection and Coordination with Fragments](fragment-policy-coordination.md).
+For detailed guidance on coordinating fragment execution across policy scopes, see [Policy Injection and Coordination with Fragments](fragment-policy-coordination.md).
 
 ### 4. Performance optimization
 
@@ -57,14 +57,14 @@ Optimize fragments for maximum performance.
 - **Keep fragments under 32 KB**: Stay within the [32 KB limit](policy-fragments.md) to ensure fast in-memory parsing and avoid slower file-based processing. The limit includes all whitespace, comments, and XML markup - not just the code logic. To stay under the limit:
   - Extract lengthy values, such as multi-line JSON, to [Named Values](api-management-howto-properties.md).
   - Use shorter variable names.
-  - Split complex fragments into smaller, focused ones.
+  - Split complex fragments into smaller ones.
 
-- **Apply recommended patterns**: Follow the modularity, data sharing, and coordination patterns outlined previously to ensure optimal fragment design and execution. Most importantly:
+- **Apply recommended patterns**: Follow the recommendations outlined earlier in this article. Most importantly:
   - Implement a central metadata cache to eliminate redundant parsing.
   - Use early exit patterns for health checks, authentication failures, variable existence, and other scenarios where definitive responses can be determined without further processing.
   - Follow processing optimizations such as minimizing variable access.
 
-For comprehensive implementation details, see the specialized guidance in the [Related content](#related-content) section.
+For comprehensive implementation details, see the guidance in the below [Related content](#related-content) section.
 
 ## Related content
 

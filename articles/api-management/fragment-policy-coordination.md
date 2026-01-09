@@ -1,7 +1,7 @@
 ---
-title: Policy injection and coordination with fragments
+title: Policy execution with fragments
 titleSuffix: Azure API Management
-description: Fragment injection patterns and coordination between product-scoped and API-scoped policies in Azure API Management.
+description: Fragment execution via product-scoped and API-scoped policies in Azure API Management.
 services: api-management
 author: nicolela
 
@@ -11,68 +11,73 @@ ms.date: 08/19/2025
 ms.author: nicolela 
 ---
 
-# Policy injection and coordination with fragments
+# Policy execution with fragments
 
 [!INCLUDE [api-management-availability-all-tiers](../../includes/api-management-availability-all-tiers.md)]
 
-Policy injection and coordination enable sophisticated pipelines through strategic placement of policy fragments at different scopes. Policy injection is the mechanism by which central policies at product and API levels include policy fragments using the [include-fragment](include-fragment-policy.md) policy.
+Advanced pipeline scenarios with custom behavior througough the request and response lifecycle are built using policy fragments. Central policies at the product and API levels insert fragments using the [include-fragment](include-fragment-policy.md) policy. Fragments can be shared between [product and API policies](api-management-howto-policies.md#scopes) to avoid duplication while maintaining clear separation of responsibilities.
 
-This injection mechanism allows fragments to be shared between [product and API policies](api-management-howto-policies.md#scopes). Effective coordination ensures that product and API policies work together seamlessly, with each handling appropriate responsibilities without duplication.
+## Fragment insertion
 
-## Policy injection
+### Use central policies to insert fragments
 
-### Central policies inject policy fragments
-
-product and API policy definitions serve as orchestrators that inject fragments in a specific order to create the complete processing pipeline. The following example shows fragments injected by a policy definition:
+Product and API policy definitions serve as orchestrators that insert fragments in a specific order to create the complete request and response pipeline. The following example shows fragments inserted by a policy definition:
 
 ```xml
 <policies>
   <inbound>
-    <include-fragment fragment-id="Security-Context" />
-    <include-fragment fragment-id="Rate-Limiting" />
-    <include-fragment fragment-id="Request-Logging" />
+    <include-fragment fragment-id="security-context" />
+    <include-fragment fragment-id="rate-limiting" />
+    <include-fragment fragment-id="request-logging" />
     <base />
   </inbound>
   <backend>
-    <include-fragment fragment-id="Backend-Selection" />
+    <include-fragment fragment-id="backend-selection" />
     <base />
   </backend>
   <outbound>
-    <include-fragment fragment-id="Circuit-Breaker" />
+    <include-fragment fragment-id="circuit-breaker" />
     <base />
   </outbound>
   <on-error>
-    <include-fragment fragment-id="Error-Response" />
+    <include-fragment fragment-id="error-response" />
   </on-error>
 </policies>
 ```
 
-**Injection concepts:**
+**Key concepts**
 
-- **Sequential order**: Fragments execute in the order they're included, with data dependencies between fragments defined by context variables.
-- **Phase placement**: Fragments are injected into appropriate policy phases (inbound, backend, outbound, on-error) based on their functionality.
+- **Sequential order**: Fragments execute in the order they're included.
+- **Phase placement**: Fragments are inserted into appropriate policy phases (inbound, backend, outbound, on-error) based on their functionality.
 - **Dependency management**: Later fragments can rely on context variables set by earlier fragments in the sequence.
 
-### Fragment sharing between product and API policies
+## Best practices
 
-When the same logic needs to be applied across product and API policy scopes, policy fragments eliminate duplication through sharing.
+### Insert fragments based on scope
 
-In this example, the `Circuit-Breaker` fragment is shared between both policies, eliminating duplication of custom timeout handling and error conversion logic:
+Ensure that product and API policies work together effectively by dividing fragment responsibilities according to [scope](api-management-howto-policies.md#scopes):
+
+- **Product policy**: Inserts fragments that perform product-specific behavior that varies across products.
+- **API policy**: Inserts fragments that apply across all products.
+
+### Reuse fragments to avoid duplication
+
+Eliminate duplication when the same logic is needed across product and API policies by reusing the same fragment. In this example, the `circuit-breaker` fragment is reused:
 
 ```xml
 <!-- Product Policy -->
 <policies>
   <inbound>
-    <include-fragment fragment-id="Security-Context" />
-    <include-fragment fragment-id="Rate-Limiting" />
+    <include-fragment fragment-id="security-context" />
+    <include-fragment fragment-id="rate-limiting" />
     <base />
   </inbound>
   <backend>
-    <include-fragment fragment-id="Backend-Selection" />
+    <include-fragment fragment-id="backend-selection" />
     <base />
   </backend>
   <outbound>
-    <include-fragment fragment-id="Circuit-Breaker" />
+    <include-fragment fragment-id="circuit-breaker" />
     <base />
   </outbound>
 </policies>
@@ -82,35 +87,29 @@ In this example, the `Circuit-Breaker` fragment is shared between both policies,
 <!-- API Policy -->
 <policies>
   <inbound>
-    <include-fragment fragment-id="Request-Logging" />
+    <include-fragment fragment-id="request-logging" />
     <base />
   </inbound>
   <outbound>
-    <include-fragment fragment-id="Circuit-Breaker" />
+    <include-fragment fragment-id="circuit-breaker" />
     <base />
   </outbound>
 </policies>
 ```
 
-**Policy coordination concepts:**
+### Document fragment dependencies and data contracts
 
-Policy coordination ensures that product and API policies work together effectively by dividing responsibilities appropriately:
+Document dependency relationships and data contracts in each fragment to clarify which fragments and variables are required. Use comments to specify:
 
-- **product policy**: Injects fragments that perform product-specific behavior that varies across products.
-- **API policy**: Contains fragments that remain consistent across all products.
-
-This division maintains clear boundaries while maximizing the benefits of fragment sharing.
-
-## Best practices
-
-### Document fragment dependencies
-
-Establish clear dependency relationships by documenting them explicitly in each fragment, with intuitive variable names:
+- **Dependencies**: Other fragments that must execute before this fragment
+- **Requires**: Context variables that must exist before this fragment executes
+- **Produces**: Context variables that this fragment produces for downstream fragments
 
 ```xml
-<fragment fragment-id="Rate-Limiting">
-  <!-- Dependencies: Security-Context, Config-Cache -->
-  <!-- Requires: subscription-key, target-service, api-type variables -->
+<fragment fragment-id="rate-limiting-fragment">
+  <!-- Dependencies: security-context-fragment, config-cache-fragment -->
+  <!-- Requires: subscription-key variables -->
+  <!-- Produces: rate-limit-applied, rate-limit-remaining variables -->
   
   <!-- Verify dependencies before execution -->
   <choose>
@@ -123,27 +122,29 @@ Establish clear dependency relationships by documenting them explicitly in each 
   </choose>
   
   <!-- Rate limiting logic -->
+  <set-variable name="rate-limit-applied" value="@(true)" />
+  <set-variable name="rate-limit-remaining" value="@(95)" />
 </fragment>
 ```
 
 ### Use conditional fragment inclusion
 
-Implement conditional logic within main policies to dynamically include fragments based on request characteristics, configuration settings, or runtime context. This pattern enables flexible processing pipelines that adapt to different scenarios:
+Implement conditional logic within central policies to dynamically include fragments based on request characteristics, configuration settings, or runtime context. This pattern enables flexible processing pipelines that adapt to different scenarios:
 
 ```xml
 <!-- Product Policy -->
 <policies>
   <inbound>
-    <include-fragment fragment-id="Config-Cache" />
-    <include-fragment fragment-id="Request-Analysis" />
+    <include-fragment fragment-id="config-cache" />
+    <include-fragment fragment-id="request-analysis" />
     
     <!-- Conditional authentication with custom logic based on request type -->
     <choose>
       <when condition="@(context.Request.Headers.GetValueOrDefault("Authorization", "").StartsWith("Bearer"))">
-        <include-fragment fragment-id="Security-JWT" />
+        <include-fragment fragment-id="security-jwt" />
       </when>
       <otherwise>
-        <include-fragment fragment-id="Security-API-Key" />
+        <include-fragment fragment-id="security-api-key" />
       </otherwise>
     </choose>
     
@@ -152,17 +153,40 @@ Implement conditional logic within main policies to dynamically include fragment
 </policies>
 ```
 
+### Preserve request body across fragments
+
+When fragments need to read the request body for processing (such as extracting metadata or validation), always use `preserveContent: true` to ensure the request body remains available for downstream fragments and backend forwarding:
+
+```xml
+<set-variable name="request-metadata" value="@{
+  try {
+    // CRITICAL: preserveContent: true ensures body remains available for other fragments and backend
+    var body = context.Request.Body.As<string>(preserveContent: true);
+    var requestData = JObject.Parse(body);
+    
+    // Extract metadata without consuming the body
+    return new JObject {
+      ["user-id"] = requestData["user"]?.ToString() ?? "anonymous"
+    };
+  } catch {
+    return new JObject();
+  }
+}" />
+```
+
+Without `preserveContent: true`, reading the request body consumes it, making it unavailable for subsequent fragments or backend services.
+
 ## Testing and debugging
 
 Effective debugging of the fragment pipeline requires a systematic approach to understand execution flow and variable state. This section shows debugging approaches that minimize performance impact while maximizing visibility into request processing.
 
 ### Enable debug headers
 
-Use debug headers to capture variable state at a specific point in the pipeline for troubleshooting fragment coordination issues. Debug headers appear in HTTP response headers and are visible to API clients. Instead of adding individual debug headers throughout fragments, create a dedicated header management fragment that consolidates all debug headers in one location. This centralized approach ensures consistency and improves maintainability.
+Use debug headers to capture variable state at a specific point in the pipeline for troubleshooting issues. Debug headers appear in HTTP response headers and are visible to API clients. Instead of adding individual debug headers throughout fragments, create a dedicated header management fragment that consolidates all debug headers in one location. This centralized approach ensures consistency and improves maintainability.
 
 ```xml
 <!-- Example: Dedicated header fragment -->
-<fragment fragment-id="Debug-Headers">
+<fragment fragment-id="debug-headers">
   <!-- Debug headers for troubleshooting -->
   <set-header name="X-Debug-Request-Type" exists-action="override">
     <value>@(context.Variables.GetValueOrDefault<string>("request-type", "unknown"))</value>
@@ -183,10 +207,10 @@ Include the header management fragment in the **outbound** section of your produ
 ```xml
 <policies>
   <outbound>
-    <include-fragment fragment-id="Circuit-Breaker" />
-    <include-fragment fragment-id="Resource-Tracking" />
+    <include-fragment fragment-id="circuit-breaker" />
+    <include-fragment fragment-id="resource-tracking" />
     <!-- Headers fragment - placed last to capture final state -->
-    <include-fragment fragment-id="Debug-Headers" />
+    <include-fragment fragment-id="debug-headers" />
     <base />
   </outbound>
 </policies>
@@ -208,24 +232,37 @@ For simple scenarios or when testing individual fragments, you can add debug hea
 </set-header>
 ```
 
-### Track fragment execution
+### Trace fragment execution
 
-Build execution breadcrumb trails to verify fragment sequencing and identify which fragments execute across product and API policy boundaries. This technique is crucial for debugging conditional logic and understanding why certain fragments were skipped. Add this code to the beginning of each fragment, replacing "Fragment-Name" with the actual fragment name:
+Build execution breadcrumb trails to verify fragment sequencing and identify which fragments execute across product and API policy boundaries. This technique is crucial for debugging conditional logic and understanding why certain fragments were skipped. Add this code to the beginning of each fragment, replacing "fragment-name" with the actual fragment name:
 
 ```xml
 <set-variable name="execution-trace" value="@{
     var trace = context.Variables.GetValueOrDefault<string>("execution-trace", "");
-    return trace + "→Fragment-Name";
+    return trace + "→fragment-name";
 }" />
 ```
 
-To view the breadcrumb trail, use the built-in [trace](trace-policy.md) policy to log the execution flow (see the documentation for information on where to access and view trace output):
+To view the breadcrumb trail, use the built-in [trace](trace-policy.md) policy to log the execution flow:
 
 ```xml
 <trace source="Fragment-Execution" severity="information">
     <message>@(context.Variables.GetValueOrDefault<string>("execution-trace", ""))</message>
 </trace>
 ```
+
+### Debug using request tracing
+
+Enable request tracing to capture detailed execution traces through the policy pipeline for troubleshooting unexpected behavior. To enable request tracing, the client must:
+
+1. Authenticate with the API Management management API to obtain an access token
+2. Get debug credentials to obtain a debug tracing token
+3. Send requests with tracing enabled using the debug token
+4. Retrieve the complete trace output showing execution flow and policy details
+
+The trace output includes detailed information about fragment execution order, variable state, and policy processing that can help identify issues in your pipeline. For more information, see [Enable tracing for an API](api-management-howto-api-inspector.md#enable-tracing-for-an-api).
+
+To help troubleshoot pipeline issues, copy the complete trace output and provide it to GitHub Copilot for detailed analysis and recommendations on resolving problems.
 
 ## Related content
 

@@ -1,7 +1,7 @@
 ---
 title: Central metadata cache for policy fragments
 titleSuffix: Azure API Management
-description: Implementation guidance for shared metadata caching patterns across policy fragments in Azure API Management.
+description: Implementation guidance for shared metadata caching pattern across policy fragments in Azure API Management.
 services: api-management
 author: nicolela
 
@@ -15,43 +15,48 @@ ms.author: nicolela
 
 [!INCLUDE [api-management-availability-all-tiers](../../includes/api-management-availability-all-tiers.md)]
 
-Efficient access to shared metadata is key for advanced pipelines with multiple policy fragments. Rather than parsing metadata repeatedly in each fragment, use a parse-once, cache-everywhere approach that dramatically improves performance while ensuring data consistency.
-
-Using a central metadata cache eliminates redundant parsing across fragments while providing consistent access to configuration data throughout the execution pipeline. The performance benefit is that metadata is **parsed once** when the cache is empty, then **reused from the cache** for all subsequent requests until the cache expires.
+When multiple policy fragments need access to shared metadata such as common configuration data, use a cross-request caching approach to optimize performance. Rather than parsing metadata repeatedly in each fragment, a parse-once, cache-everywhere approach dramatically improves performance while ensuring data consistency. With this approach, metadata is **parsed once** on the first request when the cache is empty, then **retrieved from the cache** for all subsequent requests until the cache expires or the cache version changes.
 
 ## Recommended approach
 
-To apply this approach, use a two-fragment architecture that separates raw metadata storage from parsing and caching.
+This approach requires two fragments: one for storing shared metadata and another for parsing and caching the metadata.
 
 ### 1. Metadata fragment
 
-The metadata fragment serves as the single source of truth for common configuration accessed by other fragments in the pipeline:
-- **Centralized JSON storage**: The system stores all configuration metadata as JSON so that other fragments in the pipeline can access it.
-- **Version control**: Includes cache settings with metadata versioning for cache invalidation and duration (TTL) management.
+The metadata fragment serves as the single source of truth for shared metadata accessed by other fragments in the pipeline:
+- **Centralized JSON storage**: Stores all metadata as JSON.
+- **Cache settings**: Includes cache settings with versioning and duration (Time to Live, or TTL).
 
-### 2. Cache fragment
+### 2. Parsing and caching fragment
 
-The cache fragment provides parsing and caching:
+The parsing and caching fragment implements the following behaviors:
 
-- **Single parse operation**: Uses `JObject.Parse()` to parse the JSON metadata once at the start of each pipeline request if the cache is empty.
+- **Single parse operation**: Uses `JObject.Parse()` to parse the JSON stored in the metadata fragment once at the start of each pipeline request if the cache is empty.
 - **Cross-request caching**: Stores and retrieves parsed metadata sections as a `JObject` using the built-in [cache-store-value](cache-store-value-policy.md) and [cache-lookup-value](cache-lookup-value-policy.md) policies across multiple requests.
 - **Cache-first access**: Subsequent requests retrieve a parsed `JObject` directly from the cache, providing immediate access to all fragments without reparsing.
-- **Version-based invalidation**: Forces cache refresh when metadata version changes.
+- **Cache invalidation**: Cache refreshes when the metadata version changes or the cache duration (TTL) expires.
 
 ## Implementation details
 
-To implement this pattern, inject both fragments into your product or API policy definition at the beginning of the inbound phase:
+To implement this pattern, insert both fragments into a product or API policy definition at the beginning of the inbound phase. The metadata fragment must be inserted first, followed by the parsing and caching fragment. For example:
 
-1. **First**: Inject the metadata fragment (provides raw JSON metadata).
-2. **Second**: Inject the cache fragment (parses and caches the `JObject` metadata).
+```xml
+<policies>
+    <inbound>
+        <base />
+        <include-fragment fragment-id="metadata-fragment" />
+        <include-fragment fragment-id="parse-cache-fragment" />
+    </inbound>
+</policies>
+```
 
 ### Metadata fragment example
 
-The metadata fragment stores common JSON metadata that is used by other fragments in the pipeline:
+The `metadata-fragment.xml` fragment stores shared JSON metadata in a [context variables](api-management-policy-expressions.md#ContextVariables) named `metadata-config`:
 
 ```xml
-<fragment fragment-id="Metadata-Source">
-  <!-- Single source of truth for all shared metadata -->
+<!-- Single source of truth for all shared metadata -->
+<fragment fragment-id="metadata-fragment">
   <set-variable name="metadata-config" value="@{return @"{
     'cache-settings': {
       'config-version': '1.0',
@@ -66,95 +71,101 @@ The metadata fragment stores common JSON metadata that is used by other fragment
       'enabled': true
     },
     'rate-limits': {
-      'premium': { 'requests-per-minute': 1000, 'burst': 200 },
-      'standard': { 'requests-per-minute': 100, 'burst': 50 },
-      'basic': { 'requests-per-minute': 20, 'burst': 10 }
+      'premium': { 'requests-per-minute': 1000 },
+      'standard': { 'requests-per-minute': 100 },
+      'basic': { 'requests-per-minute': 20 }
     }
   }";}" />
 </fragment>
 ```
 
-### Cache fragment example
+### Parsing and caching fragment example
 
-The cache fragment parses the metadata fragment JSON once and provides access to the `JObject`:
+The `parse-cache-fragment.xml` fragment parses the JSON stored in the `metadata-config` context variable once and provides access to the resulting `JObject`. Note that `metadata-config` variable must already be set by `metadata-fragment.xml`:
 
 ```xml
-<fragment fragment-id="Metadata-Cache">
-  <!-- Parse cache settings first on every request to get version -->
-  <set-variable name="cache-settings-parsed" value="@{
+<fragment fragment-id="parse-cache-fragment">
+  <!-- Extract cache settings from metadata-config to determine cache version and TTL -->
+  <set-variable name="cache-config-temp" value="@{
     try {
-      var configJson = context.Variables.GetValueOrDefault<string>("metadata-config", "{}");
-      var config = JObject.Parse(configJson);
-      return config["cache-settings"] ?? new JObject();
+      var configStr = context.Variables.GetValueOrDefault<string>("metadata-config", "{}");
+      if (string.IsNullOrEmpty(configStr) || configStr == "{}") {
+        return "{\"version\":\"1.0\",\"enabled\":true,\"ttl\":3600}";
+      }
+      
+      var tempConfig = JObject.Parse(configStr);
+      var cacheSettings = tempConfig["cache-settings"] as JObject;
+      
+      var result = new JObject();
+      result["version"] = cacheSettings?["config-version"]?.ToString() ?? "1.0";
+      result["enabled"] = cacheSettings?["feature-flags"]?["enable-cross-request-cache"]?.Value<bool>() ?? true;
+      result["ttl"] = cacheSettings?["ttl-seconds"]?.Value<int>() ?? 3600;
+      
+      return result.ToString(Newtonsoft.Json.Formatting.None);
     } catch {
-      return new JObject();
+      return "{\"version\":\"1.0\",\"enabled\":true,\"ttl\":3600}";
     }
+  }" />
+  
+  <!-- Parse cache configuration -->
+  <set-variable name="cache-settings-parsed" value="@{
+    return JObject.Parse(context.Variables.GetValueOrDefault<string>("cache-config-temp", "{}"));
   }" />
   
   <!-- Build cache key with version from cache settings -->
   <set-variable name="cache-key" value="@{
     var settings = context.Variables.GetValueOrDefault<JObject>("cache-settings-parsed");
-    var version = settings?["config-version"]?.ToString() ?? "1.0";
-    return "metadata-config-v" + version;
+    var version = settings?["version"]?.ToString() ?? "1.0";
+    return "metadata-config-parsed-v" + version;
   }" />
   
-  <!-- Check if metadata JObject is already cached -->
+  <!-- Try to get from APIM cache -->
   <cache-lookup-value key="@(context.Variables.GetValueOrDefault<string>("cache-key"))" variable-name="cached-config" />
   
   <choose>
-    <when condition="@(!context.Variables.ContainsKey("cached-config"))">
-      <!-- Cache miss - parse metadata JSON once -->
+    <when condition="@(context.Variables.ContainsKey("cached-config"))">
+      <!-- Cache found - Use cached configuration -->
+      <set-variable name="config-cache-result" value="@(true)" />
+      
+      <!-- Restore cached config-parsed -->
+      <set-variable name="config-parsed" value="@(context.Variables.GetValueOrDefault<JObject>("cached-config"))" />
+      
+      <!-- Extract sections from cached metadata JObject -->
+      <set-variable name="config-logging" value="@{
+        var config = context.Variables.GetValueOrDefault<JObject>("config-parsed");
+        return config["logging"] as JObject ?? new JObject();
+      }" />
+      
+      <set-variable name="config-rate-limits" value="@{
+        var config = context.Variables.GetValueOrDefault<JObject>("config-parsed");
+        return config["rate-limits"] as JObject ?? new JObject();
+      }" />
+    </when>
+    <otherwise>
+      <!-- Cache miss - Parse and store in cache -->
+      <set-variable name="config-cache-result" value="@(false)" />
+      
+      <!-- Parse metadata-config JSON -->
       <set-variable name="config-parsed" value="@{
-        try {
-          var configJson = context.Variables.GetValueOrDefault<string>("metadata-config", "{}");
-          return JObject.Parse(configJson);
-        } catch {
-          return new JObject();
-        }
+        var configStr = context.Variables.GetValueOrDefault<string>("metadata-config", "{}");
+        return JObject.Parse(configStr);
       }" />
       
       <!-- Extract commonly used sections for direct access -->
       <set-variable name="config-logging" value="@{
-        var config = context.Variables.GetValueOrDefault<JObject>("config-parsed", new JObject());
-        return config["logging"] ?? new JObject();
+        var config = context.Variables.GetValueOrDefault<JObject>("config-parsed");
+        return config["logging"] as JObject ?? new JObject();
       }" />
       
       <set-variable name="config-rate-limits" value="@{
-        var config = context.Variables.GetValueOrDefault<JObject>("config-parsed", new JObject());
-        return config["rate-limits"] ?? new JObject();
-      }" />
-      
-      <!-- Get duration from cache settings (parsed fresh each request) -->
-      <set-variable name="cache-ttl" value="@{
-        var settings = context.Variables.GetValueOrDefault<JObject>("cache-settings-parsed");
-        return settings?["ttl-seconds"]?.Value<int>() ?? 3600;
+        var config = context.Variables.GetValueOrDefault<JObject>("config-parsed");
+        return config["rate-limits"] as JObject ?? new JObject();
       }" />
       
       <!-- Store parsed metadata JObject in cache -->
       <cache-store-value key="@(context.Variables.GetValueOrDefault<string>("cache-key"))" 
-                         value="@(context.Variables.GetValueOrDefault<JObject>("config-parsed", new JObject()))" 
-                         duration="@(context.Variables.GetValueOrDefault<int>("cache-ttl"))" />
-      
-  <!-- Track cache result for debugging -->
-  <set-variable name="config-cache-result" value="false" />
-    </when>
-    <otherwise>
-  <!-- Cache available - use cached metadata JObject -->
-      <set-variable name="config-parsed" value="@(context.Variables.GetValueOrDefault<JObject>("cached-config", new JObject()))" />
-      
-      <!-- Extract sections from cached metadata JObject -->
-      <set-variable name="config-logging" value="@{
-        var config = context.Variables.GetValueOrDefault<JObject>("config-parsed", new JObject());
-        return config["logging"] ?? new JObject();
-      }" />
-      
-      <set-variable name="config-rate-limits" value="@{
-        var config = context.Variables.GetValueOrDefault<JObject>("config-parsed", new JObject());
-        return config["rate-limits"] ?? new JObject();
-      }" />
-      
-  <!-- Track cache result for debugging -->
-  <set-variable name="config-cache-result" value="true" />
+                         value="@(context.Variables.GetValueOrDefault<JObject>("config-parsed"))" 
+                         duration="@(context.Variables.GetValueOrDefault<JObject>("cache-settings-parsed")?["ttl"]?.Value<int>() ?? 3600)" />
     </otherwise>
   </choose>
 </fragment>
@@ -162,10 +173,10 @@ The cache fragment parses the metadata fragment JSON once and provides access to
 
 ### Using metadata in other fragments
 
-Other fragments can now access parsed metadata sections directly:
+Other fragments can now access parsed metadata sections directly. For example:
 
 ```xml
-<fragment fragment-id="Request-Logging">
+<fragment fragment-id="request-logging-fragment">
   <!-- Access logging metadata JObject without reparsing -->
   <set-variable name="config-logging" value="@{
     return context.Variables.GetValueOrDefault<JObject>("config-logging", new JObject()); 
@@ -175,7 +186,7 @@ Other fragments can now access parsed metadata sections directly:
 
 ### Cache settings and invalidation
 
-The metadata fragment contains cache settings. The cache fragment automatically uses these settings for both caching behavior and invalidation. For example:
+The `parse-cache-fragment.xml` fragment uses the cache settings stored in the `metadata-fragment.xml` fragment to determine caching behavior and invalidation. For example, the settings can be changed as follows:
 
 ```xml
 <!-- Example: Updated cache settings in the metadata fragment -->
@@ -189,15 +200,15 @@ The metadata fragment contains cache settings. The cache fragment automatically 
 }
 ```
 
-**How cache invalidation works:** The cache fragment constructs cache keys using the `config-version` value (for example, `metadata-config-v1.0.1`). When you change the version to `1.0.2`, it creates a new cache key (`metadata-config-v1.0.2`). Since no cached data exists for the new key, the fragment triggers a cache miss and parses fresh metadata JSON.
+**How cache invalidation works:** The `parse-cache-fragment.xml` fragment constructs cache keys using the `config-version` value (for example, `metadata-config-v1.0.1`). When the version is changed to `1.0.2`, a new cache key is created (`metadata-config-v1.0.2`). Since no cached data exists for the new key, the fragment parses fresh metadata JSON.
 
-**To refresh cache:** Update the `config-version` in your metadata fragment. Changes to cache configuration take effect immediately since cache settings parsing happens before cache lookup.
+**To force cache refresh:** Update the `config-version` in the `metadata-fragment.xml` fragment. Because the cache settings are parsed on every request before the cache lookup occurs, changes to the cache configuration take effect immediately.
 
 ## Testing and debugging
 
 ### Cache result tracking
 
-The cache fragment sets a `config-cache-result` variable to track cache performance. You can use this variable in logging or response headers for debugging:
+The `parse-cache-fragment.xml` fragment sets a `config-cache-result` variable. This variable is useful for logging and in response headers for debugging:
 
 ```xml
 <!-- Add cache status to response headers for debugging -->
@@ -206,15 +217,15 @@ The cache fragment sets a `config-cache-result` variable to track cache performa
 </set-header>
 ```
 
-### Cache bypass for testing
+### Cache bypass
 
-To disable caching during development and testing, use the cache bypass header:
+To disable caching, use the cache bypass header:
 
 ```bash
 curl -H "X-Config-Cache-Bypass: true" https://your-gateway.com/api
 ```
 
-The cache fragment should check for the bypass header after parsing cache settings:
+The `parse-cache-fragment.xml` fragment checks for the bypass header after parsing cache settings:
 
 ```xml
 <!-- Check if cache bypass is requested -->
@@ -242,7 +253,7 @@ The bypass check is then used in the caching decision logic:
 
 ### Handle JSON parsing failures with error logging and defaults
 
-Implement robust error handling for JSON parsing operations to prevent fragment failures and provide fallback behavior. Always wrap `JObject.Parse()` operations in try-catch blocks with trace logging and meaningful default values:
+Implement error handling for JSON parsing operations to prevent fragment failures and provide fallback behavior. Wrap `JObject.Parse()` operations in try-catch blocks with meaningful default values:
 
 ```xml
 <set-variable name="config-parsed" value="@{
@@ -250,8 +261,6 @@ Implement robust error handling for JSON parsing operations to prevent fragment 
     var configJson = context.Variables.GetValueOrDefault<string>("metadata-config", "{}");
     return JObject.Parse(configJson);
   } catch (Exception ex) {
-    // Log parse error for debugging
-    context.Trace.TraceError("JSON parse failed: " + ex.Message);
     // Return default configuration on parse failure
     return JObject.Parse(@"{
       'logging': { 'level': 'ERROR', 'enabled': false },
@@ -269,29 +278,6 @@ Implement robust error handling for JSON parsing operations to prevent fragment 
   </when>
 </choose>
 ```
-
-### Preserve request body for metadata extraction
-
-When extracting metadata from request bodies for caching, always use [preserveContent: true](set-body-policy) to keep the original request body intact for backend forwarding:
-
-```xml
-<set-variable name="request-metadata" value="@{
-  try {
-    // CRITICAL: preserveContent: true ensures backend receives original body
-    var body = context.Request.Body.As<string>(preserveContent: true);
-    var requestData = JObject.Parse(body);
-    
-    // Extract metadata without consuming the body
-    return new JObject {
-      ["user-id"] = requestData["user"]?.ToString() ?? "anonymous"
-    };
-  } catch {
-    return new JObject();
-  }
-}" />
-```
-
-This approach ensures the original request body remains available for forwarding to backend services while allowing you to parse and analyze the content.
 
 ## Related content
 
