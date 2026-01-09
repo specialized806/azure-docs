@@ -30,7 +30,7 @@ Moving a MACC resource to another subscription or resource group is a metadata c
 
 ### To move a MACC
 
-Here are the high-level steps to move a MACC resource. For more information about moving an Azure resource, see [Move Azure resources to a new resource group or subscription](../../azure-resource-manager/management/move-resource-group-and-subscription.md).
+Here are the high-level steps to move a MACC resource. For more information about moving an Azure resource, see [Move Azure resources to a new resource group or subscription](../../../azure-resource-manager/management/move-resource-group-and-subscription.md).
 
 1. In the [Azure portal](https://portal.azure.com), navigate to **Resource groups**.
 2. Select the resource group that contains the MACC resource.
@@ -54,7 +54,7 @@ Here's an example image:
 
 
 ## Rename MACC
-The MACC’s resource name is a part of its Uniform Resource Identifier (URI) and cannot be changed. However, you can use [tags](../../azure-resource-manager/management/tag-resources.md) to help identify the MACC resource based on a nomenclature relevant to your organization.
+The MACC’s resource name is a part of its Uniform Resource Identifier (URI) and cannot be changed. However, you can use [tags](../../../azure-resource-manager/management/tag-resources.md) to help identify the MACC resource based on a nomenclature relevant to your organization.
  
 ## Delete MACC
 A MACC resource may only be deleted if its status is _failed_ or _canceled_. Deletion of a MACC resource is a permanent action and cannot be undone.  
@@ -64,4 +64,4 @@ Please contact your Microsoft account team if you have questions about cancellin
 
 ## Related content
 
-- [Move Azure resources to a new resource group or subscription](../../azure-resource-manager/management/move-resource-group-and-subscription.md)
+- [Move Azure resources to a new resource group or subscription](../../../azure-resource-manager/management/move-resource-group-and-subscription.md)
