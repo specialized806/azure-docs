@@ -60,15 +60,15 @@ The Details section displays other important aspects of your commitment.
 | Purchase date | The date when you made the commitment. |
 | Start date | The date when the commitment became effective. |
 | End date | The date when the commitment expired. |
-| Commitment amount | The amount that you committed to spend on MACC-eligible products/services. |
+| Commitment amount | The amount you commit to spend on MACC-eligible products/services. |
 | Status | The status of your commitment. |
 
 Your MACC can have one of the following statuses:
 
 - **Active:** The MACC is currently in effect. Eligible Azure spend contributes toward fulfilling your commitment.
-- **Completed:** You have successfully met your MACC commitment amount. No further action is required.
-- **Expired:** The MACC end date has passed without the commitment being fully met. Contact your Microsoft Account team for more information.
-- **Canceled:** The MACC was terminated before the end date. New Azure spend will not contribute toward your MACC commitment. Contact your Microsoft Account team for more information.
+- **Completed:** The MACC commitment amount is fully met. No further action is required.
+- **Expired:** The MACC end date passes without the commitment being fully met. Contact your Microsoft Account team for more information.
+- **Canceled:** The MACC is terminated before the end date. New Azure spend does not contribute toward your MACC commitment. Contact your Microsoft Account team for more information.
 
 #### Events
 
@@ -201,9 +201,9 @@ The API response returns lists of MACCs for your billing account.
 Your MACC can have one of the following statuses:
 
 - **Active:** The MACC is currently in effect. Eligible Azure spend contributes toward fulfilling your commitment.
-- **Completed:** You have successfully met your MACC commitment amount. No further action is required.
-- **Expired:** The MACC end date has passed without the commitment being fully met. Contact your Microsoft Account team for more information.
-- **Canceled:** The MACC was terminated before the end date. New Azure spend will not contribute toward your MACC commitment. Contact your Microsoft Account team for more information.
+- **Completed:** The MACC commitment amount is fully met. No further action is required.
+- **Expired:** The MACC end date passes without the commitment being fully met. Contact your Microsoft Account team for more information.
+- **Canceled:** The MACC is terminated before the end date. New Azure spend does not contribute toward your MACC commitment. Contact your Microsoft Account team for more information.
 
 
 ### Get events that affected MACC commitment
@@ -299,9 +299,9 @@ Milestones are predefined financial targets within the MACC framework that must 
 
 **Key points about MACC milestones:**
 
-- **Missed milestone:** If a milestone is not met by its due date, a shortfall charge in the form of Azure prepayment credit will be applied to your account to fulfill the milestone commitment.
+- **Missed milestone:** If a milestone is not met by its due date, a shortfall charge in the form of Azure prepayment credit is applied to your account to fulfill the milestone commitment.
 
-- **Missed MACC commitment:** If the total MACC commitment amount is not met by the MACC end date, a shortfall charge in the form of Azure prepayment credit will be applied to your account for the remaining balance.
+- **Missed MACC commitment:** If the total MACC commitment amount is not met by the MACC end date, a shortfall charge in the form of Azure prepayment credit is applied to your account for the remaining balance.
 
 > [!IMPORTANT]
 > Consumption charges covered by shortfall credits do not accrue toward your MACC. For more information, see [Azure credits and MACC](#azure-credits-and-macc).
@@ -330,7 +330,7 @@ If your MACC includes milestones, email alerts go to Billing Account Admins at t
 
 ### Shortfall charges
 
-If the MACC or MACC milestone target isn't met by the end date, an email alert is sent notifying you that a shortfall charge for the remaining balance will be applied. This shortfall charge is an Azure prepayment credit that is applied to your account to fulfill your remaining commitment.
+If the MACC or MACC milestone target isn't met by the end date, an email alert is sent notifying you that a shortfall charge for the remaining balance is applied. This shortfall charge is an Azure prepayment credit that is applied to your account to fulfill your remaining commitment.
 
 ---
 
@@ -342,9 +342,9 @@ You can determine which Azure services and Marketplace offers are eligible for M
 
 If your organization has received Azure credits from Microsoft, consumption or purchases covered by those credits don't contribute toward your MACC commitment.
 
-If your organization purchased Azure Prepayment, consumption or purchases covered by the prepayment don't contribute toward your MACC commitment. However, the Azure Prepayment purchase itself will decrement your MACC commitment.
+If your organization purchased Azure Prepayment, consumption or purchases covered by the prepayment don't contribute toward your MACC commitment. However, the Azure Prepayment purchase itself decrements your MACC commitment.
 
-**Example:** Contoso made a MACC commitment of $50,000 in May. In June, they purchased an Azure Prepayment of $10,000. This purchase decremented their MACC commitment, leaving a remaining balance of $40,000. During June, Contoso consumed $10,000 of Azure Prepayment-eligible services. These service charges were covered by their Azure Prepayment and did not decrement their MACC commitment. Once the Azure Prepayment is fully used, all Azure service consumption and other eligible purchases will decrement their MACC commitment.
+**Example:** Contoso makes a MACC commitment of $50,000 in May. In June, they purchase an Azure Prepayment of $10,000. This purchase decrements their MACC commitment, leaving a remaining balance of $40,000. During June, Contoso consumes $10,000 of Azure Prepayment-eligible services. These service charges are covered by their Azure Prepayment and do not decrement their MACC commitment. Once the Azure Prepayment is fully used, all Azure service consumption and other eligible purchases decrement their MACC commitment.
 
 
 ## Check access to a Microsoft Customer Agreement
