@@ -110,3 +110,8 @@ Certificate management doesn't support certificate revocation during public prev
 
 See [Azure subscription and service limits](../azure-resource-manager/management/azure-subscription-service-limits.md#azure-iot-hub-limits) for the latest information about limits and quotas for certificate management with IoT Hub.
 
+## Related content
+
+- [Key concepts for certificate management](iot-hub-certificate-management-concepts.md)
+- [Get started with ADR and certificate management in IoT Hub](iot-hub-device-registry-setup.md)
+- [Integration with Azure Device Registry](iot-hub-device-registry-overview.md)
