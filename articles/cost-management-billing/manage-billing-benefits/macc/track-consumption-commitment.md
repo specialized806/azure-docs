@@ -34,25 +34,25 @@ In the scenario that a MACC commitment has been transacted prior to the expirati
 3. In the billing scopes page, select the billing account for which you want to track the commitment. The billing account type must be **Microsoft Customer Agreement** for Microsoft Customer Agreement (MCA) customers or **Enterprise Agreement** for EA customers.   
     :::image type="content" source="../../manage/media/track-consumption-commitment/list-of-scopes.png" alt-text="Screenshot that shows Billing Scopes." lightbox="../../manage/media/track-consumption-commitment/list-of-scopes.png" :::
     > [!NOTE]
-     > Azure portal remembers the last billing scope that you access and displays the scope the next time you come to Cost Management + Billing page. You won't see the billing scopes page if you have visited Cost Management + Billing earlier. If so, check that you are in the [right scope](#check-access-to-a-microsoft-customer-agreement). If not, [switch the scope](view-all-accounts.md#switch-billing-scope-in-the-azure-portal) to select the billing account for a Microsoft Customer Agreement.
+     > Azure portal remembers the last billing scope that you access and displays the scope the next time you come to Cost Management + Billing page. You won't see the billing scopes page if you have visited Cost Management + Billing earlier. If so, check that you are in the [right scope](#check-access-to-a-microsoft-customer-agreement). If not, [switch the scope](../../manage/view-all-accounts.md#switch-billing-scope-in-the-azure-portal) to select the billing account for a Microsoft Customer Agreement.
 4. Depending on your agreement type, do one of the following:
     - For MCA customers, select **Properties** from the left-hand side and then select **Microsoft Azure Consumption Commitment (MACC)**.  
-        :::image type="content" source="./media/track-consumption-commitment/select-macc-tab.png" alt-text="Screenshot that shows selecting the MACC tab for MCA." lightbox="./media/track-consumption-commitment/select-macc-tab.png" :::
+        :::image type="content" source="../../manage/media/track-consumption-commitment/select-macc-tab.png" alt-text="Screenshot that shows selecting the MACC tab for MCA." lightbox="../../manage/media/track-consumption-commitment/select-macc-tab.png" :::
     - For EA customers, select **Credits + Commitments** in the left navigation menu, then select **Microsoft Azure Consumption Commitment (MACC)**.  
-        :::image type="content" source="./media/track-consumption-commitment/select-macc-tab-ea.png" alt-text="Screenshot that shows selecting the MACC tab for EA." lightbox="./media/track-consumption-commitment/select-macc-tab-ea.png" :::
+        :::image type="content" source="../../manage/media/track-consumption-commitment/select-macc-tab-ea.png" alt-text="Screenshot that shows selecting the MACC tab for EA." lightbox="../../manage/media/track-consumption-commitment/select-macc-tab-ea.png" :::
 1. The Microsoft Azure Consumption Commitment (MACC) tab has the following sections.
 
 #### Remaining commitment 
 
 The remaining commitment displays the remaining commitment amount since your last invoice.
 
-:::image type="content" source="./media/track-consumption-commitment/macc-remaining-commitment.png" alt-text="Screenshot of remaining commitment for a MACC." lightbox="./media/track-consumption-commitment/macc-remaining-commitment.png" :::
+:::image type="content" source="../../manage/media/track-consumption-commitment/macc-remaining-commitment.png" alt-text="Screenshot of remaining commitment for a MACC." lightbox="../../manage/media/track-consumption-commitment/macc-remaining-commitment.png" :::
 
 #### Details
 
 The Details section displays other important aspects of your commitment.
 
-:::image type="content" source="./media/track-consumption-commitment/macc-details.png" alt-text="Screenshot of MACC details." lightbox="./media/track-consumption-commitment/macc-details.png" :::
+:::image type="content" source="../../manage/media/track-consumption-commitment/macc-details.png" alt-text="Screenshot of MACC details." lightbox="../../manage/media/track-consumption-commitment/macc-details.png" :::
 
 | Term | Definition |
 |---|---|
@@ -74,7 +74,7 @@ Your MACC can have one of the following statutes:
 
 The Events section displays events (invoiced spend) that decremented your MACC commitment.
 
-:::image type="content" source="./media/track-consumption-commitment/macc-events.png" alt-text="Screenshot of MACC events." lightbox="./media/track-consumption-commitment/macc-events.png" :::
+:::image type="content" source="../../manage/media/track-consumption-commitment/macc-events.png" alt-text="Screenshot of MACC events." lightbox="../../manage/media/track-consumption-commitment/macc-events.png" :::
 
 | Term | Definition |
 |---|---|
