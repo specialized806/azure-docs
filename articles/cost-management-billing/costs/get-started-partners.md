@@ -4,7 +4,7 @@ titleSuffix: Microsoft Cost Management
 description: This article explains how partners use Cost Management features and how they enable access for their customers.
 author: vikramdesai01
 ms.author: vikdesai
-ms.date: 01/07/2026
+ms.date: 01/08/2026
 ms.topic: concept-article
 ms.service: cost-management-billing
 ms.subservice: cost-management
