@@ -298,7 +298,7 @@ If your organization purchased Azure Prepayment, the consumption or purchases th
 For example, Contoso made a MACC commitment of $50,000 in May. In June, they purchased an Azure Prepayment of $10,000. The purchase will decrement their MACC commitment and the remaining commitment will be $40,000. In June, Contoso consumed $10,000 of Azure Prepayment-eligible services. The service charges will be covered by their Azure Prepayment; however, the service charges  won’t decrement their MACC commitment. Once the Azure Prepayment is fully used, all Azure service consumption and other eligible purchases will decrement their MACC commitment.
 
 ## Check access to a Microsoft Customer Agreement
-[!INCLUDE [billing-check-mca](../../../includes/billing-check-mca.md)]
+[!INCLUDE [billing-check-mca](../../../../includes/billing-check-mca.md)]
 
 ## Need help? Contact support.
 
