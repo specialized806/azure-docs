@@ -87,7 +87,7 @@ To analyze outbound traffic from Standard NAT gateway, use virtual network (VNet
 
 * For guides on how to enable VNet flow logs, see [Manage virtual network flow logs](../network-watcher/vnet-flow-logs-portal.md).
 
-* It's recommended to access the log data on [Log Analytics workspaces](/azure/azure-monitor/logs/log-analytics-overview) where you can also query and filter the data for outbound traffic. To learn more about using Log Analytics, see [Log Analytics tutorial](/azure/azure-monitor/logs/log-analytics-tutorial).
+* Access log data on [Log Analytics workspaces](/azure/azure-monitor/logs/log-analytics-overview) to query and filter the data for outbound traffic. To learn more about using Log Analytics, see [Log Analytics tutorial](/azure/azure-monitor/logs/log-analytics-tutorial).
 
 * For more information on the VNet flow log schema, see [Traffic analytics schema and data aggregation](../network-watcher/traffic-analytics-schema.md).
 
@@ -109,7 +109,7 @@ You can experience outbound connectivity failure if your NAT gateway resource is
 
 ## Virtual network or NAT gateway in a failed state with StandardV2 NAT gateway
 
-Associating a StandardV2 NAT Gateway to an empty subnet that was created before April 2025 and that doesn't contain any virtual machines may cause either the virtual network or the NAT gateway to go into a failed state. To resolve the issue, follow these steps:
+Associating a StandardV2 NAT Gateway to an empty subnet that was created before April 2025 and that doesn't contain any virtual machines might cause either the virtual network or the NAT gateway to go into a failed state. To resolve the issue, follow these steps:
 1. Remove the StandardV2 NAT gateway from the subnet or virtual network.
 1. Create a virtual machine in the subnet.
 1. Reattach the StandardV2 NAT gateway to the subnet or virtual network.
