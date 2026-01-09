@@ -15,7 +15,7 @@ ms.author: nicolela
 
 [!INCLUDE [api-management-availability-all-tiers](../../includes/api-management-availability-all-tiers.md)]
 
-To build advanced pipeline scenarios with custom behavior executed throughout the request and response lifecycle, you can use [policy fragments](policy-fragments.md). Policy fragments are centrally managed, reusable XML snippets that can contain [policy](https://learn.microsoft.com/azure/api-management/api-management-howto-policies) configurations and [policy expressions](https://learn.microsoft.com/azure/api-management/api-management-policy-expressions). Policy fragments offer the following capabilities:
+To build advanced pipeline scenarios with custom behavior executed throughout the request and response lifecycle, you can use [policy fragments](policy-fragments.md). Policy fragments are centrally managed, reusable XML snippets that can contain [policy](api-management-howto-policies.md) configurations and [policy expressions](api-management-policy-expressions.md). Policy fragments offer the following capabilities:
 
 - **Phases**: Custom behavior can be distributed across inbound, backend, outbound, and error phases using fragments.
 - **Sequential processing**: Fragments execute in a defined order with clear dependencies, enabling business logic to unfold step by step. Each fragment completes before the next starts, with no parallel execution.
