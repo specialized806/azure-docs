@@ -112,6 +112,7 @@ See [Azure subscription and service limits](../azure-resource-manager/management
 
 ## Related content
 
+- [FAQ: What is new in Azure IoT Hub?](iot-hub-faq.md)
 - [Key concepts for certificate management](iot-hub-certificate-management-concepts.md)
 - [Get started with ADR and certificate management in IoT Hub](iot-hub-device-registry-setup.md)
 - [Integration with Azure Device Registry](iot-hub-device-registry-overview.md)

@@ -53,7 +53,8 @@ Integration of IoT Hub with Azure Device Registry and certificate management is 
 
 ## Related content
 
-- [Integration with Azure Device Registry (preview)](iot-hub-device-registry-overview.md)
-- [What is Microsoft-backed X.509 certificate management (preview)?](iot-hub-certificate-management-overview.md)
-- [Key concepts for certificate management (preview)](iot-hub-certificate-management-concepts.md)
+- [FAQ: What is new in Azure IoT Hub?](iot-hub-faq.md)
+- [Integration with Azure Device Registry](iot-hub-device-registry-overview.md)
+- [What is Microsoft-backed X.509 certificate management?](iot-hub-certificate-management-overview.md)
+- [Key concepts for certificate management](iot-hub-certificate-management-concepts.md)
 - [Get started with ADR and certificate management in IoT Hub](iot-hub-device-registry-setup.md)
