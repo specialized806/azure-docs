@@ -12,8 +12,7 @@ ms.custom: engagement-fy23
 
 > [!IMPORTANT]
 > ### Zerto limitations on Azure VMware Solution
-> - AV64 node type is again supported as of Zerto version 3.7.11 (previously it wasn't).
-> - Zerto supports from Version Zerto 10.0 U5 onwards.
+> - AV64 node types are supported in Zerto version 10.0.8 for Azure VMware Solution Gen1. [Deploy Zerto](https://help.zerto.com/bundle/Install.AVS.HTML.10.8/page/deploying_zerto_10_8_on_azure_vmware_solution_avs_.html)
 > - DNS and network configuration changes for Zerto Virtual Machine aren't supported after installation.
 > - Azure resource group modifications aren't supported after Zerto installation.
 
@@ -44,10 +43,11 @@ To learn more about Zerto platform architecture, see the [Zerto Platform Archite
 You can use Zerto with Azure VMware Solution for the following three scenarios. 
 
 > [!NOTE]
-> For Azure NetApp Files (ANFs), [Azure VMware Solution](/azure/azure-vmware/introduction) supports Network File System (NFS) datastores as a persistent storage option. You can create NFS datastores with Azure NetApp Files volumes and attach them to clusters of your choice. You can also create virtual machines (VMs) for optimal cost and performance. To use ANF datastores, select them as a Recovery Datastore in the Zerto VPG wizard when creating or editing a VPG.
+> For Azure NetApp Files (ANFs) or Azure Elastic SAN, Azure VMware Solution supports Network File System (NFS) datastores and Virtual Machine File System (VMFS) as a persistent storage options. You can create NFS datastores with Azure NetApp Files volumes or VMFS datastores with Azure Elastic SAN volumes and attach them to clusters of your choice. You can also create virtual machines (VMs) for optimal cost and performance. To use ANF or Elastic SAN datastores, select them as a Recovery Datastore in the Zerto VPG wizard when creating or editing a VPG.
 
 > [!TIP]
-> Explore more about ANF datastores and how to [Attach Azure NetApp datastores to Azure VMware Solution hosts](/azure/azure-vmware/attach-azure-netapp-files-to-azure-vmware-solution-hosts?tabs=azure-portal).
+> Explore more about ANF and Elastic SAN datastores and how to attach [Azure NetApp datastores to Azure VMware Solution hosts](/azure/azure-vmware/attach-azure-netapp-files-to-azure-vmware-solution-hosts?tabs=azure-portal) and [Azure Elastic SAN datastores to Azure VMware Solution hosts](https://learn.microsoft.com/en-us/azure/azure-vmware/configure-azure-elastic-san)
+
 
 ### Scenario 1: On-premises VMware vSphere to Azure VMware Solution disaster recovery
 
