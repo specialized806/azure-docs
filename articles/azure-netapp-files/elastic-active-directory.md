@@ -18,9 +18,15 @@ If you're adding SMB volumes to your Elastic zone-redundant capacity pool, you m
 >[!IMPORTANT]
 >For the Flexible, Standard, Premium, and Ultra service levels, follow the instructions in [Create and Manage Active Directory connections](create-active-directory-connections.md).
 
+
+## Requirements 
+
+* Before creating your Active Directory configuration, you must set up an [Azure Key Vault](/azure/key-vault/secrets/about-secrets) containing at least one secret.
+    * The key vault must have soft delete and purge protection enabled. To set up a key vault, see the [quickstart guide](/azure/key-vault/general/quick-create-portal).
+    * You should store your Active Directory password in then Azure Key Vault then percolate the key vault details and secret name to Azure NetApp Files. 
+
 ## Considerations
 
-* You should store your Active Directory password in an Azure Key Vault then percolate the key vault details and secret name to Azure NetApp Files. 
 * Currently, you can only add one Active Directory account per NetApp subscription. All capacity pools for SMB volumes in a subscription should share an Active Directory connection. 
 * The Active Directory resource you create for the capacity pool is limited to Elastic zone-redundant storage. The Active Directory resource is only available with capacity pools in Elastic zone-redundant storage. 
 * You can't update the resource ID of the Active Directory after it's connected. 
@@ -32,9 +38,6 @@ If you're adding SMB volumes to your Elastic zone-redundant capacity pool, you m
 ## Add a new Active Directory connection 
 
 You can create the Active Directory connection when you [create the capacity pool](elastic-capacity-pool-task.md) or after. These steps outline creating an Active Directory connection after you've created the capacity pool.
-
->[!TIP]
->For detailed guidance on the Active Directory configuration, see [Create and Manage Active Directory connections](create-active-directory-connections.md).
 
 1. In the Azure Portal, navigate to **Capacity pools**. Select the capacity pool you want to create an Active Directory connection for. 
 

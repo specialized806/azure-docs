@@ -62,8 +62,9 @@ If you want a volume to use the snapshot policy, you need to [apply the policy t
 
 If you want a volume to use a snapshot policy that you created, you need to apply the policy to the volume. 
 
-1. Go to the **Volumes** page, right-click the volume that you want to apply a snapshot policy to, and select **Edit**.
-    ![Screenshot that shows the Volumes right-click menu.](../media/snapshots-manage-policy/volume-right-cick-menu.png) 
+1. Go to the **Volumes** page then select the volume you want to apply a policy to. 
+
+1. In the volume's overview page, select **Edit**. 
 
 2. In the Edit window, under **Snapshot policy**, select a policy to use for the volume. Select **OK** to apply the policy.  
     ![Screenshot that shows the Snapshot policy menu.](../media/snapshots-manage-policy/snapshot-policy-edit.png) 
