@@ -16,7 +16,7 @@ service.tree.id: cf90d1aa-e8ca-47a9-a6d0-bc69c7db1d52
 
 Billing benefits are a set of Azure capabilities that provide customers with financial advantages such as discounted prices, credits, and long-term cost optimization options. These benefits help organizations reduce cloud spend, plan capacity confidently, and align purchasing with business needs.
 
-Azure models billing benefits as **Azure Resource Manager (ARM) resources**, enabling consistent lifecycle management across the Azure portal, APIs, and SDKs. For more information, see: [What is a cloud subscription?](https://go.microsoft.com/fwlink/?linkid=2346389)
+Azure models billing benefits as **Azure Resource Manager (ARM) resources**, enabling consistent lifecycle management across the Azure portal, APIs, and SDKs. For more information, see: [What is a cloud subscription?](../../cost-management-billing/manage/cloud-subscription.md)
 
 ***
 
