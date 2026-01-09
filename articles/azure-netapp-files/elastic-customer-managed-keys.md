@@ -5,7 +5,7 @@ services: azure-netapp-files
 author: b-ahibbard
 ms.service: azure-netapp-files
 ms.topic: how-to
-ms.date: 08/14/2025
+ms.date: 01/09/2026
 ms.author: anfdocs
 ---
 # Configure customer-managed keys for Elastic zone-redundant volume encryption in Azure NetApp Files

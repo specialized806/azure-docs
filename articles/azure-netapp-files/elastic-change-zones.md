@@ -5,7 +5,7 @@ services: azure-netapp-files
 author: b-ahibbard
 ms.service: azure-netapp-files
 ms.topic: how-to
-ms.date: 11/14/2025
+ms.date: 01/09/2026
 ms.author: anfdocs
 ---
 # Change availability zones for Elastic zone-redundant capacity pools in Azure NetApp Files

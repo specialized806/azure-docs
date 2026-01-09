@@ -5,7 +5,7 @@ services: azure-netapp-files
 author: b-ahibbard
 ms.service: azure-netapp-files
 ms.topic: how-to
-ms.date: 11/19/2025
+ms.date: 01/09/2026
 ms.author: anfdocs
 ---
 # Back up Elastic zone-redundant volumes in Azure NetApp Files

@@ -5,10 +5,8 @@ services: azure-netapp-files
 author: b-ahibbard
 ms.service: azure-netapp-files
 ms.topic: how-to
-ms.date: 08/14/2025
+ms.date: 01/09/2026
 ms.author: anfdocs
-ms.custom:
-  - build-2025
 # Customer intent: "As a cloud storage administrator, I want to create a capacity pool for Azure NetApp Files so that I can manage the storage volumes and configure their performance requirements effectively."
 ---
 # Create an Active Directory connection for Azure NetApp Files' Elastic zone-redundant storage
@@ -24,6 +22,7 @@ If you're adding SMB volumes to your Elastic zone-redundant capacity pool, you m
 * Before creating your Active Directory configuration, you must set up an [Azure Key Vault](/azure/key-vault/secrets/about-secrets) containing at least one secret.
     * The key vault must have soft delete and purge protection enabled. To set up a key vault, see the [quickstart guide](/azure/key-vault/general/quick-create-portal).
     * You should store your Active Directory password in then Azure Key Vault then percolate the key vault details and secret name to Azure NetApp Files. 
+    * For increased security, select the *Disable public access* ooption in the network settings for your key vault. You must also select *Allow trusted Microsoft services to bypass this firewall* so that Azure NetApp Files can access the key vault.
 
 ## Considerations
 
@@ -39,7 +38,7 @@ If you're adding SMB volumes to your Elastic zone-redundant capacity pool, you m
 
 You can create the Active Directory connection when you [create the capacity pool](elastic-capacity-pool-task.md) or after. These steps outline creating an Active Directory connection after you've created the capacity pool.
 
-1. In the Azure Portal, navigate to **Capacity pools**. Select the capacity pool you want to create an Active Directory connection for. 
+1. In the Azure portal, navigate to **Capacity pools**. Select the capacity pool you want to create an Active Directory connection for. 
 
 1. In the overview for the capacity pool, select **+ Add Active Directory Connection**. 
 

@@ -5,7 +5,7 @@ services: azure-netapp-files
 author: b-ahibbard
 ms.service: azure-netapp-files
 ms.topic: concept-article
-ms.date: 12/2/2025
+ms.date: 01/09/2026
 ms.author: anfdocs
 # Customer intent: As an IT administrator managing Azure NetApp Files, I want to understand the monitoring capabilities for my Elastic zone-redundant service level deployment. 
 ---

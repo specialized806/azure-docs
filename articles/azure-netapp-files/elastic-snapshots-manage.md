@@ -5,7 +5,7 @@ services: azure-netapp-files
 author: b-ahibbard
 ms.service: azure-netapp-files
 ms.topic: how-to
-ms.date: 11/13/2025
+ms.date: 01/09/2026
 ms.author: anfdocs
 
 # Customer intent: "As a cloud storage administrator, I want to manage snapshots for Elastic Azure NetApp Files volumes to create data protection."

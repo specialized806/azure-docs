@@ -5,11 +5,8 @@ services: azure-netapp-files
 author: b-ahibbard
 ms.service: azure-netapp-files
 ms.topic: how-to
-ms.date: 08/14/2025
+ms.date: 01/09/2026
 ms.author: anfdocs
-ms.custom:
-  - build-2025
-# Customer intent: "As a cloud storage administrator, I want to create a capacity pool for Azure NetApp Files so that I can manage the storage volumes and configure their performance requirements effectively."
 ---
 # Create a capacity pool for Elastic zone-redundant service in Azure NetApp Files
 
