@@ -101,9 +101,9 @@ You can experience outbound connectivity failure if your NAT gateway resource is
 
 1. Update the toggle on the right-hand top corner to Read/Write. 
 
-1. Select on Edit for the resource in failed state. 
+1. Select Edit for the resource in failed state. 
 
-1. Select on PUT followed by GET to ensure the provisioning state was updated to Succeeded. 
+1. Select PUT followed by GET to ensure the provisioning state was updated to Succeeded. 
 
 1. You can then proceed with other actions as the resource is out of failed state. 
 
@@ -172,7 +172,7 @@ To get your virtual machine network interface out of a failed state, you can use
 
 1. Expand networkInterfaces.
 
-1. Select on the network interface that is in the failed provisioning state.
+1. Select the network interface that is in the failed provisioning state.
 
 1. Select the Read/Write button at the top.
 
