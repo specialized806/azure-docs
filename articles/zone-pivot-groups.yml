@@ -2059,6 +2059,15 @@ groups:
     title: Premium v2
   - id: other-tiers
     title: Other tiers
+# Owner: ericcheng
+- id: azure-cli-or-terraform
+  title: Interaction type
+  prompt: Select how you want to interact with Azure
+  pivots:
+  - id: azurecli
+    title: Azure CLI
+  - id: terraform
+    title: Terraform
 # Owner: cwatson
 - id: iot-hub-deployment-methods
   title: IoT Hub deployment methods
