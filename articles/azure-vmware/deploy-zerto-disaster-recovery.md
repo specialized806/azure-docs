@@ -46,7 +46,7 @@ You can use Zerto with Azure VMware Solution for the following three scenarios.
 > For Azure NetApp Files (ANFs) or Azure Elastic SAN, Azure VMware Solution supports Network File System (NFS) datastores and Virtual Machine File System (VMFS) as a persistent storage options. You can create NFS datastores with Azure NetApp Files volumes or VMFS datastores with Azure Elastic SAN volumes and attach them to clusters of your choice. You can also create virtual machines (VMs) for optimal cost and performance. To use ANF or Elastic SAN datastores, select them as a Recovery Datastore in the Zerto VPG wizard when creating or editing a VPG.
 
 > [!TIP]
-> Explore more about ANF and Elastic SAN datastores and how to attach [Azure NetApp datastores to Azure VMware Solution hosts](/azure/azure-vmware/attach-azure-netapp-files-to-azure-vmware-solution-hosts?tabs=azure-portal) and [Azure Elastic SAN datastores to Azure VMware Solution hosts](https://learn.microsoft.com/en-us/azure/azure-vmware/configure-azure-elastic-san)
+> Explore more about ANF and Elastic SAN datastores and how to attach [Azure NetApp datastores to Azure VMware Solution hosts](/azure/azure-vmware/attach-azure-netapp-files-to-azure-vmware-solution-hosts?tabs=azure-portal) and [Azure Elastic SAN datastores to Azure VMware Solution hosts](https://learn.microsoft.com/azure/azure-vmware/configure-azure-elastic-san)
 
 
 ### Scenario 1: On-premises VMware vSphere to Azure VMware Solution disaster recovery
