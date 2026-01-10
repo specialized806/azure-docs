@@ -134,7 +134,7 @@ The following example:
 > * Gets the UPN of your user account.
 > * Assigns the Key Vault Crypto Officer role for the new key vault to your account.
 
-Use the same [variables you defined previously](#create-variables-to-be-used-in-the-powershell-samples-in-this-article) in this article.
+Use the same [variables you defined previously](#create-variables-to-use-in-the-powershell-samples-in-this-article) in this article.
 
 ```azurepowershell
 # Setup the parameters to create the key vault.
@@ -188,7 +188,7 @@ Azure Storage and Elastic SAN encryption support RSA keys of sizes 2048, 3072, a
 
 # [PowerShell](#tab/azure-powershell)
 
-Use these sample commands to add a key to the key vault with PowerShell. Use the same [variables you defined previously](#create-variables-to-be-used-in-the-powershell-samples-in-this-article) in this article.
+Use these sample commands to add a key to the key vault with PowerShell. Use the same [variables you defined previously](#create-variables-to-use-in-the-powershell-samples-in-this-article) in this article.
 
 ```azurepowershell
 # Get the key vault where the key is to be added.
@@ -207,7 +207,7 @@ $Key = Add-AzKeyVaultKey @NewKeyArguments
 
 # [Azure CLI](#tab/azure-cli)
 
-To add a key with Azure CLI, call [az keyvault key create](/cli/azure/keyvault/key#az-keyvault-key-create). You can also set a policy on your keyvault, to give permissions to specific users directly. Replace `youremail@here.com` then use the following sample and [the same variables you created previously in this article](#create-variables-to-be-used-in-the-cli-samples-in-this-article):
+To add a key with Azure CLI, call [az keyvault key create](/cli/azure/keyvault/key#az-keyvault-key-create). You can also set a policy on your keyvault, to give permissions to specific users directly. Replace `youremail@here.com` then use the following sample and [the same variables you created previously in this article](#create-variables-to-use-in-the-cli-samples-in-this-article):
 
 ```azurecli
 #### Get vault_url
@@ -289,7 +289,7 @@ The following example shows how to:
 > * Get the `PrincipalId` from the new identity.
 > * Assign an RBAC role to the new identity, scoped to the key vault.
 
-Use the same [variables you defined previously](#create-variables-to-be-used-in-the-powershell-samples-in-this-article) in this article.
+Use the same [variables you defined previously](#create-variables-to-use-in-the-powershell-samples-in-this-article) in this article.
 
 ```azurepowershell
 # Create a new user-assigned managed identity.
@@ -324,7 +324,7 @@ The following example shows how to:
 > * Get the `PrincipalId` from the new identity.
 > * Set a policy on your key vault, allowing access to your identity.
 
-Use the same [variables you defined previously](#create-variables-to-be-used-in-the-powershell-samples-in-this-article) in this article.
+Use the same [variables you defined previously](#create-variables-to-use-in-the-powershell-samples-in-this-article) in this article.
 
 ```azurecli
 ### Create a user assigned identity and grant it the access to the key vault
@@ -362,7 +362,7 @@ When you create a volume group, a system-assigned identity is automatically crea
 
 #### [PowerShell](#tab/azure-powershell)
 
-Use this sample code to assign the required RBAC role to the system-assigned managed identity, scoped to the key vault. Use the same [variables you defined previously](#create-variables-to-be-used-in-the-powershell-samples-in-this-article) in this article.
+Use this sample code to assign the required RBAC role to the system-assigned managed identity, scoped to the key vault. Use the same [variables you defined previously](#create-variables-to-use-in-the-powershell-samples-in-this-article) in this article.
 
 ```azurepowershell
 # Get the Elastic SAN volume group.
@@ -388,7 +388,7 @@ New-AzRoleAssignment @CryptoUserRoleArguments
 
 #### [Azure CLI](#tab/azure-cli)
 
-To authenticate access to the key vault with a system-assigned managed identity, first assign the system-assigned managed identity to the volume group by calling `az elastic-san volume-group update`. Use the following sample and [the same variables you created previously in this article](#create-variables-to-be-used-in-the-cli-samples-in-this-article):
+To authenticate access to the key vault with a system-assigned managed identity, first assign the system-assigned managed identity to the volume group by calling `az elastic-san volume-group update`. Use the following sample and [the same variables you created previously in this article](#create-variables-to-use-in-the-cli-samples-in-this-article):
 
 ```azurecli
 az elastic-san volume-group update \
@@ -397,7 +397,7 @@ az elastic-san volume-group update \
     --identity
 ```
 
-Next, assign the required RBAC role to the system-assigned managed identity with key vault scope. Use the following sample and [the same variables you created previously in this article](#create-variables-to-be-used-in-the-cli-samples-in-this-article):
+Next, assign the required RBAC role to the system-assigned managed identity with key vault scope. Use the following sample and [the same variables you created previously in this article](#create-variables-to-use-in-the-cli-samples-in-this-article):
 
 ```azurecli
 PrincipalId=$(az elastic-san volume-group show --name $EsanVgName \
@@ -471,7 +471,7 @@ New-AzElasticSanVolumeGroup @NewVgArguments
 
 ### [New volume group](#tab/new-vg/azure-cli)
 
-Use the following samples and [the same variables you created previously in this article](#create-variables-to-be-used-in-the-cli-samples-in-this-article) to configure customer-managed keys when creating a new volume group:
+Use the following samples and [the same variables you created previously in this article](#create-variables-to-use-in-the-cli-samples-in-this-article) to configure customer-managed keys when creating a new volume group:
 
 #### Managed identity
 
@@ -610,7 +610,7 @@ Update-AzElasticSanVolumeGroup @UpdateVgArguments
 
 ### [Existing volume group](#tab/existing-vg/azure-cli)
 
-Use the following samples and [the same variables you created previously in this article](#create-variables-to-be-used-in-the-cli-samples-in-this-article) to configure customer-managed keys for an existing volume group by using the Azure CLI.
+Use the following samples and [the same variables you created previously in this article](#create-variables-to-use-in-the-cli-samples-in-this-article) to configure customer-managed keys for an existing volume group by using the Azure CLI.
 
 #### Managed identity
 
