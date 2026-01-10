@@ -249,22 +249,22 @@
     items:
     - name: Overview
       href: manage-billing-benefits/overview.md
-  - name: credits
-    items:
-    - name: Track credits for Microsoft Customer Agreement
-      href: manage-billing-benefits/credits/mca-check-azure-credits-balance.md
-    - name: Manage a Microsoft Azure credit resource
-      href: manage-billing-benefits/credits/manage-azure-credits.md
-  - name: discounts
-    items:
-    - name: Manage a Microsoft discount resource
-      href: manage-billing-benefits/discounts/manage-azure-discount.md
-  - name: Microsoft Azure Consumption Commitment (MACC)
-    items:
-    - name: Track your Microsoft Azure Consumption Commitment
-      href: manage-billing-benefits/macc/track-consumption-commitment.md
-    - name: Manage a Microsoft Azure Consumption Commitment
-      href: manage-billing-benefits/macc/manage-consumption-commitment.md
+    - name: Manage credits
+      items:
+      - name: Track credits for Microsoft Customer Agreement
+        href: manage-billing-benefits/credits/mca-check-azure-credits-balance.md
+      - name: Manage a Microsoft Azure credit resource
+        href: manage-billing-benefits/credits/manage-azure-credits.md
+    - name: Manage discounts
+      items:
+      - name: Manage a Microsoft discount resource
+        href: manage-billing-benefits/discounts/manage-azure-discount.md
+    - name: Manage Microsoft Azure Consumption Commitment
+      items:
+      - name: Track your Microsoft Azure Consumption Commitment
+        href: manage-billing-benefits/macc/track-consumption-commitment.md
+      - name: Manage a Microsoft Azure Consumption Commitment
+        href: manage-billing-benefits/macc/manage-consumption-commitment.md
   - name: Troubleshoot billing
     items:
     - name: Can't view or find invoices
