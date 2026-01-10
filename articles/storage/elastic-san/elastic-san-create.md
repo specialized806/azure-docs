@@ -36,7 +36,7 @@ This article explains how to deploy and configure an Elastic SAN.
 
 1. Specify the amount of base capacity you require, and any additional capacity, then select **next**.
 
-        Increasing your SAN's base size also increases its IOPS and bandwidth. Increasing additional capacity only increases its total size (base + additional) but doesn't increase IOPS or bandwidth. However, increasing additional capacity is cheaper than increasing base.
+    Increasing your SAN's base size also increases its IOPS and bandwidth. Increasing additional capacity only increases its total size (base + additional) but doesn't increase IOPS or bandwidth. However, increasing additional capacity is cheaper than increasing base.
 
 1. Select **Next**.
 
