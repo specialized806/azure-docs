@@ -447,7 +447,7 @@ export OTEL_SERVICE_NAME="my-function-app"
 
 ### Invocation span attributes (usually automatic)
 
-Azure Functions’ OpenTelemetry integration typically emits FaaS invocation attributes on the invocation span. Avoid setting these manually unless you are creating your own invocation span:
+You won’t have to set these manually unless you’re creating a custom invocation span.
 
 - `faas.name` (function name)
 - `faas.trigger` (for example `http`, `servicebus`, `eventhubs`)
