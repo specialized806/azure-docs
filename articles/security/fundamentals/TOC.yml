@@ -146,7 +146,7 @@
   - name: Azure Certificate Authorities
     items: 
     - name: Azure Certificate Authority details
-      href: azure-ca-details.md
+      href: azure-certificate-authority-details.md
     - name: Certificate Pinning
       href: certificate-pinning.md
     - name: Managed TLS changes
