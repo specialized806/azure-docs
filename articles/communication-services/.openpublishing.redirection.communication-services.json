@@ -459,7 +459,7 @@
         },
         {
             "source_path_from_root": "/articles/communication-services/concepts/advanced-messaging/message-analysis.md",
-            "redirect_url": "/articles/communication-services/concepts/advanced-messaging/message-analysis/message-analysis.md",
+            "redirect_url": "/azure/communication-services/concepts/advanced-messaging/whatsapp/whatsapp-overview",
             "redirect_document_id": false
         },
         {
@@ -484,17 +484,17 @@
         },
         {
             "source_path_from_root": "/articles/communication-services/concepts/advanced-messaging/message-analysis/message-analysis-transparency-faq.md",
-            "redirect_url": "/articles/communication-services/concepts/advanced-messaging/whatsapp/whatsapp-overview.md",
+            "redirect_url": "/azure/communication-services/concepts/advanced-messaging/whatsapp/whatsapp-overview",
             "redirect_document_id": false
         },
         {
             "source_path_from_root": "/articles/communication-services/concepts/advanced-messaging/message-analysis/message-analysis.md",
-            "redirect_url": "/articles/communication-services/concepts/advanced-messaging/whatsapp/whatsapp-overview.md",
+            "redirect_url": "/azure/communication-services/concepts/advanced-messaging/whatsapp/whatsapp-overview",
             "redirect_document_id": false
         },
         {
             "source_path_from_root": "/articles/communication-services/quickstarts/advanced-messaging/message-analysis/message-analysis-with-azure-openai-quickstart.md",
-            "redirect_url": "/articles/communication-services/quickstarts/advanced-messaging/whatsapp/get-started.md",
+            "redirect_url": "/azure/communication-services/quickstarts/advanced-messaging/whatsapp/get-started",
             "redirect_document_id": false
         },
         {
