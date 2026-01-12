@@ -266,7 +266,7 @@ For more information, see [Overview of managed disk encryption options](/azure/v
 
 [!INCLUDE [Azure Disk Encryption retirement notice](~/reusable-content/ce-skilling/azure/includes/security/azure-disk-encryption-retirement.md)]
 
-[Encryption at host](/azure/virtual-machines/disk-encryption#encryption-at-host---end-to-end-encryption-for-your-vm-data) provides end-to-end encryption for your VM data by encrypting data at the VM host level. By default, it uses platform-managed keys, but you can optionally use customer-managed keys in [Azure Key Vault](https://azure.microsoft.com/services/key-vault/) when you need greater control.
+[Encryption at host](/azure/virtual-machines/disk-encryption#encryption-at-host---end-to-end-encryption-for-your-vm-data) provides end-to-end encryption for your VM data by encrypting data at the VM host level. By default, it uses platform-managed keys, but you can optionally use customer-managed keys stored in [Azure Key Vault or Azure Key Vault Managed HSM](/azure/security/fundamentals/key-management) when you need greater control.
 
 Encryption at host provides server-side encryption at the VM host level using AES 256 encryption, which is FIPS 140-2 compliant. This encryption occurs without consuming VM CPU resources and provides end-to-end encryption for:
 
@@ -278,7 +278,7 @@ Key benefits of encryption at host:
 
 - **No performance impact**: Encryption occurs at the host level without using VM CPU resources
 - **Broad VM support**: Supported on most VM series and sizes
-- **Customer-managed keys**: Optional integration with Azure Key Vault for key control
+- **Customer-managed keys**: Optional integration with Azure Key Vault or Managed HSM for key control
 - **Platform-managed keys by default**: No additional configuration required for encryption
 
 For more information, see [Encryption at host](/azure/virtual-machines/disk-encryption#encryption-at-host---end-to-end-encryption-for-your-vm-data).

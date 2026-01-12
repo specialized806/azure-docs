@@ -65,7 +65,7 @@ Azure provides several encryption options for managed disks:
 
 - **Confidential disk encryption**: For confidential VMs, this binds disk encryption keys to the VM's TPM, making protected disk content accessible only to the VM.
 
-By default, managed disks use platform-managed keys with no additional configuration required. For customer-managed keys, you can use Azure Key Vault or Azure Key Vault Managed HSM to control and manage your own encryption keys.
+By default, managed disks use platform-managed keys with no additional configuration required. For customer-managed keys, you can use Azure Key Vault, Azure Key Vault Managed HSM, or Azure Cloud HSM to control and manage your own encryption keys.
 
 For more information, see [Overview of managed disk encryption options](/azure/virtual-machines/disk-encryption-overview) and [Server-side encryption of Azure Disk Storage](/azure/virtual-machines/disk-encryption).
 

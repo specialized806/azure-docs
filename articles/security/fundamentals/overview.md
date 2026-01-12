@@ -125,7 +125,7 @@ For modern virtual machine encryption, Azure offers:
 
 - **Encryption at host**: Provides end-to-end encryption for VM data, including temp disks and OS/data disk caches
 - **Confidential disk encryption**: Available with confidential VMs for hardware-based encryption
-- **Server-side encryption with customer-managed keys**: Manage your own encryption keys through Azure Key Vault
+- **Server-side encryption with customer-managed keys**: Manage your own encryption keys through Azure Key Vault or Azure Key Vault Managed HSM
 
 For more information, see [Overview of managed disk encryption options](/azure/virtual-machines/disk-encryption-overview).
 
@@ -435,7 +435,7 @@ For comprehensive threat detection capabilities across Azure, see [Azure threat 
 
 ### VM Disk Encryption
 
-[Encryption at host](/azure/virtual-machines/disk-encryption) helps you encrypt your IaaS virtual machine disks by default. It provides server-side encryption at the VM host level using AES 256 encryption, which is FIPS 140-2 compliant. This encryption occurs without consuming VM CPU resources and provides end-to-end encryption for temporary disks, OS/data disk caches, and data flows to Azure Storage. By default, it uses platform-managed keys with no additional configuration required. Optionally, the solution can be integrated with Azure Key Vault when you need to control and manage your own disk-encryption keys and secrets. The solution ensures that all data on the virtual machine disks are encrypted at rest in your Azure storage.
+[Encryption at host](/azure/virtual-machines/disk-encryption) helps you encrypt your IaaS virtual machine disks by default. It provides server-side encryption at the VM host level using AES 256 encryption, which is FIPS 140-2 compliant. This encryption occurs without consuming VM CPU resources and provides end-to-end encryption for temporary disks, OS/data disk caches, and data flows to Azure Storage. By default, it uses platform-managed keys with no additional configuration required. Optionally, the solution can be configured with customer-managed keys stored in Azure Key Vault or Azure Key Vault Managed HSM when you need to control and manage your own disk-encryption keys. The solution ensures that all data on the virtual machine disks are encrypted at rest in your Azure storage. For more information on key management options, see [Key management in Azure](key-management.md).
 
 ### Azure Resource Manager
 

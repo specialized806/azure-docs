@@ -138,26 +138,26 @@ We recommend that you encrypt your virtual hard disks (VHDs) to help protect you
 
 [!INCLUDE [Azure Disk Encryption retirement notice](~/reusable-content/ce-skilling/azure/includes/security/azure-disk-encryption-retirement.md)]
 
-[Encryption at host](/azure/virtual-machines/disk-encryption) provides end-to-end encryption for your VM data by default, encrypting temporary disks, OS and data disk caches, and data flows to Azure Storage. By default, encryption at host uses platform-managed keys with no additional configuration required. Optionally, the solution can be configured to integrate with [Azure Key Vault](/azure/key-vault/) to use customer-managed keys when you need to control and manage your own disk-encryption keys and secrets. The solution ensures that all data on the virtual machine disks are encrypted at rest in Azure Storage.
+[Encryption at host](/azure/virtual-machines/disk-encryption) provides end-to-end encryption for your VM data by default, encrypting temporary disks, OS and data disk caches, and data flows to Azure Storage. By default, encryption at host uses platform-managed keys with no additional configuration required. Optionally, the solution can be configured to use customer-managed keys stored in [Azure Key Vault or Azure Key Vault Managed HSM](/azure/security/fundamentals/key-management) when you need to control and manage your own disk-encryption keys. The solution ensures that all data on the virtual machine disks are encrypted at rest in Azure Storage.
 
 Following are best practices for using encryption at host:
 
 **Best practice**: Enable encryption at host on VMs by default.   
-**Detail**: Encryption at host is enabled by default for new VMs and provides transparent encryption using platform-managed keys without requiring additional configuration. If you choose to use customer-managed keys stored in your key vault, Microsoft Entra authentication is required. Create a Microsoft Entra application for this purpose. For authentication purposes, you can use either client secret-based authentication or [client certificate-based Microsoft Entra authentication](../../active-directory/authentication/active-directory-certificate-based-authentication-get-started.md).
+**Detail**: Encryption at host is enabled by default for new VMs and provides transparent encryption using platform-managed keys without requiring additional configuration. If you choose to use customer-managed keys, store them in Azure Key Vault or Azure Key Vault Managed HSM. Microsoft Entra authentication is required for access. For authentication purposes, you can use either client secret-based authentication or [client certificate-based Microsoft Entra authentication](../../active-directory/authentication/active-directory-certificate-based-authentication-get-started.md).
 
-**Best practice**: When using customer-managed keys, use a key encryption key (KEK) for an additional layer of security for encryption keys. Add a KEK to your key vault.   
-**Detail**: When using customer-managed keys, use the [Add-AzKeyVaultKey](/powershell/module/az.keyvault/add-azkeyvaultkey) cmdlet to create a key encryption key in the key vault. You can also import a KEK from your on-premises hardware security module (HSM) for key management. For more information, see the [Key Vault documentation](/azure/key-vault/keys/hsm-protected-keys). When a key encryption key is specified, encryption at host uses that key to wrap the encryption secrets before writing to Key Vault. Keeping an escrow copy of this key in an on-premises key management HSM offers additional protection against accidental deletion of keys.
+**Best practice**: When using customer-managed keys, use a key encryption key (KEK) for an additional layer of security for encryption keys.   
+**Detail**: When using customer-managed keys, use the [Add-AzKeyVaultKey](/powershell/module/az.keyvault/add-azkeyvaultkey) cmdlet to create a key encryption key in Azure Key Vault or Managed HSM. You can also import a KEK from your on-premises hardware security module (HSM). For more information, see the [Key Vault documentation](/azure/key-vault/keys/hsm-protected-keys). When a key encryption key is specified, encryption at host uses that key to wrap the encryption secrets. Keeping an escrow copy of this key in an on-premises key management HSM offers additional protection against accidental deletion of keys.
 
 **Best practice**: Take a [snapshot](/azure/virtual-machines/windows/snapshot-copy-managed-disk) and/or backup before making encryption configuration changes. Backups provide a recovery option if an unexpected failure happens.   
 **Detail**: VMs with managed disks should be backed up regularly. For more information about how to back up and restore encrypted VMs, see the [Azure Backup](../../backup/backup-azure-vms-encryption.md) article.
 
-**Best practice**: When using customer-managed keys, ensure the encryption secrets don't cross regional boundaries by locating the key vault and VMs in the same region.   
-**Detail**: When using customer-managed keys, create and use a key vault that is in the same region as the VM to be encrypted.
+**Best practice**: When using customer-managed keys, ensure the encryption secrets don't cross regional boundaries by locating your key management service and VMs in the same region.   
+**Detail**: When using customer-managed keys, create and use a key vault or managed HSM that is in the same region as the VM to be encrypted.
 
 When you apply encryption at host, you can satisfy the following business needs:
 
 - IaaS VMs are secured at rest through industry-standard encryption technology to address organizational security and compliance requirements.
-- IaaS VMs start under customer-controlled keys and policies, and you can audit their usage in your key vault.
+- IaaS VMs start under customer-controlled keys and policies, and you can audit their usage in your key management service.
 
 ## Restrict direct internet connectivity
 Monitor and restrict VM direct internet connectivity. Attackers constantly scan public cloud IP ranges for open management ports and attempt “easy” attacks like common passwords and known unpatched vulnerabilities. The following table lists best practices to help protect against these attacks:
