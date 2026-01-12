@@ -3,7 +3,7 @@
         {
             "source_path_from_root": "/articles/security/fundamentals/operational-security.md",
             "redirect_url": "/azure/security/fundamentals/management-monitoring-overview",
-            "redirect_document_id": true
+            "redirect_document_id": false
         },
         {
             "source_path_from_root": "/articles/security/fundamentals/cyber-services.md",
@@ -18,12 +18,12 @@
         {
             "source_path_from_root": "/articles/security/fundamentals/management.md",
             "redirect_url": "/azure/security/fundamentals/management-monitoring-overview",
-            "redirect_document_id": true
+            "redirect_document_id": false
         },
         {
             "source_path_from_root": "/articles/security/fundamentals/technical-capabilities.md",
             "redirect_url": "/azure/security/fundamentals/overview",
-            "redirect_document_id": true
+            "redirect_document_id": false
         },
         {
             "source_path_from_root": "/articles/security/journey/index.yml",
