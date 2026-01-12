@@ -21,7 +21,7 @@ landingContent:
           - text: What is Resource Mover
             url: ./overview.md
           - text: Select options to move resources
-            url: ./select-options-to-move-resource.md
+            url: ./select-options-to-move-resources.md
           - text: Common questions
             url: ./common-questions.md
 
