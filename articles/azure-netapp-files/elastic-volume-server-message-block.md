@@ -23,6 +23,9 @@ Learn how to create an SMB volume for Elastic zone-redundant storage.
     * If you're creating SMB volumes, you must have configured Active Directory on the capacity pool. 
 * After you create an SMB volume, you can resize it. You can also assign a snapshot policy, edit the hide snapshot path option, or enable/disable SMB3 encryption. 
 
+>[!NOTE]
+>If you're creating a volume with the REST API and no option is provided for the hide snapshot path, it's hidden by default. 
+
 ## Considerations 
 
 * You can't change the protocol of a volume after creating it. 

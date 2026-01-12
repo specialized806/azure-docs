@@ -27,6 +27,9 @@ Learn how to create an NFS volume for the Elastic zone-redundant storage.
 * In Elastic zone-redundant storage, you can't move volumes between capacity pools. 
 * After creating the volume, you can check its status in the volume's overview page to see if it's online or offline. 
 
+>[!NOTE]
+>If you're creating a volume with the REST API and no option is provided for the hide snapshot path, it's hidden by default. 
+
 <!-- unix permissions, chown root access -->
 
 ## Steps 

@@ -1,6 +1,6 @@
 ---
 title: Create an Active Directory connection for Azure NetApp Files' Elastic zone-redundant storage
-description: Learn how to create an Active Direction connection for Azure NetApp Files Elastic zone-redundant storage.
+description: Learn how to create an Active Directory connection for Azure NetApp Files Elastic zone-redundant storage.
 services: azure-netapp-files
 author: b-ahibbard
 ms.service: azure-netapp-files
@@ -21,15 +21,16 @@ If you're adding SMB volumes to your Elastic zone-redundant capacity pool, you m
 
 * Before creating your Active Directory configuration, you must set up an [Azure Key Vault](/azure/key-vault/secrets/about-secrets) containing at least one secret.
     * The key vault must have soft delete and purge protection enabled. To set up a key vault, see the [quickstart guide](/azure/key-vault/general/quick-create-portal).
-    * You should store your Active Directory password in then Azure Key Vault then percolate the key vault details and secret name to Azure NetApp Files. 
-    * For increased security, select the *Disable public access* ooption in the network settings for your key vault. You must also select *Allow trusted Microsoft services to bypass this firewall* so that Azure NetApp Files can access the key vault.
+    * You should store your Active Directory password in the Azure Key Vault then percolate the key vault details and secret name to Azure NetApp Files. 
+    * For increased security, select the *Disable public access* option in the network settings for your key vault. You must also select *Allow trusted Microsoft services to bypass this firewall* so that Azure NetApp Files can access the key vault.
 
 ## Considerations
 
-* Currently, you can only add one Active Directory account per NetApp subscription. All capacity pools for SMB volumes in a subscription should share an Active Directory connection. 
-* The Active Directory resource you create for the capacity pool is limited to Elastic zone-redundant storage. The Active Directory resource is only available with capacity pools in Elastic zone-redundant storage. 
+* Currently, you can only add one Active Directory account per NetApp subscription. All capacity pools for SMB volumes in a subscription share this Active Directory connection. 
+* The Active Directory resource you create for the capacity pool is limited to Elastic zone-redundant storage. The Active Directory resource is available only with capacity pools in Elastic zone-redundant storage. 
 * You can't update the resource ID of the Active Directory after it's connected. 
-* If you update the password of your Active Directory connection, you should ensure it's also updated in the resource provided. If you fail to update the Active Directory, creating SMB volumes can fail. 
+* If you update the password of your Active Directory connection, you should ensure it's also updated in the resource provided. If you don't update the Active Directory, creating SMB volumes can fail. 
+* Currently, the credential option for Active Directory only supports user-assigned identities. 
 
 >[!IMPORTANT]
 >Currently, you can create an Active Directory using the Azure portal. Any other CRUD operations must be performed using the REST API. 
@@ -68,9 +69,9 @@ You can create the Active Directory connection when you [create the capacity poo
     * **Administrators**
         This option grants additional security privileges to Active Directory domain users or groups that require elevated privileges to access the Azure NetApp Files volumes.
     * **Backup users**
-        This option grants addition security privileges to Active Directory domain users or groups that require elevated backup privileges to support backup, restore, and migration workflows in Azure NetApp Files.
+        This option grants additional security privileges to Active Directory domain users or groups that require elevated backup privileges to support backup, restore, and migration workflows in Azure NetApp Files.
     * **Credentials**
-        Select **User assigned identity** to use the standalone Azure resource assigned to your service. Currently, User assigned identity is the only supported option. 
+        Select **User assigned identity** to use the standalone Azure resource assigned to your service. 
     * **AKV resource**
         Choose the resource identity for your Azure Key Vault. 
     * **User name**
@@ -89,7 +90,7 @@ If you've already created an Active Directory connection in the NetApp Elastic a
 
 1. In the overview for the capacity pool, select **+ Add Active Directory Connection**. 
 
-1. Select the Active Directory connection from the dropdown menu. Select **OK** to add it to associate it with the capacity pool. 
+1. Select the Active Directory connection from the dropdown menu. Select **OK** to associate it with the capacity pool. 
 
 ## Next steps
 
