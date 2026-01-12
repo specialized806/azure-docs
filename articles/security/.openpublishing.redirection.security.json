@@ -1,6 +1,11 @@
 {
     "redirections": [
         {
+            "source_path_from_root": "/articles/security/fundamentals/operational-security.md",
+            "redirect_url": "/azure/security/fundamentals/management-monitoring-overview",
+            "redirect_document_id": true
+        },
+        {
             "source_path_from_root": "/articles/security/journey/index.yml",
             "redirect_url": "/previous-versions/azure/security/fundamentals",
             "redirect_document_id": false

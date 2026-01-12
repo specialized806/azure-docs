@@ -267,7 +267,7 @@ In addition, the checklist:
 
 ## Azure infrastructure and application security validation
 
-[Azure Operational Security](operational-security.md) refers to the services, controls, and features available to users for protecting their data, applications, and other assets in Microsoft Azure.
+[Azure Operational Security](management-monitoring-overview.md) refers to the services, controls, and features available to users for protecting their data, applications, and other assets in Microsoft Azure.
 
 ![security validation (detect)](./media/technical-capabilities/azure-security-technical-capabilities-fig7.png)
 
