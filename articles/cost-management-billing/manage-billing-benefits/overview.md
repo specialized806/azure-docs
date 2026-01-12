@@ -30,9 +30,9 @@ Long-term agreements where customers commit to spending a certain amount or usin
 
 Examples:
 
-*   [Microsoft Azure Consumption Commitment (MACC)](https://learn.microsoft.com/marketplace/azure-consumption-commitment-benefit#determine-which-offers-are-eligible-for-azure-consumption-commitments-maccctc)
-*   [Reservations](https://learn.microsoft.com/azure/cost-management-billing/reservations/save-compute-costs-reservations)
-*   [Savings plan](https://learn.microsoft.com/azure/cost-management-billing/savings-plan/savings-plan-compute-overview)
+*   [Microsoft Azure Consumption Commitment (MACC)](../../../marketplace/azure-consumption-commitment-benefit.md#determine-which-offers-are-eligible-for-azure-consumption-commitments-maccctc)
+*   [Reservations](../reservations/save-compute-costs-reservations.md)
+*   [Savings plan](../savings-plan/savings-plan-compute-overview.md)
 *   Commitment-based spend programs
 
 ### 2. Credits
@@ -63,7 +63,7 @@ Azure provides a comprehensive set of free services to help you explore, build, 
 
 Azure’s free services are designed to reduce the barrier to entry, support experimentation, and help new customers get started with cloud development safely and cost-effectively.  
 
-For more information, see: [Create Your Azure Free Account Or Pay As You Go](https://azure.microsoft.com/en-us/pricing/purchase-options/azure-account?cid=msft_learn)
+For more information, see: [Create Your Azure Free Account Or Pay As You Go](../../../pricing/purchase-options/azure-account.md?cid=msft_learn)
 
 ***
 
@@ -121,9 +121,9 @@ Billing benefits help organizations:
 
 ## Related Documentation
 
-*   [What are Azure Reservations?](https://learn.microsoft.com/azure/cost-management-billing/reservations/save-compute-costs-reservations)
-*   [What is Azure savings plans for compute?](https://learn.microsoft.com/azure/cost-management-billing/savings-plan/savings-plan-compute-overview)
-*   [Azure Consumption Commitment Benefit](https://learn.microsoft.com/marketplace/azure-consumption-commitment-benefit#determine-which-offers-are-eligible-for-azure-consumption-commitments-maccctc)
+*   [What are Azure Reservations?](../reservations/save-compute-costs-reservations.md)
+*   [What is Azure savings plans for compute?](../savings-plan/savings-plan-compute-overview.md)
+*   [Azure Consumption Commitment Benefit](../../../marketplace/azure-consumption-commitment-benefit.md#determine-which-offers-are-eligible-for-azure-consumption-commitments-maccctc)
 *   [Azure Billing Benefits REST API](https://learn.microsoft.com/rest/api/billingbenefits/)
 *   [Resource Provider: Microsoft.BillingBenefits (ARM reference)](https://learn.microsoft.com/azure/templates/microsoft.billingbenefits/allversions)
 
