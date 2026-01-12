@@ -134,6 +134,14 @@ Event Hubs integrates with [Azure Functions](../azure-functions/functions-bindin
 
 The [Event Hubs emulator](overview-emulator.md) provides a local development experience for developing and testing code against the service in isolation, free from cloud dependencies.
 
+### Client libraries
+
+Event Hubs provides [client libraries](sdks.md) for .NET, Java, Python, JavaScript, and Go. These SDKs support both AMQP and Kafka protocols, enabling you to choose the best fit for your application.
+
+### Monitoring
+
+[Monitor Event Hubs](monitor-event-hubs.md) using Azure Monitor metrics, diagnostic logs, and alerts. Track throughput, latency, errors, and consumer lag to ensure optimal performance.
+
 ## Security and compliance
 
 Event Hubs provides enterprise-grade security features:
@@ -205,11 +213,18 @@ Use these quickstarts to start streaming data with Event Hubs:
 - [Quotas and limits](event-hubs-quotas.md)
 - [Apache Kafka developer guide](apache-kafka-developer-guide.md)
 - [Schema Registry overview](schema-registry-overview.md)
+- [Log compaction](log-compaction.md)
+- [Frequently asked questions](event-hubs-faq.yml)
 
 ### Best practices
 
 - [Recommended Apache Kafka configurations](apache-kafka-configurations.md)
 - [Availability and consistency](event-hubs-availability-and-consistency.md)
+
+### Troubleshooting
+
+- [Troubleshooting guide](troubleshooting-guide.md)
+- [.NET exceptions](event-hubs-messaging-exceptions.md)
 
 ### Migration
 
