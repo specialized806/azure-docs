@@ -6,7 +6,7 @@ author: b-hchen
 ms.service: azure-netapp-files
 ms.custom:
 ms.topic: troubleshooting
-ms.date: 01/28/2025
+ms.date: 01/12/2026
 ms.author: anfdocs
 # Customer intent: "As a system administrator, I want to troubleshoot volume errors for Azure NetApp Files, so that I can ensure reliable performance and resolve issues effectively."
 ---
@@ -73,11 +73,17 @@ This section explains the causes of some of the common allocation failures and s
 |Out of storage or networking capacity in a region for regular volumes. <br> Error message: `There are currently insufficient resources available to create [or extend] a volume in this region. Please retry the operation. If the problem persists, contact Support.` | The error indicates that there are insufficient resources available in the region to create or resize volumes. <br> Try one of the following workarounds: <ul><li>Create the volume under a new VNet to avoid hitting networking-related resource limits.</li> <li>Retry after some time. Resources may have been freed in the cluster, region, or zone in the interim.</li></ul> |
 |Out of storage capacity when creating a volume with network features set to `Standard`. <br> Error message: `No storage available with Standard network features, for the provided VNet.` | The error indicates that there are insufficient resources available in the region to create volumes with `Standard` networking features. <br> Try one of the following workarounds: <ul><li>If `Standard` network features aren't required, create the volume with `Basic` network features.</li> <li>Try creating the volume under a new VNet to avoid hitting networking-related resource limits</li><li>Retry after some time.  Resources may have been freed in the cluster, region, or zone in the interim.</li></ul> |
 
+## Erros for Access Control List
+
+|     Error conditions    |     Resolutions    |
+|-|-|
+| Error when attempting to set NTFS ACLs through the Windows Security tab. <br> Error message: `The program cannot open the required dialogue box because it cannot determine whether the computer is joined to a domain.`  | This error indicates that the ANF server is unable to retrieve domain information from the Domain Controllers due to missing SYSVOL synchronization among the Domain Controllers. To resolve this issue, [perform a non-authoritative synchronization of DFSR-replicated SYSVOL](/troubleshoot/windows-server/group-policy/force-authoritative-non-authoritative-synchronization.md) |
+
 ## Activity log warnings for volumes
 
 |     Warnings    |     Resolutions    |
 |-|-|
-| The `Microsoft.NetApp/netAppAccounts/capacityPools/volumes/ScaleUp` operation displays a warning: <br> `Percentage Volume Consumed Size reached 90%`  | The used size of an Azure NetApp Files volume has reached 90% of the volume quota. You should [resize the volume](azure-netapp-files-resize-capacity-pools-or-volumes.md) soon. |
+| The `Microsoft.NetApp/netAppAccounts/capacityPools/volumes/ScaleUp` operation displays a warning: <br> `Error Message: ldapEnabled option is only supported with NFS protocol volume. `  | The used size of an Azure NetApp Files volume has reached 90% of the volume quota. You should [resize the volume](azure-netapp-files-resize-capacity-pools-or-volumes.md) soon. |
 
 ## Next steps
 
