@@ -266,31 +266,22 @@ For more information, see [Overview of managed disk encryption options](/azure/v
 
 [!INCLUDE [Azure Disk Encryption retirement notice](~/reusable-content/ce-skilling/azure/includes/security/azure-disk-encryption-retirement.md)]
 
-[Encryption at host](/azure/virtual-machines/disk-encryption) helps you address organizational security and compliance requirements by encrypting your VM disks (including boot and data disks) by default. By default, it uses platform-managed keys, but optionally allows you to use customer-managed keys and policies in [Azure Key Vault](https://azure.microsoft.com/services/key-vault/) when you need greater control.
+[Encryption at host](/azure/virtual-machines/disk-encryption#encryption-at-host---end-to-end-encryption-for-your-vm-data) provides end-to-end encryption for your VM data by encrypting data at the VM host level. By default, it uses platform-managed keys, but you can optionally use customer-managed keys in [Azure Key Vault](https://azure.microsoft.com/services/key-vault/) when you need greater control.
 
-Encryption at host provides server-side encryption at the VM host level using AES 256 encryption, which is FIPS 140-2 compliant. This encryption occurs without consuming VM CPU resources and provides end-to-end encryption for temporary disks, OS/data disk caches, and data flows to Azure Storage.
+Encryption at host provides server-side encryption at the VM host level using AES 256 encryption, which is FIPS 140-2 compliant. This encryption occurs without consuming VM CPU resources and provides end-to-end encryption for:
 
-The solution supports the following scenarios for IaaS VMs when they're enabled in Microsoft Azure:
+- Temporary disks
+- OS and data disk caches
+- Data flows to Azure Storage
 
-- Integration with Azure Key Vault
-- Standard tier VMs: A, D, DS, G, GS, and so forth, series IaaS VMs
-- Enabling encryption on Windows and Linux IaaS VMs
-- Disabling encryption on OS and data drives for Windows IaaS VMs
-- Disabling encryption on data drives for Linux IaaS VMs
-- Enabling encryption on IaaS VMs that are running Windows client OS
-- Enabling encryption on volumes with mount paths
-- Enabling encryption on Linux VMs that are configured with disk striping (RAID) by using [mdadm](https://en.wikipedia.org/wiki/Mdadm)
-- Enabling encryption on Linux VMs by using [LVM(Logical Volume Manager)](/windows/win32/fileio/about-volume-management) for data disks
-- Enabling encryption on Windows VMs that are configured by using storage spaces
-- All Azure public regions are supported
+Key benefits of encryption at host:
 
-The solution doesn't support the following scenarios, features, and technology in the release:
+- **No performance impact**: Encryption occurs at the host level without using VM CPU resources
+- **Broad VM support**: Supported on most VM series and sizes
+- **Customer-managed keys**: Optional integration with Azure Key Vault for key control
+- **Platform-managed keys by default**: No additional configuration required for encryption
 
-- Basic tier IaaS VMs
-- Disabling encryption on an OS drive for Linux IaaS VMs
-- IaaS VMs that are created by using the classic VM creation method
-- Integration with your on-premises Key Management Service
-- Azure Files (shared file system), Network File System (NFS), dynamic volumes, and Windows VMs that are configured with software-based RAID systems
+For more information, see [Encryption at host](/azure/virtual-machines/disk-encryption#encryption-at-host---end-to-end-encryption-for-your-vm-data).
 
 ## SQL Database Isolation
 
