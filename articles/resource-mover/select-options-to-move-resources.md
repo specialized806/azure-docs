@@ -13,9 +13,7 @@ ms.custom: mvc, engagement-fy23, UpdateFrequency.5
 
 # Options to move Azure resources
 
-In this article, you can explore Azure options to move resources across regions, subscriptions, clouds, and availability zones, and learn when to use each option.
-
-## Compare migration options
+In this article, you can explore Azure options to move resources across regions, subscriptions,  clouds, and availability zones, and learn when to use each option.
 
 | Options | When to use| Learn more |
 |----- | ---------- | ---------- |
