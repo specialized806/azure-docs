@@ -237,7 +237,7 @@ To create the infrastructure along with the CI and CD pipelines in Azure DevOps,
 
    1. For **Branch**, select the branch where you committed your changes, for example, **main** or your release branch.
 
-   1. For **Path**, select the path to use for your pipeline. This path is the default value: **deployment/{*logic-app-name*}/ADOPipelineScripts/{*infrastructure-pipeline-name*}.yml**.
+   1. For **Path**, select the path to use for your pipeline. This path is the default value: **deployment/{*logic-app-name*}/pipelines/{*infrastructure-pipeline-name*}.yml**.
 
    1. When you're ready, select **Continue**.
 
