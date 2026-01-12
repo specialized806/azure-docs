@@ -73,7 +73,7 @@ This section explains the causes of some of the common allocation failures and s
 |Out of storage or networking capacity in a region for regular volumes. <br> Error message: `There are currently insufficient resources available to create [or extend] a volume in this region. Please retry the operation. If the problem persists, contact Support.` | The error indicates that there are insufficient resources available in the region to create or resize volumes. <br> Try one of the following workarounds: <ul><li>Create the volume under a new VNet to avoid hitting networking-related resource limits.</li> <li>Retry after some time. Resources may have been freed in the cluster, region, or zone in the interim.</li></ul> |
 |Out of storage capacity when creating a volume with network features set to `Standard`. <br> Error message: `No storage available with Standard network features, for the provided VNet.` | The error indicates that there are insufficient resources available in the region to create volumes with `Standard` networking features. <br> Try one of the following workarounds: <ul><li>If `Standard` network features aren't required, create the volume with `Basic` network features.</li> <li>Try creating the volume under a new VNet to avoid hitting networking-related resource limits</li><li>Retry after some time.  Resources may have been freed in the cluster, region, or zone in the interim.</li></ul> |
 
-## Erros for Access Control List
+## Errors for Access Control List
 
 |     Error conditions    |     Resolutions    |
 |-|-|
