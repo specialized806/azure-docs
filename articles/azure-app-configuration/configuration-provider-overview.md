@@ -55,7 +55,7 @@ Dynamic Refresh (Push Mode) | GA | GA | N/A | N/A | N/A | N/A
 Dynamic Refresh (Collection Monitoring) | [GA](./reference-dotnet-provider.md#configuration-refresh) | WIP | GA | WIP | [GA](./reference-javascript-provider.md#configuration-refresh) | [GA](./reference-go-provider.md#configuration-refresh)
 JSON Content Type Handling | [GA](./reference-dotnet-provider.md#json-content-type-handling) | GA | GA | GA | [GA](./reference-javascript-provider.md#json-content-type-handling) | [GA](./reference-go-provider.md#json-content-type-handling)
 JSON with Comments | [GA](./reference-dotnet-provider.md#json-content-type-handling) | GA | GA | GA | [GA](./reference-javascript-provider.md#json-content-type-handling) | [GA](./reference-go-provider.md#json-content-type-handling)
-Configuration Setting Mapping | [GA](./reference-dotnet-provider.md#configuration-setting-mapping) | N/A | N/A | N/A | N/A | N/A
+Configuration Setting Mapping | [GA](./reference-dotnet-provider.md#configuration-setting-mapping) | N/A | N/A | GA | N/A | N/A
 Key Vault References | [GA](./reference-dotnet-provider.md#key-vault-reference) | GA | GA | GA | [GA](./reference-javascript-provider.md#key-vault-reference) | [GA](./reference-go-provider.md#key-vault-reference)
 Key Vault Secret Refresh | [GA](./reference-dotnet-provider.md#key-vault-secret-refresh) | WIP | GA | WIP | [GA](./reference-javascript-provider.md#key-vault-secret-refresh) | [GA](./reference-go-provider.md#key-vault-secret-refresh)
 Custom Key Vault Secret Resolution | [GA](./reference-dotnet-provider.md#key-vault-reference) | GA | GA | GA | [GA](./reference-javascript-provider.md#key-vault-reference) | [GA](./reference-go-provider.md#custom-secret-resolver)
@@ -72,7 +72,7 @@ Snapshots | [GA](./reference-dotnet-provider.md#snapshot) | GA | GA | WIP | [GA]
 Distributed Tracing | [GA](./reference-dotnet-provider.md#distributed-tracing) | WIP | WIP | WIP | WIP | N/A
 Health Check | [GA](./reference-dotnet-provider.md#health-check) | GA | WIP | WIP | WIP | N/A 
 Select by Tag Filters | [GA](./reference-dotnet-provider.md#load-specific-key-values-using-selectors) | WIP | GA | GA | [GA](./reference-javascript-provider.md#tag-filters) | [GA](./reference-go-provider.md#tag-filters)
-Snapshot Reference | [GA](./reference-dotnet-provider.md#snapshot-reference) | WIP | WIP | WIP | [GA](./reference-javascript-provider.md#snapshot-reference) | WIP
+Snapshot Reference | [GA](./reference-dotnet-provider.md#snapshot-reference) | WIP | WIP | GA | [GA](./reference-javascript-provider.md#snapshot-reference) | WIP
 Load from Azure Front Door | [Preview](./reference-dotnet-provider.md#connect-to-azure-front-door) | WIP | WIP | WIP | [Preview](./reference-javascript-provider.md#connect-to-azure-front-door)  | WIP
 
 
