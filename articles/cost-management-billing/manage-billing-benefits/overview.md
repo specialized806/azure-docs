@@ -63,7 +63,7 @@ Azure provides a comprehensive set of free services to help you explore, build, 
 
 Azure’s free services are designed to reduce the barrier to entry, support experimentation, and help new customers get started with cloud development safely and cost-effectively.  
 
-For more information, see: [Create Your Azure Free Account Or Pay As You Go](../../pricing/purchase-options/azure-account.md?cid=msft_learn)
+For more information, see: [Create Your Azure Free Account Or Pay As You Go](https://azure.microsoft.com/en-us/pricing/purchase-options/azure-account)
 
 ***
 
@@ -92,7 +92,7 @@ Developers can programmatically interact with billing benefits using the **Azure
 
 Azure SDKs (.NET, Python, JavaScript) and the Azure CLI (`az billingbenefits`) support reading or managing billing benefits programmatically.  
 
-See: [Azure PowerShell Billing Benefits Module](../../powershell/module/az.billingbenefits/)
+See: [Azure PowerShell Billing Benefits Module](../../../powershell/module/az.billingbenefits/)
 
 ***
 
@@ -125,7 +125,7 @@ Billing benefits help organizations:
 *   [What is Azure savings plans for compute?](../savings-plan/savings-plan-compute-overview.md)
 *   [Azure Consumption Commitment Benefit](../../marketplace/azure-consumption-commitment-benefit.md#determine-which-offers-are-eligible-for-azure-consumption-commitments-maccctc)
 *   [Azure Billing Benefits REST API](../../rest/api/billingbenefits/)
-*   [Resource Provider: Microsoft.BillingBenefits (ARM reference)](../../azure/templates/microsoft.billingbenefits/allversions)
+*   [Resource Provider: Microsoft.BillingBenefits (ARM reference)](../../../azure/templates/microsoft.billingbenefits/allversions)
 
 ***
 
