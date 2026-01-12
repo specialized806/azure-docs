@@ -1,5 +1,5 @@
 ---
-title: Complete guide to Azure Site Recovery Deployment Planner
+title: About Azure Site Recovery Deployment Planner
 ms.reviewer: v-gajeronika
 description: This guide outlines the features and capabilities of the Azure Site Recovery Deployment Planner.
 services: site-recovery
@@ -10,7 +10,7 @@ ms.date: 01/12/2026
 ms.author: v-gajeronika
 ---
 
-# Complete guide to Azure Site Recovery Deployment Planner
+# About Azure Site Recovery Deployment Planner
 
 This guide outlines the capabilities of the Azure Site Recovery Deployment Planner.
 
@@ -25,7 +25,7 @@ You need a list of the VMs to be profiled. Use the GetVMList mode of the deploym
 
 In profiling mode, the deployment planner tool connects to each of the Hyper-V and VMware hosts to collect performance data about the VMs. For more information, see Profile [Hyper-V VMs](hyper-v-deployment-planner-run.md#profile-hyper-v-vms) and [VMware VMs](site-recovery-vmware-deployment-planner-run.md#start-profiling).
 
-## Generate a report
+## Generate a cost report
 
 The tool generates a macro-enabled Microsoft Excel file (XLSM file) as the report output. It summarizes all the deployment recommendations. For more information, see generate cost reports for [Hyper-V VMs](hyper-v-deployment-planner-run.md#generate-a-cost-report) and [VMware VMs](site-recovery-vmware-deployment-planner-run.md#generate-a-cost-report).
 
