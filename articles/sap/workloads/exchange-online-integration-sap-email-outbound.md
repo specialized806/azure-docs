@@ -52,12 +52,12 @@ This guide is updated when more SAP-supported options become available.
 - DNS resolution for `smtp.office365.com`. Don't use an IP address for the Microsoft 365 server, as IP Addresses aren't supported.
 - *Optional*
   - Access to the SAP system for certificate export if you want to use the JWT bearer authorization grant.
-       > [!NOTE]
-> In the SAP BTP ABAP Environment, the JWT bearer authorization grant is the only option available. Refer to the respective [section](#sap-btp-abap-enviornment) for more details.
+      > [!NOTE]
+      > In the SAP BTP ABAP Environment, the JWT bearer authorization grant is the only option available. Refer to the respective [section](#sap-btp-abap-enviornment) for more details.
   - PowerShell 7.x to run the [setup script](https://github.com/microsoft/smtpoauth2/tree/main/ps) for automating the configuration in Entra ID and Exchange Online. You can download the latest Microsoft PowerShell version from https://aka.ms/powershell-release?tag=stable
   - Java 11 runtime to test the configuration in Entra ID and Exchange Online with this [client app](https://github.com/microsoft/smtpoauth2/tree/main/java).
-    > [!NOTE]
-> You can use [this setup script](https://github.com/microsoft/smtpoauth2/tree/main/ps) to automate the configuration steps in Entra ID and Exchange Online for option 1.
+      > [!NOTE]
+      > You can use [this setup script](https://github.com/microsoft/smtpoauth2/tree/main/ps) to automate the configuration steps in Entra ID and Exchange Online for option 1.
 
 ### Register an application representing the SAP system in Entra ID 
 
