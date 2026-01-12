@@ -55,7 +55,7 @@ Integration of IoT Hub with Azure Device Registry and certificate management is 
 
 ## Get started with ADR and certificate management
 
-To use these preview features, you must create a new IoT Hub instance with ADR integration. There's no upgrade path for existing IoT Hubs. If you're currently using IoT Hub, your existing hubs continue to work without interruption. To try the new features, you'll need to:
+To use these preview features, you must create a new IoT Hub instance with ADR integration. There's currently no upgrade path for existing IoT Hubs. If you're using IoT Hub now, your existing hubs continue to work without interruption. To try the new features, you'll need to:
 
 1. Create a new ADR namespace or link to an existing one.
 1. Create a new IoT Hub and connect it to your ADR namespace.
