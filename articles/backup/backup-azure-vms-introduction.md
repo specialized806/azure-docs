@@ -2,7 +2,7 @@
 title: About Azure VM backup
 description: In this article, learn how the Azure Backup service backs up Azure Virtual machines, and how to follow best practices.
 ms.topic: overview
-ms.date: 01/28/2026
+ms.date: 01/08/2026
 author: AbhishekMallick-MS
 ms.author: v-mallicka
 # Customer intent: "As an IT admin managing Azure VMs, I want to implement effective backup strategies using Azure Backup, so that I can ensure data protection and quick recovery for my virtual machines while minimizing downtime and costs."
@@ -146,15 +146,6 @@ Data disk 1 | 32 TB| 30 GB
 Data disk 2 | 32 TB | 0 GB
 
 The actual size of the VM in this case is 17 GB + 30 GB + 0 GB = 47 GB. This protected-instance size (47 GB) becomes the basis for the monthly bill. As the amount of data in the VM grows, the protected-instance size used for billing changes to match.
-
-## Confidential VM backup (preview)
-
-Azure Backup supports [Confidential Virtual Machines (CVMs)](/azure/confidential-computing/confidential-vm-overview), that provide secure, encrypted backup and restore for sensitive workloads. This capability uses Azure Disk Encryption Sets (DES) with Platform Managed Keys (PMKs) or Customer Managed Keys (CMKs) to maintain data confidentiality throughout the backup lifecycle. Confidential VMs provide strong security by creating a hardware-enforced boundary between your application and the virtualization stack.
-
->[!Note]
->Azure Backup support for Confidential VMs (DC Series v6) is in public preview, available only in select regions, and requires subscription-level enablement. This feature isn’t recommended for production workloads.
-
-Learn about the [supported scenarios for backing up Confidential VMs](backup-support-matrix-iaas.md#support-for-confidential-vm-backup-preview).
 
 ## Next steps
 

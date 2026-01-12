@@ -1,7 +1,7 @@
 ---
 title: Azure Backup - Configure backup of Confidential VM using Azure Backup (preview) 
 description: Learn about backing up Confidential VM with PMK or CMK using Azure Backup.
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 01/28/2026
 ms.custom: references_regions
 ms.service: azure-backup
@@ -10,6 +10,11 @@ ms.author: v-mallicka
 ---
 
 # Back up Confidential VM using Azure Backup (preview)
+
+Azure Backup supports [Confidential Virtual Machines (CVMs)](/azure/confidential-computing/confidential-vm-overview), that provide secure, encrypted backup and restore for sensitive workloads. This capability uses Azure Disk Encryption Sets (DES) with Platform Managed Keys (PMKs) or Customer Managed Keys (CMKs) to maintain data confidentiality throughout the backup lifecycle. Confidential VMs provide strong security by creating a hardware-enforced boundary between your application and the virtualization stack.
+
+>[!Note]
+>Azure Backup support for Confidential VMs (DC Series v6) is in public preview, available only in select regions, and requires subscription-level enablement. This feature isn’t recommended for production workloads.
 
 This article describes how to configure and back up Confidential VM (CVM) with Platform or Customer Managed Key (PMK or CMK).
 
