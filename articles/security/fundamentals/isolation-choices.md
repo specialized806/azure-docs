@@ -17,7 +17,7 @@ Azure allows you to run applications and virtual machines (VMs) on shared physic
 
 This article outlines how Azure provides isolation against both malicious and non-malicious users and serves as a guide for architecting cloud solutions by offering various isolation choices to architects.
 
-## Tenant Level Isolation
+## Tenant level isolation
 
 One of the primary benefits of cloud computing is concept of a shared, common infrastructure across numerous customers simultaneously, leading to economies of scale. This concept is called multi-tenancy. Microsoft works continuously to ensure that the multi-tenant architecture of Microsoft Cloud Azure supports security, confidentiality, privacy, integrity, and availability standards.
 
@@ -85,7 +85,7 @@ Some other capabilities for Microsoft Entra ID include:
 
 - [Microsoft Entra External ID](../../active-directory/external-identities/external-identities-overview.md) provides a highly available global-identity management service for consumer-facing applications that scales to hundreds of millions of identities. It can be integrated across mobile and web platforms. Your consumers can sign in to all your applications through customizable experiences by using their existing social accounts or by creating credentials.
 
-### Isolation from Microsoft Administrators & Data Deletion
+### Isolation from Microsoft administrators and data deletion
 
 Microsoft takes strong measures to protect your data from inappropriate access or use by unauthorized persons. These operational processes and controls are backed by the [Online Services Terms](https://aka.ms/Online-Services-Terms), which offer contractual commitments that govern access to your data.
 
@@ -98,11 +98,11 @@ If you delete any data, Microsoft Azure deletes the data, including any cached o
 
 If a disk drive used for storage suffers a hardware failure, it's securely [erased or destroyed](https://microsoft.com/trustcenter/privacy/you-own-your-data) before Microsoft returns it to the manufacturer for replacement or repair. The data on the drive is overwritten to ensure that the data can't be recovered by any means.
 
-## Compute Isolation
+## Compute isolation
 
 Microsoft Azure provides various cloud-based computing services that include a wide selection of compute instances & services that can scale up and down automatically to meet the needs of your application or enterprise. These compute instance and service offer isolation at multiple levels to secure data without sacrificing the flexibility in configuration that customers demand.
 
-### Isolated Virtual Machine Sizes
+### Isolated virtual machine sizes
 
 Azure Compute offers virtual machine sizes that are Isolated to a specific hardware type and dedicated to a single customer. The Isolated sizes live and operate on specific hardware generation and will be deprecated when the hardware generation is retired or new hardware generation is available.
 
@@ -166,11 +166,11 @@ The Azure platform uses a virtualized environment. User instances operate as sta
 
 The Azure hypervisor acts like a micro-kernel and passes all hardware access requests from guest virtual machines to the host for processing by using a shared-memory interface called VM Bus. This prevents users from obtaining raw read/write/execute access to the system and mitigates the risk of sharing system resources.
 
-### Advanced VM placement algorithm & protection from side channel attacks
+### Advanced VM placement algorithm and protection from side channel attacks
 
 Any cross-VM attack involves two steps: placing an adversary-controlled VM on the same host as one of the victim VMs, and then breaching the isolation boundary to either steal sensitive victim information or affect its performance for greed or vandalism. Microsoft Azure provides protection at both steps by using an advanced VM placement algorithm and protection from all known side channel attacks including noisy neighbor VMs.
 
-### The Azure Fabric Controller
+### The Azure fabric controller
 
 The Azure Fabric Controller is responsible for allocating infrastructure resources to tenant workloads, and it manages unidirectional communications from the host to virtual machines. The VM placing algorithm of the Azure fabric controller is highly sophisticated and nearly impossible to predict as physical host level.
 
@@ -192,7 +192,7 @@ Isolation extends from the Root VM from Guest VMs, and the Guest VMs from one an
 
 The hypervisor and the host OS provide network packet - filters to help assure that untrusted virtual machines cannot generate spoofed traffic or receive traffic not addressed to them, direct traffic to protected infrastructure endpoints, or send/receive inappropriate broadcast traffic.
 
-### Additional Rules Configured by Fabric Controller Agent to Isolate VM
+### Additional rules configured by fabric controller agent to isolate VM
 
 By default, all traffic is blocked when a virtual machine is created, and then the fabric controller agent configures the packet filter to add rules and exceptions to allow authorized traffic.
 
@@ -201,11 +201,11 @@ There are two categories of rules that are programmed:
 - **Machine configuration or infrastructure rules:** By default, all communication is blocked. There are exceptions to allow a virtual machine to send and receive DHCP and DNS traffic. Virtual machines can also send traffic to the “public” internet and send traffic to other virtual machines within the same Azure Virtual Network and the OS activation server. The virtual machines’ list of allowed outgoing destinations doesn't include Azure router subnets, Azure management, and other Microsoft properties.
 - **Role configuration file:** This defines the inbound Access Control Lists (ACLs) based on the tenant's service model.
 
-### VLAN Isolation
+### VLAN isolation
 
 There are three VLANs in each cluster:
 
-![VLAN Isolation](./media/isolation-choices/azure-isolation-fig8.jpg)
+![VLAN isolation](./media/isolation-choices/azure-isolation-fig8.jpg)
 
 - The main VLAN – interconnects untrusted customer nodes
 - The FC VLAN – contains trusted FCs and supporting systems
@@ -213,15 +213,15 @@ There are three VLANs in each cluster:
 
 Communication is permitted from the FC VLAN to the main VLAN, but cannot be initiated from the main VLAN to the FC VLAN. Communication is also blocked from the main VLAN to the device VLAN. This assures that even if a node running customer code is compromised, it cannot attack nodes on either the FC or device VLANs.
 
-## Storage Isolation
+## Storage isolation
 
-### Logical Isolation Between Compute and Storage
+### Logical isolation between compute and storage
 
 As part of its fundamental design, Microsoft Azure separates VM-based computation from storage. This separation enables computation and storage to scale independently, making it easier to provide multi-tenancy and isolation.
 
 Therefore, Azure Storage runs on separate hardware with no network connectivity to Azure Compute except logically. This means that when a virtual disk is created, disk space isn't allocated for its entire capacity. Instead, a table is created that maps addresses on the virtual disk to areas on the physical disk and that table is initially empty. **The first time a customer writes data on the virtual disk, space on the physical disk is allocated, and a pointer to it's placed in the table.**
 
-### Isolation Using Storage Access control
+### Isolation using storage access control
 
 **Access Control in Azure Storage** has a simple access control model. Each Azure subscription can create one or more Storage Accounts. Each Storage Account has a single secret key that's used to control access to all data in that Storage Account.
 
@@ -231,7 +231,7 @@ Therefore, Azure Storage runs on separate hardware with no network connectivity 
 
 The SAS means that we can grant a client limited permissions, to objects in our storage account for a specified period of time and with a specified set of permissions. We can grant these limited permissions without having to share your account access keys.
 
-### IP Level Storage Isolation
+### IP level storage isolation
 
 You can establish firewalls and define an IP address range for your trusted clients. With an IP address range, only clients that have an IP address within the defined range can connect to [Azure Storage](../../storage/blobs/security-recommendations.md).
 
@@ -244,7 +244,7 @@ Azure offers the following types of Encryption to protect data:
 - Encryption in transit
 - Encryption at rest
 
-#### Encryption in Transit
+#### Encryption in transit
 
 Encryption in transit is a mechanism of protecting data when it's transmitted across networks. With Azure Storage, you can secure data using:
 
@@ -252,7 +252,7 @@ Encryption in transit is a mechanism of protecting data when it's transmitted ac
 - [Wire encryption](../../storage/blobs/security-recommendations.md), such as SMB 3.0 encryption for Azure File shares.
 - [Client-side encryption](../../storage/blobs/security-recommendations.md), to encrypt the data before it's transferred into storage and to decrypt the data after it's transferred out of storage.
 
-#### Encryption at Rest
+#### Encryption at rest
 
 For many organizations, data encryption at rest is a mandatory step towards data privacy, compliance, and data sovereignty. There are three Azure features that provide encryption of data that's "at rest":
 
@@ -283,11 +283,11 @@ Key benefits of encryption at host:
 
 For more information, see [Encryption at host](/azure/virtual-machines/disk-encryption#encryption-at-host---end-to-end-encryption-for-your-vm-data).
 
-## SQL Database Isolation
+## SQL database isolation
 
 SQL Database is a relational database service in the Microsoft cloud based on the market-leading Microsoft SQL Server engine and capable of handling mission-critical workloads. SQL Database offers predictable data isolation at account level, geography / region based and based on networking— all with near-zero administration.
 
-### SQL Database Application Model
+### SQL database application model
 
 [Microsoft SQL Database](/azure/azure-sql/database/single-database-create-quickstart) is a cloud-based relational database service built on SQL Server technologies. It provides a highly available, scalable, multi-tenant database service hosted by Microsoft in cloud.
 
@@ -313,7 +313,7 @@ Billing and usage-related information for databases from the same server aren't 
 
 From a customer perspective, a server is created in a geo-graphical region while the actual creation of the server happens in one of the clusters in the region.
 
-### Isolation through Network Topology
+### Isolation through network topology
 
 When a server is created and its DNS name is registered, the DNS name points to the so called “Gateway VIP” address in the specific data center where the server was placed.
 
@@ -330,11 +330,11 @@ The tier behind the gateways is called “back-end”. This is where all the dat
 
 Generally, the back-end system doesn't communicate outbound to other systems as a security precaution. This is reserved to the systems in the front-end (gateway) tier. The gateway tier machines have limited privileges on the back-end machines to minimize the attack surface as a defense-in-depth mechanism.
 
-### Isolation by Machine Function and Access
+### Isolation by machine function and access
 
 SQL Database is composed of services running on different machine functions. SQL Database is divided into “backend” Cloud Database and “front-end” (Gateway/Management) environments, with the general principle of traffic only going into back-end and not out. The front-end environment can communicate to the outside world of other services and in general, has only limited permissions in the back-end (enough to call the entry points it needs to invoke).
 
-## Networking Isolation
+## Networking isolation
 
 Azure deployment has multiple layers of network isolation. The following diagram shows various layers of network isolation Azure provides to customers. These layers are both native in the Azure platform itself and customer-defined features. Inbound from the Internet, Azure DDoS provides isolation against large-scale attacks against Azure. The next layer of isolation is customer-defined public IP addresses (endpoints), which are used to determine which traffic can pass through the cloud service to the virtual network. Native Azure virtual network isolation ensures complete isolation from all other networks, and that traffic only flows through user configured paths and methods. These paths and methods are the next layer, where NSGs, UDR, and network virtual appliances can be used to create isolation boundaries to protect the application deployments in the protected network.
 
@@ -344,7 +344,7 @@ Azure deployment has multiple layers of network isolation. The following diagram
 
 [Subnet](../../virtual-network/virtual-networks-overview.md) offers an additional layer of isolation with in virtual network based on IP range. IP addresses in the virtual network, you can divide a virtual network into multiple subnets for organization and security. VMs and PaaS role instances deployed to subnets (same or different) within a VNet can communicate with each other without any extra configuration. You can also configure [network security groups (NSGs)](../../virtual-network/network-security-groups-overview.md) to allow or deny network traffic to a VM instance based on security rules. NSGs can be associated with either subnets or individual network interfaces attached to VMs. When an NSG is associated with a subnet, the security rules apply to all the VM instances in that subnet.
 
-## Next Steps
+## Next steps
 
 - Learn about [network security groups](/azure/virtual-network/network-security-groups-overview). Network security groups filter network traffic between Azure resources in a virtual network, allowing you to restrict traffic to subnets or virtual machines based on source, destination, port, and protocol using security rules.
 

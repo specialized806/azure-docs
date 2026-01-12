@@ -86,14 +86,14 @@ The spectrum of options ranges from enabling "lift and shift" scenarios of exist
 
 For Platform as a Service (PaaS), Azure offers multiple [container-based confidential computing options](/azure/confidential-computing/choose-confidential-containers-offerings), including integrations with [Azure Kubernetes Service (AKS)](/azure/confidential-computing/confidential-nodes-aks-overview).
 
-#### Antimalware & Antivirus
+#### Antimalware and antivirus
 
 With Azure IaaS, you can use antimalware software from security vendors such as Microsoft, Symantec, Trend Micro, McAfee, and Kaspersky to protect your virtual machines from malicious files, adware, and other threats. [Microsoft Antimalware](antimalware.md) for Azure Virtual Machines is a protection capability that helps identify and remove viruses, spyware, and other malicious software. Microsoft Antimalware provides configurable alerts when known malicious or unwanted software attempts to install itself or run on your Azure systems. Microsoft Antimalware can also be deployed using Microsoft Defender for Cloud.
 
 > [!NOTE]
 > For modern protection, consider [Microsoft Defender for Servers](/azure/defender-for-cloud/plan-defender-for-servers) which provides advanced threat protection including endpoint detection and response (EDR) through integration with Microsoft Defender for Endpoint.
 
-#### Hardware Security Module
+#### Hardware security module
 
 Encryption and authentication don't improve security unless the keys themselves are protected. You can simplify the management and security of your critical secrets and keys by storing them in [Azure Key Vault](/azure/key-vault/general/overview). Key Vault provides the option to store your keys in hardware Security modules (HSMs) certified to [FIPS 140-3 Level 3](/azure/key-vault/keys/about-keys#compliance) standards. Your SQL Server encryption keys for backup or [transparent data encryption](/sql/relational-databases/security/encryption/transparent-data-encryption) can all be stored in Key Vault with any keys or secrets from your applications. Permissions and access to these protected items are managed through [Microsoft Entra ID](/entra/identity/).
 
@@ -117,7 +117,7 @@ If you're running SQL Server with on-premises machines, there are steps you can 
 
 For a comprehensive list of database security best practices, see [Azure database security checklist](database-security-checklist.md).
 
-#### VM Disk Encryption
+#### VM disk encryption
 
 [!INCLUDE [Azure Disk Encryption retirement notice](~/reusable-content/ce-skilling/azure/includes/security/azure-disk-encryption-retirement.md)]
 
@@ -133,7 +133,7 @@ For more information, see [Overview of managed disk encryption options](/azure/v
 
 Virtual machines need network connectivity. To support that requirement, Azure requires virtual machines to be connected to an Azure Virtual Network. An Azure Virtual Network is a logical construct built on top of the physical Azure network fabric. Each logical [Azure Virtual Network](/azure/virtual-network/virtual-networks-overview) is isolated from all other Azure Virtual Networks. This isolation helps ensure that network traffic in your deployments isn't accessible to other Microsoft Azure customers.
 
-#### Patch Updates
+#### Patch updates
 
 Patch Updates provide the basis for finding and fixing potential problems and simplify the software update management process, both by reducing the number of software updates you must deploy in your enterprise and by increasing your ability to monitor compliance.
 
@@ -145,11 +145,11 @@ Patch Updates provide the basis for finding and fixing potential problems and si
 
 Application security focuses on protecting your applications from threats throughout their lifecycle—from development to deployment and runtime. Azure provides comprehensive tools for secure development, testing, and protection of applications. For secure application development guidance, see [Develop secure applications on Azure](/azure/security/develop/secure-develop). For PaaS-specific security best practices, see [Securing PaaS deployments](paas-deployments.md). For IaaS deployment security, see [Security best practices for IaaS workloads in Azure](iaas.md).
 
-#### Penetration Testing
+#### Penetration testing
 
 We don't perform [penetration testing](pen-testing.md) of your application for you, but we do understand that you want and need to perform testing on your own applications. Notification of Microsoft of pen testing activities is no longer required customers must still comply with the [Microsoft Cloud Penetration Testing Rules of Engagement](https://www.microsoft.com/msrc/pentest-rules-of-engagement).
 
-#### Web Application firewall
+#### Web application firewall
 
 The Web Application Firewall (WAF) in [Azure Application Gateway](/azure/web-application-firewall/ag/ag-overview) provides protection for web applications against common web-based attacks such as SQL injection, cross-site scripting, and session hijacking. It is preconfigured to defend against the top 10 vulnerabilities identified by the [Open Web Application Security Project (OWASP)](https://owasp.org/www-project-top-ten/).
 
@@ -157,7 +157,7 @@ The Web Application Firewall (WAF) in [Azure Application Gateway](/azure/web-app
 
 [App Service Authentication / Authorization](/azure/app-service/overview-authentication-authorization) is a feature that provides a way for your application to sign in users so that you don't have to change code on the app backend. It provides an easy way to protect your application and work with per-user data.
 
-#### Layered Security Architecture
+#### Layered security architecture
 
 Since [App Service Environments](/azure/app-service/environment/app-service-app-service-environment-intro) provide an isolated runtime environment deployed into an [Azure Virtual Network](/azure/virtual-network/virtual-networks-overview), developers can create a layered security architecture providing differing levels of network access for each application tier. It's common to hide API back-ends from general Internet access, and only permit APIs to be called by upstream web apps. [Network Security groups (NSGs)](/azure/virtual-network/virtual-network-vnet-plan-design-arm) can be used on Azure Virtual Network subnets containing App Service Environments to restrict public access to API applications.
 
@@ -174,10 +174,10 @@ Storage security is essential for protecting your data at rest and in transit. A
 #### Azure role-based access control (Azure RBAC)
 You can secure your storage account with [Azure role-based access control (Azure RBAC)](../../role-based-access-control/overview.md). Restricting access based on the [need to know](https://en.wikipedia.org/wiki/Need_to_know) and [least privilege](https://en.wikipedia.org/wiki/Principle_of_least_privilege) security principles is imperative for organizations that want to enforce Security policies for data access. These access rights are granted by assigning the appropriate Azure role to groups and applications at a certain scope. You can use [Azure built-in roles](../../role-based-access-control/built-in-roles.md), such as Storage Account Contributor, to assign privileges to users. Access to the storage keys for a storage account using the [Azure Resource Manager](../../storage/blobs/security-recommendations.md#data-protection) model can be controlled through Azure RBAC.
 
-#### Shared Access Signature
+#### Shared access signature
 A [shared access signature (SAS)](../../storage/common/storage-sas-overview.md) provides delegated access to resources in your storage account. The SAS means that you can grant a client limited permissions to objects in your storage account for a specified period and with a specified set of permissions. You can grant these limited permissions without having to share your account access keys.
 
-#### Encryption in Transit
+#### Encryption in transit
 Encryption in transit is a mechanism of protecting data when it's transmitted across networks. With Azure Storage, you can secure data using:
 
 - [Transport-level encryption](../../storage/blobs/security-recommendations.md), such as HTTPS when you transfer data into or out of Azure Storage.
@@ -195,7 +195,7 @@ For many organizations, data encryption at rest is a mandatory step towards data
 
 - [Encryption at host](/azure/virtual-machines/disk-encryption) provides end-to-end encryption for the OS disks and data disks used by an IaaS virtual machine by default.
 
-#### Storage Analytics
+#### Storage analytics
 
 [Azure Storage Analytics](/rest/api/storageservices/fileservices/storage-analytics) performs logging and provides metrics data for a storage account. You can use this data to trace requests, analyze usage trends, and diagnose issues with your storage account. Storage Analytics logs detailed information about successful and failed requests to a storage service. This information can be used to monitor individual requests and to diagnose issues with a storage service. Requests are logged on a best-effort basis. The following types of authenticated requests are logged:
 
@@ -204,7 +204,7 @@ For many organizations, data encryption at rest is a mandatory step towards data
 - Requests using a Shared Access Signature (SAS), including failed and successful requests.
 - Requests to analytics data.
 
-#### Enabling Browser-Based Clients Using CORS
+#### Enabling browser-based clients using CORS
 
 [Cross-Origin Resource Sharing (CORS)](/rest/api/storageservices/fileservices/cross-origin-resource-sharing--cors--support-for-the-azure-storage-services) is a mechanism that allows domains to give each other permission for accessing each other's resources. The User Agent sends extra headers to ensure that the JavaScript code loaded from a certain domain is allowed to access resources located at another domain. The latter domain then replies with extra headers allowing or denying the original domain access to its resources.
 
@@ -214,11 +214,11 @@ Azure storage services now support CORS so that once you set the CORS rules for 
 
 Network security controls how traffic flows to and from your Azure resources. Azure provides a comprehensive set of network security services, from basic firewalling to advanced threat protection and global load balancing. For comprehensive network security information, see [Azure network security overview](network-overview.md). For network security best practices, see [Azure network security best practices](network-best-practices.md).
 
-#### Network Layer Controls
+#### Network layer controls
 
 Network access control is the act of limiting connectivity to and from specific devices or subnets and represents the core of network security. The goal of network access control is to make sure that your virtual machines and services are accessible to only users and devices to which you want them accessible.
 
-##### Network Security Groups
+##### Network security groups
 
 A [Network Security Group (NSG)](/azure/virtual-network/network-security-groups-overview) is a basic stateful packet filtering firewall and it enables you to control access based on a five-tuple. NSGs don't provide application layer inspection or authenticated access controls. They can be used to control traffic moving between subnets within an Azure Virtual Network and traffic between an Azure Virtual Network and the Internet.
 
@@ -250,7 +250,7 @@ Azure DDoS Protection offers two tiers: DDoS Network Protection and DDoS IP Prot
 
 * **DDoS IP Protection** - Follows a pay-per-protected IP model. It includes the same core engineering features as DDoS Network Protection but does not offer the additional services like DDoS rapid response support, cost protection, and WAF discounts. 
 
-##### Route Control and Forced Tunneling
+##### Route control and forced tunneling
 
 The ability to control routing behavior on your Azure Virtual Networks is a critical network security and access control capability. For example, if you want to make sure that all traffic to and from your Azure Virtual Network goes through that virtual security appliance, you need to be able to control and customize routing behavior. You can do this by configuring User-Defined Routes in Azure.
 
@@ -260,7 +260,7 @@ This is different from being able to accept incoming connections and then respon
 
 Forced tunneling is commonly used to force outbound traffic to the Internet to go through on-premises security proxies and firewalls.
 
-##### Virtual Network Security Appliances
+##### Virtual network security appliances
 
 While Network Security Groups, User-Defined Routes, and forced tunneling provide you with a level of security at the network and transport layers of the [OSI model](https://en.wikipedia.org/wiki/OSI_model), there might be times when you want to enable security at higher levels of the stack. You can access these enhanced network security features by using an Azure partner network security appliance solution. You can find the most current Azure partner network security solutions by visiting the [Azure Marketplace](https://azuremarketplace.microsoft.com/marketplace/) and searching for **security** and **network security**.
 
@@ -302,11 +302,11 @@ In Azure Virtual Network Manager, [network groups](/azure/virtual-network-manage
 
 You can also create your own private link service in your virtual network. [Azure Private Link service](/azure/private-link/private-link-service-overview) is the reference to your own service that is powered by Azure Private Link. Your service that is running behind Azure Standard Load Balancer can be enabled for Private Link access so that consumers to your service can access it privately from their own virtual networks. Your customers can create a private endpoint inside their virtual network and map it to this service. Exposing your service to the public internet is no longer necessary to render services on Azure. 
 
-#### VPN Gateway
+#### VPN gateway
 
 To send network traffic between your Azure Virtual Network and your on-premises site, you must create a VPN gateway for your Azure Virtual Network. A [VPN gateway](/azure/vpn-gateway/vpn-gateway-about-vpngateways) is a type of virtual network gateway that sends encrypted traffic across a public connection. You can also use VPN gateways to send traffic between Azure Virtual Networks over the Azure network fabric.
 
-#### Express Route
+#### ExpressRoute
 
 Microsoft Azure [ExpressRoute](/azure/expressroute/expressroute-introduction) is a dedicated WAN link that lets you extend your on-premises networks into the Microsoft cloud over a dedicated private connection facilitated by a connectivity provider.
 
@@ -316,7 +316,7 @@ With ExpressRoute, you can establish connections to Microsoft cloud services, su
 
 ExpressRoute connections don't go over the public Internet and thus can be considered more secure than VPN-based solutions. This allows ExpressRoute connections to offer more reliability, faster speeds, lower latencies, and higher security than typical connections over the Internet.
 
-#### Application Gateway
+#### Application gateway
 
 Microsoft [Azure Application Gateway](/azure/application-gateway/overview) provides an [Application Delivery Controller (ADC)](https://en.wikipedia.org/wiki/Application_delivery_controller) as a service, offering various layer 7 load balancing capabilities for your application.
 
@@ -328,7 +328,7 @@ It provides failover, performance-routing HTTP requests between different server
 
 Application provides many Application Delivery Controller (ADC) features including HTTP load balancing, cookie-based session affinity, [TLS offload](/azure/web-application-firewall/ag/tutorial-restrict-web-traffic-powershell), custom health probes, support for multi-site, and many others.
 
-#### Web Application Firewall
+#### Web application firewall
 
 Web Application Firewall is a feature of [Azure Application Gateway](/azure/application-gateway/overview) that provides protection to web applications that use application gateway for standard Application Delivery Control (ADC) functions. Web application firewall does this by protecting them against most of the OWASP top 10 common web vulnerabilities.
 
@@ -360,7 +360,7 @@ A centralized web application firewall (WAF) simplifies security management and 
 
 Front Door combines content delivery, application acceleration, and security into a single service.
 
-#### Traffic Manager
+#### Traffic manager
 
 [Microsoft Azure Traffic Manager](/azure/traffic-manager/traffic-manager-overview) allows you to control the distribution of user traffic for service endpoints in different datacenters. Service endpoints supported by Traffic Manager include Azure VMs, Web Apps, and Cloud services. You can also use Traffic Manager with external, non-Azure endpoints.
 
@@ -433,7 +433,7 @@ In addition, Defender for Cloud helps with security operations by providing you 
 For comprehensive threat detection capabilities across Azure, see [Azure threat protection](threat-detection.md).
 
 
-### VM Disk Encryption
+### VM disk encryption
 
 [Encryption at host](/azure/virtual-machines/disk-encryption) helps you encrypt your IaaS virtual machine disks by default. It provides server-side encryption at the VM host level using AES 256 encryption, which is FIPS 140-2 compliant. This encryption occurs without consuming VM CPU resources and provides end-to-end encryption for temporary disks, OS/data disk caches, and data flows to Azure Storage. By default, it uses platform-managed keys with no additional configuration required. Optionally, the solution can be configured with customer-managed keys stored in Azure Key Vault or Azure Key Vault Managed HSM when you need to control and manage your own disk-encryption keys. The solution ensures that all data on the virtual machine disks are encrypted at rest in your Azure storage. For more information on key management options, see [Key management in Azure](key-management.md).
 
@@ -443,7 +443,7 @@ For comprehensive threat detection capabilities across Azure, see [Azure threat 
 
 Azure Resource Manager template-based deployments help improve the security of solutions deployed in Azure because standard security control settings and can be integrated into standardized template-based deployments. Templates reduce the risk of security configuration errors that might take place during manual deployments.
 
-### Application Insights
+### Application insights
 
 [Application Insights](/azure/azure-monitor/app/app-insights-overview) is a flexible Application Performance Management (APM) service designed for web developers. It enables you to monitor your live web applications and automatically detect performance issues. With powerful analytics tools, you can diagnose problems and gain insights into user interactions with your apps. Application Insights monitors your application continuously, from development through testing and into production.
 
@@ -480,7 +480,7 @@ Identity is the primary security perimeter in cloud computing. Protecting identi
 - **Privileged Identity Management (PIM)**: Provide just-in-time privileged access to Azure resources
 - **Identity Governance**: Manage identity lifecycle and access rights
 
-### Role-Based Access Control (RBAC)
+### Role-based access control (RBAC)
 
 Azure role-based access control (RBAC) helps you manage who has access to Azure resources, what they can do with those resources, and what areas they have access to. RBAC provides fine-grained access management for Azure resources, enabling you to grant users only the rights they need to perform their jobs.
 
@@ -488,7 +488,7 @@ Azure role-based access control (RBAC) helps you manage who has access to Azure 
 
 [Microsoft Entra Privileged Identity Management (PIM)](/entra/id-governance/privileged-identity-management/) enables you to manage, control, and monitor access to important resources in your organization. PIM provides time-based and approval-based role activation to mitigate the risks of excessive, unnecessary, or misused access permissions.
 
-### Managed Identities for Azure Resources
+### Managed identities for Azure resources
 
 [Managed identities](/entra/identity/managed-identities-azure-resources/overview) for Azure resources provides Azure services with an automatically managed identity in Microsoft Entra ID. You can use this identity to authenticate to any service that supports Microsoft Entra authentication, without having credentials in your code.
 
@@ -498,7 +498,7 @@ Patch Updates provide the basis for finding and fixing potential problems and si
 
 [Defender for Cloud](/azure/defender-for-cloud/defender-for-cloud-introduction) helps you prevent, detect, and respond to threats, and provides you increased visibility into, and control over, the security of your Azure resources. It provides integrated Security monitoring and policy management across your Azure subscriptions, helps detect threats that might otherwise go unnoticed, and works with a broad ecosystem of security solutions.
 
-### Secure Identity
+### Secure identity
 Microsoft uses multiple security practices and technologies across its products and services to manage identity and access.
 
 - [Multifactor authentication](https://www.microsoft.com/security/business/identity-access/microsoft-entra-mfa-multi-factor-authentication) requires users to use multiple methods for access, on-premises and in the cloud. It provides strong authentication with a range of easy verification options, while accommodating users with a simple sign-in process.
@@ -513,7 +513,7 @@ Microsoft uses multiple security practices and technologies across its products 
 
 - [Integrated identity management (hybrid identity)](../../active-directory/hybrid/plan-hybrid-identity-design-considerations-overview.md) enables you to maintain control of users’ access across internal datacenters and cloud platforms, creating a single user identity for authentication and authorization to all resources.
 
-### Secure Apps and data
+### Secure apps and data
 [Microsoft Entra ID](https://azure.microsoft.com/services/active-directory/), a comprehensive identity, and access management cloud solution, helps secure access to data in applications on site and in the cloud, and simplifies the management of users and groups. It combines core directory services, advanced identity governance, security, and application access management, and makes it easy for developers to build policy-based identity management into their apps. To enhance your Microsoft Entra ID, you can add paid capabilities using the Microsoft Entra Basic, Premium P1, and Premium P2 editions.
 
 | Free / Common Features     | Basic Features    |Premium P1 Features |Premium P2 Features | Microsoft Entra join – Windows 10 only related features|
@@ -534,7 +534,7 @@ Microsoft uses multiple security practices and technologies across its products 
 
 - [Microsoft Entra application proxy](../../active-directory/app-proxy/application-proxy.md) provides SSO and secure remote access for web applications hosted on-premises.
 
-## Next Steps
+## Next steps
 
 - Understand your [shared responsibility in the cloud](shared-responsibility.md).
 

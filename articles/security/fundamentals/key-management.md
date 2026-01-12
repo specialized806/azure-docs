@@ -69,7 +69,7 @@ If you are an Azure Dedicated HSM user, see [Migrate from Azure Dedicated HSM to
 
 The Azure Key Vault Standard and Premium tiers are billed on a transactional basis, with an extra monthly per-key charge for premium hardware-backed keys. Azure Key Vault Managed HSM, Azure Cloud HSM, and Azure Payment HSM don't charge on a transactional basis; instead they are always-in-use devices that are billed at a fixed hourly rate. For detailed pricing information, see [Key Vault pricing](https://azure.microsoft.com/pricing/details/key-vault), [Cloud HSM pricing](https://azure.microsoft.com/pricing/details/azure-cloud-hsm/), and [Payment HSM pricing](https://azure.microsoft.com/pricing/details/payment-hsm).
 
-## Service Limits
+## Service limits
 
 Azure Key Vault Managed HSM, Azure Cloud HSM, and Azure Payment HSM offer dedicated capacity. Azure Key Vault Standard and Premium are multitenant offerings and have throttling limits. For service limits, see [Key Vault service limits](/azure/key-vault/general/service-limits) and [Cloud HSM service limits](/azure/cloud-hsm/service-limits). 
 
