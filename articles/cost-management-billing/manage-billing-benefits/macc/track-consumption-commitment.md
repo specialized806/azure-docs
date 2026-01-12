@@ -307,4 +307,4 @@ If you need help, [contact support](https://portal.azure.com/?#blade/Microsoft_A
 ## Next steps
 
 - [Determine which offers are eligible for Azure consumption commitments (MACC/CTC)](../../../marketplace/azure-consumption-commitment-benefit.md#determine-which-offers-are-eligible-for-azure-consumption-commitments-maccctc)
-- [Track your Azure credits balance](../../credits/mca-check-azure-credits-balance.md)
+- [Track your Azure credits balance](../credits/mca-check-azure-credits-balance.md)
