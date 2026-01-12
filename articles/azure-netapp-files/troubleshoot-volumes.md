@@ -77,7 +77,7 @@ This section explains the causes of some of the common allocation failures and s
 
 |     Error conditions    |     Resolutions    |
 |-|-|
-| Error when attempting to set NTFS ACLs through the Windows Security tab. <br> Error message: `The program cannot open the required dialogue box because it cannot determine whether the computer is joined to a domain.`  | This error indicates that the ANF server is unable to retrieve domain information from the Domain Controllers due to missing SYSVOL synchronization among the Domain Controllers. To resolve this issue, [perform a non-authoritative synchronization of DFSR-replicated SYSVOL](/troubleshoot/windows-server/group-policy/force-authoritative-non-authoritative-synchronization.md) |
+| Error when attempting to set NTFS ACLs through the Windows Security tab. <br> Error message: `The program cannot open the required dialogue box because it cannot determine whether the computer is joined to a domain.`  | This error indicates that the ANF server is unable to retrieve domain information from the Domain Controllers due to missing SYSVOL synchronization among the Domain Controllers. To resolve this issue, [perform a non-authoritative synchronization of DFSR-replicated SYSVOL](https://learn.microsoft.com/en-us/troubleshoot/windows-server/group-policy/force-authoritative-non-authoritative-synchronization) |
 
 ## Activity log warnings for volumes
 
