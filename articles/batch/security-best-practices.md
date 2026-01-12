@@ -165,7 +165,7 @@ To limit remote access, create your pools using an API version `2024-07-01` or l
 
 To limit remote access to nodes in pools created by API with version earlier than `2024-07-01`, use one of the following methods:
 
-- Configure the [PoolEndpointConfiguration](/rest/api/batchservice/pool/add#poolendpointconfiguration) to deny access. The appropriate network security group (NSG) will be associated with the pool.
+- Configure the [PoolEndpointConfiguration](/rest/api/batchservice/pools/create-pool#batchpoolendpointconfiguration) to deny access. The appropriate network security group (NSG) will be associated with the pool.
 - Create your pool [without public IP addresses](simplified-node-communication-pool-no-public-ip.md). By default, these pools can't be accessed outside of the VNet.
 - Associate an NSG with the VNet to deny access to the RDP or SSH ports.
 - Don't create any users on the node. Without any node users, remote access won't be possible.

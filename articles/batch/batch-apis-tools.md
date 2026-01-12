@@ -29,7 +29,7 @@ Azure Batch has two sets of APIs, one for the service level and one for the mana
 
 Only actions from the management APIs are tracked in the activity log. Service level APIs bypass the Azure Resource Management layer (management.azure.com) and are not logged.
 
-For example, the [Batch service API to delete a pool](/rest/api/batchservice/pool/delete) is targeted directly on the batch account: `DELETE {batchUrl}/pools/{poolId}`
+For example, the [Batch service API to delete a pool](/rest/api/batchservice/pools/delete-pool) is targeted directly on the batch account: `DELETE {batchUrl}/pools/{poolId}`
 
 Whereas the [Batch management API to delete a pool](/rest/api/batchmanagement/pool/delete)  is targeted at the management.azure.com layer: `DELETE https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Batch/batchAccounts/{accountName}/pools/{poolName}`
 
