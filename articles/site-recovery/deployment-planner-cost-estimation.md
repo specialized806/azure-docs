@@ -6,7 +6,7 @@ services: site-recovery
 author: Jeronika-MS
 ms.service: azure-site-recovery
 ms.topic: concept-article
-ms.date: 12/18/2025
+ms.date: 01/12/2026
 ms.author: v-gajeronika
 ---
 
@@ -27,7 +27,7 @@ In profiling mode, the deployment planner tool connects to each of the Hyper-V a
 
 ## Generate a report
 
-The tool generates a macro-enabled Microsoft Excel file (XLSM file) as the report output. It summarizes all the deployment recommendations. For more information, see generate reports for [Hyper-V VMs](hyper-v-deployment-planner-run.md#generate-a-report) and [VMware VMs](site-recovery-vmware-deployment-planner-run.md#generate-report).
+The tool generates a macro-enabled Microsoft Excel file (XLSM file) as the report output. It summarizes all the deployment recommendations. For more information, see generate cost reports for [Hyper-V VMs](hyper-v-deployment-planner-run.md#generate-a-cost-report) and [VMware VMs](site-recovery-vmware-deployment-planner-run.md#generate-a-cost-report).
 
 ## Get throughput
 
