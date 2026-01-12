@@ -145,7 +145,7 @@ Connect to the virtual machine and install a web server for testing.
 
 1. On the Azure portal menu, select **Resource groups** or search for and select *Resource groups* from any page. Select the **Test-FW-RG** resource group.
 1. Select the **Srv-Work** virtual machine.
-1. Select **Run command** > **RunShellScript**.
+1. Select **Operations** > **Run command** > **RunShellScript**.
 1. In the script box, enter the following commands:
 
    ```bash
@@ -292,6 +292,32 @@ For testing purposes in this tutorial, configure the server's primary and second
 6. Select **Save**.
 7. Restart the **Srv-Work** virtual machine.
 
+## Deploy Azure Bastion
+
+Deploy Azure Bastion Developer edition to securely connect to the **Srv-Work** virtual machine for testing.
+
+1. On the Azure portal menu or from the **Home** page, select **Create a resource**.
+1. Search for **Bastion** and select **Bastion** from the results.
+1. Select **Create**.
+1. On the **Create a Bastion** page, enter or select the following values:
+
+   | Setting | Value |
+   | ------- | ----- |
+   | Subscription | Select your Azure subscription. |
+   | Resource group | Select **Test-FW-RG**. |
+   | Name | Enter **Test-Bastion**. |
+   | Region | Select the same location that you used previously. |
+   | Tier | Select **Developer**. |
+   | Virtual network | Select **Test-FW-VN**. |
+   | Subnet | The **AzureBastionSubnet** is created automatically with address space **10.0.3.0/26**. |
+
+1. Select **Review + create**.
+1. Review the settings and select **Create**.
+
+   The deployment takes a few minutes to complete.
+
+1. After deployment completes, select **Go to resource**.
+
 ## Test the firewall
 
 Now, test the firewall to confirm that it works as expected.
@@ -304,25 +330,38 @@ Now, test the firewall to confirm that it works as expected.
 
 ### Test the application and network rules
 
-To test the application and network rules, you need to connect to the **Srv-Work** virtual machine. You can do this by temporarily adding a DNAT rule for SSH (port 22) or by using Azure Bastion. For this tutorial, we'll use the Run Command feature.
+Use Azure Bastion to securely connect to the **Srv-Work** virtual machine and test the firewall rules.
 
 1. On the Azure portal menu, select **Resource groups** or search for and select *Resource groups* from any page. Select the **Test-FW-RG** resource group.
 1. Select the **Srv-Work** virtual machine.
-1. Select **Run command** > **RunShellScript**.
-1. In the script box, enter the following command to test access to Google:
+1. Select **Connect** > **Connect via Bastion**.
+1. On the Bastion page, enter or select the following values:
+
+   | Setting | Value |
+   | ------- | ----- |
+   | Authentication Type | Select **SSH Private Key from Local File**. |
+   | Username | Enter **azureuser**. |
+   | Local File | Select **Browse** and select the **Srv-Work_key.pem** file that you downloaded during VM creation. |
+
+1. Select **Connect**.
+
+   A new browser tab opens with an SSH session to the **Srv-Work** virtual machine.
+
+1. In the SSH session, enter the following command to test access to Google:
 
    ```bash
    curl -I https://www.google.com
    ```
 
-1. Select **Run**. You should see a successful HTTP response (200 OK), indicating that the application rule is allowing access to Google.
-1. Now test access to Microsoft, which should be blocked. In the script box, enter:
+   You should see a successful HTTP response (200 OK), indicating that the application rule is allowing access to Google.
+
+1. Now test access to Microsoft, which should be blocked. Enter:
 
    ```bash
    curl -I https://www.microsoft.com
    ```
 
-1. Select **Run**. The command should time out or fail, indicating that the firewall is blocking access.
+   The command should time out or fail after approximately 60 seconds, indicating that the firewall is blocking access.
 
 So now you've verified that the firewall rules are working:
 
