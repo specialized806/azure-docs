@@ -258,7 +258,7 @@ For many organizations, data encryption at rest is a mandatory step towards data
 - [Client-side Encryption](../../storage/blobs/security-recommendations.md) encrypts data before it's transferred into storage.
 - [Encryption at host](/azure/virtual-machines/disk-encryption) provides end-to-end encryption for VM data.
 
-#### Encryption at host
+##### Encryption at host
 
 [!INCLUDE [Azure Disk Encryption retirement notice](~/reusable-content/ce-skilling/azure/includes/security/azure-disk-encryption-retirement.md)]
 
