@@ -399,12 +399,10 @@ items:
     href: concepts/advanced-messaging/whatsapp/whatsapp-channel-prerequisites.md
   - name: WhatsApp business account FAQ
     href: quickstarts/advanced-messaging/whatsapp/whatsapp-business-account-faq.md
-  - name: Logging and analytics
-    items:
-    - name: Enable logging with Azure Monitor
-      href: concepts/analytics/enable-logging.md
-    - name: Advanced Messaging logs
-      href: concepts/advanced-messaging/logs.md
+  - name: Enable logging with Azure Monitor
+    href: concepts/analytics/enable-logging.md
+  - name: Advanced Messaging logs
+    href: concepts/advanced-messaging/logs.md
   - name: Samples and tutorials
     items:
     - name: Try Advanced Messaging Sandbox
