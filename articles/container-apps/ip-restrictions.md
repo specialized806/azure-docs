@@ -22,7 +22,7 @@ There are two types of restrictions:
 * *Allow*: Allow inbound traffic only from address ranges you specify in allow rules.
 * *Deny*: Deny all inbound traffic only from address ranges you specify in deny rules.
 
-when no IP restriction rules are defined, all inbound traffic is allowed.
+When no IP restriction rules are defined, all inbound traffic is allowed.
 
 IP restrictions rules contain the following properties:
 
