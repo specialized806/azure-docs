@@ -30,7 +30,7 @@ Starting in late 2025, Azure began updating its managed TLS solution to align wi
 - Azure Container Apps
 - Azure Static Web Apps
 
-## Key changes
+## Key Changes
 
 This update includes two key changes:
 
@@ -42,7 +42,7 @@ This update includes two key changes:
     - These new CAs will not support client authentication in accordance with browser trusted root program requirements.
     All managed TLS certificates under the new CAs will only include the Server Authentication Extended Key Usage (EKU).
 
-## Potential customer impact
+## Potential Customer impact
 
 To prepare for the change, it's important to know how the changes could potentially affect customers.
 
