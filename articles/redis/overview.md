@@ -99,7 +99,7 @@ The following table helps describe some of the features supported by tier:
 
 \* When **High availability** is enabled, Azure Managed Redis is zone redundant in regions with multiple availability zones. 
 
-When you use High availability (HA), an Azure Managed Redis instance is deployed with primary and replica shards across two nodes. In regions without availability zones, the primary and replica shards are deployed across two nodes in the same zone. For more information, see [Reliability in Azure Managed Redis](/azure/reliability/reliability-managed-redis.md)
+When you use High availability (HA), an Azure Managed Redis instance is deployed with primary and replica shards across two nodes. In regions without availability zones, the primary and replica shards are deployed across two nodes in the same zone. For more information, see [Reliability in Azure Managed Redis](/azure/reliability/reliability-managed-redis).
 
 > [!IMPORTANT]
 > The Balanced B0 and B1 SKU options don't support active geo-replication.
