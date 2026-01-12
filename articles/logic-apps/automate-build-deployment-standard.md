@@ -5,21 +5,21 @@ services: logic-apps
 ms.suite: integration
 ms.reviewer: estfan, azla
 ms.topic: how-to
-ms.date: 11/14/2025
-## Customer intent: As a logic app developer, I want to automate builds and deployments for my Standard logic app workflows.
+ms.date: 01/13/2026
+## Customer intent: As a developer who works with Azure Logic Apps, I want to automate builds and deployments for my Standard logic app workflows with Azure DevOps and Visual Studio Code.
 ---
 
-# Automate build and deployment for Standard logic app workflows with Azure DevOps
+# Automate build and deployment for Standard logic app workflows with Azure DevOps and Visual Studio Code
 
-For Standard logic app workflows that run in single-tenant Azure Logic Apps, you can use Visual Studio Code with the Azure Logic Apps (Standard) extension to locally develop, test, and store your logic app project using any source control system. To get the full benefits of easily and consistently deploying your workflows across different environments and platforms, you must also automate your build and deployment process.
+For Standard logic app workflows that run in single-tenant Azure Logic Apps, you can use Visual Studio Code with the Azure Logic Apps (Standard) extension to locally develop, test, and store your logic app project using any source control system. To get the full benefits of easily and consistently deploying your workflows across different environments and platforms, automate your build and deployment process.
 
-The Azure Logic Apps (Standard) extension provides tools for you to create and maintain automated build and deployment processes using Azure DevOps. Before you start this automation, consider the following elements:
+The Azure Logic Apps (Standard) extension provides tools to create and maintain automated build and deployment processes using Azure DevOps. Before you start this automation, review the following considerations:
 
 - The Azure logic app resource where you create your workflows
 
-- The Azure-hosted connections that workflows use and are created from Microsoft-managed connectors
+- The connections that your workflows create using shared connectors and are hosted in Azure
 
-  These connections differ from the connections that directly and natively run with the Azure Logic Apps runtime.
+  These connections differ from the *built-in* connections that directly and natively run with the Azure Logic Apps runtime.
 
 - The specific settings and parameters for the different environments where you want to deploy
 
@@ -43,11 +43,6 @@ This guide shows how to complete the following tasks:
 
 1. Create pipelines in Azure DevOps.
 
-For more information:
-
-- [What is Azure DevOps?](/azure/devops/user-guide/what-is-azure-devops)
-- [What is Azure Pipelines?](/azure/devops/pipelines/get-started/what-is-azure-pipelines)
-
 ## Known issues and limitations
 
 - This capability supports only Standard logic app projects. If your Visual Studio Code workspace contains both a Standard logic app project and a Functions custom code project, both have deployment scripts generated, but custom code projects are currently ignored. The capability to create build pipelines for custom code are on the roadmap.
@@ -58,9 +53,9 @@ For more information:
 
 ## Prerequisites
 
-- An Azure account and subscription. If you don't have a subscription, [sign up for a free Azure account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+- An Azure account and subscription. [Get a free Azure account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
 
-- Visual Studio Code with the Azure Logic Apps (Standard) extension. See the prerequisites for [Create Standard workflows with Visual Studio Code](create-single-tenant-workflows-visual-studio-code.md#prerequisites).
+- Visual Studio Code with the Azure Logic Apps (Standard) extension. For prerequisites, see [Create Standard workflows with Visual Studio Code](create-single-tenant-workflows-visual-studio-code.md#prerequisites).
 
 - Azure Logic Apps (Standard) Build and Release tasks for Azure DevOps Tasks. You can find these tasks in the [Azure DevOps Marketplace](https://marketplace.visualstudio.com/search?term=azure%20logic%20apps&target=AzureDevOps&category=Azure%20Pipelines&visibilityQuery=all&sortBy=Relevance).
 
@@ -270,6 +265,8 @@ For more information, see [Create your first pipeline](/azure/devops/pipelines/c
 
 ## Related content
 
+- [What is Azure DevOps?](/azure/devops/user-guide/what-is-azure-devops)
+- [What is Azure Pipelines?](/azure/devops/pipelines/get-started/what-is-azure-pipelines)
 - [Customize your pipeline](/azure/devops/pipelines/customize-pipeline)
 - [Manage your pipeline with Azure CLI](/azure/devops/pipelines/get-started/manage-pipelines-with-azure-cli)
 - [Continuous integration with Azure Pipelines in Visual Studio Code](https://code.visualstudio.com/api/working-with-extensions/continuous-integration)
