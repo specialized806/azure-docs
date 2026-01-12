@@ -8,6 +8,12 @@
     href: site-recovery-faq.yml
   - name: Manage Site Recovery updates
     href: service-updates-how-to.md
+  - name: Pricing
+    items:
+    - name: Azure to Azure - Costs
+      href: site-recovery-cost.md
+    - name: Estimate cost
+      href: deployment-planner-cost-estimation.md
 - name: What's New
   items:
   - name: Release notes
@@ -327,7 +333,7 @@
           href: site-recovery-deployment-planner-history.md
         - name: Run the Deployment Planner tool
           href: site-recovery-vmware-deployment-planner-run.md
-        - name: Analyze the generated report
+        - name: Analyze the generated cost report
           href: site-recovery-vmware-deployment-planner-analyze-report.md
         - name: Analyze the cost estimation report
           href: site-recovery-vmware-deployment-planner-cost-estimation.md
@@ -459,7 +465,7 @@
           href: site-recovery-deployment-planner-history.md
         - name: Run the Deployment Planner tool
           href: hyper-v-deployment-planner-run.md
-        - name: Analyze the generated report
+        - name: Analyze the generated cost report
           href: hyper-v-deployment-planner-analyze-report.md
         - name: Analyze the cost estimation report
           href: hyper-v-deployment-planner-cost-estimation.md
@@ -655,10 +661,6 @@
     href: https://azure.microsoft.com/updates/?searchterms=Azure+Site+Recovery
   - name: Pricing
     items:
-    - name: Azure to Azure - Costs
-      href: site-recovery-cost.md
-    - name: Estimate cost
-      href: deployment-planner-cost-estimation.md
     - name: Azure Site Recovery Pricing
       href: https://azure.microsoft.com/pricing/details/site-recovery/
     - name: Pricing calculator

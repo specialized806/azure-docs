@@ -4,19 +4,19 @@ description: This article describes how to run the Azure Site Recovery Deploymen
 author: Jeronika-MS
 ms.service: azure-site-recovery
 ms.topic: concept-article
-ms.date: 12/18/2025
+ms.date: 01/12/2026
 ms.author: v-gajeronika
 ms.reviewer: v-gajeronika
 ms.custom: sfi-image-nochange
 # Customer intent: "As an IT administrator, I want to run the Hyper-V Deployment Planner tool to profile virtual machines and generate reports, so that I can calculate the bandwidth and storage requirements for disaster recovery to Azure."
 ---
 
-# Run the Deployment planner and generate a report for Hyper-V disaster recovery
+# Run the Deployment planner and generate a cost report for Hyper-V disaster recovery
 
 You can run the Site Recovery deployment planner command-line tool (ASRDeploymentPlanner.exe) in any of these four modes: 
 -	[Get the virtual machine (VM) list](#get-the-vm-list-for-profiling-hyper-v-vms)
 -	[Profile](#profile-hyper-v-vms)
--	[Generate a report](#generate-a-report)
+-	[Generate a report](#generate-a-cost-report)
 -	[Get throughput](#get-throughput)
 
 First, run the tool to get the list of VMs from a single or multiple Hyper-V hosts. Then run the tool in profiling mode to gather VM data churn and IOPS. Next, run the tool to generate the report to find the network bandwidth and storage requirements.
@@ -164,7 +164,7 @@ When the storage-account name and key are passed, the tool measures the throughp
 
 Azure Site Recovery doesn't support VMs that have iSCSI and pass-through disks. The tool can't detect and profile iSCSI and pass-through disks that are attached to VMs.
 
-## Generate a report
+## Generate a cost report
 
 The tool generates a macro-enabled Microsoft Excel file (XLSM file) as the report output. It summarizes all the deployment recommendations. The report is named DeploymentPlannerReport_*unique numeric identifier*.xlsm and placed in the specified directory.
 

@@ -5,7 +5,7 @@ author: Jeronika-MS
 ms.service: azure-site-recovery
 ms.topic: concept-article
 ms.author: v-gajeronika
-ms.date: 12/18/2025
+ms.date: 01/12/2026
 
 # Customer intent: As a disaster recovery planner, I want to analyze cost estimations for VMware disaster recovery in Azure, so that I can make informed decisions about budget allocation for storage, compute, and licensing costs.
 ---
@@ -14,7 +14,7 @@ ms.date: 12/18/2025
 
 The deployment planner report provides the cost estimation summary in [Recommendations](site-recovery-vmware-deployment-planner-analyze-report.md#recommendations) sheets and detailed cost analysis in Cost Estimation sheet. It has the detailed cost analysis per virtual machine. 
 
-[Generate](site-recovery-vmware-deployment-planner-run.md) and [analyse](site-recovery-vmware-deployment-planner-analyze-report.md) the report before you review the cost estimation summary.
+[Generate](site-recovery-vmware-deployment-planner-run.md) and [analyse](site-recovery-vmware-deployment-planner-analyze-report.md) the cost report before you review the cost estimation summary.
 
 >[!Note]
 >The current version of Deployment planner tool v2.5 provides cost estimation for virtual machines replicating to Managed Disks.

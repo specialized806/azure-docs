@@ -5,11 +5,11 @@ author: Jeronika-MS
 ms.service: azure-site-recovery
 ms.topic: overview
 ms.author: v-gajeronika
-ms.date: 12/18/2025
+ms.date: 01/12/2026
 
 # Customer intent: "As a disaster recovery planner, I want to run the Deployment Planner for VMware disaster recovery to Azure, so that I can assess network bandwidth, storage requirements, and cost for effective virtual machine replication."
 ---
-# Run the Deployment Planner and generate a report for VMware disaster recovery
+# Run the Deployment Planner and generate a cost report for VMware disaster recovery
 
 This article is the Azure Site Recovery Deployment Planner user guide for VMware-to-Azure production deployments.
 
@@ -18,7 +18,7 @@ This article is the Azure Site Recovery Deployment Planner user guide for VMware
 You can run the command-line tool (ASRDeploymentPlanner.exe) in any of the following three modes:
 
 1.	[Profiling](#profile-vmware-virtual-machines)
-2.	[Generate Report](#generate-report)
+2.	[Generate Cost Report](#generate-a-cost-report)
 3.	[Get throughput](#get-throughput)
 
 First, run the tool in profiling mode to gather virtual machine data churn and IOPS. Next, run the tool to generate the report to find the network bandwidth, storage requirements and DR cost.
@@ -141,7 +141,7 @@ ASRDeploymentPlanner.exe -Operation StartProfiling -Virtualization VMware -Direc
 >* If the server that the tool is running on is rebooted or has crashed, or if you close the tool by using Ctrl + C, the profiled data is preserved. However, there is a chance of missing the last 15 minutes of profiled data. In such an instance, rerun the tool in profiling mode after the server restarts.
 >* When the storage-account name and key are passed, the tool measures the throughput at the last step of profiling. If the tool is closed before profiling is completed, the throughput isn't calculated. To find the throughput before generating the report, you can run the GetThroughput operation from the command-line console. Otherwise, the generated report won't contain the throughput information.
 
-## Generate report
+## Generate a cost report
 
 The tool generates a macro-enabled Microsoft Excel file (XLSM file) as the report output, which summarizes all the deployment recommendations. The report is named `DeploymentPlannerReport_<unique numeric identifier>.xlsm` and placed in the specified directory.
 
