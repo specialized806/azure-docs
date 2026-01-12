@@ -4,7 +4,7 @@ description: This article provides release notes of Azure Data Manager for Energ
 author: bharathim
 ms.author: bselvaraj
 ms.service: azure-data-manager-energy
-ms.topic: conceptual
+ms.topic: article
 ms.date: 09/20/2022
 ms.custom: template-concept
 ---
@@ -22,6 +22,32 @@ Azure Data Manager for Energy is updated on an ongoing basis. To stay up to date
 This page is updated with the details about the upcoming release approximately a week before the actual deployment.
 
 <hr width = 100%>
+
+## December 2025
+### Reference Data Values Automatic Sync - Generally Available
+
+Reference Data Values (RDV) Automatic Sync is now Generally Available on all SKUs. As part of each OSDU® milestone upgrade, all Azure Data Manager for Energy instances will be upgraded with the latest Reference Data Values available at that milestone. This ensures consistent, standardized reference data across all instances without requiring manual ingestion.
+
+For more details on how to work with this feature, see the official documentation: [Reference Data Values in ADME](concepts-reference-data-values.md).
+
+## November 2025
+### Reservoir DDMS Standard SKU Preview
+
+Reservoir DDMS is now available on the standard SKU as a preview. The standard SKU offering of the DDMS is intended for scale and performance testing on a standard SKU deployment of Azure Data Manager for Energy. It is recommended that customers create a new data partition for such testing since the feature is still under preview to maintain isolation from partitions containing production data. The feature is available on request only. For more details, see [How to enable reservoir DDMS](how-to-enable-reservoir-ddms.md).
+
+## October 2025
+### Reference Data Values Automatic Sync
+
+With this release, all new Azure Data Manager for Energy instances provisioned automatically includes the latest set of Reference Data Values by default, ensuring out-of-the-box compliance with OSDU® standards and accelerating data onboarding workflows. The update delivers a complete library of reference values synced to the latest OSDU® milestone (currently **M25**), improving interoperability, guaranteeing schema consistency, and eliminating manual setup during provisioning.  
+
+For more details on how to work with this feature, see the official documentation: [Reference Data Values in ADME](concepts-reference-data-values.md).
+
+## September 2025
+### Rock and Fluid Samples (RAFS) Preview
+The Rock and Fluid Samples (RAFS) DDMS introduces a standardized approach for storing, querying, and analyzing geological and engineering sample data collected from subsurface and surface sites. These samples are critical for workflows such as reservoir modeling, facility design, and drilling planning. RAFS DDMS is now available as a Preview feature on ADME Developer SKU. See [Tutorial: Use Rock and Fluid Samples (RAFS) DDMS APIs](tutorial-rock-and-fluid-samples-ddms.md) on how to use RAFS DDMS APIs.
+
+### Manifest Ingestion log enhancements
+Manifest ingestion logs have been enhanced to improve troubleshooting of data ingestion issues. Skipped records are now logged for better visibility. See [Skipped records logging](troubleshoot-manifest-ingestion.md#skipped-records-logging)
 
 ## August 2025
 ### Compliant with M25 OSDU&reg; release
@@ -79,7 +105,7 @@ Azure Data Manager for Energy has now been upgraded with the supported set of se
 We are releasing a Limited Preview for syncing Reference Values with your Azure Data Manager for Energy data partitions. Note that this feature is currently only available for newly created Azure Data Manager for Energy after feature enablement for your Azure subscription. Learn more about [Reference Values on Azure Data Manager for Energy](concepts-reference-data-values.md).
 
 ### CNAME DNS Record Fix
-Previously, each ADME resource had an incorrect privatelink DNS record by default, causing inaccessibility issues for some SLB apps. This release resolves the issue for both new and existing instances, ensuring correct and secure configuration of private endpoints. For more details, see [How to setup private links](how-to-set-up-private-links.md).
+Previously, each ADME resource had an incorrect private link DNS record by default, causing inaccessibility issues for some SLB apps. This release resolves the issue for both new and existing instances, ensuring correct and secure configuration of private endpoints. For more details, see [How to setup private links](how-to-set-up-private-links.md).
 
 ## June 2024
 
@@ -90,7 +116,7 @@ Effective June 1, 2024, the monthly base instance fee of the Developer tier of A
 ## April 2024
 
 ### Azure Data Manager for Energy in Qatar Central Region
-Azure Data Manager for Energy is now available in the Qatar Central Region. This new region is enabled for both the Standard and Developer tiers of Azure Data Manager for Energy, and is available for select customers and partners only. Please reach out to your designated Microsoft account team member to unlock access. Once access is provided, you can select "Qatar" as your preferred region when creating Azure Data Manager for Energy resource, using the [Azure portal](https://ms.portal.azure.com/#create/Microsoft.AzureDataManagerforEnergy) or your preferred provisioning method. Qatar Central region supports zone-redundant storage (ZRS) with 3 availability zones for disaster recovery. Data is stored at rest in Qatar in compliance with data residency requirements. For more details on zonal replication, please review the [documentation](../site-recovery/azure-to-azure-how-to-enable-zone-to-zone-disaster-recovery.md) page. Note that the default maximum ingress per general purpose v2 and Blob storage accounts in Qatar Central is 25 Gbps. For more details, please review scalability and performance [targets](../storage/common/scalability-targets-standard-account.md#scale-targets-for-standard-storage-accounts).
+Azure Data Manager for Energy is now available in the Qatar Central Region. This new region is enabled for both the Standard and Developer tiers of Azure Data Manager for Energy, and is available for select customers and partners only. Please reach out to your designated Microsoft account team member to unlock access. Once access is provided, you can select "Qatar" as your preferred region when creating Azure Data Manager for Energy resource, using the [Azure portal](https://ms.portal.azure.com/#create/Microsoft.AzureDataManagerforEnergy) or your preferred provisioning method. Qatar Central region supports zone-redundant storage (ZRS) with 3 availability zones for disaster recovery. Data is stored at rest in Qatar in compliance with data residency requirements. For more details on zonal replication, please review the [documentation](../site-recovery/azure-to-azure-how-to-enable-zone-to-zone-disaster-recovery.md) page. Note that the default maximum ingress per general purpose v2 and Blob storage accounts in Qatar Central is 25 Gbps. For more details, please review scalability and performance [targets](../storage/common/scalability-targets-standard-account.md#scale-targets-for-standard-storage-accounts-and-disk-access-resources).
 
 ## March 2024
 
@@ -147,7 +173,7 @@ July 2023 onwards, all data partitions created in your Azure Data Manager for En
 
 ### Enriched Airflow Logs
 
-Airflow logs from your Azure Data Manager for Energy Preview resource now include extra fields: Dag Name, Dag Task Name, Run ID or Correlation ID, Code Path, TryNumber, Content, Location, Log Severity Level, and Resource ID. These fields can be utilized in the KQL query editor of your linked Log Analytics Workspace to get more specific logs for your executed workflows/DAGs. Learn more about [how to integrate Airflow logs with Azure Monitor](how-to-integrate-airflow-logs-with-azure-monitor.md). 
+Airflow logs from your Azure Data Manager for Energy Preview resource now include extra fields: DAG Name, DAG Task Name, Run ID or Correlation ID, Code Path, TryNumber, Content, Location, Log Severity Level, and Resource ID. These fields can be utilized in the KQL query editor of your linked Log Analytics Workspace to get more specific logs for your executed workflows/DAGs. Learn more about [how to integrate Airflow logs with Azure Monitor](how-to-integrate-airflow-logs-with-azure-monitor.md). 
 
 <hr width = 100%>
 

@@ -53,7 +53,7 @@ This guide shows how to complete the following tasks:
 
 ## Prerequisites
 
-- An Azure account and subscription. [Get a free Azure account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+- An Azure account and subscription. If you don't have a subscription, [sign up for a free Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 - Visual Studio Code with the Azure Logic Apps (Standard) extension. For prerequisites, see [Create Standard workflows with Visual Studio Code](create-single-tenant-workflows-visual-studio-code.md#prerequisites).
 

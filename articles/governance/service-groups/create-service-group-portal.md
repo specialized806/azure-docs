@@ -2,7 +2,7 @@
 title: "Quickstart: Create a service group using the Azure portal - Azure Governance"
 description: In this quickstart, you use the portal to create a service group to organize your resources.
 author: rthorn17
-ms.author: rithorn
+ms.author: kenieva
 ms.service: azure-policy
 ms.topic: quickstart  
 ms.date: 5/19/2025
@@ -21,7 +21,7 @@ Azure Service Groups offer a flexible way to organize and manage resources acros
 
 ## Prerequisites
 
-- If you don't have an Azure subscription, create a [free](https://azure.microsoft.com/free/)
+- If you don't have an Azure subscription, create a [free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
   account before you begin.
 
 ## Create in Azure portal

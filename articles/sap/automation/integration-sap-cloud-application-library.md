@@ -115,16 +115,16 @@ To track the installation and get detailed information about steps and any error
 
 ## SAP Cloud Appliance Library API documentation
 
-The CAL installation API documentation is available on the [SAP Business Accelerator Hub](https://api.sap.com/api/Workloads/path/createSystemExt).
+The CAL installation API documentation is available on the [SAP Business Accelerator Hub](https://api.sap.com/api/Workloads/resource/createSystemExt).
 
 ## Workflow for SDAF: CAL API integration
 
-The workflow/process diagram for the installation of S/4 HANA with the CAL API is available in the article on [software provisioning of S/4 HANA](https://caldocs.hana.ondemand.com/caldocs/help/External_to_CAL_infrastructure.pdf).
+The workflow/process diagram for the installation of S/4 HANA with the CAL API is available in the article on [software provisioning of S/4 HANA](https://caldocs.cfapps.eu01.hana.ondemand.com/caldocs/help/External_to_CAL_infrastructure.pdf).
 
 ## Support
 
 - For questions about the integration experience of SAP CAL and SDAF, contact <SDAFicm@microsoft.com>.
-- For help on issues with installation, create a support request with SAP CAL on [Report an Issue Dashboard - SAP for Me](https://me.sap.com/createIssue/0).
+- For help on issues with installation, create a support request with SAP CAL on [Report an Issue Dashboard - SAP for Me](https://me.sap.com/).
   
   Raise the request for the component `BC-VCM-PSD` so that the request reaches the SAP CAL team.
 

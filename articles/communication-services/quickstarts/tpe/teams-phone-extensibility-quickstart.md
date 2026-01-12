@@ -6,15 +6,14 @@ author: radubulboaca
 ms.service: azure-communication-services
 ms.subservice: call-automation
 ms.topic: tutorial
-ms.date: 05/20/2025
+ms.date: 09/02/2025
 ms.author: radubulboaca
-ms.custom: public_preview
+ms.custom: general_availability
 services: azure-communication-services
 ---
 
 # Teams Phone System extensibility quick start
 
-[!INCLUDE [public-preview-notice.md](../../includes/public-preview-include-document.md)]
 
 This article describes how an independent software vendor (ISV) can provision Teams Phone for the scope of Teams Phone extensibility (TPE). This article also describes how an ISV can guide their customers because there are operations in Teams that a tenant needs to implement.
 
@@ -24,9 +23,8 @@ This article describes how an independent software vendor (ISV) can provision Te
 - ISV’s Customer has access to Microsoft 365 Admin Center.
 - ISV has access to change Azure Communication Services Resource settings.
 - You grant Teams Tenant access to a CCaaS service for Graph API usage.
-- ISV is using the .NET ACS Call Automation SDK version 1.5.0-beta.1.
-- ISV is using the JavaScript ACS Call Automation SDK version 1.5.0-beta.2.
-- ISV is using the JavaScript ACS Client SDK version 1.36.1-beta.1.
+- ISV is using the .NET, JavaScript  or Java ACS Call Automation SDK version 1.5.0 or above (Python version will be released soon).
+- ISV is using the JavaScript ACS Client SDK version 1.37 and above.
 
 
 ## Quick start
@@ -168,6 +166,14 @@ You need to assign a public switched telephone network (PSTN) number to your Res
 1. Also, if you plan to make outbound PSTN calls using your Resource Accounts assigned phone number, now is a good time to assign a [Microsoft Teams Calling Plan](/microsoftteams/calling-plans-for-office-365).
 
 
+> **Note:** Proper configuration depends on the phone number service type assigned to the Resource account:
+> - **Direct Routing** – The tenant must be configured for Direct Routing with a verified Session Border Controller (SBC), a Direct Routing phone number assigned to the Resource account, and a Voice Routing Policy that allows PSTN calls assigned to the Resource account.
+> - **Calling Plan** – The Resource account must be assigned a Calling Plan service number and licensed with Microsoft Teams Phone Resource Account.
+> - **Operator Connect** – The phone number must be provisioned by an approved Operator Connect provider that supports outbound PSTN calling for voice applications.
+> - For all these connectivity options, you need to make sure you have the proper Microsoft licenses in place as detailed in the [general license prerequisite](/azure/communication-services/concepts/interop/tpe/teams-phone-extensibility-overview#prerequisites) or specifically for [Outbound license requirements](/azure/communication-services/quickstarts/tpe/teams-phone-extensibility-server-outbound-call#licensing-requirements)
+
+
+
 ### CCaaS Developer: Get Resource Account Information
 
 We're introducing a new Graph API to get a list of Resource Accounts and phone numbers where assigned. The Graph API supports an optional filter on your Microsoft Entra first party `applicationID` / `clientId`.
@@ -219,7 +225,7 @@ The following steps demonstrate how to receive and answer an incoming Teams call
 
 #### Prerequisites
 
-1. An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+1. An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 1. A deployed Communication Services resource. [Create a Communication Services resource](/azure/communication-services/quickstarts/create-communication-resource).
 1. A configured Event Grid endpoint: [Incoming call concepts - An Azure Communication Services concept document | Microsoft Learn](../../concepts/call-automation/incoming-call-notification.md#receiving-an-incoming-call-notification-from-event-grid).
 1. A Teams Phone number assigned to the resource account.
@@ -231,7 +237,7 @@ The following steps demonstrate how to receive and answer an incoming Teams call
 1. Complete client and server consent as defined in [Access a user's Teams Phone separate from their Teams client](https://github.com/Azure/communication-preview/blob/master/Teams%20Phone%20Extensibility/teams-phone-extensibility-access-teams-phone.md).
 
 > [!NOTE]
-> For the Azure Communication Services resource, ensure the data location matches the Teams Tenant location to comply with data boundary regulations. You can retrieve programatically details about tenant organisation via [Get organization](/graph/api/organization-get)
+> For the Azure Communication Services resource, ensure the data location matches the Teams Tenant location to comply with data boundary regulations. You can retrieve programmatically details about tenant organisation via [Get organization](/graph/api/organization-get)
 >
 
 #### Setup and host your Azure dev tunnels
@@ -517,13 +523,6 @@ Response<RecordingStateResult> response = await callAutomationClient.GetCallReco
 >
 > In addition, any failure to start recording is reported via a new callback event `Microsoft.Communication.StartRecordingFailed` received on `RecordingStateCallbackUri`.
 
-## Alpha SDKs
-
-- [Call Automation C# SDK](https://dev.azure.com/azure-sdk/public/_artifacts/feed/azure-sdk-for-net/NuGet/Azure.Communication.CallAutomation/overview/1.4.0-alpha.20250129.2)
-- [Call Automation Java SDK](/java/api/com.azure.communication.callautomation)
-- [Call Automation Python SDK](/python/api/overview/azure/communication-callautomation-readme)
-- [Call Automation JavaScript SDK](https://www.npmjs.com/package/@azure/communication-call-automation/v/1.3.0-alpha.20241203.1)
-- [Client SDK](https://www.npmjs.com/package/@azure/communication-calling/v/1.33.3-alpha.1)
 
 ## Related articles
 

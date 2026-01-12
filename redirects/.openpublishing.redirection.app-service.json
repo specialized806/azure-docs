@@ -1956,6 +1956,21 @@
       "redirect_document_id": false
     },
     {
+      "source_path_from_root": "/articles/app-service/scripts/terraform-backup.md",
+      "redirect_url": "/azure/app-service/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/app-service/scripts/cli-linux-acr-aspnetcore.md",
+      "redirect_url": "/azure/app-service/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/app-service/quickstart-python-1.md",
+      "redirect_url": "/azure/app-service/overview",
+      "redirect_document_id": false
+    },
+    {
       "source_path_from_root": "/articles/app-service/get-resource-events.md",
       "redirect_url": "/azure/app-service/monitor-app-service",
       "redirect_document_id": false
@@ -2003,6 +2018,11 @@
     {
       "source_path_from_root": "/articles/app-service-web/web-sites-dotnet-troubleshoot-visual-studio.md",
       "redirect_url": "/azure/app-service/troubleshoot-dotnet-visual-studio",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/app-service/troubleshoot-dotnet-visual-studio.md",
+      "redirect_url": "/visualstudio/debugger/remote-debugging-azure-app-service",
       "redirect_document_id": false
     },
     {
@@ -2561,6 +2581,11 @@
       "redirect_document_id": false
     },
     {
+      "source_path_from_root": "/articles/app-service/troubleshoot-domain-ssl-certificates.md",
+      "redirect_url": "/troubleshoot/azure/app-service/connection-issues-with-ssl-or-tls/troubleshoot-domain-and-tls-ssl-certificates",
+      "redirect_document_id": false
+    },
+    {
       "source_path_from_root": "/articles/app-service/app-service-release-notes.md",
       "redirect_url": "/previous-versions/azure/reference/dn479282(v=azure.100)#azure-sdk-release-dates-retirement-dates-and-support-information",
       "redirect_document_id": false
@@ -2944,6 +2969,11 @@
       "source_path_from_root": "/articles/app-service/deploy-intelligent-apps.md",
       "redirect_url": "/azure/app-service/overview-ai-integration",
       "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/app-service/invoke-openapi-web-app-from-azure-ai-agent-service.md",
+      "redirect_url": "/azure/app-service/tutorial-ai-integrate-azure-ai-agent-dotnet",
+      "redirect_document_id": true
     }
   ]
 }
