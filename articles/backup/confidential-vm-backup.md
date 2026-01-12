@@ -1,10 +1,10 @@
 ---
-title: Azure Backup - Configure backup of Confidential VM with Customer Managed Key using Azure Backup CMK (preview) 
-description: Learn about backing up Confidential VM with CMK using Azure Backup.
+title: Azure Backup - Configure backup of Confidential VM using Azure Backup (preview) 
+description: Learn about backing up Confidential VM with PMK or CMK using Azure Backup.
 ms.topic: conceptual
 ms.date: 01/28/2026
 ms.custom: references_regions
-ms.service: backup
+ms.service: azure-backup
 author: AbhishekMallick-MS
 ms.author: v-mallicka
 ---
@@ -51,7 +51,7 @@ To assign permissions for mHSM, follow these steps:
      - **Microsoft.KeyVault/managedHsm/keys/read/action**
      - **Microsoft.KeyVault/managedHsm/keys/backup/action**
 
-     You can create a custom role using the [Managed HSM data plane role management](https://learn.microsoft.com/en-us/azure/key-vault/managed-hsm/role-management#create-a-new-role-definition).
+     You can create a custom role using the [Managed HSM data plane role management](/azure/key-vault/managed-hsm/role-management#create-a-new-role-definition).
 
 4. For **Scope**, select the specific key used to create Confidential VM with Customer Managed Key.
 
@@ -65,4 +65,4 @@ Once Azure Backup has the necessary permissions, you can continue configuring ba
 
 ## Next step
 
-[Restore CVM with CMK using Azure Backup (preview)](restore-confidential-vm.md)
+[Restore CVM with CMK using Azure Backup (preview)](confidential-vm-restore.md)
