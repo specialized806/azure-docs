@@ -25,7 +25,7 @@ items:
       - name: Best practices for designing catalogs
         href: best-practice-catalog-structure.md
       - name: Reliability in Azure Deployment Environments
-        href: ../reliability/reliability-deployment-environments.md?toc=/azure/deployment-environments/toc.json&bc=/azure/deployment-environments/breadcrumb/toc.json
+        href: deployment-environments/concept-reliability-deployment-environments.md
       - name: Azure role-based access control
         href: concept-deployment-environments-role-based-access-control.md
   - name: Configure resources
