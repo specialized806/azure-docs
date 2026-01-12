@@ -37,7 +37,7 @@ Open the script file in a text editor and modify the following variables to matc
 - `TenantId`: Your tenant ID. You can find this value by running `az account show` in your terminal.
 - `SubscriptionId`: Your subscription ID. You can find this value by running `az account show` in your terminal.
 - `ResourceGroup`: The name of your resource group.
-- `Location`: The Azure region where you want to create your resources. Check out the available locations for preview features in the [Supported regions](../articles/iot-hub/iot-hub-what-is-new.md#supported-regions) section.
+- `Location`: The Azure region where you want to create your resources. Check out the available locations for preview features in the [Supported regions](../articles/iot-hub/iot-hub-what-is-new.md#check-supported-regions) section.
 - `NamespaceName`: Your namespace name may only contain lowercase letters and hyphens ('-') in the middle of the name, but not at the beginning or end. For example, "msft-namespace" is a valid name.
 - `HubName`: Your hub name can only contain lowercase letters and numerals.
 - `DpsName`: The name of your Device Provisioning Service instance.
