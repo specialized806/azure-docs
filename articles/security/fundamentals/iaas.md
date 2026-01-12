@@ -8,11 +8,12 @@ ms.assetid: 02c5b7d2-a77f-4e7f-9a1e-40247c57e7e2
 ms.service: security
 ms.subservice: security-fundamentals
 ms.topic: article
-ms.date: 12/03/2025
+ms.date: 01/12/2026
 ms.author: mbaldwin
 ---
 
 # Security best practices for IaaS workloads in Azure
+
 This article describes security best practices for VMs and operating systems.
 
 The best practices are based on a consensus of opinion, and they work with current Azure platform capabilities and feature sets. Because opinions and technologies can change over time,  this article will be updated to reflect those changes.
@@ -24,8 +25,6 @@ The first step in protecting your VMs is to ensure that only authorized users ca
 
 > [!NOTE]
 > To improve the security of Linux VMs on Azure, you can integrate with Microsoft Entra authentication. When you use [Microsoft Entra authentication for Linux VMs](../../active-directory/devices/howto-vm-sign-in-azure-ad-linux.md), you centrally control and enforce policies that allow or deny access to the VMs.
->
->
 
 **Best practice**: Control VM access.
 **Detail**: Use [Azure policies](../../governance/policy/overview.md) to establish conventions for resources in your organization and create customized policies. Apply these policies to resources, such as [resource groups](../../azure-resource-manager/management/overview.md). VMs that belong to a resource group inherit its policies.
@@ -47,8 +46,6 @@ Your subscription admins and coadmins can change this setting, making them admin
 
 > [!NOTE]
 > We recommend that you consolidate VMs with the same lifecycle into the same resource group. By using resource groups, you can deploy, monitor, and roll up billing costs for your resources.
->
->
 
 Organizations that control VM access and setup improve their overall VM security.
 
@@ -139,23 +136,25 @@ Organizations that don't monitor VM performance can’t determine whether certai
 ## Encrypt your virtual hard disk files
 We recommend that you encrypt your virtual hard disks (VHDs) to help protect your boot volume and data volumes at rest in storage, along with your encryption keys and secrets.
 
-[Azure Disk Encryption for Linux VMs](/azure/virtual-machines/linux/disk-encryption-overview) and [Azure Disk Encryption for Windows VMs](/azure/virtual-machines/windows/disk-encryption-overview) helps you encrypt your Linux and Windows IaaS virtual machine disks. Azure Disk Encryption uses the industry-standard [DM-Crypt](https://en.wikipedia.org/wiki/Dm-crypt) feature of Linux and the [BitLocker](/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc732774(v=ws.11)) feature of Windows to provide volume encryption for the OS and the data disks. The solution is integrated with [Azure Key Vault](/azure/key-vault/) to help you control and manage the disk-encryption keys and secrets in your key vault subscription. The solution also ensures that all data on the virtual machine disks are encrypted at rest in Azure Storage.
+[!INCLUDE [Azure Disk Encryption retirement notice](~/reusable-content/ce-skilling/azure/includes/security/azure-disk-encryption-retirement.md)]
 
-Following are best practices for using Azure Disk Encryption:
+[Encryption at host](/azure/virtual-machines/disk-encryption) provides end-to-end encryption for your VM data by default, encrypting temporary disks, OS and data disk caches, and data flows to Azure Storage. By default, encryption at host uses platform-managed keys with no additional configuration required. Optionally, the solution can be configured to integrate with [Azure Key Vault](/azure/key-vault/) to use customer-managed keys when you need to control and manage your own disk-encryption keys and secrets. The solution ensures that all data on the virtual machine disks are encrypted at rest in Azure Storage.
 
-**Best practice**: Enable encryption on VMs.   
-**Detail**: Azure Disk Encryption generates and writes the encryption keys to your key vault. Managing encryption keys in your key vault requires Microsoft Entra authentication. Create a Microsoft Entra application for this purpose. For authentication purposes, you can use either client secret-based authentication or [client certificate-based Microsoft Entra authentication](../../active-directory/authentication/active-directory-certificate-based-authentication-get-started.md).
+Following are best practices for using encryption at host:
 
-**Best practice**: Use a key encryption key (KEK) for an additional layer of security for encryption keys. Add a KEK to your key vault.   
-**Detail**: Use the [Add-AzKeyVaultKey](/powershell/module/az.keyvault/add-azkeyvaultkey) cmdlet to create a key encryption key in the key vault. You can also import a KEK from your on-premises hardware security module (HSM) for key management. For more information, see the [Key Vault documentation](/azure/key-vault/keys/hsm-protected-keys). When a key encryption key is specified, Azure Disk Encryption uses that key to wrap the encryption secrets before writing to Key Vault. Keeping an escrow copy of this key in an on-premises key management HSM offers additional protection against accidental deletion of keys.
+**Best practice**: Enable encryption at host on VMs by default.   
+**Detail**: Encryption at host is enabled by default for new VMs and provides transparent encryption using platform-managed keys without requiring additional configuration. If you choose to use customer-managed keys stored in your key vault, Microsoft Entra authentication is required. Create a Microsoft Entra application for this purpose. For authentication purposes, you can use either client secret-based authentication or [client certificate-based Microsoft Entra authentication](../../active-directory/authentication/active-directory-certificate-based-authentication-get-started.md).
 
-**Best practice**: Take a [snapshot](/azure/virtual-machines/windows/snapshot-copy-managed-disk) and/or backup before disks are encrypted. Backups provide a recovery option if an unexpected failure happens during encryption.   
-**Detail**: VMs with managed disks require a backup before encryption occurs. After a backup is made, you can use the **Set-AzVMDiskEncryptionExtension** cmdlet to encrypt managed disks by specifying the *-skipVmBackup* parameter. For more information about how to back up and restore encrypted VMs, see the [Azure Backup](../../backup/backup-azure-vms-encryption.md) article.
+**Best practice**: When using customer-managed keys, use a key encryption key (KEK) for an additional layer of security for encryption keys. Add a KEK to your key vault.   
+**Detail**: When using customer-managed keys, use the [Add-AzKeyVaultKey](/powershell/module/az.keyvault/add-azkeyvaultkey) cmdlet to create a key encryption key in the key vault. You can also import a KEK from your on-premises hardware security module (HSM) for key management. For more information, see the [Key Vault documentation](/azure/key-vault/keys/hsm-protected-keys). When a key encryption key is specified, encryption at host uses that key to wrap the encryption secrets before writing to Key Vault. Keeping an escrow copy of this key in an on-premises key management HSM offers additional protection against accidental deletion of keys.
 
-**Best practice**: To make sure the encryption secrets don’t cross regional boundaries, Azure Disk Encryption needs the key vault and the VMs to be located in the same region.   
-**Detail**: Create and use a key vault that is in the same region as the VM to be encrypted.
+**Best practice**: Take a [snapshot](/azure/virtual-machines/windows/snapshot-copy-managed-disk) and/or backup before making encryption configuration changes. Backups provide a recovery option if an unexpected failure happens.   
+**Detail**: VMs with managed disks should be backed up regularly. For more information about how to back up and restore encrypted VMs, see the [Azure Backup](../../backup/backup-azure-vms-encryption.md) article.
 
-When you apply Azure Disk Encryption, you can satisfy the following business needs:
+**Best practice**: When using customer-managed keys, ensure the encryption secrets don't cross regional boundaries by locating the key vault and VMs in the same region.   
+**Detail**: When using customer-managed keys, create and use a key vault that is in the same region as the VM to be encrypted.
+
+When you apply encryption at host, you can satisfy the following business needs:
 
 - IaaS VMs are secured at rest through industry-standard encryption technology to address organizational security and compliance requirements.
 - IaaS VMs start under customer-controlled keys and policies, and you can audit their usage in your key vault.

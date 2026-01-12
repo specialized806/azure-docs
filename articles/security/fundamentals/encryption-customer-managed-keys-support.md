@@ -3,7 +3,7 @@ title: Services that support customer managed keys (CMKs) in Azure Key Vault and
 description: Services that support customer managed keys (CMKs) in Azure Key Vault and Azure Managed HSM
 author: msmbaldwin
 ms.author: mbaldwin
-ms.date: 12/03/2025
+ms.date: 01/12/2026
 ms.service: security
 ms.subservice: security-fundamentals
 ms.topic: article
@@ -154,14 +154,14 @@ The following services support server-side encryption with customer managed keys
 | [Azure NetApp Files](/azure/azure-netapp-files/) | Yes | Yes | [Configure customer-managed keys for Azure NetApp Files volume encryption](/azure/azure-netapp-files/configure-customer-managed-keys?tabs=azure-portal) |
 | [Blob Storage](/azure/storage/blobs/) | Yes | Yes | [Customer-managed keys for Azure Storage encryption](/azure/storage/common/customer-managed-keys-overview) |
 | [Data Lake Storage Gen2](/azure/storage/blobs/data-lake-storage-introduction/) | Yes | Yes | [Customer-managed keys for Azure Storage encryption](/azure/storage/common/customer-managed-keys-overview) |
-| [Disk Storage](/azure/virtual-machines/disks-types/) | Yes | Yes | [Azure Disk Encryption for Windows and Linux VMs](/azure/virtual-machines/disk-encryption#customer-managed-keys) |
+| [Disk Storage](/azure/virtual-machines/disks-types/) | Yes | Yes | [Encryption at host for Windows and Linux VMs](/azure/virtual-machines/disk-encryption#customer-managed-keys) |
 | [File Storage](/azure/storage/files/) | Yes | Yes | [Customer-managed keys for Azure Storage encryption](/azure/storage/common/customer-managed-keys-overview) |
 | [File Sync](/azure/storage/file-sync/file-sync-introduction) | Yes | Yes | [Customer-managed keys for Azure Storage encryption](/azure/storage/common/customer-managed-keys-overview) |
-| [Managed Disk Storage](/azure/virtual-machines/disks-types/) | Yes | Yes | [Azure Disk Encryption for Windows and Linux VMs](/azure/virtual-machines/disk-encryption#customer-managed-keys) |
+| [Managed Disk Storage](/azure/virtual-machines/disks-types/) | Yes | Yes | [Encryption at host for Windows and Linux VMs](/azure/virtual-machines/disk-encryption#customer-managed-keys) |
 | [Premium Blob Storage](/azure/storage/blobs/) | Yes | Yes | [Customer-managed keys for Azure Storage encryption](/azure/storage/common/customer-managed-keys-overview) |
 | [Queue Storage](/azure/storage/queues/) | Yes | Yes | [Customer-managed keys for Azure Storage encryption](/azure/storage/common/customer-managed-keys-overview) |
 | [StorSimple](/azure/storsimple/) | Yes | | [Azure StorSimple security features](/azure/storsimple/storsimple-security#data-encryption) |
-| [Ultra Disk Storage](/azure/virtual-machines/disks-types/) | Yes | Yes | [Azure Disk Encryption for Windows and Linux VMs](/azure/virtual-machines/disk-encryption#customer-managed-keys) |
+| [Ultra Disk Storage](/azure/virtual-machines/disks-types/) | Yes | Yes | [Encryption at host for Windows and Linux VMs](/azure/virtual-machines/disk-encryption#customer-managed-keys) |
 
 ## Other
 

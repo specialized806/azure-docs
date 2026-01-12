@@ -6,7 +6,7 @@ author: msmbaldwin
 ms.service: security
 ms.subservice: security-fundamentals
 ms.topic: article
-ms.date: 11/06/2025
+ms.date: 01/12/2026
 ms.author: mbaldwin
 
 ---
@@ -193,7 +193,7 @@ For many organizations, data encryption at rest is a mandatory step towards data
 
 - [Client-side Encryption](../../storage/common/storage-client-side-encryption.md) also provides the feature of encryption at rest.
 
-- [Azure Disk Encryption for Linux VMs](/azure/virtual-machines/linux/disk-encryption-overview) and [Azure Disk Encryption for Windows VMs](/azure/virtual-machines/linux/disk-encryption-overview) allows you to encrypt the OS disks and data disks used by an IaaS virtual machine.
+- [Encryption at host](/azure/virtual-machines/disk-encryption) provides end-to-end encryption for the OS disks and data disks used by an IaaS virtual machine by default.
 
 #### Storage Analytics
 
@@ -432,7 +432,12 @@ In addition, Defender for Cloud helps with security operations by providing you 
 
 For comprehensive threat detection capabilities across Azure, see [Azure threat protection](threat-detection.md).
 
+<<<<<<< HEAD
 ### Azure Resource Manager
+=======
+### VM Disk Encryption
+[Encryption at host](/azure/virtual-machines/disk-encryption) helps you encrypt your IaaS virtual machine disks by default. It provides server-side encryption at the VM host level using AES 256 encryption, which is FIPS 140-2 compliant. This encryption occurs without consuming VM CPU resources and provides end-to-end encryption for temporary disks, OS/data disk caches, and data flows to Azure Storage. By default, it uses platform-managed keys with no additional configuration required. Optionally, the solution can be integrated with Azure Key Vault when you need to control and manage your own disk-encryption keys and secrets. The solution ensures that all data on the virtual machine disks are encrypted at rest in your Azure storage.
+>>>>>>> e3357217968c506b437eff9eff3880c8c3cb9256
 
 [Azure Resource Manager](/azure/azure-resource-manager/management/overview) enables you to work with the resources in your solution as a group. You can deploy, update, or delete all the resources for your solution in a single, coordinated operation. You use an [Azure Resource Manager template](/azure/azure-resource-manager/templates/overview) for deployment and that template can work for different environments such as testing, staging, and production. Resource Manager provides security, auditing, and tagging features to help you manage your resources after deployment.
 

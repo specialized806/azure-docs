@@ -6,7 +6,7 @@ author: msmbaldwin
 ms.service: security
 ms.subservice: security-fundamentals
 ms.topic: article
-ms.date: 01/06/2026
+ms.date: 01/12/2026
 ms.author: mbaldwin
 
 ---
@@ -258,15 +258,17 @@ For many organizations, data encryption at rest is a mandatory step towards data
 
 - [Storage Service Encryption](../../storage/blobs/security-recommendations.md) allows you to request that the storage service automatically encrypt data when writing it to Azure Storage.
 - [Client-side Encryption](../../storage/blobs/security-recommendations.md) also provides the feature of encryption at rest.
-- [Azure Disk Encryption for Linux VMs](/azure/virtual-machines/linux/disk-encryption-overview) and [Azure Disk Encryption for Windows VMs](/azure/virtual-machines/linux/disk-encryption-overview).
+- [Encryption at host](/azure/virtual-machines/disk-encryption) provides end-to-end encryption for VM data by default.
 
 For more information, see [Overview of managed disk encryption options](/azure/virtual-machines/disk-encryption-overview).
 
-#### Azure Disk Encryption
+#### Encryption at host
 
-[Azure Disk Encryption for Linux VMs](/azure/virtual-machines/linux/disk-encryption-overview) and [Azure Disk Encryption for Windows VMs](/azure/virtual-machines/linux/disk-encryption-overview) help you address organizational security and compliance requirements by encrypting your VM disks (including boot and data disks) with keys and policies you control in [Azure Key Vault](https://azure.microsoft.com/services/key-vault/).
+[!INCLUDE [Azure Disk Encryption retirement notice](~/reusable-content/ce-skilling/azure/includes/security/azure-disk-encryption-retirement.md)]
 
-The Disk Encryption solution for Windows is based on [Microsoft BitLocker Drive Encryption](/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc732774(v=ws.11)), and the Linux solution is based on [dm-crypt](https://en.wikipedia.org/wiki/Dm-crypt).
+[Encryption at host](/azure/virtual-machines/disk-encryption) helps you address organizational security and compliance requirements by encrypting your VM disks (including boot and data disks) by default. By default, it uses platform-managed keys, but optionally allows you to use customer-managed keys and policies in [Azure Key Vault](https://azure.microsoft.com/services/key-vault/) when you need greater control.
+
+Encryption at host provides server-side encryption at the VM host level using AES 256 encryption, which is FIPS 140-2 compliant. This encryption occurs without consuming VM CPU resources and provides end-to-end encryption for temporary disks, OS/data disk caches, and data flows to Azure Storage.
 
 The solution supports the following scenarios for IaaS VMs when they're enabled in Microsoft Azure:
 

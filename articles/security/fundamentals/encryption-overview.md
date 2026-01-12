@@ -6,7 +6,7 @@ author: msmbaldwin
 ms.service: security
 ms.subservice: security-fundamentals
 ms.topic: article
-ms.date: 01/08/2026
+ms.date: 01/12/2026
 ms.author: mbaldwin
 ---
 # Azure encryption overview
@@ -19,7 +19,7 @@ Data at rest includes information that resides in persistent storage on physical
 
 Data encryption at rest using AES 256 encryption is available for services across the software as a service (SaaS), platform as a service (PaaS), and infrastructure as a service (IaaS) cloud models.
 
-For a detailed discussion of how data at rest is encrypted in Azure, see [Azure Data Encryption-at-Rest](/azure/security/fundamentals/encryption-atrest).
+For a more detailed discussion of how data at rest is encrypted in Azure, see [Azure Data Encryption at Rest](encryption-atrest.md).
 
 ## Azure encryption models
 
@@ -46,7 +46,7 @@ The three server-side encryption models offer different key management character
 
 [!INCLUDE [Azure Disk Encryption retirement notice](~/reusable-content/ce-skilling/azure/includes/security/azure-disk-encryption-retirement.md)]
 
-All Managed Disks, Snapshots, and Images are encrypted using Storage Service Encryption using a service-managed key. Azure also offers options to protect temp disks, caches, and manage keys in Azure Key Vault. For more information, see [Overview of managed disk encryption options](/azure/virtual-machines/disk-encryption-overview).
+All Managed Disks, Snapshots, and Images are encrypted by default using Storage Service Encryption with a service-managed key. For virtual machines, encryption at host provides end-to-end encryption for your VM data, including temporary disks and OS/data disk caches. Azure also offers options to manage keys in Azure Key Vault. For more information, see [Overview of managed disk encryption options](/azure/virtual-machines/disk-encryption-overview).
 
 ### Azure Storage Service Encryption
 
@@ -74,9 +74,11 @@ With Azure SQL Database, you can apply symmetric encryption to a column of data 
 
 [Azure Cosmos DB](/azure/cosmos-db/database-encryption-at-rest) is Microsoft's globally distributed, multi-model database. User data stored in Azure Cosmos DB in non-volatile storage (solid-state drives) is encrypted by default using service-managed keys. You can add a second layer of encryption with your own keys using the [customer-managed keys (CMK)](/azure/cosmos-db/how-to-setup-cmk) feature.
 
-### Azure Data Lake encryption
+### Encryption at rest in Azure Data Lake
 
-[Azure Data Lake](/azure/data-lake-store/data-lake-store-encryption) is an enterprise-wide repository of data. Data Lake Store supports "on by default" transparent encryption of data at rest, which is set up during account creation. By default, Azure Data Lake Store manages the keys for you, but you have the option to manage them yourself.
+[Azure Data Lake](../../data-lake-store/data-lake-store-encryption.md) is an enterprise-wide repository of every type of data collected in a single place prior to any formal definition of requirements or schema. Data Lake Store supports "on by default," transparent encryption at rest, which is set up during the creation of your account. By default, Azure Data Lake Store manages the keys for you, but you have the option to manage them yourself.
+
+Three types of keys are used in encrypting and decrypting data: the Master Encryption Key (MEK), Data Encryption Key (DEK), and Block Encryption Key (BEK). The MEK is used to encrypt the DEK, which is stored on persistent media, and the BEK is derived from the DEK and the data block. If you are managing your own keys, you can rotate the MEK.
 
 ## Encryption of data in transit
 
