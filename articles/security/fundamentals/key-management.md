@@ -5,7 +5,7 @@ services: security
 author: msmbaldwin
 ms.service: security
 ms.topic: article
-ms.date: 01/08/2026
+ms.date: 01/12/2026
 ms.author: mbaldwin
 ms.collection:
   - zerotrust-extra

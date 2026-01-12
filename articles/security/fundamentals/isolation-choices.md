@@ -25,7 +25,7 @@ In the cloud-enabled workplace, a tenant can be defined as a client or organizat
 
 Each Microsoft Entra directory is distinct and separate from other Microsoft Entra directories. Just like a corporate office building is a secure asset specific to only your organization, a Microsoft Entra directory was also designed to be a secure asset for use by only your organization. The Microsoft Entra architecture isolates customer data and identity information from co-mingling. This means that users and administrators of one Microsoft Entra directory can't accidentally or maliciously access data in another directory.
 
-### Azure Tenancy
+### Azure tenancy
 
 Azure tenancy (Azure Subscription) refers to a “customer/billing” relationship and a unique [tenant](../../active-directory/develop/quickstart-create-new-tenant.md) in [Microsoft Entra ID](../../active-directory/fundamentals/active-directory-whatis.md). Tenant level isolation in Microsoft Azure is achieved using Microsoft Entra ID and [Azure role-based access control](../../role-based-access-control/overview.md) offered by it. Each Azure subscription is associated with one Microsoft Entra directory.
 
@@ -154,7 +154,7 @@ Isolated VM sizes have a hardware limited lifespan. Azure issues reminders 12 mo
 
 In addition to the isolated hosts described in the preceding section, Azure also offers dedicated hosts. Dedicated hosts in Azure is a service that provides physical servers that can host one or more virtual machines, and which are dedicated to a single Azure subscription. Dedicated hosts provide hardware isolation at the physical server level. No other VMs will be placed on your hosts. Dedicated hosts are deployed in the same datacenters and share the same network and underlying storage infrastructure as other, non-isolated hosts. For more information, see the detailed overview of [Azure dedicated hosts](/azure/virtual-machines/dedicated-hosts).
 
-### Hyper-V & Root OS Isolation Between Root VM & Guest VMs
+### Hyper-V and root OS isolation between root VM and guest VMs
 
 Azure’s compute platform is based on machine virtualization—meaning that all customer code executes in a Hyper-V virtual machine. On each Azure node (or network endpoint), there's a Hypervisor that runs directly over the hardware and divides a node into a variable number of Guest Virtual Machines (VMs).
 
