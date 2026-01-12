@@ -93,7 +93,7 @@ One important way that organizations can help protect against losses in a ransom
 - **Azure Disaster Recovery**: With disaster recovery from on-prem to the cloud, or from one cloud to another, you can avoid downtime and keep your applications up and running. 
 - **Built-in Security and Management in Azure**: To be successful in the Cloud era, enterprises must have visibility/metrics and controls on every component to pinpoint issues efficiently, optimize and scale effectively, while having the assurance the security, compliance and policies are in place to ensure the velocity.
 
-### Guaranteed and protected access to your data
+### Guaranteed and Protected Access to Your Data
 
 Azure has a lengthy period of experience managing global data centers, which are backed by Microsoft's $15 billion-infrastructure investment that is under continuous evaluation and improvement – with ongoing investments and improvements, of course.
 
