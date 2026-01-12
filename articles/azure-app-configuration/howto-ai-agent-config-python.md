@@ -11,7 +11,7 @@ ms.update-cycle: 180-days
 ms.collection: ce-skilling-ai-copilot
 ---
 
-# Use AI agent configuration in a Python console app
+# Use Agent Framework in a Python app with Azure App Configuration
 
 In this guide, you build an AI agent chat application using Azure App Configuration to load agent YAML specifications that define AI agent behavior, prompts and model configurations. 
 
@@ -19,7 +19,7 @@ The full sample source code is available in the [Azure App Configuration GitHub 
 
 ## Prerequisites
 
-- Create the _example agent settings_ discussed in the [Get started](./howto-ai-agent-config.md#example-agent-settings) section.
+- Create an _Azure AI project_ in Microsoft Foundry and configure the _example agent settings_ discussed in the [Get started](./howto-ai-agent-config.md#example-agent-settings) section.
 - Python 3.10 or later - for information on setting up Python on Windows, see the [Python on Windows documentation](/windows/python/).
 
 ## Console application

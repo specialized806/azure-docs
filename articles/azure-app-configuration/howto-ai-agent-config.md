@@ -12,7 +12,7 @@ ms.collection: ce-skilling-ai-copilot
 
 # AI agent configuration in Azure App Configuration
 
-Agents are software systems that autonomously perform tasks using Large Language Models (LLMs) to process user input and execute actions on behalf of users. These agents use tools and Model Context Protocol (MCP) servers to carry out operations and generate intelligent responses. Agent configuration enables you to define and manage how these agents behave and respond within your application environment. Azure App Configuration provides a centralized store where configurations for your agent are kept in one place and can be shared across multiple application instances. Using Azure App Configuration allows you to update your agent's settings dynamically without redeploying or restarting your application, define agent behavior separate from your implementation code and use feature flags to safely roll out new agent features or behaviors to targeted environments.
+Agents are software systems that autonomously perform tasks using Large Language Models (LLMs) to process user input and execute actions on behalf of users. These agents use tools and Model Context Protocol (MCP) servers to carry out operations and generate intelligent responses. Agent configuration enables you to define and manage how these agents behave and respond within your application environment. Azure App Configuration provides a centralized store where configurations for your agent are kept in one place and can be shared across multiple application instances.
 
 Here are some agent settings that can be stored on Azure App Configuration:
 
@@ -38,7 +38,7 @@ Here are some agent settings that can be stored on Azure App Configuration:
     | *ChatAgent:Spec*               | *See YAML below*                                                    |                                              |
 
 
-    **YAML specification for ChatAgent:Spec**
+    **Value for ChatAgent:Spec**
 
     ```yaml
     kind: Prompt
