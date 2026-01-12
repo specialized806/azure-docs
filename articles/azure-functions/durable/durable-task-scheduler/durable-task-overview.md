@@ -276,7 +276,6 @@ Import-Module AzureFunctions.PowerShell.Durable.SDK -ErrorAction Stop
 
 ## Next steps
 
-- [Programming model](../durable-functions-programming-model.md)
 - [Functions types and features overview](../durable-functions-types-features-overview.md)
 - [Packages](../durable-functions-packages.md)
 - [Create a Durable Functions app - C#](../durable-functions-isolated-create-first-csharp.md)

@@ -28,8 +28,6 @@ landingContent:
         links:
           - text: Durable Function types
             url: durable-functions-types-features-overview.md
-          - text: Hosting options
-            url: durable-functions-hosting-options.md
           - text: Durable Task Scheduler
             url: ./durable-task-scheduler/durable-task-scheduler.md
 
@@ -41,7 +39,7 @@ landingContent:
           - text: Create a Durable Functions app (C#)
             url: durable-functions-isolated-create-first-csharp.md
           - text: Create an app with the Durable Task SDKs
-            url: ./durable-task-scheduler/quickstart-portable-durable-task-sdks.md
+            url: ./durable-task-scheduler/quickstart-durable-task-scheduler.md
         
   # Card
   - title: Application patterns

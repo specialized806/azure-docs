@@ -1,6 +1,11 @@
 {
     "redirections": [
         {
+          "source_path": "articles/azure=functions/durable/durable-functions-create-portal.md",
+          "redirect_url": "/azure/durable/durable-functions-isolated-create-first-csharp",
+          "redirect_document_id": false
+        },
+        {
           "source_path": "articles/azure=functions/durable/durable-task-scheduler/develop-with-durable-task-scheduler.md",
           "redirect_url": "/azure/durable-task-scheduler/develop-with-durable-task-scheduler",
           "redirect_document_id": false
@@ -102,7 +107,7 @@
         },
         {
             "source_path_from_root": "/articles/azure-functions/durable-functions-install.md",
-            "redirect_url": "/azure/azure-functions/durable/durable-functions-create-portal",
+            "redirect_url": "/azure/azure-functions/durable/durable-functions-isolated-create-first-csharp",
             "redirect_document_id": false
         },
         {

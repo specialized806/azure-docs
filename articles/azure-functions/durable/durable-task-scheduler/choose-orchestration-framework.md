@@ -79,7 +79,7 @@ Consider using Durable Functions if you need to build event-driven apps with wor
 
 - Start an orchestration when a message comes into your Azure Service Bus or a file uploads to Azure Blob Storage. 
 - Build an orchestration that runs periodically or in response to an HTTP request with the Azure Functions timer and HTTP trigger, respectively. 
-- Accelerate workflow development for your Azure Function apps, since [Durable Functions programming model](../durable-functions-programming-model.md) is similar to Azure Functions.
+- Accelerate workflow development for your Azure Function apps, since Durable Functions programming model is similar to Azure Functions.
 
 #### Example
 

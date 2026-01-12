@@ -21,7 +21,6 @@ Azure Durable is Microsoft's durable execution platform for building fault-toler
 | Component | Description | Best For |
 |-----------|-------------|----------|
 | **[Durable Task Scheduler](./durable-task-scheduler/durable-task-scheduler.md)** | Fully managed orchestration backend | Creating production workloads requiring high performance |
-| **[Hosting options](./durable-functions-hosting-options.md)** | Azure Functions, Container Apps, or Kubernetes | Choosing based on your deployment needs |
 | **[Durable Task SDK guide](./durable-task-scheduler/quickstart-portable-durable-task-sdks.md)** | SDKs for .NET, Python, and Java | Building orchestrations in your preferred language |
 
 ## Choose your path
@@ -57,13 +56,10 @@ dotnet add package Microsoft.DurableTask.Worker.AzureManaged
 | I want to... | Go to... |
 |--------------|----------|
 | **Understand the concepts** | [Core concepts](./durable-functions-types-features-overview.md) |
-| **Choose a hosting platform** | [Hosting options](./durable-functions-hosting-options.md) |
 | **Build serverless workflows** | [Durable Functions quickstart](./durable-task-scheduler/quickstart-durable-task-scheduler.md) |
 | **Run using the Durable Task SDKs** | [Durable Task SDK quickstart](./durable-task-scheduler/quickstart-portable-durable-task-sdks.md) |
 | **Learn orchestration patterns** | [Patterns](./durable-functions-overview.md#application-patterns) |
-| **Choose the right workflow approach** | [Azure Durable vs. other Azure workflow solutions](./durable-comparison-alternatives.md) |
 | **Set up the Azure-managed backend** | [Durable Task Scheduler](./durable-task-scheduler/durable-task-scheduler.md) |
-| **Look up terminology** | [Glossary](./durable-glossary.md) |
 
 ## Getting started
 
@@ -99,8 +95,6 @@ dotnet add package Microsoft.Azure.Functions.Worker.Extensions.DurableTask
 **Best for:** 
 - Full orchestration control
 - Existing Kubernetes infrastructure
-
-[Kubernetes quickstart](./durable-task-scheduler/quickstart-aks-durable-task-sdk.md)
 
 ### Durable Task SDKs (all platforms)
 
@@ -142,6 +136,5 @@ flowchart TB
 
 - [Functions types and features overview](durable-functions-types-features-overview.md)
 - [Orchestrator functions overview](durable-functions-orchestrations.md)
-- [Choose your hosting option](durable-functions-hosting-options.md)
 - [Create a Durable Functions app - C#](durable-functions-isolated-create-first-csharp.md)
 - [Durable Functions overview](durable-functions-overview.md)
