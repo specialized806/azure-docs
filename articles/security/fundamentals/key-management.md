@@ -17,11 +17,7 @@ ms.collection:
 
 In Azure, encryption keys can be either platform managed or customer managed.
 
-<<<<<<< HEAD
-Platform-managed keys (PMKs) are encryption keys generated, stored, and managed entirely by Azure. Customers do not interact with PMKs. The keys used for [Azure Data Encryption-at-Rest](/azure/security/fundamentals/encryption-atrest), for instance, are PMKs by default.  
-=======
 Platform-managed keys (PMKs) are encryption keys generated, stored, and managed entirely by Azure. Customers do not interact with PMKs. The keys used for [Azure Data Encryption at Rest](encryption-atrest.md), for instance, are PMKs by default.  
->>>>>>> e3357217968c506b437eff9eff3880c8c3cb9256
 
 Customer-managed keys (CMK), on the other hand, are keys read, created, deleted, updated, and/or administered by one or more customers. Keys stored in a customer-owned key vault or hardware security module (HSM) are CMKs. Bring Your Own Key (BYOK) is a CMK scenario in which a customer imports (brings) keys from an outside storage location into an Azure key management service (see the [Azure Key Vault: Bring your own key specification](/azure/key-vault/keys/byok-specification)).
 

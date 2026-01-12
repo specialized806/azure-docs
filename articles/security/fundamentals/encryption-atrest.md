@@ -104,19 +104,11 @@ Like PaaS, IaaS solutions can leverage other Azure services that store data encr
 
 #### Encrypted compute
 
-<<<<<<< HEAD
-All Managed Disks, Snapshots, and Images are encrypted using Storage Service Encryption using a service-managed key. A more complete Encryption at Rest solution ensures that the data is never persisted in unencrypted form. While processing the data on a virtual machine, data can be persisted to the Windows page file or Linux swap file, a crash dump, or to an application log. To ensure this data is encrypted at rest, IaaS applications can use encryption at host on Azure IaaS virtual machines.
-
-#### Custom encryption at rest
-
-It is recommended that whenever possible, IaaS applications leverage encryption at host and Encryption at Rest options provided by any consumed Azure services. Developers should use the Azure Key Vault service to provide secure key storage as well as provide their customers with consistent key management options with Azure platform services. Additionally, custom solutions should use Azure managed service identities to enable service accounts to access encryption keys. For developer information on Azure Key Vault and Managed Service Identities, see their respective SDKs.
-=======
 All Managed Disks, Snapshots, and Images are encrypted by default using Storage Service Encryption with platform-managed keys. This default encryption requires no customer configuration or additional cost. A more comprehensive encryption solution ensures that all data is never persisted in unencrypted form. While processing data on a virtual machine, data can be persisted to the Windows page file or Linux swap file, a crash dump, or to an application log. To ensure this data is also encrypted at rest, IaaS applications can use encryption at host on an Azure IaaS virtual machine, which by default uses platform-managed keys but can optionally be configured with customer-managed keys for additional control.
 
 #### Custom encryption at rest
 
 It is recommended that whenever possible, IaaS applications leverage encryption at host and encryption at rest options provided by any consumed Azure services. In some cases, such as irregular encryption requirements or non-Azure based storage, a developer of an IaaS application may need to implement encryption at rest themselves. Developers of IaaS solutions can better integrate with Azure management and customer expectations by leveraging certain Azure components. Specifically, developers should use the Azure Key Vault service to provide secure key storage as well as provide their customers with key management options consistent with that of Azure platform services. Additionally, custom solutions should use Azure managed service identities to enable service accounts to access encryption keys. For developer information on Azure Key Vault and Managed Service Identities, see their respective SDKs.
->>>>>>> e3357217968c506b437eff9eff3880c8c3cb9256
 
 ## Azure resource providers encryption model support
 
