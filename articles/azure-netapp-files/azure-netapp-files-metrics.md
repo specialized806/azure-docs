@@ -5,7 +5,7 @@ services: azure-netapp-files
 author: b-hchen
 ms.service: azure-netapp-files
 ms.topic: concept-article
-ms.date: 11/25/2025
+ms.date: 12/17/2025
 ms.author: anfdocs
 # Customer intent: As a cloud storage administrator, I want to analyze performance and usage metrics for Azure NetApp Files, so that I can optimize storage provisioning and ensure efficient operation of my storage resources.
 ---
@@ -129,7 +129,7 @@ Azure NetApp Files metrics are natively integrated into Azure monitor. From with
     :::image type="content" source="./media/azure-netapp-files-metrics/metrics-select-pool-volume.png" alt-text="Screenshot that shows how to access Azure NetApp Files metrics for capacity pools or volumes." lightbox="./media/azure-netapp-files-metrics/metrics-select-pool-volume.png":::
 
     >[!TIP]
-    >For [cache volumes](#cache-volume-metrics-preview), enter the cache's full resource ID in the search filter. 
+    >For [cache volumes](#cache-volume-metrics-preview), click on the Scope field and then enter the cache's full resource ID in the search filter. 
   	
 - From the Azure NetApp Files capacity pool or volume, select **Metrics**. Then select **Metric** to view the available metrics:
    
@@ -268,6 +268,13 @@ Azure NetApp Files provides metrics on allocated storage, actual storage usage, 
 
     :::image type="content" source="./media/azure-netapp-files-metrics/throughput-limit-reached.png" alt-text="Screenshot that shows Azure NetApp Files metrics a line graph demonstrating throughput limit reached." lightbox="./media/azure-netapp-files-metrics/throughput-limit-reached.png":::
 
+- *QoS Latency Delta*
+    
+    QoS Latency Delta represents the total QoS latency for a volume over a time period (measured in ms).
+    
+    :::image type="content" source="./media/azure-netapp-files-metrics/quality-of-service-latency-delta.png" alt-text="Screenshot that shows Azure NetApp Files metrics displaying the total latency for the exceeded throughput." lightbox="./media/azure-netapp-files-metrics/quality-of-service-latency-delta.png":::
+
+
 ## Performance metrics for volumes
 
 > [!NOTE] 
@@ -386,7 +393,7 @@ Azure NetApp Files provides metrics on allocated storage, actual storage usage, 
 
 ## Cache volume metrics (preview)
 
-* *Cache miss blocks*      
+* *Cache volume miss blocks*      
 
     This metric counts missed blocks in the caching process. During steady-state, after warming of cache, if this value exceeds client requested blocks, this is indicative of a less than ideal workload type.
 
@@ -398,7 +405,7 @@ Azure NetApp Files provides metrics on allocated storage, actual storage usage, 
 
     A count of the constituents that are at least 90% full.
 
-* *Flex Cache connection status*  
+* *Cache volume connection status*  
 
     The metric displays 1 if all the cache volumes can connect to the origin volume. A value of 0 means the connection isn't working. 
 
