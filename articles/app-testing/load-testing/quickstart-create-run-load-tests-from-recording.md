@@ -18,7 +18,7 @@ This quickstart guides you through the steps of installing the browser extension
 
 ## Prerequisites
 
-- Azure App Testing browser extension for Microsoft Edge. [Download and install it here](https://aka.ms/malt-browser-extension).  
+- Azure App Testing browser extension for Microsoft Edge. [Download and install it here](https://aka.ms/AppTesting/Browser-Ext).  
 - An Azure account with an active subscription. Needed to run load tests at scale in **Azure Load Testing**. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 
