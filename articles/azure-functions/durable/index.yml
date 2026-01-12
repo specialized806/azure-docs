@@ -23,11 +23,7 @@ landingContent:
       - linkListType: overview
         links:
           - text: What is Azure Durable?
-            url: durable-functions-overview.md
-          - text: Compare Azure workflow solutions
-            url: durable-comparison-alternatives.md  
-          - text: When to use Azure Durable
-            url: durable-use-cases.md
+            url: durable-overview.md
       - linkListType: concept
         links:
           - text: Durable Function types
@@ -44,10 +40,8 @@ landingContent:
         links:
           - text: Create a Durable Functions app (C#)
             url: durable-functions-isolated-create-first-csharp.md
-          - text: Host a Durable Task SDK app on Azure Container Apps
-            url: ./durable-task-scheduler/quickstart-container-apps-durable-task-sdk.md
-          - text: Host a Durable Task SDK app on Azure Kubernetes Service
-            url: ./durable-task-scheduler/quickstart-aks-durable-task-sdk.md
+          - text: Create an app with the Durable Task SDKs
+            url: ./durable-task-scheduler/quickstart-portable-durable-task-sdks.md
         
   # Card
   - title: Application patterns
