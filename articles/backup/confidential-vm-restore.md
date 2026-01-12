@@ -1,17 +1,17 @@
 ---
-title: Azure Backup - Restore Confidential VM with Customer Managed Key using Azure Backup CMK (preview)
+title: Azure Backup - Restore Confidential VM using Azure Backup (preview)
 description: Learn about restoring Confidential VM with CMK using Azure Backup.
 ms.topic: how-to
-ms.date: 05/15/2023
+ms.date: 01/28/2026
 ms.custom: references_regions
-ms.service: backup
-author: jyothisuri
-ms.author: jsuri
+ms.service: azure-backup
+author: AbhishekMallick-MS
+ms.author: v-mallicka
 ---
 
-# Restore Confidential VM with Customer Managed Key using Azure Backup (private preview)
+# Restore Confidential VM using Azure Backup (preview)
 
-This article describes how to restore Confidential VM (CVM) with Customer Managed Key (CMK).
+This article describes how to restore Confidential VM (CVM) with Platform or Customer Managed Key (PMK or CMK).
 
 ***Note***
 

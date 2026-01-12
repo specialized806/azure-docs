@@ -11,7 +11,7 @@ ms.author: v-mallicka
 
 # Back up Confidential VM using Azure Backup (preview)
 
-This article describes how to configure and back up Confidential VM (CVM) with Platform Managed Key (PMK)or Customer Managed Key (CMK).
+This article describes how to configure and back up Confidential VM (CVM) with Platform or Customer Managed Key (PMK or CMK).
 
 ## Prerequisites
 
