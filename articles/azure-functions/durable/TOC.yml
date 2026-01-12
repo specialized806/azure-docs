@@ -282,13 +282,15 @@
   - name: Orchestration patterns
     items:
     - name: Function chaining
-      href: ./durable-task-scheduler/durable-task-function-chaining.md
+      href: durable-functions-sequence.md #placeholder
     - name: Fan-out/fan-in
-      href: ./durable-task-scheduler/durable-task-fan-out-fan-in.md
-    - name: Monitors
-      href: ./durable-task-scheduler/durable-task-monitors.md
+      href: durable-functions-cloud-backup.md #placeholder
+    - name: Monitors (C#, JavaScript)
+      href: durable-functions-monitor.md #placeholder
+    - name: Monitors (Python)
+      href: durable-functions-monitor-python.md #placeholder
     - name: Human interaction
-      href: ./durable-task-scheduler/durable-task-human-interaction.md
+      href: durable-functions-phone-verification.md #placeholder
   - name: Concepts
     items:
     - name: Versioning
