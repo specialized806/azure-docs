@@ -40,7 +40,7 @@ In this tutorial, you learn how to:
 > * Create a default route
 > * Configure an application rule to allow access to www.google.com
 > * Configure a network rule to allow access to external DNS servers
-> * Configure a NAT rule to allow a remote desktop to the test server
+> * Configure a NAT rule to allow inbound HTTP access to the test server
 > * Test the firewall
 
 If you prefer, you can complete this procedure using [Azure PowerShell](deploy-ps-policy.md).
@@ -112,7 +112,7 @@ Next, create a subnet for the workload server.
 Now create the workload virtual machine, and place it in the **Workload-SN** subnet.
 
 1. On the Azure portal menu or from the **Home** page, select **Create a resource**.
-1. Select **Windows Server 2019 Datacenter**.
+1. Select **Ubuntu Server 22.04 LTS**.
 1. Enter or select these values for the virtual machine:
 
    | Setting | Value |
@@ -121,8 +121,11 @@ Now create the workload virtual machine, and place it in the **Workload-SN** sub
    | Resource group     | Select **Test-FW-RG**. |
    | Virtual machine name     | Enter **Srv-Work**.|
    | Region     | Select the same location that you used previously. |
-   | Username     | Enter a username. |
-   | Password     | Enter a password. |
+   | Availability options | Select **No infrastructure redundancy required**. |
+   | Security type | Select **Standard**. |
+   | Username     | Enter **azureuser**. |
+   | SSH public key source | Select **Generate new key pair**. |
+   | Key pair name | Enter **Srv-Work_key**. |
 
 1. Under **Inbound port rules**, **Public inbound ports**, select **None**.
 1. Accept the other defaults and select **Next: Disks**.
@@ -133,7 +136,26 @@ Now create the workload virtual machine, and place it in the **Workload-SN** sub
 1. Select **Next:Monitoring**.
 1. Select **Disable** to disable boot diagnostics. Accept the other defaults and select **Review + create**.
 1. Review the settings on the summary page, and then select **Create**.
+1. When prompted, select **Download private key and create resource**. Save the private key file to your computer.
 1. After the deployment completes, select the **Srv-Work** resource and note the private IP address for later use.
+
+### Install a web server
+
+Connect to the virtual machine and install a web server for testing.
+
+1. On the Azure portal menu, select **Resource groups** or search for and select *Resource groups* from any page. Select the **Test-FW-RG** resource group.
+1. Select the **Srv-Work** virtual machine.
+1. Select **Run command** > **RunShellScript**.
+1. In the script box, enter the following commands:
+
+   ```bash
+   sudo apt-get update
+   sudo apt-get install -y nginx
+   echo "<html><body><h1>Azure Firewall DNAT Test</h1><p>If you can see this page, the DNAT rule is working correctly!</p></body></html>" | sudo tee /var/www/html/index.html
+   ```
+
+1. Select **Run**.
+1. Wait for the script to complete successfully.
 
 ## Deploy the firewall and policy
 
@@ -239,22 +261,22 @@ This is the network rule that allows outbound access to two IP addresses at port
 
 ## Configure a DNAT rule
 
-This rule allows you to connect a remote desktop to the **Srv-Work** virtual machine through the firewall.
+This rule allows you to connect to the web server on the **Srv-Work** virtual machine through the firewall.
 
 1. Select the **DNAT rules**.
 2. Select **Add a rule collection**.
-3. For **Name**, enter **RDP**.
+3. For **Name**, enter **HTTP**.
 1. For **Priority**, enter **200**.
 1. For **Rule collection group**, select **DefaultDnatRuleCollectionGroup**.
-1. Under **Rules**, for **Name**, enter **rdp-nat**.
+1. Under **Rules**, for **Name**, enter **http-nat**.
 1. For **Source type**, select **IP address**.
 1. For **Source**, enter *\**.
 1. For **Protocol**, select **TCP**.
-1. For **Destination Ports**, enter **3389**.
+1. For **Destination Ports**, enter **80**.
 1. For **Destination**, enter the firewall public IP address.
 1. For **Translated type**, select **IP Address**.
 1. For **Translated address**, enter the **Srv-work** private IP address.
-1. For **Translated port**, enter **3389**.
+1. For **Translated port**, enter **80**.
 1. Select **Add**.
 
 
@@ -274,18 +296,37 @@ For testing purposes in this tutorial, configure the server's primary and second
 
 Now, test the firewall to confirm that it works as expected.
 
-1. Connect a remote desktop to firewall public IP address and sign in to the **Srv-Work** virtual machine. 
-3. Open Microsoft Edge and browse to `https://www.google.com`.
-4. Select **OK** > **Close** on the Internet Explorer security alerts.
+### Test the DNAT rule
 
-   You should see the Google home page.
+1. Open a web browser on your local computer.
+1. In the address bar, enter `http://<firewall-public-ip-address>`, where `<firewall-public-ip-address>` is the public IP address of the firewall you noted earlier.
+1. You should see the custom web page: **Azure Firewall DNAT Test**. This confirms that the DNAT rule is working and traffic is being forwarded to the **Srv-Work** virtual machine.
 
-5. Browse to `https://www.microsoft.com`.
+### Test the application and network rules
 
-   You should be blocked by the firewall.
+To test the application and network rules, you need to connect to the **Srv-Work** virtual machine. You can do this by temporarily adding a DNAT rule for SSH (port 22) or by using Azure Bastion. For this tutorial, we'll use the Run Command feature.
+
+1. On the Azure portal menu, select **Resource groups** or search for and select *Resource groups* from any page. Select the **Test-FW-RG** resource group.
+1. Select the **Srv-Work** virtual machine.
+1. Select **Run command** > **RunShellScript**.
+1. In the script box, enter the following command to test access to Google:
+
+   ```bash
+   curl -I https://www.google.com
+   ```
+
+1. Select **Run**. You should see a successful HTTP response (200 OK), indicating that the application rule is allowing access to Google.
+1. Now test access to Microsoft, which should be blocked. In the script box, enter:
+
+   ```bash
+   curl -I https://www.microsoft.com
+   ```
+
+1. Select **Run**. The command should time out or fail, indicating that the firewall is blocking access.
 
 So now you've verified that the firewall rules are working:
 
+* You can access the web server through the DNAT rule.
 * You can browse to the one allowed FQDN, but not to any others.
 * You can resolve DNS names using the configured external DNS server.
 
