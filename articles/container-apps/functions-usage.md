@@ -120,7 +120,7 @@ The following steps show you how to use a sample container image to create your 
 ## Prerequisites
 
 - An Azure account with an active subscription.
-  - If you don't have an Azure account, [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+  - If you don't have an Azure account, you can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - The [Azure CLI](/cli/azure/install-azure-cli) installed.
 
 ## Create a Functions app
