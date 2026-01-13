@@ -66,13 +66,17 @@ When using Entra ID and the following Azure App Configuration libraries in cloud
 
 ### [.NET](#tab/dotnet)
 
+The Audience for the target cloud must be configured for the following packages.
+
 - Microsoft.Extensions.Configuration.AzureAppConfiguration >= 8.2.0
 - Azure.Data.AppConfiguration >= 1.6.0
 
-Audience is configured by utilizing the following API calls:
+In the **Azure SDK for .NET**, audience is configured by utilizing the following API calls:
 
 * The ConfigurationClient constructor [accepts ConfigurationClientOptions](/dotnet/api/azure.data.appconfiguration.configurationclient.-ctor#azure-data-appconfiguration-configurationclient-ctor(system-uri-azure-core-tokencredential-azure-data-appconfiguration-configurationclientoptions))
 * ConfigurationClientOptions allows [Audience](/dotnet/api/azure.data.appconfiguration.configurationclientoptions.audience#azure-data-appconfiguration-configurationclientoptions-audience) to be set
+
+The following code snippet demonstrates how to instantiate a configuration client with a cloud-specific audience.
 
 ```
 var configurationClient = new ConfigurationClient(
@@ -84,7 +88,12 @@ var configurationClient = new ConfigurationClient(
     });
 ```
 
-Configuration providers sit on top of the configuration client SDK and allow client options to be [configured](/dotnet/api/microsoft.extensions.configuration.azureappconfiguration.azureappconfigurationoptions.configureclientoptions#microsoft-extensions-configuration-azureappconfiguration-azureappconfigurationoptions-configureclientoptions(system-action((azure-data-appconfiguration-configurationclientoptions)))).
+In the **.NET configuration provider for Azure App Configuration**, audience is configured by utilizing the following API calls:
+
+* AzureAppConfigurationOptions exposes a [ConfigureClientOptions](/dotnet/api/microsoft.extensions.configuration.azureappconfiguration.azureappconfigurationoptions.configureclientoptions#microsoft-extensions-configuration-azureappconfiguration-azureappconfigurationoptions-configureclientoptions(system-action((azure-data-appconfiguration-configurationclientoptions)))) method
+
+The following code snippet demonstrates how to add the Azure App Configuration provider into a .NET application with a cloud-specific audience.
+
 
 ```
 builder.AddAzureAppConfiguration(o =>
