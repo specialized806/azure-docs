@@ -6,10 +6,9 @@ ms.topic: overview
 ms.date: 08/04/2025
 ai-usage: ai-assisted
 ---
-
 # What is Neon Serverless Postgres?
 
-> [Important!]
+> [!Important]
 > Deprecation Note: The Neon Azure Native Integration is being deprecated and will reach end of life on January 31, 2026. Transfer your projects to a Neon managed organization today, see [Migrate from Neon Azure Native Integration](https://neon.com/docs/import/migrate-from-azure-native).
 
 Neon Serverless Postgres is a cloud-native, serverless, fully managed PostgreSQL database service jointly developed and managed by Microsoft and Neon as an Azure Native Integration. [!INCLUDE [what-is](../includes/what-is.md)]
