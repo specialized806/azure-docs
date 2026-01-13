@@ -59,6 +59,8 @@ A **producer** (or publisher) is any application that sends events to an event h
 
 :::image type="content" source="./media/event-hubs-features/partition_keys.png" alt-text="Diagram showing how partition keys map events to specific partitions.":::
 
+<a name="publisher-policy"></a>
+
 ### Publisher policies
 
 Publisher policies enable granular control when you have many independent publishers. Each publisher uses a unique identifier:
@@ -70,6 +72,8 @@ Publisher policies enable granular control when you have many independent publis
 The publisher name must match the SAS token used for authentication. When using publisher policies, the **PartitionKey** must match the publisher name.
 
 ---
+
+<a name="event-consumers"></a>
 
 ## Consuming events
 
