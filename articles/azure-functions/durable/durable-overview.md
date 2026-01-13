@@ -1,6 +1,6 @@
 ---
 title: What is Azure Durable?
-description: Learn more about Azure Durable and how you can use it to build fault-tolerant workflows that atuomatically handle failures, retries, and state persistence.
+description: Learn more about Azure Durable and how you can use it to build fault-tolerant workflows that automatically handle failures, retries, and state persistence.
 author: hhunter-ms
 ms.author: hannahhunter
 ms.reviewer: azfuncdf
@@ -12,11 +12,7 @@ ms.subservice: durable
 
 # What is Azure Durable?
 
-ADD MORE ABOUT DURABLE EXECUTION
-
 Build workflows that never fail. Azure Durable automatically handles retries, state persistence, and crash recovery—so you can focus on your business logic.
-
-Azure Durable is Microsoft's durable execution platform for building fault-tolerant workflows that automatically handle failures, retries, and state persistence.
 
 | Component | Description | Best For |
 |-----------|-------------|----------|

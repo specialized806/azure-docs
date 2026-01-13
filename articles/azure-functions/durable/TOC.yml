@@ -1,13 +1,13 @@
 - name: Azure Durable Documentation
   href: index.yml
 - name: Overview
+  expanded: true
   items:
   - name: What is Azure Durable?
     href: durable-overview.md
   - name: Choose your orchestration framework
     href: ./durable-task-scheduler/choose-orchestration-framework.md
 - name: Quickstarts
-  expanded: true
   items:
   - name: Durable Functions
     items:
@@ -73,7 +73,7 @@
         href: durable-functions-instance-management.md
       - name: Durable Task SDKs
         href: durable-functions-overview.md #placeholder
-    - name: Eternal Sub-orchestrations
+    - name: Eternal orchestrations
       items:
       - name: Durable Functions
         href: durable-functions-eternal-orchestrations.md

@@ -1,5 +1,5 @@
 ---
-title: Migrate from In-Process to Isolated Worker Model
+title: Migrate your Durable Functions app from In-Process to Isolated Worker Model
 description: Learn how to migrate your Durable Functions application from the in-process model to the isolated worker model.
 author: hhunter-ms
 ms.author: hannahhunter
@@ -130,10 +130,10 @@ Apps that show `dotnet` as the runtime use the in-process model. Apps that use `
 
 ### Key changes
 
-1. Add `<OutputType>Exe</OutputType>` - The isolated worker is an executable
-1. Add `<FrameworkReference Include="Microsoft.AspNetCore.App" />` - For ASP.NET Core integration
-1. Replace `Microsoft.NET.Sdk.Functions` with `Microsoft.Azure.Functions.Worker.*` packages
-1. Replace `Microsoft.Azure.WebJobs.Extensions.DurableTask` with `Microsoft.Azure.Functions.Worker.Extensions.DurableTask`
+- Add `<OutputType>Exe</OutputType>` - The isolated worker is an executable
+- Add `<FrameworkReference Include="Microsoft.AspNetCore.App" />` - For ASP.NET Core integration
+- Replace `Microsoft.NET.Sdk.Functions` with `Microsoft.Azure.Functions.Worker.*` packages
+- Replace `Microsoft.Azure.WebJobs.Extensions.DurableTask` with `Microsoft.Azure.Functions.Worker.Extensions.DurableTask`
 
 ## Add Program.cs
 
@@ -536,21 +536,21 @@ services.Configure<WorkerOptions>(options => {
 
 Use this checklist to ensure a complete migration:
 
-- [ ] Updated project file with `<OutputType>Exe</OutputType>`
-- [ ] Replaced `Microsoft.NET.Sdk.Functions` with worker packages
-- [ ] Replaced `Microsoft.Azure.WebJobs.Extensions.DurableTask` with isolated package
-- [ ] Created `Program.cs` with host configuration
-- [ ] Removed `FunctionsStartup` class (if present)
-- [ ] Updated all `[FunctionName]` to `[Function]`
-- [ ] Replaced `IDurableOrchestrationContext` with `TaskOrchestrationContext`
-- [ ] Replaced `IDurableOrchestrationClient` with `DurableTaskClient`
-- [ ] Updated logging to use DI or `FunctionContext`
-- [ ] Updated `local.settings.json` with `dotnet-isolated` runtime
-- [ ] Removed all `Microsoft.Azure.WebJobs.*` using statements
-- [ ] Added `Microsoft.Azure.Functions.Worker` using statements
-- [ ] Tested all functions locally
-- [ ] Deployed to staging slot and verified
-- [ ] Swapped to production
+- Updated project file with `<OutputType>Exe</OutputType>`
+- Replaced `Microsoft.NET.Sdk.Functions` with worker packages
+- Replaced `Microsoft.Azure.WebJobs.Extensions.DurableTask` with isolated package
+- Created `Program.cs` with host configuration
+- Removed `FunctionsStartup` class (if present)
+- Updated all `[FunctionName]` to `[Function]`
+- Replaced `IDurableOrchestrationContext` with `TaskOrchestrationContext`
+- Replaced `IDurableOrchestrationClient` with `DurableTaskClient`
+- Updated logging to use DI or `FunctionContext`
+- Updated `local.settings.json` with `dotnet-isolated` runtime
+- Removed all `Microsoft.Azure.WebJobs.*` using statements
+- Added `Microsoft.Azure.Functions.Worker` using statements
+- Tested all functions locally
+- Deployed to staging slot and verified
+- Swapped to production
 
 ## Next steps
 

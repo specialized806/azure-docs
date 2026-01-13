@@ -1,5 +1,5 @@
 ---
-title: Durable Task SDKs overview
+title: Azure Durable Task SDKs overview
 description: Understand the different Durable Task SDK flavors and when to use each.
 author: hhunter-ms
 ms.author: hannahhunter
@@ -18,8 +18,8 @@ Understanding the different Durable Task SDK flavors and when to use each.
 
 The Durable Task ecosystem offers two categories of SDKs:
 
-1. **Azure Functions Extensions** - Designed specifically for Azure Functions hosting
-1. **Portable Durable Task SDKs** - Platform-agnostic SDKs for any hosting environment
+- **Azure Functions Extensions** - Designed specifically for Azure Functions hosting
+- **Portable Durable Task SDKs** - Platform-agnostic SDKs for any hosting environment
 
 ```mermaid
 flowchart TB
