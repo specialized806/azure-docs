@@ -1,22 +1,22 @@
 ---
-title: Send Correlated Messages In-order by Using a Sequential Convoy
-description: Learn how to send related messages in order by using the sequential convoy pattern in Azure Logic Apps with Azure Service Bus.
+title: Send Correlated Messages in a Specific Order
+description: Learn how to send related Azure Service Bus messages in a specific order by using the sequential convoy pattern in Azure Logic Apps.
 services: logic-apps
 ms.suite: integration
 ms.reviewer: apseth, divswa, azla
 ms.topic: how-to
 ms.custom: sfi-image-nochange
-ms.date: 11/14/2025
-#Customer intent: As an integration developer, I need to process messages from different Service Bus sessions using Azure Logic Apps workflows in a specific order using a sequential convoy.
+ms.date: 01/14/2026
+#Customer intent: As developer who works with Azure Logic Apps, I want to send related messages from different Service Bus sessions in a specific order for processing in my workflow.
 ---
 
-# Send related messages in order by using a sequential convoy in Azure Logic Apps with Azure Service Bus
+# Send related Azure Service Bus messages in a specific order by using a sequential convoy in Azure Logic Apps
 
-[!INCLUDE [logic-apps-sku-consumption](includes/logic-apps-sku-consumption.md)]
+[!INCLUDE [logic-apps-sku-consumption-standard](includes/logic-apps-sku-consumption-standard.md)]
 
-You might need to send correlated messages in a specific order. *Correlated messages* have a property that defines the relationship between those messages, such as the ID for the [session](../service-bus-messaging/message-sessions.md). When you use [Azure Logic Apps](../logic-apps/logic-apps-overview.md) with [Azure Service Bus connector](../connectors/connectors-create-api-servicebus.md), you can use the *sequential convoy* pattern.
+Some scenarios might require that you send *correlated messages* in a specific order. These messages have a property that lets you define the relationship between these messages, such as an ID for the [session](../service-bus-messaging/message-sessions.md). In [Azure Logic Apps](logic-apps/logic-apps-overview.md), when you use the [Azure Service Bus connector](../connectors/connectors-create-api-servicebus.md), you can set up a *sequential convoy* pattern to process these messages in the order you want.
 
-For example, suppose that you have 10 messages for a session named *Session 1* and 5 messages for a session named *Session 2*. All the messages are sent to the same [Service Bus queue](../service-bus-messaging/service-bus-queues-topics-subscriptions.md). You can create a logic app that processes messages from the queue so that a single trigger run handles all messages from Session 1. The next trigger run handles all messages from Session 2.
+For example, suppose you have a [Service Bus queue](../service-bus-messaging/service-bus-queues-topics-subscriptions.md) that receives messages from different sessions. You have 10 messages from a session named *Session 1* and 5 messages from a session named *Session 2*. You can create a logic app workflow that processes messages from the queue by alternating between sessions. So when the trigger first fires, the workflow run handles all the messages from Session 1. When the trigger fires again, the workflow run handles all the messages from Session 2.
 
 :::image type="content" source="./media/send-related-messages-sequential-convoy/sequential-convoy-pattern-general.png" alt-text="Diagram shows the general sequential convoy pattern.":::
 
