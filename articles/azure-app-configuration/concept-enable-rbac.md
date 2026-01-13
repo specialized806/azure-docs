@@ -63,13 +63,12 @@ Follow these steps to assign App Configuration Data roles to your credential.
 
 ## Configuring cloud-specific audience for Entra ID authentication
 
-When using Entra ID and the following Azure App Configuration libraries in clouds other than Azure cloud, Azure Government, and Microsoft Azure operated by 21Vianet an appropriate Entra ID audience must be configured to enable authentication.
+When using Entra ID and the following Azure App Configuration libraries in clouds other than Azure cloud, Azure Government, and Microsoft Azure operated by 21Vianet, an appropriate Entra ID audience must be configured to enable authentication.
 
-:::zone target="docs" pivot="programming-language-csharp"
+### [.NET](#tab/dotnet)
 
-- Relevant versions
-  - .NET configuration provider: Microsoft.Extensions.Configuration.AzureAppConfiguration >= 8.2.0
-  - Azure SDK for .NET: Azure.Data.AppConfiguration >= 1.6.0
+- Microsoft.Extensions.Configuration.AzureAppConfiguration >= 8.2.0
+- Azure.Data.AppConfiguration >= 1.6.0
 
 Audience is configured by utilizing the following API calls:
 
@@ -99,7 +98,7 @@ builder.AddAzureAppConfiguration(o =>
     });
 ```
 
-:::zone-end
+---
 
 ## Next steps
 Learn how to [use managed identities to access your App Configuration store](howto-integrate-azure-managed-service-identity.md).
