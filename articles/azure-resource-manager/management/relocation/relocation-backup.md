@@ -73,7 +73,7 @@ Make sure to reconfigure all associated settings that were captured from the sou
 - Workbook to move, if configured.
 - Diagnostic settings reconfiguration.
 
-## Backup resources
+## Back up resources
 
 To continue to protect your resources, you must register and back them up to a Recovery Services vault in the new region. This section shows you how to back up the following resources:
 
@@ -116,10 +116,15 @@ https://management.azure.com/Subscriptions/{subscriptionId}/resourceGroups/{vaul
 ### Back up Azure file shares
 
 1. [Back up Azure file shares with the Azure CLI](../../../backup/backup-afs-cli.md).
+
 1. Satisfy the [prerequisites to relocate the storage account](../../../storage/common/storage-account-move.md?tabs=azure-portal#prerequisites).
+
 1. Export and modify an Azure Resource Move template. For more information, see [Prepare storage account for region relocation](../../../storage/common/storage-account-move.md?tabs=azure-portal#prepare).
+
 1. [Relocate the Azure Storage account to another region](../../../storage/common/storage-account-move.md).
+
 1. When an Azure file share is copied across regions, its associated snapshots don't relocate along with it. To relocate the snapshot data to the new region, use [AzCopy](../../../storage/common/storage-use-azcopy-files.md#copy-all-file-shares-directories-and-files-to-another-storage-account) to relocate the individual files and directories of the snapshots to the storage account in the new region.
+
 1. Choose whether you want to retain or delete the snapshots (and the corresponding recovery points) of the original Azure file share. Select your file share on the [Backup Items tab](../../../backup/backup-azure-delete-vault.md#delete-protected-items-in-the-cloud) of the original vault's dashboard. When the backup data for the Azure file share is stopped with retain data, the recovery points remain forever and don't adhere to any policy.
 
 > [!NOTE]
