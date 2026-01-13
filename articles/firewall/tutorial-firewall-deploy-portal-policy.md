@@ -205,7 +205,7 @@ Deploy the firewall into the VNet.
    | Firewall SKU | Select **Standard**. |
    | Firewall management | Select **Use a Firewall Policy to manage this firewall**. |
    | Firewall policy | Select **Add new**, and enter **fw-test-pol**. <br> Select the same region that you used previously. Select **OK**. |
-   | Choose a virtual network | Select **Use existing**, and then select **Test-FW-VN**. **Ignore the warning about the Force Tunneling, its fixed in a later step**.|
+   | Choose a virtual network | Select **Use existing**, and then select **Test-FW-VN**. **Ignore the warning about the Force Tunneling. The warning is resolved in a later step**.|
    | Public IP address     | Select **Add new**, and enter **fw-pip** for the **Name**. Select **OK**. |
 
 1. Clear the **Enable Firewall Management NIC** check box.
