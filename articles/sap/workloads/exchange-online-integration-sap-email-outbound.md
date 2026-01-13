@@ -44,7 +44,7 @@ This guide is updated when more SAP-supported options become available.
 
 ### Prerequisites
 
-- Administrative access to an SAP S/4HANA system on-premises, SAP S/4HANA Cloud Private Edition tenant, SAP BTP ABAP Environment, or any other SAP ABAP Platform-based system with SAP Basis Component release 7.50 or higher (JWT-based OAuth client authentication from 7.51). For SAP S/4HANA Cloud Public Edition, the customer-specific email configuration for SMTP OAuth 2.0 is managed by SAP. Please also refer to [SAP Note 3581654](https://me.sap.com/notes/3581654) as a prerequisites for using SMTP OAuth 2.0 in SAP S/4HANA on-premises and SAP S/4HANA Cloud Private Edition.
+- Administrative access to an SAP S/4HANA system on-premises, SAP S/4HANA Cloud Private Edition tenant, SAP BTP ABAP Environment, or any other SAP ABAP Platform-based system with SAP Basis Component release 7.50 or higher (JWT-based OAuth client authentication from 7.51). For SAP S/4HANA Cloud Public Edition, the customer-specific email configuration for SMTP OAuth 2.0 is managed by SAP. Please also refer to [SAP Note 3581654](https://me.sap.com/notes/3581654) as a prerequisite for using SMTP OAuth 2.0 in SAP S/4HANA on-premises and SAP S/4HANA Cloud Private Edition.
 - Administrative access to a Microsoft Exchange Online subscription
 - A valid account and email address in Microsoft Exchange Online. The email address appears as the sender of messages from the SAP system.
 - Administrative access to an Microsoft Entra ID tenant with at least [Application Administrator](https://learn.microsoft.com/entra/identity/role-based-access-control/permissions-reference#application-administrator) permissions
