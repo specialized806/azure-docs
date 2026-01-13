@@ -25,7 +25,7 @@ When you configure a volume group, you can choose to use either platform-managed
 
 ## Platform-managed keys
 
-By default, Azure Elastic SAN uses plat-form managed encryption keys. All Elastic SANs and their underlying resources and data are automatically encrypted-at-rest with platform-managed keys. Platform-managed keys are managed by Microsoft.
+By default, Azure Elastic SAN uses platform-managed encryption keys. All Elastic SANs and their underlying resources and data are automatically encrypted-at-rest with platform-managed keys. Platform-managed keys are managed by Microsoft.
 
 ## Customer-managed keys
 
