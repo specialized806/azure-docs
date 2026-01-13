@@ -79,7 +79,7 @@ To delete a vault, follow these steps:
       
 - <a id="portal-delete-backup-servers">**Step 5:**</a> Delete backup servers.
 
-Before you delete the vault, ensure that all on-premises backup servers are unregistered from the vault. To unregister the servers, follow these steps based on your on-premises scenario:
+  Before you delete the vault, ensure that all on-premises backup servers are unregistered from the vault. To unregister the servers, follow these steps based on your on-premises scenario:
 
   1. Go to the vault dashboard menu and select **Backup Infrastructure** > **Protected Servers**. On **Protected Servers**, select the backup management type from the list. To delete the vault, you must unregister all the servers. On the selected backup management pane, select the **More** icon (**...**) that corresponds to each protected server and select **Unregister**.
   
@@ -109,7 +109,7 @@ First, read the [Before you start](#before-you-start) section to understand the 
 
 To stop protection and delete the backup data, follow these steps:
 
-1. In the portal, go to **Recovery Services vault**, and then go to **Backup items**. Then, in the **Backup Management Type** list, select the protected items in the cloud (for example, Azure VMs, Azure Storage, Azure Files, or SQL Server on Azure VMs).
+1. In the portal, go to **Recovery Services vault**, and then go to **Backup items**. Then, in the **Backup Management Type** list, select the protected items in the cloud (for example, Azure Virtual Machines, Azure Storage, Azure Files, or SQL Server on Azure Virtual Machines).
 
    :::image type="content" source="./media/backup-azure-delete-vault/azure-storage-selected-inline.png" alt-text="Screenshot that shows selecting the backup type." lightbox="./media/backup-azure-delete-vault/azure-storage-selected-expanded.png":::
 
@@ -252,7 +252,7 @@ To stop protection and delete backup data, follow these steps:
 
       ![Screenshot that shows entering the security PIN to delete backup items from the MABS and DPM management console.](./media/backup-azure-delete-vault/enter-security-pin.png)
 
-     The protected member status changes to *Inactive replica available*.
+     The protected member status changes to **Inactive replica available**.
 
 #### Method 2
 
@@ -305,13 +305,13 @@ To access the PowerShell script for vault deletion, see [PowerShell script to de
 
 #### Run the script in the PowerShell console
 
-  The script performs the following actions:
+The script performs the following actions:
 
-  - Disables soft delete and security features.
-  - Deletes backup items.
-  - Unregisters servers and storage accounts.
-  - Deletes disaster recovery items.
-  - Removes private endpoints.
+- Disables soft delete and security features
+- Deletes backup items
+- Unregisters servers and storage accounts
+- Deletes disaster recovery items
+- Removes private endpoints
 
 To delete an individual backup item or write your own script, use the following PowerShell commands:
 
@@ -350,7 +350,7 @@ To delete an individual backup item or write your own script, use the following 
 
     [Learn more](/powershell/module/az.recoveryservices/disable-azrecoveryservicesbackupprotection) about how to disable protection for an Azure Backup-protected item.
 
-After you delete the backed-up data, unregister any on-premises containers and management servers.
+After you delete the backed-up data, unregister any on-premises containers and management servers:
 
 - For on-premises files and folders protected by using the Azure Backup agent (MARS) backing up to Azure:
 

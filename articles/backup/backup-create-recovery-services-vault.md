@@ -157,6 +157,6 @@ If you need to keep the current protected data in the GRS vault and continue the
 
 ## Related content
 
-- [Learn more about Recovery Services vaults](backup-azure-recovery-services-vault-overview.md).
-- [Delete Recovery Services vaults](backup-azure-delete-vault.md).
-- [Update the soft delete state for a Recovery Services vault by using a REST API](use-restapi-update-vault-properties.md).
+- [Learn more about Recovery Services vaults](backup-azure-recovery-services-vault-overview.md)
+- [Delete Recovery Services vaults](backup-azure-delete-vault.md)
+- [Update the soft delete state for a Recovery Services vault by using a REST API](use-restapi-update-vault-properties.md)
