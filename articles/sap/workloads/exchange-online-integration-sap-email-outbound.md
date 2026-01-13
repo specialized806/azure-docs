@@ -201,20 +201,20 @@ Depending on your SAP environment follow the corresponding section below.
 6. Use transaction SBCS_MAIL_CONFIGSMTP to enter all relevant information for the SMTP configuration for outbound communication. Select **OAuth2** as the **Authentication Method**, and enter the values for **OAuth 2.0 Client Profile**, **OAuth 2.0 Client Configuration**, and the authorized **OAuth 2.0 Client User**.
    > [!NOTE]
    > By activating the checkbox **Modify legacy SMTP node**, the configuration will be automatically copied to the old SCOT transaction
-   :::image type="content" source="media/exchange-online-integration/s4hana-mail-configuration-smtp.png" alt-text="SBCS_MAIL_CONFIGSMTP outbound configuration":::
+   :::image type="content" source="media/exchange-online-integration/mail-configuration-smtp.png" alt-text="SBCS_MAIL_CONFIGSMTP outbound configuration":::
 
 7. Alternatively, transaction SCOT can be used directly to enter the same information as in transaction SBCS_MAIL_CONFIGSMTP into the SMTP node.
-:::image type="content" source="media/exchange-online-integration/s4hana-mail-configuration-scot.png" alt-text="SCOT SMTP outbound configuration":::
+:::image type="content" source="media/exchange-online-integration/mail-configuration-scot.png" alt-text="SCOT SMTP outbound configuration":::
 
 #### SAP BTP ABAP Environment
 
 Configuration in SAP BTP ABAP Environment is done with the communication arrangement of SAP_COM_0548. 
 
 1. This setup requires a Communication System and the creation of a new Outbound User of type **OAuth 2.0**. Enter the **Application ID** from the application registration in Entra ID as the **OAuth 2.0 Client ID** for the **New Outbound User**. Click **Download Certificate** to export the JWT signing certificate of your SAP BTP ABAP Environment.
-:::image type="content" source="media/exchange-online-integration/btp-abap-new-communication-system.png" alt-text="Communication System Setup":::
+:::image type="content" source="media/exchange-online-integration/new-communication-system.png" alt-text="Communication System Setup":::
 
 2. In the communication arrangement of SAP_COM_0548, enter the mailbox user's email address from Exchange Online for the value of property **OAuth User**. Also enter the value "https://outlook.office365.com/.default" in the field **Additional Scope**.
-:::image type="content" source="media/exchange-online-integration/btp-abap-communication-arrangement.png" alt-text="Communication arrangement setup":::
+:::image type="content" source="media/exchange-online-integration/communication-arrangement.png" alt-text="Communication arrangement setup":::
 
 #### SAP S/4HANA Cloud Public Edition
 
