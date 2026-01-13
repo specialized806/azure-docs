@@ -6,7 +6,6 @@ ms.author: zhenlwa
 ms.date: 10/30/2025
 ms.topic: concept-article
 ms.service: azure-app-configuration
-zone_pivot_groups: appconfig-programming-languages
 
 ---
 # Access Azure App Configuration using Microsoft Entra ID
