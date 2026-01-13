@@ -32,7 +32,7 @@ Currently, there are four different options supported by SAP ABAP Platform that 
 
 1.  [SMTP OAuth 2.0](#option-1-smtp-oauth-20-recommended) (**recommended**)
 2.  [SMTP Direct Send](#option-2-smtp-direct-send)
-3.  [Using Exchange Online SMTP relay connector](#option-3-using-microsoft-365-smtp-relay-connector-recommended) 
+3.  [Using Exchange Online SMTP relay connector](#option-3-using-microsoft-365-smtp-relay-connector) 
 4.  [Using SMTP relay server as intermediary to Exchange Online](#option-4-using-smtp-relay-server-as-intermediary-to-exchange-online)
 
 This guide is updated when more SAP-supported options become available.
@@ -47,21 +47,21 @@ This guide is updated when more SAP-supported options become available.
 - Administrative access to an SAP S/4HANA system on-premises, SAP S/4HANA Cloud Private Edition tenant, SAP BTP ABAP Environment, or any other SAP ABAP Platform-based system with SAP Basis Component release 7.50 or higher (JWT-based OAuth client authentication from 7.51). For SAP S/4HANA Cloud Public Edition, the customer-specific email configuration for SMPT OAuth 2.0 is managed by SAP. Please also refer to [SAP Note 3581654](https://me.sap.com/notes/3581654) as a prerequisites for using SMTP OAuth 2.0 in SAP S/4HANA on-premises and SAP S/4HANA Cloud Private Edition.
 - Administrative access to a Microsoft Exchange Online subscription
 - A valid account and email address in Microsoft Exchange Online. The email address appears as the sender of messages from the SAP system.
-- Administrative access to an Microsoft Entra ID tenant with at least [Application Administrator](https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/permissions-reference#application-administrator) permissions
+- Administrative access to an Microsoft Entra ID tenant with at least [Application Administrator](https://learn.microsoft.com/entra/identity/role-based-access-control/permissions-reference#application-administrator) permissions
 - Port 587 is required and must be unblocked on your network
 - DNS resolution for `smtp.office365.com`. Don't use an IP address for the Microsoft 365 server, as IP Addresses aren't supported.
 - *Optional*
   - Access to the SAP system for certificate export if you want to use the JWT bearer authorization grant.
-      > [!NOTE]
-      > In the SAP BTP ABAP Environment, the JWT bearer authorization grant is the only option available. Refer to the respective [section](#sap-btp-abap-enviornment) for more details.
+> [!NOTE]
+> In the SAP BTP ABAP Environment, the JWT bearer authorization grant is the only option available. Refer to the respective [section](#sap-btp-abap-environment) for more details.
   - PowerShell 7.x to run the [setup script](https://github.com/microsoft/smtpoauth2/tree/main/ps) for automating the configuration in Entra ID and Exchange Online. You can download the latest Microsoft PowerShell version from https://aka.ms/powershell-release?tag=stable
   - Java 11 runtime to test the configuration in Entra ID and Exchange Online with this [client app](https://github.com/microsoft/smtpoauth2/tree/main/java).
-      > [!NOTE]
-      > You can use [this setup script](https://github.com/microsoft/smtpoauth2/tree/main/ps) to automate the configuration steps in Entra ID and Exchange Online for option 1.
+> [!NOTE]
+> You can use [this setup script](https://github.com/microsoft/smtpoauth2/tree/main/ps) to automate the configuration steps in Entra ID and Exchange Online for option 1.
 
 ### Register an application representing the SAP system in Entra ID 
 
-Follow these instructions (see also [Register an application in Microsoft Entra ID](https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-register-app)) to create a new application:
+Follow these instructions (see also [Register an application in Microsoft Entra ID](https://learn.microsoft.com/entra/identity-platform/quickstart-register-app)) to create a new application:
 
 1. Go to **App registrations** in the [Microsoft Entra admin center](https://entra.microsoft.com). Click **New registration**.
 :::image type="content" source="media/exchange-online-integration/register-application-1.png" alt-text="New application registration":::
@@ -92,24 +92,24 @@ To obtain an access token from Entra ID for connecting to Exchange Online, the S
 
 #### Client id and secret
 
-Follow the instructions listed in [Add and manage application credentials in Microsoft Entra ID](https://learn.microsoft.com/en-us/entra/identity-platform/how-to-add-credentials?tabs=client-secret) for using client id and secret in the SAP system to obtain an access token from Entra ID.
+Follow the instructions listed in [Add and manage application credentials in Microsoft Entra ID](https://learn.microsoft.com/entra/identity-platform/how-to-add-credentials?tabs=client-secret) for using client id and secret in the SAP system to obtain an access token from Entra ID.
 
 1. Go to **Certificates & Secrets**. Switch to tab **Client secrets** and click **New client secret**. Enter a description for the new secret and select an expiration period. Click **Add**.
 :::image type="content" source="media/exchange-online-integration/create-client-secret-1.png" alt-text="Add secret":::
 
 2. Copy the value of the generated secret value to the clipboard and paste it into a temporary text file.
-:::image type="content" source="media/exchange-online-integration/create-client-secret-2.png" alt-text="Add secret":::
+:::image type="content" source="media/exchange-online-integration/create-client-secret-2.png" alt-text="Copy secret":::
 
 #### JWT bearer
 
-Follow these instructions (see also [Add and manage application credentials in Microsoft Entra ID](https://learn.microsoft.com/en-us/entra/identity-platform/how-to-add-credentials?tabs=certificate)) for using the JWT bearer grant in the SAP system to obtain an access token from Entra ID.
+Follow these instructions (see also [Add and manage application credentials in Microsoft Entra ID](https://learn.microsoft.com/entra/identity-platform/how-to-add-credentials?tabs=certificate)) for using the JWT bearer grant in the SAP system to obtain an access token from Entra ID.
 
 1. For SAP S/4HANA on-premises and SAP S/4HANA Cloud Private Edition, export the JWT signing certificate. In newer systems where transaction code SOAUTH2_CLIENT is available, click **Global Settings** and download the certificate from the **Settings for JWT Client Authentication**.
 :::image type="content" source="media/exchange-online-integration/export-jwt-cert-1-1.png" alt-text="Export JWT signing certificate with SOAUTH2_CLIENT":::
 Otherwise use transaction code STRUST. Search for SSF application "SSF OA2CJC" (OAuth2 Client - JWT Client Authentication), double-click the **Subject** value in **Own Certificate**, and click **Export certificate**. Use **Base64** for the file format.
 :::image type="content" source="media/exchange-online-integration/export-jwt-cert-1.png" alt-text="Export JWT signing certificate with STRUST":::
 
-2. For the SAP BTP ABAP Environment, select your Exchange Online communication system's **Outbound User** to export the JWT signing certificate. See [this section](#sap-btp-abap-enviornment) for more details.
+2. For the SAP BTP ABAP Environment, select your Exchange Online communication system's **Outbound User** to export the JWT signing certificate. See [this section](#sap-btp-abap-environment) for more details.
 
 3. In the Entra admin center, go to **Certificates & Secrets**. Switch to tab **Certificates** and click **Upload certificate**. Select the exported file, enter a description, and click **Add**. 
 :::image type="content" source="media/exchange-online-integration/export-jwt-cert-2.png" alt-text="Import JWT signing certificate":::
@@ -138,13 +138,13 @@ Otherwise use transaction code STRUST. Search for SSF application "SSF OA2CJC" (
     Add-MailboxPermission -Identity $mailboxName -User $servicePrincipalObjId -AccessRights FullAccess
     ```
     The output should be as follows:
-:::image type="content" source="media/exchange-online-integration/register-service-principal-4.png" alt-text="Execute PowerShell script":::
+:::image type="content" source="media/exchange-online-integration/register-service-principal-4.png" alt-text="PowerShell script output":::
 
 5. Verify that the service principal has been successfully granted the permission on the mailbox. Go to **Mailboxes**. Select the SAP system's mailbox and switch to the tab **Delegation**. Click **Edit**.
-:::image type="content" source="media/exchange-online-integration/register-service-principal-5.png" alt-text="Execute PowerShell script":::
+:::image type="content" source="media/exchange-online-integration/register-service-principal-5.png" alt-text="Service principal registration":::
 
 6. Your application's service principal is listed as a delegate with full access permissions to open the SAP system's mailbox and behave as the mailbox owner.
-:::image type="content" source="media/exchange-online-integration/register-service-principal-6.png" alt-text="Execute PowerShell script":::
+:::image type="content" source="media/exchange-online-integration/register-service-principal-6.png" alt-text="Delegate":::
 
 ### Activate SMTP AUTH for the mailbox
 
@@ -214,7 +214,7 @@ Configuration in SAP BTP ABAP Environment is done with the communication arrange
 :::image type="content" source="media/exchange-online-integration/btp-abap-new-comm-system.png" alt-text="Communication System Setup":::
 
 2. In the communication arrangement of SAP_COM_0548, enter the mailbox user's email address from Exchange Online for the value of property **OAuth User**. Also enter the value "https://outlook.office365.com/.default" in the field **Additional Scope**.
-:::image type="content" source="media/exchange-online-integration/btp-abap-sap-com-0548.png" alt-text="Communication System Setup":::
+:::image type="content" source="media/exchange-online-integration/btp-abap-sap-com-0548.png" alt-text="Communication arrangement setup":::
 
 #### SAP S/4HANA Cloud Public Edition
 
