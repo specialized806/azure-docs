@@ -66,9 +66,9 @@ Before you migrate to StandardV2 NAT gateway, make sure that your specific scena
 
 * StandardV2 NAT Gateway disrupts outbound connections made with Load balancer outbound rules for IPv6 traffic only. Standard SKU NAT gateway can be used to provide outbound for IPv4 traffic while Load balancer outbound rules is used for IPv6 outbound traffic. If you see disruption to outbound connectivity for IPv6 outbound traffic with Load balancer outbound rules, remove the StandardV2 NAT Gateway from the subnet or virtual network. Use Load balancer outbound rules to provide outbound connectivity for both IPv4 and IPv6 traffic. Or use Standard SKU NAT Gateway to provide outbound connectivity for IPv4 traffic and Load balancer outbound rules for IPv6 traffic.  
 
-* Attaching a StandardV2 NAT Gateway to an empty virtual network or subnet created before April 2025 without any virtual machines may cause the virtual network or subnet to go into a failed state. To return the virtual network or subnet to a successful state, remove StandardV2 NAT Gateway, create and add a virtual machine to the subnet and then reattach the StandardV2 NAT Gateway. 
+* Attaching a StandardV2 NAT Gateway to an empty subnet created before April 2025 without any virtual machines may cause the virtual network to go into a failed state. To return the virtual network to a successful state, remove StandardV2 NAT Gateway, create and add a virtual machine to the subnet and then reattach the StandardV2 NAT Gateway. 
 
-* Long running outbound connections using a Load balancer or an instance-level public IP on a VM instance may be disrupted by attaching a Standard SKU or StandardV2 NAT gateway to the subnet. New connections will use the NAT gateway. 
+* Long running outbound connections using a Load balancer or an instance-level public IP on a VM instance may be disrupted by attaching a Standard SKU or StandardV2 NAT gateway to the subnet. New connections use the NAT gateway. 
 
 ## Guidance for manual migration 
 
@@ -83,13 +83,13 @@ Use the suggested order of operations for manually migrating from a Standard SKU
 > [!IMPORTANT]
 > StandardV2 NAT gateway requires the use of StandardV2 public IPs. Existing Standard SKU public IPs don’t work with StandardV2 NAT Gateway. Make sure you’re able to re-IP to StandardV2 public IPs before you create StandardV2 NAT gateway.  
 
-3. **Skip the Networking tab** during the portal create experience for StandardV2 NAT gateway. You will attach the StandardV2 NAT gateway to the subnet later. 
+3. **Skip the Networking tab** during the portal create experience for StandardV2 NAT gateway. You attach the StandardV2 NAT gateway to the subnet later. 
 
 4. **Create** the StandardV2 NAT gateway.  
 
 5. From your resource group, navigate to the **subnet** you want to migrate from Standard NAT gateway to StandardV2 NAT gateway.  
 
-6. **Update** the subnet configuration to use the new StandardV2 NAT gateway. (This will replace your existing Standard NAT gateway with the StandardV2 NAT gateway). \ 
+6. **Update** the subnet configuration to use the new StandardV2 NAT gateway. (This replaces your existing Standard NAT gateway with the StandardV2 NAT gateway). \ 
 
 7. **Save** the subnet configuration. 
 
@@ -105,7 +105,7 @@ Use the suggested order of operations for manually migrating from a Standard SKU
 
 Use the suggested order of operations for migrating from a Standard SKU NAT gateway to a StandardV2 SKU NAT gateway using PowerShell.  
 
-Before you begin, ensure you have met the following criteria:  
+Before you begin, ensure you meet the following criteria:  
 
 - Azure PowerShell installed locally or use Azure Cloud Shell.
 -  If you choose to install and use PowerShell locally, this article requires the Azure PowerShell module version 5.4.1 or later. Run `Get-Module -ListAvailable Az` to find the installed version. If you need to upgrade, see [Install Azure PowerShell module](/powershell/azure/install-azure-powershell).
@@ -166,7 +166,7 @@ Set-AzVirtualNetwork -VirtualNetwork $vnet
 
 Use the suggested order of operations for migrating from a Standard SKU NAT gateway to a StandardV2 SKU NAT gateway using CLI.  
 
-Before you begin, ensure you have met the following criteria:  
+Before you begin, ensure you meet the following criteria:  
 
 - To run CLI reference commands locally, [install](/cli/azure/install-azure-cli) the Azure CLI. If you're running on Windows or macOS, consider running Azure CLI in a Docker container. For more information, see [How to run the Azure CLI in a Docker container](/cli/azure/run-azure-cli-docker).
 - If you're using a local installation, sign in to the Azure CLI by using the [az login](/cli/azure/reference-index#az-login) command. To finish the authentication process, follow the steps displayed in your terminal. For other sign-in options, see [Authenticate to Azure using Azure CLI](/cli/azure/authenticate-azure-cli).
@@ -258,7 +258,7 @@ To revert back to Standard NAT gateway, you need to reattach the subnets to the 
 
 ### Is my Standard NAT gateway deleted after migration? 
 
-No, migrating to StandardV2 NAT Gateway doesn't delete your existing Standard NAT Gateway or Standard SKU public IP resources. You need to manually delete these resources if they're no longer needed. Don't delete these resources until you fully validate that your workloads are functioning as expected with StandardV2 NAT Gateway and you no longer need the Standard NAT Gateway or Standard SKU public IPs.  
+No, migrating to StandardV2 NAT Gateway doesn't delete your existing Standard NAT Gateway or Standard SKU public IP resources. You need to manually delete these resources if they're no longer needed. Don't delete these resources until you fully validate that your workloads function as expected with StandardV2 NAT Gateway and you no longer need the Standard NAT Gateway or Standard SKU public IPs.  
 
 ### How do I validate that the migration is successful? 
 
