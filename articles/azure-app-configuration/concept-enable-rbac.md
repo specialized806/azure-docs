@@ -60,5 +60,45 @@ Follow these steps to assign App Configuration Data roles to your credential.
 3. On the **Members** tab, follow the wizard to select the credential you're granting access to and then select **Next**.
 4. Finally, on the **Review + assign** tab, select **Review + assign** to assign the role.
 
+## Configuring cloud-specific audience for Entra ID authentication
+
+When using Entra ID and the following Azure App Configuration libraries in clouds other than Azure cloud, Azure Government, and Microsoft Azure operated by 21Vianet an appropriate Entra ID audience must be configured to enable authentication.
+
+:::zone target="docs" pivot="programming-language-csharp"
+
+- Relevant versions
+  - .NET configuration provider: Microsoft.Extensions.Configuration.AzureAppConfiguration >= 8.2.0
+  - Azure SDK for .NET: Azure.Data.AppConfiguration >= 1.6.0
+
+See the following APIs for an example .NET of how Audience is configured:
+
+* The ConfigurationClient constructor [accepts ConfigurationClientOptions](https://learn.microsoft.com/en-us/dotnet/api/azure.data.appconfiguration.configurationclient.-ctor?view=azure-dotnet#azure-data-appconfiguration-configurationclient-ctor(system-uri-azure-core-tokencredential-azure-data-appconfiguration-configurationclientoptions))
+* ConfigurationClientOptions accepts Entra ID audience to be [passed](https://learn.microsoft.com/en-us/dotnet/api/azure.data.appconfiguration.configurationclientoptions.audience?view=azure-dotnet#azure-data-appconfiguration-configurationclientoptions-audience)
+
+```
+var configurationClient = new ConfigurationClient(
+    myStoreEndpoint,
+    new DefaultAzureCredential(),
+    new ConfigurationClientOptions
+    {
+        Audience = "{Cloud specific audience here}"
+    });
+```
+
+Configuration providers sit on top of the configuration client SDK and allow client options to be [configured](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.configuration.azureappconfiguration.azureappconfigurationoptions.configureclientoptions?view=azure-dotnet#microsoft-extensions-configuration-azureappconfiguration-azureappconfigurationoptions-configureclientoptions(system-action((azure-data-appconfiguration-configurationclientoptions)))).
+
+```
+builder.AddAzureAppConfiguration(o =>
+    {
+        o.Connect(
+            myStoreEndpoint
+            new DefaultAzureCredential());
+
+        o.ConfigureClientOptions(clientOptions => clientOptions.Audience = "{Cloud specific audience here}");
+    });
+```
+
+:::zone-end
+
 ## Next steps
 Learn how to [use managed identities to access your App Configuration store](howto-integrate-azure-managed-service-identity.md).

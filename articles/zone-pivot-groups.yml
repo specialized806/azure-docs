@@ -1473,6 +1473,14 @@ groups:
     title: .NET
   - id: framework-spring
     title: Spring Framework
+  
+- id: appconfig-programming-languages
+  # Owner: mametcal
+  title: Programming languages
+  prompt: Choose a programming language
+  pivots:
+  - id: programming-language-csharp
+    title: .NET
 # Owner: zhiyuanliang
 - id: appconfig-aspire
   title: Aspire resource pivots
