@@ -130,6 +130,8 @@ Your choice depends on the amount of data, type of data storage, and usage requi
 
    Depending on state changes, rollbacks can be more complex than mitigating the problem in Azure. Failed mitigation attempts might also complicate a rollback. Having a shared understanding of break-fix scenarios vs revert scenarios will help derisk the migration.
 
+   Depending on state changes, rollbacks can be more complex than mitigating the problem in Azure. Failed mitigation attempts might also complicate a rollback. Having a shared understanding of break-fix scenarios vs revert scenarios will help derisk the migration.
+
 **Traffic and routing changes:** Plan and document your traffic routing changes in detail. Define exactly how to update DNS records, load balancer configuration, and routing rules to direct traffic to Azure. Take into consideration any TTL that you configured as it determines how long DNS changes take to propagate. 
 
 Many applications and scripts reference Fully Qualified Domain Names (FQDNs) for endpoints, APIs, and services. If these change unexpectedly during migration, integrations can break. As part of your routing and cutover planning, inventory all FQDNs used by your workload. Decide whether to retain existing names via DNS forwarding or update application configurations to use new Azure FQDNs. For public-facing services, plan DNS cutover carefully to minimize downtime and ensure a seamless transition.
