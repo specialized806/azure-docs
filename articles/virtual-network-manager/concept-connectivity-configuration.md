@@ -160,7 +160,7 @@ To enforce peering, you must enable the peering enforcement option when creating
 
 After creating and deploying this configuration:
 
-- All peerings created by Azure Virtual Network Manager or pre-existing customer peerings inside the topology become enforced.
+- All peerings created by Azure Virtual Network Manager or preexisting customer peerings inside the topology become enforced.
 - If a peering belongs to more than one topology, any configuration marked as enforced enforces that peering.
 
 ### How to remove enforcement on peering
