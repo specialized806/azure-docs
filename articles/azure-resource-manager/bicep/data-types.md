@@ -386,22 +386,22 @@ var myVar5 = '''
 comments // are included
 /* because everything is read as-is */
 '''
+```
 
+With Bicep CLI version 0.X.X or higher, string interpolation is supported. An optional `$` prefix can be added before the opening delimiter to enable string interpolation using standard Bicep `${...}` syntax. If you need to include `${...}` as a literal value without escaping, you can control interpolation by repeating the `$` prefix. Interpolation is only performed when the number of `$` characters preceding `${...}` matches the number of `$` characters used in the opening delimiter.
+
+```bicep
 // evaluates to "interpolation\nis ${blocked}"
 // note ${blocked} is part of the string, and is not evaluated as an expression
 var myVar6 = '''interpolation
 is ${blocked}'''
-```
 
-With Bicep CLI version 0.X.X or higher, string interpolation is supported. An optional `$` prefix can be added before the opening delimiter to enable string interpolation using standard Bicep `${...}` syntax. If you need to include ${...} as a literal value without escaping, you can control interpolation by repeating the `$` prefix. Interpolation is only performed when the number of `$` characters preceding `${...}` matches the number of `$` characters used in the opening delimiter.
-
-```bicep
 // evaluates to "this is a test"
 var interpolated = 'a test'
 var myVar7 = $'''
 this is ${interpolated}'''
 
-// evaluates to "this is a testthis is not ${interpolated}"
+// evaluates to "this is a test\nthis is not ${interpolated}"
 var interpolated = 'a test'
 var myVar8 = $$'''
 this is $${interpolated}
