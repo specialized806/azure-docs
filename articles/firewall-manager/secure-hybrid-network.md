@@ -84,15 +84,6 @@ If you don't have an Azure subscription, create a [free account](https://azure.m
 1. For **Destination Ports**, type **80**.
 1. For **Destination Type**, select **IP Address**.
 1. For **Destination**, type **10.6.0.0/16**.
-1. On the next rule row, enter the following information:
-
-    Name: type **AllowRDP**<br>
-    Source: type **192.168.1.0/24**.<br>
-    Protocol, select **TCP**<br>
-    Destination Ports, type **3389**<br>
-    Destination Type, select **IP Address**<br>
-    For Destination, type **10.6.0.0/16**
-
 1. Select **Add**.
 2. Select **Review + Create**.
 3. Review the details and then select **Create**.
@@ -189,6 +180,31 @@ Convert the **VNet-Hub** virtual network into a *hub virtual network* and secure
    This takes a few minutes to deploy.
 7. After deployment completes, go to the **FW-Hybrid-Test** resource group, and select the firewall.
 9. Note the firewall **Private IP** address on the **Overview** page. You use it later when you create the default route.
+
+## Deploy Azure Bastion
+
+Deploy Azure Bastion Developer edition to securely connect to the virtual machines for testing.
+
+1. In the search box at the top of the portal, enter **Bastion**. Select **Bastions** from the search results.
+1. Select **Create**.
+1. On the **Create a Bastion** page, enter or select the following values:
+
+   | Setting | Value |
+   | ------- | ----- |
+   | **Project details** | |
+   | Subscription | Select your Azure subscription. |
+   | Resource group | Select **FW-Hybrid-Test**. |
+   | **Instance details** | |
+   | Name | Enter **Bastion-Hub**. |
+   | Region | Select **East US**. |
+   | Tier | Select **Developer**. |
+   | Virtual network | Select **VNet-Hub**. |
+   | Subnet | The **AzureBastionSubnet** is created automatically with address space **10.5.2.0/26**. |
+
+1. Select **Review + create**.
+1. Review the settings and select **Create**.
+
+   The deployment takes a few minutes to complete.
 
 ## Create and connect the VPN gateways
 
@@ -374,88 +390,123 @@ Now create the spoke workload and on-premises virtual machines, and place them i
 
 ### Create the workload virtual machine
 
-Create a virtual machine in the spoke virtual network, running IIS, with no public IP address.
+Create a virtual machine in the spoke virtual network with a web server, with no public IP address.
 
 1. From the Azure portal home page, select **Create a resource**.
-2. Under **Popular Marketplace products**, select **Windows Server 2019 Datacenter**.
-3. Enter these values for the virtual machine:
-    - **Resource group** - Select **FW-Hybrid-Test**
-    - **Virtual machine name**: *VM-Spoke-01*
-    - **Region** - *(US) East US*
-    - **User name**: type a user name
-    - **Password**: type a password
+2. In the search box at the top of the portal enter **Virtual machine**, select **Virtual machines** in the search results.
+3. Select **Create** > **Virtual machine**.
+4. Enter or select these values for the virtual machine:
 
-4. For **Public inbound ports**, select **Allow selected ports**, and then select **HTTP (80)**, and **RDP (3389)**
-1. Select **Next:Disks**.
-1. Accept the defaults and select **Next: Networking**.
-1. Select **VNet-Spoke** for the virtual network and the subnet is **SN-Workload**.
-1. Select **Next:Management**.
-1. Select **Next : Monitoring**.
-1. For **Boot diagnostics**, Select **Disable**.
-1. Select **Review + Create**, review the settings on the summary page, and then select **Create**.
+   | Setting | Value |
+   | ------- | ----- |
+   | **Project details** | |
+   | Subscription  | Select your Azure subscription. |
+   | Resource group | Select **FW-Hybrid-Test**. |
+   | **Instance details** | |
+   | Virtual machine name | Enter **VM-Spoke-01**. |
+   | Region | Select **East US**. |
+   | Availability options | Select **No infrastructure redundancy required**. |
+   | Security type | Select **Standard**. |
+   | Image | Select **Ubuntu Server 24.04 LTS -x64 Gen2** |
+   | Size | Select a size for the virtual machine. |
+   | **Administrator account** | |
+   | Username | Enter **azureuser**. |
+   | SSH public key source | Select **Generate new key pair**. |
+   | Key pair name | Enter **VM-Spoke-01_key**. |
 
-### Install IIS
+5. Under **Inbound port rules**, **Public inbound ports**, select **None**.
+6. Select **Next: Disks**.
+7. Accept the defaults and select **Next: Networking**.
+8. Select **VNet-Spoke** for the virtual network and the subnet is **SN-Workload**.
+9. For **Public IP**, select **None**.
+10. Select **Review + create**.
+11. Review the settings on the summary page, and then select **Create**.
+12. When prompted, select **Download private key and create resource**. Save the private key file to your computer.
+13. After the deployment completes, note the private IP address for later use.
 
-1. From the Azure portal, open the Cloud Shell and make sure that it's set to **PowerShell**.
-2. Run the following command to install IIS on the virtual machine and change the location if necessary:
+### Install a web server
 
-   ```azurepowershell-interactive
-   Set-AzVMExtension `
-           -ResourceGroupName FW-Hybrid-Test `
-           -ExtensionName IIS `
-           -VMName VM-Spoke-01 `
-           -Publisher Microsoft.Compute `
-           -ExtensionType CustomScriptExtension `
-           -TypeHandlerVersion 1.4 `
-           -SettingString '{"commandToExecute":"powershell Add-WindowsFeature Web-Server; powershell      Add-Content -Path \"C:\\inetpub\\wwwroot\\Default.htm\" -Value $($env:computername)"}' `
-           -Location EastUS
+Connect to the virtual machine and install a web server for testing.
+
+1. On the Azure portal menu, select **Resource groups** or search for and select *Resource groups* from any page. Select the **FW-Hybrid-Test** resource group.
+1. Select the **VM-Spoke-01** virtual machine.
+1. Select **Operations** > **Run command** > **RunShellScript**.
+1. In the script box, enter the following commands:
+
+   ```bash
+   sudo apt-get update
+   sudo apt-get install -y nginx
+   echo "<html><body><h1>VM-Spoke-01</h1><p>Hybrid network test page</p></body></html>" | sudo tee /var/www/html/index.html
    ```
+
+1. Select **Run**.
+1. Wait for the script to complete successfully.
 
 ### Create the on-premises virtual machine
 
-This is a virtual machine that you use to connect using Remote Desktop to the public IP address. From there, you then connect to the on-premises server through the firewall.
+This is a virtual machine that you use to connect through Azure Bastion to test the firewall.
 
 1. From the Azure portal home page, select **Create a resource**.
-2. Under **Popular**, select **Windows Server 2019 Datacenter**.
-3. Enter these values for the virtual machine:
-    - **Resource group** - Select existing, and then select **FW-Hybrid-Test**
-    - **Virtual machine name** - *VM-Onprem*
-    - **Region** - *(US) East US*
-    - **User name**: type a user name
-    - **Password**: type your password
+2. In the search box at the top of the portal enter **Virtual machine**, select **Virtual machines** in the search results.
+3. Select **Create** > **Virtual machine**.
+4. Enter or select these values for the virtual machine:
 
-7. For **Public inbound ports**, select **Allow selected ports**, and then select **RDP (3389)**
-4. Select **Next:Disks**.
-5. Accept the defaults and select **Next:Networking**.
-6. Select **VNet-Onprem** for virtual network and verify the subnet is **SN-Corp**.
+   | Setting | Value |
+   | ------- | ----- |
+   | **Project details** | |
+   | Subscription  | Select your Azure subscription. |
+   | Resource group | Select **FW-Hybrid-Test**. |
+   | **Instance details** | |
+   | Virtual machine name | Enter **VM-Onprem**. |
+   | Region | Select **East US**. |
+   | Availability options | Select **No infrastructure redundancy required**. |
+   | Security type | Select **Standard**. |
+   | Image | Select **Ubuntu Server 24.04 LTS -x64 Gen2** |
+   | Size | Select a size for the virtual machine. |
+   | **Administrator account** | |
+   | Username | Enter **azureuser**. |
+   | SSH public key source | Select **Generate new key pair**. |
+   | Key pair name | Enter **VM-Onprem_key**. |
 
-8. Select **Next:Management**.
-1. Select **Next : Monitoring**.
-1. For **Boot diagnostics**, select **Disable**.
-1. Select **Review + Create**, review the settings on the summary page, and then select **Create**.
+5. Under **Inbound port rules**, **Public inbound ports**, select **None**.
+6. Select **Next: Disks**.
+7. Accept the defaults and select **Next: Networking**.
+8. Select **VNet-Onprem** for the virtual network and verify the subnet is **SN-Corp**.
+9. For **Public IP**, select **None**.
+10. Select **Review + create**.
+11. Review the settings on the summary page, and then select **Create**.
+12. When prompted, select **Download private key and create resource**. Save the private key file to your computer.
+13. After the deployment completes, note the private IP address for later use.
 
 ## Test the firewall
 
-1. First, note the private IP address for VM-Spoke-01 virtual machine on the VM-Spoke-01 Overview page.
+Now, test the firewall to confirm that it works as expected.
 
-2. From the Azure portal, connect to the **VM-Onprem** virtual machine.
-<!---2. Open a Windows PowerShell command prompt on **VM-Onprem**, and ping the private IP for **VM-spoke-01**.
+1. Connect to **VM-Onprem** virtual machine using Azure Bastion and the SSH key you downloaded:
+   - From the Azure portal, select the **VM-Onprem** virtual machine.
+   - Select **Connect** > **Connect** > **Connect via Bastion**.
+   - For **Authentication Type**, select **SSH Private Key from Local File**.
+   - For **Username**, enter **azureuser**.
+   - For **Local File**, select **Upload a file** and browse to the **VM-Onprem_key.pem** file you downloaded earlier.
+   - Select **Connect**.
 
-   You should get a reply.--->
-3. Open a web browser on **VM-Onprem**, and browse to http://\<VM-spoke-01 private IP\>.
+2. From the SSH session, test the web server on VM-Spoke-01 using its private IP address (you can find this on the VM-Spoke-01 Overview page):
 
-   You should see the **VM-spoke-01** web page:
-   :::image type="content" source="media/secure-hybrid-network/vm-spoke-01-web.png" alt-text="Screenshot showing vm-spoke-01 web page.":::
+   ```bash
+   curl http://10.0.1.4
+   ```
 
-4. From the **VM-Onprem** virtual machine, open a remote desktop to **VM-spoke-01** at the private IP address.
+   You should see the HTML response from the VM-Spoke-01 web page:
 
-   Your connection should succeed, and you should be able to sign in.
+   ```html
+   <html><body><h1>VM-Spoke-01</h1><p>Hybrid network test page</p></body></html>
+   ```
+
+3. Close the Bastion SSH session.
 
 So now you verified that the firewall rules are working:
 
-<!---- You can ping the server on the spoke VNet.--->
-- You can browse web server on the spoke virtual network.
-- You can connect to the server on the spoke virtual network using RDP.
+- You can browse the web server on the spoke virtual network.
 
 Next, change the firewall network rule collection action to **Deny** to verify that the firewall rules work as expected.
 
