@@ -107,23 +107,53 @@ Next, create a subnet for the workload server.
 1. Select **Review + create**.
 1. Select **Create**.
 
+## Deploy Azure Bastion
+
+Deploy Azure Bastion Developer edition to securely connect to the **Srv-Work** virtual machine for testing.
+
+1. In the search box at the top of the portal, enter **Bastion**.  Select **Bastions* from teh search results.
+1. Select **Create**.
+1. On the **Create a Bastion** page, enter or select the following values:
+
+   | Setting | Value |
+   | ------- | ----- |
+   | **Project details** | |
+   | Subscription | Select your Azure subscription. |
+   | Resource group | Select **Test-FW-RG**. |
+   | **Instance details** | |
+   | Name | Enter **Test-Bastion**. |
+   | Region | Select the same location that you used previously. |
+   | Tier | Select **Developer**. |
+   | Virtual network | Select **Test-FW-VN**. |
+   | Subnet | The **AzureBastionSubnet** is created automatically with address space **10.0.0.0/26**. |
+
+1. Select **Review + create**.
+1. Review the settings and select **Create**.
+
+   The deployment takes a few minutes to complete.
+
 ### Create a virtual machine
 
 Now create the workload virtual machine, and place it in the **Workload-SN** subnet.
 
-1. On the Azure portal menu or from the **Home** page, select **Create a resource**.
-1. Select **Ubuntu Server 22.04 LTS**.
+1. In the search box at the top of the portal enter **Virtual machine**, select **Virtual machines** in the search results.
+1. Select **Create** > **Virtual machine**.
 1. Enter or select these values for the virtual machine:
 
    | Setting | Value |
    | ------- | ----- |
+   | **Project details** | |
    | Subscription  | Select your Azure subscription. |
    | Resource group     | Select **Test-FW-RG**. |
+   | **Instance details** | |
    | Virtual machine name     | Enter **Srv-Work**.|
    | Region     | Select the same location that you used previously. |
    | Availability options | Select **No infrastructure redundancy required**. |
    | Security type | Select **Standard**. |
-   | Username     | Enter **azureuser**. |
+   | Image | Select **Ubuntu Server 24.04 LTS -x64 Gen2** |
+   | Size | Select a size for the virtual machine. |
+   | **Administrator account** | |
+   | Username | Enter **azureuser**. |
    | SSH public key source | Select **Generate new key pair**. |
    | Key pair name | Enter **Srv-Work_key**. |
 
@@ -132,9 +162,7 @@ Now create the workload virtual machine, and place it in the **Workload-SN** sub
 1. Accept the disk defaults and select **Next: Networking**.
 1. Make sure that **Test-FW-VN** is selected for the virtual network and the subnet is **Workload-SN**.
 1. For **Public IP**, select **None**.
-1. Accept the other defaults and select **Next: Management**.
-1. Select **Next:Monitoring**.
-1. Select **Disable** to disable boot diagnostics. Accept the other defaults and select **Review + create**.
+1. Select **Review + create**.
 1. Review the settings on the summary page, and then select **Create**.
 1. When prompted, select **Download private key and create resource**. Save the private key file to your computer.
 1. After the deployment completes, select the **Srv-Work** resource and note the private IP address for later use.
@@ -168,14 +196,17 @@ Deploy the firewall into the VNet.
 
    | Setting | Value |
    | ------- | ----- |
+   | **Project details** | |
    | Subscription  | Select your Azure subscription. |
    | Resource group     | Select **Test-FW-RG**. |
+   | **Instance details** | |
    | Name     | Enter **Test-FW01**. |
    | Region     | Select the same location that you used previously. |
+   | Firewall SKU | Select **Standard**. |
    | Firewall management | Select **Use a Firewall Policy to manage this firewall**. |
-   | Firewall policy | Select **Add new**, and enter **fw-test-pol**. <br> Select the same region that you used previously.|
-   | Choose a virtual network | Select **Use existing**, and then select **Test-FW-VN**. |
-   | Public IP address     | Select **Add new**, and enter **fw-pip** for the **Name**. |
+   | Firewall policy | Select **Add new**, and enter **fw-test-pol**. <br> Select the same region that you used previously. Select **OK**. |
+   | Choose a virtual network | Select **Use existing**, and then select **Test-FW-VN**. **Ignore the warning about the Force Tunneling, its fixed in a later step**.|
+   | Public IP address     | Select **Add new**, and enter **fw-pip** for the **Name**. Select **OK**. |
 
 1. Clear the **Enable Firewall Management NIC** check box.
 5. Accept the other default values, then select **Next: Tags**.
@@ -196,10 +227,12 @@ For the **Workload-SN** subnet, configure the outbound default route to go throu
 
    | Setting | Value |
    | ------- | ----- |
+   | **Project details** | |
    | Subscription | Select your Azure subscription. |
    | Resource group | Select **Test-FW-RG**. |
-   | Region  | Select the same location that you used previously. |
+   | **Instance details** | |
    | Name  | Enter **Firewall-route**. |
+   | Region  | Select the same location that you used previously. |
 
 1. Select **Review + create**.
 1. Select **Create**.
@@ -225,7 +258,7 @@ After deployment completes, select **Go to resource**.
 This is the application rule that allows outbound access to `www.google.com`.
 
 1. Open the **Test-FW-RG** resource group, and select the **fw-test-pol** firewall policy.
-1. Under **Settings**, Select **Application rules**.
+1. Under **Settings** > **Rules**, Select **Application rules**.
 1. Select **Add a rule collection**.
 1. For **Name**, enter **App-Coll01**.
 1. For **Priority**, enter **200**.
@@ -239,6 +272,8 @@ This is the application rule that allows outbound access to `www.google.com`.
 1. Select **Add**.
 
 Azure Firewall includes a built-in rule collection for infrastructure FQDNs that are allowed by default. These FQDNs are specific for the platform and can't be used for other purposes. For more information, see [Infrastructure FQDNs](infrastructure-fqdns.md).
+
+Wait for the application rule deployment to complete before creating the network rule in the next steps.
 
 ## Configure a network rule
 
@@ -257,7 +292,9 @@ This is the network rule that allows outbound access to two IP addresses at port
 1. For **Destination Ports**, enter **53**.
 1. For **Destination type** select **IP address**.
 1. For **Destination**, enter **209.244.0.3,209.244.0.4**.<br>These are public DNS servers operated by CenturyLink.
-2. Select **Add**.
+1. Select **Add**.
+
+Wait for the network rule deployment to complete before creating the DNAT rule in the next steps.
 
 ## Configure a DNAT rule
 
@@ -291,32 +328,6 @@ For testing purposes in this tutorial, configure the server's primary and second
 5. Enter **209.244.0.3** in the **Add DNS server** text box, and **209.244.0.4** in the next text box.
 6. Select **Save**.
 7. Restart the **Srv-Work** virtual machine.
-
-## Deploy Azure Bastion
-
-Deploy Azure Bastion Developer edition to securely connect to the **Srv-Work** virtual machine for testing.
-
-1. On the Azure portal menu or from the **Home** page, select **Create a resource**.
-1. Search for **Bastion** and select **Bastion** from the results.
-1. Select **Create**.
-1. On the **Create a Bastion** page, enter or select the following values:
-
-   | Setting | Value |
-   | ------- | ----- |
-   | Subscription | Select your Azure subscription. |
-   | Resource group | Select **Test-FW-RG**. |
-   | Name | Enter **Test-Bastion**. |
-   | Region | Select the same location that you used previously. |
-   | Tier | Select **Developer**. |
-   | Virtual network | Select **Test-FW-VN**. |
-   | Subnet | The **AzureBastionSubnet** is created automatically with address space **10.0.3.0/26**. |
-
-1. Select **Review + create**.
-1. Review the settings and select **Create**.
-
-   The deployment takes a few minutes to complete.
-
-1. After deployment completes, select **Go to resource**.
 
 ## Test the firewall
 
