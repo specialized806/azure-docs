@@ -20,7 +20,9 @@ Migrations require a lot of work, coordination, and cooperation across teams. Of
 
 ## Next steps
 
-Now that you completed your workload's migration, learn more about recommendations for post-migration tuning and cost optimization in the [CAF Optimize workloads after migration](/azure/cloud-adoption-framework/migrate/optimize-workloads-after-migration) guide. Consider conducting a [Well-Architected Review](/azure/well-architected/) of your new Azure workload to ensure your workload and your team's practices align with industry best practices.
+Now that you completed your workload's migration, learn more about recommendations for post-migration tuning and cost optimization in the [CAF Optimize workloads after migration](/azure/cloud-adoption-framework/migrate/optimize-workloads-after-migration) guide.
+
+Keep up to date with Azure, GitHub, and Microsoft development tool changes by monitoring the [Microsoft Developer Changelog](https://developer.microsoft.com/changelog).
 
 ## Tools and references 
 
