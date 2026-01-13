@@ -71,7 +71,7 @@ The resource group contains all the resources for the tutorial.
 
 ### Create a VNet
 
-This VNet will have two subnets.
+This VNet has two subnets.
 
 > [!NOTE]
 > The size of the AzureFirewallSubnet subnet is /26. For more information about the subnet size, see [Azure Firewall FAQ](firewall-faq.yml#why-does-azure-firewall-need-a--26-subnet-size).
@@ -94,7 +94,7 @@ This VNet will have two subnets.
 1. Under **Subnets**, select **default**.
 1. On the **Edit subnet** page, for **Subnet purpose**, select **Azure Firewall**.
 
-   The firewall will be in this subnet, and the subnet name **must** be AzureFirewallSubnet.
+   The firewall is in this subnet, and the subnet name **must** be AzureFirewallSubnet.
 1. For **Starting address**, type **10.0.1.0**.
 1. Select **Save**.
 
@@ -111,7 +111,7 @@ Next, create a subnet for the workload server.
 
 Deploy Azure Bastion Developer edition to securely connect to the **Srv-Work** virtual machine for testing.
 
-1. In the search box at the top of the portal, enter **Bastion**.  Select **Bastions* from teh search results.
+1. In the search box at the top of the portal, enter **Bastion**.  Select **Bastions* from the search results.
 1. Select **Create**.
 1. On the **Create a Bastion** page, enter or select the following values:
 
@@ -213,9 +213,9 @@ Deploy the firewall into the VNet.
 1. Select **Next : Review + create**.
 1. Review the summary, and then select **Create** to create the firewall.
 
-   This will take a few minutes to deploy.
+   This takes a few minutes to deploy.
 7. After deployment completes, go to the **Test-FW-RG** resource group, and select the **Test-FW01** firewall.
-8. Note the firewall private and public IP addresses. You'll use these addresses later.
+8. Note the firewall private and public IP addresses. You use these addresses later.
 
 ## Create a default route
 
