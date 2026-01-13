@@ -71,10 +71,10 @@ When using Entra ID and the following Azure App Configuration libraries in cloud
   - .NET configuration provider: Microsoft.Extensions.Configuration.AzureAppConfiguration >= 8.2.0
   - Azure SDK for .NET: Azure.Data.AppConfiguration >= 1.6.0
 
-See the following APIs for an example .NET of how Audience is configured:
+Audience is configured by utilizing the following API calls:
 
 * The ConfigurationClient constructor [accepts ConfigurationClientOptions](/dotnet/api/azure.data.appconfiguration.configurationclient.-ctor#azure-data-appconfiguration-configurationclient-ctor(system-uri-azure-core-tokencredential-azure-data-appconfiguration-configurationclientoptions))
-* ConfigurationClientOptions accepts Entra ID audience to be [passed](/dotnet/api/azure.data.appconfiguration.configurationclientoptions.audience#azure-data-appconfiguration-configurationclientoptions-audience)
+* ConfigurationClientOptions allows [Audience](/dotnet/api/azure.data.appconfiguration.configurationclientoptions.audience#azure-data-appconfiguration-configurationclientoptions-audience) to be set
 
 ```
 var configurationClient = new ConfigurationClient(
