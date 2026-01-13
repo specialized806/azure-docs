@@ -6,6 +6,7 @@ ms.author: zhenlwa
 ms.date: 10/30/2025
 ms.topic: concept-article
 ms.service: azure-app-configuration
+zone_pivot_groups: appconfig-programming-languages
 
 ---
 # Access Azure App Configuration using Microsoft Entra ID
@@ -72,8 +73,8 @@ When using Entra ID and the following Azure App Configuration libraries in cloud
 
 See the following APIs for an example .NET of how Audience is configured:
 
-* The ConfigurationClient constructor [accepts ConfigurationClientOptions](https://learn.microsoft.com/en-us/dotnet/api/azure.data.appconfiguration.configurationclient.-ctor?view=azure-dotnet#azure-data-appconfiguration-configurationclient-ctor(system-uri-azure-core-tokencredential-azure-data-appconfiguration-configurationclientoptions))
-* ConfigurationClientOptions accepts Entra ID audience to be [passed](https://learn.microsoft.com/en-us/dotnet/api/azure.data.appconfiguration.configurationclientoptions.audience?view=azure-dotnet#azure-data-appconfiguration-configurationclientoptions-audience)
+* The ConfigurationClient constructor [accepts ConfigurationClientOptions](/dotnet/api/azure.data.appconfiguration.configurationclient.-ctor#azure-data-appconfiguration-configurationclient-ctor(system-uri-azure-core-tokencredential-azure-data-appconfiguration-configurationclientoptions))
+* ConfigurationClientOptions accepts Entra ID audience to be [passed](/dotnet/api/azure.data.appconfiguration.configurationclientoptions.audience#azure-data-appconfiguration-configurationclientoptions-audience)
 
 ```
 var configurationClient = new ConfigurationClient(
@@ -85,7 +86,7 @@ var configurationClient = new ConfigurationClient(
     });
 ```
 
-Configuration providers sit on top of the configuration client SDK and allow client options to be [configured](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.configuration.azureappconfiguration.azureappconfigurationoptions.configureclientoptions?view=azure-dotnet#microsoft-extensions-configuration-azureappconfiguration-azureappconfigurationoptions-configureclientoptions(system-action((azure-data-appconfiguration-configurationclientoptions)))).
+Configuration providers sit on top of the configuration client SDK and allow client options to be [configured](/dotnet/api/microsoft.extensions.configuration.azureappconfiguration.azureappconfigurationoptions.configureclientoptions#microsoft-extensions-configuration-azureappconfiguration-azureappconfigurationoptions-configureclientoptions(system-action((azure-data-appconfiguration-configurationclientoptions)))).
 
 ```
 builder.AddAzureAppConfiguration(o =>

@@ -1475,7 +1475,7 @@ groups:
     title: Spring Framework
   
 - id: appconfig-programming-languages
-  # Owner: mametcal
+  # Owner: jimmyca
   title: Programming languages
   prompt: Choose a programming language
   pivots:
