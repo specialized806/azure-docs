@@ -68,8 +68,8 @@ When using Entra ID and the following Azure App Configuration libraries in cloud
 
 The Audience for the target cloud must be configured for the following packages.
 
-- Microsoft.Extensions.Configuration.AzureAppConfiguration >= 8.2.0
-- Azure.Data.AppConfiguration >= 1.6.0
+- Azure SDK for .NET: Azure.Data.AppConfiguration >= 1.6.0
+- .NET configuration provider: Microsoft.Extensions.Configuration.AzureAppConfiguration >= 8.2.0
 
 In the **Azure SDK for .NET**, audience is configured by utilizing the following API calls:
 
@@ -88,7 +88,7 @@ var configurationClient = new ConfigurationClient(
     });
 ```
 
-In the **.NET configuration provider for Azure App Configuration**, audience is configured by utilizing the following API calls:
+In the **.NET configuration provider**, audience is configured by utilizing the following API calls:
 
 * AzureAppConfigurationOptions exposes a [ConfigureClientOptions](/dotnet/api/microsoft.extensions.configuration.azureappconfiguration.azureappconfigurationoptions.configureclientoptions#microsoft-extensions-configuration-azureappconfiguration-azureappconfigurationoptions-configureclientoptions(system-action((azure-data-appconfiguration-configurationclientoptions)))) method
 
