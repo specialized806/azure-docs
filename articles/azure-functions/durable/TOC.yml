@@ -159,6 +159,8 @@
       href: ./durable-task-scheduler/quickstart-portable-durable-task-sdks.md
     - name: Configure Durable Functions with MSSQL
       href: quickstart-mssql.md
+    - name: Host a Durable Functions app in Container Apps (.NET isolated)
+      href: durable-functions-msql-container-apps-hosting.md
     - name: Publish orchestration lifecycle events to Event Grid
       href: durable-functions-event-publishing.md
   - name: How-to guides
