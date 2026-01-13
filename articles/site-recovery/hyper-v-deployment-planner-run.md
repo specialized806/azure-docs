@@ -16,7 +16,7 @@ ms.custom: sfi-image-nochange
 You can run the Site Recovery deployment planner command-line tool (ASRDeploymentPlanner.exe) in any of these four modes: 
 -	[Get the virtual machine (VM) list](#get-the-vm-list-for-profiling-hyper-v-vms)
 -	[Profile](#profile-hyper-v-vms)
--	[Generate a report](#generate-a-cost-report)
+-	[Generate a cost report](#generate-a-cost-report)
 -	[Get throughput](#get-throughput)
 
 First, run the tool to get the list of VMs from a single or multiple Hyper-V hosts. Then run the tool in profiling mode to gather VM data churn and IOPS. Next, run the tool to generate the report to find the network bandwidth and storage requirements.

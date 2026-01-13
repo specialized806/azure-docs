@@ -18,7 +18,7 @@ This article is the Azure Site Recovery Deployment Planner user guide for VMware
 You can run the command-line tool (ASRDeploymentPlanner.exe) in any of the following three modes:
 
 1.	[Profiling](#profile-vmware-virtual-machines)
-2.	[Generate Cost Report](#generate-a-cost-report)
+2.	[Generate a cost report](#generate-a-cost-report)
 3.	[Get throughput](#get-throughput)
 
 First, run the tool in profiling mode to gather virtual machine data churn and IOPS. Next, run the tool to generate the report to find the network bandwidth, storage requirements and DR cost.

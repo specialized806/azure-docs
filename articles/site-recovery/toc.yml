@@ -331,7 +331,7 @@
           href: site-recovery-deployment-planner.md
         - name: Deployment Planner version history
           href: site-recovery-deployment-planner-history.md
-        - name: Run the Deployment Planner tool
+        - name: Run the Deployment Planner tool and generate the cost report
           href: site-recovery-vmware-deployment-planner-run.md
         - name: Analyze the generated cost report
           href: site-recovery-vmware-deployment-planner-analyze-report.md
@@ -463,7 +463,7 @@
           href: hyper-v-deployment-planner-overview.md
         - name: Deployment Planner version history
           href: site-recovery-deployment-planner-history.md
-        - name: Run the Deployment Planner tool
+        - name: Run the Deployment Planner tool and generate the cost report
           href: hyper-v-deployment-planner-run.md
         - name: Analyze the generated cost report
           href: hyper-v-deployment-planner-analyze-report.md
