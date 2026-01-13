@@ -33,7 +33,7 @@ Learn more about the [supported scenarios for Confidential VM backup](backup-sup
 
 Learn how to [create a new Confidential VM with Customer Managed Key](/azure/confidential-computing/quick-create-confidential-vm-portal-amd), if needed.
 
-## Assign permissions
+## Assign permissions for Confidential VM backup
 
 Azure Backup needs certain access to Key Vault or managed Hardware Security Module (mHSM) that are used to store the key. These permissions also help Azure Backup to back up the key, which you can restore if deleted for some reason.
 
@@ -70,4 +70,4 @@ Once Azure Backup has the necessary permissions, you can continue configuring ba
 
 ## Next step
 
-[Restore CVM with CMK using Azure Backup (preview)](confidential-vm-restore.md)
+[Restore CVM with CMK using Azure Backup (preview)](confidential-vm-restore.md).

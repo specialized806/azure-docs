@@ -17,83 +17,39 @@ This article describes how to restore Confidential VM (CVM) with Platform or Cus
 
 *For any queries, write to us at [AskAzureBackupTeam@microsoft.com](mailto:AskAzureBackupTeam@microsoft.com).*
 
-## Restore scenarios
+## Restore scenarios for Confidential VM
 
-You can have the following set of restore scenarios:
+Confidential VM restore behavior depends on the state of the DES, Key Vault, and keys at the time of restore. Key scenarios include:
 
-- **Sunny day restore scenarios**: These scenarios happen when the original Customer Managed Key (CMK), Key Vault, mHSM, and DES are available. In these scenarios, you can continue the restore process as usual.
+- **Original Key or Key Version intact**: Restore succeeds if the original Disk Encryption Set (DES) and key remain intact.
+- **Key Rotation**: Restore succeeds when a new key version is active, provided the previous key version isn't expired or deleted.
+- **Key Change**: If the DES uses a new key, restore succeeds only if the previous key still exists; it fails if the previous key is deleted.
+- **DES or Key Deleted**: Restore fails with errors, such as `UserErrorDiskEncryptionSetDoesNotExist` or `UserErrorDiskEncryptionSetKeyDoesNotExist`. To resolve, re-create the key and DES using restored key data, then retry the restore.
+- **Input DES Provided**: If you provide a new DES created from restored key data, restore can succeed if the key and version match the ones used at backup time.
+- **Mismatched DES or Key**: Restore fails with `UserErrorInputDESKeyDoesNotMatchWithOriginalKey`. To resolve this error, restore the missing keys.
 
-- **Rainy day restore scenarios**: These scenarios happen when due to some reason, the original CMK, Key Vault, mHSM, or DES pointing to the original CMK is deleted, or backup isn't able to access the original CMK for restoring. In these scenarios, when you trigger the restore as usual, it fails and CVM isn't restored. You need to perform certain steps to restore the key (which Azure Backup backs up), point a new DES to this restored key, and trigger restore again with this DES.
 
-For more information on the restore process, see [this article](https://learn.microsoft.com/en-us/azure/backup/backup-azure-arm-restore-vms).
 
-***Note***
 
-*We recommend you to try at least two restores from both these scenarios.*
 
-## Sunny day restore scenarios
 
-This section shows how you can trigger the supported restores from the **Backup Item** page as usual.
 
-To perform the restore, on the **Restore** page, choose the supported restore mechanism, and then trigger restore.
 
-![Screenshot shows the sunny restore scenario from the Backup Item page.](https://github.com/MicrosoftDocs/Backup-Confidential-VMs-with-CMK/blob/main/articles/media/backup-confidential-vm-with-customer-managed-key/sunny-restore-scenario.png)
 
-See the following scenarios.
 
-### Scenario 1: Restore without Disk Encryption Set
 
-You can find a dropdown list to select a Disk Encryption Set (DES) on the **Restore** page of CVM. This is optional, and you can select DES from it in case of rainy-day scenarios.
 
-For this scenario, don't provide any Disk Encryption Set (DES) and the restore process should be successful.
 
-![Screenshot shows Restore page of CVM with an option to enter DES.](https://github.com/MicrosoftDocs/Backup-Confidential-VMs-with-CMK/blob/main/articles/media/backup-confidential-vm-with-customer-managed-key/disk-encryption-set-on-restore.png)
 
-### Scenario 2: Restore using Disk Encryption Set pointed to another key
 
-For this scenario, choose a DES pointing to a different key than the original from the dropdown list. The restoration may fail.
 
-![Screenshot shows restore fails using a DES pointing to a different CMK.](https://github.com/MicrosoftDocs/Backup-Confidential-VMs-with-CMK/blob/main/articles/media/backup-confidential-vm-with-customer-managed-key/sunny-restore-fails-with-disk-encryption-set-pointed-to-different-key.png)
 
-## Rainy day restore scenarios
-
-These scenarios comprise edge-case scenarios that occur due to some accidental reasons or malicious admins.
-
-Rainy day restore workflow:
-
-1. Perform first restore.
-
-   The restore will fail due to missing key.
-
-2. (Post-restoration process) Restore the Customer Managed Key that Azure Backup has backed up, and then create a new DES to point to the restored key.
-
-3. Trigger a restore again by entering the DES on the *Restore* page.
-
-### Step 1: Delete original Customer Managed Key
-
-You need to delete the original Customer Managed Key (used for encrypting CVM), delete Key Vault, or mHSM having the original CMK.
-
-***Important***
-
-*Ensure that you've Soft Delete enabled on the [key vault](https://learn.microsoft.com/en-us/azure/key-vault/general/soft-delete-overview) / [mHSM](https://learn.microsoft.com/en-us/azure/key-vault/managed-hsm/soft-delete-overview) so that you can recover the key, key vault, or mHSM later. Learn more on [how to recover the key or key vault from the soft deleted state](https://learn.microsoft.com/en-us/azure/key-vault/general/key-vault-recovery?tabs=azure-portal).*
-
-### Step 2: Perform Restore
-
-Trigger restore, as usual, for the Confidential VM (CVM) for which you've deleted the CMK, Key Vault, or mHSM.
-
-The restore process fails due to the missing key.
-
-The following screenshot shows the *Restore* page after the first restore has failed.
-
-![Screenshot shows the first rainy restore has failed when the key is removed.](https://github.com/MicrosoftDocs/Backup-Confidential-VMs-with-CMK/blob/main/articles/media/backup-confidential-vm-with-customer-managed-key/rainy-restore-fails-for-missing-key.png)
-
-### Step 3: Perform post restoration steps
-
-Once your first restore fails, you need to restore the Customer Managed Key, which Azure Backup has backed up. 
+## Restore missing keys for Confidential VM restore
+If the restore operation fails, you need to restore the Platform Managed Key (PMK) or Customer Managed Key (CMK) that Azure Backup backed up. 
 
 To restore the key using PowerShell, run the following cmdlets:
 
-1. Select the vault in which you've protected CVM + CMK. In the cmdlet, you need to specify the resource group and name of the vault.
+1. Select the vault containing the protected CVM + CMK. In the cmdlet, you need to specify the resource group and name of the vault.
 
    ```azurepowershell
    $vault = Get-AzRecoveryServicesVault -ResourceGroupName "<vault-rg>" -Name "<vault-name>"
@@ -140,14 +96,14 @@ To restore the key using PowerShell, run the following cmdlets:
    $encryptionObject = Get-Content -Path $destination_path | ConvertFrom-Json 
    ```
 
-7. Once the JSON file is generated in the destination path mentioned above, generate key blob file from the JSON.
+7. After the JSON file is generated in the destination path mentioned previously, generate key blob file from the JSON.
 
    ```azurepowershell
    $keyDestination = 'C:\keyDetails.blob'
    [io.file]::WriteAllBytes($keyDestination, [System.Convert]::FromBase64String($encryptionObject.OsDiskEncryptionDetails.KeyBackupData)) 
    ```
 
-8. Now, restore the key back in the Key Vault or managed HSM.
+8. Now, restore the key back in the Key Vault or Managed Hardware Security Module (HSM).
 
    ```azurepowershell
    Restore-AzKeyVaultKey -VaultName '<target_key_vault_name> ' -InputFile $keyDestination
@@ -155,15 +111,15 @@ To restore the key using PowerShell, run the following cmdlets:
    Restore-AzKeyVaultKey -HsmName '<target_mhsm_name>' -InputFile $keyDestination
    ```
 
-Now, you can create a new DES with Encryption type as *Confidential disk encryption with a customer-managed key* to point to this restored key. This DES should have enough permissions to perform a successful restore. If you've used a new Key Vault or managed HSM to restore the key, then *Backup Management Service* should have enough permissions on it. For granting permission for Key Vault or mHSM access, see [these steps](https://github.com/MicrosoftDocs/Backup-Confidential-VMs-with-CMK/blob/main/articles/configure-backup-confidential-vm-with-customer-managed-key.md#scenario-2-error-while-configuring-backup).
+Now, you can create a new DES with Encryption type as *Confidential disk encryption with a customer-managed key* to point to this restored key. This DES should have enough permissions to perform a successful restore. If you use a new Key Vault or Managed HSM to restore the key, then *Backup Management Service* has enough permissions on it. [Learn how to grant permission for Key Vault or mHSM access](confidential-vm-backup.md#assign-permissions-for-confidential-vm-backup).
+
+### Grant permissions to DES and Confidential Guest VM Agent
 
 Disk Encryption Set and Confidential Guest VM Agent also need permissions on the Key Vault or Managed HSM. To provide the permissions, follow these steps:
 
-- **For Key Vault**: To grant these permissions to the Key Vault, select the red message as shown in the following screenshot.
+**For Key vault**: To grant permissions to the Key vault, select the message *To associate a disk, image, or snapshot with this disk encryption set, you must grant permissions to the key vault*.
 
-  ![Screenshot shows how to assign permissions to the Key Vault.](https://github.com/MicrosoftDocs/Backup-Confidential-VMs-with-CMK/blob/main/articles/media/backup-confidential-vm-with-customer-managed-key/assign-permissions-to-key-vault.png)
-
-- **For Managed HSM**: To grant these permissions, follow these steps:
+- **For Managed HSM**: To grant permissions to the Managed HSM, follow these steps:
 
   1. Assign newly created DES with Managed HSM Crypto the User Role:
 
@@ -181,24 +137,6 @@ Disk Encryption Set and Confidential Guest VM Agent also need permissions on the
      4. For **Scope**, select the restored key. You can also select **All Keys**.
      5. On the **Security principal**, you need to select **Confidential Guest VM Agent**.
 
-### Step 4: Re-trigger restore
+### Restore the Confidential VM
 
-Follow these steps:
-
-1. Go to the **Backup Items** page, select the recovery point that you've used for triggering the first restore, and then perform restore again.
-
-2. On the **Restore** page, select the *newly created DES pointing to restored key* while triggering the restore.
-
-   This time, the restore should be successful.
-
-   ![Screenshot shows the selection of DES pointing to the restored key and trigger the restore.](https://github.com/MicrosoftDocs/Backup-Confidential-VMs-with-CMK/blob/main/articles/media/backup-confidential-vm-with-customer-managed-key/re-trigger-restore.png)
-
-***Note***
-
-*If you select ***snapshot only tier*** recovery point to restore and then trigger the restore by selecting a different DES (than the original DES), an error appears. This happens because restore from a different DES (even though that is pointing to correct key) is currently not supported from the ***snapshot only tier***.*
-
-![Screenshot shows Snapshot only tier.](https://github.com/MicrosoftDocs/Backup-Confidential-VMs-with-CMK/blob/main/articles/media/backup-confidential-vm-with-customer-managed-key/restore-using-snapshot-only-tier.png)
-
-*Restore error on selection of snapshot only tier.*
-
-![Screenshot shows restore error pn selection of snapshot only tier.](https://github.com/MicrosoftDocs/Backup-Confidential-VMs-with-CMK/blob/main/articles/media/backup-confidential-vm-with-customer-managed-key/restore-error-on-selecting-snapshot-only-tier.png)
+After you assign the required permissions, you can run the restore operation. [Learn how to restore an Azure VM](backup-azure-arm-restore-vms.md).
