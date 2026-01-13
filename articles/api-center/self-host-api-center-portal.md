@@ -65,8 +65,8 @@ Follow these steps to build and test the API Center portal locally.
     ```bash
     git checkout main
     ```  
-1. To configure the service, copy or rename the `public/config.example` file to `public/config.json`.
-1. Then edit the `public/config.json` file to point to your service. Update the values in the file as follows:
+1. To configure the service, copy or rename the `config.example.json` file to `config.json`.
+1. Then edit the `config.json` file to point to your service. Update the values in the file as follows:
     1. Replace `<service name>` and `<region>` with the name of your API center and the location where it's deployed
     1. Replace `<client ID>` and `<tenant ID>` with the **Application (client) ID** and **Directory (tenant) ID** of the app registration you created in the previous section.
     1. Update the value of `title` to a name that you want to appear in the top bar of the portal.
