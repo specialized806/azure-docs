@@ -14,7 +14,7 @@ service.tree.id: cf90d1aa-e8ca-47a9-a6d0-bc69c7db1d52
 
 # Billing Benefits Overview
 
-Billing benefits are a set of Azure capabilities that provide customers with financial advantages such as discounted prices, credits, and long-term cost optimization options. These benefits help organizations reduce cloud spend, plan capacity confidently, and align purchasing with business needs.
+Billing benefits are a set of offers - such as discounts, credits, and cost-optimizing commitments that provide customers with financial advantages. These billing benefits help customers reduce spend, plan capacity confidently, and align purchasing with business needs
 
 Azure models billing benefits as **Azure Resource Manager (ARM) resources**, enabling consistent lifecycle management across the Azure portal, APIs, and SDKs. For more information, see: [What is a cloud subscription?](../../cost-management-billing/manage/cloud-subscription.md)
 
@@ -22,7 +22,8 @@ Azure models billing benefits as **Azure Resource Manager (ARM) resources**, ena
 
 ## What Are Billing Benefits?
 
-A *billing benefit* is any offer that changes the effective cost of using Azure services. These benefits typically fall into one of four categories:
+A *billing benefit* is any offer that changes the effective cost associated with service usage or purchases. These benefits typically fall into one of four categories:
+
 
 ### 1. Commitments
 
@@ -35,9 +36,11 @@ Examples:
 *   [Savings plan](../savings-plan/savings-plan-compute-overview.md)
 *   Commitment-based spend programs
 
+
 ### 2. Credits
 
 Credits act like a monetary balance applied toward applicable Azure usage.  
+
 Examples:
 
 *   Promotional credits
@@ -46,12 +49,13 @@ Examples:
 
 Credits are applied before invoices are generated.
 
+> **Note:** Credits are applied like a gift card or other payment instrument before the invoice is generated. While credit status is tracked as new charges flow into the data pipeline, credits aren't explicitly applied to these charges until the end of the month.
+
 
 ### 3. Discounts
 
-Discounts reduce the purchase price or usage charges of eligible Azure resources. Azure also applies certain discounts—such as commitment-based reductions—during charge rating.
+Discounts lower the purchase price or usage charges of eligible resources. Certain discounts, such as commitment-based reductions, are also applied during charge rating 
 
-> **Note:** Credits are applied like a gift card or other payment instrument before the invoice is generated. While credit status is tracked as new charges flow into the data pipeline, credits aren't explicitly applied to these charges until the end of the month.
 
 ### 4. Free Azure Services
 
@@ -71,9 +75,11 @@ For more information, see: [Create Your Azure Free Account Or Pay As You Go](htt
 
 Billing benefits can be viewed and managed through multiple supported interfaces:
 
+
 ### Azure Portal
 
 Customers can view and manage billing benefits—including credits and discounts—in dedicated experiences within **Cost Management + Billing** and dedicated **Credits**, **Discounts**, and **Microsoft Azure Consumption Commitments** service views. The portal views summarize benefit metadata, balance (for credits), and usage impact.
+
 
 ### Azure Resource Manager (ARM)
 
@@ -84,9 +90,11 @@ Examples:
 *   `Microsoft.BillingBenefits/credits`
 *   `Microsoft.BillingBenefits/savingsPlanOrders/savingsPlans`
 
+
 ### REST APIs
 
 Developers can programmatically interact with billing benefits using the **Azure Billing Benefits REST API**, which provides operations for managing benefits such as savings plans and discount-related resources.
+
 
 ### SDKs & CLI
 
@@ -95,6 +103,7 @@ Azure SDKs (.NET, Python, JavaScript) and the Azure CLI (`az billingbenefits`) s
 See: [Azure PowerShell Billing Benefits Module](https://learn.microsoft.com/powershell/module/az.billingbenefits/)
 
 ***
+
 
 ## Why Billing Benefits Matter
 
@@ -106,10 +115,11 @@ Billing benefits help organizations:
 
 ***
 
+
 ## Common Scenarios
 
 *   **Verify costs reflect the discounted price:**  
-    A negotiated Azure discount reduces rates applied to eligible usage during billing. The discount appears as an ARM resource and is also reflected in the price sheet and invoice. You can utilize the discount information displayed on the discount resource to verify applicability of the discount on your price sheet or downloaded usage.
+    A negotiated discount reduces rates applied to eligible usage during billing. The discount appears as an ARM resource and is also reflected in the price sheet and invoice. You can utilize the discount information displayed on the discount resource to verify applicability of the discount on your price sheet or downloaded usage.
 
 *   **Track credit usage:**  
     Promotional or commitment credits are consumed automatically as new usage is rated, and customers track credit burndown in the portal.
