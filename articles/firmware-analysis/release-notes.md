@@ -17,6 +17,11 @@ Get notified about when to revisit this page for updates by copying and pasting 
 
 into your RSS feed reader.
 
+## January 2026
+
+- **Fixed hostapd version detection**: Resolved incorrect reporting of hostapd versions across all builds. The fix ensures the correct version number is displayed in analysis results.
+
+
 ## November 2025
 
 - **Download firmware analysis results as ZIP**: You can now download a ZIP file of firmware analysis results, making it easy to share findings with suppliers and partners.
