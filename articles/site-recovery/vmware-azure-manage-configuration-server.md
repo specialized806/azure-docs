@@ -101,7 +101,7 @@ The expiry date appears under **Configuration Server health**. For configuration
 
 - When the expiry date is two months or less, the service sends notifications in the portal and by email (if you subscribed to Site Recovery notifications).
 - A notification banner appears on the vault resource page. For more information, select the banner.
-- If you see **Upgrade Now**, it indicates that some components in your environment need to be upgraded to 9.4.xxxx.x or later versions. Upgrade the components before you renew the certificate. You can't renew older versions.
+- If you see **Upgrade Now**, it indicates that some components in your environment must be upgraded to 9.4.xxxx.x or later versions. Upgrade the components before you renew the certificate. You can't renew older versions.
 
 ### If certificates are yet to expire
 
@@ -113,7 +113,7 @@ The expiry date appears under **Configuration Server health**. For configuration
 ### If certificates are already expired
 
 1. Post expiry, certificates *can't be renewed from the Azure portal*. Before you proceed, ensure that all scale-out process servers for components, master target servers, and mobility agents on all protected machines are on the latest versions and in the connected state.
-1. *Follow this procedure only if certificates are already expired.* Sign in to the configuration server, go to C:\ProgramData\ASR\home\svsystems\bin, and run the `RenewCerts` executor tool as an administrator.
+1. *Follow this procedure only if certificates are already expired.* Sign in to the configuration server, go to `C:\ProgramData\ASR\home\svsystems\bin`, and run the `RenewCerts` executor tool as an administrator.
 1. A PowerShell execution window opens and triggers renewal of certificates. This process can take up to 15 minutes. Don't close the window until renewal is finished.
 
 :::image type="content" source="media/vmware-azure-manage-configuration-server/renew-certificates.png" alt-text="Screenshot that shows certificate renewal.":::
@@ -213,7 +213,7 @@ Run the installation file:
 
 |Parameter name| Type | Description| Values|
 |-|-|-|-|
-| `/ServerMode`|Required|Specifies whether both the configuration and process servers should be installed or the process server only.|CS<br>PS|
+| `/ServerMode`|Required|Specifies whether both the configuration and process servers should be installed or the process server only.|Configuration server<br>Process server|
 |`/InstallLocation`|Required|The folder in which the components are installed.| Any folder on the computer.|
 |`/MySQLCredsFilePath`|Required|The file path in which the MySQL server credentials are stored.|The file should be the format specified in the following section.|
 |`/VaultCredsFilePath`|Required|The path of the vault credentials file.|Valid file path.|

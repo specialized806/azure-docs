@@ -86,7 +86,7 @@ Configure the configuration server with an account that has a special role assig
 
 | Object | Role | Remarks |
 | --- | --- | --- |
-| vCenter | Read-Only | Needed only to allow vCenter access for managing different objects. You can remove this permission if the account is never going to be provided to a tenant or used for any management operations on the vCenter. |
+| vCenter | Read-only | Needed only to allow vCenter access for managing different objects. You can remove this permission if the account is never going to be provided to a tenant or used for any management operations on the vCenter. |
 | Datacenter | `Azure_Site_Recovery` |  |
 | Host and host cluster | `Azure_Site_Recovery` | Re-ensures that access is at the object level so that only accessible hosts have tenant VMs before failover and after failback. |
 | Datastore and datastore cluster | `Azure_Site_Recovery` | Same as preceding. |
