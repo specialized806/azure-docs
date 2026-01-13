@@ -10,9 +10,9 @@ ms.update-cycle: 180-days
 ms.collection: ce-skilling-ai-copilot
 ---
 
-# AI agent configuration in Azure App Configuration
+# Configuring agents in Agent framework with Azure App configuration
 
-Agents are software systems that autonomously perform tasks using Large Language Models (LLMs) to process user input and execute actions on behalf of users. These agents use tools and Model Context Protocol (MCP) servers to carry out operations and generate intelligent responses. Agent configuration enables you to define and manage how these agents behave and respond within your application environment. Azure App Configuration provides a centralized store where configurations for your agent are kept in one place and can be shared across multiple application instances.
+Agents are software systems that autonomously perform tasks using Large Language Models (LLMs) to process user input and execute actions on behalf of users. Agent framework provides tools and structures to needed to build, orchestrate and manage AI agents. Configuring agents within this framework involves defining their instructions and toolsets through either code-based or declarative methods. Azure App Configuration serves as a centralized store for these agent configurations, keeping them in one place where they can be easily managed and shared across multiple application instances.
 
 Here are some agent settings that can be stored on Azure App Configuration:
 
@@ -20,6 +20,7 @@ Here are some agent settings that can be stored on Azure App Configuration:
  - Endpoint
  - Agent name
  - Model parameters - temperature, top_p, max_tokens, frequency_penalty, presence_penalty, response_format and stop sequences.
+ - Tools
 
 ## Prerequisites
 

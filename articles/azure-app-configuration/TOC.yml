@@ -184,7 +184,7 @@
       href: quickstart-chat-completion-dotnet.md
     - name: Go
       href: quickstart-chat-completion-go.md
-  - name: Agent
+  - name: Agent framework
     items:
     - name: Get started
       href: howto-ai-agent-config.md
