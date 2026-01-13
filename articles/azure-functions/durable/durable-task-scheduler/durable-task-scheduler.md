@@ -1,7 +1,7 @@
 ---
 title: Azure Functions Durable Task Scheduler
 description: Learn about the characteristics of the Azure Functions Durable Task Scheduler.
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 10/29/2025
 ---
 

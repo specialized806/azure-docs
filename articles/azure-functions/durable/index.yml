@@ -1,16 +1,16 @@
 ### YamlMime:Landing
 
-title: Azure Durable Functions documentation # <60 chars
-summary: Durable Functions is an extension of Azure Functions that lets you write stateful functions in a serverless compute environment. # < 160 chars
+title: Azure Durable documentation # <60 chars
+summary: Azure Durable automatically handles retries, state persistence, and crash recovery so you can focus on your business logic. # < 160 chars
 
 metadata:
-  title: Azure Durable Functions documentation
-  description: Durable Functions is an extension of Azure Functions that lets you write stateful functions in a serverless compute environment.
-  ms.service: azure-functions 
+  title: Azure Durable documentation
+  description: Azure Durable automatically handles retries, state persistence, and crash recovery so you can focus on your business logic.
+  ms.service: azure-functions
   ms.topic: landing-page
-  author: ggailey777 
-  ms.author: glenga 
-  ms.date: 10/04/2019 
+  author: hhunter-ms 
+  ms.author: hannahhunter 
+  ms.date: 12/02/2025 
 
 # linkListType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | tutorial | video | whats-new
 
@@ -18,22 +18,18 @@ landingContent:
 # Cards and links should be based on top customer tasks or top subjects
 # Start card title with a verb
   # Card (optional)
-  - title: About Durable Functions
+  - title: About Azure Durable
     linkLists:
       - linkListType: overview
         links:
-          - text: What are Durable Functions?
-            url: durable-functions-overview.md
-          - text: Compare serverless options
-            url: ../functions-compare-logic-apps-ms-flow-webjobs.md  
-          - text: Usage scenarios
-            url: ../functions-scenarios.md#build-a-serverless-workflow
+          - text: What is Azure Durable?
+            url: durable-overview.md
       - linkListType: concept
         links:
-          - text: Durable function types
+          - text: Durable Function types
             url: durable-functions-types-features-overview.md
-          - text: Durable Functions storage providers
-            url: durable-functions-storage-providers.md
+          - text: Durable Task Scheduler
+            url: ./durable-task-scheduler/durable-task-scheduler.md
 
   # Card (optional)
   - title: Get started
@@ -42,14 +38,8 @@ landingContent:
         links:
           - text: Create a Durable Functions app (C#)
             url: durable-functions-isolated-create-first-csharp.md
-          - text: Create a Durable Functions app (JavaScript)
-            url: quickstart-js-vscode.md
-          - text: Create a Durable Functions app (Python)
-            url: quickstart-python-vscode.md
-      - linkListType: learn
-        links:
-          - text: Create a long-running serverless workflow
-            url: /training/modules/create-long-running-serverless-workflow-with-durable-functions/
+          - text: Create an app with the Durable Task SDKs
+            url: ./durable-task-scheduler/quickstart-durable-task-scheduler.md
         
   # Card
   - title: Application patterns

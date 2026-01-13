@@ -38,7 +38,7 @@ Durable Functions is designed to work with all Azure Functions programming langu
 > This article uses tabs to support multiple versions of the Python programming model. The v2 model is generally available and is designed to provide a more code-centric way for authoring functions through decorators. For more information about the v2 model, see the [Azure Functions Python developer guide](../functions-reference-python.md).
 ::: zone-end
 
-Like Azure Functions, there are templates to help you develop Durable Functions using [Visual Studio](durable-functions-isolated-create-first-csharp.md?pivots=code-editor-visualstudio), [Visual Studio Code](quickstart-js-vscode.md), and the [Azure portal](durable-functions-create-portal.md).
+Like Azure Functions, there are templates to help you develop Durable Functions using [Visual Studio](durable-functions-isolated-create-first-csharp.md?pivots=code-editor-visualstudio) and [Visual Studio Code](quickstart-js-vscode.md).
 
 ## Application patterns
 
