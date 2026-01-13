@@ -111,7 +111,7 @@ Next, create a subnet for the workload server.
 
 Deploy Azure Bastion Developer edition to securely connect to the **Srv-Work** virtual machine for testing.
 
-1. In the search box at the top of the portal, enter **Bastion**.  Select **Bastions* from the search results.
+1. In the search box at the top of the portal, enter **Bastion**.  Select **Bastions** from the search results.
 1. Select **Create**.
 1. On the **Create a Bastion** page, enter or select the following values:
 
