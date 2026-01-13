@@ -41,7 +41,7 @@ To access the configuration server:
 
     ![Screenshot that shows modifying VMware.](./media/vmware-azure-manage-configuration-server/modify-vmware-server.png)
 
-You can also modify the credentials through `CSPSConfigtool.exe`.
+You can also modify the credentials through `CSPSConfigtool.exe`:
 
 1. Sign in to the configuration server and start `CSPSConfigtool.exe`.
 1. Choose the account that you want to modify and select **Edit**.
@@ -57,7 +57,7 @@ Modify the credentials used to automatically install the Mobility service on the
 
     ![Screenshot that shows modifying Mobility service credentials.](./media/vmware-azure-manage-configuration-server/modify-mobility-credentials.png)
 
-You can also modify credentials through `CSPSConfigtool.exe`.
+You can also modify credentials through `CSPSConfigtool.exe`:
 
 1. Sign in to the configuration server and start `CSPSConfigtool.exe`.
 1. Choose the account that you want to modify and select **Edit**.
@@ -69,10 +69,11 @@ If you missed adding credentials during OVF deployment of the configuration serv
 
 1. After [sign-in](#access-configuration-server), select **Manage virtual machine credentials**.
 1. Select **Add virtual machine credentials**.
+
     ![Screenshot that shows the Manage virtual machine credentials pane with Add virtual machine credentials.](media/vmware-azure-manage-configuration-server/add-mobility-credentials.png)
 1. Enter the new credentials and select **Add**.
 
-You can also add credentials through `CSPSConfigtool.exe`.
+You can also add credentials through `CSPSConfigtool.exe`:
 
 1. Sign in to the configuration server and start `CSPSConfigtool.exe`.
 1. Select **Add**, enter the new credentials, and select **OK**.
@@ -89,18 +90,18 @@ Modify the proxy settings used by the configuration server machine for internet 
 The OVF template deploys the configuration server VM with a single network adapter.
 
 - You can [add another adapter to the VM](vmware-azure-deploy-configuration-server.md#add-an-additional-adapter), but you must add it before you register the configuration server in the vault.
-- To add an adapter after you register the configuration server in the vault, add the adapter in the VM properties. Then you need to [reregister](#reregister-a-configuration-server-in-the-same-vault) the server in the vault.
+- You can add an adapter after you register the configuration server in the vault. Add the adapter in the VM properties. Then you need to [reregister](#reregister-a-configuration-server-in-the-same-vault) the server in the vault.
 
 ## Renew SSL certificates
 
-The configuration server has an inbuilt web server, which orchestrates activities of the Mobility agents on all protected machines, inbuilt/scale-out process servers, and master target servers connected to it. The web server uses a Secure Sockets Layer (SSL) certificate to authenticate clients. The certificate expires after three years, and you can renew it at any time.
+The configuration server has an inbuilt web server, which orchestrates activities of the mobility agents on all protected machines, inbuilt/scale-out process servers, and master target servers connected to it. The web server uses a Secure Sockets Layer (SSL) certificate to authenticate clients. The certificate expires after three years, and you can renew it at any time.
 
 ### Check expiry
 
 The expiry date appears under **Configuration Server health**. For configuration server deployments before May 2016, certificate expiry was set to one year. If you have a certificate that's going to expire, the following actions occur:
 
 - When the expiry date is two months or less, the service sends notifications in the portal and by email (if you subscribed to Site Recovery notifications).
-- A notification banner appears on the vault resource page. For more information, select the banner.
+- When a notification banner appears on the vault resource page, select the banner for more information.
 - If you see **Upgrade Now**, it indicates that some components in your environment must be upgraded to 9.4.xxxx.x or later versions. Upgrade the components before you renew the certificate. You can't renew older versions.
 
 ### If certificates are yet to expire
@@ -139,7 +140,7 @@ You can reregister the configuration server in the same vault if you need to. If
     >To *pull the latest certificates* from the configuration server to the scale-out process server, run the command
     > `"\<Installation Drive\Microsoft Azure Site Recovery\agent\cdpcli.exe>"--registermt`.
 
-1. Restart the obengine by running the following command:
+1. Restart the `obengine` by running the following command:
    ```
         net stop obengine
         net start obengine

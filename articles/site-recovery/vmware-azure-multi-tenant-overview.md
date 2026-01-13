@@ -20,8 +20,8 @@ This article provides an overview of implementing and managing multitenant VMwar
 
 There are three major multitenant models:
 
-* **Shared Hosting Services Provider (HSP)**: The partner owns the physical infrastructure and uses shared resources (vCenter, datacenters, physical storage, and so on) to host multiple tenant virtual machines (VMs) on the same infrastructure. The partner can provide disaster-recovery management as a managed service, or the tenant can own disaster recovery as a self-service solution.
-* **Dedicated Hosting Services Provider**: The partner owns the physical infrastructure but uses dedicated resources (multiple vCenters, physical datastores, and so on) to host each tenant's VMs on a separate infrastructure. The partner can provide disaster-recovery management as a managed service, or the tenant can own it as a self-service solution.
+* **Shared Hosting Services Provider (HSP)**: The partner owns the physical infrastructure and uses shared resources (such as vCenter, datacenters, and physical storage) to host multiple tenant virtual machines (VMs) on the same infrastructure. The partner can provide disaster-recovery management as a managed service, or the tenant can own disaster recovery as a self-service solution.
+* **Dedicated Hosting Services Provider**: The partner owns the physical infrastructure but uses dedicated resources (such as multiple vCenters and physical datastores) to host each tenant's VMs on a separate infrastructure. The partner can provide disaster-recovery management as a managed service, or the tenant can own it as a self-service solution.
 * **Managed Services Provider (MSP)**: The customer owns the physical infrastructure that hosts the VMs, and the partner provides disaster-recovery enablement and management.
 
 ## Shared-hosting services provider
@@ -67,7 +67,7 @@ Configure the configuration server with an account that has a special role assig
 
 ### Create a vCenter account
 
-1. Create a new role by cloning the predefined Read-only role, and then give it a convenient name. This example uses `Azure_Site_Recovery`.
+1. Create a new role by cloning the predefined read-only role, and then give it a convenient name. This example uses Azure_Site_Recovery.
 1. Assign the following permissions to this role:
 
    * **Datastore**: Select **Allocate space**, **Browse datastore**, **Low-level file operations**, **Remove file**, and **Update virtual machine files**.
@@ -87,12 +87,12 @@ Configure the configuration server with an account that has a special role assig
 | Object | Role | Remarks |
 | --- | --- | --- |
 | vCenter | Read-only | Needed only to allow vCenter access for managing different objects. You can remove this permission if the account is never going to be provided to a tenant or used for any management operations on the vCenter. |
-| Datacenter | `Azure_Site_Recovery` |  |
-| Host and host cluster | `Azure_Site_Recovery` | Re-ensures that access is at the object level so that only accessible hosts have tenant VMs before failover and after failback. |
-| Datastore and datastore cluster | `Azure_Site_Recovery` | Same as preceding. |
-| Network | `Azure_Site_Recovery` |  |
-| Management server | `Azure_Site_Recovery` | Includes access to all components (configuration server, process server, and master target server) outside the configuration server machine. |
-| Tenant VMs | `Azure_Site_Recovery` | Ensures that any new tenant VMs of a particular tenant also get this access, or they can't be discovered through the Azure portal. |
+| Datacenter | Azure_Site_Recovery |  |
+| Host and host cluster | Azure_Site_Recovery | Re-ensures that access is at the object level so that only accessible hosts have tenant VMs before failover and after failback. |
+| Datastore and datastore cluster | Azure_Site_Recovery | Same as preceding. |
+| Network |`Azure_Site_Recovery |  |
+| Management server | Azure_Site_Recovery | Includes access to all components (configuration server, process server, and master target server) outside the configuration server machine. |
+| Tenant VMs |`Azure_Site_Recovery | Ensures that any new tenant VMs of a particular tenant also get this access, or they can't be discovered through the Azure portal. |
 
 The vCenter account access is now finished. This step fulfills the minimum permissions requirement to complete failback operations. You can also use these access permissions with your existing policies. Just modify your existing permissions set to include role permissions from step 2, which was previously described.
 
@@ -100,7 +100,7 @@ The vCenter account access is now finished. This step fulfills the minimum permi
 
 To restrict disaster recovery operations up until failover only (that is, without failback capabilities), use the previous procedure, with these exceptions:
 
-- Instead of assigning the `Azure_Site_Recovery` role to the vCenter access account, assign only a Read-Only role to that account. This permission set allows VM replication and failover, and it doesn't allow failback.
+- Instead of assigning the Azure_Site_Recovery role to the vCenter access account, assign only a read-only role to that account. This permission set allows VM replication and failover, and it doesn't allow failback.
 - Everything else in the preceding process remains as is. To ensure tenant isolation and restrict VM discovery, every permission is still assigned at the object-level only and not propagated to child objects.
 
 ### Deploy resources to the tenant subscription
