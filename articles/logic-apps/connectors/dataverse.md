@@ -65,7 +65,7 @@ Based on whether you have a Consumption or Standard logic app workflow, follow t
 
 1. In the [Azure portal](https://portal.azure.com), open your logic app workflow in the designer.
 
-1. Follow the [general steps](add-trigger-action-workflow.md#add-trigger) to add the appropriate **Microsoft Dataverse** trigger for your scenario.
+1. Follow the [general steps](../add-trigger-action-workflow.md#add-trigger) to add the appropriate **Microsoft Dataverse** trigger for your scenario.
 
    This example continues with the trigger named [**When a row is added, modified or deleted**](/connectors/commondataserviceforapps/#when-a-row-is-added,-modified-or-deleted).
 
@@ -87,7 +87,7 @@ Based on whether you have a Consumption or Standard logic app workflow, follow t
 
 1. In the [Azure portal](https://portal.azure.com), open your logic app workflow in the designer.
 
-1. Follow the [general steps](add-trigger-action-workflow.md#add-action) to add the appropriate **Microsoft Dataverse** action for your scenario.
+1. Follow the [general steps](../add-trigger-action-workflow.md#add-action) to add the appropriate **Microsoft Dataverse** action for your scenario.
 
    This example continues with the action named [**Add a new row**](/connectors/commondataserviceforapps/#add-a-new-row).
 
