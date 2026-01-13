@@ -69,14 +69,14 @@ To configure an Azure Storage service endpoint from the virtual network where ac
 Virtual network service endpoints are public and accessible through the internet. You can [Configure virtual network rules](#configure-virtual-network-rules) to control access to your volume group when using storage service endpoints. 
 
 > [!NOTE]
-> Configuration of rules that grant access to subnets in virtual networks that are part of a different Microsoft Entra tenant are currently supported only through PowerShell, CLI, and REST APIs. These rules can't be configured through the Azure portal. They can only be viewed in the portal.
+> Currenlty, you can only configure rules that grant access to subnets in virtual networks that are part of a different Microsoft Entra tenant through the Azure CLI, Azure PowerShell module, or REST APIs. These rules can't be configured through the Azure portal. They can only be viewed in the portal.
 
 ### [Portal](#tab/azure-portal)
 
 1. Navigate to your virtual network and select **Service Endpoints**.
 1. Select **+ Add**.
 1. On **Add service endpoints**:
-    1. For **Service**, select **Microsoft.Storage.Global** to add a [cross-region service endpoint](../common/storage-network-security.md#azure-storage-cross-region-service-endpoints).
+    - For **Service**, select **Microsoft.Storage.Global** to add a [cross-region service endpoint](../common/storage-network-security.md#azure-storage-cross-region-service-endpoints).
 
     > [!NOTE]
     > You might see **Microsoft.Storage** listed as an available storage service endpoint. That option is for intra-region endpoints which exist for backward compatibility only. Always use cross-region endpoints unless you have a specific reason for using intra-region ones.
@@ -129,7 +129,7 @@ You can manage virtual network rules for volume groups through the Azure portal,
 > [!IMPORTANT]
 > To enable access to your storage account from a virtual network or subnet in another Microsoft Entra tenant, you must use PowerShell or the Azure CLI. The Azure portal doesn't show subnets in other Microsoft Entra tenants.
 >
-> If you delete a subnet that you included in a network rule, you removed it from the network rules for the volume group. If you create a new subnet with the same name, it doesn't have access to the volume group. To grant access, you must explicitly authorize the new subnet in the network rules for the volume group.
+> If you delete a subnet that you included in a network rule, you remove it from the network rules for the volume group. If you create a new subnet with the same name, it doesn't have access to the volume group. To grant access, you must explicitly authorize the new subnet in the network rules for the volume group.
 
 ### [Portal](#tab/azure-portal)
 
@@ -172,7 +172,7 @@ Remove-AzElasticSanVolumeGroupNetworkRule -ResourceGroupName myRGName -ElasticSa
 The following script lists information from a particular volume group, enables the service endpoint for Azure Storage on an existing virtual network and subnet, and adds a networking rule for a virtual network and subnet.
 
 > [!TIP]
-> To add a rule for a subnet in a virtual network belonging to another Microsoft Entra tenant, use a fully-qualified subnet ID in the form `/subscriptions/\<subscription-ID\>/resourceGroups/\<resourceGroup-Name\>/providers/Microsoft.Network/virtualNetworks/\<vNet-name\>/subnets/\<subnet-name\>`.
+> To add a rule for a subnet in a virtual network belonging to another Microsoft Entra tenant, use a fully qualified subnet ID in the form `/subscriptions/\<subscription-ID\>/resourceGroups/\<resourceGroup-Name\>/providers/Microsoft.Network/virtualNetworks/\<vNet-name\>/subnets/\<subnet-name\>`.
 >
 > You can use the **subscription** parameter to retrieve the subnet ID for a virtual network belonging to another Microsoft Entra tenant.
 

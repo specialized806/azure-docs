@@ -34,7 +34,7 @@ This article explains how to deploy and configure an Elastic SAN.
         - **Elastic SAN name** must be between 3 and 24 characters long. The name can only contain lowercase letters, numbers, hyphens, underscores, and must begin and end with a letter or a number. Each hyphen and underscore must be preceded and followed by an alphanumeric character.
     For best performance, your SAN should be in the same zone as your VM.
 
-1. Specify the amount of base capacity you require, and any additional capacity, then select **next**.
+1. Specify the amount of base capacity you require, and any additional capacity, then select **Next**.
 
     Increasing your SAN's base size also increases its IOPS and bandwidth. Increasing additional capacity only increases its total size (base + additional) but doesn't increase IOPS or bandwidth. However, increasing additional capacity is cheaper than increasing base.
 
