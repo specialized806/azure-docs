@@ -12,7 +12,7 @@ ms.collection: ce-skilling-ai-copilot
 
 # Configuring agents in Agent framework with Azure App configuration
 
-Agents are software systems that autonomously perform tasks using Large Language Models (LLMs) to process user input and execute actions on behalf of users. Agent framework provides tools and structures to needed to build, orchestrate and manage AI agents. Configuring agents within this framework involves defining their instructions and toolsets through either code-based or declarative methods. Azure App Configuration serves as a centralized store for these agent configurations, keeping them in one place where they can be easily managed and shared across multiple application instances.
+Agents are software systems that autonomously perform tasks using Large Language Models (LLMs) to process user input and execute actions on behalf of users. Agent framework provides tools and structures to build, orchestrate, and manage AI agents. Configuring agents within this framework involves defining their instructions and toolsets through either code-based or declarative methods. Azure App Configuration serves as a centralized store for these agent configurations, keeping them in one place where they can be easily managed and shared across multiple application instances.
 
 Here are some agent settings that can be stored on Azure App Configuration:
 
@@ -36,7 +36,7 @@ Here are some agent settings that can be stored on Azure App Configuration:
     | Key                            | Value                                                               | Content type                                 |
     |--------------------------------|---------------------------------------------------------------------|----------------------------------------------|
     | *ChatAgent:ProjectEndpoint*    | *Paste the Azure AI project endpoint*                               |                                              |
-    | *ChatAgent:Spec*               | *See YAML below*                                                    |                                              |
+    | *ChatAgent:Spec*               | *See YAML*                                                    |                                              |
 
 
     **Value for ChatAgent:Spec**
