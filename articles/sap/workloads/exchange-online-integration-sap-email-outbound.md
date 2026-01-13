@@ -19,12 +19,12 @@ This article describes the setup for **outbound** email-communication from ABAP 
 
 ## Overview
 
-Existing implementations relied on SMTP Auth and elevated trust relationship because the legacy Exchange Server on-premises could live close to the SAP system itself governed by customers themselves. With Exchange Online there's a shift in responsibilities and connectivity paradigm. Microsoft supplies Exchange Online as a Software-as-a-Service offering built to be consumed securely and as effectively as possible from anywhere in the world over the public Internet.
+Existing implementations relied on SMTP Auth and elevated trust relationship because the legacy Exchange Server on-premises could live close to the SAP system itself governed by customers themselves. With Exchange Online, there's a shift in responsibilities and connectivity paradigm. Microsoft supplies Exchange Online as a Software-as-a-Service offering built to be consumed securely and as effectively as possible from anywhere in the world over the public Internet.
 
 Follow our standard [guide](/exchange/mail-flow-best-practices/how-to-set-up-a-multifunction-device-or-application-to-send-email-using-microsoft-365-or-office-365) to understand the general configuration of a "device" that wants to send email via Microsoft 365.
 
 > [!WARNING]
-> With the [deprecation of Basic Authentication](https://techcommunity.microsoft.com/blog/exchange/exchange-online-to-retire-basic-auth-for-client-submission-smtp-auth/4114750) in Exchange Online, all new SAP-to-Exchange Online integrations in SAP ABAP Platform systems with SAP Basis Component (SAP_BASIS) release 7.50 or higher must use OAuth 2.0 client credential grant. This approach leverages Microsoft Entra ID for secure, passwordless authentication. Release 7.50 supports client id and secret as defined in [RFC 6749, section 4.4](https://datatracker.ietf.org/doc/html/rfc6749#section-4.4) for the [client credentials authorization grant](https://datatracker.ietf.org/doc/html/rfc6749#section-1.3.4). With release 7.51, the JSON Web Token (JWT) bearer authorization grant as specified in [RFC 7523](https://datatracker.ietf.org/doc/html/rfc7523) is also supported (see https://launchpad.support.sap.com/#/notes/3592080).
+> With the [deprecation of Basic Authentication](https://techcommunity.microsoft.com/blog/exchange/exchange-online-to-retire-basic-auth-for-client-submission-smtp-auth/4114750) in Exchange Online, all new SAP-to-Exchange Online integrations in SAP ABAP Platform systems with SAP Basis Component (SAP_BASIS) release 7.50 or higher must use OAuth 2.0 client credential grant. This approach leverages Microsoft Entra ID for secure, passwordless authentication. Release 7.50 supports client ID and secret as defined in [RFC 6749, section 4.4](https://datatracker.ietf.org/doc/html/rfc6749#section-4.4) for the [client credentials authorization grant](https://datatracker.ietf.org/doc/html/rfc6749#section-1.3.4). With release 7.51, the JSON Web Token (JWT) bearer authorization grant as specified in [RFC 7523](https://datatracker.ietf.org/doc/html/rfc7523) is also supported (see https://launchpad.support.sap.com/#/notes/3592080).
 
 ## Setup considerations
 
@@ -44,7 +44,7 @@ This guide is updated when more SAP-supported options become available.
 
 ### Prerequisites
 
-- Administrative access to an SAP S/4HANA system on-premises, SAP S/4HANA Cloud Private Edition tenant, SAP BTP ABAP Environment, or any other SAP ABAP Platform-based system with SAP Basis Component release 7.50 or higher (JWT-based OAuth client authentication from 7.51). For SAP S/4HANA Cloud Public Edition, the customer-specific email configuration for SMTP OAuth 2.0 is managed by SAP. Please also refer to [SAP Note 3581654](https://me.sap.com/notes/3581654) as a prerequisite for using SMTP OAuth 2.0 in SAP S/4HANA on-premises and SAP S/4HANA Cloud Private Edition.
+- Administrative access to an SAP S/4HANA system on-premises, SAP S/4HANA Cloud Private Edition tenant, SAP BTP ABAP Environment, or any other SAP ABAP Platform-based system with SAP Basis Component release 7.50 or higher (JWT-based OAuth client authentication from 7.51). For SAP S/4HANA Cloud Public Edition, the customer-specific email configuration for SMTP OAuth 2.0 is managed by SAP. Also refer to [SAP Note 3581654](https://me.sap.com/notes/3581654) as a prerequisite for using SMTP OAuth 2.0 in SAP S/4HANA on-premises and SAP S/4HANA Cloud Private Edition.
 - Administrative access to a Microsoft Exchange Online subscription
 - A valid account and email address in Microsoft Exchange Online. The email address appears as the sender of messages from the SAP system.
 - Administrative access to an Microsoft Entra ID tenant with at least [Application Administrator](/entra/identity/role-based-access-control/permissions-reference#application-administrator) permissions
@@ -63,7 +63,7 @@ This guide is updated when more SAP-supported options become available.
 
 Follow these instructions (see also [Register an application in Microsoft Entra ID](/entra/identity-platform/quickstart-register-app)) to create a new application:
 
-1. Go to **App registrations** in the [Microsoft Entra admin center](https://entra.microsoft.com). Click **New registration**.
+1. Go to **App registrations** in the [Microsoft Entra Admin Center](https://entra.microsoft.com). Click **New registration**.
 :::image type="content" source="media/exchange-online-integration/register-application-1.png" alt-text="New application registration":::
 
 2. Enter a name for the new application representing the SAP system. Select **Accounts in this organizational directory only** and click **Register**.
@@ -83,7 +83,7 @@ Follow these instructions (see also [Register an application in Microsoft Entra 
 4. Select **Remove permission** from the ellipsis menu of the **User.Read** permission in the **Microsoft Graphs** section and confirm with **Yes, remove**. Then select **Grant admin consent for <your_organization_name>** and confirm with **Yes**.
 :::image type="content" source="media/exchange-online-integration/smtp-send-as-permission-4.png" alt-text="Grant admin consent":::
 
-5. The API permissions should now be configured as shown below.
+5. The API permissions should now be configured as shown in the following screenshot.
 :::image type="content" source="media/exchange-online-integration/smtp-send-as-permission-5.png" alt-text="API permission setup":::
 
 ### Configure application credentials
@@ -140,7 +140,7 @@ Otherwise use transaction code STRUST. Search for SSF application "SSF OA2CJC" (
     The output should be as follows:
 :::image type="content" source="media/exchange-online-integration/register-service-principal-4.png" alt-text="PowerShell script output":::
 
-5. Verify that the service principal has been successfully granted the permission on the mailbox. Go to **Mailboxes**. Select the SAP system's mailbox and switch to the tab **Delegation**. Click **Edit**.
+5. Verify that the service principal has the permission on the mailbox. Go to **Mailboxes**. Select the SAP system's mailbox and switch to the tab **Delegation**. Click **Edit**.
 :::image type="content" source="media/exchange-online-integration/register-service-principal-5.png" alt-text="Service principal registration":::
 
 6. Your application's service principal is listed as a delegate with full access permissions to open the SAP system's mailbox and behave as the mailbox owner.
@@ -153,17 +153,17 @@ To allow the SAP system to send email messages, the assigned mailbox must enable
 1. Go to the [Microsoft 365 Admin Center](https://admin.cloud.microsoft/).
 
 2. Go to **Active users**. Select your SAP system's mailbox user from the list, and switch to the **Mail** tab. Click **Manage email apps**.
-:::image type="content" source="media/exchange-online-integration/activate-smtp-auth-1.png" alt-text="Open email app settings":::
+:::image type="content" source="media/exchange-online-integration/activate-smtp-authentication-1.png" alt-text="Open email app settings":::
 
 3. Ensure that the checkbox for **Authenticated SMTP** is activated. If not, activate it, and save the changes.
-:::image type="content" source="media/exchange-online-integration/activate-smtp-auth-2.png" alt-text="Activate SMTP AUTH":::
+:::image type="content" source="media/exchange-online-integration/activate-smtp-authentication-2.png" alt-text="Activate SMTP AUTH":::
 
 ### Optional: Test the configuration in Entra and Exchange Online with the SMTP OAuth test client
 
 You can test the new configuration with a simple [SMTP OAuth test client app](https://github.com/microsoft/smtpoauth2/tree/main/java).
 
 > [!NOTE]
-> The test client only supports client id and secret. If you have configured your application for JWT bearer only, add a client secret as described above for testing with this app.
+> The test client only supports client id and secret. If you configured your application for JWT bearer only, add a client secret for testing with this app.
 
 1. Clone the GitHub repository at https://github.com/microsoft/smtpoauth2/
     ```bash
@@ -172,12 +172,12 @@ You can test the new configuration with a simple [SMTP OAuth test client app](ht
 
 2. Follow the steps described in the test client's [README](https://github.com/microsoft/smtpoauth2/blob/main/java/README.md) file.
 
-3. Run the test client with your values for **client id**, **client secret**, **tenant id** and **mailbox name**. You can optionally pass a **recipient email address** to receive a test mail. Check the test client output for a message that confirms successful connection to Exchange Online with OAuth 2.0.
+3. Run the test client with your values for **client id**, **client secret**, **tenant id**, and **mailbox name**. You can optionally pass a **recipient email address** to receive a test mail. Check the test client output for a message that confirms successful connection to Exchange Online with OAuth 2.0.
 :::image type="content" source="media/exchange-online-integration/test-smtp-oauth-1.png" alt-text="SMTP OAuth test client app output":::
 
 ### Configure SMTP OAuth in SAP
 
-Depending on your SAP environment, follow the corresponding section below.
+Depending on your SAP environment follow the corresponding section below.
 
 #### SAP S/4HANA on-premises and SAP S/4HANA Cloud Private Edition  
 
@@ -201,36 +201,36 @@ Depending on your SAP environment, follow the corresponding section below.
 6. Use transaction SBCS_MAIL_CONFIGSMTP to enter all relevant information for the SMTP configuration for outbound communication. Select **OAuth2** as the **Authentication Method**, and enter the values for **OAuth 2.0 Client Profile**, **OAuth 2.0 Client Configuration**, and the authorized **OAuth 2.0 Client User**.
    > [!NOTE]
    > By activating the checkbox **Modify legacy SMTP node**, the configuration will be automatically copied to the old SCOT transaction
-   :::image type="content" source="media/exchange-online-integration/s4hana-sbsc-mail-configsmtp.png" alt-text="SBCS_MAIL_CONFIGSMTP outbound configuration":::
+   :::image type="content" source="media/exchange-online-integration/s4hana-mail-configuration-smtp.png" alt-text="SBCS_MAIL_CONFIGSMTP outbound configuration":::
 
 7. Alternatively, transaction SCOT can be used directly to enter the same information as in transaction SBCS_MAIL_CONFIGSMTP into the SMTP node.
-:::image type="content" source="media/exchange-online-integration/s4hana-scot.png" alt-text="SCOT SMTP outbound configuration":::
+:::image type="content" source="media/exchange-online-integration/s4hana-mail-configuration-scot.png" alt-text="SCOT SMTP outbound configuration":::
 
 #### SAP BTP ABAP Environment
 
 Configuration in SAP BTP ABAP Environment is done with the communication arrangement of SAP_COM_0548. 
 
-1. This requires the setup of a Communication System (for example "Exchange Online") and there the creation of a new Outbound User of type **OAuth 2.0**. Enter the **Application ID** from the application registration in Entra ID as the **OAuth 2.0 Client ID** for the **New Outbound User**. Click **Download Certificate** to export the JWT signing certificate of your SAP BTP ABAP Environment.
-:::image type="content" source="media/exchange-online-integration/btp-abap-new-comm-system.png" alt-text="Communication System Setup":::
+1. This setup requires a Communication System and the creation of a new Outbound User of type **OAuth 2.0**. Enter the **Application ID** from the application registration in Entra ID as the **OAuth 2.0 Client ID** for the **New Outbound User**. Click **Download Certificate** to export the JWT signing certificate of your SAP BTP ABAP Environment.
+:::image type="content" source="media/exchange-online-integration/btp-abap-new-communication-system.png" alt-text="Communication System Setup":::
 
 2. In the communication arrangement of SAP_COM_0548, enter the mailbox user's email address from Exchange Online for the value of property **OAuth User**. Also enter the value "https://outlook.office365.com/.default" in the field **Additional Scope**.
-:::image type="content" source="media/exchange-online-integration/btp-abap-sap-com-0548.png" alt-text="Communication arrangement setup":::
+:::image type="content" source="media/exchange-online-integration/btp-abap-communication-arrangement.png" alt-text="Communication arrangement setup":::
 
 #### SAP S/4HANA Cloud Public Edition
 
-There is no customer-managed configuration in SAP S/4HANA Cloud Public Edition. The integration with Exchange Online in your tenant is configured and managed by SAP.
+There's no customer-managed configuration in SAP S/4HANA Cloud Public Edition. SAP manages the integration with Exchange Online in your tenant.
 
 ### Limitations of SMTP OAuth
 
 - Sending email via individual SAP users requires to implement the "[Send as permission](/exchange/recipients-in-exchange-online/manage-permissions-for-recipients)" offered by Microsoft 365. Using the **Send as** permission allows the delegate to send an email from the shared mailbox. Messages will appear to have been sent from the delegate. 
    > [!NOTE]
-   > You can only assign the **Send as** permission for the shared mailbox to individual users. Configuring the permission for a group is not supported.
+   > You can only assign the **Send as** permission for the shared mailbox to individual users. Configuring the permission for a group isn't supported.
 
-- Microsoft 365 imposes some sending limits. See [Exchange Online limits - Receiving and sending limits](/office365/servicedescriptions/exchange-online-service-description/exchange-online-limits#receiving-and-sending-limits) for more information.
+- Microsoft 365 imposes some sending limits. Refer to [Exchange Online limits - Receiving and sending limits](/office365/servicedescriptions/exchange-online-service-description/exchange-online-limits#receiving-and-sending-limits) for more details.
 
 ## Option 2: SMTP Direct Send
 
-Microsoft 365 offers the ability to configure [direct send](/exchange/mail-flow-best-practices/how-to-set-up-a-multifunction-device-or-application-to-send-email-using-microsoft-365-or-office-365#option-2-send-mail-directly-from-your-printer-or-application-to-microsoft-365-or-office-365-direct-send) from the SAP application server. This option is limited. It only permits mails to addresses in your own Microsoft 365 organization with a valid e-mail address. It cannot be used for external recipients (for example vendors or customers).
+Microsoft 365 offers the ability to configure [direct send](/exchange/mail-flow-best-practices/how-to-set-up-a-multifunction-device-or-application-to-send-email-using-microsoft-365-or-office-365#option-2-send-mail-directly-from-your-printer-or-application-to-microsoft-365-or-office-365-direct-send) from the SAP application server. This option is limited. It only permits mails to addresses in your own Microsoft 365 organization with a valid e-mail address. It can't be used for external recipients (for example vendors or customers).
 
 ## Option 3: Using Microsoft 365 SMTP Relay Connector
 
@@ -249,7 +249,7 @@ SMTP relay lets Microsoft 365 relay emails on your behalf by using a connector c
 - **Transport Layer Security (TLS)**: SAP application must be able to use TLS version 1.2 and above.
 - **Port**: port 25 is required and must be unblocked on your network. Some network firewalls or ISPs block ports, especially port 25 due to the risk of misuse for spamming.
 - **MX record**: your Mail Exchanger (MX) endpoint, for example yourdomain.mail.protection.outlook.com. Find more information on the next section.
-- **Relay Access**: A Public IP address or SSL certificate is required to authenticate against the relay connector. To avoid configuring direct access, it's recommended to use Source Network Translation (SNAT) as described in this article. [Use Source Network Address Translation (SNAT) for outbound connections](../../load-balancer/load-balancer-outbound-connections.md).
+- **Relay Access**: A Public IP address or SSL certificate is required to authenticate against the relay connector. To avoid configuring direct access, it is recommended to use Source Network Translation (SNAT) as described in this article. [Use Source Network Address Translation (SNAT) for outbound connections](../../load-balancer/load-balancer-outbound-connections.md).
 
 ### Step-by-step configuration instructions for SMTP relay in Microsoft 365
 
@@ -275,7 +275,7 @@ SMTP relay lets Microsoft 365 relay emails on your behalf by using a connector c
 6. New Exchange Admin Center (EAC) portal opens.
 :::image type="content" source="media/exchange-online-integration/exchange-admin-center-sec-3-6.png" alt-text="Microsoft 365 Admin Center mailbox":::
 
-7. In the Exchange Admin Center (EAC), go to **Mail flow** -> **Connectors**. The **Connectors** screen is depicted below. If you are working with the classical EAC follow step 8 as described on our [docs](/exchange/mail-flow-best-practices/how-to-set-up-a-multifunction-device-or-application-to-send-email-using-microsoft-365-or-office-365#step-by-step-configuration-instructions-for-smtp-relay).
+7. In the Exchange Admin Center (EAC), go to **Mail flow** -> **Connectors**. The **Connectors** screen is depicted below. If you're working with the classical EAC follow step 8 as described on our [docs](/exchange/mail-flow-best-practices/how-to-set-up-a-multifunction-device-or-application-to-send-email-using-microsoft-365-or-office-365#step-by-step-configuration-instructions-for-smtp-relay).
 :::image type="content" source="media/exchange-online-integration/exchange-admin-center-add-connector-sec-3-7.png" alt-text="Microsoft 365 Admin Center connector":::
 
 8. Click **Add a connector**
@@ -330,6 +330,6 @@ The example architecture shown illustrates multiple SAP application servers with
 
 [Understand mass-mailing with Azure Twilio - SendGrid](https://docs.sendgrid.com/for-developers/partners/microsoft-azure-2021)
 
-[Understand Exchange Online Service limitations (for example attachment size, message limits, throttling etc.)](/office365/servicedescriptions/exchange-online-service-description/exchange-online-limits)
+[Understand Exchange Online Service limitations (for example attachment size, message limits, throttling, etc.)](/office365/servicedescriptions/exchange-online-service-description/exchange-online-limits)
 
 [Verify your ABAP SDK for Azure configuration for Exchange Online integrations](https://github.com/microsoft/ABAP-SDK-for-Azure)
