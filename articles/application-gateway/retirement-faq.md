@@ -21,7 +21,7 @@ New Customers won't be allowed to create V1 from 1 July 2023 onwards. However, a
 
 ### What happens to existing Application Gateway V1 after 28 April 2026?
 
-Once the deadline arrives V1 gateways aren't supported. Any V1 SKU resources that are still active are stopped, and force deleted.
+After April 28th 2026, V1 SKU will no longer be supported, and no SLA will be provided for customers using this SKU of Application Gateway. Traffic passing through V1 SKUs after retirement cannot be guaranteed as our teams begin the process of cleaning up and decommissioning the hardware that supported V1 SKUs of Application Gateway. 
 
 ### What is the definition of a new customer on Application Gateway V1 SKU?
 
@@ -95,6 +95,10 @@ No, the Azure PowerShell script only migrates the configuration. Actual traffic 
 ### Is the new v2 gateway created by the Azure PowerShell script sized appropriately to handle all of the traffic that is served by my v1 gateway?
 
 The Azure PowerShell script creates a new v2 gateway with an appropriate size to handle the traffic on your existing v1 gateway. Autoscaling is disabled by default, but you can enable autoscaling when you run the script.
+
+### Can I create an Application Gateway V2 in the same subnet as an existing V1 gateway?
+
+No, V1 and V2 gateways cannot coexist in the same subnet. Each gateway type requires its own dedicated subnet within the virtual network. If you plan to migrate from V1 to V2, you must create a new subnet for the V2 gateway and ensure sufficient IP address space is allocated.
 
 ### I configured my v1 gateway  to send logs to Azure storage. Does the script replicate this configuration for v2 as well?
 
