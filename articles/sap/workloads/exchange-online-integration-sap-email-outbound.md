@@ -47,7 +47,7 @@ This guide is updated when more SAP-supported options become available.
 - Administrative access to an SAP S/4HANA system on-premises, SAP S/4HANA Cloud Private Edition tenant, SAP BTP ABAP Environment, or any other SAP ABAP Platform-based system with SAP Basis Component release 7.50 or higher (JWT-based OAuth client authentication from 7.51). For SAP S/4HANA Cloud Public Edition, the customer-specific email configuration for SMTP OAuth 2.0 is managed by SAP. Please also refer to [SAP Note 3581654](https://me.sap.com/notes/3581654) as a prerequisite for using SMTP OAuth 2.0 in SAP S/4HANA on-premises and SAP S/4HANA Cloud Private Edition.
 - Administrative access to a Microsoft Exchange Online subscription
 - A valid account and email address in Microsoft Exchange Online. The email address appears as the sender of messages from the SAP system.
-- Administrative access to an Microsoft Entra ID tenant with at least [Application Administrator](https://learn.microsoft.com/entra/identity/role-based-access-control/permissions-reference#application-administrator) permissions
+- Administrative access to an Microsoft Entra ID tenant with at least [Application Administrator](/entra/identity/role-based-access-control/permissions-reference#application-administrator) permissions
 - Port 587 is required and must be unblocked on your network
 - DNS resolution for `smtp.office365.com`. Don't use an IP address for the Microsoft 365 server, as IP Addresses aren't supported.
 - *Optional*
@@ -61,7 +61,7 @@ This guide is updated when more SAP-supported options become available.
 
 ### Register an application representing the SAP system in Entra ID 
 
-Follow these instructions (see also [Register an application in Microsoft Entra ID](https://learn.microsoft.com/entra/identity-platform/quickstart-register-app)) to create a new application:
+Follow these instructions (see also [Register an application in Microsoft Entra ID](/entra/identity-platform/quickstart-register-app)) to create a new application:
 
 1. Go to **App registrations** in the [Microsoft Entra admin center](https://entra.microsoft.com). Click **New registration**.
 :::image type="content" source="media/exchange-online-integration/register-application-1.png" alt-text="New application registration":::
@@ -92,7 +92,7 @@ To obtain an access token from Entra ID for connecting to Exchange Online, the S
 
 #### Client id and secret
 
-Follow the instructions listed in [Add and manage application credentials in Microsoft Entra ID](https://learn.microsoft.com/entra/identity-platform/how-to-add-credentials?tabs=client-secret) for using client id and secret in the SAP system to obtain an access token from Entra ID.
+Follow the instructions listed in [Add and manage application credentials in Microsoft Entra ID](/entra/identity-platform/how-to-add-credentials?tabs=client-secret) for using client id and secret in the SAP system to obtain an access token from Entra ID.
 
 1. Go to **Certificates & Secrets**. Switch to tab **Client secrets** and click **New client secret**. Enter a description for the new secret and select an expiration period. Click **Add**.
 :::image type="content" source="media/exchange-online-integration/create-client-secret-1.png" alt-text="Add secret":::
@@ -102,7 +102,7 @@ Follow the instructions listed in [Add and manage application credentials in Mic
 
 #### JWT bearer
 
-Follow these instructions (see also [Add and manage application credentials in Microsoft Entra ID](https://learn.microsoft.com/entra/identity-platform/how-to-add-credentials?tabs=certificate)) for using the JWT bearer grant in the SAP system to obtain an access token from Entra ID.
+Follow these instructions (see also [Add and manage application credentials in Microsoft Entra ID](/entra/identity-platform/how-to-add-credentials?tabs=certificate)) for using the JWT bearer grant in the SAP system to obtain an access token from Entra ID.
 
 1. For SAP S/4HANA on-premises and SAP S/4HANA Cloud Private Edition, export the JWT signing certificate. In newer systems where transaction code SOAUTH2_CLIENT is available, click **Global Settings** and download the certificate from the **Settings for JWT Client Authentication**.
 :::image type="content" source="media/exchange-online-integration/export-jwt-cert-1-1.png" alt-text="Export JWT signing certificate with SOAUTH2_CLIENT":::
