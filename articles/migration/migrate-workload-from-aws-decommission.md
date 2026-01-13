@@ -31,6 +31,10 @@ The goal of this phase is to safely retire AWS dependencies, remove redundant re
 
 For a thorough review of decommissioning steps, see the [CAF Decommission source workload](/azure/cloud-adoption-framework/migrate/decommission-source-workload) guide.
 
+## Establish new baselines
+
+- TODO: Talk about establishing new baseline application performance data in Azure.
+- **Perform a WAF workload assessment.** Take the [Azure Well-Architected Framework Review](/assessments/azure-architecture-review/) assessment on your workload. This will establish a baseline and give you potential backlog items for future optimization. Schedule a periodic assessment going forward.
 ## Checklist
 
 | &nbsp;  | Deliverable tasks                |

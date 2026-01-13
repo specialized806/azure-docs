@@ -14,7 +14,7 @@ ms.collection:
 
 Migrating a workload, especially if it's your first workload or if the workload has a lot of dependencies, is an intense project.
 
-By using this guide and the right approach, you can migrate the workload smoothly and confidently. A concrete and well-thought-out plan, relevant stakeholders on board, a solid target architecture, the right migration strategy for each component of the workload, and a phased approach with clear checklists set the stage for success.
+By using this guide and the right approach, you can migrate the workload confidently and be prepared to handle issues as the happen. A concrete and well-thought-out plan, relevant stakeholders on board, a solid target architecture, the right migration strategy for each component of the workload, and a phased approach with clear checklists set the stage for success.
 
 Migrations require a lot of work, coordination, and cooperation across teams. Often, you need to work late hours to verify everything works as intended. In the end, after a successful migration and decommissioning your AWS workloads, **celebrate your win**!
 
