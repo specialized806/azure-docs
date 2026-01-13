@@ -47,6 +47,16 @@ We've found that the workload team who is currently responsible for the workload
 
 Workload teams should consult with migration experts as part of the process, but the team should drive the process and stay heavily invested.
 
+## Workload team responsibility
+
+We've found that the workload team who is currently responsible for the workload in AWS and ultimately will be responsible for the workload in Azure should be performing the migration of the workload. Outsourcing a bulk of the migration to talent outside of the workload team can lead to:
+
+- surprise discoveries late in the process
+- an under-trained workload team
+- sense of lost ownership
+
+Workload teams should consult with migration experts as part of the process, but the team should drive the process and stay heavily invested.
+
 ## Prerequisites
 
 Before you begin migration planning and execution, ensure you have the following prerequisites in place:
