@@ -1481,6 +1481,14 @@ groups:
   pivots:
   - id: programming-language-csharp
     title: .NET
+  - id: programming-language-python
+    title: Python
+  - id: programming-language-javascript
+    title: JavaScript
+  - id: programming-language-java
+    title: Java
+  - id: programming-language-go
+    title: Go
 # Owner: zhiyuanliang
 - id: appconfig-aspire
   title: Aspire resource pivots
