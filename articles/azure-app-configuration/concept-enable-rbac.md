@@ -91,7 +91,7 @@ Configuration providers sit on top of the configuration client SDK and allow cli
 builder.AddAzureAppConfiguration(o =>
     {
         o.Connect(
-            myStoreEndpoint
+            myStoreEndpoint,
             new DefaultAzureCredential());
 
         o.ConfigureClientOptions(clientOptions => clientOptions.Audience = "{Cloud specific audience here}");
