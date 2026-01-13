@@ -23,6 +23,7 @@ The goal of this phase is to safely retire AWS dependencies, remove redundant re
 
 - **Finalize your data cutover:** Confirm that all production writes and reads are served from Azure (based on your cutover strategy). If you're using continuous replication or synchronization, stop it after you confirm Azure has the authoritative copy of the data.
 - **Take any final backups and snapshots** for archival purposes.
+- **Export your AWS Well-Architected assessment.** Export a static copy of your workload's AWS Well-Architected assessment.
 - **Retire AWS workload resources:**  Plan the sunset date. Stop and delete any AWS EC2 instances, databases, and services that you no longer need. Ensure that nothing critical is still running in AWS before deleting.
 - **Confirm deletion:** [AWS Config](https://docs.aws.amazon.com/config/latest/developerguide/WhatIsConfig.html) maintains an inventory of all your AWS resources. You can use it during the decommission phase to ensure no resources related to your workload are left active.
 - **Clean up artifacts:** Update your configuration management database (CMDB), billing, and documentation.
