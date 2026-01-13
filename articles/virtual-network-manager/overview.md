@@ -1,7 +1,7 @@
 ---
 title: "What is Azure Virtual Network Manager?"
 description: Discover how Azure Virtual Network Manager simplifies virtual network management across subscriptions and regions with centralized control and scalability.
-#customer intent: As a network engineer, I want to learn how  Azure Virtual Network Manager can simplify virtual network management and provided centralized control of my Azure network and resources.
+#customer intent: As a network engineer, I want to learn how Azure Virtual Network Manager can simplify virtual network management and provide centralized control of my Azure network and resources.
 services: virtual-network-manager
 author: mbender-ms
 ms.service: azure-virtual-network-manager
@@ -74,7 +74,7 @@ Azure Virtual Network Manager instances created before the release of the virtua
 1. Select the feature named **Network manager billing by virtual networks** and register. The Azure Virtual Network Manager instance in the registered subscription now charges on the virtual network-based pricing.
 
 > [!NOTE]
-> This virtual network-based pricing is [generally available](https://azure.microsoft.com/updates/?id=480669). Its enablement mechanism is available through AFEC for ease of setup and because the previous subscription-based pricing isn't yet retired. The subscription-based pricing announces its retirement to pre-existing Azure Virtual Network Manager customers on February 6, 2025, and retires fully in February 6, 2028. Any Azure Virtual Network Manager instances still using the subscription-based pricing after February 6, 2028, automatically switch to the virtual network-based pricing.
+> This virtual network-based pricing is [generally available](https://azure.microsoft.com/updates/?id=480669). Its enablement mechanism is available through AFEC for ease of setup and because the previous subscription-based pricing isn't yet retired. The subscription-based pricing announces its retirement to preexisting Azure Virtual Network Manager customers on February 6, 2025, and retires fully in February 6, 2028. Any Azure Virtual Network Manager instances still using the subscription-based pricing after February 6, 2028, automatically switch to the virtual network-based pricing.
  
 ## FAQs  
 For FAQs, see [Azure Virtual Network Manager FAQs](faq.md).
