@@ -4981,7 +4981,7 @@ If you have a JSON array, like the following example, you have four options.
 ]
 ```
 
-Option 1: Convert JSON string to a JSON object before you pass the result to the `xml()` function, for example:
+Option 1: Convert the JSON string to a JSON object before you pass the result to the `xml()` function, for example:
 
 ```
 xml(
@@ -5037,7 +5037,7 @@ xml(
 )
 ```
 
-All examples, which include options 1 to 4, return the following XML result:
+All the examples from options 1 to 4 return the following XML result:
 
 ```xml
 <root>
