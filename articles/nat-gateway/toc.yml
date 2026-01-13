@@ -13,7 +13,7 @@ items:
         href: nat-gateway-resource.md
       - name: NAT Gateway SKUs
         href: nat-sku.md
-      - name: Migrate NAT Gateway to StandardV2
+      - name: Migrate NAT Gateway to Standard V2
         href: nat-gateway-v2-migrate.md
   - name: Reliability
     items:
