@@ -6,7 +6,7 @@
           "redirect_document_id": false
         },
         {
-          "source_path": "articles/azure-functions/durable/durable-task-scheduler/develop-with-durable-task-scheduler.md",
+          "source_path": "articles/azure-functions/durable/durable-task-scheduler/develop-with-durable-task-scheduler-functions.md",
           "redirect_url": "/azure/azure-functions/durable/durable-task-scheduler/develop-with-durable-task-scheduler",
           "redirect_document_id": false
         },
