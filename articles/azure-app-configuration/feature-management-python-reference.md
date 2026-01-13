@@ -425,7 +425,8 @@ This strategy for rolling out a feature is built into the library through the in
 
 ### Targeting a user
 
-Either a user can be specified directly in the `is_enabled` call or a `TargetingContext` can be used to specify the user and optional group.
+Either a user can be specified directly in the `is_enabled` call or a `TargetingContext` can be used to specify the user and optional group. The `TargetingContext` can either be passed in when calling `is_enabled` or by providing a callback to a `TargetingSpanProcessor`.
+
 
 ```python
 # Directly specifying the user
@@ -433,6 +434,31 @@ result = is_enabled(feature_flags, "test_user")
 
 # Using a TargetingContext
 result = is_enabled(feature_flags, TargetingContext(user_id="test_user", groups=["Ring1"]))
+```
+
+#### TargetingSpanProcessor
+
+You can integrate the `TargetingSpanProcessor` with Azure Monitor to automatically provide targeting context during telemetry operations. The processor accepts a callback function that returns a `TargetingContext`, allowing you to dynamically determine the user ID and groups for each request. 
+
+The following example demonstrates how to configure the processor in a Quart application, using a session ID from request headers as the user identifier. Call `configure_azure_monitor` before creating your application instance to ensure proper initialization.
+
+```python
+import os
+from quart import request
+from azure.monitor.opentelemetry import configure_azure_monitor
+from featuremanagement import TargetingContext
+from featuremanagement.azuremonitor import TargetingSpanProcessor
+
+async def my_targeting_accessor() -> TargetingContext:
+    session_id = ""
+    if "Session-ID" in request.headers:
+        session_id = request.headers["Session-ID"]
+    return TargetingContext(user_id=session_id)
+
+configure_azure_monitor(
+    connection_string=os.getenv("APPLICATIONINSIGHTS_CONNECTION_STRING"),
+    span_processors=[TargetingSpanProcessor(targeting_context_accessor=my_targeting_accessor)],
+)
 ```
 
 ### Targeting exclusion
