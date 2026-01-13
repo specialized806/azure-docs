@@ -23,6 +23,10 @@ Two kinds of encryption keys are available: platform-managed keys and customer-m
 
 When you configure a volume group, you can choose to use either platform-managed or customer-managed keys. All volumes in a volume group inherit the volume group's configuration. You can switch between customer-managed and platform-managed keys at any time. If you switch between these key types, the Elastic SAN service re-encrypts the data encryption key by using the new KEK. The protection of the data encryption key changes, but the data in your Elastic SAN volumes always remains encrypted. You don't need to take any extra action to ensure that your data is protected. 
 
+## Platform-managed keys
+
+By default, Azure Elastic SAN uses plat-form managed encryption keys. All Elastic SANs and their underlying resources and data are automatically encrypted-at-rest with platform-managed keys. Platform-managed keys are managed by Microsoft.
+
 ## Customer-managed keys
 
 If you use customer-managed keys, you must use an [Azure Key Vault](/azure/key-vault/general/overview) to store the key.
