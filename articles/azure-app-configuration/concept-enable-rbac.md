@@ -94,7 +94,6 @@ In the **.NET configuration provider**, audience is configured by utilizing the 
 
 The following code snippet demonstrates how to add the Azure App Configuration provider into a .NET application with a cloud-specific audience.
 
-
 ```
 builder.AddAzureAppConfiguration(o =>
     {
