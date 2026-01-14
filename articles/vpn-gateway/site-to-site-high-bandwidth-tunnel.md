@@ -89,11 +89,11 @@ To ensure all traffic between Azure and your on-premises network is encrypted, c
 
 ## <a name="Selective traffic encryption"></a>Selective traffic encryption between on premises networks and Azure VNets
 
-In scenarios where only a portion of the traffic between your on-premises networks and an Azure virtual network (VNet) requires encryption, you can choose from the following configuration options.
+In scenarios where only a portion of the traffic between your on-premises networks and an Azure Virtual Network (VNet) requires encryption, you can choose from the following configuration options.
 
 **Option 1 – Traffic selection via IPsec only**
 
-To ensure predictable routing, advertise different on premises IP network prefixes over ExpressRoute and over the IPsec tunnels. Advertise only the on premises prefixes that do not require encryption through the ExpressRoute circuit, and configure the IPsec tunnels to advertise only the prefixes that do require encryption.
+To ensure predictable routing, advertise different on-premises IP network prefixes over ExpressRoute and over the IPsec tunnels. Advertise only the on-premises prefixes that do not require encryption through the ExpressRoute circuit, and configure the IPsec tunnels to advertise only the prefixes that do require encryption.
 
 **Option 2 – Route precedence using more specific network prefixes**
 
@@ -101,8 +101,12 @@ Advertise more specific (longer subnet masks) on‑premises IP network prefixes 
 
 These considerations apply regardless of whether static or dynamic routing is used for the IPsec tunnels.
 
-Avoid advertising the same on-premises IP network prefixes simultaneously over both ExpressRoute circuit and IPsec tunnels. If the on premises routing policies give to the IPsec tunnels higher priority, outbound traffic from on-premises to Azure will prefer the IPsec path. However, Azure typically prefers routes learned from ExpressRoute Gateway when identical prefixes are received from both connections. 
+Avoid advertising the same on-premises IP network prefixes simultaneously over both ExpressRoute circuit and IPsec tunnels. If the on-premises routing policies give to the IPsec tunnels higher priority, outbound traffic from on-premises to Azure will prefer the IPsec path. However, Azure typically prefers routes learned from ExpressRoute Gateway when identical prefixes are received from both connections. 
 This mismatch results in asymmetric routing, where traffic flows outbound through one path (IPsec) but returns through another (ExpressRoute). Flows with asymmetric transit can lead to packet drops, especially on stateful on-premises devices.
+
+> [!NOTE]
+> Do not use User Defined Routes (UDRs) with a next-hop type **Virtual Network Gateway** to force traffic through the VPN Gateway. This approach is not supported and does not work.
+
 
 ## <a name="VNetGateway"></a>Create a VPN gateway High Bandwidth tunnel
 
