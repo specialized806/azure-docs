@@ -40,25 +40,26 @@ During this phase, you build out your Azure environment, refactor any code if re
 - **Reduce changes to production workload in AWS:** In the period leading up to the migration, you'll want to reduce changes happening to the workload, specifically ones that introduce new infrastructure, capabilities, or dependencies that might put the migration at risk.
 - **Refactor your application's code:** Use feature flags to simplify feature and configuration management between the AWS and Azure environments.
 - **Replace AWS-specific libraries and SDKs**: Many applications rely on AWS-native libraries or SDKs (for example, for storage, messaging, or authentication). These typically are not compatible with Azure services. During refactoring, identify and replace AWS-specific libraries with Azure equivalents or platform-agnostic alternatives. This step helps avoid runtime errors and ensures your application integrates cleanly with Azure services.
+- **Coordinate client configuration changes:** Ensure all client-facing configuration changes are implemented and validated. Provide preproduction environments for client teams to test updates to endpoints, authentication and connectivity.
 - **Prepare your operational functions:** Work with your operations team to implement workload monitoring in Azure. Collaborate with the security team to implement security monitoring and validate the Azure architecture. Validate that your workload's routine, ad-hoc, and emergency operational tasks can be conducted on Azure.
 
 For guidance on preparing your workloads and building your Azure environment, see the [CAF Prepare workloads](/azure/cloud-adoption-framework/migrate/prepare-workloads-cloud) guide.
 
 ## Checklist
 
-| &nbsp;  | Deliverable tasks                            |     |
-| ------- | -------------------------------------------- | --- |
-| &#9744; | Provision application landing zones          |     |
-| &#9744; | Deploy and configure Azure infrastructure    |     |
-| &#9744; | Update CI/CD pipelines for Azure             |     |
-| &#9744; | Test infrastructure                          |     |
-| &#9744; | Test your networking and security            |     |
-| &#9744; | Remove obsolete parts of your workload       |     |
-| &#9744; | Reduce changes to production workload in AWS |     |
-| &#9744; | Refactor application's code                  |     |
-| &#9744; | Review AWS-specific libraries and SDKs       |     |
-| &#9744; | Prepare operational functions                |     |
-| &#9744; | Test your networking and security            |     |
+| &nbsp;  | Deliverable tasks                            |
+| ------- | -------------------------------------------- |
+| &#9744; | Provision application landing zones          |
+| &#9744; | Deploy and configure Azure infrastructure    |
+| &#9744; | Update CI/CD pipelines for Azure             |
+| &#9744; | Test infrastructure                          |
+| &#9744; | Test your networking and security            |
+| &#9744; | Remove obsolete parts of your workload       |
+| &#9744; | Reduce changes to production workload in AWS |
+| &#9744; | Refactor application's code                  |
+| &#9744; | Replace AWS-specific libraries and SDKs      |
+| &#9744; | Coordinate client configuration changes      |
+| &#9744; | Prepare operational functions                |
 
 
 ## Next step

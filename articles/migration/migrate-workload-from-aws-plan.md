@@ -132,6 +132,8 @@ Your choice depends on the amount of data, type of data storage, and usage requi
 
    Depending on state changes, rollbacks can be more complex than mitigating the problem in Azure. Failed mitigation attempts might also complicate a rollback. Having a shared understanding of break-fix scenarios vs revert scenarios will help derisk the migration.
 
+**Client configuration changes:** Identify and document all client-facing configuration items that will be impacted by the workload migration. This includes DNS endpoints, authentication flows, and connection strings. Involve the client teams early and communicate the upcoming changes with timelines and responsibilities.
+
 **Traffic and routing changes:** Plan and document your traffic routing changes in detail. Define exactly how to update DNS records, load balancer configuration, and routing rules to direct traffic to Azure. Take into consideration any TTL that you configured as it determines how long DNS changes take to propagate. 
 
 Many applications and scripts reference Fully Qualified Domain Names (FQDNs) for endpoints, APIs, and services. If these change unexpectedly during migration, integrations can break. As part of your routing and cutover planning, inventory all FQDNs used by your workload. Decide whether to retain existing names via DNS forwarding or update application configurations to use new Azure FQDNs. For public-facing services, plan DNS cutover carefully to minimize downtime and ensure a seamless transition.
@@ -145,31 +147,32 @@ Once stakeholders and decision-makers review and agree on the plan and runbook, 
 
 ## Checklist
 
-| &nbsp;  | Deliverable tasks                            |     |
-| ------- | -------------------------------------------- | --- |
-| &#9744; | Document existing workload architecture      |     |
-| &#9744; | Use discovery tooling                        |     |
-| &#9744; | Identify critical flows                      |     |
-| &#9744; | Create detailed inventory                    |     |
-| &#9744; | Involve application team                     |     |
-| &#9744; | Assess skills                                |     |
-| &#9744; | Document KPIs                                |     |
-| &#9744; | Address networking                           |     |
-| &#9744; | Identify matching Azure services             |     |
-| &#9744; | Plan identity management                     |     |
-| &#9744; | Document migration decisions                 |     |
-| &#9744; | Reduce risks                                 |     |
-| &#9744; | Check resource availability                  |     |
-| &#9744; | Validate requirements if using Azure Migrate |     |
-| &#9744; | Address compliance and security requirements |     |
-| &#9744; | Choose cutover strategy                      |     |
-| &#9744; | Choose database migration strategy           |     |
-| &#9744; | Choose storage migration strategy            |     |
-| &#9744; | Plan maintenance window                      |     |
-| &#9744; | Document sequence of steps                   |     |
-| &#9744; | Document sign-off acceptance criteria        |     |
-| &#9744; | Document rollback trigger criteria and steps |     |
-| &#9744; | Document traffic and routing changes         |     |
+| &nbsp;  | Deliverable tasks                                     |
+| ------- | ----------------------------------------------------- |
+| &#9744; | Document existing workload architecture               |
+| &#9744; | Use discovery tooling                                 |
+| &#9744; | Identify critical flows                               |
+| &#9744; | Create detailed inventory                             |
+| &#9744; | Involve application team                              |
+| &#9744; | Assess skills                                         |
+| &#9744; | Document KPIs                                         |
+| &#9744; | Address networking                                    |
+| &#9744; | Identify matching Azure services                      |
+| &#9744; | Plan identity management                              |
+| &#9744; | Document migration decisions                          |
+| &#9744; | Reduce risks                                          |
+| &#9744; | Check resource availability                           |
+| &#9744; | Validate requirements if using Azure Migrate          |
+| &#9744; | Address compliance and security requirements          |
+| &#9744; | Choose cutover strategy                               |
+| &#9744; | Choose database migration strategy                    |
+| &#9744; | Choose storage migration strategy                     |
+| &#9744; | Plan maintenance window                               |
+| &#9744; | Document sequence of steps                            |
+| &#9744; | Document sign-off acceptance criteria                 |
+| &#9744; | Document rollback trigger criteria and steps          |
+| &#9744; | Document and communicate client configuration changes |
+| &#9744; | Document traffic and routing changes                  |
 
 ## Next step
 
