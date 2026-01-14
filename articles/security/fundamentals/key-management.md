@@ -19,7 +19,7 @@ In Azure, you can use either platform-managed or customer-managed encryption key
 
 Azure generates, stores, and manages platform-managed keys (PMKs) entirely on its own. You don't need to interact with PMKs. For example, the keys used for [Azure Data Encryption at Rest](encryption-atrest.md) are PMKs by default.  
 
-Customer-managed keys (CMKs) are keys that you can read, create, delete, update, and manage. You can store CMKs in a customer-owned key vault or hardware security module (HSM). Bring Your Own Key (BYOK) is a CMK scenario where you import keys from an external storage location into an Azure key management service. For more information, see [Azure Key Vault: Bring your own key specification](/azure/key-vault/keys/byok-specification).
+Customer-managed keys (CMKs) are keys that you can create, delete, use, and manage. You can store CMKs in a customer-owned key vault or hardware security module (HSM). Bring Your Own Key (BYOK) is a CMK scenario where you import keys from an external storage location into an Azure key management service. For more information, see [Azure Key Vault: Bring your own key specification](/azure/key-vault/keys/byok-specification).
 
 A key encryption key (KEK) is a primary key that controls access to one or more encryption keys that it encrypts.
 

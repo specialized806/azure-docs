@@ -193,8 +193,6 @@ For many organizations, data encryption at rest is a mandatory step towards data
 
 - [Client-side Encryption](../../storage/common/storage-client-side-encryption.md) also provides the feature of encryption at rest.
 
-- [Encryption at host](/azure/virtual-machines/disk-encryption) provides end-to-end encryption for the OS disks and data disks used by an IaaS virtual machine by default.
-
 #### Storage analytics
 
 [Azure Storage Analytics](/rest/api/storageservices/fileservices/storage-analytics) performs logging and provides metrics data for a storage account. You can use this data to trace requests, analyze usage trends, and diagnose problems with your storage account. Storage Analytics logs detailed information about successful and failed requests to a storage service. You can use this information to monitor individual requests and to diagnose problems with a storage service. Requests are logged on a best-effort basis. The following types of authenticated requests are logged:
