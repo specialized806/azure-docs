@@ -12,10 +12,6 @@ ms.customs: references_regions
 # Azure NAT Gateway SKUs
 Azure Network Address Translation (NAT) Gateway has two stock-keeping units (SKUs). This article provides an overview of these different SKUs and their differences.
 
-> [!IMPORTANT]
-> Standard V2 SKU Azure NAT Gateway is currently in PREVIEW.
-> See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
-
 ## SKU comparison
 Azure Network Address Translation (NAT) Gateway has two stock-keeping units (SKUs) - Standard and StandardV2. To compare and understand the differences between Standard and StandardV2 SKU, see the following table.
 
@@ -50,7 +46,7 @@ For information on the Service Level Agreement (SLA), see [SLA for Azure NAT Gat
 
 StandardV2 SKU NAT Gateway is **zone-redundant** by default. It automatically spans across multiple availability zones in a region, ensuring continued outbound connectivity even if one zone becomes unavailable. 
 
-For more information, see [Availability zones](./nat-availability-zones.md).      
+For more information, see [Reliability in Azure NAT Gateway](/azure/reliability/reliability-nat-gateway).
 
 ### Performance 
 
@@ -101,7 +97,8 @@ StandardV2 NAT Gateway supports flow logs through Azure Monitor. Flow logs provi
     * Azure Database for MySQL  
     * Azure Data Factory - Data Movement 
     * Microsoft Power Platform services 
-    * Azure Stream Analytics 
+    * Azure Stream Analytics
+    * Azure Container Apps
     * Azure Web Apps 
     * Azure DNS Private Resolver 
 

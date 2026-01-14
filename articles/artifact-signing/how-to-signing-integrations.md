@@ -118,14 +118,14 @@ For example:
 
 To download and install the Artifact Signing dlib package (a .zip file):
 
-1. Download the [Artifact Signing dlib package](https://www.nuget.org/packages/Microsoft.Trusted.Signing.Client).
+1. Download the [Artifact Signing dlib package](https://www.nuget.org/packages/Microsoft.ArtifactSigning.Client).
 
 1. Extract the Artifact Signing dlib zipped content and install it on your signing node in your choice of directory. The node must be the node where you use SignTool to sign files.
 
-Another option is to download the [Artifact Signing dlib package](https://www.nuget.org/packages/Microsoft.Trusted.Signing.Client) via NuGet similar like the Windows SDK Build Tools NuGet package:
+Another option is to download the [Artifact Signing dlib package](https://www.nuget.org/packages/Microsoft.ArtifactSigning.Client) via NuGet similar like the Windows SDK Build Tools NuGet package:
 
 ```powershell
-.\nuget.exe install Microsoft.Trusted.Signing.Client -x
+.\nuget.exe install Microsoft.ArtifactSigning.Client -x
 ```
 
 > [!NOTE]
@@ -146,21 +146,29 @@ To sign by using Artifact Signing, you need to provide the details of your Artif
      "CorrelationId": "<Optional CorrelationId value>"
    }
    ```
+  <sup>1</sup> The optional `"CorrelationId"` field is an opaque string value that you can provide to correlate sign requests with your own workflows, such as build identifiers or machine names.
 
   > [!IMPORTANT]
   > The `"Endpoint"` URI value must match the region where you created your Artifact Signing account **and** the certificate profile. Use one of the region-specific URIs in the table below. A region/endpoint mismatch commonly causes a 403 Forbidden error and an internal `SignerSign()` failure during signing.
 
    | Region       | Region class fields  | Endpoint URI value  |
    |--------------|-----------|------------|
+   | Brazil South | BrazilSouth | `https://brs.codesigning.azure.net` |
+   | Central US  | CentralUS  | `https://cus.codesigning.azure.net` |
    | East US  | EastUS  | `https://eus.codesigning.azure.net` |
-   | West US3 <sup>[1]</sup>   | WestUS3  | `https://wus3.codesigning.azure.net` |
-   | West Central US  | WestCentralUS  | `https://wcus.codesigning.azure.net` |
-   | West US 2   | WestUS2   | `https://wus2.codesigning.azure.net` |
+   | Japan East | JapanEast | `https://jpe.codesigning.azure.net` |
+   | Korea Central | KoreaCentral | `https://krc.codesigning.azure.net` |
+   | North Central US  | NorthCentralUS  | `https://ncus.codesigning.azure.net` |
    | North Europe   | NorthEurope   | `https://neu.codesigning.azure.net`   |
-   | West Europe   | WestEurope   | `https://weu.codesigning.azure.net`  |
-
-   <sup>1</sup> The optional `"CorrelationId"` field is an opaque string value that you can provide to correlate sign requests with your own workflows, such as build identifiers or machine names.
-
+   | Poland Central | PolandCentral  | `https://plc.codesigning.azure.net` |
+   | South Central US  | SouthCentralUS  | `https://scus.codesigning.azure.net` |
+   | Switzerland North  | SwitzerlandNorth  | `https://swn.codesigning.azure.net` |
+   | West Central US  | WestCentralUS  | `https://wcus.codesigning.azure.net` |
+   | West Europe  | WestEurope   | `https://weu.codesigning.azure.net`   |
+   | West US  | WestUS  | `https://wus.codesigning.azure.net` |
+   | West US 2   | WestUS2   | `https://wus2.codesigning.azure.net` |
+   | West US 3   | WestUS3   | `https://wus3.codesigning.azure.net` |
+   
 ### Authentication
 
 This Task performs authentication using [DefaultAzureCredential](/dotnet/api/azure.identity.defaultazurecredential), which attempts a series of authentication methods in order. If one method fails, it attempts the next one until authentication is successful.
@@ -223,4 +231,4 @@ You can also use the following tools or platforms to set up signing integrations
 
 - **Artifact Signing SDK**: To create your own signing integration, you can use our open-source [Artifact Signing SDK](https://www.nuget.org/packages/Azure.CodeSigning.Sdk). 
 
-- [**Azure.Developer.TrustedSigning.CryptoProvider**](https://www.nuget.org/packages/Azure.Developer.TrustedSigning.CryptoProvider): Simplifies integration of the service with a .NET crypto provider that abstracts the service endpoint integration from the consumer. 
+- [**Azure.Developer.ArtifactSigning.CryptoProvider**](https://www.nuget.org/packages/Azure.Developer.ArtifactSigning.CryptoProvider): Simplifies integration of the service with a .NET crypto provider that abstracts the service endpoint integration from the consumer. 
