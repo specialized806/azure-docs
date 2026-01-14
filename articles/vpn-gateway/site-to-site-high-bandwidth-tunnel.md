@@ -87,11 +87,11 @@ When using IPsec tunnels that transit ExpressRoute private peering, you must adv
 
 To ensure all traffic between Azure and your on-premises network is encrypted, configure routing so that only the VPN device tunnel IPs are advertised over ExpressRoute. The actual on-premises network prefixes should be routed through the VPN Gateway, either using static routes or BGP. This approach ensures that on-premises to Azure traffic is always encrypted inside the VPN tunnel before it enters the ExpressRoute data path.
 
-## <a name="Selective traffic encryption"></a>Selective traffic encryption between on premises networks and Azure VNets
+## <a name="Selective traffic encryption"></a>Selective traffic encryption between on-premises networks and Azure VNets
 
 In scenarios where only a portion of the traffic between your on-premises networks and an Azure Virtual Network (VNet) requires encryption, you can choose from the following configuration options.
 
-**Option 1 – Traffic selection via IPsec only**
+**Option 1 – Steering encrypted traffic via IPsec tunnels only**
 
 To ensure predictable routing, advertise different on-premises IP network prefixes over ExpressRoute and over the IPsec tunnels. Advertise only the on-premises prefixes that do not require encryption through the ExpressRoute circuit, and configure the IPsec tunnels to advertise only the prefixes that do require encryption.
 
