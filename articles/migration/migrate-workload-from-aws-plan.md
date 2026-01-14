@@ -58,7 +58,7 @@ Learn more about how to [migrate networking from AWS](/azure/migration/migrate-n
 
 After planning your networking, follow these steps:
 
-1. **Identify Azure services:** Use the [AWS to Azure resource comparison guide](/azure/architecture/aws-professional) to help you narrow down choices for your workload's Azure components. Build proof of concepts (POCs) to gain confidence or help make decision on candidate components and their configuration.
+1. **Identify Azure services:** Use the [AWS to Azure resource comparison guide](/azure/architecture/aws-professional) to help you narrow down choices for your workload's Azure components. Build proof of concepts (POCs) to gain confidence or help make decision on candidate components and their configuration. When you select your components, refer to the [Azure Well Architected Service Guides](/azure/well-architected/service-guides/). This will ensure your like-for-like architecture is not just functionally equivalent but also optimized for Azure’s platform characteristics and best practices.
 2. **Plan identity management:** Plan how identity and access will be handled in Azure for both end-users and for workload operations. If your workload uses AWS IAM roles or federated identity providers, determine how these roles translate to Entra ID (formerly Azure AD) roles, managed identities, or service principals. Review any hardcoded ARNs, IAM policies, or identity integrations in the application. If you overlook identity mapping, it can lead to post-migration access issues or broken integrations. Integrating with third-party identity providers are a key challenge during migrations. If possible, consolidate identity management by transitioning to Entra ID. 
 3. **Document your migration decisions:** Document the resources that you don't migrate and any architecture decisions you make. 
 4. **Reduce risks:** Identify any high-risk components or flows and build proof of concepts (POCs) as needed to test and mitigate those risks. Perform [failure mode analysis](/azure/well-architected/reliability/failure-mode-analysis) on your selected components to proactively uncover potential points of failure and assess their impact on the reliability of your workload. Your Azure components might have new failure modes or fail differently than their counterpart does in AWS.
@@ -145,6 +145,16 @@ Many applications and scripts reference Fully Qualified Domain Names (FQDNs) for
 Review the plan with stakeholders and reconcile differing expectations. Include IT security and risk management teams from the start and ensure they sign off on the plan. A joint workshop at this stage can help minimize delays in later stages.
 
 Once stakeholders and decision-makers review and agree on the plan and runbook, move on to the prepare phase.
+
+## Outputs and artifacts
+
+By the end of the planning phase, you should have:
+
+- Target architecture diagram
+- Architecture decision records (ARDs)
+- Budget and cost estimates
+- Migration runbook and timeline
+- Stakeholder sign-offs
 
 ## Checklist
 
