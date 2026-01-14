@@ -1,5 +1,5 @@
 ---
-title: Send Correlated Messages in a Specific Order
+title: Send Service Bus Messages in a Specific Order
 description: Learn how to send related Azure Service Bus messages in a specific order by using the sequential convoy pattern in Azure Logic Apps.
 services: logic-apps
 ms.suite: integration
@@ -10,104 +10,243 @@ ms.date: 01/14/2026
 #Customer intent: As developer who works with Azure Logic Apps, I want to send related messages from different Service Bus sessions in a specific order for processing in my workflow.
 ---
 
-# Send related Azure Service Bus messages in a specific order by using a sequential convoy in Azure Logic Apps
+# Send related Service Bus messages in a specific order by using a sequential convoy in Azure Logic Apps
 
-[!INCLUDE [logic-apps-sku-consumption-standard](includes/logic-apps-sku-consumption-standard.md)]
+[!INCLUDE [logic-apps-sku-consumption-standard](../../includes/logic-apps-sku-consumption-standard.md)]
 
-Some scenarios might require that you send *correlated messages* in a specific order. These messages have a property that lets you define the relationship between these messages, such as an ID for the [session](../service-bus-messaging/message-sessions.md). In [Azure Logic Apps](logic-apps/logic-apps-overview.md), when you use the [Azure Service Bus connector](../connectors/connectors-create-api-servicebus.md), you can set up a *sequential convoy* pattern to process these messages in the order you want.
+Some scenarios require your workflow to process session-related messages in a specific order from an Azure Service Bus [queue](../service-bus-messaging/service-bus-queues-topics-subscriptions.md). These messages have a property that define the relationship with each other, such as a [*session* ID](../service-bus-messaging/message-sessions.md). To process these messages by session, set up a [*sequential convoy* pattern](/azure/architecture/patterns/sequential-convoy) in your workflow.
 
-For example, suppose you have a [Service Bus queue](../service-bus-messaging/service-bus-queues-topics-subscriptions.md) that receives messages from different sessions. You have 10 messages from a session named *Session 1* and 5 messages from a session named *Session 2*. You can create a logic app workflow that processes messages from the queue by alternating between sessions. So when the trigger first fires, the workflow run handles all the messages from Session 1. When the trigger fires again, the workflow run handles all the messages from Session 2.
+For example, suppose you have a Service Bus queue that receives messages from multiple sessions. You have 10 messages from a session named *Session 1* and 5 messages from a session named *Session 2*. You can create a workflow that alternates between sessions to process messages from the queue. When the trigger first fires, the workflow run handles all the messages from Session 1. When the trigger fires again, the workflow run handles all the messages from Session 2.
 
 :::image type="content" source="./media/send-related-messages-sequential-convoy/sequential-convoy-pattern-general.png" alt-text="Diagram shows the general sequential convoy pattern.":::
 
-This article shows how to create a logic app workflow that implements this pattern by using the **Correlated in-order delivery using service bus sessions** template. This template defines a workflow that starts with the Service Bus connector's **When a message is received in a queue (peek-lock)** trigger. The trigger receives messages from a [Service Bus queue](../service-bus-messaging/service-bus-queues-topics-subscriptions.md). Here are the high-level steps that this workflow performs:
+This guide shows how to create a workflow that sets up the sequential convoy pattern to perform the following high-level steps:
 
-- Initialize a session based on a message that the trigger reads from the Service Bus queue.
+1. When the Service Bus trigger named **When a message is received in a queue (peek-lock)** fires, run the workflow.
 
-- Read and process all the messages from the same session in the queue during the current workflow run.
+   For more information about *peek-lock* mode, see [Receive modes](../service-bus-messaging/service-bus-queues-topics-subscriptions.md#receive-modes) and [Peek lock](../service-bus-messaging/message-transfers-locks-settlement.md#peeklock).
 
-To review this template's JSON file, see [GitHub: service-bus-sessions.json](https://github.com/Azure/logicapps/blob/master/templates/service-bus-sessions.json).
+1. Initialize a session based on the message that the trigger reads from the Service Bus queue.
 
-For more information, see [Sequential convoy pattern - Azure Architecture Cloud Design Patterns](/azure/architecture/patterns/sequential-convoy).
+1. Read and process all the messages from the same session in the queue during the current workflow run.
+
+For Standard logic apps, you can create a workflow by using the template named **Azure Service Bus: Process related messages from a session-enabled queue for the same workflow instance - Sequential convoy pattern**.
+
+For Consumption workflows, no workflow template is available in the designer, so you have to manually build the workflow. You can also review the template for Standard workflows or the JSON file for the formerly available template named **Correlated in-order delivery using service bus sessions** available in [GitHub: service-bus-sessions.json](https://github.com/Azure/logicapps/blob/master/templates/service-bus-sessions.json).
 
 ## Prerequisites
 
-- An Azure subscription. If you don't have a subscription, [sign up for a free Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+- An Azure account and subscription. [Get a free Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
-- A Service Bus namespace (Standard or Premium pricing tier) and a [Service Bus queue](../service-bus-messaging/service-bus-queues-topics-subscriptions.md), which is a messaging entity that you use in your logic app. These items and your logic app need to use the same Azure subscription. Make sure that you select **Enable sessions** when you create your queue. If you don't have these items, learn [how to create your Service Bus namespace and a queue](../service-bus-messaging/service-bus-create-namespace-portal.md).
+- A Service Bus namespace (Standard or Premium pricing tier) and a Service Bus *session-enabled* queue.
 
-  [!INCLUDE [Warning about creating infinite loops](../../includes/connectors-infinite-loops.md)]
+  - These items and your logic app resource must use the same Azure subscription.
 
-- Basic knowledge about how to create logic apps. If you're new to Azure Logic Apps, see [Create a Consumption logic app workflow](../logic-apps/quickstart-create-example-consumption-workflow.md).
+  - When you create your queue, make sure that you select **Enable sessions**.
+
+  For more information, see [Create a Service Bus namespace and queue](../service-bus-messaging/service-bus-create-namespace-portal.md).
+
+- The logic app resource where you want to set up the sequential convoy pattern.
+
+  For more information, see:
+
+  - [Create a Consumption logic app workflow](../logic-apps/quickstart-create-example-consumption-workflow.md)
+  - [Create a Standard logic app workflow](../logic-apps/create-single-tenant-workflows-azure-portal.md)
+
+  Your logic app resource also needs permissions to your Service Bus namespace. To check these permissions, see [Check access to Service Bus namespace](#permissions-connection-strong).
 
 <a name="permissions-connection-string"></a>
 
 ## Check access to Service Bus namespace
 
-If you're not sure whether your logic app has permissions to access your Service Bus namespace, confirm those permissions.
+Your logic app resource and workflow need permissions to access your Service Bus namespace. If you're unsure whether your workflow has permissions, check them now.
 
-1. Sign in to the [Azure portal](https://portal.azure.com). Find and select your Service Bus namespace.
+1. In the [Azure portal](https://portal.azure.com), find and select your Service Bus namespace.
 
-1. On the namespace menu, under **Settings**, select **Shared access policies**. Check that you have **Manage** permissions for that namespace.
+1. On the sidebar menu, under **Settings**, select **Shared access policies**. Check that you have **Manage** permissions for that namespace.
 
    :::image type="content" source="./media/send-related-messages-sequential-convoy/check-service-bus-permissions.png" alt-text="Screenshot shows the Shared access policies page for a Service Bus namespace." lightbox="./media/send-related-messages-sequential-convoy/check-service-bus-permissions.png":::
 
-1. Get the connection string for your Service Bus namespace. You can use this string later when you create a connection to the namespace from your logic app.
+1. Get the connection string for your Service Bus namespace by following these steps:
 
-   1. On the **Shared access policies** pane, under **Policy**, select **RootManageSharedAccessKey**.
+   1. On the **Shared access policies** page, under **Policy**, select **RootManageSharedAccessKey**.
    
-   1. Next to your primary connection string, select the copy button. Save the connection string for later use.
+   1. On the **SAS Policy: RootManageSharedAccessKey** pane, next to the primary connection string, select the copy button.
 
       :::image type="content" source="./media/send-related-messages-sequential-convoy/copy-service-bus-connection-string.png" alt-text="Screenshot shows the Shared access policies where you can copy a Service Bus namespace connection string.":::
 
-   > [!TIP]
-   >
-   > To confirm whether your connection string is associated with your Service Bus namespace or a messaging entity, such as a queue, search the connection string for the `EntityPath` parameter. If you find this parameter, the connection string is for a specific entity, and isn't the correct string to use with your logic app.
+      > [!TIP]
+      >
+      > To make sure that your connection string is associated with your Service Bus namespace and not a messaging entity, such as a queue, check the connection string for the `EntityPath` parameter. If you find this parameter, the connection string is for a specific entity, and isn't the correct string to use with your workflow.
 
-## Create logic app
+   1. Save the connection string for later use when you connect from your workflow to the namespace.
 
-In this section, create a logic app by using the **Correlated in-order delivery using service bus sessions** template, which includes the trigger and actions for implementing this workflow pattern. You also create a connection to your Service Bus namespace and specify the name for the Service Bus queue that you want to use.
+## Create a sequential convoy workflow
 
-1. In the [Azure portal](https://portal.azure.com), create a blank logic app. From the Azure home page, search for and select **Logic Apps**. In the **Logic Apps** page, select **+ Add**. For more detailed instructions, see [Create a Consumption logic app workflow](../logic-apps/quickstart-create-example-consumption-workflow.md).
+Based on whether your logic app resource is Standard or Consumption, follow the corresponding steps:
 
-1. After you create the logic app, in the resource menu, under **Development Tools**, select **Logic app templates**.
+### [Standard](#tab/standard)
 
-   :::image type="content" source="./media/send-related-messages-sequential-convoy/select-correlated-in-order-delivery-template.png" alt-text="Screenshot shows a page where you can select a service bus sessions template." lightbox="./media/send-related-messages-sequential-convoy/select-correlated-in-order-delivery-template.png":::
+These steps create a workflow from the template named **Azure Service Bus: Process related messages from a session-enabled queue for the same workflow instance - Sequential convoy pattern**. The template includes the trigger and actions to implement this workflow pattern. You also create a connection to your Service Bus namespace and specify the name for the Service Bus queue that you want to use.
 
-1. When the template gallery appears, select the template, **Correlated in-order delivery using service bus sessions**. Then select **Use this template**.
+1. In the [Azure portal](https://portal.azure.com), open your Standard logic app resource.
 
-1. Select **Next** to enter your connection information.
+1. On the sidebar menu, under **Workflows**, select **Workflows**.
 
-1. Under **Connection**, select **Connect**.
+1. On the **Workflows** toolbar, select **Create** > **Create from Template**.
 
-   :::image type="content" source="./media/send-related-messages-sequential-convoy/connect-to-service-bus.png" alt-text="Screenshot shows the Logic App Designer where you can select Continue to connect to Azure Service Bus.":::
+1. Under **Templates**, select the template named **Azure Service Bus: Process related messages from a session-enabled queue for the same workflow instance - Sequential convoy pattern**, then select **Use this template**.
 
-1. Enter a name. For **Authentication Type**, select **Connection String**.
+   The following example partially shows the workflow templates gallery:
 
-1. Enter the connection string that you saved in the previous section and select **Add connection**.
+   :::image type="content" source="./media/send-related-messages-sequential-convoy/select-workflow-template.png" alt-text="Screenshot shows a page where you can select a service bus sessions template." lightbox="./media/send-related-messages-sequential-convoy/select-workflow-template.png":::
 
-   :::image type="content" source="./media/send-related-messages-sequential-convoy/provide-service-bus-connection-string.png" alt-text="Screenshot shows the Service Bus connection name and connection string to establish a connection.":::
+1. On the **Create a new workflow from template** pane, follow these steps:
 
-1. Select **Review + create**, then select **Create**.
+   1. On the **Basics** tab, follow these steps:
 
-The Logic App Designer now shows the **Correlated in-order delivery using service bus sessions** template, which contains a prepopulated workflow with a trigger and actions. The workflow includes two scopes that implement error handling that follows the `Try-Catch` pattern.
+      1. Provide a name for your workflow.
 
-You can either learn more about the trigger and actions in the template, or jump ahead to [provide the values for the logic app template](#complete-template).
+         The name must start with a letter and can contain only letters, numbers, dashes, and underscores.
 
-<a name="template-summary"></a>
+      1. Select **Stateful** or **Stateless**, based on your scenario.
 
-## Template summary
+      1. Select **Next**.
 
-Here's the top-level workflow in the **Correlated in-order delivery using service bus sessions** template when the details are collapsed:
+   1. On the **Connections** tab, follow these steps:
 
-:::image type="content" source="./media/send-related-messages-sequential-convoy/template-top-level-flow.png" alt-text="Screenshot shows the template's top-level workflow.":::
+      1. For Service Bus, in **Connection** column, select **Connect**.
+
+         :::image type="content" source="./media/send-related-messages-sequential-convoy/connect-service-bus.png" alt-text="Screenshot shows pane to start connecting to Azure Service Bus namespace.":::
+
+      1. Provide the following information:
+
+         | Parameter | Value | Description |
+         |-----------|-------|-------------|
+         | **Connection Name** | <*connection-name*> | The name for the connection to your Service Bus namespace. |
+         | **Authentication Type** | **Connection String** | The authentication type to use. |
+         | **Connection String** | <*namespace-connection-string*> | The connection string that you saved earlier from your Service Bus namespace. |
+
+          :::image type="content" source="./media/send-related-messages-sequential-convoy/service-bus-connection-standard.png" alt-text="Screenshot shows Service Bus connection pane in Standard workflow":::
+
+      1. When you're done, select **Add connection** > **Next**.
+
+   1. On the **Parameters** tab, follow these steps:
+
+      1. Provide the following information:
+
+         | Parameter | Description |
+         |-----------|-------------|
+         | **Queue name** | The name for the Service Bus session-enabled queue with the messages to process. |
+         | **Maximum batch size** | The maximum number of messages to get as a batch. |
+
+      1. When you're done, select **Next**.
+
+   1. Review the provided information, and select **Create**.
+
+      The designer shows a workflow prepopulated with the trigger named **When messagse are available in a queue (peek-lock)** and various actions. The workflow includes two scopes that implement error handling that follows the *Try-Catch* pattern.
+
+      For example:
+
+      :::image type="content" source="./media/send-related-messages-sequential-convoy/top-level-workflow.png" alt-text="Screenshot shows workflow and top-level operations.":::
+
+1. To continue, you can either [learn more about the workflow operations](#workflow-summary), or skip ahead to [provide the parameter values for the workflow operations](#complete-template).
+
+For more information, see:
+
+- [Evaluate actions with scopes and their results](error-exception-handling.md#evaluate-actions-with-scopes-and-their-results)
+- [Logic Apps: Try-Catch Pattern, Nested Scopes, and Compensating Transaction Pattern](https://andrewilson.co.uk/post/2025/01/logic-app-nested-scopes-and-compensating-transaction-pattern/)
+
+### [Consumption](#tab/consumption)
+
+These steps manually create a workflow that uses an Azure Service Bus trigger and actions to implement the sequential convoy pattern. Your workflow creates a connection to your Service Bus namespace and specifies the name for the Service Bus queue that you want to use.
+
+#### Add a Service Bus trigger
+
+1. In the [Azure portal](https://portal.azure.com), open your Consumption logic app resource and blank workflow in the designer.
+
+1. Follow the [general steps](add-trigger-action-workflow.md#add-trigger) to add a Service Bus trigger named **When one or more messages arrive in a queue (peek-lock)**.
+
+1. On the connection pane, provide the folowing information:
+
+   | Parameter | Value | Description |
+   |-----------|-------|-------------|
+   | **Connection Name** | <*connection-name*> | The name for the connection to your Service Bus namespace. |
+   | **Authentication Type** | **Access key** | The authentication type to use. |
+   | **Connection String** | <*namespace-connection-string*> | The connection string that you saved earlier from your Service Bus namespace. |
+
+   :::image type="content" source="./media/send-related-messages-sequential-convoy/service-bus-connection-consumption.png" alt-text="Screenshot shows Service Bus connection pane in Consumption workflow.":::
+
+1. When you're done, select **Create new**.
+
+1. After the trigger information pane appears, on the **Parameters** tab, provide the following information:
+
+  | Parameter | Description |
+  |-----------|-------------|
+  | **Queue name** | The name for the Service Bus session-enabled queue with the messages to process. |
+  | **Maximum message count** | The number of messages to get as a batch. |
+
+#### Determine whether more messages exist for processing
+
+To help your workflow determine whether any more messages from a session need processing, create a Boolean variable with the default value set to `false`. This variable indicates when the following conditions are true:
+
+- No more messages exist in the session for processing.
+
+- The session lock no longer needs to be renewed so the current workflow instance can finish running.
+
+1. In the designer, under the trigger, follow the [general steps](add-trigger-action-workflow.md#add-action) to add a **Variables** action named **Initialize variables**.
+
+1. For clarity and easier identification, rename the action to **Initialize Process Complete Flag**.
+
+1. In the action information pane, provide the following values:
+
+   | Parameter | Value | Description |
+   |-----------|-------|-------------|
+   | **Name** | <*variable-name*> | The name for the variable. For this example, the name is **`processCompleted`**. |
+   | **Type** | **Boolean** | The data type for the variable. |
+   | **Value** | **false** | The initial default value for the variable. |
+
+   For more information, see [Initialize the session](#initialize-session).
+
+1. Continue to the next section to add a scope for error handling.
+
+#### Add a scope action
+
+To set up *try-catch* style error handling for your workflow, add a [**Scope** action](logic-apps-control-flow-run-steps-group-scopes.md) that contains the actions to process each message. If a problem happens in this scope, the subsequent actions outside this **Scope** action can handle that problem. For more information, see [Scope](#try-scope).
+
+1. In the designer, under the **Initialize Process Complete Flag** action, follow the [general steps](add-trigger-action-workflow.md#add-action) to add a **Scope** action.
+
+1. For clarity and easier identification, rename the scope action to **Try**.
+
+
+
+[!INCLUDE [Warning about creating infinite loops](../../includes/connectors-infinite-loops.md)]
+
+---
+
+<a name="workflow-summary"></a>
+
+## Workflow summary
+
+This section describes more details about the workflow operations:
+
+### [Standard](#tab/standard)
 
 | Name | Description |
 |------|-------------|
-| **`When a message is received in a queue (peek-lock)`** | Based on the specified recurrence, this Service Bus trigger checks the specified Service Bus queue for any messages. If a message exists in the queue, the trigger fires, which creates and runs a workflow instance. <br><br>The term *peek-lock* means that the trigger sends a request to retrieve a message from the queue. If a message exists, the trigger retrieves and locks the message so that no other processing happens on that message until the lock period expires. For details, [Initialize the session](#initialize-session). |
-| **`Init isDone`** | This [**Initialize variable** action](../logic-apps/logic-apps-create-variables-store-values.md#initialize-variable) creates a Boolean variable with a value of `false`. It indicates when the following conditions are true: <br><br>- No more messages in the session are available to read. <br>- The session lock no longer needs to be renewed so that the current workflow instance can finish. <br><br>For details, see [Initialize the session](#initialize-session). |
-| **`Try`** | This [**Scope** action](../logic-apps/logic-apps-control-flow-run-steps-group-scopes.md) contains the actions that run to process a message. If a problem happens in the `Try` scope, the subsequent `Catch` **Scope** action handles that problem. For more information, see [Try scope](#try-scope). |
-| **`Catch`**| This [**Scope** action](../logic-apps/logic-apps-control-flow-run-steps-group-scopes.md) contains the actions that run if a problem happens in the preceding `Try` scope. For more information, see [Catch scope](#catch-scope). |
+| **When messages are received in a queue (peek-lock)** | This Service Bus trigger waits to receive messages from a Service Bus queue. If a message exists in the queue, the trigger fires and runs a workflow instance. <br><br>The term *peek-lock* means that the trigger sends a request to retrieve a message from the queue. If a message exists, the trigger retrieves and locks the message so that no other processing happens on that message until the lock period expires. For more information, see [Initialize the session](#initialize-session). |
+| **Initialize Process Complete Flag** | This [**Initialize variable** action](logic-apps-create-variables-store-values.md#initialize-variable) creates a Boolean variable with its value set to `false`. The variable indicates when the following conditions are true: <br><br>- No more messages in the session are available to read. <br>- The session lock no longer needs to be renewed so that the current workflow instance can finish. <br><br>For more information, see [Initialize the session](#initialize-session). |
+
+
+| **Scope** | This [**Scope** action](logic-apps-control-flow-run-steps-group-scopes.md) contains the actions that run to process a message. If a problem happens in this scope, the subsequent actions outside this **Scope** action handles that problem. For more information, see [Scope](#try-scope). |
+
+| **`Catch`**| This [**Scope** action](logic-apps-control-flow-run-steps-group-scopes.md) contains the actions that run if a problem happens in the preceding `Try` scope. For more information, see [Catch scope](#catch-scope). |
+
+### [Consumption](#tab/consumption)
+
+| Name | Description |
+|------|-------------|
+| **When one or more messages are received in a queue (peek-lock)** | Based on the specified recurrence, this Service Bus trigger checks the specified Service Bus queue for any messages. If a message exists in the queue, the trigger fires, which creates and runs a workflow instance. <br><br>The term *peek-lock* means that the trigger sends a request to retrieve a message from the queue. If a message exists, the trigger retrieves and locks the message so that no other processing happens on that message until the lock period expires. For details, [Initialize the session](#initialize-session). |
 
 <a name="try-scope"></a>
 
@@ -119,9 +258,9 @@ Here's the top-level flow in the `Try` [scope action](../logic-apps/logic-apps-c
 
 | Name | Description |
 |------|-------------|
-| **`Send initial message to topic`** | You can replace this action with whatever action that you want to handle the first message from the session in the queue. The session ID specifies the session. <br><br>For this template, a Service Bus action sends the first message to a Service Bus topic. See [Handle the initial message](#handle-initial-message). |
+| **Send initial message to topic** | You can replace this action with whatever action that you want to handle the first message from the session in the queue. The session ID specifies the session. <br><br>For this template, a Service Bus action sends the first message to a Service Bus topic. See [Handle the initial message](#handle-initial-message). |
 | (parallel branch) | This [parallel branch action](../logic-apps/logic-apps-control-flow-branches.md) creates two paths: <br><br>- Branch #1: Continue processing the message. For more information, see [Branch #1: Complete initial message in queue](#complete-initial-message). <br><br>- Branch #2: Abandon the message if something goes wrong, and release for pickup by another trigger run. For more information, see [Branch #2: Abandon initial message from queue](#abandon-initial-message). <br><br>Both paths join up later in the **Close session in a queue and succeed** action, described in the next row. |
-| **`Close a session in a queue and succeed`** | This Service Bus action joins the previously described branches and closes the session in the queue after either of the following events happen: <br><br>- The workflow finishes processing available messages in the queue. <br>- The workflow abandons the initial message because something went wrong. <br><br>For details, see [Close a session in a queue and succeed](#close-session-succeed). |
+| **Close a session in a queue and succeed** | This Service Bus action joins the previously described branches and closes the session in the queue after either of the following events happen: <br><br>- The workflow finishes processing available messages in the queue. <br>- The workflow abandons the initial message because something went wrong. <br><br>For details, see [Close a session in a queue and succeed](#close-session-succeed). |
 
 <a name="complete-initial-message"></a>
 
@@ -129,22 +268,22 @@ Here's the top-level flow in the `Try` [scope action](../logic-apps/logic-apps-c
 
 | Name | Description |
 |------|-------------|
-| `Complete initial message in queue` | This Service Bus action marks a successfully retrieved message as complete and removes the message from the queue to prevent reprocessing. For details, see [Handle the initial message](#handle-initial-message). |
-| `While there are more messages for the session in the queue` | This [**Until** loop](../logic-apps/logic-apps-control-flow-loops.md#until-loop) continues to get messages while messages exist or until one hour passes. For more information about the actions in this loop, see [While there are more messages for the session in the queue](#while-more-messages-for-session). |
-| **`Set isDone = true`** | When no more messages exist, this [**Set variable** action](../logic-apps/logic-apps-create-variables-store-values.md#set-variable) sets `isDone` to `true`. |
-| **`Renew session lock until cancelled`** | This [**Until** loop](../logic-apps/logic-apps-control-flow-loops.md#until-loop) makes sure that the session lock is held by this logic app while messages exist or until one hour passes. For more information about the actions in this loop, see [Renew session lock until cancelled](#renew-session-while-messages-exist). |
+| **Complete the message in a queue** | This Service Bus action marks a successfully retrieved message as complete and removes the message from the queue to prevent reprocessing. For more information, see [Handle the initial message](#handle-initial-message). |
+| **While there are more messages for the session in the queue` | This [**Until** loop](../logic-apps/logic-apps-control-flow-loops.md#until-loop) continues to get messages while messages exist or until one hour passes. For more information about the actions in this loop, see [While there are more messages for the session in the queue](#while-more-messages-for-session). |
+| **Set isDone = true** | When no more messages exist, this [**Set variable** action](../logic-apps/logic-apps-create-variables-store-values.md#set-variable) sets `isDone` to `true`. |
+| **Renew lock on a message until cancelled`** | This [**Until** loop](../logic-apps/logic-apps-control-flow-loops.md#until-loop) makes sure that the session lock is held by this logic app while messages exist or until one hour passes. For more information about the actions in this loop, see [Renew session lock until cancelled](#renew-session-while-messages-exist). |
 
 <a name="abandon-initial-message"></a>
 
 #### Branch #2: Abandon initial message from the queue
 
-If the action that handles the first message fails, the Service Bus action, **Abandon initial message from the queue**, releases the message for another workflow instance run to pick up and process. For details, see [Handle the initial message](#handle-initial-message).
+If the action that handles the first message fails, the Service Bus action named **Abandon the message in a queue** releases the message for another workflow instance run to pick up and process. For more information, see [Handle the initial message](#handle-initial-message).
 
 <a name="catch-scope"></a>
 
 ### "Catch" scope
 
-If actions in the `Try` scope fail, the logic app must still close the session. The `Catch` [scope action](../logic-apps/logic-apps-control-flow-run-steps-group-scopes.md) runs when the `Try` scope action results in the status, `Failed`, `Skipped`, or `TimedOut`. The scope returns an error message that includes the session ID where the problem happened, and terminates the logic app.
+If actions in the `Try` scope fail, the workflow must still close the session. The `Catch` [scope action](../logic-apps/logic-apps-control-flow-run-steps-group-scopes.md) runs when the `Try` scope action results in the status, `Failed`, `Skipped`, or `TimedOut`. The scope returns an error message that includes the session ID where the problem happened, and terminates the logic app.
 
 Here's the top-level flow in the `Catch` scope action when the details are collapsed:
 
@@ -161,7 +300,7 @@ Here's the top-level flow in the `Catch` scope action when the details are colla
 
 ## Complete the template
 
-To provide the values for the trigger and actions in the **Correlated in-order delivery using service bus sessions** template, follow these steps. You have to provide all the required values, which are marked by an asterisk (**\***), before you can save your workflow.
+To provide the values for the trigger and actions in the **Azure Service Bus: Process related messages from a session-enabled queue for the same workflow instance - Sequential convoy pattern** template, follow these steps. You have to provide all the required values, which are marked by an asterisk (**\***), before you can save your workflow.
 
 <a name="initialize-session"></a>
 
@@ -172,6 +311,7 @@ To provide the values for the trigger and actions in the **Correlated in-order d
   :::image type="content" source="./media/send-related-messages-sequential-convoy/service-bus-check-message-peek-lock-trigger.png" alt-text="Screenshot shows the Service Bus trigger details for When a message is received in a queue (peek-lock).":::
 
   > [!NOTE]
+  >
   > Initially, the polling interval is set to three minutes so that the logic app doesn't run more frequently than you expect and result in unanticipated billing charges. Ideally, set the interval and frequency to 30 seconds so that the logic app triggers immediately when a message arrives.
 
   | Parameter | Required for this scenario | Value | Description |
@@ -400,6 +540,6 @@ After you complete customizing the template, you can save your logic app. On the
 
 To test your logic app, send messages to your Service Bus queue. 
 
-## Next step
+## Related content
 
-- Learn more about the [Service Bus connector's triggers and actions](/connectors/servicebus/)
+- [Service Bus connector operations](/connectors/servicebus/)
