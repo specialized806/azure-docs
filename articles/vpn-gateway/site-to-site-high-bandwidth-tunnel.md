@@ -97,7 +97,7 @@ To ensure predictable routing, advertise different on-premises IP network prefix
 
 **Option 2 – Route precedence using more specific network prefixes**
 
-Advertise more specific (longer subnet masks) on‑premises IP network prefixes over the IPsec tunnels than the on-premises prefixes you advertise over the ExpressRoute circuit. Because Azure and on‑premises routers both select routes based on longest prefix match (LPM), these more specific prefixes learned through the IPsec tunnel will take precedence over the less specific prefixes learned through ExpressRoute. This ensures that traffic destined for those networks follows the encrypted IPsec path rather than the unencrypted ExpressRoute path.
+Advertise more specific (longer subnet masks) on‑premises IP network prefixes over the IPsec tunnels than the on-premises prefixes you advertise over the ExpressRoute circuit. Because Azure and on‑premises devices both select routes based on longest prefix match (LPM), these more specific prefixes learned through the IPsec tunnel will take precedence over the less specific prefixes learned through ExpressRoute. This ensures that traffic destined for those networks follows the encrypted IPsec path rather than the unencrypted ExpressRoute path.
 
 These considerations apply regardless of whether static or dynamic routing is used for the IPsec tunnels.
 
