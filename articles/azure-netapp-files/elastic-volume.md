@@ -63,7 +63,7 @@ Learn how to create an NFS volume for the Elastic zone-redundant storage.
 1. Return to the **Volume** menu then select your volume to view it. 
 
     >[!NOTE]
-    >You can't perform any operations on the volume until it has created successfully.
+    >You can't perform any operations on the volume until the volume creates successfully.
 
 ## Resize a volume 
 

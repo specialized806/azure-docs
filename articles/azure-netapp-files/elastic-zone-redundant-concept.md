@@ -84,7 +84,7 @@ GET https://management.azure.com/subscriptions/{subscriptionId}/providers/Micros
 >[!IMPORTANT]
 >Elastic zone-redundant storage has [dedicated endpoints](#api-endpoints). Workflows for this service level are different than other service levels. Ensure you follow the correct guidelines for your service level. 
 
-| Feature | Flexible, Standard, Premium, and Ultra service levels | Elastic service level | 
+| Feature | Flexible, Standard, Premium, and Ultra service levels | Elastic zone-redundant service level | 
 | - | - | - | 
 | Performance | High performance storage optimized for enterprise workloads | Optimized for lower-performance NAS workloads | 
 | Data management | Snapshots, cross-zone and cross-region replication, backups | Snapshots and backups | 
@@ -92,14 +92,14 @@ GET https://management.azure.com/subscriptions/{subscriptionId}/providers/Micros
 | Integrated backup | Integrated backup and recovery | Limited backup and recovery | 
 | Price | Premium pricing for enterprise features | Cost-optimized for smaller workloads |
 
-<!-- for a comparison of features, between service levels, see, comparison -->
+To see which features the Elastic zone-redundant service level offers, see [Supported features](#supported-features).
 
 ### API endpoints
 
-New API endpoints have been introduced that are specific to the Elastic service level. Consult the table for the different endpoints:
+The Elastic zone-redundant service level has dedicated API endpoints. This table identifies the different endpoints for service levels. 
 
-| Resource type | Elastic endpoint | Flexible, Standard, Premium, and Ultra endpoint |
-| - | -- | -- |
+| Resource type | Elastic zone-redundant endpoint | Flexible, Standard, Premium, and Ultra endpoint |
+|-|---|---|
 | Accounts | elasticAccounts | netAppAccounts |
 | Active Directory | /activeDirectoryConfigs
 | Backups | /elasticAccounts/{accountName}/elasticBackupVaults/{vaultName}/elasticBackups | /netAppAccounts/{accountName}/backupVaults/{vaultName}/backups |
@@ -117,15 +117,13 @@ For more detailed information, see [Azure NetApp Files REST API](/rest/api/netap
 
 ## Supported features 
 
-Elastic zone-redundant storage requires the use of [availability zones](../reliability/reliability-netapp-files.md). The service level also supports:
+Elastic zone-redundant storage requires the use of [availability zones](../reliability/reliability-netapp-files.md). Not all features int he Flexible, Standard, Premium, and Ultra services levels are supported with Elastic zone-redundant storage. 
+
+The Elastic zone-redundant service level supports:
 
 * [Azure NetApp Files backup](backup-introduction.md)
 * [Customer-managed keys](configure-customer-managed-keys.md)
 * [Snapshots](snapshots-introduction.md)
-
-<!-- SMB CA shares, other SMB features -->
-<!-- migration assistant, cool access -->
-<!-- short term clones -->
 
 ## Next steps 
 
