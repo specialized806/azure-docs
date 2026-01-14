@@ -1,7 +1,7 @@
 ---
-title: Use AI agent configuration in a Python console app
+title: How to use Agent Framework in a Python app with Azure App Configuration
 titleSuffix: Azure App Configuration
-description: Learn how to store agent configuration in Azure App Configuration.
+description: Learn how to use Agent Framework in a Python app with Azure App Configuration.
 ms.service: azure-app-configuration
 author: MaryanneNjeri
 ms.author: mgichohi

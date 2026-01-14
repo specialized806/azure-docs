@@ -54,7 +54,7 @@ For more details about models provided by Google, see the [Gemini models documen
 
 ## Agent framework 
 
-Agent framework is a comprehensive multi-language framework for building, orchestrating and deploying AI agents with support for both .NET and Python. This framework provides everything from simple chat agents to complex multi-agents workflows. For more information, refer to the [Microsoft Agent Framework documentation](/agent-framework/overview/agent-framework-overview).
+Agent framework is a comprehensive multi-language framework for building, orchestrating and deploying AI agents with support for both .NET and Python. This framework provides everything from simple chat agents to complex multi-agents workflows. For more information, refer to the [Microsoft Agent Framework documentation](/agent-framework/overview/agent-framework-overview). To see how App Configuration can help configure Agent Framework applications, visit the [getting started](./howto-ai-agent-config.md) guide
 
 ## Next steps
 

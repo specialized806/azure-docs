@@ -1,6 +1,6 @@
 ---
-title: AI agent configuration in Azure App Configuration
-description: Introduction to AI agent configuration support using App Configuration
+title: Configuring agents in Agent framework with Azure App Configuration
+description: Learn how to configure agents in Agent framework with Azure App Configuration
 author: MaryanneNjeri
 ms.author: mgichohi
 ms.topic: how-to
@@ -10,7 +10,7 @@ ms.update-cycle: 180-days
 ms.collection: ce-skilling-ai-copilot
 ---
 
-# Configuring agents in Agent framework with Azure App configuration
+# Configuring agents in Agent framework with Azure App Configuration
 
 Agents are software systems that autonomously perform tasks using Large Language Models (LLMs) to process user input and execute actions on behalf of users. Agent framework provides tools and structures to build, orchestrate, and manage AI agents. Configuring agents within this framework involves defining their instructions and toolsets through either code-based or declarative methods. Azure App Configuration serves as a centralized store for these agent configurations, keeping them in one place where they can be easily managed and shared across multiple application instances.
 
