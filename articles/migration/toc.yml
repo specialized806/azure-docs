@@ -10,8 +10,6 @@ items:
     items:
     - name: Getting started
       href: ./migrate-from-aws.yml
-#    - name: Migrate a workload
-#      href: ./migrate-a-workload-from-aws.md
     - name: Workload migration guide
       items:
       - name: Introduction
