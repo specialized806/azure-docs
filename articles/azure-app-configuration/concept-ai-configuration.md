@@ -52,6 +52,10 @@ Chat completion is an AI capability that produces human-like dialogue responses 
 Azure OpenAI Service supports a diverse set of models from OpenAI. For more information, see [Azure OpenAI Service models](/azure/ai-services/openai/concepts/models). To learn more about models from Anthropic, refer to the [Claude models documentation](https://docs.anthropic.com/docs/about-claude/models/overview).  
 For more details about models provided by Google, see the [Gemini models documentation](https://ai.google.dev/gemini-api/docs/models).
 
+## Agent framework 
+
+Agent framework is a comprehensive multi-language framework for building, orchestrating and deploying AI agents with support for both .NET and Python. This framework provides everything from simple chat agents to complex multi-agents workflows. For more information, refer to the [Microsoft Agent Framework documentation](/agent-framework/overview/agent-framework-overview).
+
 ## Next steps
 
 Continue to the following instructions to use AI configuration in your application:
