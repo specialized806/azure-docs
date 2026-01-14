@@ -131,7 +131,7 @@ As shown in the following diagram, the architectural difference in a dedicated h
 
 As shown in the following diagram, the architectural difference in a managed service solution is that each tenant's infrastructure is also physically separate from other tenants' infrastructure. This scenario usually exists when the tenant owns the infrastructure and wants a solution provider to manage disaster recovery.
 
-:::image type="content" source="./media/vmware-azure-multi-tenant-overview/managed-service-scenario.png" alt-text="Diagram that shows architecture shared HSP.":::
+:::image type="content" source="./media/vmware-azure-multi-tenant-overview/managed-service-scenario.png" alt-text="Diagram that shows architecture.":::
 
 **Managed service scenario with multiple vCenters**
 
