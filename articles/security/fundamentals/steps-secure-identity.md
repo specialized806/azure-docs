@@ -76,7 +76,7 @@ Smart lockout helps lock out bad actors that try to guess your users' passwords 
 
 Given the pervasiveness of password compromise, minimizing the attack surface in your organization is critical. Disable the use of older, less secure protocols, limit access entry points, moving to cloud authentication, exercise more significant control of administrative access to resources, and embrace Zero Trust security principles.
 
-### Use cloud authentication
+### Use Cloud Authentication
 
 Credentials are a primary attack vector. The practices in this blog can reduce the attack surface by using cloud authentication, deploy MFA, and use passwordless authentication methods. You can deploy passwordless methods such as Windows Hello for Business, Phone Sign-in with the Microsoft Authenticator App or FIDO. 
 
@@ -107,7 +107,7 @@ Another Zero Trust pillar is the need to minimize the likelihood a compromised a
 
 Privileged roles in Microsoft Entra ID should be cloud only accounts in order to isolate them from any on-premises environments and don’t use on-premises password vaults to store the credentials.
 
-### Implement privilege access management
+### Implement Privilege Access Management
 
 Privileged Identity Management (PIM) provides a time-based and approval-based role activation to mitigate the risks of excessive, unnecessary, or misused access permissions to important resources. These resources include resources in Microsoft Entra ID, Azure, and other Microsoft Online Services such as Microsoft 365 or Microsoft Intune.
 

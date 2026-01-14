@@ -20,7 +20,7 @@ Azure Virtual Machines lets you deploy a wide range of computing solutions in an
 
 Azure VMs provide the flexibility of virtualization without buying and maintaining physical hardware. You can build and deploy applications with the assurance that your data is protected in highly secure datacenters.
 
-With Azure, you can build security-enhanced, compliant solutions that:
+By using Azure, you can build security-enhanced, compliant solutions that:
 
 * Protect virtual machines from viruses and malware
 * Encrypt sensitive data
@@ -38,7 +38,7 @@ Trusted launch provides:
 * **vTPM (virtual Trusted Platform Module)**: A dedicated secure vault for keys and measurements that enables attestation and boot integrity verification
 * **Boot Integrity Monitoring**: Uses attestation through Microsoft Defender for Cloud to verify boot chain integrity and alert on failures
 
-Trusted launch can be enabled on existing VMs and Virtual Machine Scale Sets. For more information, see [Trusted launch for Azure virtual machines](/azure/virtual-machines/trusted-launch).
+You can enable trusted launch on existing VMs and Virtual Machine Scale Sets. For more information, see [Trusted launch for Azure virtual machines](/azure/virtual-machines/trusted-launch).
 
 ## Confidential computing
 
@@ -46,10 +46,10 @@ Trusted launch can be enabled on existing VMs and Virtual Machine Scale Sets. Fo
 
 Confidential VMs provide:
 
-* **Hardware-based isolation**: Between virtual machines, hypervisor, and host management code
-* **Confidential OS disk encryption**: Binds disk encryption keys to the VM's TPM, making disk content accessible only to the VM
-* **Secure key release**: Cryptographic binding between platform attestation and VM encryption keys
-* **Attestation**: Customizable policies to ensure host compliance before deployment
+* **Hardware-based isolation**: Between virtual machines, hypervisor, and host management code.
+* **Confidential OS disk encryption**: Binds disk encryption keys to the VM's TPM, making disk content accessible only to the VM.
+* **Secure key release**: Cryptographic binding between platform attestation and VM encryption keys.
+* **Attestation**: Customizable policies to ensure host compliance before deployment.
 
 For more information, see [Azure confidential VMs](/azure/confidential-computing/confidential-vm-overview).
 
@@ -61,9 +61,9 @@ Azure provides several encryption options for managed disks:
 
 - **Server-side encryption (SSE)**: Also called encryption at rest or Azure Storage encryption, SSE is always enabled and automatically encrypts data on Azure managed disks (OS and data disks) when persisting to storage clusters. Data is encrypted transparently using 256-bit AES encryption, which is FIPS 140-2 compliant. SSE doesn't impact disk performance and has no extra cost. However, SSE doesn't encrypt temp disks or disk caches.
 
-- **Encryption at host**: Enhances SSE by encrypting temp disks and disk caches at rest, with data flowing encrypted to storage clusters. This provides end-to-end encryption for your VM data. Encryption at host doesn't use your VM's CPU and doesn't impact performance. Temp disks and ephemeral OS disks are encrypted with platform-managed keys. OS and data disk caches are encrypted with either customer-managed or platform-managed keys, depending on the disk encryption type.
+- **Encryption at host**: Enhances SSE by encrypting temp disks and disk caches at rest, with data flowing encrypted to storage clusters. This encryption provides end-to-end encryption for your VM data. Encryption at host doesn't use your VM's CPU and doesn't impact performance. Temp disks and ephemeral OS disks are encrypted with platform-managed keys. OS and data disk caches are encrypted with either customer-managed or platform-managed keys, depending on the disk encryption type.
 
-- **Confidential disk encryption**: For confidential VMs, this binds disk encryption keys to the VM's TPM, making protected disk content accessible only to the VM.
+- **Confidential disk encryption**: For confidential VMs, this encryption binds disk encryption keys to the VM's TPM, making protected disk content accessible only to the VM.
 
 By default, managed disks use platform-managed keys with no additional configuration required. For customer-managed keys, you can use Azure Key Vault, Azure Key Vault Managed HSM, or Azure Cloud HSM to control and manage your own encryption keys.
 
@@ -73,17 +73,17 @@ For more information, see [Overview of managed disk encryption options](/azure/v
 
 [Azure Key Vault](/azure/key-vault/general/overview) provides secure storage for cryptographic keys, secrets, and certificates. Azure offers multiple key management solutions with different security levels:
 
-- **Azure Key Vault Standard**: FIPS 140-2 Level 1 validated, multitenant service with software-protected keys
-- **Azure Key Vault Premium**: FIPS 140-3 Level 3 validated, multitenant service with HSM-protected keys
-- **Azure Key Vault Managed HSM**: FIPS 140-3 Level 3 validated, single-tenant service that provides full customer control over the HSM and key sovereignty
+- **Azure Key Vault Standard**: FIPS 140-2 Level 1 validated, multitenant service with software-protected keys.
+- **Azure Key Vault Premium**: FIPS 140-3 Level 3 validated, multitenant service with HSM-protected keys.
+- **Azure Key Vault Managed HSM**: FIPS 140-3 Level 3 validated, single-tenant service that provides full customer control over the HSM and key sovereignty.
 
 For virtual machines, these services can store:
 
-- **Disk encryption keys**: Customer-managed keys for encrypting managed disks through disk encryption sets
-- **SQL Server encryption keys**: Keys for [transparent data encryption](/sql/relational-databases/security/encryption/transparent-data-encryption) on SQL Server VMs
-- **Application secrets**: Keys and secrets used by applications running on your VMs
+- **Disk encryption keys**: Customer-managed keys for encrypting managed disks through disk encryption sets.
+- **SQL Server encryption keys**: Keys for [transparent data encryption](/sql/relational-databases/security/encryption/transparent-data-encryption) on SQL Server VMs.
+- **Application secrets**: Keys and secrets used by applications running on your VMs.
 
-Permissions and access to protected items are managed through [Microsoft Entra ID](/entra/fundamentals/whatis). You can audit key usage and retain full control over your encryption keys.
+You manage permissions and access to protected items through [Microsoft Entra ID](/entra/fundamentals/whatis). You can audit key usage and retain full control over your encryption keys.
 
 For more information, see [What is Azure Key Vault?](/azure/key-vault/general/overview), [What is Azure Key Vault Managed HSM?](/azure/key-vault/managed-hsm/overview), and [Key management in Azure](key-management.md).
 
