@@ -1,5 +1,5 @@
 ---
-title: Run the Deployment planner and generate a report for Hyper-V disaster recovery
+title: Run the deployment planner and generate a report for Hyper-V disaster recovery
 description: This article describes how to run the Azure Site Recovery Deployment Planner and generate reports for Hyper-V disaster recovery to Azure.
 author: Jeronika-MS
 ms.service: azure-site-recovery
@@ -11,7 +11,7 @@ ms.custom: sfi-image-nochange
 # Customer intent: "As an IT administrator, I want to run the Hyper-V Deployment Planner tool to profile virtual machines and generate reports, so that I can calculate the bandwidth and storage requirements for disaster recovery to Azure."
 ---
 
-# Run the Deployment planner and generate a cost report for Hyper-V disaster recovery
+# Run the deployment planner and generate a cost report for Hyper-V disaster recovery
 
 You can run the Site Recovery deployment planner command-line tool (ASRDeploymentPlanner.exe) in any of these four modes: 
 -	[Get the virtual machine (VM) list](#get-the-vm-list-for-profiling-hyper-v-vms)

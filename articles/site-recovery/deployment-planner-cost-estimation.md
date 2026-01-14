@@ -1,7 +1,7 @@
 ---
-title: About Azure Site Recovery Deployment Planner
+title: About Azure Site Recovery deployment planner
 ms.reviewer: v-gajeronika
-description: This guide outlines the features and capabilities of the Azure Site Recovery Deployment Planner.
+description: This guide outlines the features and capabilities of the Azure Site Recovery deployment planner.
 services: site-recovery
 author: Jeronika-MS
 ms.service: azure-site-recovery
@@ -10,9 +10,9 @@ ms.date: 01/12/2026
 ms.author: v-gajeronika
 ---
 
-# About Azure Site Recovery Deployment Planner
+# About Azure Site Recovery deployment planner
 
-This guide outlines the capabilities of the Azure Site Recovery Deployment Planner.
+This guide outlines the capabilities of the Azure Site Recovery deployment planner.
 
 >[!Note]
 >The current version of Deployment planner tool v2.5 provides cost estimation for virtual machines replicating to Managed Disks.
@@ -33,7 +33,7 @@ The tool generates a macro-enabled Microsoft Excel file (XLSM file) as the repor
 
 To estimate the throughput that Azure Site Recovery can achieve from on-premises to Azure during replication, run the tool in GetThroughput mode. For more information, see get throughput for [Hyper-V VMs](hyper-v-deployment-planner-run.md#get-throughput) and [VMware VMs](site-recovery-vmware-deployment-planner-run.md#get-throughput).
 
-## Analyze the Azure Site Recovery Deployment Planner report
+## Analyze the Azure Site Recovery deployment planner report
 
 The summary worksheet provides an overview of the profiled environment. For more information, see Azure Site Recovery Deployment Planner for a [Hyper-V to Azure scenario](hyper-v-deployment-planner-analyze-report.md) and [VMware to Azure scenario](site-recovery-vmware-deployment-planner-analyze-report.md).
 

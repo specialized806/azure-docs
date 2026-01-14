@@ -15,7 +15,7 @@ ms.author: v-gajeronika
 
 The Azure Site Recovery Deployment Planner Report provides the cost estimation summary in [Recommendations](hyper-v-deployment-planner-analyze-report.md#recommendations) sheets and detailed cost analysis in the Cost Estimation sheet. It has the detailed cost analysis per VM. 
 
-[Generate](hyper-v-deployment-planner-run.md) and [analyse](hyper-v-deployment-planner-analyze-report.md) the cost report before you review the cost estimation summary.
+[Generate](hyper-v-deployment-planner-run.md) and [analyze](hyper-v-deployment-planner-analyze-report.md) the cost report before you review the cost estimation summary.
 
 ### Cost estimation summary 
 

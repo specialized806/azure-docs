@@ -14,7 +14,7 @@ ms.date: 01/12/2026
 
 The deployment planner report provides the cost estimation summary in [Recommendations](site-recovery-vmware-deployment-planner-analyze-report.md#recommendations) sheets and detailed cost analysis in Cost Estimation sheet. It has the detailed cost analysis per virtual machine. 
 
-[Generate](site-recovery-vmware-deployment-planner-run.md) and [analyse](site-recovery-vmware-deployment-planner-analyze-report.md) the cost report before you review the cost estimation summary.
+[Generate](site-recovery-vmware-deployment-planner-run.md) and [analyze](site-recovery-vmware-deployment-planner-analyze-report.md) the cost report before you review the cost estimation summary.
 
 >[!Note]
 >The current version of Deployment planner tool v2.5 provides cost estimation for virtual machines replicating to Managed Disks.
@@ -113,22 +113,22 @@ Cost duration:  You can view all costs either for the month or for the whole yea
 The table lists the cost breakup for each compatible virtual machine. 
 You can also use this table to get estimated Azure DR cost of nonprofiled virtual machines by manually adding virtual machines. It's useful in cases where you need to estimate Azure costs for a new disaster recovery deployment without detailed profiling being done.
 To manually add virtual machines: 
-1.	Click on the 'Insert row' button to insert a new row between the Start and End rows.
+1.	Select the **Insert row** button to insert a new row between the Start and End rows.
 
-2.	Fill the following columns based on approximate virtual machine size and number of virtual machines that match this configuration: 
+1.	Fill the following columns based on approximate virtual machine size and number of virtual machines that match this configuration: 
 
-* Number of virtual machines, IaaS size (Your selection)
-* Storage Type (Standard/Premium)
-* virtual machine total storage size (GB) of the source machine
-* Number of DR drills in a year 
-* Each DR drill duration (Days) 
-* OS Type
-* Data redundancy 
-* Azure Hybrid Benefit
+     * Number of virtual machines, IaaS size (Your selection)
+     * Storage Type (Standard/Premium)
+     * virtual machine total storage size (GB) of the source machine
+     * Number of DR drills in a year 
+     * Each DR drill duration (Days) 
+     * OS Type
+     * Data redundancy 
+     * Azure Hybrid Benefit
 
-1. You can apply the same value to all virtual machines in the table by clicking the **Apply to all** button for Number of DR-Drills in a year, Each DR-Drill duration (Days), Data redundancy, and Azure Hybrid Use Benefit.
+1. You can apply the same value to all virtual machines in the table by selecting the **Apply to all** button for Number of DR-Drills in a year, Each DR-Drill duration (Days), Data redundancy, and Azure Hybrid Use Benefit.
 
-1. Click **Recalculate cost** to update cost.
+1. Select **Recalculate cost** to update cost.
 
 **virtual machine Name**: The name of the virtual machine.
 
@@ -142,15 +142,15 @@ To manually add virtual machines:
 
 **virtual machine total storage size (GB)**: The total storage of the source virtual machine.
 
-**Number of DR-Drills in a year**: The number of times you perform DR-Drills in a year. By default, it's 4 times in a year. You can modify the period for specific virtual machines or apply the new value to all virtual machines by entering the new value on the top row and clicking the **Apply to all** button. Based on number of DR-Drills in a year and each DR-Drill duration period, the total DR-Drill cost is calculated.  
+**Number of DR-Drills in a year**: The number of times you perform DR-Drills in a year. By default, it's 4 times in a year. You can modify the period for specific virtual machines or apply the new value to all virtual machines by entering the new value on the top row and selecting the **Apply to all** button. Based on number of DR-Drills in a year and each DR-Drill duration period, the total DR-Drill cost is calculated.  
 
-**Each DR-Drill duration (Days)**: The duration of each DR-Drill. By default, it's 7 days every 90 days as per the [Disaster Recovery Software Assurance benefit](https://azure.microsoft.com/pricing/details/site-recovery). You can modify the period for specific virtual machines or you can apply a new value to all virtual machines by entering new value on the top row and clicking the **Apply to all** button. The total DR-Drill cost is calculated based on number of DR-Drills in a year and each DR-Drill duration period.
+**Each DR-Drill duration (Days)**: The duration of each DR-Drill. By default, it's 7 days every 90 days as per the [Disaster Recovery Software Assurance benefit](https://azure.microsoft.com/pricing/details/site-recovery). You can modify the period for specific virtual machines or you can apply a new value to all virtual machines by entering new value on the top row and selecting the **Apply to all** button. The total DR-Drill cost is calculated based on number of DR-Drills in a year and each DR-Drill duration period.
   
 **OS Type**: The OS type of the virtual machine. It's either Windows or Linux. If the OS type is Windows, then Azure Hybrid Use Benefit can be applied to that virtual machine. 
 
-**Data redundancy**: It can be one of the following - Locally redundant storage (LRS), Geo-redundant storage (GRS) or Read-access geo-redundant storage (RA-GRS). Default is LRS. You can change the type based on your storage account for specific virtual machines or you can apply the new type to all virtual machines by changing the type of the top row and clicking **Apply to all** button.  The cost of storage for replication is calculated based on the price of data redundancy that you have selected. 
+**Data redundancy**: It can be one of the following - Locally redundant storage (LRS), Geo-redundant storage (GRS) or Read-access geo-redundant storage (RA-GRS). Default is LRS. You can change the type based on your storage account for specific virtual machines or you can apply the new type to all virtual machines by changing the type of the top row and selecting **Apply to all** button.  The cost of storage for replication is calculated based on the price of data redundancy that you have selected. 
 
-**Azure Hybrid Benefit**: You can apply Azure Hybrid Benefit to Windows virtual machines if applicable.  Default is Yes. You can change the setting for specific virtual machines or update all virtual machines by clicking the **Apply to all** button.
+**Azure Hybrid Benefit**: You can apply Azure Hybrid Benefit to Windows virtual machines if applicable.  Default is Yes. You can change the setting for specific virtual machines or update all virtual machines by selecting the **Apply to all** button.
 
 **Total Azure consumption**: It includes compute, storage, and Azure Site Recovery license cost for your DR. Based on your selection, it shows the cost either monthly or yearly.
 
