@@ -29,7 +29,7 @@ Azure Bastion provides the following benefits:
 * **No bastion host management**: Azure Bastion is a fully managed platform PaaS service. You don't need to deploy, maintain, or harden a separate bastion host VM.
 * **Microsoft Entra ID authentication**: Supports identity-based authentication for both portal and native client connections, eliminating the need for local authentication methods.
 * **Simplified NSG management**: Configure your NSGs to allow RDP/SSH from Azure Bastion only, centralizing security at the network perimeter rather than on each VM.
-* **Centralized deployment**: Deploy Bastion once in a hub virtual network and use it to connect to VMs in peered virtual networks, reducing management overhead.
+* **Reduced management overhead**: Single deployment serves multiple virtual networks, reducing costs and administrative complexity.
 
 ## <a name="sku"></a>SKUs
 
@@ -60,15 +60,11 @@ Azure Bastion offers three deployment architectures:
 
 For detailed information about each architecture, deployment requirements, and network topology options, see [Bastion design and architecture](design-architecture.md).
 
-## Connection methods
+## Requirements
 
-Azure Bastion supports multiple connection methods:
+Deployment requirements vary by SKU. Developer uses shared infrastructure with no virtual network required. Basic, Standard, and Premium require a dedicated subnet (AzureBastionSubnet) and public IP address. Premium supports private-only deployment without a public IP.
 
-* **Browser-based connections**: Connect through the Azure portal using an HTML5 web client. Available for all SKU tiers. No additional client software required.
-* **Native client connections**: Connect using the SSH or RDP client already installed on your local computer. Available for Standard and Premium SKUs. Supports Microsoft Entra ID authentication and file transfer.
-* **Shareable links**: Create shareable links that allow users to connect to VMs without accessing the Azure portal. Available for Standard and Premium SKUs.
-
-For more information about connection methods and authentication options, see [About VM connections and features](vm-about.md).
+For complete requirements including subnet sizing and NSG rules, see [About Bastion configuration settings](configuration-settings.md).
 
 ## Key features
 
@@ -82,11 +78,16 @@ Azure Bastion includes the following key features:
 * **[Shareable links](shareable-link.md)**: Allow VM access without Azure portal login.
 * **[IP-based connections](connect-ip-address.md)**: Connect using IP address instead of VM name.
 
-## Requirements
+## Connection methods
 
-Deployment requirements vary by SKU. Developer uses shared infrastructure with no virtual network required. Basic, Standard, and Premium require a dedicated subnet (AzureBastionSubnet) and public IP address. Premium supports private-only deployment without a public IP.
+Azure Bastion supports multiple connection methods:
 
-For complete requirements including subnet sizing and NSG rules, see [About Bastion configuration settings](configuration-settings.md).
+* **Browser-based connections**: Connect through the Azure portal using an HTML5 web client. Available for all SKU tiers. No additional client software required.
+* **Native client connections**: Connect using the SSH or RDP client already installed on your local computer. Available for Standard and Premium SKUs. Supports Microsoft Entra ID authentication and file transfer.
+* **Shareable links**: Create shareable links that allow users to connect to VMs without accessing the Azure portal. Available for Standard and Premium SKUs.
+
+For more information about connection methods and authentication options, see [About VM connections and features](vm-about.md).
+
 
 ## What's new
 
