@@ -75,8 +75,6 @@ Some other capabilities for Microsoft Entra ID include:
 
 - Microsoft Entra ID enables SSO to SaaS applications, regardless of where they're hosted. Some applications are federated with Microsoft Entra ID, and others use password SSO. Federated applications can also support user provisioning and [password vaulting](/entra/identity/enterprise-apps/configure-password-single-sign-on-non-gallery-applications).
 
-- Access to data in [Azure Storage](https://azure.microsoft.com/services/storage/) is controlled via authentication. Each storage account has a primary key ([storage account key](../../storage/common/storage-account-create.md), or SAK) and a secondary secret key (the shared access signature, or SAS).
-
 - Microsoft Entra ID provides Identity as a Service through federation by using [Active Directory Federation Services](/windows-server/identity/ad-fs/deployment/how-to-connect-fed-azure-adfs), synchronization, and replication with on-premises directories.
 
 - [Microsoft Entra multifactor authentication](../../active-directory/authentication/concept-mfa-howitworks.md) requires users to verify sign-ins by using a mobile app, phone call, or text message. It can be used with Microsoft Entra ID to help secure on-premises resources by using the Multi-Factor Authentication Server, and also with custom applications and directories by using the SDK.
@@ -174,13 +172,11 @@ Any cross-VM attack involves two steps: placing an adversary-controlled VM on th
 
 ### The Azure fabric controller
 
-The Azure Fabric Controller allocates infrastructure resources to tenant workloads. It manages unidirectional communications from the host to virtual machines. The VM placing algorithm of the Azure fabric controller is highly sophisticated and nearly impossible to predict at the physical host level.
+The Azure Fabric Controller allocates infrastructure resources to tenant workloads and manages unidirectional communications from the host to virtual machines. The VM placing algorithm is highly sophisticated and nearly impossible to predict at the physical host level.
 
 ![The Azure Fabric Controller](./media/isolation-choices/azure-isolation-fig5.png)
 
-The Azure hypervisor enforces memory and process separation between virtual machines. It securely routes network traffic to guest OS tenants. This design eliminates the possibility of a side channel attack at the VM level.
-
-In Azure, the root VM is special: it runs a hardened operating system called the root OS that hosts a fabric agent (FA). FAs manage guest agents (GA) within guest operating systems on customer VMs. FAs also manage storage nodes.
+In Azure, the root VM runs a hardened operating system called the root OS that hosts a fabric agent (FA). FAs manage guest agents (GA) within guest operating systems on customer VMs and also manage storage nodes.
 
 The collection of Azure hypervisor, root OS/FA, and customer VMs/GAs comprises a compute node. A fabric controller (FC) manages FAs. The FC exists outside of compute and storage nodes. Separate FCs manage compute and storage clusters. If a customer updates their application’s configuration file while it’s running, the FC communicates with the FA. The FA contacts GAs, which notify the application of the configuration change. In the event of a hardware failure, the FC automatically finds available hardware and restarts the VM there.
 
@@ -256,13 +252,11 @@ Encryption in transit protects data when it's transmitted across networks. By us
 
 #### Encryption at rest
 
-For many organizations, data encryption at rest is a mandatory step towards data privacy, compliance, and data sovereignty. Three Azure features provide encryption of data that's "at rest":
+For many organizations, data encryption at rest is a mandatory step towards data privacy, compliance, and data sovereignty. Azure features that provide encryption of data at rest include:
 
 - [Storage Service Encryption](../../storage/blobs/security-recommendations.md) automatically encrypts data when writing it to Azure Storage.
-- [Client-side Encryption](../../storage/blobs/security-recommendations.md) also provides the feature of encryption at rest.
-- [Encryption at host](/azure/virtual-machines/disk-encryption) provides end-to-end encryption for VM data by default.
-
-For more information, see [Overview of managed disk encryption options](/azure/virtual-machines/disk-encryption-overview).
+- [Client-side Encryption](../../storage/blobs/security-recommendations.md) encrypts data before it's transferred into storage.
+- [Encryption at host](/azure/virtual-machines/disk-encryption) provides end-to-end encryption for VM data.
 
 #### Encryption at host
 
@@ -283,18 +277,15 @@ Key benefits of encryption at host:
 - **Customer-managed keys**: Optional integration with Azure Key Vault or Managed HSM for key control
 - **Platform-managed keys by default**: No additional configuration required for encryption
 
-For more information, see [Encryption at host](/azure/virtual-machines/disk-encryption#encryption-at-host---end-to-end-encryption-for-your-vm-data).
+For more information, see [Encryption at host](/azure/virtual-machines/disk-encryption#encryption-at-host---end-to-end-encryption-for-your-vm-data) and [Overview of managed disk encryption options](/azure/virtual-machines/disk-encryption-overview).
 
-## SQL database isolation
+## SQL Database isolation
 
-SQL Database is a relational database service in the Microsoft cloud based on the market-leading Microsoft SQL Server engine and capable of handling mission-critical workloads. SQL Database offers predictable data isolation at account level, geography / region based and based on networking— all with near-zero administration.
+[Microsoft SQL Database](/azure/azure-sql/database/single-database-create-quickstart) is a cloud-based relational database service built on the Microsoft SQL Server engine. It provides a highly available, scalable, multi-tenant database service with predictable data isolation at account level, geography/region based, and networking-based—all with near-zero administration.
 
-### SQL database application model
+### SQL Database application model
 
-[Microsoft SQL Database](/azure/azure-sql/database/single-database-create-quickstart) is a cloud-based relational database service built on SQL Server technologies. It provides a highly available, scalable, multi-tenant database service hosted by Microsoft in cloud.
-
-From an application perspective, SQL Database provides the following hierarchy:
-Each level has one-to-many containment of levels below.
+From an application perspective, SQL Database provides the following hierarchy, where each level has one-to-many containment of levels below.
 
 ![SQL Database Application Model](./media/isolation-choices/azure-isolation-fig10.png)
 
