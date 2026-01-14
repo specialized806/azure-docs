@@ -14,7 +14,7 @@ ms.collection:
 
 This step is the final step in the workload migration. Proceed after the evaluation phase is complete and you confirm that your workload operates as expected in Azure.
 
- :::image type="icon" source="images/goal.svg"::: The goal of this phase is to safely retire AWS dependencies, remove redundant resources, and complete the transition to Azure.
+ :::image type="icon" source="./images/goal.svg"::: The goal of this phase is to safely retire AWS dependencies, remove redundant resources, and complete the transition to Azure.
 
 > [!WARNING]
 >
