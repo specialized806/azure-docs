@@ -33,14 +33,14 @@ Azure Bastion provides the following benefits:
 
 ## <a name="sku"></a>SKUs
 
-Azure Bastion offers four SKU tiers to meet different requirements:
+Azure Bastion offers four SKU tiers:
 
-* **Developer**: Free tier using shared infrastructure, designed for development and testing. Supports one VM connection at a time and doesn't require a dedicated virtual network deployment. Available in select regions.
-* **Basic**: Dedicated deployment with fixed capacity of 2 instances, supporting 40 concurrent RDP or 80 concurrent SSH sessions. Ideal for production environments with predictable, moderate connection requirements.
-* **Standard**: Includes all Basic features plus advanced capabilities such as configurable host scaling (2-50 instances), native client support, shareable links, IP-based connections, custom ports, and file transfer. Supports up to 1,000 concurrent RDP or 2,000 concurrent SSH sessions at maximum scale.
-* **Premium**: Includes all Standard features plus session recording for compliance and audit requirements, and private-only deployment option (no public IP address on bastion host).
+* **Developer**: Free tier using shared infrastructure for development and testing. Supports one VM at a time. Available in select regions.
+* **Basic**: Dedicated deployment with fixed capacity for production environments with moderate connection requirements.
+* **Standard**: Includes all Basic features plus scalability and advanced features (native client, shareable links, IP-based connections, custom ports, file transfer).
+* **Premium**: Includes all Standard features plus session recording for compliance and private-only deployment (no public IP on bastion host).
 
-For a complete feature comparison across all SKU tiers, see [Choose the right Azure Bastion SKU](bastion-sku-comparison.md).
+For a complete feature comparison and capacity details, see [Choose the right Azure Bastion SKU](bastion-sku-comparison.md).
 
 ## <a name="architecture"></a>Architecture
 
