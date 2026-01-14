@@ -150,6 +150,8 @@ Isolated VM sizes have a hardware limited lifespan. Azure issues reminders 12 mo
 | Standard_M192ids_v2| March 31, 2027   |
 | Standard_M192idms_v2| March 31, 2027  |
 
+Customers can also choose to further subdivide the resources of these Isolated virtual machines by using [Azure support for nested virtual machines](https://azure.microsoft.com/blog/nested-virtualization-in-azure/).
+
 ### Dedicated hosts
 
 In addition to the isolated hosts described in the preceding section, Azure also offers dedicated hosts. Dedicated hosts in Azure is a service that provides physical servers that can host one or more virtual machines, and which are dedicated to a single Azure subscription. Dedicated hosts provide hardware isolation at the physical server level. No other VMs are placed on your hosts. You deploy dedicated hosts in the same datacenters and they share the same network and underlying storage infrastructure as other, non-isolated hosts. For more information, see the detailed overview of [Azure dedicated hosts](/azure/virtual-machines/dedicated-hosts).
