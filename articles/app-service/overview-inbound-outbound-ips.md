@@ -214,7 +214,7 @@ When using custom domains, you can configure DNS records to support IPv6:
 
 ## Outbound IPv6 support (preview)
 
-Azure App Service supports IPv6 for outbound traffic in public preview for both Windows and Linux sites. Public preview of outbound IPv6 support for multi-tenant apps is supported on all App Service plan SKUs, Functions Consumption, Functions Elastic Premium, and Logic Apps Standard.
+Azure App Service supports IPv6 for outbound traffic in public preview for both Windows and Linux sites. Public preview of outbound IPv6 support for multitenant apps is supported on all App Service plan SKUs, Functions Consumption, Functions Elastic Premium, and Logic Apps Standard.
 
 For more information on outbound IPv6 support, including how to enable it and platform-specific behavior, see [Announcing App Service Outbound IPv6 Support in Public Preview](https://techcommunity.microsoft.com/blog/appsonazureblog/announcing-app-service-outbound-ipv6-support-in-public-preview/4423368).
 
