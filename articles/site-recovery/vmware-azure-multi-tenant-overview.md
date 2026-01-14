@@ -86,13 +86,14 @@ Configure the configuration server with an account that has a special role assig
 
 | Object | Role | Remarks |
 | --- | --- | --- |
+| vCenter | Read-only |  |
 | vCenter | Read-only | Needed only to allow vCenter access for managing different objects. You can remove this permission if the account is never going to be provided to a tenant or used for any management operations on the vCenter. |
 | Datacenter | Azure_Site_Recovery |  |
 | Host and host cluster | Azure_Site_Recovery | Re-ensures that access is at the object level so that only accessible hosts have tenant VMs before failover and after failback. |
 | Datastore and datastore cluster | Azure_Site_Recovery | Same as preceding. |
-| Network |`Azure_Site_Recovery |  |
+| Network |Azure_Site_Recovery |  |
 | Management server | Azure_Site_Recovery | Includes access to all components (configuration server, process server, and master target server) outside the configuration server machine. |
-| Tenant VMs |`Azure_Site_Recovery | Ensures that any new tenant VMs of a particular tenant also get this access, or they can't be discovered through the Azure portal. |
+| Tenant VMs |Azure_Site_Recovery | Ensures that any new tenant VMs of a particular tenant also get this access, or they can't be discovered through the Azure portal. |
 
 The vCenter account access is now finished. This step fulfills the minimum permissions requirement to complete failback operations. You can also use these access permissions with your existing policies. Just modify your existing permissions set to include role permissions from step 2, which was previously described.
 

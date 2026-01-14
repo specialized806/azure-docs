@@ -117,7 +117,7 @@ The expiry date appears under **Configuration Server health**. For configuration
 1. *Follow this procedure only if certificates are already expired.* Sign in to the configuration server, go to `C:\ProgramData\ASR\home\svsystems\bin`, and run the `RenewCerts` executor tool as an administrator.
 1. A PowerShell execution window opens and triggers renewal of certificates. This process can take up to 15 minutes. Don't close the window until renewal is finished.
 
-:::image type="content" source="media/vmware-azure-manage-configuration-server/renew-certificates.png" alt-text="Screenshot that shows certificate renewal.":::
+   :::image type="content" source="media/vmware-azure-manage-configuration-server/renew-certificates.png" alt-text="Screenshot that shows certificate renewal.":::
 
 ## Reregister a configuration server in the same vault
 
@@ -291,14 +291,14 @@ You can optionally delete the configuration server by using PowerShell.
 > [!NOTE]
 > You can use the `-Force` option in `Remove-AzRecoveryServicesAsrFabric` for forced deletion of the configuration server.
 
-## Generate a configuration server passphrase
+## Generate configuration server passphrase
 
 1. Sign in to your configuration server, and then open a command prompt window as an administrator.
 1. To change the directory to the bin folder, run the command `cd %ProgramData%\ASR\home\svsystems\bin`.
 1. To generate the passphrase file, run `genpassphrase.exe -v > MobSvc.passphrase`.
 1. Your passphrase is stored in the file located at `%ProgramData%\ASR\home\svsystems\bin\MobSvc.passphrase`.
 
-## Refresh the configuration server
+## Refresh configuration server
 
 1. In the Azure portal, go to **Recovery Services Vault** > **Manage** > **Site Recovery Infrastructure** > **For VMware & Physical machines** > **Configuration Servers**.
 1. Select the configuration server that you want to refresh.
