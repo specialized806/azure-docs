@@ -18,7 +18,8 @@ Migrating a workload, especially if it's your first workload or if the workload 
 
 By using this guide and the right approach, you can migrate the workload confidently and be prepared to handle issues as the happen. 
 
-We covered that you will need:
+The guide covered the items that you'll need for success:
+
 - a concrete and well-thought-out plan
 - relevant stakeholders on board
 - a solid target architecture

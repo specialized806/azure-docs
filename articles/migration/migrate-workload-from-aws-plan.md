@@ -21,14 +21,12 @@ The planning phase consists of these steps:
 > * design a like-for-like architecture
 > * develop and document a migration plan
 
-:::image type="icon" source="images/goal.svg" alt-text="Goal  icon"::: The goal of the planning phase is to understand your existing AWS workload from a technical and business standpoint, so that you can confidently build a plan to replicate it in Azure.
+:::image type="icon" source="images/goal.svg" alt-text="Goal icon"::: The goal of the planning phase is to understand your existing AWS workload from a technical and business standpoint, so that you can confidently build a plan to replicate it in Azure.
 
 > [!IMPORTANT]
 > Take your time in the planning phase and follow the steps in order. Incomplete discovery or unclear migration objectives risk misaligned expectations and missed dependencies.
 
 ## Assess your AWS workload
-
-In order to build a comparable system in Azure, you first need to fully understand your current system. You'll need to evaluate it from multiple perspectives to ensure that you eventually design an Azure implementation that fulfills the needs of users, operators, developers, compliance, and business stakeholders to the same level it does today.
 
 In order to build a comparable system in Azure, you first need to fully understand your current system. You'll need to evaluate it from multiple perspectives to ensure that you eventually design an Azure implementation that fulfills the needs of users, operators, developers, compliance, and business stakeholders to the same level it does today.
 
@@ -52,18 +50,20 @@ To begin mapping your like-for-like architecture, first establish a solid founda
 
 To exchange data during the migration, you can use either Site-to-Site VPN or ExpressRoute with AWS Direct Connect. Relying on VPN is suitable for smaller or proof-of-concept migrations, while ExpressRoute with AWS Direct Connect is recommended for production-scale migrations or large data transfers. Consider using both for reliability. In that case, you use VPN for failover.
 
-:::image type="complex" source="./images/migrate-from-aws-connectivity.svg" alt-text="Diagram showing network connectivity between AWS and Azure clouds. " lightbox="./images/migrate-from-aws-connectivity.svg" border="false":::
+:::image type="complex" source="./images/migrate-from-aws-connectivity.svg" alt-text="Diagram showing network connectivity between AWS and Azure clouds." lightbox="./images/migrate-from-aws-connectivity.svg" border="false":::
+    Diagram showing network connectivity between AWS and Azure clouds. At the top, a DNS icon connects to two boxes: on the left, AWS Cloud with a Virtual Private Cloud (VPC); on the right, Azure Cloud with a Virtual Network (VNet). A bidirectional arrow between the boxes is labeled Site-to-Site VPN and Direct Connect + ExpressRoute, indicating secure connectivity options.
+:::image-end:::
  
 Learn more about how to [migrate networking from AWS](/azure/migration/migrate-networking-from-aws).
 
 After planning your networking, follow these steps:
 
 1. **Identify Azure services:** Use the [AWS to Azure resource comparison guide](/azure/architecture/aws-professional) to help you narrow down choices for your workload's Azure components. Build proof of concepts (POCs) to gain confidence or help make decision on candidate components and their configuration. When you select your components, refer to the [Azure Well Architected Service Guides](/azure/well-architected/service-guides/). This will ensure your like-for-like architecture is not just functionally equivalent but also optimized for Azure’s platform characteristics and best practices.
-2. **Plan identity management:** Plan how identity and access will be handled in Azure for both end-users and for workload operations. If your workload uses AWS IAM roles or federated identity providers, determine how these roles translate to Entra ID (formerly Azure AD) roles, managed identities, or service principals. Review any hardcoded ARNs, IAM policies, or identity integrations in the application. If you overlook identity mapping, it can lead to post-migration access issues or broken integrations. Integrating with third-party identity providers are a key challenge during migrations. If possible, consolidate identity management by transitioning to Entra ID. 
+2. **Plan identity management:** Plan how identity and access will be handled in Azure for both end-users and for workload operations. If your workload uses AWS IAM roles or federated identity providers, determine how these roles translate to Entra ID (formerly Azure AD) roles, managed identities, or service principals. Review any hardcoded ARNs, IAM policies, or identity integrations in the application. If you overlook identity mapping, it can lead to post-migration access issues or broken integrations. Integrating with third-party identity providers are a key challenge during migrations. If possible, consolidate identity management by transitioning to Entra ID.
 3. **Document your migration decisions:** Document the resources that you don't migrate and any architecture decisions you make. 
 4. **Reduce risks:** Identify any high-risk components or flows and build proof of concepts (POCs) as needed to test and mitigate those risks. Perform [failure mode analysis](/azure/well-architected/reliability/failure-mode-analysis) on your selected components to proactively uncover potential points of failure and assess their impact on the reliability of your workload. Your Azure components might have new failure modes or fail differently than their counterpart does in AWS.
 5. **Check availability:** Check Azure service availability and capacity in your preferred region, specifically if you plan to use specialized resource types. When selecting your target region, aim to align it closely with your current AWS region. Migrating to a geographically similar Azure region helps maintain consistent latency.
-6. **Validate requirements:** If you decide to use Azure Migrate, review the [Azure Migrate support matrix](/azure/migrate/migrate-support-matrix-physical) to ensure your AWS instances meet OS and configuration requirements. If you're not using Azure Migrate, perform a manual validation of your workload’s compatibility with Azure services. This includes verifying supported operating systems, VM sizes, disk configurations, and network dependencies.
+6. **Validate requirements:** If you decide to use Azure Migrate, review the [Azure Migrate support matrix](/azure/migrate/migrate-support-matrix-physical) to ensure your AWS instances meet OS and configuration requirements. If you're not using Azure Migrate, perform a manual validation of your workload's compatibility with Azure services. This includes verifying supported operating systems, VM sizes, disk configurations, and network dependencies.
 7. **Compliance and security:** Ensure you meet your security requirements in your Azure implementation. Ensure your Azure implementation matches security expectations such as OS security patching, network isolation, ingress and egress inspection, least-privileged access, static code analysis, and penetration testing schedules.
 
    In addition to maintaining an identical security posture in your workload, you'll also want to ensure that any temporary infrastructure, network connections, and processes that are created to facilitate the migration are also meeting security expectations. Migrations can be a chaotic period of time in a workload, don't let an oversight or shortcut in security during the migration lead to an incident.
@@ -92,11 +92,17 @@ To keep the risk low and rollback easy, a blue/green approach is recommended. In
 
 In the blue/green scenario, you plan a migration window, run your workload in AWS as normal throughout the migration, and move traffic over to Azure after a successful dry run. Both environments run in parallel throughout the migration, so you can shift traffic back to AWS if issues arise in the Azure environment. In this case, you also need a rollback strategy for state that might have changed. Be sure to consider databases and less obvious state, such as unprocessed items in message queues.
 
-If your workload is more complex and you want to minimize risk, you can combine blue/green with a canary approach for switching over traffic. With a canary approach you gradually route a small percentage of traffic to the new environment, then increase incrementally. Using a canary approach for traffic routing increases the complexity.
+If your workload is more complex and you want to minimize risk, you can combine blue/green with a canary approach for switching over traffic. With a canary approach you gradually route a small percentage of traffic to the new environment, then increase incrementally. Using a canary approach for traffic routing increases the complexity because live state needs to exist in both AWS and Azure during the transition.
  
 If any components are going to co-exist on AWS while other components run on Azure, consider applying patterns such as the [Strangler Fig façade](/azure/architecture/patterns/strangler-fig) as part of a controlled cutover strategy. You'll implement these added layers of indirection in the next phase.
 
 There's a cost trade-off to the Blue/Green approach. You incur costs for both cloud providers during the transition. For most teams, the extra costs are worth taking on due to the reduction of risk and operational burden.
+
+#### Plan a maintenance window
+
+No matter what approach you select for your workload, it's highly encouraged that a generous maintenance window is negotiated during the plan phase. This is to respect the sensitive nature of migration activities and to account for any loss of functionality during the migration. The maintenance window allows you to develop plans that reduce risk of data loss, data corruption, or inconsistent user experiences by taking advantage of no active usage of the system. For example, this time can be used to drain Amazon Simple Queue Service (SQS) messages.
+
+If your workload has an outage budget, consider the migration window to not draw from that budget, as you might need that budget to address post-migration surprises. You'll need to consider impacts to contractual SLAs in this decision.
 
 ### Choose your data migration strategy
 
@@ -151,10 +157,10 @@ Once stakeholders and decision-makers review and agree on the plan and runbook, 
 By the end of the planning phase, you should have:
 
 - Target architecture diagram
-- Architecture decision records (ARDs)
+- Architecture decision records (ADRs)
 - Budget and cost estimates
 - Migration runbook and timeline
-- Stakeholder sign-offs
+- Stakeholder sign-offs on the migration plan
 
 ## Checklist
 

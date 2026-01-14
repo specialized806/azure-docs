@@ -20,7 +20,7 @@ The prepare phase consists of these steps:
 > * prepare environment
 > * prepare application
 
-:::image type="icon" source="images/goal.svg" alt-text="Goal  icon"::: The goal of this phase is to prepare your existing workload for migration and to deploy as much of your workload infrastructure and code in Azure as possible prior to executing the migration. This preparation work reduces the amount of effort spent during the execution of the migration and gives you ample testing opportunities.
+:::image type="icon" source="images/goal.svg" alt-text="Goal icon"::: The goal of this phase is to prepare your existing workload for migration and to deploy as much of your workload infrastructure and code in Azure as possible prior to executing the migration. This preparation work reduces the amount of effort spent during the execution of the migration and gives you ample testing opportunities.
 
 During this phase, you build out your Azure environment, refactor any code if required, set up your CI/CD tooling and pipelines, and perform tests to build confidence in your migration approach. 
 
