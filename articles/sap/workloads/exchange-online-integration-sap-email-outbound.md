@@ -28,7 +28,7 @@ Follow our standard [guide](/exchange/mail-flow-best-practices/how-to-set-up-a-m
 
 ## Setup considerations
 
-Currently, there are four different options supported by SAP ABAP Platform that we want to describe. For systems from release 7.50 upwards, we recommend option 1. For releases below 7.50, refer to options 2, 3, and 4.
+Currently, there are four different options supported by SAP ABAP Platform. For systems from release 7.50 upwards, option 1 is recommended. For releases below 7.50, refer to options 2, 3, and 4.
 
 1.  [SMTP OAuth 2.0](#option-1-smtp-oauth-20-recommended) (**recommended**)
 2.  [SMTP Direct Send](#option-2-smtp-direct-send)
@@ -40,7 +40,7 @@ This guide is updated when more SAP-supported options become available.
 ## Option 1: SMTP OAuth 2.0 (recommended)
 
 > [!IMPORTANT]
-> Use this option for the integration between Exchange Online and SAP S/4HANA on-premises, SAP S/4HANA Cloud Private Edition, SAP S/4HANA Cloud Public Edition, and the SAP BTP ABAP Environment. We also recommend this option for all other SAP ABAP Platform-based systems from release 7.50 upwards. This option enables you to send mail to **recipients inside and outside** your organization.
+> Use this option for the integration between Exchange Online and SAP S/4HANA on-premises, SAP S/4HANA Cloud Private Edition, SAP S/4HANA Cloud Public Edition, and the SAP BTP ABAP Environment. This option is also recommended for all other SAP ABAP Platform-based systems from release 7.50 upwards. This option enables you to send mail to **recipients inside and outside** your organization.
 
 ### Prerequisites
 
@@ -267,7 +267,7 @@ SMTP relay lets Microsoft 365 relay emails on your behalf by using a connector c
 
    The Mail Exchanger (MX) record will have data for **Points to address or value** that looks similar to `yourdomain.mail.protection.outlook.com`.
 
-4. Make a note of the data of **Points to address or value** for the Mail Exchanger (MX) record, which we refer to as your MX endpoint.
+4. Make a note of the data of **Points to address or value** for the Mail Exchanger (MX) record, which is referred to as your MX endpoint.
 
 5. In Microsoft 365, select **Admin** and then **Exchange** to go to the new Exchange Admin Center.
 :::image type="content" source="media/exchange-online-integration/m365-admin-center-exchange-sec-3-5.png" alt-text="Screenshot of Microsoft 365 Admin Center.":::
