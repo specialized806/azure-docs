@@ -19,6 +19,8 @@ You can learn more about the new releases by bookmarking this page or by [subscr
 
 ## Updates summary
 
+- January 2026
+  - [Backup support for Confidential VMs (preview)](#backup-support-for-confidential-vms-preview)
 - November 2025
   - [Threat detection in Azure Backup with Microsoft Defender for Cloud integration (preview)](#threat-detection-in-azure-backup-with-microsoft-defender-for-cloud-integration-preview)
   - [Vaulted backup support for Azure Data Lake storage is now generally available](#vaulted-backup-support-for-azure-data-lake-storage-is-now-generally-available)
@@ -64,7 +66,7 @@ You can learn more about the new releases by bookmarking this page or by [subscr
 
 ## Backup support for Confidential VMs (preview)
 
-Azure Backup now enables secure, encrypted backup and restore for sensitive workloads running on Confidential VMs. These VMs provide strong security and confidentiality by creating a hardware-enforced boundary between your application and the virtualization stack. With this capability, you protect your data throughout the backup lifecycle using Azure Disk Encryption Sets (DES) and either Platform Managed Keys (PMKs) or Customer Managed Keys (CMKs).
+Azure Backup now enables secure backup and restore for sensitive workloads running on Confidential VMs. These VMs provide strong security and confidentiality by creating a [hardware-enforced boundary between your application and the virtualization stack](/azure/confidential-computing/confidential-vm-overview). With this capability, you protect your data throughout the backup lifecycle using Azure Disk Encryption Sets (DES) and either Platform Managed Keys (PMKs) or Customer Managed Keys (CMKs).
 
 For more information, see [Back up Confidential VMs (preview)](confidential-vm-backup.md).
 

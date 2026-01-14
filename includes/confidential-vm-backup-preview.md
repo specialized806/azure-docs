@@ -8,5 +8,5 @@ ms.author: v-mallicka
 ---
 
 > [!IMPORTANT]
-> Azure Backup for Confidential virtual machines (VMs) is currently in PREVIEW.
+> Azure Backup for Confidential virtual machines (VMs) is currently in preview.
 > See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.

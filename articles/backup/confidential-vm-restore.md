@@ -1,6 +1,6 @@
 ---
 title: Azure Backup - Restore Confidential VM using Azure Backup (preview)
-description: Learn about restoring Confidential VM with CMK using Azure Backup.
+description: Learn about restoring Confidential VM with Platform Managed Key (PMK) or Customer Managed Key (CMK) using Azure Backup.
 ms.topic: how-to
 ms.date: 01/28/2026
 ms.custom: references_regions
@@ -13,11 +13,7 @@ ms.author: v-mallicka
 
 [!INCLUDE [Confidential VM backup preview advisory.](../../includes/confidential-vm-backup-preview.md)]
 
-This article describes how to restore Confidential VM (CVM) with Platform or Customer Managed Key (PMK or CMK).
-
-***Note***
-
-*For any queries, write to us at [AskAzureBackupTeam@microsoft.com](mailto:AskAzureBackupTeam@microsoft.com).*
+This article describes how to restore Confidential VM (CVM) encrypted with Platform Managed Key (PMK) or Customer Managed Key (CMK) using Azure Backup. It covers restore scenarios based on encryption key and Disk Encryption Set (DES) states, and provides the recovery procedure for restore failures. It also provides the procedure to extract virtual machine encryption details, restore missing keys, and assign necessary permissions.
 
 ## Restore scenarios for Confidential VM
 
@@ -30,28 +26,45 @@ Confidential VM restore behavior depends on the state of the DES, Key Vault, and
 - **Input DES Provided**: If you provide a new DES created from restored key data, restore can succeed if the key and version match the ones used at backup time.
 - **Mismatched DES or Key**: Restore fails with `UserErrorInputDESKeyDoesNotMatchWithOriginalKey`. To resolve this error, restore the missing keys.
 
+## Prerequisites
 
+Awaiting content updates.
 
+## Assign permissions to DES and Confidential Guest VM Agent for restore
 
+Disk Encryption Set and Confidential Guest VM Agent need permissions on the Key Vault or Managed HSM. To provide the permissions, follow these steps:
 
+**For Key vault**: To grant permissions to the Key vault, select the message *To associate a disk, image, or snapshot with this disk encryption set, you must grant permissions to the key vault*.
 
+- **For Managed HSM**: To grant permissions to the Managed HSM, follow these steps:
 
+  1. Assign newly created DES with Managed HSM Crypto the User Role:
 
+     1. Go to **Managed HSM** on the Azure portal and select **Local RBAC** in **Settings**.
+     2. Select **Add** to add new Role Assignment.
+     3. For **Role**, select **Managed HSM Crypto User Role**.
+     4. For **Scope**, select the restored key. You can also select **All Keys**.
+     5. On the **Security principal**, you need to select *newly created DES*.
 
+  2. Confidential Guest VM Agent should have the necessary permissions for CVM to boot up.
 
+     1. Go to **Managed HSM** on the Azure portal and select **Local RBAC** in **Settings**.
+     2. Select **Add** to add new role assignment.
+     3. For **Role**, select **Managed HSM Crypto Service Encryption User**.
+     4. For **Scope**, select the restored key. You can also select **All Keys**.
+     5. On the **Security principal**, you need to select **Confidential Guest VM Agent**.
 
+## Restore the Confidential VM
 
-
-
-
-
+After you assign the required permissions, you can run the restore operation. [Learn how to restore an Azure VM](backup-azure-arm-restore-vms.md).
 
 ## Restore missing keys for Confidential VM restore
-If the restore operation fails, you need to restore the Platform Managed Key (PMK) or Customer Managed Key (CMK) that Azure Backup backed up. 
+
+If the restore operation fails, you need to restore the PMK or CMK that Azure Backup backed up. 
 
 To restore the key using PowerShell, run the following cmdlets:
 
-1. Select the vault containing the protected CVM + CMK. In the cmdlet, you need to specify the resource group and name of the vault.
+1. Select the vault containing the protected CVM + CMK. In the cmdlet, specify the resource group and name of the vault.
 
    ```azurepowershell
    $vault = Get-AzRecoveryServicesVault -ResourceGroupName "<vault-rg>" -Name "<vault-name>"
@@ -113,32 +126,8 @@ To restore the key using PowerShell, run the following cmdlets:
    Restore-AzKeyVaultKey -HsmName '<target_mhsm_name>' -InputFile $keyDestination
    ```
 
-Now, you can create a new DES with Encryption type as *Confidential disk encryption with a customer-managed key* to point to this restored key. This DES should have enough permissions to perform a successful restore. If you use a new Key Vault or Managed HSM to restore the key, then *Backup Management Service* has enough permissions on it. [Learn how to grant permission for Key Vault or mHSM access](confidential-vm-backup.md#assign-permissions-for-confidential-vm-backup).
+Now, you can create a new DES with Encryption type as *Confidential disk encryption with CMK*, which should point to the restored key. This DES should have enough permissions to perform a successful restore. If you use a new Key Vault or Managed HSM to restore the key, then *Backup Management Service* has enough permissions on it. [Learn how to grant permission for Key Vault or mHSM access](confidential-vm-backup.md#assign-permissions-for-confidential-vm-backup).
 
-### Grant permissions to DES and Confidential Guest VM Agent
+## Related content
 
-Disk Encryption Set and Confidential Guest VM Agent also need permissions on the Key Vault or Managed HSM. To provide the permissions, follow these steps:
-
-**For Key vault**: To grant permissions to the Key vault, select the message *To associate a disk, image, or snapshot with this disk encryption set, you must grant permissions to the key vault*.
-
-- **For Managed HSM**: To grant permissions to the Managed HSM, follow these steps:
-
-  1. Assign newly created DES with Managed HSM Crypto the User Role:
-
-     1. Go to **Managed HSM** on the Azure portal and select **Local RBAC** in **Settings**.
-     2. Select **Add** to add new Role Assignment.
-     3. For **Role**, select **Managed HSM Crypto User Role**.
-     4. For **Scope**, select the restored key. You can also select **All Keys**.
-     5. On the **Security principal**, you need to select *newly created DES*.
-
-  2. Confidential Guest VM Agent should have the necessary permissions for CVM to boot up.
-
-     1. Go to **Managed HSM** on the Azure portal and select **Local RBAC** in **Settings**.
-     2. Select **Add** to add new role assignment.
-     3. For **Role**, select **Managed HSM Crypto Service Encryption User**.
-     4. For **Scope**, select the restored key. You can also select **All Keys**.
-     5. On the **Security principal**, you need to select **Confidential Guest VM Agent**.
-
-### Restore the Confidential VM
-
-After you assign the required permissions, you can run the restore operation. [Learn how to restore an Azure VM](backup-azure-arm-restore-vms.md).
+[Restore encrypted Azure virtual machines](restore-azure-encrypted-virtual-machines.md).

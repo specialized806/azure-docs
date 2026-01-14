@@ -13,10 +13,10 @@ ms.author: v-mallicka
 
 [!INCLUDE [Confidential VM backup preview advisory.](../../includes/confidential-vm-backup-preview.md)]
 
-Azure Backup supports [Confidential Virtual Machines (CVMs)](/azure/confidential-computing/confidential-vm-overview), that provide secure, encrypted backup and restore for sensitive workloads. This capability uses Azure Disk Encryption Sets (DES) with Platform Managed Keys (PMKs) or Customer Managed Keys (CMKs) to maintain data confidentiality throughout the backup lifecycle. Confidential VMs provide strong security by creating a hardware-enforced boundary between your application and the virtualization stack.
+Azure Backup supports [Confidential Virtual Machines (CVMs)](/azure/confidential-computing/confidential-vm-overview) that provide secure backup and restore for sensitive workloads. This capability uses Azure Disk Encryption Sets (DES) with Platform Managed Keys (PMKs) or Customer Managed Keys (CMKs) to maintain data confidentiality throughout the backup lifecycle. Confidential VMs provide strong security by creating a hardware-enforced boundary between your application and the virtualization stack.
 
 >[!Note]
->Azure Backup support for Confidential VMs (DC Series v6) is in public preview, available only in select regions, and requires subscription-level enablement. This feature isn’t recommended for production workloads.
+>Azure Backup support for Confidential VMs (DC Series v6) is in preview, available only in specific regions, and requires subscription-level enablement. This feature isn’t recommended for production workloads.
 
 This article describes how to configure and back up Confidential VM (CVM) with Platform or Customer Managed Key (PMK or CMK).
 
@@ -26,7 +26,7 @@ Before you configure backup for CVM with CMK, ensure that the following prerequi
 
 - [Configure preview features in Azure subscription](/azure/azure-resource-manager/management/preview-features?tabs=azure-portal).
 - Identify or create a Confidential VM (CVM) in a supported region. See the [supported regions](backup-support-matrix-iaas.md#support-for-confidential-vm-backup-preview)
-- Identify or [create a Recovery Services Vault](backup-create-recovery-services-vault.md#create-a-recovery-services-vault) in the same region as that of the VM.
+- Identify or [create a Recovery Services Vault](backup-create-recovery-services-vault.md#create-a-recovery-services-vault) in the same region as the VM.
 - Disk Encryption Set (DES) with keys used for VM encryption. 
 
 Learn more about the [supported scenarios for Confidential VM backup](backup-support-matrix-iaas.md#support-for-confidential-vm-backup-preview).
@@ -37,11 +37,9 @@ Learn how to [create a new Confidential VM with Customer Managed Key](/azure/con
 
 ## Assign permissions for Confidential VM backup
 
-Azure Backup needs certain access to Key Vault or managed Hardware Security Module (mHSM) that are used to store the key. These permissions also help Azure Backup to back up the key, which you can restore if deleted for some reason.
+Azure Backup requires access to the Key vault or Managed Hardware Security Module (HSM) that stores your keys. This access ensures the service can back up keys and recover them if they're deleted. When you configure backup in the Azure portal, Azure Backup automatically gets the required permissions. If you use other clients, such as PowerShell, CLI, or REST API, you must assign these permissions manually.
 
-When you configure backup of CVM with confidential OS disk encryption using CMK, the Azure portal automatically grants access to the Backup Management Service. If you're using other clients such as PowerShell, CLI, or REST API, permissions aren't granted automatically, and you need to grant the permissions.
-
-If you are using a Key vault to store keys, [grant permission to the Azure Backup service for the backup operations](backup-azure-vms-encryption.md#provide-permissions). 
+If you're using a Key vault to store keys, [grant permission to the Azure Backup service for the backup operations](backup-azure-vms-encryption.md#provide-permissions). 
 
 To assign permissions for mHSM, follow these steps:
 
@@ -51,7 +49,7 @@ To assign permissions for mHSM, follow these steps:
 
 3. Select one of the following roles:
 
-   - **Built-in roles**: If you want to use a built-in roles, select the **Managed HSM Crypto User** role.
+   - **Built-in roles**: If you want to use a built-in role, select the **Managed HSM Crypto User** role.
 
    - **Custom roles**: If you want to use custom role, then *dataActions* of that role should have these values:
 
@@ -73,3 +71,7 @@ Once Azure Backup has the necessary permissions, you can continue configuring ba
 ## Next step
 
 [Restore CVM with CMK using Azure Backup (preview)](confidential-vm-restore.md).
+
+## Related content
+
+[Back up encrypted Azure virtual machines](backup-azure-vms-encryption.md).

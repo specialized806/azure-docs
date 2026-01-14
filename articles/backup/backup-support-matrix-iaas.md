@@ -112,10 +112,7 @@ The following table lists the supported scenarios for Confidential VM backup:
 | --- | --- |
 | Region availability | Supported in UAE North, Korea Central, Switzerland North, West Central US, South Africa North, and UK South. |
 | Key rotation for backups | When key rotation occurs on a confidential virtual machine, the keys for the VM disks, related restore points, and snapshots update automatically. <br><br> The key rotation might fail due to the following scenarios: <br><br> - A large number of disks are linked to a single Disk Encryption Set (DES), including their restore points and snapshots. <br> - More than 40 disks are attached to one DES when only restore points are associated with these disks. <br> - Both restore points and snapshots are present for disks connected to the same DES, which lowers the safe threshold below 40 disks. <br> - Performance limitations during key rotation when multiple disks share one DES.  <br><br> Recommendation: Keep the number of disks connected to each DES to a minimum until the issue is resolved. |
-| Backup capabilities | - You can backup Confidential VMs with OS disk encryption only.  <br> - Backup and restore fail if the CVM v2 opt-out feature flag is enabled for your subscription. <br> - Multi disk crash consistent backup is unsupported. |
-
-
-
+| Backup capabilities | - You can backup Confidential VMs with OS disk encryption only.  <br> - Backup and restore fail if the CVM v2 opt-out feature flag is in enabled state for your subscription. <br> - Multi disk crash consistent backup is unsupported. |
 
 ## Support for agentless multi-disk crash-consistent VM backup
 
