@@ -3,7 +3,7 @@ title: Architecture - Identity and access
 description: Learn about the identity and access concepts of Azure VMware Solution
 ms.topic: concept-article
 ms.service: azure-vmware
-ms.date: 3/22/2024
+ms.date: 1/14/2026
 ms.custom: "references_regions, engagement-fy23"
 # Customer intent: As a cloud administrator, I want to manage user roles and permissions in Azure VMware Solution, so that I can ensure appropriate access control and security for our virtual machine workloads.
 ---
@@ -34,7 +34,7 @@ The CloudAdmin role in Azure VMware Solution has the following privileges on vCe
 | Privilege | Description |
 | --------- | ----------- |
 | **Alarms** | Acknowledge alarm<br />Create alarm<br />Disable alarm action<br />Modify alarm<br />Remove alarm<br />Set alarm status |
-| **Content Library** | Add library item<br />Add root certificate to trust store<br />Check in a template<br />Check out a template<br />Create a subscription for a published library<br />Create local library<br />Create or delete a Harbor registry<br />Create subscribed library<br />Create, delete or purge a Harbor registry project<br />Delete library item<br />Delete local library<br />Delete root certificate from trust store<br />Delete subscribed library<br />Delete subscription of a published library<br />Download files<br />Evict library items<br />Evict subscribed library<br />Import storage<br />Manage Harbor registry resources on specified compute resource<br />Probe subscription information<br />Publish a library item to its subscribers<br />Publish a library to its subscribers<br />Read storage<br />Sync library item<br />Sync subscribed library<br />Type introspection<br />Update configuration settings<br />Update files<br />Update library<br />Update library item<br />Update local library<br />Update subscribed library<br />Update subscription of a published library<br />View configuration settings |
+| **Content Library** | Add library item<br />Add root certificate to trust store<br />Check in a template<br />Check out a template<br />Create a subscription for a published library<br />Create local library<br />Create or delete a Harbor registry<br />Create subscribed library<br />Create, delete, or purge a Harbor registry project<br />Delete library item<br />Delete local library<br />Delete root certificate from trust store<br />Delete subscribed library<br />Delete subscription of a published library<br />Download files<br />Evict library items<br />Evict subscribed library<br />Import storage<br />Manage Harbor registry resources on specified compute resource<br />Probe subscription information<br />Publish a library item to its subscribers<br />Publish a library to its subscribers<br />Read storage<br />Sync library item<br />Sync subscribed library<br />Type introspection<br />Update configuration settings<br />Update files<br />Update library<br />Update library item<br />Update local library<br />Update subscribed library<br />Update subscription of a published library<br />View configuration settings |
 | **Cryptographic operations** | Direct access |
 | **Datastore** | Allocate space<br />Browse datastore<br />Configure datastore<br />Low-level file operations<br />Remove files<br />Update virtual machine metadata |
 | **Folder** | Create folder<br />Delete folder<br />Move folder<br />Rename folder |
@@ -57,7 +57,7 @@ The CloudAdmin role in Azure VMware Solution has the following privileges on vCe
 Azure VMware Solution supports the use of custom roles with equal or lesser privileges than the CloudAdmin role. Use the CloudAdmin role to create, modify, or delete custom roles with privileges less than or equal to their current role.
 
    >[!NOTE]
-   >You can create roles with privileges greater than CloudAdmin. However, you can't assign the role to any users or groups or delete the role. Roles that have privileges greater than that of CloudAdmin is unsupported.
+   >You can create roles with privileges greater than CloudAdmin. However, you can't assign the role to any users or groups or delete the role. Roles that have privileges greater than CloudAdmin is unsupported.
 
 To prevent creating roles that can't be assigned or deleted, clone the CloudAdmin role as the basis for creating new custom roles.
 
@@ -69,7 +69,7 @@ To prevent creating roles that can't be assigned or deleted, clone the CloudAdmi
 1. Select the **CloudAdmin** role and select the **Clone role action** icon.
 
    >[!NOTE]
-   >Don't clone the **Administrator** role because you can't use it. Also, the custom role created can't be deleted by cloudadmin\@vsphere.local.
+   >Don't clone the **Administrator** role because you can't use it. The custom role created can't be deleted by cloudadmin\@vsphere.local.
 
 1. Provide the name you want for the cloned role.
 
@@ -85,9 +85,9 @@ To prevent creating roles that can't be assigned or deleted, clone the CloudAdmi
 
 1. Search for the user or group after selecting the Identity Source under the **User** section.
 
-1. Select the role that you want to apply to the user or group.
+1. Select the role you want to apply to the user or group.
    >[!NOTE]
-   >Attempting to apply a user or group to a role that has privileges greater than that of CloudAdmin will result in errors.
+   >Attempting to apply a user or group to a role with privileges greater than that of CloudAdmin results in an error.
 
 1. Check the **Propagate to children** if needed, and select **OK**. The added permission displays in the **Permissions** section.
 
@@ -95,7 +95,7 @@ To prevent creating roles that can't be assigned or deleted, clone the CloudAdmi
 
 When a private cloud is provisioned using Azure portal, software-defined data center (SDDC) management components like vCenter Server and VMware NSX Manager are provisioned for customers.
 
-Microsoft is responsible for the lifecycle management of NSX appliances like, VMware NSX Manager and VMware NSX Edge appliances. They're responsible for bootstrapping network configuration, like creating the Tier-0 gateway.
+Microsoft is responsible for the lifecycle management of NSX appliances like, VMware NSX Manager and VMware NSX Microsoft Edge appliances. They're responsible for bootstrapping network configuration, like creating the Tier-0 gateway.
 
 You're responsible for VMware NSX software-defined networking (SDN) configuration, for example:
 
@@ -114,8 +114,8 @@ For new private cloud deployments, VMware NSX access is provided with a built-in
 The following permissions are assigned to the **cloudadmin** user in Azure VMware Solution NSX.
 
 > [!NOTE]
-> **VMware NSX cloudadmin user** on Azure VMware Solution is not the same as the **cloudadmin user** mentioned in the VMware product documentation.
-> The following permissions apply to the VMware NSX Policy API.  Manager API functionality may be limited.
+> **VMware NSX cloudadmin user** on Azure VMware Solution isn't the same as the **cloudadmin user** mentioned in the VMware product documentation.
+> The following permissions apply to the VMware NSX Policy API. Manager API functionality could be limited.
 
 | Category        | Type                  | Operation                                                            | Permission                                                       |
 |-----------------|-----------------------|----------------------------------------------------------------------|------------------------------------------------------------------|
@@ -139,20 +139,20 @@ You can view the permissions granted to the Azure VMware Solution cloudadmin rol
 
 1. Sign in to the NSX Manager.
 1. Navigate to **Systems** and locate **Users and Roles**.
-1. Select and expand the **cloudadmin** role, found under **Roles**.
-1. Select a category like, Networking or Security, to view the specific permissions.
+1. Under **Roles**, select and expand the **cloudadmin** role.
+1. To view the specific permissions, Select a category like, Networking or Security.
 
 > [!NOTE]
-> **Private clouds created before June 2022** will switch from **admin** role to **cloudadmin** role. You'll receive a notification through Azure Service Health that includes the timeline of this change so you can change the NSX credentials you've used for other integration.
+> **Private clouds created before June 2022** is switched from **admin** role to **cloudadmin** role. You receive a notification through Azure Service Health that includes the timeline of this change so you can change the NSX credentials you've used for other integration.
 
 ## NSX LDAP integration for role-based access control (RBAC)
 
-In an Azure VMware Solution deployment, the VMware NSX can be integrated with external LDAP directory service to add remote directory users or group, and assign them a VMware NSX RBAC role, like on-premises deployment.  For more information on how to enable VMware NSX LDAP integration, see the [VMware product documentation](https://techdocs.broadcom.com/us/en/vmware-cis/nsx/vmware-nsx/4-1/administration-guide/authentication-and-authorization/integration-with-ldap.html).
+In an Azure VMware Solution deployment, the VMware NSX can be integrated with external LDAP directory service to add remote directory users or group, and assign them a VMware NSX RBAC role, like on-premises deployment. For more information on how to enable VMware NSX LDAP integration, see the [VMware product documentation](https://techdocs.broadcom.com/us/en/vmware-cis/nsx/vmware-nsx/4-1/administration-guide/authentication-and-authorization/integration-with-ldap.html).
 
 Unlike on-premises deployment, not all predefined NSX RBAC roles are supported with Azure VMware solution to keep Azure VMware Solution IaaS control plane config management separate from tenant network and security configuration. For more information, see the next section, Supported NSX RBAC roles.
 
 > [!NOTE]
-> VMware NSX LDAP Integration is supported only with SDDC’s with VMware NSX “cloudadmin” user.
+> VMware NSX LDAP Integration is supported only with SDDCs with VMware NSX “cloudadmin” user.
 
 ### Supported and unsupported NSX RBAC roles  
 
@@ -176,7 +176,7 @@ Unlike on-premises deployment, not all predefined NSX RBAC roles are supported w
 You can create custom roles in NSX with permissions lesser than or equal to CloudAdmin role created by Microsoft. Following are examples on how to create a supported "Network Admin" and "Security Admin" role.
 
 > [!NOTE]
-> Custom role creation will fail if you assign a permission not allowed by CloudAdmin role.
+> Custom role creation fails if you assign a permission not allowed by CloudAdmin role.
 
 #### Create “AVS network admin” role
 
@@ -215,14 +215,14 @@ You can create custom roles in NSX with permissions lesser than or equal to Clou
 > The VMware NSX **System** > **Identity Firewall AD** configuration option isn't supported by the NSX custom role. The recommendation is to assign the **Security Operator** role to the user with the custom role to allow managing the Identity Firewall (IDFW) feature for that user.
 
 > [!NOTE]
-> The VMware NSX Traceflow feature isn't supported by the VMware NSX custom role. The recommendation is to assign the **Auditor** role to the user along with the custom role to enable Traceflow feature for that user.
+> The VMware NSX custom role doesn't support the VMware NSX Traceflow feature. The recommendation is to assign the **Auditor** role to the user along with the custom role to enable Traceflow feature for that user.
 
 > [!NOTE]
 > VMware Aria Operations Automation integration with the NSX component of the Azure VMware Solution requires the “auditor” role to be added to the user with the NSX Manager cloudadmin role.
 
 ## Next steps
 
-Now that you've covered Azure VMware Solution access and identity concepts, you may want to learn about:
+Now that you covered Azure VMware Solution access and identity concepts, learn more about:
 
 - [How to configure external identity source for vCenter](configure-identity-source-vcenter.md)
 
