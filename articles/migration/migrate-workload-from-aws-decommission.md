@@ -10,12 +10,11 @@ ms.collection:
   - migration
   - aws-to-azure
 ---
-
 # Decommission your workload from Amazon Web Services (AWS) after migrating to Azure
 
 This step is the final step in the workload migration. Proceed after the evaluation phase is complete and you confirm that your workload operates as expected in Azure.
 
-The goal of this phase is to safely retire AWS dependencies, remove redundant resources, and complete the transition to Azure.
+ :::image type="icon" source="images/goal.svg"::: The goal of this phase is to safely retire AWS dependencies, remove redundant resources, and complete the transition to Azure.
 
 > [!WARNING]
 >
@@ -28,23 +27,23 @@ The goal of this phase is to safely retire AWS dependencies, remove redundant re
 - **Confirm deletion:** [AWS Config](https://docs.aws.amazon.com/config/latest/developerguide/WhatIsConfig.html) maintains an inventory of all your AWS resources. You can use it during the decommission phase to ensure no resources related to your workload are left active.
 - **Clean up artifacts:** Update your configuration management database (CMDB), billing, and documentation.
 - **Reset your TTL:** Configure your TTL back to its original setting.
+- **Establish new baselines:** Establish a new performance baseline for your migrated workload in Azure. Measure how your workload and its components perform in terms of response time, throughput, resource utilization etc. This will give you a point of reference for any future optimizations. Having new baseline metrics allows to verify the workload is meeting expectations and detect any post-migration regression.
+- **Perform a WAF workload assessment:** Take the [Azure Well-Architected Framework Review](/assessments/azure-architecture-review/) assessment on your workload. This will establish a baseline and give you potential backlog items for future optimization. Schedule a periodic assessment going forward.
 
 For a thorough review of decommissioning steps, see the [CAF Decommission source workload](/azure/cloud-adoption-framework/migrate/decommission-source-workload) guide.
 
-## Establish new baselines
-
-- TODO: Talk about establishing new baseline application performance data in Azure.
-- **Perform a WAF workload assessment.** Take the [Azure Well-Architected Framework Review](/assessments/azure-architecture-review/) assessment on your workload. This will establish a baseline and give you potential backlog items for future optimization. Schedule a periodic assessment going forward.
 ## Checklist
 
-| &nbsp;  | Deliverable tasks                |
-| ------- | -------------------------------- |
-| &#9744; | Finalize data cutover            |
-| &#9744; | Take final backups and snapshots |
-| &#9744; | Retire AWS resources             |
-| &#9744; | Check successful deletion        |
-| &#9744; | Clean up artifacts               |
-| &#9744; | Reset TTL                        |
+| &nbsp;  | Deliverable tasks                 |
+| ------- | --------------------------------- |
+| &#9744; | Finalize data cutover             |
+| &#9744; | Take final backups and snapshots  |
+| &#9744; | Retire AWS resources              |
+| &#9744; | Check successful deletion         |
+| &#9744; | Clean up artifacts                |
+| &#9744; | Reset TTL                         |
+| &#9744; | Establish new baseline            |
+| &#9744; | Perform a WAF workload assessment |
 
 ## Next step
 
