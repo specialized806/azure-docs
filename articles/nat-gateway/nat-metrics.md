@@ -13,7 +13,11 @@ ms.author: alittleton
 
 This article provides an overview of all NAT gateway metrics and diagnostic capabilities. This article provides general guidance on how to use metrics and alerts to monitor, manage, and [troubleshoot](troubleshoot-nat.md) your NAT gateway resource. 
 
-All metrics are the same for Standard and StandardV2 NAT Gateway.
+All metrics are the same for Standard and StandardV2 NAT Gateway.  
+
+> [!IMPORTANT]
+> Standard V2 SKU Azure NAT Gateway is currently in PREVIEW.
+> See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.  
 
 Azure NAT Gateway provides the following diagnostic capabilities:  
 
