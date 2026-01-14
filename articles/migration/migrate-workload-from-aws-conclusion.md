@@ -12,6 +12,8 @@ ms.collection:
 ---
 # Conclude your workload migration from Amazon Web Services (AWS) to Azure
 
+This article is part of a series on [how to migrate a workload from AWS to Azure](/azure/migration/migrate-workload-from-aws-introduction). 
+
 Migrating a workload, especially if it's your first workload or if the workload has a lot of dependencies, is an intense project.
 
 By using this guide and the right approach, you can migrate the workload confidently and be prepared to handle issues as the happen. 

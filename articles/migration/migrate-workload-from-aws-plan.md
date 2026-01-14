@@ -12,15 +12,16 @@ ms.collection:
 ---
 # Plan your workload migration from Amazon Web Services (AWS) to Azure
 
-The goal of the planning phase is to understand your existing AWS workload from a technical and business standpoint, so that you can confidently build a plan to replicate it in Azure.
+This article is part of a series on [how to migrate a workload from AWS to Azure](/azure/migration/migrate-workload-from-aws-introduction). 
 
-To achieve this follow these steps:
+The planning phase consists of these steps: 
 
 > [!div class="checklist"]
 > * assess your workload
 > * design a like-for-like architecture
 > * develop and document a migration plan
 
+:::image type="icon" source="images/goal.svg" alt-text="Goal  icon"::: The goal of the planning phase is to understand your existing AWS workload from a technical and business standpoint, so that you can confidently build a plan to replicate it in Azure.
 
 > [!IMPORTANT]
 > Take your time in the planning phase and follow the steps in order. Incomplete discovery or unclear migration objectives risk misaligned expectations and missed dependencies.

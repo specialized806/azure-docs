@@ -12,11 +12,13 @@ ms.collection:
 ---
 # Decommission your workload from Amazon Web Services (AWS) after migrating to Azure
 
+This article is part of a series on [how to migrate a workload from AWS to Azure](/azure/migration/migrate-workload-from-aws-introduction). 
+
 This step is the final step in the workload migration. Proceed after the evaluation phase is complete and you confirm that your workload operates as expected in Azure.
 
 :::image type="icon" source="images/goal.svg" alt-text="Goal  icon"::: The goal of this phase is to safely retire AWS dependencies, remove redundant resources, and complete the transition to Azure.
 
-> [!WARNING]
+> [!IMPORTANT] 
 >
 > If you prematurely delete AWS resources, overlook hidden dependencies, or skip final data and access checks, you risk data loss, unexpected downtime, compliance violations, or ongoing cost from orphaned assets.
 

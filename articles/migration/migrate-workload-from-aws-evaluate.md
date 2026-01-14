@@ -12,6 +12,8 @@ ms.collection:
 ---
 # Evaluate your workload from Amazon Web Services (AWS) after migration to Azure
 
+This article is part of a series on [how to migrate a workload from AWS to Azure](/azure/migration/migrate-workload-from-aws-introduction). 
+
 Congratulations, your workload is now running on Azure! 
 
 The evaluate phase consists of two steps: 
@@ -20,9 +22,9 @@ The evaluate phase consists of two steps:
 > * validate cutover
 > * sign-off
 
-The goal of this phase is to confirm your workload in Azure meets functional, performance, reliability, security, and cost baselines you established in the planning phase on AWS.
+:::image type="icon" source="images/goal.svg" alt-text="Goal  icon"::: The goal of this phase is to confirm your workload in Azure meets functional, performance, reliability, security, and cost baselines you established in the planning phase on AWS.
 
-> [!WARNING]
+> [!IMPORTANT] 
 > Incomplete monitoring, insufficient performance testing, or weak cost and security reviews can hide issues that only surface later as outages, data exposure, or budget overruns.
 
 ## Validate successful cutover

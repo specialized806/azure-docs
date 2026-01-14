@@ -12,6 +12,8 @@ ms.collection:
 ---
 #  Execute your workload migration from Amazon Web Services (AWS) to Azure
 
+This article is part of a series on [how to migrate a workload from AWS to Azure](/azure/migration/migrate-workload-from-aws-introduction). 
+
 The execute phase consists of three steps: 
 
 > [!div class="checklist"]
@@ -19,9 +21,9 @@ The execute phase consists of three steps:
 > * during cutover
 > * after cutover
 
-The goal of this phase is to migrate the usage of AWS workload to Azure within the agreed upon downtime and data loss constraints. Follow your runbook closely and communicate with stakeholders throughout the process.
+:::image type="icon" source="images/goal.svg" alt-text="Goal  icon"::: The goal of this phase is to migrate the usage of AWS workload to Azure within the agreed upon downtime and data loss constraints. Follow your runbook closely and communicate with stakeholders throughout the process.
 
-> [!WARNING]
+> [!IMPORTANT] 
 > Don't rush testing or skip validation steps. 
 > 
 > The execute phase carries the highest risk of service disruption. Data synchronization issues, network misconfigurations, or unexpected application behaviors can cause outages or data loss. 

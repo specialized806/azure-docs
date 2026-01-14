@@ -34,7 +34,7 @@ Use AWS and Azure tools where appropriate to augment your migration process. The
 The migration of a workload can span several weeks or months. The duration depends on the complexity of the workload and your migration and cutover strategy. The timeline shows a typical workload migration for a moderately complex workload using a like-for-like approach. 
 
 :::image type="complex" source="./images/migrate-from-aws-phases.svg" alt-text="Diagram showing three phases of workload migration." lightbox="./images/migrate-from-aws-phases.svg" border="false":::
-    Diagram showing three phases of migrating workloads from AWS to Microsoft Azure. Across the top, three labeled boxes indicate phases with durations: Before migration (2–4 weeks), During migration (3–7 weeks), and After migration (1–2 weeks). Each box includes a summary of key activities such as planning, infrastructure setup, and optimization. Below, a horizontal sequence of five icons represents steps: Plan, Prepare, Execute, Optimize, and Decommission.
+    Diagram showing three phases of migrating workloads from AWS to Microsoft Azure.
 :::image-end:::
 
 *Guidelines for a moderately complex workload.*
