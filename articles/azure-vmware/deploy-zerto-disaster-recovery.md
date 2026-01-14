@@ -10,13 +10,15 @@ ms.custom: engagement-fy23
 
 # Deploy Zerto disaster recovery on Azure VMware Solution
 
+Zerto is a disaster recovery solution designed to minimize downtime of VMs should a disaster occur. Zerto's platform is built on the foundation of Continuous Data Protection (CDP) that enables minimal or close to no data loss. The platform provides the level of protection wanted for many business-critical and mission-critical enterprise applications. Zerto also automates and orchestrates failover and failback to ensure minimal downtime in a disaster. Overall, Zerto simplifies management through automation and ensures fast and highly predictable recovery times.
+
 ## Prerequisites
-**On‑Premises VMware to Azure VMware Solution (AVS) Disaster Recovery**
+**On‑Premises VMware to Azure VMware Solution Disaster Recovery**
 - An Azure VMware Solution private cloud deployed in the designated secondary region
 - VPN or ExpressRoute connectivity between the on‑premises datacenter and Azure VMware Solution
 
 **Azure VMware Solution to Azure VMware Solution Disaster Recovery**
-- AVS private clouds deployed in both primary and secondary regions
+- Azure VMware Solution private clouds deployed in both primary and secondary regions
 - Connectivity, like ExpressRoute Global Reach, between the source and target Azure VMware Solution private cloud.
 
 **Azure VMware Solution IaaS VMs to Cloud Disaster Recovery**
@@ -27,7 +29,7 @@ ms.custom: engagement-fy23
 
 | Component | Description |
 | --- | --- |
-| **Zerto Virtual Manager Appliance (ZVML)**   | ZVMA is a management appliance that runs on a secure Linux operating system. The ZVMA enables Day 0 and Day 2 disaster recovery configuration. For example, configuring primary and disaster recovery sites, protecting VMs, recovering VMs, and so on. However, it doesn't handle the replication data of the protected customer Virtual Machines.     |
+| **Zerto Virtual Manager Appliance (ZVML)**   | ZVML is a management appliance that runs on a secure Linux operating system. The ZVML enables Day 0 and Day 2 disaster recovery configuration. For example, configuring primary and disaster recovery sites, protecting VMs, recovering VMs, and so on. However, it doesn't handle the replication data of the protected customer Virtual Machines.     |
 | **Virtual Replication appliance (vRA)**   | Linux VM to handle data replication from the source to the replication target. One instance of vRA is installed per ESXi host, delivering a true scale architecture that grows and shrinks along with the private cloud's hosts. The vRA manages data replication to and from protected VMs to its local or remote target, storing the data in the journal.    |
 | **Zerto ESXi host driver**   | Installed on each VMware ESXi host configured for Zerto disaster recovery. The host driver intercepts a vSphere VM's IO and sends the replication data to the chosen vRA for that host. The vRA is then responsible for replicating the VM's data to one or more disaster recovery targets.    |
 | **Zerto Cloud Appliance (ZCA)**   | Windows VM only used when Zerto is used to recover vSphere VMs as Azure Native IaaS VMs. The ZCA is composed of:<ul><li>**ZVM:** A Windows service that hosts the UI and integrates with the native APIs of Azure for management and orchestration.</li><li>**VRA:** A Windows service that replicates the data from or to Azure.</li></ul> The ZCA integrates natively with the platform it gets deployed on, allowing you to use Azure Blob storage within a storage account on Microsoft Azure. As a result, it ensures the most cost-efficient deployment on each of these platforms.   |
@@ -45,16 +47,13 @@ Zerto is a disaster recovery solution designed to minimize downtime of VMs shoul
 - Azure resource group modifications aren't supported after Zerto installation.
 - Virtual Machine(s) replications may be disrupted during Azure VMware Solution upgrade maintenance.
 - Virtual Machine(s) replications may be disrupted during Azure VMware Solution host replacement maintenance.
-- For other Zerto related know issues [Click here](https://help.zerto.com/bundle/Install.AVS.HTML.10.0_U5/page/known_issues_and_limitations.html)
+## Zerto‑Supported external Datastores in Azure VMware Solution
 
+Azure VMware Solution fully supports using Azure NetApp Files and Azure Elastic SAN as persistent storage through both Network File System (NFS) and Virtual Machine File System (VMFS) datastores.
+You can provision NFS datastores backed by Azure NetApp Files volumes or VMFS datastores backed by Azure Elastic SAN volumes, then attach them to any Azure VMware Solution cluster as needed. This flexibility allows you to deploy virtual machines with the right balance of performance and cost.
+When configuring Zerto, simply choose your Azure NetApp Files or Elastic SAN datastore as the Recovery Datastore within the VPG creation or editing workflow.
 
-## Zerto‑Supported external Datastores in Azure VMware Solution (AVS)
-
-Azure VMware Solution fully supports using Azure NetApp Files (ANF) and Azure Elastic SAN as persistent storage through both Network File System (NFS) and Virtual Machine File System (VMFS) datastores.
-You can provision NFS datastores backed by Azure NetApp Files volumes or VMFS datastores backed by Azure Elastic SAN volumes, then attach them to any AVS cluster as needed. This flexibility allows you to deploy virtual machines with the right balance of performance and cost.
-When configuring Zerto, simply choose your ANF or Elastic SAN datastore as the Recovery Datastore within the VPG creation or editing workflow.
-
-Dive deeper into how these storage options integrate with AVS:
+Dive deeper into how these storage options integrate with Azure VMware Solution:
 [Azure NetApp datastores to Azure VMware Solution hosts](/azure/azure-vmware/attach-azure-netapp-files-to-azure-vmware-solution-hosts?tabs=azure-portal) and 
 [Azure Elastic SAN datastores to Azure VMware Solution hosts](/azure/azure-vmware/configure-azure-elastic-san)
 
@@ -103,12 +102,12 @@ No, Zerto customers should reach out Zerto for all supports related issues inclu
 
 Zerto supports on-premises issues, including site pairing, connectivity.
 
-### Does Zerto supports external datastores for VM replication?
-Azure VMware Solution fully supports using Azure NetApp Files (ANF) and Azure Elastic SAN as persistent storage through both Network File System (NFS) and Virtual Machine File System (VMFS) datastores.
-[Azure NetApp datastores to Azure VMware Solution hosts](/azure/azure-vmware/attach-azure-netapp-files-to-azure-vmware-solution-hosts?tabs=azure-portal) and 
-[Azure Elastic SAN datastores to Azure VMware Solution hosts](/azure/azure-vmware/configure-azure-elastic-san)
+### Does Zerto support external datastores for VM replication?
+Azure VMware Solution fully supports using Azure NetApp Files and Azure Elastic SAN as persistent storage through both Network File System (NFS) and Virtual Machine File System (VMFS) datastores.
+- [Azure NetApp datastores to Azure VMware Solution hosts](/azure/azure-vmware/attach-azure-netapp-files-to-azure-vmware-solution-hosts?tabs=azure-portal) and 
+- [Azure Elastic SAN datastores to Azure VMware Solution hosts](/azure/azure-vmware/configure-azure-elastic-san)
 
-### Does Zerto supports Static IP configuration in VRA installation?
+### Does Zerto support Static IP configuration in VRA installation?
 
 Zerto strongly recommend installing the VRAs at the cluster level and inputting an IP Pool range of dedicated VRA IPs within the “VRA Network Details”. Allowing Zerto to automatically manage installation of VRAs as cluster changes occur in the Azure VMware Solution environment.
 
@@ -118,9 +117,9 @@ Yes, Zerto upgrades are part of self-service, as Zerto customers, you can upgrad
 
 ### How to download Zerto ZVM appliance log?
 
-[ZVM Appliance Log Collection](https://help.zerto.com/bundle/Linux.ZVM.HTML.10.0_U5/page/ZVM_Linux_Log_Collection.htm)
+Zerto logs can be collected from ZVM console.
 
-### Can I use a preexisting Zerto product license on Azure VMware Solution?
+### Can I use a preexisting Zerto product license on Azure VMware Solution
 
 You can reuse preexisting Zerto product licenses for Azure VMware Solution environments. If you need new Zerto licenses, email Zerto at **info@zerto.com** to acquire new licenses.
 
