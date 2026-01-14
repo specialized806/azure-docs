@@ -304,9 +304,11 @@ You can verify the containers are running by checking Docker Desktop or using th
 
 ## Interact with the emulator
 
-By default, emulator uses [config.json](https://github.com/Azure/azure-service-bus-emulator-installer/blob/main/ServiceBus-Emulator/Config/Config.json) configuration file. You can configure entities by making changes to configuration file. To know more, visit [make configuration changes](overview-emulator.md#quota-configuration-changes)
+You can create and manage Service Bus entities—such as queues and topics—using the Service Bus [Administration Client](articles/service-bus-messaging/service-bus-management-libraries.md). By default, emulator uses [config.json](https://github.com/Azure/azure-service-bus-emulator-installer/blob/main/ServiceBus-Emulator/Config/Config.json) configuration file. You can also configure entities by making declarative changes to configuration file. To know more, visit [create and manage entities within Service Bus emulator](overview-emulator.md#create-and-manage-entities-within-Service-Bus-emulator) 
 
-You can use the following connection string to connect to the Service Bus emulator:
+### Choosing the right connection string
+
+The Service Bus emulator uses a static connection string, but the host value varies depending on how your application is deployed relative to the emulator. Use the appropriate connection string for your setup:
 
  - When the emulator container and interacting application are running natively on local machine, use following connection string:
 
@@ -332,6 +334,16 @@ You can use the following connection string to connect to the Service Bus emulat
     "Endpoint=sb://host.docker.internal;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=SAS_KEY_VALUE;UseDevelopmentEmulator=true;"
     ```
 
+> [!IMPORTANT]
+> By default, management operations using the Service Bus Administration Client require appending the **port numbe** to the emulator connection string. For example, when both the emulator and the application are running on the same machine, use the following connection string for administration operations:
+>  ```
+> "Endpoint=sb://localhost:5300;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=SAS_KEY_VALUE;UseDevelopmentEmulator=true;";
+>  ```
+> For management operations, the emulator uses port 5300 by default. You can configure the emulator to use a different port if required. Refer to know more.
+> 
+> For Service Bus emulator, creating and managing entities using Service Bus Administration client is only supported in .NET and Java. 
+>
+> 
 You can use the latest client SDKs to interact with the Service Bus emulator across various programming languages. To get started, refer to the [Service Bus emulator samples on GitHub](https://github.com/Azure/azure-service-bus-emulator-installer/tree/main/Sample-Code-Snippets/NET/ServiceBus.Emulator.Console.Sample).
 
 ## Related content
