@@ -2,11 +2,11 @@
 title: Azure permissions for Web and Mobile - Azure RBAC
 description: Lists the permissions for the Azure resource providers in the Web and Mobile category.
 ms.service: role-based-access-control
-ms.topic: reference
+ms.topic: generated-reference
 author: rolyon
-manager: amycolannino
+manager: pmwongera
 ms.author: rolyon
-ms.date: 09/20/2024
+ms.date: 12/31/2025
 ms.custom: generated
 ---
 
@@ -60,6 +60,7 @@ Azure service: [App Service](/azure/app-service/)
 > | Microsoft.DomainRegistration/domains/Write | Add a new Domain or update an existing one |
 > | Microsoft.DomainRegistration/domains/Delete | Delete an existing domain. |
 > | Microsoft.DomainRegistration/domains/renew/Action | Renew an existing domain. |
+> | Microsoft.DomainRegistration/domains/redeem/Action | Redeem an existing domain. |
 > | Microsoft.DomainRegistration/domains/verifyRegistrantEmail/Action | Resends verification emails to the email address of registrant contact. |
 > | Microsoft.DomainRegistration/domains/retrieveContactInfo/Action | Retrieve contact info for existing domain |
 > | Microsoft.DomainRegistration/domains/Read | Transfer out a domain to another registrar. |
@@ -99,11 +100,17 @@ Azure service: [Azure Maps](/azure/azure-maps/)
 > | Microsoft.Maps/accounts/privateEndpointConnectionProxies/validate/action | Validate a Private Endpoint Connection Proxy. |
 > | Microsoft.Maps/accounts/privateEndpointConnectionProxies/read | Read a Private Endpoint Connection Proxy. |
 > | Microsoft.Maps/accounts/privateEndpointConnectionProxies/write | Create or update a Private Endpoint Connection Proxy. |
+> | Microsoft.Maps/accounts/privateEndpointConnectionProxies/delete | Delete a Private Endpoint Connection Proxy. |
+> | Microsoft.Maps/accounts/privateEndpointConnections/validate/action | Validate a Private Endpoint Connection. |
+> | Microsoft.Maps/accounts/privateEndpointConnections/read | Read a Private Endpoint Connection. |
+> | Microsoft.Maps/accounts/privateEndpointConnections/write | Update a Private Endpoint Connection. |
+> | Microsoft.Maps/accounts/privateEndpointConnections/delete | Delete a Private Endpoint Connection. |
 > | Microsoft.Maps/accounts/providers/Microsoft.Insights/diagnosticSettings/read | Gets the diagnostic setting for the resource |
 > | Microsoft.Maps/accounts/providers/Microsoft.Insights/diagnosticSettings/write | Creates or updates the diagnostic setting for the resource |
 > | Microsoft.Maps/accounts/providers/Microsoft.Insights/metricDefinitions/read | Gets the available metrics for Maps Accounts |
-> | Microsoft.Maps/locations/operationStatuses/read | Read an Asyncronous Operation. |
+> | Microsoft.Maps/operationResults/read | Read an Async Operation Results. |
 > | Microsoft.Maps/operations/read | Read the provider operations |
+> | Microsoft.Maps/operationStatuses/read | Read an Async Operation Statuses. |
 > | Microsoft.Maps/resourceTypes/read | Read the provider resourceTypes |
 > | **DataAction** | **Description** |
 > | Microsoft.Maps/accounts/services/batch/action | Allows actions upon data for batch services. |
@@ -125,149 +132,6 @@ Azure service: [Azure Maps](/azure/azure-maps/)
 > | Microsoft.Maps/accounts/services/traffic/read | Allows reading of data for Traffic services. |
 > | Microsoft.Maps/accounts/services/turnbyturn/read | Allows reading of data for TurnByTurn services. |
 > | Microsoft.Maps/accounts/services/weather/read | Allows reading of data for Weather services. |
-
-## Microsoft.Media
-
-Encode, store, and stream video and audio at scale.
-
-Azure service: [Media Services](/azure/media-services/)
-
-> [!div class="mx-tableFixed"]
-> | Action | Description |
-> | --- | --- |
-> | Microsoft.Media/register/action | Registers the subscription for the Media Services resource provider and enables the creation of Media Services accounts |
-> | Microsoft.Media/unregister/action | Unregisters the subscription for the Media Services resource provider |
-> | Microsoft.Media/checknameavailability/action | Checks if a Media Services account name is available |
-> | Microsoft.Media/locations/checkNameAvailability/action | Checks if a Media Services account name is available |
-> | Microsoft.Media/locations/mediaServicesOperationResults/read | Read any Media Services Operation Result |
-> | Microsoft.Media/locations/mediaServicesOperationStatuses/read | Read Any Media Service Operation Status |
-> | Microsoft.Media/locations/videoAnalyzerOperationResults/read | Read any Video Analyzer Operation Result |
-> | Microsoft.Media/locations/videoAnalyzerOperationStatuses/read | Read any Video Analyzer Operation Status |
-> | Microsoft.Media/mediaservices/read | Read any Media Services Account |
-> | Microsoft.Media/mediaservices/write | Create or Update any Media Services Account |
-> | Microsoft.Media/mediaservices/delete | Delete any Media Services Account |
-> | Microsoft.Media/mediaservices/regenerateKey/action | Regenerate a Media Services ACS key |
-> | Microsoft.Media/mediaservices/listKeys/action | List the ACS keys for the Media Services account |
-> | Microsoft.Media/mediaservices/syncStorageKeys/action | Synchronize the Storage Keys for an attached Azure Storage account |
-> | Microsoft.Media/mediaservices/listEdgePolicies/action | List policies for an edge device. |
-> | Microsoft.Media/mediaservices/PrivateEndpointConnectionsApproval/action | Approve Private Endpoint Connections |
-> | Microsoft.Media/mediaservices/accountfilters/read | Read any Account Filter |
-> | Microsoft.Media/mediaservices/accountfilters/write | Create or Update any Account Filter |
-> | Microsoft.Media/mediaservices/accountfilters/delete | Delete any Account Filter |
-> | Microsoft.Media/mediaservices/assets/read | Read any Asset |
-> | Microsoft.Media/mediaservices/assets/write | Create or Update any Asset |
-> | Microsoft.Media/mediaservices/assets/delete | Delete any Asset |
-> | Microsoft.Media/mediaservices/assets/listContainerSas/action | List Asset Container SAS URLs |
-> | Microsoft.Media/mediaservices/assets/getEncryptionKey/action | Get Asset Encryption Key |
-> | Microsoft.Media/mediaservices/assets/listStreamingLocators/action | List Streaming Locators for Asset |
-> | Microsoft.Media/mediaservices/assets/assetfilters/read | Read any Asset Filter |
-> | Microsoft.Media/mediaservices/assets/assetfilters/write | Create or Update any Asset Filter |
-> | Microsoft.Media/mediaservices/assets/assetfilters/delete | Delete any Asset Filter |
-> | Microsoft.Media/mediaservices/assets/assetTracks/read | Read any Asset Track |
-> | Microsoft.Media/mediaservices/assets/assetTracks/write | Create or Update any Asset Track |
-> | Microsoft.Media/mediaservices/assets/assetTracks/delete | Delete any Asset Track |
-> | Microsoft.Media/mediaservices/assets/assetTracks/updateTrackData/action | Update the track data for Asset Track |
-> | Microsoft.Media/mediaservices/assets/assetTracks/assetTracksOperationResults/read | Read any Asset Track Operation Result |
-> | Microsoft.Media/mediaservices/assets/assetTracks/assetTracksOperationStatuses/read | Read any Asset Track Operation Result |
-> | Microsoft.Media/mediaservices/contentKeyPolicies/read | Read any Content Key Policy |
-> | Microsoft.Media/mediaservices/contentKeyPolicies/write | Create or Update any Content Key Policy |
-> | Microsoft.Media/mediaservices/contentKeyPolicies/delete | Delete any Content Key Policy |
-> | Microsoft.Media/mediaservices/contentKeyPolicies/getPolicyPropertiesWithSecrets/action | Get Policy Properties With Secrets |
-> | Microsoft.Media/mediaservices/eventGridFilters/read | Read any Event Grid Filter |
-> | Microsoft.Media/mediaservices/eventGridFilters/write | Create or Update any Event Grid Filter |
-> | Microsoft.Media/mediaservices/eventGridFilters/delete | Delete any Event Grid Filter |
-> | Microsoft.Media/mediaservices/liveEventOperations/read | Read any Live Event Operation |
-> | Microsoft.Media/mediaservices/liveEvents/read | Read any Live Event |
-> | Microsoft.Media/mediaservices/liveEvents/write | Create or Update any Live Event |
-> | Microsoft.Media/mediaservices/liveEvents/delete | Delete any Live Event |
-> | Microsoft.Media/mediaservices/liveEvents/start/action | Start any Live Event Operation |
-> | Microsoft.Media/mediaservices/liveEvents/stop/action | Stop any Live Event Operation |
-> | Microsoft.Media/mediaservices/liveEvents/reset/action | Reset any Live Event Operation |
-> | Microsoft.Media/mediaservices/liveEvents/liveOutputs/read | Read any Live Output |
-> | Microsoft.Media/mediaservices/liveEvents/liveOutputs/write | Create or Update any Live Output |
-> | Microsoft.Media/mediaservices/liveEvents/liveOutputs/delete | Delete any Live Output |
-> | Microsoft.Media/mediaservices/liveEvents/providers/Microsoft.Insights/diagnosticSettings/read | Gets the diagnostic setting for the resource. |
-> | Microsoft.Media/mediaservices/liveEvents/providers/Microsoft.Insights/diagnosticSettings/write | Creates or updates the diagnostic setting for the resource. |
-> | Microsoft.Media/mediaservices/liveEvents/providers/Microsoft.Insights/metricDefinitions/read | Get a list of Media Services Live Event Metrics definitions. |
-> | Microsoft.Media/mediaservices/liveOutputOperations/read | Read any Live Output Operation |
-> | Microsoft.Media/mediaservices/privateEndpointConnectionOperations/read | Read any Private Endpoint Connection Operation |
-> | Microsoft.Media/mediaservices/privateEndpointConnectionProxies/read | Read any Private Endpoint Connection Proxy |
-> | Microsoft.Media/mediaservices/privateEndpointConnectionProxies/write | Create Private Endpoint Connection Proxy |
-> | Microsoft.Media/mediaservices/privateEndpointConnectionProxies/delete | Delete Private Endpoint Connection Proxy |
-> | Microsoft.Media/mediaservices/privateEndpointConnectionProxies/validate/action | Validate Private Endpoint Connection Proxy |
-> | Microsoft.Media/mediaservices/privateEndpointConnections/read | Read any Private Endpoint Connection |
-> | Microsoft.Media/mediaservices/privateEndpointConnections/write | Create Private Endpoint Connection |
-> | Microsoft.Media/mediaservices/privateEndpointConnections/delete | Delete Private Endpoint Connection |
-> | Microsoft.Media/mediaservices/privateLinkResources/read | Read any Private Link Resource |
-> | Microsoft.Media/mediaservices/providers/Microsoft.Insights/diagnosticSettings/read | Gets the diagnostic setting for the resource. |
-> | Microsoft.Media/mediaservices/providers/Microsoft.Insights/diagnosticSettings/write | Creates or updates the diagnostic setting for the resource. |
-> | Microsoft.Media/mediaservices/providers/Microsoft.Insights/logDefinitions/read | Gets the available logs for a Media Services Account |
-> | Microsoft.Media/mediaservices/providers/Microsoft.Insights/metricDefinitions/read | Get list of Media Services Metric definitions. |
-> | Microsoft.Media/mediaservices/streamingEndpointOperations/read | Read any Streaming Endpoint Operation |
-> | Microsoft.Media/mediaservices/streamingEndpoints/read | Read any Streaming Endpoint |
-> | Microsoft.Media/mediaservices/streamingEndpoints/write | Create or Update any Streaming Endpoint |
-> | Microsoft.Media/mediaservices/streamingEndpoints/delete | Delete any Streaming Endpoint |
-> | Microsoft.Media/mediaservices/streamingEndpoints/start/action | Start any Streaming Endpoint Operation |
-> | Microsoft.Media/mediaservices/streamingEndpoints/stop/action | Stop any Streaming Endpoint Operation |
-> | Microsoft.Media/mediaservices/streamingEndpoints/scale/action | Scale any Streaming Endpoint Operation |
-> | Microsoft.Media/mediaservices/streamingEndpoints/providers/Microsoft.Insights/diagnosticSettings/read | Gets the diagnostic setting for the resource. |
-> | Microsoft.Media/mediaservices/streamingEndpoints/providers/Microsoft.Insights/diagnosticSettings/write | Creates or updates the diagnostic setting for the resource. |
-> | Microsoft.Media/mediaservices/streamingEndpoints/providers/Microsoft.Insights/metricDefinitions/read | Get list of Media Services Streaming Endpoint Metrics definitions. |
-> | Microsoft.Media/mediaservices/streamingLocators/read | Read any Streaming Locator |
-> | Microsoft.Media/mediaservices/streamingLocators/write | Create or Update any Streaming Locator |
-> | Microsoft.Media/mediaservices/streamingLocators/delete | Delete any Streaming Locator |
-> | Microsoft.Media/mediaservices/streamingLocators/listContentKeys/action | List Content Keys |
-> | Microsoft.Media/mediaservices/streamingLocators/listPaths/action | List Paths |
-> | Microsoft.Media/mediaservices/streamingPolicies/read | Read any Streaming Policy |
-> | Microsoft.Media/mediaservices/streamingPolicies/write | Create or Update any Streaming Policy |
-> | Microsoft.Media/mediaservices/streamingPolicies/delete | Delete any Streaming Policy |
-> | Microsoft.Media/mediaservices/transforms/read | Read any Transform |
-> | Microsoft.Media/mediaservices/transforms/write | Create or Update any Transform |
-> | Microsoft.Media/mediaservices/transforms/delete | Delete any Transform |
-> | Microsoft.Media/mediaservices/transforms/jobs/read | Read any Job |
-> | Microsoft.Media/mediaservices/transforms/jobs/write | Create or Update any Job |
-> | Microsoft.Media/mediaservices/transforms/jobs/delete | Delete any Job |
-> | Microsoft.Media/mediaservices/transforms/jobs/cancelJob/action | Cancel Job |
-> | Microsoft.Media/operations/read | Get Available Operations |
-> | Microsoft.Media/videoAnalyzers/read | Read a Video Analyzer Account |
-> | Microsoft.Media/videoAnalyzers/write | Create or Update a Video Analyzer Account |
-> | Microsoft.Media/videoAnalyzers/delete | Delete a Video Analyzer Account |
-> | Microsoft.Media/videoAnalyzers/PrivateEndpointConnectionsApproval/action | Approve Private Endpoint Connections |
-> | Microsoft.Media/videoAnalyzers/accessPolicies/read | Read any Access Policy |
-> | Microsoft.Media/videoAnalyzers/accessPolicies/write | Create or Update any Access Policy |
-> | Microsoft.Media/videoAnalyzers/accessPolicies/delete | Delete any Access Policy |
-> | Microsoft.Media/videoAnalyzers/edgeModules/read | Read any Edge Module |
-> | Microsoft.Media/videoAnalyzers/edgeModules/write | Create or Update any Edge Module |
-> | Microsoft.Media/videoAnalyzers/edgeModules/delete | Delete any Edge Module |
-> | Microsoft.Media/videoAnalyzers/edgeModules/listProvisioningToken/action | Creates a new provisioning token.<br>A provisioning token allows for a single instance of Azure Video analyzer IoT edge module to be initialized and authorized to the cloud account.<br>The provisioning token itself is short lived and it is only used for the initial handshake between IoT edge module and the cloud.<br>After the initial handshake, the IoT edge module will agree on a set of authentication keys which will be auto-rotated as long as the module is able to periodically connect to the cloud.<br>A new provisioning token can be generated for the same IoT edge module in case the module state lost or reset |
-> | Microsoft.Media/videoAnalyzers/livePipelines/read | Read any Live Pipeline |
-> | Microsoft.Media/videoAnalyzers/livePipelines/write | Create or Update any Live Pipeline |
-> | Microsoft.Media/videoAnalyzers/livePipelines/delete | Delete any Live Pipeline |
-> | Microsoft.Media/videoAnalyzers/livePipelines/activate/action | Activate any Live Pipeline |
-> | Microsoft.Media/videoAnalyzers/livePipelines/deactivate/action | Deactivate any Live Pipeline |
-> | Microsoft.Media/videoAnalyzers/livePipelines/operationsStatus/read | Read any Live Pipeline operation status |
-> | Microsoft.Media/videoAnalyzers/pipelineJobs/read | Read any Pipeline Job |
-> | Microsoft.Media/videoAnalyzers/pipelineJobs/write | Create or Update any Pipeline Job |
-> | Microsoft.Media/videoAnalyzers/pipelineJobs/delete | Delete any Pipeline Job |
-> | Microsoft.Media/videoAnalyzers/pipelineJobs/cancel/action | Cancel any Pipeline Job |
-> | Microsoft.Media/videoAnalyzers/pipelineJobs/operationsStatus/read | Read any Pipeline Job operation status |
-> | Microsoft.Media/videoAnalyzers/pipelineTopologies/read | Read any Pipeline Topology |
-> | Microsoft.Media/videoAnalyzers/pipelineTopologies/write | Create or Update any Pipeline Topology |
-> | Microsoft.Media/videoAnalyzers/pipelineTopologies/delete | Delete any Pipeline Topology |
-> | Microsoft.Media/videoAnalyzers/privateEndpointConnectionOperations/read | Read any Private Endpoint Connection Operation |
-> | Microsoft.Media/videoAnalyzers/privateEndpointConnectionProxies/read | Read any Private Endpoint Connection Proxy |
-> | Microsoft.Media/videoAnalyzers/privateEndpointConnectionProxies/write | Create Private Endpoint Connection Proxy |
-> | Microsoft.Media/videoAnalyzers/privateEndpointConnectionProxies/delete | Delete Private Endpoint Connection Proxy |
-> | Microsoft.Media/videoAnalyzers/privateEndpointConnectionProxies/validate/action | Validate Private Endpoint Connection Proxy |
-> | Microsoft.Media/videoAnalyzers/privateEndpointConnections/read | Read any Private Endpoint Connection |
-> | Microsoft.Media/videoAnalyzers/privateEndpointConnections/write | Create Private Endpoint Connection |
-> | Microsoft.Media/videoAnalyzers/privateEndpointConnections/delete | Delete Private Endpoint Connection |
-> | Microsoft.Media/videoAnalyzers/privateLinkResources/read | Read any Private Link Resource |
-> | Microsoft.Media/videoAnalyzers/videos/read | Read any Video |
-> | Microsoft.Media/videoAnalyzers/videos/write | Create or Update any Video |
-> | Microsoft.Media/videoAnalyzers/videos/delete | Delete any Video |
-> | Microsoft.Media/videoAnalyzers/videos/listStreamingToken/action | Generates a streaming token which can be used for video playback |
-> | Microsoft.Media/videoAnalyzers/videos/listContentToken/action | Generates a content token which can be used for video playback |
 
 ## Microsoft.SignalRService
 
@@ -483,6 +347,9 @@ Azure service: [App Service](/azure/app-service/), [Azure Functions](/azure/azur
 > | microsoft.web/connections/listConnectionKeys/action | Lists API Connections Keys. |
 > | microsoft.web/connections/revokeConnectionKeys/action | Revokes API Connections Keys. |
 > | microsoft.web/connections/dynamicInvoke/action | Dynamic Invoke a Connection. |
+> | Microsoft.Web/connections/accessPolicies/Read | Get the list of Connection Access Policies. |
+> | Microsoft.Web/connections/accessPolicies/Write | Add or Update Connection Access Policies. |
+> | Microsoft.Web/connections/accessPolicies/Delete | Deletes Connection Access Policies. |
 > | Microsoft.Web/connections/providers/Microsoft.Insights/metricDefinitions/Read | Gets the available metrics for API Connections |
 > | Microsoft.Web/containerApps/read | Get the properties for a Container App |
 > | Microsoft.Web/containerApps/write | Create a Container App or update an existing one |
@@ -602,6 +469,8 @@ Azure service: [App Service](/azure/app-service/), [Azure Functions](/azure/azur
 > | Microsoft.Web/serverfarms/Write | Create a new App Service Plan or update an existing one |
 > | Microsoft.Web/serverfarms/Delete | Delete an existing App Service Plan |
 > | Microsoft.Web/serverfarms/Join/Action | Joins an App Service Plan |
+> | Microsoft.Web/serverfarms/startSites/Action | Start all Apps in an App Service Plan |
+> | Microsoft.Web/serverfarms/stopSites/Action | Stop all Apps in an App Service Plan |
 > | Microsoft.Web/serverfarms/restartSites/Action | Restart all Web Apps in an App Service Plan |
 > | microsoft.web/serverfarms/capabilities/read | Get App Service Plans Capabilities. |
 > | Microsoft.Web/serverfarms/eventGridFilters/delete | Delete Event Grid Filter on server farm. |
@@ -821,6 +690,9 @@ Azure service: [App Service](/azure/app-service/), [Azure Functions](/azure/azur
 > | microsoft.web/sites/resourcehealthmetadata/read | Get Web Apps Resource Health Metadata. |
 > | microsoft.web/sites/restore/read | Get Web Apps Restore. |
 > | microsoft.web/sites/restore/write | Restore Web Apps. |
+> | Microsoft.Web/sites/sitecontainers/Read | Get the properties of a Web App's Sitecontainers |
+> | Microsoft.Web/sites/sitecontainers/Write | Create new Sitecontainers or update existing ones for a Web App |
+> | Microsoft.Web/sites/sitecontainers/Delete | Delete Sitecontainers of an existing Web App |
 > | microsoft.web/sites/siteextensions/delete | Delete Web Apps Site Extensions. |
 > | microsoft.web/sites/siteextensions/read | Get Web Apps Site Extensions. |
 > | microsoft.web/sites/siteextensions/write | Update Web Apps Site Extensions. |
@@ -968,6 +840,9 @@ Azure service: [App Service](/azure/app-service/), [Azure Functions](/azure/azur
 > | microsoft.web/sites/slots/resourcehealthmetadata/read | Get Web Apps Slots Resource Health Metadata. |
 > | microsoft.web/sites/slots/restore/read | Get Web Apps Slots Restore. |
 > | microsoft.web/sites/slots/restore/write | Restore Web Apps Slots. |
+> | Microsoft.Web/sites/slots/sitecontainers/Read | Get the properties of Sitecontainers of Web App's Slot |
+> | Microsoft.Web/sites/slots/sitecontainers/Write | Create new or update existing Sitecontainers of a Web App's Slot |
+> | Microsoft.Web/sites/slots/sitecontainers/Delete | Delete Sitecontainers of an existing Web App's Slot |
 > | microsoft.web/sites/slots/siteextensions/delete | Delete Web Apps Slots Site Extensions. |
 > | microsoft.web/sites/slots/siteextensions/read | Get Web Apps Slots Site Extensions. |
 > | microsoft.web/sites/slots/siteextensions/write | Update Web Apps Slots Site Extensions. |
@@ -1006,6 +881,7 @@ Azure service: [App Service](/azure/app-service/), [Azure Functions](/azure/azur
 > | microsoft.web/skus/read | Get SKUs. |
 > | microsoft.web/sourcecontrols/read | Get Source Controls. |
 > | microsoft.web/sourcecontrols/write | Update Source Controls. |
+> | Microsoft.Web/staticSiteRegions/Read | Get the list of Static Site regions. |
 > | Microsoft.Web/staticSites/Read | Get the properties of a Static Site |
 > | Microsoft.Web/staticSites/Write | Create a new Static Site or update an existing one |
 > | Microsoft.Web/staticSites/Delete | Delete an existing Static Site |
@@ -1020,11 +896,12 @@ Azure service: [App Service](/azure/app-service/), [Azure Functions](/azure/azur
 > | Microsoft.Web/staticSites/resetapikey/Action | Reset the api key for a Static Site |
 > | Microsoft.Web/staticSites/zipdeploy/action | Deploy a Static Site from zipped content |
 > | Microsoft.Web/staticSites/showDatabaseConnections/action | Show details for Database Connections for a Static Site |
+> | Microsoft.Web/staticSites/publish/action | Check publish access to static web app |
 > | Microsoft.Web/staticSites/authproviders/listusers/Action | List the users for a Static Site |
 > | Microsoft.Web/staticSites/authproviders/users/Delete | Delete a user for a Static Site |
 > | Microsoft.Web/staticSites/authproviders/users/Write | Update a user for a Static Site |
-> | Microsoft.Web/staticSites/build/Read | Get a build for a Static Site |
-> | Microsoft.Web/staticSites/build/Delete | Delete a build for a Static Site |
+> | Microsoft.Web/staticSites/builds/Read | Get a build for a Static Site |
+> | Microsoft.Web/staticSites/builds/Delete | Delete a build for a Static Site |
 > | Microsoft.Web/staticSites/builds/listfunctionappsettings/Action | List function app settings for a Static Site Build |
 > | Microsoft.Web/staticSites/builds/listappsettings/Action | List app settings for a Static Site Build |
 > | Microsoft.Web/staticSites/builds/zipdeploy/action | Deploy a Static Site Build from zipped content |
@@ -1056,6 +933,9 @@ Azure service: [App Service](/azure/app-service/), [Azure Functions](/azure/azur
 > | Microsoft.Web/staticSites/linkedBackends/Delete | Unlink a Backend from a Static Site |
 > | Microsoft.Web/staticSites/linkedBackends/Read | Get Static Site Linked Backends |
 > | Microsoft.Web/staticSites/linkedBackends/Write | Register a Linked Backend with a Static Site |
+> | Microsoft.Web/staticSites/networkConfigs/Delete | Disconnects a network configuration from a Static Site |
+> | Microsoft.Web/staticSites/networkConfigs/Read | Get Static Site Network Configs |
+> | Microsoft.Web/staticSites/networkConfigs/Write | Updates network configuration for a Static Site |
 > | Microsoft.Web/staticSites/privateEndpointConnectionProxies/validate/action | Validate Private Endpoint Connection Proxies for a Static Site |
 > | Microsoft.Web/staticSites/privateEndpointConnectionProxies/Write | Create or Update Private Endpoint Connection Proxies for a Static Site |
 > | Microsoft.Web/staticSites/privateEndpointConnectionProxies/Delete | Delete Private Endpoint Connection Proxies for a Static Site |

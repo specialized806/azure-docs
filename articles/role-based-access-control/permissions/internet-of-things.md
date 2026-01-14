@@ -2,11 +2,11 @@
 title: Azure permissions for Internet of Things - Azure RBAC
 description: Lists the permissions for the Azure resource providers in the Internet of Things category.
 ms.service: role-based-access-control
-ms.topic: reference
+ms.topic: generated-reference
 author: rolyon
-manager: amycolannino
+manager: pmwongera
 ms.author: rolyon
-ms.date: 09/20/2024
+ms.date: 12/31/2025
 ms.custom: generated
 ---
 
@@ -363,13 +363,14 @@ Azure service: [Microsoft Defender for IoT](/azure/defender-for-iot/device-build
 > | Microsoft.IoTFirmwareDefense/locations/operationStatuses/read | read operationStatuses |
 > | Microsoft.IoTFirmwareDefense/locations/operationStatuses/write | write operationStatuses |
 > | Microsoft.IoTFirmwareDefense/operations/read | read operations |
+> | Microsoft.IoTFirmwareDefense/workspaces/generateUploadUrl/action | The operation to get a url for file upload. |
 > | Microsoft.IoTFirmwareDefense/workspaces/read | Lists all of the firmware analysis workspaces in the specified subscription. |
 > | Microsoft.IoTFirmwareDefense/workspaces/read | Lists all of the firmware analysis workspaces in the specified resource group. |
 > | Microsoft.IoTFirmwareDefense/workspaces/read | Get firmware analysis workspace. |
 > | Microsoft.IoTFirmwareDefense/workspaces/write | The operation to create or update a firmware analysis workspace. |
 > | Microsoft.IoTFirmwareDefense/workspaces/delete | The operation to delete a firmware analysis workspace. |
 > | Microsoft.IoTFirmwareDefense/workspaces/write | The operation to update a firmware analysis workspaces. |
-> | Microsoft.IoTFirmwareDefense/workspaces/generateUploadUrl/action | The operation to get a url for file upload. |
+> | Microsoft.IoTFirmwareDefense/workspaces/generateUploadUrl/action | Generate a URL for uploading a firmware image. |
 > | Microsoft.IoTFirmwareDefense/workspaces/firmwares/generateDownloadUrl/action | The operation to a url for file download. |
 > | Microsoft.IoTFirmwareDefense/workspaces/firmwares/generateFilesystemDownloadUrl/action | The operation to a url for tar file download. |
 > | Microsoft.IoTFirmwareDefense/workspaces/firmwares/generateSummary/action | The operation to get a scan summary. |
@@ -393,13 +394,15 @@ Azure service: [Microsoft Defender for IoT](/azure/defender-for-iot/device-build
 > | Microsoft.IoTFirmwareDefense/workspaces/firmwares/generateDownloadUrl/action | The operation to a url for file download. |
 > | Microsoft.IoTFirmwareDefense/workspaces/firmwares/generateFilesystemDownloadUrl/action | The operation to a url for tar file download. |
 > | Microsoft.IoTFirmwareDefense/workspaces/firmwares/binaryHardeningResults/read | Lists binary hardening analysis results of a firmware. |
-> | Microsoft.IoTFirmwareDefense/workspaces/firmwares/cryptoCertificates/read | Lists cryptographic certificate analysis results found in a firmware. |
-> | Microsoft.IoTFirmwareDefense/workspaces/firmwares/cryptoKeys/read | Lists cryptographic key analysis results found in a firmware. |
+> | Microsoft.IoTFirmwareDefense/workspaces/firmwares/cryptoCertificates/read | Lists crypto certificate analysis results of a firmware. |
+> | Microsoft.IoTFirmwareDefense/workspaces/firmwares/cryptoKeys/read | Lists crypto key analysis results of a firmware. |
 > | Microsoft.IoTFirmwareDefense/workspaces/firmwares/cves/read | Lists CVE analysis results of a firmware. |
 > | Microsoft.IoTFirmwareDefense/workspaces/firmwares/passwordHashes/read | Lists password hash analysis results of a firmware. |
-> | Microsoft.IoTFirmwareDefense/workspaces/firmwares/sbomComponents/read | Lists SBOM analysis results of a firmware. |
+> | Microsoft.IoTFirmwareDefense/workspaces/firmwares/sbomComponents/read | Lists sbom analysis results of a firmware. |
 > | Microsoft.IoTFirmwareDefense/workspaces/firmwares/summaries/read | Lists analysis result summary names of a firmware. To fetch the full summary data, get that summary by name. |
 > | Microsoft.IoTFirmwareDefense/workspaces/firmwares/summaries/read | Get an analysis result summary of a firmware by name. |
+> | Microsoft.IoTFirmwareDefense/workspaces/usageMetrics/read | Lists monthly usage information for a workspace. |
+> | Microsoft.IoTFirmwareDefense/workspaces/usageMetrics/read | Gets monthly usage information for a workspace. |
 
 ## Microsoft.IoTSecurity
 
@@ -452,7 +455,6 @@ Azure service: [IoT security](/azure/iot/iot-security-architecture)
 > | Microsoft.IoTSecurity/onPremiseSensors/delete | Deletes on-premise IoT Sensors |
 > | Microsoft.IoTSecurity/onPremiseSensors/downloadActivation/action | Gets on-premise IoT Sensor Activation File |
 > | Microsoft.IoTSecurity/onPremiseSensors/downloadResetPassword/action | Downloads file for reset password of the on-premise IoT Sensor |
-> | Microsoft.IoTSecurity/onPremiseSensors/listDiagnosticsUploadDetails/action | Get details required to upload sensor diagnostics data |
 > | Microsoft.IoTSecurity/sensors/read | Gets IoT Sensors |
 
 ## Microsoft.StreamAnalytics

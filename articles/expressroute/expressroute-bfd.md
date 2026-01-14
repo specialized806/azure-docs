@@ -34,10 +34,6 @@ In this scenario, BFD can help. BFD provides low-overhead link failure detection
 
 BFD is configured by default under all the newly created ExpressRoute private and Microsoft peering interfaces on the MSEEs. As such, to enable BFD, you only need to configure BFD on both your primary and secondary devices. Configuring BFD is two-step process. You configure the BFD on the interface and then link it to the BGP session.
 
-> [!NOTE]
-> BFD is only supported on IPv4 peering. 
->
-
 An example CE/PE (using Cisco IOS XE) configuration is shown as followed: 
 
 ```console
@@ -60,7 +56,7 @@ router bgp 65020
 ```
 
 >[!NOTE]
->To enable BFD under an already existing private or Microsoft peering, you'll need to reset the peering. This will need to be done on circuits configured with private peering before August 2018 and Microsoft peering before January 2020. See [Reset ExpressRoute peerings][ResetPeering]. While configuring BFD on your primary and secondary devices is optional, the BFD configuration on the Azure devices for new peerings is not optional and cannot be removed.
+>To enable BFD under an already existing private or Microsoft peering, you'll need to reset the peering. For IPv4 peering, this will need to be done on Circuits configured with private peering before August 2018 and Microsoft peering before January 2020. For IPv6 peering, this will need to be done on Circuits configured before November 2025. Peerings configured after these dates will have BFD enabled by default. See [Reset ExpressRoute peerings][ResetPeering]. While configuring BFD on your primary and secondary devices is optional, the BFD configuration on the Azure devices for new peerings is not optional and cannot be removed.
 >
 
 ## BFD Timer Negotiation
@@ -68,7 +64,7 @@ router bgp 65020
 Between BFD peers, the slower of the two peers determine the transmission rate. MSEEs BFD transmission/receive intervals are set to 300 milliseconds. In certain scenarios, the interval may be set at a higher value of 750 milliseconds. By configuring a higher value, you can force these intervals to be longer but it's not possible to make them shorter.
 
 >[!NOTE]
->If you have configured Geo-redundant ExpressRoute circuits or use Site-to-Site IPSec VPN connectivity as backup. Enabling BFD would help failover quicker following an ExpressRoute connectivity failure. 
+>If you have configured Geo-redundant ExpressRoute circuits or use Site-to-Site IPsec VPN connectivity as backup. Enabling BFD would help failover quicker following an ExpressRoute connectivity failure. 
 >
 
 ## Next Steps

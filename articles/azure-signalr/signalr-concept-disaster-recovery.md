@@ -5,11 +5,13 @@ author: vicancy
 ms.service: azure-signalr-service
 ms.topic: conceptual
 ms.devlang: csharp
-ms.custom: devx-track-csharp
 ms.date: 03/01/2019
 ms.author: lianwei
 zone_pivot_group_filename: azure-signalr/zone-pivot-groups.json
 zone_pivot_groups: azure-signalr-service-mode
+ms.custom:
+  - devx-track-csharp
+  - sfi-ropc-nochange
 ---
 # Resiliency and disaster recovery in Azure SignalR Service
 
@@ -54,7 +56,7 @@ Once you have SignalR service and app servers/Azure Functions created in each re
 
 ### Through config
 
-You should already know how to set SignalR service connection string through environment variables/app settings/web.cofig, in a config entry named `Azure:SignalR:ConnectionString`.
+You should already know how to set SignalR service connection string through environment variables/app settings/web.config, in a config entry named `Azure:SignalR:ConnectionString`.
 If you have multiple endpoints, you can set them in multiple config entries, each in the following format:
 
 ```

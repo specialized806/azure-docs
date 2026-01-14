@@ -1,6 +1,6 @@
 ---
 description: This article answers common questions and explains how to troubleshoot Cloud Shell issues.
-ms.date: 08/29/2024
+ms.date: 12/03/2025
 ms.topic: troubleshooting
 tags: azure-resource-manager
 ms.custom: has-azure-ad-ps-ref
@@ -25,17 +25,25 @@ Cloud Shell supports the latest versions of following browsers:
 The keys used for copy and paste vary by operating system and browser. The following list contains
 the most common key combinations:
 
-- Windows: <kbd>Ctrl</kbd>+<kbd>c</kbd> to copy and <kbd>CTRL</kbd>+<kbd>Shift</kbd>+<kbd>v</kbd> or
+- Windows: <kbd>Ctrl</kbd>+<kbd>c</kbd> to copy and <kbd>CTRL</kbd>+<kbd>v</kbd> or
   <kbd>Shift</kbd>+<kbd>Insert</kbd> to paste.
-  - FireFox might not support clipboard permissions properly.
+  - Firefox might not support clipboard permissions properly.
 - macOS: <kbd>Cmd</kbd>+<kbd>c</kbd> to copy and <kbd>Cmd</kbd>+<kbd>v</kbd> to paste.
-- Linux: <kbd>CTRL</kbd>+<kbd>c</kbd> to copy and <kbd>CTRL</kbd>+<kbd>Shift</kbd>+<kbd>v</kbd> to
-  paste.
+- Linux: <kbd>CTRL</kbd>+<kbd>c</kbd> to copy and <kbd>CTRL</kbd>+<kbd>v</kbd> to paste.
 
 > [!NOTE]
 > If no text is selected when you type <kbd>Ctrl</kbd>+<kbd>C</kbd>, Cloud Shell sends the `Ctrl-c`
 > character to the shell. The shell can interpret `Ctrl-c` as a **Break** signal and terminate the
 > currently running command.
+
+When using the Bash shell, pasted text is automatically highlighted due to bracketed paste mode. To
+disable highlighting, run the following command:
+
+```bash
+bind 'set enable-bracketed-paste off'
+```
+
+This setting only persists if you have a mounted storage account.
 
 ## Frequently asked questions
 
@@ -125,7 +133,7 @@ command that requires elevated permissions.
 
 - **Details**: Cloud Shell uses Azure Relay for terminal connections. Cloud Shell can fail to
   request a terminal due to DNS resolution problems. This failure can be caused when you launch a
-  Cloud Shell session from a host in a network that has a private DNS Zone for the servicebus
+  Cloud Shell session from a host in a network that has a private DNS Zone for the `servicebus`
   domain. This error can also occur if you're using a private on-premises DNS server.
 
 - **Resolution**: You can add a DNS record for the Azure Relay instance that Cloud Shell uses.
@@ -188,6 +196,34 @@ command that requires elevated permissions.
 
   Alternately, you can deploy your own private Cloud Shell instance. For more information, see
   [Deploy Cloud Shell in a virtual network][01].
+
+### Terminal output - Sorry, your Cloud Shell failed to provision: {"code":"TenantDisabled" ...}
+
+- **Details**: In rare cases, Azure might flag out-of-the-ordinary resource consumption based in
+  from Cloud Shell as fraudulent activity. When this occurs, Azure disables Cloud Shell at the
+  tenant level and you see the following error message:
+
+  > Sorry, your Cloud Shell failed to provision: {"code":"TenantDisabled","message":"Cloud Shell has
+  > been disabled in directory<>."} Please refresh the page.
+
+  There can be legitimate use cases where CPU usage in your Azure Cloud Shell instance exceeds the
+  thresholds that trigger fraud prevention and block your tenant. Large AZCopy jobs could be the
+  cause this event. The Microsoft Azure engineering team can help to figure out why the tenant was
+  disabled and re-enable it.
+
+- **Resolution**: To investigate the cause and re-enable Cloud Shell for your tenant, open a new
+  Azure support request. Include the following details:
+
+  1. Tenant ID
+  2. The business justification and a description of how you use Cloud Shell.
+
+### Terminal Output - Audience `<service-audience-url>` is not a supported MSI token audience
+
+- **Details**: Cloud Shell was unable to fetch the necessary token for the Azure service that the
+  command required. This happens when Cloud Shell doesn't support the token audience requested by
+  the command.
+- **Resolution**: Run the following command in Cloud Shell to sign in interactively and acquire the
+  necessary credentials before retrying your original command: `az login --use-device-code`
 
 ## Managing Cloud Shell
 

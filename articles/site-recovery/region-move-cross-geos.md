@@ -1,12 +1,13 @@
 ---
 title: Move Azure virtual machines between government and public regions with Azure Site Recovery 
 description: Use Azure Site Recovery to move Azure virtual machines between Azure Government and public regions.
-author: ankitaduttaMSFT
+author: Jeronika-MS
 ms.service: azure-site-recovery
 ms.topic: tutorial
 ms.date: 07/08/2024
-ms.author: ankitadutta
+ms.author: v-gajeronika
 ms.custom: MVC, engagement-fy23
+# Customer intent: As a cloud administrator, I want to move Azure virtual machines between Government and Public regions using a disaster recovery service, so that I can enhance availability and manageability while adhering to compliance requirements.
 ---
 # Move Azure virtual machines between Azure Government and Public regions 
 
@@ -47,7 +48,7 @@ This tutorial shows you how to move Azure virtual machines between Azure Governm
 Make sure your Azure account has permissions for replication of virtual machines to Azure.
 
 - Review the [permissions](site-recovery-role-based-linked-access-control.md#permissions-required-to-enable-replication-for-new-virtual-machines) you need to replicate machines to Azure.
-- Verify and modify [Azure role-based access control (Azure RBAC)](../role-based-access-control/role-assignments-portal.yml) permissions. 
+- Verify and modify [Azure role-based access control (Azure RBAC)](/azure/role-based-access-control/role-assignments-portal) permissions. 
 
 ### Set up an Azure network
 
@@ -109,7 +110,7 @@ The below steps will guide you how to use Azure Site Recovery to copy data to th
     a. subscription, select the appropriate one.
 4. Create a resource group **ContosoRG**.
 5. Specify an Azure region. To check supported regions, see geographic availability in [Azure Site Recovery Pricing Details](https://azure.microsoft.com/pricing/details/site-recovery/).
-6. In Recovery Services vaults, click **Overview** > **ConsotoVMVault** > **+Replicate**
+6. In Recovery Services vaults, click **Overview** > **ContosoVMVault** > **+Replicate**
 7. Select **To Azure** > **Not virtualized/Other**.
 
 ### Set up the configuration server to discover virtual machines.
@@ -140,7 +141,7 @@ Make sure the machine can access these URLs based on your environment:
 
 IP address-based firewall rules should allow communication to all of the Azure URLs that are listed above over HTTPS (443) port. To simplify and limit the IP Ranges, it is recommended that URL filtering is done.
 
-- **Commercial IPs** - Allow the [Azure Datacenter IP Ranges](https://www.microsoft.com/download/confirmation.aspx?id=41653), and the HTTPS (443) port. Allow IP address ranges for the Azure region of your subscription to support the Microsoft Entra ID, Backup, Replication, and Storage URLs.  
+- **Commercial IPs** - Allow the [Azure Datacenter IP Ranges](https://www.microsoft.com/download/details.aspx?id=41653), and the HTTPS (443) port. Allow IP address ranges for the Azure region of your subscription to support the Microsoft Entra ID, Backup, Replication, and Storage URLs.  
 - **Government IPs** - Allow the [Azure Government Datacenter IP Ranges](https://www.microsoft.com/en-us/download/details.aspx?id=57063), and the HTTPS (443) port for all USGov Regions (Virginia, Texas, Arizona, and Iowa) to support Microsoft Entra ID, Backup, Replication, and Storage URLs.  
 
 #### Run setup

@@ -2,8 +2,8 @@
 title: Secure your Microsoft Entra identity infrastructure
 titleSuffix: Microsoft Entra ID
 description: This document outlines a list of important actions administrators should implement to help them secure their organization using Microsoft Entra capabilities
-ms.service: information-protection
-ms.subservice: aiplabels
+ms.service: azure-information-protection
+ms.subservice: azure-information-protection-policy
 ms.topic: conceptual
 ms.date: 09/06/2024
 ms.author: martinco
@@ -172,7 +172,7 @@ For Identity Protection to be able to perform the best risk detection possible, 
 
 Learn more about Microsoft Threat Protection and the importance of integrating different domains, in the following short video.
 
-> [!VIDEO https://www.microsoft.com/videoplayer/embed/RE4Bzww]
+> [!VIDEO https://learn-video.azurefd.net/vod/player?id=a729be92-46e7-4c9b-89c4-cc2de0bc851f]
 
 ### Set up monitoring and alerting
 

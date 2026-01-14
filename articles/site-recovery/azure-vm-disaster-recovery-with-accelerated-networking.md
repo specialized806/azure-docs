@@ -1,17 +1,15 @@
 ---
 title: Enable accelerated networking for Azure VM disaster recovery with Azure Site Recovery
 description: Describes how to enable Accelerated Networking with Azure Site Recovery for Azure virtual machine disaster recovery
-author: ankitaduttaMSFT
+author: Jeronika-MS
 ms.service: azure-site-recovery
 ms.topic: concept-article
 ms.date: 09/23/2024
-ms.author: ankitadutta
+ms.author: v-gajeronika
 ms.custom: engagement-fy23, linux-related-content
+# Customer intent: As a cloud administrator, I want to enable Accelerated Networking for Azure VMs during disaster recovery, so that I can improve network performance and minimize latency for critical workloads in Azure Site Recovery.
 ---
 # Accelerated Networking with Azure virtual machine disaster recovery
-
-> [!CAUTION]
-> This article references CentOS, a Linux distribution that is End Of Life (EOL) status. Please consider your use and plan accordingly. For more information, see the [CentOS End Of Life guidance](/azure/virtual-machines/workloads/centos/centos-end-of-life).
 
 Accelerated Networking enables single root I/O virtualization (SR-IOV) to a VM, greatly improving its networking performance. This high-performance path bypasses the host from the datapath, reducing latency, jitter, and CPU utilization, for use with the most demanding network workloads on supported VM types. The following picture shows communication between two VMs with and without accelerated networking:
 
@@ -32,6 +30,8 @@ Azure Site Recovery supports enabling Accelerated Networking for replicated virt
 
 ### Supported operating systems
 The following distributions are supported out of the box from the Azure Gallery:
+* **Windows Server 2022 Datacenter**
+* **Windows Server 2019 Datacenter**
 * **Windows Server 2016 Datacenter**
 * **Windows Server 2012 R2 Datacenter**
 
@@ -51,7 +51,6 @@ The following distributions are supported out of the box from the Azure Gallery:
 * **Ubuntu 16.04**
 * **SLES 12 SP3**
 * **RHEL 7.4**
-* **CentOS 7.4**
 * **CoreOS Linux**
 * **Debian "Stretch" with backports kernel**
 * **Oracle Linux 7.4**

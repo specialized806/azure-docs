@@ -2,11 +2,11 @@
 title: Azure permissions for Integration - Azure RBAC
 description: Lists the permissions for the Azure resource providers in the Integration category.
 ms.service: role-based-access-control
-ms.topic: reference
+ms.topic: generated-reference
 author: rolyon
-manager: amycolannino
+manager: pmwongera
 ms.author: rolyon
-ms.date: 09/20/2024
+ms.date: 12/31/2025
 ms.custom: generated
 ---
 
@@ -41,6 +41,11 @@ Azure service: [Azure API Center](/azure/api-center/overview)
 > | Microsoft.ApiCenter/services/validateMoveResources/action | Validates move resource request |
 > | Microsoft.ApiCenter/services/moveResources/action | Move resource request |
 > | Microsoft.ApiCenter/services/analysisReports/read | Get a certain analysis report of an API Center instance |
+> | Microsoft.ApiCenter/services/apis/versions/securityRequirements/read | Get the security requirement. |
+> | Microsoft.ApiCenter/services/apis/versions/securityRequirements/write | Create or update the security requirement for the workspace. |
+> | Microsoft.ApiCenter/services/apis/versions/securityRequirements/read | List the security requirements for the workspace. |
+> | Microsoft.ApiCenter/services/apis/versions/securityRequirements/delete | Delete the security requirement for the workspace. |
+> | Microsoft.ApiCenter/services/apis/versions/securityRequirements/getCredentials/action | Get the credentials for the security requirement. |
 > | Microsoft.ApiCenter/services/eventGridFilters/read | Returns paginated collection of the Event Grid filters. |
 > | Microsoft.ApiCenter/services/eventGridFilters/read | Returns the details of the specified Event Grid filter. |
 > | Microsoft.ApiCenter/services/eventGridFilters/write | Creates or updates specified Event Grid filter. |
@@ -51,8 +56,8 @@ Azure service: [Azure API Center](/azure/api-center/overview)
 > | Microsoft.ApiCenter/services/metadataSchemas/read | Checks if specified metadataSchema exists |
 > | Microsoft.ApiCenter/services/metadataSchemas/delete | Deletes specified metadataSchema. |
 > | Microsoft.ApiCenter/services/operationResults/read | Checks status of a long running operation |
-> | Microsoft.ApiCenter/services/workspaces/apiSources/action | Triggers synchronization with the API source. |
-> | Microsoft.ApiCenter/services/workspaces/linkApiSource/action | Links an API Source. |
+> | Microsoft.ApiCenter/services/workspace/importApiSource/action | Imports resources from one or more API sources. |
+> | Microsoft.ApiCenter/services/workspaces/linkApiSource/action | Links an API source. |
 > | Microsoft.ApiCenter/services/workspaces/write | Creates or updates specified workspace. |
 > | Microsoft.ApiCenter/services/workspaces/read | Returns paginated collection of workspaces. |
 > | Microsoft.ApiCenter/services/workspaces/read | Returns the details of the specified workspace. |
@@ -61,6 +66,7 @@ Azure service: [Azure API Center](/azure/api-center/overview)
 > | Microsoft.ApiCenter/services/workspaces/analyzerConfig/analysisExecutions/read | Get analysis executions of  a particular analyzer configuration |
 > | Microsoft.ApiCenter/services/workspaces/analyzerConfigs/write | Creates or updates specified analyzer configuration. |
 > | Microsoft.ApiCenter/services/workspaces/analyzerConfigs/read | Returns the details of the specified analyzer configuration. |
+> | Microsoft.ApiCenter/services/workspaces/analyzerConfigs/read | Get analyzer configurations |
 > | Microsoft.ApiCenter/services/workspaces/analyzerConfigs/delete | Deletes the specified analyzer configuration. |
 > | Microsoft.ApiCenter/services/workspaces/analyzerConfigs/importRuleset/action | Imports ruleset file. |
 > | Microsoft.ApiCenter/services/workspaces/analyzerConfigs/exportRuleset/action | Exports ruleset file. |
@@ -75,6 +81,8 @@ Azure service: [Azure API Center](/azure/api-center/overview)
 > | Microsoft.ApiCenter/services/workspaces/apis/deployments/read | Returns the details of the specified API deployment. |
 > | Microsoft.ApiCenter/services/workspaces/apis/deployments/read | Returns paginated collection of API deployments. |
 > | Microsoft.ApiCenter/services/workspaces/apis/deployments/delete | Deletes specified API deployment. |
+> | Microsoft.ApiCenter/services/workspaces/apis/portals/write | Creates or updates the portal configuration. |
+> | Microsoft.ApiCenter/services/workspaces/apis/portals/write | Returns the configuration of the specified portal. |
 > | Microsoft.ApiCenter/services/workspaces/apis/versions/write | Creates or updates API version. |
 > | Microsoft.ApiCenter/services/workspaces/apis/versions/read | Checks if specified API version exists. |
 > | Microsoft.ApiCenter/services/workspaces/apis/versions/read | Returns the details of the specified API version. |
@@ -91,18 +99,32 @@ Azure service: [Azure API Center](/azure/api-center/overview)
 > | Microsoft.ApiCenter/services/workspaces/apis/versions/definitions/analysisResults/read | Returns analysis report for specified API definition. |
 > | Microsoft.ApiCenter/services/workspaces/apis/versions/definitions/operationResults/read | Checks status of individual import operation |
 > | Microsoft.ApiCenter/services/workspaces/apiSources/read | List API Sources inside a catalog. |
+> | Microsoft.ApiCenter/services/workspaces/apiSources/write | Creates or updates the specified API source. |
 > | Microsoft.ApiCenter/services/workspaces/apiSources/read | Returns the details of the specified API source. |
 > | Microsoft.ApiCenter/services/workspaces/apiSources/delete | Deletes specified API Source. |
+> | Microsoft.ApiCenter/services/workspaces/authConfigs/read | Get the authorization Config. |
+> | Microsoft.ApiCenter/services/workspaces/authConfigs/write | Create or update the authorization config for the workspace. |
+> | Microsoft.ApiCenter/services/workspaces/authConfigs/read | List the authorization Configs for the workspace. |
+> | Microsoft.ApiCenter/services/workspaces/authConfigs/delete | Delete the authorization Config for the workspace. |
 > | Microsoft.ApiCenter/services/workspaces/environments/read | Returns paginated collection of environments |
 > | Microsoft.ApiCenter/services/workspaces/environments/write | Create or update environment |
 > | Microsoft.ApiCenter/services/workspaces/environments/delete | Deletes specified environment. |
 > | Microsoft.ApiCenter/services/workspaces/environments/read | Returns specified environment. |
+> | Microsoft.ApiCenter/services/workspaces/portals/delete | Deletes specified configuration. |
+> | Microsoft.ApiCenter/services/workspaces/resourceLinks/write | Creates or updates specified Resource Link. |
+> | Microsoft.ApiCenter/services/workspaces/resourceLinks/read | Returns the details of the specified Resource Link. |
+> | Microsoft.ApiCenter/services/workspaces/resourceLinks/read | Lists resource links with optional filters. |
+> | Microsoft.ApiCenter/services/workspaces/resourceLinks/delete | Deletes specified Resource Link. |
+> | Microsoft.ApiCenter/services/workspaces/resourceLinks/read | Checks if specified Resource Link exists. |
 > | **DataAction** | **Description** |
+> | Microsoft.ApiCenter/services/workspaces/search/action | Search workspace for relevant results. |
 > | Microsoft.ApiCenter/services/workspaces/apis/read | Read APIs from an API Center. |
 > | Microsoft.ApiCenter/services/workspaces/apis/deployments/read | Read API deployments from an API Center. |
 > | Microsoft.ApiCenter/services/workspaces/apis/versions/read | Read API versions from an API Center. |
 > | Microsoft.ApiCenter/services/workspaces/apis/versions/definitions/read | Read API definitions from an API Center. |
 > | Microsoft.ApiCenter/services/workspaces/apis/versions/definitions/exportSpecification/action | Exports API definition file. |
+> | Microsoft.ApiCenter/services/workspaces/apis/versions/securityRequirements/read | Read Security Requirements for an API version. |
+> | Microsoft.ApiCenter/services/workspaces/apis/versions/securityRequirements/getCredentials/action | Get credentials for a security requirement. |
 > | Microsoft.ApiCenter/services/workspaces/environments/read | Read API environments from an API Center. |
 
 ## Microsoft.ApiManagement
@@ -149,15 +171,6 @@ Azure service: [API Management](/azure/api-management/)
 > | Microsoft.ApiManagement/service/apis/diagnostics/read | Lists all diagnostics of an API. or Gets the details of the Diagnostic for an API specified by its identifier. |
 > | Microsoft.ApiManagement/service/apis/diagnostics/write | Creates a new Diagnostic for an API or updates an existing one. or Updates the details of the Diagnostic for an API specified by its identifier. |
 > | Microsoft.ApiManagement/service/apis/diagnostics/delete | Deletes the specified Diagnostic from an API. |
-> | Microsoft.ApiManagement/service/apis/issues/read | Lists all issues associated with the specified API. or Gets the details of the Issue for an API specified by its identifier. |
-> | Microsoft.ApiManagement/service/apis/issues/write | Creates a new Issue for an API or updates an existing one. or Updates an existing issue for an API. |
-> | Microsoft.ApiManagement/service/apis/issues/delete | Deletes the specified Issue from an API. |
-> | Microsoft.ApiManagement/service/apis/issues/attachments/read | Lists all attachments for the Issue associated with the specified API. or Gets the details of the issue Attachment for an API specified by its identifier. |
-> | Microsoft.ApiManagement/service/apis/issues/attachments/write | Creates a new Attachment for the Issue in an API or updates an existing one. |
-> | Microsoft.ApiManagement/service/apis/issues/attachments/delete | Deletes the specified comment from an Issue. |
-> | Microsoft.ApiManagement/service/apis/issues/comments/read | Lists all comments for the Issue associated with the specified API. or Gets the details of the issue Comment for an API specified by its identifier. |
-> | Microsoft.ApiManagement/service/apis/issues/comments/write | Creates a new Comment for the Issue in an API or updates an existing one. |
-> | Microsoft.ApiManagement/service/apis/issues/comments/delete | Deletes the specified comment from an Issue. |
 > | Microsoft.ApiManagement/service/apis/operations/read | Lists a collection of the operations for the specified API. or Gets the details of the API Operation specified by its identifier. |
 > | Microsoft.ApiManagement/service/apis/operations/write | Creates a new operation in the API or updates an existing one. or Updates the details of the operation in the API specified by its identifier. |
 > | Microsoft.ApiManagement/service/apis/operations/delete | Deletes the specified operation in the API. |
@@ -181,8 +194,8 @@ Azure service: [API Management](/azure/api-management/)
 > | Microsoft.ApiManagement/service/apis/releases/read | Lists all releases of an API.<br>An API release is created when making an API Revision current.<br>Releases are also used to rollback to previous revisions.<br>Results will be paged and can be constrained by the $top and $skip parameters.<br>or Returns the details of an API release. |
 > | Microsoft.ApiManagement/service/apis/releases/delete | Removes all releases of the API or Deletes the specified release in the API. |
 > | Microsoft.ApiManagement/service/apis/releases/write | Creates a new Release for the API. or Updates the details of the release of the API specified by its identifier. |
-> | Microsoft.ApiManagement/service/apis/resolvers/read | Get the graphQL resolvers at the API level. or Get the graphQL resolver at the API level. |
-> | Microsoft.ApiManagement/service/apis/resolvers/write | Creates or updates graphQL resolver for the API. or Updates the details of the graphQL resolver in the API specified by its identifier. |
+> | Microsoft.ApiManagement/service/apis/resolvers/read | Get the GraphQL resolvers at the API level. or Get the GraphQL resolver at the API level. |
+> | Microsoft.ApiManagement/service/apis/resolvers/write | Creates or updates GraphQL resolver for the API. or Updates the details of the GraphQL resolver in the API specified by its identifier. |
 > | Microsoft.ApiManagement/service/apis/resolvers/delete | Deletes the policy configuration at the Api. |
 > | Microsoft.ApiManagement/service/apis/resolvers/policies/read | Get the list of policy configurations at the GraphQL API resolver level. or Get the policy configuration at the GraphQL API resolver level. |
 > | Microsoft.ApiManagement/service/apis/resolvers/policies/write | Creates or updates policy configuration for the GraphQL API. |
@@ -198,6 +211,9 @@ Azure service: [API Management](/azure/api-management/)
 > | Microsoft.ApiManagement/service/apis/tags/read | Lists all Tags associated with the API. or Get tag associated with the API. |
 > | Microsoft.ApiManagement/service/apis/tags/write | Assign tag to the Api. |
 > | Microsoft.ApiManagement/service/apis/tags/delete | Detach the tag from the Api. |
+> | Microsoft.ApiManagement/service/apis/tools/read | Lists a collection of mcp tools for the specified API. or Gets the details of the API MCP tool specified by its identifier. |
+> | Microsoft.ApiManagement/service/apis/tools/write | Creates a new mcp tool in the API or updates an existing one. or Updates the details of the mcp tool in the API specified by its identifier. |
+> | Microsoft.ApiManagement/service/apis/tools/delete | Deletes the specified mcp tool in the API. |
 > | Microsoft.ApiManagement/service/apisByTags/read | Lists a collection of apis associated with tags. |
 > | Microsoft.ApiManagement/service/apiVersionSets/read | Lists a collection of API Version Sets in the specified service instance. or Gets the details of the Api Version Set specified by its identifier. |
 > | Microsoft.ApiManagement/service/apiVersionSets/write | Creates or Updates a Api Version Set. or Updates the details of the Api VersionSet specified by its identifier. |
@@ -229,6 +245,10 @@ Azure service: [API Management](/azure/api-management/)
 > | Microsoft.ApiManagement/service/certificates/write | Creates or updates the certificate being used for authentication with the backend. |
 > | Microsoft.ApiManagement/service/certificates/delete | Deletes specific certificate. |
 > | Microsoft.ApiManagement/service/certificates/refreshSecret/action | Refreshes certificate by fetching it from Key Vault. |
+> | Microsoft.ApiManagement/service/clientApplications/read | Gets all API Management client applications. or Gets API Management application details |
+> | Microsoft.ApiManagement/service/clientApplications/write | Registers an application to API Management or Updates application details |
+> | Microsoft.ApiManagement/service/clientApplications/delete | Removes existing application |
+> | Microsoft.ApiManagement/service/clientApplications/listSecrets/action | Gets Client Application secrets. |
 > | Microsoft.ApiManagement/service/contentTypes/read | Returns list of content types or Returns content type |
 > | Microsoft.ApiManagement/service/contentTypes/delete | Removes content type. |
 > | Microsoft.ApiManagement/service/contentTypes/write | Creates new content type |
@@ -238,9 +258,6 @@ Azure service: [API Management](/azure/api-management/)
 > | Microsoft.ApiManagement/service/diagnostics/read | Lists all diagnostics of the API Management service instance. or Gets the details of the Diagnostic specified by its identifier. |
 > | Microsoft.ApiManagement/service/diagnostics/write | Creates a new Diagnostic or updates an existing one. or Updates the details of the Diagnostic specified by its identifier. |
 > | Microsoft.ApiManagement/service/diagnostics/delete | Deletes the specified Diagnostic. |
-> | Microsoft.ApiManagement/service/documentations/read | Lists all Documentations of the API Management service instance. or Gets the details of the documentation specified by its identifier. |
-> | Microsoft.ApiManagement/service/documentations/write | Creates or Updates a documentation. or Updates the specified documentation of the API Management service instance. |
-> | Microsoft.ApiManagement/service/documentations/delete | Delete documentation. |
 > | Microsoft.ApiManagement/service/eventGridFilters/write | Set Event Grid Filters |
 > | Microsoft.ApiManagement/service/eventGridFilters/delete | Delete Event Grid Filters |
 > | Microsoft.ApiManagement/service/eventGridFilters/read | Get Event Grid Filter |
@@ -262,7 +279,7 @@ Azure service: [API Management](/azure/api-management/)
 > | Microsoft.ApiManagement/service/gateways/certificateAuthorities/write | Adds an API to the specified Gateway. |
 > | Microsoft.ApiManagement/service/gateways/certificateAuthorities/delete | Unassign Certificate Authority from Gateway. |
 > | Microsoft.ApiManagement/service/gateways/hostnameConfigurations/read | Lists the collection of hostname configurations for the specified gateway. or Get details of a hostname configuration |
-> | Microsoft.ApiManagement/service/gateways/hostnameConfigurations/write | Request subscription for a new product |
+> | Microsoft.ApiManagement/service/gateways/hostnameConfigurations/write | Create hostname configuration |
 > | Microsoft.ApiManagement/service/gateways/hostnameConfigurations/delete | Deletes the specified hostname configuration. |
 > | Microsoft.ApiManagement/service/groups/read | Lists a collection of groups defined within a service instance. or Gets the details of the group specified by its identifier. |
 > | Microsoft.ApiManagement/service/groups/write | Creates or Updates a group. or Updates the details of the group specified by its identifier. |
@@ -274,7 +291,6 @@ Azure service: [API Management](/azure/api-management/)
 > | Microsoft.ApiManagement/service/identityProviders/write | Creates or Updates the IdentityProvider configuration. or Updates an existing IdentityProvider configuration. |
 > | Microsoft.ApiManagement/service/identityProviders/delete | Deletes the specified identity provider configuration. |
 > | Microsoft.ApiManagement/service/identityProviders/listSecrets/action | Gets Identity Provider secrets. |
-> | Microsoft.ApiManagement/service/issues/read | Lists a collection of issues in the specified service instance. or Gets API Management issue details |
 > | Microsoft.ApiManagement/service/locations/networkstatus/read | Gets the network access status of resources on which the service depends in the location. |
 > | Microsoft.ApiManagement/service/loggers/read | Lists a collection of loggers in the specified service instance. or Gets the details of the logger specified by its identifier. |
 > | Microsoft.ApiManagement/service/loggers/write | Creates or Updates a logger. or Updates an existing logger. |
@@ -429,8 +445,8 @@ Azure service: [API Management](/azure/api-management/)
 > | Microsoft.ApiManagement/service/tenants/apis/releases/read | Lists all releases of an API.<br>An API release is created when making an API Revision current.<br>Releases are also used to rollback to previous revisions.<br>Results will be paged and can be constrained by the $top and $skip parameters.<br>or Returns the details of an API release. |
 > | Microsoft.ApiManagement/service/tenants/apis/releases/delete | Removes all releases of the API or Deletes the specified release in the API. |
 > | Microsoft.ApiManagement/service/tenants/apis/releases/write | Creates a new Release for the API. or Updates the details of the release of the API specified by its identifier. |
-> | Microsoft.ApiManagement/service/tenants/apis/resolvers/read | Get the graphQL resolvers at the API level. or Get the graphQL resolver at the API level. |
-> | Microsoft.ApiManagement/service/tenants/apis/resolvers/write | Creates or updates graphQL resolver for the API. or Updates the details of the graphQL resolver in the API specified by its identifier. |
+> | Microsoft.ApiManagement/service/tenants/apis/resolvers/read | Get the GraphQL resolvers at the API level. or Get the GraphQL resolver at the API level. |
+> | Microsoft.ApiManagement/service/tenants/apis/resolvers/write | Creates or updates GraphQL resolver for the API. or Updates the details of the GraphQL resolver in the API specified by its identifier. |
 > | Microsoft.ApiManagement/service/tenants/apis/resolvers/delete | Deletes the policy configuration at the Api. |
 > | Microsoft.ApiManagement/service/tenants/apis/resolvers/policies/read | Get the list of policy configurations at the GraphQL API resolver level. or Get the policy configuration at the GraphQL API resolver level. |
 > | Microsoft.ApiManagement/service/tenants/apis/resolvers/policies/write | Creates or updates policy configuration for the GraphQL API. |
@@ -446,6 +462,9 @@ Azure service: [API Management](/azure/api-management/)
 > | Microsoft.ApiManagement/service/tenants/apis/tags/read | Lists all Tags associated with the API. or Get tag associated with the API. |
 > | Microsoft.ApiManagement/service/tenants/apis/tags/write | Assign tag to the Api. |
 > | Microsoft.ApiManagement/service/tenants/apis/tags/delete | Detach the tag from the Api. |
+> | Microsoft.ApiManagement/service/tenants/apis/tools/read | Lists a collection of mcp tools for the specified API. or Gets the details of the API MCP tool specified by its identifier. |
+> | Microsoft.ApiManagement/service/tenants/apis/tools/write | Creates a new mcp tool in the API or updates an existing one. or Updates the details of the mcp tool in the API specified by its identifier. |
+> | Microsoft.ApiManagement/service/tenants/apis/tools/delete | Deletes the specified mcp tool in the API. |
 > | Microsoft.ApiManagement/service/tenants/keys/read | Get a list of keys or Get details of key |
 > | Microsoft.ApiManagement/service/tenants/keys/write | Create a Key to an existing Existing Entity or Update existing key details. This operation can be used to renew key. |
 > | Microsoft.ApiManagement/service/tenants/keys/delete | Delete key. This operation can be used to delete key. |
@@ -499,6 +518,9 @@ Azure service: [API Management](/azure/api-management/)
 > | Microsoft.ApiManagement/service/workspaces/apis/tags/read | Lists all Tags associated with the API. or Get tag associated with the API. |
 > | Microsoft.ApiManagement/service/workspaces/apis/tags/write | Assign tag to the Api. |
 > | Microsoft.ApiManagement/service/workspaces/apis/tags/delete | Detach the tag from the Api. |
+> | Microsoft.ApiManagement/service/workspaces/apis/tools/read | Lists a collection of mcp tools for the specified API. or Gets the details of the API MCP tool specified by its identifier. |
+> | Microsoft.ApiManagement/service/workspaces/apis/tools/write | Creates a new mcp tool in the API or updates an existing one. or Updates the details of the mcp tool in the API specified by its identifier. |
+> | Microsoft.ApiManagement/service/workspaces/apis/tools/delete | Deletes the specified mcp tool in the API. |
 > | Microsoft.ApiManagement/service/workspaces/apiVersionSets/read | Lists a collection of API Version Sets in the specified service instance. or Gets the details of the Api Version Set specified by its identifier. |
 > | Microsoft.ApiManagement/service/workspaces/apiVersionSets/write | Creates or Updates a Api Version Set. or Updates the details of the Api VersionSet specified by its identifier. |
 > | Microsoft.ApiManagement/service/workspaces/apiVersionSets/delete | Deletes specific Api Version Set. |
@@ -514,9 +536,6 @@ Azure service: [API Management](/azure/api-management/)
 > | Microsoft.ApiManagement/service/workspaces/diagnostics/read | Lists all diagnostics of a workspace. or Gets the details of the Diagnostic for a workspace specified by its identifier. |
 > | Microsoft.ApiManagement/service/workspaces/diagnostics/write | Creates a new Diagnostic for a workspace or updates an existing one. or Updates the details of the Diagnostic for a workspace specified by its identifier. |
 > | Microsoft.ApiManagement/service/workspaces/diagnostics/delete | Deletes the specified Diagnostic from a workspace. |
-> | Microsoft.ApiManagement/service/workspaces/documentations/read | Lists all Documentations of the API Management service instance. or Gets the details of the documentation specified by its identifier. |
-> | Microsoft.ApiManagement/service/workspaces/documentations/write | Creates or Updates a documentation. or Updates the specified documentation of the API Management service instance. |
-> | Microsoft.ApiManagement/service/workspaces/documentations/delete | Delete documentation. |
 > | Microsoft.ApiManagement/service/workspaces/groups/read | Lists a collection of groups defined within a service instance. or Gets the details of the group specified by its identifier. |
 > | Microsoft.ApiManagement/service/workspaces/groups/write | Creates or Updates a group. or Updates the details of the group specified by its identifier. |
 > | Microsoft.ApiManagement/service/workspaces/groups/delete | Deletes specific group of the API Management service instance. |
@@ -591,6 +610,7 @@ Azure service: [API Management](/azure/api-management/)
 > | Microsoft.ApiManagement/service/workspaces/tags/productLinks/delete | Delete Tag-product link. |
 > | **DataAction** | **Description** |
 > | Microsoft.ApiManagement/service/gateways/getConfiguration/action | Fetches configuration for specified self-hosted gateway |
+> | Microsoft.ApiManagement/service/workspaces/kubernetesManaged/agent/syncConfiguration/action | Syncs configuration from Kubernetes clusters by using an agent for specified Kubernetes-managed workspace |
 
 ## Microsoft.AppConfiguration
 
@@ -616,6 +636,9 @@ Azure service: [Azure App Configuration](/azure/azure-app-configuration/)
 > | Microsoft.AppConfiguration/configurationStores/eventGridFilters/read | Gets the properties of the specified configuration store event grid filter or lists all the configuration store event grid filters under the specified configuration store. |
 > | Microsoft.AppConfiguration/configurationStores/eventGridFilters/write | Create or update a configuration store event grid filter with the specified parameters. |
 > | Microsoft.AppConfiguration/configurationStores/eventGridFilters/delete | Deletes a configuration store event grid filter. |
+> | Microsoft.AppConfiguration/configurationStores/experimentation/read | Gets the properties of experimentation or lists experimentation under the specified configuration store. |
+> | Microsoft.AppConfiguration/configurationStores/experimentation/write | Creates experimentation with the specified parameters. |
+> | Microsoft.AppConfiguration/configurationStores/experimentation/delete | Deletes experimentation. |
 > | Microsoft.AppConfiguration/configurationStores/keyValues/write | Creates or updates a key-value in the configuration store. |
 > | Microsoft.AppConfiguration/configurationStores/keyValues/delete | Deletes an existing key-value from the configuration store. |
 > | Microsoft.AppConfiguration/configurationStores/networkSecurityPerimeterAssociationProxies/read | Get the properties of the specific network security perimeter association proxy or lists all the network security perimeter association proxies under the specified configuration store. |
@@ -668,14 +691,13 @@ Azure service: [Azure Communication Services](/azure/communication-services/over
 > | Microsoft.Communication/CommunicationServices/ListKeys/action | Reads the keys for a communication service |
 > | Microsoft.Communication/CommunicationServices/RegenerateKey/action | Regenerates the primary or secondary key for a communication service |
 > | Microsoft.Communication/CommunicationServices/LinkNotificationHub/action | Links an Azure Notification Hub to the communication service |
-> | Microsoft.Communication/CommunicationServices/networkSecurityConfigurations/action | Refresh a Network Security Perimeter Configuration |
 > | Microsoft.Communication/CommunicationServices/EventGridFilters/Read | Reads EventGrid filters on communication services |
 > | Microsoft.Communication/CommunicationServices/EventGridFilters/Write | Writes EventGrid filters on communication services |
 > | Microsoft.Communication/CommunicationServices/EventGridFilters/Delete | Removes an EventGrid filter on communication services |
-> | Microsoft.Communication/CommunicationServices/networkSecurityConfigurations/read | Read Network Security Perimeter Configuration |
-> | Microsoft.Communication/CommunicationServices/networkSecurityPerimeterAssociationProxies/write | Write Network Security Perimeter Assocation |
-> | Microsoft.Communication/CommunicationServices/networkSecurityPerimeterAssociationProxies/read | Read Network Security Perimeter Assocation |
-> | Microsoft.Communication/CommunicationServices/networkSecurityPerimeterAssociationProxies/delete | Delete Network Security Perimeter Assocation |
+> | Microsoft.Communication/CommunicationServices/networkSecurityPerimeterAssociationProxies/write | Write Network Security Perimeter Association |
+> | Microsoft.Communication/CommunicationServices/networkSecurityPerimeterAssociationProxies/read | Read Network Security Perimeter Association |
+> | Microsoft.Communication/CommunicationServices/networkSecurityPerimeterAssociationProxies/delete | Delete Network Security Perimeter Association |
+> | Microsoft.Communication/CommunicationServices/networkSecurityPerimeterConfigurations/read | Read Network Security Perimeter Configuration |
 > | Microsoft.Communication/CommunicationServices/SmtpUsernames/read | Get an SMTP username resource. |
 > | Microsoft.Communication/CommunicationServices/SmtpUsernames/write | Add SMTP username resource or update an existing resource. |
 > | Microsoft.Communication/CommunicationServices/SmtpUsernames/delete | Operation to delete an SMTP username resource. |
@@ -684,7 +706,6 @@ Azure service: [Azure Communication Services](/azure/communication-services/over
 > | Microsoft.Communication/CommunicationServicesGccm/Delete | Deletes communication services |
 > | Microsoft.Communication/CommunicationServicesGccm/ListKeys/action | Reads the keys for a communication service |
 > | Microsoft.Communication/CommunicationServicesGccm/RegenerateKey/action | Regenerates the primary or secondary key for a communication service |
-> | Microsoft.Communication/CommunicationServicesGccm/LinkNotificationHub/action | Links an Azure Notification Hub to the communication service |
 > | Microsoft.Communication/CommunicationServicesGccm/EventGridFilters/Read | Reads EventGrid filters on communication services |
 > | Microsoft.Communication/CommunicationServicesGccm/EventGridFilters/Write | Writes EventGrid filters on communication services |
 > | Microsoft.Communication/CommunicationServicesGccm/EventGridFilters/Delete | Removes an EventGrid filter on communication services |
@@ -710,11 +731,47 @@ Azure service: [Azure Communication Services](/azure/communication-services/over
 > | Microsoft.Communication/EmailServices/Domains/SuppressionLists/SuppressionListAddresses/read | Get all the addresses in a suppression list. |
 > | Microsoft.Communication/EmailServices/Domains/SuppressionLists/SuppressionListAddresses/write | Add a new suppression list under the parent Domain resource or update an existing suppression list. |
 > | Microsoft.Communication/EmailServices/Domains/SuppressionLists/SuppressionListAddresses/delete | Operation to delete an address from a suppression list. |
-> | Microsoft.Communication/locations/notifyNetworkSecurityPerimeterUpdatesAvailable/action | Notifies that new Network Security Perimeter updates are available |
 > | Microsoft.Communication/Locations/OperationStatuses/read | Reads the status of an async operation |
 > | Microsoft.Communication/Locations/OperationStatuses/write | Writes the status of an async operation |
+> | Microsoft.Communication/Locations/Usages/Read | Get email quota for the subscription |
 > | Microsoft.Communication/Operations/read | Reads operations |
 > | Microsoft.Communication/RegisteredSubscriptions/read | Reads registered subscriptions |
+
+## Microsoft.DurableTask
+
+Azure service: [Durable Functions](/azure/azure-functions/durable/durable-functions-overview)
+
+> [!div class="mx-tableFixed"]
+> | Action | Description |
+> | --- | --- |
+> | Microsoft.DurableTask/register/action | Register Microsoft.DurableTask resource provider for the subscription |
+> | Microsoft.DurableTask/unregister/action | Unregister Microsoft.DurableTask resource provider for the subscription |
+> | Microsoft.DurableTask/locations/operationStatuses/read | OperationStatuses read |
+> | Microsoft.DurableTask/locations/operationStatuses/write | OperationStatuses write |
+> | Microsoft.DurableTask/schedulers/write | Create or Update Durable Task Scheduler |
+> | Microsoft.DurableTask/schedulers/delete | Delete Durable Task Scheduler |
+> | Microsoft.DurableTask/schedulers/read | Read Durable Task Scheduler Namespace |
+> | Microsoft.DurableTask/schedulers/PrivateEndpointConnectionsApproval/action | Approve Private Endpoint Connections on schedulers |
+> | Microsoft.DurableTask/schedulers/privateEndpointConnectionProxies/write | Create or Update Durable Task Scheduler Private Endpoint Connection Proxies |
+> | Microsoft.DurableTask/schedulers/privateEndpointConnectionProxies/delete | Delete Durable Task Scheduler Private Endpoint Connection Proxies |
+> | Microsoft.DurableTask/schedulers/privateEndpointConnectionProxies/read | Read Durable Task Scheduler Private Endpoint Connection Proxies |
+> | Microsoft.DurableTask/schedulers/privateEndpointConnectionProxies/validate/action | Validate Durable Task Scheduler Private Endpoint Connection Proxies |
+> | Microsoft.DurableTask/schedulers/privateEndpointConnections/write | Create or Update Durable Task Scheduler Private Endpoint Connections |
+> | Microsoft.DurableTask/schedulers/privateEndpointConnections/delete | Delete Durable Task Scheduler Private Endpoint Connections |
+> | Microsoft.DurableTask/schedulers/privateEndpointConnections/read | Read Durable Task Scheduler Private Endpoint Connections |
+> | Microsoft.DurableTask/schedulers/privateLinkResources/read | Read Durable Task Scheduler Private Link Resources |
+> | Microsoft.DurableTask/schedulers/retentionPolicies/write | Create or Replace a Durable Task Scheduler Data Retention Policy |
+> | Microsoft.DurableTask/schedulers/retentionPolicies/delete | Delete a Durable Task Scheduler Retention Policy |
+> | Microsoft.DurableTask/schedulers/retentionPolicies/read | Read a Durable Task Scheduler Retention Policy |
+> | Microsoft.DurableTask/schedulers/taskhubs/write | Create or Update Durable Task Scheduler Task Hub |
+> | Microsoft.DurableTask/schedulers/taskhubs/delete | Delete Durable Task Scheduler Task Hub |
+> | Microsoft.DurableTask/schedulers/taskhubs/read | Read Durable Task Scheduler Task Hub |
+> | **DataAction** | **Description** |
+> | Microsoft.DurableTask/schedulers/taskhubs/orchestrations/read | Gets or list orchestrations metadata, including payloads |
+> | Microsoft.DurableTask/schedulers/taskhubs/orchestrations/manage/action | Manages orchestrations |
+> | Microsoft.DurableTask/schedulers/taskhubs/orchestrations/execute/action | Get orchestration and activity work-items and post results |
+> | Microsoft.DurableTask/schedulers/taskhubs/orchestrations/raiseevents/action | Can invoke RaiseEvent |
+> | Microsoft.DurableTask/schedulers/taskhubs/orchestrations/metadata/read | Gets or lists orchestration metadata, but not payloads |
 
 ## Microsoft.EventGrid
 
@@ -772,7 +829,7 @@ Azure service: [Event Grid](/azure/event-grid/)
 > | Microsoft.EventGrid/extensionTopics/providers/Microsoft.Insights/diagnosticSettings/read | Gets the diagnostic setting for topics |
 > | Microsoft.EventGrid/extensionTopics/providers/Microsoft.Insights/diagnosticSettings/write | Creates or updates the diagnostic setting for topics |
 > | Microsoft.EventGrid/extensionTopics/providers/Microsoft.Insights/metricDefinitions/read | Gets the available metrics for topics |
-> | Microsoft.EventGrid/locations/notifyNetworkSecurityPerimeterUpdatesAvailable/action | Upate notifications for network security perimeter |
+> | Microsoft.EventGrid/locations/notifyNetworkSecurityPerimeterUpdatesAvailable/action | Update notifications for network security perimeter |
 > | Microsoft.EventGrid/locations/eventSubscriptions/read | List regional event subscriptions |
 > | Microsoft.EventGrid/locations/operationResults/read | Read the result of a regional operation |
 > | Microsoft.EventGrid/locations/operationsStatus/read | Read the status of a regional operation |
@@ -808,6 +865,7 @@ Azure service: [Event Grid](/azure/event-grid/)
 > | Microsoft.EventGrid/namespaces/topics/write | Create or update a namespace topic |
 > | Microsoft.EventGrid/namespaces/topics/delete | Delete a namespace topic |
 > | Microsoft.EventGrid/namespaces/topics/listKeys/action | List keys for a namespace topic |
+> | Microsoft.EventGrid/namespaces/topics/regenerateKey/action | Regenerate key for a namespace topic |
 > | Microsoft.EventGrid/namespaces/topics/eventSubscriptions/read | Read a namespace topic event subscription |
 > | Microsoft.EventGrid/namespaces/topics/eventSubscriptions/write | Create or update a namespace topic event subscription |
 > | Microsoft.EventGrid/namespaces/topics/eventSubscriptions/delete | Delete a namespace topic event subscription |
@@ -955,6 +1013,7 @@ Azure service: [Event Hubs](/azure/event-hubs/)
 > | Microsoft.EventHub/namespaces/removeAcsNamepsace/action | Remove ACS namespace |
 > | Microsoft.EventHub/namespaces/updateState/action | UpdateNamespaceState |
 > | Microsoft.EventHub/namespaces/privateEndpointConnectionsApproval/action | Approve Private Endpoint Connection |
+> | Microsoft.EventHub/namespaces/failover/action | Failover Namespace Resource |
 > | Microsoft.EventHub/namespaces/authorizationRules/read | Get the list of Namespaces Authorization Rules description. |
 > | Microsoft.EventHub/namespaces/authorizationRules/write | Create a Namespace level Authorization Rules and update its properties. The Authorization Rules Access Rights, the Primary and Secondary Keys can be updated. |
 > | Microsoft.EventHub/namespaces/authorizationRules/delete | Delete Namespace Authorization Rule. The Default Namespace Authorization Rule cannot be deleted. |
@@ -980,6 +1039,7 @@ Azure service: [Event Hubs](/azure/event-hubs/)
 > | Microsoft.EventHub/namespaces/eventHubs/consumergroups/write | Create or Update ConsumerGroup properties. |
 > | Microsoft.EventHub/namespaces/eventHubs/consumergroups/read | Get list of ConsumerGroup Resource Descriptions |
 > | Microsoft.EventHub/namespaces/eventHubs/consumergroups/Delete | Operation to delete ConsumerGroup Resource |
+> | Microsoft.EventHub/namespaces/failover/status/read | Get Namespace Failover Status |
 > | Microsoft.EventHub/namespaces/ipFilterRules/read | Get IP Filter Resource |
 > | Microsoft.EventHub/namespaces/ipFilterRules/write | Create IP Filter Resource |
 > | Microsoft.EventHub/namespaces/ipFilterRules/delete | Delete IP Filter Resource |
@@ -991,6 +1051,9 @@ Azure service: [Event Hubs](/azure/event-hubs/)
 > | Microsoft.EventHub/namespaces/networkrulesets/read | Gets NetworkRuleSet Resource |
 > | Microsoft.EventHub/namespaces/networkrulesets/write | Create VNET Rule Resource |
 > | Microsoft.EventHub/namespaces/networkrulesets/delete | Delete VNET Rule Resource |
+> | Microsoft.EventHub/namespaces/networkSecurityPerimeterAssociationProxies/read | Get Network Security Perimeter Association Proxy |
+> | Microsoft.EventHub/namespaces/networkSecurityPerimeterAssociationProxies/write | Create or Update Network Security Perimeter Association Proxy |
+> | Microsoft.EventHub/namespaces/networkSecurityPerimeterAssociationProxies/delete | Delete Network Security Perimeter Association Proxy |
 > | Microsoft.EventHub/namespaces/networkSecurityPerimeterAssociationProxies/reconcile/action | Reconcile Network Security Perimeter Association Proxy |
 > | Microsoft.EventHub/namespaces/networkSecurityPerimeterConfigurations/read | Get Network Security Perimeter Configurations |
 > | Microsoft.EventHub/namespaces/networkSecurityPerimeterConfigurations/reconcile/action | Reconcile Network Security Perimeter Configurations |
@@ -1009,6 +1072,7 @@ Azure service: [Event Hubs](/azure/event-hubs/)
 > | Microsoft.EventHub/namespaces/providers/Microsoft.Insights/diagnosticSettings/write | Get list of Namespace diagnostic settings Resource Descriptions |
 > | Microsoft.EventHub/namespaces/providers/Microsoft.Insights/logDefinitions/read | Get list of Namespace logs Resource Descriptions |
 > | Microsoft.EventHub/namespaces/providers/Microsoft.Insights/metricDefinitions/read | Get list of Namespace metrics Resource Descriptions |
+> | Microsoft.EventHub/namespaces/replicationlags/read | Get Namespace Replication Lag |
 > | Microsoft.EventHub/namespaces/schemagroups/write | Create or Update SchemaGroup properties. |
 > | Microsoft.EventHub/namespaces/schemagroups/read | Get list of SchemaGroup Resource Descriptions |
 > | Microsoft.EventHub/namespaces/schemagroups/delete | Operation to delete SchemaGroup Resource |
@@ -1019,6 +1083,8 @@ Azure service: [Event Hubs](/azure/event-hubs/)
 > | Microsoft.EventHub/sku/read | Get list of Sku Resource Descriptions |
 > | Microsoft.EventHub/sku/regions/read | Get list of SkuRegions Resource Descriptions |
 > | **DataAction** | **Description** |
+> | Microsoft.EventHub/namespaces/generateUserDelegationKey/action | Returns a user delegation key for the Namespace |
+> | Microsoft.EventHub/namespaces/revokeUserDelegationKeys/action | Revokes all the user delegation keys for the specified EventHub Namespace |
 > | Microsoft.EventHub/namespaces/messages/send/action | Send messages |
 > | Microsoft.EventHub/namespaces/messages/receive/action | Receive messages |
 > | Microsoft.EventHub/namespaces/schemas/read | Retrieve schemas |
@@ -1099,6 +1165,10 @@ Azure service: [Azure API for FHIR](/azure/healthcare-apis/azure-api-for-fhir/)
 > | Microsoft.HealthcareApis/services/fhir/resources/read | Read FHIR resources (includes searching and versioned history).  |
 > | Microsoft.HealthcareApis/services/fhir/resources/write | Write FHIR resources (includes create and update). |
 > | Microsoft.HealthcareApis/services/fhir/resources/delete | Delete FHIR resources (soft delete). |
+> | Microsoft.HealthcareApis/services/fhir/resources/create/action | Create FHIR Resource |
+> | Microsoft.HealthcareApis/services/fhir/resources/update/action | Update FHIR Resource |
+> | Microsoft.HealthcareApis/services/fhir/resources/search/action | Search FHIR Resource |
+> | Microsoft.HealthcareApis/services/fhir/resources/readById/action | Read FHIR resource by Id |
 > | Microsoft.HealthcareApis/services/fhir/resources/hardDelete/action | Hard Delete (including version history). |
 > | Microsoft.HealthcareApis/services/fhir/resources/export/action | Export operation ($export). |
 > | Microsoft.HealthcareApis/services/fhir/resources/smart/action | Allows user to access FHIR Service according to SMART on FHIR specification. |
@@ -1108,6 +1178,7 @@ Azure service: [Azure API for FHIR](/azure/healthcare-apis/azure-api-for-fhir/)
 > | Microsoft.HealthcareApis/services/fhir/resources/reindex/action | Allows user to run Reindex job to index any search parameters that haven't yet been indexed. |
 > | Microsoft.HealthcareApis/services/fhir/resources/editProfileDefinitions/action | Allows user to perform Create Update Delete operations on profile resources. |
 > | Microsoft.HealthcareApis/services/fhir/resources/import/action | Import FHIR resources in batch. |
+> | Microsoft.HealthcareApis/services/fhir/resources/bulkOperator/action | Allows user to perform bulk operations |
 > | Microsoft.HealthcareApis/workspaces/dicomservices/resources/read | Read DICOM resources (includes searching and change feed).  |
 > | Microsoft.HealthcareApis/workspaces/dicomservices/resources/write | Write DICOM resources. |
 > | Microsoft.HealthcareApis/workspaces/dicomservices/resources/delete | Delete DICOM resources. |
@@ -1116,6 +1187,10 @@ Azure service: [Azure API for FHIR](/azure/healthcare-apis/azure-api-for-fhir/)
 > | Microsoft.HealthcareApis/workspaces/fhirservices/resources/read | Read FHIR resources (includes searching and versioned history).  |
 > | Microsoft.HealthcareApis/workspaces/fhirservices/resources/write | Write FHIR resources (includes create and update). |
 > | Microsoft.HealthcareApis/workspaces/fhirservices/resources/delete | Delete FHIR resources (soft delete). |
+> | Microsoft.HealthcareApis/workspaces/fhirservices/resources/create/action | Create FHIR Resource |
+> | Microsoft.HealthcareApis/workspaces/fhirservices/resources/update/action | Update FHIR Resource |
+> | Microsoft.HealthcareApis/workspaces/fhirservices/resources/search/action | Search FHIR Resource |
+> | Microsoft.HealthcareApis/workspaces/fhirservices/resources/readById/action | Read FHIR resource by Id |
 > | Microsoft.HealthcareApis/workspaces/fhirservices/resources/hardDelete/action | Hard Delete (including version history). |
 > | Microsoft.HealthcareApis/workspaces/fhirservices/resources/export/action | Export operation ($export). |
 > | Microsoft.HealthcareApis/workspaces/fhirservices/resources/convertData/action | Data convert operation ($convert-data) |
@@ -1125,6 +1200,7 @@ Azure service: [Azure API for FHIR](/azure/healthcare-apis/azure-api-for-fhir/)
 > | Microsoft.HealthcareApis/workspaces/fhirservices/resources/reindex/action | Allows user to run Reindex job to index any search parameters that haven't yet been indexed. |
 > | Microsoft.HealthcareApis/workspaces/fhirservices/resources/editProfileDefinitions/action | Allows user to perform Create Update Delete operations on profile resources. |
 > | Microsoft.HealthcareApis/workspaces/fhirservices/resources/searchParameter/action | Allows running of $status operation for Search Parameters |
+> | Microsoft.HealthcareApis/workspaces/fhirservices/resources/bulkOperator/action | Allows user to perform bulk operations |
 
 ## Microsoft.HealthDataAIServices
 
@@ -1247,6 +1323,9 @@ Azure service: [Logic Apps](/azure/logic-apps/)
 > | Microsoft.Logic/locations/workflows/validate/action | Validates the workflow. |
 > | Microsoft.Logic/locations/workflows/recommendOperationGroups/action | Gets the workflow recommend operation groups. |
 > | Microsoft.Logic/operations/read | Gets the operation. |
+> | Microsoft.Logic/templates/read | Reads the flow organization template. |
+> | Microsoft.Logic/templates/write | Writes the flow organization template. |
+> | Microsoft.Logic/templates/delete | Deletes the flow organization template. |
 > | Microsoft.Logic/workflows/read | Reads the workflow. |
 > | Microsoft.Logic/workflows/write | Creates or updates the workflow. |
 > | Microsoft.Logic/workflows/delete | Deletes the workflow. |
@@ -1256,6 +1335,8 @@ Azure service: [Logic Apps](/azure/logic-apps/)
 > | Microsoft.Logic/workflows/suspend/action | Suspends the workflow. |
 > | Microsoft.Logic/workflows/validate/action | Validates the workflow. |
 > | Microsoft.Logic/workflows/move/action | Moves Workflow from its existing subscription id, resource group, and/or name to a different subscription id, resource group, and/or name. |
+> | Microsoft.Logic/workflows/clone/action | Clones a workflow. |
+> | Microsoft.Logic/workflows/validateclone/action | Validates the clone operation on a workflow. |
 > | Microsoft.Logic/workflows/listSwagger/action | Gets the workflow swagger definitions. |
 > | Microsoft.Logic/workflows/regenerateAccessKey/action | Regenerates the access key secrets. |
 > | Microsoft.Logic/workflows/listCallbackUrl/action | Gets the callback URL for workflow. |
@@ -1289,67 +1370,6 @@ Azure service: [Logic Apps](/azure/logic-apps/)
 > | Microsoft.Logic/workflows/triggers/histories/resubmit/action | Resubmits the workflow trigger. |
 > | Microsoft.Logic/workflows/versions/read | Reads the workflow version. |
 > | Microsoft.Logic/workflows/versions/triggers/listCallbackUrl/action | Gets the callback URL for trigger. |
-
-## Microsoft.ModSimWorkbench
-
-Azure service: [Azure Modeling and Simulation Workbench](/azure/modeling-simulation-workbench/modeling-simulation-workbench-overview)
-
-> [!div class="mx-tableFixed"]
-> | Action | Description |
-> | --- | --- |
-> | Microsoft.ModSimWorkbench/register/action | Register the subscription for Microsoft.ModSimWorkbench |
-> | Microsoft.ModSimWorkbench/unregister/action | Unregister the subscription for Microsoft.ModSimWorkbench |
-> | Microsoft.ModSimWorkbench/Locations/operationStatuses/read | read operationStatuses |
-> | Microsoft.ModSimWorkbench/Locations/operationStatuses/write | write operationStatuses |
-> | Microsoft.ModSimWorkbench/Operations/read | read Operations |
-> | Microsoft.ModSimWorkbench/workbenches/read | read workbenches |
-> | Microsoft.ModSimWorkbench/workbenches/read | read workbenches |
-> | Microsoft.ModSimWorkbench/workbenches/read | read workbenches |
-> | Microsoft.ModSimWorkbench/workbenches/write | write workbenches |
-> | Microsoft.ModSimWorkbench/workbenches/delete | delete workbenches |
-> | Microsoft.ModSimWorkbench/workbenches/write | write workbenches |
-> | Microsoft.ModSimWorkbench/workbenches/chambers/getUploadUri/action | getUploadUri chambers |
-> | Microsoft.ModSimWorkbench/workbenches/chambers/start/action | start chambers |
-> | Microsoft.ModSimWorkbench/workbenches/chambers/stop/action | stop chambers |
-> | Microsoft.ModSimWorkbench/workbenches/chambers/restart/action | restart chambers |
-> | Microsoft.ModSimWorkbench/workbenches/chambers/licenseUpdate/action | licenseUpdate chambers |
-> | Microsoft.ModSimWorkbench/workbenches/chambers/licenseRestart/action | licenseRestart chambers |
-> | Microsoft.ModSimWorkbench/workbenches/chambers/read | Gets information about the specified Chamber. |
-> | Microsoft.ModSimWorkbench/workbenches/chambers/write | Creates or updates the specified Chamber. |
-> | Microsoft.ModSimWorkbench/workbenches/chambers/delete | Deletes the specified Chamber. |
-> | Microsoft.ModSimWorkbench/workbenches/chambers/write | Updates the specified Chamber. |
-> | Microsoft.ModSimWorkbench/workbenches/chambers/read | Lists all Chambers. |
-> | Microsoft.ModSimWorkbench/workbenches/chambers/connectors/start/action | start connectors |
-> | Microsoft.ModSimWorkbench/workbenches/chambers/connectors/stop/action | stop connectors |
-> | Microsoft.ModSimWorkbench/workbenches/chambers/connectors/restart/action | restart connectors |
-> | Microsoft.ModSimWorkbench/workbenches/chambers/connectors/read | Gets information about the specified connector. |
-> | Microsoft.ModSimWorkbench/workbenches/chambers/connectors/write | Creates or updates the specified connector. |
-> | Microsoft.ModSimWorkbench/workbenches/chambers/connectors/delete | Deletes the specified connector. |
-> | Microsoft.ModSimWorkbench/workbenches/chambers/connectors/write | Updates the specified connector. |
-> | Microsoft.ModSimWorkbench/workbenches/chambers/connectors/read | Lists all connectors. |
-> | Microsoft.ModSimWorkbench/workbenches/chambers/connectors/licenseAdd/action | Add license to an ModSim Workbench connector. |
-> | Microsoft.ModSimWorkbench/workbenches/chambers/fileRequests/read | read fileRequests |
-> | Microsoft.ModSimWorkbench/workbenches/chambers/fileRequests/manage/action | manage fileRequests |
-> | Microsoft.ModSimWorkbench/workbenches/chambers/fileRequests/getDownloadUri/action | getDownloadUri fileRequests |
-> | Microsoft.ModSimWorkbench/workbenches/chambers/fileRequests/read | Get ModSim Workbench chamber data pipeline file request resource collection. |
-> | Microsoft.ModSimWorkbench/workbenches/chambers/files/read | read files |
-> | Microsoft.ModSimWorkbench/workbenches/chambers/files/read | Lists all files. |
-> | Microsoft.ModSimWorkbench/workbenches/chambers/storages/read | Gets information about the specified storage. |
-> | Microsoft.ModSimWorkbench/workbenches/chambers/storages/write | Creates or updates the specified storage. |
-> | Microsoft.ModSimWorkbench/workbenches/chambers/storages/delete | Deletes the specified storage. |
-> | Microsoft.ModSimWorkbench/workbenches/chambers/storages/write | Updates the specified storage. |
-> | Microsoft.ModSimWorkbench/workbenches/chambers/storages/read | Lists all storages. |
-> | Microsoft.ModSimWorkbench/workbenches/chambers/workloads/start/action | start workloads |
-> | Microsoft.ModSimWorkbench/workbenches/chambers/workloads/stop/action | stop workloads |
-> | Microsoft.ModSimWorkbench/workbenches/chambers/workloads/restart/action | restart workloads |
-> | Microsoft.ModSimWorkbench/workbenches/chambers/workloads/read | Gets information about the specified workload. |
-> | Microsoft.ModSimWorkbench/workbenches/chambers/workloads/write | Creates or updates the specified workload. |
-> | Microsoft.ModSimWorkbench/workbenches/chambers/workloads/delete | Deletes the specified workload. |
-> | Microsoft.ModSimWorkbench/workbenches/chambers/workloads/write | Updates the specified workload. |
-> | Microsoft.ModSimWorkbench/workbenches/chambers/workloads/read | Lists all workloads. |
-> | **DataAction** | **Description** |
-> | Microsoft.ModSimWorkbench/workbenches/chambers/files/manage/action | manage files |
-> | Microsoft.ModSimWorkbench/workbenches/chambers/files/downloadRequest/action | downloadRequest files |
 
 ## Microsoft.NotificationHubs
 
@@ -1491,12 +1511,14 @@ Azure service: [Azure Event Grid](/azure/event-grid/overview)
 > | Microsoft.ResourceNotifications/eventGridFilters/write | Creates/Updates the specified event grid filters |
 > | Microsoft.ResourceNotifications/eventGridFilters/delete | Deletes the specified event grid filters |
 > | Microsoft.ResourceNotifications/operations/read | Gets the list of supported operations |
-> | Microsoft.ResourceNotifications/systemTopics/subscribeToResources/action | Permission to perform creation and event subscription creation on a Resources system topic |
-> | Microsoft.ResourceNotifications/systemTopics/subscribeToHealthResources/action | Permission to perform creation and event subscription creation on a HealthResources system topic |
-> | Microsoft.ResourceNotifications/systemTopics/subscribeToMaintenanceResources/action | Permission to perform creation and event subscription creation on a MaintenanceResources system topic |
-> | Microsoft.ResourceNotifications/systemTopics/subscribeToComputeResources/action | Permission to perform creation and event subscription creation on a ComputeResources system topic |
-> | Microsoft.ResourceNotifications/systemTopics/subscribeToComputeScheduleResources/action | Permission to perform creation and event subscription creation on a ComputeScheduleResources system topic |
-> | Microsoft.ResourceNotifications/systemTopics/subscribeToContainerServiceEventResources/action | Permission to perform creation and event subscription creation on a ContainerServiceEventResources system topic |
+> | Microsoft.ResourceNotifications/systemTopics/subscribetoresources/action | Permission to perform creation and event subscription creation on a resources system topic |
+> | Microsoft.ResourceNotifications/systemTopics/subscribetohealthresources/action | Permission to perform creation and event subscription creation on a healthresources system topic |
+> | Microsoft.ResourceNotifications/systemTopics/subscribetomaintenanceresources/action | Permission to perform creation and event subscription creation on a maintenanceresources system topic |
+> | Microsoft.ResourceNotifications/systemTopics/subscribetocomputeresources/action | Permission to perform creation and event subscription creation on a computeresources system topic |
+> | Microsoft.ResourceNotifications/systemTopics/subscribetocomputescheduleresources/action | Permission to perform creation and event subscription creation on a computescheduleresources system topic |
+> | Microsoft.ResourceNotifications/systemTopics/subscribetocontainerserviceeventresources/action | Permission to perform creation and event subscription creation on a containerserviceeventresources system topic |
+> | Microsoft.ResourceNotifications/systemTopics/subscribetoimpactreportingresources/action | Permission to perform creation and event subscription creation on a impactreportingresources system topic |
+> | Microsoft.ResourceNotifications/systemTopics/subscribetoaksresources/action | Permission to perform creation and event subscription creation on a aksresources system topic |
 
 ## Microsoft.ServiceBus
 
@@ -1519,6 +1541,7 @@ Azure service: [Service Bus](/azure/service-bus-messaging/)
 > | Microsoft.ServiceBus/namespaces/migrate/action | Migrate namespace operation |
 > | Microsoft.ServiceBus/namespaces/removeAcsNamepsace/action | Remove ACS namespace |
 > | Microsoft.ServiceBus/namespaces/privateEndpointConnectionsApproval/action | Approve Private Endpoint Connection |
+> | Microsoft.ServiceBus/namespaces/failover/action | Failover Namespace Resource |
 > | Microsoft.ServiceBus/namespaces/authorizationRules/write | Create a Namespace level Authorization Rules and update its properties. The Authorization Rules Access Rights, the Primary and Secondary Keys can be updated. |
 > | Microsoft.ServiceBus/namespaces/authorizationRules/read | Get the list of Namespaces Authorization Rules description. |
 > | Microsoft.ServiceBus/namespaces/authorizationRules/delete | Delete Namespace Authorization Rule. The Default Namespace Authorization Rule cannot be deleted.  |
@@ -1535,6 +1558,7 @@ Azure service: [Service Bus](/azure/service-bus-messaging/)
 > | Microsoft.ServiceBus/namespaces/eventGridFilters/write | Creates or Updates the Event Grid filter associated with the namespace. |
 > | Microsoft.ServiceBus/namespaces/eventGridFilters/read | Gets the Event Grid filter associated with the namespace. |
 > | Microsoft.ServiceBus/namespaces/eventGridFilters/delete | Deletes the Event Grid filter associated with the namespace. |
+> | Microsoft.ServiceBus/namespaces/failover/status/read | Get Namespace Failover Status |
 > | Microsoft.ServiceBus/namespaces/ipFilterRules/read | Get IP Filter Resource |
 > | Microsoft.ServiceBus/namespaces/ipFilterRules/write | Create IP Filter Resource |
 > | Microsoft.ServiceBus/namespaces/ipFilterRules/delete | Delete IP Filter Resource |
@@ -1551,6 +1575,11 @@ Azure service: [Service Bus](/azure/service-bus-messaging/)
 > | Microsoft.ServiceBus/namespaces/networkrulesets/read | Gets NetworkRuleSet Resource |
 > | Microsoft.ServiceBus/namespaces/networkrulesets/write | Create VNET Rule Resource |
 > | Microsoft.ServiceBus/namespaces/networkrulesets/delete | Delete VNET Rule Resource |
+> | Microsoft.ServiceBus/namespaces/networkSecurityPerimeterAssociationProxies/read | Get Network Security Perimeter Association Proxy |
+> | Microsoft.ServiceBus/namespaces/networkSecurityPerimeterAssociationProxies/write | Create or Update Network Security Perimeter Association Proxy |
+> | Microsoft.ServiceBus/namespaces/networkSecurityPerimeterAssociationProxies/delete | Delete Network Security Perimeter Association Proxy |
+> | Microsoft.ServiceBus/namespaces/networkSecurityPerimeterConfigurations/read | Get Network Security Perimeter Configurations |
+> | Microsoft.ServiceBus/namespaces/networkSecurityPerimeterConfigurations/reconcile/action | Reconcile Network Security Perimeter Configurations |
 > | Microsoft.ServiceBus/namespaces/operationresults/read | Get the status of Namespace operation |
 > | Microsoft.ServiceBus/namespaces/privateEndpointConnectionProxies/validate/action | Validate Private Endpoint Connection Proxy |
 > | Microsoft.ServiceBus/namespaces/privateEndpointConnectionProxies/read | Get Private Endpoint Connection Proxy |
@@ -1575,6 +1604,7 @@ Azure service: [Service Bus](/azure/service-bus-messaging/)
 > | Microsoft.ServiceBus/namespaces/queues/authorizationRules/delete | Operation to delete Queue Authorization Rules |
 > | Microsoft.ServiceBus/namespaces/queues/authorizationRules/listkeys/action | Get the Connection String to Queue |
 > | Microsoft.ServiceBus/namespaces/queues/authorizationRules/regenerateKeys/action | Regenerate the Primary or Secondary key to the Resource |
+> | Microsoft.ServiceBus/namespaces/replicationlags/read | Get Namespace Replication Lag |
 > | Microsoft.ServiceBus/namespaces/skus/read | List Supported SKUs for Namespace |
 > | Microsoft.ServiceBus/namespaces/topics/write | Create or Update Topic properties. |
 > | Microsoft.ServiceBus/namespaces/topics/read | Get list of Topic Resource Descriptions |
@@ -1598,6 +1628,8 @@ Azure service: [Service Bus](/azure/service-bus-messaging/)
 > | Microsoft.ServiceBus/sku/read | Get list of Sku Resource Descriptions |
 > | Microsoft.ServiceBus/sku/regions/read | Get list of SkuRegions Resource Descriptions |
 > | **DataAction** | **Description** |
+> | Microsoft.ServiceBus/namespaces/generateUserDelegationKey/action | Returns a user delegation key for the Namespace |
+> | Microsoft.ServiceBus/namespaces/revokeUserDelegationKeys/action | Revokes all the user delegation keys for the specified ServiceBus Namespace |
 > | Microsoft.ServiceBus/namespaces/messages/send/action | Send messages |
 > | Microsoft.ServiceBus/namespaces/messages/receive/action | Receive messages |
 

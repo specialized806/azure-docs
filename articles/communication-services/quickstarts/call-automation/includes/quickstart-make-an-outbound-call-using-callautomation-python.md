@@ -8,12 +8,14 @@ ms.date: 06/19/2023
 ms.topic: quickstart
 ms.service: azure-communication-services
 ms.subservice: call-automation
-ms.custom: mode-other
+ms.custom:
+  - mode-other
+  - sfi-ropc-nochange
 ---
 
 ## Prerequisites
 
-- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F). 
+- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn). 
 - A deployed Communication Services resource. [Create a Communication Services resource](../../create-communication-resource.md).
 - A [phone number](../../telephony/get-phone-number.md) in your Azure Communication Services resource that can make outbound calls. If you have a free subscription, you can [get a trial phone number](../../telephony/get-trial-phone-number.md).
 - Create and host an Azure Dev Tunnel. Instructions [here](/azure/developer/dev-tunnels/get-started).
@@ -74,7 +76,7 @@ CALLBACK_EVENTS_URI = CALLBACK_URI_HOST + "/api/callbacks"
 #Your Cognitive service endpoint 
 COGNITIVE_SERVICES_ENDPOINT = "<COGNITIVE_SERVICES_ENDPOINT>" 
 
-#(OPTIONAL) Your target Microsoft Teams user Id ex. "ab01bc12-d457-4995-a27b-c405ecfe4870"
+#(OPTIONAL) Your target Microsoft Teams user Id ex. "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
 TARGET_TEAMS_USER_ID = "<TARGET_TEAMS_USER_ID>"
 ```
 
@@ -207,5 +209,3 @@ python main.py
 # [Visual Studio](#tab/visual-studio)
 
 Press Ctrl+F5 to run without the debugger.
-
-

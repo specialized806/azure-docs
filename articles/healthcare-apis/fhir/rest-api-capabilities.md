@@ -5,7 +5,7 @@ author: expekesheth
 ms.service: azure-health-data-services
 ms.subservice: fhir
 ms.topic: conceptual
-ms.date: 05/14/2024
+ms.date: 10/10/2025
 ms.author: kesheth
 ---
 
@@ -178,6 +178,15 @@ Content-Type: `application/json`
 	]
 }
 ```
+
+## Troubleshooting 
+
+**Can I delete multiple patient observations or all patient resources in a single API call?**
+
+The $bulk-delete operation allows you to delete resources from the FHIR server asynchronously. You can execute the $bulk-delete operation either at the system level or for specific resource types.
+[Bulk-delete](fhir-bulk-delete.md)
+
+
 
 ## Related content
 

@@ -1,12 +1,13 @@
 ---
 title: 'Azure Bastion FAQ'
 description: Learn about frequently asked questions for Azure Bastion.
-author: cherylmc
+author: abell
 ms.service: azure-bastion
 ms.topic: faq
-ms.date: 04/01/2024
-ms.author: cherylmc
+ms.date: 03/03/2025
+ms.author: abell
 ms.custom: references_regions
+# Customer intent: "As a cloud administrator, I want to understand the deployment and connectivity requirements for Azure Bastion, so that I can effectively manage and secure remote access to our virtual machines."
 ---
 
 # Azure Bastion FAQ
@@ -31,15 +32,15 @@ Azure Bastion doesn't move or store customer data out of the region it's deploye
 
 ### <a name="az"></a>Does Azure Bastion support availability zones?
 
-[!INCLUDE [Availability Zones description and supported regions](../../includes/bastion-availability-zones-description.md)]
-
-If you aren't able to select a zone, you might have selected an Azure region that doesn't yet support availability zones.
-
-For more information about availability zones, see [Availability Zones](../reliability/availability-zones-overview.md?tabs=azure-cli).
+For information on availability zone support in Azure Bastion, see [Reliability in Azure Bastion](../reliability/reliability-bastion.md).  
 
 ### <a name="vwan"></a>Does Azure Bastion support Virtual WAN?
 
 Yes, you can use Azure Bastion for Virtual WAN deployments. However, deploying Azure Bastion within a Virtual WAN hub isn't supported. You can deploy Azure Bastion in a spoke virtual network and use the [IP-based connection](connect-ip-address.md) feature to connect to virtual machines deployed across a different virtual network via the Virtual WAN hub. If the Azure Virtual WAN hub will be integrated with Azure Firewall as a [Secured Virtual Hub](../firewall-manager/secured-virtual-hub.md), the AzureBastionSubnet must reside within a Virtual Network where the default 0.0.0.0/0 route propagation is disabled at the virtual network connection level.
+
+### <a name="routeserver"></a>Does Azure Bastion support Azure Route Server?
+
+Yes, you can use Azure Bastion with Azure Route Server deployments with a caveat. Bastion is supported in scenarios where Route Server does not advertise a 0.0.0.0/0 to the virtual network that the Bastion is deployed in. Route Server can advertise a 0.0.0.0/0, creating a force-tunneling scenario, which will break connectivity for the Bastion Service. 
 
 ### <a name="forcedtunnel"></a>Can I use Azure Bastion if I'm force-tunneling Internet traffic back to my on-premises location?
 
@@ -72,7 +73,7 @@ At this time, for most address spaces, you must add a subnet named **AzureBastio
 
 ### <a name="write-permissions"></a>Are special permissions required to deploy Bastion to the AzureBastionSubnet?
 
-To deploy Bastion to the AzureBastionSubnet, write permissions are required. Example: **Microsoft.Network/virtualNetworks/write**.
+To deploy Bastion to the AzureBastionSubnet, the following RBAC permissions are required: **Microsoft.Network/virtualNetworks/write**,**Microsoft.Network/virtualNetworks/subnets/join/action**, and **Microsoft.Network/publicIPAddresses**.
 
 ### <a name="subnet"></a>Can I have an Azure Bastion subnet of size /27 or smaller (/28, /29, etc.)?
 
@@ -90,15 +91,15 @@ For scenarios that include both Azure Bastion and Azure Firewall/Network Virtual
 
 ### <a name="all-skus"></a> What SKU should I use?
 
-Azure Bastion has multiple SKUs. You should select a SKU based on your connection and feature requirements. For a full list of SKU tiers and supported connections and features, see the [Configuration settings](configuration-settings.md#skus) article.
+Azure Bastion has multiple SKUs. You should select a SKU based on your connection and feature requirements. For a full list of SKU tiers and supported connections and features, see the [SKU Comparison](bastion-sku-comparison.md) article and the [Configuration settings](configuration-settings.md) article.
 
 ### <a name="upgradesku"></a> Can I upgrade a SKU?
 
-Yes. For steps, see [Upgrade a SKU](upgrade-sku.md). For more information about SKUs, see the [Configuration settings](configuration-settings.md#skus) article.
+Yes. For steps, see [Upgrade a SKU](upgrade-sku.md). For more information about SKUs, see the [SKU Comparison](bastion-sku-comparison.md) article.
 
 ### <a name="downgradesku"></a> Can I downgrade a SKU?
 
-No. Downgrading a SKU isn't supported. For more information about SKUs, see the [Configuration settings](configuration-settings.md#skus) article.
+No. Downgrading a SKU isn't supported. For more information about SKUs, see the [SKU Comparison](bastion-sku-comparison.md) article.
 
 ### <a name="virtual-desktop"></a>Does Bastion support connectivity to Azure Virtual Desktop?
 
@@ -175,9 +176,9 @@ Yes. See [About VM connections and features](vm-about.md#audio).
 
 Azure Bastion offers support for file transfer between your target VM and local computer using Bastion and a native RDP or SSH client. At this time, you can’t upload or download files using PowerShell or via the Azure portal. For more information, see [Upload and download files using the native client](vm-upload-download-native.md).
 
-### <a name="aadj"></a>Does Bastion hardening work with AADJ VM extension-joined VMs?
+### <a name="aadj"></a>Does Bastion work with Entra ID extension-joined VMs?
 
-This feature doesn't work with AADJ VM extension-joined machines using Microsoft Entra users. For more information, see [Sign in to a Windows virtual machine in Azure by using Microsoft Entra ID](../active-directory/devices/howto-vm-sign-in-azure-ad-windows.md#requirements).
+Bastion does work with Entra ID extension-joined VMs for Microsoft Entra users with RDP and SSH on the native client, and SSH only on the portal. Entra ID for RDP on the portal is not yet supported. For more information, see [Sign in to a Windows virtual machine in Azure by using Microsoft Entra ID](../active-directory/devices/howto-vm-sign-in-azure-ad-windows.md#requirements).
 
 ### <a name="rdscal-compatibility"></a>Is Bastion compatible with VMs set up as RDS session hosts?
 

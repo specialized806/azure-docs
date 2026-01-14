@@ -7,7 +7,7 @@ ms.subservice: fhir
 ms.topic: tutorial
 ms.author: evach
 author: evachen96
-ms.date: 9/27/2023
+ms.date: 10/10/2025
 ---
 
 # Migration strategies for moving from Azure API for FHIR
@@ -98,7 +98,7 @@ Migrate applications that were pointing to the old FHIR server.
 
 - After migration, reconfigure any remaining settings in the new Azure Health Data Services FHIR service server.
 
-- If you’d like to double check that the Azure Health Data Services FHIR service and Azure API for FHIR servers have the same configurations, you can check both [metadata endpoints](use-postman.md#get-the-capability-statement) to compare the two servers.
+- If you’d like to double check that the Azure Health Data Services FHIR service and Azure API for FHIR servers have the same configurations, you can check both metadata endpoints to compare the two servers.
 
 - Set up any jobs that were previously running in your old Azure API for FHIR server (for example, `$export` jobs)
 

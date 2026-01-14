@@ -7,7 +7,8 @@ ms.reviewer: estfan, azla
 ms.topic: tutorial
 ms.collection: ce-skilling-ai-copilot
 ms.custom: mvc
-ms.date: 08/07/2024
+ms.update-cycle: 180-days
+ms.date: 09/11/2025
 ---
 
 # Tutorial: Create schedule-based automated workflows using Azure Logic Apps
@@ -37,7 +38,7 @@ You can create a similar workflow with a Standard logic app resource. However, t
 
 ## Prerequisites
 
-* An Azure account and subscription. If you don't have a subscription, [sign up for a free Azure account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+* An Azure account and subscription. If you don't have a subscription, [sign up for a free Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 * An email account from an email provider that's supported by Azure Logic Apps, such as Office 365 Outlook or Outlook.com. For other supported email providers, see [Connectors for Azure Logic Apps](/connectors/connector-reference/connector-reference-logicapps-connectors).
 
@@ -66,7 +67,7 @@ You can create a similar workflow with a Standard logic app resource. However, t
 
    The **Create Logic App** page appears and shows the following options:
 
-   [!INCLUDE [logic-apps-host-plans](../../includes/logic-apps-host-plans.md)]
+   [!INCLUDE [logic-apps-host-plans](includes/logic-apps-host-plans.md)]
 
 1. On the **Create Logic App** page, select **Consumption (Multi-tenant)**.
 
@@ -83,7 +84,7 @@ You can create a similar workflow with a Standard logic app resource. However, t
    > [!NOTE]
    >
    > Availability zones are automatically enabled for new and existing Consumption logic app workflows in 
-   > [Azure regions that support availability zones](../reliability/availability-zones-service-support.md#azure-regions-with-availability-zone-support). 
+   > [Azure regions that support availability zones](../reliability/availability-zones-region-support.md). 
    > For more information, see [Reliability in Azure Functions](../reliability/reliability-functions.md#availability-zone-support) and 
    > [Protect logic apps from region failures with zone redundancy and availability zones](set-up-zone-redundancy-availability-zones.md).
 

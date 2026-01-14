@@ -3,11 +3,10 @@ title: Securing PaaS Databases in Azure | Microsoft Docs
 description: "Learn about Azure SQL Database and Azure Synapse Analytics security best practices for securing your PaaS web and mobile applications. "
 services: security
 author: msmbaldwin
-manager: rkarlin
 ms.service: security
 ms.subservice: security-fundamentals
 ms.topic: article
-ms.date: 09/29/2023
+ms.date: 04/16/2025
 ms.author: mbaldwin
 
 ---

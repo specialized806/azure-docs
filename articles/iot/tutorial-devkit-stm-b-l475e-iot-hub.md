@@ -1,12 +1,13 @@
 ---
 title: Connect an STMicroelectronics B-L475E to Azure IoT Hub
 description: Use Eclipse ThreadX embedded software to connect an STMicroelectronics B-L475E-IOT01A device to Azure IoT Hub and send telemetry.
-author: timlt
-ms.author: timlt
-ms.service: iot
+author: dominicbetts
+ms.author: dobett
+ms.service: azure-iot
 ms.devlang: c
 ms.topic: tutorial
-ms.date: 06/11/2024
+ms.date: 1/10/2025
+ms.update-cycle: 1095-days
 
 #Customer intent: As a device builder, I want to see a working IoT device sample connecting to IoT Hub and sending properties and telemetry, and responding to commands. As a solution builder, I want to use a tool to view the properties, commands, and telemetry an IoT Plug and Play device reports to the IoT hub it connects to. 
 ---
@@ -27,7 +28,7 @@ You complete the following tasks:
 ## Prerequisites
 
 * A PC running Windows 10 or Windows 11
-* An active Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
+* An active Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 * [Git](https://git-scm.com/downloads) for cloning the repository
 * Azure CLI. You have two options for running Azure CLI commands in this tutorial:
     * Use the Azure Cloud Shell, an interactive shell that runs CLI commands in your browser. This option is recommended because you don't need to install anything. If you're using Cloud Shell for the first time, sign in to the [Azure portal](https://portal.azure.com). Follow the steps in [Cloud Shell quickstart](../cloud-shell/quickstart.md) to **Start Cloud Shell** and **Select the Bash environment**.
@@ -199,7 +200,7 @@ You can use the **Termite** app to monitor communication and confirm that your d
     SUCCESS: Connected to IoT Hub
     ```
     > [!IMPORTANT]
-    > If the DNS client initialization fails and notifies you that the Wi-Fi firmware is out of date, you'll need to update the Wi-Fi module firmware. Download and install the [Inventek ISM 43362 Wi-Fi module firmware update](https://www.st.com/resource/en/utilities/inventek_fw_updater.zip). Then press the **Reset** button on the device to recheck your connection, and continue with this tutorial.
+    > If the DNS client initialization fails and notifies you that the Wi-Fi firmware is out of date, you'll need to update the Wi-Fi module firmware. Download and install the Inventek ISM 43362 Wi-Fi module firmware update from [STMicroelectronics](https://www.st.com/). Then press the **Reset** button on the device to recheck your connection, and continue with this tutorial.
 
 
 Keep Termite open to monitor device output in the following steps.

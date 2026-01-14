@@ -5,21 +5,22 @@ titleSuffix: Azure security
 description: This article provides a set of operational best practices for protecting your data, applications, and other assets in Azure.
 services: security
 author: msmbaldwin
-manager: rkarlin
 ms.service: security
 ms.subservice: security-fundamentals
 ms.topic: article
-ms.date: 06/27/2024
+ms.date: 04/23/2025
 ms.author: mbaldwin
 
 ---
 
 # Azure Operational Security best practices
+
 This article provides a set of operational best practices for protecting your data, applications, and other assets in Azure.
 
 The best practices are based on a consensus of opinion, and they work with current Azure platform capabilities and feature sets. Opinions and technologies change over time and this article is updated on a regular basis to reflect those changes.
 
 ## Define and deploy strong operational security practices
+
 Azure operational security refers to the services, controls, and features available to users for protecting their data, applications, and other assets in Azure. Azure operational security is built on a framework that incorporates the knowledge gained through capabilities that are unique to Microsoft, including the [Security Development Lifecycle (SDL)](https://www.microsoft.com/sdl), the [Microsoft Security Response Center](https://www.microsoft.com/msrc?rtc=1) program, and deep awareness of the cybersecurity threat landscape.
 
 <a name='enforce-multi-factor-verification-for-users'></a>
@@ -126,7 +127,7 @@ You should continuously monitor the storage services that your application uses 
 ## Prevent, detect, and respond to threats
 [Microsoft Defender for Cloud](/azure/defender-for-cloud/defender-for-cloud-introduction) helps you prevent, detect, and respond to threats by providing increased visibility into (and control over) the security of your Azure resources. It provides integrated security monitoring and policy management across your Azure subscriptions, helps detect threats that might otherwise go unnoticed, and works with various security solutions.
 
-The Free tier of Defender for Cloud offers limited security for your resources in Azure as well as Arc-enabled resources outside of Azure. The Enahanced Security Features extend these capabilities to include threat and vulnerability management, as well as regulatory compliance reporting. Defender for Cloud Plans help you find and fix security vulnerabilities, apply access and application controls to block malicious activity, detect threats by using analytics and intelligence, and respond quickly when under attack. You can try Defender for Cloud Standard at no cost for the first 30 days. We recommend that you [enable enhanced security features on your Azure subscriptions in Defender for Cloud](/azure/defender-for-cloud/enable-enhanced-security).
+The Free tier of Defender for Cloud offers limited security for your resources in Azure as well as Arc-enabled resources outside of Azure. The Enhanced Security Features extend these capabilities to include threat and vulnerability management, as well as regulatory compliance reporting. Defender for Cloud Plans help you find and fix security vulnerabilities, apply access and application controls to block malicious activity, detect threats by using analytics and intelligence, and respond quickly when under attack. You can try Defender for Cloud Standard at no cost for the first 30 days. We recommend that you [enable enhanced security features on your Azure subscriptions in Defender for Cloud](/azure/defender-for-cloud/enable-enhanced-security).
 
 Use Defender for Cloud to get a central view of the security state of all your resources in your own data centers, Azure and other clouds. At a glance, verify that the appropriate security controls are in place and configured correctly, and quickly identify any resources that need attention.
 
@@ -189,7 +190,7 @@ You can use [Azure Resource Manager](../../azure-resource-manager/templates/synt
 **Detail**: [Azure Pipelines](/azure/devops/pipelines/index) is a solution for automating multiple-stage deployment and managing the release process. Create managed continuous deployment pipelines to release quickly, easily, and often. With Azure Pipelines, you can automate your release process, and you can have predefined approval workflows. Deploy on-premises and to the cloud, extend, and customize as required.
 
 **Best practice**: Check your app's performance before you launch it or deploy updates to production.  
-**Detail**: Run cloud-based [load tests](../../load-testing/index.yml) to:
+**Detail**: Run cloud-based [load tests](../../app-testing/index.yml) to:
 
 - Find performance problems in your app.
 - Improve deployment quality.
@@ -237,7 +238,10 @@ Azure has two DDoS [service offerings](../../ddos-protection/ddos-protection-ove
 ## Enable Azure Policy
 [Azure Policy](../../governance/policy/overview.md) is a service in Azure that you use to create, assign, and manage policies. These policies enforce rules and effects over your resources, so those resources stay compliant with your corporate standards and service-level agreements. Azure Policy meets this need by evaluating your resources for non-compliance with assigned policies.
 
-Enable Azure Policy to monitor and enforce your organization’s written policy. This will ensure compliance with your company or regulatory security requirements by centrally managing security policies across your hybrid cloud workloads. Learn how to [create and manage policies to enforce compliance](../../governance/policy/tutorials/create-and-manage.md). See [Azure Policy definition structure](../../governance/policy/concepts/definition-structure.md) for an overview of the elements of a policy.
+Enable Azure Policy to monitor and enforce your organization's written policy. This will ensure compliance with your company or regulatory security requirements by centrally managing security policies across your hybrid cloud workloads. Learn how to [create and manage policies to enforce compliance](../../governance/policy/tutorials/create-and-manage.md). See [Azure Policy definition structure](../../governance/policy/concepts/definition-structure.md) for an overview of the elements of a policy.
+
+**Best practice**: Use Azure Policy to enforce Microsoft Cloud Security Benchmark v2 (preview) recommendations across your environment.  
+**Detail**: The [Microsoft Cloud Security Benchmark v2 (preview)](/security/benchmark/azure/overview) provides comprehensive security best practices with expanded Azure Policy coverage (420+ policy-based measurements). Assign Microsoft Cloud Security Benchmark v2 (preview) policies to your subscriptions and management groups to continuously audit and enforce secure configurations. The benchmark includes new controls for AI security, confidential computing, and enhanced threat detection. Use the [Defender for Cloud regulatory compliance dashboard](/azure/defender-for-cloud/regulatory-compliance-dashboard) to track compliance and identify security gaps requiring remediation.
 
 Here are some security best practices to follow after you adopt Azure Policy:
 

@@ -2,12 +2,13 @@
 title: Deploy and configure Azure Firewall in a hybrid network by using the Azure portal
 description: In this article, you learn how to deploy and configure Azure Firewall by using the Azure portal.
 services: firewall
-author: vhorne
+author: duau
 ms.service: azure-firewall
 ms.topic: how-to
 ms.date: 08/31/2023
-ms.author: victorh
+ms.author: duau
 #Customer intent: As an administrator, I want to control network access from an on-premises network to an Azure virtual network.
+# Customer intent: As a network administrator, I want to deploy and configure Azure Firewall in a hybrid network, so that I can effectively control and secure access between on-premises and Azure virtual networks.
 ---
 
 # Deploy and configure Azure Firewall in a hybrid network by using the Azure portal
@@ -50,7 +51,7 @@ Azure Firewall must have direct internet connectivity. If your **AzureFirewallSu
 
 Traffic between directly peered virtual networks is routed directly, even if a UDR points to Azure Firewall as the default gateway. To send subnet-to-subnet traffic to the firewall in this scenario, a UDR must contain the target subnet network prefix explicitly on both subnets.
 
-If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
+If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 
 ## Create the firewall hub virtual network
 
@@ -273,8 +274,6 @@ Create the virtual network connection between on-premises and the hub. The follo
 
 After about five minutes, the status of both connections should be **Connected**.
 
-![Screenshot that shows gateway connections.](media/tutorial-hybrid-portal/gateway-connections.png)
-
 ## Peer the hub and spoke virtual networks
 
 Now, peer the hub and spoke virtual networks:
@@ -306,8 +305,6 @@ Now, peer the hub and spoke virtual networks:
 1. Select **Add**.
 
 The following screenshot shows the settings to use when you peer hub and spoke virtual networks:
-
-:::image type="content" source="media/tutorial-hybrid-portal/firewall-peering.png" alt-text="Screenshot that shows selections for peering hub and spoke virtual networks.":::
 
 ## Create the routes
 

@@ -5,10 +5,14 @@ description: In this quickstart, learn how to create a private endpoint using th
 author: abell
 ms.service: azure-private-link
 ms.topic: quickstart
-ms.date: 02/26/2024
+ms.date: 03/25/2025
 ms.author: abell
-ms.custom: mode-ui, template-quickstart
+ms.custom:
+  - mode-ui
+  - template-quickstart
+  - sfi-image-nochange
 #Customer intent: As someone who has a basic network background but is new to Azure, I want to create a private endpoint on a SQL server so that I can securely connect to it.
+# Customer intent: As a network engineer new to Azure, I want to create a private endpoint for an Azure web app, so that I can establish a secure connection to the app while ensuring data privacy and security across my network.
 ---
 
 # Quickstart: Create a private endpoint by using the Azure portal
@@ -23,7 +27,7 @@ You can create private endpoints for various Azure services, such as Azure SQL a
 
 ## Prerequisites
 
-- An Azure account with an active subscription. If you don't already have an Azure account, [create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+- An Azure account with an active subscription. If you don't already have an Azure account, [create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 - An Azure App Services web app with a Basic, Standard, PremiumV2, PremiumV3, IsolatedV2, Functions Premium (sometimes referred to as the Elastic Premium plan) app service plan, deployed in your Azure subscription.  
 
@@ -89,7 +93,6 @@ Next, you create a private endpoint for the web app that you created in the **Pr
     | ------- | ----- |
     | **Private IP configuration** | Select **Dynamically allocate IP address**. |
 
-    :::image type="content" source="./media/create-private-endpoint-portal/dynamic-ip-address.png" alt-text="Screenshot of dynamic IP address selection." border="true" lightbox="./media/create-private-endpoint-portal/dynamic-ip-address.png":::
 
     # [**Static IP**](#tab/static-ip)
 
@@ -98,8 +101,6 @@ Next, you create a private endpoint for the web app that you created in the **Pr
     | **Private IP configuration** | Select **Statically allocate IP address**. |
     | Name | Enter **ipconfig-1**. |
     | Private IP | Enter **10.0.0.10**. |
-
-    :::image type="content" source="./media/create-private-endpoint-portal/static-ip-address.png" alt-text="Screenshot of static IP address selection." border="true" lightbox="./media/create-private-endpoint-portal/static-ip-address.png":::
 
     ---
 

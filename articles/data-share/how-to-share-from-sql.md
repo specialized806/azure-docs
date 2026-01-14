@@ -5,7 +5,8 @@ author:  sidontha
 ms.author: sidontha
 ms.service: azure-data-share
 ms.topic: how-to
-ms.date: 12/19/2023
+ms.date: 02/12/2025
+ms.custom: sfi-image-nochange
 ---
 
 # Share and receive data from Azure SQL Database and Azure Synapse Analytics
@@ -40,7 +41,7 @@ Azure Data Share supports sharing full data snapshots from several SQL resources
 |Synapse Analytics (workspace) dedicated SQL pool|Yes   |No|
 
 > [!NOTE]
-> Currently, Azure Data Share does not support sharing from these resources:
+> Currently, Azure Data Share doesn't support sharing from these resources:
 >
 > - Azure Synapse Analytics (workspace) serverless SQL pool
 > - Azure SQL databases with Always Encrypted configured
@@ -68,7 +69,7 @@ When you share data from a SQL source, the following mappings are used from SQL 
 >[!NOTE]
 >
 > 1. For data types that map to the Decimal interim type, currently snapshot supports precision up to 28. If you have data that requires precision larger than 28, consider converting to a string.
-> 1. If you are sharing data from Azure SQL database to Azure Synapse Analytics, not all data types are supported. Refer to [Table data types in dedicated SQL pool](../synapse-analytics/sql-data-warehouse/sql-data-warehouse-tables-data-types.md) for details.
+> 1. If you're sharing data from Azure SQL database to Azure Synapse Analytics, not all data types are supported. Refer to [Table data types in dedicated SQL pool](../synapse-analytics/sql-data-warehouse/sql-data-warehouse-tables-data-types.md) for details.
 
 | SQL Server data type | Azure Data Share interim data type |
 |:--- |:--- |
@@ -109,7 +110,7 @@ When you share data from a SQL source, the following mappings are used from SQL 
 
 To share data snapshots from your Azure SQL resources, you first need to prepare your environment. You'll need:
 
-- An Azure subscription: If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/) before you begin.
+- An Azure subscription: If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 - An [Azure SQL Database](/azure/azure-sql/database/single-database-create-quickstart) or [Azure Synapse Analytics (formerly Azure SQL DW)](../synapse-analytics/get-started-create-workspace.md) with tables and views that you want to share.
 - [An Azure Data Share account](share-your-data-portal.md#create-a-data-share-account).
 - Your data recipient's Azure sign-in e-mail address (using their e-mail alias won't work).
@@ -247,7 +248,7 @@ Before you can accept a data share invitation, you need to prepare your environm
 
 Confirm that all prerequisites are complete before accepting a data share invitation:
 
-- Azure Subscription: If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/) before you begin.
+- Azure Subscription: If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 - A Data Share invitation: An invitation from Microsoft Azure with a subject titled "Azure Data Share invitation from **<yourdataprovider@domain.com>**".
 - Register the [Microsoft.DataShare resource provider](concepts-roles-permissions.md#resource-provider-registration) in the Azure subscription where you'll create a Data Share resource and the Azure subscription where your target Azure data stores are located.
 - You'll need a resource in Azure to store the shared data. You can use these kinds of resources:
@@ -423,6 +424,6 @@ For large tables where incremental updates are desired, you can export updates t
 
 The most common cause of snapshot failure is that Data Share doesn't have permission to the source or target data store. In order to grant Data Share permission to the source or target Azure SQL Database or Azure Synapse Analytics (formerly Azure SQL DW), you must run the provided SQL script when connecting to the SQL database using Microsoft Entra authentication. To troubleshoot other SQL snapshot failures, refer to [Troubleshoot snapshot failure](data-share-troubleshoot.md#snapshots).
 
-## Next steps
+## Related content
 
 You've learned how to share and receive data from SQL sources using Azure Data Share service. To learn more about sharing from other data sources, continue to [supported data stores](supported-data-stores.md).

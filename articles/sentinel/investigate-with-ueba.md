@@ -1,14 +1,14 @@
 ---
 title: Investigate incidents with UEBA data | Microsoft Docs
 description: Learn how to use UEBA data while investigating to gain greater context to potentially malicious activity occurring in your organization.
-author: yelevin
+author: guywi-ms
+ms.author: guywild
 ms.topic: how-to
 ms.date: 11/09/2021
-ms.author: yelevin
-
-
+appliesto:
+    - Microsoft Sentinel in the Azure portal
+ms.custom: sfi-image-nochange
 #Customer intent: As a security analyst, I want to use User and Entity Behavior Analytics (UEBA) data to investigate incidents so that I can identify and respond to potential security threats more effectively.
-
 ---
 
 # Tutorial: Investigate incidents with UEBA data
@@ -28,6 +28,23 @@ This article describes common methods and sample procedures for using [user enti
 Before you can use UEBA data in your investigations, you must [enable User and Entity Behavior Analytics (UEBA) in Microsoft Sentinel](enable-entity-behavior-analytics.md).
 
 Start looking for machine powered insights about one week after enabling UEBA.
+
+## Find and investigate user anomalies in the Defender portal (Preview)
+
+In the Defender portal, a **UEBA Anomalies** tag identifies users with anomalies, making it easier to prioritize investigations.
+
+The **Top UEBA anomalies** section - which appears on the User side panel and the **Overview** tab of the User entity page - displays the user's top three anomalies from the last 30 days. Select the links at the bottom of this section to hunt for all of the user's anomalies and view the Sentinel events timeline.
+
+:::image type="content" source="media/investigate-with-ueba/entity-behavior-analytics-user-investigations.png" alt-text="Screenshot that shows the overview tab of the User page for a user with UEBA anomalies in the last 30 days." lightbox="media/investigate-with-ueba/entity-behavior-analytics-user-investigations.png":::
+
+### Investigate user anomalies from an incident
+
+To investigate a user in an incident, select **Go Hunt > All user anomalies** from the user entity in the incident graph to retrieve all anomalies related to the user from the past 30 days.
+
+:::image type="content" source="media/identify-threats-with-entity-behavior-analytics/entity-behavior-analytics-incident-investigations.png" alt-text="Screenshot that shows an incident graph, highlighting the Go hunt All user anomalies option, which allows analysts to quickly find all anomalies related to the user." lightbox="media/identify-threats-with-entity-behavior-analytics/entity-behavior-analytics-incident-investigations.png":::
+
+For more information, see [Investigate incidents in the Microsoft Defender portal](https://aka.ms/ueba-go-hunt) and [User entity page in Microsoft Defender](https://aka.ms/ueba-entity-details).
+
 
 ## Run proactive, routine searches in entity data
 
@@ -105,7 +122,7 @@ For example:
 
     ```kusto
     SigninLogs
-    | where AppDisplayName == "GithHub.Com"
+    | where AppDisplayName == "GitHub.Com"
     | join kind=inner  (
         IdentityInfo
         | summarize arg_max(TimeGenerated, *) by AccountObjectId) on $left.UserId == $right.AccountObjectId
@@ -113,6 +130,22 @@ For example:
     ```
 
 The **IdentityInfo** table synchronizes with your Microsoft Entra workspace to create a snapshot of your user profile data, such as user metadata, group information, and Microsoft Entra roles assigned to each user. For more information, see [IdentityInfo table](ueba-reference.md#identityinfo-table) in the UEBA enrichments reference.
+
+See more information on the following items used in the preceding examples, in the Kusto documentation:
+- [***where*** operator](/kusto/query/where-operator?view=microsoft-sentinel&preserve-view=true)
+- [***join*** operator](/kusto/query/join-operator?view=microsoft-sentinel&preserve-view=true)
+- [***summarize*** operator](/kusto/query/summarize-operator?view=microsoft-sentinel&preserve-view=true)
+- [***render*** operator](/kusto/query/render-operator?view=microsoft-sentinel&preserve-view=true)
+- [***sort*** operator](/kusto/query/sort-operator?view=microsoft-sentinel&preserve-view=true)
+- [***iff()*** function](/kusto/query/iff-function?view=microsoft-sentinel&preserve-view=true)
+- [***ago()*** function](/kusto/query/ago-function?view=microsoft-sentinel&preserve-view=true)
+- [***now()*** function](/kusto/query/now-function?view=microsoft-sentinel&preserve-view=true)
+- [***bin()*** function](/kusto/query/bin-function?view=microsoft-sentinel&preserve-view=true)
+- [***startofday()*** function](/kusto/query/startofday-function?view=microsoft-sentinel&preserve-view=true)
+- [***count()*** aggregation function](/kusto/query/count-aggregation-function?view=microsoft-sentinel&preserve-view=true)
+- [***sum()*** aggregation function](/kusto/query/sum-aggregation-function?view=microsoft-sentinel&preserve-view=true)
+
+[!INCLUDE [kusto-reference-general-no-alert](includes/kusto-reference-general-no-alert.md)]
 
 ## Identify password spray and spear phishing attempts
 

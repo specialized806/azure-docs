@@ -1,21 +1,20 @@
 ---
 title: Configure a geo-filtering WAF policy for Azure Front Door
 description: In this tutorial, you learn how to create a geo-filtering policy and associate the policy with your existing Azure Front Door front-end host.
-services: web-application-firewall
-author: vhorne
+author: halkazwini
+ms.author: halkazwini
 ms.service: azure-web-application-firewall
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 03/10/2020
-ms.author: victorh 
 ms.custom: devx-track-azurepowershell
-
+# Customer intent: As a cloud administrator, I want to configure a geo-filtering WAF policy for my Azure Front Door, so that I can control access by blocking requests from specific countries or regions.
 ---
 
 # Set up a geo-filtering WAF policy for Azure Front Door
 
 This tutorial shows how to use Azure PowerShell to create a sample geo-filtering policy and associate the policy with your existing Azure Front Door front-end host. This sample geo-filtering policy blocks requests from all other countries or regions except the United States.
 
-If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) now.
+If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) now.
 
 ## Prerequisites
 

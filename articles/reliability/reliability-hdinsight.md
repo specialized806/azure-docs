@@ -1,6 +1,6 @@
 ---
 title: Reliability in Azure HDInsight
-description: Find out about reliability in Azure HDInsight.
+description: Learn how to build resilient Hadoop and Spark clusters in Azure HDInsight by using availability zones, ARM templates, and disaster recovery strategies.
 author: apurbasroy
 ms.service: azure
 ms.topic: reliability-article
@@ -19,7 +19,7 @@ This article describes reliability support in [Azure HDInsight](../hdinsight/hdi
 
 [!INCLUDE [Availability zone description](includes/reliability-availability-zone-description-include.md)]
 
-Azure HDInsight supports a [zonal deployment configuration](availability-zones-service-support.md#azure-services-with-availability-zone-support). Azure HDInsight cluster nodes are placed in a single zone that you select in the selected region. A zonal HDInsight cluster is isolated from any outages that occur in other zones. However, if an outage impacts the specific zone chosen for the HDInsight cluster, the cluster won't be available.  This deployment model provides inexpensive, low latency network connectivity within the cluster. Replicating this deployment model into multiple availability zones can provide a higher level of availability to protect against hardware failure.
+Azure HDInsight supports a [zonal deployment configuration](availability-zones-service-support.md). Azure HDInsight cluster nodes are placed in a single zone that you select in the selected region. A zonal HDInsight cluster is isolated from any outages that occur in other zones. However, if an outage impacts the specific zone chosen for the HDInsight cluster, the cluster won't be available.  This deployment model provides inexpensive, low latency network connectivity within the cluster. Replicating this deployment model into multiple availability zones can provide a higher level of availability to protect against hardware failure.
 
 >[!IMPORTANT]
 >For deployments where users don't specify a specific zone, node types are not zone resilient and can experience downtime during an outage in any zone in that region.
@@ -78,7 +78,7 @@ In the resources section, you need to add a section of ‘zones’ and provide w
 
 When the HDInsight cluster is ready, you can check the location to see which availability zone they're deployed in.
 
-:::image type="content" source="../hdinsight/media/hdinsight-use-availability-zones/cluster-availability-zone-info.png" alt-text="Screenshot that shows availability zone info in cluster overview." border="true":::
+:::image type="content" source="/azure/hdinsight/media/hdinsight-use-availability-zones/cluster-availability-zone-info.png" alt-text="Screenshot that shows availability zone info in cluster overview." border="true":::
 
 **Get API response**: 
 
@@ -129,14 +129,14 @@ Improving business continuity using cross region high availability disaster reco
 |Data Storage|Duplicating primary data/tables in a secondary region|Replicate only curated data|
 |Data Egress|Outbound cross region data transfers come at a price. Review Bandwidth pricing guidelines|Replicate only curated data to reduce the region egress footprint|
 |Cluster Compute|Additional HDInsight cluster/s in secondary region|Use automated scripts to deploy secondary compute after primary failure. Use Autoscaling to keep secondary cluster size to a minimum. Use cheaper VM SKUs. Create secondaries in regions where VM SKUs may be discounted.|
-|Authentication |Multiuser scenarios in the secondary region incurs extra  Microsoft Entra Domain Services setups|Avoid multiuser setups in secondary region.|
+|Authentication |Multiuser scenarios in the secondary region incur extra Microsoft Entra Domain Services setups|Avoid multiuser setups in secondary region.|
 
 ### Complexity optimizations
 
 |Area|Cause of complexity escalation|Optimization strategies|
 |----|------------------------|-----------------------|
 |Read Write patterns |Requiring both primary and secondary to be Read and Write enabled |Design the secondary to be read only|
-|Zero RPO & RTO |Requiring zero data loss (RPO=0) and zero downtime (RTO=0) |Design RPO and RTO in ways to reduce the number of components that need to fail over. For more information on RTO and RPO, see [Recovery objectives](./disaster-recovery-overview.md#recovery-objectives).|
+|Zero RPO & RTO |Requiring zero data loss (RPO=0) and zero downtime (RTO=0) |Design RPO and RTO in ways to reduce the number of components that need to fail over. For more information on RTO and RPO, see [What are business continuity, high availability, and disaster recovery?](./concept-business-continuity-high-availability-disaster-recovery.md#disaster-recovery).|
 |Business functionality |Requiring full business functionality of primary in secondary |Evaluate if you can run with bare minimum critical subset of the business functionality in secondary.|
 |Connectivity |Requiring all upstream and downstream systems from primary to connect to the secondary as well|Limit the secondary connectivity to a bare minimum critical subset.|
 
@@ -145,7 +145,7 @@ When you create your multi region disaster recovery plan, consider the following
 
 * Determine the minimal business functionality you need if there is a disaster and why. For example, evaluate if you need failover capabilities for the data transformation layer (shown in yellow) *and* the data serving layer (shown in blue), or if you only need failover for the data service layer.
 
-   :::image type="content" source="../hdinsight/media/hdinsight-business-continuity/data-layers.png" alt-text="data transformation and data serving layers":::
+   :::image type="content" source="/azure/hdinsight/media/hdinsight-business-continuity/data-layers.png" alt-text="Diagram that shows data transformation and data serving layers.":::
 
 * Segment your clusters based on workload, development lifecycle, and departments. Having more clusters reduces the chances of a single large failure affecting multiple different business processes.
 
@@ -205,7 +205,7 @@ functionality. Service incidents in one or more of the following services in a s
 
  - **Optional services**, such as Azure Key Vault and Azure Data Factory.
 
-:::image type="content" source="../hdinsight/media/hdinsight-business-continuity/hdinsight-components.png" alt-text="HDInsight components":::
+:::image type="content" source="/azure/hdinsight/media/hdinsight-business-continuity/hdinsight-components.png" alt-text="Diagram that shows HDInsight components.":::
 
 
 ## Related content
@@ -214,8 +214,5 @@ functionality. Service incidents in one or more of the following services in a s
 * [Azure HDInsight business continuity architectures](../hdinsight/hdinsight-business-continuity-architecture.md)
 * [Azure HDInsight highly available solution architecture case study](../hdinsight/hdinsight-high-availability-case-study.md)
 * [What is Apache Hive and HiveQL on Azure HDInsight?](../hdinsight/hadoop/hdinsight-use-hive.md)
-
-
-* [Reliability for HDInsight on AKS](./reliability-hdinsight-on-aks.md)
 * [Reliability in Azure](./overview.md)
 

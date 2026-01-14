@@ -42,17 +42,17 @@ landingContent:
       - linkListType: tutorial
         links:
           - text: 1 - Customize metadata properties
-            url: add-metadata-properties.md
+            url: ././tutorials/add-metadata-properties.md
           - text: 2 - Add APIs to the inventory
-            url: register-apis.md
+            url: ././tutorials/register-apis.md
           - text: 3 - Add environments and deployments
-            url: configure-environments-deployments.md
+            url: ././tutorials/configure-environments-deployments.md
       - linkListType: how-to-guide
         links:
           - text: Manage inventory - Azure CLI
             url: manage-apis-azure-cli.md
-          - text: Import APIs from API Management
-            url: import-api-management-apis.md
+          - text: Synchronize APIs from API Management
+            url: synchronize-api-management-apis.md
           - text: Build and register APIs - VS Code extension
             url: use-vscode-extension.md
  # Card
@@ -61,7 +61,7 @@ landingContent:
       - linkListType: how-to-guide
         links:
           - text: Analyze APIs using linting rules
-            url: enable-api-analysis-linting.md
+            url: enable-managed-api-analysis-linting.md
       - linkListType: concept
         links:
           - text: Use metadata for governance
@@ -71,8 +71,8 @@ landingContent:
     linkLists:
       - linkListType: how-to-guide
         links:
-          - text: Self-host Azure API Center portal
-            url: enable-api-center-portal.md
+          - text: Set up Azure API Center portal
+            url: set-up-api-center-portal.md
   # Card
   - title: Related service
     linkLists:

@@ -4,10 +4,14 @@ description: This article provides an overview of ExpressRoute Metro and how it 
 services: expressroute
 author: duongau
 ms.service: azure-expressroute
-ms.topic: conceptual
-ms.date: 06/03/2024
+ms.topic: concept-article
+ms.date: 12/10/2025
 ms.author: duau
-ms.custom: references_regions, ai-usage
+ms.custom:
+  - references_regions
+  - ai-usage
+  - sfi-image-nochange
+# Customer intent: As a network architect, I want to understand the features and benefits of ExpressRoute Metro, so that I can implement high-resiliency connectivity solutions between our on-premises networks and Azure resources.
 ---
 
 # About ExpressRoute Metro
@@ -16,7 +20,7 @@ ExpressRoute facilitates the creation of private connections between your on-pre
 
 Within the peering location, two types of connections can be established:
 
-* **ExpressRoute circuit** - an ExpressRoute circuit consist of two logical connections between your on-premises network and Azure. These connections are made through a pair of physical links provided by an ExpressRoute partner, such as AT&T, Verizon, Equinix, among others.
+* **ExpressRoute circuit** - an ExpressRoute circuit consist of two logical connections between your on-premises network and Azure. These connections are made through a pair of physical links provided by an ExpressRoute partner, such as AT&T, Verizon, Megaport, Equinix, among others.
 
 * **ExpressRoute Direct** - ExpressRoute Direct is a dedicated and private connection between your on-premises network and Azure, eliminating the need for partner provider involvement. It enables the direct connection of your routers to the Microsoft global network using dual 10G or 100G Ports.
 
@@ -38,11 +42,20 @@ The following diagram allows for a comparison between the standard ExpressRoute 
 
 ## ExpressRoute Metro locations
 
-| Metro location | Peering locations | Location address | Zone | Local Azure Region | ER Direct | Service Provider |
-|--|--|--|--|--|--|--|
-| Amsterdam Metro | Amsterdam<br>Amsterdam2 | Equinix AM5<br>Digital Realty AMS8 | 1 | West Europe | &check; | Colt<sup>1</sup><br>Console Connect<sup>1</sup><br>Digital Realty<br>Equinix<br>euNetworks<br><br>Megaport<br> |
-| Singapore Metro | Singapore<br>Singapore2 | Equinix SG1<br>Global Switch Tai Seng | 2 | Southeast Asia | &check; | Console Connect<sup>1</sup><br>Equinix<br>Megaport |
-| Zurich Metro | Zurich<br>Zurich2 | Digital Realty ZUR2<br>Equinix ZH5 | 1 | Switzerland North | &check; | Colt<sup>1</sup><br>Digital Realty |
+| Metro location | Location address | Zone | Local Azure Region | ER Direct | Service Provider |
+|--|--|--|--|--|--|
+| Amsterdam Metro | Equinix AM5<br>Digital Realty AMS8 | 1 | West Europe | &check; | Colt<br>DE-CIX<br>Digital Realty<br>Equinix<br>euNetworks<br>Megaport<br>NL-IX |
+| Atlanta Metro | Equinix AT1<br>Digital Realty ATL14 | 1 | &cross; | &check; |  Equinix<br>Megaport<br>|
+| Chicago Metro | Equinix CH1<br>CoreSite CH1 | 1 | North Central US | &check; |  Equinix<br>Megaport |
+| Dallas Metro | Equinix DA6 <br>Digital Realty DFW10 | 1 | &cross; | &check; | Megaport |
+| Jakarta Metro | NeutraDC HDC<br>NTT GDC | 2 | Indonesia Central | &check; | DCI Indonesia<br>Telin<sup>1</sup><br>XL Axiata<sup>1</sup> |
+| Madrid Metro | Equinix MD2<br>Digital Realty MAD1 | 1 | Spain Central | &check; | Colt<br>Equinix<br>Megaport |
+| Milan Metro | Irideos Milan<br>Data4Italy Milan | 1 | Italy North | &check; | Equinix<br>Megaport |
+| New York Metro | Equinix NY5<br>165 Halsey Street | 1 | &cross; | &check; |  Megaport<br>DE-CIX<sup>1</sup> |
+| Singapore Metro | Global Switch Tai Seng<br>Equinix SG1 | 2 | Southeast Asia | &check; | Colt<br>Equinix<br>IX Reach<br>Megaport<br>MegaPOP (Singtel) |
+| Taipei Metro | Chief Telecom<br>Chunghwa Telecom Co. Ltd | 2 | Taiwan North | &check; | Chunghwa Telecom |
+| Zurich Metro |  Digital Realty ZUR2<br>Equinix ZH5 | 1 | Switzerland North | &check; | Colt<br>Digital Realty |
+| Washington DC Metro | Equinix DC6<br>CoreSite VA3 | 1 | East US<br/>East US 2 | &check; |  Equinix<br>Megaport |
 
 <sup>1<sup> These service providers will be available in the future.
 
@@ -64,8 +77,6 @@ You can create an ExpressRoute Metro circuit in the Azure portal in any of the t
     :::image type="content" source="./media/metro/create-metro-direct.png" alt-text="Screenshot of creating Metro ExpressRoute Direct ports.":::
 
 1. One you provisioned the Metro ExpressRoute Direct ports, you can download the LOA (Letter of Authorization), obtain the Meet-Me-Room details, and extend your physical cross-connects.
-
-    :::image type="content" source="./media/metro/generate-letter-of-authorization.png" alt-text="Screenshot of generating letter of authorization.":::
 
 ## Migrate from an existing Expressroute circuit to a Metro circuit
 
