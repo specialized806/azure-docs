@@ -1,5 +1,5 @@
 ---
-title: Migrate a Workload from Amazon Web Services (AWS) to Azure - Introduction
+title: Migrate a workload from Amazon Web Services (AWS) to Azure - Introduction
 description: Learn how to migrate a single workload from AWS to Azure
 ms.author: rhackenberg
 ai-usage: ai-assisted
@@ -10,9 +10,11 @@ ms.collection:
   - migration
   - aws-to-azure
 ---
-# Migrate a Workload from Amazon Web Services (AWS) to Azure - Introduction
+# Migrate a workload from Amazon Web Services (AWS) to Azure - Introduction
 
 This article series provides architects and engineers with actionable, prescriptive guidance to migrate a single workload from Amazon Web Services (AWS) to Azure. It covers the full migration lifecycle, from planning and preparation, execution and evaluation, to decommissioning of AWS resources.
+
+This article focuses on workloads that range from simple to moderately complex that are fairly independent from other workloads in your organization. It does not cover mission-critical workloads.
 
 Migrating a workload from AWS is a strategic initiative that requires careful planning and stakeholder alignment. Without a solid migration plan and proper preparation, you risk introducing undesired disruption which can erode confidence in your workload.
 
@@ -36,16 +38,6 @@ The migration of a workload can span several weeks or months. The duration depen
 :::image-end:::
 
 *Guidelines for a moderately complex workload.*
-
-## Workload team responsibility
-
-We've found that the workload team who is currently responsible for the workload in AWS and ultimately will be responsible for the workload in Azure should be performing the migration of the workload. Outsourcing a bulk of the migration to talent outside of the workload team can lead to:
-
-- surprise discoveries late in the process
-- an under-trained workload team
-- sense of lost ownership
-
-Workload teams should consult with migration experts as part of the process, but the team should drive the process and stay heavily invested.
 
 ## Workload team responsibility
 
