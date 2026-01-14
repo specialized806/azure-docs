@@ -54,11 +54,11 @@ You can provision NFS datastores backed by Azure NetApp Files volumes or VMFS da
 When configuring Zerto, simply choose your Azure NetApp Files or Elastic SAN datastore as the Recovery Datastore within the VPG creation or editing workflow.
 
 Dive deeper into how these storage options integrate with Azure VMware Solution:
-[Azure NetApp datastores to Azure VMware Solution hosts](/azure/azure-vmware/attach-azure-netapp-files-to-azure-vmware-solution-hosts?tabs=azure-portal) and 
-[Azure Elastic SAN datastores to Azure VMware Solution hosts](/azure/azure-vmware/configure-azure-elastic-san)
+- [Azure NetApp datastores to Azure VMware Solution hosts](/azure/azure-vmware/attach-azure-netapp-files-to-azure-vmware-solution-hosts?tabs=azure-portal) and 
+- [Azure Elastic SAN datastores to Azure VMware Solution hosts](/azure/azure-vmware/configure-azure-elastic-san)
 
 
-## Supported Zerto scenarios in Azure Vmware Solution
+## Supported Zerto scenarios in Azure VMware Solution
 ### Scenario 1: On-premises VMware vSphere to Azure VMware Solution disaster recovery
 
 In this scenario, the primary site is an on-premises vSphere-based environment. The disaster recovery site is an Azure VMware Solution private cloud. 
@@ -98,7 +98,7 @@ For further details, please reach out to the [Zerto Support](https://www.zerto.c
 
 No, Zerto customers should reach out Zerto for all supports related issues including installation, configuration, upgrades, uninstallation, licenses and lifecycle management. Microsoft will assist only infrastructure level.
 
-### Who support Zerto on-premises related issues?
+### Who supports Zerto on-premises related issues?
 
 Zerto supports on-premises issues, including site pairing, connectivity.
 
@@ -115,11 +115,11 @@ Zerto strongly recommend installing the VRAs at the cluster level and inputting 
 
 Yes, Zerto upgrades are part of self-service, as Zerto customers, you can upgrade in ZVM web console.
 
-### How to download Zerto ZVM appliance log?
+### How to download Zerto ZVM appliance log
 
 Zerto logs can be collected from ZVM console.
 
-### Can I use a preexisting Zerto product license on Azure VMware Solution
+### Can I use a preexisting Zerto product license on Azure VMware Solution?
 
 You can reuse preexisting Zerto product licenses for Azure VMware Solution environments. If you need new Zerto licenses, email Zerto at **info@zerto.com** to acquire new licenses.
 
