@@ -15,7 +15,7 @@ ms.author: v-mallicka
 
 Azure Backup supports [Confidential Virtual Machines (CVMs)](/azure/confidential-computing/confidential-vm-overview) that provide secure backup and restore for sensitive workloads. This capability uses Azure Disk Encryption Sets (DES) with Platform Managed Keys (PMKs) or Customer Managed Keys (CMKs) to maintain data confidentiality throughout the backup lifecycle. Confidential VMs provide strong security by creating a hardware-enforced boundary between your application and the virtualization stack.
 
->[!Note]
+>[!IMPORTANT]
 >Azure Backup support for Confidential VMs (DC Series v6) is in preview, available only in specific regions, and requires subscription-level enablement. This feature isn’t recommended for production workloads.
 
 This article describes how to configure and back up Confidential VM (CVM) with Platform or Customer Managed Key (PMK or CMK).
@@ -31,9 +31,11 @@ Before you configure backup for CVM with CMK, ensure that the following prerequi
 
 Learn more about the [supported scenarios for Confidential VM backup](backup-support-matrix-iaas.md#support-for-confidential-vm-backup-preview).
 
-## Create a new Confidential VM with Customer Managed Key
+## Create a new Confidential VM with PMK or CMK
 
-Learn how to [create a new Confidential VM with Customer Managed Key](/azure/confidential-computing/quick-create-confidential-vm-portal-amd), if needed.
+To back up a Confidential VM using Azure Backup, you must have a Confidential VM configured with PMK or CMK encryption. Azure Backup uses the Disk Encryption Set (DES) associated with your VM to maintain encryption throughout the backup and restore process.
+
+Learn how to [create a new Confidential VM with PMK or CMK](/azure/confidential-computing/quick-create-confidential-vm-portal-amd), if needed.
 
 ## Assign permissions for Confidential VM backup
 
@@ -41,7 +43,7 @@ Azure Backup requires access to the Key vault or Managed Hardware Security Modul
 
 If you're using a Key vault to store keys, [grant permission to the Azure Backup service for the backup operations](backup-azure-vms-encryption.md#provide-permissions). 
 
-To assign permissions for mHSM, follow these steps:
+To assign permissions for MHSM, follow these steps:
 
 1. In the Azure portal, go to **Managed HSM**, and then select **Local RBAC** in **Settings**.
 
