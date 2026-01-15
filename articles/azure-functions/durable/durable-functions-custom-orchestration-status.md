@@ -1,22 +1,25 @@
 ---
-title: Custom orchestration status in Durable Functions - Azure
-description: Learn how to configure and use custom orchestration status for Durable Functions.
+title: Custom orchestration status in Durable Functions
+description: Learn how to configure and use custom orchestration status for Azure Durable Functions.
 ms.topic: conceptual
-ms.date: 12/07/2022
+ms.date: 01/15/2026
 ms.author: azfuncdf
+reviewer: hhunter-ms
+ms.service: azure-functions
+ms.subservice: durable
 ms.devlang: csharp
 # ms.devlang: csharp, javascript, python
 ---
 
-# Custom orchestration status in Durable Functions (Azure Functions)
+# Custom orchestration status in Durable Functions
 
-Custom orchestration status lets you set a custom status value for your orchestrator function. This status is provided via the [HTTP GetStatus API](durable-functions-http-api.md#get-instance-status) or the equivalent [SDK API](durable-functions-instance-management.md#query-instances) on the orchestration client object.
+You can set a custom orchestration status value for your orchestrator function. Access this status through the [HTTP GetStatus API](durable-functions-http-api.md#get-instance-status) or the equivalent [SDK API](durable-functions-instance-management.md#query-instances) on the orchestration client object.
 
 ## Sample use cases
 
 ### Visualize progress
 
-Clients can poll the status end point and display a progress UI that visualizes the current execution stage. The following sample demonstrates progress sharing:
+Clients can poll the status endpoint and display a progress UI that visualizes the current execution stage. Here's an example that demonstrates progress sharing:
 
 # [C#](#tab/csharp)
 
@@ -221,7 +224,7 @@ module.exports = async function(context, req) {
 ```
 
 > [!NOTE]
-> In JavaScript, the `customStatus` field will be set when the next `yield` or `return` action is scheduled.
+> In JavaScript, the `customStatus` field gets set when the next `yield` or `return` action is scheduled.
 
 # [Python](#tab/python)
 ```python
@@ -246,7 +249,7 @@ async def main(req: func.HttpRequest, starter: str) -> func.HttpResponse:
 ```
 
 > [!NOTE]
-> In Python, the `custom_status` field will be set when the next `yield` or `return` action is scheduled.
+> In Python, the `custom_status` field gets set when the next `yield` or `return` action is scheduled.
 
 # [PowerShell](#tab/powershell)
 
@@ -285,7 +288,7 @@ public HttpResponseMessage startHelloCities(
 
 ### Output customization
 
-Another interesting scenario is segmenting users by returning customized output based on unique characteristics or interactions. With the help of custom orchestration status, the client-side code will stay generic. All main modifications will happen on the server side as shown in the following sample:
+You can use custom orchestration status to segment users by returning customized output based on unique characteristics or interactions. With custom orchestration status, your client-side code stays generic while all main modifications happen on the server side:
 
 # [C#](#tab/csharp)
 
@@ -469,7 +472,7 @@ class Recommendation {
 
 ### Instruction specification
 
-The orchestrator can provide unique instructions to the clients via the custom state. The custom status instructions will be mapped to the steps in the orchestration code:
+Your orchestrator can provide unique instructions to clients through the custom status. The custom status instructions map to the steps in your orchestration code:
 
 # [C#](#tab/csharp)
 
@@ -614,7 +617,7 @@ class DiscountInfo {
 
 ## Querying custom status with HTTP
 
-The following example shows how custom status values can be queried using the built-in HTTP APIs.
+Here's how you can query custom status values using the built-in HTTP APIs:
 
 # [C#](#tab/csharp)
 
@@ -709,7 +712,7 @@ While the orchestration is running, external clients can fetch this custom statu
 GET /runtime/webhooks/durabletask/instances/instance123
 ```
 
-Clients will get the following response:
+Clients get the following response:
 
 ```json
 {
@@ -723,7 +726,7 @@ Clients will get the following response:
 ```
 
 > [!WARNING]
-> The custom status payload is limited to 16 KB of UTF-16 JSON text. We recommend you use external storage if you need a larger payload.
+> The custom status payload is limited to 16 KB of UTF-16 JSON text. If you need a larger payload, we recommend you use external storage.
 
 ## Next steps
 
