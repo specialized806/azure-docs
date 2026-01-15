@@ -108,7 +108,7 @@ You should register vDefend Firewall in addition to the base VCF license registr
 
 :::image type="content" source="media/vmware-cloud-foundations-license-portability/portable-vcf-manage-firewall-configure.png" alt-text="Screenshot of selections for registering a VCF firewall license on an Azure VMware Solution private cloud." border="true":::
 
-If you intend to use vDefend Firewall with Advanced Threat Prevention, submit a support ticket with license key to have your license provisioned in your private cloud. Do this task in addition to adding the vDefend Firewall add-on license key as outlined.
+If you intend to use vDefend Firewall with Advanced Threat Prevention, submit a support ticket with a license key to have your license provisioned in your private cloud. Do this task in addition to adding the vDefend Firewall add-on license key as outlined.
 
 > [!NOTE]
 >
@@ -269,7 +269,7 @@ After you register your BYOL licenses on all relevant Azure VMware Solution priv
 You receive confirmation after your migration is complete.
 
 > [!IMPORTANT]
-> Until you complete re-registration through Azure portal, you continue to receive support through the legacy system until March 31, 2026.
+> Until you complete re-registration through the Azure portal, you continue to receive support through the legacy system until March 31, 2026.
 >
 > If you have questions or need assistance during migration, contact the Microsoft support team.
 
