@@ -21,6 +21,9 @@ Download and run the Core Tools installer, based on your version of Windows:
 
 If you previously used Windows installer (MSI) to install Core Tools on Windows, you should uninstall the old version from Add Remove Programs before installing the latest version.
 
+>[!TIP]  
+>To install Core Tools on [Windows Subsystem for Linux (WSL)](/windows/wsl/install), follow the instructions on the Linux tab. 
+
 ### [macOS](#tab/macos)
 
 The following steps use Homebrew to install the Core Tools on macOS.
@@ -89,34 +92,4 @@ The following steps use [APT](https://wiki.debian.org/Apt) to install Core Tools
     sudo apt-get install azure-functions-core-tools-4
     ```
 
-### [WSL](#tab/wsl)
-
-The following steps use [APT](https://wiki.debian.org/Apt) to install Core Tools on your WSL Ubuntu/Debian Linux distribution. For other Linux distributions, see the [Core Tools readme](https://github.com/Azure/azure-functions-core-tools/blob/v4.x/README.md#linux).
-
-1. Install the Microsoft package repository GPG key, to validate package integrity:
-
-    ```bash
-    curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
-    sudo mv microsoft.gpg /etc/apt/trusted.gpg.d/microsoft.gpg
-    ```
-
-1. Set up the APT source list before doing an APT update.
-
-    ##### WSL
-
-    ```bash
-    sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-ubuntu-focal-prod focal main" > /etc/apt/sources.list.d/dotnetdev.list'
-    ```
-
-1. Start the APT source update:
-
-    ```bash
-    sudo apt-get update
-    ```
-
-1. Install the Core Tools package:
-
-    ```bash
-    sudo apt-get install azure-functions-core-tools-4
-    ```
 ---
