@@ -21,67 +21,208 @@ landingContent:
             url: overview.md
           - text: Compare container options in Azure
             url: compare-options.md
-          - text: Learn to develop with .NET
-            url: dotnet-overview.md
-          - text: Learn to develop with Java
-            url: java-overview.md
-          - text: Learn to develop with JavaScript
-            url: javascript-overview.md
-  - title: Get started
-    linkLists:
-      - linkListType: quickstart
-        links:
-          - text: Deploy your first container app - Azure CLI
-            url: ./get-started.md
-          - text: Deploy your first container app - Azure portal
-            url: ./quickstart-portal.md
+          - text: Microservices architecture
+            url: microservices.md
+          - text: Code-to-cloud options
+            url: code-to-cloud-options.md
       - linkListType: concept
         links:
           - text: Environments
             url: environment.md
           - text: Containers
             url: containers.md
-          - text: Revisions
+          - text: Revisions and deployments
             url: revisions.md
           - text: Application lifecycle management
             url: application-lifecycle-management.md
-          - text: Microservices
-            url: microservices.md
-          - text: Observability
-            url: observability.md
-          - text: Jobs
-            url: jobs.md
-          - text: Azure Functions
-            url: functions-overview.md
-  - title: Common tasks
+
+  - title: Get started
     linkLists:
+      - linkListType: quickstart
+        links:
+          - text: Deploy your first container app - Azure CLI
+            url: get-started.md
+          - text: Deploy your first container app - Azure portal
+            url: quickstart-portal.md
+          - text: Deploy from existing container image - CLI
+            url: get-started-existing-container-image.md
+          - text: Deploy from existing container image - portal
+            url: get-started-existing-container-image-portal.md
+      - linkListType: tutorial
+        links:
+          - text: Deploy with containerapp up
+            url: containerapp-up.md
+          - text: Communication between microservices
+            url: communicate-between-microservices.md
+
+  - title: Develop applications
+    linkLists:
+      - linkListType: overview
+        links:
+          - text: Learn to develop with .NET
+            url: dotnet-overview.md
+          - text: Learn to develop with Java
+            url: java-overview.md
+          - text: Learn to develop with JavaScript
+            url: javascript-overview.md
       - linkListType: how-to-guide
         links:
           - text: Set scaling rules
             url: scale-app.md
-          - text: Manage secrets
-            url: manage-secrets.md
-          - text: Manage revisions
-            url: revisions-manage.md
           - text: Set up ingress
             url: ingress-how-to.md
+          - text: Configure health probes
+            url: health-probes.md
+          - text: Use storage mounts
+            url: storage-mounts.md
+          - text: Manage secrets
+            url: manage-secrets.md
           - text: Connect multiple apps
             url: connect-apps.md
-          - text: Use a custom VNET 
-            url: vnet-custom.md
-          - text: Quotas
-            url: quotas.md
-          - text: Create a Functions app
-            url: functions-usage.md  
-      - linkListType: concept
+
+  - title: Use Azure Functions
+    linkLists:
+      - linkListType: overview
         links:
-          - text: What's new in Dapr?
-            url: whats-new.md
+          - text: Azure Functions on Container Apps overview
+            url: functions-overview.md
+          - text: Functions unified platform
+            url: functions-unified-platform.md
+      - linkListType: how-to-guide
+        links:
+          - text: Create through custom containers
+            url: functions-container-apps.md
+          - text: Create through portal and CLI
+            url: functions-usage.md
+          - text: Manage your Functions app
+            url: functions-manage.md
+          - text: KEDA scaling mappings reference
+            url: functions-keda-mappings.md
+          - text: Migrate from Functions v1 to v2
+            url: migrate-functions.md
+
+  - title: Advanced features
+    linkLists:
+      - linkListType: overview
+        links:
           - text: Dapr integration
             url: dapr-overview.md
-  - title: Apps and microservices
-    linkLists:
+          - text: Jobs overview
+            url: jobs.md
+          - text: AI integration
+            url: ai-integration.md
+          - text: GPU support overview
+            url: gpu-serverless-overview.md
       - linkListType: tutorial
         links:
           - text: Microservices with Dapr
             url: microservices-dapr.md
+          - text: Enable Dapr
+            url: enable-dapr.md
+          - text: Deploy GPU workloads
+            url: gpu-image-generation.md
+      - linkListType: concept
+        links:
+          - text: Dapr component connection
+            url: dapr-component-connection.md
+          - text: Dapr component resiliency
+            url: dapr-component-resiliency.md
+          - text: GPU types and configurations
+            url: gpu-types.md
+
+  - title: Security and networking
+    linkLists:
+      - linkListType: overview
+        links:
+          - text: Authentication overview
+            url: authentication.md
+          - text: Custom virtual networks
+            url: custom-virtual-networks.md
+          - text: Certificates overview
+            url: certificates-overview.md
+      - linkListType: how-to-guide
+        links:
+          - text: Authentication with Microsoft Entra ID
+            url: authentication-entra.md
+          - text: Authentication with GitHub
+            url: authentication-github.md
+          - text: Authentication with Facebook
+            url: authentication-facebook.md
+          - text: Authentication with Twitter
+            url: authentication-twitter.md
+          - text: Custom domains and certificates
+            url: custom-domains-certificates.md
+          - text: Managed certificates
+            url: custom-domains-managed-certificates.md
+          - text: Client certificate authorization
+            url: client-certificate-authorization.md
+          - text: IP restrictions
+            url: ip-restrictions.md
+          - text: Firewall integration
+            url: firewall-integration.md
+          - text: Use private endpoints
+            url: how-to-use-private-endpoint.md
+
+  - title: Deployment and DevOps
+    linkLists:
+      - linkListType: how-to-guide
+        links:
+          - text: GitHub Actions
+            url: github-actions.md
+          - text: GitHub Actions with CLI
+            url: github-actions-cli.md
+          - text: Azure Pipelines
+            url: azure-pipelines.md
+          - text: Blue-green deployment
+            url: blue-green-deployment.md
+          - text: Deploy from artifact
+            url: deploy-artifact.md
+          - text: Deploy with Visual Studio
+            url: deploy-visual-studio.md
+          - text: Deploy with Visual Studio Code
+            url: deploy-visual-studio-code.md
+      - linkListType: concept
+        links:
+          - text: Revisions management
+            url: revisions-manage.md
+          - text: Deployment labels
+            url: deployment-labels.md
+      - linkListType: tutorial
+        links:
+          - text: Azure Arc overview
+            url: azure-arc-overview.md
+          - text: Enable Azure Arc on clusters
+            url: azure-arc-enable-cluster.md
+
+  - title: Operations and management
+    linkLists:
+      - linkListType: overview
+        links:
+          - text: Observability
+            url: observability.md
+          - text: Billing
+            url: billing.md
+          - text: Quotas and limits
+            url: quotas.md
+      - linkListType: how-to-guide
+        links:
+          - text: Container console access
+            url: container-console.md
+          - text: Debug console access
+            url: container-debug-console.md
+          - text: Set up alerts
+            url: alerts.md
+          - text: Configure zone redundancy
+            url: how-to-zone-redundancy.md
+          - text: Environment custom DNS
+            url: environment-custom-dns-suffix.md
+          - text: Consumption-only environments
+            url: environment-type-consumption-only.md
+      - linkListType: tutorial
+        links:
+          - text: Integrate with Azure Front Door
+            url: how-to-integrate-with-azure-front-door.md
+          - text: Use Grafana dashboards
+            url: grafana-dashboards.md
+          - text: Use .NET Aspire dashboard
+            url: aspire-dashboard.md
