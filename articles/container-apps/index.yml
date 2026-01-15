@@ -96,8 +96,6 @@ landingContent:
             url: functions-usage.md
           - text: Manage your Functions app
             url: functions-manage.md
-          - text: KEDA scaling mappings reference
-            url: functions-keda-mappings.md
           - text: Migrate from Functions v1 to v2
             url: migrate-functions.md
 
