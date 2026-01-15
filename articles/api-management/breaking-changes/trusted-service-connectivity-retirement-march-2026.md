@@ -4,7 +4,7 @@ description: Azure API Management is retiring trusted service connectivity by th
 #customer intent: As an Azure admin, I want to determine if my API Management service is affected by the trusted service connectivity retirement so that I can plan necessary changes.
 author: dlepow
 ms.author: danlep
-ms.date: 12/18/2025
+ms.date: 01/15/2026
 ms.topic: reference
 ms.service: azure-api-management
 ai-usage: ai-assisted
@@ -17,16 +17,11 @@ ai-usage: ai-assisted
 
 Effective 15 March 2026, Azure API Management is retiring trusted service connectivity by the API Management gateway to supported Azure services - Azure Storage, Key Vault, Key Vault Managed HSM, Service Bus, Event Hubs, and Container Registry. If your API Management gateway relies on this feature to communicate with these services after 15 March 2026, the communication will fail. Use alternative networking options to securely connect to those services.
 
-The gateway in API Management services created on or after 1 December 2025 no longer supports trusted service connectivity. Contact Azure support if you need to enable trusted service connectivity in those services until the retirement date.
+The gateway in API Management services created on or after 1 December 2025 no longer supports trusted service connectivity. Contact Azure support if you need to enable trusted service connectivity in those services until the retirement date. 
 
 ## Is my service affected by this change?
 
-Trusted service connectivity retirement affects scenarios where the API Management gateway needs to communicate with Azure Storage, Key Vault, Key Vault Managed HSM, Service Bus, Event Hubs, or Container Registry services when they're configured as backends or accessed through policies such as `send-request`.
-
-> [!IMPORTANT]
-> Trusted service connectivity remains supported for API Management control plane operations. The following scenarios continue to work without changes when using trusted service connectivity:
-> - Accessing Azure Storage for backup and restore
-> - Accessing Azure Key Vault for managing named values, backend credentials, or custom hostname certificates
+Trusted service connectivity retirement affects scenarios where the API Management gateway needs to communicate with Azure Storage, Key Vault, Key Vault Managed HSM, Service Bus, Event Hubs, or Container Registry services when they're configured as backends or accessed through policies such as `authentication-managed-identity` or `send-request`. Trusted service connectivity for control plane operations in API Management is not affected by the breaking change.
 
 First, check for an Azure Advisor recommendation:
 
@@ -40,11 +35,24 @@ First, check for an Azure Advisor recommendation:
 
 1. Determine if your API Management gateway relies on trusted service connectivity to Azure services. 
 1. If it does, update the networking configuration to eliminate the dependency on trusted service connectivity. If it doesn’t, proceed to the next step. 
-1. Disable trusted service connectivity in your API Management gateway. 
+1. Disable trusted service connectivity in your API Management gateway.
+
+#### Scenarios that are not affected by the breaking change
+
+The following scenarios involving control plane operations that use trusted service connectivity remain supported and aren't affected by the breaking change:
+
+- **Accessing Azure Storage for backup and restore** - If you rely on backup/restore functionality, your target storage account needs to be publicly accessible or you need to preserve its trusted connectivity setting to allow traffic from API Management resources, even if your API Management service has a networking line of sight established with the storage account. This trusted connectivity isn't affected by the breaking change.
+
+- **Accessing Azure Key Vault for custom hostname certificates** - If you rely on custom hostname certificates from key vault, your target key vault needs to be publicly accessible or you need to preserve its trusted connectivity setting to allow traffic from API Management resources, even if your API Management service has a networking line of sight established with the key vault. This trusted connectivity isn't affected by the breaking change.
+
+    > [!NOTE]
+    > Trusted connectivity on key vaults is not required for the following features to work if your API Management service has an established networking line of sight to the target key vault (and are unaffected by the breaking change):
+    > - **Named values** from key vault
+    > - **Client certificates** from key vault
 
 ### Step 1: Does my API Management gateway rely on trusted service connectivity? 
 
-Your API Management gateway should no longer rely on trusted service connectivity to Azure services. Instead, it should establish a networking line of sight. 
+Your API Management gateway should no longer rely on trusted service connectivity to Azure services. Instead, it should establish a networking line of sight.
 
 To verify if your API Management gateway relies on trusted connectivity to Azure services, check the networking configuration of all Azure Storage, Key Vault, Key Vault Managed HSM, Service Bus, Event Hubs, and Container Registry resources that your API Management gateway connects to: 
 
