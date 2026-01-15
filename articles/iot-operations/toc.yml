@@ -257,6 +257,9 @@ items:
                 displayName: data flow, WASM, WebAssembly, ONNX, inference, AI, wasi-nn
           - name: Create custom connectors
             items:
+              - name: Develop custom connectors
+                href: develop-edge-apps/overview-akri-connectors.md
+                displayName: Akri, VS Code
               - name: Create a custom Akri connector with .NET
                 href: develop-edge-apps/howto-develop-akri-connectors.md
                 displayName: VS Code, template, develop

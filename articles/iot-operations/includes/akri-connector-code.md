@@ -168,6 +168,9 @@ Implement the `SampleDatasetAsync` method in the provided `DatasetSampler` class
     return Encoding.UTF8.GetBytes(JsonSerializer.Serialize(thermostatStatus));
     ```
 
+    > [!TIP]
+    > Optionally, the connector can register a schema in the schema registry to enable other Azure IoT Operations to understand the format of the messages.
+
 1. Finally, import the necessary types:
 
     ```c#

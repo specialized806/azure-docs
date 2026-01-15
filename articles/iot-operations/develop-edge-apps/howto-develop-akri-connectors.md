@@ -93,7 +93,7 @@ The connector metadata configuration file describes the connector and its capabi
 
 ```json
 {
-  "$schema": "https://raw.githubusercontent.com/Azure/iot-operations-sdks/refs/heads/main/doc/akri_connector/connector-metadata-schema.json",
+  "$schema": "https://raw.githubusercontent.com/SchemaStore/schemastore/refs/heads/master/src/schemas/json/aio-connector-metadata-9.0-preview.json",
   "name": "MyRestConnector",
   "description": "Connector for polling a REST server for information - with property",
   "version": "1.0.0",
@@ -189,7 +189,7 @@ In the previous file, some of the key settings are:
 - `datasetConfigurationSchema` and `dataPointConfigurationSchema`: The JSON schema definitions for the dataset and data point configuration options exposed in the operations experience UI. The connector code reads these configuration options - `SamplingInterval` and `HttpRequestMethod` - to control its behavior.
 
 > [!TIP]
-> Review the schema for connector metadata files at [Connector metadata schema](https://raw.githubusercontent.com/Azure/iot-operations-sdks/refs/heads/main/doc/akri_connector/connector-metadata-schema.json) to learn more about the available settings.
+> Review the schema for connector metadata files at [Connector metadata schema](https://raw.githubusercontent.com/SchemaStore/schemastore/refs/heads/master/src/schemas/json/aio-connector-metadata-9.0-preview.json) to learn more about the available settings.
 
 To publish this file to your container registry, run the following command from the folder where the file is located:
 
