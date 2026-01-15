@@ -58,7 +58,7 @@ The following table lists zonal and zone-redundant Azure services. Some services
 | [Azure Event Grid](reliability-event-grid.md#availability-zone-support) | :::image type="content" source="media/icon-checkmark.svg" alt-text="Yes" border="false"::: | |
 | [Azure Event Hubs](./reliability-event-hubs.md#resilience-to-availability-zone-failures) | :::image type="content" source="media/icon-checkmark.svg" alt-text="Yes" border="false"::: | |
 | [Azure ExpressRoute gateway](reliability-virtual-network-gateway.md?pivot=expressroute#resilience-to-availability-zone-failures) | :::image type="content" source="media/icon-checkmark.svg" alt-text="Yes" border="false"::: | |
-| [Azure Files](./reliability-storage-files.md#resilience-to-availability-zone-failures) | :::image type="content" source="media/icon-checkmark.svg" alt-text="Yes" border="false"::: | |
+| [Azure Files](./reliability-storage-files.md#resilience-to-availability-zone-failures) | :::image type="content" source="media/icon-checkmark.svg" alt-text="Yes" border="false"::: | :::image type="content" source="media/icon-checkmark.svg" alt-text="Yes" border="false"::: |
 | [Azure Firewall](reliability-firewall.md#resilience-to-availability-zone-failures) | :::image type="content" source="media/icon-checkmark.svg" alt-text="Yes" border="false"::: | :::image type="content" source="media/icon-checkmark.svg" alt-text="Yes" border="false"::: |
 | [Azure Firewall Manager](../firewall-manager/quick-firewall-policy.md) | :::image type="content" source="media/icon-checkmark.svg" alt-text="Yes" border="false"::: ||
 | [Azure Functions](./reliability-functions.md#availability-zone-support) | :::image type="content" source="media/icon-checkmark.svg" alt-text="Yes" border="false"::: ||
@@ -68,14 +68,15 @@ The following table lists zonal and zone-redundant Azure services. Some services
 | [Azure IoT Hub device provisioning service](../iot-dps/about-iot-dps.md) | :::image type="content" source="media/icon-checkmark.svg" alt-text="Yes" border="false"::: ||
 | [Azure Key Vault](./reliability-key-vault.md#resilience-to-availability-zone-failures) | :::image type="content" source="media/icon-checkmark.svg" alt-text="Yes" border="false"::: ||
 | [Azure Kubernetes Service (AKS)](reliability-aks.md#resilience-to-availability-zone-failures) | :::image type="content" source="media/icon-checkmark.svg" alt-text="Yes" border="false"::: | :::image type="content" source="media/icon-checkmark.svg" alt-text="Yes" border="false"::: |
-| [Azure Load Balancer](reliability-load-balancer.md#availability-zone-support) | :::image type="content" source="media/icon-checkmark.svg" alt-text="Yes" border="false"::: | :::image type="content" source="media/icon-checkmark.svg" alt-text="Yes" border="false"::: |
+| [Azure Load Balancer](reliability-load-balancer.md#resilience-to-availability-zone-failures) | :::image type="content" source="media/icon-checkmark.svg" alt-text="Yes" border="false"::: | :::image type="content" source="media/icon-checkmark.svg" alt-text="Yes" border="false"::: |
 | [Azure Logic Apps](./reliability-logic-apps.md#resilience-to-availability-zone-failures) | :::image type="content" source="media/icon-checkmark.svg" alt-text="Yes" border="false"::: | |
 | [Azure Managed Grafana](/azure/managed-grafana/high-availability) | :::image type="content" source="media/icon-checkmark.svg" alt-text="Yes" border="false"::: | |
 | [Azure Managed Instance for Apache Cassandra](/azure/managed-instance-apache-cassandra/resilient-applications#availability-zones) | :::image type="content" source="media/icon-checkmark.svg" alt-text="Yes" border="false"::: | |
+| [Azure Managed Redis](./reliability-managed-redis.md#resilience-to-availability-zone-failures) | :::image type="content" source="media/icon-checkmark.svg" alt-text="Yes" border="false"::: | |
 | [Azure Monitor](/azure/azure-monitor/logs/availability-zones) | :::image type="content" source="media/icon-checkmark.svg" alt-text="Yes" border="false"::: | |
 | [Azure Monitor: Application Insights](/azure/azure-monitor/logs/availability-zones) | :::image type="content" source="media/icon-checkmark.svg" alt-text="Yes" border="false"::: | |
 | [Azure Monitor Logs](/azure/azure-monitor/logs/availability-zones) | :::image type="content" source="media/icon-checkmark.svg" alt-text="Yes" border="false"::: | |
-| [Azure NAT Gateway](../nat-gateway/nat-availability-zones.md) |  | :::image type="content" source="media/icon-checkmark.svg" alt-text="Yes" border="false":::|
+| [Azure NAT Gateway](./reliability-nat-gateway.md#resilience-to-availability-zone-failures) | :::image type="content" source="media/icon-checkmark.svg" alt-text="Yes" border="false"::: | :::image type="content" source="media/icon-checkmark.svg" alt-text="Yes" border="false"::: |
 | [Azure NetApp Files](reliability-netapp-files.md#resilience-to-availability-zone-failures) | | :::image type="content" source="media/icon-checkmark.svg" alt-text="Yes" border="false"::: |
 | [Azure Network Watcher](../network-watcher/frequently-asked-questions.yml) |:::image type="content" source="media/icon-checkmark.svg" alt-text="Yes" border="false":::||
 | [Azure Network Watcher: Traffic analytics](../network-watcher/frequently-asked-questions.yml) | :::image type="content" source="media/icon-checkmark.svg" alt-text="Yes" border="false"::: ||
@@ -91,7 +92,7 @@ The following table lists zonal and zone-redundant Azure services. Some services
 | [Azure Site Recovery](migrate-recovery-services-vault.md) | :::image type="content" source="media/icon-checkmark.svg" alt-text="Yes" border="false"::: | |
 | [Azure SQL Database](./reliability-sql-database.md#resilience-to-availability-zone-failures) | :::image type="content" source="media/icon-checkmark.svg" alt-text="Yes" border="false"::: | |
 | [Azure SQL Managed Instance](./reliability-sql-managed-instance.md#resilience-to-availability-zone-failures) | :::image type="content" source="media/icon-checkmark.svg" alt-text="Yes" border="false"::: | |
-| [Azure Stream Analytics](../stream-analytics/stream-analytics-introduction.md) | :::image type="content" source="media/icon-checkmark.svg" alt-text="Yes" border="false"::: | |
+| [Azure Stream Analytics](./reliability-stream-analytics.md#resilience-to-availability-zone-failures) | :::image type="content" source="media/icon-checkmark.svg" alt-text="Yes" border="false"::: | |
 | [Azure Table Storage](./reliability-storage-table.md#resilience-to-availability-zone-failures)| :::image type="content" source="media/icon-checkmark.svg" alt-text="Yes" border="false"::: | |
 | [Azure Ultra Disk Storage](/azure/virtual-machines/disks-enable-ultra-ssd)| | :::image type="content" source="media/icon-checkmark.svg" alt-text="Yes" border="false"::: |
 | [Azure Virtual Machine Scale Sets](./reliability-virtual-machine-scale-sets.md#availability-zone-support) | :::image type="content" source="media/icon-checkmark.svg" alt-text="Yes" border="false"::: | :::image type="content" source="media/icon-checkmark.svg" alt-text="Yes" border="false"::: |
