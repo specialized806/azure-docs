@@ -306,7 +306,7 @@ No, there's no limit on the number of storage or registry adapters. You can only
 
 ### Which regions have support for Managed Instance on App Service?
 
-Currently support for Managed Instance on App Service is limited to East US, West Central US, East Asia, North Europe and Australia East.  More regions will be added to the preview over time.  To get an updated list of regions you can use the following CLI command (You must be using Azure CLI version 2.82.0 or higher).
+Currently support for Managed Instance on App Service is limited to East US, West Central US, East Asia, North Europe, and Australia East. More regions will be added to the preview over time. To get an updated list of regions, you can use the following CLI command (You must be using Azure CLI version 2.82.0 or higher).
 
 ```azurecli
 az appservice list-locations --managed-instance-enabled --sku <Pv4 or PmV4 sku your require, for example P1v4>
