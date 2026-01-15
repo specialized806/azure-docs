@@ -20,7 +20,7 @@ This tutorial provides steps for using the Azure portal to set up Private Link S
 
 ## Prerequisites
 
-* **Azure subscription**. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/) before you begin.
+* **Azure subscription**. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 * **Virtual Network**. If you don’t have a Virtual Network, create one following [Create Virtual Network](../virtual-network/quick-create-portal.md).
 * **Virtual network to on-premises network**. Create a connection between virtual network and on-premises network either using [ExpressRoute](../expressroute/expressroute-howto-linkvnet-portal-resource-manager.md?toc=/azure/virtual-network/toc.json) or [VPN](../vpn-gateway/tutorial-site-to-site-portal.md?toc=/azure/virtual-network/toc.json). If you prefer to use a cloud virtual machine in a private network, you can do this as well. Just create a virtual network for your cloud virtual machines and a [private link to the virtual network](/azure/private-link/private-link-service-overview) and you can access them as if they were on-premises machines in your private network even though they are hosted in the cloud.
 * **Data Factory with Managed VNet enabled**. If you don’t have a Data Factory or Managed VNet isn't enabled, create one following [Create Data Factory with Managed VNet](tutorial-copy-data-portal-private.md).
@@ -217,7 +217,7 @@ the page.
 2. Run the script with the following options:
    
     ```bash
-    sudo ./ip_fwd.sh -i eth0 -f 1433 -a <FQDN/IP> -b 1433
+    sudo bash ./ip_fwd.sh -i eth0 -f 1433 -a <FQDN/IP> -b 1433
     ```
    Set the placeholder `<FQDN/IP>` is your target SQL Server IP.
     
@@ -227,7 +227,7 @@ the page.
 4. Run the following command and check the iptables in your backend server VMs. You can see one record in your iptables with your target IP.<br/>
 
    ```bash
-   sudo iptables -t nat -v -L PREROUTING -n --line-number**
+   sudo iptables -t nat -v -L PREROUTING -n --line-number
    ```
 
    :::image type="content" source="./media/tutorial-managed-virtual-network/command-record-1.png" alt-text="Screenshot that shows the command record.":::
@@ -237,8 +237,8 @@ the page.
     >
     > |                  |Port in load balancer rule|Backend port in load balance rule|Command run in backend server VM|
     > |------------------|---------|--------|---------|
-    > |**SQL Server 1**|1433 |1433 |sudo ./ip_fwd.sh -i eth0 -f 1433 -a <FQDN/IP> -b 1433|
-    > |**SQL Server 2**|1434 |1434 |sudo ./ip_fwd.sh -i eth0 -f 1434 -a <FQDN/IP> -b 1433|
+    > |**SQL Server 1**|1433 |1433 |sudo bash ./ip_fwd.sh -i eth0 -f 1433 -a <FQDN/IP> -b 1433|
+    > |**SQL Server 2**|1434 |1434 |sudo bash ./ip_fwd.sh -i eth0 -f 1434 -a <FQDN/IP> -b 1433|
 
     > [!IMPORTANT]
     > The configuration within the virtual machine (VM) isn't permanent. This means that each time the VM restarts, it requires reconfiguration.
