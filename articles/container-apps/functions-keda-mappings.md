@@ -11,7 +11,7 @@ ms.author: cshoe
 
 # Azure Functions KEDA scaling mappings on Container Apps
 
-When you deploy Azure Functions on Azure Container Apps, the platform automatically translates your Functions trigger parameters into KEDA (Kubernetes-based Event Driven Autoscaling) scaling configurations. This translation ensures that your Functions scale appropriately based on the incoming workload from various event sources.
+When you deploy Azure Functions on Azure Container Apps, the platform automatically translates your Functions trigger parameters into KEDA scaling configurations. This translation ensures that your Functions scale appropriately based on the incoming workload from various event sources.
 
 ## How scaling mappings work
 
