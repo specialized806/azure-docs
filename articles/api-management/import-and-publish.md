@@ -77,6 +77,8 @@ After importing your API, you can view and modify its settings and operations in
 
 1. In the left navigation of your API Management instance, under **APIs**, select **APIs**.
 1. Select your imported API (for example, **Swagger Petstore**).
+    :::image type="content" source="media/import-and-publish/view-api-settings.png" lightbox="media/import-and-publish/view-api-settings.png" alt-text="Screenshot of API settings in API Management in the portal.":::
+
 1. Select the **Design** tab to view and modify API operations in the OpenAPI specification, including:
     - Operation details such as URL, method, and description
     - Request and response definitions
