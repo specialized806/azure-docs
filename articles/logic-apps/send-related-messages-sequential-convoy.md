@@ -168,6 +168,22 @@ For more information, see:
 
 These steps manually create a workflow that uses an Azure Service Bus trigger and actions to implement the sequential convoy pattern. Your workflow creates a connection to your Service Bus namespace and specifies the name for the Service Bus queue that you want to use.
 
+#### Add parameters to your workflow
+
+In this section, create workflow parameters to abstract the values that change across various environments where your workflow runs, for example, development, test, and production. Later, you add various actions that use these parameters in your workflow.
+
+Follow these [general steps](create-parameters-workflows.md) to create the workflow parameters in this table:
+
+| Name | Type | Value | Description |
+|------|------|-------|-------------|
+| `delayInMinutes_<workflow-name>` | **Integer** | `0` | The number of minutes to wait before renewing |
+| `messageBatchSize_<workflow-name>` | **Integer** | `50` | The number of messages for the current batch. |
+| `queueName_<workflow-name>` | **String** | `<Service-Bus-queue-name>` | The name for your Service Bus queue. |
+
+When you're done, your workflow parameters look like the following example:
+
+:::image type="content" source="./media/send-related-messages-sequential-convoy/workflow-parameters.png" alt-text="Screenshot shows workflow parameters.":::
+
 #### Add a Service Bus trigger
 
 These steps add a Service Bus trigger that checks the specified Service Bus queue for messages, based on the specified schedule. If a message exists in the queue, the trigger fires and runs the workflow.
@@ -190,12 +206,15 @@ These steps add a Service Bus trigger that checks the specified Service Bus queu
 
 1. When you're done, select **Create new**.
 
-1. After the trigger information pane appears, on the **Parameters** tab, provide the following information:
+1. After the trigger information pane opens, on the **Parameters** tab, provide the following values:
 
-   | Parameter | Description |
-   |-----------|-------------|
-   | **Queue name** | The name for the Service Bus session-enabled queue with the messages to process. |
-   | **Maximum message count** | The number of messages to get as a batch. |
+   1. Select inside the **Queue name** box, then select the lightning icon to open the dynamic content list.
+
+   1. From the list, select `queueName_<workflow-name>`.
+
+   1. Select inside the **Maximum message count** box, then select the lightning icon to open the dynamic content list.
+
+   1. From the list, select `messageBatchSize_<workflow-name>`.
 
    For more information, see [Service Bus - When one or more messages arrive in a queue (peek-lock)](/connectors/servicebus/#when-one-or-more-messages-arrive-in-a-queue-(peek-lock)).
 
@@ -263,25 +282,59 @@ These steps add a [**Scope** action](logic-apps-control-flow-run-steps-group-sco
 
       :::image type="content" source="./media/send-related-messages-sequential-convoy/run-after-settings.png" alt-text="Screenshot shows the run after settings for Process Finished.":::
 
-1. At the same level as the **Business Logic Scope**, add a parallel branch to handle any other messages in the same session.
+1. At the same level as the **Business Logic Scope**, add a parallel branch to determine whether any other messages exist in the same session.
 
    1. Between `Process message` and `Business Logic Scope`, select the plus sign (**+**), then select **Add a parallel branch**.
 
-   1. In the **Add an action** pane, add a **Control** action named **Until**, which is a type of loop.
+   1. In the **Add an action** pane, add a **Control** action named **Until**, which is a type of loop, for example:
+
+      :::image type="content" source="./media/send-related-messages-sequential-convoy/parallel-branch-until-loop.png" alt-text="Screenshot shows the parallel branch with the Until loop.":::
 
    1. On the **Until** action information pane, provide the condition that stops running the actions that you later add to the **Until** loop:
 
-      1. On the **Parameters** tab, select inside the left **Choose a value** box, then select the expression editor (function icon).
+      1. On the **Parameters** tab, select inside the leftmost **Choose a value** box, then select the expression editor (function icon).
 
-      1. 
+      1. In the expression editor, enter the following expression:
 
-      | **Choose a value** (left) | `processCompleted` | 1. Select inside the edit box, then 
+         `variables('processCompleted')`
 
-      :::image type="content" source="./media/send-related-messages-sequential-convoy/parallel-branch-until-loop.png" alt-text="Screenshot shows parallel branch with Until loop.":::
+      1. When you're done, select **Add**.
 
+         The expression resolves, and the partially completed condition looks like the following example:
 
+         :::image type="content" source="./media/send-related-messages-sequential-convoy/process-completed-until-loop.png" alt-text="Screenshot shows the resolved expression for processCompleted variable.":::
 
-[!INCLUDE [Warning about creating infinite loops](../../includes/connectors-infinite-loops.md)]
+      1. In the middle list, make sure the operation set to the equal sign (**=**).
+
+      1. In the rightmost **Chose a value** box, enter the value `true`.
+
+         The completed condition looks like the following example:
+
+         :::image type="content" source="./media/send-related-messages-sequential-convoy/until-loop-completed.png" alt-text="Screenshot shows the completed Until loop.":::
+
+   1. Add actions to the **Until** loop by following these steps:
+
+      1. Follow the [general steps](add-trigger-action-workflow.md#add-action) to add a Service Bus action named **Renew lock on the message in a queue**.
+
+      1. After the Service Bus action information pane opens, provide the following values:
+
+         1. Select inside the **Queue name** box, then select the lightning icon to open the dynamic content list.
+
+         1. From the list, select `queueName_<workflow-name>`.
+
+         1. Select inside the **Lock token of the message** box, then select the lightning icon to open the dynamic content list.
+
+         1. From the list, select `messageBatchSize_<workflow-name>`.
+
+         1. From the list, under **When one or more messages arrive in a queue**, select **Lock Token**.
+
+      1. Under the Service Bus action, add a **Schedule** action named **Delay**.
+
+         1. Change the action name to `Wait for Process to Complete`.
+
+         1. On the **Parameters** tab, the action information pane, select inside the **Count** box, then select the lightning icon.
+
+         1. From the list, select `delayInMinutes_<workflow-name>`
 
 ---
 
@@ -290,6 +343,9 @@ These steps add a [**Scope** action](logic-apps-control-flow-run-steps-group-sco
 ## Workflow summary
 
 This section describes more details about the workflow operations:
+
+[!INCLUDE [Warning about creating infinite loops](../../includes/connectors-infinite-loops.md)]
+
 
 
 | **`Catch`**| This [**Scope** action](logic-apps-control-flow-run-steps-group-scopes.md) contains the actions that run if a problem happens in the preceding `Try` scope. For more information, see [Catch scope](#catch-scope). |
