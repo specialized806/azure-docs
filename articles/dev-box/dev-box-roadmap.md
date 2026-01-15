@@ -30,18 +30,6 @@ Key Dev Box deliverables can be grouped under the following themes:
 
 Microsoft Dev Box can significantly enhance developer productivity by minimizing configuration time and IT overhead compared to traditional virtual desktop infrastructure (VDI) solutions. We're making it incredibly easy and quick for developers to create ready-to-code environments tailored to their specific projects. Not only are we reducing the time required to set up Dev Box machines, but we're also introducing innovative new customization options for both teams and individuals.
 
-**Config-as-code workflow improvements**
-
-- [Team customizations](https://developercommunity.visualstudio.com/t/Share-customization-files-across-my-team/10729596?sort=newest) and [Dev Center Imaging](https://developercommunity.visualstudio.com/t/Speed-up-Dev-Box-customization-using-a-c/10729598): 
-
-    - As a project lead or a dev center admin, you can now use custom images to create image definitions, instead of just marketplace images.
-
-    - As a project lead or a dev center admin, you can specify a custom network connection to use when building images, so that you can access and fetch resources that are only accessible from your custom virtual networks.
-
-    - You can now use the CLI and VS Code extension to debug tasks that use the PowerShell and Winget primitives, and you can set them to have a custom time out for long running scripts.
-
-    - As a project lead or a dev center admin you can use the Dev Box Visual Studio Code extension, now powered by GitHub Copilot chat, to create customization files.
-
 **Developer onboarding & experience**
 
 - [Region Selection Optimization for Dev Box Creation](https://developercommunity.visualstudio.com/t/Region-selection-optimization-based-on-l/10784537): As a developer, easily create your new Dev Box in an optimal region based on your location. As a dev center admin, optimize the location of existing Dev Box machines based on end user location and available capacity.
@@ -53,8 +41,6 @@ Microsoft Dev Box aims to deliver centralized governance based on organizational
 **Streamlined and flexible onboarding for enterprises**
 
 - [In product prerequisites](https://developercommunity.visualstudio.com/t/User-License-Assignment-as-Pre-requisite/10523902?q=pre-requisits): As a dev center admin, you'll be able to identify the prerequisites, and quickly start setting up the Dev Box service.
-
-- [New Supported Regions](https://devblogs.microsoft.com/develop-from-the-cloud/microsoft-dev-box-regional-availability/): As a dev center admin, you'll be able to enable your development team to create Dev Box machines in new regions including [UAE North](https://developercommunity.visualstudio.com/t/Support-for-Dev-Box-in-UAE-North/10781448) and [Spain Central](https://developercommunity.visualstudio.com/t/Dev-Box-support-in-Spain-Central/10781449).
 
 - [On-behalf creation](https://developercommunity.microsoft.com/t/On-behalf-creation-of-machines/10859734): As a dev center admin, you'll be able to provision a Dev Box machine for other developers in your team.
 
@@ -73,8 +59,6 @@ Microsoft Dev Box aims to deliver centralized governance based on organizational
 - [Monitoring logs:](https://developercommunity.visualstudio.com/t/When-Microsoft-Monitoring-Agent-will-be/10471575?entry=suggestion&q=Azure+Monitor) As a dev center admin, access user level engagement metrics and connectivity related metrics.
 
 **Security and privacy**
-
-- [Project Policy](https://developercommunity.visualstudio.com/t/Curation-for-Dev-Center-and-Projects-und/10719953): As a dev center admin, set up guardrails using policies around resources that different projects should and shouldn't access.
 
 - [Customer Managed Keys (CMK):](https://developercommunity.visualstudio.com/t/Encryption-with-customer-managed-keys-fo/10720463) As a dev center admin, have greater control over your data encryption by managing your own encryption keys.
 
@@ -98,15 +82,12 @@ Microsoft Dev Box aims to provide a "like-local" developer experience that is as
 
 - [Backup SKUs:](https://developercommunity.visualstudio.com/t/Back-up-SKUs-in-case-of-capacity-outage/10720451) As a developer, you'll be able to smoothly resume working on existing Dev Box machines during service outages by opting to using a fallback SKU.
 
-- [Self-service snapshot and restore](https://developercommunity.visualstudio.com/t/Self-serve-snapshot-and-restore/10719611): As a developer, you can recover your Dev Box by restoring it to a previous snapshot.
-
 - [Azure region optimizations based on user locations:](https://developercommunity.visualstudio.com/t/Move-VM-to-different-poolregion/10277787) As a dev center admin, optimize the location of existing Dev Box machines based on end user location and available capacity.
 
 This roadmap outlines our current priorities, and we remain flexible to adapt based on customer feedback. We invite you to [share your thoughts and suggest more capabilities you would like to see](https://aka.ms/DevBox/Feedback). Your insights help us refine our focus and deliver even greater value.
 
 ## Related content
 
-- [What's new in Microsoft Dev Box](https://aka.ms/devbox/whatsnew)
 - [What is Microsoft Dev Box?](/azure/dev-box/overview-what-is-microsoft-dev-box)
 - [Microsoft Dev Box architecture and key concepts - Microsoft Dev Box | Microsoft Learn](/azure/dev-box/concept-dev-box-architecture)
 - [Microsoft Dev Box architecture - Microsoft Dev Box | Microsoft Learn](/azure/dev-box/concept-dev-box-architecture)
