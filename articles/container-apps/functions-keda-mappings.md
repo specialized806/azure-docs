@@ -30,6 +30,8 @@ The following sections detail how Azure Functions trigger parameters map to thei
 
 ### Azure Storage Queue
 
+The following table shows how [Azure Storage Queue trigger parameters](/azure/azure-functions/functions-bindings-storage-queue) map to the [KEDA scaler configuration values](https://keda.sh/docs/scalers/azure-storage-queue/).
+
 | Parameter | Functions Configuration | KEDA Configuration |
 |--|--|--|
 | **Parameter name** | `batchSize` | `queueLength` |
@@ -38,13 +40,15 @@ The following sections detail how Azure Functions trigger parameters map to thei
 
 | Functions trigger description | KEDA scaler description |
 |---|---|
-| The number of queue messages that the Functions runtime retrieves and processes in parallel. When the number being processed reaches the newBatchThreshold, the runtime fetches another batch. The maximum number of concurrent messages per function is batchSize plus newBatchThreshold. Set batchSize to 1 to eliminate concurrency unless the app scales out to multiple VMs. The maximum batchSize is 32. | Target value for queue length passed to the scaler. For example, if one pod can handle 10 messages, set the queue length target to 10. If the actual number of messages in the queue is 30, the scaler scales to three pods. |
+| The number of queue messages that the Functions runtime retrieves and processes in parallel. When the number being processed reaches the `newBatchThreshold`, the runtime fetches another batch. The maximum number of concurrent messages per function is `batchSize` plus `newBatchThreshold`. Set `batchSize` to 1 to eliminate concurrency unless the app scales out to multiple VMs. The maximum `batchSize` is 32. | Target value for queue length passed to the scaler. For example, if one pod can handle 10 messages, set the queue length target to 10. If the actual number of messages in the queue is 30, the scaler scales to three pods. |
 
 #### Translation logic
 
 `metadata.queueLength = extensions.queues.batchSize`
 
 ### Azure Service Bus (single dispatch)
+
+The following table shows how [Azure Service Bus trigger parameters](/azure/azure-functions/functions-bindings-service-bus) map to the [KEDA scaler configuration values](https://keda.sh/docs/scalers/azure-service-bus/).
 
 | Parameter | Functions Configuration | KEDA Configuration |
 |--|--|--|
@@ -62,6 +66,8 @@ The following sections detail how Azure Functions trigger parameters map to thei
 
 ### Azure Service Bus (sessions-based)
 
+The following table shows how [Azure Event Hubs trigger parameters](/azure/azure-functions/functions-bindings-service-bus) map to the [KEDA scaler configuration values](https://keda.sh/docs/scalers/azure-service-bus/).
+
 | Parameter | Functions Configuration | KEDA Configuration |
 |--|--|--|
 | **Parameter name** | `maxMessageBatchSize` | `messageCount` |
@@ -77,6 +83,8 @@ The following sections detail how Azure Functions trigger parameters map to thei
 `metadata.messageCount` = `extensions.serviceBus.maxMessageBatchSize`
 
 ### Azure Event Hubs
+
+The following table shows how [Azure Event Hubs trigger parameters](/azure/azure-functions/functions-bindings-event-hubs) map to the [KEDA scaler configuration values](https://keda.sh/docs/scalers/azure-event-hub/).
 
 | Parameter | Functions Configuration | KEDA Configuration |
 |--|--|--|
@@ -94,22 +102,7 @@ The following sections detail how Azure Functions trigger parameters map to thei
 
 ### Apache Kafka
 
-| Parameter | Functions Configuration | KEDA Configuration |
-|--|--|--|
-| **Parameter name** | `LagThreshold` | `lagThreshold` |
-| **Configuration path** | Function trigger attribute | `metadata.lagThreshold` |
-| **Default value** | 1000 | 10 |
-
-| Functions trigger description | KEDA scaler description |
-|---|---|
-| Use this value as the target executions per instance for the Kafka trigger. The number of desired instances is calculated based on the total consumer lag divided by `LagThreshold`. |
-Use this value as the target for the total lag (sum of all partition lags) to trigger scaling actions. |
-
-#### Translation logic
-
-`metadata.unprocessedEventThreshold` = `extensions.eventHubs.targetUnprocessedEventThreshold`
-
-### Apache Kafka
+The following table shows how [Apache Kafka trigger parameters](/azure/azure-functions/functions-bindings-kafka-trigger) map to the [KEDA scaler configuration values](https://keda.sh/docs/scalers/apache-kafka/).
 
 | Parameter | Functions Configuration | KEDA Configuration |
 |--|--|--|
@@ -122,17 +115,25 @@ Use this value as the target for the total lag (sum of all partition lags) to tr
 | Use this value as the target executions per instance for the Kafka trigger. The number of desired instances is calculated based on the total consumer lag divided by `LagThreshold`. |
 Use this value as the target for the total lag (sum of all partition lags) to trigger scaling actions. |
 
-**Example (C#)**:
+#### Example
 
 ```csharp
-[KafkaTrigger("BrokerList", "topic", ConsumerGroup = "$Default", LagThreshold = 100)]
+[KafkaTrigger(
+  "BrokerList",
+  "topic",
+  ConsumerGroup = "$Default",
+  LagThreshold = 100)]
 ```
 
 #### Translation logic
 
-`metadata.lagThreshold` = `LagThreshold` (from trigger attribute)
+`metadata.lagThreshold` = `LagThreshold`
 
 ### Azure Cosmos DB
+
+The [Azure Cosmos DB trigger](/azure/azure-functions/functions-bindings-cosmosdb-v2-trigger) doesn't map to a KEDA scaler. Use custom scaling instead.
+
+The Functions trigger sets the maximum number of items received per function call. Transaction scope is preserved for stored procedures.
 
 | Parameter | Functions Configuration | KEDA Configuration |
 |--|--|--|
@@ -140,25 +141,19 @@ Use this value as the target for the total lag (sum of all partition lags) to tr
 | **Configuration path** | Function trigger attribute | N/A |
 | **Default value** | 100 | N/A |
 
-| Functions trigger description | KEDA scaler description |
-|---|---|
-| Sets the maximum number of items received per Function call. Transaction scope is preserved for stored procedures. | No dedicated KEDA scaler for Cosmos DB in KEDA v2.18. Custom scaling solution or external scaler required. |
-
-**Example (C#)**:
+#### Example
 
 ```csharp
 [CosmosDBTrigger(
-    databaseName: "ToDoItems",
-    containerName: "Items", 
-    Connection = "CosmosDBConnection", 
-    MaxItemsPerInvocation = 100)]
+  databaseName: "ToDoItems",
+  containerName: "Items",
+  Connection = "CosmosDBConnection",
+  MaxItemsPerInvocation = 100)]
 ```
 
-#### Translation logic
-
-No automatic KEDA scaling available
-
 ### HTTP trigger
+
+The [HTTP trigger](/azure/azure-functions/functions-bindings-http-webhook) doesn't map to a KEDA scaler. Instead, use the Container Apps built-in HTTP scaling capabilities or external monitoring solutions.
 
 | Parameter | Functions Configuration | KEDA Configuration |
 |--|--|--|
@@ -166,29 +161,33 @@ No automatic KEDA scaling available
 | **Configuration path** | `extensions.http.maxConcurrentRequests` (host.json) | N/A |
 | **Default value** | 100 (Consumption), -1 (Premium/Dedicated) | N/A |
 
-| Functions trigger description | KEDA scaler description |
-|---|---|
-| Controls the maximum number of HTTP functions executed in parallel. This setting is useful for managing resource utilization and throttling outbound requests. | No dedicated KEDA scaler exists for HTTP triggers in KEDA v2.18. HTTP scaling typically relies on Container Apps' built-in HTTP scaling capabilities or external monitoring solutions. |
-
-#### Translation logic
-
-Uses Container Apps HTTP scaling instead of KEDA
-
 ### Blob storage trigger
+
+The following table shows how [Azure Blob Storage trigger parameters](/azure/azure-functions/functions-bindings-storage-blob) map to the [KEDA scaler configuration values](https://keda.sh/docs/scalers/azure-storage-blob/).
 
 | Parameter | Functions Configuration | KEDA Configuration |
 |--|--|--|
-| **Parameter name** | Event Grid webhook settings | TODO |
-| **Configuration path** | Uses HTTP trigger settings | TODO |
-| **Default value** | See HTTP trigger | TODO |
-
-**Functions trigger description**: The Event Grid trigger uses a webhook HTTP request, which you can configure by using the same `host.json` settings as the HTTP trigger. These settings control parallel execution for resource management.
+| **Parameter name** | `maxDegreeOfParallelism` | `blobCount` |
+| **Configuration path** | `extensions.blobs.maxDegreeOfParallelism` (host.json) | `metadata.blobCount` |
+| **Default value** | 8 × number of available cores | 5 |
 
 | Functions trigger description | KEDA scaler description |
 |---|---|
-| TODO | TODO |
+| Sets the number of concurrent invocations allowed for all blob-triggered functions in a function app. Minimum value: 1. | Average target value to trigger scaling actions. (Default: 5, Optional) |
+
+#### Translation logic
+
+`metadata.blobCount` = `extensions.blobs.maxDegreeOfParallelism`
+
+### Event Grid
+
+The [Azure Event Grid trigger parameters](/azure/azure-functions/functions-bindings-event-grid) don't map to a KEDA scaler.
+
+The Event Grid trigger uses a webhook HTTP request. You configure this request by using the same `host.json` settings as the HTTP trigger. These settings control parallel execution for resource management.
 
 ### RabbitMQ trigger
+
+The following table shows how [RabbitMQ trigger parameters](/azure/azure-functions/functions-bindings-rabbitmq) map to the [KEDA scaler configuration values](https://keda.sh/docs/scalers/rabbitmq-queue/).
 
 | Parameter | Functions Configuration | KEDA Configuration |
 |--|--|--|
