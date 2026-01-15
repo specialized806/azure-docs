@@ -1,13 +1,13 @@
 ---
 title: Tutorial - Manually failover an Azure IoT hub
 description: Learn how to perform a manual failover of your IoT hub to a different region and then return it to the original region.
-author: SoniaLopezBravo
+author: cwatson-cat
 manager: lizross
 ms.service: azure-iot-hub
 services: iot-hub
 ms.topic: tutorial
 ms.date: 11/17/2022
-ms.author: sonialopez
+ms.author: cwatson
 ms.custom:
   - [mvc,mqtt]
   - build-2025
@@ -16,7 +16,10 @@ ms.custom:
 
 # Tutorial: Perform manual failover for an IoT hub
 
-Manual failover is a feature of the IoT Hub service that allows customers to [failover](https://en.wikipedia.org/wiki/Failover) their hub's operations from a primary region to the corresponding [Azure geo-paired region](../reliability/cross-region-replication-azure.md). Manual failover can be done in the event of a regional disaster or an extended service outage. You can also perform a planned failover to test your disaster recovery capabilities, although we recommend using a test IoT hub rather than one running in production. The manual failover feature is offered to customers at no additional cost for IoT hubs created after May 18, 2017.
+Manual failover is a feature of the IoT Hub service that allows customers to [failover](https://en.wikipedia.org/wiki/Failover) their hub's operations from a primary region to the corresponding [Azure geo-paired region](../reliability/cross-region-replication-azure.md). The manual failover feature is offered to customers at no additional cost for IoT hubs created after May 18, 2017.
+
+> [!NOTE]
+> Manual failover can be done in the event of a regional disaster or an extended service outage. You can also perform a planned failover to test your disaster recovery capabilities, although we recommend using a test IoT hub rather than one running in production. 
 
 In this tutorial, you perform the following tasks:
 
@@ -32,7 +35,7 @@ For more information about manual failover and Microsoft-initiated failover with
 
 ## Prerequisites
 
-* An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
+* An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 
 ## Create an IoT hub
 

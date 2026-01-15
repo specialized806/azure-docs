@@ -1,10 +1,9 @@
 ---
 title: How to create custom machine configuration package artifacts
 description: Learn how to create a machine configuration package file.
-ms.date: 02/01/2024
+ms.date: 07/22/2025
 ms.topic: how-to
-ms.custom:
-  - build-2025
+ms.custom: references_regions
 ---
 # How to create custom machine configuration package artifacts
 
@@ -52,7 +51,9 @@ variable sets to `'This was set by machine configuration'`.
 
 ```powershell
 Install-Module -Name PSDscResources
-Import-Module -Name PSDscResources
+```
+
+```powershell
 Configuration MyConfig {
     Import-DscResource -Name 'Environment' -ModuleName 'PSDscResources'
     Environment MachineConfigurationExample {
@@ -70,7 +71,9 @@ This example configuration is for Linux machines. It creates a file at the path 
 
 ```powershell
 Install-Module -Name nxtools
-Import-Module -Name nxtools
+```
+
+```powershell
 Configuration MyConfig {
     Import-DscResource -ModuleName 'nxtools'
     nxFile MyFile {
@@ -88,7 +91,7 @@ With that definition saved in the `MyConfig.ps1` script file, you can run the sc
 configuration.
 
 ```powershell
-& .\MyConfig.ps1
+. .\MyConfig.ps1
 ```
 
 ```output
@@ -168,6 +171,17 @@ $params = @{
     Configuration = './MyConfig/MyConfig.mof'
     Type          = 'AuditAndSet'
     Force         = $true
+}
+New-GuestConfigurationPackage @params
+```
+```powershell
+# Create a package that will audit the configuration at 180 minute intervals
+$params = @{
+    Name          = 'MyConfig'
+    Configuration = './MyConfig/MyConfig.mof'
+    Type          = 'Audit'
+    Force         = $true
+    FrequencyMinutes = 180
 }
 New-GuestConfigurationPackage @params
 ```

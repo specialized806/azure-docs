@@ -4,8 +4,8 @@ description: In this article, learn how to restore Azure Files using the Azure B
 ms.topic: how-to
 ms.date: 06/03/2025
 ms.custom: devx-track-azurepowershell
-author: jyothisuri
-ms.author: jsuri
+author: AbhishekMallick-MS
+ms.author: v-mallicka
 # Customer intent: "As a cloud administrator, I want to restore backed-up Azure Files using PowerShell, so that I can quickly recover data from backup points to either the original or an alternate location as needed."
 ---
 
@@ -20,6 +20,7 @@ You can restore an entire File Share or specific files on the share. You can res
 
 >[!NOTE]
 >- Azure Files restore is only supported within the same subscription when using PowerShell or CLI.
+>- Cross Region Restore is not supported using PowerShell or CLI.
 >- Azure Backup now supports restoring multiple files or folders to the original or alternate Location using PowerShell. Refer to [this section](#restore-multiple-files-or-folders-to-original-or-alternate-location) of the document to learn how.
 
 ## Fetch recovery points

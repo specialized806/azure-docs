@@ -2,10 +2,10 @@
 title: Manage Azure Monitor based alerts for Azure Backup
 description: Learn about the new and improved alerting capabilities via Azure Monitor and the process to configure Azure Monitor.
 ms.topic: how-to
-ms.date: 11/30/2024
+ms.date: 12/09/2025
 ms.service: azure-backup
-author: jyothisuri
-ms.author: jsuri
+author: AbhishekMallick-MS
+ms.author: v-mallicka
 ms.custom: engagement-fy24
 # Customer intent: As a backup administrator, I want to configure Azure Monitor alerts for Azure Backup so that I can effectively monitor backup operations and receive timely notifications on failures and critical events.
 ---
@@ -263,4 +263,5 @@ To configure the same, run the following commands:
    ```
 
 ## Next steps
-Learn more about [Azure Backup monitoring and reporting](monitoring-and-alerts-overview.md).
+- Learn more about [Azure Backup monitoring and reporting](monitoring-and-alerts-overview.md).
+- [Troubleshoot monitoring issues for Azure Backup](backup-azure-monitor-troubleshoot.md).

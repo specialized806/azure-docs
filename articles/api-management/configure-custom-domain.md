@@ -7,11 +7,12 @@ author: dlepow
 
 ms.service: azure-api-management
 ms.topic: how-to
-ms.date: 05/30/2025
+ms.date: 07/25/2025
 ms.author: danlep
 ms.custom:
   - engagement-fy23
   - build-2025
+  - sfi-image-nochange
 ---
 
 # Configure a custom domain name for your Azure API Management instance
@@ -62,7 +63,7 @@ There are several API Management endpoints to which you can assign a custom doma
 * Only API Management instance owners can use **Management** and **SCM** endpoints internally. These endpoints are less frequently assigned a custom domain name.
 * The **Premium** and **Developer** tiers support setting multiple hostnames for the **Gateway** endpoint.
 * Wildcard domain names, like `*.contoso.com`, are supported in all tiers except the Consumption tier. A specific subdomain certificate (for example, api.contoso.com) would take precedence over a wildcard certificate (*.contoso.com) for requests to api.contoso.com.
-* When configuing a custom domain for the **Developer portal**, you can [enable CORS](enable-cors-developer-portal.md) for the new domain name. This is needed for developer portal visitors to use the interactive console in the API reference pages.
+* When configuring a custom domain for the **Developer portal**, you can [enable CORS](enable-cors-developer-portal.md) for the new domain name. This is needed for developer portal visitors to use the interactive console in the API reference pages.
 
 ## Domain certificate options
 
@@ -104,12 +105,20 @@ For more information, see [Use managed identities in Azure API Management](api-m
 
 API Management offers a free, managed TLS certificate for your domain, if you don't wish to purchase and manage your own certificate. The certificate is autorenewed automatically.
 
+> [!IMPORTANT]
+> **Creation of managed certificates for custom domains in API Management will be temporarily unavailable from August 15, 2025 to March 15, 2026.** Our Certificate Authority (CA), DigiCert, will migrate to a new validation platform to meet Multi-Perspective Issuance Corroboration (MPIC) requirements for issuing certificates. This migration requires us to temporarily suspend the creation of managed certificates for custom domains. [Learn more](breaking-changes/managed-certificates-suspension-august-2025.md)
+>
+> Existing managed certificates will be autorenewed and remain unaffected.
+>
+> While creation of managed certificates is suspended, use other certificate options for configuring custom domains.
+
 > [!NOTE]
-> The free, managed TLS certificate is in preview. Currently, it's unavailable in the v2 service tiers. 
+> The free, managed TLS certificate is in preview. 
 
 #### Limitations
 
 * Currently can be used only with the Gateway endpoint of your API Management service
+* Not supported in the v2 tiers
 * Not supported with the self-hosted gateway
 * Not supported in the following Azure regions: France South and South Africa West
 * Currently available only in the Azure cloud

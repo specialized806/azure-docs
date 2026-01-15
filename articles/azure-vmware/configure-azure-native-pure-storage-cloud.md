@@ -11,9 +11,10 @@ ms.service:  azure-vmware
 # ms.prod:   # To use ms.prod, uncomment it and delete ms.service
 ms.topic:    how-to
 ms.date:     03/31/2025
+# Customer intent: "As a cloud architect, I want to implement the Azure Native Pure Storage Cloud solution with Azure VMware Solution, so that I can provide scalable and efficient block storage for my VMware workloads while leveraging existing infrastructure."
 ---
 
- # Configure Azure Native Pure Storage Cloud (Preview)
+# Configure Azure Native Pure Storage Cloud
 
 ## Azure Native Pure Storage Cloud for Azure VMware Solution
 

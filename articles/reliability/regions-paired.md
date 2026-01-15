@@ -27,7 +27,7 @@ Some Azure services use paired regions to build their multi-region geo-replicati
 If you're in a region that's paired, then using its pair as a secondary region provides several benefits:
 
 - **Region recovery sequence**. In the unlikely event of a geography-wide outage, the recovery of one region is prioritized out of every region pair. Components that are deployed across paired regions have one of the regions prioritized for recovery.
-- **Sequential updating**. Planned Azure system updates are staggered across region pairs to minimize the impact of bugs or logical failures in the rare event of a faulty update, and to prevent downtime to solutions that have been designed to use paired regions together for resiliency.
+- **Sequential updating**. Azure strives to stagger any planned system updates across region pairs. This approach minimizes the impact of bugs or logical failures in the rare event of a faulty update, and to prevent downtime to solutions that have been designed to use paired regions together for resiliency.
 - **Data residency**. To meet data residency requirements, almost all regions reside within the same geography as their pair. To learn about the exceptions, see the [list of Azure regions](./regions-list.md).
 
 > [!IMPORTANT]
@@ -46,7 +46,6 @@ Most region pairs are *symmetrical*, which means that each region is bidirection
 *Asymmetrical region pairs* involve regions that are not bidirectionally paired. The list below includes public asymmetrical regions pairs:
 
 - Brazil South is paired with South Central US, which is outside of the Brazil geography. South Central US isn't paired with Brazil South.
-- US Gov Arizona is paired with US Gov Texas. US Gov Texas is bidirectionally paired with US Gov Virginia.
 - West India is paired with South India, but South India is paired with Central India.
 - West US 3 is paired in one direction with East US. East US is bidirectionally paired with West US.
 

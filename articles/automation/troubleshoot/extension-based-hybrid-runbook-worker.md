@@ -5,8 +5,8 @@ services: automation
 ms.date: 05/08/2025
 ms.topic: troubleshooting 
 ms.custom:
-ms.author: v-jasmineme
-author: jasminemehndir
+ms.author: v-rochak2
+author: RochakSingh-blr
 ---
 
 # Troubleshoot VM extension-based Hybrid Runbook Worker issues in Automation
@@ -120,9 +120,6 @@ You can remove this limit and make it unrestricted with the following steps:
   1. systemctl daemon-reload
   1. systemctl restart hwd.service
 
-For more information, see [Linux hybrid jobs get stuck in Running state even if each CPU core usage is less than 25% - Overview](https://supportability.visualstudio.com/AAAP_Code/_wiki/wikis/AAAP/1980067/KI-Linux-hybrid-jobs-get-stuck-in-Running-status-even-if-each-CPU-core-usage-is-less-than-25-).
-
-
 ### Scenario: Runbooks go into a suspended state on a Hybrid Runbook Worker when using a custom account on a server with User Account Control (UAC) enabled
 
 #### Issue
@@ -222,7 +219,7 @@ You are deploying the extension-based Hybrid Worker on a non-Azure VM that does 
 
 ### Resolution
 Non-Azure machines must have the Arc connected machine agent installed on it, before deploying it as an extension-based Hybrid Runbook worker. To install the `AzureConnectedMachineAgent`, see [connect hybrid machines to Azure from the Azure portal](/azure/azure-arc/servers/onboard-portal)
-for Arc-enabled servers or [Manage VMware virtual machines Azure Arc](/azure/azure-arc/vmware-vsphere/manage-vmware-vms-in-azure#enable-guest-management) to enable guest management for Arc-enabled VMware VM. 
+for Arc-enabled servers or [Manage VMware virtual machines Azure Arc](/azure/azure-arc/vmware-vsphere/perform-vm-ops-through-azure#enable-guest-management) to enable guest management for Arc-enabled VMware VM. 
  
 
 ### Scenario: Hybrid Worker deployment fails due to System assigned identity not enabled

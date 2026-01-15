@@ -9,9 +9,14 @@ ms.date: 02/14/2025
 ms.reviewer: yutlin
 ms.author: msangapu
 author: msangapu-msft
+ms.service: azure-app-service
+ms.custom: sfi-image-nochange
+#customer intent: As an app developer or platform engineer, I want clear, step-by-step guidance for adding, importing, and renewing TLS/SSL certificates in Azure App Service so that I can secure custom domains, automate renewals, and avoid downtime.
 ---
 
 # Add and manage TLS/SSL certificates in Azure App Service
+
+[!INCLUDE [app-service-managed-certificate](./includes/managed-certs/managed-certs-note.md)]
 
 You can add digital security certificates to [use in your application code](configure-ssl-certificate-in-code.md) or to [help secure custom Domain Name System (DNS) names](configure-ssl-bindings.md) in [Azure App Service](overview.md). App Service provides a highly scalable, self-patching web hosting service. The certificates are currently called Transport Layer Security (TLS) certificates. They were previously known as Secure Sockets Layer (SSL) certificates. These private or public certificates help you to secure internet connections. The certificates encrypt data sent between your browser, websites that you visit, and the website server.
 
@@ -149,9 +154,10 @@ The service principal app ID or assignee value is the ID for the App Service res
 
 Don't delete these access policy permissions from the key vault. If you do, App Service can't sync your web app with the latest Key Vault certificate version.
 
-If Key Vault is configured to disable public access, select the **Allow trusted Microsoft services to bypass this firewall** checkbox to ensure that Microsoft services are allowed access. For more information, see [Key Vault firewall-enabled trusted services only](/azure/key-vault/general/network-security?WT.mc_id=Portal-Microsoft_Azure_KeyVault#key-vault-firewall-enabled-trusted-services-only).
->
 ---
+
+> [!NOTE]
+> If Key Vault is configured to disable public access, select the **Allow trusted Microsoft services to bypass this firewall** checkbox to ensure that Microsoft services are allowed access. For more information, see [Key Vault firewall-enabled trusted services only](/azure/key-vault/general/network-security?WT.mc_id=Portal-Microsoft_Azure_KeyVault#key-vault-firewall-enabled-trusted-services-only).
 
 #### [Azure CLI](#tab/azure-cli/rbac)
 
