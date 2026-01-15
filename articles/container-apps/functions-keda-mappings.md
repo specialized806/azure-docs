@@ -18,8 +18,11 @@ When you deploy Azure Functions on Azure Container Apps, the platform automatica
 Azure Functions on Container Apps uses KEDA to monitor event sources and scale your function apps. The platform automatically:
 
 1. **Translates Functions parameters**: Converts your Functions trigger configuration (from `host.json` or trigger attributes) into KEDA scaler metadata.
+
 1. **Applies scaling rules**: Uses the translated parameters to create appropriate KEDA scaling rules.
+
 1. **Monitors events**: KEDA continuously monitors your event sources based on these rules.
+
 1. **Scales instances**: Automatically scales your container instances up or down based on workload.
 
 The following sections detail the specific parameter mappings for each trigger type.
