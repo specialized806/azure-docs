@@ -144,13 +144,20 @@ These steps create a workflow from the template named **Azure Service Bus: Proce
 
    1. Review the provided information, and select **Create**.
 
-      The designer shows a workflow prepopulated with the trigger named **When messagse are available in a queue (peek-lock)** and various actions. The workflow includes two scopes that implement error handling that follows the *Try-Catch* pattern.
+   The designer shows a workflow prepopulated with the trigger named **When messagse are available in a queue (peek-lock)** and various actions, for example:
 
-      For example:
+   :::image type="content" source="./media/send-related-messages-sequential-convoy/workflow-from-template.png" alt-text="Screenshot shows workflow with all operations.":::
 
-      :::image type="content" source="./media/send-related-messages-sequential-convoy/top-level-workflow.png" alt-text="Screenshot shows workflow and top-level operations.":::
+1. To learn about the workflow operations, go to the next section. Or, [skip ahead to provide the parameter values for the workflow operations](#complete-template).
 
-1. To continue, you can either [learn more about the workflow operations](#workflow-summary), or skip ahead to [provide the parameter values for the workflow operations](#complete-template).
+#### Standard workflow operations
+
+| Name | Description |
+|------|-------------|
+| **When messages are available in a queue (peek-lock)** | This Service Bus trigger waits to receive messages from a Service Bus queue. If a message exists in the queue, the trigger fires and runs a workflow instance. <br><br>The term *peek-lock* means that the trigger sends a request to retrieve a message from the queue. If a message exists, the trigger retrieves and locks the message so that no other processing happens on that message until the lock period expires. For more information, see [Initialize the session](#initialize-session). |
+| **Initialize Process Complete Flag** | This [**Initialize variable** action](logic-apps-create-variables-store-values.md#initialize-variable) creates a Boolean variable with its value set to `false`. The variable indicates when the following conditions are true: <br><br>- No more messages exist in the session for processing. <br>- The session lock no longer needs to be renewed so the current workflow instance can finish running. <br><br>For more information, see [Initialize the session](#initialize-session). |
+| **Scope** | This [**Scope** action](logic-apps-control-flow-run-steps-group-scopes.md) contains the actions that run to process a message. If a problem happens in this scope, the subsequent actions outside this **Scope** action handles that problem. For more information, see [Scope](#try-scope). |
+| **Business Logic Scope**| This [**Scope** action](logic-apps-control-flow-run-steps-group-scopes.md) contains the business actions that run based on the current message. |
 
 For more information, see:
 
@@ -163,9 +170,13 @@ These steps manually create a workflow that uses an Azure Service Bus trigger an
 
 #### Add a Service Bus trigger
 
+These steps add a Service Bus trigger that checks the specified Service Bus queue for messages, based on the specified schedule. If a message exists in the queue, the trigger fires and runs the workflow.
+
 1. In the [Azure portal](https://portal.azure.com), open your Consumption logic app resource and blank workflow in the designer.
 
 1. Follow the [general steps](add-trigger-action-workflow.md#add-trigger) to add a Service Bus trigger named **When one or more messages arrive in a queue (peek-lock)**.
+
+   The term *peek-lock* means that the trigger sends a request to retrieve a message from the queue. If a message exists, the trigger retrieves and locks the message so that no other processing happens on that message until the lock period expires. For more information, see [Initialize the session](#initialize-session). 
 
 1. On the connection pane, provide the folowing information:
 
@@ -181,42 +192,92 @@ These steps manually create a workflow that uses an Azure Service Bus trigger an
 
 1. After the trigger information pane appears, on the **Parameters** tab, provide the following information:
 
-  | Parameter | Description |
-  |-----------|-------------|
-  | **Queue name** | The name for the Service Bus session-enabled queue with the messages to process. |
-  | **Maximum message count** | The number of messages to get as a batch. |
+   | Parameter | Description |
+   |-----------|-------------|
+   | **Queue name** | The name for the Service Bus session-enabled queue with the messages to process. |
+   | **Maximum message count** | The number of messages to get as a batch. |
 
-#### Determine whether more messages exist for processing
+   For more information, see [Service Bus - When one or more messages arrive in a queue (peek-lock)](/connectors/servicebus/#when-one-or-more-messages-arrive-in-a-queue-(peek-lock)).
+
+#### Add a variable to check whether more messages exist
 
 To help your workflow determine whether any more messages from a session need processing, create a Boolean variable with the default value set to `false`. This variable indicates when the following conditions are true:
 
 - No more messages exist in the session for processing.
-
 - The session lock no longer needs to be renewed so the current workflow instance can finish running.
 
 1. In the designer, under the trigger, follow the [general steps](add-trigger-action-workflow.md#add-action) to add a **Variables** action named **Initialize variables**.
 
-1. For clarity and easier identification, rename the action to **Initialize Process Complete Flag**.
+1. Rename the action to `Initialize Process Complete Flag`.
 
 1. In the action information pane, provide the following values:
 
    | Parameter | Value | Description |
    |-----------|-------|-------------|
-   | **Name** | <*variable-name*> | The name for the variable. For this example, the name is **`processCompleted`**. |
+   | **Name** | <*variable-name*> | The name for the variable. For this example, the name is `processCompleted`. |
    | **Type** | **Boolean** | The data type for the variable. |
    | **Value** | **false** | The initial default value for the variable. |
 
+   When you're done, your workflow looks like the following example:
+
+   :::image type="content" source="./media/send-related-messages-sequential-convoy/initialize-process-complete.png" alt-text="Screenshot shows the information for Initalize Process Complete Flag.":::
+
    For more information, see [Initialize the session](#initialize-session).
 
-1. Continue to the next section to add a scope for error handling.
+1. Continue to the next section to add a scope for message handling.
 
-#### Add a scope action
+#### Add actions to process each message
 
-To set up *try-catch* style error handling for your workflow, add a [**Scope** action](logic-apps-control-flow-run-steps-group-scopes.md) that contains the actions to process each message. If a problem happens in this scope, the subsequent actions outside this **Scope** action can handle that problem. For more information, see [Scope](#try-scope).
+These steps add a [**Scope** action](logic-apps-control-flow-run-steps-group-scopes.md) to the workflow. Inside this **Scope** action, another scope contains the actions for message processing, based on your scenario's business logic. If a problem happens in these scopes, the actions outside the outermost **Scope** action handle that problem. For more information, see [Scope](#try-scope).
 
-1. In the designer, under the **Initialize Process Complete Flag** action, follow the [general steps](add-trigger-action-workflow.md#add-action) to add a **Scope** action.
+1. In the designer, under the `Initialize Process Complete Flag` action, follow the [general steps](add-trigger-action-workflow.md#add-action) to add a **Scope** action.
 
-1. For clarity and easier identification, rename the scope action to **Try**.
+1. Rename the scope action to `Process message`, for example:
+
+   :::image type="content" source="./media/send-related-messages-sequential-convoy/process-message-scope.png" alt-text="Screenshot shows the workflow with the Process Message scope.":::
+
+1. In the **Process message** scope, add another **Scope** action.
+
+   1. Change the second scope name to `Business Logic Scope`, for example:
+
+      :::image type="content" source="./media/send-related-messages-sequential-convoy/business-logic-scope.png" alt-text="Screenshot shows the workflow with Business Logic Scope.":::
+
+   1. Inside `Business Logic Scope`, add the actions to process the current message, based on your scenario's business logic.
+
+1. Outside `Business Logic Scope`, add a **Variables** action named **Set variable**.
+
+   1. Change **Set variable** to `Process Finished`.
+
+   1. On the **Parameters** tab, provide the following information:
+
+      | Parameter | Value | Description |
+      |-----------|-------|-------------|
+      | **Name** | <*variable-name*> | The name for the variable. For this example, the name is `processCompleted`. |
+      | **Value** | **true** | The updated value to indicate that message processing completed. |
+
+      When the message finishes processing, the `Processed Finished` action updates the value in the `processCompleted` variable from **false** to **true**.
+
+   1. On the **Settings** tab, in the **Run after** section, expand **Business Logic Scope**.
+
+   1. Select all the unselected statuses: **Has timed out**, **Is skipped**, and **Has failed**, for example:
+
+      :::image type="content" source="./media/send-related-messages-sequential-convoy/run-after-settings.png" alt-text="Screenshot shows the run after settings for Process Finished.":::
+
+1. At the same level as the **Business Logic Scope**, add a parallel branch to handle any other messages in the same session.
+
+   1. Between `Process message` and `Business Logic Scope`, select the plus sign (**+**), then select **Add a parallel branch**.
+
+   1. In the **Add an action** pane, add a **Control** action named **Until**, which is a type of loop.
+
+   1. On the **Until** action information pane, provide the condition that stops running the actions that you later add to the **Until** loop:
+
+      1. On the **Parameters** tab, select inside the left **Choose a value** box, then select the expression editor (function icon).
+
+      1. 
+
+      | **Choose a value** (left) | `processCompleted` | 1. Select inside the edit box, then 
+
+      :::image type="content" source="./media/send-related-messages-sequential-convoy/parallel-branch-until-loop.png" alt-text="Screenshot shows parallel branch with Until loop.":::
 
 
 
@@ -230,23 +291,9 @@ To set up *try-catch* style error handling for your workflow, add a [**Scope** a
 
 This section describes more details about the workflow operations:
 
-### [Standard](#tab/standard)
-
-| Name | Description |
-|------|-------------|
-| **When messages are received in a queue (peek-lock)** | This Service Bus trigger waits to receive messages from a Service Bus queue. If a message exists in the queue, the trigger fires and runs a workflow instance. <br><br>The term *peek-lock* means that the trigger sends a request to retrieve a message from the queue. If a message exists, the trigger retrieves and locks the message so that no other processing happens on that message until the lock period expires. For more information, see [Initialize the session](#initialize-session). |
-| **Initialize Process Complete Flag** | This [**Initialize variable** action](logic-apps-create-variables-store-values.md#initialize-variable) creates a Boolean variable with its value set to `false`. The variable indicates when the following conditions are true: <br><br>- No more messages in the session are available to read. <br>- The session lock no longer needs to be renewed so that the current workflow instance can finish. <br><br>For more information, see [Initialize the session](#initialize-session). |
-
-
-| **Scope** | This [**Scope** action](logic-apps-control-flow-run-steps-group-scopes.md) contains the actions that run to process a message. If a problem happens in this scope, the subsequent actions outside this **Scope** action handles that problem. For more information, see [Scope](#try-scope). |
 
 | **`Catch`**| This [**Scope** action](logic-apps-control-flow-run-steps-group-scopes.md) contains the actions that run if a problem happens in the preceding `Try` scope. For more information, see [Catch scope](#catch-scope). |
 
-### [Consumption](#tab/consumption)
-
-| Name | Description |
-|------|-------------|
-| **When one or more messages are received in a queue (peek-lock)** | Based on the specified recurrence, this Service Bus trigger checks the specified Service Bus queue for any messages. If a message exists in the queue, the trigger fires, which creates and runs a workflow instance. <br><br>The term *peek-lock* means that the trigger sends a request to retrieve a message from the queue. If a message exists, the trigger retrieves and locks the message so that no other processing happens on that message until the lock period expires. For details, [Initialize the session](#initialize-session). |
 
 <a name="try-scope"></a>
 
@@ -330,7 +377,7 @@ After it initializes the session, the workflow uses the **Initialize variable** 
 
 - The session lock no longer needs to be renewed so that the current workflow instance can finish.
 
-:::image type="content" source="./media/send-related-messages-sequential-convoy/init-is-done-variable.png" alt-text="Screenshot shows the Initialize Variable action details for Init isDone.":::
+:::image type="content" source="./media/send-related-messages-sequential-convoy/initialize-process-complete.png" alt-text="Screenshot shows the Initialize Variable action details for Init isDone.":::
 
 In the **Try** block, the workflow performs actions on the first message that it reads.
 
