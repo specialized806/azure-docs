@@ -112,8 +112,14 @@ Follow the steps below if you intend to deploy Open OnDemand with Azure CycleClo
 
 The Open OnDemand front end uses Open ID Connect (OIDC) for authentication. The OIDC provider is the Microsoft Entra ID application created using the below steps. This application uses federated credentials with a user-assigned managed identity to avoid storing secrets in the Open OnDemand configuration. 
 
-Open OnDemand *does not* need to be enabled when initially deploying Azure CycleCloud or Azure CycleCloud Workspace for Slurm and may be easily added to CycleCloud at a later time. Therefore, the below utility to create the desired application registration also creates the aforementioned user-assigned managed identity. 
+Open OnDemand *does not* need to be enabled when initially deploying Azure CycleCloud or Azure CycleCloud Workspace for Slurm and may be easily added to CycleCloud at a later time. Therefore, the utility script that automatically creates the desired application registration also creates the aforementioned user-assigned managed identity. 
 
-Complete the following additional steps to use Open OnDemand with your manually-created application registration. These steps are not necessary if using the automatically-generated application registration.
-1. As in Step 9 of the *Manual* subsection of *Creating the Microsoft Entra ID application registration*, create the role with the name `GlobalNodeUser` value `Global.Node.User`. Then add the role to users expected to use Open OnDemand. 
-2. As in first step of *Configuring redirect URIs*, select **Add a platform** under *Platform Configurations* on the *Authentication* page and then choose **Web application**. Enter `https://{your_open_ondemand_VM_IP_or_domain_name}/oidc` as the custom URI and save by pressing **Configure**.
+Complete the following additional steps to use Open OnDemand with your manually-created application registration. 
+> [!NOTE]
+> The below roles do not need to be created if you use the [utility script](./create-app-registration.md#automatic) provided above to create your Microsoft Entra ID application registration. Instead, you may simply assign the roles to your users. 
+1. As in Step 9 of the *Manual* subsection of *Creating the Microsoft Entra ID application registration*, create roles named `GlobalNodeAdmin` with value `Global.Node.Admin` and `GlobalNodeUser` with value `Global.Node.User`. One of these two roles must be assigned to users intending to use Open OnDemand.
+> [!NOTE]
+> The below redirect URI does not need to be manually set if you use the help script provided [here](./ccws/plan-your-deployment.md#post-deployment-utility).
+2. As in first step of the *Configuring redirect URIs* section, select **Add a platform** under *Platform Configurations* on the *Authentication* page and then choose **Web application**. Enter `https://{your_open_ondemand_VM_IP_or_domain_name}/oidc` as the custom URI and save by pressing **Configure**.
+### Signing into Open OnDemand
+Your users must first sign into Azure CycleCloud with Microsoft Entra ID before attempting to use Open OnDemand by navigating to the login URI listed in the **Single-page application** section on the Authentication page of the application registration. They may then log into Open OnDemand by navigating to the OIDC URI listed in the **Web application** section on the Authentication page of the application registration. Users should accept any consent messages that may appear. 
