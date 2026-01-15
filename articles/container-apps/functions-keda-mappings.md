@@ -47,7 +47,7 @@ The following table shows how [Azure Storage Queue trigger parameters](/azure/az
 
 #### Translation logic
 
-`metadata.queueLength = extensions.queues.batchSize`
+`metadata.queueLength` = `extensions.queues.batchSize`
 
 ### Azure Service Bus (single dispatch)
 
