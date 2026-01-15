@@ -28,4 +28,4 @@ Select `Save`, then `Start Cluster`, and wait for the Open OnDemand virtual mach
 :::image type="content" source="../../images/ccws/open-ondemand-advanced-settings.png" alt-text="Screenshot of Open OnDemand cluster configuration.":::
 
 ## Resources
-* [Add users for Open OnDemand](./open-ondemand-add-users.md)
+* [Add users to your registered Microsoft Entra ID application](../create-app-registration.md#permissioning-users-for-cyclecloud)
