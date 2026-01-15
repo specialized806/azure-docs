@@ -53,9 +53,9 @@ Currently, Flex Consumption offers these instance size options:
 
 | Instance Memory (MB) | CPU Cores |
 |-----------------|-----------|
-| 512           | 0.25      |
-| 2048         | 1         |
-| 4096        | 2         |
+| 512             | 0.25      |
+| 2048            | 1         |
+| 4096            | 2         |
 
 > [!NOTE]
 > The CPU core values shown are typical allocations for instances with the specified memory size. However, initial instances might be granted slightly different core allocations to improve performance. Each Flex Consumption instance also includes an additional 272 MB of memory allocated by the platform as a buffer for system and host processes. This additional memory doesn't affect billing, and instances are billed based on the configured instance memory size shown in the table above.
@@ -136,18 +136,40 @@ This table shows the language stack versions that are currently supported for Fl
 
 ## Regional subscription memory quotas
 
-The Flex Consumption plan has a memory-based quota that limits how much compute all your Flex Consumption apps can use at the same time in a specific region and subscription. Imagine you have a bucket of memory measured in GB or CPU cores for your entire subscription in a region. All your Flex Consumption apps in that region share this bucket. If your Flex Consumption apps try to use more than the quota allows, some executions may be delayed or throttled from scaling, but you won’t be blocked from creating or deploying apps.
+All Flex Consumption apps in a subscription and region share a compute quota — like a shared bucket of resources. This quota limits how much total compute your Flex Consumption apps can use at the same time. If your apps try to exceed the quota, some executions might be delayed or fail and apps will be throttled from scaling, but you won't be blocked from creating or deploying apps.
 
-Currently, each region in a given subscription has a default quota of the lesser of either `512,000 MB` or 250 cores for all instances of apps running on Flex Consumption plans. These quotas mean that, in a given subscription and region, you could have any combination of instance memory sizes and counts, as long as they stay under the quota limits. For example, in each of these scenarios the quota is reached, and apps in the region stops scaling:
+### Default quota
 
-+ You have one 512-MB app scaled to 250 instances and a second 512-MB app scaled to 750 instances. 
-+ You have one 512-MB app scaled to 1,000 instances.
-+ You have one 2,048-MB app scaled to 100 and a second 2,048-MB app scaled to 150 instances
-+ You have one 2,048-MB app that scaled out to 250 instances
-+ You have one 4,096-MB app that scaled out to 125 instances
-+ You have one 4,096-MB app scaled to 100 and one 2,048-MB app scaled to 50 instances
+Each region in a subscription has a default quota of **250 cores** (equivalent to **512,000 MB**) for all Flex Consumption app instances combined. You can use any combination of instance sizes and counts, as long as the total cores stay under the quota.
 
-Flex Consumption apps scaled to zero, or instances marked to be scaled in and deleted, don't count against the quota. This quota can be increased to allow your Flex Consumption apps to scale further, depending on your requirements. If your apps require a larger quota, create a support ticket.
+To calculate the cores used, multiply the cores per instance by the number of instances:
+
+| Instance size | Cores per instance | Formula          |
+|---------------|--------------------|------------------|
+| 512 MB        | 0.25               | instances × 0.25 |
+| 2,048 MB      | 1                  | instances × 1    |
+| 4,096 MB      | 2                  | instances × 2    |
+
+### Quota examples
+
+Each of these scenarios reaches the 250 core quota limit. When the quota is reached, apps in the region stop scaling:
+
+| Scenario                                                                | Calculation           | Total cores |
+| ----------------------------------------------------------------------- | --------------------- | ----------- |
+| One 512-MB app at 1,000 instances                                       | 1,000 × 0.25          | 250         |
+| Two 512-MB apps at 250 and 750 instances                                | (250 + 750) × 0.25    | 250         |
+| One 2,048-MB app at 250 instances                                       | 250 × 1               | 250         |
+| Two 2,048-MB apps at 100 and 150 instances                              | (100 + 150) × 1       | 250         |
+| One 4,096-MB app at 125 instances                                       | 125 × 2               | 250         |
+| One 4,096-MB app at 100 instances + one 2,048-MB app at 50 instances    | (100 × 2) + (50 × 1)  | 250         |
+
+### Important notes
+
++ Flex Consumption scales rapidly based on [concurrency](#concurrency) settings, so apps frequently acquire and release cores from the quota as demand changes.
++ Flex Consumption apps that scale to zero, or instances marked to be scaled in and deleted, don't count against the quota.
++ Always ready instances count against quota.
++ A **Flex Consumption Quota tool** is available in the Azure portal. Open any Flex Consumption app in your subscription, select **Diagnose and solve problems**, search for `Flex Consumption Quota`, then choose a region. The tool displays recommendations, current quota information, and historical usage views.
++ This quota can be increased pending capacity review. For example, from 250 cores to 1,000 cores or more. To request a larger quota, create a support ticket or contact your Microsoft account team.
 
 ## Deprecated properties and settings
 
