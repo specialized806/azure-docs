@@ -328,11 +328,11 @@ SMTP relay lets Microsoft 365 relay emails on your behalf by using a connector c
 
 10. Provide a name for the connector and click **Next**. The **Authenticating sent email** screen appears.
 
-    Choose *By verifying that the IP address of the sending server matches one of these IP addresses which belong exclusively to your organization* and add the IP address from Step 1 of the **Step-by-step configuration instructions for SMTP relay in Microsoft 365** section.
+   Choose *By verifying that the IP address of the sending server matches one of these IP addresses which belong exclusively to your organization* and add the IP address from Step 1 of the **Step-by-step configuration instructions for SMTP relay in Microsoft 365** section.
    
    :::image type="content" source="media/exchange-online-integration/connector-authenticate-ip-add-section-3-10-1.png" alt-text="Screenshot of Microsoft 365 Admin Center verify IP.":::
     
-    Review and click on **Create connector**.
+   Review and click on **Create connector**.
    
    :::image type="content" source="media/exchange-online-integration/review-connector-section-3-10-2.png" alt-text="Screenshot of Microsoft 365 Admin Center review.":::
    :::image type="content" source="media/exchange-online-integration/connector-created-sec-3-10-3.png" alt-text="Screenshot of Microsoft 365 Admin Center review security settings.":::
