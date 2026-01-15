@@ -2,7 +2,7 @@
 author: EdB-MSFT
 ms.author: edbayansh
 ms.topic: include
-ms.date: 01/14/2026
+ms.date: 01/15/2026
 
 # This file is auto-generated . Do not edit manually. Changes will be overwritten.
 ---
@@ -1102,8 +1102,8 @@ The Cisco Cloud Security solution for Microsoft Sentinel enables you to ingest [
 |Table|DCR support|Lake-only ingestion|
 |---|---|---|
 |`Cisco_Umbrella_dns_CL`|Yes|Yes|
-|`Cisco_Umbrella_proxy_CL`|No|No|
-|`Cisco_Umbrella_ip_CL`|No|No|
+|`Cisco_Umbrella_proxy_CL`|Yes|Yes|
+|`Cisco_Umbrella_ip_CL`|Yes|Yes|
 |`Cisco_Umbrella_cloudfirewall_CL`|No|No|
 |`Cisco_Umbrella_firewall_CL`|No|No|
 |`Cisco_Umbrella_dlp_CL`|No|No|
@@ -1137,8 +1137,8 @@ The Cisco Umbrella data connector provides the capability to ingest [Cisco Umbre
 |Table|DCR support|Lake-only ingestion|
 |---|---|---|
 |`Cisco_Umbrella_dns_CL`|Yes|Yes|
-|`Cisco_Umbrella_proxy_CL`|No|No|
-|`Cisco_Umbrella_ip_CL`|No|No|
+|`Cisco_Umbrella_proxy_CL`|Yes|Yes|
+|`Cisco_Umbrella_ip_CL`|Yes|Yes|
 |`Cisco_Umbrella_cloudfirewall_CL`|No|No|
 |`Cisco_Umbrella_firewall_CL`|No|No|
 |`Cisco_Umbrella_dlp_CL`|No|No|
@@ -1338,9 +1338,9 @@ The Cohesity function apps provide the ability to ingest Cohesity Datahawk ranso
 
 |Table|DCR support|Lake-only ingestion|
 |---|---|---|
-|`Cohesity_CL`|No|No|
+|`Cohesity_CL`|Yes|Yes|
 
-**Data collection rule support:** Not currently supported
+**Data collection rule support:** [Workspace transform DCR](/azure/azure-monitor/logs/tutorial-workspace-transformations-portal)
 
 **Prerequisites:**
 
@@ -1422,9 +1422,9 @@ Custom Data connector from DEFEND to utilise the Cortex API to ingest incidents 
 
 |Table|DCR support|Lake-only ingestion|
 |---|---|---|
-|`CortexXDR_Incidents_CL`|No|No|
+|`CortexXDR_Incidents_CL`|Yes|Yes|
 
-**Data collection rule support:** Not currently supported
+**Data collection rule support:** [Workspace transform DCR](/azure/azure-monitor/logs/tutorial-workspace-transformations-portal)
 
 **Prerequisites:**
 
@@ -1892,6 +1892,23 @@ Dataminr Pulse Alerts Data Connector brings our AI-powered real-time intelligenc
 a. Users must have a valid Dataminr Pulse API **client ID** and **secret** to use this data connector.
 
  b. One or more Dataminr Pulse Watchlists must be configured in the Dataminr Pulse website.<br><br>
+</details> 
+
+ ---
+   
+<a name="datawiza-dap"></a><details><summary>**Datawiza DAP**</summary>
+
+**Supported by:** [Datawiza Technology Inc.](https://www.datawiza.com/contact-us/)
+
+Connects the Datawiza DAP logs to Azure Log Analytics via the REST API interface
+
+**Log Analytics table(s):**  
+
+|Table|DCR support|Lake-only ingestion|
+|---|---|---|
+|`datawizaserveraccess_CL`|No|No|
+
+**Data collection rule support:** Not currently supported<br><br>
 </details> 
 
  ---
@@ -2519,9 +2536,9 @@ Google Cloud Platform (GCP) Load Balancer logs provide detailed insights into ne
 
 |Table|DCR support|Lake-only ingestion|
 |---|---|---|
-|`GCPLoadBalancerLogs_CL`|No|No|
+|`GCPLoadBalancerLogs_CL`|Yes|Yes|
 
-**Data collection rule support:** Not currently supported<br><br>
+**Data collection rule support:** [Workspace transform DCR](/azure/azure-monitor/logs/tutorial-workspace-transformations-portal)<br><br>
 </details> 
 
  ---
@@ -2976,9 +2993,9 @@ The [Imperva Cloud WAF](https://www.imperva.com/resources/resource-library/datas
 
 |Table|DCR support|Lake-only ingestion|
 |---|---|---|
-|`ImpervaWAFCloud_CL`|No|No|
+|`ImpervaWAFCloud_CL`|Yes|Yes|
 
-**Data collection rule support:** Not currently supported
+**Data collection rule support:** [Workspace transform DCR](/azure/azure-monitor/logs/tutorial-workspace-transformations-portal)
 
 **Prerequisites:**
 
@@ -3134,9 +3151,9 @@ The [Island](https://www.island.io) Admin connector provides the capability to i
 
 |Table|DCR support|Lake-only ingestion|
 |---|---|---|
-|`Island_Admin_CL`|No|No|
+|`Island_Admin_CL`|Yes|Yes|
 
-**Data collection rule support:** Not currently supported
+**Data collection rule support:** [Workspace transform DCR](/azure/azure-monitor/logs/tutorial-workspace-transformations-portal)
 
 **Prerequisites:**
 
@@ -3155,9 +3172,9 @@ The [Island](https://www.island.io) connector provides the capability to ingest 
 
 |Table|DCR support|Lake-only ingestion|
 |---|---|---|
-|`Island_User_CL`|No|No|
+|`Island_User_CL`|Yes|Yes|
 
-**Data collection rule support:** Not currently supported
+**Data collection rule support:** [Workspace transform DCR](/azure/azure-monitor/logs/tutorial-workspace-transformations-portal)
 
 **Prerequisites:**
 
@@ -3243,9 +3260,9 @@ The [Lookout Mobile Threat Detection](https://lookout.com) data connector provid
 
 |Table|DCR support|Lake-only ingestion|
 |---|---|---|
-|`LookoutMtdV2_CL`|No|No|
+|`LookoutMtdV2_CL`|Yes|Yes|
 
-**Data collection rule support:** Not currently supported<br><br>
+**Data collection rule support:** [Workspace transform DCR](/azure/azure-monitor/logs/tutorial-workspace-transformations-portal)<br><br>
 </details> 
 
  ---
@@ -4478,10 +4495,10 @@ The [OneLogin](https://www.onelogin.com/) data connector provides the capability
 
 |Table|DCR support|Lake-only ingestion|
 |---|---|---|
-|`OneLoginEventsV2_CL`|No|No|
-|`OneLoginUsersV2_CL`|No|No|
+|`OneLoginEventsV2_CL`|Yes|Yes|
+|`OneLoginUsersV2_CL`|Yes|Yes|
 
-**Data collection rule support:** Not currently supported
+**Data collection rule support:** [Workspace transform DCR](/azure/azure-monitor/logs/tutorial-workspace-transformations-portal)
 
 **Prerequisites:**
 
@@ -4573,9 +4590,9 @@ The Orca Security Alerts connector allows you to easily export Alerts logs to Mi
 
 |Table|DCR support|Lake-only ingestion|
 |---|---|---|
-|`OrcaAlerts_CL`|No|No|
+|`OrcaAlerts_CL`|Yes|Yes|
 
-**Data collection rule support:** Not currently supported<br><br>
+**Data collection rule support:** [Workspace transform DCR](/azure/azure-monitor/logs/tutorial-workspace-transformations-portal)<br><br>
 </details> 
 
  ---
@@ -4738,9 +4755,9 @@ This connector ingests **audit activity logs** from the PingOne Identity platfor
 
 |Table|DCR support|Lake-only ingestion|
 |---|---|---|
-|`PingOne_AuditActivitiesV2_CL`|No|No|
+|`PingOne_AuditActivitiesV2_CL`|Yes|Yes|
 
-**Data collection rule support:** Not currently supported<br><br>
+**Data collection rule support:** [Workspace transform DCR](/azure/azure-monitor/logs/tutorial-workspace-transformations-portal)<br><br>
 </details> 
 
  ---
@@ -5014,9 +5031,9 @@ The Rubrik Security Cloud data connector enables security operations teams to in
 |Table|DCR support|Lake-only ingestion|
 |---|---|---|
 |`Rubrik_Anomaly_Data_CL`|Yes|Yes|
-|`Rubrik_Ransomware_Data_CL`|No|No|
-|`Rubrik_ThreatHunt_Data_CL`|No|No|
-|`Rubrik_Events_Data_CL`|No|No|
+|`Rubrik_Ransomware_Data_CL`|Yes|Yes|
+|`Rubrik_ThreatHunt_Data_CL`|Yes|Yes|
+|`Rubrik_Events_Data_CL`|Yes|Yes|
 
 **Data collection rule support:** [Workspace transform DCR](/azure/azure-monitor/logs/tutorial-workspace-transformations-portal)
 
