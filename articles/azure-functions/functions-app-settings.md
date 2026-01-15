@@ -565,7 +565,7 @@ Sets an optional list of headers that are applied to all outgoing data exported 
 
 ## PIP\_INDEX\_URL
 
-Overrides the default base URL of the Python Package Index (`https://pypi.org/simple`) when running a remote build. Because this setting replaces the package index, you might see unexpected behaviour on restore. Only use this setting when you need to use a complete set of custom dependencies. When possible, you should instead use `PIP_EXTRA_URL`, which lets you reference an additional package index. For more information, see [Custom dependencies](functions-reference-python.md#remote-build-with-extra-index-url) in the Python developer reference.
+Overrides the default base URL of the Python Package Index (`https://pypi.org/simple`) when running a remote build. Because this setting replaces the package index, you might see unexpected behaviour on restore. Only use this setting when you need to use a complete set of custom dependencies. When possible, you should instead use `PIP_EXTRA_URL`, which lets you reference an additional package index. For more information, see [Custom dependencies](python-build-options.md#custom-dependencies) in the Python build article.
 
 |Key|Sample value|
 |---|------------|
@@ -575,7 +575,7 @@ These custom dependencies can be in a package index repository compliant with PE
 
 ## PIP\_EXTRA\_INDEX\_URL
 
-The value for this setting indicates an extra index URL for custom packages for Python apps, to use in addition to the `--index-url`. Use this setting when you need to run a remote build using custom dependencies that are found in an extra package index. For more information, see [Custom dependencies](functions-reference-python.md#remote-build-with-extra-index-url) in the Python developer reference.
+The value for this setting indicates an extra index URL for custom packages for Python apps, to use in addition to the `--index-url`. Use this setting when you need to run a remote build using custom dependencies that are found in an extra package index. For more information, see [Custom dependencies](python-build-options.md#custom-dependencies) in the Python build article.
 
 |Key|Sample value|
 |---|------------|
