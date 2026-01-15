@@ -30,7 +30,7 @@ If you're adding SMB volumes to your Elastic zone-redundant capacity pool, you m
 * The Active Directory resource you create for the capacity pool is limited to Elastic zone-redundant storage. The Active Directory resource is available only with capacity pools in Elastic zone-redundant storage. 
 * You can't update the resource ID of the Active Directory after it's connected. 
 * If you update the password of your Active Directory connection, you should ensure it's also updated in the resource provided. If you don't update the Active Directory, creating SMB volumes can fail. 
-* Currently, the credential option for Active Directory only supports user-assigned identities. 
+* Currently, you can only configure Active Directory with a user-assigned identity.  
 
 >[!IMPORTANT]
 >Currently, you can create an Active Directory using the Azure portal. Any other CRUD operations must be performed using the REST API. 
@@ -70,16 +70,16 @@ You can create the Active Directory connection when you [create the capacity poo
         This option grants additional security privileges to Active Directory domain users or groups that require elevated privileges to access the Azure NetApp Files volumes.
     * **Backup users**
         This option grants additional security privileges to Active Directory domain users or groups that require elevated backup privileges to support backup, restore, and migration workflows in Azure NetApp Files.
-    * **Credentials**
-        Select **User assigned identity** to use the standalone Azure resource assigned to your service. 
     * **AKV resource**
         Choose the resource identity for your Azure Key Vault. 
     * **User name**
     * **Password secret**
+    * **User assigned identity**
+        Select the user-assigned identity connected to the Azure Key Vault that you're associating with the account.
 
     :::image type="content" source="./media/shared/elastic-active-directory-access.png" alt-text="Screenshot of the identity & access management tab." lightbox="./media/shared/elastic-active-directory-access.png":::
 
-1. Optionally, select **Next** to add tags. Otherwise, select the **Review + create** tab.
+1. Optionally, select **Next** to add tags. Otherwise, select the **Review + create** tab to finalize creating the account. 
 1. Review your settings then select **Create** to add the Active Directory connection. 
 
 ## Add an existing Active Directory connection 

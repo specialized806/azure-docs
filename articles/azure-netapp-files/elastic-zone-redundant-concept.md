@@ -1,6 +1,6 @@
 ---
 title: Understand Azure NetApp Files zone-redundant storage
-description: Understand the difference between hardware-based and zone-redundant storage. 
+description: Understand the unique qualities of Elastic zone-redundant storage, which delivers built-in local redundancy is designed as a more affordable alternative. 
 services: azure-netapp-files
 author: b-ahibbard
 ms.service: azure-netapp-files
@@ -20,7 +20,7 @@ Scale smaller volumes with flexible throughput, power backups, analytics staging
 
 Elastic zone-redundant storage offers built-in high-availability and zero recovery point objective (RPO). 
 
-When creating your NetApp account, you must designate that the account is for zone-redundant storage. An Elastic NetApp account can only be used for Elastic zone-redundant storage.
+When creating your NetApp account, you must designate that the [account is for Elastic zone-redundant storage](elastic-zone-redundant-concept.md). An Elastic NetApp account can only be used for Elastic zone-redundant storage.
 
 ## Elastic zone-redundant service
 
