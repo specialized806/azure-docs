@@ -18,7 +18,7 @@ When you use Durable Functions, the Azure Storage provider is your default optio
 With the Azure Storage provider:
 - Azure Queues drive all function execution. 
 - Azure Tables store orchestration and entity status and history. 
-- Azure Blobs and blob leases distribute orchestration instances and entities across multiple app instances (also known as *workers* or simply *virtual machines*). 
+- Azure Blobs and blob leases distribute orchestration instances and entities across multiple app instances (also known as *workers* or *virtual machines*). 
 
 Let's explore how these Azure Storage components work together and impact your app's performance and scalability.
 
@@ -41,9 +41,9 @@ When you create a task hub, the Azure Storage provider sets up these components 
 - Azure Blobs:
   - Extra blob containers for lease blobs and/or large messages.
 
-For example, if you name your task hub `xyz` and set `PartitionCount = 4`, you'll see these queues and tables:
+For example, if you name your task hub `xyz` and set `PartitionCount = 4`, you see these queues and tables:
 
-:::image type="content" source="./media/durable-functions-task-hubs/azure-storage.png" alt-text="Diagram showing Azure Storage provider storage organization for 4 control queues.":::
+:::image type="content" source="./media/durable-functions-task-hubs/azure-storage.png" alt-text="Diagram showing Azure Storage provider storage organization for four control queues.":::
 
 Let's look at each component and understand what role it plays.
 
@@ -56,22 +56,22 @@ Let's look at each component and understand what role it plays.
 
 ### History table
 
-The **History** table is an Azure Storage table that contains the history events for all orchestration instances data within your task hub, including output payloads from activity and sub-orchestrator functions, and payloads from external events. The table name follows the format `<TaskHubName>History`. As your instances run, new rows are added to this table. In this table:
+The **History** table is an Azure Storage table that contains the history events for all orchestration instances data within your task hub, including output payloads from activity and suborchestrator functions, and payloads from external events. The table name follows the format `<TaskHubName>History`. As your instances run, new rows are added to this table. In this table:
 - The *partition key* derives from the orchestration's instance ID. By default, instance IDs are random, ensuring optimal distribution of internal partitions in Azure Storage. 
 - The *row key* is a sequence number that orders the history events.
 
-When you need to run an orchestration insance, the system loads the full history into memory using a range query within a single table partition. These history events replay into your orchestrator function code, restoring it to its previously checkpointed state. This approach follows the [Event Sourcing pattern](/azure/architecture/patterns/event-sourcing).
+When you need to run an orchestration instance, the system loads the full history into memory using a range query within a single table partition. These history events replay into your orchestrator function code, restoring it to its previously checkpointed state. This approach follows the [Event Sourcing pattern](/azure/architecture/patterns/event-sourcing).
 
 Potentially, this approach creates significant memory pressure on a virtual machine. Reduce the length and size of your orchestration history by:
-- Splitting large orchestrations into [multiple sub-orchestrations](./durable-functions-sub-orchestrations.md). 
-- Shrinking the size of outputs returned by your activity and sub-orchestrator functions. 
+- Splitting large orchestrations into [multiple suborchestrations](./durable-functions-sub-orchestrations.md). 
+- Shrinking the size of outputs returned by your activity and suborchestrator functions. 
 - Lowering your per-virtual machine [concurrency throttles](durable-functions-perf-and-scale.md#concurrency-throttles) to limit how many orchestrations can concurrently load into memory.
 
 ### Instances table
 
 The **Instances** table contains the statuses of all orchestration and entity instances within a task hub. As you create instances, new rows get added to this table. In this table:
 - The *partition key* is either the orchestration instance ID or entity key.
-- The *row key* is an empty string. You'll have one row per orchestration or entity instance.
+- The *row key* is an empty string. Each orchestration or entity instance typically has one row.
 
 The instance table satisfies [instance query requests from code](durable-functions-instance-management.md#query-instances) and [status query HTTP API](durable-functions-http-api.md#get-instance-status) calls. It stays eventually consistent with the contents of the **History** table. This separation of concerns follows the [Command and Query Responsibility Segregation (CQRS) pattern](/azure/architecture/patterns/cqrs), which efficiently handles instance query operations.
 
@@ -80,9 +80,9 @@ The Instances table's partitioning lets you store millions of orchestration inst
 ### Partitions table
 
 > [!NOTE]
-> You'll only see this table in your task hub when you enable `Table Partition Manager`. To use it, configure the `useTablePartitionManagement` setting in your app's [host.json](durable-functions-bindings.md#durable-functions-settings-in-hostjson).
+> This table is only visible in your task hub when you enable `Table Partition Manager`. To use it, configure the `useTablePartitionManagement` setting in your app's [host.json](durable-functions-bindings.md#durable-functions-settings-in-hostjson).
 
-The **Partitions** table stores partition status for your Durable Functions app and helps distribute partitions across your app's workers. You'll have one row per partition.
+The **Partitions** table stores partition status for your Durable Functions app and helps distribute partitions across your app's workers. Each partition has one row.
 
 ### Queues
 
@@ -96,7 +96,7 @@ In Durable Functions, you get one **work-item** queue per task hub. It's a basic
 
 #### Control queues
 
-Each task hub in Durable Functions has multiple **control queues**. A control queue is more sophisticated than the simpler work-item queue. Control queues trigger your stateful orchestrator and entity functions. Since orchestrator and entity function instances are stateful singletons, each orchestration or entity must only be processed by one worker at a time. To achieve this, the system assigns each orchestration instance or entity to a single control queue. These control queues load balance across workers to ensure each queue is only processed by one worker at a time. You'll find more details on this behavior in later sections.
+Each task hub in Durable Functions has multiple **control queues**. A control queue is more sophisticated than the simpler work-item queue. Control queues trigger your stateful orchestrator and entity functions. Since orchestrator and entity function instances are stateful singletons, each orchestration or entity must only be processed by one worker at a time. To achieve this, the system assigns each orchestration instance or entity to a single control queue. These control queues load balance across workers to ensure each queue is only processed by one worker at a time. Find more details on this behavior in later sections.
 
 Control queues contain various orchestration lifecycle message types, including:
 - [Orchestrator control messages](durable-functions-instance-management.md)
@@ -112,7 +112,7 @@ A background thread constantly polls control queue messages. Configure the follo
 For more information on these settings, see the [`host.json` schema](../functions-host-json.md#durabletask) documentation.
 
 > [!TIP]
-> Increasing the `controlQueueBufferThreshold` value lets a single orchestration or entity process events faster. However, this can also increase memory usage. The higher memory usage comes partly from pulling more messages off the queue and partly from fetching more orchestration histories into memory. Reducing the `controlQueueBufferThreshold` value can effectively reduce memory usage.
+> Increasing the `controlQueueBufferThreshold` value lets a single orchestration or entity process events faster. However, it can also increase memory usage. The higher memory usage comes partly from pulling more messages off the queue and partly from fetching more orchestration histories into memory. Reducing the `controlQueueBufferThreshold` value can effectively reduce memory usage.
 
 #### Queue polling
 
@@ -142,7 +142,7 @@ Orchestration instances start when the system puts an `ExecutionStarted` message
 
 - **Back off polling delays:** 
 
-   You should only experience [back-off polling behavior for control queues described earlier](#queue-polling) when your app scales out to two or more instances. You won't have a delay if:
+   You should only experience [back-off polling behavior for control queues described earlier](#queue-polling) when your app scales out to two or more instances. You can avoid a delay if:
     - You have only one app instance
     - The app instance that starts the orchestration is also the same instance polling the target control queue 
 
@@ -152,7 +152,7 @@ Orchestration instances start when the system puts an `ExecutionStarted` message
 
 In most cases, Durable Functions doesn't use Azure Storage Blobs to persist data. However, queues and tables have [size limits](../../azure-resource-manager/management/azure-subscription-service-limits.md#azure-queue-storage-limits) that can prevent Durable Functions from persisting all required data into a storage row or queue message. 
 
-For example, when a piece of data you need to persist to a queue exceeds 45 KB when serialized, Durable Functions compresses the data and stores it in a blob instead. When persisting data to blob storage, Durable Functions stores a reference to that blob in the table row or queue message. When Durable Functions needs to retrieve the data, it automatically fetches it from the blob. You'll find these blobs stored in the blob container `<taskhub>-largemessages`.
+For example, when a piece of data you need to persist to a queue exceeds 45 KB when serialized, Durable Functions compresses the data and stores it in a blob instead. When persisting data to blob storage, Durable Functions stores a reference to that blob in the table row or queue message. When Durable Functions needs to retrieve the data, it automatically fetches it from the blob. Find these blobs stored in the blob container `<taskhub>-largemessages`.
 
 #### Performance considerations
 
@@ -201,7 +201,7 @@ Keep these considerations in mind when choosing the storage account for your Dur
 - When possible, use [Microsoft Entra authentication with managed identities](./durable-functions-configure-managed-identity.md) to secure your storage account connection.
 - For performance-sensitive workloads, configure a storage account other than the default account (`AzureWebJobsStorage`). Since Durable Functions uses Azure Storage heavily, using a dedicated storage account isolates Durable Functions storage usage from the internal usage by the Azure Functions host.
 - You need standard general purpose Azure Storage accounts when using the Azure Storage provider. All other storage account types aren't currently supported. 
-- Legacy v1 general purpose storage accounts for Durable Functions is recommended. The newer v2 storage accounts can be significantly more expensive for Durable Functions workloads. [Learn more about Azure Storage account types](../../storage/common/storage-account-overview.md).
+- Legacy v1 general purpose storage accounts for Durable Functions is recommended. The newer v2 storage accounts can be more expensive for Durable Functions workloads. [Learn more about Azure Storage account types](../../storage/common/storage-account-overview.md).
 
 ## Orchestrator scale-out
 
@@ -210,7 +210,7 @@ While you can scale out activity functions infinitely by adding more virtual mac
 > [!NOTE]
 > Generally speaking, your orchestrator functions should be lightweight and shouldn't require large amounts of computing power. You don't need to create a large number of control-queue partitions to get great throughput for orchestrations. You should do most of the heavy work in stateless activity functions, which you can scale out infinitely.
 
-You define the number of control queues in your `host.json` file. The following example `host.json` snippet sets the `durableTask/storageProvider/partitionCount` property (`durableTask/partitionCount` in Durable Functions 1.x) to `3`. You'll have as many control queues as you have partitions.
+You define the number of control queues in your `host.json` file. The following example `host.json` snippet sets the `durableTask/storageProvider/partitionCount` property (`durableTask/partitionCount` in Durable Functions 1.x) to `3`. You have as many control queues as you have partitions.
 
 # [Durable Functions 2.x](#tab/durable-2x)
 
@@ -239,13 +239,13 @@ You define the number of control queues in your `host.json` file. The following 
 ```
 ---
 
-You can configure a task hub with between 1 and 16 partitions. If you don't specify a value, the default partition count is **4**.
+You can configure a task hub with between 1 and 16 partitions. If you don't specify a value, the default partition count is **four**.
 
-During low traffic scenarios, your application scales in, so a small number of workers manage your partitions. For example, in the following diagram, you can see that orchestrators 1 through 6 are load-balanced across partitions. Similarly, partitions, like activities, are load-balanced across workers. Your partitions load-balance across workers, regardless of how many orchestrators get started.
+During low traffic scenarios, your application scales in, so few workers manage your partitions. For example, in the following diagram, you can see that orchestrators 1 through 6 are load-balanced across partitions. Similarly, partitions, like activities, are load-balanced across workers. Your partitions load-balance across workers, regardless of how many orchestrators get started.
 
 :::image type="content" source="./media/durable-functions-perf-and-scale/scale-progression-1.png" alt-text="Diagram showing scale-in orchestrations with partitions managed by a small number of workers.":::
 
-If you're running on the Azure Functions Consumption or Elastic Premium plans, or if you have load-based auto-scaling configured, more workers get allocated as traffic increases and your partitions eventually load balance across all workers. If you continue to scale out, eventually each partition is managed by a single worker. 
+If you're running on the Azure Functions Consumption or Elastic Premium plans, or if you configured load-based autoscaling, more workers get allocated as traffic increases and your partitions eventually load balance across all workers. If you continue to scale out, eventually a single worker manages each partition. 
 
 Activities continue to be load-balanced across all workers, as shown in the following image.
 
@@ -257,13 +257,13 @@ You can make this upper-bound more precise when your partitions are fully scaled
 
 > [!NOTE]
 > In this context, *active* means that an orchestration or entity is loaded into memory and processing *new events*. If your orchestration or entity is waiting for more events, such as the return value of an activity function, it gets unloaded from memory and is no longer considered *active*. 
-> Orchestrations and entities are subsequently reloaded into memory only when there are new events to process. There's no practical maximum number of *total* orchestrations or entities that can run on a single virtual machine, even if they're all in the "Running" state. The only limitation is the number of *concurrently active* orchestration or entity instances.
+> Orchestrations and entities are later reloaded into memory only when there are new events to process. There's no practical maximum number of *total* orchestrations or entities that can run on a single virtual machine, even if they're all in the "Running" state. The only limitation is the number of *concurrently active* orchestration or entity instances.
 
 The following image illustrates a fully scaled-out scenario, where more orchestrators are added but some are inactive, shown in grey.
 
-:::image type="content" source="./media/durable-functions-perf-and-scale/scale-progression-3.png" alt-text="Diagram showing second scaled-out orchestrations with additional orchestrators, some inactive.":::
+:::image type="content" source="./media/durable-functions-perf-and-scale/scale-progression-3.png" alt-text="Diagram showing second scaled-out orchestrations with more orchestrators, some inactive.":::
 
-During scale-out, control queue leases may be redistributed across Functions host instances to ensure your partitions are evenly distributed. These leases are internally implemented as Azure Blob storage leases and ensure that any individual orchestration instance or entity only runs on a single host instance at a time. If you configure a task hub with three partitions (and therefore three control queues), orchestration instances and entities can be load-balanced across all three lease-holding host instances. You can add additional virtual machines to increase capacity for activity function execution.
+During scale-out, control queue leases may be redistributed across Functions host instances to ensure your partitions are evenly distributed. These leases are internally implemented as Azure Blob storage leases and ensure that any individual orchestration instance or entity only runs on a single host instance at a time. If you configure a task hub with three partitions (and therefore three control queues), orchestration instances and entities can be load-balanced across all three lease-holding host instances. You can add more virtual machines to increase capacity for activity function execution.
 
 The following diagram illustrates how the Azure Functions host interacts with the storage entities in a scaled out environment.
 
@@ -275,7 +275,7 @@ Orchestration instances and entities are distributed across all control queue in
 
 ## Extended sessions
 
-Extended sessions is a [caching mechanism](durable-functions-perf-and-scale.md#instance-caching) that keeps your orchestrations and entities in memory even after they finish processing messages. When you enable extended sessions, you'll typically see reduced I/O against the underlying durable store and overall improved throughput.
+*Extended sessions* is a [caching mechanism](durable-functions-perf-and-scale.md#instance-caching) that keeps your orchestrations and entities in memory even after they finish processing messages. When you enable extended sessions, you typically see reduced I/O against the underlying durable store and overall improved throughput.
 
 You can enable extended sessions by setting `durableTask/extendedSessionsEnabled` to `true` in your `host.json` file. You can use the `durableTask/extendedSessionIdleTimeoutInSeconds` setting to control how long an idle session stays in memory:
 
@@ -317,27 +317,27 @@ Extended sessions affect orchestrator and entity functions differently. Let's ex
 
 As mentioned earlier, the system replays orchestrator functions using the contents of [the History table](#history-table). By default, your orchestrator function code replays every time a batch of messages are dequeued from a control queue. Even if you're using the fan-out/fan-in pattern and awaiting all tasks to complete, replays occur as batches of task responses are processed over time. When you enable extended sessions, orchestrator function instances stay in memory longer and new messages can be processed without a full history replay.
 
-You'll most often observe the performance improvement of extended sessions when:
+Most often, you can observe the performance improvement of extended sessions when:
 
 - You have a limited number of orchestration instances running concurrently.
 - Your orchestrations have a large number of sequential actions (for example, hundreds of activity function calls) that complete quickly.
 - Your orchestrations fan-out and fan-in a large number of actions that complete around the same time.
 - Your orchestrator functions need to process large messages or do any CPU-intensive data processing.
 
-In all other situations, you typically won't see any observable performance improvement for orchestrator functions.
+In all other situations, you typically don't see any observable performance improvement for orchestrator functions.
 
 > [!NOTE]
-> You should only use these settings after you've fully developed and tested your orchestrator function. The default aggressive replay behavior can be useful for detecting [orchestrator function code constraints](durable-functions-code-constraints.md) violations at development time, so it's disabled by default.
+> You should only use these settings after fully developing and testing your orchestrator function. The default aggressive replay behavior can be useful for detecting [orchestrator function code constraints](durable-functions-code-constraints.md) violations at development time, so it's disabled by default.
 
 ### Performance targets
 
 The following table shows the [expected *maximum* throughput numbers for the scenarios](durable-functions-perf-and-scale.md) article. 
 
-"Instance" refers to a single instance of an orchestrator function running on a single small ([A1](/azure/virtual-machines/sizes-previous-gen)) virtual machine in Azure App Service. In all cases, these numbers assume you've enabled [extended sessions](#extended-sessions). Your actual results may vary depending on the CPU or I/O work your function code performs.
+"Instance" refers to a single instance of an orchestrator function running on a single small ([A1](/azure/virtual-machines/sizes-previous-gen)) virtual machine in Azure App Service. In all cases, these numbers assume you enabled [extended sessions](#extended-sessions). Your actual results may vary depending on the CPU or I/O work your function code performs.
 
 | Scenario | Maximum throughput |
 | -------- | ------------------ |
-| Sequential activity execution | 5 activities per second, per instance |
+| Sequential activity execution | Five activities per second, per instance |
 | Parallel activity execution (fan-out) | 100 activities per second, per instance |
 | Parallel response processing (fan-in) | 150 responses per second, per instance |
 | External event processing | 50 events per second, per instance |
@@ -346,24 +346,28 @@ The following table shows the [expected *maximum* throughput numbers for the sce
 If you aren't seeing the throughput numbers you expect and your CPU and memory usage appears healthy, check whether the cause is related to [the health of your storage account](../../storage/common/storage-monitoring-diagnosing-troubleshooting.md#troubleshooting-guidance). The Durable Functions extension can put significant load on an Azure Storage account, and sufficiently high loads may result in storage account throttling.
 
 > [!TIP]
-> In some cases, you can significantly increase the throughput of external events, activity fan-in, and entity operations by increasing the value of the `controlQueueBufferThreshold` setting in your `host.json`. Increasing this value beyond its default causes the Durable Task Framework storage provider to use more memory to prefetch these events more aggressively, reducing delays associated with dequeueing messages from the Azure Storage control queues. For more information, see the [host.json](durable-functions-bindings.md#host-json) reference documentation.
+> In some cases, you can increase the throughput of external events, activity fan-in, and entity operations by increasing the value of the `controlQueueBufferThreshold` setting in your `host.json`. Increasing this value beyond its default causes the Durable Task Framework storage provider to use more memory to prefetch these events more aggressively, reducing delays associated with dequeueing messages from the Azure Storage control queues. For more information, see the [host.json](durable-functions-bindings.md#host-json) reference documentation.
 
 ## Flex Consumption plan
 
-The [Flex Consumption plan](../flex-consumption-plan.md) is an Azure Functions hosting plan that provides many of the benefits of the Consumption plan, including a serverless billing model, while also adding useful features like private networking, instance memory size selection, and full support for managed identity authentication.
+The [Flex Consumption plan](../flex-consumption-plan.md) is an Azure Functions hosting plan that provides many of the benefits of the Consumption plan, including:
+- A serverless billing model
+- Private networking
+- Instance memory size selection
+- Full support for managed identity authentication
 
 You should follow these performance recommendations when you host Durable Functions in the Flex Consumption plan:
 
-- Set the [always ready instance count](../flex-consumption-how-to.md#set-always-ready-instance-counts) for the `durable` group to `1`. This ensures you always have one instance ready to handle Durable Functions related requests, reducing your application's cold start. 
+- Set the [always ready instance count](../flex-consumption-how-to.md#set-always-ready-instance-counts) for the `durable` group to `1`. This setting ensures you always have one instance ready to handle Durable Functions related requests, reducing your application's cold start. 
 - Reduce the [queue polling interval](#queue-polling) to 10 seconds or less. Since this plan type is more sensitive to queue polling delays, lowering the polling interval helps increase the frequency of polling operations, ensuring requests are handled faster. However, more frequent polling operations lead to higher Azure Storage account costs.
 
 ## High throughput processing
 
-The Azure Storage backend architecture puts certain limitations on the maximum theoretical performance and scalability of Durable Functions. If your testing shows that Durable Functions on Azure Storage won't meet your throughput requirements, you should consider using the [Netherite storage provider for Durable Functions](durable-functions-storage-providers.md#netherite) instead.
+The Azure Storage backend architecture puts certain limitations on the maximum theoretical performance and scalability of Durable Functions. If your testing shows that Durable Functions on Azure Storage doesn't meet your throughput requirements, you should consider using the [Netherite storage provider for Durable Functions](durable-functions-storage-providers.md#netherite) instead.
 
 [Compare the achievable throughput for various basic scenarios](https://microsoft.github.io/durabletask-netherite/#/scenarios).
 
-The Netherite storage backend was designed and developed by [Microsoft Research](https://www.microsoft.com/research). It uses [Azure Event Hubs](../../event-hubs/event-hubs-about.md) and the [FASTER](https://www.microsoft.com/research/project/faster/) database technology on top of [Azure Page Blobs](../../storage/blobs/storage-blob-pageblob-overview.md). The design of Netherite enables significantly higher-throughput processing of orchestrations and entities compared to other providers. In some benchmark scenarios, throughput increased by more than an order of magnitude when compared to the default Azure Storage provider.
+The Netherite storage backend was designed and developed by [Microsoft Research](https://www.microsoft.com/research). It uses [Azure Event Hubs](../../event-hubs/event-hubs-about.md) and the [FASTER](https://www.microsoft.com/research/project/faster/) database technology on top of [Azure Page Blobs](../../storage/blobs/storage-blob-pageblob-overview.md). The design of Netherite enables higher-throughput processing of orchestrations and entities compared to other providers. In some benchmark scenarios, throughput increased by more than an order of magnitude when compared to the default Azure Storage provider.
 
 For more information on the supported storage providers for Durable Functions and how they compare, see the [Durable Functions storage providers](durable-functions-storage-providers.md) documentation.
 
