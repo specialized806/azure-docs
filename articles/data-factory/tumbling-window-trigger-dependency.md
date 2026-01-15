@@ -130,8 +130,9 @@ The following scenarios show the use of tumbling window dependency properties. I
 
 :::image type="content" source="media/tumbling-window-trigger-dependency/tumbling-window-dependency-02.png" alt-text="Diagram that shows an offset example.":::
 
-In these examples, the 10-11 run for trigger A, depends on the run from trigger B (highlighted in yellow.) When trigger B is complete, trigger A will start.
-This dependancy can be concurrent (which is to say, they can be at the same time and have an offset of 0), or they can be offset (which is to say, trigger A can be dependant on trigger B which runs at a different time than trigger A.) 
+In these examples, the 10-11 run for trigger A depends on a run from trigger B (highlighted in yellow.) When trigger B successfully completes, trigger A will start.
+
+This dependancy can be concurrent (they can be at the same time), or they can be offset (trigger B that runs at a different time than trigger A.) 
 
 In the first example, the 10-11 timeframe trigger A has a concurrent dependancy on the 10-11 trigger B, so there's an offset of 0.
 
@@ -141,11 +142,11 @@ In the second example, the 10-11 timeframe trigger A has an offset dependancy on
 
 :::image type="content" source="media/tumbling-window-trigger-dependency/tumbling-window-dependency-03.png" alt-text="Diagram that shows a size example.":::
 
-In these examples, the 10-11 run for trigger A, depends on the run from trigger B (highlighted in yellow.) When trigger B is complete, trigger A will start.
+In these examples, the 10-11 run for trigger A depends on a run from trigger B (highlighted in yellow.) When trigger B successfully completes, trigger A will start.
 
-The size of the dependancy window can be different from the size of the dependant window.
+The size of the dependancy window can be different than the size of the dependant window.
 
-In the first example, the 10-11 timeframe trigger A has an offset dependancy on the 9-10 trigger B, so there's an offset of -1 hour and a size of unspecified since the size of the dependancy window is the same size as the trigger window.
+In the first example, the 10-11 timeframe trigger A has an offset dependancy on the 9-10 trigger B. The offset is -1 hour, and the size is _unspecified_ because the size of the dependancy window is the same size as the trigger window.
 
 In the second example, the 10-11 timeframe trigger A has an offset dependancy on the 9-11 trigger B, so there's an offset of -1 hour and a size of 2 hours.
 
@@ -153,17 +154,17 @@ In the second example, the 10-11 timeframe trigger A has an offset dependancy on
 
 :::image type="content" source="media/tumbling-window-trigger-dependency/tumbling-window-dependency-04.png" alt-text="Diagram that shows a self-dependency example.":::
 
-In these examples, the 10-11 run for trigger A, depends on the previous runs for trigger A. When the specified windows from trigger A successfully complete, the next A trigger will begin.
+In these examples, the 10-11 run for trigger A depends on the previous runs for trigger A. When the specified windows from trigger A successfully complete, the next A trigger will begin.
 
-In the first example, the 10-11 timeframe trigger A has an offset dependancy on the 9-10 trigger A, so there's an offset of -1 hour and a size of unspecified.
+In the first example, the 10-11 timeframe trigger A has an offset dependancy on the 9-10 trigger A, so there's an offset of -1 hour and a size of _unspecified_ because the size of the dependancy window is the same size as the trigger window.
 
 In the second example, the 10-11 timeframe trigger A has an offset dependancy on the 8-10 trigger A, so there's an offset of -1 hour and a size of 2 hours.
 
-The following example shows a daily job (rathe than an hourly job) with no gaps in the output streams of the job.
-
 :::image type="content" source="media/tumbling-window-trigger-dependency/tumbling-window-dependency-06.png" alt-text="Diagram that shows a self-dependency example with no gaps in the output streams.":::
 
-The 10/2-10/3 timeframe trigger has a dependancy on the 10/1-10/2 window and will trigger only when 10/1-10/2 completes successfully. The offset is -1 day and the size is unspecified, since the size of the dependancy window is the same size as the trigger window.
+This third example shows a daily job (rather than an hourly job) with no gaps in the output streams of the job.
+
+The 10/2-10/3 timeframe trigger has a dependancy on the 10/1-10/2 window, and will trigger only when 10/1-10/2 completes successfully. The offset is -1 day and the size is _unspecified_, since the size of the dependancy window is the same size as the trigger window.
 
 ### Dependency on another tumbling window trigger
 
@@ -171,7 +172,7 @@ The following example shows a daily telemetry processing job that depends on ano
 
 :::image type="content" source="media/tumbling-window-trigger-dependency/tumbling-window-dependency-05.png" alt-text="Diagram that shows a dependency example.":::
 
-When trigger B's 10/1-10/8 windows successfully complete, trigger A's 10/7-10/8 trigger will start. So there's an offset of -6 days, and a size of 7 days.
+When trigger B's 10/1-10/8 windows successfully complete, trigger A's 10/7-10/8 trigger will start. Trigger A's dependancy has an offset of -6 days, and a size of 7 days.
 
 ## Monitor dependencies
 
