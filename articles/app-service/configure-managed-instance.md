@@ -3,7 +3,7 @@ title: "Configure Managed Instance on Azure App Service (Preview)"
 description: Learn how to configure and deploy a Managed Instance on Azure App Service using Azure CLI and ARM templates. This guide covers general settings, storage mounts, registry keys, and Bastion/RDP access.
 author: msangapu-msft
 ms.author: msangapu
-ms.date: 11/18/2025
+ms.date: 01/15/2026
 ms.service: azure-app-service
 ms.topic: how-to
 keywords:
