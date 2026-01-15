@@ -95,9 +95,9 @@ Microsoft enables you to protect your data throughout its entire lifecycle: at r
 
 Technologies like [Intel Software Guard Extensions](https://software.intel.com/sgx) (Intel SGX), or [AMD Secure Encrypted Virtualization](https://www.amd.com/en/developer/sev.html) (SEV-SNP) are recent CPU improvements supporting confidential computing implementations. These technologies are designed as virtualization extensions and provide feature sets including memory encryption and integrity, CPU-state confidentiality and integrity, and attestation. For more information, see [Azure confidential computing](../confidential-computing/index.yml) documentation.
 
-## Multi-factor authentication (MFA)
+## Multifactor authentication (MFA)
 
-The CJIS Security Policy v5.9.2 revised the multi-factor authentication (MFA) requirements for CJI protection. MFA requires the use of two or more different factors defined as follows:
+The CJIS Security Policy v5.9.2 revised the multifactor authentication (MFA) requirements for CJI protection. MFA requires the use of two or more different factors defined as follows:
 
 - Something you know, for example, username/password or personal identification number (PIN)
 - Something you have, for example, a hard token such as a cryptographic key stored on or a one-time password (OTP) transmitted to a specialized hardware device
