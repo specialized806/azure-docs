@@ -16,7 +16,7 @@ Azure Bastion is a fully managed platform-as-a-service (PaaS) that provides secu
 
 This article provides guidance on how to best secure your Azure Bastion deployment.
 > [!NOTE]
-> Entra ID authentication for RDP connections is now available in public preview! See [Microsoft Entra ID](bastion-connect-vm-rdp-windows.md#microsoft-entra-id-authentication-preview) for details.
+> Entra ID authentication for RDP connections is now available in preview! See [Microsoft Entra ID](bastion-connect-vm-rdp-windows.md#microsoft-entra-id-authentication-preview) for details.
 
 ## Network security
 
