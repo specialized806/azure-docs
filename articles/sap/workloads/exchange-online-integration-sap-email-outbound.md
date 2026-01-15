@@ -24,7 +24,7 @@ Existing implementations relied on SMTP Auth and elevated trust relationship bec
 Follow our standard [guide](/exchange/mail-flow-best-practices/how-to-set-up-a-multifunction-device-or-application-to-send-email-using-microsoft-365-or-office-365) to understand the general configuration of a "device" that wants to send email via Microsoft 365.
 
 > [!WARNING]
-> With the [deprecation of Basic Authentication](https://techcommunity.microsoft.com/blog/exchange/exchange-online-to-retire-basic-auth-for-client-submission-smtp-auth/4114750) in Exchange Online, all new SAP-to-Exchange Online integrations in SAP ABAP Platform systems with SAP Basis Component (SAP_BASIS) release 7.50 or higher must use OAuth 2.0 client credential grant. This approach leverages Microsoft Entra ID for secure, passwordless authentication. Release 7.50 supports client ID and secret as defined in [RFC 6749, section 4.4](https://datatracker.ietf.org/doc/html/rfc6749#section-4.4) for the [client credentials authorization grant](https://datatracker.ietf.org/doc/html/rfc6749#section-1.3.4). With release 7.51, the JSON Web Token (JWT) bearer authorization grant as specified in [RFC 7523](https://datatracker.ietf.org/doc/html/rfc7523) is also supported (see https://launchpad.support.sap.com/#/notes/3592080).
+> With the [deprecation of Basic Authentication](https://techcommunity.microsoft.com/blog/exchange/exchange-online-to-retire-basic-auth-for-client-submission-smtp-auth/4114750) in Exchange Online, all new SAP-to-Exchange Online integrations in SAP ABAP Platform systems with SAP Basis Component (SAP_BASIS) release 7.50 or higher must use OAuth 2.0 client credential grant. This approach uses Microsoft Entra ID for secure, passwordless authentication. Release 7.50 supports client ID and secret as defined in [RFC 6749, section 4.4](https://datatracker.ietf.org/doc/html/rfc6749#section-4.4) for the [client credentials authorization grant](https://datatracker.ietf.org/doc/html/rfc6749#section-1.3.4). With release 7.51, the JSON Web Token (JWT) bearer authorization grant as specified in [RFC 7523](https://datatracker.ietf.org/doc/html/rfc7523) is also supported (see https://launchpad.support.sap.com/#/notes/3592080).
 
 ## Setup considerations
 
@@ -44,7 +44,7 @@ This guide is updated when more SAP-supported options become available.
 
 ### Prerequisites
 
-- Administrative access to an SAP S/4HANA system on-premises, SAP S/4HANA Cloud Private Edition tenant, SAP BTP ABAP Environment, or any other SAP ABAP Platform-based system with SAP Basis Component release 7.50 or higher (JWT-based OAuth client authentication from 7.51). For SAP S/4HANA Cloud Public Edition, the customer-specific email configuration for SMTP OAuth 2.0 is managed by SAP. Also refer to [SAP Note 3581654](https://me.sap.com/notes/3581654) as a prerequisite for using SMTP OAuth 2.0 in SAP S/4HANA on-premises and SAP S/4HANA Cloud Private Edition.
+- Administrative access to an SAP S/4HANA system on-premises, SAP S/4HANA Cloud Private Edition tenant, SAP BTP ABAP Environment, or any other SAP ABAP Platform-based system with SAP Basis Component release 7.50 or higher. For SAP S/4HANA Cloud Public Edition, SAP manages customer-specific email configuration for SMTP OAuth 2.0. Also refer to [SAP Note 3581654](https://me.sap.com/notes/3581654) as a prerequisite for using SMTP OAuth 2.0 in SAP S/4HANA on-premises and SAP S/4HANA Cloud Private Edition.
 - Administrative access to a Microsoft Exchange Online subscription
 - A valid account and email address in Microsoft Exchange Online. The email address appears as the sender of messages from the SAP system.
 - Administrative access to a Microsoft Entra ID tenant with at least [Application Administrator](/entra/identity/role-based-access-control/permissions-reference#application-administrator) permissions
@@ -61,7 +61,7 @@ This guide is updated when more SAP-supported options become available.
 
 ### Register an application representing the SAP system in Entra ID 
 
-Follow these instructions (see also [Register an application in Microsoft Entra ID](/entra/identity-platform/quickstart-register-app)) to create a new application:
+To create a new application, follow these instructions (see also [Register an application in Microsoft Entra ID](/entra/identity-platform/quickstart-register-app)):
 
 1. Go to **App registrations** in the [Microsoft Entra Admin Center](https://entra.microsoft.com). Click **New registration**.
 :::image type="content" source="media/exchange-online-integration/register-application-1.png" alt-text="Screenshot of new application registration.":::
@@ -150,7 +150,7 @@ Otherwise use transaction code STRUST. Search for SSF application "SSF OA2CJC" (
 
 To allow the SAP system to send email messages, the assigned mailbox must enable the SMTP AUTH protocol.
 
-1. Go to the [Microsoft 365 Admin Center](https://admin.cloud.microsoft/).
+1. Go to the [Microsoft 365 Admin Center](https://admin.microsoft.com/).
 
 2. Go to **Active users**. Select your SAP system's mailbox user from the list, and switch to the **Mail** tab. Click **Manage email apps**.
 :::image type="content" source="media/exchange-online-integration/activate-smtp-authentication-1.png" alt-text="Screenshot of open email app settings.":::
@@ -200,7 +200,7 @@ Follow the corresponding section of your SAP environment.
 
 6. Use transaction SBCS_MAIL_CONFIGSMTP to enter all relevant information for the SMTP configuration for outbound communication. Select **OAuth2** as the **Authentication Method**, and enter the values for **OAuth 2.0 Client Profile**, **OAuth 2.0 Client Configuration**, and the authorized **OAuth 2.0 Client User**.
    > [!NOTE]
-   > By activating the checkbox **Modify legacy SMTP node**, the configuration will be automatically copied to the old SCOT transaction
+   > By activating the checkbox **Modify legacy SMTP node**, the configuration is automatically copied to the old SCOT transaction
    :::image type="content" source="media/exchange-online-integration/mail-configuration-smtp.png" alt-text="Screenshot of SBCS_MAIL_CONFIGSMTP outbound configuration.":::
 
 7. Alternatively, transaction SCOT can be used directly to enter the same information as in transaction SBCS_MAIL_CONFIGSMTP into the SMTP node.
@@ -244,12 +244,12 @@ SMTP relay lets Microsoft 365 relay emails on your behalf by using a connector c
 
 ### Requirements for SMTP Relay
 
-- **SAP Parameter**: SAP instance parameter configured and SMTP service are activated as explained in option 1, follow steps 2 to 4 from "Configure SMTP Auth with SCOT" section.
+- **SAP Parameter**: SAP instance parameter configured and SMTP service are activated as explained in option 1, follow steps 2 to 4 from "Configure SMTP OAuth in SAP" section.
 - **Email Address**: Any email address in one of your Microsoft 365 verified domains. This email address doesn't need a mailbox. For example, `noreply@*yourdomain*.com`.
 - **Transport Layer Security (TLS)**: SAP application must be able to use TLS version 1.2 and above.
 - **Port**: port 25 is required and must be unblocked on your network. Some network firewalls or ISPs block ports, especially port 25 due to the risk of misuse for spamming.
 - **MX record**: your Mail Exchanger (MX) endpoint, for example yourdomain.mail.protection.outlook.com. Find more information on the next section.
-- **Relay Access**: A Public IP address or SSL certificate is required to authenticate against the relay connector. To avoid configuring direct access, it is recommended to use Source Network Translation (SNAT) as described in this article. [Use Source Network Address Translation (SNAT) for outbound connections](../../load-balancer/load-balancer-outbound-connections.md).
+- **Relay Access**: A Public IP address or SSL certificate is required to authenticate against the relay connector. To avoid configuring direct access, it's recommended to use Source Network Translation (SNAT) as described in this article. [Use Source Network Address Translation (SNAT) for outbound connections](../../load-balancer/load-balancer-outbound-connections.md).
 
 ### Step-by-step configuration instructions for SMTP relay in Microsoft 365
 
@@ -316,11 +316,11 @@ Port: 25
 
 ## Option 4: Using SMTP relay server as intermediary to Exchange Online
 
-An intermediate relay server can be an alternative to a direct connection from the SAP application server to Microsoft 365. This server can be based on any mail server that will allow direct authentication and relay services.
+An intermediate relay server can be an alternative to a direct connection from the SAP application server to Microsoft 365. This server can be based on any mail server that allows direct authentication and relay services.
 
 The advantage of this solution is that it can be deployed in the hub of a hub-spoke virtual network within your Azure environment. Or within a DMZ to protect your SAP application hosts from direct access. It also allows for centralized outbound routing to immediately offload all mail traffic to a central relay when sending from multiple application servers.
 
-The configuration steps are the same as for the Microsoft 365 SMTP Relay Connector (Option 3). The only differences being that the SCOT configuration should reference the mail host that will perform the relay rather than direct to Microsoft 365. Depending on the mail system that is being used for the relay it will also be configured directly to connect to Microsoft 365 using one of the supported methods and a valid user with password. It's recommended to send a test mail from the relay directly to ensure it can communicate successfully with Microsoft 365 before completing the SAP SCOT configuration and testing as normal.
+The configuration steps are the same as for the Microsoft 365 SMTP Relay Connector (Option 3). The only differences being that the SCOT configuration should reference the mail host that performs the relay rather than direct to Microsoft 365. Depending on the mail system that's being used for the relay it will also be configured directly to connect to Microsoft 365 using one of the supported methods and a valid user with password. It's recommended to send a test mail from the relay directly to ensure it can communicate successfully with Microsoft 365 before completing the SAP SCOT configuration and testing as normal.
 
 :::image type="content" source="media/exchange-online-integration/sap-outbound-mail-with-smtp-relay.png" alt-text="Relay Server Architecture.":::
 
