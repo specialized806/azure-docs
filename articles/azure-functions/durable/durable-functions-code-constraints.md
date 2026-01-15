@@ -3,37 +3,39 @@ title: Durable orchestrator code constraints - Azure Functions
 description: Orchestration function replay and code constraints for Azure Durable Functions.
 author: cgillum
 ms.topic: conceptual
-ms.date: 05/06/2022
+ms.date: 01/15/2026
 ms.author: azfuncdf
+ms.service: azure-functions
+ms.subservice: durable
 #Customer intent: As a developer, I want to learn what coding restrictions exist for durable orchestrations and why they exist so that I can avoid introducing bugs in my app logic.
 ---
 
 # Orchestrator function code constraints
 
-Durable Functions is an extension of [Azure Functions](../functions-overview.md) that lets you build stateful apps. You can use an [orchestrator function](durable-functions-orchestrations.md) to orchestrate the execution of other durable functions within a function app. Orchestrator functions are stateful, reliable, and potentially long-running.
+Durable Functions is an extension of [Azure Functions](../functions-overview.md) that lets you build stateful apps. You can use an [orchestrator function](durable-functions-orchestrations.md) to orchestrate the execution of other Durable Functions within a function app. Orchestrator functions are stateful, reliable, and potentially long-running.
 
 ## Orchestrator code constraints
 
-Orchestrator functions use [event sourcing](/azure/architecture/patterns/event-sourcing) to ensure reliable execution and to maintain local variable state. The [replay behavior](durable-functions-orchestrations.md#reliability) of orchestrator code creates constraints on the type of code that you can write in an orchestrator function. For example, orchestrator functions must be *deterministic*: an orchestrator function will be replayed multiple times, and it must produce the same result each time.
+Orchestrator functions use [event sourcing](/azure/architecture/patterns/event-sourcing) to ensure reliable execution and to maintain local variable state. The [replay behavior](durable-functions-orchestrations.md#reliability) of orchestrator code creates constraints on the type of code you can write in an orchestrator function. For example, orchestrator functions must be *deterministic*: an orchestrator function replays multiple times, and it must produce the same result each time.
 
 ### Using deterministic APIs
 
-This section provides some simple guidelines that help ensure your code is deterministic.
+Here are some simple guidelines to help ensure your code is deterministic.
 
-Orchestrator functions can call any API in their target languages. However, it's important that orchestrator functions call only deterministic APIs. A *deterministic API* is an API that always returns the same value given the same input, no matter when or how often it's called.
+You can call any API in your target languages from orchestrator functions. However, it's important that your orchestrator functions call only deterministic APIs. A *deterministic API* is an API that always returns the same value given the same input, no matter when or how often it's called.
 
-The following sections provide guidance on APIs and patterns that you should avoid because they are *not* deterministic. These restrictions apply only to orchestrator functions. Other function types don't have such restrictions.
+The following sections provide guidance on APIs and patterns you should avoid because they're *not* deterministic. These restrictions apply only to orchestrator functions. Other function types don't have such restrictions.
 
 > [!NOTE]
-> Several types of code constraints are described below. This list is unfortunately not comprehensive and some use cases might not be covered. The most important thing to consider when writing orchestrator code is whether an API you're using is deterministic. Once you're comfortable with thinking this way, it's easy to understand which APIs are safe to use and which are not without needing to refer to this documented list.
+> We describe several types of code constraints below. Unfortunately, this list isn't comprehensive and some use cases might not be covered. The most important thing to consider when writing orchestrator code is whether an API you're using is deterministic. Once you're comfortable thinking this way, it's easy to understand which APIs are safe to use and which aren't without needing to refer to this list.
 
 #### Dates and times
 
-APIs that return the current date or time are nondeterministic and should never be used in orchestrator functions. This is because each orchestrator function replay will produce a different value. You should instead use the Durable Functions equivalent API for getting the current date or time, which remains consistent across replays.
+Time-based APIs are nondeterministic and should never be used in orchestrator functions. Each orchestrator function replay produces a different value. Instead, use the Durable Functions equivalent API for getting the current date or time, which remains consistent across replays.
 
 # [C#](#tab/csharp)
 
-Do not use `DateTime.Now`, `DateTime.UtcNow`, or equivalent APIs for getting the current time. Classes such as [`Stopwatch`](/dotnet/api/system.diagnostics.stopwatch) should also be avoided. For .NET in-process orchestrator functions, use the `IDurableOrchestrationContext.CurrentUtcDateTime` property to get the current time. For .NET isolated orchestrator functions, use the `TaskOrchestrationContext.CurrentDateTimeUtc` property to get the current time.
+Don't use `DateTime.Now`, `DateTime.UtcNow`, or equivalent APIs for getting the current time. Classes such as [`Stopwatch`](/dotnet/api/system.diagnostics.stopwatch) should also be avoided. For .NET in-process orchestrator functions, use the `IDurableOrchestrationContext.CurrentUtcDateTime` property to get the current time. For .NET isolated orchestrator functions, use the `TaskOrchestrationContext.CurrentDateTimeUtc` property to get the current time.
 
 ```csharp
 DateTime startTime = context.CurrentUtcDateTime;
@@ -43,7 +45,7 @@ TimeSpan totalTime = context.CurrentUtcDateTime.Subtract(startTime);
 
 # [JavaScript](#tab/javascript)
 
-Do not use APIs like `new Date()` or `Date.now()` to get the current date and time. Instead, use `DurableOrchestrationContext.currentUtcDateTime`.
+Don't use APIs like `new Date()` or `Date.now()` to get the current date and time. Instead, use `DurableOrchestrationContext.currentUtcDateTime`.
 
 ```javascript
 // create a timer that expires 2 minutes from now
@@ -53,7 +55,7 @@ const timeoutTask = context.df.createTimer(expiration.toDate());
 
 # [Python](#tab/python)
 
-Do not use `datetime.now()`, `gmtime()`, or similar APIs to get the current time. Instead, use `DurableOrchestrationContext.current_utc_datetime`.
+Don't use `datetime.now()`, `gmtime()`, or similar APIs to get the current time. Instead, use `DurableOrchestrationContext.current_utc_datetime`.
 
 ```python
 # create a timer that expires 2 minutes from now
@@ -63,7 +65,7 @@ timeout_task = context.create_timer(expiration)
 
 # [PowerShell](#tab/powershell)
 
-Do not use cmdlets like `Get-Date` or .NET APIs like `[System.DateTime]::Now` to get the current time. Instead, use `$Context.CurrentUtcDateTime`.
+Don't use cmdlets like `Get-Date` or .NET APIs like `[System.DateTime]::Now` to get the current time. Instead, use `$Context.CurrentUtcDateTime`.
 
 ```powershell
 $expiryTime = $Context.Input.ExpiryTime
@@ -74,7 +76,7 @@ while ($Context.CurrentUtcDateTime -lt $expiryTime) {
 
 # [Java](#tab/java)
 
-Do not use APIs like `LocalDateTime.now()` or `Instant.now()` to get the current date and time. Instead, use `TaskOrchestrationContext.getCurrentInstant()`.
+Don't use APIs like `LocalDateTime.now()` or `Instant.now()` to get the current date and time. Instead, use `TaskOrchestrationContext.getCurrentInstant()`.
 
 ```java
 Instant startTime = ctx.getCurrentInstant();
@@ -86,11 +88,11 @@ Duration totalTime  = Duration.between(startTime, ctx.getCurrentInstant());
 
 #### GUIDs and UUIDs
 
-APIs that return a random GUID or UUID are nondeterministic because the generated value is different for each replay. Depending on which language you use, a built-in API for generating deterministic GUIDs or UUIDs may be available. Otherwise, use an activity function to return a randomly generated GUID or UUID.
+APIs that return a random GUID or UUID are nondeterministic because the generated value is different for each replay. Depending on your language, a built-in API for generating deterministic GUIDs or UUIDs may be available. Otherwise, use an activity function to return a randomly generated GUID or UUID.
 
 # [C#](#tab/csharp)
 
-Do not use APIs like `Guid.NewGuid()` to generate random GUIDs. Instead, use the context object's `NewGuid()` API to generate a random GUID that's safe for orchestrator replay.
+Instead of APIs like `Guid.NewGuid()`, use the context object's `NewGuid()` API to generate a random GUID that's safe for orchestrator replay.
 
 ```csharp
 Guid randomGuid = context.NewGuid();
@@ -102,7 +104,7 @@ Guid randomGuid = context.NewGuid();
 
 # [JavaScript](#tab/javascript)
 
-Do not use the `uuid` module or the `crypto.randomUUID()` function to generate random UUIDs. Instead, use the context object's built-in `newGuid()` method to generate a random GUID that's safe for orchestrator replay.
+Instead of the `uuid` module or the `crypto.randomUUID()` function, use the context object's built-in `newGuid()` method to generate a random GUID that's safe for orchestrator replay.
 
 ```javascript
 const randomGuid = context.df.newGuid();
@@ -114,7 +116,7 @@ const randomGuid = context.df.newGuid();
 
 # [Python](#tab/python)
 
-Do not use the `uuid` module to generate random UUIDs. Instead, use the context object's built-in `new_guid()` method to generate a random UUID that's safe for orchestrator replay.
+Instead of the `uuid` module, use the context object's built-in `new_guid()` method to generate a random UUID that's safe for orchestrator replay.
 
 ```python
 randomGuid = context.new_guid()
@@ -125,19 +127,19 @@ randomGuid = context.new_guid()
 
 # [PowerShell](#tab/powershell)
 
-Do not use cmdlets like `New-Guid` or .NET APIs like `[System.Guid]::NewGuid()` directly in orchestrator functions. Instead, generate random GUIDs in activity functions and return them to the orchestrator functions.
+Generate random GUIDs in activity functions and return them to the orchestrator functions, instead of generating cmdlets like `New-Guid` or .NET APIs like `[System.Guid]::NewGuid()` directly in orchestrator functions.
 
 # [Java](#tab/java)
 
-Do not use the `java.util.UUID.randomUUID()` or similar methods for generating new UUIDs directly in orchestrator functions. Instead, generate random UUIDs in activity functions and return them to the orchestrator functions.
+Instead of `java.util.UUID.randomUUID()` or similar methods, generate random UUIDs in activity functions and return them to the orchestrator functions.
 
 ---
 
 #### Random numbers
 
- Use an activity function to return random numbers to an orchestrator function. The return values of activity functions are always safe for replay because they are saved into the orchestration history.
+Use an activity function to return random numbers to an orchestrator function. The return values of activity functions are always safe for replay because they are saved into the orchestration history.
 
- Alternatively, a random number generator with a fixed seed value can be used directly in an orchestrator function. This approach is safe as long as the same sequence of numbers is generated for each orchestration replay.
+Alternatively, you can use a random number generator with a fixed seed value directly in an orchestrator function. This approach is safe as long as the same sequence of numbers is generated for each orchestration replay.
 
 #### Bindings
 
@@ -145,14 +147,14 @@ An orchestrator function must not use any bindings, including even the [orchestr
 
 #### Static variables
 
-Avoid using static variables in orchestrator functions because their values can change over time, resulting in nondeterministic runtime behavior. Instead, use constants, or limit the use of static variables to activity functions.
+Static variables can change over time, making them unsafe for orchestrator functions. Avoid using static variables in orchestrator functions because their values can change over time, resulting in nondeterministic runtime behavior. Instead, use constants, or limit the use of static variables to activity functions.
 
 > [!NOTE]
-> Even outside of orchestrator functions, using static variables in Azure Functions can be problematic for a variety of reasons since there's no guarantee that static state will persist across multiple function executions. Static variables should be avoided except in very specific usecases, such as best-effort in-memory caching in activity or entity functions.
+> Even outside of orchestrator functions, using static variables in Azure Functions can be problematic for various reasons since there's no guarantee that static state persists across multiple function executions. You should avoid static variables except in very specific use cases, such as best-effort in-memory caching in activity or entity functions.
 
 #### Environment variables
 
-Do not use environment variables in orchestrator functions. Their values can change over time, resulting in nondeterministic runtime behavior. If an orchestrator function needs configuration that's defined in an environment variable, you must pass the configuration value into the orchestrator function as an input or as the return value of an activity function.
+Environment variables in orchestrator functions can change over time, resulting in nondeterministic runtime behavior. If an orchestrator function needs configuration that's defined in an environment variable, you must pass the configuration value into the orchestrator function as an input or as the return value of an activity function.
 
 #### Network and HTTP
 
@@ -172,11 +174,11 @@ Always declare JavaScript orchestrator functions as synchronous generator functi
 
 #### Python coroutines
 
-You must not declare Python orchestrator functions as coroutines. In other words, never declare Python orchestrator functions with the `async` keyword because coroutine semantics do not align with the Durable Functions replay model. You must always declare Python orchestrator functions as generators, meaning that you should expect the `context` API to use `yield` instead of `await`.
+You must not declare Python orchestrator functions as coroutines. In other words, never declare Python orchestrator functions with the `async` keyword because coroutine semantics don't align with the Durable Functions replay model. You must always declare Python orchestrator functions as generators, meaning that you should expect the `context` API to use `yield` instead of `await`.
 
 #### .NET threading APIs
 
-The Durable Task Framework runs orchestrator code on a single thread and can't interact with any other threads. Running async continuations on a worker pool thread an orchestration's execution can result in nondeterministic execution or deadlocks. For this reason, orchestrator functions should almost never use threading APIs. For example, never use `ConfigureAwait(continueOnCapturedContext: false)` in an orchestrator function. This ensures that task continuations run on the orchestrator function's original `SynchronizationContext`.
+The Durable Task Framework runs orchestrator code on a single thread and can't interact with any other threads. Running async continuations on a worker pool thread in an orchestration's execution can result in nondeterministic execution or deadlocks. For this reason, your orchestrator functions should almost never use threading APIs. For example, never use `ConfigureAwait(continueOnCapturedContext: false)` in an orchestrator function. This ensures that task continuations run on the orchestrator function's original `SynchronizationContext`.
 
 > [!NOTE]
 > The Durable Task Framework attempts to detect accidental use of non-orchestrator threads in orchestrator functions. If it finds a violation, the framework throws a **NonDeterministicOrchestrationException** exception. However, this detection behavior won't catch all violations, and you shouldn't depend on it.
@@ -188,7 +190,7 @@ A durable orchestration might run continuously for days, months, years, or even 
 ## Durable tasks
 
 > [!NOTE]
-> This section describes internal implementation details of the Durable Task Framework. You can use durable functions without knowing this information. It is intended only to help you understand the replay behavior.
+> This section describes internal implementation details of the Durable Task Framework. You don't need to know this information to use Durable Functions, but it helps explain the replay behavior.
 
 Tasks that can safely wait in orchestrator functions are occasionally referred to as *durable tasks*. The Durable Task Framework creates and manages these tasks. Examples are the tasks returned by `CallActivityAsync`, `WaitForExternalEvent`, and `CreateTimer` in .NET orchestrator functions.
 
@@ -196,7 +198,7 @@ These durable tasks are internally managed by a list of `TaskCompletionSource` o
 
 The tasks are executed synchronously using a single thread until all the history has been replayed. Durable tasks that aren't finished by the end of history replay have appropriate actions carried out. For example, a message might be enqueued to call an activity function.
 
-This section's description of runtime behavior should help you understand why an orchestrator function can't use `await` or `yield` in a nondurable task. There are two reasons: the dispatcher thread can't wait for the task to finish, and any callback by that task might potentially corrupt the tracking state of the orchestrator function. Some runtime checks are in place to help detect these violations.
+Understanding this runtime behavior helps explain why your orchestrator function can't use `await` or `yield` in a nondurable task. There are two reasons: the dispatcher thread can't wait for the task to finish, and any callback by that task might potentially corrupt the tracking state of the orchestrator function. Some runtime checks are in place to help detect these violations.
 
 To learn more about how the Durable Task Framework executes orchestrator functions, consult the [Durable Task source code on GitHub](https://github.com/Azure/durabletask). In particular, see [TaskOrchestrationExecutor.cs](https://github.com/Azure/durabletask/blob/master/src/DurableTask.Core/TaskOrchestrationExecutor.cs) and [TaskOrchestrationContext.cs](https://github.com/Azure/durabletask/blob/master/src/DurableTask.Core/TaskOrchestrationContext.cs).
 
