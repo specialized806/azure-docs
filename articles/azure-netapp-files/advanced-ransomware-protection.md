@@ -17,7 +17,7 @@ Advanced ransomware protection (ARP) in Azure NetApp Files is a built-in capabil
 ## Why do we need advanced protection?
 
 Ransomware attacks have become a serious and growing threat to organizations of all sizes. Attackers continually evolve methods to infiltrate environments (for example, through phishing emails or zero-day exploits) and can silently encrypt critical files, halting business operations. Traditional security measures such as firewalls, email filters, and anti-malware software do their best to prevent infections, but sophisticated ransomware can slip through these defenses. Once data is encrypted by malware, companies face an awful choice, either lose valuable data or pay a hefty ransom with no guarantee of recovery.
-f
+
 Azure NetApp Files advanced ransomware protection directly addresses this challenge by adding an integrated safety net at the storage level. Instead of relying solely on threat prevention, advanced ransomware protection assumes that an attacker might breach other defenses and focuses on limiting the damage done:
 
 * Proactive detection of ransomware behavior on file volumes (not just at the endpoint or network). This means the storage service itself watches for signs of encryption or mass file modifications as data is being written.
@@ -53,7 +53,7 @@ Advanced ransomware protection in Azure NetApp Files operates at the storage vol
 Once the advanced ransomware protection workflow has been triggered, you have a safe recovery point from which to restore. At this stage, an administrator can evaluate the situation. If it turns out to be a confirmed ransomware attack, you can quickly recover data using the snapshot. Azure NetApp Files snapshots consume no additional space initially (they store only delta changes), and you have options to restore the snapshot, revert the entire volume back to the snapshot state, or clone the snapshot to a new volume to extract and restore individual files as needed. This recovery can be done within minutes, essentially undoing the ransomware’s damage up to the snapshot point. As a result, business operations can resume with only a few seconds of data changes just before detection triggered.
 
 
-## Business Continuity and Minimal Disruption
+## Business continuity and minimal disruption
 
 With advanced ransomware protection in place, business operations can resume swiftly following a ransomware incident. The system automatically captures a clean snapshot of your data the moment suspicious activity is detected, and recovery often means only the most recent seconds or minutes of changes are at risk. This rapid restoration process ensures that organizations experience minimal loss of data and a quick return to normal operations. This reduces the overall impact of a ransomware attack on productivity and service delivery. If the alert turns out to be a false positive (for example, an unusual but legitimate batch job that mimicked ransomware behavior), you still have the snapshot and no harm is done. You can continue normal operations. The snapshot can be retained as an extra backup or removed later if not needed. (In preview, ARP-designated snapshots that are deemed false alarms may be cleared after a set time, such as 30 days, to conserve space). Administrators can also provide feedback to refine detection if needed.
 
@@ -72,7 +72,7 @@ NetApp Files:
 
 * **Immutable backups (snapshots)**: The snapshots taken by ARP are read-only and can't be removed by malicious actors. This immutability ensures that your clean backup stays safe even if the attacker has high-level privileges. It’s essentially a vault inside your storage – the ransomware might lock the active files, but the snapshot remains as a secure copy to fall back on.
 
-* **No impact on application performance**: Advanced ransomware protection continuously runs in the background without slowing down your file storage. The anomaly detection is optimized, and the snapshots are instantaneous (they use NetApp’s storage efficiency where snapshots only record changes). Your applications and users won’t notice that this protection is active until it’s needed.
+* **Minimal impact on application performance**: Advanced ransomware protection continuously runs in the background without slowing down your file storage. The anomaly detection is optimized, and the snapshots are instantaneous (they use NetApp’s storage efficiency where snapshots only record changes). Your applications and users won’t notice that this protection is active until it’s needed.
 
 * **High accuracy with low overhead**: The combination of file behavior profiling and AI-driven analysis leads to very accurate detection (up to 99% accuracy in identifying true ransomware patterns). This reduces false alarms and ensures that when you do get alerted, it’s likely a legitimate issue. And because it’s cloud-based, Microsoft/NetApp can continuously improve the detection algorithms over time, delivering updates as needed.
 
@@ -86,7 +86,7 @@ Before using advanced ransomware protection, there are a few important points an
 
 * **Availability and preview status**: As of the release of this feature, advanced ransomware protection is in Public Preview on Azure NetApp Files. During the preview, the feature may be available only in specific Azure regions and only for new volumes (you enable it at the time of volume creation). Enabling ARP on existing volumes or across all regions comes later (e.g., by General Availability). Be sure to check the latest Azure NetApp Files documentation for current region support and any preview enrollment steps.
 
-* **Enrollment per volume**: You must explicitly enable advanced ransomware protection on each volume that you want protected – it isn't “on” by default. This can be done easily via the Azure portal (a toggle option when creating a volume) or through the Azure API/CLI by setting the ransomware protection property on the volume. Only volumes with the feature enabled will be monitored and automatically snapshotted on threats.
+* **Enrollment per volume**: You must explicitly enable advanced ransomware protection on each volume that you want protected – it isn't "on" by default. This can be done easily via the Azure portal (a toggle option when creating a volume) or through the Azure API/CLI by setting the ransomware protection property on the volume. Only volumes with the feature enabled will be monitored and automatically snapshotted on threats.
 
 * **Storage capacity planning**: ARP’s automatic snapshots use your existing Azure NetApp Files volume capacity; ensure sufficient space for at least one extra snapshot per protected volume. Actual storage used depends on data changes before a snapshot. ARP itself has no extra cost or separate SKU, but may increase storage usage as protection snapshots are created. Monitor your volumes and capacity pools to manage capacity during ransomware events.
 
@@ -114,4 +114,4 @@ With ransomware attacks on the rise globally, this feature adds an important lay
 ## Next steps 
 
 - [Configure advanced ransomware protection for Azure NetApp Files volumes](ransomware-configure.md)
-- [Advanced ransomware protection](whats-new.md#december-2025)
+
