@@ -24,21 +24,20 @@ Azure Bastion is available in four SKUs: Developer, Basic, Standard, and Premium
 
 Azure Bastion provides the following benefits:
 
-* **Secure connectivity over TLS**: Connect to VMs using RDP/SSH over TLS on port 443, enabling traffic to traverse firewalls securely. All sessions are encrypted and don't require public IP addresses on your VMs.
-* **Protection from external threats**: Your VMs are protected from port scanning and zero-day exploits because RDP/SSH ports aren't exposed to the internet. Azure keeps Bastion hardened and up to date.
-* **No bastion host management**: Azure Bastion is a fully managed platform PaaS service. You don't need to deploy, maintain, or harden a separate bastion host VM.
-* **Microsoft Entra ID authentication**: Supports identity-based authentication for both portal and native client connections, eliminating the need for local authentication methods.
-* **Simplified NSG management**: Configure your NSGs to allow RDP/SSH from Azure Bastion only, centralizing security at the network perimeter rather than on each VM.
-* **Reduced management overhead**: Single deployment serves multiple virtual networks, reducing costs and administrative complexity.
+* **Secure connectivity over TLS**: Connect to VMs using RDP/SSH over TLS on port 443. Learn more about [connection methods](vm-about.md) and [Kerberos authentication](kerberos-authentication-portal.md).
+* **Protection from external threats**: Your VMs are protected from port scanning. Deploy with [availability zones](configuration-settings.md#az) for additional resilience.
+* **Scalability and flexibility**: Configure [host scaling](configuration-settings.md#instance), use [shareable links](shareable-link.md), and connect via [IP address](connect-ip-address.md).
+* **Reduced management overhead**: Deploy once and use [virtual network peering](vnet-peering.md) to serve multiple networks.
+* **Compliance and audit**: Use [session recording](session-recording.md) for compliance requirements (Premium SKU).
 
 ## <a name="sku"></a>SKUs
 
 Azure Bastion offers four SKU tiers:
 
-* **Developer**: Free tier using shared infrastructure for development and testing. Supports one VM at a time. Available in select regions.
-* **Basic**: Dedicated deployment with fixed capacity for production environments with moderate connection requirements.
+* **Premium**: Includes all Standard features plus session recording for compliance and private-only deployment.
 * **Standard**: Includes all Basic features plus scalability and advanced features (native client, shareable links, IP-based connections, custom ports, file transfer).
-* **Premium**: Includes all Standard features plus session recording for compliance and private-only deployment (no public IP on bastion host).
+* **Basic**: Dedicated deployment with fixed capacity for production environments with moderate connection requirements.
+* **Developer**: Free tier using shared infrastructure recommended for development and testing. Supports one VM at a time. Available in select regions.
 
 For a complete feature comparison and capacity details, see [Choose the right Azure Bastion SKU](bastion-sku-comparison.md).
 
@@ -46,37 +45,25 @@ For a complete feature comparison and capacity details, see [Choose the right Az
 
 Azure Bastion offers three deployment architectures:
 
-**Developer**: Shared infrastructure for development and testing environments.
-
-:::image type="content" source="media/quickstart-developer/bastion-shared-pool.png" alt-text="Architecture diagram illustrating Azure Bastion Developer deployment using shared infrastructure.":::
-
-**Dedicated deployment**: Basic, Standard, and Premium SKUs deployed to your virtual network.
-
-:::image type="content" source="media/bastion-overview/architecture.png" alt-text="Diagram showing Azure Bastion architecture." lightbox="media/bastion-overview/architecture.png":::
-
 **Private-only deployment**: Premium SKU without public IP address for enhanced security.
 
 :::image type="content" source="media/private-only-deployment/private-only-architecture.png" alt-text="Diagram showing Azure Bastion private-only architecture." lightbox="media/private-only-deployment/private-only-architecture.png":::
 
 For detailed information about each architecture, deployment requirements, and network topology options, see [Bastion design and architecture](design-architecture.md).
 
+**Dedicated deployment**: Basic, Standard, and Premium SKUs deployed to your virtual network.
+
+:::image type="content" source="media/bastion-overview/architecture.png" alt-text="Diagram showing Azure Bastion architecture." lightbox="media/bastion-overview/architecture.png":::
+
+**Developer**: Shared infrastructure for development and testing environments.
+
+:::image type="content" source="media/quickstart-developer/bastion-shared-pool.png" alt-text="Architecture diagram illustrating Azure Bastion Developer deployment using shared infrastructure.":::
+
 ## Requirements
 
 Deployment requirements vary by SKU. Developer uses shared infrastructure with no virtual network required. Basic, Standard, and Premium require a dedicated subnet (AzureBastionSubnet) and public IP address. Premium supports private-only deployment without a public IP.
 
 For complete requirements including subnet sizing and NSG rules, see [About Bastion configuration settings](configuration-settings.md).
-
-## Key features
-
-Azure Bastion includes the following key features:
-
-* **[Virtual network peering](vnet-peering.md)**: Connect to VMs across peered virtual networks from a single bastion deployment.
-* **[Host scaling](configuration-settings.md#instance)**: Scale bastion instances to support your concurrent connection needs.
-* **[Session recording](session-recording.md)**: Capture all sessions for compliance and audit (Premium SKU).
-* **[Kerberos authentication](kerberos-authentication-portal.md)**: Authenticate to domain-joined Windows VMs.
-* **[Availability zones](configuration-settings.md#az)**: Deploy across availability zones for high availability.
-* **[Shareable links](shareable-link.md)**: Allow VM access without Azure portal login.
-* **[IP-based connections](connect-ip-address.md)**: Connect using IP address instead of VM name.
 
 ## Connection methods
 
