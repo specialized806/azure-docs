@@ -20,7 +20,7 @@ In this article, you learn how to use premium ingress with Azure Container Apps.
 ## Prerequisites
 
 - Azure account with an active subscription.
-  - If you don't have one, you [can create one for free](https://azure.microsoft.com/free/).
+  - If you don't have one, you [can create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - Install the [Azure CLI](/cli/azure/install-azure-cli).
 
 ## Create resource group
@@ -142,7 +142,7 @@ az containerapp env premium-ingress remove \
 To remove the workload profile from the environment, run the following command:
 
 ````azurecli
-az containerapp env workload-profile remove \
+az containerapp env workload-profile delete \
   --resource-group my-resource-group \
   --name my-container-apps-env \
   --workload-profile-name Ingress-D4
@@ -155,7 +155,7 @@ az containerapp env workload-profile remove \
 ## Prerequisites
 
 - Azure account with an active subscription.
-  - If you don't have one, you [can create one for free](https://azure.microsoft.com/free/).
+  - If you don't have one, you [can create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - Install the [Azure CLI](/cli/azure/install-azure-cli).
 - Install [Bicep](/azure/azure-resource-manager/bicep/install)
 

@@ -15,7 +15,9 @@ ms.custom: references_regions
 
 # Public IP addresses
 
-Public IP addresses allow Internet resources to communicate inbound to Azure resources. Public IP addresses enable Azure resources to communicate to Internet and public-facing Azure services. You dedicate the address to the resource until you unassign it. A resource without an assigned public IP can still communicate outbound. Azure automatically assigns an available dynamic IP address for outbound communication. This address isn't dedicated to the resource and can change over time. For more information about outbound connections in Azure, see [Understand outbound connections](../../load-balancer/load-balancer-outbound-connections.md?toc=%2fazure%2fvirtual-network%2ftoc.json).
+Public IP addresses allow Internet resources to communicate inbound to Azure resources. Public IP addresses enable Azure resources to communicate to internet and public-facing Azure services. For your Azure resources which are associated with public IP addresses, these public IPs remain dedicated exclusively to the resource until you unassign it or delete the resource.
+
+A resource without an assigned public IP can still communicate outbound; in these instances, Azure automatically assigns an available dynamic IP address for outbound communication. This dynamically assigned address isn't dedicated to the resource and can change over time. For more information about outbound connections in Azure, see [Understand outbound connections](../../load-balancer/load-balancer-outbound-connections.md?toc=%2fazure%2fvirtual-network%2ftoc.json).
 
 In Azure Resource Manager, a [public IP](virtual-network-public-ip-address.md) address is a resource that has its own properties. 
 
@@ -68,7 +70,7 @@ Full details are listed in the table below:
 | Allocation method| Static | For IPv4: Dynamic or Static; For IPv6: Dynamic.| 
 | Idle Timeout | Have an adjustable inbound originated flow idle timeout of 4-30 minutes, with a default of 4 minutes, and fixed outbound originated flow idle timeout of 4 minutes.|Have an adjustable inbound originated flow idle timeout of 4-30 minutes, with a default of 4 minutes, and fixed outbound originated flow idle timeout of 4 minutes.|
 | Security | Secure by default model and be closed to inbound traffic when used as a frontend. Allow traffic with [network security group (NSG)](../../virtual-network/network-security-groups-overview.md#network-security-groups) is required (for example, on the NIC of a virtual machine with a Standard SKU Public IP attached).| Open by default. Network security groups are recommended but optional for restricting inbound or outbound traffic.| 
-| [Availability zones](../../reliability/availability-zones-overview.md?toc=%2fazure%2fvirtual-network%2ftoc.json) | Supported. Standard IPs can be nonzonal, zonal, or zone-redundant. Standard v2 IPs can be zone-redundant. **Zone redundant IPs can only be created in [regions where 3 availability zones](../../reliability/availability-zones-region-support.md) are live.** | Not supported. | 
+| [Availability zones](../../reliability/availability-zones-overview.md?toc=%2fazure%2fvirtual-network%2ftoc.json) | Supported. Standard IPs can be non-zonal, zonal, or zone-redundant. Standard v2 IPs can be zone-redundant. **Zone redundant IPs can only be created in [regions where 3 availability zones](../../reliability/availability-zones-region-support.md) are live.** | Not supported. | 
 | [Routing preference Internet](routing-preference-overview.md)| Standard: Supported for use with [specific resource types](routing-preference-overview.md#supported-services) for more granular control on how traffic is routed between Azure and the Internet.<br>Standardv2: Not supported| Not supported.| 
 | Global tier | Standard: Supported for use with [cross-region load balancers](../../load-balancer/cross-region-overview.md).<br>Standardv2: Not yet supported| Not supported. |
 
@@ -105,11 +107,11 @@ Static public IP addresses are commonly used in the following scenarios:
 
 Standard SKU Public IPs can be created as zonal or zone-redundant in [regions that support availability zones](../../reliability/availability-zones-region-support.md). Basic SKU Public IPs don't have any zones and are created as non-zonal. Once created, a public IP address can't change its availability zone.
 
-In regions without availability zones, all public IP addresses are created as nonzonal. Public IP addresses created in a region that is later upgraded to have availability zones will be made zone-redundant once the region is in general availability status with multiple availability zones.
+In regions without availability zones, all public IP addresses are created as non-zonal. Public IP addresses created in a region that is later upgraded to have availability zones will be made zone-redundant once the region is in general availability status with multiple availability zones.
 
 | Value | Behavior |
 | --- | --- |
-| Zone-redundant	| A zone-redundant IP is created in all zones for a region and can survive any single zone failure. |
+| Zone-redundant	| A zone-redundant IP is created in multiple zones for a given region and can survive any single zone failure. |
 | Zonal  |	 A zonal IP is tied to a specific availability zone, and shares fate with the health of the zone. |
 | Non-zonal	| Only valid in regions that do not support availability zones. |
 
