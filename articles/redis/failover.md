@@ -58,7 +58,8 @@ The Azure Managed Redis service regularly updates your cache with the latest pla
 
 Each shard of a clustered cache is patched separately and doesn't close connections to another shard.
 
-Multiple caches in the same resource group and region are also patched one at a time. Caches that are in different resource groups or different regions might be patched simultaneously.
+> [!NOTE]
+> Multiple caches in the same region may be patched at the same time, even if they exist in the same subscription and resource group. If this impacts your application, configure [maintenance schedules](scheduled-maintenance.md) such that each cache is patched at a different time.
 
 Because full data synchronization happens before the process repeats, data loss is unlikely to occur for your cache. You can further guard against data loss by [exporting](how-to-import-export-data.md#export) data and enabling [persistence](how-to-persistence.md).
 
