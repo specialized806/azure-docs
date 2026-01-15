@@ -55,11 +55,10 @@ The Azure Managed Redis service regularly updates your cache with the latest pla
 3. One by one, all nodes being patched are removed from the cluster. Any shards on these VMs will be demoted and migrated to one of the new VMs.
 4. Finally, all VMs that were replaced are deleted.
 
-
 Each shard of a clustered cache is patched separately and doesn't close connections to another shard.
 
 > [!NOTE]
-> Multiple caches in the same region may be patched at the same time, even if they exist in the same subscription and resource group. If this impacts your application, configure [maintenance schedules](scheduled-maintenance.md) such that each cache is patched at a different time.
+> Multiple caches in the same region might be patched at the same time. If this affects your application, configure [maintenance schedules](scheduled-maintenance.md) such that each cache is patched at a different time.
 
 Because full data synchronization happens before the process repeats, data loss is unlikely to occur for your cache. You can further guard against data loss by [exporting](how-to-import-export-data.md#export) data and enabling [persistence](how-to-persistence.md).
 
