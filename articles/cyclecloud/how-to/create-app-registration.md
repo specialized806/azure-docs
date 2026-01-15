@@ -19,7 +19,7 @@ ms.author: padmalathas
 
 Follow the below steps to create a Microsoft Entra ID application registration **before** deploying Azure CycleCloud and Azure CycleCloud Workspace for Slurm using a utility script. 
 
-This script will create a new user-assigned managed identity resource for exclusive use with the application registration. Please navigate to the section titled [*Open OnDemand*](#open-ondemand) for more details. 
+This script creates a new user-assigned managed identity resource for exclusive use with the application registration. Please navigate to the section titled [*Open OnDemand*](#open-ondemand) for more details. 
 
 **Script instructions**
 
@@ -74,11 +74,11 @@ Make note of the Tenant, Client, and Managed Identity Resource IDs and proceed t
 9.	Next, add the user roles for CycleCloud under **App roles** by selecting **Create app role**. The **Display name** field to any desired string, but the **Value** field must match the built-in CycleCloud role for authentication to work as intended. TODO AGB: Make this accessible with screen reader 
 ![App roles configuration window](../images/entra-setup/entra9.png)
     > [!NOTE]
-    > Since Microsoft Entra ID doesn't allow roles to have spaces in them and some of the in-built CycleCloud roles include spaces (for example, “Cluster Administrator”), replace any spaces in the role names you define in Microsoft Entra ID with a dot (for example, “Data Admin” becomes “Data.Admin”). Rename any roles defined in CycleCloud to not feature dots. Role definitions in Microsoft Entra ID are case insensitive.
+    > Microsoft Entra ID does not allow roles to have spaces in them and some of the in-built CycleCloud roles include spaces (for example, “Cluster Administrator”). Any spaces in the role names defined in Microsoft Entra ID should therefore be replaced with a dot (for example, “Data Admin” becomes “Data.Admin”). Rename any roles defined in CycleCloud to not feature dots. Role definitions in Microsoft Entra ID are case insensitive.
 
     At a minimum, add the following roles:
     ![Basic roles required for CycleCloud](../images/entra-setup/entra21.png)
-10. CycleCloud does not support v2.0 access tokens issued by the application registration. To remedy this, configure the application registration to issue tokens v1.0 by selecting **Manifest**, locating the property **accessTokenAcceptedVersion** in the manifest, and change the value of that property to ``1``. Be sure to click on **Save**. TODO AGB: new picture
+10. CycleCloud does not support v2.0 access tokens issued by the application registration. To remedy this issue, configure the application registration to issue tokens v1.0 by selecting **Manifest**, locating the property **accessTokenAcceptedVersion** in the manifest, and change the value of that property to ``1``. Be sure to click on **Save**. TODO AGB: new picture
 ![Manifest menu](../images/entra-setup/entra24.png)
 
 ## Configuring redirect URIs
@@ -98,7 +98,7 @@ Make note of the Tenant, Client, and Managed Identity Resource IDs and proceed t
 ![A shortcut to get to the Enterprise Application's role assignment window](../images/entra-setup/entra10.png)
 1.  To add a user and assign a role, go to the **Users and groups** page of the Enterprise Application and select **Add user/group**.
 ![Add a user/group menu](../images/entra-setup/entra11.png)
-2. On the **Add Assignment** page, select one or more users and the role to assign to them. You can use a search bar to filter users. Since only one app role was created in the screenshot, it's selected automatically, but the menu for selecting it is similar to how you select users. You can assign only one role at a time. To add multiple roles to the same user, repeat this process.
+2. On the **Add Assignment** page, select one or more users and the role to assign to them. You can use a search bar to filter users. You can assign only one role at a time. To add multiple roles to the same user, repeat this process. TODO AGB: screenshot with multiple app roles
 ![Add a role assignment selection](../images/entra-setup/entra12.png)
 ![Add a role assignment completion](../images/entra-setup/entra13.png)
 3. After you assign the role, the user appears on the **User and groups** page. Assigning multiple roles to a single user results in several entries for that user - one entry per role.
