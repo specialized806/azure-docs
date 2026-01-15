@@ -3,7 +3,7 @@ title: Configure active geo-replication for Enterprise Azure Cache for Redis ins
 description: Learn how to replicate your Azure Cache for Redis Enterprise instances across Azure regions.
 ms.custom: devx-track-azurecli, ignite-2024
 ms.topic: conceptual
-ms.date: 01/15/2025
+ms.date: 01/15/2026
 appliesto:
   - ✅ Azure Cache for Redis
 ---
@@ -102,7 +102,8 @@ To configure active geo-replication properly, the ID of the cache instance being
 
 `/subscriptions/<your-subscription-ID>/resourceGroups/<your-resource-group-name>/providers/Microsoft.Cache/redisEnterprise/<your-cache-name>/databases/default`
 
-Note: The linked databases IDs are case sensitive. 
+> [!NOTE]
+> The linked database IDs are case sensitive.
 
 #### Create new Enterprise instance in an existing geo-replication group using Azure CLI
 
