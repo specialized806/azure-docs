@@ -27,7 +27,7 @@ You can call any API in your target languages from orchestrator functions. Howev
 The following sections provide guidance on APIs and patterns you should avoid because they're *not* deterministic. These restrictions apply only to orchestrator functions. Other function types don't have such restrictions.
 
 > [!NOTE]
-> We describe several types of code constraints below. Unfortunately, this list isn't comprehensive and some use cases might not be covered. The most important thing to consider when writing orchestrator code is whether an API you're using is deterministic. Once you're comfortable thinking this way, it's easy to understand which APIs are safe to use and which aren't without needing to refer to this list.
+> We describe several types of code constraints in this article. Unfortunately, this list isn't comprehensive and some use cases might not be covered. The most important thing to consider when writing orchestrator code is whether an API you're using is deterministic. Once you're comfortable thinking this way, it's easy to understand which APIs are safe to use and which aren't without needing to refer to this list.
 
 #### Dates and times
 
@@ -137,24 +137,24 @@ Instead of `java.util.UUID.randomUUID()` or similar methods, generate random UUI
 
 #### Random numbers
 
-Use an activity function to return random numbers to an orchestrator function. The return values of activity functions are always safe for replay because they are saved into the orchestration history.
+Use an activity function to return random numbers to an orchestrator function. The return values of activity functions are always safe for replay because they're saved into the orchestration history.
 
 Alternatively, you can use a random number generator with a fixed seed value directly in an orchestrator function. This approach is safe as long as the same sequence of numbers is generated for each orchestration replay.
 
 #### Bindings
 
-An orchestrator function must not use any bindings, including even the [orchestration client](durable-functions-bindings.md#orchestration-client) and [entity client](durable-functions-bindings.md#entity-client) bindings. Always use input and output bindings from within a client or activity function. This is important because orchestrator functions may be replayed multiple times, causing nondeterministic and duplicate I/O with external systems.
+An orchestrator function must not use any bindings, including even the [orchestration client](durable-functions-bindings.md#orchestration-client) and [entity client](durable-functions-bindings.md#entity-client) bindings. Always use input and output bindings from within a client or activity function. Orchestrator functions may be replayed multiple times, causing nondeterministic and duplicate I/O with external systems.
 
 #### Static variables
 
 Static variables can change over time, making them unsafe for orchestrator functions. Avoid using static variables in orchestrator functions because their values can change over time, resulting in nondeterministic runtime behavior. Instead, use constants, or limit the use of static variables to activity functions.
 
 > [!NOTE]
-> Even outside of orchestrator functions, using static variables in Azure Functions can be problematic for various reasons since there's no guarantee that static state persists across multiple function executions. You should avoid static variables except in very specific use cases, such as best-effort in-memory caching in activity or entity functions.
+> Even outside of orchestrator functions, using static variables in Azure Functions can be problematic for various reasons since there's no guarantee that static state persists across multiple function executions. You should avoid static variables except in specific use cases, such as best-effort in-memory caching in activity or entity functions.
 
 #### Environment variables
 
-Environment variables in orchestrator functions can change over time, resulting in nondeterministic runtime behavior. If an orchestrator function needs configuration that's defined in an environment variable, you must pass the configuration value into the orchestrator function as an input or as the return value of an activity function.
+Environment variables in orchestrator functions can change over time, resulting in nondeterministic runtime behavior. If an orchestrator function needs configuration defined in an environment variable, you must pass the configuration value into the orchestrator function as an input or as the return value of an activity function.
 
 #### Network and HTTP
 
@@ -166,7 +166,7 @@ Blocking APIs like "sleep" can cause performance and scale problems for orchestr
 
 #### Async APIs
 
-Orchestrator code must never start any async operation except those defined by the orchestration trigger's context object. For example, never use `Task.Run`, `Task.Delay`, and `HttpClient.SendAsync` in .NET or `setTimeout` and `setInterval` in JavaScript. An orchestrator function should only schedule async work using Durable SDK APIs, like scheduling activity functions. Any other type of async invocations should be done inside activity functions.
+Orchestrator code must never start any async operation, except operations defined by the orchestration trigger's context object. For example, never use `Task.Run`, `Task.Delay`, and `HttpClient.SendAsync` in .NET or `setTimeout` and `setInterval` in JavaScript. An orchestrator function should only schedule async work using Durable SDK APIs, like scheduling activity functions. Any other type of async invocations should be done inside activity functions.
 
 #### Async JavaScript functions
 
@@ -178,10 +178,10 @@ You must not declare Python orchestrator functions as coroutines. In other words
 
 #### .NET threading APIs
 
-The Durable Task Framework runs orchestrator code on a single thread and can't interact with any other threads. Running async continuations on a worker pool thread in an orchestration's execution can result in nondeterministic execution or deadlocks. For this reason, your orchestrator functions should almost never use threading APIs. For example, never use `ConfigureAwait(continueOnCapturedContext: false)` in an orchestrator function. This ensures that task continuations run on the orchestrator function's original `SynchronizationContext`.
+The Durable Task Framework runs orchestrator code on a single thread and can't interact with any other threads. Running async continuations on a worker pool thread in an orchestration's execution can result in nondeterministic execution or deadlocks. For this reason, your orchestrator functions should almost never use threading APIs. For example, never use `ConfigureAwait(continueOnCapturedContext: false)` in an orchestrator function to ensure task continuations run on the orchestrator function's original `SynchronizationContext`.
 
 > [!NOTE]
-> The Durable Task Framework attempts to detect accidental use of non-orchestrator threads in orchestrator functions. If it finds a violation, the framework throws a **NonDeterministicOrchestrationException** exception. However, this detection behavior won't catch all violations, and you shouldn't depend on it.
+> The Durable Task Framework attempts to detect accidental use of nonorchestrator threads in orchestrator functions. If it finds a violation, the framework throws a **NonDeterministicOrchestrationException** exception. However, this detection behavior won't catch all violations, and you shouldn't depend on it.
 
 ## Versioning
 
@@ -194,9 +194,9 @@ A durable orchestration might run continuously for days, months, years, or even 
 
 Tasks that can safely wait in orchestrator functions are occasionally referred to as *durable tasks*. The Durable Task Framework creates and manages these tasks. Examples are the tasks returned by `CallActivityAsync`, `WaitForExternalEvent`, and `CreateTimer` in .NET orchestrator functions.
 
-These durable tasks are internally managed by a list of `TaskCompletionSource` objects in .NET. During replay, these tasks are created as part of orchestrator code execution. They're finished as the dispatcher enumerates the corresponding history events.
+A list of `TaskCompletionSource` objects in .NET manage these durable tasks internally. During replay, these tasks are created as part of orchestrator code execution. They're finished as the dispatcher enumerates the corresponding history events.
 
-The tasks are executed synchronously using a single thread until all the history has been replayed. Durable tasks that aren't finished by the end of history replay have appropriate actions carried out. For example, a message might be enqueued to call an activity function.
+The tasks are executed synchronously using a single thread until the history is replayed. Durable tasks that aren't finished by the end of history replay have appropriate actions carried out. For example, a message might be enqueued to call an activity function.
 
 Understanding this runtime behavior helps explain why your orchestrator function can't use `await` or `yield` in a nondurable task. There are two reasons: the dispatcher thread can't wait for the task to finish, and any callback by that task might potentially corrupt the tracking state of the orchestrator function. Some runtime checks are in place to help detect these violations.
 
@@ -205,7 +205,7 @@ To learn more about how the Durable Task Framework executes orchestrator functio
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Learn how to invoke sub-orchestrations](durable-functions-sub-orchestrations.md)
+> [Learn how to invoke suborchestrations](durable-functions-sub-orchestrations.md)
 
 > [!div class="nextstepaction"]
 > [Learn how to handle versioning](durable-functions-versioning.md)
