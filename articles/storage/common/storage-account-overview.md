@@ -1,7 +1,7 @@
 ---
 title: Storage Account Overview
 titleSuffix: Azure Storage
-description: Learn about the different types of storage accounts in Azure Storage. Review account naming, performance tiers, access tiers, redundancy, encryption, endpoints, and more.
+description: Learn about the different types of storage accounts in Azure Storage. Review account naming, tiers, redundancy, encryption, endpoints, and more.
 services: storage
 author: akashdubey-ms
 ms.service: azure-storage
@@ -26,9 +26,9 @@ The following table describes the types of storage accounts that Microsoft recom
 
 | Type of storage account | Supported storage services | Redundancy options | Usage |
 |--|--|--|--|
-| Standard general-purpose v2 | Blob Storage (including Data Lake Storage<sup>1</sup>), Queue Storage, Table Storage, and Azure Files  | Locally redundant storage (LRS) / geo-redundant storage (GRS) / read-access geo-redundant storage (RA-GRS)<br /><br />Zone-redundant storage (ZRS) / geo-zone-redundant storage (GZRS) / read-access geo-zone-redundant storage (RA-GZRS)<sup>2</sup> | Standard storage account type for blobs, file shares, queues, and tables. Recommended for most scenarios that use Azure Storage. If you want support for network file system (NFS) in Azure Files, use the premium file shares account type. |
+| Standard general-purpose v2 | Blob Storage (including Data Lake Storage<sup>1</sup>), Queue Storage, Table Storage, and Azure Files  | Locally redundant storage (LRS) / Geo-redundant storage (GRS) / Read-access geo-redundant storage (RA-GRS)<br /><br />Zone-redundant storage (ZRS) / Geo zone-redundant storage (GZRS) / Read-access geo zone-redundant storage (RA-GZRS)<sup>2</sup> | Standard storage account type for blobs, file shares, queues, and tables. Recommended for most scenarios that use Azure Storage. If you want support for network file system (NFS) in Azure Files, use the premium file shares account type. |
 | Premium block blobs<sup>3</sup> | Blob Storage (including Data Lake Storage<sup>1</sup>) | LRS<br /><br />ZRS<sup>2</sup> | Premium storage account type for block blobs and append blobs. Recommended for scenarios with high transaction rates or that use smaller objects or require consistently low storage latency. [Learn more about example workloads.](../blobs/storage-blob-block-blob-premium.md) |
-| Premium file shares<sup>3</sup> | Azure Files | LRS<br /><br />ZRS<sup>2</sup> | Premium storage account type for file shares only. Recommended for enterprise or high-performance scale applications. Use this account type if you want a storage account that supports both Server Message Block (SMB) and NFS file shares. |
+| Premium file shares<sup>3</sup> | Azure Files | LRS<br /><br />ZRS<sup>2</sup> | Premium storage account type for file shares only. Recommended for enterprise or high-performance scale applications. Use this account type if you want a storage account that supports both server message block (SMB) and NFS file shares. |
 | Premium page blobs<sup>3</sup> | Page blobs only | LRS<br /><br />ZRS<sup>2</sup> | Premium storage account type for page blobs only. [Learn more about page blobs and sample use cases.](../blobs/storage-blob-pageblob-overview.md) |
 
 <sup>1</sup> Data Lake Storage is a set of capabilities dedicated to big data analytics, built on Azure Blob Storage. For more information, see [Introduction to Data Lake Storage](../blobs/data-lake-storage-introduction.md) and [Create a storage account to use with Data Lake Storage](../blobs/create-data-lake-storage-account.md).
@@ -61,7 +61,7 @@ The following sections offer a high-level categorization of different primary wo
 
 Cloud-native apps are large-scale distributed applications that are built on a foundation of cloud paradigms and technologies. This modern approach focuses on cloud scale and performance capabilities.
 
-Cloud-native apps can be based on microservices architecture, use managed services, and employ continuous delivery to achieve reliability. These applications are typically categorized into web apps, mobile apps, containerized apps, and serverless/FaaS.
+Cloud-native apps can be based on microservices architecture, use managed services, and employ continuous delivery to achieve reliability. These applications are typically categorized into web apps, mobile apps, containerized apps, and serverless or function as a service (FaaS) types.
 
 ### Analytics
 
@@ -81,7 +81,7 @@ The primary goal is to solve complex problems at ultra-fast speeds. Other exampl
 
 ### Backup and archive
 
-Business continuity and disaster recovery (BCDR) is a business's ability to remain operational after an adverse event. In terms of storage, this objective equates to maintaining business continuity across outages to storage systems. 
+Business continuity and disaster recovery (BCDR) is a business's ability to remain operational after an adverse event. In terms of storage, this objective equates to maintaining business continuity across outages to storage systems.
 
 With the introduction of Backup-as-a-Service offerings throughout the industry, BCDR data is increasingly migrating to the public cloud. The backup and archive workload functions as the last line of defense against ransomware and malicious attacks. When there's a service interruption or accidental deletion or corruption of data, recovering the data in an efficient and orchestrated manner is the highest priority. Azure Storage makes it possible to store and retrieve large amounts of data in the most cost-effective fashion.
 
@@ -114,7 +114,7 @@ View pricing at [Block blob pricing](https://azure.microsoft.com/pricing/details
 |Backup and archive |General purpose v2 |Standard |ZRS, RA-GRS |No |Cool<sup>3</sup> |Yes |
 |Machine learning and AI |General purpose v2 |Standard |ZRS, RA-GRS |Yes |Hot |No |
 
-<sup>1</sup> Zone Redundant Storage (ZRS) is a good default for analytics workloads because ZRS offers more redundancy compared to Locally Redundant Storage (LRS). It protects against zonal failures while remaining fully compatible with analytics frameworks. Customers that require more redundancy for an analytics workload can also use Geo-redundant Storage (GRS/RA-GRS).
+<sup>1</sup> Zone-redundant storage (ZRS) is a good default for analytics workloads because ZRS offers more redundancy compared to Locally Redundant Storage (LRS). It protects against zonal failures while remaining fully compatible with analytics frameworks. Customers that require more redundancy for an analytics workload can also use Geo-redundant storage (GRS/RA-GRS).
 <br/><br/><sup>2</sup> The [hierarchical namespace](../blobs/data-lake-storage-namespace.md) is a core capability of Azure Data Lake Storage (ADLS). It enhances data organization and access efficiency for large amounts of data, making it ideal for analytics workloads.
 <br/><br/><sup>3</sup> The cool access tier offers a cost-effective solution for storing infrequently accessed data (typical for a backup and archive workload). Customers can also consider the cold access tier after evaluating costs.
 
@@ -127,7 +127,7 @@ There are two types of service endpoints available for a storage account:
 - [Standard endpoints](#standard-endpoints) (recommended). By default, you can create up to 250 storage accounts per region with standard endpoints in a subscription. With a quota increase, you can create up to 500 storage accounts with standard endpoints per region. For more information, see [Increase Azure Storage account quotas](/azure/quotas/storage-account-quota-requests).
 - [Azure DNS zone endpoints](#azure-dns-zone-endpoints-preview) (preview). You can create up to 5,000 storage accounts per region per subscription with Azure DNS zone endpoints in a subscription.
 
-Within a single subscription, you can create accounts with either standard or Azure DNS Zone endpoints, for a maximum of 5,250 accounts per region per subscription. With a quota increase, you can create up to 5,500 storage accounts per region per subscription.
+Within a single subscription, you can create accounts with either standard or Azure DNS zone endpoints, for a maximum of 5,250 accounts per region per subscription. With a quota increase, you can create up to 5,500 storage accounts per region per subscription.
 
 You can configure your storage account to use a custom domain for the Blob Storage endpoint. For more information, see [Configure a custom domain name for your Azure Storage account](../blobs/storage-custom-domain-name.md).
 
@@ -173,7 +173,7 @@ An Azure DNS zone service endpoint in Azure Storage includes:
 * The storage account name as the subdomain
 * A domain that includes the name of the service and the identifier for the DNS zone. The identifier for the DNS zone always begins with `z` and can range from `z00` to `z50`.
 
-The following table lists the format for Azure DNS Zone endpoints for each of the Azure Storage services:
+The following table lists the format for Azure DNS zone endpoints for each of the Azure Storage services:
 
 | Storage service | Endpoint |
 |--|--|
@@ -185,11 +185,11 @@ The following table lists the format for Azure DNS Zone endpoints for each of th
 | Table Storage | `https://<storage-account>.z[00-50].table.storage.azure.net` |
 
 > [!IMPORTANT]
-> You can create up to 5,000 accounts with Azure DNS Zone endpoints per region per subscription. However, you might need to update your application code to query for the account endpoint at runtime. You can call the [`get properties`](/rest/api/storagerp/storage-accounts/get-properties) operation to query for the storage account endpoints.
+> You can create up to 5,000 accounts with Azure DNS zone endpoints per region per subscription. However, you might need to update your application code to query for the account endpoint at runtime. You can call the [`get properties`](/rest/api/storagerp/storage-accounts/get-properties) operation to query for the storage account endpoints.
 
 Azure DNS zone endpoints are supported for accounts created with only the Azure Resource Manager deployment model. For more information, see [Azure Resource Manager overview](../../azure-resource-manager/management/overview.md).
 
-To learn how to create a storage account with Azure DNS Zone endpoints, see [Create a storage account](storage-account-create.md).
+To learn how to create a storage account with Azure DNS zone endpoints, see [Create a storage account](storage-account-create.md).
 
 #### About the preview
 
@@ -265,7 +265,7 @@ The following account types are retired or scheduled for retirement. They aren't
 | **Blob Storage** | Block blobs and append blobs | LRS/GRS/RA-GRS | Resource Manager | Upgrade existing Legacy Blob Storage accounts to GPv2 to use access tiers and lifecycle management. See [Legacy Blob Storage account migration overview](./legacy-blob-storage-account-migration-overview.md) and [access tiers overview](../blobs/access-tiers-overview.md). |
 | **Classic (ASM) storage accounts** | Blob, Queue, Table, Azure Files | LRS/GRS/RA-GRS | classic | Retired. Migrate to the Resource Manager deployment model. See [classic account migration overview](./classic-account-migration-overview.md). |
 
-¹ "Classic" denotes the Azure Service Management deployment model.
+¹ *Classic* denotes the Azure Service Management deployment model.
 
 ## Scalability targets for standard storage accounts
 
