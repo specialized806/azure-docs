@@ -169,8 +169,8 @@ When you create an Azure Storage account with Azure DNS zone endpoints (preview)
 
 An Azure DNS zone service endpoint in Azure Storage includes:
 
-* The protocol (HTTPS is recommended)
-* The storage account name as the subdomain
+* The protocol (HTTPS is recommended).
+* The storage account name as the subdomain.
 * A domain that includes the name of the service and the identifier for the DNS zone. The identifier for the DNS zone always begins with `z` and can range from `z00` to `z50`.
 
 The following table lists the format for Azure DNS zone endpoints for each of the Azure Storage services:
@@ -211,7 +211,7 @@ Consider the following guidelines:
 
 - The applications and operating systems should always honor the time-to-live (TTL) associated with the CNAME record. When you cache the value of the CNAME record beyond the TTL, you might experience unintended behavior.
 
-## Migrate a storage account
+## Migrating a storage account
 
 The following table summarizes and points to guidance on how to move, upgrade, or migrate a storage account:
 
@@ -221,9 +221,9 @@ The following table summarizes and points to guidance on how to move, upgrade, o
 | Move a storage account to a different resource group | Azure Resource Manager provides options for moving a resource to a different resource group. For more information, see [Move resources to a new resource group or subscription](../../azure-resource-manager/management/move-resource-group-and-subscription.md). |
 | Move a storage account to a different region | To move a storage account, create a copy of your storage account in another region. Then, move your data to that account by using AzCopy, or another tool of your choice. For more information, see [Move an Azure Storage account to another region](storage-account-move.md). |
 | Upgrade to a general-purpose v2 storage account | You can upgrade a general-purpose v1 storage account or Blob Storage account to a general-purpose v2 account. This action can't be undone. For more information, see [Upgrade to a general-purpose v2 storage account](storage-account-upgrade.md). |
-| Migrate a classic storage account to Azure Resource Manager | The Azure Resource Manager deployment model is superior to the classic deployment model in terms of functionality, scalability, and security. For more information about migrating a classic storage account to Azure Resource Manager, see the *Migration of storage accounts section of [Platform-supported migration of IaaS resources from classic to Azure Resource Manager](/azure/virtual-machines/migration-classic-resource-manager-overview#migration-of-storage-accounts). |
+| Migrate a classic storage account to Azure Resource Manager | The Azure Resource Manager deployment model is superior to the classic deployment model in terms of functionality, scalability, and security. For more information about migrating a classic storage account to Azure Resource Manager, see [Platform-supported migration of IaaS resources from classic to Azure Resource Manager](/azure/virtual-machines/migration-classic-resource-manager-overview#migration-of-storage-accounts). |
 
-## Transfer data into a storage account
+## Transferring data into a storage account
 
 Microsoft provides services and utilities to import your data from on-premises storage devices or third-party cloud storage providers. Which solution you use depends on the quantity of data you're transferring. For more information, see [Azure Storage migration overview](storage-migration-overview.md).
 
@@ -243,7 +243,7 @@ Azure Storage bills based on your storage account usage. All objects in a storag
 - **Transactions**: All read and write operations to Azure Storage.
 - **Data egress**: Any data transferred out of an Azure region. When an application that isn't running in the same region accesses the data in your storage account, you're charged for data egress. For information about using resource groups to group your data and services in the same region to limit egress charges, see [What is an Azure resource group?](/azure/cloud-adoption-framework/govern/resource-consistency/resource-access-management#what-is-an-azure-resource-group).
 
-The [Azure Storage pricing page](https://azure.microsoft.com/pricing/details/storage) provides detailed pricing information based on account type, storage capacity, replication, and transactions. The [Data Transfers pricing details](https://azure.microsoft.com/pricing/details/data-transfers) provides detailed pricing information for data egress. You can use the [Azure Storage pricing calculator](https://azure.microsoft.com/pricing/calculator/?scenario=data-management) to help estimate your costs.
+The [Azure Storage pricing page](https://azure.microsoft.com/pricing/details/storage) provides detailed pricing information based on account type, storage capacity, replication, and transactions. The [Data transfers pricing details](https://azure.microsoft.com/pricing/details/data-transfers) provides detailed pricing information for data egress. You can use the [Azure Storage pricing calculator](https://azure.microsoft.com/pricing/calculator/?scenario=data-management) to help estimate your costs.
 
 [!INCLUDE [cost-management-horizontal](../../../includes/cost-management-horizontal.md)]
 
