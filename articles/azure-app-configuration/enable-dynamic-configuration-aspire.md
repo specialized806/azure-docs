@@ -153,7 +153,7 @@ The configuration refresh is triggered by the incoming requests to your web app.
 
 ## Next steps
 
-In this tutorial, you enabled your Aspire app to dynamically refresh configuration settings from App Configuration. To learn how to enable dynamic configuration in an ASP.NET Web Application, continue to the next tutorial:
+In this tutorial, you enabled your Aspire app to dynamically refresh configuration settings from App Configuration. To learn how to add a feature flag to an Aspire application, continue to the next tutorial:
 
 > [!div class="nextstepaction"]
-> [Enable dynamic configuration in ASP.NET Web Applications](./enable-dynamic-configuration-aspnet-netfx.md)
+> [Quickstart: Add feature flags to an Aspire app](./quickstart-feature-flag-aspire.md)
