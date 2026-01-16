@@ -86,7 +86,7 @@ Like the Service bus cloud service, the emulator provides the following quotas f
 
 ## Create and manage entities within Service Bus emulator
 
-You can create and manage Service Bus entities—such as queues and topics—using the Service Bus [Administration Client](articles/service-bus-messaging/service-bus-management-libraries.md). By default, the emulator runs with the [config.json](https://github.com/Azure/azure-service-bus-emulator-installer/blob/main/ServiceBus-Emulator/Config/Config.json) configuration file. You can also make declarative changes to the configuration file as per your needs:
+You can create and manage Service Bus entities—such as queues and topics—using the Service Bus [Administration Client](service-bus-management-libraries.md). By default, the emulator runs with the [config.json](https://github.com/Azure/azure-service-bus-emulator-installer/blob/main/ServiceBus-Emulator/Config/Config.json) configuration file. You can also make declarative changes to the configuration file as per your needs:
 
 - **Entities**: You can add more Service bus entities in accordance with the supported quotas. 
 - **Logging**: The emulator supports logging on a console, in a file, or both. You can choose according to your personal preference.
