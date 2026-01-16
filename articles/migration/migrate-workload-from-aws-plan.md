@@ -44,6 +44,8 @@ In order to build a comparable system in Azure, you first need to fully understa
 
 Many cloud-based modern workloads use managed or serverless services instead of VMs for many of their functions. If your AWS workload uses manages services, for example EKS or ECS, you need to research Azure's offerings to find the best like-for-like match for your use case. In some cases, Azure might have multiple services that you can choose from, like containerized apps. Choose the service that is the most similar. For example, do not switch container orchestration platforms during migration.
 
+**Example like-for-like architecture for a Kubernetes workload on AWS and Azure**
+
 :::image type="complex" source="./images/like-for-like-architecture-aws-and-azure.svg" alt-text="Diagram showing like-for-like architecture for Kubernetes based workload" lightbox="./images/like-for-like-architecture-aws-and-azure.svg" border="false":::
 Diagram illustrating hybrid connectivity between AWS and Azure clouds for Kubernetes workloads. On the left, AWS Cloud includes services such as Amazon Elastic Container Registry (ECR), IAM, KMS, and CloudWatch, with an Amazon EKS cluster inside a VPC connected to compute nodes and a network load balancer. On the right, Azure Cloud includes Azure Container Registry, Microsoft Entra ID, Key Vault, and Monitor, with an Azure Kubernetes Service (AKS) cluster inside a Virtual Network (VNet) featuring private endpoints, an application gateway, and node pools. In the center, admins and engineers use Terraform for infrastructure automation. Connectivity between AWS and Azure is established via Site-to-Site VPN, AWS Direct Connect, and Azure ExpressRoute. Users interact from the top of the diagram.
 :::image-end:::
