@@ -7,7 +7,7 @@ author: dlepow
 ms.service: azure-api-management
 ms.custom: devx-track-dotnet
 ms.topic: reference
-ms.date: 03/07/2023
+ms.date: 01/15/2026
 ms.author: danlep
 ---
 # API Management policy expressions
@@ -202,8 +202,9 @@ The `context` variable is implicitly available in every policy [expression](api-
 
 |Context Variable|Allowed methods, properties, and parameter values|
 |----------------------|-------------------------------------------------------|
-|`context`|[`Api`](#ref-context-api): [`IApi`](#ref-iapi)<br /><br /> [`Deployment`](#ref-context-deployment)<br /><br /> Elapsed: `TimeSpan` - time interval between the value of `Timestamp` and current time<br /><br /> [`GraphQL`](#ref-context-graphql)<br /><br />[`LastError`](#ref-context-lasterror)<br /><br /> [`Operation`](#ref-context-operation)<br /><br /> [`Request`](#ref-context-request)<br /><br /> `RequestId`: `Guid` - unique request identifier<br /><br /> [`Response`](#ref-context-response)<br /><br /> [`Subscription`](#ref-context-subscription)<br /><br />`Timestamp`: `DateTime` - point in time when request was received<br /><br /> `Tracing`: `bool` - indicates if tracing is on or off <br /><br /> [User](#ref-context-user)<br /><br /> [`Variables`](#ref-context-variables): `IReadOnlyDictionary<string, object>`<br /><br /> `void Trace(message: string)` <br /><br /> [`Workspace`](#ref-context-workspace) |
+|`context`|[`Api`](#ref-context-api): [`IApi`](#ref-iapi)<br /><br /> [`Backend`](#ref-context-backend)<br /><br /> [`Deployment`](#ref-context-deployment)<br /><br /> Elapsed: `TimeSpan` - time interval between the value of `Timestamp` and current time<br /><br /> [`GraphQL`](#ref-context-graphql)<br /><br />[`LastError`](#ref-context-lasterror)<br /><br /> [`Operation`](#ref-context-operation)<br /><br /> [`Request`](#ref-context-request)<br /><br /> `RequestId`: `Guid` - unique request identifier<br /><br /> [`Response`](#ref-context-response)<br /><br /> [`Subscription`](#ref-context-subscription)<br /><br />`Timestamp`: `DateTime` - point in time when request was received<br /><br /> `Tracing`: `bool` - indicates if tracing is on or off <br /><br /> [User](#ref-context-user)<br /><br /> [`Variables`](#ref-context-variables): `IReadOnlyDictionary<string, object>`<br /><br /> `void Trace(message: string)` <br /><br /> [`Workspace`](#ref-context-workspace) |
 |<a id="ref-context-api"></a>`context.Api`|`Id`: `string`<br /><br /> `IsCurrentRevision`: `bool`<br /><br />  `Name`: `string`<br /><br /> `Path`: `string`<br /><br /> `Revision`: `string`<br /><br /> `ServiceUrl`: [`IUrl`](#ref-iurl)<br /><br /> `Version`: `string` |
+|<a id="ref-context-backend"></a>`context.Backend`|`AzureRegion`: `string`<br /><br /> `Id`: `string`<br /><br /> `Type`: `enum BackendType {Single, Pool}`|
 |<a id="ref-context-deployment"></a>`context.Deployment`|[`Gateway`](#ref-context-gateway)<br /><br /> `GatewayId`: `string` (returns 'managed' for managed gateways)<br /><br /> `Region`: `string`<br /><br /> `ServiceId`: `string`<br /><br /> `ServiceName`: `string`<br /><br />[`SustainabilityInfo`](#ref-context-sustainability)<br/><br/> `Certificates`: `IReadOnlyDictionary<string, X509Certificate2>`|
 |<a id="ref-context-gateway"></a>`context.Deployment.Gateway`|`Id`: `string` (returns 'managed' for managed gateways)<br /><br /> `InstanceId`: `string` (returns 'managed' for managed gateways)<br /><br /> `IsManaged`: `bool`|
 |<a id="ref-context-sustainability"></a>`context.Deployment.SustainabilityInfo`| `CurrentCarbonIntensity`: Enum [CarbonIntensityCategory](sustainability.md#carbon-intensity-categories)|
