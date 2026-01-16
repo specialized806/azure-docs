@@ -44,7 +44,7 @@ LATEST_RELEASE=$(curl -sSL -H 'Accept: application/vnd.github+json' "https://api
 bash <(curl -sL "https://raw.githubusercontent.com/Azure/cyclecloud-slurm-workspace/refs/tags/${LATEST_RELEASE}/util/entra_postdeploy.sh") -rg CCW_RESOURCE_GROUP_NAME
 ```
 
-Ensure that you subsistute `CCW_RESOURCE_GROUP_NAME` in the above with the name of the resource group with resources created by Azure CycleCloud Workspace for Slurm. 
+Ensure that you substitute `CCW_RESOURCE_GROUP_NAME` in the above with the name of the resource group with resources created by Azure CycleCloud Workspace for Slurm. 
 
 ## Greenfield deployment
 

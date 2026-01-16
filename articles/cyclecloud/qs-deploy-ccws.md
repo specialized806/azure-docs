@@ -15,7 +15,7 @@ The main steps to deploy and configure CycleCloud Workspace for Slurm with Micro
 1. Deploy a CycleCloud Workspace for Slurm environment using Azure Marketplace (this quickstart).
 1. Register a Microsoft Entra ID application: [Create a Microsoft Entra application registration for use with Azure CycleCloud and Azure CycleCloud Workspace for Slurm](./how-to/create-app-registration.md).
 1. Configure Open OnDemand to use the Microsoft Entra ID application: [Configure Open OnDemand with CycleCloud](./how-to/ccws/configure-open-ondemand.md)
-1. Add users to the registered Microsoft Entra ID aplication: [Permissioning users for CycleCloud](./how-to/create-app-registration.md#permissioning-users-for-cyclecloud)
+1. Add users to the registered Microsoft Entra ID application: [Permissioning users for CycleCloud](./how-to/create-app-registration.md#permissioning-users-for-cyclecloud)
 
 ## Prerequisites
 
