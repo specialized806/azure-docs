@@ -24,7 +24,7 @@ Clients can poll the status endpoint and display a progress UI that visualizes t
 # [C#](#tab/csharp)
 
 > [!NOTE]
-> These C# examples are written for Durable Functions 2.x and are not compatible with Durable Functions 1.x. For more information about the differences between versions, see the [Durable Functions versions](durable-functions-versions.md) article.
+> These examples are written for Durable Functions 2.x and aren't compatible with Durable Functions 1.x. For more information about the differences between versions, see the [Durable Functions versions](durable-functions-versions.md) article.
 
 ```csharp
 [FunctionName("E1_HelloSequence")]
@@ -159,7 +159,7 @@ public String sayHello(@DurableActivityTrigger(name = "name") String name) {
 ```
 ---
 
-And then the client will receive the output of the orchestration only when `CustomStatus` field is set to "London":
+The client receives the output of the orchestration only when `CustomStatus` field is set to "London":
 
 # [C#](#tab/csharp)
 
@@ -253,7 +253,7 @@ async def main(req: func.HttpRequest, starter: str) -> func.HttpResponse:
 
 # [PowerShell](#tab/powershell)
 
-The feature is not currently implemented in PowerShell
+The feature isn't currently implemented in PowerShell.
 
 # [Java](#tab/java)
 
