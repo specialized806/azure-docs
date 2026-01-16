@@ -47,8 +47,8 @@ The following scenarios involving control plane operations that use trusted serv
 
     > [!NOTE]
     > Trusted connectivity on key vaults is not required for the following features to work if your API Management service has an established networking line of sight to the target key vault (and are unaffected by the breaking change):
-    > - **Named values** from key vault
-    > - **Client certificates** from key vault
+    > - **Accessing named values** from key vault
+    > - **Accessing client certificates** from key vault
 
 ### Step 1: Does my API Management gateway rely on trusted service connectivity? 
 
