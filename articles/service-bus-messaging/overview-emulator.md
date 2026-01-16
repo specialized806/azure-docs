@@ -108,3 +108,5 @@ During testing, console or file logs help you debug unexpected failures. To revi
 ## Related content
 
 [Test locally by using the Azure Service Bus emulator](test-locally-with-service-bus-emulator.md)
+
+[Service Bus emulator Samples](https://github.com/Azure/azure-service-bus-emulator-installer/tree/main/Sample-Code-Snippets)
