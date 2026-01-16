@@ -227,10 +227,12 @@ When you use Docker, the service bus emulator is fetched from the [Microsoft Con
       ports:
         - "5672:5672"
         - "5300:5300"
+        - "5300:${EMULATOR_HTTP_PORT:-5300}"
       environment:
         SQL_SERVER: mssql
         MSSQL_SA_PASSWORD: "${MSSQL_SA_PASSWORD}"  # Password should be same as what is set for SQL Server Linux 
         ACCEPT_EULA: ${ACCEPT_EULA}
+        EMULATOR_HTTP_PORT: ${EMULATOR_HTTP_PORT:-5300}
         SQL_WAIT_INTERVAL: ${SQL_WAIT_INTERVAL} # Optional: Time in seconds to wait for SQL to be ready (default is 15 seconds)
       depends_on:
         - mssql
@@ -269,6 +271,9 @@ When you use Docker, the service bus emulator is fetched from the [Microsoft Con
     
     # 3. MSSQL_SA_PASSWORD to be filled by user as per policy
     MSSQL_SA_PASSWORD=""
+
+    # 4. Port on which emulator will expose Management & Health-check APIs
+    EMULATOR_HTTP_PORT=5300
     ```
     
     > [!IMPORTANT]
