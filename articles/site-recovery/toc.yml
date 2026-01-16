@@ -12,7 +12,7 @@
     items:
     - name: Azure to Azure - Costs
       href: site-recovery-cost.md
-    - name: Estimate cost
+    - name: About Azure Site Recovery deployment planner
       href: deployment-planner-cost-estimation.md
 - name: What's New
   items:
