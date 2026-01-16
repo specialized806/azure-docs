@@ -1,5 +1,5 @@
 ---
-title:  The Azure Health Data Services De-identification Service Transparency Note
+title: Azure Health Data Services De-identification Service Transparency Note
 description: The basics of the de-identification service in Azure Health Data Services and Responsible AI.
 author: kimiamavon
 ms.service: azure-health-data-services
@@ -26,9 +26,13 @@ The service uses machine learning to identify PHI, including the 18 identifiers 
 
 ### System behavior
 
-To use the de-identification service, the input raw, unstructured text, can be sent synchronously one at a time or asynchronously as a batch. For the synchronous call, the API output is handled in your application. For the batch use case, the API call requires a source and target file location in Azure Blob Storage.
+To use the de-identification service, the input raw, unstructured text is sent synchronously one at a time or asynchronously as a batch. For the synchronous call, the API output is handled in your application. For the batch use case, the API call requires a source and target file location in Azure Blob Storage.
 
-Three possible operations are available through the API: `TAG`, `REDACT`, or `SURROGATE`. `TAG` returns PHI values detected with named entity recognition. `REDACT` returns the input text, except with the entity type replacing the PHI values. `SURROGATE` returns the input text, except with randomly selected identifiers, or the same entity type, replacing the PHI values. Consistent surrogation is available across documents by using the batch API.
+Three possible operations are available through the API:
+
+- `TAG`: The `TAG` operation returns PHI values detected with named entity recognition.
+- `REDACT`: The `REDACT` operation returns the input text, except with the entity type replacing the PHI values.
+- `SURROGATE`: The `SURROGATE` operation returns the input text, except with randomly selected identifiers, or the same entity type, replacing the PHI values. Consistent surrogation is available across documents by using the batch API.
 
 ## Use cases
 
@@ -51,7 +55,7 @@ Results derived from the de-identification service vary based on factors such as
 
 ## Suggested use
 
-The de-identification service offers three operations: `TAG`, `REDACT`, and `SURROGATE`. When appropriate, we recommend that you deploy surrogation instead of redaction. Surrogation is useful when the system fails to identify true PHI. The real value is hidden among surrogates, or stand-in-data. The data is "hiding in plain sight," unlike redaction.
+The de-identification service offers the `TAG`, `REDACT`, and `SURROGATE` operations. When appropriate, we recommend that you deploy surrogation instead of redaction. Surrogation is useful when the system fails to identify true PHI. The real value is hidden among surrogates, or stand-in-data. The data is "hiding in plain sight," unlike redaction.
 
 The service also offers consistent surrogation, or a continuous mapping of surrogate replacements across documents. Consistent surrogation is available by submitting files in batches to the API by using the asynchronous endpoint. We recommend that you limit the batch size because consistent surrogation over a large number of records degrades the privacy of the document.
 
@@ -64,7 +68,7 @@ Various cases might affect the performance of the de-identification service:
 - **Spelling:** Incorrect spelling might affect the output. If a word or the surrounding words are misspelled, the system might not have enough information to recognize that the text is PHI.
 - **Data format:** The service performs best on unstructured text, such as clinical notes, transcripts, or messages. Structured text without the context of surrounding words might not have enough information to recognize that the text is PHI.
 - **Performance:** Potential error types are outlined in the system performance section.
-- **Surrogation:** As stated previously, the service offers consistent surrogation, or a continuous mapping of surrogate replacements across documents. Consistent surrogation is available by submitting files in batches to the API by using the asynchronous endpoint. Submitting the same files in different batches or through the real-time endpoint results in different surrogates used in place of the PHI values.
+- **Surrogation:** As stated previously, the service offers consistent surrogation or a continuous mapping of surrogate replacements across documents. Consistent surrogation is available by submitting files in batches to the API by using the asynchronous endpoint. Submitting the same files in different batches or through the real-time endpoint results in different surrogates used in place of the PHI values.
 - **Compliance:** The performance of the de-identification service is dependent on the user's data. The service doesn't guarantee compliance with the HIPAA Safe Harbor method or unlinked pseudonymization aligned with GDPR principles. The service uses state-of-the-art machine learning models to identify and handle sensitive information to help support customers' own compliance efforts with the HIPAA Safe Harbor standards and unlinked pseudonymization aligned with GDPR principles. We encourage you to obtain appropriate legal review of your solution, particularly for sensitive or high-risk applications.
 
 ## System performance
@@ -101,15 +105,15 @@ Our de-identification system is evaluated in terms of its ability to detect PHI 
 
 ### PHI detection
 
-Our system focuses on its ability to successfully identify and remove all PHI in incoming text (recall). A secondary metric is precision, which tells us how often we think something is PHI when it isn't, and how often we identify both the type and location of PHI in text. As a service that's typically used to mitigate risk associated with PHI, the primary release criteria we use is recall.
+Our system focuses on its ability to successfully identify and remove all PHI in incoming text (recall). A secondary metric is precision, which tells us how often we think something is PHI when it isn't, and how often we identify both the type and location of PHI in text. The service is typically used to mitigate risk associated with PHI, so the primary release criteria we use is recall.
 
-Recall is measured on a number of academic and internal datasets written in [each language that we support](languages-supported.md). It typically covers medical notes and conversations across various medical specialties. Our internal metrics don't include non-PHI text and are measured at an entity level with fuzzy matching so that the true text span doesn't need to match the detected one exactly.
+Recall is measured on many academic and internal datasets written in [each language that we support](languages-supported.md). It typically covers medical notes and conversations across various medical specialties. Our internal metrics don't include non-PHI text and are measured at an entity level with fuzzy matching so that the true text span doesn't need to match the detected one exactly.
 
 Our service goal is to maintain recall greater than 95%.
 
 ### PHI replacement
 
-We produce synthetic data that looks like the original data source in terms of plausibility and readability. We evaluate how often our system produces replacements that can be interpreted as the same type as the original. This metric is an important intermediate metric that predicts how well downstream applications make sense of the de-identified data.
+We produce synthetic data that looks like the original data source in terms of plausibility and readability. We evaluate how often our system produces replacements that can be interpreted as the same type as the original. This important intermediate metric predicts how well that downstream applications make sense of the de-identified data.
 
 Secondarily, we internally study the performance of machine learning models trained on original versus de-identified data. We don't publish the results of these studies. Using surrogation for machine learning applications improves the downstream performance of the machine learning model.
 
@@ -125,29 +129,29 @@ The data and measurement that we perform represents most healthcare applications
 
 The system analyzes text in large chunks so that the context of a phrase is used to infer if it's PHI or not. We don't recommend using this system in a real-time/transcription application, where the caller might have access to the context only before a PHI utterance. The system relies on both pre- and post-text for context.
 
-The training algorithm uses large foundational models that are trained on large amounts of text from all sources, including nonmedical sources. Every reasonable effort was made to ensure that the results of these models are in line with the domain and intended usage of the application, but these systems might not perform well in all circumstances for all data.
+The training algorithm uses large foundational models that are trained on large amounts of text from all sources, including nonmedical sources. Every reasonable effort is made to ensure that the results of these models are in line with the domain and intended use of the application. However, these systems might not perform well in all circumstances for all data.
 
 We don't recommend this system for nonmedical applications or for applications other than [the languages that we support](languages-supported.md).
 
 ### Fairness considerations
 
-The surrogation system replaces names through random selection. This process might result in a distribution of names more diverse than the original dataset. The surrogation system also strives to not include offensive content in results. The surrogation list is evaluated by a content-scanning tool that checks for sensitive geopolitical terms, profanity, and trademark terms in Microsoft products.
+The surrogation system replaces names through random selection. This process might result in a distribution of names more diverse than the original dataset. The surrogation system also strives to not include offensive content in results. A content-scanning tool evaluates the surrogation list and checks for sensitive geopolitical terms, profanity, and trademark terms in Microsoft products.
 
-Our model was augmented to provide better-than-average performance for all cultures. Data is carefully injected into our training process that represents many ethnicities in an effort to provide equal performance in PHI removal for all data, regardless of source.
+Our model was augmented to provide better-than-average performance for all cultures. Data is carefully injected into our training process that represents many ethnicities to provide equal performance in PHI removal for all data, regardless of source.
 
-The service makes no guarantees, implied or explicit, with respect to its interpretation of data. Any user of this service should make no inferences about associations or correlations between tagged data elements such as gender, age, location, language, occupation, illness, income level, marital status, disease or disorder, or any other demographic information.
+The service makes no guarantees, implied or explicit, with respect to its interpretation of data. Any user of this service should make no inferences about associations or correlations between tagged data elements. These elements include gender, age, location, language, occupation, illness, income level, marital status, disease or disorder, or any other demographic information.
 
 ## Evaluate and integrate the de-identification service for your use
 
 Microsoft wants to help you responsibly deploy the de-identification service. As part of our commitment to developing responsible AI, we urge you to consider the following factors:
 
 - **Understand what it can do:** Fully assess the capabilities of the de-identification service to understand its capabilities and limitations. Understand how it will perform in your scenario, context, and on your specific dataset.
-- **Test with real, diverse data:** Understand how the de-identification service will perform in your scenario by thoroughly testing it by using real-life conditions and data that reflect the diversity in your users, geography, and deployment contexts. Small datasets, synthetic data, and tests that don't reflect your end-to-end scenario are unlikely to sufficiently represent your production performance.
+- **Test with real, diverse data:** Understand how the de-identification service will perform in your scenario. Test it thoroughly by using real-life conditions and data that reflect the diversity in your users, geography, and deployment contexts. Small datasets, synthetic data, and tests that don't reflect your end-to-end scenario are unlikely to sufficiently represent your production performance.
 - **Respect an individual's right to privacy:** Only collect or use data and information from individuals for lawful and justifiable purposes. Use only the data and information that you have consent to use or are legally permitted to use.
-- **Language:** Currently, the de-identification service is enabled for the [languages and locales list supported](languages-supported.md) by the service.
-- **Legal review:** Obtain appropriate legal review of your solution, particularly if you plan to use it in sensitive or high-risk applications. Understand what restrictions you might need to work within and any risks that need to be mitigated prior to use. You have a responsibility to mitigate risks and resolve any issues that might come up.
+- **Language:** Confirm that your language is enabled for the de-identification service with the [languages and locales list](languages-supported.md).
+- **Legal review:** Obtain appropriate legal review of your solution, particularly if you plan to use it in sensitive or high-risk applications. Understand what restrictions you might need to work within and any risks that need to be mitigated before use. You have a responsibility to mitigate risks and resolve any issues that might come up.
 - **System review:** Understand how each part of your system will be affected if you plan to integrate and responsibly use an AI-powered product or feature in an existing system for software or customer or organizational processes. Consider how your AI solution aligns with Microsoft Responsible AI principles.
-- **Human in the loop:** Keep a human in the loop and include human oversight as a consistent pattern area to explore. This practice means constant human oversight of the AI-powered product or feature and ensuring the role of humans in making any decisions that are based on the model's output. To prevent harm and to manage how the AI model performs, ensure that humans have a way to intervene in the solution in real time.
+- **Human in the loop:** Keep a human in the loop and include human oversight as a consistent pattern area to explore. This practice means constant human oversight of the AI-powered product or feature. Ensure the role of humans in making any decisions that are based on the model's output. To prevent harm and to manage how the AI model performs, ensure that humans have a way to intervene in the solution in real time.
 - **Security:** Ensure that your solution is secure and that it has adequate controls to preserve the integrity of your content and prevent unauthorized access.
 - **Customer feedback loop:** Provide a feedback channel that users and individuals can use to report issues with the service after you deploy it. After you deploy an AI-powered product or feature, it requires ongoing monitoring and improvement. Have a plan and be ready to implement feedback and suggestions for improvement.
 
