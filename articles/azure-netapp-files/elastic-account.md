@@ -21,23 +21,9 @@ Creating a NetApp account enables you to set up a capacity pool so that you can 
 
 ## Register for the Elastic zone-redundant storage
 
-Elastic zone-redundant storage is currently in preview. You must register for the `ANFElasticZRS` AFEC before using zone-redundant storage for the first time. 
+Elastic zone-redundant storage is currently in preview. To register for Elastic zone-redundant storage, submit a [waitlist request](https://forms.cloud.microsoft/r/RcEfunRDrz).
 
-1.  Register the feature:
-
-    ```azurepowershell-interactive
-    Register-AzProviderFeature -ProviderNamespace Microsoft.NetApp -FeatureName ANFElasticZRS
-    ```
-
-2. Check the status of the feature registration: 
-
-    > [!NOTE]
-    > The **RegistrationState** may be in the `Registering` state for up to 60 minutes before changing to `Registered`. Wait until the status is `Registered` before continuing.
-
-    ```azurepowershell-interactive
-    Get-AzProviderFeature -ProviderNamespace Microsoft.NetApp -FeatureName ANFElasticZRS
-    ```
-You can also use [Azure CLI commands](/cli/azure/feature) `az feature register` and `az feature show` to register the feature and display the registration status. 
+Waitlists requests are reviewed weekly. An Azure NetApp Files representative will contact you after your request has been reviewed. 
 
 ## Steps
 

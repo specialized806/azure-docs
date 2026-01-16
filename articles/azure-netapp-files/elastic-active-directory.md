@@ -29,7 +29,7 @@ If you're adding SMB volumes to your Elastic zone-redundant capacity pool, you m
 * Currently, you can only add one Active Directory account per NetApp subscription. All capacity pools for SMB volumes in a subscription share this Active Directory connection. 
 * The Active Directory resource you create for the capacity pool is limited to Elastic zone-redundant storage. The Active Directory resource is available only with capacity pools in Elastic zone-redundant storage. 
 * You can't update the resource ID of the Active Directory after it's connected. 
-* If you update the password of your Active Directory connection, you should ensure it's also updated in the resource provided. If you don't update the Active Directory, creating SMB volumes can fail. 
+* If you update the password of your Active Directory connection, you should ensure it's also updated in the resource provided. If you don't update the Active Directory, creating SMB volumes can fail. For more information, see [Update the Active Directory connection](#update-the-active-directory-connection).
 * Currently, you can only configure Active Directory with a user-assigned identity.  
 
 >[!IMPORTANT]
@@ -46,7 +46,7 @@ You can create the Active Directory connection when you [create the capacity poo
 1. In the Networking tab, provide inputs for the following fields:
 
     * **Active Directory policy name**
-    
+
         Enter a name for the Active Directory configuration. 
     *  **DNS addresses**
 
@@ -102,6 +102,54 @@ If you've already created an Active Directory connection in the NetApp Elastic a
 1. In the overview for the capacity pool, select **+ Add Active Directory Connection**. 
 
 1. Select the Active Directory connection from the dropdown menu. Select **OK** to associate it with the capacity pool. 
+
+## Monitor and modify the Active Directory connection
+
+To check or update the status of the Active Directory connection, you must use the REST API. 
+
+### Check the status of the Active Directory connection 
+
+* To retrieve all the Active Directory configurations for the Azure NetApp Files subscription, use this GET call: 
+
+```rest 
+  /subscriptions/{subscriptionId}/providers/Microsoft.NetApp/activeDirectoryConfigs​
+```
+
+* To retrieve all Active Directory configurations under a resource group, use this GET call: 
+
+```rest
+/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetApp/activeDirectoryConfigs​
+```
+
+* To retrieve information about a specific Active Directory configuration, use this GET call: 
+
+```rest
+/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetApp/activeDirectoryConfigs/{activeDirectoryConfigName}"​
+```
+
+### Update the Active Directory connection 
+
+To update the Active Directory connection of your Elastic zone-redundant account, send a PATCH request: 
+
+```rest
+/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetApp/activeDirectoryConfigs/​{activeDirectoryConfigName}​
+```
+
+The following sample payload can be used to update the Active Directory account password. 
+
+```json
+ {
+    "location": "region1", ​
+    "properties": { ​
+        "secretPassword": { ​
+            "keyVaultProperties": { ​
+                "keyVaultUri": "https://abc-keyvault-uks2.vault.azure.net/", 
+               "secretName": "abc" ​
+             }​
+        }​
+    }​
+}
+```
 
 ## Next steps
 
