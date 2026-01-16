@@ -4,7 +4,7 @@ description: A share snapshot is a read-only, point-in-time copy of an Azure fil
 author: khdownie
 ms.service: azure-file-storage
 ms.topic: how-to
-ms.date: 12/18/2025
+ms.date: 1/16/2026
 ms.author: kendownie
 # Customer intent: "As a data administrator, I want to use file share snapshots for Azure Files, so that I can efficiently recover previous versions of files and protect against accidental deletions or data corruption."
 ---
@@ -19,8 +19,8 @@ Azure Files provides the capability to take snapshots of SMB and NFS file shares
 ## Applies to
 | Management model | Billing model | Media tier | Redundancy | SMB | NFS |
 |-|-|-|-|:-:|:-:|
-| Microsoft.FileShares | Provisioned v2 | SSD (premium)  | Local (LRS)    | ![No](../media/icons/no-icon.png)   | ![No](../media/icons/no-icon.png) |
-| Microsoft.FileShares | Provisioned v2 | SSD (premium)  | Zone (ZRS)     | ![No](../media/icons/no-icon.png)   | ![No](../media/icons/no-icon.png) |
+| Microsoft.FileShares | Provisioned v2 | SSD (premium)  | Local (LRS)    | ![No](../media/icons/no-icon.png)   | ![Yes](../media/icons/yes-icon.png) |
+| Microsoft.FileShares | Provisioned v2 | SSD (premium)  | Zone (ZRS)     | ![No](../media/icons/no-icon.png)   | ![Yes](../media/icons/yes-icon.png) |
 | Microsoft.Storage    | Provisioned v2 | SSD (premium)  | Local (LRS)    | ![Yes](../media/icons/yes-icon.png) | ![Yes](../media/icons/yes-icon.png) |
 | Microsoft.Storage    | Provisioned v2 | SSD (premium)  | Zone (ZRS)     | ![Yes](../media/icons/yes-icon.png) | ![Yes](../media/icons/yes-icon.png) |
 | Microsoft.Storage | Provisioned v2 | HDD (standard) | Local (LRS) | ![Yes](../media/icons/yes-icon.png) | ![No](../media/icons/no-icon.png) |
@@ -298,7 +298,7 @@ If the mount fails, see [Troubleshoot Azure Files connectivity and access issues
 
 ## NFS file share snapshots
 
-Customers using NFS Azure file shares can create, list, delete, and restore from share snapshots.
+Customers using NFS Azure file shares (both classic file shares, and file shares with Microsoft.FileShares) can create, list, delete, and restore from share snapshots.
 
 > [!IMPORTANT]
 > You should mount your file share before creating snapshots. If you create a new NFS file share and take snapshots before mounting the share, attempting to list the snapshots for the share will return an empty list. We recommend deleting any snapshots taken before the first mount and re-creating them after you've mounted the share.
@@ -311,21 +311,21 @@ Azure Backup isn't currently supported for NFS file shares.
 
 NFS Azure file share snapshots are available in all Azure public cloud regions.
 
-### Create an NFS file share snapshot
+### Create an classic NFS file share snapshot
 
-You can create a snapshot of an NFS Azure file share using the Azure portal, Azure PowerShell, or Azure CLI.
+You can create a snapshot of an NFS classic file share using the Azure portal, Azure PowerShell, or Azure CLI.
 
 # [Azure portal](#tab/portal)
 
-To create a snapshot of an existing file share, sign in to the Azure portal and follow these steps.
+To create a snapshot of an existing classic file share, sign in to the Azure portal and follow these steps.
 
 1. In the search box at the top of the Azure portal, type and select *storage accounts*.
 
-1. Select the FileStorage storage account that contains the NFS Azure file share that you want to take a snapshot of.
+1. Select the FileStorage storage account that contains the NFS classic file share that you want to take a snapshot of.
 
 1. Select **Data storage** > **File shares**.
 
-1. Select the file share that you want to snapshot, then select **Operations** > **Snapshots**.
+1. Select the classic file share that you want to snapshot, then select **Operations** > **Snapshots**.
 
 1. Select **+ Add snapshot**. Add an optional comment, and select **OK**.
 
@@ -333,55 +333,55 @@ To create a snapshot of an existing file share, sign in to the Azure portal and 
 
 # [Azure PowerShell](#tab/powershell)
 
-To create a snapshot of an existing file share, run the following PowerShell command. Replace `<resource-group-name>`, `<storage-account-name>`, and `<file-share-name>` with your own values.
+To create a snapshot of an existing classic file share, run the following PowerShell command. Replace `<resource-group-name>`, `<storage-account-name>`, and `<file-share-name>` with your own values.
 
 ```azurepowershell
 New-AzRmStorageShare -ResourceGroupName "<resource-group-name>" -StorageAccountName "<storage-account-name>" -Name "<file-share-name>" -Snapshot
 ```
 
 # [Azure CLI](#tab/cli)
-To create a snapshot of an existing file share, run the following Azure CLI command. Replace `<file-share-name>` and `<storage-account-name>` with your own values.
+To create a snapshot of an existing classic file share, run the following Azure CLI command. Replace `<file-share-name>` and `<storage-account-name>` with your own values.
 
 ```azurecli
 az storage share snapshot --name <file-share-name> --account-name <storage-account-name>
 ```
 ---
 
-### List NFS file share snapshots
+### List NFS classic file share snapshots
 
-You can list all the snapshots for a file share using the Azure portal, Azure PowerShell, or Azure CLI.
+You can list all the snapshots for a classic file share using the Azure portal, Azure PowerShell, or Azure CLI.
 
 # [Azure portal](#tab/portal)
 
-To list all the snapshots for an existing file share, sign in to the Azure portal and follow these steps.
+To list all the snapshots for an existing classic file share, sign in to the Azure portal and follow these steps.
 
 1. In the search box at the top of the Azure portal, type and select *storage accounts*.
 
-1. Select the storage account that contains the NFS Azure file share that you want to list the snapshots of.
+1. Select the storage account that contains the NFS classic file share that you want to list the snapshots of.
 
 1. Select **Data storage** > **File shares**.
 
-1. Select the file share for which you want to list the snapshots.
+1. Select the classic file share for which you want to list the snapshots.
 
-1. Select **Operations** > **Snapshots**, and any existing snapshots for the file share will be listed.
+1. Select **Operations** > **Snapshots**, and any existing snapshots for the classic file share will be listed.
 
 # [Azure PowerShell](#tab/powershell)
 
-To list all file shares and snapshots in a storage account, run the following PowerShell command. Replace `<resource-group-name>` and `<storage-account-name>` with your own values.
+To list all classic file shares and snapshots in a storage account, run the following PowerShell command. Replace `<resource-group-name>` and `<storage-account-name>` with your own values.
 
 ```azurepowershell
 Get-AzRmStorageShare -ResourceGroupName "<resource-group-name>" -StorageAccountName "<storage-account-name>" -IncludeSnapshot
 ```
 
 # [Azure CLI](#tab/cli)
-To list all file shares and snapshots in a storage account, run the following Azure CLI command. Replace `<storage-account-name>` with your own value.
+To list all classic file shares and snapshots in a storage account, run the following Azure CLI command. Replace `<storage-account-name>` with your own value.
 
 ```azurecli
 az storage share list --account-name <storage-account-name> --include-snapshots
 ```
 ---
 
-### Restore from an NFS Azure file share snapshot
+### Restore from an NFS classic file share snapshot
 
 To mount an NFS Azure file share snapshot to a Linux VM (NFS client) and restore files, follow these steps.
 
@@ -423,19 +423,19 @@ To mount an NFS Azure file share snapshot to a Linux VM (NFS client) and restore
    
 The files and directories from the snapshot should now be available in the `/media/nfs/restore` directory.
 
-### Delete NFS file share snapshots
+### Delete NFS classic file share snapshots
 
-Existing share snapshots are never overwritten. They must be deleted explicitly. You can delete share snapshots using the Azure portal, Azure PowerShell, or Azure CLI.
+Existing share snapshots are never overwritten. They must be deleted explicitly. You can delete classic share snapshots using the Azure portal, Azure PowerShell, or Azure CLI.
 
 Before you can delete a share snapshot, you'll need to remove any locks on the storage account. Navigate to the storage account and select **Settings** > **Locks**. If any locks are listed, delete them.
 
 # [Azure portal](#tab/portal)
 
-To delete a snapshot of an existing file share, sign in to the Azure portal and follow these steps.
+To delete a snapshot of an existing classic file share, sign in to the Azure portal and follow these steps.
 
 1. In the search box at the top of the Azure portal, type and select *storage accounts*.
 
-1. Select the FileStorage storage account that contains the NFS Azure file share for which you want to delete snapshots.
+1. Select the FileStorage storage account that contains the NFS classic file share for which you want to delete snapshots.
 
 1. Select **Data storage** > **File shares**.
 
@@ -447,13 +447,13 @@ To delete a snapshot of an existing file share, sign in to the Azure portal and 
 
 # [Azure PowerShell](#tab/powershell)
 
-To delete a file share snapshot, run the following PowerShell command. Replace `<resource-group-name>`, `<storage-account-name>`, and `<file-share-name>` with your own values. The `SnapshotTime` parameter must follow the correct name format, such as `2024-05-10T08:04:08Z`.
+To delete a classic file share snapshot, run the following PowerShell command. Replace `<resource-group-name>`, `<storage-account-name>`, and `<file-share-name>` with your own values. The `SnapshotTime` parameter must follow the correct name format, such as `2024-05-10T08:04:08Z`.
 
 ```azurepowershell
 Remove-AzRmStorageShare -ResourceGroupName "<resource-group-name>" -StorageAccountName "<storage-account-name>" -Name "<file-share-name>" -SnapshotTime "<snapshot-time>"
 ```
 
-To delete a file share and all its snapshots, run the following PowerShell command. Replace `<resource-group-name>`, `<storage-account-name>`, and `<file-share-name>` with your own values.
+To delete a classic file share and all its snapshots, run the following PowerShell command. Replace `<resource-group-name>`, `<storage-account-name>`, and `<file-share-name>` with your own values.
 
 ```azurepowershell
 Remove-AzRmStorageShare -ResourceGroupName "<resource-group-name>" -StorageAccountName "<storage-account-name>" -Name "<file-share-name>" -Include Snapshots
@@ -461,17 +461,117 @@ Remove-AzRmStorageShare -ResourceGroupName "<resource-group-name>" -StorageAccou
 
 # [Azure CLI](#tab/cli)
 
-To delete a file share snapshot, run the following Azure CLI command. Replace `<storage-account-name>` and `<file-share-name>` with your own values. The `--snapshot` parameter must follow the correct name format, such as `2024-05-10T08:04:08Z`.
+To delete a classic file share snapshot, run the following Azure CLI command. Replace `<storage-account-name>` and `<file-share-name>` with your own values. The `--snapshot` parameter must follow the correct name format, such as `2024-05-10T08:04:08Z`.
 
 ```azurecli
 az storage share delete --account-name <storage-account-name> --name <file-share-name> --snapshot <snapshot-time>
 ```
 
-To delete a file share and all its snapshots, run the following Azure CLI command. Replace `<storage-account-name>` and `<file-share-name>` with your own values.
+To delete a classic file share and all its snapshots, run the following Azure CLI command. Replace `<storage-account-name>` and `<file-share-name>` with your own values.
 
 ```azurecli
 az storage share delete --account-name <storage-account-name> --name <file-share-name> --delete-snapshots include
 ```
+---
+
+### Create an NFS file share snapshot with Microsoft.FileShares
+
+You can create a snapshot of an NFS file share using the Azure portal, Azure PowerShell, or Azure CLI.
+
+> [!NOTE]
+> File share with Microsoft.FileShares is currently in preview. You may use the Azure portal, or you can use generic PowerShell or Azure CLI commands to work with file shares. If you want to try the CLI private package for Microsoft.FileShares resource provider, fill out this [survey](https://forms.microsoft.com/r/nEGcB0ccaD).
+
+# [Azure portal](#tab/portal)
+
+![A screenshot of the Azure portal on create a snapshot for managed file share.](./media/storage-snapshots-files/add-managed-file-share-snapshot.png)
+# [Azure PowerShell](#tab/powershell)
+
+To create a snapshot of an existing file share, run the following PowerShell command.
+
+```powershell
+New-AzResource -ResourceId "/subscriptions/<your-subscription-ID>/resourceGroups/<your-resource-group-name>/providers/Microsoft.FileShares/fileShares/<your-file-share-name>/fileShareSnapshots/<snapshot-name>" `
+               -ApiVersion "2025-06-01-preview" `
+               -Properties @{
+                  metadata = @{}; 
+                  initiatorId=""
+               } `
+               -Force
+```
+
+# [Azure CLI](#tab/cli)
+To create a snapshot of an existing classic file share, run the following Azure CLI command. 
+
+```bash
+az rest --method put \
+--uri "/subscriptions/<subscription-ID>/resourceGroups/<resource-group-name>/providers/Microsoft.FileShares/fileShares/<file-share-name>/fileShareSnapshots/<snapshot-name>?api-version=2025-06-01-preview" \
+--body '{
+  "properties": {
+    "metadata": {},
+    "initiatorId": ""
+  }
+}'
+```
+
+---
+
+### List NFS file share snapshots
+
+You can list all the snapshots for a NFS file share using the Azure portal, Azure PowerShell, or Azure CLI.
+
+# [Azure portal](#tab/portal)
+
+
+# [Azure PowerShell](#tab/powershell)
+
+To list all file share snapshots, run the following PowerShell command. 
+
+```powershell
+$filesharesnapshot=Get-AzResource -ResourceId "/subscriptions/<your-subscription-ID>/resourceGroups/<your-resource-group-name>/providers/Microsoft.FileShares/fileShares/<your-file-share-name>/fileShareSnapshots"
+$filesharesnapshot
+
+# to view the metadata
+$filesharesnapshot.properties.metadata
+```
+
+# [Azure CLI](#tab/cli)
+To list all file share snapshots, run the following Azure CLI command.
+```bash
+az rest --method get \
+--uri "/subscriptions/<subscription-ID>/resourceGroups/<resource-group-name>/providers/Microsoft.FileShares/fileShares/<file-share-name>/fileShareSnapshots/?api-version=2025-06-01-preview"
+```
+
+---
+
+### Restore from an NFS file share snapshot
+
+---
+
+### Delete NFS file share snapshots
+
+Existing share snapshots are never overwritten. They must be deleted explicitly. You can delete share snapshots using the Azure portal, Azure PowerShell, or Azure CLI.
+
+# [Azure portal](#tab/portal)
+
+![A screenshot of the Azure portal to delete a managed file share's snapshots.](./media/storage-snapshots-files/delete-managed-file-share-snapshot.png)
+# [Azure PowerShell](#tab/powershell)
+
+To delete a file share snapshot, run the following PowerShell command. 
+
+```powershell
+Remove-AzResource -ResourceId "/subscriptions/<your-subscription-ID>/resourceGroups/<your-resource-group-name>/providers/Microsoft.FileShares/fileShares/<your-file-share-name>/fileShareSnapshots/<snapshot-name>" `
+                  -ApiVersion "2025-06-01-preview" `
+                  -Force
+```
+
+# [Azure CLI](#tab/cli)
+
+To delete a file share snapshot, run the following Azure CLI command. 
+
+```bash
+az rest --method delete \
+--uri "/subscriptions/<subscription-ID>/resourceGroups/<resource-group-name>/providers/Microsoft.FileShares/fileShares/<file-share-name>/fileShareSnapshots/<snapshot-name>?api-version=2025-06-01-preview"
+```
+
 ---
 
 ## See also
