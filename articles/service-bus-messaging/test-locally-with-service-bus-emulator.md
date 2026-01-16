@@ -226,7 +226,6 @@ When you use Docker, the service bus emulator is fetched from the [Microsoft Con
         - "${CONFIG_PATH}:/ServiceBus_Emulator/ConfigFiles/Config.json"
       ports:
         - "5672:5672"
-        - "5300:5300"
         - "5300:${EMULATOR_HTTP_PORT:-5300}"
       environment:
         SQL_SERVER: mssql
@@ -340,13 +339,13 @@ The Service Bus emulator uses a static connection string, but the host value var
     ```
 
 > [!IMPORTANT]
-> By default, management operations using the Service Bus Administration Client require appending the **port numbe** to the emulator connection string. For example, when both the emulator and the application are running on the same machine, use the following connection string for administration operations:
+> By default, management operations using the Service Bus Administration Client require appending the **port number** to the emulator connection string. For example, when both the emulator and the application are running on the same machine, use the following connection string for administration operations:
 >  ```
 > "Endpoint=sb://localhost:5300;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=SAS_KEY_VALUE;UseDevelopmentEmulator=true;";
 >  ```
-> For management operations, the emulator uses port 5300 by default. You can configure the emulator to use a different port if required. Refer to know more.
+> For management operations, the emulator uses port 5300 by default. You can configure the emulator to use a different port if required. Refer to know [more](https://github.com/Azure/azure-service-bus-emulator-installer?tab=readme-ov-file#interacting-with-the-emulator).
 > 
-> For Service Bus emulator, creating and managing entities using Service Bus Administration client is only supported in .NET and Java. 
+> For the Service Bus Emulator, creating and managing entities via the Service Bus Administration client is natively supported only in .NET.
 >
 > 
 You can use the latest client SDKs to interact with the Service Bus emulator across various programming languages. To get started, refer to the [Service Bus emulator samples on GitHub](https://github.com/Azure/azure-service-bus-emulator-installer/tree/main/Sample-Code-Snippets/NET/ServiceBus.Emulator.Console.Sample).
