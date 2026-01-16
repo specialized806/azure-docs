@@ -441,7 +441,7 @@ This example includes an optional `sessionAffinity` pool configuration for sessi
 ---
 
 ## Context.Backend variable
-When you configure a backend entity in API Management, you can access backend properties in policies by using the `context.Backend` [context variable](api-management-policy-expressions.md#context-variable).
+When you configure a backend entity in API Management, you can access backend properties in policies by using the `context.Backend` [context variable](api-management-policy-expressions.md#ContextVariables).
 
 The following table lists the properties of the `context.Backend` variable.
 
@@ -463,6 +463,7 @@ The following example shows how to set a custom header with the backend type in 
     <value>@(context.Backend?.Type ?? "n/a")</value>
   </set-header>
 </inbound>
+```
 
 ## Limitations
 
