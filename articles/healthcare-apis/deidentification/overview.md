@@ -22,14 +22,14 @@ The service uses state-of-the-art machine learning models to automatically extra
 
 ## How do you benefit from de-identifying your data?
 
-| As a                 | Health Data Services de-identification enables you to                                                               |
+| As a:                 | Health Data Services de-identification enables you to:                                                               |
 |-------------------------|----------------------------------------------------------------------------------------------------------|
 | Data scientist          | Use de-identified data to train robust machine learning models, build conversational agents, and conduct longitudinal studies. |
 | Data analyst            | Monitor trends, build dashboards, and analyze outcomes without compromising privacy.                     |
 | Data engineer           | Build and test development environments by using realistic, nonidentifiable data for safer deployment.             |
 | Customer service agent  | Summarize support conversations and extract insights while maintaining patient confidentiality.           |
 | Executive leader (C-suite) | Reduce risks of data exposure, enable secure data sharing, drive AI adoption responsibly, and ensure regulatory compliance. |
-| Regulatory & compliance officer | Ensure that data handling aligns with HIPAA Safe Harbor and GDPR pseudonymization standards across multiple languages and geographies. |
+| Regulatory and compliance officer | Ensure that data handling aligns with HIPAA Safe Harbor and GDPR pseudonymization standards across multiple languages and geographies. |
 
 ## Why is this service the right fit for your use case?
 

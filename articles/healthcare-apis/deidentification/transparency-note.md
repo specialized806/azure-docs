@@ -47,7 +47,7 @@ The de-identification service was built specifically for health and life science
 
 ## Considerations when choosing other use cases
 
-We encourage customers to use the de-identification service in their innovative solutions or applications. However, de-identified data alone or in combination with other information might reveal patient identities. When you create, use, and share de-identified data, you should do so responsibly.
+You're encouraged to use the de-identification service in your innovative solutions or applications. However, de-identified data alone or in combination with other information might reveal patient identities. When you create, use, and share de-identified data, you should do so responsibly.
 
 ## Disclaimer
 
@@ -69,7 +69,7 @@ Various cases might affect the performance of the de-identification service:
 - **Data format:** The service performs best on unstructured text, such as clinical notes, transcripts, or messages. Structured text without the context of surrounding words might not have enough information to recognize that the text is PHI.
 - **Performance:** Potential error types are outlined in the system performance section.
 - **Surrogation:** As stated previously, the service offers consistent surrogation or a continuous mapping of surrogate replacements across documents. Consistent surrogation is available by submitting files in batches to the API by using the asynchronous endpoint. Submitting the same files in different batches or through the real-time endpoint results in different surrogates used in place of the PHI values.
-- **Compliance:** The performance of the de-identification service is dependent on the user's data. The service doesn't guarantee compliance with the HIPAA Safe Harbor method or unlinked pseudonymization aligned with GDPR principles. The service uses state-of-the-art machine learning models to identify and handle sensitive information to help support customers' own compliance efforts with the HIPAA Safe Harbor standards and unlinked pseudonymization aligned with GDPR principles. We encourage you to obtain appropriate legal review of your solution, particularly for sensitive or high-risk applications.
+- **Compliance:** The performance of the de-identification service is dependent on the user's data. The service doesn't guarantee compliance with the HIPAA Safe Harbor method or unlinked pseudonymization aligned with GDPR principles. The service uses state-of-the-art machine learning models to identify and handle sensitive information to help support your own compliance efforts with the HIPAA Safe Harbor standards and unlinked pseudonymization aligned with GDPR principles. We encourage you to obtain appropriate legal review of your solution, particularly for sensitive or high-risk applications.
 
 ## System performance
 
@@ -82,9 +82,9 @@ The de-identification service might have both false positive errors and false ne
 | True positive | Jane reports an allergic reaction to cat hair. | *Patient* reports an allergic reaction to cat hair. | The system correctly identified Jane as a name. |
 | True negative | Patient reports an allergic reaction to cat hair. | Patient reports an allergic reaction to cat hair. | The system correctly identified that "cat" isn't PHI. |
 
-When we evaluate candidate models for our service, we strive to reduce false negatives. This metric is the most important from a privacy perspective.
+When we evaluate candidate models for the service, we strive to reduce false negatives. This metric is the most important from a privacy perspective.
 
-The de-identification model is trained and evaluated on diverse types of unstructured medical documents, including clinical notes and transcripts. Our training data includes synthetically generated data, open datasets, and commercially obtained datasets with patient consent.
+The de-identification model is trained and evaluated on diverse types of unstructured medical documents, including clinical notes and transcripts. Training data includes synthetically generated data, open datasets, and commercially obtained datasets with patient consent.
 
 We don't retain or use customer data to improve the service. Even though internal tests demonstrate the model's potential to generalize to different populations and locales, you should carefully evaluate your model in the context of your intended use.
 
@@ -101,49 +101,49 @@ Best practices help to improve the performance of the de-identification service:
 
 ### Evaluation methods
 
-Our de-identification system is evaluated in terms of its ability to detect PHI in incoming text. Secondarily, the system is evaluated on its ability to replace that PHI with synthetic data that preserves the semantics of the incoming text.
+The de-identification system is evaluated in terms of its ability to detect PHI in incoming text. Secondarily, the system is evaluated on its ability to replace that PHI with synthetic data that preserves the semantics of the incoming text.
 
 ### PHI detection
 
-Our system focuses on its ability to successfully identify and remove all PHI in incoming text (recall). A secondary metric is precision, which tells us how often we think something is PHI when it isn't, and how often we identify both the type and location of PHI in text. The service is typically used to mitigate risk associated with PHI, so the primary release criteria we use is recall.
+The system focuses on its ability to successfully identify and remove all PHI in incoming text (recall). A secondary metric is precision, which tells us how often we think something is PHI when it isn't, and how often we identify both the type and location of PHI in text. The service is typically used to mitigate risk associated with PHI, so the primary release criteria is recall.
 
-Recall is measured on many academic and internal datasets written in [each language that we support](languages-supported.md). It typically covers medical notes and conversations across various medical specialties. Our internal metrics don't include non-PHI text and are measured at an entity level with fuzzy matching so that the true text span doesn't need to match the detected one exactly.
+Recall is measured on many academic and internal datasets written in [each supported language](languages-supported.md). It typically covers medical notes and conversations across various medical specialties. Internal metrics don't include non-PHI text and are measured at an entity level with fuzzy matching so that the true text span doesn't need to match the detected one exactly.
 
-Our service goal is to maintain recall greater than 95%.
+The service goal is to maintain recall greater than 95%.
 
 ### PHI replacement
 
-We produce synthetic data that looks like the original data source in terms of plausibility and readability. We evaluate how often our system produces replacements that can be interpreted as the same type as the original. This important intermediate metric predicts how well that downstream applications make sense of the de-identified data.
+We produce synthetic data that looks like the original data source in terms of plausibility and readability. We evaluate how often the system produces replacements that can be interpreted as the same type as the original. This important intermediate metric predicts how well that downstream applications make sense of the de-identified data.
 
 Secondarily, we internally study the performance of machine learning models trained on original versus de-identified data. We don't publish the results of these studies. Using surrogation for machine learning applications improves the downstream performance of the machine learning model.
 
-Every machine learning application is different, so these results might not translate across applications depending on their sensitivity to PHI. We encourage customers who use machine learning to study the applicability of de-identified data for machine learning purposes.
+Every machine learning application is different, so these results might not translate across applications depending on their sensitivity to PHI. If you use machine learning, you're encouraged to study the applicability of de-identified data for machine learning purposes.
 
 ### Evaluation results
 
-Our system currently meets our benchmarks for recall and precision on our academic evaluation sets.
+The system currently meets the benchmarks for recall and precision on our academic evaluation sets.
 
 ### Limitations
 
-The data and measurement that we perform represents most healthcare applications involving text conducted in [each language that we support](languages-supported.md). In doing so, our system is optimized to perform well on medical data. We believe that it represents the typical usage, including length, encoding, formatting, markup, style, and content. The system performs well for many types of text, but it might underperform if the incoming data differs with respect to any of these metrics.
+The data and measurement that's performed represents most healthcare applications involving text conducted in [each supported language](languages-supported.md). In doing so, the system is optimized to perform well on medical data. We believe that it represents the typical usage, including length, encoding, formatting, markup, style, and content. The system performs well for many types of text, but it might underperform if the incoming data differs with respect to any of these metrics.
 
 The system analyzes text in large chunks so that the context of a phrase is used to infer if it's PHI or not. We don't recommend using this system in a real-time/transcription application, where the caller might have access to the context only before a PHI utterance. The system relies on both pre- and post-text for context.
 
 The training algorithm uses large foundational models that are trained on large amounts of text from all sources, including nonmedical sources. Every reasonable effort is made to ensure that the results of these models are in line with the domain and intended use of the application. However, these systems might not perform well in all circumstances for all data.
 
-We don't recommend this system for nonmedical applications or for applications other than [the languages that we support](languages-supported.md).
+We don't recommend this system for nonmedical applications or for applications other than [the languages that are supported](languages-supported.md).
 
 ### Fairness considerations
 
 The surrogation system replaces names through random selection. This process might result in a distribution of names more diverse than the original dataset. The surrogation system also strives to not include offensive content in results. A content-scanning tool evaluates the surrogation list and checks for sensitive geopolitical terms, profanity, and trademark terms in Microsoft products.
 
-Our model was augmented to provide better-than-average performance for all cultures. Data is carefully injected into our training process that represents many ethnicities to provide equal performance in PHI removal for all data, regardless of source.
+The model was augmented to provide better-than-average performance for all cultures. Data is carefully injected into the training process that represents many ethnicities to provide equal performance in PHI removal for all data, regardless of source.
 
 The service makes no guarantees, implied or explicit, with respect to its interpretation of data. Any user of this service should make no inferences about associations or correlations between tagged data elements. These elements include gender, age, location, language, occupation, illness, income level, marital status, disease or disorder, or any other demographic information.
 
 ## Evaluate and integrate the de-identification service for your use
 
-Microsoft wants to help you responsibly deploy the de-identification service. As part of our commitment to developing responsible AI, we urge you to consider the following factors:
+Microsoft wants to help you responsibly deploy the de-identification service. As part of a commitment to developing responsible AI, consider the following factors:
 
 - **Understand what it can do:** Fully assess the capabilities of the de-identification service to understand its capabilities and limitations. Understand how it will perform in your scenario, context, and on your specific dataset.
 - **Test with real, diverse data:** Understand how the de-identification service will perform in your scenario. Test it thoroughly by using real-life conditions and data that reflect the diversity in your users, geography, and deployment contexts. Small datasets, synthetic data, and tests that don't reflect your end-to-end scenario are unlikely to sufficiently represent your production performance.
@@ -167,8 +167,9 @@ Microsoft wants to help you responsibly deploy the de-identification service. As
 
 ## About this document
 
-© 2023 Microsoft Corporation. All rights reserved. This document is provided "as-is" and for informational purposes only. Information and views expressed in this document, including URL and other Internet Web site references, might change without notice. You bear the risk of using it. Some examples are for illustration only and are fictitious. No real association is intended or inferred.
-This document is not intended to be, and should not be construed as providing legal advice. The jurisdiction in which you're operating might have various regulatory or legal requirements that apply to your AI system. Consult a legal specialist if you are uncertain about laws or regulations that might apply to your system, especially if you think those might impact these recommendations. Be aware that not all of these recommendations and resources will be appropriate for every scenario, and conversely, these recommendations and resources might be insufficient for some scenarios.
+© 2023 Microsoft Corporation. All rights reserved. This document is provided "as-is" and for informational purposes only. Information and views expressed in this document, including URL and other internet website references, might change without notice. You bear the risk of using it. Some examples are for illustration only and are fictitious. No real association is intended or inferred.
+
+This document is not intended to be, and should not be construed as, providing legal advice. The jurisdiction in which you're operating might have various regulatory or legal requirements that apply to your AI system. Consult a legal specialist if you're uncertain about laws or regulations that might apply to your system, especially if you think those might affect these recommendations. Be aware that not all of these recommendations and resources will be appropriate for every scenario, and conversely, these recommendations and resources might be insufficient for some scenarios.
 
 Published: September 30, 2023
 

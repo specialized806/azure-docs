@@ -1,6 +1,6 @@
 ---
 title: Create an Azure Health Data Services De-identification Service by Using the Synchronous Endpoint in Python
-description: Learn how to create an Azure Health Data Services de-identification service by using the synchronous endpoint in Python
+description: Learn how to create an Azure Health Data Services de-identification service by using the synchronous endpoint in Python.
 services: azure-resource-manager
 ms.service: azure-health-data-services
 ms.subservice: deidentification-service
@@ -16,7 +16,7 @@ In this quickstart, you deploy an instance of the de-identification service in y
 
 ## Prerequisites
 
-- If you don't have an Azure account, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+- An Azure account. If you don't have one, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - An Azure subscription with write permissions.
 - Python 1.8 or later.
 - The Azure `azure-health-deidentification` [Python package](/python/api/overview/azure/health-deidentification-readme?view=azure-python-preview&preserve-view=true).
@@ -52,7 +52,7 @@ After you finish the configuration, you can deploy the de-identification service
 
 1. Select **Next: Review + create** to review your choices.
 1. Select **Create** to start the deployment of your de-identification service. Deployment might take a few minutes. After the deployment is finished, select **Go to resource** to view your service.
-1. After the deployment finishes, note your **Subscription**, **Subscription ID**, and **Service URL**.
+1. After the deployment finishes, note your subscription, subscription ID, and service URL.
 
 ## Set role-based access control
 
@@ -62,10 +62,10 @@ Now that the resource is deployed, you need to assign yourself the following per
 1. Select **Add** and **Add role assignment.**
 1. Select **DeID Data Owner** and **DeID Real-Time Data User**, and then select **Members** on the top panel.
 1. Select **+ Select members** to open a panel. Search for your own name and choose **Select.**
-1. Back in the **Members** panel, select **Review + assign** at the bottom left.
+1. Back on the **Members** panel, select **Review + assign** at the bottom left.
 
 >[!TIP]
->If you want to use both the synchronous and asynchronous (batch) APIs, you need to also assign yourself the **DeID Batch Data Owner**.
+>If you want to use both the synchronous and asynchronous (Batch) APIs, you need to also assign yourself the DeID Batch Data Owner role.
 
 ## Run the service by using the Python SDK
 
@@ -77,12 +77,12 @@ Now that the resource is deployed, you need to assign yourself the following per
 
 1. Test the service.
 
-The following steps walk you through how to test the service for the `REDACT` operation. While testing, you can change the language-locale pair to [other languages supported](languages-supported.md) by the service.
+The following steps walk you through how to test the service for the `REDACT` operation. When you test, you can change the language-locale pair to [other languages supported](languages-supported.md) by the service.
 
 ### Redact text
 
 1. In the terminal, [sign in to Azure](/cli/azure/authenticate-azure-cli).
-1. The following code references the [Python SDK for text](https://github.com/Azure/azure-sdk-for-python/blob/azure-health-deidentification_1.0.0/sdk/healthdataaiservices/azure-health-deidentification/samples/deidentify_text_redact.py). To use it, create a Python file called `deidentify_text_redact.py` and paste in the following code. Run `python deidentify_text_redact.py`. Replace `AZURE_HEALTH_DEIDENTIFICATION_ENDPOINT` with the URL you noted when you created a resource.
+1. The following code references the [Python SDK for text](https://github.com/Azure/azure-sdk-for-python/blob/azure-health-deidentification_1.0.0/sdk/healthdataaiservices/azure-health-deidentification/samples/deidentify_text_redact.py). To use it, create a Python file called `deidentify_text_redact.py` and paste in the following code. Run `python deidentify_text_redact.py`. Replace `AZURE_HEALTH_DEIDENTIFICATION_ENDPOINT` with the URL that you noted when you created a resource.
 
 ```python
 
@@ -143,7 +143,7 @@ if __name__ == "__main__":
 
 If you no longer need the service, delete the resource group and de-identification service.
 
-1. In the Azure portal, select the **resource group**.
+1. In the Azure portal, select the resource group.
 1. Select **Delete**.
 
 ## Next step
