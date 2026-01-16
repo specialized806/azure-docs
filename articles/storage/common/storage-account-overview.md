@@ -93,7 +93,7 @@ You can apply this type of workload across every industry to improve metrics and
 
 Other everyday uses of ML and AI include fraud detection, image recognition, and flagging misinformation. These workloads typically need:
 
-* Highly specialized compute (large amounts of GPU).
+* Highly specialized compute (large numbers of GPU).
 * High throughput and IOPS.
 * Low-latency access to storage.
 * POSIX file system access.
