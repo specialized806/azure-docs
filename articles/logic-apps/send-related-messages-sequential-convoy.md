@@ -212,9 +212,37 @@ These steps add a Service Bus trigger that checks the specified Service Bus queu
 
    1. From the list, select `queueName_<workflow-name>`.
 
+      This previously created workflow parameter specifies the name for your Service Bus queue.
+
+   1. For **Queue type**, keep the default type set to **Main**.
+
+      This type refers to your primary Service Bus queue.
+
+   1. Under **Advanced parameters**, for **Session id**, select **Next available**.
+
+      The following table describes more information about the **Session id** values:
+
+      | Session id | Descrption |
+      |------------|------------|
+      | **None** | The default value, which results in no sessions and can't be used for implementing the sequential convoy pattern. |
+      | **Next available** | This value specifies that when the trigger fires, the trigger gets a session based on the session ID from the message in the Service Bus queue.  The workflow's subsequent actions process all the messages associated with the same session. <br><br>The session is locked so that no other workflow or client can process messages related to the same session. |
+      | **Enter custom value** | A known, static session ID that you want the trigger to always use. |
+
+      > [!NOTE]
+      >
+      > The Service Bus connector can save a limited number of unique sessions at a time to the connector cache from Azure Service Bus. If the session count exceeds this limit, old sessions are removed from the cache. For more information, see [Exchange messages in the cloud with Azure Logic Apps and Azure Service Bus](../connectors/connectors-create-api-servicebus.md#connector-reference).
+
    1. Select inside the **Maximum message count** box, then select the lightning icon to open the dynamic content list.
 
    1. From the list, select `messageBatchSize_<workflow-name>`.
+
+   The completed trigger looks like the following example:
+
+   :::image type="content" source="./media/send-related-messages-sequential-convoy/when-messages-arrive-trigger.png" alt-text="Screenshot shows the completed Service Bus trigger.":::
+
+   > [!NOTE]
+   >
+   > Initially, the polling interval is set to three minutes so that the logic app doesn't run more frequently than you expect and result in unanticipated billing charges. Ideally, set the interval and frequency to 30 seconds so that the logic app triggers immediately when a message arrives.
 
    For more information, see [Service Bus - When one or more messages arrive in a queue (peek-lock)](/connectors/servicebus/#when-one-or-more-messages-arrive-in-a-queue-(peek-lock)).
 
@@ -312,7 +340,7 @@ These steps add a [**Scope** action](logic-apps-control-flow-run-steps-group-sco
 
          :::image type="content" source="./media/send-related-messages-sequential-convoy/until-loop-completed.png" alt-text="Screenshot shows the completed Until loop.":::
 
-   1. Add actions to the **Until** loop by following these steps:
+   1. Add actions for message detection to the **Until** loop by following these steps:
 
       1. Follow the [general steps](add-trigger-action-workflow.md#add-action) to add a Service Bus action named **Renew lock on the message in a queue**.
 
@@ -328,13 +356,36 @@ These steps add a [**Scope** action](logic-apps-control-flow-run-steps-group-sco
 
          1. From the list, under **When one or more messages arrive in a queue**, select **Lock Token**.
 
+         The following example shows the completed Service Bus action:
+
+         :::image type="content" source="./media/send-related-messages-sequential-convoy/renew-lock-on-message-complete.png" alt-text="Screenshot shows the completed renew lock action.":::
+
       1. Under the Service Bus action, add a **Schedule** action named **Delay**.
 
          1. Change the action name to `Wait for Process to Complete`.
 
          1. On the **Parameters** tab, the action information pane, select inside the **Count** box, then select the lightning icon.
 
-         1. From the list, select `delayInMinutes_<workflow-name>`
+         1. From the list, select `delayInMinutes_<workflow-name>`.
+
+         1. For **Unit**, set the time unit for the delay.
+
+            This example uses **Minute**.
+
+         The following example shows the completed delay duration:
+
+         :::image type="content" source="./media/send-related-messages-sequential-convoy/wait-process-complete.png" alt-text="Screenshot shows the completed delay duration.":::
+
+      When you're done, the **Until** loop looks like the following example:
+
+      :::image type="content" source="./media/send-related-messages-sequential-convoy/until-loop-actions.png" alt-text="Screenshot shows the actions in the Until loop.":::
+
+      [!INCLUDE [Warning about creating infinite loops](../../includes/connectors-infinite-loops.md)]
+
+#### Add action for exception handling
+
+
+
 
 ---
 
@@ -344,12 +395,8 @@ These steps add a [**Scope** action](logic-apps-control-flow-run-steps-group-sco
 
 This section describes more details about the workflow operations:
 
-[!INCLUDE [Warning about creating infinite loops](../../includes/connectors-infinite-loops.md)]
-
-
 
 | **`Catch`**| This [**Scope** action](logic-apps-control-flow-run-steps-group-scopes.md) contains the actions that run if a problem happens in the preceding `Try` scope. For more information, see [Catch scope](#catch-scope). |
-
 
 <a name="try-scope"></a>
 
@@ -412,10 +459,6 @@ To provide the values for the trigger and actions in the **Azure Service Bus: Pr
 - The template initializes sessions by using the **Session id** property. For the **When a message is received in a queue (peek-lock)** trigger, provide this information.
 
   :::image type="content" source="./media/send-related-messages-sequential-convoy/service-bus-check-message-peek-lock-trigger.png" alt-text="Screenshot shows the Service Bus trigger details for When a message is received in a queue (peek-lock).":::
-
-  > [!NOTE]
-  >
-  > Initially, the polling interval is set to three minutes so that the logic app doesn't run more frequently than you expect and result in unanticipated billing charges. Ideally, set the interval and frequency to 30 seconds so that the logic app triggers immediately when a message arrives.
 
   | Parameter | Required for this scenario | Value | Description |
   |-----------|----------------------------|-------|-------------|
