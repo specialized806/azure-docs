@@ -440,15 +440,15 @@ This example includes an optional `sessionAffinity` pool configuration for sessi
 
 ---
 
-## Context.backend variable
-When you configure a backend entity in API Management, you can access backend properties in policies by using the `context.backend` [context variable](api-management-policy-expressions.md#context-variable).
+## Context.Backend variable
+When you configure a backend entity in API Management, you can access backend properties in policies by using the `context.Backend` [context variable](api-management-policy-expressions.md#context-variable).
 
-The following table lists the properties of the `context.backend` variable.
+The following table lists the properties of the `context.Backend` variable.
 
 | Property | Description |
 |----------|-------------|
 | `Id` | The resource identifier of the backend entity. |
-| `Type` | The type of the backend: Single or Pool.|
+| `Type` | The type of the backend: `Single` or `Pool`.|
 | `AzureRegion` | The backend region, if specified. |
 
 ### Example
