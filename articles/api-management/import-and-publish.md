@@ -61,7 +61,7 @@ This section shows how to import and publish an OpenAPI specification backend AP
    |**Name**|After you enter the OpenAPI specification URL, API Management fills out this field based on the JSON.|A unique name for the API.|
    |**Description**|After you enter the OpenAPI specification URL, API Management fills out this field based on the JSON.|An optional description of the API.|
    |**URL scheme**|**HTTPS**|Which protocols can access the API.|
-   |**API URL suffix**|*petstore*|The suffix appended to the base URL for the API Management service. API Management distinguishes APIs by their suffix, so the suffix must be unique for every API for a given publisher.|
+   |**API URL suffix**|*petstore*|The suffix appended to the base URL for the API Management service. API Management distinguishes and routes APIs by their suffix, so the suffix must be unique for every API for a given publisher. Learn more about [how API Management routes requests](#how-api-management-routes-requests). |
    |**Tags**| |Tags for organizing APIs for searching, grouping, or filtering.|
    |**Products**|**Unlimited**|Association of one or more APIs. In certain tiers, API Management instance comes with two sample products: **Starter** and **Unlimited**. You publish an API in the developer portal by associating the API with a product.<br/><br/> You can include several APIs in a product and offer product [subscriptions](api-management-subscriptions.md) to developers through the developer portal. To add this API to another product, type or select the product name. Repeat this step to add the API to multiple products. You can also add APIs to products later from the **Settings** page.<br/><br/>  For more information about products, see [Create and publish a product](api-management-howto-add-products.md).|
    |**Gateways**|**Managed**|API gateway(s) that expose the API. This field is available only in **Developer** and **Premium** tier services.<br/><br/>**Managed** indicates the gateway built into the API Management service and hosted by Microsoft in Azure. [Self-hosted gateways](self-hosted-gateway-overview.md) are available only in the Premium and Developer service tiers. You can deploy them on-premises or in other clouds.<br/><br/> If you don't select any gateways, the API isn't available and your API requests don't succeed.|
@@ -117,18 +117,19 @@ API Management forwards the request to the backend service using this pattern:
 **Backend service URL:**  
 `[Web service URL] + [Operation endpoint]`
 
-The **Operation endpoint** must be identical in both the API Management API definition and the backend service for routing to work correctly. Mismatched operation endpoints result in 404 or other routing errors.
-
-### Routing parameters explained
+> [!NOTE]
+> The **Operation endpoint** must be identical in both the API Management API definition and the backend service for routing to work correctly. Mismatched operation endpoints result in 404 or other routing errors.
+> 
 
 The following table describes each routing parameter in the context of the Petstore API example used in this tutorial:
 
 | Parameter | Description | Example (Petstore API) |
 |-----------|-------------|------------------------|
 | **API Management gateway URL** | The base URL of your API Management instance | `https://apim-hello-world.azure-api.net` |
-| **API URL suffix** | A unique suffix that identifies your API in API Management (configured during API creation) | `petstore` |
-| **Operation endpoint** | The path to a specific operation or endpoint (derived from your API specification) | `/pet/findByStatus` |
+| **API URL suffix** | The unique suffix that identifies your API in API Management (configured during API creation) | `petstore` |
 | **Web service URL** | The base URL of your backend service derived from the OpenAPI specification | `https://petstore3.swagger.io/api/v3` |
+| **Operation endpoint** | The path to a specific operation endpoint (derived from your API specification) | `/pet/findByStatus` |
+
 
 ### Example: Finding pets by status
 
@@ -136,7 +137,7 @@ Using the Petstore API imported in this tutorial:
 
 1. **Client calls API Management:**  
    `https://apim-hello-world.azure-api.net/petstore/pet/findByStatus?status=pending`
-   - API Management gateway URL: `https://contoso-apim.azure-api.net`
+   - API Management gateway URL: `https://apim-hello-world.azure-api.net`
    - API URL suffix: `petstore`
    - Operation endpoint: `/pet/findByStatus`
 
