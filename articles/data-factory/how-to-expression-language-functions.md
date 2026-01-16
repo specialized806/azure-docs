@@ -6,22 +6,23 @@ ms.author: susabat
 ms.reviewer: whhender
 ms.subservice: orchestration
 ms.topic: conceptual
-ms.date: 02/13/2025
+ms.date: 01/16/2026
+ai-usage: ai-assisted
 ---
 
-# How to use parameters, expressions and functions in Azure Data Factory
+# Use parameters, expressions, and functions in Azure Data Factory
 
 [!INCLUDE[appliesto-adf-asa-md](includes/appliesto-adf-asa-md.md)]
 
-In this document, we will primarily focus on learning fundamental concepts with various examples to explore the ability to create parameterized data pipelines within Azure Data Factory. Parameterization and dynamic expressions are such notable additions to ADF because they can save a tremendous amount of time and allow for a much more flexible Extract, Transform, Load (ETL) or Extract, Load, Transform (ELT) solution, which will dramatically reduce the cost of solution maintenance and speed up the implementation of new features into existing pipelines. These gains are because parameterization minimizes the amount of hard coding and increases the number of reusable objects and processes in a solution.
+This article focuses on fundamental concepts and examples that help you create parameterized data pipelines in Azure Data Factory. Parameterization and dynamic expressions add flexibility to ADF and can save time by allowing for more flexible Extract, Transform, Load (ETL) or Extract, Load, Transform (ELT) solutions. These features reduce solution maintenance costs and speed up the implementation of new features into existing pipelines. Parameterization minimizes hard coding and increases the number of reusable objects and processes in a solution.
 
 ## Azure Data Factory UI and parameters
 
-If you are new to Azure Data Factory parameter usage in ADF user interface, please review [Data Factory UI for linked services with parameters](./parameterize-linked-services.md#ui-experience)  and [Data Factory UI for metadata driven pipeline with parameters](./how-to-use-trigger-parameterization.md#data-factory-ui) for a visual explanation.
+If you're new to Azure Data Factory parameter usage in the ADF user interface, review [Data Factory UI for linked services with parameters](./parameterize-linked-services.md#ui-experience) and [Data Factory UI for metadata driven pipeline with parameters](./how-to-use-trigger-parameterization.md#data-factory-ui) for a visual explanation.
 
-## Parameter and expression concepts 
+## Parameter and expression concepts
 
-You can use parameters to pass external values into pipelines, datasets, linked services, and data flows. Once the parameter has been passed into the resource, it cannot be changed. By parameterizing resources, you can reuse them with different values each time. Parameters can be used individually or as a part of expressions. JSON values in the definition can be literal or expressions that are evaluated at runtime.
+You can use parameters to pass external values into pipelines, datasets, linked services, and data flows. After you pass a parameter into a resource, you can't change it. When you parameterize resources, you can reuse them with different values each time. You can use parameters individually or as part of expressions. JSON values in the definition can be literal values or expressions that are evaluated at runtime.
 
 For example:  
   
@@ -35,18 +36,18 @@ For example:
 "name": "@pipeline().parameters.password"
 ```
 
-Expressions can appear anywhere in a JSON string value and always result in another JSON value. Here, *password* is a pipeline parameter in the expression. If a JSON value is an expression, the body of the expression is extracted by removing the at-sign (\@). If a literal string is needed that starts with \@, it must be escaped by using \@\@. The following examples show how expressions are evaluated.  
+Expressions can appear anywhere in a JSON string value and always result in another JSON value. Here, *password* is a pipeline parameter in the expression. If a JSON value is an expression, the body of the expression is extracted by removing the at-sign (\@). If you need a literal string that starts with \@, you need to escape it by using \@\@. The following examples show how expressions are evaluated.  
   
 |JSON value|Result|  
 |----------------|------------|  
 |"parameters"|The characters 'parameters' are returned.|  
 |"parameters[1]"|The characters 'parameters[1]' are returned.|  
-|"\@\@"|A 1 character string that contains '\@' is returned.|  
-|" \@"|A 2 character string that contains ' \@' is returned.|  
+|"\@\@"|A 1-character string that contains '\@' is returned.|  
+|" \@"|A 2-character string that contains ' \@' is returned.|  
   
- Expressions can also appear inside strings, using a feature called *string interpolation* where expressions are wrapped in `@{ ... }`. For example: `"name" : "First Name: @{pipeline().parameters.firstName} Last Name: @{pipeline().parameters.lastName}"`  
+Expressions can also appear inside strings. This feature is called *string interpolation* where expressions are wrapped in `@{ ... }`. For example: `"name" : "First Name: @{pipeline().parameters.firstName} Last Name: @{pipeline().parameters.lastName}"`  
   
- Using string interpolation, the result is always a string. Say I have defined `myNumber` as `42` and  `myString` as  `foo`:  
+When you use string interpolation, the result is always a string. Let's say you define `myNumber` as `42` and `myString` as `foo`:  
   
 |JSON value|Result|  
 |----------------|------------|  
@@ -58,16 +59,17 @@ Expressions can appear anywhere in a JSON string value and always result in anot
 |"\@concat('Answer is: ', string(pipeline().parameters.myNumber))"| Returns the string `Answer is: 42`|  
 |"Answer is: \@\@{pipeline().parameters.myNumber}"| Returns the string `Answer is: @{pipeline().parameters.myNumber}`.|  
 
-## Examples of using parameters in expressions 
+## Examples of parameters in expressions
 
 ### Complex expression example
-The below example shows a complex example that references a deep sub-field of activity output. To reference a pipeline parameter that evaluates to a sub-field, use [] syntax instead of dot(.) operator (as in case of subfield1 and subfield2)
+
+The following example shows a complex example that references a deep sub-field of activity output. To reference a pipeline parameter that evaluates to a sub-field, use [] syntax instead of the dot(.) operator (as in the case of subfield1 and subfield2).
 
 `@activity('*activityName*').output.*subfield1*.*subfield2*[pipeline().parameters.*subfield3*].*subfield4*`
 
 ### Dynamic content editor
 
-Dynamic content editor automatically escapes characters in your content when you finish editing. For example, the following content in content editor is a string interpolation with two expression functions. 
+The dynamic content editor automatically escapes characters in your content when you finish editing. For example, the following content in the content editor is a string interpolation with two expression functions.
 
 ```json
 { 
@@ -76,7 +78,7 @@ Dynamic content editor automatically escapes characters in your content when you
 }
 ```
 
-Dynamic content editor converts above content to expression `"{ \n  \"type\": \"@{if(equals(1, 2), 'Blob', 'Table' )}\",\n  \"name\": \"@{toUpper('myData')}\"\n}"`. The result of this expression is a JSON format string shown below.
+The dynamic content editor converts the content above to the expression `"{ \n  \"type\": \"@{if(equals(1, 2), 'Blob', 'Table' )}\",\n  \"name\": \"@{toUpper('myData')}\"\n}"`. The result of this expression is a JSON format string, shown below.
 
 ```json
 {
@@ -85,9 +87,9 @@ Dynamic content editor converts above content to expression `"{ \n  \"type\": \"
 }
 ```
 
-### A dataset with  parameters
+### A dataset with parameters
 
-In the following example, the BlobDataset takes a parameter named **path**. Its value is used to set a value for the **folderPath** property by using the expression: `dataset().path`. 
+In the following example, the BlobDataset takes a parameter named **path**. Its value sets a value for the **folderPath** property by using the expression: `dataset().path`.
 
 ```json
 {
@@ -110,9 +112,9 @@ In the following example, the BlobDataset takes a parameter named **path**. Its 
 }
 ```
 
-### A pipeline with  parameters
+### A pipeline with parameters
 
-In the following example, the pipeline takes **inputPath** and **outputPath** parameters. The **path** for the parameterized blob dataset is set by using values of these parameters. The syntax used here is: `pipeline().parameters.parametername`. 
+In the following example, the pipeline takes **inputPath** and **outputPath** parameters. The **path** for the parameterized blob dataset is set by using the values of these parameters. The syntax used here is: `pipeline().parameters.parametername`.
 
 ```json
 {
@@ -162,16 +164,13 @@ In the following example, the pipeline takes **inputPath** and **outputPath** pa
 }
 ```
 
-  
-## Calling functions within expressions 
+## Call functions within expressions
 
-You can call functions within expressions. The following sections provide information about the functions that can be used in an expression.  
+You can call functions within expressions. The following sections provide information about the functions that you can use in an expression.  
 
 ### String functions  
 
-To work with strings, you can use these string functions
-and also some [collection functions](#collection-functions).
-String functions work only on strings.
+To work with strings, you can use these string functions and also some [collection functions](#collection-functions). String functions work only on strings.
 
 | String function | Task |
 | --------------- | ---- |
@@ -190,8 +189,7 @@ String functions work only on strings.
 
 ### Collection functions
 
-To work with collections, generally arrays, strings,
-and sometimes, dictionaries, you can use these collection functions.
+To work with collections, generally arrays, strings, and sometimes dictionaries, you can use these collection functions.
 
 | Collection function | Task |
 | ------------------- | ---- |
@@ -208,7 +206,7 @@ and sometimes, dictionaries, you can use these collection functions.
 
 ### Logical functions  
 
-These functions are useful inside conditions, they can be used to evaluate any type of logic.  
+These functions are useful inside conditions. You can use them to evaluate any type of logic.  
   
 | Logical comparison function | Task |
 | --------------------------- | ---- |
@@ -224,13 +222,14 @@ These functions are useful inside conditions, they can be used to evaluate any t
   
 ### Conversion functions  
 
- These functions are used to convert between each of the native types in the language:  
--   string
--   integer
--   float
--   boolean
--   arrays
--   dictionaries
+You can use these functions to convert between each of the native types in the language:
+
+- string
+- integer
+- float
+- boolean
+- arrays
+- dictionaries
 
 | Conversion function | Task |
 | ------------------- | ---- |
@@ -259,8 +258,9 @@ These functions are useful inside conditions, they can be used to evaluate any t
 | [xml](control-flow-expression-language-functions.md#xml) | Return the XML version for a string. |
 | [xpath](control-flow-expression-language-functions.md#xpath) | Check XML for nodes or values that match an XPath (XML Path Language) expression, and return the matching nodes or values. |
 
-### Math functions  
- These functions can be used for either types of numbers: **integers** and **floats**.  
+### Math functions
+
+You can use these functions for either type of number: **integers** and **floats**.  
 
 | Math function | Task |
 | ------------- | ---- |
@@ -301,18 +301,18 @@ These functions are useful inside conditions, they can be used to evaluate any t
 
 ## Detailed examples for practice
 
-### Detailed Azure Data Factory copy pipeline with parameters 
+### Azure Data Factory copy pipeline with parameters
 
-This [Azure Data Factory copy pipeline parameter passing tutorial](https://azure.microsoft.com/mediahandler/files/resourcefiles/azure-data-factory-passing-parameters/Azure%20data%20Factory-Whitepaper-PassingParameters.pdf) walks you through how to pass parameters between a pipeline and activity as well as between the activities.
+This [Azure Data Factory copy pipeline parameter passing tutorial](https://azure.microsoft.com/mediahandler/files/resourcefiles/azure-data-factory-passing-parameters/Azure%20data%20Factory-Whitepaper-PassingParameters.pdf) walks you through how to pass parameters between a pipeline and activity, and also between activities.
 
-### Detailed  Mapping data flow pipeline with parameters 
+### Mapping data flow pipeline with parameters
 
-Please follow [Mapping data flow with parameters](./parameters-data-flow.md) for comprehensive example on how to use parameters in data flow.
+Follow the [Mapping data flow with parameters](./parameters-data-flow.md) guide for a comprehensive example of how to use parameters in data flow.
 
-### Detailed Metadata driven pipeline with parameters
+### Metadata driven pipeline with parameters
 
-Please follow [Metadata driven pipeline with parameters](./how-to-use-trigger-parameterization.md) to learn more about how to use parameters to design metadata driven pipelines. This is a popular use case for parameters.
-
+Follow the [Metadata driven pipeline with parameters](./how-to-use-trigger-parameterization.md) guide to learn more about how to use parameters to design metadata driven pipelines. This is a common use case for parameters.
 
 ## Related content
+
 For a list of system variables you can use in expressions, see [System variables](control-flow-system-variables.md).
