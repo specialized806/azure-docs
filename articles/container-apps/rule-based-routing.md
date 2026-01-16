@@ -132,7 +132,7 @@ ROUTE_CONFIG_NAME="my-route-config"
     This configuration defines two routing rules for HTTP traffic.
 
 > [!NOTE]
-> The order of the routing rules matter.
+> The order of the routing rules matters.
 > 
 > More specific prefixes need to be before less specific prefixes.
 > 
