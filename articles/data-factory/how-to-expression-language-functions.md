@@ -30,7 +30,7 @@ You can find the parameter creation and assignment in the Azure Data Factory use
 
 You can also use parameters in linked services by selecting **Add dynamic content** next to the property you want to parameterize.
 
-[!INCLUDE[parameterize-linked-services-ui-md](includes/parameterize-linked-services-ui.md)]
+[!INCLUDE[parameterize-linked-services-ui-md](includes/parameterize-linked-service-ui.md)]
 
 ## Parameter concepts
 
@@ -66,7 +66,7 @@ or
 
 `@dataset().parameters.parameterName`
 
-You can learn more about expressions in the [Expression language overview](control-flow-expression-language-overview.md) article, but here are some examples of using parameters in expressions.
+You can learn more about expressions in the [Expression language overview](control-flow-expression-language-functions.md) article, but here are some examples of using parameters in expressions.
 
 ### Complex expression example
 

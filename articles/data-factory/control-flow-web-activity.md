@@ -34,7 +34,7 @@ To use a Web activity in a pipeline, complete the following steps:
 
    :::image type="content" source="media/control-flow-web-activity/web-activity.png" alt-text="Shows the UI for a Web activity.":::
 
-1. Specify a URL, which can be a literal URL string, or any combination of dynamic [expressions, functions](control-flow-expression-language-functions.md), [system variables](control-flow-system-variables.md), or [outputs from other activities](how-to-expression-language-functions.md#examples-of-using-parameters-in-expressions).  Provide other details to be submitted with the request.
+1. Specify a URL, which can be a literal URL string, or any combination of dynamic [expressions, functions](control-flow-expression-language-functions.md), [system variables](control-flow-system-variables.md), or [outputs from other activities](how-to-expression-language-functions.md#expressions-with-parameters).  Provide other details to be submitted with the request.
 1. Use the output from the activity as the input to any other activity, and reference the output anywhere dynamic content is supported in the destination activity.
 
 ## Syntax

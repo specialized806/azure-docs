@@ -26,7 +26,7 @@ To use a Append Variable activity in a pipeline, complete the following steps:
 2. Search for _Append Variable_ in the pipeline Activities pane, and drag an Append Variable activity to the pipeline canvas.
 1. Select the Append Variable activity on the canvas if it isn't already selected, and its  **Variables** tab, to edit its details.
 1. Select the variable for the Name property.
-1. Enter an expression for the value, which is appended to the array in the variable. This can be a literal string expression, or any combination of dynamic [expressions, functions](control-flow-expression-language-functions.md), [system variables](control-flow-system-variables.md), or [outputs from other activities](how-to-expression-language-functions.md#examples-of-using-parameters-in-expressions).
+1. Enter an expression for the value, which is appended to the array in the variable. This can be a literal string expression, or any combination of dynamic [expressions, functions](control-flow-expression-language-functions.md), [system variables](control-flow-system-variables.md), or [outputs from other activities](how-to-expression-language-functions.md#expressions-with-parameters).
 
    :::image type="content" source="media/control-flow-append-variable-activity/append-variable.png" alt-text="Shows the UI for an Append Variable activity.":::
 
