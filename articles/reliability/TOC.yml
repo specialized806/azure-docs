@@ -124,6 +124,8 @@ items:
       href: reliability-azure-database-postgresql.md
     - name: Azure DocumentDB
       href: reliability-documentdb.md
+    - name: Azure Managed Redis
+      href: reliability-managed-redis.md
     - name: Azure SQL Database
       href: reliability-sql-database.md
     - name: Azure SQL Managed Instance
@@ -404,5 +406,3 @@ items:
     href: /azure/well-architected/resiliency/chaos-engineering
   - name: Reliability in Microsoft Azure Well-Architected Framework
     href: /azure/well-architected/reliability
-  - name: Azure Service Manager retirement
-    href: asm-retirement.md 
