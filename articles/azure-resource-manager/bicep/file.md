@@ -25,7 +25,7 @@ Bicep is a declarative language, which means the elements can appear in any orde
 A Bicep file has the following elements:
 
 ```bicep
-#<directive-name> <argument> <argument> ...
+#<directive-name> <argument> [<argument> ...]
 
 @<decorator>(<argument>)
 metadata <metadata-name> = ANY
@@ -349,10 +349,8 @@ You separate arguments by using spaces. The specific directive determines how to
 
 Use the `#disable-next-line` directive to suppress diagnostics for the statement immediately following the directive. You must specify at least one identifier after the directive. If you don't provide any identifiers, the compiler reports an error. The identifiers you specify after the directive can refer to:
 
-*   **Bicep compiler diagnostics**, such as `BCP138`
-*   **Bicep linter rules**, such as `no-unused-params`
-
-Add a comment explaining why the rule doesn't apply to this line.
+* [Bicep compiler diagnostics](./bicep-core-diagnostics.md), such as `BCP138`
+* [Bicep linter rules](./linter.md), such as `no-unused-params`
 
 The following example suppresses a compiler diagnostic:
 
@@ -377,7 +375,7 @@ The following example suppresses multiple diagnostics and rules:
 param example string
 ```
 
-Use directives sparingly and only when you review and intentionally suppress a diagnostic or linter rule. Excessive use can reduce template readability and maintainability.
+Use directives sparingly and only when you review and intentionally suppress a diagnostic or linter rule. Excessive use can reduce template readability and maintainability. Add a comment explaining why the rules or the diagnostic codes don't apply to this line.
 
 ## Loops
 
