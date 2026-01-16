@@ -62,7 +62,7 @@ Make note of the Tenant, Client, and Managed Identity Resource IDs and proceed t
 ![App registration creation view](../images/entra-setup/entra17.png)
 4. Make note of the **Application (client) ID** and **Directory (tenant) ID** fields on the **Overview** page of the newly created application. These values will be needed later to configure Entra authentication in CycleCloud.
 ![Overview of the App Registration window](../images/entra-setup/entra2.png)
-5. On the **Expose an API** page of your app, select **Add a scope**. This step exposes your app registration as an API for which Access Tokens can be generated. Keep the Application ID URI as the default value of `api://{ClientID}`.
+5. Go to the **Expose an API** page of your application and select **Add a scope**. This step exposes your app registration as an API for which Access Tokens can be generated. Keep the Application ID URI as the default value of `api://{ClientID}`.
 ![Expose an API menu](../images/entra-setup/entra3.png)
 ![A popup view for adding the API scope's URI](../images/entra-setup/entra4.png)
 6. The portal will prompt you to configure the new scope upon selecting **Save and Continue**. Enter `user_access` as the scope name and configure the other fields as desired, but ensure that **State** is set to Enabled. 
@@ -78,7 +78,7 @@ Make note of the Tenant, Client, and Managed Identity Resource IDs and proceed t
 
     At a minimum, add the following roles:
     ![Basic roles required for CycleCloud](../images/entra-setup/entra21.png)
-10. CycleCloud does not support v2.0 access tokens issued by the application registration. To remedy this issue, configure the application registration to issue tokens v1.0 by selecting **Manifest**, locating the property **accessTokenAcceptedVersion** in the manifest, and change the value of that property to ``1``. Be sure to click on **Save**.
+10. CycleCloud does not support v2.0 access tokens issued by the application registration. To remedy this issue, configure the application registration to issue tokens v1.0 by selecting **Manifest** and changing the value of the **accessTokenAcceptedVersion** property to ``1`` in the manifest. Be sure to click on **Save**.
 ![Manifest menu](../images/entra-setup/entra24.png)
 
 ## Configuring redirect URIs
@@ -94,16 +94,16 @@ Make note of the Tenant, Client, and Managed Identity Resource IDs and proceed t
 ![Redirect URI configuration view](../images/entra-setup/entra15.png)
 
 ## Permissioning users for CycleCloud
-1.  After you create the required CycleCloud roles, add users and assign roles to them. To do this step, go to the app's **Enterprise Application** page. The easiest way to get there is through a helper link on your App roles page. 
+1. You can add users and assign the newly-created CycleCloud roles to them by going to the application's **Enterprise Application** page. The easiest way to get there is through a helper link on your App roles page. 
 ![A shortcut to get to the Enterprise Application's role assignment window](../images/entra-setup/entra10.png)
-1.  To add a user and assign a role, go to the **Users and groups** page of the Enterprise Application and select **Add user/group**.
+2.  Go to the **Users and groups** page of the Enterprise Application and select **Add user/group**.
 ![Add a user/group menu](../images/entra-setup/entra11.png)
-2. On the **Add Assignment** page, select one or more users and the role to assign to them. You can use a search bar to filter users. You can assign only one role at a time. Repeat this process to add multiple roles to the same user.
+3. On the **Add Assignment** page, select one or more users and the role to assign to them. You can use the search bar to filter users. Only one role may be assigned at a time. Repeat this process to add multiple roles to the same user.
 ![Add a role assignment selection](../images/entra-setup/entra12.png)
 ![Add a role assignment completion](../images/entra-setup/entra13.png)
-3. After you assign the role, the user appears on the **User and groups** page. Assigning multiple roles to a single user results in several entries for that user - one entry per role.
+4. Users will appear on the **User and groups** page upon being assigned a role. Assigning multiple roles to a single user results in several entries for that user: one entry per role.
 ![User and groups view after a role has been assigned](../images/entra-setup/entra14.png)
-4. RECOMMENDED: If you want to allow access to CycleCloud only for users you explicitly add to your app, go to the **Properties of the Enterprise Application** and set **Assignment Required** to **Yes** 
+5. RECOMMENDED: If you want to allow access to CycleCloud only for users you explicitly add to your app, go to the **Properties of the Enterprise Application** and set **Assignment Required** to **Yes**.
 ![Assignment required setting highlight in the Enterprise Application blade](../images/entra-setup/entra16.png)
 
 ## Open OnDemand
