@@ -76,7 +76,7 @@ Make note of the Tenant, Client, and Managed Identity Resource IDs and proceed t
     > [!NOTE]
     > Microsoft Entra ID does not allow roles to have spaces in them and some of the in-built CycleCloud roles include spaces (for example, “Cluster Administrator”). Any spaces in the role names defined in Microsoft Entra ID should therefore be replaced with a dot (for example, “Data Admin” becomes “Data.Admin”). Rename any roles defined in CycleCloud to not feature dots. Role definitions in Microsoft Entra ID are case insensitive.
 
-    At a minimum, add the following roles:
+    Add the following roles. The first two are required only if you are planning to use [Open OnDemand](#open-ondemand).
     ![Basic roles required for CycleCloud](../images/entra-setup/entra21.png)
 10. CycleCloud does not support v2.0 access tokens issued by the application registration. To remedy this issue, configure the application registration to issue tokens v1.0 by selecting **Manifest** and changing the value of the **accessTokenAcceptedVersion** property to ``1`` in the manifest. Be sure to click on **Save**.
 ![Manifest menu](../images/entra-setup/entra24.png)
@@ -117,7 +117,7 @@ Open OnDemand *does not* need to be enabled when initially deploying Azure Cycle
 Complete the following additional steps to use Open OnDemand with your manually-created application registration. 
 > [!NOTE]
 > The below roles do not need to be created if you use the [utility script](./create-app-registration.md#automatic) provided above to create your Microsoft Entra ID application registration. Instead, you may simply assign the roles to your users. 
-1. As in Step 9 of the *Manual* subsection of *Creating the Microsoft Entra ID application registration*, create roles named `GlobalNodeAdmin` with value `Global.Node.Admin` and `GlobalNodeUser` with value `Global.Node.User`. One of these two roles must be assigned to users intending to use Open OnDemand.
+1. As in Step 9 of the *Manual* subsection of *Creating the Microsoft Entra ID application registration*, create roles named `Global.Node.Admin` with value `Global.Node.Admin` and `Global.Node.User` with value `Global.Node.User`. One of these two roles must be assigned to users intending to use Open OnDemand.
 > [!NOTE]
 > The below redirect URI does not need to be manually set if you use the help script provided [here](./ccws/plan-your-deployment.md#post-deployment-utility).
 2. As in first step of the *Configuring redirect URIs* section, select **Add a platform** under *Platform Configurations* on the *Authentication* page and then choose **Web application**. Enter `https://{your_open_ondemand_VM_IP_or_domain_name}/oidc` as the custom URI and save by pressing **Configure**.
