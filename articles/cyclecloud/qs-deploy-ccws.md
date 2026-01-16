@@ -15,7 +15,7 @@ The main steps to deploy and configure CycleCloud Workspace for Slurm with Micro
 1. Deploy a CycleCloud Workspace for Slurm environment using Azure Marketplace (this quickstart).
 1. Register a Microsoft Entra ID application: [Create a Microsoft Entra application registration for use with Azure CycleCloud and Azure CycleCloud Workspace for Slurm](./how-to/create-app-registration.md).
 1. Configure Open OnDemand to use the Microsoft Entra ID application: [Configure Open OnDemand with CycleCloud](./how-to/ccws/configure-open-ondemand.md)
-1. Add users to the registered Microsoft Entra ID aplication: [Permissioning users for CycleCloud](./create-app-registration.md#permissioning-users-for-cyclecloud)
+1. Add users to the registered Microsoft Entra ID aplication: [Permissioning users for CycleCloud](./how-to/create-app-registration.md#permissioning-users-for-cyclecloud)
 
 ## Prerequisites
 
@@ -220,7 +220,7 @@ Next, set up connectivity between your client machine and the CycleCloud VM. You
 
 * [Create a Microsoft Entra application registration for use with Azure CycleCloud and Azure CycleCloud Workspace for Slurm](./how-to/create-app-registration.md)
 * [Configure Open OnDemand with CycleCloud](./how-to/ccws/configure-open-ondemand.md)
-* [Add users to your registered Microsoft Entra ID application](../create-app-registration.md#permissioning-users-for-cyclecloud)
+* [Add users to your registered Microsoft Entra ID application](./how-to/create-app-registration.md#permissioning-users-for-cyclecloud)
 * [How to connect to the CycleCloud Portal through Bastion](/azure/cyclecloud/how-to/ccws/connect-to-portal-with-bastion)
 * [How to connect to a Login Node through Bastion](/azure/cyclecloud/how-to/ccws/connect-to-login-node-with-bastion)
 * [How to deploy a CycleCloud Workspace for Slurm environment using the CLI](/azure/cyclecloud/how-to/ccws/deploy-with-cli)
