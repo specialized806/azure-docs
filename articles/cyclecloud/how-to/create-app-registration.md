@@ -71,14 +71,14 @@ Make note of the Tenant, Client, and Managed Identity Resource IDs and proceed t
 ![A view of API permissions table alongside the side menu for adding one](../images/entra-setup/entra6.png)
 ![Request API permissions menu](../images/entra-setup/entra7.png)
 8. Navigate to the **Authentication** page and enable **Allow public client flows** to use the CycleCloud CLI with Microsoft Entra ID. 
-9.	Next, add the user roles for CycleCloud under **App roles** by selecting **Create app role**. The **Display name** field to any desired string, but the **Value** field must match the built-in CycleCloud role for authentication to work as intended. TODO AGB: Make this accessible with screen reader 
+9.	Next, add the user roles for CycleCloud under **App roles** by selecting **Create app role**. The **Display name** field to any desired string, but the **Value** field must match the built-in CycleCloud role for authentication to work as intended. 
 ![App roles configuration window](../images/entra-setup/entra9.png)
     > [!NOTE]
     > Microsoft Entra ID does not allow roles to have spaces in them and some of the in-built CycleCloud roles include spaces (for example, “Cluster Administrator”). Any spaces in the role names defined in Microsoft Entra ID should therefore be replaced with a dot (for example, “Data Admin” becomes “Data.Admin”). Rename any roles defined in CycleCloud to not feature dots. Role definitions in Microsoft Entra ID are case insensitive.
 
     At a minimum, add the following roles:
     ![Basic roles required for CycleCloud](../images/entra-setup/entra21.png)
-10. CycleCloud does not support v2.0 access tokens issued by the application registration. To remedy this issue, configure the application registration to issue tokens v1.0 by selecting **Manifest**, locating the property **accessTokenAcceptedVersion** in the manifest, and change the value of that property to ``1``. Be sure to click on **Save**. TODO AGB: new picture
+10. CycleCloud does not support v2.0 access tokens issued by the application registration. To remedy this issue, configure the application registration to issue tokens v1.0 by selecting **Manifest**, locating the property **accessTokenAcceptedVersion** in the manifest, and change the value of that property to ``1``. Be sure to click on **Save**.
 ![Manifest menu](../images/entra-setup/entra24.png)
 
 ## Configuring redirect URIs
@@ -90,7 +90,7 @@ Make note of the Tenant, Client, and Managed Identity Resource IDs and proceed t
 
 1. On the same page, select **Add a platform** under *Platform Configurations* and then select **Mobile and desktop applications**. Enter `http://localhost` as the custom URI and save by pressing **Configure**. Then navigate to the **Mobile and desktop applications** section of the **Authentication** page and add `https://localhost` as another redirect URI. Both of these URIs are required to enable the CycleCloud CLI to authenticate with the new application registration. For more information, see [Redirect URI (reply URL) restrictions and limitations](/entra/identity-platform/reply-url). Be sure to select **Save** on the bottom of the page after completing this step. The remaining fields may be left blank.
 ![Mobile and desktop application configuration window](../images/entra-setup/entra20.png)
-2. Select **Add a platform** under *Platform Configurations* and then choose **Single-page application**. Enter `https://{your_cyclecloud_VM_IP_or_domain_name}/home` as the custom URI and save by pressing **Configure**. Similar to the previous step, navigate to the **Mobile and desktop applications** section of the **Authentication** page and add `https://{your_cyclecloud_VM_IP_or_domain_name}/login` as a redirect URI. Add additional URIs in the same section of the Authentication page to use this application registration with multiple CycleCloud installations or to use multiple URIs for the same CycleCloud installation. Otherwise, the remaining fields may be left blank. TODO AGB: New picture?
+2. Select **Add a platform** under *Platform Configurations* and then choose **Single-page application**. Enter `https://{your_cyclecloud_VM_IP_or_domain_name}/home` as the custom URI and save by pressing **Configure**. Similar to the previous step, navigate to the **Mobile and desktop applications** section of the **Authentication** page and add `https://{your_cyclecloud_VM_IP_or_domain_name}/login` as a redirect URI. Add additional URIs in the same section of the Authentication page to use this application registration with multiple CycleCloud installations or to use multiple URIs for the same CycleCloud installation. Otherwise, the remaining fields may be left blank.
 ![Redirect URI configuration view](../images/entra-setup/entra15.png)
 
 ## Permissioning users for CycleCloud
@@ -98,7 +98,7 @@ Make note of the Tenant, Client, and Managed Identity Resource IDs and proceed t
 ![A shortcut to get to the Enterprise Application's role assignment window](../images/entra-setup/entra10.png)
 1.  To add a user and assign a role, go to the **Users and groups** page of the Enterprise Application and select **Add user/group**.
 ![Add a user/group menu](../images/entra-setup/entra11.png)
-2. On the **Add Assignment** page, select one or more users and the role to assign to them. You can use a search bar to filter users. You can assign only one role at a time. To add multiple roles to the same user, repeat this process. TODO AGB: screenshot with multiple app roles
+2. On the **Add Assignment** page, select one or more users and the role to assign to them. You can use a search bar to filter users. You can assign only one role at a time. Repeat this process to add multiple roles to the same user.
 ![Add a role assignment selection](../images/entra-setup/entra12.png)
 ![Add a role assignment completion](../images/entra-setup/entra13.png)
 3. After you assign the role, the user appears on the **User and groups** page. Assigning multiple roles to a single user results in several entries for that user - one entry per role.
