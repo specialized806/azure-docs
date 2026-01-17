@@ -88,7 +88,7 @@ The Events section displays events (invoiced spend) that decremented your MACC c
 
 You can use the [Azure Billing](/rest/api/billing/) and the [Consumption](/rest/api/consumption/) APIs to programmatically get Microsoft Azure Consumption Commitment (MACC) for your billing account.
 
-The examples shown below use REST APIs. Currently, PowerShell and Azure CLI aren't supported. The response sample provided is for Microsoft Customer Agreements; response for Enterprise Agreements will differ.
+The following examples use REST APIs. Currently, PowerShell and Azure CLI aren't supported. The response sample provided is for Microsoft Customer Agreements; response for Enterprise Agreements differs.
 
 ### Find billing accounts you have access to
 
@@ -340,7 +340,7 @@ You can determine which Azure services and Marketplace offers are eligible for M
 
 ## Azure credits and MACC
 
-If your organization has received Azure credits from Microsoft, consumption or purchases covered by those credits don't contribute toward your MACC commitment.
+If your organization receives Azure credits from Microsoft, consumption or purchases covered by those credits don't contribute toward your MACC commitment.
 
 If your organization purchased Azure Prepayment, consumption or purchases covered by the prepayment don't contribute toward your MACC commitment. However, the Azure Prepayment purchase itself decrements your MACC commitment.
 
