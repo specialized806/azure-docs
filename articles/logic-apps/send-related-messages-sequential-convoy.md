@@ -186,7 +186,7 @@ When you're done, your workflow parameters look like the following example:
 
 #### Add a Service Bus trigger
 
-These steps add a Service Bus trigger that checks the specified Service Bus queue for messages, based on the specified schedule. If a message exists in the queue, the trigger fires and runs the workflow.
+These steps add a Service Bus trigger that initializes sessions and checks the specified Service Bus queue for messages, based on the specified schedule. If a message exists in the queue, the trigger fires and runs the workflow.
 
 1. In the [Azure portal](https://portal.azure.com), open your Consumption logic app resource and blank workflow in the designer.
 
@@ -318,7 +318,9 @@ These steps add a [**Scope** action](logic-apps-control-flow-run-steps-group-sco
 
       :::image type="content" source="./media/send-related-messages-sequential-convoy/parallel-branch-until-loop.png" alt-text="Screenshot shows the parallel branch with the Until loop.":::
 
-   1. On the **Until** action information pane, provide the condition that stops running the actions that you later add to the **Until** loop:
+   1. On the **Until** action information pane, provide the condition that stops running the loop.
+
+      This **Until** loop makes sure the session lock is held while messages exist or until one hour passes. To change the loop's time limit, edit the loop's advanced parameter named **Timeout**, which is set to **PT1H**.
 
       1. On the **Parameters** tab, select inside the leftmost **Choose a value** box, then select the expression editor (function icon).
 
@@ -368,6 +370,8 @@ These steps add a [**Scope** action](logic-apps-control-flow-run-steps-group-sco
 
          1. From the list, select `delayInMinutes_<workflow-name>`.
 
+            Make sure this delay value is less than the lock timeout duration for the queue. The minimum lock duration is 30 seconds.
+
          1. For **Unit**, set the time unit for the delay.
 
             This example uses **Minute**.
@@ -395,7 +399,6 @@ These steps add a [**Scope** action](logic-apps-control-flow-run-steps-group-sco
 
 This section describes more details about the workflow operations:
 
-
 | **`Catch`**| This [**Scope** action](logic-apps-control-flow-run-steps-group-scopes.md) contains the actions that run if a problem happens in the preceding `Try` scope. For more information, see [Catch scope](#catch-scope). |
 
 <a name="try-scope"></a>
@@ -403,8 +406,6 @@ This section describes more details about the workflow operations:
 ### Try scope
 
 Here's the top-level flow in the `Try` [scope action](../logic-apps/logic-apps-control-flow-run-steps-group-scopes.md) when the details are collapsed:
-
-:::image type="content" source="./media/send-related-messages-sequential-convoy/try-scope-action.png" alt-text="Screenshot shows the Try scope action workflow.":::
 
 | Name | Description |
 |------|-------------|
@@ -420,8 +421,6 @@ Here's the top-level flow in the `Try` [scope action](../logic-apps/logic-apps-c
 |------|-------------|
 | **Complete the message in a queue** | This Service Bus action marks a successfully retrieved message as complete and removes the message from the queue to prevent reprocessing. For more information, see [Handle the initial message](#handle-initial-message). |
 | **While there are more messages for the session in the queue` | This [**Until** loop](../logic-apps/logic-apps-control-flow-loops.md#until-loop) continues to get messages while messages exist or until one hour passes. For more information about the actions in this loop, see [While there are more messages for the session in the queue](#while-more-messages-for-session). |
-| **Set isDone = true** | When no more messages exist, this [**Set variable** action](../logic-apps/logic-apps-create-variables-store-values.md#set-variable) sets `isDone` to `true`. |
-| **Renew lock on a message until cancelled`** | This [**Until** loop](../logic-apps/logic-apps-control-flow-loops.md#until-loop) makes sure that the session lock is held by this logic app while messages exist or until one hour passes. For more information about the actions in this loop, see [Renew session lock until cancelled](#renew-session-while-messages-exist). |
 
 <a name="abandon-initial-message"></a>
 
