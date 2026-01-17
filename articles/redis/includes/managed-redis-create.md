@@ -1,6 +1,7 @@
 ---
 ms.date: 11/24/2025
 ms.topic: include
+ai-usage: ai-assisted
 ms.custom:
   - ignite-2024
   - build-2025

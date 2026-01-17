@@ -22,7 +22,7 @@ This feature is currently available only for premium storage accounts (SSD media
 
 ## Prerequisites
 
-This article assumes that you have an Azure subscription. If you don't have an Azure subscription, then create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
+This article assumes that you have an Azure subscription. If you don't have an Azure subscription, then create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 
 ## Region support
 
@@ -95,7 +95,7 @@ Follow these steps to create a new zonal storage account using the Azure portal.
 
 # [PowerShell](#tab/azure-powershell)
 
-You can use Azure PowerShell to create zonal or regional storage accounts. Replace `<resource-group>`, `<storage-account-name>`, and `<region>` with your desired values. For `<SkuName>`, specify either `Premium_LRS` for pay-as-you-go file shares or `PremiumV2_LRS` to provision capacity, throughput, and IOPS individually (Provisioned v2).
+You can use Azure PowerShell to create zonal or regional storage accounts. Replace `<resource-group>`, `<storage-account-name>`, and `<region>` with your desired values. For `<SkuName>`, specify either `Premium_LRS` for file shares or `PremiumV2_LRS` to provision capacity, throughput, and IOPS individually (Provisioned v2).
 
 ### Create a storage account in an Azure-selected zone
 

@@ -54,7 +54,7 @@ Create a public IP prefix with [az network public-ip prefix create](/cli/azure/n
 
 ## IPv4
 
-# [**Zone redundant Standard IPv4 prefix**](#tab/ipv4-zone-redundant)
+# [**Zone-Redundant Standard IPv4 prefix**](#tab/ipv4-zone-redundant)
 
 To create a IPv4 public IP prefix, enter **IPv4** in the `--version` parameter. To create a zone redundant IPv4 prefix, enter **1 2 3** in the parameter.
 
@@ -69,7 +69,7 @@ To create a IPv4 public IP prefix, enter **IPv4** in the `--version` parameter. 
     --zone 1 2 3
 ```
 
-# [**Zone redundant Standard v2 IPv4 prefix**](#tab/ipv4-v2-zone-redundant)
+# [**Zone-Redundant Standard v2 IPv4 prefix**](#tab/ipv4-v2-zone-redundant)
 
 To create a IPv4 public IP prefix, enter **IPv4** in the `--version` parameter. All Standardv2 IPv6 public IP prefixes must be zone-redundant, so enter **1 2 3** in the parameter.
 
@@ -116,7 +116,7 @@ To create a IPv4 public IP prefix, enter **IPv4** in the `--version` parameter. 
     --version IPv4
 ```
 
-The removal of the `--zone` parameter in the command is valid in all regions, but will lead to the creation of a zone-redundant IP prefix in regions with availabily zones. The removal of the `--zone` parameter is the default selection for standard public IP addresses in regions without [Availability Zones](../../reliability/availability-zones-overview.md?toc=%2fazure%2fvirtual-network%2ftoc.json).
+The removal of the `--zone` parameter in the command is valid in all regions, but will lead to the creation of a zone-redundant IP prefix in regions with availability zones. The removal of the `--zone` parameter is the default selection for standard public IP addresses in regions without [Availability Zones](../../reliability/availability-zones-overview.md?toc=%2fazure%2fvirtual-network%2ftoc.json).
 
 ---
 
@@ -138,7 +138,7 @@ To create a IPv4 public IP prefix with routing preference Internet, enter **Rout
 
 ## IPv6
 
-# [**Zone redundant Standard IPv6 prefix**](#tab/ipv6-zone-redundant)
+# [**Zone-Redundant Standard IPv6 prefix**](#tab/ipv6-zone-redundant)
 
 To create a IPv6 public IP prefix, enter **IPv6** in the `--version` parameter. To create a zone redundant IPv6 prefix, enter **1 2 3** in the `--zone` parameter.
 
@@ -153,7 +153,7 @@ To create a IPv6 public IP prefix, enter **IPv6** in the `--version` parameter. 
     --zone 1 2 3
 ```
 
-# [**Zone redundant Standard v2 IPv6 prefix**](#tab/ipv6-v2-zone-redundant)
+# [**Zone-Redundant Standard v2 IPv6 prefix**](#tab/ipv6-v2-zone-redundant)
 
 To create a Standard IPv6 public IP prefix, enter **IPv6** in the `--version` parameter. All Standardv2 IPv6 public IP prefixes must be zone-redundant, so enter **1 2 3** in the `--zone` parameter.
 

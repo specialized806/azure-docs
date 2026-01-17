@@ -19,6 +19,7 @@
     href: functions-scale.md
 - name: Quickstarts
   displayName: quickstart, get started
+  expanded: true
   items:
   - name: Scenarios
     expanded: true
@@ -46,18 +47,22 @@
       - name: Azure SQL
         displayName: data validation, database
         href: scenario-database-changes-azure-sqldb.md
+    - name: Build a serverless workflow
+      displayName: workflow, Durable Functions
+      href: ./durable/scenario-build-serverless-workflow.md?toc=/azure/azure-functions/toc.json
     - name: Run scheduled tasks
       displayName: timer trigger, schedule
       href: scenario-scheduled-tasks.md
   - name: Developer tools
     items:
     - name: Azure Developer CLI
-      displayName: Flex Consumption plan
+      displayName: azd
       href: create-first-function-azure-developer-cli.md
-    - name: Command line
-      displayName: quickstart, get started
+    - name: Command line (Core Tools)
+      displayName: quickstart, get started, go, rust
       href: how-to-create-function-azure-cli.md
     - name: Visual Studio Code
+      displayName: quickstart, get started, go, rust
       href: how-to-create-function-vs-code.md
     - name: Visual Studio
       href: functions-create-your-first-function-visual-studio.md
@@ -84,8 +89,6 @@
     - name: Terraform
       displayName: Terraform, quickstart, get started
       href: functions-create-first-function-terraform.md
-    - name: Custom handlers (Go/Rust)
-      href: create-first-function-vs-code-other.md
   - name: Connect to services  
     items:
     - name: Storage
@@ -136,8 +139,6 @@
       href: functions-identity-based-connections-tutorial-2.md
     - name: Access Azure SQL with managed identity
       href: functions-identity-access-azure-sql-with-managed-identity.md
-    - name: Access MCP server with agent identity
-      href: ../app-service/overview-agent-identity.md?toc=/azure/azure-functions/toc.json
   - name: Low-latency Blob trigger using Event Grid
     displayName: storage, ngrok, local
     href: functions-event-grid-blob-trigger.md
@@ -337,35 +338,30 @@
     href: functions-reference-powershell.md
   - name: Python
     items:
-    - name: Developer reference guide
-      displayName: python
-      href: functions-reference-python.md
-    - name: Updates for Python 3.13+
-      displayName: python
-      href: python-313-changes.md
-    - name: Programming models
-      displayName: python
-      href: functions-reference-python.md#programming-model
-    - name: Binding definitions for Python v2
-      href: functions-bindings-triggers-python.md
-    - name: Python worker extensions
-      href: develop-python-worker-extensions.md
-    - name: Scale and performance recommendations
-      displayName: python
-      href: python-scale-performance-reference.md
-    - name: Troubleshooting
-      items:
-      - name: General troubleshooting
+      - name: Developer reference guide
         displayName: python
-        href: recover-python-functions.md
-      - name: Memory profiling
+        href: functions-reference-python.md
+      - name: Build Options
         displayName: python
-        href: python-memory-profiler-reference.md
-    - name: Python library API reference for Functions
-      href: /python/api/azure-functions/azure.functions
-    - name: Samples
-      displayName: python
-      href: /samples/browse/?products=azure-functions&languages=python
+        href: python-build-options.md
+      - name: Scale and performance recommendations
+        displayName: python
+        href: python-scale-performance-reference.md
+      - name: Samples
+        displayName: python
+        href: /samples/browse/?products=azure-functions&languages=python
+      - name: Python worker extensions
+        href: develop-python-worker-extensions.md
+      - name: Troubleshooting
+        items:
+          - name: General troubleshooting
+            displayName: python
+            href: recover-python-functions.md
+          - name: Memory profiling
+            displayName: python
+            href: python-memory-profiler-reference.md
+      - name: Python SDK API reference
+        href: /python/api/azure-functions/azure.functions
 - name: How-to guides
   items:
   - name: Develop
@@ -558,6 +554,8 @@
       href: ../app-service/app-service-ip-restrictions.md?toc=/azure/azure-functions/toc.json
     - name: Use a managed identity
       href: ../app-service/overview-managed-identity.md?toc=/azure/azure-functions/toc.json
+    - name: Use an agent identity
+      href: ../app-service/overview-agent-identity.md?toc=/azure/azure-functions/toc.json
     - name: Reference secrets from Key Vault
       href: ../app-service/app-service-key-vault-references.md?toc=/azure/azure-functions/toc.json
     - name: Encrypt site data

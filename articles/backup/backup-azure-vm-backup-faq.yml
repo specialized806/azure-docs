@@ -4,7 +4,7 @@ metadata:
   description: In this article, discover answers to common questions about backing up Azure VMs with the Azure Backup service.
   ms.topic: faq
   ms.service: azure-backup
-  ms.date: 10/29/2025
+  ms.date: 12/09/2025
   author: AbhishekMallick-MS
   ms.author: v-mallicka
   ms.custom: build-2025
@@ -177,7 +177,7 @@ sections:
           When restoring a VM to a peered region that does not support Zone-Redundant Storage (ZRS), Azure Backup will automatically create the disk in the same performance tier (e.g., Standard or Premium) as the original disk, but with Locally Redundant Storage (LRS) instead of ZRS. This ensures that the restore operation completes successfully, even though the redundancy model changes.
       - question: Is 64 TB disk support for Azure Backup available in all regions?
         answer: |
-          Azure Backup supports individual disk sizes up to 64 TB and a combined total of 512 TB per VM. However, this capability is region dependent. While initially available in select regions, support has expanded to additional locations. Customers are advised to check the latest regional availability or consult Azure Support to confirm support in their target region.
+          Azure Backup supports individual disk sizes up to 64 TB and a combined total of 512 TB per VM. This support is available in all Azure regions where Azure Backup services are offered.
       - question: How does the MDCC backup works via Enhanced Policy with and without selecting the option "only Crash Consistency Snapshot"?
         answer: |
           The behavior of MDCC backup under Enhanced Policy depends on whether the **"Only Crash Consistency Snapshot"** checkbox is selected:
@@ -193,7 +193,16 @@ sections:
           The policy will not attempt application or filesystem consistency. Instead, it will directly initiate a crash-consistent MDCC backup without any retries for higher consistency levels.
           
           This option is useful when speed and simplicity are prioritized over consistency guarantees.
-
+      - question: When we migrate the policy from the Standard to enhanced, how does the retention period will apply on the restore points?
+        answer: |
+          Retention Period will apply as per the new enhanced policy for all the restore points.
+      - question: Why don’t I see the updated expiry time for my Recovery Points immediately after changing the backup policy?
+        answer: |
+          When you modify a backup policy (for example, changing the retention duration), the updated expiry time for Recovery Points (RPs) is not reflected instantly on the Azure portal. This is expected behavior.
+          
+          The expiry time is updated only after the system runs its daily cleanup process (also known as the expired Recovery Points pruning job). This job typically runs once every 24 hours. Therefore, it may take up to 24 hours for the new expiry time to appear on the portal for existing or newly created Recovery Points.
+          
+          If you don’t see the updated expiry time immediately, please wait for up to 24 hours before raising a support request.
   - name: Restore
     questions:
       - question: How do I decide whether to restore disks only or a full VM?
@@ -441,6 +450,10 @@ sections:
       - question: How do I manage key rotations? How to ensure which key is used during backup and if it’s present to be used with the restored VM?
         answer: |
           Azure Backup backs up the secrets and KEK data of the key version during backup, and restores the same. However, booting ADE VMs with older version keys are also possible.
+
+      - question: How often are Microsoft managed keys rotated for Azure Backup?
+        answer: |
+          Microsoft-managed keys are rotated as per compliance requirements. If you have specific key rotation requirements, we recommend that you move to customer-managed keys so that you can manage and audit the rotation manually. Learn more [about Azure Storage encryption] (..\storage\common\storage-service-encryption.md).
 
       - question: When Vault is configured with CRR, what happens to the secondary data if the primary region fails?
         answer: |

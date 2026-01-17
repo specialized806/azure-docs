@@ -4,7 +4,7 @@ description: Learn how to ensure reliability and availability in Azure Database 
 author: gaurikasar
 ms.author: gkasar
 ms.reviewer: maghan, gbowerman
-ms.date: 10/21/2025
+ms.date: 12/03/2025
 ms.service: azure-database-postgresql
 ms.topic: concept-article
 ms.custom:
@@ -44,15 +44,15 @@ The **zonal** deployment option is available in all [Azure regions](/azure/postg
 > [!NOTE]  
 > Both zonal and zone-redundant deployment models architecturally behave the same. Various discussions in the following sections apply to both unless called out otherwise.
 
-### Configure zonal resiliency in the portal
+### Configure Business Critical (High Availability) in the portal
 
 You can configure high availability (HA) in two ways: zone-redundant HA, which places the standby server in a different availability zone for maximum resiliency, or same-zone HA, which deploys the standby server in the same zone as the primary server to minimize latency.
 
-To simplify configuration and ensure zonal resiliency, the portal provides a Zonal Resiliency option with two radio buttons: Enabled and Disabled. Selecting Enabled attempts to create the standby server in a different availability zone (zone-redundant HA mode). If the region doesn't support zone-redundant HA, you can select the fallback checkbox (highlighted in the following image) to enable same-zone HA instead.
+The **'Business Critical (High Availability)'** section provides an option to create a standby HA server with **zonal resiliency** setup. To simplify configuration and ensure zonal resiliency, the portal provides a Zonal Resiliency option with two radio buttons: Enabled and Disabled. Selecting Enabled attempts to create the standby server in a different availability zone (zone-redundant HA mode). If the region doesn't support zone-redundant HA, you can select the fallback checkbox (highlighted in the following image) to enable same-zone HA instead.
 
-:::image type="content" source="media/reliability-azure-database-postgresql/multi-availability-zones.png" alt-text="Screenshot of the zonal resiliency experience in the portal." lightbox="./media/reliability-azure-database-postgresql/same-zone-high-availability-architecture.png":::
+:::image type="content" source="media/reliability-azure-database-postgresql/multi-availability-zones.png" alt-text="Screenshot of the zonal resiliency experience in the portal." lightbox="./media/reliability-azure-database-postgresql/multi-availability-zones.png":::
 
-When you select the fallback checkbox, the system creates the standby server in the same zone and later triggers an automatic migration workflow during a maintenance window to move it to a different zone once capacity becomes available. If you don't select the checkbox and zonal capacity is unavailable, HA enablement fails. This design enforces zone-redundant HA as the default while providing a controlled fallback for same-zone HA, ensuring workloads eventually achieve full zone resiliency without manual intervention.
+When you select the fallback checkbox, the system creates the standby server in the same zone. If zonal capacity later becomes available, Azure will notify you so you can choose to migrate to a zone-redundant HA configuration using [PITR or read replicas](/azure/postgresql/flexible-server/how-to-configure-high-availability).  If you don't select the checkbox and zonal capacity is unavailable, HA enablement fails. This design enforces zone-redundant HA as the default while providing a controlled fallback for same-zone HA, ensuring workloads eventually achieve full zone resiliency without manual intervention.
 
 ### High availability features
 
@@ -264,11 +264,11 @@ Application downtime starts after step 1 and continues until step 6 finishes. Th
 
 #### Best practices for PostgreSQL statistics after failover
 
-After a PostgreSQL failover, maintaining optimal database performance involves understanding the distinct roles of [pg_statistic](https://www.postgresql.org/docs/current/catalog-pg-statistic.html) and the [pg_stat_*](https://www.postgresql.org/docs/current/monitoring-stats.html) tables. The `pg_statistic` table stores optimizer statistics, which are crucial for the query planner. These statistics include data distributions within tables and remain intact after a failover, ensuring that the query planner can continue to optimize query execution effectively based on accurate, historical data distribution information.
+After a PostgreSQL failover, maintaining optimal database performance involves understanding the distinct roles of [pg_statistic](https://www.postgresql.org/docs/current/catalog-pg-statistic.html) and the [pg_stat_*](https://www.postgresql.org/docs/current/monitoring-stats.html) views. The `pg_statistic` table stores optimizer statistics, which are crucial for the query planner. These statistics include data distributions within tables and remain intact after a failover, ensuring that the query planner can continue to optimize query execution effectively based on accurate, historical data distribution information.
 
-In contrast, the `pg_stat_*` tables, which record activity statistics such as the number of scans, tuples read, and updates, reset upon failover. An example of such a table is `pg_stat_user_tables`, which tracks activity for user-defined tables. This reset accurately reflects the new primary's operational state but also means the loss of historical activity metrics that could inform the autovacuum process and other operational efficiencies.
+In contrast, the `pg_stat_*` views, provide runtime activity statistics such as the number of scans, tuples read, and updates, are stored in memory and reset upon failover. An example is `pg_stat_user_tables`, which tracks activity for user-defined tables. This reset accurately reflects the new primary's operational state but also means the loss of historical activity metrics that could inform the autovacuum process and other operational efficiencies.
 
-Given this distinction, run `ANALYZE` after a PostgreSQL failover. This action updates the `pg_stat_*` tables, like `pg_stat_user_tables`, with fresh activity statistics, helping the autovacuum process and ensuring that the database performance remains optimal in its new role. This proactive step bridges the gap between preserving essential optimizer statistics and refreshing activity metrics to align with the database's current state.
+Given this distinction, you may consider running `ANALYZE` after a PostgreSQL failover. This action updates the `pg_stat_*` data (e.g., `pg_stat_user_tables`) with fresh vacuum activity statistics, helping the autovacuum process, which in turn, ensures that the database performance remains optimal in its new role. This proactive step bridges the gap between preserving essential optimizer statistics and refreshing activity metrics to align with the database's current state.
 
 ### Zone-down experience
 

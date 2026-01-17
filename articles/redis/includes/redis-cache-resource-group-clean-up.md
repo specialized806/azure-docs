@@ -1,6 +1,7 @@
 ---
 ms.date: 11/24/2025
 ms.topic: include
+ai-usage: ai-assisted
 ms.custom:
   - build-2025
 ---
