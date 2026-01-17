@@ -10,7 +10,7 @@ ms.topic: how-to
 ms.date: 01/17/2026
 ---
 
-# Run code with Code Interpreter in Azure SRE Agent
+# Run code by using Code Interpreter in Azure SRE Agent
 
 Code Interpreter enables you to execute Python code and shell commands in a secure, isolated sandbox environment. Use Code Interpreter to analyze data, create visualizations, generate PDF reports, and automate file operations without leaving your SRE Agent conversation.
 
@@ -30,25 +30,25 @@ In this article, you learn how to:
 
 Code Interpreter runs in an isolated Azure Container Apps session with the following characteristics:
 
-- **No network access**: The sandbox can't make outbound HTTP/HTTPS requests
-- **No process spawning**: Commands like `subprocess` and `os.system` are blocked
-- **No package installation**: `pip install` and `conda install` aren't available
-- **Isolated file system**: All files must be saved to `/mnt/data/`
+- **No network access**: The sandbox can't make outbound HTTP or HTTPS requests.
+- **No process spawning**: Commands like `subprocess` and `os.system` are blocked.
+- **No package installation**: `pip install` and `conda install` aren't available.
+- **Isolated file system**: All files must be saved to `/mnt/data/`.
 
 These restrictions ensure that code execution is secure and predictable. Common data science libraries like pandas, matplotlib, and seaborn are preinstalled.
 
 ## Get started with Code Interpreter
 
-Code Interpreter tools are automatically available in your SRE Agent conversations. Ask the agent to perform tasks using natural language.
+Code Interpreter tools are automatically available in your SRE Agent conversations. Ask the agent to perform tasks by using natural language.
 
 ### Example prompts
 
 Try these prompts to get started:
 
-- "Analyze this CSV data and create a chart showing incidents by category"
-- "Generate a PDF summary of today's incidents"
-- "Parse this JSON file and extract the error patterns"
-- "List all files in the session and show their sizes"
+- "Analyze this CSV data and create a chart showing incidents by category."
+- "Generate a PDF summary of today's incidents."
+- "Parse this JSON file and extract the error patterns."
+- "List all files in the session and show their sizes."
 
 ### Your first Python script
 
@@ -98,7 +98,7 @@ print(summary)
 
 ### Create visualizations
 
-Generate charts to communicate insights:
+Generate charts to communicate insights.
 
 ```python
 import matplotlib.pyplot as plt
@@ -118,7 +118,7 @@ plt.savefig('/mnt/data/category_chart.png', dpi=150)
 
 ### Generate PDF reports
 
-Create formatted PDF documents for stakeholders:
+Create formatted PDF documents for stakeholders.
 
 ```python
 from reportlab.pdfgen import canvas
@@ -144,7 +144,7 @@ The agent returns a download link for the generated PDF.
 
 ### Process log files
 
-Search and analyze log files using shell commands:
+Search and analyze log files by using shell commands.
 
 ```bash
 # Count error occurrences by type
@@ -162,49 +162,49 @@ Code Interpreter provides the following tools:
 
 ### ExecutePythonCode
 
-Execute Python code in the isolated sandbox.
+Runs Python code in an isolated sandbox.
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
-| `pythonCode` | string | Yes | Python code to execute (max 20,000 characters) |
-| `timeoutSeconds` | integer | No | Execution timeout (default: 120, max: 900) |
+| `pythonCode` | string | Yes | Python code to run (up to 20,000 characters) |
+| `timeoutSeconds` | integer | No | Execution timeout in seconds (default: 120, maximum: 900) |
 
-**Output**: Images display inline as markdown. Data files return as download links.
+**Output**: Images show inline as markdown. Data files return as download links.
 
 ### GeneratePdfReport
 
-Generate PDF documents from Python code.
+Creates PDF documents from Python code.
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
 | `pythonCode` | string | Yes | Python code that creates a PDF file |
 | `expectedOutputFilename` | string | Yes | Path where the PDF is saved (for example, `report.pdf`) |
 | `saveAsFilename` | string | Yes | Download filename (for example, `daily_summary.pdf`) |
-| `timeoutSeconds` | integer | No | Execution timeout (default: 180, max: 900) |
+| `timeoutSeconds` | integer | No | Execution timeout in seconds (default: 180, maximum: 900) |
 
 ### RunShellCommand
 
-Execute shell commands in the sandbox.
+Runs shell commands in the sandbox.
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
-| `command` | string | Yes | Shell command to execute |
-| `explanation` | string | No | Description logged with the command |
+| `command` | string | Yes | Shell command to run |
+| `explanation` | string | No | Description to log with the command |
 | `isBackground` | boolean | No | Must be `false` (background jobs aren't supported) |
 | `timeoutSeconds` | integer | No | Execution timeout (default: 120, max: 240) |
 
 > [!NOTE]
-> Commands run from `/mnt/data/`. Use relative paths and chain commands with `;` instead of `&&`.
+> The commands run from `/mnt/data/`. Use relative paths and chain commands by using `;` instead of `&&`.
 
 ### File operations
 
 | Tool | Description |
 |------|-------------|
-| `ReadSessionFile` | Read contents of a file from `/mnt/data/` |
-| `SearchSessionFiles` | Search for text within files using grep-style patterns |
-| `ListSessionFiles` | List all files in the session with metadata |
-| `GetSessionFile` | Download a file from the session |
-| `UploadFileToSession` | Upload a file for further processing |
+| `ReadSessionFile` | Reads the contents of a file from `/mnt/data/`. |
+| `SearchSessionFiles` | Searches for text within files using grep-style patterns. |
+| `ListSessionFiles` | Lists all files in the session with metadata. |
+| `GetSessionFile` | Downloads a file from the session. |
+| `UploadFileToSession` | Uploads a file for further processing. |
 
 #### Supported file types
 
@@ -216,7 +216,7 @@ Execute shell commands in the sandbox.
 
 ## Limitations
 
-The following operations are blocked for security:
+For security reasons, the system blocks the following operations:
 
 | Category | Blocked operations |
 |----------|-------------------|
@@ -229,21 +229,21 @@ The following operations are blocked for security:
 
 ### Code execution fails
 
-- Verify your code doesn't use blocked operations like subprocess or network calls
-- Check that all file paths point to `/mnt/data/`
-- Ensure your code is under 20,000 characters
+- Verify your code doesn't use blocked operations like `subprocess` or network calls.
+- Check that all file paths point to `/mnt/data/`.
+- Ensure your code is under 20,000 characters.
 
 ### Files don't appear in output
 
-- Confirm files are saved to `/mnt/data/`
-- Use `ListSessionFiles` to verify file creation
-- Check that the file extension is supported
+- Confirm you save files to `/mnt/data/`.
+- Use `ListSessionFiles` to verify file creation.
+- Check that the file extension is supported.
 
 ### Timeout errors
 
-- Increase the `timeoutSeconds` parameter (maximum 900 seconds)
-- Optimize your code to reduce execution time
-- Split large operations into smaller chunks
+- Increase the `timeoutSeconds` parameter (maximum 900 seconds).
+- Optimize your code to reduce execution time.
+- Split large operations into smaller chunks.
 
 ## Related content
 
