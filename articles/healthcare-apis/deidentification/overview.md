@@ -53,9 +53,9 @@ Consistent surrogation results enable organizations to retain relationships that
 The de-identification service offers many benefits, including:
 
 - **Expanded PHI coverage:** The service expands beyond the 18 HIPAA identifiers to provide stronger privacy protections and more fine-grained distinctions between entity types. It distinguishes between doctor and patient and covers [27 PHI entities that the service de-identifies](/rest/api/health-dataplane/deidentify-text/deidentify-text#phicategory).
-- **PHI compliance**: The de-identification service is designed for PHI. The service uses machine learning to identify PHI entities, including HIPAA's 18 identifiers, by using the `TAG` operation. The redaction and surrogation operations replace these identified PHI values with a tag of the entity type or a surrogate or pseudonym. The service supports compliance requirements such as HIPAA and GDPR principles.
-- **Security**: The de-identification service is a stateless service. Customer data stays within the customer's tenant.
-- **Role-based access control**: Azure role-based access control enables you to manage how your organization's data is processed, stored, and accessed. You determine who has access to de-identify datasets based on roles that you define for your environment.
+- **PHI compliance:** The de-identification service is designed for PHI. The service uses machine learning to identify PHI entities, including HIPAA's 18 identifiers, by using the `TAG` operation. The redaction and surrogation operations replace these identified PHI values with a tag of the entity type or a surrogate or pseudonym. The service supports compliance requirements such as HIPAA and GDPR principles.
+- **Security:** The de-identification service is a stateless service. Customer data stays within the customer's tenant.
+- **Role-based access control:** Azure role-based access control enables you to manage how your organization's data is processed, stored, and accessed. You determine who has access to de-identify datasets based on roles that you define for your environment.
 
 ## Easy API integration into your workflow
 

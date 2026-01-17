@@ -18,7 +18,7 @@ In this quickstart, you deploy an instance of the de-identification service in y
 
 - An Azure account. If you don't have one, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - An Azure subscription with write permissions.
-- Python 1.8 or later.
+- Python 3.8 or later.
 - The Azure `azure-health-deidentification` [Python package](/python/api/overview/azure/health-deidentification-readme?view=azure-python-preview&preserve-view=true).
 - Basic familiarity with the Azure CLI or terminal.
 
