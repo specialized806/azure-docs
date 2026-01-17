@@ -4,7 +4,7 @@ description: Use the SRE Agent memory system to build team knowledge that agents
 author: craigshoemaker
 ms.author: cshoe
 ms.reviewer: cshoe
-ms.date: 12/18/2025
+ms.date: 01/17/2026
 ms.topic: article
 ms.service: azure-sre-agent
 ms.collection: ce-skilling-ai-copilot
@@ -67,6 +67,30 @@ The `SearchMemory` tool retrieves all memory components. It searches across user
 
 > [!IMPORTANT]
 > Don't store secrets, credentials, API keys, or sensitive data in any memory component. Memories are shared across your team and indexed for search.
+
+### Enhanced search parameters
+
+The `SearchNodes` tool supports filtering options for more targeted searches:
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `entityType` | string | Filter results by entity type (for example, `Incident`, `Service`, `Resource`) |
+| `includeNeighbors` | bool | Include connected nodes in the search results |
+
+**Example:**
+
+```text
+Search for all incidents related to "database timeout" and include connected resources
+```
+
+With `includeNeighbors: true`, the search returns not only matching incident nodes but also their connected:
+
+- Resources
+- Services
+- Related incidents
+- Linked documents
+
+This enables richer context during investigations by showing the full relationship graph around matching nodes.
 
 ## Quick start
 
@@ -204,6 +228,49 @@ The knowledge base provides direct document upload capabilities for runbooks, tr
 1. Select **Add file** or drag and drop files into the upload area.
 
     The portal automatically validates, uploads, and indexes files.
+
+### Upload via agent tool
+
+The agent can upload documents directly to the knowledge base using the `UploadKnowledgeDocument` tool. This is useful when:
+
+- Capturing troubleshooting steps discovered during an investigation
+- Adding runbooks generated from incident resolutions
+- Programmatically adding documentation without UI access
+
+**Tool: UploadKnowledgeDocument**
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `fileName` | string | Yes | Filename with extension (for example, `runbook-database-issues.md`). Must be `.md` or `.txt`. |
+| `content` | string | Yes | Full document content in plain text or Markdown format. |
+| `triggerIndexing` | bool | No | Trigger immediate indexing (default: `true`). Set to `false` for batch uploads. |
+
+**Example usage:**
+
+Ask the agent:
+
+> "Save our troubleshooting steps for the database timeout issue to the knowledge base"
+
+The agent uses `UploadKnowledgeDocument` to:
+
+1. Create a document with appropriate filename
+1. Format the content in Markdown
+1. Upload to Azure Blob Storage
+1. Trigger indexing for immediate searchability
+
+**Constraints:**
+
+- Maximum file size: 16 MB
+- Supported extensions: `.md`, `.txt` only
+- If a document with the same filename exists, it's overwritten
+
+**Error handling:**
+
+| Error | Resolution |
+|-------|------------|
+| "Agent memory is disabled" | Enable agent memory in configuration |
+| "Invalid file extension" | Use `.md` or `.txt` extension only |
+| "Document content exceeds maximum size" | Split large documents into smaller files |
 
 ### Manage documents
 
