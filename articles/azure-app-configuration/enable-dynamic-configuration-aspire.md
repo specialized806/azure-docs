@@ -156,4 +156,4 @@ The configuration refresh is triggered by the incoming requests to your web app.
 In this tutorial, you enabled your Aspire app to dynamically refresh configuration settings from App Configuration. To learn how to add a feature flag to your Aspire app, continue to the next tutorial.
 
 > [!div class="nextstepaction"]
-> [Quickstart: Add feature flags to an Aspire app](./quickstart-feature-flag-aspire.md)
+> [Quickstart: Add a feature flag to an Aspire app](./quickstart-feature-flag-aspire.md)
