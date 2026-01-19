@@ -23,21 +23,13 @@ New Customers won't be allowed to create V1 from 1 July 2023 onwards. However, a
 
 After April 28th 2026, V1 SKU will no longer be supported, and no SLA will be provided for customers using this SKU of Application Gateway. Traffic passing through V1 SKUs after retirement cannot be guaranteed as our teams begin the process of cleaning up and decommissioning the hardware that supported V1 SKUs of Application Gateway. 
 
-### What is the definition of a new customer on Application Gateway V1 SKU?
-
-Customers who didn't have Application Gateway V1 SKU in their subscriptions as of 4 July 2023 are considered as new customers. These customers aren't able to create new V1 gateways in subscriptions that didn't have an existing V1 gateway as of 4 July 2023.
-
-### What is the definition of an existing customer on Application Gateway V1 SKU?
-
-Customers who had active or stopped but allocated Application Gateway V1 SKU in their subscriptions as of  4 July 2023, are considered existing customers. These customers get until end of August, 2024 to create new V1 application gateways in their existing subscriptions and until April 28,2026 to migrate their V1 gateways to V2.
-
 ### Does this migration plan affect any of my existing workloads that run on Application Gateway V1 SKU?
 
-Until April 28, 2026, existing Application Gateway V1 deployments are supported. After April 28, 2026, any V1 SKU resources that are still active are stopped, and force deleted.
+Until April 28, 2026, existing Application Gateway V1 deployments are supported. After April 28, 2026, any V1 SKU resources that are still active will no longer receive  patches, support, or SLA coverage .Workloads running on V1 will face service disruption, as we will begin blocking the data path and subsequently deleting the resources. 
 
 ### What happens to my V1 application gateways if I don’t plan on migrating soon?
 
-On April 28, 2026, the V1 gateways are fully retired and all active AppGateway V1s are stopped & deleted. To prevent business impact, we highly recommend starting to plan your migration at the earliest and complete it before April 28, 2026.
+On April 28, 2026, the V1 gateways are fully retired and all active AppGateway V1s will no longer receive  patches, support, or SLA coverage and will face service disruptions. To prevent business impact, we highly recommend starting to plan your migration at the earliest and complete it before April 28, 2026.
 
 ### Does the retirement of Basic SKU Public IPs in September 2025 affect my existing V1 Application Gateways?
 
