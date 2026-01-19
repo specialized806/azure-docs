@@ -15,6 +15,8 @@ ms.author: v-mallicka
 
 This article describes how to restore Confidential VM (CVM) encrypted with Platform Managed Key (PMK) or Customer Managed Key (CMK) using Azure Backup. It covers restore scenarios based on encryption key and Disk Encryption Set (DES) states, and provides the recovery procedure for restore failures. It also provides the procedure to extract virtual machine encryption details, restore missing keys, and assign necessary permissions.
 
+Learn about the [supported scenarios for Confidential VM backup](backup-support-matrix-iaas.md#support-for-confidential-vm-backup-preview).
+
 ## Restore scenarios for Confidential VM
 
 Confidential VM restore behavior depends on the state of the DES, Key Vault, and keys at the time of restore. Key restore scenarios include:
@@ -28,7 +30,7 @@ Confidential VM restore behavior depends on the state of the DES, Key Vault, and
 
 ## Prerequisites
 
-Awaiting inputs from PG.
+Before you start the Confidential VM restore process, ensure you have the recovery points available in the Recovery Services vault.
 
 ## Assign permissions to DES and Confidential Guest VM Agent for restore
 
