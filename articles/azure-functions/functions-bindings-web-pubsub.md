@@ -76,6 +76,51 @@ For details on how to configure and use Web PubSub and Azure Functions together,
 ::: zone pivot="programming-language-csharp"
 > [!NOTE]
 > When running in the isolated worker model, the Azure Web PubSub binding doesn't currently support Microsoft Entra ID authentication using managed identities. In the isolated model, you must continue to use a connection string, which includes a shared secret key.
+
+## Identity-based connections
+
+If you're using Web PubSub Functions Extensions v1.10.0 or higher, instead of using a connection string with an access key, you can configure your Azure Function app to authenticate to Azure Web PubSub using a Microsoft Entra identity.
+
+This approach removes the need to manage secrets and is recommended for production workloads.
+
+### Prerequisites
+
+First, make sure the Microsoft Entra identity used by your Azure Function has been granted an appropriate Azure RBAC role on the target Web PubSub resource:
+
+- Web PubSub Service Owner
+
+### Configuration
+
+By default, Web PubSub Functions Extensions look for settings with the prefix: `WebPubSubConnectionString`.
+
+You can customize this prefix using the `connection` property in the binding configuration.
+
+In identity-based connection mode, the settings consist of the following items:
+
+| Property   | Environment variable template     | Description     |  Required  | Example value     |
+|--------------|----------|-----|----------|
+| Service URI | `WebPubSubConnectionString__serviceUri` | The URI of your service endpoint. When you only configure "Service URI", the extensions would attempt to use [DefaultAzureCredential](/dotnet/azure/sdk/authentication/credential-chains?tabs=dac#defaultazurecredential-overview) type to authenticate with the service.  |  Yes |  https://mysignalrsevice.service.signalr.net|
+| Token Credential |  `WebPubSubConnectionString__credential` | Defines how a token should be obtained for the connection. This setting should be set to `managedidentity` if your deployed Azure Function intends to use managed identity authentication. This value is only valid when a managed identity is available in the hosting environment. | No   | managedidentity |
+| Client ID | `WebPubSubConnectionString__clientId` | When `credential` is set to `managedidentity`, this property can be set to specify the user-assigned identity to be used when obtaining a token. The property accepts a client ID corresponding to a user-assigned identity assigned to the application. It's invalid to specify both a Resource ID and a client ID. If not specified, the system-assigned identity is used. This property is used differently in [local development scenarios](./functions-reference.md#local-development-with-identity-based-connections), when `credential` shouldn't be set. |   No |  00000000-0000-0000-0000-000000000000  |
+| Resource ID | `WebPubSubConnectionString__managedIdentityResourceId` | When `credential` is set to `managedidentity`, this property can be set to specify the resource Identifier to be used when obtaining a token. The property accepts a resource identifier corresponding to the resource ID of the user-defined managed identity. It's invalid to specify both a resource ID and a client ID. If neither are specified, the system-assigned identity is used. This property is used differently in [local development scenarios](./functions-reference.md#local-development-with-identity-based-connections), when `credential` shouldn't be set. |   No |  /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup/providers/Microsoft.SignalRService/SignalR/mysignalrservice   |
+
+#### Example configuration
+
+The following example shows how to configure identity-based authentication using a user-assigned managed identity:
+
+```json
+{
+  "WebPubSubConnectionString__serviceUri": "https://your-webpubsub.webpubsub.azure.com",
+  "WebPubSubConnectionString__credential": "managedidentity",
+  "WebPubSubConnectionString__clientId": "your-managed-identity-client-id"
+}
+```
+
+> [!NOTE]
+> When using `local.settings.json` file at local, [Azure App Configuration](../azure-app-configuration/quickstart-azure-functions-csharp.md), or [Key Vault](/azure/key-vault/general/overview) to provide settings for identity-based connections, replace `__` with `:` in the setting name to ensure names are resolved correctly.
+>
+> For example, `WebPubSubConnectionString:serviceUri`.
+
 ::: zone-end
 ## Next steps
 
