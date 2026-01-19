@@ -204,7 +204,7 @@ HTTP request logs are generated for both write and read operations. Due to the f
 | Audit | Write | No |
 | HTTP Requests | Read, Write | Yes |
 
-App Configuration supports Microsoft Entra ID authentication and access key-based authentication. If you authenticate with an Extra ID, you can retrieve the client object ID and client tenant ID to identify the caller. If you authenticate with an access key, you can retrieve the access key ID to determine which key was used.
+App Configuration supports Microsoft Entra ID authentication and access key-based authentication. If you authenticate with an Entra ID, you can retrieve the client object ID and client tenant ID to identify the caller. If you authenticate with an access key, you can retrieve the access key ID to determine which key was used.
 
 Following are sample queries for the **AACAudit** and **AACHttpRequest** tables that show caller identity information.
 
