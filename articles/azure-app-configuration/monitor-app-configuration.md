@@ -86,7 +86,7 @@ Resource Logs (including audit logs and HTTP request logs) aren't collected and 
     
 1. Open the Azure Cloud Shell, or if you installed the Azure CLI locally, open a command console application such as Windows PowerShell.
 
-1. If your identity is associated with more than one subscription, then set your active subscription to the subscription of the storage account that you want to enable logs for.
+1. If your identity is associated with more than one subscription, then set your active subscription to the subscription of the App Configuration store that you want to enable logs for.
 
     ```Azure CLI
     az account set --subscription <your-subscription-id>
@@ -184,29 +184,31 @@ Following are sample queries that you can use to help you monitor your App Confi
     AACHttpRequest
     | where TimeGenerated > ago(14d)
     | extend Day = startofday(TimeGenerated)
-    | summarize requestcount=sum(HitCount) by Day
+    | summarize requestCount=sum(HitCount) by Day
     | order by Day desc  
     ```
 
 You can also view the logs in **Logs** blade in the Log Analytics workspace if you have the **Log Analytics Reader** role on the workspace. For detailed information on Log Analytics workspace access control, see [Manage access to Log Analytics workspaces](/azure/azure-monitor/logs/manage-access#built-in-roles).
 
-Regarding the log query scope, when you select **Monitoring** > **Logs** from the App Configuration menu, Log Analytics is opened with the query scope set to the current app configuration resource. This means that log queries will only include data from that resource. If you want to run a query that includes data from other configuration or data from other Azure services, select **Logs** in the Log Analytics workspace. See [Log query scope and time range in Azure Monitor Log Analytics](/azure/azure-monitor/log-query/scope/) for details.
+Regarding the log query scope, when you select **Monitoring** > **Logs** from the App Configuration menu, Log Analytics is opened with the query scope set to the current App Configuration resource. This means that log queries will only include data from that resource. If you want to run a query that includes data from other configuration store or data from other Azure services, select **Logs** in the Log Analytics workspace. See [Log query scope and time range in Azure Monitor Log Analytics](/azure/azure-monitor/log-query/scope/) for details.
 
 #### Data access tracking
-Caller identity information is present in Azure App Configuration's Audit and HTTP request logs. To identify who is making changes to your App Configuration store, the recommended way is to use audit logs. Audit logs include caller identity, caller IP address, the action performed, and the target resource. Use **CallerIdentity** to correlate a change with the specific caller. Audit logs are only produced for write operations.
+Caller identity information is present in Azure App Configuration's Audit and HTTP request logs. 
 
-Unlike Audit logs, HTTP request logs are emitted for read operations. Due to the fact these logs are aggregated, some caller identity details may be lost as part of the aggregation process. HTTP request logs are best for understanding request patterns and performance characteristics such as user agent, request duration, and request volume. The **ClientObjectId**, **ClientTenantId**, and **AccessKeyId** fields provide caller context.
+To identify who is making changes to your App Configuration store, the recommended way is to use audit logs. Audit logs include caller identity, caller IP address, the action performed, and the target resource. Use **CallerIdentity** to correlate a change with the specific caller. Audit logs are only produced for write operations.
+
+HTTP request logs are generated for both write and read operations. Due to the fact these logs are aggregated, some caller identity details may be lost as part of the aggregation process. HTTP request logs are best for understanding request patterns and performance characteristics such as user agent, request duration, and request volume. The **ClientObjectId**, **ClientTenantId**, and **AccessKeyId** fields provide caller context.
 
 | Log type | Logged operations | Is aggregated |
 |-------|-----|-----|
 | Audit | Write | No |
 | HTTP Requests | Read, Write | Yes |
 
-Two authentication methods are supported, which are Extra ID and access key (HMAC/connection string). If you use Extra ID, you should see information about caller or client. If you use access key, you should see information related to access key. To enforce Extra ID authentication and remove access key usage for better security, see [disable access key authentication](/azure/azure-app-configuration/howto-disable-access-key-authentication?tabs=portal#disable-access-key-authentication).
+App Configuration supports Microsoft Entra ID authentication and access key-based authentication. If you authenticate with an Extra ID, you can retrieve the client object ID and client tenant ID to identify the caller. If you authenticate with an access key, you can retrieve the access key ID to determine which key was used.
 
 Following are sample queries for the **AACAudit** and **AACHttpRequest** tables that show caller identity information.
 
-* Identify key-value modifications in audit logs in the last 7 days, extracting operation name, resource, the principal identifier (CallerIdentity), source IP address (CallerIPAddress):
+* Identify key-value changes in the audit logs from the past seven days, extracting the operation name, target resource, caller identity, and caller IP address.
 
     ```Kusto
     AACAudit
@@ -216,7 +218,7 @@ Following are sample queries for the **AACAudit** and **AACHttpRequest** tables 
     | sort by TimeGenerated desc
     ```
 
-* Identify key-value writes and reads in HTTP request logs in the last 7 days, extracting method, resource, status code, client object ID, client tenant ID, access key ID, client IP address, user agent:
+* Identify key‑value read and write operations in HTTP request logs from the past seven days, extracting the HTTP method, request URI, status code, client object ID, client tenant ID, access key ID, client IP address, user agent, and hit count.
 
     ```Kusto
     AACHttpRequest
@@ -228,18 +230,18 @@ Following are sample queries for the **AACAudit** and **AACHttpRequest** tables 
 
 ## Alerts
 
-Azure Monitor alerts proactively notify you when important conditions are found in your monitoring data. They allow you to identify and address issues in your system before your customers notice them. You can set alerts on [metrics](/azure/azure-monitor/alerts/alerts-metric-overview), [logs](/azure/azure-monitor/alerts/alerts-unified-log), and the [activity log](/azure/azure-monitor/alerts/activity-log-alerts). Different types of alerts have benefits and drawbacks.
+Azure Monitor alerts notify you when significant conditions appear in your monitoring data, helping you detect and resolve issues before they impact your service or applications. You can configure alerts based on [metrics](/azure/azure-monitor/alerts/alerts-types#metric-alerts), [logs](/azure/azure-monitor/alerts/alerts-types#log-alerts), and the [activity log](/azure/azure-monitor/alerts/alerts-types#activity-log-alerts). Each alert type offers distinct advantages and trade‑offs.
 
 The following table lists common and recommended alert rules for App Configuration.
 
 | Alert type | Condition | Description  |
 |:---|:---|:---|
-|Request quota usage exceeded | RequestQuotaUsage >= 100 | The configuration store has exceeded the [request quota usage](./faq.yml#are-there-any-limits-on-the-number-of-requests-made-to-app-configuration). Upgrade your store or follow the [best practices](./howto-best-practices.md#reduce-requests-made-to-app-configuration) to optimize your usage. |
+|Request quota usage| RequestQuotaUsage > 80 | The configuration store has consumed over 80% of the [request quota](./faq.yml#are-there-any-limits-on-the-number-of-requests-made-to-app-configuration). Upgrade your store or follow the [best practices](./howto-best-practices.md#reduce-requests-made-to-app-configuration) to optimize your usage. |
 
 ## Schema reference
 
 ### Metrics schema
-[App Configuration Metrics](/azure/azure-monitor/reference/supported-metrics/microsoft-appconfiguration-configurationstores-metrics)
+For details on the metrics schema, see [App Configuration Metrics](/azure/azure-monitor/reference/supported-metrics/microsoft-appconfiguration-configurationstores-metrics)
 
 ### Logs schema
 

@@ -118,10 +118,6 @@ sections:
 
               Premium tier stores also have a daily usage charge and include a replica. The first 800,000 requests for the origin and the first 800,000 requests for the replica each day are included in the daily charge. Requests exceeding this daily allocation incur an overage charge.
 
-      - question: How do I identify who has accessed my App Configuration store?
-        answer: |
-          To see who has accessed your App Configuration store, see [Activity logs](./monitor-app-configuration.md#activity-logs). To see who has accessed your data plane resources, see [Resource logs](./monitor-app-configuration.md#resource-logs).
-
       - question: Can I upgrade or downgrade an App Configuration store?
         answer: |
           You can upgrade an App Configuration store at any time, for example, from the Free tier to the Developer, Standard or Premium tier, or from the Developer, Standard tier to the Premium tier.
@@ -193,6 +189,10 @@ sections:
       - question: How can I restore an App Configuration store that I deleted mistakenly?
         answer: |
           All App Configuration stores in the Standard and Premium tiers support the [soft-delete](concept-soft-delete.md) feature, which can't be disabled. You can recover a deleted store within its retention period. Follow these [instructions](howto-recover-deleted-stores-in-azure-app-configuration.md) to recover a mistakenly deleted App Configuration store.
+
+      - question: How do I determine who has accessed my App Configuration store?
+        answer: |
+          Use [Activity logs](./monitor-app-configuration.md#activity-logs) to see who accessed or modified the control plane of your App Configuration store. Use [Resource logs](./monitor-app-configuration.md#resource-logs) to identify who accessed the data plane.
 
       - question: Can I create and update feature flags or Key Vault references programmatically?
         answer: |
