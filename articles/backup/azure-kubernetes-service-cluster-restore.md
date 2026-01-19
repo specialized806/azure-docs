@@ -6,7 +6,7 @@ ms.service: azure-backup
 ms.custom:
   - ignite-2023
   - ignite-2024
-ms.date: 01/06/2026
+ms.date: 01/19/2026
 author: AbhishekMallick-MS
 ms.author: v-mallicka
 # Customer intent: "As a cloud operations engineer, I want to restore a backed-up Azure Kubernetes Service cluster using Azure Backup, so that I can recover cluster resources and ensure continuity of services during disruptions."
@@ -34,32 +34,33 @@ For more information on the limitations and supported scenarios, see the [suppor
 
 To restore the backed-up AKS cluster, follow these steps:
 
-1. Go to **Backup center** and select **Restore**.
+1. Go to **Resiliency** and select **Recover**.
 
-   :::image type="content" source="./media/azure-kubernetes-service-cluster-restore/start-kubernetes-cluster-restore.png" alt-text="Screenshot shows how to start the restore process.":::
+2. On the **Recover** pane, select **Azure Kubernetes Services** as the **Datasource type**, and then click **Select** under **Protected item**.
 
-2. On the next page, select **Select backup instance**, and then select the *instance* that you want to restore.
+   :::image type="content" source="./media/azure-kubernetes-service-cluster-restore/select-protected-item.png" alt-text="Screenshot that shows the selection of a protected AKS cluster for restore." lightbox="./media/azure-kubernetes-service-cluster-restore/select-protected-item.png":::
+
+1. On the **Select Protected item** pane, select a backed-up AKS clister from the list, and then click **Select**.
+1. On the **Recover** pane, select **Continue**.
+
+   :::image type="content" source="./media/azure-kubernetes-service-cluster-restore/recover-pane.png" alt-text="Screenshot shows the Recover pane with Kubernetes Service workload type selected.":::
+
+
+1. On the **Restore** pane, on the **Basics** tab, select **Next: Restore point**.
 
    If the instance is available in both *Primary* and *Secondary Region*, select the *region to restore* too, and then select **Continue**.
 
-   :::image type="content" source="./media/azure-kubernetes-service-cluster-restore/select-backup-instance-for-restore.png" alt-text="Screenshot shows selection of backup instance for restore.":::
-
-   :::image type="content" source="./media/azure-kubernetes-service-cluster-restore/choose-instances-for-restore.png" alt-text="Screenshot shows choosing instances for restore.":::
-   
-   :::image type="content" source="./media/azure-kubernetes-service-cluster-restore/starting-kubernetes-restore.png" alt-text="Screenshot shows starting restore.":::
-
-3. Click **Select restore point** to select the *restore point* you want to restore. 
+1. On the **Restore point** tab, for **Restore Point**, click **Select restore point** to select the *restore point* you want to restore. 
 
    If the restore point is available in both Vault and Operation datastore, select the one you want to restore from.
 
-   :::image type="content" source="./media/azure-kubernetes-service-cluster-restore/select-restore-points-for-kubernetes.png" alt-text="Screenshot shows how to view the restore points.":::
+   :::image type="content" source="./media/azure-kubernetes-service-cluster-restore/select-restore-points-for-kubernetes.png" alt-text="Screenshot that shows the process to view the restore points.":::
 
-   :::image type="content" source="./media/azure-kubernetes-service-cluster-restore/choose-restore-points-for-kubernetes.png" alt-text="Screenshot shows selection of a restore point.":::
+1. On the **Select restore point** pane, select a restore point* from the list, and then click **Select**.
 
-   :::image type="content" source="./media/azure-kubernetes-service-cluster-restore/open-restore-page.png" alt-text="Screenshot shows how to go to the Restore page.":::
+1. On the **Restore** pane, select **Next: Restore parameters** to configure the restore parameters.
 
-
-4. In the **Restore parameters** section, click **Select Kubernetes Service** and select the *AKS cluster* to which you want to restore the backup to.
+4. On the **Restore parameters** tab, click **Select Kubernetes Service** and select the *AKS cluster* to which you want to restore the backup to.
 
    :::image type="content" source="./media/azure-kubernetes-service-cluster-restore/parameter-selection.png" alt-text="Screenshot shows how to initiate parameter selection.":::
 
