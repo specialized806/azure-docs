@@ -41,7 +41,7 @@ Azure VMware Solution monitors the following conditions on the host:
 - Storage status
 - Connection failure
 
-## Maintenance-operations recommendations
+## Actions to ensure private cloud is maintenance-ready
 The following actions are necessary for ensuring host maintenance operations are carried out successfully:
 - **vSAN storage utilization:** To maintain Service Level Agreement (SLA), ensure that your vSphere cluster's storage space utilization remains below 75%. If the utilization exceeds 75%, upgrades may take longer than expected or fail entirely. If your storage utilization exceeds 75%, consider adding a node to expand the cluster and prevent potential downtime during upgrades.
 - **Distributed Resource Scheduler (DRS) rules:** DRS VM-VM anti-affinity rules must be configured in a way to have at least (N+1) hosts in the cluster, where N is the number of VMs part of DRS rule.
