@@ -30,7 +30,7 @@ You can find the parameter creation and assignment in the Azure Data Factory use
 
 You can also use parameters in linked services by selecting **Add dynamic content** next to the property you want to parameterize.
 
-[!INCLUDE[parameterize-linked-services-ui-md](includes/parameterize-linked-service-ui.md)]
+[!INCLUDE[parameterize-linked-service-ui](includes/parameterize-linked-service-ui.md)]
 
 ## Parameter concepts
 
