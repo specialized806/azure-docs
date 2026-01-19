@@ -98,7 +98,7 @@ Refer to the [JSON sample](#json) to add ` parameters` section to define paramet
 
 ## UI Experience
 
-[!INCLUDE[parameterize-linked-services-ui-md](includes/parameterize-linked-services-ui.md)]
+[!INCLUDE[parameterize-linked-service-ui](includes/parameterize-linked-service-ui.md)]
 
 ## JSON
 
