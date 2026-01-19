@@ -5,7 +5,7 @@ services: azure-netapp-files
 author: netapp-manishc
 ms.service: azure-netapp-files
 ms.topic: how-to
-ms.date: 12/03/2025
+ms.date: 12/09/2025
 ms.author: anfdocs
 ms.custom: sfi-image-nochange
 # Customer intent: As a cloud administrator, I want to create a cache volume in Azure NetApp Files, so that I can leverage scalable storage solutions and reduce cost.
@@ -29,6 +29,17 @@ Write-back allows the write to be committed to stable storage at the cache and a
 * You should configure an Active Directory (AD) or LDAP connection within the NetApp account to create an LDAP-enabled cache volume.
 * You can't move a cache volume to another capacity pool.
 * The `globalFileLocking` parameter value must be the same on all cache volumes that share the same origin volume. Global file locking can be enabled when creating the first cache volume by setting `globalFileLocking` to true. The subsequent cache volumes from the same origin volume must have this setting set to true. To change the global file locking setting on existing cache volumes, you must update the origin volume first. After updating the origin volume, the change propagates to all the cache volumes associated with that origin volume. The `volume flexcache origin config modify -is-global-file-locking-enabled` command should be executed on the source cluster to change the setting on the origin volume.
+* The volume security style for a cache volume is inherited from the external ONTAP origin volume only at creation time and is not a configurable parameter on a cache volume. If the security style is changed on the external origin volume, the cache volume must be deleted and recreated with the correct protocol choice to align to the security styles.
+
+    | Origin Volume Security Style |  Cache volume protocol |  Resultant cache volume security style |
+    |-|-|-|
+    | UNIX  | NFS  |  UNIX |
+    | NTFS  | SMB  | NTFS  |
+    | MIXED  | NFS or SMB  |  MIXED (unsupported) |
+
+   >[!NOTE]
+   >MIXED security style coming from the origin volume configuration will be inherited by the cache volume but is unsupported in Azure NetApp Files if file access issues arise.
+  
 
 ### Networking considerations 
 
@@ -36,7 +47,10 @@ Write-back allows the write to be committed to stable storage at the cache and a
 * The delegated subnet address space for hosting the Azure NetApp Files volumes must have at least seven free IP addresses: six for cluster peering and one for data access to one or more cache volumes.
     * Ensure that the delegated subnet address space is sized appropriately to accommodate the Azure NetApp Files network interfaces. Review the [guidelines for Azure NetApp Files network planning](azure-netapp-files-network-topologies.md) to ensure you meet the requirements for delegated subnet sizing.
 * When creating each cache volume, the Azure NetApp Files volume placement algorithm attempts to reuse the same Azure NetApp Files storage system as any previously created cache volumes in the subscription to reduce the number of network interface cards (NICs)/IPs consumed in the delegated subnet. If this isn't possible, another 6+1 NICs are consumed.
-* You can't use the same source cluster for multiple subscriptions for creating cache volumes in the same availability zone in the same region. 
+* You can't use the same source cluster for multiple subscriptions for creating cache volumes in the same availability zone in the same region.
+* When creating a cache volume, subnets need to be specified for the cache volume (cacheSubnetResourceId) and for cluster peering (peeringSubnetResourceId). 
+    * The same subnet can be specified for both cache volume and cluster peering (but the subnet must have the Microsoft.Netapp/volumes delegation).
+    * When different subnets are used, each subnet needs to be on a different VNET and each subnet must have the Microsoft.Netapp/volumes delegation.
 
 ### Write-back considerations 
 
@@ -111,22 +125,34 @@ The network connectivity must be in place for all intercluster (IC) LIFs on the 
 
 ## Create a cache volume
 
-1.	Initiate the cache volume creation using the PUT caches API call.
+1.	Initiate the cache volume creation using the PUT caches API call. For information about cache operations, see [API documentation](/rest/api/netapp/caches?view=rest-netapp-2025-09-01-preview&preserve-view=true).
 
-2.  Monitor if the cache state is available for cluster peering with a GET request. 
+      ```
+       PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetApp/netAppAccounts/{accountName}/capacityPools/{poolName}/caches/{cacheName}?api-version=2025-09-01-preview 
+      ```
+2.  Monitor if the cache state is available for cluster peering with a GET request.
+
+      ```
+      GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetApp/netAppAccounts/{accountName}/capacityPools/{poolName}/caches/{cacheName}?api-version=2025-09-01-preview
+      ```
 
     When the `cacheState = ClusterPeeringOfferSent`, execute the POST `listPeeringPassphrases` call to obtain the command and passphrase necessary to complete the cluster peering.
 
-    Example `listPeeringPassphrases` output:
+    Example listPeeringPassprhases:
 
-    ```
-    {
-    "clusterPeeringCommand": "cluster peer create -ipspace <IP-SPACE-NAME> -encryption-protocol-proposed tls-psk -peer-addrs 1.1.1.1,1.1.1.2,1.1.1.3,1.1.1.4,1.1.1.5,1.1.1.6",
-    "cachePeeringPassphraseExample": "AUniquePassphrase",
-    "vserverPeeringCommand": "vserver peer accept -vserver vserver1 -peer-vserver cache_volume_svm"
-    }
-    ```
-
+      ```
+      POST https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetApp/netAppAccounts/{accountName}/capacityPools/{poolName}/caches/{cacheName}/listPeeringPassphrases?api-version=2025-09-01-preview 
+      ```
+      Example Response: 
+   
+       ```
+         {
+         "clusterPeeringCommand": "cluster peer create -ipspace <IP-SPACE-NAME> -encryption-protocol-proposed tls-psk -peer-addrs 1.1.1.1,1.1.1.2,1.1.1.3,1.1.1.4,1.1.1.5,1.1.1.6",
+         "cachePeeringPassphraseExample": "AUniquePassphrase",
+         "vserverPeeringCommand": "vserver peer accept -vserver vserver1 -peer-vserver cache_volume_svm"
+         } 
+      ```
+    
     Execute the `clusterPeeringCommand` on the ONTAP system that contains the external origin volume and when prompted, enter the clusterPeeringPassphrase.  
 
     > [!NOTE]
@@ -143,6 +169,9 @@ The network connectivity must be in place for all intercluster (IC) LIFs on the 
 
 3.	Monitor if the cache state is available for storage VM peering using a GET request.
 
+    ```
+  	GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetApp/netAppAccounts/{accountName}/capacityPools/{poolName}/caches/{cacheName}?api-version=2025-09-01-preview  
+    ```
     When the `cacheState = VserverPeeringOfferSent`, go to the ONTAP system that contains the external origin volume and execute the `vserver peer show` command until an entry appears where the remote storage VM displays the `<value of the -peer-vserver in the vserverPeeringCommand>`. The peer state shows "pending."
 
     Execute the `vserverPeeringCommand` on the ONTAP system that contains the external origin volume. The peer state should transition to "peered."
@@ -162,6 +191,9 @@ The network connectivity must be in place for all intercluster (IC) LIFs on the 
 # [NFS](#tab/NFS)
 
 ```
+PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetApp/netAppAccounts/{accountName}/capacityPools/{poolName}/caches/{cacheName}?api-version=2025-09-01-preview 
+
+Body:
 {
   "location": "westus",
   "zones": [
@@ -209,6 +241,9 @@ The network connectivity must be in place for all intercluster (IC) LIFs on the 
 # [SMB](#tab/SMB)
 
 ```
+PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetApp/netAppAccounts/{accountName}/capacityPools/{poolName}/caches/{cacheName}?api-version=2025-09-01-preview 
+
+Body:
 {
   "zones": [
     "2"
@@ -238,6 +273,9 @@ The network connectivity must be in place for all intercluster (IC) LIFs on the 
 # [Dual-protocol](#tab/DualProtocol)
 
 ```
+PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetApp/netAppAccounts/{accountName}/capacityPools/{poolName}/caches/{cacheName}?api-version=2025-09-01-preview 
+
+Body:
 {
   "zones": ["2"],
   "location": "southcentralus",
@@ -285,6 +323,9 @@ The network connectivity must be in place for all intercluster (IC) LIFs on the 
 # [LDAP](#tab/LDAP)
 
 ```
+PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetApp/netAppAccounts/{accountName}/capacityPools/{poolName}/caches/{cacheName}?api-version=2025-09-01-preview 
+
+Body:
 {
   "location": "westus",
   "zones": [
@@ -337,15 +378,24 @@ The network connectivity must be in place for all intercluster (IC) LIFs on the 
 Example patch request body to update a cache volume:
 
 ```
+PATCH
+https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetApp/netAppAccounts/{accountName}/capacityPools/{poolName}/caches/{cacheName}?api-version=2025-09-01-preview
+
+Example Body:
 {
   "properties": {
     "writeBack": "Disabled"
   }
-}
+} 
 ```
 
 ## Delete a cache volume
 
 You can delete a cache volume if it's no longer required using a DELETE API call.
+
+```
+DELETE
+https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetApp/netAppAccounts/{accountName}/capacityPools/{poolName}/caches/{cacheName}?api-version=2025-09-01-preview
+```
 
 If the cache volume has `writeBack` enabled, issue a PATCH call to disable `writeBack` then issue the DELETE request. 
