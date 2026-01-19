@@ -242,11 +242,11 @@
         },
         {
             "source_path_from_root": "/articles/azure-vmware/azure-vmware-solution-host-remediation.md",
-            "redirect_url": "/azure/azure-vmware/azure-vmware-solution-private-cloud-maintenance-best-practices",
+            "redirect_url": "/azure/azure-vmware/azure-vmware-solution-private-cloud-maintenance",
             "redirect_document_id": false
         },
         {
-            "source_path_from_root": "/azure/azure-vmware/azure-vmware-solution-private-cloud-maintenance-best-practices.md",
+            "source_path_from_root": "/articles/azure-vmware/azure-vmware-solution-private-cloud-maintenance-best-practices.md",
             "redirect_url": "/azure/azure-vmware/azure-vmware-solution-private-cloud-maintenance",
             "redirect_document_id": false
         }
