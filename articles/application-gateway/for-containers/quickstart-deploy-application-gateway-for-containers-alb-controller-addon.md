@@ -57,10 +57,12 @@ You need to complete the following tasks before enabling the ALB Controller add-
 
 The AKS add-on can be enabled on new or existing clusters.
 
-> [!NOTE]
-> The AKS cluster needs to be in a [region where Application Gateway for Containers is available](overview.md#supported-regions)
-> AKS cluster should use [Azure CNI](/azure/aks/configure-azure-cni) or [Azure CNI Overlay](/azure/aks/concepts-network-azure-cni-overlay).
-> AKS cluster should have the workload identity feature enabled. [Learn how](/azure/aks/workload-identity-deploy-cluster#update-an-existing-aks-cluster) to enable workload identity on an existing AKS cluster.
+The following AKS cluster requirements are needed for successful provisioning of the add-on:
+
+- Must be in a [region where Application Gateway for Containers is available](overview.md#supported-regions).
+- Must use [Azure CNI](/azure/aks/configure-azure-cni) or [Azure CNI Overlay](/azure/aks/concepts-network-azure-cni-overlay) network.
+- Must have the workload identity feature enabled. [Learn how](/azure/aks/workload-identity-deploy-cluster#update-an-existing-aks-cluster) to enable workload identity on an existing AKS cluster.
+- Must be using a [supported AKS Kubernetes version](/azure/aks/supported-kubernetes-versions).
 
 ### New Cluster
 
@@ -325,3 +327,4 @@ Remove-AzResourceGroup -Name $RESOURCE_GROUP -Force
 ```
 
 ---
+
