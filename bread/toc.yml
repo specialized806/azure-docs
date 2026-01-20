@@ -745,9 +745,6 @@ items:
   - name: Remoteapp
     tocHref: /azure/remoteapp/
     topicHref: /azure/remoteapp/
-  - name: Reliability
-    tocHref: /azure/reliability/
-    topicHref: /azure/reliability
   - name: Role-based access control
     tocHref: /azure/role-based-access-control/
     topicHref: /azure/role-based-access-control/
@@ -966,4 +963,3 @@ items:
     - name: Azure Cache for Redis
       tocHref: /azure/azure-cache-for-redis/
       topicHref: /azure/azure-cache-for-redis/index
-
