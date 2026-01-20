@@ -720,7 +720,7 @@ The following example demonstrates how to load configuration settings from Azure
 ```csharp
 builder.Configuration.AddAzureAppConfiguration(options =>
 {
-    options.ConnectAzureFrontDoor(new Uri(appConfigEndpoint))
+    options.ConnectAzureFrontDoor(new Uri("{YOUR-AFD-ENDPOINT}"))
             .Select("TestApp:*")
             .ConfigureRefresh(refreshOptions =>
             {

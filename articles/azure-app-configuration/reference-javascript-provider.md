@@ -497,7 +497,7 @@ The following example demonstrates how to load configuration settings from Azure
 ```typescript
 import { loadFromAzureFrontDoor } from "@azure/app-configuration-provider";
 
-const appConfig = await loadFromAzureFrontDoor(endpoint, {
+const appConfig = await loadFromAzureFrontDoor("{YOUR-AFD-ENDPOINT}", {
     selectors: [{
         keyFilter: "app.*"
     }],
