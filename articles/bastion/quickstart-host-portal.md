@@ -55,7 +55,7 @@ Select the tab for the deployment method you want to use:
 - **Default settings**: Quick one-click deployment with Standard SKU.
 - **Custom settings**: Full control over SKU, scaling, availability zones, and other features.
 
-The following diagram shows the dedicated deployment architecture used by the Default and Custom settings options. The Developer SKU uses a different [shared pool architecture](#tab/developer).
+The following diagram shows the dedicated deployment architecture used by the Default and Custom settings options.
 
 :::image type="content" source="./media/create-host/host-architecture.png" alt-text="Diagram that shows the Azure Bastion architecture." lightbox="./media/create-host/host-architecture.png":::
 
