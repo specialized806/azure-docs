@@ -609,7 +609,7 @@ Existing share snapshots are never overwritten. They must be deleted explicitly.
 
 # [Azure portal](#tab/portal)
 
-To delete a snapshot of an existing classic file share, sign in to the Azure portal and follow these steps.
+To delete a snapshot of an existing file share, sign in to the Azure portal and follow these steps.
 
 1. In the search box at the top of the Azure portal, type and select *File Shares*.
 
