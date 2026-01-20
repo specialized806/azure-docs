@@ -43,9 +43,6 @@ To restore the backed-up AKS cluster, follow these steps:
 1. On the **Select Protected item** pane, select a backed-up AKS clister from the list, and then click **Select**.
 1. On the **Recover** pane, select **Continue**.
 
-   :::image type="content" source="./media/azure-kubernetes-service-cluster-restore/recover-pane.png" alt-text="Screenshot shows the Recover pane with Kubernetes Service workload type selected.":::
-
-
 1. On the **Restore** pane, on the **Basics** tab, select **Next: Restore point**.
 
    If the instance is available in both *Primary* and *Secondary Region*, select the *region to restore* too, and then select **Continue**.
@@ -60,15 +57,13 @@ To restore the backed-up AKS cluster, follow these steps:
 
 1. On the **Restore** pane, select **Next: Restore parameters** to configure the restore parameters.
 
-4. On the **Restore parameters** tab, click **Select Kubernetes Service** and select the *AKS cluster* to which you want to restore the backup to.
+4. On the **Restore parameters** tab, click **Select Kubernetes Service**.
 
    :::image type="content" source="./media/azure-kubernetes-service-cluster-restore/parameter-selection.png" alt-text="Screenshot shows how to initiate parameter selection.":::
 
-   :::image type="content" source="./media/azure-kubernetes-service-cluster-restore/select-kubernetes-service-parameter.png" alt-text="Screenshot shows selection of parameter Kubernetes Service.":::
+1. On the **Select Kubernetes service** pane, select the target *AKS cluster* from the list, and then click **Select**.
 
-   :::image type="content" source="./media/azure-kubernetes-service-cluster-restore/set-for-restore-after-parameter-selection.png" alt-text="Screenshot shows the Restore page with the selection of Kubernetes parameter.":::
-
-5. To select the *backed-up cluster resources* for restore, click **Select resources**.
+1. On the **Restore** pane, to select the *backed-up cluster resources* for restore, click **Select resources**.
 
    Learn more about [restore configurations](#restore-configurations).
 
@@ -88,7 +83,8 @@ To restore the backed-up AKS cluster, follow these steps:
    :::image type="content" source="./media/azure-kubernetes-service-cluster-restore/validate-restore-parameters.png" alt-text="Screenshot shows the validation of restore parameters.":::
 
 
-8. Once the validation is successful, select **Review + restore** and restore the backups to the selected cluster.
+8. After the validation is successful, select **Next: Review + restore**.
+1. On the **Review + restore** pane, review the selections, and then select **Restore** to restore the backups to the selected cluster.
 
    :::image type="content" source="./media/azure-kubernetes-service-cluster-restore/review-restore-tab.png" alt-text="Screenshot shows the Review + restore tab for restore.":::
 
