@@ -66,7 +66,7 @@ Choosing the best PSTN connectivity solution for Teams Phone extensibility depen
 ## Teams licenses requirements
 
 Teams licensing requirements vary based on the calling scenario when Teams Phone Extensibility is provisioned:
-### General rrerequisites
+### General prerequisites
 - For every human agent who needs to place or receive calls, you need to enable the standard Teams license as well as Teams Phone license for the agent, see [Assign Teams add-on licenses to users > Product names and SKU identifiers for licensing](/microsoftteams/teams-add-on-licensing/assign-teams-add-on-licenses#product-names-and-sku-identifiers-for-licensing).
 - You need to enable Enterprise voice as described in [Teams Phone features](../../../concepts/pricing/teams-interop-pricing.md).
 - For the designated Teams resource account, you need to get a [Microsoft Teams Phone Resource Account license](/microsoftteams/teams-add-on-licensing/virtual-user), included in the Teams Phone license.
