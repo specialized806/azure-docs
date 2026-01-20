@@ -53,7 +53,7 @@ To restore the backed-up AKS cluster, follow these steps:
 
    :::image type="content" source="./media/azure-kubernetes-service-cluster-restore/select-restore-points-for-kubernetes.png" alt-text="Screenshot that shows the process to view the restore points.":::
 
-1. On the **Select restore point** pane, select a restore point* from the list, and then click **Select**.
+1. On the **Select restore point** pane, select a restore point from the list, and then click **Select**.
 
 1. On the **Restore** pane, select **Next: Restore parameters** to configure the restore parameters.
 
