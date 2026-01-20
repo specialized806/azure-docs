@@ -98,11 +98,7 @@
       - name: Durable Task SDKs
         href: durable-functions-overview.md #placeholder
     - name: Custom orchestration status
-      items:  
-      - name: Durable Functions
-        href: durable-functions-custom-orchestration-status.md
-      - name: Durable Task SDKs
-        href: durable-functions-overview.md #placeholder
+      href: durable-functions-custom-orchestration-status.md
 - name: Durable Functions
   items:
   - name: Overview
