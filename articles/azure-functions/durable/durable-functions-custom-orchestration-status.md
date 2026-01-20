@@ -1144,7 +1144,7 @@ CustomStatusPayload payload = metadata.readCustomStatusAs(CustomStatusPayload.cl
 ---
 
 > [!WARNING]
-> The custom status payload is limited to 16 KB of UTF-16 JSON text. If you need a larger payload, we recommend you use external storage.
+> The custom status payload is limited to 16 KB of UTF-16 JSON text.
 
 ::: zone-end
 
