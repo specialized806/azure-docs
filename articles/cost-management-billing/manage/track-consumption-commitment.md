@@ -292,9 +292,9 @@ Milestones are predefined financial targets within the MACC framework that must 
 > [!NOTE]
 > Not every MACC includes milestones. If your MACC has milestones configured, you can see them in the Azure portal.
 
-:::image type="content" source="./media/track-consumption-commitment/macc-main-page-milestones.png" alt-text="MACC page with milestones" lightbox="./media/track-consumption-commitment/macc-main-page-milestones.png" :::
+:::image type="content" source="./media/track-consumption-commitment/macc-main-page-milestones.png" alt-text="Screenshot that shows MACC page with milestones." lightbox="./media/track-consumption-commitment/macc-main-page-milestones.png" :::
 
-:::image type="content" source="./media/track-consumption-commitment/macc-milestones-page.png" alt-text="MACC milestones details" lightbox="./media/track-consumption-commitment/macc-milestones-page.png" :::
+:::image type="content" source="./media/track-consumption-commitment/macc-milestones-page.png" alt-text="Screenshot that shows MACC milestones details." lightbox="./media/track-consumption-commitment/macc-milestones-page.png" :::
 
 
 **Key points about MACC milestones:**
