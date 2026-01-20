@@ -98,7 +98,7 @@ Before deploying shared configuration storage, verify your environment meets the
 | Requirement | Details |
 |-------------|----------|
 | **AKS version** | 1.21 or later |
-| **CSI driver version** | v1.0.0 or later (pre-installed on AKS 1.21+) |
+| **CSI driver version** | v1.0.0 or later (preinstalled on AKS 1.21+) |
 | **Supported node pools** | Linux and Windows |
 | **Role assignments** | Storage Account Contributor or Storage File Data SMB Share Contributor on the storage account |
 | **SKU options** | Standard_LRS, Standard_ZRS, Premium_LRS, Premium_ZRS |
@@ -170,7 +170,7 @@ Before deploying centralized logging storage, verify your environment meets thes
 | Requirement | Details |
 |-------------|----------|
 | **AKS version** | 1.21 or later |
-| **CSI driver version** | v1.0.0 or later (pre-installed on AKS 1.21+) |
+| **CSI driver version** | v1.0.0 or later (preinstalled on AKS 1.21+) |
 | **Supported node pools** | Linux (recommended for DaemonSet log collectors); Windows supported with SMB protocol |
 | **Role assignments** | Storage Account Contributor or Storage File Data SMB Share Contributor on the storage account |
 | **SKU options** | Premium_LRS or Premium_ZRS recommended for high-throughput logging |
@@ -247,7 +247,7 @@ Dynamic provisioning automatically creates Azure file shares when you create a p
 | Requirement | Details |
 |-------------|----------|
 | **AKS version** | 1.21 or later |
-| **CSI driver version** | v1.0.0 or later (pre-installed on AKS 1.21+) |
+| **CSI driver version** | v1.0.0 or later (preinstalled on AKS 1.21+) |
 | **Supported node pools** | Linux: SMB and NFS protocols; Windows: SMB protocol only |
 | **Role assignments** | AKS cluster identity requires Storage Account Contributor role; for private endpoints, also requires Private DNS Zone Contributor |
 | **SKU options** | Standard: Standard_LRS (locally redundant), Standard_GRS (geo-redundant, includes read access as RA-GRS), Standard_ZRS (zone-redundant), Standard_GZRS (geo-zone-redundant, includes read access as RA-GZRS); Premium: Premium_LRS, Premium_ZRS |
@@ -323,18 +323,18 @@ kubectl get pvc <YOUR_PVC_NAME, e.g., my-azurefile-pvc> -o jsonpath="{.status.ph
 
 ## Static provisioning: use existing Azure file shares
 
-Static provisioning connects to pre-existing Azure file shares. Verify your environment meets these requirements:
+Static provisioning connects to preexisting Azure file shares. Verify your environment meets these requirements:
 
 | Requirement | Details |
 |-------------|----------|
 | **AKS version** | 1.21 or later |
-| **CSI driver version** | v1.0.0 or later (pre-installed on AKS 1.21+) |
+| **CSI driver version** | v1.0.0 or later (preinstalled on AKS 1.21+) |
 | **Supported node pools** | Linux: SMB and NFS protocols; Windows: SMB protocol only |
 | **Role assignments** | AKS nodes require network access to the storage account; for SMB, a Kubernetes secret with storage account name and key is required |
-| **Prerequisites** | Pre-existing Azure storage account and file share; Kubernetes secret containing storage credentials (for SMB) |
+| **Prerequisites** | Preexisting Azure storage account and file share; Kubernetes secret containing storage credentials (for SMB) |
 | **Region constraints** | Storage account must be accessible from the AKS cluster virtual network; for private endpoints, configure DNS resolution |
 
-For existing Azure file shares, you can create persistent volumes that reference pre-created storage.
+For existing Azure file shares, you can create persistent volumes that reference precreated storage.
 
 ### Prerequisites for static provisioning
 
@@ -342,7 +342,7 @@ Ensure the following are in place before creating a PersistentVolume for static 
 
 - AKS cluster version 1.21 or later
 - Linux node pool (for NFS) or Linux/Windows node pool (for SMB)
-- Pre-existing Azure storage account and file share
+- Preexisting Azure storage account and file share
 - For SMB: Kubernetes Secret containing `azurestorageaccountname` and `azurestorageaccountkey`
 - For NFS: Storage account with Premium SKU and virtual network service endpoint; no secret required
 - Network connectivity from AKS nodes to the storage account (public endpoint, service endpoint, or private endpoint)
@@ -420,7 +420,7 @@ These mount options apply to Linux nodes using the SMB protocol (CIFS). Windows 
 
 ### SMB mount options reference (Linux)
 
-> **Canonical permission set:** `dir_mode=0755`, `file_mode=0755`, `uid=1000`, `gid=1000`. Use `0777`/`uid=0`/`gid=0` only when your application requires root ownership or world-writable access (for example, legacy apps or containers running as root).
+**Canonical permission set:** `dir_mode=0755`, `file_mode=0755`, `uid=1000`, `gid=1000`. Use `0777`/`uid=0`/`gid=0` only when your application requires root ownership or world-writable access (for example, legacy apps or containers running as root).
 
 | Option | Recommended value | Description |
 |--------|-------------------|-------------|
