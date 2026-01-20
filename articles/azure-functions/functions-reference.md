@@ -188,6 +188,7 @@ The following components support identity-based connections:
 | Azure Event Grid output binding       | All             | [Azure Event Grid extension version 3.3.0 or later][eventgrid],<br/>[Extension bundle 3.3.0 or later][eventgrid] |
 | Azure Cosmos DB triggers and bindings         | All | [Azure Cosmos DB extension version 4.0.0 or later][cosmosv4],<br/> [Extension bundle 4.0.2 or later][cosmosv4]|
 | Azure SignalR triggers and bindings           | All | [Azure SignalR extension version 1.7.0 or later][signalr] <br/>[Extension bundle 3.6.1 or later][signalr] |
+| Azure Web PubSub triggers and bindings           | All | [Azure Web PubSub extension version 1.10.0 or later][webpubsub] <br/>[Extension bundle 3.6.1 or later][webpubsub] |
 | Durable Functions storage provider (Azure Storage) | All | [Durable Functions extension version 2.7.0 or later][durable-identity],<br/>[Extension bundle 3.3.0 or later][durable-identity] |
 | Host-required storage ("AzureWebJobsStorage") | All             | [Connecting to host storage with an identity](#connecting-to-host-storage-with-an-identity)                        |
 
@@ -199,6 +200,7 @@ The following components support identity-based connections:
 [cosmosv4]: ./functions-bindings-cosmosdb-v2.md?tabs=extensionv4
 [tablesv1]: ./functions-bindings-storage-table.md#table-api-extension
 [signalr]: ./functions-bindings-signalr-service.md#install-extension
+[web-pubsub]: ./functions-bindings-web-pubsub-service.md#install-extension
 [durable-identity]: ./durable/durable-functions-configure-managed-identity.md
 [azuresql-identity]: ./functions-identity-access-azure-sql-with-managed-identity.md
 
@@ -237,6 +239,10 @@ Choose one of these tabs to learn about permissions for each component:
 # [Azure SignalR extension](#tab/signalr)
 
 You need to create a role assignment that provides access to Azure SignalR Service data plane REST APIs. We recommend you to use the built-in role [SignalR Service Owner](../role-based-access-control/built-in-roles.md#signalr-service-owner). Management roles like [Owner](../role-based-access-control/built-in-roles.md#owner) aren't sufficient.
+
+# [Azure Web PubSub extension](#tab/web-pubsub)
+
+You need to create a role assignment that provides access to Azure Web PubSub Service data plane REST APIs. We recommend you to use the built-in role [Azure Web PubSub Owner](../role-based-access-control/built-in-roles/web-and-mobile.md#web-pubsub-service-owner). Management roles like [Owner](../role-based-access-control/built-in-roles.md#owner) aren't sufficient.
 
 # [Durable Functions storage provider](#tab/durable)
 
