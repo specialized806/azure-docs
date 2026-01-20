@@ -1,7 +1,7 @@
 ---
 title: Monitor Azure Functions with OpenTelemetry distributed tracing
 description: "Learn how to implement OpenTelemetry distributed tracing across multiple function calls in your function app. See how to monitor function calls, track performance, and gain observability into your serverless applications using Application Insights integration."
-ms.date: 01/19/2026
+ms.date: 01/26/2026
 ms.topic: tutorial
 ms.custom:
   - ignite-2025
@@ -27,9 +27,9 @@ The required Azure resources created by this template follow current best practi
 By default, the Flex Consumption plan follows a _pay-for-what-you-use_ billing model, which means completing this quickstart incurs a small cost of a few USD cents or less in your Azure account.
 ::: zone pivot="programming-language-javascript,programming-language-powershell"  
 > [!IMPORTANT]  
-> This article currently supports only C#, Java, Python, and TypeScript. To complete the quickstart, select one of these supported languages at the top of the article.
+> This article currently doesn't support PowerShell.
 ::: zone-end  
-::: zone pivot="programming-language-csharp,programming-language-java,programming-language-python,programming-language-typescript" 
+::: zone pivot="programming-language-csharp,programming-language-java,programming-language-javascript,programming-language-python,programming-language-typescript" 
 ## Prerequisites
 
 + An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
@@ -42,6 +42,9 @@ By default, the Flex Consumption plan follows a _pay-for-what-you-use_ billing m
 ::: zone pivot="programming-language-typescript"  
 + [Node.js 18.x or later](https://nodejs.org/)
 ::: zone-end  
+::: zone pivot="programming-language-javascript"  
++ [Node.js 18.x or later](https://nodejs.org/)
+::: zone-end  
 ::: zone pivot="programming-language-csharp"  
 + [.NET 8.0 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
 ::: zone-end  
@@ -49,7 +52,7 @@ By default, the Flex Consumption plan follows a _pay-for-what-you-use_ billing m
 + [Java Developer Kit (JDK)](/azure/developer/java/fundamentals/java-support-on-azure), version 11 or later
 + [Apache Maven](https://maven.apache.org/), version 3.0 or later
 ::: zone-end  
-::: zone pivot="programming-language-csharp,programming-language-java,programming-language-python,programming-language-typescript" 
+::: zone pivot="programming-language-csharp,programming-language-java,programming-language-javascript,programming-language-python,programming-language-typescript" 
 ## Initialize the project
 
 Use the `azd init` command to create a local Azure Functions code project from a template that includes OpenTelemetry distributed tracing.
@@ -74,6 +77,16 @@ Use the `azd init` command to create a local Azure Functions code project from a
     ```
 
     This command pulls the project files from the [template repository](https://github.com/Azure-Samples/functions-quickstart-typescript-azd-otel) and initializes the project in the current folder. The `-e` flag sets a name for the current environment. In `azd`, the environment maintains a unique deployment context for your app, and you can define more than one. The environment name also appears in the name of the resource group you create in Azure.  
+::: zone-end  
+::: zone pivot="programming-language-javascript"  
+
+1. In your local terminal or command prompt, run this `azd init` command in an empty folder:
+ 
+    ```console
+    azd init --template functions-quickstart-javascript-azd-otel -e flexquickstart-otel
+    ```
+
+    This command pulls the project files from the [template repository](https://github.com/Azure-Samples/functions-quickstart-javascript-azd-otel) and initializes the project in the current folder. The `-e` flag sets a name for the current environment. In `azd`, the environment maintains a unique deployment context for your app, and you can define more than one. The environment name also appears in the name of the resource group you create in Azure.  
 ::: zone-end  
 ::: zone pivot="programming-language-csharp"
 1. In your local terminal or command prompt, run this `azd init` command in an empty folder:
@@ -100,7 +113,7 @@ The template creates a complete distributed tracing scenario with three function
 
 ### OpenTelemetry configuration
 
-::: zone pivot="programming-language-python,programming-language-typescript"  
+::: zone pivot="programming-language-javascript,programming-language-python,programming-language-typescript"  
 The `src/otel-sample/host.json` file enables OpenTelemetry for the Functions host:
 
 ```json
@@ -186,6 +199,24 @@ The `src/otel-sample/package.json` file includes the necessary packages for Open
 
 The `@azure/functions-opentelemetry-instrumentation` and `@azure/monitor-opentelemetry-exporter` packages provide the OpenTelemetry integration with Application Insights.  
 ::: zone-end  
+::: zone pivot="programming-language-javascript"  
+The `src/otel-sample/package.json` file includes the necessary packages for OpenTelemetry integration:
+
+```json
+{
+  "dependencies": {
+    "@azure/functions": "4.7.0",
+    "@azure/functions-opentelemetry-instrumentation": "^0.2.0",
+    "@azure/monitor-opentelemetry-exporter": "^1.0.0-beta.32",
+    "@opentelemetry/api": "^1.9.0",
+    "@opentelemetry/auto-instrumentations-node": "^0.67.0",
+    "axios": "^1.12.0"
+  }
+}
+```
+
+The `@azure/functions-opentelemetry-instrumentation` and `@azure/monitor-opentelemetry-exporter` packages provide the OpenTelemetry integration with Application Insights. The `@opentelemetry/auto-instrumentations-node` package provides automatic instrumentation for Node.js libraries.  
+::: zone-end  
 ::: zone pivot="programming-language-csharp"  
 The `.csproj` file includes the necessary packages for OpenTelemetry integration:
 
@@ -253,7 +284,7 @@ The project also uses the Maven dependency plugin to download the OpenTelemetry 
 
 This agent is automatically attached to the Java runtime for distributed tracing instrumentation.  
 ::: zone-end
-::: zone pivot="programming-language-csharp,programming-language-java,programming-language-python,programming-language-typescript" 
+::: zone pivot="programming-language-csharp,programming-language-java,programming-language-javascript,programming-language-python,programming-language-typescript" 
 ### Function implementation
 ::: zone-end
 ::: zone pivot="programming-language-python"  
@@ -431,6 +462,146 @@ export async function serviceBusQueueTrigger(
 
   context.log("TypeScript ServiceBus Queue trigger end processing a message");
 }
+```
+
+::: zone-end  
+::: zone pivot="programming-language-javascript"  
+The OpenTelemetry configuration is set up in `src/otel-sample/src/index.js`:
+
+```javascript
+const { AzureFunctionsInstrumentation } = require('@azure/functions-opentelemetry-instrumentation');
+const { AzureMonitorLogExporter, AzureMonitorTraceExporter } = require('@azure/monitor-opentelemetry-exporter');
+const { getNodeAutoInstrumentations, getResourceDetectors } = require('@opentelemetry/auto-instrumentations-node');
+const { registerInstrumentations } = require('@opentelemetry/instrumentation');
+const { detectResources } = require('@opentelemetry/resources');
+const { LoggerProvider, SimpleLogRecordProcessor } = require('@opentelemetry/sdk-logs');
+const { NodeTracerProvider, SimpleSpanProcessor } = require('@opentelemetry/sdk-trace-node');
+
+const resource = detectResources({ detectors: getResourceDetectors() });
+
+const tracerProvider = new NodeTracerProvider({ 
+  resource, 
+  spanProcessors: [new SimpleSpanProcessor(new AzureMonitorTraceExporter())] 
+});
+tracerProvider.register();
+
+const loggerProvider = new LoggerProvider({
+  resource,
+  processors: [new SimpleLogRecordProcessor(new AzureMonitorLogExporter())],
+});
+
+registerInstrumentations({
+    tracerProvider,
+    loggerProvider,
+    instrumentations: [getNodeAutoInstrumentations(), new AzureFunctionsInstrumentation()],
+});
+```
+
+The functions are defined in the `src/otel-sample/src/functions` folder:
+
+#### First HTTP Function
+
+```javascript
+const { app } = require("@azure/functions");
+const axios = require("axios");
+
+async function firstHttpFunction(request, context) {
+  context.log("JavaScript HTTP trigger function (first) processed a request.");
+
+  try {
+    // Call the second function
+    const baseUrl = request.url.split("/api/")[0];
+    const secondFunctionUrl = `${baseUrl}/api/second_http_function`;
+
+    const response = await axios.get(secondFunctionUrl);
+    const secondFunctionResult = response.data;
+
+    const result = {
+      message: "Hello from the first function!",
+      second_function_response: secondFunctionResult,
+    };
+
+    context.log("Successfully called second function");
+
+    return {
+      status: 200,
+      body: JSON.stringify(result),
+      headers: { "Content-Type": "application/json" },
+    };
+  } catch (error) {
+    context.log("Error occurred:", error);
+    return {
+      status: 500,
+      body: JSON.stringify({ error: "Failed to process request" }),
+    };
+  }
+}
+
+app.http("first_http_function", {
+  methods: ["GET", "POST"],
+  authLevel: "anonymous",
+  handler: firstHttpFunction,
+});
+```
+
+#### Second HTTP Function
+
+```javascript
+const { app, output } = require("@azure/functions");
+
+const serviceBusOutput = output.serviceBusQueue({
+  queueName: "%ServiceBusQueueName%",
+  connection: "ServiceBusConnection",
+});
+
+async function secondHttpFunction(request, context) {
+  context.log("JavaScript HTTP trigger function (second) processed a request.");
+
+  const message = "This is the second function responding.";
+
+  // Send a message to the Service Bus queue
+  const queueMessage =
+    "Message from second HTTP function to trigger ServiceBus queue processing";
+  
+  context.extraOutputs.set(serviceBusOutput, queueMessage);
+  context.log("Sent message to ServiceBus queue:", queueMessage);
+
+  return {
+    status: 200,
+    body: message,
+  };
+}
+
+app.http("second_http_function", {
+  methods: ["GET", "POST"],
+  authLevel: "anonymous",
+  extraOutputs: [serviceBusOutput],
+  handler: secondHttpFunction,
+});
+```
+
+#### Service Bus Queue Trigger
+
+```javascript
+const { app } = require("@azure/functions");
+
+async function serviceBusQueueTrigger(message, context) {
+  context.log(
+    "JavaScript ServiceBus Queue trigger start processing a message:",
+    message
+  );
+
+  // Simulate processing time
+  await new Promise((resolve) => setTimeout(resolve, 5000));
+
+  context.log("JavaScript ServiceBus Queue trigger end processing a message");
+}
+
+app.serviceBusQueue("servicebus_queue_trigger", {
+  queueName: "%ServiceBusQueueName%",
+  connection: "ServiceBusConnection",
+  handler: serviceBusQueueTrigger,
+});
 ```
 
 ::: zone-end  
@@ -683,7 +854,7 @@ public class ServiceBusQueueTriggerFunction {
 ```
 
 ::: zone-end
-::: zone pivot="programming-language-csharp,programming-language-java,programming-language-python,programming-language-typescript" 
+::: zone pivot="programming-language-csharp,programming-language-java,programming-language-javascript,programming-language-python,programming-language-typescript" 
 ### Distributed tracing flow
 
 This architecture creates a complete distributed tracing scenario, with this behavior:
@@ -694,6 +865,15 @@ This architecture creates a complete distributed tracing scenario, with this beh
 
 Key aspects of the OpenTelemetry implementation:
 ::: zone-end
+::: zone pivot="programming-language-javascript"  
++ **OpenTelemetry integration**: The `index.js` file configures OpenTelemetry with Azure Monitor exporters for traces and logs
++ **Function chaining**: The first function calls the second using axios with automatic trace propagation
++ **Service Bus integration**: The second function outputs to Service Bus using output bindings, which triggers the third function
++ **Managed identity**: All Service Bus connections use managed identity instead of connection strings
++ **Processing simulation**: The 5-second delay in the Service Bus trigger simulates message processing work
+
+You can review the complete template project [here](https://github.com/Azure-Samples/functions-quickstart-javascript-azd-otel).  
+::: zone-end  
 ::: zone pivot="programming-language-python"
 
 + **OpenTelemetry integration**: The `host.json` file enables OpenTelemetry with `"telemetryMode": "OpenTelemetry"`
@@ -730,7 +910,7 @@ You can review the complete template project [here](https://github.com/Azure-Sam
 
 You can review the complete template project [here](https://github.com/Azure-Samples/functions-quickstart-java-azd-otel).  
 ::: zone-end  
-::: zone pivot="programming-language-csharp,programming-language-java,programming-language-python,programming-language-typescript" 
+::: zone pivot="programming-language-csharp,programming-language-java,programming-language-javascript,programming-language-python,programming-language-typescript" 
 After you verify your functions locally, it's time to publish them to Azure.
 
 ## Deploy to Azure
