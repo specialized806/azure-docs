@@ -46,8 +46,6 @@ Microsoft Dev Box aims to provide a "like-local" developer experience that is as
 
 **Seamless and reliable connectivity**
 
-- [Single Sign On (SSO) for existing Dev Box machines](https://developercommunity.microsoft.com/t/Single-Sign-On-SSO-for-existing-Dev-Bo/10859770): As a dev center admin, you'll be able to enable Single Sign On experience for already existing Dev Box machines.
-
 - [Auto Remediation Improvements](https://developercommunity.microsoft.com/t/Network-connection-auto-remediation/10861428): As a developer, you won't be blocked from connecting to your Dev Box machine due to networking issues. Autoremediation of connectivity issues should allow you to connect to your machine.
 
 - [Latency Improvements](https://developercommunity.visualstudio.com/t/Latency-improvements-when-using-a-mouse/10859786): As a developer you'll experience reduced mouse latency with high-resolution monitors along with other generic latency improvements.
