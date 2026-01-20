@@ -70,7 +70,7 @@ In AKS clusters, the Azure Files CSI driver is installed and managed automatical
 - **Persistent volumes**: Represent the actual Azure file shares in Kubernetes
 - **Persistent volume claims**: User requests for storage that are bound to persistent volumes
 
-When a pod requests storage through a persistent volume claim, the CSI driver coordinates with Azure APIs to either create a new Azure file share ([dynamic provisioning](#dynamic-provisioning)) or connect to an existing share ([static provisioning](#static-provisioning)). The driver then mounts the share into the pod's filesystem namespace, making it accessible to applications.
+When a pod requests storage through a persistent volume claim, the CSI driver coordinates with Azure APIs to either create a new Azure file share ([dynamic provisioning](#dynamic-provisioning-auto-create-azure-file-shares)) or connect to an existing share ([static provisioning](#static-provisioning-use-existing-azure-file-shares)). The driver then mounts the share into the pod's filesystem namespace, making it accessible to applications.
 
 ### CSI driver capabilities
 
@@ -240,7 +240,7 @@ kubectl exec ds/log-collector -- ls -la /logs
 # Expected: directory listing with log files
 ```
 
-## AKS dynamic provisioning: auto-create Azure file shares
+## Dynamic provisioning: auto-create Azure file shares
 
 Dynamic provisioning automatically creates Azure file shares when you create a persistent volume claim. Verify your environment meets these requirements:
 
@@ -321,7 +321,7 @@ kubectl get pvc <YOUR_PVC_NAME, e.g., my-azurefile-pvc> -o jsonpath="{.status.ph
 # Expected: Bound (after creating a PVC referencing this StorageClass)
 ```
 
-## AKS static provisioning: use existing Azure file shares
+## Static provisioning: use existing Azure file shares
 
 Static provisioning connects to pre-existing Azure file shares. Verify your environment meets these requirements:
 
