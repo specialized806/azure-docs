@@ -46,7 +46,7 @@ By default, the Flex Consumption plan follows a _pay-for-what-you-use_ billing m
 + [.NET 8.0 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
 ::: zone-end  
 ::: zone pivot="programming-language-java"  
-+ [Java Developer Kit (JDK)](/azure/developer/java/fundamentals/java-support-on-azure), version 11 or 17
++ [Java Developer Kit (JDK)](/azure/developer/java/fundamentals/java-support-on-azure), version 11 or later
 + [Apache Maven](https://maven.apache.org/), version 3.0 or later
 ::: zone-end  
 ::: zone pivot="programming-language-csharp,programming-language-java,programming-language-python,programming-language-typescript" 
@@ -727,7 +727,6 @@ You can review the complete template project [here](https://github.com/Azure-Sam
 + **Function chaining**: The first function calls the second using Java's built-in HttpClient with manual trace context propagation
 + **Trace context propagation**: The `TraceContext` from `ExecutionContext` provides `traceparent` and `tracestate` headers for W3C trace context propagation
 + **Service Bus integration**: The second function outputs to Service Bus using output bindings, which triggers the third function
-+ **Java 11 compatibility**: Uses Java 11's HttpClient API for modern, non-blocking HTTP calls
 
 You can review the complete template project [here](https://github.com/Azure-Samples/functions-quickstart-java-azd-otel).  
 ::: zone-end  
