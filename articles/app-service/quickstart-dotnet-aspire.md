@@ -18,23 +18,19 @@ ms.custom:
 
 # Quickstart: Deploy a .NET Aspire app to Azure App Service
 
-In this quickstart, you learn how to create and deploy your first [.NET Aspire](https://learn.microsoft.com/dotnet/aspire/get-started/aspire-overview) app to [Azure App Service](overview.md) using GitHub Codespaces. .NET Aspire is an opinionated, cloud-ready stack for building observable, production-ready, distributed applications. Azure App Service provides a fully managed platform for hosting web apps with built-in infrastructure maintenance, security patching, and scaling.
+In this quickstart, you learn how to create and deploy your first [.NET Aspire](/dotnet/aspire/get-started/aspire-overview) app to [Azure App Service](overview.md). Azure App Service provides a fully managed platform for hosting web apps with built-in infrastructure maintenance, security patching, and scaling.
 
-You complete this entire quickstart in your browser using GitHub Codespaces, which provides a pre-configured development environment with .NET 10 already installed. By the end, you have a running Aspire app deployed to Azure App Service.
+You can complete this entire quickstart in your browser using GitHub Codespaces, which provides a pre-configured development environment with .NET 10 and Azure Developer CLI already installed. By the end, you have a running Aspire app deployed to Azure App Service.
 
 ## Prerequisites
 
 - An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A GitHub account. [Create an account for free](https://github.com/).
 
-## Open GitHub Codespaces
-
-GitHub Codespaces provides a cloud-based development environment with all the tools you need.
-
 ## Create an Aspire starter app in a GitHub codespace
 
 1. Navigate to [github.com/codespaces](https://github.com/codespaces).
-1. For the .NET template select **Use this template**.
+1. For the .NET template, select **Use this template**.
 
    Your browser opens a new codespace with Visual Studio Code running in the browser. The environment includes .NET 10 and Azure Developer CLI pre-installed.
 
@@ -127,9 +123,10 @@ Configure your Aspire app to deploy to Azure App Service.
 
    The `azd up` command performs the following actions based on your *AppHost.cs* code:
    - Creates a new resource group
-   - Provisions an Azure App Service Plan
+   - Creates an Azure App Service Plan
    - Creates an Azure Container Registry
-   - Provisions two App Service web apps (one for the API, one for the frontend)
+   - Creatse two App Service web apps (one for the API, one for the frontend)
+   - Creates a managed Aspire Dashboard resource
    - Builds and containerizes your applications
    - Pushes the containers to Azure Container Registry
    - Deploys the containers to App Service
@@ -142,12 +139,12 @@ Configure your Aspire app to deploy to Azure App Service.
     Deploying services (azd deploy)
     
       (✓) Done: Deploying service apiservice
-      - Endpoint: https://apiservice-xxxxx.azurewebsites.net/ 
+      - Endpoint: https://apiservice-xxxxxx.azurewebsites.net/ 
     
       (✓) Done: Deploying service webfrontend
-      - Endpoint: https://webfrontend-xxxxx.azurewebsites.net/ 
+      - Endpoint: https://webfrontend-xxxxxx.azurewebsites.net/ 
     
-      Aspire Dashboard: https://app-service-env-aspiredashboard-xxxxx.azurewebsites.net
+      Aspire Dashboard: https://app-service-env-aspiredashboard-xxxxxx.azurewebsites.net
     
     SUCCESS: Your up workflow to provision and deploy to Azure completed in 1 minute 49 seconds.
     ```
@@ -236,17 +233,16 @@ For more information, see:
 You successfully deployed a .NET Aspire app to Azure App Service! Here are some next steps to explore:
 
 > [!div class="nextstepaction"]
-> [.NET Aspire documentation](https://learn.microsoft.com/dotnet/aspire/)
+> [.NET Aspire documentation](/dotnet/aspire/)
 
 > [!div class="nextstepaction"]
 > [Azure App Service documentation](overview.md)
 
 > [!div class="nextstepaction"]
-> [Add Azure services to your Aspire app](https://learn.microsoft.com/dotnet/aspire/fundamentals/integrations-overview)
+> [Add Azure services to your Aspire app](/dotnet/aspire/fundamentals/integrations-overview)
 
 ### Explore Azure App Service features
 
 - [Configure custom domains and SSL](tutorial-secure-domain-certificate.md)
 - [Set up staging environments](deploy-staging-slots.md)
 - [Configure authentication](overview-authentication-authorization.md)
-- [Monitor with Application Insights](../azure-monitor/app/app-insights-overview.md)
