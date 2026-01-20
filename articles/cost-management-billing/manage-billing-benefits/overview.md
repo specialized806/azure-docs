@@ -14,7 +14,7 @@ service.tree.id: cf90d1aa-e8ca-47a9-a6d0-bc69c7db1d52
 
 # Billing Benefits Overview
 
-Billing benefits are a set of offers - such as discounts, credits, and cost-optimizing commitments that provide customers with financial advantages. These billing benefits help customers reduce spend, plan capacity confidently, and align purchasing with business needs
+Billing benefits are a set of offers - such as discounts, credits, and cost-optimizing commitments that provide customers with financial advantages. These billing benefits can help customers reduce spend, plan capacity confidently, and align purchasing with business needs
 
 Azure models billing benefits as **Azure Resource Manager (ARM) resources**, enabling consistent lifecycle management across the Azure portal, APIs, and SDKs. For more information, see: [What is a cloud subscription?](../../cost-management-billing/manage/cloud-subscription.md)
 
@@ -34,7 +34,7 @@ Examples:
 *   [Microsoft Azure Consumption Commitment (MACC)](../../marketplace/azure-consumption-commitment-benefit.md#determine-which-offers-are-eligible-for-azure-consumption-commitments-maccctc)
 *   [Reservations](../reservations/save-compute-costs-reservations.md)
 *   [Savings plan](../savings-plan/savings-plan-compute-overview.md)
-*   Commitment-based spend programs
+*   Other commitment-based spend programs
 
 
 ### 2. Credits
@@ -47,10 +47,6 @@ Examples:
 *   Azure Credit Offers (ACO)
 *   Other credit-based incentives
 
-Credits are applied before invoices are generated.
-
-> **Note:** Credits are applied like a gift card or other payment instrument before the invoice is generated. While credit status is tracked as new charges flow into the data pipeline, credits aren't explicitly applied to these charges until the end of the month.
-
 
 ### 3. Discounts
 
@@ -59,13 +55,7 @@ Discounts lower the purchase price or usage charges of eligible resources. Certa
 
 ### 4. Free Azure Services
 
-Azure provides a comprehensive set of free services to help you explore, build, and test solutions at no cost. These benefits include:
-
-* $200 credit for 30 days (new customers only)
-* 12-months of free usage for a curated set of popular services
-* 65+ services that are Always Free, with monthly usage limits
-
-Azure’s free services are designed to reduce the barrier to entry, support experimentation, and help new customers get started with cloud development safely and cost-effectively.  
+Azure provides a selection of free services each month, enabling the ability to explore, develop, and test solutions without incurring any charges.
 
 For more information, see: [Create Your Azure Free Account Or Pay As You Go](https://azure.microsoft.com/pricing/purchase-options/azure-account)
 
@@ -101,31 +91,6 @@ Developers can programmatically interact with billing benefits using the **Azure
 Azure SDKs (.NET, Python, JavaScript) and the Azure CLI (`az billingbenefits`) support reading or managing billing benefits programmatically.  
 
 See: [Azure PowerShell Billing Benefits Module](https://learn.microsoft.com/powershell/module/az.billingbenefits/)
-
-***
-
-
-## Why Billing Benefits Matter
-
-Billing benefits help organizations:
-
-*   **Optimize cloud spend** by leveraging the right mix of discounts, credits, and commitments.
-*   **Improve cost predictability** by aligning long-term commitments with planned usage.
-*   **Centralize management** with ARM-based resources, enabling consistent RBAC, activity logs, tagging, and automation.
-
-***
-
-
-## Common Scenarios
-
-*   **Verify costs reflect the discounted price:**  
-    A negotiated discount reduces rates applied to eligible usage during billing. The discount appears as an ARM resource and is also reflected in the price sheet and invoice. You can utilize the discount information displayed on the discount resource to verify applicability of the discount on your price sheet or downloaded usage.
-
-*   **Track credit usage:**  
-    Promotional or commitment credits are consumed automatically as new usage is rated, and customers track credit burndown in the portal.
-
-*   **Manage long-term commitments:**  
-    Customers with enterprise agreements or cloud spend commitments can monitor fulfillment and benefit application in Cost Management and through the corresponding billing benefit resources.
 
 ***
 
