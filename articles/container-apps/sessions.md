@@ -15,20 +15,20 @@ ms.custom: references_regions, ignite-2024
 ## Overview
 Azure Container Apps dynamic sessions provide fast access to secure sandboxed environments that are ideal for running code or applications that require strong isolation from other workloads.
 
-Dynamic sessions offer pre-warmed environments through a [session pools](./container-apps/session-pool) that starts the container in milliseconds, scales on demand, and maintains strong isolation. This makes them ideal for interactive workloads, running LLM generated scripts, and secure execution of custom code.
+Dynamic sessions offer pre-warmed environments through a [session pools](./session-pool.md) that starts the container in milliseconds, scales on demand, and maintains strong isolation. This makes them ideal for interactive workloads, running LLM generated scripts, and secure execution of custom code.
 
 ---
 
 ## Benefits
 With sessions, you get:
 
-- **Security First**: Hyper-V isolation and optional network controls protect your environment. Sessions are isolated from each other and from the host environment, providing enterprise-grade security.  
+- **Secure isolation**: Hyper-V isolation and optional network controls protect your environment. Sessions are isolated from each other and from the host environment, providing enterprise-grade security and isolation.  
+- **Sandboxed environments**: Each session runs in its own isolated environment, ensuring that workloads do not interfere with each other.
 - **Instant Startup**: Pre-warmed pools enable sub-second launch times for interactive workloads. New sessions are allocated in milliseconds thanks to pools of ready but unallocated sessions.  
-- **AI-Ready**: Optimized for LLM scenarios like code interpretation and agent-driven workflows.  
-- **Scalable by Design**: Handle hundreds or thousands of concurrent sessions without manual intervention.  
-- **Cost Efficiency**: Pay only for what you use—ideal for short-lived or burst workloads.  
-- **Simple Access**: Sessions are accessed through a REST API with a unique identifier. If a session doesn’t exist, a new one is automatically allocated.  
-- **API Access**: Sessions are exposed to your application via a single HTTP endpoint.  
+- **Scalable by Design**: Handle hundreds or thousands of concurrent sessions without manual intervention. 
+- **Managed lifecycle**: Sessions are automatically de-provisioned after use or after a configurable cooldown period, ensuring efficient resource usage. 
+- **Simple Access**: Sessions are accessed through a REST API with a unique identifier. If a session doesn’t exist, a new one is automatically allocated. 
+- **API Access**: Sessions are exposed to your application via a single HTTP endpoint.
 
 ---
 
@@ -68,17 +68,20 @@ This lifecycle ensures fast startup, efficient resource use, and automatic clean
 
 #### Session Types Comparison
 
-| **Feature**             | **Code Interpreter Session**                              | **Custom Container Session**                          |
-|-------------------------|-----------------------------------------------------------|------------------------------------------------------|
-| **Purpose**            | Run code interactively, often AI-generated or user-submitted | Execute workloads in your own container image       |
-| **Preconfigured Environment** | Yes – includes language runtimes and tools for code execution | No – you provide the container image with dependencies |
-| **Ideal Use Cases**     | LLM workflows, code interpretation, quick script testing | Custom compute tasks, specialized dependencies, custom apps |
-| **Image Requirement**   | None – uses built-in interpreter environments            | Required – provide container image URI              |
+| **Dimension** | **Code Interpreter Session** | **Custom Container Session** |
+|---------------|------------------------------|------------------------------|
+| **Best For** | Running AI‑generated code, user-submitted scripts, or quick secure code execution without managing a runtime environment. | Workloads requiring a custom runtime, libraries, binaries, or specialized tools not supported by built-in interpreters. |
+| **Environment** | Preconfigured with common runtimes and tools; no container build or image publishing required. | Fully customizable container image with your own dependencies, packages, and configuration. |
+| **When to Choose** | Choose this for simplicity, fastest startup, and minimal setup. | Choose this when you need full control over the execution environment or rely on custom dependencies. |
+| **Ideal Use Cases** | LLM workflows, code interpretation, educational/sandbox scenarios, safe execution of user code. | Custom compute tasks, proprietary interpreters, specialized environments, or workloads with specific OS/library requirements. |
+| **Image Requirement** | None — uses platform built‑in interpreter environments. | Required — supply your own container image URI. |
+
+See [Usage](./sessions-usage.md) for more details on configuring session types.
 
 ---
 
 ## Supported Regions
-Dynamic sessions are supported in **all regions where Azure Container Apps is available**. View supported regions here: [Azure Container Apps regions](https://azure.microsoft.com/en-us/global-infrastructure/services/?products=container-apps).
+Dynamic sessions are supported in **all regions where Azure Container Apps is available**. View supported regions here: [Azure Container Apps regions](https://azure.microsoft.com/global-infrastructure/services/?products=container-apps).
 
 ---
 
@@ -88,7 +91,7 @@ Dynamic sessions are designed to run untrusted code in isolated environments. Fo
 ---
 
 ## Billing
-Custom container sessions are billed based on the resources consumed by the session pool. For more information, see [Azure Container Apps billing](https://learn.microsoft.com/en-us/azure/container-apps/billing#dynamic-sessions).
+Custom container sessions are billed based on the resources consumed by the session pool. For more information, see [Azure Container Apps billing](./billing.md#dynamic-sessions).
 
 ---
 
