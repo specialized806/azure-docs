@@ -74,7 +74,7 @@ Teams licensing requirements vary based on the calling scenario when Teams Phone
 
 ### Outbound Calling Prerequisites
 
-Starting **November 1, 2025**, Calling Plan licenses assigned to Teams Resource Accounts will no longer support On-Behalf-Of PSTN outbound calls or server-initiated outbound calls. A **[Pay-As-You-Go Calling Plan](/microsoftteams/calling-plans-for-office-365#pay-as-you-go-calling-plan)** and Communication Credits are required for these scenarios, baased on the billing agreements.
+Starting **November 1, 2025**, Calling Plan licenses assigned to Teams Resource Accounts will no longer support On-Behalf-Of PSTN outbound calls or server-initiated outbound calls. A **[Pay-As-You-Go Calling Plan](/microsoftteams/calling-plans-for-office-365#pay-as-you-go-calling-plan)** and Communication Credits are required for these scenarios, based on the billing agreements.
 
 > **Note:** Direct Routing numbers aren’t affected by these licensing changes.
 
