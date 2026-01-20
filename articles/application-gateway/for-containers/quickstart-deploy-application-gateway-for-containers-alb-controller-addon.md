@@ -64,6 +64,9 @@ The following AKS cluster requirements are needed for successful provisioning of
 - Must have the workload identity feature enabled. [Learn how](/azure/aks/workload-identity-deploy-cluster#update-an-existing-aks-cluster) to enable workload identity on an existing AKS cluster.
 - Must be using a [supported AKS Kubernetes version](/azure/aks/supported-kubernetes-versions).
 
+>[!Note]
+>While enablement of the add-on will register and deploy the ALB controller in all regions, provisioning of the Application Gateway for Containers resources will fail if not deployed in a [region where Application Gateway for Containers is available](overview.md#supported-regions).
+
 ### New Cluster
 
 Use the following commands to create a new AKS cluster with Azure CNI, workload identity enabled, gateway API add-on, and the Application Gateway for Containers add-on enabled.
