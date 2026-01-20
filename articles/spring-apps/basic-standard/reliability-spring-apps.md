@@ -94,7 +94,7 @@ There's no extra cost associated with enabling zone-redundancy. You only need to
 
 The Azure Spring Apps service doesn't provide geo-disaster recovery, but careful planning can help protect you from experiencing downtime.
 
-To ensure high availability and protection from disasters, deploy your applications hosted in Azure Spring Apps to multiple regions. Azure provides a list of [paired regions](../../reliability/regions-paired.md) so that you can plan your app deployments accordingly.
+To ensure high availability and protection from disasters, deploy your applications hosted in Azure Spring Apps to multiple regions. Azure provides a list of [paired regions](/azure/reliability/regions-paired) so that you can plan your app deployments accordingly.
 
  Consider the following key factors when you design your architecture:
 
@@ -145,4 +145,4 @@ The following diagram shows the architecture of a multi-region redundancy, virtu
 
 - [Quickstart: Deploy your first Spring Boot app in Azure Spring Apps](./quickstart.md)
 
-- [Reliability in Azure](../../reliability/overview.md)
+- [Reliability in Azure](/azure/reliability/overview)

@@ -23,7 +23,7 @@ The diagram below illustrates the relocation pattern for a Log Analytics workspa
 
 [!INCLUDE [availability zone overview](../../../reliability/includes/reliability-availability-zone-description-include.md)]
 
-If you want to relocate your Log Analytics workspace to a region that supports availability zones, follow the guidance in [Migrate Log Analytics to availability zone support](../../../reliability/migrate-monitor-log-analytics.md).
+If you want to relocate your Log Analytics workspace to a region that supports availability zones, follow the guidance in [Migrate Log Analytics to availability zone support](/azure/reliability/migrate-monitor-log-analytics).
 
 ## Prerequisites
 
