@@ -1,6 +1,6 @@
 ---
-title: Custom orchestration status in Durable Functions
-description: Learn how to configure and use custom orchestration status for Azure Durable Functions.
+title: Custom orchestration status
+description: Learn how to configure and use custom orchestration status.
 ms.topic: conceptual
 ms.date: 01/15/2026
 ms.author: azfuncdf
@@ -12,7 +12,7 @@ zone_pivot_groups: azure-durable-approach
 # ms.devlang: csharp, javascript, python
 ---
 
-# Custom orchestration status in Durable Functions
+# Custom orchestration status
 
 Custom orchestration status lets you set a custom status value for an orchestration instance. External clients can query this value to track progress or share metadata while the orchestration is running.
 
