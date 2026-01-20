@@ -8,17 +8,17 @@ ms.date: 12/09/2025
 author: Jeronika-MS
 ms.author: v-gajeronika 
 
-# Customer intent: As a system administrator troubleshooting VMware vCenter discovery failures, I want to understand the common problems and resolutions so that I can ensure seamless connectivity and operation of Azure Site Recovery.
+# Customer intent: As a system administrator troubleshooting VMware vCenter discovery failures, I want to understand the common issues and resolutions so that I can ensure seamless connectivity and operation of Azure Site Recovery.
 ---
 # Troubleshoot vCenter Server discovery failures
 
-This article helps you to troubleshoot problems that occur because of VMware vCenter discovery failures.
+This article helps you to troubleshoot issues that occur because of VMware vCenter discovery failures.
 
 ## Non-numeric values in the maxSnapShots property
 
 On versions earlier than 9.20, vCenter disconnects when it retrieves a non-numeric value for the `snapshot.maxSnapShots` property on a virtual machine (VM).
 
-The error ID 95126 identifies this problem.
+The error ID 95126 identifies this issue.
 
 ```output
 ERROR :: Hit an exception while fetching the required informationfrom vCenter/vSphere.Exception details:
@@ -28,24 +28,24 @@ System.FormatException: Input string was not in a correct format.
     at VMware.VSphere.Management.InfraContracts.VirtualMachineInfo.get_MaxSnapshots()
 ```
 
-To resolve the problem, you have two options:
+To resolve the issue, you have two options:
 
 - Identify the VM and set the value to a numeric value. (Use the VM edit settings in vCenter.)
 - Upgrade your configuration server to version 9.20 or later.
 
-## Proxy configuration problems for vCenter connectivity
+## Proxy configuration issues for vCenter connectivity
 
 vCenter discovery honors the system default proxy settings configured by the system user. The disaster recovery architecture (DRA) service honors the proxy settings that you provided during the installation of the configuration server. You can use the Unified Setup installer or the Open Virtual Appliance template for installation.
 
 In general, the proxy is used to communicate to public networks, such as communicating with Azure. If the proxy is configured and vCenter is in a local environment, it can't communicate with DRA.
 
-The following situations occur when this problem is encountered:
+The following situations occur when this issue is encountered:
 
 - The vCenter server \<vCenter> isn't reachable because of the following error: "The remote server returned an error: (503) Server Unavailable."
 - The vCenter server \<vCenter> isn't reachable because of the following error: "The remote server returned an error: Unable to connect to the remote server."
 - The proxy is unable to connect to the vCenter/ESXi server.
 
-To resolve the problem, download the [PsExec tool](/sysinternals/downloads/psexec).
+To resolve the issue, download the [PsExec tool](/sysinternals/downloads/psexec).
 
 Use the `PsExec` tool to access the system user context and determine whether the proxy address is configured. You can then add vCenter to the bypass list by using the following procedures.
 

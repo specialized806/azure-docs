@@ -1,17 +1,17 @@
 ---
 title: Troubleshoot Upgrade of the Azure Site Recovery Provider 
-description: Resolve common problems that occur when you upgrade the Azure Site Recovery Provider.
+description: Resolve common issues that occur when you upgrade the Azure Site Recovery Provider.
 ms.service: azure-site-recovery
 ms.topic: troubleshooting
 ms.date: 12/09/2025
 author: Jeronika-MS
 ms.author: v-gajeronika 
-# Customer intent: "As an IT administrator troubleshooting upgrade problems, I want to identify and resolve common errors during the Azure Site Recovery Provider upgrade so that I can ensure successful installation and maintain backup and disaster recovery capabilities."
+# Customer intent: "As an IT administrator troubleshooting upgrade issues, I want to identify and resolve common errors during the Azure Site Recovery Provider upgrade so that I can ensure successful installation and maintain backup and disaster recovery capabilities."
 ---
 
 # Troubleshoot Azure Site Recovery Provider upgrade failures
 
-This article helps you resolve problems that can cause failures during an Azure Site Recovery Provider upgrade.
+This article helps you resolve issues that can cause failures during an Azure Site Recovery Provider upgrade.
 
 ## The upgrade fails and reports that the latest Site Recovery Provider is already installed
 
@@ -42,7 +42,7 @@ To upgrade, follow these steps:
 
 For the upgrade to succeed, the non-Microsoft folder must not be renamed.
 
-To resolve the problem:
+To resolve the issue:
 
 1. Start the Registry Editor (`regedit.exe`) and open the `HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\InMage Systems\Installed Products\10` branch.
 1. Inspect the `Build_Version` key value. If the value is set to the latest version, reduce the version number. For example, if the latest version is 9.22.\* and the `Build_Version` key is set to that value, reduce it to 9.21.\*.
@@ -67,7 +67,7 @@ To resolve the problem:
 
 When you upgrade the Azure Site Recovery Provider (for disaster recovery architecture), the master target installation fails with the following error: "Installation location does not exist and/or it does not have 1 GB free space and/or it does not exist on a fixed drive."
 
-This error could occur because of the null value for a parameter in the registry key. To resolve the problem:
+This error could occur because of the null value for a parameter in the registry key. To resolve the issue:
 
 1. Start the Registry Editor (`regedit.exe`) and open the `HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\InMage Systems\Installed Products\4` branch.
 1. Inspect the `InstallDirectory` key value. If the value is null, add the current install directory value.

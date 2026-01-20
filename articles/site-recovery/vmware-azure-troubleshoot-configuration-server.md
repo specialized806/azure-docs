@@ -7,17 +7,17 @@ ms.date: 12/09/2025
 author: Jeronika-MS
 ms.author: v-gajeronika 
 
-# Customer intent: As a system administrator, I want to troubleshoot problems with the configuration server during disaster recovery of VMware VMs and physical servers to the cloud so that I can ensure a successful and reliable disaster recovery process.
+# Customer intent: As a system administrator, I want to troubleshoot issues with the configuration server during disaster recovery of VMware VMs and physical servers to the cloud so that I can ensure a successful and reliable disaster recovery process.
 ---
-# Troubleshoot configuration server problems
+# Troubleshoot configuration server issues
 
-This article helps you troubleshoot problems when you deploy and manage the [Azure Site Recovery](site-recovery-overview.md) configuration server. The configuration server acts as a management server. Use the configuration server to set up disaster recovery of on-premises VMware virtual machines (VMs) and physical servers to Azure by using Site Recovery. The following sections discuss the most common failures that you might experience when you add and manage a new configuration server.
+This article helps you troubleshoot issues when you deploy and manage the [Azure Site Recovery](site-recovery-overview.md) configuration server. The configuration server acts as a management server. Use the configuration server to set up disaster recovery of on-premises VMware virtual machines (VMs) and physical servers to Azure by using Site Recovery. The following sections discuss the most common failures that you might experience when you add and manage a new configuration server.
 
 ## Registration failures
 
 The source machine registers with the configuration server when you install the mobility agent. You can debug any failures during this step by following these guidelines:
 
-1. Open the `C:\ProgramData\ASR\home\svsystems\var\configurator_register_host_static_info.log` file. The `ProgramData` folder might be a hidden folder. If you don't see the `ProgramData` folder, in File Explorer, on the **View** tab, in the **Show/hide** section, select the **Hidden items** checkbox. Multiple problems might cause failures.
+1. Open the `C:\ProgramData\ASR\home\svsystems\var\configurator_register_host_static_info.log` file. The `ProgramData` folder might be a hidden folder. If you don't see the `ProgramData` folder, in File Explorer, on the **View** tab, in the **Show/hide** section, select the **Hidden items** checkbox. Multiple issues might cause failures.
 
 1. Search for the string **No Valid IP Address found**. If the string is found:
 
@@ -30,25 +30,25 @@ The source machine registers with the configuration server when you install the 
 
 1. If the string **No Valid IP Address found** isn't found, search for the string **Reason=>NULL**. This error occurs if the source machine uses an empty host to register with the configuration server. If the string is found:
 
-    - After you resolve the problems, follow the guidelines in [Register the source machine with the configuration server](vmware-azure-troubleshoot-configuration-server.md#register-source-machine-with-configuration-server) to retry the registration manually.
+    - After you resolve the issues, follow the guidelines in [Register the source machine with the configuration server](vmware-azure-troubleshoot-configuration-server.md#register-source-machine-with-configuration-server) to retry the registration manually.
 
-1. If the string **Reason=>NULL** isn't found, on the source machine, open the `C:\ProgramData\ASRSetupLogs\UploadedLogs\ASRUnifiedAgentInstaller.log` file. The `ProgramData` folder might be a hidden folder. If you don't see the `ProgramData` folder, in File Explorer, on the **View** tab, in the **Show/hide** section, select the **Hidden items** checkbox. Multiple problems might cause failures.
+1. If the string **Reason=>NULL** isn't found, on the source machine, open the `C:\ProgramData\ASRSetupLogs\UploadedLogs\ASRUnifiedAgentInstaller.log` file. The `ProgramData` folder might be a hidden folder. If you don't see the `ProgramData` folder, in File Explorer, on the **View** tab, in the **Show/hide** section, select the **Hidden items** checkbox. Multiple issues might cause failures.
 
 1. Search for the string **post request: (7) - Couldn't connect to server**. If the string is found:
 
-    1. Resolve the network problems between the source machine and the configuration server. Verify that the configuration server is reachable from the source machine by using network tools like ping, traceroute, or a web browser. Ensure that the source machine can reach the configuration server through port 443.
-    1. Check whether any firewall rules on the source machine block the connection between the source machine and the configuration server. Work with your network admins to unblock any connection problems.
+    1. Resolve the network issues between the source machine and the configuration server. Verify that the configuration server is reachable from the source machine by using network tools like ping, traceroute, or a web browser. Ensure that the source machine can reach the configuration server through port 443.
+    1. Check whether any firewall rules on the source machine block the connection between the source machine and the configuration server. Work with your network admins to unblock any connection issues.
     1. Ensure that the folders listed in [Site Recovery folder exclusions from antivirus programs](vmware-azure-set-up-source.md#azure-site-recovery-folder-exclusions-from-antivirus-program) are excluded from the antivirus software.
-    1. When network problems are resolved, retry the registration by following the guidelines in [Register the source machine with the configuration server](vmware-azure-troubleshoot-configuration-server.md#register-source-machine-with-configuration-server).
+    1. When network issues are resolved, retry the registration by following the guidelines in [Register the source machine with the configuration server](vmware-azure-troubleshoot-configuration-server.md#register-source-machine-with-configuration-server).
 
 1. If the string **post request: (7) - Couldn't connect to server** isn't found, in the same log file, look for the string **request: (60) - Peer certificate cannot be authenticated with given CA certificates**. This error might occur because the configuration server certificate expired or the source machine doesn't support Transport Layer Security (TLS) 1.0 or later protocols. It also might occur if a firewall blocks TLS communication between the source machine and the configuration server. If the string is found:
 
     1. To resolve, connect to the configuration server IP address by using a web browser on the source machine. Use the URI `https:\/\/<configuration server IP address\>:443/`. Ensure that the source machine can reach the configuration server through port 443.
-    1. Check whether any firewall rules on the source machine need to be added or removed for the source machine to talk to the configuration server. Because of the variety of firewall software that might be in use, we can't list all required firewall configurations. Work with your network admins to unblock any connection problems.
+    1. Check whether any firewall rules on the source machine need to be added or removed for the source machine to talk to the configuration server. Because of the variety of firewall software that might be in use, we can't list all required firewall configurations. Work with your network admins to unblock any connection issues.
     1. Ensure that the folders listed in [Site Recovery folder exclusions from antivirus programs](vmware-azure-set-up-source.md#azure-site-recovery-folder-exclusions-from-antivirus-program) are excluded from the antivirus software.  
-    1. After you resolve the problems, retry the registration by following the guidelines in [Register the source machine with the configuration server](vmware-azure-troubleshoot-configuration-server.md#register-source-machine-with-configuration-server).
+    1. After you resolve the issues, retry the registration by following the guidelines in [Register the source machine with the configuration server](vmware-azure-troubleshoot-configuration-server.md#register-source-machine-with-configuration-server).
 
-1. On Linux, if the value of the platform in `<INSTALLATION_DIR\>/etc/drscout.conf` is corrupted, registration fails. To identify this problem, open the `/var/log/ua_install.log` file. Search for the string **Aborting configuration as VM_PLATFORM value is either null or it is not VmWare/Azure**. The platform should be set to either **VmWare** or **Azure**. If the `drscout.conf` file is corrupted, we recommend that you [uninstall the mobility agent](vmware-physical-manage-mobility-service.md#uninstall-mobility-service) and then reinstall the mobility agent. If uninstallation fails, follow these steps:
+1. On Linux, if the value of the platform in `<INSTALLATION_DIR\>/etc/drscout.conf` is corrupted, registration fails. To identify this issue, open the `/var/log/ua_install.log` file. Search for the string **Aborting configuration as VM_PLATFORM value is either null or it is not VmWare/Azure**. The platform should be set to either **VmWare** or **Azure**. If the `drscout.conf` file is corrupted, we recommend that you [uninstall the mobility agent](vmware-physical-manage-mobility-service.md#uninstall-mobility-service) and then reinstall the mobility agent. If uninstallation fails, follow these steps:
 
     1. Open the `Installation_Directory/uninstall.sh` file and comment out the call to the `StopServices` function.
     1. Open the `Installation_Directory/Vx/bin/uninstall.sh` file and comment out the call to the `stop_services` function.
@@ -59,7 +59,7 @@ The source machine registers with the configuration server when you install the 
 
 ## Installation failure: Failed to load accounts
 
-This error occurs when the service can't read data from the transport connection when it installs the mobility agent and registers with the configuration server. To resolve the problem, ensure that TLS 1.0 is enabled on your source machine.
+This error occurs when the service can't read data from the transport connection when it installs the mobility agent and registers with the configuration server. To resolve the issue, ensure that TLS 1.0 is enabled on your source machine.
 
 ## vCenter discovery failures
 
@@ -88,7 +88,7 @@ A certificate that's required to authenticate Site Recovery can't be created. Re
 ## Failure to activate Windows license from Server Standard Evaluation to Server Standard
 
 1. As part of configuration server deployment through Open Virtualization Format (OVF), an evaluation license is used, which is valid for 180 days. You need to activate this license before it expires. Otherwise, the configuration server can shut down frequently, which hinders replication activities.
-1. If you can't activate the Windows license, contact the [Windows support team](https://aka.ms/Windows_Support) to resolve the problem.
+1. If you can't activate the Windows license, contact the [Windows support team](https://aka.ms/Windows_Support) to resolve the issue.
 
 ## Register source machine with configuration server
 
@@ -164,7 +164,7 @@ To remove a stale protected machine on the configuration server, follow these st
 
 The configuration server upgrade fails when certain services don't stop.
 
-To identify the problem, go to `C:\ProgramData\ASRSetupLogs\CX_TP_InstallLogFile` on the configuration server. If you find the following errors, follow these steps to resolve the problem:
+To identify the issue, go to `C:\ProgramData\ASRSetupLogs\CX_TP_InstallLogFile` on the configuration server. If you find the following errors, follow these steps to resolve the issue:
 
 ```output
 2018-06-28 14:28:12.943   Successfully copied php.ini to C:\Temp from C:\thirdparty\php5nts
@@ -179,7 +179,7 @@ To identify the problem, go to `C:\ProgramData\ASRSetupLogs\CX_TP_InstallLogFile
 2018-06-28 14:38:12.971   Upgrade has failed.
 ```
 
-To resolve the problem:
+To resolve the issue:
 
 Manually stop the following services:
 
@@ -197,7 +197,7 @@ To update the configuration server, run [Unified Setup](/azure/site-recovery/ser
 
 You have insufficient permissions to create an application in Microsoft Entra ID by using the [OVA](vmware-azure-deploy-configuration-server.md#deploy-a-configuration-server-through-an-ova-template) template.
 
-To resolve the problem, sign in to the Azure portal and choose one of the following options:
+To resolve the issue, sign in to the Azure portal and choose one of the following options:
 
 - Request the Application Developer role in Microsoft Entra ID. For more information on the Application Developer role, see [Administrator role permissions in Microsoft Entra ID](../active-directory/roles/permissions-reference.md).
 - Verify that the **User can create application** flag is set to **true** in Microsoft Entra ID. For more information, see [Use the portal to create a Microsoft Entra application and service principal that can access resources](../active-directory/develop/howto-create-service-principal-portal.md#permissions-required-for-registering-an-app).
@@ -206,7 +206,7 @@ To resolve the problem, sign in to the Azure portal and choose one of the follow
 
 The process server and master target (MT) modules are unable to communicate with the configuration server. Their status is shown as not connected in the Azure portal.
 
-Typically, this problem occurs because of an error with port 443. Use the following steps to unblock the port and reenable communication with the configuration server.
+Typically, this issue occurs because of an error with port 443. Use the following steps to unblock the port and reenable communication with the configuration server.
 
 #### Verify that the MARS agent is being invoked by the master target agent
 
@@ -225,7 +225,7 @@ If you find traces similar to the following traces in the MTA logs, the MTA is r
 
 This error might occur when other applications are also using port 443 or because a firewall setting blocks the port.
 
-To resolve the problem:
+To resolve the issue:
 
 - Verify that your firewall isn't blocking port 443.
 - If the port is unreachable because of another application using that port, stop and uninstall the app.
@@ -235,9 +235,9 @@ To resolve the problem:
 
 ### Configuration server isn't connected because of incorrect UUID entries
 
-This error can occur when there are multiple configuration server instance universally unique identifier (UUID) entries in the database. The problem often occurs when you clone the configuration server VM.
+This error can occur when there are multiple configuration server instance universally unique identifier (UUID) entries in the database. The issue often occurs when you clone the configuration server VM.
 
-To resolve the problem:
+To resolve the issue:
 
 1. Remove the stale/old configuration server VM from vCenter. For more information, see [Remove servers and disable protection](site-recovery-manage-registration-and-protection.md).
 1. Sign in to the configuration server VM and connect to the MySQL `svsdb1` database.
@@ -258,6 +258,6 @@ To resolve the problem:
 
 After you enter the correct username and password on the configuration server OVF, Azure sign-in continues to prompt for the correct credentials.
 
-This problem can occur when the system time is incorrect.
+This issue can occur when the system time is incorrect.
 
-To resolve the problem, set the correct time on the computer and retry the sign-in.
+To resolve the issue, set the correct time on the computer and retry the sign-in.
