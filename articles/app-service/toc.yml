@@ -21,6 +21,8 @@ items:
     items: 
     - name: Quickstart
       href: quickstart-dotnetcore.md
+    - name: Aspire Quickstart
+      href: quickstart-dotnet-aspire.md
     - name: Configure
       items:
       - name: ASP.NET
