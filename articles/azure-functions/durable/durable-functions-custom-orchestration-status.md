@@ -34,7 +34,7 @@ Clients can poll the status endpoint and display a progress UI that visualizes t
 # [C#](#tab/csharp)
 
 > [!NOTE]
-> These C# examples are written for Durable Functions 2.x and are not compatible with Durable Functions 1.x. For more information about the differences between versions, see the [Durable Functions versions](durable-functions-versions.md) article.
+> These examples are written for Durable Functions 2.x and aren't compatible with Durable Functions 1.x. For more information about the differences between versions, see the [Durable Functions versions](durable-functions-versions.md) article.
 
 ```csharp
 [FunctionName("E1_HelloSequence")]
@@ -327,7 +327,7 @@ module.exports = async function(context, req) {
 ```
 
 > [!NOTE]
-> In JavaScript, the `customStatus` field will be set when the next `yield` or `return` action is scheduled.
+> In JavaScript, the `customStatus` field gets set when the next `yield` or `return` action is scheduled.
 
 # [Python](#tab/python)
 ```python
@@ -352,11 +352,11 @@ async def main(req: func.HttpRequest, starter: str) -> func.HttpResponse:
 ```
 
 > [!NOTE]
-> In Python, the `custom_status` field will be set when the next `yield` or `return` action is scheduled.
+> In Python, the `custom_status` field gets set when the next `yield` or `return` action is scheduled.
 
 # [PowerShell](#tab/powershell)
 
-The feature is not currently implemented in PowerShell
+The feature isn't currently implemented in PowerShell.
 
 # [Java](#tab/java)
 
@@ -393,7 +393,7 @@ public HttpResponseMessage startHelloCities(
 
 ### Output customization
 
-Another interesting scenario is segmenting users by returning customized output based on unique characteristics or interactions. With the help of custom orchestration status, the client-side code will stay generic. All main modifications will happen on the server side as shown in the following sample:
+You can use custom orchestration status to segment users by returning customized output based on unique characteristics or interactions. With custom orchestration status, your client-side code stays generic while all main modifications happen on the server side:
 
 ::: zone pivot="durable-functions"
 
@@ -671,7 +671,7 @@ class Recommendation {
 
 ### Instruction specification
 
-The orchestrator can provide unique instructions to the clients via the custom state. The custom status instructions will be mapped to the steps in the orchestration code:
+Your orchestrator can provide unique instructions to clients through the custom status. The custom status instructions map to the steps in your orchestration code:
 
 ::: zone pivot="durable-functions"
 
@@ -988,7 +988,7 @@ While the orchestration is running, external clients can fetch this custom statu
 GET /runtime/webhooks/durabletask/instances/instance123
 ```
 
-Clients will get the following response:
+Clients get the following response:
 
 ```json
 {
@@ -1071,7 +1071,7 @@ CustomStatusPayload payload = metadata.readCustomStatusAs(CustomStatusPayload.cl
 ::: zone-end
 
 > [!WARNING]
-> The custom status payload is limited to 16 KB of UTF-16 JSON text. We recommend you use external storage if you need a larger payload.
+> The custom status payload is limited to 16 KB of UTF-16 JSON text. If you need a larger payload, we recommend you use external storage.
 
 ## Next steps
 

@@ -187,7 +187,7 @@ groups:
     title: Visual Studio Code
 # Service-specific groups
 ##### Begin azure-functions
-- id: auzre-durable-approach
+- id: azure-durable-approach
   title: Azure Durable approach
   prompt: Choose whether to use Durable Functions or the Durable Task SDKs
   pivots:
