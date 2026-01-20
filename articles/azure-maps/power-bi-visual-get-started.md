@@ -189,6 +189,10 @@ The Azure Maps Power BI visual is available in the following services and applic
 | Power BI export                          | No           |
 | Power BI subscriptions                   | No           |
 
+**Power BI Embedded Limitation**
+
+Azure Maps visual is supported in 'Embed for customers' scenario only with Embed Token generated using the [Generate Embed Token V2 API](https://learn.microsoft.com/rest/api/power-bi/embed-token/generate-token).
+
 **Where is Azure Maps Visual for Power BI available?**
 
 At this time, Azure Maps is currently available in all countries and regions except:
