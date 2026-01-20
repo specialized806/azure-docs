@@ -200,6 +200,18 @@ public class HelloCities : TaskOrchestrator<object?, string>
 }
 ```
 
+# [JavaScript](#tab/javascript)
+
+This sample is shown for .NET and Java.
+
+# [Python](#tab/python)
+
+This sample is shown for .NET and Java.
+
+# [PowerShell](#tab/powershell)
+
+This sample is shown for .NET and Java.
+
 # [Java](#tab/java)
 
 ```java
@@ -244,6 +256,18 @@ while (metadata.SerializedCustomStatus is null || metadata.ReadCustomStatusAs<st
     metadata = await client.GetInstancesAsync(instanceId, getInputsAndOutputs: true) ?? metadata;
 }
 ```
+
+# [JavaScript](#tab/javascript)
+
+This sample is shown for .NET and Java.
+
+# [Python](#tab/python)
+
+This sample is shown for .NET and Java.
+
+# [PowerShell](#tab/powershell)
+
+This sample is shown for .NET and Java.
 
 # [Java](#tab/java)
 
@@ -621,6 +645,18 @@ public class CityRecommender : TaskOrchestrator<int, object?>
 }
 ```
 
+# [JavaScript](#tab/javascript)
+
+This sample is shown for .NET and Java.
+
+# [Python](#tab/python)
+
+This sample is shown for .NET and Java.
+
+# [PowerShell](#tab/powershell)
+
+This sample is shown for .NET and Java.
+
 # [Java](#tab/java)
 
 ```java
@@ -848,6 +884,18 @@ public class ReserveTicket : TaskOrchestrator<string, bool>
 }
 ```
 
+# [JavaScript](#tab/javascript)
+
+This sample is shown for .NET and Java.
+
+# [Python](#tab/python)
+
+This sample is shown for .NET and Java.
+
+# [PowerShell](#tab/powershell)
+
+This sample is shown for .NET and Java.
+
 # [Java](#tab/java)
 
 ```java
@@ -1022,6 +1070,18 @@ public class MyCustomStatusOrchestrator : TaskOrchestrator<object?, object?>
 }
 ```
 
+# [JavaScript](#tab/javascript)
+
+This sample is shown for .NET and Java.
+
+# [Python](#tab/python)
+
+This sample is shown for .NET and Java.
+
+# [PowerShell](#tab/powershell)
+
+This sample is shown for .NET and Java.
+
 # [Java](#tab/java)
 
 ```java
@@ -1058,6 +1118,18 @@ using Microsoft.DurableTask.Client;
 OrchestrationMetadata? metadata = await client.GetInstancesAsync(instanceId, getInputsAndOutputs: true);
 string? customStatusJson = metadata?.SerializedCustomStatus;
 ```
+
+# [JavaScript](#tab/javascript)
+
+This sample is shown for .NET and Java.
+
+# [Python](#tab/python)
+
+This sample is shown for .NET and Java.
+
+# [PowerShell](#tab/powershell)
+
+This sample is shown for .NET and Java.
 
 # [Java](#tab/java)
 
