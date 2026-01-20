@@ -2,7 +2,7 @@
 title: Use Azure Backup Server to back up workloads
 description: In this article, learn how to prepare your environment to protect and back up workloads using Microsoft Azure Backup Server (MABS).
 ms.topic: how-to
-ms.date: 07/15/2025
+ms.date: 01/21/2026
 ms.service: azure-backup
 author: AbhishekMallick-MS
 ms.author: v-mallicka
@@ -87,12 +87,13 @@ The storage replication option allows you to choose between geo-redundant storag
 
 To edit the storage replication setting:
 
-1. From the **Recovery Services vaults** pane, select the new vault. Under the **Settings** section, select  **Properties**.
-2. In **Properties**, under **Backup Configuration**, select **Update**.
+1. On the **Recovery Services vaults** pane, select the new vault. 
+1. On the **Recovery Services vaults** you selected, go to **Settings** > **Properties**.
+1. On the **Properties** pane, under **Backup Configuration**, select **Update**.
 
-3. Select the storage replication type, and select **Save**.
+   :::image type="content" source="./media/backup-create-rs-vault/recovery-services-vault-backup-configuration.png" alt-text="Screenshot that shows the selection of the storage replication type for the new Recovery Services vault." lightbox="./media/backup-create-rs-vault/recovery-services-vault-backup-configuration.png":::
 
-     ![Set the storage configuration for new vault](./media/backup-create-rs-vault/recovery-services-vault-backup-configuration.png)
+1. On the **Backup Configuration** pane, select the storage replication type, and then select **Apply**.
 
 ## Software package
 
