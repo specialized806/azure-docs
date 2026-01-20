@@ -73,15 +73,15 @@ To restore the backed-up AKS cluster, follow these steps:
 
    :::image type="content" source="./media/azure-kubernetes-service-cluster-restore/restore-parameter-storage.png" alt-text="Screenshot shows the storage parameter to add for restore from Vault-standard storage.":::
 
->[!Note]
->Currently, resources created in the staging location can't belong within a Private Endpoint. Ensure that you enable _public access_ on the storage account provided as a staging location.
+   >[!Note]
+   >Currently, resources created in the staging location can't belong within a Private Endpoint. Ensure that you enable _public access_ on the storage account provided as a staging location.
 
-7. Select **Validate** to run validation on the cluster selections for restore.
+1. Select **Validate** to run validation on the cluster selections for restore.
 
    :::image type="content" source="./media/azure-kubernetes-service-cluster-restore/validate-restore-parameters.png" alt-text="Screenshot shows the validation of restore parameters.":::
 
 
-8. After the validation is successful, select **Next: Review + restore**.
+1. After the validation is successful, select **Next: Review + restore**.
 1. On the **Review + restore** pane, review the selections, and then select **Restore** to restore the backups to the selected cluster.
 
    :::image type="content" source="./media/azure-kubernetes-service-cluster-restore/review-restore-tab.png" alt-text="Screenshot shows the Review + restore tab for restore." lightbox="./media/azure-kubernetes-service-cluster-restore/review-restore-tab.png":::
