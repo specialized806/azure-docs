@@ -80,10 +80,10 @@ Azure Communication Services direct routing supports advanced caller identity co
 
 ## Set Privacy Header
 You can control identity disclosure by configuring the SIP Privacy header that Azure Communication Services applies to outbound calls sent to your Session Border Controller (SBC). This setting is applied uniformly to all outbound calls routed through the SBC and allows you to enforce privacy behavior at the routing layer. The supported values are:
-1. **ID**: which requests that the caller’s identity be withheld from the remote party,
-2. **None**: which indicates that no privacy is requested and the caller’s identity may be disclosed.
+- **ID**: which requests that the caller’s identity be withheld from the remote party,
+- **None**: which indicates that no privacy is requested and the caller’s identity may be disclosed.
 
-## Define Signaling Transfer Behaviour
+## Define Signaling Transfer Behavior
 In order to optimize call signaling paths, we are supporting a new transfer behaviour: Direct Transfer. When direct transfer is enabled, Azure Communication Services does not remain in the SIP signaling path after the call is successfully established. Instead, ACS sends a SIP REFER to the remote endpoint, with the Refer‑To URI pointing to your SBC. As a result, subsequent SIP signaling occurs directly between the endpoints without passing through Azure Communication Services. This behavior reduces signaling hops and allows the SBC to manage the call end‑to‑end after setup.
 
 [![Screenshot of Direct Routing settings.](../media/voice-routing/acs-direct-routing-settings.png)](../media/voice-routing/acs-direct-routing-settings.png#lightbox)
