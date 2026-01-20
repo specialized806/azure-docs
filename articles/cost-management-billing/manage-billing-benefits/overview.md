@@ -34,7 +34,6 @@ Examples:
 *   [Microsoft Azure Consumption Commitment (MACC)](../../marketplace/azure-consumption-commitment-benefit.md#determine-which-offers-are-eligible-for-azure-consumption-commitments-maccctc)
 *   [Reservations](../reservations/save-compute-costs-reservations.md)
 *   [Savings plan](../savings-plan/savings-plan-compute-overview.md)
-*   Other commitment-based spend programs
 
 
 ### 2. Credits
@@ -69,6 +68,8 @@ Billing benefits can be viewed and managed through multiple supported interfaces
 ### Azure Portal
 
 Customers can view and manage billing benefits—including credits and discounts—in dedicated experiences within **Cost Management + Billing** and dedicated **Credits**, **Discounts**, and **Microsoft Azure Consumption Commitments** service views. The portal views summarize benefit metadata, balance (for credits), and usage impact.
+
+
 
 
 ### Azure Resource Manager (ARM)
