@@ -4,8 +4,8 @@ description: Learn how to create an Azure Health Data Services de-identification
 services: azure-resource-manager
 ms.service: azure-health-data-services
 ms.subservice: deidentification-service
-author: kimiamavon
-ms.author: kimiamavon
+author: LeaKass
+ms.author: leakassab
 ms.topic: quickstart
 ms.date: 10/23/2025
 ---

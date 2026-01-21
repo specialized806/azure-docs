@@ -1,8 +1,8 @@
 ---
 title: De-identify Multiple Documents with the De-identification Service in Python
 description: Learn how to bulk de-identify documents with the asynchronous de-identification service in Python.
-author: kimiamavon-msft
-ms.author: kimiamavon
+author: LeaKass
+ms.author: leakassab
 ms.service: azure-health-data-services
 ms.subservice: deidentification-service
 ms.topic: tutorial

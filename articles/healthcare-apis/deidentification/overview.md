@@ -1,12 +1,12 @@
 ---
 title: Overview of the De-identification Service in Azure Health Data Services
 description: Learn how the de-identification service in Azure Health Data Services de-identifies clinical data, adhering to HIPAA compliance while retaining data relevance for research and analytics.
-author: kimiamavon-msft
+author: LeaKass
 ms.service: azure-health-data-services
 ms.subservice: deidentification-service
 ms.topic: overview
 ms.date: 10/24/2025
-ms.author: kimiamavon
+ms.author: leakassab
 ---
 
 # What is the de-identification service?
