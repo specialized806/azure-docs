@@ -22,26 +22,15 @@ Most customers take one of two deployment approaches:
 | Management model | Billing model | Media tier | Redundancy | SMB | NFS |
 |-|-|-|-|:-:|:-:|
 | Microsoft.Storage | Provisioned v2 | HDD (standard) | Local (LRS) | Yes | No |
-<!-- Replaced icon-only values with explicit text for accessibility and clarity. -->
 | Microsoft.Storage | Provisioned v2 | HDD (standard) | Zone (ZRS) | Yes | No |
-<!-- Replaced icon-only values with explicit text for accessibility and clarity. -->
 | Microsoft.Storage | Provisioned v2 | HDD (standard) | Geo (GRS) | Yes | No |
-<!-- Replaced icon-only values with explicit text for accessibility and clarity. -->
 | Microsoft.Storage | Provisioned v2 | HDD (standard) | GeoZone (GZRS) | Yes | No |
-<!-- Replaced icon-only values with explicit text for accessibility and clarity. -->
 | Microsoft.Storage | Provisioned v1 | SSD (premium) | Local (LRS) | Yes | No |
-<!-- Replaced icon-only values with explicit text for accessibility and clarity. -->
 | Microsoft.Storage | Provisioned v1 | SSD (premium) | Zone (ZRS) | Yes | No |
-<!-- Replaced icon-only values with explicit text for accessibility and clarity. -->
 | Microsoft.Storage | Pay-as-you-go | HDD (standard) | Local (LRS) | Yes | No |
-<!-- Replaced icon-only values with explicit text for accessibility and clarity. -->
 | Microsoft.Storage | Pay-as-you-go | HDD (standard) | Zone (ZRS) | Yes | No |
-<!-- Replaced icon-only values with explicit text for accessibility and clarity. -->
 | Microsoft.Storage | Pay-as-you-go | HDD (standard) | Geo (GRS) | Yes | No |
-<!-- Replaced icon-only values with explicit text for accessibility and clarity. -->
 | Microsoft.Storage | Pay-as-you-go | HDD (standard) | GeoZone (GZRS) | Yes | No |
-<!-- Replaced icon-only values with explicit text for accessibility and clarity. -->
-
 
 ## Reduce TCO with cloud file shares
 
@@ -86,10 +75,8 @@ Moving data from Windows file servers to Azure Files is easy, and you can do it 
 - An Azure storage account with an Azure file share  
 - Network connectivity between the server and Azure (internet, VPN, or ExpressRoute)  
 - A supported Windows Server with the Azure File Sync agent installed  
-<!-- Added a concise prerequisites checklist to clarify requirements before migration. -->
 
 **Verify:** Confirm the Azure file share is mounted and the Azure File Sync agent reports a **Healthy** status.
-<!-- Added a one-line verification step to provide a clear success criterion. -->
 
 When you migrate to Azure Files, none of your file path links need to break. You can [use DFS Namespaces](files-manage-namespaces.md) and redirect users to Azure Files. If you're extending an existing Windows file server to Azure using Azure File Sync, users continue to access their files using the same file paths.
 
@@ -106,13 +93,3 @@ Access control works just like your Windows file servers. You can [use identity-
 ## See also
 - [Migrate to SMB Azure file shares](storage-files-migration-overview.md)
 - [Azure Files networking considerations](storage-files-networking-overview.md)
-
-
----
-
-**Agent feedback applied**
-
-[Agent: mamccrea-test-agent]  
-- Changes Applied:  
-- 1. Replaced icon-only Yes/No values in the **Applies to** table with plain text to ensure explicit compatibility signals.  
-- 2. Added a concise prerequisites checklist and a one-line verification step under the **Flexible deployment and hybrid access** migration paragraph to provide a clear, self-contained success criterion.
