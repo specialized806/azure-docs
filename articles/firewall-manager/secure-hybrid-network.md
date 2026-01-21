@@ -18,7 +18,7 @@ When you connect your on-premises network to an Azure virtual network to create 
 
 Using Azure Firewall Manager, you can create a hub virtual network to secure your hybrid network traffic destined to private IP addresses, Azure PaaS, and the Internet. You can use Azure Firewall Manager to control network access in a hybrid network using policies that define allowed and denied network traffic.
 
-Firewall Manager also supports a secured virtual hub architecture. For a comparison of the secured virtual hub and hub virtual network architecture enters, see [What are the Azure Firewall Manager architecture options?](vhubs-and-vnets.md)
+Firewall Manager also supports a secured virtual hub architecture. For a comparison of the secured virtual hub and hub virtual network architecture types, see [What are the Azure Firewall Manager architecture options?](vhubs-and-vnets.md)
 
 For this tutorial, you create three virtual networks:
 
@@ -94,7 +94,7 @@ If you don't have an Azure subscription, create a [free account](https://azure.m
 
 1. For **Name**, enter **RCNet01**.
 
-1. For **Rule collection enter**, select **Network**.
+1. For **Rule collection type**, select **Network**.
 
 1. For **Priority**, enter **100**.
 
@@ -110,7 +110,7 @@ If you don't have an Azure subscription, create a [free account](https://azure.m
 
 1. For **Destination Ports**, enter **80**.
 
-1. For **Destination enter**, select **IP Address**.
+1. For **Destination Type**, select **IP Address**.
 
 1. For **Destination**, enter **10.6.0.0/16**.
 
@@ -320,7 +320,7 @@ The hub and on-premises virtual networks are connected via VPN gateways.
 ### Create a VPN gateway for the hub virtual network
 
 
-Now create the VPN gateway for the hub virtual network. Network-to-network configurations require a RouteBased Vpnenter. Creating a VPN gateway can often take 45 minutes or more, depending on the selected VPN gateway SKU.
+Now create the VPN gateway for the hub virtual network. Network-to-network configurations require a RouteBased VpnType. Creating a VPN gateway can often take 45 minutes or more, depending on the selected VPN gateway SKU.
 
 
 1. In the search box at the top of the portal, enter **virtual network gateway**. Select **Virtual network gateways** in the search results.
@@ -331,7 +331,7 @@ Now create the VPN gateway for the hub virtual network. Network-to-network confi
 
 1. For **Region**, select **(US) East US**.
 
-1. For **Gateway enter**, select **VPN**.
+1. For **Gateway type**, select **VPN**.
 
 1. For **SKU**, select **VpnGw2**.
 
@@ -351,7 +351,7 @@ Now create the VPN gateway for the hub virtual network. Network-to-network confi
 ### Create a VPN gateway for the on-premises virtual network
 
 
-Now create the VPN gateway for the on-premises virtual network. Network-to-network configurations require a RouteBased Vpnenter. Creating a VPN gateway can often take 45 minutes or more, depending on the selected VPN gateway SKU.
+Now create the VPN gateway for the on-premises virtual network. Network-to-network configurations require a RouteBased VpnType. Creating a VPN gateway can often take 45 minutes or more, depending on the selected VPN gateway SKU.
 
 
 1. In the search box at the top of the portal, enter **virtual network gateway**. Select **Virtual network gateways** in the search results.
@@ -362,7 +362,7 @@ Now create the VPN gateway for the on-premises virtual network. Network-to-netwo
 
 1. For **Region**, select **(US) East US**.
 
-1. For **Gateway enter**, select **VPN**.
+1. For **Gateway type**, select **VPN**.
 
 1. For **SKU**, select **VpnGw2**.
 
@@ -395,7 +395,7 @@ In this step, you create the connection from the hub virtual network to the on-p
 
 1. For the connection name, enter **Hub-to-Onprem**.
 
-1. Select **VNet-to-VNet** for **Connection enter**.
+1. Select **VNet-to-VNet** for **Connection type**.
 
 1. Select **Next : Settings**.
 
@@ -420,7 +420,7 @@ Create the on-premises to hub virtual network connection. This step is similar t
 
 1. For the connection name, enter **Onprem-to-Hub**.
 
-1. Select **VNet-to-VNet** for **Connection enter**.
+1. Select **VNet-to-VNet** for **Connection type**.
 
 1. Select **Next : Settings**.
 
@@ -523,11 +523,11 @@ Next, create a couple routes:
 
 1. For the route name, enter **ToSpoke**.
 
-1. For **Destination enter**, select **IP addresses**.
+1. For **Destination type**, select **IP addresses**.
 
 1. For **Destination IP addresses/CIDR ranges**, enter **10.6.0.0/16**.
 
-1. For next hop enter, select **Virtual appliance**.
+1. For next hop type, select **Virtual appliance**.
 
 1. For next hop address, enter the firewall's private IP address that you noted earlier.
 
@@ -577,11 +577,11 @@ Now create the default route from the spoke subnet.
 
 1. For the route name, enter **ToHub**.
 
-1. For **Destination enter**, select **IP addresses**
+1. For **Destination type**, select **IP addresses**
 
 1. For **Destination IP addresses/CIDR ranges**, enter **0.0.0.0/0**.
 
-1. For next hop enter, select **Virtual appliance**.
+1. For next hop type, select **Virtual appliance**.
 
 1. For next hop address, enter the firewall's private IP address that you noted earlier.
 
@@ -630,7 +630,7 @@ Create a virtual machine in the spoke virtual network with a web server, with no
    | Virtual machine name | Enter **VM-Spoke-01**. |
    | Region | Select **East US**. |
    | Availability options | Select **No infrastructure redundancy required**. |
-   | Security enter | Select **Standard**. |
+   | Security type | Select **Standard**. |
    | Image | Select **Ubuntu Server 24.04 LTS -x64 Gen2** |
    | Size | Select a size for the virtual machine. |
    | **Administrator account** | |
@@ -707,7 +707,7 @@ This is a virtual machine that you use to connect through Azure Bastion to test 
    | Virtual machine name | Enter **VM-Onprem**. |
    | Region | Select **East US**. |
    | Availability options | Select **No infrastructure redundancy required**. |
-   | Security enter | Select **Standard**. |
+   | Security type | Select **Standard**. |
    | Image | Select **Ubuntu Server 24.04 LTS -x64 Gen2** |
    | Size | Select a size for the virtual machine. |
    | **Administrator account** | |
@@ -744,7 +744,7 @@ Now, test the firewall to confirm that it works as expected.
 1. Connect to **VM-Onprem** virtual machine using Azure Bastion and the SSH key you downloaded:
    - From the Azure portal, select the **VM-Onprem** virtual machine.
    - Select **Connect** > **Connect** > **Connect via Bastion**.
-   - For **Authentication enter**, select **SSH Private Key from Local File**.
+   - For **Authentication Type**, select **SSH Private Key from Local File**.
    - For **Username**, enter **azureuser**.
    - For **Local File**, select **Upload a file** and browse to the **VM-Onprem_key.pem** file you downloaded earlier.
    - Select **Connect**.
