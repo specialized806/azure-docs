@@ -176,7 +176,7 @@
       href: how-to-deploy-self-hosted-gateway-container-apps.md
     - name: Deploy an Azure API Management gateway to Arc-enabled Kubernetes cluster
       href: how-to-deploy-self-hosted-gateway-azure-arc.md
-  - name: Configure
+  - name: Configure self-hosted gateway
     items:
     - name: Configure custom domain for self-hosted gateway
       href: api-management-howto-configure-custom-domain-gateway.md
@@ -188,7 +188,7 @@
       href: self-hosted-gateway-enable-dapr.md
     - name: Use Microsoft Entra authentication on self-hosted gateway
       href: self-hosted-gateway-enable-azure-ad.md
-  - name: Production guidance
+  - name: Run self-hosted gateway in production
     href: how-to-self-hosted-gateway-on-kubernetes-in-production.md
   - name: Support policy
     href: self-hosted-gateway-support-policies.md
@@ -331,13 +331,13 @@
   - name: Reuse policy configurations
     displayName: policy fragments
     href: policy-fragments.md
-  - name: Error handling
+  - name: Handle errors in policies
     href: api-management-error-handling-policies.md
-  - name: Advanced monitoring
+  - name: Monitor APIs with advanced logging
     href: api-management-log-to-eventhub-sample.md
-  - name: Advanced request throttling
+  - name: Implement advanced request throttling
     href: api-management-sample-flexible-throttling.md
-  - name: Using external services
+  - name: Call external services from policies
     href: api-management-sample-send-request.md
   - name: Send messages to Azure Service Bus
     href: api-management-howto-send-service-bus.md
