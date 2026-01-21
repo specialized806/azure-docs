@@ -91,7 +91,7 @@ See also: [Microsoft Dev Box customizations](./concept-what-are-dev-box-customiz
 ## Prerequisites
 
 - An Azure subscription linked to your Microsoft Entra tenant. Dev Box resources and Microsoft Intune must be in the same tenant.
-- One Microsoft Intune license per Dev Box user.
+- One Microsoft Intune license per Dev Box user. To assign licenses to users, see [Assign Microsoft 365 licenses to users](/microsoft-365/admin/manage/assign-licenses-to-users?view=o365-worldwide).
 - Azure RBAC groups/roles for access: Project Admin and Dev Box User assigned via Microsoft Entra groups.
 - Networking prerequisites as required (for example, connectivity to on-premises resources for hybrid scenarios).
 
