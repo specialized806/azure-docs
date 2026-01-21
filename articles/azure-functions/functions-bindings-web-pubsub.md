@@ -67,7 +67,7 @@ Add the extension to your project by installing this [NuGet package].
 
 ## Connection
 
-You can use [connection string](#connection-string) or [Microsoft Entra identity](#identity-based-connections) to connect to Azure SignalR Service.
+You can use [connection string](#connection-string) or [Microsoft Entra identity](#identity-based-connections) to connect to Azure Web PubSub service.
 
 ### Connection String
 
