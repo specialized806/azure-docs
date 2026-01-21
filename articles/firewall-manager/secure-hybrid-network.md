@@ -136,7 +136,7 @@ If you don't have an Azure subscription, create a [free account](https://azure.m
 
 1. For **Resource group**, select **FW-Hybrid-Test**.
 
-1. For **Name**, enter **VNet-hub**.
+1. For **Name**, enter **VNet-Hub**.
 
 1. For **Region**, select **East US**.
 
@@ -212,7 +212,7 @@ Add another subnet with a subnet purpose set to **Virtual Network Gateway** with
 
 1. For **Resource group**, select **FW-Hybrid-Test**.
 
-1. For **Virtual network name**, enter **VNet-OnPrem**.
+1. For **Virtual network name**, enter **VNet-Onprem**.
 
 1. For **Region**, select **East US**.
 
@@ -261,7 +261,7 @@ Convert the **VNet-Hub** virtual network into a *hub virtual network* and secure
 
 1. On the Azure Firewall Manager page, under **Add security to virtual networks**, select **View hub virtual networks**.
 
-1. Under **Virtual Networks**, select the check box for **VNet-hub**.
+1. Under **Virtual Networks**, select the check box for **VNet-Hub**.
 
 1. Select **Manage Security**, and then select **Deploy a Firewall with Firewall Policy**.
 
@@ -337,9 +337,9 @@ Now create the VPN gateway for the hub virtual network. Network-to-network confi
 
 1. For **Generation**, select **Generation2**.
 
-1. For **Virtual network**, select **VNet-hub**.
+1. For **Virtual network**, select **VNet-Hub**.
 
-1. For **Public IP address**, select **Create new**, and enter **VNet-hub-GW-pip** for the name.
+1. For **Public IP address**, select **Create new**, and enter **VNet-Hub-GW-pip** for the name.
 
 1. For **Enable active-active mode**, select **Disabled**.
 
@@ -409,7 +409,7 @@ In this step, you create the connection from the hub virtual network to the on-p
 
 1. Select **Create**.
 
-Create the on-premises to hub virtual network connection. This step is similar to the previous one, except you create the connection from VNet-Onprem to VNet-hub. Make sure the shared keys match. The connection will be established after a few minutes.
+Create the on-premises to hub virtual network connection. This step is similar to the previous one, except you create the connection from VNet-Onprem to VNet-Hub. Make sure the shared keys match. The connection will be established after a few minutes.
 
 
 1. Open the **FW-Hybrid-Test** resource group and select the **GW-Onprem** gateway.
@@ -448,7 +448,7 @@ After about five minutes or so after the second network connection is deployed, 
 Now peer the hub and spoke virtual networks.
 
 
-1. Open the **FW-Hybrid-Test** resource group and select the **VNet-hub** virtual network.
+1. Open the **FW-Hybrid-Test** resource group and select the **VNet-Hub** virtual network.
 
 1. In the left column, select **Peerings**.
 
@@ -462,10 +462,10 @@ Now peer the hub and spoke virtual networks.
    |Virtual network deployment model| Resource Manager|
    |Subscription|\<your subscription\>|
    |Virtual network| VNet-Spoke|
-   |Allow 'VNet-Spoke' to access 'VNet-hub'|selected|
+   |Allow 'VNet-Spoke' to access 'VNet-Hub'|selected|
    |Allow 'VNet-Spoke' to receive forwarded traffic from 'VNet-Hub'|selected|
    |Allow gateway or route server in 'VNet-Spoke' to forward traffic to 'VNet-Hub'| not selected|
-   |Enable 'VNet-Spoke' to use 'VNet-hub's' remote gateway or route server|selected|
+   |Enable 'VNet-Spoke' to use 'VNet-Hub's' remote gateway or route server|selected|
 
 
 1. Under **Local virtual network summary**:
@@ -474,10 +474,10 @@ Now peer the hub and spoke virtual networks.
    |Setting name  |Value  |
    |---------|---------|
    |Peering link name| HubtoSpoke|
-   |Allow 'VNet-hub' to access 'VNet-Spoke'|selected|
-   |Allow 'VNet-hub' to receive forwarded traffic from 'VNet-Spoke'|selected|
+   |Allow 'VNet-Hub' to access 'VNet-Spoke'|selected|
+   |Allow 'VNet-Hub' to receive forwarded traffic from 'VNet-Spoke'|selected|
    |Allow gateway or route server in 'VNet-Hub' to forward traffic to 'VNet-Spoke'|selected|
-   |Enable 'VNet-hub' to use 'VNet-Spoke's' remote gateway or route server| not selected|
+   |Enable 'VNet-Hub' to use 'VNet-Spoke's' remote gateway or route server| not selected|
 
 
 
@@ -540,7 +540,7 @@ Now associate the route to the subnet.
 
 1. Select **Associate**.
 
-1. Under **Virtual network**, select **VNet-hub**.
+4. Under **Virtual network**, select **VNet-Hub**.
 
 1. Under **Subnet**, select **GatewaySubnet**.
 
