@@ -58,7 +58,7 @@ A hybrid network uses the hub-and-spoke architecture model to route traffic betw
 See the [Create Routes](#create-the-routes) section in this tutorial to see how these routes are created.
 
 > [!NOTE]
-> Azure Firewall must have direct Internet connectivity. If your AzureFirewallSubnet learns a default route to your on-premises network via BGP, you must override this with a 0.0.0.0/0 UDR with the **NextHopenter** value set as **Internet** to maintain direct Internet connectivity.
+> Azure Firewall must have direct Internet connectivity. If your AzureFirewallSubnet learns a default route to your on-premises network via BGP, you must override this with a 0.0.0.0/0 UDR with the **NextHopType** value set as **Internet** to maintain direct Internet connectivity.
 >
 > Azure Firewall can be configured to support forced tunneling. For more information, see [Azure Firewall forced tunneling](../firewall/forced-tunneling.md).
 
