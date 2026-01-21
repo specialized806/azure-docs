@@ -100,21 +100,15 @@ To edit the storage replication setting:
 ### Downloading the software package
 
 1. Sign in to the [Azure portal](https://portal.azure.com/).
-2. If you already have a Recovery Services vault open, continue to step 3. If you don't have a Recovery Services vault open, but are in the Azure portal, on the main menu, select **Browse**.
+2. On the search box, type **Recovery**, and then select **Recovery Services vaults** from the search results.
 
-   * In the list of resources, type **Recovery Services**.
-   * As you begin typing, the list will filter based on your input. When you see **Recovery Services vaults**, select it.
+   :::image type="content" source="./media/backup-azure-microsoft-azure-backup/open-recovery-services-vault.png" alt-text="Screenshot that shows how to open the Recovery Services vaults pane in the Azure portal.":::
 
-     :::image type="content" source="./media/backup-azure-microsoft-azure-backup/open-recovery-services-vault.png" alt-text="Screenshot that shows how to open the Recovery Services vaults pane in the Azure portal.":::
-
-     The list of Recovery Services vaults appears.
-   * From the list of Recovery Services vaults, select a vault.
-
-     The selected vault dashboard opens.
-
-     :::image type="content" source="./media/backup-azure-microsoft-azure-backup/vault-dashboard.png" alt-text="Screenshot that shows the dashboard of the selected Recovery Services vault." lightbox="./media/backup-azure-microsoft-azure-backup/vault-dashboard.png":::
+1. On the **Recovery Services vaults** pane, select the new vault you created.
 
 1. On the vault dashboard, under **Getting Started**, select **Backup**.
+
+   :::image type="content" source="./media/backup-azure-microsoft-azure-backup/vault-dashboard.png" alt-text="Screenshot that shows the dashboard of the selected Recovery Services vault." lightbox="./media/backup-azure-microsoft-azure-backup/vault-dashboard.png":::
 
 1. On the **Backup** pane, from the **Where is your workload running** menu, select **On-premises**.
 
@@ -131,13 +125,16 @@ To edit the storage replication setting:
 
    :::image type="content" source="./media/backup-azure-microsoft-azure-backup/select-prepare-infrastructure.png" alt-text="Screenshot that shows the Prepare infrastructure option selected in the Backup Goals pane.":::
 
-6. In the **Prepare infrastructure** pane that opens, select the **Download** links for Install Azure Backup Server and Download vault credentials. You use the vault credentials during registration of Azure Backup Server to the Recovery Services vault. The links take you to the Download Center where the software package can be downloaded.
+1. On the **Prepare infrastructure** pane, for **Install MicrosoftAzure Backup Server** and **Download vault credentials**, select the **Download** links.
 
-    ![Prepare infrastructure for Azure Backup Server](./media/backup-azure-microsoft-azure-backup/azure-backup-server-prep-infra.png)
+   You use the vault credentials during registration of Azure Backup Server to the Recovery Services vault. The links take you to the Download Center where the software package can be downloaded.
 
-7. Select all the files and select **Next**. Download all the files coming in from the Microsoft Azure Backup download page, and place all the files in the same folder.
+   :::image type="content" source="./media/backup-azure-microsoft-azure-backup/azure-backup-server-prep-infra.png" alt-text="Screenshot that shows the Prepare infrastructure pane with download links for Microsoft Azure Backup Server and vault credentials.":::
 
-    ![Download center 1](./media/backup-azure-microsoft-azure-backup/downloadcenter.png)
+1. On the **Microsoft Azure Backup Server download** page, select **Download**.
+1. On the MABS version selection window, select all the files and then select **Download**. Download all the files coming in from the Microsoft Azure Backup Server download page, and place all the files in the same folder.
+
+   :::image type="content" source="./media/backup-azure-microsoft-azure-backup/downloadcenter.png" alt-text="Screenshot that shows the Download Center with Microsoft Azure Backup Server files.":::
 
     Since the download size of all the files together is > 3 GB, on a 10-Mbps download link it may take up to 60 minutes for the download to complete.
 
