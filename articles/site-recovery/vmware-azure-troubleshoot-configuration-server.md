@@ -28,9 +28,9 @@ The source machine registers with the configuration server when you install the 
       - **Windows**: `> ipconfig /all`
       - **Linux**: `# ifconfig -a`
 
-1. If the string **No Valid IP Address found** isn't found, search for the string **Reason=>NULL**. This error occurs if the source machine uses an empty host to register with the configuration server. If the string is found:
+1. If the string **No Valid IP Address found** isn't found, search for the string **Reason=>NULL**. This error occurs if the source machine uses an empty host to register with the configuration server.
 
-    - After you resolve the issues, follow the guidelines in [Register the source machine with the configuration server](vmware-azure-troubleshoot-configuration-server.md#register-source-machine-with-configuration-server) to retry the registration manually.
+    If the string is found, retry the registration manually after you resolve the issues. Follow the guidelines in [Register the source machine with the configuration server](vmware-azure-troubleshoot-configuration-server.md#register-source-machine-with-configuration-server).
 
 1. If the string **Reason=>NULL** isn't found, on the source machine, open the `C:\ProgramData\ASRSetupLogs\UploadedLogs\ASRUnifiedAgentInstaller.log` file. The `ProgramData` folder might be a hidden folder. If you don't see the `ProgramData` folder, in File Explorer, on the **View** tab, in the **Show/hide** section, select the **Hidden items** checkbox. Multiple issues might cause failures.
 
@@ -41,7 +41,9 @@ The source machine registers with the configuration server when you install the 
     1. Ensure that the folders listed in [Site Recovery folder exclusions from antivirus programs](vmware-azure-set-up-source.md#azure-site-recovery-folder-exclusions-from-antivirus-program) are excluded from the antivirus software.
     1. When network issues are resolved, retry the registration by following the guidelines in [Register the source machine with the configuration server](vmware-azure-troubleshoot-configuration-server.md#register-source-machine-with-configuration-server).
 
-1. If the string **post request: (7) - Couldn't connect to server** isn't found, in the same log file, look for the string **request: (60) - Peer certificate cannot be authenticated with given CA certificates**. This error might occur because the configuration server certificate expired or the source machine doesn't support Transport Layer Security (TLS) 1.0 or later protocols. It also might occur if a firewall blocks TLS communication between the source machine and the configuration server. If the string is found:
+1. If the string **post request: (7) - Couldn't connect to server** isn't found, in the same log file, look for the string **request: (60) - Peer certificate cannot be authenticated with given CA certificates**. This error might occur because the configuration server certificate expired or the source machine doesn't support Transport Layer Security (TLS) 1.0 or later protocols. It also might occur if a firewall blocks TLS communication between the source machine and the configuration server.
+
+    If the string is found:
 
     1. To resolve, connect to the configuration server IP address by using a web browser on the source machine. Use the URI `https:\/\/<configuration server IP address\>:443/`. Ensure that the source machine can reach the configuration server through port 443.
     1. Check whether any firewall rules on the source machine need to be added or removed for the source machine to talk to the configuration server. Because of the variety of firewall software that might be in use, we can't list all required firewall configurations. Work with your network admins to unblock any connection issues.
@@ -66,11 +68,9 @@ This error occurs when the service can't read data from the transport connection
 To resolve vCenter discovery failures, add the vCenter server to the `byPass` list proxy settings:
 
 - Download the `PsExec` tool from [PsExec v2.43](/sysinternals/downloads/psexec) to access the system user content.
-- Open Internet Explorer in the system user content by running the following command line:
-    `psexec -s -i "%programfiles%\Internet Explorer\iexplore.exe"`
+- Open Internet Explorer in the system user content by running the following command: `psexec -s -i "%programfiles%\Internet Explorer\iexplore.exe"`.
 - Add proxy settings in Internet Explorer and restart the `tmanssvc` service.
-- To configure proxy settings for disaster recovery architecture, run the following command:
-    `cd C:\Program Files\Microsoft Azure Site Recovery Provider`
+- To configure proxy settings for disaster recovery architecture, run the following command: `cd C:\Program Files\Microsoft Azure Site Recovery Provider`.
 - Run `DRCONFIGURATOR.EXE /configure /AddBypassUrls [add IP Address/FQDN of vCenter Server provided during the Configure vCenter Server/vSphere ESXi server step of [Configuration Server deployment](vmware-azure-deploy-configuration-server.md#configure-settings)]`.
 
 ## Change the IP address of the configuration server
@@ -87,7 +87,7 @@ A certificate that's required to authenticate Site Recovery can't be created. Re
 
 ## Failure to activate Windows license from Server Standard Evaluation to Server Standard
 
-1. As part of configuration server deployment through Open Virtualization Format (OVF), an evaluation license is used, which is valid for 180 days. You need to activate this license before it expires. Otherwise, the configuration server can shut down frequently, which hinders replication activities.
+1. As part of configuration server deployment through Open Virtualization Format (OVF), an evaluation license is used. The license is valid for 180 days. You need to activate this license before it expires. Otherwise, the configuration server can shut down frequently, which hinders replication activities.
 1. If you can't activate the Windows license, contact the [Windows support team](https://aka.ms/Windows_Support) to resolve the issue.
 
 ## Register source machine with configuration server
@@ -103,7 +103,7 @@ Run the following command on the source machine:
 
 Setting | Details
 --- | ---
-Usage | `UnifiedAgentConfigurator.exe  /CSEndPoint <configuration server IP address\> /PassphraseFilePath <passphrase file path\>`
+Usage | `UnifiedAgentConfigurator.exe  /CSEndPoint <configuration server IP address> /PassphraseFilePath <passphrase file path>`
 Agent configuration logs | Located under `%ProgramData%\ASRSetupLogs\ASRUnifiedAgentConfigurator.log`.
 `/CSEndPoint` | Mandatory parameter. Specifies the IP address of the configuration server. Use any valid IP address.
 `/PassphraseFilePath` |  Mandatory. The location of the passphrase. Use any valid Universal Naming Convention or local file path.
@@ -118,7 +118,7 @@ Run the following command on the source machine:
 
 Setting | Details
 --- | ---
-Usage | `cd /usr/local/ASR/Vx/bin`<br /><br /> `UnifiedAgentConfigurator.sh -i <configuration server IP address\> -P <passphrase file path\>`
+Usage | `cd /usr/local/ASR/Vx/bin`<br /><br /> `UnifiedAgentConfigurator.sh -i <configuration server IP address\> -P <passphrase file path>`
 `-i` | Mandatory parameter. Specifies the IP address of the configuration server. Use any valid IP address.
 `-P` | Mandatory. The full file path of the file in which the passphrase is saved. Use any valid folder.
 
@@ -228,8 +228,7 @@ This error might occur when other applications are also using port 443 or becaus
 To resolve the issue:
 
 - Verify that your firewall isn't blocking port 443.
-- If the port is unreachable because of another application using that port, stop and uninstall the app.
-  - If stopping the app isn't feasible, set up a new clean configuration server.
+- If the port is unreachable because of another application using that port, stop and uninstall the app. If stopping the app isn't feasible, set up a new clean configuration server.
 - Restart the configuration server.
 - Restart Internet Information Services.
 
