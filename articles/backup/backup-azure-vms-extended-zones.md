@@ -113,7 +113,7 @@ The initial backup runs in accordance with the schedule in the backup policy. To
 
 ## Monitor the backup job
 
-Monitor the portal notifications. To monitor the job progress, go to **Business Continuity Center** > **Monitoring + Reporting** > **Jobs** and filter the list for **In progress** jobs. Depending on the size of your VM, creating the initial backup might take a while.
+Monitor the portal notifications. To monitor the job progress, go to **Resiliency** > **Monitoring + Reporting** > **Jobs** and filter the list for **In progress** jobs. Depending on the size of your VM, creating the initial backup might take a while.
 
 Backup job details for each VM backup consist of the following phases:
 
