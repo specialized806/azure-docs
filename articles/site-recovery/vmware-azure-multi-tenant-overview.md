@@ -89,7 +89,7 @@ Configure the configuration server with an account that has a special role assig
 | vCenter | Read-only |  |
 | vCenter | Read-only | Needed only to allow vCenter access for managing different objects. You can remove this permission if the account is never going to be provided to a tenant or used for any management operations on the vCenter. |
 | Datacenter | Azure_Site_Recovery |  |
-| Host and host cluster | Azure_Site_Recovery | Re-ensures that access is at the object level so that only accessible hosts have tenant VMs before failover and after failback. |
+| Host and host cluster | Azure_Site_Recovery | Ensures that access is at the object level so that only accessible hosts have tenant VMs before failover and after failback. |
 | Datastore and datastore cluster | Azure_Site_Recovery | Same as preceding. |
 | Network |Azure_Site_Recovery |  |
 | Management server | Azure_Site_Recovery | Includes access to all components (configuration server, process server, and master target server) outside the configuration server machine. |
@@ -106,7 +106,7 @@ To restrict disaster recovery operations up until failover only (that is, withou
 
 ### Deploy resources to the tenant subscription
 
-1. On the Azure portal, create a resource group, and then deploy a Recovery Services vault according to the usual process.
+1. In the Azure portal, create a resource group, and then deploy a Recovery Services vault according to the usual process.
 1. Download the vault registration key.
 1. Register the configuration server for the tenant by using the vault registration key.
 1. Enter the credentials for the two access accounts: the account to access the vCenter server and the account to access the VM.
