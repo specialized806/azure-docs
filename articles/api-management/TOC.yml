@@ -11,7 +11,7 @@
     href: api-management-gateways-overview.md
   - name: v2 service tiers
     href: v2-service-tiers-overview.md
-  - name: Terminology
+  - name: Understand terminology
     href: api-management-terminology.md
   - name: Service limits
     href: ../azure-resource-manager/management/azure-subscription-service-limits.md?toc=%2Fazure%2Fapi-management%2Ftoc.json&bc=/azure/api-management/breadcrumb/toc.json#azure-api-management-limits
@@ -66,7 +66,7 @@
     - name: 11 - Link to an API Center
       href: tutorials/link-api-center.md
   expanded: true
-- name: Deployment and operations
+- name: Deploy, Scale & Operate
   items:
   - name: Deploy & scale
     items:
@@ -103,7 +103,7 @@
       href: /azure/cloud-adoption-framework/scenarios/app-platform/api-management/landing-zone-accelerator?toc=%2Fazure%2Fapi-management%2Ftoc.json&bc=/azure/api-management/breadcrumb/toc.json
     - name: Manage using automation
       href: automation-manage-api-management.md
-    - name: DevOps and CI/CD
+    - name: DevOps and Continuous Integration/Continuous Deployment (CI/CD)
       href: devops-api-development-templates.md
     - name: Migrate Amazon API Gateway to Azure API Management
       href: migrate-amazon-api-gateway-to-api-management.md
@@ -241,7 +241,7 @@
     href: api-management-howto-log-event-hubs.md
   - name: Log requests with Azure Application Insights
     href: api-management-howto-app-insights.md
-- name: Define APIs
+- name: Create & Import APIs
   items:
   - name: Add and import APIs
     items:
@@ -249,7 +249,7 @@
       href: add-api-manually.md
     - name: Import an OpenAPI Specification
       href: import-api-from-oas.md
-    - name: Import a SOAP API
+    - name: Import a Simple Object Access Protocol (SOAP) API
       href: import-soap-api.md
     - name: Import a SOAP API and convert to REST
       href: restify-soap-api.md
@@ -274,7 +274,7 @@
       href: import-logic-app-as-api.md
     - name: Configure Service Fabric backend
       href: how-to-configure-service-fabric-backend.yml
-    - name: OData
+    - name: Open Data Protocol (OData)
       items:
       - name: Import OData API
         href: import-api-from-odata.md
@@ -292,19 +292,19 @@
         href: api-management-kubernetes.md
       - name: Integrate with Service Fabric
         href: /azure/service-fabric/service-fabric-api-management-overview?toc=%2Fazure%2Fapi-management%2Ftoc.json&bc=/azure/api-management/breadcrumb/toc.json
-  - name: Modify APIs
+  - name: Edit & Manage API Configurations
     items:
     - name: Edit an API
       href: edit-api.md
-    - name: Versions
+    - name: Manage API versions
       href: api-management-versions.md
-    - name: Revisions
+    - name: Manage API revisions
       href: api-management-revisions.md
-    - name: Backends
+    - name: Configure backends
       href: backends.md
     - name: Automate API deployments
       href: /azure/architecture/example-scenario/devops/automated-api-deployments-apiops?toc=%2Fazure%2Fapi-management%2Ftoc.json&bc=/azure/api-management/breadcrumb/toc.json
-  - name: Cache
+  - name: Configure caching
     items:
     - name: Caching overview
       href: caching-overview.md
@@ -367,7 +367,7 @@
     displayName: TLS, TLS 1.3
   - name: Protect with Defender for APIs
     href: protect-with-defender-for-apis.md
-  - name: Mitigate OWASP API threats
+  - name: Mitigate Open Web Application Security Project (OWASP) API threats
     displayName: OWASP top 10, vulnerability, vulnerabilities
     href: mitigate-owasp-api-threats.md
   - name: Manage API credentials
@@ -391,11 +391,11 @@
     items:
     - name: Mutual certificate authentication
       href: api-management-howto-mutual-certificates.md
-- name: Publish APIs to developers
+- name: Developer Portal & Publishing
   items:
   - name: Use subscriptions
     items:
-    - name: Subscriptions
+    - name: Understand subscriptions
       href: api-management-subscriptions.md
     - name: Create subscriptions
       href: api-management-howto-create-subscriptions.md
