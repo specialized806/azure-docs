@@ -65,7 +65,7 @@ To resolve the issue:
 
 ## Upgrade failure because of master target installation failure
 
-When you upgrade the Azure Site Recovery Provider (for disaster recovery architecture), the master target installation fails with the following error: "Installation location does not exist and/or it does not have 1 GB free space and/or it does not exist on a fixed drive."
+When you upgrade the Azure Site Recovery Provider (for disaster recovery architecture), the master target installation fails with the following error: "Installation location does not exist and/or it does not have 1 GB free space and/or it does not exist on a fixed drive."
 
 This error could occur because of the null value for a parameter in the registry key. To resolve the issue:
 
