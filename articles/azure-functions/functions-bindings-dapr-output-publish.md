@@ -3,6 +3,8 @@ title: Dapr Publish output binding for Azure Functions
 description: Learn how to provide Dapr Publish output binding data using Azure Functions.
 ms.topic: reference
 ms.date: 05/10/2024
+ms.author: nicholas.greenfield
+ms.reviewer: hannahhunter
 ms.subservice: dapr
 ms.devlang: csharp
 # ms.devlang: csharp, java, javascript, powershell, python

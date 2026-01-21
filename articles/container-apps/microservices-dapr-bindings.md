@@ -3,7 +3,8 @@ title: "Tutorial: Event-driven work using Dapr Bindings"
 titleSuffix: "Azure Container Apps"
 description: Deploy a sample application to Azure Container Apps that leverages the Dapr Bindings API.
 author: hhunter-ms
-ms.author: hannahhunter
+ms.author: nicholas.greenfield
+ms.reviewer: hannahhunter
 ms.service: azure-container-apps
 ms.subservice: dapr
 ms.custom: devx-track-dotnet, devx-track-js, devx-track-python

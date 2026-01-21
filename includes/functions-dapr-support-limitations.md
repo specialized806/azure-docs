@@ -3,7 +3,8 @@ author: hhunter-ms
 ms.service: azure-functions
 ms.topic: include
 ms.date: 08/07/2023
-ms.author: hannahhunter
+ms.author: nicholas.greenfield
+ms.reviewer: hannahhunter
 ---
 
 >[!IMPORTANT]

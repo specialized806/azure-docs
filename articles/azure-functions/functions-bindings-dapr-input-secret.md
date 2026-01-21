@@ -3,6 +3,8 @@ title: Dapr Secret input binding for Azure Functions
 description: Learn how to access Dapr Secret input binding data during function execution in Azure Functions.
 ms.topic: reference
 ms.date: 05/10/2024
+ms.author: nicholas.greenfield
+ms.reviewer: hannahhunter
 ms.subservice: dapr
 ms.devlang: csharp
 # ms.devlang: csharp, java, javascript, powershell, python

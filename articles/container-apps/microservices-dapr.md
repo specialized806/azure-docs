@@ -7,7 +7,8 @@ ms.service: azure-container-apps
 ms.subservice: dapr
 ms.topic: quickstart
 ms.date: 02/03/2025
-ms.author: hannahhunter
+ms.author: nicholas.greenfield
+ms.reviewer: hannahhunter
 ms.custom: devx-track-azurecli, devx-track-azurepowershell
 ms.devlang: azurecli
 ---

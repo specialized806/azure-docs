@@ -7,7 +7,8 @@ ms.service: azure-container-apps
 ms.subservice: dapr
 ms.topic: quickstart
 ms.date: 08/28/2025
-ms.author: cshoe
+ms.author: nicholas.greenfield
+ms.reviewer: hannahhunter
 ms.custom:
   - devx-track-bicep
   - devx-track-arm-template
