@@ -2,7 +2,7 @@
 title: Scale Dapr Applications with KEDA Scalers Using Bicep
 titleSuffix: Azure Container Apps
 description: Find out how you can use a KEDA scaler to scale a container app and its Dapr sidecar in Azure Container Apps based on the message count in a service bus topic. 
-author: hhunter-ms
+author: greenie-msft
 ms.author: nicholas.greenfield
 ms.reviewer: hannahhunter
 ms.service: azure-container-apps

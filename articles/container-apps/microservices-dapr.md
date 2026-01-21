@@ -2,7 +2,7 @@
 title: "Quickstart: Deploy a Dapr application to Azure Container Apps using the Azure CLI"
 description: Deploy a Dapr application to Azure Container Apps using the Azure CLI.
 services: container-apps
-author: hhunter-ms
+author: greenie-msft
 ms.service: azure-container-apps
 ms.subservice: dapr
 ms.topic: quickstart

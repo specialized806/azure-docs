@@ -3,7 +3,7 @@ title: Dapr component resiliency (preview)
 titleSuffix: Azure Container Apps
 description: Learn how to make your Dapr components resilient in Azure Container Apps.
 services: container-apps
-author: hhunter-ms
+author: greenie-msft
 ms.service: azure-container-apps
 ms.subservice: dapr
 ms.topic: conceptual
