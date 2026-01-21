@@ -6,6 +6,7 @@ author: hhunter-ms
 ms.author: hannahhunter
 ms.reviewer: paulyuk
 ms.service: azure-container-apps
+ms.subservice: dapr
 ms.topic: how-to
 ms.date: 11/21/2024
 ms.custom: references_regions

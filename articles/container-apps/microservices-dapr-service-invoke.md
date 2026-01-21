@@ -5,6 +5,7 @@ description: Enable two sample Dapr applications to communicate and leverage Azu
 author: hhunter-ms
 ms.author: hannahhunter
 ms.service: azure-container-apps
+ms.subservice: dapr
 ms.topic: how-to
 ms.date: 08/02/2024
 zone_pivot_group_filename: container-apps/dapr-zone-pivot-groups.json

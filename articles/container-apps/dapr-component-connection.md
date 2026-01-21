@@ -5,6 +5,7 @@ author: hhunter-ms
 ms.author: hannahhunter
 ms.reviewer: nickgreenf
 ms.service: azure-container-apps
+ms.subservice: dapr
 ms.topic: how-to 
 ms.date: 01/21/2025
 ms.custom: template-tutorial, service-connector, build-2023, engagement

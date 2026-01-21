@@ -4,6 +4,7 @@ description: Deploy a Dapr application to Azure Container Apps using the Azure C
 services: container-apps
 author: hhunter-ms
 ms.service: azure-container-apps
+ms.subservice: dapr
 ms.topic: quickstart
 ms.date: 02/03/2025
 ms.author: hannahhunter

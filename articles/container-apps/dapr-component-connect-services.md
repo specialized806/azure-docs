@@ -4,6 +4,7 @@ description: Learn more about connecting Dapr components with Azure and external
 ms.author: hannahhunter
 author: hhunter-ms
 ms.service: azure-container-apps
+ms.subservice: dapr
 ms.custom: build-2023
 ms.topic: conceptual
 ms.date: 12/10/2024

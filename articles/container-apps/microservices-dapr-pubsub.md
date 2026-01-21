@@ -5,6 +5,7 @@ description: Find out how to create a publisher/subscriber system that uses the 
 author: hhunter-ms
 ms.author: hannahhunter
 ms.service: azure-container-apps
+ms.subservice: dapr
 ms.custom: devx-track-dotnet, devx-track-js, devx-track-python
 ms.topic: how-to
 ms.date: 12/04/2025

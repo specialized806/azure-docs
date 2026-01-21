@@ -5,6 +5,7 @@ description: Find out how you can use a KEDA scaler to scale a container app and
 author: hhunter-ms
 ms.author: hannahhunter
 ms.service: azure-container-apps
+ms.subservice: dapr
 ms.custom: devx-track-bicep
 ms.topic: concept-article 
 ms.date: 12/02/2025

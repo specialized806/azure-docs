@@ -4,6 +4,7 @@ description: Learn more about using Dapr on your Azure Container App service to 
 ms.author: hannahhunter
 author: hhunter-ms
 ms.service: azure-container-apps
+ms.subservice: dapr
 ms.topic: concept-article
 ms.date: 05/21/2025
 ms.custom:

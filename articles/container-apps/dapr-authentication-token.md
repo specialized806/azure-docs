@@ -4,6 +4,7 @@ description: Learn more about enabling token authentication for Dapr requests to
 ms.author: hannahhunter
 author: hhunter-ms
 ms.service: azure-container-apps
+ms.subservice: dapr
 ms.topic: how-to 
 ms.date: 08/28/2024
 ---

@@ -5,6 +5,7 @@ description: Deploy a sample application to Azure Container Apps that leverages 
 author: hhunter-ms
 ms.author: hannahhunter
 ms.service: azure-container-apps
+ms.subservice: dapr
 ms.custom: devx-track-dotnet, devx-track-js, devx-track-python
 ms.topic: how-to
 ms.date: 08/02/2024
