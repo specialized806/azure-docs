@@ -52,9 +52,9 @@ The **Marker type** settings determine how locations are represented within the 
 
 To switch to another built‑in icon:
 
-1. In the **Format visual** tab of the **Visualizations** pane, select **> Markers**
-1. In the Markers section, select **> Shape**
-1. In the Shape section, select **Icon**
+1. In the **Format visual** tab of the **Visualizations** pane, select **> Markers**.
+1. In the Markers section, select **> Shape**.
+1. In the Shape section, select **Icon**.
 
 The available icons will appear.
 
@@ -70,11 +70,11 @@ You can either [Enter a single image for all markers](#single-image-for-all-mark
 
 To enter a single image for all markers:
 
-1. In the **Format visual** tab of the **Visualizations** pane, select **> Markers**
-1. In the Markers section, select **> Shape**
-1. In the Shape section, select **Marker type**
-1. In the **Marker type** drop-down list, select **Image**
-1. Enter the URL to the .svg file
+1. In the **Format visual** tab of the **Visualizations** pane, select **> Markers**.
+1. In the Markers section, select **> Shape**.
+1. In the Shape section, select **Marker type**.
+1. In the **Marker type** drop-down list, select **Image**.
+1. Enter the URL to the .svg file.
 
 #### Using conditional formatting
 
@@ -82,20 +82,20 @@ Select the fx (conditional formatting) button and choose the field that contains
 
 To bind an image per row by using conditional formatting:
 
-1. In the **Format visual** tab of the **Visualizations** pane, select **> Markers**
-1. In the Markers section, select **> Shape**
-1. In the Shape section, select **Marker type**
-1. In the **Marker type** drop-down list, select **Image**
-1. Select the fx (conditional formatting) button and choose the field that contains the image URL, data URI, or SVG for each data point
+1. In the **Format visual** tab of the **Visualizations** pane, select **> Markers**.
+1. In the Markers section, select **> Shape**.
+1. In the Shape section, select **Marker type**.
+1. In the **Marker type** drop-down list, select **Image**.
+1. Select the fx (conditional formatting) button and choose the field that contains the image URL, data URI, or SVG for each data point.
 
 #### Create image by pasting SVG content
 
 You can also paste the contents of the svg file directly into the **Enter a URL** textbox:
 
-1. In the **Format visual** tab of the **Visualizations** pane, select **> Markers**
-1. In the Markers section, select **> Shape**
-1. In the Shape section, select **Marker type**
-1. In the **Marker type** drop-down list, select **Image**
+1. In the **Format visual** tab of the **Visualizations** pane, select **> Markers**.
+1. In the Markers section, select **> Shape**.
+1. In the Shape section, select **Marker type**.
+1. In the **Marker type** drop-down list, select **Image**.
 1. Copy/Paste the contents of the svg file directly into the **Enter a URL** textbox.
 1. (Optional) As an example, you can copy/paste the following svg into your **Enter a URL** textbox:
 
