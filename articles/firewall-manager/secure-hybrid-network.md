@@ -5,7 +5,7 @@ services: firewall-manager
 author: duongau
 ms.service: azure-firewall-manager
 ms.topic: tutorial
-ms.date: 07/24/2024
+ms.date: 01/21/2026
 ms.author: duau
 ms.custom: sfi-image-nochange
 ---
