@@ -58,9 +58,9 @@ Four components are required to implement Private Link with Application Gateway:
 | Component | Service Provider/Private Link (Application Gateway resource owner)  | Consumer/Private Endpoint | 
 | ---------- | ---------- | ---------- |
 | **Private link service** | No charges | No charges | 
-| **Private endpoint** | No charges | [Billed as per Private Link](https://azure.microsoft.com/en-in/pricing/details/private-link/#pricing) | 
-| **Data processing (Bi-directional)** | No charges | [Billed as per Private Link](https://azure.microsoft.com/en-in/pricing/details/private-link/#pricing) | 
-| **Data transfers** | [Billed as per Bandwidth](https://azure.microsoft.com/en-us/pricing/details/bandwidth/#pricing) | [Billed as per Bandwidth](https://azure.microsoft.com/en-us/pricing/details/bandwidth/#pricing) | 
+| **Private endpoint** | No charges | [Billed as per Private Link](https://azure.microsoft.com/pricing/details/private-link/#pricing) | 
+| **Data processing (Bi-directional)** | No charges | [Billed as per Private Link](https://azure.microsoft.com/pricing/details/private-link/#pricing) | 
+| **Data transfers** | [Billed as per Bandwidth](https://azure.microsoft.com/pricing/details/bandwidth/#pricing) | [Billed as per Bandwidth](https://azure.microsoft.com/pricing/details/bandwidth/#pricing) | 
 
 
 ## Limitations
