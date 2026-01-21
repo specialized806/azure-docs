@@ -160,6 +160,44 @@
     items:
     - name: Migrate Amazon API Gateway to Azure API Management
       href: migrate-amazon-api-gateway-to-api-management.md
+- name: AI Gateway, LLM APIs, and Agent Tools
+  items:
+  - name: AI Gateway overview
+    items:
+    - name: AI gateway capabilities
+      href: genai-gateway-capabilities.md
+  - name: Manage LLM APIs
+    items:
+    - name: Import Microsoft Foundry API
+      href: azure-ai-foundry-api.md
+    - name: Import Azure OpenAI API
+      href: azure-openai-api-from-specification.md
+    - name: Import language model API
+      href: openai-compatible-llm-api.md
+    - name: Import Google Gemini API
+      href: openai-compatible-google-gemini-api.md
+    - name: Import Amazon Bedrock API
+      href: amazon-bedrock-passthrough-llm-api.md
+    - name: Authenticate and authorize to LLM APIs
+      href: api-management-authenticate-authorize-ai-apis.md
+  - name: AI tools and agent integrations
+    items:
+    - name: MCP server capabilities
+      href: mcp-server-overview.md
+    - name: Expose REST API as MCP server
+      href: export-rest-mcp-server.md
+    - name: Expose existing MCP server
+      href: expose-existing-mcp-server.md
+    - name: Secure access to MCP servers
+      href: secure-mcp-servers.md
+    - name: Import A2A agent API
+      href: agent-to-agent-api.md
+  - name: Logging, metrics, and semantic caching
+    items:
+    - name: Log LLM tokens, requests, and responses
+      href: api-management-howto-llm-logs.md
+    - name: Semantic caching for LLM API requests
+      href: azure-openai-enable-semantic-caching.md
 - name: Logs and monitoring
   items:
   - name: Observability
@@ -242,40 +280,6 @@
       href: api-management-howto-cache.md
     - name: Custom caching
       href: api-management-sample-cache-by-key.md
-- name: API management for AI
-  items:
-  - name: AI gateway capabilities
-    href: genai-gateway-capabilities.md
-  - name: Manage LLM APIs
-    items:
-    - name: Import Microsoft Foundry API
-      href: azure-ai-foundry-api.md
-    - name: Import Azure OpenAI API
-      href: azure-openai-api-from-specification.md
-    - name: Import language model API
-      href: openai-compatible-llm-api.md
-    - name: Import Google Gemini API
-      href: openai-compatible-google-gemini-api.md
-    - name: Import Amazon Bedrock API
-      href: amazon-bedrock-passthrough-llm-api.md
-    - name: Semantic caching for LLM API requests
-      href: azure-openai-enable-semantic-caching.md
-    - name: Authenticate and authorize to LLM APIs
-      href: api-management-authenticate-authorize-ai-apis.md
-    - name: Log LLM tokens, requests, and responses
-      href: api-management-howto-llm-logs.md
-  - name: Manage AI tools and agents
-    items:
-    - name: MCP server capabilities
-      href: mcp-server-overview.md
-    - name: Expose REST API as MCP server
-      href: export-rest-mcp-server.md
-    - name: Expose existing MCP server
-      href: expose-existing-mcp-server.md
-    - name: Secure access to MCP servers
-      href: secure-mcp-servers.md
-    - name: Import A2A agent API
-      href: agent-to-agent-api.md
 - name: Manage APIs with policies
   items:
   - name: API Management policies overview
