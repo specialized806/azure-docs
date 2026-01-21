@@ -158,6 +158,8 @@ items:
             href: monitor-troubleshoot-faq.yml
       - name: AI
         items: 
+        - name: AI app development
+          href: /azure/developer/ai/azure-ai-for-developers?toc=/azure/redis/toc.json&bc=/azure/redis/breadcrumb/toc.json
         - name: Azure MCP server for Azure Redis
           href: /azure/developer/azure-mcp-server/services/azure-mcp-server-for-redis?toc=/azure/redis/toc.json&bc=/azure/redis/breadcrumb/toc.json
         - name: GitHub Copilot for Azure
