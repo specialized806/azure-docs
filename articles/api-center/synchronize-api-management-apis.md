@@ -4,7 +4,7 @@ description: Integrate an API Management instance to Azure API Center for automa
 author: dlepow
 ms.service: azure-api-center
 ms.topic: how-to
-ms.date: 01/20/202
+ms.date: 01/20/2026
 ms.author: danlep 
 ms.custom: devx-track-azurecli
 # Customer intent: As an API program manager, I want to integrate my Azure API Management instance with my API center and synchronize API Management APIs to my inventory.
@@ -81,7 +81,7 @@ You can integrate an API Management instance by using the portal or the Azure CL
 
 :::image type="content" source="media/synchronize-api-management-apis/link-api-management-service.png" alt-text="Screenshot of integrating an Azure API Management service in the portal.":::
 
-#### [Azure CLI](#tab=cli)
+#### [Azure CLI](#tab/cli)
 
 Run the [az apic integration create apim](/cli/azure/apic/integration/create#az-apic-integration-create-apim) command to integrate an API Management instance to your API center. 
 
