@@ -141,6 +141,7 @@ When you select **Connect**, Bastion Developer automatically deploys to your vir
 To upgrade to a dedicated SKU with more features, see [Upgrade to a dedicated SKU](upgrade-sku.md).
 
 Bastion Developer is available in the following regions: [!INCLUDE [regions](../../includes/bastion-developer-regions.md)]
+
 ---
 
 ## <a name="connect"></a>Connect to a VM
