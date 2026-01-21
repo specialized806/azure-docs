@@ -97,7 +97,7 @@ To edit the storage replication setting:
 
 ## Software package
 
-### Downloading the software package
+### Download the MABS software package
 
 1. Sign in to the [Azure portal](https://portal.azure.com/).
 2. On the search box, type **Recovery**, and then select **Recovery Services vaults** from the search results.
@@ -138,7 +138,7 @@ To edit the storage replication setting:
 
     Since the download size of all the files together is > 3 GB, on a 10-Mbps download link it may take up to 60 minutes for the download to complete.
 
-### Extracting the software package
+### Extract the MABS software package
 
 After you've downloaded all the files, select **MicrosoftAzureBackupInstaller.exe**. This will start the **Microsoft Azure Backup Setup Wizard** to extract the setup files to a location specified by you. Continue through the wizard and select the **Extract** button to begin the extraction process.
 
@@ -147,11 +147,11 @@ After you've downloaded all the files, select **MicrosoftAzureBackupInstaller.ex
 >
 >
 
-![Setup extracting files for install](./media/backup-azure-microsoft-azure-backup/extract/03.png)
+:::image type="content" source="./media/backup-azure-microsoft-azure-backup/extract/03.png" alt-text="Screenshot that shows the setup files extraction wizard for install.":::
 
-Once the extraction process completes, check the box to launch the freshly extracted *setup.exe* to begin installing Microsoft Azure Backup Server and select the **Finish** button.
+After the extraction process completes, check the box to launch the freshly extracted *setup.exe* to begin installing Microsoft Azure Backup Server and select the **Finish** button.
 
-### Installing the software package
+### Install the software package
 
 1. Select **Microsoft Azure Backup Server** to launch the setup wizard.
 
@@ -377,7 +377,7 @@ The example below increases the limit to 12 jobs.
 
   "6e7c76f4-a832-4418-a772-8e58fd7466cb"=dword:0000000C
 
-## Troubleshooting
+## Troubleshoot MABS installation issues
 
 If Microsoft Azure Backup server fails with errors during the setup phase (or backup or restore), refer to this [error codes document](https://support.microsoft.com/kb/3041338)  for more information.
 
