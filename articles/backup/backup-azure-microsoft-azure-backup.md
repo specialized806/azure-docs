@@ -64,15 +64,15 @@ You can deduplicate the DPM storage using Windows Server Deduplication. Learn mo
 > [!NOTE]
 > Azure Backup Server is designed to run on a dedicated, single-purpose server. You can't install Azure Backup Server on:
 >
-> * A computer running as a domain controller
-> * A computer on which the Application Server role is installed
-> * A computer that's a System Center Operations Manager management server
-> * A computer on which Exchange Server is running
-> * A computer that's a node of a system
+> * A computer running as a domain controller.
+> * A computer that has the Application Server role installed.
+> * A computer that's a System Center Operations Manager management server.
+> * A computer that has running Exchange Server.
+> * A computer that's a node of a system.
 >
 > Installing Azure Backup Server isn't supported on Windows Server Core or Microsoft Hyper-V Server.
 
-Always join Azure Backup Server to a domain. Moving an existing Azure Backup Server machine to a new domain after deployment is *not supported*.
+Always join Azure Backup Server to a domain. Moving an existing Azure Backup Server machine to a new domain after deployment isn't supported.
 
 Whether you send backup data to Azure, or keep it locally, Azure Backup Server must be registered with a Recovery Services vault.
 
@@ -136,7 +136,7 @@ To edit the storage replication setting:
 
    :::image type="content" source="./media/backup-azure-microsoft-azure-backup/downloadcenter.png" alt-text="Screenshot that shows the Download Center with Microsoft Azure Backup Server files.":::
 
-    Since the download size of all the files together is > 3 GB, on a 10-Mbps download link it may take up to 60 minutes for the download to complete.
+    Since the download size of all the files together is > 3 GB, on a 10-Mbps download link it might take up to 60 minutes for the download to complete.
 
 ### Extract the MABS software package
 
@@ -260,7 +260,7 @@ The following sections describe how to update protection agents for client compu
 
 ## Move MABS to a new server
 
-Here are the steps if you need to move MABS to a new server, while retaining the storage. This can be done only if all the data is on Modern Backup Storage.
+Here are the steps if you need to move MABS to a new server, while retaining the storage. This can be done only if the data is on Modern Backup Storage.
 
   > [!IMPORTANT]
   >
@@ -276,7 +276,7 @@ Here are the steps if you need to move MABS to a new server, while retaining the
 7. Restore the DPMDB taken in step 1.
 8. Attach the storage from the original backup server to the new server.
 9. From SQL, restore the DPMDB.
-10. Run CMD (as an administrator) on the new server. Go to the Microsoft Azure Backup install location and bin folder.
+10. Run CMD (as an administrator) on the new server. Go to the Microsoft Azure Backup installed location and bin folder.
 
     Path example:
     `C:\windows\system32>cd "c:\Program Files\Microsoft Azure Backup\DPM\DPM\bin\"`
@@ -347,7 +347,7 @@ Use the following procedures to upgrade MABS.
 
 > [!NOTE]
 >
-> MABS V3 isn't a prerequisite for installing MABS V4. However, you can upgrade to MABS V4 only from MABS V3 (RTM, Update Rollup 1 and Update Rollup 2).
+> MABS V3 isn't a prerequisite for installing MABS V4. However, you can upgrade to MABS V4 only from MABS V3 (RTM, Update Rollup 1, Update Rollup 2).
 
 Use the following steps to upgrade MABS:
 
@@ -379,7 +379,7 @@ The example below increases the limit to 12 jobs.
 
 ## Troubleshoot MABS installation issues
 
-If Microsoft Azure Backup server fails with errors during the setup phase (or backup or restore), refer to this [error codes document](https://support.microsoft.com/kb/3041338)  for more information.
+If Microsoft Azure Backup server fails with errors during the setup, backup, or restore phase, see this [error codes document](https://support.microsoft.com/kb/3041338)  for more information.
 
 You can also refer to [Azure Backup related FAQs](backup-azure-backup-faq.yml).
 
