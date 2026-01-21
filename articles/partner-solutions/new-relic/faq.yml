@@ -36,7 +36,7 @@ sections:
           To create an Azure Native New Relic Service resource, you need:
           
           - An active Azure subscription with owner or contributor access.
-          - A New Relic subscription. You can subscribe from the Azure portal during resource creation.
+          - A New Relic subscription. You can subscribe from the Azure portal during resource creation. This isn't a mandatory pre-requisite because the New Relic environment is created at the time when the resource is created
           - The `NewRelic.Observability` resource provider registered in your Azure subscription.
       - question: How do I register the NewRelic.Observability resource provider?
         answer: |
@@ -51,12 +51,12 @@ sections:
     questions:
       - question: How is Azure Native New Relic Service billed?
         answer: |
-          When using Azure Native New Relic Service, you receive a single bill for all resources you consume on Azure, including New Relic. An Azure Marketplace SaaS resource is created automatically based on the plan you select during resource creation. This resource is used for billing purposes.
+          When using Azure Native New Relic Service, you receive a single bill for all resources you consume on Azure, including New Relic. An Azure Marketplace SaaS resource is created automatically based on the plan you select when you subscribe to the New Relic Marketplace offer listing. This resource is used for billing purposes.
           
           Note: If you created your New Relic organization directly from the New Relic portal, Azure Marketplace SaaS resource doesn't exist, and New Relic manages your billing separately.
       - question: What billing plans are available?
         answer: |
-          Azure Native New Relic Service offers multiple billing plans that you can select during resource creation. You can change your billing plan after creation by selecting the **Change plan** link in the resource management portal.
+          Azure Native New Relic Service offers multiple billing plans which you can select when you subscribe to the New Relic Marketplace offer listing. You can change your billing plan after creation by selecting the **Manage SaaS Subscriptions** link in the **Overview** pane.
       - question: Do I need to subscribe to New Relic separately?
         answer: |
           You must have a New Relic subscription to use Azure Native New Relic Service. You can subscribe directly from the Azure portal during the resource creation process, or subscribe beforehand through Azure Marketplace.
@@ -86,16 +86,20 @@ sections:
           You can also collect metrics for virtual machines and app services by installing the New Relic agent after creating the resource.
       - question: Can I change my New Relic organization after creation?
         answer: |
-          No. When you associate your Azure Native New Relic Service resource with a New Relic organization, that resource is billed to that organization's plan. If you need to change organizations, you might need to create a new resource.
+          No. When you associate your Azure Native New Relic Service resource with a New Relic organization, that resource is billed to that organization's plan. If you need to change organizations, you need to create a new resource.
 
   - name: Management and monitoring
     questions:
       - question: How do I manage my New Relic resource?
         answer: |
-          You can manage your Azure Native New Relic Service resource from the Azure portal. Access the resource overview to view essentials like resource group, region, subscription, tags, and billing information. You can also navigate to specific tabs for:
-          
-          - **Get started**: Quick links to New Relic dashboards, logs, and alerts
-          - **Monitoring**: Summary of resources sending logs and metrics to New Relic
+          You can manage your Azure Native New Relic Service resource from the Azure portal. Access the resource overview to view essentials like resource group, region, subscription, tags, and New Relic account information.
+
+          You can also navigate to specific tabs for:
+
+          **Get started**: Quick links to New Relic dashboards, logs, and alerts
+          **Monitoring**: Summary of resources sending logs and metrics to New Relic
+          **Connected New Relic resources**: View the details of the associated SaaS resource
+
       - question: Can I monitor multiple Azure subscriptions with a single New Relic resource?
         answer: |
           Yes. You can monitor all your subscriptions through a single New Relic resource using the **Monitored Subscriptions** feature. Instead of creating a New Relic resource in every subscription, link multiple subscriptions to a single New Relic resource tied to a New Relic organization.
