@@ -591,6 +591,12 @@ Clients get the following response:
 > [!WARNING]
 > The custom status payload is limited to 16 KB of UTF-16 JSON text because it needs to fit in an Azure Table Storage column. You can use external storage if you need a larger payload.
 
+::: zone-end
+
+::: zone pivot="durable-task-sdks"
+
+::: zone-end
+
 ## Distributed tracing
 
 ::: zone pivot="durable-functions"
