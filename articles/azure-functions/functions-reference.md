@@ -200,7 +200,7 @@ The following components support identity-based connections:
 [cosmosv4]: ./functions-bindings-cosmosdb-v2.md?tabs=extensionv4
 [tablesv1]: ./functions-bindings-storage-table.md#table-api-extension
 [signalr]: ./functions-bindings-signalr-service.md#install-extension
-[web-pubsub]: ./functions-bindings-web-pubsub-service.md#install-extension
+[web-pubsub]: ./functions-bindings-web-pubsub.md#install-extension
 [durable-identity]: ./durable/durable-functions-configure-managed-identity.md
 [azuresql-identity]: ./functions-identity-access-azure-sql-with-managed-identity.md
 
