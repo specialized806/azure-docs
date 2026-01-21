@@ -232,7 +232,7 @@ At the **Business Logic Scope** level, a parallel branch runs an **Until** loop 
 
 ##### Renew lock on a message in a queue
 
-In the **Until** loop, the Service Bus action named **Renew lock on a message in a queue** controls the time that the workflow can process a message before the message become available again for processing. This behavior prevents premature release due to long-running tasks and makes sure that only one client handles the messsage at a time before retting the lock duration to the initial value. For more information, see [Renew locks](../service-bus-messaging/message-transfers-locks-settlement#renew-locks.md).
+In the **Until** loop, the Service Bus action named **Renew lock on a message in a queue** controls the time that the workflow can process a message before the message becomes available again for processing. This behavior prevents premature release due to long-running tasks and makes sure that only one client handles the message at a time before setting the lock duration to the initial value. For more information, see [Renew locks](../service-bus-messaging/message-transfers-locks-settlement#renew-locks.md).
 
 The following table describes the action's prepopulated parameters:
 
@@ -243,7 +243,7 @@ The following table describes the action's prepopulated parameters:
 
 ##### Wait for Process to Complete
 
-In the **Until** loop, the **Delay** action named **Wait for Process to Complete** adds an additional delay for message processing to complete. Make sure this delay value is less than the lock timeout duration for the queue. The minimum lock duration is 30 seconds.
+In the **Until** loop, the **Delay** action named **Wait for Process to Complete** adds an extra delay for message processing to complete. Make sure this delay value is less than the lock timeout duration for the queue. The minimum lock duration is 30 seconds.
 
 The following table describes the action's prepopulated parameters:
 
@@ -254,7 +254,7 @@ The following table describes the action's prepopulated parameters:
 
 ##### Actions for post-message processing
 
-Under the `Process message` scope, two parallel branches exist to handle the cases for unsuccessful and succesful message processing.
+Under the `Process message` scope, two parallel branches exist to handle the cases for unsuccessful and successful message processing.
 
 - Branch 1
 
@@ -332,7 +332,7 @@ These steps add a Service Bus trigger that initializes sessions and checks the s
 
    The term *peek-lock* means that the trigger sends a request to retrieve a message from the queue. If a message exists, the trigger retrieves and locks the message so that no other processing happens on that message until the lock period expires.
 
-1. On the connection pane, provide the allowing information:
+1. On the connection pane, provide the following information:
 
    | Parameter | Value | Description |
    |-----------|-------|-------------|
@@ -486,7 +486,7 @@ These steps add a [**Scope** action](logic-apps-control-flow-run-steps-group-sco
 
       1. Follow the [general steps](add-trigger-action-workflow.md#add-action) to add a Service Bus action named **Renew lock on the message in a queue**.
 
-         This action extends the time that the workflow can process a message before the message become available again for processing. This behavior prevents premature release due to long-running tasks and makes sure that only one client handles the messsage at a time before retting the lock duration to the initial value. For more information, see [Renew locks](../service-bus-messaging/message-transfers-locks-settlement#renew-locks.md).
+         This action extends the time that the workflow can process a message before the message becomes available again for processing. This behavior prevents premature release due to long-running tasks and makes sure that only one client handles the messages at a time before letting the lock duration to the initial value. For more information, see [Renew locks](../service-bus-messaging/message-transfers-locks-settlement#renew-locks.md).
 
       1. After the Service Bus action information pane opens, provide the following values:
 
