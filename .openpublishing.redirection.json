@@ -6679,7 +6679,8 @@
       "source_path": "articles/cyclecloud/how-to/ccws/open-ondemand-add-users.md",
       "redirect_url": "/azure/cyclecloud/how-to/ccws/configure-open-ondemand",
       "redirect_document_id": false
-    },    
+    },   
+    {
       "source_path": "articles/reliability/reliability-health-insights.md",
       "redirect_url": "/azure/azure-health-insights/reliability-health-insights",
       "redirect_document_id": false
