@@ -6,7 +6,7 @@ author: dlepow
 ms.service: azure-api-management
 ms.custom: mvc, devdivchpfy22, engagement-fy23
 ms.topic: tutorial
-ms.date: 01/15/2026
+ms.date: 01/20/2026
 ms.author: danlep
 
 ---
@@ -26,7 +26,7 @@ In this tutorial, you learn how to:
 > * Import an API into API Management
 > * View and modify API settings
 > * Test the API in the Azure portal
-> * Understand how API Management routes API requests
+> * Route API requests through API Management
 
 After import, you can manage the API in the Azure portal.
 
@@ -154,7 +154,7 @@ In this tutorial, you learned how to:
 > * Import your first API
 > * View and modify API settings
 > * Test the API in the Azure portal
-> * Understand how API Management routes API requests
+> * Route API requests through API Management
 
 Advance to the next tutorial to learn how to create and publish a product:
 
