@@ -478,18 +478,14 @@
     href: api-management-troubleshoot-cannot-add-custom-domain.md
   - name: Troubleshoot response time-outs and errors
     href: troubleshoot-response-timeout-and-errors.md
-- name: Samples
-  items:
-  - name: Policy snippets
-    href: https://github.com/Azure/api-management-policy-snippets
-  - name: Azure PowerShell
-    href: powershell-samples.md
 - name: Reference
   items:
   - name: Azure CLI
     href: /cli/azure/apim
   - name: Azure PowerShell
     href: /powershell/module/az.apimanagement/
+  - name: Azure PowerShell samples
+    href: powershell-samples.md
   - name: Monitoring data reference
     href: monitor-api-management-reference.md
   - name: REST API
@@ -681,22 +677,26 @@
     href: self-hosted-gateway-arc-reference.md
 - name: Resources
   items:
-  - name: FAQ
-    href: api-management-faq.yml
-  - name: Pricing
-    href: https://aka.ms/apimpricing
+  - name: Stack Overflow
+    href: https://stackoverflow.com/questions/tagged/azure-api-management
+  - name: Microsoft Q&A question page
+    href: /answers/tags/29/azure-api-management
+  - name: GitHub policy snippets
+    href: https://github.com/Azure/api-management-policy-snippets
   - name: Azure updates
     href: https://aka.ms/apimupdates
-  - name: API design
-    items:
-    - name: API design ebook
-      href: https://azure.microsoft.com/mediahandler/files/resourcefiles/api-design/Azure_API-Design_Guide_eBook.pdf?toc=%2Fazure%2Fapi-management%2Ftoc.json&bc=/azure/api-management/breadcrumb/toc.json
-    - name: RESTful web API design
-      href: /azure/architecture/best-practices/api-design?toc=%2Fazure%2Fapi-management%2Ftoc.json&bc=/azure/api-management/breadcrumb/toc.json
-    - name: Web API implementation
-      href: /azure/architecture/best-practices/api-implementation?toc=%2Fazure%2Fapi-management%2Ftoc.json&bc=/azure/api-management/breadcrumb/toc.json
-  - name: Building an API security strategy
+  - name: Pricing
+    href: https://aka.ms/apimpricing
+  - name: Regional availability
+    href: api-management-region-availability.md
+  - name: API design ebook
+    href: https://azure.microsoft.com/mediahandler/files/resourcefiles/api-design/Azure_API-Design_Guide_eBook.pdf?toc=%2Fazure%2Fapi-management%2Ftoc.json&bc=/azure/api-management/breadcrumb/toc.json
+  - name: API security strategy ebook
     href: https://aka.ms/API-Security-EBook
+  - name: Community
+    href: https://aka.ms/apimlove
+  - name: FAQ
+    href: api-management-faq.yml
   - name: Breaking changes and retirements
     items:
     - name: Breaking changes overview
@@ -729,11 +729,3 @@
       href: breaking-changes/trusted-service-connectivity-retirement-march-2026.md
     - name: Built-in analytics dashboard retirement (March 2027)
       href: breaking-changes/analytics-dashboard-retirement-march-2027.md
-  - name: Regional availability
-    href: api-management-region-availability.md
-  - name: Microsoft Q&A question page
-    href: /answers/tags/29/azure-api-management
-  - name: Stack Overflow
-    href: https://stackoverflow.com/questions/tagged/azure-api-management
-  - name: aka.ms/apimlove
-    href: https://aka.ms/apimlove
