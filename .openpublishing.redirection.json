@@ -6564,7 +6564,16 @@
       "source_path": "articles/oracle/oracle-db/exadata-vm-clusters.md",
       "redirect_url": "/azure/oracle/oracle-db/database-overview",
       "redirect_document_id": false
-    }
-    
+    },
+    { 
+      "source_path": "articles/cyclecloud/how-to/ccws/register-entra-id-app.md",
+      "redirect_url": "/azure/cyclecloud/how-to/create-app-registration",
+      "redirect_document_id": false
+    },
+    { 
+      "source_path": "articles/cyclecloud/how-to/ccws/open-ondemand-add-users.md",
+      "redirect_url": "/azure/cyclecloud/how-to/ccws/configure-open-ondemand" ‎,
+      "redirect_document_id": false
+    }    
   ]
 }
