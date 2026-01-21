@@ -68,24 +68,28 @@
   expanded: true
 - name: Deploy, Scale & Operate
   items:
-  - name: Deploy and scale
+  - name: Configure instance
     items:
     - name: Create an instance
       href: get-started-create-service-instance.md
-    - name: Use capacity for scaling decisions
-      href: api-management-capacity.md
-    - name: Upgrade and scale
-      href: upgrade-and-scale.md
+    - name: Configure a custom domain
+      href: configure-custom-domain.md
     - name: Configure autoscale
       href: api-management-howto-autoscale.md
     - name: Plan and manage costs
       href: plan-manage-costs.md
-    - name: Configure a custom domain
-      href: configure-custom-domain.md
     - name: Use an external cache
       href: api-management-howto-cache-external.md
     - name: Configure update settings
       href: configure-service-update-settings.md
+    - name: Landing zone accelerator
+      href: /azure/cloud-adoption-framework/scenarios/app-platform/api-management/landing-zone-accelerator?toc=%2Fazure%2Fapi-management%2Ftoc.json&bc=/azure/api-management/breadcrumb/toc.json
+  - name: Scale and manage operations
+    items:
+    - name: Use capacity for scaling decisions
+      href: api-management-capacity.md
+    - name: Upgrade and scale
+      href: upgrade-and-scale.md
     - name: Move instances between regions
       href: api-management-howto-migrate.md
     - name: Recover a deleted instance
@@ -99,8 +103,6 @@
       href: how-to-event-grid.md
     - name: Reduce environmental impact
       href: sustainability.md
-    - name: Landing zone accelerator
-      href: /azure/cloud-adoption-framework/scenarios/app-platform/api-management/landing-zone-accelerator?toc=%2Fazure%2Fapi-management%2Ftoc.json&bc=/azure/api-management/breadcrumb/toc.json
     - name: Manage using automation
       href: automation-manage-api-management.md
     - name: DevOps and Continuous Integration/Continuous Deployment (CI/CD)
@@ -401,18 +403,16 @@
       href: mitigate-owasp-api-threats.md
 - name: Developer Portal & Publishing
   items:
-  - name: Manage subscriptions
-    items:
-    - name: Understand subscriptions
-      href: api-management-subscriptions.md
-    - name: Create subscriptions
-      href: api-management-howto-create-subscriptions.md
-  - name: Manage users and groups
+  - name: Manage users, groups, and subscriptions
     items:
     - name: Manage user accounts
       href: api-management-howto-create-or-invite-developers.md
     - name: Manage groups
       href: api-management-howto-create-groups.md
+    - name: Understand subscriptions
+      href: api-management-subscriptions.md
+    - name: Create subscriptions
+      href: api-management-howto-create-subscriptions.md
   - name: Customize the developer portal
     items:
     - name: Understand the developer portal
