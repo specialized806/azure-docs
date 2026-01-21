@@ -6,7 +6,7 @@ ms.suite: integration
 ms.reviewer: apseth, divswa, azla
 ms.topic: how-to
 ms.custom: sfi-image-nochange
-ms.date: 01/14/2026
+ms.date: 01/21/2026
 #Customer intent: As developer who works with Azure Logic Apps, I want to send related messages from different Service Bus sessions in a specific order for processing in my workflow.
 ---
 
@@ -14,7 +14,7 @@ ms.date: 01/14/2026
 
 [!INCLUDE [logic-apps-sku-consumption-standard](../../includes/logic-apps-sku-consumption-standard.md)]
 
-Some scenarios require your workflow to process session-related messages in a specific order from an Azure Service Bus [queue](../service-bus-messaging/service-bus-queues-topics-subscriptions.md). These messages have a property that define the relationship with each other, such as a [*session* ID](../service-bus-messaging/message-sessions.md). To process these messages by session, set up a [*sequential convoy* pattern](/azure/architecture/patterns/sequential-convoy) in your workflow.
+Some scenarios require your workflow to process session-related messages in a specific order from an Azure Service Bus [queue](../service-bus-messaging/service-bus-queues-topics-subscriptions.md). These messages have a property that defines the relationship with each other, such as a [*session* ID](../service-bus-messaging/message-sessions.md). To process these messages by session, set up a [*sequential convoy* pattern](/azure/architecture/patterns/sequential-convoy) in your workflow.
 
 For example, suppose you have a Service Bus queue that receives messages from multiple sessions. You have 10 messages from a session named *Session 1* and 5 messages from a session named *Session 2*. You can create a workflow that alternates between sessions to process messages from the queue. When the trigger first fires, the workflow run handles all the messages from Session 1. When the trigger fires again, the workflow run handles all the messages from Session 2.
 
@@ -95,7 +95,7 @@ These steps create a workflow from the template named **Azure Service Bus: Proce
 
 1. On the **Workflows** toolbar, select **Create** > **Create from Template**.
 
-1. Under **Templates**, select the template named **Azure Service Bus: Process related messages from a session-enabled queue for the same workflow instance - Sequential convoy pattern**, then select **Use this template**.
+1. Under **Templates**, select the template named **Azure Service Bus: Process related messages from a session-enabled queue for the same workflow instance - Sequential convoy pattern**, and then select **Use this template**.
 
    The following example partially shows the workflow templates gallery:
 
@@ -105,7 +105,7 @@ These steps create a workflow from the template named **Azure Service Bus: Proce
 
    1. On the **Basics** tab, follow these steps:
 
-      1. Provide a name for your workflow.
+      1. Enter a name for your workflow.
 
          The name must start with a letter and can contain only letters, numbers, dashes, and underscores.
 
@@ -115,7 +115,7 @@ These steps create a workflow from the template named **Azure Service Bus: Proce
 
    1. On the **Connections** tab, follow these steps:
 
-      1. For Service Bus, in **Connection** column, select **Connect**.
+      1. For Service Bus, in the **Connection** column, select **Connect**.
 
          :::image type="content" source="./media/send-related-messages-sequential-convoy/connect-service-bus.png" alt-text="Screenshot shows pane to start connecting to Azure Service Bus namespace.":::
 
@@ -144,56 +144,163 @@ These steps create a workflow from the template named **Azure Service Bus: Proce
 
    1. Review the provided information, and select **Create**.
 
-   The designer shows a workflow prepopulated with the trigger named **When messagse are available in a queue (peek-lock)** and various actions, for example:
+   The designer shows a workflow prepopulated with the trigger named **When messages are available in a queue (peek-lock)** and various actions, for example:
 
    :::image type="content" source="./media/send-related-messages-sequential-convoy/workflow-from-template.png" alt-text="Screenshot shows workflow with all operations.":::
 
-   This workflow includes cross-environment parameters that are predefined to abstract values that change across various environments where your workflow runs, for example, development, test, and production. Many operations in the workflow use these parameters instead of hardcoded values.
+   This workflow includes predefined cross-environment parameters to abstract values that change across various environments where your workflow runs, such as development, test, and production. Many operations in the workflow use these parameters instead of hardcoded values.
 
    The following table describes these cross-environment parameters:
 
    | Name | Type | Value | Description |
    |------|------|-------|-------------|
-   | `delayInMinutes_<workflow-name>` | **Integer** | `0` | The number of minutes to wait before renewing |
+   | `delayInMinutes_<workflow-name>` | **Integer** | `0` | The number of minutes to wait before renewing the message lock token. |
    | `messageBatchSize_<workflow-name>` | **Integer** | `50` | The number of messages for the current batch. |
    | `queueName_<workflow-name>` | **String** | `<Service-Bus-queue-name>` | The name for your Service Bus queue. |
 
    For more information, see [Create cross-environment parameters for workflow inputs](create-parameters-workflows.md).
 
-1. To complete the workflow by providing the required values, continue to the next section.
+1. To learn about the predefined operations in the workflow, continue to the next section.
 
-#### Complete the workflow
+#### Workflow operations
 
-To learn about the workflow operations and provide the required values, follow these steps. You must provide all the required values, which are marked by an asterisk (**\***), before you can save the workflow.
+The following sections describe the predefined operations in the workflow.
 
+##### When messages are available in a queue (peek-lock)
 
-1. For the Service Bus built-in trigger named [**When messages are available in a queue (peek-lock)**](azure/logic-apps/connectors/built-in/reference/servicebus/#when-messages-are-available-in-a-queue-(peek-lock)), provide the following values:
+This Azure Service Bus built-in trigger waits for one or more messages to arrive in a specified Service Bus queue. If a message exists in the queue, the trigger fires and runs a workflow instance. The term *peek-lock* means that the trigger sends a request to retrieve a message from the queue. If a message exists, the trigger retrieves and locks the message so that no other processing happens on that message until the lock period expires. The trigger also outputs a [ServiceBusMessage object](/connectors/servicebus/#servicebusmessage).
 
+The following table describes the prepopulated trigger parameters:
 
-   This trigger waits for messages to arrive in the specified Service Bus queue. If a message exists in the queue, the trigger fires and runs a workflow instance. The term *peek-lock* means that the trigger sends a request to retrieve a message from the queue. If a message exists, the trigger retrieves and locks the message so that no other processing happens on that message until the lock period expires.
+| Parameter | Value | Description |
+|-----------|-------|-------------|
+| **Queue name** | `queueName_<workflow-name>` | The predefined cross-environment parameter that specifies your Service Bus queue. To set this value, follow these steps: <br><br>1. Select inside the **Queue name** box, and then select the lightning icon to open the dynamic content list. <br>2. From the list, select `queueName_<workflow-name>`. |
+| **Queue type** | **Main** | This default type refers to your primary Service Bus queue. |
+| **Maximum message batch size** | `messageBatchSize_<workflow-name>` | The predefined cross-environment parameter that specifies the largest number of messages in a batch. To set this value, follow these steps: <br><br>1. Select inside the **Maximum message batch size** box, and then select the lightning icon to open the dynamic content list. <br>2. From the list, select `messageBatchSize_<workflow-name>`. |
 
-1. For the variable named **Initialize Process Complete Flag**
+For more information, see [**When messages are available in a queue (peek-lock)**](azure/logic-apps/connectors/built-in/reference/servicebus/#when-messages-are-available-in-a-queue-(peek-lock)).
 
-   1.  | This [**Initialize variable** action](logic-apps-create-variables-store-values.md#initialize-variable) creates a Boolean variable named `processCompleted` with the default value set to **false**. The variable indicates when the following conditions are true: <br><br>- No more messages exist in the session for processing. <br>- The session lock no longer needs to be renewed so the current workflow instance can finish running. |
-| **Scope** | This [**Scope** action](logic-apps-control-flow-run-steps-group-scopes.md) contains the actions that run to process a message. If a problem happens in this scope, the subsequent actions outside this **Scope** action handles that problem. |
-| **Business Logic Scope**| This [**Scope** action](logic-apps-control-flow-run-steps-group-scopes.md) contains the business actions that run based on the current message. |
-| **Business Logic** | This action is a placeholder, so replace this action with the actions to process the current message, based on your scenario's business logic. |
-| **Process Finished** | This action changes the `processCompleted` variable value from **false** to **true** to indicate that message processing completed. <br><br>Make sure This action's settings also sets the **Run after** values for **Business Logic Scope** to **Is successful**, **Has timed out**, **Is skipped**, and **Has failed**. |
+##### Initialize Process Complete Flag
 
+This [**Initialize variable** action](logic-apps-create-variables-store-values.md#initialize-variable) named **Initialize Process Complete Flag** creates a variable with the following initial values:
 
+| Parameter | Value | Description |
+|-----------|-------|-------------|
+| **Name** | `processCompleted` | The name for the variable. |
+| **Type** | **Boolean** | The data type for the variable. |
+| **Value** | **false** | The default value for the variable. |
 
-   1. On the **Settings** tab, in the **Run after** section, expand **Business Logic Scope**.
+The `processCompleted` variable's value changes to `true` during workflow execution later when the following conditions become true:
 
-   1. Select all the unselected statuses: **Has timed out**, **Is skipped**, and **Has failed**, for example:
+- No more messages exist in the session for processing.
+- The session lock no longer needs to be renewed so the current workflow instance can finish running.
 
-      :::image type="content" source="./media/send-related-messages-sequential-convoy/run-after-settings.png" alt-text="Screenshot shows the run after settings for Process Finished.":::
+##### Scope action
 
+The outer parent [**Scope** action](logic-apps-control-flow-run-steps-group-scopes.md) contains an inner nested **Scope** action named **Business Logic Scope**. This nested scope contains a placeholder action named **Business Logic**. Here, you can add the actions for your scenario's business logic to process the current message.
 
+1. For clarity, rename the outer parent [**Scope** action](logic-apps-control-flow-run-steps-group-scopes.md) to `Process message`.
 
-For more information, see:
+   :::image type="content" source="./media/send-related-messages-sequential-convoy/rename-parent-scope.png" alt-text="Screenshot shows the parent scope renamed as Process message.":::
 
-- [Evaluate actions with scopes and their results](error-exception-handling.md#evaluate-actions-with-scopes-and-their-results)
-- [Logic Apps: Try-Catch Pattern, Nested Scopes, and Compensating Transaction Pattern](https://andrewilson.co.uk/post/2025/01/logic-app-nested-scopes-and-compensating-transaction-pattern/)
+1. Expand the inner nested action named **Business Logic Scope**.
+
+   If a problem happens in this scope, use the subsequent actions outside the parent **Scope** action to handle that problem.
+
+1. Replace the **Business Logic** placeholder action with the actual actions for your scenario's business logic.
+
+Under the **Business Logic Scope** action, the **Process Finished** action is set up to always run, regardless of the status assigned to the **Business Logic Scope** action after all the actions in the **Business Logic Scope** action finish running. For the **Process Finished** action to always run, the workflow presets the **Run after** setting to the following values:
+
+- **Is successful**
+- **Has timed out**
+- **Is skipped**
+- **Has failed**
+
+:::image type="content" source="./media/send-related-messages-sequential-convoy/run-after-settings-template.png" alt-text="Screenshot shows the Run after settings for the Process Finished action.":::
+
+The **Process Finished** action changes the `processCompleted` variable value from **false** to **true**, which indicates that message processing finished.
+
+:::image type="content" source="./media/send-related-messages-sequential-convoy/process-finished-updated.png" alt-text="Screenshot shows the updated values in the Process Finished action.":::
+
+##### Until
+
+At the **Business Logic Scope** level, a parallel branch runs an **Until** loop that determines whether any other messages exist in the same session. Actions run inside the loop until the loop condition is met or the timeout period elapses. In this example, the loop continues running until message processing finishes as expressed by the following condition:
+
+`processCompleted = true`
+
+:::image type="content" source="./media/send-related-messages-sequential-convoy/parallel-branch-until-loop-standard.png" alt-text="Screenshot shows the parallel branch with the Until loop.":::
+
+##### Renew lock on a message in a queue
+
+In the **Until** loop, the Service Bus action named **Renew lock on a message in a queue** controls the time that the workflow can process a message before the message become available again for processing. This behavior prevents premature release due to long-running tasks and makes sure that only one client handles the messsage at a time before retting the lock duration to the initial value. For more information, see [Renew locks](../service-bus-messaging/message-transfers-locks-settlement#renew-locks.md).
+
+The following table describes the action's prepopulated parameters:
+
+| Parameter | Value | Description |
+|-----------|-------|-------------|
+| **Queue name** | `queueName_<workflow-name>` | The predefined cross-environment parameter that specifies your Service Bus queue. To set this value, follow these steps: <br><br>1. Select inside the **Queue name** box, and then select the lightning icon to open the dynamic content list. <br>2. From the list, select `queueName_<workflow-name>`. |
+| **Lock token** | **Lock Token** | The lock token for the message to abandon. To set this value, follow these steps: <br><br>1. Select inside the **Lock token** box, and then select the lightning icon to open the dynamic content list. <br>2. From the list, under **When messages are available in a queue**, select `Lock Token`. |
+
+##### Wait for Process to Complete
+
+In the **Until** loop, the **Delay** action named **Wait for Process to Complete** adds an additional delay for message processing to complete. Make sure this delay value is less than the lock timeout duration for the queue. The minimum lock duration is 30 seconds.
+
+The following table describes the action's prepopulated parameters:
+
+| Parameter | Value | Description |
+|-----------|-------|-------------|
+| **Count** | `delayInMinutes_<workflow-name>` | The predefined cross-environment parameter that specifies the number of minutes to wait before renewing the message lock token. To set this value, follow these steps: <br><br>1. Select inside the **Queue name** box, and then select the lightning icon to open the dynamic content list. <br>2. From the list, select `delayInMinutes_<workflow-name>`. |
+| **Unit** | **Minute** | The time unit for the delay. |
+
+##### Actions for post-message processing
+
+Under the `Process message` scope, two parallel branches exist to handle the cases for unsuccessful and succesful message processing.
+
+- Branch 1
+
+  This branch includes a **Compose** action named **Compensation Logic** as a placeholder for the actions you want to run for handling errors and exceptions.
+
+  1. Replace this placeholder with the actions that you want instead.
+
+     For example, you might set up a **Scope** action that contains your error handling actions.
+
+  1. Make sure that the error-handling action directly under the `Process message` scope runs only after the `Process message` scope completes with one of the following statuses:
+
+     - **Has timed out**
+     - **Is skipped**
+     - **Has failed**
+
+     For example:
+
+     :::image type="content" source="./media/send-related-messages-sequential-convoy/error-handling-consumption.png" alt-text="Screenshot shows error handling scope and run after settings.":::
+
+  Under the error-handling actions, the Service Bus action named **Abandon the message in a queue** unlocks a message and requeues the message for another attempt.
+
+  The following table describes the action's prepopulated values:
+
+  | Parameter | Value | Description |
+  |-----------|-------|-------------|
+  | **Queue name** | `queueName_<workflow-name>` | The predefined cross-environment parameter that specifies your Service Bus queue. To set this value, follow these steps: <br><br>1. Select inside the **Queue name** box, and then select the lightning icon to open the dynamic content list. <br>2. From the list, select `queueName_<workflow-name>`. |
+  | **Lock token** | **Lock Token** | The lock token for the message to abandon. To set this value, follow these steps: <br><br>1. Select inside the **Lock token** box, and then select the lightning icon to open the dynamic content list. <br>2. From the list, under **When messages are available in a queue**, select `Lock Token`. |
+
+  For example:
+
+  :::image type="content" source="./media/send-related-messages-sequential-convoy/abandon-message-standard.png" alt-text="Screenshot shows Abandon message action for Standard workflow.":::
+
+- Branch 2
+
+  This branch includes a Service Bus action named **Complete the message in a queue** that marks the message as done and deletes the message from the queue. This behavior prevents redelivery and moves the message to "processed" status. This action runs only if the `Process message` scope successfully completes.
+
+  The following table describes the action's prepopulated values:
+
+  | Parameter | Value | Description |
+  |-----------|-------|-------------|
+  | **Queue name** | `queueName_<workflow-name>` | The predefined cross-environment parameter that specifies your Service Bus queue. To set this value, follow these steps: <br><br>1. Select inside the **Queue name** box, and then select the lightning icon to open the dynamic content list. <br>2. From the list, select `queueName_<workflow-name>`. |
+  | **Lock token** | **Lock Token** | The lock token for the message to abandon. To set this value, follow these steps: <br><br>1. Select inside the **Lock token** box, and then select the lightning icon to open the dynamic content list. <br>2. From the list, under **When messages are available in a queue**, select `Lock Token`. |
+
+  For example:
+
+  :::image type="content" source="./media/send-related-messages-sequential-convoy/complete-message-standard.png" alt-text="Screenshot shows Complete message action for Standard workflow.":::
 
 ### [Consumption](#tab/consumption)
 
@@ -201,13 +308,13 @@ These steps manually create a workflow that uses an Azure Service Bus trigger an
 
 #### Add parameters to your workflow
 
-In this section, create cross-environment parameters to abstract values that change across various environments where your workflow runs, for example, development, test, and production. Later, you add various actions that use these parameters in your workflow.
+In this section, create cross-environment parameters to abstract values that change across various environments where your workflow runs, such as development, test, and production. Later, you add various actions that use these parameters in your workflow.
 
 Follow these [general steps](create-parameters-workflows.md) to create the cross-environment parameters in this table:
 
 | Name | Type | Value | Description |
 |------|------|-------|-------------|
-| `delayInMinutes_<workflow-name>` | **Integer** | `0` | The number of minutes to wait before renewing |
+| `delayInMinutes_<workflow-name>` | **Integer** | `0` | The number of minutes to wait before renewing the message lock token. |
 | `messageBatchSize_<workflow-name>` | **Integer** | `50` | The number of messages for the current batch. |
 | `queueName_<workflow-name>` | **String** | `<Service-Bus-queue-name>` | The name for your Service Bus queue. |
 
@@ -225,7 +332,7 @@ These steps add a Service Bus trigger that initializes sessions and checks the s
 
    The term *peek-lock* means that the trigger sends a request to retrieve a message from the queue. If a message exists, the trigger retrieves and locks the message so that no other processing happens on that message until the lock period expires.
 
-1. On the connection pane, provide the folowing information:
+1. On the connection pane, provide the allowing information:
 
    | Parameter | Value | Description |
    |-----------|-------|-------------|
@@ -239,11 +346,11 @@ These steps add a Service Bus trigger that initializes sessions and checks the s
 
 1. After the trigger information pane opens, on the **Parameters** tab, provide the following values:
 
-   1. Select inside the **Queue name** box, then select the lightning icon to open the dynamic content list.
+   1. Select inside the **Queue name** box, and then select the lightning icon to open the dynamic content list.
 
    1. From the list, select `queueName_<workflow-name>`.
 
-      This previously created workflow parameter specifies the name for your Service Bus queue.
+      This previously created cross-environment parameter specifies the name for your Service Bus queue.
 
    1. For **Queue type**, keep the default type set to **Main**.
 
@@ -253,10 +360,10 @@ These steps add a Service Bus trigger that initializes sessions and checks the s
 
       The following table describes more information about the **Session id** values:
 
-      | Session id | Descrption |
+      | Session id | Description |
       |------------|------------|
       | **None** | The default value, which results in no sessions and can't be used for implementing the sequential convoy pattern. |
-      | **Next available** | This value specifies that when the trigger fires, the trigger gets a session based on the session ID from the message in the Service Bus queue.  The workflow's subsequent actions process all the messages associated with the same session. <br><br>The session is locked so that no other workflow or client can process messages related to the same session. |
+      | **Next available** | This value specifies that when the trigger fires, the trigger gets a session based on the session ID from the message in the Service Bus queue. The workflow's subsequent actions process all the messages associated with the same session. <br><br>The session is locked so that no other workflow or client can process messages related to the same session. |
       | **Enter custom value** | A known, static session ID that you want the trigger to always use. |
 
       > [!NOTE]
@@ -300,7 +407,7 @@ To help your workflow determine whether any more messages from a session need pr
 
    When you're done, your workflow looks like the following example:
 
-   :::image type="content" source="./media/send-related-messages-sequential-convoy/initialize-process-complete.png" alt-text="Screenshot shows the information for Initalize Process Complete Flag.":::
+   :::image type="content" source="./media/send-related-messages-sequential-convoy/initialize-process-complete.png" alt-text="Screenshot shows the information for Vitalize Process Complete Flag.":::
 
    For more information, see [Initialize the session](#initialize-session).
 
@@ -345,7 +452,7 @@ These steps add a [**Scope** action](logic-apps-control-flow-run-steps-group-sco
 
 1. At the same level as the **Business Logic Scope**, add a parallel branch to determine whether any other messages exist in the same session.
 
-   1. Between `Process message` and `Business Logic Scope`, select the plus sign (**+**), then select **Add a parallel branch**.
+   1. Between `Process message` and `Business Logic Scope`, select the plus sign (**+**), and then select **Add a parallel branch**.
 
    1. In the **Add an action** pane, add a **Control** action named **Until**, which is a type of loop, for example:
 
@@ -355,7 +462,7 @@ These steps add a [**Scope** action](logic-apps-control-flow-run-steps-group-sco
 
       This **Until** loop makes sure the session lock is held while messages exist or until one hour passes. To change the loop's time limit, edit the loop's advanced parameter named **Timeout**, which is set to **PT1H**.
 
-      1. On the **Parameters** tab, select inside the leftmost **Choose a value** box, then select the expression editor (function icon).
+      1. On the **Parameters** tab, select inside the leftmost **Choose a value** box, and then select the expression editor (function icon).
 
       1. In the expression editor, enter the following expression:
 
@@ -367,7 +474,7 @@ These steps add a [**Scope** action](logic-apps-control-flow-run-steps-group-sco
 
          :::image type="content" source="./media/send-related-messages-sequential-convoy/process-completed-until-loop.png" alt-text="Screenshot shows the resolved expression for processCompleted variable.":::
 
-      1. In the middle list, make sure the operation set to the equal sign (**=**).
+      1. In the middle list, make sure the operation is set to the equal sign (**=**).
 
       1. In the rightmost **Chose a value** box, enter the value `true`.
 
@@ -379,15 +486,15 @@ These steps add a [**Scope** action](logic-apps-control-flow-run-steps-group-sco
 
       1. Follow the [general steps](add-trigger-action-workflow.md#add-action) to add a Service Bus action named **Renew lock on the message in a queue**.
 
+         This action extends the time that the workflow can process a message before the message become available again for processing. This behavior prevents premature release due to long-running tasks and makes sure that only one client handles the messsage at a time before retting the lock duration to the initial value. For more information, see [Renew locks](../service-bus-messaging/message-transfers-locks-settlement#renew-locks.md).
+
       1. After the Service Bus action information pane opens, provide the following values:
 
-         1. Select inside the **Queue name** box, then select the lightning icon to open the dynamic content list.
+         1. Select inside the **Queue name** box, and then select the lightning icon to open the dynamic content list.
 
          1. From the list, select `queueName_<workflow-name>`.
 
-         1. Select inside the **Lock token of the message** box, then select the lightning icon to open the dynamic content list.
-
-         1. From the list, select `messageBatchSize_<workflow-name>`.
+         1. Select inside the **Lock token of the message** box, and then select the lightning icon to open the dynamic content list.
 
          1. From the list, under **When one or more messages arrive in a queue**, select **Lock Token**.
 
@@ -399,7 +506,7 @@ These steps add a [**Scope** action](logic-apps-control-flow-run-steps-group-sco
 
          1. Change the action name to `Wait for Process to Complete`.
 
-         1. On the **Parameters** tab, the action information pane, select inside the **Count** box, then select the lightning icon.
+         1. On the **Parameters** tab, the action information pane, select inside the **Count** box, and then select the lightning icon.
 
          1. From the list, select `delayInMinutes_<workflow-name>`.
 
@@ -419,19 +526,71 @@ These steps add a [**Scope** action](logic-apps-control-flow-run-steps-group-sco
 
       [!INCLUDE [Warning about creating infinite loops](../../includes/connectors-infinite-loops.md)]
 
-#### Add action for exception handling
+#### Add actions for post-message processing
 
+Under the `Process message` scope, set up the following two branches:
 
+- Branch 1
 
+  1. Add the actions for handling errors and exceptions.
+
+     For example, you might set up a **Scope** action that contains your error handling actions.
+
+     Make sure that the error-handling action directly under the `Process message` scope runs only after the `Process message` scope completes with one of the following statuses:
+
+     - **Has timed out**
+     - **Is skipped**
+     - **Has failed**
+
+     For example:
+
+     :::image type="content" source="./media/send-related-messages-sequential-convoy/error-handling-consumption.png" alt-text="Screenshot shows error handling scope and run after settings.":::
+
+  1. Under the error-handling actions, add the Service Bus action named **Abandon the message in a queue**, and then set up the action as follows:
+
+     1. Select inside the **Queue name** box, and then select the lightning icon to open the dynamic content list.
+
+     1. From the list, select `queueName_<workflow-name>`.
+
+     1. Select inside the **Lock token of the message** box, and then select the lightning icon to open the dynamic content list.
+
+     1. From the list, under **When one or more messages arrive in a queue**, select **Lock Token**.
+
+     1. Select inside the **Session id** box, and then select the lightning icon to open the dynamic content list.
+
+     1. From the list, under **When one or more messages arrive in a queue**, select **Session Id**.
+
+     When you're done, the Service Bus action looks like the following example:
+
+     :::image type="content" source="./media/send-related-messages-sequential-convoy/abandon-message-consumption.png" alt-text="Screenshot shows Abandon message in queue for Consumption workflow.":::
+
+- Branch 2: Add the Service Bus action named **Complete the message in a queue**. This action runs only if the `Process message` scope successfully completes. Set up the action as follows:
+
+  1. Select inside the **Queue name** box, and then select the lightning icon to open the dynamic content list.
+
+  1. From the list, select `queueName_<workflow-name>`.
+
+  1. Select inside the **Lock token of the message** box, and then select the lightning icon to open the dynamic content list.
+
+  1. From the list, under **When one or more messages arrive in a queue**, select **Lock Token**.
+
+  1. Select inside the **Session id** box, and then select the lightning icon to open the dynamic content list.
+
+  1. From the list, under **When one or more messages arrive in a queue**, select **Session Id**.
+
+  When you're done, the Service Bus action looks like the following example:
+
+  :::image type="content" source="./media/send-related-messages-sequential-convoy/complete-message-consumption.png" alt-text="Screenshot shows Complete message in queue for Consumption workflow.":::
 
 ---
 
-
 ## Run the workflow
 
-After you complete customizing the template, you can save your logic app. On the designer toolbar, select **Save**.
+1. Save your workflow. On the designer toolbar, select **Save**.
 
-To test your logic app, send messages to your Service Bus queue. 
+1. To test your workflow, send messages to your Service Bus queue.
+
+1. Confirm that the workflow behaves as expected.
 
 ## Related content
 
