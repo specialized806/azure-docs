@@ -1,24 +1,24 @@
 - name: Azure API Management Documentation
   href: index.yml
+- name: Overview & Concepts
+  items:
+  - name: About API Management
+    displayName: Overview
+    href: api-management-key-concepts.md
+  - name: API Management features availability
+    href: api-management-features.md
+  - name: API Management gateways
+    href: api-management-gateways-overview.md
+  - name: v2 service tiers
+    href: v2-service-tiers-overview.md
+  - name: Terminology
+    href: api-management-terminology.md
+  - name: Service limits
+    href: ../azure-resource-manager/management/azure-subscription-service-limits.md?toc=%2Fazure%2Fapi-management%2Ftoc.json&bc=/azure/api-management/breadcrumb/toc.json#azure-api-management-limits
 - name: Get started
   items:
   - name: What's new?
     href: https://github.com/Azure/API-Management/blob/main/changelogs/api-management-service.md
-  - name: Overview
-    items:
-    - name: About API Management
-      displayName: Overview
-      href: api-management-key-concepts.md
-    - name: API Management features availability
-      href: api-management-features.md
-    - name: API Management gateways
-      href: api-management-gateways-overview.md
-    - name: v2 service tiers
-      href: v2-service-tiers-overview.md
-    - name: Terminology
-      href: api-management-terminology.md
-    - name: Service limits
-      href: ../azure-resource-manager/management/azure-subscription-service-limits.md?toc=%2Fazure%2Fapi-management%2Ftoc.json&bc=/azure/api-management/breadcrumb/toc.json#azure-api-management-limits
   - name: Create an instance
     items:
     - name: Create an instance - CLI
