@@ -1,6 +1,6 @@
 - name: Azure API Management Documentation
   href: index.yml
-- name: Overview & Concepts
+- name: Overview and concepts
   items:
   - name: About API Management
     displayName: Overview
@@ -17,7 +17,7 @@
     href: ../azure-resource-manager/management/azure-subscription-service-limits.md?toc=%2Fazure%2Fapi-management%2Ftoc.json&bc=/azure/api-management/breadcrumb/toc.json#azure-api-management-limits
 - name: Get started
   items:
-  - name: What's new?
+  - name: What's new in API Management
     href: https://github.com/Azure/API-Management/blob/main/changelogs/api-management-service.md
   - name: Create an instance
     items:
@@ -68,7 +68,7 @@
   expanded: true
 - name: Deploy, Scale & Operate
   items:
-  - name: Deploy & scale
+  - name: Deploy and scale
     items:
     - name: Create an instance
       href: get-started-create-service-instance.md
@@ -107,7 +107,7 @@
       href: devops-api-development-templates.md
     - name: Migrate Amazon API Gateway to Azure API Management
       href: migrate-amazon-api-gateway-to-api-management.md
-  - name: Network & security
+  - name: Networking and security
     items:
     - name: Networking options
       href: virtual-network-concepts.md
@@ -133,7 +133,7 @@
       href: private-endpoint.md
     - name: Retrieve IP addresses
       href: api-management-howto-ip-addresses.md
-    - name: Defend against DDoS attacks
+    - name: Defend against Distributed Denial of Service (DDoS) attacks
       href: protect-with-ddos-protection.md
     - name: Configure Front Door
       href: front-door-api-management.md
@@ -156,9 +156,9 @@
       href: api-management-howto-disaster-recovery-backup-restore.md
 - name: Self-hosted gateway
   items:
-  - name: Overview
+  - name: Self-hosted gateway overview
     href: self-hosted-gateway-overview.md
-  - name: Install & deploy
+  - name: Install and deploy
     items:
     - name: Provision a self-hosted gateway
       href: api-management-howto-provision-self-hosted-gateway.md
@@ -190,7 +190,7 @@
       href: self-hosted-gateway-enable-azure-ad.md
   - name: Run self-hosted gateway in production
     href: how-to-self-hosted-gateway-on-kubernetes-in-production.md
-  - name: Support policy
+  - name: Self-hosted gateway support policy
     href: self-hosted-gateway-support-policies.md
 - name: AI Gateway, LLM APIs, and Agent Tools
   items:
@@ -288,7 +288,7 @@
       href: sap-api.md
   - name: Import microservices as APIs
     items:
-    - name: Manage microservices deployed in AKS
+    - name: Manage microservices deployed in Azure Kubernetes Service (AKS)
       href: api-management-kubernetes.md
     - name: Integrate with Service Fabric
       href: /azure/service-fabric/service-fabric-api-management-overview?toc=%2Fazure%2Fapi-management%2Ftoc.json&bc=/azure/api-management/breadcrumb/toc.json
@@ -324,9 +324,9 @@
     href: set-edit-policies.md
   - name: Author policies using Azure Copilot
     href: /azure/copilot/author-api-management-policies?toc=%2Fazure%2Fapi-management%2Ftoc.json&bc=/azure/api-management/breadcrumb/toc.json
-  - name: Create and debug policies in VS Code
+  - name: Create and debug policies in Visual Studio Code (VS Code)
     href: api-management-debug-policies.md
-  - name: Policy expressions
+  - name: Use policy expressions
     href: api-management-policy-expressions.md
   - name: Reuse policy configurations
     displayName: policy fragments
@@ -370,7 +370,7 @@
       href: api-management-howto-mutual-certificates-for-clients.md
     - name: Mutual certificate authentication for backend
       href: api-management-howto-mutual-certificates.md
-    - name: Manage CA certificates
+    - name: Manage Certificate Authority (CA) certificates
       href: api-management-howto-ca-certificates.md
   - name: Manage API credentials
     items:
@@ -423,7 +423,7 @@
       href: automate-portal-deployments.md
     - name: Extend portal with custom functionality
       href: developer-portal-extend-custom-functionality.md
-    - name: Enable CORS for interactive console
+    - name: Enable Cross-Origin Resource Sharing (CORS) for interactive console
       href: enable-cors-developer-portal.md
     - name: Enable console OAuth support
       href: api-management-howto-oauth2.md
@@ -469,7 +469,7 @@
       - name: Export API as custom connector
         displayName: Power Platform
         href: export-api-power-platform.md
-      - name: Enable CORS for custom connector
+      - name: Enable Cross-Origin Resource Sharing (CORS) for custom connector
         displayName: Power Platform
         href: enable-cors-power-platform.md
   - name: Monetize APIs
