@@ -105,39 +105,31 @@ To edit the storage replication setting:
    * In the list of resources, type **Recovery Services**.
    * As you begin typing, the list will filter based on your input. When you see **Recovery Services vaults**, select it.
 
-     ![Create Recovery Services vault step 1](./media/backup-azure-microsoft-azure-backup/open-recovery-services-vault.png)
+     :::image type="content" source="./media/backup-azure-microsoft-azure-backup/open-recovery-services-vault.png" alt-text="Screenshot that shows how to open the Recovery Services vaults pane in the Azure portal.":::
 
      The list of Recovery Services vaults appears.
    * From the list of Recovery Services vaults, select a vault.
 
      The selected vault dashboard opens.
 
-     ![Vault dashboard](./media/backup-azure-microsoft-azure-backup/vault-dashboard.png)
-3. The **Settings** pane opens up by default. If it's closed, select **Settings** to open the settings pane.
+     :::image type="content" source="./media/backup-azure-microsoft-azure-backup/vault-dashboard.png" alt-text="Screenshot that shows the dashboard of the selected Recovery Services vault." lightbox="./media/backup-azure-microsoft-azure-backup/vault-dashboard.png":::
 
-    ![Settings pane](./media/backup-azure-microsoft-azure-backup/vault-setting.png)
-4. Select **Backup** to open the Getting Started wizard.
+1. On the vault dashboard, under **Getting Started**, select **Backup**.
 
-    ![Backup getting started](./media/backup-azure-microsoft-azure-backup/getting-started-backup.png)
+1. On the **Backup** pane, from the **Where is your workload running** menu, select **On-premises**.
 
-    In the **Getting Started with backup** pane that opens, **Backup Goals** will be auto-selected.
+    :::image type="content" source="./media/backup-azure-microsoft-azure-backup/backup-goals-azure-backup-server.png" alt-text="Screenshot that shows the selection of workloads to protect using Azure Backup Server.":::
 
-    ![Backup-goals-default-opened](./media/backup-azure-microsoft-azure-backup/getting-started.png)
+    From the **What do you want to back up?** drop-down menu, select the workloads you want to protect using Azure Backup Server.
 
-5. In the **Backup Goal** pane, from the **Where is your workload running** menu, select **On-premises**.
-
-    ![on-premises and workloads as goals](./media/backup-azure-microsoft-azure-backup/backup-goals-azure-backup-server.png)
-
-    From the **What do you want to back up?** drop-down menu, select the workloads you want to protect using Azure Backup Server, and then select **OK**.
-
-    The **Getting Started with backup** wizard switches the **Prepare infrastructure** option to back up workloads to Azure.
+1. To back up workloads to Azure, select **Prepare Infrastructure** option.
 
    > [!NOTE]
    > If you only want to back up files and folders, we recommend using the Azure Backup agent and following the guidance in the article, [First look: back up files and folders](./backup-windows-with-mars-agent.md). If you're going to protect more than files and folders, or you're planning to expand the protection needs in the future, select those workloads.
    >
    >
 
-    ![Getting Started wizard change](./media/backup-azure-microsoft-azure-backup/getting-started-prep-infra.png)
+   :::image type="content" source="./media/backup-azure-microsoft-azure-backup/select-prepare-infrastructure.png" alt-text="Screenshot that shows the Prepare infrastructure option selected in the Backup Goals pane.":::
 
 6. In the **Prepare infrastructure** pane that opens, select the **Download** links for Install Azure Backup Server and Download vault credentials. You use the vault credentials during registration of Azure Backup Server to the Recovery Services vault. The links take you to the Download Center where the software package can be downloaded.
 
