@@ -209,9 +209,9 @@ Apply the following configuration to create the Traffic Manager profile. For mor
     
     - Origin health: Backend health should remain Online.
 
-#### Step 6: Failover procedures
+#### Step 6: Test failover procedures
 
-1. Manual failover to alternative CDN
+1. Manual failover to alternative CDN:
 
     ```azurecli
     # Failover: Disable Front Door and enable CDN
@@ -243,7 +243,8 @@ Apply the following configuration to create the Traffic Manager profile. For mor
     curl --head https://$CUSTOM_DOMAIN/
     ```
  
-1. Failback to Front Door
+1. Failback to Front Door.
+    Failback to Front Door and disable alternative CDN:
 
     ```azurecli
     # Failback: Enable Front Door, Disable CDN
@@ -639,6 +640,8 @@ The following are virtual network and subnet requirements:
     ```
  
 1. Verify current routing
+
+    Verify which endpoint is currently serving traffic:
 
     ```
     # Check which endpoint is serving traffic
