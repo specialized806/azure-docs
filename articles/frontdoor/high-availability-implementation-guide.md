@@ -213,7 +213,7 @@ Apply the following configuration to create the Traffic Manager profile. For mor
 
 1. Manual failover to alternative CDN
 
-    ```
+    ```azurecli
     # Failover: Disable Front Door and enable CDN
     az network traffic-manager endpoint update `
         --name "endpoint-afd-primary" `
@@ -243,9 +243,9 @@ Apply the following configuration to create the Traffic Manager profile. For mor
     curl --head https://$CUSTOM_DOMAIN/
     ```
  
-2. Failback to Front Door
+1. Failback to Front Door
 
-    ```
+    ```azurecli
     # Failback: Enable Front Door, Disable CDN
     az network traffic-manager endpoint update `
         --name "endpoint-afd-primary" `
@@ -266,7 +266,7 @@ Apply the following configuration to create the Traffic Manager profile. For mor
         --name $ATM_CDN_PROFILE_NAME `
         --resource-group $RESOURCE_GROUP `
         --query "endpoints[].{Name:name, Status:endpointStatus, Health:endpointMonitorStatus}"
-        ```
+    ```
 
 ## Scenario 2: Traffic Manager failover: Front Door to Application Gateway WAF
 
@@ -486,11 +486,7 @@ Multi-Region Configuration:
 
 4.2: Create Primary Traffic Manager (Front Door primary, Application Gateway failover)
 
-</azure/traffic-manager/traffic-manager-create-profile>  
-
-** **
-
-** **
+</azure/traffic-manager/traffic-manager-create-profile>
 
 **Configurations for Both Endpoints:**
 
