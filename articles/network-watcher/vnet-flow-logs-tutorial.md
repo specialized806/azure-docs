@@ -154,6 +154,9 @@ In this section, you create a storage account to use it to store the flow logs.
 
 1. Review the settings, and then select **Create**.
 
+> [!NOTE]
+> All Azure Storage account redundancy configurations are supported, including locally redundant storage (LRS), zone‑redundant storage (ZRS), geo‑redundant storage (GRS), and geo‑zone‑redundant storage (GZRS).
+
 ## Create a flow log
 
 In this section, you create a virtual network flow log that's saved into the storage account created previously in the tutorial.
