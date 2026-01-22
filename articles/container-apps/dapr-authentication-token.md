@@ -1,7 +1,7 @@
 ---
 title: Enable token authentication for Dapr requests
 description: Learn more about enabling token authentication for Dapr requests to your container app in Azure Container Apps.
-ms.author: nicholas.greenfield
+ms.author: nigreenf
 ms.reviewer: hannahhunter
 author: greenie-msft
 ms.service: azure-container-apps

@@ -3,7 +3,7 @@ author: greenie-msft
 ms.service: azure-functions
 ms.topic: include
 ms.date: 08/07/2023
-ms.author: nicholas.greenfield
+ms.author: nigreenf
 ms.reviewer: hannahhunter
 ---
 

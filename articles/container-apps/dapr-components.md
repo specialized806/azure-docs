@@ -1,7 +1,7 @@
 ---
 title: Dapr components in Azure Container Apps
 description: Learn more about how Dapr components work on your Azure Container App service to develop applications.
-ms.author: nicholas.greenfield
+ms.author: nigreenf
 ms.reviewer: hannahhunter
 author: greenie-msft
 ms.service: azure-container-apps

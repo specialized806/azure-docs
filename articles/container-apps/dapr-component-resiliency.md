@@ -8,7 +8,7 @@ ms.service: azure-container-apps
 ms.subservice: dapr
 ms.topic: conceptual
 ms.date: 11/19/2024
-ms.author: nicholas.greenfield
+ms.author: nigreenf
 ms.reviewer: hannahhunter
 ms.custom:
   - ignite-fall-2023

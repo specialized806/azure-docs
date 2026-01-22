@@ -2,7 +2,7 @@
 title: Connect to Azure services via Dapr components in the Azure portal
 description: Easily create Dapr components via the Azure Container Apps portal. 
 author: greenie-msft
-ms.author: nicholas.greenfield
+ms.author: nigreenf
 ms.reviewer: hannahhunter
 ms.service: azure-container-apps
 ms.subservice: dapr

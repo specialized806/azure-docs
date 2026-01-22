@@ -7,7 +7,7 @@ ms.service: azure-container-apps
 ms.subservice: dapr
 ms.topic: quickstart
 ms.date: 08/28/2025
-ms.author: nicholas.greenfield
+ms.author: nigreenf
 ms.reviewer: hannahhunter
 ms.custom:
   - devx-track-bicep

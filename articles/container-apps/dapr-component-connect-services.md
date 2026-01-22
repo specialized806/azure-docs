@@ -1,7 +1,7 @@
 ---
 title: Connect to other Azure or third-party services via Dapr components
 description: Learn more about connecting Dapr components with Azure and external services.
-ms.author: nicholas.greenfield
+ms.author: nigreenf
 ms.reviewer: hannahhunter
 author: greenie-msft
 ms.service: azure-container-apps
