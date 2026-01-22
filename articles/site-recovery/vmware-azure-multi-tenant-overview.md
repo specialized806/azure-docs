@@ -24,7 +24,7 @@ There are three major multitenant models:
 * **Dedicated Hosting Services Provider**: The partner owns the physical infrastructure but uses dedicated resources (such as multiple vCenters and physical datastores) to host each tenant's VMs on a separate infrastructure. The partner can provide disaster-recovery management as a managed service, or the tenant can own it as a self-service solution.
 * **Managed Services Provider (MSP)**: The customer owns the physical infrastructure that hosts the VMs, and the partner provides disaster-recovery enablement and management.
 
-## Shared-hosting services provider
+## Shared-hosting scenario
 
 The other two scenarios are subsets of the shared-hosting scenario, and they use the same principles. The differences are described at the end of the shared-hosting guidance.
 
