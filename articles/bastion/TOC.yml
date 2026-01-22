@@ -43,10 +43,8 @@
     href: vnet-peering.md
   - name: Work with NSGs
     href: bastion-nsg.md
-  - name: Reliability
-    items:
-    - name: Availability zones and disaster recovery 
-      href: /azure/reliability/reliability-bastion?toc=/azure/bastion/TOC.json
+  - name: Availability zones and disaster recovery 
+    href: /azure/reliability/reliability-bastion?toc=/azure/bastion/TOC.json
 - name: Security
   items:
   - name: Secure Bastion
