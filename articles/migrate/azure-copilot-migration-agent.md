@@ -58,7 +58,7 @@ Azure Copilot Migration Agent currently supports the following scenarios:
 - Use RVTools or the Azure Migrate appliance.
 - I have deployed the RVTools or appliance and uploaded the data. Summarize the discovered inventory.
 - Show servers that are out of support.
-- Tag these servers as upgraderequired:yes.
+- Tag these servers as upgraderequired: yes.
 - Provide the ROI summary for lift-and-shift.
 - What are the other options for moving workloads to Azure?
 - Compare the ROI between lift-and-shift and modernization.
@@ -78,7 +78,7 @@ Azure Copilot Migration Agent currently supports the following scenarios:
 - List all workloads tagged with application:ZavaOrderProcessingApp.
 - What is the cloud readiness of workloads tagged with application:ZavaOrderProcessingApp? Create an assessment if required.
 - Show the readiness summary of my assessment.
-- I am ready to migrate to Azure. What are the next steps?
+- I'm ready to migrate to Azure. What are the next steps?
 - Generate a new Azure platform landing zone.
 - Generate the platform landing zone with default values.
 - Thanks. How can I execute the actual migration now?
@@ -124,12 +124,12 @@ You can ask the agent for guidance on planning migrations and selecting appropri
 **Sample prompts**: 
 - How should I plan to move my VMware workloads to Azure? 
 - What discovery methods are available for my environment? 
-- Tell me more about the pre-requisites of deploying the Azure Migrate collector? 
+- Tell me more about the prerequisites of deploying the Azure Migrate collector? 
 - Summarize the discovered inventory. 
 
 ### Inventory analysis and organization 
 
-After inventory data is discovered or imported, you can ask the agent to analyze and organize workloads. This includes highlighting attributes such as operating system details and support status, as well as grouping workloads using tags. 
+After inventory data is discovered or imported, you can ask the agent to analyze and organize workloads. This includes highlighting attributes such as operating system details and support status, and grouping workloads using tags. 
 
 **Sample prompts**:
 - Show servers that are out of support. 
