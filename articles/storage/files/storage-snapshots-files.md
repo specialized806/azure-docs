@@ -551,7 +551,7 @@ $filesharesnapshot.properties.metadata
 ```
 
 # [Azure CLI](#tab/cli)
-To list all file share snapshots, run the following Azure CLI command. Replace `<subscription-ID>`, `<resource-group-name>`, and`<file-share-name>` with your own values.
+To list all file share snapshots, run the following Azure CLI command. Replace `<subscription-ID>`, `<resource-group-name>`, and `<file-share-name>` with your own values.
 ```bash
 az rest --method get \
 --uri "/subscriptions/<subscription-ID>/resourceGroups/<resource-group-name>/providers/Microsoft.FileShares/fileShares/<file-share-name>/fileShareSnapshots/?api-version=2025-06-01-preview"
