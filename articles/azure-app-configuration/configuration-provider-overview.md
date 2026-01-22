@@ -68,7 +68,7 @@ Configurable Startup Time-out | [GA](./reference-dotnet-provider.md#startup-retr
 Replica Auto Discovery | [GA](./reference-dotnet-provider.md#geo-replication) | GA | GA | GA | [GA](./reference-javascript-provider.md#geo-replication) | [GA](./reference-go-provider.md#geo-replication)
 Replica Failover | [GA](./reference-dotnet-provider.md#geo-replication) | GA | GA | GA | [GA](./reference-javascript-provider.md#geo-replication) | [GA](./reference-go-provider.md#geo-replication)
 Replica Load Balancing | [GA](./reference-dotnet-provider.md#geo-replication) | GA | GA | GA | [GA](./reference-javascript-provider.md#geo-replication) | [GA](./reference-go-provider.md#geo-replication)
-Snapshots | [GA](./reference-dotnet-provider.md#snapshot) | GA | GA | [GA](./reference-python-provider.md#load-configuration-from-snapshots) | [GA](./reference-javascript-provider.md#snapshot) | [GA](./reference-go-provider.md#snapshot)
+Snapshots | [GA](./reference-dotnet-provider.md#snapshot) | GA | GA | GA | [GA](./reference-javascript-provider.md#snapshot) | [GA](./reference-go-provider.md#snapshot)
 Distributed Tracing | [GA](./reference-dotnet-provider.md#distributed-tracing) | WIP | WIP | WIP | WIP | N/A
 Health Check | [GA](./reference-dotnet-provider.md#health-check) | GA | WIP | WIP | WIP | N/A 
 Select by Tag Filters | [GA](./reference-dotnet-provider.md#load-specific-key-values-using-selectors) | WIP | GA | GA | [GA](./reference-javascript-provider.md#tag-filters) | [GA](./reference-go-provider.md#tag-filters)
