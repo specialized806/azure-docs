@@ -28,6 +28,8 @@ Confidential VM restore behavior depends on the state of the DES, Key Vault, and
 - **Input DES Provided**: If you provide a new DES created from restored key data, restore can succeed if the key and version match the ones used at backup time.
 - **Mismatched DES or Key**: Restore fails with `UserErrorInputDESKeyDoesNotMatchWithOriginalKey`. To resolve this error, restore the missing keys.
 
+Learn how to [restore missing keys for Confidential VM restore](#restore-missing-keys-for-confidential-vm-restore).
+
 ## Prerequisites
 
 Before you start the Confidential VM restore process, ensure you have the recovery points available in the Recovery Services vault.
@@ -132,4 +134,5 @@ Now, you can create a new DES with Encryption type as *Confidential disk encrypt
 
 ## Related content
 
-[Restore encrypted Azure virtual machines](restore-azure-encrypted-virtual-machines.md).
+- [Support matrix for Confidential VM backup](backup-support-matrix-iaas.md#support-for-confidential-vm-backup-preview).
+- [Back up CVM using Azure Backup (preview)](confidential-vm-backup.md).

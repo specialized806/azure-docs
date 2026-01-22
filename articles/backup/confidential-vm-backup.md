@@ -17,14 +17,16 @@ Azure Backup supports [Confidential Virtual Machines (CVMs)](/azure/confidential
 
 This article describes how to configure and back up Confidential VM (CVM) with Platform or Customer Managed Key (PMK or CMK).
 
-Learn about the [supported scenarios for Confidential VM backup](backup-support-matrix-iaas.md#support-for-confidential-vm-backup-preview).
+## Supported scenarios for Confidential VM backup
+
+[!INCLUDE [Confidential VM backup support scenarios..](../../includes/confidential-vm-backup-support-matrix.md)]
 
 ## Prerequisites
 
 Before you configure backup for CVM with CMK, ensure that the following prerequisites are met:
 
 - [Configure preview features in Azure subscription](/azure/azure-resource-manager/management/preview-features?tabs=azure-portal).
-- Identify or create a Confidential VM (CVM) in a supported region. See the [supported regions](backup-support-matrix-iaas.md#support-for-confidential-vm-backup-preview)
+- Identify or create a Confidential VM (CVM) in a supported region. See the [supported regions](https://azure.microsoft.com/en-us/explore/global-infrastructure/products-by-region/?products=virtual-machines).
 - Identify or [create a Recovery Services Vault](backup-create-recovery-services-vault.md#create-a-recovery-services-vault) in the same region as the VM.
 
 ## Create a new Confidential VM with PMK or CMK
@@ -64,11 +66,11 @@ To assign permissions for MHSM, follow these steps:
 
 ## Configure backup for Confidential VM
 
-Once Azure Backup has the necessary permissions, you can continue configuring backup. [Learn how to configure Azure VM backup](backup-during-vm-creation.md).
+Once Azure Backup has the necessary permissions, you can continue configuring backup. [Learn how to configure Azure VM backup](backup-azure-vms-enhanced-policy.md).
 
 ## Next step
 
-[Restore CVM with CMK using Azure Backup (preview)](confidential-vm-restore.md).
+[Restore CVM using Azure Backup (preview)](confidential-vm-restore.md).
 
 ## Related content
 
