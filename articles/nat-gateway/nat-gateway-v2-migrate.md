@@ -38,7 +38,8 @@ Before you migrate to StandardV2 NAT gateway, make sure that your specific scena
 * Azure Kubernetes Service (AKS) managed NAT gateway doesn't support StandardV2 NAT Gateway deployment. To use a StandardV2 NAT gateway with AKS, StandardV2 NAT Gateway must be deployed as user-assigned.
 * StandardV2 NAT Gateway and Basic SKU Load balancer or Basic SKU public IPs aren't supported.
 * StandardV2 NAT Gateway doesn't support the use of custom public IPs (BYOIP).
-* The following regions don't support StandardV2 NAT Gateway:
+* The following regions don't support StandardV2 NAT Gateway and StandardV2 public IPs:
+  * Brazil Southeast
   * Canada East
   * Central India
   * Chile Central
@@ -46,7 +47,10 @@ Before you migrate to StandardV2 NAT gateway, make sure that your specific scena
   * Israel Northwest
   * Malaysia West
   * Qatar Central
-  * UAE Central 
+  * Sweden South
+  * UAE Central
+  * West Central US
+  * West India
 
 ## Known issues 
 
@@ -67,7 +71,7 @@ Before you migrate to StandardV2 NAT gateway, make sure that your specific scena
 
 * Attaching a StandardV2 NAT Gateway to an empty subnet created before April 2025 without any virtual machines may cause the virtual network to go into a failed state. To return the virtual network to a successful state, remove StandardV2 NAT Gateway, create and add a virtual machine to the subnet and then reattach the StandardV2 NAT Gateway. 
 
-* Long running outbound connections using a Load balancer or an instance-level public IP on a VM instance may be disrupted by attaching a Standard SKU or StandardV2 NAT gateway to the subnet. New connections use the NAT gateway. 
+* Existing outbound connections using a Load balancer or an instance-level public IP on a VM instance may be disrupted by attaching a Standard SKU or StandardV2 NAT gateway to the subnet. New connections use the NAT gateway. 
 
 ## Guidance for manual migration 
 
