@@ -53,7 +53,7 @@ For Consumption workflows, no workflow template is available in the designer, so
   - [Create a Consumption logic app workflow](../logic-apps/quickstart-create-example-consumption-workflow.md)
   - [Create a Standard logic app workflow](../logic-apps/create-single-tenant-workflows-azure-portal.md)
 
-  Your logic app resource also needs permissions to your Service Bus namespace. To check these permissions, see [Check access to Service Bus namespace](#permissions-connection-strong).
+  Your logic app resource also needs permissions to your Service Bus namespace. To check these permissions, see [Check access to Service Bus namespace](#permissions-connection-string).
 
 <a name="permissions-connection-string"></a>
 
@@ -178,7 +178,7 @@ The following table describes the prepopulated trigger parameters:
 | **Queue type** | **Main** | This default type refers to your primary Service Bus queue. |
 | **Maximum message batch size** | `messageBatchSize_<workflow-name>` | The predefined cross-environment parameter that specifies the largest number of messages in a batch. To set this value, follow these steps: <br><br>1. Select inside the **Maximum message batch size** box, and then select the lightning icon to open the dynamic content list. <br>2. From the list, select `messageBatchSize_<workflow-name>`. |
 
-For more information, see [**When messages are available in a queue (peek-lock)**](azure/logic-apps/connectors/built-in/reference/servicebus/#when-messages-are-available-in-a-queue-(peek-lock)).
+For more information, see [**When messages are available in a queue (peek-lock)**](#when-messages-are-available-in-a-queue-peek-lock).
 
 ##### Initialize Process Complete Flag
 
@@ -232,7 +232,7 @@ At the **Business Logic Scope** level, a parallel branch runs an **Until** loop 
 
 ##### Renew lock on a message in a queue
 
-In the **Until** loop, the Service Bus action named **Renew lock on a message in a queue** controls the time that the workflow can process a message before the message becomes available again for processing. This behavior prevents premature release due to long-running tasks and makes sure that only one client handles the message at a time before setting the lock duration to the initial value. For more information, see [Renew locks](../service-bus-messaging/message-transfers-locks-settlement#renew-locks.md).
+In the **Until** loop, the Service Bus action named **Renew lock on a message in a queue** controls the time that the workflow can process a message before the message becomes available again for processing. This behavior prevents premature release due to long-running tasks and makes sure that only one client handles the message at a time before setting the lock duration to the initial value. For more information, see [Renew locks](../service-bus-messaging/message-transfers-locks-settlement.md#renew-locks).
 
 The following table describes the action's prepopulated parameters:
 
@@ -409,7 +409,7 @@ To help your workflow determine whether any more messages from a session need pr
 
    :::image type="content" source="./media/send-related-messages-sequential-convoy/initialize-process-complete.png" alt-text="Screenshot shows the information for Vitalize Process Complete Flag.":::
 
-   For more information, see [Initialize the session](#initialize-session).
+   For more information, see [Initialize the session](#initialize-process-complete-flag).
 
 1. Continue to the next section to add a scope for message handling.
 
@@ -486,7 +486,7 @@ These steps add a [**Scope** action](logic-apps-control-flow-run-steps-group-sco
 
       1. Follow the [general steps](add-trigger-action-workflow.md#add-action) to add a Service Bus action named **Renew lock on the message in a queue**.
 
-         This action extends the time that the workflow can process a message before the message becomes available again for processing. This behavior prevents premature release due to long-running tasks and makes sure that only one client handles the messages at a time before letting the lock duration to the initial value. For more information, see [Renew locks](../service-bus-messaging/message-transfers-locks-settlement#renew-locks.md).
+         This action extends the time that the workflow can process a message before the message becomes available again for processing. This behavior prevents premature release due to long-running tasks and makes sure that only one client handles the messages at a time before letting the lock duration to the initial value. For more information, see [Renew locks](../service-bus-messaging/message-transfers-locks-settlement.md#renew-locks).
 
       1. After the Service Bus action information pane opens, provide the following values:
 
