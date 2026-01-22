@@ -12,10 +12,6 @@ ms.customs: references_regions
 # Azure NAT Gateway SKUs
 Azure Network Address Translation (NAT) Gateway has two stock-keeping units (SKUs). This article provides an overview of these different SKUs and their differences.
 
-> [!IMPORTANT]
-> Standard V2 SKU Azure NAT Gateway is currently in PREVIEW.
-> See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
-
 ## SKU comparison
 Azure Network Address Translation (NAT) Gateway has two stock-keeping units (SKUs) - Standard and StandardV2. To compare and understand the differences between Standard and StandardV2 SKU, see the following table.
 
@@ -72,7 +68,9 @@ StandardV2 NAT Gateway supports flow logs through Azure Monitor. Flow logs provi
 
 * Custom IP prefixes (BYOIP public IPs) aren't supported with StandardV2 NAT Gateway. Only StandardV2 SKU Azure public IPs are supported. 
 
-* The following regions don't support StandardV2 NAT Gateway:  
+* The following regions don't support StandardV2 NAT Gateway:
+    * Brazil Southeast
+      
     * Canada East  
 
     * Central India  
@@ -85,9 +83,15 @@ StandardV2 NAT Gateway supports flow logs through Azure Monitor. Flow logs provi
 
     * Malaysia West  
 
-    * Qatar Central   
+    * Qatar Central
+ 
+    * Sweden South   
 
     * UAE Central
+ 
+    * West Central US
+ 
+    * West India
 
 * StandardV2 NAT Gateway can’t be deployed as a managed NAT Gateway for Azure Kubernetes Service (AKS) workloads. It's only supported when configured as a user-assigned NAT Gateway. For more information, see [Create NAT Gateway for your AKS cluster](/azure/aks/nat-gateway).
 
@@ -109,7 +113,9 @@ StandardV2 NAT Gateway supports flow logs through Azure Monitor. Flow logs provi
 ## Known issues 
 * StandardV2 NAT Gateway disrupts outbound connections made with Load balancer outbound rules for IPv6 traffic only. Standard SKU NAT gateway can be used to provide outbound for IPv4 traffic while Load balancer outbound rules is used for IPv6 outbound traffic. If you see disruption to outbound connectivity for IPv6 outbound traffic with Load balancer outbound rules, remove the StandardV2 NAT Gateway from the subnet or virtual network. Use Load balancer outbound rules to provide outbound connectivity for both IPv4 and IPv6 traffic. Or use Standard SKU NAT Gateway to provide outbound connectivity for IPv4 traffic and Load balancer outbound rules for IPv6 traffic.
 
-* Attaching a StandardV2 NAT Gateway to an empty subnet created before April 2025 without any virtual machines may cause the virtual network to go into a failed state. To return the virtual network to a successful state, remove StandardV2 NAT Gateway, create and add a virtual machine to the subnet and then reattach the StandardV2 NAT Gateway. 
+* Attaching a StandardV2 NAT gateway to an empty subnet created before April 2025 without any virtual machines may cause the virtual network to go into a failed state. To return the virtual network to a successful state, remove StandardV2 NAT Gateway, create and add a virtual machine to the subnet and then reattach the StandardV2 NAT Gateway.
+
+* Outbound connections using Load balancer, Azure Firewall, or virtual machine instance level public IPs may be interrupted when adding StandardV2 NAT gateway to a subnet. All net new outbound connections will use the StandardV2 NAT gateway.
 
 ## Standard NAT Gateway features
 
