@@ -243,7 +243,7 @@ Apply the following configuration to create the Traffic Manager profile. For mor
     curl --head https://$CUSTOM_DOMAIN/
     ```
  
-2. Failback to Front Door
+1. Failback to Front Door
 
     ```azurecli
     # Failback: Enable Front Door, Disable CDN
@@ -276,14 +276,14 @@ Primary Traffic Manager routes between Front Door (primary) and a nested seconda
   
 **Traffic Flow (Front Door failure):** User → DNS Query → Primary Traffic Manager (Weighted / Always server routing) → Secondary Traffic Manager (Priority mode) → Application Gateway(s) → Origin Servers.
 
-### Pre-deployment: Front Door vs Application Gateway feature differences
+### Pre-deployment: Front Door vs Application Gateway
 
 It's important to understand the feature differences between Front Door and Application Gateway WAF in case you're utilizing any features Application Gateway WAF doesn't offer. The following two tables provide an overview.
 
 > [!IMPORTANT]
 > This solution **replaces a global layer 7 service (Front Door) with Application Gateway, which is a regional service**. Because of this shift, you must evaluate your global traffic patterns and **deploy Application Gateway instances in the regions where you have meaningful user volume**. To maintain the latency‑optimized routing that Front Door normally provides for globally distributed users, **deploy a secondary Traffic Manager using Performance routing** between the primary Traffic Manager and the regional Application Gateway instance.
 
-**Features differences:**
+#### Features differences
 
 | Feature | Azure Front Door | Application Gateway |
 | --- | --- | --- |
@@ -323,7 +323,7 @@ It's important to understand the feature differences between Front Door and Appl
 | Private Link support | ✓ Premium tier | ✓ V2 SKU |
 | WAF custom rules | ✓ Supported | ✓ Supported |
 
-**WAF differences:**
+#### WAF differences
 
 | **Azure Front Door** | **Application Gateway** |
 |----|----|
