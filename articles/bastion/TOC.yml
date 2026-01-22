@@ -24,6 +24,24 @@
   - name: Deploy Bastion - Terraform
     href: quickstart-deploy-terraform.md
 - name: Concepts
+- name: Identity & authentication
+  items:
+  - name: Configure Kerberos authentication
+    href: kerberos-authentication-portal.md
+  - name: Connect to a virtual machine
+    items:
+    - name: Windows VM
+      items:
+      - name: RDP connection
+        href: bastion-connect-vm-rdp-windows.md
+      - name: SSH connection
+        href: bastion-connect-vm-ssh-windows.md
+    - name: Linux VM
+      items: 
+      - name: SSH connection
+        href: bastion-connect-vm-ssh-linux.md
+      - name: RDP connection
+        href: bastion-connect-vm-linux-rdp.
   items:
   - name: Connectivity & Access Methods
     items:
