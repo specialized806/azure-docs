@@ -148,14 +148,11 @@ In this section, you create a storage account to use it to store the flow logs.
     | Region | Select **(US) East US**. The storage account must be in the same region as the virtual machine and its network security group. |
     | Primary service | Select **Azure Blob Storage or Azure Data Lake Storage Gen 2**. |
     | Performance | Select **Standard**. Flow logs only support Standard-tier storage accounts. |
-    | Redundancy | Select the redundancy you prefer. This tutorial uses **Locally-redundant storage (LRS)**. |
+    | Redundancy | Select the redundancy you prefer (all Azure Storage redundancy configurations are supported). This tutorial uses **Locally-redundant storage (LRS)**. |
 
 1. Select the **Review** tab or select the **Review** button at the bottom.
 
 1. Review the settings, and then select **Create**.
-
-> [!NOTE]
-> All Azure Storage account redundancy configurations are supported, including locally redundant storage (LRS), zone‑redundant storage (ZRS), geo‑redundant storage (GRS), and geo‑zone‑redundant storage (GZRS).
 
 ## Create a flow log
 
