@@ -1617,11 +1617,15 @@ resource functionApp 'Microsoft.Web/sites@2022-03-01' = {
       appSettings: [
         { name: 'FUNCTIONS_EXTENSION_VERSION', value: '~4' }
         { name: 'FUNCTIONS_WORKER_RUNTIME', value: 'dotnet-isolated' }
-        { name: 'AzureWebJobsStorage', value: storageConnectionString }
-        { name: 'WEBSITE_CONTENTAZUREFILECONNECTIONSTRING', value: storageConnectionString }
+        { name: 'AzureWebJobsStorage__accountName', value: storageAccount.name }
+        { name: 'WEBSITE_CONTENTAZUREFILECONNECTIONSTRING__accountName', value: storageAccount.name }
         { name: 'WEBSITE_CONTENTSHARE', value: functionAppName }
+        { name: 'APPLICATIONINSIGHTS_CONNECTION_STRING', value: appInsights.properties.ConnectionString }
       ]
     }
+  }
+  identity: {
+    type: 'SystemAssigned'
   }
 }
 ```
@@ -1677,6 +1681,7 @@ resource functionApp 'Microsoft.Web/sites@2023-12-01' = {
       appSettings: [
         { name: 'AzureWebJobsStorage__accountName', value: storageAccount.name }
         { name: 'APPLICATIONINSIGHTS_CONNECTION_STRING', value: appInsights.properties.ConnectionString }
+        { name: 'APPLICATIONINSIGHTS_AUTHENTICATION_STRING', value: 'Authorization=AAD' }
       ]
     }
   }
@@ -1685,6 +1690,9 @@ resource functionApp 'Microsoft.Web/sites@2023-12-01' = {
   }
 }
 ```
+
+> [!NOTE]
+> When using `APPLICATIONINSIGHTS_AUTHENTICATION_STRING` with `Authorization=AAD`, you must also assign the **Monitoring Metrics Publisher** role to the function app's managed identity on the Application Insights resource.
 
 For complete Bicep examples, see the [Flex Consumption Bicep samples](https://github.com/Azure-Samples/azure-functions-flex-consumption-samples/tree/main/IaC/bicep).
 
@@ -1702,14 +1710,19 @@ resource "azurerm_service_plan" "consumption" {
 }
 
 resource "azurerm_linux_function_app" "consumption" {
-  name                       = var.function_app_name
-  location                   = azurerm_resource_group.rg.location
-  resource_group_name        = azurerm_resource_group.rg.name
-  service_plan_id            = azurerm_service_plan.consumption.id
-  storage_account_name       = azurerm_storage_account.sa.name
-  storage_account_access_key = azurerm_storage_account.sa.primary_access_key
+  name                                   = var.function_app_name
+  location                               = azurerm_resource_group.rg.location
+  resource_group_name                    = azurerm_resource_group.rg.name
+  service_plan_id                        = azurerm_service_plan.consumption.id
+  storage_account_name                   = azurerm_storage_account.sa.name
+  storage_uses_managed_identity          = true
+
+  identity {
+    type = "SystemAssigned"
+  }
 
   site_config {
+    application_insights_connection_string = azurerm_application_insights.appInsights.connection_string
     application_stack {
       dotnet_version              = "8.0"
       use_dotnet_isolated_runtime = true
