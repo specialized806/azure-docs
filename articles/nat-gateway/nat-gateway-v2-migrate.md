@@ -14,7 +14,6 @@ ms.date: 01/13/2026
  
 # Migrate from Standard to StandardV2 NAT Gateway 
 
-## Overview 
 
 StandardV2 NAT Gateway offers enhanced data processing limits and high availability through zone redundancy. StandardV2 NAT Gateway is recommended for production workloads requiring resiliency to zonal outages. 
 
@@ -89,7 +88,7 @@ Use the suggested order of operations for manually migrating from a Standard SKU
 
 5. From your resource group, navigate to the **subnet** you want to migrate from Standard NAT gateway to StandardV2 NAT gateway.  
 
-6. **Update** the subnet configuration to use the new StandardV2 NAT gateway. (This replaces your existing Standard NAT gateway with the StandardV2 NAT gateway). \ 
+6. **Update** the subnet configuration to use the new StandardV2 NAT gateway. (This replaces your existing Standard NAT gateway with the StandardV2 NAT gateway). 
 
 7. **Save** the subnet configuration. 
 
