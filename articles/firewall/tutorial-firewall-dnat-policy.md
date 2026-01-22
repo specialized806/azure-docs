@@ -122,6 +122,7 @@ Create a workload virtual machine, and place it in the **SN-Workload** subnet.
 1. For **Username**, type **azureuser**.
 1. For **SSH public key source**, select **Generate new key pair**.
 1. For **Key pair name**, type **Srv-Workload_key**.
+1. Select **None** in **Public inbound ports**.
 1. Select **Next: Disks**.
 
 **Disks**
@@ -152,6 +153,25 @@ Review the summary, and then select **Create**.
 
 After deployment finishes, note the private IP address for the virtual machine. It will be used later when you configure the firewall. Select the virtual machine name, and under **Settings**, select **Networking** to find the private IP address.
 
+## Install web server
+
+Use the Azure portal Run Command feature to install a web server on the virtual machine.
+
+1. Navigate to the **Srv-Workload** virtual machine in the Azure portal.
+1. Under **Operations**, select **Run command**.
+1. Select **RunShellScript**.
+1. In the **Run Command Script** window, paste the following script:
+
+   ```bash
+   sudo apt-get update
+   sudo apt-get install -y nginx
+   echo "<h1>Azure Firewall DNAT Demo - $(hostname)</h1>" | sudo tee /var/www/html/index.html
+   ```
+
+1. Select **Run**.
+1. Wait for the script to complete. The output should show successful installation of Nginx.
+
+
 ## Deploy the firewall and policy
 
 1. From the portal home page, select **Create a resource**.
@@ -170,6 +190,7 @@ After deployment finishes, note the private IP address for the virtual machine. 
    |Choose a virtual network     |**Use existing**: VN-Hub|
    |Public IP address     |**Add new**, Name: **fw-pip**.|
 
+1. Uncheck the box next to **Enable Firewall Management NIC**.
 5. Accept the other defaults, and then select **Review + create**.
 6. Review the summary, and then select **Create** to create the firewall.
 
@@ -206,24 +227,6 @@ For the **SN-Workload** subnet, you configure the outbound default route to go t
     Azure Firewall is actually a managed service, but virtual appliance works in this situation.
 18. For **Next hop address**, type the private IP address for the firewall that you noted previously.
 19. Select **OK**.
-
-## Install web server
-
-Use the Azure portal Run Command feature to install a web server on the virtual machine.
-
-1. Navigate to the **Srv-Workload** virtual machine in the Azure portal.
-1. Under **Operations**, select **Run command**.
-1. Select **RunShellScript**.
-1. In the **Run Command Script** window, paste the following script:
-
-   ```bash
-   sudo apt-get update
-   sudo apt-get install -y nginx
-   echo "<h1>Azure Firewall DNAT Demo - $(hostname)</h1>" | sudo tee /var/www/html/index.html
-   ```
-
-1. Select **Run**.
-1. Wait for the script to complete. The output should show successful installation of Nginx.
 
 ## Configure a DNAT rule
 
