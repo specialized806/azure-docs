@@ -27,7 +27,7 @@ The license provided with the Open Virtualization Format (OVF) template is an ev
 To access the configuration server:
 
 * Sign in to the VM on which it's deployed. Start **Azure Site Recovery Configuration Manager** from the desktop shortcut.
-* Alternatively, access the configuration server remotely from `https://*ConfigurationServerName*/:44315/`. Sign in with administrator credentials.
+* Alternatively, access the configuration server remotely from `https://<ConfigurationServerName>/:44315/`. Sign in with administrator credentials.
 
 ## Modify VMware server settings
 
@@ -172,7 +172,8 @@ You run update rollups to update the configuration server. You can apply updates
 For the Site Recovery components support statement, refer to [Service updates in Site Recovery](./service-updates-how-to.md#support-statement-for-azure-site-recovery). Links to update rollups for upgrading to all versions of the configuration server are available in [Service updates in Site Recovery](/azure/site-recovery/service-updates-how-to#updates-support).
 
 > [!IMPORTANT]
-> With every new release of a version N of a Site Recovery component, all versions previous to N-4 are considered out of support. We recommend that you upgrade to the latest versions that are available.</br>
+> With every new release of a version N of a Site Recovery component, all versions previous to N-4 are considered out of support. We recommend that you upgrade to the latest versions that are available.
+>
 > For the Site Recovery components support statement, refer to [Service updates in Site Recovery](./service-updates-how-to.md#support-statement-for-azure-site-recovery).
 
 Upgrade the server:

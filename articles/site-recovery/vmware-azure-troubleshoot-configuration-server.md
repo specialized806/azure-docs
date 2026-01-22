@@ -35,11 +35,11 @@ The source machine registers with the configuration server when you install the 
 
     1. Search for the string **Reason=>NULL**. This error occurs if the source machine uses an empty host to register with the configuration server.
 
-    1. After you resolve the issues, follow the guidelines in [Register the source machine with the configuration server](vmware-azure-troubleshoot-configuration-server.md#register-source-machine-with-configuration-server) to retry the registration manually.
+    1. If the string is found, retry the registration manually after you resolve the issues. Follow the guidelines in [Register the source machine with the configuration server](vmware-azure-troubleshoot-configuration-server.md#register-source-machine-with-configuration-server).
 
        - If the string **Reason=>NULL** isn't found:
 
-       1. On the source machine, open the `C:\ProgramData\ASRSetupLogs\UploadedLogs\ASRUnifiedAgentInstaller.log` file. The `ProgramData` folder might be a hidden folder. 
+       1. On the source machine, open the `C:\ProgramData\ASRSetupLogs\UploadedLogs\ASRUnifiedAgentInstaller.log` file. The `ProgramData` folder might be a hidden folder.
        1. If you don't see the `ProgramData` folder, in File Explorer, on the **View** tab, in the **Show/hide** section, select the **Hidden items** checkbox. Multiple issues might cause failures.
 
 1. Search for the string **post request: (7) - Couldn't connect to server**:
