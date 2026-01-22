@@ -323,8 +323,6 @@ It's important to understand the feature differences between Front Door and Appl
 | Private Link support | ✓ Premium tier | ✓ V2 SKU |
 | WAF custom rules | ✓ Supported | ✓ Supported |
 
- 
-
 **WAF differences:**
 
 | **Azure Front Door** | **Application Gateway** |
@@ -346,21 +344,21 @@ The following are virtual network and subnet requirements:
 
 #### Subnet sizing (per region)
 
-    - Minimum: /27 (32 addresses)
+- Minimum: /27 (32 addresses)
 
-    - Recommended: /24 (256 addresses) for autoscaling and hitless maintenance
+- Recommended: /24 (256 addresses) for autoscaling and hitless maintenance
 
-    - Formula: (max instances \* 10) + 5 Azure reserved IPs
+- Formula: (max instances \* 10) + 5 Azure reserved IPs
 
-    - Example: 20 max instances → (20 \* 10) + 5 = 205 IPs → use /24
+- Example: 20 max instances → (20 \* 10) + 5 = 205 IPs → use /24
 
 #### Connectivity to origins
 
-    - VNet peering: For origins in different VNets
+- VNet peering: For origins in different VNets
 
-    - ExpressRoute/VPN: For on-premises origins
+- ExpressRoute/VPN: For on-premises origins
 
-    - Public internet: For SaaS/cloud origins with proper security
+- Public internet: For SaaS/cloud origins with proper security
 
 #### Securing Application Gateway
 
