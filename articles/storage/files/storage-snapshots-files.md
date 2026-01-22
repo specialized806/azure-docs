@@ -563,7 +563,7 @@ az rest --method get \
 
 To mount an NFS file share snapshot to a Linux VM (NFS client) and restore files, follow these steps.
 
-1. Run the following command in a console. See [Mount options](storage-files-how-to-mount-nfs-shares.md#mount-options) for other recommended mount options. To improve copy performance, mount the snapshot with [nconnect](nfs-performance.md#nfs-nconnect) to use multiple TCP channels.
+1. Run the following command in a console. See [Mount options](storage-files-how-to-mount-nfs-shares.md#mount-options) for other recommended mount options. To improve copy performance, mount the snapshot with [nconnect](nfs-performance.md#nfs-nconnect) to use multiple TCP channels. Make sure you change `/media/nfs` to your corresponding path to the file share.
    
    ```bash
    sudo mount -o vers=4,minorversion=1,proto=tcp,sec=sys $server:/nfs4account/share /media/nfs
@@ -622,7 +622,7 @@ To delete a snapshot of an existing classic file share, sign in to the Azure por
 
 # [Azure PowerShell](#tab/powershell)
 
-To delete a file share snapshot, run the following PowerShell command. Replace `<your-subscirption-ID>`, `<your-resource-group-name>`, `<your-file-share-name>`, and `<snapshot-name>` with your own values.
+To delete a file share snapshot, run the following PowerShell command. Replace `<your-subscription-ID>`, `<your-resource-group-name>`, `<your-file-share-name>`, and `<snapshot-name>` with your own values.
 
 ```powershell
 Remove-AzResource -ResourceId "/subscriptions/<your-subscription-ID>/resourceGroups/<your-resource-group-name>/providers/Microsoft.FileShares/fileShares/<your-file-share-name>/fileShareSnapshots/<snapshot-name>" `
@@ -632,7 +632,7 @@ Remove-AzResource -ResourceId "/subscriptions/<your-subscription-ID>/resourceGro
 
 # [Azure CLI](#tab/cli)
 
-To delete a file share snapshot, run the following Azure CLI command. Replace `<subscirption-ID>`, `<resource-group-name>`, `<file-share-name>`, and `<snapshot-name>` with your own values.
+To delete a file share snapshot, run the following Azure CLI command. Replace `<subscription-ID>`, `<resource-group-name>`, `<file-share-name>`, and `<snapshot-name>` with your own values.
 
 ```bash
 az rest --method delete \
