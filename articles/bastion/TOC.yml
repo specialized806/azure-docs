@@ -35,14 +35,12 @@
       href: bastion-connect-to-aks-private-cluster.md
     - name: Configure native client support
       href: native-client.md 
-    - name: Connect to a VM - native client
-      items:
-      - name: Connect from Windows client
-        href: connect-vm-native-client-windows.md
-      - name: Connect from Linux client
-        href: connect-vm-native-client-linux.md
-      - name: Transfer files - native client
-        href: vm-upload-download-native.md
+    - name: Connect from Windows native client
+      href: connect-vm-native-client-windows.md
+    - name: Connect from Linux nativeclient
+      href: connect-vm-native-client-linux.md
+    - name: Transfer files - native client
+      href: vm-upload-download-native.md
     - name: Connect to a VM - IP address
       href: connect-ip-address.md
     - name: Configure a shareable link
