@@ -94,14 +94,8 @@ You can integrate these checks as a part of your CI/CD pipelines. You can use a 
 
 Sometimes a rule has false positives. For example, you might need to include a link to a blob storage directly without using the [environment()](./bicep-functions-deployment.md#environment) function.
 
-In this case, you can disable the warning for one line only, not the entire document, by adding the `#disable-next-line` directive before the line with the warning.
 
-```bicep
-#disable-next-line no-hardcoded-env-urls //Direct download link to my toolset
-scriptDownloadUrl: 'https://mytools.blob.core.windows.net/...'
-```
-
-For more information about using directives in Bicep, see [Directives](./file.md#directives).
+You can suppress Bicep linter rules by using `disable-next-line` and `disable-diagnostics`. See [Directives](./file.md#directives).
 
 If you want to suppress a linter rule, change the level of the rule to `Off` in [bicepconfig.json](./bicep-config-linter.md). In the following example, the `no-deployments-resources` rule is suppressed:
 
