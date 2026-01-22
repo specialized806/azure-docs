@@ -73,11 +73,14 @@ When implementing high availability architectures for production workloads, cons
 
 This solution uses a single Traffic Manager profile with weighted/always serve routing so that traffic can be manually switched over between Front Door and an alternative CDN:
 
-1. **Primary endpoint:** Azure Front Door custom domain endpoint. **Traffic flow:** 
-    User → DNS Query → Traffic Manager (Weighted / Always serve routing) → Azure Front Door (Priority 1) → Origin servers  
+1. **Primary endpoint:** Azure Front Door custom domain endpoint.   
 
-1. **Secondary endpoint:** Alternative CDN endpoint. **Traffic flow:**  
-    User → DNS Query → Traffic Manager (Weighted routing / Always serve) → Alternative CDN (Priority 2) → Origin servers
+1. **Secondary endpoint:** Alternative CDN endpoint.
+
+
+**Traffic flow (Normal Operation):** User → DNS Query → Traffic Manager (Weighted routing / Always serve routing) → Azure Front Door (Priority 1) → Origin servers.
+
+**Traffic flow (Front Door failure):** User → DNS Query → Traffic Manager (Weighted routing / Always serve routing) → Alternative CDN (Priority 2) → Origin servers.
 
 ### Key implementation steps
 
@@ -264,233 +267,66 @@ Apply the following configuration to create the Traffic Manager profile. For mor
         --name $ATM_CDN_PROFILE_NAME `
         --resource-group $RESOURCE_GROUP `
         --query "endpoints[].{Name:name, Status:endpointStatus, Health:endpointMonitorStatus}"
-    ```
+        ```
 
 ## Scenario 2: Traffic Manager failover: Front Door to Application Gateway WAF
 
-Primary Traffic Manager routes between Front Door (primary) and a nested Secondary Traffic Manager pointing to multi-region Application Gateway instances. During Front Door outage, traffic is manually failed over to regional Application Gateway deployments with WAF protection.
+Primary Traffic Manager routes between Front Door (primary) and a nested secondary Traffic Manager pointing to multi-region Application Gateway instances. During Front Door outage, traffic is manually failed over to regional Application Gateway deployments with WAF protection.
 
-
-**Traffic Flow (Normal Operation):**
-
-User → DNS Query → Primary Traffic Manager (Weighted / Always server routing) → Front Door (Priority 1) → Origin Servers  
+**Traffic Flow (Normal operation):** User → DNS Query → Primary Traffic Manager (Weighted / Always server routing) → Front Door (Priority 1) → Origin Servers.
   
-**Traffic Flow (Front Door Failure):**  
-User → DNS Query → Primary Traffic Manager (Weighted / Always server routing) → Secondary Traffic Manager (Priority mode) → Application Gateway(s) → Origin Servers
+**Traffic Flow (Front Door failure):** User → DNS Query → Primary Traffic Manager (Weighted / Always server routing) → Secondary Traffic Manager (Priority mode) → Application Gateway(s) → Origin Servers.
 
-### 
+### Pre-deployment: Front Door vs Application Gateway feature differences
 
-Pre-Deployment: Front Door vs Application Gateway Feature Differences
+It's important to understand the feature differences between Front Door and Application Gateway WAF in case you're utilizing any features Application Gateway WAF doesn't offer. The following two tables provide an overview.
 
-It is important you understand the feature differences between Front Door and Application Gateway WAF in case you are utilizing any features Application Gateway WAF does not offer. Here is an overview.
+> [!IMPORTANT]
+> This solution **replaces a global layer 7 service (Front Door) with Application Gateway, which is a regional service**. Because of this shift, you must evaluate your global traffic patterns and **deploy Application Gateway instances in the regions where you have meaningful user volume**. To maintain the latency‑optimized routing that Front Door normally provides for globally distributed users, **deploy a secondary Traffic Manager using Performance routing** between the primary Traffic Manager and the regional Application Gateway instance.
 
- 
+**Features differences:**
 
-**Critical Architecture Note:** This **solution replaces a global Layer 7 service (Front Door) with Application Gateway, which is a regional service**. Because of this shift, you must evaluate your global traffic patterns and **deploy Application Gateway instances in the regions where you have meaningful user volume**. To maintain the latency‑optimized routing that Front Door normally provides for globally distributed users, **deploy a Secondary Traffic Manager using Performance routing** between the Primary Traffic Manager and the regional Application Gateway instance.
-
- 
-
-Features Differences
-
-<table>
-<colgroup>
-<col style="width: 28%" />
-<col style="width: 38%" />
-<col style="width: 33%" />
-</colgroup>
-<thead>
-<tr>
-<th><strong>Feature</strong></th>
-<th><strong>Azure Front Door</strong></th>
-<th><strong>Application Gateway</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td colspan="3"><strong>Core Architecture &amp; Features</strong></td>
-</tr>
-<tr>
-<td>Service Scope</td>
-<td>Global service</td>
-<td>Regional service</td>
-</tr>
-<tr>
-<td>OSI Layer</td>
-<td>Layer 7 (Application layer)</td>
-<td>Layer 7 (Application layer)</td>
-</tr>
-<tr>
-<td>Load Balancing Level</td>
-<td>Across regions</td>
-<td>Within region/VNET</td>
-</tr>
-<tr>
-<td>Deployment Model</td>
-<td>Single global instance</td>
-<td>Per-region instances</td>
-</tr>
-<tr>
-<td>Backend Scope</td>
-<td>Any public endpoint (Azure or external), and selected Private Link endpoints</td>
-<td>Any public endpoint (Azure or external), private IP addresses and Kubernetes pods in VNET</td>
-</tr>
-<tr>
-<td>Content Edge Caching</td>
-<td>Yes</td>
-<td>No</td>
-</tr>
-<tr>
-<td>Network Architecture</td>
-<td>Microsoft's global edge network with anycast</td>
-<td>Azure regional deployment (no anycast)</td>
-</tr>
-<tr>
-<td>Configuration Differences</td>
-<td> </td>
-<td> </td>
-</tr>
-<tr>
-<td>Path Pattern Syntax</td>
-<td>/path/* or exact /path</td>
-<td>Regex patterns, path maps</td>
-</tr>
-<tr>
-<td>WAF Rule Sets</td>
-<td>Default Ruleset (OWASP), Bot Manager Ruleset, HTTP DDoS Ruleset</td>
-<td>Default Ruleset (OWASP), Bot Manager Ruleset, HTTP DDoS Ruleset</td>
-</tr>
-<tr>
-<td>Health Probe Evaluation</td>
-<td>Latency + health for routing</td>
-<td>Health status only</td>
-</tr>
-<tr>
-<td>Backend Selection</td>
-<td>Based on priority, weight, latency</td>
-<td>Round-robin, cookie affinity</td>
-</tr>
-<tr>
-<td colspan="3"><strong>Routing Rules</strong></td>
-</tr>
-<tr>
-<td>Path-based Routing</td>
-<td>✓ Yes</td>
-<td>✓ Yes</td>
-</tr>
-<tr>
-<td>Pattern Matching</td>
-<td>- Exact match paths</td>
-<td>- URL path maps</td>
-</tr>
-<tr>
-<td>Host-based Routing</td>
-<td>- Wildcard paths (/*)</td>
-<td>- Path-based rules</td>
-</tr>
-<tr>
-<td>URL Rewrite</td>
-<td>- Case-insensitive</td>
-<td>- Regex patterns supported</td>
-</tr>
-<tr>
-<td>Request Routing Order</td>
-<td>- Wildcard must be preceded by /</td>
-<td>✓ Multi-site hosting</td>
-</tr>
-<tr>
-<td>Routing Methods</td>
-<td>✓ Multiple frontend hosts</td>
-<td>- URL path rewrite</td>
-</tr>
-<tr>
-<td>Path-based Routing</td>
-<td>- Static path to static path (Classic)</td>
-<td><p>- Load Aware for Latency Optimization*</p>
-<p>- Weighted*</p>
-<p>- Session affinity.</p>
-<p> </p>
-<p>* available with Application Gateway for Containers<a href="#_msocom_1">[JS1]</a> <a href="#_msocom_2">[JS2]</a> <a href="#_msocom_3">[DB3]</a> </p></td>
-</tr>
-<tr>
-<td colspan="3"><strong>Routing Features</strong></td>
-</tr>
-<tr>
-<td>Rules Engine/Rewrite Rules</td>
-<td>Rule sets with conditions and actions</td>
-<td>Rewrite rule sets with conditions and actions</td>
-</tr>
-<tr>
-<td>Regex in Path Patterns</td>
-<td>Not supported in "Patterns to match"</td>
-<td>Supported with PCRE</td>
-</tr>
-<tr>
-<td colspan="3"><strong>Header and Request Manipulation</strong></td>
-</tr>
-<tr>
-<td>Header Rewrite</td>
-<td>✓ Request and response headers</td>
-<td>✓ Request and response headers</td>
-</tr>
-<tr>
-<td>Header Value Character Limit</td>
-<td>No documented limit</td>
-<td>1,000 characters in rewrite rules</td>
-</tr>
-<tr>
-<td>Host Header Rewrite</td>
-<td>✓ Supported</td>
-<td>✓ Supported (can't rewrite to external domains)</td>
-</tr>
-<tr>
-<td>Server Variables</td>
-<td>✓ Supported</td>
-<td>✓ Supported</td>
-</tr>
-<tr>
-<td>Header Pattern Matching</td>
-<td>Conditions with patterns</td>
-<td>Regex pattern matching</td>
-</tr>
-<tr>
-<td colspan="3"><strong>Security Features</strong></td>
-</tr>
-<tr>
-<td>WAF Availability</td>
-<td>✓ Optional (Premium SKU)</td>
-<td>✓ Optional (WAF SKU)</td>
-</tr>
-<tr>
-<td>L3/4 DDoS Protection</td>
-<td>✓ Built-in</td>
-<td>Via Azure DDoS Protection service</td>
-</tr>
-<tr>
-<td>SSL/TLS Policies</td>
-<td>✓ Configurable</td>
-<td>✓ Configurable</td>
-</tr>
-<tr>
-<td>End-to-End SSL</td>
-<td>✓ Supported</td>
-<td>✓ Supported</td>
-</tr>
-<tr>
-<td>Private Link Support</td>
-<td>✓ Premium tier</td>
-<td>✓ V2 SKU</td>
-</tr>
-<tr>
-<td>WAF Custom Rules</td>
-<td>✓ Supported</td>
-<td>✓ Supported</td>
-</tr>
-</tbody>
-</table>
+| Feature | Azure Front Door | Application Gateway |
+| --- | --- | --- |
+| **Core architecture & features** | | |
+| Service scope | Global service | Regional service |
+| OSI layer | Layer 7 (application layer) | Layer 7 (application layer) |
+| Load balancing level | Across regions | Within region/virtual network |
+| Deployment model | Single global instance | Per-region instances |
+| Backend scope | Any public endpoint (Azure or external), and selected Private Link endpoints | Any public endpoint (Azure or external), private IP addresses and Kubernetes pods in virtual network |
+| Content edge caching | Yes | No |
+| Network architecture | Microsoft's global edge network with anycast | Azure regional deployment (no anycast) |
+| **Configuration differences** | | |
+| Path pattern syntax | /path/* or exact /path | Regex patterns, path maps |
+| WAF rule sets | Default ruleset (OWASP), bot manager ruleset, HTTP DDoS ruleset | Default ruleset (OWASP), bot manager ruleset, HTTP DDoS ruleset |
+| Health probe evaluation | Latency + health for routing | Health status only |
+| Backend selection | Based on priority, weight, latency | Round-robin, cookie affinity |
+| **Routing rules** | | |
+| Path-based routing | ✓ Yes | ✓ Yes |
+| Pattern matching | Exact match paths, wildcard paths (/*), case-insensitive, wildcard must be preceded by / | URL path maps, path-based rules, regex patterns supported |
+| Host-based routing | ✓ Multiple frontend hosts | ✓ Multi-site hosting |
+| URL rewrite | Static path to static path (Classic) | URL path rewrite |
+| Routing methods | Priority, weight, latency-based | Load aware for latency optimization*, weighted*, session affinity (*available with Application Gateway for Containers) |
+| **Routing features** | | |
+| Rules engine/rewrite rules | Rule sets with conditions and actions | Rewrite rule sets with conditions and actions |
+| Regex in path patterns | Not supported in "Patterns to match" | Supported with PCRE |
+| **Header and request manipulation** | | |
+| Header rewrite | ✓ Request and response headers | ✓ Request and response headers |
+| Header value character limit | No documented limit | 1,000 characters in rewrite rules |
+| Host header rewrite | ✓ Supported | ✓ Supported (can't rewrite to external domains) |
+| Server variables | ✓ Supported | ✓ Supported |
+| Header pattern matching | Conditions with patterns | Regex pattern matching |
+| **Security features** | | |
+| WAF availability | ✓ Optional (Premium SKU) | ✓ Optional (WAF SKU) |
+| L3/4 DDoS protection | ✓ Built-in | Via Azure DDoS Protection service |
+| SSL/TLS policies | ✓ Configurable | ✓ Configurable |
+| End-to-end SSL | ✓ Supported | ✓ Supported |
+| Private Link support | ✓ Premium tier | ✓ V2 SKU |
+| WAF custom rules | ✓ Supported | ✓ Supported |
 
  
 
-WAF Differences
+**WAF differences:**
 
 | **Azure Front Door** | **Application Gateway** |
 |----|----|
@@ -498,31 +334,18 @@ WAF Differences
 | Rule IDs: 949xxx series | Rule IDs: 9xxxxx series |
 | Front Door WAF (DRS): inspects first 128 KB of request body | Application Gateway WAF (CRS 3.2+): up to 2 MB inspection; 4 GB file upload; enforcement and inspection can be configured independently |
 
-** **
+### Recommendations
 
-Recommendations:
+- Maintain separate custom rule sets. Use Front Door rules as baseline.
+- Test Application Gateway WAF separately and independently.
+- Document all custom exclusions for both platforms.
+- Regularly audit rule sets for consistency.
 
-•       Maintain separate custom rule sets; use Front Door rules as baseline
+### Network planning
 
-•        Test Application Gateway WAF separately and independently
+The following are virtual network and subnet requirements:
 
-•        Document all custom exclusions for both platforms
-
-•       Regularly audit rule sets for consistency
-
- 
-
-Capacity Planning & Autoscaling Strategy
-
-Please reference <https://learn.microsoft.com/en-us/azure/well-architected/service-guides/azure-application-gateway> for detailed best practices
-
- 
-
-Network Planning
-
-##### VNet and Subnet Requirements:
-
-1.  **Subnet sizing (per region):**
+#### Subnet sizing (per region)
 
     - Minimum: /27 (32 addresses)
 
@@ -532,7 +355,7 @@ Network Planning
 
     - Example: 20 max instances → (20 \* 10) + 5 = 205 IPs → use /24
 
-2.  **Connectivity to origins:**
+#### Connectivity to origins
 
     - VNet peering: For origins in different VNets
 
@@ -540,7 +363,7 @@ Network Planning
 
     - Public internet: For SaaS/cloud origins with proper security
 
-3.  **Securing Application Gateway:**
+#### Securing Application Gateway
 
 - Dedicated subnet for Application Gateway (no other resources)
 
@@ -552,97 +375,65 @@ Network Planning
 
   - AzureLoadBalancer
 
-- Block other inbound; do not block required outbound internet
+- Block other inbound. Don't block required outbound internet
 
 - Use ASGs for backend segmentation and least-privilege rules
 
-###  
 
-### Key Implementation Steps
+> [!NOTE]
+> For capacity planning and autoscaling strategy, see [Architecture best practices for Azure Application Gateway v2](/azure/well-architected/service-guides/azure-application-gateway).
 
-### 
+### Key implementation steps
 
-Step 1: Provision Prerequisites
+#### Step 1: Provision prerequisites
 
 - Azure Front Door configured with custom domain and BYO Certificate
 
 - Lower DNS TTL for your CNAME is Front Door serving traffic to the lowest time setting.
 
 - Azure subscription with permissions to create VNets, Application Gateway, and Traffic Manager
->
+
 - SSL/TLS certificate in Azure Key Vault or available for upload
->
+
 - Origin servers accessible from Azure VNets
 
- 
 
-**Important:** If you are currently using Front Door-managed certificates, you MUST migrate to BYO certificates before implementing this solution. Front Door-managed certificates can't be exported and installed on alternative CDNs. See [Microsoft documentation](https://learn.microsoft.com/en-us/azure/frontdoor/standard-premium/how-to-configure-https-custom-domain) for BYO certificate configuration instructions.
+> [!IMPORTANT]
+> If you're currently using Front Door-managed certificates, you must migrate to BYO certificates before implementing this solution. Front Door-managed certificates can't be exported and installed on alternative CDNs. For more information, see [Configure HTTPS on an Azure Front Door custom domain](/azure/frontdoor/standard-premium/how-to-configure-https-custom-domain).
 
- 
+#### Step 2: Deploy Application Gateway (Region 1)
 
-Step 2: Deploy Application Gateway (Region 1)
+1. Create network infrastructure for Application Gateway. For more information, see [Application Gateway infrastructure configuration](/azure/application-gateway/configuration-infrastructure).
 
-2.1: Create Network Infrastructure for Application Gateway
+1. Create managed identity and grant Key Vault access. For more information, see [TLS termination with Key Vault certificates](/azure/application-gateway/key-vault-certs).
 
-<https://learn.microsoft.com/en-us/azure/application-gateway/configuration-infrastructure>
+    > [!NOTE]
+    > Application Gateway requires the SSL/TLS certificate in PFX format with private key. The certificate must be accessible from Azure Key Vault or uploaded directly. Use the same certificate deployed to Front Door to ensure consistent TLS behavior.
 
- 
+1. Create WAF policy. For more information, see [Create Web Application Firewall policies for Application Gateway](/azure/web-application-firewall/ag/create-waf-policy-ag)
 
-2.2: Create Managed Identity and Grant Key Vault Access
+1. Create Application Gateway with HTTPS and WAF. For more information, see [Configure an Application Gateway with TLS termination](/azure/application-gateway/create-ssl-portal).
 
-<https://learn.microsoft.com/en-us/azure/application-gateway/key-vault-certs>
+1. Configure backend host header. For more information, see [Troubleshoot backend health issues in Application Gateway](/azure/application-gateway/application-gateway-backend-health-troubleshooting)
 
- 
+1. Verify Application Gateway
 
-**SSL/TLS Certificate:** Application Gateway requires the SSL/TLS certificate in PFX format with private key. The certificate must be accessible from Azure Key Vault or uploaded directly. Use the same certificate deployed to Front Door to ensure consistent TLS behavior.
+    ```azurepowershell
+    # Get Application Gateway public IP
+    $APPGW_IP = az network public-ip show `
+        --name $APPGW_PIP_NAME_R1 `
+        --resource-group $RESOURCE_GROUP `
+        --query ipAddress -o tsv
+    Write-Host "Application Gateway IP: $APPGW_IP"
+    
+    # Test Application Gateway directly (SkipCertificateCheck because cert is for domain, not IP)
+    Invoke-WebRequest -Uri "https://$APPGW_IP/index.html" -Method Head -SkipCertificateCheck
+    ```
 
- 
 
- 
+**Expected Result:** StatusCode 200. If you get 502 Bad Gateway, ensure the backend HTTP settings have `--host-name-from-backend-pool true` enabled.
 
-2.3: Create WAF Policy
-
-<https://learn.microsoft.com/en-us/azure/web-application-firewall/ag/create-waf-policy-ag>
-
- 
-
-2.4: Create Application Gateway with HTTPS and WAF
-
-<https://learn.microsoft.com/en-us/azure/application-gateway/create-ssl-portal>
-
- 
-
-2.5: Configure Backend Host Header
-
-<https://learn.microsoft.com/en-us/azure/application-gateway/application-gateway-backend-health-troubleshooting#host-name>
-
- 
-
-2.6: Verify Application Gateway
-
-\# Get Application Gateway public IP
-
-\$APPGW_IP = az network public-ip show \`
-
-    --name \$APPGW_PIP_NAME_R1 \`
-
-    --resource-group \$RESOURCE_GROUP \`
-
-    --query ipAddress -o tsv
-
-Write-Host "Application Gateway IP: \$APPGW_IP"
-
-\# Test Application Gateway directly (SkipCertificateCheck because cert is for domain, not IP)
-
-Invoke-WebRequest -Uri "https://\$APPGW_IP/index.html" -Method Head -SkipCertificateCheck
-
-** **
-
-**Expected Result:** StatusCode 200. If you get 502 Bad Gateway, ensure the backend HTTP settings have --host-name-from-backend-pool true enabled
-
- 
-
-Step 3: Configure WAF Policy Settings (Optional)
+#### Step 3: Configure WAF Policy Settings (Optional)
 
 **Note:** By default, WAF is created in Detection mode. Prevention mode actively blocks malicious requests. Test thoroughly before enabling Prevention mode in production.
 
