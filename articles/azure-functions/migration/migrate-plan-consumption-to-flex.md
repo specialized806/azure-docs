@@ -1588,6 +1588,8 @@ When migrating your IaC from Consumption to Flex Consumption, consider these imp
 | Configuration | App settings | `functionAppConfig` section |
 | Storage content share | `WEBSITE_CONTENTSHARE` setting | `deployment.storage` in `functionAppConfig` |
 
+The examples below demonstrate the key differences between Consumption and Flex Consumption plan resource definitions, and use system assigned managed identity, but they are not complete. They don't include all required resources such as storage accounts, Application Insights, or all necessary role assignments. For complete, production-ready examples, review the [Flex Consumption IaC samples](https://github.com/Azure-Samples/azure-functions-flex-consumption-samples/tree/main/IaC).
+
 #### [Bicep](#tab/bicep)
 
 **Consumption plan (before):**
@@ -1621,6 +1623,7 @@ resource functionApp 'Microsoft.Web/sites@2022-03-01' = {
         { name: 'WEBSITE_CONTENTAZUREFILECONNECTIONSTRING__accountName', value: storageAccount.name }
         { name: 'WEBSITE_CONTENTSHARE', value: functionAppName }
         { name: 'APPLICATIONINSIGHTS_CONNECTION_STRING', value: appInsights.properties.ConnectionString }
+        { name: 'APPLICATIONINSIGHTS_AUTHENTICATION_STRING', value: 'Authorization=AAD' }
       ]
     }
   }
@@ -1730,7 +1733,8 @@ resource "azurerm_linux_function_app" "consumption" {
   }
 
   app_settings = {
-    "FUNCTIONS_WORKER_RUNTIME" = "dotnet-isolated"
+    "FUNCTIONS_WORKER_RUNTIME"                  = "dotnet-isolated"
+    "APPLICATIONINSIGHTS_AUTHENTICATION_STRING" = "Authorization=AAD"
   }
 }
 ```
@@ -1778,8 +1782,9 @@ resource "azurerm_function_app_flex_consumption" "flex" {
   }
 
   app_settings = {
-    "AzureWebJobsStorage"              = "" # Required: see note below
-    "AzureWebJobsStorage__accountName" = azurerm_storage_account.sa.name
+    "AzureWebJobsStorage"                       = "" # Required: see note below
+    "AzureWebJobsStorage__accountName"          = azurerm_storage_account.sa.name
+    "APPLICATIONINSIGHTS_AUTHENTICATION_STRING" = "Authorization=AAD"
   }
 }
 
