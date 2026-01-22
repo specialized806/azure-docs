@@ -247,7 +247,6 @@ Apply the following configuration to create the Traffic Manager profile. For mor
 
     ```
     # Failback: Enable Front Door, Disable CDN
-    
     az network traffic-manager endpoint update `
         --name "endpoint-afd-primary" `
         --profile-name $ATM_CDN_PROFILE_NAME `
