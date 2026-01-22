@@ -292,7 +292,7 @@ It's important to understand the feature differences between Front Door and Appl
 | OSI layer | Layer 7 (application layer) | Layer 7 (application layer) |
 | Load balancing level | Across regions | Within region/virtual network |
 | Deployment model | Single global instance | Per-region instances |
-| Backend scope | Any public endpoint (Azure or external), and selected Private Link endpoints | Any public endpoint (Azure or external), private IP addresses and Kubernetes pods in virtual network |
+| Backend scope | Any public endpoint (Azure or external), and selected Private Link endpoints | Any public endpoint (Azure or external), private IP addresses, and Kubernetes pods in virtual network |
 | Content edge caching | Yes | No |
 | Network architecture | Microsoft's global edge network with anycast | Azure regional deployment (no anycast) |
 | **Configuration differences** | | |
@@ -354,7 +354,7 @@ The following are virtual network and subnet requirements:
 
 #### Connectivity to origins
 
-- VNet peering: For origins in different VNets
+- Virtual network peering: For origins in different VNets
 
 - ExpressRoute/VPN: For on-premises origins
 
@@ -405,7 +405,7 @@ The following are virtual network and subnet requirements:
 1. Create managed identity and grant Key Vault access. For more information, see [TLS termination with Key Vault certificates](/azure/application-gateway/key-vault-certs).
 
     > [!NOTE]
-    > Application Gateway requires the SSL/TLS certificate in PFX format with private key. The certificate must be accessible from Azure Key Vault or uploaded directly. Use the same certificate deployed to Front Door to ensure consistent TLS behavior.
+    > Application Gateway requires the SSL/TLS certificate in PFX format with private key. The certificate must be accessible from Azure Key Vault or uploaded directly. Use the same Front Door certificate to ensure consistent TLS behavior.
 
 1. Create WAF policy. For more information, see [Create Web Application Firewall policies for Application Gateway](/azure/web-application-firewall/ag/create-waf-policy-ag)
 
@@ -435,7 +435,7 @@ The following are virtual network and subnet requirements:
 > By default, WAF is created in Detection mode. Prevention mode actively blocks malicious requests. Test thoroughly before enabling Prevention mode in production.
 
 > [!IMPORTANT]
-> **Evaluate your global traffic patterns and deploy Application Gateway instances in regions with meaningful user volume.** If deploying multi-region Application Gateway, **repeat Steps 2 and 3 for each additional region (for example, West US 2) using different** virtual network address spaces (10.2.0.0/16, 10.3.0.0/16, etc.) and region-specific variable suffixes (R2, R3, etc).
+> **Evaluate your global traffic patterns and deploy Application Gateway instances in regions with meaningful user volume.** If deploying multi-region Application Gateway, **repeat Steps 2 and 3 for each additional region (for example, West US 2) using different** virtual network address spaces (10.2.0.0/16, 10.3.0.0/16, etc.) and region-specific variable suffixes (R2, R3, etc.).
 
 #### Step 4: Create Traffic Manager architecture
 
@@ -476,7 +476,7 @@ The following are virtual network and subnet requirements:
 | **Port** | 443 | Standard HTTPS port |
 | **Path** | /index.html | Choose a lightweight endpoint for health checks |
 | **TTL** | 300 seconds | DNS TTL - lower values enable faster failover but increase DNS queries |
-| **Health Check** | Always serve traffic | Do not enable Health checks |
+| **Health Check** | Always serve traffic | Don't enable Health checks |
 
 **Endpoint specific configurations:**
 
@@ -511,8 +511,6 @@ The following are virtual network and subnet requirements:
     ```
 
 **Expected Result:** Both endpoints should show `Status: Online`. If an endpoint shows `Degraded` or `CheckingEndpoint`, wait 1-2 minutes for health probes to complete.
-
- 
 
 #### Step5: Update DNS CNAME to Traffic Manager and verify update
 
@@ -558,7 +556,7 @@ After the DNS cutover, actively monitor the following Azure Front Door metrics:
 
 - Response time: Should remain within normal ranges
 
-- Error rates: 4xx/5xx errors should not increase
+- Error rates: 4xx/5xx errors shouldn't increase
 
 - Origin health: Backend health should remain Online
 
