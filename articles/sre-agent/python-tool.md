@@ -12,7 +12,7 @@ ms.collection: ce-skilling-ai-copilot
 
 # Create a Python tool in Azure SRE Agent
 
-Python tools extend Azure SRE Agent capabilities by adding custom logic. The agent runtime runs Python code in a secure sandbox and provides access to common Python libraries.
+Running in a secure sandbox, SRE Agent allows you to executes Python code with access to common Python libraries so you can add custom logic to the agent.
 
 This article shows you how to create, configure, and test Python tools in Azure SRE Agent.
 
