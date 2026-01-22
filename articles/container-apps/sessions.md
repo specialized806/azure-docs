@@ -81,7 +81,23 @@ For more information, see [Usage](./sessions-usage.md).
 ---
 
 ## Supported Regions
-Dynamic sessions are supported in **all regions where Azure Container Apps is available**. View supported regions here: [Azure Container Apps regions](https://azure.microsoft.com/global-infrastructure/services/?products=container-apps).
+
+Dynamic sessions are available in the following regions. Both code interpreter and custom container sessions are supported in all listed regions.
+
+| Americas | Europe | Asia Pacific | Middle East & Africa |
+|----------|--------|--------------|----------------------|
+| Brazil South | France Central | Australia East | South Africa North |
+| Canada Central | Germany West Central | Australia Southeast | UAE North |
+| Canada East | Italy North | Central India | |
+| Central US | North Europe | East Asia | |
+| East US | Norway East | Japan East | |
+| East US 2 | Poland Central | Japan West | |
+| North Central US | Sweden Central | Korea Central | |
+| West Central US | Switzerland North | South India | |
+| West US | Switzerland West | Southeast Asia | |
+| West US 2 | UK South | | |
+| West US 3 | UK West | | |
+| | West Europe | | |
 
 ---
 
