@@ -40,7 +40,7 @@ In this article, you learn how to:
 > * Create a default route
 > * Configure an application rule to allow access to www.google.com
 > * Configure a network rule to allow access to external DNS servers
- > * Deploy Azure Bastion for secure VM access
+> * Configure a NAT rule to allow a remote desktop to the test server
 > * Test the firewall
 
 > [!NOTE]
@@ -103,7 +103,7 @@ This virtual network has two subnets.
 Now create the workload virtual machine, and place it in the **Workload-SN** subnet.
 
 1. On the Azure portal menu or from the **Home** page, select **Create a resource**.
-2. Select **Ubuntu Server 22.04 LTS**.
+2. Select **Windows Server 2019 Datacenter**.
 4. Enter these values for the virtual machine:
 
    |Setting  |Value  |
@@ -111,12 +111,9 @@ Now create the workload virtual machine, and place it in the **Workload-SN** sub
    |Resource group     |**Test-FW-RG**|
    |Virtual machine name     |**Srv-Work**|
    |Region     |Same as previous|
-   |Image|Ubuntu Server 22.04 LTS - x64 Gen2|
-   |Size|Standard_B2s|
-   |Authentication type|SSH public key|
-   |Username     |**azureuser**|
-   |SSH public key source|Generate new key pair|
-   |Key pair name|**Srv-Work_key**|
+   |Image|Windows Server 2019 Datacenter|
+   |Administrator user name     |Type a user name|
+   |Password     |Type a password|
 
 4. Under **Inbound port rules**, **Public inbound ports**, select **None**.
 6. Accept the other defaults and select **Next: Disks**.
@@ -127,7 +124,6 @@ Now create the workload virtual machine, and place it in the **Workload-SN** sub
 1. Accept the defaults and select **Next: Monitoring**.
 1. For **Boot diagnostics**, select **Disable** to disable boot diagnostics. Accept the other defaults and select **Review + create**.
 1. Review the settings on the summary page, and then select **Create**.
-1. On the **Generate new key pair** dialog, select **Download private key and create resource**. Save the key file as **Srv-Work_key.pem**.
 1. After the deployment is complete, select **Go to resource** and note the **Srv-Work** private IP address that you'll need to use later.
 
 [!INCLUDE [ephemeral-ip-note.md](~/reusable-content/ce-skilling/azure/includes/ephemeral-ip-note.md)]
@@ -213,36 +209,24 @@ This is the network rule that allows outbound access to two IP addresses at port
 1. For **Destination Ports**, type **53**.
 2. Select **Add**.
 
-## Deploy Azure Bastion
+## Configure a DNAT rule
 
-Now deploy Azure Bastion to provide secure access to the virtual machine.
+This rule allows you to connect a remote desktop to the Srv-Work virtual machine through the firewall.
 
-1. On the Azure portal menu, select **Create a resource**.
-1. In the search box, type **Bastion** and select it from the results.
-1. Select **Create**.
-1. On the **Create a Bastion** page, configure the following settings:
+1. Select the **NAT rule collection** tab.
+2. Select **Add NAT rule collection**.
+3. For **Name**, type **rdp**.
+4. For **Priority**, type **200**.
+5. Under **Rules**, for **Name**, type **rdp-nat**.
+6. For **Protocol**, select **TCP**.
+7. For **Source type**, select **IP address**.
+8. For **Source**, type **\***.
+9. For **Destination address**, type the firewall public IP address.
+10. For **Destination Ports**, type **3389**.
+11. For **Translated address**, type the Srv-work private IP address.
+12. For **Translated port**, type **3389**.
+13. Select **Add**.
 
-   | Setting | Value |
-   |---------|-------|
-   | Subscription | Select your subscription |
-   | Resource group | **Test-FW-RG** |
-   | Name | **Test-Bastion** |
-   | Region | Same region as previous resources |
-   | Tier | **Developer** |
-   | Virtual network | **Test-FW-VN** |
-   | Subnet | Select **Manage subnet configuration** |
-
-1. In the **Subnets** page, select **+ Subnet**.
-1. Configure the new subnet:
-   - **Name**: **AzureBastionSubnet** (this name is required)
-   - **Subnet address range**: **10.0.4.0/26**
-1. Select **Save** and close the subnets page.
-1. Back on the **Create a Bastion** page, for **Public IP address**, select **Create new**.
-1. For **Public IP address name**, type **Bastion-pip**.
-1. Select **Review + create**.
-1. After validation passes, select **Create**.
-
-   The Bastion deployment takes about 10 minutes to complete.
 
 ### Change the primary and secondary DNS address for the **Srv-Work** network interface
 
@@ -260,35 +244,19 @@ For testing purposes, configure the server's primary and secondary DNS addresses
 
 Now, test the firewall to confirm that it works as expected.
 
-1. In the Azure portal, navigate to the **Srv-Work** virtual machine.
-1. Select **Connect**, then select **Connect via Bastion**.
-1. Select **Use SSH Private Key from Local File**.
-1. For **Username**, type **azureuser**.
-1. Select the folder icon and browse to the **Srv-Work_key.pem** file you downloaded earlier.
-1. Select **Connect**.
-1. At the bash prompt, run the following commands to test DNS resolution:
+1. Connect a remote desktop to the firewall public IP address and sign in to the Srv-Work virtual machine.
+1. Open Internet Explorer and browse to `https://www.google.com`.
+4. Select **OK** > **Close** on the Internet Explorer security alerts.
 
-   ```bash
-   nslookup www.google.com
-   nslookup www.microsoft.com
-   ```
+   You should see the Google home page.
 
-   Both commands should return answers, showing that your DNS queries are getting through the firewall.
+5. Browse to `https://www.microsoft.com`.
 
-1. Run the following commands to test the application rule:
-
-   ```bash
-   curl https://www.google.com
-   curl https://www.microsoft.com
-   ```
-
-   The `www.google.com` request should succeed, and you should see the HTML response.
-   
-   The `www.microsoft.com` request should fail, showing that the firewall is blocking the request.
+   The firewall should block you.
 
 So now you verified that the firewall rules are working:
 
-* You can connect to the virtual machine using Bastion and SSH.
+* You can connect to the virtual machine using RDP.
 * You can browse to the one allowed FQDN, but not to any others.
 * You can resolve DNS names using the configured external DNS server.
 
