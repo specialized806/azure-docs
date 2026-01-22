@@ -126,7 +126,7 @@ Create a workload virtual machine, and place it in the **SN-Workload** subnet.
 1. Select **Next: Disks**.
 
 **Disks**
-1. Select **Next: Networking**.
+- Select **Next: Networking**.
 
 **Networking**
 
@@ -138,7 +138,7 @@ Create a workload virtual machine, and place it in the **SN-Workload** subnet.
 
 **Management**
 
-1. Select **Next: Monitoring**.
+- Select **Next: Monitoring**.
 
 **Monitoring**
 
@@ -149,7 +149,7 @@ Create a workload virtual machine, and place it in the **SN-Workload** subnet.
 
 Review the summary, and then select **Create**. 
 
-1. On the **Generate new key pair** dialog, select **Download private key and create resource**. Save the key file as **Srv-Workload_key.pem**.
+- On the **Generate new key pair** dialog, select **Download private key and create resource**. Save the key file as **Srv-Workload_key.pem**.
 
 After deployment finishes, note the private IP address for the virtual machine. It will be used later when you configure the firewall. Select the virtual machine name, and under **Settings**, select **Networking** to find the private IP address.
 
