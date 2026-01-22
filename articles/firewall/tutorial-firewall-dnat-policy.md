@@ -106,7 +106,7 @@ Now peer the two VNets.
 Create a workload virtual machine, and place it in the **SN-Workload** subnet.
 
 1. From the Azure portal menu, select **Create a resource**.
-2. Under **Popular**, select **Windows Server 2016 Datacenter**.
+2. Under **Popular**, select **Ubuntu Server 22.04 LTS**.
 
 **Basics**
 
@@ -114,7 +114,12 @@ Create a workload virtual machine, and place it in the **SN-Workload** subnet.
 1. For **Resource group**, select **RG-DNAT-Test**.
 1. For **Virtual machine name**, type **Srv-Workload**.
 1. For **Region**, select the same location that you used previously.
-1. Type a username and password.
+1. For **Image**, select **Ubuntu Server 22.04 LTS - x64 Gen2**.
+1. For **Size**, select **Standard_B2s**.
+1. For **Authentication type**, select **SSH public key**.
+1. For **Username**, type **azureuser**.
+1. For **SSH public key source**, select **Generate new key pair**.
+1. For **Key pair name**, type **Srv-Workload_key**.
 1. Select **Next: Disks**.
 
 **Disks**
@@ -130,12 +135,18 @@ Create a workload virtual machine, and place it in the **SN-Workload** subnet.
 
 **Management**
 
+1. Select **Next: Monitoring**.
+
+**Monitoring**
+
 1. For **Boot diagnostics**, select **Disable**.
 1. Select **Review + Create**.
 
 **Review + Create**
 
-Review the summary, and then select **Create**. This will take a few minutes to complete.
+Review the summary, and then select **Create**. 
+
+1. On the **Generate new key pair** dialog, select **Download private key and create resource**. Save the key file as **Srv-Workload_key.pem**.
 
 After deployment finishes, note the private IP address for the virtual machine. It will be used later when you configure the firewall. Select the virtual machine name, and under **Settings**, select **Networking** to find the private IP address.
 
@@ -198,6 +209,9 @@ For the **SN-Workload** subnet, you configure the outbound default route to go t
 
 This rule allows you to connect a remote desktop to the Srv-Workload virtual machine through the firewall.
 
+> [!NOTE]
+> This tutorial demonstrates DNAT configuration for educational purposes. For production environments, **Azure Bastion is the recommended approach** for secure VM access. See the [Alternative: Using Azure Bastion](#alternative-using-azure-bastion-recommended) section below for the modern best practice.
+
 1. Open the **RG-DNAT-Test** resource group, and select the **fw-dnat-pol** firewall policy. 
 1. Under **Settings**, select **DNAT rules**.
 2. Select **Add a rule collection**.
@@ -206,20 +220,84 @@ This rule allows you to connect a remote desktop to the Srv-Workload virtual mac
 1. For **Rule collection group**, select **DefaultDnatRuleCollectionGroup**.
 1. Under **Rules**, for **Name**, type **rdp-nat**.
 1. For **Source type**, select **IP address**.
-1. For **Source**, specify the IP address or range that you want to allow. For example, 192.168.1.0/24.
+1. For **Source**, specify the IP address or range that you want to allow. For example, your current public IP address.
 1. For **Protocol**, select **TCP**.
-1. For **Destination Ports**, type **3389**.
+1. For **Destination Ports**, type **2222**.
 1. For **Destination Type**, select **IP Address**.
-1. For **Destination**, type the firewall public or private IP address.
+1. For **Destination**, type the firewall public IP address.
 1. For **Translated address**, type the **Srv-Workload** private IP address.
-1. For **Translated port**, type **3389**.
+1. For **Translated port**, type **22**.
 1. Select **Add**.
+
+## Alternative: Using Azure Bastion (Recommended)
+
+For production deployments, Azure Bastion provides a more secure alternative to DNAT rules for VM access. Azure Bastion eliminates the need to expose VMs to the internet and provides secure RDP/SSH connectivity directly from the Azure portal.
+
+### Benefits of Azure Bastion over DNAT
+
+- **No public IP exposure**: VMs don't need public IPs or DNAT rules
+- **Protection against port scanning**: No exposed RDP/SSH ports
+- **Built-in security**: Integrated with Azure security features
+- **Simplified management**: Connect directly from Azure portal
+- **Compliance**: Meets regulatory requirements for secure access
+
+### Deploy Azure Bastion
+
+1. In the **VN-Spoke** virtual network, add a new subnet:
+   - Navigate to **VN-Spoke** > **Subnets** > **+ Subnet**
+   - **Name**: **AzureBastionSubnet** (this exact name is required)
+   - **Subnet address range**: **192.168.2.0/26**
+   - Select **Save**
+
+1. On the Azure portal menu, select **Create a resource**.
+1. Search for **Bastion** and select it.
+1. Select **Create**.
+1. Configure the Bastion deployment:
+
+   | Setting | Value |
+   |---------|-------|
+   | Subscription | Your subscription |
+   | Resource group | **RG-DNAT-Test** |
+   | Name | **VN-Spoke-Bastion** |
+   | Region | Same as your other resources |
+   | Tier | **Developer** |
+   | Virtual network | **VN-Spoke** |
+   | Subnet | **AzureBastionSubnet** (auto-selected) |
+   | Public IP address | Create new |
+   | Public IP address name | **Bastion-pip** |
+
+1. Select **Review + create**.
+1. Select **Create**.
+
+   Deployment takes about 10 minutes to complete.
+
+### Connect using Azure Bastion
+
+Once Azure Bastion is deployed, you can connect to the VM:
+
+1. Navigate to the **Srv-Workload** virtual machine in the Azure portal.
+1. Select **Connect** > **Connect via Bastion**.
+1. Select **Use SSH Private Key from Local File**.
+1. For **Username**, type **azureuser**.
+1. Browse to and select the **Srv-Workload_key.pem** file you downloaded earlier.
+1. Select **Connect**.
+
+You're now securely connected to the VM without any DNAT rules or firewall configuration.
 
 
 ## Test the firewall
 
-1. Connect a remote desktop to firewall public IP address. You should be connected to the **Srv-Workload** virtual machine.
-2. Close the remote desktop.
+1. If using DNAT: Use an SSH client to connect to the firewall public IP address on port 2222. Use the private key file you downloaded during VM creation. You should be connected to the **Srv-Workload** virtual machine.
+   
+   ```bash
+   ssh -i Srv-Workload_key.pem azureuser@<firewall-public-ip> -p 2222
+   ```
+
+2. If using Azure Bastion: Navigate to the **Srv-Workload** VM in the Azure portal, select **Connect** > **Connect via Bastion**, and use your SSH key to connect.
+
+3. Close the connection.
+
+You've successfully tested access to the VM. For production environments, use Azure Bastion for enhanced security.
 
 ## Clean up resources
 
