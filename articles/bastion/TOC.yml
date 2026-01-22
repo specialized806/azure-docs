@@ -37,7 +37,7 @@
       href: native-client.md 
     - name: Connect from Windows native client
       href: connect-vm-native-client-windows.md
-    - name: Connect from Linux nativeclient
+    - name: Connect from Linux native client
       href: connect-vm-native-client-linux.md
     - name: Transfer files - native client
       href: vm-upload-download-native.md
