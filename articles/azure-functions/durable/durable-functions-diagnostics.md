@@ -44,9 +44,9 @@ Every orchestration instance generates tracking events as it progresses through 
 | `extensionVersion` | The version of the Durable Task extension. The version information is especially important data when reporting possible bugs in the extension. Long-running instances may report multiple versions if an update occurs while the instance is running. |
 | `sequenceNumber` | Execution sequence number for an event. Combined with the timestamp, this helps order the events by execution time. *Note that this number resets to zero if the host restarts while the instance is running, so it's important to always sort by timestamp first, then sequenceNumber.* |
 
-::: zone pivot="durable-functions"
+You can configure the verbosity of tracking data emitted to Application Insights using your platform's logging configuration.
 
-You can configure the verbosity of tracking data emitted to Application Insights in the `logger` (Functions 1.x) or `logging` (Functions 2.0) section of the `host.json` file.
+::: zone pivot="durable-functions"
 
 # [Functions 2.0](#tab/functions-v2)
 
@@ -174,6 +174,8 @@ When looking at logs emitted by the DTFx, it's important to understand that the 
 | `DurableTask.Netherite` | Backend logs specific to the [Netherite storage provider](https://microsoft.github.io/durabletask-netherite), if enabled. |
 | `DurableTask.SqlServer` | Backend logs specific to the [Microsoft SQL (MSSQL) storage provider](https://microsoft.github.io/durabletask-mssql), if enabled. |
 
+::: zone pivot="durable-functions"
+
 You can enable these logs by updating the `logging/logLevel` section of your function app's **host.json** file. The following example shows how to enable warning and error logs from both `DurableTask.Core` and `DurableTask.AzureStorage`:
 
 ```json
@@ -187,6 +189,8 @@ You can enable these logs by updating the `logging/logLevel` section of your fun
   }
 }
 ```
+
+::: zone-end
 
 If you have Application Insights enabled, these logs are automatically added to the `trace` collection. You can search them the same way you search for other `trace` logs using Kusto queries.
 
