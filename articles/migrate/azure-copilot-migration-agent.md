@@ -16,13 +16,17 @@ Azure Copilot Migration Agent is a planning‑focused Copilot experience that he
 
 ## What is Azure Copilot Migration Agent?
 
-The agent supports migration planning, analysis, and decision‑making, but not migration execution. Customers interact with the agent using natural‑language prompts to explore inventory, migration readiness, strategies, ROI considerations, and landing zone requirements.
+The agent supports migration planning, analysis, and decision‑making, but not migration execution. Customers interact with the Agent using natural‑language prompts to explore inventory, migration readiness, strategies, ROI considerations, and landing zone requirements.
 
 Azure Copilot Migration Agent works across a range of migration scenarios, including:
 
 - VMware workloads
 - Hyper‑V workloads and Physical servers
 - Greenfield and brownfield projects
+
+## How to manage access to Agents 
+
+To manage access to Agents (preview) in Azure Copilot, an administrator can request or remove access at the tenant level. For more information, see [Manage access to Agents (preview)](/azure/copilot/manage-access#manage-access-to-agents-preview-in-azure-copilot) in Azure Copilot.
 
 ## How Azure Copilot Migration Agent works
 
