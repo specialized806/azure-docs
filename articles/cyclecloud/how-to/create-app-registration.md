@@ -111,7 +111,7 @@ If you've deployed Azure CycleCloud Workspace for Slurm, use the provided helper
 
 :::image type="content" source="../images/entra-setup/entra20.png" alt-text="Screenshot of the Mobile and desktop application configuration window.":::
 
-1. Select **Add a platform** under *Platform Configurations* and then choose **Single-page application**. Enter `https://{your_cyclecloud_VM_IP_or_domain_name}/home` as the custom URI and save by pressing **Configure**. Similar to the previous step, navigate to the **Mobile and desktop applications** section of the **Authentication** page and add `https://{your_cyclecloud_VM_IP_or_domain_name}/login` as a redirect URI. Add additional URIs in the same section of the Authentication page to use this application registration with multiple CycleCloud installations or to use multiple URIs for the same CycleCloud installation. You can leave the remaining fields blank.
+1. Select **Add a platform** under *Platform Configurations* and then choose **Single-page application**. Enter `https://{your_cyclecloud_VM_IP_or_domain_name}/home` as the custom URI and save by pressing **Configure**. Similar to the previous step, navigate to the **Mobile and desktop applications** section of the **Authentication** page and add `https://{your_cyclecloud_VM_IP_or_domain_name}/sso` as a redirect URI. Add additional URIs in the same section of the Authentication page to use this application registration with multiple CycleCloud installations or to use multiple URIs for the same CycleCloud installation. You can leave the remaining fields blank.
 
 :::image type="content" source="../images/entra-setup/entra15.png" alt-text="Screenshot of the Redirect URI configuration view.":::
 
