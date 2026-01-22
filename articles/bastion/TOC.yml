@@ -24,29 +24,27 @@
   - name: Deploy Bastion - Terraform
     href: quickstart-deploy-terraform.md
 - name: Concepts
-- name: Identity & authentication
   items:
-  - name: Configure Kerberos authentication
-    href: kerberos-authentication-portal.md
-  - name: Connect to a virtual machine
+  - name: Identity & authentication
     items:
-    - name: Windows VM
+    - name: Configure Kerberos authentication
+      href: kerberos-authentication-portal.md
+    - name: Connect to a virtual machine
       items:
-      - name: RDP connection
-        href: bastion-connect-vm-rdp-windows.md
-      - name: SSH connection
-        href: bastion-connect-vm-ssh-windows.md
-    - name: Linux VM
-      items: 
-      - name: SSH connection
-        href: bastion-connect-vm-ssh-linux.md
-      - name: RDP connection
-        href: bastion-connect-vm-linux-rdp.
-  items:
+      - name: Windows VM
+        items:
+        - name: RDP connection
+          href: bastion-connect-vm-rdp-windows.md
+        - name: SSH connection
+          href: bastion-connect-vm-ssh-windows.md
+      - name: Linux VM
+        items: 
+        - name: SSH connection
+          href: bastion-connect-vm-ssh-linux.md
+        - name: RDP connection
+          href: bastion-connect-vm-linux-rdp.md
   - name: Connectivity & Access Methods
     items:
-    - name: Work with NSGs
-      href: bastion-nsg.md
     - name: Bastion and VNet peering
       href: vnet-peering.md
     - name: Connect to an AKS cluster
@@ -63,6 +61,22 @@
       href: connect-ip-address.md
     - name: Configure a shareable link
       href: shareable-link.md
+  - name: Authorization & Privileged Access
+    items:
+      - name: Work with NSGs
+        href: bastion-nsg.md
+  - name: Session controls, auditing, and monitoring
+    items:
+    - name: Monitor and manage sessions
+      href: session-monitoring.md
+    - name: Configure session recording
+      href: session-recording.md
+  - name: Platform
+    items:
+      - name: Azure portal
+        href: configure-host-scaling.md
+      - name: Azure PowerShell
+        href: configure-host-scaling-powershell.md
   - name: Bastion configuration settings
     href: configuration-settings.md
   - name: Work remotely
@@ -105,14 +119,6 @@
     items:
     - name: View or upgrade SKU
       href: upgrade-sku.md
-    - name: Configure host scaling
-      items:
-      - name: Azure portal
-        href: configure-host-scaling.md
-      - name: Azure PowerShell
-        href: configure-host-scaling-powershell.md
-    - name: Configure session recording
-      href: session-recording.md
   - name: Connect to a VM scale set
     href: bastion-connect-vm-scale-set.md
   - name: Connect to DevTest Labs VMs
@@ -127,8 +133,6 @@
     items:
     - name: Monitor Azure Bastion
       href: monitor-bastion.md
-    - name: Monitor and manage sessions
-      href: session-monitoring.md
   - name: Troubleshoot
     href: troubleshoot.md
 - name: Reference
