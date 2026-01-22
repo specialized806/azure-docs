@@ -89,14 +89,14 @@ Make note of the Tenant, Client, and Managed Identity Resource IDs and proceed t
 
 :::image type="content" source="../images/entra-setup/entra9.png" alt-text="Screenshot of the App roles configuration window.":::
 
-    > [!NOTE]
-    > Microsoft Entra ID doesn't allow roles to have spaces in them, and some of the in-built CycleCloud roles include spaces (for example, "Cluster Administrator"). Replace any spaces in the role names defined in Microsoft Entra ID with a dot (for example, "Data Admin" becomes "Data.Admin"). Rename any roles defined in CycleCloud to not feature dots. Role definitions in Microsoft Entra ID are case insensitive.
+> [!NOTE]
+> Microsoft Entra ID doesn't allow roles to have spaces in them, and some of the in-built CycleCloud roles include spaces (for example, "Cluster Administrator"). Replace any spaces in the role names defined in Microsoft Entra ID with a dot (for example, "Data Admin" becomes "Data.Admin"). Rename any roles defined in CycleCloud to not feature dots. Role definitions in Microsoft Entra ID are case insensitive.
 
-    Add the following roles. The first two roles are required only if you're planning to use [Open OnDemand](#open-ondemand).
+Add the following roles. The first two roles are required only if you're planning to use [Open OnDemand](#open-ondemand).
     
-    :::image type="content" source="../images/entra-setup/entra21.png" alt-text="Screenshot of the basic roles required for CycleCloud.":::
+:::image type="content" source="../images/entra-setup/entra21.png" alt-text="Screenshot of the basic roles required for CycleCloud.":::
     
-1. CycleCloud doesn't support v2.0 access tokens issued by the application registration. To fix this problem, configure the application registration to issue tokens v1.0 by selecting **Manifest** and changing the value of the **accessTokenAcceptedVersion** property to ``1`` in the manifest. Be sure to select **Save**.
+CycleCloud doesn't support v2.0 access tokens issued by the application registration. To fix this problem, configure the application registration to issue tokens v1.0 by selecting **Manifest** and changing the value of the **accessTokenAcceptedVersion** property to ``1`` in the manifest. Be sure to select **Save**.
 
 :::image type="content" source="../images/entra-setup/entra24.png" alt-text="Screenshot of the Manifest menu.":::
 
