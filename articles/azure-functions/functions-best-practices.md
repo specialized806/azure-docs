@@ -207,7 +207,7 @@ Azure Functions also allows you to [send system-generated and user-generated log
 
 ## Build in redundancy
 
-Your business needs might require that your functions always be available, even during a data center outage. To learn how to use a multi-regional approach to keep your critical functions always running, see [Reliability in Azure Functions](../reliability/reliability-functions.md).
+Your business needs might require that your functions always be available, even during a data center outage. To learn how to use a multi-regional approach to keep your critical functions always running, see [Reliability in Azure Functions](/azure/reliability/reliability-functions).
 
 ## Next steps
 
