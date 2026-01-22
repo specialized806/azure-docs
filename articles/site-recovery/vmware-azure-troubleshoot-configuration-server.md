@@ -22,45 +22,45 @@ The source machine registers with the configuration server when you install the 
 
 1. Search for the string **No Valid IP Address found**:
 
-- If the string is found:
+   - If the string is found:
 
-    1. Verify that the requested host ID is the same as the host ID of the source machine.
-    1. Verify that the source machine has at least one IP address assigned to the physical network interface card (NIC). For agent registration with the configuration server to succeed, the source machine must have at least one valid IP v4 address assigned to the physical NIC.
-    1. Run one of the following commands on the source machine to get all the IP addresses of the source machine:
+       1. Verify that the requested host ID is the same as the host ID of the source machine.
+       1. Verify that the source machine has at least one IP address assigned to the physical network interface card (NIC). For agent registration with the configuration server to succeed, the source machine must have at least one valid IP v4 address assigned to the physical NIC.
+       1. Run one of the following commands on the source machine to get all the IP addresses of the source machine:
 
-       - **Windows**: `> ipconfig /all`
-       - **Linux**: `# ifconfig -a`
+          - **Windows**: `> ipconfig /all`
+          - **Linux**: `# ifconfig -a`
 
-- If the string **No Valid IP Address found** isn't found:
+   - If the string **No Valid IP Address found** isn't found:
 
-    1. Search for the string **Reason=>NULL**. This error occurs if the source machine uses an empty host to register with the configuration server.
+       1. Search for the string **Reason=>NULL**. This error occurs if the source machine uses an empty host to register with the configuration server.
 
-    1. If the string is found, retry the registration manually after you resolve the issues. Follow the guidelines in [Register the source machine with the configuration server](vmware-azure-troubleshoot-configuration-server.md#register-source-machine-with-configuration-server).
+       1. If the string is found, retry the registration manually after you resolve the issues. Follow the guidelines in [Register the source machine with the configuration server](vmware-azure-troubleshoot-configuration-server.md#register-source-machine-with-configuration-server).
 
-       - If the string **Reason=>NULL** isn't found:
+          - If the string **Reason=>NULL** isn't found:
 
-       1. On the source machine, open the `C:\ProgramData\ASRSetupLogs\UploadedLogs\ASRUnifiedAgentInstaller.log` file. The `ProgramData` folder might be a hidden folder.
-       1. If you don't see the `ProgramData` folder, in File Explorer, on the **View** tab, in the **Show/hide** section, select the **Hidden items** checkbox. Multiple issues might cause failures.
+             1. On the source machine, open the `C:\ProgramData\ASRSetupLogs\UploadedLogs\ASRUnifiedAgentInstaller.log` file. The `ProgramData` folder might be a hidden folder.
+             1. If you don't see the `ProgramData` folder, in File Explorer, on the **View** tab, in the **Show/hide** section, select the **Hidden items** checkbox. Multiple issues might cause failures.
 
 1. Search for the string **post request: (7) - Couldn't connect to server**:
 
-- If the string is found:
+   - If the string is found:
 
-   1. Resolve the network issues between the source machine and the configuration server. Verify that the configuration server is reachable from the source machine by using network tools like ping, traceroute, or a web browser. Ensure that the source machine can reach the configuration server through port 443.
-   1. Check whether any firewall rules on the source machine block the connection between the source machine and the configuration server. Work with your network admins to unblock any connection issues.
-   1. Ensure that the folders listed in [Site Recovery folder exclusions from antivirus programs](vmware-azure-set-up-source.md#azure-site-recovery-folder-exclusions-from-antivirus-program) are excluded from the antivirus software.
-   1. When network issues are resolved, retry the registration by following the guidelines in [Register the source machine with the configuration server](vmware-azure-troubleshoot-configuration-server.md#register-source-machine-with-configuration-server).
+      1. Resolve the network issues between the source machine and the configuration server. Verify that the configuration server is reachable from the source machine by using network tools like ping, traceroute, or a web browser. Ensure that the source machine can reach the configuration server through port 443.
+      1. Check whether any firewall rules on the source machine block the connection between the source machine and the configuration server. Work with your network admins to unblock any connection issues.
+      1. Ensure that the folders listed in [Site Recovery folder exclusions from antivirus programs](vmware-azure-set-up-source.md#azure-site-recovery-folder-exclusions-from-antivirus-program) are excluded from the antivirus software.
+      1. When network issues are resolved, retry the registration by following the guidelines in [Register the source machine with the configuration server](vmware-azure-troubleshoot-configuration-server.md#register-source-machine-with-configuration-server).
 
-- If the string **post request: (7) - Couldn't connect to server** isn't found:
+   - If the string **post request: (7) - Couldn't connect to server** isn't found:
 
-  1. In the same log file, look for the string **request: (60) - Peer certificate cannot be authenticated with given CA certificates**. This error might occur because the configuration server certificate expired or the source machine doesn't support Transport Layer Security (TLS) 1.0 or later protocols. It also might occur if a firewall blocks TLS communication between the source machine and the configuration server.
+     1. In the same log file, look for the string **request: (60) - Peer certificate cannot be authenticated with given CA certificates**. This error might occur because the configuration server certificate expired or the source machine doesn't support Transport Layer Security (TLS) 1.0 or later protocols. It also might occur if a firewall blocks TLS communication between the source machine and the configuration server.
   
-     - If the string is found:
+        - If the string is found:
 
-     1. To resolve, connect to the configuration server IP address by using a web browser on the source machine. Use the URI `https:\/\/<configuration server IP address\>:443/`. Ensure that the source machine can reach the configuration server through port 443.
-     1. Check whether any firewall rules on the source machine need to be added or removed for the source machine to talk to the configuration server. Because of the variety of firewall software that might be in use, we can't list all required firewall configurations. Work with your network admins to unblock any connection issues.
-     1. Ensure that the folders listed in [Site Recovery folder exclusions from antivirus programs](vmware-azure-set-up-source.md#azure-site-recovery-folder-exclusions-from-antivirus-program) are excluded from the antivirus software.  
-     1. After you resolve the issues, retry the registration by following the guidelines in [Register the source machine with the configuration server](vmware-azure-troubleshoot-configuration-server.md#register-source-machine-with-configuration-server).
+           1. To resolve, connect to the configuration server IP address by using a web browser on the source machine. Use the URI `https:\/\/<configuration server IP address\>:443/`. Ensure that the source machine can reach the configuration server through port 443.
+           1. Check whether any firewall rules on the source machine need to be added or removed for the source machine to talk to the configuration server. Because of the variety of firewall software that might be in use, we can't list all required firewall configurations. Work with your network admins to unblock any connection issues.
+           1. Ensure that the folders listed in [Site Recovery folder exclusions from antivirus programs](vmware-azure-set-up-source.md#azure-site-recovery-folder-exclusions-from-antivirus-program) are excluded from the antivirus software.  
+           1. After you resolve the issues, retry the registration by following the guidelines in [Register the source machine with the configuration server](vmware-azure-troubleshoot-configuration-server.md#register-source-machine-with-configuration-server).
 
 1. On Linux, if the value of the platform in `<INSTALLATION_DIR\>/etc/drscout.conf` is corrupted, registration fails. To identify this issue, open the `/var/log/ua_install.log` file. Search for the string **Aborting configuration as VM_PLATFORM value is either null or it is not VmWare/Azure**. The platform should be set to either **VmWare** or **Azure**. If the `drscout.conf` file is corrupted, we recommend that you [uninstall the mobility agent](vmware-physical-manage-mobility-service.md#uninstall-mobility-service) and then reinstall the mobility agent. If uninstallation fails, follow these steps:
 
