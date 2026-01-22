@@ -67,7 +67,7 @@ When implementing high availability architectures for production workloads, cons
 
 > [!NOTE]
 > - This guide uses Azure CLI sample commands executed from within PowerShell.
-> - Before proceeding, review the [Global routing redundancy for mission-critical web applications](/azure/architecture/guide/networking/global-web-applications/overview?tabs=cli)
+> - Before proceeding, review the [Global routing redundancy for mission-critical web applications](/azure/architecture/guide/networking/global-web-applications/overview?tabs=cli).
 
 ## Scenario 1: Traffic Manager failover: Front Door to alternative CDN
 
@@ -213,7 +213,7 @@ Apply the following configuration to create the Traffic Manager profile. For mor
 
 1. Manual failover to alternative CDN:
 
-    ```azurecli
+    ```
     # Failover: Disable Front Door and enable CDN
     az network traffic-manager endpoint update `
         --name "endpoint-afd-primary" `
