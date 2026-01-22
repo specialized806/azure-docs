@@ -34,7 +34,7 @@ During conversations, the Migration Agent uses the data from your Azure Migrat
 
 ## Supported migration scenarios
 
-This article explains that Azure Copilot Migration Agent supports multiple migration scenarios to help you plan and analyze migrations using Azure Migrate data, including VMware workloads, Hyper‑V and Physical server environments, and both greenfield and brownfield projects.
+This article explains how Azure Copilot Migration Agent supports multiple migration scenarios to help you plan and analyze migrations using Azure Migrate data, including VMware workloads, Hyper‑V and Physical server environments, and both greenfield and brownfield projects.
 
 Azure Copilot Migration Agent currently supports the following scenarios:
 
@@ -166,7 +166,7 @@ Based on migration requirements such as target region, compliance needs, and con
 
 Azure Copilot Migration Agent focuses on migration planning and analysis by reasoning over Azure Migrate data and related artifacts. It doesn't execute migration operations or replace downstream Azure services.  
 
-The following scenarios are currently not supported: 
+The following scenarios aren’t currently supported:
 
 - **Migration task execution**: The agent doesn't perform execution‑time migration tasks such as server replication, cutover, or workload move operations. These actions must be completed through the Azure Migrate portal and associated services.  
 

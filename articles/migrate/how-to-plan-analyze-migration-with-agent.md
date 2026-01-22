@@ -13,7 +13,7 @@ monikerRange:
 
 # Plan and analyze VMware migrations using Azure Copilot Migration Agent
 
-This tutorial shows you how to plan and analyze a VMware migration to Azure by using Azure Copilot Migration Agent with Azure Migrate data. You use the agent to explore migration paths, review discovered inventory, analyze costs and readiness, and design an Azure landing zone.
+This article shows you how to plan and analyze a VMware migrations to Azure by using Azure Copilot Migration Agent with Azure Migrate data. You use the Agent to explore migration paths, review discovered inventory, analyze costs and readiness, and design an Azure landing zone.
 
 ## How to manage access to Agents 
 
@@ -28,19 +28,19 @@ Before you begin, ensure you have:
 
 - An Azure subscription with permissions to use Azure Migrate
 - Access to the Azure portal and Azure Migrate
-- Access to VMware vCenter
+- Access to VMware vCenter 
 
-### Step 1: Launch the migration Agent and define migration goal
+### Step 1: Launch the Migration Agent and define the migration goal
  
-**Action**: Sign in to the Azure portal and open Azure Migrate. Launch Azure Copilot Migration Agent.
+**Action**: Sign in to the Azure portal and launch Azure Copilot Migration Agent.
 **Prompt**: Help me explore migration paths for VMware workloads moving to Azure quickly.
-**Migration Agent Response**: Explains journey steps, offers step-by-step guidance. 
+**Migration Agent response**: Explains journey steps, offers step-by-step guidance. 
 
-The agent outlines the migration planning journey and suggests next steps based on your goal.
+The Agent outlines the migration planning journey and suggests next steps based on your goal.
 
 ### Step 2: Choose discovery method
 
-Choose one of the following discovery methods to provide inventory data to the agent.
+Choose one of the following discovery methods to provide inventory data to the Agent.
 
 **Option 1: Quick discovery using RVTools**
 
@@ -51,9 +51,9 @@ Use this option if you want a fast, lightweight inventory.
 1. Upload the file in the Migration Agent chat.
 
 **Prompt**: Import the RVTools file.
-**Migration agent response**: Inventory summary, option to proceed to business case. 
+**Migration Agent response**: Inventory summary, option to proceed to business case. 
 
-The agent summarizes the discovered inventory and confirms that you can proceed with analysis, such as business case creation.
+The Agent summarizes the discovered inventory and confirms that you can proceed with analysis, such as business case creation.
 
 **Option 2: Comprehensive discovery using Azure Migrate appliance**
 
@@ -63,65 +63,65 @@ Use this option if you want continuous discovery and performance-based insights.
 1. Deploy the Azure Migrate appliance (OVA) in VMware.
 1. Register the appliance using the project key.
 
-After deployment, confirm discovery with the agent.
+After deployment, confirm discovery with the Agent.
 
 **Prompt**: I have deployed the appliance. Can you verify?
-**Migration agent response**: Connection/discovery verification, workload summary, advisement on performance data collection. 
+**Migration Agent response**: Connection/discovery verification, workload summary, advisement on performance data collection. 
 
-The agent verifies connectivity, confirms discovery status, and summarizes the workloads detected. It also advises collecting performance data when applicable.
+The Agent verifies connectivity, confirms discovery status, and summarizes the workloads detected. It also advises collecting performance data when applicable.
 
-**Step 3: Review and summarize inventory**
+### Step 3: Review and summarize inventory
 
-After inventory data is available, ask the agent to analyze and organize your workloads.
+After inventory data is available, ask the Agent to analyze and organize your workloads.
 
 **Prompt**: Summarize the discovered workloads.
-**Migration agent response**: Categorized summary, next steps suggestion. 
+**Migration Agent response**: Categorized summary, next steps suggestion. 
 
-The agent provides a categorized inventory summary and suggests relevant next analysis steps.
+The Agent provides a categorized inventory summary and suggests relevant next analysis steps.
 
-**Step 4: Analyze ROI & Business case**
+### Step 4: Analyze ROI and Business Case
 
-Use the agent to review ROI, cost drivers, and migration scenarios.
+Use the Agent to review ROI, cost drivers, and migration scenarios.
 
 **Prompt**: Provide the ROI analysis summary for migration.
-**Migration agent response**: Business case report (savings, cost breakdowns, drivers), report export. 
+**Migration Agent response**: Business case report (savings, cost breakdowns, drivers), report export. 
 
 **Optional prompt**: How are the savings achieved? Compare the ROI of moving to AVS instead of Azure VMs. 
-**Migration agent response**: Cost driver details, Azure VMs vs. AVS comparison. 
+**Migration Agent response**: Cost driver details, Azure VMs vs. AVS comparison. 
 
-The agent generates a business case with cost estimates, savings drivers, and comparison details. You can also compare different target options, such as Azure Virtual Machines versus Azure VMware Solution (AVS).
+The Agent generates a business case with cost estimates, savings drivers, and comparison details. You can also compare different target options, such as Azure Virtual Machines versus Azure VMware Solution (AVS).
 
-**Step 5: Assess Azure readiness of workloads**
+### Step 5: Assess Azure readiness of workloads
 
 Evaluate whether your VMware workloads are ready to move to Azure.
 
 **Prompt**: What is the readiness of my workloads for migrating to Azure VMs?
-**Migration agent response**: Triggers assessment, notification on completion. 
+**Migration Agent response**: Triggers assessment, notification on completion. 
 **Follow-up prompt**: Summarize the assessment for my workloads. 
-**Migration agent reponse**:  Readiness report, blockers, sizing, cost estimates, recommendations. 
+**Migration Agent response**: Readiness report, blockers, sizing, cost estimates, recommendations. 
 
-The agent reports readiness status, blockers, sizing recommendations, and estimated costs.
+The Agent reports readiness status, blockers, sizing recommendations, and estimated costs.
 
-**Step 6: Create and configure Azure landing zone**
+### Step 6: Create and configure Azure landing zone
  
-Use the agent to reason about Azure landing zone architecture based on your requirements.
+Use the Agent to reason about Azure landing zone architecture based on your requirements.
 
-1. Ask the agent to explain landing zones.
+1. Ask the Agent to explain landing zones.
 1. Provide subscription and governance details.
 1. Share region, compliance, and networking requirements.
 
-**Prompt: What is a landing zone?** 
-**Migration agent response**: Concept explanation, subscription ID request. 
+**Prompt**: What is a landing zone?
+**Migration Agent response**: Concept explanation, subscription ID request. 
 
 **Prompt**: Here are my subscription IDs: `X` for management and identity, `Y` for connectivity. 
-**Migration agent response**: Confirms management structure, asks networking preferences. 
+**Migration Agent response**: Confirms management structure, asks networking preferences. 
 
-**Prompt**: We are only in Central India. Our compliance requires Palo Alto firewall. 
-**Migration agent response**: Architecture recommendation, downloadable template (e.g., Terraform), policies, monitoring, identity setup.
+**Prompt**: Our workloads are deployed only in the Central India region. Our compliance requires Palo Alto firewall. 
+**Migration Agent response**: Architecture recommendation, downloadable template (e.g., Terraform), policies, monitoring, identity setup.
  
-The agent recommends an architecture aligned to your input and may provide deployable templates (such as Terraform), along with guidance on identity, networking, policies, and monitoring.
+The Agent recommends an architecture aligned to your input and may provide deployable templates (such as Terraform), along with guidance on identity, networking, policies, and monitoring.
 
-**Step 7:  Continue rest of the steps in the Azure Migrate portal**
+### Step 7:  Continue the remaining steps in the Azure Migrate portal
  
 To execute the migration, continue in the Azure Migrate portal.
 - Perform replication, test migrations, and cutover in Azure Migrate.
