@@ -240,7 +240,7 @@ This rule allows inbound HTTP traffic from the Internet to reach the web server 
 1. For **Rule collection group**, select **DefaultDnatRuleCollectionGroup**.
 1. Under **Rules**, for **Name**, type **http-dnat**.
 1. For **Source type**, select **IP address**.
-1. For **Source**, type ***** to allow traffic from any source.
+1. For **Source**, type **\*** to allow traffic from any source.
 1. For **Protocol**, select **TCP**.
 1. For **Destination Ports**, type **80**.
 1. For **Destination Type**, select **IP Address**.
