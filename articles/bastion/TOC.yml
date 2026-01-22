@@ -35,6 +35,7 @@
       href: bastion-connect-to-aks-private-cluster.md
     - name: Configure native client support
       href: native-client.md 
+    - name: Connect to a VM - native client
       items:
       - name: Connect from Windows client
         href: connect-vm-native-client-windows.md
