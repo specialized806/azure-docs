@@ -56,9 +56,6 @@ The following limitations apply to the HTTP DDoS ruleset during the preview:
 
 - No ability for traffic from specific IP addresses to bypass the DDoS ruleset or penalty box 
 
-- Once HTTP DDoS ruleset is assigned to a Web Application Firewall policy, any changes made to other managed rulesets using the production portal will remove the HTTP DDoS ruleset from the WAF Policy.
-
-
 ## Related content
 
 - [Azure Application Gateway WAF policy](/azure/web-application-firewall/ag/policy-overview)
