@@ -127,7 +127,7 @@ These steps create a workflow from the template named **Azure Service Bus: Proce
          | **Authentication Type** | **Connection String** | The authentication type to use. |
          | **Connection String** | <*namespace-connection-string*> | The connection string that you saved earlier from your Service Bus namespace. |
 
-          :::image type="content" source="./media/send-related-messages-sequential-convoy/service-bus-connection-standard.png" alt-text="Screenshot shows Service Bus connection pane in Standard workflow":::
+          :::image type="content" source="./media/send-related-messages-sequential-convoy/service-bus-connection-standard.png" alt-text="Screenshot shows Service Bus connection pane in Standard workflow.":::
 
       1. When you're done, select **Add connection** > **Next**.
 
