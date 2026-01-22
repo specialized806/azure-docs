@@ -427,7 +427,7 @@ The following are virtual network and subnet requirements:
     Invoke-WebRequest -Uri "https://$APPGW_IP/index.html" -Method Head -SkipCertificateCheck
     ```
 
-**Expected Result:** StatusCode 200. If you get 502 Bad Gateway, ensure the backend HTTP settings have `--host-name-from-backend-pool true` enabled.
+    **Expected result:** StatusCode 200. If you get 502 Bad Gateway, ensure the backend HTTP settings have `--host-name-from-backend-pool true` enabled.
 
 #### Step 3: Configure WAF policy settings (Optional)
 
@@ -441,64 +441,64 @@ The following are virtual network and subnet requirements:
 
 1. Create secondary Traffic Manager (for Application Gateway endpoints). For more information, see [Create a Traffic Manager profile](/azure/traffic-manager/traffic-manager-create-profile)
 
-**Single-Region Configuration:**
-
-- Routing Method: Priority
-- Endpoint: Single Application Gateway public IP address
-
-**Multi-Region Configuration:**
-
-- Routing Method: Performance (routes users to nearest healthy Application Gateway)
-- Endpoints: Multiple Application Gateway public IP addresses across regions
-- Endpoint Locations: Specify Azure region for each endpoint (required for Performance routing)
-
-**Configuration:**
-
-| Setting | Value | Notes |
-|----|----|----|
-| **Routing method** | Performance (multi-region) or Priority (single-region) | Performance optimizes latency for multi-region |
-| **Protocol** | HTTPS | Validates Application Gateway health via HTTPS |
-| **Port** | 443 | Standard HTTPS port |
-| **Path** | /health or /index.html | Must match Application Gateway backend health probe path |
-| **TTL** | 300 seconds | Balances DNS query load and responsiveness |
-
-**Application Gateway public IP limitation:** By default, Azure public IPs don't have DNS names configured. You must use the public IP address directly in Traffic Manager endpoints, not a DNS name. The `--endpoint-location` parameter is required for Performance routing to enable geographic routing.
+    **Single-Region Configuration:**
+    
+    - Routing Method: Priority
+    - Endpoint: Single Application Gateway public IP address
+    
+    **Multi-Region Configuration:**
+    
+    - Routing Method: Performance (routes users to nearest healthy Application Gateway)
+    - Endpoints: Multiple Application Gateway public IP addresses across regions
+    - Endpoint Locations: Specify Azure region for each endpoint (required for Performance routing)
+    
+    **Configuration:**
+    
+    | Setting | Value | Notes |
+    |----|----|----|
+    | **Routing method** | Performance (multi-region) or Priority (single-region) | Performance optimizes latency for multi-region |
+    | **Protocol** | HTTPS | Validates Application Gateway health via HTTPS |
+    | **Port** | 443 | Standard HTTPS port |
+    | **Path** | /health or /index.html | Must match Application Gateway backend health probe path |
+    | **TTL** | 300 seconds | Balances DNS query load and responsiveness |
+    
+    **Application Gateway public IP limitation:** By default, Azure public IPs don't have DNS names configured. You must use the public IP address directly in Traffic Manager endpoints, not a DNS name. The `--endpoint-location` parameter is required for Performance routing to enable geographic routing.
 
 1. Create Primary Traffic Manager (Front Door primary, Application Gateway failover). For more information, see [Create a Traffic Manager profile](/azure/traffic-manager/traffic-manager-create-profile)
 
-**Configurations for both endpoints:**
-
-| Setting | Value | Notes |
-|----|----|----|
-| **Routing Method** | Weighted | Allows manual control via endpoint status (Enabled/Disabled) |
-| **Weight** | 100 |   |
-| **Protocol** | HTTPS | Required for validating SSL/TLS endpoints |
-| **Port** | 443 | Standard HTTPS port |
-| **Path** | /index.html | Choose a lightweight endpoint for health checks |
-| **TTL** | 300 seconds | DNS TTL - lower values enable faster failover but increase DNS queries |
-| **Health Check** | Always serve traffic | Don't enable Health checks |
-
-**Endpoint specific configurations:**
-
-**Primary endpoint:**
-
-- **Name:** endpoint-afd-primary
-
-- **Type:** External endpoint
-
-- **Target:** Front Door endpoint hostname (for example, `myapp-12345.z01.azurefd.net`)
-
-- **End Point Status:** Enabled
-
-**Secondary endpoint:**
-
-- **Name:** endpoint-appgw-secondary
-
-- **Type:** External endpoint
-
-- **Target:** Secondary Traffic Manager FQDN (for example, `myapp-appgw.trafficmanager.net`)
-
-- **End Point Status:** Disabled
+    **Configurations for both endpoints:**
+    
+    | Setting | Value | Notes |
+    |----|----|----|
+    | **Routing Method** | Weighted | Allows manual control via endpoint status (Enabled/Disabled) |
+    | **Weight** | 100 |   |
+    | **Protocol** | HTTPS | Required for validating SSL/TLS endpoints |
+    | **Port** | 443 | Standard HTTPS port |
+    | **Path** | /index.html | Choose a lightweight endpoint for health checks |
+    | **TTL** | 300 seconds | DNS TTL - lower values enable faster failover but increase DNS queries |
+    | **Health Check** | Always serve traffic | Don't enable Health checks |
+    
+    **Endpoint specific configurations:**
+    
+    **Primary endpoint:**
+    
+    - **Name:** endpoint-afd-primary
+    
+    - **Type:** External endpoint
+    
+    - **Target:** Front Door endpoint hostname (for example, `myapp-12345.z01.azurefd.net`)
+    
+    - **End Point Status:** Enabled
+    
+    **Secondary endpoint:**
+    
+    - **Name:** endpoint-appgw-secondary
+    
+    - **Type:** External endpoint
+    
+    - **Target:** Secondary Traffic Manager FQDN (for example, `myapp-appgw.trafficmanager.net`)
+    
+    - **End Point Status:** Disabled
 
 1. Verify Traffic Manager health
 
@@ -510,9 +510,9 @@ The following are virtual network and subnet requirements:
         --query "{ProfileStatus:profileStatus, MonitorStatus:monitorConfig.profileMonitorStatus, Endpoints:endpoints\[\].{Name:name, Target:target, Priority:priority, Status:endpointMonitorStatus}}"
     ```
 
-**Expected Result:** Both endpoints should show `Status: Online`. If an endpoint shows `Degraded` or `CheckingEndpoint`, wait 1-2 minutes for health probes to complete.
+    **Expected result:** Both endpoints should show `Status: Online`. If an endpoint shows `Degraded` or `CheckingEndpoint`, wait 1-2 minutes for health probes to complete.
 
-#### Step5: Update DNS CNAME to Traffic Manager and verify update
+#### Step 5: Update DNS CNAME to Traffic Manager and verify update
 
 > [!WARNING]
 > **Potential service impact:** The following steps will redirect your production traffic from Front Door directly to Traffic Manager. Before proceeding:
@@ -523,132 +523,132 @@ The following are virtual network and subnet requirements:
 
 1. Update your DNS CNAME record to point to the **Primary** Traffic Manager instead of directly to Front Door.
 
-| Field | Old value | New value |
-|----|----|----|
-| **Name / Host** | www | www (no change) |
-| **Value / Points to** | Front Door endpoint hostname | `$ATM_DNS_NAME.trafficmanager.net` |
+    | Field | Old value | New value |
+    |----|----|----|
+    | **Name / Host** | www | www (no change) |
+    | **Value / Points to** | Front Door endpoint hostname | `$ATM_DNS_NAME.trafficmanager.net` |
 
 1. Verify Traffic Manager resolution (wait for DNS propagation and test)
 
-DNS propagation typically takes 5-10 minutes but can take up to 48 hours globally. Monitor propagation progress and test HTTPS connectivity:
-
-```
-# Verify Traffic Manager profile is resolving
-nslookup "\$ATM_DNS_NAME.trafficmanager.net"
-```
-**Expected result:** Should return IP address(es) of Front Door endpoint.
-
-```
-# Check DNS from different resolvers
-nslookup $CUSTOM_DOMAIN 8.8.8.8 # Google DNS
-
-# Test HTTPS connectivity
-Invoke-WebRequest -Uri "https://$CUSTOM_DOMAIN/index.html" -Method Head
-```
-
-**Expected result:** StatusCode 200
+    DNS propagation typically takes 5-10 minutes but can take up to 48 hours globally. Monitor propagation progress and test HTTPS connectivity:
+    
+    ```
+    # Verify Traffic Manager profile is resolving
+    nslookup "\$ATM_DNS_NAME.trafficmanager.net"
+    ```
+    **Expected result:** Should return IP address(es) of Front Door endpoint.
+    
+    ```
+    # Check DNS from different resolvers
+    nslookup $CUSTOM_DOMAIN 8.8.8.8 # Google DNS
+    
+    # Test HTTPS connectivity
+    Invoke-WebRequest -Uri "https://$CUSTOM_DOMAIN/index.html" -Method Head
+    ```
+    
+    **Expected result:** StatusCode 200
 
 1. Monitor Front Door
 
-After the DNS cutover, actively monitor the following Azure Front Door metrics:
-
-- Request count: Should remain consistent (no drop in traffic)
-
-- Response time: Should remain within normal ranges
-
-- Error rates: 4xx/5xx errors shouldn't increase
-
-- Origin health: Backend health should remain Online
+    After the DNS cutover, actively monitor the following Azure Front Door metrics:
+    
+    - Request count: Should remain consistent (no drop in traffic)
+    
+    - Response time: Should remain within normal ranges
+    
+    - Error rates: 4xx/5xx errors shouldn't increase
+    
+    - Origin health: Backend health should remain Online
 
 #### Step 6: Test failover procedures
 
 1. Simulate Front Door failure (manual failover to Application Gateway)
 
-```
-# Manual failover to Application Gateway
-# Disable Front Door endpoint
-az network traffic-manager endpoint update `
-    --name "endpoint-afd-primary" `
-    --profile-name $ATM_PRIMARY_PROFILE `
-    --resource-group $RESOURCE_GROUP `
-    --type externalEndpoints `
-    --endpoint-status Disabled
-
-# Enable secondary Traffic Manager endpoint (Application Gateway)
-az network traffic-manager endpoint update `
-    --name "endpoint-appgw-secondary" `
-    --profile-name $ATM_PRIMARY_PROFILE `
-    --resource-group $RESOURCE_GROUP `
-    --type externalEndpoints `
-    --endpoint-status Enabled
-
-# Verify Traffic Manager endpoint status
-az network traffic-manager endpoint list `
-    --profile-name $ATM_PRIMARY_PROFILE `
-    --resource-group $RESOURCE_GROUP `
-    --query "[].{Name:name, Status:endpointStatus, Health:endpointMonitorStatus}" `
-    --output table
-
-# Flush DNS cache (Windows)
-ipconfig /flushdns
-
-# Verify DNS resolution (should now point to Secondary Traffic Manager → Application Gateway)
-nslookup $CUSTOM_DOMAIN
-
-# Test - should now work via Application Gateway
-curl --head https://$CUSTOM_DOMAIN/
-```
-
-> [!NOTE]
-> DNS TTL affects failover time. With TTL of 60 seconds, clients may take up to 60 seconds to see the change. Use `nslookup` to verify resolution is pointing to Application Gateway.
+    ```
+    # Manual failover to Application Gateway
+    # Disable Front Door endpoint
+    az network traffic-manager endpoint update `
+        --name "endpoint-afd-primary" `
+        --profile-name $ATM_PRIMARY_PROFILE `
+        --resource-group $RESOURCE_GROUP `
+        --type externalEndpoints `
+        --endpoint-status Disabled
+    
+    # Enable secondary Traffic Manager endpoint (Application Gateway)
+    az network traffic-manager endpoint update `
+        --name "endpoint-appgw-secondary" `
+        --profile-name $ATM_PRIMARY_PROFILE `
+        --resource-group $RESOURCE_GROUP `
+        --type externalEndpoints `
+        --endpoint-status Enabled
+    
+    # Verify Traffic Manager endpoint status
+    az network traffic-manager endpoint list `
+        --profile-name $ATM_PRIMARY_PROFILE `
+        --resource-group $RESOURCE_GROUP `
+        --query "[].{Name:name, Status:endpointStatus, Health:endpointMonitorStatus}" `
+        --output table
+    
+    # Flush DNS cache (Windows)
+    ipconfig /flushdns
+    
+    # Verify DNS resolution (should now point to Secondary Traffic Manager → Application Gateway)
+    nslookup $CUSTOM_DOMAIN
+    
+    # Test - should now work via Application Gateway
+    curl --head https://$CUSTOM_DOMAIN/
+    ```
+    
+    > [!NOTE]
+    > DNS TTL affects failover time. With TTL of 60 seconds, clients may take up to 60 seconds to see the change. Use `nslookup` to verify resolution is pointing to Application Gateway.
 
 1. Failback to Front Door
 
-```
-# Re-enable Front Door endpoint
-az network traffic-manager endpoint update `
-    --name "endpoint-afd-primary" `
-    --profile-name $ATM_PRIMARY_PROFILE `
-    --resource-group $RESOURCE_GROUP `
-    --type externalEndpoints `
-    --endpoint-status Enabled
-
-# Disable Application Gateway (via Secondary Traffic Manager)
-az network traffic-manager endpoint update `
-    --name "endpoint-appgw-secondary" `
-    --profile-name $ATM_PRIMARY_PROFILE `
-    --resource-group $RESOURCE_GROUP `
-    --type externalEndpoints `
-    --endpoint-status Disabled
+    ```
+    # Re-enable Front Door endpoint
+    az network traffic-manager endpoint update `
+        --name "endpoint-afd-primary" `
+        --profile-name $ATM_PRIMARY_PROFILE `
+        --resource-group $RESOURCE_GROUP `
+        --type externalEndpoints `
+        --endpoint-status Enabled
     
-# Verify endpoint status
-az network traffic-manager endpoint list `
-    --profile-name $ATM_PRIMARY_PROFILE `
-    --resource-group $RESOURCE_GROUP `
-    --query "[].{Name:name, Status:endpointStatus, Health:endpointMonitorStatus}" `
-    --output table
-
-# Flush DNS cache (Windows)
-ipconfig /flushdns
-
-# Verify DNS resolution (should now point back to Front Door)
-nslookup $CUSTOM_DOMAIN
-
-# Test - should now work via Front Door
-curl --head https://$CUSTOM_DOMAIN/
-```
+    # Disable Application Gateway (via Secondary Traffic Manager)
+    az network traffic-manager endpoint update `
+        --name "endpoint-appgw-secondary" `
+        --profile-name $ATM_PRIMARY_PROFILE `
+        --resource-group $RESOURCE_GROUP `
+        --type externalEndpoints `
+        --endpoint-status Disabled
+        
+    # Verify endpoint status
+    az network traffic-manager endpoint list `
+        --profile-name $ATM_PRIMARY_PROFILE `
+        --resource-group $RESOURCE_GROUP `
+        --query "[].{Name:name, Status:endpointStatus, Health:endpointMonitorStatus}" `
+        --output table
+    
+    # Flush DNS cache (Windows)
+    ipconfig /flushdns
+    
+    # Verify DNS resolution (should now point back to Front Door)
+    nslookup $CUSTOM_DOMAIN
+    
+    # Test - should now work via Front Door
+    curl --head https://$CUSTOM_DOMAIN/
+    ```
  
-1. Verify Current Routing
+1. Verify current routing
 
-```
-# Check which endpoint is serving traffic
-nslookup $CUSTOM_DOMAIN
-
-# The response headers can help identify the serving endpoint
-# Front Door includes "x-azure-ref" header
-# Application Gateway includes "Server: Microsoft-IIS" or similar
-Invoke-WebRequest -Uri "https://$CUSTOM_DOMAIN/index.html" -Method Head | Select-Object -ExpandProperty Headers
-```
+    ```
+    # Check which endpoint is serving traffic
+    nslookup $CUSTOM_DOMAIN
+    
+    # The response headers can help identify the serving endpoint
+    # Front Door includes "x-azure-ref" header
+    # Application Gateway includes "Server: Microsoft-IIS" or similar
+    Invoke-WebRequest -Uri "https://$CUSTOM_DOMAIN/index.html" -Method Head | Select-Object -ExpandProperty Headers
+    ```
 
 ## Monitoring
 
