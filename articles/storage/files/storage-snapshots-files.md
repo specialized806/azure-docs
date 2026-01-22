@@ -540,7 +540,7 @@ To list all the snapshots for an existing file share, sign in to the Azure porta
 
 # [Azure PowerShell](#tab/powershell)
 
-To list all file share snapshots, run the following PowerShell command. Replace `<your-subscription-ID>`, `<your-resource-group-name>`, and `<your-file-share-name>`with your own values.
+To list all file share snapshots, run the following PowerShell command. Replace `<your-subscription-ID>`, `<your-resource-group-name>`, and `<your-file-share-name>` with your own values.
 
 ```powershell
 $filesharesnapshot=Get-AzResource -ResourceId "/subscriptions/<your-subscription-ID>/resourceGroups/<your-resource-group-name>/providers/Microsoft.FileShares/fileShares/<your-file-share-name>/fileShareSnapshots"
