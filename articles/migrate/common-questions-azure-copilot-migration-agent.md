@@ -23,7 +23,7 @@ Azure Copilot Migration Agent is a Copilot-powered, conversational experience de
 
 ## What data does the Migration Agent access and process? 
 
-The Migration Agent accesses only data necessary for migration guidance, such as infrastructure metadata and chat inputs.The Agent doesn't access external customer data sources outside the Azure Migrate project.
+The Migration Agent accesses only data necessary for migration guidance, such as infrastructure metadata and chat inputs. The Agent doesn't access external customer data sources outside the Azure Migrate project.
 
 ## Does the Migration Agent store my prompts, responses, or migration data? 
 
