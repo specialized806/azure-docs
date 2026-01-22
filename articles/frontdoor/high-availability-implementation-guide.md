@@ -296,7 +296,7 @@ It's important to understand the feature differences between Front Door and Appl
 | Content edge caching | Yes | No |
 | Network architecture | Microsoft's global edge network with anycast | Azure regional deployment (no anycast) |
 | **Configuration differences** | | |
-| Path pattern syntax | /path/* or exact /path | Regex patterns, path maps |
+| Path pattern syntax | `/path/*` or exact `/path` | Regex patterns, path maps |
 | WAF rule sets | Default ruleset (OWASP), bot manager ruleset, HTTP DDoS ruleset | Default ruleset (OWASP), bot manager ruleset, HTTP DDoS ruleset |
 | Health probe evaluation | Latency + health for routing | Health status only |
 | Backend selection | Based on priority, weight, latency | Round-robin, cookie affinity |
@@ -446,7 +446,7 @@ Step 4: Create Traffic Manager Architecture
 
 4.1: Create Secondary Traffic Manager (for Application Gateway endpoints)
 
-<https://learn.microsoft.com/en-us/azure/traffic-manager/traffic-manager-create-profile>
+</azure/traffic-manager/traffic-manager-create-profile>
 
 Single-Region Configuration:
 
@@ -486,7 +486,7 @@ Multi-Region Configuration:
 
 4.2: Create Primary Traffic Manager (Front Door primary, Application Gateway failover)
 
-<https://learn.microsoft.com/en-us/azure/traffic-manager/traffic-manager-create-profile>  
+</azure/traffic-manager/traffic-manager-create-profile>  
 
 ** **
 
@@ -747,7 +747,7 @@ Invoke-WebRequest -Uri "https://\$CUSTOM_DOMAIN/index.html" -Method Head \| Sele
 
 Recommended Monitoring for Production
 
-- **Azure Monitor Workbooks:** Track Traffic Manager queries, Front Door requests, Application Gateway health - [Workbooks Overview](https://learn.microsoft.com/en-us/azure/azure-monitor/visualize/workbooks-overview)
+- **Azure Monitor Workbooks:** Track Traffic Manager queries, Front Door requests, Application Gateway health - [Workbooks Overview](/azure/azure-monitor/visualize/workbooks-overview)
 
 <!-- -->
 
@@ -755,7 +755,7 @@ Recommended Monitoring for Production
 
 <!-- -->
 
-- **Application Insights Availability Tests:** Multi-region HTTP checks - [Availability Testing](https://learn.microsoft.com/en-us/azure/azure-monitor/app/availability-overview)
+- **Application Insights Availability Tests:** Multi-region HTTP checks - [Availability Testing](/azure/azure-monitor/app/availability-overview)
 
 - **DNS Monitoring:** Validate CNAME resolution chain and TTL propagation via DNSPerf, Pingdom, or Uptime.com
 
