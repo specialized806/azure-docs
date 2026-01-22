@@ -51,7 +51,7 @@ To deploy Bastion, sign in to the [Azure portal](https://portal.azure.com) and g
 
 Select the tab for the deployment method you want to use:
 
-- **Default settings**: Quick one-click deployment with Basic, Standard, and Premium SKU.
+- **Default settings**: Quick one-click deployment with Standard SKU.
 - **Custom settings**: Full control over SKU, scaling, availability zones, and other features.
 - **Developer SKU (free)**: No-cost option with basic features for dev/test. Uses shared pool architecture. Limited to select regions.
 
@@ -60,7 +60,7 @@ Select the tab for the deployment method you want to use:
 
 # [Default settings](#tab/default)
 
-When you deploy Bastion using the **Deploy Bastion** option, Bastion deploys automatically with the Basic, Standard, and Premium SKU and default settings based on your virtual network. You can [configure additional settings](configuration-settings.md) or [upgrade the SKU](upgrade-sku.md) after deployment completes.
+When you deploy Bastion using the **Deploy Bastion** option, Bastion deploys automatically with the Standard SKU and default settings based on your virtual network. You can [configure additional settings](configuration-settings.md) or [upgrade the SKU](upgrade-sku.md) after deployment completes.
 
 The following diagram shows the dedicated deployment architecture used by the Default settings options.
 
@@ -119,16 +119,11 @@ The following diagram shows the dedicated deployment architecture used by the Cu
 
 # [Developer SKU (free)](#tab/developer)
 
-Azure Bastion Developer provides secure, browser-based connectivity to virtual machines at no extra cost. When you connect, Bastion Developer automatically deploys to your virtual network using a shared pool architecture:
+Azure Bastion Developer provides secure, browser-based connectivity to a virtual machine at no extra cost. When you connect, Bastion Developer automatically deploys to your virtual network using a shared pool architecture:
 
 :::image type="content" source="./media/quickstart-developer/bastion-shared-pool.png" alt-text="Diagram that shows the Azure Bastion Developer shared pool architecture." lightbox="./media/quickstart-developer/bastion-shared-pool.png":::
 
 [!INCLUDE [Bastion developer](../../includes/bastion-developer-description.md)]
-
-Virtual network peering isn't supported for Bastion Developer.
-
-> [!IMPORTANT]
-> Bastion Developer is currently only available in select regions. Your VM must be in a supported region, and your NSG rules must allow traffic to ports 22 and 3389 from the private IP address 168.63.129.16.
 
 **To deploy Bastion Developer:**
 
@@ -138,9 +133,7 @@ Virtual network peering isn't supported for Bastion Developer.
 
 When you select **Connect**, Bastion Developer automatically deploys to your virtual network. The connection opens directly in the Azure portal. When you disconnect, the Bastion Developer resource remains deployed for future connections.
 
-To upgrade to a dedicated SKU with more features, see [Upgrade to a dedicated SKU](upgrade-sku.md).
-
-Bastion Developer is available in the following regions: [!INCLUDE [regions](../../includes/bastion-developer-regions.md)]
+[!INCLUDE [regions](../../includes/bastion-developer-regions.md)]
 
 ---
 
