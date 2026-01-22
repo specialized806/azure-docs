@@ -48,8 +48,32 @@ New-AzServiceBusNamespace -ResourceGroupName myresourcegroup `
     -PremiumMessagingPartition 4
 ```
 
-## Use Azure Resource Manager template
-To **create a namespace with partitioning enabled**, set `partitions` to a number larger than 1 in the namespace properties section. In the example below a partitioned namespace is created with 4 partitions, and 1 messaging unit assigned to each partition. For more information, see [Microsoft.ServiceBus namespaces template reference](/azure/templates/microsoft.servicebus/namespaces?tabs=json). 
+## Use a template
+To **create a namespace with partitioning enabled**, set `premiumMessagingPartitions` to a number larger than 1 in the namespace properties section. In the following example, a partitioned namespace is created with 4 partitions, and 1 messaging unit assigned to each partition. For more information, see [Microsoft.ServiceBus namespaces template reference](/azure/templates/microsoft.servicebus/namespaces?tabs=json). 
+
+# [Bicep](#tab/bicep)
+
+```bicep
+@description('Name of the Service Bus namespace')
+param serviceBusNamespaceName string
+
+@description('Location for all resources.')
+param location string = resourceGroup().location
+
+resource serviceBusNamespace 'Microsoft.ServiceBus/namespaces@2024-01-01' = {
+  name: serviceBusNamespaceName
+  location: location
+  sku: {
+    name: 'Premium'
+    capacity: 4
+  }
+  properties: {
+    premiumMessagingPartitions: 4
+  }
+}
+```
+
+# [ARM template](#tab/arm)
 
 ```json
 {
@@ -73,7 +97,7 @@ To **create a namespace with partitioning enabled**, set `partitions` to a numbe
   "resources": [
     {
       "type": "Microsoft.ServiceBus/namespaces",
-      "apiVersion": "2022-10-01-preview",
+      "apiVersion": "2024-01-01",
       "name": "[parameters('serviceBusNamespaceName')]",
       "location": "[parameters('location')]",
       "sku": {
@@ -87,6 +111,8 @@ To **create a namespace with partitioning enabled**, set `partitions` to a numbe
   ]
 }
 ```
+
+---
 
 ## Next steps
 Explore Azure Service Bus features using the samples in the language of your choice. 
