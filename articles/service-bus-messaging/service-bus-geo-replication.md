@@ -123,17 +123,26 @@ The following section is an overview to set up the Geo-Replication feature on a 
 1. Either check the **Synchronous replication** checkbox, or specify a value for the **Async Replication - Max Replication lag** value in seconds.
 :::image type="content" source="./media/service-bus-geo-replication/create-namespace-with-geo-replication.png" alt-text="Screenshot showing the Create Namespace experience with Geo-Replication enabled.":::
 
-### Using Bicep file
+### Using a template
 
 To create a namespace with the Geo-Replication feature enabled, add the *geoDataReplication* properties section.
 
+# [Bicep](#tab/bicep)
+
 ```bicep
+@description('Name of the Service Bus namespace')
 param serviceBusName string
+
+@description('Primary location for the namespace')
 param primaryLocation string
+
+@description('Secondary location for geo-replication')
 param secondaryLocation string
+
+@description('Maximum replication lag in seconds for async replication')
 param maxReplicationLagInSeconds int
 
-resource sb 'Microsoft.ServiceBus/namespaces@2024-01-01' = {
+resource serviceBusNamespace 'Microsoft.ServiceBus/namespaces@2025-05-01-preview' = {
   name: serviceBusName
   location: primaryLocation
   sku: {
@@ -158,6 +167,71 @@ resource sb 'Microsoft.ServiceBus/namespaces@2024-01-01' = {
   }
 }
 ```
+
+# [ARM template](#tab/arm)
+
+```json
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "serviceBusName": {
+            "type": "string",
+            "metadata": {
+                "description": "Name of the Service Bus namespace"
+            }
+        },
+        "primaryLocation": {
+            "type": "string",
+            "metadata": {
+                "description": "Primary location for the namespace"
+            }
+        },
+        "secondaryLocation": {
+            "type": "string",
+            "metadata": {
+                "description": "Secondary location for geo-replication"
+            }
+        },
+        "maxReplicationLagInSeconds": {
+            "type": "int",
+            "metadata": {
+                "description": "Maximum replication lag in seconds for async replication"
+            }
+        }
+    },
+    "resources": [
+        {
+            "type": "Microsoft.ServiceBus/namespaces",
+            "apiVersion": "2025-05-01-preview",
+            "name": "[parameters('serviceBusName')]",
+            "location": "[parameters('primaryLocation')]",
+            "sku": {
+                "name": "Premium",
+                "tier": "Premium",
+                "capacity": 1
+            },
+            "properties": {
+                "geoDataReplication": {
+                    "maxReplicationLagDurationInSeconds": "[parameters('maxReplicationLagInSeconds')]",
+                    "locations": [
+                        {
+                            "locationName": "[parameters('primaryLocation')]",
+                            "roleType": "Primary"
+                        },
+                        {
+                            "locationName": "[parameters('secondaryLocation')]",
+                            "roleType": "Secondary"
+                        }
+                    ]
+                }
+            }
+        }
+    ]
+}
+```
+
+---
 
 ## Management
 
