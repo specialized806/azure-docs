@@ -6,12 +6,12 @@ author: halkazwini
 ms.author: halkazwini
 ms.service: azure-frontdoor
 ms.topic: concept-article
-ms.date: 12/19/2025
+ms.date: 01/23/2026
 
 #customer intent: As a cloud architect, I want to implement a manual failover strategy for Azure Front Door using Azure Traffic Manager so that I can ensure high availability during service interruptions.
 ---
 
-# Azure Front Door high availability implementation guide
+# High availability implementation guide utilizing Azure Front Door and alternate ingress solutions
 
 Azure Front Door is designed to provide exceptional resiliency and availability for both external customers and Microsoft's internal properties. While Front Door's architecture meets or exceeds the needs of most production workloads, it's important to acknowledge that no distributed system is immune to failure.
 
@@ -31,7 +31,7 @@ This guide presents two proven architectures using Azure Traffic Manager to prov
 | Caching during failover | Yes | No (Application Gateway doesn't cache) |
 | Geographic distribution | Other CDN's global edge network | Specific Azure regions (2 in this lab) |
 | WAF protection | Other CDN's WAF (different rule sets) | Azure WAF (consistent rule sets) |
-| Cost during standby | Dependent on CDN (For example, Akamai typically \$1k-\$5k/month minimum + usage overages, but includes global CDN infrastructure and advanced features). DDoS protection costs are often higher since Azure provides infrastructure-level DDoS protection by default for all customers at no extra cost, covering Layer 3 and Layer 4 attacks. | Fixed compute costs (Application Gateway charges even when idle: ~\$300-400/month for WAF_v2 with minimal capacity). |
+| Cost during standby | Dependent on CDN vendor's pricing. | Fixed compute costs (Application Gateway charges even when idle: ~\$200-400/month for WAF_v2 with minimal capacity). |
 
 ## Considerations for production environments
 
@@ -73,10 +73,11 @@ When implementing high availability architectures for production workloads, cons
 
 This solution uses a single Traffic Manager profile with weighted/always serve routing so that traffic can be manually switched over between Front Door and an alternative CDN:
 
-1. **Primary endpoint:** Azure Front Door custom domain endpoint.   
+**Primary endpoint:** Azure Front Door custom domain endpoint.   
 
-1. **Secondary endpoint:** Alternative CDN endpoint.
+**Secondary endpoint:** Alternative CDN endpoint.
 
+:::image type="content" source="./media/high-availability/front-door-alternative-cdn.svg" alt-text="Diagram of Traffic Manager routing between Azure Front Door and another CDN." border="false" lightbox="./media/high-availability/front-door-alternative-cdn.svg":::
 
 **Traffic flow (Normal Operation):** User → DNS Query → Traffic Manager (Weighted routing / Always serve routing) → Azure Front Door (Priority 1) → Origin servers.
 
@@ -100,7 +101,6 @@ Configure your secondary CDN provider with:
 
 > [!IMPORTANT]
 > If you're currently using Front Door-managed certificates, you must migrate to BYO certificates before implementing this HA solution. Front Door-managed certificates can't be exported and installed on alternative CDNs. For more information, see [Configure HTTPS on an Azure Front Door custom domain](/azure/frontdoor/standard-premium/how-to-configure-https-custom-domain) for BYO certificate configuration instructions.
-
 
 #### Step 2: Configure alternative CDN
 
@@ -137,6 +137,8 @@ Apply the following configuration to create the Traffic Manager profile. For mor
 
 #### Step 4: Configure Traffic Manager endpoints
 
+Create two endpoints within the Traffic Manager profile with the following configurations:
+
 **Primary endpoint (Front Door):**
 
 - Name: endpoint-afd-primary
@@ -149,9 +151,9 @@ Apply the following configuration to create the Traffic Manager profile. For mor
 
 - Status: Enabled (initially)
 
-- Custom Headers: Host=\$CUSTOM_DOMAIN (required for Front Door to route to correct custom domain)
+- Custom Headers: `Host=$CUSTOM_DOMAIN` (required for Front Door to route to correct custom domain)
 
-**Custom headers for Front Door:** The `--custom-headers "Host=\$CUSTOM_DOMAIN"` parameter is critical for Front Door endpoints. Without it, Front Door might not properly route requests to your custom domain configuration. It's a supported feature of Azure Traffic Manager.
+**Custom headers for Front Door:** The `--custom-headers "Host=$CUSTOM_DOMAIN"` parameter is critical for Front Door endpoints. Without it, Front Door might not properly route requests to your custom domain configuration. It's a supported feature of Azure Traffic Manager.
 
 **Secondary endpoint (alternative CDN):**
 
@@ -165,6 +167,8 @@ Apply the following configuration to create the Traffic Manager profile. For mor
 
 - Status: Disabled (initially - standby mode)
 
+:::image type="content" source="./media/high-availability/traffic-manager-endpoint.png" alt-text="Screenshot of adding Traffic Manager secondary endpoint in the Azure portal." lightbox="./media/high-availability/traffic-manager-endpoint.png":::
+
 #### Step 5: Update DNS CNAME to Traffic Manager and verify update
 
 > [!WARNING]
@@ -176,7 +180,7 @@ Apply the following configuration to create the Traffic Manager profile. For mor
 
 1. **Update your DNS CNAME record to point to Traffic Manager instead of directly to Front Door:**
 
-    | Field | Old Value | New Value |
+    | Field | Old value | New value |
     |----|----|----|
     | Name/Host | www | www (no change) |
     | Value/Points to | Front Door endpoint hostname | `$ATM_CDN_DNS_NAME.trafficmanager.net` |
@@ -243,8 +247,7 @@ Apply the following configuration to create the Traffic Manager profile. For mor
     curl --head https://$CUSTOM_DOMAIN/
     ```
  
-1. Failback to Front Door.
-    Failback to Front Door and disable alternative CDN:
+2. Failback to Front Door:
 
     ```azurecli
     # Failback: Enable Front Door, Disable CDN
@@ -271,11 +274,13 @@ Apply the following configuration to create the Traffic Manager profile. For mor
 
 ## Scenario 2: Traffic Manager failover: Front Door to Application Gateway WAF
 
-Primary Traffic Manager routes between Front Door (primary) and a nested secondary Traffic Manager pointing to multi-region Application Gateway instances. During Front Door outage, traffic is manually failed over to regional Application Gateway deployments with WAF protection.
+This DNS-based load balancing solution uses multiple Azure Traffic Manager profiles. In the unlikely event of an availability issue with Azure Front Door, Azure Traffic Manager redirects traffic through Application Gateway WAF. The primary Traffic Manager routes between Front Door (primary) and a nested secondary Traffic Manager pointing to multi-region Application Gateway instances. During Front Door outage, traffic is manually failed over to regional Application Gateway deployments with WAF protection.
 
-**Traffic Flow (Normal operation):** User → DNS Query → Primary Traffic Manager (Weighted / Always server routing) → Front Door (Priority 1) → Origin Servers.
+:::image type="content" source="./media/high-availability/front-door-application-gateway.svg" alt-text="Diagram showing Azure Traffic Manager with weighted routing to Azure Front Door, and a nested Traffic Manager profile using performance routing to send to Application Gateway instances in two regions." border="false" lightbox="./media/high-availability/front-door-application-gateway.svg":::
+
+**Traffic flow (Normal operation):** User → DNS Query → Primary Traffic Manager (Weighted / Always server routing) → Front Door (Priority 1) → Origin Servers.
   
-**Traffic Flow (Front Door failure):** User → DNS Query → Primary Traffic Manager (Weighted / Always server routing) → Secondary Traffic Manager (Priority mode) → Application Gateway(s) → Origin Servers.
+**Traffic flow (Front Door failure):** User → DNS Query → Primary Traffic Manager (Weighted / Always server routing) → Secondary Traffic Manager (Priority mode) → Application Gateway(s) → Origin Servers.
 
 ### Pre-deployment: Front Door vs Application Gateway
 
@@ -288,7 +293,7 @@ It's important to understand the feature differences between Front Door and Appl
 
 | Feature | Azure Front Door | Application Gateway |
 | --- | --- | --- |
-| **Core architecture & features** | | |
+| **Core architecture and features** | | |
 | Service scope | Global service | Regional service |
 | OSI layer | Layer 7 (application layer) | Layer 7 (application layer) |
 | Load balancing level | Across regions | Within region/virtual network |
@@ -438,18 +443,18 @@ The following are virtual network and subnet requirements:
 > [!IMPORTANT]
 > **Evaluate your global traffic patterns and deploy Application Gateway instances in regions with meaningful user volume.** If deploying multi-region Application Gateway, **repeat Steps 2 and 3 for each additional region (for example, West US 2) using different** virtual network address spaces (10.2.0.0/16, 10.3.0.0/16, etc.) and region-specific variable suffixes (R2, R3, etc.).
 
-#### Step 4: Create Traffic Manager architecture
+#### Step 4: Create Traffic Manager architecture to support the Application Gateway WAF endpoints
 
-1. Create secondary Traffic Manager (for Application Gateway endpoints). For more information, see [Create a Traffic Manager profile](/azure/traffic-manager/traffic-manager-create-profile)
+1. Create a Secondary "Performance Mode" Traffic Manager as shown in Scenario 2 diagram. For more information, see [Create a Traffic Manager profile](/azure/traffic-manager/traffic-manager-create-profile)
 
     **Single-Region Configuration:**
     
-    - Routing Method: Priority
+    - Routing method: Priority
     - Endpoint: Single Application Gateway public IP address
     
     **Multi-Region Configuration:**
     
-    - Routing Method: Performance (routes users to nearest healthy Application Gateway)
+    - Routing method: Performance (routes users to nearest healthy Application Gateway)
     - Endpoints: Multiple Application Gateway public IP addresses across regions
     - Endpoint Locations: Specify Azure region for each endpoint (required for Performance routing)
     
@@ -465,7 +470,7 @@ The following are virtual network and subnet requirements:
     
     **Application Gateway public IP limitation:** By default, Azure public IPs don't have DNS names configured. You must use the public IP address directly in Traffic Manager endpoints, not a DNS name. The `--endpoint-location` parameter is required for Performance routing to enable geographic routing.
 
-1. Create Primary Traffic Manager (Front Door primary, Application Gateway failover). For more information, see [Create a Traffic Manager profile](/azure/traffic-manager/traffic-manager-create-profile)
+1. Create a Primary "Weighted Mode Always Serve" Traffic Manager as shown in Scenario 2 diagram. For more information, see [Create a Traffic Manager profile](/azure/traffic-manager/traffic-manager-create-profile)
 
     **Configurations for both endpoints:**
     
@@ -639,7 +644,7 @@ The following are virtual network and subnet requirements:
     curl --head https://$CUSTOM_DOMAIN/
     ```
  
-1. Verify current routing
+3. Verify current routing
 
     Verify which endpoint is currently serving traffic:
 
