@@ -175,7 +175,7 @@ Configure publishing to your Event Grid topic in several locations of your Durab
 
 ### `host.json`
 
-You can find the possible Azure Event Grid configuration properties in the [`host.json` documentation](../functions-host-json.md#durabletask). After you configure the `host.json` file, your function app sends lifecycle events to the Event Grid topic. This action starts when you run your function app both locally and in Azure.
+You can find the possible Azure Event Grid configuration properties in the [`host.json` documentation](../functions-host-json.md#durabletask). After you configure the `host.json` file, your function app sends lifecycle events to the Event Grid topic both locally and in Azure.
 
 In your Durable Functions project, find the `host.json` file.
 
@@ -374,7 +374,7 @@ Now you're ready to receive lifecycle events.
 
 ## Run the Durable Functions app
 
-Spin up your Durable Functions app to send events to your Event Grid topic. 
+Start your Durable Functions app to send events to your Event Grid topic. 
 
 1. In the Durable Functions project that you configured earlier, begin debugging on your local machine.
 1. Start an orchestration. 

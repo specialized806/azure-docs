@@ -22,7 +22,7 @@ You have several options for diagnosing issues with [Azure Durable](durable-func
 
 ### Tracking data
 
-Every orchestration instance generates tracking events as it progresses through its lifecycle. Each lifecycle event causes a tracking event to be written to the **traces** collection in Application Insights. This event contains a **customDimensions** payload with several fields. Field names are all prepended with `prop__`.
+Every orchestration instance generates tracking events as it progresses through its lifecycle. Each lifecycle event contains a **customDimensions** payload with several fields. Field names are all prepended with `prop__`.
 
 | Field name | Description |
 | ---------- | ----------- |
@@ -81,7 +81,7 @@ By default, all *non-replay* tracking events are emitted. You can reduce the vol
 > [!NOTE]
 > By default, the Azure Functions runtime samples Application Insights telemetry to avoid emitting data too frequently. Sampling can cause tracking information to be lost when many lifecycle events occur in a short period of time. The [Azure Functions Monitoring article](../configure-monitoring.md#configure-sampling) explains how to configure this behavior.
 
-Orchestrator, activity, and entity function inputs and outputs aren't logged by default. This default behavior is recommended because logging inputs and outputs could increase Application Insights costs. Function input and output payloads may also contain sensitive information. Instead, the number of bytes for function inputs and outputs are logged instead of the actual payloads by default. If you want the Durable Functions extension to log the full input and output payloads, set the `traceInputsAndOutputs` property to `true` in the [host.json](durable-functions-bindings.md#host-json) configuration file.
+By default, orchestrator, activity, and entity function inputs and outputs aren't logged. This approach is recommended because logging inputs and outputs could increase Application Insights costs. Function input and output payloads may also contain sensitive information. Instead, the number of bytes for function inputs and outputs are logged. If you want the Durable Functions extension to log the full input and output payloads, set the `traceInputsAndOutputs` property to `true` in the [host.json](durable-functions-bindings.md#host-json) configuration file.
 
 ::: zone-end
 
@@ -353,7 +353,7 @@ public static async Task Run(
 }
 ```
 
-Starting in Durable Functions 2.0, .NET orchestrator functions can create an `ILogger` that automatically filters out log statements during replay. This automatic filtering is done using the [IDurableOrchestrationContext.CreateReplaySafeLogger(ILogger)](/dotnet/api/microsoft.azure.webjobs.extensions.durabletask.durablecontextextensions.createreplaysafelogger) API.
+Starting in Durable Functions 2.0, .NET orchestrator functions can create an `ILogger` that automatically filters out log statements during replay. Use the [IDurableOrchestrationContext.CreateReplaySafeLogger(ILogger)](/dotnet/api/microsoft.azure.webjobs.extensions.durabletask.durablecontextextensions.createreplaysafelogger) API to create this logger.
 
 ```csharp
 [FunctionName("FunctionChain")]
@@ -377,7 +377,7 @@ public static async Task Run(
 
 # [C# (Isolated)](#tab/csharp-isolated)
 
-In Durable Functions for .NET-isolated, you can create an `ILogger` that automatically filters out log statements during replay. The main difference with Durable Functions in-proc is that you do not provide an existing `ILogger`. This logger is created via the `TaskOrchestrationContext.CreateReplaySafeLogger` overloads.
+In Durable Functions for .NET-isolated, you can create an `ILogger` that automatically filters out log statements during replay. The main difference with Durable Functions in-proc is that you create the replay-safe logger via the `TaskOrchestrationContext.CreateReplaySafeLogger` overloads instead of wrapping an existing logger.
 
 ```csharp
 [Function("FunctionChain")]
@@ -566,7 +566,7 @@ Done!
 
 ## Custom status
 
-Custom orchestration status lets you set a custom status value for your orchestrator function. This custom status is then visible to external clients via the [HTTP status query API](durable-functions-http-api.md#get-instance-status) or via language-specific API calls. Custom orchestration status enables richer monitoring for orchestrator functions. For example, the orchestrator function code can invoke the "set custom status" API to update the progress for a long-running operation. A client, such as a web page or other external system, could then periodically query the HTTP status query APIs for richer progress information. Sample code for setting a custom status value in an orchestrator function is provided below:
+Custom orchestration status lets you set a custom status value for your orchestrator function. External clients can view the custom status via the [HTTP status query API](durable-functions-http-api.md#get-instance-status) or language-specific API calls. Custom orchestration status enables richer monitoring for orchestrator functions. For example, the orchestrator function code can invoke the "set custom status" API to update the progress for a long-running operation. A client, such as a web page or external system, can then periodically query the HTTP status query APIs for progress information. Sample code for setting a custom status value in an orchestrator function is provided below:
 
 ::: zone pivot="durable-functions"
 
@@ -724,7 +724,7 @@ Clients get the following response:
 
 ## Distributed tracing
 
-Distributed tracing tracks requests and shows how different services interact with each other. In Azure Durable, it also correlates orchestrations, entities, and activities together. This helps you understand how much time steps of the orchestration take relative to the entire orchestration. It's also useful to understand where an application is having an issue or where an exception was thrown. This feature is supported in Application Insights for all languages and storage providers.
+Distributed tracing tracks requests and shows how different services interact with each other. In Azure Durable, it correlates orchestrations, entities, and activities together. Distributed tracing shows execution time for each orchestration step relative to the entire orchestration and identifies where issues or exceptions occur. This feature is supported in Application Insights for all languages and storage providers.
 
 ::: zone pivot="durable-functions"
 
@@ -790,17 +790,14 @@ Once you have distributed tracing set up, you can visualize your orchestration f
 
 Azure Functions supports debugging function code directly, and that same support carries forward to Durable Functions, whether running in Azure or locally. However, there are a few behaviors to be aware of when debugging:
 
-- **Replay:**   
-   Orchestrator functions regularly [replay](durable-functions-orchestrations.md#reliability) when new inputs are received. This behavior means a single *logical* execution of an orchestrator function can result in hitting the same breakpoint multiple times, especially if it's set early in the function code.  
+- **Replay:** Orchestrator functions regularly [replay](durable-functions-orchestrations.md#reliability) when new inputs are received. A single *logical* execution of an orchestrator function can result in hitting the same breakpoint multiple times, especially if it's set early in the function code.  
 
 - **Await:**  
    Whenever an `await` is encountered in an orchestrator function, it yields control back to the Durable Task Framework dispatcher. If it's the first time a particular `await` has been encountered, the associated task is *never* resumed. Because the task never resumes, stepping *over* the await (F10 in Visual Studio) isn't possible. Stepping over only works when a task is being replayed.  
 
-- **Messaging timeouts:** 
-   Durable Functions internally uses queue messages to drive execution of orchestrator, activity, and entity functions. In a multi-VM environment, breaking into the debugging for extended periods of time could cause another VM to pick up the message, resulting in duplicate execution. This behavior exists for regular queue-trigger functions as well, but is important to point out in this context since the queues are an implementation detail.  
+- **Messaging timeouts:** Durable Functions internally uses queue messages to drive execution of orchestrator, activity, and entity functions. In a multi-VM environment, extended debugging sessions could cause another VM to process the message, resulting in duplicate execution. Although this behavior also exists for regular queue-trigger functions, it's important to highlight in this context because the queues are an implementation detail.  
 
-- **Stopping and starting:**  
-   Messages in Durable Functions persist between debug sessions. If you stop debugging and terminate the local host process while a durable function is executing, that function may re-execute automatically in a future debug session. This behavior can be confusing when not expected. Using a [fresh task hub](durable-functions-task-hubs.md#task-hub-management) or clearing the task hub contents between debug sessions is one technique to avoid this behavior.
+- **Stopping and starting:** Messages in Durable Functions persist between debug sessions. If you stop debugging and terminate the local host process while a durable function is executing, that function may re-execute automatically in a future debug session. To avoid unexpected re-execution, use a [fresh task hub](durable-functions-task-hubs.md#task-hub-management) or clear the task hub contents between debug sessions.
 
 > [!TIP]
 > When setting breakpoints in orchestrator functions, if you want to only break on non-replay execution, you can set a conditional breakpoint that breaks only if the "is replaying" value is `false`.
