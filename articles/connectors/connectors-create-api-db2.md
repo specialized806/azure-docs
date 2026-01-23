@@ -186,7 +186,7 @@ To fetch all records in a DB2 database table, use the **Get rows** action in you
 
 1. Open the **Table name** list, and then select the table you want, which is **AREA** in this example:
 
-   :::image type="content" source="./media/connectors-create-api-db2/db2-get-rows-action-select-table.png" alt-text="Screenshot that shows the Get row action with the AREA value selected in the Table name list.":::
+   :::image type="content" source="./media/connectors-create-api-db2/db2-get-rows-action-select-table.png" alt-text="Screenshot that shows the Get rows action with the AREA value selected in the Table name list.":::
 
 1. To specify a filter or query for results, select **Show advanced options**.
 
@@ -309,7 +309,7 @@ To delete a single record from a DB2 database table, use the **Delete row** acti
 
    After you add the **Delete row** action, here's how your example logic app appears:
 
-   :::image type="content" source="./media/connectors-create-api-db2/db2-delete-row-action.png" alt-text="Screenshot that shows the Logic Apps Designer the Delete row action.":::
+   :::image type="content" source="./media/connectors-create-api-db2/db2-delete-row-action.png" alt-text="Screenshot that shows the Logic Apps Designer with the Delete row action.":::
 
 1. Specify values for all the required properties (*). After you select a table, the action shows the relevant properties that are specific to records in that table.
 
