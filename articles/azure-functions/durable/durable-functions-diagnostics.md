@@ -3,7 +3,7 @@ title: Diagnostics in Durable Functions - Azure
 description: Learn how to diagnose problems with the Durable Functions extension for Azure Functions.
 author: cgillum
 ms.topic: how-to
-ms.date: 12/07/2022
+ms.date: 01/22/2026
 ms.author: azfuncdf
 ms.service: azure-functions
 ms.subservice: durable
