@@ -186,7 +186,7 @@ The following table lists the administrative configuration limits in the Azure A
 
 ## Region specific service limits 
 
-As a protection for our customers, Microsoft places some restrictions on telephony verification for certain region codes. The following table lists the region codes and their corresponding limits. These limits only applies to SMS verification.\.
+As a protection for our customers, Microsoft places some restrictions on telephony verification for certain region codes. The following table lists the region codes and their corresponding limits. Only SMS verification is subject to these limits.
 
 | Region Code | Region Name                                    | Limit per tenant per 60 minutes | Limit per tenant per 24 hours            |                         
 |:----------- |:---------------------------------------------- |:------------------------------- | :----------------------------------------|
