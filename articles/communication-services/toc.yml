@@ -552,6 +552,8 @@ items:
         href: quickstarts/voice-video-calling/get-started-data-channel.md
     - name: Proxy your calling traffic
       href: tutorials/proxy-calling-support-tutorial.md
+    - name: Using VDI to make audio calls from Azure Virtual Desktop
+      href: quickstarts/voice-video-calling/calling-from-virtual-desktop-infrastructure.md
   - name: Mobile integrations
     items:
     - name: Integrate with CallKit in iOS
