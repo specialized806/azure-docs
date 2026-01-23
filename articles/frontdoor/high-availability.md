@@ -646,17 +646,15 @@ The following are virtual network and subnet requirements:
  
 3. Verify current routing
 
-    Verify which endpoint is currently serving traffic:
-
-    ```
-    # Check which endpoint is serving traffic
-    nslookup $CUSTOM_DOMAIN
-    
-    # The response headers can help identify the serving endpoint
-    # Front Door includes "x-azure-ref" header
-    # Application Gateway includes "Server: Microsoft-IIS" or similar
-    Invoke-WebRequest -Uri "https://$CUSTOM_DOMAIN/index.html" -Method Head | Select-Object -ExpandProperty Headers
-    ```
+        ```
+        # Check which endpoint is serving traffic
+        nslookup $CUSTOM_DOMAIN
+        
+        # The response headers can help identify the serving endpoint
+        # Front Door includes "x-azure-ref" header
+        # Application Gateway includes "Server: Microsoft-IIS" or similar
+        Invoke-WebRequest -Uri "https://$CUSTOM_DOMAIN/index.html" -Method Head | Select-Object -ExpandProperty Headers
+        ```
 
 ## Monitoring
 
