@@ -13,6 +13,9 @@ ms.custom: mode-other, devx-track-js
 ---
 
 # Placing audio calls from Azure Virtual Desktop
+
+[!INCLUDE [Public Preview Notice](../../includes/public-preview-include.md)]
+
 This document explains how to enable and optimize calling scenarios using Azure Communication Services (ACS) within Virtual Desktop Infrastructure (VDI). It covers setup, workflows, limitations, requirements, and troubleshooting for IT professionals, business leaders, and technical teams.
 
 ## What is VDI?
