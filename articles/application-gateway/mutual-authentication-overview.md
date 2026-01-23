@@ -19,7 +19,7 @@ Mutual authentication, or client authentication, allows for the Application Gate
 
 ## Mutual authentication
 
-Application Gateway supports certificate-based mutual authentication where you can upload a trusted client CA certificates to the Application Gateway, and the gateway uses that certificate to authenticate the client sending a request to the gateway. With the rise in IoT use cases and increased security requirements across industries, mutual authentication provides a way for you to manage and control which clients can talk to your Application Gateway. 
+Application Gateway supports certificate-based mutual authentication where you can upload a trusted client CA certificate to the Application Gateway, and the gateway uses that certificate to authenticate the client sending a request to the gateway. With the rise in IoT use cases and increased security requirements across industries, mutual authentication provides a way for you to manage and control which clients can talk to your Application Gateway. 
 
 Application Gateway provides following two options to validate client certificates:
 
