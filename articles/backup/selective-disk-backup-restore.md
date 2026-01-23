@@ -2,7 +2,7 @@
 title: Selective Disk Backup and Restore for Azure Virtual Machines
 description: In this article, learn about selective disk backup and restore by using the Azure virtual machine backup solution.
 ms.topic: how-to
-ms.date: 07/22/2025
+ms.date: 01/23/2026
 ms.custom:
   - references_regions
   - devx-track-azurecli
@@ -284,7 +284,8 @@ Restore-AzRecoveryServicesBackupItem -RecoveryPoint $rp[0] -StorageAccountName "
 
 ## Use the Azure portal
 
-[!INCLUDE [backup-center.md](../../includes/backup-center.md)]
+> [!NOTE]
+> The functionality that the following sections describe can also be accessed via [Resiliency](../resiliency/resiliency-overview.md). Resiliency in Azure is a cloud-native unified experience for resiliency posture management that enables you to manage your protection estate across solutions and environments.
 
 When you use the Azure portal, you can view the included and excluded disks from the VM backup details pane and the backup **Job Details** pane. During restore, when you select the recovery point from which to restore, you can view the backed-up disks in that recovery point.
 
