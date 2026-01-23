@@ -70,32 +70,87 @@ This section shows you how to use the Azure portal to create IP firewall rules f
 
 [!INCLUDE [service-bus-trusted-services](./includes/service-bus-trusted-services.md)]
 
-## Use Resource Manager template
-This section has a sample Azure Resource Manager template that adds a virtual network and a firewall rule to an existing Service Bus namespace.
+## Use a template
+This section has sample templates that add a virtual network and a firewall rule to an existing Service Bus namespace.
 
 **ipMask** is a single IPv4 address or a block of IP addresses in CIDR notation. For example, in CIDR notation 70.37.104.0/24 represents the 256 IPv4 addresses from 70.37.104.0 to 70.37.104.255, with 24 indicating the number of significant prefix bits for the range.
 
 > [!NOTE]
 > The default value of the `defaultAction` is `Allow`. When adding virtual network or firewalls rules, make sure you set the `defaultAction` to `Deny`.
 
+# [Bicep](#tab/bicep)
+
+```bicep
+@description('Name of the Service Bus namespace')
+param namespaceName string
+
+@description('Location for all resources.')
+param location string = resourceGroup().location
+
+resource serviceBusNamespace 'Microsoft.ServiceBus/namespaces@2024-01-01' = {
+  name: namespaceName
+  location: location
+  sku: {
+    name: 'Premium'
+    tier: 'Premium'
+    capacity: 1
+  }
+  properties: {
+    premiumMessagingPartitions: 1
+    minimumTlsVersion: '1.2'
+    publicNetworkAccess: 'Enabled'
+    disableLocalAuth: false
+    zoneRedundant: true
+  }
+
+  resource networkRuleSet 'networkRuleSets' = {
+    name: 'default'
+    properties: {
+      publicNetworkAccess: 'Enabled'
+      defaultAction: 'Deny'
+      virtualNetworkRules: []
+      ipRules: [
+        {
+          ipMask: '10.1.1.1'
+          action: 'Allow'
+        }
+        {
+          ipMask: '11.0.0.0/24'
+          action: 'Allow'
+        }
+      ]
+    }
+  }
+}
+```
+
+# [ARM template](#tab/arm)
 
 ```json
 {
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "namespace_name": {
-            "defaultValue": "mypremiumnamespace",
-            "type": "String"
+        "namespaceName": {
+            "type": "string",
+            "metadata": {
+                "description": "Name of the Service Bus namespace"
+            }
+        },
+        "location": {
+            "type": "string",
+            "defaultValue": "[resourceGroup().location]",
+            "metadata": {
+                "description": "Location for all resources."
+            }
         }
     },
-    "variables": {},
     "resources": [
         {
             "type": "Microsoft.ServiceBus/namespaces",
-            "apiVersion": "2022-10-01-preview",
-            "name": "[parameters('namespace_name')]",
-            "location": "East US",
+            "apiVersion": "2024-01-01",
+            "name": "[parameters('namespaceName')]",
+            "location": "[parameters('location')]",
             "sku": {
                 "name": "Premium",
                 "tier": "Premium",
@@ -107,35 +162,38 @@ This section has a sample Azure Resource Manager template that adds a virtual ne
                 "publicNetworkAccess": "Enabled",
                 "disableLocalAuth": false,
                 "zoneRedundant": true
-            }
-        },
-        {
-            "type": "Microsoft.ServiceBus/namespaces/networkRuleSets",
-            "apiVersion": "2022-10-01-preview",
-            "name": "[concat(parameters('namespace_name'), '/default')]",
-            "location": "East US",
-            "dependsOn": [
-                "[resourceId('Microsoft.ServiceBus/namespaces', parameters('namespace_name'))]"
-            ],
-            "properties": {
-                "publicNetworkAccess": "Enabled",
-                "defaultAction": "Deny",
-                "virtualNetworkRules": [],
-                "ipRules": [
-                    {
-                        "ipMask": "10.1.1.1",
-                        "action": "Allow"
-                    },
-                    {
-                        "ipMask": "11.0.0.0/24",
-                        "action": "Allow"
+            },
+            "resources": [
+                {
+                    "type": "networkRuleSets",
+                    "apiVersion": "2024-01-01",
+                    "name": "default",
+                    "dependsOn": [
+                        "[parameters('namespaceName')]"
+                    ],
+                    "properties": {
+                        "publicNetworkAccess": "Enabled",
+                        "defaultAction": "Deny",
+                        "virtualNetworkRules": [],
+                        "ipRules": [
+                            {
+                                "ipMask": "10.1.1.1",
+                                "action": "Allow"
+                            },
+                            {
+                                "ipMask": "11.0.0.0/24",
+                                "action": "Allow"
+                            }
+                        ]
                     }
-                ]
-            }
+                }
+            ]
         }
     ]
 }
 ```
+
+---
 
 To deploy the template, follow the instructions for [Azure Resource Manager][lnk-deploy].
 

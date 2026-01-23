@@ -59,31 +59,87 @@ The following steps describe how to create a template in the Azure portal.
 1. In the Azure portal, choose  **Create a resource**.
 2. In  **Search the Marketplace** , type  **custom deployment** , and then press  **ENTER**.
 3. Choose **Custom deployment (deploy using custom templates) (preview)**, choose  **Create** , and then choose  **Build your own template in the editor**.
-4. In the template editor, paste in the following JSON to create a new namespace and set the minimum TLS version to TLS 1.2. Remember to replace the placeholders in angle brackets with your own values.
+4. In the template editor, paste in the following template to create a new namespace and set the minimum TLS version to TLS 1.2. Remember to replace the placeholders in angle brackets with your own values.
 
-    ```json
-    {
-        "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-        "contentVersion": "1.0.0.0",
-        "parameters": {},
-        "variables": {
-            "serviceBusNamespaceName": "[concat(uniqueString(subscription().subscriptionId), 'tls')]"
-        },
-        "resources": [
-            {
-            "name": "[variables('serviceBusNamespaceName')]",
-            "type": "Microsoft.ServiceBus/namespaces",
-            "apiVersion": "2022-01-01-preview",
-            "location": "westeurope",
-            "properties": {
-                "minimumTlsVersion": "1.2"
-            },
-            "dependsOn": [],
-            "tags": {}
+# [Bicep](#tab/bicep)
+
+```bicep
+@description('Name of the Service Bus namespace')
+param serviceBusNamespaceName string = 'sb${uniqueString(subscription().subscriptionId)}tls'
+
+@description('Location for all resources.')
+param location string = 'westeurope'
+
+@allowed([
+  '1.2'
+  '1.3'
+])
+@description('Minimum TLS version')
+param minimumTlsVersion string = '1.2'
+
+resource serviceBusNamespace 'Microsoft.ServiceBus/namespaces@2024-01-01' = {
+  name: serviceBusNamespaceName
+  location: location
+  sku: {
+    name: 'Standard'
+  }
+  properties: {
+    minimumTlsVersion: minimumTlsVersion
+  }
+}
+```
+
+# [ARM template](#tab/arm)
+
+```json
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "serviceBusNamespaceName": {
+            "type": "string",
+            "defaultValue": "[concat(uniqueString(subscription().subscriptionId), 'tls')]",
+            "metadata": {
+                "description": "Name of the Service Bus namespace"
             }
-        ]
-    }
-    ```
+        },
+        "location": {
+            "type": "string",
+            "defaultValue": "westeurope",
+            "metadata": {
+                "description": "Location for all resources."
+            }
+        },
+        "minimumTlsVersion": {
+            "type": "string",
+            "defaultValue": "1.2",
+            "allowedValues": [
+                "1.2",
+                "1.3"
+            ],
+            "metadata": {
+                "description": "Minimum TLS version"
+            }
+        }
+    },
+    "resources": [
+        {
+            "type": "Microsoft.ServiceBus/namespaces",
+            "apiVersion": "2024-01-01",
+            "name": "[parameters('serviceBusNamespaceName')]",
+            "location": "[parameters('location')]",
+            "sku": {
+                "name": "Standard"
+            },
+            "properties": {
+                "minimumTlsVersion": "[parameters('minimumTlsVersion')]"
+            }
+        }
+    ]
+}
+```
+
+---
 
 5. Save the template.
 6. Specify resource group parameter, then choose the  **Review + create**  button to deploy the template and create a namespace with the  `MinimumTlsVersion`  property configured.
