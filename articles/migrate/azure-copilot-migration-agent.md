@@ -60,17 +60,18 @@ To manage access to Migration Agents (preview) in Azure Copilot, you must be an 
 
 ## Understand Azure Copilot Migration Agent functionality
 
-Azure Copilot Migration Agent (ACMA) provides a conversational interface in Azure Copilot that helps you plan and analyze migrations from your Azure Migrate project. By responding to natural language prompts, it supports migration planning, assessment interpretation, and strategy formulation through contextual insights and synthesized outputs derived from your migration inventory and assessments.  
-
-The Migration Agent complements the Azure Migrate experience by helping you reason over discovery results, business cases, and assessment outputs. It uses data from your Azure Migrate project, such as inventory metadata, business cases, and assessment reports to provide responses tailored to your migration goals, with conversation history maintaining context throughout your planning journey.
+Azure Copilot Migration Agent (ACMA) provides a conversational experience in Azure Copilot that helps you plan and analyze migrations using data from your Azure Migrate project. It enables you to reason over discovery and assessment data to make informed migration planning decisions.
 
 Azure Copilot Migration Agent helps you:
 
-- Answer migration‑related questions using Azure Migrate data. 
-- Summarize large business case and assessment artifacts. 
-- Compare different migration strategies. 
-- Generate planning‑level insights to support informed decision‑making. 
-- Prepare for migration execution in the Azure Migrate portal.
+- Answer migration‑related questions using Azure Migrate data.
+- Summarize large business case and assessment artifacts.
+- Compare different migration strategies.
+- Generate planning‑level insights to support informed decision‑making.
+
+ACMA complements Azure Migrate by helping you interpret and synthesize migration data. Migration execution is carried out in the Azure Migrate portal.
+
+During the conversations, the Migration Agent uses data from your Azure Migrate project—such as discovered inventory metadata, business cases, and assessment reports—to tailor responses to your stated goals. Conversation history preserves context and provides more relevant guidance throughout your migration journey.
 
 ## Supported migration scenarios
 
