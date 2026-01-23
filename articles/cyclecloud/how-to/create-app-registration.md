@@ -57,7 +57,7 @@ Make note of the Tenant, Client, and Managed Identity Resource IDs and proceed t
 
 1. In the Azure portal, select the **Microsoft Entra ID** icon in the navigation pane or type "Microsoft Entra ID" in the search bar and select "Microsoft Entra ID" from the Services category in the results.
 1. Go to the **App registrations** tab under the **Manage** menu.  
-:::image type="content" source="../images/entra-setup/entra1.png" alt-text="Screenshot of the App registrations tab location in Azure Portal.":::
+:::image type="content" source="../images/entra-setup/entra1.png" alt-text="Screenshot of the App registrations tab location in Azure portal.":::
 
 1. Select **New registration** from the top menu bar. You don't need to set any redirect URIs at this point.
 :::image type="content" source="../images/entra-setup/entra17.png" alt-text="Screenshot of the App registration creation view.":::
@@ -125,7 +125,7 @@ The Open OnDemand front end uses Open ID Connect (OIDC) for authentication. The 
 
 You don't need to enable Open OnDemand when initially deploying Azure CycleCloud or Azure CycleCloud Workspace for Slurm. You can easily add Open OnDemand to CycleCloud later. Therefore, the utility script that automatically creates the Microsoft Entra ID application registration also creates the user-assigned managed identity. 
 
-Complete the following steps to use Open OnDemand with your manually-created application registration. 
+Complete the following steps to use Open OnDemand with your manually created application registration. 
 > [!NOTE]
 > The following roles do not need to be created if you use the [utility script](./create-app-registration.md#automatic) to create your Microsoft Entra ID application registration. Instead, assign the roles to your users. 
 
