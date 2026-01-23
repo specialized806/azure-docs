@@ -1,40 +1,37 @@
 ---
 title: Connect to 3270 apps on IBM mainframes
-description: Integrate 3270 screen-driven apps with workflows in Azure Logic Apps using the IBM 3270 connector.
+description: Learn how to integrate 3270 screen-driven apps with workflows in Azure Logic Apps using the IBM 3270 connector.
 services: logic-apps
 ms.suite: integration
 author: haroldcampos
 ms.author: hcampos
 ms.reviewer: estfan, azla
 ms.topic: how-to
-ms.date: 11/02/2023
+ms.date: 01/26/2026
 ms.custom: sfi-image-nochange
+#Customer intent: As IBM mainframe administrator, access IBM mainframe apps using Azure Logic Apps and the IBM 3270 connector.
 ---
 
 # Integrate 3270 screen-driven apps on IBM mainframes with Azure using Azure Logic Apps and IBM 3270 connector
 
 [!INCLUDE [logic-apps-sku-consumption-standard](../../includes/logic-apps-sku-consumption-standard.md)]
 
-To access and run IBM mainframe apps, which you usually execute by navigating through 3270 emulator screens, from Consumption and Standard workflows in Azure Logic Apps, you can use the **IBM 3270** connector. That way, you can integrate your IBM mainframe apps with Azure, Microsoft, and other apps, services, and systems by creating automated workflows with Azure Logic Apps. The connector communicates with IBM mainframes by using the TN3270 protocol. The **IBM 3270** connector is available in all Azure Logic Apps regions except for Azure Government and Microsoft Azure operated by 21Vianet.
+IBM mainframe apps are usually run through a 3270 emulator. To access and run IBM mainframe apps from Consumption and Standard workflows in Azure Logic Apps, you can use the **IBM 3270** connector. This approach allows you to create automated workflows that integrate your IBM mainframe apps with Azure, Microsoft, and other apps, services, and systems. The connector communicates with IBM mainframes by using the TN3270 protocol. The **IBM 3270** connector is available in all Azure Logic Apps regions except for Azure Government and Microsoft Azure operated by 21Vianet.
 
 This how-to guide describes the following aspects about the **IBM 3270** connector:
 
 - Why use the IBM 3270 connector in Azure Logic Apps
-
 - How does the IBM 3270 connector run 3270 screen-driven apps
-
 - Prerequisites and setup for using the IBM 3270 connector
-
 - Steps for adding IBM 3270 connector actions to your workflow
 
 ## Why use this connector?
 
-To access apps on IBM mainframes, you typically use a 3270 terminal emulator, often called a "green screen". This method is a time-tested way but has limitations. Although Host Integration Server (HIS) helps you work 
-directly with these apps, sometimes, separating the screen and business logic might not be possible. Or, maybe you no longer have information for how the host applications work.
+To access apps on IBM mainframes, you typically use a 3270 terminal emulator, often called a *green screen*. This method is a time-tested way but has limitations. Although Host Integration Server (HIS) helps you work directly with these apps, sometimes separating the screen and business logic might not be possible. Or, maybe you no longer have information for how the host applications work.
 
-To extend these scenarios, the **IBM 3270** connector in Azure Logic Apps works with the [3270 Design Tool](/host-integration-server/core/application-integration-3270designer-1), which you use to record, or "capture", the host screens used for a specific task, define the navigation flow for that task through your mainframe app, and define the methods with input and output parameters for that task. The design tool converts that information into metadata that the 3270 connector uses when running an action in your workflow.
+To extend these scenarios, the **IBM 3270** connector in Azure Logic Apps works with the [3270 Design Tool](/host-integration-server/core/application-integration-3270designer-1), which you use to record, or *capture*, the host screens used for a specific task, define the navigation flow for that task through your mainframe app, and define the methods with input and output parameters for that task. The design tool converts that information into metadata that the 3270 connector uses when it runs an action in your workflow.
 
-After you generate the metadata file from the 3270 Design Tool, you add that file as a map artifact either to your Standard logic app resource or to your linked integration account for a Consumption logic app in Azure Logic Apps. That way, your workflow can access your app's metadata when you add an **IBM 3270** connector action. The connector reads the metadata file from your logic app resource (Standard) or your integration account (Consumption), handles navigation through the 3270 screens, and dynamically presents the parameters to use with the 3270 connector in your workflow. You can then provide data to the host application, and the connector returns the results to your workflow. As a result, you can integrate your legacy apps with Azure, Microsoft, and other apps, services, and systems that Azure Logic Apps supports.
+First, generate the metadata file from the 3270 Design Tool. Then add that file as a map artifact either to your Standard logic app resource or to your linked integration account for a Consumption logic app. That way, your workflow can access your app's metadata when you add an **IBM 3270** connector action. The connector reads the metadata file from your logic app resource (Standard) or your integration account (Consumption), handles navigation through the 3270 screens, and dynamically presents the parameters to use with the 3270 connector in your workflow. You can then provide data to the host application. The connector returns the results to your workflow. As a result, you can integrate your legacy apps with Azure, Microsoft, and other apps, services, and systems that Azure Logic Apps supports.
 
 ## Connector technical reference
 
@@ -43,7 +40,7 @@ The IBM 3270 connector has different versions, based on [logic app type and host
 | Logic app | Environment | Connection version |
 |-----------|-------------|--------------------|
 | **Consumption** | Multi-tenant Azure Logic Apps | Managed connector, which appears in the designer under the **Enterprise** label. This connector provides only single action and no triggers. For more information, see [IBM 3270 managed connector reference](/connectors/si3270). |
-| **Standard** | 	Single-tenant Azure Logic Apps and App Service Environment v3 (ASE v3 with Windows plans only) | Managed connector, which appears in the connector gallery under the **Shared** filter, and the built-in, [service provider-based](../logic-apps/custom-connector-overview.md#service-provider-interface-implementation) connector, which appears in the connector gallery under the **Built-in** filter. The built-in version differs in the following ways: -<br><br>- The built-in connector requires that you upload your HIDX file to your Standard logic app resource, not an integration account. <br><br>- The built-in connector can directly connect to a 3270 server and access Azure virtual networks using a connection string. <br><br>- The built-in version supports server authentication with TLS (SSL) encryption for data in transit, message encoding for its operation, and Azure virtual network integration. <br><br>For more information, see the following documentation: <br><br>- [IBM 3270 managed connector reference](/connectors/si3270) <br>- [IBM 3270 built-in connector reference](#built-in-reference) |
+| **Standard** | 	Single-tenant Azure Logic Apps and App Service Environment v3 (ASE v3 with Windows plans only) | Managed connector, which appears in the connector gallery under the **Shared** filter, and the built-in, [service provider-based](../logic-apps/custom-connector-overview.md#service-provider-interface-implementation) connector, which appears in the connector gallery under the **Built-in** filter. The built-in version differs in the following ways: -<br><br>- The built-in connector requires that you upload your HIDX file to your Standard logic app resource, not an integration account. <br><br>- The built-in connector can directly connect to a 3270 server and access Azure virtual networks using a connection string. <br><br>- The built-in version supports server authentication with TLS encryption for data in transit, message encoding for its operation, and Azure virtual network integration. <br><br>For more information, see the following documentation: <br><br>- [IBM 3270 managed connector reference](/connectors/si3270) <br>- [IBM 3270 built-in connector reference](#built-in-reference) |
 
 <a name="built-in-reference"></a>
 
@@ -73,13 +70,13 @@ This operation also includes advanced parameters, which appear after you select 
 
   This tool helps you record the screens, navigation paths, methods, and parameters for the tasks in your app that you add and run as 3270 connector actions. The tool generates a Host Integration Designer XML (HIDX) file that provides the necessary metadata for the connector to run your 3270 screen-driven app.
 
-  After you download and install this tool, [follow these steps to connect with your TN3270 host server, design the required metadata artifact, and generate the HIDX file](/host-integration-server/core/application-integration-la3270apps).
+  After you download and install this tool, connect with your TN3270 host server, design the required metadata artifact, and generate the HIDX file. For more information, see [Designing Metadata Artifacts for 3270 Applications](/host-integration-server/core/application-integration-la3270apps).
 
 - The Standard or Consumption logic app resource and workflow where you want to run your 3270 screen-driven app
 
   The IBM 3270 connector doesn't have triggers, so use any trigger to start your workflow, such as the **Recurrence** trigger or **Request** trigger. You can then add the 3270 connector actions.
 
-- An [integration account](../logic-apps/logic-apps-enterprise-integration-create-integration-account.md), which is required based on the 3270 connector version that you use and is an Azure resource where you can centrally store B2B artifacts such as trading partners, agreements, maps, schemas, and certificates to use with specific workflow actions.
+- An [integration account](../logic-apps/logic-apps-enterprise-integration-create-integration-account.md), which is required based on the 3270 connector version that you use. It's an Azure resource where you can centrally store B2B artifacts. Examples include trading partners, agreements, maps, schemas, and certificates to use with specific workflow actions.
 
   | Workflow | Description |
   |----------|-------------|
@@ -100,13 +97,13 @@ For your workflow to use the HIDX file, follow these steps:
 
 1. In the [Azure portal](https://portal.azure.com), choose the following steps, based on the connector version:
 
-      - 3270 built-in connector: [Upload your HIDX file to your Standard logic app resource](../logic-apps/logic-apps-enterprise-integration-maps.md?tabs=standard#add-map-to-standard-logic-app-resource).
+   - 3270 built-in connector: [Upload your HIDX file to your Standard logic app resource](../logic-apps/logic-apps-enterprise-integration-maps.md?tabs=standard#add-map-to-standard-logic-app-resource).
 
-      - 3279 managed connector:
+   - 3279 managed connector:
 
-        - [Upload your HIDX file to a linked integration account](../logic-apps/logic-apps-enterprise-integration-maps.md?tabs=standard#add-map-to-integration-account). Make sure that you select **HIDX** as the **Map type**.
+     - [Upload your HIDX file to a linked integration account](../logic-apps/logic-apps-enterprise-integration-maps.md?tabs=standard#add-map-to-integration-account). Make sure that you select **HIDX** as the **Map type**.
 
-        - [Upload your HIDX file to your Standard logic app resource](../logic-apps/logic-apps-enterprise-integration-maps.md?tabs=standard#add-map-to-standard-logic-app-resource).
+     - [Upload your HIDX file to your Standard logic app resource](../logic-apps/logic-apps-enterprise-integration-maps.md?tabs=standard#add-map-to-standard-logic-app-resource).
 
 1. Now, [add an IBM 3270 action to your workflow](#add-ibm-3270-action).
 
@@ -126,15 +123,15 @@ Later in this guide, when you add an **IBM 3270** connector action to your workf
 
 ## Add an IBM 3270 action
 
-A Standard logic app workflow can use the IBM 3270 managed connector and the IBM 3270 built-in connector. However, a Consumption logic app workflow can use only the IBM 3270 managed connector. Each version has different actions. Based on whether you have a Consumption or Standard logic app workflow, follow the corresponding steps:
+A Standard logic app workflow can use the IBM 3270 managed connector and the IBM 3270 built-in connector. A Consumption logic app workflow can use only the IBM 3270 managed connector. Each version has different actions. Based on whether you have a Consumption or Standard logic app workflow, follow the corresponding steps:
 
 ### [Standard](#tab/standard)
 
-1. In the [Azure portal](https://portal.azure.com), open your Standard logic app resource and workflow where you've already add a trigger.
+1. In the [Azure portal](https://portal.azure.com), open your Standard logic app resource and workflow.
 
 1. If you haven't already added a trigger, [follow these general steps to add the trigger that you want to your workflow](../logic-apps/create-workflow-with-trigger-or-action.md?tabs=standard#add-trigger).
 
-   This example continues with the **Request** trigger named **When a HTTP request is received**.
+   This example continues with the **Request** trigger named **When an HTTP request is received**.
 
 1. [Follow these general steps to add the **IBM 3270** built-in connector action named **Execute a navigation plan**](../logic-apps/create-workflow-with-trigger-or-action.md?tabs=standard#add-action).
 
@@ -189,7 +186,7 @@ A Standard logic app workflow can use the IBM 3270 managed connector and the IBM
 
 1. If you haven't already added a trigger, [follow these general steps to add the trigger that you want to your workflow](../logic-apps/create-workflow-with-trigger-or-action.md?tabs=consumption#add-trigger).
 
-   This example continues with the **Request** trigger named **When a HTTP request is received**.
+   This example continues with the **Request** trigger named **When an HTTP request is received**.
 
 1. [Follow these general steps to add the **IBM 3270** managed connector action named **Run a mainframe program over a TN3270 connection**](../logic-apps/create-workflow-with-trigger-or-action.md?tabs=consumption#add-action). You can find the connector under the **Enterprise** category.
 
@@ -199,7 +196,7 @@ A Standard logic app workflow can use the IBM 3270 managed connector and the IBM
    |----------|----------|-------|-------------|
    | **Connection name** | Yes | <*connection-name*> | A name for your connection |
    | **Integration Account ID** | Yes | <*integration-account-name*> | Your integration account's name |
-   | **Integration Account SAS URL** | Yes | <*integration-account-SAS-URL*> | Your integration account's Shared Access Signature (SAS) URL, which you can generate from your integration account's settings in the Azure portal. <p>1. On your integration account menu, under **Settings**, select **Callback URL**. <br>2. In the right-hand pane, copy the **Generated Callback URL** value. |
+   | **Integration Account SAS URL** | Yes | <*integration-account-SAS-URL*> | Your integration account's Shared Access Signature (SAS) URL, which you can generate from your integration account's settings in the Azure portal. <br>1. On your integration account menu, under **Settings**, select **Callback URL**. <br>2. In the right-hand pane, copy the **Generated Callback URL** value. |
    | **Server** | Yes | <*TN3270-server-name*> | The server name for your TN3270 service |
    | **Port** | No | <*TN3270-server-port*> | The port used by your TN3270 server. If left blank, the connector uses `23` as the default value. |
    | **Device Type** | No | <*IBM-terminal-model*> | The model name or number for the IBM terminal to emulate. If left blank, the connector uses default values. |
@@ -272,9 +269,9 @@ A Standard logic app workflow can use the IBM 3270 managed connector and the IBM
 
 ---
 
-## Next steps
+## Related content
 
-- [Monitor workflow run status, review trigger and workflow run history, and set up alerts in Azure Logic Apps](../logic-apps/monitor-logic-apps.md?tabs=standard)
-- [View metrics for workflow health and performance in Azure Logic Apps](../logic-apps/view-workflow-metrics.md?tabs=standard)
-- [Monitor and collect diagnostic data for workflows in Azure Logic Apps](../logic-apps/monitor-workflows-collect-diagnostic-data.md?tabs=standard)
-- [Enable and view enhanced telemetry in Application Insights for Standard workflows in Azure Logic Apps](../logic-apps/enable-enhanced-telemetry-standard-workflows.md)
+- [Check workflow status, view run history, and set up alerts](../logic-apps/monitor-logic-apps.md?tabs=standard)
+- [View metrics for workflow health and performance](../logic-apps/view-workflow-metrics.md?tabs=standard)
+- [Monitor and collect diagnostic data for workflows](../logic-apps/monitor-workflows-collect-diagnostic-data.md?tabs=standard)
+- [Set up and view enhanced telemetry in Application Insights for Standard workflows](../logic-apps/enable-enhanced-telemetry-standard-workflows.md)
