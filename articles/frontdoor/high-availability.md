@@ -446,18 +446,20 @@ The following are virtual network and subnet requirements:
     # Test - should now work via Front Door
     curl --head https://$CUSTOM_DOMAIN/
     ```
- 
+
 3. Verify current routing
 
     ```
     # Check which endpoint is serving traffic
     nslookup $CUSTOM_DOMAIN
     
-    # The response headers can help identify the serving endpoint
-    # Front Door includes "x-azure-ref" header
-    # Application Gateway includes "Server: Microsoft-IIS" or similar
     Invoke-WebRequest -Uri "https://$CUSTOM_DOMAIN/index.html" -Method Head | Select-Object -ExpandProperty Headers
     ```
+    
+    > [!NOTE]
+    > The response headers can help identify the serving endpoint:
+    > - Front Door includes `x-azure-ref` header.
+    > - Application Gateway includes `Server: Microsoft-IIS` or similar.
 
 ## Scenario 2: Traffic Manager failover: Front Door to alternative CDN
 
