@@ -154,8 +154,7 @@ A network security perimeter supports the following [access modes](/azure/privat
 - **Transition:** Applies both existing per-resource network settings and network security perimeter rules. This mode is the default when you first associate a resource.
 - **Enforced:** Applies only network security perimeter rules. Use this mode once you validate access.
 
-After you validate access in **Transition** mode, set the network security perimeter's access mode to **Enforced**. For more information, see [Steps to configure publicNetworkAccess and accessMode properties](/azure/private-link/network-security-perimeter-transition#steps-to-configure-publicnetworkaccess-and-accessmode-properties).
-
+After you validate access in **transition** mode, set the network security perimeter's access mode to **enforced**. For more information, see [Steps to configure publicNetworkAccess and accessMode properties](/azure/private-link/network-security-perimeter-transition#steps-to-configure-publicnetworkaccess-and-accessmode-properties).
 
 ## Related content
 
