@@ -321,18 +321,10 @@
         items:
           - name: Configure customer-managed keys
             href: elastic-customer-managed-keys.md
-      - name: Manage data protection 
-        items:
-        - name: Configure snapshot policies 
-          href: elastic-snapshots-policy.md
-        - name: Manage snapshots 
-          href: elastic-snapshots-manage.md
-        - name: Restore from a snapshot
-          href: elastic-snapshot-restore.md
-        - name: Back up a volume
-          href: elastic-backup.md
-        - name: Restore a backup
-          href: elastic-backup-restore.md
+          - name: Back up a volume
+            href: elastic-backup.md
+          - name: Restore a backup
+            href: elastic-backup-restore.md
   - name: Flexible, Standard, Premium, and Ultra service levels
     items: 
     - name: Manage Active Directory 
@@ -467,108 +459,108 @@
             href: configure-application-volume-oracle-azure-resource-manager.md 
         - name: Delete an application volume group
           href: application-volume-group-delete.md
-    - name: Manage data protection  
+  - name: Manage data protection  
+    items:
+    - name: Manage volume snapshots
       items:
-      - name: Manage volume snapshots
+      - name: Create an on-demand snapshot
+        href: azure-netapp-files-manage-snapshots.md
+      - name: Manage snapshot policies
+        href: snapshots-manage-policy.md
+      - name: Create a short-term clone
+        href: create-short-term-clone.md
+      - name: Restore a snapshot to a new volume
+        href: snapshots-restore-new-volume.md
+      - name: Restore individual files using single-file snapshot restore
+        href: snapshots-restore-file-single.md
+      - name: Restore a file from a snapshot using a client
+        href: snapshots-restore-file-client.md
+      - name: Restore a volume using snapshot revert
+        href: snapshots-revert-volume.md
+      - name: Delete snapshots
+        href: snapshots-delete.md
+    - name: Manage volume backups
+      items:
+      - name: Configure backups
         items:
-        - name: Create an on-demand snapshot
-          href: azure-netapp-files-manage-snapshots.md
-        - name: Manage snapshot policies
-          href: snapshots-manage-policy.md
-        - name: Create a short-term clone
-          href: create-short-term-clone.md
-        - name: Restore a snapshot to a new volume
-          href: snapshots-restore-new-volume.md
-        - name: Restore individual files using single-file snapshot restore
-          href: snapshots-restore-file-single.md
-        - name: Restore a file from a snapshot using a client
-          href: snapshots-restore-file-client.md
-        - name: Restore a volume using snapshot revert
-          href: snapshots-revert-volume.md
-        - name: Delete snapshots
-          href: snapshots-delete.md
-      - name: Manage volume backups
-        items:
-        - name: Configure backups
-          items:
-          - name: Configure policy-based backups 
-            href: backup-configure-policy-based.md
-          - name: Configure manual backups 
-            href: backup-configure-manual.md
-        - name: Manage a backup vault
-          href: backup-vault-manage.md
-        - name: Manage backup policies
-          href: backup-manage-policies.md 
-        - name: Search backups
-          href: backup-search.md 
-        - name: Restore a backup to a new volume 
-          href: backup-restore-new-volume.md 
-        - name: Restore individual files from a backup
-          href: restore-single-file-backup.md
-        - name: Delete backups 
-          href: backup-delete.md 	
-      - name: Manage replication
-        items:
-        - name: Create volume replication
-          href: cross-region-replication-create-peering.md
-        - name: Display health and monitor status of replication relationship
-          href: cross-region-replication-display-health-status.md
-        - name: Manage disaster recovery
-          href: cross-region-replication-manage-disaster-recovery.md
-        - name: Delete volume replications or volumes
-          href: cross-region-replication-delete.md
-        - name: Re-establish volume replication relationships
-          href: reestablish-deleted-volume-relationships.md
-        - name: Test disaster recovery with cross-region replication
-          href: test-disaster-recovery.md
-      - name: Manage caching 
-        items: 
-          - name: Configure cache volumes 
-            href: configure-cache-volumes.md
-      - name: Manage availability zones and cross-zone replication
-        items: 
-        - name: Manage availability zone volume placement
-          href: manage-availability-zone-volume-placement.md
-        - name: Create cross-zone replication 
-          href: create-cross-zone-replication.md
-      - name: Configure cross-zone-region replication 
-        href: cross-zone-region-replication-configure.md
-      - name: Configure ransomware protection 
-        href: ransomware-configure.md
+        - name: Configure policy-based backups 
+          href: backup-configure-policy-based.md
+        - name: Configure manual backups 
+          href: backup-configure-manual.md
+      - name: Manage a backup vault
+        href: backup-vault-manage.md
+      - name: Manage backup policies
+        href: backup-manage-policies.md 
+      - name: Search backups
+        href: backup-search.md 
+      - name: Restore a backup to a new volume 
+        href: backup-restore-new-volume.md 
+      - name: Restore individual files from a backup
+        href: restore-single-file-backup.md
+      - name: Delete backups 
+        href: backup-delete.md 	
+    - name: Manage replication
+      items:
+      - name: Create volume replication
+        href: cross-region-replication-create-peering.md
+      - name: Display health and monitor status of replication relationship
+        href: cross-region-replication-display-health-status.md
+      - name: Manage disaster recovery
+        href: cross-region-replication-manage-disaster-recovery.md
+      - name: Delete volume replications or volumes
+        href: cross-region-replication-delete.md
+      - name: Re-establish volume replication relationships
+        href: reestablish-deleted-volume-relationships.md
+      - name: Test disaster recovery with cross-region replication
+        href: test-disaster-recovery.md
+    - name: Manage caching 
+      items: 
+        - name: Configure cache volumes 
+          href: configure-cache-volumes.md
+    - name: Manage availability zones and cross-zone replication
+      items: 
+      - name: Manage availability zone volume placement
+        href: manage-availability-zone-volume-placement.md
+      - name: Create cross-zone replication 
+        href: create-cross-zone-replication.md
+    - name: Configure cross-zone-region replication 
+      href: cross-zone-region-replication-configure.md
+    - name: Configure ransomware protection 
+      href: ransomware-configure.md
     - name: Relocate
       items:
       - name: Relocate volume to another region
         href: ../azure-resource-manager/management/relocation/relocation-netapp.md?toc=/azure/azure-netapp-files/toc.json
-    - name: Develop
-      items:
-      - name: REST API
-        href: azure-netapp-files-develop-with-rest-api.md
-      - name: REST API using PowerShell
-        href: develop-rest-api-powershell.md
-      - name: SDKs, CLI tools, and ARM templates
-        href: azure-netapp-files-sdk-cli.md
-    - name: Troubleshoot
-      items:
-      - name: Troubleshoot using diagnose and solve problems tool 
-        href: troubleshoot-diagnose-solve-problems.md
-      - name: Troubleshoot capacity pool errors 
-        href: troubleshoot-capacity-pools.md
-      - name: Troubleshoot volume errors
-        href: troubleshoot-volumes.md
-      - name: Troubleshoot application volume group errors
-        href: troubleshoot-application-volume-groups.md
-      - name: Troubleshoot snapshot policy errors
-        href: troubleshoot-snapshot-policies.md
-      - name: Troubleshoot cross-region replication errors
-        href: troubleshoot-cross-region-replication.md
-      - name: Troubleshoot customer-managed keys 
-        href: troubleshoot-customer-managed-keys.md
-      - name: Troubleshoot Resource Provider errors
-        href: azure-netapp-files-troubleshoot-resource-provider-errors.md
-      - name: Troubleshoot user access on LDAP volumes
-        href: troubleshoot-user-access-ldap.md
-      - name: Troubleshoot file locks
-        href: troubleshoot-file-locks.md
+  - name: Develop
+    items:
+    - name: REST API
+      href: azure-netapp-files-develop-with-rest-api.md
+    - name: REST API using PowerShell
+      href: develop-rest-api-powershell.md
+    - name: SDKs, CLI tools, and ARM templates
+      href: azure-netapp-files-sdk-cli.md
+  - name: Troubleshoot
+    items:
+    - name: Troubleshoot using diagnose and solve problems tool 
+      href: troubleshoot-diagnose-solve-problems.md
+    - name: Troubleshoot capacity pool errors 
+      href: troubleshoot-capacity-pools.md
+    - name: Troubleshoot volume errors
+      href: troubleshoot-volumes.md
+    - name: Troubleshoot application volume group errors
+      href: troubleshoot-application-volume-groups.md
+    - name: Troubleshoot snapshot policy errors
+      href: troubleshoot-snapshot-policies.md
+    - name: Troubleshoot cross-region replication errors
+      href: troubleshoot-cross-region-replication.md
+    - name: Troubleshoot customer-managed keys 
+      href: troubleshoot-customer-managed-keys.md
+    - name: Troubleshoot Resource Provider errors
+      href: azure-netapp-files-troubleshoot-resource-provider-errors.md
+    - name: Troubleshoot user access on LDAP volumes
+      href: troubleshoot-user-access-ldap.md
+    - name: Troubleshoot file locks
+      href: troubleshoot-file-locks.md
 - name: FAQs
   items:
   - name: Networking FAQs

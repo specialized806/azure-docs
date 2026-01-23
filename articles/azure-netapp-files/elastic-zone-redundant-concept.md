@@ -109,7 +109,7 @@ For more detailed information, see [Azure NetApp Files REST API](/rest/api/netap
 
 ## Supported features 
 
-Elastic zone-redundant storage requires the use of [availability zones](../reliability/reliability-netapp-files.md). Not all features int he Flexible, Standard, Premium, and Ultra services levels are supported with Elastic zone-redundant storage. 
+Elastic zone-redundant storage requires the use of availability zones. Not all features in the Flexible, Standard, Premium, and Ultra services levels are supported with Elastic zone-redundant storage. 
 
 The Elastic zone-redundant service level supports:
 
