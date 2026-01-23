@@ -466,7 +466,7 @@
           - name: Deploy application volume group for Oracle using Azure Resource Manager
             href: configure-application-volume-oracle-azure-resource-manager.md 
         - name: Delete an application volume group
-          href: application-volume-group-delete.md>
+          href: application-volume-group-delete.md
     - name: Manage data protection  
       items:
       - name: Manage volume snapshots
