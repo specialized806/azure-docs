@@ -305,7 +305,7 @@ To run your logic app manually, on the designer toolbar, choose **Run**. After y
 
 To delete a single record from a DB2 database table, use the **Delete row** action in your logic app. This action runs a DB2 `DELETE` statement, for example, `DELETE FROM AREA WHERE AREAID = '99999'`.
 
-1. If you don't use DB2 actions before in your logic app, review the steps in the [Add DB2 action - Get tables](#add-db2-action) section, but add the **Delete row** action instead, and then return here to continue.
+1. If you don't use DB2 actions in your logic app, review the steps in the [Add DB2 action - Get tables](#add-db2-action) section, but add the **Delete row** action instead, and then return here to continue.
 
    After you add the **Delete row** action, here's how your example logic app appears:
 
