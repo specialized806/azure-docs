@@ -19,6 +19,11 @@ This article shows you how to develop custom WebAssembly (WASM) modules and grap
 
 To learn how to develop WASM modules by using the VS Code extension, see [Build WASM modules with VS Code extension](howto-build-wasm-modules-vscode.md).
 
+To learn more about graphs and WASM in Azure IoT Operations, see:
+
+- [Use a data flow graph with WebAssembly modules](../connect-to-cloud/howto-dataflow-graph-wasm.md)
+- [Transform incoming data with WebAssembly modules](../discover-manage-assets/howto-use-http-connector.md#transform-incoming-data)
+
 ## Overview
 
 Azure IoT Operations data flow graphs process streaming data through configurable operators implemented as WebAssembly modules. Each operator processes timestamped data while maintaining temporal ordering, enabling real-time analytics with deterministic results.
@@ -380,7 +385,7 @@ Build using containerized environments with all dependencies and schemas preconf
 
 # [Rust](#tab/rust)
 
-The Azure IoT Operations samples repository maintains the Rust Docker builder and includes all necessary dependencies. For detailed documentation, see [Rust Docker builder usage](https://github.com/Azure-Samples/explore-iot-operations/tree/main/samples/wasm#rust-builds-docker-builder).
+The Azure IoT Operations samples repository maintains the Rust Docker builder and includes all necessary dependencies. For detailed documentation, see [Rust Docker builder usage](https://github.com/Azure-Samples/explore-iot-operations/blob/main/samples/wasm/README.md#rust-builds-docker-builder).
 
 ```bash
 # Build release version (optimized for production)
@@ -396,7 +401,7 @@ docker run --rm -v "$(pwd):/workspace" ghcr.io/azure-samples/explore-iot-operati
 
 # [Python](#tab/python)
 
-The Azure IoT Operations samples repository maintains the Python Docker builder and includes all necessary dependencies and schemas. For detailed documentation, see [Python Docker builder usage](https://github.com/Azure-Samples/explore-iot-operations/tree/main/samples/wasm-python#using-the-streamlined-docker-builder).
+The Azure IoT Operations samples repository maintains the Python Docker builder and includes all necessary dependencies and schemas. For detailed documentation, see [Python Docker builder usage](https://github.com/Azure-Samples/explore-iot-operations/blob/main/samples/wasm-python/README.md#using-the-streamlined-docker-builder).
 
 ```bash
 # Build release version (optimized for production)
@@ -494,7 +499,7 @@ fn my_operator_init(configuration: ModuleConfiguration) -> bool {
 }
 ```
 
-For detailed information about defining configuration parameters in graph definitions, see [Module configuration parameters](../connect-to-cloud/howto-configure-wasm-graph-definitions.md#module-configuration-parameters).
+For detailed information about defining configuration parameters in graph definitions, see [Module configuration parameters](./howto-configure-wasm-graph-definitions.md#module-configuration-parameters).
 
 #### Host APIs
 
@@ -564,7 +569,7 @@ class Map(exports.Map):
         return message
 ```
 
-For detailed information about defining configuration parameters in graph definitions, see [Module configuration parameters](../connect-to-cloud/howto-configure-wasm-graph-definitions.md#module-configuration-parameters).
+For detailed information about defining configuration parameters in graph definitions, see [Module configuration parameters](./howto-configure-wasm-graph-definitions.md#module-configuration-parameters).
 
 Logging through imports:
 
@@ -656,7 +661,7 @@ interface accumulate {
 
 Graph definitions show how your WASM modules connect to processing workflows. They specify the operations, connections, and parameters that create complete data processing pipelines.
 
-For comprehensive information about creating and configuring graph definitions, including detailed examples of simple and complex workflows, see [Configure WebAssembly graph definitions for data flow graphs](../connect-to-cloud/howto-configure-wasm-graph-definitions.md).
+For comprehensive information about creating and configuring graph definitions, including detailed examples of simple and complex workflows, see [Configure WebAssembly graph definitions for data flow graphs](./howto-configure-wasm-graph-definitions.md).
 
 Key topics covered in the graph definitions guide:
 

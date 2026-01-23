@@ -2,9 +2,11 @@
 title: "Tutorial: Use Dapr Bindings for Event-Driven Work"
 titleSuffix: "Azure Container Apps"
 description: Find out how a microservice can use the Dapr Bindings API to work with external systems. Follow steps for deploying the service to Azure Container Apps.
-author: hhunter-ms
-ms.author: hannahhunter
+author: greenie-msft
+ms.author: nigreenf
+ms.reviewer: hannahhunter
 ms.service: azure-container-apps
+ms.subservice: dapr
 ms.custom: devx-track-dotnet, devx-track-js, devx-track-python
 ms.topic: how-to
 ms.date: 12/11/2025

@@ -1,6 +1,6 @@
 ---
-title: Build WASM modules with VS Code extension
-description: Learn how to build WebAssembly (WASM) modules using Visual Studio Code for Azure IoT Operations extension.
+title: Build WASM modules for data flows with VS Code extension
+description: Learn how to build WebAssembly (WASM) modules for data flows using the Azure IoT Operations Data Flow extension for VS Code.
 author: dominicbetts 
 ms.author: dobett 
 ms.topic: how-to
@@ -10,11 +10,11 @@ ms.service: azure-iot-operations
 # CustomerIntent: As a developer, I want to understand how to use the VS Code extension to build and deploy WASM modules to use in data flow graphs or the HTTP/REST connector.
 ---
 
-# Build WASM modules in VS Code
+# Build WASM modules for data flows in VS Code
 
 The custom WebAssembly (WASM) data processing feature in Azure IoT Operations enables real time telemetry data processing within your Azure IoT Operations cluster. By deploying custom WASM modules, you can define and execute data transformations as part of your data flow graph or HTTP/REST connector.
 
-This article describes how to use the **VS Code extension for WASM module development** to develop, test, and debug your WASM modules locally before you deploy them to your Azure IoT Operations cluster. You'll learn how to:
+This article describes how to use the **Azure IoT Operations Data Flow** VS Code extension to develop, test, and debug your WASM modules locally before you deploy them to your Azure IoT Operations cluster. You'll learn how to:
 
 - Run a graph application locally by executing a prebuilt graph with sample data to understand the basic workflow.
 - Create custom WASM modules by building new operators in Python and Rust with map and filter functionality.
@@ -28,7 +28,10 @@ The extension is supported on the following platforms:
 - Windows Subsystem for Linux (WSL)
 - Windows
 
-To learn more about graphs and WASM in Azure IoT Operations, see [Use data flow graph with WebAssembly (WASM) modules](../connect-to-cloud/howto-dataflow-graph-wasm.md).
+To learn more about graphs and WASM in Azure IoT Operations, see:
+
+- [Use a data flow graph with WebAssembly modules](../connect-to-cloud/howto-dataflow-graph-wasm.md)
+- [Transform incoming data with WebAssembly modules](../discover-manage-assets/howto-use-http-connector.md#transform-incoming-data)
 
 ## Prerequisites
 
@@ -36,7 +39,7 @@ Development environment:
 
 - [Visual Studio Code](https://code.visualstudio.com/)
 - (Optional) [RedHat YAML extension](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml) for VS Code
-- [VS Code extension for WASM module development](https://marketplace.visualstudio.com/items?itemName=ms-azureiotoperations.azure-iot-operations-data-flow-vscode)
+- [Azure IoT Operations Data Flow extension](https://marketplace.visualstudio.com/items?itemName=ms-azureiotoperations.azure-iot-operations-data-flow-vscode) for VS Code.
 - [CodeLLDB extension](https://marketplace.visualstudio.com/items?itemName=vadimcn.vscode-lldb) for VS Code to enable debugging of WASM modules
 - [Azure CLI](/cli/azure/install-azure-cli)
 - [ORAS CLI](https://oras.land/docs/installation/)
@@ -63,7 +66,7 @@ This example uses a sample workspace that contains all the necessary resources t
 
 ### Open the sample workspace in VS Code
 
-Clone the [Explore IoT Operations](https://github.com/Azure-Samples/azure-iot-operations) repository if you haven't already.
+Clone the [Explore IoT Operations](https://github.com/Azure-Samples/explore-iot-operations) repository if you haven't already.
 
 Open the `samples/wasm` folder in Visual Studio Code by selecting **File > Open Folder** and navigating to the `samples/wasm` folder.
 
@@ -304,7 +307,7 @@ This example shows how to use the state store with WASM operators. The state sto
 
 ### Open the state store sample workspace
 
-Clone the [Explore IoT Operations](https://github.com/Azure-Samples/azure-iot-operations) repository if you haven't already.
+Clone the [Explore IoT Operations](https://github.com/Azure-Samples/explore-iot-operations) repository if you haven't already.
 
 Open the `samples/wasm/statestore-scenario` folder in Visual Studio Code by selecting **File > Open Folder** and navigating to the `samples/wasm/statestore-scenario` folder. This folder contains the following resources:
 
@@ -413,7 +416,7 @@ The following limitations apply to the local schema file (`tk_schema_config.json
 
 Currently, the following limitations apply in the local development runtime:
 - Only one schema config file is loaded. No multi-file include or directory scanning is supported.
-- `$ref` to external files or URLs isn't supported locally. Keep the schema self‑contained. You can use internal JSON pointer refs like `{"$ref":"#/components/..."}`.
+- `$ref` to external files or URLs isn't supported locally. Keep the schema self‑contained. You can use internal JSON pointer references like `{"$ref":"#/components/..."}`.
 - Commonly used draft-07 keywords like `type`, `properties`, `required`, `enum`, `minimum`, `maximum`, `allOf`, `anyOf`, `oneOf`, `not`, and `items` all work. The underlying validator might ignore less common or advanced features like `contentEncoding` and `contentMediaType`.
 - Keep the size of your schemas to less than ~1 MB for fast cold starts.
 - Versioning and schema evolution policies aren't enforced locally. You're responsible for staying aligned with the cloud registry.
