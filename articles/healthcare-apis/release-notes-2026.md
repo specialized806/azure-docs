@@ -36,7 +36,7 @@ Release notes describe features, enhancements, and bug fixes released in 2026 fo
 
 #### Bug fixes:
 
-**Bug fix for duplicate IDs used in search**: There was a regression where searching for duplicate IDs with `_id` and no other search parameters would return a "HTTP 500 Internal Server Error". This issue has been fixed, and correct search results are now returned.
+**Bug fix for duplicate IDs used in search**: There was a regression where searching for duplicate IDs with `_id` and no other search parameters would return an "HTTP 500 Internal Server Error". This issue has been fixed, and correct search results are now returned.
 
 **Bug fix for `_sort` with multiple _include/_revinclude parameters**: Resolved issue where using multiple `_include`/`_revinclude` parameters in a search with `_sort` could lead to the includes continuation tokens to get into an infinite loop if there are more than two pages of results. This issue is fixed, and the includes continuation tokens are correct now. 
 
