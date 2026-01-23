@@ -77,7 +77,7 @@ Make note of the Tenant, Client, and Managed Identity Resource IDs and proceed t
 :::image type="content" source="../images/entra-setup/entra7.png" alt-text="Screenshot of the Request API permissions menu.":::
 
 1. Navigate to the **Authentication** page and enable **Allow public client flows** to use the CycleCloud CLI with Microsoft Entra ID. 
-1.Next, add the user roles for CycleCloud under **App roles** by selecting **Create app role**. You can set the **Display name** field to any desired string, but the **Value** field must match the built-in CycleCloud role for authentication to work as intended. 
+1. Next, add the user roles for CycleCloud under **App roles** by selecting **Create app role**. You can set the **Display name** field to any desired string, but the **Value** field must match the built-in CycleCloud role for authentication to work as intended. 
 :::image type="content" source="../images/entra-setup/entra9.png" alt-text="Screenshot of the App roles configuration window.":::
     > [!NOTE] 
     > Microsoft Entra ID doesn't allow roles to have spaces in them and some of the in-built CycleCloud roles include spaces (for example, "Cluster Administrator"). Replace any spaces in the role names defined in Microsoft Entra ID with a dot (for example, "Data Admin" becomes "Data.Admin"). Rename any roles defined in CycleCloud to not feature dots. Role definitions in Microsoft Entra ID are case insensitive.
