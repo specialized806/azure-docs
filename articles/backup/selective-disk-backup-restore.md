@@ -284,8 +284,7 @@ Restore-AzRecoveryServicesBackupItem -RecoveryPoint $rp[0] -StorageAccountName "
 
 ## Use the Azure portal
 
-> [!NOTE]
-> The functionality that the following sections describe can also be accessed via [Resiliency](../resiliency/resiliency-overview.md). Resiliency in Azure is a cloud-native unified experience for resiliency posture management that enables you to manage your protection estate across solutions and environments.
+[!INCLUDE [resiliency.md](../../includes/resiliency.md)]
 
 When you use the Azure portal, you can view the included and excluded disks from the VM backup details pane and the backup **Job Details** pane. During restore, when you select the recovery point from which to restore, you can view the backed-up disks in that recovery point.
 
