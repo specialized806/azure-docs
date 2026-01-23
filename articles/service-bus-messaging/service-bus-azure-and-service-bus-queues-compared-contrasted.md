@@ -134,7 +134,7 @@ This section compares Storage queues and Service Bus queues from the perspective
 * With Storage queues, if the content of the message isn't XML-safe, then it must be **Base64** encoded. If you **Base64**-encode the message, the user payload can be up to 48 KB, instead of 64 KB.
 * With Service Bus queues, each message stored in a queue is composed of two parts: a header and a body. The total size of the message can't exceed the maximum message size supported by the service tier.
 * When clients communicate with Service Bus queues over the TCP protocol, the maximum number of concurrent connections to a single Service Bus queue is limited to 100. This number is shared between senders and receivers. If this quota is reached, requests for additional connections will be rejected and an exception will be received by the calling code. This limit isn't imposed on clients connecting to the queues using REST-based API.
-* To scale beyond 10,000 queues with Service Bus Standard Stock Keeping Unit (SKU) or 1000 queues/Messaging Unit with Service Bus Premium SKU, you can also create additional namespaces using the [Azure portal].
+* To scale beyond 10,000 queues with Service Bus Standard tier or 1000 queues/Messaging Unit with Service Bus Premium tier, you can also create additional namespaces using the [Azure portal].
 
 ## Management and operations
 This section compares the management features provided by Storage queues and Service Bus queues.
