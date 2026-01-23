@@ -411,7 +411,7 @@ The following are virtual network and subnet requirements:
     > [!NOTE]
     > DNS TTL affects failover time. With TTL of 60 seconds, clients may take up to 60 seconds to see the change. Use `nslookup` to verify resolution is pointing to Application Gateway.
 
-1. Failback to Front Door
+2. Failback to Front Door
 
     ```
     # Re-enable Front Door endpoint
@@ -449,15 +449,15 @@ The following are virtual network and subnet requirements:
  
 3. Verify current routing
 
-```
-# Check which endpoint is serving traffic
-nslookup $CUSTOM_DOMAIN
-
-# The response headers can help identify the serving endpoint
-# Front Door includes "x-azure-ref" header
-# Application Gateway includes "Server: Microsoft-IIS" or similar
-Invoke-WebRequest -Uri "https://$CUSTOM_DOMAIN/index.html" -Method Head | Select-Object -ExpandProperty Headers
-```
+    ```
+    # Check which endpoint is serving traffic
+    nslookup $CUSTOM_DOMAIN
+    
+    # The response headers can help identify the serving endpoint
+    # Front Door includes "x-azure-ref" header
+    # Application Gateway includes "Server: Microsoft-IIS" or similar
+    Invoke-WebRequest -Uri "https://$CUSTOM_DOMAIN/index.html" -Method Head | Select-Object -ExpandProperty Headers
+    ```
 
 ## Scenario 2: Traffic Manager failover: Front Door to alternative CDN
 
