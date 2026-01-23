@@ -38,7 +38,7 @@ A Storage Explorer direct link always starts with protocol `storageexplorer://`.
 | `serviceEndpoint`  | For v2 links only. The service endpoint URL of the storage account the linked resource belongs to.
 | `storageAccountId` | For v2 links only. The Azure Resource Manager resource ID of the storage account for the linked resource. If the linked resource is a storage account, this ID is the Azure Resource Manager resource ID of that storage account. Otherwise, the ID is the Azure Resource Manager resource ID of the storage account the linked resource belongs to.
 | `subscriptionid`   | The ID of the Azure subscription the linked resource belongs to.
-| `tenantid`         | For v2 links only. The ID of the Microsoft Entra tenant the owns the linked resource.
+| `tenantid`         | For v2 links only. The ID of the Microsoft Entra tenant that owns the linked resource.
 | `type`             | For v2 links only. Must be one of `blobContainer`, `fileSystem`, `fileSystemPath`, or `blobPath`. |
 
 Here's an example v1 direct link to a blob container:
@@ -73,7 +73,7 @@ You can use Storage Explorer to get a direct link for a resource. Open the conte
 
 Direct links are only supported for resources under subscription nodes. Additionally, only the following resource types are supported:
 
-- Storage sccounts
+- Storage accounts
 - Blob containers
 - Folders within blob containers
 - Queues
