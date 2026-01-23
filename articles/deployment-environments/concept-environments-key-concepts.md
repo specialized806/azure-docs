@@ -37,7 +37,7 @@ In Deployment Environments, a project represents a team or business function wit
 
 Each project can be associated with only one dev center. Platform engineers can configure environments for a project by specifying which environment types are appropriate for the development team. To make environment definitions available for a specific development team, project admins can attach a catalog to a project.
 
-To enable developers to create their own deployment environments, you must [provide access for developers to projects](how-to-configure-deployment-environments-user.md) by assigning the Deployment Environments User role.
+To enable developers to create their own deployment environments, you must [provide access for developers to projects](how-to-manage-deployment-environments-access.md) by assigning the Deployment Environments User role.
 
 You can configure projects for Deployment Environments and projects for [Dev Box](../dev-box/concept-dev-box-concepts.md#project) resources in the same dev center.
 
@@ -80,11 +80,14 @@ An environment definition is a combination of an IaC template and an environment
 
 ## Built-in roles
 
-Deployment Environments supports three [built-in roles](../role-based-access-control/built-in-roles.md):
+Deployment Environments uses the following [built-in roles](../role-based-access-control/built-in-roles.md):
 
+- **DevCenter Owner**. Manages Microsoft.DevCenter resources at the dev center scope (such as dev centers and their projects and catalogs), and can manage access to those resources by assigning or removing the DevCenter Project Admin and DevCenter Dev Box roles.
 - **DevCenter Project Admin**. Creates environments and manages the environment types for a project.
 - **Deployment Environments User**. Creates environments based on appropriate access.
-- **Deployment Environments Reader**. Reads environments that other users create. 
+- **Deployment Environments Reader**. Reads environments that other users create.
+
+For more information about DevCenter Owner and other dev center roles, see [Manage a dev center for Dev Box](../dev-box/how-to-manage-dev-center.md#assign-dev-center-permissions-to-users).
 
 ## Resources shared with Dev Box
 

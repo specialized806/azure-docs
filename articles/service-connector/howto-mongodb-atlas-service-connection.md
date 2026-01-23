@@ -4,6 +4,7 @@ description: Learn how to connect apps to your MongoDB Atlas service using Servi
 # customerIntent: As a developer, I want connect apps deployed to Azure services to a MongoDB Atlas resource.
 ms.topic: how-to
 ms.date: 07/11/2025
+ms.service: service-connector
 ms.custom:
   - service-connector
   - build-2025
@@ -22,7 +23,7 @@ This guide shows step by step instructions to connect an app deployed to Azure A
 
 ## Prerequisites
 
-* An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free).
+* An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * An existing MongoDB Atlas resource. If you don't have one yet, go to [MongoDB Atlas](https://www.mongodb.com/atlas).
 * An app deployed to an [Azure compute service supported by Service Connector](./overview.md#what-services-are-supported-by-service-connector).
 

@@ -105,7 +105,9 @@ A lifecycle management policy will not delete the current version of a blob unti
 
 All run conditions are time-based. If the number of days that have transpired exceeds the number specified for the condition, then the associated action can execute. Policy conditions are assessed on each object only once during a policy run. In some cases, an object might meet the condition after it was already assessed by a run. Such objects are processed in subsequent runs.
 
-Current versions use the last modified time or last access time, previous versions use the version creation time, and blob snapshots use the snapshot creation time to track age. 
+Lifecycle policies evaluate a rule based on properties of that individual version only. They do not have the ability to examine properties of other versions of that blob to act upon the target blob. 
+
+Current versions use the last modified time or last access time of that version. Rules for previous versions use the creation time of that version when the blob was first written (not when the version became a previous version). Rules for blob snapshots use the time at which the snapshot was created.  
 
 The following table describes each action run condition.
 
@@ -124,7 +126,7 @@ When you enable access time tracking, a blob property called `LastAccessTime` is
 
 If you apply the **daysAfterLastAccessTimeGreaterThan** run condition to a policy, then the `LastAccessTime` is used to determine whether that condition is met. 
 
-If you apply the **daysAfterLastAccessTimeGreaterThan** run condition to a policy, but you did not enable access time tracking, then the `LastAccessTime` is not used. The date the lifecycle policy was enabled is used instead. In fact, the date that the lifecycle policy was enabled is used in any situation where the `LastAccessTime` property of the blob is a null value. This can happen even if you've enable access time tracking in cases where a blob hasn't been accessed since tracking was enabled.
+If you apply the **daysAfterLastAccessTimeGreaterThan** run condition to a policy, but you did not enable access time tracking, then the `LastAccessTime` is not used. The date the last access tracking was enabled is used instead. In fact, the date that the last access tracking was enabled is used in any situation where the `LastAccessTime` property of the blob is a null value. This can happen even if you've enable access time tracking in cases where a blob hasn't been accessed since tracking was enabled.
 
 > [!NOTE]
 > To minimize the effect on read access latency, only the first read of the last 24 hours updates the last access time. Subsequent reads in the same 24-hour period don't update the last access time. If a blob is modified between reads, the last access time is the more recent of the two values.
