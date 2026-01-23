@@ -84,7 +84,7 @@ This DNS-based load balancing solution uses multiple Azure Traffic Manager profi
 It's important to understand the feature differences between Front Door and Application Gateway WAF in case you're utilizing any features Application Gateway WAF doesn't offer. The following two tables provide an overview.
 
 > [!IMPORTANT]
-> This solution **replaces a global layer 7 service (Front Door) with Application Gateway, which is a regional service**. Because of this shift, you must evaluate your global traffic patterns and **deploy Application Gateway instances in the regions where you have meaningful user volume**. To maintain the latency‑optimized routing that Front Door normally provides for globally distributed users, **deploy a secondary Traffic Manager using Performance routing** between the primary Traffic Manager and the regional Application Gateway instance.
+> This solution assumes you are currently using Azure Front Door to serve traffic across multiple regions or globally. In this design, the steps below introduce a **secondary Azure Traffic Manager configured with Performance routing between the primary Traffic Manager and regional Application Gateway instances**. This approach is necessary because Azure Front Door is a global Layer‑7 service, so the secondary Traffic Manager effectively replaces Front Door's global latency‑based routing by acting as the global load‑balancing layer. As a result, **Traffic Manager preserves latency‑optimized user routing for a geographically distributed audience**. Given this architectural shift, **you must evaluate global traffic patterns and delploy Application Gateway instances in regions that have meaningful user volume to ensure optimal performance and resilience**.
 
 #### Features differences
 
@@ -186,15 +186,15 @@ The following are virtual network and subnet requirements:
 
 #### Step 1: Provision prerequisites
 
-- Azure Front Door configured with custom domain and BYO Certificate
+- Azure Front Door configured with custom domain and BYO Certificate.
 
 - Lower DNS TTL for your CNAME is Front Door serving traffic to the lowest time setting.
 
-- Azure subscription with permissions to create VNets, Application Gateway, and Traffic Manager
+- Azure subscription with permissions to create virtual networks, Application Gateway, and Traffic Manager.
 
-- SSL/TLS certificate in Azure Key Vault or available for upload
+- SSL/TLS certificate in Azure Key Vault or available for upload.
 
-- Origin servers accessible from Azure VNets
+- Origin servers accessible from Azure virtual networks.
 
 > [!IMPORTANT]
 > If you're currently using Front Door-managed certificates, you must migrate to BYO certificates before implementing this solution. Front Door-managed certificates can't be exported and installed on alternative CDNs. For more information, see [Configure HTTPS on an Azure Front Door custom domain](/azure/frontdoor/standard-premium/how-to-configure-https-custom-domain).
@@ -277,7 +277,7 @@ The following are virtual network and subnet requirements:
     | **Port** | 443 | Standard HTTPS port |
     | **Path** | /index.html | Choose a lightweight endpoint for health checks |
     | **TTL** | 300 seconds | DNS TTL - lower values enable faster failover but increase DNS queries |
-    | **Health Check** | Always serve traffic | Don't enable Health checks |
+    | **Health Check** | Always serve traffic | **Don't enable Health checks** |
     
     **Endpoint specific configurations:**
     
@@ -291,6 +291,12 @@ The following are virtual network and subnet requirements:
     
     - **End Point Status:** Enabled
     
+    - **Custom headers:** `Host=$CUSTOM_DOMAIN` (required for Front Door to route to correct custom domain)
+
+    - **Health checks:** Always serve traffic (disable health checks)
+
+    :::image type="content" source="./media/high-availability/traffic-manager-primary-endpoint.png" alt-text="Screenshot of adding Traffic Manager primary endpoint in the Azure portal." lightbox="./media/high-availability/traffic-manager-primary-endpoint.png":::
+
     **Secondary endpoint:**
     
     - **Name:** endpoint-appgw-secondary
@@ -300,6 +306,8 @@ The following are virtual network and subnet requirements:
     - **Target:** Secondary Traffic Manager FQDN (for example, `myapp-appgw.trafficmanager.net`)
     
     - **End Point Status:** Disabled
+
+    :::image type="content" source="./media/high-availability/traffic-manager-secondary-endpoint-application-gateway.png" alt-text="Screenshot of adding Traffic Manager secondary endpoint." lightbox="./media/high-availability/traffic-manager-secondary-endpoint-application-gateway.png":::
 
 1. Verify Traffic Manager health
 
@@ -533,7 +541,11 @@ Create two endpoints within the Traffic Manager profile with the following confi
 
 - Status: Enabled (initially)
 
-- Custom Headers: `Host=$CUSTOM_DOMAIN` (required for Front Door to route to correct custom domain)
+- Custom headers: `Host=$CUSTOM_DOMAIN` (required for Front Door to route to correct custom domain)
+
+- Health checks: Always serve traffic (disable health checks)
+
+:::image type="content" source="./media/high-availability/traffic-manager-primary-endpoint.png" alt-text="Screenshot of adding Traffic Manager primary endpoint in the Azure portal." lightbox="./media/high-availability/traffic-manager-primary-endpoint.png":::
 
 **Custom headers for Front Door:** The `--custom-headers "Host=$CUSTOM_DOMAIN"` parameter is critical for Front Door endpoints. Without it, Front Door might not properly route requests to your custom domain configuration. It's a supported feature of Azure Traffic Manager.
 
@@ -549,7 +561,7 @@ Create two endpoints within the Traffic Manager profile with the following confi
 
 - Status: Disabled (initially - standby mode)
 
-:::image type="content" source="./media/high-availability/traffic-manager-endpoint.png" alt-text="Screenshot of adding Traffic Manager secondary endpoint in the Azure portal." lightbox="./media/high-availability/traffic-manager-endpoint.png":::
+:::image type="content" source="./media/high-availability/traffic-manager-secondary-endpoint.png" alt-text="Screenshot of adding Traffic Manager secondary endpoint in the Azure portal." lightbox="./media/high-availability/traffic-manager-secondary-endpoint.png":::
 
 #### Step 5: Update DNS CNAME to Traffic Manager and verify update
 
