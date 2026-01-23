@@ -449,15 +449,15 @@ The following are virtual network and subnet requirements:
  
 3. Verify current routing
 
-        ```
-        # Check which endpoint is serving traffic
-        nslookup $CUSTOM_DOMAIN
-        
-        # The response headers can help identify the serving endpoint
-        # Front Door includes "x-azure-ref" header
-        # Application Gateway includes "Server: Microsoft-IIS" or similar
-        Invoke-WebRequest -Uri "https://$CUSTOM_DOMAIN/index.html" -Method Head | Select-Object -ExpandProperty Headers
-        ```
+```
+# Check which endpoint is serving traffic
+nslookup $CUSTOM_DOMAIN
+
+# The response headers can help identify the serving endpoint
+# Front Door includes "x-azure-ref" header
+# Application Gateway includes "Server: Microsoft-IIS" or similar
+Invoke-WebRequest -Uri "https://$CUSTOM_DOMAIN/index.html" -Method Head | Select-Object -ExpandProperty Headers
+```
 
 ## Scenario 2: Traffic Manager failover: Front Door to alternative CDN
 
@@ -609,7 +609,7 @@ Create two endpoints within the Traffic Manager profile with the following confi
 
 #### Step 6: Test failover procedures
 
-1. Manual failover to alternative CDN:
+1. Manual failover to alternative CDN
 
     ```
     # Failover: Disable Front Door and enable CDN
@@ -640,11 +640,10 @@ Create two endpoints within the Traffic Manager profile with the following confi
     # Test HTTPS access
     curl --head https://$CUSTOM_DOMAIN/
     ```
-<br>
 
-1. Failback to Front Door:
+2. Failback to Front Door
 
-    ```azurecli
+    ```
     # Failback: Enable Front Door, Disable CDN
     az network traffic-manager endpoint update `
         --name "endpoint-afd-primary" `
@@ -672,7 +671,7 @@ Create two endpoints within the Traffic Manager profile with the following confi
 > [!IMPORTANT]
 > Configure synthetic monitors to alert immediately on failures. These alerts should trigger manual failover if automatic failover is insufficient (for example, Front Door custom domain issues that Traffic Manager can't detect).
 
-**Recommended monitoring for production:**
+The following monitoring solutions are recommended for production environments:
 
 - **Azure Monitor Workbooks:** Track Traffic Manager queries, Front Door requests, Application Gateway health. For more information, see [Workbooks overview](/azure/azure-monitor/visualize/workbooks-overview).
 
