@@ -2,9 +2,11 @@
 title: "Tutorial: Use Dapr Service Invocation for Microservices Communication"
 titleSuffix: "Azure Container Apps"
 description: Find out how to create microservices that use the Dapr Service Invocation API to communicate. Follow steps for deploying the services to Azure Container Apps.
-author: hhunter-ms
-ms.author: hannahhunter
+author: greenie-msft
+ms.author: nigreenf
+ms.reviewer: hannahhunter
 ms.service: azure-container-apps
+ms.subservice: dapr
 ms.topic: how-to
 ms.date: 12/10/2025
 zone_pivot_group_filename: container-apps/dapr-zone-pivot-groups.json

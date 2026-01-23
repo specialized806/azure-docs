@@ -184,7 +184,7 @@
   - name: Hybrid data mobility and protection
     items:
     - name: Reliability in Azure NetApp Files 
-      href: ../reliability/reliability-netapp-files.md?toc=azure/azure-netapp-files/toc.json&bc=/azure/azure-netapp-files/breadcrumb/toc.json
+      href: /azure/reliability/reliability-netapp-files?toc=azure/azure-netapp-files/toc.json&bc=/azure/azure-netapp-files/breadcrumb/toc.json
     - name: Understand data protection and disaster recovery options
       href: data-protection-disaster-recovery-options.md
     - name: How Azure NetApp Files snapshots work
@@ -193,6 +193,8 @@
       items: 
       - name: Understand Azure NetApp Files cache volumes
         href: cache-volumes.md    
+      - name: Understand resizing guidelines for cache volumes
+        href: cache-volumes-resize-guidelines.md  
     - name: Azure NetApp Files backup
       items: 
       - name: Understand Azure NetApp Files backup
@@ -489,6 +491,8 @@
         href: create-cross-zone-replication.md
     - name: Configure cross-zone-region replication 
       href: cross-zone-region-replication-configure.md
+    - name: Configure ransomware protection 
+      href: ransomware-configure.md
   - name: Relocate
     items:
     - name: Relocate volume to another region

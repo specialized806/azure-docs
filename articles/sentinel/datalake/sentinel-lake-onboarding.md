@@ -34,7 +34,7 @@ To onboard to the Microsoft Sentinel data lake and graph in Microsoft Defender X
 + If your Microsoft 365 data isn't in the same region as the data lake, by onboarding to the data lake, you consent to ingest your Microsoft 365 data into the region where your data lake resides.
 
 > [!NOTE]
-> Before onboarding, check the availability of Microsoft Data Lake and Graph in your region by referring to [Geographical availability and data residency in Microsoft Sentinel](../geographical-availability-data-residency.md#regions-supported-for-microsoft-sentinel-data-lake).
+> Before onboarding, check the availability of Microsoft Data Lake and Graph in your region by referring to [Geographical availability and data residency in Microsoft Sentinel](../geographical-availability-data-residency.md#supported-regions).
 
 
 ### Other prerequisites for Microsoft Purview
@@ -123,7 +123,11 @@ During onboarding, your data lake is provisioned in the same [region](/azure/sen
 
 ## Existing Microsoft Sentinel workspaces
 
-You must connect your Microsoft Sentinel primary workspace to the Defender portal to onboard to the data lake. Your data lake is located in the same region as your primary Sentinel workspace. You can connect other workspaces in the same region as your primary workspace to the Defender portal so you can use them with the data lake. If you onboarded to the data lake, data in Microsoft Sentinel workspaces that are connected to Defender and enabled for use with the data lake. For more information on how to connect Microsoft Sentinel to the Defender portal, see [Connect Microsoft Sentinel to the Microsoft Defender portal](/unified-secops-platform/microsoft-sentinel-onboard).
+You must connect your Microsoft Sentinel primary workspace to the Defender portal to onboard to the data lake. Your data lake is located in the same region as your primary Sentinel workspace. You can connect other workspaces in the same region as your primary workspace to the Defender portal so you can use them with the data lake. If you onboarded to the data lake, data in Microsoft Sentinel workspaces that are connected to Defender and enabled for use with the data lake. For more information on how to connect Microsoft Sentinel to the Defender portal, see [Connect Microsoft Sentinel to the Microsoft Defender portal](/unified-secops-platform/microsoft-sentinel-onboard). 
+
+You can't choose which workspaces to onboard to the data lake. All workspaces connected to Defender in the same region as your primary Sentinel workspace are onboarded automatically. You can't offboard specific workspaces from the data lake on your own. If you want to offboard a workspace, [submit a support request](/defender-xdr/contact-defender-support).
+
+
 
 ## Offboard from Microsoft Sentinel data lake and graph
 
