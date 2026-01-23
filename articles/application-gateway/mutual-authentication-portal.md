@@ -42,7 +42,7 @@ To configure an existing Application Gateway with mutual authentication, you nee
 4. Enter a name under **SSL Profile Name**. In this example, we call our SSL profile *applicationGatewaySSLProfile*. 
 
 5. Stay in the **Client Authentication** tab.
- - For Strict Mutal Authentication: Select client authentication as **Strict** method. Upload the PEM certificate you intend to use for mutual authentication between the client and the Application Gateway using the **Upload a new certificate** button.
+ - For Strict mutual Authentication: Select client authentication as **Strict** method. Upload the PEM certificate you intend to use for mutual authentication between the client and the Application Gateway using the **Upload a new certificate** button.
  - For Mutual Authentication Passthrough: Select client authentication method as **Passthrough**.
 
     For more information on how to extract trusted client CA certificate chains to upload here, see [how to extract trusted client CA certificate chains](./mutual-authentication-certificate-management.md).
@@ -50,12 +50,12 @@ To configure an existing Application Gateway with mutual authentication, you nee
    > [!NOTE]
    > If this SSL isn't your first SSL profile and you uploaded other client certificates onto your Application Gateway, you can choose to reuse an existing certificate on your gateway through the dropdown menu. 
 
-7. For Strict Mutal Authentication: Check the **Verify client certificate issuer's DN** box only if you want Application Gateway to verify the client certificate's immediate issuer Distinguished Name. 
+7. For Strict mutual Authentication: Check the **Verify client certificate issuer's DN** box only if you want Application Gateway to verify the client certificate's immediate issuer Distinguished Name. 
 
-8. For Strict Mutal Authentication: Consider adding a listener specific policy. See instructions at [setting up listener specific SSL policies](./application-gateway-configure-listener-specific-ssl-policy.md).
+8. For Strict mutual Authentication: Consider adding a listener specific policy. See instructions at [setting up listener specific SSL policies](./application-gateway-configure-listener-specific-ssl-policy.md).
 
 9. Select **Add** to save.
-    - For Strict Mutal Authentication:
+    - For Strict Mutual Authentication:
     > [!div class="mx-imgBorder"]
     > ![Add client authentication to SSL profile](./media/mutual-authentication-portal/mutual-authentication-portal.png)
     - For Mutual Authentication Passthrough:
