@@ -98,6 +98,12 @@
       href: work-remotely-support.md
   - name: VM connections and features
     href: vm-about.md
+  - name: Bastion and VNet peering
+    href: vnet-peering.md
+  - name: Work with NSGs
+    href: bastion-nsg.md
+  - name: Availability zones and disaster recovery 
+    href: /azure/reliability/reliability-bastion?toc=/azure/bastion/TOC.json
 - name: Security
   items:
   - name: Secure Bastion
