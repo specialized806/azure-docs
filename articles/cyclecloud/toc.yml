@@ -175,7 +175,7 @@
   - name: Monitoring
     items:
     - name: Monitor CycleCloud Cluster Using Prometheus and Grafana
-      href: ./how-to/monitor-cyclecloud-cluster-using-prometheus-grafana.md‎       
+      href: ./how-to/monitor-cyclecloud-cluster-using-prometheus-grafana.md‎
   - name: Troubleshoot
     items:
     - name: Report an Issue
