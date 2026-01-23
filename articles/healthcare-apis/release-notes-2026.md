@@ -20,7 +20,7 @@ Release notes describe features, enhancements, and bug fixes released in 2026 fo
 ## January 2026
 ### FHIR service
 
-**Improved error handling for PATCH requests with an empty body**:  Previously, [PATCH](./fhir/rest-api-capabilities.md/#patch-and-conditional-patch) requests sent to the FHIR with an empty body returned "HTTP 500 Internal Server Error." The error is improved to return "HTTP 400 Bad Request" with more informative messaging to inform users that Content-Type and body are required.
+**Improved error handling for PATCH requests with an empty body**:  Previously, [PATCH](./fhir/rest-api-capabilities.md#patch-and-conditional-patch) requests sent to the FHIR with an empty body returned "HTTP 500 Internal Server Error." The error is improved to return "HTTP 400 Bad Request" with more informative messaging to inform users that Content-Type and body are required.
 
 **Improved capability statement refresh after profile updates**: Improved latency for profile updates to reflect in the Capability Statement.
 
