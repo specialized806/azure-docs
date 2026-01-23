@@ -1,18 +1,18 @@
 ---
-title: Create a Python tool in Azure SRE Agent
-description: Learn how to create custom Python tools in Azure SRE Agent for data processing, custom integrations, and automated workflows.
+title: Run custom logic in Python for Azure SRE Agent
+description: Learn how to run custom logic in Azure SRE Agent for data processing, custom integrations, and automated workflows.
 author: craigshoemaker
 ms.author: cshoe
 ms.reviewer: cshoe
-ms.date: 01/21/2026
+ms.date: 01/23/2026
 ms.topic: how-to
 ms.service: azure-sre-agent
 ms.collection: ce-skilling-ai-copilot
 ---
 
-# Create a Python tool in Azure SRE Agent
+# Run custom logic in Python for Azure SRE Agent
 
-Running in a secure sandbox, SRE Agent allows you to executes Python code with access to common Python libraries so you can add custom logic to the agent.
+Running in a secure sandbox, SRE Agent allows you to execute Python code with access to common Python libraries to add custom logic to the agent.
 
 This article shows you how to create, configure, and test Python tools in Azure SRE Agent.
 
@@ -158,7 +158,7 @@ Set appropriate timeouts based on your function's complexity.
 | Large batch operations | 300-900 seconds |
 
 > [!WARNING]
-> If a function exceeds the timeout, the system terminates the function and returns an error.
+> If a function runs longer than the timeout, the system terminates the function and returns an error.
 
 ## Configure tool mode
 
@@ -315,3 +315,6 @@ Keep the following security considerations in mind:
 - Don't hardcode sensitive data. Use secure parameters instead.
 - Review third-party packages before adding them as dependencies.
 
+## Related content
+
+- [Build a subagent](subagent-builder-overview.md)
