@@ -86,7 +86,6 @@ The following table describes resource limits for the Elastic zone-redundant ser
 
 <!-- maxfiles -->
 <!-- file, throughput, regional capacity per subscription, number of IPs / VNet, backups per day, backups, snapshots, |  # of CRR/CZR DP volumes, # volumes per subscription --> 
-
 ---
 
 ## Request limit increase

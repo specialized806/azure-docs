@@ -59,17 +59,9 @@ If you're using custom RBAC roles, ensure you configure the [correct permissions
 * Australia East
 * Canada Central 
 * Central US 
-* East US
-* East US 2 
-* France Central 
-* Germany West Central 
-* North Europe
 * South Central US
 * UK South 
 * West Europe
-* West US 2
-* West US 3
-<!-- issues with France Central, Germany West Central, and Spain Central. Spain Central removed. --> 
 
 ### Best practice
 
@@ -89,7 +81,7 @@ GET https://management.azure.com/subscriptions/{subscriptionId}/providers/Micros
 | Performance | High performance storage optimized for enterprise workloads | Optimized for lower-performance NAS workloads | 
 | Data management | Snapshots, cross-zone and cross-region replication, backups | Snapshots and backups | 
 | Protocol support | NFS, SMB, and dual-protocol (NFS and SMB) | NFS and SMB | 
-| Integrated backup | Integrated backup and recovery | Limited backup and recovery | 
+| Integrated backup | Integrated backup and recovery | Integrated backup and recovery | 
 | Price | Premium pricing for enterprise features | Cost-optimized for smaller workloads |
 
 To see which features the Elastic zone-redundant service level offers, see [Supported features](#supported-features).
