@@ -69,7 +69,7 @@ Make note of the Tenant, Client, and Managed Identity Resource IDs and proceed t
 :::image type="content" source="../images/entra-setup/entra3.png" alt-text="Screenshot of the Expose an API menu.":::
 :::image type="content" source="../images/entra-setup/entra4.png" alt-text="Screenshot of the popup view for adding the API scope URI.":::
 
-1. The portal prompts you to configure the new scope when you select **Save and Continue**. Enter `user_access` as the scope name and configure the other fields as desired, but make sure that **State** is set to **Enabled**. 
+1. The portal prompts you to configure the new scope when you select **Save and Continue**. Enter `user_access` as the scope name and configure the other fields as desired, but make sure that **State** is set to **Enabled**.
 :::image type="content" source="../images/entra-setup/entra5.png" alt-text="Screenshot of the Add a scope configuration sliding view.":::
 
 1. Go to the **API Permissions** page and select **Add a permission**. In the **Request API permissions** menu, go to **My APIs** and choose the application. Then select **Delegated permissions** and check off the scope you created in the previous step. Select **Add permission**. The new permission now appears in the **Configured permissions** table.
@@ -79,7 +79,8 @@ Make note of the Tenant, Client, and Managed Identity Resource IDs and proceed t
 1. Navigate to the **Authentication** page and enable **Allow public client flows** to use the CycleCloud CLI with Microsoft Entra ID. 
 1.Next, add the user roles for CycleCloud under **App roles** by selecting **Create app role**. You can set the **Display name** field to any desired string, but the **Value** field must match the built-in CycleCloud role for authentication to work as intended. 
 :::image type="content" source="../images/entra-setup/entra9.png" alt-text="Screenshot of the App roles configuration window.":::
-    > [!NOTE] Microsoft Entra ID doesn't allow roles to have spaces in them and some of the in-built CycleCloud roles include spaces (for example, "Cluster Administrator"). Replace any spaces in the role names defined in Microsoft Entra ID with a dot (for example, "Data Admin" becomes "Data.Admin"). Rename any roles defined in CycleCloud to not feature dots. Role definitions in Microsoft Entra ID are case insensitive.
+    > [!NOTE] 
+    > Microsoft Entra ID doesn't allow roles to have spaces in them and some of the in-built CycleCloud roles include spaces (for example, "Cluster Administrator"). Replace any spaces in the role names defined in Microsoft Entra ID with a dot (for example, "Data Admin" becomes "Data.Admin"). Rename any roles defined in CycleCloud to not feature dots. Role definitions in Microsoft Entra ID are case insensitive.
 1. Add the following roles. The first two roles are required only if you're planning to use [Open OnDemand](#open-ondemand).
 :::image type="content" source="../images/entra-setup/entra21.png" alt-text="Screenshot of the basic roles required for CycleCloud.":::
 
