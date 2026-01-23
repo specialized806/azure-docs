@@ -176,4 +176,7 @@ The following scenarios aren’t currently supported:
 
 - **Integration with non–Azure Migrate services**: The agent doesn't integrate with services outside Azure Migrate, such as Azure Backup or Azure Site Recovery, for operational or execution workflows. 
 
+## Related content
+
+[Learn about how to plan and analyze migration with agent](how-to-plan-analyze-migration-with-agent.md).
  
