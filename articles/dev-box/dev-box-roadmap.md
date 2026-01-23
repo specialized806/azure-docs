@@ -34,7 +34,7 @@ Microsoft Dev Box aims to deliver centralized governance based on organizational
 
 **Network setup and expansion**
 
-- [Expand IPs within existing subnets](https://developercommunity.visualstudio.com/t/Expand-IPs-within-existing-Subnets-in-a/10781464): As a dev center admin, you'll be able to expand IP ranges in subnets that are running out of IP addresses.
+- [Firewall Service Tags](https://developercommunity.visualstudio.com/t/Dev-Box:-Advanced-notice-and-notificatio/10704156?q=firewall): As an IT administrator working on setting up Dev Box for their organization, quickly configure traffic roles by utilizing Service Tags in your Firewall set up.
 
 **Security and privacy**
 
@@ -46,13 +46,11 @@ Microsoft Dev Box aims to provide a "like-local" developer experience that is as
 
 **Seamless and reliable connectivity**
 
+- [Single Sign On (SSO) for existing Dev Box machines](https://developercommunity.microsoft.com/t/Single-Sign-On-SSO-for-existing-Dev-Bo/10859770): As a dev center admin, you'll be able to enable Single Sign On experience for already existing Dev Box machines.
+
 - [Auto Remediation Improvements](https://developercommunity.microsoft.com/t/Network-connection-auto-remediation/10861428): As a developer, you won't be blocked from connecting to your Dev Box machine due to networking issues. Autoremediation of connectivity issues should allow you to connect to your machine.
 
 - [Latency Improvements](https://developercommunity.visualstudio.com/t/Latency-improvements-when-using-a-mouse/10859786): As a developer you'll experience reduced mouse latency with high-resolution monitors along with other generic latency improvements.
-
-**Service health & reliability**
-
-- [Backup SKUs:](https://developercommunity.visualstudio.com/t/Back-up-SKUs-in-case-of-capacity-outage/10720451) As a developer, you'll be able to smoothly resume working on existing Dev Box machines during service outages by opting to using a fallback SKU.
 
 This roadmap outlines our current priorities, and we remain flexible to adapt based on customer feedback. We invite you to [share your thoughts and suggest more capabilities you would like to see](https://aka.ms/DevBox/Feedback). Your insights help us refine our focus and deliver even greater value.
 
