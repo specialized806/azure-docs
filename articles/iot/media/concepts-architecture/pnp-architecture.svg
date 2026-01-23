@@ -27,15 +27,15 @@
    inkscape:pagecheckerboard="0"
    inkscape:deskcolor="#d1d1d1"
    inkscape:document-units="in"
-   inkscape:zoom="1.9779412"
-   inkscape:cx="856.69888"
-   inkscape:cy="554.86989"
+   inkscape:zoom="0.69930782"
+   inkscape:cx="611.31878"
+   inkscape:cy="366.79127"
    inkscape:window-width="1920"
    inkscape:window-height="1009"
    inkscape:window-x="-8"
    inkscape:window-y="721"
    inkscape:window-maximized="1"
-   inkscape:current-layer="shape1004-120" />
+   inkscape:current-layer="g46" />
 	<v:documentProperties
    v:langID="1033"
    v:viewMarkup="false">
@@ -171,7 +171,13 @@
 		<v:layer
    v:name="Connector"
    v:index="0" />
-		<g
+		<rect
+   style="fill:#ffffff;fill-opacity:1;stroke-width:0.75"
+   id="rect1"
+   width="790.42444"
+   height="611.31873"
+   x="1.0724889"
+   y="1.0724893" /><g
    id="shape1008-1"
    v:mID="1008"
    v:groupContext="shape"
@@ -1053,15 +1059,15 @@
    xml:space="preserve"><tspan
      x="150.43759"
      y="516.22687"
-     id="tspan6"><tspan
+     id="tspan2"><tspan
        style="font-size:17.9065px"
-       id="tspan5">Cloud service
+       id="tspan1">Cloud service
 </tspan></tspan><tspan
      x="150.43759"
      y="538.72687"
-     id="tspan8"><tspan
+     id="tspan4"><tspan
        style="font-size:11.9377px"
-       id="tspan7">Process telemetry stream.</tspan></tspan></text>		</g>
+       id="tspan3">Process telemetry stream.</tspan></tspan></text>		</g>
 		<g
    id="shape1006-125"
    v:mID="1006"
