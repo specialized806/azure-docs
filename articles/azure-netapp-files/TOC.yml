@@ -76,9 +76,11 @@
     - name: Storage hierarchy of Azure NetApp Files
       href: azure-netapp-files-understand-storage-hierarchy.md
     - name: Service levels for Azure NetApp Files
-      href: azure-netapp-files-service-levels.md
-    - name: Understand Elastic zone-redundant storage 
-      href: elastic-zone-redundant-concept.md
+      items: 
+        - name: Understand service levels 
+          href: azure-netapp-files-service-levels.md
+        - name: Understand Elastic zone-redundant storage 
+          href: elastic-zone-redundant-concept.md
     - name: Guidelines for Azure NetApp Files network planning 
       href: azure-netapp-files-network-topologies.md
     - name: Resource limits for Azure NetApp Files
@@ -296,23 +298,29 @@
       - name: Request region access
         href: request-region-access.md
   - name: Elastic service level
-    items: 
-      - name: Manage storage 
-        items: 
-        - name: Create a NetApp Elastic account
-          href: elastic-account.md 
-        - name: Configure customer-managed keys
-          href: elastic-customer-managed-keys.md
+    items:
+      - name: Create a NetApp Elastic account
+        href: elastic-account.md 
+      - name: Manage Active Directory 
+        items:         
         - name: Create an Active Directory connection 
           href: elastic-active-directory.md
-        - name: Create an Elastic capacity pool
-          href: elastic-capacity-pool-task.md
-        - name: Change zones for Elastic capacity pools 
-          href: elastic-change-zones.md
-        - name: Create an NFS volume 
-          href: elastic-volume.md
-        - name: Create an SMB volume 
-          href: elastic-volume-server-message-block.md
+      - name: Manage capacity pools 
+        items:
+          - name: Create an Elastic capacity pool
+            href: elastic-capacity-pool-task.md
+          - name: Change zones for Elastic capacity pools 
+            href: elastic-change-zones.md
+      - name: Manage volumes
+        items: 
+          - name: Create an NFS volume 
+            href: elastic-volume.md
+          - name: Create an SMB volume 
+            href: elastic-volume-server-message-block.md
+      - name: Manage volume encryption 
+        items:
+          - name: Configure customer-managed keys
+            href: elastic-customer-managed-keys.md
       - name: Manage data protection 
         items:
         - name: Configure snapshot policies 
@@ -458,7 +466,7 @@
           - name: Deploy application volume group for Oracle using Azure Resource Manager
             href: configure-application-volume-oracle-azure-resource-manager.md 
         - name: Delete an application volume group
-          href: application-volume-group-delete.md
+          href: application-volume-group-delete.md>
     - name: Manage data protection  
       items:
       - name: Manage volume snapshots
