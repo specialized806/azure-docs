@@ -640,8 +640,9 @@ Create two endpoints within the Traffic Manager profile with the following confi
     # Test HTTPS access
     curl --head https://$CUSTOM_DOMAIN/
     ```
- 
-2. Failback to Front Door:
+<br>
+
+1. Failback to Front Door:
 
     ```azurecli
     # Failback: Enable Front Door, Disable CDN
@@ -665,7 +666,6 @@ Create two endpoints within the Traffic Manager profile with the following confi
         --resource-group $RESOURCE_GROUP `
         --query "endpoints[].{Name:name, Status:endpointStatus, Health:endpointMonitorStatus}"
     ```
-
 
 ## Monitoring
 
