@@ -9,7 +9,7 @@ ms.date: 01/23/2026
 ms.custom: devx-track-azurepowershell
 ---
 
-# Use PowerShell to create a data share in Azure
+# Use PowerShell to add a blob dataset to a data share in Azure
 
 This PowerShell script adds a blob dataset to an existing Data Share.
 
