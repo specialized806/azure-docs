@@ -15,9 +15,6 @@ ms.custom: linux-related-content
 Azure Accelerated Networking significantly improves virtual machine networking performance by reducing latency and CPU utilization. This article describes the benefits, constraints, and supported configurations of Accelerated Networking. Accelerated Networking enables [single root I/O virtualization (SR-IOV)](/windows-hardware/drivers/network/overview-of-single-root-i-o-virtualization--sr-iov-) on supported virtual machine (VM) types, greatly improving networking performance.
 This high-performance data path bypasses the host, which reduces latency, jitter, and CPU utilization for the most demanding network workloads.
 
-> [!NOTE]
-> For more information on Microsoft Azure Network Adapter (MANA) preview, see [Azure MANA Docs](./accelerated-networking-mana-overview.md)
-
 The following diagram illustrates how two VMs communicate with and without Accelerated Networking.
 
 :::image type="content" source="~/reusable-content/ce-skilling/azure/media/virtual-network/accelerated-networking.png" alt-text="Screenshot that shows communication between Azure VMs with and without Accelerated Networking.":::
@@ -46,7 +43,7 @@ Accelerated Networking has the following benefits:
 
 - You can't deploy virtual machines (classic) with Accelerated Networking through Azure Resource Manager.
 
-- The Azure platform doesn't update the Mellanox NIC drivers in the VM. For VMs running Linux and FreeBSD, you should stay current with the latest kernel updates offered by the distribution. For VMs running Windows, apply updated drivers from the NVIDIA support page if you encounter any issues with the driver delivered with the Marketplace image or applied to a custom image.
+- The Azure platform doesn't update the Mellanox NIC or MANA drivers in the VM. For VMs running Linux and FreeBSD, you should stay current with the latest kernel updates offered by the distribution. For VMs running Windows, apply updated drivers from the NVIDIA support page if you encounter any issues with the driver delivered with the Marketplace image or applied to a custom image. The latest MANA drivers can be found at the documentation page for [Mana on Windows](./accelerated-networking-mana-windows.md)
 
 ### Supported regions
 
@@ -54,28 +51,33 @@ Accelerated Networking is available in all global Azure regions and the Azure Go
 
 ### Supported operating systems
 
-The following versions of Windows support Accelerated Networking:
+The following versions of Windows support Accelerated Networking for all interfaces:
 
 - Windows Server 2022
-- Windows Server 2019 Standard/Datacenter
-- Windows Server 2016 Standard/Datacenter
-- Windows Server 2012 R2 Standard/Datacenter
-- Windows 10 version 21H2 or later, including Windows 10 Enterprise multisession
-- Windows 11, including Windows 11 Enterprise multisession
+- Windows Server 2019
+- Windows Server 2016
 
 The following Linux and FreeBSD distributions from Azure Marketplace support Accelerated Networking out of the box:
 
-- Ubuntu 14.04 with the linux-azure kernel
-- Ubuntu 16.04 or later
-- SLES12 SP3 or later
-- RHEL 7.4 or later
-- CoreOS Linux
-- Debian "Stretch" with backports kernel
-- Debian "Buster" or later
-- Oracle Linux 7.4 and later with Red Hat Compatible Kernel (RHCK)
-- Oracle Linux 7.5 and later with UEK version 5
-- FreeBSD 10.4, 11.1, 12.0, or later
-- Flatcar Container Linux 3510 or later
+- Ubuntu 22.04 LTS
+- Ubuntu 24.04 LTS
+- Red Hat Enterprise Linux 8.8
+- Red Hat Enterprise Linux 8.10
+- Red Hat Enterprise Linux 9.2
+- Red Hat Enterprise Linux 9.4
+- Red Hat Enterprise Linux 9.6
+- SUSE Linux Enterprise Server 15 SP4
+- Rocky Linux (CIQ) 8.10 (all variants)
+- Rocky Linux (CIQ) 9.2+ (all variants) 
+- Debian 12 "Bookworm"
+- Oracle Linux 8.0 UEK R7
+- Oracle Linux 9.0 UEK R7
+
+For users of non endorsed Linux distributions or utlizing custom kernels, we recommend the Linux Kernel 6.12 or later found at [kernel.org](https://www.kernel.org/)
+
+> [!NOTE]
+> Newer MANA features are under active development and Linux distribution vendors partner with Microsoft to update their kernels with upstream changes. Cadence of updates varies by distribution vendor. The newer your distribution and kernel is, the more likely it is to have the latest updates.
+
 
 ### Supported VM instances
 
