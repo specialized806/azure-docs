@@ -425,7 +425,7 @@ This strategy for rolling out a feature is built into the library through the in
 
 ### Targeting a user
 
-A user can either be specified directly in the `is_enabled` call, or a `TargetingContext` can be used to specify the user and optional group. The `TargetingContext` can either be passed in when calling `is_enabled` or by providing a callback to a `TargetingSpanProcessor`.
+A user can either be specified directly in the `is_enabled` call,  or a `TargetingContext` can be used to specify the user and optional group. The `TargetingContext` can either be passed in when calling `is_enabled` or by providing a callback to `targeting_context_accessor` when creating the `FeatureManager`.
 
 
 ```python
@@ -436,29 +436,23 @@ result = is_enabled(feature_flags, "test_user")
 result = is_enabled(feature_flags, TargetingContext(user_id="test_user", groups=["Ring1"]))
 ```
 
-#### TargetingSpanProcessor
+#### Targeting context accessor
 
-You can integrate the `TargetingSpanProcessor` with Azure Monitor to automatically provide targeting context during telemetry operations. The processor accepts a callback function that returns a `TargetingContext`, allowing you to dynamically determine the user ID and groups for each request. 
-
-The following example demonstrates how to configure the processor in a Quart application, using a session ID from request headers as the user identifier. Call `configure_azure_monitor` before creating your application instance to ensure proper initialization.
+Instead of passing a `TargetingContext` to each `is_enabled` call, you can register a callback function with the `FeatureManager` that automatically provides the targeting context. This approach is useful when the user identity and groups can be determined from a common source, such as HTTP request headers or session data, eliminating the need to manually construct and pass the context for every feature evaluation.
 
 ```python
-import os
-from quart import request
-from azure.monitor.opentelemetry import configure_azure_monitor
-from featuremanagement import TargetingContext
-from featuremanagement.azuremonitor import TargetingSpanProcessor
+from featuremanagement import FeatureManager, TargetingContext
 
-async def my_targeting_accessor() -> TargetingContext:
+# A callback for assigning a TargetingContext for Feature Flag evaluation in a Quart app
+def my_targeting_accessor() -> TargetingContext:
     session_id = ""
     if "Session-ID" in request.headers:
         session_id = request.headers["Session-ID"]
     return TargetingContext(user_id=session_id)
 
-configure_azure_monitor(
-    connection_string=os.getenv("APPLICATIONINSIGHTS_CONNECTION_STRING"),
-    span_processors=[TargetingSpanProcessor(targeting_context_accessor=my_targeting_accessor)],
-)
+
+# Load feature flags and set up targeting context accessor
+feature_manager = FeatureManager(config, targeting_context_accessor=my_targeting_accessor)
 ```
 
 ### Targeting exclusion
@@ -761,7 +755,11 @@ configure_azure_monitor(
     )
 ```
 
-### Custom telemetry publishing
+### Logging telemetry events
+
+The feature management library provides multiple ways to log telemetry events. You can use the built-in callback for feature flag evaluation events or manually track custom events for user interactions and application events.
+
+#### Feature evaluation events
 
 Because the telemetry callback is a function, it can be customized to publish telemetry to any desired destination. For example, telemetry could be published to a logging service, a database, or a custom telemetry service.
 
@@ -774,6 +772,61 @@ When a feature flag is evaluated and telemetry is enabled, the feature manager c
 | `enabled` | Whether the feature flag is evaluated as enabled. |
 | `Variant` | The assigned variant. |
 | `VariantAssignmentReason` | The reason why the variant is assigned. |
+
+#### Tracking custom events
+
+Beyond automatic feature flag evaluation telemetry, you can manually track custom events using the `track_event` function. This is useful for tracking user interactions, business events, or other custom telemetry that should be correlated with feature flag usage.
+
+```python
+from featuremanagement.azuremonitor import track_event
+
+# Track a custom event with a user identifier
+track_event("ButtonClicked", "user123")
+
+# Track an event without a user identifier
+track_event("ApplicationStarted")
+```
+
+The `track_event` function accepts two parameters:
+
+| Parameter | Description |
+| ---------------- | ---------------- |
+| `event_name` | The name of the event to track. |
+| `user` | Optional user identifier to associate with the event. |
+
+Custom events are sent to the same Application Insights instance configured for feature flag telemetry, allowing you to correlate feature flag evaluations with user behavior and application events.
+
+### Enriching telemetry with targeting context
+
+Instead of manually passing user identifiers to each `track_event` call, you can use the `TargetingSpanProcessor` to automatically enrich all telemetry with targeting context information. The processor accepts a callback function that returns a `TargetingContext`, allowing telemetry to automatically include the user ID for each request. This enrichment helps correlate telemetry data with specific users and groups, making it easier to analyze feature flag performance for targeted audiences without requiring explicit user parameters in your telemetry calls.
+
+> [!NOTE]
+> The `TargetingSpanProcessor` is specifically for telemetry enrichment. You still need to provide a `targeting_context_accessor` to the `FeatureManager` for feature flag evaluation, as described in the [Targeting context accessor](#targeting-context-accessor) section.
+
+The following example demonstrates how to configure the processor in a Quart application, using a session ID from request headers as the user identifier. Call `configure_azure_monitor` before creating your application instance to ensure proper initialization.
+
+```python
+import os
+from quart import request
+from azure.monitor.opentelemetry import configure_azure_monitor
+from featuremanagement import TargetingContext
+from featuremanagement.azuremonitor import TargetingSpanProcessor
+
+async def my_targeting_accessor() -> TargetingContext:
+    session_id = ""
+    if "Session-ID" in request.headers:
+        session_id = request.headers["Session-ID"]
+    return TargetingContext(user_id=session_id)
+
+# Configure Azure Monitor with targeting context for telemetry
+configure_azure_monitor(
+    connection_string=os.getenv("APPLICATIONINSIGHTS_CONNECTION_STRING"),
+    span_processors=[TargetingSpanProcessor(targeting_context_accessor=my_targeting_accessor)],
+)
+
+# You must also provide the targeting context accessor to FeatureManager for evaluation
+feature_manager = FeatureManager(config, targeting_context_accessor=my_targeting_accessor)
+```
 
 ## Next steps
 
