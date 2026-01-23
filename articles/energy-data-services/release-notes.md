@@ -30,7 +30,7 @@ The Rock and Fluid Samples (RAFS) DDMS is now generally available in Azure Data 
 To learn more about RAFS DDMS, see the official documentation: [Rock and Fluid Samples (RAFS) DDMS APIs](tutorial-rock-and-fluid-samples-ddms.md).
 
 ### Dangerous Query Rate Limit Enforcement
-To strengthen service resiliency, Azure Data Manager for Energy now applies targeted ratelimiting to a narrow class of highrisk wildcard queries that can negatively impact cluster performance. This guardrail affects only queries using the fully unbounded pattern '*:*:*:*' in the kind field of requests sent to /api/search/v2/query and /api/search/v2/query_with_cursor. Typical ingestion, search, and operational workloads are not impacted. 
+To strengthen service resiliency, Azure Data Manager for Energy now applies targeted ratelimiting to a narrow class of highrisk wildcard queries that can negatively impact cluster performance. This guardrail affects only queries using the fully unbounded pattern \*\:\*\:\*\:\* in the kind field of requests sent to /api/search/v2/query and /api/search/v2/query_with_cursor. Typical ingestion, search, and operational workloads are not impacted. 
 
 When a query is ratelimited, clients receive an HTTP 429 – Too Many Requests responses. The response body provides a clear explanation and guidance. The enforcement logic uses a conservative default configuration of 2 burst tokens, a refill rate of 1 token every 5 seconds, and an effective allowance of approximately 12 such wildcard queries per minute. 
 
