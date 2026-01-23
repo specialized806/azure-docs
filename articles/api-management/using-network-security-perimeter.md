@@ -45,8 +45,6 @@ A network security perimeter provides a supported, centralized perimeter to expl
 
 1. Add an inbound access rule to allow API Management traffic.
 
-1. Test the API call from API Management to confirm access with network security perimeter.
-
 1. Move network security perimeter access mode from **transition** to **enforced**.
 
 ## Step 1. Configure API Management to call Azure Storage by using managed identity
@@ -130,7 +128,6 @@ Test that the API operation can no longer reach the storage account.
 Expected result:
  - The call fails with a `403 Forbidden` response.
   
-
 ## Step 3. Create a network security perimeter profile and associate the storage account
 
 1. In the Azure portal, search for **Network Security Perimeters** and select it.
@@ -165,7 +162,7 @@ To allow API Management to reach the storage account through the perimeter, add 
 
   :::image type="content" source="media/using-network-security-perimeter/public-access-settings.png" alt-text="Screenshot of public access settings in the storage account in the portal.":::
 
-## Step 5. Test access from API Management
+### Test the API operation
 
 Test that the API operation can reach the storage account in the network security perimeter.
 
