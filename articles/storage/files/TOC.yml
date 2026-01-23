@@ -91,7 +91,7 @@
     href: migrate-files-between-shares.md
   - name: Target a cloud-only deployment
     items:
-    - name: Use Azure Storage Mover to migrate to SMB Azure file shares
+    - name: Use Azure Storage Mover to migrate to Azure file shares
       href: migrate-files-storage-mover.md
     - name: Use Robocopy to migrate to SMB Azure file shares
       href: storage-files-migration-robocopy.md
@@ -223,8 +223,10 @@
       href: ../../backup/manage-afs-powershell.md?toc=/azure/storage/files/toc.json
     - name: REST API
       href: ../../backup/manage-azure-file-share-rest-api.md?toc=/azure/storage/files/toc.json
-- name: Availability and disaster recovery
+- name: Reliability
   items:
+  - name: Reliability in Azure Files
+    href: /azure/reliability/reliability-storage-files?toc=/azure/storage/files/toc.json
   - name: Storage redundancy
     href: files-redundancy.md
   - name: Disaster recovery and failover

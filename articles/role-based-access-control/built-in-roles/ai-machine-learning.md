@@ -7,7 +7,7 @@ ms.workload: identity
 author: rolyon
 manager: pmwongera
 ms.author: rolyon
-ms.date: 05/25/2025
+ms.date: 12/31/2025
 ms.custom: generated
 ---
 
@@ -16,197 +16,6 @@ ms.custom: generated
 This article lists the Azure built-in roles in the AI + machine learning category.
 
 
-## AgFood Platform Sensor Partner Contributor
-
-Provides contribute access to manage sensor related entities in AgFood Platform Service
-
-[Learn more](/azure/data-manager-for-agri/how-to-set-up-sensors-customer)
-
-> [!div class="mx-tableFixed"]
-> | Actions | Description |
-> | --- | --- |
-> | *none* |  |
-> | **NotActions** |  |
-> | *none* |  |
-> | **DataActions** |  |
-> | [Microsoft.AgFoodPlatform](../permissions/ai-machine-learning.md#microsoftagfoodplatform)/farmBeats/sensorPartnerScope/* |  |
-> | **NotDataActions** |  |
-> | [Microsoft.AgFoodPlatform](../permissions/ai-machine-learning.md#microsoftagfoodplatform)/farmBeats/sensorPartnerScope/sensors/delete | Deletes an existing AgFoodPlatform sensors resource restricted to caller's sensor partner scope. |
-
-```json
-{
-  "assignableScopes": [
-    "/"
-  ],
-  "description": "Provides contribute access to manage sensor related entities in AgFood Platform Service",
-  "id": "/providers/Microsoft.Authorization/roleDefinitions/6b77f0a0-0d89-41cc-acd1-579c22c17a67",
-  "name": "6b77f0a0-0d89-41cc-acd1-579c22c17a67",
-  "permissions": [
-    {
-      "actions": [],
-      "notActions": [],
-      "dataActions": [
-        "Microsoft.AgFoodPlatform/farmBeats/sensorPartnerScope/*"
-      ],
-      "notDataActions": [
-        "Microsoft.AgFoodPlatform/farmBeats/sensorPartnerScope/sensors/delete"
-      ]
-    }
-  ],
-  "roleName": "AgFood Platform Sensor Partner Contributor",
-  "roleType": "BuiltInRole",
-  "type": "Microsoft.Authorization/roleDefinitions"
-}
-```
-
-## AgFood Platform Service Admin
-
-Provides admin access to AgFood Platform Service
-
-[Learn more](/azure/data-manager-for-agri/quickstart-install-data-manager-for-agriculture)
-
-> [!div class="mx-tableFixed"]
-> | Actions | Description |
-> | --- | --- |
-> | *none* |  |
-> | **NotActions** |  |
-> | *none* |  |
-> | **DataActions** |  |
-> | [Microsoft.AgFoodPlatform](../permissions/ai-machine-learning.md#microsoftagfoodplatform)/* | Create, update, read and delete any AgFood Platform resources. |
-> | **NotDataActions** |  |
-> | *none* |  |
-
-```json
-{
-  "assignableScopes": [
-    "/"
-  ],
-  "description": "Provides admin access to AgFood Platform Service",
-  "id": "/providers/Microsoft.Authorization/roleDefinitions/f8da80de-1ff9-4747-ad80-a19b7f6079e3",
-  "name": "f8da80de-1ff9-4747-ad80-a19b7f6079e3",
-  "permissions": [
-    {
-      "actions": [],
-      "notActions": [],
-      "dataActions": [
-        "Microsoft.AgFoodPlatform/*"
-      ],
-      "notDataActions": []
-    }
-  ],
-  "roleName": "AgFood Platform Service Admin",
-  "roleType": "BuiltInRole",
-  "type": "Microsoft.Authorization/roleDefinitions"
-}
-```
-
-## AgFood Platform Service Contributor
-
-Provides contribute access to AgFood Platform Service
-
-[Learn more](/azure/data-manager-for-agri/quickstart-install-data-manager-for-agriculture)
-
-> [!div class="mx-tableFixed"]
-> | Actions | Description |
-> | --- | --- |
-> | *none* |  |
-> | **NotActions** |  |
-> | *none* |  |
-> | **DataActions** |  |
-> | [Microsoft.AgFoodPlatform](../permissions/ai-machine-learning.md#microsoftagfoodplatform)/*/action |  |
-> | [Microsoft.AgFoodPlatform](../permissions/ai-machine-learning.md#microsoftagfoodplatform)/*/read | Read any AgFood Platform resources. |
-> | [Microsoft.AgFoodPlatform](../permissions/ai-machine-learning.md#microsoftagfoodplatform)/*/write | Create and update any AgFood Platform resources. |
-> | **NotDataActions** |  |
-> | [Microsoft.AgFoodPlatform](../permissions/ai-machine-learning.md#microsoftagfoodplatform)/farmBeats/farmers/write | Creates or Updates AgFoodPlatform farmers. |
-> | [Microsoft.AgFoodPlatform](../permissions/ai-machine-learning.md#microsoftagfoodplatform)/farmBeats/deletionJobs/*/write |  |
-> | [Microsoft.AgFoodPlatform](../permissions/ai-machine-learning.md#microsoftagfoodplatform)/farmBeats/parties/write | Creates or Updates AgFoodPlatform parties. |
-> | [Microsoft.AgFoodPlatform](../permissions/ai-machine-learning.md#microsoftagfoodplatform)/farmBeats/datasets/write | Creates or Updates AgFoodPlatform datasets. |
-> | [Microsoft.AgFoodPlatform](../permissions/ai-machine-learning.md#microsoftagfoodplatform)/farmBeats/datasetRecords/write | Creates or Updates AgFoodPlatform Dataset Records. |
-> | [Microsoft.AgFoodPlatform](../permissions/ai-machine-learning.md#microsoftagfoodplatform)/farmBeats/datasets/access/*/action |  |
-
-```json
-{
-  "assignableScopes": [
-    "/"
-  ],
-  "description": "Provides contribute access to AgFood Platform Service",
-  "id": "/providers/Microsoft.Authorization/roleDefinitions/8508508a-4469-4e45-963b-2518ee0bb728",
-  "name": "8508508a-4469-4e45-963b-2518ee0bb728",
-  "permissions": [
-    {
-      "actions": [],
-      "notActions": [],
-      "dataActions": [
-        "Microsoft.AgFoodPlatform/*/action",
-        "Microsoft.AgFoodPlatform/*/read",
-        "Microsoft.AgFoodPlatform/*/write"
-      ],
-      "notDataActions": [
-        "Microsoft.AgFoodPlatform/farmBeats/farmers/write",
-        "Microsoft.AgFoodPlatform/farmBeats/deletionJobs/*/write",
-        "Microsoft.AgFoodPlatform/farmBeats/parties/write",
-        "Microsoft.AgFoodPlatform/farmBeats/datasets/write",
-        "Microsoft.AgFoodPlatform/farmBeats/datasetRecords/write",
-        "Microsoft.AgFoodPlatform/farmBeats/datasets/access/*/action"
-      ]
-    }
-  ],
-  "roleName": "AgFood Platform Service Contributor",
-  "roleType": "BuiltInRole",
-  "type": "Microsoft.Authorization/roleDefinitions"
-}
-```
-
-## AgFood Platform Service Reader
-
-Provides read access to AgFood Platform Service
-
-[Learn more](/azure/data-manager-for-agri/quickstart-install-data-manager-for-agriculture)
-
-> [!div class="mx-tableFixed"]
-> | Actions | Description |
-> | --- | --- |
-> | *none* |  |
-> | **NotActions** |  |
-> | *none* |  |
-> | **DataActions** |  |
-> | [Microsoft.AgFoodPlatform](../permissions/ai-machine-learning.md#microsoftagfoodplatform)/*/list/action |  |
-> | [Microsoft.AgFoodPlatform](../permissions/ai-machine-learning.md#microsoftagfoodplatform)/*/read | Read any AgFood Platform resources. |
-> | [Microsoft.AgFoodPlatform](../permissions/ai-machine-learning.md#microsoftagfoodplatform)/*/search/action |  |
-> | [Microsoft.AgFoodPlatform](../permissions/ai-machine-learning.md#microsoftagfoodplatform)/*/download/action |  |
-> | [Microsoft.AgFoodPlatform](../permissions/ai-machine-learning.md#microsoftagfoodplatform)/*/overlap/action |  |
-> | [Microsoft.AgFoodPlatform](../permissions/ai-machine-learning.md#microsoftagfoodplatform)/*/checkConsent/action |  |
-> | **NotDataActions** |  |
-> | *none* |  |
-
-```json
-{
-  "assignableScopes": [
-    "/"
-  ],
-  "description": "Provides read access to AgFood Platform Service",
-  "id": "/providers/Microsoft.Authorization/roleDefinitions/7ec7ccdc-f61e-41fe-9aaf-980df0a44eba",
-  "name": "7ec7ccdc-f61e-41fe-9aaf-980df0a44eba",
-  "permissions": [
-    {
-      "actions": [],
-      "notActions": [],
-      "dataActions": [
-        "Microsoft.AgFoodPlatform/*/list/action",
-        "Microsoft.AgFoodPlatform/*/read",
-        "Microsoft.AgFoodPlatform/*/search/action",
-        "Microsoft.AgFoodPlatform/*/download/action",
-        "Microsoft.AgFoodPlatform/*/overlap/action",
-        "Microsoft.AgFoodPlatform/*/checkConsent/action"
-      ],
-      "notDataActions": []
-    }
-  ],
-  "roleName": "AgFood Platform Service Reader",
-  "roleType": "BuiltInRole",
-  "type": "Microsoft.Authorization/roleDefinitions"
-}
-```
 ## Azure AI Account Owner
 
 Grants full access to manage AI projects and accounts. Includes an ABAC condition to constrain role assignments. Grants conditional assignment of the Azure AI User role to other user principles. Applies for new Foundry resources.
@@ -1163,7 +972,10 @@ Lets you create, read, update, delete and manage keys of Cognitive Services.
 > | [Microsoft.Resources](../permissions/management-and-governance.md#microsoftresources)/subscriptions/resourceGroups/read | Gets or lists resource groups. |
 > | [Microsoft.Support](../permissions/general.md#microsoftsupport)/* | Create and update a support ticket |
 > | **NotActions** |  |
-> | *none* |  |
+> | [Microsoft.CognitiveServices](../permissions/ai-machine-learning.md#microsoftcognitiveservices)/raiPolicy/write | Write Subscription RaiPolicy |
+> | [Microsoft.CognitiveServices](../permissions/ai-machine-learning.md#microsoftcognitiveservices)/raiPolicy/delete |  |
+> | [Microsoft.CognitiveServices](../permissions/ai-machine-learning.md#microsoftcognitiveservices)/raiExternalSafetyProviders/write | Write External Safety Providers |
+> | [Microsoft.CognitiveServices](../permissions/ai-machine-learning.md#microsoftcognitiveservices)/raiExternalSafetyProviders/delete |  |
 > | **DataActions** |  |
 > | *none* |  |
 > | **NotDataActions** |  |
@@ -1199,7 +1011,12 @@ Lets you create, read, update, delete and manage keys of Cognitive Services.
         "Microsoft.Resources/subscriptions/resourceGroups/read",
         "Microsoft.Support/*"
       ],
-      "notActions": [],
+      "notActions": [
+        "Microsoft.CognitiveServices/raiPolicy/write",
+        "Microsoft.CognitiveServices/raiPolicy/delete",
+        "Microsoft.CognitiveServices/raiExternalSafetyProviders/write",
+        "Microsoft.CognitiveServices/raiExternalSafetyProviders/delete"
+      ],
       "dataActions": [],
       "notDataActions": []
     }
@@ -2418,6 +2235,7 @@ Full access to Speech projects, including read, write and delete all entities, f
 > | [Microsoft.CognitiveServices](../permissions/ai-machine-learning.md#microsoftcognitiveservices)/accounts/SpeechServices/* |  |
 > | [Microsoft.CognitiveServices](../permissions/ai-machine-learning.md#microsoftcognitiveservices)/accounts/CustomVoice/* |  |
 > | [Microsoft.CognitiveServices](../permissions/ai-machine-learning.md#microsoftcognitiveservices)/accounts/AudioContentCreation/* |  |
+> | [Microsoft.CognitiveServices](../permissions/ai-machine-learning.md#microsoftcognitiveservices)/accounts/TTSPlayer/* |  |
 > | [Microsoft.CognitiveServices](../permissions/ai-machine-learning.md#microsoftcognitiveservices)/accounts/VideoTranslation/* |  |
 > | [Microsoft.CognitiveServices](../permissions/ai-machine-learning.md#microsoftcognitiveservices)/accounts/CustomAvatar/* |  |
 > | [Microsoft.CognitiveServices](../permissions/ai-machine-learning.md#microsoftcognitiveservices)/accounts/BatchAvatar/* |  |
@@ -2445,6 +2263,7 @@ Full access to Speech projects, including read, write and delete all entities, f
         "Microsoft.CognitiveServices/accounts/SpeechServices/*",
         "Microsoft.CognitiveServices/accounts/CustomVoice/*",
         "Microsoft.CognitiveServices/accounts/AudioContentCreation/*",
+        "Microsoft.CognitiveServices/accounts/TTSPlayer/*",
         "Microsoft.CognitiveServices/accounts/VideoTranslation/*",
         "Microsoft.CognitiveServices/accounts/CustomAvatar/*",
         "Microsoft.CognitiveServices/accounts/BatchAvatar/*",
@@ -2482,10 +2301,13 @@ Access to the real-time speech recognition and batch transcription APIs, real-ti
 > | [Microsoft.CognitiveServices](../permissions/ai-machine-learning.md#microsoftcognitiveservices)/accounts/SpeechServices/*/frontend/action |  |
 > | [Microsoft.CognitiveServices](../permissions/ai-machine-learning.md#microsoftcognitiveservices)/accounts/SpeechServices/text-dependent/*/action |  |
 > | [Microsoft.CognitiveServices](../permissions/ai-machine-learning.md#microsoftcognitiveservices)/accounts/SpeechServices/text-independent/*/action |  |
+> | [Microsoft.CognitiveServices](../permissions/ai-machine-learning.md#microsoftcognitiveservices)/accounts/SpeechServices/voiceagent/realtime/* |  |
+> | [Microsoft.CognitiveServices](../permissions/ai-machine-learning.md#microsoftcognitiveservices)/accounts/SpeechServices/voicelive/realtime/* |  |
 > | [Microsoft.CognitiveServices](../permissions/ai-machine-learning.md#microsoftcognitiveservices)/accounts/CustomVoice/*/read |  |
 > | [Microsoft.CognitiveServices](../permissions/ai-machine-learning.md#microsoftcognitiveservices)/accounts/CustomVoice/evaluations/* |  |
 > | [Microsoft.CognitiveServices](../permissions/ai-machine-learning.md#microsoftcognitiveservices)/accounts/CustomVoice/longaudiosynthesis/* |  |
 > | [Microsoft.CognitiveServices](../permissions/ai-machine-learning.md#microsoftcognitiveservices)/accounts/AudioContentCreation/* |  |
+> | [Microsoft.CognitiveServices](../permissions/ai-machine-learning.md#microsoftcognitiveservices)/accounts/TTSPlayer/* |  |
 > | [Microsoft.CognitiveServices](../permissions/ai-machine-learning.md#microsoftcognitiveservices)/accounts/VideoTranslation/* |  |
 > | [Microsoft.CognitiveServices](../permissions/ai-machine-learning.md#microsoftcognitiveservices)/accounts/CustomAvatar/*/read |  |
 > | [Microsoft.CognitiveServices](../permissions/ai-machine-learning.md#microsoftcognitiveservices)/accounts/BatchAvatar/* |  |
@@ -2519,10 +2341,13 @@ Access to the real-time speech recognition and batch transcription APIs, real-ti
         "Microsoft.CognitiveServices/accounts/SpeechServices/*/frontend/action",
         "Microsoft.CognitiveServices/accounts/SpeechServices/text-dependent/*/action",
         "Microsoft.CognitiveServices/accounts/SpeechServices/text-independent/*/action",
+        "Microsoft.CognitiveServices/accounts/SpeechServices/voiceagent/realtime/*",
+        "Microsoft.CognitiveServices/accounts/SpeechServices/voicelive/realtime/*",
         "Microsoft.CognitiveServices/accounts/CustomVoice/*/read",
         "Microsoft.CognitiveServices/accounts/CustomVoice/evaluations/*",
         "Microsoft.CognitiveServices/accounts/CustomVoice/longaudiosynthesis/*",
         "Microsoft.CognitiveServices/accounts/AudioContentCreation/*",
+        "Microsoft.CognitiveServices/accounts/TTSPlayer/*",
         "Microsoft.CognitiveServices/accounts/VideoTranslation/*",
         "Microsoft.CognitiveServices/accounts/CustomAvatar/*/read",
         "Microsoft.CognitiveServices/accounts/BatchAvatar/*",
@@ -2661,9 +2486,27 @@ Users with admin access can sign in, view and edit all of the bot resources, sce
 > | **NotActions** |  |
 > | *none* |  |
 > | **DataActions** |  |
-> | [Microsoft.HealthBot](../permissions/ai-machine-learning.md#microsofthealthbot)/healthBots/* |  |
+> | [Microsoft.HealthBot](../permissions/ai-machine-learning.md#microsofthealthbot)/healthBots/ResourceData/Read | Get global data and properties about Healthcare Agent service |
+> | [Microsoft.HealthBot](../permissions/ai-machine-learning.md#microsofthealthbot)/healthBots/Metadata/Read | Get metadata and configurations related to the bot |
+> | [Microsoft.HealthBot](../permissions/ai-machine-learning.md#microsofthealthbot)/healthBots/CopilotStudioSolution/* |  |
+> | [Microsoft.HealthBot](../permissions/ai-machine-learning.md#microsofthealthbot)/healthBots/Feedback/Read | Participate and answer on surveys and feedbacks about Healthcare Agent service |
+> | [Microsoft.HealthBot](../permissions/ai-machine-learning.md#microsofthealthbot)/healthBots/Users/Read | Read portal users as configured in classic access control |
+> | [Microsoft.HealthBot](../permissions/ai-machine-learning.md#microsofthealthbot)/healthBots/AuditTrails/Read | Audit all activity in your bot |
+> | [Microsoft.HealthBot](../permissions/ai-machine-learning.md#microsofthealthbot)/healthBots/AnalyticReport/Read | Access for getting analytic report data |
+> | [Microsoft.HealthBot](../permissions/ai-machine-learning.md#microsofthealthbot)/healthBots/ExposedSkill/Read | View the agent's exposed skill enablement status and details |
+> | [Microsoft.HealthBot](../permissions/ai-machine-learning.md#microsofthealthbot)/healthBots/RegisteredSkills/Read | List registered skills and view manifest URLs and details |
+> | [Microsoft.HealthBot](../permissions/ai-machine-learning.md#microsofthealthbot)/healthBots/Configuration/* |  |
+> | [Microsoft.HealthBot](../permissions/ai-machine-learning.md#microsofthealthbot)/healthBots/Localization/* |  |
+> | [Microsoft.HealthBot](../permissions/ai-machine-learning.md#microsofthealthbot)/healthBots/AuthenticationProviders/* |  |
+> | [Microsoft.HealthBot](../permissions/ai-machine-learning.md#microsofthealthbot)/healthBots/Channels/* |  |
+> | [Microsoft.HealthBot](../permissions/ai-machine-learning.md#microsofthealthbot)/healthBots/DataConnections/* |  |
+> | [Microsoft.HealthBot](../permissions/ai-machine-learning.md#microsofthealthbot)/healthBots/OpenAPIPlugins/* |  |
+> | [Microsoft.HealthBot](../permissions/ai-machine-learning.md#microsofthealthbot)/healthBots/Scenarios/* |  |
+> | [Microsoft.HealthBot](../permissions/ai-machine-learning.md#microsofthealthbot)/healthBots/LanguageModels/* |  |
+> | [Microsoft.HealthBot](../permissions/ai-machine-learning.md#microsofthealthbot)/healthBots/Resources/* |  |
+> | [Microsoft.HealthBot](../permissions/ai-machine-learning.md#microsofthealthbot)/healthBots/Admin/* |  |
 > | **NotDataActions** |  |
-> | [Microsoft.HealthBot](../permissions/ai-machine-learning.md#microsofthealthbot)/healthBots/HealthSafeguards/* |  |
+> | *none* |  |
 
 ```json
 {
@@ -2678,11 +2521,27 @@ Users with admin access can sign in, view and edit all of the bot resources, sce
       "actions": [],
       "notActions": [],
       "dataActions": [
-        "Microsoft.HealthBot/healthBots/*"
+        "Microsoft.HealthBot/healthBots/ResourceData/Read",
+        "Microsoft.HealthBot/healthBots/Metadata/Read",
+        "Microsoft.HealthBot/healthBots/CopilotStudioSolution/*",
+        "Microsoft.HealthBot/healthBots/Feedback/Read",
+        "Microsoft.HealthBot/healthBots/Users/Read",
+        "Microsoft.HealthBot/healthBots/AuditTrails/Read",
+        "Microsoft.HealthBot/healthBots/AnalyticReport/Read",
+        "Microsoft.HealthBot/healthBots/ExposedSkill/Read",
+        "Microsoft.HealthBot/healthBots/RegisteredSkills/Read",
+        "Microsoft.HealthBot/healthBots/Configuration/*",
+        "Microsoft.HealthBot/healthBots/Localization/*",
+        "Microsoft.HealthBot/healthBots/AuthenticationProviders/*",
+        "Microsoft.HealthBot/healthBots/Channels/*",
+        "Microsoft.HealthBot/healthBots/DataConnections/*",
+        "Microsoft.HealthBot/healthBots/OpenAPIPlugins/*",
+        "Microsoft.HealthBot/healthBots/Scenarios/*",
+        "Microsoft.HealthBot/healthBots/LanguageModels/*",
+        "Microsoft.HealthBot/healthBots/Resources/*",
+        "Microsoft.HealthBot/healthBots/Admin/*"
       ],
-      "notDataActions": [
-        "Microsoft.HealthBot/healthBots/HealthSafeguards/*"
-      ]
+      "notDataActions": []
     }
   ],
   "roleName": "Healthcare Agent Admin",
@@ -2704,10 +2563,26 @@ Users with editor access can sign in, view and edit all the bot resources, scena
 > | **NotActions** |  |
 > | *none* |  |
 > | **DataActions** |  |
-> | [Microsoft.HealthBot](../permissions/ai-machine-learning.md#microsofthealthbot)/healthBots/* |  |
+> | [Microsoft.HealthBot](../permissions/ai-machine-learning.md#microsofthealthbot)/healthBots/ResourceData/Read | Get global data and properties about Healthcare Agent service |
+> | [Microsoft.HealthBot](../permissions/ai-machine-learning.md#microsofthealthbot)/healthBots/Metadata/Read | Get metadata and configurations related to the bot |
+> | [Microsoft.HealthBot](../permissions/ai-machine-learning.md#microsofthealthbot)/healthBots/CopilotStudioSolution/* |  |
+> | [Microsoft.HealthBot](../permissions/ai-machine-learning.md#microsofthealthbot)/healthBots/Feedback/Read | Participate and answer on surveys and feedbacks about Healthcare Agent service |
+> | [Microsoft.HealthBot](../permissions/ai-machine-learning.md#microsofthealthbot)/healthBots/Users/Read | Read portal users as configured in classic access control |
+> | [Microsoft.HealthBot](../permissions/ai-machine-learning.md#microsofthealthbot)/healthBots/AuditTrails/Read | Audit all activity in your bot |
+> | [Microsoft.HealthBot](../permissions/ai-machine-learning.md#microsofthealthbot)/healthBots/AnalyticReport/Read | Access for getting analytic report data |
+> | [Microsoft.HealthBot](../permissions/ai-machine-learning.md#microsofthealthbot)/healthBots/ExposedSkill/Read | View the agent's exposed skill enablement status and details |
+> | [Microsoft.HealthBot](../permissions/ai-machine-learning.md#microsofthealthbot)/healthBots/RegisteredSkills/Read | List registered skills and view manifest URLs and details |
+> | [Microsoft.HealthBot](../permissions/ai-machine-learning.md#microsofthealthbot)/healthBots/Configuration/* |  |
+> | [Microsoft.HealthBot](../permissions/ai-machine-learning.md#microsofthealthbot)/healthBots/Localization/* |  |
+> | [Microsoft.HealthBot](../permissions/ai-machine-learning.md#microsofthealthbot)/healthBots/AuthenticationProviders/* |  |
+> | [Microsoft.HealthBot](../permissions/ai-machine-learning.md#microsofthealthbot)/healthBots/Channels/* |  |
+> | [Microsoft.HealthBot](../permissions/ai-machine-learning.md#microsofthealthbot)/healthBots/DataConnections/* |  |
+> | [Microsoft.HealthBot](../permissions/ai-machine-learning.md#microsofthealthbot)/healthBots/OpenAPIPlugins/* |  |
+> | [Microsoft.HealthBot](../permissions/ai-machine-learning.md#microsofthealthbot)/healthBots/Scenarios/* |  |
+> | [Microsoft.HealthBot](../permissions/ai-machine-learning.md#microsofthealthbot)/healthBots/LanguageModels/* |  |
+> | [Microsoft.HealthBot](../permissions/ai-machine-learning.md#microsofthealthbot)/healthBots/Resources/* |  |
 > | **NotDataActions** |  |
-> | [Microsoft.HealthBot](../permissions/ai-machine-learning.md#microsofthealthbot)/healthBots/Admin/* |  |
-> | [Microsoft.HealthBot](../permissions/ai-machine-learning.md#microsofthealthbot)/healthBots/HealthSafeguards/* |  |
+> | *none* |  |
 
 ```json
 {
@@ -2722,12 +2597,26 @@ Users with editor access can sign in, view and edit all the bot resources, scena
       "actions": [],
       "notActions": [],
       "dataActions": [
-        "Microsoft.HealthBot/healthBots/*"
+        "Microsoft.HealthBot/healthBots/ResourceData/Read",
+        "Microsoft.HealthBot/healthBots/Metadata/Read",
+        "Microsoft.HealthBot/healthBots/CopilotStudioSolution/*",
+        "Microsoft.HealthBot/healthBots/Feedback/Read",
+        "Microsoft.HealthBot/healthBots/Users/Read",
+        "Microsoft.HealthBot/healthBots/AuditTrails/Read",
+        "Microsoft.HealthBot/healthBots/AnalyticReport/Read",
+        "Microsoft.HealthBot/healthBots/ExposedSkill/Read",
+        "Microsoft.HealthBot/healthBots/RegisteredSkills/Read",
+        "Microsoft.HealthBot/healthBots/Configuration/*",
+        "Microsoft.HealthBot/healthBots/Localization/*",
+        "Microsoft.HealthBot/healthBots/AuthenticationProviders/*",
+        "Microsoft.HealthBot/healthBots/Channels/*",
+        "Microsoft.HealthBot/healthBots/DataConnections/*",
+        "Microsoft.HealthBot/healthBots/OpenAPIPlugins/*",
+        "Microsoft.HealthBot/healthBots/Scenarios/*",
+        "Microsoft.HealthBot/healthBots/LanguageModels/*",
+        "Microsoft.HealthBot/healthBots/Resources/*"
       ],
-      "notDataActions": [
-        "Microsoft.HealthBot/healthBots/Admin/*",
-        "Microsoft.HealthBot/healthBots/HealthSafeguards/*"
-      ]
+      "notDataActions": []
     }
   ],
   "roleName": "Healthcare Agent Editor",
@@ -2749,11 +2638,25 @@ Users with reader access can sign in, have read-only access to the bot resources
 > | **NotActions** |  |
 > | *none* |  |
 > | **DataActions** |  |
-> | [Microsoft.HealthBot](../permissions/ai-machine-learning.md#microsofthealthbot)/healthBots/*/Read |  |
-> | [Microsoft.HealthBot](../permissions/ai-machine-learning.md#microsofthealthbot)/healthBots/Reader/Action | Sign in to the management portal, with read-only access to resources, scenarios and configuration settings except for the bot instance keys & secrets and the end-user inputs. |
+> | [Microsoft.HealthBot](../permissions/ai-machine-learning.md#microsofthealthbot)/healthBots/ResourceData/Read | Get global data and properties about Healthcare Agent service |
+> | [Microsoft.HealthBot](../permissions/ai-machine-learning.md#microsofthealthbot)/healthBots/Metadata/Read | Get metadata and configurations related to the bot |
+> | [Microsoft.HealthBot](../permissions/ai-machine-learning.md#microsofthealthbot)/healthBots/CopilotStudioSolution/RestoreBuiltinTemplate/Read | Apply copilot features when opening the management portal |
+> | [Microsoft.HealthBot](../permissions/ai-machine-learning.md#microsofthealthbot)/healthBots/Feedback/Read | Participate and answer on surveys and feedbacks about Healthcare Agent service |
+> | [Microsoft.HealthBot](../permissions/ai-machine-learning.md#microsofthealthbot)/healthBots/Users/Read | Read portal users as configured in classic access control |
+> | [Microsoft.HealthBot](../permissions/ai-machine-learning.md#microsofthealthbot)/healthBots/AuditTrails/Read | Audit all activity in your bot |
+> | [Microsoft.HealthBot](../permissions/ai-machine-learning.md#microsofthealthbot)/healthBots/AnalyticReport/Read | Access for getting analytic report data |
+> | [Microsoft.HealthBot](../permissions/ai-machine-learning.md#microsofthealthbot)/healthBots/ExposedSkill/Read | View the agent's exposed skill enablement status and details |
+> | [Microsoft.HealthBot](../permissions/ai-machine-learning.md#microsofthealthbot)/healthBots/RegisteredSkills/Read | List registered skills and view manifest URLs and details |
+> | [Microsoft.HealthBot](../permissions/ai-machine-learning.md#microsofthealthbot)/healthBots/Configuration/Read | View agent's configuration, including healthcare intelligence configurations and environment variables |
+> | [Microsoft.HealthBot](../permissions/ai-machine-learning.md#microsofthealthbot)/healthBots/Localization/Read | Access for getting language localization data |
+> | [Microsoft.HealthBot](../permissions/ai-machine-learning.md#microsofthealthbot)/healthBots/AuthenticationProviders/Read | List and view details of agent's authentication providers |
+> | [Microsoft.HealthBot](../permissions/ai-machine-learning.md#microsofthealthbot)/healthBots/DataConnections/Read | List and view details of reusable data connections |
+> | [Microsoft.HealthBot](../permissions/ai-machine-learning.md#microsofthealthbot)/healthBots/OpenAPIPlugins/Read | List and view OpenAPI plugins' details |
+> | [Microsoft.HealthBot](../permissions/ai-machine-learning.md#microsofthealthbot)/healthBots/Scenarios/*/Read |  |
+> | [Microsoft.HealthBot](../permissions/ai-machine-learning.md#microsofthealthbot)/healthBots/LanguageModels/Read | Access for getting language models data |
+> | [Microsoft.HealthBot](../permissions/ai-machine-learning.md#microsofthealthbot)/healthBots/Resources/Files/Read | Allows reading and listing of resource files in the Health Bot. |
 > | **NotDataActions** |  |
-> | [Microsoft.HealthBot](../permissions/ai-machine-learning.md#microsofthealthbot)/healthBots/Admin/* |  |
-> | [Microsoft.HealthBot](../permissions/ai-machine-learning.md#microsofthealthbot)/healthBots/HealthSafeguards/* |  |
+> | *none* |  |
 
 ```json
 {
@@ -2768,13 +2671,25 @@ Users with reader access can sign in, have read-only access to the bot resources
       "actions": [],
       "notActions": [],
       "dataActions": [
-        "Microsoft.HealthBot/healthBots/*/Read",
-        "Microsoft.HealthBot/healthBots/Reader/Action"
+        "Microsoft.HealthBot/healthBots/ResourceData/Read",
+        "Microsoft.HealthBot/healthBots/Metadata/Read",
+        "Microsoft.HealthBot/healthBots/CopilotStudioSolution/RestoreBuiltinTemplate/Read",
+        "Microsoft.HealthBot/healthBots/Feedback/Read",
+        "Microsoft.HealthBot/healthBots/Users/Read",
+        "Microsoft.HealthBot/healthBots/AuditTrails/Read",
+        "Microsoft.HealthBot/healthBots/AnalyticReport/Read",
+        "Microsoft.HealthBot/healthBots/ExposedSkill/Read",
+        "Microsoft.HealthBot/healthBots/RegisteredSkills/Read",
+        "Microsoft.HealthBot/healthBots/Configuration/Read",
+        "Microsoft.HealthBot/healthBots/Localization/Read",
+        "Microsoft.HealthBot/healthBots/AuthenticationProviders/Read",
+        "Microsoft.HealthBot/healthBots/DataConnections/Read",
+        "Microsoft.HealthBot/healthBots/OpenAPIPlugins/Read",
+        "Microsoft.HealthBot/healthBots/Scenarios/*/Read",
+        "Microsoft.HealthBot/healthBots/LanguageModels/Read",
+        "Microsoft.HealthBot/healthBots/Resources/Files/Read"
       ],
-      "notDataActions": [
-        "Microsoft.HealthBot/healthBots/Admin/*",
-        "Microsoft.HealthBot/healthBots/HealthSafeguards/*"
-      ]
+      "notDataActions": []
     }
   ],
   "roleName": "Healthcare Agent Reader",
