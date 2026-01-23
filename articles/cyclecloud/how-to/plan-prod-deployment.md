@@ -14,7 +14,7 @@ Before you deploy Azure CycleCloud in a production environment, you need to care
 
 * Choose the version of CycleCloud to deploy:
   * [Azure CycleCloud 8.8 - Current Release](../release-notes.md)
-  * [Azure CycleCloud Workspace for Slurm](../../release-notes/ccws/release-notes.md)
+  * [Azure CycleCloud Workspace for Slurm](../release-notes/ccws/release-notes.md)
 * [Prepare your Azure subscription](./configuration.md) by choosing the subscription, virtual network, subnet, and resource group for the CycleCloud server deployment
 * Choose the [resource group](/azure/azure-resource-manager/management/manage-resource-groups-portal) to host clusters or let CycleCloud create the resource group (default setting)
 * Create a storage account for [locker access](./storage-blobs.md)
