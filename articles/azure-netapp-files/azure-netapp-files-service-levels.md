@@ -143,4 +143,4 @@ Throughput is allocated per the following table:
 - [Create a capacity pool](azure-netapp-files-set-up-capacity-pool.md)
 - [Service Level Agreement (SLA) for Azure NetApp Files](https://azure.microsoft.com/support/legal/sla/netapp/)
 - [Dynamically change the service level of a volume](dynamic-change-volume-service-level.md) 
-- [Service-level objectives](../reliability/reliability-netapp-files.md#behavior-during-a-region-failure)
+- [Service-level objectives](/azure/reliability/reliability-netapp-files#behavior-during-a-region-failure)
