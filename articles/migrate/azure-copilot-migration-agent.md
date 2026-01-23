@@ -14,6 +14,8 @@ ms.date: 01/20/2026
 
 Azure Copilot Migration Agent is a planning‑focused Copilot experience that helps you plan and analyze migrations by reasoning over Azure Migrate data.
 
+The Migration Agent supports migration planning, analysis, and decision making, but not migration execution. You can interact with the Agent using naturallanguage prompts to explore inventory, migration readiness, strategies, ROI considerations, and landing zone requirements. 
+
 **Migration planning and analysis capabilities**: Azure Copilot Migration Agent provides comprehensive analysis and guidance across the following phases of your migration journey: 
 
 - [Migration strategy analysis](#migration-strategy-analysis) 
@@ -42,21 +44,7 @@ Azure Copilot Migration Agent interprets Azure Migrate assessment results by sum
 
 The Agent generates landing zone configuration by considering your inputs such as target regions, compliance needs, and connectivity preferences. These configurations are ready for  deployment workflows, though actual deployment execution occurs outside the agent.  
 
-## What is Azure Copilot Migration Agent?
-
-The Migration Agent supports migration planning, analysis, and decision‑making, but not migration execution. You can interact with the Agent using natural‑language prompts to explore inventory, migration readiness, strategies, ROI considerations, and landing zone requirements.
-
-Azure Copilot Migration Agent works across the following migration scenarios:
-
-- VMware workloads
-- Hyper‑V workloads and Physical servers
-- Greenfield and brownfield projects
-
-## Manage access to Agents 
-
-To manage access to Migration Agents (preview) in Azure Copilot, you must be an administrator to request or remove access at the tenant level. For more information, see [Manage access to Agents (preview)](/azure/copilot/manage-access#manage-access-to-agents-preview-in-azure-copilot) in Azure Copilot.
-
-## Understand Azure Copilot Migration Agent functionality
+## Azure Copilot Migration Agent functionality
 
 Azure Copilot Migration Agent (ACMA) provides a conversational experience in Azure Copilot that helps you plan and analyze migrations using data from your Azure Migrate project. It enables you to reason over discovery and assessment data to make informed migration planning decisions.
 
@@ -71,7 +59,12 @@ ACMA complements Azure Migrate by helping you interpret and synthesize migrati
 
 During the conversations, the Migration Agent uses data from your Azure Migrate project—such as discovered inventory metadata, business cases, and assessment reports—to tailor responses to your stated goals. Conversation history preserves context and provides more relevant guidance throughout your migration journey.
 
-## Supported migration scenarios
+## Manage access to Agents 
+
+To manage access to Migration Agents (preview) in Azure Copilot, you must be an administrator to request or remove access at the tenant level. For more information, see [Manage access to Agents (preview)](/azure/copilot/manage-access#manage-access-to-agents-preview-in-azure-copilot) in Azure Copilot.
+
+
+## Azure Migration Agent - Supported scenarios
 
 This section explains how Azure Copilot Migration Agent supports multiple migration scenarios to help you plan and analyze migrations using Azure Migrate data:
 
@@ -87,7 +80,7 @@ Azure Copilot Migration Agent currently supports the following scenarios:
 | Hyper‑V and Physical server migration planning  | Complements discovery performed through the Azure Migrate portal. Provides guidance for inventory analysis, migration strategy comparison, and Azure readiness assessment interpretation for Hyper‑V and Physical server environments.|   
 | Greenfield and brownfield projects| **Greenfield**: Supports greenfield Azure Migrate projects by guiding initial project setup and recommending next steps throughout the migration journey. </br> </br> **Brownfield projects**: Supports brownfield Azure Migrate projects by reasoning over existing discovered inventory and suggesting relevant next steps based on the current migration state.| 
 
-**Example scenarios**
+## Migration Agent example scenarios
  
 **Example 1: Plan VMware Lift‑and‑Shift Migrations with Azure Copilot Migration Agent**: You can use Azure Copilot Migration Agent to plan a lift-and-shift migration of VMware workloads to Azure. You discover servers using RVTools or the Azure Migrate appliance, analyze inventory, and create and compare business cases to evaluate migration options.
 
@@ -124,7 +117,7 @@ Azure Copilot Migration Agent currently supports the following scenarios:
 - Generate the platform landing zone with default values.
 - Thanks. How can I execute the actual migration now?
 
-## How to interact with Azure Copilot Migration Agent
+## Interact with Azure Copilot Migration Agent
 
 Azure Copilot Migration Agent enables conversational interaction with Azure Migrate planning and assessment data. You can use natural language prompts to request summaries, comparisons, and explanations of migration artifacts throughout the planning and analysis phases.  
 
