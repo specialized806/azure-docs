@@ -142,7 +142,7 @@ After inventory data is discovered or imported, you can ask the Agent to analyze
 
 ### Business case and ROI analysis 
 
-The Agent supports the creation, summarization, and comparison of Azure Migrate business cases. You can ask it to explain cost estimates, highlight savings drivers, and compare return‑on‑investment across migration strategies.  
+The Agent supports create, summarize, and compare Azure Migrate business cases. You can ask it to explain cost estimates, highlight savings drivers, and compare return‑on‑investment across migration strategies.  
 
 **Sample prompts**:
 - Provide the ROI summary for lift‑and‑shift. 
