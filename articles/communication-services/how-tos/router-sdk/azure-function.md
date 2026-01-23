@@ -71,6 +71,23 @@ await administrationClient.CreateClassificationPolicyAsync(
 
 When a new job is submitted or updated, this function will be called to determine the priority of the job.
 
+## Minimum requirements for Azure Functions used with Job Router
+
+When integrating an Azure Function as a custom rule engine for Azure Communication Services Job Router, ensure that your Function App meets the following required minimum versions to avoid serialization issues and runtime errors. These requirements are based on recent customer cases and internal validation.
+
+| Requirement | Minimum Version | Recommended Version |
+|------------|-----------------|----------------------|
+| **Target Framework** | `net8.0` | `net8.0` |
+| **Azure Functions Runtime** | `v4` | `v4` |
+| **Microsoft.NET.Sdk.Functions** | `4.1.0` | `4.4.0` |
+| **Serialization Library** | `System.Text.Json 8.0.6` | `System.Text.Json 8.0.6` |
+
+**Important notes**
+
+- `Newtonsoft.Json` is not supported for Job Router rule execution. Continuing to reference it may lead to payload deserialization failures.
+- Ensure that any models used in your function and rule engine payloads are `System.Text.Json‑compatible`.
+- These requirements apply to all HTTP-triggered Azure Functions used as rule engines, including classification policies, prioritization functions, and worker selection logic, as shown in the example on this page.
+
 ## Errors
 
 If the Azure Function fails or returns a non-200 code, the job will move to the `ClassificationFailed` state and you'll receive a `JobClassificationFailedEvent` from Event Grid containing details of the error.
