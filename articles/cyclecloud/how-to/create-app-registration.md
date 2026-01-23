@@ -11,7 +11,7 @@ ms.author: padmalathas
 [Microsoft Entra ID](/entra/fundamentals) is a cloud-based identity and access management service that enables your employees to access external resources. Azure CycleCloud's native integration with Microsoft Entra ID makes it easy to manage, authorize, and authenticate users if needed by your organization. Check with your organization to ensure that an application registration doesn't already exist for use.
 
 > [!NOTE]
-> All users granted roles and access in a given Microsoft Entra ID application registration have those permissions across all Azure CycleCloud installations that use that application registration. Create separate application registrations for each CycleCloud installation to keep users separate. 
+> All users granted roles and access in a given Microsoft Entra ID application registration have those permissions across all Azure CycleCloud installations that use that application registration. You can segregate user access by creating separate application registrations for each CycleCloud installation.
 
 ## Create the Microsoft Entra ID application registration
 
@@ -36,8 +36,8 @@ wget "https://raw.githubusercontent.com/Azure/cyclecloud-slurm-workspace/refs/ta
 
 Replace the values for `LOCATION`, `ENTRA_MI_RESOURCE_GROUP`, `MI_NAME`, `APP_NAME`, and `SERVICE_MANAGEMENT_REFERENCE` in the downloaded script, including the characters `<` and `>`, by using your preferred text editor.
 
-- `LOCATION` is the Azure region where you create the managed identity resource and its resource group.
-- `ENTRA_MI_RESOURCE_GROUP` is the name of the resource group that contains the managed identity resource. 
+- `LOCATION` is the Azure region where you will deploy the managed identity resource and its resource group.
+- `ENTRA_MI_RESOURCE_GROUP` is the name of the resource group that will contain the managed identity resource. 
 - `MI_NAME` is the desired name of the managed identity resource. It can't contain spaces.
 - `APP_NAME` is the designed name of the Microsoft Entra ID application registration. 
 - `SERVICE_MANAGEMENT_REFERENCE` is an optional value that you can use to help identify the application registration in your organization's list of Entra ID applications. You can leave it blank.
@@ -53,9 +53,9 @@ Make note of the Tenant, Client, and Managed Identity Resource IDs and proceed t
 ### Manual
 
 > [!NOTE]
-> Any service principal intended for use with Azure CycleCloud created by using the Azure CLI doesn't include the associated enterprise application required for use with Microsoft Entra ID.
+> Any service principal intended for use with Azure CycleCloud created by using the Azure CLI won't include the associated enterprise application required for use with Microsoft Entra ID.
 
-1. In the Azure portal, select the **Microsoft Entra ID** icon in the navigation pane. Or, type "Microsoft Entra ID" in the search bar and select "Microsoft Entra ID" from the **Services** category in the results.
+1. In the Azure portal, select the **Microsoft Entra ID** icon in the navigation pane or type "Microsoft Entra ID" in the search bar and select "Microsoft Entra ID" from the Services category in the results.
 1. Go to the **App registrations** tab under the **Manage** menu.  
 
 :::image type="content" source="../images/entra-setup/entra1.png" alt-text="Screenshot of the App registrations tab location in Azure Portal.":::
@@ -64,7 +64,7 @@ Make note of the Tenant, Client, and Managed Identity Resource IDs and proceed t
 
 :::image type="content" source="../images/entra-setup/entra17.png" alt-text="Screenshot of the App registration creation view.":::
 
-1. Make note of the **Application (client) ID** and **Directory (tenant) ID** fields on the **Overview** page of the newly created application. You need these values to configure Entra authentication in CycleCloud in later steps.
+1. Make note of the **Application (client) ID** and **Directory (tenant) ID** fields on the **Overview** page of the newly created application. You'll need these values to configure Entra authentication in CycleCloud in later steps.
 
 :::image type="content" source="../images/entra-setup/entra2.png" alt-text="Screenshot of the App Registration overview window.":::
 
@@ -85,12 +85,12 @@ Make note of the Tenant, Client, and Managed Identity Resource IDs and proceed t
 :::image type="content" source="../images/entra-setup/entra7.png" alt-text="Screenshot of the Request API permissions menu.":::
 
 1. Navigate to the **Authentication** page and enable **Allow public client flows** to use the CycleCloud CLI with Microsoft Entra ID. 
-1.	Next, add the user roles for CycleCloud under **App roles** by selecting **Create app role**. You can set the **Display name** field to any desired string, but the **Value** field must match the built-in CycleCloud role for authentication to work as intended. 
+1.Next, add the user roles for CycleCloud under **App roles** by selecting **Create app role**. You can set the **Display name** field to any desired string, but the **Value** field must match the built-in CycleCloud role for authentication to work as intended. 
 
 :::image type="content" source="../images/entra-setup/entra9.png" alt-text="Screenshot of the App roles configuration window.":::
 
 > [!NOTE]
-> Microsoft Entra ID doesn't allow roles to have spaces in them, and some of the in-built CycleCloud roles include spaces (for example, "Cluster Administrator"). Replace any spaces in the role names defined in Microsoft Entra ID with a dot (for example, "Data Admin" becomes "Data.Admin"). Rename any roles defined in CycleCloud to not feature dots. Role definitions in Microsoft Entra ID are case insensitive.
+> Microsoft Entra ID doesn't allow roles to have spaces in them and some of the in-built CycleCloud roles include spaces (for example, "Cluster Administrator"). Replace any spaces in the role names defined in Microsoft Entra ID with a dot (for example, "Data Admin" becomes "Data.Admin"). Rename any roles defined in CycleCloud to not feature dots. Role definitions in Microsoft Entra ID are case insensitive.
 
 Add the following roles. The first two roles are required only if you're planning to use [Open OnDemand](#open-ondemand).
     
@@ -148,7 +148,7 @@ You don't need to enable Open OnDemand when initially deploying Azure CycleCloud
 
 Complete the following steps to use Open OnDemand with your manually-created application registration. 
 > [!NOTE]
-> If you use the [utility script](./create-app-registration.md#automatic) to create your Microsoft Entra ID application registration, you don't need to create the following roles. Instead, assign the roles to your users. 
+> The following roles do not need to be created if you use the [utility script](./create-app-registration.md#automatic) to create your Microsoft Entra ID application registration. Instead, assign the roles to your users. 
 As in Step 9 of the *Manual* subsection of *Creating the Microsoft Entra ID application registration*, create roles named `Global.Node.Admin` with value `Global.Node.Admin` and `Global.Node.User` with value `Global.Node.User`. Assign one of these two roles to users who want to use Open OnDemand.
 > [!NOTE]
 > You don't need to manually set the following redirect URI if you use the helper script provided [here](./ccws/plan-your-deployment.md#post-deployment-utility).
