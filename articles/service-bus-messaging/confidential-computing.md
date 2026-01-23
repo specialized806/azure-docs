@@ -49,7 +49,7 @@ The following limitations apply to confidential computing for Azure Service Bus:
 
 1. For **Confidential compute**, select **Enabled**.
 
-   :::image type="content" source="./media/service-bus-confidential-computing/enable-confidential-computing-portal.png" alt-text="Screenshot showing the Create namespace page with the Confidential compute toggle enabled.":::
+    :::image type="content" source="./media/confidential-computing/enable-confidential-computing-portal.png" alt-text="Screenshot showing the Create namespace page with the Confidential compute toggle enabled.":::
 
 1. Fill in the remaining required fields for your namespace configuration.
 
