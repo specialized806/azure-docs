@@ -57,6 +57,6 @@ Feedback (thumbs up/down) is collected where permitted by your organization. Fee
 
 For EU customers, both processing and storage of migration‑related data occur within EU regions. 
 
-For all other geographies, Azure Copilot Migration Agent may process and store migration‑related data in any Azure region, depending on service architecture and optimization. This applies only to Azure Migrate related conversational data used by Agent.  
+For all other geographies, Azure Copilot Migration Agent may process and store migration‑related data in any Azure region, depending on service architecture and optimization. This applies only to Azure Migrate related conversational data used by the Agent.  
 
-Azure Migrate project data such as discovery metadata, assessment metadata, and project configuration is always stored in a region within the geography you selected when creating the project. Azure Migrate doesn't move or store customer data outside of the region allocated, guaranteeing data residency and resiliency in the same geography. [Learn more](resources-faq.md#what-does-azure-migrate-do-to-ensure-data-residency).
+Azure Migrate project data such as discovery metadata, assessment metadata, and project configuration is always stored in a region within the geography that you selected when creating the project. Azure Migrate doesn't move or store customer data outside of the region allocated, guaranteeing data residency and resiliency in the same geography. [Learn more](resources-faq.md#what-does-azure-migrate-do-to-ensure-data-residency).
