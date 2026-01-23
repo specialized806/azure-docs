@@ -299,7 +299,7 @@ To run your logic app manually, on the designer toolbar, choose **Run**. After y
 
    The outputs include the record you updated in your specified table.
 
-   :::image type="content" source="./media/connectors-create-api-db2/db2-connector-update-row-outputs.png" alt-text="Screenshto that shows the Outputs area with the record you updated.":::
+   :::image type="content" source="./media/connectors-create-api-db2/db2-connector-update-row-outputs.png" alt-text="Screenshot that shows the Outputs area with the record you updated.":::
 
 ## Delete row
 
