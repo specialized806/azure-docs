@@ -7,6 +7,7 @@ ms.reviewer: estfan, azla
 ms.topic: how-to
 ai.usage: ai-assisted
 ms.date: 10/21/2024
+ms.custom: sfi-image-nochange
 ---
 
 # Call Azure Functions from workflows in Azure Logic Apps
@@ -32,7 +33,7 @@ This how-to guide shows how to call an existing Azure function from your Consump
 
 ## Prerequisites
 
-- Azure account and subscription. If you don't have a subscription, [sign up for a free Azure account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+- Azure account and subscription. If you don't have a subscription, [sign up for a free Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 - An [Azure function app resource](../azure-functions/functions-get-started.md), which contains one or more Azure functions.
 
@@ -326,7 +327,7 @@ Before you can set up your function app to use the managed identity and Microsof
 
 #### Find the tenant ID for your Microsoft Entra tenant
 
-Either run the PowerShell command named [**Get-AzureAccount**](/powershell/module/servicemanagement/azure/get-azureaccount), or in the Azure portal, follow these steps:
+Either run the PowerShell command named [**Get-AzContext**](/powershell/module/az.accounts/get-azcontext), or in the Azure portal, follow these steps:
 
 1. In the [Azure portal](https://portal.azure.com), open your Microsoft Entra tenant.
 

@@ -6,9 +6,12 @@ ms.suite: integration
 ms.reviewer: estfan, azla
 ms.topic: tutorial
 ms.collection: ce-skilling-ai-copilot
-ms.custom: "mvc, devx-track-csharp"
 ms.update-cycle: 180-days
-ms.date: 02/18/2025
+ms.date: 09/11/2025
+ms.custom:
+  - mvc
+  - devx-track-csharp
+  - sfi-image-nochange
 ---
 
 # Tutorial: Create workflows that process emails using Azure Logic Apps, Azure Functions, and Azure Storage
@@ -36,7 +39,7 @@ You can create a similar workflow with a Standard logic app resource where some 
 
 ## Prerequisites
 
-* An Azure account and subscription. If you don't have a subscription, [sign up for a free Azure account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+* An Azure account and subscription. If you don't have a subscription, [sign up for a free Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 * An email account from an email provider supported by Azure Logic Apps, such as Office 365 Outlook, Outlook.com, or Gmail. For other supported email providers, see [Connectors for Azure Logic Apps](/connectors/connector-reference/connector-reference-logicapps-connectors).
 
@@ -268,8 +271,8 @@ After you confirm that your function works, create your logic app resource and w
    > [!NOTE]
    >
    > Availability zones are automatically enabled for new and existing Consumption logic app workflows in 
-   > [Azure regions that support availability zones](../reliability/availability-zones-region-support.md). 
-   > For more information, see [Reliability in Azure Functions](../reliability/reliability-functions.md#availability-zone-support) and 
+   > [Azure regions that support availability zones](/azure/reliability/availability-zones-region-support). 
+   > For more information, see [Reliability in Azure Functions](/azure/reliability/reliability-functions#availability-zone-support) and 
    > [Protect logic apps from region failures with zone redundancy and availability zones](set-up-zone-redundancy-availability-zones.md).
 
 1. When you're ready, select **Review + create**. After Azure validates the information about your logic app resource, select **Create**.

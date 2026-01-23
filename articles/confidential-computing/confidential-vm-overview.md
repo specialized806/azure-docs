@@ -1,7 +1,7 @@
 ---
 title: About Azure confidential VMs
 description: Learn about Azure confidential virtual machines. These series are for tenants with high security and confidentiality requirements.
-author: ju-shim
+author: cynthn
 ms.author: mmcrey
 ms.reviewer: mattmcinnes
 ms.service: azure-virtual-machines
@@ -41,8 +41,14 @@ If the compute platform is missing critical settings for your VM's isolation, [A
 
 Confidential OS disk encryption is optional, as this process can lengthen the initial VM creation time. You can choose between:
 
-- A confidential VM with Confidential OS disk encryption before VM deployment that uses platform-managed keys (PMK) or a customer-managed key (CMK).
-- A confidential VM without Confidential OS disk encryption before VM deployment.
+- A confidential VM with Confidential OS disk encryption that uses platform-managed keys (PMK) or a customer-managed key (CMK).
+
+- A confidential VM without Confidential OS disk encryption.
+
+
+
+> [!NOTE]
+> Confidential OS disk encryption setting can't be changed after VM deployment
 
 For further integrity and protection, confidential VMs offer [Secure Boot](/windows-hardware/design/device-experiences/oem-secure-boot) by default when confidential OS disk encryption is selected.
 
@@ -129,7 +135,8 @@ Confidential VMs *don't support*:
 - [Live migration](/windows-server/virtualization/hyper-v/manage/live-migration-overview)
 - [Screenshots under boot diagnostics](/azure/virtual-machines/boot-diagnostics#boot-diagnostics-view)
 - [Dynamic memory](/previous-versions/windows/it-pro/windows-server-2012-R2-and-2012/hh831766(v=ws.11))
-- Confidential disk encryption is only supported for disks that are smaller than 128 GB. For larger disks, it is recommended to opt for premium SSDs, particularly for disks exceeding 32 GB. 
+- Confidential disk encryption is only supported for disks that are smaller than 128 GB. For larger disks, it is recommended to opt for premium SSDs, particularly for disks exceeding 32 GB.
+- Auto keyrotation is not supported, only [offline key rotation](/azure/confidential-computing/key-rotation-offline#change-customer-managed-key) is supported. 
 
 ## Next steps
 

@@ -7,6 +7,7 @@ ms.service: azure-netapp-files
 ms.topic: how-to
 ms.date: 05/12/2025
 ms.author: anfdocs
+ms.custom: sfi-image-nochange
 # Customer intent: "As a cloud administrator, I want to set up volume replication for Azure NetApp Files, so that I can ensure data protection and resiliency across regions or zones in my cloud infrastructure."
 ---
 # Create volume replication for Azure NetApp Files
@@ -24,7 +25,7 @@ Before you begin, review the [requirements and considerations for cross-region a
 
 ## Register for cross-subscription replication 
 
-Cross-subscription replication is supported in all regions that support [availability zones](../reliability/regions-list.md) and is subject to the regional pairings for [cross-region replication](replication.md#supported-region-pairs).
+Cross-subscription replication is supported in all regions that support [availability zones](/azure/reliability/regions-list) and is subject to the regional pairings for [cross-region replication](replication.md#supported-region-pairs).
 
 Before using cross-subscription replication, you must register for the feature. Feature registration can take up to 60 minutes to complete.
 

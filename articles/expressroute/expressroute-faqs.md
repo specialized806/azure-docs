@@ -142,6 +142,10 @@ Dynamics 365 and Common Data Service (CDS) environments are hosted on Azure and 
 
 We don't set a limit on the amount of data transfer. Refer to [pricing details](https://azure.microsoft.com/pricing/details/expressroute/) for information on bandwidth rates.
 
+### Why can't I see connection details on the circuit page of the Azure portal?
+
+When a circuit and its associated connections reside in different subscriptions, the resources from other subscriptions aren’t visible by default. To view the connection details, you’ll need to manually refresh the circuit page. This triggers an API call that fetches and displays the connection information on the circuit page.
+
 ### What connection speeds are supported for ExpressRoute?
 
 Supported bandwidth offers:
@@ -533,7 +537,7 @@ You should experience minimal to no disruption during maintenance on your Expres
 
 ### Does ExpressRoute Traffic Collector support availability zones?
 
-ExpressRoute Traffic Collector deployment by default has availability zones enabled in the regions where it is available. For information about region availability, see [Availability zones supported regions](../reliability/availability-zones-region-support.md). 
+ExpressRoute Traffic Collector deployment by default has availability zones enabled in the regions where it is available. For information about region availability, see [Availability zones supported regions](/azure/reliability/availability-zones-region-support). 
 
 ### How should I incorporate ExpressRoute Traffic Collector into my disaster recovery plan?
 

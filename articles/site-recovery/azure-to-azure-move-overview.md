@@ -1,11 +1,11 @@
 ---
 title: Moving Azure VMs to another region with Azure Site Recovery
 description: Using Azure Site Recovery to move Azure VMs from one Azure region to another.
-author: jyothisuri
+author: Jeronika-MS
 ms.service: azure-site-recovery
 ms.topic: tutorial
 ms.date: 02/19/2024
-ms.author: jsuri
+ms.author: v-gajeronika
 ms.custom: MVC, engagement-fy23
 # Customer intent: "As a cloud administrator, I want to move Azure VMs to a different region using Azure Site Recovery, so that I can improve application performance and meet availability requirements through reduced latency and enhanced service level agreements."
 ---
@@ -63,7 +63,7 @@ This section describes the most common deployment architectures for a multi-tier
 
      ![VM deployment across availability sets](media/move-vm-overview/avset.png)
 
-* **VMs in each tier deployed across Availability Zones**: Each VM in a tier is configured across [Availability Zones](../reliability/availability-zones-overview.md). An Availability Zone in an Azure region is a combination of a fault domain and an update domain. For example, if you create three or more VMs across three zones in an Azure region, your VMs are effectively distributed across three fault domains and three update domains. The Azure platform recognizes this distribution across update domains to make sure that VMs in different zones are not updated at the same time.
+* **VMs in each tier deployed across Availability Zones**: Each VM in a tier is configured across [Availability Zones](/azure/reliability/availability-zones-overview). An Availability Zone in an Azure region is a combination of a fault domain and an update domain. For example, if you create three or more VMs across three zones in an Azure region, your VMs are effectively distributed across three fault domains and three update domains. The Azure platform recognizes this distribution across update domains to make sure that VMs in different zones are not updated at the same time.
 
      ![Availability Zone deployment](media/move-vm-overview/zone.png)
 

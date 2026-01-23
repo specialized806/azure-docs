@@ -24,7 +24,7 @@ In this article, you use the Azure CLI to:
 - Grant clients access to publish and subscribe to topic spaces.
 - Publish and receive MQTT messages.
 
-If you don't have an [Azure subscription](/azure/guides/developer/azure-developer-guide#understanding-accounts-subscriptions-and-billing), create an [Azure free account](https://azure.microsoft.com/free/?ref=microsoft.com&utm_source=microsoft.com&utm_medium=docs&utm_campaign=visualstudio) before you begin.
+If you don't have an [Azure subscription](/azure/guides/developer/azure-developer-guide#understanding-accounts-subscriptions-and-billing), create an [Azure free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 
 ## Prerequisites
 
@@ -66,10 +66,16 @@ After a successful installation by using the step CLI, open a Command Prompt win
 
 ## Create a namespace
 
+Create a resource group.
+
+```azurecli-interactive
+az group create --name {Resource Group} --location {Location}
+```
+
 Use this command to create a namespace. Update the command with your resource group and a namespace name.
 
 ```azurecli-interactive
-az eventgrid namespace create --resource-group {Resource Group} --name {Namespace Name} --topic-spaces-configuration "{state:Enabled}"
+az eventgrid namespace create --location {Location} --resource-group {Resource Group} --name {Namespace Name} --topic-spaces-configuration "{state:Enabled}"
 ```
 
 To keep this quickstart simple, create a namespace with minimal properties. For more information about network, security, and settings on other tabs, see [Create and manage namespaces](create-view-manage-namespaces.md).
