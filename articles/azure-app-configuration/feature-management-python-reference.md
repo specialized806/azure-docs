@@ -425,7 +425,7 @@ This strategy for rolling out a feature is built into the library through the in
 
 ### Targeting a user
 
-Either a user can be specified directly in the `is_enabled` call or a `TargetingContext` can be used to specify the user and optional group. The `TargetingContext` can either be passed in when calling `is_enabled` or by providing a callback to a `TargetingSpanProcessor`.
+A user can either be specified directly in the `is_enabled` call, or a `TargetingContext` can be used to specify the user and optional group. The `TargetingContext` can either be passed in when calling `is_enabled` or by providing a callback to a `TargetingSpanProcessor`.
 
 
 ```python
