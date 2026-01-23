@@ -70,6 +70,8 @@ This section shows you how to use the Azure portal to create IP firewall rules f
 
 [!INCLUDE [service-bus-trusted-services](./includes/service-bus-trusted-services.md)]
 
+<a id="use-resource-manager-template"></a>
+
 ## Use a template
 This section has sample templates that add a virtual network and a firewall rule to an existing Service Bus namespace.
 

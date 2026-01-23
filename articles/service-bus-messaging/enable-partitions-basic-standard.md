@@ -181,9 +181,6 @@ resource serviceBusNamespace 'Microsoft.ServiceBus/namespaces@2024-01-01' = {
   }
 }
 ```
-  }
-}
-```
 
 # [ARM template](#tab/arm)
 

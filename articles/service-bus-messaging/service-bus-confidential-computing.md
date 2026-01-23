@@ -27,10 +27,10 @@ Confidential computing for Azure Service Bus provides the following advantages:
 
 Confidential computing for Azure Service Bus is available in select regions.
 
-| Region | Availability |
-|--------|--------------|
-| Korea Central | Available |
-| UAE North | Available |
+| Region |
+|--------|
+| Korea Central |
+| UAE North |
 
 ## Limitations
 
