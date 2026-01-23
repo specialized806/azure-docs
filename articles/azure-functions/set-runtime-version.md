@@ -12,18 +12,17 @@ zone_pivot_groups: app-service-platform-windows-linux
 
 # How to target Azure Functions runtime versions
 
-A function app runs on a specific version of the Azure Functions runtime. By default, function apps are created in the latest 4.x version of the Functions runtime. Your function apps are supported only when they run on a [supported major version](functions-versions.md). This article explains how to configure a function app in Azure to target, or _pin_ to, a specific version when required.
+A function app runs on a specific version of the Azure Functions runtime. By default, function apps are created in the latest 4.x version of the Functions runtime. Your function apps are supported only when they run on a [supported major version](functions-versions.md). This article explains how to configure a function app in Azure to target, or _pin_ to, a specific version of the Functions runtime, when required.
 
-::: zone pivot="platform-windows"
-The way that you target a specific version depends on whether you're running Windows or Linux. This version of the article supports Windows. Choose your operating system at the top of the article.
-::: zone-end
-::: zone pivot="platform-linux"
-The way that you target a specific version depends on whether you're running Windows or Linux. This version of the article supports Linux. Choose your operating system at the top of the article.
-::: zone-end  
->[!IMPORTANT]
->When possible, always run your functions on the latest supported version of the Azure Functions runtime. You should only pin your app to a specific version if you're instructed to do so due to an issue with the latest version. Always move up to the latest runtime version as soon as your functions can run correctly.
+## Considerations
 
-During local development, your installed version of Azure Functions Core Tools must match the major runtime version used by the function app in Azure. For more information, see [Core Tools versions](functions-run-local.md#v2).
+Keep these considerations in mind when attempting to target a specific runtime version:
+
++ The [Flex Consumption plan](./flex-consumption-plan.md) only runs on version 4.x of the runtime. Because the Flex Consumption plan doesn't support the `FUNCTIONS_EXTENSION_VERSION` app setting, your app can't target a specific runtime version when running in this plan.
++ The way that you target a specific version depends on whether you're running Windows or Linux. 
++ This article is specific to either Windows or Linux. Choose your operating system at the top of the article.
++ When possible, always run your app on the latest supported runtime version. You should only pin your app to a specific version if you're instructed to do so due to an issue with the latest version. Always move up to the latest runtime version as soon as your functions can run correctly.
++ During local development, your installed version of Azure Functions Core Tools must match the major runtime version used by the function app in Azure. For more information, see [Core Tools versions](functions-run-local.md#v2).
 
 ## Update your runtime version
 
