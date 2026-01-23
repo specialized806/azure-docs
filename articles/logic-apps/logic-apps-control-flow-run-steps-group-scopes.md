@@ -40,7 +40,7 @@ First, create this sample logic app so that you can add a scope later:
 :::image type="content" source="./media/logic-apps-control-flow-run-steps-group-scopes/finished-sample-app.png" alt-text="Screenshot shows a workflow with a conditional.":::
 
 - A **Schedule - Recurrence** trigger that checks the Bing Maps service at an interval that you specify
-- A **Bing Maps - Get route** action that checks the travel time between two locations 
+- A **Bing Maps - Get route** action that checks the travel time between two locations
 - A condition action that checks whether the travel time exceeds your specified travel time
 - An action that sends you email that current travel time exceeds your specified time
 
@@ -207,7 +207,7 @@ Next, add a scope so that you can group specific actions and evaluate their stat
 
 1. In the **True** and **False** branches, add the actions that you want to perform based on each scope status, for example, send an email or message.
 
-   :::image type="content" source="./media/logic-apps-control-flow-run-steps-group-scopes/handle-true-false-branches.png" alt-text="Add actions to take based on scope status":::
+   :::image type="content" source="./media/logic-apps-control-flow-run-steps-group-scopes/handle-true-false-branches.png" alt-text="Screenshot shows adding actions to take based on scope status.":::
 
 1. Save your logic app.
 
