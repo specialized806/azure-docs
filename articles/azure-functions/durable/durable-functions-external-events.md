@@ -4,7 +4,7 @@ description: Learn how to handle external events in the Durable Functions extens
 ms.topic: conceptual
 ms.date: 01/23/2026
 ms.author: azfuncdf
-ms.devlang: csharp, javascript, powershell, python, java
+# ms.devlang: csharp, javascript, powershell, python, java
 ---
 
 # Handling external events in Durable Functions (Azure Functions)

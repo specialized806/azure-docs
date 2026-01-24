@@ -4,7 +4,7 @@ description: Learn how to implement HTTP APIs in the Durable Functions extension
 author: cgillum
 ms.topic: reference
 ms.service: azure-functions
-ms.subservice: durable-functions
+ms.subservice: durable
 ms.date: 01/23/2026
 ms.author: azfuncdf
 ---
