@@ -7,7 +7,7 @@ author: kengaderdus
 manager: CelesteDG
 ms.service: azure-active-directory
 ms.topic: how-to
-ms.date: 1/21/2025
+ms.date: 1/23/2025
 ms.author: kengaderdus
 ms.subservice: b2c
 ms.custom: sfi-image-nochange
@@ -147,7 +147,7 @@ To help prevent fraudulent sign-ups, remove any country/region codes that do not
 > [!IMPORTANT]
 >Add the code in step 2 to the _relying party policy_ to enforce country/region code restrictions on the server side. You must not define these elements only in parent policies; put them in the relying party policy.
 
-1. In the `BuildingBlocks` section of this policy file, add the following code. Make sure to include only the country/region codes relevant to your organization:
+2. In the `BuildingBlocks` section of this policy file, add the following code. Make sure to include only the country/region codes relevant to your organization:
 
    ```xml
     <BuildingBlocks>
