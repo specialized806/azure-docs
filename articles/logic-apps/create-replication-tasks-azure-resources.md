@@ -16,27 +16,27 @@ ms.custom: sfi-image-nochange
 >
 > This capability is in preview and is subject to the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
-Maximum availability and reliability are top operational priorities for Azure services. There are still ways for communication to stop, such as networking and name resolution problems, errors, or temporary unresponsiveness. Such conditions aren't so serious that you want to abandon the regional deployment, as you might do in a disaster recovery situation. However, availability events that last a few minutes or even seconds can affect your business scenario.
+Azure services keep maximum availability and reliability as top operational priorities. However, random events can still disrupt or stop communication. For example, networking and name resolution problems, errors, or temporary unresponsiveness, can happen. These conditions aren't serious enough for you to abandon regional deployment, which you might in a disaster recovery situation. Yet, availability interruptions that last a few minutes or even seconds can still affect your business.
 
-To reduce the effect that unpredictable events can have on your Azure resources in an Azure region, you can replicate the content in these resources to another region. In Azure, you can create a *replication task* that moves the data, events, or messages from a source in one region to a target in another region. If the source goes offline, you can have the target available to take over.
+To reduce the impact on your Azure resources from such events, you can replicate the content in your resources from one Azure region to another region by creating *replication tasks*. A replication task moves data, events, or messages, from a source resource in one region to a target resource in another region. If the source goes offline, the target can take over.
 
-> [!NOTE]
->
-> You can also use replication tasks to move content between entities in the same region. If the entire region becomes unavailable or experiences disruption, both source and target are affected.
+You can also use replication tasks also to move content between resources in the same region. However, if the entire region becomes unavailable or experiences disruption, both source and target resources are affected.
 
-This article provides an overview about replication tasks powered by Azure Logic Apps. It shows you how to create an example replication task for Azure Service Bus queues. If you're new to logic apps and workflows, see [What is Azure Logic Apps](logic-apps-overview.md) and [Differences between Standard versus Consumption logic apps](single-tenant-overview-compare.md).
+This guide includes an overview about replication tasks that are powered by Azure Logic Apps. The guide also shows how to create a replication task for Azure Service Bus queues as an example.
 
 <a name="replication-task"></a>
 
 ## What is a replication task?
 
-A replication task receives data, events, or messages from a source. It moves that content to a target and then deletes that content from the source, except for when the source is an Event Hubs entity. Replication tasks are stateless. They don't share states or other side effects across parallel or sequential executions of a task.
+A replication task receives content, such as data, events, or messages, from a source resource, such as a Service Bus queue. The task then moves this content to a target resource, and then deletes the content from source, except when the source is an Azure Event Hubs entity. Replication tasks usually move content without any changes. These tasks are also stateless, so they don't share states or other side effects across parallel or sequential executions of a task. 
 
-The replication task usually moves the content unchanged. Replication tasks powered by Azure Logic Apps also add *replication properties*. If the source and target protocols differ, these tasks perform mappings between metadata structures. 
+When you use the available templates to create replication tasks, each replication task is powered by single-tenant [Azure Logic Apps](logic-apps-overview.md). Behind the scenes, each task is driven by a [stateless workflow](single-tenant-overview-compare.md#stateful-stateless) in a Standard logic app resource. This resource might include multiple workflows for replication tasks.
 
-When you use the available replication task templates, each replication task that you create has an underlying [stateless workflow](single-tenant-overview-compare.md#stateful-stateless) in a Standard Logic App resource. That resource can include multiple workflows for replication tasks. This resource is hosted in single-tenant Azure Logic Apps. This execution environment is scalable and reliable for configuring and running serverless applications, including replication and federation tasks.
+> [!NOTE]
+>
+> Replication tasks powered by Azure Logic Apps include *replication properties*. If the source and target protocols differ, the tasks perform mappings between source and target metadata structures.
 
-The single-tenant Azure Logic Apps runtime also uses the [Azure Functions extensibility model](../azure-functions/functions-bindings-register.md) and is hosted as an extension on the Azure Functions runtime. This design provides portability, flexibility, and more performance for logic app workflows. It also has other capabilities and benefits inherited from the Azure Functions platform and Azure App Service ecosystem.
+The Azure Logic Apps platform is scalable and reliable for configuring and running serverless applications, including replication and federation tasks. The runtime for single-tenant Azure Logic Apps uses the [Azure Functions extensibility model](../azure-functions/functions-bindings-register.md) and is hosted as an extension on the Azure Functions runtime. This design provides portability, flexibility, and more performance for logic app workflows. Single-tenant Azure Logic Apps also provides other capabilities and benefits inherited from the Azure Functions and Azure App Service ecosystems.
 
 For more information about replication and federation, see:
 
@@ -49,33 +49,65 @@ For more information about replication and federation, see:
 
 ## Replication task templates
 
-Currently, replication task templates are available for [Azure Event Hubs](../event-hubs/event-hubs-about.md) and [Azure Service Bus](../service-bus-messaging/service-bus-messaging-overview.md). The following table lists the replication task templates currently available in this preview:
+The following table lists some example replication task templates that are available for [Azure Event Hubs](../event-hubs/event-hubs-about.md) and [Azure Service Bus](../service-bus-messaging/service-bus-messaging-overview.md):
 
 | Resource type | Replication source and target |
 |---------------|-------------------------------|
 | Azure Event Hubs namespace | - Event Hubs instance to Event Hubs instance <br>- Event Hubs instance to Service Bus queue <br>- Event Hubs instance to Service Bus topic |
 | Azure Service Bus namespace | - Service Bus queue to Service Bus queue <br>- Service Bus queue to Service Bus topic <br>- Service Bus topic to Service Bus topic <br>- Service Bus queue to Event Hubs instance <br>- Service Bus topic to Service Bus queue <br>- Service Bus topic to Event Hubs instance <br><br>**Important**: When a queue is the source, a replication task doesn't copy messages but *moves* them from the source to the target and deletes them from the source. <br><br>To mirror messages instead, use a topic as your source where the "main" subscription acts like a queue endpoint. That way, the target gets a copy of each message from the source. <br><br>To route messages across different regions, create a queue where messages are sent from an app. The replication task transfers messages from that queue to a target queue in a namespace that's in another region. You can also use a topic subscription as the entity that acts as the transfer queue. For more information, see [Replication topology for ServiceBusCopy](https://github.com/Azure-Samples/azure-messaging-replication-dotnet/tree/main/functions/config/ServiceBusCopy#replication-topology).|
 
-### Replication topology and workflow
+## Replication topology and workflow
 
-To help visualize how a replication task powered by Azure Logic Apps (Standard) works, the following diagrams show the replication task structure and workflow for Event Hubs instances and for Service Bus queues.
+To help you visualize how a replication task works when powered by a Standard logic app workflow, the following diagrams show the replication task structure and workflow for Event Hubs instances and for Service Bus queues.
 
-#### Replication topology for Event Hubs
+### Replication topology for Event Hubs
 
 The following diagram shows the topology and replication task workflow between Event Hubs instances:
 
-:::image type="content" source="media/create-replication-tasks-azure-resources/replication-topology-event-hubs.png" alt-text="Diagram shows topology for replication task powered by a Logic App (Standard) workflow between Event Hubs instances.":::
+:::image type="content" source="media/create-replication-tasks-azure-resources/replication-topology-event-hubs.png" alt-text="Diagram shows topology for replication task powered by a Standard logic app workflow between Event Hubs instances.":::
+
+#### Metadata and property mappings for Event Hubs
+
+New service-assigned values in the target Event Hubs namespace replace the following items from the source namespace:
+
+- Service-assigned metadata of an event
+- Original enqueue time
+- Sequence number
+- Offset
+
+For [helper functions](https://github.com/Azure-Samples/azure-messaging-replication-dotnet/tree/main/src/Azure.Messaging.Replication) and the replication tasks in the Azure-provided samples, the original values are preserved in the following user properties:
+
+- `repl-enqueue-time` (ISO8601 string)
+- `repl-sequence`
+- `repl-offset`
+
+These properties have the `string` type and contain the stringified value of the respective original properties. If the event is forwarded multiple times, the service-assigned metadata of the immediate source is appended to any existing properties, with values separated by semicolons. For more information, see [Service-assigned metadata](../event-hubs/event-hubs-federation-patterns.md#service-assigned-metadata).
 
 For information about replication and federation in Azure Event Hubs, see:
 
 - [Multi-site and multi-region federation](../event-hubs/event-hubs-federation-overview.md)
 - [Event replication tasks patterns](../event-hubs/event-hubs-federation-patterns.md)
 
-#### Replication topology for Service Bus
+### Replication topology for Service Bus
 
 The following diagram shows the topology and replication task workflow between Service Bus queues:
 
-:::image type="content" source="media/create-replication-tasks-azure-resources/replication-topology-service-bus-queues.png" alt-text="Diagram shows topology for replication task powered by Logic App (Standard) workflow between Service Bus queues.":::
+:::image type="content" source="media/create-replication-tasks-azure-resources/replication-topology-service-bus-queues.png" alt-text="Diagram shows topology for replication task powered by a Standard logic app workflow between Service Bus queues.":::
+
+#### Metadata and property mappings for Service Bus
+
+For Service Bus, new service-assigned values in the target Service Bus queue or topic replace the following items from the source queue or topic:
+
+- Service-assigned metadata of a message
+- Original enqueue time
+- Sequence number
+
+For the default replication tasks in the Azure-provided samples, the original values are preserved in the following user properties:
+
+- `repl-enqueue-time` (ISO8601 string)
+- `repl-sequence`
+
+These properties have the `string` type and contain the stringified value of the respective original properties. If the message is forwarded multiple times, the service-assigned metadata of the immediate source is appended to any existing properties, with values separated by semicolons. For more information, see [Service-assigned metadata](../service-bus-messaging/service-bus-federation-patterns.md#service-assigned-metadata).
 
 For information about replication and federation in Azure Service Bus, see:
 
@@ -84,24 +116,7 @@ For information about replication and federation in Azure Service Bus, see:
 
 <a name="replication-properties"></a>
 
-## Metadata and property mappings
-
-For Event Hubs, new service-assigned values in the target Event Hubs namespace replace the following items from the source namespace:
-
-- Service-assigned metadata of an event
-- Original enqueue time
-- Sequence number
-- Offset
-
-For [helper functions](https://github.com/Azure-Samples/azure-messaging-replication-dotnet/tree/main/src/Azure.Messaging.Replication) and the replication tasks in the Azure-provided samples, the original values are preserved in the user properties: `repl-enqueue-time` (ISO8601 string), `repl-sequence`, and `repl-offset`. These properties have the `string` type and contain the stringified value of the respective original properties. If the event is forwarded multiple times, the service-assigned metadata of the immediate source is appended to any existing properties, with values separated by semicolons. For more information, see [Service-assigned metadata](../event-hubs/event-hubs-federation-patterns.md#service-assigned-metadata).
-
-For Service Bus, new service-assigned values in the target replace the following items from the source Service Bus queue or topic:
-
-- Service-assigned metadata of a message
-- Original enqueue time
-- Sequence number
-
-For the default replication tasks in the Azure-provided samples, the original values are preserved in the user properties: `repl-enqueue-time` (ISO8601 string) and `repl-sequence`. These properties have the `string` type and contain the stringified value of the respective original properties. If the message is forwarded multiple times, the service-assigned metadata of the immediate source is appended to any existing properties, with values separated by semicolons. For more information, see [Service-assigned metadata](../service-bus-messaging/service-bus-federation-patterns.md#service-assigned-metadata).
+### Metadata and property mappings between Service Bus and Event Hubs
 
 When a task replicates from Service Bus to Event Hubs, the task maps only the `User Properties` property to the `Properties` property. When the task replicates from Event Hubs to Service Bus, the task maps the following properties:
 
@@ -140,78 +155,21 @@ To learn more about multiple site federation and multiple region federation for 
 - [Message replication and cross-region federation](../service-bus-messaging/service-bus-federation-overview.md)
 - [Message replication tasks patterns](../service-bus-messaging/service-bus-federation-patterns.md)
 
-<a name="pricing"></a>
-
-## Pricing
-
-A replication task is powered by a stateless workflow in a Standard logic app. When you create this replication task, charges start incurring immediately. Usage, metering, billing, and the pricing model follow the [Standard hosting plan](logic-apps-pricing.md#standard-pricing) and [Standard plan pricing tiers](logic-apps-pricing.md#standard-pricing-tiers).
-
-<a name="scale-up"></a>
-
-Based on the number of events that Event Hubs receives or messages that Service Bus handles, your hosting plan might scale up or down. It maintains minimum vCPU usage and low latency during active replication. This behavior requires that when you create a logic app resource to use for your replication task, you choose the appropriate Standard plan pricing tier. That way, Azure Logic Apps doesn't throttle or start maxing out CPU usage and can still guarantee fast replication.
-
-> [!NOTE]
->
-> If your app starts with one instance of the WS1 plan and then scales out to two instances, the cost is twice the cost of WS1. This scenario assumes that the plans run all day. If you scale up your app to the WS2 plan and use one instance, the cost is effectively the same as two WS1 plan instances. Likewise, if you scale up your app to the WS3 plan and use one instance, the cost is effectively the same as two WS2 plan instances or four WS1 plan instances.
-
-<a name="scale-out"></a>
-
-The following examples illustrate hosting plan pricing tier and configuration options that provide the best throughput and cost for specific replication task scenarios. Scenarios are Event Hubs or Service Bus and have various configuration values.
-
-> [!NOTE]
->
-> The examples in the following sections use 800 as the default value for the prefetch count, maximum event batch size for Event Hubs, and maximum message count for Service Bus. They assume that the event or message size is 1 KB. Based on your event sizes, you might want to adjust the prefetch count, maximum event batch size, or maximum message count. For example, if your event size or message size is over 1 KB, you might want to reduce the values for the prefetch count, and maximum event batch size or message count from 800.
-
-### Event Hubs scale out
-
-The following examples illustrate hosting plan pricing tier and configuration options for a replication task between two Event Hubs namespaces *in the same region*. It presents information based on the number of [partitions](../event-hubs/event-hubs-features.md#partitions), the number of events per second, and other configuration values.
-
-| Pricing tier | Partition count | Events per second | Maximum bursts* | Always ready instances* | Prefetch count* | Maximum event batch size* |
-|--------------|-----------------|-------------------|----------------|-------------------------|-----------------|-----------------|
-| **WS1** | 1 | 1000 | 1 | 1 | 800 | 800 |
-| **WS1** | 2 | 2000 | 1 | 1 | 800 | 800 |
-| **WS2** | 4 | 4000 | 2 | 1 | 800 | 800 |
-| **WS2** | 8 | 8000 | 2 | 1 | 800 | 800 |
-| **WS3** | 16 | 16000 | 2 | 1 | 800 | 800 |
-| **WS3** | 32 | 32000 | 3 | 1 | 800 | 800 |
-
-\* For more information about the values that you can change for each pricing tier, review the following table:
-
-| Value | Description |
-|-------|-------------|
-| **Maximum bursts** | The *maximum* number of elastic workers to scale out under load. If your underlying app requires instances beyond the *always ready instances* in the next table row, your app can continue to scale out until the number of instances hits the maximum burst limit. To change this value, see [Edit hosting plan scale out settings](#edit-plan-scale-out-settings) later in this article. <br>**Note**: Any instances beyond your plan size are billed *only* when they're running and allocated to you on a per-second basis. The platform makes a best effort to scale out your app to the defined maximum limit. <br>**Tip**: As a recommendation, select a maximum value that's higher than you might need so that the platform can scale out to handle a larger load. Unused instances aren't billed. <br>For more information, see the following documentation. The Workflow Standard plan shares some aspects with the Azure Functions Premium plan. <br>- [Premium plan settings](../azure-functions/functions-premium-plan.md#plan-and-sku-settings) <br>- [What is cloud bursting](https://azure.microsoft.com/overview/what-is-cloud-bursting/)? |
-| **Always ready instances** | The minimum number of instances that are always ready and warm for hosting your app. The minimum number is always 1. To change this value, see [Edit hosting plan scale out settings](#edit-plan-scale-out-settings) later in this article. <br>**Note**: Any instances beyond your plan size are billed *whether or not* they're running when allocated to you. <br>For more information, see the following documentation. The Workflow Standard plan shares some aspects with the Azure Functions Premium plan: [Always ready instances](../azure-functions/functions-premium-plan.md#always-ready-instances). |
-| **Prefetch count** | The default value for `AzureFunctionsJobHost__extensions__eventHubs__eventProcessorOptions__prefetchCount` app setting in your logic app resource that determines the prefetch count used by the underlying `EventProcessorHost` class. To add or specify a different value for this app setting, see [Manage app settings - local.settings.json](edit-app-settings-host-settings.md?tabs=azure-portal#manage-app-settings). For example: <br>- **Name**: `AzureFunctionsJobHost__extensions__eventHubs__eventProcessorOptions__prefetchCount` <br>- **Value**: `800` (no maximum limit) <br>For more information about the `prefetchCount` property, see: <br>- [host.json settings - Azure Event Hubs](../azure-functions/functions-bindings-event-hubs.md#hostjson-settings) <br>- [EventProcessorOptions.PrefetchCount property](/dotnet/api/microsoft.azure.eventhubs.processor.eventprocessoroptions.prefetchcount) <br>- [Balance partition load across multiple instances](../event-hubs/event-processor-balance-partition-load.md) <br>- [Event processor host](../event-hubs/event-hubs-event-processor-host.md) <br>- [EventProcessorHost Class](/dotnet/api/microsoft.azure.eventhubs.processor.eventprocessorhost) |
-| **Maximum event batch size** | The default value for the `AzureFunctionsJobHost__extensions__eventHubs__eventProcessorOptions__maxBatchSize` app setting in your logic app resource that determines the maximum event count received by each receive loop. To add or specify a different value for this app setting, see [Manage app settings - local.settings.json](edit-app-settings-host-settings.md?tabs=azure-portal#manage-app-settings). For example: <br>- **Name**: `AzureFunctionsJobHost__extensions__eventHubs__eventProcessorOptions__maxBatchSize` <br>- **Value**: `800` (no maximum limit) <br>For more information about the `maxBatchSize` property, see: <br>- [host.json settings - Azure Event Hubs trigger and bindings for Azure Functions](../azure-functions/functions-bindings-event-hubs.md#hostjson-settings) <br>- [EventProcessorOptions.MaxBatchSize property](/dotnet/api/microsoft.azure.eventhubs.processor.eventprocessoroptions.maxbatchsize) <br>- [Event processor host](../event-hubs/event-hubs-event-processor-host.md) |
-
-### Service Bus scale out
-
-The following examples illustrate hosting plan pricing tier and configuration options for a replication task between two Service Bus namespaces *in the same region*. It shows information based on the number of messages per second and other configuration values.
-
-The examples in this section use 800 as the default value for the prefetch count and maximum message count, assuming that the message size is 1 KB.
-
-| Pricing tier | Messages per second | Maximum bursts* | Always ready instances* | Prefetch count* | Maximum message count* |
-|--------------|---------------------|-----------------|-------------------------|-----------------|------------------------|
-| **WS1** | 2000 | 1 | 1 | 800 | 800 |
-| **WS2** | 2500 | 1 | 1 | 800 | 800 |
-| **WS3** | 3500 | 1 | 1 | 800 | 800 |
-
-\* For more information about the values that you can change for each pricing tier, review the following table:
-
-| Value | Description |
-|-------|-------------|
-| **Maximum bursts** | The *maximum* number of elastic workers to scale out under load. If your underlying app requires instances beyond the *always ready instances* in the next table row, your app can continue to scale out until the number of instances hits the maximum burst limit. To change this value, see [Edit hosting plan scale-out settings](#edit-plan-scale-out-settings) later in this article. <br>**Note**: Any instances beyond your plan size are billed *only* when they're running and allocated to you on a per-second basis. The platform makes a best effort to scale out your app to the defined maximum limit. <br>**Tip**: As a recommendation, select a maximum value that's higher than you might need so that the platform can scale out to handle a larger load. Unused instances aren't billed. <br>For more information, see the following documentation. The Workflow Standard plan shares some aspects with the Azure Functions Premium plan: <br>- [Premium plan settings](../azure-functions/functions-premium-plan.md#plan-and-sku-settings) <br>- [What is cloud bursting](https://azure.microsoft.com/overview/what-is-cloud-bursting/)? |
-| **Always ready instances** | The minimum number of instances that are always ready and warm for hosting your app. The minimum number is always 1. To change this value, see [Edit hosting plan scale-out settings](#edit-plan-scale-out-settings) later in this article. <br>**Note**: Any instances beyond your plan size are billed *whether or not* they're running when allocated to you. <br>For more information, see the following documentation. The Workflow Standard plan shares some aspects with the Azure Functions Premium plan: [Always ready instances](../azure-functions/functions-premium-plan.md#always-ready-instances). |
-| **Prefetch count** | The default value for `AzureFunctionsJobHost__extensions__serviceBus__prefetchCount` app setting in your logic app resource that determines the prefetch count used by the underlying `ServiceBusProcessor` class. To add or specify a different value for this app setting, see [Manage app settings - local.settings.json](edit-app-settings-host-settings.md?tabs=azure-portal#manage-app-settings), for example: <br>- **Name**: `AzureFunctionsJobHost__extensions__serviceBus__prefetchCount` <br>- **Value**: `800` (no maximum limit) <br>For more information about the `prefetchCount` property, see: <br>- [Azure Service Bus bindings for Azure Functions](../azure-functions/functions-bindings-service-bus.md) <br>- [ServiceBusProcessor.PrefetchCount property](/dotnet/api/azure.messaging.servicebus.servicebusprocessor.prefetchcount) <br>- [ServiceBusProcessor Class](/dotnet/api/azure.messaging.servicebus.servicebusprocessor) |
-| **Maximum message count** | The default value for the `AzureFunctionsJobHost__extensions__serviceBus__batchOptions__maxMessageCount` app setting in your logic app resource that determines the maximum number of messages to send when triggered. To add or specify a different value for this app setting, review [Manage app settings - local.settings.json](edit-app-settings-host-settings.md?tabs=azure-portal#manage-app-settings), for example: <br>- **Name**: `AzureFunctionsJobHost__extensions__serviceBus__batchOptions__maxMessageCount` <br>- **Value**: `800` (no maximum limit) <br>For more information about the `maxMessageCount` property, see [Azure Service Bus bindings for Azure Functions](../azure-functions/functions-bindings-service-bus.md).|
-
 ## Prerequisites
 
-- An Azure account and subscription. If you don't have a subscription, [sign up for a free Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+- An Azure account and subscription. [Get a free Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
-- The source and target resources or entities. The source and target should be in different Azure regions so that you can test for the geo-disaster recovery failover scenario. These entities can vary based on the task template that you want to use. The example in this article uses two Service Bus queues, which are located in different namespaces and Azure regions.
+- The source and target resources or entities.
 
-- A **Logic App (Standard)** resource that you can reuse when you create the replication task. That way, you can customize this resource for your replication task. For example, you can [choose the hosting plan and pricing tier](#pricing) based on your replication scenario's needs, such as capacity, throughput, and scaling. Although you can create this resource when you create the replication task, you can't change the region, hosting plan, and pricing tier. The following list provides other reasons and best practices for a previously created logic app resource:
+  Make sure the source and target are in different Azure regions. That way, you can test for the geo-disaster recovery failover scenario. These entities can vary based on the task template that you want to use. The example in this guide uses two Service Bus queues, which are located in different namespaces and Azure regions.
+
+- An empty Standard logic app resource that you can reuse when you create the replication task. That way, you can customize this resource for your replication task.
+
+  The following list provides reasons and best practices for you to create a logic app resource in advance:
+
+  - You can [choose the hosting plan and pricing tier](#billing) for your logic app, based on your replication scenario's needs, such as capacity, throughput, and scaling.
+  
+    Although you can create a logic app when you create the replication task, you can't change the region, hosting plan, and pricing tier at task creation.
 
   - You can create this logic app resource in a region that differs from the source and target entities in your replication task.
 
@@ -376,7 +334,7 @@ This example shows how to view a task's history of workflow runs along with thei
 
    | Status label | Description |
    |--------------|-------------|
-   | **Canceled** | The task was canceled while running. |
+   | **Cancelled** | The task was canceled while running. |
    | **Failed** | The task has at least one failed action, but no subsequent actions existed to handle the failure. |
    | **Running** | The task is currently running. |
    | **Succeeded** | All actions succeeded. A task can still finish successfully if an action failed, but a subsequent action existed to handle the failure. |
@@ -614,6 +572,71 @@ This section describes possible ways that replication can fail or stop working:
 - Partition keys
 
   If any partition keys exist in the events, replication between Event Hubs instances fails if those instances have the same number of partitions.
+
+<a name="billing"></a>
+
+## Billing model
+
+A replication task is powered by a stateless workflow in a Standard logic app. When you create this replication task, charges start incurring immediately. Usage, metering, billing, and the pricing model follow the [Standard hosting plan](logic-apps-pricing.md#standard-pricing) and [Standard plan pricing tiers](logic-apps-pricing.md#standard-pricing-tiers).
+
+<a name="scale-up"></a>
+
+Based on the number of events that Event Hubs receives or messages that Service Bus handles, your hosting plan might scale up or down. The plan maintains minimum vCPU usage and low latency during active replication. This behavior requires that when you create a Standard logic app resource for your replication task, you choose the appropriate Standard plan pricing tier. That way, Azure Logic Apps doesn't throttle or start maxing out CPU usage and can still guarantee fast replication.
+
+> [!NOTE]
+>
+> If your app starts with one instance of the WS1 plan and then scales out to two instances, the cost is twice the cost of WS1. This scenario assumes that the plans run all day. If you scale up your app to the WS2 plan and use one instance, the cost is effectively the same as two WS1 plan instances. Likewise, if you scale up your app to the WS3 plan and use one instance, the cost is effectively the same as two WS2 plan instances or four WS1 plan instances.
+
+<a name="scale-out"></a>
+
+The following examples illustrate hosting plan pricing tier and configuration options that provide the best throughput and cost for specific replication task scenarios. Scenarios are Event Hubs or Service Bus and have various configuration values.
+
+> [!NOTE]
+>
+> The examples in the following sections use 800 as the default value for the prefetch count, maximum event batch size for Event Hubs, and maximum message count for Service Bus. They assume that the event or message size is 1 KB. Based on your event sizes, you might want to adjust the prefetch count, maximum event batch size, or maximum message count. For example, if your event size or message size is over 1 KB, you might want to reduce the values for the prefetch count, and maximum event batch size or message count from 800.
+
+### Event Hubs scale out
+
+The following examples illustrate hosting plan pricing tier and configuration options for a replication task between two Event Hubs namespaces *in the same region*. It presents information based on the number of [partitions](../event-hubs/event-hubs-features.md#partitions), the number of events per second, and other configuration values.
+
+| Pricing tier | Partition count | Events per second | Maximum bursts* | Always ready instances* | Prefetch count* | Maximum event batch size* |
+|--------------|-----------------|-------------------|----------------|-------------------------|-----------------|-----------------|
+| **WS1** | 1 | 1000 | 1 | 1 | 800 | 800 |
+| **WS1** | 2 | 2000 | 1 | 1 | 800 | 800 |
+| **WS2** | 4 | 4000 | 2 | 1 | 800 | 800 |
+| **WS2** | 8 | 8000 | 2 | 1 | 800 | 800 |
+| **WS3** | 16 | 16000 | 2 | 1 | 800 | 800 |
+| **WS3** | 32 | 32000 | 3 | 1 | 800 | 800 |
+
+\* For more information about the values that you can change for each pricing tier, review the following table:
+
+| Value | Description |
+|-------|-------------|
+| **Maximum bursts** | The *maximum* number of elastic workers to scale out under load. If your underlying app requires instances beyond the *always ready instances* in the next table row, your app can continue to scale out until the number of instances hits the maximum burst limit. To change this value, see [Edit hosting plan scale out settings](#edit-plan-scale-out-settings) later in this article. <br>**Note**: Any instances beyond your plan size are billed *only* when they're running and allocated to you on a per-second basis. The platform makes a best effort to scale out your app to the defined maximum limit. <br>**Tip**: As a recommendation, select a maximum value that's higher than you might need so that the platform can scale out to handle a larger load. Unused instances aren't billed. <br>For more information, see the following documentation. The Workflow Standard plan shares some aspects with the Azure Functions Premium plan. <br>- [Premium plan settings](../azure-functions/functions-premium-plan.md#plan-and-sku-settings) <br>- [What is cloud bursting](https://azure.microsoft.com/overview/what-is-cloud-bursting/)? |
+| **Always ready instances** | The minimum number of instances that are always ready and warm for hosting your app. The minimum number is always 1. To change this value, see [Edit hosting plan scale out settings](#edit-plan-scale-out-settings) later in this article. <br>**Note**: Any instances beyond your plan size are billed *whether or not* they're running when allocated to you. <br>For more information, see the following documentation. The Workflow Standard plan shares some aspects with the Azure Functions Premium plan: [Always ready instances](../azure-functions/functions-premium-plan.md#always-ready-instances). |
+| **Prefetch count** | The default value for `AzureFunctionsJobHost__extensions__eventHubs__eventProcessorOptions__prefetchCount` app setting in your logic app resource that determines the prefetch count used by the underlying `EventProcessorHost` class. To add or specify a different value for this app setting, see [Manage app settings - local.settings.json](edit-app-settings-host-settings.md?tabs=azure-portal#manage-app-settings). For example: <br>- **Name**: `AzureFunctionsJobHost__extensions__eventHubs__eventProcessorOptions__prefetchCount` <br>- **Value**: `800` (no maximum limit) <br>For more information about the `prefetchCount` property, see: <br>- [host.json settings - Azure Event Hubs](../azure-functions/functions-bindings-event-hubs.md#hostjson-settings) <br>- [EventProcessorOptions.PrefetchCount property](/dotnet/api/microsoft.azure.eventhubs.processor.eventprocessoroptions.prefetchcount) <br>- [Balance partition load across multiple instances](../event-hubs/event-processor-balance-partition-load.md) <br>- [Event processor host](../event-hubs/event-hubs-event-processor-host.md) <br>- [EventProcessorHost Class](/dotnet/api/microsoft.azure.eventhubs.processor.eventprocessorhost) |
+| **Maximum event batch size** | The default value for the `AzureFunctionsJobHost__extensions__eventHubs__eventProcessorOptions__maxBatchSize` app setting in your logic app resource that determines the maximum event count received by each receive loop. To add or specify a different value for this app setting, see [Manage app settings - local.settings.json](edit-app-settings-host-settings.md?tabs=azure-portal#manage-app-settings). For example: <br>- **Name**: `AzureFunctionsJobHost__extensions__eventHubs__eventProcessorOptions__maxBatchSize` <br>- **Value**: `800` (no maximum limit) <br>For more information about the `maxBatchSize` property, see: <br>- [host.json settings - Azure Event Hubs trigger and bindings for Azure Functions](../azure-functions/functions-bindings-event-hubs.md#hostjson-settings) <br>- [EventProcessorOptions.MaxBatchSize property](/dotnet/api/microsoft.azure.eventhubs.processor.eventprocessoroptions.maxbatchsize) <br>- [Event processor host](../event-hubs/event-hubs-event-processor-host.md) |
+
+### Service Bus scale out
+
+The following examples illustrate hosting plan pricing tier and configuration options for a replication task between two Service Bus namespaces *in the same region*. It shows information based on the number of messages per second and other configuration values.
+
+The examples in this section use 800 as the default value for the prefetch count and maximum message count, assuming that the message size is 1 KB.
+
+| Pricing tier | Messages per second | Maximum bursts* | Always ready instances* | Prefetch count* | Maximum message count* |
+|--------------|---------------------|-----------------|-------------------------|-----------------|------------------------|
+| **WS1** | 2000 | 1 | 1 | 800 | 800 |
+| **WS2** | 2500 | 1 | 1 | 800 | 800 |
+| **WS3** | 3500 | 1 | 1 | 800 | 800 |
+
+\* For more information about the values that you can change for each pricing tier, review the following table:
+
+| Value | Description |
+|-------|-------------|
+| **Maximum bursts** | The *maximum* number of elastic workers to scale out under load. If your underlying app requires instances beyond the *always ready instances* in the next table row, your app can continue to scale out until the number of instances hits the maximum burst limit. To change this value, see [Edit hosting plan scale-out settings](#edit-plan-scale-out-settings) later in this article. <br>**Note**: Any instances beyond your plan size are billed *only* when they're running and allocated to you on a per-second basis. The platform makes a best effort to scale out your app to the defined maximum limit. <br>**Tip**: As a recommendation, select a maximum value that's higher than you might need so that the platform can scale out to handle a larger load. Unused instances aren't billed. <br>For more information, see the following documentation. The Workflow Standard plan shares some aspects with the Azure Functions Premium plan: <br>- [Premium plan settings](../azure-functions/functions-premium-plan.md#plan-and-sku-settings) <br>- [What is cloud bursting](https://azure.microsoft.com/overview/what-is-cloud-bursting/)? |
+| **Always ready instances** | The minimum number of instances that are always ready and warm for hosting your app. The minimum number is always 1. To change this value, see [Edit hosting plan scale-out settings](#edit-plan-scale-out-settings) later in this article. <br>**Note**: Any instances beyond your plan size are billed *whether or not* they're running when allocated to you. <br>For more information, see the following documentation. The Workflow Standard plan shares some aspects with the Azure Functions Premium plan: [Always ready instances](../azure-functions/functions-premium-plan.md#always-ready-instances). |
+| **Prefetch count** | The default value for `AzureFunctionsJobHost__extensions__serviceBus__prefetchCount` app setting in your logic app resource that determines the prefetch count used by the underlying `ServiceBusProcessor` class. To add or specify a different value for this app setting, see [Manage app settings - local.settings.json](edit-app-settings-host-settings.md?tabs=azure-portal#manage-app-settings), for example: <br>- **Name**: `AzureFunctionsJobHost__extensions__serviceBus__prefetchCount` <br>- **Value**: `800` (no maximum limit) <br>For more information about the `prefetchCount` property, see: <br>- [Azure Service Bus bindings for Azure Functions](../azure-functions/functions-bindings-service-bus.md) <br>- [ServiceBusProcessor.PrefetchCount property](/dotnet/api/azure.messaging.servicebus.servicebusprocessor.prefetchcount) <br>- [ServiceBusProcessor Class](/dotnet/api/azure.messaging.servicebus.servicebusprocessor) |
+| **Maximum message count** | The default value for the `AzureFunctionsJobHost__extensions__serviceBus__batchOptions__maxMessageCount` app setting in your logic app resource that determines the maximum number of messages to send when triggered. To add or specify a different value for this app setting, review [Manage app settings - local.settings.json](edit-app-settings-host-settings.md?tabs=azure-portal#manage-app-settings), for example: <br>- **Name**: `AzureFunctionsJobHost__extensions__serviceBus__batchOptions__maxMessageCount` <br>- **Value**: `800` (no maximum limit) <br>For more information about the `maxMessageCount` property, see [Azure Service Bus bindings for Azure Functions](../azure-functions/functions-bindings-service-bus.md).|
 
 ## Related content
 
