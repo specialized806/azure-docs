@@ -65,7 +65,7 @@ The IBM DB2 connector supports these database operations, which map to the corre
 
 1. In the search box, enter *db2*.
 
-1. For this example, under the actions list, select this action: **Get tables (Preview)**
+1. For this example, under the actions list, select **Get tables (Preview)**.
 
    :::image type="content" source="./media/connectors-create-api-db2/select-db2-action.png" alt-text="Screenshot that shows the Logic App Designer with Get tables highlighted.":::
 
@@ -81,10 +81,10 @@ To set up your connection, provide these connection details, select **Create**, 
 
 | Property | Required | Description |
 |----------|----------|-------------|
-| **Connect via on-premises gateway** | No | Applies only for on-premises connections. |
+| **Connect via on-premises gateway** | No | Applies only for on-premises connections |
 | **Connection Name** | Yes | The name for your connection, for example, *MyLogicApp-DB2-connection* |
 | **Server** | Yes | The address or alias and port number for your DB2 server, for example, *myDB2server.cloudapp.net:50000* <br><br>**Note**: This value is a string that represents a TCP/IP address or alias, either in IPv4 or IPv6 format, followed by a colon and a TCP/IP port number. |
-| **Database** | Yes | The name for your database <br><br>**Note**: This value is a string that represents a DRDA Relational Database Name (RDBNAM): <br>- DB2 for z/OS accepts a 16-byte string where the database is known as an *IBM DB2 for z/OS* location. <br>- DB2 for i accepts an 18-byte string where the database is known as an *IBM DB2 for i* relational database. <br>- DB2 for LUW accepts an 8-byte string. |
+| **Database** | Yes | The name for your database <br><br>**Note**: This value is a string that represents a DRDA Relational Database Name (RDBNAM): <br><br>- DB2 for z/OS accepts a 16-byte string where the database is known as an *IBM DB2 for z/OS* location. <br>- DB2 for i accepts an 18-byte string where the database is known as an *IBM DB2 for i* relational database. <br>- DB2 for LUW accepts an 8-byte string. |
 | **Username** | Yes | Your user name for the database <br><br>**Note**: This value is a string whose length is based on the specific database: <br><br>- DB2 for z/OS accepts an 8-byte string. <br>- DB2 for i accepts a 10-byte string. <br>- DB2 for Linux or UNIX accepts an 8-byte string. <br>- DB2 for Windows accepts a 30-byte string. |
 | **Password** | Yes | Your password for the database |
 
@@ -100,7 +100,7 @@ Before you create a connection, you must already have your on-premises data gate
 
 | Property | Required | Description |
 |----------|----------|-------------|
-| **Connect via on-premises gateway** | Yes | Applies when you want an on-premises connection and shows the on-premises connection properties. |
+| **Connect via on-premises gateway** | Yes | Applies when you want an on-premises connection and shows the on-premises connection properties |
 | **Connection Name** | Yes | The name for your connection, for example, *MyLogicApp-DB2-connection* | 
 | **Server** | Yes | The address or alias and port number for your DB2 server, for example, *myDB2server:50000* <br><br>**Note**: This value is a string that represents a TCP/IP address or alias, either in IPv4 or IPv6 format, followed by a colon and a TCP/IP port number. |
 | **Database** | Yes | The name for your database <br><br>**Note**: This value is a string that represents a DRDA Relational Database Name (RDBNAM): <br>- DB2 for z/OS accepts a 16-byte string where the database is known as an *IBM DB2 for z/OS* location. <br>- DB2 for i accepts an 18-byte string where the database is known as an *IBM DB2 for i* relational database. <br>- DB2 for LUW accepts an 8-byte string. |
