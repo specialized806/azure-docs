@@ -443,9 +443,9 @@ sections:
         answer: |
           Yes, the Application Gateway v2 SKU supports Key Vault. For more information, see [TLS termination with Key Vault certificates](key-vault-certs.md).
 
-      - question: Why can’t I select an Azure Key Vault from a different subscription in the Azure portal when configuring TLS listener certificate on Application Gateway?
+      - question: Why can't I select an Azure key vault from a different subscription in the Azure portal when configuring a TLS listener certificate on Application Gateway?
         answer: |
-          The Azure portal currently only allows selecting Key Vaults from the same subscription as the Application Gateway. This is a known portal limitation. However, Application Gateway does support using a Key Vault from a different subscription (within the same Azure AD tenant) by configuring the certificate through Azure CLI or PowerShell using the Key Vault secret ID, provided the Application Gateway’s managed identity has the required permissions on the Key Vault.   
+          The Azure portal currently allows selecting key vaults only from the same subscription as Application Gateway. This is a known portal limitation. However, Application Gateway does support using a key vault from a different subscription (within the same Microsoft Entra ID tenant) by configuring the certificate through the Azure CLI or PowerShell by using the key vault secret ID, provided the Application Gateway managed identity has the required permissions on the key vault.
 
       - question: How do I configure HTTPS listeners for .com and .NET sites?
         answer: |
