@@ -28,7 +28,7 @@ You can delete snapshots that you no longer need.
 
 2. In the Delete snapshots window, confirm that you want to delete the snapshot by selecting **Yes**. 
 
-    ![Screenshot showing confirmed snapshot deletion.](../media/snapshots-delete/snapshot-confirm-delete.png)  
+    ![Screenshot showing confirmed snapshot deletion.](./media/snapshots-delete/snapshot-confirm-delete.png)  
     
 ## Next steps
 

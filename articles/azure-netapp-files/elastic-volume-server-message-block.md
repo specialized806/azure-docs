@@ -31,7 +31,7 @@ Learn how to create an SMB volume for Elastic zone-redundant storage.
 * You can't change the protocol of a volume after creating it. 
 * Each volume in a capacity pool must have a unique name.
 * You must have configured a capacity pool for the Zone-Redundant service level. 
-* If you encounter the error message "Error when creating. A problem occurred. Please try again after some time. If the issue persists, contact support.", the Active Directory might have have expired. Reset the password then try to create the volume again. 
+* If you encounter the error message "Error when creating. A problem occurred. Please try again after some time. If the issue persists, contact support.", the Active Directory password might have expired. Reset the password then try to create the volume again. 
 * After creating the volume, you can check its status in the volume's overview page to see if it's online or offline. 
 
 ## Steps 

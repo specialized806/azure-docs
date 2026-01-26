@@ -38,7 +38,7 @@ ms.author: anfdocs
 
 Follow the steps for the appropriate service level. 
 
-# [Flexible, Standard, Premium, and Ultra](tab/regular)
+# [Flexible, Standard, Premium, and Ultra](#tab/regular)
 
 1. Navigate to the volume hosting the snapshot you want to restore. Select **Snapshots** from the Volume page to display the snapshot list. 
 

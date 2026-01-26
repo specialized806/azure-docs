@@ -26,7 +26,7 @@ A snapshot policy enables you to specify the snapshot creation frequency in hour
        
 1. From your NetApp account, select **Snapshot policy**.
 
-    ![Screenshot that shows how to navigate to Snapshot Policy.](../media/snapshots-manage-policy/snapshot-policy-navigation.png)
+    ![Screenshot that shows how to navigate to Snapshot Policy.](./media/snapshots-manage-policy/snapshot-policy-navigation.png)
 
 2. In the Snapshot Policy window, set Policy State to **Enabled**. 
 
@@ -40,23 +40,23 @@ A snapshot policy enables you to specify the snapshot creation frequency in hour
     > Using policy-based backups for Azure NetApp Files might affect the number of snapshots to keep. Backup policies involve snapshot policies. And Azure NetApp Files prevents you from deleting the latest backup.
     
     <!-- fix-->
-    See [Resource limits for Azure NetApp Files](../azure-netapp-files-resource-limits.md) about the maximum number of snapshots allowed for a volume. 
+    See [Resource limits for Azure NetApp Files](./azure-netapp-files-resource-limits.md) about the maximum number of snapshots allowed for a volume. 
 
     The following example shows hourly snapshot policy configuration. 
 
-    ![Screenshot that shows the hourly snapshot policy.](../media/snapshots-manage-policy/snapshot-policy-hourly.png)
+    ![Screenshot that shows the hourly snapshot policy.](./media/snapshots-manage-policy/snapshot-policy-hourly.png)
 
     The following example shows daily snapshot policy configuration.
 
-    ![Screenshot that shows the daily snapshot policy.](../media/snapshots-manage-policy/snapshot-policy-daily.png)
+    ![Screenshot that shows the daily snapshot policy.](./media/snapshots-manage-policy/snapshot-policy-daily.png)
 
     The following example shows weekly snapshot policy configuration.
 
-    ![Screenshot that shows the weekly snapshot policy.](../media/snapshots-manage-policy/snapshot-policy-weekly.png)
+    ![Screenshot that shows the weekly snapshot policy.](./media/snapshots-manage-policy/snapshot-policy-weekly.png)
 
     The following example shows monthly snapshot policy configuration.
 
-    ![Screenshot that shows the monthly snapshot policy.](../media/snapshots-manage-policy/snapshot-policy-monthly.png) 
+    ![Screenshot that shows the monthly snapshot policy.](./media/snapshots-manage-policy/snapshot-policy-monthly.png) 
 
 4.	Select **Save**.  
 
@@ -74,7 +74,7 @@ If you want a volume to use a snapshot policy that you created, you need to appl
 1. In the volume's overview page, select **Edit**. 
 
 2. In the Edit window, under **Snapshot policy**, select a policy to use for the volume. Select **OK** to apply the policy.  
-    ![Screenshot that shows the Snapshot policy menu.](../media/snapshots-manage-policy/snapshot-policy-edit.png) 
+    ![Screenshot that shows the Snapshot policy menu.](./media/snapshots-manage-policy/snapshot-policy-edit.png) 
 
 ## Modify a snapshot policy 
 
@@ -90,7 +90,7 @@ You can modify an existing snapshot policy to change the policy state, snapshot 
  
 1. From your NetApp account, select **Snapshot policy**.
 2. Right-click the snapshot policy you want to modify, then select **Edit**.
-    ![Screenshot that shows the Snapshot policy right-click menu.](../media/snapshots-manage-policy/snapshot-policy-right-click-menu.png) 
+    ![Screenshot that shows the Snapshot policy right-click menu.](./media/snapshots-manage-policy/snapshot-policy-right-click-menu.png) 
 
 3. Make the changes in the Snapshot Policy window that appears, then select **Save**. 
 
@@ -102,10 +102,10 @@ Before deleting a snapshot policy, the policy should be removed from all volumes
 
 1. From the NetApp Account view, select **Snapshot policy**.
 2. Right-click the snapshot policy you want to modify, then select **Delete**.
-    ![Screenshot that shows the Delete menu item.](../media/snapshots-manage-policy/snapshot-policy-right-click-menu.png) 
+    ![Screenshot that shows the Delete menu item.](./media/snapshots-manage-policy/snapshot-policy-right-click-menu.png) 
 
 3. Select **Yes** to confirm that you want to delete the snapshot policy.   
-    ![Screenshot that shows snapshot policy delete confirmation.](../media/snapshots-manage-policy/snapshot-policy-delete-confirm.png) 
+    ![Screenshot that shows snapshot policy delete confirmation.](./media/snapshots-manage-policy/snapshot-policy-delete-confirm.png) 
     
 ## Edit the Hide snapshot path option
 
@@ -114,7 +114,15 @@ The Hide snapshot path option controls whether the snapshot path of a volume is 
 > [!NOTE]
 > For a [destination volume](cross-region-replication-create-peering.md#create-the-data-replication-volume-the-destination-volume) in cross-region replication, the Hide snapshot path option is disabled by default. The setting isn't modifiable. 
 
-[!INCLUDE [Hide a snapshot's file path](includes/snapshot-hide-file-path.md)]
+>[!NOTE]
+>For Elastic service level volumes, you need to remount the volume after modifying this setting. 
+
+### Settings
+
+1. To view the Hide snapshot path option setting of a volume, select the volume. The **Hide snapshot path** field shows whether the option is enabled.   
+    ![Screenshot that describes the Hide snapshot path field.](./media/snapshots-manage-policy/hide-snapshot-path-field.png) 
+2. To edit the Hide Snapshot Path option, select **Edit** on the volume page. Modify the **Hide snapshot path** option as needed.   
+    ![Screenshot that describes the Edit volume snapshot option.](./media/snapshots-manage-policy/volume-edit-snapshot-options.png) 
 
 ## Next steps
 

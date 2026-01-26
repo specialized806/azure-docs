@@ -42,7 +42,7 @@ Learn how to create an NFS volume for the Elastic zone-redundant storage.
     * Assign the **Quota** in GiB. 
         For sizing limits, see [Azure NetApp Files Elastic service level resource limits](azure-netapp-files-resource-limits.md). 
 
-    Select **Show advanced section** to add a [configured snapshot policy](elastic-snapshots-policy.md) or [hide the snapshot path](elastic-snapshots-manage.md#edit-the-hide-snapshot-path-option). You can also change the options in the advanced section after you create the volume. 
+    Select **Show advanced section** to add a [configured snapshot policy](snapshots-manage-policy.md) or [hide the snapshot path](snapshots-manage-policy.md#edit-the-hide-snapshot-path-option). You can also change the options in the advanced section after you create the volume. 
 
     Select **Next**. 
 
