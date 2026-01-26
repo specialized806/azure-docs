@@ -90,9 +90,9 @@ You can save your logic app at any time, so save your work often.
 
       :::image type="content" source="./media/logic-apps-control-flow-run-steps-group-scopes/build-condition.png" alt-text="Screenshot shows a condition selected from dynamic content.":::
 
-   1. In the middle box, select this operator: **is greater than**
+   1. In the middle box, select this operator: **is greater than**.
 
-   1. In the rightmost column, enter this comparison value, which is in seconds and equivalent to 10 minutes: **600**
+   1. In the rightmost column, enter this comparison value, which is in seconds and equivalent to 10 minutes: **600**.
 
       When you're done, your condition looks like this example:
 
@@ -199,7 +199,7 @@ Next, add a scope so that you can group specific actions and evaluate their stat
 
       :::image type="content" source="./media/logic-apps-control-flow-run-steps-group-scopes/configure-run-after.png" alt-text="Screenshot shows the configured runAfter property.":::
 
-   1. Select all these scope statuses: **is successful**, **has failed**, **is skipped**, and **has timed out**
+   1. Select all these scope statuses: **is successful**, **has failed**, **is skipped**, and **has timed out**.
 
       :::image type="content" source="./media/logic-apps-control-flow-run-steps-group-scopes/select-run-after-statuses.png" alt-text="Screenshot shows selected scope statuses.":::
 
