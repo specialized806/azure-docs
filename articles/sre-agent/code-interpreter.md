@@ -7,7 +7,7 @@ ms.author: cshoe
 ms.reviewer: cshoe
 ms.service: azure-sre-agent
 ms.topic: how-to
-ms.date: 01/17/2026
+ms.date: 01/26/2026
 ---
 
 # Run code by using Code Interpreter in Azure SRE Agent
@@ -37,9 +37,9 @@ Code Interpreter runs in an isolated Azure Container Apps session with the follo
 
 These restrictions ensure that code execution is secure and predictable. Common data science libraries like pandas, matplotlib, and seaborn are preinstalled.
 
-## Get started with Code Interpreter
+## Get started with code interpreter
 
-Code Interpreter tools are automatically available in your SRE Agent conversations. Ask the agent to perform tasks by using natural language.
+Code interpreter tools are automatically available in your SRE Agent conversations. Ask the agent to perform tasks by using natural language.
 
 ### Example prompts
 
@@ -77,24 +77,36 @@ When the code runs successfully, the agent returns the image inline in the conve
 
 ### Analyze incident data
 
-Use Python to analyze incident patterns and identify trends:
+Use code interpreter to transform raw incident data into actionable insights and visualizations.
 
-```python
-import pandas as pd
+1. Ask SRE Agent to create a CSV file of all the incidents that have occurred within the last month using the following prompt:
 
-# Load incident data
-df = pd.read_csv('/mnt/data/incidents.csv')
+    ```text
+    Create a CSV file of all the incidents that 
+    occurred in the last month.
 
-# Calculate summary statistics
-summary = df.groupby('category').agg({
-    'id': 'count',
-    'resolution_time': 'mean'
-}).rename(columns={'id': 'count', 'resolution_time': 'avg_resolution_hours'})
+    Name the file `incidents.csv` and save it
+    to `/mnt/data`.
+    ```
 
-# Export results
-summary.to_csv('/mnt/data/incident_summary.csv')
-print(summary)
-```
+1. Use Python to analyze incident patterns and identify trends:
+
+    ```python
+    import pandas as pd
+    
+    # Load incident data
+    df = pd.read_csv('/mnt/data/incidents.csv')
+    
+    # Calculate summary statistics
+    summary = df.groupby('category').agg({
+        'id': 'count',
+        'resolution_time': 'mean'
+    }).rename(columns={'id': 'count', 'resolution_time': 'avg_resolution_hours'})
+    
+    # Export results
+    summary.to_csv('/mnt/data/incident_summary.csv')
+    print(summary)
+    ```
 
 ### Create visualizations
 
