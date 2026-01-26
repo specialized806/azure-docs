@@ -207,7 +207,10 @@ This sample is shown for .NET, Java, and Python.
 # [Python](#tab/python)
 
 ```python
-import durabletask.task as task
+from durabletask import task
+
+def say_hello(ctx: task.ActivityContext, name: str) -> str:
+    return f"Hello {name}!"
 
 def hello_cities(ctx: task.OrchestrationContext, _):
     result = ""
@@ -280,14 +283,16 @@ This sample is shown for .NET, Java, and Python.
 # [Python](#tab/python)
 
 ```python
-import durabletask.client as client
+import time
+from durabletask.azuremanaged.client import DurableTaskSchedulerClient
 
-instance_id = c.schedule_new_orchestration(hello_cities)
-state = c.wait_for_orchestration_start(instance_id, fetch_payloads=True)
+# Assumes 'client' is a DurableTaskSchedulerClient instance
+instance_id = client.schedule_new_orchestration(hello_cities)
+state = client.wait_for_orchestration_start(instance_id, fetch_payloads=True)
 
 while state.serialized_custom_status is None or state.serialized_custom_status != '"London"':
     time.sleep(0.2)
-    state = c.get_orchestration_state(instance_id, fetch_payloads=True)
+    state = client.get_orchestration_state(instance_id, fetch_payloads=True)
 ```
 
 # [PowerShell](#tab/powershell)
@@ -677,7 +682,7 @@ This sample is shown for .NET, Java, and Python.
 # [Python](#tab/python)
 
 ```python
-import durabletask.task as task
+from durabletask import task
 
 def city_recommender(ctx: task.OrchestrationContext, user_choice: int):
     if user_choice == 1:
@@ -937,7 +942,11 @@ This sample is shown for .NET, Java, and Python.
 # [Python](#tab/python)
 
 ```python
-import durabletask.task as task
+from durabletask import task
+
+def calculate_discount(ctx: task.ActivityContext, user_id: str) -> int:
+    # Calculate discount based on user
+    return 10
 
 def reserve_ticket(ctx: task.OrchestrationContext, user_id: str):
     discount = yield ctx.call_activity(calculate_discount, input=user_id)
@@ -1145,7 +1154,7 @@ This sample is shown for .NET, Java, and Python.
 # [Python](#tab/python)
 
 ```python
-import durabletask.task as task
+from durabletask import task
 
 def my_custom_status_orchestrator(ctx: task.OrchestrationContext, _):
     ctx.set_custom_status({"nextActions": ["A", "B", "C"], "foo": 2})
@@ -1199,9 +1208,10 @@ This sample is shown for .NET, Java, and Python.
 # [Python](#tab/python)
 
 ```python
-import durabletask.client as client
+from durabletask.azuremanaged.client import DurableTaskSchedulerClient
 
-state = c.get_orchestration_state(instance_id, fetch_payloads=True)
+# Assumes 'client' is a DurableTaskSchedulerClient instance
+state = client.get_orchestration_state(instance_id, fetch_payloads=True)
 custom_status_json = state.serialized_custom_status
 ```
 
