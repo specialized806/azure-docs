@@ -136,8 +136,7 @@ You can save your logic app at any time, so save your work often.
 
    1. When you're done, select **OK**.
 
-   <!-- markdownlint-disable MD038 -->
-   1. After the expression resolves, add this text with a leading space: ` minutes`
+   1. After the expression resolves, add this text with a leading space: <!-- markdownlint-disable MD038 --> ` minutes`
   
       Your **Body** field now looks like this example:
 
