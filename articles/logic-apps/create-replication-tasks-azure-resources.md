@@ -1,16 +1,16 @@
 ---
-title: Create Replication Tasks for Azure Resources
-description: Learn how to replicate Azure resources using replication task templates based on workflows in Azure Logic Apps.
+title: Replicate Azure Resources
+description: Learn how to replicate Azure resources by creating replication tasks based on workflows in Azure Logic Apps.
 services: logic-apps
 ms.suite: integration
 ms.reviewer: estfan, azla
 ms.topic: how-to
 ms.date: 01/26/2026
 ms.custom: sfi-image-nochange
-#Customer intent: As a developer responsible for Azure services, I want to know how to implement replication in case of communication problems to keep my services available.
+#Customer intent: As a developer who owns or manages resources in Azure, I want replicate these resources to keep them available and running in case communication problems happen.
 ---
 
-# Create replication tasks for Azure resources using Azure Logic Apps (preview)
+# Replicate Azure resources by creating replication tasks (preview)
 
 > [!IMPORTANT]
 >
