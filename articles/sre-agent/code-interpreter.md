@@ -10,9 +10,9 @@ ms.topic: how-to
 ms.date: 01/26/2026
 ---
 
-# Run code by using Code Interpreter in Azure SRE Agent
+# Run code by using code interpreter in Azure SRE Agent
 
-Code Interpreter enables you to execute Python code and shell commands in a secure, isolated sandbox environment. Use Code Interpreter to analyze data, create visualizations, generate PDF reports, and automate file operations without leaving your SRE Agent conversation.
+The SRE Agent code interpreter enables you to execute Python code and shell commands in a secure, isolated sandbox environment. Use Code Interpreter to analyze data, create visualizations, generate PDF reports, and automate file operations without leaving your SRE Agent conversation.
 
 In this article, you learn how to:
 
@@ -26,9 +26,9 @@ In this article, you learn how to:
 
 [!INCLUDE [prerequisites](includes/prerequisites.md)]
 
-## How Code Interpreter works
+## How code interpreter works
 
-Code Interpreter runs in an isolated Azure Container Apps session with the following characteristics:
+The SRE Agent code interpreter runs in an isolated Azure Container Apps session with the following characteristics:
 
 - **No network access**: The sandbox can't make outbound HTTP or HTTPS requests.
 - **No process spawning**: Commands like `subprocess` and `os.system` are blocked.
@@ -237,7 +237,7 @@ For security reasons, the system blocks the following operations:
 | Package installation | `pip install`, `conda install` |
 | File system | Access outside `/mnt/data/` |
 
-## Troubleshoot Code Interpreter
+## Troubleshoot code interpreter
 
 ### Code execution fails
 
