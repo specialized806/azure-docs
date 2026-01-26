@@ -84,10 +84,12 @@
       href: session-recording.md
   - name: Platform
     items:
-      - name: Azure portal
-        href: configure-host-scaling.md
-      - name: Azure PowerShell
-        href: configure-host-scaling-powershell.md
+      - name: Configure host scaling
+        items:
+        - name: Azure portal
+          href: configure-host-scaling.md
+        - name: Azure PowerShell
+          href: configure-host-scaling-powershell.md
       - name: Design architecture
         href: design-architecture.md
       - name: Availability zones and disaster recovery 
