@@ -6,7 +6,7 @@ author: jianleishen
 ms.author: jianleishen
 ms.subservice: data-movement
 ms.topic: conceptual
-ms.date: 11/24/2025
+ms.date: 01/26/2026
 ms.custom:
   - synapse
   - sfi-image-nochange
@@ -275,21 +275,12 @@ The following table shows the release stage and change logs for different versio
 
 | Version  | Release stage           | Change log |
 | :------- | :---------------------- |:---------- |
-| MongoDB (legacy) | End of support | / |
+| MongoDB (legacy) | Removed | Not applicable. |
 | MongoDB | GA version available | • Support the equivalent MongoDB queries only. <br><br>• Double is read as String data type. |
 
 ### Upgrade the MongoDB linked service
 
-Here are steps that help you upgrade your linked service and related queries:
-
-1. Create a new MongoDB linked service and configure it by referring to [Linked service properties](#linked-service-properties).
-1. If you use SQL queries in your pipelines that refer to the old MongoDB linked service, replace them with the equivalent MongoDB queries. See the following table for the replacement examples:
-
-    | SQL query | Equivalent MongoDB query | 
-    |:--- |:--- |
-    | `SELECT * FROM users` | `db.users.find({})` |
-    | `SELECT username, age FROM users` |`db.users.find({}, {username: 1, age: 1})` |
-
+Create a new MongoDB linked service and configure it by referring to [Linked service properties](#linked-service-properties).
 
 ## Related content
 For a list of data stores supported as sources and sinks by the copy activity, see [supported data stores](copy-activity-overview.md#supported-data-stores-and-formats).
