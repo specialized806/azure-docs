@@ -61,7 +61,7 @@ To support real-time calling functionality from an Azure Virtual Desktop (AVD) v
 - Offloads media processing to the local endpoint, reducing **latency** and **CPU usage** on the VM
 - **Installing the Media Optimization Host for AVD** To enable media optimization for calling scenarios using Azure Communication Services (ACS) on Azure Virtual Desktop (AVD), you must install the Media Optimization component on the AVD session host. For detailed installation steps and prerequisites, refer to the [installation instructions for multimedia redirection on session hosts](/azure/virtual-desktop/multimedia-redirection-video-playback-calls?tabs=intune&pivots=azure-virtual-desktop#install-multimedia-redirection-on-session-hosts).
 
-### Web Plugin Extension
+### Web Plugin Browser Extension
 - Installed in the **browser** (Microsoft Edge or Google Chrome) on the AVD VM.
 - Interfaces with the MMR Host to support **device enumeration** and **media routing**
 - Required for enabling calling features in browser-based communication platforms
@@ -77,7 +77,7 @@ To support real-time calling functionality from an Azure Virtual Desktop (AVD) v
 | Media Capture/WebRTC API | No                    | Direct access not supported; affects low-level device control           |
 
 > [!IMPORTANT]
-> Using Azure Communication Service WebJS  to make calls to an Azure Virtual Desktop is in **public preview**. You must use calling versions [1.39.2-beta.1](https://github.com/Azure/Communication/blob/master/releasenotes/acs-javascript-calling-library-release-notes.md) version or higher.
+> Using Azure Communication Service WebJS  to make calls to an Azure Virtual Desktop is in **public preview**. You must use calling versions [1.42.1-beta.1](https://github.com/Azure/Communication/blob/master/releasenotes/acs-javascript-calling-library-release-notes.md) version or higher.
 
 ## VDI Communication Workflow
 
@@ -95,7 +95,7 @@ The following outlines the process of a standard ACS Calling session within a VD
 4.  **Call Setup**
     -   The ACS Calling SDK initiates a call using Azure Communication Services.
 5.  **Media Optimization**
-    -   The MMR host intercepts ACS call operations API and redirects them to the local endpoint.
+    -   The SDK forwards call operations API to the local endpoint via MMR host.
     -   Audio is rendered locally, reducing latency and improving quality.
 6.  **In-Call Experience**
     -   The user experiences real-time communication with minimal delay.
@@ -145,7 +145,7 @@ join(meetingLocator: TeamsMeetingIdLocator, options?: JoinCallOptions): Call;
 join(meetingLocator: MeetingLocator, options?: JoinCallOptions): Call;
 join(roomLocator: RoomLocator, options?: JoinCallOptions): Call;
 ```
-These two APIs return a call object. However, due to the nature of VDI remoting, some of the properties in the call object aren't available when the function call returns.
+These two APIs return a call object. However, due to the asynchronous nature of VDI remoting, some of the properties in the call object aren't available when the function call returns.
 
 To address this issue, the ACS Calling SDK blocks the operation by throwing an error until the call object is fully initialized.
 ```javascript
@@ -201,7 +201,7 @@ The application has to create a new CallClient and a CallAgent.
 
 ## FAQ
 
-### Error: **The MMR extension isn't loaded"** (Browser Debug Console)
+### Error: **The MMR extension isn't loaded** (Browser Debug Console)
 
 This error indicates that the Microsoft Multimedia Redirection (MMR) extension is either not installed, not enabled, or not properly configured.
 
@@ -217,17 +217,10 @@ This error indicates that the Microsoft Multimedia Redirection (MMR) extension i
 
    - For detailed instructions, refer to the official documentation:  
      [Multimedia redirection for video playback and calls in a remote session – Microsoft Learn](/azure/virtual-desktop/multimedia-redirection-video-playback-calls?tabs=intune&pivots=azure-virtual-desktop#enable-call-redirection-for-all-sites-for-testing)
-  
-
-1. **Verify Extension Authorization**
-   - Open the following file in a text editor:  
-     `C:\Program Files\MsRDCMMRHost\manifest.json`
-   - Locate the `allowed_origins` list in the JSON structure.
-   - Ensure the extension ID is included in this list. If it's missing, add the correct extension origin.
-
-2. **Restart Browser**
-   - After updating the `manifest.json` file, close **all** browser windows completely.
-   - Reopen the browser and reload the page to apply the changes.
+     
+4. **Restart Browser or Restart the Remote Desktop Client app**
+   - If you update registry key, you need to close existing Remote Desktop Client app and reopen it
+   - If you update the browser extension or extension configuration, you need to restart the browser.
 
 ### **MsMMRHostInstaller_...msi installation failed**  
 This error isn't expected and typically indicates an issue during the installation process. To help us diagnose the problem, collect and share the relevant log files.
