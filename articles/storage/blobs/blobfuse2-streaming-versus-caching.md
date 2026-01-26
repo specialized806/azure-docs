@@ -7,7 +7,7 @@ ms.author: normesta
 
 ms.service: azure-blob-storage
 ms.topic: concept-article
-ms.date: 12/10/2025
+ms.date: 01/26/2026
 
 ms.custom: linux-related-content
 
