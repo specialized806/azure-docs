@@ -64,12 +64,13 @@ Both the Application Gateway and API Management instances must be injected in th
 
    - **API Management:** Ensure that a matching custom domain is configured in API Management (API Management requires a matching hostname even in internal mode).
 
-    **Step 3:Verify host header consistency**
-   - Client → Azure Front Door: `api.contoso.com`
-   - Azure Front Door → Application Gateway: `api.contoso.com`
-   - Application Gateway → API Management: `api.contoso.com`
+**Step 3:Verify host header consistency**
 
-   API Management rejects requests if the hostname doesn't match a configured custom domain.
+- Client → Azure Front Door: `api.contoso.com`
+- Azure Front Door → Application Gateway: `api.contoso.com`
+- Application Gateway → API Management: `api.contoso.com`
+
+API Management rejects requests if the hostname doesn't match a configured custom domain.
 
 ### Azure Firewall deployment
 
