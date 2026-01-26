@@ -62,6 +62,10 @@
         href: vm-upload-download-native.md
     - name: Connect to a VM - IP address
       href: connect-ip-address.md
+    - name: Connect to a VM scale set
+      href: bastion-connect-vm-scale-set.md
+    - name: Connect to DevTest Labs VMs
+      href: ../devtest-labs/enable-browser-connection-lab-virtual-machines.md?toc=%2fazure%2fbastion%2ftoc.json
     - name: Configure a shareable link
       href: shareable-link.md
     - name: Deploy private-only Bastion
@@ -122,10 +126,6 @@
     items:
     - name: View or upgrade SKU
       href: upgrade-sku.md
-  - name: Connect to a VM scale set
-    href: bastion-connect-vm-scale-set.md
-  - name: Connect to DevTest Labs VMs
-    href: ../devtest-labs/enable-browser-connection-lab-virtual-machines.md?toc=%2fazure%2fbastion%2ftoc.json
   - name: Work with a VM session
     items:
     - name: Copy and paste
