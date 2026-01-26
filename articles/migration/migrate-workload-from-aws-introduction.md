@@ -27,11 +27,11 @@ A like-for-like workload migration strategy is generally considered the safest p
 
 ## Recommended tools
 
-Use AWS and Azure tools where appropriate to augment your migration process. These tools support upfront discovery, planning your Azure architecture (based on data gathered about your AWS workload), data and compute platform transfer, post-migration validation and resource cleanup. You should use [Workload Discovery on AWS](https://aws.amazon.com/solutions/implementations/workload-discovery-on-aws/) to perform the assessment of your workload. You can combine AWS tooling with Azure tooling, such as [Azure Migrate](/azure/migrate/tutorial-assess-aws), to assess AWS instances and provide sizing recommendations for Azure resources.
+Use AWS and Azure tools where appropriate to augment your migration process. These tools support upfront discovery, planning your Azure architecture (based on data gathered about your AWS workload), data and compute platform transfer, post-migration validation and resource cleanup. You should use [Workload Discovery on AWS](https://aws.amazon.com/solutions/implementations/workload-discovery-on-aws/) to perform the assessment of your workload. You can combine AWS tooling with Azure tooling, such as [Azure Migrate](/azure/migrate/tutorial-assess-aws), to assess AWS instances and provide sizing recommendations for Azure resources. Optionally, you can explore third-party solutions such as [Dr Migrate](https://marketplace.microsoft.com/en-us/product/altratechnologiesptyltd1719876965699.altra_dr_migrate_express_saas) or [CAST highlight](https://marketplace.microsoft.com/en-us/product/saas/cast.cast_highlight) to assist with code analysis, dependency mapping, and migration readiness assessments.
 
 ## Timeline assumptions
 
-The migration of a workload can span several weeks or months. The duration depends on the complexity of the workload and your migration and cutover strategy. The timeline shows a typical workload migration for a moderately complex workload using a like-for-like approach. 
+The migration of a workload can span several weeks or months. The duration depends on the complexity of the workload and your migration and cutover strategy. The timeline shows a typical workload migration for a moderately complex workload using a like-for-like approach. A moderately complex workload typically includes multiple components and dependencies, but is not mission-critical and does not have deep integration with other systems.
 
 :::image type="complex" source="./images/migrate-from-aws-phases.svg" alt-text="Diagram showing three phases of workload migration." lightbox="./images/migrate-from-aws-phases.svg" border="false":::
     Diagram showing three phases of migrating workloads from AWS to Microsoft Azure. Across the top, three labeled boxes indicate phases with durations: Before migration (2–4 weeks), During migration (3–7 weeks), and After migration (1–2 weeks). Each box includes a summary of key activities such as planning, infrastructure setup, and optimization. Below, a horizontal sequence of five icons represents steps: Plan, Prepare, Execute, Optimize, and Decommission.
@@ -46,6 +46,8 @@ We've found that the workload team who is currently responsible for the workload
 - surprise discoveries late in the process
 - an under-trained workload team
 - sense of lost ownership
+
+In many cases, external partners with Azure expertise (such as System Integrators or Microsoft's Internal Solution Delivery team) are brought in to support the migration. While these partners may lead planning and preparation, the workload team executes the production cutover using the partner-developed runbooks and automation.
 
 Workload teams should consult with migration experts as part of the process, but the team should drive the process and stay heavily invested.
 

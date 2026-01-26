@@ -31,12 +31,13 @@ The planning phase consists of these steps:
 In order to build a comparable system in Azure, you first need to fully understand your current system. You'll need to evaluate it from multiple perspectives to ensure that you eventually design an Azure implementation that fulfills the needs of users, operators, developers, compliance, and business stakeholders to the same level it does today.
 
 1. **Existing workload architecture:** Fully document and verify your workload architecture. Make sure it includes all workload dependencies, such as network configurations, data flows, and external integrations.
-2. **Use discovery tooling:** Use AWS-specific tooling such as [Workload Discovery on AWS](https://aws.amazon.com/solutions/implementations/workload-discovery-on-aws/) to visualize your AWS workload. It uses AWS Config and AWS Systems Manager data to help identify your workload's components, dependencies, and relationships. Use Azure tooling, such as [Azure Migrate](/azure/migrate/tutorial-assess-aws), to provide additional discovery of AWS workload components and make Azure-specific recommendations.
-3. **Identify critical flows:** Map out essential user and system interactions and [workflows](/azure/well-architected/reliability/identify-flows). When you design the target architecture in the next section, this information helps prioritize reliability efforts and ensures that the most important and impactful components are protected against failure.
-4. **Create a detailed inventory**: Make a list of your current AWS environment that's required for running the workload (all servers, storage, database, and services), along with usage patterns, performance metrics, and licensing requirements.
-5. **Involve subject matter experts:** In addition to automated discovery tools, engage experts throughout the workload team to uncover hidden dependencies, complex component relationships, and sensitive state. Critical components, like scheduled scripts, undocumented integrations, or legacy configurations, are often missed by tooling. A conversation with these subject matter experts can reveal these nuances and prevent surprises during migration. Include their input in the migration plan and runbook.
-6. **Assess your team's skills:** Focus on like-for-like capability mapping. Identify the skills your team already uses in AWS and align them with the equivalent Azure services and tools. Include Azure training in your project timeline to prepare your workload and operations teams. This approach reduces friction and builds confidence with Azure as existing experience in AWS translates directly to the new environment.
-7. **Document existing commitments:** Document the defined performance baseline of your workload, such as throughput, latency, error rates, and resource utilization. If these KPIs aren't available, collect these metrics from your AWS environment to establish this baseline. You will use the these KPIs in the evaluation phase after migration to validate that the workload in Azure performs as it did in AWS.
+2. **Document authentication (AuthN) and authorization (AuthZ):** Include identity and access management (IAM) configurations in your assessment. A complete documentation how authentication and authorization are handled in AWS is critical to designing a secure and functional Azure equivalent.
+3. **Use discovery tooling:** Use AWS-specific tooling such as [Workload Discovery on AWS](https://aws.amazon.com/solutions/implementations/workload-discovery-on-aws/) to visualize your AWS workload. It uses AWS Config and AWS Systems Manager data to help identify your workload's components, dependencies, and relationships. Use Azure tooling, such as [Azure Migrate](/azure/migrate/tutorial-assess-aws), to provide additional discovery of AWS workload components and make Azure-specific recommendations.
+4. **Identify critical flows:** Map out essential user and system interactions and [workflows](/azure/well-architected/reliability/identify-flows). When you design the target architecture in the next section, this information helps prioritize reliability efforts and ensures that the most important and impactful components are protected against failure.
+5. **Create a detailed inventory**: Make a list of your current AWS environment that's required for running the workload (all servers, storage, database, and services), along with usage patterns, performance metrics, and licensing requirements.
+6. **Involve subject matter experts:** In addition to automated discovery tools, engage experts throughout the workload team to uncover hidden dependencies, complex component relationships, and sensitive state. Critical components, like scheduled scripts, undocumented integrations, or legacy configurations, are often missed by tooling. A conversation with these subject matter experts can reveal these nuances and prevent surprises during migration. Include their input in the migration plan and runbook.
+7. **Assess your team's skills:** Focus on like-for-like capability mapping. Identify the skills your team already uses in AWS and align them with the equivalent Azure services and tools. Include Azure training in your project timeline to prepare your workload and operations teams. This approach reduces friction and builds confidence with Azure as existing experience in AWS translates directly to the new environment.
+8. **Document existing commitments:** Document the defined performance baseline of your workload, such as throughput, latency, error rates, and resource utilization. If these KPIs aren't available, collect these metrics from your AWS environment to establish this baseline. You will use the these KPIs in the evaluation phase after migration to validate that the workload in Azure performs as it did in AWS.
 
    Also understand if there are any SLAs or SLOs associated with the workload. These SLA and SLO commitments made to end users or stakeholders do not change based on your cloud platform. For example, if your recovery time objective (RTO) in AWS was 45 minutes, you'll be responsible to design the workload in Azure to also have an RTO of 45 minutes.
 
@@ -94,7 +95,7 @@ Plan how to cut over production traffic from the AWS environment to the Azure en
 | Phased     | Low      | Medium     | Medium      | Moderate      |
 | Blue/Green | Low      | Low        | High        | Easy          |
 
-To keep the risk low and rollback easy, a blue/green approach is recommended. In this case, you maintain two environments. Blue is the current environment (AWS) and green is the new environment (Azure).
+To keep the risk low and rollback easy, a blue/green approach is recommended. In this case, you maintain two environments. Blue is the current environment (AWS) and green is the new environment (Azure). 
 
 In the blue/green scenario, you plan a migration window, run your workload in AWS as normal throughout the migration, and move traffic over to Azure after a successful dry run. Both environments run in parallel throughout the migration, so you can shift traffic back to AWS if issues arise in the Azure environment. In this case, you also need a rollback strategy for state that might have changed. Be sure to consider databases and less obvious state, such as unprocessed items in message queues.
 
@@ -114,11 +115,13 @@ If your workload has an outage budget, consider the migration window to not draw
 
 Your choice depends on the amount of data, type of data storage, and usage requirements. Decide between offline migration (backup and restore) and live replication.
 
-**Align solution to your workload's RPO (recovery point objective):** Consider your workload's RPO for data loss. You'll refer to this RPO in the [decommission phase](/azure/migration/migrate-workload-from-aws-decommission), and your database migration strategy depends on it as well. RPO is the maximum amount of data loss that you're willing to accept as part of the cut-over. For example, an RPO could be "no more than 5 minutes of data loss". This definition means only up to five minutes of data can be lost during the cutover. Ideally, you'll minimize the risk of data loss by shutting down state change operations within the workload prior to cut over.
+**Align strategy to your workload's RPO (recovery point objective):** Consider your workload's RPO for data loss. You'll refer to this RPO in the [decommission phase](/azure/migration/migrate-workload-from-aws-decommission), and your database migration strategy depends on it as well. RPO is the maximum amount of data loss that you're willing to accept as part of the cut-over. For example, an RPO could be "no more than 5 minutes of data loss". This definition means only up to five minutes of data can be lost during the cutover. Ideally, you'll minimize the risk of data loss by shutting down state change operations within the workload prior to cut over.
 
-   The lower the RPO is, the more you have to consider continuous replication or very recent backups as well as maintenance windows. Lower RPOs can also increase cost and effort to migrate your data.
+The lower the RPO is, the more you have to consider continuous replication or very recent backups as well as maintenance windows. Lower RPOs can also increase cost and effort to migrate your data.
 
 **Database migration:** For your [database migration](/azure/migration/migrate-databases-from-aws) you should evaluate AWS as well as Azure tooling. For example, Azure Data Studio allows you to [replicate Amazon RDS for SQL Server to Azure SQL Database](/azure/data-factory/connector-amazon-rds-for-sql-server?tabs=data-factory). This feature enables continuous replication from Amazon RDS to Azure SQL Database. Alternatively, you could use [AWS DMS](https://docs.aws.amazon.com/dms/latest/userguide/Welcome.html) which offers continuous replication and change data capture until you cutover.
+
+In most scenarios, data migration occurs in multiple phases. For example, you may perform an initial migration for testing and validation, followed by a final cutover migration or continuous synchronization to ensure data freshness. This approach allows teams to validate application behavior in Azure before the final cutover, reduces risk of data loss, and supports rollback planning.
 
 **Storage:** To transfer storage data from [Amazon S3 to Azure](/azure/migration/migrate-storage-from-aws) you have multiple options. 
 
@@ -137,13 +140,13 @@ Your choice depends on the amount of data, type of data storage, and usage requi
 
 **Sequence of steps:** Document the sequence of steps at a high level. Define the exact steps, sequence, and timing of the move. Include the planned maintenance window in your documentation. Consider including a dry-run, especially for complex cutovers. Document your rollback strategy, DNS TTLs, and how to test success metrics.
 
+**Security and networking configuration:** Include all firewall rule changes, required port openings, and updates to Network Security Groups (NSGs) or Application Security Groups (ASGs) needed to support Azure connectivity. Document any temporary exceptions or overrides required during cutover and ensure rollback procedures account for these changes.
+
 **Sign-off acceptance criteria:** Define what a *stable operation* means and make it measurable. For example, agree that after cutover Azure must run for at least a certain number of minutes or hours without errors and the workload passes all tests. 
 
 **Rollback trigger criteria and steps:** Document the exact conditions that trigger a rollback to the AWS environment. For example, if any critical functionality is down or the system is in a degraded state (for example, a certain percentage below baseline) for more than a certain number of minutes, initiate a rollback. Document the rollback steps.
 
-   Depending on state changes, rollbacks can be more complex than mitigating the problem in Azure. Failed mitigation attempts might also complicate a rollback. Having a shared understanding of break-fix scenarios vs revert scenarios will help derisk the migration.
-
-   Depending on state changes, rollbacks can be more complex than mitigating the problem in Azure. Failed mitigation attempts might also complicate a rollback. Having a shared understanding of break-fix scenarios vs revert scenarios will help derisk the migration.
+Depending on state changes, rollbacks can be more complex than mitigating the problem in Azure. Failed mitigation attempts might also complicate a rollback. Having a shared understanding of break-fix scenarios vs revert scenarios will help derisk the migration.
 
 **Client configuration changes:** Identify and document all client-facing configuration items that will be impacted by the workload migration. This includes DNS endpoints, authentication flows, and connection strings. Involve the client teams early and communicate the upcoming changes with timelines and responsibilities.
 
@@ -173,6 +176,7 @@ By the end of the planning phase, you should have:
 | &nbsp;  | Deliverable tasks                                     |
 | ------- | ----------------------------------------------------- |
 | &#9744; | Document existing workload architecture               |
+| &#9744; | Document authentication and authorization             |
 | &#9744; | Use discovery tooling                                 |
 | &#9744; | Identify critical flows                               |
 | &#9744; | Create detailed inventory                             |
@@ -192,6 +196,7 @@ By the end of the planning phase, you should have:
 | &#9744; | Choose storage migration strategy                     |
 | &#9744; | Plan maintenance window                               |
 | &#9744; | Document sequence of steps                            |
+| &#9744; | Document security and networking configuration        |
 | &#9744; | Document sign-off acceptance criteria                 |
 | &#9744; | Document rollback trigger criteria and steps          |
 | &#9744; | Document and communicate client configuration changes |

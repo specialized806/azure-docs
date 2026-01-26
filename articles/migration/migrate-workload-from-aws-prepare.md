@@ -37,7 +37,11 @@ During this phase, you build out your Azure environment, refactor any code if re
   - Configure the service connections and validate that your build and release workflows can deploy your selected Azure compute resources, such as Azure App Service, AKS, or VMs.
   - If you're using a blue/green approach, make sure you can deploy to both AWS and Azure during the transition (for example, to apply an urgent fix or to support a rollback).
 - **Test your infrastructure:** Validate your Virtual WAN or hub network and any other foundational services like AWS Direct Connect and Azure ExpressRoute and/or VPN connections. Ensure they're configured to support both the target workload and the migration process. Validate that connectivity works end-to-end across your Azure and AWS environments. Use [**Azure Chaos Studio**](/azure/chaos-studio/) to simulate potential faults, such as VM or networking outages. Validate that the migrated workload remains resilient under those circumstances.
-- **Test your networking and security:** As you configure NSGs, firewalls, and policies, validate that the application can communicate with all required services. Perform connectivity tests to ensure that security settings are neither too restrictive nor too permissive. Adjust as needed to maintain both security and functionality.
+- **Test your networking and security:** As you configure NSGs, firewalls, and policies, validate that the application can communicate with all required services. Perform connectivity tests to ensure that security settings are neither too restrictive nor too permissive. Adjust as needed to maintain both security and functionality. Specifically:
+	- Confirm that all required ports are open between Azure and AWS environments.
+	- Validate firewall rules and Network Security Group (NSG) or Application Security Group (ASG) configurations.
+	- Document any temporary security exceptions needed during migration.
+	- Ensure rollback plans account for reverting any security-related changes.
 
 ## Prepare your application
 
@@ -45,6 +49,10 @@ During this phase, you build out your Azure environment, refactor any code if re
 - **Reduce changes to production workload in AWS:** In the period leading up to the migration, you'll want to reduce changes happening to the workload, specifically ones that introduce new infrastructure, capabilities, or dependencies that might put the migration at risk.
 - **Refactor your application's code:** Use feature flags to simplify feature and configuration management between the AWS and Azure environments.
 - **Replace AWS-specific libraries and SDKs**: Many applications rely on AWS-native libraries or SDKs (for example, for storage, messaging, or authentication). These typically are not compatible with Azure services. During refactoring, identify and replace AWS-specific libraries with Azure equivalents or platform-agnostic alternatives. This step helps avoid runtime errors and ensures your application integrates cleanly with Azure services.
+
+> [!TIP]
+> Tools like GitHub Copilot can assist developers in identifying and refactoring AWS-specific code (such as SDK calls or service integrations) to Azure-compatible equivalents. This can accelerate the transition and reduce manual effort.
+
 - **Coordinate client configuration changes:** Ensure all client-facing configuration changes are implemented and validated. Provide preproduction environments for client teams to test updates to endpoints, authentication and connectivity.
 - **Prepare your operational functions:** Work with your operations team to implement workload monitoring in Azure. Collaborate with the security team to implement security monitoring and validate the Azure architecture. Validate that your workload's routine, ad-hoc, and emergency operational tasks can be conducted on Azure.
 
