@@ -115,7 +115,7 @@ API Management offers a free, managed TLS certificate for your domain, if you do
 > [!NOTE]
 > The free, managed TLS certificate is in preview. 
 
-#### Limitations
+### Limitations
 
 * Currently can be used only with the Gateway endpoint of your API Management service
 * Not supported in the v2 tiers
@@ -126,7 +126,7 @@ API Management offers a free, managed TLS certificate for your domain, if you do
 * Supports only public domain names
 * Can only be configured when updating an existing API Management instance, not when creating an instance
 
-
+[!INCLUDE [api-management-managed-certificate-ip-access.md](../../../includes/api-management-managed-certificate-ip-access.md)]
 
 ---
 ## Set a custom domain name - portal
