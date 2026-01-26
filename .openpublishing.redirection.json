@@ -6638,7 +6638,7 @@
     {
       "source_path": "articles/vpn-gateway/about-zone-redundant-vnet-gateways.md",
       "redirect_url": "/azure/reliability/reliability-virtual-network-gateway",
-      "redirect_document_id": true
+      "redirect_document_id": false
     },
     {
       "source_path": "articles/dns/dns-sdk.md",

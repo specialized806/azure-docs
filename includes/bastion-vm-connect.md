@@ -15,7 +15,7 @@
 
    If you're using the **Basic SKU**, you connect to a Windows computer by using RDP and port 3389. Also for the Basic SKU, you connect to a Linux computer by using SSH and port 22. You don't have options to change the port number or the protocol. However, you can change the keyboard language for RDP by expanding **Connection Settings** on this pane.
 
-   If you're using the **Developer SKU**, Bastion deploys automatically when you connect for the first time. You connect to a Windows computer by using RDP and port 3389, or to a Linux computer by using SSH and port 22. The Developer SKU uses a shared pool architecture and is available at no extra cost in [select regions](../articles/bastion/quickstart-host-portal.md?tabs=developer#tab/developer).
+   If you're using the **Developer SKU**, Bastion deploys automatically when you connect for the first time. You connect to a Windows computer by using RDP and port 3389, or to a Linux computer by using SSH and port 22. The Developer SKU uses a shared pool architecture and is available at no extra cost in [select regions](../articles/bastion/quickstart-host-portal.md?tabs=developer).
 
 1. For **Authentication Type**, select the authentication type from the dropdown list. The protocol determines the available authentication types. Complete the required authentication values.
 

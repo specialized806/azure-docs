@@ -92,7 +92,7 @@ The following diagram shows the dedicated deployment architecture used by the Cu
    | --- | --- |
    | **Name** | Specify the name for your Bastion resource. For example, **VNet1-bastion**. |
    | **Region** | Select the region where your virtual network resides. |
-   | **Availability zone** | Select the zone(s) from the dropdown, if desired. Only certain regions support availability zones. For more information, see [What are availability zones?](../reliability/availability-zones-overview.md) |
+   | **Availability zone** | Select the zone(s) from the dropdown, if desired. Only certain regions support availability zones. For more information, see [What are availability zones?](/azure/reliability/availability-zones-overview) |
    | **Tier** | Select the SKU. For information about the features available for each SKU, see [Bastion SKU comparison](bastion-sku-comparison.md). |
    | **Instance count** | Configure host scaling in scale unit increments. For more information, see [Instances and host scaling](configuration-settings.md#instance) and [Azure Bastion pricing](https://azure.microsoft.com/pricing/details/azure-bastion). |
 
