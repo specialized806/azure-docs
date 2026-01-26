@@ -10,6 +10,7 @@ ms.custom:
 ### Allow access to DigiCert IP addresses
 
 Starting January 2026, Azure API Management needs inbound access on port 80 to [specific DigiCert IP addresses](https://knowledge.digicert.com/alerts/ip-address-domain-validation?utm_medium=organic&utm_source=docs-digicert&referrer=https://docs.digicert.com/en/certcentral/manage-certificates/domain-control-validation-methods/automatic-domain-control-validation-check.html&utm_medium=organic&utm_source=docs-digicert&referrer=https://docs.digicert.com/en/certcentral/manage-certificates/domain-control-validation-methods/automatic-domain-control-validation-check.html) to renew (rotate) your managed certificate.  
+
 If your API Management instance restricts incoming IP addresses, remove or update existing IP restrictions by using one of the following methods based on your deployment architecture.
 
 ### Remove or edit IP filter policies in API Management
