@@ -28,7 +28,7 @@ Validate connectivity paths and troubleshoot packet-level issues.
 * [NIC Effective Routes](../virtual-network/diagnose-network-routing-problem.md) - View next-hop traffic for VM NICs. Useful for troubleshooting how routes are learned.
 * [S2S Gateway VPN - Packet Captures](packet-capture-site-to-site-portal.md) - Steps for collecting packet captures on Site-to-Site VPN Gateways. 
 * [ExpressRoute Traffic Collector](../expressroute/traffic-collector.md) - Samples network flows over ExpressRoute circuits.
-* [Network Watcher](../network-watcher/network-watcher-overview.md) - Provides packet capture on Virtual Machines (VMs), IP flow logs, NSG diagnostics, and connection troubleshooting capabilities. For more information, see [pricing](https://azure.microsoft.com/pricing/details/network-watcher/). Note: Doesn't confirm datapath through Virtual WAN hubs.
+* [Network Watcher](../network-watcher/network-watcher-overview.md) - Provides packet capture on Virtual Machines (VMs), IP flow logs, NSG diagnostics, and connection troubleshooting capabilities. For more information, see [pricing](https://azure.microsoft.com/pricing/details/network-watcher/). Note that this doesn't confirm datapath through Virtual WAN hubs.
 
 ## Health, Metrics, and Logs
 Monitor resource health and analyze diagnostic data.
