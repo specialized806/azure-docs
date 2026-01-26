@@ -106,13 +106,13 @@ Use the `azd init` command to create a local Azure Functions code project from a
 
     This command pulls the project files from the [template repository](https://github.com/Azure-Samples/functions-quickstart-java-azd-otel) and initializes the project in the current folder. The `-e` flag sets a name for the current environment. In `azd`, the environment maintains a unique deployment context for your app, and you can define more than one. The environment name also appears in the name of the resource group you create in Azure.  
 ::: zone-end  
-
+::: zone pivot="programming-language-csharp,programming-language-java,programming-language-javascript,programming-language-python,programming-language-typescript" 
 ## Review the code
 
 The template creates a complete distributed tracing scenario with three functions that work together. Review the key OpenTelemetry-related aspects.
 
 ### OpenTelemetry configuration
-
+::: zone-end  
 ::: zone pivot="programming-language-javascript,programming-language-python,programming-language-typescript"  
 The `src/otel-sample/host.json` file enables OpenTelemetry for the Functions host:
 
