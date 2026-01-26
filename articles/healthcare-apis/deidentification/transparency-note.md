@@ -95,7 +95,7 @@ Best practices help to improve the performance of the de-identification service:
 - **Surrogation:** When appropriate, we recommend that you deploy surrogation instead of redaction. If the system fails to identify true PHI, the real value is hidden among surrogates, or stand-in-data. The data is "hiding in plain sight."
 - **Languages:** Currently, the de-identification service is enabled for the languages and locales listed in [Languages supported by the Azure Health Data Services de-identification service](languages-supported.md). Code-switching or using languages with the wrong language-locale pairing results in worse performance.
 - **Spelling:** Correct spelling improves performance. If a word or the surrounding words are misspelled, the system might not have enough information to recognize that the text is PHI.
-- **vData format:** The service performs best on unstructured text, such as clinical notes, transcripts, or messages. Structured text without the context of surrounding words might not have enough information to recognize that the text is PHI.
+- **Data format:** The service performs best on unstructured text, such as clinical notes, transcripts, or messages. Structured text without the context of surrounding words might not have enough information to recognize that the text is PHI.
 
 ## Evaluation of the de-identification service
 
