@@ -69,7 +69,7 @@ To prevent creating roles that can't be assigned or deleted, clone the CloudAdmi
 1. Select the **CloudAdmin** role and select the **Clone role action** icon.
 
    >[!NOTE]
-   >Don't clone the **Administrator** role because you can't use it. The custom role created can't be deleted by cloudadmin\@vsphere.local.
+   >Don't clone the **Administrator** role, you won't be able to use it. The custom role you created can't be deleted by cloudadmin\@vsphere.local.
 
 1. Provide the name you want for the cloned role.
 
@@ -101,11 +101,11 @@ You're responsible for VMware NSX software-defined networking (SDN) configuratio
 
 - Network segments
 - Other Tier-1 gateways
-- Distributed firewall rules
+- Distribute firewall rules
 - Stateful services like gateway firewall
 - Load balancer on Tier-1 gateways
 
-You can access VMware NSX Manager using the built-in local user "cloudadmin" assigned to a custom role that gives limited privileges to a user to manage VMware NSX. While Microsoft manages the lifecycle of VMware NSX, certain operations aren't allowed by a user. Operations not allowed include editing the configuration of host and edge transport nodes or starting an upgrade. For new users, Azure VMware Solution deploys them with a specific set of permissions needed by that user. The purpose is to provide a clear separation of control between the Azure VMware Solution control plane configuration and Azure VMware Solution private cloud user.  
+You can access VMware NSX Manager using the built-in local user 'cloudadmin' assigned to a custom role that gives limited privileges to a user to manage VMware NSX. While Microsoft manages the lifecycle of VMware NSX, certain operations aren't allowed to a user. Operations not allowed include editing the configuration of host and edge transport nodes or starting an upgrade. For new users, Azure VMware Solution deploys them with a specific set of permissions needed by that user. The purpose is to provide a clear separation of control between the Azure VMware Solution control plane configuration and Azure VMware Solution private cloud user.  
 
 For new private cloud deployments, VMware NSX access is provided with a built-in local user cloudadmin assigned to the **cloudadmin** role with a specific set of permissions to use VMware NSX functionality for workloads.
 
@@ -152,7 +152,7 @@ In an Azure VMware Solution deployment, the VMware NSX can be integrated with ex
 Unlike on-premises deployment, not all predefined NSX RBAC roles are supported with Azure VMware solution to keep Azure VMware Solution IaaS control plane config management separate from tenant network and security configuration. For more information, see the next section, Supported NSX RBAC roles.
 
 > [!NOTE]
-> VMware NSX LDAP Integration is supported only with SDDCs with VMware NSX “cloudadmin” user.
+> VMware NSX LDAP Integration is supported only with SDDCs with VMware NSX 'cloudadmin' user.
 
 ### Supported and unsupported NSX RBAC roles  
 
@@ -173,12 +173,12 @@ Unlike on-premises deployment, not all predefined NSX RBAC roles are supported w
 - NetX Partner Admin
 - GI Partner Admin
 
-You can create custom roles in NSX with permissions lesser than or equal to CloudAdmin role created by Microsoft. Following are examples on how to create a supported "Network Admin" and "Security Admin" role.
+You can create custom roles in NSX with permissions lesser than or equal to CloudAdmin role created by Microsoft. Following are examples on how to create a supported 'Network Admin' and 'Security Admin' role.
 
 > [!NOTE]
 > Custom role creation fails if you assign a permission not allowed by CloudAdmin role.
 
-#### Create “AVS network admin” role
+#### Create 'AVS network admin' role
 
  Use the following steps to create this custom role.
 
@@ -186,7 +186,7 @@ You can create custom roles in NSX with permissions lesser than or equal to Clou
 
 1. Clone **Network Admin** and provide the name, **AVS Network Admin**.
 
-1. **Modify** the following permissions to "Read Only" or "None" as seen in the **Permission** column in the following table.
+1. **Modify** the following permissions to 'Read Only' or 'None' as seen in the **Permission** column in the following table.
 
     | Category        | Subcategory                  | Feature                                                            | Permission                                                       |
     |-----------------|-----------------------|----------------------------------------------------------------------|------------------------------------------------------------------|
@@ -194,15 +194,15 @@ You can create custom roles in NSX with permissions lesser than or equal to Clou
 
 1. **Apply** the changes and **Save** the Role.
 
-#### Create “AVS security admin” role
+#### Create 'AVS security admin' role
 
  Use the following steps to create this custom role.
 
 1. Navigate to **System** > **Users and Roles** > **Roles**.
 
-1. Clone **Security Admin** and provide the name, “AVS Security Admin”.
+1. Clone **Security Admin** and provide the name, **AVS Security Admin**.
 
-1. **Modify** the following permissions to "Read Only" or "None" as seen in the **Permission** column in the following table.
+1. **Modify** the following permissions to 'Read Only' or 'None' as seen in the **Permission** column in the following table.
 
 | Category        | Subcategory                  | Feature                                                            | Permission                                                       |
 |-----------------|-----------------------|----------------------------------------------------------------------|------------------------------------------------------------------|
@@ -218,7 +218,7 @@ You can create custom roles in NSX with permissions lesser than or equal to Clou
 > The VMware NSX custom role doesn't support the VMware NSX Traceflow feature. The recommendation is to assign the **Auditor** role to the user along with the custom role to enable Traceflow feature for that user.
 
 > [!NOTE]
-> VMware Aria Operations Automation integration with the NSX component of the Azure VMware Solution requires the “auditor” role to be added to the user with the NSX Manager cloudadmin role.
+> VMware Aria Operations Automation integration with the NSX component of the Azure VMware Solution requires the 'auditor' role to be added to the user with the NSX Manager cloudadmin role.
 
 ## Next steps
 
