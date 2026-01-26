@@ -5,7 +5,7 @@ services: azure-netapp-files
 author: b-ahibbard
 ms.service: azure-netapp-files
 ms.topic: how-to
-ms.date: 01/09/2026
+ms.date: 01/26/2026
 ms.author: anfdocs
 ---
 # Change availability zones for Elastic zone-redundant capacity pools in Azure NetApp Files
@@ -26,3 +26,7 @@ With Elastic zone-redundant storage, you can easily change the availability zone
 1. In the capacity pool overview, select **Edit Current Availability Zone**. 
 1. In the Edit Current Availability Zone blade, select the new zone the Availability Zone dropdown menu then **OK** to confirm your selection.  
 1. Reload the page to confirm the availability zone change was successful in the capacity pool overview's **Current zone** field.
+
+## More information 
+
+* [Understand Elastic zone-redundant storage](elastic-zone-redundant-concept.md)

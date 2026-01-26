@@ -17,7 +17,7 @@ Understanding resource limits for Azure NetApp Files helps you manage your volum
 
 Resources limits differ depending on the service level you are using. Ensure you are reviewing limits for the correct service level. 
 
-# [Flexible, Standard, Premium, Ultra](#tab/not-elastic)
+# [Flexible, Standard, Premium, Ultra](#tab/regular)
 
 The following table describes resource limits for the Flexible, Standard, Premium, and Ultra service levels of Azure NetApp Files:
 
@@ -67,7 +67,7 @@ The following table describes resource limits for the Flexible, Standard, Premiu
 
 For more information, see [Capacity management FAQs](faq-capacity-management.md).
 
-# [Elastic zone-redundant](#tab/elastic)
+# [Elastic](#tab/elastic)
 
 The following table describes resource limits for the Elastic zone-redundant service level of Azure NetApp Files:
 

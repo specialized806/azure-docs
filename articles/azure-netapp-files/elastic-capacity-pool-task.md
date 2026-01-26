@@ -5,7 +5,7 @@ services: azure-netapp-files
 author: b-ahibbard
 ms.service: azure-netapp-files
 ms.topic: how-to
-ms.date: 01/09/2026
+ms.date: 01/26/2026
 ms.author: anfdocs
 ---
 # Create a capacity pool for Elastic zone-redundant service in Azure NetApp Files
@@ -56,10 +56,7 @@ The maximum performance achieved will depend on the dataset and workload charact
     * **Delegated subnet**: Select a delegated subnet. 
     * **Encryption key source**: If you've already configured a customer-managed key, you can select **Customer Managed**. For more information, see [Configure customer-managed keys](elastic-customer-managed-keys.md). Otherwise, select **NetApp Managed**.
     * **Key vault private endpoint**: If you selected **Customer Managed** for the encryption key source, choose the Azure key vault you configured in your encryption settings. 
-    * **Active Directory configuration**: If you've configured an Active Directory account on the NetApp Elastic account, select it from the dropdown menu. If you haven't configured one, select **Create new**.  
-
-    [!INCLUDE [Steps to configure the Active Directory connection.](includes/elastic-active-directory.md)]
-
+    * **Active Directory configuration**: If you've configured an Active Directory account on the NetApp Elastic account, select it from the dropdown menu. If you haven't configured one, select **Create new** then follow the instructions to [configure the Active Directory account](elastic-active-directory.md).
     * **Availability zone**: Drag and drop the availability zones in the ranked order for failover. 
 
     :::image type="content" source="./media/elastic-capacity-pool-task/capacity-pool-elastic.png" alt-text="Screenshot of creation for an Elastic capacity pool." lightbox="./media/elastic-capacity-pool-task/capacity-pool-elastic.png":::
@@ -74,18 +71,11 @@ The maximum performance achieved will depend on the dataset and workload charact
 1. Increase the quota. Quotas can only be increased in to whole TiB values. 
 1. Select **Save**. 
 
-## Fail over a capacity pool
-
-1. Select **Capacity pools** then select the capacity pool you want to fail over. 
-1. Select **Edit Current Availability Zone**. 
-1. In the Edit Current Availability Zone tab, choose the new availability zone for the capacity pool. 
-1. Select **OK**. 
-1. In the capacity pool overview, check the **Current zone** field to confirm failover succeeded and the availability zone has been updated to the new zone. 
-
 [!INCLUDE [Availability zone role-based access control call-out.](includes/availability-zone-roles.md)]
 
 ## Next steps
 
+* [Change the availability zone of an Elastic capacity pool](elastic-change-zones.md)
 * [Understand Elastic zone-redundant storage](elastic-zone-redundant-concept.md)
 * [Create an NFS volume for Elastic zone-redundant storage](elastic-volume.md)
 * [Create an SMB volume for Elastic zone-redundant storage](elastic-volume-server-message-block.md)

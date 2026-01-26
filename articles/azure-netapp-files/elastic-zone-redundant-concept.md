@@ -5,7 +5,7 @@ services: azure-netapp-files
 author: b-ahibbard
 ms.service: azure-netapp-files
 ms.topic: article
-ms.date: 01/09/2026
+ms.date: 01/26/2026
 ms.author: anfdocs
 ms.custom: references-regions 
 ---
@@ -25,26 +25,6 @@ When creating your NetApp account, you must designate that the [account is for E
 ## Elastic zone-redundant service
 
 In comparison to existing Azure NetApp Files service levels, Elastic zone-redundant storage offers:
-
-<!-- Elastic ZR volumes write synchronously across Availability Zones (AZ) for zero‑data‑loss continuity and trigger platform‑managed failover in under two minutes -->
-<!-- 
-
-What is Azure NetApp Files zone redundant? 
-
-Azure NetApp Files zone redundant ensures robust data resiliency and availability through synchronous replication across multiple zones within a region. It offers automated and transparent failover and user-defined availability zones, allowing for tailored operational continuity. This feature provides enterprise-grade storage to protect against zonal outages and ensures availability for mission-critical applications, combined with the ability to dynamically scaling to meet workload demands. 
-
-Why Azure NetApp Files zone redundant? 
-
-Organizations today face increasing demands for robust data resilience and scalability in their cloud infrastructures. Azure NetApp Files zone redundant addresses these challenges by fortifying system reliability, reducing downtime risks and improving operational excellence. By ensuring continuous data availability and access across Azure availability zones, this new capability aligns with the principles of reliability, operational excellence, and performance efficiency. 
-
-Key Benefits 
-
-Reliability: Offers automated failover and synchronous data mirroring across zones, ensuring continuity during zonal outages. 
-
-User-Defined Availability Zones: Flexibly define failover priorities, tailoring the system to your specific needs. 
-
-Operational excellence: Enables flexible management of resources with scalable capacity pools, allowing shared QoS across volumes to adapt to changing workloads seamlessly. 
--->
 
 - Zone redundancy that can persist if a zonal outage occurs in a single region 
 - Transparent failover if a zonal outage occurs

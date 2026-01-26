@@ -5,7 +5,7 @@ services: azure-netapp-files
 author: b-ahibbard
 ms.service: azure-netapp-files
 ms.topic: how-to
-ms.date: 01/09/2026
+ms.date: 01/26/2026
 ms.author: anfdocs
 # Customer intent: "As a cloud storage administrator, I want to create a capacity pool for Azure NetApp Files so that I can manage the storage volumes and configure their performance requirements effectively."
 ---
@@ -70,20 +70,31 @@ You can create the Active Directory connection when you [create the capacity poo
     * **Organizational unit path**
 
         The LDAP path for the organizational unit (OU) where SMB server computer accounts will be created. 
+
     * **Security privilege users**
 
         This option grants security privilege (`SeSecurityPrivilege`) to Active Directory domain users or groups that require elevated privileges to access Azure NetApp Files volumes.
+
     * **Administrators**
 
         This option grants additional security privileges to Active Directory domain users or groups that require elevated privileges to access the Azure NetApp Files volumes.
+
     * **Backup users**
 
         This option grants additional security privileges to Active Directory domain users or groups that require elevated backup privileges to support backup, restore, and migration workflows in Azure NetApp Files.
+
     * **AKV resource**
 
         Choose the resource identity for your Azure Key Vault. 
+
     * **User name**
+
+        Enter the user name of the Azure Key Vault account. 
+
     * **Password secret**
+
+        Enter the password secret for the account. 
+
     * **User assigned identity**
 
         Select the user-assigned identity connected to the Azure Key Vault that you're associating with the account.
