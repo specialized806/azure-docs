@@ -60,7 +60,11 @@
     - name: Rewrite HTTP headers and URL
       href: rewrite-http-headers-url.md
   - name: TCP/TLS proxy
-    href: tcp-tls-proxy-overview.md
+    items:
+    - name: Overview
+      href: tcp-tls-proxy-overview.md
+    - name: Client IP preservation
+      href: proxy-protocol-header.md 
   - name: Support for working remotely
     href: ../networking/working-remotely-support.md?toc=%2fazure%2fapplication-gateway%2ftoc.json
   - name: High traffic support
@@ -95,6 +99,8 @@
     href: key-vault-certs.md
   - name: SSL certificate management
     href: ssl-certificate-management.md
+  - name: FIPS 140 support on V2
+    href: fips.md
   - name: Security baseline
     href: /security/benchmark/azure/baselines/application-gateway-security-baseline?toc=/azure/application-gateway/toc.json
   - name: TLS 1.0 and 1.1 retirement
@@ -153,6 +159,8 @@
         href: mutual-authentication-portal.md
       - name: Mutual authentication - PowerShell
         href: mutual-authentication-powershell.md
+      - name: Mutual authentication - Template
+        href: mutual-authentication-arm-template.md
     - name: Manage certificates
       items:             
       - name: Certificates for the backend
@@ -288,7 +296,7 @@
     - name: Relocate to another region
       href: ../operational-excellence/relocation-app-gateway.md?toc=/azure/application-gateway/toc.json
     - name: Migrate to availability zone support
-      href: ../reliability/migrate-app-gateway-v2.md?toc=/azure/application-gateway/toc.json
+      href: /azure/reliability/migrate-app-gateway-v2?toc=/azure/application-gateway/toc.json
   - name: Proxy buffer configuration
     href: proxy-buffers.md
   - name: Custom error pages

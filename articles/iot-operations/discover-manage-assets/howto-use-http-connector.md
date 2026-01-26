@@ -5,7 +5,7 @@ author: dominicbetts
 ms.author: dobett
 ms.service: azure-iot-operations
 ms.topic: how-to
-ms.date: 10/29/2025
+ms.date: 12/10/2025
 
 #CustomerIntent: As an industrial edge IT or operations user, I want configure my Azure IoT Operations environment so that I can access data from HTTP/REST endpoints.
 ---
@@ -94,6 +94,48 @@ az iot ops ns device endpoint inbound add rest --device rest-http-connector-cli 
 
 To learn more, see [az iot ops ns device](/cli/azure/iot/ops/ns/device).
 
+# [Bicep](#tab/bicep)
+
+Deploy the following Bicep template to create a device with an inbound endpoint for the HTTP/REST connector. Replace the placeholders `<AIO_NAMESPACE_NAME>` and `<CUSTOM_LOCATION_NAME>` with your Azure IoT Operations namespace name and custom location name respectively:
+
+```bicep
+param aioNamespaceName string = '<AIO_NAMESPACE_NAME>'
+param customLocationName string = '<CUSTOM_LOCATION_NAME>'
+
+resource namespace 'Microsoft.DeviceRegistry/namespaces@2025-10-01' existing = {
+  name: aioNamespaceName
+}
+
+resource customLocation 'Microsoft.ExtendedLocation/customLocations@2021-08-31-preview' existing = {
+  name: customLocationName
+}
+
+resource device 'Microsoft.DeviceRegistry/namespaces/devices@2025-10-01' = {
+  name: 'http-connector'
+  parent: namespace
+  location: resourceGroup().location
+  extendedLocation: {
+    type: 'CustomLocation'
+    name: customLocation.id
+  }
+  properties: {
+    endpoints: {
+      outbound: {
+        assigned: {}
+      }
+      inbound: {
+        'http-connector-0': {
+          endpointType: 'Microsoft.Http'
+          address: 'https://rest-http-connector-0'
+        }
+      }
+    }
+  }
+}
+```
+
+This configuration deploys a new `device` resource called `http-connector` to the cluster with an inbound endpoint called `http-connector-0`.
+
 ---
 
 ### Configure a device to use a username and password
@@ -109,6 +151,10 @@ To use the `Username password` authentication mode, complete the following steps
 # [Azure CLI](#tab/cli)
 
 [!INCLUDE [connector-username-password-cli](../includes/connector-username-password-cli.md)]
+
+# [Bicep](#tab/bicep)
+
+[!INCLUDE [connector-username-password-bicep](../includes/connector-username-password-bicep.md)]
 
 ---
 
@@ -138,7 +184,7 @@ A dataset defines where the connector sends the data it collects from a collecti
 
 1. Select **Create dataset**.
 
-1. Enter the details for the dataset such as its name, data source, and destination. For HTTP/REST assets, the data source is the path on the REST endpoint. For HTTP/REST assets, the destination is either an MQTT topic or a [broker state store](../develop-edge-apps/overview-state-store.md) key. For example:
+1. Enter the details for the dataset such as its name, data source, sampling interval, and destination. For HTTP/REST assets, the data source is the path on the REST endpoint. For HTTP/REST assets, the destination is either an MQTT topic or a [broker state store](../develop-edge-apps/overview-state-store.md) key. For example:
 
     :::image type="content" source="media/howto-use-http-connector/create-dataset.png" alt-text="Screenshot that shows how to create a dataset in the operations experience." lightbox="media/howto-use-http-connector/create-dataset.png":::
 
@@ -149,48 +195,101 @@ A dataset defines where the connector sends the data it collects from a collecti
     > [!TIP]
     > Use the **Manage default settings** option to configure default dataset settings such as the sampling interval.
 
-1. On the **Data points** page, select **Add data point** to add a data point for the dataset. For example:
-
-    :::image type="content" source="media/howto-use-http-connector/add-data-point.png" alt-text="Screenshot that shows how to add a data point for HTTP source." lightbox="media/howto-use-http-connector/add-data-point.png":::
-
-    Add details for each data point to publish to the MQTT broker.
-
-    Select **Next** to continue.
-
 1. On the **Review** page, review the details of the asset and select **Create** to create the asset. After a few minutes, the asset is listed on the **Assets** page:
 
     :::image type="content" source="media/howto-use-http-connector/http-asset-created.png" alt-text="Screenshot that shows the list of assets." lightbox="media/howto-use-http-connector/http-asset-created.png":::
 
 # [Azure CLI](#tab/cli)
 
-Run the following command:
+Run the following commands:
 
 ```azurecli
-az iot ops ns asset rest create --name myrestasset --instance {your instance name} -g {your resource group name} --device rest-http-connector-cli --endpoint rest-http-connector-0 --dataset-dest topic="azure-iot-operations/data/erp" retain=Never qos=Qos1 ttl=3600
+az iot ops ns asset rest create --name myrestasset --instance {your instance name} -g {your resource group name} --device rest-http-connector-cli --endpoint rest-http-connector-0
+
+az iot ops ns asset rest dataset add --asset myrestasset --instance {your instance name} -g {your resource group name} --name weatherdata --data-source "/api/weather" --dest topic="azure-iot-operations/data/erp" retain=Never qos=Qos1 ttl=3600 --sampling-int 30000
 ```
 
 For more information, see [az iot ops ns asset rest](/cli/azure/iot/ops/ns/asset/rest).
+
+# [Bicep](#tab/bicep)
+
+Deploy the following Bicep template to create an asset that publishes messages from the device shown previously to an MQTT topic. The data source of the dataset defines the path on the REST endpoint to query. Replace the placeholders `<AIO_NAMESPACE_NAME>` and `<CUSTOM_LOCATION_NAME>` with your Azure IoT Operations namespace name and custom location name respectively:
+
+```bicep
+param aioNamespaceName string = '<AIO_NAMESPACE_NAME>'
+param customLocationName string = '<CUSTOM_LOCATION_NAME>'
+
+resource namespace 'Microsoft.DeviceRegistry/namespaces@2025-10-01' existing = {
+  name: aioNamespaceName
+}
+
+resource customLocation 'Microsoft.ExtendedLocation/customLocations@2021-08-31-preview' existing = {
+  name: customLocationName
+}
+
+resource asset 'Microsoft.DeviceRegistry/namespaces/assets@2025-10-01' = {
+  name: 'myrestasset'
+  parent: namespace
+  location: resourceGroup().location
+  extendedLocation: {
+    type: 'CustomLocation'
+    name: customLocation.id
+  }
+  properties: {
+    displayName: 'myrestasset'
+    description: 'An example HTTP asset'
+    enabled: true
+
+    deviceRef: {
+      deviceName: 'http-connector'
+      endpointName: 'http-connector-0'
+    }
+
+    defaultDatasetsConfiguration: '{}'
+    defaultEventsConfiguration: '{}'
+
+    datasets: [
+      {
+        name: 'weatherdata'
+        dataSource: '/api/weather'
+        datasetConfiguration: '{"samplingIntervalInMilliseconds":20000}'
+        destinations: [
+          {
+            target: 'Mqtt'
+            configuration: {
+              topic: 'azure-iot-operations/data/erp'
+              qos: 'Qos1'
+              retain: 'Never'
+              ttl: 3600
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
+
+```
 
 ---
 
 ## Transform incoming data
 
-To transform the incoming data by using a WASM module, complete the following steps:
+To transform the incoming data by using a WASM module and graph, complete the following steps:
 
-1. Develop a WASM module to perform the custom transformation. For more information, see [Develop WebAssembly (WASM) modules and graph definitions](../connect-to-cloud/howto-develop-wasm-modules.md).
+1. Develop a WASM module to perform the custom transformation. For more information, see [Develop WebAssembly (WASM) modules and graph definitions](../develop-edge-apps/howto-develop-wasm-modules.md) or [Build WASM modules for data flows in VS Code](../develop-edge-apps/howto-build-wasm-modules-vscode.md).
 
-1. Configure your transformation graph. For more information, see [Configure WebAssembly (WASM) graph definitions](../connect-to-cloud/howto-configure-wasm-graph-definitions.md).
+1. Configure your transformation graph. For more information, see [Configure WebAssembly (WASM) graph definitions](../develop-edge-apps/howto-configure-wasm-graph-definitions.md).
 
-1. Deploy both the module and graph. For more information, see [Use WebAssembly (WASM)](../connect-to-cloud/howto-dataflow-graph-wasm.md).
+1. Deploy both the module and graph to your container registry. For more information, see [Deploy WebAssembly (WASM) modules and graph definitions](../develop-edge-apps/howto-deploy-wasm-graph-definitions.md).
 
-    > [!NOTE]
-    > You need to deploy at least one data flow graph to enable WASM graph processing, but this feature doesn't otherwise use the graph.
+1. Set up authentication and connection details so Azure IoT Operations can access the container registry.
 
-1. Configure your dataset with the URL of the deployed WASM graph in the **Transform** field:
+1. Configure your asset's dataset with the URL of the deployed WASM graph in the **Transform** field:
 
     :::image type="content" source="media/howto-use-http-connector/configure-transform.png" alt-text="Screenshot that shows how to add a WASM transform to a dataset." lightbox="media/howto-use-http-connector/configure-transform.png":::
 
-A data transformation in the HTTP/REST connector only requires a [single map operator](../connect-to-cloud/howto-develop-wasm-modules.md#create-a-simple-module), but WASM graphs are fully supported with the following restrictions:
+A data transformation in the HTTP/REST connector only requires a [single map operator](../develop-edge-apps/howto-develop-wasm-modules.md#create-a-simple-module), but WASM graphs are fully supported with the following restrictions:
 
 - The graph must have a single `source` node and a single `sink` node.
 - The graph must consume and emit the `DataModel::Message` datatype.

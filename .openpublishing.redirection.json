@@ -1,6 +1,261 @@
 {
   "redirections": [
     {
+      "source_path": "articles/network-watcher/network-watcher-using-open-source-tools.md",
+      "redirect_url": "/previous-versions/azure/network-watcher/network-watcher-using-open-source-tools",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/network-watcher/network-watcher-intrusion-detection-open-source-tools.md",
+      "redirect_url": "/previous-versions/azure/network-watcher/network-watcher-intrusion-detection-open-source-tools",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/frontdoor/migrate-cdn-to-front-door.md",
+      "redirect_url": "/previous-versions/azure/frontdoor/migrate-cdn-to-front-door",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/synapse-analytics/data-explorer/data-explorer-compare.md",
+      "redirect_url": "/previous-versions/azure/synapse-analytics/data-explorer/data-explorer-compare",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/synapse-analytics/data-explorer/data-explorer-create-pool-portal.md",
+      "redirect_url": "/previous-versions/azure/synapse-analytics/data-explorer/data-explorer-create-pool-portal",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/synapse-analytics/data-explorer/data-explorer-create-pool-studio.md",
+      "redirect_url": "/previous-versions/azure/synapse-analytics/data-explorer/data-explorer-create-pool-studio",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/synapse-analytics/data-explorer/data-explorer-monitor-pools.md",
+      "redirect_url": "/previous-versions/azure/synapse-analytics/data-explorer/data-explorer-monitor-pools",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/synapse-analytics/data-explorer/data-explorer-overview.md",
+      "redirect_url": "/previous-versions/azure/synapse-analytics/data-explorer/data-explorer-overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/synapse-analytics/data-explorer/ingest-data/data-explorer-ingest-data-one-click.md",
+      "redirect_url": "/previous-versions/azure/synapse-analytics/data-explorer/ingest-data/data-explorer-ingest-data-one-click",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/synapse-analytics/data-explorer/ingest-data/data-explorer-ingest-data-overview.md",
+      "redirect_url": "/previous-versions/azure/synapse-analytics/data-explorer/ingest-data/data-explorer-ingest-data-overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/synapse-analytics/data-explorer/ingest-data/data-explorer-ingest-data-pipeline.md",
+      "redirect_url": "/previous-versions/azure/synapse-analytics/data-explorer/ingest-data/data-explorer-ingest-data-pipeline",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/synapse-analytics/data-explorer/ingest-data/data-explorer-ingest-data-properties.md",
+      "redirect_url": "/previous-versions/azure/synapse-analytics/data-explorer/ingest-data/data-explorer-ingest-data-properties",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/synapse-analytics/data-explorer/ingest-data/data-explorer-ingest-data-streaming.md",
+      "redirect_url": "/previous-versions/azure/synapse-analytics/data-explorer/ingest-data/data-explorer-ingest-data-streaming",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/synapse-analytics/data-explorer/ingest-data/data-explorer-ingest-data-supported-formats.md",
+      "redirect_url": "/previous-versions/azure/synapse-analytics/data-explorer/ingest-data/data-explorer-ingest-data-supported-formats",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/synapse-analytics/data-explorer/ingest-data/data-explorer-ingest-event-grid-overview.md",
+      "redirect_url": "/previous-versions/azure/synapse-analytics/data-explorer/ingest-data/data-explorer-ingest-event-grid-overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/synapse-analytics/data-explorer/ingest-data/data-explorer-ingest-event-grid-portal.md",
+      "redirect_url": "/previous-versions/azure/synapse-analytics/data-explorer/ingest-data/data-explorer-ingest-event-grid-portal",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/synapse-analytics/data-explorer/ingest-data/data-explorer-ingest-event-hub-csharp.md",
+      "redirect_url": "/previous-versions/azure/synapse-analytics/data-explorer/ingest-data/data-explorer-ingest-event-hub-csharp",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/synapse-analytics/data-explorer/ingest-data/data-explorer-ingest-event-hub-one-click.md",
+      "redirect_url": "/previous-versions/azure/synapse-analytics/data-explorer/ingest-data/data-explorer-ingest-event-hub-one-click",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/synapse-analytics/data-explorer/ingest-data/data-explorer-ingest-event-hub-overview.md",
+      "redirect_url": "/previous-versions/azure/synapse-analytics/data-explorer/ingest-data/data-explorer-ingest-event-hub-overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/synapse-analytics/data-explorer/ingest-data/data-explorer-ingest-event-hub-portal.md",
+      "redirect_url": "/previous-versions/azure/synapse-analytics/data-explorer/ingest-data/data-explorer-ingest-event-hub-portal",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/synapse-analytics/data-explorer/ingest-data/data-explorer-ingest-event-hub-python.md",
+      "redirect_url": "/previous-versions/azure/synapse-analytics/data-explorer/ingest-data/data-explorer-ingest-event-hub-python",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/synapse-analytics/data-explorer/ingest-data/data-explorer-ingest-event-hub-resource-manager.md",
+      "redirect_url": "/previous-versions/azure/synapse-analytics/data-explorer/ingest-data/data-explorer-ingest-event-hub-resource-manager",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/automation/change-tracking/enable-change-tracking-at-scale-machines-blade.md",
+      "redirect_url": "/azure/azure-change-tracking-inventory/enable-change-tracking-at-scale-machines-blade",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/automation/change-tracking/enable-change-tracking-at-scale-policy.md",
+      "redirect_url": "/azure/azure-change-tracking-inventory/enable-change-tracking-at-scale-policy",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/automation/change-tracking/extension-version-details.md",
+      "redirect_url": "/azure/azure-change-tracking-inventory/extension-version-details",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/automation/change-tracking/overview-monitoring-agent.md",
+      "redirect_url": "/azure/azure-change-tracking-inventory/overview-monitoring-agent",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/automation/change-tracking/region-mappings-monitoring-agent.md",
+      "redirect_url": "/azure/azure-change-tracking-inventory/change-tracking-inventory-support-matrix",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/automation/change-tracking/enable-vms-monitoring-agent.md",
+      "redirect_url": "/azure/azure-change-tracking-inventory/quickstart-monitor-changes-collect-inventory-azure-change-tracking-inventory?pivots=single-portal",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/automation/change-tracking/manage-change-tracking-monitoring-agent.md",
+      "redirect_url": "/azure/azure-change-tracking-inventory/tutorial-change-workspace-configure-data-collection-rule",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/defender-for-iot/organizations/custom-columns-sample-script.md",
+      "redirect_url": "/previous-versions/azure/defender-for-iot/organizations/custom-columns-sample-script",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/business-continuity-center/index.yml",
+      "redirect_url": "/azure/resiliency/",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/business-continuity-center/manage-protection-policy.md",
+      "redirect_url": "/azure/resiliency/manage-protection-policy",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/business-continuity-center/backup-protection-policy.md",
+      "redirect_url": "/azure/resiliency/backup-protection-policy",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/business-continuity-center/manage-vault.md",
+      "redirect_url": "/azure/resiliency/manage-vault",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/business-continuity-center/backup-vaults.md",
+      "redirect_url": "/azure/resiliency/backup-vaults",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/business-continuity-center/security-levels-concept.md",
+      "redirect_url": "/azure/resiliency/security-levels-concept",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/business-continuity-center/tutorial-manage-data-using-copilot.md",
+      "redirect_url": "/azure/resiliency/tutorial-manage-data-using-copilot",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/business-continuity-center/tutorial-govern-monitor-compliance.md",
+      "redirect_url": "/azure/resiliency/tutorial-govern-monitor-compliance",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/business-continuity-center/tutorial-reporting-for-data-insights.md",
+      "redirect_url": "/azure/resiliency/tutorial-reporting-for-data-insights",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/business-continuity-center/tutorial-monitor-protection-summary.md",
+      "redirect_url": "/azure/resiliency/tutorial-monitor-protection-summary",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/business-continuity-center/tutorial-monitor-alerts-metrics.md",
+      "redirect_url": "/azure/resiliency/tutorial-monitor-alerts-metrics",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/business-continuity-center/tutorial-monitor-operate.md",
+      "redirect_url": "/azure/resiliency/tutorial-monitor-operate",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/business-continuity-center/tutorial-review-security-posture.md",
+      "redirect_url": "/azure/resiliency/tutorial-review-security-posture",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/business-continuity-center/tutorial-view-protected-items-and-perform-actions.md",
+      "redirect_url": "/azure/resiliency/tutorial-view-protected-items-and-perform-actions",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/business-continuity-center/tutorial-recover-deleted-item.md",
+      "redirect_url": "/azure/resiliency/tutorial-recover-deleted-item",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/business-continuity-center/tutorial-reconfigure-backup-alternate-vault.md",
+      "redirect_url": "/azure/resiliency/tutorial-reconfigure-backup-alternate-vault",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/business-continuity-center/tutorial-configure-protection-datasource.md",
+      "redirect_url": "/azure/resiliency/tutorial-configure-protection-datasource",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/business-continuity-center/tutorial-view-protectable-resources.md",
+      "redirect_url": "/azure/resiliency/tutorial-view-protectable-resources",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/business-continuity-center/quick-understand-protection-estate.md",
+      "redirect_url": "/azure/resiliency/quick-understand-protection-estate",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/business-continuity-center/business-continuity-center-support-matrix.md",
+      "redirect_url": "/azure/resiliency/resiliency-support-matrix",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/business-continuity-center/business-continuity-center-overview.md",
+      "redirect_url": "/azure/resiliency/resiliency-overview",
+      "redirect_document_id": false
+    },
+    {
       "source_path": "articles/backup/backup-azure-enhanced-soft-delete-tutorial.md",
       "redirect_url": "/azure/backup/secure-by-default",
       "redirect_document_id": false
@@ -18,42 +273,27 @@
     {
       "source_path": "articles/migrate/concepts-azure-spring-apps-assessment-calculation.md",
       "redirect_url": "/azure/migrate",
-      "redirect_document_id": false,
-      "monikers": [
-        "migrate"
-      ]
+      "redirect_document_id": false
     },
     {
       "source_path": "articles/migrate/how-to-create-azure-spring-apps-assessment.md",
       "redirect_url": "/azure/migrate",
-      "redirect_document_id": false,
-      "monikers": [
-        "migrate"
-      ]
+      "redirect_document_id": false
     },
     {
       "source_path": "articles/migrate/troubleshoot-spring-boot-discovery.md",
       "redirect_url": "/azure/migrate",
-      "redirect_document_id": false,
-      "monikers": [
-        "migrate"
-      ]
+      "redirect_document_id": false
     },
     {
       "source_path": "articles/migrate/tutorial-assess-spring-boot.md",
       "redirect_url": "/azure/migrate",
-      "redirect_document_id": false,
-      "monikers": [
-        "migrate"
-      ]
+      "redirect_document_id": false
     },
     {
       "source_path": "articles/migrate/tutorial-discover-spring-boot.md",
       "redirect_url": "/azure/migrate",
-      "redirect_document_id": false,
-      "monikers": [
-        "migrate"
-      ]
+      "redirect_document_id": false
     },
     {
       "source_path": "articles/azure-functions/functions-proxies.md",
@@ -326,6 +566,81 @@
       "redirect_document_id": false
     },
     {
+      "source_path": "articles/trusted-signing/overview.md",
+      "redirect_url": "/azure/artifact-signing/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/trusted-signing/how-to-sign-ci-policy.md",
+      "redirect_url": "/azure/artifact-signing/how-to-sign-ci-policy",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/trusted-signing/quickstart.md",
+      "redirect_url": "/azure/artifact-signing/quickstart",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/trusted-signing/tutorial-assign-roles.md",
+      "redirect_url": "/azure/artifact-signing/tutorial-assign-roles",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/trusted-signing/how-to-signing-integrations.md",
+      "redirect_url": "/azure/artifact-signing/how-to-signing-integrations",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/trusted-signing/how-to-sign-history.md",
+      "redirect_url": "/azure/artifact-signing/how-to-sign-history",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/trusted-signing/how-to-renew-identity-validation.md",
+      "redirect_url": "/azure/artifact-signing/how-to-renew-identity-validation",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/trusted-signing/how-to-device-guard-signing-service-migration.md",
+      "redirect_url": "/azure/artifact-signing/how-to-device-guard-signing-service-migration",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/trusted-signing/how-to-change-sku.md",
+      "redirect_url": "/azure/artifact-signing/how-to-change-sku",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/trusted-signing/how-to-cert-revocation.md",
+      "redirect_url": "/azure/artifact-signing/how-to-cert-revocation",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/trusted-signing/concept-trust-models.md",
+      "redirect_url": "/azure/artifact-signing/concept-trust-models",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/trusted-signing/concept-resources-roles.md",
+      "redirect_url": "/azure/artifact-signing/concept-resources-roles",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/trusted-signing/concept-cert-management.md",
+      "redirect_url": "/azure/artifact-signing/concept-certificate-management",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/trusted-signing/index.yml",
+      "redirect_url": "/azure/artifact-signing/index",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/trusted-signing/faq.yml",
+      "redirect_url": "/azure/artifact-signing/faq",
+      "redirect_document_id": false
+    },
+    {
       "source_path": "articles/managed-ccf/application-scenarios.md",
       "redirect_url": "/azure/confidential-ledger/managed-confidential-consortium-framework-migration",
       "redirect_document_id": false
@@ -473,6 +788,21 @@
     {
       "source_path": "articles/expressroute/expressroute-migration-classic-resource-manager.md",
       "redirect_url": "/previous-versions/azure/expressroute/expressroute-migration-classic-resource-manager",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/expressroute/configure-connection-monitor.md",
+      "redirect_url": "/azure/expressroute/how-to-configure-connection-monitor",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/expressroute/connection-monitor-alerts.md",
+      "redirect_url": "/azure/expressroute/how-to-configure-connection-monitor",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/expressroute/connection-monitor-overview.md",
+      "redirect_url": "/azure/expressroute/how-to-configure-connection-monitor",
       "redirect_document_id": false
     },
     {
@@ -831,6 +1161,11 @@
       "redirect_document_id": false
     },
     {
+      "source_path": "articles/databox-online/azure-stack-edge-deploy-aks-on-azure-stack-edge.md",
+      "redirect_url": "/articles/databox-online/azure-stack-edge-gpu-kubernetes-workload-management",
+      "redirect_document_id": false
+    },
+    {
       "source_path": "articles/databox-online/azure-stack-edge-system-requirements.md",
       "redirect_url": "/previous-versions/azure/databox-online/azure-stack-edge-system-requirements",
       "redirect_document_id": false
@@ -892,7 +1227,8 @@
     },
     {
       "source_path": "articles/databox-online/azure-stack-edge-2301-release-notes.md",
-      "redirect_url": "/previous-versions/azure/databox-online/azure-stack-edge-2301-release-notes"
+      "redirect_url": "/previous-versions/azure/databox-online/azure-stack-edge-2301-release-notes",
+      "redirect_document_id": false
     },
     {
       "source_path": "articles/network-watcher/nsg-flow-logs-rest.md",
@@ -4805,6 +5141,16 @@
       "redirect_document_id": true
     },
     {
+      "source_path_from_root": "/articles/role-based-access-control/built-in-roles/mixed-reality.md",
+      "redirect_url": "/azure/role-based-access-control/built-in-roles",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/role-based-access-control/permissions/mixed-reality.md",
+      "redirect_url": "/azure/role-based-access-control/resource-provider-operations",
+      "redirect_document_id": false
+    },
+    {
       "source_path_from_root": "/articles/scheduler/get-started-portal.md",
       "redirect_url": "/azure/scheduler/migrate-from-scheduler-to-logic-apps",
       "redirect_document_id": false
@@ -6034,8 +6380,7 @@
       "redirect_url": "/azure/cyclecloud/release-notes/ccws/2025-02-06",
       "redirect_document_id": false
     },
-
-    {  
+    {
       "source_path": "articles/app-service/sre-agent-overview.md",
       "redirect_url": "/azure/sre-agent/overview",
       "redirect_document_id": false
@@ -6086,14 +6431,244 @@
       "redirect_document_id": false
     },
     {
-      "source_path": "articles/reliability/reliability-azure-container-apps.md",
-      "redirect_url": "/azure/reliability/reliability-container-apps",
-      "redirect_document_id": false
-    },
-    {
       "source_path": "articles/storage/container-storage/container-storage-aks-quickstart.md",
       "redirect_url": "/azure/storage/container-storage/install-container-storage-aks",
       "redirect_document_id": true
-    }
+    },
+    {
+      "source_path": "articles/communications-gateway/connectivity.md",
+      "redirect_url": "/previous-versions/azure/communications-gateway/connectivity",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/communications-gateway/connect-operator-connect.md",
+      "redirect_url": "/previous-versions/azure/communications-gateway/connect-operator-connect",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/communications-gateway/connect-teams-direct-routing.md",
+      "redirect_url": "/previous-versions/azure/communications-gateway/connect-teams-direct-routing",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/communications-gateway/connect-zoom.md",
+      "redirect_url": "/previous-versions/azure/communications-gateway/connect-zoom",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/communications-gateway/deploy.md",
+      "redirect_url": "/previous-versions/azure/communications-gateway/deploy",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/communications-gateway/emergency-calls-operator-connect.md",
+      "redirect_url": "/previous-versions/azure/communications-gateway/emergency-calls-operator-connect",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/communications-gateway/emergency-calls-teams-direct-routing.md",
+      "redirect_url": "/previous-versions/azure/communications-gateway/emergency-calls-teams-direct-routing",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/communications-gateway/emergency-calls-zoom.md",
+      "redirect_url": "/previous-versions/azure/communications-gateway/emergency-calls-zoom",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/communications-gateway/get-started.md",
+      "redirect_url": "/previous-versions/azure/communications-gateway/get-started",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/communications-gateway/index.yml",
+      "redirect_url": "/previous-versions/azure/communications-gateway/index",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/communications-gateway/integrate-with-provisioning-api.md",
+      "redirect_url": "/previous-versions/azure/communications-gateway/integrate-with-provisioning-api",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/communications-gateway/interoperability-operator-connect.md",
+      "redirect_url": "/previous-versions/azure/communications-gateway/interoperability-operator-connect",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/communications-gateway/interoperability-teams-direct-routing.md",
+      "redirect_url": "/previous-versions/azure/communications-gateway/interoperability-teams-direct-routing",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/communications-gateway/interoperability-zoom.md",
+      "redirect_url": "/previous-versions/azure/communications-gateway/interoperability-zoom",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/communications-gateway/lab.md",
+      "redirect_url": "/previous-versions/azure/communications-gateway/lab",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/communications-gateway/limits.md",
+      "redirect_url": "/previous-versions/azure/communications-gateway/limits",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/communications-gateway/maintenance-notifications.md",
+      "redirect_url": "/previous-versions/azure/communications-gateway/maintenance-notifications",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/communications-gateway/manage-enterprise-operator-connect.md",
+      "redirect_url": "/previous-versions/azure/communications-gateway/manage-enterprise-operator-connect",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/communications-gateway/manage-enterprise-teams-direct-routing.md",
+      "redirect_url": "/previous-versions/azure/communications-gateway/manage-enterprise-teams-direct-routing",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/communications-gateway/manage-enterprise-zoom.md",
+      "redirect_url": "/previous-versions/azure/communications-gateway/manage-enterprise-zoom",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/communications-gateway/mobile-control-point.md",
+      "redirect_url": "/previous-versions/azure/communications-gateway/mobile-control-point",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/communications-gateway/monitor-azure-communications-gateway.md",
+      "redirect_url": "/previous-versions/azure/communications-gateway/monitor-azure-communications-gateway",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/communications-gateway/monitoring-azure-communications-gateway-data-reference.md",
+      "redirect_url": "/previous-versions/azure/communications-gateway/monitoring-azure-communications-gateway-data-reference",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/communications-gateway/onboarding.md",
+      "redirect_url": "/previous-versions/azure/communications-gateway/onboarding",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/communications-gateway/overview.md",
+      "redirect_url": "/previous-versions/azure/communications-gateway/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/communications-gateway/plan-and-manage-costs.md",
+      "redirect_url": "/previous-versions/azure/communications-gateway/plan-and-manage-costs",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/communications-gateway/prepare-for-live-traffic-operator-connect.md",
+      "redirect_url": "/previous-versions/azure/communications-gateway/prepare-for-live-traffic-operator-connect",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/communications-gateway/prepare-for-live-traffic-teams-direct-routing.md",
+      "redirect_url": "/previous-versions/azure/communications-gateway/prepare-for-live-traffic-teams-direct-routing",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/communications-gateway/prepare-for-live-traffic-zoom.md",
+      "redirect_url": "/previous-versions/azure/communications-gateway/prepare-for-live-traffic-zoom",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/communications-gateway/prepare-for-vnet-injection.md",
+      "redirect_url": "/previous-versions/azure/communications-gateway/prepare-for-vnet-injection",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/communications-gateway/prepare-to-deploy.md",
+      "redirect_url": "/previous-versions/azure/communications-gateway/prepare-to-deploy",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/communications-gateway/provisioning-platform.md",
+      "redirect_url": "/previous-versions/azure/communications-gateway/provisioning-platform",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/communications-gateway/provision-user-roles.md",
+      "redirect_url": "/previous-versions/azure/communications-gateway/provision-user-roles",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/communications-gateway/reliability-communications-gateway.md",
+      "redirect_url": "/previous-versions/azure/communications-gateway/reliability-communications-gateway",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/communications-gateway/request-changes.md",
+      "redirect_url": "/previous-versions/azure/communications-gateway/request-changes",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/communications-gateway/role-in-network.md",
+      "redirect_url": "/previous-versions/azure/communications-gateway/role-in-network",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/communications-gateway/security.md",
+      "redirect_url": "/previous-versions/azure/communications-gateway/security",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/communications-gateway/whats-new.md",
+      "redirect_url": "/previous-versions/azure/communications-gateway/whats-new",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/vpn-gateway/about-zone-redundant-vnet-gateways.md",
+      "redirect_url": "/azure/reliability/reliability-virtual-network-gateway",
+      "redirect_document_id": true
+    },
+    {
+      "source_path": "articles/dns/dns-sdk.md",
+      "redirect_url": "https://learn.microsoft.com/dotnet/api/overview/azure/resourcemanager.dns-readme",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/oracle/oracle-db/exadata-vm-clusters.md",
+      "redirect_url": "/azure/oracle/oracle-db/database-overview",
+      "redirect_document_id": false
+    },
+    { 
+      "source_path": "articles/cyclecloud/how-to/ccws/register-entra-id-app.md",
+      "redirect_url": "/azure/cyclecloud/how-to/create-app-registration",
+      "redirect_document_id": false
+    },
+    { 
+      "source_path": "articles/cyclecloud/how-to/ccws/open-ondemand-add-users.md",
+      "redirect_url": "/azure/cyclecloud/how-to/ccws/configure-open-ondemand",
+      "redirect_document_id": false
+    },   
+    {
+      "source_path": "articles/reliability/reliability-health-insights.md",
+      "redirect_url": "/azure/azure-health-insights/reliability-health-insights",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/reliability/migrate-load-balancer.md",
+      "redirect_url": "/azure/reliability/reliability-load-balancer",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/nat-gateway/nat-availability-zones.md",
+      "redirect_url": "/azure/reliability/reliability-nat-gateway",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/cyclecloud/how-to/collect-custom-metrics-gpu-infiniband-telegraf.md",
+      "redirect_url": "/azure/cyclecloud/how-to/monitor-cyclecloud-cluster-using-prometheus-grafana",
+      "redirect_document_id": false
+    }    
   ]
 }

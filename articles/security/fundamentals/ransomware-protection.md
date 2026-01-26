@@ -2,12 +2,11 @@
 title: Ransomware protection in Azure
 description: Ransomware protection in Azure
 author: msmbaldwin
-manager: rkarlin
 ms.service: security
 ms.subservice: security-fundamentals
 ms.topic: article
 ms.author: mbaldwin
-ms.date: 05/01/2025
+ms.date: 01/06/2026
 
 ---
 
@@ -57,7 +56,7 @@ Key Azure-native protection capabilities include:
 - **[Microsoft Defender for Cloud](/azure/defender-for-cloud/)** - Provides threat detection and response (XDR) for Azure workloads, with ransomware-specific detection capabilities
 - **[Azure Backup](/azure/backup/)** - Offers immutable backups with soft delete and MFA protection to ensure recovery options
 - **[Azure Firewall Premium](../../firewall/premium-features.md)** - Includes IDPS to detect and block ransomware Command & Control (C&C) communications
-- **[Microsoft Entra ID Protection](/azure/active-directory/identity-protection/)** - Detects credential theft and suspicious authentication patterns targeting Azure resources
+- **[Microsoft Entra ID Protection](/entra/id-protection/overview-identity-protection)** - Detects credential theft and suspicious authentication patterns targeting Azure resources
 - **[Azure Policy](/azure/governance/policy/)** - Enforces security configurations and compliance across Azure resources
 - **[Microsoft Sentinel](/azure/sentinel/)** - Provides SIEM/SOAR capabilities with ransomware-specific detection analytics
 
@@ -74,7 +73,6 @@ Azure-specific ransomware protection articles:
 - [Improve your security defenses for ransomware attacks with Azure Firewall Premium](ransomware-protection-with-azure-firewall.md)
 
 Additional resources:
-- [Azure defenses for ransomware attack whitepaper](https://azure.microsoft.com/resources/azure-defenses-for-ransomware-attack)
 - [What is ransomware?](/security/ransomware/human-operated-ransomware)
 
 

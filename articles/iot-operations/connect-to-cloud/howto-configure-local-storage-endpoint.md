@@ -1,8 +1,8 @@
 ---
 title: Configure local storage data flow endpoint in Azure IoT Operations
 description: Learn how to configure a local storage data flow endpoint in Azure IoT Operations.
-author: SoniaLopezBravo
-ms.author: sonialopez
+author: sethmanheim
+ms.author: sethm
 ms.service: azure-iot-operations
 ms.subservice: azure-data-flows
 ms.topic: how-to
@@ -159,6 +159,9 @@ The only supported serialization format is Parquet.
 ## Use Azure Container Storage enabled by Azure Arc (ACSA)
 
 You can use the local storage data flow endpoint together with [Azure Container Storage enabled by Azure Arc](/azure/azure-arc/container-storage/howto-configure-cloud-ingest-subvolumes) to store data locally or send data to a cloud destination.
+
+> [!IMPORTANT]
+> You must install [Azure Container Storage enabled by Azure Arc (ACSA)](/azure/azure-arc/container-storage/howto-install-edge-volumes) before using it with a local storage data flow endpoint.
 
 ### Local shared volume
 

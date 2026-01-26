@@ -184,7 +184,7 @@
   - name: Hybrid data mobility and protection
     items:
     - name: Reliability in Azure NetApp Files 
-      href: ../reliability/reliability-netapp-files.md?toc=azure/azure-netapp-files/toc.json&bc=/azure/azure-netapp-files/breadcrumb/toc.json
+      href: /azure/reliability/reliability-netapp-files?toc=azure/azure-netapp-files/toc.json&bc=/azure/azure-netapp-files/breadcrumb/toc.json
     - name: Understand data protection and disaster recovery options
       href: data-protection-disaster-recovery-options.md
     - name: How Azure NetApp Files snapshots work
@@ -193,6 +193,8 @@
       items: 
       - name: Understand Azure NetApp Files cache volumes
         href: cache-volumes.md    
+      - name: Understand resizing guidelines for cache volumes
+        href: cache-volumes-resize-guidelines.md  
     - name: Azure NetApp Files backup
       items: 
       - name: Understand Azure NetApp Files backup
@@ -387,6 +389,8 @@
         href: dynamic-change-volume-service-level.md
       - name: Manage default and individual user and group quotas for a volume
         href: manage-default-individual-user-group-quotas.md
+      - name: Generate user and group quota reports for a volume 
+        href: generate-user-group-quota-reports.md 
       - name: Manage storage with cool access 
         href: manage-cool-access.md
       - name: Manage file access logs 
@@ -429,20 +433,16 @@
         href: azure-netapp-files-manage-snapshots.md
       - name: Manage snapshot policies
         href: snapshots-manage-policy.md
-      - name: Edit the Hide Snapshot Path
-        href: snapshots-edit-hide-path.md
+      - name: Create a short-term clone
+        href: create-short-term-clone.md
       - name: Restore a snapshot to a new volume
         href: snapshots-restore-new-volume.md
       - name: Restore individual files using single-file snapshot restore
         href: snapshots-restore-file-single.md
-      - name: Restore individual files from backup
-        href: restore-single-file-backup.md
       - name: Restore a file from a snapshot using a client
         href: snapshots-restore-file-client.md
       - name: Restore a volume using snapshot revert
         href: snapshots-revert-volume.md
-      - name: Create a short-term clone
-        href: create-short-term-clone.md
       - name: Delete snapshots
         href: snapshots-delete.md
     - name: Manage volume backups
@@ -459,8 +459,10 @@
         href: backup-manage-policies.md 
       - name: Search backups
         href: backup-search.md 
-      - name: Restore a backup
+      - name: Restore a backup to a new volume 
         href: backup-restore-new-volume.md 
+      - name: Restore individual files from a backup
+        href: restore-single-file-backup.md
       - name: Delete backups 
         href: backup-delete.md 	
     - name: Manage replication
@@ -489,6 +491,8 @@
         href: create-cross-zone-replication.md
     - name: Configure cross-zone-region replication 
       href: cross-zone-region-replication-configure.md
+    - name: Configure ransomware protection 
+      href: ransomware-configure.md
   - name: Relocate
     items:
     - name: Relocate volume to another region

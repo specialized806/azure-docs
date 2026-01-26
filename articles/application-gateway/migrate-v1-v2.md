@@ -6,7 +6,7 @@ author: mbender-ms
 ms.service: azure-application-gateway
 ms.custom: devx-track-azurepowershell
 ms.topic: how-to
-ms.date: 11/4/2025
+ms.date: 11/04/2025
 ms.author: mbender
 # Customer intent: As an DevOps engineer, I want to migrate my Azure Application Gateway and Web Application Firewall from V1 to V2, so that I can leverage the improved features and performance while ensuring minimal downtime during the transition.
 ---
@@ -46,6 +46,9 @@ This article primarily helps with the configuration migration. Client traffic mi
 
 [!INCLUDE [updated-for-az](~/reusable-content/ce-skilling/azure/includes/updated-for-az.md)]
 
+> [!NOTE]
+> If NetworkIsolation is enabled on the subscription, all Application Gateway v2 deployments whether public‑only or  private‑only must be deployed in a subnet delegated to Microsoft.Network/applicationGateways.  Use the following [steps to set up subnet delegation](/azure/virtual-network/manage-subnet-delegation?tabs=manage-subnet-delegation-portal).
+
 ## Configuration migration
 The configuration migration focuses on setting up the new V2 gateway with the settings from your existing V1 environment. We provide two Azure PowerShell scripts designed to facilitate the migration of configurations from V1 (Standard or WAF) to V2 (Standard_V2 or WAF_V2) gateways. These scripts help streamline the transition process by automating key deployment and configuration tasks.
 
@@ -53,6 +56,12 @@ The configuration migration focuses on setting up the new V2 gateway with the se
 This is the new experience that offers an improved migration experience by:
 * Eliminating the need for manual input of frontend SSL certificates and backend trusted root certificates.
 * Supporting the deployment of private-only V2 gateways.
+
+> [!NOTE]
+> If the existing V1 Application Gateway is configured with a private-only frontend, you must [register the EnableApplicationGatewayNetworkIsolation feature in the subscription](../application-gateway/application-gateway-private-deployment.md#onboard-to-the-feature) for Private Deployment before running the migration script. This step is required to avoid deployment failures.
+
+> [!NOTE]
+> Private Application Gateway deployments must have subnet delegation configured to Microsoft.Network/applicationGateways. Use the following [steps to set up subnet delegation](/azure/virtual-network/manage-subnet-delegation?tabs=manage-subnet-delegation-portal).
 
 You can **download** the Enhanced cloning script from the  [PowerShell Gallery](https://www.powershellgallery.com/packages/AzureAppGWClone).
  
@@ -261,6 +270,8 @@ Run the script with the following command to get the latest version:
 
 * For enhanced cloning Public IP Retention script - `Install-Script -Name AzureAppGWIPMigrate -Force`
 
+* For enhanced cloning script - `Install-Script -Name AzureAppGWClone -Force`
+
 * For the legacy cloning script  - `Install-Script -Name AzureAppGWMigration -Force`
 
 This command also installs the required Az modules.
@@ -298,7 +309,11 @@ After successfully migrating the configuration and thoroughly testing your new V
 We provide an Azure PowerShell script designed to **retain the Public IP address from V1**.
 * Swaps Public IP: This script reserves the Basic public IP from V1, converts it to Standard, and attaches it to the V2 gateway. This effectively redirects all incoming traffic to the V2 gateway.
 *	Expected Downtime: This IP swap operation typically results in a brief **downtime of approximately 1-5 minutes**. Plan accordingly.
-*	After a successful script run, the Public IP is moved from Application Gateway V1 to Application Gateway V2, with Application Gateway V1 receiving a new public IP. 
+*	After a successful script run, the Public IP is moved from Application Gateway V1 to Application Gateway V2, with Application Gateway V1 receiving a new public IP.
+
+> [!NOTE]
+> The IP migration script does not support Public IP address resources that have a DNS name beginning with a numeric character. This limitation exists because Public IP address resources do not allow DNS name labels that start with a number. This issue is more likely to occur for V1 gateways **created before May 2023**, when Public IP addresses were automatically assigned a default DNS name of the form **{GUID}.cloudapp.net**.
+> To proceed with migration, update the Public IP address resource to use a DNS name label that begins with a letter before running the script. [Learn about configuring Public IP DNS](../virtual-network/ip-services/public-ip-addresses.md#domain-name-label)
 
 You can **download** this Public IP retention script  from the  [PowerShell Gallery](https://www.powershellgallery.com/packages/AzureAppGWIPMigrate)
 

@@ -5,7 +5,7 @@ services: application-gateway
 author: mbender-ms
 ms.service: azure-application-gateway
 ms.topic: concept-article
-ms.date: 9/5/2025
+ms.date: 09/05/2025
 ms.author: mbender
 # Customer intent: As a cloud architect, I want to configure the Azure Application Gateway infrastructure, so that I can ensure optimal deployment within my virtual network and manage network security, addressing, and permissions efficiently.
 ---
@@ -191,7 +191,7 @@ You can block all other incoming traffic by using a **Deny All** rule.
 
 ## Supported user-defined routes
 
-Fine-grain control over the Application Gateway subnet via route table rules is possible in public preview. For more information, see [Private Application Gateway deployment (preview)](application-gateway-private-deployment.md#route-table-control).
+Fine-grain control over the Application Gateway subnet via route table rules is possible. For more information, see [Private Application Gateway deployment](application-gateway-private-deployment.md#route-table-control).
 
 With current functionality, there are some restrictions:
 
