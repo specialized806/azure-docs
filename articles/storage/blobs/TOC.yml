@@ -1329,8 +1329,6 @@ items:
             href: ../common/storage-compliance-offerings.md?toc=/azure/storage/blobs/toc.json&bc=/azure/storage/blobs/breadcrumb/toc.json
   - name: Data Lake Storage
     items:
-<<<<<<< HEAD
-=======
     - name: Data protection
       href: data-protection-overview.md
     - name: Soft delete versus versioning
@@ -1934,7 +1932,6 @@ items:
       href: ../common/storage-samples.md?toc=/azure/storage/blobs/toc.json&bc=/azure/storage/blobs/breadcrumb/toc.json
     - name: Azure PowerShell
       items:
->>>>>>> 2019f4cc91b7197a4ae8938490d15e5f197777a8
       - name: Overview
         items:
           - name: Introduction to Data Lake Storage
