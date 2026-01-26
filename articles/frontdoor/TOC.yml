@@ -194,7 +194,7 @@
     - name: Edgio retirement FAQ
       href: /previous-versions/azure/cdn/edgio-retirement-faq?toc=/azure/frontdoor/toc.json
     - name: DHE Cipher FAQ
-      href: dhe-ciphers.md
+      href: diffie-hellman-ciphers.md
 - name: Security
   items:
   - name: Secure your Front Door

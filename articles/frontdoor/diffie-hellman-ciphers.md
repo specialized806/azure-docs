@@ -9,9 +9,9 @@ ms.topic: concept-article
 ms.date: 01/26/2025
 ---
 
-**Applies to:** :heavy_check_mark: Front Door Standard/Premium :heavy_check_mark: Front Door (classic) :heavy_check_mark: CDN Standard from Microsoft (classic)
-
 # TLS_DHE cipher suites on Azure Front Door and Azure CDN
+
+**Applies to:** :heavy_check_mark: Front Door Standard/Premium :heavy_check_mark: Front Door (classic) :heavy_check_mark: CDN Standard from Microsoft (classic)
 
 On April 1, 2026, Azure Front Door (Standard, Premium, and Classic) and Azure CDN from Microsoft (Classic) services will stop negotiating the following weak DHE cipher suites for both client to service and service to origin TLS connections:
 * TLS_DHE_RSA_WITH_AES_256_GCM_SHA384
