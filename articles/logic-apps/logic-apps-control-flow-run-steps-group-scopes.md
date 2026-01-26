@@ -46,9 +46,9 @@ First, create this sample logic app so that you can add a scope later:
 
 You can save your logic app at any time, so save your work often.
 
-1. Sign in to the <a href="https://portal.azure.com" target="_blank">Azure portal</a>, if you haven't already. Create a blank logic app.
+1. Sign in to the <a href="https://portal.azure.com" target="_blank">Azure portal</a>. Create a blank logic app.
 
-1. Add the **Schedule - Recurrence** trigger with these settings: **Interval** = "1" and **Frequency** = "Minute"
+1. Add the **Schedule - Recurrence** trigger with these settings: **Interval** = **1** and **Frequency** = **Minute**.
 
    :::image type="content" source="./media/logic-apps-control-flow-run-steps-group-scopes/recurrence.png" alt-text="Screenshot shows a Schedule - Recurrence trigger.":::
 
@@ -76,17 +76,17 @@ You can save your logic app at any time, so save your work often.
       | **Waypoint 1** | <*start*> | Enter your route's origin. | 
       | **Waypoint 2** | <*end*> | Enter your route's destination. | 
       | **Avoid** | None | Enter items to avoid on your route, such as highways, tolls, and so on. For possible values, see [Calculate a route](/bingmaps/rest-services/routes/calculate-a-route). | 
-      | **Optimize** | timeWithTraffic | Select a parameter to optimize your route, such as distance, time with current traffic information, and so on. This example uses this value: "timeWithTraffic" | 
-      | **Distance unit** | <*your-preference*> | Enter the unit of distance to calculate your route. This example uses this value: "Mile" | 
-      | **Travel mode** | Driving | Enter the mode of travel for your route. This example uses this value "Driving" | 
+      | **Optimize** | timeWithTraffic | Select a parameter to optimize your route, such as distance, time with current traffic information, and so on. This example uses this value: *timeWithTraffic*. | 
+      | **Distance unit** | <*your-preference*> | Enter the unit of distance to calculate your route. This example uses this value *Mile*. | 
+      | **Travel mode** | Driving | Enter the mode of travel for your route. This example uses this value *Driving*. | 
       | **Transit Date-Time** | None | Applies to transit mode only. | 
       | **Transit Date-Type Type** | None | Applies to transit mode only. | 
 
 1. [Add a condition](../logic-apps/logic-apps-control-flow-conditional-statement.md) that checks whether the current travel time with traffic exceeds a specified time. For this example, follow these steps:
 
-   1. Rename the condition with this description: **If traffic time is more than specified time**
+   1. Rename the condition with this description: **If traffic time is more than specified time**.
 
-   1. In the leftmost column, select inside the **Choose a value** box so the dynamic content list appears. From that list, select the **Travel Duration Traffic** field, which is in seconds. 
+   1. In the leftmost column, select inside **Choose a value** so the dynamic content list appears. From that list, select the **Travel Duration Traffic** field, which is in seconds. 
 
       :::image type="content" source="./media/logic-apps-control-flow-run-steps-group-scopes/build-condition.png" alt-text="Screenshot shows a condition selected from dynamic content.":::
 
@@ -98,7 +98,7 @@ You can save your logic app at any time, so save your work often.
 
       :::image type="content" source="./media/logic-apps-control-flow-run-steps-group-scopes/finished-condition.png" alt-text="Screenshot shows the conditional after you selected the values.":::
 
-1. In the **True** branch, add a "send email" action for your email provider. Set up this action by following the steps under this image:
+1. In the **True** branch, add a send email action for your email provider. Set up this action by following the steps under this image:
 
    :::image type="content" source="./media/logic-apps-control-flow-run-steps-group-scopes/send-email.png" alt-text="Screenshot shows adding a Send an email action to True branch.":::
 
@@ -112,13 +112,13 @@ You can save your logic app at any time, so save your work often.
 
       `Travel time:`
 
-      While your cursor appears in the **Body** field, the dynamic content list stays open so that you can select any parameters that are available at this point.
+      While your cursor appears in the **Body** field, the dynamic content list stays open. You can select any parameters that are available at this point.
 
    1. In the dynamic content list, select **Expression**.
 
    1. Find and select the **div()** function. Put your cursor in inside the function's parentheses.
 
-   1. While your cursor is inside the function's parentheses, select **Dynamic content** so that the dynamic content list appears. 
+   1. While your cursor is inside the function's parentheses, select **Dynamic content**. The dynamic content list appears. 
    
    1. From the **Get route** section, select the **Traffic Duration Traffic** field.
 
@@ -126,7 +126,7 @@ You can save your logic app at any time, so save your work often.
 
    1. After the field resolves to JSON format, add a **comma** (`,`) followed by the number `60` so that you convert the value in **Traffic Duration Traffic** from seconds to minutes. 
    
-      ```
+      ```json
       div(body('Get_route')?['travelDurationTraffic'],60)
       ```
 
@@ -144,7 +144,7 @@ You can save your logic app at any time, so save your work often.
       :::image type="content" source="./media/logic-apps-control-flow-run-steps-group-scopes/send-email-4.png" alt-text="Screenshot shows your finished Body field.":::
    <!-- markdownlint-enable MD038 -->
 
-1. Save your logic app.
+1. Save your logic app workflow.
 
 Next, add a scope so that you can group specific actions and evaluate their status.
 
@@ -158,7 +158,7 @@ Next, add a scope so that you can group specific actions and evaluate their stat
 
       :::image type="content" source="./media/logic-apps-control-flow-run-steps-group-scopes/add-scope.png" alt-text="Screenshot shows adding a scope to the workflow.":::
 
-   1. In the search box, enter "scope" as your filter. Select the **Scope** action.
+   1. In the search box, enter *scope*. Select the **Scope** action.
 
 ## Add steps to scope
 
@@ -167,11 +167,11 @@ Next, add a scope so that you can group specific actions and evaluate their stat
    - **Get route**
    - **If traffic time is more than specified time**, which includes both the **true** and **false** branches
 
-   Your logic app now looks like this example:
+   Your logic app workflow now looks like this example:
 
    :::image type="content" source="./media/logic-apps-control-flow-run-steps-group-scopes/scope-added.png" alt-text="Screenshot shows workflow with steps added to the scope.":::
 
-1. Under the scope, add a condition that checks the scope's status. Rename the condition with this description: **If scope failed**
+1. Under the scope, add a condition that checks the scope's status. Rename the condition with this description: **If scope failed**.
 
    :::image type="content" source="./media/logic-apps-control-flow-run-steps-group-scopes/add-condition-check-scope-status.png" alt-text="Screenshot shows adding a condition to check scope status.":::
   
@@ -203,13 +203,13 @@ Next, add a scope so that you can group specific actions and evaluate their stat
 
       :::image type="content" source="./media/logic-apps-control-flow-run-steps-group-scopes/select-run-after-statuses.png" alt-text="Screenshot shows selected scope statuses.":::
 
-   1. When you're finished, select **Done**. The condition now shows an "information" icon.
+   1. When you're finished, select **Done**. The condition now shows an information icon.
 
 1. In the **True** and **False** branches, add the actions that you want to perform based on each scope status, for example, send an email or message.
 
    :::image type="content" source="./media/logic-apps-control-flow-run-steps-group-scopes/handle-true-false-branches.png" alt-text="Screenshot shows adding actions to take based on scope status.":::
 
-1. Save your logic app.
+1. Save your logic app workflow.
 
 Your finished logic app now looks like this example:
 
