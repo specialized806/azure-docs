@@ -11,13 +11,13 @@ ms.date: 01/26/2026
 
 # Run actions based on group status by using scopes in Azure Logic Apps
 
-[!INCLUDE [logic-apps-sku-consumption](~/reusable-content/ce-skilling/azure/includes/logic-apps-sku-consumption.md)]
+[!INCLUDE [logic-apps-sku-consumption](../logic-apps/includes/logic-apps-sku-consumption.md)]
 
-To run a group of actions only after another group of actions succeed or fail, you can nest the dependent actions inside a *scope*. This structure is useful when you want to organize actions as a logical group, evaluate that group's status, and perform actions that are based on the scope's status. After all the actions in a scope finish running, the scope also gets its own status. For example, you can use scopes when you want to implement [exception and error handling](../logic-apps/logic-apps-exception-handling.md#scopes). 
+To run a group of actions only after another group of actions succeeds or fails, nest the dependent actions inside a *scope*. You can organize actions as a logical group, evaluate that group's status, and perform actions that are based on the scope's status. After all the actions in a scope finish running, the scope also gets its own status. For example, you can use scopes when you want to implement [exception and error handling](../logic-apps/logic-apps-exception-handling.md#scopes). 
 
-To check a scope's status, you can use the same criteria that you use to determine a logic apps' run status, such as **Succeeded**, **Failed**, **Canceled**, and so on. By default, when all the scope's actions succeed, the scope's status is marked as **Succeeded**. But when any action in the scope fails or is canceled, the scope's status is marked **Failed**. For limits on scopes, see [Limits and configuration reference](../logic-apps/logic-apps-limits-and-config.md). 
+To check a scope's status, you can use the same criteria that you use to determine a logic apps' run status, such as **Succeeded**, **Failed**, and **Canceled**. By default, when all the scope's actions succeed, the scope's status is marked as **Succeeded**. But when any action in the scope fails or is canceled, the scope's status is marked **Failed**. For limits on scopes, see [Limits and configuration reference](../logic-apps/logic-apps-limits-and-config.md). 
 
-For example, here's a high-level logic app that uses a scope to run specific actions and a condition to check the scope's status. If any actions in the scope fail or end unexpectedly, the scope is marked **Failed** or **Aborted** respectively, and the logic app sends a "Scope failed" message. If all the scoped actions succeed, the logic app sends a "Scope succeeded" message.
+For example, here's a high-level logic app that uses a scope to run specific actions and a condition to check the scope's status. If any actions in the scope fail or end unexpectedly, the scope is marked **Failed** or **Aborted** respectively. The logic app sends a *Scope failed* message. If all the scoped actions succeed, the logic app sends a *Scope succeeded* message.
 
 :::image type="content" source="./media/logic-apps-control-flow-run-steps-group-scopes/scope-high-level.png" alt-text="Screenshot of a workflow shows the logic app scope flow with examples of Scope failed and Scope succeeded.":::
 
@@ -27,7 +27,7 @@ For example, here's a high-level logic app that uses a scope to run specific act
 
 - An email account from any email provider supported by Azure Logic Apps.
 
-  This example uses Outlook.com. If you use a different provider, the general flow stays the same, but your UI appears different.
+  This example uses Outlook.com. If you use a different provider, the general flow stays the same.
 
 - A Bing Maps key. To get this key, see [Get a Bing Maps key](/bingmaps/getting-started/bing-maps-dev-center-help/getting-a-bing-maps-key).
 
@@ -39,7 +39,8 @@ First, create this sample logic app so that you can add a scope later:
 
 :::image type="content" source="./media/logic-apps-control-flow-run-steps-group-scopes/finished-sample-app.png" alt-text="Screenshot shows a workflow with a conditional.":::
 
-- A **Schedule - Recurrence** trigger that checks the Bing Maps service at an interval that you specify * A **Bing Maps - Get route** action that checks the travel time between two locations 
+- A **Schedule - Recurrence** trigger that checks the Bing Maps service at an interval that you specify
+- A **Bing Maps - Get route** action that checks the travel time between two locations 
 - A condition action that checks whether the travel time exceeds your specified travel time
 - An action that sends you email that current travel time exceeds your specified time
 
