@@ -21,7 +21,7 @@ In Azure Functions, this status is available via the [HTTP GetStatus API](durabl
 ::: zone-end
 
 ::: zone pivot="durable-task-sdks"
-In Durable Task SDKs, this status is available through orchestration status query APIs on the `DurableTaskClient` (for example, `GetInstancesAsync` in .NET or `getInstanceMetadata` in Java).
+In Durable Task SDKs, this status is available through orchestration status query APIs on the `DurableTaskClient` (for example, `GetInstanceAsync` in .NET or `getInstanceMetadata` in Java).
 ::: zone-end
 
 ## Sample use cases
@@ -202,15 +202,31 @@ public class HelloCities : TaskOrchestrator<object?, string>
 
 # [JavaScript](#tab/javascript)
 
-This sample is shown for .NET and Java.
+This sample is shown for .NET, Java, and Python.
 
 # [Python](#tab/python)
 
-This sample is shown for .NET and Java.
+```python
+import durabletask.task as task
+
+def hello_cities(ctx: task.OrchestrationContext, _):
+    result = ""
+
+    result += (yield ctx.call_activity(say_hello, input="Tokyo")) + ", "
+    ctx.set_custom_status("Tokyo")
+
+    result += (yield ctx.call_activity(say_hello, input="London")) + ", "
+    ctx.set_custom_status("London")
+
+    result += yield ctx.call_activity(say_hello, input="Seattle")
+    ctx.set_custom_status("Seattle")
+
+    return result
+```
 
 # [PowerShell](#tab/powershell)
 
-This sample is shown for .NET and Java.
+This sample is shown for .NET, Java, and Python.
 
 # [Java](#tab/java)
 
@@ -253,21 +269,30 @@ OrchestrationMetadata metadata = await client.WaitForInstanceStartAsync(instance
 while (metadata.SerializedCustomStatus is null || metadata.ReadCustomStatusAs<string>() != "London")
 {
     await Task.Delay(200);
-    metadata = await client.GetInstancesAsync(instanceId, getInputsAndOutputs: true) ?? metadata;
+    metadata = await client.GetInstanceAsync(instanceId, getInputsAndOutputs: true) ?? metadata;
 }
 ```
 
 # [JavaScript](#tab/javascript)
 
-This sample is shown for .NET and Java.
+This sample is shown for .NET, Java, and Python.
 
 # [Python](#tab/python)
 
-This sample is shown for .NET and Java.
+```python
+import durabletask.client as client
+
+instance_id = c.schedule_new_orchestration(hello_cities)
+state = c.wait_for_orchestration_start(instance_id, fetch_payloads=True)
+
+while state.serialized_custom_status is None or state.serialized_custom_status != '"London"':
+    time.sleep(0.2)
+    state = c.get_orchestration_state(instance_id, fetch_payloads=True)
+```
 
 # [PowerShell](#tab/powershell)
 
-This sample is shown for .NET and Java.
+This sample is shown for .NET, Java, and Python.
 
 # [Java](#tab/java)
 
@@ -647,15 +672,36 @@ public class CityRecommender : TaskOrchestrator<int, object?>
 
 # [JavaScript](#tab/javascript)
 
-This sample is shown for .NET and Java.
+This sample is shown for .NET, Java, and Python.
 
 # [Python](#tab/python)
 
-This sample is shown for .NET and Java.
+```python
+import durabletask.task as task
+
+def city_recommender(ctx: task.OrchestrationContext, user_choice: int):
+    if user_choice == 1:
+        ctx.set_custom_status({
+            "recommendedCities": ["Tokyo", "Seattle"],
+            "recommendedSeasons": ["Spring", "Summer"]
+        })
+    elif user_choice == 2:
+        ctx.set_custom_status({
+            "recommendedCities": ["Seattle", "London"],
+            "recommendedSeasons": ["Summer"]
+        })
+    elif user_choice == 3:
+        ctx.set_custom_status({
+            "recommendedCities": ["Tokyo", "London"],
+            "recommendedSeasons": ["Spring", "Summer"]
+        })
+
+    # Wait for user selection and refine the recommendation
+```
 
 # [PowerShell](#tab/powershell)
 
-This sample is shown for .NET and Java.
+This sample is shown for .NET, Java, and Python.
 
 # [Java](#tab/java)
 
@@ -886,15 +932,34 @@ public class ReserveTicket : TaskOrchestrator<string, bool>
 
 # [JavaScript](#tab/javascript)
 
-This sample is shown for .NET and Java.
+This sample is shown for .NET, Java, and Python.
 
 # [Python](#tab/python)
 
-This sample is shown for .NET and Java.
+```python
+import durabletask.task as task
+
+def reserve_ticket(ctx: task.OrchestrationContext, user_id: str):
+    discount = yield ctx.call_activity(calculate_discount, input=user_id)
+
+    ctx.set_custom_status({
+        "discount": discount,
+        "discountTimeout": 60,
+        "bookingUrl": "https://www.myawesomebookingweb.com"
+    })
+
+    is_booking_confirmed = yield ctx.wait_for_external_event("BookingConfirmed")
+    if is_booking_confirmed:
+        ctx.set_custom_status({"message": "Thank you for confirming your booking."})
+    else:
+        ctx.set_custom_status({"message": "The booking was not confirmed on time. Please try again."})
+
+    return is_booking_confirmed
+```
 
 # [PowerShell](#tab/powershell)
 
-This sample is shown for .NET and Java.
+This sample is shown for .NET, Java, and Python.
 
 # [Java](#tab/java)
 
@@ -1075,15 +1140,20 @@ public class MyCustomStatusOrchestrator : TaskOrchestrator<object?, object?>
 
 # [JavaScript](#tab/javascript)
 
-This sample is shown for .NET and Java.
+This sample is shown for .NET, Java, and Python.
 
 # [Python](#tab/python)
 
-This sample is shown for .NET and Java.
+```python
+import durabletask.task as task
+
+def my_custom_status_orchestrator(ctx: task.OrchestrationContext, _):
+    ctx.set_custom_status({"nextActions": ["A", "B", "C"], "foo": 2})
+```
 
 # [PowerShell](#tab/powershell)
 
-This sample is shown for .NET and Java.
+This sample is shown for .NET, Java, and Python.
 
 # [Java](#tab/java)
 
@@ -1118,21 +1188,26 @@ Query the custom status from a client:
 ```csharp
 using Microsoft.DurableTask.Client;
 
-OrchestrationMetadata? metadata = await client.GetInstancesAsync(instanceId, getInputsAndOutputs: true);
+OrchestrationMetadata? metadata = await client.GetInstanceAsync(instanceId, getInputsAndOutputs: true);
 string? customStatusJson = metadata?.SerializedCustomStatus;
 ```
 
 # [JavaScript](#tab/javascript)
 
-This sample is shown for .NET and Java.
+This sample is shown for .NET, Java, and Python.
 
 # [Python](#tab/python)
 
-This sample is shown for .NET and Java.
+```python
+import durabletask.client as client
+
+state = c.get_orchestration_state(instance_id, fetch_payloads=True)
+custom_status_json = state.serialized_custom_status
+```
 
 # [PowerShell](#tab/powershell)
 
-This sample is shown for .NET and Java.
+This sample is shown for .NET, Java, and Python.
 
 # [Java](#tab/java)
 
