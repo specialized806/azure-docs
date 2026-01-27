@@ -77,7 +77,7 @@ This DNS-based load balancing solution uses multiple Azure Traffic Manager profi
 
 **Traffic flow (Normal operation):** User → DNS Query → Primary Traffic Manager (Weighted / Always serve routing) → Front Door (Priority 1) → Origin Servers.
   
-**Traffic flow (Front Door failure):** User → DNS Query → Primary Traffic Manager (Weighted / Always server routing) → Secondary Traffic Manager (Priority mode) → Application Gateway(s) → Origin Servers.
+**Traffic flow (Front Door failure):** User → DNS Query → Primary Traffic Manager (Weighted / Always serve @copilot routing) → Secondary Traffic Manager (Priority mode) → Application Gateway(s) → Origin Servers.
 
 ### Pre-deployment: Front Door vs Application Gateway
 
