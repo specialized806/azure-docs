@@ -35,7 +35,7 @@ This article shows you how to generate and customize a configuration file. After
    The following example generates a configuration file for mounting a container in streaming mode.
 
    ```bash
-   blobfuse2 gen-configuration --streaming --o <path-to-save-generated-config>
+   blobfuse2 gen-config --block-cache --o <path-to-save-generated-config>
    ```
 
    This generates a configuration file that contains default settings.
