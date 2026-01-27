@@ -5,7 +5,7 @@ author: cwatson-cat
 ms.author: cwatson
 ms.service: azure-iot-hub
 ms.topic: include
-ms.date: 12/19/2025
+ms.date: 01/27/2026
 ---
 
 ## Additional prerequisites for Azure CLI
