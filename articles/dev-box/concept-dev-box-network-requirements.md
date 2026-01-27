@@ -64,12 +64,12 @@ Dev boxes need access to specific FQDNs and endpoints for provisioning, manageme
 The following endpoint is specific to Microsoft Dev Box:
 
 | Category | Endpoints | Required? |
-|---------------------------------|--------------------------------|-------------------------------------|
+|------------------------------------|----------------------------------|-----|
 | **Dev box communication endpoint** | `*.agentmanagement.dc.azure.com` | Yes |
 
 ### Shared infrastructure endpoints
 
-Dev boxes use Azure Virtual Desktop infrastructure and require the same endpoints. For the complete list of required endpoints, follow each link in the table: [Allow network connectivity](/windows-365/enterprise/requirements-network?tabs=enterprise%2Cent#allow-network-connectivity).
+Dev boxes use Azure Virtual Desktop infrastructure and require the same endpoints. For the complete list of required endpoints for Windows 365, Azure Virtual Desktop, and Microsoft Intune, follow each link in the table: [Allow network connectivity](/windows-365/enterprise/requirements-network?tabs=enterprise%2Cent#allow-network-connectivity).
 
 ### Validating endpoint access
 
