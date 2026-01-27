@@ -44,7 +44,7 @@ The maximum performance achieved will depend on the dataset and workload charact
 * After creating a capacity pool, you can't reduce the quota of the capacity pool. 
 * Capacity pools in the Elastic zone-redundant service level provide throughput at 32 MiB per second per 1 TiB and 1 I/OPS per GiB. With the maximum capacity pool size of 128 TiB, throughput maxes out at 4,096 MiB per second and 131,072 I/OPS. The maximum performance achieved depends on the dataset and workload characteristics such as read/write ratio, I/O size, and data compressibility.
 
-## Steps
+## Create a capacity pool
 
 1. From your Azure NetApp Files account, select **Capacity pools**. 
 1. Select **+ Add pool**.

@@ -41,7 +41,7 @@ To see all features that you can enable for an NFS volume and relevant considera
 
 For registration steps using Portal,
 
-1. Sign in to the [Azure Portal](https://portal.azure.com/#home). 
+1. Log in to the [Azure portal](https://portal.azure.com/#home). 
 
 2. In the Azure portal's search box, enter **Subscriptions** and then select your subscription.
 

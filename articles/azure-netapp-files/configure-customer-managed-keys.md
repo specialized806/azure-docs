@@ -30,7 +30,7 @@ The following diagram demonstrates how customer-managed keys work with Azure Net
     Customer-managed keys don't affect performance of Azure NetApp Files. Its only difference from platform-managed keys is how the key is managed.
 1. For read/write operations, Azure NetApp Files sends requests to Azure Key Vault to unwrap the account encryption key to perform encryption and decryption operations.
 
-Cross-tenant customer-managed keys is available in all Azure NetApp Files supported regions.
+The cross-tenant customer-managed keys feature is available in all Azure NetApp Files supported regions.
 
 ## Considerations
 

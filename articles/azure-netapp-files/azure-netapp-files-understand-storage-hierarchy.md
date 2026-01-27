@@ -55,7 +55,7 @@ Understanding how capacity pools work helps you select the right capacity pool t
 - Each capacity pool can belong to only one NetApp Elastic account. You can have multiple capacity pools within a NetApp Elastic account.
 - You can't move a capacity pool across NetApp Elastic accounts.
 
-  For example, in the storage hiearchy diagram, you can't move Capacity Pool 1 in the US East 2 NetApp Elastic account to the US West 2 NetApp Elastic account.
+  For example, in the storage hierarchy diagram, you can't move Capacity Pool 1 in the US East 2 NetApp Elastic account to the US West 2 NetApp Elastic account.
 - You can't delete a capacity pool until you delete all volumes within the capacity pool.
 - If you're using customer-managed keys, [ensure you've configured encryption before creating the capacity pool.](elastic-customer-managed-keys.md).
 - Elastic capacity pools enable you to create a failover preference order of availability zones. Some regions that support the Elastic service level only offer two availability zones. Query the region for availability zone with the REST API before creating the capacity pool:

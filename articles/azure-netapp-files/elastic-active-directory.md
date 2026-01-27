@@ -20,9 +20,9 @@ If you're adding SMB volumes to your Elastic zone-redundant capacity pool, you m
 ## Requirements 
 
 * Before creating your Active Directory configuration, you must set up an [Azure Key Vault](/azure/key-vault/secrets/about-secrets) containing at least one secret.
-    * The key vault must have soft delete and purge protection enabled. To set up a key vault, see the [quickstart guide](/azure/key-vault/general/quick-create-portal).
-    * You should store your Active Directory password in the Azure Key Vault then percolate the key vault details and secret name to Azure NetApp Files. 
-    * For increased security, select the *Disable public access* option in the network settings for your key vault. You must also select *Allow trusted Microsoft services to bypass this firewall* so that Azure NetApp Files can access the key vault.
+* The key vault must have soft delete and purge protection enabled. To set up a key vault, see the [quickstart guide](/azure/key-vault/general/quick-create-portal).
+* You should store your Active Directory password in the Azure Key Vault then percolate the key vault details and secret name to Azure NetApp Files. 
+* For increased security, select the *Disable public access* option in the network settings for your key vault. You must also select *Allow trusted Microsoft services to bypass this firewall* so that Azure NetApp Files can access the key vault.
 
 ## Considerations
 

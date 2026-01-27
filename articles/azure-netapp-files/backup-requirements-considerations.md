@@ -52,7 +52,7 @@ You need to be aware of several requirements and considerations before using Azu
 
 * To use Azure NetApp Files backup with large volumes, you must be [registered to use large volumes](large-volumes-requirements-considerations.md#register-the-feature).  
 
-* If the volume reaches its maximum quota, backup creation can fail depending on the amount of data changed. If the backup fails, increase the size of the volume then wait for the next scheduled backup. 
+* If the volume reaches its maximum quota, backup creation might fail when significant amounts of data are changed. If the backup fails, increase the size of the volume then wait for the next scheduled backup. 
 
 ## Next steps
 

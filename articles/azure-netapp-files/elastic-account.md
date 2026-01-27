@@ -25,7 +25,7 @@ Elastic zone-redundant storage is currently in preview. To register for Elastic 
 
 Waitlists requests are reviewed weekly. An Azure NetApp Files representative will contact you after your request has been reviewed. 
 
-## Steps
+## Create an Elastic account
 
 1. Log in to the Azure portal.
 1. Access the Azure NetApp Files pane by using one of the following methods:

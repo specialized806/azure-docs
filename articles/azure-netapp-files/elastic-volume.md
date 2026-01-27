@@ -32,7 +32,7 @@ Learn how to create an NFS volume for the Elastic zone-redundant storage.
 
 <!-- unix permissions, chown root access -->
 
-## Steps 
+## Create an NFS volume 
 
 1. In your account, select **Volumes**. 
 1. Select **+ Add Volume**. 

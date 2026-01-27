@@ -26,7 +26,7 @@ If you're using a custom RBAC role or the [built-in Contributor role](../../role
 * `Microsoft.NetApp/locations/{location}/queryNetworkSiblingSet`
 * `Microsoft.NetApp/locations/{location}/updateNetworkSiblingSet`
 
-### Steps
+### Modify the RBAC role
 
 1. In your Azure NetApp Files subscription, select **Access control (IAM)**.
 1. Select **Roles** then choose the custom role you want to modify. Select the three dots (`...`) then **Edit**. 

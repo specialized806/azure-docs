@@ -34,7 +34,7 @@ Learn how to create an SMB volume for Elastic zone-redundant storage.
 * If you encounter the error message "Error when creating. A problem occurred. Please try again after some time. If the issue persists, contact support.", the Active Directory password might have expired. Reset the password then try to create the volume again. 
 * After creating the volume, you can check its status in the volume's overview page to see if it's online or offline. 
 
-## Steps 
+## Create an SMB volume 
 
 1. In your NetApp account, select **Volumes**. 
 1. Select **+ Add Volume**. 

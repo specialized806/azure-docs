@@ -5,7 +5,7 @@ services: azure-netapp-files
 author: b-hchen
 ms.service: azure-netapp-files
 ms.topic: concept-article
-ms.date: 10/13/2025
+ms.date: 01/27/2025
 ms.author: anfdocs
 # Customer intent: "As a cloud storage administrator, I want to understand the `maxfiles` limits for Azure NetApp Files, so that I can effectively manage volume capacity and avoid 'out of space' errors when creating new files."
 ---
@@ -55,7 +55,7 @@ To see the `maxfiles` allocation for a specific volume size, check the **Maximum
 ## `maxfiles` limits for Elastic zone-redundant storage 
 
 
-There is default maximum number inodes per volume based on the volume size. Every inode requires 32KB of space 
+There is a default maximum number of inodes per volume based on the volume size. Every inode requires 32KB of space 
 
 
 | Volume size | Estimated `maxfiles` limit |

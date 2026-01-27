@@ -21,7 +21,7 @@ Creating a NetApp account enables you to set up a capacity pool so that you can 
 
 ## Steps
 
-1. Log into the Azure portal.
+1. Log in to the Azure portal.
 1. Access the Azure NetApp Files pane by using one of the following methods:
    * Search for **Azure NetApp Files** in the Azure portal search box.
    * Select **All services** in the navigation, and then filter to Azure NetApp Files.
