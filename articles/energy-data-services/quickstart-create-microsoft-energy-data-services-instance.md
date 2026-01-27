@@ -13,7 +13,7 @@ ms.custom:
 
 # Quickstart: Create an Azure Data Manager for Energy instance
 
-In this quickstart, you create an Azure Data Manager for Energy instance by using the Azure portal on a web browser. You first register an Azure application in Active Directory. Then you use the application ID to create an Azure Data Manager for Energy instance in your chosen Azure subscription and region.
+In this quickstart, you create an Azure Data Manager for Energy instance by using the Azure portal on a web browser. You first register an Azure application in Microsoft Entra ID. Then you use the application ID to create an Azure Data Manager for Energy instance in your chosen Azure subscription and region.
 
 You use a simple interface in the Azure portal to set up your Azure Data Manager for Energy instance. The process takes about 50 minutes to complete.
 
@@ -25,9 +25,9 @@ OSDU&reg; is a trademark of The Open Group.
 
 | Prerequisite | Details |
 | ------------ | ------- |
-Active Azure subscription | You need the Azure subscription ID in which you want to install Azure Data Manager for Energy. You need appropriate permissions to create Azure resources in this subscription.
-Application ID | You need an [application ID](../active-directory/develop/application-model.md) (often called an app ID or a client ID). This application ID is used for authentication to Microsoft Entra ID and is associated with your Azure Data Manager for Energy instance. You can [create an application ID](../active-directory/develop/quickstart-register-app.md) by going to Active Directory and selecting **App registrations** > **New registration**.
-Client secret | Sometimes called an application password, a client secret is a string value that your app can use in place of a certificate to identity itself. You can [create a client secret](../active-directory/develop/quickstart-register-app.md#add-a-client-secret) by selecting **Certificates & secrets** > **Client secrets** > **New client secret**. Record the secret's value for use in your client application code. This value is never displayed again after you leave this page.
+| Active Azure subscription | You need the Azure subscription ID in which you want to install Azure Data Manager for Energy. You need appropriate permissions to create Azure resources in this subscription. |
+| Application ID | You need an [application ID](../active-directory/develop/application-model.md) (often called an app ID or a client ID). This application ID is used for authentication to Microsoft Entra ID and is associated with your Azure Data Manager for Energy instance. You can [create an application ID](../active-directory/develop/quickstart-register-app.md) by going to Microsoft Entra ID and selecting **App registrations** > **New registration**. |
+| Client secret | Sometimes called an application password, a client secret is a string value that your app can use in place of a certificate to identity itself. You can [create a client secret](../active-directory/develop/quickstart-register-app.md#add-a-client-secret) by selecting **Certificates & secrets** > **Client secrets** > **New client secret**. Record the secret's value for use in your client application code. This value is never displayed again after you leave this page. |
 
 ## Create an Azure Data Manager for Energy instance
 
@@ -70,6 +70,21 @@ Client secret | Sometimes called an application password, a client secret is a s
 
    [![Screenshot of the tab for data encryption options in Azure Data Manager for Energy.](media/quickstart-create-microsoft-energy-data-services-instance/encryption-tab.png)](media/quickstart-create-microsoft-energy-data-services-instance/encryption-tab.png#lightbox)
 
+1. Move to the **External Data Services** tab. If you want to configure external data source connections, select the **Enable External Data Service** checkbox.
+
+   1. After it's enabled, select **Select a key vault** and choose one of the key vaults in the selected subscription.
+      [![Create Azure Data Manager for Energy page in the Azure portal with the External Data Services tab selected. The Enable External Data Services checkbox is checked, Key vault shows Select a key vault link, and Managed identity type displays two radio buttons for System-assigned managed identity selected and User-assigned managed identity. A Select a key vault flyout panel is open on the right side showing Subscription set to example-subscription and Key vault set to examplekv southcentralus with a blue Add button at the bottom.](media/quickstart-create-microsoft-energy-data-services-instance/select-key-vault.png)](media/quickstart-create-microsoft-energy-data-services-instance/select-key-vault.png#lightbox)
+   1. Under **Managed Identity Type**, choose either **System-assigned managed identity** or **User-assigned managed identity**.
+
+      > [!NOTE]
+      > A system-assigned managed identity is created during Azure Data Manager for Energy instance provisioning. You must wait until instance creation is complete before granting this identity access to the external data source's secret.
+
+   1. If you choose **User-assigned identity** then select **Select a user identity** and choose one of the previously created user-assigned managed identities in the selected subscription.
+   [![Azure portal showing the Create Azure Data Manager for Energy page with the External Data Services tab active. The Enable External Data Services checkbox is selected, Key vault is set to examplekv, and Managed identity type has User-assigned managed identity selected. A Select user assigned managed identity flyout panel is open on the right displaying a subscription dropdown set to example-subscription, a search field containing exampleuami, and a list showing exampleuami with Resource Group contoso-rg selected. The Selected identities section shows exampleuami with Resource Group contoso-rg and Subscription example-subscription with a Remove link. A blue Add button appears at the bottom of the flyout.](media/quickstart-create-microsoft-energy-data-services-instance/user-assigned-managed-identity.png)](media/quickstart-create-microsoft-energy-data-services-instance/user-assigned-managed-identity.png#lightbox). 
+   1. Your final selection will look like the following:
+    [![Create Azure Data Manager for Energy page in the Azure portal with the External Data Services tab selected. The Enable External Data Services checkbox is checked. Key vault field displays examplekv with a Select a key vault link below. Managed identity type section shows two radio buttons with User-assigned managed identity selected. User-assigned identity field displays exampleuami with a Select a user identity link below. Navigation buttons at the bottom include Previous, Next, and a blue Review plus create button.](media/quickstart-create-microsoft-energy-data-services-instance/eds-final-selection.png)](media/quickstart-create-microsoft-energy-data-services-instance/eds-final-selection.png#lightbox)
+   
+
 1. Move to the **Tags** tab and enter any tags that you want to specify. If you don't want to specify tags, leave the boxes blank.
 
    [![Screenshot of the tab for specifying tags in Azure Data Manager for Energy.](media/quickstart-create-microsoft-energy-data-services-instance/input-tags.png)](media/quickstart-create-microsoft-energy-data-services-instance/input-tags.png#lightbox)
@@ -111,3 +126,4 @@ To delete an Azure Data Manager for Energy instance:
 ## Next steps
 
 - [How to manage users](how-to-manage-users.md)
+- [How to enable External Data Sources (EDS)?](how-to-enable-external-data-sources.md)
