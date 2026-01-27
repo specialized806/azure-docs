@@ -56,21 +56,30 @@ Azure offers multiple messaging services. Use this guidance to select the right 
 
 For detailed guidance, see [Choose between Azure messaging services](../service-bus-messaging/compare-messaging-services.md).
 
-## Common architecture patterns
+## How it works
 
-Event Hubs supports these common streaming architectures:
+Event Hubs provides a unified streaming platform with time-based retention, decoupling event producers from consumers. Both can perform large-scale data ingestion and processing through multiple protocols.
 
-- **Fan-out processing**: Multiple consumer groups independently read the same event stream for different purposes (analytics, archival, alerting)
-- **Lambda architecture**: Combine batch and real-time processing using [Event Hubs Capture](event-hubs-capture-overview.md) for batch and Stream Analytics for real-time
-- **Event sourcing**: Store all state changes as immutable events, enabling replay and audit capabilities
-- **CQRS (Command Query Responsibility Segregation)**: Separate read and write models using Event Hubs as the event store
+:::image type="content" source="./media/event-hubs-about/components.png" alt-text="Diagram that shows the main components of Event Hubs.":::
 
-Event Hubs is the preferred event ingestion layer for event streaming solutions built on Azure. It integrates with data and analytics services inside and outside Azure to build complete data streaming pipelines:
+### Core components
 
-- [Process data with Azure Stream Analytics](./process-data-azure-stream-analytics.md) to generate real-time insights
-- [Analyze streaming data with Azure Data Explorer](/azure/data-explorer/ingest-data-event-hub-overview) for near real-time exploration
-- Build cloud-native applications, functions, or microservices that process streaming data
-- [Validate event schemas](schema-registry-overview.md) using the built-in Schema Registry
+| Component | Description |
+|-----------|-------------|
+| **Producer applications** | Applications that send events to Event Hubs using [Event Hubs SDKs](sdks.md), Kafka producer clients, or HTTPS |
+| **Namespace** | Management container for one or more event hubs. Handles [streaming capacity](event-hubs-scalability.md), [network security](network-security.md), and [geo-disaster recovery](event-hubs-geo-dr.md) at the namespace level |
+| **Event hub / Kafka topic** | An append-only distributed log that organizes events. Contains one or more [partitions](event-hubs-features.md#partitions) for parallel processing |
+| **Partitions** | Ordered sequences of events used to scale throughput. Think of partitions as lanes on a freeway—more partitions enable higher throughput |
+| **Consumer applications** | Applications that read events by tracking their position (offset) in each partition. Can use [Event Hubs SDKs](sdks.md) or Kafka consumer clients |
+| **Consumer group** | A logical view of the event hub that enables multiple consumer applications to read the same stream independently, each maintaining its own position |
+
+### Event flow
+
+1. **Ingest**: Producer applications send events to an event hub. Events are assigned to partitions based on partition key or round-robin distribution.
+2. **Store**: Events are durably stored with configurable retention (1-90 days depending on tier). The [Capture](event-hubs-capture-overview.md) feature can also write events to long-term storage.
+3. **Process**: Consumer applications read events from partitions using consumer groups. Each consumer tracks its offset using [checkpointing](event-hubs-features.md#checkpointing) for reliable processing.
+
+For a detailed explanation, see [Event Hubs features](event-hubs-features.md).
 
 ## Key capabilities
 
@@ -162,64 +171,9 @@ Event Hubs provides multiple layers of reliability:
 
 For current pricing and detailed feature comparison, see [Event Hubs pricing](https://azure.microsoft.com/pricing/details/event-hubs/) and [quotas and limits](event-hubs-quotas.md).
 
-## How it works
-
-Event Hubs provides a unified streaming platform with time-based retention, decoupling event producers from consumers. Both can perform large-scale data ingestion and processing through multiple protocols.
-
-:::image type="content" source="./media/event-hubs-about/components.png" alt-text="Diagram that shows the main components of Event Hubs.":::
-
-### Core components
-
-| Component | Description |
-|-----------|-------------|
-| **Producer applications** | Applications that send events to Event Hubs using [Event Hubs SDKs](sdks.md), Kafka producer clients, or HTTPS |
-| **Namespace** | Management container for one or more event hubs. Handles [streaming capacity](event-hubs-scalability.md), [network security](network-security.md), and [geo-disaster recovery](event-hubs-geo-dr.md) at the namespace level |
-| **Event hub / Kafka topic** | An append-only distributed log that organizes events. Contains one or more [partitions](event-hubs-features.md#partitions) for parallel processing |
-| **Partitions** | Ordered sequences of events used to scale throughput. Think of partitions as lanes on a freeway—more partitions enable higher throughput |
-| **Consumer applications** | Applications that read events by tracking their position (offset) in each partition. Can use [Event Hubs SDKs](sdks.md) or Kafka consumer clients |
-| **Consumer group** | A logical view of the event hub that enables multiple consumer applications to read the same stream independently, each maintaining its own position |
-
-### Event flow
-
-1. **Ingest**: Producer applications send events to an event hub. Events are assigned to partitions based on partition key or round-robin distribution.
-2. **Store**: Events are durably stored with configurable retention (1-90 days depending on tier). The [Capture](event-hubs-capture-overview.md) feature can also write events to long-term storage.
-3. **Process**: Consumer applications read events from partitions using consumer groups. Each consumer tracks its offset using [checkpointing](event-hubs-features.md#checkpointing) for reliable processing.
-
-For a detailed explanation, see [Event Hubs features](event-hubs-features.md).
-
 ## Related content
 
-### Get started
-
-Use these quickstarts to start streaming data with Event Hubs:
-
-- **.NET**: [Send and receive events](event-hubs-dotnet-standard-getstarted-send.md)
-- **Java**: [Send and receive events](event-hubs-java-get-started-send.md) | [Use with Kafka](event-hubs-quickstart-kafka-enabled-event-hubs.md)
-- **Python**: [Send and receive events](event-hubs-python-get-started-send.md)
-- **JavaScript**: [Send and receive events](event-hubs-node-get-started-send.md)
-- **Go**: [Send and receive events](event-hubs-go-get-started-send.md)
-- **Spring**: [Spring Cloud Stream](/azure/developer/java/spring-framework/configure-spring-cloud-stream-binder-java-app-azure-event-hub)
-
-### Learn more
-
 - [Event Hubs features and terminology](event-hubs-features.md)
-- [Scalability](event-hubs-scalability.md)
-- [Quotas and limits](event-hubs-quotas.md)
 - [Apache Kafka developer guide](apache-kafka-developer-guide.md)
-- [Schema Registry overview](schema-registry-overview.md)
-- [Log compaction](log-compaction.md)
-- [Frequently asked questions](event-hubs-faq.yml)
-
-### Best practices
-
-- [Recommended Apache Kafka configurations](apache-kafka-configurations.md)
-- [Availability and consistency](event-hubs-availability-and-consistency.md)
-
-### Troubleshooting
-
-- [Troubleshooting guide](troubleshooting-guide.md)
-- [.NET exceptions](event-hubs-messaging-exceptions.md)
-
-### Migration
-
 - [Migrate from Apache Kafka to Event Hubs](apache-kafka-migration-guide.md)
+

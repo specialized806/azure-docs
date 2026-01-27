@@ -38,7 +38,7 @@ An Event Hubs **namespace** is a management container for event hubs (or topics,
 
 ---
 
-## Producing events
+## Event producers
 
 A **producer** (or publisher) is any application that sends events to an event hub.
 
@@ -75,7 +75,7 @@ The publisher name must match the SAS token used for authentication. When using 
 
 <a name="event-consumers"></a>
 
-## Consuming events
+## Event consumers
 
 A **consumer** is any application that reads events from an event hub. Event Hubs uses a **pull model**—consumers request events rather than having events pushed to them.
 
