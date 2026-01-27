@@ -25,7 +25,7 @@ Network traffic is subjected to the configured firewall rules when you route you
 
 For this article, you create a simplified single virtual network with two subnets for easy deployment.
 
-For production deployments, a [hub and spoke model](/azure/architecture/reference-architectures/hybrid-networking/hub-spoke) is recommended, where the firewall is in its own virtual network. The workload servers are in peered virtual networks in the same region with one or more subnets.
+For production deployments, a [hub and spoke model](/azure/architecture/reference-architectures/hybrid-networking/hub-spoke) is recommended, where the firewall is in its own virtual network. The workload servers are in peered virtual networks in West US with one or more subnets.
 
 * **AzureFirewallSubnet** - the firewall is in this subnet.
 * **Workload-SN** - the workload server is in this subnet. This subnet's network traffic goes through the firewall.
@@ -64,7 +64,7 @@ The resource group contains all the resources used in this procedure.
 2. On the Azure portal menu, select **Resource groups** or search for and select *Resource groups* from any page. Then select **Create**.
 4. For **Subscription**, select your subscription.
 1. For **Resource group** name, type **Test-FW-RG**.
-1. For **Region**, select a region. All other resources that you create must be in the same region.
+1. For **Region**, select **West US**. All other resources that you create must be in West US.
 1. Select **Review + create**.
 1. Select **Create**.
 
@@ -81,7 +81,7 @@ This virtual network has two subnets.
 1. For **Subscription**, select your subscription.
 1. For **Resource group**, select **Test-FW-RG**.
 1. For **Virtual network name**, type **Test-FW-VN**.
-1. For **Region**, select the same region that you used previously.
+1. For **Region**, select **West US**.
 1. Select **Next**.
 1. On the **Security** tab, select **Enable Azure Firewall**.
 1. For **Azure Firewall name**, type **Test-FW01**.
@@ -110,7 +110,7 @@ Now create the workload virtual machine, and place it in the **Workload-SN** sub
    |---------|---------|
    |Resource group     |**Test-FW-RG**|
    |Virtual machine name     |**Srv-Work**|
-   |Region     |Same as previous|
+   |Region     |West US|
    |Image|Ubuntu Server 22.04 LTS - x64 Gen2|
    |Size|Standard_B2s|
    |Authentication type|SSH public key|
@@ -151,7 +151,7 @@ For the **Workload-SN** subnet, configure the outbound default route to go throu
 1. Select **Create**.
 1. For **Subscription**, select your subscription.
 1. For **Resource group**, select **Test-FW-RG**.
-1. For **Region**, select the same location that you used previously.
+1. For **Region**, select **West US**.
 1. For **Name**, type **Firewall-route**.
 1. Select **Review + create**.
 1. Select **Create**.
@@ -227,7 +227,7 @@ Now deploy Azure Bastion to provide secure access to the virtual machine.
    | Subscription | Select your subscription |
    | Resource group | **Test-FW-RG** |
    | Name | **Test-Bastion** |
-   | Region | Same region as previous resources |
+   | Region | West US |
    | Tier | **Developer** |
    | Virtual network | **Test-FW-VN** |
    | Subnet | Select **Manage subnet configuration** |
@@ -237,8 +237,6 @@ Now deploy Azure Bastion to provide secure access to the virtual machine.
    - **Name**: **AzureBastionSubnet** (this name is required)
    - **Subnet address range**: **10.0.4.0/26**
 1. Select **Save** and close the subnets page.
-1. Back on the **Create a Bastion** page, for **Public IP address**, select **Create new**.
-1. For **Public IP address name**, type **Bastion-pip**.
 1. Select **Review + create**.
 1. After validation passes, select **Create**.
 

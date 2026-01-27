@@ -5,7 +5,7 @@ services: firewall
 author: duau
 ms.service: azure-firewall
 ms.topic: tutorial
-ms.date: 08/05/2024
+ms.date: 01/27/2026
 ms.author: duau
 ms.custom: sfi-image-nochange
 #Customer intent: As an administrator, I want to control network access from an on-premises network to an Azure virtual network.
@@ -36,7 +36,7 @@ In this tutorial, you learn how to:
 > * Create and connect the VPN gateways
 > * Peer the hub and spoke virtual networks
 > * Create the routes
-> * Create the virtual machines
+> * Create the virtual machine
 > * Test the firewall
 
 If you want to use Azure PowerShell instead to complete this procedure, see [Deploy and configure Azure Firewall in a hybrid network using Azure PowerShell](tutorial-hybrid-ps.md).
@@ -189,19 +189,6 @@ First, add a network rule to allow web traffic.
 1. For **Destination Ports**, type **80**.
 1. For **Destination type**, select **IP address**.
 1. For **Destination**, type **10.6.0.0/16**.
-
-Now add a rule to allow SSH traffic.
-
-On the second rule row, type the following information:
-
-1. **Name**, type **AllowSSH**.
-3. For **Source type**, select **IP address**.
-4. For **Source**, type **192.168.1.0/24**.
-2. For **Protocol**, select **TCP**.
-1. For **Destination Ports**, type **22**.
-1. For **Destination type**, select **IP address**.
-1. For **Destination**, type **10.6.0.0/16**
-1. Select **Add**.
 
 ## Create and connect the VPN gateways
 
@@ -386,7 +373,7 @@ Now create the spoke workload and on-premises virtual machines, and place them i
 
 ### Create the workload virtual machine
 
-Create a virtual machine in the spoke virtual network, running IIS, with no public IP address.
+Create a virtual machine in the spoke virtual network, running NGINX, with no public IP address.
 
 1. From the Azure portal home page, select **Create a resource**.
 2. Under **Popular Marketplace products**, select **Ubuntu Server 22.04 LTS**.
@@ -510,21 +497,7 @@ Now deploy Azure Bastion in the hub virtual network to provide secure access to 
    ```bash
    curl http://<VM-spoke-01 private IP>
    ```
-
-   You should see the **VM-spoke-01** web page with the hostname displayed.
-
-9. From the **VM-Onprem** SSH session, connect to **VM-spoke-01** using SSH:
-
-   ```bash
-   ssh azureuser@<VM-spoke-01 private IP>
-   ```
-
-   Your connection should succeed, and you should see a login prompt. Type **exit** to close the SSH connection.
-
-So now you verified that the firewall rules are working:
-
-- You can browse the web server on the spoke virtual network.
-- You can connect to the server on the spoke virtual network using SSH.
+The web server will return a response.
 
 Next, change the firewall network rule collection action to **Deny** to verify that the firewall rules work as expected.
 
@@ -534,7 +507,7 @@ Next, change the firewall network rule collection action to **Deny** to verify t
 4. For **Rule collection action**, select **Deny**.
 5. Select **Save**.
 
-Close any existing remote desktops before testing the changed rules. Now run the tests again. They should all fail this time.
+Now run the test again. The test should fail this time.
 
 ## Clean up resources
 
