@@ -58,7 +58,7 @@ Both the Application Gateway and API Management instances must be injected in th
 
 **Step 2: Preserve target custom domain/hostname from the traffic manager through to the API management instance**
    - **Azure Front Door (classic):** Set **Backend host header** to the API Management hostname (not the Application Gateway FQDN), or select **Preserve the incoming host header** when using custom domains.
-    - **Azure Front Door Standard/Premium:** In the **Route > Origin > Origin settings** blade, enable **Forward Host Header** and select **Original host header**.
+   - **Azure Front Door Standard/Premium:** In the **Route > Origin > Origin settings** blade, enable **Forward Host Header** and select **Original host header**.
    - **Application Gateway:** In HTTP settings, do one of the following to ensure that Application Gateway acts as a reverse proxy without rewriting the host header:
        - Set **Override host name** to **No**, -OR-
        - If you use hostname override, select **Pick hostname from incoming request** (recommended).
