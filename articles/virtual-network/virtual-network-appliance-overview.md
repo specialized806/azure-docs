@@ -33,7 +33,7 @@ Virtual Network Appliance is ideal for organizations that need to:
 
 Virtual Network Appliance is an Azure-managed network routing device that you deploy inside your virtual network. It acts as a high-bandwidth forwarding layer for routed traffic flows, so you don't need to run your own virtual machines as the forwarding layer.
 
-:::image type="content" source="media/virtual-network-appliance-overview/vna-diagram.png" alt-text="Screenshot of a diagram showing Virtual Network Appliance architecture in Azure.":::
+:::image type="content" source="media/virtual-network-appliance-overview/virtual-network-appliance-diagram.png" alt-text="Screenshot of a diagram showing Virtual Network Appliance architecture in Azure.":::
 
 Key characteristics:  
 • Azure resource model: You create and manage Virtual Network Appliance as an Azure resource, similar to other networking resources.  
