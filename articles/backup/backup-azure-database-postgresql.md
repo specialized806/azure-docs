@@ -26,7 +26,7 @@ You can configure a backup on multiple PostgreSQL databases across multiple Azur
 
    :::image type="content" source="./media/backup-azure-database-postgresql/adding-backup-inline.png" alt-text="Screenshot that shows the button for adding a backup." lightbox="./media/backup-azure-database-postgresql/adding-backup-expanded.png":::
 
-   Alternatively, you can go to this page from the [Resiliency](../tutorial-configure-protection-datasource.md).
+   Alternatively, you can go to this page from the [Resiliency](../resiliency/tutorial-configure-protection-datasource.md).
 
 1. On the **Basics** tab, enter the required information.
 
