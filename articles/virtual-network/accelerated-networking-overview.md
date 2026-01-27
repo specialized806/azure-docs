@@ -115,53 +115,52 @@ For more information about application binding requirements, see [How Accelerate
 
 #### Configure drivers to be unmanaged
 
-Accelerated Networking requires configuring the NVIDIA drivers as unmanaged devices in your network settings. Images using cloud-init version 19.4 or later automatically apply the correct network configuration to support Accelerated Networking during provisioning. We strongly recommend avoiding concurrent network interface management tools (such as ifupdown and networkd) on custom images, and not running dhcpclient directly on multiple interfaces.
+Accelerated Networking requires configuring the NVIDIA drivers as unmanaged devices in your network settings. Images using cloud-init version 23.2 or later automatically apply the correct network configuration to support Accelerated Networking during provisioning. We strongly recommend avoiding concurrent network interface management tools (such as ifupdown and networkd) on custom images, and not running dhcpclient directly on multiple interfaces.
 
-# [RHEL](#tab/redhat)
-
-The following example shows a sample configuration drop-in for `NetworkManager` on RHEL or CentOS:
+# [NetworkManager](#tab/NetworkManager)
+Ensure azure-vm-utils version 0.6.0 or later is installed. 
+Verify ```/usr/lib/udev/rules.d/10-azure-unmanaged-sriov.rules``` exists.  
+If it's not available for the distro, then use a custom udev rule in ```/etc/udev/rules.d/10-azure-unmanaged-sriov.rules``` with the content:
 
 ```bash
-sudo cat <<EOF > /etc/udev/rules.d/68-azure-sriov-nm-unmanaged.rules
-# Accelerated Networking on Azure exposes a new SRIOV interface to the VM.
-# This interface is transparentlybonded to the synthetic interface,
-# so NetworkManager should just ignore any SRIOV interfaces.
-SUBSYSTEM=="net", DRIVERS=="hv_pci", ACTION!="remove", ENV{NM_UNMANAGED}="1"
-EOF
+# Azure VMs with accelerated networking may have MANA, mlx4, or mlx5 SR-IOV devices which are transparently bonded to a synthetic
+# hv_netvsc device.  Mark devices with the IFF_SLAVE bit set as unmanaged devices:
+#   AZURE_UNMANAGED_SRIOV=1 for 01-azure-unmanaged-sriov.network
+#   ID_NET_MANAGED_BY=unmanaged for systemd-networkd >= 255
+#   NM_UNMANAGED=1 for NetworkManager
+#
+# ATTR{flags}=="0x?[89ABCDEF]??" checks the IFF_SLAVE bit (0x800).
+SUBSYSTEM=="net", ACTION!="remove", DRIVERS=="mana|mlx4_core|mlx5_core", ATTR{flags}=="0x?[89ABCDEF]??", ENV{AZURE_UNMANAGED_SRIOV}="1", ENV{ID_NET_MANAGED_BY}="unmanaged", ENV{NM_UNMANAGED}="1"
 ```
 
-# [openSUSE, SLES](#tab/suse)
-
-The following example shows a sample configuration drop-in for `networkd` on openSUSE or SLES:
+# [networkd](#tab/networkd)
+Ensure azure-vm-utils version 0.6.0 or later is installed. 
+Verify ```/usr/lib/udev/rules.d/10-azure-unmanaged-sriov.rules``` exists.  
+If it's not available for the distro, then use a custom udev rule in ```/etc/udev/rules.d/10-azure-unmanaged-sriov.rules``` with the content:
 
 ```bash
-sudo mkdir -p /etc/systemd/network
-sudo cat > /etc/systemd/network/99-azure-unmanaged-devices.network <<EOF
-# Ignore SR-IOV interface on Azure, since it's transparently bonded
-# to the synthetic interface
+# Azure VMs with accelerated networking may have MANA, mlx4, or mlx5 SR-IOV devices which are transparently bonded to a synthetic
+# hv_netvsc device.  Mark devices with the IFF_SLAVE bit set as unmanaged devices:
+#   AZURE_UNMANAGED_SRIOV=1 for 01-azure-unmanaged-sriov.network
+#   ID_NET_MANAGED_BY=unmanaged for systemd-networkd >= 255
+#   NM_UNMANAGED=1 for NetworkManager
+#
+# ATTR{flags}=="0x?[89ABCDEF]??" checks the IFF_SLAVE bit (0x800).
+SUBSYSTEM=="net", ACTION!="remove", DRIVERS=="mana|mlx4_core|mlx5_core", ATTR{flags}=="0x?[89ABCDEF]??", ENV{AZURE_UNMANAGED_SRIOV}="1", ENV{ID_NET_MANAGED_BY}="unmanaged", ENV{NM_UNMANAGED}="1"
+```
+If using networkd <255, add the following to ```/usr/lib/systemd/network/01-azure-unmanaged-sriov.network```
+```bash
+# Azure VMs with accelerated networking may have MANA, mlx4, or mlx5 SR-IOV
+# devices which are transparently bonded to a synthetic hv_netvsc device.
+# 10-azure-unmanaged-sriov.rules will mark these devices with
+# AZURE_UNMANAGED_SRIOV=1 so this can configure the devices as unmanaged.
+ 
 [Match]
-Driver=mlx4_en mlx5_en mlx4_core mlx5_core
+Property=AZURE_UNMANAGED_SRIOV=1
+ 
 [Link]
 Unmanaged=yes
-EOF
 ```
-
-# [Ubuntu, Debian](#tab/ubuntu)
-
-The following example shows a sample configuration drop-in for `networkd` on Ubuntu, Debian, or Flatcar:
-
-```bash
-sudo mkdir -p /etc/systemd/network
-sudo cat > /etc/systemd/network/99-azure-unmanaged-devices.network <<EOF
-# Ignore SR-IOV interface on Azure, since it's transparently bonded
-# to the synthetic interface
-[Match]
-Driver=mlx4_en mlx5_en mlx4_core mlx5_core
-[Link]
-Unmanaged=yes
-EOF
-```
-
 ---
 
 #### Network traffic uses the Accelerated Networking data path
