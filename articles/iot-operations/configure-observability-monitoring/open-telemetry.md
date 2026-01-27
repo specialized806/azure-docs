@@ -47,6 +47,8 @@ Before you begin, ensure you have:
 
 OTEL dataflow endpoints are first‑class endpoints in Azure IoT Operations. They appear in the list of available dataflow endpoints and can be selected when configuring modern dataflow graphs. This makes it straightforward to route telemetry to OTEL‑compatible backends while keeping a consistent configuration experience.
 
+:::image type="content" source="media/open-telemetry/dataflow-endpoints.png" alt-text="" lightbox="media/open-telemetry/dataflow-endpoints.png":::
+
 ## Create an OTEL dataflow endpoint
 
 This section explains how you can create, configure, and use OpenTelemetry (OTEL) dataflow endpoints in Azure IoT Operations to export telemetry for monitoring and observability.
