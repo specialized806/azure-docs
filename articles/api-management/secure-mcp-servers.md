@@ -123,3 +123,7 @@ For a step-by-step guide to call an example backend using credentials generated 
 * [Expose REST API in API Management as an MCP server](export-rest-mcp-server.md)
 
 * [Expose and govern existing MCP server](expose-existing-mcp-server.md)
+
+* [Lab: MCP with protected resource metadata (PRM) authorization](https://github.com/Azure-Samples/AI-Gateway/tree/main/labs/mcp-prm-oauth)
+
+* [Workshop: MCP security](https://azure-samples.github.io/sherpa/)
