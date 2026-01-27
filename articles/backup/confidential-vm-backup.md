@@ -25,7 +25,14 @@ This article describes how to configure and back up Confidential VM (CVM) with P
 
 Before you configure backup for CVM with CMK, ensure that the following prerequisites are met:
 
-- [Configure preview features in Azure subscription](/azure/azure-resource-manager/management/preview-features?tabs=azure-portal).
+- Register for the preview feature `RestorePointSupportForConfidentialVMV2` under the `Microsoft.Compute` provider namespace by running the following cmdlet, which is auto‑approved.
+
+   ```azurepowershell-interactive
+   Register-AzProviderFeature -FeatureName " RestorePointSupportForConfidentialVMV2" -ProviderNamespace "Microsoft.Compute" 
+
+   ```
+
+
 - Identify or create a Confidential VM (CVM) in a supported region. See the [supported regions](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/?products=virtual-machines).
 - Identify or [create a Recovery Services Vault](backup-create-recovery-services-vault.md#create-a-recovery-services-vault) in the same region as the VM.
 
