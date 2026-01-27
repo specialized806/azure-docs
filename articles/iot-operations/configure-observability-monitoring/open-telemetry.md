@@ -47,9 +47,9 @@ Before you begin, ensure you have:
 
 OTEL dataflow endpoints are first‑class endpoints in Azure IoT Operations. They appear in the list of available dataflow endpoints and can be selected when configuring modern dataflow graphs. This makes it straightforward to route telemetry to OTEL‑compatible backends while keeping a consistent configuration experience.
 
-:::image type="content" source="media/open-telemetry/dataflow-endpoints.png" alt-text="Screenshot of portal showing alternate endpoints screen." lightbox="media/open-telemetry/dataflow-endpoints.png":::
+:::image type="content" source="media/open-telemetry/dataflow-endpoints.png" alt-text="Screenshot of portal showing endpoints screen." lightbox="media/open-telemetry/dataflow-endpoints.png":::
 
-:::image type="content" source="media/open-telemetry/dataflow-endpoints-variation.png" alt-text=":::image type="content" source="media/open-telemetry/dataflow-endpoints-variation.png" alt-text="Screenshot of portal showing alternate endpoints screen.":::":::
+:::image type="content" source="media/open-telemetry/dataflow-endpoints-variation.png" alt-text="Screenshot of portal showing alternate endpoints screen." lightbox="media/open-telemetry/dataflow-endpoints-variation.png":::
 
 ## Create an OTEL dataflow endpoint
 
@@ -61,7 +61,7 @@ You can create an OTEL dataflow endpoint using anonymous authentication. This op
 
 :::image type="content" source="media/open-telemetry/anonymous-authentication.png" alt-text="Screenshot of portal showing setting for anonymous authentication." lightbox="media/open-telemetry/anonymous-authentication.png":::
 
-:::image type="content" source="media/open-telemetry/anonymous-authentication-variation.png" alt-text=":::image type="content" source="media/open-telemetry/anonymous-authentication-variation.png" alt-text="Screenshot of portal showing alternate setting for anonymous authentication.":::":::
+:::image type="content" source="media/open-telemetry/anonymous-authentication-variation.png" alt-text="Screenshot of portal showing alternate anonymous authentication setting." lightbox="media/open-telemetry/anonymous-authentication-variation.png":::
 
 ### Service account token authentication
 
