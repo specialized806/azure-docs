@@ -3,7 +3,7 @@ title: How to front a network security perimeter-protected Azure resource with A
 description: Step-by-step guidance to secure an Azure service backend with a network security perimeter and access it via Azure API Management using managed identity.
 ms.service: azure-api-management
 ms.topic: how-to
-ms.date: 01/22/2026
+ms.date: 01/27/2026
 author: dlepow
 ms.author: danlep
 ai-usage: ai-assisted
@@ -13,8 +13,7 @@ ai-usage: ai-assisted
 
 This article shows how to secure an Azure service resource with an Azure [network security perimeter](/azure/private-link/network-security-perimeter-concepts) and access it through Azure API Management. 
 
-You'll configure an Azure Storage account with a network security perimeter to allow traffic from your subscription (containing the API Management instance), use API Management's managed identity to authenticate to Azure Storage, and verify access with the API Management test console. Trusted service connectivity and public access to the storage account will be disabled.
-
+As an example, you configure an Azure Storage account with a network security perimeter to allow traffic from your subscription (containing the API Management instance), use API Management's managed identity to authenticate to Azure Storage, and verify access with the API Management test console. Trusted service connectivity and public access to the storage account will be disabled.
 
 ## Why use a network security perimeter with API Management?
 
@@ -30,7 +29,7 @@ A network security perimeter provides a supported, centralized perimeter to expl
 ## Prerequisites
 
 - An Azure subscription and Owner or Contributor permissions.
-- An Azure API Management instance with system-assigned managed identity enabled.
+- An Azure API Management instance with a system-assigned or user-assigned managed identity enabled.
 - An Azure Storage account 
     - Configure a container and at least one test blob (for example, a JSON file). 
     - To begin, enable public network access to the storage account. By default, this setting also enables trusted Microsoft services and resource instances to access the storage account. You modify access later when associating the network security perimeter. 
@@ -52,9 +51,7 @@ A network security perimeter provides a supported, centralized perimeter to expl
 Configure API Management to call Azure Storage. Add a test API and operation, and configure a policy to authenticate by using API Management's managed identity. 
 
 1. In the [Azure portal](https://portal.azure.com/), go to your API Management instance. 
-1. Ensure system-assigned managed identity is enabled: 
-    1. In the left menu, select **Security** > **Managed identities**.
-    1. On the **System assigned** tab, set **Status** to **On** if not already enabled. Select **Save**.
+1. Ensure that a system-assigned or user-assigned managed identity is enabled. For steps, see [Use managed identities in API Management](api-management-howto-use-managed-service-identity.md).
 1. Go to the storage account and grant the managed identity access:
 	1. In the left menu, select **Access control (IAM)** > **Add role assignment**.
 	1. Select **Storage Blob Data Reader** role (or **Contributor**, if write access is required) and assign to the API Management managed identity. 
@@ -66,7 +63,12 @@ Configure API Management to call Azure Storage. Add a test API and operation, an
 1. Add a GET operation targeting the container.
 	:::image type="content" source="media/using-network-security-perimeter/api-operation.png" alt-text="Screenshot showing a sample API operation to access a blob container in the portal.":::
 	
-1. On the **Design** tab, select the operation and then select the policy editor (`</>`). Edit the operation's policy definition to add the API version header and managed identity authentication. Example:
+1. On the **Design** tab, select the operation and then select the policy editor (`</>`). Edit the operation's policy definition to add the API version header and managed identity authentication. 
+
+In the following example:
+
+* The `authentication-managed-identity` policy assumes that the API Management instance has a system-assigned managed identity enabled and can access Azure Storage. To use a user-assigned managed identity, set a `client-id` attribute in the policy. For more information, see the [policy reference](authentication-managed-identity-policy.md).
+* The `set-header` policy sets the [required Storage REST API version header](/rest/api/storageservices/get-blob?tabs=microsoft-entra-id#request-headers).
 
     ```xml
     <policies>
@@ -130,28 +132,24 @@ Expected result:
   
 ## Step 3. Create a network security perimeter profile and associate the storage account
 
-1. In the Azure portal, search for **Network Security Perimeters** and select it.
-1. Select **+ Create** and provide a name and region. Accept the defaults for other settings.
-1. Select **Review + create** and then **Create**.
-1. After deployment, configure the network security perimeter profile:
-    1. In the left menu, select **Settings** > **Associated resources** > **+ Add** > **Associate resources with an existing profile**.
-    1. Select the profile you created. Select **+ Add**.
-    1. Select the storage account that you want to secure, but still allow the API Management gateway to access.
-    1. Select **Associate**.
+For typical steps to create a network security perimeter and associate an Azure resource with a profile, see [Create a network security perimeter and profile](/azure/private-link/network-security-perimeter-create). Brief steps follow:
 
-## Step 4. Add an inbound access rule to allow API Management traffic
+1. In the Azure portal, search for **Network Security Perimeters** and select it.
+1. Select **+ Create** and provide a name and region. Accept the defaults for other settings and create the perimeter.
+1. After deployment, go to the **Settings** > **Associated resources** blade to associate the storage account with an existing or new profile.
+
+## Step 4: Add an inbound access rule to allow API Management traffic
 
 To allow API Management to reach the storage account through the perimeter, add an inbound rule. The simplest approach is by Azure subscription.
 
-1. In the Azure portal, go to your network security perimeter.
-1. In the left menu of the network security perimeter, select **Settings** > **Profiles**, then select the profile you created.
+1. In the left menu of our network security perimeter, select **Settings** > **Profiles**, then select the profile you associated with the storage account.
 1. In the left menu, select **Settings** > **Inbound access rules** > **+ Add**:
     1. Enter a name for the rule.
     1. Select **Source type** *Subscriptions*, then in **Allowed sources** select the subscription that contains your API Management instance.
 1. Select **Add**.
 
 > [!NOTE]
-> If you select IP address-based control, specify API Management's outbound public IP address range in the inbound rule. Ensure you include all outbound [IP addresses](api-management-howto-ip-addresses.md) for your API Management instance.
+> If you select IP address-based control, specify API Management's outbound public IP address range in the inbound rule. Ensure you include all outbound [IP addresses](api-management-howto-ip-addresses.md#ip-addresses-for-outbound-traffic) for your API Management instance.
 > 
 
 ### Confirm the network configuration in the storage account
