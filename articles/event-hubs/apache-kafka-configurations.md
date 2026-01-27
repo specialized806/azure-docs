@@ -85,6 +85,7 @@ These settings work well with Event Hubs at their default values. Only change th
 | `linger.ms` | 0 | Increase for high-throughput scenarios (trades latency for throughput) |
 | `batch.size` | 16384 | Increase for high-throughput scenarios |
 | `acks` | all | Use `1` for higher throughput with slightly less durability |
+| `enable.idempotence` | true | Keep enabled for exactly-once producer semantics. Requires `request.timeout.ms` ≥ 60000, high `retries` (default is sufficient), and `acks=all` |
 
 ## librdkafka configuration properties
 
@@ -131,13 +132,14 @@ If you encounter problems after migrating from Kafka to Event Hubs, check these 
 | Connection closed unexpectedly | `max.request.size` exceeds 1,046,528 bytes | Set `max.request.size=1000000` |
 | Expired batches or send timeouts | Idle connections closed by Azure | Set `connections.max.idle.ms=180000` and `metadata.max.age.ms=180000` |
 | Request timeouts (librdkafka) | Default `request.timeout.ms` too low | Set `request.timeout.ms=60000` |
-| Frequent consumer rebalancing | `session.timeout.ms` too low or processing too slow | Increase `session.timeout.ms` or `max.poll.interval.ms` |
+| Frequent consumer rebalancing | `session.timeout.ms` too low or processing too slow | Increase `session.timeout.ms` or `max.poll.interval.ms`. Consider setting unique `group.instance.id` per consumer instance to reduce rebalances from transient disconnections |
 | Offset commit failures | Processing takes too long between polls | Increase `max.poll.interval.ms`, reduce batch size, or parallelize processing |
 | Compression errors | Unsupported compression type | Use `compression.type=gzip` or `compression.type=none` |
 | Authentication failures | Incorrect connection string format | Verify `sasl.jaas.config` format and connection string value |
 | High latency spikes | `linger.ms` set too high, causing batch accumulation delays | Reduce `linger.ms` value (use `0` for lowest latency) |
 | Data disappearing earlier than expected | Event Hubs retention period shorter than original Kafka retention | Adjust retention in Azure portal; check [quotas and limits](event-hubs-quotas.md) for max retention per tier |
 | Unexpected offset reset | Consumer offsets expired beyond Event Hubs retention period | Ensure `auto.offset.reset` is configured appropriately; increase retention or process data before offsets expire |
+| Not receiving all data from all partitions | Zombie consumer application running in your environment with the same `group.id` | Isolate and kill the zombie application |
 
 ## Configuration not supported
 
