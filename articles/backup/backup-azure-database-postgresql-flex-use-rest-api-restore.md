@@ -300,7 +300,7 @@ GET https://management.azure.com/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx
 
 The *trigger restore requests* trigger the restore job. To track the resultant Job ID, use the [GET Jobs API](/rest/api/dataprotection/jobs/get).
 
-Use the *GET* command to track the `JobId` present in the [trigger restore response above](#trigger-restore-requests).
+Use the *GET* command to track the `JobId` present in the [trigger restore response above](#trigger-restore-requests-for-postgresql---flexible-server).
 
 ```HTTP
  GET /subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxxx/resourceGroups/TestBkpVaultRG/providers/Microsoft.DataProtection/backupVaults/testBkpVault/backupJobs/c4bd49a1-0645-4eec-b207-feb818962852?api-version=2021-07-01
