@@ -80,6 +80,8 @@ For more inbound authorization options and samples, see:
 
 * [MCP server authorization with Protected Resource Metadata (PRM) sample](https://github.com/blackchoey/remote-mcp-apim-oauth-prm)
 
+* [Lab: MCP with protected resource metadata (PRM) authorization](https://github.com/Azure-Samples/AI-Gateway/tree/main/labs/mcp-prm-oauth)
+
 * [Secure Remote MCP Servers using Azure API Management (Experimental)](https://github.com/Azure-Samples/remote-mcp-apim-functions-python)
 
 * [MCP client authorization lab](https://github.com/Azure-Samples/AI-Gateway/tree/main/labs/mcp-client-authorization)
@@ -123,7 +125,3 @@ For a step-by-step guide to call an example backend using credentials generated 
 * [Expose REST API in API Management as an MCP server](export-rest-mcp-server.md)
 
 * [Expose and govern existing MCP server](expose-existing-mcp-server.md)
-
-* [Lab: MCP with protected resource metadata (PRM) authorization](https://github.com/Azure-Samples/AI-Gateway/tree/main/labs/mcp-prm-oauth)
-
-* [Workshop: MCP security](https://azure-samples.github.io/sherpa/)
