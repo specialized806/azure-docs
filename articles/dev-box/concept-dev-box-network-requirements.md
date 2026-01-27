@@ -41,7 +41,7 @@ To use your own network and provision [Microsoft Entra joined](/azure/dev-box/ho
 - Network bandwidth: See [Azure's Network guidelines](/windows-server/remote/remote-desktop-services/network-guidance).
 
 To use your own network and provision [Microsoft Entra hybrid joined](/azure/dev-box/how-to-configure-network-connections?branch=main&tabs=AzureADJoin#review-types-of-active-directory-join) dev boxes, you must meet the preceding requirements, and the following requirements:
-- The Azure virtual network must be able to resolve Domain Name Services (DNS) entries for your Active Directory Domain Services (AD DS) environment. To support this resolution, define your AD DS DNS servers as the DNS servers for the virtual network.
+- The Azure virtual network must resolve Domain Name Services (DNS) entries for your Active Directory Domain Services (AD DS) environment. To support this resolution, define your AD DS DNS servers as the DNS servers for the virtual network.
 - The Azure virtual network must have network access to an enterprise domain controller, either in Azure or on-premises.
 
 For DNS configuration guidance, see [DNS requirements in Windows 365 network requirements](/windows-365/enterprise/requirements-network#dns-requirements).
@@ -117,19 +117,19 @@ When using your own network, Microsoft Dev Box currently doesn't support moving 
 
 ### IP address planning
 
-When updating a dev box definition image, ensure sufficient IP addresses are available in your virtual network for Azure Network Connection health checks. You need one extra IP address per dev box, plus IP addresses for health checks and Dev Box infrastructure.
+When you update a dev box definition image, make sure your virtual network has enough IP addresses for Azure Network Connection health checks. You need one extra IP address for each dev box, plus additional IP addresses for health checks and Dev Box infrastructure.
 
 For more information, see [Update a dev box definition](how-to-manage-dev-box-definitions.md#update-a-dev-box-definition).
 
 ## Troubleshooting
 
-For general Azure Virtual Desktop connectivity issues, see [Troubleshoot connections to Microsoft Entra joined VMs](/troubleshoot/azure/virtual-desktop/troubleshoot-azure-ad-connections).
+For general Azure Virtual Desktop connectivity problems, see [Troubleshoot connections to Microsoft Entra joined VMs](/troubleshoot/azure/virtual-desktop/troubleshoot-azure-ad-connections).
 
-For Dev Box-specific issues:
+For Dev Box-specific problems:
 
-- **IPv6 addressing**: If you're experiencing IPv6 issues, verify that the *Microsoft.AzureActiveDirectory* service endpoint isn't enabled on the virtual network or subnet, as it converts IPv4 to IPv6. See [Virtual Network service endpoints](/azure/virtual-network/virtual-network-service-endpoints-overview).
+- **IPv6 addressing**: If you encounter IPv6 problems, check that the *Microsoft.AzureActiveDirectory* service endpoint isn't enabled on the virtual network or subnet, as it converts IPv4 to IPv6. See [Virtual Network service endpoints](/azure/virtual-network/virtual-network-service-endpoints-overview).
 
-- **Group policy issues**: In hybrid environments, test whether issues are related to group policy by temporarily excluding the dev box. See [Applying Group Policy troubleshooting guidance](/troubleshoot/windows-server/group-policy/applying-group-policy-troubleshooting-guidance).
+- **Group policy problems**: In hybrid environments, test whether problems are related to group policy by temporarily excluding the dev box. See [Applying Group Policy troubleshooting guidance](/troubleshoot/windows-server/group-policy/applying-group-policy-troubleshooting-guidance).
 
 ## Related content
 
