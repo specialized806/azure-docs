@@ -10,13 +10,13 @@ ms.topic: how-to
 
 # Open Telemetry walkthrough
 
-Azure IoT Operations enables organizations to connect, monitor, and manage industrial assets using open standards like MQTT, OPC UA, and OTEL, while leveraging Azure Arc for deployment. Azure IoT Operations supports real-time data ingestion and processing at the edge, with seamless routing to Azure services such as Event Hub, Microsoft Fabric, and Azure Monitor.
+Azure IoT Operations enables organizations to connect, monitor, and manage industrial assets using open standards like MQTT, OPC UA, and OTEL, while using Azure Arc for deployment. Azure IoT Operations supports real-time data ingestion and processing at the edge, with seamless routing to Azure services such as Event Hub, Microsoft Fabric, and Azure Monitor.
 
 Azure IoT Operations supports OpenTelemetry (OTEL) dataflow endpoints so you can export telemetry data to OTEL‑compatible observability backends. OTEL endpoints let you reuse existing telemetry streams and integrate with your monitoring pipeline without modifying devices or connectors. This article explains how OTEL dataflow endpoints appear, how to create them using supported authentication options, and where they can be used.
 
 ## Overview
 
-Open Telemetry (OTEL) plays a critical role in AIO's observability stack. It enables consistent metrics, logs, and traces from edge workloads. OTEL collectors are deployed within Arc-enabled Kubernetes clusters to capture telemetry from industrial assets and services, which is then visualized using Azure Managed Grafana and monitored via Azure Monitor 5 6. This integration enhances site reliability engineering by providing deep visibility into system behavior, performance bottlenecks, and operational health. In Azure IoT Operations, OpenTelemetry helps you:
+Open Telemetry (OTEL) plays a critical role in the Azure IoT Operations observability stack. It enables consistent metrics, logs, and traces from edge workloads. OTEL collectors are deployed within Arc-enabled Kubernetes clusters to capture telemetry from industrial assets and services, which is then visualized using Azure Managed Grafana and monitored via Azure Monitor 5 6. This integration enhances site reliability engineering by providing deep visibility into system behavior, performance bottlenecks, and operational health. In Azure IoT Operations, OpenTelemetry helps you:
 
 - Monitor the performance of your IoT applications.
 - Trace requests across distributed systems.
@@ -46,6 +46,8 @@ Before you begin, ensure you have:
 ## OpenTelemetry (OTEL) Dataflow Endpoints
 
 OTEL dataflow endpoints are first‑class endpoints in Azure IoT Operations. They appear in the list of available dataflow endpoints and can be selected when configuring modern dataflow graphs. This makes it straightforward to route telemetry to OTEL‑compatible backends while keeping a consistent configuration experience.
+
+The dataflow endpoint is a new endpoint in the list of available dataflow endpoints in the Azure portal. This addition ensures that you can easily identify and select the OTEL endpoint when configuring telemetry pipelines, promoting better integration and visibility across monitoring tools. By surfacing the OTEL endpoint along with other dataflow options, you can more efficiently route telemetry data and maintain consistent observability standards across assets.
 
 :::image type="content" source="media/open-telemetry/dataflow-endpoints.png" alt-text="Screenshot of portal showing endpoints screen." lightbox="media/open-telemetry/dataflow-endpoints.png":::
 
