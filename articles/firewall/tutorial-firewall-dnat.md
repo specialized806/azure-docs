@@ -1,20 +1,19 @@
 ---
-title: Filter inbound Internet or intranet traffic with Azure Firewall DNAT using the portal
-description: In this article, you learn how to deploy and configure Azure Firewall DNAT using the Azure portal. 
+title: Filter inbound Internet traffic with Azure Firewall DNAT using the portal
+description: In this article, you learn how to deploy and configure Azure Firewall DNAT to publish a web server using the Azure portal. 
 services: firewall
 author: varunkalyana
 ms.service: azure-firewall
 ms.topic: how-to
-ms.date: 05/07/2025
+ms.date: 01/22/2026
 ms.author: varunkalyana
 ms.custom: mvc
-#Customer intent: As an administrator, I want to deploy and configure Azure Firewall DNAT so that I can control inbound internet access to resources located in a subnet.
-# Customer intent: As a network administrator, I want to deploy and configure DNAT rules on Azure Firewall so that I can effectively manage and control inbound traffic to my network resources.
+#Customer intent: As an administrator, I want to deploy and configure Azure Firewall DNAT so that I can publish web applications and control inbound Internet access to resources located in a subnet.
 ---
 
-# Filter inbound Internet or intranet traffic with Azure Firewall DNAT using the Azure portal
+# Filter inbound Internet traffic with Azure Firewall DNAT using the Azure portal
 
-You can configure Azure Firewall Destination Network Address Translation (DNAT) to translate and filter inbound internet traffic to your subnets or intranet traffic between private networks. When you configure DNAT, the NAT rule collection action is set to **DNAT**. Each rule in the NAT rule collection can then be used to translate your firewall's public or private IP address and port to a private IP address and port. DNAT rules implicitly add a corresponding network rule to allow the translated traffic. For security reasons, it's recommended to add a specific source to allow DNAT access to the network and avoid using wildcards. To learn more about Azure Firewall rule processing logic, see [Azure Firewall rule processing logic](rule-processing.md).
+You can configure Azure Firewall Destination Network Address Translation (DNAT) to translate and filter inbound internet traffic to your subnets. When you configure DNAT, the NAT rule collection action is set to **DNAT**. Each rule in the NAT rule collection can then be used to translate your firewall's public or private IP address and port to a private IP address and port. DNAT rules implicitly add a corresponding network rule to allow the translated traffic. For security reasons, add a specific source to allow DNAT access to the network and avoid using wildcards. To learn more about Azure Firewall rule processing logic, see [Azure Firewall rule processing logic](rule-processing.md).
 
 > [!NOTE]
 > This article uses classic Firewall rules to manage the firewall. The preferred method is to use [Firewall Policy](../firewall-manager/policy-overview.md). To complete this procedure using Firewall Policy, see [Tutorial: Filter inbound Internet traffic with Azure Firewall policy DNAT using the Azure portal](tutorial-firewall-dnat-policy.md).
@@ -147,6 +146,24 @@ After the deployment finishes, note the private IP address of the virtual machin
 
 [!INCLUDE [ephemeral-ip-note.md](~/reusable-content/ce-skilling/azure/includes/ephemeral-ip-note.md)]
 
+## Install web server
+
+Use the Azure portal Run Command feature to install a web server on the virtual machine.
+
+1. Navigate to the **Srv-Workload** virtual machine in the Azure portal.
+1. Under **Operations**, select **Run command**.
+1. Select **RunShellScript**.
+1. In the **Run Command Script** window, paste the following script:
+
+   ```bash
+   sudo apt-get update
+   sudo apt-get install -y nginx
+   echo "<h1>Azure Firewall DNAT Demo - $(hostname)</h1>" | sudo tee /var/www/html/index.html
+   ```
+
+1. Select **Run**.
+1. Wait for the script to complete. The output should show successful installation of Nginx.
+
 ## Deploy the firewall
 
 1. From the portal home page, select **Create a resource**.
@@ -203,51 +220,37 @@ For the **SN-Workload** subnet, configure the outbound default route to go throu
 20. For **Next hop address**, type the private IP address of the firewall noted previously.
 21. Select **Add**.
 
-## Deploy Azure Bastion for secure access
+## Configure a DNAT rule
 
-Azure Bastion provides secure RDP and SSH connectivity to virtual machines without exposing them through DNAT rules.
+This rule allows inbound HTTP traffic from the Internet to reach the web server through the firewall.
 
-1. In the **VN-Spoke** virtual network, add the Azure Bastion subnet:
-   - Navigate to **VN-Spoke** > **Subnets** > **+ Subnet**
-   - **Name**: **AzureBastionSubnet** (this exact name is required)
-   - **Starting address**: **192.168.2.0**
-   - **Subnet size**: **/26 (64 addresses)**
-   - Select **Save**
-
-1. On the Azure portal menu, select **Create a resource**.
-1. Search for **Bastion** and select it.
-1. Select **Create**.
-1. Configure the Bastion deployment:
-
-   | Setting               | Value                           |
-   |-----------------------|---------------------------------|
-   | Subscription          | Your subscription              |
-   | Resource group        | **RG-DNAT-Test**               |
-   | Name                  | **VN-Spoke-Bastion**           |
-   | Region                | Same location as other resources |
-   | Tier                  | **Developer**                  |
-   | Virtual network       | **VN-Spoke**                   |
-   | Subnet                | **AzureBastionSubnet** (auto-selected) |
-   | Public IP address     | Create new                     |
-   | Public IP address name | **Bastion-pip**               |
-
-1. Select **Review + create**.
-1. Select **Create**.
-
-   The deployment process takes approximately 10 minutes to complete.
+1. Open the **RG-DNAT-Test** resource group, and select the **FW-DNAT-test** firewall.
+1. On the **FW-DNAT-test** page, under **Settings**, select **Rules (classic)**.
+1. Select the **NAT rule collection** tab.
+1. Select **Add NAT rule collection**.
+1. For **Name**, type **web-access**.
+1. For **Priority**, type **200**.
+1. Under **Rules**, for **Name**, type **http-dnat**.
+1. For **Protocol**, select **TCP**.
+1. For **Source type**, select **IP address**.
+1. For **Source**, type **\*** to allow traffic from any source.
+1. For **Destination Addresses**, type the firewall public IP address.
+1. For **Destination ports**, type **80**.
+1. For **Translated address**, type the **Srv-Workload** private IP address.
+1. For **Translated port**, type **80**.
+1. Select **Add**.
 
 ## Test the firewall
 
-Now test secure connectivity using Azure Bastion.
+1. Open a web browser and navigate to the firewall's public IP address:
 
-1. In the Azure portal, navigate to the **Srv-Workload** virtual machine.
-1. Select **Connect** > **Connect via Bastion**.
-1. Select **Use SSH Private Key from Local File**.
-1. For **Username**, type **azureuser**.
-1. Browse to and select the **Srv-Workload_key.pem** file you downloaded during VM creation.
-1. Select **Connect**.
+   ```
+   http://<firewall-public-ip>
+   ```
 
-You should successfully connect to the Srv-Workload virtual machine through Azure Bastion. This provides secure access without exposing the VM through DNAT rules or requiring a public IP address.
+   You should see the web page displaying "Azure Firewall DNAT Demo - Srv-Workload."
+
+1. This procedure confirms that the DNAT rule is successfully translating incoming HTTP traffic on the firewall's public IP address to the web server's private IP address.
 
 ## Clean up resources
 
