@@ -47,7 +47,9 @@ Before you begin, ensure you have:
 
 OTEL dataflow endpoints are first‑class endpoints in Azure IoT Operations. They appear in the list of available dataflow endpoints and can be selected when configuring modern dataflow graphs. This makes it straightforward to route telemetry to OTEL‑compatible backends while keeping a consistent configuration experience.
 
-:::image type="content" source="media/open-telemetry/dataflow-endpoints.png" alt-text="" lightbox="media/open-telemetry/dataflow-endpoints.png":::
+:::image type="content" source="media/open-telemetry/dataflow-endpoints.png" alt-text="Screenshot of portal showing alternate endpoints screen." lightbox="media/open-telemetry/dataflow-endpoints.png":::
+
+:::image type="content" source="media/open-telemetry/dataflow-endpoints-variation.png" alt-text=":::image type="content" source="media/open-telemetry/dataflow-endpoints-variation.png" alt-text="Screenshot of portal showing alternate endpoints screen.":::":::
 
 ## Create an OTEL dataflow endpoint
 
@@ -57,22 +59,33 @@ This section explains how you can create, configure, and use OpenTelemetry (OTEL
 
 You can create an OTEL dataflow endpoint using anonymous authentication. This option requires only the host name and does not require credentials. Anonymous authentication is useful in scenarios where authentication is handled externally or is not required by the destination backend.
 
+:::image type="content" source="media/open-telemetry/anonymous-authentication.png" alt-text="Screenshot of portal showing setting for anonymous authentication." lightbox="media/open-telemetry/anonymous-authentication.png":::
+
+:::image type="content" source="media/open-telemetry/anonymous-authentication-variation.png" alt-text=":::image type="content" source="media/open-telemetry/anonymous-authentication-variation.png" alt-text="Screenshot of portal showing alternate setting for anonymous authentication.":::":::
+
 ### Service account token authentication
 
 OTEL dataflow endpoints support service account token authentication, allowing services to authenticate using a pre‑issued token rather than user credentials. This option enables secure, non‑interactive access to telemetry pipelines and is commonly used for automated or service‑to‑service integrations.
+
+:::image type="content" source="media/open-telemetry/service-account-token.png" alt-text="Screenshot of portal showing service account token." lightbox="media/open-telemetry/service-account-token.png":::
 
 ### X.509 certificate authentication
 
 For enhanced security, OTEL dataflow endpoints can be created using X.509 certificate‑based authentication. This authentication method uses certificates and asymmetric key pairs to validate identity without exposing private keys. It is suitable for scenarios that require strong identity validation.
 
+:::image type="content" source="media/open-telemetry/certificate-credentials.png" alt-text="Screenshot of portal showing x509 certificate setting." lightbox="media/open-telemetry/certificate-credentials.png":::
+
 ### Configure advanced settings for an OTEL endpoint
 
 When you create an OTEL dataflow endpoint, you can configure advanced settings to tailor the endpoint configuration to your operational needs. Validation is applied to ensure values stay within supported limits.
+
+:::image type="content" source="media/open-telemetry/advanced-settings.png" alt-text="Screenshot of portal showing advanced settings." lightbox="media/open-telemetry/advanced-settings.png":::
 
 ### Use OTEL endpoints in dataflow graphs
 
 OTEL dataflow endpoints can be selected as destinations in modern dataflow graphs, allowing metrics and logs to be routed directly to OTEL‑compatible backends. OTEL endpoints are not available as destinations in classic dataflows. This restriction ensures compatibility with backends that do not support OTEL endpoints.
 
+:::image type="content" source="media/open-telemetry/dataflow-graphs.png" alt-text="Screenshot of portal showing dataflow graphs." lightbox="media/open-telemetry/dataflow-graphs.png":::
 
 
 
