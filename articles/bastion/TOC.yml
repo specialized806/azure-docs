@@ -12,7 +12,7 @@
     href: cost-optimization.md
   - name: Bastion FAQ
     href: bastion-faq.md
-- name: Quickstarts & Tutorials
+- name: Get Started
   expanded: true
   items:
   - name: Deploy Bastion - Azure portal
@@ -27,7 +27,7 @@
     href: bastion-create-host-powershell.md
   - name: Azure CLI
     href: create-host-cli.md
-- name: Concepts
+- name: Design & Architecture
   items:
   - name: Identity & authentication
     items:
@@ -114,7 +114,7 @@
     href: /security/benchmark/azure/baselines/bastion-security-baseline?toc=/azure/bastion/TOC.json
   - name: Azure Security blog
     href: https://techcommunity.microsoft.com/category/azure-network-security/blog/azurenetworksecurityblog
-- name: How-to guides
+- name: Configure
   items:
   - name: Configure Bastion settings
     items:
