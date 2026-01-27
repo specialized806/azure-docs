@@ -24,7 +24,7 @@ You can restore a database to any Azure Database for PostgreSQL server of a diff
 
    :::image type="content" source="./media/restore-azure-database-postgresql/select-database-for-restore-inline.png" alt-text="Screenshot that shows details for a backup instance." lightbox="./media/restore-azure-database-postgresql/select-database-for-restore-expanded.png":::
 
-   Alternatively, you can go to this page from the [Resiliency](../resiliency/tutorial-recover-deleted-item.md).
+   Alternatively, you can go to this page from the [Resiliency](../resiliency/resiliency-overview.md).
   
 1. On the **Select restore point** tab, select a recovery point from the list of all full backups available for the selected backup instance. By default, the latest recovery point is selected.
 
