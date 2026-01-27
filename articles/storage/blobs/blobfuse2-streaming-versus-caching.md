@@ -16,7 +16,7 @@ ms.custom: linux-related-content
 
 # Streaming versus caching mode for BlobFuse mounts
 
-You can use BlobFuse to mount an Azure Blob Storage container in either _streaming mode_ or _caching mode_. This article describes each mode and helps you decide which mode is best suited for your workloads.
+You can use BlobFuse to mount an Azure Blob Storage container in either _streaming mode_(block cache) or _caching mode_(file cache). This article describes each mode and helps you decide which mode is best suited for your workloads.
 
 ## Choosing between streaming and caching modes
 
