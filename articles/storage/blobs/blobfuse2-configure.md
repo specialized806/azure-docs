@@ -29,7 +29,7 @@ This article shows you how to generate and customize a configuration file. After
    The following example generates a configuration file for mounting a container in caching mode.
 
    ```bash
-   blobfuse2 gen-configuration --tmp-path=<local-cache-path> --o <path-to-save-generated-config>
+   blobfuse2 gen-config --tmp-path=<local-cache-path> --o <path-to-save-generated-config>
    ```
 
    The following example generates a configuration file for mounting a container in streaming mode.
