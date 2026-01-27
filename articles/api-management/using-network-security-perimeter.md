@@ -132,7 +132,7 @@ Expected result:
   
 ## Step 3. Create a network security perimeter profile and associate the storage account
 
-For typical steps to create a network security perimeter and associate an Azure resource with a profile, see [Create a network security perimeter and profile](/azure/private-link/network-security-perimeter-create). Brief steps follow:
+For typical steps to create a network security perimeter and associate an Azure resource with a profile, see [Create a network security perimeter and profile](/azure/private-link/create-network-security-perimeter-portal). Brief steps follow:
 
 1. In the Azure portal, search for **Network Security Perimeters** and select it.
 1. Select **+ Create** and provide a name and region. Accept the defaults for other settings and create the perimeter.
