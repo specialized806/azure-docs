@@ -441,6 +441,7 @@ result = is_enabled(feature_flags, TargetingContext(user_id="test_user", groups=
 Instead of passing a `TargetingContext` to each `is_enabled` call, you can register a callback function with the `FeatureManager` that automatically provides the targeting context. This approach is useful when the user identity and groups can be determined from a common source, such as HTTP request headers or session data, eliminating the need to manually construct and pass the context for every feature evaluation.
 
 ```python
+from quart import request
 from featuremanagement import FeatureManager, TargetingContext
 
 # A callback for assigning a TargetingContext for Feature Flag evaluation in a Quart app
