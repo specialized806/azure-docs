@@ -91,7 +91,7 @@ $ ethtool -S eth0 | grep -E "^[ \t]+vf"
      vf_tx_bytes: 76231291
      vf_tx_dropped: 0
 ```
-If the values associated with the VF are 0 or do not increment, you may not be using the virtual function. 
+If the values associated with the VF are 0 or do not increment, you are not using the virtual function.
 
 ## Next steps
 
