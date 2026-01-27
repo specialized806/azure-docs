@@ -59,21 +59,17 @@ Dev boxes need access to specific FQDNs and endpoints for provisioning, manageme
 > [!IMPORTANT] 
 > Microsoft doesn't support dev box deployments where the required FQDNs and endpoints are blocked.
 
-### Dev Box service endpoints
+### Dev Box service endpoint
 
-The following endpoints are specific to Microsoft Dev Box:
+The following endpoint is specific to Microsoft Dev Box:
 
 | Category | Endpoints | Required? |
 |---------------------------------|--------------------------------|-------------------------------------|
-| **Dev box communication endpoints** | `*.agentmanagement.dc.azure.com`<br>`*.cmdagent.trafficmanager.net` | Yes |
+| **Dev box communication endpoint** | `*.agentmanagement.dc.azure.com` | Yes |
 
 ### Shared infrastructure endpoints
 
-Dev boxes use Azure Virtual Desktop infrastructure and require the same endpoints. For the complete list of required endpoints, see:
-
-- **Session host requirements**: [Azure Virtual Desktop session host virtual machines](/azure/virtual-desktop/required-fqdn-endpoint?tabs=azure#session-host-virtual-machines)
-- **End user device requirements**: [Azure Virtual Desktop end user devices](/azure/virtual-desktop/required-fqdn-endpoint?tabs=azure#end-user-devices)
-- **Windows 365 service endpoints**: [Windows 365 network requirements](/windows-365/enterprise/requirements-network#windows-365-service)
+Dev boxes use Azure Virtual Desktop infrastructure and require the same endpoints. For the complete list of required endpoints, follow each link in the table: [Allow network connectivity](/windows-365/enterprise/requirements-network?tabs=enterprise%2Cent#allow-network-connectivity).
 
 ### Validating endpoint access
 
@@ -92,13 +88,16 @@ For detailed guidance on using Azure Firewall with Dev Box, see:
 
 ## Network optimization and advanced scenarios
 
-### RDP broker service endpoints
+### RDP optimization
 
-Direct connectivity to Azure Virtual Desktop RDP broker service endpoints is critical for remote performance. Use Azure Virtual Desktop service tags to configure User Defined Routes (UDRs) for optimal routing. For detailed guidance, see [Windows 365 network requirements - RDP broker service endpoints](/windows-365/enterprise/requirements-network#remote-desktop-protocol-rdp-broker-service-endpoints).
+Direct connectivity to Azure Virtual Desktop RDP broker service endpoints is critical for remote performance. For guidance, see [Understanding Network Flows - Remote Desktop Protocol](/windows-365/enterprise/understanding-remote-desktop-protocol-traffic).
 
-### RDP Shortpath
+#### User Defined Routes (UDRs)
+Use Azure Virtual Desktop service tags to configure User Defined Routes (UDRs) for optimal routing. For detailed guidance, see [Windows 365 network requirements - RDP broker service endpoints](/windows-365/enterprise/requirements-network#remote-desktop-protocol-rdp-broker-service-endpoints).
 
-RDP Shortpath provides an additional UDP-based connection path that can improve connectivity in suboptimal network conditions. For configuration details, see:
+#### RDP Shortpath
+
+RDP Shortpath provides another UDP-based connection path that can improve connectivity in suboptimal network conditions. For configuration details, see:
 - [RDP Shortpath for Azure Virtual Desktop](/azure/virtual-desktop/rdp-shortpath)
 - [RDP Shortpath for Windows 365](/windows-365/enterprise/rdp-shortpath-public-networks)
 
