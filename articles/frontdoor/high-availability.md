@@ -15,7 +15,7 @@ ms.date: 01/23/2026
 
 Azure Front Door is designed to provide exceptional resiliency and availability for both external customers and Microsoft's internal properties. While Front Door's architecture meets or exceeds the needs of most production workloads, it's important to acknowledge that no distributed system is immune to failure.
 
-This article provides high‑level, step‑by‑step instructions for implementing Azure Traffic Manager to enable manual failover from Front Door to either an alternate CDN or Application Gateway WAF during rare Front Door service interruptions. It supplements the guidance in [Global routing redundancy for mission-critical web applications](/azure/architecture/guide/networking/global-web-applications/overview?tabs=cli).
+This article provides high‑level, step‑by‑step instructions for implementing Azure Traffic Manager to enable manual failover from Front Door to either an alternate CDN or Application Gateway WAF during rare Front Door service interruptions. It supplements the guidance in [Global routing redundancy for mission-critical web applications](/azure/architecture/guide/networking/global-web-applications/overview).
 
 Multiple strategies exist within the industry for achieving high availability (HA) in CDN and web application architectures. The approach outlined in this article focuses on a straightforward, manual **“break‑glass” failover pattern** that allows customers to quickly redirect traffic during an outage and seamlessly restore routing back to Front Door once service health is confirmed.
 
