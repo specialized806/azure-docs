@@ -16,6 +16,10 @@ ms.service: azure-virtual-network
 
 This quick start article explains how to register your subscription for the Virtual Network Appliance public preview and create a Virtual Network Appliance in the Azure portal. The public preview is intended for testing, evaluation, and feedback; production workloads are not supported.
 
+> [!IMPORTANT]
+> Azure Virtual Network Appliance is currently in PREVIEW.
+> See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
+
 ## Prerequisites
 
 ### Subscription and workload requirements
