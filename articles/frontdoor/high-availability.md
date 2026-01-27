@@ -6,7 +6,7 @@ author: halkazwini
 ms.author: halkazwini
 ms.service: azure-frontdoor
 ms.topic: concept-article
-ms.date: 01/23/2026
+ms.date: 01/28/2026
 
 #customer intent: As a cloud architect, I want to implement a manual failover strategy for Azure Front Door using Azure Traffic Manager so that I can ensure high availability during service interruptions.
 ---
@@ -39,19 +39,19 @@ When implementing high availability architectures for production workloads, cons
 
 - **Don't configure the primary Azure Traffic Manager for automatic failover:** Azure Traffic Manager health probes originate only from US-based Azure regions. Because of this, when probing Front Door endpoints (or any CDN using anycast routing), these US-based probes will almost always reach US POPs, leaving the health of non-US POPs unverified. This prevents Traffic Manager from automatically failing over between Azure Front Door and another ingress service based on the true global health of anycast CDN such as Front Door. As such, for global workloads requiring health validation from multiple geographies, manual failover with weighted routing and monitoring disabled provides more reliable control than automated health-based routing.
 
-- **Certificates:** If you're currently using Front Door-managed certifications, you must migrate to BYO certificates. By using your own certificate, you can keep the TLS certificates consistent regardless of which ingress path the traffic follows. Ensure that your TLS certificates are compatible with Azure Front Door. For more information, see [Configure HTTPS on an Azure Front Door custom domain](/azure/frontdoor/standard-premium/how-to-configure-https-custom-domain).
+- **Certificates:** If you're currently using Front Door-managed certifications, you must migrate to BYO certificates. By using your own certificate, you can keep the TLS certificates consistent regardless of which ingress path the traffic follows. Ensure that your TLS certificates are compatible with Azure Front Door. For more information, see [Configure HTTPS on an Azure Front Door custom domain](/azure/frontdoor/standard-premium/how-to-configure-https-custom-domain) and [TLS encryption with Azure Front Door](/azure/frontdoor/end-to-end-tls).
 
-- Always test failover procedures in non-production environments first.
+- Always test failover procedures ahead of time in non-production environments first.
 
-- **Traffic Manager doesn't support CNAME flattening at the DNS zone apex (root domain):** If you require Traffic Manager at the apex, you must use DNS providers that support alias records or similar mechanisms.
+- **Traffic Manager doesn't support CNAME flattening at the DNS zone apex (root domain):** If you require Traffic Manager at the apex, you must use DNS providers that support alias records or similar mechanisms. [Azure DNS](/azure/dns/dns-alias) is one such DNS provider.
 
-- Use short DNS TTLs (300 - 600 seconds) and monitor DNS TTL propagation times with your user base before setting aggressive TTLs.
+- Use short DNS TTLs (300 - 600 seconds) and monitor DNS TTL propagation times.
 
-- **Security:** Lock down Application Gateway with NSGs/ACLs (allow required platform ranges and inbound application ports) and keep origins secured for all ingress paths. For more information, see [Configure network security groups for your Application Gateway](/azure/application-gateway/configuration-infrastructure#network-security-groups).
+- **Security:** Lock down Application Gateway with network security groups (NSGs)/ACLs (allow required platform ranges and inbound application ports) and keep origins secured for all ingress paths. For more information, see [Configure network security groups for your Application Gateway](/azure/application-gateway/configuration-infrastructure#network-security-groups). While Application Gateway WAF mitigates HTTP/L7 attacks, NSGs provide packet filtering only and don't protect against volumetric or protocol level (L3/L4) DDoS attacks. All Azure public endpoints benefit from baseline, always on Azure platform DDoS protection, which is designed to protect the Azure infrastructure but doesn't include workload specific tuning, telemetry, cost protection, or availability guarantees. For production and mission critical workloads, consider Azure DDoS Network Protection to protect Application Gateway public IPs. For more information, see [Azure DDoS Protection pricing](https://azure.microsoft.com/pricing/details/ddos-protection/#:~:text=When%20Azure%20Application%20Gateway%20with%20WAF%20is%20deployed%20in%20a%20protected%20virtual%20network%2C%20there%20are%20no%20additional%20charges%20for%20WAF%20-%20you%20pay%20for%20the%20Application%20Gateway%20at%20the%20lower%20non-WAF%20rate) for more details.
 
 - Document WAF rule differences between Front Door and failover solutions.
 
-- **Origin security consideration:** For production environments, consider using `X-Azure-FDID` header validation and IP address filtering for enhanced origin security. For more information, see [Secure traffic to Azure Front Door origins](/azure/frontdoor/origin-security?tabs=app-service-functions&pivots=front-door-standard-premium#public-ip-address-based-origins). **Private Link is not recommended for these HA architectures** because alternative CDNs can't access origins protected by Front Door Private Link, and Application Gateway requires additional virtual network/Private Endpoint configuration to access private origins, and can't use Front Door's native Private Link integration.
+- **Origin security consideration:** Private Link is not recommended for these HA architectures because alternate CDN platforms can't access origins protected by Azure Front Door's Private Link integration. Additionally, Application Gateway requires extra virtual network and Private Endpoint configuration to reach private origins and can't leverage Front Door's native Private Link capabilities. For production environments utilizing Azure Front Door alongside other CDN providers, consider using alternative, CDN‑agnostic origin‑security controls such as token‑based origin authentication (HMAC or signed URLs), mutual TLS (mTLS), custom origin headers, and IP address filtering to enforce origin trust when Private Link or `X‑Azure‑FDID` validation can't be used.
 
 - **Edit the sample commands listed in this guide so that they are tailored to your environment for automation and runbooks.**
 
@@ -59,15 +59,15 @@ When implementing high availability architectures for production workloads, cons
 
 - Configure comprehensive monitoring and alerting for all endpoints.
 
-- Plan for gradual traffic shifting during failover to validate functionality.
+- Validate functionality during failover to alternate ingress solutions.
 
 - Test certificate renewal processes across all platforms.
 
 - Regularly validate that failover endpoints remain functional (quarterly testing recommended).
 
-> [!NOTE]
-> - This guide uses Azure CLI sample commands executed from within PowerShell.
-> - Before proceeding, review the [Global routing redundancy for mission-critical web applications](/azure/architecture/guide/networking/global-web-applications/overview?tabs=cli).
+- This guide uses Azure CLI sample commands executed from within PowerShell.
+
+- Before proceeding, review the [Global routing redundancy for mission-critical web applications](/azure/architecture/guide/networking/global-web-applications/overview).
 
 ## Scenario 1: Traffic Manager failover: Front Door to Application Gateway WAF
 
@@ -77,14 +77,14 @@ This DNS-based load balancing solution uses multiple Azure Traffic Manager profi
 
 **Traffic flow (Normal operation):** User → DNS Query → Primary Traffic Manager (Weighted / Always serve routing) → Front Door (Priority 1) → Origin Servers.
   
-**Traffic flow (Front Door failure):** User → DNS Query → Primary Traffic Manager (Weighted / Always serve @copilot routing) → Secondary Traffic Manager (Priority mode) → Application Gateway(s) → Origin Servers.
+**Traffic flow (Front Door failure):** User → DNS Query → Primary Traffic Manager (Weighted / Always serve routing) → Secondary Traffic Manager (Priority mode) → Application Gateway(s) → Origin Servers.
 
 ### Pre-deployment: Front Door vs Application Gateway
 
 It's important to understand the feature differences between Front Door and Application Gateway WAF in case you're utilizing any features Application Gateway WAF doesn't offer. The following two tables provide an overview.
 
 > [!IMPORTANT]
-> This solution assumes you are currently using Azure Front Door to serve traffic across multiple regions or globally. In this design, the steps below introduce a **secondary Azure Traffic Manager configured with Performance routing between the primary Traffic Manager and regional Application Gateway instances**. This approach is necessary because Azure Front Door is a global Layer‑7 service, so the secondary Traffic Manager effectively replaces Front Door's global latency‑based routing by acting as the global load‑balancing layer. As a result, **Traffic Manager preserves latency‑optimized user routing for a geographically distributed audience**. Given this architectural shift, **you must evaluate global traffic patterns and deploy Application Gateway instances in regions that have meaningful user volume to ensure optimal performance and resilience**.
+> This solution assumes you're currently using Azure Front Door to serve traffic across multiple regions or globally. In this design, the steps below introduce a **secondary Azure Traffic Manager configured with Performance routing between the primary Traffic Manager and regional Application Gateway instances**. This approach is necessary because Azure Front Door is a global Layer‑7 service, so the secondary Traffic Manager effectively replaces Front Door's global latency‑based routing by acting as the global load‑balancing layer. As a result, **Traffic Manager preserves latency‑optimized user routing for a geographically distributed audience**. Given this architectural shift, **you must evaluate global traffic patterns and deploy Application Gateway instances in regions that have meaningful user volume to ensure optimal performance and resilience**.
 
 #### Features differences
 
@@ -136,48 +136,40 @@ It's important to understand the feature differences between Front Door and Appl
 
 ### Recommendations
 
-- Maintain separate custom rule sets. Use Front Door rules as baseline.
+- Because you must maintain distinct rule sets for each WAF, use the Front Door rule set as your baseline. Create an Application Gateway rule set that matches the Front Door rule set as closely as possible.
 - Test Application Gateway WAF separately and independently.
 - Document all custom exclusions for both platforms.
 - Regularly audit rule sets for consistency.
+- Adhere to the network guidance within [Azure Application Gateway infrastructure configuration](/azure/application-gateway/configuration-infrastructure) specially. Ensure to exercise the following:
 
-### Network planning
+    - **Network planning:** The following are virtual network and subnet requirements:
 
-The following are virtual network and subnet requirements:
+        - **Subnet sizing (per region):**
 
-#### Subnet sizing (per region)
+            - Minimum: /27 (32 addresses)
+            
+            - Recommended: /24 (256 addresses) for autoscaling and hitless maintenance
+            
+            - Formula: (max instances \* 10) + 5 Azure reserved IPs
+            
+            - Example: 20 max instances → (20 \* 10) + 5 = 205 IPs → use /24
 
-- Minimum: /27 (32 addresses)
 
-- Recommended: /24 (256 addresses) for autoscaling and hitless maintenance
+        - **Securing Application Gateway:**
 
-- Formula: (max instances \* 10) + 5 Azure reserved IPs
+            - Dedicated subnet for Application Gateway (no other resources)
 
-- Example: 20 max instances → (20 \* 10) + 5 = 205 IPs → use /24
+        - **Inbound allows:**
 
-#### Connectivity to origins
+            - 443/80 from Internet (or specific source ranges)
+            
+            - 65200-5535 from GatewayManager (Application Gateway v2)
+            
+            - AzureLoadBalancer
 
-- Virtual network peering: For origins in different VNets
+        - Block other inbound. Don't block required outbound internet
 
-- ExpressRoute/VPN: For on-premises origins
-
-- Public internet: For SaaS/cloud origins with proper security
-
-#### Securing Application Gateway
-
-- Dedicated subnet for Application Gateway (no other resources)
-
-- **Inbound allows:**
-
-  - 443/80 from Internet (or specific source ranges)
-
-  - 65200-5535 from GatewayManager (Application Gateway v2)
-
-  - AzureLoadBalancer
-
-- Block other inbound. Don't block required outbound internet
-
-- Use ASGs for backend segmentation and least-privilege rules
+        - Use ASGs for backend segmentation and least-privilege rules
 
 > [!NOTE]
 > For capacity planning and autoscaling strategy, see [Architecture best practices for Azure Application Gateway v2](/azure/well-architected/service-guides/azure-application-gateway).
@@ -206,7 +198,7 @@ The following are virtual network and subnet requirements:
 1. Create managed identity and grant Key Vault access. For more information, see [TLS termination with Key Vault certificates](/azure/application-gateway/key-vault-certs).
 
     > [!NOTE]
-    > Application Gateway requires the SSL/TLS certificate in PFX format with private key. The certificate must be accessible from Azure Key Vault or uploaded directly. Use the same Front Door certificate to ensure consistent TLS behavior.
+    > Application Gateway requires the SSL/TLS certificate in PFX format with private key. The certificate must be accessible from Azure Key Vault or uploaded directly. Use the same certificate that Front Door uses to ensure consistent TLS behavior.
 
 1. Create WAF policy. For more information, see [Create Web Application Firewall policies for Application Gateway](/azure/web-application-firewall/ag/create-waf-policy-ag)
 
@@ -325,7 +317,7 @@ The following are virtual network and subnet requirements:
 
 > [!WARNING]
 > **Potential service impact:** The following steps will redirect your production traffic from Front Door directly to Traffic Manager. Before proceeding:
-> - **Test these steps in a non-production environment first**.
+> - **Test these steps in a non-production environment first** (for example, by temporarily modifying the local `hosts` file on a non‑production workstation to resolve the custom domain to the Traffic Manager endpoint, allowing validation without affecting live traffic).
 > - **Reduce your DNS CNAME TTL to the lowest value possible** (for example, 60-300 seconds) at least 24-48 hours before making changes.
 > - **Plan for a maintenance window** during low-traffic periods if possible.
 > - **Have rollback procedures ready** in case issues arise.
@@ -459,7 +451,7 @@ The following are virtual network and subnet requirements:
     > [!NOTE]
     > The response headers can help identify the serving endpoint:
     > - Front Door includes `x-azure-ref` header.
-    > - Application Gateway includes `Server: Microsoft-IIS` or similar.
+    > - Traffic that passes through Application Gateway might include `Server: Microsoft-IIS` or similar.
 
 ## Scenario 2: Traffic Manager failover: Front Door to alternative CDN
 
