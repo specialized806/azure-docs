@@ -497,10 +497,7 @@ Now deploy Azure Bastion in the hub virtual network to provide secure access to 
    ```bash
    curl http://<VM-spoke-01 private IP>
    ```
-
-So now you verified that the firewall rules are working:
-
-- You can browse the web server on the spoke virtual network.
+The web server will return a response.
 
 Next, change the firewall network rule collection action to **Deny** to verify that the firewall rules work as expected.
 
@@ -510,7 +507,7 @@ Next, change the firewall network rule collection action to **Deny** to verify t
 4. For **Rule collection action**, select **Deny**.
 5. Select **Save**.
 
-Close any existing remote desktops before testing the changed rules. Now run the tests again. They should all fail this time.
+Now run the test again. The test should fail this time.
 
 ## Clean up resources
 
