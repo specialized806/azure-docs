@@ -62,7 +62,7 @@ Now that the resource is deployed, you need to assign yourself the following per
 1. Select **Add** and **Add role assignment.**
 1. Select **DeID Data Owner** and **DeID Real-Time Data User**, and then select **Members** on the top panel.
 1. Select **+ Select members** to open a panel. Search for your own name and choose **Select.**
-1. Back on the **Members** panel, select **Review + assign** at the bottom left.
+1. Back on the **Members** panel, select **Review + assign** at the lower left.
 
 >[!TIP]
 >If you want to use both the synchronous and asynchronous (Batch) APIs, you need to also assign yourself the DeID Batch Data Owner role.

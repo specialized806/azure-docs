@@ -22,20 +22,20 @@ When you choose to store documents in Azure Blob Storage, you're charged based o
 
 ## Prerequisites
 
-* An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
-* A de-identification service with system-assigned managed identity. [Deploy the de-identification service](quickstart.md)
+* An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+* A de-identification service with a system-assigned managed identity. To create one, use the following steps. For more information, see [Deploy the de-identification service](quickstart.md).
 
-1. In the top search bar, enter **De-identification**.
-1. Select **De-identification Services** from the search results.
-1. Select **Create**.
-1. Fill in required subscription and instance details.
-1. Select **Review + create**, and then select **Create**.
-1. After deployment is finished, go to the resource and copy your service URL and subscription ID.
+  1. In the top search bar, enter **De-identification**.
+  1. Select **De-identification Services** from the search results.
+  1. Select **Create**.
+  1. Fill in required subscription and instance details.
+  1. Select **Review + create**, and then select **Create**.
+  1. After deployment is finished, go to the resource and copy your service URL and subscription ID.
 
-> [!IMPORTANT]
-> To use the Batch (asynchronous) API with the multilingual model, ensure that you have the DeID Batch Data Owner role assigned to your identity in **Access Control (IAM)**.
+  > [!IMPORTANT]
+  > To use the Batch (asynchronous) API with the multilingual model, ensure that you have the DeID Batch Data Owner role assigned to your identity in **Access Control (IAM)**.
 
-Install the [Azure CLI](/cli/azure/install-azure-cli), and open your terminal of choice. In this tutorial, we use Azure PowerShell.
+* Installation of the [Azure CLI](/cli/azure/install-azure-cli). After you install it, open your terminal of choice. In this tutorial, we use Azure PowerShell.
 
 ## Create a storage account and container
 
@@ -93,7 +93,7 @@ Next, you upload a document that contains synthetic protected health information
 
 In this step, you grant role-based access to the container for the system-assigned managed identity of the de-identification service.
 
-You grant the Storage Blob the Data Contributor role because the de-identification service reads the original document and writes the de-identified output documents.
+You grant the Storage Blob Data Contributor role because the de-identification service reads the original document and writes the de-identified output documents.
 
 Substitute the name of your de-identification service for the `<deid_service_name>` placeholder:
 
