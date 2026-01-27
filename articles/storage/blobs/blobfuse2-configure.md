@@ -24,7 +24,7 @@ This article shows you how to generate and customize a configuration file. After
 
 1. Decide whether you want to mount the container in _caching mode_ or _streaming mode_. See [Streaming versus caching mode](blobfuse2-streaming-versus-caching.md).
 
-1. Generate a configuration file by using the `gen-configuration` command.
+1. Generate a configuration file by using the `gen-config` command.
 
    The following example generates a configuration file for mounting a container in caching mode.
 
