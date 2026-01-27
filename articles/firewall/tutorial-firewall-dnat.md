@@ -13,7 +13,7 @@ ms.custom: mvc
 
 # Filter inbound Internet traffic with Azure Firewall DNAT using the Azure portal
 
-You can configure Azure Firewall Destination Network Address Translation (DNAT) to translate and filter inbound internet traffic to your subnets. When you configure DNAT, the NAT rule collection action is set to **DNAT**. Each rule in the NAT rule collection can then be used to translate your firewall's public or private IP address and port to a private IP address and port. DNAT rules implicitly add a corresponding network rule to allow the translated traffic. For security reasons, it's recommended to add a specific source to allow DNAT access to the network and avoid using wildcards. To learn more about Azure Firewall rule processing logic, see [Azure Firewall rule processing logic](rule-processing.md).
+You can configure Azure Firewall Destination Network Address Translation (DNAT) to translate and filter inbound internet traffic to your subnets. When you configure DNAT, the NAT rule collection action is set to **DNAT**. Each rule in the NAT rule collection can then be used to translate your firewall's public or private IP address and port to a private IP address and port. DNAT rules implicitly add a corresponding network rule to allow the translated traffic. For security reasons, add a specific source to allow DNAT access to the network and avoid using wildcards. To learn more about Azure Firewall rule processing logic, see [Azure Firewall rule processing logic](rule-processing.md).
 
 > [!NOTE]
 > This article uses classic Firewall rules to manage the firewall. The preferred method is to use [Firewall Policy](../firewall-manager/policy-overview.md). To complete this procedure using Firewall Policy, see [Tutorial: Filter inbound Internet traffic with Azure Firewall policy DNAT using the Azure portal](tutorial-firewall-dnat-policy.md).
@@ -248,9 +248,9 @@ This rule allows inbound HTTP traffic from the Internet to reach the web server 
    http://<firewall-public-ip>
    ```
 
-   You should see the web page displaying "Azure Firewall DNAT Demo - Srv-Workload".
+   You should see the web page displaying "Azure Firewall DNAT Demo - Srv-Workload."
 
-1. This confirms that the DNAT rule is successfully translating incoming HTTP traffic on the firewall's public IP address to the web server's private IP address.
+1. This procedure confirms that the DNAT rule is successfully translating incoming HTTP traffic on the firewall's public IP address to the web server's private IP address.
 
 ## Clean up resources
 
