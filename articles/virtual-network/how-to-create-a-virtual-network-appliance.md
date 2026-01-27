@@ -1,5 +1,6 @@
 ---
 title: Create a virtual network appliance
+titleSuffix: Azure Virtual Network
 description: Create a Virtual Network Appliance in Azure with ease. This guide covers registration, configuration, and troubleshooting for the public preview.
 #customer intent: As a network administrator, I want to create a Virtual Network Appliance in the Azure portal so that I can manage network traffic in a non-production environment.
 author: asudbring
@@ -58,7 +59,7 @@ Once the subscription has been authorized, verify enablement by searching "Virtu
 
 :::image type="content" source="media/create-a-virtual-network-appliance/virtual-network-appliance-1.png" alt-text="Screenshot of the Azure portal search bar with Virtual network appliances highlighted.":::
 
-:::image type="content" source="media/how-to-create-a-virtual-network-appliance/virtual-network-appliance-2.png" alt-text="Screenshot of the Virtual network appliances service entry in the Azure portal.":::
+:::image type="content" source="media/create-a-virtual-network-appliance/virtual-network-appliance-2.png" alt-text="Screenshot of the Virtual network appliances service entry in the Azure portal.":::
 
 ## Create a resource group
 

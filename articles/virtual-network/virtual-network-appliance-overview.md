@@ -1,5 +1,6 @@
 ---
 title: Virtual Network Appliance Overview
+titleSuffix: Azure Virtual Network
 description: Learn about Azure's Virtual Network Appliance, a high-performance routing solution designed for low latency, high throughput, and seamless Azure-native management.
 #customer intent: As a network administrator, I want to understand what a Virtual Network Appliance is so that I can determine its use cases for my organization.
 author: asudbring
