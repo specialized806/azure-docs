@@ -58,7 +58,16 @@ Ethernet                  Microsoft Hyper-V Network Adapter            13 Up    
 Ethernet 3                Microsoft Azure Network Adapter #2            8 Up           00-0D-3A-AA-00-AA       200 Gbps
 ```
 
-If you do not see the "Microsoft Azure Network Adapter" listed, either your VM has landed on hardware with a different network interface or your operating system does not support MANA. 
+If you do not see the "Microsoft Azure Network Adapter" listed, either your VM has landed on hardware with a different network interface or your operating system does not support MANA. You can check that the MANA device is present using the following command.
+
+```powershell
+PS C:\Users\testVM> Get-PnpDevice -PresentOnly | Where-Object { $_.InstanceId -match '^PCI\\VEN_1414&DEV_00BA&' }
+
+Status     Class           FriendlyName                                                                     InstanceId
+------     -----           ------------                                                                     ----------
+OK         MultiFunction   Microsoft Azure Network Adapter Virtual Bus                                      PCI\VEN_1414...
+```
+If the output is missing or blank, your VM has landed on hardware with a different network adapter. If you see the output above from ```Get-PnpDevice``` but not from ```Get-NetAdapter```, you are missing MANA driver support in your operating system.  
 
 #### Device Manager
 
@@ -82,7 +91,7 @@ Name                             ReceivedBytes ReceivedUnicastPackets       Sent
 ----                             ------------- ----------------------       --------- ------------------
 Ethernet 5                       1230513627217            22739256679 ...724576506362       381331993845
 ```
-If the values associated with MANA are 0 or do not increment, you may not be using the virtual function. 
+If the values associated with MANA are 0 or do not increment, you are not using the virtual function. 
 
 ## Next steps
 
