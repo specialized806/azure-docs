@@ -94,7 +94,7 @@ Flex Consumption includes an _always ready_ feature that lets you choose instanc
 
 For example, if you set always ready to 2 for your HTTP group of functions, the platform keeps two instances always running for those functions. Those instances process your function executions first. Depending on concurrency settings, the platform scales beyond those two instances with on-demand instances.
 
-No less than two always-ready instances can be configured per function or function group while [zone redundancy is enabled](../reliability/reliability-functions.md?pivots=flex-consumption-plan#availability-zone-support). 
+No less than two always-ready instances can be configured per function or function group while [zone redundancy is enabled](/azure/reliability/reliability-functions?pivots=flex-consumption-plan#availability-zone-support). 
 
 To learn how to configure always ready instances, see [Set always ready instance counts](flex-consumption-how-to.md#set-always-ready-instance-counts).
 
@@ -107,6 +107,9 @@ To learn how to set concurrency limits for HTTP trigger functions, see [Set HTTP
 ## Deployment
 
 Deployments in the Flex Consumption plan follow a single path, and there's no longer the need for app settings to influence deployment behavior. Your project code is built and zipped into an application package, then deployed to a blob storage container. On startup, your app gets the package and runs your function code from this package. By default, the same storage account used to store internal host metadata (AzureWebJobsStorage) is also used as the deployment container. However, you can use an alternative storage account or choose your preferred authentication method by [configuring your app's deployment settings](flex-consumption-how-to.md#configure-deployment-settings).
+
+> [!TIP]
+> A **Flex Consumption Deployment** diagnostic tool is available in the Azure portal. Open your Flex Consumption app, select **Diagnose and solve problems**, and search for `Flex Consumption Deployment`. This tool displays detailed information about your deployments, including deployment history, package status, and troubleshooting recommendations.
 
 ### Zero-downtime deployments
 
