@@ -18,7 +18,7 @@ The following sections outline key troubleshooting and monitoring tools, providi
 
 ## Known Issues & Limitations
 Review known issues and limitations that may impact your Virtual WAN deployment.
-* [Virtual WAN Known Issues](whats-new.md#known-issues) - A list of known issues and limitations for Azure Virtual WAN. Validate that your Virtual WAN is not affected by any documented issues before proceeding with troubleshooting.
+* [Virtual WAN Known Issues](whats-new.md#knownissues) - A list of known issues and limitations for Azure Virtual WAN. Validate that your Virtual WAN is not affected by any documented issues before proceeding with troubleshooting.
 * Review the service limits for Virtual WAN resources to ensure your deployment is within supported thresholds.
 [!INCLUDE [virtual-wan-limits](../../includes/virtual-wan-limits.md)]
 
