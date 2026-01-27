@@ -15,7 +15,7 @@ ms.service: azure-virtual-network
 
 ## Overview
 
-This quick start article explains how to register your subscription for the Virtual Network Appliance public preview and create a Virtual Network Appliance in the Azure portal. The public preview is intended for testing, evaluation, and feedback; production workloads are not supported.
+This quick start article explains how to register your subscription for the Virtual Network Appliance public preview and create a Virtual Network Appliance in the Azure portal. The public preview is intended for testing, evaluation, and feedback; production workloads aren't supported.
 
 > [!IMPORTANT]
 > Azure Virtual Network Appliance is currently in PREVIEW.
@@ -25,7 +25,7 @@ This quick start article explains how to register your subscription for the Virt
 
 ### Subscription and workload requirements
 
-• Use a non-production Azure subscription for this public preview.  
+• Use a nonproduction Azure subscription for this public preview.  
 • Your subscription must be enabled for the preview via AFEC registration and approval (see Section 2).
 
 ### Supported regions (public preview)
@@ -51,11 +51,11 @@ Customers register for preview by activating the AFEC flag in the Azure portal.
 
 ### Approval process
 
-After you submit AFEC registration for Microsoft.network/AllowVirtualNetworkAppliance, please fill out this preview [sign-up form](https://forms.office.com/r/kqEKRr5mpB). The product team will approve it manually based on availability and capacity. If there is insufficient inventory/capacity in a region, creation requests may be denied during the public preview timeframe.
+After submitting your AFEC registration for Microsoft.network/AllowVirtualNetworkAppliance, complete the preview [sign-up form](https://forms.office.com/r/kqEKRr5mpB). The product team reviews and approves requests manually based on availability and capacity. During the public preview, creation requests might be denied if there's insufficient inventory or capacity in a region.
 
 ### Confirm your subscription is enabled
 
-Once the subscription has been authorized, verify enablement by searching "Virtual Network appliance" in the Azure portal search bar. If enabled, you should see "Virtual network appliances" as a selectable service entry.
+Once the subscription is authorized, verify enablement by searching "Virtual Network appliance" in the Azure portal search bar. If enabled, you should see "Virtual network appliances" as a selectable service entry.
 
 :::image type="content" source="media/create-a-virtual-network-appliance/virtual-network-appliance-1.png" alt-text="Screenshot of the Azure portal search bar with Virtual network appliances highlighted.":::
 
@@ -137,18 +137,18 @@ Once the subscription has been authorized, verify enablement by searching "Virtu
 
 1. Select **Create**.
 
-Virtual Network Appliance is created in a dedicated subnet named VirtualNetworkApplianceSubnet. If you create multiple appliance instances, they are created in the same dedicated subnet.
+Virtual Network Appliance is created in a dedicated subnet named VirtualNetworkApplianceSubnet. If you create multiple appliance instances, they're created in the same dedicated subnet.
 
 **Optional**: Configure NSG and Route Table selection during create  
 During creation, you can choose Network Security Group and Route Table for the Virtual Network Appliance's dedicated subnet.
 
 ## Troubleshoot
 
-### Creation fails because the subscription is not enabled
+### Creation fails because the subscription isn't enabled
 
-If you see an error indicating your subscription is not enabled/allowlisted, it typically means your AFEC registration is not yet approved for Microsoft.network/AllowVirtualNetworkAppliance. Register via AFEC and wait for approval.
+If you see an error indicating your subscription isn't enabled/allowlisted, it typically means your AFEC registration isn't yet approved for Microsoft.network/AllowVirtualNetworkAppliance. Register via AFEC and wait for approval.
 
-### Appliance is not getting traffic as expected
+### Appliance isn't getting traffic as expected
 
 • Verify NSGs and route tables attached to the appliance instance (or to the hosting subnet) match your intended routing and security configuration.  
 • Use NSG flow logs (if enabled in your environment) to help validate connectivity and rule matches.
