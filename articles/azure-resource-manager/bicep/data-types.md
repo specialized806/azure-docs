@@ -2,7 +2,7 @@
 title: Data types in Bicep
 description: This article describes the data types that are available in Bicep.
 ms.topic: reference
-ms.date: 01/02/2026
+ms.date: 01/27/2026
 ms.custom: devx-track-bicep
 ---
 
@@ -388,7 +388,7 @@ comments // are included
 '''
 ```
 
-With Bicep CLI version 0.X.X or higher, string interpolation is supported. An optional `$` prefix can be added before the opening delimiter to enable string interpolation using standard Bicep `${...}` syntax. If you need to include `${...}` as a literal value without escaping, you can control interpolation by repeating the `$` prefix. Interpolation is only performed when the number of `$` characters preceding `${...}` matches the number of `$` characters used in the opening delimiter.
+With Bicep CLI version v0.40.2 or higher, string interpolation is supported. An optional `$` prefix can be added before the opening delimiter to enable string interpolation using standard Bicep `${...}` syntax. If you need to include `${...}` as a literal value without escaping, you can control interpolation by repeating the `$` prefix. Interpolation is only performed when the number of `$` characters preceding `${...}` matches the number of `$` characters used in the opening delimiter.
 
 ```bicep
 // evaluates to "interpolation\nis ${blocked}"
