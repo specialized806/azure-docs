@@ -134,7 +134,7 @@ In the vault dashboard, go to **Manage** > **Backup Policies** and choose the po
 
   ![Manage backup policy](./media/backup-azure-sql-database/modify-backup-policy.png)
 
-  ![Modify backup policy](./media/backup-azure-sql-database/modify-backup-policy-impact.png)
+  :::image type="content" source="./media/backup-azure-sql-database/modify-backup-policy-impact.png" alt-text="Screenshot that shows the impact of modifying a backup policy on associated backup items." lightbox="./media/backup-azure-sql-database/modify-backup-policy-impact.png":::
 
 Policy modification will impact all the associated Backup Items and trigger corresponding **configure protection** jobs.
 
