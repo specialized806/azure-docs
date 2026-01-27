@@ -87,5 +87,3 @@ OTEL dataflow endpoints can be selected as destinations in modern dataflow graph
 
 :::image type="content" source="media/open-telemetry/dataflow-graphs.png" alt-text="Screenshot of portal showing dataflow graphs." lightbox="media/open-telemetry/dataflow-graphs.png":::
 
-
-
