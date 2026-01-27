@@ -9,7 +9,7 @@
   - name: Bastion SKU comparison
     href: bastion-sku-comparison.md
   - name: Cost optimization principles
-    href: cost-optimization.
+    href: cost-optimization.md
   - name: Bastion FAQ
     href: bastion-faq.md
 - name: Quickstarts & Tutorials
