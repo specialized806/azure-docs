@@ -32,26 +32,32 @@ The evaluate phase consists of two steps:
 - **Monitor and fine-tune:** Closely track your workload trends for any errors, performance bottlenecks, or unusual patterns, especially in the first one to two weeks. This step includes right-sizing components, ensuring your scaling strategy works as intended, watching budget thresholds, and checking and validating your disaster recovery configurations and backups. Prioritize the remediation of any security issues.
 - **Measure against baselines**: Verify that the baseline KPIs you documented in the planning phase, like throughput, latency, and error rates, are met and compare favorably to the AWS measurements.
 - **Validate cutover via AWS logs:** [AWS CloudTrail](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html) logs every API call and console action in your AWS account. Check and validate that these logs don't show any unintended workload traffic. If any of your workload's components still call any of the AWS services, CloudTrail exposes this.
-- Review firewall and network flow logs in Azure to ensure that only the anticipated network traffic is occurring. As part of your like-for-like migration, certain network traffic allowances might now be obsolete and can be removed from the network allowlists.
-- Perform key routine operations, such as rotating certificates or taking an off-site backup. Exercise any gated operations access, such as JIT admin elevation. These validations ensure your workload ops team or automation has sufficient management control over the environment.
-- If your workload supports it, schedule a disaster recovery failover test after the core of the workload is stabilized.
+- **Check firewall and network flow logs:** Review firewall and network flow logs in Azure to ensure that only the anticipated network traffic is occurring. As part of your like-for-like migration, certain network traffic allowances might now be obsolete and can be removed from the network allowlists.
+- **Confirm your data cutover:** Confirm that all production writes and reads are served from Azure (based on your cutover strategy). If you're using continuous replication or synchronization, stop it after you confirm Azure has the authoritative copy of the data.
+- **Perform key operation:** Perform key routine operations, such as rotating certificates or taking an off-site backup. Exercise any gated operations access, such as JIT admin elevation. These validations ensure your workload ops team or automation has sufficient management control over the environment.
+- **Schedule disaster recovery failover test:** If your workload supports it, schedule a disaster recovery failover test after the core of the workload is stabilized.
 ## Sign-off
 
-- **Sign-off milestones**: Sign off when you achieve your minimum viable cutover and all tests validate a successful migration outcome. Refer back to your sign-off acceptance criteria that you defined in the [planning phase](/azure/migration/migrate-workload-from-aws-plan).
+- **Sign-off milestones**: Sign off only after meeting all predefined success criteria and once testing confirms the migration was successful. Refer back to the acceptance criteria defined in the [planning phase](/azure/migration/migrate-workload-from-aws-plan).
 - **Conduct a post-mortem/retrospective:** Conduct a post-mortem that captures lessons learned from the workload migration. Have the migration team discuss what went well, what can be improved next time, and any unexpected issues that came up. Document the findings and share them with the stakeholders and other teams in your organization that are planning a workload migration.
 - **Update architectural knowledge base:** Ensure your workload's knowledge base reflects any last-minute changes to the infrastructure or operational procedures that deviated from the original plan.
 - **Plan for future improvements:** Create work items in your backlog for any non-urgent improvements like opportunities for cost optimization, added resilience, or introduced technical debt.
 
 ## Checklist
 
-| &nbsp;  | Deliverable tasks                 |
-| ------- | --------------------------------- |
-| &#9744; | Monitor and fine-tune             |
-| &#9744; | Measure against baselines         |
-| &#9744; | Validate successful cutover       |
-| &#9744; | Sign-off milestones               |
-| &#9744; | Conduct post-mortem/retrospective |
-| &#9744; | Plan future improvements          |
+| &nbsp;  | Deliverable tasks                        |
+| ------- | ---------------------------------------- |
+| &#9744; | Monitor and fine-tune                    |
+| &#9744; | Measure against baselines                |
+| &#9744; | Validate successful cutover              |
+| &#9744; | Check firewall and network flow logs     |
+| &#9744; | Confirm data cutover                     |
+| &#9744; | Perform key operations                   |
+| &#9744; | Schedule disaster recovery failover test |
+| &#9744; | Sign-off milestones                      |
+| &#9744; | Conduct post-mortem/retrospective        |
+| &#9744; | Update architectural knowledge base      |
+| &#9744; | Plan future improvements                 |
 
 ## Next step
 

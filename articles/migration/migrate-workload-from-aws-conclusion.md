@@ -26,6 +26,11 @@ The guide covered the items that you'll need for success:
 - the right migration strategy for each component of the workload
 - a phased approach with clear checklists
 
+
+> [!TIP] Remember that you can rely on experts
+>
+Whenever possible, team up with colleagues or Microsoft experts who have successfully migrated AWS workloads to Azure (for example, Cloud Solution Architects or the Industry Solutions Delivery team). Their experience can help you navigate challenges and adopt best practices.
+
 Migrations require a lot of work, coordination, and cooperation across teams. Often, you need to work late hours to verify everything works as intended. In the end, after a successful migration and decommissioning your AWS workloads, **celebrate your win**!
 
 ## Next steps
