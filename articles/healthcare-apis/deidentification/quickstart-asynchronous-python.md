@@ -1,5 +1,5 @@
 ---
-title: De-identify Multiple Documents with the De-identification Service in Python
+title: 'Tutorial: De-identify Multiple Documents with the De-identification Service in Python'
 description: Learn how to bulk de-identify documents with the asynchronous de-identification service in Python.
 author: LeaKass
 ms.author: leakassab
@@ -12,13 +12,13 @@ ms.date: 10/23/2025
 
 ---
 
-# De-identify multiple documents with the asynchronous de-identification service
+# Tutorial: De-identify multiple documents with the asynchronous de-identification service
+
+In this tutorial, you learn how to configure and run the Azure Health Data Services de-identification service via the asynchronous (Batch) API.
 
 The Azure Health Data Services de-identification service can de-identify documents in Azure Storage via an asynchronous job. If you have many documents that you want to de-identify, using a job is a good option. Jobs also provide consistent surrogation, which means that surrogate values in the de-identified output match across all documents. For more information about de-identification, including consistent surrogation, see [What is the de-identification service?](overview.md).
 
 When you choose to store documents in Azure Blob Storage, you're charged based on Azure Storage pricing. This cost isn't included in the de-identification service pricing. For more information, see [Azure Blob Storage pricing](https://azure.microsoft.com/pricing/details/storage/blobs).
-
-This tutorial covers how to configure and run the service via the asynchronous (Batch) API.
 
 ## Prerequisites
 
