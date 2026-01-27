@@ -38,7 +38,7 @@ This article shows you how to generate and customize a configuration file. After
    blobfuse2 gen-config --block-cache --o <path-to-save-generated-config>
    ```
 
-   This generates a configuration file that contains default settings.
+   This generates a configuration file that contains default settings. If path is not provided, the config will be generated at the current path.
 
 1. Open the configuration file in an editor to review and modify settings.
 
