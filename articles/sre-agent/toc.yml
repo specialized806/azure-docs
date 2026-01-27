@@ -36,6 +36,8 @@ items:
         href: subagent-builder-overview.md
       - name: Incident management
         href: incident-management.md
+      - name: Run custom logic
+        href: custom-logic-python.md
   - name: Automation
     items:
       - name: Build a custom subagent
