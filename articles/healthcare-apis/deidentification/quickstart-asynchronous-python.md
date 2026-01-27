@@ -32,10 +32,10 @@ This tutorial covers how to configure and run the service via the asynchronous (
   1. Select **Review + create**, and then select **Create**.
   1. After deployment is finished, go to the resource and copy your service URL and subscription ID.
 
-> [!IMPORTANT]
-> To use the Batch (asynchronous) API with the multilingual model, ensure that you have the DeID Batch Data Owner role assigned to your identity in **Access Control (IAM)**.
+  > [!IMPORTANT]
+  > To use the Batch (asynchronous) API with the multilingual model, ensure that you have the DeID Batch Data Owner role assigned to your identity in **Access Control (IAM)**.
 
-Install the [Azure CLI](/cli/azure/install-azure-cli), and open your terminal of choice. In this tutorial, we use Azure PowerShell.
+* Installation of the [Azure CLI](/cli/azure/install-azure-cli). After you install it, and open your terminal of choice. In this tutorial, we use Azure PowerShell.
 
 ## Create a storage account and container
 
