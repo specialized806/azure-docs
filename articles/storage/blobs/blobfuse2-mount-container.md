@@ -53,7 +53,11 @@ sudo blobfuse2 mount <mount-path> --config-file=<configuration-file>
 Replace `<mount-path>` with the path where you want to mount the container and `<configuration-file>` with the path to your configuration file (for example: `./config.yaml`).
 
 To learn more about how to configure BlobFuse by using a configuration file, see [Create a BlobFuse configuration file](blobfuse2-configure.md).
+[Sample File Cache Config](https://github.com/Azure/azure-storage-fuse/blob/main/sampleFileCacheConfig.yaml)
 
+[Sample Block-Cache Config](https://github.com/Azure/azure-storage-fuse/blob/main/sampleBlockCacheConfig.yaml)
+
+[All Config options](https://github.com/Azure/azure-storage-fuse/blob/main/setup/baseConfig.yaml)
 > [!NOTE]
 > For a full list of mount options, see [BlobFuse mount commands](blobfuse2-commands-mount.md).
 
