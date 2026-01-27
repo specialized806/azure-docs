@@ -20,7 +20,7 @@ You can mount a container by using the `mount` command. You can either include y
 
 The simplest way to mount a container is to use the `mount` command and specify the data transfer mode as a parameter. The command automatically configures other parameters, such as memory, disk limits, and parallelism, based on your system configuration.
 
-1. Set environment variables for the account name, container name, authentication type, and authentication details. See [BlobFuse environment variables](https://github.com/Azure/azure-storage-fuse/wiki/Blobfuse-Environment-Variables).
+1. Set environment variables for the account name, container name, authentication type, and authentication details. See [BlobFuse environment variables](https://github.com/Azure/azure-storage-fuse/wiki/Blobfuse2‐Environment-Variables).
 
 1. Decide whether you want to mount the container in _caching mode_ or _streaming mode_. See [Streaming versus caching mode](blobfuse2-streaming-versus-caching.md).
 
