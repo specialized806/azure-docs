@@ -82,15 +82,11 @@ Event Hubs is a multi-protocol event streaming engine that natively supports Apa
 
 Event Hubs is built as a cloud-native broker engine, delivering better performance and cost efficiency than self-managed Kafka clusters. For more information, see [Azure Event Hubs for Apache Kafka](azure-event-hubs-apache-kafka-overview.md).
 
-#### Partitioned consumer model
-
-Event Hubs uses a [partitioned consumer model](event-hubs-features.md) that enables multiple applications to process the same stream concurrently. Each partition maintains an ordered sequence of events, and consumers control their processing speed using offsets.
-
 #### Flexible scaling
 
 Start with data streams in megabytes and grow to gigabytes or terabytes. The [auto-inflate](event-hubs-auto-inflate.md) feature automatically scales throughput units to meet demand. For predictable high-volume workloads, [dedicated clusters](event-hubs-dedicated-overview.md) provide reserved capacity.
 
-#### Large message support
+#### Large message support (preview)
 
 While most streaming scenarios involve lightweight messages under 1 MB, Event Hubs accommodates events up to 20 MB with [dedicated clusters](event-hubs-dedicated-overview.md). For more information, see [Send and receive large messages](event-hubs-quickstart-stream-large-messages.md).
 
@@ -102,7 +98,7 @@ While most streaming scenarios involve lightweight messages under 1 MB, Event Hu
 
 :::image type="content" source="./media/event-hubs-about/schema-registry.png" alt-text="Diagram that shows Schema Registry and Event Hubs integration.":::
 
-#### Event capture
+#### Capture
 
 [Capture](event-hubs-capture-overview.md) your streaming data in near real time to Azure Blob Storage or Azure Data Lake Storage for long-term retention or batch analytics. Capture runs automatically on the same stream used for real-time processing.
 
@@ -197,14 +193,12 @@ For a detailed explanation, see [Event Hubs features](event-hubs-features.md).
 
 Use these quickstarts to start streaming data with Event Hubs:
 
-| Language/Platform | Event Hubs SDK (AMQP) | Apache Kafka |
-|-------------------|----------------------|--------------|
-| **.NET** | [Send and receive events](event-hubs-dotnet-standard-getstarted-send.md) | [Use with Kafka](event-hubs-quickstart-kafka-enabled-event-hubs.md) |
-| **Java** | [Send and receive events](event-hubs-java-get-started-send.md) | [Use with Kafka](event-hubs-quickstart-kafka-enabled-event-hubs.md) |
-| **Python** | [Send and receive events](event-hubs-python-get-started-send.md) | [Use with Kafka](event-hubs-quickstart-kafka-enabled-event-hubs.md) |
-| **JavaScript** | [Send and receive events](event-hubs-node-get-started-send.md) | [Use with Kafka](event-hubs-quickstart-kafka-enabled-event-hubs.md) |
-| **Go** | [Send and receive events](event-hubs-go-get-started-send.md) | - |
-| **Spring** | [Spring Cloud Stream](/azure/developer/java/spring-framework/configure-spring-cloud-stream-binder-java-app-azure-event-hub) | - |
+- **.NET**: [Send and receive events](event-hubs-dotnet-standard-getstarted-send.md)
+- **Java**: [Send and receive events](event-hubs-java-get-started-send.md) | [Use with Kafka](event-hubs-quickstart-kafka-enabled-event-hubs.md)
+- **Python**: [Send and receive events](event-hubs-python-get-started-send.md)
+- **JavaScript**: [Send and receive events](event-hubs-node-get-started-send.md)
+- **Go**: [Send and receive events](event-hubs-go-get-started-send.md)
+- **Spring**: [Spring Cloud Stream](/azure/developer/java/spring-framework/configure-spring-cloud-stream-binder-java-app-azure-event-hub)
 
 ### Learn more
 

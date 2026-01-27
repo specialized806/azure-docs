@@ -115,7 +115,7 @@ An **offset** is the position of an event within a partition—think of it as a 
 - **Replay**: Process historical events by specifying an earlier offset
 
 > [!IMPORTANT]
-> Checkpointing is the consumer's responsibility. The Event Hubs service provides offsets, but consumers must store checkpoints.
+> In AMQP, checkpointing is the consumer's responsibility. The Event Hubs service provides offsets, but consumers must store checkpoints.
 
 [!INCLUDE [storage-checkpoint-store-recommendations](./includes/storage-checkpoint-store-recommendations.md)]
 
