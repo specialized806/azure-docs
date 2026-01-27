@@ -42,8 +42,6 @@ This article shows you how to generate and customize a configuration file. After
 
 1. Open the configuration file in an editor to review and modify settings.
 
-1. Depending on which mode you plan to use, remove either `block_cache` or `file_cache` from the **Pipeline configuration** section. If you plan to use caching mode, remove `block_cache` from the list. If you plan to use streaming mode, remove `file_cache` from the list.
-
 1. Configure caching or streaming mode.
 
    If you choose to mount a container in caching mode, modify the `file_cache` block of settings. The following snippet shows an example configuration.
