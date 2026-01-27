@@ -88,11 +88,11 @@ Azure Copilot Migration Agent currently supports the following scenarios:
 
 - How should I plan moving VMware workloads to Azure?
 - Proceed with discovery.
-- What other discovery methods are available?
+- What discovery methods are available?
 - Use RVTools or the Azure Migrate appliance.
 - I have deployed the RVTools or appliance and uploaded the data. Summarize the discovered inventory.
 - Show servers that are out of support.
-- Tag these servers as upgraderequired: yes.
+- Tag these servers as `upgraderequired: yes`.
 - Provide the ROI summary for lift-and-shift.
 - What are the other options for moving workloads to Azure?
 - Compare the ROI between lift-and-shift and modernization.
@@ -106,15 +106,15 @@ Azure Copilot Migration Agent currently supports the following scenarios:
 - Proceed with the recommended migration preference.
 - Discover using the Azure Migrate appliance.
 - I have finished deploying the appliance and discovering data. Summarize the inventory.
-- Assign the tag application:ZavaOrderProcessingApp to the server vm-web-tier and vm-app-tier.
+- Assign the tag `application:ZavaOrderProcessingApp` to the server `vm-web-tier` and `vm-app-tier`.
 - Yes, proceed with tagging.
-- Assign the tag application:ZavaOrderProcessingApp to the PostgreSQL database WIN-PG-04 (version 17.5).
-- List all workloads tagged with application:ZavaOrderProcessingApp.
-- What is the cloud readiness of workloads tagged with application:ZavaOrderProcessingApp? Create an assessment if required.
+- Assign the tag `application:ZavaOrderProcessingApp` to the PostgreSQL database `WIN-PG-04` (version `17.5`).
+- List all workloads tagged with `application:ZavaOrderProcessingApp`.
+- What is the cloud readiness of workloads tagged with `application:ZavaOrderProcessingApp`? Create an assessment if required.
 - Show the readiness summary of my assessment.
 - I'm ready to migrate to Azure. What are the next steps?
 - Generate a new Azure platform landing zone.
-- Generate the platform landing zone with default values.
+- Generate a platform landing zone with default values.
 - Thanks. How can I execute the actual migration now?
 
 ## Interact with Azure Copilot Migration Agent
