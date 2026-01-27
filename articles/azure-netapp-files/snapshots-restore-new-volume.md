@@ -18,7 +18,9 @@ ms.author: anfdocs
 
 * Currently, you can [restore a snapshot only to a new volume](snapshots-introduction.md#restoring-cloning-an-online-snapshot-to-a-new-volume). 
 
-* To avoid unnecessary slowness in the restore operation, only restore one snapshot to a new volume at a time. 
+* Depending on the size of the selected volume snapshot to restore, the operation may take minutes to hours to complete.
+
+* To avoid extensive restore times, only perform one "restore snapshot to new volume" operation at a time. For this reason, chained restore operations, such as restoring a snapshot to a new volume while the originating volume itself is being restored from a snapshot, should be avoided as well. Alternatively, consider using [cross-zone replication within the same zone](cross-zone-region-replication-configure.md) to create an independent volume copy.
 
 * If you use the cool access feature, see [Manage Azure NetApp Files storage with cool access](manage-cool-access.md#considerations) for more considerations.
   
@@ -26,7 +28,6 @@ ms.author: anfdocs
 
 * Only enable backup, snapshots, and replication (cross-region or cross-zone) on the new volume _after_ it's fully restored from the snapshot. To ensure the volume is fully restored, check the progress indicator in the volume details.
 
-* Depending on the size of the volume being restored, the restore operation may take a few minutes to multiple hours to complete.
 
 ## Steps
 
@@ -48,7 +49,7 @@ ms.author: anfdocs
     :::image type="content" source="./media/snapshots-restore-new-volume/snapshot-restore-new-volume.png" alt-text="Screenshot showing the Create a Volume window for restoring a volume from a snapshot."::: 
 
 4. Select **Review + create** then **Create**.   
-    The Volumes page displays the new volume to which the snapshot restores. Refer to the **Originated from** field to see the name of the snapshot used to create the volume. 
+    The Volumes page displays the new volume to which the snapshot restores. Refer to the **Originated from** field to see the name of the snapshot used to create the volume. The volume can be used by NFS and SMB clients immediately while the restore operation is completing in the background.
 
 ## Next steps
 
