@@ -2,11 +2,13 @@
 title: "Quickstart: Deploy a Dapr application to Azure Container Apps with an Azure Resource Manager or Bicep file"
 description: Deploy a Dapr application to Azure Container Apps with an Azure Resource Manager or Bicep file.
 services: container-apps
-author: hhunter-ms
+author: greenie-msft
 ms.service: azure-container-apps
+ms.subservice: dapr
 ms.topic: quickstart
 ms.date: 08/28/2025
-ms.author: cshoe
+ms.author: nigreenf
+ms.reviewer: hannahhunter
 ms.custom:
   - devx-track-bicep
   - devx-track-arm-template
@@ -39,7 +41,7 @@ This quickstart mirrors the applications you deploy in the open-source Dapr [Hel
 
 ::: zone-end
 
-- An Azure account with an active subscription is required. If you don't already have one, you can [create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+- An Azure account with an active subscription is required. If you don't already have one, you can [create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A GitHub Account. If you don't already have one, sign up for [free](https://github.com/join).
 
 [!INCLUDE [container-apps-create-cli-steps.md](../../includes/container-apps-create-cli-steps.md)]

@@ -5,6 +5,7 @@ ms.topic: reference
 ms.date: 05/14/2025
 ms.devlang: csharp
 # ms.devlang: csharp, java, javascript, powershell, python
+zone_pivot_groups: programming-languages-set-functions
 ms.custom:
   - devx-track-csharp
   - devx-track-python
@@ -12,7 +13,7 @@ ms.custom:
   - devx-track-js
   - devx-track-ts
   - build-2025
-zone_pivot_groups: programming-languages-set-functions
+  - sfi-ropc-nochange
 ---
 
 # Azure Blob storage trigger for Azure Functions
@@ -139,6 +140,8 @@ public void run(
 ::: zone pivot="programming-language-typescript"  
 
 # [Model v4](#tab/nodejs-v4)
+
+[!INCLUDE [functions-blob-storage-sdk-types-node](../../includes/functions-blob-storage-sdk-types-node.md)]
 
 The following example shows a blob trigger [TypeScript code](functions-reference-node.md). The function writes a log when a blob is added or updated in the `samples-workitems` container.
 

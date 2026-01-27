@@ -4,8 +4,18 @@ description: This article shows you how to migrate your existing function apps r
 ms.service: azure-functions
 ms.topic: how-to
 ms.date: 07/31/2023
-ms.custom: template-how-to-pattern, devx-track-extended-java, devx-track-js, devx-track-python, devx-track-dotnet, devx-track-azurecli, ignite-2023, linux-related-content, devx-track-ts
 zone_pivot_groups: programming-languages-set-functions
+ms.custom:
+  - template-how-to-pattern
+  - devx-track-extended-java
+  - devx-track-js
+  - devx-track-python
+  - devx-track-dotnet
+  - devx-track-azurecli
+  - ignite-2023
+  - linux-related-content
+  - devx-track-ts
+  - sfi-ropc-nochange
 ---
 
 # <a name="top"></a>Migrate apps from Azure Functions version 1.x to version 4.x 
@@ -36,8 +46,7 @@ zone_pivot_groups: programming-languages-set-functions
 > [!IMPORTANT]
 > Python isn't supported by version 1.x of the Azure Functions runtime. Perhaps you're instead looking to [migrate your Python app from version 3.x to version 4.x](./migrate-version-3-version-4.md). If you're migrating a version 1.x function app, select either C# or JavaScript above.
 
-::: zone-end
-
+::: zone-end  
 ::: zone pivot="programming-language-javascript,programming-language-csharp"
 
 > [!IMPORTANT]
@@ -49,30 +58,35 @@ If you are running version 1.x of the runtime in Azure Stack Hub, see [Considera
 
 ## Identify function apps to migrate
 
-Use the following PowerShell script to generate a list of function apps in your subscription that currently target version 1.x:
+Run the following PowerShell script in Azure Cloud Shell to generate a list of function apps in your subscription that currently target version 1.x:
 
-```powershell
-$Subscription = '<YOUR SUBSCRIPTION ID>' 
- 
-Set-AzContext -Subscription $Subscription | Out-Null
-
+```azurepowershell-interactive
 $FunctionApps = Get-AzFunctionApp
 
 $AppInfo = @{}
 
 foreach ($App in $FunctionApps)
 {
-     if ($App.ApplicationSettings["FUNCTIONS_EXTENSION_VERSION"] -like '*1*')
+     $AppSettings = Get-AzFunctionAppSetting -Name $App.Name -ResourceGroupName $App.ResourceGroupName
+     if ($AppSettings.FUNCTIONS_EXTENSION_VERSION -like '*1*')
      {
-          $AppInfo.Add($App.Name, $App.ApplicationSettings["FUNCTIONS_EXTENSION_VERSION"])
+          $AppInfo.Add($App.Name, $AppSettings.FUNCTIONS_EXTENSION_VERSION)
      }
 }
 
 $AppInfo
 ```
 
-::: zone-end
+If you run outside of Cloud Shell, you must first set the active subscription:
 
+```azurepowershell
+$Subscription = '<SUBSCRIPTION_ID>' 
+ 
+Set-AzContext -Subscription $Subscription | Out-Null
+```
+
+In this example, replace '<SUBSCRIPTION_ID>' with the ID of your subscription.  
+::: zone-end  
 ::: zone pivot="programming-language-csharp"
 
 ## Choose your target .NET version

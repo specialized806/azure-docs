@@ -139,11 +139,11 @@ const { size, color } = appConfig.get("font");
 ```
 
 > [!NOTE]
-> Starting with version *2.2.0* of `@azure/app-configuration-provider`, the configuration provider can properly recognize JSON with comments([JSONC](https://jsonc.org/)) and convert it into object.
+> Starting with version *2.2.0* of `@azure/app-configuration-provider`, the configuration provider allows comments, as defined in ([JSONC](https://jsonc.org/)), in key-values with an `application/json` content type.
 
 ### Load specific key-values using selectors
 
-By default, the `load` method will load all configurations with no label from the configuration store. You can configure the behavior of the `load` method through the optional parameter of [`AzureAppConfigurationOptions`](https://github.com/Azure/AppConfiguration-JavaScriptProvider/blob/main/src/AzureAppConfigurationOptions.ts) type.
+By default, the `load` method will load all configurations with no label from the configuration store. You can configure the behavior of the `load` method through the optional parameter of [`AzureAppConfigurationOptions`](https://github.com/Azure/AppConfiguration-JavaScriptProvider/blob/main/src/appConfigurationOptions.ts) type.
 
 To refine or expand the configurations loaded from the App Configuration store, you can specify the key or label selectors under the `AzureAppConfigurationOptions.selectors` property.
 
@@ -461,6 +461,15 @@ const appConfig = await load(endpoint, credential, {
 });
 ```
 
+### Snapshot reference
+
+A snapshot reference is a configuration setting that references a snapshot in the same App Configuration store. When loaded, the provider resolves it and adds all key-values from that snapshot. Using snapshot references enables switching between snapshots at runtime, unlike adding a snapshot selector, which requires code changes and/or restarts to switch to a new snapshot.
+
+For more information about creating a snapshot reference, go to [snapshot reference concept](./concept-snapshot-references.md).
+
+> [!NOTE] 
+> To use snapshot references, use the version *2.3.0* or later of `@azure/app-configuration-provider`.
+
 ## Startup retry
 
 Configuration loading is a critical path operation during application startup. To ensure reliability, the Azure App Configuration provider implements a robust retry mechanism during the initial configuration load. This helps protect your application from transient network issues that might otherwise prevent successful startup.
@@ -478,6 +487,30 @@ const appConfig = await load(endpoint, credential, {
 ## Geo-replication
 
 For information about using geo-replication, go to [Enable geo-replication](./howto-geo-replication.md).
+
+## Connect to Azure Front Door
+
+The Azure Front Door integration allows client applications to fetch configuration from edge-cached endpoints rather than directly from App Configuration. This architecture delivers secure, scalable configuration access with the performance benefits of global CDN distribution.
+
+The following example demonstrates how to load configuration settings from Azure Front Door:
+
+```typescript
+import { loadFromAzureFrontDoor } from "@azure/app-configuration-provider";
+
+const appConfig = await loadFromAzureFrontDoor("{YOUR-AFD-ENDPOINT}", {
+    selectors: [{
+        keyFilter: "app.*"
+    }],
+    refreshOptions: {
+        enabled: true,
+        refreshIntervalInMs: 60_000
+    }
+});
+
+const message = appConfig.get("app.message");
+```
+
+For more information about Azure Front Door, see [Load Configuration from Azure Front Door in Client Applications](./how-to-load-azure-front-door-configuration-provider.md).
 
 ## Next steps
 

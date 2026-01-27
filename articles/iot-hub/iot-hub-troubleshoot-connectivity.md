@@ -1,13 +1,20 @@
 ---
 title: Monitor and troubleshoot device connectivity to Azure IoT Hub
 description: Learn to monitor and troubleshoot common errors with device connectivity for Azure IoT Hub.
-author: SoniaLopezBravo
+author: cwatson-cat
 
-ms.author: sonialopez
+ms.author: cwatson
 ms.service: azure-iot-hub
 ms.topic: troubleshooting
 ms.date: 07/30/2024
-ms.custom: [mqtt, 'Role: Cloud Development', 'Role: IoT Device', 'Role: Technical Support', fasttrack-edit, iot]
+ms.custom:
+  - mqtt
+  - 'Role: Cloud Development'
+  - 'Role: IoT Device'
+  - 'Role: Technical Support'
+  - fasttrack-edit
+  - iot
+  - sfi-image-nochange
 
 #Customer intent: As an operator for Azure IoT Hub, I need to know how to find out when devices are disconnecting unexpectedly and troubleshoot resolve those issues right away.
 ---
@@ -80,7 +87,7 @@ After you create a diagnostic setting to route IoT Hub resource logs to Azure Mo
 
 Use the following problem resolution guides for help with the most common errors:
 
-* [400027 ConnectionForcefullyClosedOnNewConnection](troubleshoot-error-codes.md#400027-connection-forcefully-closed-on-new-connection)
+* [400027 ConnectionForcefullyClosedOnNewConnection](troubleshoot-error-codes.md#400xxx-bad-request-errors)
 
 * [404104 DeviceConnectionClosedRemotely](iot-hub-troubleshoot-error-404104-deviceconnectionclosedremotely.md)
 

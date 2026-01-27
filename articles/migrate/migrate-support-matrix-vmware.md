@@ -6,6 +6,7 @@ ms.author: molir
 ms.manager: ronai
 ms.topic: concept-article
 ms.service: azure-migrate
+ms.reviewer: v-uhabiba
 ms.date: 05/09/2025
 ms.custom:
   - vmware-scenario-422
@@ -85,7 +86,7 @@ Supported servers | Supported only for servers running SQL Server in your VMware
 Windows servers | Windows Server 2008 and later are supported.
 Linux servers | Currently not supported.
 Authentication mechanism | Both Windows and SQL Server authentication are supported. You can provide credentials of both authentication types in the appliance configuration manager.
-SQL Server access | To discover SQL Server instances and databases, the Windows or SQL Server account must be a member of the sysadmin server role or have [these permissions](#configure-the-custom-login-for-sql-server-discovery) for each SQL Server instance.
+SQL Server access | To discover SQL Server instances and databases, the Windows/ Domain account, or SQL Server account [requires these low privilege read permissions](#configure-the-custom-login-for-sql-server-discovery) for each SQL Server instance. You can use the [low-privilege account provisioning utility](least-privilege-credentials.md) to create custom accounts or use any existing account that is a member of the sysadmin server role for simplicity.
 SQL Server versions | SQL Server 2008 and later are supported.
 SQL Server editions | Enterprise, Standard, Developer, and Express editions are supported.
 Supported SQL configuration | Discovery of standalone, highly available, and disaster-protected SQL deployments is supported. Discovery of high-availability disaster recovery SQL deployments powered by Always On failover cluster Instances and Always On availability groups is also supported.
@@ -293,8 +294,10 @@ Stack |VMware, Hyper-V, and physical servers. | VMware, Hyper-V, and physical se
 Windows servers | Windows Server 2008 R2 and later are supported. | Not supported.
 Linux servers | Not supported. | Ubuntu Linux 16.04/18.04/20.04, Debian 7/8, and Red Hat Enterprise Linux 5/6/7.
 Web server versions | IIS 7.5 and later. | Tomcat 8 or later.
-Protocol | WinRM port 5985 (HTTP) | SSH port 22 (TCP)
+Protocol | WinRM port 5986 (HTTPS) by default, if HTTPS prerequisites aren't configured on the target servers, communication falls back to WinRM port 5985 (HTTP) | SSH port 22 (TCP)
 Required privileges | Local admin. | **Read (r)** and **Execute (x)** permissions recursively on all CATALINA_HOME directories.
+Protocol | WinRM port 5985 (HTTP) | SSH port 22 (TCP)
+Required privileges | The least privileged user should be a part of the two user groups 1. Remote Management Users 2. IIS_IUSRS. The users must have read permissions to the following locations: C:\Windows\system32\inetsrv\config, C:\Windows\system32\inetsrv\config\applicationHost.config and C:\Windows\system32\inetsrv\config\redirection.config. | **Read (r)** and **Execute (x)** permissions recursively on all CATALINA_HOME directories.
 
 > [!NOTE]
 > Data is always encrypted at rest and during transit.
