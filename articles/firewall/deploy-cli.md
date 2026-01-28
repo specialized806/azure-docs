@@ -202,7 +202,7 @@ az network route-table route create \
   --route-table-name Firewall-rt-table \
   --address-prefix 0.0.0.0/0 \
   --next-hop-type VirtualAppliance \
-  --next-hop-ip-address 10.0.1.4
+  --next-hop-ip-address $fwprivaddr
 ```
 
 Associate the route table to the subnet
