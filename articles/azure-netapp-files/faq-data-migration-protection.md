@@ -53,7 +53,7 @@ By default, your data stays within the region where you deploy your Azure NetApp
 	
 Azure NetApp Files provides NFS and SMB volumes. 
 
-The [cross-region replication and cross-zone](replication.md) functionality enables you to asynchronously replicate volumes from an Azure NetApp Files volume in one region or zone to another Azure NetApp Files volume (destination) in another region or zone. Additionally, you can [create a new volume from a snapshot of an existing volume](snapshots-restore-new-volume.md).
+The [cross-region and cross-zone replication](replication.md) functionality enables you to asynchronously replicate volumes from an Azure NetApp Files volume in one region or zone to another Azure NetApp Files volume (destination) in another region or zone. Additionally, you can [create a new volume from a snapshot of an existing volume](snapshots-restore-new-volume.md).
 
 Any file based-copy tool can be used to replicate data between Azure zones and regions. NetApp offers a SaaS based solution, [NetApp Cloud Sync](https://docs.netapp.com/us-en/occm38/concept_cloud_sync.html). The solution enables you to replicate NFS or SMB data to Azure NetApp Files NFS exports or SMB shares. 
 
