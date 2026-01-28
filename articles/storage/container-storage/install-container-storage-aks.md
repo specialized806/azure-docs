@@ -34,7 +34,7 @@ By the end of this tutorial, you will:
 
 ## Applicability
 
-If you have a previous version of Azure Container Storage (version 2.0.x) installed and you have disabled auto upgrade, refer to the applicability table below for the components installed on your AKS cluster
+If you have a previous version of Azure Container Storage (version 2.0.x) installed and you have disabled auto upgrade, refer to the following applicability table for the components installed on your AKS cluster:
 
 | **Azure Container Storage version** | **Storage types supported** | **Installer present** | **Driver install trigger** |
 |------------------|-----------------|---------------|---------------|
@@ -164,7 +164,7 @@ Run the following command to create a new AKS cluster and install Azure Containe
 ```azurecli
 az aks create -n <cluster> -g <rg> --node-vm-size Standard_L8s_v3 --enable-azure-container-storage ephemeralDisk --generate-ssh-keys
 ```
-This will install the installer, deploys the ephemeralDisk driver, and creates a default StorageClass. You can install and use both local NVMe and Elastic SAN with Azure Container Storage by providing comma separated values - ephemeralDisk,elasticSan.  
+This will install the installer, deploy the ephemeralDisk driver, and create a default StorageClass. You can install and use both local NVMe and Elastic SAN with Azure Container Storage by providing comma separated values such as ephemeralDisk,elasticSan.  
 
 ## Install Azure Container Storage on an existing AKS cluster
 
@@ -176,7 +176,7 @@ Run the following command to enable Azure Container Storage on an existing AKS c
 az aks update -n <cluster-name> -g <resource-group> --enable-azure-container-storage
 ```
 
-The deployment can take up to 5 minutes. When it completes, the targeted AKS cluster has Azure Container Storage installer component installed. CSI driver installation is deferred until you create a StorageClass or explicitly enable a storage type later. Follow the instructions for creating a local NVMe](use-container-storage-with-local-disk.md) StorageClass or [Elastic SAN](use-container-storage-with-elastic-san-version-2.md‎) StorageClass. 
+The deployment can take up to 5 minutes. When it completes, the targeted AKS cluster has Azure Container Storage installer component installed. CSI driver installation is deferred until you create a StorageClass or explicitly enable a storage type later. Follow the instructions for creating a [local NVMe](use-container-storage-with-local-disk.md) StorageClass or [Elastic SAN](use-container-storage-with-elastic-san-version-2.md‎) StorageClass. 
 
 ### Installer + storage type installation
 
@@ -185,7 +185,7 @@ Run the following command to create a new AKS cluster and install Azure Containe
 ```azurecli
 az aks update -n <cluster> -g <rg> --enable-azure-container-storage elasticSan
 ```
-This will install the installer, deploys the Elastic SAN CSI driver, and creates a default StorageClass. You can install and use both local NVMe and Elastic SAN with Azure Container Storage by providing comma separated values - ephemeralDisk,elasticSan.  
+This will install the installer, deploy the Elastic SAN CSI driver, and create a default StorageClass. You can install and use both local NVMe and Elastic SAN with Azure Container Storage by providing comma separated values, such as ephemeralDisk,elasticSan.  
 
 ::: zone-end
 
@@ -433,7 +433,7 @@ local                   localdisk.csi.acstor.io   Delete          WaitForFirstCo
 
 ### Verify driver installation
 
-Verify the components that are expected after StorageClass creation or installation by specifying storage type using CLI command:
+Verify the components that are expected after StorageClass creation or installation by specifying the storage type using the following CLI command:
 
 ```azurecli
 kubectl get deploy -n kube-system | grep acstor
