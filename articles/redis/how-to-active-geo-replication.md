@@ -39,10 +39,10 @@ For a more detailed breakdown of how active geo-replication works, see [Active-A
 
 |Tier      | Memory Optimized, Balanced, Compute Optimized  | Flash Optimized  |
 |--------- |:------------------:|:----------:|
-|Available | Yes (except B0 and B1)        | Yes       |
+|Available | Yes (except B0 and B1)        | No       |
 
 > [!IMPORTANT]
-> The Balanced B0 and B1 SKUs don't support active geo-replication.
+> The Balanced B0 and B1 SKUs & Flash Optimized SKUs don't support active geo-replication.
 >
 
 ## Active geo-replication prerequisites
@@ -53,7 +53,7 @@ There are a few restrictions when using active geo replication:
 
 - Only the [RediSearch](redis-modules.md#redisearch) and [RedisJSON](redis-modules.md#redisjson) modules are supported
 
-- On the _Flash Optimized_ tier, only the _No Eviction_ eviction policy can be used. All eviction policies are supported on the other tiers.
+- When using RediSearch, only the _No Eviction_ eviction policy can be used. All eviction policies are supported on the other tiers.
 
 - Data persistence isn't supported because active geo-replication provides a superior experience.
 
