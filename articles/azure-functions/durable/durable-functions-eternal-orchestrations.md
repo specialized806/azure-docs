@@ -34,7 +34,7 @@ As explained in the [orchestration history](durable-functions-orchestrations.md#
 
 ::: zone pivot="durable-task-sdks"
 
-The Durable Task Framework keeps track of the history of each orchestration. This history grows continuously as long as the orchestration continues to schedule new work. If the orchestration goes into an infinite loop and continuously schedules work, this history could grow critically large and cause significant performance problems. The *eternal orchestration* concept was designed to mitigate these kinds of problems for applications that need infinite loops.
+The Durable Task SDKs keeps track of the history of each orchestration. This history grows continuously as long as the orchestration continues to schedule new work. If the orchestration goes into an infinite loop and continuously schedules work, this history could grow critically large and cause significant performance problems. The *eternal orchestration* concept was designed to mitigate these kinds of problems for applications that need infinite loops.
 
 ::: zone-end
 
@@ -75,7 +75,7 @@ Keep these considerations in mind when using the `continue-as-new` method in an 
 
 Keep these considerations in mind when using the `continue-as-new` method in an orchestration:
 
-+ When an orchestration gets reset by using the `continue-as-new` method, the Durable Task Framework maintains the same instance ID but internally it creates and uses a new *execution ID* going forward. This execution ID isn't exposed externally, but it can be useful when debugging orchestration execution. 
++ When an orchestration gets reset by using the `continue-as-new` method, the Durable Task SDKs maintains the same instance ID but internally it creates and uses a new *execution ID* going forward. This execution ID isn't exposed externally, but it can be useful when debugging orchestration execution. 
 
 + When an unhandled exception occurs during execution, the orchestration enters a _failed_ state and execution terminates. In this state, a call to `continue-as-new` made from the `finally` block of a try-catch statement can't restart the orchestration. 
 
