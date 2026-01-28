@@ -1,8 +1,8 @@
 ---
 title: Upgrade Windows Operating System
 description: Learn how to upgrade Windows OS during migration.
-author: AnuragMehrotra
-ms.author: anuragm
+author: Vishal Jain
+ms.author: jain.vishal
 ms.manager: vijain
 ms.topic: how-to
 ms.date: 05/08/2025
