@@ -21,7 +21,7 @@ In [Azure Data Factory](https://adf.azure.com), open the factory you'd like to a
 
 This opens a side pane showing a preview of the list of pipelines in your data factory with expandable list of activities within the pipeline.
 
-:::image type="content" source="media/how-to-assess-your-azure-data-factory-to-fabric-data-factory-migration/pipeline-assessment.png" alt-text="Screenshot showing how to view the Azure Data Factory migration assessment in the side pane.":::
+:::image type="content" source="media/how-to-assess-your-azure-data-factory-to-fabric-data-factory-migration/pipeline-assessment.png" alt-text="Screenshot showing how to view the Azure Data Factory migration assessment in the side pane." lightbox="media/how-to-assess-your-azure-data-factory-to-fabric-data-factory-migration/pipeline-assessment.png" :::
 
 ## Assess your Azure Synapse Analytics pipelines for migration
 
