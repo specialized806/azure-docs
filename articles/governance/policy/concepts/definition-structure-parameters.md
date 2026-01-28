@@ -20,7 +20,7 @@ Parameters can't be removed from a policy definition because there might be an a
 A parameter uses the following properties in a policy definition:
 
 - `name`: The name of your parameter. Used by the `parameters` deployment function within the policy rule. For more information, see [using a parameter value](#using-a-parameter-value).
-- `type`: Determines if the parameter is a `String`, `Array`, `Object`, `Boolean`,  `Integer`, `Float`, or `DateTime`. (`DateTime` parameters should be in ISO 8601 "yyyy-MM-ddTHH:mm:ss.fffffffZ" format.)
+- `type`: Determines if the parameter is a _String_, _Array_, _Object_, _Boolean_,  _Integer_, _Float_, or _DateTime_. (_DateTime_ parameters should be in ISO 8601 "yyyy-MM-ddTHH:mm:ss.fffffffZ" format.)
 
 - `metadata`: Defines subproperties primarily used by the Azure portal to display user-friendly information:
   - `description`: The explanation of what the parameter is used for. Can be used to provide examples of acceptable values.
