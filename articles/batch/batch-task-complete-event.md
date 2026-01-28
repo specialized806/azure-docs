@@ -40,7 +40,7 @@ ms.date: 01/28/2026
         "schedulingError": {
             "category": "",
             "code": "",
-            "message": "The task exited with an exit code representing a failure",
+            "message": "",
             "details": []
         }
     }
