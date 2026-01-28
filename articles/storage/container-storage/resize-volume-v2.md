@@ -13,7 +13,7 @@ ms.author: saurabsharma
 
 You can expand persistent volumes in Azure Container Storage to scale up quickly and without downtime. Shrinking persistent volumes isn't supported.
 
-You can't increase a volume beyond the maximum capacity available in your Elastic SAN or the local NVMe storage available on your nodes. To expand the volume in case of insufficient capacity, first [increase your Elastic SAN capacity](../elastic-san/elastic-san-expand.md) or [increase your ephemeral disk (local NVMe) capacity](use-container-storage-with-local-.md#manage-storage) by adding more nodes your AKS cluster. After doing so, you can expand the volume size accordingly.
+You can't increase a volume beyond the maximum capacity available in your Elastic SAN or the local NVMe storage available on your nodes. To expand the volume in case of insufficient capacity, first [increase your Elastic SAN capacity](../elastic-san/elastic-san-expand.md) or [increase your ephemeral disk (local NVMe) capacity](use-container-storage-with-local-disk.md#manage-storage) by adding more nodes your AKS cluster. After doing so, you can expand the volume size accordingly.
 
 ## Prerequisites
 
