@@ -132,9 +132,9 @@ Within a single subscription, you can create accounts with either standard or Az
 You can configure your storage account to use a custom domain for the Blob Storage endpoint. For more information, see [Configure a custom domain name for your Azure Storage account](../blobs/storage-custom-domain-name.md).
 
 > [!IMPORTANT]
-> When you reference a service endpoint in a client application, we recommend that you avoid taking a dependency on a cached IP address. The storage account IP address is subject to change. If you rely on a cached IP address, you might experience unexpected behavior.
+> When you reference a service endpoint in a client application, we advise that you avoid taking a dependency on a cached IP address. The storage account IP address is subject to change. If you rely on a cached IP address, you might experience unexpected behavior.
 >
-> Additionally, we recommend that you honor the time-to-live (TTL) of the DNS record and avoid overriding it. If you override the DNS TTL, you might experience unexpected behavior.
+> Additionally, we advise that you honor the time-to-live (TTL) of the DNS record and avoid overriding it. If you override the DNS TTL, you might experience unexpected behavior.
 
 ### Standard endpoints
 
