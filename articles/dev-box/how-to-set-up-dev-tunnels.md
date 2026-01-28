@@ -64,7 +64,7 @@ Follow these steps to set up a dev tunnel and connect to your dev box by using V
 
 1. Install VS Code extension
 
-   In your **local** VS Code, install the [**Dev Box**](https://marketplace.visualstudio.com/items?itemName=DevCenter.ms-devbox) extension from the VS Code Extension Marketplace. Dev tunnels requires version 2.0.0 or later. Make sure you install the extension locally, not on the Dev Box you want to connect to.
+   In your **local** VS Code, install the [**Dev Box**](https://marketplace.visualstudio.com/items?itemName=DevCenter.ms-devbox) extension from the VS Code Extension Marketplace. Dev tunnels require version 2.0.0 or later. Make sure you install the extension locally, not on the Dev Box you want to connect to.
 
    :::image type="content" source="media/how-to-set-up-dev-tunnels/dev-tunnels-dev-box-extension.png" alt-text="Screenshot of the Dev Box extension in Visual Studio Code showing the extension details and the install option.":::
 
