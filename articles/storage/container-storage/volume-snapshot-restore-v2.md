@@ -1,6 +1,6 @@
 ---
 title: Use Volume Snapshots with Azure Container Storage (version 2.x.x)
-description: Take a point-in-time snapshot of a persistent volume and restore it. You'll create a volume snapshot class, take a snapshot, create a restored persistent volume claim, and deploy a new pod.
+description: Take snapshot of a persistent volume and restore it.
 author: saurabh0501
 ms.service: azure-container-storage
 ms.topic: how-to
