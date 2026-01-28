@@ -4,7 +4,7 @@ ms.service: azure-managed-grafana
 description: Migrate from Azure Managed Grafana Essential service tier before retirement. Step-by-step guide to upgrade to Standard service tier or move to Azure Monitor dashboards with Grafana.
 author: maud-lv
 ms.topic: how-to
-ms.date: 09/03/2025
+ms.date: 01/27/2026
 ms.author: malev
 ---
 
