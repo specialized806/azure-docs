@@ -9,7 +9,6 @@ items:
         href: overview-support.md
         displayName: supported environments, generally available, GA, preview, regions
       - name: Quickstart
-        expanded: true
         items:
           - name: Run Azure IoT Operations in Codespaces
             href: get-started-end-to-end-sample/quickstart-deploy.md
@@ -227,6 +226,8 @@ items:
           - name: Clean up observability resources
             href: configure-observability-monitoring/howto-clean-up-observability-resources.md
             displayName: container insights, prometheus, opentelemetry, otel, metrics, Azure Monitor, Grafana, Log Analytics
+          - name: Open telemetry dataflow endpoints
+            href: configure-observability-monitoring/open-telemetry.md
       - name: Develop edge applications
         items:
           - name: Developer guide
