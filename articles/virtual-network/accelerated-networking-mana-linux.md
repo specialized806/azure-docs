@@ -47,7 +47,7 @@ When you enable Accelerated Networking, you can identify the underlying MANA NIC
 $ lspci
 7870:00:00.0 Ethernet controller: Microsoft Corporation Device 00ba
 ```
-If you see another Ethernet controller device, you will not be using MANA. In (later steps)[#Verify-that-traffic-is-flowing-through-MANA] you should also confirm that the MANA interface is initialized and bonded correctly. 
+If you see another Ethernet controller device, you will not be using MANA. In [later steps](#Verify-that-traffic-is-flowing-through-MANA) you should also confirm that the MANA interface is initialized and bonded correctly. 
 
 ### Kernel version check
 
