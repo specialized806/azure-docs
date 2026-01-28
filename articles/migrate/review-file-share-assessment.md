@@ -39,7 +39,7 @@ To review an Azure Files assessment, follow the steps:
 
 **Recommended path**
 
-Choosing a Microsoft-recommended target minimizes your migration effort. If your file share instance supports both Azure Files and on share on Azure VM, the most cost-effective and migration-ready option is recommended. This includes readiness checks and monthly cost estimates for instances marked as Ready or Ready with conditions. The recommended path is set to ‘Modernize’ by default to always prefer and assess for PaaS services wherever possible. 
+Choosing a Microsoft-recommended target minimizes your migration effort. If your file share instance supports both Azure Files and on share on Azure VM, the most cost-effective and migration-ready option is recommended. The details include readiness checks and monthly cost estimates for instances marked as Ready or Ready with conditions. The recommended path is set to ‘Modernize’ by default to always prefer and assess for PaaS services wherever possible. 
 :::image type="content" source="./media/review-fileshare-assessment/recommended-path.jpg" alt-text="The screenshot that shows where the user can start with recommended path review." lightbox="./media/review-fileshare-assessment/recomended-path.jpg":::
 
 You can use this path to: 
@@ -49,12 +49,12 @@ You can use this path to:
 - Understand details around migration issues, warnings that you can remediate before migration to the different Azure Files share.  
 
 > [!Note]
-> In the image above, the recommended deployment strategy for the demo-assessment2 workloads is migrating to Azure Files since all shares have been successfully assessed without any issues along with cost benefits.  
+> In the image, the recommended deployment strategy for the demo-assessment2 workloads is migrating to Azure Files since all shares have been successfully assessed without any issues along with cost benefits.  
 > Azure migrate will always try to provide a successful migration path for all chosen shares. 
 > If we encounter an error during assessment either for the share volume or size estimations, we will count the file share and all the other collocated shares of that server for an Azure VM migration path. 
 
 **Migrate all files shares to Azure Files** 
-In this strategy, you can see the readiness and cost estimates for migrating to Azure Files shares. You will also be able to details for each of the shares, its sources, target recommendations and monthly cost. 
+In this strategy, you can see the readiness and cost estimates for migrating to Azure Files shares. You can check details for each of the shares, its sources, target recommendations and monthly cost. 
 :::image type="content" source="./media/review-fileshare-assessment/to-azure-files.jpg" alt-text="The screenshot that shows where the user can start with Azure Files path review." lightbox="./media/review-fileshare-assessment/to-azure-files.jpg":::
 
 You can select on ‘View details’ to see: 
@@ -68,17 +68,17 @@ You can select on ‘View details’ to see:
 
 A further drill down view provides you with the details of readiness states, source properties and target recommendations. 
 
-:::image type="content" source="./media/review-fileshare-assessment/instance-level-details.jpg" alt-text="The screenshot that shows where the user can check the path details." lightbox="./media/review-fileshare-assessment/instance-level-details.jpg":::
+:::image type="content" source="./media/review-fileshare-assessment/instance-level-details.jpg" alt-text="The screenshot that shows where the user can check the istance level details." lightbox="./media/review-fileshare-assessment/instance-level-details.jpg":::
 
 **Migrate all shares to Azure VM** 
-In this strategy, you can see how you can rehost all the shares on Azure VM. You will be able to review the readiness and cost estimates. The readiness and sizing logic is similar to Azure VM assessment type. 
+In this strategy, you can see how you can rehost all the shares on Azure VM. You can review the readiness and cost estimates. The readiness and sizing logic is similar to Azure VM assessment type. 
 
-This assessment accounts for all the shares on a server to a suitable size Azure VM. This includes: 
+This assessment accounts for all the shares on a server to a suitable size Azure VM. It includes: 
 - Server readiness state 
 - VM SKU 
 - Total monthly cost (compute, storage, security) 
 
-:::image type="content" source="./media/review-fileshare-assessment/azfiles-vm-details.jpg" alt-text="The screenshot that shows where the user can check the path details." lightbox="./media/review-fileshare-assessment/azfiles-vm-details.jpg":::
+:::image type="content" source="./media/review-fileshare-assessment/azfiles-vm-details.jpg" alt-text="The screenshot that shows where the user can check the VM path details." lightbox="./media/review-fileshare-assessment/azfiles-vm-details.jpg":::
 
 
 **Migration Issues** 
