@@ -9,9 +9,9 @@ ms.devlang: csharp
 zone_pivot_groups: azure-durable-approach
 ---
 
-::: zone pivot="durable-functions"
-# Handling external events in Durable Functions
+# Handling external events
 
+::: zone pivot="durable-functions"
 Orchestrator functions have the ability to wait and listen for external events. This feature of [Durable Functions](durable-functions-overview.md) is often useful for handling human interaction or other external triggers.
 
 > [!NOTE]
@@ -19,8 +19,6 @@ Orchestrator functions have the ability to wait and listen for external events. 
 ::: zone-end
 
 ::: zone pivot="durable-task-sdks"
-# Handling external events in Durable Task SDKs
-
 Orchestrations have the ability to wait and listen for external events. This feature is often useful for handling human interaction or other external triggers.
 
 > [!NOTE]

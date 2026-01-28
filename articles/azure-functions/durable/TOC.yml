@@ -72,7 +72,7 @@
     - name: Eternal orchestrations
       href: durable-functions-eternal-orchestrations.md
     - name: Singleton orchestrations
-      href: durable-functions-singletons.mdolder
+      href: durable-functions-singletons.md
     - name: External events
       href: durable-functions-external-events.md
     - name: Durable Timers
