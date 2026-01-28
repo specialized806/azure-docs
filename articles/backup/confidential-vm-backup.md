@@ -28,7 +28,7 @@ Before you configure backup for CVM with CMK, ensure that the following prerequi
 - Register for the preview feature `RestorePointSupportForConfidentialVMV2` under the `Microsoft.Compute` provider namespace by running the following cmdlet, which is auto‑approved.
 
    ```azurepowershell-interactive
-   Register-AzProviderFeature -FeatureName " RestorePointSupportForConfidentialVMV2" -ProviderNamespace "Microsoft.Compute" 
+   Register-AzProviderFeature -FeatureName "RestorePointSupportForConfidentialVMV2" -ProviderNamespace "Microsoft.Compute" 
 
    ```
 
