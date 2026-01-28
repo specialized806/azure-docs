@@ -82,7 +82,8 @@ To enable preload with file-cache mode, use the `--preload` parameter. The follo
 blobfuse2 mount --preload /mnt/blobfuse_mnt --tmp-path=/home/temp_path 
 ```
 
-Preloading blob data makes the mount read-only and prevents file eviction. To access updated files, unmount and remount the volume. Newly added files can still be accessed by reading them. If a blob filter is used with preload, only the filtered files are preloaded and accessible via the BlobFuse mount.
+> [!NOTE]
+> Preloading blob data makes the mount read-only and prevents file eviction. To access updated files, unmount and remount the volume. Newly added files can still be accessed by reading them. If a blob filter is used with preload, only the filtered files are preloaded and accessible via the BlobFuse mount.
 
 ### Considerations when using the preload feature
 
