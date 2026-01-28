@@ -23,13 +23,13 @@ Modern enterprises need strong in-region resiliency for data and applications, a
 
 Azure NetApp Files Elastic zone-redundant storage now offers built-in multi-AZ high availability by protecting against zone failures within the service itself, eliminating external replication or secondary volume management. Organizations in industries such as finance, healthcare, and government can now get transparent, always-on storage availability without custom DR scripts or moving data out of the region.
 
-Azure NetApp Files Elastic zone-redundant storage synchronously replicates data across zones and automates failover, so a zone outage does not affect application availability. Customers get zero data loss, minimal downtime, and simplified operations all managed natively, making Azure NetApp Files Elastic zone-redundant storage a strategic choice for continuous data access in Azure.
+Azure NetApp Files Elastic zone-redundant storage synchronously replicates data across zones and automates failover, so a zone outage doesn't affect application availability. Customers get zero data loss, minimal downtime, and simplified operations all managed natively, making Azure NetApp Files Elastic zone-redundant storage a strategic choice for continuous data access in Azure.
 
 ## Zone-redundant architecture and synchronous replication 
 
 Azure NetApp Files Elastic zone-redundant storage delivers uncompromising, enterprise-grade high availability by leveraging Azure’s Zone-Redundant Storage architecture at the file storage layer. Here’s how it works:
 
-* **Synchronous multi-availability zone replication**: When your application writes data, Azure NetApp Files simultaneously writes that data across availability zones within one region before acknowledging the write back. This simultaneous mirroring guarantees that each zone’s copy is always identical.  
+* **Synchronous multi-availability zone replication**: When your application writes data, Azure NetApp Files simultaneously writes that data across availability zones within one region before acknowledging the write-back. This simultaneous mirroring guarantees that each zone’s copy is always identical.  
 
 * **Automatic, transparent failover**: If a zone fails, failover is triggered automatically with no action required on your part. The storage endpoint doesn't change, so applications resume I/O using the same mount path after a brief interruption without needing remounts or reconfiguration. RTO approaches zero, ensuring critical workloads stay online.
 
