@@ -1,10 +1,10 @@
 ---
 title: Connect to Microsoft Dev Box Using VS Code
-description: Learn how to set up and connect to your Microsoft Dev Box using the Open in VS Code feature. Follow step-by-step instructions to enable tunnels for a pool, install the Dev Box extension, and connect remotely for development.
+description: Learn how to set up and connect to your Microsoft Dev Box using the Open in VS Code feature. Enable tunnels for a pool, install the Dev Box extension, and connect remotely for development.
 author: RoseHJM
 contributors:
 ms.topic: how-to
-ms.date: 08/28/2025
+ms.date: 01/27/2026
 ms.author: rosemalcolm
 ms.reviewer: rosemalcolm
 ---
@@ -92,6 +92,34 @@ Select WSL targets from the dropdown to see all the WSL distributions. Open any 
 
 
 For more information on the WSL development experience, see [Remote - WSL](https://code.visualstudio.com/docs/remote/wsl) and [Set up a WSL development environment](/windows/wsl/setup/environment).
+
+## Troubleshoot connectivity issues with Copilot
+
+If you're experiencing connectivity issues with your Dev Box, use **Copilot connectivity assist** to diagnose and resolve problems. This feature provides guided troubleshooting through GitHub Copilot and the Dev Box MCP Server to help you identify and fix common connection issues.
+
+To use Copilot connectivity assist:
+
+1. In VS Code, open the Dev Box extension by selecting the Dev Box icon in the left sidebar.
+
+1. In the **Dev Box Resources** panel, locate the Dev Box you're having trouble connecting to.
+
+1. Select the settings icon (gear) next to the Dev Box, or right-click the Dev Box name to open the context menu.
+
+1. Select **Copilot connectivity assist**.
+
+   :::image type="content" source="media/how-to-set-up-dev-tunnels/dev-tunnels-connect-tunnel-copilot.png" alt-text="Screenshot of the Dev Box extension in VS Code showing the context menu with the Copilot connectivity assist option highlighted.":::
+
+1. Follow the guided prompts from Copilot to diagnose and resolve your connectivity issue.
+
+> [!NOTE]
+> This menu option runs `devbox_think` from the DevBox MCP Server. You must have the [DevBox MCP Server](overview-what-is-dev-box-mcp-server.md) installed and configured in VS Code to use this feature. Follow the prompts provided by Copilot to complete the troubleshooting process.
+
+Copilot connectivity assist can help with issues such as:
+
+- Tunnel connection failures
+- Authentication problems
+- Network configuration issues
+- Dev Box state problems (stopped, hibernated, or unavailable)
 
 ## Frequently asked questions
 
