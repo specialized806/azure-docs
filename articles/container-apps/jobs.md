@@ -4,8 +4,8 @@ description: Learn about jobs in Azure Container Apps
 services: container-apps
 author: craigshoemaker
 ms.service: azure-container-apps
-ms.topic: conceptual
-ms.date: 12/19/2024
+ms.topic: concept-article
+ms.date: 01/28/2026
 ms.author: cshoe
 ms.custom:
   - build-2023
