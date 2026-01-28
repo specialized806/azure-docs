@@ -26,7 +26,7 @@ This guide includes an overview about replication tasks that are powered by Azur
 
 A replication task receives content, such as data, events, or messages, from a source resource, such as a Service Bus queue. The task then moves this content to a target resource, and then deletes the content from source, except when the source is an Azure Event Hubs entity. Replication tasks usually move content without any changes. These tasks are also stateless, so they don't share states or other side effects across parallel or sequential executions of a task. 
 
-When you use the available templates to create replication tasks, each replication task is powered by single-tenant [Azure Logic Apps](logic-apps-overview.md). Behind the scenes, each task is driven by a [stateless workflow](single-tenant-overview-compare.md#stateful-stateless) in a Standard logic app resource. This resource might include multiple workflows for replication tasks.
+When you use the available templates to create replication tasks, each replication task is powered by single-tenant [Azure Logic Apps](logic-apps-overview.md). Behind the scenes, a [stateless workflow](single-tenant-overview-compare.md#stateful-stateless) in a Standard logic app resource drives each task. The logic app can include multiple workflows for replication tasks.
 
 > [!NOTE]
 >
