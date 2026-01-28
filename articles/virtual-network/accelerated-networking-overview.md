@@ -56,6 +56,7 @@ The following versions of Windows support Accelerated Networking for all interfa
 - Windows Server 2022
 - Windows Server 2019
 - Windows Server 2016
+- Windows 11
 
 The following Linux and FreeBSD distributions from Azure Marketplace support Accelerated Networking out of the box:
 
@@ -76,7 +77,7 @@ The following Linux and FreeBSD distributions from Azure Marketplace support Acc
 For users of non endorsed Linux distributions or utlizing custom kernels, we recommend the Linux Kernel 6.12 or later found at [kernel.org](https://www.kernel.org/)
 
 > [!NOTE]
-> Newer MANA features are under active development and Linux distribution vendors partner with Microsoft to update their kernels with upstream changes. Cadence of updates varies by distribution vendor. The newer your distribution and kernel is, the more likely it is to have the latest updates.
+> Newer MANA features are under active development and Linux distribution vendors partner with Microsoft to update their kernels with upstream changes. The Cadence of updates varies by distribution vendor. The newer your distribution and kernel is, the more likely it is to have the latest updates.
 
 
 ### Supported VM instances
