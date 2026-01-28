@@ -258,11 +258,11 @@ This example shows how to create a replication task for Service Bus queues.
    >
    > For example, if you name your task `fabrikam-rep-weu-wus`, but you later edit the underlying workflow for a different purpose, you can't change the task name to match.
 
-   1. To add the task workflow to an existing **Logic App (Standard)** resource, from the **Logic App** list, select the existing logic app. To create a new Standard logic app resource instead, under the **Logic App** list, select **Create new**, and provide the name to use for the new logic app.
+   1. To add the task workflow to an existing Standard logic app, from the **Logic App** list, select that logic app. To create a new Standard logic app resource instead, under the **Logic App** list, select **Create new**, and provide the name to use for the new logic app.
 
       > [!NOTE]
       >
-      > If you create a new logic app resource during replication task creation, the logic app is created in the *same region as the source entity*. This situation is problematic if the source region becomes unavailable and can't work in a failover scenario. The best practice is to create a **Logic App (Standard)** resource in a different region than your source. When you create the replication task, select the existing logic app instead and add the underlying stateless workflow to the existing logic app. For more information, see the [Prerequisites](#prerequisites).
+      > If you create a new logic app resource during replication task creation, the logic app is created in the *same region as the source entity*. This situation is problematic if the source region becomes unavailable and can't work in a failover scenario. The best practice is to create a Standard logic app in a different region than your source. When you create the replication task, select the existing logic app instead and add the underlying stateless workflow to the existing logic app. For more information, see the [Prerequisites](#prerequisites).
 
    1. When you're done, select **Review + create**.
 
@@ -270,7 +270,9 @@ This example shows how to create a replication task for Service Bus queues.
 
 1. On the **Review + create** tab, confirm the Azure resources that the replication task requires for operation.
 
-   - If you chose to create a new logic app resource for the replication task, the tab shows the required Azure resources that the replication task creates to operate. For example, these resources include an Azure Storage account that contains configuration information for the logic app resource, workflow, and other runtime operations. With Event Hubs, this storage account contains checkpoint information. It also contains the position or *offset* in the stream where the source entity stops if the source region is disrupted or becomes unavailable.
+   - If you chose to create a new logic app resource for the replication task, the tab shows the required Azure resources that the replication task creates to operate.
+   
+     For example, these resources include an Azure Storage account that contains configuration information for the logic app resource, workflow, and other runtime operations. With Event Hubs, this storage account contains checkpoint information. It also contains the position or *offset* in the stream where the source entity stops if the source region is disrupted or becomes unavailable.
 
      The following example shows the **Review + create** tab if you chose to create a new logic app:
 
@@ -318,11 +320,11 @@ This example shows how to view a task's history of workflow runs along with thei
 
    :::image type="content" source="./media/create-replication-tasks-azure-resources/view-runs-for-task.png" alt-text="Screenshot shows the Tasks page with the created replication task and a link to view runs." lightbox="./media/create-replication-tasks-azure-resources/view-runs-for-task.png":::
 
-   This step opens the **Overview** page for the underlying stateless workflow, which is included in a Standard logic app resource.
+   This step opens the designer for the underlying stateless workflow in a Standard logic app resource.
 
-1. To view run history for a stateless workflow, on the **Overview** page toolbar, select **Enable debug mode**.
+1. To view the run history for the stateless workflow, on workflow sidebar, under **Tools**, select **Run history**.
 
-   The **Run History** tab shows any previous, in progress, and waiting runs for the task along with their identifiers, statuses, start times, and run durations.
+   The **Run history** tab shows any previous, in progress, and waiting runs for the task along with their identifiers, statuses, start times, and run durations.
 
    :::image type="content" source="./media/create-replication-tasks-azure-resources/run-history-list.png" alt-text="Screenshot shows a task's runs, their statuses, and other information.":::
 
@@ -336,9 +338,9 @@ This example shows how to view a task's history of workflow runs along with thei
    | **Succeeded** | All actions succeeded. A task can still finish successfully if an action failed, but a subsequent action existed to handle the failure. |
    | **Waiting** | The run hasn't started yet and is paused because an earlier instance of the task is still running. |
 
-1. To view the statuses and other information for each step in a run, select that run.
+1. To view each step in the run, its status, and other information, select that run.
 
-   The run details page opens and shows the underlying workflow that ran.
+   The run details page opens and shows each step that ran in the underlying workflow.
 
    - A workflow always starts with a [*trigger*](../connectors/introduction.md#triggers). For this task, the workflow starts with a Service Bus trigger that waits for messages to arrive in the source Service Bus queue.
 
@@ -346,9 +348,11 @@ This example shows how to view a task's history of workflow runs along with thei
 
    :::image type="content" source="./media/create-replication-tasks-azure-resources/run-history-details.png" alt-text="Screenshot shows each step in the run, status, and run duration in the workflow.":::
 
-1. To review the inputs and outputs for each step, select the step. This action opens a pane that shows the inputs, outputs, and properties details for that step.
+1. To review the inputs and outputs for each step, select the step.
 
-   This example shows the inputs for the Service Bus trigger.
+   This action opens a pane that shows the inputs, outputs, and properties details for that step.
+
+   The following example shows the inputs, outputs, and properties for the Service Bus trigger.
 
    :::image type="content" source="./media/create-replication-tasks-azure-resources/view-trigger-inputs-outputs-properties.png" alt-text="Screenshot shows the trigger inputs, outputs, and properties.":::
 
@@ -418,17 +422,19 @@ If you don't want to recreate the original task, avoid changing the workflow beh
 
    :::image type="content" source="./media/create-replication-tasks-azure-resources/open-task-in-designer.png" alt-text="Screenshot shows the opened context menu and the selected option, Open in Logic Apps.":::
 
-   The Azure portal changes context to designer where you can edit the workflow.
+   The Azure portal changes context to the designer where you can edit the workflow.
 
    :::image type="content" source="./media/create-replication-tasks-azure-resources/view-task-workflow-designer.png" alt-text="Screenshot shows the workflow designer with the underlying workflow.":::
 
-   You can edit the workflow's trigger and actions as well as the properties for the trigger and actions.
+   You can edit the workflow's trigger and actions.
 
 1. To view the properties for the trigger or an action, select that trigger or action.
 
-   :::image type="content" source="./media/create-replication-tasks-azure-resources/edit-service-bus-trigger.png" alt-text="Screenshot shows the Service Bus trigger properties pane.":::
+   The information pane for the trigger or action opens. You can edit the properties for the trigger or action.
 
-   This example adds a description in the trigger about the workflow.
+   The following example adds a description in the trigger about the workflow.
+
+   :::image type="content" source="./media/create-replication-tasks-azure-resources/edit-service-bus-trigger.png" alt-text="Screenshot shows the Service Bus trigger properties pane.":::
 
 1. To save any changes, on the designer toolbar, select **Save**.
 
@@ -436,13 +442,17 @@ If you don't want to recreate the original task, avoid changing the workflow beh
 
 1. To test and run the updated workflow, on the designer toolbar, select **Run** > **Run**.
 
-   After the run finishes, the designer shows the workflow's run details. To review the inputs and outputs for each step, select the step, which opens a pane that shows the inputs, outputs, and properties details for that step.
+   After the run finishes, the designer shows the workflow's run details.
 
-   This example shows the selected Service Bus trigger's inputs, outputs, and properties, along with the updated trigger property value.
+1. To review the inputs and outputs for each step, select the step, which opens a pane that shows the inputs, outputs, and properties details for that step.
+
+   The following example shows the selected Service Bus trigger's inputs, outputs, and properties:
 
    :::image type="content" source="./media/create-replication-tasks-azure-resources/view-updated-run-details-trigger-inputs.png" alt-text="Screenshot shows the workflow's run details with the trigger's inputs, outputs, and properties.":::
 
-1. To disable the workflow so that the task doesn't continue to run, on the **Overview** toolbar, select **Disable**. For more information, see [Disable or enable a deployed logic app](manage-logic-apps-with-azure-portal.md#disable-or-enable-a-deployed-logic-app).
+1. To disable the workflow so the task doesn't continue to run, on the workflow sidebar, under **Configuration**, select **Settings**. From the **Workflow state** list, select **Disabled**.
+
+   For more information, see [Disable or enable a deployed logic app](manage-logic-apps-with-azure-portal.md#disable-or-enable-a-deployed-logic-app).
 
 <a name="failover"></a>
 
@@ -450,17 +460,17 @@ If you don't want to recreate the original task, avoid changing the workflow beh
 
 For Azure Event Hubs replication between the same entity types, geo-disaster recovery requires failing over from the source entity to the target entity. Then the process informs affected event consumers and producers to use the endpoint for the target entity. The target entity becomes the new source.
 
-If a disaster happens, and the source entity fails over, consumers and producers, including your replication task, are redirected to the new source. Your replication task creates a storage account that contains checkpoint information. It also contains the position or offset in the stream where the source entity stops if the source region is disrupted or becomes unavailable.
+If a disaster happens, and the source entity fails over, consumers and producers, including your replication task, are redirected to the new source. Your replication task creates a storage account that contains checkpoint information. The storage account also contains the position or offset in the stream where the source entity stops if the source region is disrupted or becomes unavailable.
 
-Manually clean up any legacy information from the original source and reconfigure the replication task. This operation ensures that the storage account doesn't contain any legacy information from the original source. It also ensures that your replication task begins reading and replicating events from the start of the new source stream.
+Manually clean up any legacy information from the original source and reconfigure the replication task. This action ensures that the storage account doesn't contain any legacy information from the original source. You also ensure that your replication task begins reading and replicating events from the start of the new source stream.
 
-1. In the [Azure portal](https://portal.azure.com), open the logic app resource or underlying workflow for the replication task.
+1. In the [Azure portal](https://portal.azure.com), open the logic app resource, and then open the underlying workflow for the replication task.
 
    > [!NOTE]
    >
    > The logic app resource should contain only replication task workflows.
 
-1. On the resource or workflow's sidebar menu, select **Overview**. On the **Overview** toolbar, either select **Disable** for the workflow or select **Stop** for the logic app resource.
+1. On the workflow sidebar menu, under **Configuration**, select **Settings**. From the **Workflow state** list, select **Disabled**.
 
 1. To find the storage account that the replication task's underlying logic app resource uses to store the checkpoint and stream offset information from the source entity, follow these steps:
 
