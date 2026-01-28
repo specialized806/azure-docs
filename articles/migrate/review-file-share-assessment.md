@@ -11,7 +11,7 @@ monikerRange:
 # Customer intent: As a migration planner, I want to conduct an Azure Files assessment for my Fileshares, so that I can determine the best migration strategies and prepare for a successful transition to Azure.
 ---
 
-# Review an application assessment
+# Review a Azure Files assessment
 
 This article describes the various components of a Fileshare assessment and how you can review the assessment after it is created. 
 
@@ -39,8 +39,8 @@ To review an Azure Files assessment, follow the steps:
 
 **Recommended path**
 
-    Choosing a Microsoft-recommended target minimizes your migration effort. If your file share instance supports both Azure Files and on share on Azure VM, the most cost-effective and migration-ready option is recommended. This includes readiness checks and monthly cost estimates for instances marked as Ready or Ready with conditions. The recommended path is set to ‘Modernize’ by default to always prefer and assess for PaaS services wherever possible. 
-:::image type="content" source="./media/review-fileshare-assessment/recommended-path.jpg" alt-text="The screenshot that shows where the user can start with recommended path review." lightbox="./media/review-fileshare-assessment/recoomended-path.jpg":::
+Choosing a Microsoft-recommended target minimizes your migration effort. If your file share instance supports both Azure Files and on share on Azure VM, the most cost-effective and migration-ready option is recommended. This includes readiness checks and monthly cost estimates for instances marked as Ready or Ready with conditions. The recommended path is set to ‘Modernize’ by default to always prefer and assess for PaaS services wherever possible. 
+:::image type="content" source="./media/review-fileshare-assessment/recommended-path.jpg" alt-text="The screenshot that shows where the user can start with recommended path review." lightbox="./media/review-fileshare-assessment/recomended-path.jpg":::
 
 You can use this path to: 
 
@@ -64,7 +64,7 @@ You can select on ‘View details’ to see:
 - Target azure service SKU 
 - Top file shares by used capacity and  
 
-:::image type="content" source="./media/review-fileshare-assessment/view-assessment-details.jpg" alt-text="The screenshot that shows where the user can check the path details." lightbox="./media/review-fileshare-assessment/view-assessment-details.jpg":::
+:::image type="content" source="./media/review-fileshare-assessment/view-assessment-details.jpg" alt-text="The screenshot that shows where the user can check the assessment details." lightbox="./media/review-fileshare-assessment/view-assessment-details.jpg":::
 
 A further drill down view provides you with the details of readiness states, source properties and target recommendations. 
 
