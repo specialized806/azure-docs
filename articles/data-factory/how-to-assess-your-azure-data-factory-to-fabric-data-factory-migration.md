@@ -17,7 +17,7 @@ In [Azure Data Factory](https://adf.azure.com), open the factory you'd like to a
 > [!NOTE]
 > If you are unable to see the banner where the "Start assesssment" button is located, try clearing your browser cache and cookies. This often resolves display issues.
 
-:::image type="content" source="media/how-to-assess-your-azure-data-factory-to-fabric-data-factory-migration/run-upgrade-assessment.png" alt-text="Screenshot showing how to run the Azure Data Factory Assessment tool.":::
+:::image type="content" source="media/how-to-assess-your-azure-data-factory-to-fabric-data-factory-migration/run-upgrade-assessment.png" alt-text="Screenshot showing how to run the Azure Data Factory Assessment tool." lightbox="media/how-to-assess-your-azure-data-factory-to-fabric-data-factory-migration/run-upgrade-assessment.png":::
 
 This opens a side pane showing a preview of the list of pipelines in your data factory with expandable list of activities within the pipeline.
 
