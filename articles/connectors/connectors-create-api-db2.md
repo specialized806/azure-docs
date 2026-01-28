@@ -1,6 +1,6 @@
 ---
-title: Access and manage IBM DB2 resources
-description: Read, edit, update, and manage IBM DB2 resources by building automated workflows using Azure Logic Apps.
+title: Connect to IBM DB2 Resources from Workflows
+description: Learn how to access and manage IBM DB2 resources from workflows in Azure Logic Apps.
 services: logic-apps
 ms.suite: integration
 ms.reviewer: haroldcampos, azla
@@ -9,21 +9,20 @@ ms.date: 01/26/2026
 ms.custom: sfi-image-nochange
 #Customer intent: As a developer who works with Azure Logic Apps, I want to access and manage IBM DB2 resources for my cloud or on-premises databases.
 ---
----
 
-# Access and manage IBM DB2 resources by using Azure Logic Apps
+# Access and manage IBM DB2 resources from workflows in Azure Logic Apps
 
-[!INCLUDE [logic-apps-sku-consumption](../logic-apps/includes/logic-apps-sku-consumption.md)]
+[!INCLUDE [logic-apps-sku-consumption-standard](../../includes/logic-apps-sku-consumption-standard.md)]
 
-With [Azure Logic Apps](../logic-apps/logic-apps-overview.md) and the [IBM DB2 connector](/connectors/db2/), you can create automated tasks and workflows based on the resources stored in your DB2 database. Your workflows can connect to the resources in your database, read and list your database tables, add rows, change rows, delete rows, and more. You can include actions in your logic apps that get responses from your database and make the output available for other actions.
+When your automated integration workflow needs to work with resources in your DB2 database, use the [**DB2** connector](/connectors/db2/). For example, your workflow can read, list rows, add rows, change rows, delete rows, and so on. Your workflow can include actions that return data from your database and make that output available for other actions to use in your workflow.
 
-This article shows how you can create a logic app that performs various database operations. If you're new to logic apps, review [What is Azure Logic Apps?](../logic-apps/logic-apps-overview.md)
+This guide shows how to connect your workflow to your DB2 database and perform various operations on that database.
 
 ## Supported platforms and versions
 
-The DB2 connector includes a Microsoft client that communicates with remote DB2 servers across a TCP/IP network. You can use this connector for accessing cloud databases such as IBM DB2 for Windows running in Azure virtualization. You can also access on-premises DB2 databases after you [install and set up the on-premises data gateway](../logic-apps/logic-apps-gateway-connection.md).
+The DB2 connector includes a Microsoft client that communicates with remote DB2 servers across a TCP/IP network. Use this connector to access cloud databases such as IBM DB2 for Windows running in Azure virtualization. You can also access on-premises DB2 databases after you [install and set up the on-premises data gateway](../logic-apps/logic-apps-gateway-connection.md).
 
-The IBM DB2 connector supports these IBM DB2 platforms and versions along with IBM DB2 compatible products that support Distributed Relational Database Architecture (DRDA) SQL Access Manager (SQLAM) versions 10 and 11:
+The DB2 connector supports the following IBM DB2 platforms and versions along with IBM DB2 compatible products that support Distributed Relational Database Architecture (DRDA) SQL Access Manager (SQLAM) versions 10 and 11:
 
 | Platform | Version | 
 |----------|---------|
@@ -33,7 +32,7 @@ The IBM DB2 connector supports these IBM DB2 platforms and versions along with I
 
 ## Supported database operations
 
-The IBM DB2 connector supports these database operations, which map to the corresponding actions in the connector:
+The DB2 connector supports the following database operations, which map to the corresponding actions in the connector:
 
 | Database operation | Connector action |
 |--------------------|------------------|
@@ -46,14 +45,20 @@ The IBM DB2 connector supports these database operations, which map to the corre
 
 ## Prerequisites
 
-- An Azure account and subscription. If you don't have an Azure subscription, 
-[sign up for a free Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+- An Azure account and subscription. [Get a free Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 - An IBM DB2 database, either cloud-based or on-premises.
 
-- Basic knowledge about how to create logic apps. For more information, see [Create an example Consumption logic app workflow](../logic-apps/quickstart-create-example-consumption-workflow.md).
+- The logic app resource and workflow from where you want to access your DB2 database.
 
-- The logic app where you want to access your DB2 database. This connector provides only actions, so to start your logic app, select a separate trigger. The examples in this article use the **Recurrence** trigger.
+  The DB2 connector provides only actions. If you have an empty workflow, you must first [add a trigger](../logic-apps/add-trigger-action-workflow.md) that works best for your business scenario, to start the workflow.
+  
+  The examples in this guide use the [**Recurrence** trigger](connectors-native-recurrence.md).
+
+  For more information, see:
+
+  - [Create a Consumption logic app workflow](../logic-apps/quickstart-create-example-consumption-workflow.md)
+  - [Create a Standard logic app workflow](../logic-apps/create-single-tenant-workflows-azure-portal.md)
 
 <a name="add-db2-action"></a>
 
