@@ -33,7 +33,7 @@ This opens a side pane showing a preview of the list of pipelines in your Synaps
 
 :::image type="content" source="media/how-to-assess-your-azure-data-factory-to-fabric-data-factory-migration/synapse-pipelines-assessment.png" alt-text="Screenshot showing how to view the Synapse Pipelines assessment in the side pane.":::
 
-You can export the both ADF and Synapse assessment results as a .csv file, which lists pipeline names, activity-level statuses, and compatibility notes.
+You can export both ADF and Synapse assessment results as a .csv file, which lists pipeline names, activity-level statuses, and compatibility notes.
 
 Some results point to features that are still in progress or out of scope. Use the results to prioritize the fixes and to decide whether to migrate now using existing tools such as [PowerShell upgrade module](/fabric/data-factory/migrate-pipelines-powershell-upgrade-module-for-azure-data-factory-to-fabric) or wait for upcoming support.
 
