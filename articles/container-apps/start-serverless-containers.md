@@ -11,7 +11,7 @@ ms.author: cshoe
 
 # Use serverless containers on Azure
 
-Serverless computing provides services that manage and maintain servers, which relieves you of the burden of physically operating servers yourself. Azure Container Apps is a serverless platform that handles scaling, security, and infrastructure management for you, in addition to reducing costs. When you don't need to manage servers, you can to spend your time focusing on your application code.
+Serverless computing provides services that manage and maintain servers, which relieves you of the burden of physically operating servers yourself. Azure Container Apps is a serverless platform that handles scaling, security, and infrastructure management for you, in addition to reducing costs. When you don't need to manage servers, you can spend your time focusing on your application code.
 
 Container Apps make it easy to manage:
 
