@@ -32,7 +32,7 @@ Use the following resources to get acquainted with Container Apps.
 | Action | Description |
 |---|---|
 | [Build the app](quickstart-portal.md) | Deploy your first app, and then create an event-driven app to process a message queue. |
-| [Scale the app](scale-app.md) | Learn how Containers Apps handles meeting variable levels of demand. |
+| [Scale the app](scale-app.md) | Learn how Container Apps handles meeting variable levels of demand. |
 | [Enable public access](ingress-overview.md) | Enable ingress on your container app to accept requests from the public web. |
 | [Observe app behavior](observability.md) | Use log streaming, your app's console, application logs, and alerts to observe the state of your container app.  |
 | [Configure the virtual network](networking.md) | Set up your virtual network to secure your containers and communicate between applications.  |
