@@ -18,6 +18,7 @@ Azure Virtual Network Appliance is a high-performance routing solution that prov
 As a top-level Azure resource, Virtual Network Appliance integrates with Azure's management model, so you can deploy, configure, and govern it using familiar Azure tools and processes. You deploy the appliance in a dedicated subnet within your virtual network, where it acts as a high-bandwidth forwarding layer for routed traffic.
 
 Virtual Network Appliance is ideal for organizations that need to:
+
 - Scale routing capacity horizontally to meet growing bandwidth demands
 - Reduce latency for east-west traffic flows
 - Eliminate routing bottlenecks in hub-and-spoke network topologies
@@ -33,9 +34,10 @@ Virtual Network Appliance is an Azure-managed network routing device that you de
 :::image type="content" source="media/virtual-network-appliance-overview/virtual-network-appliance-diagram.png" alt-text="Screenshot of a diagram showing Virtual Network Appliance architecture in Azure.":::
 
 Key characteristics:  
-• Azure resource model: You create and manage Virtual Network Appliance as an Azure resource, similar to other networking resources.  
-• Dedicated subnet: You host the appliance in a dedicated subnet named "VirtualNetworkApplianceSubnet."  
-• In the data path: The appliance forwards traffic (data path).
+
+- Azure resource model: You create and manage Virtual Network Appliance as an Azure resource, similar to other networking resources.  
+- Dedicated subnet: You host the appliance in a dedicated subnet named "VirtualNetworkApplianceSubnet."  
+- In the data path: The appliance forwards traffic (data path).
 
 ## Benefits
 
@@ -55,14 +57,14 @@ Because Virtual Network Appliance is a top-level Azure resource, you can manage 
 
 During the public preview, Virtual Network Appliance is available in a limited set of Azure regions. The current public preview regions include:  
 
-• East US  
-• East US 2  
-• West Central US  
-• West US  
-• North Europe  
-• UK South  
-• West Europe  
-• East Asia
+- East US  
+- East US 2  
+- West Central US  
+- West US  
+- North Europe  
+- UK South  
+- West Europe  
+- East Asia
 
 ## Limitations (public preview)
 

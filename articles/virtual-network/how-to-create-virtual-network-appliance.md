@@ -9,11 +9,10 @@ ms.reviewer: allensu
 ms.date: 01/27/2026
 ms.topic: concept-article
 ms.service: azure-virtual-network
+ms.custom: references_regions
 ---
 
 # How to Create a Virtual Network Appliance
-
-## Overview
 
 This quick start article explains how to register your subscription for the Virtual Network Appliance public preview and create a Virtual Network Appliance in the Azure portal. The public preview is intended for testing, evaluation, and feedback; production workloads aren't supported.
 
@@ -25,27 +24,27 @@ This quick start article explains how to register your subscription for the Virt
 
 ### Subscription and workload requirements
 
-• Use a nonproduction Azure subscription for this public preview.  
-• Your subscription must be enabled for the preview via AFEC registration and approval (see Section 2).
+- Use a nonproduction Azure subscription for this public preview.  
+- Your subscription must be enabled for the preview via AFEC registration and approval (see Section 2).
 
 ### Supported regions (public preview)
 
 Virtual Network Appliance public preview is limited to the following regions:  
-• West US  
-• East US  
-• East Asia  
-• North Europe  
-• West Europe  
-• East US 2  
-• West Central US  
-• UK South
+- West US  
+- East US  
+- East Asia  
+- North Europe  
+- West Europe  
+- East US 2  
+- West Central US  
+- UK South
 
 ## Register for the public preview (AFEC) and get approval
 
 ### Register your subscription using Azure Feature Exposure Control (AFEC)
 
 Virtual Network Appliance preview access is controlled via AFEC. The AFEC feature name used for enabling the Virtual Network Appliance preview is:  
-• Microsoft.network/AllowVirtualNetworkAppliance
+- Microsoft.network/AllowVirtualNetworkAppliance
 
 Customers register for preview by activating the AFEC flag in the Azure portal.
 
@@ -57,13 +56,13 @@ After submitting your AFEC registration for Microsoft.network/AllowVirtualNetwor
 
 Once the subscription is authorized, verify enablement by searching "Virtual Network appliance" in the Azure portal search bar. If enabled, you should see "Virtual network appliances" as a selectable service entry.
 
-:::image type="content" source="media/create-a-virtual-network-appliance/virtual-network-appliance-1.png" alt-text="Screenshot of the Azure portal search bar with Virtual network appliances highlighted.":::
+:::image type="content" source="media/create-virtual-network-appliance/virtual-network-appliance-1.png" alt-text="Screenshot of the Azure portal search bar with Virtual network appliances highlighted.":::
 
-:::image type="content" source="media/create-a-virtual-network-appliance/virtual-network-appliance-2.png" alt-text="Screenshot of the Virtual network appliances service entry in the Azure portal.":::
+:::image type="content" source="media/create-virtual-network-appliance/virtual-network-appliance-2.png" alt-text="Screenshot of the Virtual network appliances service entry in the Azure portal.":::
 
 ## Create a resource group
 
-1. Sign-in to the [Azure Preview portal](https://preview.portal.azure.com).
+1. Sign in to the [Azure Preview portal](https://preview.portal.azure.com).
 
 1. In the search box at the top of the portal enter **Resource group**. Select **Resource groups** in the search results.
 
@@ -119,7 +118,7 @@ Once the subscription is authorized, verify enablement by searching "Virtual Net
 
 1. Select **+ Create**.
 
-1. In **Create a virtual network appliance**, enter or select the following information in the **Basics** taB:
+1. In **Create a virtual network appliance**, enter or select the following information in the **Basics** tab:
 
     | Setting | Value |
     | ------- | ----- |
@@ -150,5 +149,5 @@ If you see an error indicating your subscription isn't enabled/allowlisted, it t
 
 ### Appliance isn't getting traffic as expected
 
-• Verify NSGs and route tables attached to the appliance instance (or to the hosting subnet) match your intended routing and security configuration.  
-• Use NSG flow logs (if enabled in your environment) to help validate connectivity and rule matches.
+- Verify NSGs and route tables attached to the appliance instance (or to the hosting subnet) match your intended routing and security configuration.  
+- Use NSG flow logs (if enabled in your environment) to help validate connectivity and rule matches.
