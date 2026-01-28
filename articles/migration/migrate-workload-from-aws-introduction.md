@@ -58,7 +58,7 @@ Before you begin migration planning and execution, ensure you have the following
 - *Prior experience:* Prior experience with core cloud concepts, AWS and a basic understanding of Azure services and cloud migration processes.
 - *Stakeholder alignment:* You'll need to share and agree on timelines, budget estimates, and project milestones with stakeholders to ensure that all parties are aligned.
 - *Support strategy in place:* Purchase a Microsoft support plan and investigate options for free or community support.
-- *Platform strategy in place:* This article series covers how to migrate a single workload. It assumes your platform foundation is in place and your migration strategy is defined and in alignment with the [Cloud Adoption Framework](/azure/cloud-adoption-framework/strategy[]()).
+- *Platform strategy in place:* This article series covers how to migrate a single workload. It assumes your platform foundation is in place and your migration strategy is defined and in alignment with the [Cloud Adoption Framework](/azure/cloud-adoption-framework/strategy).
 
    This includes having an *existing platform landing zone* established. Your migrated workload will become an application landing zone and will be part of your organization's Azure landing zone topology. It will exist under a management group hierarchy, be connected to or isolated from certain networks, and have governance policies applied.
 
