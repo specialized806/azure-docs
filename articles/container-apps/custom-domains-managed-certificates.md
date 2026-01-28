@@ -15,7 +15,7 @@ zone_pivot_groups: azure-cli-or-portal
 
 Azure Container Apps allows you to bind one or more custom domains to a container app. You can automatically configure a free managed certificate for your custom domain when your container app is publicly accessible from the [DigiCert IP addresses](https://knowledge.digicert.com/alerts/ip-address-domain-validation).
 
-If you want to set up a custom domain using your own certificate, see [Custom domain names and bring your own certificates in Azure Container Apps](custom-domains-certificates.md).
+If you want to set up a custom domain that uses your own certificate, see [Custom domain names and bring your own certificates in Azure Container Apps](custom-domains-certificates.md).
 
 > [!NOTE]
 > If you configure a [custom environment DNS suffix](environment-custom-dns-suffix.md), you can't add a custom domain that contains this suffix to your container app.
@@ -66,7 +66,7 @@ The requirements are:
     | Apex domain | A record | An apex domain is a domain at the root level of your domain. For example, if your DNS zone is `contoso.com`, then `contoso.com` is the apex domain. |
     | Subdomain | CNAME | A subdomain is a domain that's part of another domain. For example, if your DNS zone is `contoso.com`, then `www.contoso.com` is an example of a subdomain that can be configured in the zone. |
 
-1. Using the DNS provider that's hosting your domain, create DNS records based on the **Hostname record type** that you selected using the values shown in the **Domain validation** section. The records point the domain to your container app and verify that you're the owner. 
+1. By using the DNS provider that's hosting your domain, create DNS records based on the **Hostname record type** that you selected using the values shown in the **Domain validation** section. The records point the domain to your container app and verify that you're the owner. 
 
     - If you selected **A record**, create the following DNS records:
 
