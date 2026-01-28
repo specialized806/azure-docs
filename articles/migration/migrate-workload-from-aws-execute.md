@@ -48,7 +48,7 @@ The execute phase consists of three steps:
 
 How you execute this step depends on your chosen strategy. In the recommended, blue/green approach, you switch all traffic at once during a cutover window. You must ensure that you sync all data and prepare components to accept production traffic. Then you switch all connections to Azure and bring up your Azure environment as the primary environment. We recommend a maintenance window in which you briefly pause traffic or the application to avoid inconsistencies. Automate health checks and monitor in real time during the cutover.
 
-Work closely with operations teams to ensure that you address any emerging issues immediately. Prepare to roll back if you can't resolve issues within your rollback criteria, which you defined in the [planning phase](/azure/migration/migrate-workload-from-aws-plan).
+Work closely with operations teams to ensure that you address any emerging issues immediately. Ensure a real-time **health dashboard** (using Azure Monitor or custom telemetry) is being actively watched by the migration team and operations engineers during cutover, so any anomalies trigger immediate alerts and responses. Prepare to roll back if you can't resolve issues within your rollback criteria, which you defined in the [planning phase](/azure/migration/migrate-workload-from-aws-plan).
 
 ## After cutover
 
@@ -56,6 +56,7 @@ Work closely with operations teams to ensure that you address any emerging issue
 - **Post-cutover verification:** Closely monitor your workload metrics in Azure. If they degrade severely or if you detect a critical bug, execute your rollback plan and be ready to revert traffic back to AWS. Run a full regression test in production if possible and check all components. Run smoke tests for critical functions, watch your security logs, and ensure all monitoring signals and alerts are green. After a day or two, monitor costs and usage to ensure there are no runaway resources incurring costs.
 - **Update CI/CD pipelines for Azure:** Update deployment pipelines to stop targeting AWS and only target Azure.
 - **Update documentation and procedures:** Revise all production runbooks, support documents, and operational procedures to reflect the new Azure environment.
+- **Hand off operational monitoring:** Confirm the operations team has assumed ownership of monitoring the Azure environment. They should now be using the Azure Monitor dashboards and alerts configured earlier to watch the workload’s health. Address any knowledge gaps as the team transitions into primary support for the Azure deployment.
 
 For detailed cutover guidance, see the [CAF Execute migration](/azure/cloud-adoption-framework/migrate/execute-migration) guide.
 
@@ -76,6 +77,7 @@ For detailed cutover guidance, see the [CAF Execute migration](/azure/cloud-adop
 | &#9744; | Update CI/CD pipelines for Azure    |
 | &#9744; | Perform post-cutover verification   |
 | &#9744; | Update documentation and procedures |
+| &#9744; | Hand off operational monitoring     |
 
 ## Next step
 

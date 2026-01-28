@@ -54,7 +54,7 @@ During this phase, you build out your Azure environment, refactor any code if re
 > Tools like GitHub Copilot can assist developers in identifying and refactoring AWS-specific code (such as SDK calls or service integrations) to Azure-compatible equivalents. This can accelerate the transition and reduce manual effort.
 
 - **Coordinate client configuration changes:** Ensure all client-facing configuration changes are implemented and validated. Provide preproduction environments for client teams to test updates to endpoints, authentication and connectivity.
-- **Prepare your operational functions:** Work with your operations team to implement workload monitoring in Azure. Collaborate with the security team to implement security monitoring and validate the Azure architecture. Validate that your workload's routine, ad-hoc, and emergency operational tasks can be conducted on Azure.
+- **Prepare your operational functions:** Work with your operations team to implement workload monitoring in Azure. Set up Azure Monitor and/or Application Insights with dashboards and alert rules equivalent to your AWS CloudWatch alarms. Ensure the operations team is trained on these tools. Collaborate with the security team to implement security monitoring and validate the Azure architecture. Validate that your workload's routine, ad-hoc, and emergency operational tasks can be conducted on Azure.
 
 For guidance on preparing your workloads and building your Azure environment, see the [CAF Prepare workloads](/azure/cloud-adoption-framework/migrate/prepare-workloads-cloud) guide.
 

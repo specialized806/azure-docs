@@ -30,6 +30,7 @@ This step is the final step in the workload migration. Proceed after the evaluat
 - **Reset your TTL:** Configure your TTL back to its original setting.
 - **Establish new baselines:** Establish a new performance baseline for your migrated workload in Azure. Measure how your workload and its components perform in terms of response time, throughput, resource utilization etc. This will give you a point of reference for any future optimizations. Having new baseline metrics allows to verify the workload is meeting expectations and detect any post-migration regression.
 - **Perform a WAF workload assessment:** Take the [Azure Well-Architected Framework Review](/assessments/azure-architecture-review/) assessment on your workload. This will establish a baseline and give you potential backlog items for future optimization. Schedule a periodic assessment going forward.
+- **Retire AWS monitoring:** Disable or remove any AWS CloudWatch alarms, dashboards, or logging configurations that were used by the workload. Ensure all critical monitoring has fully shifted to Azure’s tools. Update any runbooks or notification settings so they no longer reference AWS services.
 
 For a thorough review of decommissioning steps, see the [CAF Decommission source workload](/azure/cloud-adoption-framework/migrate/decommission-source-workload) guide.
 
@@ -45,6 +46,7 @@ For a thorough review of decommissioning steps, see the [CAF Decommission source
 | &#9744; | Reset TTL                         |
 | &#9744; | Establish new baseline            |
 | &#9744; | Perform a WAF workload assessment |
+| &#9744; | Retire AWS monitoring             |
 
 ## Next step
 

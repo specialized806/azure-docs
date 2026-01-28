@@ -37,9 +37,8 @@ In order to build a comparable system in Azure, you first need to fully understa
 5. **Create a detailed inventory**: Make a list of your current AWS environment that's required for running the workload (all servers, storage, database, and services), along with usage patterns, performance metrics, and licensing requirements.
 6. **Involve subject matter experts:** In addition to automated discovery tools, engage experts throughout the workload team to uncover hidden dependencies, complex component relationships, and sensitive state. Critical components, like scheduled scripts, undocumented integrations, or legacy configurations, are often missed by tooling. A conversation with these subject matter experts can reveal these nuances and prevent surprises during migration. Include their input in the migration plan and runbook.
 7. **Assess your team's skills:** Focus on like-for-like capability mapping. Identify the skills your team already uses in AWS and align them with the equivalent Azure services and tools. Include Azure training in your project timeline to prepare your workload and operations teams. This approach reduces friction and builds confidence with Azure as existing experience in AWS translates directly to the new environment.
-8. **Document existing commitments:** Document the defined performance baseline of your workload, such as throughput, latency, error rates, and resource utilization. If these KPIs aren't available, collect these metrics from your AWS environment to establish this baseline. You will use the these KPIs in the evaluation phase after migration to validate that the workload in Azure performs as it did in AWS.
-
-   Also understand if there are any SLAs or SLOs associated with the workload. These SLA and SLO commitments made to end users or stakeholders do not change based on your cloud platform. For example, if your recovery time objective (RTO) in AWS was 45 minutes, you'll be responsible to design the workload in Azure to also have an RTO of 45 minutes.
+8. **Document existing commitments:** Document the defined performance baseline of your workload, such as throughput, latency, error rates, and resource utilization. If these KPIs aren't available, collect these metrics from your AWS environment to establish this baseline. You will use the these KPIs in the evaluation phase after migration to validate that the workload in Azure performs as it did in AWS. Also understand if there are any SLAs or SLOs associated with the workload. These SLA and SLO commitments made to end users or stakeholders do not change based on your cloud platform. For example, if your recovery time objective (RTO) in AWS was 45 minutes, you'll be responsible to design the workload in Azure to also have an RTO of 45 minutes.
+9. **Document current monitoring and alerting:** Document how the workload is monitored in AWS today (CloudWatch metrics, alarms, dashboards, etc.). Plan equivalent Azure monitoring (Azure Monitor logs, metrics, Application Insights dashboards) for the target environment. Engage your operations team in this assessment so they’re ready to implement and manage Azure-based monitoring and alerts.
 
 ## Design a like-for-like architecture in Azure
 
@@ -183,6 +182,7 @@ By the end of the planning phase, you should have:
 | &#9744; | Involve application team                              |
 | &#9744; | Assess skills                                         |
 | &#9744; | Document KPIs                                         |
+| &#9744; | Plan monitoring and Ops hand off                      |
 | &#9744; | Address networking                                    |
 | &#9744; | Identify matching Azure services                      |
 | &#9744; | Plan identity management                              |
