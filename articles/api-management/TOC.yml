@@ -156,7 +156,7 @@
     - name: Set up DR using backup/restore
       displayName: disaster, recovery
       href: api-management-howto-disaster-recovery-backup-restore.md
-- name: AI Gateway for models, tools, and agents
+- name: Manage AI backends with AI Gateway
   items:
   - name: AI Gateway overview
     items:
