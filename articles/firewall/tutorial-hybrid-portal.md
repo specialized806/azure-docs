@@ -433,37 +433,30 @@ Create a virtual machine that you use to connect via Azure Bastion. From there, 
 
 ## Deploy Azure Bastion
 
-Deploy Azure Bastion in the hub virtual network to provide secure access to the on-premises virtual machine.
-
-1. Navigate to the **VNet-Hub** virtual network.
-1. Select **Subnets** > **+ Subnet**.
-1. Configure the new subnet:
-   - **Name**: **AzureBastionSubnet** (this exact name is required)
-   - **Starting address**: **10.5.3.0**
-   - **Subnet size**: **/26 (64 addresses)**
-1. Select **Save**.
+Now deploy Azure Bastion to provide secure access to the virtual machine.
 
 1. On the Azure portal menu, select **Create a resource**.
-1. Search for **Bastion** and select it.
+1. In the search box, type **Bastion** and select it from the results.
 1. Select **Create**.
-1. Configure the Bastion deployment:
+1. On the **Create a Bastion** page, configure the following settings:
 
-   | Setting               | Value                           |
-   |-----------------------|---------------------------------|
-   | Subscription          | Your subscription              |
-   | Resource group        | **RG-fw-hybrid-test**          |
-   | Name                  | **Hub-Bastion**                |
-   | Region                | Same location as other resources |
-   | Tier                  | **Developer**                  |
-   | Virtual network       | **VNet-Hub**                   |
-   | Subnet                | **AzureBastionSubnet** (auto-selected) |
-   | Public IP address     | Create new                     |
-   | Public IP address name | **Bastion-pip**               |
+   | Setting | Value |
+   |---------|-------|
+   | Subscription | Select your subscription |
+   | Resource group | **RG-fw-hybrid-test** |
+   | Name | **Hub-Bastion** |
+   | Region | Same location as other resources |
+   | Tier | **Developer** |
+   | Virtual network | **VNet-Hub** |
+   | Subnet | Select **Manage subnet configuration** |
 
+1. In the **Subnets** page, select **+ Subnet**.
+1. Configure the new subnet:
+   - **Name**: **AzureBastionSubnet** (this name is required)
+   - **Subnet address range**: **10.5.3.0/26**
+1. Select **Save** and close the subnets page.
 1. Select **Review + create**.
-1. Select **Create**.
-
-   The deployment takes about 10 minutes to complete.
+1. After validation passes, select **Create**.
 
 ## Test the firewall
 
