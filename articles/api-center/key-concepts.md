@@ -1,11 +1,11 @@
 ---
 title: Azure API Center - Key concepts
 description: Key concepts of Azure API Center. API Center inventories an organization's APIs for discovery, reuse, and governance at scale.
-author: dlepow
+
 ms.service: azure-api-center
 ms.topic: conceptual
 ms.date: 11/15/2024
-ms.author: danlep
+
 ---
 
 # Azure API Center - key concepts
