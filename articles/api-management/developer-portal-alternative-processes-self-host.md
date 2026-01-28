@@ -23,7 +23,7 @@ There are several alternative approaches you can explore when you [self-host a d
 
 This article provides information on each of these approaches. 
 
-If you have not already done so, set up a [local environment](developer-portal-self-host.md#step-1-set-up-local-environment) for the latest release of the developer portal.
+If you haven't already done so, set up a [local environment](developer-portal-self-host.md#step-1-set-up-local-environment) for the latest release of the developer portal.
 
 ## Build for production
 
@@ -70,7 +70,7 @@ Uploading the content directly to the hosting website ("$web" container of outpu
 
 ### Step 2: Build and deploy the Function App
 
-There is a sample HTTP Trigger Function in the `./examples` folder. To build it and place it in `./dist/function`, run the following command:
+There's a sample HTTP Trigger Function in the `./examples` folder. To build it and place it in `./dist/function`, run the following command:
 
 ```sh
 npm run build-function
@@ -84,7 +84,7 @@ cd ./dist/function
 func azure functionapp publish <function app name>
 ```
 
-Once it is deployed, you can invoke it with an HTTP call:
+After you deploy it, you can invoke it with an HTTP call:
 
 ```sh
 curl -X POST https://<function app name>.azurewebsites.net/api/publish
