@@ -45,21 +45,21 @@ In this tutorial, you learn how to:
 
 1. Sign in to the [Azure portal](https://portal.azure.com), and go to your API Management instance.
 1. In the left menu, under **APIs**, select **APIs**.
-2. Select **Swagger Petstore** from the API list (or another API to which you want to add revisions).
-3. Select the **Revisions** tab.
-4. Select **+ Add revision**.
+1. Select **Swagger Petstore** from the API list (or another API to which you want to add revisions).
+1. Select the **Revisions** tab.
+1. Select **+ Add revision**.
 
    :::image type="content" source="media/api-management-get-started-revise-api/07-add-revisions-01-add-new-revision.png" alt-text="Screenshot of adding an API revision in the portal.":::
 
     > [!TIP]
     > You can also select **Add revision** in the context menu (**...**) of the API.
 
-5. Provide a description for your new revision, to help remember what it is used for.
-6. Select **Create**.
-7. Your new revision is now created.
+1. Provide a description for your new revision, to help remember what it's used for.
+1. Select **Create**.
+1. Your new revision is now created.
 
     > [!NOTE]
-    > Your original API remains in **Revision 1**. This is the revision your users continue to call, until you choose to make a different revision current.
+    > Your original API remains in **Revision 1**. This one is the revision your users continue to call, until you choose to make a different revision current.
 
 ## Make nonbreaking changes to your revision
 
@@ -147,7 +147,7 @@ az apim api release delete --resource-group apim-hello-word-resource-group \
 
 ## Browse the developer portal to see changes and change log
 
-If you've tried the [developer portal](api-management-howto-developer-portal-customize.md), you can review the API changes and change log there.
+If you try the [developer portal](api-management-howto-developer-portal-customize.md), you can review the API changes and change log there.
 
 1. In the Azure portal, navigate to your API Management instance.
 1. In the left menu, under **APIs**, select **APIs**.
@@ -183,7 +183,7 @@ In this tutorial, you learned how to:
 > * Browse the developer portal to see changes and change log
 > * Access an API revision
 
-## Next steps
+## Next step
 
 Advance to the next tutorial:
 
