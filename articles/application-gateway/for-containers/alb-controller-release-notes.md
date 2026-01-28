@@ -27,7 +27,7 @@ Instructions for new or existing deployments of ALB Controller are found in the 
 
 | ALB Controller Version | Gateway API Version | Minimum Kubernetes Version | Release Notes |
 | ---------------------- | ------------------- | ------------------ | ------------- |
-| 1.9.11 | 1.2.1 | v1.27 | [allowPrivilegeEscalation false](https://github.com/Azure/AKS/issues/5389), [Integration with AKS Istio Service Mesh Add-on](https://github.com/Azure/AKS/issues/5479), [Bug fix for VM (non-VMSS) based nodes](https://github.com/Azure/AKS/issues/5486), general image updates |
+| 1.9.11 | v1.2.1 | v1.27 | [allowPrivilegeEscalation false](https://github.com/Azure/AKS/issues/5389), [Integration with AKS Istio Service Mesh Add-on](https://github.com/Azure/AKS/issues/5479), [Bug fix for VM (non-VMSS) based nodes](https://github.com/Azure/AKS/issues/5486), general image updates |
 
 ## Release history
 
