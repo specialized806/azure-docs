@@ -43,20 +43,21 @@ The requirements are:
 
 1. Go to your container app in the [Azure portal](https://portal.azure.com).
 
-1. Verify that your app has HTTP ingress enabled by selecting **Ingress** in the **Settings** section. If ingress isn't enabled, enable it with these steps:
+1. Verify that your app has HTTP ingress enabled by selecting **Ingress** in the **Networking** section in the left pane. If ingress isn't enabled, enable it with these steps:
 
-   1. Set **HTTP Ingress** to **Enabled**.
+   1. Set **Ingress** to **Enabled**.
    1. Select the **Ingress traffic** setting that you want.
+   1. Set the **Ingress type** to **HTTP**.
    1. Enter the **Target port**.
    1. Select **Save**.
  
-1. In the **Settings** section, select **Custom domains**.
+1. Under **Networking** in the left pane, select **Custom domains**.
 
 1. Select **Add custom domain**.
 
-1. In the **Add custom domain and certificate** window, in **TLS/SSL certificate**, select **Managed certificate**.
+1. In the **Add custom domain and certificate** pane, for the **TLS/SSL certificate**, select **Managed certificate**.
 
-1. In **domain**, enter the domain that you want to add.
+1. In the **Domain** box, enter the domain that you want to add.
 
 1. Select the **Hostname record type**, based on the type of your domain:
 
@@ -65,7 +66,7 @@ The requirements are:
     | Apex domain | A record | An apex domain is a domain at the root level of your domain. For example, if your DNS zone is `contoso.com`, then `contoso.com` is the apex domain. |
     | Subdomain | CNAME | A subdomain is a domain that's part of another domain. For example, if your DNS zone is `contoso.com`, then `www.contoso.com` is an example of a subdomain that can be configured in the zone. |
 
-1. By using the DNS provider that's hosting your domain, create DNS records based on the Hostname record type that you selected using the values shown in the **Domain validation** section. The records point the domain to your container app and verify that you're the owner. 
+1. Using the DNS provider that's hosting your domain, create DNS records based on the **Hostname record type** that you selected using the values shown in the **Domain validation** section. The records point the domain to your container app and verify that you're the owner. 
 
     - If you selected **A record**, create the following DNS records:
 
