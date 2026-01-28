@@ -10,7 +10,7 @@ ms.author: malev
 
 # Migrate from Azure Managed Grafana Essential service tier
 
-The Azure Managed Grafana Essential service tier is being transitioned to Azure Monitor dashboards with Grafana (available for free in Azure portal) and/or to Azure Managed Grafana Standard service tier. This article outlines the transition timeline, guides you through the transition options.
+The Azure Managed Grafana Essential service tier is being transitioned to Azure Monitor dashboards with Grafana (available for free in Azure portal) and/or to Azure Managed Grafana Standard service tier. With this transition, creation of new Essential tier workspaces is now disabled. This article outlines the transition timeline, guides you through the transition options.
 
 Two migration paths are available to ensure continuity of your Grafana dashboards and monitoring capabilities:
 
