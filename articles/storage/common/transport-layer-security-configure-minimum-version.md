@@ -7,7 +7,7 @@ author: normesta
 
 ms.service: azure-storage
 ms.topic: how-to
-ms.date: 09/24/2025
+ms.date: 01/28/2026
 ms.author: normesta
 ms.reviewer: fryu
 ms.subservice: storage-common-concepts
@@ -25,7 +25,7 @@ Azure Storage supports two versions of the TLS protocol: 1.2 and 1.3. While TLS 
 > [!TIP]
 > Azure Storage relies on Windows implementation of SSL that isn't based on OpenSSL and therefore isn't exposed to OpenSSL related vulnerabilities.
 
-Azure Storage accounts permit clients to send and receive data with TLS versions 1.2 and above. If a storage account requires a minimum version of TLS, then any requests made with an older version than the minimum will fail.
+Azure Storage accounts permit clients to send and receive data with TLS versions 1.2 and above. When a storage account requires a minimum TLS version, any request that uses an older version will fail.
 
 This article describes how to use a DRAG (Detection-Remediation-Audit-Governance) framework to continuously manage secure TLS for your storage accounts.
 
