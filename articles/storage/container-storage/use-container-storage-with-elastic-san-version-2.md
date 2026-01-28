@@ -1,11 +1,11 @@
 ---
 title: Use Azure Container Storage with Azure Elastic SAN
 description: You can configure Azure Container Storage to use Azure Elastic SAN.
-author: saurabsharma
+author: saurabh0501
 ms.service: azure-container-storage
 ms.topic: how-to
-ms.date:
-ms.author: kendownie
+ms.date: 01/28/2026
+ms.author: saurabsharma
 ms.custom:
   - references_regions
     
@@ -26,7 +26,7 @@ This article shows you how to configure Azure Container Storage to use Azure Ela
 
 The following features aren't currently supported when you use Azure Container Storage to deploy and orchestrate an Elastic SAN.
 
-- Elastic SAN capacity expansion isn't supported via Azure Container Storage. However, you can [resize Elastic SAN](elastic-san-expand.md) directly from the Azure portal or using Azure CLI.
+- Elastic SAN capacity expansion isn't supported via Azure Container Storage. However, you can [resize Elastic SAN](../elastic-san/elastic-san-expand.md) directly from the Azure portal or using Azure CLI.
 
 ## Regional availability
 
@@ -184,38 +184,37 @@ A persistent volume claim (PVC) is used to automatically provision storage based
 
 Step 1: Create a YAML manifest file such as `acstor-pvc.yaml`. Paste in the following code and save the file. The PVC `name` value can be whatever you want.
 
-     ```yml
-   apiVersion: v1
-   kind: PersistentVolumeClaim
-   metadata:
-     name: managedpvc
-   spec:
-     accessModes:
-       - ReadWriteOnce
-     storageClassName: azuresan # replace with the name of your storage class if different
-     resources:
-       requests:
-         storage: 1Gi
-     ```
+```yaml
+      apiVersion: v1 
+kind: PersistentVolumeClaim 
+metadata: 
+  name: managedpvc 
+spec: 
+  accessModes: 
+    - ReadWriteOnce 
+  resources: 
+    requests: 
+      storage: 1Gi 
+  storageClassName: azuresan
+   ```
 
 Step 2: Apply the YAML manifest file to create the PVC.
-     
-     ```azurecli-interactive
-     kubectl apply -f acstor-pvc.yaml
-     ```
-   
-   You should see output similar to:
-   
-     ```output
-     persistentvolumeclaim/managedpvc created
-     ```
-   
-   You can verify the status of the PVC by running the following command:
-   
-     ```azurecli-interactive
-     kubectl describe pvc managedpvc
-     ```
 
+  ```azurecli
+  kubectl apply -f acstor-pvc.yaml
+  ```
+   
+  You should see output similar to:
+   
+  ```output
+  persistentvolumeclaim/managedpvc created
+  ```
+   
+You can verify the status of the PVC by running the following command:
+
+ ```azurecli
+  kubectl describe pvc managedpvc
+  ```
 Once the PVC is created, it's ready for use by a pod.
 
 ## 3 Deploy a pod and attach a persistent volume
@@ -274,7 +273,7 @@ You've now deployed a pod that's using an Elastic SAN as its storage, and you ca
 
 ## 4 Static provisioning of Elastic SAN volume
 
-You can fully pre‑create the volume in Elastic SAN and then surface it to Kubernetes as a static persistent volume. Refer to the steps above in pre-provisioned Elastic SAN and volume group section for creating an Elastic SAN and a volume group. These steps can also be performed in the Azure portal by using [Elastic SAN service blade](elastic-san-create.md#portal).
+You can fully pre‑create the volume in Elastic SAN and then surface it to Kubernetes as a static persistent volume. Refer to the steps above in pre-provisioned Elastic SAN and volume group section for creating an Elastic SAN and a volume group. These steps can also be performed in the Azure portal by using [Elastic SAN service blade](../elastic-san/elastic-san-create.md).
 
 ### 4.1 Create a default Elastic SAN storage class
 
