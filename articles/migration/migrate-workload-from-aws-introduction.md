@@ -47,7 +47,7 @@ We've found that the workload team who is currently responsible for the workload
 - an under-trained workload team
 - sense of lost ownership
 
-In many cases, external partners with Azure expertise (such as System Integrators or Microsoft's Internal Solution Delivery team) are brought in to support the migration. While these partners may lead planning and preparation, the workload team executes the production cutover using the partner-developed runbooks and automation.
+In many cases, external partners with Azure expertise (such as System Integrators or Microsoft's Industry Solutions Delivery team) are brought in to support the migration. While these partners may lead planning and preparation, the workload team executes the production cutover using the partner-developed runbooks and automation.
 
 Workload teams should consult with migration experts as part of the process, but the team should drive the process and stay heavily invested.
 

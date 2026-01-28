@@ -95,7 +95,7 @@ Plan how to cut over production traffic from the AWS environment to the Azure en
 | Phased     | Low      | Medium     | Medium      | Moderate      |
 | Blue/Green | Low      | Low        | High        | Easy          |
 
-To keep the risk low and rollback easy, a blue/green approach is recommended. In this case, you maintain two environments. Blue is the current environment (AWS) and green is the new environment (Azure). 
+To keep the risk low and rollback easy, a blue/green approach is recommended. In this case, you maintain two environments. Blue is the current environment (AWS) and green is the new environment (Azure).
 
 In the blue/green scenario, you plan a migration window, run your workload in AWS as normal throughout the migration, and move traffic over to Azure after a successful dry run. Both environments run in parallel throughout the migration, so you can shift traffic back to AWS if issues arise in the Azure environment. In this case, you also need a rollback strategy for state that might have changed. Be sure to consider databases and less obvious state, such as unprocessed items in message queues.
 
