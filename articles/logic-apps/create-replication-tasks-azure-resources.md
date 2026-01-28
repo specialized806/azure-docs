@@ -49,7 +49,7 @@ The following table lists some example replication task templates that are avail
 
 | Resource type | Replication source and target |
 |---------------|-------------------------------|
-| Azure Event Hubs namespace | - Event Hubs instance to Event Hubs instance <br>- Event Hubs instance to Service Bus queue <br>- Event Hubs instance to Service Bus topic |
+| Azure Event Hubs namespace | - Event Hubs instance to Event Hubs instance <br>- Event Hubs instance to Service Bus queue <br>- Event Hubs instance to Service Bus article |
 | Azure Service Bus namespace | - Service Bus queue to Service Bus queue <br>- Service Bus queue to Service Bus topic <br>- Service Bus topic to Service Bus topic <br>- Service Bus queue to Event Hubs instance <br>- Service Bus topic to Service Bus queue <br>- Service Bus topic to Event Hubs instance <br><br>**Important**: When a queue is the source, a replication task doesn't copy messages but *moves* them from the source to the target and deletes them from the source. <br><br>To mirror messages instead, use a topic as your source where the "main" subscription acts like a queue endpoint. That way, the target gets a copy of each message from the source. <br><br>To route messages across different regions, create a queue where messages are sent from an app. The replication task transfers messages from that queue to a target queue in a namespace that's in another region. You can also use a topic subscription as the entity that acts as the transfer queue. For more information, see [Replication topology for ServiceBusCopy](https://github.com/Azure-Samples/azure-messaging-replication-dotnet/tree/main/functions/config/ServiceBusCopy#replication-topology).|
 
 ## Replication topology and workflow
@@ -144,7 +144,7 @@ For Service Bus, you must enable sessions. Message sequences with the same sessi
 >
 > This pattern demonstrates the *idempotence* concept. Repeating an action on an input produces the same result without other side effects or doesn't change the input's value. 
 
-To learn more about multiple site federation and multiple region federation for Azure services where you can create replication tasks, see:
+To learn more about multiple site federation and multiple region federations for Azure services where you can create replication tasks, see:
 
 - [Multi-site and multi-region federation](../event-hubs/event-hubs-federation-overview.md)
 - [Event replication tasks patterns](../event-hubs/event-hubs-federation-patterns.md)
