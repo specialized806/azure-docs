@@ -93,11 +93,10 @@ Create a NIC for Srv-Work with specific DNS server IP addresses and no public IP
 
 ```azurecli-interactive
 az network nic create \
-    -g Test-FW-RG \
-    -n Srv-Work-NIC \
+    --resource-group Test-FW-RG \
+    --name Srv-Work-NIC \
    --vnet-name Test-FW-VN \
    --subnet Workload-SN \
-   --public-ip-address "" \
    --dns-servers <replace with External DNS ip #1> <replace with External DNS ip #2>
 ```
 
@@ -155,7 +154,7 @@ az network firewall update \
 az network public-ip show \
     --name fw-pip \
     --resource-group Test-FW-RG
-fwprivaddr="$(az network firewall ip-config list -g Test-FW-RG -f Test-FW01 --query "[?name=='FW-config'].privateIpAddress" --output tsv)"
+fwprivaddr="$(az network firewall ip-config list --resource-group Test-FW-RG --firewall-name Test-FW01 --query "[?name=='FW-config'].privateIpAddress" --output tsv)"
 ```
 
 Note the private IP address. You'll use it later when you create the default route.
@@ -203,15 +202,15 @@ az network route-table route create \
   --route-table-name Firewall-rt-table \
   --address-prefix 0.0.0.0/0 \
   --next-hop-type VirtualAppliance \
-  --next-hop-ip-address $fwprivaddr
+  --next-hop-ip-address 10.0.1.4
 ```
 
 Associate the route table to the subnet
 
 ```azurecli-interactive
 az network vnet subnet update \
-    -n Workload-SN \
-    -g Test-FW-RG \
+    --name Workload-SN \
+    --resource-group Test-FW-RG \
     --vnet-name Test-FW-VN \
     --address-prefixes 10.0.2.0/24 \
     --route-table Firewall-rt-table
@@ -262,8 +261,8 @@ Now, test the firewall to confirm that it works as expected.
 
    ```azurecli-interactive
    az vm list-ip-addresses \
-   -g Test-FW-RG \
-   -n Srv-Work
+   --resource-group Test-FW-RG \
+   --name Srv-Work
    ```
 
 1. In the Azure portal, navigate to the **Srv-Work** virtual machine and select **Connect** > **Connect via Bastion**.
@@ -299,7 +298,7 @@ You can keep your firewall resources for the next tutorial, or if no longer need
 
 ```azurecli-interactive
 az group delete \
-  -n Test-FW-RG
+  --name Test-FW-RG
 ```
 
 ## Next steps
