@@ -64,7 +64,7 @@ Elastic zone-redundant storage offers several key benefits for resiliency, opera
 
 * Because some regions only have two availability zones, confirm supported availability zones in the region before deploying zone-redundant storage. Use the REST API call: 
 
-```rest
+```
 GET https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.NetApp/locations/{location}/elasticRegionInfo?api-version=2025-09-01-preview
 ```
 
@@ -81,25 +81,23 @@ GET https://management.azure.com/subscriptions/{subscriptionId}/providers/Micros
 | Integrated backup | Integrated backup and recovery | Integrated backup and recovery | 
 | Price | Premium pricing for enterprise features | Cost-optimized for smaller workloads |
 
-To see which features the Elastic zone-redundant service level offers, see [Supported features](#supported-features).
-
 ### API endpoints
 
 The Elastic zone-redundant service level has dedicated API endpoints. This table identifies the different endpoints for service levels. 
 
 | Resource type | Elastic zone-redundant endpoint | Flexible, Standard, Premium, and Ultra endpoint |
 |-|---|---|
-| Accounts | elasticAccounts | netAppAccounts |
+| Accounts | /elasticAccounts | /netAppAccounts |
 | Backups | /elasticAccounts/{accountName}/elasticBackupVaults/{vaultName}/elasticBackups | /netAppAccounts/{accountName}/backupVaults/{vaultName}/backups |
-| Backup policies | /elasticAccounts/{accountName}/elasticBackupPolicies | netAppAccounts/{accountName}/backupPolicies |
+| Backup policies | /elasticAccounts/{accountName}/elasticBackupPolicies | /netAppAccounts/{accountName}/backupPolicies |
 | Backup vaults | /elasticAccounts/{accountName}/elasticBackupVaults | /netAppAccounts/{accountName}/backupVaults | 
 | Capacity pools | /elasticAccounts/{accountName}/elasticCapacityPools | /netAppAccounts/{accountName}/capacityPools |
-| Change zone | elasticCapacityPools/{poolName}/changeZone | N/A |
-| Region info | locations/{location}/elasticRegionInfos | locations/{location}/regionInfo
-| Snapshots | elasticAccounts/{accountName}/elasticCapacityPools/{poolName}/elasticVolumes/{volumeName}/elasticSnapshots | /netAppAccounts/{accountName}/capacityPools/{poolName}/volumes/{volumeName}/snapshots |
-| Snapshot policies | elasticAccounts/{accountName}/elasticSnapshotPolicies | netAppAccounts/{accountName}/snapshotPolicies/{snapshotPolicyName} |
-| Volumes | elasticAccounts/{accountName}/elasticCapacityPools/{poolName}/elasticVolumes | /netAppAccounts/{accountName}/capacityPools/{poolName}/volumes/{volumeName} |
-| Volume file path availability | elasticAccounts/{accountName}/elasticCapacityPools/{poolName}/checkVolumeFilePathAvailability | /locations/{location}/checkFilePathAvailability |
+| Change zone | /elasticCapacityPools/{poolName}/changeZone | N/A |
+| Region info | /locations/{location}/elasticRegionInfos | /locations/{location}/regionInfo
+| Snapshots | /elasticAccounts/{accountName}/elasticCapacityPools/{poolName}/elasticVolumes/{volumeName}/elasticSnapshots | /netAppAccounts/{accountName}/capacityPools/{poolName}/volumes/{volumeName}/snapshots |
+| Snapshot policies | /elasticAccounts/{accountName}/elasticSnapshotPolicies | /netAppAccounts/{accountName}/snapshotPolicies/{snapshotPolicyName} |
+| Volumes | /elasticAccounts/{accountName}/elasticCapacityPools/{poolName}/elasticVolumes | /netAppAccounts/{accountName}/capacityPools/{poolName}/volumes/{volumeName} |
+| Volume file path availability | /elasticAccounts/{accountName}/elasticCapacityPools/{poolName}/checkVolumeFilePathAvailability | /locations/{location}/checkFilePathAvailability |
 
 For more detailed information, see [Azure NetApp Files REST API](/rest/api/netapp).
 

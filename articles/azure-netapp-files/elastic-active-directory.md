@@ -122,19 +122,19 @@ To check or update the status of the Active Directory connection, you must use t
 
 * To retrieve all the Active Directory configurations for the Azure NetApp Files subscription, use this GET call: 
 
-```rest 
+```
   /subscriptions/{subscriptionId}/providers/Microsoft.NetApp/activeDirectoryConfigs​
 ```
 
 * To retrieve all Active Directory configurations under a resource group, use this GET call: 
 
-```rest
+```
 /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetApp/activeDirectoryConfigs​
 ```
 
 * To retrieve information about a specific Active Directory configuration, use this GET call: 
 
-```rest
+```
 /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetApp/activeDirectoryConfigs/{activeDirectoryConfigName}"​
 ```
 
@@ -142,7 +142,7 @@ To check or update the status of the Active Directory connection, you must use t
 
 To update the Active Directory connection of your Elastic zone-redundant account, send a PATCH request: 
 
-```rest
+```
 /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetApp/activeDirectoryConfigs/​{activeDirectoryConfigName}​
 ```
 
