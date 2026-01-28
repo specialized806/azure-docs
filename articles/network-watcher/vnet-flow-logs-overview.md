@@ -214,7 +214,7 @@ For continuation (`C`) and end (`E`) flow states, byte and packet counts are agg
 - **Location**: The storage account must be in the same region as the virtual network.
 - **Subscription**: The storage account must be in the same subscription of the virtual network or in a subscription associated with the same Microsoft Entra tenant of the virtual network's subscription.
 - **Performance tier**: The storage account must be standard. Premium storage accounts aren't supported.
-- **Self-managed key rotation**: If you change or rotate the access keys to your storage account, virtual network flow logs stop working. To fix this problem, you must disable and then re-enable virtual network flow logs.
+- **Self-managed key rotation**: If you change or rotate the customer-managed encryption keys to your storage account, virtual network flow logs stop working. To fix this problem, you must disable and then re-enable virtual network flow logs.
 
 ### ExpressRoute gateway traffic
 
@@ -251,6 +251,8 @@ Currently, these Azure services don't support virtual network flow logs:
 - If traffic analytics is enabled with virtual network flow logs, traffic analytics pricing applies at per gigabyte processing rates. Traffic analytics isn't offered with a free tier of pricing. For more information, see [Network Watcher pricing](https://azure.microsoft.com/pricing/details/network-watcher/).
 
 - Storage of logs is charged separately. For more information, see [Azure Blob Storage pricing](https://azure.microsoft.com/pricing/details/storage/blobs/).
+  
+- Virtual Network Flow Logs extend logging coverage beyond network security boundaries to include platform and application‑level traffic scenarios. This broader scope supports additional use cases and traffic patterns, which may result in higher log volumes compared to more narrowly scoped flow logging configurations.
 
 ## Supported scenarios
 

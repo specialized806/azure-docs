@@ -2,7 +2,7 @@
 title: Deployment technologies in Azure Functions
 description: Learn the different ways you can deploy code to Azure Functions.
 ms.custom: vs-azure, vscode-azure-extension-update-not-needed, build-2023, build-2024
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 11/07/2024
 ---
 
@@ -86,7 +86,7 @@ The Functions host also performs a background trigger sync after the application
 You can request Azure Functions to perform a remote build of your code project during deployment. In these scenarios, you should request a remote build instead of building locally:
 
 + You're deploying an app to a Linux-based function app that was developed on a Windows computer. This is commonly the case for Python app development. You can end up with incorrect libraries being used when building the deployment package locally on Windows.
-+ Your project has dependencies on a [custom package index](functions-reference-python.md#remote-build-with-extra-index-url).
++ Your project has dependencies on a [custom package index](./python-build-options.md#remote-build-with-an-extra-index-url).
 + You want to reduce the size of your deployment package.
 
 How you request a remote build depends on whether your app runs in Azure on Windows or Linux.
@@ -139,6 +139,9 @@ One deploy is the only deployment technology supported for apps on a [Flex Consu
 >__When to use it:__ One deploy is the only deployment technology available for function apps running in a Flex Consumption plan. 
 
 >__Where app content is stored:__ When you create a Flex Consumption function app, you specify a [deployment storage container](functions-infrastructure-as-code.md?pivots=flex-consumption-plan#deployment-sources). This is a blob container where your tools upload the app content you deployed. To change the location, you can visit the Deployment Settings blade in the Azure portal or use the [Azure CLI](flex-consumption-how-to.md#configure-deployment-settings).
+
+> [!TIP]
+> A **Flex Function App deployment details** diagnostic tool is available in the Azure portal. Open your Flex Consumption app, select **Diagnose and solve problems**, and search for `Flex Function App deployment details`. This tool displays detailed information about your deployments, including deployment history, package status, and troubleshooting recommendations.
 
 ### Zip deploy
 
