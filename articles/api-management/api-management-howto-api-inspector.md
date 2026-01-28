@@ -58,7 +58,7 @@ Follow these steps to trace an API request in the test console in the portal. Th
 
 ## Review trace information
 
-1. After the call completes, go to the **Trace*- tab in the **HTTP response**.
+1. After the call completes, go to the **Trace** tab in the **HTTP response**.
 1. Select any of the following links to jump to detailed trace information: **Inbound**, **Backend**, **Outbound**, **On error**.
 
    :::image type="content" source="media/api-management-howto-api-inspector/response-trace-1.png" alt-text="Screenshot showing the review response trace.":::
