@@ -25,7 +25,7 @@ This opens a side pane showing a preview of the list of pipelines in your data f
 
 ## Assess your Azure Synapse Analytics pipelines for migration
 
-In [Azure Synapse Analytics](https://web.azuresynapse.net), open the pipelines you'd like to assess for migration. On the authoring canvas toolbar, select Start assessment (preview).
+In [Azure Synapse Analytics](https://web.azuresynapse.net), open the pipelines you'd like to assess for migration. On the authoring canvas toolbar, select **Start assessment (preview)**.
 
 :::image type="content" source="media/how-to-assess-your-azure-data-factory-to-fabric-data-factory-migration/start-synapse-pipelines-upgrade-assessment.png" alt-text="Screenshot showing how to run the Assessment tool in Synapse Analytics Workspace." lightbox="media/how-to-assess-your-azure-data-factory-to-fabric-data-factory-migration/start-synapse-pipelines-upgrade-assessment.png":::
 
