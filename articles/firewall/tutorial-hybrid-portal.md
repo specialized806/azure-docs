@@ -5,7 +5,7 @@ services: firewall
 author: duau
 ms.service: azure-firewall
 ms.topic: how-to
-ms.date: 08/31/2023
+ms.date: 01/28/2026
 ms.author: duau
 #Customer intent: As an administrator, I want to control network access from an on-premises network to an Azure virtual network.
 # Customer intent: As a network administrator, I want to deploy and configure Azure Firewall in a hybrid network, so that I can effectively control and secure access between on-premises and Azure virtual networks.
@@ -186,17 +186,6 @@ First, add a network rule to allow web traffic:
 1. For **Destination type**, select **IP address**.
 1. For **Destination Address**, enter **10.6.0.0/16**.
 1. For **Destination Ports**, enter **80**.
-
-Now, add a rule to allow SSH traffic. On the second rule row, enter the following information:
-
-1. For **Name**, enter **AllowSSH**.
-1. For **Protocol**, select **TCP**.
-1. For **Source type**, select **IP address**.
-1. For **Source**, enter **192.168.0.0/24**.
-1. For **Destination type**, select **IP address**.
-1. For **Destination Address**, enter **10.6.0.0/16**.
-1. For **Destination Ports**, enter **22**.
-1. Select **Add**.
 
 ## Create and connect the VPN gateways
 
@@ -403,16 +392,16 @@ Create a virtual machine in the spoke virtual network that runs Nginx web server
 
 ### Install Nginx
 
-1. On the Azure portal, open Azure Cloud Shell and make sure that it's set to **Bash**.
-1. Run the following command to install Nginx on the virtual machine:
+1. In the Azure portal, navigate to the **VM-Spoke-01** virtual machine.
+1. Under **Operations**, select **Run command** > **RunShellScript**.
+1. In the **Run Command Script** pane, enter the following script:
 
-   ```azurecli-interactive
-   az vm run-command invoke \
-      --resource-group RG-fw-hybrid-test \
-      --name VM-Spoke-01 \
-      --command-id RunShellScript \
-      --scripts "sudo apt-get update && sudo apt-get install -y nginx && echo '<h1>'$(hostname)'</h1>' | sudo tee /var/www/html/index.html"
+   ```bash
+   sudo apt-get update && sudo apt-get install -y nginx && echo '<h1>'$(hostname)'</h1>' | sudo tee /var/www/html/index.html
    ```
+
+1. Select **Run**.
+1. Wait for the command to complete. The output displays the hostname of the virtual machine.
 
 ### Create the on-premises virtual machine
 
@@ -494,20 +483,8 @@ Deploy Azure Bastion in the hub virtual network to provide secure access to the 
    curl http://<VM-Spoke-01 private IP>
    ```
 
-   The **VM-Spoke-01** webpage should open, displaying the hostname.
+   The **VM-Spoke-01** web server should respond with a status.
 
-1. From the **VM-Onprem** SSH session, open an SSH connection to **VM-Spoke-01** at the private IP address:
-
-   ```bash
-   ssh azureuser@<VM-Spoke-01 private IP>
-   ```
-
-   Your connection should succeed, and you should be able to sign in. Type **exit** to close the connection.
-
-Now that you've verified that the firewall rules are working, you can:
-
-- Browse to the web server on the spoke virtual network.
-- Connect to the server on the spoke virtual network by using SSH.
 
 Next, change the action for the collection of firewall network rules to **Deny**, to verify that the firewall rules work as expected:
 
