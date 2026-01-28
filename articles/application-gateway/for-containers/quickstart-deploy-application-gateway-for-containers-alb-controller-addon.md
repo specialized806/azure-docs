@@ -24,7 +24,8 @@ You need to complete the following tasks before enabling the ALB Controller add-
 
 1. Prepare your Azure subscription and your `az-cli` client.
 
-
+    # [Azure CLI](#tab/azure-cli)
+   
     ```azurecli-interactive
     # Sign in to your Azure subscription.
     SUBSCRIPTION_ID='<your subscription id>'
@@ -39,11 +40,25 @@ You need to complete the following tasks before enabling the ALB Controller add-
 
     # Install Azure CLI extensions.
     az extension add --name alb
-
-    # Install and update the AKS preview extension.
-    az extension add --name aks-preview
-    az extension update --name aks-preview
     ```
+    # [Azure PowerShell](#tab/azure-powershell)
+
+    ```azurepowershell-interactive
+    # Sign in to your Azure subscription.
+    $SUBSCRIPTION_ID = '<your subscription id>'
+    Connect-AzAccount
+    Set-AzContext -SubscriptionId $SUBSCRIPTION_ID
+    
+    # Register required resource providers on Azure.
+    Register-AzResourceProvider -ProviderNamespace Microsoft.ContainerService
+    Register-AzResourceProvider -ProviderNamespace Microsoft.Network
+    Register-AzResourceProvider -ProviderNamespace Microsoft.NetworkFunction
+    Register-AzResourceProvider -ProviderNamespace Microsoft.ServiceNetworking
+    
+    # Install Azure PowerShell module for Application Gateway for Containers (ALB).
+    Install-Module -Name Az.Alb -Force -AllowClobber
+    ```
+    ---
  
 2. Register add-on feature
 
