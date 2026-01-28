@@ -1,23 +1,43 @@
 ---
-title: Handling external events in Durable Functions - Azure
-description: Learn how to handle external events in the Durable Functions extension for Azure Functions.
+title: Handling external events
+description: Learn how to handle external events
 ms.topic: conceptual
-ms.date: 12/07/2022
+ms.date: 01/28/2026
 ms.author: azfuncdf
 ms.devlang: csharp
 # ms.devlang: csharp, javascript, powershell, python, java
+zone_pivot_groups: azure-durable-approach
 ---
 
-# Handling external events in Durable Functions (Azure Functions)
+::: zone pivot="durable-functions"
+# Handling external events in Durable Functions
 
 Orchestrator functions have the ability to wait and listen for external events. This feature of [Durable Functions](durable-functions-overview.md) is often useful for handling human interaction or other external triggers.
 
 > [!NOTE]
 > External events are one-way asynchronous operations. They are not suitable for situations where the client sending the event needs a synchronous response from the orchestrator function.
+::: zone-end
+
+::: zone pivot="durable-task-sdks"
+# Handling external events in Durable Task SDKs
+
+Orchestrations have the ability to wait and listen for external events. This feature is often useful for handling human interaction or other external triggers.
+
+> [!NOTE]
+> External events are one-way asynchronous operations. They are not suitable for situations where the client sending the event needs a synchronous response from the orchestration.
+::: zone-end
 
 ## Wait for events
 
+::: zone pivot="durable-functions"
 The *"wait-for-external-event"* API of the [orchestration trigger binding](durable-functions-bindings.md#orchestration-trigger) allows an orchestrator function to asynchronously wait and listen for an event delivered by an external client. The listening orchestrator function declares the *name* of the event and the *shape of the data* it expects to receive.
+::: zone-end
+
+::: zone pivot="durable-task-sdks"
+The *"wait-for-external-event"* API allows an orchestration to asynchronously wait and listen for an event delivered by an external client. The listening orchestration declares the *name* of the event and the *shape of the data* it expects to receive.
+::: zone-end
+
+::: zone pivot="durable-functions"
 
 # [C#](#tab/csharp)
 
@@ -103,9 +123,80 @@ public void waitForExternalEvent(
 
 ---
 
+::: zone-end
+
+::: zone pivot="durable-task-sdks"
+
+# [C#](#tab/csharp)
+
+```csharp
+public class BudgetApproval : TaskOrchestrator<object?, bool>
+{
+    public override async Task<bool> RunAsync(TaskOrchestrationContext context, object? input)
+    {
+        bool approved = await context.WaitForExternalEvent<bool>("Approval");
+        if (approved)
+        {
+            // approval granted - do the approved action
+        }
+        else
+        {
+            // approval denied - send a notification
+        }
+        return approved;
+    }
+}
+```
+
+# [JavaScript](#tab/javascript)
+
+This sample is shown for .NET, Python, and Java.
+
+# [Python](#tab/python)
+
+```python
+from durabletask import task
+
+def budget_approval(ctx: task.OrchestrationContext, _):
+    approved = yield ctx.wait_for_external_event("Approval")
+    if approved:
+        # approval granted - do the approved action
+        pass
+    else:
+        # approval denied - send a notification
+        pass
+    return approved
+```
+
+# [PowerShell](#tab/powershell)
+
+This sample is shown for .NET, Python, and Java.
+
+# [Java](#tab/java)
+
+```java
+public class BudgetApproval implements TaskOrchestration {
+    @Override
+    public void run(TaskOrchestrationContext ctx) {
+        boolean approved = ctx.waitForExternalEvent("Approval", boolean.class).await();
+        if (approved) {
+            // approval granted - do the approved action
+        } else {
+            // approval denied - send a notification
+        }
+    }
+}
+```
+
+---
+
+::: zone-end
+
 The preceding example listens for a specific single event and takes action when it's received.
 
 You can listen for multiple events concurrently, like in the following example, which waits for one of three possible event notifications.
+
+::: zone pivot="durable-functions"
 
 # [C#](#tab/csharp)
 
@@ -223,7 +314,98 @@ public void selectOrchestrator(
 
 ---
 
+::: zone-end
+
+::: zone pivot="durable-task-sdks"
+
+# [C#](#tab/csharp)
+
+```csharp
+public class SelectOrchestrator : TaskOrchestrator<object?, object?>
+{
+    public override async Task<object?> RunAsync(TaskOrchestrationContext context, object? input)
+    {
+        Task<float> event1 = context.WaitForExternalEvent<float>("Event1");
+        Task<bool> event2 = context.WaitForExternalEvent<bool>("Event2");
+        Task<int> event3 = context.WaitForExternalEvent<int>("Event3");
+
+        Task winner = await Task.WhenAny(event1, event2, event3);
+        if (winner == event1)
+        {
+            // ...
+        }
+        else if (winner == event2)
+        {
+            // ...
+        }
+        else if (winner == event3)
+        {
+            // ...
+        }
+        return null;
+    }
+}
+```
+
+# [JavaScript](#tab/javascript)
+
+This sample is shown for .NET, Python, and Java.
+
+# [Python](#tab/python)
+
+```python
+from durabletask import task
+
+def select_orchestrator(ctx: task.OrchestrationContext, _):
+    event1 = ctx.wait_for_external_event("Event1")
+    event2 = ctx.wait_for_external_event("Event2")
+    event3 = ctx.wait_for_external_event("Event3")
+
+    winner = yield task.when_any([event1, event2, event3])
+    if winner == event1:
+        # ...
+        pass
+    elif winner == event2:
+        # ...
+        pass
+    elif winner == event3:
+        # ...
+        pass
+```
+
+# [PowerShell](#tab/powershell)
+
+This sample is shown for .NET, Python, and Java.
+
+# [Java](#tab/java)
+
+```java
+public class SelectOrchestrator implements TaskOrchestration {
+    @Override
+    public void run(TaskOrchestrationContext ctx) {
+        Task<Void> event1 = ctx.waitForExternalEvent("Event1");
+        Task<Void> event2 = ctx.waitForExternalEvent("Event2");
+        Task<Void> event3 = ctx.waitForExternalEvent("Event3");
+
+        Task<?> winner = ctx.anyOf(event1, event2, event3).await();
+        if (winner == event1) {
+            // ...
+        } else if (winner == event2) {
+            // ...
+        } else if (winner == event3) {
+            // ...
+        }
+    }
+}
+```
+
+---
+
+::: zone-end
+
 The previous example listens for *any* of multiple events. It's also possible to wait for *all* events.
+
+::: zone pivot="durable-functions"
 
 # [C#](#tab/csharp)
 
@@ -324,15 +506,101 @@ public void newBuildingPermit(
 
 ---
 
+::: zone-end
+
+::: zone pivot="durable-task-sdks"
+
+# [C#](#tab/csharp)
+
+```csharp
+public class NewBuildingPermit : TaskOrchestrator<string, object?>
+{
+    public override async Task<object?> RunAsync(TaskOrchestrationContext context, string applicationId)
+    {
+        Task<object?> gate1 = context.WaitForExternalEvent<object?>("CityPlanningApproval");
+        Task<object?> gate2 = context.WaitForExternalEvent<object?>("FireDeptApproval");
+        Task<object?> gate3 = context.WaitForExternalEvent<object?>("BuildingDeptApproval");
+
+        // all three departments must grant approval before a permit can be issued
+        await Task.WhenAll(gate1, gate2, gate3);
+
+        await context.CallActivityAsync("IssueBuildingPermit", applicationId);
+        return null;
+    }
+}
+```
+
+In .NET, if the event payload cannot be converted into the expected type `T`, an exception is thrown.
+
+# [JavaScript](#tab/javascript)
+
+This sample is shown for .NET, Python, and Java.
+
+# [Python](#tab/python)
+
+```python
+from durabletask import task
+
+def issue_building_permit(ctx: task.ActivityContext, application_id: str) -> None:
+    # Issue the permit
+    pass
+
+def new_building_permit(ctx: task.OrchestrationContext, application_id: str):
+    gate1 = ctx.wait_for_external_event("CityPlanningApproval")
+    gate2 = ctx.wait_for_external_event("FireDeptApproval")
+    gate3 = ctx.wait_for_external_event("BuildingDeptApproval")
+
+    # all three departments must grant approval before a permit can be issued
+    yield task.when_all([gate1, gate2, gate3])
+    yield ctx.call_activity(issue_building_permit, input=application_id)
+```
+
+# [PowerShell](#tab/powershell)
+
+This sample is shown for .NET, Python, and Java.
+
+# [Java](#tab/java)
+
+```java
+public class NewBuildingPermit implements TaskOrchestration {
+    @Override
+    public void run(TaskOrchestrationContext ctx) {
+        String applicationId = ctx.getInput(String.class);
+
+        Task<Void> gate1 = ctx.waitForExternalEvent("CityPlanningApproval");
+        Task<Void> gate2 = ctx.waitForExternalEvent("FireDeptApproval");
+        Task<Void> gate3 = ctx.waitForExternalEvent("BuildingDeptApproval");
+
+        // all three departments must grant approval before a permit can be issued
+        ctx.allOf(List.of(gate1, gate2, gate3)).await();
+
+        ctx.callActivity("IssueBuildingPermit", applicationId).await();
+    }
+}
+```
+
+---
+
+::: zone-end
+
+::: zone pivot="durable-functions"
 The *"wait-for-external-event"* API waits indefinitely for some input.  The function app can be safely unloaded while waiting. If and when an event arrives for this orchestration instance, it is awakened automatically and immediately processes the event.
 
 > [!NOTE]
 > If your function app uses the Consumption Plan, no billing charges are incurred while an orchestrator function is awaiting an external event task, no matter how long it waits.
 
 As with Activity Functions, external events have an _at-least-once_ delivery guarantee. This means that, under certain conditions (like restarts, scaling, crashes, etc.), your application may receive duplicates of the same external event. Therefore, we recommend that external events contain some kind of ID that allows them to be manually de-duplicated in orchestrators.
+::: zone-end
+
+::: zone pivot="durable-task-sdks"
+The *"wait-for-external-event"* API waits indefinitely for some input. The worker can be safely stopped while waiting. If and when an event arrives for this orchestration instance, it is awakened automatically and immediately processes the event.
+
+External events have an _at-least-once_ delivery guarantee. This means that, under certain conditions (like restarts, scaling, crashes, etc.), your application may receive duplicates of the same external event. Therefore, we recommend that external events contain some kind of ID that allows them to be manually de-duplicated in orchestrations.
+::: zone-end
 
 ## Send events
 
+::: zone pivot="durable-functions"
 You can use the *"raise-event"* API defined by the [orchestration client](durable-functions-bindings.md#orchestration-client) binding to send an external event to an orchestration. You can also use the built-in [raise event HTTP API](durable-functions-http-api.md#raise-event) to send an external event to an orchestration.
 
 A raised event includes an *instance ID*, an *eventName*, and *eventData* as parameters. Orchestrator functions handle these events using the [*"wait-for-external-event"*](#wait-for-events) APIs. The *eventName* must match on both the sending and receiving ends in order for the event to be processed. The event data must also be JSON-serializable.
@@ -343,6 +611,22 @@ Internally, the *"raise-event"* mechanisms enqueue a message that gets picked up
 > If there is no orchestration instance with the specified *instance ID*, the event message is discarded.
 
 Below is an example queue-triggered function that sends an "Approval" event to an orchestrator function instance. The orchestration instance ID comes from the body of the queue message.
+::: zone-end
+
+::: zone pivot="durable-task-sdks"
+You can use the *"raise-event"* API on the Durable Task client to send an external event to an orchestration.
+
+A raised event includes an *instance ID*, an *eventName*, and *eventData* as parameters. Orchestrations handle these events using the [*"wait-for-external-event"*](#wait-for-events) APIs. The *eventName* must match on both the sending and receiving ends in order for the event to be processed. The event data must also be JSON-serializable.
+
+Internally, the *"raise-event"* mechanisms enqueue a message that gets picked up by the waiting orchestration. If the instance is not waiting on the specified *event name,* the event message is added to an in-memory queue. If the orchestration instance later begins listening for that *event name,* it will check the queue for event messages.
+
+> [!NOTE]
+> If there is no orchestration instance with the specified *instance ID*, the event message is discarded.
+
+Below is an example that sends an "Approval" event to an orchestration instance.
+::: zone-end
+
+::: zone pivot="durable-functions"
 
 # [C#](#tab/csharp)
 
@@ -407,6 +691,47 @@ Internally, the "*raise-event*" API enqueues a message that gets picked up by th
 > [!NOTE]
 > If there is no orchestration instance with the specified *instance ID*, the event message is discarded.
 
+::: zone-end
+
+::: zone pivot="durable-task-sdks"
+
+# [C#](#tab/csharp)
+
+```csharp
+await client.RaiseEventAsync(instanceId, "Approval", true);
+```
+
+# [JavaScript](#tab/javascript)
+
+This sample is shown for .NET, Python, and Java.
+
+# [Python](#tab/python)
+
+```python
+client.raise_orchestration_event(instance_id, "Approval", data=True)
+```
+
+# [PowerShell](#tab/powershell)
+
+This sample is shown for .NET, Python, and Java.
+
+# [Java](#tab/java)
+
+```java
+client.raiseEvent(instanceId, "Approval", true);
+```
+
+---
+
+Internally, the "*raise-event*" API enqueues a message that gets picked up by the waiting orchestration. If the instance is not waiting on the specified *event name,* the event message is added to an in-memory buffer. If the orchestration instance later begins listening for that *event name,* it will check the buffer for event messages and trigger the task that was waiting for it.
+
+> [!NOTE]
+> If there is no orchestration instance with the specified *instance ID*, the event message is discarded.
+
+::: zone-end
+
+::: zone pivot="durable-functions"
+
 ### HTTP
 
 The following is an example of an HTTP request that raises an "Approval" event to an orchestration instance. 
@@ -420,10 +745,19 @@ Content-Type: application/json
 
 In this case, the instance ID is hardcoded as *MyInstanceId*.
 
+::: zone-end
+
 ## Next steps
 
+::: zone pivot="durable-functions"
 > [!div class="nextstepaction"]
 > [Learn how to implement error handling](durable-functions-error-handling.md)
 
 > [!div class="nextstepaction"]
 > [Run a sample that waits for human interaction](durable-functions-phone-verification.md)
+::: zone-end
+
+::: zone pivot="durable-task-sdks"
+> [!div class="nextstepaction"]
+> [Get started with Durable Task SDKs](durable-task-scheduler/quickstart-portable-durable-task-sdks.md)
+::: zone-end

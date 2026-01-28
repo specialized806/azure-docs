@@ -1,5 +1,5 @@
 ---
-title: Timers
+title: Durable Timers
 description: Learn how to implement durable timers in Durable Functions and Durable Task SDKs.
 ms.topic: conceptual
 ms.date: 01/28/2026
@@ -9,7 +9,7 @@ ms.devlang: csharp
 zone_pivot_groups: azure-durable-approach
 ---
 
-# Timers
+# Durable   Timers
 
 ::: zone pivot="durable-functions"
 [Durable Functions](durable-functions-overview.md) provides *durable timers* for use in orchestrator functions to implement delays or to set up timeouts on async actions. Durable timers should be used in orchestrator functions instead of "sleep" or "delay" APIs that may be built into the language.
