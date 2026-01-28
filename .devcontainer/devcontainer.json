@@ -26,7 +26,7 @@
       }
     }
   },
-  "postAttachCommand": "code \"articles/virtual-network/application-security-groups.md\"",
+  "postAttachCommand": "code \"articles/firewall/choose-firewall-sku.md\"",
   "features": {
     "ghcr.io/devcontainers/features/github-cli:1": {},
     "ghcr.io/devcontainers/features/sshd:1": {
