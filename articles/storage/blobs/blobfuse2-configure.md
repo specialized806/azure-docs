@@ -91,7 +91,7 @@ You can override settings that you define in the configuration file by using env
 
 - If you **provide** `type` in the `azstorage` section of the configuration file, don't mount a hierarchical namespace enabled account with `type: block` in the `azstorage` section. Otherwise, some directory operations fail. Don't mount a flat namespace account with `type: adls` in the `azstorage` section. Otherwise, you receive mount failures.
 
-- To disable all forms of caching at the kernel and at the BlobFuse level, set the `-o direct_io` CLI parameter. This option forces every operation to call the storage service directly, ensuring you always have the most up-to-date data.
+- To disable all forms of caching at the kernel and at the BlobFuse level, set the `-o direct_io` CLI parameter or `direct-io: true' in libfuse section of configuration file. This option forces every operation to call the storage service directly, ensuring you always have the most up-to-date data.
   
   > [!WARNING]
   > This configuration leads to increased storage costs, as it generates more transactions.
