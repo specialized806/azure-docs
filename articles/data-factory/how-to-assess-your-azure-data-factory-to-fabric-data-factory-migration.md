@@ -13,7 +13,7 @@ Use the built-in upgrade assessment to quickly check pipeline readiness and iden
 
 ## Assess your Azure Data Factory pipelines for migration
 
-In [Azure Data Factory](https://adf.azure.com), open the factory you'd like to assess for migration. On the authoring canvas toolbar, select Start assessment (preview).
+In [Azure Data Factory](https://adf.azure.com), open the factory you'd like to assess for migration. On the authoring canvas toolbar, select **Start assessment (preview)**.
 > [!NOTE]
 > If you are unable to see the banner where the "Start assesssment" button is located, try clearing your browser cache and cookies. This often resolves display issues.
 
