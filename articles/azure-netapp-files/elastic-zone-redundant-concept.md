@@ -12,27 +12,44 @@ ms.custom: references-regions
 
 # Understand Azure NetApp Files zone-redundant storage (preview)
 
-Azure NetApp Files zone-redundant storage is cost‑optimized landing zone for unstructured data, built for modern workloads. 
+Azure NetApp Files Elastic zone-redundant storage is a high-availability storage service level for Azure NetApp Files that synchronously replicates your data across multiple Azure Availability Zones in a single region. This means if one zone experiences an outage, your data and applications remain available from the other zones with zero data loss. Azure NetApp Files Elastic zone-redundant storage delivers similar enterprise-grade features as other Azure NetApp Files service levels (support for NFSv3, NFSv4.1, SMB, snapshots, clones, encryption, backup) but with built-in multi-availability zone redundancy. It eliminates single points of failure, ensuring continuous data access even during an entire zone outage.
 
-It delivers built‑in local redundancy, shared QoS, and native multi‑tenancy with global regional availability—making it a natural fit for ISVs and SaaS solution providers. ​
+>[!NOTE]
+>When creating your NetApp account, you must designate that the [account is for Elastic zone-redundant storage](elastic-zone-redundant-concept.md). An Elastic NetApp account can only be used for Elastic zone-redundant storage.
 
-Scale smaller volumes with flexible throughput, power backups, analytics staging, and AI datasets—all at an affordable price without compromising reliability.
+## High availability storage 
 
-Elastic zone-redundant storage offers built-in high-availability and zero recovery point objective (RPO). 
+Modern enterprises need strong in-region resiliency for data and applications, as even one Availability Zone failure can disrupt operations. Previously, Azure NetApp Files customers relied on duplicate volumes or cross-region replication to protect against outages, which increased cost and complexity.
 
-When creating your NetApp account, you must designate that the [account is for Elastic zone-redundant storage](elastic-zone-redundant-concept.md). An Elastic NetApp account can only be used for Elastic zone-redundant storage.
+Azure NetApp Files Elastic zone-redundant storage now offers built-in multi-AZ high availability by protecting against zone failures within the service itself, eliminating external replication or secondary volume management. Organizations in industries such as finance, healthcare, and government can now get transparent, always-on storage availability without custom DR scripts or moving data out of the region.
 
-## Elastic zone-redundant service
+Azure NetApp Files Elastic zone-redundant storage synchronously replicates data across zones and automates failover, so a zone outage does not affect application availability. Customers get zero data loss, minimal downtime, and simplified operations all managed natively, making Azure NetApp Files Elastic zone-redundant storage a strategic choice for continuous data access in Azure.
 
-In comparison to existing Azure NetApp Files service levels, Elastic zone-redundant storage offers:
+## Zone-redundant architecture and synchronous replication 
 
-- Zone redundancy that can persist if a zonal outage occurs in a single region 
-- Transparent failover if a zonal outage occurs
-- Seamless growth from 1 GiB without specialized hardware 
+Azure NetApp Files Elastic zone-redundant storage delivers uncompromising, enterprise-grade high availability by leveraging Azure’s Zone-Redundant Storage architecture at the file storage layer. Here’s how it works:
 
-Zone-redundant storage is designed for small workloads, offering capacity pools that scale from 1 TiB to 128 TiB.
+* **Synchronous multi-availability zone replication**: When your application writes data, Azure NetApp Files simultaneously writes that data across availability zones within one region before acknowledging the write back. This simultaneous mirroring guarantees that each zone’s copy is always identical.  
 
-If you're using custom RBAC roles, ensure you configure the [correct permissions](manage-availability-zone-volume-placement.md#configure-custom-rbac-roles).
+* **Automatic, transparent failover**: If a zone fails, failover is triggered automatically with no action required on your part. The storage endpoint doesn't change, so applications resume I/O using the same mount path after a brief interruption without needing remounts or reconfiguration. RTO approaches zero, ensuring critical workloads stay online.
+
+* **Zone preference for performance**: Choose your preferred zone for active data, aligning storage with compute to minimize read latency. Failover remains seamless with always-on resilience built in to the service level.
+
+* **Operational simplicity**: High availability is a one-click setup. Azure manages everything from replication to synchronization and failover. No scripts, no manual steps, no complexity. You can manage Elastic zone-redundant storage volumes just like any other with confidence.
+
+:::image type="content" source="./media/elastic-zone-redundant-concept/elastic-architecture.png" alt-text="Diagram of Elastic zone-redundant regions and availability zones." lightbox="./media/elastic-zone-redundant-concept/elastic-architecture.png":::
+
+## Benefits 
+
+Elastic zone-redundant storage offers several key benefits for resiliency, operations, and cost-efficiency.
+
+| Benefit | Description | 
+| - | - | 
+| Multi-availability zone resilience with zero data loss | Your storage volume is protected against zone failures with synchronous writes across all availability zones, delivering an RPO of zero and ensuring no data loss during an availability zone outage. Elastic zone-redundant storage provides high resilience for mission-critical workloads. |
+| Operational simplicity | Azure manages replication and failover automatically, eliminating the need for duplicate volumes or cross‑zone replication. High availability becomes a one‑click setup, simplifying operations and reducing configuration risk.|
+| Extensive feature support | Elastic zone-redundant storage volumes support a growing set of Azure NetApp Files features, including NFSv3, NFSv4.1, and SMB, along with capabilities including snapshots, backups, customer‑managed keys, and Active Directory integration, delivering enhanced resiliency as feature coverage continues to expand. |
+| Cost-effective high availability | Azure NetApp Files Elastic zone-redundant storage delivers multi‑availability zone redundancy more cost‑effectively than duplicate standby volumes by using all provisioned capacity with no idle replicas. You pay for a single resilient volume, improving utilization, lowering TCO, and avoiding the added egress and administrative costs of external replication solutions. |
+| Metadata performance | Beyond consistent throughput, Azure NetApp Files Elastic zone-redundant storage redefines performance for metadata-heavy workloads. This is critical for SAP shared files and similar environments where metadata operations drive application responsiveness. The shared QoS architecture dynamically allocates IOPS across volumes to maintain low-latency, metadata-intensive operations consistently, even across multiple availability zones. |
 
 ## Supported regions
 
@@ -73,11 +90,10 @@ The Elastic zone-redundant service level has dedicated API endpoints. This table
 | Resource type | Elastic zone-redundant endpoint | Flexible, Standard, Premium, and Ultra endpoint |
 |-|---|---|
 | Accounts | elasticAccounts | netAppAccounts |
-| Active Directory | /activeDirectoryConfigs
 | Backups | /elasticAccounts/{accountName}/elasticBackupVaults/{vaultName}/elasticBackups | /netAppAccounts/{accountName}/backupVaults/{vaultName}/backups |
-| Backups policies | /elasticAccounts/{accountName}/elasticBackupPolicies | netAppAccounts/{accountName}/backupPolicies |
+| Backup policies | /elasticAccounts/{accountName}/elasticBackupPolicies | netAppAccounts/{accountName}/backupPolicies |
 | Backup vaults | /elasticAccounts/{accountName}/elasticBackupVaults | /netAppAccounts/{accountName}/backupVaults | 
-| Capacity pools | /elasticAccounts/{accountName}/elasticCapacityPools | /netAppAccounts/{account}/capacityPools |
+| Capacity pools | /elasticAccounts/{accountName}/elasticCapacityPools | /netAppAccounts/{accountName}/capacityPools |
 | Change zone | elasticCapacityPools/{poolName}/changeZone | N/A |
 | Region info | locations/{location}/elasticRegionInfos | locations/{location}/regionInfo
 | Snapshots | elasticAccounts/{accountName}/elasticCapacityPools/{poolName}/elasticVolumes/{volumeName}/elasticSnapshots | /netAppAccounts/{accountName}/capacityPools/{poolName}/volumes/{volumeName}/snapshots |
@@ -86,16 +102,6 @@ The Elastic zone-redundant service level has dedicated API endpoints. This table
 | Volume file path availability | elasticAccounts/{accountName}/elasticCapacityPools/{poolName}/checkVolumeFilePathAvailability | /locations/{location}/checkFilePathAvailability |
 
 For more detailed information, see [Azure NetApp Files REST API](/rest/api/netapp).
-
-## Supported features 
-
-Elastic zone-redundant storage requires the use of availability zones. Not all features in the Flexible, Standard, Premium, and Ultra services levels are supported with Elastic zone-redundant storage. 
-
-The Elastic zone-redundant service level supports:
-
-* [Azure NetApp Files backup](backup-introduction.md)
-* [Customer-managed keys](configure-customer-managed-keys.md)
-* [Snapshots](snapshots-introduction.md)
 
 ## Next steps 
 
