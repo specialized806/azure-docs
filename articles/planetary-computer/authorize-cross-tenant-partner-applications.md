@@ -98,7 +98,7 @@ A service principal is the representation of an application in your Microsoft En
 
 ## Grant admin consent to the partner application
 
-Admin consent authorizes the partner application to use the permissions it has requested. This step is required before the application can authenticate against your tenant. Your partner should provide a link to perform this action as part of the application onboarding process.
+Admin consent authorizes the partner application to use the requested permissions. This step is required before the application can authenticate against your tenant. Your partner should provide a link to perform this action as part of the application onboarding process.
 
 > [!NOTE]
 > You can optionally contruct this URL yourself:
@@ -138,7 +138,7 @@ You can also grant admin consent through the Microsoft Entra admin center:
 The service principal for your data or service provider needs the appropriate role in order to interact with your GeoCatalog resources. Assign the **GeoCatalog Reader** role to applications that only need read access to your GeoCatalog. Assign the **GeoCatalog Administrator** role to applications that need to create collections, ingest data, and manage items in your GeoCatalog.
 
 > [!NOTE]
-> The partner application integration features is currently in preview and does not support a specific, limited access role for data or service provider partners. For this reason, it is recommended during the preview period that customers create a GeoCatalog resource dedicated to a specific partner to prevent access to other, organizational private, data.
+> The partner application integration feature is currently in preview and doesn't support a specific, limited access role for data or service provider partners. For this reason, it's recommended during the preview period that customers create a GeoCatalog resource dedicated to a specific partner to prevent access to other, organizational private, data.
 
 ### [GeoCatalog Administrator](#tab/geocatalog-administrator)
 1. Get your GeoCatalog resource ID:
@@ -279,9 +279,9 @@ After completing the authorization steps, verify that the partner can access you
 1. Notify your partner that authorization is complete. Provide them with:
    - The GeoCatalog URI (found in the Azure portal on your GeoCatalog resource's Overview page)
 
-## Grant access to additional GeoCatalogs
+## Grant access to more GeoCatalogs
 
-To grant the same partner access to additional GeoCatalog resources, repeat only the [Assign the GeoCatalog Administrator role](#assign-the-geocatalog-administrator-role) section for each resource. The service principal and admin consent only need to be configured once per tenant.
+To grant the same partner access to more GeoCatalog resources, repeat only the [Assign the appropriate GeoCatalog role](#assign-the-appropriate-geocatalog-role) section for each resource. The service principal and admin consent only need to be configured once per tenant.
 
 ## Revoke partner access
 
@@ -294,7 +294,7 @@ To revoke access to a specific GeoCatalog while preserving access to others:
 ```azurecli
 az role assignment delete --assignee $SP_ID --scope $GEOCATALOG_RESOURCE_ID --role "GeoCatalog Administrator"
 ```
-or 
+Or 
 
 ```azurecli
 az role assignment delete --assignee $SP_ID --scope $GEOCATALOG_RESOURCE_ID --role "GeoCatalog Reader"
@@ -319,7 +319,7 @@ az ad sp delete --id $SP_ID
 If you receive an error when creating the service principal, verify that:
 
 - The partner's application ID is correct
-- The partner's application is configured for multi-tenant access
+- The partner's application is configured for multitenant access
 - You have Application Administrator or Global Administrator role
 
 ### Admin consent fails
