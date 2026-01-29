@@ -117,7 +117,7 @@ Select the source node and fill in the details. In this example, the temperature
 
 Select **OTEL** as the destination and fill in the required details.
 
-:::image type="content" source="media/open-telemetry/otel-destination.png" alt-text="Screenshot showing otel as the destination." lightbox="media/open-telemetry/otel-destination.png":::
+:::image type="content" source="media/open-telemetry/destination.png" alt-text="Screenshot showing otel as the destination." lightbox="media/open-telemetry/destination.png":::
 
-:::image type="content" source="media/open-telemetry/otel-destination-2.png" alt-text="Screenshot showing destination details." lightbox="media/open-telemetry/otel-destination-2.png":::
+:::image type="content" source="media/open-telemetry/destination-alternate.png" alt-text="Screenshot showing destination details." lightbox="media/open-telemetry/destination-alternate.png":::
 
