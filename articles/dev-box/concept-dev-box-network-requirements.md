@@ -53,8 +53,8 @@ For DNS configuration guidance, see [DNS requirements in Windows 365 network req
 
 Dev boxes need access to specific FQDNs and endpoints for provisioning, management, and remote connectivity. These requirements are divided into:
 
-1. **Dev Box-specific endpoints** - Required only for Dev Box service
-1. **Shared infrastructure endpoints** - Same as Azure Virtual Desktop and Windows 365
+- **Dev Box-specific endpoints** - Required only for Dev Box service
+- **Shared infrastructure endpoints** - Same as Azure Virtual Desktop and Windows 365
 
 > [!IMPORTANT] 
 > Microsoft doesn't support dev box deployments where the required FQDNs and endpoints are blocked.
