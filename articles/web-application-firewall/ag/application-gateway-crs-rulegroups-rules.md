@@ -366,7 +366,7 @@ The following rule groups and rules are available when using Web Application Fir
 |942240|Critical - 5|1|Detects MySQL charset switch and MSSQL DoS attempts|
 |942250|Critical - 5|1|Detects MATCH AGAINST, MERGE and EXECUTE IMMEDIATE injections|
 |942260|Critical - 5|2|Detects basic SQL authentication bypass attempts 2/3 (replaced by rule #99031004)|
-|942270|Critical - 5|1|Looking for basic sql injection. Common attack string for MySQL, Oracle, and others.|
+|942270|Critical - 5|1|Looking for basic SQL injection. Common attack string for MySQL, Oracle, and others.|
 |942280|Critical - 5|1|Detects Postgres pg_sleep injection, waitfor delay attacks and database shutdown attempts|
 |942290|Critical - 5|1|Finds basic MongoDB SQL injection attempts|
 |942300|Critical - 5|2|Detects MySQL comments, conditions and ch(a)r injections|
@@ -649,7 +649,7 @@ The following rule groups and rules are available when using Web Application Fir
 |942240|Critical - 5|PL1|Detects MySQL charset switch and MSSQL DoS attempts|
 |942250|Critical - 5|PL1|Detects MATCH AGAINST, MERGE and EXECUTE IMMEDIATE injections|
 |942260|Critical - 5|PL2|Detects basic SQL authentication bypass attempts 2/3|
-|942270|Critical - 5|PL1|Looking for basic sql injection. Common attack string for mysql, oracle, and others|
+|942270|Critical - 5|PL1|Looking for basic SQL injection. Common attack string for MySQL, Oracle, and others|
 |942280|Critical - 5|PL1|Detects Postgres pg_sleep injection, waitfor delay attacks and database shutdown attempts|
 |942290|Critical - 5|PL1|Finds basic MongoDB SQL injection attempts|
 |942300|Critical - 5|PL2|Detects MySQL comments, conditions, and ch(a)r injections|
@@ -1007,7 +1007,7 @@ Below are previous Core Rule Set versions. If you're using CRS 3.2, CRS 3.1, CRS
 |942240|Critical - 5|PL1|Detects MySQL charset switch and MSSQL DoS attempts|
 |942250|Critical - 5|PL1|Detects MATCH AGAINST, MERGE, and EXECUTE IMMEDIATE injections|
 |942260|Critical - 5|PL2|Detects basic SQL authentication bypass attempts 2/3|
-|942270|Critical - 5|PL1|Looking for basic sql injection. Common attack string for mysql, oracle, and others|
+|942270|Critical - 5|PL1|Looking for basic SQL injection. Common attack string for MySQL, Oracle, and others|
 |942280|Critical - 5|PL1|Detects Postgres pg_sleep injection, waitfor delay attacks and database shutdown attempts|
 |942290|Critical - 5|PL1|Finds basic MongoDB SQL injection attempts|
 |942300|Critical - 5|PL2|Detects MySQL comments, conditions, and ch(a)r injections|
@@ -1283,7 +1283,7 @@ Below are previous Core Rule Set versions. If you're using CRS 3.2, CRS 3.1, CRS
 |942250|Detects MATCH AGAINST, MERGE, and EXECUTE IMMEDIATE injections|
 |942251|Detects HAVING injections|
 |942260|Detects basic SQL authentication bypass attempts 2/3|
-|942270|Looking for basic sql injection. Common attack string for mysql oracle and others|
+|942270|Looking for basic SQL injection. Common attack string for MySQL, Oracle, and others|
 |942280|Detects Postgres pg_sleep injection, waitfor delay attacks, and database shutdown attempts|
 |942290|Finds basic MongoDB SQL injection attempts|
 |942300|Detects MySQL comments, conditions, and ch(a)r injections|
@@ -1526,7 +1526,7 @@ Below are previous Core Rule Set versions. If you're using CRS 3.2, CRS 3.1, CRS
 |942240|Detects MySQL charset switch and MSSQL DoS attempts|
 |942250|Detects MATCH AGAINST, MERGE, and EXECUTE IMMEDIATE injections|
 |942260|Detects basic SQL authentication bypass attempts 2/3|
-|942270|Looking for basic sql injection. Common attack string for mysql oracle and others|
+|942270|Looking for basic SQL injection. Common attack string for MySQL, Oracle, and others|
 |942280|Detects Postgres pg_sleep injection, waitfor delay attacks, and database shutdown attempts|
 |942290|Finds basic MongoDB SQL injection attempts|
 |942300|Detects MySQL comments, conditions, and ch(a)r injections|
@@ -1694,7 +1694,7 @@ Below are previous Core Rule Set versions. If you're using CRS 3.2, CRS 3.1, CRS
 |981272|Detects blind sqli tests using sleep() or benchmark()|
 |981250|Detects SQL benchmark and sleep injection attempts including conditional queries|
 |981241|Detects conditional SQL injection attempts|
-|981276|Looking for basic sql injection. Common attack string for mysql oracle and others|
+|981276|Looking for basic SQL injection. Common attack string for MySQL, Oracle, and others|
 |981270|Finds basic MongoDB SQL injection attempts|
 |981253|Detects MySQL and PostgreSQL stored procedure/function injections|
 |981251|Detects MySQL UDF injection and other data/structure manipulation attempts|
