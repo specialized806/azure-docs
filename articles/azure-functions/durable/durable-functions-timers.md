@@ -79,7 +79,6 @@ await context.CreateTimer(TimeSpan.FromHours(72), CancellationToken.None);
 ```
 
 
-This sample is shown for .NET, Python, and Java.
 
 # [Python](#tab/python)
 
