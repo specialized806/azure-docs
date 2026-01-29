@@ -55,7 +55,7 @@ You can't use the self-service COCP process in the following situations:
 
 ## Use the Azure portal to request a COCP
 
-1. Make sure you are an Enterprise admin on the Enterprise Agreement billing account.
+1. Make sure you're an Enterprise admin on the Enterprise Agreement billing account.
 
 1. Go to the Azure portal. Select **Cost management + Billing** > **Billing scopes** > **Change Partner**.
 
