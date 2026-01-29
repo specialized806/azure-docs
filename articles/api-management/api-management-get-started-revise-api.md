@@ -154,7 +154,7 @@ If you try the [developer portal](api-management-howto-developer-portal-customiz
 1. Select **Developer portal** from the top menu.
 1. In the developer portal, select **APIs**, and then select **Swagger Petstore**.
 1. Notice your new **test** operation is now available.
-1. Select **Changelog** near the API name.
+1. Select **Change log** near the API name.
 1. Notice that your change log entry appears in the list.
 
 
