@@ -39,8 +39,9 @@ To enable or disable this feature (these prerequisites aren't required to use th
 - Your user must be assigned to the Microsoft Entra ID **Security Administrator** role in your tenant or the equivalent permissions.
 
 - Your user must be assigned at least one of the following **Azure roles** ([Learn more about Azure RBAC](roles.md)):
-    - **Microsoft Sentinel Contributor** at the workspace or resource group levels.
-    - **Log Analytics Contributor** at the resource group or subscription levels.
+    - **Owner** at the resource group level or above.
+    - **Contributor** at the resource group level or above.
+    - (Least privileged) **Microsoft Sentinel Contributor** at the workspace level or above and **Log Analytics Contributor** at the resource group level or above.
 
 - Your workspace must not have any Azure resource locks applied to it. [Learn more about Azure resource locking](../azure-resource-manager/management/lock-resources.md).
 
@@ -120,6 +121,12 @@ To enable UEBA from your Microsoft Sentinel workspace settings:
 [!INCLUDE [data-connector-behavior-analytics](includes/data-connector-behavior-analytics.md)] 
 
 For more information about configuring Microsoft Sentinel data connectors, see [Connect data sources to Microsoft Sentinel by using data connectors](./configure-data-connector.md).
+
+## Enable the UEBA behaviors layer (Preview)
+
+The UEBA behaviors layer generates enriched summaries of activity observed across multiple data sources. Unlike alerts or anomalies, behaviors don’t necessarily indicate risk - they create an abstraction layer that optimizes your data for investigations, hunting, and detection by enhancing
+
+For more information about the UEBA behaviors layer and how to enable it, see [Enable the UEBA behaviors layer in Microsoft Sentinel](../sentinel/entity-behaviors-layer.md). 
 
 ## Next steps
 
