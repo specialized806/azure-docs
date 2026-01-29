@@ -216,7 +216,7 @@ To deploy Azure Files with the provisioned v2 billing model on classic file shar
 Creating file shares using the `Microsoft.FileShares` management model makes deploying Azure Files considerably easier:
 
 - **You don't need to consider the current and future of needs of each file share to decide where to deploy that file share.**  
-    Each file share's provisioning is independent of every other file share's provisioning. The only consideration on the growth of the file share is the limits of the file share, detailed in [Provisioned v2 provisioning detail](#provisioned-v2-provisioning-detail).
+    Each file share's provisioning is independent of every other file share's provisioning. The only consideration on the growth of the file share is the limits of the file share, detailed in [Provisioned v2 provisioning](#provisioned-v2-provisioning).
 
 - **The bill for each file share is tracked independently.**  
     Because file shares created with the Microsoft.FileShares resource provider are top-level resources, you can track the bill for each file share independently from every other file share. You can also use tags to make it easy to group together the resources to track costs for projects, departments, or customers.
