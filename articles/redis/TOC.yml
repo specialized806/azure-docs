@@ -31,8 +31,6 @@ items:
                 href: dotnet-core-quickstart.md
               - name: .NET app
                 href: dotnet-how-to-use-azure-redis-cache.md
-              - name: Java app
-                href: java-get-started.md
               - name: Node.js app
                 href: nodejs-get-started.md
               - name: Python app
