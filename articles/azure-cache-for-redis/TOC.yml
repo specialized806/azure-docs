@@ -65,7 +65,7 @@
     - name: Caching architecture
       href: /azure/architecture/best-practices/caching?toc=/azure/redis-cache/toc.json
     - name: Create and manage with Azure PowerShell
-      href: how-to-manage-redis-cache-powershell
+      href: how-to-manage-redis-cache-powershell.md
     - name: Connect an AKS application to a cache
       href: /azure/redis/tutorial-aks-get-started
     - name: Use Azure CLI
