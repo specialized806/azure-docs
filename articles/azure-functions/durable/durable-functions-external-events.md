@@ -710,7 +710,6 @@ client.raise_orchestration_event(instance_id, "Approval", data=True)
 
 # [PowerShell](#tab/powershell)
 
-This sample is shown for .NET, Python, and Java.
 
 # [Java](#tab/java)
 
