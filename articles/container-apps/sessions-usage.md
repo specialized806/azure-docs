@@ -26,21 +26,17 @@ A pool management endpoint follows this format:
 https://<SESSION_POOL_NAME>.<ENVIRONMENT_ID>.<REGION>.azurecontainerapps.io
 ```
 
-For more information managing session pools, see [session pools management endpoint](./session-pool.md#management-endpoint)
+For more information about managing session pools, see [session pools management endpoint](./session-pool.md#management-endpoint).
 
-## Forwarding requests to a session's container
+## Send requests to a session
 
 To send a request into a session's container, you use the management endpoint as the root for your request. Anything in the path following the base pool management endpoint is forwarded to the session's container.
 
-For example, if you make a call to: `<POOL_MANAGEMENT_ENDPOINT>/api/uploadfile`, the request is routed to the session's container at `0.0.0.0:<TARGET_PORT>/api/uploadfile`.
+For example, if you make a call to `<POOL_MANAGEMENT_ENDPOINT>/api/uploadfile`, the request is routed to the session's container at `0.0.0.0:<TARGET_PORT>/api/uploadfile`.
 
-## Continuous interaction
+### Sample request
 
-As you continue to make calls to the same session, the session remains [allocated](sessions.md#session-lifecycle) in the pool. Once there are no requests to the session after the cooldown period has elapsed, the session is automatically destroyed.
-
-## Sample request
-
-The following example shows how to send request to a session using a user's ID as the session unique identifier.
+The following example shows how to send a request to a session using a user's ID as the unique session identifier.
 
 Before you send the request, replace the placeholders between the `<>` brackets with values specific to your request.
 
@@ -58,7 +54,7 @@ If the session isn't already running, Azure Container Apps automatically allocat
 
 In this example, the session's container receives the request at `http://0.0.0.0:<INGRESS_PORT>/<API_PATH_EXPOSED_BY_CONTAINER>`.
 
-## Identifiers
+### Identifiers
 
 To send an HTTP request to a session, you must provide a session identifier in the request. You pass the session identifier in a query string parameter named `identifier` in the URL when you make a request to a session.
 
@@ -68,13 +64,48 @@ To send an HTTP request to a session, you must provide a session identifier in t
 
 :::image type="content" source="media/sessions/sessions-overview.png" alt-text="Screenshot of session pool and sessions usage.":::
 
-### Identifier format
+#### Identifier format
 
 The session identifier is a free-form string, meaning you can define it in any way that suits your application's needs.
 
-The session identifier is a string that you define that is unique within the session pool. If you're building a web application, you can use the user's ID as the session identifier. If you're building a chatbot, you can use the conversation ID.
+The session identifier is a string you define that is unique within the session pool. If you're building a web application, you can use the user's ID as the session identifier. If you're building a chatbot, you can use the conversation ID.
 
 The identifier must be a string that is 4 to 128 characters long and can contain only alphanumeric characters and special characters from this list: `|`, `-`, `&`, `^`, `%`, `$`, `#`, `(`, `)`, `{`, `}`, `[`, `]`, `;`, `<`, and `>`.
+
+## Session lifecycle in practice
+
+As you continue to make calls to the same session, the session remains [allocated](sessions.md#session-lifecycle) in the pool. Once there are no requests to the session after the cooldown period has elapsed, the session is automatically destroyed.
+
+### Stop a session
+
+Session pools can manage session lifecycle automatically, but you can also terminate a session manually using the Stop Session API. This is useful when you need to free resources immediately (for example, after work completes or when the pool is at its max concurrent sessions).
+
+> [!NOTE]
+> The Stop Session API is only supported for **Custom Container Session Pools**.
+
+#### Request
+
+```http
+POST {PoolManagementEndpoint}/.management/stopSession?api-version=2025-02-02-preview&identifier={SessionIdentifier}
+```
+
+| Parameter | Type | Required | Description |
+| --- | --- | --- | --- |
+| `api-version` | string | Yes | The API version to use (for example, `2025-02-02-preview`). |
+| `identifier` | string | Yes | The unique identifier of the session to stop. |
+
+#### Example
+
+```http
+POST https://{PoolManagementEndpoint}/.management/stopSession?api-version=2025-02-02-preview&identifier=testSessionIdentifier
+```
+
+```text
+HTTP/1.1 200 OK
+Content-Type: text/plain
+
+Session testSessionIdentifier in session pool testSessionPool stopped.
+```
 
 ## Security
 
@@ -116,9 +147,9 @@ az role assignment create \
     --scope <SESSION_POOL_RESOURCE_ID>
 ```
 
-If you're using an [large language model (LLM) framework integration](sessions-code-interpreter.md#llm-framework-integrations), the framework handles the token generation and management for you. Ensure that the application is configured with a managed identity with the necessary role assignments on the session pool.
+If you're using a [large language model (LLM) framework integration](sessions-code-interpreter.md#llm-framework-integrations), the framework handles the token generation and management for you. Ensure that the application is configured with a managed identity with the necessary role assignments on the session pool.
 
-If you're using the pool's management API endpoints directly, you must generate a token and include it in the `Authorization` header of your HTTP requests. In addition to the role assignments previously mentioned, token needs to contain an audience (`aud`) claim with the value `https://dynamicsessions.io`.
+If you're using the pool's management API endpoints directly, you must generate a token and include it in the `Authorization` header of your HTTP requests. In addition to the role assignments previously mentioned, the token needs to contain an audience (`aud`) claim with the value `https://dynamicsessions.io`.
 
 ##### [Azure CLI](#tab/cli)
 
@@ -317,7 +348,54 @@ This template contains the following settings for managed identity:
 
 ## Logging
 
-Console logs from containers running in a session are available in the Azure Log Analytics workspace associated with the Azure Container Apps environment in a table named `AppEnvSessionConsoleLogs_CL`.
+Custom container session pools can send session logs to a Log Analytics workspace by using Azure Monitor diagnostic settings on the Container Apps environment.
+
+> [!NOTE]
+> Session log tables are available after diagnostic settings are configured to send logs to Log Analytics.
+
+### Configure logging
+
+1. In the Azure portal, open your Container Apps environment.
+2. Under **Monitoring**, select **Diagnostic settings**, then choose **+ Add diagnostic setting**.
+3. Select the session-related log categories you want to capture and set the destination to **Send to Log Analytics workspace**.
+4. Choose your workspace and select **Save**.
+
+### Log tables
+
+Use these tables to query session logs:
+
+| Table name | Description |
+| --- | --- |
+| `AppEnvSessionConsoleLogs` | Console output and logs from session containers. |
+| `AppEnvSessionLifecycleLogs` | System logs for session allocation and lifecycle events. |
+| `AppEnvSessionPoolEvents` | Events related to session pool management, pod creation, and deletion. |
+
+### Sample queries
+
+**View recent console logs from sessions**
+
+```kusto
+AppEnvSessionConsoleLogs
+| where TimeGenerated > ago(1h)
+| order by TimeGenerated desc
+| take 100
+```
+
+**View session lifecycle events**
+
+```kusto
+AppEnvSessionLifecycleLogs
+| where TimeGenerated > ago(1h)
+| order by TimeGenerated desc
+```
+
+**View session pool events**
+
+```kusto
+AppEnvSessionPoolEvents
+| where TimeGenerated > ago(1h)
+| order by TimeGenerated desc
+```
 
 ## Related content
 
