@@ -5,6 +5,7 @@ ms.author: rhackenberg
 ai-usage: ai-assisted
 ms.date: 11/24/2025
 ms.topic: concept-article
+ms.custom: migration-hub
 ms.service: azure
 ms.collection:
   - migration
