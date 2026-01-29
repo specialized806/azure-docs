@@ -708,7 +708,6 @@ await client.RaiseEventAsync(instanceId, "Approval", true);
 client.raise_orchestration_event(instance_id, "Approval", data=True)
 ```
 
-# [PowerShell](#tab/powershell)
 
 
 # [Java](#tab/java)
