@@ -70,18 +70,18 @@ For more information about assigning roles and permissions, see [Azure role-base
 
 A job's trigger type determines how the job is started. The following trigger types are available:
 
-- **Manual**: Manual jobs are triggered on-demand.
+- **Manual**: Manual jobs are triggered on demand.
 - **Schedule**: Scheduled jobs are triggered at specific times and can run repeatedly.
 - **Event**: Event-driven jobs are triggered by events, such as a message arriving in a queue.
 
 ### Manual jobs
 
-Manual jobs are triggered on-demand via the Azure CLI, the Azure portal, or a request to the Azure Resource Manager API.
+Manual jobs are triggered on demand via the Azure CLI, the Azure portal, or a request to the Azure Resource Manager API.
 
 Examples of manual jobs include:
 
 - A one-time processing task like migrating data from one system to another.
-- An e-commerce site running as container app starts a job execution to process inventory when an order is placed.
+- An e-commerce site running as a container app starts a job execution to process inventory when an order is placed.
 
 To create a manual job, use the job type `Manual`.
 
@@ -103,7 +103,7 @@ az containerapp job create \
 
 # [Azure Resource Manager](#tab/azure-resource-manager)
 
-The following example Azure Resource Manager template creates a manual job named `my-job` in a resource group named `my-resource-group` and a Container Apps environment named `my-environment`:
+The following partial example of an Azure Resource Manager template creates a manual job named `my-job` in a resource group named `my-resource-group` and a Container Apps environment named `my-environment`:
 
 ```json
 {
@@ -161,7 +161,7 @@ The preceding command only creates the job. To start a job execution, see [Start
 
 To create a scheduled job, use the job type `Schedule`.
 
-Container Apps jobs use cron expressions to define schedules. It supports the standard [cron](https://en.wikipedia.org/wiki/Cron) expression format with five fields for minute, hour, day of the month, month, and day of the week. Here are some examples of cron expressions:
+Container Apps jobs use cron expressions to define schedules. They support the standard [cron](https://en.wikipedia.org/wiki/Cron) expression format with five fields for minute, hour, day of the month, month, and day of the week. Here are some examples of cron expressions:
 
 | Expression | Description |
 |---|---|
@@ -192,7 +192,7 @@ az containerapp job create \
 
 # [Azure Resource Manager](#tab/azure-resource-manager)
 
-The following example Azure Resource Manager template creates a manual job named `my-job` in a resource group named `my-resource-group` and a Container Apps environment named `my-environment`:
+The following partial example of an Azure Resource Manager template creates a manual job named `my-job` in a resource group named `my-resource-group` and a Container Apps environment named `my-environment`:
 
 ```json
 {
@@ -286,7 +286,7 @@ The example configures an Azure Storage queue scale rule.
 
 # [Azure Resource Manager](#tab/azure-resource-manager)
 
-The following example Azure Resource Manager template creates an event-driven job named `my-job` in a resource group named `my-resource-group` and a Container Apps environment named `my-environment`:
+The following partial example of an Azure Resource Manager template creates an event-driven job named `my-job` in a resource group named `my-resource-group` and a Container Apps environment named `my-environment`:
 
 ```json
 {
@@ -543,7 +543,7 @@ az containerapp job create \
 
 # [Azure Resource Manager](#tab/azure-resource-manager)
 
-The following example Azure Resource Manager template creates a job with advanced configuration options:
+The following partial example of an Azure Resource Manager template creates a job with advanced configuration options:
 
 ```json
 {
