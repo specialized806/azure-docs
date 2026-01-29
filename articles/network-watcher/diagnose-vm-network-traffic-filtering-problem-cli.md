@@ -48,6 +48,27 @@ In this section, you create a virtual network and a subnet in the East US region
     az network vnet create --resource-group 'myResourceGroup' --name 'myVNet' --subnet-name 'mySubnet' --subnet-prefixes 10.0.0.0/24 
     ```
 
+1. Create an Azure Bastion subnet using [az network vnet subnet create](/cli/azure/network/vnet/subnet#az-network-vnet-subnet-create).
+
+    ```azurecli-interactive
+    # Create Azure Bastion subnet.
+    az network vnet subnet create --name 'AzureBastionSubnet' --resource-group 'myResourceGroup' --vnet-name 'myVNet' --address-prefix 10.0.1.0/26
+    ```
+
+1. Create a public IP address for Azure Bastion using [az network public-ip create](/cli/azure/network/public-ip#az-network-public-ip-create).
+
+    ```azurecli-interactive
+    # Create a public IP address for Azure Bastion.
+    az network public-ip create --resource-group 'myResourceGroup' --name 'myBastionPublicIP' --sku 'Standard' --location 'eastus'
+    ```
+
+1. Create an Azure Bastion host using [az network bastion create](/cli/azure/network/bastion#az-network-bastion-create).
+
+    ```azurecli-interactive
+    # Create an Azure Bastion host.
+    az network bastion create --name 'myBastion' --public-ip-address 'myBastionPublicIP' --resource-group 'myResourceGroup' --vnet-name 'myVNet' --location 'eastus' --sku 'Basic'
+    ```
+
 1. Create a default network security group using [az network nsg create](/cli/azure/network/nsg#az-network-nsg-create).
 
     ```azurecli-interactive
@@ -55,11 +76,11 @@ In this section, you create a virtual network and a subnet in the East US region
     az network nsg create --name 'myVM-nsg' --resource-group 'myResourceGroup' --location 'eastus'
     ```
 
-1. Create a virtual machine using [az vm create](/cli/azure/vm#az-vm-create). When prompted, enter a username and password.
+1. Create a virtual machine using [az vm create](/cli/azure/vm#az-vm-create).
 
     ```azurecli-interactive
     # Create a Linux virtual machine using the latest Ubuntu 20.04 LTS image.
-    az vm create --resource-group 'myResourceGroup' --name 'myVM' --location 'eastus' --vnet-name 'myVNet' --subnet 'mySubnet' --public-ip-address '' --nsg 'myVM-nsg' --image 'Canonical:0001-com-ubuntu-server-focal:20_04-lts-gen2:latest'
+    az vm create --resource-group 'myResourceGroup' --name 'myVM' --location 'eastus' --vnet-name 'myVNet' --subnet 'mySubnet' --public-ip-address '' --nsg 'myVM-nsg' --image 'Canonical:0001-com-ubuntu-server-focal:20_04-lts-gen2:latest' --generate-ssh-keys
     ```
 
 ## Test network communication using IP flow verify
