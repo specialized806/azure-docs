@@ -5,7 +5,6 @@ author: cephalin
 ms.author: cephalin
 ms.service: azure-app-service
 ms.topic: overview
-<<<<<<< HEAD
 ms.date: 01/29/2026
 ms.custom:
   - build-2025
