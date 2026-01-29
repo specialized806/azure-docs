@@ -7,6 +7,8 @@ ms.service: azure-dns
 ms.topic: concept-article
 ms.date: 02/10/2025
 ms.author: allensu
+ms.custom: sfi-image-nochange
+# Customer intent: As a network administrator, I want to implement Azure Private DNS zones so that I can ensure secure and efficient name resolution for resources across single and multiple virtual networks while maintaining private access and split-horizon functionality.
 ---
 
 # Azure Private DNS zones scenarios

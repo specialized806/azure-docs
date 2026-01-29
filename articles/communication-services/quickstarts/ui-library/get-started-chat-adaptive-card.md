@@ -19,11 +19,11 @@ This article shows you how to integrate Adaptive Cards into your chat applicatio
 
 ## Prerequisites
 
-- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 ## Explore Adaptive Card examples in Storybook
 
-For more information about adding Adaptive Cards in chat, see [Messages with Adaptive Card](https://aka.ms/acsstorybook).
+For more information about adding Adaptive Cards in chat, see [Messages with Adaptive Card](https://azure.github.io/communication-ui-library/?path=/docs/components-message-thread-messagethread-with-adaptive-card-message--docs).
 
 
 ## Clean up resources

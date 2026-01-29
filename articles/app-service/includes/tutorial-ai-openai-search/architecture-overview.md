@@ -2,8 +2,10 @@
 author: cephalin
 ms.service: azure-app-service
 ms.topic: include
-ms.date: 05/07/2025
+ms.date: 11/18/2025
 ms.author: cephalin
+ms.custom:
+  - build-2025
 ---
 
 Before you begin deployment, it's helpful to understand the architecture of the application you'll build. The following diagram is from [Custom RAG pattern for Azure AI Search](/azure/search/retrieval-augmented-generation-overview?tabs=docs#custom-rag-pattern-for-azure-ai-search):

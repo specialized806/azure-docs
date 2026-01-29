@@ -2,11 +2,12 @@
 title: Configure Bastion for native client connections
 titleSuffix: Azure Bastion
 description: Learn how to configure Bastion for native client connections.
-author: cherylmc
+author: abell
 ms.service: azure-bastion
 ms.topic: how-to
 ms.date: 04/07/2025
-ms.author: cherylmc
+ms.author: abell
+# Customer intent: "As a cloud administrator, I want to configure Bastion for native client connections, so that I can securely access VMs using local SSH or RDP clients while managing my network efficiently."
 ---
 
 # Configure Bastion for native client connections
@@ -22,7 +23,7 @@ You can configure this feature by modifying an existing Bastion deployment, or y
 
 ## Deploy Bastion with the native client feature
 
-If you haven't already deployed Bastion to your virtual network, you can deploy with the native client feature specified by deploying Bastion using manual settings. For steps, see [Tutorial - Deploy Bastion with manual settings](tutorial-create-host-portal.md#createhost). When you deploy Bastion, specify the following settings:
+If you haven't already deployed Bastion to your virtual network, you can deploy with the native client feature specified by deploying Bastion using manual settings. For steps, see [Quickstart: Deploy Azure Bastion from the Azure portal](quickstart-host-portal.md#createhost). When you deploy Bastion, specify the following settings:
 
 1. On the **Basics** tab, for **Instance Details -> Tier** select **Standard**. Native client support requires the Standard SKU.
 

@@ -10,6 +10,7 @@ ms.author: allensu
 #customer intent: As a Terraform user, I want to learn how to use Terraform to create and manage an Azure DNS Private Resolver.
 content_well_notification: 
   - AI-contribution
+# Customer intent: As a Terraform user, I want to create and manage an Azure DNS Private Resolver using Terraform, so that I can enable custom domain name resolution within my private Azure network efficiently.
 ---
 
 # Quickstart: Create an Azure DNS Private Resolver using Terraform
@@ -31,7 +32,7 @@ The following figure summarizes the general setup used. Subnet address ranges us
 
 ## Prerequisites
 
-- If you don't have an Azure account, [create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
+- If you don't have an Azure account, [create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 
 - [Install and configure Terraform](/azure/developer/terraform/quickstart-configure).
 

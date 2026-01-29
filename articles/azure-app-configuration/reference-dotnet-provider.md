@@ -138,10 +138,10 @@ public class WeatherService
 }
 ```
 
-#### 3. Options pattern for strongly-typed configuration
+#### 3. Options pattern for strongly typed configuration
 
 ```csharp
-// Define a strongly-typed settings class
+// Define a strongly typed settings class
 public class Settings
 {
     public string BackgroundColor { get; set; }
@@ -159,6 +159,9 @@ For more information about options pattern in .NET, go to the [documentation](/d
 
 You can create JSON key-values in App Configuration. When a key-value with the content type `"application/json"` is read, the configuration provider will flatten it into individual settings inside of `IConfiguration`. For more information, go to [Use content type to store JSON key-values in App Configuration](./howto-leverage-json-content-type.md).
 
+> [!NOTE]
+> Starting with version *8.4.0* of `Microsoft.Extensions.Configuration.AzureAppConfiguration`, the configuration provider allows comments, as defined in ([JSONC](https://jsonc.org/)), in key-values with an `application/json` content type.
+
 ### Load specific key-values using selectors
 
 By default, the configuration provider loads all key-values with no label from App Configuration. You can selectively load key-values from your App Configuration store by calling the `Select` method on `AzureAppConfigurationOptions`.
@@ -171,10 +174,12 @@ builder.AddAzureAppConfiguration(options =>
         .Select("App:Settings:*")
         // Load configuration values with prefix "TestApp:" and "Prod" label
         .Select("App:Settings:*", "Prod")
+        // Load configuration values with prefix "TestApp:" and "Prod" label that have the tag "Group" with value "Contoso"
+        .Select("App:Settings:*", "Prod", new[] { "Group=Contoso" })
 });
 ```
 
-The `Select` method takes two parameters, the first parameter is a key filter that specifies which keys to load, and the second parameter is a label filter that specifies which key-values with specific labels to load.
+The `Select` method takes three parameters. The first parameter is a key filter that specifies which keys to load, the second parameter is a label filter that specifies which key-values with specific labels to load, and the third parameter specifies a collection of tag filters that all must be present on a key-value to load.
 
 > [!NOTE]
 > When multiple `Select` calls include overlapping keys, later calls take precedence over earlier ones.
@@ -197,6 +202,13 @@ The label filter parameter selects key-values with a specific label. If not spec
 
 > [!NOTE]
 > The characters asterisk (`*`) and comma (`,`), are not supported for label filter. Backslash (`\`) character is reserved and must be escaped using another backslash (`\`).
+
+#### Tag filters
+
+The tag filters parameter selects key-values with specific tags. A key-value is only loaded if it has all of the tags and corresponding values specified in the filters. To specify a null value for a tag, the built-in `TagValue.Null` can be used.
+
+> [!NOTE]
+> The characters asterisk (`*`), comma (`,`), and backslash (`\`) are reserved and must be escaped with a backslash when used in a tag filter.
 
 ### Trim prefix from keys
 
@@ -417,7 +429,7 @@ builder.Configuration.AddAzureAppConfiguration(options =>
 });
 ```
 
-Inside the `UseFeatureFlags` method, you call the `Select` method to selectively load feature flags. You can use [key filter](#key-filter) and [label filter](#label-filter) to select the feature flags you want to load. If no `Select` method is called, `UseFeatureFlags` loads all feature flags with no label by default.
+Inside the `UseFeatureFlags` method, you call the `Select` method to selectively load feature flags. You can use [key filter](#key-filter), [label filter](#label-filter), and [tag filters](#tag-filters) to select the feature flags you want to load. If no `Select` method is called, `UseFeatureFlags` loads all feature flags with no label by default.
 
 Different from key-values, feature flags are automatically registered for refresh without requiring explicit `ConfigureRefresh` call. You can specify the minimum time between feature flag refreshes through the `SetRefreshInterval` method. The default refresh interval is 30 seconds.
 
@@ -475,6 +487,16 @@ public class WeatherForecastController : ControllerBase
 ```
 
 For more information about how to use the feature management library, go to the [feature flag quickstart](./quickstart-feature-flag-aspnet-core.md).
+
+### Feature flag telemetry
+
+When feature flag telemetry is enabled, the Azure App Configuration provider injects additional properties to feature flag telemetry data. These properties provide more context about the feature flag and its evaluation:
+
+- **AllocationID**: A unique identifier representing the state of the feature flag's allocation.
+- **ETag**: The current ETag for the feature flag.
+- **FeatureFlagReference**: A reference to the feature flag in the format of `<your_store_endpoint>kv/<feature_flag_key>`. When a label is present, the reference includes it as a query parameter: `<your_store_endpoint>kv/<feature_flag_key>?label=<feature_flag_label>`.
+
+The full schema can be found in the [App Configuration Feature Evaluation Event schema definition](https://github.com/microsoft/FeatureManagement/blob/main/Schema/FeatureEvaluationEvent/AppConfigurationFeatureEvaluationEvent.v1.0.0.schema.json). For more information about how to use the feature flag telemetry, go to the [enable telemetry for feature flags](./howto-telemetry.md) walkthrough.
 
 ## Key Vault reference
 
@@ -625,6 +647,15 @@ builder.Configuration.AddAzureAppConfiguration(options =>
 
 For information about using snapshots, go to [Create and use snapshots](./howto-create-snapshots.md).
 
+### Snapshot reference
+
+A snapshot reference is a configuration setting that references a snapshot in the same App Configuration store. When loaded, the provider resolves it and adds all key-values from that snapshot. Using snapshot references enables switching between snapshots at runtime, unlike `SelectSnapshot("...")`, which requires code changes and/or restarts to switch to a new snapshot.
+
+For more information about creating a snapshot reference, go to [snapshot reference concept](./concept-snapshot-references.md).
+
+> [!NOTE] 
+> To use snapshot references, use the version *8.4.0* or later of `Microsoft.Extensions.Configuration.AzureAppConfiguration`.
+
 ## Startup retry
 
 Configuration loading is a critical path operation during application startup. To ensure reliability, the Azure App Configuration provider implements a robust retry mechanism during the initial configuration load. This helps protect your application from transient network issues that might otherwise prevent successful startup.
@@ -663,6 +694,43 @@ builder.Services.AddOpenTelemetry()
 ```
 
 For more information about OpenTelemetry in .NET, see the [OpenTelemetry .NET documentation](https://github.com/open-telemetry/opentelemetry-dotnet).
+
+## Health check
+
+The Azure App Configuration .NET provider supports [.NET app health checks](/dotnet/core/diagnostics/diagnostic-health-checks). To enable health checks, you can call `AddAzureAppConfiguration()` method on `IHealthChecksBuilder`, which will add an `IHealthCheck` with a default registration name of `"Microsoft.Extensions.Configuration.AzureAppConfiguration"`.
+
+```C#
+builder.Configuration.AddAzureAppConfiguration(options => 
+    options.Connect(new Uri(appConfigEndpoint), new DefaultAzureCredential()));
+
+builder.Services.AddHealthChecks()
+    .AddAzureAppConfiguration();
+```
+
+The .NET provider will be considered as unhealthy when the last load or refresh attempt failed.
+
+For more information about health checks in .NET, see the [.NET health monitoring documentation](/dotnet/architecture/microservices/implement-resilient-applications/monitor-app-health).
+
+## Connect to Azure Front Door
+
+The Azure Front Door integration allows client applications to fetch configuration from edge-cached endpoints rather than directly from App Configuration. This architecture delivers secure, scalable configuration access with the performance benefits of global CDN distribution.
+
+The following example demonstrates how to load configuration settings from Azure Front Door:
+
+```csharp
+builder.Configuration.AddAzureAppConfiguration(options =>
+{
+    options.ConnectAzureFrontDoor(new Uri("{YOUR-AFD-ENDPOINT}"))
+            .Select("TestApp:*")
+            .ConfigureRefresh(refreshOptions =>
+            {
+                refreshOptions.RegisterAll()
+                    .SetRefreshInterval(TimeSpan.FromMinutes(1));
+            });
+});
+```
+
+For more information about Azure Front Door, see [Load Configuration from Azure Front Door in Client Applications](./how-to-load-azure-front-door-configuration-provider.md).
 
 ## Next steps
 

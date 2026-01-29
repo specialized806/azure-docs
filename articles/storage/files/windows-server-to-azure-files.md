@@ -1,11 +1,12 @@
 ---
-title: Replace or extend Windows file servers with Azure Files and Azure File Sync
+title: Replace Windows File Servers with Azure File Sync
 description: Azure Files and Azure File Sync can be useful when replacing your on-premises Windows file servers or extending them into the cloud. Learn how you can use Azure storage services to increase flexibility, improve data protection, and reduce TCO for file storage.
 author: khdownie
 ms.service: azure-file-storage
 ms.topic: concept-article
-ms.date: 03/17/2023
+ms.date: 07/15/2025
 ms.author: kendownie
+# Customer intent: As an IT manager planning to modernize file storage, I want to replace or extend on-premises Windows file servers with Azure Files and Azure File Sync, so that I can enhance flexibility, reduce total cost of ownership, and simplify data protection.
 ---
 
 # Replace or extend Windows file servers with Azure Files and Azure File Sync
@@ -20,19 +21,18 @@ Most customers take one of two deployment approaches:
 ## Applies to
 | Management model | Billing model | Media tier | Redundancy | SMB | NFS |
 |-|-|-|-|:-:|:-:|
-| Microsoft.Storage | Provisioned v2 | HDD (standard) | Local (LRS) | ![Yes](../media/icons/yes-icon.png) | ![No](../media/icons/no-icon.png) |
-| Microsoft.Storage | Provisioned v2 | HDD (standard) | Zone (ZRS) | ![Yes](../media/icons/yes-icon.png) | ![No](../media/icons/no-icon.png) |
-| Microsoft.Storage | Provisioned v2 | HDD (standard) | Geo (GRS) | ![Yes](../media/icons/yes-icon.png) | ![No](../media/icons/no-icon.png) |
-| Microsoft.Storage | Provisioned v2 | HDD (standard) | GeoZone (GZRS) | ![Yes](../media/icons/yes-icon.png) | ![No](../media/icons/no-icon.png) |
-| Microsoft.Storage | Provisioned v1 | SSD (premium) | Local (LRS) | ![Yes](../media/icons/yes-icon.png) | ![No](../media/icons/no-icon.png) |
-| Microsoft.Storage | Provisioned v1 | SSD (premium) | Zone (ZRS) | ![Yes](../media/icons/yes-icon.png) | ![No](../media/icons/no-icon.png) |
-| Microsoft.Storage | Pay-as-you-go | HDD (standard) | Local (LRS) | ![Yes](../media/icons/yes-icon.png) | ![No](../media/icons/no-icon.png) |
-| Microsoft.Storage | Pay-as-you-go | HDD (standard) | Zone (ZRS) | ![Yes](../media/icons/yes-icon.png) | ![No](../media/icons/no-icon.png) |
-| Microsoft.Storage | Pay-as-you-go | HDD (standard) | Geo (GRS) | ![Yes](../media/icons/yes-icon.png) | ![No](../media/icons/no-icon.png) |
-| Microsoft.Storage | Pay-as-you-go | HDD (standard) | GeoZone (GZRS) | ![Yes](../media/icons/yes-icon.png) | ![No](../media/icons/no-icon.png) |
+| Microsoft.Storage | Provisioned v2 | HDD (standard) | Local (LRS) | Yes | No |
+| Microsoft.Storage | Provisioned v2 | HDD (standard) | Zone (ZRS) | Yes | No |
+| Microsoft.Storage | Provisioned v2 | HDD (standard) | Geo (GRS) | Yes | No |
+| Microsoft.Storage | Provisioned v2 | HDD (standard) | GeoZone (GZRS) | Yes | No |
+| Microsoft.Storage | Provisioned v1 | SSD (premium) | Local (LRS) | Yes | No |
+| Microsoft.Storage | Provisioned v1 | SSD (premium) | Zone (ZRS) | Yes | No |
+| Microsoft.Storage | Pay-as-you-go | HDD (standard) | Local (LRS) | Yes | No |
+| Microsoft.Storage | Pay-as-you-go | HDD (standard) | Zone (ZRS) | Yes | No |
+| Microsoft.Storage | Pay-as-you-go | HDD (standard) | Geo (GRS) | Yes | No |
+| Microsoft.Storage | Pay-as-you-go | HDD (standard) | GeoZone (GZRS) | Yes | No |
 
-
-## Reduce TCO with fully managed file shares
+## Reduce TCO with cloud file shares
 
 There's more to file share TCO than the price per GiB of storage. By centralizing your file shares in Azure, you can reduce TCO in many ways:  
 
@@ -68,7 +68,15 @@ Azure Files is built for hybrid access and offers flexible deployment options, i
 
 :::image type="content" source="media/windows-server-to-azure-files/azure-files-network-access.png" alt-text="Screenshot showing various access options for Azure file shares." lightbox="media/windows-server-to-azure-files/azure-files-network-access.png":::
 
-Moving data from Windows file servers to Azure Files is easy, and you can do it in the background without interrupting user access. Just install Azure File Sync on your file server, connect to an Azure file share, and start the synchronization.
+Moving data from Windows file servers to Azure Files is easy, and you can do it in the background without interrupting user access. Just install Azure File Sync on your file server, connect to an Azure file share, and start the synchronization.  
+
+**Prerequisites:**  
+- An active Azure subscription  
+- An Azure storage account with an Azure file share  
+- Network connectivity between the server and Azure (internet, VPN, or ExpressRoute)  
+- A supported Windows Server with the Azure File Sync agent installed  
+
+**Verify:** Confirm the Azure file share is mounted and the Azure File Sync agent reports a **Healthy** status.
 
 When you migrate to Azure Files, none of your file path links need to break. You can [use DFS Namespaces](files-manage-namespaces.md) and redirect users to Azure Files. If you're extending an existing Windows file server to Azure using Azure File Sync, users continue to access their files using the same file paths.
 
@@ -83,5 +91,5 @@ With Azure Files you benefit from multi-layered security provided by Microsoft a
 Access control works just like your Windows file servers. You can [use identity-based authentication](storage-files-active-directory-overview.md) and integrate SMB Azure file shares with your on-premises Active Directory environment or Microsoft Entra ID, and control share-level and directory/file-level access as well as administrator privileges.
 
 ## See also
-- [Migrate to Azure Files](storage-files-migration-overview.md)
+- [Migrate to SMB Azure file shares](storage-files-migration-overview.md)
 - [Azure Files networking considerations](storage-files-networking-overview.md)

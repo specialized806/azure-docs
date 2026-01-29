@@ -6,7 +6,7 @@ ms.suite: integration
 author: ecfan
 ms.reviewer: estfan, azla
 ms.topic: how-to
-ms.date: 03/14/2025
+ms.date: 06/10/2025
 ---
 
 # Test workflows with mock outputs in Azure Logic Apps
@@ -21,7 +21,7 @@ This guide shows how to set up mock outputs for an action in a Consumption or St
 
 ## Prerequisites
 
-* An Azure account and subscription. If you don't have a subscription, [sign up for a free Azure account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+* An Azure account and subscription. If you don't have a subscription, [sign up for a free Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 * The logic app resource and workflow where you want to set up mock outputs. This article uses a **Recurrence** trigger and **HTTP** action as an example workflow.
 

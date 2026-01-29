@@ -6,6 +6,7 @@ author: craigshoemaker
 ms.service: azure-container-apps
 ms.topic: how-to
 ms.date: 05/19/2025
+ms.update-cycle: 180-days
 ms.author: cshoe
 ms.custom: references_regions
 ms.collection: ce-skilling-ai-copilot
@@ -73,6 +74,16 @@ To learn more, see [Authentication and authorization](sessions-usage.md#authenti
 ## Work with files
 
 You can upload and download files, and list all the files in a code interpreter session.
+
+### Supported characters
+
+Filenames and path must use only the following supported characters:
+
+- Uppercase and lowercase letters: `A-Z`, `a-z`
+- Digits: `0-9`
+- Special characters: `-`, `_`,` `, `.`, `@`, `$`, `&`, `=`, `;`, `,`, `#`, `%`, `^`, `(`, `)`
+- Unicode characters: Includes Chinese, Japanese, and other international characters
+- Path does not allow: `.`
 
 ### Upload a file
 
@@ -173,7 +184,7 @@ If you're not using an LLM framework integration, you can interact with the sess
 
 ## Execute code in a session
 
-To execute code in a session, send a `POST` request to the `code/execute` endpoint with the code to run in the request body.
+To execute code in a session, send a `POST` request to the `code/execute` endpoint with the code to run in the request body. Each code execution is limited to a maximum runtime of 220 seconds.
 
 The following example prints `Hello, world!` in Python.
 

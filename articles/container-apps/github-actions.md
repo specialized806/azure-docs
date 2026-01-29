@@ -4,7 +4,10 @@ description: Learn to automatically create new revisions in Azure Container Apps
 services: container-apps
 author: craigshoemaker
 ms.service: azure-container-apps
-ms.custom: devx-track-azurecli, ignite-2023
+ms.custom:
+  - devx-track-azurecli
+  - ignite-2023
+  - build-2025
 ms.topic: how-to
 ms.date: 05/14/2025
 ms.author: cshoe
@@ -166,7 +169,7 @@ You take the following steps to configure a GitHub Actions workflow to deploy to
 
 | Requirement | Instructions |
 |--|--|
-| Azure account | If you don't have one, [create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F). You need the *Contributor* or *Owner* permission on the Azure subscription to proceed. Refer to [Assign Azure roles using the Azure portal](../role-based-access-control/role-assignments-portal.yml?tabs=current) for details. |
+| Azure account | If you don't have one, [create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn). You need the *Contributor* or *Owner* permission on the Azure subscription to proceed. Refer to [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal?tabs=current) for details. |
 | GitHub Account | Sign up for [free](https://github.com/join). |
 | Azure CLI | Install the [Azure CLI](/cli/azure/install-azure-cli).|
 

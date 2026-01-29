@@ -3,9 +3,11 @@ title: "Quickstart: Configure a storage provider by using Netherite"
 description: Configure a Durable Functions app to use the Netherite storage provider in Azure Functions.
 author: sebastianburckhardt
 ms.topic: quickstart
-ms.custom: devx-track-dotnet
 ms.date: 07/24/2024
 ms.reviewer: azfuncdf
+ms.custom:
+  - devx-track-dotnet
+  - sfi-image-nochange
 ---
 
 # Quickstart: Set a Durable Functions app to use the Netherite storage provider
@@ -46,7 +48,7 @@ If you don't meet these prerequisites, we recommend that you start with one of t
 ## Add the Netherite extension (.NET only)
 
 > [!NOTE]
-> If your app uses [Extension Bundles](../functions-bindings-register.md#extension-bundles), skip this section. Extension Bundles removes the need for manual extension management.
+> If your app uses [Extension Bundles](../extension-bundles.md), skip this section. Extension Bundles removes the need for manual extension management.
 
 First, install the latest version of the [Microsoft.Azure.Functions.Worker.Extensions.DurableTask.Netherite](https://www.nuget.org/packages/Microsoft.Azure.Functions.Worker.Extensions.DurableTask.Netherite) storage provider extension from NuGet. For .NET, you usually include a reference to it in your *.csproj* file and building the project.
 
@@ -119,7 +121,7 @@ To run your app in Azure, [create an Azure Functions app](../functions-create-fu
 You need to set up an Event Hubs namespace to run Netherite in Azure. You can also set it up if you prefer to use Event Hubs during local development.
 
 > [!NOTE]
-> An Event Hubs namespace incurs an ongoing cost, whether or not it is being used by Durable Functions. Microsoft offers a [12-month free Azure subscription account](https://azure.microsoft.com/free/) if you’re exploring Azure for the first time.
+> An Event Hubs namespace incurs an ongoing cost, whether or not it is being used by Durable Functions. Microsoft offers a [12-month free Azure subscription account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) if you’re exploring Azure for the first time.
 
 #### Create an Event Hubs namespace
 

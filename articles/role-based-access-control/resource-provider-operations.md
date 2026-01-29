@@ -5,9 +5,9 @@ ms.service: role-based-access-control
 ms.topic: generated-reference
 ms.workload: identity
 author: rolyon
-manager: femila
+manager: pmwongera
 ms.author: rolyon
-ms.date: 05/25/2025
+ms.date: 12/31/2025
 ms.custom: generated
 ---
 
@@ -60,7 +60,6 @@ Click the resource provider name in the following list to see the list of permis
 > | --- | --- | --- |
 > | [Microsoft.Cdn](./permissions/networking.md#microsoftcdn) | Ensure secure, reliable content delivery with broad global reach. | [Content Delivery Network](/azure/cdn/) |
 > | [Microsoft.ClassicNetwork](./permissions/networking.md#microsoftclassicnetwork) |  | Classic deployment model virtual network |
-> | [Microsoft.MobileNetwork](./permissions/networking.md#microsoftmobilenetwork) |  | [Azure Private 5G Core](/azure/private-5g-core/) |
 > | [Microsoft.Network](./permissions/networking.md#microsoftnetwork) | Connect cloud and on-premises infrastructure and services to provide your customers and users the best possible experience. | [Application Gateway](/azure/application-gateway/)<br />[Azure Bastion](/azure/bastion/)<br />[Azure DDoS Protection](/azure/ddos-protection/ddos-protection-overview)<br />[Azure DNS](/azure/dns/)<br />[Azure ExpressRoute](/azure/expressroute/)<br />[Azure Firewall](/azure/firewall/)<br />[Azure Front Door Service](/azure/frontdoor/)<br />[Azure Private Link](/azure/private-link/)<br />[Azure Route Server](/azure/route-server/)<br />[Load Balancer](/azure/load-balancer/)<br />[Network Watcher](/azure/network-watcher/)<br />[Traffic Manager](/azure/traffic-manager/)<br />[Virtual Network](/azure/virtual-network/)<br />[Virtual Network NAT](/azure/nat-gateway/nat-overview)<br />[Virtual Network Manager](/azure/virtual-network-manager/overview)<br />[Virtual WAN](/azure/virtual-wan/)<br />[VPN Gateway](/azure/vpn-gateway/) |
 
 <a name='microsoftdatashare'></a>
@@ -148,7 +147,6 @@ Click the resource provider name in the following list to see the list of permis
 > [!div class="mx-tableFixed"]
 > | Resource provider | Description | Azure service |
 > | --- | --- | --- |
-> | [Microsoft.AgFoodPlatform](./permissions/ai-machine-learning.md#microsoftagfoodplatform) |  | [Microsoft Azure Data Manager for Agriculture](/azure/data-manager-for-agri/overview-azure-data-manager-for-agriculture) |
 > | [Microsoft.BotService](./permissions/ai-machine-learning.md#microsoftbotservice) | Intelligent, serverless bot service that scales on demand. | [Azure Bot Service](/azure/bot-service/) |
 > | [Microsoft.CognitiveServices](./permissions/ai-machine-learning.md#microsoftcognitiveservices) | Add smart API capabilities to enable contextual interactions. | [Cognitive Services](/azure/cognitive-services/) |
 > | [Microsoft.HealthBot](./permissions/ai-machine-learning.md#microsofthealthbot) |  | [Azure AI Health Bot](/azure/health-bot/overview) |
@@ -169,13 +167,6 @@ Click the resource provider name in the following list to see the list of permis
 > | [Microsoft.IoTFirmwareDefense](./permissions/internet-of-things.md#microsoftiotfirmwaredefense) |  | [Microsoft Defender for IoT](/azure/defender-for-iot/device-builders/overview) |
 > | [Microsoft.IoTSecurity](./permissions/internet-of-things.md#microsoftiotsecurity) |  | [IoT security](/azure/iot/iot-security-architecture) |
 > | [Microsoft.StreamAnalytics](./permissions/internet-of-things.md#microsoftstreamanalytics) | Real-time data stream processing from millions of IoT devices. | [Stream Analytics](/azure/stream-analytics/) |
-
-## Mixed reality
-
-> [!div class="mx-tableFixed"]
-> | Resource provider | Description | Azure service |
-> | --- | --- | --- |
-> | [Microsoft.MixedReality](./permissions/mixed-reality.md#microsoftmixedreality) | Blend your physical and digital worlds to create immersive, collaborative experiences. |  |
 
 <a name='microsoftapimanagement'></a>
 
@@ -222,7 +213,6 @@ Click the resource provider name in the following list to see the list of permis
 > | [Microsoft.DataProtection](./permissions/security.md#microsoftdataprotection) |  | Data Protection |
 > | [Microsoft.KeyVault](./permissions/security.md#microsoftkeyvault) | Safeguard and maintain control of keys and other secrets. | [Key Vault](/azure/key-vault/) |
 > | [Microsoft.Security](./permissions/security.md#microsoftsecurity) | Protect your enterprise from advanced threats across hybrid cloud workloads. | [Security Center](/azure/security-center/) |
-> | [Microsoft.SecurityGraph](./permissions/security.md#microsoftsecuritygraph) |  |  |
 > | [Microsoft.SecurityInsights](./permissions/security.md#microsoftsecurityinsights) |  | [Microsoft Sentinel](/azure/sentinel/) |
 
 ## DevOps
@@ -232,6 +222,7 @@ Click the resource provider name in the following list to see the list of permis
 > | --- | --- | --- |
 > | [Microsoft.Chaos](./permissions/devops.md#microsoftchaos) |  | [Azure Chaos Studio](/azure/chaos-studio/) |
 > | [Microsoft.DevCenter](./permissions/devops.md#microsoftdevcenter) |  | [Azure Deployment Environments](/azure/deployment-environments/overview-what-is-azure-deployment-environments) |
+> | [Microsoft.DevOpsInfrastructure](./permissions/devops.md#microsoftdevopsinfrastructure) |  | [Managed DevOps Pools](/azure/devops/managed-devops-pools/overview) |
 > | [Microsoft.DevTestLab](./permissions/devops.md#microsoftdevtestlab) | Quickly create environments using reusable templates and artifacts. | [Azure Lab Services](/azure/lab-services/) |
 > | [Microsoft.LabServices](./permissions/devops.md#microsoftlabservices) | Set up labs for classrooms, trials, development and testing, and other scenarios. | [Azure Lab Services](/azure/lab-services/) |
 > | [Microsoft.LoadTestService](./permissions/devops.md#microsoftloadtestservice) |  | [Azure Load Testing](/azure/load-testing/) |

@@ -2,12 +2,14 @@
 title: About Azure Database for PostgreSQL Flexible server backup
 description: An overview on Azure Database for PostgreSQL Flexible server backup
 ms.topic: overview
-ms.date: 02/28/2025
+ms.date: 10/14/2025
 ms.service: azure-backup
 ms.custom:
   - ignite-2024
-author: jyothisuri
-ms.author: jsuri
+  - build-2025
+author: AbhishekMallick-MS
+ms.author: v-mallicka
+# Customer intent: As a database administrator, I want to implement a backup solution for Azure Database for PostgreSQL Flexible servers, so that I can ensure long-term data retention and protection against data loss events like accidental deletions or ransomware attacks.
 ---
 
 # About Azure Database for PostgreSQL - Flexible Server backup
@@ -46,7 +48,7 @@ For successful backup operations, the vault MSI needs the following permissions:
 
 1. *Restore*: Storage Blob Data Contributor role on the target storage account.
 1. *Backup*:
-    1. *PostgreSQL Flexible Server Long Term Retention Backup* role on the server.
+    1. *PostgreSQL Flexible Server Long Term Retention Backup Role* on the server.
     1. *Reader* role on the resource group of the server.
 
 ## Understand pricing

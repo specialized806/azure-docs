@@ -39,16 +39,13 @@
         href: /azure/redis/dotnet-how-to-use-azure-redis-cache
       - name: Java app
         href: /azure/redis/java-get-started
-      - name: Java app with JCache
-        href: /azure/redis/java-redisson-get-started
       - name: Node.js app
         href: /azure/redis/nodejs-get-started
       - name: Python app
         href: /azure/redis/python-get-started
       - name: Go app
         href: /azure/redis/go-get-started
-      - name: Rust app
-        href: /azure/redis/rust-get-started
+
           
 - name: Migration 
   expanded: true
@@ -61,8 +58,8 @@
 - name: Azure Cache for Redis 
   expanded: true
   items:
-  - name: What's new in Azure Cache for Redis?
-    href: cache-whats-new.md
+  - name: About Azure Cache for Redis
+    href: cache-overview.md
 
   - name: Deploy and configure
     items:
@@ -113,10 +110,7 @@
       href: /azure/redis/overview-vector-similarity
     - name: Connection resilience best practices
       href: cache-best-practices-connection.md
-    # - name: Use Azure Functions triggers and bindings
-    #   items:
-    #   - name: Create a simple Function app for Redis triggers 
-    #     href: /azure/redis/tutorial-functions-getting-started
+
 
   - name: Logs and monitoring
     items:
@@ -125,7 +119,7 @@
     - name: Monitor using insights
       href: cache-insights-overview.md
     - name: Monitor using diagnostic settings
-      href: /monitor/cache-monitor-diagnostic-settings.md
+      href: cache-monitor-diagnostic-settings.md
     - name: List of Redis metrics
       href: /azure/redis/monitor-cache-reference
 
@@ -210,7 +204,7 @@
     - name: Failover and patching
       href: cache-failover.md
     - name: Migrate to availability zone support
-      href: ../reliability/migrate-cache-redis.md
+      href: /azure/reliability/migrate-cache-redis
 
   - name: Diagnose and troubleshoot
     items:
@@ -238,12 +232,6 @@
 
 - name: Samples
   items:
-  - name: Use Azure Functions triggers and bindings
-    items:
-    - name: Create a simple Function app for Redis triggers
-      href: /azure/redis/tutorial-functions-getting-started
-    - name: Using Azure Functions to create a write-behind cache
-      href: /azure/redis/tutorial-write-behind
   - name: Use Azure Kubernetes Service with a cache
     items:
     - name: Connect an AKS application to a cache
@@ -256,18 +244,12 @@
     items:
       - name: Vector search concepts
         href: /azure/redis/overview-vector-similarity
-      - name: Vector similarity search
-        href: /azure/redis/tutorial-vector-similarity
-      - name: Semantic caching
-        href: /azure/redis/tutorial-semantic-cache
+
   - name: ASP.NET
     items:
     - name: Use ASP.NET core output cache
       href: /azure/redis/aspnet-core-output-cache-provider
-    - name: Use session state provider
-      href: /azure/redis/aspnet-session-state-provider
-    - name: Use output cache provider
-      href: /azure/redis/aspnet-output-cache-provider
+
   - name: Java Spring
     items:
     - name: Use Spring Boot Initializer
@@ -277,17 +259,9 @@
     - name: Route events with Azure portal  
       href: cache-event-grid-quickstart-portal.md
     - name: Route events with Azure CLI 
-      href: /cache-event-grid-quickstart-cli.md
+      href: cache-event-grid-quickstart-cli.md
     - name: Route events with PowerShell 
       href: cache-event-grid-quickstart-powershell.md
-  - name: Create leaderboards
-    href: /azure/redis/web-app-cache-aside-leaderboard
-  - name: Create Web App with Redis cache - Bicep
-    displayName: ARM, Resource Manager, Template
-    href: /azure/redis/web-app-bicep-with-redis-cache-provision
-  - name: Create Web App with Redis cache - ARM template
-    displayName: Resource Manager
-    href: /azure/redis/web-app-arm-with-redis-cache-provision
 
 - name: Reference
   items:
@@ -314,12 +288,12 @@
   items:
   - name: Azure Redis FAQ
     href: /azure/redis/faq
-  - name: Retirements from Azure Cache for Redis
-    href: cache-retired-features.md
+  - name: Azure Cache for Redis retirement FAQ
+    href: retirement-faq.yml
   - name: Videos
     href: https://www.youtube.com/results?search_query=azure+cache+redis
   - name: Microsoft Q&A question page
-    href: https://learn.microsoft.com/answers/tags/170/azure-cache-redis
+    href: /answers/tags/170/azure-cache-redis
   - name: Pricing
     href: https://azure.microsoft.com/pricing/details/cache/
 

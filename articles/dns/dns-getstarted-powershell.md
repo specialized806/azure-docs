@@ -10,6 +10,7 @@ ms.topic: quickstart
 ms.service: azure-dns
 ms.custom: devx-track-azurepowershell, mode-api
 #Customer intent: As an administrator or developer, I want to learn how to configure Azure DNS using Azure PowerShell so I can use Azure DNS for my name resolution.
+# Customer intent: As a systems administrator or developer, I want to create and manage a DNS zone and records using PowerShell, so that I can effectively host and resolve domain names in Azure DNS.
 ---
 
 # Quickstart: Create an Azure DNS zone and record using Azure PowerShell
@@ -26,7 +27,7 @@ Azure DNS also supports creating private domains. For step-by-step instructions 
 
 ## Prerequisites
 
-- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - Azure PowerShell installed locally or Azure Cloud Shell
 
 [!INCLUDE [cloud-shell-try-it.md](~/reusable-content/ce-skilling/azure/includes/cloud-shell-try-it.md)]

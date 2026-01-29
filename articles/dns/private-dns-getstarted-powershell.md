@@ -9,6 +9,7 @@ ms.topic: quickstart
 ms.service: azure-dns
 ms.custom: devx-track-azurepowershell, mode-api
 #Customer intent: As an experienced network administrator, I want to create an  Azure private DNS zone, so I can resolve host names on my private virtual networks.
+# Customer intent: As a network administrator, I want to create and manage a private DNS zone using Azure PowerShell, so that I can facilitate hostname resolution within my private virtual networks.
 ---
 
 # Quickstart: Create an Azure private DNS zone using Azure PowerShell
@@ -23,7 +24,7 @@ A DNS zone is used to host the DNS records for a particular domain. To start hos
 
 ## Prerequisites
 
-If you don’t have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
+If you don’t have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 
 If you prefer, you can complete this quickstart using [Azure CLI](private-dns-getstarted-cli.md).
 

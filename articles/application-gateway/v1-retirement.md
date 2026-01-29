@@ -8,6 +8,7 @@ ms.service: azure-application-gateway
 ms.topic: how-to
 ms.date: 04/19/2023
 ms.author: mjyothish
+# Customer intent: As an IT administrator using Application Gateway V1, I want to migrate to Application Gateway V2 before April 28, 2026, so that I can ensure continuous support and benefit from enhanced performance and security features.
 ---
 
 # Migrate your Application Gateways from V1 SKU to V2 SKU by April 28, 2026 
@@ -20,7 +21,7 @@ We announced the deprecation of Application Gateway V1 on **April 28 ,2023**. Be
 
 - Deprecation announcement: April 28 ,2023 
 
--	No new subscriptions for V1 deployments: July 1,2023 onwards - Application Gateway V1 is no longer available for deployment on subscriptions without V1 gateways(Refer to [FAQ](./retirement-faq.md#what-is-the-definition-of-a-new-customer-on-application-gateway-v1-sku) for details) from July 1 2023 onwards.
+-	No new subscriptions for V1 deployments: July 1,2023 onwards - Application Gateway V1 is no longer available for deployment on subscriptions without V1 gateways from July 1 2023 onwards.
 
 - No new V1 deployments: Sept 1, 2024 - V1 creation is stopped completely for all customers 1 September 2024 onwards.
 

@@ -96,8 +96,12 @@ Storage accounts that have a hierarchical namespace display location information
 ## Moving storage tasks and task assignments
 Moving storage tasks and task assignments across different resource groups and subscriptions isn't supported. This limitation means that any storage tasks and their associated task assignments can't be transferred between resource groups or subscriptions.
 
-## Cleaning up task assignments before moving storage accounts
-Task assignments must be cleaned up before moving storage accounts across resource groups and subscriptions. Specifically, before a storage account is moved from one resource group to another, or from one subscription to another, all task assignments applied to the storage account must be deleted to ensure a smooth transition.
+## Cleaning up task assignments before deleting storage accounts or storage tasks
+- Before deleting a storage account, delete all task assignments associated with that storage account.
+- Before deleting a storage task, delete all task assignments referencing that storage task.
+
+## Operating on storage accounts in a private network
+Storage task assignments can be successfully applied to storage accounts in private networks when the networking configuration includes an option that permits trusted Microsoft services to access the account. This setting ensures that tasks have the necessary access during execution, even when firewall or virtual network rules are in place. If this option is **not enabled**, task execution will fail because access is blocked by network restrictions. For detailed steps on enabling this setting, refer to the documentation. [Manage network security exceptions for Azure Storage](/azure/storage/common/storage-network-security-manage-exceptions)
 
 ## Storage task runs are stuck in the in progress state
 
@@ -110,6 +114,15 @@ Creating assignments on premium block blobs storage accounts doesn't work.
 ## Soft deleted blobs are included in listing during scanning as objects targeted 
 
 The workaround is to exclude the specific prefixes which are soft deleted.
+
+## No option to choose priority when rehydrating blobs to an online tier 
+
+When rehydrating archived blobs, there's no option to choose a priority. The blobs are rehydrated with the standard priority. 
+
+## Delay in task assignment runs
+
+Task assignment runs can take around 20 minutes to change status to `In Progress` after being queued. Until then, no updates appear. This delay is expected and there is no workaround to shorten it.
+
 
 ## See Also
 

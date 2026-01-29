@@ -1,10 +1,12 @@
 ---
 author: msangapu-msft
 ms.service: azure-app-service
-ms.custom: linux-related-content
 ms.topic: include
-ms.date: 03/04/2025
+ms.date: 01/23/2026
 ms.author: msangapu
+ms.custom:
+  - linux-related-content
+  - sfi-image-nochange
 ---
 
 > [!NOTE]
@@ -201,6 +203,47 @@ To validate that the Azure Storage is mounted successfully for the app:
    tcpping Storageaccount.file.core.windows.net 
    ```
 
+### Storage mount health checks and auto‑recovery
+
+Azure App Service includes a built‑in health‑check mechanism to ensure that mounted Azure Storage volumes (Azure Files or Azure Blob) remain accessible and responsive. This system helps prevent application hangs caused by stale or disconnected storage mounts.
+
+#### How the health check works
+
+1. **Periodic I/O test**  
+   App Service periodically performs file I/O on a marker file named `__lastCheckTime.txt`.  
+   - **Location:** A `LogFiles` subdirectory under the mounted path (for example, `/mount/path/LogFiles/__lastCheckTime.txt`).  
+   - **Behavior:**  
+     - A read operation is attempted on this file.  
+     - The file does *not* need to exist—“file not found” is treated as a successful check.
+
+2. **Frequency**  
+   The check runs every **5 seconds** by default.
+
+3. **Failure handling**  
+   - Each failed or timed‑out check increments a *failed ping counter*.  
+   - When failures exceed the configured threshold:  
+     - **Azure Files:** 18 failed pings  
+     - **Azure Blob:** 15 failed pings  
+   - The mount is marked **Faulted**, and **App Service automatically restarts the app** to restore connectivity to the share.
+
+#### Configuration via App Settings
+
+You can customize health‑check behavior using the following app settings.
+
+| Storage type | Setting name | Default value | Description |
+|--------------|--------------|---------------|-------------|
+| Azure Files | `WEBSITE_BYOS_FILES_HEALTH_CHECK_FREQUENCY` | `5` | Interval in seconds between health checks. |
+| Azure Files | `WEBSITE_BYOS_FILES_MAX_FAILED_PINGS` | `18` | Number of consecutive failures before marking the volume as faulted. |
+| Azure Files | `WEBSITE_BYOS_FILES_AUTO_RECOVERY_ENABLED` | `true` | Set to `false` to disable auto‑recovery logic. |
+| Azure Blob | `WEBSITE_BYOS_BLOB_HEALTH_CHECK_FREQUENCY` | `5` | Interval in seconds between health checks. |
+| Azure Blob | `WEBSITE_BYOS_BLOB_MAX_FAILED_PINGS` | `15` | Number of consecutive failures before marking the volume as faulted. |
+| Azure Blob | `WEBSITE_BYOS_BLOB_AUTO_RECOVERY_ENABLED` | `true` | Set to `false` to disable auto‑recovery logic. |
+| Azure Blob | `WEBSITE_BYOS_BLOB_DIRECT_IO` | `false` | If enabled, all transactions will query the remote storage directly and caching will be bypassed. This setting is applied at the application level and therefore affects all blob shares mounted by the application. |
+
+#### Notes
+- Auto‑recovery helps prevent long‑running application hangs caused by unresponsive storage paths.  
+- Disabling auto‑recovery is not recommended unless troubleshooting specific mount behavior.
+
 ## Best practices
 
 ### Performance
@@ -225,12 +268,13 @@ To validate that the Azure Storage is mounted successfully for the app:
 ### Troubleshooting
 
 - The mount directory in the custom container should be empty. Any content stored at this path is deleted when the Azure Storage is mounted, if you specify a directory under */home*, for example. If you migrate files for an existing app, make a backup of the app and its content before you begin.
+- When mounting an NFS share, you'll need to ensure that Secure Transfer Required is disabled on the storage account. App Service doesn't support mounting NFS shares when this is enabled. It uses port 2409 and virtual network integration and private endpoints as the security measure.
 - If you delete an Azure Storage account, container, or share, remove the corresponding storage mount configuration in the app to avoid possible error scenarios.
 - We don't recommend that you use storage mounts for local databases, such as SQLite, or for any other applications and components that rely on file handles and locks.
 - Ensure the following ports are open when using virtual network integration: Azure Files: 80 and 445. Azure Blobs: 80 and 443.
 - If you [initiate a storage failover](../../../storage/common/storage-initiate-account-failover.md) when the storage account is mounted to the app, the mount doesn't connect until the app is restarted or the storage mount is removed and added again.
 
-## Next step
+## Related content
 
-- [Configure a custom container](../../configure-custom-container.md?pivots=platform-linux).
-- [Video: How to mount Azure Storage as a local share](https://www.youtube.com/watch?v=OJkvpWYr57Y).
+- [Configure a custom container](../../configure-custom-container.md?pivots=platform-linux)
+- [Video: How to mount Azure Storage as a local share](https://www.youtube.com/watch?v=OJkvpWYr57Y)

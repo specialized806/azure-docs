@@ -1,10 +1,10 @@
 ---
 title: Transition Your Microsoft Sentinel Environment to the Defender Portal
 description: Move Microsoft Sentinel operations from the Azure portal to the Microsoft Defender portal.
-author: batamig
-ms.author: bagol
+author: guywi-ms
+ms.author: guywild
 ms.topic: how-to #Required; leave this attribute/value as-is
-ms.date: 05/04/2025
+ms.date: 01/01/2026
 ms.collection: usx-security
 
 #Customer intent: As a security operations team member, I want to understand the process involved in moving our Microsoft Sentinel experience from the Azure portal to the Defender portal so that I can benefit from unified security operations across my entire environment.
@@ -14,25 +14,36 @@ ms.collection: usx-security
 
 Microsoft Sentinel is available in the Microsoft Defender portal with [Microsoft Defender XDR](/microsoft-365/security/defender) or on its own. It delivers a unified experience across SIEM and XDR for faster, more accurate threat detection and response, simpler workflows, and better operational efficiency.
 
-This article explains how to transition your Microsoft Sentinel experience from the Azure portal to the Defender portal. If you use Microsoft Sentinel in the Azure portal, transition to Microsoft Defender for unified security operations and the latest features. For more information, see [Microsoft Sentinel in the Microsoft Defender portal](microsoft-sentinel-defender-portal.md).
+This article explains how to transition your Microsoft Sentinel experience from the Azure portal to the Defender portal. If you use Microsoft Sentinel in the Azure portal, transition to Microsoft Defender for unified security operations and the latest features. For more information, see [Microsoft Sentinel in the Microsoft Defender portal](microsoft-sentinel-defender-portal.md) or watch our [YouTube playlist](https://www.youtube.com/playlist?list=PL3ZTgFEc7Lyska6WLWBzc8sob-kYA2jPj).
+
+> [!NOTE]
+> Transitioning to the Defender portal, even for non-E5 customers, has no extra cost for the customer. The customer continues to be billed as usual for their consumption on Sentinel only.
 
 ## Prerequisites
 
 Before you start, note:
 
-- This article is for customers with an existing workspace enabled for Microsoft Sentinel who want to transition their Microsoft Sentinel experience to the Defender portal. If you're a new customer, see [Deploy for unified security operations in the Defender portal](/unified-secops-platform/overview-deploy) to learn how to create a new workspace for Microsoft Sentinel in the Defender portal.
-- When relevant, detailed prerequisites are in the linked articles for each step.
+- This article is for customers with an existing workspace enabled for Microsoft Sentinel who want to transition their Microsoft Sentinel experience to the Defender portal. If you're a new customer who onboarded with permissions of a subscription [Owner](/azure/role-based-access-control/built-in-roles#owner) or a [User access administrator](/azure/role-based-access-control/built-in-roles#user-access-administrator), your workspaces are [automatically onboarded to the Defender portal](quickstart-onboard.md).
+
 - Some Microsoft Sentinel features have new locations in the Defender portal. For more information, see [Quick reference](microsoft-sentinel-defender-portal.md#quick-reference).
+
+- When relevant, detailed prerequisites are in the linked articles for each step.
+
 
 ## Plan and set up your transition environment
 
 **Audience**: Security architects
 
+**Videos**:
+
+- [Onboarding a Microsoft Sentinel workspace in Microsoft Defender](https://youtu.be/Hgcz87XdJx0?si=n78kqKVoLvbwZp5k)
+- [Managing unified RBAC in Microsoft Defender](https://youtu.be/0xvPy1zWIfg?si=sBuxxOVr1O_yuTyS)
+
 ### Review planning guidance, complete prerequisites, and onboard
  
 Review all planning guidance and finish all prerequisites before you onboard your workspace to the Defender portal. For more information, see the following articles:
 
-- [**Plan for unified security operations in the Defender portal**](/unified-secops-platform/overview-plan)
+- [**Plan for unified security operations in the Defender portal**](/unified-secops-platform/overview-plan). After onboarding to the Defender portal, the **[Microsoft Sentinel Contributor](/azure/role-based-access-control/built-in-roles/security#microsoft-sentinel-contributor)** role is assigned to the **Microsoft Threat Protection** and **WindowsDefenderATP** apps in your subscription.
 
 - [**Deploy for unified security operations in the Defender portal**](/unified-secops-platform/overview-deploy). While this article is for new customers who don't yet have a workspace for Microsoft Sentinel or other services onboarded to the Defender portal, use it as a reference if you're moving to the Defender portal.
 
@@ -54,7 +65,19 @@ The following table provides additional details and links so that you can compar
 For more information, see:
 
 - [Geographical availability and data residency in Microsoft Sentinel](geographical-availability-data-residency.md)
-- [Data security and retention in Microsoft Defender XDR](/defender-xdr/data-privacy) <!--i wonder if we should move this doc out of the XDR docset and into usx?-->
+- [Data security and retention in Microsoft Defender XDR](/defender-xdr/data-privacy)
+
+### Onboarding to the Defender portal with customer-managed keys (CMK)
+
+If you enabled CMK before onboarding, when you onboard your Microsoft Sentinel-enabled workspace to the Defender portal, all log data in your workspace continues to be encrypted with CMK - including both previously and newly ingested data.
+
+Analytic rules and other Sentinel content, such as automation rules, also continue to be CMK-encrypted. However, alerts and incidents will no longer be CMK-encrypted after onboarding.
+
+For more information about CMK, see [Set up Microsoft Sentinel customer-managed key](customer-managed-keys.md).
+
+> [!IMPORTANT]
+> CMK encryption is not fully supported for data stored in the Microsoft Sentinel data lake. All data ingested into the data lake - such as custom tables or transformed data - is encrypted using Microsoft-managed keys. 
+
 
 ### Configure multi-workspace and multitenant management
 
@@ -74,16 +97,22 @@ For more information, see:
 
 **Audience**: Security engineers
 
+**Video**: [Managing connectors in Microsoft Defender](https://youtu.be/IW9WOhhLbmY?si=XX4IXe47o9bXnWlV)
+
 ### Confirm and configure data collection
 
 When Microsoft Sentinel is integrated with Microsoft Defender, the fundamental architecture of data collection and telemetry flow remains intact. Existing connectors that were configured in Microsoft Sentinel, whether for Microsoft Defender products or other data sources, continue operating without interruption.
 
 From a Log Analytics perspective, Microsoft Sentinel’s integration into Microsoft Defender introduces no change to the underlying ingestion pipeline or data schema. Despite the front-end unification, the Microsoft Sentinel backend remains fully integrated with Log Analytics for data storage, search, and correlation.
 
+Alerts related to Defender products are streamed directly from the [Microsoft Defender XDR connector](/azure/sentinel/connect-microsoft-365-defender) to ensure consistency. Make sure that you have incidents and alerts from this connector turned on in your workspace. Once you have this data connector configured in your workspace, [offboarding the workspace from Microsoft Defender](/unified-secops/microsoft-sentinel-onboard#offboard-microsoft-sentinel) also disconnects the Microsoft Defender XDR connector.
+
+For more information, see [Connect data from Microsoft Defender XDR to Microsoft Sentinel](connect-microsoft-365-defender.md).
+
 #### Integrate with Microsoft Defender for Cloud
 
 - If you're using the tenant-based data connector for Defender for Cloud, make sure to take action to prevent duplicate events and alerts. 
-- If you're using the legacy, subscription-based connector instead, make sure to opt out of synching incidents and alerts to Microsoft Defender.
+- If you're using the legacy, subscription-based connector instead, make sure to opt out of syncing incidents and alerts to Microsoft Defender.
 
 For more information, see [Alerts and incidents in Microsoft Defender](/azure/defender-for-cloud/concept-integration-365#microsoft-sentinel-customers).
 
@@ -156,6 +185,16 @@ The following table lists fields that are important in the response snippets, an
 
 **Audience**: Security analysts
 
+**Videos**:
+
+- [Discover and manage Microsoft Sentinel content and threat intelligence in Microsoft Defender](https://youtu.be/HQ4JxM8-v5g?si=tMdCCMYOkPv28m_w)
+- [Create automation and workbooks in Microsoft Defender](https://youtu.be/Lc0T_hPTug4?si=TgEpXViwxet7M7t1)
+- [Alert correlation in Microsoft Defender](https://youtu.be/GIIxN1dMJTc?si=7VEO6asJA6dBC-V0)
+- [Incident investigation in Microsoft Defender](https://youtu.be/BnZBVm8ZGsY?si=I-uHGASquUrr4xN5)
+- [Case management in Microsoft Defender](https://youtu.be/TxLz-NsxcrM?si=hgg3DujUICLozuYt)
+- [Advanced hunting in Microsoft Defender](https://youtu.be/06ukKCHMkeY?si=520Gg8JNmRVYUXKD)
+- [SOC optimizations in Microsoft Defender](https://youtu.be/-Cv5K8A4kfY?si=3o9xVB7WnfH0E3VR)
+
 ### Update incident triage processes for the Defender portal
 
 If you've used Microsoft Sentinel in the Azure portal, you'll notice significant user experience enhancements in the Defender portal. While you may need to update SOC processes and retrain your analysts, the design consolidates all relevant information in a single place to provide more streamlined and efficient workflows.
@@ -194,7 +233,7 @@ For more information, see [Incidents and alerts in the Microsoft Defender portal
 
 ### Note changes for investigations with Advanced hunting
 
-After onboarding Microsoft Sentinel to the Defender portal, access and use all your existing Kusto Query Language (KQL) queries and functions in the **Advanced hunting** page.
+After onboarding Microsoft Sentinel to the Defender portal, access and use all your existing log tables, Kusto Query Language (KQL) queries, and functions in the **Advanced hunting** page. All Microsoft Sentinel alerts that are tied to incidents are ingested into the `AlertInfo` table, accessible from the **Advanced hunting** page.
 
 Some differences exist, such as:
 
@@ -220,6 +259,9 @@ Most functionalities of User and Entity Behavior Analytics (UEBA) remain the sam
 - Adding entities to threat intelligence from incidents is supported only in the Azure portal. For more information, see [Add entity to threat indicators](add-entity-to-threat-intelligence.md).
 
 - After onboarding Microsoft Sentinel to the Defender portal, the `IdentityInfo` table used in the Defender portal includes unified fields from both Defender XDR and Microsoft Sentinel. Some fields that existed when used in the Azure portal are either renamed in the Defender portal, or aren't supported at all. We recommend that you check your queries for any references to these fields and update them as needed. For more information, see [IdentityInfo table](ueba-reference.md?tabs=unified-table#identityinfo-table).
+
+> [!IMPORTANT]
+> When you transition to the Defender portal, the `IdentityInfo` table becomes a native Defender table that doesn't support table-level role-based access control (RBAC). If your organization uses table-level RBAC to restrict access to the `IdentityInfo` table in the Azure portal, this access control will no longer be available after you transition to the Defender portal.
 
 ### Update investigation processes to use Microsoft Defender threat intelligence
 
@@ -247,13 +289,16 @@ For more information, see:
 
 Azure workbooks continue to be the primary tool for data visualization and interaction in the Defender portal, functioning as they did in the Azure portal.
 
-To use workbooks with data from Advanced hunting, make sure that you ingest logs into Microsoft Sentinel. While workbooks themselves keep you in the Defender portal, buttons or links that are programmed to open pages or resources in the Azure portal continue to open a separate tab for the Azure portal.
+To use workbooks with data from Advanced hunting, make sure that you ingest logs into Microsoft Sentinel.
 
 For more information, see [Visualize and monitor your data by using workbooks in Microsoft Sentinel](monitor-your-data.md).
+
+### Similar incidents (Preview) aren't supported in the Defender portal
+
+The Microsoft Sentinel [similar incidents](investigate-cases.md#similar-incidents-preview) feature is in Preview, isn't supported in the Defender portal. This means that when viewing an incident details page in the Defender portal, the **Similar incidents** tab isn't available.
 
 ## Related content
 
 - [The Best of Microsoft Sentinel - now in Microsoft Defender](https://techcommunity.microsoft.com/blog/MicrosoftThreatProtectionBlog/the-best-of-microsoft-sentinel-%E2%80%94-now-in-microsoft-defender/4415822) (blog)
 - Watch the webinar: [Transition to the Unified SOC Platform: Deep Dive and Interactive Q&A for SOC Professionals](https://www.youtube.com/watch?v=WIM6fbJDkK4).
 - See frequently asked questions in the [TechCommunity blog](https://techcommunity.microsoft.com/blog/microsoftsentinelblog/unified-security-operations-platform---technical-faq/4189136) or the [Microsoft Community Hub](https://techcommunity.microsoft.com/blog/microsoftsentinelblog/frequently-asked-questions-about-the-unified-security-operations-platform/4212048).
-

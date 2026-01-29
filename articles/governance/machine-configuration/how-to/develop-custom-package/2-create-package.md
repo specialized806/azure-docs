@@ -1,8 +1,9 @@
 ---
 title: How to create custom machine configuration package artifacts
 description: Learn how to create a machine configuration package file.
-ms.date: 02/01/2024
+ms.date: 07/22/2025
 ms.topic: how-to
+ms.custom: references_regions
 ---
 # How to create custom machine configuration package artifacts
 
@@ -49,6 +50,10 @@ This example configuration is for Windows machines. It configures the machine to
 variable sets to `'This was set by machine configuration'`.
 
 ```powershell
+Install-Module -Name PSDscResources
+```
+
+```powershell
 Configuration MyConfig {
     Import-DscResource -Name 'Environment' -ModuleName 'PSDscResources'
     Environment MachineConfigurationExample {
@@ -56,6 +61,26 @@ Configuration MyConfig {
         Value  = 'This was set by machine configuration'
         Ensure = 'Present'
         Target = @('Process', 'Machine')
+    }
+}
+
+MyConfig
+```
+
+This example configuration is for Linux machines. It creates a file at the path `/tmp/myfile`, sets its content to `Hello, world!`, and configures the file with mode `0777`.
+
+```powershell
+Install-Module -Name nxtools
+```
+
+```powershell
+Configuration MyConfig {
+    Import-DscResource -ModuleName 'nxtools'
+    nxFile MyFile {
+        Ensure = 'Present'
+        DestinationPath = '/tmp/myfile'
+        Contents = 'Hello, world!'
+        Mode ='0777'
     }
 }
 
@@ -149,6 +174,17 @@ $params = @{
 }
 New-GuestConfigurationPackage @params
 ```
+```powershell
+# Create a package that will audit the configuration at 180 minute intervals
+$params = @{
+    Name          = 'MyConfig'
+    Configuration = './MyConfig/MyConfig.mof'
+    Type          = 'Audit'
+    Force         = $true
+    FrequencyMinutes = 180
+}
+New-GuestConfigurationPackage @params
+```
 
 An object is returned with the **Name** and **Path** of the created package.
 
@@ -221,7 +257,7 @@ third-party platform in the content artifact.
 > [Test a custom machine configuration package](./3-test-package.md)
 
 <!-- Reference link definitions -->
-[01]: ../../overview.md
+[01]: ../../overview/01-overview-concepts.md
 [02]: /powershell/dsc/overview?view=dsc-2.0&preserve-view=true
 [03]: ./1-set-up-authoring-environment.md
 [05]: /powershell/dsc/resources/authoringResourceClass

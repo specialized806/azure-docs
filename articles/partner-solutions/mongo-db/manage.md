@@ -1,15 +1,15 @@
 ---
-title: Manage a MongoDB Atlas Resource Through the Azure portal
-description: This article describes management functions for MongoDB Atlas in the Azure portal.
+title: Manage a MongoDB Atlas Resource
+description: Learn how to manage MongoDB Atlas resources in the Azure portal.
 ms.topic: how-to
-ms.date: 05/22/2025
+ms.date: 07/24/2025
 ---
 
 # Manage a MongoDB Atlas resource
 
 This article describes how to manage the settings for MongoDB Atlas resources.
 
-## Open a resource overview
+## Resource overview
 
 [!INCLUDE [manage](../includes/manage.md)]
 
@@ -41,6 +41,15 @@ To access your MongoDB Atlas account, select **Go to MongoDB Atlas** on the work
 ## Delete a resource
 
 [!INCLUDE [delete-resource](../includes/delete-resource.md)]
+
+> [!IMPORTANT]
+> Following these steps deletes your MongoDB Atlas Azure resource, but doesn't delete the organization in Atlas. To learn how to delete your Atlas organization, see [Delete an organization](https://www.mongodb.com/docs/atlas/access/orgs-create-view-edit-delete/#delete-an-organization) in MongoDB's documentation.
+
+## Get support
+
+Contact [MongoDB Atlas](https://www.mongodb.com/company/contact) for customer support. 
+
+You can also request support in the Azure portal from the [resource overview](#resource-overview). Select **Support + Troubleshooting** > **New support request** from the service menu, then choose the link to [log a support request in the MongoDB portal](https://www.mongodb.com/company/contact).
 
 ## Related content
 

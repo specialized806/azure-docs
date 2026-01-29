@@ -29,7 +29,7 @@ To get started, you'll need:
 
 * An Azure subscription
 
-  - If you don't have one, you can get an [Azure free account](https://azure.microsoft.com/free/)
+  - If you don't have one, you can get an [Azure free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 - [An Azure AD B2C tenant](./tutorial-create-tenant.md) linked to your Azure subscription
 - A WhoIAM trial account
   - Go to [WhoIAM, Contact us](https://www.whoiam.ai/contact-us/) to get started
@@ -60,7 +60,7 @@ The following diagram shows the implementation architecture.
 
     * [Key Vault](https://azure.microsoft.com/services/key-vault/): Store passwords
     * [App Service](https://azure.microsoft.com/services/app-service/): Host the BRIMS API and admin portal services
-    * [Microsoft Entra ID](https://azure.microsoft.com/services/active-directory/): Authenticate administrative users for the portal
+    * [Microsoft Entra ID](https://www.microsoft.com/en-us/security/business/identity-access/microsoft-entra-id): Authenticate administrative users for the portal
     * [Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/): Store and retrieve settings
     * [Application Insights overview](/azure/azure-monitor/app/app-insights-overview) (optional): Sign in to the API and the portal
 

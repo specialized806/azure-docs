@@ -5,8 +5,15 @@ ms.topic: reference
 ms.date: 05/12/2024
 ms.devlang: csharp
 # ms.devlang: csharp, java, javascript, powershell, python
-ms.custom: devx-track-csharp, devx-track-python, devx-track-extended-java, devx-track-js, devx-track-ts
 zone_pivot_groups: programming-languages-set-functions
+ms.custom:
+  - devx-track-csharp
+  - devx-track-python
+  - devx-track-extended-java
+  - devx-track-js
+  - devx-track-ts
+  - build-2025
+  - sfi-ropc-nochange
 ---
 
 # Azure Blob storage input binding for Azure Functions
@@ -116,6 +123,8 @@ In the [Java functions runtime library](/java/api/overview/azure/functions/runti
 
 # [Model v4](#tab/nodejs-v4)
 
+[!INCLUDE [functions-blob-storage-sdk-types-node](../../includes/functions-blob-storage-sdk-types-node.md)]
+
 The following example shows a queue triggered [TypeScript function](functions-reference-node.md?tabs=typescript) that makes a copy of a blob. The function is triggered by a queue message that contains the name of the blob to copy. The new blob is named *{originalblobname}-Copy*.
 
 :::code language="typescript" source="~/azure-functions-nodejs-v4/ts/src/functions/storageBlobInputAndOutput1.ts" :::
@@ -219,7 +228,7 @@ Write-Host "PowerShell Blob trigger: Name: $($TriggerMetadata.Name) Size: $($Inp
 
 This example uses SDK types to directly access the underlying `BlobClient` object provided by the Blob storage input binding: 
 
-:::code language="python" source="~/functions-python-extensions/azurefunctions-extensions-bindings-blob/samples/blob_samples_blobclient/function_app.py" range="9-14,42-52"::: 
+:::code language="python" source="~/functions-python-extensions/azurefunctions-extensions-bindings-blob/samples/blob_samples_blobclient/function_app.py" range="9-12,40-50"::: 
 
 For examples of using other SDK types, see the [`ContainerClient`](https://github.com/Azure/azure-functions-python-extensions/blob/dev/azurefunctions-extensions-bindings-blob/samples/blob_samples_containerclient/function_app.py) and [`StorageStreamDownloader`](https://github.com/Azure/azure-functions-python-extensions/blob/dev/azurefunctions-extensions-bindings-blob/samples/blob_samples_storagestreamdownloader/function_app.py) samples. For a step-by-step tutorial on how to include SDK-type bindings in your function app, follow the [Python SDK Bindings for Blob Sample](https://github.com/Azure-Samples/azure-functions-blob-sdk-bindings-python).
 
@@ -236,11 +245,11 @@ app = func.FunctionApp()
 @app.function_name(name="BlobOutput1")
 @app.route(route="file")
 @app.blob_input(arg_name="inputblob",
-                path="sample-workitems/test.txt",
-                connection="<BLOB_CONNECTION_SETTING>")
+                path="PATH/TO/BLOB",
+                connection="CONNECTION_SETTING")
 @app.blob_output(arg_name="outputblob",
-                path="newblob/test.txt",
-                connection="<BLOB_CONNECTION_SETTING>")
+                path="PATH/TO/NEW/BLOB",
+                connection="CONNECTION_SETTING")
 def main(req: func.HttpRequest, inputblob: str, outputblob: func.Out[str]):
     logging.info(f'Python Queue trigger function processed {len(inputblob)} bytes')
     outputblob.set(inputblob)
@@ -476,7 +485,7 @@ Access the blob data via a parameter that matches the name designated by binding
 ::: zone pivot="programming-language-python"  
 Access blob data via the parameter typed as [InputStream](/python/api/azure-functions/azure.functions.inputstream). Refer to the [input example](#example) for details.
 
-Functions also support Python SDK type bindings for Azure Blob storage, which lets you work with blob data using these underlying SDK types:
+Functions also supports Python SDK type bindings for Azure Blob storage, which lets you work with blob data using these underlying SDK types:
 
 + [`BlobClient`](/python/api/azure-storage-blob/azure.storage.blob.blobclient)
 + [`ContainerClient`](/python/api/azure-storage-blob/azure.storage.blob.containerclient)

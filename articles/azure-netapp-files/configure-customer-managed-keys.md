@@ -1,13 +1,17 @@
 ---
-title: Configure customer-managed keys for Azure NetApp Files volume encryption | Microsoft Docs
+title: Configure customer-managed keys for Azure NetApp Files volume encryption
 description: Describes how to configure customer-managed keys for Azure NetApp Files volume encryption.
 services: azure-netapp-files
 author: b-ahibbard
 ms.service: azure-netapp-files
 ms.topic: how-to
-ms.custom: devx-track-azurecli, devx-track-azurepowershell
-ms.date: 04/25/2025
+ms.date: 06/20/2025
 ms.author: anfdocs
+ms.custom:
+  - devx-track-azurecli
+  - devx-track-azurepowershell
+  - sfi-image-nochange
+# Customer intent: As a cloud administrator, I want to configure customer-managed keys for Azure NetApp Files volume encryption so that I can maintain control over the key lifecycle and enhance the security of my encrypted data.
 ---
 
 # Configure customer-managed keys for Azure NetApp Files volume encryption
@@ -26,20 +30,18 @@ The following diagram demonstrates how customer-managed keys work with Azure Net
     Customer-managed keys don't affect performance of Azure NetApp Files. Its only difference from platform-managed keys is how the key is managed.
 1. For read/write operations, Azure NetApp Files sends requests to Azure Key Vault to unwrap the account encryption key to perform encryption and decryption operations.
 
-Cross-tenant customer-managed keys is available in all Azure NetApp Files supported regions.
+The cross-tenant customer-managed keys feature is available in all Azure NetApp Files supported regions.
 
 ## Considerations
 
+>[!IMPORTANT]  
+> To configure customer-managed keys for Elastic zone-redundant storage, see [Configure customer managed keys for Elastic zone-redundant storage](elastic-customer-managed-keys.md).
+
+[!INCLUDE [Customer-managed keys considerations](includes/customer-managed-keys-considerations.md)]
+
 * To create a volume using customer-managed keys, you must select the *Standard* network features. You can't use customer-managed key volumes with volume configured using Basic network features. Follow instructions in to [Set the Network Features option](configure-network-features.md#set-the-network-features-option) in the volume creation page.
-* For increased security, you can select the **Disable public access** option within the network settings of your key vault. When selecting this option, you must also select **Allow trusted Microsoft services to bypass this firewall** to permit the Azure NetApp Files service to access your encryption key.
-* Customer-managed keys support automatic Managed System Identity (MSI) certificate renewal. If your certificate is valid, you don't need to manually update it. 
 * If Azure NetApp Files fails to create a customer-managed key volume, error messages are displayed. For more information, see [Error messages and troubleshooting](troubleshoot-customer-managed-keys.md).
-* Do not make any changes to the underlying Azure Key Vault or Azure Private Endpoint after creating a customer-managed keys volume. Making changes can make the volumes inaccessible. If you must make changes, see [Update the private endpoint IP for customer-managed keys](#update-the-private-endpoint).
 * Azure NetApp Files supports the ability to [transition existing volumes from platform-managed keys (PMK) to customer-managed keys (CMK) without data migration](#transition-volumes). This provides flexibility with the encryption key lifecycle (renewals, rotations) and extra security for regulated industry requirements.
-* If Azure Key Vault becomes inaccessible, Azure NetApp Files loses its access to the encryption keys and the ability to read or write data to volumes enabled with customer-managed keys. In this situation, create a support ticket to have access manually restored for the affected volumes.
-* Azure NetApp Files supports customer-managed keys on source and data replication volumes with cross-region replication or cross-zone replication relationships.
-* Applying Azure network security groups (NSG) on the private link subnet to Azure Key Vault is supported for Azure NetApp Files customer-managed keys. NSGs don’t affect connectivity to private links unless a private endpoint network policy is enabled on the subnet.
-* Wrap/unwrap is not supported. Customer-managed keys uses encrypt/decrypt. For more information, see [RSA algorithms](/azure/key-vault/keys/about-keys-details#rsa-algorithms).
 
 ## Requirements
 
@@ -313,29 +315,9 @@ You can use an Azure Key Vault that is configured to use Azure role-based access
     * [Create an SMB volume](azure-netapp-files-create-volumes-smb.md)
     * [Create a dual-protocol volume](create-volumes-dual-protocol.md)
 
-## <a name="transition"></a> Transition an Azure NetApp Files volume to customer-managed keys (preview)
+## <a name="transition"></a> Transition an Azure NetApp Files volume to customer-managed keys
 
 Azure NetApp Files supports the ability to move existing volumes using platform-managed keys to customer-managed keys. Once you complete the migration, you can't revert to platform-managed keys.
-
-### Register the feature
-
-Encryption key transition for Azure NetApp Files is currently in preview. Before using this feature for the first time, you need to register it. 
-
-1. Register the feature: 
-
-    ```azurepowershell-interactive
-    Register-AzProviderFeature -ProviderNamespace Microsoft.NetApp -FeatureName ANFMigratePmkToCmk 
-    ```
-
-2. Check the status of the feature registration: 
-
-    ```azurepowershell-interactive
-    Get-AzProviderFeature -ProviderNamespace Microsoft.NetApp -FeatureName ANFMigratePmkToCmk
-    ```
-    > [!NOTE]
-    > The **RegistrationState** can remain in the `Registering` state for up to 60 minutes before changing to `Registered`. Wait until the status is **Registered** before continuing.
-
-You can also use [Azure CLI commands](/cli/azure/feature) `az feature register` and `az feature show` to register the feature and display the registration status. 
 
 ### Transition volumes
 

@@ -7,8 +7,9 @@ ms.custom:
 ms.topic: quickstart
 ms.date: 05/22/2025
 ms.service: azure-backup
-author: jyothisuri
-ms.author: jsuri
+author: AbhishekMallick-MS
+ms.author: v-mallicka
+# Customer intent: As a cloud administrator, I want to configure vaulted backup for Azure Files using Terraform, so that I can ensure secure and reliable data protection against ransomware and other threats.
 ---
 
 #  Quickstart: Configure vaulted backup for Azure Files using Azure Terraform
@@ -23,7 +24,7 @@ This quickstart describes how to configure vaulted backup for Azure Files using 
 
 Before you configure vaulted backup for Azure Files, ensure that  the following prerequisites are met:
 
-- Use an Azure account with an active subscription. If you don't have one, [create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+- Use an Azure account with an active subscription. If you don't have one, [create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - [Install and configure Terraform](/azure/developer/terraform/quickstart-configure).
 
 ## Log in to Azure account

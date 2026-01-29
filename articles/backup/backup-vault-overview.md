@@ -2,11 +2,12 @@
 title: Overview of the Backup vaults
 description: An overview of Backup vaults.
 ms.topic: overview
-ms.date: 05/28/2025
+ms.date: 01/29/2026
 ms.custom: references_regions
 ms.service: azure-backup
-author: jyothisuri
-ms.author: jsuri
+author: AbhishekMallick-MS
+ms.author: v-mallicka
+# Customer intent: As a backup administrator, I want to utilize Backup vaults to manage and secure my backup data across various Azure services, so that I can ensure data integrity, facilitate easy recovery, and minimize management overhead in our cloud environment.
 ---
 # Backup vaults overview
 
@@ -22,7 +23,7 @@ Backup vaults are based on the Azure Resource Manager model of Azure, which prov
 
 - **Data isolation**: With Azure Backup, the vaulted backup data is stored in Microsoft-managed Azure subscription and tenant. External users or guests have no direct access to this backup storage or its contents, which ensures the isolation of backup data from the production environment where the data source resides. This robust approach ensures that even in a compromised environment, existing backups can't be tampered or deleted by unauthorized users.
 
-- **Central monitoring of the V2 workloads**: With Backup Vault you can monitor all your V2 workloads from Backup jobs to alerts. Reporting capabilities for the same is available in the Azure Business Continuity Center.
+- **Central monitoring of the V2 workloads**: With Backup Vault you can monitor all your V2 workloads from Backup jobs to alerts. Reporting capabilities for the same is available in the Resiliency.
 
 ## Storage settings in the Backup vault
 
@@ -69,3 +70,4 @@ Learn [how to perform Cross Region Restore](manage-backup-vault.md#perform-cross
 
 - [Create and delete Backup vault](create-manage-backup-vault.md).
 - [Manage Backup vault](manage-backup-vault.md).
+- [Create a Backup vault using REST API](backup-azure-dataprotection-use-rest-api-create-update-backup-vault.md).

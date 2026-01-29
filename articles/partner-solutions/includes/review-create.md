@@ -5,9 +5,9 @@ ms.date: 02/18/2025
 ms.author: kkendrick
 ---
 
-If the review finds no errors, the **Create** button is enabled. Select it.
+If the review finds no errors, the **Create** button becomes active. Select **Create**.
 
-If the review identifies errors, a red dot appears next to each section where errors exist. To resolve errors:
+If the review identifies errors, a red dot appears next to each section where errors exist. To fix errors:
 
 1. Open each section that has errors and fix the errors.
 
@@ -17,6 +17,6 @@ If the review identifies errors, a red dot appears next to each section where er
 
 1. Select **Create**.
 
-The message "Deployment is in progress" appears. When the deployment is complete, the message "Your deployment is complete" appears.
+The message "Deployment is in progress" appears. When the deployment is complete, the message "Your deployment is complete" appears on the upper-right corner of the Azure portal.
 
-After the resource is created, select **Go to Resource** to view your resource.
+After the resource is created, select **Go to resource** to view your resource.

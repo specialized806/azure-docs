@@ -3,6 +3,7 @@ title: Nodes and pools in Azure Batch
 description: Learn about compute nodes and pools and how they're used in an Azure Batch workflow from a development standpoint.
 ms.topic: concept-article
 ms.date: 04/17/2025
+# Customer intent: As a developer, I want to understand how to create and manage compute nodes and pools in a cloud-based workload system, so that I can effectively scale and optimize resource allocation for my applications.
 ---
 # Nodes and pools in Azure Batch
 
@@ -84,7 +85,7 @@ To learn how to create a pool with custom images, see [Use the Azure Compute Gal
 
 ### Container support in Virtual Machine pools
 
-When creating a Virtual Machine Configuration pool using the Batch APIs, you can set up the pool to run tasks in Docker containers. Currently, you must create the pool using an image that supports Docker containers. Use the Windows Server 2016 Datacenter with Containers image from the Azure Marketplace, or supply a custom VM image that includes Docker Community Edition or Enterprise Edition and any required drivers. The pool settings must include a [container configuration](/rest/api/batchservice/pool/add) that copies container images to the VMs when the pool is created. Tasks that run on the pool can then reference the container images and container run options.
+When creating a Virtual Machine Configuration pool using the Batch APIs, you can set up the pool to run tasks in Docker containers. Currently, you must create the pool using an image that supports Docker containers. Use the Windows Server 2016 Datacenter with Containers image from the Azure Marketplace, or supply a custom VM image that includes Docker Community Edition or Enterprise Edition and any required drivers. The pool settings must include a [container configuration](/rest/api/batchservice/pools/create-pool) that copies container images to the VMs when the pool is created. Tasks that run on the pool can then reference the container images and container run options.
 
 For more information, see [Run Docker container applications on Azure Batch](batch-docker-container-workloads.md).
 
@@ -185,13 +186,13 @@ A combined approach is typically used for handling a variable but ongoing load. 
 
 ## Autopools
 
-An [autopool](/rest/api/batchservice/job/add#autopoolspecification) is a pool that the Batch service creates when a job is submitted, rather than being created explicitly before the jobs that will run in the pool. The Batch service manages the lifetime of an autopool according to the characteristics that you specify. Most often, these pools are also set to delete automatically after their jobs complete.
+An [autopool](/rest/api/batchservice/jobs/create-job) is a pool that the Batch service creates when a job is submitted, rather than being created explicitly before the jobs that will run in the pool. The Batch service manages the lifetime of an autopool according to the characteristics that you specify. Most often, these pools are also set to delete automatically after their jobs complete.
 
 ## Security with certificates
 
 You typically need to use certificates when you encrypt or decrypt sensitive information for tasks, like the key for an [Azure Storage account](accounts.md#azure-storage-accounts). To support this, you can install certificates on nodes. Encrypted secrets are passed to tasks via command-line parameters or embedded in one of the task resources, and the installed certificates can be used to decrypt them.
 
-You use the [Add certificate](/rest/api/batchservice/certificate/add) operation (Batch REST) or [CertificateOperations.CreateCertificate](/dotnet/api/microsoft.azure.batch.certificateoperations) method (Batch .NET) to add a certificate to a Batch account. You can then associate the certificate with a new or existing pool.
+You use the [Add certificate](/rest/api/batchservice/) operation (Batch REST) or [CertificateOperations.CreateCertificate](/dotnet/api/microsoft.azure.batch.certificateoperations) method (Batch .NET) to add a certificate to a Batch account. You can then associate the certificate with a new or existing pool.
 
 When a certificate is associated with a pool, the Batch service installs the certificate on each node in the pool. The Batch service installs the appropriate certificates when the node starts up, before launching any tasks (including the [start task](jobs-and-tasks.md#start-task) and [job manager task](jobs-and-tasks.md#job-manager-task)).
 

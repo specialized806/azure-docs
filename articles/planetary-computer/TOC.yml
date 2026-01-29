@@ -10,8 +10,10 @@
     href: stac-overview.md
   - name: Supported data types
     href: supported-data-types.md
+  - name: Service usage meters
+    href: service-usage-meters.md
   expanded: true
-- name: Deploy & setup
+- name: Deploy & set up
   items:
   - name: Get started with Microsoft Planetary Computer Pro
     href: get-started-planetary-computer.md
@@ -37,7 +39,7 @@
     href: ingestion-overview.md
   - name: Ingestion sources
     href: ingestion-source.md
-  - name: Setup an ingestion source using managed identity through the UI
+  - name: Set up an ingestion source using managed identity through the UI
     href: set-up-ingestion-credentials-managed-identity.md
   - name: Set up ingestion source using SAS tokens
     href: set-up-ingestion-credentials-sas-tokens.md
@@ -47,14 +49,20 @@
     href: create-stac-item.md
   - name: Add a STAC item to a collection
     href: add-stac-item-to-collection.md
-  - name: Bulk ingest data
+  - name: Bulk ingestion
     href: bulk-ingestion-api.md
+  - name: Troubleshooting ingestion
+    href: troubleshooting-ingestion.md
+  - name: Error codes from ingestion
+    href: error-codes-ingestion.md
 - name: Configure collections for visualization
   items:
   - name: Collection configuration overview
     href: collection-configuration-concept.md
   - name: Configure collections for visualization
     href: configure-collection-web-interface.md
+  - name: Data visualization sample gallery
+    href: data-visualization-samples.md
   - name: Mosaic configuration
     href: mosaic-configurations-for-collections.md
   - name: Render configuration
@@ -65,18 +73,20 @@
     href: queryables-for-explorer-custom-search-filter.md
   - name: Supported color maps
     href: supported-colormaps.md
-  - name: Visualize assets
-    href: visualize-assets.md
-- name: Build and use applications
+- name: Connect and build applications
   items:
-  - name: Build applications
+  - name: Connect and build applications with your data
     href: build-applications-with-planetary-computer-pro.md
   - name: Use the explorer
     href: use-explorer.md
   - name: Application authentication
     href: application-authentication.md
+  - name: Build a web application
+    href: build-web-application.md
   - name: Connect to ArcGIS Pro
     href: create-connection-arc-gis-pro.md
+  - name: Connect to QGIS
+    href: configure-qgis.md
   - name: Azure Batch and Microsoft Planetary Computer Pro
     href: azure-batch.md
   - name: API Reference
@@ -87,7 +97,5 @@
     href: data-cube-overview.md
   - name: Get Started with data cubes
     href: data-cube-quickstart.md
-  - name: Visualize data cubes
-    href: visualize-assets.md
   - name: Get a collection SAS token
     href: get-collection-sas-token.md

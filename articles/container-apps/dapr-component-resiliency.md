@@ -3,12 +3,18 @@ title: Dapr component resiliency (preview)
 titleSuffix: Azure Container Apps
 description: Learn how to make your Dapr components resilient in Azure Container Apps.
 services: container-apps
-author: hhunter-ms
+author: greenie-msft
 ms.service: azure-container-apps
+ms.subservice: dapr
 ms.topic: conceptual
 ms.date: 11/19/2024
-ms.author: hannahhunter
-ms.custom: ignite-fall-2023, ignite-2023, devx-track-azurecli
+ms.author: nigreenf
+ms.reviewer: hannahhunter
+ms.custom:
+  - ignite-fall-2023
+  - ignite-2023
+  - devx-track-azurecli
+  - sfi-image-nochange
 # Customer Intent: As a developer, I'd like to learn how to make my container apps resilient using Azure Container Apps.
 ---
 

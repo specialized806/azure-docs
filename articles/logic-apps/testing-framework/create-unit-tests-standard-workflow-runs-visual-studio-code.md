@@ -7,18 +7,13 @@ author: wsilveiranz
 ms.author: wsilveira
 ms.reviewer: estfan, azla
 ms.topic: how-to
-ms.date: 04/24/2025
+ms.date: 06/09/2025
 
 ---
 
-# Create unit tests from Standard workflow runs in Azure Logic Apps with Visual Studio Code (Preview)
+# Create unit tests from Standard workflow runs in Azure Logic Apps with Visual Studio Code
 
 [!INCLUDE [logic-apps-sku-standard](../../../includes/logic-apps-sku-standard.md)]
-
-> [!NOTE]
->
-> This capability is in preview and is subject to the 
-> [**Supplemental Terms of Use for Microsoft Azure Previews**](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
 Unit testing is an essential practice that keeps your app or solution reliable and accurate throughout the software development lifecycle. Unit tests help you efficiently and systematically validate the key components in your solution.
 
@@ -44,7 +39,7 @@ This guide shows how to create a unit test definition from a workflow run. This 
 
 ## Prerequisites
 
-- An Azure account and subscription. If you don't have a subscription, [sign up for a free Azure account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+- An Azure account and subscription. If you don't have a subscription, [sign up for a free Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 - A Standard logic app project in Visual Studio Code that contains at least one previously and locally executed workflow to use for creating a unit test.
 
@@ -365,5 +360,5 @@ public CallExternalAPIActionMock CallExternalAPIActionMockOutputCallback(TestExe
 
 ## Related content
 
-[Create unit tests from Standard workflow definitions in Azure Logic Apps with Visual Studio Code](create-unit-tests-Standard-workflow-definitions-visual-studio-code.md)
+* [Create unit tests from Standard workflow definitions in Azure Logic Apps with Visual Studio Code](create-unit-tests-Standard-workflow-definitions-visual-studio-code.md)
 

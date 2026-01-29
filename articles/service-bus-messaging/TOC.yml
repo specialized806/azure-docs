@@ -126,10 +126,10 @@
       href: service-bus-transactions.md
     - name: Optimize performance
       href: service-bus-performance-improvements.md
-    - name: Geo-Disaster Recovery
-      href: service-bus-geo-dr.md
     - name: Geo-Replication
       href: service-bus-geo-replication.md
+    - name: Geo-Disaster Recovery (metadata only)
+      href: service-bus-geo-dr.md
     - name: Asynchronous messaging and high availability
       href: service-bus-async-messaging.md
     - name: Handling outages and disasters
@@ -176,6 +176,8 @@
       href: ./security-controls-policy.md
     - name: Network security
       href: network-security.md
+    - name: Network security perimeter
+      href: network-security-perimeter.md
   - name: Integration with other services
     items:
     - name: Azure Service Bus and Azure Event Grid integration
@@ -381,7 +383,7 @@
   - name: Build your skills with Microsoft Learn training
     href: /training/browse/?products=azure-service-bus
   - name: Azure Roadmap
-    href: https://azure.microsoft.com/roadmap/?category=enterprise-integration
+    href: https://azure.microsoft.com/updates?filters=%5B%22Service+Bus%22%5D
   - name: Blog
     href: /archive/blogs/servicebus/
   - name: Microsoft Q&A question page
@@ -397,4 +399,4 @@
   - name: Stack Overflow
     href: https://stackoverflow.com/questions/tagged/azureservicebus
   - name: Videos
-    href: https://azure.microsoft.com/documentation/videos/index/?services=service-bus
+    href: /shows/mvp-azure/?terms=service%20bus

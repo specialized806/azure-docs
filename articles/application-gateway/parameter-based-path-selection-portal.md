@@ -8,12 +8,13 @@ ms.topic: how-to
 ms.date: 09/10/2024
 ms.author: mbender
 ms.custom: mvc
+# Customer intent: As an application administrator, I want to configure parameter-based path selection using URL rewrite rules in the application gateway, so that I can dynamically route traffic to different backend pools based on query string values or other request parameters.
 ---
 # Perform parameter-based path selection with Azure Application Gateway - Azure portal
 
 This article describes how to use the Azure portal to configure an [Azure Application Gateway v2 SKU](./application-gateway-autoscaling-zone-redundant.md) instance to perform parameter-based path selection by combining the capabilities of URL Rewrite with path-based routing.
 
-If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
+If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 
 ## Before you begin
 

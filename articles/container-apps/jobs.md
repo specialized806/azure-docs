@@ -4,10 +4,13 @@ description: Learn about jobs in Azure Container Apps
 services: container-apps
 author: craigshoemaker
 ms.service: azure-container-apps
-ms.custom: build-2023, devx-track-azurecli
 ms.topic: conceptual
 ms.date: 12/19/2024
 ms.author: cshoe
+ms.custom:
+  - build-2023
+  - devx-track-azurecli
+  - sfi-ropc-nochange
 ---
 
 # Jobs in Azure Container Apps
@@ -36,7 +39,7 @@ The following table compares common scenarios for apps and jobs:
 | A job that processes a single message or a small batch of messages from an Azure queue and exits | Job | Use the *Event* job type and [configure a custom scale rule](tutorial-event-driven-jobs.md) to trigger job executions when there are messages in the queue. |
 | A background task that's triggered on-demand and exits when finished | Job | Use the *Manual* job type and [start executions](#start-a-job-execution-on-demand) manually or programmatically using an API. |
 | A self-hosted GitHub Actions runner or Azure Pipelines agent | Job | Use the *Event* job type and configure a [GitHub Actions](tutorial-ci-cd-runners-jobs.md?pivots=container-apps-jobs-self-hosted-ci-cd-github-actions) or [Azure Pipelines](tutorial-ci-cd-runners-jobs.md?pivots=container-apps-jobs-self-hosted-ci-cd-azure-pipelines) scale rule. |
-| An Azure Functions app | App | [Deploy Azure Functions to Container Apps](../azure-functions/functions-container-apps-hosting.md). |
+| An Azure Functions app | App | [Deploy Azure Functions to Container Apps](../container-apps/functions-overview.md). |
 | An event-driven app using the Azure WebJobs SDK | App | [Configure a scale rule](scale-app.md#custom) for each event source. |
 
 ## Concepts
@@ -507,7 +510,7 @@ The following table includes the job settings that you can configure:
 | Job type | `triggerType` | `--trigger-type` | The type of job. (`Manual`, `Schedule`, or `Event`) |
 | Replica timeout | `replicaTimeout` | `--replica-timeout` | The maximum time in seconds to wait for a replica to complete. |
 | Polling interval | `pollingInterval` | `--polling-interval` | The time in seconds to wait between polling for events. Default is 30 seconds. |
-| Replica retry limit | `replicaRetryLimit` | `--replica-retry-limit` | The maximum number of times to retry a failed replica. To fail a replica without retrying, set the value to `0`. |
+| Replica retry limit | `replicaRetryLimit` | `--replica-retry-limit` | The maximum number of times to retry a failed replica. To fail a replica without retrying, set the value to `0`. The `replicaTimeout` setting takes precedence if it expires before all retries occur. |
 | Parallelism | `parallelism` | `--parallelism` | The number of replicas to run per execution. For most jobs, set the value to `1`. |
 | Replica completion count | `replicaCompletionCount` | `--replica-completion-count` | The number of replicas to complete successfully for the execution to succeed. Most be equal or less than the parallelism. For most jobs, set the value to `1`. |
 

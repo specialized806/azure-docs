@@ -5,10 +5,11 @@ ms.devlang: azurecli
 ms.custom:
   - ignite-2024
 ms.topic: tutorial
-ms.date: 05/22/2025
+ms.date: 01/29/2026
 ms.service: azure-backup
-author: jyothisuri
-ms.author: jsuri
+author: AbhishekMallick-MS
+ms.author: v-mallicka
+# Customer intent: As an IT administrator, I want to back up Azure Files using the portal so that I can ensure data protection against accidental or malicious deletions without maintaining on-premises infrastructure.
 ---
 
 #  Tutorial: Back up Azure Files using Azure portal

@@ -8,11 +8,15 @@ ms.date: 03/15/2021
 ms.topic: concept-article
 ms.service: azure-storage
 ms.subservice: storage-partner-integration
+# Customer intent: As a cloud architect, I want to evaluate storage solutions from verified partners for container management, so that I can automate data protection and optimize storage management for our Kubernetes-based applications in Azure.
 ---
 
 # Azure Storage container management partners
 
 This article highlights Microsoft partner solutions that enable automation, data protection, and storage management of container-based solutions at scale.
+
+> [!NOTE]
+> While Azure Storage works closely with our partners, support for any partner solution is provided by the partner, not Azure Support. You will need to open a case with the partner's support organization and then, if necessary, open a case with Azure Support to troubleshoot Azure infrastructure events that may be connected to the issue.
 
 ## Verified partners
 

@@ -4,9 +4,11 @@ description: Learn to record and query data collected using OpenTelemetry in Azu
 services: container-apps
 author: craigshoemaker
 ms.service: azure-container-apps
-ms.date: 05/08/2025
+ms.date: 12/09/2025
 ms.author: cshoe
 ms.topic: how-to
+ms.custom:
+  - build-2025
 ---
 
 # Collect and read OpenTelemetry data in Azure Container Apps
@@ -265,7 +267,7 @@ using '<BICEP_TEMPLATE_FILE>'
 param datadogapikey = az.getSecret('<SUBSCRIPTION_ID>', '<RESOURCE_GROUP_NAME>', '<KEY_VAULT_NAME>', '<SECRET_NAME>', '<SECRET_VERSION_ID>')
 ```
 
-The subscription ID has the form `123e4567-e89b-12d3-a456-426614174000`. The secret version ID has the form `123e4567e89b12d3a456426614174000`.
+The subscription ID has the form `aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e`. The secret version ID has the form `123e4567e89b12d3a456426614174000`.
 
 You can now reference the `datadogapikey` parameter in your Bicep file.
 
@@ -743,6 +745,13 @@ resource environment 'Microsoft.App/managedEnvironments@2024-10-02-preview' = {
 
 For more information, see [Microsoft.App/managedEnvironments](/azure/templates/microsoft.app/2024-02-02-preview/managedenvironments).
 
+## Data resilience
+
+In the event of a messaging inturruptions to an endpoint, the OpenTelemetry agent uses the following procedure to support data resilience: 
+
+- **In-memory buffering and retries**: The agent holds data in memory and keeps retrying (with backoff) for up to five minutes.
+- **Dropping data**: If the buffered queue fills up, or the endpoint is still down after retries, the agent discards the oldest batches to avoid running out of memory.
+
 ## Environment variables
 
 The OpenTelemetry agent automatically injects a set of environment variables into your application at runtime.
@@ -768,15 +777,29 @@ These variables are only necessary if you're using both the managed OpenTelemetr
 
 ## OpenTelemetry agent costs
 
-You're [billed](./billing.md) for the underlying compute of the agent.
+The managed OpenTelemetry agent runs at no additional compute cost to you. Microsoft provisions and manages the agent infrastructure within your Container Apps environment.
 
-See the destination service for their billing structure and terms. For example, if you send data to both Azure Monitor Application Insights and Datadog, you're responsible for the charges applied by both services.
+However, you're responsible for charges applied by the destination services where you send your telemetry data. See the destination service for their billing structure and terms. For example, if you send data to both Azure Monitor Application Insights and Datadog, you're responsible for the charges applied by both services.
+
+### Agent resource allocation
+
+The managed OpenTelemetry agent is provisioned with the following fixed resources:
+
+- **CPU**: 0.5 vCPU cores
+- **Memory**: 1.5 GB RAM  
+- **Replicas**: Single replica (not configurable)
+
+These resources are managed by Microsoft and don't appear in your billing or resource consumption metrics.
 
 ## Known limitations
 
 - System data, such as system logs or Container Apps standard metrics, isn't available to be sent to the OpenTelemetry agent.
 - The Application Insights endpoint doesn't accept metrics.
-- Configuration settings live at the environment level. You can send different data types to different destinations, but you can't split up your data by app. For example, in the same app you can send metrics to Datadog, and traces to App Insights.
+- Configuration settings live at the environment level. You can send different data types to different destinations, but you can't split up your data by app. For example, in the same app you can send metrics to Datadog, and traces to App Insights.
+- The managed agent only supports the gRPC transport protocol for telemetry data.
+- The managed OpenTelemetry agent runs as a single replica and can't be scaled or configured for high availability.
+- Agent status and health metrics aren't currently exposed in the Azure portal or through monitoring APIs.
+- Secrets (such as API keys) must be specified directly in templates - Azure Key Vault integration for agent configuration isn't currently supported.
 
 ## Frequently asked questions
 
@@ -787,6 +810,18 @@ See the destination service for their billing structure and terms. For example, 
 - **Why does the `list` command return null?**
 
     When you run `az containerapp env telemetry otlp list`, the response is `null` when the value is a sensitive token that needs protection.
+
+- **Am I charged for the OpenTelemetry agent's compute resources?**
+
+    No. Microsoft provisions and manages the agent infrastructure at no additional compute cost. You're only charged for destination services that receive your telemetry data.
+
+- **Can I scale the OpenTelemetry agent or run multiple replicas?**
+
+    No. The managed agent currently runs as a single replica with fixed resource allocation (0.5 CPU, 1.5GB RAM). High availability configurations aren't currently supported.
+
+- **How can I monitor the health and status of the OpenTelemetry agent?**
+
+    Agent status and health metrics aren't currently exposed. This capability is planned for a future release.
 
 ## Next steps
 

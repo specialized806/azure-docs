@@ -3,6 +3,8 @@ title: Azure Event Grid event schema
 description: Describes the properties and schema for the proprietary, nonextensible, yet fully functional Event Grid format. 
 ms.topic: reference
 ms.date: 09/25/2024
+ms.custom:
+  - build-2025
 ---
 
 # Azure Event Grid event schema
@@ -71,6 +73,9 @@ For example, the schema published for an Azure Blob storage event is:
   }
 ]
 ```
+
+> [!NOTE]
+> The data object is unique to each event publisher. For system topics, refer to the [Event Schema store](https://github.com/Azure/azure-rest-api-specs/tree/master/specification/eventgrid/data-plane) or the respective system topic documentation to see the exact schema for each publisher. For custom topics, the publisher defines the structure of the data object.
 
 ## Event properties
 

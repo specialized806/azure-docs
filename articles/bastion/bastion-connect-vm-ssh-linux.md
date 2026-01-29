@@ -2,12 +2,13 @@
 title: 'Connect to a Linux VM using SSH'
 titleSuffix: Azure Bastion
 description: Learn how to use Azure Bastion to connect to Linux VM using SSH.
-author: cherylmc
+author: abell
 ms.service: azure-bastion
 ms.custom: linux-related-content
 ms.topic: how-to
 ms.date: 03/31/2025
-ms.author: cherylmc
+ms.author: abell
+# Customer intent: "As a cloud administrator, I want to securely connect to a Linux VM using SSH through a managed service, so that I can ensure safe access without exposing RDP/SSH ports to the internet."
 ---
 
 # Create an SSH connection to a Linux VM using Azure Bastion
@@ -20,7 +21,7 @@ When connecting to a Linux virtual machine using SSH, you can use both username/
 
 ## Prerequisites
 
-Make sure that you have set up an Azure Bastion host for the virtual network in which the VM resides. For more information, see [Create an Azure Bastion host](./tutorial-create-host-portal.md). Once the Bastion service is provisioned and deployed in your virtual network, you can use it to connect to any VM in this virtual network.
+Make sure that you have set up an Azure Bastion host for the virtual network in which the VM resides. For more information, see [Create an Azure Bastion host](./quickstart-host-portal.md). Once the Bastion service is provisioned and deployed in your virtual network, you can use it to connect to any VM in this virtual network.
 
 The connection settings and features that are available depend on the Bastion SKU you're using. Make sure your Bastion deployment is using the required SKU.
 

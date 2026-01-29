@@ -3,12 +3,13 @@ title: Quickstart - Bicep file VM Backup
 description: Learn how to back up your virtual machines with a Bicep file
 ms.devlang: azurecli
 ms.topic: quickstart
-ms.date: 01/30/2025
+ms.date: 12/19/2025
 ms.reviewer: Daya-Patil
 ms.custom: mvc, subject-bicepqs, mode-arm, devx-track-bicep
 ms.service: azure-backup
-author: jyothisuri
-ms.author: jsuri
+author: AbhishekMallick-MS
+ms.author: v-mallicka
+# Customer intent: "As a cloud administrator, I want to back up an Azure virtual machine using a Bicep file, so that I can automate the deployment and configuration of backup resources efficiently."
 ---
 
 #  Back up a virtual machine in Azure with a Bicep file
@@ -273,11 +274,11 @@ New-AzResourceGroupDeployment -ResourceGroupName $resourceGroupName -TemplateUri
 
 ### Start a backup job
 
-The template creates a VM and enables backup on the VM. After you deploy the template, you need to start a backup job. For more information, see [Start a backup job](quick-backup-vm-powershell.md#start-a-backup-job).
+The template creates a VM and enables backup on the VM. After you deploy the template, you need to start a backup job. For more information, see [Start a backup job](quick-backup-vm-powershell.md#trigger-an-azure-vm-backup-job).
 
 ### Monitor the backup job
 
-To monitor the backup job, see [Monitor the backup job](quick-backup-vm-powershell.md#monitor-the-backup-job).
+To monitor the backup job, see [Monitor the backup job](quick-backup-vm-powershell.md#monitor-the-backup-job-for-the-azure-vm).
 
 ## Clean up resources
 

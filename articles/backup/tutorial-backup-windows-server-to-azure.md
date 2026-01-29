@@ -5,8 +5,9 @@ ms.topic: tutorial
 ms.date: 05/22/2025
 ms.custom: mvc, engagement-fy23
 ms.service: azure-backup
-author: jyothisuri
-ms.author: jsuri
+author: AbhishekMallick-MS
+ms.author: v-mallicka
+# Customer intent: As a system administrator, I want to back up my on-premises Windows Server to a cloud storage solution, so that I can protect my files and ensure data recovery in case of corruption, cyberattacks, or disasters.
 ---
 # Tutorial: Back up Windows Server to Azure
 
@@ -83,7 +84,7 @@ To configure backup and retention on the server where you downloaded the agent, 
 
 2. On the Recovery Services agent console, select **Schedule Backup** under the **Actions Pane**.
 
-    ![Screenshot shows tbe Schedule Backup option.](./media/tutorial-backup-windows-server-to-azure/mars-schedule-backup.png)
+    ![Screenshot shows the Schedule Backup option.](./media/tutorial-backup-windows-server-to-azure/mars-schedule-backup.png)
 
 3. Select **Next** to go to the **Select Items to Back up** pane.
 

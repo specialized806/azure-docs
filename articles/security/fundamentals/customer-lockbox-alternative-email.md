@@ -2,10 +2,12 @@
 title: Customer Lockbox for Microsoft Azure alternate email feature
 description: Customer Lockbox for Microsoft Azure alternate email feature
 author: msmbaldwin
-ms.service: information-protection
+ms.service: azure-information-protection
 ms.topic: article
 ms.author: mbaldwin
 ms.date: 04/16/2025
+ms.custom:
+  - build-2025
 ---
 
 # Customer Lockbox for Microsoft Azure alternate email notifications

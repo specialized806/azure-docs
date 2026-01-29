@@ -8,11 +8,12 @@ ms.service: azure-nat-gateway
 ms.topic: quickstart 
 ms.date: 04/30/2025
 ms.custom: template-quickstart, FY23 content-maintenance, linux-related-content
+# Customer intent: As a cloud engineer, I want to create a NAT gateway using various deployment methods, so that I can facilitate outbound internet connectivity for virtual machines in Azure.
 ---
 
 # Quickstart: Create a NAT gateway
 
-In this quickstart, learn how to create a NAT gateway by using the Azure portal, Azure CLI, PowerShell, Bicep, ARM template and Terraform. The NAT Gateway service provides outbound connectivity for virtual machines in Azure.
+In this quickstart, learn how to create a NAT gateway by using the Azure portal, Azure CLI, PowerShell, Bicep, ARM template and Terraform. The NAT Gateway service provides scalable outbound connectivity for virtual machines in Azure.
 
 :::image type="content" source="./media/quickstart-create-nat-gateway-portal/nat-gateway-qs-resources.png" alt-text="Diagram of resources created in nat gateway quickstart." lightbox="./media/quickstart-create-nat-gateway-portal/nat-gateway-qs-resources.png":::
 
@@ -20,11 +21,11 @@ In this quickstart, learn how to create a NAT gateway by using the Azure portal,
 
 ### [Portal](#tab/portal)
 
-- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 ### [PowerShell](#tab/powershell)
 
-- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 - Azure Cloud Shell or Azure PowerShell.
 
@@ -38,17 +39,9 @@ In this quickstart, learn how to create a NAT gateway by using the Azure portal,
 
 [!INCLUDE [azure-cli-prepare-your-environment-no-header.md](~/reusable-content/azure-cli/azure-cli-prepare-your-environment-no-header.md)]
 
-### [ARM](#tab/arm)
-
-- If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
-
-### [Bicep](#tab/bicep)
-
-If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
-
 ### [Terraform](#tab/terraform)
 
-- An Azure account with an active subscription. You can [create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+- An Azure account with an active subscription. You can [create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 - [Install and configure Terraform](/azure/developer/terraform/quickstart-configure).
 
@@ -331,178 +324,6 @@ az vm create \
 
 Wait for the virtual machine creation to complete before moving on to the next section.
 
-### [ARM](#tab/arm)
-
-[!INCLUDE [About Azure Resource Manager](~/reusable-content/ce-skilling/azure/includes/resource-manager-quickstart-introduction.md)]
-
-If your environment meets the prerequisites and you're familiar with using ARM templates, select the **Deploy to Azure** button. The template opens in the Azure portal.
-
-:::image type="content" source="~/reusable-content/ce-skilling/azure/media/template-deployments/deploy-to-azure-button.svg" alt-text="Button to deploy the Resource Manager template to Azure." border="false" link="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2Fquickstarts%2Fmicrosoft.network%2Fnat-gateway-1-vm%2Fazuredeploy.json":::
-
-## Review the template
-
-The template used in this quickstart is from [Azure Quickstart Templates](https://azure.microsoft.com/resources/templates/nat-gateway-1-vm).
-
-This template is configured to create a:
-
-* Virtual network
-
-* NAT gateway resource
-
-* Ubuntu virtual machine
-
-The Ubuntu virtual machine is deployed to a subnet associated with the NAT gateway resource.
-
-:::code language="json" source="~/quickstart-templates/quickstarts/microsoft.network/nat-gateway-1-vm/azuredeploy.json":::
-
-Nine Azure resources are defined in the template:
-
-* **[Microsoft.Network/networkSecurityGroups](/azure/templates/microsoft.network/networksecuritygroups)**: Creates a network security group.
-
-* **[Microsoft.Network/networkSecurityGroups/securityRules](/azure/templates/microsoft.network/networksecuritygroups/securityrules)**: Creates a security rule.
-
-* **[Microsoft.Network/publicIPAddresses](/azure/templates/microsoft.network/publicipaddresses)**: Creates a public IP address.
-
-* **[Microsoft.Network/publicIPPrefixes](/azure/templates/microsoft.network/publicipprefixes)**: Creates a public IP prefix.
-
-* **[Microsoft.Compute/virtualMachines](/azure/templates/Microsoft.Compute/virtualMachines)**: Creates a virtual machine.
-
-* **[Microsoft.Network/virtualNetworks](/azure/templates/microsoft.network/virtualnetworks)**: Creates a virtual network.
-
-* **[Microsoft.Network/natGateways](/azure/templates/microsoft.network/natgateways)**: Creates a NAT gateway resource.
-
-* **[Microsoft.Network/virtualNetworks/subnets](/azure/templates/microsoft.network/virtualnetworks/subnets)**: Creates a virtual network subnet.
-
-* **[Microsoft.Network/networkinterfaces](/azure/templates/microsoft.network/networkinterfaces)**: Creates a network interface.
-
-## Deploy the template
-
-### Portal
-
-:::image type="content" source="~/reusable-content/ce-skilling/azure/media/template-deployments/deploy-to-azure-button.svg" alt-text="Button to deploy the Resource Manager template to Azure." border="false" link="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2Fquickstarts%2Fmicrosoft.network%2Fnat-gateway-1-vm%2Fazuredeploy.json":::
-
-## Review deployed resources
-
-1. Sign in to the [Azure portal](https://portal.azure.com).
-
-1. Select **Resource groups** from the left pane.
-
-1. Select the resource group that you created in the previous section. The default resource group name is **myResourceGroupNAT**
-
-1. Verify the following resources were created in the resource group:
-
-    ![Virtual Network NAT resource group](./media/quick-create-template/nat-gateway-template-rg.png)
-
-### PowerShell
-
-```azurepowershell-interactive
-$location = Read-Host -Prompt "Enter the location (i.e. westcentralus)"
-$templateUri = "https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/quickstarts/microsoft.network/nat-gateway-1-vm/azuredeploy.json"
-
-$resourceGroupName = "myResourceGroupNAT"
-
-New-AzResourceGroup -Name $resourceGroupName -Location $location
-New-AzResourceGroupDeployment -ResourceGroupName $resourceGroupName -TemplateUri $templateUri
-```
-
-### Azure CLI
-
-```azurecli-interactive
-read -p "Enter the location (i.e. westcentralus): " location
-resourceGroupName="myResourceGroupNAT"
-templateUri="https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/quickstarts/microsoft.network/nat-gateway-1-vm/azuredeploy.json"
-
-az group create \
---name $resourceGroupName \
---location $location
-
-az deployment group create \
---resource-group $resourceGroupName \
---template-uri  $templateUri
-```
-
-### [Bicep](#tab/bicep)
-
-## Review the Bicep file
-
-The Bicep file used in this quickstart is from [Azure Quickstart Templates](https://azure.microsoft.com/resources/templates/nat-gateway-1-vm/).
-
-This Bicep file is configured to create a:
-
-* Virtual network
-
-* NAT gateway resource
-
-* Ubuntu virtual machine
-
-The Ubuntu VM is deployed to a subnet that's associated with the NAT gateway resource.
-
-:::code language="bicep" source="~/quickstart-templates/quickstarts/microsoft.network/nat-gateway-1-vm/main.bicep":::
-
-Nine Azure resources are defined in the Bicep file:
-
-* **[Microsoft.Network/networkSecurityGroups](/azure/templates/microsoft.network/networksecuritygroups)**: Creates a network security group.
-
-* **[Microsoft.Network/networkSecurityGroups/securityRules](/azure/templates/microsoft.network/networksecuritygroups/securityrules)**: Creates a security rule.
-
-* **[Microsoft.Network/publicIPAddresses](/azure/templates/microsoft.network/publicipaddresses)**: Creates a public IP address.
-
-* **[Microsoft.Network/publicIPPrefixes](/azure/templates/microsoft.network/publicipprefixes)**: Creates a public IP prefix.
-
-* **[Microsoft.Compute/virtualMachines](/azure/templates/Microsoft.Compute/virtualMachines)**: Creates a virtual machine.
-
-* **[Microsoft.Network/virtualNetworks](/azure/templates/microsoft.network/virtualnetworks)**: Creates a virtual network.
-
-* **[Microsoft.Network/natGateways](/azure/templates/microsoft.network/natgateways)**: Creates a NAT gateway resource.
-
-* **[Microsoft.Network/virtualNetworks/subnets](/azure/templates/microsoft.network/virtualnetworks/subnets)**: Creates a virtual network subnet.
-
-* **[Microsoft.Network/networkinterfaces](/azure/templates/microsoft.network/networkinterfaces)**: Creates a network interface.
-
-## Deploy the Bicep file
-
-1. Save the Bicep file as **main.bicep** to your local computer.
-
-1. Deploy the Bicep file using either Azure CLI or Azure PowerShell.
-
-    ### Azure CLI
-
-    ```azurecli
-    az group create --name exampleRG --location eastus
-    az deployment group create --resource-group exampleRG --template-file main.bicep --parameters adminusername=<admin-name>
-    ```
-
-    ### PowerShell
-
-    ```azurepowershell
-    New-AzResourceGroup -Name exampleRG -Location eastus
-    New-AzResourceGroupDeployment -ResourceGroupName exampleRG -TemplateFile ./main.bicep -adminusername "<admin-name>"
-    ```
-
-    ---
-
-    > [!NOTE]
-    > Replace **\<admin-name\>** with the administrator username for the virtual machine. You'll also be prompted to enter **adminpassword**.
-
-    When the deployment finishes, you should see a message indicating the deployment succeeded.
-
-## Review deployed resources
-
-Use the Azure portal, Azure CLI, or Azure PowerShell to list the deployed resources in the resource group.
-
-### Azure CLI
-
-```azurecli-interactive
-az resource list --resource-group exampleRG
-```
-
-### PowerShell
-
-```azurepowershell-interactive
-Get-AzResource -ResourceGroupName exampleRG
-```
-
-
 ### [Terraform](#tab/terraform)
 
 This Terraform file deploys a virtual network, a NAT gateway resource, and Ubuntu virtual machine. The Ubuntu virtual machine is deployed to a subnet that is associated with the NAT gateway resource.
@@ -609,7 +430,7 @@ As with the public key, the names of the created resource group, virtual network
 
 ## Test NAT gateway
 
-In this section, you test the NAT gateway. You first discover the public IP of the NAT gateway. You then connect to the test virtual machine and verify the outbound connection through the NAT gateway.
+In this section, you test the NAT gateway. You first discover the public IP of the NAT gateway. You then connect to the test virtual machine and verify the outbound connection through the NAT gateway public IP.
     
 1. In the search box at the top of the portal, enter **Public IP**. Select **Public IP addresses** in the search results.
 
@@ -666,16 +487,6 @@ az group delete \
     --yes
 ```
 
-### [ARM](#tab/arm)
-
-When no longer needed, you can use the [Remove-AzResourceGroup](/powershell/module/az.resources/remove-azresourcegroup) command to remove the resource group and all resources contained within.
-
-```azurepowershell-interactive
-Remove-AzResourceGroup -Name myResourceGroupNAT
-```
-
-### [Bicep](#tab/bicep)
-
 ### [Terraform](#tab/terraform)
 
 [!INCLUDE [terraform-plan-destroy.md](~/azure-dev-docs-pr/articles/terraform/includes/terraform-plan-destroy.md)]
@@ -687,3 +498,4 @@ Remove-AzResourceGroup -Name myResourceGroupNAT
 For more information on Azure NAT Gateway, see:
 > [!div class="nextstepaction"]
 > [Azure NAT Gateway overview](nat-overview.md)
+> [Azure NAT Gateway resource](nat-gateway-resource.md)

@@ -91,13 +91,13 @@ On multi-node clusters with at least three nodes, you have the option of enablin
 
 The [Azure IoT Operations SDKs (preview)](https://github.com/Azure/iot-operations-sdks) are a suite of tools and libraries across multiple languages designed to aid the development of highly available applications for Azure IoT Operations.
 
-For information on high availability across availability zones and regions for Azure Device Registry, see [Reliability in Azure Device Registry](../reliability/reliability-device-registry.md).
+For information on high availability across availability zones and regions for Azure Device Registry, see [Reliability in Azure Device Registry](/azure/reliability/reliability-device-registry).
 
 # [Cloud-based solution](#tab/cloud)
 
 To learn more about the high availability and disaster recovery capabilities of the cloud-based IoT services in your solution, see the following articles:
 
-- [Azure IoT Hub high availability and disaster recovery](../iot-hub/iot-hub-ha-dr.md)
+- [Reliability in Azure IoT Hub](/azure/reliability/reliability-iot-hub)
 - [IoT Hub Device Provisioning Service high availability and disaster recovery](../iot-dps/iot-dps-ha-dr.md)
 - [Azure Digital Twins high availability and disaster recovery](../digital-twins/concepts-high-availability-disaster-recovery.md)
 - [Azure IoT Central high availability and disaster recovery](../iot-central/core/concepts-architecture.md#high-availability-and-disaster-recovery)

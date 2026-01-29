@@ -5,10 +5,14 @@ services: api-management
 author: dlepow
 
 ms.service: azure-api-management
-ms.custom: engagement-fy23, devdivchpfy22
 ms.topic: tutorial
-ms.date: 05/14/2025
+ms.date: 07/09/2025
 ms.author: danlep
+ms.custom:
+  - engagement-fy23
+  - devdivchpfy22
+  - build-2025
+  - sfi-image-nochange
 ---
 # Tutorial: Monitor published APIs
 

@@ -2,18 +2,18 @@
 title: Include file
 description: Include file
 services: api-center
-author: dlepow
+
 
 ms.service: azure-api-center
 ms.topic: include
-ms.date: 10/02/2024
-ms.author: danlep
+ms.date: 06/24/2025
+
 ms.custom: Include file
 ---
 
 ## Extension setup
 
-1. Install the Azure API Center extension for Visual Studio Code from the [Visual Studio Code Marketplace](https://marketplace.visualstudio.com/items?itemName=apidev.azure-api-center). Install other extensions listed in the Prerequisites.
+1. Install the Azure API Center extension for Visual Studio Code from the [Visual Studio Code Marketplace](https://marketplace.visualstudio.com/items?itemName=apidev.azure-api-center). Install other extensions as needed.
 
     > [!NOTE]
     > Where noted, certain features are available only in the Azure API Center extension's pre-release version. [!INCLUDE [vscode-extension-prerelease-features](vscode-extension-prerelease-features.md)]

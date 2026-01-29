@@ -7,6 +7,7 @@ ms.service: azure-web-application-firewall
 ms.topic: how-to
 ms.date: 05/08/2025
 ms.custom: devx-track-azurepowershell
+# Customer intent: "As a web application administrator, I want to configure custom response codes and messages for my WAF policy, so that I can provide specific feedback to users when their requests are blocked."
 ---
 
 # Configure a custom response for Azure Web Application Firewall
@@ -19,13 +20,13 @@ In this article, you learn how to configure a custom response status code and a 
 
 # [**Portal**](#tab/portal)
 
-- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 - Sign in to the [Azure portal](https://portal.azure.com) with your Azure account.
 
 # [**PowerShell**](#tab/powershell)
 
-- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 - Azure Cloud Shell or Azure PowerShell.
 
@@ -35,7 +36,7 @@ In this article, you learn how to configure a custom response status code and a 
 
 # [**Azure CLI**](#tab/cli)
 
-- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 - Azure Cloud Shell or Azure CLI.
 

@@ -4,12 +4,18 @@ description: Learn how to deploy Tomcat, JBoss EAP, or Java SE apps to run on Az
 keywords: azure app service, web app, windows, oss, java, tomcat, jboss, spring boot, quarkus
 ms.devlang: java
 ms.topic: how-to
-ms.date: 03/27/2025
-ms.custom: devx-track-java, devx-track-azurecli, devx-track-extended-java, linux-related-content
+ms.date: 08/12/2025
+ms.custom:
+  - devx-track-java
+  - devx-track-azurecli
+  - devx-track-extended-java
+  - linux-related-content
+  - build-2025
 zone_pivot_groups: app-service-java-hosting
 adobe-target: true
 author: cephalin
 ms.author: cephalin
+ms.service: azure-app-service
 ---
 
 # Deploy and configure a Java SE, Tomcat, or JBoss EAP app in Azure App Service
@@ -53,7 +59,7 @@ java -version
 To view the Tomcat server version in the SSH session:
 
 ```bash
-sh /usr/local/tomcat/version.sh
+sh /usr/local/tomcat/bin/version.sh
 ```
 
 Or, if your Tomcat server is in a custom location, find `version.sh` with:
@@ -193,7 +199,7 @@ Azure provides seamless Java App Service development experience in popular Java 
 - **Eclipse IDE**: [Create a Hello World web app for Azure App Service by using Eclipse](/azure/developer/java/toolkit-for-eclipse/create-hello-world-web-app).
 
 ### Kudu and OneDeploy APIs
-Deployment clients such as the [Maven plugin](#maven), GitHub Actions using `azure/webapps-deploy@v3` and newer, or the [az webapp deploy](/cli/azure/webapp#az-webapp-deploy) command use OneDeploy, which is invoked by calling the `/api/publish` endpoint of the Kudu site under the hood. For more information on this API, see [this documentation](./deploy-zip.md#deploy-warjarear-packages)
+Deployment clients such as the [Maven plugin](#maven), GitHub Actions using `azure/webapps-deploy@v3` and newer, or the [az webapp deploy](/cli/azure/webapp#az-webapp-deploy) command use OneDeploy, which is invoked by calling the `/api/publish` endpoint of the Kudu site under the hood. For more information on this API, see [this documentation](./deploy-zip.md#deploy-warjarear-packages).
 
 ::: zone pivot="java-javase"
 
@@ -366,7 +372,7 @@ Azure App Service supports out-of-the-box tuning and customization through the A
 
 ### Copy app content locally
 
-Set the app setting `JAVA_COPY_ALL` to `true` to copy your app contents to the local worker from the shared file system. This setting helps address file-locking issues.
+Set the app setting `JAVA_COPY_ALL` to `true` to copy your app contents to the local worker from the shared file system. This setting helps address file-locking issues. `JAVA_COPY_ALL` is not compatible with the legacy convention of deploying to `/home/site/wwwroot/webapps`.
 
 ### Set Java runtime options
 
@@ -499,7 +505,7 @@ When clustering is enabled, the JBoss EAP instances use the `FILE_PING` JGroups 
 > [!Note]
 > You can avoid JBoss EAP clustering timeouts by [cleaning up obsolete discovery files during your app startup](https://github.com/Azure/app-service-linux-docs/blob/master/HowTo/JBOSS/avoid_timeouts_obsolete_nodes.md).
 
-The Premium V3, Premium V4, and Isolated V2 App Service Plan types can optionally be distributed across Availability Zones to improve resiliency and reliability for your business-critical workloads. This architecture is also known as [zone redundancy](../reliability/migrate-app-service.md). The JBoss EAP clustering feature is compatible with the zone redundancy feature.
+The Premium V3, Premium V4, and Isolated V2 App Service Plan types can optionally be distributed across Availability Zones to improve resiliency and reliability for your business-critical workloads. This architecture is also known as [zone redundancy](/azure/reliability/migrate-app-service). The JBoss EAP clustering feature is compatible with the zone redundancy feature.
 
 ### Autoscale rules
 

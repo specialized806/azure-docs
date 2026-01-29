@@ -2,16 +2,17 @@
 title: Back up SAP HANA System Replication databases on Azure VMs using Azure Backup
 description: In this article, discover how to back up SAP HANA databases with HANA System Replication enabled.
 ms.topic: how-to
-ms.date: 10/01/2024
+ms.date: 01/09/2026
 ms.service: azure-backup
-author: jyothisuri
-ms.author: jsuri
+author: AbhishekMallick-MS
+ms.author: v-mallicka
 ms.custom: engagement-fy24
+# Customer intent: "As a database administrator, I want to back up SAP HANA databases on Azure virtual machines using Azure Backup, so that I can ensure data protection and minimize downtime for critical workloads."
 ---
 
-# Back up SAP HANA System Replication databases on Azure VMs
+# Back up SAP HANA System Replication databases on Azure VMs using Azure portal
 
-SAP HANA databases are critical workloads that require a low recovery-point objective (RPO) and long-term retention. This article describes how you can back up SAP HANA databases that are running on Azure virtual machines (VMs) to an Azure Backup Recovery Services vault by using [Azure Backup](backup-overview.md).
+SAP HANA databases are critical workloads that require a low recovery-point objective (RPO) and long-term retention. This article describes how you can back up SAP HANA databases that are running on Azure virtual machines (VMs) to an Azure Backup Recovery Services vault by [Azure Backup](backup-overview.md) using Azure portal. You can also [use Azure CLI to do the operation](quick-backup-hana-cli.md).
 
 You can also switch the protection of SAP HANA database on Azure VM (standalone) on Azure Backup to HSR. [Learn more](#scenarios-to-protect-hsr-nodes-on-azure-backup).
 
@@ -122,12 +123,12 @@ When a failover occurs, the users are replicated to the new primary, but *hdbuse
 
 1. If your HANA setup uses private endpoints, run the preregistration script with the `-sn` or `--skip-network-checks` parameter. After the preregistration script has run successfully, proceed to the next steps.
 
-1. Run the SAP HANA backup configuration script (preregistration script) in the VMs where HANA is installed as the root user. This script sets up the HANA system for backup. For more information about the script actions, see the [What the preregistration script does](tutorial-backup-sap-hana-db.md#what-the-pre-registration-script-does) section.
+1. Run the SAP HANA backup configuration script (preregistration script) in the VMs where HANA is installed as the root user. This script sets up the HANA system for backup. For more information about the script actions, see the [What the preregistration script does](tutorial-backup-sap-hana-db.md#preregistration-script-functionality-for-sap-hana-database-backup) section.
 
    There's no HANA-generated unique ID for an HSR setup. So, you need to provide a unique ID that helps the backup service to group all nodes of an HSR as a single data source.
 
    
-To set up the database for backup, see the [prerequisites](tutorial-backup-sap-hana-db.md#prerequisites) and the [What the preregistration script does](tutorial-backup-sap-hana-db.md#what-the-pre-registration-script-does) sections.
+To set up the database for backup, see the [prerequisites](tutorial-backup-sap-hana-db.md#prerequisites) and the [What the preregistration script does](tutorial-backup-sap-hana-db.md#preregistration-script-functionality-for-sap-hana-database-backup) sections.
 
 
 ## Discover the databases
@@ -321,5 +322,7 @@ You can now switch the protection of SAP HANA database on Azure VM (standalone) 
 
 ## Next step
 
-- [Restore SAP HANA System Replication databases on Azure VMs](sap-hana-database-restore.md)
+- [Restore SAP HANA System Replication databases on Azure VMs using Azure portal](sap-hana-database-restore.md).
+- [Restore SAP HANA System Replication databases on Azure VMs using Azure CLI](quick-restore-hana-cli.md).
 - [About backing up SAP HANA System Replication databases on Azure VMs](sap-hana-database-about.md#back-up-a-hana-system-with-replication-enabled)
+- [Manage SAP HANA databases that are backed up by Azure Backup using Azure CLI](tutorial-sap-hana-manage-cli.md).

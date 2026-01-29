@@ -5,10 +5,11 @@ ms.devlang: azurecli
 ms.custom:
   - ignite-2024
 ms.topic: quickstart
-ms.date: 05/22/2025
+ms.date: 01/28/2026
 ms.service: azure-backup
-author: jyothisuri
-ms.author: jsuri
+author: AbhishekMallick-MS
+ms.author: v-mallicka
+# Customer intent: As an IT administrator, I want to create a backup policy for Azure Files using the Azure portal, so that I can ensure data protection and establish a reliable schedule for backup and recovery.
 ---
 
 #  Quickstart: Create a backup policy for Azure Files using Azure portal
@@ -29,7 +30,7 @@ A backup policy defines the schedule, frequency of recovery point creation, and 
 
 To create a backup policy, follow these steps:
 
-1. Go to **Business Continuity Center** > **Protection policies**, and then select **+ Create policy** > **Create backup policy**.
+1. Go to **Resiliency** > **Protection policies**, and then select **+ Create policy** > **Create backup policy**.
 
    :::image type="content" source="./media/tutorial-backup-azure-files-vault-tier-portal/create-backup-policy.png" alt-text="Screenshot shows how to start creating a Backup policy." lightbox="./media/tutorial-backup-azure-files-vault-tier-portal/create-backup-policy.png":::
  

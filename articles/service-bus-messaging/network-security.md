@@ -26,7 +26,7 @@ You can use service tags to define network access controls on [network security 
 | **ServiceBus** | Azure Service Bus traffic. | Outbound | Yes | Yes |
 
 > [!NOTE]
-Previously, Service Bus service tags included only the IP addresses of namespaces on the **premium** SKU. This has now been updated to include the IP addresses of **all namespaces**, regardless of the SKU.
+>Previously, Service Bus service tags included only the IP addresses of namespaces on the **premium** SKU. This has now been updated to include the IP addresses of **all namespaces**, regardless of the SKU.
 
 ## IP firewall 
 By default, Service Bus namespaces are accessible from internet as long as the request comes with valid authentication and authorization. With IP firewall, you can restrict it further to only a set of IPv4 addresses or IPv4 address ranges in [CIDR (Classless Inter-Domain Routing)](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) notation.
@@ -81,6 +81,11 @@ For more information, see [What is Azure Private Link?](../private-link/private-
 
 For more information, see [How to configure private endpoints for a Service Bus namespace](private-link-service.md)
 
+## Network security perimeter
+
+Another way to secure your Service Bus namespace is to include it in a network security perimeter. A network security perimeter establishes a logical boundary for PaaS resources, restricting communication to resources within the perimeter and controlling public access through explicit rules. This can be particularly useful when you want to establish a security boundary around Service Bus and other PaaS resources like Azure Key Vault.
+
+For more information, see [Network security perimeter for Azure Service Bus](network-security-perimeter.md).
 
 ## Next steps
 See the following articles:

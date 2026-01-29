@@ -8,6 +8,8 @@ ms.reviewer: estfan, azla
 ms.topic: how-to
 ms.date: 05/19/2025
 # As an integration solution developer, I want to build an integration workflow by adding a trigger or an action operation in Azure Logic Apps.
+ms.custom:
+  - build-2025
 ---
 
 # Add a trigger or action to build a workflow in Azure Logic Apps
@@ -22,7 +24,7 @@ This guide shows how to add a trigger and action for Consumption and Standard lo
 
 ## Prerequisites
 
-- An Azure account and subscription. If you don't have an Azure subscription, [sign up for a free Azure account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+- An Azure account and subscription. If you don't have an Azure subscription, [sign up for a free Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 - A logic app resource and workflow, based on whether you want to add a trigger or an action:
 

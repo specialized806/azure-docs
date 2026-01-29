@@ -6,6 +6,7 @@ ms.author: halkazwini
 ms.service: azure-web-application-firewall
 ms.topic: concept-article
 ms.date: 09/05/2023
+# Customer intent: As a web application administrator, I want to implement geo-filtering policies for my application, so that I can restrict access based on the geographic location of users to enhance security and compliance.
 ---
 
 # What is geo-filtering on a domain for Azure Front Door?
@@ -22,6 +23,9 @@ You can configure a geo-filtering policy for your Azure Front Door instance by u
 
 > [!IMPORTANT]
 > Include the country code `ZZ` whenever you use geo-filtering. The `ZZ` country code (or `Unknown` country/region) captures IP addresses that aren't yet mapped to a country or region in our dataset. Use this code to avoid false positives.
+
+> [!Note]
+> You can only include a maximum of ten country/region codes in a single custom rule.
 
 ## Country/Region code reference
 

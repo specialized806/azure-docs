@@ -36,15 +36,9 @@
         href: backup-plan-to-protect-against-ransomware.md
       - name: Ransomware protection with Azure Firewall Premium
         href: ransomware-protection-with-azure-firewall.md
-      - name: Recovering from systemic identity compromise
-        href: recover-from-identity-compromise.md
   - name: Threat protection
     href: threat-detection.md
 
-- name: Securing workloads in Azure
-  items:
-  - name: Security technical capabilities
-    href: technical-capabilities.md
 
 - name: Azure platform and infrastructure
   items:
@@ -152,13 +146,11 @@
   - name: Azure Certificate Authorities
     items: 
     - name: Azure Certificate Authority details
-      href: azure-ca-details.md
+      href: azure-certificate-authority-details.md
     - name: Certificate Pinning
       href: certificate-pinning.md
-    - name: Sunset for SHA-1 OCSP signing
-      href: ocsp-sha-1-sunset.md
-    - name: TLS certificate changes
-      href: tls-certificate-changes.md
+    - name: Managed TLS changes
+      href: managed-tls-changes.md
   - name: Disk encryption
     items: 
     - name: Best practices
@@ -212,8 +204,6 @@
     href: log-audit.md
   - name: Security management and monitoring
     href: management-monitoring-overview.md
-  - name: Enhance remote management
-    href: management.md
   - name: Operational security
     items:
     - name: Overview
@@ -233,10 +223,6 @@
     href: https://azure.microsoft.com/resources/whitepapers/search/?term=security&type=WhitePaperResource
   - name: Best practices
     href: best-practices-and-patterns.md
-  - name: Cybersecurity consulting
-    href: cyber-services.md
-  - name: Log a security event support ticket
-    href: event-support-ticket.md
   - name: Pen testing
     href: pen-testing.md
   - name: Azure domains

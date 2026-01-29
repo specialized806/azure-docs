@@ -1,14 +1,16 @@
 ---
 title: "Tutorial: Bi-directional MQTT bridge to Azure Event Grid"
 description: Learn how to create a bi-directional MQTT bridge to Azure Event Grid using Azure IoT Operations data flows.
-author: PatAltimore
-ms.author: patricka
+author: sethmanheim
+ms.author: sethm
 ms.service: azure-iot-operations
 ms.subservice: azure-data-flows
 ms.topic: tutorial
 ms.date: 05/21/2025
 
 #CustomerIntent: As an operator, I want to understand how to create a bi-directional MQTT bridge to Azure Event Grid so that I can send and receive messages between devices and services.
+ms.custom:
+  - build-2025
 ---
 
 # Tutorial: Bi-directional MQTT bridge to Azure Event Grid
@@ -623,9 +625,6 @@ In this tutorial, you learned how to configure Azure IoT Operations for bi-direc
 
 * To use an MQTT client to publish messages directly to the Event Grid MQTT broker, see [Publish MQTT messages to Event Grid MQTT broker](../../event-grid/mqtt-publish-and-subscribe-cli.md). Give the client a [publisher permission binding](../../event-grid/mqtt-access-control.md) to the topic space you created, and you can publish messages to any topic under the `sensor`, like `sensor/temperature` or `sensor/humidity`. All of these messages are bridged to the `tutorial/cloud` topic on the local Azure IoT Operations broker.
 * To set up routing rules for the Event Grid MQTT broker, see [Configure routing rules for Event Grid MQTT broker](../../event-grid/mqtt-routing.md). You can use routing rules to route messages to different topics based on the topic name, or to filter messages based on the message content.
-
-## Related content
-
 * About [BrokerListener resource](../manage-mqtt-broker/howto-configure-brokerlistener.md)
 * [Configure authorization for a BrokerListener](../manage-mqtt-broker/howto-configure-authorization.md)
 * [Configure authentication for a BrokerListener](../manage-mqtt-broker/howto-configure-authentication.md)

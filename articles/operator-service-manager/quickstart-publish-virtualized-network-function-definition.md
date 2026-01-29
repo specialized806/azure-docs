@@ -6,6 +6,8 @@ ms.author: sherryg
 ms.date: 10/19/2023
 ms.topic: quickstart
 ms.service: azure-operator-service-manager
+ms.custom:
+  - build-2025
 ---
 
 # Quickstart: Publish Ubuntu Virtual Machine (VM) as Virtual Network Function (VNF)
@@ -14,7 +16,7 @@ This quickstart describes how to use the `az aosm` Azure CLI extension to create
 
 ## Prerequisites
 
-- An Azure account with an active subscription is required. If you don't have an Azure subscription, follow the instructions here [Start free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) to create an account before you begin.
+- An Azure account with an active subscription is required. If you don't have an Azure subscription, follow the instructions here [Start free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) to create an account before you begin.
 
 - Complete the [Quickstart: Complete the prerequisites to deploy a Virtualized Network Function in Azure Operator Service Manager](quickstart-virtualized-network-function-prerequisites.md)
 

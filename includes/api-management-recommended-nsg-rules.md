@@ -8,7 +8,7 @@ ms.author: danlep
 
 ## Configure NSG rules
 
-Configure custom network rules in the API Management subnet to filter traffic to and from your API Management instance. We recommend the following *minimum* NSG rules to ensure proper operation and access to your instance. Review your environment carefully to determine more rules that might be needed. 
+Configure custom network security rules in the API Management subnet to filter traffic to and from your API Management instance. We recommend the following *minimum* NSG rules to ensure proper operation and access to your instance. Review your environment carefully to determine more rules that might be needed. 
 
 > [!IMPORTANT] 
 > Depending on your use of caching and other features, you may need to configure additional NSG rules beyond the minimum rules in the following table. For detailed settings, see [Virtual network configuration reference](../articles/api-management/virtual-network-reference.md#required-ports). 
@@ -23,6 +23,7 @@ Configure custom network rules in the API Management subnet to filter traffic to
 | Inbound | ApiManagement | * | VirtualNetwork | 3443    | TCP | Allow     | Management endpoint for Azure portal and PowerShell        | External & Internal  |
 | Inbound | AzureLoadBalancer | * | VirtualNetwork | 6390      | TCP                | Allow | Azure Infrastructure Load Balancer             | External & Internal  |
 | Inbound | AzureTrafficManager | * | VirtualNetwork | 443 | TCP | Allow | Azure Traffic Manager routing for multi-region deployment | External only |
+| Outbound | VirtualNetwork | * | Internet | 80                  |  TCP | Allow  | Validation and management of Microsoft-managed and customer-managed certificates      | External & Internal  |
 | Outbound | VirtualNetwork | * | Storage | 443                  |  TCP | Allow  | Dependency on Azure Storage for core service functionality                            | External & Internal  |
 | Outbound | VirtualNetwork| * | SQL | 1433                     | TCP           | Allow | Access to Azure SQL endpoints for core service functionality                          | External & Internal  |
 | Outbound | VirtualNetwork | * | AzureKeyVault | 443                     | TCP                | Allow                | Access to Azure Key Vault for core service functionality                         | External & Internal  |

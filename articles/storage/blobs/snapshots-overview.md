@@ -8,6 +8,9 @@ ms.service: azure-blob-storage
 ms.topic: article
 ms.date: 12/29/2021
 ms.author: normesta
+ms.custom:
+  - build-2025
+# Customer intent: As a cloud storage developer, I want to understand how blob snapshots work and their billing implications so that I can effectively manage costs and maintain data integrity in my applications.
 ---
 
 # Blob snapshots
@@ -43,6 +46,8 @@ Blob snapshots, like blob versions, are billed at the same rate as active data. 
 If you haven't changed a blob or snapshot's tier, then you're billed for unique blocks of data across that blob, its snapshots, and any versions it may have. For more information, see [Billing when the blob tier hasn't been explicitly set](#billing-when-the-blob-tier-hasnt-been-explicitly-set).
 
 If you have changed a blob or snapshot's tier, then you're billed for the entire object, regardless of whether the blob and snapshot are eventually in the same tier again. For more information, see [Billing when the blob tier has been explicitly set](#billing-when-the-blob-tier-hasnt-been-explicitly-set).
+
+For storage accounts that leverage the smart tier public preview, versions and snapshots are billed at full content length. For more information, see [Optimize costs with smart tier](access-tiers-smart.md).
 
 For more information about billing details for blob versions, see [Blob versioning](versioning-overview.md).
 
