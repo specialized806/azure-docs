@@ -99,7 +99,6 @@ Dynamic sessions are available in the following regions. Both code interpreter a
 ## Security
 Dynamic sessions are designed to run untrusted code in isolated environments. For information about securing your sessions, see [Security](./sessions-usage.md#security).
 
----
 
 ## Billing
 Custom container sessions are billed based on the resources consumed by the session pool. For more information, see [Azure Container Apps billing](./billing.md#dynamic-sessions).
