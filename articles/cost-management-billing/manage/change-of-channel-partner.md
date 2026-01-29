@@ -139,7 +139,7 @@ You see a **Request ID** value for each billing account in the COCP request. If 
 You can interpret the COCP status messages with the following definitions:
 
 - **In-progress**: The COCP request was sent to the new partner, who must accept or decline before the request can complete.
-- **Accepted**: The partner accepted the COCP request. The Microsoft Operations Service Center will process the request, typically 24–48 hours.
+- **Accepted**: The partner accepted the COCP request. The Microsoft Operations Service Center will process the request, typically in 24–48 hours.
 - **Declined**: The partner declined the COCP request.
 - **Pending Microsoft Review**: The Microsoft Operations Service Center is reviewing and processing the request.
 - **In Grace Period** (for Enterprise Accounts): The request is in a 90‑day grace period. During this time, the new partner doesn't have access to agreements, and the old partner remains the partner of record.
