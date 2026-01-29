@@ -49,11 +49,11 @@ Dynamic sessions are useful in a variety of situations, including:
 - **Session Lifecycle**  
 Sessions follow a clear flow from creation to cleanup:
 
-1. **Request Received**: Your application calls the REST API to create or retrieve a session using a unique identifier.
-2. **Pending**: The system validates the request and checks for available resources.
-3. **Unallocated**: A session exists but isn't yet assigned to a workload. If a prewarmed session is available in the pool, it moves quickly to allocation.
-4. **Allocated**: The session becomes active and runs your code or container. This is the execution phase.
-5. **Destroyed**: After the task completes or the cooldown period expires, the session is terminated and resources are cleaned up automatically.
+  1. **Request Received**: Your application calls the REST API to create or retrieve a session using a unique identifier.
+  2. **Pending**: The system validates the request and checks for available resources.
+  3. **Unallocated**: A session exists but isn't yet assigned to a workload. If a prewarmed session is available in the pool, it moves quickly to allocation.
+  4. **Allocated**: The session becomes active and runs your code or container. This is the execution phase.
+  5. **Destroyed**: After the task completes or the cooldown period expires, the session is terminated and resources are cleaned up automatically.
 
 This lifecycle ensures fast startup, efficient resource use, and automatic cleanup without manual intervention.
 
