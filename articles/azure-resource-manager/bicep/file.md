@@ -3,7 +3,7 @@ title: Bicep file structure and syntax
 description: Understand how to use declarative syntax to understand the structure and properties of Bicep files.
 ms.topic: article
 ms.custom: devx-track-bicep
-ms.date: 01/21/2026
+ms.date: 01/29/2026
 ---
 
 # Bicep file structure and syntax
@@ -350,9 +350,9 @@ You separate arguments by using spaces. The linter rules and diagnostic codes ar
 
 Bicep currently supports three directive types:
 
-- `#disable-next-line` — disables one or more diagnostics for the next line only
-- `#disable-diagnostics` — disables one or more diagnostics for an entire file or until re-enabled
-- `#restore-diagnostics` — re-enables previously disabled diagnostics
+* `#disable-next-line` — disables one or more diagnostics for the next line only
+* `#disable-diagnostics` — disables one or more diagnostics for an entire file or until re-enabled
+* `#restore-diagnostics` — re-enables previously disabled diagnostics
 
 The following example suppresses multiple diagnostics and rules:
 
@@ -462,32 +462,6 @@ The following example shows a multiline comment.
 param existingKeyVaultName string
 ```
 
-## Multi-line strings
-
-You can break a string into multiple lines. Use three single quotation marks `'''` to start and end the multi-line string.
-
-Characters within the multi-line string are handled as is. Escape characters are unnecessary. You can't include `'''` in the multi-line string. String interpolation isn't currently supported.
-
-You can start your string right after the opening `'''`, or include a new line. In either case, the resulting string doesn't include a new line. Depending on the line endings in your Bicep file, new lines are interpreted as `\r\n` or `\n`.
-
-The following example shows a multi-line string.
-
-```bicep
-var stringVar = '''
-this is multi-line
-  string with formatting
-  preserved.
-'''
-```
-
-The preceding example is equivalent to the following JSON:
-
-```json
-"variables": {
-  "stringVar": "this is multi-line\r\n  string with formatting\r\n  preserved.\r\n"
-}
-```
-
 ## Multiple-line declarations
 
 You can now use multiple lines in function, array, and object declarations. This feature requires [Bicep CLI version 0.7.X or higher](./install.md).
@@ -506,4 +480,3 @@ For multiple-line declaration samples, see [arrays](./data-types.md#arrays) and 
 
 * For an introduction to Bicep, see [What is Bicep?](./overview.md)
 * For Bicep data types, see [Data types](./data-types.md).
-
