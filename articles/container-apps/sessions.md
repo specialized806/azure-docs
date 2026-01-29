@@ -10,7 +10,7 @@ ms.author: cshoe
 ms.custom: references_regions, ignite-2024
 ---
 
-# Dynamic Sessions in Azure Container Apps
+# Dynamic sessions in Azure Container Apps
 
 ## Overview
 Azure Container Apps dynamic sessions provide fast access to secure sandboxed environments that are ideal for running code or applications that require strong isolation from other workloads.
