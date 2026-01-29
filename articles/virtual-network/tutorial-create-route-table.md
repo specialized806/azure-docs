@@ -357,7 +357,7 @@ az vm create \
     --subnet subnet-dmz \
     --vnet-name vnet-1 \
     --admin-username azureuser \
-    --authentication-type password
+    --generate-ssh-keys
 ```
 
 The virtual machine takes a few minutes to create. Don't continue to the next step until Azure finishes creating the virtual machine and returns output for the virtual machine.
@@ -525,7 +525,7 @@ az vm create \
     --subnet subnet-1 \
     --public-ip-address "" \
     --admin-username azureuser \
-    --authentication-type password \
+    --generate-ssh-keys \
     --no-wait
 ```
 
@@ -540,7 +540,7 @@ az vm create \
     --subnet subnet-private \
     --public-ip-address "" \
     --admin-username azureuser \
-    --authentication-type password
+    --generate-ssh-keys
 ```
 ---
 
