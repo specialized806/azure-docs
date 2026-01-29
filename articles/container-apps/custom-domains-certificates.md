@@ -281,19 +281,19 @@ You can manage certificates via the Container Apps environment or via an individ
 
 ### Environment
 
-The **Certificates** pane of the Container Apps environment shows a table that contains all certificates associated with the environment.
+The **Certificates** pane of the Container Apps environment shows a table that contains all certificates associated with the environment. Go to the environment, and then select **Certificates** under **Settings**.
 
 You can manage your certificates by taking the following actions:
 
 | Action | Description |
 |--|--|
-| Add | Select the **Add certificate** link to add a new certificate. |
+| Add | Select **Add certificate** to add a new certificate. |
 | Delete | Select the trash can icon to remove a certificate. |
 | Renew | The **Health status** field of the table indicates that a certificate is expiring soon within 60 days of the expiration date. To renew a certificate, select the **Renew certificate** link to upload a new certificate. |
 
 ### Container app
 
-The **Custom domains** pane of the container app shows a list of custom domains that are associated with the container app.
+The **Custom domains** pane of the container app shows a list of custom domains that are associated with the container app. In the left pane, under **Networking**, select **Custom domains**. 
 
 You can manage your certificates for an individual domain name by selecting the ellipsis (**...**) button, which opens the certificate binding window. From the following window, you can select a certificate to bind to the selected domain name.
 
