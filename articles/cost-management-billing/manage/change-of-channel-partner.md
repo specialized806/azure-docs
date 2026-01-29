@@ -1,10 +1,6 @@
 ---
-# Required metadata
-# For more information, see https://review.learn.microsoft.com/en-us/help/platform/learn-editor-add-metadata?branch=main
-# For valid values of ms.service, ms.prod, and ms.topic, see https://review.learn.microsoft.com/en-us/help/platform/metadata-taxonomies?branch=main
-
 title: Initiate a change of channel partner request
-description: This document shows Enterprise customers how to initiate a change of channel partner request via the Azure portal.
+description: This article shows enterprise customers how to initiate a request to change channel partners via the Azure portal.
 author: SandeepReddyAcc
 ms.author: v-salin
 ms.service: volume-licensing
@@ -18,7 +14,7 @@ Azure customers with an Enterprise Agreement can now initiate a change of channe
 
 Before this change, which began in November 2025, only partners could initiate the COCP process. Now, customers can start the process.
 
-When a customer initiates a COCP, their new chosen partner receives a notification via email. The partner can either accept or decline the request. When the partner accepts, the Azure customer is notified and given the effective date when the new partner becomes active.
+When a customer initiates a COCP, the new chosen partner receives a notification via email. The partner can either accept or decline the request. When the partner accepts, the Azure customer is notified and given the effective date when the new partner becomes active.
 
 ## Prerequisites
 
@@ -33,13 +29,13 @@ If you don't have this information, you can enter any email address to proceed. 
 
 Make sure that the partner accepts the request within 10 days.
 
-### In Scope for Self-Service COCP
+### In scope for self-service COCP
 
-- Only users with the **Enterprise Admin** role can initiate COCP requests via the Azure portal.
-- The Agreement Type must be Enterprise Agreement (EA) and Enterprise Agreements Subscription.
+- Only Enterprise admins can initiate COCP requests via the Azure portal.
+- The agreement type must be Enterprise Agreement and Enterprise Agreements Subscription.
 - The agreement status must be active.
 
-### Out of Scope for Self-Service COCP
+### Out of scope for self-service COCP
 
 You can't use the self-service COCP process in the following situations:
 
@@ -53,13 +49,13 @@ You can't use the self-service COCP process in the following situations:
   - IVR
   - MPSA
   - Open license
-- Enterprise Agreements with Microsoft Enterprise Direct Support (MSEDS) as the *Bill to* or Software Advisor
-- Enterprise Agreements with expired or ended status
+- EAs with Microsoft Enterprise Direct Support (MSEDS) as the *Bill to* or Software Advisor
+- EAs with expired or ended status
 - Backdated COCP requests or early COCP requests that initiate before the anniversary date
 
 ## Use the Azure portal to request a COCP
 
-1. Make sure you have the **Enterprise Administrator** role on the Enterprise Agreement billing account.
+1. Make sure you are an Enterprise admin on the Enterprise Agreement billing account.
 
 1. Go to the Azure portal. Select **Cost management + Billing** > **Billing scopes** > **Change Partner**.
 
@@ -69,7 +65,7 @@ You can't use the self-service COCP process in the following situations:
 
 1. To change the partner on a specific billing account, select the account, select the three dots, and then select **Change Partner**.
 
-:::image type="content" source="../media/47bba1c187178d52bedceea553c275f2.png" alt-text="Screenshot that shows the customer experience in the Azure portal." lightbox="../media/47bba1c187178d52bedceea553c275f2.png":::
+   :::image type="content" source="../media/47bba1c187178d52bedceea553c275f2.png" alt-text="Screenshot that shows the customer experience in the Azure portal." lightbox="../media/47bba1c187178d52bedceea553c275f2.png":::
 
 1. On the **Initiate change of partner** page:
 
@@ -80,11 +76,11 @@ You can't use the self-service COCP process in the following situations:
      - **Current partner is being offboarded by Microsoft**
      - **Other**
 
-:::image type="content" source="../media/9350cd4c52e4430287886bf707b2dd03.png" alt-text="Screenshot that shows Initiate change of partner." lightbox="../media/9350cd4c52e4430287886bf707b2dd03.png":::
+   :::image type="content" source="../media/9350cd4c52e4430287886bf707b2dd03.png" alt-text="Screenshot that shows Initiate change of partner." lightbox="../media/9350cd4c52e4430287886bf707b2dd03.png":::
 
-1. You can check to see if the partner is allowed to do business by entering the partner PCN and selecting the **Confirm partner** button in the lower-left corner. The partner organization name should display. If you get an error, you can reach out to the partner to make sure you have the correct PCN.
+1. You can check to see if the partner is allowed to do business by entering the partner PCN and selecting the **Confirm partner** button in the lower-left corner. The partner organization name should appear. If you get an error, you can reach out to the partner to make sure you have the correct PCN.
 
-### Troubleshooting
+## Troubleshoot
 
 Ideally, the partner notification contact is the person who accepts the COCP request in Volume Licensing Central. If no such contact exists, the system doesn't send a notification, but the customer admin can still initiate the request.
 
@@ -96,13 +92,13 @@ If you select an agreement that isn't eligible for a COCP, the Azure portal disp
 
 The user must expand the message to see the reasons blocking the COCP request for each impacted billing account.
 
-#### Scenario 1: User selects an invalid partner PCN
+### Scenario 1: User selects an invalid partner PCN
 
 It's up to the new partner contact who directly engages with the customer to provide their PCN and partner notification contact details to the customer. If there's an error, reach out to the partner to get the correct PCN.
 
 :::image type="content" source="../media/invalid-number.png" alt-text="Screenshot that shows the Initiate change of partner page." lightbox="../media/invalid-number.png":::
 
-#### Scenario 2: The partner email address that the customer entered doesn't have access to Volume Licensing Central
+### Scenario 2: The partner email address that the customer entered doesn't have access to Volume Licensing Central
 
 The customer might enter an email address in the **Partner Notification Contact** field, but the user on the partner side doesn't have the permissions in Volume Licensing Central to be able to accept the COCP request. The Azure portal displays a warning but allows the user to proceed.
 
@@ -110,13 +106,13 @@ This rule means the notification goes to the email address listed on the COCP re
 
 :::image type="content" source="../media/invalid-email.png" alt-text="Screenshot that shows the second Initiate change of partner page." lightbox="../media/invalid-email.png":::
 
-### Review the Change Partner terms
+## Review the change partner terms
 
 Various *change partner* terms display, depending on the type of agreement.
 
 - If the selected billing accounts are all Enterprise Agreement direct, the *Change of Software Advisor* form displays.
-- If the selected billing accounts are all Enterprise Agreement Indirect, the *Change of Reseller* form displays.
-- If the selected billing accounts are a combination of Enterprise Agreement direct and Indirect, one form with sections for *Change of SA Advisor* and *Change of Reseller* is displayed. The form is scrollable.
+- If the selected billing accounts are all Enterprise Agreement indirect, the *Change of Reseller* form displays.
+- If the selected billing accounts are a combination of Enterprise Agreement direct and indirect, one form with sections for *Change of SA Advisor* and *Change of Reseller* is displayed. The form is scrollable.
 
 :::image type="content" source="../media/f076209a9ebd77b5df61d2478b3c2170.png" alt-text="Screenshot that shows not eligible for COCP." lightbox="../media/f076209a9ebd77b5df61d2478b3c2170.png":::
 
@@ -134,16 +130,16 @@ The COCP request is sent to the partner notification contact in the COCP request
 
 :::image type="content" source="../media/ee41aefe5f112ad5ec0c473f184aa929.png" alt-text="Screenshot that shows partner notification contact identified." lightbox="../media/ee41aefe5f112ad5ec0c473f184aa929.png":::
 
-#### Track the status of your COCP request in the Azure portal
+## Track the status of your COCP request in the Azure portal
 
-Users with the **Enterprise admin** role can view the status of the request by going to **Cost management + Billing** > **Track changes**.
+Enterprise admins can view the status of the request by going to **Cost management + Billing** > **Track changes**.
 
 You see a **Request ID** value for each billing account in the COCP request. If multiple billing accounts are in the same COCP package, you see the same **Request ID** value for all the records.
 
 You can interpret the COCP status messages with the following definitions:
 
 - **In-progress**: The COCP request was sent to the new partner, who must accept or decline before the request can complete.
-- **Accepted**: The partner accepted the COCP request. The Microsoft Operations Service Center will process the request, typically within 24–48 hours.
+- **Accepted**: The partner accepted the COCP request. The Microsoft Operations Service Center will process the request, typically 24–48 hours.
 - **Declined**: The partner declined the COCP request.
 - **Pending Microsoft Review**: The Microsoft Operations Service Center is reviewing and processing the request.
 - **In Grace Period** (for Enterprise Accounts): The request is in a 90‑day grace period. During this time, the new partner doesn't have access to agreements, and the old partner remains the partner of record.
@@ -156,15 +152,15 @@ The portal displays an **effective date** value. Beginning on this date, the new
 
 :::image type="content" source="../media/cancel-request.png" alt-text="Screenshot that shows COCP Status definitions." lightbox="../media/cancel-request.png":::
 
-#### Get a COCP Request ID in the Azure portal
+## Get a COCP Request ID in the Azure portal
 
 1. To get a COCP **Request ID**, go to **Cost Management + Billing** > **Billing scopes** > **Track changes**.
 
 1. Get the COCP form by selecting the **Download** button. You can only download the COCP form after the partner accepts the request and if the request wasn't canceled.
 
-:::image type="content" source="../media/change-request.png" alt-text="Screenshot that shows how to download a COCP request." lightbox="../media/change-request.png":::
+   :::image type="content" source="../media/change-request.png" alt-text="Screenshot that shows how to download a COCP request." lightbox="../media/change-request.png":::
 
-#### Cancel a COCP request in the Azure portal
+## Cancel a COCP request in the Azure portal
 
 If your COCP request has a status of **In-progress**, you can cancel it in full or partially (remove just some billing accounts from the request).
 
@@ -172,6 +168,6 @@ If your COCP request has a status of **In-progress**, you can cancel it in full 
 
 - Select **Cancel Request** from the action menu at the top, or the three dots next to **Billing scope**.
 
-:::image type="content" source="../media/70d4d272274e6e5374095722b4a09c86.png" alt-text="Screenshot that shows how to cancel a COCP request in the Azure portal." lightbox="../media/70d4d272274e6e5374095722b4a09c86.png":::
+  :::image type="content" source="../media/70d4d272274e6e5374095722b4a09c86.png" alt-text="Screenshot that shows how to cancel a COCP request in the Azure portal." lightbox="../media/70d4d272274e6e5374095722b4a09c86.png":::
 
 This process initiates a notification to the partner that lets them know that you canceled the request.

@@ -13,22 +13,22 @@ ms.custom: sfi-ga-nochange
 
 # Enable Marketplace purchases in Azure
 
-You can use the Microsoft Commercial Marketplace in the Azure portal to buy non-Microsoft software to use with Azure.
+You can use Microsoft Marketplace in the Azure portal to buy non-Microsoft software to use with Azure.
 
-To use the Marketplace, you need to set up and configure Marketplace policy settings. Then, you assign the required user access permissions to billing accounts and subscriptions.
+To use Marketplace, you need to set up and configure Marketplace policy settings. Then, you assign the required user access permissions to billing accounts and subscriptions.
 
 This article explains how to set up and enable Marketplace purchases, and specifically how to enable Marketplace private offer purchases.
 
 To enable Marketplace private offer purchase, first:
 
-1. Enable Azure Marketplace in the Azure portal.
+1. Enable Marketplace in the Azure portal.
 1. Set user permissions to allow individuals to make Marketplace purchases.
 1. Set user permissions to allow individuals to accept Marketplace private offers.
-1. Optionally, if you have Private Marketplace enabled, then you can enable private offer purchases in the Private Marketplace.
+1. Optionally, if you have Private Marketplace enabled, then you can enable private offer purchases in Private Marketplace.
 
 ## Prerequisites
 
-Before you begin, make sure you know your billing account type. Learn how to [determine your billing account type](manage-billing-access.md#check-the-type-of-your-billing-account).
+Before you begin, make sure you know your billing account type, because the process to enable marketplace purchases varies based on your account type. [Learn how to determine your billing account type](manage-billing-access.md#check-the-type-of-your-billing-account).
 
 ## Enable Marketplace purchases
 
@@ -49,8 +49,8 @@ At a high level, here's how the process works.
 
 Users with the following permissions can enable the policy setting:
 
-- **Billing Account owner** or **Billing Account contributor**
-- **Billing Profile owner** or **Billing Profile contributor**
+- **Billing account owner** or **Billing account contributor**
+- **Billing profile owner** or **Billing profile contributor**
 
 The policy setting applies to all users with access to all Azure subscriptions under the billing account's billing profile.
 
@@ -62,14 +62,14 @@ To enable the policy setting on the billing account profile:
 1. Select the appropriate billing account scope.
 1. On the left menu, select **Billing profile**.
 1. On the left menu, select **Policies**.
-1. Set the Azure Marketplace policy to **On**.
-1. Select the **Save** option.
+1. Set the Marketplace policy to **On**.
+1. Select **Save**.
 
-For more information about the Azure Marketplace policy setting, see [Purchase control through the billing profile under a Microsoft Customer Agreement](/marketplace/purchase-control-options#purchase-control-through-the-billing-profile) .
+For more information about the Marketplace policy setting, see [Purchase control through the billing profile under a Microsoft Customer Agreement](/marketplace/purchase-control-options#purchase-control-through-the-billing-profile) .
 
 ### <a name = "ea--enable-the-marketplace-policy-setting"></a> Enable the Marketplace policy setting with an Enterprise Agreement account
 
-Only users with the **Enterprise administrator** role can enable the policy setting. Users with **Enterprise administrator** role who have read-only permissions can't enable the proper policies to buy from the Marketplace.
+Only Enterprise admins can enable the policy setting. Enterprise admins who have read-only permissions can't enable the proper policies to buy from Marketplace.
 
 The policy setting applies to all users with access to the Azure subscriptions in the billing account (Enterprise Agreement enrollment).
 
@@ -80,14 +80,14 @@ To enable the policy setting on the billing account (Enterprise Agreement enroll
 1. On the left menu, select **Billing scopes**.
 1. Select the billing account scope.
 1. On the left menu, select **Policies**.
-1. Under Azure Marketplace, set the policy to **On**.
+1. Under Marketplace, set the policy to **On**.
 1. Select **Save**.
 
-For more information about the Azure Marketplace policy setting, see [Purchase control through Enterprise Agreement billing administration under an Enterprise Agreement](/marketplace/purchase-control-options#purchase-control-through-ea-billing-administration-under-an-enterprise-agreement-ea).
+For more information about Marketplace policy setting, see [Purchase control through Enterprise Agreement billing administration under an EA](/marketplace/purchase-control-options#purchase-control-through-ea-billing-administration-under-an-enterprise-agreement-ea).
 
 ## Set user permissions on the Azure subscription
 
-In order for customers (with both Enterprise Agreement and Microsoft Customer Agreement accounts) to purchase a Marketplace private offer, a private plan, or a public plan, they need to set user permissions on their Azure subscription.
+To purchase a Marketplace private offer, a private plan, or a public plan, customers (with both Enterprise Agreement and Microsoft Customer Agreement accounts) need to set user permissions on their Azure subscription.
 
 When you grant permission, it applies only to the individual users that you select.
 
@@ -140,11 +140,11 @@ To set user permissions:
 
 For more information, see [Add another enterprise administrator](direct-ea-administration.md#add-another-enterprise-administrator).
 
-## (Optional) Enable private offer purchases in the private Azure Marketplace
+## (Optional) Enable private offer purchases in Azure Private Marketplace
 
-If Private Azure Marketplace is enabled, you need a Private Marketplace admin to enable and configure a Private Marketplace. To enable Azure Private Marketplace in the Azure portal, a global administrator assigns the **Marketplace admin** role to specific users. The process to assign the **Marketplace** admin role is the same for Enterprise Agreement and Microsoft Customer Agreement customers.
+If Azure Private Marketplace is enabled, you need a Private Marketplace admin to enable and configure a Private Marketplace. To enable Azure Private Marketplace in the Azure portal, a global administrator assigns the Marketplace admin role to specific users. The process to assign the Marketplace admin role is the same for Enterprise Agreement and Microsoft Customer Agreement customers.
 
-To assign the **Marketplace admin** role:
+To assign the Marketplace admin role:
 
 1. Sign in to the Azure portal.
 1. Go to or search for **Marketplace**.
@@ -156,28 +156,28 @@ To assign the **Marketplace admin** role:
 
 For more information about assigning the Marketplace admin role, see [Assign the Marketplace admin role](/marketplace/create-manage-private-azure-marketplace-new#assign-the-marketplace-admin-role).
 
-### Enable private offer purchasing in the Private Marketplace
+### Enable private offer purchasing in Private Marketplace
 
-Users with the **Marketplace admin** role can enable private offer and private plan purchases in the Private Marketplace. The Marketplace admin can also enable individual private offers or private plans.
+Marketplace admins can enable private offer and private plan purchases in Private Marketplace. The Marketplace admin can also enable individual private offers or private plans.
 
-After you enable private offer purchasing in the Private Marketplace, all users in the organization (the Microsoft Entra tenant) can purchase products in enabled collections.
+After you enable private offer purchasing in Private Marketplace, all users in the organization (the Microsoft Entra tenant) can purchase products in enabled collections.
 
 #### Enable private offers and private plans
 
 1. Sign in to the Azure portal.
 1. Go to or search for **Marketplace**.
 1. Select **Private Marketplace** from the left menu.
-1. Select **Get Started** to use private Azure Marketplace. You only have to do this action once.
+1. Select **Get Started** to use Azure Private Marketplace. You only have to do this action once.
 1. Select **Settings** from the left menu.
-1. Select the radio button for the desired status (**Enabled** or **Disabled**).
+1. Select the radio option for the desired status (**Enabled** or **Disabled**).
 1. Select **Apply** at the bottom of the page.
-1. Update the Private Marketplace **Rules** to enable private offers and private plans.
+1. Update Private Marketplace **Rules** to enable private offers and private plans.
 
 #### Add individual private products to a Private Marketplace collection
 
-We generally recommend that a Marketplace admin should enable private offers in the Private Marketplace for all users in the organization by using the previous procedure.
+We generally recommend that a Marketplace admin should enable private offers in Private Marketplace for all users in the organization by using the previous procedure.
 
-We don't recommend it, but if necessary, users with the Marketplace admin role can use the following procedures to avoid enabling private offers in the Private Marketplace for all users in the organization. The Marketplace admin can add individual private offers on a purchase-by-purchase basis.
+We don't recommend it, but if necessary, Marketplace admins can use the following procedures to avoid enabling private offers in Private Marketplace for all users in the organization. The Marketplace admin can add individual private offers on a purchase-by-purchase basis.
 
 #### Set up a collection
 
@@ -200,6 +200,6 @@ For more information about setting up and configuring Marketplace product collec
 
 ## Related content
 
-- To learn more about using Private Marketplace, see [Use Private Azure Marketplace](/marketplace/create-manage-private-azure-marketplace-new#create-private-azure-marketplace).
+- To learn more, see [Use Azure Private Marketplace](/marketplace/create-manage-private-azure-marketplace-new#create-private-azure-marketplace).
 - To learn more about setting up and configuring Marketplace product collections, see [Collections overview](/marketplace/create-manage-private-azure-marketplace-new#collections-overview).
-- Read more about the Marketplace in [Microsoft Commercial Marketplace customer documentation](/marketplace/).
+- Read more about [Microsoft Marketplace](/marketplace/).
