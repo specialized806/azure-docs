@@ -699,7 +699,6 @@ Internally, the "*raise-event*" API enqueues a message that gets picked up by th
 await client.RaiseEventAsync(instanceId, "Approval", true);
 ```
 
-# [JavaScript](#tab/javascript)
 
 
 # [Python](#tab/python)
