@@ -152,9 +152,6 @@ The bastion host can take several minutes to deploy. Wait for the bastion host t
 In this section, you create a virtual machine to test the NAT gateway and verify the public IP address of the outbound connection.
 
 ```azurepowershell-interactive
-# Set the administrator and password for the VM ##
-$cred = Get-Credential
-
 ## Place the virtual network into a variable ##
 $vnet = Get-AzVirtualNetwork -Name 'vnet-1' -ResourceGroupName 'test-rg'
 
@@ -167,31 +164,17 @@ $nic = @{
 }
 $nicVM = New-AzNetworkInterface @nic
 
-## Create a virtual machine configuration ##
-$vmsz = @{
-    VMName = 'vm-1'
-    VMSize = 'Standard_DS1_v2'  
-}
-$vmos = @{
-    ComputerName = 'vm-1'
-    Credential = $cred
-}
-$vmimage = @{
-    PublisherName = 'Canonical'
-    Offer = '0001-com-ubuntu-server-jammy'
-    Skus = '22_04-lts-gen2'
-    Version = 'latest'     
-}
-$vmConfig = New-AzVMConfig @vmsz `
-    | Set-AzVMOperatingSystem @vmos -Linux `
-    | Set-AzVMSourceImage @vmimage `
-    | Add-AzVMNetworkInterface -Id $nicVM.Id
-
 ## Create the virtual machine ##
 $vm = @{
     ResourceGroupName = 'test-rg'
     Location = 'eastus2'
-    VM = $vmConfig
+    Name = 'vm-1'
+    Image = 'Canonical:0001-com-ubuntu-server-jammy:22_04-lts-gen2:latest'
+    Size = 'Standard_DS1_v2'
+    VirtualNetworkName = 'vnet-1'
+    SubnetName = 'subnet-1'
+    GenerateSshKey = $true
+    SshKeyName = 'natGatewaySshKey'
 }
 New-AzVM @vm
 ```
@@ -316,7 +299,7 @@ az vm create \
     --name vm-1 \
     --image Ubuntu2204 \
     --admin-username azureuser \
-    --authentication-type password \
+    --generate-ssh-keys \
     --public-ip-address "" \
     --subnet subnet-1 \
     --vnet-name vnet-1
