@@ -66,8 +66,6 @@ Egress traffic follows the routing preference set on the regional load balancers
 
 When you expose the global endpoint of a global load balancer to customers, you can add or remove regional deployments behind the global endpoint without interruption. 
 
-<!---To learn about how to add or remove a regional deployment from the backend, read more [here](TODO: Insert CLI doc here).--->
-
 ### Static anycast global IP address
 
 Global load balancer comes with a static public IP, which ensures the IP address remains the same. Both IPv4 and IPv6 configurations are supported. To learn more about static IP, read more [here.](../virtual-network/ip-services/public-ip-addresses.md#ip-address-assignment)
@@ -94,7 +92,7 @@ Add your existing load balancer deployments to a global load balancer for a high
 
 ### Home regions and participating regions
 
---Home region-- is where the global load balancer or Public IP Address of Global tier is deployed. 
+**Home region** is where the global load balancer or Public IP Address of Global tier is deployed. 
 This region doesn't affect how the traffic is routed. If a home region goes down, traffic flow is unaffected.
 
 #### Home regions in Azure
@@ -112,7 +110,7 @@ This region doesn't affect how the traffic is routed. If a home region goes down
 > [!NOTE]
 > You can only deploy your global load balancer or Public IP in Global tier in one of the listed Home regions.
 
-A --participating region-- is where the Global public IP of the load balancer is being advertised.
+A **participating region** is where the Global public IP of the load balancer is being advertised.
 
 Traffic started by the user travels to the closest participating region through the Microsoft core network. 
 
