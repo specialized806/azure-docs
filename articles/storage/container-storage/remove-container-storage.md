@@ -27,7 +27,7 @@ Azure Container Storage supports removing:
 
 ## Remove CSI driver for specific storage type
 
-Remove the CSI driver by running the following Azure CLI command. Be sure to replace <cluster-name> and <resource-group> with your own values.
+Remove the CSI driver by running the following Azure CLI command. Be sure to replace '<cluster-name>' and '<resource-group>' with your own values.
 
 ```azurecli
    az aks update -n <cluster-name> -g <resource-group> --disable-azure-container-storage <storage-type>
