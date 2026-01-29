@@ -151,7 +151,7 @@ If your Standard logic app is hosted in App Service Environment, make sure that 
 
 1. On the logic app sidebar, under **Settings**, select **Configuration**.
 
-1. On the **Genera settings** tab, next to **Always on**, select **On**. Then click **Apply** button.
+1. On the **General settings** tab, select **Always on** to turn on, then select **Apply**.
 
 ## Related content
 
