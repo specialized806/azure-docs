@@ -76,7 +76,9 @@ During the public preview, Virtual Network Appliance is available in a limited s
 
 - Select regions offer the preview: West US, East US, East Asia, North Europe, West Europe, East US 2, West Central US, and UK South.
 
-- During preview, deploy the virtual network appliance in a dedicated subnet.
+- Placement of a virtual network appliance behind an internal load balancer isn't supported.
+
+- Traffic routed through a virtual network appliance can't reach destinations exposed via Azure Private Link/Private Link Service.
 
 - Global and cross-region Private Endpoint and peering aren't supported.
 
