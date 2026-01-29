@@ -94,6 +94,9 @@ az containerapp job create \
     --name "my-job" --resource-group "my-resource-group"  --environment "my-environment" \
     --trigger-type "Manual" \
     --replica-timeout 1800 \
+    --replica-retry-limit 0 \
+    --replica-completion-count 1 \ 
+    --parallelism 1 \ 
     --image "mcr.microsoft.com/k8se/quickstart-jobs:latest" \
     --cpu "0.25" --memory "0.5Gi"
 ```
@@ -137,7 +140,7 @@ The following example Azure Resource Manager template creates a manual job named
 
 To create a manual job by using the Azure portal, search for **Container App Jobs** in the Azure portal and select **Create**. Specify **Manual** as the trigger type.
 
-To use a sample container image, enter the following values on the **Containers** tab:
+To use a sample container image, enter the following values on the **Container** tab:
 
 | Setting | Value |
 |---|---|
@@ -179,6 +182,9 @@ az containerapp job create \
     --name "my-job" --resource-group "my-resource-group"  --environment "my-environment" \
     --trigger-type "Schedule" \
     --replica-timeout 1800 \
+    --replica-retry-limit 0 \ 
+    --parallelism 1 \
+    --replica-completion-count 1 \
     --image "mcr.microsoft.com/k8se/quickstart-jobs:latest" \
     --cpu "0.25" --memory "0.5Gi" \
     --cron-expression "*/1 * * * *"
@@ -224,7 +230,7 @@ The following example Azure Resource Manager template creates a manual job named
 
 To create a scheduled job by using the Azure portal, search for **Container App Jobs** in the Azure portal and select **Create**. Specify **Schedule** as the trigger type and define the schedule with a cron expression, such as `*/1 * * * *` to run every minute.
 
-To use a sample container image, enter the following values on the **Containers** tab:
+To use a sample container image, enter the following values on the **Container** tab:
 
 | Setting | Value |
 |---|---|
@@ -343,7 +349,7 @@ The example configures an Azure Storage queue scale rule.
 
 # [Azure portal](#tab/azure-portal)
 
-To create an event-driven job by using the Azure portal, search for **Container App Jobs** in the Azure portal and select **Create**. Specify **Event** as the trigger type and configure the scaling rule.
+To create an event-driven job by using the Azure portal, search for **Container App Jobs** in the Azure portal and select **Create**. Specify **Event-driven** as the trigger type and configure the scaling rule.
 
 ---
 
@@ -485,7 +491,7 @@ To authenticate the request, add an `Authorization` header that contains a valid
 
 # [Azure portal](#tab/azure-portal)
 
-To view the status of job executions by using the Azure portal, search for **Container App Jobs** in the Azure portal and select the job. The **Execution history** tab displays the status of recent executions.
+To view the status of job executions by using the Azure portal, search for **Container App Jobs** in the Azure portal and select the job. In the left pane, under **Monitoring**, select **Execution history** to see the status of recent executions.
 
 ---
 
@@ -597,7 +603,7 @@ The following example Azure Resource Manager template creates a job with advance
 
 # [Azure portal](#tab/azure-portal)
 
-To configure advanced settings by using the Azure portal, search for **Container App Jobs** in the portal and select **Create**. To configure the settings, select **Configuration**.
+To configure advanced settings by using the Azure portal, create the job as described earlier in this article and then, under **Settings** in the left pane, select **Configuration**. Edit the configuration settings in the **Configuration** pane.
 
 ---
 
