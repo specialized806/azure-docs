@@ -34,7 +34,7 @@ Azure DNS Private Resolver lets you query Azure DNS private zones from an on-pre
 
 ### Configure IoT Edge endpoints when using Private Link
 
-When Private Link is enabled, IoT Edge must be configured to use the **private endpoint FQDNs**, not the public service hostnames. If public hostnames are used, IoT Edge modules fail to connect after public network access is disabled.
+When Private Link is enabled, you must configure IoT Edge to use the **private endpoint FQDNs**, not the public service hostnames. If public hostnames are used, IoT Edge modules fail to connect after public network access is disabled.
 
 #### Which hostname should be used?
 
