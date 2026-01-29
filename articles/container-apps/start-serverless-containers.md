@@ -15,15 +15,15 @@ Serverless computing provides services that manage and maintain servers, which r
 
 Container Apps make it easy to manage:
 
-**Automatic scaling.** As requests for your applications fluctuate, Container Apps keeps your systems running even during seasons of high demand. Container Apps meets the demand for your app at any level by [automatically creating new copies](scale-app.md) (called replicas) of your container. As demand falls, the runtime removes unneeded replicas.
+- **Automatic scaling.** As requests for your applications fluctuate, Container Apps keeps your systems running even during seasons of high demand. Container Apps meets the demand for your app at any level by [automatically creating new copies](scale-app.md) (called replicas) of your container. As demand falls, the runtime removes unneeded replicas.
 
-**Security.** Application security is enforced throughout many layers. From [authentication and authorization](authentication.md) to [network-level security](networking.md), Container Apps enables you to be explicit about the users and requests allowed into your system.
+- **Security.** Application security is enforced throughout many layers. From [authentication and authorization](authentication.md) to [network-level security](networking.md), Container Apps enables you to be explicit about the users and requests allowed into your system.
 
-**Monitoring.** Easily monitor your container app's health by using [observability tools](observability.md) in Container Apps.
+- **Monitoring.** Easily monitor your container app's health by using [observability tools](observability.md) in Container Apps.
 
-**Deployment flexibility.** You can deploy from GitHub, Azure DevOps, or your local machine.
+- **Deployment flexibility.** You can deploy from GitHub, Azure DevOps, or your local machine.
 
-**Changes.** As your containers evolve, Container Apps catalogs changes as [revisions](revisions.md) to your containers. If you have a problem with a container, you can easily roll back to an older version.
+- **Changes.** As your containers evolve, Container Apps catalogs changes as [revisions](revisions.md) to your containers. If you have a problem with a container, you can easily roll back to an older version.
 
 ## Where to go next
 
