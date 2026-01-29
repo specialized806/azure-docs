@@ -145,7 +145,7 @@ If your Standard logic app uses the hosting option named **Workflow Service Plan
 
 1. Under **App Scale out**, make sure that the **Always Ready Instances** value *isn't set* to **0**.
 
-If your Standard logic app is hosted in an App Service Environment, make sure that **Always on** is turned on
+If your Standard logic app is hosted in App Service Environment, make sure that **Always on** is turned on.
 
 1. In the [Azure portal](https://portal.azure.com), find and open your logic app, if not already open.
 
