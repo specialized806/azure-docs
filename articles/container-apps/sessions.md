@@ -38,7 +38,6 @@ Dynamic sessions are useful in a variety of situations, including:
 - **Custom Compute Tasks**: Execute short-lived jobs that require custom dependencies or runtime environments without long startup times.
 - **Burst Workloads**: Handle unpredictable spikes in demand by scaling sessions up and down automatically.
 
----
 
 ## Key Concepts
 - **Session Pool**  
