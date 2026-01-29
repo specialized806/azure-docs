@@ -4,10 +4,11 @@ titleSuffix: Azure Storage
 description: Learn how to configure settings for BlobFuse.
 author: akashdubey-ms
 ms.author: akashdubey
+ms.reviewer: normesta
 
 ms.service: azure-blob-storage
 ms.topic: how-to
-ms.date: 12/02/2022
+ms.date: 01/29/2026
 # Customer intent: "As a cloud administrator, I want to configure settings for BlobFuse, so that I can effectively manage access, logging, caching, and permissions in my deployment."
 ---
 
@@ -53,7 +54,7 @@ You also can set configuration settings when you pass them as parameters of the 
 blobfuse2 mount ./mount_dir --config-file=./config.yaml --container-name=blobfuse2b --log-level=log_debug --log-file-path=./bobfuse2b.log
 ```
 
-For more information about the entire BlobFuse command set, including the `blobfuse2 mount` command, see [BlobFuse2 commands](blobfuse2-commands.md) and [BlobFuse2 mount commands](blobfuse2-commands-mount.md).
+For more information about the entire BlobFuse command set, including the `blobfuse2 mount` command, see [BlobFuse commands](blobfuse2-commands.md) and [BlobFuse2 mount commands](blobfuse2-commands-mount.md).
 
 ## Next steps
 

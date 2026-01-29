@@ -1,5 +1,5 @@
 ---
-title: What is BlobFuse? - BlobFuse2
+title: What is BlobFuse? - BlobFuse
 titleSuffix: Azure Storage
 description: An overview of how to use BlobFuse to mount an Azure Blob Storage container through the Linux file system.
 author: normesta
@@ -7,9 +7,9 @@ ms.author: normesta
 
 ms.service: azure-blob-storage
 ms.topic: feature-guide
-ms.date: 12/10/2025
+ms.date: 1/29/2026
 ms.custom: linux-related-content
-# Customer intent: "As a developer or system administrator working with Linux, I want to understand what BlobFuse2 is and how it works, so that I can evaluate whether it meets my needs for accessing Azure Blob Storage through familiar file system operations for workloads like AI/ML training, HPC simulations, or cloud-native applications."
+# Customer intent: "As a developer or system administrator working with Linux, I want to understand what BlobFuse is and how it works, so that I can evaluate whether it meets my needs for accessing Azure Blob Storage through familiar file system operations for workloads like AI/ML training, HPC simulations, or cloud-native applications."
 ---
 
 # What is BlobFuse?
@@ -21,7 +21,7 @@ BlobFuse provides several caching mechanisms, including file, metadata, and attr
 The BlobFuse project is [licensed under the MIT license](https://github.com/Azure/azure-storage-fuse/blob/main/LICENSE).
 
 > [!NOTE]
-> BlobFuse2 is the latest version of BlobFuse and has many significant improvements over BlobFuse v1. [BlobFuse v1](storage-how-to-mount-container-linux.md) support ends in September 2026. Migrate to BlobFuse v2 by using the provided [instructions](https://github.com/Azure/azure-storage-fuse/blob/main/MIGRATION.md).
+> BlobFuse is the latest version of BlobFuse and has many significant improvements over BlobFuse v1. [BlobFuse v1](storage-how-to-mount-container-linux.md) support ends in September 2026. Migrate to BlobFuse v2 by using the provided [instructions](https://github.com/Azure/azure-storage-fuse/blob/main/MIGRATION.md).
 
 ## Key use cases
 
@@ -68,7 +68,7 @@ Here are some of the key tasks.
 BlobFuse uses the libfuse (fuse3) library to connect with the Linux FUSE kernel module. It performs file system operations by using Azure Storage REST APIs. Through path conventions, it converts Azure Blob Storage object names into a directory-like structure. You can access files as if they reside locally. BlobFuse supports standard operations such as `mkdir`, `opendir`, `readdir`, `rmdir`, `open`, `read`, `create`, `write`, `close`, `unlink`, `truncate`, `stat`, and `rename`. It also supports `chmod` for hierarchical namespace (HNS) accounts.
 
 > [!NOTE]
-> BlobFuse doesn't guarantee full POSIX compliance because it translates requests into [Blob REST APIs](/rest/api/storageservices/blob-service-rest-api). For example, rename operations are atomic in POSIX but not in BlobFuse. See [BlobFuse2 and Linux file systems compared](blobfuse2-compare-linux-file-system.md).
+> BlobFuse doesn't guarantee full POSIX compliance because it translates requests into [Blob REST APIs](/rest/api/storageservices/blob-service-rest-api). For example, rename operations are atomic in POSIX but not in BlobFuse. See [BlobFuse and Linux file systems compared](blobfuse2-compare-linux-file-system.md).
 
 BlobFuse has two operating modes: _caching_ (file cache) and _streaming_ (block cache).
 

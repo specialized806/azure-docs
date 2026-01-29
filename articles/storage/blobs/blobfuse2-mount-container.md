@@ -7,7 +7,7 @@ ms.author: normesta
 
 ms.service: azure-blob-storage
 ms.topic: how-to
-ms.date: 12/18/2025
+ms.date: 1/29/2026
 ms.custom: linux-related-content
 # Customer intent: As a developer or system administrator using Linux, I want to learn how to mount Azure Blob Storage containers with BlobFuse, so that I can access and work with blob data through the familiar Linux file system interface.
 ---
@@ -80,7 +80,7 @@ However, some key differences exist between BlobFuse and Linux file systems. For
 Now that you mounted your container, learn more about using BlobFuse:
 
 - [Configure BlobFuse](blobfuse2-configure.md)
-- [BlobFuse2 commands](blobfuse2-commands.md)
+- [BlobFuse commands](blobfuse2-commands.md)
 
 ## See also
 
