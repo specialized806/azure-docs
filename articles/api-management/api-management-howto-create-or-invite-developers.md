@@ -80,8 +80,8 @@ To programmatically work with user accounts, see the User entity documentation i
 
 After you create a developer account, you can associate it with roles and subscribe it to products and APIs. For more information, see [How to create and use groups][How to create and use groups].
 
-- [How to create and use groups]: api-management-howto-create-groups.md
-- [How to associate groups with developers]: api-management-howto-create-groups.md#associate-group-developer
-- [Get started with Azure API Management]: get-started-create-service-instance.md
-- [Create an API Management service instance]: get-started-create-service-instance.md
-- [Configure email templates]: api-management-howto-configure-notifications.md#email-templates
+[How to create and use groups]: api-management-howto-create-groups.md
+[How to associate groups with developers]: api-management-howto-create-groups.md#associate-group-developer
+[Get started with Azure API Management]: get-started-create-service-instance.md
+[Create an API Management service instance]: get-started-create-service-instance.md
+[Configure email templates]: api-management-howto-configure-notifications.md#email-templates
