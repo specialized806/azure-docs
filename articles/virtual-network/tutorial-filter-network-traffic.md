@@ -674,8 +674,7 @@ az vm create \
   --subnet subnet-1 \
   --nsg "" \
   --admin-username azureuser \
-  --authentication-type password \
-  --assign-identity
+  --generate-ssh-keys
 ```
 
 The VM takes a few minutes to create. After the VM is created, output similar to the following example is returned: 
