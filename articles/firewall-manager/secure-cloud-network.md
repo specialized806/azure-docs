@@ -5,7 +5,7 @@ services: firewall-manager
 author: duau
 ms.service: azure-firewall-manager
 ms.topic: tutorial
-ms.date: 01/22/2026
+ms.date: 01/29/2026
 ms.author: duau
 ms.custom: sfi-image-nochange
 ---
@@ -366,23 +366,7 @@ So now you verified that the firewall application rule is working:
 
 ### Test the network rule
 
-Now test the network rule by connecting from **Srv-Workload-01** to **Srv-Workload-02** using SSH and HTTP.
-
-1. From the SSH session on **Srv-Workload-01**, note the private IP address of **Srv-Workload-02** (visible in the Azure portal under the VM's networking settings).
-
-1. Test SSH connectivity to **Srv-Workload-02**:
-
-   ```bash
-   ssh azureuser@<Srv-Workload-02-private-IP>
-   ```
-
-   Type `yes` to accept the host key, then enter the connection. You may need to upload the private key for Srv-Workload-02 if using key-based authentication.
-
-1. Exit the SSH session to Srv-Workload-02:
-
-   ```bash
-   exit
-   ```
+Now test the network rule by connecting from **Srv-Workload-01** to **Srv-Workload-02** using HTTP.
 
 1. Test HTTP connectivity to the Nginx web server on **Srv-Workload-02**:
 
@@ -390,10 +374,8 @@ Now test the network rule by connecting from **Srv-Workload-01** to **Srv-Worklo
    curl http://<Srv-Workload-02-private-IP>
    ```
 
-   You should see the HTML content `<h1>Srv-workload-02</h1>`, confirming the network rule allows HTTP traffic between spokes.
+   You should see the status returned by the web server.
 
-So now you verified that the firewall network rule is working:
-* You can connect a remote desktop to a server located in another virtual network.
 
 ## Clean up resources
 
