@@ -32,26 +32,25 @@ Azure Container Apps allows you to bind one or more custom domains to a containe
 
 1. Go to your container app in the [Azure portal](https://portal.azure.com).
 
-1. Verify that your app has ingress enabled by selecting **Ingress** in the **Settings** section. If ingress isn't enabled, enable it by completing these steps:
+1. Verify that your app has ingress enabled by selecting **Ingress** in the **Networking** section in the left pane. If ingress isn't enabled, enable it by completing these steps:
 
    1. Set **HTTP Ingress** to **Enabled**.
    1. Select the **Ingress traffic** setting that you want.
+   1. Set the **Ingress type** to **HTTP**.
    1. Enter the **Target port**.
    1. Select **Save**.
 
-1. In the **Settings** section, select **Custom domains**.
+1. In the **Networking** section, select **Custom domains**.
 
 1. Select **Add custom domain**.
 
-1. In the **Add custom domain and certificate** pane, in **TLS/SSL certificate**, select **Bring your own certificate**.
+1. In the **Add custom domain and certificate** pane, under **TLS/SSL certificate**, select **Bring your own certificate**.
 
-1. In **domain**, enter the domain that you want to add.
+1. In **Domain** box, enter the domain that you want to add.
 
 1. Select **Add a certificate**.
 
-1. In the **Add certificate** pane, in **Certificate name**, enter a name for the certificate.
-
-1. In the **Certificate file** section, browse for the certificate file that you want to upload.
+1. In the **Add certificate** pane, in the **Source** box, select **Upload certificate (.pfx)** and browse for the certificate file that you want to upload.
 
 1. Select **Validate**.
 
@@ -59,7 +58,7 @@ Azure Container Apps allows you to bind one or more custom domains to a containe
 
 1. In the **Add custom domain and certificate** pane, in **Certificate**, select the certificate that you just added.
 
-1. Select the **Hostname record type** based on the type of your domain:
+1. Select the **Hostname record type**, based on the type of your domain:
 
     | Domain type | Record type | Notes |
     |--|--|--|
