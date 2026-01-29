@@ -135,7 +135,7 @@ This behavior can happen if the logic app resource isn't healthy, or typically, 
 
 If your Standard logic app uses the hosting option named **Workflow Service Plan**, make sure that **Runtime Scale Monitoring** is turned on and that **Always Ready Instances** is set to at least **1**.
 
-1. In the [Azure portal](https://portal.azure.com), find and open your logic app, if not already open.
+1. In the [Azure portal](https://portal.azure.com), open your logic app.
 
 1. On the logic app menu, under **Settings**, select **Configuration**.
 
