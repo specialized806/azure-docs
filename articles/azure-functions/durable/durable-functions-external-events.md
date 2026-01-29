@@ -701,7 +701,6 @@ await client.RaiseEventAsync(instanceId, "Approval", true);
 
 # [JavaScript](#tab/javascript)
 
-This sample is shown for .NET, Python, and Java.
 
 # [Python](#tab/python)
 
