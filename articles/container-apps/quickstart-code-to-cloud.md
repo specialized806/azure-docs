@@ -8,7 +8,7 @@ ms.custom:
   - devx-track-azurecli
   - ignite-2023
 ms.topic: quickstart
-ms.date: 11/07/2024
+ms.date: 01/29/2026
 ms.author: cshoe
 ---
 
