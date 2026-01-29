@@ -447,7 +447,7 @@ az vm create \
     --vnet-name vnet-1 \
     --subnet subnet-1 \
     --admin-username azureuser \
-    --authentication-type password \
+    --generate-ssh-keys \
     --no-wait
 ```
 
@@ -463,7 +463,7 @@ az vm create \
     --vnet-name vnet-2 \
     --subnet subnet-1 \
     --admin-username azureuser \
-    --authentication-type password
+    --generate-ssh-keys
 ```
 
 The virtual machine takes a few minutes to create.
