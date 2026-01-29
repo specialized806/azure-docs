@@ -29,7 +29,6 @@ With sessions, you get:
 - **Simple Access**: Sessions are accessed through a REST API with a unique identifier. If a session doesn’t exist, a new one is automatically allocated. 
 - **API Access**: Sessions are exposed to your application via a single HTTP endpoint.
 
----
 
 ## Common Scenarios
 Dynamic sessions are useful in a variety of situations, including:
