@@ -2,7 +2,7 @@
 title: Tutorial - Configure and run Cross Region Restore for Azure database for PostgreSQL
 description: Learn how to configure and run Cross Region Restore for Azure database for PostgreSQL using Azure Backup.
 ms.topic: tutorial
-ms.date: 04/07/2025
+ms.date: 01/29/2026
 ms.service: azure-backup
 ms.author: v-mallicka
 # Customer intent: "As a database administrator, I want to configure and run Cross Region Restore for Azure PostgreSQL databases, so that I can ensure data resiliency and perform recovery drills without downtime in the primary region."
@@ -68,7 +68,7 @@ To restore the database to the secondary region, follow these steps:
 1. Go to the Backup vault’s **Overview** pane, and then configure a backup for PostgreSQL database. 
     > [!Note]
     > Once the backup is complete in the primary region, it can take up to 12 hours for the recovery point in the primary region to get replicated to the secondary region. 
-1. To check the availability of recovery point in the secondary region, go to the **Backup center** > **Backup Instances**.
+1. To check the availability of recovery point in the secondary region, go to the **Backup vault** > **Backup Instances**.
 1. Filter to **Azure Database for PostgreSQL servers**, then filter Instance region as **Secondary Region**, and then select the required Backup Instance. 
      :::image type="content" source="./media/create-manage-backup-vault/view-jobs-in-secondary-region.png" alt-text="Screenshot showing how to view jobs in secondary region." lightbox="./media/create-manage-backup-vault/view-jobs-in-secondary-region.png":::
 
