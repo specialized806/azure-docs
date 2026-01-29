@@ -36,7 +36,6 @@ This quickstart mirrors the applications you deploy in the open-source Dapr [Hel
 - A GitHub account. If you don't already have one, [sign up for free](https://github.com/join).
 - Install [Azure CLI](/cli/azure/install-azure-cli).
 - Install [Git](https://git-scm.com/downloads).
-
 ::: zone pivot="container-apps-bicep"
 - Install [Bicep tools](../azure-resource-manager/bicep/install.md).
 ::: zone-end
@@ -156,7 +155,7 @@ You can confirm that the services are working correctly by viewing data in your 
 
 1. Select the **Refresh** button to observe updates.
 
-### View Logs
+### View logs
 
 Logs from container apps are stored in the `ContainerAppConsoleLogs_CL` custom table in the Log Analytics workspace. You can view logs through the Azure portal or via the CLI. There might be a small delay initially for the table to appear in the workspace.
 
