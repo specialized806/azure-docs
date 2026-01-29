@@ -19,7 +19,7 @@ To use Marketplace, you need to set up and configure Marketplace policy settings
 
 This article explains how to set up and enable Marketplace purchases, and specifically how to enable Marketplace private offer purchases.
 
-To enable Marketplace private offer purchase, first:
+To enable Marketplace private offer purchase, first: 
 
 1. Enable Marketplace in the Azure portal.
 1. Set user permissions to allow individuals to make Marketplace purchases.
