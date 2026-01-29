@@ -44,7 +44,6 @@ Examples:
 
 *   Promotional credits
 *   [Azure Credit Offers (ACO)](credits/mca-check-azure-credits-balance.md)
-*   Other credit-based incentives
 
 
 ### 3. Discounts
