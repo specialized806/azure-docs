@@ -19,8 +19,8 @@ into your RSS feed reader.
 
 ## January 2026
 
-- **Fixed hostapd version detection**: Resolved incorrect reporting of hostapd versions across all builds. The fix ensures the correct version number is displayed in analysis results.
-
+- **Fixed hostapd version detection**: Fixed component version detection for hostapd, ensuring vulnerabilities are accurately identified and reported.
+- **Fixed CVSS localization issues in CVE details**: Resolved an issue where some titles in the CVE detail panel were displaying placeholder strings instead of the correct localized text.
 
 ## November 2025
 
