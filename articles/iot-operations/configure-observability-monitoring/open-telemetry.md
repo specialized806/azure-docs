@@ -4,7 +4,7 @@ description: Learn how to integrate OpenTelemetry (OTEL) support within Azure Io
 author: sethmanheim
 ms.author: sethm
 ms.reviewer: sethm
-ms.date: 01/26/2026
+ms.date: 01/29/2026
 ms.topic: how-to
 ---
 
@@ -91,7 +91,7 @@ OTEL dataflow endpoints can be selected as destinations in modern dataflow graph
 
 This section provides a step‑by‑step walkthrough to create and configure an OTEL dataflow endpoint in Azure IoT Operations.
 
-### Step 1: create a new OTEL dataflow endpoint
+### Step 1: Create a new OTEL dataflow endpoint
 
 When you create a new dataflow endpoint, select "OpenTelemetry (OTEL)" as the endpoint type, and make sure the host is prefixed with `http://`.
 
@@ -99,17 +99,16 @@ When you create a new dataflow endpoint, select "OpenTelemetry (OTEL)" as the en
 
 Follow the steps in [Deploy observability resources and set up logs](howto-configure-observability.md).
 
-### Step 2: create a dataflow graph using the OTEL endpoint
+### Step 2: Create a dataflow graph using the OTEL endpoint
 
-Create a dataflow with the asset as the source. Make sure the metric you want to sent to OTEL is a datapoint in the asset. The following example uses a temperature value.
-
+Create a dataflow with the asset as the source. Make sure the metric you want to send to OTEL is a datapoint in the asset. The following example uses a temperature value.
 Select OTEL dataflow graph:
 
 :::image type="content" source="media/open-telemetry/add-graph.png" alt-text="Screenshot of operations experience showing dataflow graph." lightbox="media/open-telemetry/add-graph.png":::
 
 :::image type="content" source="media/open-telemetry/add-graph-2.png" alt-text="Screenshot of source node in graph." lightbox="media/open-telemetry/add-graph-2.png":::
 
-### Step 3: configure the OTEL endpoint as the destination
+### Step 3: Configure the OTEL endpoint as the destination
 
 Select the source node and fill in the details. In this example, the temperature metric is selected as the datapoint to send to the OTEL endpoint.
 
