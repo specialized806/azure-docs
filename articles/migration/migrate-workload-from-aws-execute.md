@@ -1,0 +1,86 @@
+---
+title: Execute your workload migration from Amazon Web Services (AWS) to Azure
+description: Learn how to execute migration of a single workload from AWS to Azure
+ms.author: rhackenberg
+ai-usage: ai-assisted
+ms.date: 01/29/2026
+ms.topic: concept-article
+ms.custom: migration-hub
+ms.service: azure
+ms.collection:
+  - migration
+  - aws-to-azure
+---
+#  Execute your workload migration from Amazon Web Services (AWS) to Azure
+
+This article is part of a series on [how to migrate a workload from AWS to Azure](/azure/migration/migrate-workload-from-aws-introduction). 
+
+The execute phase consists of three steps: 
+
+> [!div class="checklist"]
+> * before cutover
+> * during cutover
+> * after cutover
+
+:::image type="icon" source="images/goal.svg" alt-text="Goal icon"::: The goal of this phase is to migrate the usage of AWS workload to Azure within the agreed upon downtime and data loss constraints. Follow your runbook closely and communicate with stakeholders throughout the process.
+
+> [!IMPORTANT] 
+> Don't rush testing or skip validation steps. 
+> 
+> The execute phase carries the highest risk of service disruption. Data synchronization issues, network misconfigurations, or unexpected application behaviors can cause outages or data loss. 
+
+## Before cutover
+
+1. Open your negotiated maintenance window.
+2. **Execute your data migration:** Align the order of operations with your cutover model. Ensure all data migration steps have been tested in non-production environments and fully scripted in advance so they run reliably during cutover.
+   - For live (active) replication scenarios, start by setting up continuous data synchronization between AWS and Azure. This approach ensures minimal downtime and data consistency during cutover.
+   - For backup-and-restore models, start with a full backup of your AWS data. Securely transfer the backup to Azure, then restore it into the target environment. Validate the integrity of the data before you proceed with the next step.
+2. **Configure your application's components:** Point components to their dependencies, some of which might still be on AWS initially. In a phased migration approach, for example, your database might still be on AWS and will be migrated later.
+3. **Connectivity and networking modifications:** Ensure that your Azure resources can reach anything that still remains in AWS and vice versa if needed. Adjust your firewall and Network Security Groups (NSGs) rules and policies as well as routing as required. Ideally, no troubleshooting should be needed, as all connectivity changes should have been tested and validated in earlier phases.
+4. **Testing:** Perform functional testing, performance testing, and failure testing. Keep this simple. Extensive functional or load testing should have been completed before this phase.
+5. **Iterate and fix:** Thorough planning ensures this stage won't need fixes. If you run into issues, resolve them now. Common pitfalls include paths in scripts or API calls, Azure service limits, and quotas that might need to increase. Some Azure resource features can require different implementations in Terraform.
+6. **Lower TTL:** Lower your TTL before cutover and account for propagation delay in your rollback planning.
+7. **Update FQDNs and DNS routing:** Apply the FQDN transition plan you defined during planning. Update DNS records to point existing FQDNs to Azure endpoints, or modify application configurations to use new Azure FQDNs. For public-facing services, coordinate DNS cutover carefully to minimize downtime.
+
+## During cutover
+
+> [!IMPORTANT]
+> Follow your runbook and communicate with stakeholders about cutover progress and any expected impact to the timeline or any other issues they should be aware of.
+
+How you execute this step depends on your chosen strategy. In the recommended, blue/green approach, you switch all traffic at once during a cutover window. You must ensure that you sync all data and prepare components to accept production traffic. Then you switch all connections to Azure and bring up your Azure environment as the primary environment. We recommend a maintenance window in which you briefly pause traffic or the application to avoid inconsistencies. Automate health checks and monitor in real time during the cutover.
+
+Work closely with operations teams to ensure that you address any emerging issues immediately. Ensure a real-time **health dashboard** (using Azure Monitor or custom telemetry) is being actively watched by the migration team and operations engineers during cutover, so any anomalies trigger immediate alerts and responses. Prepare to roll back if you can't resolve issues within your rollback criteria, which you defined in the [planning phase](/azure/migration/migrate-workload-from-aws-plan).
+
+## After cutover
+
+- **Maintain rollback readiness:** Keep the AWS environment available during your validation window in case you need to roll back. When you're confident in the Azure environment, proceed to decommission AWS resources.
+- **Post-cutover verification:** Closely monitor your workload metrics in Azure. If they degrade severely or if you detect a critical bug, execute your rollback plan and be ready to revert traffic back to AWS. Run a full regression test in production if possible and check all components. Run smoke tests for critical functions, watch your security logs, and ensure all monitoring signals and alerts are green. After a day or two, monitor costs and usage to ensure there are no runaway resources incurring costs.
+- **Update CI/CD pipelines for Azure:** Update deployment pipelines to stop targeting AWS and only target Azure.
+- **Update documentation and procedures:** Revise all production runbooks, support documents, and operational procedures to reflect the new Azure environment.
+- **Hand off operational monitoring:** Confirm the operations team has assumed ownership of monitoring the Azure environment. They should now be using the Azure Monitor dashboards and alerts configured earlier to watch the workload’s health. Address any knowledge gaps as the team transitions into primary support for the Azure deployment.
+
+For detailed cutover guidance, see the [CAF Execute migration](/azure/cloud-adoption-framework/migrate/execute-migration) guide.
+
+## Checklist
+
+| &nbsp;  | Deliverable tasks                   |
+| ------- | ----------------------------------- |
+| &#9744; | Execute data migration              |
+| &#9744; | Configure application components    |
+| &#9744; | Modify connectivity and networking  |
+| &#9744; | Perform functional tests            |
+| &#9744; | Perform performance tests           |
+| &#9744; | Perform failure testing             |
+| &#9744; | Fix all issues                      |
+| &#9744; | Lower TTL                           |
+| &#9744; | Update FQDNs and DNS routing        |
+| &#9744; | Maintain rollback readiness         |
+| &#9744; | Update CI/CD pipelines for Azure    |
+| &#9744; | Perform post-cutover verification   |
+| &#9744; | Update documentation and procedures |
+| &#9744; | Hand off operational monitoring     |
+
+## Next step
+
+> [!div class="nextstepaction"]
+> [Evaluate your migration status](./migrate-workload-from-aws-evaluate.md)
