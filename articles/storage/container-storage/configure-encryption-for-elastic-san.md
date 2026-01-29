@@ -176,16 +176,16 @@ spec:
    ```
 
 Apply the YAML manifest file to deploy the pod.
+
+```azurecli
+  kubectl apply -f acstor-pod.yaml
+  ```
    
-     ```azurecli
-     kubectl apply -f acstor-pod.yaml
-     ```
-  
 You should see output similar to the following:
-   
-     ```output
-     pod/pod-san-encrypted created
-     ```
+
+```output
+ pod/pod-san-encrypted created
+  ```
      
 ## Verify the volume group details to confirm that the encryption is enabled
 
