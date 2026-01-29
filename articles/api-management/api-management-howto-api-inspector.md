@@ -63,10 +63,10 @@ Follow these steps to trace an API request in the test console in the portal. Th
 
    :::image type="content" source="media/api-management-howto-api-inspector/response-trace-1.png" alt-text="Screenshot showing the review response trace.":::
 
-   - **Inbound** - Shows the original request API Management received from the caller and the policies applied to the request. For example, if you added policies in [Tutorial: Transform and protect your API](transform-api.md), they appear here.
-   - **Backend** - Shows the requests API Management sent to the API backend and the response it received.
-   - **Outbound** - Shows the policies applied to the response before sending back to the caller.
-   - **On error** - Shows the errors that occurred during the processing of the request and the policies applied to the errors.
+   - **Inbound**. Shows the original request API Management received from the caller and the policies applied to the request. For example, if you added policies in [Tutorial: Transform and protect your API](transform-api.md), they appear here.
+   - **Backend**. Shows the requests API Management sent to the API backend and the response it received.
+   - **Outbound**. Shows the policies applied to the response before sending back to the caller.
+   - **On error**. Shows the errors that occurred during the processing of the request and the policies applied to the errors.
 
    > [!TIP]
    >
@@ -140,7 +140,7 @@ Detailed steps follow.
    - If the debug token is expired, the response includes an `Apim-Debug-Authorization-Expired` header with information about expiration date.
    - If the debug token was obtained for a different API, the response includes an `Apim-Debug-Authorization-WrongAPI` header with an error message.
 
-1. **Retrieve the trace** - Pass the trace ID obtained in the previous step to the gateway's [List trace](/rest/api/apimanagement/gateway/list-trace) API. For example, to retrieve the trace for the managed gateway, use a request similar to the following example:
+1. **Retrieve the trace**. Pass the trace ID obtained in the previous step to the gateway's [List trace](/rest/api/apimanagement/gateway/list-trace) API. For example, to retrieve the trace for the managed gateway, use a request similar to the following example:
 
    ```http
    POST https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/gateways/managed/listTrace?api-version=2023-05-01-preview
@@ -222,7 +222,7 @@ Content-Type: application/json
 
 For information about customizing trace information, see the [trace](trace-policy.md) policy.
 
-## Next step
+## Summary
 
 In this tutorial, you learned how to:
 
@@ -230,6 +230,8 @@ In this tutorial, you learned how to:
 > - Trace an example call in the test console
 > - Review request processing steps
 > - Enable tracing for an API
+
+## Next step
 
 Advance to the next tutorial:
 
