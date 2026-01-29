@@ -1,5 +1,5 @@
 ---
-title: OpenTelemetry Walkthrough
+title: OpenTelemetry Configuration
 description: Learn how to integrate OpenTelemetry (OTEL) support within Azure IoT Operations.
 author: sethmanheim
 ms.author: sethm
@@ -8,11 +8,11 @@ ms.date: 01/26/2026
 ms.topic: how-to
 ---
 
-# OpenTelemetry walkthrough
+# OpenTelemetry Configuration
 
 Azure IoT Operations enables organizations to connect, monitor, and manage industrial assets using open standards like MQTT, OPC UA, and OTEL, while using Azure Arc for deployment. Azure IoT Operations supports real-time data ingestion and processing at the edge, with seamless routing to Azure services such as Event Hub, Microsoft Fabric, and Azure Monitor.
 
-Azure IoT Operations supports OpenTelemetry (OTEL) dataflow endpoints so you can export telemetry data to OTEL‑compatible observability backends. OTEL endpoints let you reuse existing telemetry streams and integrate with your monitoring pipeline without modifying devices or connectors. This article explains how OTEL dataflow endpoints appear, how to create them using supported authentication options, and where they can be used.
+Azure IoT Operations now supports OpenTelemetry (OTEL) dataflow endpoints so you can export telemetry data to OTEL‑compatible observability backends. OTEL endpoints let you reuse existing telemetry streams and integrate with your monitoring pipeline without modifying devices or connectors. This article explains how OTEL dataflow endpoints appear, how to create them using supported authentication options, and where they can be used.
 
 ## Overview
 
@@ -23,7 +23,7 @@ OpenTelemetry plays a critical role in the Azure IoT Operations observability st
 - Collect and export telemetry data to your preferred observability platform.
 - Troubleshoot issues in your IoT deployments.
 
-This walkthrough covers the essential steps to configure OpenTelemetry in your Azure IoT Operations environment, from initial setup to data collection and visualization.
+This configuration guide covers the essential steps to configure OpenTelemetry in your Azure IoT Operations environment, from initial setup to data collection and visualization.
 
 ## Terminology
 
@@ -57,7 +57,7 @@ This section explains how you can create, configure, and use OpenTelemetry dataf
 
 ### Anonymous authentication
 
-You can create an OTEL dataflow endpoint using anonymous authentication. This option requires only the host name and does not require credentials. Anonymous authentication is useful in scenarios where authentication is handled externally or is not required by the destination backend.
+You can create an OTEL dataflow endpoint using anonymous authentication. This option requires only the host name and does not require credentials. Anonymous authentication is useful in scenarios where authentication is handled externally or isn't required by the destination backend.
 
 :::image type="content" source="media/open-telemetry/anonymous-authentication.png" alt-text="Screenshot showing setting for anonymous authentication." lightbox="media/open-telemetry/anonymous-authentication.png":::
 
@@ -69,7 +69,7 @@ OTEL dataflow endpoints support service account token authentication, allowing s
 
 ### X.509 certificate authentication
 
-For enhanced security, OTEL dataflow endpoints can be created using X.509 certificate‑based authentication. This authentication method uses certificates and asymmetric key pairs to validate identity without exposing private keys. It is suitable for scenarios that require strong identity validation.
+For enhanced security, OTEL dataflow endpoints can be created using X.509 certificate‑based authentication. This authentication method uses certificates and asymmetric key pairs to validate identity without exposing private keys. Certificate‑based authentication is suitable for scenarios that require strong identity validation.
 
 :::image type="content" source="media/open-telemetry/certificate-credentials.png" alt-text="Screenshot showing x509 certificate setting." lightbox="media/open-telemetry/certificate-credentials.png":::
 
@@ -81,9 +81,43 @@ When you create an OTEL dataflow endpoint, you can configure advanced settings t
 
 ### Use OTEL endpoints in dataflow graphs
 
-OTEL dataflow endpoints can be selected as destinations in modern dataflow graphs, allowing metrics and logs to be routed directly to OTEL‑compatible backends. OTEL endpoints are not available as destinations in classic dataflows. This restriction ensures compatibility with backends that do not support OTEL endpoints.
+OTEL dataflow endpoints can be selected as destinations in modern dataflow graphs, allowing metrics and logs to be routed directly to OTEL‑compatible backends. OTEL endpoints aren't available as destinations in classic dataflows. This restriction ensures compatibility with backends that don't support OTEL endpoints.
 
 :::image type="content" source="media/open-telemetry/dataflow-graphs.png" alt-text="Screenshot showing dataflow graphs." lightbox="media/open-telemetry/dataflow-graphs.png":::
 
 :::image type="content" source="media/open-telemetry/dataflow-graphs-destination.png" alt-text="Screenshot showing endpoint destination properties.":::
+
+## Walkthrough: Configure OTEL dataflow endpoint
+
+This section provides a step‑by‑step walkthrough to create and configure an OTEL dataflow endpoint in Azure IoT Operations.
+
+### Step 1: create a new OTEL dataflow endpoint
+
+When you create a new dataflow endpoint, select "OpenTelemetry (OTEL)" as the endpoint type, and make sure the host is prefixed with `http://`.
+
+:::image type="content" source="media/open-telemetry/create-dataflow.png" alt-text="Screenshot showing configuration of new endpoint." lightbox="media/open-telemetry/create-dataflow.png":::
+
+Follow the steps in [Deploy observability resources and set up logs](howto-configure-observability.md).
+
+### Step 2: create a dataflow graph using the OTEL endpoint
+
+Create a dataflow with the asset as the source. Make sure the metric you want to sent to OTEL is a datapoint in the asset. The following example uses a temperature value.
+
+Select OTEL dataflow graph:
+
+:::image type="content" source="media/open-telemetry/add-graph.png" alt-text="Screenshot of operations experience showing dataflow graph." lightbox="media/open-telemetry/add-graph.png":::
+
+:::image type="content" source="media/open-telemetry/add-graph-2.png" alt-text="Screenshot of source node in graph." lightbox="media/open-telemetry/add-graph-2.png":::
+
+### Step 3: configure the OTEL endpoint as the destination
+
+Select the source node and fill in the details. In this example, the temperature metric is selected as the datapoint to send to the OTEL endpoint.
+
+:::image type="content" source="media/open-telemetry/endpoint-details.png" alt-text="Screenshot showing details screen." lightbox="media/open-telemetry/endpoint-details.png":::
+
+Select **OTEL** as the destination and fill in the required details.
+
+:::image type="content" source="media/open-telemetry/otel-destination.png" alt-text="Screenshot showing otel as the destination." lightbox="media/open-telemetry/otel-destination.png":::
+
+:::image type="content" source="media/open-telemetry/otel-destination-2.png" alt-text="Screenshot showing destination details." lightbox="media/open-telemetry/otel-destination-2.png":::
 
