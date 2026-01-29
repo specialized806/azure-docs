@@ -1,25 +1,25 @@
 ---
-title: Manage a Microsoft Azure discount resource under a subscription
-description: Learn how to manage your Azure discount resource, including moving it across resource groups or subscriptions.
+title: Manage a discount resource under a subscription
+description: Learn how to manage your discount resource, including moving it across resource groups or subscriptions.
 author: benshy
 ms.reviewer: benshy
 ms.service: cost-management-billing
 ms.subservice: billing
 ms.topic: how-to
-ms.date: 08/20/2025
+ms.date: 01/29/2025
 ms.author: benshy
-#customer intent: As a Microsoft Customer Agreement billing owner, I want learn about managing a Azure discount so that I move the discount when needed.
+#customer intent: As a Microsoft Customer Agreement billing owner, I want learn about managing a discount so that I move the discount when needed.
 service.tree.id: cf90d1aa-e8ca-47a9-a6d0-bc69c7db1d52
 ---
 
-# Manage a Microsoft Azure discount resource under a subscription
-Upon acceptance of a Microsoft Azure discount as part of a Microsoft Customer Agreement, the discount is allotted to a subscription and resource group. The resultant discount resource contains descriptive metadata including discount status, discount type, product family, discount percentage, start date, and end date. While the discount resource stores relevant metadata, it doesn't impact eligibility. Discounts are applicable to a billing account and apply automatically to eligible charges on any subscription within the billing account.  
+# Manage a Microsoft discount resource under a subscription
+Upon acceptance of a discount as part of a Microsoft Customer Agreement, the discount is allotted to a subscription and resource group. The resultant discount resource contains descriptive metadata including discount status, discount type, product family, discount percentage, start date, and end date. While the discount resource stores relevant metadata, it doesn't impact eligibility. Discounts are applicable to a billing account and apply automatically to eligible charges on any subscription within the billing account.  
 
 
 <br>
 
 > [!NOTE]
-> This article applies to Azure discounts accepted after **August 2025**. Discounts accepted earlier are not listed as resources under a subscription.
+> This article applies to certain Azure and Microsoft 365 discounts accepted after **August 2025**. Discounts accepted earlier are not listed as resources under a subscription
 
 <br>
 
@@ -106,13 +106,18 @@ The user who accepted the discount proposal automatically gets owner access to t
 <br>
 
 ## Frequently asked questions
+- **How do I verify discount is being applied?** For Azure based discounts, you can verify the discount is appropriately applied by following the instructions outlined in the [Calculate discount in the usage file](../../view-download-azure-daily-usage#calculate-discount-in-the-usage-file) article.
+
 - **Does attaching a discount resource to a subscription alter its behavior?** Creating a discount resource object on a subscription doesn't affect how or to what the discount applies. It simply records the discount and provides metadata like start/end dates and discount percentage, etc.
 
- - **Does the resource group’s location affect discount application?** The resource group maintains metadata regarding the resources and doesn't influence discount eligibility. Discounts are linked to a billing account and are automatically applied to qualifying charges for any subscription within that billing account.  
+ - **Does the resource group’s location affect discount application?** The resource group maintains metadata regarding the resources and doesn't influence discount eligibility. Discounts are linked to a billing account and are automatically applied to qualifying charges for any subscription within that billing account.
+   
+ - **Are discounts with a status of Expired or Cancelled automatically deleted?** No, discounts marked as Expired or Cancelled are not deleted automatically; they must be removed manually. These records are kept intentionally for analysis of past cost or pricing changes.  
 
 <br>
 
 ## Related content
+ - [Calculate discount in the usage file](../../view-download-azure-daily-usage#calculate-discount-in-the-usage-file)
  - [Understand Cost Management data](../../../cost-management-billing/costs/understand-cost-mgt-data.md)
  - [View and download your organization's Azure pricing](../../../cost-management-billing/manage/ea-pricing.md)
  - [Terms in your Microsoft Customer Agreement price sheet](../../../cost-management-billing/manage/mca-understand-pricesheet.md)
