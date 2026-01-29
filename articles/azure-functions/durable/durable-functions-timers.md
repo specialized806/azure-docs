@@ -89,7 +89,6 @@ yield ctx.create_timer(timedelta(hours=72))
 ```
 
 
-This sample is shown for .NET, Python, and Java.
 
 # [Java](#tab/java)
 
