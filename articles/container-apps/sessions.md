@@ -95,7 +95,6 @@ Dynamic sessions are available in the following regions. Both code interpreter a
 | West US 3 | UK West | | |
 | | West Europe | | |
 
----
 
 ## Security
 Dynamic sessions are designed to run untrusted code in isolated environments. For information about securing your sessions, see [Security](./sessions-usage.md#security).
