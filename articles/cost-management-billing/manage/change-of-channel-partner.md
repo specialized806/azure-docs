@@ -59,7 +59,7 @@ You can't use the self-service COCP process in the following situations:
 
 1. Go to the Azure portal. Select **Cost management + Billing** > **Billing scopes** > **Change Partner**.
 
-:::image type="content" source="../media/4c8cf6ac757a54ac716d903f02bf6d47.png" alt-text="Screenshot that shows the Azure portal customer experience." lightbox="../media/4c8cf6ac757a54ac716d903f02bf6d47.png":::
+   :::image type="content" source="../media/4c8cf6ac757a54ac716d903f02bf6d47.png" alt-text="Screenshot that shows the Azure portal customer experience." lightbox="../media/4c8cf6ac757a54ac716d903f02bf6d47.png":::
 
 1. After you select **Change Partner**, you're redirected to a page that shows only the billing accounts that are eligible for a COCP request. You can select multiple billing accounts (up to a maximum of 20). Select the billing accounts that you want to transfer, and then select **Next**.
 
@@ -76,7 +76,7 @@ You can't use the self-service COCP process in the following situations:
      - **Current partner is being offboarded by Microsoft**
      - **Other**
 
-   :::image type="content" source="../media/9350cd4c52e4430287886bf707b2dd03.png" alt-text="Screenshot that shows Initiate change of partner." lightbox="../media/9350cd4c52e4430287886bf707b2dd03.png":::
+     :::image type="content" source="../media/9350cd4c52e4430287886bf707b2dd03.png" alt-text="Screenshot that shows Initiate change of partner." lightbox="../media/9350cd4c52e4430287886bf707b2dd03.png":::
 
 1. You can check to see if the partner is allowed to do business by entering the partner PCN and selecting the **Confirm partner** button in the lower-left corner. The partner organization name should appear. If you get an error, you can reach out to the partner to make sure you have the correct PCN.
 
