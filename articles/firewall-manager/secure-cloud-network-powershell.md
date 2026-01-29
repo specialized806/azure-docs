@@ -5,7 +5,7 @@ services: firewall-manager
 author: jomore
 ms.topic: tutorial
 ms.service: azure-firewall-manager
-ms.date: 01/22/2026
+ms.date: 01/29/2026
 ms.author: duau
 ms.custom:
   - devx-track-azurepowershell
