@@ -160,6 +160,11 @@
         "redirect_document_id": false
     },
     {
+        "source_path_from_root": "/articles/hdinsight/hadoop/apache-hadoop-connect-excel-hive-odbc-driver.md",
+        "redirect_url": "/azure/hdinsight/hdinsight-overview",
+        "redirect_document_id": false
+    },
+    {
         "source_path_from_root": "/articles/hdinsight/domain-joined/apache-domain-joined-introduction.md",
         "redirect_url": "/azure/hdinsight/domain-joined/hdinsight-security-overview",
         "redirect_document_id": true
