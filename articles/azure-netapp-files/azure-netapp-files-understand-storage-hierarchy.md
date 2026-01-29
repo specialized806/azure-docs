@@ -5,7 +5,7 @@ services: azure-netapp-files
 author: b-hchen
 ms.service: azure-netapp-files
 ms.topic: overview
-ms.date: 11/11/2025
+ms.date: 1/29/2026
 ms.author: anfdocs
 # Customer intent: "As a cloud architect, I want to understand the storage hierarchy of Azure NetApp Files, so that I can effectively set up and manage capacity pools and volumes to meet our storage needs."
 ---
@@ -60,7 +60,7 @@ Understanding how capacity pools work helps you select the right capacity pool t
 - If you're using customer-managed keys, [ensure you've configured encryption before creating the capacity pool.](elastic-customer-managed-keys.md).
 - Elastic capacity pools enable you to create a failover preference order of availability zones. Some regions that support the Elastic service level only offer two availability zones. Query the region for availability zone with the REST API before creating the capacity pool:
 
-```rest
+```
 GET  https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.NetApp/locations/{location}/elasticRegionInfo?api-version=2025-09-01-preview.
 ```
 
