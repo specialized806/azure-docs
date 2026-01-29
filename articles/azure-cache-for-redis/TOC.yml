@@ -27,8 +27,7 @@
         href: redis-cache-arm-provision.md
       - name: Java app
         href: /azure/redis/java-get-started
-
-    -           
+         
 - name: Migration 
   expanded: true
   items:
