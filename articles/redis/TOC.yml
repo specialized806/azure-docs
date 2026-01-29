@@ -82,7 +82,7 @@ items:
           - name: Monitor using diagnostic settings
             href: monitor-diagnostic-settings.md
           - name: List of Redis metrics
-            href: ../azure-cache-for-redis/monitor-cache-reference.md#metrics
+            href: monitor-cache-reference.md#metrics
       - name: Scaling and performance
         items:
           - name: Change the size and tier of a cache
