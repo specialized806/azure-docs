@@ -17,7 +17,6 @@ Azure Container Apps dynamic sessions provide fast access to secure sandboxed en
 
 Dynamic sessions offer prewarmed environments through a [session pools](./session-pool.md) that starts the container in milliseconds, scales on demand, and maintains strong isolation. This makes them ideal for interactive workloads, running LLM generated scripts, and secure execution of custom code.
 
----
 
 ## Benefits
 With sessions, you get:
