@@ -1,16 +1,16 @@
 ---
-title: Understand Azure NetApp Files zone-redundant storage
+title: Understand Azure NetApp Files zone-redundant storage service level
 description: Understand the unique qualities of Elastic zone-redundant storage, which delivers built-in local redundancy is designed as a more affordable alternative. 
 services: azure-netapp-files
 author: b-ahibbard
 ms.service: azure-netapp-files
 ms.topic: article
-ms.date: 01/26/2026
+ms.date: 01/29/2026
 ms.author: anfdocs
 ms.custom: references-regions 
 ---
 
-# Understand Azure NetApp Files zone-redundant storage (preview)
+# Understand Azure NetApp Files zone-redundant storage service level (preview)
 
 Azure NetApp Files Elastic zone-redundant storage is a high-availability storage service level for Azure NetApp Files that synchronously replicates your data across multiple Azure Availability Zones in a single region. This means if one zone experiences an outage, your data and applications remain available from the other zones with zero data loss. Azure NetApp Files Elastic zone-redundant storage delivers similar enterprise-grade features as other Azure NetApp Files service levels (support for NFSv3, NFSv4.1, SMB, snapshots, clones, encryption, backup) but with built-in multi-availability zone redundancy. It eliminates single points of failure, ensuring continuous data access even during an entire zone outage.
 
@@ -75,7 +75,7 @@ GET https://management.azure.com/subscriptions/{subscriptionId}/providers/Micros
 
 | Feature | Flexible, Standard, Premium, and Ultra service levels | Elastic zone-redundant service level | 
 | - | - | - | 
-| Performance | High performance storage optimized for enterprise workloads | Optimized for lower-performance NAS workloads | 
+| Performance | High performance storage optimized for enterprise workloads | Optimized for workloads that require continuous in‑region availability across multiple availability zones. | 
 | Data management | Snapshots, cross-zone and cross-region replication, backups | Snapshots and backups | 
 | Protocol support | NFS, SMB, and dual-protocol (NFS and SMB) | NFS and SMB | 
 | Integrated backup | Integrated backup and recovery | Integrated backup and recovery | 
