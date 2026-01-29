@@ -1,6 +1,6 @@
 ---
-title: Deploy a Dapr Application to Azure Container Apps
-description: Deploy a Dapr application to Azure Container Apps by using an Azure Resource Manager or Bicep file.
+title: "Quickstart: Deploy a Dapr App with Azure Resource Manager or Bicep"
+description: Learn how to deploy a Dapr application to Azure Container Apps by using an Azure Resource Manager or Bicep file.
 services: container-apps
 author: greenie-msft
 ms.service: azure-container-apps
