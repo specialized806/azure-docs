@@ -6,7 +6,7 @@ author: craigshoemaker
 ms.service: azure-container-apps
 ms.custom: build-2023, ignite-2024
 ms.topic: how-to
-ms.date: 1/14/2025
+ms.date: 01/29/2026
 ms.author: cshoe
 zone_pivot_groups: azure-cli-or-portal
 ---
