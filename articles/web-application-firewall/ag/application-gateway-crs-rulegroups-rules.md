@@ -6,7 +6,7 @@ author: halkazwini
 ms.author: halkazwini
 ms.service: azure-web-application-firewall
 ms.topic: concept-article
-ms.date: 09/17/2025
+ms.date: 01/29/2026
 ms.custom: build-2025
 
 # Customer intent: "As a web application security administrator, I want to manage DRS and CRS rule sets in the web application firewall, so that I can customize security settings and protect against a broad range of vulnerabilities effectively."
@@ -23,7 +23,7 @@ You can disable rules individually, or set specific actions for each rule. This 
 
 ## Default rule set 2.2
 
-Default rule set (DRS) 2.2 is based on Open Web Application Security Project (OWASP) Core Rule Set 3.3.4, bringing refinements to existing detections and new protections, including rules that detect content types declared outside the actual content-type header and enhanced remote code execution (RCE) detections. DRS 2.2 includes additional proprietary protections rules developed by Microsoft Threat Intelligence team which expand coverage across SQL injection, XSS, and application-security attack patterns.
+Default rule set (DRS) 2.2 is based on Open Web Application Security Project (OWASP) Core Rule Set 3.3.4, bringing refinements to existing detections and new protections, including rules that detect content types declared outside the actual content-type header and enhanced remote code execution (RCE) detections. DRS 2.2 includes additional proprietary protections rules developed by Microsoft Threat Intelligence team, which expand coverage across SQL injection, XSS, and application-security attack patterns.
 
 DRS 2.2 offers a new engine and new rule sets defending against Java injections, an initial set of file upload checks, and fewer false positives compared with older DRS and CRS versions. You can also [customize rules to suit your needs](application-gateway-customize-waf-rules-portal.md). Learn more about the new [Azure WAF engine](waf-engine.md).
 
@@ -59,7 +59,7 @@ Some OWASP rules are superseded by Microsoft-authored replacements. The original
 
 ## Default rule set 2.1
 
-While you can still use default rule set (DRS) 2.1, it is recommended to use the latest version of DRS 2.2.
+While you can still use default rule set (DRS) 2.1, it's recommended to use the latest version of DRS 2.2.
 
 Default rule set (DRS) 2.1 is baselined off the Open Web Application Security Project (OWASP) Core Rule Set (CRS) 3.3.2 and includes additional proprietary protections rules developed by Microsoft Threat Intelligence team and updates to signatures to reduce false positives. It also supports transformations beyond just URL decoding.
 
@@ -145,7 +145,7 @@ Each rule is assigned in a specific Paranoia Level (PL). Rules configured in Par
 By default, DRS 2.2 is configured at Paranoia Level 1 (PL1), and all PL2 rules are disabled. To run WAF at PL2, you can manually enable any or all PL2 rules.
 For earlier rule sets, DRS 2.1 and CRS 3.2 include rules defined for Paranoia Level 2, which covers both PL1 and PL2 rules. If you prefer to operate strictly at PL1, you can disable specific PL2 rules or set their action to Log.
 
-Paranoia Levels 3 and 4 are not currently supported in Azure WAF.
+Paranoia Levels 3 and 4 aren't currently supported in Azure WAF.
 
 > [!NOTE]
 > CRS 3.2 ruleset includes rules in PL3 and PL4, but these rules are always inactive and can't be enabled, regardless of their configured state or action.
@@ -193,7 +193,7 @@ The following rule groups and rules are available when using Web Application Fir
 ### <a name="drs911-22"></a> Method enforcement
 |Rule ID|Anomaly score severity|Paranoia Level|Description|
 |---|---|--|--|
-|911100|Critical - 5|1|Method is not allowed by policy|
+|911100|Critical - 5|1|Method isn't allowed by policy|
 
 
 ### <a name="drs920-22"></a> Protocol enforcement
@@ -202,7 +202,7 @@ The following rule groups and rules are available when using Web Application Fir
 |920100|Notice - 2|1|Invalid HTTP Request Line|
 |920120|Critical - 5|1|Attempted multipart/form-data bypass|
 |920121|Critical - 5|2|Attempted multipart/form-data bypass|
-|920160|Critical - 5|1|Content-Length HTTP header is not numeric.|
+|920160|Critical - 5|1|Content-Length HTTP header isn't numeric.|
 |920170|Critical - 5|1|GET or HEAD Request with Body Content.|
 |920171|Critical - 5|1|GET or HEAD Request with Transfer-Encoding.|
 |920180|Notice - 2|1|POST without Content-Length or Transfer-Encoding headers.|
@@ -366,7 +366,7 @@ The following rule groups and rules are available when using Web Application Fir
 |942240|Critical - 5|1|Detects MySQL charset switch and MSSQL DoS attempts|
 |942250|Critical - 5|1|Detects MATCH AGAINST, MERGE and EXECUTE IMMEDIATE injections|
 |942260|Critical - 5|2|Detects basic SQL authentication bypass attempts 2/3 (replaced by rule #99031004)|
-|942270|Critical - 5|1|Looking for basic sql injection. Common attack string for mysql, oracle and others.|
+|942270|Critical - 5|1|Looking for basic sql injection. Common attack string for MySQL, Oracle, and others.|
 |942280|Critical - 5|1|Detects Postgres pg_sleep injection, waitfor delay attacks and database shutdown attempts|
 |942290|Critical - 5|1|Finds basic MongoDB SQL injection attempts|
 |942300|Critical - 5|2|Detects MySQL comments, conditions and ch(a)r injections|
@@ -1284,7 +1284,7 @@ Below are previous Core Rule Set versions. If you're using CRS 3.2, CRS 3.1, CRS
 |942251|Detects HAVING injections|
 |942260|Detects basic SQL authentication bypass attempts 2/3|
 |942270|Looking for basic sql injection. Common attack string for mysql oracle and others|
-|942280|Detects Postgres pg_sleep injection, waitfor delay attacks and database shutdown attempts|
+|942280|Detects Postgres pg_sleep injection, waitfor delay attacks, and database shutdown attempts|
 |942290|Finds basic MongoDB SQL injection attempts|
 |942300|Detects MySQL comments, conditions, and ch(a)r injections|
 |942310|Detects chained SQL injection attempts 2/2|
@@ -1524,10 +1524,10 @@ Below are previous Core Rule Set versions. If you're using CRS 3.2, CRS 3.1, CRS
 |942220|Looking for integer overflow attacks, these are taken from skipfish, except 3.0.00738585072007e-308 is the \"magic number\" crash'|
 |942230|Detects conditional SQL injection attempts|
 |942240|Detects MySQL charset switch and MSSQL DoS attempts|
-|942250|Detects MATCH AGAINST, MERGE and EXECUTE IMMEDIATE injections|
+|942250|Detects MATCH AGAINST, MERGE, and EXECUTE IMMEDIATE injections|
 |942260|Detects basic SQL authentication bypass attempts 2/3|
 |942270|Looking for basic sql injection. Common attack string for mysql oracle and others|
-|942280|Detects Postgres pg_sleep injection, waitfor delay attacks and database shutdown attempts|
+|942280|Detects Postgres pg_sleep injection, waitfor delay attacks, and database shutdown attempts|
 |942290|Finds basic MongoDB SQL injection attempts|
 |942300|Detects MySQL comments, conditions, and ch(a)r injections|
 |942310|Detects chained SQL injection attempts 2/2|
