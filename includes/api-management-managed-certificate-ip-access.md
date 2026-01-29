@@ -65,6 +65,7 @@ Both the Application Gateway and API Management instances must be injected in th
 Do one or more of the following based on your deployment:
 
 - Configure Azure Front Door to preserve the host header (forward the original host header).
+
     - **Azure Front Door (classic):** Set **Backend host header** to the API Management hostname (not the Application Gateway FQDN), or select **Preserve the incoming host header** when using custom domains.
     - **Azure Front Door Standard/Premium:** In **Route > Origin > Origin settings**, enable **Forward Host Header** and select **Original host header**.
 
