@@ -84,8 +84,6 @@ items:
           href: tutorial-ai-integrate-azure-ai-agent-dotnet.md
         - name: Agentic web app (.NET)
           href: tutorial-ai-agent-web-app-semantic-kernel-foundry-dotnet.md
-        - name: Invoke OpenAPI app from Azure AI Agent
-          href: invoke-openapi-web-app-from-azure-ai-agent-service.md
         - name: Chatbot with local SLM
           href: tutorial-ai-slm-dotnet.md
 
@@ -591,7 +589,7 @@ items:
 - name: Reliability
   items:
   - name: Reliability in Azure App Service
-    href: ../reliability/reliability-app-service.md?toc=/azure/app-service/toc.json&bc=/azure/app-service/breadcrumb/toc.json
+    href: /azure/reliability/reliability-app-service?toc=/azure/app-service/toc.json&bc=/azure/app-service/breadcrumb/toc.json
   - name: Configure App Service for zone redundancy
     href: configure-zone-redundancy.md
 - name: Samples

@@ -2,7 +2,7 @@
 title: Manage and monitor Azure VM backups
 description: Learn how to manage and monitor Azure VM backups by using the Azure Backup service.
 ms.topic: how-to
-ms.date: 10/24/2025
+ms.date: 01/27/2026
 ms.service: azure-backup
 author: AbhishekMallick-MS
 ms.author: v-mallicka
@@ -23,7 +23,7 @@ You can manage backups by using the dashboard and by drilling down to individual
 
 :::image type="content" source="./media/backup-azure-manage-vms/bottom-slider-inline.png" alt-text="Screenshot showing the full dashboard view with slider." lightbox="./media/backup-azure-manage-vms/bottom-slider-expanded.png":::
 
-[!INCLUDE [backup-center.md](../../includes/backup-center.md)]
+[!INCLUDE [resiliency.md](../../includes/resiliency.md)]
 
 ## View VMs on the dashboard
 
@@ -245,6 +245,21 @@ To re-install the VMSnapshot extension on Windows operating system for the backu
 
 1. Restart the Azure VM.
 1. Run an on-demand backup of Azure VM; this operation installs a new `VMSnapshot` extension.
+
+## Reinstall the VMSnapshot backup extension for Linux Azure VM protection
+
+1. Login to Azure VM and move to the directory using the following cmdlet:
+
+    ``cd /var/lib/waagent``
+
+    ``ls -l | grep Recovery``
+    
+
+"Microsoft.Azure.RecoveryServices.VMSnapshotLinux-1.0.XXXX.X" directory should be displayed. ("XXXX.X" depends on user's environment)
+
+2. Delete  "Microsoft.Azure.RecoveryServices.VMSnapshotLinux-1.0.XXXX.X" directory so that  VmSnapshotLinux extension is uninstalled.
+3. If you want to reinstall the extension, trigger Azure VM Backup so that extension reinstalls on the VM.
+
 
 ## Next steps
 

@@ -5,20 +5,35 @@ author: dominicbetts
 ms.author: dobett
 ms.service: azure-iot-operations
 ms.topic: how-to
-ms.date: 10/22/2025
+ms.date: 12/11/2025
 
 #CustomerIntent: As an industrial edge IT or operations user, I want configure my Azure IoT Operations environment so that I can discover and use media streams from an ONVIF compliant camera.
 ---
 
 # Configure the connector for ONVIF
 
-In Azure IoT Operations, the connector for ONVIF enables you to discover and use an ONVIF compliant camera that's connected to your Azure IoT Operations cluster.
+In Azure IoT Operations, the connector for ONVIF enables you to discover and use an [ONVIF conformant](https://www.onvif.org/profiles-add-ons-specifications/) camera  connected to your Azure IoT Operations cluster.
 
 [!INCLUDE [iot-operations-asset-definition](../includes/iot-operations-asset-definition.md)]
 
 [!INCLUDE [iot-operations-device-definition](../includes/iot-operations-device-definition.md)]
 
-The connector for ONVIF for Azure IoT Operations connects [ONVIF conformant](https://www.onvif.org/profiles-add-ons-specifications/) cameras to your Azure IoT Operations instance and registers them in the Azure Device Registry. The connector then automatically discovers:
+The following table summarizes the features the connector for ONVIF supports:
+
+| Feature | Supported | Notes |
+|---------|:---------:|-------|
+| Username/password authentication | Yes | |
+| X.509 client certificates | No | |
+| Anonymous access | Yes | For testing purposes |
+| Certificate trust list | Yes | For secure TLS connections to ONVIF cameras |
+| OpenTelemetry integration | Yes | |
+| Device discovery | Yes | Discovers ONVIF cameras on the network |
+| Capability discovery | Yes | Discovers PTZ and other device capabilities |
+| Media endpoint discovery | Yes | Discovers media streams, framerate, resolution, encoding |
+| Camera configuration | Yes | Retrieve and update camera settings |
+| PTZ control | Yes | Control pan, tilt, and zoom |
+
+The connector connects ONVIF cameras to your Azure IoT Operations instance and registers them in the Azure Device Registry. The connector then automatically discovers:
 
 - The capabilities, such as pan-tilt-zoom (PTZ), of the ONVIF device.
 - The media endpoints exposed by the ONVIF device.
@@ -45,12 +60,6 @@ This article describes how to use the operations experience web UI and Azure CLI
 - Create a device that represents the media endpoints exposed by the ONVIF camera.
 - Create an asset that captures snapshots from the media endpoint and publishes them to the MQTT broker.
 
-The connector for ONVIF supports the following authentication methods:
-  - Username/password authentication
-  - Anonymous access for testing purposes
-
-To establish a TLS connection to the ONVIF camera, you can configure a certificate trust list for the connector.
-
 ## Prerequisites
 
 [!INCLUDE [enable-resource-sync-rules](../includes/enable-resource-sync-rules.md)]
@@ -73,12 +82,16 @@ The connector enables support for the following capabilities:
 - Discovery of device information and capabilities.
 - Monitoring events from devices.
 - Discovery of the media URIs exposed by a device. The connector for ONVIF makes these URIs available to the media connector.
-- Imaging control such as filters and receiving  motion and tampering events.
+- Imaging control such as filters and receiving motion and tampering events.
 - Controlling device PTZ.
 
 ## Deploy the connector for ONVIF
 
 [!INCLUDE [deploy-connectors-simple](../includes/deploy-connectors-simple.md)]
+
+### Configure a certificate trust list for the connector
+
+[!INCLUDE [connector-certificate-application](../includes/connector-certificate-application.md)]
 
 ## Create a device with an ONVIF endpoint
 
@@ -116,6 +129,38 @@ az iot ops ns device endpoint inbound add onvif --device onvif-connector-cli -g 
 
 To learn more, see [az iot ops ns device](/cli/azure/iot/ops/ns/device).
 
+# [Bicep](#tab/bicep)
+
+Deploy the following Bicep template to create a device with an inbound endpoint for the connector for ONVIF. Replace the placeholders `<AIO_NAMESPACE_NAME>` and `<CUSTOM_LOCATION_NAME>` with your Azure IoT Operations namespace name and custom location name respectively:
+
+```bicep
+param aioNamespaceName string = '<AIO_NAMESPACE_NAME>'
+param customLocationName string = '<CUSTOM_LOCATION_NAME>'
+
+resource device 'Microsoft.DeviceRegistry/namespaces/devices@2025-10-01' = {
+  name: 'onvif-connector'
+  parent: namespace
+  location: resourceGroup().location
+  extendedLocation: {
+    type: 'CustomLocation'
+    name: customLocation.id
+  }
+  properties: {
+    endpoints: {
+      outbound: {
+        assigned: {}
+      }
+      inbound: {
+        'onvif-connector-0': {
+          endpointType: 'Microsoft.Onvif'
+          address: 'http://myonvifcam:2020/onvif/device_service'
+        }
+      }
+    }
+  }
+}
+```
+
 ---
 
 ### Configure a device to use a username and password
@@ -132,11 +177,13 @@ To use the `Username password` authentication mode, complete the following steps
 
 [!INCLUDE [connector-username-password-cli](../includes/connector-username-password-cli.md)]
 
+# [Bicep](#tab/bicep)
+
+[!INCLUDE [connector-username-password-bicep](../includes/connector-username-password-bicep.md)]
+
 ---
 
 ### Other security options
-
-To manage the trusted certificates list for the connector for ONVIF, see [Manage certificates for external communications](../secure-iot-ops/howto-manage-certificates.md#manage-certificates-for-external-communications).
 
 When you create the inbound endpoint in the operations experience, you can also select the following options on the **Advanced** tab:
 

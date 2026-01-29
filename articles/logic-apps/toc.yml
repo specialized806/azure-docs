@@ -83,7 +83,7 @@ items:
   - name: Reliability
     items:
     - name: Reliability in Azure Logic Apps
-      href: ../reliability/reliability-logic-apps.md?toc=/azure/logic-apps/toc.json
+      href: /azure/reliability/reliability-logic-apps?toc=/azure/logic-apps/toc.json
     - name: Multi-region deployments for disaster recovery
       href: multi-region-disaster-recovery.md
   - name: Security
@@ -616,7 +616,9 @@ items:
       - name: TriggerMock class
         href: testing-framework/trigger-mock-class-definition.md
       - name: UnitTestExecutor class
-        href: testing-framework/unit-test-executor-class-definition.md    
+        href: testing-framework/unit-test-executor-class-definition.md
+      - name: DataMapTestExecutor class
+        href: testing-framework/data-map-test-executor-class-definition.md       
   - name: Azure Policy built-ins
     displayName: samples, policies, definitions
     href: ./policy-reference.md
