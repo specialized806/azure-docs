@@ -12,7 +12,7 @@ ms.date:     11/26/2025
 
 Azure customers with an Enterprise Agreement can now initiate a change of channel partner (COCP) request through the Azure portal.
 
-Before this change, which began in November 2025, only partners could initiate the COCP process. Now, customers can start the process.
+This change moves the ability to initiate the COCP process away from partners and enables the customers to start the process instead.
 
 When a customer initiates a COCP, the new chosen partner receives a notification via email. The partner can either accept or decline the request. When the partner accepts, the Azure customer is notified and given the effective date when the new partner becomes active.
 
@@ -171,3 +171,4 @@ If your COCP request has a status of **In-progress**, you can cancel it in full 
   :::image type="content" source="../media/70d4d272274e6e5374095722b4a09c86.png" alt-text="Screenshot that shows how to cancel a COCP request in the Azure portal." lightbox="../media/70d4d272274e6e5374095722b4a09c86.png":::
 
 This process initiates a notification to the partner that lets them know that you canceled the request.
+
