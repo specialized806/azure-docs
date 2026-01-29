@@ -137,7 +137,7 @@ If your Standard logic app uses the hosting option named **Workflow Service Plan
 
 1. In the [Azure portal](https://portal.azure.com), open your logic app.
 
-1. On the logic app menu, under **Settings**, select **Configuration**.
+1. On the logic app sidebar, under **Settings**, select **Configuration**.
 
 1. On the **Workflow runtime settings** tab, next to **Runtime Scale Monitoring**, select **On**, then select **Apply**.
 
