@@ -5,7 +5,7 @@ services: logic-apps
 ms.suite: integration
 ms.reviewer: estfan, azla
 ms.topic: concept-article
-ms.date: 01/28/2026
+ms.date: 07/14/2025
 # As an Azure Logic Apps developer, I want to understand how recurring schedules work for triggers.
 ---
 
@@ -182,9 +182,9 @@ For more information, review the following documentation:
 
 ### Trigger recurrence for daylight saving time and standard time
 
-To schedule jobs, Azure Logic Apps puts the message for processing into the queue and specifies when that message becomes available, based on the UTC time when the last job ran and the UTC time when the next job is scheduled to run. If you want the trigger to honor daylight saving time (DST), *make sure that you select a time zone*. That way, the UTC time for your logic app also shifts to counter the seasonal time change for the timezone you selected. Recurring triggers honor the schedule that you set, including any time zone that you specify.
+To schedule jobs, Azure Logic Apps puts the message for processing into the queue and specifies when that message becomes available, based on the UTC time when the last job ran and the UTC time when the next job is scheduled to run. If you specify a start time with your recurrence, *make sure that you select a time zone* so that your logic app workflow runs at the specified start time. That way, the UTC time for your logic app also shifts to counter the seasonal time change. Recurring triggers honor the schedule that you set, including any time zone that you specify.
 
-If you don't select a time zone, daylight saving time (DST) events will affect when triggers run. For example, the start time shifts one hour forward when DST starts and one hour backward when DST ends.
+If you don't select a time zone, daylight saving time (DST) events might affect when triggers run. For example, the start time shifts one hour forward when DST starts and one hour backward when DST ends.
 
 <a name="recurrence-shift-drift"></a>
 
