@@ -555,7 +555,6 @@ def new_building_permit(ctx: task.OrchestrationContext, application_id: str):
 
 # [PowerShell](#tab/powershell)
 
-This sample is shown for .NET, Python, and Java.
 
 # [Java](#tab/java)
 
