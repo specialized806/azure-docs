@@ -141,7 +141,7 @@ If your Standard logic app uses the hosting option named **Workflow Service Plan
 
 1. On the **Workflow runtime settings** tab, next to **Runtime Scale Monitoring**, select **On**, then select **Apply**.
 
-1. On the logic app menu, under **Settings**, select **Scale out (App Service plan)**.
+1. On the logic app sidebar, under **App Service plan**, select **Scale out**.
 
 1. Under **App Scale out**, make sure that the **Always Ready Instances** value *isn't set* to **0**.
 
