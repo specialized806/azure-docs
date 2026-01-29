@@ -88,7 +88,6 @@ from datetime import timedelta
 yield ctx.create_timer(timedelta(hours=72))
 ```
 
-# [PowerShell](#tab/powershell)
 
 This sample is shown for .NET, Python, and Java.
 
