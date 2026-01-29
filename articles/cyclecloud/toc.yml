@@ -1,3 +1,4 @@
+items:
 - name: Azure CycleCloud
   href: index.yml
 - name: Overview
@@ -44,6 +45,8 @@
     items:
     - name: Plan Your Production Deployment
       href: ./how-to/plan-prod-deployment.md
+    - name: Configure Microsoft Entra ID for Authentication
+      href: ./how-to/create-app-registration.md
     - name: Manually Install Application
       href: ./how-to/install-manual.md
     - name: Install CycleCloud CLI
@@ -88,8 +91,6 @@
     items:
     - name: Plan your CycleCloud Workspace for Slurm Deployment
       href: ./how-to/ccws/plan-your-deployment.md
-    - name: Register a Microsoft Entra ID application for Open OnDemand Authentication
-      href: ./how-to/ccws/register-entra-id-app.md
     - name: Configure Open OnDemand with CycleCloud
       href: ./how-to/ccws/configure-open-ondemand.md
     - name: Add users for Open OnDemand
@@ -270,8 +271,8 @@
         href: ./release-notes/8-8-0.md
   - name: Release Notes - CycleCloud Workspace for Slurm
     items:
-      - name: Current Release - 2025.12.01
-        href: ./release-notes/ccws/2025-12-01.md
+      - name: Current Release - 2026.02.01
+        href: ./release-notes/ccws/2026-02-01.md
       - name: All Releases
         href: ./release-notes/ccws/release-notes.md
   - name: Service Policy
