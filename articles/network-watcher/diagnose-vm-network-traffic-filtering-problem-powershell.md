@@ -46,13 +46,29 @@ In this section, you create a virtual network and a subnet in the East US region
     ```azurepowershell-interactive
     # Create subnets configuration.
     $Subnet = New-AzVirtualNetworkSubnetConfig -Name 'mySubnet' -AddressPrefix '10.0.0.0/24'
+    $BastionSubnet = New-AzVirtualNetworkSubnetConfig -Name 'AzureBastionSubnet' -AddressPrefix '10.0.1.0/26'
     ```
 
 1. Create a virtual network using [New-AzVirtualNetwork](/powershell/module/az.network/new-azvirtualnetwork).
 
     ```azurepowershell-interactive
     # Create a virtual network.
-    New-AzVirtualNetwork -Name 'myVNet' -ResourceGroupName 'myResourceGroup' -Location 'eastus' -AddressPrefix '10.0.0.0/16' -Subnet $Subnet
+    New-AzVirtualNetwork -Name 'myVNet' -ResourceGroupName 'myResourceGroup' -Location 'eastus' -AddressPrefix '10.0.0.0/16' -Subnet $Subnet,$BastionSubnet
+    ```
+
+1. Create a public IP address for Azure Bastion using [New-AzPublicIpAddress](/powershell/module/az.network/new-azpublicipaddress).
+
+    ```azurepowershell-interactive
+    # Create a public IP address for Azure Bastion.
+    New-AzPublicIpAddress -ResourceGroupName 'myResourceGroup' -Name 'myBastionPublicIP' -Location 'eastus' -AllocationMethod 'Static' -Sku 'Standard'
+    ```
+
+1. Create an Azure Bastion host using [New-AzBastion](/powershell/module/az.network/new-azbastion).
+
+    ```azurepowershell-interactive
+    # Create an Azure Bastion host.
+    $vnet = Get-AzVirtualNetwork -ResourceGroupName 'myResourceGroup' -Name 'myVNet'
+    New-AzBastion -ResourceGroupName 'myResourceGroup' -Name 'myBastion' -PublicIpAddressRgName 'myResourceGroup' -PublicIpName 'myBastionPublicIP' -VirtualNetworkRgName 'myResourceGroup' -VirtualNetworkName 'myVNet' -Sku 'Developer'
     ```
 
 1. Create a default network security group using [New-AzNetworkSecurityGroup](/powershell/module/az.network/new-aznetworksecuritygroup).
@@ -62,11 +78,11 @@ In this section, you create a virtual network and a subnet in the East US region
     New-AzNetworkSecurityGroup -Name 'myVM-nsg' -ResourceGroupName 'myResourceGroup' -Location  'eastus'
     ```
 
-1. Create a virtual machine using [New-AzVM](/powershell/module/az.compute/new-azvm). When prompted, enter a username and password.
+1. Create a virtual machine using [New-AzVM](/powershell/module/az.compute/new-azvm).
 
     ```azurepowershell-interactive
     # Create a Linux virtual machine using the latest Ubuntu 20.04 LTS image.
-    New-AzVm -ResourceGroupName 'myResourceGroup' -Name 'myVM' -Location 'eastus' -VirtualNetworkName 'myVNet' -SubnetName 'mySubnet' -SecurityGroupName 'myVM-nsg' -Image 'Canonical:0001-com-ubuntu-server-focal:20_04-lts-gen2:latest'
+    New-AzVm -ResourceGroupName 'myResourceGroup' -Name 'myVM' -Location 'eastus' -VirtualNetworkName 'myVNet' -SubnetName 'mySubnet' -SecurityGroupName 'myVM-nsg' -Image 'Canonical:0001-com-ubuntu-server-focal:20_04-lts-gen2:latest' -GenerateSshKey -SshKeyName 'mySSHKey'
     ```
 
 ## Test network communication using IP flow verify
