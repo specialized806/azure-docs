@@ -46,7 +46,7 @@ MACC functionality in the Azure portal is available only to direct MCA and direc
 
 The remaining commitment displays the remaining commitment amount since your last invoice.
 
-:::image type="content" source="../../manage/media/track-consumption-commitment/macc-remaining-commitment.png" alt-text="Screenshot of remaining commitment for a MACC." lightbox="./media/track-consumption-commitment/macc-remaining-commitment.png" :::
+:::image type="content" source="../../manage/media/track-consumption-commitment/macc-remaining-commitment.png" alt-text="Screenshot of remaining commitment for a MACC." lightbox="../../manage/media/track-consumption-commitment/macc-remaining-commitment.png" :::
 
 #### Details
 
@@ -336,7 +336,7 @@ If the MACC or MACC milestone target isn't met by the end date, an email alert i
 
 ## Azure Services and Marketplace offers that are eligible for MACC
 
-You can determine which Azure services and Marketplace offers are eligible for MACC decrement in the Azure portal. For more information, see [Determine which offers are eligible for Azure consumption commitments (MACC/CtC)](../../../../marketplace/azure-consumption-commitment-benefit#determine-which-offers-are-eligible-for-azure-consumption-commitments-maccctc).
+You can determine which Azure services and Marketplace offers are eligible for MACC decrement in the Azure portal. For more information, see [Determine which offers are eligible for Azure consumption commitments (MACC/CtC)](../../../marketplace/azure-consumption-commitment-benefit#determine-which-offers-are-eligible-for-azure-consumption-commitments-maccctc).
 
 ## Azure credits and MACC
 
@@ -356,5 +356,5 @@ If you need help, [contact support](https://portal.azure.com/?#blade/Microsoft_A
 
 ## Next steps
 
-- [Determine which offers are eligible for Azure consumption commitments (MACC/CTC)](../../../../marketplace/azure-consumption-commitment-benefit#determine-which-offers-are-eligible-for-azure-consumption-commitments-maccctc)
+- [Determine which offers are eligible for Azure consumption commitments (MACC/CTC)](../../../marketplace/azure-consumption-commitment-benefit#determine-which-offers-are-eligible-for-azure-consumption-commitments-maccctc)
 - [Track your Azure credits balance](../credits/mca-check-azure-credits-balance.md)
