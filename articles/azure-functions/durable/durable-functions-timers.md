@@ -78,7 +78,6 @@ ctx.createTimer(Duration.ofHours(72)).await();
 await context.CreateTimer(TimeSpan.FromHours(72), CancellationToken.None);
 ```
 
-# [JavaScript](#tab/javascript)
 
 This sample is shown for .NET, Python, and Java.
 
