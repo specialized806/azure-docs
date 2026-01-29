@@ -25,15 +25,10 @@
       - name: Create Redis cache - ARM template
         displayName: Resource Manager
         href: redis-cache-arm-provision.md
-
-    - name: Use a cache
-      expanded: false
-      items:
       - name: Java app
         href: /azure/redis/java-get-started
 
-
-          
+    -           
 - name: Migration 
   expanded: true
   items:
