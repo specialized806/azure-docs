@@ -15,7 +15,7 @@ This tutorial describes how you can enable and run Cross Region Restore to resto
 The Cross Region Restore option allows you to restore data in a secondary [Azure paired region](/azure/reliability/cross-region-replication-azure) even when no outage occurs in the primary region; thus, enabling you to perform drills to assess regional resiliency.  
 
 > [!NOTE]
->- Currently, Geo-redundant Storage (GRS) vault with Cross Region Restore enabled can't be changed to Zone-redundant Storage (ZRS) or Locally-redundant Storage (LRS) after the protection starts for the first time.  
+>- Currently, Geo-redundant Storage (GRS) vault with Cross Region Restore enabled can't be changed to Zone-redundant Storage (ZRS) or Locally redundant Storage (LRS) after the protection starts for the first time.  
 >- Secondary region Recovery Point Objective (RPO) is currently *36 hours*. This is because the RPO in the primary region is 24 hours and can take up to 12 hours to replicate the backup data from the primary to the secondary region.  
 
 ## Considerations
