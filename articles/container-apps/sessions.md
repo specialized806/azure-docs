@@ -61,7 +61,6 @@ This lifecycle ensures fast startup, efficient resource use, and automatic clean
   - **Code Interpreter Sessions**: These are platform built-in containers that provide preconfigured environments for running code, including AI-generated scripts. Ideal for scenarios like LLM-driven workflows or secure code execution.
   - **Custom Container Sessions**: Bring-your-own-container for custom workloads that require specific dependencies or runtime environments.
 
----
 
 #### Session Types Comparison
 
