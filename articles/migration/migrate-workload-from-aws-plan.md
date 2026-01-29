@@ -1,6 +1,6 @@
 ---
-title: Plan your workload migration from Amazon Web Services (AWS) to Azure
-description: Learn how to plan migration of a single workload from AWS to Azure
+title: Plan Your Workload Migration from Amazon Web Services (AWS) to Azure
+description: Plan your AWS to Azure migration. Assess the workload, design the architecture, and use detailed runbooks to minimize risk and ensure success.
 ms.author: rhackenberg
 ai-usage: ai-assisted
 ms.date: 01/29/2026
@@ -13,33 +13,35 @@ ms.collection:
 ---
 # Plan your workload migration from Amazon Web Services (AWS) to Azure
 
-This article is part of a series on [how to migrate a workload from AWS to Azure](/azure/migration/migrate-workload-from-aws-introduction). 
+This article is part of a series about [how to migrate a workload from Amazon Web Services (AWS) to Azure](/azure/migration/migrate-workload-from-aws-introduction). 
 
 The planning phase consists of these steps: 
 
 > [!div class="checklist"]
-> * assess your workload
-> * design a like-for-like architecture
-> * develop and document a migration plan
+> * Assess your workload.
+> * Design a like-for-like architecture.
+> * Develop and document a migration plan.
 
-:::image type="icon" source="images/goal.svg" alt-text="Goal icon"::: The goal of the planning phase is to understand your existing AWS workload from a technical and business standpoint, so that you can confidently build a plan to replicate it in Azure.
+:::image type="icon" source="images/goal.svg" alt-text="Goal icon"::: The goal of the planning phase is to understand your existing AWS workload from a technical and business standpoint so that you can confidently build a plan to replicate it in Azure.
 
 > [!IMPORTANT]
 > Take your time in the planning phase and follow the steps in order. Incomplete discovery or unclear migration objectives risk misaligned expectations and missed dependencies.
 
 ## Assess your AWS workload
 
-In order to build a comparable system in Azure, you first need to fully understand your current system. You'll need to evaluate it from multiple perspectives to ensure that you eventually design an Azure implementation that fulfills the needs of users, operators, developers, compliance, and business stakeholders to the same level it does today.
+To build a comparable system in Azure, you first need to fully understand your current system. Evaluate it from multiple perspectives to ensure that you eventually design an Azure implementation that equally fulfills the needs of users, operators, developers, compliance, and business stakeholders.
 
-1. **Existing workload architecture:** Fully document and verify your workload architecture. Make sure it includes all workload dependencies, such as network configurations, data flows, and external integrations.
-2. **Document authentication (AuthN) and authorization (AuthZ):** Include identity and access management (IAM) configurations in your assessment. A complete documentation how authentication and authorization are handled in AWS is critical to designing a secure and functional Azure equivalent.
-3. **Use discovery tooling:** Use AWS-specific tooling such as [Workload Discovery on AWS](https://aws.amazon.com/solutions/implementations/workload-discovery-on-aws/) to visualize your AWS workload. It uses AWS Config and AWS Systems Manager data to help identify your workload's components, dependencies, and relationships. Use Azure tooling, such as [Azure Migrate](/azure/migrate/tutorial-assess-aws), to provide additional discovery of AWS workload components and make Azure-specific recommendations.
-4. **Identify critical flows:** Map out essential user and system interactions and [workflows](/azure/well-architected/reliability/identify-flows). When you design the target architecture in the next section, this information helps prioritize reliability efforts and ensures that the most important and impactful components are protected against failure.
-5. **Create a detailed inventory**: Make a list of your current AWS environment that's required for running the workload (all servers, storage, database, and services), along with usage patterns, performance metrics, and licensing requirements.
-6. **Involve subject matter experts:** In addition to automated discovery tools, engage experts throughout the workload team to uncover hidden dependencies, complex component relationships, and sensitive state. Critical components, like scheduled scripts, undocumented integrations, or legacy configurations, are often missed by tooling. A conversation with these subject matter experts can reveal these nuances and prevent surprises during migration. Include their input in the migration plan and runbook.
-7. **Assess your team's skills:** Focus on like-for-like capability mapping. Identify the skills your team already uses in AWS and align them with the equivalent Azure services and tools. Include Azure training in your project timeline to prepare your workload and operations teams. This approach reduces friction and builds confidence with Azure as existing experience in AWS translates directly to the new environment.
-8. **Document existing commitments:** Document the defined performance baseline of your workload, such as throughput, latency, error rates, and resource utilization. If these KPIs aren't available, collect these metrics from your AWS environment to establish this baseline. You will use the these KPIs in the evaluation phase after migration to validate that the workload in Azure performs as it did in AWS. Also understand if there are any SLAs or SLOs associated with the workload. These SLA and SLO commitments made to end users or stakeholders do not change based on your cloud platform. For example, if your recovery time objective (RTO) in AWS was 45 minutes, you'll be responsible to design the workload in Azure to also have an RTO of 45 minutes.
-9. **Document current monitoring and alerting:** Document how the workload is monitored in AWS today (CloudWatch metrics, alarms, dashboards, etc.). Plan equivalent Azure monitoring (Azure Monitor logs, metrics, Application Insights dashboards) for the target environment. Engage your operations team in this assessment so they’re ready to implement and manage Azure-based monitoring and alerts.
+1. **Document the existing workload architecture:** Fully document and verify your workload architecture. Make sure to include all workload dependencies, like network configurations, data flows, and external integrations.
+1. **Document authentication (AuthN) and authorization (AuthZ):** Include identity and access management (IAM) configurations in your assessment. Comprehensive documentation about how AWS handles authentication and authorization is critical to designing a secure and functional Azure equivalent.
+1. **Use discovery tooling:** Use AWS-specific tooling, like [Workload Discovery on AWS](https://aws.amazon.com/solutions/implementations/workload-discovery-on-aws/), to visualize your AWS workload. It uses AWS Config and AWS Systems Manager data to help identify your workload's components, dependencies, and relationships. Use Azure tooling, like [Azure Migrate](/azure/migrate/tutorial-assess-aws), to help you discover more AWS workload components and make Azure-specific recommendations.
+1. **Identify critical flows:** Map out essential user and system interactions and [workflows](/azure/well-architected/reliability/identify-flows). When you design the target architecture in the next section, this information helps prioritize reliability efforts and ensures that the most important and impactful components are protected against failure.
+1. **Create a detailed inventory:** Make a list of what your current AWS environment needs to run the workload, including all servers, storage components, databases, and services. Also include usage patterns, performance metrics, and licensing requirements.
+1. **Involve subject matter experts (SMEs):** In addition to automated discovery tools, engage experts throughout the workload team to uncover hidden dependencies, complex component relationships, and sensitive state. Tooling often misses critical components, like scheduled scripts, undocumented integrations, or legacy configurations. A conversation with SMEs can reveal these nuances and prevent surprises during migration. Include their input in the migration plan and runbook.
+1. **Assess your team's skills:** Focus on like-for-like capability mapping. Identify the skills that your team already uses in AWS and align them with equivalent Azure services and tools. Include Azure training in your project timeline to prepare your workload and operations teams. This approach reduces friction and builds confidence with Azure because existing experience in AWS translates directly to the new environment.
+1. **Document existing commitments:** Document the defined performance baseline of your workload, such as throughput, latency, error rates, and resource utilization. If these key performance indicators (KPIs) aren't available, collect these metrics from your AWS environment to establish this baseline. You'll use the these KPIs in the evaluation phase after migration to validate that the workload in Azure performs like it did in AWS.
+   
+   Find out if there are any service-level agreements (SLAs) or service-level objectives (SLOs) associated with the workload. These SLA and SLO commitments made to users or stakeholders don't change based on your cloud platform. For example, if your recovery time objective (RTO) in AWS is 45 minutes, you're responsible to design the workload in Azure to also have an RTO of 45 minutes.
+1. **Document current monitoring and alerting:** Document how you currently monitor the workload in AWS. For example, you might use CloudWatch metrics, alarms, or dashboards. Plan equivalent Azure monitoring for the target environment. You can use Azure Monitor logs, metrics, or Application Insights dashboards. Engage your operations team in this assessment so that they're ready to implement and manage Azure-based monitoring and alerts.
 
 ## Design a like-for-like architecture in Azure
 
