@@ -12,7 +12,7 @@ ms.author: benshy
 service.tree.id: cf90d1aa-e8ca-47a9-a6d0-bc69c7db1d52
 ---
 
-# Manage a Microsoft discount resource under a subscription
+# Manage a discount resource under a subscription
 Upon acceptance of a discount as part of a Microsoft Customer Agreement, the discount is allotted to a subscription and resource group. The resultant discount resource contains descriptive metadata including discount status, discount type, product family, discount percentage, start date, and end date. While the discount resource stores relevant metadata, it doesn't impact eligibility. Discounts are applicable to a billing account and apply automatically to eligible charges on any subscription within the billing account.  
 
 
