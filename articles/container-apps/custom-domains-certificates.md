@@ -163,7 +163,7 @@ Container Apps supports apex domains and subdomains. Each domain type requires a
         -g $RESOURCE_GROUP
     ```
 
-    If ingress isn't enabled, enable it by completing these steps:
+    If ingress isn't enabled, enable it:
 
     ```azurecli
     az containerapp ingress enable \
