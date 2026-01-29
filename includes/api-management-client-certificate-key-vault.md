@@ -2,16 +2,16 @@
 author: dlepow
 ms.service: azure-api-management
 ms.topic: include
-ms.date: 01/11/2023
+ms.date: 01/29/2026
 ms.author: danlep
 ms.custom: sfi-image-nochange
 ---
 
 ### Prerequisites for key vault integration
 
-1. If you don't already have a key vault, create one. For information about creating a key vault, see [Quickstart: Create a key vault using the Azure portal](/azure/key-vault/general/quick-create-portal).
+- If you don't already have a key vault, create one. For information about creating a key vault, see [Quickstart: Create a key vault using the Azure portal](/azure/key-vault/general/quick-create-portal).
     
-1. Enable a system-assigned or user-assigned [managed identity](../articles/api-management/api-management-howto-use-managed-service-identity.md) in API Management.
+- Enable a system-assigned or user-assigned [managed identity](../articles/api-management/api-management-howto-use-managed-service-identity.md) in API Management.
 
 [!INCLUDE [api-management-key-vault-access](./api-management-key-vault-access.md)]
 
@@ -33,7 +33,7 @@ To add a key vault certificate to API Management:
 
 1. In the [Azure portal](https://portal.azure.com), go to your API Management instance.
 1. Under **Security**, select **Certificates**.
-1. Select **Certificates** > **+ Add**.
+1. Select **Certificates**, then **+ Add**.
 1. In **Id**, enter a name.
 1. In **Certificate**, select **Key vault**.
 1. Enter the identifier of a key vault certificate, or choose **Select** to select a certificate from a key vault.
@@ -60,7 +60,7 @@ To upload a client certificate to API Management:
 
 1. In the [Azure portal](https://portal.azure.com), go to your API Management instance.
 1. Under **Security**, select **Certificates**.
-1. Select **Certificates** > **+ Add**.
+1. Select **Certificates**, then **+ Add**.
 1. In **Id**, enter a name.
 1. In **Certificate**, select **Custom**.
 1. Browse to select the certificate .pfx file, and enter its password.
