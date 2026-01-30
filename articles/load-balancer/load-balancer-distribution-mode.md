@@ -40,11 +40,11 @@ You can change the configuration of the distribution mode by modifying the load-
 1. In the load-balancing rules screen, select the load-balancing rule that you wish to change the distribution mode.
 1. Under the rule, the distribution mode is changed by changing the **Session persistence** drop-down box. 
 
-The following options are available: 
-
-* **None (hash-based)** - Specifies that successive requests from the same client can be handled by any virtual machine.
-* **Client IP (two-tuple: source IP and destination IP)** - Specifies that successive requests from the same client IP address are handled by the same virtual machine.
-* **Client IP and protocol (three-tuple: source IP, destination IP, and protocol type)** - Specifies that successive requests from the same client IP address and protocol combination are handled by the same virtual machine.
+   The following options are available: 
+  
+   * **None (hash-based)** - Specifies that successive requests from the same client can be handled by any virtual machine.
+   * **Client IP (two-tuple: source IP and destination IP)** - Specifies that successive requests from the same client IP address are handled by the same virtual machine.
+   * **Client IP and protocol (three-tuple: source IP, destination IP, and protocol type)** - Specifies that successive requests from the same client IP address and protocol combination are handled by the same virtual machine.
 
 1. Choose the distribution mode and then select **Save**.
 
@@ -98,3 +98,4 @@ For more information on the command used in this article, see [az network lb rul
 * [Azure Load Balancer overview](load-balancer-overview.md)
 * [Get started with configuring an internet-facing load balancer](quickstart-load-balancer-standard-public-powershell.md)
 * [Configure idle TCP timeout settings for your load balancer](load-balancer-tcp-idle-timeout.md)
+
