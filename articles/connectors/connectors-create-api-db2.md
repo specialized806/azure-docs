@@ -16,11 +16,11 @@ ms.custom: sfi-image-nochange
 
 When your automated integration workflow needs to work with resources in your DB2 database, use the [**DB2** connector](/connectors/db2/). For example, your workflow can read, list rows, add rows, change rows, delete rows, and so on. Your workflow can include actions that return data from your database and make that output available for other actions to use in your workflow.
 
+The DB2 connector includes a Microsoft client that communicates with remote DB2 servers across a TCP/IP network. So, you can use this connector to access cloud databases such as IBM DB2 for Windows running in Azure virtualization.
+
 This guide shows how to connect your workflow to your DB2 database and perform various operations on that database.
 
 ## Supported platforms and versions
-
-The DB2 connector includes a Microsoft client that communicates with remote DB2 servers across a TCP/IP network. Use this connector to access cloud databases such as IBM DB2 for Windows running in Azure virtualization. You can also access on-premises DB2 databases after you [install and set up the on-premises data gateway](../logic-apps/logic-apps-gateway-connection.md).
 
 The DB2 connector supports the following IBM DB2 platforms and versions along with IBM DB2 compatible products that support Distributed Relational Database Architecture (DRDA) SQL Access Manager (SQLAM) versions 10 and 11:
 
@@ -30,7 +30,7 @@ The DB2 connector supports the following IBM DB2 platforms and versions along wi
 | IBM DB2 for i | 7.3, 7.2, 7.1 |
 | IBM DB2 for LUW | 11, 10.5 |
 
-## Supported database operations
+## Connector technical reference
 
 The DB2 connector supports the following database operations, which map to the corresponding actions in the connector:
 
@@ -42,6 +42,8 @@ The DB2 connector supports the following database operations, which map to the c
 | Add one row using INSERT | Insert row |
 | Edit one row using UPDATE | Update row |
 | Remove one row using DELETE | Delete row |
+
+For more information about the connector and these actions, see [DB2 connector](/connectors/db2/).
 
 ## Prerequisites
 
@@ -60,85 +62,105 @@ The DB2 connector supports the following database operations, which map to the c
   - [Create a Consumption logic app workflow](../logic-apps/quickstart-create-example-consumption-workflow.md)
   - [Create a Standard logic app workflow](../logic-apps/create-single-tenant-workflows-azure-portal.md)
 
+- To access on-premises DB2 databases, you need to [install and set up the on-premises data gateway](../logic-apps/logic-apps-gateway-connection.md).
+
 <a name="add-db2-action"></a>
 
-## Add DB2 action - Get tables
+## Add a DB2 action
 
-1. In the [Azure portal](https://portal.azure.com), open your logic app in the Logic App Designer.
+The following steps show how to add a DB2 action, for example, **Get tables**, to your workfklow.
 
-1. Under the trigger, choose **New step**.
+1. In the [Azure portal](https://portal.azure.com), open your logic app resource and workflow in the designer.
 
-1. In the search box, enter *db2*.
+1. Follow the [general steps](../logic-apps/add-trigger-action-workflow.md#add-action) to add the **DB2** action named **Get tables**.
 
-1. For this example, under the actions list, select **Get tables (Preview)**.
+   The connection information pane opens so you can provide details to connect your DB2 database.
 
-   :::image type="content" source="./media/connectors-create-api-db2/select-db2-action.png" alt-text="Screenshot that shows the Logic App Designer with Get tables highlighted.":::
+1. Follow the steps to create a connection for a [cloud-based database](#cloud-connection) or [on-premises database](#on-premises-connection), then return here to continue.
 
-   The designer prompts you to provide connection details for your DB2 database.
+1. After you successfully create the connection, the **Get tables** action information pane appears and shows that no other information is necessary:
 
-1. Follow the steps for creating connections for [cloud databases](#cloud-connection) or [on-premises databases](#on-premises-connection).
+   :::image type="content" source="./media/connectors-create-api-db2/get-tables-action.png" alt-text="Screenshot shows the designer, workflow, and Get tables action.":::
+
+1. Continue to [Test your workflow and view output tables](#view-output-tables).
+
+## Set up your DB2 connection
+
+Follow the steps based on whether you have a cloud or on-premises DB2 database. After you provide the necessary connection details, select **Create new**, and return to the previous steps.
+
+Before you create a connection to an on-premises database, make sure that you [install and set up the on-premises data gateway](../logic-apps/logic-apps-gateway-connection.md).
 
 <a name="cloud-connection"></a>
 
-## Connect to cloud DB2
-
-To set up your connection, provide these connection details, select **Create**, and then save your logic app:
+### [Cloud](#tab/cloud)
 
 | Property | Required | Description |
 |----------|----------|-------------|
-| **Connect via on-premises gateway** | No | Applies only for on-premises connections |
-| **Connection Name** | Yes | The name for your connection, for example, *MyLogicApp-DB2-connection* |
-| **Server** | Yes | The address or alias and port number for your DB2 server, for example, *myDB2server.cloudapp.net:50000* <br><br>**Note**: This value is a string that represents a TCP/IP address or alias, either in IPv4 or IPv6 format, followed by a colon and a TCP/IP port number. |
-| **Database** | Yes | The name for your database <br><br>**Note**: This value is a string that represents a DRDA Relational Database Name (RDBNAM): <br><br>- DB2 for z/OS accepts a 16-byte string where the database is known as an *IBM DB2 for z/OS* location. <br>- DB2 for i accepts an 18-byte string where the database is known as an *IBM DB2 for i* relational database. <br>- DB2 for LUW accepts an 8-byte string. |
-| **Username** | Yes | Your user name for the database <br><br>**Note**: This value is a string whose length is based on the specific database: <br><br>- DB2 for z/OS accepts an 8-byte string. <br>- DB2 for i accepts a 10-byte string. <br>- DB2 for Linux or UNIX accepts an 8-byte string. <br>- DB2 for Windows accepts a 30-byte string. |
-| **Password** | Yes | Your password for the database |
+| **Connect via on-premises gateway** | No | Applies only to on-premises connections. |
+| **Connection Name** | Yes | The name for your connection, for example, *DB2-connection*. |
+| **Server** | Yes | The address or alias and port number for your DB2 server, for example, *myDB2server.cloudapp.net:50000*. <br><br>**Note**: This value is a string that represents a TCP/IP address or alias, either in IPv4 or IPv6 format, followed by a colon and a TCP/IP port number. |
+| **Database** | Yes | The name for your database. <br><br>**Note**: This value is a string that represents a DRDA Relational Database Name (RDBNAM): <br><br>- DB2 for z/OS accepts a 16-byte string where the database is known as an *IBM DB2 for z/OS* location. <br><br>- DB2 for i accepts an 18-byte string where the database is known as an *IBM DB2 for i* relational database. <br><br>- DB2 for LUW accepts an 8-byte string. |
+| **Username** | Yes | Your user name for the database. <br><br>**Note**: This value is a string whose length is based on the specific database: <br><br>- DB2 for z/OS accepts an 8-byte string. <br><br>- DB2 for i accepts a 10-byte string. <br><br>- DB2 for Linux or UNIX accepts an 8-byte string. <br><br>- DB2 for Windows accepts a 30-byte string. |
+| **Password** | Yes | Your password for the database. |
 
 For example:
 
-:::image type="content" source="./media/connectors-create-api-db2/create-db2-cloud-connection.png" alt-text="Screenshot that shows the Logic Apps Designer with connection details for cloud-based databases.":::
+:::image type="content" source="./media/connectors-create-api-db2/create-db2-cloud-connection.png" alt-text="Screenshot shows the connection pane for cloud-based databases.":::
 
 <a name="on-premises-connection"></a>
 
-## Connect to on-premises DB2
-
-Before you create a connection, you must already have your on-premises data gateway installed. Otherwise, you can't finish setting up the connection. If you have your gateway installation, continue by providing these connection details, and then choose **Create**.
+### [On-premises](#tab/on-premises)
 
 | Property | Required | Description |
 |----------|----------|-------------|
-| **Connect via on-premises gateway** | Yes | Applies when you want an on-premises connection and shows the on-premises connection properties |
-| **Connection Name** | Yes | The name for your connection, for example, *MyLogicApp-DB2-connection* | 
-| **Server** | Yes | The address or alias and port number for your DB2 server, for example, *myDB2server:50000* <br><br>**Note**: This value is a string that represents a TCP/IP address or alias, either in IPv4 or IPv6 format, followed by a colon and a TCP/IP port number. |
-| **Database** | Yes | The name for your database <br><br>**Note**: This value is a string that represents a DRDA Relational Database Name (RDBNAM): <br>- DB2 for z/OS accepts a 16-byte string where the database is known as an *IBM DB2 for z/OS* location. <br>- DB2 for i accepts an 18-byte string where the database is known as an *IBM DB2 for i* relational database. <br>- DB2 for LUW accepts an 8-byte string. |
-| **Authentication** | Yes | The authentication type for your connection, for example, *Basic* <br><br>**Note**: Select this value from the list, which includes **Basic** or **Windows (Kerberos)**. |
-| **Username** | Yes | Your user name for the database <br><br>**Note**: This value is a string whose length is based on the specific database: <br><br>- DB2 for z/OS accepts an 8-byte string. <br>- DB2 for i accepts a 10-byte string. <br>- DB2 for Linux or UNIX accepts an 8-byte string. <br>- DB2 for Windows accepts a 30-byte string. |
-| **Password** | Yes | Your password for the database |
-| **Gateway** | Yes | The name for your installed on-premises data gateway <br><br>**Note**: Select this value from the list, which includes all the installed data gateways within your Azure subscription and resource group. |
+| **Connect via on-premises gateway** | Yes | Applies only to on-premises connections and shows the on-premises connection properties. |
+| **Connection Name** | Yes | The name for your connection, for example, *DB2-connection*. | 
+| **Server** | Yes | The address or alias and port number for your DB2 server, for example, *myDB2server:50000*. <br><br>**Note**: This value is a string that represents a TCP/IP address or alias, either in IPv4 or IPv6 format, followed by a colon and a TCP/IP port number. |
+| **Database** | Yes | The name for your database. <br><br>**Note**: This value is a string that represents a DRDA Relational Database Name (RDBNAM): <br><br>- DB2 for z/OS accepts a 16-byte string where the database is known as an *IBM DB2 for z/OS* location. <br><br>- DB2 for i accepts an 18-byte string where the database is known as an *IBM DB2 for i* relational database. <br><br>- DB2 for LUW accepts an 8-byte string. |
+| **Authentication** | Yes | The authentication type for your connection, for example, **Windows**. <br><br>**Note**: Select this value from the list, which includes **Basic** or **Windows (Kerberos)**. |
+| **Username** | Yes | Your user name for the database. <br><br>**Note**: This value is a string whose length is based on the specific database: <br><br>- DB2 for z/OS accepts an 8-byte string. <br><br>- DB2 for i accepts a 10-byte string. <br><br>- DB2 for Linux or UNIX accepts an 8-byte string. <br><br>- DB2 for Windows accepts a 30-byte string. |
+| **Password** | Yes | Your password for the database. |
+| **Gateway** | Yes | - **Subscription**: The Azure subscription for the gateway resource. <br><br>- **Gateway**: The name for your gateway resource. <br><br>**Note**: The gateway list shows only the gateway resources available in your Azure subscription and resource group. |
 
 For example:
 
-:::image type="content" source="./media/connectors-create-api-db2/create-db2-on-premises-connection.png" alt-text="Screenshot that shows the Logic Apps Designer with connection details for on-premises databases.":::
+:::image type="content" source="./media/connectors-create-api-db2/create-db2-on-premises-connection.png" alt-text="Screenshot shows the connection pane for on-premises databases.":::
 
-### View output tables
+---
 
-To run your logic app manually, on the designer toolbar, choose **Run**. After your logic app finishes running, you can view the output from the run.
+<a name="view-output-tables"></a>
 
-1. On your logic app menu, select **Overview**.
+### Test your workflow and view output tables
 
-1. Under **Summary**, in the **Runs history** section, select the most recent run, which is the first item in the list.
+To manually run your workflow, on the designer toolbar, from the **Run** list, select **Run**. After your workflow completes, you can view the output from the run.
 
-   :::image type="content" source="./media/connectors-create-api-db2/run-history.png" alt-text="Screenshot that shows the Runs history section.":::
+1. If the run details page doesn't open, follow these steps based on your logic app:
 
-1. Under **Logic app run**, review the status, inputs, and outputs for each step in your logic app. Expand the **Get tables** action.
+   - **Consumption**: On the logic app sidebar, under **Development Tools**, select **Logic app designer**.
+
+   - **Standard**: On the workflow sidebar, select **Run history**.
+
+1. In the **Runs history** list, select the latest workflow run, for example:
+
+   - **Consumption**
+
+     :::image type="content" source="./media/connectors-create-api-db2/run-history-consumption.png" alt-text="Screenshot shows Run history list for Consumption workflow.":::
+
+   - **Standard**
+
+     :::image type="content" source="./media/connectors-create-api-db2/run-history-standard.png" alt-text="Screenshot shows Run history list for Standard workflow.":::
+
+1. On the run details page, review the status for each step in your workflow. To view the inputs and outputs for each step, select that step, for example:
 
    :::image type="content" source="./media/connectors-create-api-db2/expand-action-step.png" alt-text="Screenshot that shows how to expand the Get tables action.":::
 
-1. To view the inputs, select **Show raw inputs**.
+   1. To view the inputs in JSON, select **Show raw inputs**.
 
-1. To view the outputs, select **Show raw outputs**.
+   1. To view the outputs in JSON, select **Show raw outputs**.
 
-   The outputs include a list of tables.
+      The outputs include a list of tables.
 
-   :::image type="content" source="./media/connectors-create-api-db2/db2-connector-get-tables-outputs.png" alt-text="Screenshot that shows code that specifies the output tables.":::
+      :::image type="content" source="./media/connectors-create-api-db2/db2-connector-get-tables-outputs.png" alt-text="Screenshot that shows code that specifies the output tables.":::
 
 ## Get row
 
@@ -348,10 +370,6 @@ To run your logic app manually, on the designer toolbar, choose **Run**. After y
    The outputs no longer include the record you deleted from your specified table.
 
    :::image type="content" source="./media/connectors-create-api-db2/db2-connector-delete-row-outputs.png" alt-text="Screenshot shows the Output area, which no longer includes the deleted row.":::
-
-## Connector reference
-
-For more technical details about this connector, such as triggers, actions, and limits as described by the connector's Swagger file, see the [connector's reference page](/connectors/db2/).
 
 ## Related content
 
