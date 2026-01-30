@@ -3,7 +3,7 @@ title: Bicep file structure and syntax
 description: Understand how to use declarative syntax to understand the structure and properties of Bicep files.
 ms.topic: article
 ms.custom: devx-track-bicep
-ms.date: 01/29/2026
+ms.date: 01/30/2026
 ---
 
 # Bicep file structure and syntax
