@@ -1,7 +1,7 @@
 ---
 title: Limitations and known issues with BlobFuse
 titleSuffix: Azure Storage
-description: Learn about limitations and known issues of BlobFuse.
+description: Learn about the limitations and known issues of BlobFuse.
 author: normesta
 ms.author: normesta
 
@@ -16,85 +16,104 @@ ms.custom: linux-related-content
 
 # Limitations and known issues with BlobFuse
 
-This article describes limitations and known issues of BlobFuse.
+This article describes the limitations and known issues of BlobFuse.
 
 ## Chmod operations in premium performance block blob accounts
 
-Premium performance block blob accounts don't support access control lists (ACLs). BlobFuse returns success for `chmod` operations in those types of accounts. 
+Premium performance block blob accounts don't support access control lists (ACLs). However, BlobFuse returns success for `chmod` operations in these accounts even though the operations have no effect. 
 
 ## Admin privilege required to interact with the fuse driver
 
-When BlobFuse is mounted on a container, SYS_ADMIN privileges are required for it to interact with the fuse driver. If container is created without the privilege, mount will fail. Sample command to spawn a docker container is: `docker run -it --rm --cap-add=SYS_ADMIN --device=/dev/fuse --security-opt apparmor:unconfined <environment variables> <docker image>`
+When you mount BlobFuse on a container, it requires SYS_ADMIN privileges to interact with the fuse driver. If you create the container without this privilege, the mount operation fails. Here's a sample command to spawn a Docker container with the required privileges:
 
-## Limit on the number of containers that can be mounted in parallel
+```bash
+docker run -it --rm --cap-add=SYS_ADMIN --device=/dev/fuse --security-opt apparmor:unconfined <environment variables> <docker image>
+```
 
-In case of `mount all` system may limit on number of containers you can mount in parallel (when you go above 100 containers). To increase this system limit use below command `echo 256 | sudo tee /proc/sys/fs/inotify/max_user_instances`
+## Limit on the number of containers that you can mount in parallel
+
+When you use the `mount all` command, the system might limit the number of containers that you can mount in parallel (typically when you exceed 100 containers). To increase this system limit, use the following command:
+
+```bash
+echo 256 | sudo tee /proc/sys/fs/inotify/max_user_instances
+```
 
 ### Syslog and securing sensitive information
 
-By default, BlobFuse will send logs to Syslog. The default settings will, in some cases, log relevant file paths to syslog. If this is sensitive information, turn off logging or set log-level to `log_err`.  
+By default, BlobFuse sends logs to syslog. The default settings might log file paths to syslog in some cases. If this information is sensitive, turn off logging or set the log-level to `log_err`.  
 
 ## Unsupported file system operations
 
-The following file system operations are not supported in BlobFuse:
+BlobFuse doesn't support the following file system operations:
 
-`mknod`,`link (hard link api)`,`setxattr`,`getxattr`,`listxattr`,`removexattr`,`access`,`lock`,`bmap`,`ioctl`,`poll`,`write_buf`,`read_buf`,`flock`,`fallocate`,,`copyfilerange`,`lseek`
+- `mknod`
+- `link` (hard link API)
+- `setxattr`
+- `getxattr`
+- `listxattr`
+- `removexattr`
+- `access`
+- `lock`
+- `bmap`
+- `ioctl`
+- `poll`
+- `write_buf`
+- `read_buf`
+- `flock`
+- `fallocate`
+- `copyfilerange`
+- `lseek`
 
 ## Unsupported file system workflows
 
-The following file system workflows aren't supported in BlobFuse:
+BlobFuse doesn't support the following file system workflows:
 
-- Creation of pipes, FIFO queues, Device files
+- Creation of pipes, FIFO queues, and device files
+- XAttrs for files or directories
+- Hard links for files or directories
+- Last access time and last change time for any file or directory
+- Extended-attributes (x-attrs) operations
+- `lseek()` operation on directory handles (no error is thrown, but it doesn't work as expected)
 
-- XAttrs for file or directory
+### Specific command limitations
 
-- Hard links for file or directory
-
-- Last access time and Last change time for any file or directory
-
-- `mkfifo` : fifo creation is not supported by BlobFuse and this will result in "function not implemented" error
-
-- `chown`  : Change of ownership is not supported by Azure Storage hence BlobFuse does not support this.
-
-- Creation of device files or pipes is not supported by BlobFuse.
-
-- BlobFuse does not support extended-attributes (x-attrs) operations
-
-- BlobFuse does not support lseek() operation on directory handles. No error is thrown but it will not work as expected.
+- **`mkfifo`**: BlobFuse doesn't support FIFO creation and returns a "function not implemented" error.
+- **`chown`**: Azure Storage doesn't support change of ownership, so BlobFuse doesn't support this operation.
 
 ## Altered behavior for some file system operations
 
-The following file system operations have altered behavior in BlobFuse
+The following file system operations have altered behavior in BlobFuse:
 
-- `fsync()` force deletes file from local cache and invalidates attribute cache. This forces BlobFuse to refresh the file metadata and contents on next open call to that file.
-
-- `fsyncdir()` invalidates metadata of that directory recursively. This forces BlobFuse to refresh metadata of any child of that directory on next metadata query by kernel.
+- **`fsync()`**: Force deletes the file from local cache and invalidates the attribute cache. This action forces BlobFuse to refresh the file metadata and contents on the next open call to that file.
+- **`fsyncdir()`**: Invalidates metadata of that directory recursively. This action forces BlobFuse to refresh metadata of any child of that directory on the next metadata query by the kernel.
 
 ## Unsupported scenarios
 
-- BlobFuse does not support overlapping mount paths. While running multiple instances of BlobFuse make sure each instance has a unique and non-overlapping mount point.
+- **Overlapping mount paths**: BlobFuse doesn't support overlapping mount paths. When running multiple instances of BlobFuse, ensure each instance has a unique and nonoverlapping mount point.
 
-- BlobFuse does not support co-existence with NFS on same mount path. Behavior in this case is undefined.
+- **Co-existence with NFS**: BlobFuse doesn't support coexistence with NFS on the same mount path. The behavior in this case is undefined.
 
-- For storage accounts that have a flat namespace, when data is uploaded through other means, BlobFuse expects special directory marker files to exist in container. For example, if you have a blob `A/B/c.txt` then special marker files shall exist for `A` and `A/B`. To overcome this requirement, BlobFuse uses ListBlob aoi instead of GetBlobProperties api for `ls` operation though `ListBlob` is more expensive.
+- **Flat namespace storage accounts**: For storage accounts that have a flat namespace, when you upload data through other means, BlobFuse expects special directory marker files to exist in the container. For example, if you have a blob `A/B/c.txt`, then special marker files should exist for `A` and `A/B`. To overcome this requirement, BlobFuse uses the ListBlob API instead of the GetBlobProperties API for `ls` operations, though ListBlob is more expensive.
 
-- For storage accounts that have a flat namespace, `--virtual-directory=false` cli flag or `virtual-directory=false` option under `azstorage` section can be used to switch from `ListBlob` api to `GetBlobProperties` api but in absence of special directory marker, BlobFuse will fail to identify directories. A possible workaround to resolve this from your container is to either create the directory marker files manually through portal or run `mkdir` command for `A` and `A/B` from BlobFuse. Refer [me](https://github.com/Azure/azure-storage-fuse/issues/866) for details on this.
+- **Virtual directory configuration**: For storage accounts that have a flat namespace, you can use the `--virtual-directory=false` CLI flag or the `virtual-directory=false` option under the `azstorage` section to switch from the ListBlob API to the GetBlobProperties API. However, in the absence of special directory markers, BlobFuse can't identify directories. A possible workaround is to either create the directory marker files manually through the portal or run the `mkdir` command for `A` and `A/B` from BlobFuse. For more information, see [this GitHub issue](https://github.com/Azure/azure-storage-fuse/issues/866).
 
-- On non-HNS accounts chmod operations are not permitted and BlobFuse will return back success in such cases.
+- **Non-HNS accounts**: On non-HNS (hierarchical namespace) accounts, chmod operations aren't permitted, and BlobFuse returns success in such cases without actually performing the operation.
 
 ## Breaking changes
 
-_direct_io_:  To improve performance of repetitive reads from a file BlobFuse utilizes kernel cache. Kernel page cache can only be turned on or off but cannot be controlled by timeout-based expiry. This creates an issue in environment where you wish to sync the latest file from container to your local mount. As long as kernel cache is valid, kernel will not ask for new contents from underlying filesystem (BlobFuse in our case).
+### Direct I/O and caching behavior
 
-To disable the kernel data cache _direct_io_ is the option most customer use. Other than data cache, kernel also maintains a metadata cache. This metadata cache is driven by timeouts configured using `attribute_timeout`, `entry_timeout` and `negative_timeout`. If user wants immediate refresh of contents, then they need to set all these timeouts to 0 as well along with using _direct_io_. With these configuration parameters kernel level caching will be disabled and on top of this user also have to disable BlobFuse level caching (file_cache and attr_cache) with timeouts for them set to 0
+To improve performance of repetitive reads from a file, BlobFuse utilizes kernel cache. The kernel page cache can only be turned on or off but can't be controlled by timeout-based expiry. This limitation creates an issue in environments where you want to sync the latest file from the container to your local mount. As long as the kernel cache is valid, the kernel doesn't request new contents from the underlying filesystem (BlobFuse).
 
-This means to disable all caching; user needs to configure roughly seven parameters. To simplify this, as part of _auto config_ feature in version 2.4.0 we started disabling everything when user gives _direct_io_ option. This was to simplify the customer experience, which earlier was generating some issues and complains about the config being too complicated.
+To disable the kernel data cache, use the `direct_io` option. Besides the data cache, the kernel also maintains a metadata cache. This metadata cache is driven by timeouts configured by using `attribute_timeout`, `entry_timeout`, and `negative_timeout`. If you want an immediate refresh of contents, set all these timeouts to 0 along with using `direct_io`. With these configuration parameters, kernel-level caching is disabled. Additionally, you also have to disable BlobFuse-level caching (`file_cache` and `attr_cache`) with their timeouts set to 0.
 
-However, with this change as both kernel and BlobFuse caching is disabled, BlobFuse started making more calls to storage. This had a cost impact on the customer where higher number of calls were not only degrading performance but were increasing the bill as well. To fix this with correct measures with version 2.5.0 we have introduced a new cli parameter called _disable-kernel-cache_ which only disables kernel level data and metadata caching and then you can control BlobFuse level caching with file-cache timeout and attr-cache timeout values. This allows you to refresh the contents as per your application needs. For example, if the application is fine, and the contents are refreshed in five seconds, then set the file and attribute cache timeouts to five seconds and use this new cli flag. With this your application will get refreshed contents in five seconds and cost will also be under control.
+To disable all caching, you need to configure roughly seven parameters. To simplify this process, the auto config feature in version 2.4.0 disables everything when you use the `direct_io` option. This change simplifies the customer experience, which previously generated issues and complaints about the configuration being too complicated.
+
+However, this change disables both kernel and BlobFuse caching, so BlobFuse starts making more calls to storage. This change has a cost impact on customers where the higher number of calls not only degrades performance but also increases costs. To address this problem, version 2.5.0 introduces a new CLI parameter called `disable-kernel-cache`, which only disables kernel-level data and metadata caching. You can then control BlobFuse-level caching by using file-cache timeout and attr-cache timeout values. This configuration allows you to refresh the contents according to your application needs. For example, if your application is fine with contents being refreshed every five seconds, set the file and attribute cache timeouts to five seconds and use this new CLI flag. With this configuration, your application gets refreshed contents every five seconds while keeping costs under control.
 
 ## Synchronizing with data written by other APIs
 
-BlobFuse supports read and write operations. Continuous synchronization of data written to storage by using other APIs or other mounts of BlobFuse isn't guaranteed. For data integrity, we recommend that multiple sources don't modify the same blob, especially at the same time. If one or more applications attempt to write to the same file simultaneously, the results might be unexpected. Depending on the timing of multiple write operations and the freshness of the cache for each operation, the result might be that the last writer wins and previous writes are lost, or generally that the updated file isn't in the intended state.
+BlobFuse supports read and write operations. However, continuous synchronization of data written to storage by using other APIs or other mounts of BlobFuse isn't guaranteed. For data integrity, don't modify the same blob from multiple sources, especially simultaneously. If one or more applications attempt to write to the same file at the same time, the results might be unexpected. Depending on the timing of multiple write operations and the freshness of the cache for each operation, the result might be that the last writer wins and previous writes are lost, or that the updated file isn't in the intended state.
 
 ## See also
 
