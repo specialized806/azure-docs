@@ -197,7 +197,24 @@ Configure your DNS provider to map your custom domain name to the default domain
 
 # [Managed](#tab/managed)
 
-[!INCLUDE [api-management-managed-certificate-dns-configuration.md](../../includes/api-management-managed-certificate-dns-configuration.md)]
+
+[!INCLUDE [api-management-custom-domain-dns-configuration.md](../../includes/api-management-custom-domain-dns-configuration.md)]
+
+> [!CAUTION]
+> When you use the free, managed certificate and configure a CNAME record with your DNS provider, make sure that it resolves to the default API Management service hostname (`<apim-service-name>.azure-api.net`). Currently, API Management doesn't automatically renew the certificate if the CNAME record doesn't resolve to the default API Management hostname. For example, if you're using the free, managed certificate and you use Cloudflare as your DNS provider, make sure that DNS proxy isn't enabled on the CNAME record. 
+
+### TXT record for domain ownership verification
+
+### TXT record 
+
+When enabling the free, managed certificate for API Management, also configure a TXT record in your DNS zone to establish your ownership of the domain name. 
+
+* The name of the record is your custom domain name prefixed by `apimuid`. Example: `apimuid.api.contoso.com`.
+* The value is a domain ownership identifier provided by your API Management instance.
+
+When you use the portal to configure the free, managed certificate for your custom domain, the name and value of the necessary TXT record are automatically displayed.
+
+You can also get a domain ownership identifier by calling the [Get Domain Ownership Identifier](/rest/api/apimanagement/current-ga/api-management-service/get-domain-ownership-identifier) REST API.
 
 ---
 
