@@ -5,7 +5,7 @@ services: container-apps
 author: craigshoemaker
 ms.service: azure-container-apps
 ms.topic: how-to
-ms.date: 12/17/2024
+ms.date: 01/30/2026
 ms.author: cshoe
 ms.custom: sfi-ropc-nochange
 ---
