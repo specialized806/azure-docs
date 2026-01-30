@@ -69,7 +69,7 @@ For more information about the Marketplace policy setting, see [Purchase control
 
 ### <a name = "ea--enable-the-marketplace-policy-setting"></a> Enable the Marketplace policy setting with an Enterprise Agreement account
 
-Only Enterprise admins can enable the policy setting. Enterprise admins who have read-only permissions can't enable the proper policies to buy from Marketplace.
+Only enterprise admins can enable the policy setting. Enterprise admins who have read-only permissions can't enable the proper policies to buy from Marketplace.
 
 The policy setting applies to all users with access to the Azure subscriptions in the billing account (Enterprise Agreement enrollment).
 
@@ -117,7 +117,7 @@ To set user permissions:
 1. Sign in to the Azure portal.
 1. Go to or search for **Cost Management + Billing**.
 1. Select the billing account that you want to manage access for.
-1. Select **Access control (IAM)** from the left-hand pane.
+1. Select **Access control (IAM)** from the left pane.
 1. To give access to a user, select **Add** from the top of the page.
 1. In the **Role** list, select either **Billing account owner** or **contributor**.
 1. Enter the email address of the user to whom you want to give access.
