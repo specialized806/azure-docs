@@ -11,22 +11,53 @@ ms.topic: how-to
 
 # Remove Azure Container Storage
 
-This article shows you how to remove Azure Container Storage by deleting the extension instance for Azure Kubernetes Service (AKS). To clean up resources, you can also delete the AKS cluster or entire resource group.
+This article shows you how to remove Azure Container Storage components from your Azure Kubernetes Service (AKS) cluster. To clean up resources, you can also delete the AKS cluster or entire resource group.
 
 > [!IMPORTANT]
 > This article applies to [Azure Container Storage (version 2.x.x)](container-storage-introduction.md). If you have Azure Container Storage (version 1.x.x) installed on your AKS cluster, remove it by following [these steps](remove-container-storage-version-1.md).
 
-## Delete extension instance
+## Remove Azure Container Storage
 
-Follow these steps to remove Azure Container Storage from your AKS cluster.
+You can either choose to remove the components for a specific storage type or remove Azure Container Storage entirely.
+- CSI driver for specific storage types
+- The entire Azure Container Storage installation (installer + CSI driver(s))
 
-1. Delete all Persistent Volume Claims (PVCs) and Persistent Volumes (PVs) before uninstalling the extension. Removing Azure Container Storage without cleaning up these resources could disrupt your running workloads. To avoid disruptions, ensure that there are no existing workloads or storage classes relying on Azure Container Storage.
+> [!IMPORTANT]
+> Delete all Persistent Volume Claims (PVCs) and Persistent Volumes (PVs) before uninstalling the extension. Removing Azure Container Storage without cleaning up these resources could disrupt your running workloads. To avoid disruptions, ensure that there are no existing workloads or storage classes relying on Azure Container Storage.
 
-1. Delete the extension by running the following Azure CLI command. Be sure to replace `<cluster-name>` and `<resource-group>` with your own values.
+## Remove CSI driver for specific storage type
+
+Remove the CSI driver by running the following Azure CLI command. Be sure to replace '<cluster-name>' and '<resource-group>' with your own values.
+
+```azurecli
+   az aks update -n <cluster-name> -g <resource-group> --disable-azure-container-storage <storage-type>
+   ```
+Supported storage types values:
+- `ephemeralDisk` – removes only the local CSI driver
+- `elasticSan` – removes only the Elastic SAN CSI driver
+- `all` - removes both Elastic SAN CSI driver and local CSI driver. You can also use comma separated values to remove specific CSI drivers such as `ephemeralDisk`, `elasticSan`
+
+This will remove the specified CSI driver(s), while the Azure Container Storage installer components will remain installed.
+
+## Remove entire Azure Container Storage installation (installer + CSI driver(s)) 
+
+1. You can remove Azure Container Storage entirely by running the following Azure CLI command. Be sure to replace `<cluster-name>` and `<resource-group>` with your own values.
 
    ```azurecli
    az aks update -n <cluster-name> -g <resource-group> --disable-azure-container-storage
    ```
+
+## Re-enable Azure Container Storage 
+
+If you previously removed CSI drivers for one or more storage types, you can re-enable the storage type(s) by running the following Azure CLI command.
+
+   ```azurecli
+   az aks update -n <cluster-name> -g <resource-group> -enable-azure-container-storage <storage-type>
+   ```
+
+Expected Behavior:
+- Specifying a storage-type is optional. When no storage type is provided, only the ACStor installer component is installed, if it is not already present.
+- When a storage-type is specified, the corresponding CSI driver is installed. If a storage class for that storage type already exists, only the driver is installed; otherwise, a default storage class is created as part of the installation.
 
 ### Remove the extension with Terraform
 
