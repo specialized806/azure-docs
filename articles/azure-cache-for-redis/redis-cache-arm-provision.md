@@ -1,18 +1,18 @@
 ---
-title: Deploy Azure Managed Redis cache by using Azure Resource Manager template
-description: Learn how to use an Azure Resource Manager template (ARM template) to deploy an Azure Managed Redis resource. Templates are provided for common scenarios.
-ms.date: 01/28/2026
+title: Deploy Azure Cache for Redis by using Azure Resource Manager template
+description: Learn how to use an Azure Resource Manager template (ARM template) to deploy an Azure Cache for Redis resource. Templates are provided for common scenarios.
+ms.date: 05/18/2025
 ms.topic: conceptual
 ms.custom:
-  - subject-arm
+  - subject-armqs
   - devx-track-arm-template
   - ignite-2024
   - build-2025
 appliesto:
-  - ✅ Azure Managed Redis
+  - ✅ Azure Cache for Redis
 ---
 
-# Quickstart: Create an Azure Managed Redis cache using an ARM template
+# Quickstart: Create an Azure Cache for Redis using an ARM template
 
 Learn how to create an Azure Resource Manager template (ARM template) that deploys an Azure Cache for Redis. The cache can be used with an existing storage account to keep diagnostic data. You also learn how to define which resources are deployed and how to define parameters that are specified when the deployment is executed. You can use this template for your own deployments, or customize it to meet your requirements. Currently, diagnostic settings are shared for all caches in the same region for a subscription. Updating one cache in the region affects all other caches in the region.
 
@@ -65,85 +65,6 @@ To check for the latest templates, see [Azure Quickstart Templates](https://azur
     Use the default value for the rest of the settings.
 
 1. Select **I agree to the terms and conditions stated above**, and the select **Purchase**.
-
-## Azure Managed Redis
-
-### Review the template
-Modify the `cachename` and `region` parameters. Copy it to a file `azuredeploy.json`.
-
-```json
-{
-    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-    "contentVersion": "1.0.0.0",
-    "parameters": {
-        "cachename": {
-            "defaultValue": "myAMRcache",
-            "type": "String"
-        },
-        "region": {
-            "defaultValue": "centraluseuap",
-            "type": "String"
-        }
-    },
-    "variables": {},
-    "resources": [
-        {
-            "type": "Microsoft.Cache/redisEnterprise",
-            "apiVersion": "2024-05-01-preview",
-            "name": "[parameters('cachename')]",
-            "location": "[parameters('region')]",
-            "sku": {
-                "name": "Balanced_B5"
-            },
-            "identity": {
-                "type": "None"
-            },
-            "properties": {
-                "minimumTlsVersion": "1.2"
-            }
-        },
-        {
-            "type": "Microsoft.Cache/redisEnterprise/databases",
-            "apiVersion": "2024-05-01-preview",
-            "name": "[concat(parameters('cachename'), '/default')]",
-            "dependsOn": [
-                "[resourceId('Microsoft.Cache/redisEnterprise', parameters('cachename'))]"
-            ],
-            "properties": {
-                "clientProtocol": "Encrypted",
-                "port": 10000,
-                "clusteringPolicy": "OSSCluster",
-                "evictionPolicy": "NoEviction",
-                "persistence": {
-                    "aofEnabled": false,
-                    "rdbEnabled": false
-                }
-            }
-        }
-    ]
-}
-```
-
-### Deploy the template
-
-1. Save the Azure Resource Manager template as **azuredeploy.json** to your local computer.
-
-1. Deploy the template using either Azure CLI or Azure PowerShell.
-
-
-    # [CLI](#tab/CLI)
-
-    ```azurecli
-    az deployment group create --resource-group exampleRG --template-file main.bicep
-    ```
-
-    # [PowerShell](#tab/PowerShell)
-
-    ```azurepowershell
-    New-AzResourceGroupDeployment -ResourceGroupName exampleRG -TemplateFile ./main.bicep
-    ```
-
-    When the deployment finishes, you see a message indicating the deployment succeeded.
 
 ## Review deployed resources
 
