@@ -68,7 +68,7 @@ For more information about the connector and these actions, see [DB2 connector](
 
 ## Add a DB2 action
 
-The following steps show how to add a DB2 action, for example, **Get tables**, to your workfklow.
+The following steps show how to add a DB2 action, for example, **Get tables**, to your workflow.
 
 > [!NOTE]
 >
