@@ -1,9 +1,9 @@
 ---
 title: Copy Files Between Azure File Shares
-description: Learn how to copy files from one Azure file share to another using common copy tools such as AzCopy and RoboCopy.
+description: Learn how to copy files from one Azure file share to another using common copy tools such as AzCopy and Robocopy.
 ms.service: azure-file-storage
 ms.topic: how-to
-ms.date: 01/27/2026
+ms.date: 01/30/2026
 ms.author: kendownie
 author: khdownie
 # Customer intent: As a cloud administrator, I want to copy files between Azure file shares so that I can efficiently transition data with minimal downtime and optimize storage performance.
@@ -11,22 +11,33 @@ author: khdownie
 
 # Copy files from one Azure file share to another
 
-This article describes how to copy files between Azure file shares using common copy tools. You can copy files between HDD and SSD file shares, file shares using a different billing model, or file shares in different Azure regions.
+This article describes how to copy files between Azure file shares using common copy tools. You can copy files between HDD and SSD file shares, file shares using a different billing model, or file shares in different Azure regions. 
 
-> [!WARNING]
-> If you're using Azure File Sync, the copy process is different than described in this article. See [Copy files from one Azure file share to another when using Azure File Sync](../file-sync/file-sync-share-to-share-migration.md).
+This article doesn't provide guidance for migrations to Azure Files. If you want to migrate to Azure Files, see [Migrate to SMB Azure file shares](storage-files-migration-overview.md) or [Migrate to NFS Azure file shares](storage-files-migration-nfs.md). If you're using Azure File Sync and you want to migrate between Azure file shares, see [Migrate files from one Azure file share to another when using Azure File Sync](../file-sync/file-sync-share-to-share-migration.md).
 
-## Choose a copy tool
+## Choose a file copy tool
 
-This article covers two tools for copying files between Azure file shares: AzCopy and RoboCopy.
+The file copy tool you should choose depends on whether you want to copy files between SMB file shares or NFS file shares. The following table lists the various copy tools available, and their compatibility.
 
-**AzCopy** is generally recommended because it uses server-to-server APIs, meaning data is copied directly between storage servers without passing through a local machine. This provides better performance and avoids the need to provision a VM. AzCopy also works with both SMB and NFS file shares and can be run from Windows, Linux, or macOS. If you need to copy files between NFS shares, choose AzCopy.
-
-**RoboCopy** is a Windows command-line utility that uses the SMB protocol for file copy operations. It requires mounting both file shares to a Windows VM. While this adds overhead and cost, you might choose RoboCopy if you need advanced options such as mirroring, granular retry control, or real-time logging.
+| **Copy tool** | **SMB** | **NFS** | **Description** |
+|-|:-:|:-:|-|
+| **[AzCopy](/azure/storage/common/storage-use-azcopy-files)** | ![Yes](../media/icons/yes-icon.png) | ![Yes](../media/icons/yes-icon.png) | AzCopy is generally recommended because it uses server-to-server APIs, meaning data is copied directly between storage servers without passing through a local machine. This provides better performance. You can run AzCopy from Windows, Linux, or macOS. |
+| **[Robocopy](/windows-server/administration/windows-commands/robocopy)** | ![Yes](../media/icons/yes-icon.png) | ![No](../media/icons/no-icon.png) | Robocopy is a Windows command-line utility that uses the SMB protocol for file copy operations. It requires mounting both file shares to a Windows virtual machine (VM). While this adds overhead and cost, you might choose Robocopy if you need advanced options such as mirroring, granular retry control, or real-time logging. |
+| **[fpsync/rsync](storage-files-migration-nfs.md#using-fpsync-vs-rsync)** | ![No](../media/icons/no-icon.png) | ![Yes](../media/icons/yes-icon.png) | rsync is a versatile, single-threaded, open-source file copy tool. It can copy locally, to/from another host over any remote shell, or to/from a remote rsync daemon. fpsync is multithreaded and therefore offers some advantages, including the ability to run rsync jobs in parallel. Both tools require mounting the shares on a VM. |
 
 ## Copy files using AzCopy
 
 You can use AzCopy, a command-line utility, to copy files between Azure file shares. AzCopy uses server-to-server APIs, so data is copied directly between storage servers. The instructions are different depending on whether you're using SMB or NFS file shares.
+
+Although AzCopy doesn't require mounting the file shares to a VM, it does require a lightweight VM to run its binaries and orchestrate the copy between the two file shares via REST.
+
+The AzCopy commands in this article use the `azcopy copy` command to copy files. The `azcopy sync` command can help synchronize deltas from the initial baseline, which is useful for setting up copy operations in another region. See [Synchronize files](/azure/storage/common/storage-use-azcopy-files#synchronize-files) for more information.
+
+### AzCopy scale limits and performance
+
+If you're just copying a few files, you shouldn't run into any scale limits. However, for optimal performance, each AzCopy job should transfer fewer than 10 million files. Jobs that transfer more than 50 million files can experience degraded performance because the AzCopy job tracking mechanism incurs significant overhead. To reduce overhead, consider dividing large jobs into smaller ones. There's no hard limit on individual file sizes.
+
+The time it takes to copy can vary depending on several factors, including: the total number of files and directories to transfer, the average file size (many small files take longer to process than fewer large files), network bandwidth and latency between source and destination, storage account throttling limits, and concurrent operations on the source or destination shares.
 
 ### Properties preserved when copying files with AzCopy
 
@@ -39,7 +50,7 @@ When you use the `--preserve-info` and `--preserve-permissions` flags, AzCopy pr
 
 ### Copy files between SMB file shares
 
-To copy files between SMB file shares, use the [azcopy copy](/azure/storage/common/storage-use-azcopy-files#copy-files-between-storage-accounts) command. You can authorize access using a SAS token or Microsoft Entra ID.
+To copy files between SMB file shares, use the [azcopy copy](/azure/storage/common/storage-use-azcopy-files#copy-files-between-storage-accounts) command.
 
 > [!TIP]
 > These examples enclose path arguments with single quotes (''). Use single quotes in all command shells except for the Windows Command Shell (cmd.exe). If you're using a Windows Command Shell (cmd.exe), enclose path arguments with double quotes ("") instead of single quotes ('').
@@ -138,4 +149,3 @@ Follow these steps to copy files using Robocopy, a command-line utility included
 ## See also
 
 - [Transfer data with AzCopy and file storage](/azure/storage/common/storage-use-azcopy-files)
-- [Copy files from one Azure file share to another when using Azure File Sync](../file-sync/file-sync-share-to-share-migration.md)
