@@ -24,10 +24,10 @@ Azure Data Manager for Energy provides two upgrade policy options:
 
 | Policy | Description |
 |--------|-------------|
-| **Automatic** | Your instance is automatically upgraded when a new milestone release is available. This is the default setting for all instances. |
+| **Automatic** | Your instance is automatically upgraded when a new milestone release is available. This option is the default setting for all instances. |
 | **Deferred** | Your instance upgrade is deferred, giving you up to 30 days to validate the new milestone release before your instance is upgraded. |
 
-If you have multiple Azure Data Manager for Energy instances, you can set different upgrade policies for each one. For example, you might set one instance to **Automatic** so it upgrades immediately when a new milestone is released, allowing you to test and validate the changes. Meanwhile, you can set your production instance to **Deferred** to delay the upgrade until you've completed your testing. At any point during the 30-day window, you can mark your deferred instance as ready for upgrade. If you don't take action, the instance is automatically upgraded at the end of the 30-day window.
+If you have multiple Azure Data Manager for Energy instances, you can set different upgrade policies for each one. For example, you might set one instance to **Automatic** so it upgrades immediately when a new milestone is released, allowing you to test and validate the changes. Meanwhile, you can set your production instance to **Deferred** to delay the upgrade until you complete your testing. At any point during the 30-day window, you can mark your deferred instance as ready for upgrade. If you don't take action, the instance is automatically upgraded at the end of the 30-day window.
 
 ## View upgrade settings
 
@@ -40,7 +40,7 @@ If you have multiple Azure Data Manager for Energy instances, you can set differ
 1. On the **Upgrade Settings** page, you can view:
    - **Current milestone version**: The current milestone version your instance is running (for example, M25 or M26).
    - **Upgrade policy**: Whether your instance is set to **Automatic** or **Deferred** upgrades.
-   - **Auto upgrade after date**: If your upgrade policy is set to **Deferred** and a milestone upgrade is available, this field shows the date when your instance will be automatically upgraded.
+   - **Auto upgrade after date**: If your upgrade policy is set to **Deferred** and a milestone upgrade is available, this field shows the date when your instance is automatically upgraded.
 
     ADD SCREENSHOT HERE
 
@@ -99,7 +99,7 @@ If your upgrade policy is set to **Deferred** and a milestone upgrade is availab
 
 When a new milestone release is available and your upgrade policy is set to **Deferred**:
 
-1. After all instances with the **Automatic** upgrade policy have been upgraded, the Azure Data Manager for Energy team sets the **30-Day Window End Date**, which is approximately 30 days from that point.
+1. After all instances with the **Automatic** upgrade policy are upgraded, the Azure Data Manager for Energy team sets the **30-Day Window End Date**, which is approximately 30 days from that point.
 
 1. The **30-Day Window End Date** is displayed on the **Upgrade Settings** page in the Azure portal.
 
@@ -114,11 +114,11 @@ When a new milestone release is available and your upgrade policy is set to **De
 
 ### What happens if I find an issue with Azure Data Manager for Energy during the 30-day window?
 
-If you discover an issue during the 30-day window, contact Azure support. Depending on the severity of the issue, the Azure Data Manager for Energy team may deploy a hotfix. If a hotfix is required, the 30-day timer is paused when the issue is identified and resumes once the hotfix has been deployed.
+If you discover an issue during the 30-day window, contact Azure support. Depending on the severity of the issue, the Azure Data Manager for Energy team may deploy a hotfix. If a hotfix is required, the 30-day timer is paused when the issue is identified and resumes once the hotfix is deployed.
 
 ## Next steps
 
-Learn more about what's included in each milestone release and Azure Data Manager for Energy:
+Learn more about each milestone release and Azure Data Manager for Energy:
 
 > [!div class="nextstepaction"]
 > [Release notes](release-notes.md)
