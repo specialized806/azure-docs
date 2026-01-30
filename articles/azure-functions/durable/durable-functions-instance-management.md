@@ -1421,6 +1421,8 @@ Transfer-Encoding: chunked
 > [!NOTE]
 > The format of the webhook URLs might differ, depending on which version of the Azure Functions host you are running. The preceding example is for the Azure Functions 3.0 host.
 
+::: zone pivot="durable-functions"
+
 ## Retrieve HTTP management webhook URLs
 
 You can use an external system to monitor or to raise events to an orchestration. External systems can communicate with Durable Functions through the webhook URLs that are part of the default response described in [HTTP API URL discovery](durable-functions-http-features.md#http-api-url-discovery). The webhook URLs can alternatively be accessed programmatically using the [orchestration client binding](durable-functions-bindings.md#orchestration-client). Specifically, the *create HTTP management payload* API can be used to get a serializable object that contains these webhook URLs.
@@ -1520,6 +1522,8 @@ Push-OutputBinding -Name Response -Value $Response
 > This feature is currently not supported in Java.
 
 ---
+
+::: zone-end
 
 ## Rewind instances
 
@@ -2040,5 +2044,5 @@ System.out.println("Purged " + result.getDeletedInstanceCount() + " instance(s).
 > [Get started with Durable Task SDKs](durable-task-scheduler/quickstart-portable-durable-task-sdks.md)
 
 > [!div class="nextstepaction"]
-> [Learn about the Durable Task Scheduler](durable-task-scheduler/durable-task-scheduler-overview.md)
+> [Learn about the Durable Task Scheduler](durable-task-scheduler/durable-task-overview.md)
 ::: zone-end
