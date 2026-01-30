@@ -5,7 +5,7 @@ services: container-apps
 author: craigshoemaker
 ms.service: azure-container-apps
 ms.topic: how-to
-ms.date: 05/19/2025
+ms.date: 01/30/2026
 ms.update-cycle: 180-days
 ms.author: cshoe
 ms.custom: references_regions
