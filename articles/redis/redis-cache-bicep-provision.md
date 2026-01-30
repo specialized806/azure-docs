@@ -1,5 +1,5 @@
 ---
-title: Deploy Azure Mnaged Redis cache using Bicep
+title: Deploy Azure Managed Redis cache using Bicep
 description: Learn how to use Bicep to deploy an Azure Managed Redis resource.
 ms.date: 01/28/2026
 ms.topic: conceptual
