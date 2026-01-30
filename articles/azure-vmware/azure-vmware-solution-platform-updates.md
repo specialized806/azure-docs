@@ -16,7 +16,7 @@ Microsoft regularly applies important updates to the Azure VMware Solution for n
 
 **Resource Health for Azure VMware Solution**
 
-Resource Health for Azure VMware Solution is now Generally Available! Resource Health, an Azure native feature, monitors the health of an Azure VMware Solution private cloud and suggests actions for existing issues. Setup Azure Monitor notifications on top of these alerts to notify stakeholders to remediate and ensure the private cloud is in a healthy and maintainable state. [Learn more](resource-health-for-azure-vmware-solution-overview.md)
+Resource Health for Azure VMware Solution is now Generally Available! Resource Health, an Azure native feature, monitors the health of an Azure VMware Solution private cloud and suggests actions for existing issues. Set up Azure Monitor notifications on top of these alerts to notify stakeholders to remediate and ensure the private cloud is in a healthy and maintainable state. [Learn more](resource-health-for-azure-vmware-solution-overview.md)
 
 ## November 2025
 
