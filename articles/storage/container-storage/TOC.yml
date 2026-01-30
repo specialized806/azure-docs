@@ -5,24 +5,28 @@
   items:
   - name: What is Azure Container Storage?
     href: container-storage-introduction.md
-- name: Tutorials
+- name: How-to guides
   items:
   - name: Install Azure Container Storage on AKS
     href: install-container-storage-aks.md
-- name: Storage options
-  items:
-  - name: Use with Local NVMe
-    href: use-container-storage-with-local-disk.md
-- name: How-to guides
-  items:
   - name: Remove Azure Container Storage
     href: remove-container-storage.md
-  - name: Enable monitoring with managed Prometheus
-    href: enable-monitoring.md
-  - name: Use Grafana dashboards
-    href: use-grafana-dashboard.md
+  - name: Use with local NVMe
+    href: use-container-storage-with-local-disk.md
+  - name: Use with Elastic SAN
+    href: use-container-storage-with-elastic-san-version-2.md
 - name: Concepts
   items:
+  - name: Enable multi-zone storage redundancy
+    href: enable-multi-zone-redundancy-version-2.md
+  - name: Enable monitoring with managed Prometheus
+    href: enable-monitoring.md
+  - name: Resize persistent volumes
+    href: resize-volume-version-2.md
+  - name: Volume snapshots
+    href: volume-snapshot-restore-v2.md
+  - name: Connect with Grafana
+    href: use-grafana-dashboard.md
   - name: Understand billing
     href: container-storage-billing.md 
   - name: FAQ

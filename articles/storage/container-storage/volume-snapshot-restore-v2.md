@@ -1,5 +1,5 @@
 ---
-title: Use Volume Snapshots with Azure Container Storage (version 2.x.x)
+title: Use volume snapshots with Azure Container Storage (version 2.x.x)
 description: Take snapshot of a persistent volume and restore it.
 author: saurabh0501
 ms.service: azure-container-storage
