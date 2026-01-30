@@ -36,6 +36,7 @@ You specify IP firewall rules at the Event Hubs namespace level. The rules apply
 When creating a namespace, you can either allow public only (from all networks) or private only (only via private endpoints) access to the namespace. Once you create the namespace, you can allow access from specific IP addresses or from specific virtual networks (by using network service endpoints). 
 
 ### Configure public access when creating a namespace
+
 To enable public access, select **Public access** on the **Networking** page of the namespace creation wizard. 
 
 :::image type="content" source="./media/event-hubs-firewall/create-namespace-public-access.png" alt-text="Screenshot showing the Networking page of the Create namespace wizard with Public access option selected." lightbox="./media/event-hubs-firewall/create-namespace-public-access.png":::
@@ -56,6 +57,8 @@ This section shows you how to use the Azure portal to create IP firewall rules f
 1. Navigate to your **Event Hubs namespace** in the [Azure portal](https://portal.azure.com).
 1. Select **Networking** under **Settings** on the left menu. 
 1. On the **Networking** page, select **Manage** under **Public network access**.
+
+    :::image type="content" source="./media/event-hubs-firewall/manage-public-network-access.png" alt-text="Screenshot showing the Public access page with Manage button highlighted." lightbox="./media/event-hubs-firewall/enable-selected-networks.png":::     
 1. On the **Public network access** page, in the **Default action** section, select **Enable from selected networks** to allow access from only specified IP addresses.
 
     :::image type="content" source="./media/event-hubs-firewall/enable-selected-networks.png" alt-text="Screenshot showing the Public network access page with Enable from selected networks option selected." lightbox="./media/event-hubs-firewall/enable-selected-networks.png"::: 
