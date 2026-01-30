@@ -7,7 +7,7 @@
     href: container-storage-introduction.md
 - name: How-to guides
   items:
-  - name: Install Azure Container Storage on AKS
+  - name: Install Azure Container Storage
     href: install-container-storage-aks.md
   - name: Use with local NVMe
     href: use-container-storage-with-local-disk.md
@@ -31,6 +31,43 @@
     href: container-storage-billing.md 
   - name: FAQ
     href: container-storage-faq.md
+- name: Reference
+  items:
+  - name: Storage pool parameters (version 1.x.x)
+    href: container-storage-storage-pool-parameters.md
+  - name: APIs for data access
+    items:
+    - name: REST API
+      href: /rest/api/storageservices/
+    - name: .NET SDK
+      href: /dotnet/api/overview/azure/storage
+    - name: Java SDK
+      href: /java/api/overview/azure/storage
+    - name: Python SDK
+      href: /python/api/overview/azure/storage
+    - name: JavaScript SDK
+      href: /javascript/api/overview/azure/storage
+  - name: APIs for resource management
+    items:
+    - name: REST API
+      href: /rest/api/storagerp/
+    - name: .NET SDK
+      href: /dotnet/api/overview/azure/resourcemanager.storage-readme
+    - name: Java SDK
+      href: /java/api/overview/azure/storage/management
+    - name: Python SDK
+      href: /python/api/overview/azure/storage#management
+    - name: JavaScript SDK
+      href: /javascript/api/overview/azure/storage#management
+  - name: Resource Manager template
+    displayName: arm
+    href: /azure/templates/microsoft.storage/allversions
+- name: Resources
+  items:
+  - name: Pricing for Azure Container Storage
+    href: https://azure.microsoft.com/pricing/details/container-storage/
+  - name: Release notes for Azure Container Storage
+    href: container-storage-release-notes.md
 - name: Azure Container Storage (version 1.x.x)
   items:
   - name: What is Azure Container Storage (version 1.x.x)?
@@ -81,41 +118,3 @@
       href: container-storage-billing-version-1.md
     - name: FAQ
       href: container-storage-faq.md
-- name: Reference
-  items:
-  - name: Storage pool parameters (version 1.x.x)
-    href: container-storage-storage-pool-parameters.md
-  - name: APIs for data access
-    items:
-    - name: REST API
-      href: /rest/api/storageservices/
-    - name: .NET SDK
-      href: /dotnet/api/overview/azure/storage
-    - name: Java SDK
-      href: /java/api/overview/azure/storage
-    - name: Python SDK
-      href: /python/api/overview/azure/storage
-    - name: JavaScript SDK
-      href: /javascript/api/overview/azure/storage
-  - name: APIs for resource management
-    items:
-    - name: REST API
-      href: /rest/api/storagerp/
-    - name: .NET SDK
-      href: /dotnet/api/overview/azure/resourcemanager.storage-readme
-    - name: Java SDK
-      href: /java/api/overview/azure/storage/management
-    - name: Python SDK
-      href: /python/api/overview/azure/storage#management
-    - name: JavaScript SDK
-      href: /javascript/api/overview/azure/storage#management
-  - name: Resource Manager template
-    displayName: arm
-    href: /azure/templates/microsoft.storage/allversions
-- name: Resources
-  items:
-  - name: Pricing for Azure Container Storage
-    href: https://azure.microsoft.com/pricing/details/container-storage/
-  - name: Release notes for Azure Container Storage
-    href: container-storage-release-notes.md
-  

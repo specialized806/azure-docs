@@ -11,7 +11,7 @@ zone_pivot_groups: azure-cli-or-terraform
 # Customer intent: "As a cloud administrator, I want to install Azure Container Storage on an AKS cluster so that I can efficiently manage storage for containerized applications."
 ---
 
-# Tutorial: Install Azure Container Storage for use with Azure Kubernetes Service
+# Install Azure Container Storage for use with Azure Kubernetes Service
 
 [Azure Container Storage](container-storage-introduction.md) is a cloud-based volume management, deployment, and orchestration service built natively for containers. Use this tutorial to install the latest production version of Azure Container Storage on an [Azure Kubernetes Service (AKS)](/azure/aks/intro-kubernetes) cluster, whether you're creating a new cluster or enabling the service on an existing deployment.
 
@@ -40,8 +40,6 @@ If you have a previous version of Azure Container Storage (version 2.0.x) instal
 |------------------|-----------------|---------------|---------------|
 | 2.0.x | Local NVMe | No | Installed during --enable-azure-container-storage |
 |2.1.x and later |Local NVMe and Elastic SAN | Yes | Via storage‑type selection during enable or by creating a StorageClass (installer‑only flow) |
-
-
 
 ## Prerequisites
 
