@@ -132,9 +132,9 @@ Within a single subscription, you can create accounts with either standard or Az
 You can configure your storage account to use a custom domain for the Blob Storage endpoint. For more information, see [Configure a custom domain name for your Azure Storage account](../blobs/storage-custom-domain-name.md).
 
 > [!IMPORTANT]
-> When you reference a service endpoint in a client application, we recommend that you avoid taking a dependency on a cached IP address. The storage account IP address is subject to change. If you rely on a cached IP address, you might experience unexpected behavior.
+> When you reference a service endpoint in a client application, we advise that you avoid taking a dependency on a cached IP address. The storage account IP address is subject to change. If you rely on a cached IP address, you might experience unexpected behavior.
 >
-> Additionally, we recommend that you honor the time-to-live (TTL) of the DNS record and avoid overriding it. If you override the DNS TTL, you might experience unexpected behavior.
+> Additionally, we advise that you honor the time-to-live (TTL) of the DNS record and avoid overriding it. If you override the DNS TTL, you might experience unexpected behavior.
 
 ### Standard endpoints
 
@@ -220,7 +220,7 @@ The following table summarizes and points to guidance on how to move, upgrade, o
 | Move a storage account to a different subscription | Azure Resource Manager provides options for moving a resource to a different subscription. For more information, see [Move resources to a new resource group or subscription](../../azure-resource-manager/management/move-resource-group-and-subscription.md). |
 | Move a storage account to a different resource group | Azure Resource Manager provides options for moving a resource to a different resource group. For more information, see [Move resources to a new resource group or subscription](../../azure-resource-manager/management/move-resource-group-and-subscription.md). |
 | Move a storage account to a different region | To move a storage account, create a copy of your storage account in another region. Then, move your data to that account by using AzCopy, or another tool of your choice. For more information, see [Move an Azure Storage account to another region](storage-account-move.md). |
-| Upgrade to a general-purpose v2 storage account | You can upgrade a general-purpose v1 storage account or Blob Storage account to a general-purpose v2 account. This action can't be undone. For more information, see [Upgrade to a general-purpose v2 storage account](storage-account-upgrade.md). |
+| Upgrade to a general-purpose v2 storage account | You can upgrade a general-purpose v1 storage account or legacy Blob Storage account to a general-purpose v2 account. This action can't be undone. For more information, see [Upgrade to a general-purpose v2 storage account](storage-account-upgrade.md). |
 | Migrate a classic storage account to Azure Resource Manager | The Azure Resource Manager deployment model is superior to the classic deployment model in terms of functionality, scalability, and security. For more information about migrating a classic storage account to Azure Resource Manager, see [Platform-supported migration of IaaS resources from classic to Azure Resource Manager](/azure/virtual-machines/migration-classic-resource-manager-overview#migration-of-storage-accounts). |
 
 ## Transferring data into a storage account
@@ -261,8 +261,8 @@ The following account types are retired or scheduled for retirement. They aren't
 
 | Retired account type | Supported services | Redundancy options | Deployment model | Guidance |
 | --- | --- | --- | --- | --- |
-| **Standard general-purpose v1** | Blob, Queue, Table, Azure Files | LRS/GRS/RA-GRS | Resource Manager, classic¹ | Upgrade existing General Purpose v1 accounts to General-Purpose v2 to access modern features and cost-optimization capabilities. Before upgrading, model capacity and operations costs, see [General Purpose v1 account migration](./general-purpose-version-1-account-migration-overview.md). For the in-place upgrade, see [storage account upgrade](./storage-account-upgrade.md). |
-| **Blob Storage** | Block blobs and append blobs | LRS/GRS/RA-GRS | Resource Manager | Upgrade existing Legacy Blob Storage accounts to GPv2 to use access tiers and lifecycle management. See [Legacy Blob Storage account migration overview](./legacy-blob-storage-account-migration-overview.md) and [access tiers overview](../blobs/access-tiers-overview.md). |
+| **Standard general-purpose v1** | Blob, Queue, Table, Azure Files | LRS/GRS/RA-GRS | Resource Manager, classic¹ | Upgrade existing General Purpose v1 accounts to General-Purpose v2 to access modern features and cost-optimization capabilities. Before you upgrade, you can model capacity and operations costs by reading [General Purpose v1 account migration](./general-purpose-version-1-account-migration-overview.md). For the in-place upgrade, see [storage account upgrade](./storage-account-upgrade.md). |
+| **Blob Storage** | Block blobs and append blobs | LRS/GRS/RA-GRS | Resource Manager | Upgrade existing legacy Blob Storage accounts to GPv2 to use access tiers and lifecycle management. See [Legacy Blob Storage account migration overview](./legacy-blob-storage-account-migration-overview.md) and [access tiers overview](../blobs/access-tiers-overview.md). |
 | **Classic (ASM) storage accounts** | Blob, Queue, Table, Azure Files | LRS/GRS/RA-GRS | classic | Retired. Migrate to the Resource Manager deployment model. See [classic account migration overview](./classic-account-migration-overview.md). |
 
 ¹ *Classic* denotes the Azure Service Management deployment model.
