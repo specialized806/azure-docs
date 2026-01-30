@@ -18,7 +18,7 @@ This article shows you how to remove Azure Container Storage components from you
 
 ## Remove Azure Container Storage
 
-Azure Container Storage supports removing:
+You can either choose to remove the components for a specific storage type or remove Azure Container Storage entirely.
 - CSI driver for specific storage types
 - The entire Azure Container Storage installation (installer + CSI driver(s))
 
@@ -33,9 +33,9 @@ Remove the CSI driver by running the following Azure CLI command. Be sure to rep
    az aks update -n <cluster-name> -g <resource-group> --disable-azure-container-storage <storage-type>
    ```
 Supported storage types values:
-- ephemeralDisk – removes only the local CSI driver
-- elasticSan – removes only the Elastic SAN CSI driver
-- all - removes both Elastic SAN CSI driver and local CSI driver. You can also use comma separated values to remove specific CSI drivers such as 'ephemeralDisk, elasticSan'
+- `ephemeralDisk` – removes only the local CSI driver
+- `elasticSan` – removes only the Elastic SAN CSI driver
+- `all` - removes both Elastic SAN CSI driver and local CSI driver. You can also use comma separated values to remove specific CSI drivers such as `ephemeralDisk`, `elasticSan`
 
 This will remove the specified CSI driver(s), while the Azure Container Storage installer components will remain installed.
 
