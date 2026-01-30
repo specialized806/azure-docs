@@ -17,23 +17,18 @@ This article shows how to import a WSDL specification, which is a standard XML r
 In this article, you learn how to:
 
 > [!div class="checklist"]
-> * Import a SOAP API
-> * Test the API in the Azure portal
+> - Import a SOAP API
+> - Test the API in the Azure portal
 
 [!INCLUDE [api-management-wsdl-import](../../includes/api-management-wsdl-import.md)]
 
 ## Prerequisites
 
-* An API Management instance. If you don't already have one, complete the following quickstart: [Create an Azure API Management instance](get-started-create-service-instance.md).
-
-* Azure CLI
+- An API Management instance. If you don't already have one, complete the following quickstart: [Create an Azure API Management instance](get-started-create-service-instance.md).
+- Azure CLI
     [!INCLUDE [azure-cli-prepare-your-environment-no-header.md](~/reusable-content/azure-cli/azure-cli-prepare-your-environment-no-header.md)]
-
-
-* Azure PowerShell
+- Azure PowerShell
     [!INCLUDE [azure-powershell-requirements-no-header](~/reusable-content/ce-skilling/azure/includes/azure-powershell-requirements-no-header.md)]
-
-
  
 ## <a name="create-api"> </a>Import a backend API
 
@@ -43,12 +38,14 @@ In this article, you learn how to:
 1. In the left menu, select **APIs** > **+ Add API**.
 1. Under **Create from definition**, select **WSDL**.
 
-    ![SOAP API](./media/import-soap-api/wsdl-api.png)
-1. In **WSDL specification**, enter the URL to your SOAP API, or click **Select a file** to select a local WSDL file.
+    :::image type="content" source="./media/import-soap-api/wsdl-api.png" alt-text="SOAP API":::
+
+1. In **WSDL specification**, enter the URL to your SOAP API, or choose **Select a file** to select a local WSDL file.
 1. In **Import method**, **SOAP pass-through** is selected by default. 
     With this selection, the API is exposed as SOAP, and API consumers have to use SOAP rules. If you want to "restify" the API, follow the steps in [Import a SOAP API and convert it to REST](restify-soap-api.md).
 
-    ![Create SOAP API from WSDL specification](./media/import-soap-api/pass-through.png)
+    :::image type="content" source="./media/import-soap-api/pass-through.png" alt-text="Create SOAP API from WSDL specification":::
+
 1. The following API settings are filled automatically based on information from the SOAP API: **Display name**, **Name**, **Description**. Operations are filled automatically with **Display name**, **URL**, and **Description**, and receive a system-generated **Name**.
 1. Enter other API settings. You can set the values during creation or configure them later by going to the **Settings** tab. 
 
@@ -113,7 +110,7 @@ Import-AzApiManagementApi -Context $context -ApiId $apiId -SpecificationFormat $
 
 ## Wildcard SOAP action
 
-If you need to pass a SOAP request that doesn't have a dedicated action defined in the API, you can configure a wildcard SOAP action. The wildcard action will match any SOAP request that isn't defined in the API.  
+If you need to pass a SOAP request that doesn't have a dedicated action defined in the API, you can configure a wildcard SOAP action. The wildcard action matches any SOAP request that isn't defined in the API.  
 
 To define a wildcard SOAP action:
 
@@ -124,8 +121,6 @@ To define a wildcard SOAP action:
 
 > [!NOTE]
 > Don't use the **OpenAPI specification** editor in the **Design** tab to modify a SOAP API.
-
-
 
 [!INCLUDE [api-management-navigate-to-instance.md](../../includes/api-management-append-apis.md)]
 
