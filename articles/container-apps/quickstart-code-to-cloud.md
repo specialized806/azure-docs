@@ -1,5 +1,5 @@
 ---
-title: "Quickstart: Build and Deploy Your App from Your Local File System to Azure Container Apps"
+title: "Quickstart: Build and Deploy Your App from Your Local File System to Container Apps"
 description: Build your container app from local source and deploy in Azure Container Apps by using az containerapp up.
 services: container-apps
 author: craigshoemaker
@@ -223,7 +223,7 @@ az containerapp up `
 ---
 
 > [!NOTE]
-> If the command returns an error with the message "AADSTS50158: External security challenge not satisfied", run `az login --scope https://graph.microsoft.com//.default` to sign in with the required permissions, and then run the `az containerapp up` command again.
+> If the command returns an error with the message "AADSTS50158: External security challenge not satisfied," run `az login --scope https://graph.microsoft.com//.default` to sign in with the required permissions, and then run the `az containerapp up` command again.
 
 ## Verify deployment
 
