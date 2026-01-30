@@ -12,7 +12,7 @@ ms.date: 01/20/2026
 
 # Azure Copilot Migration Agent (preview)
 
-Azure Copilot Migration Agent is a planning‑focused Copilot experience that helps you plan and analyze migrations by reasoning over Azure Migrate data.
+Azure Copilot Migration Agent is a planning‑focused experience that helps you plan and analyze migrations by reasoning over Azure Migrate data.
 
 The Migration Agent supports migration planning, analysis, and decision making, but not migration execution. You can interact with the Agent using naturallanguage prompts to explore inventory, migration readiness, strategies, ROI considerations, and landing zone requirements. 
 
@@ -46,7 +46,7 @@ The Agent generates landing zone configuration by considering your inputs such a
 
 ## Azure Copilot Migration Agent functionality
 
-Azure Copilot Migration Agent (ACMA) provides a conversational experience in Azure Copilot that helps you plan and analyze migrations using data from your Azure Migrate project. It enables you to reason over discovery and assessment data to make informed migration planning decisions.
+Azure Copilot Migration Agent (ACMA) is a conversational experience that helps plan migrations using Azure Migrate data. Use natural language prompts to explore inventory, readiness, strategy, ROI, and landing zone requirements.
 
 Azure Copilot Migration Agent helps you:
 
@@ -82,7 +82,7 @@ Azure Copilot Migration Agent currently supports the following scenarios:
 
 ## Migration Agent example scenarios
  
-**Example 1: Plan VMware Lift‑and‑Shift Migrations with Azure Copilot Migration Agent**: You can use Azure Copilot Migration Agent to plan a lift-and-shift migration of VMware workloads to Azure. You discover servers using RVTools or the Azure Migrate appliance, analyze inventory, and create and compare business cases to evaluate migration options.
+**Example 1: Plan VMware Lift‑and‑Shift Migrations with Azure Copilot Migration Agent**: You can use Azure Copilot Migration Agent to plan a lift-and-shift migration of VMware workloads to Azure. You discover servers using RVTools, Azure Migrate collector, or the Azure Migrate appliance, analyze inventory, and create and compare business cases to evaluate migration options.
 
 **Sample prompts**:
 
