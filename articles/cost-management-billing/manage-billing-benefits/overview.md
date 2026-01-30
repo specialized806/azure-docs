@@ -48,7 +48,7 @@ Examples:
 
 ### 3. Discounts
 
-Discounts lower the purchase price or usage charges of eligible resources. Certain discounts, such as commitment-based reductions, are also applied during charge rating 
+Discounts lower the purchase price or usage charges of eligible resources.
 
 
 ### 4. Free Azure Services
