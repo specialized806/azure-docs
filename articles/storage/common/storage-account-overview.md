@@ -12,9 +12,9 @@ ms.author: akashdubey
 #customer intent: As a cloud architect, I want to understand the different types of storage accounts and their features, so that I can choose the right account type based on my application's performance, redundancy, and cost requirements.
 ---
 
-# Overview of Azure storage accounts
+# Overview of Azure Storage accounts
 
-An Azure storage account contains all of your Azure Storage data objects: blobs, files, queues, and tables. The storage account provides a unique namespace for your Azure Storage data that's accessible from anywhere in the world over HTTP or HTTPS. Data in your storage account is durable and highly available, secure, and massively scalable.
+An Azure Storage account contains all of your Azure Storage data objects: blobs, files, queues, and tables. The storage account provides a unique namespace for your Azure Storage data that's accessible from anywhere in the world over HTTP or HTTPS. Data in your storage account is durable and highly available, secure, and massively scalable.
 
 Learn how to [create a storage account](storage-account-create.md).
 
@@ -26,9 +26,9 @@ The following table describes the types of storage accounts that Microsoft recom
 
 | Type of storage account | Supported storage services | Redundancy options | Usage |
 |--|--|--|--|
-| Standard general-purpose v2 | Blob Storage (including Data Lake Storage<sup>1</sup>), Queue Storage, Table Storage, and Azure Files  | Locally redundant storage (LRS) / Geo-redundant storage (GRS) / Read-access geo-redundant storage (RA-GRS)<br /><br />Zone-redundant storage (ZRS) / Geo zone-redundant storage (GZRS) / Read-access geo zone-redundant storage (RA-GZRS)<sup>2</sup> | Standard storage account type for blobs, file shares, queues, and tables. Recommended for most scenarios that use Azure Storage. If you want support for network file system (NFS) in Azure Files, use the premium file shares account type. |
+| Standard general-purpose v2 | Blob Storage (including Data Lake Storage<sup>1</sup>), Queue Storage, Table Storage, and Azure Files  | Locally redundant storage (LRS) / geo-redundant storage (GRS) / read-access geo-redundant storage (RA-GRS)<br /><br />Zone-redundant storage (ZRS) / geo zone-redundant storage (GZRS) / read-access geo zone-redundant storage (RA-GZRS)<sup>2</sup> | Standard storage account type for blobs, file shares, queues, and tables. Recommended for most scenarios that use Azure Storage. If you want support for network file system (NFS) in Azure Files, use the premium file shares account type. |
 | Premium block blobs<sup>3</sup> | Blob Storage (including Data Lake Storage<sup>1</sup>) | LRS<br /><br />ZRS<sup>2</sup> | Premium storage account type for block blobs and append blobs. Recommended for scenarios with high transaction rates or that use smaller objects or require consistently low storage latency. [Learn more about example workloads.](../blobs/storage-blob-block-blob-premium.md) |
-| Premium file shares<sup>3</sup> | Azure Files | LRS<br /><br />ZRS<sup>2</sup> | Premium storage account type for file shares only. Recommended for enterprise or high-performance scale applications. Use this account type if you want a storage account that supports both server message block (SMB) and NFS file shares. |
+| Premium file shares<sup>3</sup> | Azure Files | LRS<br /><br />ZRS<sup>2</sup> | Premium storage account type for file shares only. Recommended for enterprise or high-performance scale applications. Use this account type if you want a storage account that supports both Server Message Block (SMB) and NFS file shares. |
 | Premium page blobs<sup>3</sup> | Page blobs only | LRS<br /><br />ZRS<sup>2</sup> | Premium storage account type for page blobs only. [Learn more about page blobs and sample use cases.](../blobs/storage-blob-pageblob-overview.md) |
 
 <sup>1</sup> Data Lake Storage is a set of capabilities dedicated to big data analytics, built on Azure Blob Storage. For more information, see [Introduction to Data Lake Storage](../blobs/data-lake-storage-introduction.md) and [Create a storage account to use with Data Lake Storage](../blobs/create-data-lake-storage-account.md).
@@ -114,8 +114,8 @@ View pricing at [Block blob pricing](https://azure.microsoft.com/pricing/details
 |Backup and archive |General purpose v2 |Standard |ZRS, RA-GRS |No |Cool<sup>3</sup> |Yes |
 |Machine learning and AI |General purpose v2 |Standard |ZRS, RA-GRS |Yes |Hot |No |
 
-<sup>1</sup> Zone-redundant storage (ZRS) is a good default for analytics workloads because ZRS offers more redundancy compared to Locally Redundant Storage (LRS). It protects against zonal failures while remaining fully compatible with analytics frameworks. Customers that require more redundancy for an analytics workload can also use Geo-redundant storage (GRS/RA-GRS).
-<br/><br/><sup>2</sup> The [hierarchical namespace](../blobs/data-lake-storage-namespace.md) is a core capability of Azure Data Lake Storage (ADLS). It enhances data organization and access efficiency for large amounts of data, making it ideal for analytics workloads.
+<sup>1</sup> Zone-redundant storage (ZRS) is a good default for analytics workloads because ZRS offers more redundancy compared to locally redundant storage (LRS). It protects against zonal failures while remaining fully compatible with analytics frameworks. Customers that require more redundancy for an analytics workload can also use geo-redundant storage (GRS/RA-GRS).
+<br/><br/><sup>2</sup> The [hierarchical namespace](../blobs/data-lake-storage-namespace.md) is a core capability of Azure Data Lake Storage. It enhances data organization and access efficiency for large amounts of data, making it ideal for analytics workloads.
 <br/><br/><sup>3</sup> The cool access tier offers a cost-effective solution for storing infrequently accessed data (typical for a backup and archive workload). Customers can also consider the cold access tier after evaluating costs.
 
 ## Storage account endpoints
