@@ -14,7 +14,7 @@ The following table describes default limits for Azure general-purpose v2 (GPv2)
 
 A few entries in the table also apply to disk access and are explicitly labeled. Disk access is a resource that is exclusively used for importing or exporting managed disks through [private links](/azure/virtual-machines/disks-restrict-import-export-overview#private-links).
 
-Customers should use a GPv2 storage account, because [GPv1 is being retired](https://learn.microsoft.com/en-us/azure/storage/common/general-purpose-version-1-account-migration-overview). You can easily upgrade a GPv1 or Blob Storage account to a GPv2 account with no downtime and no need to copy data. For more information, see [Upgrade to a GPv2 storage account](/azure/storage/common/storage-account-upgrade).
+Customers should use a GPv2 storage account, because [GPv1 is being retired](/azure/storage/common/general-purpose-version-1-account-migration-overview). You can easily upgrade a GPv1 or Blob Storage account to a GPv2 account with no downtime and no need to copy data. For more information, see [Upgrade to a GPv2 storage account](/azure/storage/common/storage-account-upgrade).
 
 The *ingress* limit refers to all data sent to a storage account or disk access. The *egress* limit refers to all data received from a storage account or disk access.
 
