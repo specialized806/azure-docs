@@ -38,7 +38,7 @@ A **major release** introduces significant changes, often including new features
 
 ### Improvements and new features
 
-- **Elastic SAN integration**: Added [Elastic SAN](azure/storage/elastic-san/elastic-san-introduction) as a supported storage type.
+- **Elastic SAN integration**: Added [Elastic SAN](../elastic-san/elastic-san-introduction.md) as a supported storage type.
 - **Modular installation**: Users can now selectively deploy the components required for their selected storage type. This reduces Azure Container Storage's install times and cluster footprint.
 - **Node selector support**: Added node selector support for Azure Container Storage components so users can control placement on dedicated storage node pools or mixed topologies.
 
