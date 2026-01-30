@@ -14,7 +14,7 @@ ms.author: danlep
 
 [!INCLUDE [premium-dev-standard-basic.md](../../../includes/api-management-availability-premium-dev-standard-basic.md)]
 
-Creation of Azure-managed certificates for custom domains in API Management will be temporarily turned off from August 15, 2025 to March 15, 2026. Existing managed certificates will be autorenewed as long as your API Management service allows inbound traffic from DigiCert IP addresses on port 80.
+Creation of Azure-managed certificates for custom domains in API Management will be temporarily turned off from August 15, 2025 to March 15, 2026. Existing managed certificates will be autorenewed as long as your API Management service allows inbound traffic from DigiCert IP addresses on port 80 and DNS is properly configured.
 
 In the classic service tiers, Azure API Management offers [free, managed TLS certificates for custom domains](../configure-custom-domain.md#domain-certificate-options) (preview), allowing customers to secure their endpoints without purchasing and managing their own certificates. Because of an industry-wide deprecation of CNAME-based Domain Control Validation (DCV), our Certificate Authority (CA), DigiCert, is moving to a new open-source software (OSS) domain control validation (DCV) platform that provides transparency and accountability increasing the trustworthiness of domain validation. As part of this transition, DigiCert will deprecate support for the legacy CNAME Delegation DCV workflow. This migration requires us to temporarily suspend the creation of managed certificates for custom domains.
 
@@ -34,11 +34,16 @@ The suspension of managed certificates for custom domains will be enforced from 
 
 If you need to add new managed certificates, plan to do so before August 15, 2025 or after March 15, 2026. During the suspension period, you can still configure custom domains with certificates you manage from other sources.
 
-If you already have managed certificates for your custom domains, ensure that your API Management service allows inbound traffic from DigiCert IP addresses on port 80. This access is now required for the certificate autorenewal process.
+If you already have managed certificates for your custom domains, do the following to ensure continued access:
+
+- Ensure that your API Management service allows [inbound traffic from DigiCert IP addresses on port 80](#allow-access-too-digicert-ip-addresses). This access is now required for the certificate autorenewal process.
+- Ensure that your DNS configuration is correct as described in [Configure DNS](#configure-dns).
 
 [!INCLUDE [api-management-managed-certificate-ip-access.md](../../../includes/api-management-managed-certificate-ip-access.md)]
 
 ### Configure DNS 
+
+Configure your DNS provider to map your custom domain name to the default domain name of your API Management instance.
 
 [!INCLUDE [api-management-managed-certificate-dns-configuration.md](../../../includes/api-management-managed-certificate-dns-configuration.md)]
 

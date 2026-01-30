@@ -199,6 +199,7 @@ Configure your DNS provider to map your custom domain name to the default domain
 
 [!INCLUDE [api-management-managed-certificate-dns-configuration.md](../../includes/api-management-managed-certificate-dns-configuration.md)]
 
+---
 
 [!INCLUDE [api-management-custom-domain](../../includes/api-management-custom-domain.md)]
 
