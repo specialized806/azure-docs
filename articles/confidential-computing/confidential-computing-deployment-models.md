@@ -2,7 +2,7 @@
 title: Choose Between Deployment Models
 description: Choose between deployment models in Azure confidential computing.
 author: cynthn
-ms.service: azure-virtual-machines
+ms.service: azure-confidential-computing
 ms.topic: concept-article
 ms.date: 4/30/2024
 ms.author: cynthn

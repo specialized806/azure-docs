@@ -8,7 +8,7 @@ services: virtual-machines
 
 author: ananyagarg
 
-ms.service: azure-virtual-machines
+ms.service: azure-confidential-computing
 
 ms.topic: concept-article
 

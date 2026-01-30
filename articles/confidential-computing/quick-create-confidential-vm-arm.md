@@ -2,7 +2,7 @@
 title: Create an Azure confidential VM with ARM template
 description: Learn how to quickly create and deploy an Azure confidential virtual machine (confidential VM) using an ARM template.
 author: RunCai
-ms.service: azure-virtual-machines
+ms.service: azure-confidential-computing
 ms.topic: quickstart
 ms.date: 12/01/2023
 ms.author: RunCai
