@@ -203,10 +203,6 @@ public class HelloCities : TaskOrchestrator<object?, string>
 }
 ```
 
-# [JavaScript](#tab/javascript)
-
-This sample is shown for .NET, Java, and Python.
-
 # [Python](#tab/python)
 
 ```python
@@ -229,10 +225,6 @@ def hello_cities(ctx: task.OrchestrationContext, _):
 
     return result
 ```
-
-# [PowerShell](#tab/powershell)
-
-This sample is shown for .NET, Java, and Python.
 
 # [Java](#tab/java)
 
@@ -279,10 +271,6 @@ while (metadata.SerializedCustomStatus is null || metadata.ReadCustomStatusAs<st
 }
 ```
 
-# [JavaScript](#tab/javascript)
-
-This sample is shown for .NET, Java, and Python.
-
 # [Python](#tab/python)
 
 ```python
@@ -297,10 +285,6 @@ while state.serialized_custom_status is None or state.serialized_custom_status !
     time.sleep(0.2)
     state = client.get_orchestration_state(instance_id, fetch_payloads=True)
 ```
-
-# [PowerShell](#tab/powershell)
-
-This sample is shown for .NET, Java, and Python.
 
 # [Java](#tab/java)
 
@@ -678,10 +662,6 @@ public class CityRecommender : TaskOrchestrator<int, object?>
 }
 ```
 
-# [JavaScript](#tab/javascript)
-
-This sample is shown for .NET, Java, and Python.
-
 # [Python](#tab/python)
 
 ```python
@@ -706,10 +686,6 @@ def city_recommender(ctx: task.OrchestrationContext, user_choice: int):
 
     # Wait for user selection and refine the recommendation
 ```
-
-# [PowerShell](#tab/powershell)
-
-This sample is shown for .NET, Java, and Python.
 
 # [Java](#tab/java)
 
@@ -938,10 +914,6 @@ public class ReserveTicket : TaskOrchestrator<string, bool>
 }
 ```
 
-# [JavaScript](#tab/javascript)
-
-This sample is shown for .NET, Java, and Python.
-
 # [Python](#tab/python)
 
 ```python
@@ -968,10 +940,6 @@ def reserve_ticket(ctx: task.OrchestrationContext, user_id: str):
 
     return is_booking_confirmed
 ```
-
-# [PowerShell](#tab/powershell)
-
-This sample is shown for .NET, Java, and Python.
 
 # [Java](#tab/java)
 
@@ -1150,10 +1118,6 @@ public class MyCustomStatusOrchestrator : TaskOrchestrator<object?, object?>
 }
 ```
 
-# [JavaScript](#tab/javascript)
-
-This sample is shown for .NET, Java, and Python.
-
 # [Python](#tab/python)
 
 ```python
@@ -1162,10 +1126,6 @@ from durabletask import task
 def my_custom_status_orchestrator(ctx: task.OrchestrationContext, _):
     ctx.set_custom_status({"nextActions": ["A", "B", "C"], "foo": 2})
 ```
-
-# [PowerShell](#tab/powershell)
-
-This sample is shown for .NET, Java, and Python.
 
 # [Java](#tab/java)
 
@@ -1204,10 +1164,6 @@ OrchestrationMetadata? metadata = await client.GetInstanceAsync(instanceId, getI
 string? customStatusJson = metadata?.SerializedCustomStatus;
 ```
 
-# [JavaScript](#tab/javascript)
-
-This sample is shown for .NET, Java, and Python.
-
 # [Python](#tab/python)
 
 ```python
@@ -1217,10 +1173,6 @@ from durabletask.azuremanaged.client import DurableTaskSchedulerClient
 state = client.get_orchestration_state(instance_id, fetch_payloads=True)
 custom_status_json = state.serialized_custom_status
 ```
-
-# [PowerShell](#tab/powershell)
-
-This sample is shown for .NET, Java, and Python.
 
 # [Java](#tab/java)
 

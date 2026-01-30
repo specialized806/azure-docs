@@ -79,10 +79,6 @@ ctx.createTimer(Duration.ofHours(72)).await();
 await context.CreateTimer(TimeSpan.FromHours(72), CancellationToken.None);
 ```
 
-# [JavaScript](#tab/javascript)
-
-This sample is shown for .NET, Python, and Java.
-
 # [Python](#tab/python)
 
 ```python
@@ -90,10 +86,6 @@ This sample is shown for .NET, Python, and Java.
 from datetime import timedelta
 yield ctx.create_timer(timedelta(hours=72))
 ```
-
-# [PowerShell](#tab/powershell)
-
-This sample is shown for .NET, Python, and Java.
 
 # [Java](#tab/java)
 
@@ -240,10 +232,6 @@ public class BillingIssuer : TaskOrchestrator<object?, string>
 }
 ```
 
-# [JavaScript](#tab/javascript)
-
-This sample is shown for .NET, Python, and Java.
-
 # [Python](#tab/python)
 
 ```python
@@ -260,10 +248,6 @@ def billing_issuer(ctx: task.OrchestrationContext, _):
         yield ctx.call_activity(send_billing_event)
     return "done"
 ```
-
-# [PowerShell](#tab/powershell)
-
-This sample is shown for .NET, Python, and Java.
 
 # [Java](#tab/java)
 
@@ -456,10 +440,6 @@ public class TryGetQuote : TaskOrchestrator<object?, bool>
 }
 ```
 
-# [JavaScript](#tab/javascript)
-
-This sample is shown for .NET, Python, and Java.
-
 # [Python](#tab/python)
 
 ```python
@@ -482,10 +462,6 @@ def try_get_quote(ctx: task.OrchestrationContext, _):
         # timeout case
         return False
 ```
-
-# [PowerShell](#tab/powershell)
-
-This sample is shown for .NET, Python, and Java.
 
 # [Java](#tab/java)
 
