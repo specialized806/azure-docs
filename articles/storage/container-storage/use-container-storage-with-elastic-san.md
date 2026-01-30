@@ -1,228 +1,412 @@
 ---
-title: Use Azure Container Storage (version 1.x.x) with Azure Elastic SAN (preview)
-description: As a preview feature, you can configure Azure Container Storage (version 1.x.x) to use Azure Elastic SAN. Create a storage pool, select a storage class, create a persistent volume claim, and attach the persistent volume to a pod.
-author: khdownie
+title: Use Azure Container Storage with Azure Elastic SAN
+description: You can configure Azure Container Storage to use Azure Elastic SAN.
+author: saurabh0501
 ms.service: azure-container-storage
 ms.topic: how-to
-ms.date: 09/03/2025
-ms.author: kendownie
+ms.date: 01/28/2026
+ms.author: saurabsharma
 ms.custom:
   - references_regions
-  - build-2025
-# Customer intent: "As a Kubernetes administrator, I want to configure Azure Container Storage (version 1.x.x) with Azure Elastic SAN so that I can efficiently manage persistent storage for my containerized applications."
+    
+# Customer intent: "As a Kubernetes administrator, I want to configure Azure Container Storage with Azure Elastic SAN so that I can efficiently manage persistent storage for my containerized applications."
 ---
 
-# Use Azure Container Storage (version 1.x.x) with Azure Elastic SAN (preview)
+# Use Azure Container Storage with Azure Elastic SAN
 
-Azure Container Storage is a cloud-based volume management, deployment, and orchestration service built natively for containers. Azure Elastic SAN is a fully integrated solution that simplifies deploying, scaling, managing, and configuring a SAN, while also offering built-in cloud capabilities like high availability.
+Azure Container Storage is a cloud-based volume management, deployment, and orchestration service built natively for containers. Azure Elastic SAN is a fully integrated solution that simplifies deploying, scaling, and managing a SAN, while also offering built-in cloud capabilities like high availability.
 
-This article shows you how to configure Azure Container Storage (version 1.x.x) to use Azure Elastic SAN. At the end of this article, you'll have a pod that's using Elastic SAN as its storage.
-
-> [!IMPORTANT]
-> This article covers features and capabilities available in Azure Container Storage (version 1.x.x). [Azure Container Storage (version 2.x.x)](container-storage-introduction.md) is now available, but it currently only supports local NVMe for backing storage.
+This article shows you how to configure Azure Container Storage to use Azure Elastic SAN. At the end of this article, you'll be able to use Elastic SAN as a storage option for your stateful workloads.
 
 ## Prerequisites
 
 [!INCLUDE [container-storage-prerequisites](../../../includes/container-storage-prerequisites.md)]
 
-- Ensure you have either an [Azure Container Storage Owner](../../role-based-access-control/built-in-roles/containers.md#azure-container-storage-owner) role or [Azure Container Storage Contributor](../../role-based-access-control/built-in-roles/containers.md#azure-container-storage-contributor) role on your subscription. The Azure Container Storage Contributor role grants you permissions needed to perform Azure Arc extension actions and to write to and delete resources. The Azure Container Storage Owner role grants you the same permissions and allows you to manage Elastic SAN volumes outside of your cluster. To make this change, go to your subscription page in the Azure portal. Select **Access control (IAM) > Add role assignment** and search for either "Azure Container Storage Owner" or "Azure Container Storage Contributor" in the **Job function roles** tab. Select **View > Assignments > Add assignment** and add your account.
-
-- To use Azure Container Storage with Azure Elastic SAN (preview), your AKS cluster must have a node pool of at least three [general purpose VMs](/azure/virtual-machines/sizes-general) such as **standard_d4s_v5** for the cluster nodes, each with a minimum of four virtual CPUs (vCPUs).
-
 ## Limitations
 
 The following features aren't currently supported when you use Azure Container Storage to deploy and orchestrate an Elastic SAN.
 
-- Volume snapshots
-- Storage pool expansion
+- Elastic SAN capacity expansion isn't supported via Azure Container Storage. However, you can [resize Elastic SAN](../elastic-san/elastic-san-expand.md) directly from the Azure portal or using Azure CLI.
 
 ## Regional availability
 
 [!INCLUDE [container-storage-regions](../../../includes/container-storage-regions.md)]
 
-## Create and attach persistent volumes
+## 1 Create a storage class for Elastic SAN
 
-Follow these steps to create and attach a persistent volume.
+If you haven't already done so, [install Azure Container Storage.](install-container-storage-aks.md) You can skip creating a storage class if you enabled the Elastic SAN storage type during installation and plan to use the default storage class that the installation generates.
 
-### 1. Create a storage pool
+Azure Container Storage supports three ways to use Elastic SAN with AKS: 
 
-First, create a storage pool, which is a logical grouping of storage for your Kubernetes cluster, by defining it in a YAML manifest file.
+- Dynamic provisioning: Azure Container Storage creates the SAN volume group(s) and volumes on demand.
+- Pre‑provisioned Elastic SAN and volume group(s): You or your infrastructure team can create the Elastic SAN and/or volume group(s) up front; Azure Container Storage then consumes those existing Elastic SAN and volume group resources and dynamically provisions volumes within those resources.
+- Static volume provisioning: You fully pre‑create the Elastic SAN, volume group, and volume, and surface the volume to Kubernetes as a statically defined persistent volume (PV).
 
-If you enabled Azure Container Storage using `az aks create` or `az aks update` commands, you might already have a storage pool. Use `kubectl get sp -n acstor` to get the list of storage pools. If you have a storage pool already available that you want to use, you can skip this section and proceed to [Display the available storage classes](#2-display-the-available-storage-classes).
+The following sections show how to configure a storage class for each model.
 
-Follow these steps to create a storage pool with Azure Elastic SAN (preview).
+## 1.1 Dynamic provisioning of Elastic SAN, volume group and volume
 
-1. Use your favorite text editor to create a YAML manifest file such as `code acstor-storagepool.yaml`.
+### 1.1.1 Create a default storage class
+Create a YAML manifest file such as `storageclass.yaml`, then paste in the following specification.
 
-1. Paste in the following code. The storage pool **name** value can be whatever you want. Adjust *storage* to reflect the storage capacity you want in Gi or Ti, and save the file. Azure Elastic SAN doesn't currently support resizing storage pools.
+  ```yaml
+  apiVersion: storage.k8s.io/v1
+  kind: StorageClass
+  metadata:
+    name: azuresan
+  provisioner: san.csi.azure.com
+  reclaimPolicy: Delete
+  volumeBindingMode: Immediate
+  allowVolumeExpansion: true 
+  ```
+The default Elastic SAN capacity provisioned with this storage class is 1 TiB.
 
-   ```yml
-   apiVersion: containerstorage.azure.com/v1
-   kind: StoragePool
-   metadata:
-     name: managed
-     namespace: acstor
-   spec:
-     poolType:
-       elasticSan: {}
-     resources:
-       requests: {"storage": 1Ti}
+### 1.1.2 Create a storage class by setting initial Elastic SAN capacity
+
+If you need different initial capacity than the default 1 TiB, you can specify it by setting the 'initialStorageTiB' parameter in the storage class using the following specification.
+
+   ```yaml
+  apiVersion: storage.k8s.io/v1
+  kind: StorageClass
+  metadata:
+    name: azuresan
+  provisioner: san.csi.azure.com
+  reclaimPolicy: Delete
+  volumeBindingMode: Immediate
+  allowVolumeExpansion: true
+  parameters: 
+    initialStorageTiB: "10" 
+   ```
+ ## 1.2 Pre‑provisioned Elastic SAN and Volume group(s)
+
+ You can pre‑create an Elastic SAN or Elastic SAN + volume group, and reference those resources in the storage class.
+ 
+ ### 1.2.1 Create a storage class when you want to use a pre-provisioned Elastic SAN (optional)
+
+First, create a new Elastic SAN instance in the managed resource group of your AKS cluster. Then create a storage class that references the Elastic SAN you created.
+  
+Step 1: Identify the managed resource group of the AKS cluster.
+   
+  ```azurecli
+  kubectl get node -o jsonpath={range .items[*]}{.spec.providerID}{"\n"}{end}
+  ```
+Node resource group appears after the /resourceGroup/ section of the provider ID 
+
+Step 2: Now create an Elastic SAN via Azure CLI.
+
+  ```azurecli
+  az elastic-san create --resource-group <node-resource-group> --name <SAN name> --location <node-region> --sku Premium_ZRS --base-size-tib 1 --extended-capacity-size-tib 1
+  ```
+Step 3: Create the storage class and specify the Elastic SAN name created in the step 2.
+
+  ```yaml
+  apiVersion: storage.k8s.io/v1
+  kind: StorageClass
+  metadata:
+    name: azuresan
+  provisioner: san.csi.azure.com
+  reclaimPolicy: Delete
+  volumeBindingMode: Immediate
+  allowVolumeExpansion: true
+  parameters: 
+    san: <esan-name>  # replace with the name of your pre-created Elastic SAN
    ```
 
-1. Apply the YAML manifest file to create the storage pool.
-   
-   ```azurecli-interactive
-   kubectl apply -f acstor-storagepool.yaml 
+### 1.2.2 Create a storage class when you want to use a pre-provisioned Elastic SAN and a volume group
+
+Step 1: Repeat the steps 1 and 2 for creating an Elastic SAN in the managed resource group.
+
+Step 2: Now use the following steps to create a volume group.
+
+Step 2.1: Get VNet and Subnet info, then update service endpoint.
+
+Get the VNet information using the following command.
+ 
+  ```azurecli
+  az network vnet list -g <node resource group> --query [].name -o tsv 
+  ```
+Step 2.2: Get the subnet information using the below command.
+
+  ```azurecli
+  az network vnet subnet list -g <node resource group> --vnet-name <VNet name> --query [].name -o tsv  
+  ```
+
+Step 2.3: Update the service endpoint using the following command.
+ 
+   ```azurecli
+   az network vnet subnet update -g <node resource group> --vnet-name <VNet name> --name <Subnet name> --service-endpoints "Microsoft.Storage"
    ```
-   
-   When storage pool creation is complete, you'll see a message like:
-   
-   ```output
-   storagepool.containerstorage.azure.com/managed created
+Step 2.4: Create a volume group.
+
+  ```azurecli
+  az elastic-san volume-group create --resource-group <node resource group> --elastic-san-name <SAN name> --name <Volume Group name> --network-acls '{"virtual-network-rules":[{"id":"<Subnet ID>","action":"Allow"}]}'
+  ```
+Step 3: Create the storage class and specify the elastic SAN and volume group name created in the steps above.
+
+  ```yaml
+      apiVersion: storage.k8s.io/v1
+      kind: StorageClass
+      metadata:
+        name: azuresan
+      provisioner: san.csi.azure.com
+      reclaimPolicy: Delete
+      volumeBindingMode: Immediate
+      allowVolumeExpansion: true
+      parameters: 
+        san: <ESAN Name>  # replace with the name of your pre-created Elastic SAN
+        volumegroup: <volume group name> # replace with the name of your pre-created volume group
    ```
-   
-   You can also run this command to check the status of the storage pool. Replace `<storage-pool-name>` with your storage pool **name** value. For this example, the value would be **managed**.
-   
-   ```azurecli-interactive
-   kubectl describe sp <storage-pool-name> -n acstor
+
+## 1.3 Apply the manifest and verify the storage class creation. 
+
+ Apply the manifest using the following command:
+ 
+   ```azurecli
+   kubectl apply -f storageclass.yaml
    ```
 
-When the storage pool is created, Azure Container Storage will create a storage class on your behalf using the naming convention `acstor-<storage-pool-name>`. It will also create an Azure Elastic SAN resource.
+Run the following command to verify that the storage class is created:
 
-### 2. Display the available storage classes
+  ```azurecli
+  kubectl get storageclass azuresan
+  ```
 
-When the storage pool is ready to use, you must select a storage class to define how storage is dynamically created when creating persistent volume claims and deploying persistent volumes.
+You should see output similar to:
 
-Run `kubectl get sc` to display the available storage classes. You should see a storage class called `acstor-<storage-pool-name>`.
+  ```output
+  NAME    PROVISIONER             RECLAIMPOLICY   VOLUMEBINDINGMODE      ALLOWVOLUMEEXPANSION   AGE
+  azuresan   san.csi.azure.com    Delete          Immediate              true                   10s
+  ```
 
-> [!IMPORTANT]
-> Don't use the storage class that's marked **internal**. It's an internal storage class that's needed for Azure Container Storage to work.
-
-### 3. Create a persistent volume claim
+## 2 Create a persistent volume claim
 
 A persistent volume claim (PVC) is used to automatically provision storage based on a storage class. Follow these steps to create a PVC using the new storage class.
 
-1. Use your favorite text editor to create a YAML manifest file such as `code acstor-pvc.yaml`.
+Step 1: Create a YAML manifest file such as `acstor-pvc.yaml`. Paste in the following code and save the file. The PVC `name` value can be whatever you want.
 
-1. Paste in the following code and save the file. The PVC `name` value can be whatever you want.
-
-   ```yml
-   apiVersion: v1
-   kind: PersistentVolumeClaim
-   metadata:
-     name: managedpvc
-   spec:
-     accessModes:
-       - ReadWriteOnce
-     storageClassName: acstor-managed # replace with the name of your storage class if different
-     resources:
-       requests:
-         storage: 100Gi
+```yaml
+      apiVersion: v1 
+kind: PersistentVolumeClaim 
+metadata: 
+  name: managedpvc 
+spec: 
+  accessModes: 
+    - ReadWriteOnce 
+  resources: 
+    requests: 
+      storage: 1Gi 
+  storageClassName: azuresan
    ```
 
-1. Apply the YAML manifest file to create the PVC.
-   
-   ```azurecli-interactive
-   kubectl apply -f acstor-pvc.yaml
-   ```
-   
-   You should see output similar to:
-   
-   ```output
-   persistentvolumeclaim/managedpvc created
-   ```
-   
-   You can verify the status of the PVC by running the following command:
-   
-   ```azurecli-interactive
-   kubectl describe pvc managedpvc
-   ```
+Step 2: Apply the YAML manifest file to create the PVC.
 
+  ```azurecli
+  kubectl apply -f acstor-pvc.yaml
+  ```
+   
+  You should see output similar to:
+   
+  ```output
+  persistentvolumeclaim/managedpvc created
+  ```
+   
+You can verify the status of the PVC by running the following command:
+
+ ```azurecli
+  kubectl describe pvc managedpvc
+  ```
 Once the PVC is created, it's ready for use by a pod.
 
-### 4. Deploy a pod and attach a persistent volume
+## 3 Deploy a pod and attach a persistent volume
 
-Create a pod using [Fio](https://github.com/axboe/fio) (Flexible I/O Tester) for benchmarking and workload simulation, and specify a mount path for the persistent volume. For **claimName**, use the **name** value that you used when creating the persistent volume claim.
+Create a pod using [fio](https://github.com/axboe/fio) (Flexible I/O Tester) for benchmarking and workload simulation, and specify a mount path for the persistent volume. For **claimName**, use the **name** value that you used when creating the persistent volume claim.
 
-1. Use your favorite text editor to create a YAML manifest file such as `code acstor-pod.yaml`.
+Step 1:  Use your favorite text editor to create a YAML manifest file such as `code acstor-pod.yaml`. Paste in the following code and save the file.
 
-1. Paste in the following code and save the file.
+  ```yml
+apiVersion: v1 
+kind: Pod 
+metadata: 
+  name: fiopod 
+spec: 
+  containers: 
+    - image: nixery.dev/shell/fio 
+      name: fio 
+      ports: 
+        - containerPort: 80 
+          protocol: TCP 
+      volumeMounts: 
+        - mountPath: /volume 
+          name: iscsi-volume 
+  volumes: 
+    - name: iscsi-volume 
+      persistentVolumeClaim: 
+        claimName: managedpvc 
+     ```
 
-   ```yml
-   kind: Pod
-   apiVersion: v1
-   metadata:
-     name: fiopod
-   spec:
-     nodeSelector:
-       acstor.azure.com/io-engine: acstor
-     volumes:
-       - name: managedpv
-         persistentVolumeClaim:
-           claimName: managedpvc
-     containers:
-       - name: fio
-         image: nixery.dev/shell/fio
-         args:
-           - sleep
-           - "1000000"
-         volumeMounts:
-           - mountPath: "/volume"
-             name: managedpv
-   ```
-
-1. Apply the YAML manifest file to deploy the pod.
+Step 2: Apply the YAML manifest file to deploy the pod.
    
-   ```azurecli-interactive
-   kubectl apply -f acstor-pod.yaml
-   ```
+     ```azurecli-interactive
+     kubectl apply -f acstor-pod.yaml
+     ```
    
    You should see output similar to the following:
    
-   ```output
-   pod/fiopod created
-   ```
+     ```output
+     pod/fiopod created
+     ```
 
-1. Check that the pod is running and that the persistent volume claim has been bound successfully to the pod:
+Step 3: Check that the pod is running and that the persistent volume claim has been bound successfully to the pod:
 
-   ```azurecli-interactive
-   kubectl describe pod fiopod
-   kubectl describe pvc managedpvc
-   ```
+     ```azurecli-interactive
+     kubectl describe pod fiopod
+     kubectl describe pvc managedpvc
+     ```
 
-1. Check fio testing to see its current status:
+Step 4: Check fio testing to see its current status:
 
-   ```azurecli-interactive
-   kubectl exec -it fiopod -- fio --name=benchtest --size=800m --filename=/volume/test --direct=1 --rw=randrw --ioengine=libaio --bs=4k --iodepth=16 --numjobs=8 --time_based --runtime=60
-   ```
+  ```azurecli-interactive
+kubectl exec -it fiopod -- fio --name=benchtest --size=800m --filename=/volume/test --direct=1 --rw=randrw --ioengine=libaio --bs=4k --iodepth=16 --numjobs=8 --time_based --runtime=60
+  ```
 
 You've now deployed a pod that's using an Elastic SAN as its storage, and you can use it for your Kubernetes workloads.
 
-## Manage persistent volumes and storage pools
+## 4 Static provisioning of Elastic SAN volume
 
-Now that you've created a persistent volume, you can detach and reattach it as needed. You can also delete a storage pool.
+You can fully pre‑create the volume in Elastic SAN and then surface it to Kubernetes as a static persistent volume. Refer to the steps above in pre-provisioned Elastic SAN and volume group section for creating an Elastic SAN and a volume group. These steps can also be performed in the Azure portal by using [Elastic SAN service blade](../elastic-san/elastic-san-create.md).
 
-### Detach and reattach a persistent volume
+### 4.1 Create a default Elastic SAN storage class
 
-To detach a persistent volume, delete the pod that the persistent volume is attached to. Replace `<pod-name>` with the name of the pod, for example **fiopod**.
+Use the following YAML manifest file to create a default Elastic SAN storage class
 
-```azurecli-interactive
-kubectl delete pods <pod-name>
-```
+   ```yaml
+  apiVersion: storage.k8s.io/v1
+  kind: StorageClass
+  metadata:
+    name: azuresan
+  provisioner: san.csi.azure.com
+  reclaimPolicy: Delete
+  volumeBindingMode: Immediate
+  allowVolumeExpansion: true 
+    ```
+Apply the manifest to create the storage class.
+  
+   ```azurecli
+  kubectl apply -f storageclass.yaml
+   ```
+Verify the storage class
 
-To reattach a persistent volume, simply reference the persistent volume claim name in the YAML manifest file as described in [Deploy a pod and attach a persistent volume](#4-deploy-a-pod-and-attach-a-persistent-volume).
+Run the following command to verify that the storage class is created:
 
-To check which persistent volume a persistent volume claim is bound to, run `kubectl get pvc <persistent-volume-claim-name>`.
+  ```azurecli
+  kubectl get storageclass azuresan
+  ```
 
-### Delete a storage pool
+### 4.2 Create an Elastic SAN volume
 
-If you want to delete a storage pool, run the following command. Replace `<storage-pool-name>` with the storage pool name.
+  ```azurecli-interactive
+  az elastic-san volume create -g <node resource group> -e <SAN name> -v <Volume Group name> -n <Volume name> --size-gib 5
+  ```
+Note the ARM ID of the Elastic SAN volume and use it for volumeHandle parameter in the persistent volume creation yaml. 
 
-```azurecli-interactive
-kubectl delete sp -n acstor <storage-pool-name>
-```
+After creating an Elastic SAN and a volume group, you can statically provision a volume by creating a PersistentVolume (PV) that directly references the pre-provisioned Elastic SAN volume. Retrieve IQN (iSCSI Qualified Name) and targetPortal values for your Elastic SAN volume using the following command to use it in the persistent volume creation yaml. 
 
+  ```azurecli-interactive
+  az elastic-san volume show --name <volume-name> --resource-group <rg-name> --elastic-san-name <esan-name>
+  ```
+
+### 4.3 Create a persistent volume
+
+Create a YAML manifest file such as 'pv_static.yaml'.
+
+   ```yaml
+  apiVersion: v1 
+  kind: PersistentVolume 
+  metadata: 
+    annotations: 
+      pv.kubernetes.io/provisioned-by: san.csi.azure.com 
+    name: pv-san 
+  spec: 
+    capacity: 
+      storage: 5Gi 
+    accessModes: 
+      - ReadWriteOnce 
+    persistentVolumeReclaimPolicy: Retain 
+    storageClassName: azuresan 
+    csi: 
+      driver: san.csi.azure.com 
+      volumeHandle: #{rg}#{san}#{vg}#{vol} 
+      volumeAttributes: 
+        # iqn: "<retrieved from pre-provisioned volume>" 
+        # targetPortal: "<retrieved from pre-provisioned volume>" 
+       numsessions: "8"  
+    ```
+
+Apply the manifest to create the persistent volume.
+
+   ```azurecli
+  kubectl apply -f pv_static.yaml
+   ```
+### 4.4 Create a static persistent volume claim
+
+Create a YAML manifest file such as'pvc_static.yaml'.
+
+   ```yaml
+  kind: PersistentVolumeClaim 
+  apiVersion: v1 
+  metadata: 
+    name: pvc-san 
+  spec: 
+    volumeMode: Filesystem 
+    accessModes: 
+      - ReadWriteOnce 
+    resources: 
+      requests: 
+        storage: 5Gi 
+    volumeName: pv-san 
+    storageClassName: azuresan
+    ```
+
+  Apply the manifest to create the persistent volume claim.
+
+  ```azurecli
+  kubectl apply -f pvc_static.yaml
+   ```
+
+ ### 4.5 Create a pod persistent volume
+
+Create a YAML manifest file such as'pod.yaml'.
+
+   ```yaml
+  apiVersion: v1 
+  kind: Pod 
+  metadata: 
+    name: pod-san-static 
+  spec: 
+    nodeSelector: 
+      kubernetes.io/os: linux 
+    containers: 
+      - image: mcr.microsoft.com/oss/nginx/nginx:1.19.5 
+        name: nginx 
+        ports: 
+          - containerPort: 80 
+            protocol: TCP 
+        volumeMounts: 
+          - mountPath: /var/www 
+            name: iscsi-volume 
+    volumes: 
+      - name: iscsi-volume 
+        persistentVolumeClaim: 
+          claimName: pvc-san 
+    ```
+
+Apply the manifest to create the pod.
+
+  ```azurecli
+  kubectl apply -f pod.yaml
+   ```
+
+ 
 ## See also
 
-- [What is Azure Container Storage (version 1.x.x)?](container-storage-introduction-version-1.md)
 - [What is Azure Elastic SAN?](../elastic-san/elastic-san-introduction.md)

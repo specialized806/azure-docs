@@ -155,7 +155,7 @@ az aks create -n <cluster-name> -g <resource-group> --node-vm-size Standard_L8s_
 ```
 The deployment can take up to 5 minutes. CSI driver installation is deferred until you create a StorageClass or explicitly enable a storage type later.
 
-Follow the instructions for creating a [local NVMe](use-container-storage-with-local-disk.md) StorageClass or [Elastic SAN](use-container-storage-with-elastic-san-version-2.md‎) StorageClass. 
+Follow the instructions for creating a [local NVMe](use-container-storage-with-local-disk.md) StorageClass or [Elastic SAN](use-container-storage-with-elastic-san.md) StorageClass. 
 
 ### Installer + storage type installation
 
@@ -176,7 +176,7 @@ Run the following command to enable Azure Container Storage on an existing AKS c
 az aks update -n <cluster-name> -g <resource-group> --enable-azure-container-storage
 ```
 
-The deployment can take up to 5 minutes. When it completes, the targeted AKS cluster has Azure Container Storage installer component installed. CSI driver installation is deferred until you create a StorageClass or explicitly enable a storage type later. Follow the instructions for creating a [local NVMe](use-container-storage-with-local-disk.md) StorageClass or [Elastic SAN](use-container-storage-with-elastic-san-version-2.md‎) StorageClass. 
+The deployment can take up to 5 minutes. When it completes, the targeted AKS cluster has Azure Container Storage installer component installed. CSI driver installation is deferred until you create a StorageClass or explicitly enable a storage type later. Follow the instructions for creating a [local NVMe](use-container-storage-with-local-disk.md) StorageClass or [Elastic SAN](use-container-storage-with-elastic-san.md) StorageClass. 
 
 ### Installer + storage type installation
 

@@ -9,25 +9,25 @@
   items:
   - name: Install Azure Container Storage on AKS
     href: install-container-storage-aks.md
-  - name: Remove Azure Container Storage
-    href: remove-container-storage.md
   - name: Use with local NVMe
     href: use-container-storage-with-local-disk.md
   - name: Use with Elastic SAN
-    href: use-container-storage-with-elastic-san-version-2.md
+    href: use-container-storage-with-elastic-san.md
+  - name: Remove Azure Container Storage
+    href: remove-container-storage.md
 - name: Concepts
   items:
-  - name: Enable multi-zone storage redundancy
-    href: enable-multi-zone-redundancy-version-2.md
-  - name: Enable monitoring with managed Prometheus
-    href: enable-monitoring.md
+  - name: Enable zone-redundant storage
+    href: enable-multi-zone-redundancy.md
   - name: Resize persistent volumes
-    href: resize-volume-version-2.md
+    href: resize-volume.md
   - name: Volume snapshots
-    href: volume-snapshot-restore-v2.md
+    href: volume-snapshot-restore.md
+  - name: Connect with Prometheus
+    href: enable-monitoring.md
   - name: Connect with Grafana
     href: use-grafana-dashboard.md
-  - name: Understand billing
+  - name: Billing
     href: container-storage-billing.md 
   - name: FAQ
     href: container-storage-faq.md
@@ -48,7 +48,7 @@
     - name: Use with Azure Disks
       href: use-container-storage-with-managed-disks.md
     - name: Use with Azure Elastic SAN
-      href: use-container-storage-with-elastic-san.md
+      href: use-container-storage-with-elastic-san-version-1.md
     - name: Use with Ephemeral Disk
       items:
       - name: Local NVMe
@@ -60,13 +60,13 @@
   - name: How-to guides (version 1.x.x)
     items:
     - name: Use volume snapshot and restore
-      href: volume-snapshot-restore.md
+      href: volume-snapshot-restore-version-1.md
     - name: Expand a persistent volume
-      href: resize-volume.md
+      href: resize-volume-version-1.md
     - name: Clone a persistent volume
       href: clone-volume.md
     - name: Enable multi-zone storage redundancy
-      href: enable-multi-zone-redundancy.md
+      href: enable-multi-zone-redundancy-version-1.md
     - name: Enable monitoring with managed Prometheus
       href: enable-monitoring-version-1.md
     - name: Remove Azure Container Storage

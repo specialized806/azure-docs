@@ -167,7 +167,7 @@ If the `Message` doesn't say `StoragePool is ready`, then your storage pool is s
 Select the link for the backing storage type you selected and follow the instructions for creating volumes.
 
 - [Create persistent volume with Azure managed disks](use-container-storage-with-managed-disks.md)
-- [Create persistent volume with Azure Elastic SAN](use-container-storage-with-elastic-san.md)
+- [Create persistent volume with Azure Elastic SAN](use-container-storage-with-elastic-san-version-1.md)
 - [Create generic ephemeral volume with local NVMe](use-container-storage-with-local-disk-version-1.md)
 - [Create generic ephemeral volume with temp SSD](use-container-storage-with-temp-ssd.md)
 - [Create persistent volume with local NVMe and volume replication](use-container-storage-with-local-nvme-replication.md)
