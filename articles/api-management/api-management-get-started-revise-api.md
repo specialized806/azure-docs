@@ -175,7 +175,7 @@ Each revision to your API can be accessed using a specially formed URL. Add `;re
 
 You can find the URL paths for your API's revisions on the **Revisions** tab in the Azure portal.
 
-:::image type="content" source="media/api-management-get-started-revise-api/revision-url-path.png" alt-text="Screenshot of revision URLs in the portal." liggtbox="media/api-management-get-started-revise-api/revision-url-path.png":::
+:::image type="content" source="media/api-management-get-started-revise-api/revision-url-path.png" alt-text="Screenshot of revision URLs in the portal." lightbox="media/api-management-get-started-revise-api/revision-url-path.png":::
 
 > [!TIP]
 > You can access the *current* revision of your API using the API path without the `;rev` string, in addition to the full URL that appends `;rev={revisionNumber}` to your API path.
