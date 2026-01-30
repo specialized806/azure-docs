@@ -53,7 +53,7 @@ Discounts lower the purchase price or usage charges of eligible resources. Certa
 
 ### 4. Free Azure Services
 
-Azure provides a selection of free services each month, enabling the ability to explore, develop, and test solutions without incurring any charges.
+Free services provide a set monthly amount to help you explore and test solutions at no cost.
 
 For more information, see: [Create Your Azure Free Account Or Pay As You Go](https://azure.microsoft.com/pricing/purchase-options/azure-account)
 
