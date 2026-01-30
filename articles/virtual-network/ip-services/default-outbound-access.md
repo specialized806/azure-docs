@@ -64,13 +64,34 @@ Additionally,
  
 ### How to configure private subnets
 
- * From the Azure portal, select the subnet and select the checkbox to enable Private subnet as shown:
+# [Portal](#tab/portal)
 
-:::image type="content" source="./media/default-outbound-access/private-subnet-portal.png"  alt-text="Screenshot of Azure portal showing Private subnet option.":::
+Manual configuration steps in the Azure portal (no wizard)
 
-* Using PowerShell, the following script takes the names of the Resource Group and Virtual Network and loops through each subnet to enable private subnet.
+1. Open the **Azure portal**.
+2. Go to **Virtual networks**.
+3. Select the virtual network that contains the subnet you want to modify.
+4. In the left menu, select **Subnets**.
+5. Select the subnet you want to make private.
+6. Locate the **Default outbound access** setting.
+7. Set **Default outbound access** to **Disabled**.
+8. Select **Save**.
 
+This explicitly sets the subnet property:
+
+```text
+defaultOutboundAccess = false
 ```
+which prevents Azure from assigning default outbound public IPs to virtual machines in this subnet.
+
+> [!IMPORTANT]
+> Existing virtual machines must be **stopped and deallocated** for this change to take effect on their network interfaces.
+
+# [PowerShell](#tab/powershell)
+
+The following script takes the names of the Resource Group and Virtual Network and loops through each subnet to enable private subnet.
+
+```powershell
 $resourceGroupName = ""
 $vnetName = ""
  
@@ -89,15 +110,19 @@ foreach ($subnet in $vnet.Subnets) {
 Set-AzVirtualNetwork -VirtualNetwork $vnet
 ```
 
-* Using CLI, update the subnet with [az network vnet subnet update](/cli/azure/network/vnet/subnet#az-network-vnet-subnet-update) and set `--default-outbound` to "false"
+# [Azure CLI](#tab/azurecli)
 
-```
+Update the subnet with [az network vnet subnet update](/cli/azure/network/vnet/subnet#az-network-vnet-subnet-update) and set `--default-outbound` to "false"
+
+```azurecli
 az network vnet subnet update --resource-group rgname --name subnetname --vnet-name vnetname --default-outbound false
 ```
 
-* Using an Azure Resource Manager template, set the value of `defaultOutboundAccess` parameter to be "false"
+# [ARM Template](#tab/arm)
 
-```
+Set the value of `defaultOutboundAccess` parameter to be "false"
+
+```json
 {
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
@@ -145,6 +170,8 @@ az network vnet subnet update --resource-group rgname --name subnetname --vnet-n
   ]
 }
 ```
+
+---
 
 ### Limitations of private subnets
  
