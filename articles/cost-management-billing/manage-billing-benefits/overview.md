@@ -90,7 +90,7 @@ Developers can programmatically interact with billing benefits using the **Azure
 
 Azure SDKs (.NET, Python, JavaScript) and the Azure CLI (`az billingbenefits`) support reading or managing billing benefits programmatically.  
 
-See: [Azure PowerShell Billing Benefits Module](https://learn.microsoft.com/powershell/module/az.billingbenefits/)
+See: [Azure PowerShell Billing Benefits Module](/powershell/module/az.billingbenefits/)
 
 ***
 
@@ -99,8 +99,8 @@ See: [Azure PowerShell Billing Benefits Module](https://learn.microsoft.com/powe
 *   [What are Azure Reservations?](../reservations/save-compute-costs-reservations.md)
 *   [What is Azure savings plans for compute?](../savings-plan/savings-plan-compute-overview.md)
 *   [Azure Consumption Commitment Benefit](../../marketplace/azure-consumption-commitment-benefit.md#determine-which-offers-are-eligible-for-azure-consumption-commitments-maccctc)
-*   [Azure Billing Benefits REST API](https://learn.microsoft.com/rest/api/billingbenefits/operation-groups)
-*   [Resource Provider: Microsoft.BillingBenefits (ARM reference)](https://learn.microsoft.com/azure/templates/microsoft.billingbenefits/allversions)
+*   [Azure Billing Benefits REST API](/rest/api/billingbenefits/operation-groups)
+*   [Resource Provider: Microsoft.BillingBenefits (ARM reference)](/azure/templates/microsoft.billingbenefits/allversions)
 
 
 ***
