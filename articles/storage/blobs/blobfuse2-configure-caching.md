@@ -52,7 +52,7 @@ You can configure a temporary path on a local high performing disk, a RAM disk, 
 
 If you use an existing local disk for caching, choose a disk that provides the best performance possible, such as a solid-state disk (SSD).
 
-In Azure, you can use the SSD ephemeral disks that are available on your virutal machines (VMs) to provide a low-latency buffer for BlobFuse. Depending on the provisioning agent you use, mount the ephemeral disk on `/mnt` for cloud-init or `/mnt/resource` for Microsoft Azure Linux Agent (waagent) VMs.
+In Azure, you can use the SSD ephemeral disks that are available on your virtual machines (VMs) to provide a low-latency buffer for BlobFuse. Depending on the provisioning agent you use, mount the ephemeral disk on `/mnt` for cloud-init or `/mnt/resource` for Microsoft Azure Linux Agent (waagent) VMs.
 
 Make sure that your user has access to the temporary path.
 
