@@ -31,7 +31,7 @@ Make sure that the partner accepts the request within 10 days.
 
 ### In scope for self-service COCP
 
-- Only Enterprise admins can initiate COCP requests via the Azure portal.
+- Only enterprise admins can initiate COCP requests via the Azure portal.
 - The agreement type must be Enterprise Agreement and Enterprise Agreements Subscription.
 - The agreement status must be active.
 
@@ -55,7 +55,7 @@ You can't use the self-service COCP process in the following situations:
 
 ## Use the Azure portal to request a COCP
 
-1. Make sure you're an Enterprise admin on the Enterprise Agreement billing account.
+1. Make sure you're an enterprise admin on the Enterprise Agreement billing account.
 
 1. Go to the Azure portal. Select **Cost management + Billing** > **Billing scopes** > **Change Partner**.
 
@@ -171,4 +171,5 @@ If your COCP request has a status of **In-progress**, you can cancel it in full 
   :::image type="content" source="../media/70d4d272274e6e5374095722b4a09c86.png" alt-text="Screenshot that shows how to cancel a COCP request in the Azure portal." lightbox="../media/70d4d272274e6e5374095722b4a09c86.png":::
 
 This process initiates a notification to the partner that lets them know that you canceled the request.
+
 
