@@ -21,9 +21,11 @@ To get started using Azure Container Storage, see [Install Azure Container Stora
 
 ## Why Azure Container Storage is useful
 
-Azure Container Storage gives your container workloads access to high-performance storage that was previously only available to virtual machines. It supports fast local NVMe disks, which are ideal for latency-sensitive workloads like PostgreSQL, and compute-intensive AI and ML frameworks like Ray and Kubeflow.
+Azure Container Storage gives your container workloads access to high-performance storage that was previously only available to virtual machines. 
 
-[Elastic SAN](../elastic-san/elastic-san-introduction.md) storage support in Azure Container Storage enables you to use durable, network‑attached block storage that scales seamlessly with your application needs. By provisioning volumes from an Elastic SAN volume group, you gain predictable throughput, built‑in redundancy options such as ZRS. This makes Azure Container Storage an ideal choice for databases, analytics engines, and any workload that needs consistent performance.
+Local NVMe disks provide the highest performance storage available in Azure, which are ideal for latency-sensitive workloads like PostgreSQL, and compute-intensive AI and ML frameworks like Ray and Kubeflow.
+
+[Elastic SAN](../elastic-san/elastic-san-introduction.md) support in Azure Container Storage enables you to use durable, network‑attached block storage that scales seamlessly with your application needs. By provisioning volumes from an Elastic SAN volume group, you gain predictable throughput, built‑in redundancy options such as ZRS. This makes Azure Container Storage an ideal choice for databases, analytics engines, and any workload that needs consistent performance.
 
 You can create and manage storage volumes using standard Kubernetes tools. You don’t need to switch between different portals or set up CSI drivers on your own. This simplicity makes storage tasks easier and helps teams stay focused on running their apps.
 
@@ -35,7 +37,7 @@ Azure Container Storage works with Azure Kubernetes Service and self-managed Kub
 
 - **Optimized performance for stateful workloads:** Azure Container Storage delivers high read throughput and near-native disk write speeds by using NVMe-oF over TCP. This architecture enables cost-effective performance for a wide range of containerized workloads—including tier 1 I/O-intensive, general-purpose, throughput-sensitive, and development/test scenarios. It also accelerates persistent volume attach and detach operations, reducing pod failover times and improving application resiliency.
 
-- **Cost Efficiency through storage consolidation:** Azure Container Storage enables significant savings in both storage costs and management overhead by consolidating hundreds or thousands of smaller volumes under a single Elastic SAN. ESAN’s tiered provisioning model further optimizes resource utilization, reducing the need for overprovisioning and lowering total cost of ownership (TCO). 
+- **Cost efficiency through storage consolidation:** Azure Container Storage enables significant savings in both storage costs and management overhead by consolidating hundreds or thousands of smaller volumes under a single SAN. Elastic SAN’s tiered provisioning model further optimizes resource utilization, reducing the need for overprovisioning and lowering total cost of ownership. 
 
 - **Kubernetes-native volume orchestration:** Seamlessly create storage classes and persistent volumes, manage the full lifecycle of volumes—including provisioning, expansion, deletion, and perform operations such as capturing snapshots, all using familiar `kubectl` commands. This unified approach eliminates the need to switch between different tools or interfaces, streamlining storage management within your Kubernetes environment.
 
