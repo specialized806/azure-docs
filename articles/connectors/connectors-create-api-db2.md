@@ -64,11 +64,15 @@ For more information about the connector and these actions, see [DB2 connector](
 
 - To access on-premises DB2 databases, you need to [install and set up the on-premises data gateway](../logic-apps/logic-apps-gateway-connection.md).
 
-<a name="add-db2-action"></a>
+<a name="add-action"></a>
 
 ## Add a DB2 action
 
 The following steps show how to add a DB2 action, for example, **Get tables**, to your workfklow.
+
+> [!NOTE]
+>
+> The steps to add any other DB2 action are similar, except for the action's parameters and values that you provide.
 
 1. In the [Azure portal](https://portal.azure.com), open your logic app resource and workflow in the designer.
 
@@ -152,224 +156,15 @@ To manually run your workflow, on the designer toolbar, from the **Run** list, s
 
 1. On the run details page, review the status for each step in your workflow. To view the inputs and outputs for each step, select that step, for example:
 
-   :::image type="content" source="./media/connectors-create-api-db2/expand-action-step.png" alt-text="Screenshot that shows how to expand the Get tables action.":::
+   :::image type="content" source="./media/connectors-create-api-db2/get-tables-run-history.png" alt-text="Screenshot shows the inputs and outputs for the Get tables action.":::
 
    1. To view the inputs in JSON, select **Show raw inputs**.
 
    1. To view the outputs in JSON, select **Show raw outputs**.
 
-      The outputs include a list of tables.
+      The outputs include a list of tables, for example:
 
-      :::image type="content" source="./media/connectors-create-api-db2/db2-connector-get-tables-outputs.png" alt-text="Screenshot that shows code that specifies the output tables.":::
-
-## Get row
-
-To fetch one record in a DB2 database table, use the **Get row** action in your logic app. This action runs a DB2 `SELECT WHERE` statement, for example, `SELECT FROM AREA WHERE AREAID = '99999'`.
-
-1. If you don't use DB2 actions in your logic app, review the steps in [Add DB2 action - Get tables](#add-db2-action), but add the **Get row** action instead, and then return here to continue.
-
-   After you add the **Get row** action, here's how your example logic app appears:
-
-   :::image type="content" source="./media/connectors-create-api-db2/db2-get-row-action.png" alt-text="Screenshot shows the Logic Apps Designer containing the Get row action.":::
-
-1. Specify values for all the required properties (*). After you select a table, the action shows the relevant properties that are specific to records in that table.
-
-   | Property | Required | Description |
-   |----------|----------|-------------|
-   | **Table name** | Yes | The table that has the record you want, such as "AREA" in this example |
-   | **Area ID** | Yes | The ID for the record you want, such as "99999" in this example |
-
-   :::image type="content" source="./media/connectors-create-api-db2/db2-get-row-action-select-table.png" alt-text="Screenshot that shows the Get row action with the opened Table name list and the AREA value selected.":::
-
-1. When you're done, on the designer toolbar, select **Save**.
-
-### View output row
-
-To run your logic app manually, on the designer toolbar, choose **Run**. After your logic app finishes running, you can view the output from the run.
-
-1. On your logic app menu, select **Overview**.
-
-1. Under **Summary**, in the **Runs history** section, select the most recent run, which is the first item in the list.
-
-1. Under **Logic app run**, review the status, inputs, and outputs for each step in your logic app. Expand the **Get row** action.
-
-1. To view the inputs, select **Show raw inputs**.
-
-1. To view the outputs, select **Show raw outputs**.
-
-   The outputs include your specified row.
-
-   :::image type="content" source="./media/connectors-create-api-db2/db2-connector-get-row-outputs.png" alt-text="Screenshot shows the Outputs screen with the outputs specified in the body area.":::
-
-## Get rows
-
-To fetch all records in a DB2 database table, use the **Get rows** action in your logic app. This action runs a DB2 `SELECT` statement, for example, `SELECT * FROM AREA`.
-
-1. If you don't use DB2 actions in your logic app, review the steps in the [Add DB2 action - Get tables](#add-db2-action) section, but add the **Get rows** action instead, and then return here to continue.
-
-   After you add the **Get rows** action, here's how your example logic app appears:
-
-   :::image type="content" source="./media/connectors-create-api-db2/db2-get-rows-action.png" alt-text="Screenshot shows the Logic Apps Designer, which contains the Get rows action.":::
-
-1. Open the **Table name** list, and then select the table you want, which is **AREA** in this example:
-
-   :::image type="content" source="./media/connectors-create-api-db2/db2-get-rows-action-select-table.png" alt-text="Screenshot that shows the Get rows action with the AREA value selected in the Table name list.":::
-
-1. To specify a filter or query for results, select **Show advanced options**.
-
-1. When you're done, on the designer toolbar, select **Save**.
-
-### View output rows
-
-To run your logic app manually, on the designer toolbar, select **Run**. After your logic app finishes running, you can view the output from the run.
-
-1. On your logic app menu, select **Overview**.
-
-1. Under **Summary**, in the **Runs history** section, select the most recent run, which is the first item in the list.
-
-1. Under **Logic app run**, review the status, inputs, and outputs for each step in your logic app. Expand the **Get rows** action.
-
-1. To view the inputs, select **Show raw inputs**.
-
-1. To view the outputs, select **Show raw outputs**.
-
-   The outputs include all the records in your specified table.
-
-   :::image type="content" source="./media/connectors-create-api-db2/db2-connector-get-rows-outputs.png" alt-text="Screenshot shows the Output area with the records specified in the body area.":::
-
-## Insert row
-
-To add a single record to a DB2 database table, use the **Insert row** action in your logic app. This action runs a DB2 `INSERT` statement, for example, `INSERT INTO AREA (AREAID, AREADESC, REGIONID) VALUES ('99999', 'Area 99999', 102)`.
-
-1. If you don't use DB2 actions in your logic app, review the steps in the [Add DB2 action - Get tables](#add-db2-action) section, but add the **Insert row** action instead, and then return here to continue.
-
-   After you add the **Insert row** action, here's how your example logic app appears:
-
-   :::image type="content" source="./media/connectors-create-api-db2/db2-insert-row-action.png" alt-text="Screenshot shows the Logic Apps Designer with the Insert row action.":::
-
-1. Specify values for all the required properties (*). After you select a table, the action shows the relevant properties that are specific to records in that table.
-
-   For this example, here are the properties:
-
-   | Property | Required | Description |
-   |----------|----------|-------------|
-   | **Table name** | Yes | The table where to add the record, such as *AREA* |
-   | **Area ID** | Yes | The ID for the area to add, such as *99999* |
-   | **Area description** | Yes | The description for the area to add, such as *Area 99999* |
-   | **Region ID** | Yes | The ID for the region to add, such as *102* |
-
-   For example:
-
-   :::image type="content" source="./media/connectors-create-api-db2/db2-insert-row-action-select-table.png" alt-text="Screenshot that shows the Logic Apps Designer with the Insert row action and example property values.":::
-
-1. When you're done, on the designer toolbar, select **Save**.
-
-### View insert row outputs
-
-To run your logic app manually, on the designer toolbar, select **Run**. After your logic app finishes running, you can view the output from the run.
-
-1. On your logic app menu, select **Overview**.
-
-1. Under **Summary**, in the **Runs history** section, select the most recent run, which is the first item in the list.
-
-1. Under **Logic app run**, review the status, inputs, and outputs for each step in your logic app. Expand the **Insert row** action.
-
-1. To view the inputs, select **Show raw inputs**.
-
-1. To view the outputs, select **Show raw outputs**.
-
-   The outputs include the record you added to your specified table.
-
-   :::image type="content" source="./media/connectors-create-api-db2/db2-connector-insert-row-outputs.png" alt-text="Screenshot that shows the Outputs area with the specified record added.":::
-
-## Update row
-
-To update a single record in a DB2 database table, use the **Update row** action in your logic app. This action runs a DB2 `UPDATE` statement, for example, `UPDATE AREA SET AREAID = '99999', AREADESC = 'Updated 99999', REGIONID = 102)`.
-
-1. If you don't use DB2 actions in your logic app, review the steps in the [Add DB2 action - Get tables](#add-db2-action) section, but add the **Update row** action instead, and then return here to continue.
-
-   After you add the **Update row** action, here's how your example logic app appears:
-
-   :::image type="content" source="./media/connectors-create-api-db2/db2-update-row-action.png" alt-text="Screenshot that shows the Logic App Designer with an Update row action.":::
-
-1. Specify values for all the required properties (*). After you select a table, the action shows the relevant properties that are specific to records in that table.
-
-   For this example, here are the properties:
-
-   | Property | Required | Description |
-   |----------|----------|-------------|
-   | **Table name** | Yes | The table where to update the record, such as *AREA* |
-   | **Row ID** | Yes | The ID for the record to update, such as *99999* |
-   | **Area ID** | Yes | The new area ID, such as *99999* |
-   | **Area description** | Yes | The new area description, such as *Updated 99999* |
-   | **Region ID** | Yes | The new region ID, such as *102* |
- 
-   For example:
-
-   :::image type="content" source="./media/connectors-create-api-db2/db2-update-row-action-select-table.png" alt-text="Screenshot that shows the Logic Apps Designer with the Update row action where you select a table.":::
-
-1. When you're done, on the designer toolbar, choose **Save**.
-
-### View update row outputs
-
-To run your logic app manually, on the designer toolbar, choose **Run**. After your logic app finishes running, you can view the output from the run.
-
-1. On your logic app menu, select **Overview**.
-
-1. Under **Summary**, in the **Runs history** section, select the most recent run, which is the first item in the list.
-
-1. Under **Logic app run**, review the status, inputs, and outputs for each step in your logic app. Expand the **Update row** action.
-
-1. To view the inputs, select **Show raw inputs**.
-
-1. To view the outputs, select **Show raw outputs**.
-
-   The outputs include the record you updated in your specified table.
-
-   :::image type="content" source="./media/connectors-create-api-db2/db2-connector-update-row-outputs.png" alt-text="Screenshot that shows the Outputs area with the record you updated.":::
-
-## Delete row
-
-To delete a single record from a DB2 database table, use the **Delete row** action in your logic app. This action runs a DB2 `DELETE` statement, for example, `DELETE FROM AREA WHERE AREAID = '99999'`.
-
-1. If you don't use DB2 actions in your logic app, review the steps in the [Add DB2 action - Get tables](#add-db2-action) section, but add the **Delete row** action instead, and then return here to continue.
-
-   After you add the **Delete row** action, here's how your example logic app appears:
-
-   :::image type="content" source="./media/connectors-create-api-db2/db2-delete-row-action.png" alt-text="Screenshot that shows the Logic Apps Designer with the Delete row action.":::
-
-1. Specify values for all the required properties (*). After you select a table, the action shows the relevant properties that are specific to records in that table.
-
-   For this example, here are the properties:
-
-   | Property | Required | Description |
-   |----------|----------|-------------|
-   | **Table name** | Yes | The table where to delete the record, such as *AREA* |
-   | **Row ID** | Yes | The ID for the record to delete, such as *99999* |
-
-   For example:
-
-   :::image type="content" source="./media/connectors-create-api-db2/db2-delete-row-action-select-table.png" alt-text="Screenshot that shows the Logic Apps Designer with the Delete row action where you select a table to delete.":::
-
-1. When you're done, on the designer toolbar, choose **Save**.
-
-### View delete row outputs
-
-To run your logic app manually, on the designer toolbar, choose **Run**. After your logic app finishes running, you can view the output from the run.
-
-1. On your logic app menu, select **Overview**.
-
-1. Under **Summary**, in the **Runs history** section, select the most recent run, which is the first item in the list.
-
-1. Under **Logic app run**, review the status, inputs, and outputs for each step in your logic app. Expand the **Delete row** action.
-
-1. To view the inputs, select **Show raw inputs**.
-
-1. To view the outputs, select **Show raw outputs**.
-
-   The outputs no longer include the record you deleted from your specified table.
-
-   :::image type="content" source="./media/connectors-create-api-db2/db2-connector-delete-row-outputs.png" alt-text="Screenshot shows the Output area, which no longer includes the deleted row.":::
+      :::image type="content" source="./media/connectors-create-api-db2/get-tables-outputs.png" alt-text="Screenshot shows the output from the Get tables action.":::
 
 ## Related content
 
