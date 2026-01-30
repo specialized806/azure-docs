@@ -36,7 +36,7 @@ If you need to add new managed certificates, plan to do so before August 15, 202
 
 If you already have managed certificates for your custom domains, do the following to ensure continued access:
 
-- Ensure that your API Management service allows [inbound traffic from DigiCert IP addresses on port 80](#allow-access-too-digicert-ip-addresses). This access is now required for the certificate autorenewal process.
+- Ensure that your API Management service allows [inbound traffic from DigiCert IP addresses on port 80](#allow-access-to-digicert-ip-addresses). This access is now required for the certificate autorenewal process.
 - Ensure that your DNS configuration is correct as described in [Configure DNS](#configure-dns).
 
 [!INCLUDE [api-management-managed-certificate-ip-access.md](../../../includes/api-management-managed-certificate-ip-access.md)]
