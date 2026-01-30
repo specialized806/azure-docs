@@ -276,10 +276,6 @@ else
 }
 ```
 
-# [JavaScript](#tab/javascript)
-
-This sample is shown for .NET, Java, and Python.
-
 # [Python](#tab/python)
 
 ```python
@@ -299,10 +295,6 @@ else:
     # An instance with the specified ID exists or an existing one still running.
     print(f"An instance with ID '{instance_id}' already exists.")
 ```
-
-# [PowerShell](#tab/powershell)
-
-This sample is shown for .NET, Java, and Python.
 
 # [Java](#tab/java)
 

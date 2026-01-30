@@ -149,10 +149,6 @@ public class BudgetApproval : TaskOrchestrator<object?, bool>
 }
 ```
 
-# [JavaScript](#tab/javascript)
-
-This sample is shown for .NET, Python, and Java.
-
 # [Python](#tab/python)
 
 ```python
@@ -168,10 +164,6 @@ def budget_approval(ctx: task.OrchestrationContext, _):
         pass
     return approved
 ```
-
-# [PowerShell](#tab/powershell)
-
-This sample is shown for .NET, Python, and Java.
 
 # [Java](#tab/java)
 
@@ -348,10 +340,6 @@ public class SelectOrchestrator : TaskOrchestrator<object?, object?>
 }
 ```
 
-# [JavaScript](#tab/javascript)
-
-This sample is shown for .NET, Python, and Java.
-
 # [Python](#tab/python)
 
 ```python
@@ -373,10 +361,6 @@ def select_orchestrator(ctx: task.OrchestrationContext, _):
         # ...
         pass
 ```
-
-# [PowerShell](#tab/powershell)
-
-This sample is shown for .NET, Python, and Java.
 
 # [Java](#tab/java)
 
@@ -533,10 +517,6 @@ public class NewBuildingPermit : TaskOrchestrator<string, object?>
 
 In .NET, if the event payload cannot be converted into the expected type `T`, an exception is thrown.
 
-# [JavaScript](#tab/javascript)
-
-This sample is shown for .NET, Python, and Java.
-
 # [Python](#tab/python)
 
 ```python
@@ -555,9 +535,6 @@ def new_building_permit(ctx: task.OrchestrationContext, application_id: str):
     yield task.when_all([gate1, gate2, gate3])
     yield ctx.call_activity(issue_building_permit, input=application_id)
 ```
-
-# [PowerShell](#tab/powershell)
-
 
 # [Java](#tab/java)
 
@@ -701,19 +678,11 @@ Internally, the "*raise-event*" API enqueues a message that gets picked up by th
 await client.RaiseEventAsync(instanceId, "Approval", true);
 ```
 
-# [JavaScript](#tab/javascript)
-
-This sample is shown for .NET, Python, and Java.
-
 # [Python](#tab/python)
 
 ```python
 client.raise_orchestration_event(instance_id, "Approval", data=True)
 ```
-
-# [PowerShell](#tab/powershell)
-
-This sample is shown for .NET, Python, and Java.
 
 # [Java](#tab/java)
 

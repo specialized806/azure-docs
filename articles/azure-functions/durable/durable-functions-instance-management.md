@@ -231,10 +231,6 @@ Console.WriteLine($"Started orchestration with ID = '{instanceId}'.");
 OrchestrationMetadata metadata = await client.WaitForInstanceStartAsync(instanceId, timeout: TimeSpan.FromSeconds(30));
 ```
 
-# [JavaScript](#tab/javascript)
-
-This sample is shown for .NET, Java, and Python.
-
 # [Python](#tab/python)
 
 ```python
@@ -247,10 +243,6 @@ print(f"Started orchestration with ID = '{instance_id}'.")
 # Optionally, wait for the orchestration to start
 state = client.wait_for_orchestration_start(instance_id, timeout=30)
 ```
-
-# [PowerShell](#tab/powershell)
-
-This sample is shown for .NET, Java, and Python.
 
 # [Java](#tab/java)
 
@@ -407,10 +399,6 @@ if (metadata != null)
 }
 ```
 
-# [JavaScript](#tab/javascript)
-
-This sample is shown for .NET, Java, and Python.
-
 # [Python](#tab/python)
 
 ```python
@@ -422,10 +410,6 @@ if state is not None:
     status = state.runtime_status
     # do something based on the current status
 ```
-
-# [PowerShell](#tab/powershell)
-
-This sample is shown for .NET, Java, and Python.
 
 # [Java](#tab/java)
 
@@ -552,10 +536,6 @@ await foreach (OrchestrationMetadata instance in instances)
 }
 ```
 
-# [JavaScript](#tab/javascript)
-
-This sample is shown for .NET, Java, and Python.
-
 # [Python](#tab/python)
 
 ```python
@@ -567,10 +547,6 @@ instances = client.list_orchestrations()
 for instance in instances:
     print(instance.instance_id)
 ```
-
-# [PowerShell](#tab/powershell)
-
-This sample is shown for .NET, Java, and Python.
 
 # [Java](#tab/java)
 
@@ -732,10 +708,6 @@ await foreach (OrchestrationMetadata instance in instances)
 }
 ```
 
-# [JavaScript](#tab/javascript)
-
-This sample is shown for .NET, Java, and Python.
-
 # [Python](#tab/python)
 
 ```python
@@ -752,10 +724,6 @@ instances = client.list_orchestrations(
 for instance in instances:
     print(f"{instance.instance_id}: {instance.runtime_status}")
 ```
-
-# [PowerShell](#tab/powershell)
-
-This sample is shown for .NET, Java, and Python.
 
 # [Java](#tab/java)
 
@@ -876,10 +844,6 @@ string reason = "Found a bug";
 await client.TerminateInstanceAsync(instanceId, reason);
 ```
 
-# [JavaScript](#tab/javascript)
-
-This sample is shown for .NET, Java, and Python.
-
 # [Python](#tab/python)
 
 ```python
@@ -888,10 +852,6 @@ from durabletask.azuremanaged.client import DurableTaskSchedulerClient
 reason = "Found a bug"
 client.terminate_orchestration(instance_id, reason=reason)
 ```
-
-# [PowerShell](#tab/powershell)
-
-This sample is shown for .NET, Java, and Python.
 
 # [Java](#tab/java)
 
@@ -1033,10 +993,6 @@ string resumeReason = "Continue workflow";
 await client.ResumeInstanceAsync(instanceId, resumeReason);
 ```
 
-# [JavaScript](#tab/javascript)
-
-This sample is shown for .NET, Java, and Python.
-
 # [Python](#tab/python)
 
 ```python
@@ -1050,10 +1006,6 @@ client.suspend_orchestration(instance_id, reason=suspend_reason)
 resume_reason = "Continue workflow"
 client.resume_orchestration(instance_id, reason=resume_reason)
 ```
-
-# [PowerShell](#tab/powershell)
-
-This sample is shown for .NET, Java, and Python.
 
 # [Java](#tab/java)
 
@@ -1177,10 +1129,6 @@ int[] eventData = new int[] { 1, 2, 3 };
 await client.RaiseEventAsync(instanceId, "MyEvent", eventData);
 ```
 
-# [JavaScript](#tab/javascript)
-
-This sample is shown for .NET, Java, and Python.
-
 # [Python](#tab/python)
 
 ```python
@@ -1189,10 +1137,6 @@ from durabletask.azuremanaged.client import DurableTaskSchedulerClient
 event_data = [1, 2, 3]
 client.raise_orchestration_event(instance_id, "MyEvent", event_data)
 ```
-
-# [PowerShell](#tab/powershell)
-
-This sample is shown for .NET, Java, and Python.
 
 # [Java](#tab/java)
 
@@ -1327,10 +1271,6 @@ if (metadata.RuntimeStatus == OrchestrationRuntimeStatus.Completed)
 }
 ```
 
-# [JavaScript](#tab/javascript)
-
-This sample is shown for .NET, Java, and Python.
-
 # [Python](#tab/python)
 
 ```python
@@ -1345,10 +1285,6 @@ state = client.wait_for_orchestration_completion(
 if state.runtime_status == 'COMPLETED':
     print(f"Output: {state.serialized_output}")
 ```
-
-# [PowerShell](#tab/powershell)
-
-This sample is shown for .NET, Java, and Python.
 
 # [Java](#tab/java)
 
@@ -1821,10 +1757,6 @@ PurgeResult result = await client.PurgeInstanceAsync(instanceId);
 Console.WriteLine($"Purged {result.PurgedInstanceCount} instance(s).");
 ```
 
-# [JavaScript](#tab/javascript)
-
-This sample is shown for .NET, Java, and Python.
-
 # [Python](#tab/python)
 
 ```python
@@ -1834,10 +1766,6 @@ from durabletask.azuremanaged.client import DurableTaskSchedulerClient
 result = client.purge_orchestration(instance_id)
 print(f"Purged {result.deleted_instance_count} instance(s).")
 ```
-
-# [PowerShell](#tab/powershell)
-
-This sample is shown for .NET, Java, and Python.
 
 # [Java](#tab/java)
 
@@ -1981,10 +1909,6 @@ PurgeResult result = await client.PurgeAllInstancesAsync(filter);
 Console.WriteLine($"Purged {result.PurgedInstanceCount} instance(s).");
 ```
 
-# [JavaScript](#tab/javascript)
-
-This sample is shown for .NET, Java, and Python.
-
 # [Python](#tab/python)
 
 ```python
@@ -1999,10 +1923,6 @@ result = client.purge_orchestrations(
 )
 print(f"Purged {result.deleted_instance_count} instance(s).")
 ```
-
-# [PowerShell](#tab/powershell)
-
-This sample is shown for .NET, Java, and Python.
 
 # [Java](#tab/java)
 

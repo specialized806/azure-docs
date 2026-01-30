@@ -196,10 +196,6 @@ public class PeriodicCleanupLoop : TaskOrchestrator<object?, object?>
 }
 ```
 
-# [JavaScript](#tab/javascript)
-
-This sample is shown for .NET, Python, and Java.
-
 # [Python](#tab/python)
 
 ```python
@@ -218,10 +214,6 @@ def periodic_cleanup_loop(ctx: task.OrchestrationContext, _):
 
     ctx.continue_as_new(None)
 ```
-
-# [PowerShell](#tab/powershell)
-
-This sample is shown for .NET, Python, and Java.
 
 # [Java](#tab/java)
 
@@ -343,20 +335,12 @@ await client.ScheduleNewOrchestrationInstanceAsync(
     new StartOrchestrationOptions { InstanceId = instanceId });
 ```
 
-# [JavaScript](#tab/javascript)
-
-This sample is shown for .NET, Python, and Java.
-
 # [Python](#tab/python)
 
 ```python
 instance_id = "StaticId"
 client.schedule_new_orchestration(periodic_cleanup_loop, instance_id=instance_id)
 ```
-
-# [PowerShell](#tab/powershell)
-
-This sample is shown for .NET, Python, and Java.
 
 # [Java](#tab/java)
 
@@ -391,19 +375,11 @@ If an orchestration is in an infinite loop and needs to be stopped, use the *ter
 await client.TerminateInstanceAsync(instanceId, "Cleanup no longer needed");
 ```
 
-# [JavaScript](#tab/javascript)
-
-This sample is shown for .NET, Python, and Java.
-
 # [Python](#tab/python)
 
 ```python
 client.terminate_orchestration(instance_id, output="Cleanup no longer needed")
 ```
-
-# [PowerShell](#tab/powershell)
-
-This sample is shown for .NET, Python, and Java.
 
 # [Java](#tab/java)
 
