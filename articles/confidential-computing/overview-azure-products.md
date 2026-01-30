@@ -3,7 +3,6 @@ title: Azure Confidential Computing Products
 description: Learn about all the confidential computing services that Azure provides.
 author: cynthn
 ms.service: azure-virtual-machines
-ms.subservice: azure-confidential-computing
 ms.topic: overview
 ms.date: 06/09/2023
 ms.author: cynthn

@@ -4,7 +4,6 @@ description: Understand how to use confidential computing in your scenario.
 services: virtual-machines
 author: cynthn
 ms.service: azure-virtual-machines
-ms.subservice: azure-confidential-computing
 ms.topic: overview
 ms.date: 11/04/2021
 ms.author: cynthn

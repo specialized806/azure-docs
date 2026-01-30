@@ -3,7 +3,6 @@ title: 'Quickstart: Deploy an AKS cluster with Enclave Confidential Container In
 description: Learn how to create an Azure Kubernetes Service (AKS) cluster with enclave confidential containers a Hello World app by using the Azure CLI.
 author: angarg05
 ms.service: azure-virtual-machines
-ms.subservice: azure-confidential-computing
 ms.topic: quickstart
 ms.date: 11/06/2023
 ms.author: ananyagarg

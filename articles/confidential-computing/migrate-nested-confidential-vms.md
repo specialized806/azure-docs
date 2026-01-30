@@ -10,8 +10,6 @@ author: ananyagarg
 
 ms.service: azure-virtual-machines
 
-ms.subservice: azure-confidential-computing
-
 ms.topic: concept-article
 
 ms.date: 07/07/2025

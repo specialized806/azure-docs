@@ -4,7 +4,6 @@ description: Learn how to quickly create and deploy an AMD-based DCasv5 or ECasv
 author: lakmeedee
 ms.author: dejv
 ms.service: azure-virtual-machines
-ms.subservice: azure-confidential-computing
 ms.topic: quickstart
 ms.date: 07/14/2022
 ms.custom: mode-arm

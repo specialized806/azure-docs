@@ -4,7 +4,6 @@ description: Learn how you can use guest attestation for assurance that your sof
 author: prasadmsft
 ms.author: reprasa
 ms.service: azure-virtual-machines
-ms.subservice: azure-confidential-computing
 ms.topic: concept-article
 ms.date: 09/29/2022
 ms.custom: template-concept

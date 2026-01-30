@@ -4,7 +4,6 @@ description: Confidential computing solutions from Acompany on Azure
 services: virtual-machines 
 author: magifford
 ms.service: azure-virtual-machines 
-ms.subservice: azure-confidential-computing 
 ms.topic: concept-article 
 ms.date: 11/13/2025 
 ms.author: magifford 

@@ -4,7 +4,6 @@ description: This article presents an overview of Azure confidential computing.
 services: virtual-machines
 author: cynthn
 ms.service: azure-virtual-machines
-ms.subservice: azure-confidential-computing
 ms.topic: overview
 ms.date: 06/09/2023
 ms.author: cynthn #ananyagarg #sgallagher #michamcr

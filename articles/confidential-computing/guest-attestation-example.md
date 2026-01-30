@@ -4,7 +4,6 @@ description: Learn how to use a sample Linux or Windows application for use with
 author: prasadmsft
 ms.author: reprasa
 ms.service: azure-virtual-machines
-ms.subservice: azure-confidential-computing
 ms.topic: how-to
 ms.date: 04/11/2023
 ms.custom: template-concept, linux-related-content

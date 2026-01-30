@@ -5,7 +5,6 @@ description: Confidential AI services and solutions
 services: virtual-machines
 author: kapilv
 ms.service: azure-virtual-machines
-ms.subservice: azure-confidential-computing
 ms.topic: concept-article
 ms.date: 05/17/2023
 ms.author: mattmcinnes

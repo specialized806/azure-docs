@@ -4,7 +4,6 @@ description: Learn about how we use virtual Trusted Platform Modules in our conf
 author: simranparkhe
 ms.author: simranparkhe
 ms.service: azure-virtual-machines
-ms.subservice: azure-confidential-computing
 ms.topic: concept-article
 ms.date: 07/20/2023
 ms.custom: template-concept

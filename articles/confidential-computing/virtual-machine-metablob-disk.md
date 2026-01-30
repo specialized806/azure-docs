@@ -4,7 +4,6 @@ description: Information on Virtual Machine Metablob Disk (VMMD)
 author: linuxelf001
 ms.topic: concept-article
 ms.service: azure-virtual-machines
-ms.subservice: sizes
 ms.date: 09/05/2025
 ms.author: raginjup
 ms.reviewer: raginjup

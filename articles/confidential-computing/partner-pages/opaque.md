@@ -4,7 +4,6 @@ description: Confidential computing solutions from Opaque on Azure
 services: virtual-machines
 author: ananyagarg
 ms.service: azure-virtual-machines
-ms.subservice: azure-confidential-computing
 ms.topic: concept-article
 ms.date: 07/03/2024
 ms.author: ananyagarg
