@@ -41,10 +41,6 @@ If you already have managed certificates for your custom domains, do the followi
 
 [!INCLUDE [api-management-managed-certificate-ip-access.md](../../../includes/api-management-managed-certificate-ip-access.md)]
 
-### Configure DNS 
-
-Configure your DNS provider to map your custom domain name to the default domain name of your API Management instance.
-
 ## Help and support
 
 If you have questions, get answers from community experts in [Microsoft Q&A](https://aka.ms/apim/azureqa/change/captcha-2022). If you have a support plan and need technical help, create a [support request](https://portal.azure.com/#view/Microsoft_Azure_Support/HelpAndSupportBlade/~/overview).

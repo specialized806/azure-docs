@@ -197,13 +197,10 @@ Configure your DNS provider to map your custom domain name to the default domain
 
 # [Managed](#tab/managed)
 
-
 [!INCLUDE [api-management-custom-domain-dns-configuration.md](../../includes/api-management-custom-domain-dns-configuration.md)]
 
 > [!CAUTION]
 > When you use the free, managed certificate and configure a CNAME record with your DNS provider, make sure that it resolves to the default API Management service hostname (`<apim-service-name>.azure-api.net`). Currently, API Management doesn't automatically renew the certificate if the CNAME record doesn't resolve to the default API Management hostname. For example, if you're using the free, managed certificate and you use Cloudflare as your DNS provider, make sure that DNS proxy isn't enabled on the CNAME record. 
-
-### TXT record for domain ownership verification
 
 ### TXT record 
 
