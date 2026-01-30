@@ -14,7 +14,7 @@ ms.custom: engagement-fy23, devx-track-azurepowershell, devx-track-azurecli
 
 [!INCLUDE [api-management-availability-all-tiers](../../includes/api-management-availability-all-tiers.md)]
 
-This article shows how to import an *OpenAPI specification* backend API to Azure API Management using various tools. The article also shows how to test the API in API Management. For more information, see  [API import restrictions and known issues](api-management-api-import-restrictions.md)
+This article shows how to import an *OpenAPI specification* backend API to Azure API Management using various tools. The article also shows how to test the API in API Management. For more information, see  [API import restrictions and known issues](api-management-api-import-restrictions.md).
 
 In this article, you learn how to:
 
