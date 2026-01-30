@@ -69,7 +69,7 @@ The endpoint URL depends on how you built your MCP server:
 | MCP extension server | `https://<FUNCTION_APP_NAME>.azurewebsites.net/runtime/webhooks/mcp` |
 | Self-hosted MCP server | `https://<FUNCTION_APP_NAME>.azurewebsites.net/mcp` (unless you changed the route) |
 
-For the differences in technology, see [Remote MCP servers](./functions-create-ai-enabled-apps#remote-mcp-servers.md).
+For the differences in technology, see [Remote MCP servers](./functions-create-ai-enabled-apps.md#remote-mcp-servers).
 
 #### Get the access key
 
@@ -130,7 +130,7 @@ The endpoint URL depends on how you built your MCP server:
 | MCP extension server | `https://<FUNCTION_APP_NAME>.azurewebsites.net/runtime/webhooks/mcp` |
 | Self-hosted MCP server | `https://<FUNCTION_APP_NAME>.azurewebsites.net/mcp` (unless you changed the route) |
 
-For the differences in technology, see [Remote MCP servers](./functions-create-ai-enabled-apps#remote-mcp-servers.md).
+For the differences in technology, see [Remote MCP servers](./functions-create-ai-enabled-apps.md#remote-mcp-servers).
 
 #### Get the audience (Application ID URI)
 
@@ -203,7 +203,7 @@ The endpoint URL depends on how you built your MCP server:
 | MCP extension server | `https://<FUNCTION_APP_NAME>.azurewebsites.net/runtime/webhooks/mcp` |
 | Self-hosted MCP server | `https://<FUNCTION_APP_NAME>.azurewebsites.net/mcp` (unless you changed the route) |
 
-For the differences in technology, see [Remote MCP servers](./functions-create-ai-enabled-apps#remote-mcp-servers.md).
+For the differences in technology, see [Remote MCP servers](./functions-create-ai-enabled-apps.md#remote-mcp-servers).
 
 #### Connect your MCP server
 
@@ -239,9 +239,9 @@ Continue building your agent and function app capabilities:
 
 ### Agent development
 
-- [Evaluate agent performance with evals](/azure/ai-foundry/agents/how-to/evaluate-agents?view=foundry&preserve-view=true)
-- [Add guardrails to your agent](/azure/ai-foundry/agents/concepts/content-filtering?view=foundry&preserve-view=true)
-- [Agent identity concepts in Foundry](/azure/ai-foundry/agents/concepts/agent-identity?view=foundry&preserve-view=true)
+- [Learn more about Foundry Agent Service and the agent development lifecycle](/azure/ai-foundry/agents/overview?view=foundry&preserve-view=true)
+- [Equip your agent with built-in tools from the Foundry tool catalog](/azure/ai-foundry/agents/concepts/tool-catalog?view=foundry&preserve-view=true)
+- [Enrich your agent with access to your enterprise knowledge bases](/azure/ai-foundry/agents/concepts/what-is-foundry-iq?view=foundry&preserve-view=true&tabs=portal)
 
 ### Function app operations
 
