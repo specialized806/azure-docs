@@ -7,7 +7,7 @@ ms.author: normesta
 
 ms.service: azure-blob-storage
 ms.topic: how-to
-ms.date: 12/10/2025
+ms.date: 1/29/2026
 
 ms.custom: linux-related-content
 
@@ -52,7 +52,7 @@ You can configure a temporary path on a local high performing disk, a RAM disk, 
 
 If you use an existing local disk for caching, choose a disk that provides the best performance possible, such as a solid-state disk (SSD).
 
-In Azure, you can use the SSD ephemeral disks that are available on your virutal machines (VMs) to provide a low-latency buffer for BlobFuse. Depending on the provisioning agent you use, mount the ephemeral disk on `/mnt` for cloud-init or `/mnt/resource` for Microsoft Azure Linux Agent (waagent) VMs.
+In Azure, you can use the SSD ephemeral disks that are available on your virtual machines (VMs) to provide a low-latency buffer for BlobFuse. Depending on the provisioning agent you use, mount the ephemeral disk on `/mnt` for cloud-init or `/mnt/resource` for Microsoft Azure Linux Agent (waagent) VMs.
 
 Make sure that your user has access to the temporary path.
 
@@ -74,7 +74,7 @@ sudo chown <youruser> /mnt/ramdisk/blobfuse2tmp
 
 In caching mode, BlobFuse waits for an open file system call. Upon receiving the open call, BlobFuse downloads the entire file to a local cache before using it. This behavior can make the initial load slower, especially for AI and machine learning tasks where the application is processing many files.
 
-The preload feature helps by downloading entire containers or subdirectories to the local cache when you mount them. Preload enhances data availability, boosting efficiency and reducing wait times. This improvement is vital for AI training with large datasets as it prepares all necessary files in advance, saving GPU time and reducing costs. By combining preload with the blob filter feature, you can access specific files in a container or subdirectory, offering extensive flexibility and optimizing GPU cycles.
+The preload feature helps by downloading entire containers or subdirectories to the local cache when you mount them. Preload enhances data availability, boosting efficiency and reducing wait times. This improvement is vital for AI training with large datasets as it prepares all necessary files in advance, saving GPU time and reducing costs. By combining preload with the [Blob Filter](https://github.com/Azure/azure-storage-fuse/wiki/Blobfuse-Blob-Filter) feature, you can access specific files in a container or subdirectory, offering extensive flexibility and optimizing GPU cycles.
 
 To enable preload with file-cache mode, use the `--preload` parameter. The following command shows an example:
 
@@ -82,7 +82,8 @@ To enable preload with file-cache mode, use the `--preload` parameter. The follo
 blobfuse2 mount --preload /mnt/blobfuse_mnt --tmp-path=/home/temp_path 
 ```
 
-Preloading blob data makes the mount read-only and prevents file eviction. To access updated files, unmount and remount the volume. Newly added files can still be accessed by reading them. If a blob filter is used with preload, only the filtered files are preloaded and accessible via the BlobFuse mount.
+> [!NOTE]
+> Preloading blob data makes the mount read-only and prevents file eviction. To access updated files, unmount and remount the volume. Newly added files can still be accessed by reading them. If a blob filter is used with preload, only the filtered files are preloaded and accessible via the BlobFuse mount.
 
 ### Considerations when using the preload feature
 

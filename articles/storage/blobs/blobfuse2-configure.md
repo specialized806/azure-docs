@@ -7,7 +7,7 @@ ms.author: normesta
 
 ms.service: azure-blob-storage
 ms.topic: how-to
-ms.date: 12/10/2025
+ms.date: 1/29/2026
 
 ms.custom: linux-related-content
 
@@ -24,25 +24,23 @@ This article shows you how to generate and customize a configuration file. After
 
 1. Decide whether you want to mount the container in _caching mode_ or _streaming mode_. See [Streaming versus caching mode](blobfuse2-streaming-versus-caching.md).
 
-1. Generate a configuration file by using the `gen-configuration` command.
+1. Generate a configuration file by using the `gen-config` command.
 
    The following example generates a configuration file for mounting a container in caching mode.
 
    ```bash
-   blobfuse2 gen-configuration --tmp-path=<local-cache-path> --o <path-to-save-generated-config>
+   blobfuse2 gen-config --tmp-path=<local-cache-path> --o <path-to-save-generated-config>
    ```
 
    The following example generates a configuration file for mounting a container in streaming mode.
 
    ```bash
-   blobfuse2 gen-configuration --streaming --o <path-to-save-generated-config>
+   blobfuse2 gen-config --block-cache --o <path-to-save-generated-config>
    ```
 
-   This generates a configuration file that contains default settings.
+   This generates a configuration file that contains default settings. If path is not provided, the config will be generated at the current path.
 
 1. Open the configuration file in an editor to review and modify settings.
-
-1. Depending on which mode you plan to use, remove either `block_cache` or `file_cache` from the **Pipeline configuration** section. If you plan to use caching mode, remove `block_cache` from the list. If you plan to use streaming mode, remove `file_cache` from the list.
 
 1. Configure caching or streaming mode.
 
@@ -85,7 +83,7 @@ This article shows you how to generate and customize a configuration file. After
 
 In addition, there are other optional configuration settings that you can use to fine-tune the mount. For details about the configuration options, see the [base sample configuration](https://github.com/Azure/azure-storage-fuse/blob/main/setup/baseConfig.yaml).
 
-You can override settings that you define in the configuration file by using environment variables or by passing parameters as part of the command. For more information about using environment variables and a list of all variables you can use, see the [BlobFuse README](https://github.com/Azure/azure-storage-fuse/tree/main#environment-variables).
+You can override settings that you define in the configuration file by using environment variables or by passing parameters as part of the command. For more information about using environment variables and a list of all variables you can use, see the [BlobFuse Environment Variables](https://github.com/Azure/azure-storage-fuse/wiki/Blobfuse2-Environment-Variables).
 
 ## Configuration file best practices
 
@@ -93,7 +91,7 @@ You can override settings that you define in the configuration file by using env
 
 - If you **provide** `type` in the `azstorage` section of the configuration file, don't mount a hierarchical namespace enabled account with `type: block` in the `azstorage` section. Otherwise, some directory operations fail. Don't mount a flat namespace account with `type: adls` in the `azstorage` section. Otherwise, you receive mount failures.
 
-- To disable all forms of caching at the kernel and at the BlobFuse level, set the `-o direct_io` CLI parameter. This option forces every operation to call the storage service directly, ensuring you always have the most up-to-date data.
+- To disable all forms of caching at the kernel and at the BlobFuse level, set the `-o direct_io` CLI parameter or `direct-io: true' in libfuse section of configuration file. This option forces every operation to call the storage service directly, ensuring you always have the most up-to-date data.
   
   > [!WARNING]
   > This configuration leads to increased storage costs, as it generates more transactions.

@@ -7,7 +7,7 @@ ms.author: normesta
 
 ms.service: azure-blob-storage
 ms.topic: concept-article
-ms.date: 12/10/2025
+ms.date: 1/29/2026
 
 ms.custom: linux-related-content
 
@@ -78,7 +78,7 @@ The following file system operations have altered behavior in BlobFuse
 
 - For storage accounts that have a flat namespace, when data is uploaded through other means, BlobFuse expects special directory marker files to exist in container. For example, if you have a blob `A/B/c.txt` then special marker files shall exist for `A` and `A/B`. To overcome this requirement, BlobFuse uses ListBlob aoi instead of GetBlobProperties api for `ls` operation though `ListBlob` is more expensive.
 
-- For storage accounts that have a flat namespace, `--virtual-directory=false` cli flag or `virtual-directory=false` option under `azstorage` section can be used to switch from `ListBlob` api to `GetBlobProperties` api but in absence of special directory marker, BlobFuse will fail to identify directories. Possible workaround to resolve this from your container is to either create the directory marker files manually through portal or run `mkdir` command for `A` and `A/B` from BlobFuse. Refer [me](https://github.com/Azure/azure-storage-fuse/issues/866) for details on this.
+- For storage accounts that have a flat namespace, `--virtual-directory=false` cli flag or `virtual-directory=false` option under `azstorage` section can be used to switch from `ListBlob` api to `GetBlobProperties` api but in absence of special directory marker, BlobFuse will fail to identify directories. A possible workaround to resolve this from your container is to either create the directory marker files manually through portal or run `mkdir` command for `A` and `A/B` from BlobFuse. Refer [me](https://github.com/Azure/azure-storage-fuse/issues/866) for details on this.
 
 - On non-HNS accounts chmod operations are not permitted and BlobFuse will return back success in such cases.
 
@@ -90,7 +90,7 @@ To disable the kernel data cache _direct_io_ is the option most customer use. Ot
 
 This means to disable all caching; user needs to configure roughly seven parameters. To simplify this, as part of _auto config_ feature in version 2.4.0 we started disabling everything when user gives _direct_io_ option. This was to simplify the customer experience, which earlier was generating some issues and complains about the config being too complicated.
 
-However, with this change as both kernel and BlobFuse caching is disabled, BlobFuse started making more calls to storage. This had a cost impact on the customer where higher number of calls were not only degrading performance but were increasing the bill as well. To fix this with correct measures with version 2.5.0 we have introduced a new cli parameter called _disable-kernel-cache_ which only disables kernel level data and metadata caching and then you can control BlobFuse level caching with file-cache timeout and attr-cache timeout values. This allows you to refresh the contents as per your application needs. For example, if application is fine if it gets refreshed contents in five seconds then set the file and attribute cache timeouts to five seconds and use this new cli flag. With this your application will get refreshed contents in five seconds and cost will also be under control.
+However, with this change as both kernel and BlobFuse caching is disabled, BlobFuse started making more calls to storage. This had a cost impact on the customer where higher number of calls were not only degrading performance but were increasing the bill as well. To fix this with correct measures with version 2.5.0 we have introduced a new cli parameter called _disable-kernel-cache_ which only disables kernel level data and metadata caching and then you can control BlobFuse level caching with file-cache timeout and attr-cache timeout values. This allows you to refresh the contents as per your application needs. For example, if the application is fine, and the contents are refreshed in five seconds, then set the file and attribute cache timeouts to five seconds and use this new cli flag. With this your application will get refreshed contents in five seconds and cost will also be under control.
 
 ## Synchronizing with data written by other APIs
 

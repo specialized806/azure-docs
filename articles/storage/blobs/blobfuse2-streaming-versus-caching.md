@@ -16,11 +16,11 @@ ms.custom: linux-related-content
 
 # Streaming versus caching mode for BlobFuse mounts
 
-You can use BlobFuse to mount an Azure Blob Storage container in either _streaming mode_ or _caching mode_. This article describes each mode and helps you decide which mode is best suited for your workloads.
+You can use BlobFuse to mount an Azure Blob Storage container in either _streaming mode_(block cache) or _caching mode_(file cache). This article describes each mode and helps you decide which mode is best suited for your workloads.
 
 ## Choosing between streaming and caching modes
 
-In _streaming mode_, data is streamed in chunks (blocks) and served as it downloads. This mode is designed for workloads involving **large files**, such as AI/ML training datasets, genomic sequencing, and high performance computing (HPC) simulations. File caching plays an important role in maintaining the integrity of data that is read and written to a Blob Storage file system mount.
+In _streaming mode_, data is streamed in chunks (blocks) and served as it downloads. This mode is designed for workloads involving **large files**, such as AI/ML training datasets, genomic sequencing, and high performance computing (HPC) simulations. 
 
 Use streaming mode for large files, as it supports streaming for both read and write operations. BlobFuse caches blocks of streaming files in memory. For smaller files that don't consist of blocks, the entire file is stored in memory. Caching mode is the alternative mode, which you should use for workloads that don't involve large files, where files are stored on disk in their entirety.
 

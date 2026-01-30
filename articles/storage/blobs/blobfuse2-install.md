@@ -7,7 +7,7 @@ ms.author: normesta
 
 ms.service: azure-blob-storage
 ms.topic: how-to
-ms.date: 12/10/2025
+ms.date: 1/29/2026
 
 ms.custom: linux-related-content
 
@@ -26,7 +26,7 @@ First, check your Linux distribution and version by running the following comman
 cat /etc/*-release
 ```
 
-To determine if a package is available for your distribution and version, see [BlobFuse2 releases](https://github.com/Azure/azure-storage-fuse/releases).
+To determine if a package is available for your distribution and version, see [BlobFuse releases](https://github.com/Azure/azure-storage-fuse/releases).
 
 If no package is available for your distribution or version, you need to build the binary from source code. For detailed instructions, see the [Build the binaries from source code](#build-the-binaries-from-source-code) section of this article.
 
@@ -182,7 +182,7 @@ To build the optional health monitor binary, run the following command:
 
 - [Configure BlobFuse](blobfuse2-configure.md)
 - [Mount an Azure Blob Storage container](blobfuse2-mount-container.md)
-- [BlobFuse2 commands](blobfuse2-commands.md)
+- [BlobFuse commands](blobfuse2-commands.md)
 
 ## See also
 
