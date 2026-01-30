@@ -58,10 +58,10 @@ Disable public access to your Event Hubs namespace to allow access only via priv
     :::image type="content" source="./media/event-hubs-firewall/manage-public-network-access.png" alt-text="Screenshot showing the Public access page with Manage button highlighted." lightbox="./media/event-hubs-firewall/enable-selected-networks.png":::     
 1. On the **Public network access** page, select **Disable** to restrict inbound access while allowing outbound access. In the pop-up, select **Proceed** to confirm.
 
-    :::image type="content" source="./media/private-link-service/disable-public-access.png" alt-text="Screenshot showing the Public network access page with Disable option selected." lightbox="./media/event-hubs-firewall/disable-public-access.png":::
+    :::image type="content" source="./media/private-link-service/disable-public-access.png" alt-text="Screenshot showing the Public network access page with Disable option selected." lightbox="./media/private-link-service/disable-public-access.png":::
 1. On the **Public network access** page, select **Save** at the bottom of the page.
 
-    :::image type="content" source="./media/private-link-service/disable-public-access-main.png" alt-text="Screenshot showing the Public network access page with Disable option selected in the main page." lightbox="./media/event-hubs-firewall/disable-public-access-main.png":::
+    :::image type="content" source="./media/private-link-service/disable-public-access-main.png" alt-text="Screenshot showing the Public network access page with Disable option selected in the main page." lightbox="./media/private-link-service/disable-public-access-main.png":::
 1. In the **Exception** section, specify whether you want to **allow trusted Microsoft services to access this resource**. See [Trusted Microsoft services](#trusted-microsoft-services) for details.
 
 
