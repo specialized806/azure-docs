@@ -32,7 +32,7 @@ To add a new user, follow these steps:
 1. Enter appropriate information for the user.
 1. Select **Add**.
 
-   :::image type="content" source="media/api-management-howto-create-or-invite-developers/api-management-create-developer.png" alt-text="Screenshot of adding a user in the portal.":::
+   :::image type="content" source="media/api-management-howto-create-or-invite-developers/api-management-create-developer.png" alt-text="Screenshot of adding a user in the portal." lightbox="media/api-management-howto-create-or-invite-developers/api-management-create-developer.png":::
 
 By default, newly created developer accounts are **Active**, and associated with the **Developers** group. Developer accounts that are in an **Active** state can be used to access the developer portal and all of the APIs for which they have subscriptions. To associate the newly created developer with other groups, see [How to associate groups with developers][How to associate groups with developers].
 
