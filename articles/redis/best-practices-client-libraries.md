@@ -73,7 +73,6 @@ In Active-Active databases, multi-key write commands (`DEL`, `MSET`, `UNLINK`) c
 
 Choose your programming language to get detailed best practices and connection guidance:
 
-- [StackExchange.Redis (.NET) best practices](best-practices-connection.md#using-forcereconnect-with-stackexchangeredis)
 - [Lettuce (Java) best practices](https://github.com/Azure/AzureCacheForRedis/blob/main/Lettuce%20Best%20Practices.md)
 - [Jedis (Java) best practices](https://github.com/Azure/AzureCacheForRedis/blob/main/Redis-BestPractices-Java-Jedis.md)
 - [Node.js best practices](https://github.com/Azure/AzureCacheForRedis/blob/main/Redis-BestPractices-Node-js.md)
@@ -86,10 +85,8 @@ Besides the reference documentation, you can find tutorials showing how to get s
 
 For more information on using some of these client libraries in tutorials, see the following articles:
 
-- [Code a .NET Framework app](dotnet-how-to-use-azure-redis-cache.md)
-- [Code a .NET Core app](dotnet-core-quickstart.md)
+- [Code a .NET app](dotnet.md)
 - [Code an ASP.NET web app](web-app-cache-howto.md)
-- [Code an ASP.NET Core web app](web-app-aspnet-core-howto.md)
 - [Code a Java app](java-get-started.md)
 - [Code a Node.js app](nodejs-get-started.md)
 - [Code a Python app](python-get-started.md)
