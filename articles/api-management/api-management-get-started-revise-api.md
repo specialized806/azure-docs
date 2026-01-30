@@ -18,7 +18,7 @@ ms.author: danlep
 
 When your API is used by developers, you eventually need to make changes to that API without disrupting callers of your API. It's also useful to let developers know about the changes you made.
 
-In Azure API Management, use *revisions* to make nonbreaking API changes. You can model and test changes safely. When ready, you can make a revision current and replace your current API.
+In Azure API Management, use *revisions* to make nonbreaking API changes. You can model and test changes safely. When ready, make your revision current and replace the current API.
 
 For more information, see [Versions](api-management-versions.md) and [Revisions](api-management-revisions.md).
 
@@ -49,7 +49,7 @@ In this tutorial, you learn how to:
 1. Select the **Revisions** tab.
 1. Select **+ Add revision**.
 
-   :::image type="content" source="media/api-management-get-started-revise-api/07-add-revisions-01-add-new-revision.png" alt-text="Screenshot of adding an API revision in the portal.":::
+   :::image type="content" source="media/api-management-get-started-revise-api/07-add-revisions-01-add-new-revision.png" alt-text="Screenshot of adding an API revision in the portal." lightbox="media/api-management-get-started-revise-api/07-add-revisions-01-add-new-revision.png":::
 
    > [!TIP]
    > You can also select **Add revision** in the context menu (**...**) of the API.
@@ -68,7 +68,7 @@ In this tutorial, you learn how to:
 1. Select **Swagger Petstore** from the API list.
 1. Select **Design** near the top of the screen.
 
-   Notice that the **revision selector** above the design tab shows **Revision 2** as currently selected.
+   The **revision selector** above the design tab shows **Revision 2** as currently selected.
 
    > [!TIP]
    >
@@ -78,7 +78,7 @@ In this tutorial, you learn how to:
 1. Set your new operation to **POST**, and the  **Display name**, **Name**, and **URL** of the operation as **test**.
 1. **Save** your new operation.
 
-   :::image type="content" source="media/api-management-get-started-revise-api/07-add-revisions-02-make-changes.png" alt-text="Screenshot showing how to add an operation in a revision in the portal.":::
+   :::image type="content" source="media/api-management-get-started-revise-api/07-add-revisions-02-make-changes.png" alt-text="Screenshot showing how to add an operation in a revision in the portal." lightbox="media/api-management-get-started-revise-api/07-add-revisions-02-make-changes.png":::
 
    You've now made a change to **Revision 2**. 
 
@@ -175,7 +175,7 @@ Each revision to your API can be accessed using a specially formed URL. Add `;re
 
 You can find the URL paths for your API's revisions on the **Revisions** tab in the Azure portal.
 
-:::image type="content" source="media/api-management-get-started-revise-api/revision-url-path.png" alt-text="Screenshot of revision URLs in the portal.":::
+:::image type="content" source="media/api-management-get-started-revise-api/revision-url-path.png" alt-text="Screenshot of revision URLs in the portal." liggtbox="media/api-management-get-started-revise-api/revision-url-path.png":::
 
 > [!TIP]
 > You can access the *current* revision of your API using the API path without the `;rev` string, in addition to the full URL that appends `;rev={revisionNumber}` to your API path.
