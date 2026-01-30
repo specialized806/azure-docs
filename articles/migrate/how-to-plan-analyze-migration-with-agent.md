@@ -29,8 +29,8 @@ Before you begin, ensure you have:
 
 ### Step 1: Launch the Migration Agent and define the migration goal
  
-**Action**: Sign in to the Azure portal and launch Azure Copilot Migration Agent.
-**Prompt**: Help me explore migration paths for VMware workloads moving to Azure quickly.
+**Action**: Sign in to the Azure portal and launch Azure Copilot Migration Agent. </br></br>
+**Prompt**: Help me explore migration paths for VMware workloads moving to Azure quickly. </br></br>
 **Migration Agent response**: Explains journey steps, offers step-by-step guidance. 
 
 The Agent outlines the migration planning journey and suggests next steps based on your goal.
@@ -107,13 +107,13 @@ Use the Agent to reason about Azure landing zone architecture based on your requ
 1. Provide subscription and governance details.
 1. Share region, compliance, and networking requirements.
 
-**Prompt**: What is a landing zone?
+**Prompt**: What is a landing zone? </br></br>
 **Migration Agent response**: Concept explanation, subscription ID request. 
 
-**Prompt**: Here are my subscription IDs: `X` for management and identity, `Y` for connectivity. 
+**Prompt**: Here are my subscription IDs: `X` for management and identity, `Y` for connectivity. </br></br>
 **Migration Agent response**: Confirms management structure, asks networking preferences. 
 
-**Prompt**: Our workloads are deployed only in the Central India region. Our compliance requires Palo Alto firewall. 
+**Prompt**: Our workloads are deployed only in the Central India region. Our compliance requires Palo Alto firewall. </br></br>
 **Migration Agent response**: Architecture recommendation, downloadable template (e.g., Terraform), policies, monitoring, identity setup.
  
 The Agent recommends an architecture aligned to your input and may provide deployable templates (such as Terraform), along with guidance on identity, networking, policies, and monitoring.
