@@ -13,9 +13,7 @@ ms.date: 05/30/2024
 
 Learn how to deploy Geospatial Consumption Zone (GCZ) on Azure Kubernetes Service (AKS).
 
----
-
-## ✅ Prerequisites
+## Prerequisites
 
 - Azure Subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - Azure Kubernetes Cluster (AKS) with virtual network integration. See [Create an Azure Kubernetes Service (AKS) cluster](/azure/aks/tutorial-kubernetes-deploy-cluster) and [Azure Container Networking Interface (CNI) networking](/azure/aks/azure-cni-overview) for further instructions.
@@ -29,13 +27,13 @@ Learn how to deploy Geospatial Consumption Zone (GCZ) on Azure Kubernetes Servic
    git clone https://community.opengroup.org/osdu/platform/consumption/geospatial.git
    ```
 
-2. Change directory to the `geospatial` folder:
+1. Change directory to the `geospatial` folder:
 
    ```bash
    cd geospatial/devops/azure/charts/geospatial
    ```
 
-3. Define variables for the deployment:
+1. Define variables for the deployment:
 
    ### [Unix Shell](#tab/unix-shell)
 
@@ -137,155 +135,155 @@ Learn how to deploy Geospatial Consumption Zone (GCZ) on Azure Kubernetes Servic
    $CHART_VERSION="1.28.0"
    $VERSION="0.28.2"
    ```
-4. Create the HELM chart:
+1. Create the HELM chart:
  
- ### [Unix Shell](#tab/unix-shell-1)
+   ### [Unix Shell](#tab/unix-shell-1)
  
- ```bash
-$ cat > osdu_gcz_custom_values.yaml << EOF
-# This file contains the essential configs for Azure GCZ helm chart deployment
-################################################################################
-# Specify the values for each service.
-#
-global:
-  provider:
-    entitlementsGroupsURL: "https://${AZURE_DNS_NAME}/api/entitlements/v2/groups"
-    image:
-      repository: "$AZURE_ACR"
-      name: "$GCZ_PROVIDER_IMAGE_NAME"
-      tag: "$GCZ_PROVIDER_IMAGE_TAG"
-    gcz_ignite_service: $GCZ_IGNITE_SERVICE
-    service:
-      port: 8083
-      targetPort: 8083
-    configuration:   # <-- moved here under provider
-      privateNetwork: "$PRIVATE_NETWORK"
-      dataPartitionId: $DATA_PARTITION_ID
-      clientId: $AZURE_CLIENT_ID
-      tenantId: $AZURE_TENANT_ID
-      callbackURL: $CALLBACK_URL
-      keyvaultURL: $AZURE_KEY_VAULT_URL
-      searchQueryURL: "https://${AZURE_DNS_NAME}/api/search/v2/query"
-      searchCursorURL: "https://${AZURE_DNS_NAME}/api/search/v2/query_with_cursor"
-      schemaURL: "https://${AZURE_DNS_NAME}/api/schema-service/v1/schema"
-      entitlementsURL: "https://${AZURE_DNS_NAME}/api/entitlements/v2"
-      fileRetrievalURL: "https://${AZURE_DNS_NAME}/api/dataset/v1/retrievalInstructions"
-      crsconvertorURL: "https://${AZURE_DNS_NAME}/api/crs/converter/v3/convertTrajectory"
-      storageURL: "https://${AZURE_DNS_NAME}/api/storage/v2/records"
-      partitionURL: http://partition.osdu-azure/api/partition/v1
-      gcz_persistence_enabled: true
-      azureAppResourceId: $AZURE_APP_ID
-      gcz_ignite_service: $GCZ_IGNITE_SERVICE
-   transformer:
-    image:
-      repository: "$AZURE_ACR"
-      name: "$GCZ_TRANSFORMER_IMAGE_NAME"
-      tag: "$GCZ_TRANSFORMER_IMAGE_TAG"
-    serviceAccount: "osdu-gcz-service-gridgain"
-    service:
-      port: 8080
-      targetPort: 8080
-    configuration:
-      secretName: gcz-client-secret
-      configuration:
-      dataPartitionId: $DATA_PARTITION_ID
-      clientId: $AZURE_CLIENT_ID
-      tenantId: $AZURE_TENANT_ID
-      callbackURL: $CALLBACK_URL
-      keyvaultURL: $AZURE_KEY_VAULT_URL
-      searchQueryURL: "https://${AZURE_DNS_NAME}/api/search/v2/query"
-      searchCursorURL: "https://${AZURE_DNS_NAME}/api/search/v2/query_with_cursor"
-      schemaURL: "https://${AZURE_DNS_NAME}/api/schema-service/v1/schema"
-      entitlementsURL: "https://${AZURE_DNS_NAME}/api/entitlements/v2"
-      fileRetrievalURL: "https://${AZURE_DNS_NAME}/api/dataset/v1/retrievalInstructions"
-      crsconvertorURL: "https://${AZURE_DNS_NAME}/api/crs/converter/v3/convertTrajectory"
-      storageURL: "https://${AZURE_DNS_NAME}/api/storage/v2/records"
-      partitionURL: http://partition.osdu-azure/api/partition/v1
-      clientSecret: $(echo -n "${AZURE_CLIENT_SECRET}" | base64)
-      gcz_persistence_enabled: true
-      azureAppResourceId: $AZURE_APP_ID
-      gcz_ignite_service: $GCZ_IGNITE_SERVICE
-  istio:
-    enabled: $ISTIO_ENABLED
-    gateways:
-      - istio-system/$ISTIO_GATEWAY_NAME
-    cors: {}
-    dns_host: ${ISTIO_GCZ_DNS_HOST}
-EOF
-```
+   ```bash
+   $ cat > osdu_gcz_custom_values.yaml << EOF
+   # This file contains the essential configs for Azure GCZ helm chart deployment
+   ################################################################################
+   # Specify the values for each service.
+   #
+   global:
+     provider:
+       entitlementsGroupsURL: "https://${AZURE_DNS_NAME}/api/entitlements/v2/groups"
+       image:
+         repository: "$AZURE_ACR"
+         name: "$GCZ_PROVIDER_IMAGE_NAME"
+         tag: "$GCZ_PROVIDER_IMAGE_TAG"
+       gcz_ignite_service: $GCZ_IGNITE_SERVICE
+       service:
+         port: 8083
+         targetPort: 8083
+       configuration:   # <-- moved here under provider
+         privateNetwork: "$PRIVATE_NETWORK"
+         dataPartitionId: $DATA_PARTITION_ID
+         clientId: $AZURE_CLIENT_ID
+         tenantId: $AZURE_TENANT_ID
+         callbackURL: $CALLBACK_URL
+         keyvaultURL: $AZURE_KEY_VAULT_URL
+         searchQueryURL: "https://${AZURE_DNS_NAME}/api/search/v2/query"
+         searchCursorURL: "https://${AZURE_DNS_NAME}/api/search/v2/query_with_cursor"
+         schemaURL: "https://${AZURE_DNS_NAME}/api/schema-service/v1/schema"
+         entitlementsURL: "https://${AZURE_DNS_NAME}/api/entitlements/v2"
+         fileRetrievalURL: "https://${AZURE_DNS_NAME}/api/dataset/v1/retrievalInstructions"
+         crsconvertorURL: "https://${AZURE_DNS_NAME}/api/crs/converter/v3/convertTrajectory"
+         storageURL: "https://${AZURE_DNS_NAME}/api/storage/v2/records"
+         partitionURL: http://partition.osdu-azure/api/partition/v1
+         gcz_persistence_enabled: true
+         azureAppResourceId: $AZURE_APP_ID
+         gcz_ignite_service: $GCZ_IGNITE_SERVICE
+      transformer:
+       image:
+         repository: "$AZURE_ACR"
+         name: "$GCZ_TRANSFORMER_IMAGE_NAME"
+         tag: "$GCZ_TRANSFORMER_IMAGE_TAG"
+       serviceAccount: "osdu-gcz-service-gridgain"
+       service:
+         port: 8080
+         targetPort: 8080
+       configuration:
+         secretName: gcz-client-secret
+         configuration:
+         dataPartitionId: $DATA_PARTITION_ID
+         clientId: $AZURE_CLIENT_ID
+         tenantId: $AZURE_TENANT_ID
+         callbackURL: $CALLBACK_URL
+         keyvaultURL: $AZURE_KEY_VAULT_URL
+         searchQueryURL: "https://${AZURE_DNS_NAME}/api/search/v2/query"
+         searchCursorURL: "https://${AZURE_DNS_NAME}/api/search/v2/query_with_cursor"
+         schemaURL: "https://${AZURE_DNS_NAME}/api/schema-service/v1/schema"
+         entitlementsURL: "https://${AZURE_DNS_NAME}/api/entitlements/v2"
+         fileRetrievalURL: "https://${AZURE_DNS_NAME}/api/dataset/v1/retrievalInstructions"
+         crsconvertorURL: "https://${AZURE_DNS_NAME}/api/crs/converter/v3/convertTrajectory"
+         storageURL: "https://${AZURE_DNS_NAME}/api/storage/v2/records"
+         partitionURL: http://partition.osdu-azure/api/partition/v1
+         clientSecret: $(echo -n "${AZURE_CLIENT_SECRET}" | base64)
+         gcz_persistence_enabled: true
+         azureAppResourceId: $AZURE_APP_ID
+         gcz_ignite_service: $GCZ_IGNITE_SERVICE
+     istio:
+       enabled: $ISTIO_ENABLED
+       gateways:
+         - istio-system/$ISTIO_GATEWAY_NAME
+       cors: {}
+       dns_host: ${ISTIO_GCZ_DNS_HOST}
+   EOF
+   ```
 
- ### [Windows PowerShell](#tab/windows-powershell-1)
+   ### [Windows PowerShell](#tab/windows-powershell-1)
  
    ```powershell
-  @"
-  # GCZ Configuration - Azure Deployment
-global:
-  provider:
-    entitlementsGroupsURL: "https://${AZURE_DNS_NAME}/api/entitlements/v2/groups"
-    image:
-      repository: "${AZURE_ACR}"
-      name: "${GCZ_PROVIDER_IMAGE_NAME}"
-      tag: "${GCZ_PROVIDER_IMAGE_TAG}"
-    gcz_ignite_service: "${GCZ_IGNITE_SERVICE}"
-    service:
-      port: 8083
-      targetPort: 8083
-    configuration:
-      privateNetwork: "${PRIVATE_NETWORK}"
-      dataPartitionId: "${DATA_PARTITION_ID}"
-      clientId: "${AZURE_CLIENT_ID}"
-      tenantId: "${AZURE_TENANT_ID}"
-      callbackURL: "${CALLBACK_URL}"
-      keyvaultURL: "${AZURE_KEY_VAULT_URL}"
-      searchQueryURL: "https://${AZURE_DNS_NAME}/api/search/v2/query"
-      searchCursorURL: "https://${AZURE_DNS_NAME}/api/search/v2/query_with_cursor"
-      schemaURL: "https://${AZURE_DNS_NAME}/api/schema-service/v1/schema"
-      entitlementsURL: "https://${AZURE_DNS_NAME}/api/entitlements/v2"
-      fileRetrievalURL: "https://${AZURE_DNS_NAME}/api/dataset/v1/retrievalInstructions"
-      crsconvertorURL: "https://${AZURE_DNS_NAME}/api/crs/converter/v3/convertTrajectory"
-      storageURL: "https://${AZURE_DNS_NAME}/api/storage/v2/records"
-      partitionURL: "http://partition.osdu-azure/api/partition/v1"
-      gcz_persistence_enabled: true
-      azureAppResourceId: "${AZURE_APP_ID}"
-      gcz_ignite_service: "${GCZ_IGNITE_SERVICE}"
-  transformer:
-    image:
-      repository: "${AZURE_ACR}"
-      name: "${GCZ_TRANSFORMER_IMAGE_NAME}"
-      tag: "${GCZ_TRANSFORMER_IMAGE_TAG}"
-    serviceAccount: "osdu-gcz-service-gridgain"
-    service:
-      port: 8080
-      targetPort: 8080
-    configuration:
-      secretName: "gcz-client-secret"
-      dataPartitionId: "${DATA_PARTITION_ID}"
-      clientId: "${AZURE_CLIENT_ID}"
-      tenantId: "${AZURE_TENANT_ID}"
-      callbackURL: "${CALLBACK_URL}"
-      keyvaultURL: "${AZURE_KEY_VAULT_URL}"
-      searchQueryURL: "https://${AZURE_DNS_NAME}/api/search/v2/query"
-      searchCursorURL: "https://${AZURE_DNS_NAME}/api/search/v2/query_with_cursor"
-      schemaURL: "https://${AZURE_DNS_NAME}/api/schema-service/v1/schema"
-      entitlementsURL: "https://${AZURE_DNS_NAME}/api/entitlements/v2"
-      fileRetrievalURL: "https://${AZURE_DNS_NAME}/api/dataset/v1/retrievalInstructions"
-      crsconvertorURL: "https://${AZURE_DNS_NAME}/api/crs/converter/v3/convertTrajectory"
-      storageURL: "https://${AZURE_DNS_NAME}/api/storage/v2/records"
-      partitionURL: "http://partition.osdu-azure/api/partition/v1"
-      clientSecret: "${CLIENT_SECRET_B64}"
-      gcz_persistence_enabled: true
-      azureAppResourceId: "${AZURE_APP_ID}"
-      gcz_ignite_service: "${GCZ_IGNITE_SERVICE}"
-  istio:
-    enabled: "${ISTIO_ENABLED}"
-    gateways:
-      - "istio-system/${ISTIO_GATEWAY_NAME}"
-    cors: {}
-    dns_host: "${ISTIO_GCZ_DNS_HOST}"
-"@ | Out-File -FilePath osdu_gcz_custom_values.yaml
-```
+   @"
+   # GCZ Configuration - Azure Deployment
+   global:
+    provider:
+     entitlementsGroupsURL: "https://${AZURE_DNS_NAME}/api/entitlements/v2/groups"
+     image:
+       repository: "${AZURE_ACR}"
+       name: "${GCZ_PROVIDER_IMAGE_NAME}"
+       tag: "${GCZ_PROVIDER_IMAGE_TAG}"
+     gcz_ignite_service: "${GCZ_IGNITE_SERVICE}"
+     service:
+       port: 8083
+       targetPort: 8083
+     configuration:
+       privateNetwork: "${PRIVATE_NETWORK}"
+       dataPartitionId: "${DATA_PARTITION_ID}"
+       clientId: "${AZURE_CLIENT_ID}"
+       tenantId: "${AZURE_TENANT_ID}"
+       callbackURL: "${CALLBACK_URL}"
+       keyvaultURL: "${AZURE_KEY_VAULT_URL}"
+       searchQueryURL: "https://${AZURE_DNS_NAME}/api/search/v2/query"
+       searchCursorURL: "https://${AZURE_DNS_NAME}/api/search/v2/query_with_cursor"
+       schemaURL: "https://${AZURE_DNS_NAME}/api/schema-service/v1/schema"
+       entitlementsURL: "https://${AZURE_DNS_NAME}/api/entitlements/v2"
+       fileRetrievalURL: "https://${AZURE_DNS_NAME}/api/dataset/v1/retrievalInstructions"
+       crsconvertorURL: "https://${AZURE_DNS_NAME}/api/crs/converter/v3/convertTrajectory"
+       storageURL: "https://${AZURE_DNS_NAME}/api/storage/v2/records"
+       partitionURL: "http://partition.osdu-azure/api/partition/v1"
+       gcz_persistence_enabled: true
+       azureAppResourceId: "${AZURE_APP_ID}"
+       gcz_ignite_service: "${GCZ_IGNITE_SERVICE}"
+   transformer:
+     image:
+       repository: "${AZURE_ACR}"
+       name: "${GCZ_TRANSFORMER_IMAGE_NAME}"
+       tag: "${GCZ_TRANSFORMER_IMAGE_TAG}"
+     serviceAccount: "osdu-gcz-service-gridgain"
+     service:
+       port: 8080
+       targetPort: 8080
+     configuration:
+       secretName: "gcz-client-secret"
+       dataPartitionId: "${DATA_PARTITION_ID}"
+       clientId: "${AZURE_CLIENT_ID}"
+       tenantId: "${AZURE_TENANT_ID}"
+       callbackURL: "${CALLBACK_URL}"
+       keyvaultURL: "${AZURE_KEY_VAULT_URL}"
+       searchQueryURL: "https://${AZURE_DNS_NAME}/api/search/v2/query"
+       searchCursorURL: "https://${AZURE_DNS_NAME}/api/search/v2/query_with_cursor"
+       schemaURL: "https://${AZURE_DNS_NAME}/api/schema-service/v1/schema"
+       entitlementsURL: "https://${AZURE_DNS_NAME}/api/entitlements/v2"
+       fileRetrievalURL: "https://${AZURE_DNS_NAME}/api/dataset/v1/retrievalInstructions"
+       crsconvertorURL: "https://${AZURE_DNS_NAME}/api/crs/converter/v3/convertTrajectory"
+       storageURL: "https://${AZURE_DNS_NAME}/api/storage/v2/records"
+       partitionURL: "http://partition.osdu-azure/api/partition/v1"
+       clientSecret: "${CLIENT_SECRET_B64}"
+       gcz_persistence_enabled: true
+       azureAppResourceId: "${AZURE_APP_ID}"
+       gcz_ignite_service: "${GCZ_IGNITE_SERVICE}"
+   istio:
+     enabled: "${ISTIO_ENABLED}"
+     gateways:
+       - "istio-system/${ISTIO_GATEWAY_NAME}"
+     cors: {}
+     dns_host: "${ISTIO_GCZ_DNS_HOST}"
+   "@ | Out-File -FilePath osdu_gcz_custom_values.yaml
+   ```
 
-5. Change service type to `LoadBalancer` for the `provider` services configuration files.
+1. Change service type to `LoadBalancer` for the `provider` services configuration files.
 
    ### [Unix Shell](#tab/unix-shell-2)
 
@@ -331,7 +329,7 @@ global:
    "@ | Out-File -FilePath ../provider/templates/service.yaml
    ```
    
-6. Change service type to `LoadBalancer` for the `transformer` services configuration files.
+1. Change service type to `LoadBalancer` for the `transformer` services configuration files.
 
    ### [Unix Shell](#tab/unix-shell-3)
    
@@ -377,52 +375,52 @@ global:
    "@ | Out-File -FilePath ../transformer/templates/service.yaml
    ```
    
-7. Review the transformer configuration file `application.yml` to ensure the correct schemas are included.
+1. Review the transformer configuration file `application.yml` to ensure the correct schemas are included.
 
    ```bash
    nano ../transformer/application.yml
    ```
 
-8. Review the provider configuration file `koop-config.json`.
+1. Review the provider configuration file `koop-config.json`.
 
    ```bash
    nano ../provider/koop-config.json
    ```
 
-9. Authenticate to the Azure Kubernetes Service (AKS) cluster:
+1. Authenticate to the Azure Kubernetes Service (AKS) cluster:
 
    ```bash
    az aks get-credentials --resource-group $RESOURCE_GROUP --name $AKS_NAME --admin
    ```
 
-10. Create AKS Namespace:
+1. Create AKS Namespace:
 
    ```bash
    kubectl create namespace $NAMESPACE
    ```
 
-11. Deploy HELM dependencies:
+1. Deploy HELM dependencies:
 
    ```bash
    helm dependency build
    ```
 
-12. Create the secret in aks:
+1. Create the secret in AKS:
 
    ```bash
    kubectl create secret generic client-secret -n ignite \
-  --from-literal=clientSecret="$CLIENT_SECRET"
+   --from-literal=clientSecret="$CLIENT_SECRET"
    ```
 
-13. Deploy the GCZ HELM chart:
+1. Deploy the GCZ HELM chart:
 
    ```bash
-  helm upgrade -i "$CHART" . -n ignite \
-  -f osdu_gcz_custom_values.yaml \
-  --set-string global.transformer.configuration.clientSecret="$CLIENT_SECRET_B64"
+   helm upgrade -i "$CHART" . -n ignite \
+   -f osdu_gcz_custom_values.yaml \
+   --set-string global.transformer.configuration.clientSecret="$CLIENT_SECRET_B64"
    ```
 
-14. Verify the deployment:
+1. Verify the deployment:
 
    ```bash
    kubectl get pods -n $NAMESPACE
@@ -430,33 +428,33 @@ global:
 
    Now you should see the pods for the `ignite`, `provider`, `gridgain`, and `transformer` services.
 
-15. Next get note the External IPs for the `provider` and `transformer` services.
+1. Next get note the External IPs for the `provider` and `transformer` services.
 
    ```bash
    kubectl get service -n $NAMESPACE
    ```
    
-16. Test the gcz-provider endpoint by port forwarding
+1. Test the gcz-provider endpoint by port forwarding
 
    ```bash
    kubectl port-forward -n $NAMESPACE service/gcz-provider 8083:8083
    curl "http://localhost:8083/ignite-provider/FeatureServer/layers/info"   
    ```
    
-17. If you encounter issues with the gcz-provider endpoint, try restarting the deployment
+1. If you encounter issues with the gcz-provider endpoint, try restarting the deployment
 
    ```bash
    kubectl rollout restart deployment gcz-provider -n $NAMESPACE
    ```
    
-18. Test the gcz-transformer endpoint by port forwarding
+1. Test the gcz-transformer endpoint by port forwarding
 
    ```bash
    kubectl port-forward -n $NAMESPACE service/gcz-transformer 8080:8080
    curl "http://localhost:8080/gcz/transformer/admin/v3/api-docs"
    ```
    
-19. If you encounter issues with the gcz-transformer endpoint, try restarting the deployment
+1. If you encounter issues with the gcz-transformer endpoint, try restarting the deployment
 
    ```bash
    kubectl rollout restart deployment gcz-transformer -n $NAMESPACE
