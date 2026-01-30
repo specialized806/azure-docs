@@ -22,6 +22,8 @@ zone_pivot_groups: azure-durable-approach
 
 *Eternal orchestrations* are orchestrations that never end. They're useful when you want to use durable orchestrations for aggregators and any scenario that requires an infinite loop.
 
+[!INCLUDE [preview-sample-limitations](./durable-task-scheduler/includes/preview-sample-limitations.md)]
+
 ::: zone-end
 
 ## Orchestration history

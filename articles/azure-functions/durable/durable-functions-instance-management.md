@@ -214,6 +214,8 @@ client.waitForInstanceStart(instanceID, Duration.ofSeconds(30));
 
 ::: zone pivot="durable-task-sdks"
 
+[!INCLUDE [preview-sample-limitations](./durable-task-scheduler/includes/preview-sample-limitations.md)]
+
 The following code shows how to start a new orchestration instance using the Durable Task SDKs:
 
 # [C#](#tab/csharp)
@@ -1619,7 +1621,7 @@ public void rewind(
 
 ::: zone pivot="durable-task-sdks"
 
-The Durable Task .NET SDK supports rewinding failed orchestration instances.
+Currently, only the Durable Task .NET SDK supports rewinding failed orchestration instances.
 
 # [C#](#tab/csharp)
 
@@ -1697,7 +1699,7 @@ public static Task Run(
 
 ::: zone pivot="durable-task-sdks"
 
-The Durable Task .NET SDK supports restarting orchestration instances.
+Currently, only the Durable Task .NET SDK supports restarting orchestration instances.
 
 # [C#](#tab/csharp)
 

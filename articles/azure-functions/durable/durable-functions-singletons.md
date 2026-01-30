@@ -16,6 +16,12 @@ zone_pivot_groups: azure-durable-approach
 
 For background jobs, you often need to ensure that only one instance of a particular orchestrator runs at a time. You can ensure this kind of singleton behavior in [Durable Functions](durable-functions-overview.md) or the [Durable Task SDKs](durable-task-scheduler/quickstart-portable-durable-task-sdks.md) by assigning a specific instance ID to an orchestrator when creating it, and then checking if an instance with that ID is already running before starting a new one.
 
+::: zone pivot="durable-task-sdks"
+
+[!INCLUDE [preview-sample-limitations](./durable-task-scheduler/includes/preview-sample-limitations.md)]
+
+::: zone-end
+
 ## Singleton example
 
 ::: zone pivot="durable-functions"

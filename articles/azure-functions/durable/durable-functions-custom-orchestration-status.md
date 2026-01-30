@@ -22,6 +22,9 @@ In Azure Functions, this status is available via the [HTTP GetStatus API](durabl
 
 ::: zone pivot="durable-task-sdks"
 In Durable Task SDKs, this status is available through orchestration status query APIs on the `DurableTaskClient` (for example, `GetInstanceAsync` in .NET or `getInstanceMetadata` in Java).
+
+[!INCLUDE [preview-sample-limitations](./durable-task-scheduler/includes/preview-sample-limitations.md)]
+
 ::: zone-end
 
 ## Sample use cases

@@ -18,6 +18,8 @@ zone_pivot_groups: azure-durable-approach
 ::: zone pivot="durable-task-sdks"
 Durable Task SDKs provide *durable timers* for use in orchestrations to implement delays or to set up timeouts on async actions. Durable timers should be used in orchestrations instead of "sleep" or "delay" APIs that may be built into the language.
 
+[!INCLUDE [preview-sample-limitations](./durable-task-scheduler/includes/preview-sample-limitations.md)]
+
 ::: zone-end
 
 Durable timers are tasks that are created using the appropriate "create timer" API for the provided language, as shown below, and take either a due time or a duration as an argument.

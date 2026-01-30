@@ -23,6 +23,9 @@ Orchestrations have the ability to wait and listen for external events. This fea
 
 > [!NOTE]
 > External events are one-way asynchronous operations. They are not suitable for situations where the client sending the event needs a synchronous response from the orchestration.
+
+[!INCLUDE [preview-sample-limitations](./durable-task-scheduler/includes/preview-sample-limitations.md)]
+
 ::: zone-end
 
 ## Wait for events
