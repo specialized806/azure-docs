@@ -698,7 +698,9 @@ Internally, the "*raise-event*" API enqueues a message that gets picked up by th
 await client.RaiseEventAsync(instanceId, "Approval", true);
 ```
 
+# [JavaScript](#tab/javascript)
 
+This sample is shown for .NET, Python, and Java.
 
 # [Python](#tab/python)
 
@@ -706,7 +708,9 @@ await client.RaiseEventAsync(instanceId, "Approval", true);
 client.raise_orchestration_event(instance_id, "Approval", data=True)
 ```
 
+# [PowerShell](#tab/powershell)
 
+This sample is shown for .NET, Python, and Java.
 
 # [Java](#tab/java)
 

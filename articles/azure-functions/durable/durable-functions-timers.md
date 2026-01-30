@@ -17,7 +17,6 @@ zone_pivot_groups: azure-durable-approach
 
 ::: zone pivot="durable-task-sdks"
 Durable Task SDKs provide *durable timers* for use in orchestrations to implement delays or to set up timeouts on async actions. Durable timers should be used in orchestrations instead of "sleep" or "delay" APIs that may be built into the language.
-[!INCLUDE [preview-sample-limitations](./includes/preview-sample-limitations.md)]
 
 ::: zone-end
 
@@ -78,7 +77,9 @@ ctx.createTimer(Duration.ofHours(72)).await();
 await context.CreateTimer(TimeSpan.FromHours(72), CancellationToken.None);
 ```
 
+# [JavaScript](#tab/javascript)
 
+This sample is shown for .NET, Python, and Java.
 
 # [Python](#tab/python)
 
@@ -88,7 +89,9 @@ from datetime import timedelta
 yield ctx.create_timer(timedelta(hours=72))
 ```
 
+# [PowerShell](#tab/powershell)
 
+This sample is shown for .NET, Python, and Java.
 
 # [Java](#tab/java)
 
