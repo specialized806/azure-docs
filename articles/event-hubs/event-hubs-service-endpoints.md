@@ -108,7 +108,7 @@ This section shows you how to use Azure portal to add a virtual network service 
 
     > [!NOTE]
     > If you're unable to enable the service endpoint, you can ignore the missing virtual network service endpoint by using the Resource Manager template. This functionality isn't available on the portal.
-1. Specify whether you want to **allow trusted Microsoft services to bypass this firewall**. See [Trusted Microsoft services](#trusted-microsoft-services) for details. 
+1. In the **Exception** section, specify whether you want to **allow trusted Microsoft services to access this resource**. See [Trusted Microsoft services](#trusted-microsoft-services) for details.
 1. Select **Save** on the toolbar to save the settings. Wait a few minutes for the confirmation to appear in the portal notifications.
 
     :::image type="content" source="./media/event-hubs-tutorial-vnet-and-firewalls/save-vnet.png" lightbox="./media/event-hubs-tutorial-vnet-and-firewalls/save-vnet.png" alt-text="Image showing the saving of virtual network.":::
