@@ -106,7 +106,7 @@ The user who accepted the discount proposal automatically gets owner access to t
 <br>
 
 ## Frequently asked questions
-- **How do I verify discount is being applied?** For Azure based discounts, you can verify the discount is appropriately applied by following the instructions outlined in the [Calculate discount in the usage file](../../understand/view-download-azure-daily-usage#calculate-discount-in-the-usage-file) article.
+- **How do I verify discount is being applied?** For Azure based discounts, you can verify the discount is appropriately applied by following the instructions outlined in the [Calculate discount in the usage file](../../understand/download-azure-daily-usage#calculate-discount-in-the-usage-file) article.
 
 - **Does attaching a discount resource to a subscription alter its behavior?** Creating a discount resource object on a subscription doesn't affect how or to what the discount applies. It simply records the discount and provides metadata like start/end dates and discount percentage, etc.
 
@@ -117,7 +117,7 @@ The user who accepted the discount proposal automatically gets owner access to t
 <br>
 
 ## Related content
- - [Calculate discount in the usage file](../../understand/view-download-azure-daily-usage#calculate-discount-in-the-usage-file)
+ - [Calculate discount in the usage file](../../understand/download-azure-daily-usage#calculate-discount-in-the-usage-file)
  - [Understand Cost Management data](../../../cost-management-billing/costs/understand-cost-mgt-data.md)
  - [View and download your organization's Azure pricing](../../../cost-management-billing/manage/ea-pricing.md)
  - [Terms in your Microsoft Customer Agreement price sheet](../../../cost-management-billing/manage/mca-understand-pricesheet.md)
