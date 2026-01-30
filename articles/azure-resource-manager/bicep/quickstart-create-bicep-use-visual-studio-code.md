@@ -2,7 +2,7 @@
 title: 'Quickstart: Create Bicep files with Visual Studio Code'
 description: Learn how to use Visual Studio Code and the Bicep extension to create Bicep files and deploy Azure resources.
 ms.topic: quickstart
-ms.date: 12/22/2025
+ms.date: 01/30/2026
 ms.custom:
   - mode-ui
   - devx-track-bicep
@@ -13,6 +13,8 @@ ms.custom:
 # Quickstart: Create Bicep files with Visual Studio Code
 
 This quickstart guides you how to use Visual Studio Code to create a [Bicep file](overview.md). You create a storage account and a virtual network. You also learn how the Bicep extension provides type safety, syntax validation, and autocompletion to simplify development.
+
+The Bicep MCP (Model Context Protocol) server provides AI agents with tools to help generate high-quality Bicep code. See [Quickstart: Create Bicep files with Visual Code and Bicep MCP Server].
 
 Visual Studio supports a similar authoring experience. See [Quickstart: Create Bicep files with Visual Studio](./quickstart-create-bicep-use-visual-studio.md) for more information.
 

@@ -2,13 +2,13 @@
 title: Create Bicep files with Visual Studio Code
 description: Learn how to use Visual Studio Code to create Bicep files.
 ms.topic: how-to
-ms.date: 01/07/2026
+ms.date: 01/30/2026
 ms.custom: devx-track-bicep
 ---
 
 # Create Bicep files with Visual Studio Code
 
-This article shows you how to use Visual Studio Code to create Bicep files.
+This article shows you how to use Visual Studio Code to create Bicep files. To use Bicep MCP server, see [Use Bicep MCP server in VS Code](./bicep-mcp-server.md).
 
 ## Install Visual Studio Code
 
