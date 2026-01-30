@@ -57,7 +57,7 @@ After you create a session pool, your application can interact with sessions in 
 >
 > Failure to secure access to sessions could result in misuse or unauthorized access to data stored in your users' sessions. For more information, see [Session identifiers](sessions-usage.md#identifiers).
 
-When you interact with sessions in a pool, you use a [session identifier](sessions-usage.md#identifiers) to reference each session. A session identifier is a string that you define that is unique within the session pool. If you're building a web application, you can use the user's ID. If you're building a chatbot, you can use the conversation ID.
+When you interact with sessions in a pool, you use a [session identifier](sessions-usage.md#identifiers) to reference each session. A session identifier is a string that you define that's unique within the session pool. If you're building a web application, you can use the user's ID. If you're building a chatbot, you can use the conversation ID.
 
 If there's a running session with the identifier, the session is reused. If there's no running session with the identifier, a new session is automatically created.
 
