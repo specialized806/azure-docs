@@ -135,7 +135,7 @@ Authorization: Bearer <TOKEN>
 
 The response contains a list of the files in the session.
 
-The following listing shows a sample of the type of response you can expect from requesting session contents.
+The following listing shows a sample of the type of response you can expect when you request session contents.
 
 ```json
 {
