@@ -16,7 +16,7 @@ The Geo-Disaster Recovery feature ensures that the entire configuration of a nam
 
 ## Comparison with Geo-Replication
 
-Azure Service Bus offers two features for geographic resilience: Geo-Replication and [Geo-Disaster Recovery](service-bus-geo-dr.md). The key difference is that Geo-Replication replicates both metadata and data (messages, message states, property changes), while Geo-Disaster Recovery replicates metadata only. For most disaster recovery scenarios, Geo-Replication is the recommended choice. For a detailed comparison, see [High-level feature differences](service-bus-outages-disasters.md#high-level-feature-differences).
+Azure Service Bus offers two features for geographic resilience: Geo-Replication and [Geo-Disaster Recovery](service-bus-geo-dr.md). The key difference is that Geo-Replication replicates both metadata and data (messages, message states, property changes), while Geo-Disaster Recovery replicates metadata only. For most disaster recovery scenarios, Geo-Replication is the recommended choice. For a detailed comparison, see [Reliability in Azure Service Bus - Resilience to region-wide failures](/azure/reliability/reliability-service-bus?toc=/azure/service-bus-messaging/TOC.json#resilience-to-region-wide-failures).
 
 ## Important points to consider
 
