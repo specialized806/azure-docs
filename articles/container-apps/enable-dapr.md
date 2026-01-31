@@ -28,7 +28,7 @@ The following table outlines the currently supported list of Dapr sidecar config
 
 | Container Apps CLI        | Template field            | Description                          |
 | ------------------------- | ------------------------- | ------------------------------------ |
-| `--enable-dapr`           | `dapr.enabled`            | Enables Dapr on the container. app.                                                                                           |
+| `--enable-dapr`           | `dapr.enabled`            | Enables Dapr on the container app.                                                                                           |
 | `--dapr-app-port`         | `dapr.appPort`            | The port your application listens on, which Dapr uses to communicate with your application.                   |
 | `--dapr-app-protocol`     | `dapr.appProtocol`        | Tells Dapr which protocol your application is using. Valid options are `http` or `grpc`. Default setting is `http`.                  |
 | `--dapr-app-id`           | `dapr.appId`              | A unique Dapr identifier for your container app used for service discovery, state encapsulation, and the pub/sub consumer ID. |
@@ -54,7 +54,7 @@ az containerapp dapr enable
 
 For more information and examples, see the [reference documentation][dapr-enable-cli].
 
-## Using Bicep or ARM template
+## Using Bicep or ARM
 
 To use an infrastructure as code (IaC) template, such as Bicep or ARM, specify the following arguments in the `properties.configuration` section of the container app resource definition.
 
