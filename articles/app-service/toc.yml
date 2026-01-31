@@ -29,6 +29,8 @@ items:
         href: configure-language-dotnet-framework.md
       - name: ASP.NET Core
         href: configure-language-dotnetcore.md
+      - name: .NET Aspire
+        href: configure-language-dotnet-aspire.md
     - name: Connect
       items:
       - name: ASP.NET Core with SQL DB
