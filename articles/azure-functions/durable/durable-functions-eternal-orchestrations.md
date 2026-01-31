@@ -96,7 +96,7 @@ One use case for eternal orchestrations is code that needs to do periodic work i
 
 ::: zone pivot="durable-functions"
 
-# [C#](#tab/csharp)
+# [C#](#tab/csharp-sdk)
 
 ```csharp
 [FunctionName("Periodic_Cleanup_Loop")]
@@ -196,7 +196,7 @@ public class PeriodicCleanupLoop : TaskOrchestrator<object?, object?>
 }
 ```
 
-# [Python](#tab/python)
+# [Python](#tab/python-sdk)
 
 ```python
 from datetime import timedelta
@@ -215,7 +215,7 @@ def periodic_cleanup_loop(ctx: task.OrchestrationContext, _):
     ctx.continue_as_new(None)
 ```
 
-# [Java](#tab/java)
+# [Java](#tab/java-sdk)
 
 ```java
 public class PeriodicCleanupLoop implements TaskOrchestration {
@@ -246,7 +246,7 @@ Use the *start-new* or *schedule-new* durable client method to start an eternal 
 > [!NOTE]
 > If you need to ensure a singleton eternal orchestration is running, it's important to maintain the same instance `id` when starting the orchestration. For more information, see [Instance Management](durable-functions-instance-management.md).
 
-# [C#](#tab/csharp)
+# [C#](#tab/csharp-sdk)
 
 ```csharp
 [FunctionName("Trigger_Eternal_Orchestration")]
@@ -335,14 +335,14 @@ await client.ScheduleNewOrchestrationInstanceAsync(
     new StartOrchestrationOptions { InstanceId = instanceId });
 ```
 
-# [Python](#tab/python)
+# [Python](#tab/python-sdk)
 
 ```python
 instance_id = "StaticId"
 client.schedule_new_orchestration(periodic_cleanup_loop, instance_id=instance_id)
 ```
 
-# [Java](#tab/java)
+# [Java](#tab/java-sdk)
 
 ```java
 String instanceId = "StaticId";
@@ -369,19 +369,19 @@ If an orchestration needs to eventually complete, then all you need to do is *no
 
 If an orchestration is in an infinite loop and needs to be stopped, use the *terminate* API on the durable task client to stop it.
 
-# [C#](#tab/csharp)
+# [C#](#tab/csharp-sdk)
 
 ```csharp
 await client.TerminateInstanceAsync(instanceId, "Cleanup no longer needed");
 ```
 
-# [Python](#tab/python)
+# [Python](#tab/python-sdk)
 
 ```python
 client.terminate_orchestration(instance_id, output="Cleanup no longer needed")
 ```
 
-# [Java](#tab/java)
+# [Java](#tab/java-sdk)
 
 ```java
 client.terminate(instanceId, "Cleanup no longer needed");

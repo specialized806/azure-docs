@@ -34,7 +34,7 @@ The parameters for starting a new orchestration instance are as follows:
 
 The following code is an example function that starts a new orchestration instance:
 
-# [C#](#tab/csharp)
+# [C#](#tab/csharp-sdk)
 
 ```csharp
 [FunctionName("HelloWorldQueueTrigger")]
@@ -231,7 +231,7 @@ Console.WriteLine($"Started orchestration with ID = '{instanceId}'.");
 OrchestrationMetadata metadata = await client.WaitForInstanceStartAsync(instanceId, timeout: TimeSpan.FromSeconds(30));
 ```
 
-# [Python](#tab/python)
+# [Python](#tab/python-sdk)
 
 ```python
 from durabletask.azuremanaged.client import DurableTaskSchedulerClient
@@ -244,7 +244,7 @@ print(f"Started orchestration with ID = '{instance_id}'.")
 state = client.wait_for_orchestration_start(instance_id, timeout=30)
 ```
 
-# [Java](#tab/java)
+# [Java](#tab/java-sdk)
 
 ```java
 import com.microsoft.durabletask.DurableTaskClient;
@@ -299,7 +299,7 @@ This method returns `null` (.NET and Java), `undefined` (JavaScript), or `None` 
 
 ::: zone pivot="durable-functions"
 
-# [C#](#tab/csharp)
+# [C#](#tab/csharp-sdk)
 
 ```csharp
 [FunctionName("GetStatus")]
@@ -399,7 +399,7 @@ if (metadata != null)
 }
 ```
 
-# [Python](#tab/python)
+# [Python](#tab/python-sdk)
 
 ```python
 from durabletask.azuremanaged.client import DurableTaskSchedulerClient
@@ -411,7 +411,7 @@ if state is not None:
     # do something based on the current status
 ```
 
-# [Java](#tab/java)
+# [Java](#tab/java-sdk)
 
 ```java
 import com.microsoft.durabletask.DurableTaskClient;
@@ -435,7 +435,7 @@ You can use APIs in your language SDK to query the statuses of all orchestration
 
 ::: zone pivot="durable-functions"
 
-# [C#](#tab/csharp)
+# [C#](#tab/csharp-sdk)
 
 ```csharp
 [FunctionName("GetAllStatus")]
@@ -536,7 +536,7 @@ await foreach (OrchestrationMetadata instance in instances)
 }
 ```
 
-# [Python](#tab/python)
+# [Python](#tab/python-sdk)
 
 ```python
 from durabletask.azuremanaged.client import DurableTaskSchedulerClient
@@ -548,7 +548,7 @@ for instance in instances:
     print(instance.instance_id)
 ```
 
-# [Java](#tab/java)
+# [Java](#tab/java-sdk)
 
 ```java
 import com.microsoft.durabletask.DurableTaskClient;
@@ -574,7 +574,7 @@ What if you don't really need all the information that a standard instance query
 
 ::: zone pivot="durable-functions"
 
-# [C#](#tab/csharp)
+# [C#](#tab/csharp-sdk)
 
 ```csharp
 [FunctionName("QueryStatus")]
@@ -708,7 +708,7 @@ await foreach (OrchestrationMetadata instance in instances)
 }
 ```
 
-# [Python](#tab/python)
+# [Python](#tab/python-sdk)
 
 ```python
 from durabletask.azuremanaged.client import DurableTaskSchedulerClient
@@ -725,7 +725,7 @@ for instance in instances:
     print(f"{instance.instance_id}: {instance.runtime_status}")
 ```
 
-# [Java](#tab/java)
+# [Java](#tab/java-sdk)
 
 ```java
 import com.microsoft.durabletask.DurableTaskClient;
@@ -760,7 +760,7 @@ The two parameters for the terminate API are an *instance ID* and a *reason* str
 
 ::: zone pivot="durable-functions"
 
-# [C#](#tab/csharp)
+# [C#](#tab/csharp-sdk)
 
 ```csharp
 [FunctionName("TerminateInstance")]
@@ -844,7 +844,7 @@ string reason = "Found a bug";
 await client.TerminateInstanceAsync(instanceId, reason);
 ```
 
-# [Python](#tab/python)
+# [Python](#tab/python-sdk)
 
 ```python
 from durabletask.azuremanaged.client import DurableTaskSchedulerClient
@@ -853,7 +853,7 @@ reason = "Found a bug"
 client.terminate_orchestration(instance_id, reason=reason)
 ```
 
-# [Java](#tab/java)
+# [Java](#tab/java-sdk)
 
 ```java
 import com.microsoft.durabletask.DurableTaskClient;
@@ -879,7 +879,7 @@ The two parameters for the suspend API are an instance ID and a reason string, w
 
 ::: zone pivot="durable-functions"
 
-# [C#](#tab/csharp)
+# [C#](#tab/csharp-sdk)
 
 ```csharp
 [FunctionName("SuspendResumeInstance")]
@@ -993,7 +993,7 @@ string resumeReason = "Continue workflow";
 await client.ResumeInstanceAsync(instanceId, resumeReason);
 ```
 
-# [Python](#tab/python)
+# [Python](#tab/python-sdk)
 
 ```python
 from durabletask.azuremanaged.client import DurableTaskSchedulerClient
@@ -1007,7 +1007,7 @@ resume_reason = "Continue workflow"
 client.resume_orchestration(instance_id, reason=resume_reason)
 ```
 
-# [Java](#tab/java)
+# [Java](#tab/java-sdk)
 
 ```java
 import com.microsoft.durabletask.DurableTaskClient;
@@ -1043,7 +1043,7 @@ The parameters for *raise event* are as follows:
 
 ::: zone pivot="durable-functions"
 
-# [C#](#tab/csharp)
+# [C#](#tab/csharp-sdk)
 
 ```csharp
 [FunctionName("RaiseEvent")]
@@ -1129,7 +1129,7 @@ int[] eventData = new int[] { 1, 2, 3 };
 await client.RaiseEventAsync(instanceId, "MyEvent", eventData);
 ```
 
-# [Python](#tab/python)
+# [Python](#tab/python-sdk)
 
 ```python
 from durabletask.azuremanaged.client import DurableTaskSchedulerClient
@@ -1138,7 +1138,7 @@ event_data = [1, 2, 3]
 client.raise_orchestration_event(instance_id, "MyEvent", event_data)
 ```
 
-# [Java](#tab/java)
+# [Java](#tab/java-sdk)
 
 ```java
 import com.microsoft.durabletask.DurableTaskClient;
@@ -1164,7 +1164,7 @@ Here is an example HTTP-trigger function that demonstrates how to use this API:
 
 ::: zone pivot="durable-functions"
 
-# [C#](#tab/csharp)
+# [C#](#tab/csharp-sdk)
 
 [!code-csharp[Main](~/samples-durable-functions/samples/precompiled/HttpSyncStart.cs)]
 
@@ -1271,7 +1271,7 @@ if (metadata.RuntimeStatus == OrchestrationRuntimeStatus.Completed)
 }
 ```
 
-# [Python](#tab/python)
+# [Python](#tab/python-sdk)
 
 ```python
 from durabletask.azuremanaged.client import DurableTaskSchedulerClient
@@ -1286,7 +1286,7 @@ if state.runtime_status == 'COMPLETED':
     print(f"Output: {state.serialized_output}")
 ```
 
-# [Java](#tab/java)
+# [Java](#tab/java-sdk)
 
 ```java
 import com.microsoft.durabletask.DurableTaskClient;
@@ -1381,7 +1381,7 @@ The methods return an object with the following string properties:
 
 Functions can send instances of these objects to external systems to monitor or raise events on the corresponding orchestrations, as shown in the following examples:
 
-# [C#](#tab/csharp)
+# [C#](#tab/csharp-sdk)
 
 ```csharp
 [FunctionName("SendInstanceInfo")]
@@ -1757,7 +1757,7 @@ PurgeResult result = await client.PurgeInstanceAsync(instanceId);
 Console.WriteLine($"Purged {result.PurgedInstanceCount} instance(s).");
 ```
 
-# [Python](#tab/python)
+# [Python](#tab/python-sdk)
 
 ```python
 from durabletask.azuremanaged.client import DurableTaskSchedulerClient
@@ -1767,7 +1767,7 @@ result = client.purge_orchestration(instance_id)
 print(f"Purged {result.deleted_instance_count} instance(s).")
 ```
 
-# [Java](#tab/java)
+# [Java](#tab/java-sdk)
 
 ```java
 import com.microsoft.durabletask.DurableTaskClient;
@@ -1786,7 +1786,7 @@ The next example shows a timer-triggered function that purges the history for al
 
 ::: zone pivot="durable-functions"
 
-# [C#](#tab/csharp)
+# [C#](#tab/csharp-sdk)
 
 ```csharp
 [FunctionName("PurgeInstanceHistory")]
@@ -1909,7 +1909,7 @@ PurgeResult result = await client.PurgeAllInstancesAsync(filter);
 Console.WriteLine($"Purged {result.PurgedInstanceCount} instance(s).");
 ```
 
-# [Python](#tab/python)
+# [Python](#tab/python-sdk)
 
 ```python
 from durabletask.azuremanaged.client import DurableTaskSchedulerClient
@@ -1924,7 +1924,7 @@ result = client.purge_orchestrations(
 print(f"Purged {result.deleted_instance_count} instance(s).")
 ```
 
-# [Java](#tab/java)
+# [Java](#tab/java-sdk)
 
 ```java
 import com.microsoft.durabletask.DurableTaskClient;

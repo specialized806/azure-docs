@@ -26,7 +26,7 @@ Durable timers are tasks that are created using the appropriate "create timer" A
 
 ::: zone pivot="durable-functions"
 
-# [C#](#tab/csharp)
+# [C#](#tab/csharp-sdk)
 
 ```csharp
 // Put the orchestrator to sleep for 72 hours
@@ -232,7 +232,7 @@ public class BillingIssuer : TaskOrchestrator<object?, string>
 }
 ```
 
-# [Python](#tab/python)
+# [Python](#tab/python-sdk)
 
 ```python
 from datetime import timedelta
@@ -249,7 +249,7 @@ def billing_issuer(ctx: task.OrchestrationContext, _):
     return "done"
 ```
 
-# [Java](#tab/java)
+# [Java](#tab/java-sdk)
 
 ```java
 public class BillingIssuer implements TaskOrchestration {
@@ -284,7 +284,7 @@ This example illustrates how to use durable timers to implement timeouts.
 
 ::: zone pivot="durable-functions"
 
-# [C#](#tab/csharp)
+# [C#](#tab/csharp-sdk)
 
 ```csharp
 [FunctionName("TryGetQuote")]
@@ -440,7 +440,7 @@ public class TryGetQuote : TaskOrchestrator<object?, bool>
 }
 ```
 
-# [Python](#tab/python)
+# [Python](#tab/python-sdk)
 
 ```python
 from datetime import timedelta
@@ -463,7 +463,7 @@ def try_get_quote(ctx: task.OrchestrationContext, _):
         return False
 ```
 
-# [Java](#tab/java)
+# [Java](#tab/java-sdk)
 
 ```java
 public class TryGetQuote implements TaskOrchestration {

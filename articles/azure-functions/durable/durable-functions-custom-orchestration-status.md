@@ -34,7 +34,7 @@ In Durable Task SDKs, this status is available through orchestration status quer
 ::: zone pivot="durable-functions"
 Clients can poll the status endpoint and display a progress UI that visualizes the current execution stage. The following sample demonstrates progress sharing:
 
-# [C#](#tab/csharp)
+# [C#](#tab/csharp-sdk)
 
 > [!NOTE]
 > These examples are written for Durable Functions 2.x and aren't compatible with Durable Functions 1.x. For more information about the differences between versions, see the [Durable Functions versions](durable-functions-versions.md) article.
@@ -203,7 +203,7 @@ public class HelloCities : TaskOrchestrator<object?, string>
 }
 ```
 
-# [Python](#tab/python)
+# [Python](#tab/python-sdk)
 
 ```python
 from durabletask import task
@@ -226,7 +226,7 @@ def hello_cities(ctx: task.OrchestrationContext, _):
     return result
 ```
 
-# [Java](#tab/java)
+# [Java](#tab/java-sdk)
 
 ```java
 import com.microsoft.durabletask.TaskOrchestration;
@@ -255,7 +255,7 @@ public class HelloCities implements TaskOrchestration {
 
 The client can poll orchestration metadata and wait until the `CustomStatus` field is set to `"London"`:
 
-# [C#](#tab/csharp)
+# [C#](#tab/csharp-sdk)
 
 ```csharp
 using System.Threading.Tasks;
@@ -271,7 +271,7 @@ while (metadata.SerializedCustomStatus is null || metadata.ReadCustomStatusAs<st
 }
 ```
 
-# [Python](#tab/python)
+# [Python](#tab/python-sdk)
 
 ```python
 import time
@@ -286,7 +286,7 @@ while state.serialized_custom_status is None or state.serialized_custom_status !
     state = client.get_orchestration_state(instance_id, fetch_payloads=True)
 ```
 
-# [Java](#tab/java)
+# [Java](#tab/java-sdk)
 
 ```java
 String instanceId = client.scheduleNewOrchestrationInstance("HelloCities");
@@ -305,7 +305,7 @@ while (!"London".equals(metadata.readCustomStatusAs(String.class))) {
 ::: zone pivot="durable-functions"
 And then the client will receive the output of the orchestration only when `CustomStatus` field is set to "London":
 
-# [C#](#tab/csharp)
+# [C#](#tab/csharp-sdk)
 
 ```csharp
 [FunctionName("HttpStart")]
@@ -662,7 +662,7 @@ public class CityRecommender : TaskOrchestrator<int, object?>
 }
 ```
 
-# [Python](#tab/python)
+# [Python](#tab/python-sdk)
 
 ```python
 from durabletask import task
@@ -687,7 +687,7 @@ def city_recommender(ctx: task.OrchestrationContext, user_choice: int):
     # Wait for user selection and refine the recommendation
 ```
 
-# [Java](#tab/java)
+# [Java](#tab/java-sdk)
 
 ```java
 import com.microsoft.durabletask.TaskOrchestration;
@@ -741,7 +741,7 @@ Your orchestrator can provide unique instructions to clients through the custom 
 
 ::: zone pivot="durable-functions"
 
-# [C#](#tab/csharp)
+# [C#](#tab/csharp-sdk)
 
 ```csharp
 [FunctionName("ReserveTicket")]
@@ -914,7 +914,7 @@ public class ReserveTicket : TaskOrchestrator<string, bool>
 }
 ```
 
-# [Python](#tab/python)
+# [Python](#tab/python-sdk)
 
 ```python
 from durabletask import task
@@ -941,7 +941,7 @@ def reserve_ticket(ctx: task.OrchestrationContext, user_id: str):
     return is_booking_confirmed
 ```
 
-# [Java](#tab/java)
+# [Java](#tab/java-sdk)
 
 ```java
 import com.microsoft.durabletask.TaskOrchestration;
@@ -988,7 +988,7 @@ class DiscountInfo {
 ::: zone pivot="durable-functions"
 The following example shows how custom status values can be queried using the built-in HTTP APIs.
 
-# [C#](#tab/csharp)
+# [C#](#tab/csharp-sdk)
 
 ```csharp
 public static async Task SetStatusTest([OrchestrationTrigger] IDurableOrchestrationContext context)
@@ -1118,7 +1118,7 @@ public class MyCustomStatusOrchestrator : TaskOrchestrator<object?, object?>
 }
 ```
 
-# [Python](#tab/python)
+# [Python](#tab/python-sdk)
 
 ```python
 from durabletask import task
@@ -1127,7 +1127,7 @@ def my_custom_status_orchestrator(ctx: task.OrchestrationContext, _):
     ctx.set_custom_status({"nextActions": ["A", "B", "C"], "foo": 2})
 ```
 
-# [Java](#tab/java)
+# [Java](#tab/java-sdk)
 
 ```java
 import com.microsoft.durabletask.TaskOrchestration;
@@ -1155,7 +1155,7 @@ class CustomStatusPayload {
 
 Query the custom status from a client:
 
-# [C#](#tab/csharp)
+# [C#](#tab/csharp-sdk)
 
 ```csharp
 using Microsoft.DurableTask.Client;
@@ -1164,7 +1164,7 @@ OrchestrationMetadata? metadata = await client.GetInstanceAsync(instanceId, getI
 string? customStatusJson = metadata?.SerializedCustomStatus;
 ```
 
-# [Python](#tab/python)
+# [Python](#tab/python-sdk)
 
 ```python
 from durabletask.azuremanaged.client import DurableTaskSchedulerClient
@@ -1174,7 +1174,7 @@ state = client.get_orchestration_state(instance_id, fetch_payloads=True)
 custom_status_json = state.serialized_custom_status
 ```
 
-# [Java](#tab/java)
+# [Java](#tab/java-sdk)
 
 ```java
 OrchestrationMetadata metadata = client.getInstanceMetadata(instanceId, true);
