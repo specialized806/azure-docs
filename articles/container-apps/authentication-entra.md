@@ -24,12 +24,14 @@ Container Apps authentication can automatically create an app registration with 
 This option is designed to make enabling authentication simple and requires just a few steps.
 
 1. Sign in to the [Azure portal] and go to your app.
-1. Select **Authentication** in the left pane. Select **Add identity provider**.
+1. Select **Security** > **Authentication** in the left pane. Select **Add identity provider**.
 1. Select **Microsoft** in the identity provider list. The option to create a new registration is selected by default. You can change the name of the registration or the supported account types.
 
     A client secret is created and stored as a [secret](manage-secrets.md) in the container app.
 
-1. If you're configuring the first identity provider for this application, you see a **Container Apps authentication settings** section. Otherwise, you move on to the next step.
+1. In the **Client secret expiration** list, select an expiration date.
+
+1. If you're configuring the first identity provider for this application, you see a **Container App authentication settings** section. Otherwise, you move on to the next step.
 
     These options determine how your application responds to unauthenticated requests. The default selections redirect all requests to sign in with this new provider. You can customize this behavior now or adjust these settings later on the main **Authentication** pane by selecting **Edit** next to **Authentication settings**. To learn more about these options, see [Authentication flow](authentication.md#authentication-flow).
 
@@ -58,29 +60,29 @@ To register the app, perform the following steps:
 1. Select **Home** to return to the portal's home page. Search for and select **Microsoft Entra ID**.
 1. In the **Overview** pane, select **Add**, and then select **App registration**.
     1. In the **Register an application** pane, enter a **Name** for your app registration.
-    1. In **Redirect URI**, select **Web**, and then enter the following. Replace `\<APP_URL\>` with the application URL that you noted previously.
+    1. In the **Redirect URI** section, select **Web**, and then enter the following. Replace `\<APP_URL\>` with the application URL that you noted previously.
 
-        `<APP_URL>/.auth/login/aad/callback`
+        **<APP_URL>/.auth/login/aad/callback**
     
         For example: `https://<CONTAINER_APP_NAME>.<ENVIRONMENT_UNIQUE_ID>.<REGION_NAME>.azurecontainerapps.io/.auth/login/aad/callback`
 
     1. In **Implicit grant and hybrid flows**, enable **ID tokens** to allow OpenID Connect user sign-ins from Container Apps.
     1. Select **Register**.
-1. Browse to the new app registration.
+1. Go to the new app registration.
     1. In the **Overview** pane, copy the **Application (client) ID** and the **Directory (tenant) ID** for later.
     1. (Optional) If you didn't already add the redirect URI to the app registration, you can do so now.
-        1. In **Managed**, select **Authentication**.
-        1. In the **Authentication** pane, in **Platform configurations**, select **Add a platform**.
-        1. In **Configure platforms**, select **Web**.
-        1. In **Configure Web**, in **Redirect URIs**, enter the following. Replace `\<APP_URL\>` with the application URL that you noted previously.
+        1. Under **Manage** in the left pane, select **Authentication (Preview)**.
+        1. In the **Authentication (Preview)** pane, select **Add Redirect URI**.
+        1. In the **Select a platform to add redirect URI** pane, select **Web**.
+        1. In the **Add Redirect URI** pane, in the **Redirect URI** box, enter the following. Replace `\<APP_URL\>` with the application URL that you noted previously.
 
-            `<APP_URL>/.auth/login/aad/callback`
+            **<APP_URL>/.auth/login/aad/callback**
     
             For example: `https://<CONTAINER_APP_NAME>.<HOSTNAME>.<LOCATION>.azurecontainerapps.io/.auth/login/aad/callback`
 
         1. Select **Configure**.
-    1. (Optional) In **Manage**, select **Branding & properties**. In **Home page URL**, enter the URL of your container app, and then select **Save**.
-    1. In **Manage**, select **Expose an API**.
+    1. (Optional) Under **Manage** in the left pane, select **Branding & properties**. In the **Home page URL** box, enter the URL of your container app, and then select **Save**.
+    1. Under **Manage** in the left pane, select **Expose an API**.
         1. Select **Add** next to **Application ID URI**.
 
             The **Application ID URI** uniquely identifies your application when it's used as a resource. It allows requested tokens to grant access. The value is also used as a prefix for scopes you create.
@@ -90,22 +92,22 @@ To register the app, perform the following steps:
             The value is automatically saved.
 
         1. Select **Add a scope**.
-        1. In **Add a scope**, the **Application ID URI** is the value you set in a previous step.
+        1. In the **Add a scope** pane, the **Application ID URI** is the value you set in a previous step.
         1. Select **Save and continue**.
-        1. In **Scope name**, enter **user_impersonation**.
+        1. In the **Scope name** box, enter **user_impersonation**.
         1. Enter the **Admin consent display name** and **Admin consent description** that you want admins to see on the consent page. An example consent display name is *Access &lt;application-name&gt;*.
         1. Select **Add scope**.
-    1. In **Manage**, select **Certificates & secrets**.
+    1. Under **Manage** in the left pane, select **Certificates & secrets**.
         1. In the **Certificates & secrets** pane, select **Client secrets**.
         1. Select **New client secret**.
-        1. Enter a **Description**, and select when the secret **Expires**.
+        1. Enter a **Description**, and then, in **Expires**, select an expriration date.
         1. Select **Add**.
         1. Copy the client secret value shown on the page. The site won't show it to you again.
 
 ### <a name="entra-id-secrets"> </a>Enable Microsoft Entra ID in your container app
 
 1. Sign in to the [Azure portal] and go to your app.
-1. Select **Authentication** in the left pane. Select **Add identity provider**.
+1. In the left pane, under **Security**, select **Authentication**. Select **Add provider**.
 1. Select **Microsoft** in the identity provider list.
 1. For **App registration type**, you can select **Pick an existing app registration in this directory**, which automatically gathers the necessary app information. If your registration is from another tenant or you don't have permission to view the registration object, select **Provide the details of an existing app registration**. For this option, you need to provide the following configuration details:
 
@@ -115,9 +117,9 @@ To register the app, perform the following steps:
     |Setting|Description|
     |-|-|
     |**Application (client) ID**| Use the **Application (client) ID** of the app registration. |
-    |**Client Secret**| Use the client secret you generated in the app registration. Client secrets use hybrid flow, and the app returns access and refresh tokens. When the client secret isn't set, implicit flow is used and only an ID token is returned. The provider sends the tokens, and they're stored in the EasyAuth token store. |
-    |**Issuer Url**| Use `<AUTHENTICATION-ENDPOINT>/<TENANT-ID>/v2.0`. Replace *\<AUTHENTICATION-ENDPOINT>* with the [authentication endpoint for your cloud environment](../active-directory/develop/authentication-national-cloud.md#azure-ad-authentication-endpoints) (for example, "https://login.microsoftonline.com" for global Azure). Replace *\<TENANT-ID>* with the **Directory (tenant) ID** in which the app registration was created. This value is used to redirect users to the correct Microsoft Entra tenant, and to download the metadata to determine the appropriate token signing keys and token issuer claim value, for example. For applications that use Azure Active Directory v1, omit `/v2.0` in the URL.|
-    |**Allowed Token Audiences**| The configured **Application (client) ID** is *always* implicitly considered to be an allowed audience. If this value refers to a cloud or server app and you want to accept authentication tokens from a client container app (the authentication token can be retrieved in the `X-MS-TOKEN-AAD-ID-TOKEN` header), add the **Application (client) ID** of the client app here. |
+    |**Client secret**| Use the client secret you generated in the app registration. Client secrets use hybrid flow, and the app returns access and refresh tokens. When the client secret isn't set, implicit flow is used and only an ID token is returned. The provider sends the tokens, and they're stored in the EasyAuth token store. |
+    |**Issuer URL**| Use `<AUTHENTICATION-ENDPOINT>/<TENANT-ID>/v2.0`. Replace *\<AUTHENTICATION-ENDPOINT>* with the [authentication endpoint for your cloud environment](../active-directory/develop/authentication-national-cloud.md#azure-ad-authentication-endpoints) (for example, "https://login.microsoftonline.com" for global Azure). Replace *\<TENANT-ID>* with the **Directory (tenant) ID** in which the app registration was created. This value is used to redirect users to the correct Microsoft Entra tenant, and to download the metadata to determine the appropriate token signing keys and token issuer claim value, for example. For applications that use Azure Active Directory v1, omit `/v2.0` in the URL.|
+    |**Allowed token audiences**| The configured **Application (client) ID** is *always* implicitly considered to be an allowed audience. If this value refers to a cloud or server app and you want to accept authentication tokens from a client container app (the authentication token can be retrieved in the `X-MS-TOKEN-AAD-ID-TOKEN` header), add the **Application (client) ID** of the client app here. |
 
     The client secret is stored as [secrets](manage-secrets.md) in your container app.
 
