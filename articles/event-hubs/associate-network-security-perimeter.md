@@ -22,7 +22,7 @@ You can associate a network security perimeter (NSP) with an Azure Event Hubs na
 Before you begin, ensure you have the following prerequisites in place:
 
 - An existing Azure Event Hubs namespace.
-- An existing network security perimeter (NSP) in your Azure subscription. If you don't have one, [create a network security perimeter](/private-link/create-network-security-perimeter-portal) first.
+- An existing network security perimeter (NSP) in your Azure subscription. If you don't have one, [create a network security perimeter](/azure/private-link/create-network-security-perimeter-portal) first.
 - A profile configured within the NSP to associate with your Event Hubs namespace.
 - The **Contributor** role or higher on the Event Hubs namespace.
 - The **Network Security Perimeter Contributor** role or higher on the NSP.
@@ -122,5 +122,5 @@ If you encounter issues after associating an NSP with your Event Hubs namespace:
 ## Related content
 
 - [Network security perimeter for Azure Event Hubs](network-security-perimeter.md)
-- [Azure network security perimeter concepts](/private-link/network-security-perimeter-concepts)
-- [Create a network security perimeter](/private-link/create-network-security-perimeter-portal)
+- [Azure network security perimeter concepts](/azure/private-link/network-security-perimeter-concepts)
+- [Create a network security perimeter](/azure/private-link/create-network-security-perimeter-portal)
