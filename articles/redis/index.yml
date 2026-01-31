@@ -40,8 +40,8 @@ landingContent:
         links:
           - text: Code a .NET app
             url: dotnet.md
-          - text: Code an ASP.NET web app
-            url: web-app-cache-howto.md
+          - text: Code an ASP.NET app
+            url: aspnet.md
           - text: Code a Java app
             url: java-get-started.md
           - text: Code a Node.js app

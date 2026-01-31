@@ -27,13 +27,13 @@ Each client library maintains its own reference documentation. The libraries als
 
 The following recommendations are based on popularity and whether there's an active online community to support and answer your questions. We only recommend using the latest available version, and upgrading regularly as new versions become available. These libraries are under active development and often release new versions with improvements to reliability and performance.
 
-| **Client library**        | **Language** | **GitHub** **repo**                                                 | **Documentation**                                                                    |
-|---------------------------|--------------|---------------------------------------------------------------------|--------------------------------------------------------------------------------------|
-| StackExchange.Redis       | C#/.NET      | [StackExchange.Redis GitHub](https://github.com/StackExchange/StackExchange.Redis)        | [StackExchange.Redis docs](https://stackexchange.github.io/StackExchange.Redis/)        |
-| Lettuce                   | Java         | [Lettuce GitHub](https://github.com/lettuce-io/)                              | [Lettuce documentation](https://lettuce.io/)                                         |
-| Jedis                     | Java         | [Jedis GitHub](https://github.com/redis/jedis)                              | [Jedis documentation](https://github.com/redis/jedis#readme)                                                                                      |
-| node_redis                | Node.js      | [node_redis GitHub](https://github.com/redis/node-redis)                         | [node_redis documentation](https://github.com/redis/node-redis#readme)                                                                                      |
-| ioredis                   | Node.js      | [ioredis GitHub](https://github.com/luin/ioredis)                             | [ioredis API reference](https://ioredis.readthedocs.io/en/stable/API/)               |
+| **Client library**  | **Language** | **GitHub** **repo**                                                                | **Documentation**                                                                |
+|---------------------|--------------|------------------------------------------------------------------------------------|----------------------------------------------------------------------------------|
+| StackExchange.Redis | C#/.NET      | [StackExchange.Redis GitHub](https://github.com/StackExchange/StackExchange.Redis) | [StackExchange.Redis docs](https://stackexchange.github.io/StackExchange.Redis/) |
+| Lettuce             | Java         | [Lettuce GitHub](https://github.com/lettuce-io/)                                   | [Lettuce documentation](https://lettuce.io/)                                     |
+| Jedis               | Java         | [Jedis GitHub](https://github.com/redis/jedis)                                     | [Jedis documentation](https://github.com/redis/jedis#readme)                     |
+| node_redis          | Node.js      | [node_redis GitHub](https://github.com/redis/node-redis)                           | [node_redis documentation](https://github.com/redis/node-redis#readme)           |
+| ioredis             | Node.js      | [ioredis GitHub](https://github.com/luin/ioredis)                                  | [ioredis API reference](https://ioredis.readthedocs.io/en/stable/API/)           |
 
 > [!NOTE]
 > Your application can use any client library that's compatible with open-source Redis to connect to your Azure Managed Redis instance.
@@ -86,7 +86,7 @@ Besides the reference documentation, you can find tutorials showing how to get s
 For more information on using some of these client libraries in tutorials, see the following articles:
 
 - [Code a .NET app](dotnet.md)
-- [Code an ASP.NET web app](web-app-cache-howto.md)
+- [Code an ASP.NET web app](aspnet.md)
 - [Code a Java app](java-get-started.md)
 - [Code a Node.js app](nodejs-get-started.md)
 - [Code a Python app](python-get-started.md)
