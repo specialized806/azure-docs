@@ -2,12 +2,9 @@
 title: "Quickstart: Deploy a .NET Aspire app"
 description: Learn how to deploy your first .NET Aspire app to Azure App Service using GitHub Codespaces and Azure Developer CLI.
 ms.topic: quickstart
-ms.date: 01/20/2026
-ms.update-cycle: 180-days
+ms.date: 01/31/2026
 author: cephalin
 ms.author: cephalin
-ai-usage: ai-assisted
-ms.collection: ce-skilling-ai-copilot
 #customer intent: As a .NET developer, I want to quickly deploy a .NET Aspire app to Azure App Service using a browser-based development environment.
 ms.service: azure-app-service
 ms.custom:
@@ -125,7 +122,7 @@ Configure your Aspire app to deploy to Azure App Service.
    - Creates a new resource group
    - Creates an Azure App Service Plan
    - Creates an Azure Container Registry
-   - Creatse two App Service web apps (one for the API, one for the frontend)
+   - Creates two App Service web apps (one for the API, one for the frontend)
    - Creates a managed Aspire Dashboard resource
    - Builds and containerizes your applications
    - Pushes the containers to Azure Container Registry
@@ -223,23 +220,17 @@ You can customize your App Service deployment by modifying the AppHost.cs config
 - **Configure infrastructure**: Modify networking, authentication, and other Azure resources
 - **Use existing resources**: Connect to existing App Service Plans or other Azure resources
 
-For more information, see:
-
-- [Azure App Service integration documentation](https://aspire.dev/integrations/cloud/azure/azure-app-service/)
-- [Azure App Service enhancements in .NET Aspire](https://github.com/dotnet/aspire/blob/davidfowl/whats-new/tools/ReleaseNotes/data/whats-new-13.md#azure-app-service-enhancements)
+For more information, see [Configure a .NET Aspire app for Azure App Service](configure-language-dotnet-aspire.md).
 
 ## Next steps
 
 You successfully deployed a .NET Aspire app to Azure App Service! Here are some next steps to explore:
 
 > [!div class="nextstepaction"]
-> [.NET Aspire documentation](/dotnet/aspire/)
+> [Configure a .NET Aspire app for Azure App Service](configure-language-dotnet-aspire.md)
 
 > [!div class="nextstepaction"]
 > [Azure App Service documentation](overview.md)
-
-> [!div class="nextstepaction"]
-> [Add Azure services to your Aspire app](/dotnet/aspire/fundamentals/integrations-overview)
 
 ### Explore Azure App Service features
 
