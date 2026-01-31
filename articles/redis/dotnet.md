@@ -6,6 +6,7 @@ ms.topic: quickstart
 ms.devlang: csharp
 appliesto:
     - ✅ Azure Managed Redis
+ai-usage: ai-assisted
 # Customer intent: As a .NET developer, new to Azure Managed Redis, I want to create a new dotnet app that uses Azure Managed Redis.
 ---
 

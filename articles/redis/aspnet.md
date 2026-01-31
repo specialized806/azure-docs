@@ -7,6 +7,7 @@ ms.devlang: csharp
 zone_pivot_groups: redis-type
 appliesto:
   - ✅ Azure Managed Redis
+ai-usage: ai-assisted
 # Customer intent: As an ASP.NET developer, new to Azure Managed Redis, I want to create a new .NET app that uses Azure Managed Redis.
 ---
 
