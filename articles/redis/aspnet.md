@@ -1,20 +1,18 @@
 ---
 title: Create an ASP.NET web app with an Azure Managed Redis cache
-description: In this quickstart, you learn how to create an ASP.NET Core web app with an Azure Redis cache.
+description: In this quickstart, you learn how to create an ASP.NET Core web app with an Azure Managed Redis cache.
 ms.date: 01/30/2026
 ms.topic: quickstart
 ms.devlang: csharp
 zone_pivot_groups: redis-type
 appliesto:
-  - ✅ Azure Cache for Redis
-# Customer intent: As an ASP.NET developer, new to Azure Redis, I want to create a new Node.js app that uses Azure Managed Redis or Azure Cache for Redis.
+  - ✅ Azure Managed Redis
+# Customer intent: As an ASP.NET developer, new to Azure Managed Redis, I want to create a new .NET app that uses Azure Managed Redis.
 ---
 
 # Azure Managed Redis sample - ASP.NET Core Web API
 
 This sample shows how to connect an ASP.NET Core Web API to Azure Managed Redis by using Microsoft Entra ID authentication  with the `DefaultAzureCredential` flow. The application avoids traditional connection string-based authentication in favor of token-based, Microsoft Entra ID access, which aligns with modern security best practices.
-
-## Overview
 
 The application is a minimal ASP.NET Core 8.0 Web API that:
 
@@ -22,11 +20,15 @@ The application is a minimal ASP.NET Core 8.0 Web API that:
 1. Exposes a simple REST endpoint that reads and writes data to the cache.
 1. Demonstrates proper Redis connection lifecycle management by using dependency injection.
 
+## Skip to the code on GitHub
+
+Clone the [Microsoft.Azure.StackExchangeRedis](https://github.com/Azure/Microsoft.Azure.StackExchangeRedis/tree/main/sample.aspnet) repo on GitHub.
+
 ## Prerequisites
 
 - [.NET 8.0 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
 - An **Azure Managed Redis** instance provisioned in your Azure subscription
-- Your Azure user or service principal must have the appropriate **Data Access Policy** assigned on the Redis resource, such as `Data Owner`, `Data Contributor`, or a custom policy with read and write permissions
+- Your Azure user or service principal must be added as a Redis user on the cache. In the Azure portal, go to **Authentication** on the Resource menu, select **User or service principal**, and add your identity.
 - [Azure CLI](https://docs.microsoft.com/cli/azure/install-azure-cli) for local development authentication
 
 ## Required NuGet Packages
@@ -77,9 +79,9 @@ The `DefaultAzureCredential` automatically picks up your Azure CLI credentials a
 
 In Azure-hosted environments such as App Service, Container Apps, and AKS, `DefaultAzureCredential` uses:
 
-- **Managed Identity** (system-assigned or user-assigned)
-- **Workload Identity** (for Kubernetes scenarios)
-- **Environment variables** (for service principal authentication)
+- **Managed Identity** - system-assigned or user-assigned
+- **Workload Identity** - for Kubernetes scenarios
+- **Environment variables** - for service principal authentication
 
 You don't need to change your code. The same `DefaultAzureCredential` seamlessly adapts to the environment.
 
@@ -186,12 +188,10 @@ info: Microsoft.Azure.StackExchangeRedis.Sample.AspNet.Controllers.SampleControl
 | Issue | Resolution |
 | ------- | ------------ |
 | `No connection is available` | Verify the endpoint format and port (`10000`). Make sure the Redis instance is provisioned and accessible. |
-| `AuthenticationFailedException` | Run `az login` to refresh credentials. Verify your identity has the required Data Access Policy on the Redis resource. |
-| `Unauthorized` | Ensure your Microsoft Entra ID identity is assigned to a data access role on the Azure Managed Redis instance. |
+| `AuthenticationFailedException` | Run `az login` to refresh credentials. Verify your identity is added as a Redis user under **Authentication** on the Resource menu. |
+| `Unauthorized` | Ensure your Microsoft Entra ID identity is added as a Redis user on the Azure Managed Redis instance. For more information, see [Use Microsoft Entra ID for cache authentication](entra-for-authentication.md). |
 
 ## Related content
 
-- [Azure Managed Redis documentation](https://learn.microsoft.com/azure/azure-cache-for-redis/)
-- [Microsoft Entra ID authentication for Azure Cache for Redis](https://learn.microsoft.com/azure/azure-cache-for-redis/cache-azure-active-directory-for-authentication)
+- [Microsoft Entra ID authentication for Azure Managed Redis](entra-for-authentication.md)
 - [DefaultAzureCredential overview](https://learn.microsoft.com/dotnet/azure/sdk/authentication#defaultazurecredential)
-- [StackExchange.Redis documentation](https://stackexchange.github.io/StackExchange.Redis/)
