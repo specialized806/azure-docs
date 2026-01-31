@@ -30,7 +30,7 @@ Clone the [Microsoft.Azure.StackExchangeRedis](https://github.com/Azure/Microsof
 - [.NET 8.0 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
 - An **Azure Managed Redis** instance provisioned in your Azure subscription
 - Your Azure user or service principal must be added as a Redis user on the cache. In the Azure portal, go to **Authentication** on the Resource menu, select **User or service principal**, and add your identity.
-- [Azure CLI](https://docs.microsoft.com/cli/azure/install-azure-cli) for local development authentication
+- [Azure CLI](/azure/install-azure-cli) for local development authentication
 
 ## Required NuGet Packages
 
@@ -195,4 +195,4 @@ info: Microsoft.Azure.StackExchangeRedis.Sample.AspNet.Controllers.SampleControl
 ## Related content
 
 - [Microsoft Entra ID authentication for Azure Managed Redis](entra-for-authentication.md)
-- [DefaultAzureCredential overview](https://learn.microsoft.com/dotnet/azure/sdk/authentication#defaultazurecredential)
+- [DefaultAzureCredential overview](/dotnet/azure/sdk/authentication)
