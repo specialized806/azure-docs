@@ -24,7 +24,7 @@ Note that this does not impact the standard CNAME DCV workflow (where DigiCert v
 
 You're affected if you plan to create new managed certificates for custom domains in Azure API Management between August 15, 2025 and March 15, 2026. 
 
-As part of this change, starting January 2026, for Azure API Management to be able to renew (rotate) your existing managed certificate, inbound access is required on port 80 to allow [specific DigiCert IP addresses](https://knowledge.digicert.com/alerts/ip-address-domain-validation?utm_medium=organic&utm_source=docs-digicert&referrer=https://docs.digicert.com/en/certcentral/manage-certificates/domain-control-validation-methods/automatic-domain-control-validation-check.html&utm_medium=organic&utm_source=docs-digicert&referrer=https://docs.digicert.com/en/certcentral/manage-certificates/domain-control-validation-methods/automatic-domain-control-validation-check.html). 
+As part of this change, starting January 2026, for Azure API Management to be able to renew (rotate) your existing managed certificate, inbound access is required on port 80 to allow [specific DigiCert IP addresses](https://knowledge.digicert.com/alerts/ip-address-domain-validation?utm_medium=organic&utm_source=docs-digicert&referrer=https://docs.digicert.com/en/certcentral/manage-certificates/domain-control-validation-methods/automatic-domain-control-validation-check.html). 
 
 ## What is the deadline for the change?
 
