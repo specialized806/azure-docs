@@ -119,7 +119,7 @@ The sample uses **RESP3** (`Protocol = RedisProtocol.Resp3`) because:
 1. Add your identity as a Redis User with the appropriate permissions (Data Owner, Data Contributor, and so on).
 1. **Run `az login`** locally to authenticate with your Entra ID account.
 
-## Basic Redis concepts 
+## Basic Redis concepts
 
 | Concept                 | Description                                                                                        |
 |-------------------------|----------------------------------------------------------------------------------------------------|
@@ -135,7 +135,7 @@ cd sample
 dotnet run
 ```
 
-Enter your Redis endpoint (for example, `<myredis.redis.azure.net:1000>`), choose authentication method **1** (DefaultAzureCredential), and watch the `+` characters print every second as commands succeed. Let it run for more than 60 minutes to verify automatic token refresh works.
+Enter your Redis endpoint (for example, `<your-redis-name>.<region>.redis.azure.net:10000`), choose authentication method **1** (DefaultAzureCredential), and watch the `+` characters print every second as commands succeed. Let it run for more than 60 minutes to verify automatic token refresh works.
 
 ## Production considerations
 

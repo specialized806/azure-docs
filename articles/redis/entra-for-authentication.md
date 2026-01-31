@@ -98,6 +98,7 @@ If you have a cache using access keys, we recommend switching to Microsoft Entra
 When you disable access keys, the system terminates all existing client connections, regardless of whether they use access keys or Microsoft Entra ID authentication.
 
 Before you disable access keys on geo-replicated caches, you must:
+
    1. Unlink the caches.
    1. Disable access keys.
    1. Relink the caches.
