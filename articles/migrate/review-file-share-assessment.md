@@ -40,7 +40,7 @@ To review an Azure Files assessment, follow the steps:
 **Recommended path**
 
 Choosing a Microsoft-recommended target minimizes your migration effort. If your file share instance supports both Azure Files and on share on Azure VM, the most cost-effective and migration-ready option is recommended. The details include readiness checks and monthly cost estimates for instances marked as Ready or Ready with conditions. The recommended path is set to ‘Modernize’ by default to always prefer and assess for PaaS services wherever possible. 
-:::image type="content" source="./media/review-fileshare-assessment/recommended-path.jpg" alt-text="The screenshot that shows where the user can start with recommended path review." lightbox="./media/review-fileshare-assessment/recomended-path.jpg":::
+:::image type="content" source="./media/review-fileshare-assessment/recommended-path.jpg" alt-text="The screenshot that shows where the user can start with recommended path review." lightbox="./media/review-fileshare-assessment/recommended-path.jpg":::
 
 You can use this path to: 
 
