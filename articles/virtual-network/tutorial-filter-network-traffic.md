@@ -357,13 +357,6 @@ az network vnet subnet update \
 
 1. Select **Add**.
 
-> [!CAUTION]
-> In this article, HTTPS (port 443) is exposed to the internet for the VM that is assigned to the **asg-mgmt** application security group.
->
-> For production environments, instead of exposing port 443 to the internet, it's recommended that you connect to Azure resources that you want to manage using a VPN, private network connection, or Azure Bastion.
->
-> For more information on Azure Bastion, see [What is Azure Bastion?](../bastion/bastion-overview.md).
-
 ### [PowerShell](#tab/powershell)
 
 Create a security rule with [New-AzNetworkSecurityRuleConfig](/powershell/module/az.network/new-aznetworksecurityruleconfig). The following example creates a rule that allows traffic inbound from the internet to the _asg-web_ application security group over port 80:
@@ -426,13 +419,6 @@ $nsg.SecurityRules += $mgmtRule
 Set-AzNetworkSecurityGroup -NetworkSecurityGroup $nsg
 ```
 
-> [!CAUTION]
-> In this article, HTTPS (port 443) is exposed to the internet for the VM that is assigned to the **asg-mgmt** application security group.
->
-> For production environments, instead of exposing port 443 to the internet, it's recommended that you connect to Azure resources that you want to manage using a VPN, private network connection, or Azure Bastion.
->
-> For more information on Azure Bastion, see [What is Azure Bastion?](../bastion/bastion-overview.md).
-
 ### [CLI](#tab/cli)
 
 Create a security rule with [az network nsg rule create](/cli/azure/network/nsg/rule). The following example creates a rule that allows traffic inbound from the internet to the *asg-web* application security group over port 80:
@@ -468,14 +454,6 @@ az network nsg rule create \
   --destination-asgs "asg-mgmt" \
   --destination-port-range 443
 ```
-
-> [!CAUTION]
-> In this article, HTTPS (port 443) is exposed to the internet for the VM that is assigned to the **asg-mgmt** application security group.
->
-> For production environments, instead of exposing port 443 to the internet, it's recommended that you connect to Azure resources that you want to manage using a VPN, private network connection, or Azure Bastion.
->
-> For more information on Azure Bastion, see [What is Azure Bastion?](../bastion/bastion-overview.md).
-
 
 ---
 
@@ -824,14 +802,6 @@ az network nic ip-config update \
 1. In the search box at the top of the portal, enter **Virtual machine**. Select **Virtual machines** in the search results.
 
 1. Select **vm-web**.
-
-1. On the **Overview** page, select the **Connect** button and then select **Connect with SSH using Azure CLI**.
-
-1. Copy the **Login command** and run it in your terminal. The connection succeeds because the network security group allows SSH traffic from your location.
-
-1. Install nginx web server on **vm-web** using the Azure Run Command:
-
-1. Select **vm-web** from the **Virtual machines** page.
 
 1. Select **Run command** from the **Operations** section.
 
