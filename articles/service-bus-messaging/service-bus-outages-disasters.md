@@ -10,13 +10,13 @@ ms.date: 04/29/2024
 Mission-critical applications must operate continuously, even in the presence of unplanned outages or disasters. Resilience against disastrous outages of data processing resources is a requirement for many enterprises and in some cases even required by industry regulations.
 
 > [!NOTE]
-> The Service Bus Geo-Disaster Recovery and Geo-Replication features are designed to make it easier to recover from a disaster of this magnitude, or to abandon a failed Azure region for good and without having to change your application configurations. For more information about these features and how to enable reliability and resiliency in Azure Service Bus, see [Reliability in Azure Service Bus](/azure/reliability/reliability-service-bus?toc=/azure/service-bus-messaging/TOC.json).
+> Service Bus Geo‑Disaster Recovery and Geo‑Replication help you recover from large‑scale disasters or permanently abandon a failed Azure region without requiring changes to your application configuration. For more information about these features and how to enable reliability and resiliency in Azure Service Bus, see [Reliability in Azure Service Bus](/azure/reliability/reliability-service-bus?toc=/azure/service-bus-messaging/TOC.json).
 
 If you can't use Geo-Disaster Recovery or Geo-Replication to meet your requirements, you can deploy multiple Service Bus namespaces. This article describes techniques you can use to protect applications against a potential service outage or disaster by using multiple namespaces.
 
 ## Replication types
 
-To achieve resilience against disasters with the Service Bus Standard tier, you can use **active** or  **passive** replication. For each approach, if a given queue or topic must remain accessible in the presence of a datacenter outage, you can create it in both namespaces. Both entities can have the same name. For example, a primary queue can be reached under **contosoPrimary.servicebus.windows.net/myQueue**, while its secondary counterpart can be reached under **contosoSecondary.servicebus.windows.net/myQueue**.
+To achieve resilience against disasters with the Service Bus Standard tier, you can use **active** or  **passive** replication. If a queue or topic must remain available during a datacenter outage, create the same entity in both namespaces. The entities can share the same name because they exist in separate namespaces. For example, you can reach a primary queue under **contosoPrimary.servicebus.windows.net/myQueue**, while you can reach its secondary counterpart under **contosoSecondary.servicebus.windows.net/myQueue**.
 
 >[!NOTE]
 > The **active replication** and **passive replication** setup are general purpose concepts and not specific features of Service Bus. 
