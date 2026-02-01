@@ -61,7 +61,7 @@ You can select on ‘View details’ to see:
 - Various readiness states of each of the file shares 
 - Source servers hosting such instances 
 - Monthly cost 
-- Target azure service SKU 
+- Target Azure service SKU 
 - Top file shares by used capacity and  
 
 :::image type="content" source="./media/review-fileshare-assessment/view-assessment-details.jpg" alt-text="The screenshot that shows where the user can check the assessment details." lightbox="./media/review-fileshare-assessment/view-assessment-details.jpg":::
