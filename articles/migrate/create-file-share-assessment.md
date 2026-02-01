@@ -29,7 +29,7 @@ Once you have discovered your servers and file shares, identify if you want to c
 
 To create an assessment, follow these steps:
 
-1. Go to **Infrastructure** tab and and select the Fileshares tab on top.
+1. Go to **Infrastructure** tab and and select the Fileshares card on top.
 1. Select all the shares you want to assess.
 1. You can apply column based or custom tags-based filters to identify and add fileshares to the scope of your assessment. 
     After you have selected all the fileshares, select **Create assessment**.  
