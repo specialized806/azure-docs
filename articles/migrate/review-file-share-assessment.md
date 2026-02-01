@@ -11,7 +11,7 @@ monikerRange:
 # Customer intent: As a migration planner, I want to conduct an Azure Files assessment for my Fileshares, so that I can determine the best migration strategies and prepare for a successful transition to Azure.
 ---
 
-# Review a Azure Files assessment
+# Review an Azure Files assessment
 
 This article describes the various components of a Fileshare assessment and how you can review the assessment after it is created. 
 
@@ -54,7 +54,7 @@ You can use this path to:
 > If we encounter an error during assessment either for the share volume or size estimations, we will count the file share and all the other collocated shares of that server for an Azure VM migration path. 
 
 **Migrate all files shares to Azure Files** 
-In this strategy, you can see the readiness and cost estimates for migrating to Azure Files shares. You can check details for each of the shares, its sources, target recommendations and monthly cost. 
+In this strategy, you can see the readiness and cost estimates for migrating to Azure Files shares. You can check details for each of the shares, its sources, target recommendations, monthly cost etc. 
 :::image type="content" source="./media/review-fileshare-assessment/to-azure-files.jpg" alt-text="The screenshot that shows where the user can start with Azure Files path review." lightbox="./media/review-fileshare-assessment/to-azure-files.jpg":::
 
 You can select on ‘View details’ to see: 
@@ -66,7 +66,7 @@ You can select on ‘View details’ to see:
 
 :::image type="content" source="./media/review-fileshare-assessment/view-assessment-details.jpg" alt-text="The screenshot that shows where the user can check the assessment details." lightbox="./media/review-fileshare-assessment/view-assessment-details.jpg":::
 
-A further drill down view provides you with the details of readiness states, source properties and target recommendations. 
+A further drill down view provides you with the details of readiness states, source properties, and target recommendations. 
 
 :::image type="content" source="./media/review-fileshare-assessment/instance-level-details.jpg" alt-text="The screenshot that shows where the user can check the istance level details." lightbox="./media/review-fileshare-assessment/instance-level-details.jpg":::
 
@@ -84,5 +84,5 @@ This assessment accounts for all the shares on a server to a suitable size Azure
 **Migration Issues** 
 1. Fileshare size is 0: In case the fileshare size is 0 the target recommendation is not given for that fileshares. It is recommended to check if the fileshares still exist on the on-premises servers. 
 
-1. Fileshare size exceeds maximum size: In case the on-premises fileshare size is greater than 200TB, it cannot be migrated to Azure as the maximum fileshare size supported by Azure Files is 200GB. It is recommended to distribute the fileshare data in multiple fileshares. 
+1. Fileshare size exceeds maximum size: In case, the on-premises fileshare size is greater than 200 TB, it cannot be migrated to Azure as the maximum fileshare size supported by Azure Files is 200 GB. It is recommended to distribute the fileshare data in multiple fileshares. 
 
