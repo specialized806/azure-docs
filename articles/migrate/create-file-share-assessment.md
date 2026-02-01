@@ -12,7 +12,7 @@ ms.date: 11/05/2024
 
 # Create an Azure Files assessment
 
-This article explains how to create an Azure Files assessments for fileshares hosted on Windows and Linux servers. For details information on general Azure Migrate assessment concepts, see [assessment overview](concepts-assessment-overview.md). 
+This article explains how to create Azure Files assessments for fileshares hosted on Windows and Linux servers. For details information on general Azure Migrate assessment concepts, see [assessment overview](concepts-assessment-overview.md). 
 
 To quickly migrate your on-premises fileshares to Azure, create an Azure Files assessment to check readiness, cost, and get migration advice for your workloads. 
 
