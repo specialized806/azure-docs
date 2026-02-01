@@ -1,9 +1,10 @@
 ---
-title: Azure Service Bus messaging - queues, topics, and subscriptions
-description: This article provides an overview of Azure Service Bus messaging entities (queue, topics, and subscriptions).
-ms.topic: conceptual
+title: Azure Service Bus Queues, Topics, and Subscriptions
+description: This article provides an overview of Azure Service Bus messaging entities (queue, topics, and subscriptions), JMS entities, and express entities.
+#customer intent: As a system architect, I want to know the benefits of using Service Bus queues, topics, and subscriptions so that I can design a scalable and decoupled application.
+ms.topic: concept-article
 ms.custom: devx-track-extended-java
-ms.date: 12/05/2024
+ms.date: 01/31/2026
 ---
 
 # Service Bus queues, topics, and subscriptions
