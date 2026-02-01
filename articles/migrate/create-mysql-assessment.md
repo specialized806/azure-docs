@@ -32,9 +32,9 @@ In this tutorial, you learn how to:
 
 To create and run a MySQL assessment, follow these steps:
 
-1. Select **Database** on the ToC under **Explore Inventory** then select **MySQL/MariaDB** to find MySQL databases. Select the MySQl instances to be assessed for Azure Database for MySQL. Select **Create Assessment** on task bar. 
+1. Select **Database** on the ToC under **Explore Inventory** then select **MySQL/MariaDB** to find MySQL databases. Select the MySQL instances to be assessed for Azure Database for MySQL. Select **Create Assessment** on task bar. 
 
-   :::image type="content" source="./media/create-mysql-assessment/mysql-scope-addition.png" alt-text="Screenshot on how to get started with creating scope for MySQl databases.":::
+   :::image type="content" source="./media/create-mysql-assessment/mysql-scope-addition.png" alt-text="Screenshot on how to get started with creating scope for MySQL databases.":::
    
 1. Provide a friendly name for the assessment. Review the scope and confirm by selecting **Next**
    
