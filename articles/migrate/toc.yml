@@ -206,9 +206,9 @@ items:
       - name: Fileshare assessment
         items:
         - name: Create a Fileshare assessment
-          href: create-fileshare-assessment.md
+          href: create-file-share-assessment.md
         - name: Review assessment report
-          href: review-fileshare-assessment.md
+          href: review-file-share-assessment.md
 #     - name: AVS assessment
 #       items:
         - name: Enhance web app assessment by adding code scan report
