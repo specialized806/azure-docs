@@ -78,7 +78,7 @@ This assessment accounts for all the shares on a server to a suitable size Azure
 - VM SKU 
 - Total monthly cost (compute, storage, security) 
 
-:::image type="content" source="./media/review-fileshare-assessment/azfiles-vm-details.jpg" alt-text="The screenshot that shows where the user can check the VM path details." lightbox="./media/review-fileshare-assessment/azfiles-vm-details.jpg":::
+:::image type="content" source="./media/review-fileshare-assessment/files-vm-details.jpg" alt-text="The screenshot that shows where the user can check the VM path details." lightbox="./media/review-fileshare-assessment/files-vm-details.jpg":::
 
 
 **Migration Issues** 
