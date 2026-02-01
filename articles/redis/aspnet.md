@@ -4,7 +4,6 @@ description: In this quickstart, you learn how to create an ASP.NET Core web app
 ms.date: 01/30/2026
 ms.topic: quickstart
 ms.devlang: csharp
-zone_pivot_groups: redis-type
 appliesto:
   - ✅ Azure Managed Redis
 ai-usage: ai-assisted
@@ -144,7 +143,7 @@ The controller injects the `Redis` service and demonstrates basic cache operatio
 
 1. Run the application:
 
-  ```bash
+   ```bash
    dotnet run
    ```
 
