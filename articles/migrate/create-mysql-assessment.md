@@ -49,7 +49,7 @@ To create and run a MySQL assessment, follow these steps:
 
 1. Select **Edit** against MySQL under Database settings to review the settings. 
 
-   :::image type="content" source="./media/create-mysql-assessment/edit-settings.png" alt-text="Screenshot on how to edit mysql assessment settings.":::
+   :::image type="content" source="./media/create-mysql-assessment/edit-settings.png" alt-text="Screenshot on how to edit MySQL assessment settings.":::
 
 1. In **Assessment properties**, you can retain the default values or set the necessary values:
 
