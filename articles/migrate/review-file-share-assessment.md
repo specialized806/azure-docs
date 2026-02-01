@@ -32,7 +32,7 @@ To review an Azure Files assessment, follow the steps:
    ![Screenshot of list of assessments.](./media/review-application-assessment/assessments.png)
 
 1. Review the **Overview** page to get the summary of assessed Fileshares and different migration paths. You can check the recommended migration path that is selected based on your migration preference.  
-      :::image type="content" source="./media/review-fileshare-assessment/fileshare-assessment-overview.jpg" alt-text="The screenshot that shows where the user can start with application assessment review." lightbox="./media/review-fileshare-assessment/fileshare-assessment-overview.jpg":::
+      :::image type="content" source="./media/review-fileshare-assessment/file-share-assessment-overview.jpg" alt-text="The screenshot that shows where the user can start with application assessment review." lightbox="./media/review-fileshare-assessment/file-share-assessment-overview.jpg":::
 
 ## Migration Scenarios
    Migration scenarios include the various migration paths a customer can choose to complete the migration of the assessed file shares. You can review the readiness for target deployment types and the cost estimates for assessed shares that are marked ready or ready with conditions: 
