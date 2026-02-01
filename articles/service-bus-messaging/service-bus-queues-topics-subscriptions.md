@@ -96,7 +96,7 @@ Publishers send messages to a topic in the same way that they send messages to a
 
 ### Subscription filters
 
-Subscriptions can define which messages they want to receive from a topic. These messages are specified in the form of one or more named subscription rules. Each rule consists of a **filter condition** that selects particular messages, and **optionally** contain an **action** that annotates the selected message. By default, a subscription to a topic receives all messages sent to the topic. The subscription has an initial default rule with a true filter that enables all messages to be selected into the subscription. The default rule has no associated action. You can define filters with rules and actions on a subscription so that the subscription receives only a subset of messages sent to the topic. 
+Subscriptions can define which messages they want to receive from a topic. These messages are specified in the form of one or more named subscription rules. Each rule consists of a **filter condition** that selects particular messages, and **optionally** contains an **action** that annotates the selected message. By default, a subscription to a topic receives all messages sent to the topic. The subscription has an initial default rule with a true filter that enables all messages to be selected into the subscription. The default rule has no associated action. You can define filters with rules and actions on a subscription so that the subscription receives only a subset of messages sent to the topic. 
 
 For more information about filters, see [Filters and actions](topic-filters.md).
 
