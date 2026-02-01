@@ -203,6 +203,8 @@ items:
           href: create-web-app-assessment.md
         - name: Review assessment report
           href: review-web-app-assessment.md
+        - name: Enhance web app assessment by adding code scan report
+          href: add-copilot-code-insights.md
       - name: Fileshare assessment
         items:
         - name: Create a Fileshare assessment
@@ -211,8 +213,12 @@ items:
           href: review-file-share-assessment.md
 #     - name: AVS assessment
 #       items:
-        - name: Enhance web app assessment by adding code scan report
-          href: add-copilot-code-insights.md
+#       - name: Create an AVS assessment
+#         href: tutorial-assess-vmware-azure-vmware-solution.md
+#       - name: Customize assessment settings
+#         href: assessment-properties.md
+#       - name: Review assessment report
+#         href: review-azure-vmware-solution-assessment.md
 #      - name: SAP assessment
 #       items:
 #       - name: Review assessment report
