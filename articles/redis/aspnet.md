@@ -144,7 +144,7 @@ The controller injects the `Redis` service and demonstrates basic cache operatio
 
 1. Run the application:
 
-  ```bash
+   ```bash
    dotnet run
    ```
 
