@@ -16,12 +16,6 @@ monikerRange:
 
 As part of your migration journey to Azure, you assess the workloads to measure cloud readiness, identify risks, and estimate costs and complexity. This article describes how to assess discovered MySQL/MariaDB database instances before migrating to Azure Database for MySQL, using the Azure Migrate: Discovery and assessment tool.
 
-In this tutorial, you learn how to:
-> [!div class="checklist"]
-> - [Run an assessment based on MySQL performance and configuration data](#run-an-assessment).
-> - [View a MySQL assessment](#view-an-assessment).
-
-
 ## Prerequisites
 
  - An Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/pricing/free-trial/). 

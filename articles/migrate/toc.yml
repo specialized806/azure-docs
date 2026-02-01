@@ -193,9 +193,7 @@ items:
           href: postgresql-assessment-properties.md
       - name: MySQL assessment
         items:
-        - name: Assessment overview
-          href: assessments-overview-migrate-to-azure-db-mysql.md
-        - name: Create MySQL assessment
+        - name: Create and Review MySQL assessment
           href: create-mysql-assessment.md
       - name: Webapp assessment
         items:
