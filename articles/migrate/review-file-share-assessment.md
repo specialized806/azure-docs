@@ -17,7 +17,7 @@ This article describes the various components of a Fileshare assessment and how 
 
 ## Overview
 
-An Azure Migrate assessment evaluates your on-premises workloads or workloads hosted on other public clouds for migration to Azure, analyzing Azure readiness for different Azure targets, right-sizing, and cost. The Azure Files assessment enables you to assess all the Fileshare and identify a strategy to migrate them to Azure Files on Azure. Use this article for a guided walkthrough of a Fileshare assessment.  
+An Azure Migrate assessment evaluates your on-premises workloads or workloads hosted on other public clouds for migration to Azure, analyzing Azure readiness for different Azure targets, right-sizing, and cost. The Azure Files assessment enables you to assess the Fileshares and identify a strategy to migrate them to Azure Files on Azure. Use this article for a guided walkthrough of a Fileshare assessment.  
 
 ## Review an assessment
 
@@ -66,9 +66,9 @@ You can select on ‘View details’ to see:
 
 :::image type="content" source="./media/review-fileshare-assessment/view-assessment-details.jpg" alt-text="The screenshot that shows where the user can check the assessment details." lightbox="./media/review-fileshare-assessment/view-assessment-details.jpg":::
 
-A further drill down view provides you with the details of readiness states, source properties, and target recommendations. 
+A further drill-down view provides you with the details of readiness states, source properties, and target recommendations. 
 
-:::image type="content" source="./media/review-fileshare-assessment/instance-level-details.jpg" alt-text="The screenshot that shows where the user can check the istance level details." lightbox="./media/review-fileshare-assessment/instance-level-details.jpg":::
+:::image type="content" source="./media/review-fileshare-assessment/instance-level-details.jpg" alt-text="The screenshot that shows where the user can check the instance level details." lightbox="./media/review-fileshare-assessment/instance-level-details.jpg":::
 
 **Migrate all shares to Azure VM** 
 In this strategy, you can see how you can rehost all the shares on Azure VM. You can review the readiness and cost estimates. The readiness and sizing logic is similar to Azure VM assessment type. 
