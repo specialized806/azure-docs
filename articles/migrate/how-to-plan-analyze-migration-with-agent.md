@@ -27,7 +27,7 @@ Before you begin, ensure you have:
 - Access to the Azure portal and Azure Migrate
 - Access to VMware vCenter 
 
-| Step | Action | Prompt | Migration Agent response | Description |
+| Steps | Action | Prompt | Migration Agent response | Description |
 |------|--------|--------|--------------------------|-------------|
 | **Step 1: Launch the Migration Agent and define the migration goal** | Sign in to the Azure portal and launch Azure Copilot Migration Agent. | Help me explore migration paths for VMware workloads moving to Azure quickly. | Explains journey steps, offers step-by-step guidance. | The Agent outlines the migration planning journey and suggests next steps based on your goal. |
 | **Step 2: Choose discovery method** | **Option 1: Quick discovery using RVTools**<br>Use this option if you want a fast, lightweight inventory.<br> 1. Run RVTools against your VMware environment.<br> 2. Export the inventory to an .xlsx file.<br> 3. Upload the file in the Migration Agent chat. | Import the RVTools file. | Inventory summary, option to proceed to business case. | The Agent summarizes the discovered inventory and confirms that you can proceed with analysis, such as business case creation. |
@@ -43,9 +43,9 @@ Before you begin, ensure you have:
 - You can continue asking questions about concepts in this chat, but all migration execution tasks must be completed in the Azure Migrate portal.
 - For execution guidance, see [Server migration overview in Azure Migrate](server-migrate-overview.md).
 
-Using migration agent to develop migration stategies for each application. 
+Using migration agent to develop migration strategies for each application. 
 
-This screenshot shows a sample migration prompt :
+This screenshot shows a sample migration prompt:
 
 :::image type="content" source="media/how-to-plan-analyze-migration-with-agent/prompt.png" alt-text="The screenshot shows the migrate prompt."lightbox="./media/how-to-plan-analyze-migration-with-agent/prompt.png":::
 
