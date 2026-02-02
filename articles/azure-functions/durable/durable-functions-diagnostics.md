@@ -1,17 +1,17 @@
 ---
-title: Diagnostics in Durable Functions - Azure
+title: Diagnostics in Durable Functions
 description: Learn how to diagnose problems with the Durable Functions extension for Azure Functions.
 author: cgillum
 ms.topic: conceptual
-ms.date: 12/07/2022
+ms.date: 02/02/2026
 ms.author: azfuncdf
 ms.devlang: csharp
 # ms.devlang: csharp, java, javascript, python
 ---
 
-# Diagnostics in Durable Functions in Azure
+# Diagnostics in Durable Functions
 
-There are several options for diagnosing issues with [Durable Functions](durable-functions-overview.md). Some of these options are the same for regular functions and some of them are unique to Durable Functions.
+There are several options for diagnosing issues with [Durable Functions](durable-functions-overview.md). Some of these options are the same for regular functions and some are unique to Durable Functions. In this article, you learn about the diagnostic tools and techniques available for troubleshooting orchestrations.
 
 ## Application Insights
 
@@ -605,6 +605,22 @@ This is useful for debugging because you see exactly what state an orchestration
 ## Durable Functions Monitor
 
 [Durable Functions Monitor](https://github.com/microsoft/DurableFunctionsMonitor) is a graphical tool for monitoring, managing, and debugging orchestration and entity instances. It is available as a Visual Studio Code extension or a standalone app. Information about set up and a list of features can be found in [this Wiki](https://github.com/microsoft/DurableFunctionsMonitor/wiki).
+
+## Azure portal diagnostics
+
+The Azure portal provides built-in diagnostic tools for your function apps.
+
+### Diagnose and solve problems
+
+Azure Function App Diagnostics is a useful resource for monitoring and diagnosing potential issues in your application. It also provides suggestions to help resolve problems based on the diagnosis. For more information, see [Azure Function App Diagnostics](../function-app-diagnostics.md).
+
+### Orchestration traces
+
+The Azure portal provides orchestration trace details to help you understand the status of each orchestration instance and trace end-to-end execution. When you view the list of functions inside your Azure Functions app, you see a **Monitor** column that contains links to the traces. You need to have Application Insights enabled for your app to access this information.
+
+## Roslyn Analyzer
+
+The Durable Functions Roslyn Analyzer is a live code analyzer that guides C# developers to adhere to Durable Functions specific [code constraints](durable-functions-code-constraints.md). For instructions on how to enable it in Visual Studio and Visual Studio Code, see [Durable Functions Roslyn Analyzer](durable-functions-roslyn-analyzer.md).
 
 ## Durable Functions troubleshooting guide
 

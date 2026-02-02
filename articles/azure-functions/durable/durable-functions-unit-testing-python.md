@@ -168,4 +168,4 @@ Activity functions require no Durable-specific modifications to be tested. The g
 
 - [Learn how to improve throughput performance of Python apps in Azure Functions](../python-scale-performance-reference.md)
 - [Read the Azure Functions Python Developer Guide](../functions-reference-python.md)
-- [Learn about Durable Functions best practices and diagnostic tools](./durable-functions-best-practice-reference.md)
+- [Learn about Durable Functions performance and scale](./durable-functions-perf-and-scale.md)

@@ -196,7 +196,24 @@ The `partitionCount` parameter can be specified in the **host.json** file. The f
 
 ## Considerations to minimize invocation latencies
 
-Under normal circumstances, invocation requests (to activities, orchestrators, entities, etc.) should be processed rather quickly. However, there's no guarantee on the maximum latency of any invocation request as it depends on factors such as: the type of scale behavior your App Service Plan, your concurrency settings, and the size of your application's backlog. As such, we recommend investing in [stress testing](./durable-functions-best-practice-reference.md#invest-in-stress-testing) to measure and optimize your application's tail latencies.
+Under normal circumstances, invocation requests (to activities, orchestrators, entities, etc.) should be processed rather quickly. However, there's no guarantee on the maximum latency of any invocation request as it depends on factors such as: the type of scale behavior your App Service Plan, your concurrency settings, and the size of your application's backlog. As such, we recommend investing in stress testing to measure and optimize your application's tail latencies.
+
+### Stress testing recommendations
+
+The ideal concurrency settings and architecture of your app ultimately depends on your application's workload. Invest in a performance testing harness that simulates your expected workload and use it to run performance and reliability experiments for your app.
+
+### Language runtime performance settings
+
+Using default settings, the language runtime you select might impose strict concurrency restrictions on your functions. For example, the runtime might only allow one function to execute at a time on a given VM. These restrictions can usually be relaxed by fine tuning the concurrency and performance settings of your language. If you're looking to optimize the performance of your Durable Functions application, familiarize yourself with these settings.
+
+The following languages often benefit from fine tuning their performance and concurrency settings:
+
+* [JavaScript/Node.js](../functions-reference-node.md#scaling-and-concurrency)
+* [PowerShell](../functions-reference-powershell.md#concurrency)
+* [Python](../python-scale-performance-reference.md)
+
+> [!NOTE]
+> The Durable Functions concurrency settings control how much work can be assigned to a given VM at a time, but they don't control the degree of parallelism in processing that work inside the VM. The latter requires fine-tuning the language runtime performance settings.
 
 ## Performance targets
 

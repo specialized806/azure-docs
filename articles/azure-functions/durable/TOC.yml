@@ -167,8 +167,6 @@
     items:
     - name: Develop
       items:
-      - name: Best practices and diagnostic tools
-        href: durable-functions-best-practice-reference.md
       - name: Manage connections
         href: ../manage-connections.md?toc=/azure/azure-functions/durable/toc.json
       - name: Create as WebJobs

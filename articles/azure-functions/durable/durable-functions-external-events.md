@@ -420,6 +420,17 @@ Content-Type: application/json
 
 In this case, the instance ID is hardcoded as *MyInstanceId*.
 
+## Best practices for external events
+
+Keep the following best practices in mind when working with external events:
+
+### Use unique event names for deduplication
+
+External events have an *at-least-once* delivery guarantee. Under certain rare conditions (which can occur during restarts, scaling, or crashes), your application might receive duplicates of the same external event. We recommend that external events contain a unique ID that allows them to be manually deduplicated in orchestrators.
+
+> [!NOTE]
+> The [MSSQL storage provider](./durable-functions-storage-providers.md#mssql) consumes external events and updates orchestrator state transactionally, so there's no risk of duplicate events with that backend, unlike the default [Azure Storage provider](./durable-functions-storage-providers.md). However, it's still recommended that external events have unique names so that code is portable across backends.
+
 ## Next steps
 
 > [!div class="nextstepaction"]

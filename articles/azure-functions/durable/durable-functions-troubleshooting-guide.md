@@ -58,8 +58,6 @@ Use the following steps to troubleshoot stuck orchestrations:
 
 *  Use the Application Insights query in the [Azure Storage Messaging section](./durable-functions-troubleshooting-guide.md#azure-storage-messaging) to filter on that queue name as the Partition ID and look for any problems related to that control queue partition.
 
-*  Check the guidance in [Durable Functions Best Practice and Diagnostic Tools](./durable-functions-best-practice-reference.md). Some problems may be caused by known Durable Functions anti-patterns.
-
 *  Check the [Durable Functions Versioning documentation](durable-functions-versioning.md). Some problems may be caused by breaking changes to in-flight orchestration instances.
 
 ## Orchestration runs slowly
@@ -195,3 +193,13 @@ Below is a list of the columns projected by the queries above and their respecti
 |totalEventCount|The number of history events involved in the current action.|
 |taskHub|The name of your [task hub](./durable-functions-task-hubs.md).|
 |newEvents|A comma-separated list of history events that are being written to the History table in storage.|
+
+## Getting support
+
+For questions and support, you can open an issue in one of the GitHub repos below. When reporting a bug in Azure, including information such as affected instance IDs, time ranges in UTC showing the problem, the application name (if possible), and deployment region greatly speeds up investigations.
+
+- [Durable Functions extension and .NET in-process SDK](https://github.com/Azure/azure-functions-durable-extension/issues)
+- [.NET isolated SDK](https://github.com/microsoft/durabletask-dotnet/issues)
+- [Durable Functions for Java](https://github.com/microsoft/durabletask-java/issues)
+- [Durable Functions for JavaScript](https://github.com/Azure/azure-functions-durable-js/issues)
+- [Durable Functions for Python](https://github.com/Azure/azure-functions-durable-python/issues)
