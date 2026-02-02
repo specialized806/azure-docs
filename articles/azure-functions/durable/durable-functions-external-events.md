@@ -12,17 +12,17 @@ zone_pivot_groups: azure-durable-approach
 # Handling external events
 
 ::: zone pivot="durable-functions"
-Orchestrator functions have the ability to wait and listen for external events. This feature of [Durable Functions](durable-functions-overview.md) is often useful for handling human interaction or other external triggers.
+Orchestrator functions can wait and listen for external events. This feature of [Durable Functions](durable-functions-overview.md) is often useful for handling human interaction or other external triggers.
 
 > [!NOTE]
-> External events are one-way asynchronous operations. They are not suitable for situations where the client sending the event needs a synchronous response from the orchestrator function.
+> External events are one-way asynchronous operations. They aren't suitable for situations where the client sending the event needs a synchronous response from the orchestrator function.
 ::: zone-end
 
 ::: zone pivot="durable-task-sdks"
-Orchestrations have the ability to wait and listen for external events. This feature is often useful for handling human interaction or other external triggers.
+Orchestrations can wait and listen for external events. This feature is often useful for handling human interaction or other external triggers.
 
 > [!NOTE]
-> External events are one-way asynchronous operations. They are not suitable for situations where the client sending the event needs a synchronous response from the orchestration.
+> External events are one-way asynchronous operations. They aren't suitable for situations where the client sending the event needs a synchronous response from the orchestration.
 
 [!INCLUDE [preview-sample-limitations](./durable-task-scheduler/includes/preview-sample-limitations.md)]
 
@@ -193,7 +193,7 @@ The Durable Task SDK is not available for PowerShell. Use [Durable Functions](du
 
 ::: zone-end
 
-The preceding example listens for a specific single event and takes action when it's received.
+The preceding example listens for a specific single event and takes action when the event is received.
 
 You can listen for multiple events concurrently, like in the following example, which waits for one of three possible event notifications.
 
@@ -404,7 +404,7 @@ The Durable Task SDK is not available for PowerShell. Use [Durable Functions](du
 
 ::: zone-end
 
-The previous example listens for *any* of multiple events. It's also possible to wait for *all* events.
+The previous example listens for *any* of multiple events. You can also wait for *all* events.
 
 ::: zone pivot="durable-functions"
 
@@ -585,7 +585,7 @@ The Durable Task SDK is not available for PowerShell. Use [Durable Functions](du
 ::: zone-end
 
 ::: zone pivot="durable-functions"
-The *"wait-for-external-event"* API waits indefinitely for some input.  The function app can be safely unloaded while waiting. If and when an event arrives for this orchestration instance, it is awakened automatically and immediately processes the event.
+The *"wait-for-external-event"* API waits indefinitely for some input.  You can safely unload the function app while waiting. If and when an event arrives for this orchestration instance, the instance is awakened automatically and immediately processes the event.
 
 > [!NOTE]
 > If your function app uses the Consumption Plan, no billing charges are incurred while an orchestrator function is awaiting an external event task, no matter how long it waits.
@@ -594,7 +594,7 @@ As with Activity Functions, external events have an _at-least-once_ delivery gua
 ::: zone-end
 
 ::: zone pivot="durable-task-sdks"
-The *"wait-for-external-event"* API waits indefinitely for some input. The worker can be safely stopped while waiting. If and when an event arrives for this orchestration instance, it is awakened automatically and immediately processes the event.
+The *"wait-for-external-event"* API waits indefinitely for some input. You can safely stop the worker while waiting. If and when an event arrives for this orchestration instance, it is awakened automatically and immediately processes the event.
 
 External events have an _at-least-once_ delivery guarantee. This means that, under certain conditions (like restarts, scaling, crashes, etc.), your application may receive duplicates of the same external event. Therefore, we recommend that external events contain some kind of ID that allows them to be manually de-duplicated in orchestrations.
 ::: zone-end
@@ -606,10 +606,10 @@ You can use the *"raise-event"* API defined by the [orchestration client](durabl
 
 A raised event includes an *instance ID*, an *eventName*, and *eventData* as parameters. Orchestrator functions handle these events using the [*"wait-for-external-event"*](#wait-for-events) APIs. The *eventName* must match on both the sending and receiving ends in order for the event to be processed. The event data must also be JSON-serializable.
 
-Internally, the *"raise-event"* mechanisms enqueue a message that gets picked up by the waiting orchestrator function. If the instance is not waiting on the specified *event name,* the event message is added to an in-memory queue. If the orchestration instance later begins listening for that *event name,* it will check the queue for event messages.
+Internally, the *"raise-event"* mechanisms enqueue a message that gets picked up by the waiting orchestrator function. If the instance isn't waiting on the specified *event name,* the event message is added to an in-memory queue. If the orchestration instance later begins listening for that *event name,* it checks the queue for event messages.
 
 > [!NOTE]
-> If there is no orchestration instance with the specified *instance ID*, the event message is discarded.
+> If there's no orchestration instance with the specified *instance ID*, the event message is discarded.
 
 Below is an example queue-triggered function that sends an "Approval" event to an orchestrator function instance. The orchestration instance ID comes from the body of the queue message.
 ::: zone-end
@@ -687,7 +687,7 @@ public void approvalQueueProcessor(
 
 ---
 
-Internally, the "*raise-event*" API enqueues a message that gets picked up by the waiting orchestrator function. If the instance is not waiting on the specified *event name,* the event message is added to an in-memory buffer. If the orchestration instance later begins listening for that *event name,* it will check the buffer for event messages and trigger the task that was waiting for it.
+Internally, the "*raise-event*" API enqueues a message that gets picked up by the waiting orchestrator function. If the instance isn't waiting on the specified *event name,* the event message is added to an in-memory buffer. If the orchestration instance later begins listening for that *event name,* it checks the buffer for event messages and triggers the task that was waiting for it.
 
 > [!NOTE]
 > If there is no orchestration instance with the specified *instance ID*, the event message is discarded.
