@@ -472,7 +472,7 @@ az storage account or-policy delete \
 
 N/A
 
-## Behavior when re-creating an Object Replication Policy 
+## Behavior when re-creating an object replication policy 
 
 **Behavior When re‑creating an Object Replication Policy** 
 
