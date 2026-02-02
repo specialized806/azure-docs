@@ -24,32 +24,36 @@ Upon acceptance of a discount as part of a Microsoft Customer Agreement, the dis
 <br>
 
 ## Move a discount across resource groups or subscriptions
+
 You can move the discount resource between resource groups or subscriptions within the same billing account without affecting the discount, as only the metadata is updated.
+
 ### To move a discount resource
+
 Here are the high-level steps to move a discount resource. For more information on moving Azure resources, see: [Move Azure resources to a new resource group or subscription](../../../azure-resource-manager/management/move-resource-group-and-subscription.md).
 
 
 ### To move a discount resource to a new resource group
-1.	In the [Azure portal](https://portal.azure.com/), type in **Discounts** from global search
-2.	Select the **Discounts** service
-3.	Select the specific discount resource you want to move
-4.	From the ***Essentials*** tab, select the ***move*** link next to Resource group
-5.	The source resource group is set automatically. Specify the ***Target*** resource group and select Next.
+
+1.	In the [Azure portal](https://portal.azure.com/), type in **Discounts** from global search.
+2.	Select the **Discounts** service.
+3.	Select the specific discount resource you want to move.
+4.	From the ***Essentials*** tab, select the ***move*** link next to Resource group.
+5.	The source resource group is set automatically. Specify the ***Target*** resource group and select ***Next***.
 6.	Wait for the portal to validate resource move readiness.
 7.	When validation completes successfully, select ***Next***.
-8.	Click on the acknowledgment that you need to update tools and scripts for these resources. To start moving the resources, select ***Move***
+8.	Select the acknowledgment that you need to update tools and scripts for these resources. To start moving the resources, select ***Move***
 9.	After the move is complete, verify that the discount resource is in the new resource group. 
 
-
 ### To move a discount resource to a new subscription
-1.	In the [Azure portal](https://portal.azure.com/), type in **Discounts** from global search
-2.	Select the **Discounts** service
-3.	Select the specific discount resource you want to move
-4.	From the ***Essentials*** tab, select the ***move*** link next to Subscription
+
+1.	In the [Azure portal](https://portal.azure.com/), type in **Discounts** from global search.
+2.	Select the **Discounts** service.
+3.	Select the specific discount resource you want to move.
+4.	From the ***Essentials*** tab, select the ***move*** link next to Subscription.
 5.	The source subscription and resource group are set automatically. Specify the ***Target*** subscription and resource group, then select ***Next***.
 6.	Wait for the portal to validate resource move readiness.
 7.	When validation completes successfully, select ***Next***.
-8.	Click on the acknowledgment that you need to update tools and scripts for these resources. To start moving the resources, select ***Move***
+8.	Select the acknowledgment that you need to update tools and scripts for these resources. To start moving the resources, select ***Move***.
 9.	After the move is complete, verify that the discount resource is in the new subscription and resource group. 
 
 When a discount is moved, the resource URI associated with it's updated to reflect the change.
@@ -59,15 +63,17 @@ When a discount is moved, the resource URI associated with it's updated to refle
 1.	In the [Azure portal](https://portal.azure.com/), search for **Discounts**.
 2.	Select the discount resource.
 3.	On the Overview page, in the left navigation menu, expand **Settings**, and select **Properties**.
-4.	The discount resource URI is the **Id** value
+4.	The discount resource URI is the **ID** value.
 
 ## View the additional discount metadata
 
 Additional detailed information regarding the available discount is accessible by viewing the JSON representation of the discount resource. This allows you to examine all relevant fields, such as discount values, eligibility criteria, validity periods, and other pertinent attributes connected to the discount. 
+
 To see the additional discount metadata 
+
 1.	In the [Azure portal](https://portal.azure.com/), search for **Discounts**.
 2.	Select the discount resource.
-3.	From Overview page, on the ***Essentials*** tab click on **JSON View**
+3.	From Overview page, on the ***Essentials*** tab, select **JSON View**.
 
 
 ## Rename a discount resource
@@ -80,7 +86,7 @@ If you try to delete an active discount resource in an ***Active*** state, an er
 
 Deleting a resource group or subscription with an active discount resource will fail. To resolve, move the discount resource to another group or subscription within the same billing account before deleting.
 
-For additional information on moving a discount resource, see section: [To move a discount resource](#to-move-a-discount-resource)
+For additional information on moving a discount resource, see section: [To move a discount resource](#to-move-a-discount-resource).
 
 
 ## Cancel a discount 
@@ -92,12 +98,12 @@ The user who accepted the discount proposal automatically gets owner access to t
 
 1.	In the [Azure portal](https://portal.azure.com/), search for **Discounts**
 2.	Select the discount resource.
-3.	On the left navigation menu, select ***Access control (IAM)***
-4.	From ***Access control (IAM)***, select ***Add*** and choose ***Add role assignment*** 
-5.	From the **Role** tab, select the appropriate role
-6.	On the **Members** tab, add other users
-7.	On the ***Review + assign*** tab, review the role assignment settings
-8.	Select ***Review + assign*** button to assign the role
+3.	On the left navigation menu, select ***Access control (IAM)***.
+4.	From ***Access control (IAM)***, select ***Add*** and choose ***Add role assignment***.
+5.	From the **Role** tab, select the appropriate role.
+6.	On the **Members** tab, add other users.
+7.	On the ***Review + assign*** tab, review the role assignment settings.
+8.	Select ***Review + assign*** button to assign the role.
 
 <br>
 
@@ -112,7 +118,7 @@ The user who accepted the discount proposal automatically gets owner access to t
 
  - **Does the resource group’s location affect discount application?** The resource group maintains metadata regarding the resources and doesn't influence discount eligibility. Discounts are linked to a billing account and are automatically applied to qualifying charges for any subscription within that billing account.
    
- - **Are discounts with a status of Expired or Cancelled automatically deleted?** No, discounts marked as Expired or Cancelled are not deleted automatically; they must be removed manually. These records are kept intentionally for analysis of past cost or pricing changes.  
+ - **Are discounts with a status of Expired or Canceled automatically deleted?** No, discounts marked as Expired or Canceled are not deleted automatically; they must be removed manually. These records are kept intentionally for analysis of past cost or pricing changes.  
 
 <br>
 

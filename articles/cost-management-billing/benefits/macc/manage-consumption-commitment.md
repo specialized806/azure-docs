@@ -60,7 +60,7 @@ The MACC’s resource name is a part of its Uniform Resource Identifier (URI) an
 A MACC resource may only be deleted if its status is _failed_ or _canceled_. Deletion of a MACC resource is a permanent action and cannot be undone.  
  
 ## Cancel MACC
-Please contact your Microsoft account team if you have questions about cancelling your MACC.
+Please contact your Microsoft account team if you have questions about canceling your MACC.
 
 ## Related content
 
