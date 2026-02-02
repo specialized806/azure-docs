@@ -85,5 +85,5 @@ Use the following steps to enable External Data Services in your Azure Data Mana
 
 ## Next steps
 
-- [How to register an external data source with Azure Data Manager for Energy?](how-to-register-external-data-sources.md)
+- [How to register an external data servicese with Azure Data Manager for Energy?](how-to-register-external-data-services.md)
 - [External data sources FAQ](faq-energy-data-services.yml#external-data-sources)
