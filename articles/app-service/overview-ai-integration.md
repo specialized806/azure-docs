@@ -31,11 +31,11 @@ Explore these scenarios to find the right approach for your AI-powered applicati
 
 | Scenario | Description | Learn more |
 |----------|-------------|------------|
-| **Chatbots and RAG applications** | Build intelligent chatbots and RAG-powered web apps with Azure OpenAI (and optional Azure AI Search) for grounded, context-aware responses directly in App Service. | [Get started](scenario-ai-chatbot-rag.md) |
+| **Chatbots and RAG applications** | Build intelligent chatbots and RAG-powered web apps with Azure OpenAI (and optional Azure AI Search) for grounded, context-aware responses directly in App Service. | [Get started](scenario-ai-chatbot-retrieval-augmented-generation.md) |
 | **Agentic web applications** | Add autonomous, reasoning AI agents to your existing CRUD web apps using frameworks like Semantic Kernel, LangGraph, or Foundry Agent Service to enable planning, multi-step actions, and natural language interactions. | [Get started](scenario-ai-agentic-web-apps.md) |
 | **OpenAPI tools for Foundry agents** | Expose your App Service REST APIs as secure, callable tools via OpenAPI specs so Foundry Agent Service agents can discover and invoke them for real-world actions and data access. | [Get started](scenario-ai-openapi-tool.md) |
-| **Model Context Protocol servers** | Host your App Service app as an MCP server to extend AI coding assistants like GitHub Copilot Chat, Cursor, and Winsurf with your custom business logic, APIs, and data context via the Model Context Protocol. | [Get started](scenario-ai-mcp-server.md) |
-| **Local small language models** | Run small language models (e.g., Phi-3/Phi-4) entirely locally as sidecar containers in App Service for full data privacy, zero-latency inference, offline capability, and no external API calls or dependencies. | [Get started](scenario-ai-local-slm.md) |
+| **Model Context Protocol servers** | Host your App Service app as an MCP server to extend AI coding assistants like GitHub Copilot Chat, Cursor, and Winsurf with your custom business logic, APIs, and data context via the Model Context Protocol. | [Get started](scenario-ai-model-context-protocol-server.md) |
+| **Local small language models** | Run small language models (e.g., Phi-3/Phi-4) entirely locally as sidecar containers in App Service for full data privacy, zero-latency inference, offline capability, and no external API calls or dependencies. | [Get started](scenario-ai-local-small-language-model.md) |
 | **Secure AI applications** | Secure your OpenAPI tools, MCP servers, and AI endpoints in App Service using Microsoft Entra ID authentication, managed identities, and built-in authorization to ensure only authorized users and agents can access them. | [Get started](scenario-ai-authentication.md) |
 
 ## More resources
