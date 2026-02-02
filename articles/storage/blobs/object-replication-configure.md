@@ -476,7 +476,7 @@ N/A
 
 **Behavior When re‑creating an Object Replication Policy** 
 
-When an Object Replication (OR) policy is deleted and re‑created on the same source and destination container pair, Azure treats the new policy as an entirely separate replication relationship. The following behavior applies: 
+When an object replication policy is deleted and re‑created on the same source and destination container pair, Azure treats the new policy as an entirely separate replication relationship. The following behavior applies: 
 
 - A new policy ID is generated for the re‑created policy. 
 
