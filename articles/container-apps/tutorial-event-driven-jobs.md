@@ -20,7 +20,7 @@ Azure Container Apps [jobs](jobs.md) enable you to run containerized tasks that 
 In this tutorial, you learn how to work with [event-driven jobs](jobs.md#event-driven-jobs).
 
 > [!div class="checklist"]
-> * Create a Container Apps environment to deploy your container apps
+> * Create a Container Apps environment in which to deploy your container apps
 > * Create an Azure Storage queue to send messages to the container app
 > * Build a container image that runs a job
 > * Deploy the job to the Container Apps environment
@@ -144,7 +144,7 @@ To deploy the job, you must first build a container image for it and push the co
 
 1. Your container registry must allow Azure Resource Manager (ARM) audience tokens for authentication in order to use managed identity to pull images.
 
-    Use the following command to check whether ARM tokens are allowed to access your Azure Container Registry:
+    Use the following command to check whether ARM tokens are allowed to access your Azure container registry:
 
     ```azurecli
     az acr config authentication-as-arm show --registry "$CONTAINER_REGISTRY_NAME"
