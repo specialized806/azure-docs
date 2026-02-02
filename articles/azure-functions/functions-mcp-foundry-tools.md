@@ -36,14 +36,14 @@ Before you begin, make sure you have these resources in place:
 
 ## Review connection options
 
-The following table summarizes the options for securing your agent connection to an MCP server that Foundry Agent Service currently supports: 
+This table summarizes the currently supported options for authenticating your agent connection to an MCP server in Foundry Agent Service: 
 
-| Method | Description | Use case | Additional setup | Functions support |
+| Method | Description | Use case | Additional setup | Functions supportS |
 | ------ | ----------- | -------- | ---------------- | ------------------- |
-| **Key-based**<sup>*</sup> | Agent authenticates by passing a function access key in the request header. | Prototyping or when the MCP server doesn't access proprietary data. | None | Yes |
-| **Microsoft Entra** | Agent authenticates using its own identity or the shared identity of the Foundry project. | Prototyping or production when every user of the agent shares the same identity and permissions. | [Disable key-based authentication](functions-mcp-tutorial.md?tabs=mcp-extension#disable-key-based-authentication) and [configure built-in server authorization and authentication](functions-mcp-tutorial.md?tabs=mcp-extension#enable-built-in-server-authorization-and-authentication). | Shared identity |
+| **Key-based**<sup>*</sup> | Agent authenticates by passing a shared [function access key](./function-keys-how-to.md) in the request header. | During development or when the MCP server doesn't require Microsoft Entra authentication. | None | Yes |
+| **Microsoft Entra** | Agent authenticates using either its own identity (*agent identity*) or the shared identity of the Foundry project (*project managed identity*). | Production-level security where users or agents share the same identity and permissions. | [Disable key-based authentication](functions-mcp-tutorial.md?tabs=mcp-extension#disable-key-based-authentication) and [configure built-in server authorization and authentication](functions-mcp-tutorial.md?tabs=mcp-extension#enable-built-in-server-authorization-and-authentication). | Project managed identity |
 | **OAuth identity passthrough** | Agent prompts users to sign in and authorize access, using the provided token to authenticate. | Production when each user must authenticate with their own identity and user context must be persisted. | Not yet determined | No |
-| **Unauthenticated access** | Agent makes unauthenticated calls. | Prototyping when your MCP server accesses only public information. | [Disable key-based authentication](functions-mcp-tutorial.md?tabs=mcp-extension#disable-key-based-authentication). | Yes |
+| **Unauthenticated access** | Agent makes unauthenticated calls. | During development or when your MCP server accesses only public information. | [Disable key-based authentication](functions-mcp-tutorial.md?tabs=mcp-extension#disable-key-based-authentication). | Yes |
 
 <sup>*</sup>Default for Functions-hosted MCP servers.
 
