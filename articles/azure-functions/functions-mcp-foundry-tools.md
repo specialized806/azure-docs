@@ -132,15 +132,12 @@ To connect to your MCP server endpoint:
 
 1. In **Add Model Content Protocol tool**, provide information from this table to configure an access key-based connection: 
 
-    :::image type="content" source="./media/functions-mcp/foundry-key-based-auth.png" alt-text="Screenshot of the Add Model Context Protocol tool dialog showing key-based authentication configuration.":::
-
     | Field | Description | Example |
     | ----- | ----------- | ------- |
     | **Name** | A unique identifier for your MCP server. You can use your function app name as the default. | `my-mcp-function-app` |
     | **Remote MCP Server endpoint** | The URL endpoint for your MCP server. | `https://my-mcp-function-app.azurewebsites.net/runtime/webhooks/mcp` |
     | **Authentication** | The authentication method to use. | `Key-based` |
     | **Credential** | The key-value pair to authenticate with your function app. | `x-functions-key`: `aaaaaaaa-0b0b-1c1c-2d2d-333333333333` |
-
 
 1. Select **Connect** to create a connection to your MCP server endpoint. You should now see your server name listed under **Tools**. 
 
@@ -165,8 +162,6 @@ To connect to your MCP server endpoint:
 1. Select **Model Context Protocol (MCP)** > **Create**.
 
 1. In **Add Model Content Protocol tool**, enter the information from this table to configure a Microsoft Entra-based connection:
-
-    :::image type="content" source="./media/functions-mcp/foundry-entra-auth.png" alt-text="Screenshot of the Add Model Context Protocol tool dialog showing Microsoft Entra authentication configuration.":::
 
     | Field | Description | Example |
     | ----- | ----------- | ------- |
