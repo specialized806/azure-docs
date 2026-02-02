@@ -65,9 +65,10 @@ To register the app, perform the following steps:
         **<APP_URL>/.auth/login/aad/callback**
     
         For example: `https://<CONTAINER_APP_NAME>.<ENVIRONMENT_UNIQUE_ID>.<REGION_NAME>.azurecontainerapps.io/.auth/login/aad/callback`
-
-    1. In **Implicit grant and hybrid flows**, enable **ID tokens** to allow OpenID Connect user sign-ins from Container Apps.
     1. Select **Register**.
+    1. Under **Manage** in the left pane, select **Authentication (Preview)**.
+    1. On the **Settings** tab, select **ID tokens (used for implicit and hybrid flows)** to allow OpenID Connect user sign-ins from Container Apps. Select **Save**.
+   
 1. Go to the new app registration.
     1. In the **Overview** pane, copy the **Application (client) ID** and the **Directory (tenant) ID** for later.
     1. (Optional) If you didn't already add the redirect URI to the app registration, you can do so now.
@@ -139,15 +140,16 @@ In the previous section, you registered your container app to authenticate users
 
 You can register native clients to request access to your container app's APIs on behalf of a signed in user.
 
-1. In the [Azure portal], select **Microsoft Entra ID** > **Add** > **App registrations**.
+1. In the [Azure portal], search for and select **Microsoft Entra ID**. 
+1. In the **Overview** pane, select **Add** > **App registration**.
 1. In the **Register an application** pane, enter a **Name** for your app registration.
-1. In **Redirect URI**, select **Public client (mobile & desktop)** and type the URL `<app-url>/.auth/login/aad/callback`. For example, `https://<hostname>.azurecontainerapps.io/.auth/login/aad/callback`.
+1. Under **Redirect URI**, select **Public client (mobile & desktop)** and type the URL `<app-url>/.auth/login/aad/callback`. For example, `https://<hostname>.azurecontainerapps.io/.auth/login/aad/callback`.
 
     > [!NOTE]
     > For a Microsoft Store application, use the [package SID](/previous-versions/azure/app-service-mobile/app-service-mobile-dotnet-how-to-use-client-library#package-sid) as the URI instead.
-1. Select **Create**.
+1. Select **Register**.
 1. After the app registration is created, copy the **Application (client) ID** value.
-1. Select **API permissions** > **Add a permission** > **My APIs**.
+1. Under **Manage** in the left pane, select **API permissions**. Select **Add a permission** > **My APIs**.
 1. Select the app registration you created earlier for your container app. If you don't see the app registration, make sure that you added the **user_impersonation** scope in [Create an app registration in Microsoft Entra ID for your container app](#entra-id-register).
 1. Under **Delegated permissions**, select **user_impersonation**, and then select **Add permissions**.
 
@@ -155,19 +157,23 @@ You can register native clients to request access to your container app's APIs o
 
 Your application can acquire a token to call a Web API hosted in your container app on behalf of itself (not on behalf of a user). This scenario is useful for non-interactive daemon applications that perform tasks without a logged in user. It uses the standard OAuth 2.0 [client credentials](../active-directory/develop/v2-oauth2-client-creds-grant-flow.md) grant.
 
-1. In the [Azure portal], select **Microsoft Entra ID** > **Add** > **App registrations**.
+1. In the [Azure portal], search for and select **Microsoft Entra ID**.
+1. In the **Overview pane**, select **Add** > **App registration**.
 1. In the **Register an application** pane, enter a **Name** for your daemon app registration.
 1. For a daemon application, you don't need a **Redirect URI**, so you can leave that field empty.
-1. Select **Create**.
+1. Select **Register**.
 1. After the app registration is created, copy the **Application (client) ID** value.
-1. Select **Certificates & secrets** > **New client secret** > **Add**. Copy the client secret value shown on the page. It isn't shown again.
+1. In the left pane, under **Manage**, select **Certificates & secrets**.
+1. In the **Certificates & secrets** pane, select **New client secret**.
+1. Select **Add** in the **Add a client secret** pane. Copy the client secret value shown on the page. It isn't shown again.
 
 You can now [request an access token by using the client ID and client secret](../active-directory/develop/v2-oauth2-client-creds-grant-flow.md#first-case-access-token-request-with-a-shared-secret) by setting the `resource` parameter to the **Application ID URI** of the target app. You can then present the resulting access token to the target app by using the standard [OAuth 2.0 Authorization header](../active-directory/develop/v2-oauth2-client-creds-grant-flow.md#use-a-token). Container Apps authentication/authorization validates and uses the token as usual to indicate that the caller (an application in this case, not a user) is authenticated.
 
 This process allows _any_ client application in your Microsoft Entra tenant to request an access token and authenticate to the target app. If you also want to enforce _authorization_ to allow only certain client applications, you must adjust the configuration.
 
 1. [Define an app role](../active-directory/develop/howto-add-app-roles-in-azure-ad-apps.md) in the manifest of the app registration that represents the container app that you want to protect.
-1. On the app registration that represents the client that needs to be authorized, select **API permissions** > **Add a permission** > **My APIs**.
+1. On the app registration that represents the client that needs to be authorized, select **API permissions** > **Add a permission**.
+1. In the Request API permissions pane, select **My APIs**.
 1. Select the app registration you created earlier. If you don't see the app registration, make sure that you [add an app role](../active-directory/develop/howto-add-app-roles-in-azure-ad-apps.md).
 1. Under **Application permissions**, select the app role you created earlier, and then select **Add permissions**.
 1. Make sure to select **Grant admin consent** to authorize the client application to request permission.
