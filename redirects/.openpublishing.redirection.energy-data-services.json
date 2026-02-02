@@ -1,0 +1,14 @@
+{
+    "redirections": [
+        {
+            "source_path_from_root": "/azure/energy-data-services/how-to-enable-external-data-sources.md",
+            "redirect_url": "/azure/energy-data-services/how-to-enable-external-data-services",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/azure/energy-data-services/how-to-register-external-data-sources.md",
+            "redirect_url": "/azure/energy-data-services/how-to-register-external-data-services",
+            "redirect_document_id": true
+        }
+    ]
+}
