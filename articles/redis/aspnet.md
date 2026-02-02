@@ -7,7 +7,8 @@ ms.devlang: csharp
 appliesto:
   - ✅ Azure Managed Redis
 ai-usage: ai-assisted
-# Customer intent: As an ASP.NET developer, new to Azure Managed Redis, I want to create a new .NET app that uses Azure Managed Redis.
+
+# Customer intent: As an ASP.NET developer, new to Azure Managed Redis, I want to create a new ASP.NET app that uses Azure Managed Redis.
 ---
 
 # Azure Managed Redis sample - ASP.NET Core Web API
