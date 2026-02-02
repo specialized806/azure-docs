@@ -115,7 +115,7 @@ az aks create \
 
 If using an existing cluster, ensure you enable Workload Identity support on your AKS cluster. Workload identities can be enabled via the following commands:
 
-# [Azure CLI](#tab/azure-cli)
+# [Azure CLI](#tab/azure-cli2)
 
 ```azurecli-interactive
 AKS_NAME='<your cluster name>'
@@ -123,7 +123,7 @@ RESOURCE_GROUP='<your resource group name>'
 az aks update -g $RESOURCE_GROUP -n $AKS_NAME --enable-oidc-issuer --enable-workload-identity --no-wait
 ```
 
-# [Azure PowerShell](#tab/azure-powershell)
+# [Azure PowerShell](#tab/azure-powershell2)
 
 ```azurepowershell-interactive
 $AKS_NAME = '<your cluster name>'
