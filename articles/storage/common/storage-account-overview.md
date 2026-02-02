@@ -246,7 +246,7 @@ The [Azure Storage pricing page](https://azure.microsoft.com/pricing/details/sto
 
 [!INCLUDE [cost-management-horizontal](../../../includes/cost-management-horizontal.md)]
 
-## Retired storage account types
+## <a name = "legacy-storage-account-types"></a> Retired storage account types
 
 The following account types are retired or scheduled for retirement. They aren't recommended for new deployments. If you still have these accounts, plan to migrate to a supported account type.
 
