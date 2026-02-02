@@ -317,6 +317,14 @@ if (existingInstance == null || !existingInstance.isRunning()) {
 }
 ```
 
+# [JavaScript](#tab/javascript)
+
+The Durable Task SDK is not available for JavaScript. Use [Durable Functions](durable-functions-overview.md) instead.
+
+# [PowerShell](#tab/powershell)
+
+The Durable Task SDK is not available for PowerShell. Use [Durable Functions](durable-functions-overview.md) instead.
+
 ---
 
 ::: zone-end

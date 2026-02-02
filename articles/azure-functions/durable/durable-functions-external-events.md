@@ -181,6 +181,14 @@ public class BudgetApproval implements TaskOrchestration {
 }
 ```
 
+# [JavaScript](#tab/javascript)
+
+The Durable Task SDK is not available for JavaScript. Use [Durable Functions](durable-functions-overview.md) instead.
+
+# [PowerShell](#tab/powershell)
+
+The Durable Task SDK is not available for PowerShell. Use [Durable Functions](durable-functions-overview.md) instead.
+
 ---
 
 ::: zone-end
@@ -384,6 +392,14 @@ public class SelectOrchestrator implements TaskOrchestration {
 }
 ```
 
+# [JavaScript](#tab/javascript)
+
+The Durable Task SDK is not available for JavaScript. Use [Durable Functions](durable-functions-overview.md) instead.
+
+# [PowerShell](#tab/powershell)
+
+The Durable Task SDK is not available for PowerShell. Use [Durable Functions](durable-functions-overview.md) instead.
+
 ---
 
 ::: zone-end
@@ -556,6 +572,14 @@ public class NewBuildingPermit implements TaskOrchestration {
 }
 ```
 
+# [JavaScript](#tab/javascript)
+
+The Durable Task SDK is not available for JavaScript. Use [Durable Functions](durable-functions-overview.md) instead.
+
+# [PowerShell](#tab/powershell)
+
+The Durable Task SDK is not available for PowerShell. Use [Durable Functions](durable-functions-overview.md) instead.
+
 ---
 
 ::: zone-end
@@ -689,6 +713,14 @@ client.raise_orchestration_event(instance_id, "Approval", data=True)
 ```java
 client.raiseEvent(instanceId, "Approval", true);
 ```
+
+# [JavaScript](#tab/javascript)
+
+The Durable Task SDK is not available for JavaScript. Use [Durable Functions](durable-functions-overview.md) instead.
+
+# [PowerShell](#tab/powershell)
+
+The Durable Task SDK is not available for PowerShell. Use [Durable Functions](durable-functions-overview.md) instead.
 
 ---
 
