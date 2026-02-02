@@ -1,5 +1,5 @@
 ---
-title: Use App Service as an OpenAPI tool in Microsoft Foundry agent
+title: Use App Service as an OpenAPI tool in Foundry agent
 description: Empower your existing web apps by exposing their capabilities to Foundry Agent Service using OpenAPI. Connect Foundry Agent Service to REST APIs to create powerful, feature-rich agents.
 author: cephalin
 ms.author: cephalin
@@ -12,13 +12,13 @@ ms.collection: ce-skilling-ai-copilot
 ms.update-cycle: 180-days
 ---
 
-# App Service as OpenAPI tool in Microsoft Foundry agent
+# App Service as OpenAPI tool in Foundry agent
 
 Empower your existing web apps by exposing their capabilities to Foundry Agent Service using OpenAPI. Many web apps already provide REST APIs, making them ideal candidates for integration into agents that can call REST APIs as tools. By connecting Foundry Agent Service to these APIs, you can rapidly create powerful, feature-rich agents with little code.
 
 ## Overview
 
-OpenAPI (formerly Swagger) specifications describe REST APIs in a standardized, machine-readable format. Microsoft Foundry Agent Service can consume these specifications to automatically discover and invoke your web app's capabilities as tools within AI agents. This approach allows you to:
+OpenAPI specifications describe REST APIs in a standardized, machine-readable format. Foundry Agent Service can consume these specifications to automatically discover and invoke your web app's capabilities as tools within AI agents. This approach allows you to:
 
 - **Leverage existing APIs**: Transform your current REST endpoints into AI-accessible tools without code changes
 - **Maintain API standards**: Use industry-standard OpenAPI specs that serve both human and AI consumers
@@ -56,7 +56,7 @@ App Service provides built-in support for the authentication patterns required f
 
 ## [.NET](#tab/dotnet)
 - [Add an App Service app as a tool in Foundry Agent Service (.NET)](tutorial-ai-integrate-azure-ai-agent-dotnet.md)
-- [Invoke a web app from Microsoft Foundry agent](invoke-openapi-web-app-from-azure-ai-agent-service.md)
+- [Invoke a web app from Foundry agent](invoke-openapi-web-app-from-azure-ai-agent-service.md)
 
 ## [Java](#tab/java)
 - [Add an App Service app as a tool in Foundry Agent Service (Java)](tutorial-ai-integrate-azure-ai-agent-java.md)
@@ -71,4 +71,4 @@ App Service provides built-in support for the authentication patterns required f
 ## Related content
 
 - [Integrate AI into your Azure App Service applications](overview-ai-integration.md)
-- [Authenticate Microsoft Foundry tool calls](configure-authentication-ai-foundry-openapi-tool.md)
+- [Authenticate Foundry tool calls](configure-authentication-ai-foundry-openapi-tool.md)
