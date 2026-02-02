@@ -21,12 +21,16 @@ items:
     items: 
     - name: Quickstart
       href: quickstart-dotnetcore.md
+    - name: Aspire Quickstart
+      href: quickstart-dotnet-aspire.md
     - name: Configure
       items:
       - name: ASP.NET
         href: configure-language-dotnet-framework.md
       - name: ASP.NET Core
         href: configure-language-dotnetcore.md
+      - name: Aspire
+        href: configure-language-dotnet-aspire.md
     - name: Connect
       items:
       - name: ASP.NET Core with SQL DB
