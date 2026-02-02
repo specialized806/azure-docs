@@ -101,7 +101,7 @@ To register the app, perform the following steps:
     1. Under **Manage** in the left pane, select **Certificates & secrets**.
         1. In the **Certificates & secrets** pane, select **Client secrets**.
         1. Select **New client secret**.
-        1. Enter a **Description**, and then, in **Expires**, select an expriration date.
+        1. Enter a **Description**, and then, in **Expires**, select an expiration date.
         1. Select **Add**.
         1. Copy the client secret value shown on the page. The site won't show it to you again.
 
