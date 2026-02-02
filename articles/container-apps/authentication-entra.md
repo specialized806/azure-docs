@@ -1,5 +1,5 @@
 ---
-title: Enable Authentication and Authorization in Azure Container Apps with Microsoft Entra ID
+title: Enable Authentication and Authorization in Container Apps with Microsoft Entra ID
 description: Learn how to use the built-in Microsoft Entra authentication provider in Azure Container Apps.
 services: container-apps
 author: craigshoemaker
@@ -88,7 +88,7 @@ To register the app, perform the following steps:
 
             The **Application ID URI** uniquely identifies your application when it's used as a resource. It allows requested tokens to grant access. The value is also used as a prefix for scopes you create.
 
-            For a single-tenant app, you can use the default value, which is in the form `api://<APPLICATION_CLIENT_ID>`. You can also specify a more readable URI, like `https://contoso.com/api`, based on one of the verified domains for your tenant. For a multitenant app, you must provide a custom URI. To learn more about accepted formats for app ID URIs, see the [app registrations best practices reference](../active-directory/develop/security-best-practices-for-app-registration.md#application-id-uri).
+            For a single-tenant app, you can use the default value, which is in the form `api://<APPLICATION_CLIENT_ID>`. You can also specify a more readable URI, like `https://contoso.com/api`, based on one of the verified domains for your tenant. For a multitenant app, you must provide a custom URI. To learn more about accepted formats for app ID URIs, see [Security best practices for application properties in Microsoft Entra ID](../active-directory/develop/security-best-practices-for-app-registration.md#application-id-uri).
 
             The value is automatically saved.
 
@@ -122,7 +122,7 @@ To register the app, perform the following steps:
     |**Issuer URL**| Use `<AUTHENTICATION-ENDPOINT>/<TENANT-ID>/v2.0`. Replace *\<AUTHENTICATION-ENDPOINT>* with the [authentication endpoint for your cloud environment](../active-directory/develop/authentication-national-cloud.md#azure-ad-authentication-endpoints) (for example, "https://login.microsoftonline.com" for global Azure). Replace *\<TENANT-ID>* with the **Directory (tenant) ID** in which the app registration was created. This value is used to redirect users to the correct Microsoft Entra tenant, and to download the metadata to determine the appropriate token signing keys and token issuer claim value, for example. For applications that use Azure Active Directory v1, omit `/v2.0` in the URL.|
     |**Allowed token audiences**| The configured **Application (client) ID** is *always* implicitly considered to be an allowed audience. If this value refers to a cloud or server app and you want to accept authentication tokens from a client container app (the authentication token can be retrieved in the `X-MS-TOKEN-AAD-ID-TOKEN` header), add the **Application (client) ID** of the client app here. |
 
-    The client secret is stored as [secrets](manage-secrets.md) in your container app.
+    The client secret is stored as a [secret](manage-secrets.md) in your container app.
 
 1. If this is the first identity provider configured for the application, you see a **Container Apps authentication settings** section. Otherwise, you move on to the next step.
 
