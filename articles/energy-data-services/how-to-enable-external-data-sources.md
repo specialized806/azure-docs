@@ -1,84 +1,86 @@
 ---
-title: Enable External Data Services (EDS) in Azure Data Manager for Energy
+title: Enable External Data Services in Azure Data Manager for Energy
 description: Learn how to enable External Data Services (EDS) to pull metadata from OSDU-compliant external data sources into Azure Data Manager for Energy.
 author: bharathim
 ms.author: bselvaraj
 ms.service: azure-data-manager-energy
 ms.topic: how-to
-ms.date: 01/28/2026
-
-#customer intent: As a Data Manager in Operating company, I want to enable external data sources so that I pull metadata at scheduled intervals into Azure Data Manager for Energy and retrieve bulk data on demand.
-
+ms.date: 03/05/2025
+ms.custom: template-how-to
 ---
 
-# Enable External Data Services (EDS)
+# Enable External Data Services (EDS) in Azure Data Manager for Energy
 
-External Data Services (EDS) is a capability in [OSDU®](https://osduforum.org/) that allows data from an OSDU-compliant external data source to be shared with an Azure Data Manager for Energy resource. EDS is designed to pull specified data (metadata) from OSDU-compliant data sources via scheduled jobs while leaving associated dataset files (LAS, SEG-Y, etc.) stored at the external source for retrieval on demand.
+This article describes how to enable External Data Services (EDS) in Azure Data Manager for Energy. EDS allow you to pull metadata from OSDU-compliant external data sources into Azure Data Manager for Energy. 
+
+By using a [managed identity](/entra/identity/managed-identities-azure-resources/overview), Azure resources can authenticate to other services without storing credentials in code. Use either a system-assigned or user-assigned managed identity to enable the EDS secret service to access secrets stored in your Azure Key Vault.
 
 ## Prerequisites
 
-- An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account).
-- An Azure Data Manager for Energy resource. If you don't have one, see [Create an Azure Data Manager for Energy instance](/azure/energy-data-services/quickstart-create-microsoft-energy-data-services-instance).
+- An active Azure subscription. [Create a subscription for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+- An Azure Data Manager for Energy resource. [Create an Azure Data Manager for Energy instance](quickstart-create-microsoft-energy-data-services-instance.md).
 
-## Create or configure a key vault
-1. Create a new key vault or use an existing one to store secrets managed by the OSDU secret service. To learn how to create a key vault, see [Quickstart: Create a key vault using the Azure portal](/azure/key-vault/general/quick-create-portal).
+## Create or configure a Key Vault
+
+Use an Azure Key Vault to store secrets managed by the OSDU&reg; secret service.
+
+1. Create a new Key Vault or use an existing one. To learn how to create a Key Vault, see [Quickstart: Create a key vault using the Azure portal](/azure/key-vault/general/quick-create-portal).
 
    > [!IMPORTANT]
-   > Your key vault must exist in the same tenant as your Azure Data Manager for Energy resource.
-
-   > [!TIP]
-   > When you create the key vault, select [Enable purge protection (enforce a mandatory retention period for deleted vaults and vault objects)](/azure/key-vault/general/key-vault-recovery?tabs=azure-portal#what-are-soft-delete-and-purge-protection).
+   > Your Key Vault must exist in the same tenant as your Azure Data Manager for Energy resource. When you create the Key Vault, select [Enable purge protection (enforce a mandatory retention period for deleted vaults and vault objects)](/azure/key-vault/general/key-vault-recovery?tabs=azure-portal#what-are-soft-delete-and-purge-protection).
 
 1. In the **Access configuration** tab, under **Permission model**, select **Azure role-based access control (recommended)**.
-    [![Screenshot of create a key vault.](media/how-to-enable-external-data-sources/create-a-key-vault.jpg)](media/how-to-enable-external-data-sources/create-a-key-vault.jpg#lightbox)
+:::image type="content" source="media/how-to-enable-external-data-sources/create-a-key-vault.jpg" lightbox="media/how-to-enable-external-data-sources/create-a-key-vault.jpg" alt-text="Azure portal showing the Create a key vault page with the Access configuration tab selected. The Permission model section displays the Azure role-based access control (recommended) option selected. The Resource access section shows unchecked options for Azure Virtual Machines for deployment, Azure Resource Manager for template deployment, and Azure Disk Encryption for volume encryption. Previous, Next, and Review + create buttons appear at the bottom.":::
 
 1. Select **Review + create** to create the key vault.
 
-## Managed Identity
-A [managed identity](/entra/identity/managed-identities-azure-resources/overview) is a feature in Microsoft Entra ID that allows Azure resources to authenticate to other services without storing credentials in code. Azure supports two types of managed identities:
-- **System-assigned managed identity**: Enabled directly on an Azure resource. The identity is tied to the lifecycle of the resource and is automatically deleted when the resource is deleted.
-- **User-assigned managed identity**: Created as a standalone Azure resource. It can be assigned to one or more Azure resources and is managed independently from the resources that use it.
+## Grant user-assigned managed identity permissions to the Key Vault
 
-You can use either a user-assigned or system-assigned managed identity for External Data Services. Note that a system-assigned managed identity is automatically created during Azure Data Manager for Energy resource provisioning.
+Use the following steps to grant a user-assigned managed identity permissions to the Key Vault.
 
-## Granting Managed Identity permissions to the Key Vault
+1. In the Azure portal, go to your Key Vault.
+1. Select **Access control (IAM)** from the left menu and select **+ Add** > **Add role assignment**.
+   :::image type="content" source="media/how-to-enable-external-data-sources/key-vault-add-role-assignment.png" alt-text="Screenshot of adding role assignment to key vault" lightbox="media/how-to-enable-external-data-sources/key-vault-add-role-assignment.png":::
 
-### User-assigned managed identity
-1. In the Azure portal, navigate to your key vault.
-1. Select **Access control (IAM)** from the left menu.
-1. Select **+ Add** > **Add role assignment**.
-1. On the **Role** tab, select **Job function roles**, search for and select **Key Vault Secrets User**, then select **Next**.
+1. On the **Role** tab, select **Job function roles**, search for and select **Key Vault Secrets User**, and then select **Next**.
+   :::image type="content" source="media/how-to-enable-external-data-sources/key-vault-secrets-user-selection.png" alt-text="Screenshot of selecting Key Vault Secrets User role" lightbox="media/how-to-enable-external-data-sources/key-vault-secrets-user-selection.png":::
+
 1. On the **Members** tab, select **Managed identity** for **Assign access to**.
 1. Select **+ Select members**.
-1. In the **Select managed identities** pane, select **User-assigned managed identity** from the **Managed identity** dropdown.
-1. Select the user-assigned managed identity you want to grant access to, then select **Select**.
-1. Select **Review + assign** to complete the role assignment.
+1. Select **User-assigned managed identity** on the **Managed identity** dropdown.
+1. Select the user-assigned managed identity, and select **Select**.
+   :::image type="content" source="media/how-to-enable-external-data-sources/select-a-managed-identity.png" alt-text="Screenshot of selecting a user-assigned managed identity" lightbox="media/how-to-enable-external-data-sources/select-a-managed-identity.png":::
 
-### System-assigned managed identity
-1. In the Azure portal, navigate to your key vault.
+1. Select **Review + assign** to complete the role assignment.
+   :::image type="content" source="media/how-to-enable-external-data-sources/key-vault-review-and-assign.png" alt-text="Screenshot of review and assign of role assignment to key vault" lightbox="media/how-to-enable-external-data-sources/key-vault-review-and-assign.png":::
+
+## Grant system-assigned managed identity permissions to the Key Vault
+
+Use the following steps if you're using a system-assigned managed identity instead.
+
+1. In the Azure portal, go to your Key Vault.
 1. Select **Access control (IAM)** from the left menu.
 1. Select **+ Add** > **Add role assignment**.
-1. On the **Role** tab, select **Job function roles**, search for and select **Key Vault Secrets User**, then select **Next**.
-1. On the **Members** tab, select **User, group, or service principal** for **Assign access to**.
+1. On the **Role** tab, select **Job function roles**, search for and select **Key Vault Secrets User**, and then select **Next**.
+1. On the **Members** tab, select **Managed identity** for **Assign access to**.
 1. Select **+ Select members**.
-1. In the **Select members** pane, search for and select the service principal with the same name as your Azure Data Manager for Energy resource.
-1. Select **Select**.
+1. Select **All system-assigned managed identities** on the **Managed identity** dropdown.
+1. Search for the Azure Data Manager for Energy instance, select it, and select **Select**.
 1. Select **Review + assign** to complete the role assignment.
 
-## Enable External Data Services
-1. Navigate to your Azure Data Manager for Energy resource in the Azure portal.
+## Enable External Data Services in Azure Data Manager for Energy
+
+Use the following steps to enable External Data Services in your Azure Data Manager for Energy resource.
+
+1. Go to your Azure Data Manager for Energy resource in the Azure portal.
 1. In the left menu, under **Advanced**, select **External Data Sources**.
 1. Select the checkbox to **Enable External Data Sources**.
-1. Select **Select a key vault** to open the flyout panel. Select the subscription and the key vault you created earlier, then select **Add**.
+1. Select **Select a Key Vault** to open the form. Select the subscription and the Key Vault you created earlier, and then select **Add**.
 1. Under **Managed identity type**, select **User-assigned managed identity** or **System-assigned managed identity**.
-1. If you selected **User-assigned managed identity**, select **Select user assigned managed identity** to open the flyout panel.
-1. In the **Select user assigned managed identity** flyout, select your **Subscription** from the dropdown.
-1. Search for your user-assigned managed identity in the search field.
-1. Select the managed identity from the list, then select **Add**.
-1. Select **Save** to enable External Data Services.
+1. If you select **User-assigned managed identity**, select **Select user assigned managed identity** to open the form. Select the subscription and managed identity, and then select **Add**.
+1. Select **Save** to apply the configuration.
 
-## FAQ
-See [External data sources FAQ.](faq-energy-data-services.yml#external-data-sources)
+## Next steps
 
-> [!div class="nextstepaction"]
-> [How to register an external data source with Azure Data Manager for Energy?](how-to-register-external-data-sources.md) 
+- [How to register an external data source with Azure Data Manager for Energy?](how-to-register-external-data-sources.md)
+- [External data sources FAQ](faq-energy-data-services.yml#external-data-sources)
