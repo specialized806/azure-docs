@@ -70,7 +70,7 @@ OSDU&reg; is a trademark of The Open Group.
 
    [![Screenshot of the tab for data encryption options in Azure Data Manager for Energy.](media/quickstart-create-microsoft-energy-data-services-instance/encryption-tab.png)](media/quickstart-create-microsoft-energy-data-services-instance/encryption-tab.png#lightbox)
 
-1. Move to the **External Data Services** tab. If you want to configure external data source connections, select the **Enable External Data Service** checkbox.
+1. Move to the **External Data Services** tab. If you want to configure external data source connections, select the **Enable External Data Services** checkbox.
 
    1. After it's enabled, select **Select a key vault** and choose one of the key vaults in the selected subscription.
 
