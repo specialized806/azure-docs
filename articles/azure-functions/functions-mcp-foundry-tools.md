@@ -139,7 +139,7 @@ To connect to your MCP server endpoint:
     | **Name** | A unique identifier for your MCP server. You can use your function app name as the default. | `my-mcp-function-app` |
     | **Remote MCP Server endpoint** | The URL endpoint for your MCP server. | `https://my-mcp-function-app.azurewebsites.net/runtime/webhooks/mcp` |
     | **Authentication** | The authentication method to use. | `Key-based` |
-    | **Credential** | The key-value pair to authenticate with your function app. | `x-functions-key`: `{mcp_extension_key}` |
+    | **Credential** | The key-value pair to authenticate with your function app. | `x-functions-key`: `aaaaaaaa-0b0b-1c1c-2d2d-333333333333` |
 
 
 1. Select **Connect** to create a connection to your MCP server endpoint. You should now see your server name listed under **Tools**. 
@@ -200,15 +200,13 @@ To connect to your MCP server endpoint:
 
 1. In **Add Model Content Protocol tool**, provide information from this table to configure an unauthenticated connection:
 
-    :::image type="content" source="./media/functions-mcp/foundry-unauthenticated-auth.png" alt-text="Screenshot of the Add Model Context Protocol tool dialog showing unauthenticated access configuration.":::
-
     | Field | Description | Example |
     | ----- | ----------- | ------- |
     | **Name** | A unique identifier for your MCP server. You can use your function app name. | `my-mcp-functions` |
     | **Remote MCP Server endpoint** | The URL endpoint for your MCP server. | `https://my-mcp-functions.azurewebsites.net/runtime/webhooks/mcp` |
-    | **Authentication** | The authentication method to use. | `None` |
+    | **Authentication** | The authentication method to use. | `Unauthenticated` |
 
-1. Select **Connect** to create a connection to your MCP server endpoint. You should now see your server name listed under **Tools**.
+1. Select **Connect** to create an unauthenticated connection to your MCP server endpoint. You should now see your server name listed under **Tools**.
 
 1. Select **Save** to save the MCP tool configuration in your agent.
 
