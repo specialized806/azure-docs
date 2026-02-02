@@ -88,7 +88,7 @@ The result is a list of instance IDs and their current runtime status.
 
 ## Durable Task Scheduler monitoring dashboard
 
-When using the [Durable Task Scheduler](durable-task-scheduler/durable-task-scheduler-overview.md), you can observe, manage, and debug your orchestrations using the Durable Task Scheduler dashboard. The dashboard is available when you run the [Durable Task Scheduler emulator](durable-task-scheduler/durable-task-scheduler.md#emulator-for-local-development) locally or create a scheduler resource on Azure.
+When using the [Durable Task Scheduler](durable-task-scheduler/durable-task-scheduler.md), you can observe, manage, and debug your orchestrations using the Durable Task Scheduler dashboard. The dashboard is available when you run the [Durable Task Scheduler emulator](durable-task-scheduler/durable-task-scheduler.md#emulator-for-local-development) locally or create a scheduler resource on Azure.
 
 ### Accessing the dashboard
 
@@ -115,4 +115,4 @@ For detailed instructions on setting up access and using the dashboard, see [Deb
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Learn more about the Durable Task Scheduler](durable-task-scheduler/durable-task-scheduler-overview.md)
+> [Learn more about the Durable Task Scheduler](durable-task-scheduler/durable-task-scheduler.md)

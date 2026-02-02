@@ -612,7 +612,7 @@ The Azure portal provides built-in diagnostic tools for your function apps.
 
 ### Diagnose and solve problems
 
-Azure Function App Diagnostics is a useful resource for monitoring and diagnosing potential issues in your application. It also provides suggestions to help resolve problems based on the diagnosis. For more information, see [Azure Function App Diagnostics](../function-app-diagnostics.md).
+Azure Function App Diagnostics is a useful resource for monitoring and diagnosing potential issues in your application. It also provides suggestions to help resolve problems based on the diagnosis. For more information, see [Azure Function App Diagnostics](function-app-diagnostics.md).
 
 ### Orchestration traces
 
