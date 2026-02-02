@@ -152,7 +152,7 @@ An [application security group (ASGs)](application-security-groups.md) enables y
    | Resource group       | Select **test-rg**.       |
    | **Instance details** |                           |
    | Name                 | Enter **asg-web**.        |
-   | Region               | Select **East US 2**.     |
+   | Region               | Select **West US 2**.     |
 
 1. Select **Review + create**.
 
@@ -167,7 +167,7 @@ An [application security group (ASGs)](application-security-groups.md) enables y
    | Resource group       | Select **test-rg**.       |
    | **Instance details** |                           |
    | Name                 | Enter **asg-mgmt**.       |
-   | Region               | Select **East US 2**.     |
+   | Region               | Select **West US 2**.     |
 
 1. Select **Review + create**.
 
@@ -233,7 +233,7 @@ A [network security group (NSG)](network-security-groups-overview.md) secures ne
    | Resource group       | Select **test-rg**.       |
    | **Instance details** |                           |
    | Name                 | Enter **nsg-1**.          |
-   | Location             | Select **East US 2**.     |
+   | Location             | Select **West US 2**.     |
 
 1. Select **Review + create**.
 
@@ -478,7 +478,7 @@ Create two virtual machines (VMs) in the virtual network.
    | Resource group            | Select **test-rg**.                                             |
    | **Instance details**      |                                                                 |
    | Virtual machine name      | Enter **vm-web**.                                                 |
-   | Region                    | Select **(US) East US 2**.                                      |
+   | Region                    | Select **(US) West US 2**.                                      |
    | Availability options      | Leave the default of **No infrastructure redundancy required**. |
    | Security type             | Select **Standard**.                                            |
    | Image                     | Select **Ubuntu Server 24.04 LTS - x64 Gen2**.                  |
