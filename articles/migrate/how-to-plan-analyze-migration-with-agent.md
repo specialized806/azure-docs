@@ -43,7 +43,9 @@ Before you begin, ensure you have:
 - You can continue asking questions about concepts in this chat, but all migration execution tasks must be completed in the Azure Migrate portal.
 - For execution guidance, see [Server migration overview in Azure Migrate](server-migrate-overview.md).
 
-This screenshot shows a sample migration prompt:
+Using migration agent to develop migration stategies for each application. 
+
+This screenshot shows a sample migration prompt :
 
 :::image type="content" source="media/how-to-plan-analyze-migration-with-agent/prompt.png" alt-text="The screenshot shows the migrate prompt."lightbox="./media/how-to-plan-analyze-migration-with-agent/prompt.png":::
 
