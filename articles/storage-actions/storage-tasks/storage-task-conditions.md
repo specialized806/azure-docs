@@ -128,9 +128,8 @@ The following table shows the properties that you can use to compose each clause
 | Container.Metadata.Value[Name] |                           |                |                  |
 | Container.Name                 |                           |                |                  |
 | Tags.Value[Name]               |                           |                |                  |
-| VersionId                      |                           |                |                  |
 
-<sup>1</sup>    Allowed values are `Hot`, `Cool`, or `Archive`.
+<sup>1</sup>    Allowed values are `Hot`, `Cool`, `Cold` or `Archive`.
 
 <sup>2</sup>    Allowed values are `BlockBlob`, `PageBlob`, or `AppendBlob`
 
@@ -147,7 +146,7 @@ The following table shows the operators that you can use in a clause to evaluate
 | equals | greaterOrEquals |greaterOrEquals ||
 | endsWith | less | less ||
 | length | lessOrEquals | lessOrEquals ||
-| startsWith | addToTime | ||
+| startsWith | dateTimeAdd | ||
 | Matches |  | || 
 
 The **not** operator is a special operator that you can position before any of the operators that appear in this table to give the opposite result of conditional clause, also called the negative result.
