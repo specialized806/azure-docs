@@ -87,7 +87,7 @@ landingContent:
           - text: How to Upload large files using file service
             url: how-to-upload-large-files-using-file-service.md
           - text: How to enable External Data Services (EDS)
-            url: how-to-enable-external-data-services
+            url: how-to-enable-external-data-services.md
           - text: How to register External Data Services (EDS)
             url: how-to-register-external-data-services.md
           - text: How to enable legal tags restricted COO (Country of Origin)

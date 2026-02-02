@@ -139,7 +139,7 @@ Azure Data Manager for Energy is now available in the Australia East Region. Thi
 ### External Data Sources (Preview)
 External Data Sources (EDS) allows data from an [OSDU&reg;](https://osduforum.org/) compliant external data sources to be shared with an Azure Data Manager for Energy resource. EDS is designed to pull specified data (metadata) from OSDU-compliant data sources via scheduled jobs while leaving associated dataset files (LAS, SEG-Y, etc.) stored at the external source for retrieval on demand.
 
-For details, see [How to enable External Data Services (EDS) Preview?](how-to-enable-external-data-sources.md)
+For details, see [How to enable External Data Services (EDS) Preview?](how-to-enable-external-data-services.md)
 
 ## November 2023
 
