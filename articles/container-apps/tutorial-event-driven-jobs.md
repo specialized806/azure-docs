@@ -21,7 +21,7 @@ In this tutorial, you learn how to work with [event-driven jobs](jobs.md#event-d
 
 > [!div class="checklist"]
 > * Create a Container Apps environment to deploy your container apps
-> * Create an Azure storage queue to send messages to the container app
+> * Create an Azure Storage queue to send messages to the container app
 > * Build a container image that runs a job
 > * Deploy the job to the Container Apps environment
 > * Verify that the queue messages are processed by the container app
