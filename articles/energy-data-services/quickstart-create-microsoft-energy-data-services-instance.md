@@ -128,4 +128,4 @@ To delete an Azure Data Manager for Energy instance:
 ## Next steps
 
 - [How to manage users](how-to-manage-users.md)
-- [Enable External Data Sources (EDS)](how-to-enable-external-data-sources.md)
+- [How to enable External Data Services](how-to-enable-external-data-services.md)

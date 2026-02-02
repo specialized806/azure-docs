@@ -10,8 +10,8 @@ ms.date: 03/14/2024
 #customer intent: As a Data Manager in Operating company, I want to register external data sources with Azure Data Manager for Energy so that I could pull metadata at scheduled intervals and retrieve bulk data on demand.
 
 ---
-# How to register an External Data Sources (EDS) with Azure Data Manager for Energy?
-This article explains how to register an External Data Sources (EDS) with Azure Data Manager for energy. EDS allows you to fetch and ingest data (metadata) from external data sources. It also allows you to retrieve bulk data on demand.
+# How to register an External Data Services (EDS) with Azure Data Manager for Energy?
+This article explains how to register an External Data Services (EDS) with Azure Data Manager for energy. EDS allows you to fetch and ingest data (metadata) from external data sources. It also allows you to retrieve bulk data on demand.
 
 ## Prerequisites 
 - Download and import API [collection](https://community.opengroup.org/osdu/pre-shipping/-/blob/main/R3-M23/QA_Artifacts_M23/EDS/EDS_Ingest_M23_Pre-Shipping_Setup_and_Testing.postman_collection.json?ref_type=heads) and [environment](https://community.opengroup.org/osdu/pre-shipping/-/blob/main/R3-M23/QA_Artifacts_M23/envFilesAndCollections/envFiles/OSDU%20R3%20M23%20Azure%20pre-ship.postman_environment.json?ref_type=heads) files into API test client. Make appropriate modifications in environment based on your data source. 

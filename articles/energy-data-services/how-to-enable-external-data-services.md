@@ -76,9 +76,12 @@ Use the following steps to enable External Data Services in your Azure Data Mana
 1. In the left menu, under **Advanced**, select **External Data Sources**.
 1. Select the checkbox to **Enable External Data Sources**.
 1. Select **Select a Key Vault** to open the form. Select the subscription and the Key Vault you created earlier, and then select **Add**.
+   :::image type="content" source="media/how-to-enable-external-data-sources/external-data-services-select-a-key-vault.png" alt-text="Screenshot of selecting a Key Vault for External Data Services" lightbox="media/how-to-enable-external-data-sources/external-data-services-select-a-key-vault.png":::
 1. Under **Managed identity type**, select **User-assigned managed identity** or **System-assigned managed identity**.
 1. If you select **User-assigned managed identity**, select **Select user assigned managed identity** to open the form. Select the subscription and managed identity, and then select **Add**.
+   :::image type="content" source="media/how-to-enable-external-data-sources/external-data-services-select-a-user-assigned-managed-identity.png" alt-text="Screenshot of selecting a user-assigned managed identity for External Data Services" lightbox="media/how-to-enable-external-data-sources/external-data-services-select-a-user-assigned-managed-identity.png":::
 1. Select **Save** to apply the configuration.
+   :::image type="content" source="media/how-to-enable-external-data-sources/external-data-services-save-configuration.png" alt-text="Screenshot of saving the External Data Services configuration" lightbox="media/how-to-enable-external-data-sources/external-data-services-save-configuration.png":::
 
 ## Next steps
 
