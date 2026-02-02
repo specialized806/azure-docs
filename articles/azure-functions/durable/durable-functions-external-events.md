@@ -40,7 +40,7 @@ The *"wait-for-external-event"* API allows an orchestration to asynchronously wa
 
 ::: zone pivot="durable-functions"
 
-# [C#](#tab/csharp-sdk)
+# [C#](#tab/csharp)
 
 ```csharp
 [FunctionName("BudgetApproval")]
@@ -149,7 +149,7 @@ public class BudgetApproval : TaskOrchestrator<object?, bool>
 }
 ```
 
-# [Python](#tab/python-sdk)
+# [Python](#tab/python)
 
 ```python
 from durabletask import task
@@ -165,7 +165,7 @@ def budget_approval(ctx: task.OrchestrationContext, _):
     return approved
 ```
 
-# [Java](#tab/java-sdk)
+# [Java](#tab/java)
 
 ```java
 public class BudgetApproval implements TaskOrchestration {
@@ -191,7 +191,7 @@ You can listen for multiple events concurrently, like in the following example, 
 
 ::: zone pivot="durable-functions"
 
-# [C#](#tab/csharp-sdk)
+# [C#](#tab/csharp)
 
 ```csharp
 [FunctionName("Select")]
@@ -340,7 +340,7 @@ public class SelectOrchestrator : TaskOrchestrator<object?, object?>
 }
 ```
 
-# [Python](#tab/python-sdk)
+# [Python](#tab/python)
 
 ```python
 from durabletask import task
@@ -362,7 +362,7 @@ def select_orchestrator(ctx: task.OrchestrationContext, _):
         pass
 ```
 
-# [Java](#tab/java-sdk)
+# [Java](#tab/java)
 
 ```java
 public class SelectOrchestrator implements TaskOrchestration {
@@ -392,7 +392,7 @@ The previous example listens for *any* of multiple events. It's also possible to
 
 ::: zone pivot="durable-functions"
 
-# [C#](#tab/csharp-sdk)
+# [C#](#tab/csharp)
 
 ```csharp
 [FunctionName("NewBuildingPermit")]
@@ -517,7 +517,7 @@ public class NewBuildingPermit : TaskOrchestrator<string, object?>
 
 In .NET, if the event payload cannot be converted into the expected type `T`, an exception is thrown.
 
-# [Python](#tab/python-sdk)
+# [Python](#tab/python)
 
 ```python
 from durabletask import task
@@ -536,7 +536,7 @@ def new_building_permit(ctx: task.OrchestrationContext, application_id: str):
     yield ctx.call_activity(issue_building_permit, input=application_id)
 ```
 
-# [Java](#tab/java-sdk)
+# [Java](#tab/java)
 
 ```java
 public class NewBuildingPermit implements TaskOrchestration {
@@ -605,7 +605,7 @@ Below is an example that sends an "Approval" event to an orchestration instance.
 
 ::: zone pivot="durable-functions"
 
-# [C#](#tab/csharp-sdk)
+# [C#](#tab/csharp)
 
 ```csharp
 [FunctionName("ApprovalQueueProcessor")]
@@ -678,13 +678,13 @@ Internally, the "*raise-event*" API enqueues a message that gets picked up by th
 await client.RaiseEventAsync(instanceId, "Approval", true);
 ```
 
-# [Python](#tab/python-sdk)
+# [Python](#tab/python)
 
 ```python
 client.raise_orchestration_event(instance_id, "Approval", data=True)
 ```
 
-# [Java](#tab/java-sdk)
+# [Java](#tab/java)
 
 ```java
 client.raiseEvent(instanceId, "Approval", true);

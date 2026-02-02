@@ -28,7 +28,7 @@ For background jobs, you often need to ensure that only one instance of a partic
 
 The following example shows an HTTP-trigger function that creates a singleton background job orchestration. The code ensures that only one instance exists for a specified instance ID.
 
-# [C#](#tab/csharp-sdk)
+# [C#](#tab/csharp)
 
 ```cs
 [FunctionName("HttpStartSingle")]
@@ -276,7 +276,7 @@ else
 }
 ```
 
-# [Python](#tab/python-sdk)
+# [Python](#tab/python)
 
 ```python
 from durabletask.azuremanaged.client import DurableTaskSchedulerClient
@@ -296,7 +296,7 @@ else:
     print(f"An instance with ID '{instance_id}' already exists.")
 ```
 
-# [Java](#tab/java-sdk)
+# [Java](#tab/java)
 
 ```java
 import com.microsoft.durabletask.DurableTaskClient;

@@ -96,7 +96,7 @@ One use case for eternal orchestrations is code that needs to do periodic work i
 
 ::: zone pivot="durable-functions"
 
-# [C#](#tab/csharp-sdk)
+# [C#](#tab/csharp)
 
 ```csharp
 [FunctionName("Periodic_Cleanup_Loop")]
@@ -196,7 +196,7 @@ public class PeriodicCleanupLoop : TaskOrchestrator<object?, object?>
 }
 ```
 
-# [Python](#tab/python-sdk)
+# [Python](#tab/python)
 
 ```python
 from datetime import timedelta
@@ -215,7 +215,7 @@ def periodic_cleanup_loop(ctx: task.OrchestrationContext, _):
     ctx.continue_as_new(None)
 ```
 
-# [Java](#tab/java-sdk)
+# [Java](#tab/java)
 
 ```java
 public class PeriodicCleanupLoop implements TaskOrchestration {
@@ -230,6 +230,14 @@ public class PeriodicCleanupLoop implements TaskOrchestration {
     }
 }
 ```
+
+# [JavaScript](#tab/javascript)
+
+The Durable Task SDK is not available for JavaScript. Use [Durable Functions](durable-functions-overview.md) instead.
+
+# [PowerShell](#tab/powershell)
+
+The Durable Task SDK is not available for PowerShell. Use [Durable Functions](durable-functions-overview.md) instead.
 
 ---
 
@@ -246,7 +254,7 @@ Use the *start-new* or *schedule-new* durable client method to start an eternal 
 > [!NOTE]
 > If you need to ensure a singleton eternal orchestration is running, it's important to maintain the same instance `id` when starting the orchestration. For more information, see [Instance Management](durable-functions-instance-management.md).
 
-# [C#](#tab/csharp-sdk)
+# [C#](#tab/csharp)
 
 ```csharp
 [FunctionName("Trigger_Eternal_Orchestration")]
@@ -335,19 +343,27 @@ await client.ScheduleNewOrchestrationInstanceAsync(
     new StartOrchestrationOptions { InstanceId = instanceId });
 ```
 
-# [Python](#tab/python-sdk)
+# [Python](#tab/python)
 
 ```python
 instance_id = "StaticId"
 client.schedule_new_orchestration(periodic_cleanup_loop, instance_id=instance_id)
 ```
 
-# [Java](#tab/java-sdk)
+# [Java](#tab/java)
 
 ```java
 String instanceId = "StaticId";
 client.scheduleNewOrchestrationInstance("PeriodicCleanupLoop", null, instanceId);
 ```
+
+# [JavaScript](#tab/javascript)
+
+The Durable Task SDK is not available for JavaScript. Use [Durable Functions](durable-functions-overview.md) instead.
+
+# [PowerShell](#tab/powershell)
+
+The Durable Task SDK is not available for PowerShell. Use [Durable Functions](durable-functions-overview.md) instead.
 
 ---
 
@@ -369,23 +385,31 @@ If an orchestration needs to eventually complete, then all you need to do is *no
 
 If an orchestration is in an infinite loop and needs to be stopped, use the *terminate* API on the durable task client to stop it.
 
-# [C#](#tab/csharp-sdk)
+# [C#](#tab/csharp)
 
 ```csharp
 await client.TerminateInstanceAsync(instanceId, "Cleanup no longer needed");
 ```
 
-# [Python](#tab/python-sdk)
+# [Python](#tab/python)
 
 ```python
 client.terminate_orchestration(instance_id, output="Cleanup no longer needed")
 ```
 
-# [Java](#tab/java-sdk)
+# [Java](#tab/java)
 
 ```java
 client.terminate(instanceId, "Cleanup no longer needed");
 ```
+
+# [JavaScript](#tab/javascript)
+
+The Durable Task SDK is not available for JavaScript. Use [Durable Functions](durable-functions-overview.md) instead.
+
+# [PowerShell](#tab/powershell)
+
+The Durable Task SDK is not available for PowerShell. Use [Durable Functions](durable-functions-overview.md) instead.
 
 ---
 
