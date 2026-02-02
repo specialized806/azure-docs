@@ -486,7 +486,7 @@ When an object replication policy is deleted and re‑created on the same source
 
 - Replication state from the previous policy is not reused. 
 
-**Replication behavior after re‑creation** 
+## Replication behavior after re‑creating an object replication policy 
 
 After the policy is re‑created, Azure attempts replication again for eligible blobs, and the outcome depends on the availability of blob version history on the source account: 
 
