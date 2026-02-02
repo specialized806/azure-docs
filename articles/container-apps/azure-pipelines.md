@@ -140,9 +140,9 @@ To deploy to Container Apps, you need to create an Azure DevOps service connecti
 
 1. Select **Service connections**.
 
-1. Select **New service connection**.
+1. Select **Create service connection**.
 
-1. Select **Azure Resource Manager**.
+1. Select **Azure Resource Manager**, and then select **Next**.
 
 1. Select **Service principal (automatic)**, and then select **Next**.
 
