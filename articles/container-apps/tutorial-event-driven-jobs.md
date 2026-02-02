@@ -64,7 +64,7 @@ The job uses an Azure Storage queue to receive messages. In this section, you cr
         --kind StorageV2
     ```
 
-    If this command returns the follwing error, be sure you have registered the `Microsoft.Storage` namespace in your Azure subscription. 
+    If this command returns the following error, be sure you have registered the `Microsoft.Storage` namespace in your Azure subscription. 
 
     ```
     (SubscriptionNotFound) Subscription <SUBSCRIPTION_ID> was not found.
@@ -80,7 +80,7 @@ The job uses an Azure Storage queue to receive messages. In this section, you cr
 
 1. Save the queue's connection string into a variable:
 
-    ```bash
+    ```azurecli
     QUEUE_CONNECTION_STRING=$(az storage account show-connection-string -g $RESOURCE_GROUP --name $STORAGE_ACCOUNT_NAME --query connectionString --output tsv)
     ```
 
