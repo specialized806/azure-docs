@@ -1,11 +1,11 @@
 ---
-title: "Quickstart: Deploy a .NET Aspire app"
-description: Learn how to deploy your first .NET Aspire app to Azure App Service using GitHub Codespaces and Azure Developer CLI.
+title: "Quickstart: Deploy an Aspire app"
+description: Learn how to deploy your first Aspire app to Azure App Service using GitHub Codespaces and Azure Developer CLI.
 ms.topic: quickstart
 ms.date: 01/31/2026
 author: cephalin
 ms.author: cephalin
-#customer intent: As a .NET developer, I want to quickly deploy a .NET Aspire app to Azure App Service using a browser-based development environment.
+#customer intent: As a .NET developer, I want to quickly deploy an Aspire app to Azure App Service using a browser-based development environment.
 ms.service: azure-app-service
 ms.custom:
   - devx-track-csharp
@@ -13,11 +13,14 @@ ms.custom:
   - devx-track-extended-azdevcli
 ---
 
-# Quickstart: Deploy a .NET Aspire app to Azure App Service
+# Quickstart: Deploy an Aspire app to Azure App Service
 
-In this quickstart, you learn how to create and deploy your first [.NET Aspire](/dotnet/aspire/get-started/aspire-overview) app to [Azure App Service](overview.md). Azure App Service provides a fully managed platform for hosting web apps with built-in infrastructure maintenance, security patching, and scaling.
+In this quickstart, you learn how to create and deploy your first [Aspire](/dotnet/aspire/get-started/aspire-overview) app to [Azure App Service](overview.md). Azure App Service provides a fully managed platform for hosting web apps with built-in infrastructure maintenance, security patching, and scaling.
 
 You can complete this entire quickstart in your browser using GitHub Codespaces, which provides a pre-configured development environment with .NET 10 and Azure Developer CLI already installed. By the end, you have a running Aspire app deployed to Azure App Service.
+
+> [!NOTE]
+> While this quickstart focuses on .NET projects, Aspire also supports Python applications starting from [Aspire 1.3](https://aspire.dev/whats-new/aspire-13/). Python Aspire apps can also be deployed to Azure App Service using the same integration.
 
 ## Prerequisites
 
@@ -31,7 +34,7 @@ You can complete this entire quickstart in your browser using GitHub Codespaces,
 
    Your browser opens a new codespace with Visual Studio Code running in the browser. The environment includes .NET 10 and Azure Developer CLI pre-installed.
 
-1. In the codespace terminal, install the .NET Aspire CLI globally:
+1. In the codespace terminal, install the Aspire CLI globally:
 
    ```bash
    dotnet tool install -g Aspire.Cli
@@ -202,14 +205,14 @@ The command removes all Azure resources created during this quickstart.
 
 ### Do I need an App Service environment to run Aspire apps?
 
-No, you don't need an [App Service environment](environment/overview.md) to run .NET Aspire apps in Azure App Service. The `AddAzureAppServiceEnvironment` method creates an Aspire environment concept that represents the hosting infrastructure for your application, which happens to be App Service in this case. Despite its name, it doesn't refer to App Service environments.
+No, you don't need an [App Service environment](environment/overview.md) to run Aspire apps in Azure App Service. The `AddAzureAppServiceEnvironment` method creates an Aspire environment concept that represents the hosting infrastructure for your application, which happens to be App Service in this case. Despite its name, it doesn't refer to App Service environments.
 
 When you call `AddAzureAppServiceEnvironment`, it provisions:
 - An Azure App Service Plan (Premium P0V3 tier on Linux by default)
 - An Azure Container Registry for storing container images
 - A user-assigned managed identity for secure access between services
 
-This Aspire environment concept groups your resources together and provides the infrastructure needed to deploy your .NET Aspire apps to Azure App Service.
+This Aspire environment concept groups your resources together and provides the infrastructure needed to deploy your Aspire apps to Azure App Service.
 
 ### How do I customize my App Service deployment?
 
@@ -220,14 +223,14 @@ You can customize your App Service deployment by modifying the AppHost.cs config
 - **Configure infrastructure**: Modify networking, authentication, and other Azure resources
 - **Use existing resources**: Connect to existing App Service Plans or other Azure resources
 
-For more information, see [Configure a .NET Aspire app for Azure App Service](configure-language-dotnet-aspire.md).
+For more information, see [Configure an Aspire app for Azure App Service](configure-language-dotnet-aspire.md).
 
 ## Next steps
 
-You successfully deployed a .NET Aspire app to Azure App Service! Here are some next steps to explore:
+You successfully deployed an Aspire app to Azure App Service! Here are some next steps to explore:
 
 > [!div class="nextstepaction"]
-> [Configure a .NET Aspire app for Azure App Service](configure-language-dotnet-aspire.md)
+> [Configure an Aspire app for Azure App Service](configure-language-dotnet-aspire.md)
 
 > [!div class="nextstepaction"]
 > [Azure App Service documentation](overview.md)

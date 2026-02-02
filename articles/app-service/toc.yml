@@ -29,7 +29,7 @@ items:
         href: configure-language-dotnet-framework.md
       - name: ASP.NET Core
         href: configure-language-dotnetcore.md
-      - name: .NET Aspire
+      - name: Aspire
         href: configure-language-dotnet-aspire.md
     - name: Connect
       items:
