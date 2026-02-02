@@ -6,7 +6,7 @@ ms.author: malev
 ms.service: service-connector
 ms.topic: how-to
 ms.custom: engagement-fy23
-ms.date: 03/14/2025
+ms.date: 02/02/2026
 ---
 
 # Integrate Azure SQL Database with Service Connector
@@ -168,7 +168,7 @@ To connect to Azure SQL Database using a system-assigned managed identity, refer
 
 #### Sample code
 
-To Azure SQL Database using a user-assigned managed identity, refer to the following steps and sample code.
+To connect to Azure SQL Database using a user-assigned managed identity, refer to the following steps and sample code.
 [!INCLUDE [code sample for sql](./includes/code-sql-me-id.md)]
 
 
