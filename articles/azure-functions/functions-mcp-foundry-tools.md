@@ -51,31 +51,31 @@ To learn more about the MCP server authentication options that the Foundry Agent
 
 ## Get the remote MCP server endpoint
 
-Before you can connect the agent to a Functions-hosed MCP server, you must get the endpoint URL for the service. The specific URL format depends on how you created and deployed the MCP server:
+Before you can connect the agent to a Functions-hosed MCP server, you must get the endpoint URL for the service. The specific URL format depends on how you created and deployed your MCP server:
 
 | MCP server type | Endpoint format |
 | --------------- | --------------- |
-| [MCP extension](./functions-bindings-mcp.md)-based server | `https://<FUNCTION_APP_NAME>.azurewebsites.net/runtime/webhooks/mcp` |
+| MCP extension-based server | `https://<FUNCTION_APP_NAME>.azurewebsites.net/runtime/webhooks/mcp` |
 | Self-hosted MCP server | `https://<FUNCTION_APP_NAME>.azurewebsites.net/mcp` (unless you changed the route) |
 
 For more information, see [Remote MCP servers](./functions-create-ai-enabled-apps.md#remote-mcp-servers).
 
-## Get required credentials
+## Get credentials
 
-The credentials that your agent needs to connect to the MCP server depend on the way you plan to secure the connection. Choose the tab that indicates your connection option.
+The credentials that your agent needs to connect to the MCP server depend on the way you plan to secure the connection. Choose the tab that indicates your connection authentication option.
 
 ### [Key-based](#tab/key-based)
 
 When you use an access key to connect to your MCP server endpoint, you use a shared secret key to make it more difficult for random agents to connect to your server.
 
 >[!IMPORTANT]
->While access keys provide some mitigation against unwanted access, consider using a positive authentication option to secure your MCP server endpoints in production.   
+>While access keys can mitigate unwanted endpoint access, consider using Microsoft Entra ID authentication to secure your MCP server endpoints in production.   
 
-The access key you need depends on how you built your MCP server:
+The name of the access key you need depends on your MCP server deployment:
 
 | MCP server type | Key name | Key type |
 | --------------- | -------- | -------- |
-| MCP extension server | `mcp_extension` | System key |
+| MCP extension-based server | `mcp_extension` | System key |
 | Self-hosted MCP server | `default` | Host key |
 
 To get the key from the Azure portal:
