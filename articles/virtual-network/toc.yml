@@ -20,7 +20,7 @@
       href: /azure/well-architected/service-guides/virtual-network
     - name: What is network foundations?
       href: /azure/networking/foundations/network-foundations-overview
-    - name: Virtual network appliance
+    - name: Virtual network routing appliance
       href: virtual-network-routing-appliance-overview.md
 - name: Get started
   items:
