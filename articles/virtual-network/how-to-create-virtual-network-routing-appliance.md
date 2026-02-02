@@ -56,9 +56,9 @@ After submitting your AFEC registration for Microsoft.network/AllowVirtualNetwor
 
 Once the subscription is authorized, verify enablement by searching "Virtual Network appliance" in the Azure portal search bar. If enabled, you should see "Virtual network appliances" as a selectable service entry.
 
-:::image type="content" source="media/create-virtual-network-appliance/virtual-network-appliance-1.png" alt-text="Screenshot of the Azure portal search bar with Virtual network appliances highlighted.":::
+:::image type="content" source="media/create-virtual-network-routing-appliance/virtual-network-appliance-1.png" alt-text="Screenshot of the Azure portal search bar with Virtual network appliances highlighted.":::
 
-:::image type="content" source="media/create-virtual-network-appliance/virtual-network-appliance-2.png" alt-text="Screenshot of the Virtual network appliances service entry in the Azure portal.":::
+:::image type="content" source="media/create-virtual-network-routing-appliance/virtual-network-appliance-2.png" alt-text="Screenshot of the Virtual network appliances service entry in the Azure portal.":::
 
 ## Create a resource group
 
