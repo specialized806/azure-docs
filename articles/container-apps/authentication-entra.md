@@ -62,7 +62,7 @@ To register the app, perform the following steps:
     1. In the **Register an application** pane, enter a **Name** for your app registration.
     1. In the **Redirect URI** section, select **Web**, and then enter the following. Replace `\<APP_URL\>` with the application URL that you noted previously.
 
-        ``<APP_URL>/.auth/login/aad/callback``
+        `<APP_URL>/.auth/login/aad/callback`
     
         For example: `https://<CONTAINER_APP_NAME>.<ENVIRONMENT_UNIQUE_ID>.<REGION_NAME>.azurecontainerapps.io/.auth/login/aad/callback`
     1. Select **Register**.
