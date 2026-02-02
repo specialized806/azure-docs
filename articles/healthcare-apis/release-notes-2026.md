@@ -17,6 +17,14 @@ ms.custom:
 
 Release notes describe features, enhancements, and bug fixes released in 2026 for the FHIR&reg; service and DICOM&reg; service in Azure Health Data Services.
 
+## February 2026
+### FHIR service
+#### Bug fixes:
+
+**Bug fix for `$bulk-delete` queries with paged results exceeding 100 included items**: There was an issue where some `$bulk-delete` queries that have paged results exceeding 1000 included items with related links could return an HTTP 500 Internal Server Error. The issue has been fixed, and the results are returned correctly now.
+
+**Bug fix for queries combining `_include` and `_revinclude`**: There was an issue where queries combining `_include` and `_revinclude` (for example, `GET /Patient?_include=Patient:organization&_revinclude=Observation:patient`) could return an HTTP 500 Internal Server Error. This issue has been fixed, and results are returned correctly now.
+
 ## January 2026
 ### FHIR service
 
