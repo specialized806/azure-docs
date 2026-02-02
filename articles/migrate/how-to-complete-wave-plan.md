@@ -82,7 +82,7 @@ Azure Migrate identifies the prerequisites you need to complete before starting 
 3. Provide a description name of the task and **Description** about the task.
 
 > [!NOTE]
-> Do *not* include any personal, sensitive, or confidential information in the wave or task description. 
+> **Don't** include any personal, sensitive, or confidential information in the wave or task description. 
 
 4. Select **Add**, and then select **Save changes** to save the tasks as a prerequisite.
 
