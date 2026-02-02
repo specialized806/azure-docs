@@ -21,7 +21,7 @@
     - name: What is network foundations?
       href: /azure/networking/foundations/network-foundations-overview
     - name: Virtual network appliance
-      href: virtual-network-appliance-overview.md
+      href: virtual-network-routing-appliance-overview.md
 - name: Get started
   items:
     - name: Add, change, or delete a subnet
@@ -34,8 +34,8 @@
       href: virtual-network-vnet-plan-design-arm.md
     - name: Traffic routing
       href: virtual-networks-udr-overview.md
-    - name: Create a virtual network appliance
-      href: how-to-create-a-virtual-network-appliance.md
+    - name: Create a virtual network routing appliance
+      href: how-to-create-virtual-network-routing-appliance.md
 - name: Security
   items:
     - name: Secure Virtual Network
