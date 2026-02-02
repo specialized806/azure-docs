@@ -870,9 +870,9 @@ Azure service: [Azure Synapse Analytics](/azure/synapse-analytics/)
 > | Microsoft.Synapse/workspaces/sqlUsages/read | Gets usage limits available for SQL Analytics Pools |
 > | Microsoft.Synapse/workspaces/trustedServiceBypassConfiguration/write | Update Trusted Service Bypass configuration for workspace. |
 > | Microsoft.Synapse/workspaces/usages/read | Get all uasage and quota information |
-> | Microsoft.Synapse/workspaces/vulnerabilityAssessments/write | Create or Update SQL server vulnerability assement report. |
-> | Microsoft.Synapse/workspaces/vulnerabilityAssessments/read | Read default SQL server vulnerability assement report. |
-> | Microsoft.Synapse/workspaces/vulnerabilityAssessments/delete | Delete SQL server vulnerability assement report. |
+> | Microsoft.Synapse/workspaces/vulnerabilityAssessments/write | Create or Update SQL server vulnerability assessment report. |
+> | Microsoft.Synapse/workspaces/vulnerabilityAssessments/read | Read default SQL server vulnerability assessment report. |
+> | Microsoft.Synapse/workspaces/vulnerabilityAssessments/delete | Delete SQL server vulnerability assessment report. |
 
 ## Next steps
 
