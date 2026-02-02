@@ -22,9 +22,9 @@ The Bicep MCP (Model Context Protocol) server provides AI agents with tools to h
 
 Use the Bicep MCP Server directly in VS Code (preferred). You can also run it locally with other AI services such as Claude Desktop and Code, OpenAI Codex CLI, LMStudio, and other MCP-compatible services. To run the Azure Bicep MCP server locally for Claude Desktop and Code, OpenAI Codex CLI and for LMStudio where you can use it with various models, see [Azure Bicep MCP Server (Experimental) Integrations with other AI services](https://github.com/johnlokerse/azure-bicep-mcp-integration-setup/tree/main?tab=readme-ov-file).
 
-For general information, see [Use MCP servers in VS Code](/docs/copilot/customization/mcp-servers).
+For general information, see [Use MCP servers in VS Code](https://code.visualstudio.com/docs/copilot/customization/mcp-servers).
 
-For walking through a quickstart, see []().
+For walking through a quickstart, see [Quickstart: Create Bicep files with Visual Studio Code and Bicep MCP server](./quickstart-create-bicep-use-visual-studio-code-mcp.md).
 
 ## Limitations
 

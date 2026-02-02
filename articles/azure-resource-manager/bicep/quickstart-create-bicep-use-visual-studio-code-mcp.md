@@ -10,7 +10,7 @@ ms.custom:
 #customer intent: As a developer new to Azure deployment, I want to learn how to use Visual Studio Code to create and edit Bicep files so that I can use them to deploy Azure resources.
 ---
 
-# Quickstart: Create Bicep files with Visual Studio Code
+# Quickstart: Create Bicep files with Visual Studio Code and Bicep MCP Server
 
 This quickstart guides you how to use Visual Studio Code to create a [Bicep file](overview.md). You create a storage account and a virtual network. You also learn how the Bicep extension provides type safety, syntax validation, and autocompletion to simplify development.
 
