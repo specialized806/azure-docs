@@ -4,7 +4,7 @@ author: samuelzhang
 description: Learn how to connect your MCP server hosted on Azure Functions to Azure AI Foundry Agent Service, enabling your agents to use custom tools.
 ms.author: samuelzhang
 ms.topic: how-to
-ms.date: 1/30/2026
+ms.date: 02/02/2026
 ms.collection: 
   - ce-skilling-ai-copilot 
 
@@ -45,7 +45,6 @@ The following table summarizes the options for securing your agent connection to
 | **Microsoft Entra - project managed identity** | Agent authenticates using the shared identity of the Foundry project. | Prototyping when every user of the agent is allowed to access the same data. | [Disable key-based authentication](functions-mcp-tutorial.md?tabs=mcp-extension#disable-key-based-authentication) and [configure built-in server authorization and authentication](functions-mcp-tutorial.md?tabs=mcp-extension#enable-built-in-server-authorization-and-authentication). |
 | **OAuth identity passthrough** | Agent prompts users to sign in and authorize access, using the provided token to authenticate. | Prototyping or production when each user must authenticate with their own identity and user context must be persisted. | [Disable key-based authentication](functions-mcp-tutorial.md?tabs=mcp-extension#disable-key-based-authentication) and [configure built-in server authorization and authentication](functions-mcp-tutorial.md?tabs=mcp-extension#enable-built-in-server-authorization-and-authentication). |
 | **Unauthenticated access** | Agent makes unauthenticated calls. | Prototyping when your MCP server accesses only public information. | [Disable key-based authentication](functions-mcp-tutorial.md?tabs=mcp-extension#disable-key-based-authentication). |
-
 
 To learn more about the MCP server authentication options supported by the Foundry Agent Service, see [Set up authentication for MCP tools](/azure/ai-foundry/agents/how-to/mcp-authentication?view=foundry&preserve-view=true).
 
@@ -120,7 +119,7 @@ To connect to your MCP server endpoint:
 
 1. Navigate to the [Foundry portal (new Foundry)](https://ai.azure.com/nextgen).
 
-1. Select the **Build** tab at the top. This opens the **Agents** blade.
+1. Select the **Build** tab at the top. This opens the **Agents** page.
 
 1. From the table, select the agent you want to equip with MCP tools. This brings you to the Agent Builder.
 
@@ -148,59 +147,69 @@ To connect to your MCP server endpoint:
 
 ### [Microsoft Entra](#tab/entra)
 
-:::image type="content" source="./media/functions-mcp/foundry-entra-auth.png" alt-text="Screenshot of the Add Model Context Protocol tool dialog showing Microsoft Entra authentication configuration.":::
+When using Microsoft Entra authentication, the agent authenticates using a managed identity to connect to your MCP server.
 
-The following table describes the fields required to connect your MCP server:
-
-| Field | Description | Example |
-| ----- | ----------- | ------- |
-| **Name** | A unique identifier for your MCP server. You can default to your function app name. | `my-mcp-functions` |
-| **Remote MCP Server endpoint** | The URL endpoint for your MCP server. | `https://my-mcp-functions.azurewebsites.net/runtime/webhooks/mcp` |
-| **Authentication** | The authentication method to use. | `Microsoft Entra` |
-| **Type** | The identity type the agent uses to authenticate. | `Project Managed Identity` |
-| **Audience** | The Application ID URI of your function app's Entra registration. This value tells the identity provider which app the token is intended for. | `api://abcd123-efg456-hijk-7890123` |
-
+To connect to your MCP server endpoint:
 
 1. Navigate to the [Foundry portal (new Foundry)](https://ai.azure.com/nextgen).
-1. Ensure the **New Foundry** toggle is selected.
-1. Select the **Build** tab at the top. This opens the **Agents** blade.
-1. From the table, select the agent you want to equip with MCP tools. This brings you to the Agent Builder.
-1. Under **Playground**, expand the **Tools** dropdown and select **Add**.
-1. Select **+ Add a new tool**.
-1. Select the **Custom** tab.
-1. Select **Model Context Protocol (MCP)** and then select **Create**.
-1. Select **Microsoft Entra** for **Authentication**.
-1. Select **Project Managed Identity** for **Type**.
-1. Fill out the form using the information you saved earlier, then select **Connect**.
 
-You should now see the name you provided under **Tools**. Select **Save** in the top right to save the MCP tool to your agent.
+1. Select the **Build** tab at the top. This opens the **Agents** page.
+
+1. From the table, select the agent you want to equip with MCP tools. This brings you to the Agent Builder.
+
+1. Under **Playground**, expand the **Tools** dropdown and select **Add**.
+
+1. Select **+ Add a new tool** > **Custom** tab.
+
+1. Select **Model Context Protocol (MCP)** > **Create**.
+
+1. In **Add Model Content Protocol tool**, provide information from this table to configure a Microsoft Entra-based connection:
+
+    :::image type="content" source="./media/functions-mcp/foundry-entra-auth.png" alt-text="Screenshot of the Add Model Context Protocol tool dialog showing Microsoft Entra authentication configuration.":::
+
+    | Field | Description | Example |
+    | ----- | ----------- | ------- |
+    | **Name** | A unique identifier for your MCP server. You can default to your function app name. | `my-mcp-functions` |
+    | **Remote MCP Server endpoint** | The URL endpoint for your MCP server. | `https://my-mcp-functions.azurewebsites.net/runtime/webhooks/mcp` |
+    | **Authentication** | The authentication method to use. | `Microsoft Entra` |
+    | **Type** | The identity type the agent uses to authenticate. | `Project Managed Identity` |
+    | **Audience** | The Application ID URI of your function app's Entra registration. This value tells the identity provider which app the token is intended for. | `api://abcd123-efg456-hijk-7890123` |
+
+1. Select **Connect** to create a connection to your MCP server endpoint. You should now see your server name listed under **Tools**.
+
+1. Select **Save** to save the MCP tool configuration in your agent.
 
 ### [Unauthenticated](#tab/unauthenticated)
 
 Use unauthenticated access only when your MCP server doesn't require authentication and accesses only public information.
 
-:::image type="content" source="./media/functions-mcp/foundry-unauthenticated-auth.png" alt-text="Screenshot of the Add Model Context Protocol tool dialog showing unauthenticated access configuration.":::
-
-The following table describes the fields required to connect your MCP server:
-
-| Field | Description | Example |
-| ----- | ----------- | ------- |
-| **Name** | A unique identifier for your MCP server. You can default to your function app name. | `my-mcp-functions` |
-| **Remote MCP Server endpoint** | The URL endpoint for your MCP server. | `https://my-mcp-functions.azurewebsites.net/runtime/webhooks/mcp` |
-| **Authentication** | The authentication method to use. | `None` |
+To connect to your MCP server endpoint:
 
 1. Navigate to the [Foundry portal (new Foundry)](https://ai.azure.com/nextgen).
-1. Ensure the **New Foundry** toggle is selected.
-1. Select the **Build** tab at the top. This opens the **Agents** blade.
-1. From the table, select the agent you want to equip with MCP tools. This brings you to the Agent Builder.
-1. Under **Playground**, expand the **Tools** dropdown and select **Add**.
-1. Select **+ Add a new tool**.
-1. Select the **Custom** tab.
-1. Select **Model Context Protocol (MCP)** and then select **Create**.
-1. Select **Unauthenticated** for **Authentication**.
-1. Fill out the form using the information you saved earlier, then select **Connect**.
 
-You should now see the name you provided under **Tools**. Select **Save** in the top right to save the MCP tool to your agent.
+1. Select the **Build** tab at the top. This opens the **Agents** page.
+
+1. From the table, select the agent you want to equip with MCP tools. This brings you to the Agent Builder.
+
+1. Under **Playground**, expand the **Tools** dropdown and select **Add**.
+
+1. Select **+ Add a new tool** > **Custom** tab.
+
+1. Select **Model Context Protocol (MCP)** > **Create**.
+
+1. In **Add Model Content Protocol tool**, provide information from this table to configure an unauthenticated connection:
+
+    :::image type="content" source="./media/functions-mcp/foundry-unauthenticated-auth.png" alt-text="Screenshot of the Add Model Context Protocol tool dialog showing unauthenticated access configuration.":::
+
+    | Field | Description | Example |
+    | ----- | ----------- | ------- |
+    | **Name** | A unique identifier for your MCP server. You can default to your function app name. | `my-mcp-functions` |
+    | **Remote MCP Server endpoint** | The URL endpoint for your MCP server. | `https://my-mcp-functions.azurewebsites.net/runtime/webhooks/mcp` |
+    | **Authentication** | The authentication method to use. | `None` |
+
+1. Select **Connect** to create a connection to your MCP server endpoint. You should now see your server name listed under **Tools**.
+
+1. Select **Save** to save the MCP tool configuration in your agent.
 
 ---
 
