@@ -6,6 +6,7 @@ ms.topic: conceptual
 ms.date: 02/02/2026
 ms.author: azfuncdf
 ms.devlang: csharp
+ms.custom: copilot-generated
 # ms.devlang: csharp, java, javascript, python
 ---
 
