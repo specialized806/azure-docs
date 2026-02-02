@@ -45,11 +45,12 @@ Agentic patterns work especially well for enterprise applications, data analysis
 
 ## Choosing an agent framework
 
-App Service supports multiple agent frameworks, each with different strengths:
+App Service supports any agent framework that runs on your chosen language stack. You have complete flexibility to use the tools and frameworks that best fit your needs. Popular options include:
 
 - **Semantic Kernel**: Microsoft's cross-platform SDK for .NET, Python, and Java, ideal for building custom agents with full control
 - **LangGraph**: Python and JavaScript framework for building stateful, multi-agent systems with complex workflows
 - **Foundry Agent Service**: Managed service for hosting production-ready agents with built-in monitoring and scalability
+- **Custom frameworks**: Any other agentic framework supported by your language (e.g., AutoGen, CrewAI, or proprietary solutions)
 
 ## Get started with tutorials
 
