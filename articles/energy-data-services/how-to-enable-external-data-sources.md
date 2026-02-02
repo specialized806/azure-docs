@@ -49,7 +49,7 @@ Use the following steps to grant a user-assigned managed identity permissions to
 1. Select **+ Select members**.
 1. Select **User-assigned managed identity** on the **Managed identity** dropdown.
 1. Select the user-assigned managed identity, and select **Select**.
-   :::image type="content" source="media/how-to-enable-external-data-sources/select-a-managed-identity.png" alt-text="Screenshot of selecting a user-assigned managed identity" lightbox="media/how-to-enable-external-data-sources/select-a-managed-identity.png":::
+   :::image type="content" source="media/how-to-enable-external-data-sources/select-a-user-assigned-managed-identity.png" alt-text="Screenshot of selecting a user-assigned managed identity" lightbox="media/how-to-enable-external-data-sources/select-a-user-assigned-managed-identity.png":::
 
 1. Select **Review + assign** to complete the role assignment.
    :::image type="content" source="media/how-to-enable-external-data-sources/key-vault-review-and-assign.png" alt-text="Screenshot of review and assign of role assignment to key vault" lightbox="media/how-to-enable-external-data-sources/key-vault-review-and-assign.png":::
@@ -62,10 +62,10 @@ Use the following steps if you're using a system-assigned managed identity inste
 1. Select **Access control (IAM)** from the left menu.
 1. Select **+ Add** > **Add role assignment**.
 1. On the **Role** tab, select **Job function roles**, search for and select **Key Vault Secrets User**, and then select **Next**.
-1. On the **Members** tab, select **Managed identity** for **Assign access to**.
+1. On the **Members** tab, select **User, group, or service principal** for **Assign access to**.
 1. Select **+ Select members**.
-1. Select **All system-assigned managed identities** on the **Managed identity** dropdown.
-1. Search for the Azure Data Manager for Energy instance, select it, and select **Select**.
+1. Search for your Azure Data Manager for Energy instance, select it, and select **Select**.
+   :::image type="content" source="media/how-to-enable-external-data-sources/select-a-system-assigned-managed-identity.png" alt-text="Screenshot of selecting a system-assigned managed identity" lightbox="media/how-to-enable-external-data-sources/select-a-system-assigned-managed-identity.png":::
 1. Select **Review + assign** to complete the role assignment.
 
 ## Enable External Data Services in Azure Data Manager for Energy
