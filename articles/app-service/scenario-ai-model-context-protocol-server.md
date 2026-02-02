@@ -18,7 +18,7 @@ Integrate your web app as a [Model Context Protocol (MCP)](https://modelcontextp
 
 ## Overview
 
-The Model Context Protocol (MCP) is an open standard that enables AI coding assistants and agents to interact with external tools and data sources. By hosting your App Service application as an MCP server, you make your web app's functionality available to AI agents as callable tools with structured inputs and outputs.
+MCP is an open standard that enables AI coding assistants and agents to interact with external tools and data sources. By hosting your App Service application as an MCP server, you make your web app's functionality available to AI agents as callable tools with structured inputs and outputs.
 
 This integration allows developers to:
 

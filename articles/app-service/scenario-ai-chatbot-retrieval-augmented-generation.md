@@ -18,11 +18,11 @@ Build intelligent web apps that use Azure OpenAI for chat or retrieval augmented
 
 ## Overview
 
-Chatbots and RAG (Retrieval Augmented Generation) applications represent two of the most popular AI integration patterns in modern web applications. A chatbot uses a large language model to engage in natural conversations with users, while RAG enhances these conversations by grounding responses in your own data sources, reducing hallucinations and providing more accurate, contextual answers.
+Chatbots and Retrieval Augmented Generation (RAG) applications represent two of the most popular AI integration patterns in modern web applications. A chatbot uses a large language model to engage in natural conversations with users, while RAG enhances these conversations by grounding responses in your own data sources, reducing hallucinations and providing more accurate, contextual answers.
 
 Azure App Service provides a comprehensive platform for hosting these intelligent applications with built-in support for:
 
-- **Azure OpenAI integration**: Seamless connection to GPT-4, GPT-4o, and other Azure OpenAI models using managed identities
+- **Azure OpenAI integration**: Seamless connection to the latest Azure OpenAI models using managed identities
 - **Azure AI Search connectivity**: Optional integration with Azure AI Search for vector search and document retrieval
 - **Secure authentication**: Built-in support for managed identities eliminates the need for API keys
 - **Scalability**: Automatic scaling to handle varying workloads
