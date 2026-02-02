@@ -131,7 +131,7 @@ In the end, messaging is about enabling connections, and with this technique we 
 
 ## Advanced scenarios
 
-If you need support for patterns like [request-reply](/architecture/patterns/async-request-reply), whether that is initiated by the RabbitMQ side and replied from the Azure Service Bus side, or vice-versa, then more advanced tooling is needed. The [NServiceBus Messaging Bridge](https://docs.particular.net/nservicebus/bridge/) offers support for request-reply as well as [publish-subscribe](/architecture/patterns/publisher-subscriber), across multiple other message broker technologies.
+If you need support for patterns like [request-reply](/azure/architecture/patterns/async-request-reply), whether that is initiated by the RabbitMQ side and replied from the Azure Service Bus side, or vice-versa, then more advanced tooling is needed. The [NServiceBus Messaging Bridge](https://docs.particular.net/nservicebus/bridge/) offers support for request-reply as well as [publish-subscribe](/azure/architecture/patterns/publisher-subscriber), across multiple other message broker technologies.
 
 ## Next steps
 
