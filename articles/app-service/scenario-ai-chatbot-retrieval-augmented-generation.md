@@ -16,6 +16,32 @@ ms.update-cycle: 180-days
 
 Build intelligent web apps that use Azure OpenAI for chat or retrieval augmented generation (RAG). These tutorials show you how to integrate Azure OpenAI and (optionally) Azure AI Search to create chatbots and RAG solutions in your preferred language, using managed identities for secure authentication.
 
+## Overview
+
+Chatbots and RAG (Retrieval Augmented Generation) applications represent two of the most popular AI integration patterns in modern web applications. A chatbot uses a large language model to engage in natural conversations with users, while RAG enhances these conversations by grounding responses in your own data sources, reducing hallucinations and providing more accurate, contextual answers.
+
+Azure App Service provides a comprehensive platform for hosting these intelligent applications with built-in support for:
+
+- **Azure OpenAI integration**: Seamless connection to GPT-4, GPT-4o, and other Azure OpenAI models using managed identities
+- **Azure AI Search connectivity**: Optional integration with Azure AI Search for vector search and document retrieval
+- **Secure authentication**: Built-in support for managed identities eliminates the need for API keys
+- **Scalability**: Automatic scaling to handle varying workloads
+- **Multiple language support**: Deploy chatbots in .NET, Java, Node.js, or Python
+
+## When to use chatbots and RAG
+
+Consider building a chatbot or RAG application when you want to:
+
+- **Provide conversational interfaces**: Replace traditional form-based UIs with natural language interactions
+- **Enable intelligent document search**: Allow users to query large document repositories using natural language
+- **Create customer support assistants**: Build AI-powered help desks that understand context and provide accurate responses
+- **Develop knowledge bases**: Transform static documentation into interactive Q&A systems
+- **Build internal tools**: Create employee-facing assistants that can access and explain company data
+
+RAG is particularly valuable when you need to ensure your AI responses are grounded in specific, up-to-date information from your organization's data sources, such as product catalogs, documentation, policies, or customer records.
+
+## Get started with tutorials
+
 ## [.NET](#tab/dotnet)
 - [Build a chatbot with Azure OpenAI (Blazor)](tutorial-ai-openai-chatbot-dotnet.md)
 - [Build a RAG application with Azure OpenAI and Azure AI Search (.NET)](tutorial-ai-openai-search-dotnet.md)
