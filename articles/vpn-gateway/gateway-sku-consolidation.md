@@ -116,7 +116,7 @@ Cross-family migration (for example, VpnGw1 → VpnGw3AZ) is disruptive, consist
 
 ### Do AZ SKUs automatically become zone-redundant?
 
-AZ SKUs are AZ-capable. They become zone-redundant only in regions that support Availability Zones, as described in the [existing documentation](https://learn.microsoft.com/en-us/azure/vpn-gateway/gateway-sku-consolidation#will-there-be-any-performance-impact-on-my-gateways-with-this-migration)
+AZ SKUs are AZ-capable. They become zone-redundant only in regions that support Availability Zones, as described in the [existing documentation](gateway-sku-consolidation.md#will-there-be-any-performance-impact-on-my-gateways-with-this-migration)
 
 ## Next steps
 
