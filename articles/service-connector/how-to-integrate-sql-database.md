@@ -11,7 +11,7 @@ ms.date: 02/02/2026
 
 # Integrate Azure SQL Database with Service Connector
 
-This article covers the supported authentication methods, clients, and sample code that you can use to connect your apps to Azure SQL Database using Service Connector. This article also describes the default environment variable names, values, and configuration obtained when creating a service connection.
+In this article, we cover the supported authentication methods and clients that you can use to connect your apps to Azure SQL Database using Service Connector. For each supported method, we provide sample code and describe the default environment variable names, values, and configuration obtained when creating a service connection.
 
 ## Supported compute services
 
