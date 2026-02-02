@@ -1,12 +1,12 @@
 ---
-title: Configure .NET Aspire apps
-description: Learn how to configure .NET Aspire apps deployed to Azure App Service, including App Service plan settings, Application Insights, dashboard, and health probes.
+title: Configure Aspire apps
+description: Learn how to configure Aspire apps deployed to Azure App Service, including App Service plan settings, Application Insights, dashboard, and health probes.
 ms.devlang: csharp
 ms.topic: how-to
 ms.date: 01/31/2026
 author: cephalin
 ms.author: cephalin
-#customer intent: As a .NET developer, I want to configure my .NET Aspire app deployment to Azure App Service so that I can customize the hosting infrastructure and app behavior.
+#customer intent: As a .NET developer, I want to configure my Aspire app deployment to Azure App Service so that I can customize the hosting infrastructure and app behavior.
 ms.service: azure-app-service
 ms.custom:
   - devx-track-csharp
@@ -14,15 +14,15 @@ ms.custom:
   - devx-track-extended-azdevcli
 ---
 
-# Configure a .NET Aspire app for Azure App Service
+# Configure an Aspire app for Azure App Service
 
-This article describes how to configure [.NET Aspire](/dotnet/aspire/get-started/aspire-overview) apps deployed to [Azure App Service](overview.md). .NET Aspire provides a streamlined, opinionated way to build observable, production-ready cloud-native applications, and App Service integration allows you to customize the underlying Azure infrastructure through code.
+This article describes how to configure [Aspire](/dotnet/aspire/get-started/aspire-overview) apps deployed to [Azure App Service](overview.md). Aspire provides a streamlined, opinionated way to build observable, production-ready cloud-native applications, and App Service integration allows you to customize the underlying Azure infrastructure through code.
 
-If you haven't deployed a .NET Aspire app to App Service yet, see the [quickstart guide](quickstart-dotnet-aspire.md) first.
+If you haven't deployed an Aspire app to App Service yet, see the [quickstart guide](quickstart-dotnet-aspire.md) first.
 
 ## Prerequisites
 
-- An existing .NET Aspire app with the Azure App Service hosting integration. See [Quickstart: Deploy a .NET Aspire app to Azure App Service](quickstart-dotnet-aspire.md).
+- An existing Aspire app with the Azure App Service hosting integration. See [Quickstart: Deploy an Aspire app to Azure App Service](quickstart-dotnet-aspire.md).
 - The [Aspire.Hosting.Azure.AppService](https://www.nuget.org/packages/Aspire.Hosting.Azure.AppService) package added to your AppHost project.
 
 ## Understand what gets provisioned
@@ -36,7 +36,7 @@ When you call `AddAzureAppServiceEnvironment`, Aspire provisions the following A
 | **User-assigned Managed Identity** | For secure access between App Service and Container Registry |
 | **Role Assignments** | ACR Pull role assigned to the managed identity |
 
-These resources provide the infrastructure needed to deploy containerized .NET Aspire apps to Azure App Service.
+These resources provide the infrastructure needed to deploy containerized Aspire apps to Azure App Service.
 
 ## Connect to an existing App Service plan
 
@@ -226,8 +226,7 @@ builder.AddProject<Projects.aspire_starter_Web>("webfrontend")
 ```
 
 > [!NOTE]
-> Using `WithHttpProbe` may require suppressing the `ASPIREPROBES001` diagnostic warning, as this feature is in preview:
-> ```
+> Using `WithHttpProbe` may require suppressing the `ASPIREPROBES001` diagnostic warning, as this feature is in preview.
 
 Make sure your application exposes the health check endpoints. For ASP.NET Core apps, you can use the built-in health checks middleware:
 
@@ -245,7 +244,7 @@ app.Run();
 
 ## Configure external endpoints
 
-When deploying .NET Aspire apps to App Service, service-to-service communication requires external HTTP endpoints. Unlike Container Apps, App Service currently doesn't manage traffic between apps through internal endpoints.
+When deploying Aspire apps to App Service, service-to-service communication requires external HTTP endpoints. Unlike Container Apps, App Service currently doesn't manage traffic between apps through internal endpoints.
 
 ```csharp
 var apiService = builder.AddProject<Projects.aspire_starter_ApiService>("apiservice")
@@ -265,7 +264,7 @@ The `WithExternalHttpEndpoints()` method configures the project to be accessible
 
 ## Related content
 
-- [Quickstart: Deploy a .NET Aspire app to Azure App Service](quickstart-dotnet-aspire.md)
-- [.NET Aspire documentation](/dotnet/aspire/)
-- [Azure App Service integration for .NET Aspire](https://www.nuget.org/packages/Aspire.Hosting.Azure.AppService)
+- [Quickstart: Deploy an Aspire app to Azure App Service](quickstart-dotnet-aspire.md)
+- [Aspire documentation](/dotnet/aspire/)
+- [Azure App Service integration for Aspire](https://www.nuget.org/packages/Aspire.Hosting.Azure.AppService)
 - [Configure an ASP.NET Core app for Azure App Service](configure-language-dotnetcore.md)
