@@ -34,12 +34,12 @@ Clone the [Microsoft.Azure.StackExchangeRedis](https://github.com/Azure/Microsof
 
 ## Required NuGet Packages
 
-| Package | Purpose |
-| --------- | --------- |
+| Package                              | Purpose                                                                                                                    |
+|--------------------------------------|----------------------------------------------------------------------------------------------------------------------------|
 | `Microsoft.Azure.StackExchangeRedis` | Extension methods for StackExchange.Redis that enable Microsoft Entra ID token-based authentication to Azure Managed Redis |
-| `StackExchange.Redis` | The underlying Redis client library for .NET |
-| `Azure.Identity` | Provides `DefaultAzureCredential` and other credential types for authenticating with Azure services |
-| `Swashbuckle.AspNetCore` | Swagger/OpenAPI support for API documentation and testing |
+| `StackExchange.Redis`                | The underlying Redis client library for .NET                                                                               |
+| `Azure.Identity`                     | Provides `DefaultAzureCredential` and other credential types for authenticating with Azure services                        |
+| `Swashbuckle.AspNetCore`             | Swagger/OpenAPI support for API documentation and testing                                                                  |
 
 Install the primary package:
 
