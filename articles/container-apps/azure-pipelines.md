@@ -100,17 +100,18 @@ Before you create a pipeline, the source code for your app must be in a reposito
 
 1. Sign in to [Azure DevOps](https://dev.azure.com/) and go to your project.
 
-1. Open the **Repos** page.
+1. Select **Repos** in the left pane.
 
-1. In the menu at the top of the page, select the repositories dropdown and select **Import repository**.
+1.Select **Import a repository**.
 
 1. Enter the following values, and then select **Import**:
 
     | Field | Value |
     |--|--|
-    | **Repository type** | Git |
-    | **Clone URL** | `https://github.com/Azure-Samples/containerapps-albumapi-csharp.git` |
-    | **Name** | `my-container-app` |
+    | **Repository type**|	**Git**|
+    | **Clone URL** | **https://github.com/Azure-Samples/containerapps-albumapi-csharp.git** |
+
+1. Select **Import**.
 
 1. Select **Clone** to view the repository URL and copy it.
 
