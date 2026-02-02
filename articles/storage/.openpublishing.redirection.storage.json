@@ -2886,9 +2886,9 @@
             "redirect_document_id": false
         },
         {
-            "source_path": "articles/storage/blobs/storage-how-to-mount-container-linux.md",
+            "source_path_from_root": "articles/storage/blobs/storage-how-to-mount-container-linux.md",
             "redirect_url": "/previous-versions/azure/storage/blobs/storage-how-to-mount-container-linux",
             "redirect_document_id": false
-     }
+        }
     ]
 }
