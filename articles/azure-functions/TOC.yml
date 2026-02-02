@@ -600,8 +600,10 @@
       - name: Visual Studio with API Management (C#)
         displayName: OpenAPI, Swagger
         href: openapi-apim-integrate-visual-studio.md
+    - name: Connect an MCP server to a Foundry agent
+      href: functions-mcp-foundry-tools.md
     - name: Register an MCP server in API Center
-      href: register-mcp-server-api-center.md    
+      href: register-mcp-server-api-center.md
     - name: Use a managed identity
       href: ../app-service/overview-managed-identity.md?toc=/azure/azure-functions/toc.json
     - name: Manage on-premises resources
