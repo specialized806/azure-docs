@@ -1,6 +1,6 @@
 ---
-title: Connect to 3270 apps on IBM mainframes
-description: Learn how to integrate 3270 screen-driven apps with workflows in Azure Logic Apps using the IBM 3270 connector.
+title: Connect to 3270 Apps on IBM Mainframes
+description: Learn how to access 3270 screen-driven apps on IBM mainframes workflows from workflows in Azure Logic Apps.
 services: logic-apps
 ms.suite: integration
 author: haroldcampos
@@ -9,14 +9,14 @@ ms.reviewer: estfan, azla
 ms.topic: how-to
 ms.date: 01/26/2026
 ms.custom: sfi-image-nochange
-#Customer intent: As IBM mainframe administrator, access IBM mainframe apps using Azure Logic Apps and the IBM 3270 connector.
+#Customer intent: As an integration developer who works with Azure Logic Apps, I need to connect my workflows with 3270 screen-driven apps on IBM mainframes.
 ---
 
-# Integrate 3270 screen-driven apps on IBM mainframes with Azure using Azure Logic Apps and IBM 3270 connector
+# Integrate 3270 screen-driven apps on IBM mainframes with workflows in Azure Logic Apps
 
 [!INCLUDE [logic-apps-sku-consumption-standard](../../includes/logic-apps-sku-consumption-standard.md)]
 
-IBM mainframe apps are usually run through a 3270 emulator. To access and run IBM mainframe apps from Consumption and Standard workflows in Azure Logic Apps, you can use the **IBM 3270** connector. This approach allows you to create automated workflows that integrate your IBM mainframe apps with Azure, Microsoft, and other apps, services, and systems. The connector communicates with IBM mainframes by using the TN3270 protocol. The **IBM 3270** connector is available in all Azure Logic Apps regions except for Azure Government and Microsoft Azure operated by 21Vianet.
+IBM mainframe apps usually run through a 3270 emulator. To access and run IBM mainframe apps from Consumption and Standard workflows in Azure Logic Apps, use the **IBM 3270** connector. You can create automated workflows that integrate your IBM mainframe apps with Azure, Microsoft, and other apps, services, and systems. The connector communicates with IBM mainframes by using the TN3270 protocol. The **IBM 3270** connector is available in all Azure Logic Apps regions except for Azure Government and Microsoft Azure operated by 21Vianet.
 
 This how-to guide describes the following aspects about the **IBM 3270** connector:
 
@@ -62,7 +62,7 @@ This operation also includes advanced parameters, which appear after you select 
 
 ## Prerequisites
 
-- An Azure account and subscription. If you don't have an Azure subscription, [sign up for a free Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+- An Azure account and subscription. [Get a free Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 - Access to the TN3270 server that hosts your 3270 screen-driven app.
 
@@ -78,7 +78,7 @@ This operation also includes advanced parameters, which appear after you select 
 
   The IBM 3270 connector doesn't have triggers, so use any trigger to start your workflow, such as the **Recurrence** trigger or **Request** trigger. You can then add the 3270 connector actions.
 
-- An [integration account](../logic-apps/logic-apps-enterprise-integration-create-integration-account.md), which is required based on the 3270 connector version that you use. It's an Azure resource where you can centrally store B2B artifacts. Examples include trading partners, agreements, maps, schemas, and certificates to use with specific workflow actions.
+- An [integration account](../logic-apps/logic-apps-enterprise-integration-create-integration-account.md), which is required based on the 3270 connector version that you use. You use this Azure resource to centrally store B2B artifacts. Examples include trading partners, agreements, maps, schemas, and certificates to use with specific workflow actions.
 
   | Workflow | Description |
   |----------|-------------|
@@ -131,24 +131,24 @@ A Standard logic app workflow can use the IBM 3270 managed connector and the IBM
 
 1. In the [Azure portal](https://portal.azure.com), open your Standard logic app resource and workflow.
 
-1. If you haven't already added a trigger, [follow these general steps to add the trigger that you want to your workflow](../logic-apps/create-workflow-with-trigger-or-action.md?tabs=standard#add-trigger).
+1. If your workflow doesn't have a trigger, follow the [general steps](../logic-apps/create-workflow-with-trigger-or-action.md?tabs=standard#add-trigger) to add the best trigger for your scenario.
 
    This example continues with the **Request** trigger named **When an HTTP request is received**.
 
-1. [Follow these general steps to add the **IBM 3270** built-in connector action named **Execute a navigation plan**](../logic-apps/create-workflow-with-trigger-or-action.md?tabs=standard#add-action).
+1. Follow the [general steps](../logic-apps/create-workflow-with-trigger-or-action.md?tabs=standard#add-action) to add the **IBM 3270** built-in connector action named **Execute a navigation plan**.
 
-1. When the connection information box appears, provide the following necessary parameter values:
+1. After the connection pane appears, provide the following necessary parameter values:
 
-   | Property | Required | Value | Description |
-   |----------|----------|-------|-------------|
-   | **Connection Name** | Yes | <*connection-name*> | A name for your connection |
+   | Parameter | Required | Value | Description |
+   |-----------|----------|-------|-------------|
+   | **Connection Name** | Yes | <*connection-name*> | A name for your connection. |
    | **Code Page** | No | <*code-page*> | The code page number for the host to use for converting text. If left blank, the connector uses `37` as the default value. |
    | **Device Type** | No | <*IBM-terminal-model*> | The model name or number for the IBM terminal to emulate. If left blank, the connector uses default values. |
    | **Log Exception Screens** | No | True or false | Log the host screen if an error occurs during screen navigation. |
-   | **Logical Unit Name** | No | <*logical-unit-name*> | The specific logical unit name to request from the host |
+   | **Logical Unit Name** | No | <*logical-unit-name*> | The specific logical unit name to request from the host. |
    | **Port Number** | No | <*TN3270-server-port*> | The port used by your TN3270 server. If left blank, the connector uses `23` as the default value. |
-   | **Server** | Yes | <*TN3270-server-name*> | The server name for your TN3270 service |
-   | **Timeout** | No | <*timeout-seconds*> | The timeout duration in seconds while waiting for screens |
+   | **Server** | Yes | <*TN3270-server-name*> | The server name for your TN3270 service. |
+   | **Timeout** | No | <*timeout-seconds*> | The timeout duration in seconds while waiting for screens. |
    | **Use TLS** | No | On or off | Turn on or turn off TLS encryption. |
    | **Validate TN3270 Server Certificate** | No | On or off | Turn on or turn off validation for the server's certificate. |
 
