@@ -16,15 +16,15 @@ items:
   - name: Overview
     href: overview-ai-integration.md
   - name: Chatbots and RAG applications
-    href: scenario-ai-chatbot-rag.md
+    href: scenario-ai-chatbot-retrieval-augmented-generation.md
   - name: Agentic web applications
     href: scenario-ai-agentic-web-apps.md
   - name: OpenAPI tools for Foundry agents
     href: scenario-ai-openapi-tool.md
   - name: Model Context Protocol servers
-    href: scenario-ai-mcp-server.md
+    href: scenario-ai-model-context-protocol-server.md
   - name: Local small language models
-    href: scenario-ai-local-slm.md
+    href: scenario-ai-local-small-language-model.md
   - name: Secure AI applications
     href: scenario-ai-authentication.md
 - name: Get started
