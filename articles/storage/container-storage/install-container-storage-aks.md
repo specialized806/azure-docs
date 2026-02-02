@@ -21,7 +21,7 @@ If you prefer the open-source version of Azure Container Storage, see the [local
 
 By the end of this tutorial, you can:
 
-:::: zone pivot="azurecli"
+::: zone pivot="azurecli"
 
 > [!div class="checklist"]
 > - Prepare your Azure CLI environment
@@ -187,9 +187,9 @@ az aks update -n <cluster-name> -g <resource-group> --enable-azure-container-sto
 
 This command installs the installer, deploys the Elastic SAN CSI driver, and creates a default StorageClass. You can install and use both local NVMe and Elastic SAN by providing comma-separated values such as `ephemeralDisk,elasticSan`.
 
-:::: zone-end
+::: zone-end
 
-:::: zone pivot="terraform"
+::: zone pivot="terraform"
 
 > [!div class="checklist"]
 > - Prepare Terraform and authenticate to Azure
@@ -367,7 +367,7 @@ To install Elastic SAN or local NVMe during deployment, set `enable-azure-contai
 
 Run `terraform init` (if this is a new working directory) followed by `terraform apply` to install Azure Container Storage on the targeted cluster.
 
-:::: zone-end
+::: zone-end
 
 ## How Azure Container Storage installs components
 
