@@ -350,10 +350,12 @@ az network vnet subnet update \
    | Source port ranges                     | Leave the default of **(\*)**.         |
    | Destination                            | Select **Application security group**. |
    | Destination application security group | Select **asg-mgmt**.                   |
-   | Service                                | Select **HTTPS**.                      |
+   | Service                                | Leave the default of **Custom**.       |
+   | Destination port ranges                | Enter **8080**.                        |
+   | Protocol                               | Select **TCP**.                        |
    | Action                                 | Leave the default of **Allow**.        |
    | Priority                               | Leave the default of **110**.          |
-   | Name                                   | Enter **allow-https-mgmt**.            |
+   | Name                                   | Enter **allow-8080-mgmt**.             |
 
 1. Select **Add**.
 
@@ -382,7 +384,7 @@ $webRuleParams = @{
 $webRule = New-AzNetworkSecurityRuleConfig @webRuleParams
 ```
 
-The following example creates a rule that allows traffic inbound from the internet to the *asg-mgmt* application security group over port 443:
+The following example creates a rule that allows traffic inbound from the internet to the *asg-mgmt* application security group over port 8080:
 
 ```azurepowershell-interactive
 $mgmtAsgParams = @{
@@ -392,7 +394,7 @@ $mgmtAsgParams = @{
 $mgmtAsg = Get-AzApplicationSecurityGroup @mgmtAsgParams
 
 $mgmtRuleParams = @{
-    Name = "Allow-HTTPS-Mgmt"
+    Name = "Allow-8080-Mgmt"
     Access = "Allow"
     Protocol = "Tcp"
     Direction = "Inbound"
@@ -400,7 +402,7 @@ $mgmtRuleParams = @{
     SourceAddressPrefix = "Internet"
     SourcePortRange = "*"
     DestinationApplicationSecurityGroupId = $mgmtAsg.id
-    DestinationPortRange = 443
+    DestinationPortRange = 8080
 }
 $mgmtRule = New-AzNetworkSecurityRuleConfig @mgmtRuleParams
 ```
@@ -438,13 +440,13 @@ az network nsg rule create \
   --destination-port-range 80
 ```
 
-The following example creates a rule that allows traffic inbound from the Internet to the *asg-mgmt* application security group over port 443:
+The following example creates a rule that allows traffic inbound from the Internet to the *asg-mgmt* application security group over port 8080:
 
 ```azurecli-interactive
 az network nsg rule create \
   --resource-group test-rg \
   --nsg-name nsg-1 \
-  --name Allow-HTTPS-Mgmt \
+  --name Allow-8080-Mgmt \
   --access Allow \
   --protocol Tcp \
   --direction Inbound \
@@ -452,7 +454,7 @@ az network nsg rule create \
   --source-address-prefix Internet \
   --source-port-range "*" \
   --destination-asgs "asg-mgmt" \
-  --destination-port-range 443
+  --destination-port-range 8080
 ```
 
 ---
@@ -465,7 +467,7 @@ Create two virtual machines (VMs) in the virtual network.
 
 1. In the portal, search for and select **Virtual machines**.
 
-1. In **Virtual machines**, select **+ Create**, then **Azure virtual machine**.
+1. In **Virtual machines**, select **+ Create**, then **Virtual machine**.
 
 1. In **Create a virtual machine**, enter or select this information in the **Basics** tab:
 
@@ -830,31 +832,23 @@ az network nic ip-config update \
 
 1. Try to access **vm-web** on port 443 by browsing to `https://<public-ip-address-vm-web>` in your browser. The connection fails or times out because the security rule for the **asg-web** doesn't allow port 443 inbound from the internet.
 
-1. Now configure **vm-mgmt** with nginx on HTTPS. Select **vm-mgmt** from the **Virtual machines** page.
+1. Now configure **vm-mgmt** with nginx on port 8080. Select **vm-mgmt** from the **Virtual machines** page.
 
 1. Select **Run command** from the **Operations** section.
 
 1. Select **RunShellScript**.
 
-1. In the **Run Command Script** pane, enter the following commands to install nginx with a self-signed certificate for HTTPS:
+1. In the **Run Command Script** pane, enter the following commands to install nginx on port 8080:
 
    ```bash
    sudo apt-get update -y
    sudo apt-get install -y nginx
    
-   # Generate self-signed certificate
-   sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
-     -keyout /etc/ssl/private/nginx-selfsigned.key \
-     -out /etc/ssl/certs/nginx-selfsigned.crt \
-     -subj "/C=US/ST=State/L=City/O=Organization/CN=vm-mgmt"
-   
-   # Configure nginx for HTTPS
+   # Configure nginx to listen on port 8080
    sudo tee /etc/nginx/sites-available/default > /dev/null <<EOF
    server {
-       listen 443 ssl default_server;
-       listen [::]:443 ssl default_server;
-       ssl_certificate /etc/ssl/certs/nginx-selfsigned.crt;
-       ssl_certificate_key /etc/ssl/private/nginx-selfsigned.key;
+       listen 8080 default_server;
+       listen [::]:8080 default_server;
        root /var/www/html;
        index index.html index.htm index.nginx-debian.html;
        server_name _;
@@ -871,9 +865,9 @@ az network nic ip-config update \
 
 1. On the **Overview** page of **vm-mgmt**, note the **Public IP address** for your VM.
 
-1. To confirm that you can access the **vm-mgmt** web server from the internet on port 443, open an internet browser on your computer and browse to `https://<public-ip-address-vm-mgmt>`. 
+1. To confirm that you can access the **vm-mgmt** web server from the internet on port 8080, open an internet browser on your computer and browse to `http://<public-ip-address-vm-mgmt>:8080`. 
 
-   Accept the security warning for the self-signed certificate when prompted. You see the nginx default page because inbound traffic from the internet to the **asg-mgmt** application security group is allowed through port 443.
+   You see the nginx default page because inbound traffic from the internet to the **asg-mgmt** application security group is allowed through port 8080.
 
 1. Try to access **vm-mgmt** on port 80 by browsing to `http://<public-ip-address-vm-mgmt>` in your browser. The connection fails or times out because no security rule allows port 80 inbound to the **asg-mgmt** application security group.
 
@@ -917,7 +911,7 @@ You see the nginx default page because inbound traffic from the internet to the 
 
 Try to access **vm-web** on port 443 by browsing to `https://<vm-web-ip-address>` in your browser. The connection fails or times out because the security rule for the **asg-web** doesn't allow port 443 inbound from the internet.
 
-Now install nginx with HTTPS on **vm-mgmt**:
+Now install nginx on port 8080 on **vm-mgmt**:
 
 ```azurepowershell-interactive
 $mgmtInstallParams = @{
@@ -928,19 +922,11 @@ $mgmtInstallParams = @{
 sudo apt-get update -y
 sudo apt-get install -y nginx
 
-# Generate self-signed certificate
-sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
-  -keyout /etc/ssl/private/nginx-selfsigned.key \
-  -out /etc/ssl/certs/nginx-selfsigned.crt \
-  -subj "/C=US/ST=State/L=City/O=Organization/CN=vm-mgmt"
-
-# Configure nginx for HTTPS
+# Configure nginx to listen on port 8080
 sudo tee /etc/nginx/sites-available/default > /dev/null <<'EOF'
 server {
-    listen 443 ssl default_server;
-    listen [::]:443 ssl default_server;
-    ssl_certificate /etc/ssl/certs/nginx-selfsigned.crt;
-    ssl_certificate_key /etc/ssl/private/nginx-selfsigned.key;
+    listen 8080 default_server;
+    listen [::]:8080 default_server;
     root /var/www/html;
     index index.html index.htm index.nginx-debian.html;
     server_name _;
@@ -967,9 +953,9 @@ $mgmtIP = Get-AzPublicIpAddress @mgmtIPParams
 Write-Host "vm-mgmt IP: $($mgmtIP.IpAddress)"
 ```
 
-To confirm that you can access the **vm-mgmt** web server from the internet on port 443, open an internet browser on your computer and browse to `https://<vm-mgmt-ip-address>`.
+To confirm that you can access the **vm-mgmt** web server from the internet on port 8080, open an internet browser on your computer and browse to `http://<vm-mgmt-ip-address>:8080`.
 
-Accept the security warning for the self-signed certificate when prompted. You see the nginx default page because inbound traffic from the internet to the **asg-mgmt** application security group is allowed through port 443.
+You see the nginx default page because inbound traffic from the internet to the **asg-mgmt** application security group is allowed through port 8080.
 
 Try to access **vm-mgmt** on port 80 by browsing to `http://<vm-mgmt-ip-address>` in your browser. The connection fails or times out because no security rule allows port 80 inbound to the **asg-mgmt** application security group.
 
@@ -1008,7 +994,7 @@ curl -k https://$webIP
 
 The connection fails or times out because the security rule for the **asg-web** doesn't allow port 443 inbound from the internet.
 
-Now install nginx with HTTPS on **vm-mgmt**:
+Now install nginx on port 8080 on **vm-mgmt**:
 
 ```azurecli-interactive
 az vm run-command invoke \
@@ -1017,16 +1003,10 @@ az vm run-command invoke \
   --command-id RunShellScript \
   --scripts "sudo apt-get update -y && \
 sudo apt-get install -y nginx && \
-sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
-  -keyout /etc/ssl/private/nginx-selfsigned.key \
-  -out /etc/ssl/certs/nginx-selfsigned.crt \
-  -subj '/C=US/ST=State/L=City/O=Organization/CN=vm-mgmt' && \
 sudo bash -c 'cat > /etc/nginx/sites-available/default <<EOF
 server {
-    listen 443 ssl default_server;
-    listen [::]:443 ssl default_server;
-    ssl_certificate /etc/ssl/certs/nginx-selfsigned.crt;
-    ssl_certificate_key /etc/ssl/private/nginx-selfsigned.key;
+    listen 8080 default_server;
+    listen [::]:8080 default_server;
     root /var/www/html;
     index index.html index.htm index.nginx-debian.html;
     server_name _;
@@ -1045,13 +1025,13 @@ mgmtIP=$(az vm show --show-details --resource-group test-rg --name vm-mgmt --que
 echo "vm-mgmt IP: $mgmtIP"
 ```
 
-To confirm that you can access the **vm-mgmt** web server from the internet on port 443, use curl:
+To confirm that you can access the **vm-mgmt** web server from the internet on port 8080, use curl:
 
 ```bash
-curl -k https://$mgmtIP
+curl http://$mgmtIP:8080
 ```
 
-The `-k` flag tells curl to ignore the self-signed certificate warning. The connection succeeds because inbound traffic from the internet to the **asg-mgmt** application security group is allowed through port 443.
+The connection succeeds because inbound traffic from the internet to the **asg-mgmt** application security group is allowed through port 8080.
 
 Try to access **vm-mgmt** on port 80:
 
@@ -1097,10 +1077,10 @@ az group delete \
 In this tutorial, you:
 
 - Created a network security group and associated it to a virtual network subnet.
-- Created application security groups for web (HTTP) and management (HTTPS) traffic.
+- Created application security groups for web and management traffic.
 - Created two Linux virtual machines with SSH key authentication and associated their network interfaces with the application security groups.
 - Installed nginx web servers on both VMs with different port configurations.
-- Tested the application security group network filtering by demonstrating that vm-web allows port 80 (HTTP) but denies port 443 (HTTPS), while vm-mgmt allows port 443 (HTTPS) but denies port 80 (HTTP).
+- Tested the application security group network filtering by demonstrating that vm-web allows port 80 (HTTP) but denies port 443, while vm-mgmt allows port 8080 but denies port 80 (HTTP).
 
 To learn more about network security groups, see [Network security group overview](./network-security-groups-overview.md) and [Manage a network security group](manage-network-security-group.md).
 
