@@ -692,7 +692,7 @@ For more information, see the [source transformation](data-flow-source.md) and [
 
 To use Microsoft Fabric Lakehouse Files dataset as a source or sink dataset in mapping data flow, go to the following sections for the detailed configurations.
 
->[!Note]
+>[!NOTE]
 > Mapping Data Flows currently support Service Principal authentication only.
 
 #### Microsoft Fabric Lakehouse Files as a source or sink type
