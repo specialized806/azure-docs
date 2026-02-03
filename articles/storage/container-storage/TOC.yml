@@ -33,6 +33,12 @@
     href: container-storage-billing.md 
   - name: Frequently asked questions
     href: container-storage-faq.md
+- name: Resources
+  items:
+  - name: Pricing for Azure Container Storage
+    href: https://azure.microsoft.com/pricing/details/container-storage/
+  - name: Release notes for Azure Container Storage
+    href: container-storage-release-notes.md
 - name: Reference
   items:
   - name: Storage pool parameters (version 1.x.x)
@@ -64,12 +70,6 @@
   - name: Resource Manager template
     displayName: arm
     href: /azure/templates/microsoft.storage/allversions
-- name: Resources
-  items:
-  - name: Pricing for Azure Container Storage
-    href: https://azure.microsoft.com/pricing/details/container-storage/
-  - name: Release notes for Azure Container Storage
-    href: container-storage-release-notes.md
 - name: Azure Container Storage (version 1.x.x)
   items:
   - name: What is Azure Container Storage (version 1.x.x)?
