@@ -24,7 +24,7 @@ This article shows how to configure Azure Container Storage to use Azure Elastic
 
 ## Limitations
 
-The following features are not supported when you use Azure Container Storage to deploy and orchestrate an Elastic SAN:
+The following features aren't supported when you use Azure Container Storage to deploy and orchestrate an Elastic SAN:
 
 - Elastic SAN capacity expansion through Azure Container Storage. You can [resize Elastic SAN](../elastic-san/elastic-san-expand.md) directly from the Azure portal or by using Azure CLI.
 
