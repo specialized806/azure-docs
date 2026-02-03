@@ -1,6 +1,6 @@
 ---
 title: Enable multi-zone redundancy in Azure Container Storage (version 2.x.x)
-description: Enable storage redundancy across multiple availability zones in Azure Container Storage to improve stateful application availability. Use locally redundant storage (LRS) or zone-redundant storage (ZRS) Elastic SAN.
+description: Enable storage redundancy across multiple availability zones in Azure Container Storage to improve stateful application availability. Use locally redundant storage (LRS) or zone-redundant storage (ZRS) on Azure Elastic SAN.
 author: saurabh0501
 ms.service: azure-container-storage
 ms.topic: how-to
