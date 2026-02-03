@@ -39,7 +39,9 @@ The *"wait-for-external-event"* API allows an orchestration to asynchronously wa
 
 ::: zone pivot="durable-functions"
 
-# [C# (.NET isolated)](#tab/csharp-isolated)
+# [C#](#tab/csharp)
+
+### [Isolated worker model](#tab/csharp/isolated)
 
 ```csharp
 using Microsoft.Azure.Functions.Worker;
@@ -72,7 +74,7 @@ public class BudgetApproval
 }
 ```
 
-# [C# (.NET in-process)](#tab/csharp-script)
+### [In-process model](#tab/csharp/in-process)
 
 ```csharp
 [FunctionName("BudgetApproval")]
@@ -93,6 +95,8 @@ public static async Task Run(
 
 > [!NOTE]
 > If you're using Durable Functions 1.x, use `DurableOrchestrationContext` instead of `IDurableOrchestrationContext`. Check out the [Durable Functions versions](durable-functions-versions.md) article for more version-specific details.
+
+---
 
 # [JavaScript](#tab/javascript)
 
@@ -233,6 +237,35 @@ You can listen for multiple events concurrently, like in the following example, 
 
 # [C#](#tab/csharp)
 
+### [Isolated worker model](#tab/csharp/isolated)
+
+```csharp
+[Function("Select")]
+public async Task Run(
+    [OrchestrationTrigger] TaskOrchestrationContext context)
+{
+    Task<float> event1 = context.WaitForExternalEventAsync<float>("Event1");
+    Task<bool> event2 = context.WaitForExternalEventAsync<bool>("Event2");
+    Task<int> event3 = context.WaitForExternalEventAsync<int>("Event3");
+
+    Task winner = await Task.WhenAny(event1, event2, event3);
+    if (winner == event1)
+    {
+        // ...
+    }
+    else if (winner == event2)
+    {
+        // ...
+    }
+    else if (winner == event3)
+    {
+        // ...
+    }
+}
+```
+
+### [In-process model](#tab/csharp/in-process)
+
 ```csharp
 [FunctionName("Select")]
 public static async Task Run(
@@ -260,6 +293,8 @@ public static async Task Run(
 
 > [!NOTE]
 > Using Durable Functions 1.x? Swap in `DurableOrchestrationContext` instead of `IDurableOrchestrationContext`. See the [Durable Functions versions](durable-functions-versions.md) article to learn about other version differences.
+
+---
 
 # [JavaScript](#tab/javascript)
 
@@ -442,6 +477,28 @@ The previous example listens for *any* of multiple events. You can also wait for
 
 # [C#](#tab/csharp)
 
+### [Isolated worker model](#tab/csharp/isolated)
+
+```csharp
+[Function("NewBuildingPermit")]
+public async Task Run(
+    [OrchestrationTrigger] TaskOrchestrationContext context)
+{
+    string applicationId = context.GetInput<string>();
+
+    Task gate1 = context.WaitForExternalEventAsync<object>("CityPlanningApproval");
+    Task gate2 = context.WaitForExternalEventAsync<object>("FireDeptApproval");
+    Task gate3 = context.WaitForExternalEventAsync<object>("BuildingDeptApproval");
+
+    // all three departments must grant approval before a permit can be issued
+    await Task.WhenAll(gate1, gate2, gate3);
+
+    await context.CallActivityAsync("IssueBuildingPermit", applicationId);
+}
+```
+
+### [In-process model](#tab/csharp/in-process)
+
 ```csharp
 [FunctionName("NewBuildingPermit")]
 public static async Task Run(
@@ -464,6 +521,8 @@ public static async Task Run(
 > If you're running Durable Functions 1.x, use `DurableOrchestrationContext` instead of `IDurableOrchestrationContext`. Head over to [Durable Functions versions](durable-functions-versions.md) for a full breakdown of version differences.
 
 In .NET, if the event payload cannot be converted into the expected type `T`, an exception is thrown.
+
+---
 
 # [JavaScript](#tab/javascript)
 
@@ -661,7 +720,9 @@ Below is an example that sends an "Approval" event to an orchestration instance.
 
 ::: zone pivot="durable-functions"
 
-# [C# (.NET isolated)](#tab/csharp-isolated)
+# [C#](#tab/csharp)
+
+### [Isolated worker model](#tab/csharp/isolated)
 
 ```csharp
 using Microsoft.Azure.Functions.Worker;
@@ -679,7 +740,7 @@ public class ApprovalQueueProcessor
 }
 ```
 
-# [C# (.NET in-process)](#tab/csharp-script)
+### [In-process model](#tab/csharp/in-process)
 
 ```csharp
 [FunctionName("ApprovalQueueProcessor")]
@@ -693,6 +754,8 @@ public static async Task Run(
 
 > [!NOTE]
 > For Durable Functions 1.x, use the `OrchestrationClient` attribute and `DurableOrchestrationClient` parameter type instead. Check the [Durable Functions versions](durable-functions-versions.md) article for all version-specific changes.
+
+---
 
 # [JavaScript](#tab/javascript)
 
