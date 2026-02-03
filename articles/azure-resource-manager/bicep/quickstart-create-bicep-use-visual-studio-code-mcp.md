@@ -12,47 +12,22 @@ ms.custom:
 
 # Quickstart: Create Bicep files with Visual Studio Code and Bicep MCP Server
 
-This quickstart guides you how to use Visual Studio Code to create a [Bicep file](overview.md). You create a storage account and a virtual network. You also learn how the Bicep extension provides type safety, syntax validation, and autocompletion to simplify development.
-
-Visual Studio supports a similar authoring experience. See [Quickstart: Create Bicep files with Visual Studio](./quickstart-create-bicep-use-visual-studio.md) for more information.
+This quickstart guides you how to use Visual Studio Code and [Bicep MCP Server](./bicep-mcp-server.md) to create a [Bicep file](overview.md). 
 
 ## Prerequisites
 
 If you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you start.
 
-To set up your environment for Bicep development, see [Install Bicep tools](install.md). After completing those steps, you have [Visual Studio Code](https://code.visualstudio.com/) and the [Bicep extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-bicep) version v0.40.2 or later installed. The Bicep extension version v0.40.2 automatically installs the Bicep MCP server. You also have either the latest [Azure CLI](/cli/azure/) version or [Azure PowerShell module](/powershell/azure/new-azureps-module-az).
-
-## Start Bicep MCP server
-
-1. From the `View` menu, select `Command palette`.
-1. Type **MCP**, and then select **MCP: List Servers**.
-
-    :::image type="content" source="./media/quickstart-create-bicep-use-visual-studio-code-mcp/mcp-list-servers.png" alt-text="Screenshot of listing MCP servers.":::
-
-    You should see `Bicep` server listed and its status. If not, make sure you have the Bicep extension version v0.40.2 or later installed.
-
-    :::image type="content" source="./media/quickstart-create-bicep-use-visual-studio-code-mcp/mcp-bicep-server.png" alt-text="Screenshot of Bicep MCP server.":::
-
-1. If the status is `Stopped`, select `Bicep`, and then select `Start Server`.
-
-## Configure Bicep MCP server tools
-
-1. From the `View` menu, select `Chat` to open the Chat pane.
-
-    :::image type="content" source="./media/quickstart-create-bicep-use-visual-studio-code-mcp/vscode-copilot-chat-new.png" alt-text="Screenshot of Visual Studio Code chat pane.":::
-
-    On the bottom of the pane, it shows the current file context is blank or `Add Context`; the current chat mode is `Agent`, and the AI model is `GPT-4.1`.
-
-1. Select the `Configure tools` icon.
-1. Expand `Bicep` to see the available Bicep MCP server tools. Select all of them if they are not selected, and then select `OK`.
-
-    :::image type="content" source="./media/quickstart-create-bicep-use-visual-studio-code-mcp/mcp-Bicep-server-tools.png" alt-text="Screenshot of Bicep MCP server tools.":::
+1. To set up your environment for Bicep development, see [Install Bicep tools](install.md). After completing those steps, you have [Visual Studio Code](https://code.visualstudio.com/) and the [Bicep extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-bicep) version v0.40.2 or later installed. The Bicep extension version v0.40.2 automatically installs the Bicep MCP server. You also have either the latest [Azure CLI](/cli/azure/) version or [Azure PowerShell module](/powershell/azure/new-azureps-module-az).
+1. Start Bicep MCP server.  See [Start and stop the Bicep MCP server](./bicep-mcp-server.md#start-and-stop-the-bicep-mcp-server).
+1. Enable the Bicep MCP server tools.  See [Manage the MCP server](./bicep-mcp-server.md#manage-the-mcp-server).
 
 ## Create a Bicep file using Bicep MCP
 
-You use the Copilot chat to create your Bicep files. To demonstrate the usage of the Bicep MCP tools, 
+You use the Copilot chat to create your Bicep files.
 
-1. From the `File` menu, select `New File` to create a new Bicep file called `main.bicep`. Notice the current file context is changed to `main.bicep`.
+1. From the `File` menu, select `New File` to create a new Bicep file called `main.bicep`.
+1. From the `View` menu, select `Chat` to open the Copilot chat pane. Notice the current file context is changed to `main.bicep`. If it is not, click the `Add context` button to add the file.
 
     :::image type="content" source="./media/quickstart-create-bicep-use-visual-studio-code-mcp/vscode-copilot-chat-new.png" alt-text="Screenshot of Visual Studio Code chat pane.":::
 
@@ -66,33 +41,62 @@ You use the Copilot chat to create your Bicep files. To demonstrate the usage of
 1. Submit the following prompt to create a create a simple storage account
 
     ```
-    Add a storage account resource with only the required properties using Bicep best practices
+    Add a storage account resource with only the required properties using Bicep best practices.
     ```
 
     The chat pane lists the Bicep MCP server tools used, and the Bicep file it generated.
 
     :::image type="content" source="./media/quickstart-create-bicep-use-visual-studio-code-mcp/prompt-add-storage.png" alt-text="Screenshot of adding a storage account.":::
 
-1. Hoover your cursor over the code generated, select `Apply in Editor`, and then select `Active editor <file_name>` to add the code to `main.bicep`.
-1. In the editor, select `Keep` to confirm the insert. 
+1. Hoover your cursor over the code generated, select `Apply in Editor`, and then select `Active editor ...` to add the code to `main.bicep`.
+1. In the editor, select `Keep` to confirm the insert.
 
     :::image type="content" source="./media/quickstart-create-bicep-use-visual-studio-code-mcp/prompt-add-storage-keep.png" alt-text="Screenshot of confirming adding a storage account.":::
 
-1. Submit the following prompt to create a Bicep parameters file:
+1. Submit the following prompt to add default values for the parameters:
 
     ```
-    create a Bicep parametes file that includes both parameters
+    Add default values for the parameters.
     ```
 
-1. Select `Apply in Editor`, select `New untitled editor`, and then select `Keep`.
-1. From the `File` menu, save the file as `main.bicepparam`.
+1. Select `Apply in Editor`, select `Active editor ...`, and then select `Keep`.
+
+1. Submit the following prompt to add default values:
+
+    ```
+    Create a Bicep parameters file with all the parameters defined in the Bicep file.
+    ```
+
+    Select `Allow`. `Allow without Review in this Workspace`.
+
+    The following tools are used:
+
+    - Run Format Bicep File
+
+    Select 'Allow`.
+
+1. From the generated code block, select `Apply in Editor`, select `New untitled editor`, and then select `Keep`.
+
+1. From the `File` menu, select `Save`, and save the file as `main.bicepparam`.
+
+    Notice, the active content is `main.bicepparam` now.
+
 1. Submit the following prompt:
 
     ```
-    get deployment snapshot
+    verify the Bicep file
     ```
 
-    "Ran Get deployment snapshot" is ran
+    "Run Get Bicep File Diagnostics" tools is used. And it shows `no errors or warnings`.
+
+1. Submit the following prompt:
+
+    ```
+    get a snapshot of the deployment
+    ```
+    
+    
+    "Ran Get deployment snapshot" is ran.
 
 ## Deploy the Bicep file
 

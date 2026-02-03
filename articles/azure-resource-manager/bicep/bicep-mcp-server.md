@@ -7,22 +7,22 @@ ms.date: 01/30/2026
 
 # Use Bicep MCP server in VS Code
 
-The Bicep MCP (Model Context Protocol) server provides AI agents with tools to help generate high-quality Bicep code. It exposes the following tools:
+The Bicep MCP (Model Context Protocol) server provides AI agents with tools to help generate high-quality Bicep code. The current release exposes the following tools:
 
-- `list_az_resource_types_for_provider` - Lists all Azure resource types for a specific provider, such as Microsoft.Storage.
-- `get_az_resource_type_schema` - Gets the schema for a specific Azure resource type and API version.
-- `get_bicep_best_practices` - Returns Bicep coding best practices and guidelines.
-- `decompile_arm_parameters_file` - Converts ARM template parameter JSON files into Bicep parameters format (.bicepparam).
-- `decompile_arm_template_file` - Converts ARM template JSON files into Bicep syntax (.bicep).
-- `format_bicep_file` - Applies consistent formatting, including indentation, spacing, and line breaks, to Bicep files.
-- `get_bicep_file_diagnostics` - Analyzes a Bicep file and returns all compilation diagnostics.
-- `get_file_references` - Analyzes a Bicep file and returns a list of all referenced files, including modules, parameter files, and other dependencies.
-- `get_deployment_snapshot` - Creates a snapshot from a .bicepparam file to preview resources and compare Bicep implementations.
-- `list_avm_metadata` - Lists metadata for all Azure Verified Modules (AVM).
+* **`decompile_arm_parameters_file`** - Converts ARM template parameter JSON files into Bicep parameters format (.bicepparam).
+* **`decompile_arm_template_file`** - Converts ARM template JSON files into Bicep syntax (.bicep).
+* **`format_bicep_file`** - Applies consistent formatting, including indentation, spacing, and line breaks, to Bicep files.
+* **`get_az_resource_type_schema`** - Gets the schema for a specific Azure resource type and API version.
+* **`get_bicep_best_practices`** - Returns Bicep coding best practices and guidelines.
+* **`get_bicep_file_diagnostics`** - Analyzes a Bicep file and returns all compilation diagnostics.
+* **`get_deployment_snapshot`** - Creates a snapshot from a .bicepparam file to preview resources and compare Bicep implementations.
+* **`get_file_references`** - Analyzes a Bicep file and returns a list of all referenced files, including modules, parameter files, and other dependencies.
+* **`list_avm_metadata`** - Lists metadata for all Azure Verified Modules (AVM).
+* **`list_az_resource_types_for_provider`** - Lists all Azure resource types for a specific provider, such as Microsoft.Storage.
 
-Use the Bicep MCP Server directly in VS Code (preferred). You can also run it locally with other AI services such as Claude Desktop and Code, OpenAI Codex CLI, LMStudio, and other MCP-compatible services. To run the Azure Bicep MCP server locally for Claude Desktop and Code, OpenAI Codex CLI and for LMStudio where you can use it with various models, see [Azure Bicep MCP Server (Experimental) Integrations with other AI services](https://github.com/johnlokerse/azure-bicep-mcp-integration-setup/tree/main?tab=readme-ov-file).
+Use the Bicep MCP Server directly in VS Code (preferred). You can also run it locally with other AI services such as Claude Desktop and Code, OpenAI Codex CLI, LMStudio, and other MCP-compatible services. To run the Azure Bicep MCP server locally for Claude Desktop and Code, OpenAI Codex CLI and for LMStudio where you can use it with various models, see [Azure Bicep MCP Server Integrations with other AI services](https://github.com/johnlokerse/azure-bicep-mcp-integration-setup/tree/main?tab=readme-ov-file).
 
-For general information, see [Use MCP servers in VS Code](https://code.visualstudio.com/docs/copilot/customization/mcp-servers).
+For general information abouting using MCP servers in Visual Studio Code, see [Use MCP servers in VS Code](https://code.visualstudio.com/docs/copilot/customization/mcp-servers).
 
 For walking through a quickstart, see [Quickstart: Create Bicep files with Visual Studio Code and Bicep MCP server](./quickstart-create-bicep-use-visual-studio-code-mcp.md).
 
@@ -37,10 +37,9 @@ There's no way to definitively guarantee whether the agent orchestrator uses any
 
 ## Prerequisites
 
-- VS Code
-- VS Code Bicep extension. The Bicep MCP server is available starting with Bicep extension version 0.40.2.
+The Bicep MCP server is available starting with Bicep extension version 0.40.2. To set up your environment for Bicep development using Bicep MCP Server in Visual Studio Code, see [Install Bicep tools](./install.md). After completing those steps, you have Visual Studio Code and the Bicep extension installed.
 
-Bicep MCP server doesn't appear under `MCP SERVERS` in the extension view
+Bicep MCP server doesn't appear under `MCP SERVERS` in the extension view.
 
 ## Start and stop the Bicep MCP server
 
@@ -55,7 +54,7 @@ Bicep MCP server doesn't appear under `MCP SERVERS` in the extension view
 
 1. If the status is `Stopped`, select `Bicep`, and then select `Start Server`.
 
-## Use the MCP server
+## Manage the MCP server
 
 After you add the Bicep MCP server, use the tools it provides in chat. MCP tools work like other tools in VS Code: agents can automatically invoke them or you can explicitly reference them in your prompts.
 
