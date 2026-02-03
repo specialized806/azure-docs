@@ -4,7 +4,6 @@ description: Learn how to handle external events
 ms.topic: conceptual
 ms.date: 01/28/2026
 ms.author: azfuncdf
-ms.devlang: csharp
 # ms.devlang: csharp, javascript, powershell, python, java
 zone_pivot_groups: azure-durable-approach
 ---
@@ -42,6 +41,41 @@ The *"wait-for-external-event"* API allows an orchestration to asynchronously wa
 
 # [C#](#tab/csharp)
 
+**Isolated worker model**
+
+```csharp
+using Microsoft.Azure.Functions.Worker;
+using Microsoft.DurableTask;
+using Microsoft.Extensions.Logging;
+
+public class BudgetApproval
+{
+    private readonly ILogger _logger;
+
+    public BudgetApproval(ILoggerFactory loggerFactory)
+    {
+        _logger = loggerFactory.CreateLogger<BudgetApproval>();
+    }
+
+    [Function("BudgetApproval")]
+    public async Task Run(
+        [OrchestrationTrigger] TaskOrchestrationContext context)
+    {
+        bool approved = await context.WaitForExternalEventAsync<bool>("Approval");
+        if (approved)
+        {
+            // approval granted - do the approved action
+        }
+        else
+        {
+            // approval denied - send a notification
+        }
+    }
+}
+```
+
+**In-process model**
+
 ```csharp
 [FunctionName("BudgetApproval")]
 public static async Task Run(
@@ -60,7 +94,7 @@ public static async Task Run(
 ```
 
 > [!NOTE]
-> The previous C# code is for Durable Functions 2.x. For Durable Functions 1.x, you must use `DurableOrchestrationContext` instead of `IDurableOrchestrationContext`. For more information about the differences between versions, see the [Durable Functions versions](durable-functions-versions.md) article.
+> If you're using Durable Functions 1.x, use `DurableOrchestrationContext` instead of `IDurableOrchestrationContext`. Check out the [Durable Functions versions](durable-functions-versions.md) article for more version-specific details.
 
 # [JavaScript](#tab/javascript)
 
@@ -93,20 +127,6 @@ def orchestrator_function(context: df.DurableOrchestrationContext):
 main = df.Orchestrator.create(orchestrator_function)
 ```
 
-# [PowerShell](#tab/powershell)
-
-```powershell
-param($Context)
-
-$approved = Start-DurableExternalEventListener -EventName "Approval"
-
-if ($approved) {
-    # approval granted - do the approved action
-} else {
-    # approval denied - send a notification
-}
-```
-
 # [Java](#tab/java)
 
 ```java
@@ -119,6 +139,20 @@ public void waitForExternalEvent(
     } else {
         // approval denied - send a notification
     }
+}
+```
+
+# [PowerShell](#tab/powershell)
+
+```powershell
+param($Context)
+
+$approved = Start-DurableExternalEventListener -EventName "Approval"
+
+if ($approved) {
+    # approval granted - do the approved action
+} else {
+    # approval denied - send a notification
 }
 ```
 
@@ -201,6 +235,35 @@ You can listen for multiple events concurrently, like in the following example, 
 
 # [C#](#tab/csharp)
 
+**Isolated worker model**
+
+```csharp
+[Function("Select")]
+public async Task Run(
+    [OrchestrationTrigger] TaskOrchestrationContext context)
+{
+    Task<float> event1 = context.WaitForExternalEventAsync<float>("Event1");
+    Task<bool> event2 = context.WaitForExternalEventAsync<bool>("Event2");
+    Task<int> event3 = context.WaitForExternalEventAsync<int>("Event3");
+
+    Task winner = await Task.WhenAny(event1, event2, event3);
+    if (winner == event1)
+    {
+        // ...
+    }
+    else if (winner == event2)
+    {
+        // ...
+    }
+    else if (winner == event3)
+    {
+        // ...
+    }
+}
+```
+
+**In-process model**
+
 ```csharp
 [FunctionName("Select")]
 public static async Task Run(
@@ -227,7 +290,7 @@ public static async Task Run(
 ```
 
 > [!NOTE]
-> The previous C# code is for Durable Functions 2.x. For Durable Functions 1.x, you must use `DurableOrchestrationContext` instead of `IDurableOrchestrationContext`. For more information about the differences between versions, see the [Durable Functions versions](durable-functions-versions.md) article.
+> Using Durable Functions 1.x? Swap in `DurableOrchestrationContext` instead of `IDurableOrchestrationContext`. See the [Durable Functions versions](durable-functions-versions.md) article to learn about other version differences.
 
 # [JavaScript](#tab/javascript)
 
@@ -272,26 +335,6 @@ def orchestrator_function(context: df.DurableOrchestrationContext):
 main = df.Orchestrator.create(orchestrator_function)
 ```
 
-# [PowerShell](#tab/powershell)
-
-```powershell
-param($Context)
-
-$event1 = Start-DurableExternalEventListener -EventName "Event1" -NoWait
-$event2 = Start-DurableExternalEventListener -EventName "Event2" -NoWait
-$event3 = Start-DurableExternalEventListener -EventName "Event3" -NoWait
-
-$winner = Wait-DurableTask -Task @($event1, $event2, $event3) -Any
-
-if ($winner -eq $event1) {
-    # ...
-} else if ($winner -eq $event2) {
-    # ...
-} else if ($winner -eq $event3) {
-    # ...
-}
-```
-
 # [Java](#tab/java)
 
 ```java
@@ -310,6 +353,26 @@ public void selectOrchestrator(
     } else if (winner == event3) {
         // ...
     }
+}
+```
+
+# [PowerShell](#tab/powershell)
+
+```powershell
+param($Context)
+
+$event1 = Start-DurableExternalEventListener -EventName "Event1" -NoWait
+$event2 = Start-DurableExternalEventListener -EventName "Event2" -NoWait
+$event3 = Start-DurableExternalEventListener -EventName "Event3" -NoWait
+
+$winner = Wait-DurableTask -Task @($event1, $event2, $event3) -Any
+
+if ($winner -eq $event1) {
+    # ...
+} else if ($winner -eq $event2) {
+    # ...
+} else if ($winner -eq $event3) {
+    # ...
 }
 ```
 
@@ -410,6 +473,28 @@ The previous example listens for *any* of multiple events. You can also wait for
 
 # [C#](#tab/csharp)
 
+**Isolated worker model**
+
+```csharp
+[Function("NewBuildingPermit")]
+public async Task Run(
+    [OrchestrationTrigger] TaskOrchestrationContext context)
+{
+    string applicationId = context.GetInput<string>();
+
+    Task gate1 = context.WaitForExternalEventAsync<object>("CityPlanningApproval");
+    Task gate2 = context.WaitForExternalEventAsync<object>("FireDeptApproval");
+    Task gate3 = context.WaitForExternalEventAsync<object>("BuildingDeptApproval");
+
+    // all three departments must grant approval before a permit can be issued
+    await Task.WhenAll(gate1, gate2, gate3);
+
+    await context.CallActivityAsync("IssueBuildingPermit", applicationId);
+}
+```
+
+**In-process model**
+
 ```csharp
 [FunctionName("NewBuildingPermit")]
 public static async Task Run(
@@ -429,7 +514,7 @@ public static async Task Run(
 ```
 
 > [!NOTE]
-> The previous code is for Durable Functions 2.x. For Durable Functions 1.x, you must use `DurableOrchestrationContext` instead of `IDurableOrchestrationContext`. For more information about the differences between versions, see the [Durable Functions versions](durable-functions-versions.md) article.
+> If you're running Durable Functions 1.x, use `DurableOrchestrationContext` instead of `IDurableOrchestrationContext`. Head over to [Durable Functions versions](durable-functions-versions.md) for a full breakdown of version differences.
 
 In .NET, if the event payload cannot be converted into the expected type `T`, an exception is thrown.
 
@@ -471,21 +556,6 @@ def orchestrator_function(context: df.DurableOrchestrationContext):
 main = df.Orchestrator.create(orchestrator_function)
 ```
 
-# [PowerShell](#tab/powershell)
-
-```powershell
-param($Context)
-
-$applicationId = $Context.Input
-$gate1 = Start-DurableExternalEventListener -EventName "CityPlanningApproval" -NoWait
-$gate2 = Start-DurableExternalEventListener -EventName "FireDeptApproval" -NoWait
-$gate3 = Start-DurableExternalEventListener -EventName "BuildingDeptApproval" -NoWait
-
-Wait-DurableTask -Task @($gate1, $gate2, $gate3)
-
-Invoke-ActivityFunction -FunctionName 'IssueBuildingPermit' -Input $applicationId
-```
-
 # [Java](#tab/java)
 
 ```java
@@ -503,6 +573,21 @@ public void newBuildingPermit(
 
     ctx.callActivity("IssueBuildingPermit", applicationId).await();
 }
+```
+
+# [PowerShell](#tab/powershell)
+
+```powershell
+param($Context)
+
+$applicationId = $Context.Input
+$gate1 = Start-DurableExternalEventListener -EventName "CityPlanningApproval" -NoWait
+$gate2 = Start-DurableExternalEventListener -EventName "FireDeptApproval" -NoWait
+$gate3 = Start-DurableExternalEventListener -EventName "BuildingDeptApproval" -NoWait
+
+Wait-DurableTask -Task @($gate1, $gate2, $gate3)
+
+Invoke-ActivityFunction -FunctionName 'IssueBuildingPermit' -Input $applicationId
 ```
 
 ---
@@ -604,7 +689,7 @@ External events have an _at-least-once_ delivery guarantee. This means that, und
 ::: zone pivot="durable-functions"
 You can use the *"raise-event"* API defined by the [orchestration client](durable-functions-bindings.md#orchestration-client) binding to send an external event to an orchestration. You can also use the built-in [raise event HTTP API](durable-functions-http-api.md#raise-event) to send an external event to an orchestration.
 
-A raised event includes an *instance ID*, an *eventName*, and *eventData* as parameters. Orchestrator functions handle these events using the [*"wait-for-external-event"*](#wait-for-events) APIs. The *eventName* must match on both the sending and receiving ends in order for the event to be processed. The event data must also be JSON-serializable.
+A raised event includes an `instanceID`, an `eventName`, and `eventData` as parameters. Orchestrator functions handle these events using the [`wait-for-external-event`](#wait-for-events) APIs. The `eventName` must match on both the *sending* and *receiving* ends in order for the event to be processed. The event data must also be JSON-serializable.
 
 Internally, the *"raise-event"* mechanisms enqueue a message that gets picked up by the waiting orchestrator function. If the instance isn't waiting on the specified *event name,* the event message is added to an in-memory queue. If the orchestration instance later begins listening for that *event name,* it checks the queue for event messages.
 
@@ -622,7 +707,7 @@ A raised event includes an *instance ID*, an *eventName*, and *eventData* as par
 Internally, the *"raise-event"* mechanisms enqueue a message that gets picked up by the waiting orchestration. If the instance is not waiting on the specified *event name,* the event message is added to an in-memory queue. If the orchestration instance later begins listening for that *event name,* it will check the queue for event messages.
 
 > [!NOTE]
-> If there is no orchestration instance with the specified *instance ID*, the event message is discarded.
+> If there is no orchestration instance with the specified `instanceID`, the event message is discarded.
 
 Below is an example that sends an "Approval" event to an orchestration instance.
 ::: zone-end
@@ -630,6 +715,26 @@ Below is an example that sends an "Approval" event to an orchestration instance.
 ::: zone pivot="durable-functions"
 
 # [C#](#tab/csharp)
+
+**Isolated worker model**
+
+```csharp
+using Microsoft.Azure.Functions.Worker;
+using Microsoft.DurableTask.Client;
+
+public class ApprovalQueueProcessor
+{
+    [Function("ApprovalQueueProcessor")]
+    public async Task Run(
+        [QueueTrigger("approval-queue")] string instanceId,
+        [DurableClient] DurableTaskClient client)
+    {
+        await client.RaiseEventAsync(instanceId, "Approval", true);
+    }
+}
+```
+
+**In-process model**
 
 ```csharp
 [FunctionName("ApprovalQueueProcessor")]
@@ -642,7 +747,7 @@ public static async Task Run(
 ```
 
 > [!NOTE]
-> The previous C# code is for Durable Functions 2.x. For Durable Functions 1.x, you must use `OrchestrationClient` attribute instead of the `DurableClient` attribute, and you must use the `DurableOrchestrationClient` parameter type instead of `IDurableOrchestrationClient`. For more information about the differences between versions, see the [Durable Functions versions](durable-functions-versions.md) article.
+> For Durable Functions 1.x, use the `OrchestrationClient` attribute and `DurableOrchestrationClient` parameter type instead. Check the [Durable Functions versions](durable-functions-versions.md) article for all version-specific changes.
 
 # [JavaScript](#tab/javascript)
 
@@ -666,14 +771,6 @@ async def main(instance_id:str, starter: str) -> func.HttpResponse:
     await client.raise_event(instance_id, 'Approval', True)
 ```
 
-# [PowerShell](#tab/powershell)
-
-```powershell
-param($instanceId)
-
-Send-DurableExternalEvent -InstanceId $InstanceId -EventName "Approval"
-```
-
 # [Java](#tab/java)
 
 ```java
@@ -683,6 +780,14 @@ public void approvalQueueProcessor(
         @DurableClientInput(name = "durableContext") DurableClientContext durableContext) {
     durableContext.getClient().raiseEvent(instanceID, "Approval", true);
 }
+```
+
+# [PowerShell](#tab/powershell)
+
+```powershell
+param($instanceId)
+
+Send-DurableExternalEvent -InstanceId $InstanceId -EventName "Approval"
 ```
 
 ---
@@ -735,7 +840,7 @@ Internally, the "*raise-event*" API enqueues a message that gets picked up by th
 
 ### HTTP
 
-The following is an example of an HTTP request that raises an "Approval" event to an orchestration instance. 
+The following is an example of an HTTP request that raises an `Approval` event to an orchestration instance.
 
 ```http
 POST /runtime/webhooks/durabletask/instances/MyInstanceId/raiseEvent/Approval&code=XXX
