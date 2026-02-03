@@ -37,6 +37,10 @@ First, check for an Azure Advisor recommendation:
 1. If it does, update the networking configuration to eliminate the dependency on trusted service connectivity. If it doesn’t, proceed to the next step. 
 1. Disable trusted service connectivity in your API Management gateway.
 
+> [!NOTE]
+> Azure Advisor will provide you an indication of outgoing requests to respective Azure backends from the past day, regardless of the used authentication mechanism.
+> This is to help you identify what backend services your service relies on and which ones you need to verify.
+
 #### Scenarios that are not affected by the breaking change
 
 All scenarios involving control plane operations that use trusted service connectivity remain supported and aren't affected by the breaking change, including accessing:
