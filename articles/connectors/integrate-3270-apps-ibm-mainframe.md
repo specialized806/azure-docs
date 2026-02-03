@@ -107,7 +107,7 @@ For your workflow to use the HIDX file, follow these steps:
 
      - [Upload your HIDX file to your Standard logic app resource](../logic-apps/logic-apps-enterprise-integration-maps.md?tabs=standard#add-map-to-standard-logic-app-resource).
 
-1. Now, [add an IBM 3270 action to your workflow](#add-ibm-3270-action).
+1. Now, [add an IBM 3270 action](#add-ibm-3270-action) to your workflow.
 
 ### [Consumption](#tab/consumption)
 
@@ -115,7 +115,7 @@ For your workflow to use the HIDX file, follow these steps:
 
 1. In the [Azure portal](https://portal.azure.com), [upload the HIDX file as a map artifact to your linked integration account](../logic-apps/logic-apps-enterprise-integration-maps.md?tabs=consumption#add-map-to-integration-account). Make sure that you select **HIDX** as the **Map type**.
 
-1. Now, [add an IBM 3270 action to your workflow](#add-ibm-3270-action).
+1. Now, [add an IBM 3270 action](#add-ibm-3270-action) to your workflow.
 
 ---
 
@@ -164,7 +164,6 @@ A Standard logic app workflow can use the IBM 3270 managed connector and the IBM
    |-----------|----------|-------|-------------|
    | **HIDX Name** | Yes | <*HIDX-file-name*> | Select the 3270 HIDX file that you want to use. |
    | **Method Name** | Yes | <*method-name*> | Select the method in the HIDX file that you want to use. After you select a method, the **Add new parameter** list appears so you can select parameters to use with that method. |
-   | **Advanced parameters** | No | Varies | This list appears after you select a method so that you can add other parameters to use with the selected method. The available parameters vary based on your HIDX file and the method that you select. |
 
    For example:
 
@@ -215,7 +214,6 @@ A Standard logic app workflow can use the IBM 3270 managed connector and the IBM
    |-----------|----------|-------|-------------|
    | **HIDX Name** | Yes | <*HIDX-file-name*> | Select the 3270 HIDX file that you want to use. |
    | **Method Name** | Yes | <*method-name*> | Select the method in the HIDX file that you want to use. After you select a method, the **Add new parameter** list appears so you can select parameters to use with that method. |
-   | **Add new parameter** | No | Varies | This list appears after you select a method so that you can add other parameters to use with the selected method. The available parameters vary based on your HIDX file and the method that you select. |
 
    For example:
 
@@ -233,35 +231,15 @@ A Standard logic app workflow can use the IBM 3270 managed connector and the IBM
 
 ## Test your workflow
 
-### [Standard](#tab/standard)
-
 1. To manually run your workflow, on the designer toolbar, from the **Run** menu, select **Run**.
 
-   After your workflow finishes running, your workflow's run history appears. Successful steps show check marks, while unsuccessful steps show an exclamation point (**!**).
+   After your workflow finishes running, your workflow's run history appears. Successful operations show check marks, while unsuccessful operations show an exclamation point (**!**).
 
-1. To review the inputs and outputs for each step, expand that step.
+1. To view the inputs and outputs for each operation, select that operation.
 
-1. To review the outputs, select **See raw outputs**.
+1. To review the raw inputs, select **See raw inputs**.
 
-1. To review the inputs and outputs for each step, expand that step.
-
-1. To review the outputs, select **See raw outputs**.
-
-### [Consumption](#tab/consumption)
-
-1. To manually run your workflow, on the designer toolbar, from the **Run** menu, select **Run**.
-
-   After your workflow finishes running, your workflow's run history appears. Successful steps show check marks, while unsuccessful steps show an exclamation point (**!**).
-
-1. To review the inputs and outputs for each step, expand that step.
-
-1. To review the outputs, select **See raw outputs**.
-
-1. To review the inputs and outputs for each step, expand that step.
-
-1. To review the outputs, select **See raw outputs**.
-
----
+1. To review the raw outputs, select **See raw outputs**.
 
 ## Related content
 
