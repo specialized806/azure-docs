@@ -13,7 +13,7 @@ ms.author: alisheriffMSFT
 
 The following documentation is for customers of existing VM SKUs and using Accelerated Networking. To learn more about Accelerated Networking and the Networking performance benefits it provides, please visit [Accelerated Networking Overview](https://aks.ms/accelnet) for more information.
 
-Per the [announcement](aka.ms/announcemanasupportforexistingvms), General Purpose Compute VM deployments may allocate to compute hardware with the [Microsoft Azure Network Adapter](/azure/virtual-network/accelerated-networking-mana-overview). Initially, the scope will be for Intel based VM SKUs but will expand to ARM and AMD based VM SKUs as well in the future.
+Per the [announcement](https://aka.ms/announcemanasupportforexistingvms), General Purpose Compute VM deployments may allocate to compute hardware with the [Microsoft Azure Network Adapter](/azure/virtual-network/accelerated-networking-mana-overview). Initially, the scope will be for Intel based VM SKUs but will expand to ARM and AMD based VM SKUs as well in the future.
 
 Microsoft Azure Network Adapter (MANA) was introduced in February 2025 as part of Azure Boost with the launch of the Intel v6 family of virtual machines. MANA is an Azure optimized, performance focused, Accelerated Networking enabled device that is an integral part of the newest Azure Boost offerings.
 
@@ -25,7 +25,7 @@ While Azure has performed extensive testing across a wide range of use cases, th
 
 In such instances and for best performance and overall experience, it is highly recommended that customers migrate to the latest generation of VMs or at a minimum utilize operating systems that fully support MANA. 
 
-# FAQ
+## FAQ
 
 ### My workload doesn’t use Accelerated Networking. Can I expect any changes?
 No. If your workload doesn’t support Accelerated Networking today, there is no impact or change to your workload. However, for the best performance, the recommendation is to use Accelerated Networking. [Accelerated Networking Overview](https://aks.ms/accelnet) has more information about Accelerated Networking.
