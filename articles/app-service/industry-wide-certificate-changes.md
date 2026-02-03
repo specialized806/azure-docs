@@ -1,6 +1,6 @@
 ---
 title: Industry-wide certificate changes impacting Azure App Service
-description: Learn about upcoming industry-wide TLS certificate changes that affect Azure App Service Managed Certificates and App Service Certificates, including timelines and required customer actions.
+description: Describes industry-wide TLS certificate changes that affect Azure App Service Managed Certificates and App Service Certificates, including scope, timelines, and required actions.
 author: msangapu-msft
 ms.author: msangapu
 ms.date: 02/03/2026
@@ -10,64 +10,52 @@ ms.service: azure-app-service
 
 # Industry-wide certificate changes impacting Azure App Service
 
-In early 2026, industry-wide changes mandated by browser applications and the CA/Browser Forum (CA/B Forum) affect how public TLS certificates are issued and validated. Azure App Service aligns with these requirements for App Service Managed Certificates (ASMC) and App Service Certificates (ASC). [1](https://techcommunity.microsoft.com/blog/appsonazureblog/industry-wide-certificate-changes-impacting-azure-app-service-certificates/4477924)
+Industry-wide requirements defined by browser programs and the CA/Browser Forum (CA/B Forum) change how public TLS certificates are issued and validated. Azure App Service applies these requirements to App Service Managed Certificates (ASMC) and App Service Certificates (ASC), as described in the [Azure App Service announcement on industry-wide certificate changes](https://techcommunity.microsoft.com/blog/appsonazureblog/industry-wide-certificate-changes-impacting-azure-app-service-certificates/4477924).
 
-For most customers, these changes apply automatically and no action is required. Action is required only if applications pin certificates or certificate chains, or if App Service certificates are used for client authentication (mutual TLS). [1](https://techcommunity.microsoft.com/blog/appsonazureblog/industry-wide-certificate-changes-impacting-azure-app-service-certificates/4477924)
+These requirements are enforced by the platform except in specific scenarios described in this article.
 
-## Who this article applies to
+## Scope
 
-This article applies to:
+This article applies to Azure App Service apps that use:
 
-- Azure App Service administrators
-- Security and compliance teams
-- Developers responsible for TLS certificate configuration or application security
+- App Service Managed Certificates
+- App Service Certificates
+- Certificate pinning
+- Client authentication (mutual TLS) using App Service certificates
 
-[1](https://techcommunity.microsoft.com/blog/appsonazureblog/industry-wide-certificate-changes-impacting-azure-app-service-certificates/4477924)
+Apps that do not pin certificates and do not use App Service certificates for client authentication are not impacted by these changes.
 
-## Summary of changes
+## Changes by certificate type
 
-The following table summarizes the changes and when customer action is required.
-
-| Area | App Service Managed Certificates (ASMC) | App Service Certificates (ASC) | Customer action |
-|-----|-----------------------------------------|--------------------------------|-----------------|
-| Certificate chain | Migrates to a new certificate chain | Migrates to a new certificate chain | Remove certificate or chain pinning if used |
-| Client authentication EKU | No longer supported | No longer supported | Transition to an alternative authentication method if mTLS is used |
-| Certificate validity | No change (already compliant) | Validity shortened with overlapping certificates | None |
-
-If you don't pin certificates and don't use certificates for client authentication, you don't need to make any changes. [1](https://techcommunity.microsoft.com/blog/appsonazureblog/industry-wide-certificate-changes-impacting-azure-app-service-certificates/4477924)
+| Area | App Service Managed Certificates (ASMC) | App Service Certificates (ASC) |
+|-----|-----------------------------------------|--------------------------------|
+| Certificate chain | Migrates to a new certificate chain | Migrates to a new certificate chain |
+| Client authentication EKU | Not supported | Not supported |
+| Certificate validity | No change | Validity shortened with overlapping certificates |
 
 ## Timeline
 
-| Timeframe | Change | Customer action |
-|----------|--------|-----------------|
-| Mid-January 2026 and later | ASMC migrates to a new certificate chain.<br/>ASMC no longer supports the client authentication EKU. | Remove certificate pinning if used.<br/>Transition from mTLS if applicable. |
-| March 2026 and later | ASC certificate validity is shortened.<br/>ASC migrates to a new certificate chain.<br/>ASC no longer supports the client authentication EKU. | Remove certificate pinning if used.<br/>Transition from mTLS if applicable. |
+| Timeframe | Change |
+|----------|--------|
+| Mid-January 2026 and later | ASMC migrates to a new certificate chain.<br/>ASMC no longer supports the client authentication extended key usage (EKU). |
+| March 2026 and later | ASC certificate validity is shortened.<br/>ASC migrates to a new certificate chain.<br/>ASC no longer supports the client authentication EKU. |
 
-[1](https://techcommunity.microsoft.com/blog/appsonazureblog/industry-wide-certificate-changes-impacting-azure-app-service-certificates/4477924)
-
-## Required actions
-
-### Review certificate usage
-
-Review how your App Service applications use certificates. If you don't pin certificates and don't use them for client authentication, you don't need to make any changes. [1](https://techcommunity.microsoft.com/blog/appsonazureblog/industry-wide-certificate-changes-impacting-azure-app-service-certificates/4477924)
+## Impact and required actions
 
 ### Certificate pinning
 
-If you use certificate or certificate chain pinning, remove pinning before the migration dates to avoid service disruption. [1](https://techcommunity.microsoft.com/blog/appsonazureblog/industry-wide-certificate-changes-impacting-azure-app-service-certificates/4477924)
+Apps that pin certificates or certificate chains must remove pinning before the applicable migration dates to avoid service disruption. This requirement applies to both ASMC and ASC.
 
 ### Client authentication (mutual TLS)
 
-If you use App Service certificates for client authentication, transition to an alternative authentication mechanism before the migration dates. These certificates no longer support client authentication EKU. [1](https://techcommunity.microsoft.com/blog/appsonazureblog/industry-wide-certificate-changes-impacting-azure-app-service-certificates/4477924)
+App Service certificates no longer support the client authentication EKU. Apps that rely on App Service certificates for mutual TLS must transition to an alternative authentication mechanism before the applicable migration dates.
 
-## Why these changes are required
+## Background
 
-Browser programs and standards defined by the CA/B Forum require these updates. These changes affect all public certificate authorities across the industry, not only Azure App Service. [1](https://techcommunity.microsoft.com/blog/appsonazureblog/industry-wide-certificate-changes-impacting-azure-app-service-certificates/4477924)
+These changes are required to comply with updated certificate issuance and validation standards adopted across the industry. The requirements apply to all public certificate authorities, not only to Azure App Service.
 
+## Related documentation
 
-## Next steps
-
-- Review certificate usage across App Service apps.
-- Identify any certificate pinning or mutual TLS dependencies.
-- Plan remediation before the applicable change dates if required.
-
-For related guidance, see Azure App Service documentation for certificate management. [1](https://techcommunity.microsoft.com/blog/appsonazureblog/industry-wide-certificate-changes-impacting-azure-app-service-certificates/4477924)
+- App Service Managed Certificates
+- App Service Certificates
+- Configure TLS/SSL bindings in Azure App Service
