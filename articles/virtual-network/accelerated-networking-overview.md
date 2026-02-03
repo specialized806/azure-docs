@@ -74,7 +74,7 @@ The following Linux and FreeBSD distributions from Azure Marketplace support Acc
 - Oracle Linux 8.0 UEK R7
 - Oracle Linux 9.0 UEK R7
 
-For users of non endorsed Linux distributions or utlizing custom kernels, we recommend the Linux Kernel 6.12 or later found at [kernel.org](https://www.kernel.org/)
+For users of non endorsed Linux distributions or utilizing custom kernels, we recommend the Linux Kernel 6.12 or later found at [kernel.org](https://www.kernel.org/)
 
 > [!NOTE]
 > Newer MANA features are under active development and Linux distribution vendors partner with Microsoft to update their kernels with upstream changes. The Cadence of updates varies by distribution vendor. The newer your distribution and kernel is, the more likely it is to have the latest updates.
