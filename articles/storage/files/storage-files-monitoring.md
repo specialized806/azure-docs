@@ -1,7 +1,7 @@
 ---
 title: Monitor Azure Files using Azure Monitor
 description: Learn how to monitor Azure Files and analyze metrics and logs using Azure Monitor. 
-ms.date: 05/10/2024
+ms.date: 02/03/2026
 ms.custom: horz-monitor
 ms.topic: concept-article
 author: khdownie
@@ -92,6 +92,23 @@ Log entries are created only if there are requests made against the service endp
 - Requests to analytics data (classic log data in the **$logs** container and classic metric data in the **$metric** tables)
 
 Requests made by the Azure Files service itself, such as log creation or deletion, aren't logged. 
+
+#### Configure Azure Files monitoring data collection
+
+Azure Files integrates with Azure Monitor, but metrics and logs aren't sent to a Log Analytics workspace by default. To query Azure Files telemetry using Kusto Query Language (KQL), you must first configure diagnostic settings on the storage account.
+
+Follow these steps to create a diagnostic setting and send Azure Files logs and metrics to an existing Log Analytics workspace. If you don't already have a Log Analytics workspace in your Azure subscription, you'll need to [create one](/azure/azure-monitor/logs/quick-create-workspace) first.
+
+1. Sign into the Azure portal and navigate to your storage account.
+1. From the service menu, under **Monitoring**, select **Diagnostic settings**.
+1. Select the **file** resource, then select **+ Add diagnostic setting**.
+1. Provide a name for the new diagnostic setting.
+1. Select the relevant Azure Files log and metrics categories.
+1. Under **Destination details**, select **Send to Log Analytics workspace**.
+1. Select a subscription and Log Analytics workspace.
+1. Select **Save** from the top menu.
+
+Once enabled, Azure Files logs and metrics will begin flowing into the selected workspace, and you can query them using KQL.
 
 [!INCLUDE [horz-monitor-kusto-queries](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-kusto-queries.md)]
 
