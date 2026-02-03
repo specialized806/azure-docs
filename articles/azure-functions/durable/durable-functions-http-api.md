@@ -50,7 +50,7 @@ Generate complete URLs automatically using [orchestration client binding](durabl
   - **v1.x**: `durableTask.azureStorageConnectionStringName` (defaults to `AzureWebJobsStorage` if not specified)
   - Can use connection strings or [identity-based connections](durable-functions-storage-providers.md#identity-based-connections) (Microsoft Entra authentication)
 
-- **`systemKey`**: Extension-specific authorization key for Durable Task APIs. Retrieved from Azure Portal:
+- **`systemKey`**: Extension-specific authorization key for Durable Task APIs. Retrieved from Azure portal:
   1. Open your Function App
   1. Select **Functions** → **App keys** in the left menu
   1. Under **System keys** section, locate the key (usually auto-generated for the extension)
