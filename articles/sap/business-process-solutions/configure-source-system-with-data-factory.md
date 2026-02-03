@@ -3,7 +3,7 @@ title: Configure SAP source system with Azure Data Factory
 description: Learn how to configure SAP source systems with Azure Data Factory in Business Process Solutions, including prerequisites, service principal setup, and Self-Hosted Integration Runtime deployment.
 author: mohitmakhija1
 ms.service: sap-on-azure
-ms.subservice:
+ms.subservice: center-sap-solutions
 ms.topic: how-to
 ms.date: 11/07/2025
 ms.author: momakhij
