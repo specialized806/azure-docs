@@ -5,7 +5,7 @@ services: azure-netapp-files
 author: b-hchen
 ms.service: azure-netapp-files
 ms.topic: how-to
-ms.date: 08/28/2025
+ms.date: 02/03/2026
 ms.author: anfdocs
 # Customer intent: "As a cloud administrator, I want to restore a volume from a snapshot so that I can recover data to a specific point in time and maintain system integrity."
 ---
@@ -15,8 +15,6 @@ ms.author: anfdocs
 [Snapshots](snapshots-introduction.md) enable point-in-time recovery of volumes. This article describes how to create a new volume from a snapshot by using Azure NetApp Files.
 
 ## Considerations 
-
-* Currently, you can [restore a snapshot only to a new volume](snapshots-introduction.md#restoring-cloning-an-online-snapshot-to-a-new-volume). 
 
 * Depending on the size of the selected volume snapshot to restore, the operation may take minutes to hours to complete.
 
