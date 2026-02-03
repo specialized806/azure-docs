@@ -18,13 +18,13 @@ Azure Container Storage is a cloud-based volume management, deployment, and orch
 
 * <a id="azure-container-storage-versions"></a>
   **What's the difference between Azure Container Storage version 2.x.x and version 1.x.x?**
-  Azure Container Storage (version 2.x.x) features a lighter weight, on-demand installation and optimized resource utilization. However, version 2.x.x currently only supports Ephemeral Disk (Local NVMe) as backing storage, whereas version 1.x.x supports Azure Disks, Ephemeral Disk, and Azure Elastic SAN.
+  Azure Container Storage (version 2.x.x) features a lighter weight, on-demand installation, and optimized resource utilization. However, version 2.x.x currently only supports Ephemeral Disk (Local NVMe) as backing storage, whereas version 1.x.x supports Azure Disks, Ephemeral Disk, and Azure Elastic SAN.
 
 * <a id="azure-container-storage-applicability"></a>
   **What changes between Azure Container Storage versions 2.0.x and 2.1.x+?**
-  If you use Azure Container Storage version 2.0.x and disable auto-upgrade, use this table to understand what gets installed on your AKS cluster.
+  If you use Azure Container Storage version 2.0.x and disable autoupgrade, use this table to understand what gets installed on your AKS cluster.
 
-  | Azure Container Storage version | Storage types supported | Installer present | Driver install trigger |
+  | Azure Container Storage version | Storage types supported | Installer present | Driver installation trigger |
   |---|---|---|---|
   | 2.0.x | Local NVMe | No | Installed during `--enable-azure-container-storage` |
   | 2.1.x and later | Local NVMe and Elastic SAN | Yes | Via storage type selection during enable or by creating a StorageClass (installer-only flow) |
@@ -42,7 +42,7 @@ Azure Container Storage is a cloud-based volume management, deployment, and orch
 
   **Behavior:**
   - Installs only the installer.
-  - No CSI driver or node agent is installed initially.
+  - No storage-specific driver or node agent is installed initially.
   - Creating a StorageClass later triggers the correct CSI driver installation.
 
   **Installer + storage type(s)**  
@@ -60,7 +60,7 @@ Azure Container Storage is a cloud-based volume management, deployment, and orch
 
   **Behavior:**
   - Installs the installer plus the selected CSI driver(s).
-  - Creates default StorageClass objects if none exist.
+  - Creates default StorageClass objects if none exists.
   - Supports comma-separated storage types.
 
   Supported storage types for version 2.1.0 and later: `ephemeralDisk` (local NVMe) and `elasticSan` (Azure Elastic SAN).
@@ -70,7 +70,7 @@ Azure Container Storage is a cloud-based volume management, deployment, and orch
   The extension configuration supports the same flows as Azure CLI:
 
   - **Installer-only (choose storage later):** Set `enable-azure-container-storage` to `true`. Create a StorageClass later to trigger driver installation.
-  - **Installer + storage type(s):** Set `enable-azure-container-storage` to a storage type value such as `ephemeralDisk`, `elasticSan`, or a comma-separated list like `ephemeralDisk,elasticSan`. This installs the installer and the selected CSI driver(s).
+  - **Installer + storage type(s):** Set `enable-azure-container-storage` to a storage type value such as `ephemeralDisk`, `elasticSan`, or a comma-separated list like `ephemeralDisk,elasticSan`. This installs the installer and the selected CSI drivers.
 
   Supported storage types for version 2.1.0 and later: `ephemeralDisk` (local NVMe) and `elasticSan` (Azure Elastic SAN).
 
@@ -149,7 +149,7 @@ Azure Container Storage is a cloud-based volume management, deployment, and orch
 
 * <a id="azure-container-storage-rwx"></a>
   **Does Azure Container Storage support read-write-many (RWX) workloads?**  
-  Azure Container Storage doesn't support RWX workloads. However, Azure's first-party Files and Blob CSI drivers are great alternatives and fully supported.
+  Azure Container Storage doesn't support read-write-many (RWX) workloads. However, Azure's first-party Files and Blob CSI drivers are great alternatives and fully supported.
 
 * <a id="azure-container-storage-remove"></a>
   **How do I remove Azure Container Storage?**  
@@ -193,7 +193,7 @@ Azure Container Storage is a cloud-based volume management, deployment, and orch
 * <a id="azure-container-storage-sla"></a>
   **Is there a service-level agreement (SLA) for Azure Container Storage?**
 
-  Azure Container Storage is an orchestration solution of underlying storage options including Ephemeral Disks, Azure Elastic SAN, and Azure Disks. Azure Container Storage doesn't provide an SLA. However an SLA is offered for each storage option. See [Microsoft Service Level Agreements for Online Services](https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services).
+  Azure Container Storage is an orchestration solution of underlying storage options including Ephemeral Disks, Azure Elastic SAN, and Azure Disks. Azure Container Storage doesn't provide an service-level agreement (SLA). However an SLA is offered for each storage option. See [Microsoft Service Level Agreements for Online Services](https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services).
 
 ## See also
 
