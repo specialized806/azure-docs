@@ -12,7 +12,7 @@ ms.service: azure-app-service
 
 Industry-wide requirements defined by browser programs and the CA/Browser Forum (CA/B Forum) change how public TLS certificates are issued and validated. Azure App Service applies these requirements to App Service Managed Certificates (ASMC) and App Service Certificates (ASC), as described in the [Azure App Service announcement on industry-wide certificate changes](https://techcommunity.microsoft.com/blog/appsonazureblog/industry-wide-certificate-changes-impacting-azure-app-service-certificates/4477924).
 
-These requirements are enforced by the platform except in specific scenarios described in this article.
+The platform enforces these requirements except in specific scenarios described in this article.
 
 ## Scope
 
@@ -23,7 +23,7 @@ This article applies to Azure App Service apps that use:
 - Certificate pinning
 - Client authentication (mutual TLS) using App Service certificates
 
-Apps that do not pin certificates and do not use App Service certificates for client authentication are not impacted by these changes.
+Apps that don't pin certificates and don't use App Service certificates for client authentication aren't impacted by these changes.
 
 ## Changes by certificate type
 
@@ -44,15 +44,15 @@ Apps that do not pin certificates and do not use App Service certificates for cl
 
 ### Certificate pinning
 
-Apps that pin certificates or certificate chains must remove pinning before the applicable migration dates to avoid service disruption. This requirement applies to both ASMC and ASC.
+To avoid service disruption, apps that pin certificates or certificate chains must remove pinning before the migration dates. This requirement applies to both ASMC and ASC.
 
 ### Client authentication (mutual TLS)
 
-App Service certificates no longer support the client authentication EKU. Apps that rely on App Service certificates for mutual TLS must transition to an alternative authentication mechanism before the applicable migration dates.
+App Service certificates no longer support the client authentication EKU. Apps that rely on App Service certificates for mutual TLS must transition to an alternative authentication mechanism before the migration dates.
 
 ## Background
 
-These changes are required to comply with updated certificate issuance and validation standards adopted across the industry. The requirements apply to all public certificate authorities, not only to Azure App Service.
+To comply with updated certificate issuance and validation standards adopted across the industry, these changes are required. The requirements apply to all public certificate authorities, not only to Azure App Service.
 
 ## Related documentation
 
