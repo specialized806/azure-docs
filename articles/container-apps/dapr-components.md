@@ -1,5 +1,5 @@
 ---
-title: Dapr components in Azure Container Apps
+title: Dapr Components in Azure Container Apps
 description: Learn more about how Dapr components work on your Azure Container App service to develop applications.
 ms.author: nigreenf
 ms.reviewer: hannahhunter
@@ -7,8 +7,8 @@ author: greenie-msft
 ms.service: azure-container-apps
 ms.subservice: dapr
 ms.custom: build-2023
-ms.topic: conceptual
-ms.date: 12/03/2024
+ms.topic: concept-article
+ms.date: 02/02/2026
 ---
 
 # Dapr components in Azure Container Apps
@@ -43,7 +43,7 @@ spec:
       value: [METADATA-VALUE]
 ```
 
-In Azure Container Apps, the above schema is slightly simplified to support Dapr components and remove unnecessary fields, including `apiVersion`, `kind`, and redundant metadata and spec properties.
+In Azure Container Apps, this schema is slightly simplified to support Dapr components and remove unnecessary fields, including `apiVersion`, `kind`, and redundant metadata and spec properties.
 
 ```yaml
 componentType: [COMPONENT-TYPE]
@@ -82,7 +82,7 @@ scopes:
 To create a Dapr component via the Container Apps CLI, you can use a container apps YAML manifest. When configuring multiple components, you must create and apply a separate YAML file for each component.
 
 ```azurecli
-az containerapp env dapr-component set --name ENVIRONMENT_NAME --resource-group RESOURCE_GROUP_NAME --dapr-component-name pubsub --yaml "./pubsub.yaml"
+az containerapp env dapr-component set --name <your-environment-name> --resource-group <your-resource-group> --dapr-component-name pubsub --yaml "./pubsub.yaml"
 ```
 
 ```yaml
@@ -141,7 +141,7 @@ resource daprComponent 'daprComponents@2022-03-01' = {
 
 # [ARM](#tab/arm)
 
-This resource defines a Dapr component called `dapr-pubsub` via ARM.
+This resource defines a Dapr component called `dapr-pubsub` via ARM template.
 
 ```json
 {
@@ -174,9 +174,10 @@ This resource defines a Dapr component called `dapr-pubsub` via ARM.
 
 ---
 
-## Next steps
+## Next step
 
-[Learn how to connect to Azure and external services via Dapr components.][dapr-components-connect-services]
+> [!div class="nextstepaction"]
+> [Connect to other Azure or external services via Dapr components][dapr-components-connect-services]
 
 <!-- Links Internal -->
 
