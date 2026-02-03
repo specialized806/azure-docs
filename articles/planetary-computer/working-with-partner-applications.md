@@ -78,7 +78,7 @@ Partner application integration follows Azure security best practices:
 
 ## Related content
 
-- [Authorize cross-tenant partner applications](./authorizing-cross-tenant-partner-applications.md)
+- [Authorize cross-tenant partner applications](./authorize-cross-tenant-partner-applications.md)
 - [Configure a cross-tenant application](./configure-cross-tenant-application.md)
 - [Configure application authentication for Microsoft Planetary Computer Pro](./application-authentication.md)
 - [Manage access for Microsoft Planetary Computer Pro](./manage-access.md)

@@ -151,7 +151,7 @@ landingContent:
           - text: Connect to QGIS
             url: configure-qgis.md
           - text: Authorizing Partner Cross-Tenant Application Access
-            url: authorizing-cross-tenant-partner-applications.md
+            url: authorize-cross-tenant-partner-applications.md
       - linkListType: quickstart
         links:
           - text: Azure Batch and Microsoft Planetary Computer Pro
