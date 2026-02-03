@@ -22,7 +22,7 @@ A storage account contains all of your Azure Storage data objects: blobs, files,
 
 Azure Storage offers several types of storage accounts. Each type supports different features and has its own pricing model.
 
-The following table describes the types of storage accounts that Microsoft recommends for most scenarios. All of these types use the [Azure Resource Manager](../../azure-resource-manager/management/overview.md) deployment model.
+The following table describes the types of storage accounts that we recommend for most scenarios. All of these types use the [Azure Resource Manager](../../azure-resource-manager/management/overview.md) deployment model.
 
 | Type of storage account | Supported storage services | Redundancy options | Usage |
 |--|--|--|--|
@@ -157,7 +157,7 @@ The following table lists the format for the standard endpoints for each of the 
 
 When your account is created with standard endpoints, you can easily construct the URL for an object in Azure Storage. Append the object's location in the storage account to the endpoint. For example, the URL for a blob is similar to:
 
-`https://*mystorageaccount*.blob.core.windows.net/*mycontainer*/*myblob*`
+`https://<mystorageaccount>.blob.core.windows.net/<mycontainer>/<myblob>`
 
 ### Azure DNS zone endpoints (preview)
 
@@ -192,7 +192,7 @@ To learn how to create a storage account with Azure DNS zone endpoints, see [Cre
 
 #### About the preview
 
-The Azure DNS zone endpoints preview is available in all public regions. The preview isn't available in any government cloud regions.
+The preview of Azure DNS zone endpoints is available in all public regions. The preview isn't available in any government cloud regions.
 
 To register for the preview, follow the instructions provided in [Set up preview features in an Azure subscription](../../azure-resource-manager/management/preview-features.md#register-preview-feature). Specify `PartitionedDnsPublicPreview` as the feature name and `Microsoft.Storage` as the provider namespace.
 
@@ -255,7 +255,7 @@ The following account types are retired or scheduled for retirement. They aren't
 
 | Retired account type | Supported services | Redundancy options | Deployment model | Guidance |
 | --- | --- | --- | --- | --- |
-| **Standard general-purpose v1** | Blob Storage, Queue Storage, Table Storage, Azure Files | LRS/GRS/RA-GRS | Resource Manager, classic¹ | Upgrade existing General Purpose v1 accounts to General-Purpose v2 to access modern features and cost-optimization capabilities. Before you upgrade, you can model capacity and operations costs by reading [General Purpose v1 account migration](./general-purpose-version-1-account-migration-overview.md). For the in-place upgrade, see [storage account upgrade](./storage-account-upgrade.md). |
+| **Standard general-purpose v1** | Blob Storage, Queue Storage, Table Storage, Azure Files | LRS/GRS/RA-GRS | Resource Manager, classic¹ | Upgrade existing general-purpose v1 accounts to general-purpose v2 to access modern features and cost-optimization capabilities. Before you upgrade, you can model capacity and operations costs by reading [General-purpose v1 account migration](./general-purpose-version-1-account-migration-overview.md). For the in-place upgrade, see [storage account upgrade](./storage-account-upgrade.md). |
 | **Blob Storage** | Block blobs and append blobs | LRS/GRS/RA-GRS | Resource Manager | Upgrade existing legacy Blob Storage accounts to GPv2 to use access tiers and lifecycle management. See [Legacy Blob Storage account migration overview](./legacy-blob-storage-account-migration-overview.md) and [access tiers overview](../blobs/access-tiers-overview.md). |
 | **Classic (ASM) storage accounts** | Blob Storage, Queue Storage, Table Storage, Azure Files | LRS/GRS/RA-GRS | classic | Retired. Migrate to the Resource Manager deployment model. See [classic account migration overview](./classic-account-migration-overview.md). |
 
