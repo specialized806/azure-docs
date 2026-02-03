@@ -3,7 +3,7 @@ title: Copy Files Between Azure File Shares
 description: Learn how to copy files from one Azure file share to another using common copy tools such as AzCopy and Robocopy.
 ms.service: azure-file-storage
 ms.topic: how-to
-ms.date: 01/30/2026
+ms.date: 02/03/2026
 ms.author: kendownie
 author: khdownie
 # Customer intent: As a cloud administrator, I want to copy files between Azure file shares so that I can efficiently transition data with minimal downtime and optimize storage performance.
@@ -149,3 +149,5 @@ Follow these steps to copy files using Robocopy, a command-line utility included
 ## See also
 
 - [Transfer data with AzCopy and file storage](/azure/storage/common/storage-use-azcopy-files)
+- [Migrate to SMB Azure file shares](storage-files-migration-overview.md)
+- [Migrate to NFS Azure file shares](storage-files-migration-nfs.md)
