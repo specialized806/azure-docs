@@ -5,7 +5,7 @@ author: mattmcinnes
 ms.service: azure-virtual-network
 ms.custom: linux-related-content
 ms.topic: how-to
-ms.date: 07/10/2023
+ms.date: 02/02/2026
 ms.author: mattmcinnes
 # Customer intent: As a Linux VM administrator, I want to implement the Microsoft Azure Network Adapter, so that I can enhance the networking performance and availability of my virtual machines in Azure.
 ---
@@ -47,7 +47,7 @@ When you enable Accelerated Networking, you can identify the underlying MANA NIC
 $ lspci
 7870:00:00.0 Ethernet controller: Microsoft Corporation Device 00ba
 ```
-If you see another Ethernet controller device, you will not be using MANA. In [later steps](#Verify-that-traffic-is-flowing-through-MANA) you should also confirm that the MANA interface is initialized and bonded correctly. 
+If you see another Ethernet controller device, you will not be using MANA. In [later steps](#verify-that-traffic-is-flowing-through-mana) you should also confirm that the MANA interface is initialized and bonded correctly. 
 
 ### Kernel version check
 
@@ -61,7 +61,7 @@ kernel/drivers/net/ethernet/microsoft/mana/mana.ko
 
 ## Update the kernel
 
-Ethernet drivers for MANA are included in kernel version 5.15 and later. Kernel version 6.2 includes Linux support for features such as InfiniBand/RDMA and DPDK. Earlier or forked kernel versions (5.15 and 6.1) require backported support. Operating system support details are listed at [Azure Accelerated Networking Overview](accelerated-networking-overview.md)
+Ethernet drivers for MANA are included in kernel version 5.15 and later. Kernel version 6.2 includes Linux support for features such as InfiniBand/RDMA and DPDK. Earlier or forked kernel versions (5.15 and 6.1) require backported support. Operating system support details are listed at [Azure Accelerated Networking Overview](accelerated-networking-overview.md).
 
 To update your VM's Linux kernel, check the documentation for your specific distribution.
 
