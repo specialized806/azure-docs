@@ -5,12 +5,12 @@ author: maud-lv
 ms.author: malev
 ms.service: service-connector
 ms.topic: how-to
-ms.date: 03/14/2025
+ms.date: 02/03/2026
 ---
 
 # Integrate Azure Blob Storage with Service Connector
 
-In this article, we cover the supported authentication methods and clients that you can use to connect. For each supported method, we provide sample code and describe the default environment variable names, values, and configuration obtained when creating a service connection.
+In this article, we cover the supported authentication methods and clients that you can use to connect your apps to Azure Blob Storage using Service Connector. For each supported method, we provide sample code and describe the default environment variable names, values, and configuration obtained when creating a service connection.
 
 ## Supported compute services
 
