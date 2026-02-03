@@ -38,8 +38,10 @@ First, check for an Azure Advisor recommendation:
 1. Disable trusted service connectivity in your API Management gateway.
 
 > [!NOTE]
-> Azure Advisor will provide you an indication of outgoing requests to respective Azure backends from the past day, regardless of the used authentication mechanism.
-> This is to help you identify what backend services your service relies on and which ones you need to verify.
+> Azure Advisor will provide you an indication of outgoing traffic to respective Azure backends from the past day, regardless of the used authentication mechanism.
+> This provides an indication of what backend services your API Management service relies on and which ones you must verify.
+>
+> If not traffic is reported, we recommend monitoring for a few days and proceed with disablement when appropriate.
 
 #### Scenarios that are not affected by the breaking change
 
