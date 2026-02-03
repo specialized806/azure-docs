@@ -216,7 +216,7 @@ You can extend the base query with OData options such as:
 The following example returns only Resource Accounts that are associated with a specific ACS Resource ID:
 
 ```rest
-GET https://graph.microsoft.com/beta/admin/teams/resourceAccounts?$filter=acsResourceId eq '18fd7cfe-58c2-4f96-ad84-aa8bb1180fba'
+GET https://graph.microsoft.com/beta/admin/teams/resourceAccounts?$filter=acsResourceId eq 'aa123456-1234-1234-1234-aaa123456789'
 ```
 
 Successful response:
@@ -226,12 +226,12 @@ Successful response:
   "@odata.context": "https://graph.microsoft.com/beta/$metadata#admin/teams/resourceAccounts",
   "value": [
     {
-      "id": "cc123456-5678-5678-1234-ccc123456789",
+      "id": "aa123456-1234-1234-1234-aaa123456789",
       "userPrincipalName": "myteamsphoneresourceaccount@contoso.com",
       "displayName": "My RA Name",
       "appId": "aa123456-1234-1234-1234-aaa123456789",
       "phoneNumber": "tel:+1234567890",
-      "acsResourceId": "18fd7cfe-58c2-4f96-ad84-aa8bb1180fba"
+      "acsResourceId": "aa123456-1234-1234-1234-aaa123456789"
     }
   ]
 }
