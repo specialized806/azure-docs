@@ -243,7 +243,7 @@ Choose the scenario that matches your environment.
 
 For Terraform, the extension configuration supports two flows that match the Azure CLI behavior:
 
-- **Installer-only (choose storage later):** set `enable-azure-container-storage` to `true`. Create a StorageClass later to trigger driver installation.
+- **Installer-only (choose storage later):** Set `enable-azure-container-storage` to `true`. Create a StorageClass later to trigger driver installation.
 - **Installer + storage type(s):** set `enable-azure-container-storage` to a storage type value such as `ephemeralDisk`, `elasticSan`, or a comma-separated list like `ephemeralDisk,elasticSan`. This installs the installer and the selected CSI driver(s).
 
 Supported storage types for version 2.1.0 and later: `ephemeralDisk` (local NVMe) and `elasticSan` (Azure Elastic SAN).
