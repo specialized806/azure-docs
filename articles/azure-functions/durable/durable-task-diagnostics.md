@@ -12,81 +12,19 @@ ms.custom: copilot-generated
 
 # Diagnostics in Durable Task SDKs
 
-There are several options for diagnosing issues with the Durable Task SDKs. This article describes the diagnostic tools and techniques available for troubleshooting orchestrations.
+Your options for diagnosing issues with the Durable Task SDKs depends on the Azure compute you're using, like Azure Container Apps, an Azure Kubernetes Service cluster, or an Azure App Service app. We recommend both enabling diagnostics and monitoring using [Application Insights](/azure/azure-monitor/app/app-insights-overview) *and* the [Durable Task Scheduler monitoring dashboard](./durable-task-scheduler/durable-task-scheduler-dashboard.md) to track orchestration status. 
 
 ## Application Insights
 
-[Application Insights](/azure/azure-monitor/app/app-insights-overview) is the recommended way to do diagnostics and monitoring with the Durable Task SDKs.
+[Application Insights](/azure/azure-monitor/app/app-insights-overview) is the recommended way to monitor your apps running on the Durable Task SDKs. You can find and query these tracking events using the [Application Insights Analytics](/azure/azure-monitor/logs/log-query-overview) tool in the Azure portal.
 
-The Durable Task SDKs emit *tracking events* that let you trace the end-to-end execution of an orchestration. You can find and query these tracking events using the [Application Insights Analytics](/azure/azure-monitor/logs/log-query-overview) tool in the Azure portal.
+Each lifecycle event of an orchestration instance writes a tracking event to the **traces** collection in Application Insights. 
 
-### Tracking data
-
-Each lifecycle event of an orchestration instance writes a tracking event to the **traces** collection in Application Insights. This event contains a **customDimensions** payload with several fields. Field names are all prepended with `prop__`.
-
-| Field name | Description |
-| ---------- | ----------- |
-| `hubName` | The name of the task hub in which your orchestrations are running. |
-| `appName` | The name of the application. This field is useful when you have multiple apps sharing the same Application Insights instance. |
-| `functionName` | The name of the orchestrator or activity. |
-| `functionType` | The type of the function, such as **Orchestrator** or **Activity**. |
-| `instanceId` | The unique ID of the orchestration instance. |
-| `state` | The lifecycle execution state of the instance. |
-| `state.Scheduled` | The function was scheduled for execution but hasn't started running yet. |
-| `state.Started` | The function started running but hasn't yet awaited or completed. |
-| `state.Awaited` | The orchestrator scheduled some work and is waiting for it to complete. |
-| `state.Listening` | The orchestrator is listening for an external event notification. |
-| `state.Completed` | The function completed successfully. |
-| `state.Failed` | The function failed with an error. |
-| `reason` | Additional data associated with the tracking event. For example, if an instance is waiting for an external event notification, this field indicates the name of the event it's waiting for. If a function fails, this field contains the error details. |
-| `isReplay` | Boolean value indicating whether the tracking event is for replayed execution. |
-| `extensionVersion` | The version of the Durable Task SDK. The version information is especially important data when reporting possible bugs. Long-running instances might report multiple versions if an update occurs while the instance is running. |
-| `sequenceNumber` | Execution sequence number for an event. Combined with the timestamp, this helps order the events by execution time. *Note that this number resets to zero if the host restarts while the instance is running, so it's important to always sort by timestamp first, then sequenceNumber.* |
-
-### Single instance query
-
-The following query shows historical tracking data for a single orchestration instance. It's written using the [Kusto Query Language](/azure/data-explorer/kusto/query/). It filters out replay execution so that only the *logical* execution path is shown. You can order events by sorting by `timestamp` and `sequenceNumber` as shown in the following query:
-
-```kusto
-let targetInstanceId = "ddd1aaa685034059b545eb004b15d4eb";
-let start = datetime(2018-03-25T09:20:00);
-traces
-| where timestamp > start and timestamp < start + 30m
-| where customDimensions.Category == "Host.Triggers.DurableTask"
-| extend functionName = customDimensions["prop__functionName"]
-| extend instanceId = customDimensions["prop__instanceId"]
-| extend state = customDimensions["prop__state"]
-| extend isReplay = tobool(tolower(customDimensions["prop__isReplay"]))
-| extend sequenceNumber = tolong(customDimensions["prop__sequenceNumber"])
-| where isReplay != true
-| where instanceId == targetInstanceId
-| sort by timestamp asc, sequenceNumber asc
-| project timestamp, functionName, state, instanceId, sequenceNumber, appName = cloud_RoleName
-```
-
-The result is a list of tracking events that shows the execution path of the orchestration, including any activity functions ordered by the execution time in ascending order.
-
-### Instance summary query
-
-The following query displays the status of all orchestration instances that were run in a specified time range.
-
-```kusto
-let start = datetime(2017-09-30T04:30:00);
-traces
-| where timestamp > start and timestamp < start + 1h
-| where customDimensions.Category == "Host.Triggers.DurableTask"
-| extend functionName = tostring(customDimensions["prop__functionName"])
-| extend instanceId = tostring(customDimensions["prop__instanceId"])
-| extend state = tostring(customDimensions["prop__state"])
-| extend isReplay = tobool(tolower(customDimensions["prop__isReplay"]))
-| extend output = tostring(customDimensions["prop__output"])
-| where isReplay != true
-| summarize arg_max(timestamp, *) by instanceId
-| project timestamp, instanceId, functionName, state, output, appName = cloud_RoleName
-| order by timestamp asc
-```
-
-The result is a list of instance IDs and their current runtime status.
+| Compute service | Diagnostic logging instructions |
+| --------------- | ------------------------------- |
+| Azure Container Apps | [Monitor logs in Azure Container Apps with Log Analytics](../../container-apps/log-monitoring.md) |
+| Azure App Service | [Enable diagnostic logging for apps in Azure App Service](../../app-service/troubleshoot-diagnostic-logs.md) |
+| Azure Kubernetes Service | [Monitor Azure Kubernetes Service](/azure/aks/monitor-aks) |
 
 ## Durable Task Scheduler monitoring dashboard
 
