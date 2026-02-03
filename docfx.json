@@ -259,6 +259,7 @@
       "author": {
         "articles/advisor/*.md": "ikhapova",
         "articles/ansible/**/*.md": "TomArcherMsft",
+        "articles/api-center/**/*.md": "ProfessorKendrick",
         "articles/app-service-mobile/**/*.md": "elamalani",
         "articles/app-service/containers/*.md": "cephalin",
         "articles/app-service/environment/*.md": "seligj95",
@@ -867,7 +868,7 @@
       "ms.author": {
         "articles/advisor/*.md": "ikhapova",
         "articles/ansible/**/*.md": "tarcher",
-        "articles/api-center/**/*.md": "dlepow",
+        "articles/api-center/**/*.md": "kkendrick",
         "articles/app-service-mobile/**/*.md": "emalani",
         "articles/app-service/containers/*.md": "cephalin",
         "articles/app-service/environment/*.md": "jordanselig",
@@ -1870,7 +1871,8 @@
           "articles/sap/workloads/**/**.md",
           "articles/site-recovery/**/*.md",
           "articles/virtual-network/accelerated-networking-how-it-works.md",
-          "articles/vmware-cloudsimple/on-premises-dns-setup.md"
+          "articles/vmware-cloudsimple/on-premises-dns-setup.md",
+          "articles/sentinel/includes/sentinel-tables-connectors.md"
         ]
       },
       "sensitive-language-bl": {
@@ -1887,7 +1889,8 @@
           "articles/web-application-firewall/afds/waf-front-door-drs.md",
           "articles/web-application-firewall/ag/application-gateway-crs-rulegroups-rules.md",
           "articles/sentinel/includes/connector-details.md",
-          "articles/sentinel/includes/deprecated-connectors.md"
+          "articles/sentinel/includes/deprecated-connectors.md",
+          "articles/sentinel/includes/sentinel-tables-connectors.md"
         ]
       },
       "sensitive-language-wl": {
@@ -1907,7 +1910,8 @@
           "articles/storsimple/storsimple-configure-mpio-on-linux.md",
           "articles/synapse-analytics/sql-data-warehouse/sql-data-warehouse-get-started-create-support-ticket.md",
           "articles/sentinel/includes/connector-details.md",
-          "articles/sentinel/includes/deprecated-connectors.md"
+          "articles/sentinel/includes/deprecated-connectors.md",
+          "articles/sentinel/includes/sentinel-tables-connectors.md"
         ]
       }
     }
