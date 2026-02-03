@@ -5,7 +5,7 @@ author: mattreatMSFT
 ms.author: mareat
 ms.service: azure-virtual-network
 ms.topic: how-to
-ms.date: 07/28/2025
+ms.date: 02/02/2026
 ms.custom: linux-related-content
 # Customer intent: "As a cloud architect, I want to implement Accelerated Networking on Azure VMs, so that I can enhance networking performance by reducing latency and CPU utilization for my high-demand applications."
 ---
@@ -125,12 +125,12 @@ If it's not available for the distro, then use a custom udev rule in ```/etc/ude
 
 ```bash
 # Azure VMs with accelerated networking may have MANA, mlx4, or mlx5 SR-IOV devices which are transparently bonded to a synthetic
-# hv_netvsc device.  Mark devices with the IFF_SLAVE bit set as unmanaged devices:
+# hv_netvsc device.  Mark devices with the 0x800 bit set as unmanaged devices:
 #   AZURE_UNMANAGED_SRIOV=1 for 01-azure-unmanaged-sriov.network
 #   ID_NET_MANAGED_BY=unmanaged for systemd-networkd >= 255
 #   NM_UNMANAGED=1 for NetworkManager
 #
-# ATTR{flags}=="0x?[89ABCDEF]??" checks the IFF_SLAVE bit (0x800).
+# ATTR{flags}=="0x?[89ABCDEF]??" checks the 0x800 bit.
 SUBSYSTEM=="net", ACTION!="remove", DRIVERS=="mana|mlx4_core|mlx5_core", ATTR{flags}=="0x?[89ABCDEF]??", ENV{AZURE_UNMANAGED_SRIOV}="1", ENV{ID_NET_MANAGED_BY}="unmanaged", ENV{NM_UNMANAGED}="1"
 ```
 
@@ -141,12 +141,12 @@ If it's not available for the distro, then use a custom udev rule in ```/etc/ude
 
 ```bash
 # Azure VMs with accelerated networking may have MANA, mlx4, or mlx5 SR-IOV devices which are transparently bonded to a synthetic
-# hv_netvsc device.  Mark devices with the IFF_SLAVE bit set as unmanaged devices:
+# hv_netvsc device.  Mark devices with the 0x800 bit set as unmanaged devices:
 #   AZURE_UNMANAGED_SRIOV=1 for 01-azure-unmanaged-sriov.network
 #   ID_NET_MANAGED_BY=unmanaged for systemd-networkd >= 255
 #   NM_UNMANAGED=1 for NetworkManager
 #
-# ATTR{flags}=="0x?[89ABCDEF]??" checks the IFF_SLAVE bit (0x800).
+# ATTR{flags}=="0x?[89ABCDEF]??" checks the 0x800 bit.
 SUBSYSTEM=="net", ACTION!="remove", DRIVERS=="mana|mlx4_core|mlx5_core", ATTR{flags}=="0x?[89ABCDEF]??", ENV{AZURE_UNMANAGED_SRIOV}="1", ENV{ID_NET_MANAGED_BY}="unmanaged", ENV{NM_UNMANAGED}="1"
 ```
 If using networkd <255, add the following to ```/usr/lib/systemd/network/01-azure-unmanaged-sriov.network```
