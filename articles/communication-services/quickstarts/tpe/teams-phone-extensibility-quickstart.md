@@ -268,7 +268,7 @@ To continue paging, call the URL in the @odata.nextLink field until it is no lon
 Developers can combine $top and $filter to retrieve a filtered, paginated list:
 
 ```rest
-GET https://graph.microsoft.com/beta/admin/teams/resourceAccounts?$top=5&$filter=acsResourceId eq '18fd7cfe-58c2-4f96-ad84-aa8bb1180fba'
+GET https://graph.microsoft.com/beta/admin/teams/resourceAccounts?$top=5&$filter=acsResourceId eq 'aa123456-1234-1234-1234-aaa123456789'
 ```
 This returns up to 5 Resource Accounts that match the specified ACS Resource ID.
 
