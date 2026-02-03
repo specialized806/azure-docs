@@ -131,7 +131,7 @@ A Standard logic app workflow can use the IBM 3270 managed connector and the IBM
 
 1. In the [Azure portal](https://portal.azure.com), open your Standard logic app resource and workflow.
 
-1. If your workflow doesn't have a trigger, follow the [general steps](../logic-apps/create-workflow-with-trigger-or-action.md?tabs=standard#add-trigger) to add the best trigger for your scenario.
+1. If your workflow doesn't have a trigger, follow the [general steps](../logic-apps/create-workflow-with-trigger-or-action.md?tabs=standard#add-trigger) to add the trigger that works for your scenario.
 
    This example continues with the **Request** trigger named **When an HTTP request is received**.
 
@@ -156,12 +156,12 @@ A Standard logic app workflow can use the IBM 3270 managed connector and the IBM
 
    :::image type="content" source="./media/integrate-3270-apps-ibm-mainframe/connection-properties-standard.png" alt-text="Screenshot shows Azure portal, Standard workflow designer, and IBM 3270 connection properties." lightbox="./media/integrate-3270-apps-ibm-mainframe/connection-properties-standard.png":::
 
-1. When you're done, select **Create New**.
+1. When you're done, select **Create new**.
 
 1. When the action information box appears, provide the necessary parameter values:
 
-   | Property | Required | Value | Description |
-   |----------|----------|-------|-------------|
+   | Parameter | Required | Value | Description |
+   |-----------|----------|-------|-------------|
    | **HIDX Name** | Yes | <*HIDX-file-name*> | Select the 3270 HIDX file that you want to use. |
    | **Method Name** | Yes | <*method-name*> | Select the method in the HIDX file that you want to use. After you select a method, the **Add new parameter** list appears so you can select parameters to use with that method. |
    | **Advanced parameters** | No | Varies | This list appears after you select a method so that you can add other parameters to use with the selected method. The available parameters vary based on your HIDX file and the method that you select. |
@@ -176,47 +176,43 @@ A Standard logic app workflow can use the IBM 3270 managed connector and the IBM
 
    :::image type="content" source="./media/integrate-3270-apps-ibm-mainframe/select-method-standard.png" alt-text="Screenshot shows Standard workflow designer, 3270 action, and selected method." lightbox="./media/integrate-3270-apps-ibm-mainframe/select-method-standard.png":::
 
-   **Select the parameters**
-
-   :::image type="content" source="./media/integrate-3270-apps-ibm-mainframe/add-parameters-standard.png" alt-text="Screenshot shows Standard workflow designer, 3270 action, and more parameters." lightbox="./media/integrate-3270-apps-ibm-mainframe/add-parameters-standard.png":::
-
 1. When you're done, save your workflow. On designer toolbar, select **Save**.
 
 ### [Consumption](#tab/consumption)
 
-1. In the [Azure portal](https://portal.azure.com), open your Consumption logic app resource and workflow where you've already add a trigger.
+1. In the [Azure portal](https://portal.azure.com), open your Consumption logic app resource and workflow.
 
-1. If you haven't already added a trigger, [follow these general steps to add the trigger that you want to your workflow](../logic-apps/create-workflow-with-trigger-or-action.md?tabs=consumption#add-trigger).
+1. If your workflow doesn't have a trigger, follow these [general steps](../logic-apps/create-workflow-with-trigger-or-action.md?tabs=consumption#add-trigger) to add a trigger that works for your scenario.
 
    This example continues with the **Request** trigger named **When an HTTP request is received**.
 
-1. [Follow these general steps to add the **IBM 3270** managed connector action named **Run a mainframe program over a TN3270 connection**](../logic-apps/create-workflow-with-trigger-or-action.md?tabs=consumption#add-action). You can find the connector under the **Enterprise** category.
+1. Follow the [general steps](../logic-apps/create-workflow-with-trigger-or-action.md?tabs=consumption#add-action) to add the **IBM 3270** managed connector action named **Runs a mainframe program over a TN3270 connection**.
 
-1. When the connection information box appears, provide the following necessary parameter values:
+1. After the connection pane appears, provide the following necessary parameter values:
 
-   | Property | Required | Value | Description |
-   |----------|----------|-------|-------------|
-   | **Connection name** | Yes | <*connection-name*> | A name for your connection |
-   | **Integration Account ID** | Yes | <*integration-account-name*> | Your integration account's name |
-   | **Integration Account SAS URL** | Yes | <*integration-account-SAS-URL*> | Your integration account's Shared Access Signature (SAS) URL, which you can generate from your integration account's settings in the Azure portal. <br>1. On your integration account menu, under **Settings**, select **Callback URL**. <br>2. In the right-hand pane, copy the **Generated Callback URL** value. |
-   | **Server** | Yes | <*TN3270-server-name*> | The server name for your TN3270 service |
+   | Parameter | Required | Value | Description |
+   |-----------|----------|-------|-------------|
+   | **Connection Name** | Yes | <*connection-name*> | A name for your connection. |
+   | **Integration Account ID** | Yes | <*integration-account-name*> | The name for your integration account. |
+   | **Integration Account SAS URL** | Yes | <*integration-account-SAS-URL*> | Your integration account's Shared Access Signature (SAS) URL, which you can generate from your integration account's settings in the Azure portal. <br><br>1. On your integration account menu, under **Settings**, select **Callback URL**. <br><br>2. In the right-side pane, copy the **Generated Callback URL** value. |
+   | **Server** | Yes | <*TN3270-server-name*> | The server name for your TN3270 service. |
    | **Port** | No | <*TN3270-server-port*> | The port used by your TN3270 server. If left blank, the connector uses `23` as the default value. |
    | **Device Type** | No | <*IBM-terminal-model*> | The model name or number for the IBM terminal to emulate. If left blank, the connector uses default values. |
    | **Code Page** | No | <*code-page-number*> | The code page number for the host. If left blank, the connector uses `37` as the default value. |
-   | **Logical Unit Name** | No | <*logical-unit-name*> | The specific logical unit name to request from the host |
+   | **Logical Unit Name** | No | <*logical-unit-name*> | The specific logical unit name to request from the host. |
    | **Enable SSL?** | No | On or off | Turn on or turn off TLS encryption. |
-   | **Validate host ssl certificate?** | No | On or off | Turn on or turn off validation for the server's certificate. |
+   | **Validate Host Ssl Certificate?** | No | On or off | Turn on or turn off validation for the server's certificate. |
 
    For example:
 
    :::image type="content" source="./media/integrate-3270-apps-ibm-mainframe/connection-properties-consumption.png" alt-text="Screenshot shows Azure portal, Consumption workflow designer, and IBM 3270 connection properties." lightbox="./media/integrate-3270-apps-ibm-mainframe/connection-properties-consumption.png":::
 
-1. When you're done, select **Create**.
+1. When you're done, select **Create new**.
 
 1. When the action information box appears, provide the necessary parameter values:
 
-   | Property | Required | Value | Description |
-   |----------|----------|-------|-------------|
+   | Parameter | Required | Value | Description |
+   |-----------|----------|-------|-------------|
    | **HIDX Name** | Yes | <*HIDX-file-name*> | Select the 3270 HIDX file that you want to use. |
    | **Method Name** | Yes | <*method-name*> | Select the method in the HIDX file that you want to use. After you select a method, the **Add new parameter** list appears so you can select parameters to use with that method. |
    | **Add new parameter** | No | Varies | This list appears after you select a method so that you can add other parameters to use with the selected method. The available parameters vary based on your HIDX file and the method that you select. |
@@ -231,10 +227,6 @@ A Standard logic app workflow can use the IBM 3270 managed connector and the IBM
 
    :::image type="content" source="./media/integrate-3270-apps-ibm-mainframe/select-method-consumption.png" alt-text="Screenshot shows Consumption workflow designer, 3270 action, and selected method." lightbox="./media/integrate-3270-apps-ibm-mainframe/select-method-consumption.png":::
 
-   **Select the parameters**
-
-   :::image type="content" source="./media/integrate-3270-apps-ibm-mainframe/add-parameters-consumption.png" alt-text="Screenshot shows Consumption workflow designer, 3270 action, and selected parameters." lightbox="./media/integrate-3270-apps-ibm-mainframe/add-parameters-consumption.png":::
-
 1. When you're done, save your workflow. On designer toolbar, select **Save**.
 
 ---
@@ -243,7 +235,7 @@ A Standard logic app workflow can use the IBM 3270 managed connector and the IBM
 
 ### [Standard](#tab/standard)
 
-1. To run your workflow, on the designer, select workflow menu, select **Overview**. On the **Overview** toolbar, select **Run** > **Run**.
+1. To manually run your workflow, on the designer toolbar, from the **Run** menu, select **Run**.
 
    After your workflow finishes running, your workflow's run history appears. Successful steps show check marks, while unsuccessful steps show an exclamation point (**!**).
 
@@ -257,7 +249,7 @@ A Standard logic app workflow can use the IBM 3270 managed connector and the IBM
 
 ### [Consumption](#tab/consumption)
 
-1. To run your workflow, on the designer toolbar, select **Run Trigger** > **Run**.
+1. To manually run your workflow, on the designer toolbar, from the **Run** menu, select **Run**.
 
    After your workflow finishes running, your workflow's run history appears. Successful steps show check marks, while unsuccessful steps show an exclamation point (**!**).
 
