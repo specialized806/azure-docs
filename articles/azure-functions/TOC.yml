@@ -642,7 +642,7 @@
       href: self-hosted-mcp-servers.md
     - name: MCP server authorization
       href: ../app-service/configure-authentication-mcp.md?toc=/azure/azure-functions/toc.json&bc=/azure/azure-functions/breadcrumb/toc.json
-    - name: Connect an MCP server to a Foundry agent
+    - name: Connect to Foundry Agent Service
       href: functions-mcp-foundry-tools.md
     - name: Register an MCP server in API Center
       href: register-mcp-server-api-center.md
