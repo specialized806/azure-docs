@@ -26,7 +26,7 @@ The task supports the following scenarios:
 * Build from source code without a Dockerfile and deploy to Container Apps. Supported languages include .NET, Java, Node.js, PHP, and Python.
 * Deploy an existing container image to Container Apps.
 
-With the production release, this task comes with Azure DevOps and no longer requires explicit installation. For the complete documentation, see [AzureContainerApps@1 - Azure Container Apps Deploy v1 task](/azure/devops/pipelines/tasks/reference/azure-container-apps-v1).
+With the production release, this task comes with Azure DevOps and doesn't require explicit installation. For the complete documentation, see [AzureContainerApps@1 - Azure Container Apps Deploy v1 task](/azure/devops/pipelines/tasks/reference/azure-container-apps-v1).
 
 ### Usage examples
 
@@ -90,7 +90,7 @@ Complete the following steps to configure an Azure DevOps pipeline to deploy to 
 
 | Requirement | Instructions |
 |--|--|
-| Azure account | If you don't have one, [create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn). You need the *Contributor* or *Owner* permission on the Azure subscription to to complete the procedures in this article. For more information, see [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal?tabs=current). |
+| Azure account | If you don't have one, [create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn). You need the *Contributor* or *Owner* permission on the Azure subscription to complete the procedures in this article. For more information, see [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal?tabs=current). |
 | Azure DevOps project | Go to [Azure DevOps](https://azure.microsoft.com/services/devops/) and select **Get started with Azure**. Then create a new project. |
 | Azure CLI | Install the [Azure CLI](/cli/azure/install-azure-cli).|
 
