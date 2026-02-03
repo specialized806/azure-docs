@@ -1,5 +1,5 @@
 ---
-title: Durable orchestrator code constraints - Azure Functions
+title: Durable orchestrator code constraints
 description: Orchestration function replay and code constraints for Azure Durable Functions.
 author: cgillum
 ms.topic: conceptual

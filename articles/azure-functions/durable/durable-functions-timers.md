@@ -1,18 +1,30 @@
 ---
-title: Timers in Durable Functions - Azure
-description: Learn how to implement durable timers in the Durable Functions extension for Azure Functions.
+title: Durable Timers
+description: Learn how to implement durable timers in Durable Functions and Durable Task SDKs.
 ms.topic: conceptual
-ms.date: 12/07/2022
+ms.date: 01/28/2026
 ms.author: azfuncdf
 ms.devlang: csharp
 # ms.devlang: csharp, javascript, powershell, python, java
+zone_pivot_groups: azure-durable-approach
 ---
 
-# Timers in Durable Functions (Azure Functions)
+# Durable timers
 
-[Durable Functions](durable-functions-overview.md) provides *durable timers* for use in orchestrator functions to implement delays or to set up timeouts on async actions. Durable timers should be used in orchestrator functions instead of "sleep" or "delay" APIs that may be built into the language.
+::: zone pivot="durable-functions"
+[Durable Functions](durable-functions-overview.md) provides *durable timers* for use in orchestrator functions to implement delays or to set up timeouts on async actions. Use durable timers in orchestrator functions instead of "sleep" or "delay" APIs that might be built into the language.
+::: zone-end
 
-Durable timers are tasks that are created using the appropriate "create timer" API for the provided language, as shown below, and take either a due time or a duration as an argument.
+::: zone pivot="durable-task-sdks"
+Durable Task SDKs provide *durable timers* for use in orchestrations to implement delays or to set up timeouts on async actions. Use durable timers in orchestrations instead of "sleep" or "delay" APIs that might be built into the language.
+
+[!INCLUDE [preview-sample-limitations](./durable-task-scheduler/includes/preview-sample-limitations.md)]
+
+::: zone-end
+
+Durable timers are tasks created using the appropriate "create timer" API for the provided language, as shown in the following examples, and take either a due time or a duration as an argument.
+
+::: zone pivot="durable-functions"
 
 # [C#](#tab/csharp)
 
@@ -56,23 +68,79 @@ ctx.createTimer(Duration.ofHours(72)).await();
 
 ---
 
-When you "await" the timer task, the orchestrator function will sleep until the specified expiration time.
+::: zone-end
+
+::: zone pivot="durable-task-sdks"
+
+# [C#](#tab/csharp)
+
+```csharp
+// Put the orchestration to sleep for 72 hours
+await context.CreateTimer(TimeSpan.FromHours(72), CancellationToken.None);
+```
+
+# [Python](#tab/python)
+
+```python
+# Put the orchestration to sleep for 72 hours
+from datetime import timedelta
+yield ctx.create_timer(timedelta(hours=72))
+```
+
+# [Java](#tab/java)
+
+```java
+// Put the orchestration to sleep for 72 hours
+ctx.createTimer(Duration.ofHours(72)).await();
+```
+
+# [JavaScript](#tab/javascript)
+
+The Durable Task SDK isn't available for JavaScript. Use [Durable Functions](durable-functions-overview.md) instead.
+
+# [PowerShell](#tab/powershell)
+
+The Durable Task SDK isn't available for PowerShell. Use [Durable Functions](durable-functions-overview.md) instead.
+
+---
+
+::: zone-end
+
+::: zone pivot="durable-functions"
+When you "await" the timer task, the orchestrator function sleeps until the specified expiration time.
+::: zone-end
+
+::: zone pivot="durable-task-sdks"
+When you "await" the timer task, the orchestration sleeps until the specified expiration time.
+::: zone-end
 
 > [!NOTE]
-> Orchestrations will continue to process other incoming events while waiting for a timer task to expire.
+> Orchestrations continue to process other incoming events while waiting for a timer task to expire.
 
 ## Timer limitations
 
-When you create a timer that expires at 4:30 pm UTC, the underlying Durable Task Framework enqueues a message that becomes visible only at 4:30 pm UTC. If the function app is scaled down to zero instances in the meantime, the newly visible timer message will ensure that the function app gets activated again on an appropriate VM.
+::: zone pivot="durable-functions"
+When you create a timer that expires at 4:30 pm UTC, the underlying Durable Task Framework enqueues a message that becomes visible only at 4:30 PM UTC. If the function app is scaled down to zero instances in the meantime, the newly visible timer message ensures that the function app is activated again on an appropriate VM.
 
 > [!NOTE]
-> * For JavaScript, Python, and PowerShell apps, Durable timers are limited to six days. To work around this limitation, you can use the timer APIs in a `while` loop to simulate a longer delay. Up-to-date .NET and Java apps support arbitrarily long timers.
-> * Depending on the version of the SDK and [storage provider](durable-functions-storage-providers.md) being used, long timers of 6 days or more may be internally implemented using a series of shorter timers (e.g., of 3 day durations) until the desired expiration time is reached. This can be observed in the underlying data store but won't impact the orchestration behavior.
-> * Don't use built-in date/time APIs for getting the current time. When calculating a future date for a timer to expire, always use the orchestrator function's current time API. For more information, see the [orchestrator function code constraints](durable-functions-code-constraints.md#dates-and-times) article.
+> * For JavaScript, Python, and PowerShell apps, durable timers are limited to six days. To work around this limitation, you can use the timer APIs in a `while` loop to simulate a longer delay. Up-to-date .NET and Java apps support arbitrarily long timers.
+> * Depending on the version of the SDK and [storage provider](durable-functions-storage-providers.md) being used, long timers of six days or more might be internally implemented using a series of shorter timers (for example, of three-day durations) until the desired expiration time is reached. This behavior can be observed in the underlying data store but doesn't affect orchestration behavior.
+> * Don't use built-in date/time APIs to get the current time. When calculating a future date for a timer to expire, always use the orchestrator function's current time API. For more information, see the [orchestrator function code constraints](durable-functions-code-constraints.md#dates-and-times) article.
+::: zone-end
+
+::: zone pivot="durable-task-sdks"
+When you create a timer that expires at 4:30 pm UTC, the underlying Durable Task Framework enqueues a message that becomes visible only at 4:30 PM UTC. The timer message ensures that the worker activates again when the timer expires.
+
+> [!NOTE]
+> * Specifying a long delay (for example, a delay of a few days or more) might result in the creation of multiple, internally managed durable timers. The orchestration code doesn't need to be aware of this behavior. However, it may be visible in framework logs and the stored history state.
+> * Don't use built-in date/time APIs to get the current time. When calculating a future date for a timer to expire, always use the orchestration context's current time property (such as `context.CurrentUtcDateTime` in .NET or `ctx.current_utc_datetime` in Python).
+::: zone-end
 
 ## Usage for delay
 
-The following example illustrates how to use durable timers for delaying execution. The example is issuing a billing notification every day for 10 days.
+The following example shows how to use durable timers for delaying execution. The example issues a billing notification every day for 10 days.
+
+::: zone pivot="durable-functions"
 
 # [C#](#tab/csharp)
 
@@ -91,7 +159,7 @@ public static async Task Run(
 ```
 
 > [!NOTE]
-> The previous C# example targets Durable Functions 2.x. For Durable Functions 1.x, you must use `DurableOrchestrationContext` instead of `IDurableOrchestrationContext`. For more information about the differences between versions, see the [Durable Functions versions](durable-functions-versions.md) article.
+> The preceding C# example targets Durable Functions 2.x. For Durable Functions 1.x, you must use `DurableOrchestrationContext` instead of `IDurableOrchestrationContext`. For more information about the differences between versions, see the [Durable Functions versions](durable-functions-versions.md) article.
 
 # [JavaScript](#tab/javascript)
 
@@ -151,12 +219,86 @@ public String billingIssuer(
 
 ---
 
+::: zone-end
+
+::: zone pivot="durable-task-sdks"
+
+# [C#](#tab/csharp)
+
+```csharp
+public class BillingIssuer : TaskOrchestrator<object?, string>
+{
+    public override async Task<string> RunAsync(TaskOrchestrationContext context, object? input)
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            await context.CreateTimer(TimeSpan.FromDays(1), CancellationToken.None);
+            await context.CallActivityAsync("SendBillingEvent");
+        }
+        return "done";
+    }
+}
+```
+
+# [Python](#tab/python)
+
+```python
+from datetime import timedelta
+from durabletask import task
+
+def send_billing_event(ctx: task.ActivityContext, _) -> None:
+    # Send billing event
+    pass
+
+def billing_issuer(ctx: task.OrchestrationContext, _):
+    for i in range(10):
+        yield ctx.create_timer(timedelta(days=1))
+        yield ctx.call_activity(send_billing_event)
+    return "done"
+```
+
+# [Java](#tab/java)
+
+```java
+public class BillingIssuer implements TaskOrchestration {
+    @Override
+    public void run(TaskOrchestrationContext ctx) {
+        for (int i = 0; i < 10; i++) {
+            ctx.createTimer(Duration.ofDays(1)).await();
+            ctx.callActivity("SendBillingEvent").await();
+        }
+        ctx.complete("done");
+    }
+}
+```
+
+# [JavaScript](#tab/javascript)
+
+The Durable Task SDK is not available for JavaScript. Use [Durable Functions](durable-functions-overview.md) instead.
+
+# [PowerShell](#tab/powershell)
+
+The Durable Task SDK is not available for PowerShell. Use [Durable Functions](durable-functions-overview.md) instead.
+
+---
+
+::: zone-end
+
+::: zone pivot="durable-functions"
 > [!WARNING]
-> Avoid infinite loops in orchestrator functions. For information about how to safely and efficiently implement infinite loop scenarios, see [Eternal Orchestrations](durable-functions-eternal-orchestrations.md).
+> Avoid infinite loops in orchestrator functions. For information about how to safely and efficiently implement infinite loop scenarios, see [Eternal orchestrations](durable-functions-eternal-orchestrations.md).
+::: zone-end
+
+::: zone pivot="durable-task-sdks"
+> [!WARNING]
+> Avoid infinite loops in orchestrations. For information about how to safely and efficiently implement infinite loop scenarios, see [Eternal orchestrations](durable-functions-eternal-orchestrations.md).
+::: zone-end
 
 ## Usage for timeout
 
-This example illustrates how to use durable timers to implement timeouts.
+This example shows how to use durable timers to implement timeouts.
+
+::: zone pivot="durable-functions"
 
 # [C#](#tab/csharp)
 
@@ -282,14 +424,122 @@ public boolean tryGetQuote(
 
 ---
 
+::: zone-end
+
+::: zone pivot="durable-task-sdks"
+
+# [C#](#tab/csharp)
+
+```csharp
+public class TryGetQuote : TaskOrchestrator<object?, bool>
+{
+    public override async Task<bool> RunAsync(TaskOrchestrationContext context, object? input)
+    {
+        using var cts = new CancellationTokenSource();
+
+        Task<double> activityTask = context.CallActivityAsync<double>("GetQuote");
+        Task timeoutTask = context.CreateTimer(TimeSpan.FromSeconds(30), cts.Token);
+
+        Task winner = await Task.WhenAny(activityTask, timeoutTask);
+        if (winner == activityTask)
+        {
+            // success case
+            cts.Cancel();
+            return true;
+        }
+        else
+        {
+            // timeout case
+            return false;
+        }
+    }
+}
+```
+
+# [Python](#tab/python)
+
+```python
+from datetime import timedelta
+from durabletask import task
+
+def get_quote(ctx: task.ActivityContext, _) -> float:
+    # Get quote logic
+    return 100.0
+
+def try_get_quote(ctx: task.OrchestrationContext, _):
+    activity_task = ctx.call_activity(get_quote)
+    timeout_task = ctx.create_timer(timedelta(seconds=30))
+
+    winner = yield task.when_any([activity_task, timeout_task])
+    if winner == activity_task:
+        # success case
+        return True
+    else:
+        # timeout case
+        return False
+```
+
+# [Java](#tab/java)
+
+```java
+public class TryGetQuote implements TaskOrchestration {
+    @Override
+    public void run(TaskOrchestrationContext ctx) {
+        Task<Double> activityTask = ctx.callActivity("GetQuote", Double.class);
+        Task<Void> timerTask = ctx.createTimer(Duration.ofSeconds(30));
+
+        Task<?> winner = ctx.anyOf(activityTask, timerTask).await();
+        if (winner == activityTask) {
+            // success case
+            ctx.complete(true);
+        } else {
+            // timeout case
+            ctx.complete(false);
+        }
+    }
+}
+```
+
+# [JavaScript](#tab/javascript)
+
+The Durable Task SDK is not available for JavaScript. Use [Durable Functions](durable-functions-overview.md) instead.
+
+# [PowerShell](#tab/powershell)
+
+The Durable Task SDK is not available for PowerShell. Use [Durable Functions](durable-functions-overview.md) instead.
+
+---
+
+::: zone-end
+
+::: zone pivot="durable-functions"
 > [!WARNING]
 > In .NET, JavaScript, Python, and PowerShell, you must cancel any created durable timers if your code will not wait for them to complete. See the examples above for how to cancel pending timers. The Durable Task Framework will not change an orchestration's status to "Completed" until all outstanding tasks, including durable timer tasks, are either completed or canceled.
+::: zone-end
 
-This cancellation mechanism using the *when-any* pattern doesn't terminate in-progress activity function or sub-orchestration executions. Rather, it simply allows the orchestrator function to ignore the result and move on. If your function app uses the Consumption plan, you'll still be billed for any time and memory consumed by the abandoned activity function. By default, functions running in the Consumption plan have a timeout of five minutes. If this limit is exceeded, the Azure Functions host is recycled to stop all execution and prevent a runaway billing situation. The [function timeout is configurable](../functions-host-json.md#functiontimeout).
+::: zone pivot="durable-task-sdks"
+> [!WARNING]
+> If your SDK supports timer cancellation (for example, .NET), cancel any created durable timers if your code will not wait for them to complete. See the examples above for how to cancel pending timers. The Durable Task Framework will not change an orchestration's status to "Completed" until all outstanding tasks, including durable timer tasks, are either completed or canceled.
+::: zone-end
 
-For a more in-depth example of how to implement timeouts in orchestrator functions, see the [Human Interaction & Timeouts - Phone Verification](durable-functions-phone-verification.md) article.
+::: zone pivot="durable-functions"
+This cancellation mechanism using the *when-any* pattern doesn't terminate in-progress activity function or sub-orchestration executions. Rather, it simply allows the orchestrator function to ignore the result and move on. If your function app uses the Consumption plan, you're still billed for any time and memory that the abandoned activity function consumes. By default, functions running in the Consumption plan have a timeout of five minutes. If this limit is exceeded, the Azure Functions host recycles to stop all execution and prevent a runaway billing situation. The [function timeout is configurable](../functions-host-json.md#functiontimeout).
+
+For a more in-depth example of how to implement timeouts in orchestrator functions, see the [Human interaction and timeouts - Phone verification](durable-functions-phone-verification.md) article.
+::: zone-end
+
+::: zone pivot="durable-task-sdks"
+This cancellation mechanism using the *when-any* pattern doesn't terminate in-progress activity or sub-orchestration executions. Rather, it simply allows the orchestration to ignore the result and move on.
+::: zone-end
 
 ## Next steps
 
+::: zone pivot="durable-functions"
 > [!div class="nextstepaction"]
 > [Learn how to raise and handle external events](durable-functions-external-events.md)
+::: zone-end
+
+::: zone pivot="durable-task-sdks"
+> [!div class="nextstepaction"]
+> [Get started with Durable Task SDKs](durable-task-scheduler/quickstart-portable-durable-task-sdks.md)
+::: zone-end
