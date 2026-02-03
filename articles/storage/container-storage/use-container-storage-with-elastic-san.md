@@ -303,7 +303,7 @@ kubectl get storageclass azuresan
 
 ### Create an Elastic SAN volume
 
-```azurecli-interactive
+```azurecli
 az elastic-san volume create -g <node-resource-group> -e <san-name> -v <volume-group-name> -n <volume-name> --size-gib 5
 ```
 
@@ -311,7 +311,7 @@ Note the Azure Resource Manager (ARM) ID of the Elastic SAN volume. Use it for t
 
 Retrieve the iSCSI Qualified Name (IQN) and `targetPortal` values for your Elastic SAN volume:
 
-```azurecli-interactive
+```azurecli
 az elastic-san volume show --name <volume-name> --resource-group <rg-name> --elastic-san-name <san-name>
 ```
 

@@ -218,7 +218,7 @@ To check which persistent volume a persistent volume claim is bound to, run `kub
 
 If you want to delete a storage pool, run the following command. Replace `<storage-pool-name>` with the storage pool name.
 
-```azurecli-interactive
+```azurecli
 kubectl delete sp -n acstor <storage-pool-name>
 ```
 

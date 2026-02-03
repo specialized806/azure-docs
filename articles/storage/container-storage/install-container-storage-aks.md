@@ -44,7 +44,7 @@ By the end of this tutorial, you can:
 - Install the Kubernetes command-line client, `kubectl`. You can install it locally by running `az aks install-cli`.
 - If you use Elastic SAN for the first time in the subscription, run this one-time registration command:
 
-```azurecli
+```azurecli-interactive
 az provider register --namespace Microsoft.ElasticSan
 ```
 

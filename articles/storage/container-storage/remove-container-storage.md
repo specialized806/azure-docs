@@ -30,7 +30,7 @@ You can either remove the components for a specific storage type or remove Azure
 
 Remove the CSI driver by running the following Azure CLI command. Replace `<cluster-name>` and `<resource-group>` with your own values.
 
-```azurecli
+```azurecli-interactive
 az aks update -n <cluster-name> -g <resource-group> --disable-azure-container-storage <storage-type>
 ```
 
@@ -95,7 +95,7 @@ az aks delete --resource-group <resource-group> --name <cluster-name>
 
 If the AKS cluster was created with Terraform, you can also remove it by running the following command.
 
-```bash
+```azurecli
 terraform destroy
 ```
 

@@ -197,7 +197,7 @@ To receive the latest features and fixes for Azure Container Storage in future v
 
 To enable auto-upgrade, run the following command:
 
-```azurecli-interactive
+```azurecli
 # For v1.x, use azurecontainerstorage for extension name
 az k8s-extension update --cluster-name <cluster name> --resource-group <resource-group> --cluster-type managedClusters --auto-upgrade-minor-version true -n azurecontainerstorage
 
@@ -207,7 +207,7 @@ az k8s-extension update --cluster-name <cluster name> --resource-group <resource
 
 If you'd like to disable auto-upgrades, run the following command:
 
-```azurecli-interactive
+```azurecli
 # For v1.x, use azurecontainerstorage for extension name
 az k8s-extension update --cluster-name <cluster name> --resource-group <resource-group> --cluster-type managedClusters --auto-upgrade-minor-version false -n azurecontainerstorage
 

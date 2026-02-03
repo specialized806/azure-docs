@@ -36,7 +36,7 @@ Prepare a key vault for your volume group KEKs:
 
 To create a new key vault using Azure CLI, call [az keyvault create](/cli/azure/keyvault#az-keyvault-create). The following example creates a new key vault with soft delete and purge protection enabled. The key vault permission model uses Azure RBAC. Replace the placeholder values in brackets with your own values.
 
-```azurecli
+```azurecli-interactive
 az keyvault create --name <key-vault-name> --resource-group <resource-group-name> --location <location> --enable-purge-protection --retention-days 7
 ```
 
