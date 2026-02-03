@@ -62,10 +62,10 @@ Workload teams should consult with migration experts as part of the process, but
 
 Before you start planning the migration, ensure that you have the following prerequisites in place:
 
-- *Prior experience:* You need prior experience with core cloud concepts and AWS. Understand Azure services and cloud migration processes.
-- *Stakeholder alignment:* You need to share and agree on timelines, budget estimates, and project milestones with stakeholders to ensure that all parties align.
-- *Support strategy in place:* Purchase a Microsoft support plan and investigate options for free or community support.
-- *Platform strategy in place:* This article series describes how to migrate a single workload. It assumes that your platform foundation is in place and that your migration strategy is defined and in alignment with the [Cloud Adoption Framework for Azure](/azure/cloud-adoption-framework/strategy).
+- **Prior experience:** You need prior experience with core cloud concepts and AWS. Understand Azure services and cloud migration processes.
+- **Stakeholder alignment:** You need to share and agree on timelines, budget estimates, and project milestones with stakeholders to ensure that all parties align.
+- **Support strategy:** Purchase a Microsoft support plan and investigate options for free or community support.
+- **Platform strategy:** This article series describes how to migrate a single workload. It assumes that your platform foundation is in place and that your migration strategy is defined and in alignment with the [Cloud Adoption Framework for Azure](/azure/cloud-adoption-framework/strategy).
 
    As part of this strategy, establish an *existing platform landing zone*. Your migrated workload becomes an application landing zone and is part of your organization's Azure landing zone topology. It exists under a management group hierarchy, is connected to or isolated from specific networks, and has governance policies applied.
 
