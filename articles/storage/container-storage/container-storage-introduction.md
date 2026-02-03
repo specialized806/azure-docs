@@ -27,7 +27,7 @@ Local NVMe disks provide the highest performance storage in Azure. They are idea
 
 [Elastic SAN](../elastic-san/elastic-san-introduction.md) support in Azure Container Storage lets you use durable, network-attached block storage that scales with your application. By provisioning volumes from an Elastic SAN volume group, you gain predictable throughput and built-in redundancy options such as locally redundant storage (LRS) and zone-redundant storage (ZRS). This makes Azure Container Storage a strong choice for databases, analytics engines, and any workload that needs consistent performance.
 
-You can create and manage storage volumes using standard Kubernetes tools. You do not need to switch between portals or install Container Storage Interface (CSI) drivers yourself.
+You can create and manage storage volumes using standard Kubernetes tools. You don't need to switch between portals or install Container Storage Interface (CSI) drivers yourself.
 
 Azure Container Storage works with Azure Kubernetes Service (AKS) and self-managed Kubernetes clusters. Because it uses open-source components, it supports deployments across Azure and other clouds.
 
@@ -62,7 +62,7 @@ The following table lists key features of Azure Container Storage and indicates 
 | ZRS option | N/A | Supported |
 | Encryption | N/A | Supported |
 
-<sup>1</sup> By default, Azure Container Storage uses generic ephemeral volumes for local NVMe disks, which means data is not retained after pod deletion. To enable persistent volumes that are not linked to the lifecycle of the pod, add the appropriate annotation to your persistent volume claim (PVC). For details, see [Create persistent volumes with local NVMe disks](use-container-storage-with-local-disk.md).
+<sup>1</sup> By default, Azure Container Storage uses generic ephemeral volumes for local NVMe disks, which means data isn't retained after pod deletion. To enable persistent volumes that aren't linked to the lifecycle of the pod, add the appropriate annotation to your persistent volume claim (PVC). For details, see [Create persistent volumes with local NVMe disks](use-container-storage-with-local-disk.md).
 
 ## Regional availability
 
@@ -75,7 +75,7 @@ Elastic SAN is available only in selected Azure regions. For the complete and up
 Azure Container Storage offers two major versions: version 1 and version 2. Choose the appropriate version based on your underlying storage option.
 
 - **Local NVMe disks**: Choose Azure Container Storage version 2.
-- **Azure Disks**: Choose Azure Container Storage version 1. Azure Container Storage version 2 does not support Azure Disks.
+- **Azure Disks**: Choose Azure Container Storage version 1. Azure Container Storage version 2 doesn't support Azure Disks.
 - **Azure Elastic SAN**: Choose Azure Container Storage version 2.
 
 ## Glossary

@@ -41,7 +41,7 @@ Register-AzProviderFeature -FeatureName EnableElasticSANTargetDeployment -Provid
 
 ### Use an LRS SKU without specifying a zone
 
-If a region supports zones and you do not specify a zone in the StorageClass, Azure Container Storage defaults to zone 1.
+If a region supports zones and you don't specify a zone in the StorageClass, Azure Container Storage defaults to zone 1.
 
 Create a YAML manifest file such as `storageclass.yaml`, then use the following specification.
 
@@ -62,7 +62,7 @@ volumeBindingMode: WaitForFirstConsumer
 
 Use a single zone when you create an LRS Elastic SAN in regions that support availability zones. In regions without zones, omit the `zones` parameter to avoid validation failures.
 
-For LRS with zone pinning, the scheduler places the pod on a node in the specified zone, and the persistent volume (PV) binds to the corresponding zone's SAN. LRS volumes are accessible from any zone, so Azure Container Storage does not restrict cross-zone attachment. The `allowedTopologies` section ensures the PV binds to a node in the same zone as the LRS SAN.
+For LRS with zone pinning, the scheduler places the pod on a node in the specified zone, and the persistent volume (PV) binds to the corresponding zone's SAN. LRS volumes are accessible from any zone, so Azure Container Storage doesn't restrict cross-zone attachment. The `allowedTopologies` section ensures the PV binds to a node in the same zone as the LRS SAN.
 
 Create a YAML manifest file such as `storageclass.yaml`, then use the following specification.
 
@@ -89,7 +89,7 @@ allowedTopologies:
 
 ## Create a StorageClass with zone-redundant storage
 
-You do not need to specify zones because Azure Container Storage defaults to all three zones. If you set the `zones` field, list all three zones as "1,2,3".
+You don't need to specify zones because Azure Container Storage defaults to all three zones. If you set the `zones` field, list all three zones as "1,2,3".
 
 Create a YAML manifest file such as `storageclass.yaml`, then use the following specification.
 

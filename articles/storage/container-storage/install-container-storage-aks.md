@@ -32,24 +32,15 @@ By the end of this tutorial, you can:
 > [!IMPORTANT]
 > This article applies to [Azure Container Storage (version 2.x.x)](container-storage-introduction.md). For earlier versions, see [Azure Container Storage (version 1.x.x) documentation](container-storage-introduction-version-1.md). If you already have Azure Container Storage (version 1.x.x) installed on your AKS cluster, remove it by following [these steps](remove-container-storage-version-1.md).
 
-## Applicability
-
-If you use Azure Container Storage version 2.0.x and disable auto-upgrade, use this table to understand the components installed on your AKS cluster:
-
-| Azure Container Storage version | Storage types supported | Installer present | Driver install trigger |
-|---|---|---|---|
-| 2.0.x | Local NVMe | No | Installed during `--enable-azure-container-storage` |
-| 2.1.x and later | Local NVMe and Elastic SAN | Yes | Via storage type selection during enable or by creating a StorageClass (installer-only flow) |
-
 ## Prerequisites
 
-- Create an Azure subscription if you do not already have one by signing up for a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+- Create an Azure subscription if you don't already have one by signing up for a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - Confirm that your target region is supported by reviewing the [Azure Container Storage regional availability](container-storage-introduction.md#regional-availability).
 - Plan your node pool configuration:
-  - Use Linux as the OS type (Windows is not supported).
+  - Use Linux as the OS type (Windows isn't supported).
   - Select a virtual machine (VM) SKU that supports local NVMe data disks if you plan to use the local NVMe storage type, such as [storage-optimized](/azure/virtual-machines/sizes/overview#storage-optimized) or [GPU-accelerated](/azure/virtual-machines/sizes/overview#gpu-accelerated) VMs.
   - For existing clusters, ensure node pools already use a supported VM SKU before enabling Azure Container Storage.
-- Install the latest version of the [Azure CLI](/cli/azure/install-azure-cli) (2.83.0 or later), then sign in with `az login`. Avoid Azure Cloud Shell because `az upgrade` is not available there. Disable conflicting extensions such as `aks-preview` if issues occur.
+- Install the latest version of the [Azure CLI](/cli/azure/install-azure-cli) (2.83.0 or later), then sign in with `az login`. Avoid Azure Cloud Shell because `az upgrade` isn't available there. Disable conflicting extensions such as `aks-preview` if issues occur.
 - Install the Kubernetes command-line client, `kubectl`. You can install it locally by running `az aks install-cli`.
 - If you use Elastic SAN for the first time in the subscription, run this one-time registration command:
 
@@ -98,50 +89,12 @@ If the resource group is created successfully, you see output similar to this ex
 }
 ```
 
-## Choose your installation model (version 2.1.x and later)
-
-Azure Container Storage supports two installation flows.
-
-### Option A: Installer-only (choose storage later)
-
-Use this option when you want Azure Container Storage installed but plan to decide the storage backend later.
-
-```azurecli
-az aks update -n <cluster-name> -g <resource-group> --enable-azure-container-storage
-```
-
-**Behavior:**
-- Installs only the installer.
-- No CSI driver or node agent is installed initially.
-- Creating a StorageClass later triggers the correct CSI driver installation.
-
-### Option B: Installer + storage type(s)
-
-Use this option when you know the backend(s) required.
-
-```azurecli
-az aks update -n <cluster-name> -g <resource-group> --enable-azure-container-storage <storage-types>
-```
-
-Example:
-
-```azurecli
-az aks update -n <cluster-name> -g <resource-group> --enable-azure-container-storage ephemeralDisk,elasticSan
-```
-
-**Behavior:**
-- Installs the installer plus the selected CSI driver(s).
-- Creates default StorageClass objects if none exist.
-- Supports comma-separated storage types.
-
-Supported storage types for version 2.1.0 and later: `ephemeralDisk` (local NVMe) and `elasticSan` (Azure Elastic SAN).
-
 ## Install Azure Container Storage on a new AKS cluster
 
 Choose the scenario that matches your environment.
 
 > [!IMPORTANT]
-> Azure Container Storage installs the latest major version by default. You can pin a major version with `--container-storage-version`. You cannot pin minor or patch versions.
+> Azure Container Storage installs the latest major version by default. You can pin a major version with `--container-storage-version`. You can't pin minor or patch versions.
 
 ### Installer-only installation
 
@@ -202,10 +155,10 @@ This command installs the installer, deploys the Elastic SAN CSI driver, and cre
 
 ## Prerequisites
 
-- Create an Azure subscription if you do not already have one by signing up for a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+- Create an Azure subscription if you don't already have one by signing up for a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - Verify that your target region is supported by checking the [Azure Container Storage regional availability](container-storage-introduction.md#regional-availability).
 - Plan your node pool configuration:
-  - Use Linux as the OS type (Windows is not supported).
+  - Use Linux as the OS type (Windows isn't supported).
   - Select a virtual machine (VM) SKU that supports local NVMe data disks, such as [storage-optimized](/azure/virtual-machines/sizes/overview#storage-optimized) or [GPU-accelerated](/azure/virtual-machines/sizes/overview#gpu-accelerated) VMs.
   - For existing clusters, ensure node pools already use a supported VM SKU before enabling Azure Container Storage.
 - Install the [Azure CLI](/cli/azure/install-azure-cli) version 2.77.0 or later, then sign in with `az login`.
@@ -237,16 +190,7 @@ az account set --subscription <subscription-id>
 Choose the scenario that matches your environment.
 
 > [!IMPORTANT]
-> Azure Container Storage installs the latest available version and updates itself automatically. Manual version selection is not supported.
-
-### Choose your installation model (version 2.1.x and later)
-
-For Terraform, the extension configuration supports two flows that match the Azure CLI behavior:
-
-- **Installer-only (choose storage later):** Set `enable-azure-container-storage` to `true`. Create a StorageClass later to trigger driver installation.
-- **Installer + storage type(s):** Set `enable-azure-container-storage` to a storage type value such as `ephemeralDisk`, `elasticSan`, or a comma-separated list like `ephemeralDisk,elasticSan`. This installs the installer and the selected CSI driver(s).
-
-Supported storage types for version 2.1.0 and later: `ephemeralDisk` (local NVMe) and `elasticSan` (Azure Elastic SAN).
+> Azure Container Storage installs the latest available version and updates itself automatically. Manual version selection isn't supported.
 
 ### Option 1: Create a new AKS cluster with Azure Container Storage enabled
 
@@ -369,54 +313,6 @@ Run `terraform init` (if this is a new working directory) followed by `terraform
 
 ::: zone-end
 
-## How Azure Container Storage installs components
-
-### Step 1: Installer-only installation
-
-When you run installer-only mode, the following components are created in the `kube-system` namespace:
-
-| Component | Resource type | Name | Description |
-|---|---|---|---|
-| Installer | Deployment | acstor-cluster-manager | Core controller that watches StorageClass objects and orchestrates CSI driver lifecycle |
-| Telemetry | Deployment | acstor-geneva | Internal monitoring and telemetry containers |
-
-**Notes:**
-- The installer prefers system node pools.
-- No CSI drivers or node agents are installed initially.
-
-### Step 2: CSI driver installation
-
-Drivers are installed when a storage type is enabled via CLI or when a StorageClass is created.
-
-| Component | Resource type | Name | Description |
-|---|---|---|---|
-| CSI driver | HelmRelease | acstor-local-csi-driver or acstor-azuresan-csi-driver | The storage-specific CSI driver |
-| Node agent | DaemonSet | acstor-node-agent | Runs on storage nodes for metrics collection |
-| OpenTelemetry (OTel) collector | DaemonSet | acstor-otel-collector | Collects logs and metrics from nodes |
-
-### Node scheduling
-
-- CSI drivers run according to StorageClass affinity.
-- The node agent runs wherever a driver is present.
-
-## What each CSI driver installs
-
-### Elastic SAN CSI driver
-
-| Resource | Name | Purpose |
-|---|---|---|
-| DaemonSet | azuresan-csi-driver | Runs CSI pods on each node |
-
-### Local NVMe CSI driver
-
-| Resource | Name | Purpose |
-|---|---|---|
-| DaemonSet | csi-local-node | Runs CSI driver pods on each node |
-| Deployment | csi-local-manager | Webhook and PV cleanup controller |
-
-> [!NOTE]
-> `csi-local-manager` prefers the system node pool.
-
 ## Verify installation
 
 ### Verify installer (installer-only mode)
@@ -489,12 +385,8 @@ kubectl describe helmreleases.helm.installer.acstor.io -n kube-system
 kubectl describe ocirepositories.source.installer.acstor.io -n kube-system
 ```
 
-## CSI driver installation logic summary
-
-- **Installer-only:** StorageClass creation triggers driver installation. If a StorageClass already exists, the driver installs without a new StorageClass.
-- **Installer + storage type:** Drivers install immediately; default StorageClass objects are created if missing.
-
 ## Next steps
 
 - [Use Azure Container Storage with local NVMe](use-container-storage-with-local-disk.md)
 - [Overview of deploying a highly available PostgreSQL database on Azure Kubernetes Service (AKS)](/azure/aks/postgresql-ha-overview#storage-considerations)
+- [Frequently asked questions (FAQ) about Azure Container Storage](container-storage-faq.md)

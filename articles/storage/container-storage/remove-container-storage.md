@@ -62,7 +62,7 @@ az aks update -n <cluster-name> -g <resource-group> --enable-azure-container-sto
 
 Expected behavior:
 
-- Specifying a storage type is optional. When no storage type is provided, only the Azure Container Storage installer component is installed, if it is not already present.
+- Specifying a storage type is optional. When no storage type is provided, only the Azure Container Storage installer component is installed, if it isn't already present.
 - When a storage type is specified, the corresponding CSI driver is installed. If a StorageClass for that storage type already exists, only the driver is installed; otherwise, a default StorageClass is created as part of the installation.
 
 ### Remove the extension with Terraform
@@ -83,7 +83,7 @@ If you provisioned Azure Container Storage with Terraform, remove the correspond
     ```
 
 > [!NOTE]
-> Terraform manages the extension resource. If you want to remove only a specific storage type (for example, Elastic SAN or local NVMe), use the Azure CLI workflow in this article. Terraform does not provide a separate disable flag per storage type.
+> Terraform manages the extension resource. If you want to remove only a specific storage type (for example, Elastic SAN or local NVMe), use the Azure CLI workflow in this article. Terraform doesn't provide a separate disable flag per storage type.
 
 ## Delete the AKS cluster
 
