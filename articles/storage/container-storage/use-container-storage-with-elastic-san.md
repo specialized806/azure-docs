@@ -1,6 +1,6 @@
 ---
 title: Use Azure Container Storage with Azure Elastic SAN
-description: You can configure Azure Container Storage to use Azure Elastic SAN.
+description: Learn how to configure Azure Container Storage to use Azure Elastic SAN as backing storage.
 author: saurabh0501
 ms.service: azure-container-storage
 ms.topic: how-to
