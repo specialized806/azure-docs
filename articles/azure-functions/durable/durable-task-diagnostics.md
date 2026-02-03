@@ -12,38 +12,40 @@ ms.custom: copilot-generated
 
 # Diagnostics in Durable Task SDKs
 
-There are several options for diagnosing issues with the Durable Task SDKs. In this article, you learn about the diagnostic tools and techniques available for troubleshooting orchestrations.
+There are several options for diagnosing issues with the Durable Task SDKs. This article describes the diagnostic tools and techniques available for troubleshooting orchestrations.
 
 ## Application Insights
 
 [Application Insights](/azure/azure-monitor/app/app-insights-overview) is the recommended way to do diagnostics and monitoring with the Durable Task SDKs.
 
-The Durable Task SDKs emit *tracking events* that allow you to trace the end-to-end execution of an orchestration. These tracking events can be found and queried using the [Application Insights Analytics](/azure/azure-monitor/logs/log-query-overview) tool in the Azure portal.
+The Durable Task SDKs emit *tracking events* that let you trace the end-to-end execution of an orchestration. You can find and query these tracking events using the [Application Insights Analytics](/azure/azure-monitor/logs/log-query-overview) tool in the Azure portal.
 
 ### Tracking data
 
-Each lifecycle event of an orchestration instance causes a tracking event to be written to the **traces** collection in Application Insights. This event contains a **customDimensions** payload with several fields. Field names are all prepended with `prop__`.
+Each lifecycle event of an orchestration instance writes a tracking event to the **traces** collection in Application Insights. This event contains a **customDimensions** payload with several fields. Field names are all prepended with `prop__`.
 
-* **hubName**: The name of the task hub in which your orchestrations are running.
-* **appName**: The name of the application. This field is useful when you have multiple apps sharing the same Application Insights instance.
-* **functionName**: The name of the orchestrator or activity.
-* **functionType**: The type of the function, such as **Orchestrator** or **Activity**.
-* **instanceId**: The unique ID of the orchestration instance.
-* **state**: The lifecycle execution state of the instance. Valid values include:
-  * **Scheduled**: The function was scheduled for execution but hasn't started running yet.
-  * **Started**: The function started running but has not yet awaited or completed.
-  * **Awaited**: The orchestrator has scheduled some work and is waiting for it to complete.
-  * **Listening**: The orchestrator is listening for an external event notification.
-  * **Completed**: The function completed successfully.
-  * **Failed**: The function failed with an error.
-* **reason**: Additional data associated with the tracking event. For example, if an instance is waiting for an external event notification, this field indicates the name of the event it is waiting for. If a function fails, this field contains the error details.
-* **isReplay**: Boolean value indicating whether the tracking event is for replayed execution.
-* **extensionVersion**: The version of the Durable Task SDK. The version information is especially important data when reporting possible bugs. Long-running instances may report multiple versions if an update occurs while it is running.
-* **sequenceNumber**: Execution sequence number for an event. Combined with the timestamp helps to order the events by execution time. *Note that this number resets to zero if the host restarts while the instance is running, so it's important to always sort by timestamp first, then sequenceNumber.*
+| Field name | Description |
+| ---------- | ----------- |
+| `hubName` | The name of the task hub in which your orchestrations are running. |
+| `appName` | The name of the application. This field is useful when you have multiple apps sharing the same Application Insights instance. |
+| `functionName` | The name of the orchestrator or activity. |
+| `functionType` | The type of the function, such as **Orchestrator** or **Activity**. |
+| `instanceId` | The unique ID of the orchestration instance. |
+| `state` | The lifecycle execution state of the instance. |
+| `state.Scheduled` | The function was scheduled for execution but hasn't started running yet. |
+| `state.Started` | The function started running but hasn't yet awaited or completed. |
+| `state.Awaited` | The orchestrator scheduled some work and is waiting for it to complete. |
+| `state.Listening` | The orchestrator is listening for an external event notification. |
+| `state.Completed` | The function completed successfully. |
+| `state.Failed` | The function failed with an error. |
+| `reason` | Additional data associated with the tracking event. For example, if an instance is waiting for an external event notification, this field indicates the name of the event it's waiting for. If a function fails, this field contains the error details. |
+| `isReplay` | Boolean value indicating whether the tracking event is for replayed execution. |
+| `extensionVersion` | The version of the Durable Task SDK. The version information is especially important data when reporting possible bugs. Long-running instances might report multiple versions if an update occurs while the instance is running. |
+| `sequenceNumber` | Execution sequence number for an event. Combined with the timestamp, this helps order the events by execution time. *Note that this number resets to zero if the host restarts while the instance is running, so it's important to always sort by timestamp first, then sequenceNumber.* |
 
 ### Single instance query
 
-The following query shows historical tracking data for a single orchestration instance. It's written using the [Kusto Query Language](/azure/data-explorer/kusto/query/). It filters out replay execution so that only the *logical* execution path is shown. Events can be ordered by sorting by `timestamp` and `sequenceNumber` as shown in the query below:
+The following query shows historical tracking data for a single orchestration instance. It's written using the [Kusto Query Language](/azure/data-explorer/kusto/query/). It filters out replay execution so that only the *logical* execution path is shown. You can order events by sorting by `timestamp` and `sequenceNumber` as shown in the following query:
 
 ```kusto
 let targetInstanceId = "ddd1aaa685034059b545eb004b15d4eb";
@@ -92,9 +94,9 @@ When using the [Durable Task Scheduler](durable-task-scheduler/durable-task-sche
 
 ### Accessing the dashboard
 
-Running the emulator locally doesn't require authentication.
+The emulator running locally doesn't require authentication.
 
-For Azure-hosted schedulers, you need to [assign the *Durable Task Data Contributor* role to your identity](durable-task-scheduler/durable-task-scheduler-identity.md). You can then access the dashboard via either:
+For Azure-hosted schedulers, [assign the *Durable Task Data Contributor* role to your identity](durable-task-scheduler/durable-task-scheduler-identity.md). You can then access the dashboard via either:
 
 - The task hub's dashboard endpoint URL in the Azure portal
 - Navigate to `https://dashboard.durabletask.io/` combined with your task hub endpoint

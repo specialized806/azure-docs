@@ -13,7 +13,7 @@ ms.devlang: csharp
 
 # Diagnostics in Durable Functions
 
-You have several options for diagnosing issues with [Durable Functions](durable-functions-overview.md). Some of these options are the same for regular functions and some are unique to Durable Functions. In this article, you learn about the diagnostic tools and techniques available for troubleshooting orchestrations.
+You have several options for diagnosing issues with [Durable Functions](durable-functions-overview.md). Some of these options are the same for regular functions and some are unique to Durable Functions. This article describes the diagnostic tools and techniques available for troubleshooting orchestrations.
 
 ## Application Insights
 
@@ -82,7 +82,7 @@ By default, orchestrator, activity, and entity function inputs and outputs aren'
 
 ### Single instance query
 
-The following query shows historical tracking data for a single instance of the [Hello Sequence](durable-functions-sequence.md) function orchestration. It's written using the [Kusto Query Language](/azure/data-explorer/kusto/query/). It filters out replay execution so that only the *logical* execution path is shown. You can order events by sorting by `timestamp` and `sequenceNumber` as shown in the query below:
+The following query shows historical tracking data for a single instance of the [Hello Sequence](durable-functions-sequence.md) function orchestration. It's written using the [Kusto Query Language](/azure/data-explorer/kusto/query/). It filters out replay execution so that only the *logical* execution path is shown. You can order events by sorting by `timestamp` and `sequenceNumber` as shown in the following query:
 
 ```kusto
 let targetInstanceId = "ddd1aaa685034059b545eb004b15d4eb";
@@ -133,7 +133,7 @@ The result is a list of instance IDs and their current runtime status.
 
 The Durable extension logs are useful for understanding the behavior of your orchestration logic. However, these logs don't always contain enough information to debug framework-level performance and reliability issues. Starting in **v2.3.0** of the Durable extension, logs emitted by the underlying Durable Task Framework (DTFx) are also available for collection.
 
-When looking at logs emitted by the DTFx, it's important to understand that the DTFx engine is composed of two components: the core dispatch engine (`DurableTask.Core`) and [one of many supported storage providers](durable-functions-storage-providers.md).
+When looking at logs emitted by the DTFx, it's important to understand that the DTFx engine has two components: the core dispatch engine (`DurableTask.Core`) and [one of many supported storage providers](durable-functions-storage-providers.md).
 
 | Component | Description |
 | --------- | ----------- |
@@ -162,7 +162,7 @@ If you have Application Insights enabled, these logs are automatically added to 
 > [!NOTE]
 > For production applications, we recommend enabling `DurableTask.Core` and the appropriate storage provider (for example, `DurableTask.AzureStorage`) logs using the `"Warning"` filter. Higher verbosity filters such as `"Information"` are useful for debugging performance issues. However, these log events can be high-volume and can significantly increase Application Insights data storage costs.
 
-The following Kusto query shows how to query for DTFx logs. The most important part of the query is `where customerDimensions.Category startswith "DurableTask"` since that filters the results to logs in the `DurableTask.Core` and `DurableTask.AzureStorage` categories.
+The following Kusto query shows how to query for DTFx logs. The most important part of the query is `where customerDimensions.Category startswith "DurableTask"` since it filters the results to logs in the `DurableTask.Core` and `DurableTask.AzureStorage` categories.
 
 ```kusto
 traces
@@ -184,7 +184,7 @@ For more information about what log events are available, see the [Durable Task 
 
 ## App logging
 
-It's important to keep the orchestrator replay behavior in mind when writing logs directly from an orchestrator function. For example, consider the following orchestrator function:
+Keep the orchestrator replay behavior in mind when writing logs directly from an orchestrator function. For example, consider the following orchestrator function:
 
 # [C# (InProc)](#tab/csharp-inproc)
 
@@ -278,7 +278,7 @@ public void functionChain(
 
 ---
 
-The resulting log data is going to look something like the following example output:
+The resulting log data looks something like the following example output:
 
 ```txt
 Calling F1.
@@ -294,7 +294,7 @@ Done!
 ```
 
 > [!NOTE]
-> Remember that while the logs claim to be calling F1, F2, and F3, those functions are *only* called the first time they're encountered. Subsequent calls that happen during replay are skipped and the outputs are replayed to the orchestrator logic.
+> Remember that while the logs claim to be calling F1, F2, and F3, the code *only* calls those functions the first time they're encountered. Subsequent calls that happen during replay are skipped and the outputs are replayed to the orchestrator logic.
 
 If you want to only write logs on non-replay executions, you can write a conditional expression to log only if the "is replaying" flag is `false`. Consider the example above, but this time with replay checks.
 
@@ -419,7 +419,7 @@ public void functionChain(
 
 ---
 
-With the previously mentioned changes, the log output is as follows:
+With these changes, the log output is as follows:
 
 ```txt
 Calling F1.
@@ -430,7 +430,7 @@ Done!
 
 ## Custom status
 
-Custom orchestration status lets you set a custom status value for your orchestrator function. External clients can view the custom status via the [HTTP status query API](durable-functions-http-api.md#get-instance-status) or language-specific API calls. Custom orchestration status enables richer monitoring for orchestrator functions. For example, the orchestrator function code can invoke the "set custom status" API to update the progress for a long-running operation. A client, such as a web page or external system, can then periodically query the HTTP status query APIs for progress information. Sample code for setting a custom status value in an orchestrator function is provided below:
+Custom orchestration status lets you set a custom status value for your orchestrator function. External clients can view the custom status via the [HTTP status query API](durable-functions-http-api.md#get-instance-status) or language-specific API calls. Custom orchestration status enables richer monitoring for orchestrator functions. For example, the orchestrator function code can invoke the "set custom status" API to update the progress for a long-running operation. A client, such as a web page or external system, can then periodically query the HTTP status query APIs for progress information. The following code shows how to set a custom status value in an orchestrator function:
 
 # [C# (InProc)](#tab/csharp-inproc)
 
@@ -588,16 +588,16 @@ Once you have distributed tracing set up, you can visualize your orchestration f
 
 ## Debugging
 
-Azure Functions supports debugging function code directly, and that same support carries forward to Durable Functions, whether running in Azure or locally. However, there are a few behaviors to be aware of when debugging:
+Azure Functions supports debugging function code directly, and that same support carries forward to Durable Functions, whether running in Azure or locally. However, there are a few behaviors to know about when debugging:
 
-- **Replay:** Orchestrator functions regularly [replay](durable-functions-orchestrations.md#reliability) when new inputs are received. A single *logical* execution of an orchestrator function can result in hitting the same breakpoint multiple times, especially if it's set early in the function code.  
+- **Replay:** Orchestrator functions regularly [replay](durable-functions-orchestrations.md#reliability) when new inputs are received. A single *logical* execution of an orchestrator function can result in hitting the same breakpoint multiple times, especially if it's set early in the function code.
 
-- **Await:**  
-   Whenever an `await` is encountered in an orchestrator function, it yields control back to the Durable Task Framework dispatcher. If it's the first time a particular `await` has been encountered, the associated task is *never* resumed. Because the task never resumes, stepping *over* the await (F10 in Visual Studio) isn't possible. Stepping over only works when a task is being replayed.  
+- **Await:**
+   Whenever an `await` is encountered in an orchestrator function, it yields control back to the Durable Task Framework dispatcher. If it's the first time a particular `await` is encountered, the associated task is *never* resumed. Because the task never resumes, stepping *over* the await (F10 in Visual Studio) isn't possible. Stepping over only works when a task is being replayed.
 
-- **Messaging timeouts:** Durable Functions internally uses queue messages to drive execution of orchestrator, activity, and entity functions. In a multi-VM environment, extended debugging sessions could cause another VM to process the message, resulting in duplicate execution. Although this behavior also exists for regular queue-trigger functions, it's important to highlight in this context because the queues are an implementation detail.  
+- **Messaging timeouts:** Durable Functions internally uses queue messages to drive execution of orchestrator, activity, and entity functions. In a multi-VM environment, extended debugging sessions could cause another VM to process the message, resulting in duplicate execution. Although this behavior also exists for regular queue-trigger functions, this context is important to highlight because the queues are an implementation detail.
 
-- **Stopping and starting:** Messages in Durable Functions persist between debug sessions. If you stop debugging and terminate the local host process while a durable function is executing, that function may re-execute automatically in a future debug session. To avoid unexpected re-execution, use a [fresh task hub](durable-functions-task-hubs.md#task-hub-management) or clear the task hub contents between debug sessions.
+- **Stopping and starting:** Messages in Durable Functions persist between debug sessions. If you stop debugging and terminate the local host process while a durable function is executing, that function might re-execute automatically in a future debug session. To avoid unexpected re-execution, use a [fresh task hub](durable-functions-task-hubs.md#task-hub-management) or clear the task hub contents between debug sessions.
 
 > [!TIP]
 > When setting breakpoints in orchestrator functions, if you want to only break on non-replay execution, you can set a conditional breakpoint that breaks only if the "is replaying" value is `false`.
@@ -609,14 +609,14 @@ By default, Durable Functions stores state in Azure Storage. You can inspect orc
 :::image type="content" source="./media/durable-functions-diagnostics/storage-explorer.png" alt-text="Screenshot of Azure Storage Explorer showing Durable Functions orchestration state in tables and queues.":::
 
 > [!WARNING]
-> While it's convenient to see execution history in table storage, avoid taking any dependency on this table. It may change as the Durable Functions extension evolves.
+> While it's convenient to see execution history in table storage, avoid taking any dependency on this table. It might change as the Durable Functions extension evolves.
 
 > [!NOTE]
-> You can [configure other storage providers](durable-functions-storage-providers.md) instead of the default Azure Storage provider. Depending on the storage provider configured for your app, you may need to use different tools to inspect the underlying state.
+> You can [configure other storage providers](durable-functions-storage-providers.md) instead of the default Azure Storage provider. Depending on the storage provider configured for your app, you might need to use different tools to inspect the underlying state.
 
 ## Durable Functions Monitor
 
-[Durable Functions Monitor](https://github.com/microsoft/DurableFunctionsMonitor) is a graphical tool for monitoring, managing, and debugging orchestration and entity instances. It is available as a Visual Studio Code extension or a standalone app. Information about set up and a list of features can be found in [this Wiki](https://github.com/microsoft/DurableFunctionsMonitor/wiki).
+[Durable Functions Monitor](https://github.com/microsoft/DurableFunctionsMonitor) is a graphical tool for monitoring, managing, and debugging orchestration and entity instances. It's available as a Visual Studio Code extension or a standalone app. For setup instructions and a list of features, see the [Durable Functions Monitor Wiki](https://github.com/microsoft/DurableFunctionsMonitor/wiki).
 
 ## Azure portal diagnostics
 
@@ -632,12 +632,11 @@ The Azure portal provides orchestration trace details to help you understand the
 
 ## Roslyn Analyzer
 
-The Durable Functions Roslyn Analyzer is a live code analyzer that guides C# developers to adhere to Durable Functions specific [code constraints](durable-functions-code-constraints.md). For instructions on how to enable it in Visual Studio and Visual Studio Code, see [Durable Functions Roslyn Analyzer](durable-functions-roslyn-analyzer.md).
-[Durable Functions Monitor](https://github.com/microsoft/DurableFunctionsMonitor) is a graphical tool for monitoring, managing, and debugging orchestration and entity instances. It's available as a Visual Studio Code extension or a standalone app. For setup instructions and a list of features, see the [Durable Functions Monitor Wiki](https://github.com/microsoft/DurableFunctionsMonitor/wiki).
+The Durable Functions Roslyn Analyzer is a live code analyzer that guides C# developers to follow Durable Functions specific [code constraints](durable-functions-code-constraints.md). For instructions on how to enable it in Visual Studio and Visual Studio Code, see [Durable Functions Roslyn Analyzer](durable-functions-roslyn-analyzer.md).
 
 ## Troubleshooting
 
-Running into issues? To troubleshoot common problem symptoms such as orchestrations being stuck, failing to start, running slowly, etc., refer to the [Durable Functions troubleshooting guide](durable-functions-troubleshooting-guide.md). 
+To troubleshoot common problems such as orchestrations being stuck, failing to start, or running slowly, see the [Durable Functions troubleshooting guide](durable-functions-troubleshooting-guide.md). 
 
 ## Next steps
 
