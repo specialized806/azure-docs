@@ -14,7 +14,7 @@ ms.author: kendownie
 Azure Container Storage is a cloud-based volume management, deployment, and orchestration service built natively for containers. This article shows you how to take a point-in-time snapshot of a persistent volume and restore it with a new persistent volume claim.
 
 > [!IMPORTANT]
-> This article covers features and capabilities available in Azure Container Storage (version 1.x.x). [Azure Container Storage (version 2.x.x)](container-storage-introduction.md) is now available, but it doesn't currently support volume snapshots.
+> This article covers features and capabilities available in Azure Container Storage (version 1.x.x). [Azure Container Storage (version 2.x.x)](container-storage-introduction.md) is now available.
 
 ## Prerequisites
 
