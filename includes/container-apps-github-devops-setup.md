@@ -22,7 +22,7 @@ ms.author: wujia
       --ingress external 
     ```
 
-1. In the command output, note the name of the Azure Container Registry.
+1. In the command output, note the name of the Azure container registry.
 
 1. Get the full resource ID of the container registry:
 
@@ -54,7 +54,7 @@ ms.author: wujia
 
     Replace `<MANAGED_IDENTITY_PRINCIPAL_ID>` with the principal ID of the managed identity and `<ACR_RESOURCE_ID>` with the resource ID of the Container Registry.
 
-1. Configure the container app to use the managed identity to pull images from the Container Registry:
+1. Configure the container app to use the managed identity to pull images from the container registry:
 
     ```azurecli
     az containerapp registry set \

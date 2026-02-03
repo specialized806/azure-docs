@@ -64,15 +64,15 @@ steps:
 ```
 
 > [!IMPORTANT]
-> If you're building a container image in a separate step, make sure you use a unique tag such as the build ID instead of a stable tag like `latest`. For more information, see [Image tag best practices](/azure/container-registry/container-registry-image-tag-version).
+> If you're building a container image in a separate step, be sure to use a unique tag such as the build ID instead of a stable tag like `latest`. For more information, see [Image tag best practices](/azure/container-registry/container-registry-image-tag-version).
 
 ### Authenticate with Azure Container Registry
 
-The Container Apps task needs to authenticate with your Azure Container Registry to push the container image. The container app also needs to authenticate with your Container Registry to pull the container image.
+The Container Apps task needs to authenticate with your Azure Container Registry to push the container image. The container app also needs to authenticate with your container registry to pull the container image.
 
 To push images, the task automatically authenticates with the container registry specified in `acrName` by using the service connection provided in `azureSubscription`. If the service connection's identity isn't assigned the `AcrPush` role for the registry, supply the registry's admin credentials by using `acrUsername` and `acrPassword`.
 
-To pull images, Container Apps uses either managed identity (recommended) or admin credentials to authenticate with the Container Registry. To use managed identity, the target container app for the task must be [configured to use managed identity](managed-identity-image-pull.md). To authenticate with the registry's admin credentials, set the task's `acrUsername` and `acrPassword` inputs.
+To pull images, Container Apps uses either managed identity (recommended) or admin credentials to authenticate with the container registry. To use managed identity, the target container app for the task must be [configured to use managed identity](managed-identity-image-pull.md). To authenticate with the registry's admin credentials, set the task's `acrUsername` and `acrPassword` inputs.
 
 ## Configuration
 
