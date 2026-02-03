@@ -1,31 +1,54 @@
 ---
-title: Manage instances in Durable Functions - Azure
-description: Learn how to manage instances in the Durable Functions extension for Azure Functions.
+title: Manage orchestration instances - Azure Durable Functions and Durable Task SDKs
+description: Learn how to manage orchestration instances in Durable Functions and the Durable Task SDKs, including starting, querying, terminating, and sending events.
 author: cgillum
 ms.topic: conceptual
-ms.date: 02/13/2024
+ms.date: 01/30/2026
 ms.author: azfuncdf
+reviewer: hhunter-ms
+ms.service: azure-functions
+ms.subservice: durable
 ms.devlang: csharp
-# ms.devlang: csharp, java, javascript, python
-#Customer intent: As a developer, I want to understand the options provided for managing my Durable Functions orchestration instances, so I can keep my orchestrations running efficiently and make improvements.
+zone_pivot_groups: azure-durable-approach
+#Customer intent: As a developer, I want to understand the options provided for managing my orchestration instances, so I can keep my orchestrations running efficiently and make improvements.
 ---
 
-# Manage instances in Durable Functions in Azure
+# Manage orchestration instances
 
-Orchestrations in Durable Functions are long-running stateful functions that can be started, queried, suspended, resumed, and terminated using built-in management APIs. Several other instance management APIs are also exposed by the Durable Functions [orchestration client binding](durable-functions-bindings.md#orchestration-client), such as sending external events to instances, purging instance history, etc. This article goes into the details of all supported instance management operations.
+Orchestrations are long-running stateful workflows that can be started, queried, suspended, resumed, and terminated using built-in management APIs. In [Durable Functions](durable-functions-overview.md), these APIs are exposed by the [orchestration client binding](durable-functions-bindings.md#orchestration-client). In the [Durable Task SDKs](durable-task-scheduler/quickstart-portable-durable-task-sdks.md), these operations are available through the `DurableTaskClient` class. This article covers all supported instance management operations for both platforms.
+
+> [!TIP]
+> The [Azure Durable Task Scheduler](durable-task-scheduler/durable-task-overview.md) is the recommended backend for both Durable Functions and the Durable Task SDKs, providing a fully managed, serverless experience for running durable workflows at scale.
 
 ## Start instances
 
-The *start-new* (or *schedule-new*) method on the [orchestration client binding](durable-functions-bindings.md#orchestration-client) starts a new orchestration instance. Internally, this method writes a message via the [Durable Functions storage provider](durable-functions-storage-providers.md) and then returns. This message asynchronously triggers the start of an [orchestration function](durable-functions-types-features-overview.md#orchestrator-functions) with the specified name.
+The *start-new* (or *schedule-new*) method on the orchestration client starts a new orchestration instance. Internally, this method writes a message to the configured backend (such as the Durable Task Scheduler or Azure Storage) and then returns. This message asynchronously triggers the start of an orchestration that has the specified name.
 
 The parameters for starting a new orchestration instance are as follows:
+
+::: zone pivot="durable-functions"
 
 * **Name**: The name of the orchestrator function to schedule.
 * **Input**: Any JSON-serializable data that should be passed as the input to the orchestrator function.
 * **InstanceId**: (Optional) The unique ID of the instance. If you don't specify this parameter, the method uses a random ID.
 
 > [!TIP]
-> Use a random identifier for the instance ID whenever possible. Random instance IDs help ensure an equal load distribution when you're scaling orchestrator functions across multiple VMs. The proper time to use non-random instance IDs is when the ID must come from an external source, or when you're implementing the [singleton orchestrator](durable-functions-singletons.md) pattern.
+> Use a random identifier for the instance ID whenever possible. Random instance IDs help ensure an equal load distribution when you're scaling orchestrator functions across multiple VMs. The proper time to use nonrandom instance IDs is when the ID must come from an external source, or when you're implementing the [singleton orchestrator](durable-functions-singletons.md) pattern.
+
+::: zone-end
+
+::: zone pivot="durable-task-sdks"
+
+* **Name**: The name of the orchestration to schedule.
+* **Input**: Any JSON-serializable data that should be passed as input to the orchestration.
+* **InstanceId**: (Optional) The unique ID of the instance. If you don't specify this parameter, the method uses a random ID.
+
+> [!TIP]
+> Use a random identifier for the instance ID whenever possible. Random instance IDs help ensure an equal load distribution when you're scaling orchestrations across multiple VMs. The proper time to use non-random instance IDs is when the ID must come from an external source, or when you're implementing the [singleton orchestrator](durable-functions-singletons.md) pattern.
+
+::: zone-end
+
+::: zone pivot="durable-functions"
 
 The following code is an example function that starts a new orchestration instance:
 
@@ -44,7 +67,7 @@ public static async Task Run(
 ```
 
 > [!NOTE]
-> The previous C# code is for Durable Functions 2.x. For Durable Functions 1.x, you must use `OrchestrationClient` attribute instead of the `DurableClient` attribute, and you must use the `DurableOrchestrationClient` parameter type instead of `IDurableOrchestrationClient`. For more information about the differences between versions, see the [Durable Functions versions](durable-functions-versions.md) article.
+> The previous C# code is for Durable Functions 2.x. For Durable Functions 1.x, use the `OrchestrationClient` attribute instead of the `DurableClient` attribute, and use the `DurableOrchestrationClient` parameter type instead of `IDurableOrchestrationClient`. For more information about the differences between versions, see [Durable Functions versions](durable-functions-versions.md).
 
 # [JavaScript](#tab/javascript)
 
@@ -205,39 +228,78 @@ client.waitForInstanceStart(instanceID, Duration.ofSeconds(30));
 
 ---
 
-### Azure Functions Core Tools
+::: zone-end
 
-You can also start an instance directly by using the [`func durable start-new` command](../functions-core-tools-reference.md#func-durable-start-new) in Core Tools, which takes the following parameters:
+::: zone pivot="durable-task-sdks"
 
-* **`function-name` (required)**: Name of the function to start.
-* **`input` (optional)**: Input to the function, either inline or through a JSON file. For files, add a prefix to the path to the file with `@`, such as `@path/to/file.json`.
-* **`id` (optional)**: ID of the orchestration instance. If you don't specify this parameter, the command uses a random GUID.
-* **`connection-string-setting` (optional)**: Name of the application setting containing the storage connection string to use. The default is AzureWebJobsStorage.
-* **`task-hub-name` (optional)**: Name of the Durable Functions task hub to use. The default is DurableFunctionsHub. You can also set this in [host.json](durable-functions-bindings.md#host-json) by using durableTask:HubName.
+[!INCLUDE [preview-sample-limitations](./durable-task-scheduler/includes/preview-sample-limitations.md)]
 
-> [!NOTE]
-> Core Tools commands assume you are running them from the root directory of a function app. If you explicitly provide the `connection-string-setting` and `task-hub-name` parameters, you can run the commands from any directory. Although you can run these commands without a function app host running, you might find that you can't observe some effects unless the host is running. For example, the `start-new` command enqueues a start message into the target task hub, but the orchestration doesn't actually run unless there is a function app host process running that can process the message.
+The following code shows how to start a new orchestration instance using the Durable Task SDKs:
 
-> [!NOTE]
-> The Core Tools commands are currently only supported when using the default [Azure Storage provider](durable-functions-storage-providers.md) for persisting runtime state.
+# [C#](#tab/csharp)
 
-The following command starts the function named HelloWorld, and passes the contents of the file `counter-data.json` to it:
+```csharp
+using Microsoft.DurableTask.Client;
 
-```bash
-func durable start-new --function-name HelloWorld --input @counter-data.json --task-hub-name TestTaskHub
+// Schedule a new orchestration instance
+string instanceId = await client.ScheduleNewOrchestrationInstanceAsync("HelloWorld", input);
+Console.WriteLine($"Started orchestration with ID = '{instanceId}'.");
+
+// Optionally, wait for the orchestration to start
+OrchestrationMetadata metadata = await client.WaitForInstanceStartAsync(instanceId, timeout: TimeSpan.FromSeconds(30));
 ```
+
+# [Python](#tab/python)
+
+```python
+from durabletask.azuremanaged.client import DurableTaskSchedulerClient
+
+# Schedule a new orchestration instance
+instance_id = client.schedule_new_orchestration(hello_world, input=input_data)
+print(f"Started orchestration with ID = '{instance_id}'.")
+
+# Optionally, wait for the orchestration to start
+state = client.wait_for_orchestration_start(instance_id, timeout=30)
+```
+
+# [Java](#tab/java)
+
+```java
+import com.microsoft.durabletask.DurableTaskClient;
+
+// Schedule a new orchestration instance
+String instanceId = client.scheduleNewOrchestrationInstance("HelloWorld", input);
+System.out.println("Started orchestration with ID = '" + instanceId + "'.");
+
+// Optionally, wait for the orchestration to start
+OrchestrationMetadata metadata = client.waitForInstanceStart(instanceId, Duration.ofSeconds(30), false);
+```
+
+# [JavaScript](#tab/javascript)
+
+The Durable Task SDK is not available for JavaScript. Use [Durable Functions](durable-functions-overview.md) instead.
+
+# [PowerShell](#tab/powershell)
+
+The Durable Task SDK is not available for PowerShell. Use [Durable Functions](durable-functions-overview.md) instead.
+
+---
+
+::: zone-end
 
 ## Query instances
 
-After starting new orchestration instances, you'll most likely need to query their runtime status to learn whether they are running, have completed, or have failed.
+After you start new orchestration instances, you most likely need to query their runtime status to learn whether they're running, completed, or failed.
 
-The *get-status* method on the [orchestration client binding](durable-functions-bindings.md#orchestration-client) queries the status of an orchestration instance.
+The *get-status* method on the orchestration client returns the status of an orchestration instance.
 
 It takes an `instanceId` (required), `showHistory` (optional), `showHistoryOutput` (optional), and `showInput` (optional) as parameters.
 
+::: zone pivot="durable-functions"
+
 * **`showHistory`**: If set to `true`, the response contains the execution history.
 * **`showHistoryOutput`**: If set to `true`, the execution history contains activity outputs.
-* **`showInput`**: If set to `false`, the response won't contain the input of the function. The default value is `true`.
+* **`showInput`**: If set to `false`, the response doesn't contain the input of the function. The default value is `true`.
 
 The method returns an object with the following properties:
 
@@ -245,7 +307,7 @@ The method returns an object with the following properties:
 * **InstanceId**: The instance ID of the orchestration (should be the same as the `instanceId` input).
 * **CreatedTime**: The time at which the orchestrator function started running.
 * **LastUpdatedTime**: The time at which the orchestration last checkpointed.
-* **Input**: The input of the function as a JSON value. This field isn't populated if `showInput` is false.
+* **Input**: The input of the function as a JSON value. This field isn't populated if `showInput` is `false`.
 * **CustomStatus**: Custom orchestration status in JSON format.
 * **Output**: The output of the function as a JSON value (if the function has completed). If the orchestrator function failed, this property includes the failure details. If the orchestrator function was suspended or terminated, this property includes the reason for the suspension or termination (if any).
 * **RuntimeStatus**: One of the following values:
@@ -258,10 +320,41 @@ The method returns an object with the following properties:
   * **Suspended**: The instance was suspended and may be resumed at a later point in time.
 * **History**: The execution history of the orchestration. This field is only populated if `showHistory` is set to `true`.
 
+::: zone-end
+
+::: zone pivot="durable-task-sdks"
+
+* **`showHistory`**: If set to `true`, the response contains the execution history.
+* **`showHistoryOutput`**: If set to `true`, the execution history contains activity outputs.
+* **`showInput`**: If set to `false`, the response doesn't contain the input of the orchestration. The default value is `true`.
+
+The method returns an object with the following properties:
+
+* **Name**: The name of the orchestration.
+* **InstanceId**: The instance ID of the orchestration (should be the same as the `instanceId` input).
+* **CreatedTime**: The time at which the orchestration started running.
+* **LastUpdatedTime**: The time at which the orchestration last checkpointed.
+* **Input**: The input of the orchestration as a JSON value. This field isn't populated if `showInput` is `false`.
+* **CustomStatus**: Custom orchestration status in JSON format.
+* **Output**: The output of the orchestration as a JSON value (if the orchestration has completed). If the orchestration failed, this property includes the failure details. If the orchestration was suspended or terminated, this property includes the reason for the suspension or termination (if any).
+* **RuntimeStatus**: One of the following values:
+  * **Pending**: The instance has been scheduled but has not yet started running.
+  * **Running**: The instance has started running.
+  * **Completed**: The instance has completed normally.
+  * **ContinuedAsNew**: The instance has restarted itself with a new history. This state is a transient state.
+  * **Failed**: The instance failed with an error.
+  * **Terminated**: The instance was stopped abruptly.
+  * **Suspended**: The instance was suspended and may be resumed at a later point in time.
+* **History**: The execution history of the orchestration. This field is only populated if `showHistory` is set to `true`.
+
+::: zone-end
+
 > [!NOTE]
-> An orchestrator is not marked as `Completed` until all of its scheduled tasks have finished *and* the orchestrator has returned. In other words, it is not sufficient for an orchestrator to reach its `return` statement for it to be marked as `Completed`. This is particularly relevant for cases where `WhenAny` is used; those orchestrators often `return` before all the scheduled tasks have executed.
+> An orchestrator is not marked as `Completed` until all of its scheduled tasks have finished *and* the orchestrator has returned. In other words, it isn't sufficient for an orchestrator to reach its `return` statement for it to be marked as `Completed`. This is particularly relevant for cases where `WhenAny` is used; those orchestrators often `return` before all the scheduled tasks have executed.
 
 This method returns `null` (.NET and Java), `undefined` (JavaScript), or `None` (Python) if the instance doesn't exist.
+
+::: zone pivot="durable-functions"
 
 # [C#](#tab/csharp)
 
@@ -293,7 +386,7 @@ module.exports = async function(context, instanceId) {
 }
 ```
 
-See [Start instances](#javascript-function-json) for the function.json configuration.
+For the *function.json* configuration, see [Start instances](#javascript-function-json).
 
 # [Python](#tab/python)
 
@@ -345,40 +438,67 @@ public void getStatus(
 
 ---
 
-### Azure Functions Core Tools
+::: zone-end
 
-It's also possible to get the status of an orchestration instance directly by using the [`func durable get-runtime-status` command](../functions-core-tools-reference.md#func-durable-get-runtime-status) in Core Tools.
+::: zone pivot="durable-task-sdks"
 
-> [!NOTE]
-> Core Tools commands are currently only supported when using the default [Azure Storage provider](durable-functions-storage-providers.md) for persisting runtime state.
+# [C#](#tab/csharp)
 
-The `durable get-runtime-status` command takes the following parameters:
+```csharp
+using Microsoft.DurableTask.Client;
 
-* **`id` (required)**: ID of the orchestration instance.
-* **`show-input` (optional)**: If set to `true`, the response contains the input of the function. The default value is `false`.
-* **`show-output` (optional)**: If set to `true`, the response contains the output of the function. The default value is `false`.
-* **`connection-string-setting` (optional)**: Name of the application setting containing the storage connection string to use. The default is `AzureWebJobsStorage`.
-* **`task-hub-name` (optional)**: Name of the Durable Functions task hub to use. The default is `DurableFunctionsHub`. It can also be set in [host.json](durable-functions-bindings.md#host-json), by using durableTask:HubName.
-
-The following command retrieves the status (including input and output) of an instance with an orchestration instance ID of 0ab8c55a66644d68a3a8b220b12d209c. It assumes that you are running the `func` command from the root directory of the function app:
-
-```bash
-func durable get-runtime-status --id 0ab8c55a66644d68a3a8b220b12d209c --show-input true --show-output true
+// Get the status of an orchestration instance
+OrchestrationMetadata? metadata = await client.GetInstanceAsync(instanceId, getInputsAndOutputs: true);
+if (metadata != null)
+{
+    OrchestrationRuntimeStatus status = metadata.RuntimeStatus;
+    // do something based on the current status
+}
 ```
 
-You can use the `durable get-history` command to retrieve the history of an orchestration instance. It takes the following parameters:
+# [Python](#tab/python)
 
-* **`id` (required)**: ID of the orchestration instance.
-* **`connection-string-setting` (optional)**: Name of the application setting containing the storage connection string to use. The default is `AzureWebJobsStorage`.
-* **`task-hub-name` (optional)**: Name of the Durable Functions task hub to use. The default is `DurableFunctionsHub`. It can also be set in host.json, by using durableTask:HubName.
+```python
+from durabletask.azuremanaged.client import DurableTaskSchedulerClient
 
-```bash
-func durable get-history --id 0ab8c55a66644d68a3a8b220b12d209c
+# Get the status of an orchestration instance
+state = client.get_orchestration_state(instance_id, fetch_payloads=True)
+if state is not None:
+    status = state.runtime_status
+    # do something based on the current status
 ```
+
+# [Java](#tab/java)
+
+```java
+import com.microsoft.durabletask.DurableTaskClient;
+import com.microsoft.durabletask.OrchestrationMetadata;
+
+// Get the status of an orchestration instance
+OrchestrationMetadata metadata = client.getInstanceMetadata(instanceId, true);
+if (metadata != null) {
+    OrchestrationRuntimeStatus status = metadata.getRuntimeStatus();
+    // do something based on the current status
+}
+```
+
+# [JavaScript](#tab/javascript)
+
+The Durable Task SDK is not available for JavaScript. Use [Durable Functions](durable-functions-overview.md) instead.
+
+# [PowerShell](#tab/powershell)
+
+The Durable Task SDK is not available for PowerShell. Use [Durable Functions](durable-functions-overview.md) instead.
+
+---
+
+::: zone-end
 
 ## Query all instances
 
-You can use APIs in your language SDK to query the statuses of all orchestration instances in your [task hub](durable-functions-task-hubs.md). This *"list-instances"* or *"get-status"* API returns a list of objects that represent the orchestration instances matching the query parameters.
+You can use APIs in your language SDK to query the statuses of all orchestration instances in your [task hub](durable-functions-task-hubs.md). This *"list-instances"* or *"get-status"* API returns a list of objects that represent the orchestration instances that match the query parameters.
+
+::: zone pivot="durable-functions"
 
 # [C#](#tab/csharp)
 
@@ -446,7 +566,7 @@ See [Start instances](#python-function-json) for the function.json configuration
 
 # [PowerShell](#tab/powershell)
 > [!NOTE]
-> This feature is currently not supported in PowerShell, but can be achieved using the [Durable Functions HTTP API](durable-functions-http-api.md).
+> This feature isn't currently supported in PowerShell, but you can achieve it using the [Durable Functions HTTP API](durable-functions-http-api.md).
 
 # [Java](#tab/java)
 
@@ -463,27 +583,69 @@ public String getAllStatus(
 ```
 ---
 
-### Azure Functions Core Tools
+::: zone-end
 
-It's also possible to query instances directly, by using the [`func durable get-instances` command](../functions-core-tools-reference.md#func-durable-get-instances) in Core Tools.
+::: zone pivot="durable-task-sdks"
 
-> [!NOTE]
-> The Core Tools commands are currently only supported when using the default [Azure Storage provider](durable-functions-storage-providers.md) for persisting runtime state.
+# [C#](#tab/csharp)
 
-The `durable get-instances` command takes the following parameters:
+```csharp
+using Microsoft.DurableTask.Client;
 
-* **`top` (optional)**: This command supports paging. This parameter corresponds to the number of instances retrieved per request. The default is 10.
-* **`continuation-token` (optional)**: A token to indicate which page or section of instances to retrieve. Each `get-instances` execution returns a token to the next set of instances.
-* **`connection-string-setting` (optional)**: Name of the application setting containing the storage connection string to use. The default is `AzureWebJobsStorage`.
-* **`task-hub-name` (optional)**: Name of the Durable Functions task hub to use. The default is `DurableFunctionsHub`. It can also be set in [host.json](durable-functions-bindings.md#host-json), by using durableTask:HubName.
+// Query all orchestration instances
+AsyncPageable<OrchestrationMetadata> instances = client.GetAllInstancesAsync(new OrchestrationQuery());
 
-```bash
-func durable get-instances
+await foreach (OrchestrationMetadata instance in instances)
+{
+    Console.WriteLine(instance.InstanceId);
+}
 ```
+
+# [Python](#tab/python)
+
+```python
+from durabletask.azuremanaged.client import DurableTaskSchedulerClient
+
+# Query all orchestration instances
+instances = client.list_orchestrations()
+
+for instance in instances:
+    print(instance.instance_id)
+```
+
+# [Java](#tab/java)
+
+```java
+import com.microsoft.durabletask.DurableTaskClient;
+import com.microsoft.durabletask.OrchestrationStatusQuery;
+import com.microsoft.durabletask.OrchestrationStatusQueryResult;
+
+// Query all orchestration instances
+OrchestrationStatusQuery query = new OrchestrationStatusQuery();
+OrchestrationStatusQueryResult result = client.queryInstances(query);
+
+for (OrchestrationMetadata instance : result.getOrchestrationState()) {
+    System.out.println(instance.getInstanceId());
+}
+```
+
+# [JavaScript](#tab/javascript)
+
+The Durable Task SDK is not available for JavaScript. Use [Durable Functions](durable-functions-overview.md) instead.
+
+# [PowerShell](#tab/powershell)
+
+The Durable Task SDK is not available for PowerShell. Use [Durable Functions](durable-functions-overview.md) instead.
+
+---
+
+::: zone-end
 
 ## Query instances with filters
 
-What if you don't really need all the information that a standard instance query can provide? For example, what if you're just looking for the orchestration creation time, or the orchestration runtime status? You can narrow your query by applying filters.
+What if you don't need all the information that a standard instance query provides? For example, what if you're just looking for the orchestration creation time or the orchestration runtime status? You can narrow your query by applying filters.
+
+::: zone pivot="durable-functions"
 
 # [C#](#tab/csharp)
 
@@ -593,34 +755,91 @@ public String getRunningInstances(
 
 ---
 
-### Azure Functions Core Tools
+::: zone-end
 
-In the Azure Functions Core Tools, you can also use the `durable get-instances` command with filters. In addition to the aforementioned `top`, `continuation-token`, `connection-string-setting`, and `task-hub-name` parameters, you can use three filter parameters (`created-after`, `created-before`, and `runtime-status`).
+::: zone pivot="durable-task-sdks"
 
-> [!NOTE]
-> The Core Tools commands are currently only supported when using the default [Azure Storage provider](durable-functions-storage-providers.md) for persisting runtime state.
+# [C#](#tab/csharp)
 
-The following are the parameters for the `durable get-instances` command.
+```csharp
+using Microsoft.DurableTask.Client;
 
-* **`created-after` (optional)**: Retrieve the instances created after this date/time (UTC). ISO 8601 formatted datetimes accepted.
-* **`created-before` (optional)**: Retrieve the instances created before this date/time (UTC). ISO 8601 formatted datetimes accepted.
-* **`runtime-status` (optional)**: Retrieve the instances with a particular status (for example, running or completed). Can provide multiple (space separated) statuses.
-* **`top` (optional)**: Number of instances retrieved per request. The default is 10.
-* **`continuation-token` (optional)**: A token to indicate which page or section of instances to retrieve. Each `get-instances` execution returns a token to the next set of instances.
-* **`connection-string-setting` (optional)**: Name of the application setting containing the storage connection string to use. The default is `AzureWebJobsStorage`.
-* **`task-hub-name` (optional)**: Name of the Durable Functions task hub to use. The default is `DurableFunctionsHub`. It can also be set in [host.json](durable-functions-bindings.md#host-json), by using durableTask:HubName.
+// Get running or pending instances created in the last 7 days
+var query = new OrchestrationQuery
+{
+    Statuses = new[] { OrchestrationRuntimeStatus.Running, OrchestrationRuntimeStatus.Pending },
+    CreatedFrom = DateTime.UtcNow.AddDays(-7),
+    CreatedTo = DateTime.UtcNow.AddDays(-1),
+    PageSize = 100
+};
 
-If you don't provide any filters (`created-after`, `created-before`, or `runtime-status`), the command simply retrieves `top` instances, with no regard to runtime status or creation time.
+AsyncPageable<OrchestrationMetadata> instances = client.GetAllInstancesAsync(query);
 
-```bash
-func durable get-instances --created-after 2021-03-10T13:57:31Z --created-before  2021-03-10T23:59Z --top 15
+await foreach (OrchestrationMetadata instance in instances)
+{
+    Console.WriteLine($"{instance.InstanceId}: {instance.RuntimeStatus}");
+}
 ```
+
+# [Python](#tab/python)
+
+```python
+from durabletask.azuremanaged.client import DurableTaskSchedulerClient
+from datetime import datetime, timedelta
+
+# Get running or pending instances created in the last 7 days
+instances = client.list_orchestrations(
+    created_time_from=datetime.utcnow() - timedelta(days=7),
+    created_time_to=datetime.utcnow() - timedelta(days=1),
+    runtime_status=['RUNNING', 'PENDING']
+)
+
+for instance in instances:
+    print(f"{instance.instance_id}: {instance.runtime_status}")
+```
+
+# [Java](#tab/java)
+
+```java
+import com.microsoft.durabletask.DurableTaskClient;
+import com.microsoft.durabletask.OrchestrationStatusQuery;
+import com.microsoft.durabletask.OrchestrationRuntimeStatus;
+import java.time.Duration;
+import java.time.Instant;
+import java.util.List;
+
+// Get running or pending instances created in the last 7 days
+OrchestrationStatusQuery filter = new OrchestrationStatusQuery()
+    .setRuntimeStatusList(List.of(OrchestrationRuntimeStatus.PENDING, OrchestrationRuntimeStatus.RUNNING))
+    .setCreatedTimeFrom(Instant.now().minus(Duration.ofDays(7)))
+    .setCreatedTimeTo(Instant.now().minus(Duration.ofDays(1)));
+
+OrchestrationStatusQueryResult result = client.queryInstances(filter);
+
+for (OrchestrationMetadata instance : result.getOrchestrationState()) {
+    System.out.println(instance.getInstanceId() + ": " + instance.getRuntimeStatus());
+}
+```
+
+# [JavaScript](#tab/javascript)
+
+The Durable Task SDK is not available for JavaScript. Use [Durable Functions](durable-functions-overview.md) instead.
+
+# [PowerShell](#tab/powershell)
+
+The Durable Task SDK is not available for PowerShell. Use [Durable Functions](durable-functions-overview.md) instead.
+
+---
+
+::: zone-end
 
 ## Terminate instances
 
-If you have an orchestration instance that is taking too long to run, or you just need to stop it before it completes for any reason, you can terminate it.
+If you have an orchestration instance that's taking too long to run, or you just need to stop it before it completes for any reason, you can terminate it.
 
 The two parameters for the terminate API are an *instance ID* and a *reason* string, which are written to logs and to the instance status.
+
+::: zone pivot="durable-functions"
 
 # [C#](#tab/csharp)
 
@@ -693,16 +912,61 @@ public void terminateInstance(
 
 ---
 
-A terminated instance will eventually transition into the `Terminated` state. However, this transition will not happen immediately. Rather, the terminate operation will be queued in the task hub along with other operations for that instance. You can use the [instance query](#query-instances) APIs to know when a terminated instance has actually reached the `Terminated` state.
+::: zone-end
+
+::: zone pivot="durable-task-sdks"
+
+# [C#](#tab/csharp)
+
+```csharp
+using Microsoft.DurableTask.Client;
+
+string reason = "Found a bug";
+await client.TerminateInstanceAsync(instanceId, reason);
+```
+
+# [Python](#tab/python)
+
+```python
+from durabletask.azuremanaged.client import DurableTaskSchedulerClient
+
+reason = "Found a bug"
+client.terminate_orchestration(instance_id, reason=reason)
+```
+
+# [Java](#tab/java)
+
+```java
+import com.microsoft.durabletask.DurableTaskClient;
+
+String reason = "Found a bug";
+client.terminate(instanceId, reason);
+```
+
+# [JavaScript](#tab/javascript)
+
+The Durable Task SDK is not available for JavaScript. Use [Durable Functions](durable-functions-overview.md) instead.
+
+# [PowerShell](#tab/powershell)
+
+The Durable Task SDK is not available for PowerShell. Use [Durable Functions](durable-functions-overview.md) instead.
+
+---
+
+::: zone-end
+
+A terminated instance eventually transitions into the `Terminated` state. However, this transition doesn't happen immediately. Rather, the terminate operation is queued in the task hub along with other operations for that instance. You can use the [instance query](#query-instances) APIs to know when a terminated instance has actually reached the `Terminated` state.
 
 > [!NOTE]
 > Instance termination doesn't currently propagate. Activity functions and sub-orchestrations run to completion, regardless of whether you've terminated the orchestration instance that called them.
 
 ## Suspend and Resume instances
 
-Suspending an orchestration allows you to stop a running orchestration. Unlike with termination, you have the option to resume a suspended orchestrator at a later point in time.
+Suspending an orchestration allows you to stop a running orchestration. Unlike termination, you can resume a suspended orchestrator later.
 
 The two parameters for the suspend API are an instance ID and a reason string, which are written to logs and to the instance status.
+
+::: zone pivot="durable-functions"
 
 # [C#](#tab/csharp)
 
@@ -800,41 +1064,91 @@ public void suspendResumeInstance(
 
 ---
 
-A suspended instance will eventually transition to the `Suspended` state. However, this transition will not happen immediately. Rather, the suspend operation will be queued in the task hub along with other operations for that instance. You can use the instance query APIs to know when a running instance has actually reached the Suspended state.
+::: zone-end
 
-When a suspended orchestrator is resumed, its status will change back to `Running`.
+::: zone pivot="durable-task-sdks"
 
-### Azure Functions Core Tools
+# [C#](#tab/csharp)
 
-You can also terminate an orchestration instance directly, by using the [`func durable terminate` command](../functions-core-tools-reference.md#func-durable-terminate) in Core Tools.
+```csharp
+using Microsoft.DurableTask.Client;
 
-> [!NOTE]
-> The Core Tools commands are currently only supported when using the default [Azure Storage provider](durable-functions-storage-providers.md) for persisting runtime state.
+// To suspend an orchestration
+string suspendReason = "Need to pause workflow";
+await client.SuspendInstanceAsync(instanceId, suspendReason);
 
-The `durable terminate` command takes the following parameters:
-
-* **`id` (required)**: ID of the orchestration instance to terminate.
-* **`reason` (optional)**: Reason for termination.
-* **`connection-string-setting` (optional)**: Name of the application setting containing the storage connection string to use. The default is `AzureWebJobsStorage`.
-* **`task-hub-name` (optional)**: Name of the Durable Functions task hub to use. The default is `DurableFunctionsHub`. It can also be set in [host.json](durable-functions-bindings.md#host-json), by using durableTask:HubName.
-
-The following command terminates an orchestration instance with an ID of 0ab8c55a66644d68a3a8b220b12d209c:
-
-```bash
-func durable terminate --id 0ab8c55a66644d68a3a8b220b12d209c --reason "Found a bug"
+// To resume an orchestration
+string resumeReason = "Continue workflow";
+await client.ResumeInstanceAsync(instanceId, resumeReason);
 ```
+
+# [Python](#tab/python)
+
+```python
+from durabletask.azuremanaged.client import DurableTaskSchedulerClient
+
+# To suspend an orchestration
+suspend_reason = "Need to pause workflow"
+client.suspend_orchestration(instance_id, reason=suspend_reason)
+
+# To resume an orchestration
+resume_reason = "Continue workflow"
+client.resume_orchestration(instance_id, reason=resume_reason)
+```
+
+# [Java](#tab/java)
+
+```java
+import com.microsoft.durabletask.DurableTaskClient;
+
+// To suspend an orchestration
+String suspendReason = "Need to pause workflow";
+client.suspendInstance(instanceId, suspendReason);
+
+// To resume an orchestration
+String resumeReason = "Continue workflow";
+client.resumeInstance(instanceId, resumeReason);
+```
+
+# [JavaScript](#tab/javascript)
+
+The Durable Task SDK is not available for JavaScript. Use [Durable Functions](durable-functions-overview.md) instead.
+
+# [PowerShell](#tab/powershell)
+
+The Durable Task SDK is not available for PowerShell. Use [Durable Functions](durable-functions-overview.md) instead.
+
+---
+
+::: zone-end
+
+A suspended instance eventually transitions to the `Suspended` state. However, this transition will not happen immediately. Rather, the suspend operation is queued in the task hub along with other operations for that instance. You can use the instance query APIs to know when a running instance has actually reached the Suspended state.
+
+When a suspended orchestrator is resumed, its status changes back to `Running`.
 
 ## Send events to instances
 
-In some scenarios, orchestrator functions need to wait and listen for external events. Examples scenarios where this is useful include the [monitoring](durable-functions-overview.md#monitoring) and [human interaction](durable-functions-overview.md#human) scenarios.
+::: zone pivot="durable-functions"
 
-You can send event notifications to running instances by using the *raise event* API of the [orchestration client](durable-functions-bindings.md#orchestration-client). Orchestrations can listen and respond to these events using the *wait for external event* orchestrator API.
+In some scenarios, orchestrator functions need to wait and listen for external events. Example scenarios where this is useful include the [monitoring](durable-functions-overview.md#monitoring) and [human interaction](durable-functions-overview.md#human) scenarios.
+
+::: zone-end
+
+::: zone pivot="durable-task-sdks"
+
+In some scenarios, orchestrations need to wait and listen for external events. Example scenarios where this is useful include the [monitoring](durable-functions-overview.md#monitoring) and [human interaction](durable-functions-overview.md#human) scenarios.
+
+::: zone-end
+
+You can send event notifications to running instances by using the *raise event* API of the orchestration client. Orchestrations can listen and respond to these events using the *wait for external event* orchestrator API.
 
 The parameters for *raise event* are as follows:
 
 * *Instance ID*: The unique ID of the instance.
 * *Event name*: The name of the event to send.
 * *Event data*: A JSON-serializable payload to send to the instance.
+
+::: zone pivot="durable-functions"
 
 # [C#](#tab/csharp)
 
@@ -909,39 +1223,61 @@ public void raiseEvent(
 
 ---
 
-> [!NOTE]
-> If there is no orchestration instance with the specified instance ID, the event message is discarded. If an instance exists but it is not yet waiting for the event, the event will be stored in the instance state until it is ready to be received and processed.
+::: zone-end
 
-### Azure Functions Core Tools
+::: zone pivot="durable-task-sdks"
 
-You can also raise an event to an orchestration instance directly, by using the [`func durable raise-event` command](../functions-core-tools-reference.md#func-durable-raise-event) in Core Tools.
+# [C#](#tab/csharp)
 
-> [!NOTE]
-> The Core Tools commands are currently only supported when using the default [Azure Storage provider](durable-functions-storage-providers.md) for persisting runtime state.
+```csharp
+using Microsoft.DurableTask.Client;
 
-The `durable raise-event` command takes the following parameters:
-
-* **`id` (required)**: ID of the orchestration instance.
-* **`event-name`**: Name of the event to raise.
-* **`event-data` (optional)**: Data to send to the orchestration instance. This can be the path to a JSON file, or you can provide the data directly on the command line.
-* **`connection-string-setting` (optional)**: Name of the application setting containing the storage connection string to use. The default is `AzureWebJobsStorage`.
-* **`task-hub-name` (optional)**: Name of the Durable Functions task hub to use. The default is `DurableFunctionsHub`. It can also be set in [host.json](durable-functions-bindings.md#host-json), by using durableTask:HubName.
-
-```bash
-func durable raise-event --id 0ab8c55a66644d68a3a8b220b12d209c --event-name MyEvent --event-data @eventdata.json
+int[] eventData = new int[] { 1, 2, 3 };
+await client.RaiseEventAsync(instanceId, "MyEvent", eventData);
 ```
 
-```bash
-func durable raise-event --id 1234567 --event-name MyOtherEvent --event-data 3
+# [Python](#tab/python)
+
+```python
+from durabletask.azuremanaged.client import DurableTaskSchedulerClient
+
+event_data = [1, 2, 3]
+client.raise_orchestration_event(instance_id, "MyEvent", event_data)
 ```
+
+# [Java](#tab/java)
+
+```java
+import com.microsoft.durabletask.DurableTaskClient;
+
+int[] eventData = { 1, 2, 3 };
+client.raiseEvent(instanceId, "MyEvent", eventData);
+```
+
+# [JavaScript](#tab/javascript)
+
+The Durable Task SDK is not available for JavaScript. Use [Durable Functions](durable-functions-overview.md) instead.
+
+# [PowerShell](#tab/powershell)
+
+The Durable Task SDK is not available for PowerShell. Use [Durable Functions](durable-functions-overview.md) instead.
+
+---
+
+::: zone-end
+
+> [!NOTE]
+> If there's no orchestration instance with the specified instance ID, the event message is discarded. If an instance exists but it is not yet waiting for the event, the event is stored in the instance state until it's ready to be received and processed.
 
 ## Wait for orchestration completion
 
-In long-running orchestrations, you may want to wait and get the results of an orchestration. In these cases, it's also useful to be able to define a timeout period on the orchestration. If the timeout is exceeded, the state of the orchestration should be returned instead of the results.
+In long-running orchestrations, you might want to wait and get the results of an orchestration. In these cases, it's also useful to be able to define a timeout period on the orchestration. If the timeout is exceeded, the state of the orchestration should be returned instead of the results.
 
-The *"wait for completion or create check status response"* API can be used to get the actual output from an orchestration instance synchronously. By default, this method has a default timeout of 10 seconds and a polling interval of 1 second.
+The *"wait for completion or create check status response"* API can be used to get the actual output from an orchestration instance synchronously. By default, this method has a timeout of 10 seconds and a polling interval of 1 second.
 
 Here is an example HTTP-trigger function that demonstrates how to use this API:
+
+::: zone pivot="durable-functions"
 
 # [C#](#tab/csharp)
 
@@ -992,7 +1328,7 @@ def get_time_in_seconds(req: func.HttpRequest, query_parameter_name: str):
 
 # [Java](#tab/java)
 
-Java doesn't currently have a single method for this scenario. However, it can be implemented using a few extra lines of code.
+Java doesn't currently have a single method for this scenario, but you can implement it using a few extra lines of code.
 
 <!-- Tracking issue: https://github.com/microsoft/durabletask-java/issues/64 -->
 
@@ -1026,6 +1362,76 @@ public HttpResponseMessage httpStartAndWait(
 ```
 
 ---
+
+::: zone-end
+
+::: zone pivot="durable-task-sdks"
+
+The Durable Task SDKs provide a method to wait for an orchestration to complete synchronously.
+
+# [C#](#tab/csharp)
+
+```csharp
+using Microsoft.DurableTask.Client;
+
+// Wait for orchestration to complete with a timeout
+OrchestrationMetadata metadata = await client.WaitForInstanceCompletionAsync(
+    instanceId,
+    timeout: TimeSpan.FromSeconds(30),
+    getInputsAndOutputs: true);
+
+if (metadata.RuntimeStatus == OrchestrationRuntimeStatus.Completed)
+{
+    Console.WriteLine($"Output: {metadata.SerializedOutput}");
+}
+```
+
+# [Python](#tab/python)
+
+```python
+from durabletask.azuremanaged.client import DurableTaskSchedulerClient
+
+# Wait for orchestration to complete with a timeout
+state = client.wait_for_orchestration_completion(
+    instance_id,
+    timeout=30,
+    fetch_payloads=True)
+
+if state.runtime_status == 'COMPLETED':
+    print(f"Output: {state.serialized_output}")
+```
+
+# [Java](#tab/java)
+
+```java
+import com.microsoft.durabletask.DurableTaskClient;
+import com.microsoft.durabletask.OrchestrationMetadata;
+import java.time.Duration;
+import java.util.concurrent.TimeoutException;
+
+// Wait for orchestration to complete with a timeout
+try {
+    OrchestrationMetadata metadata = client.waitForInstanceCompletion(
+            instanceId,
+            Duration.ofSeconds(30),
+            true /* getInputsAndOutputs */);
+    System.out.println("Output: " + metadata.getSerializedOutput());
+} catch (TimeoutException e) {
+    System.out.println("Orchestration did not complete within timeout");
+}
+```
+
+# [JavaScript](#tab/javascript)
+
+The Durable Task SDK is not available for JavaScript. Use [Durable Functions](durable-functions-overview.md) instead.
+
+# [PowerShell](#tab/powershell)
+
+The Durable Task SDK is not available for PowerShell. Use [Durable Functions](durable-functions-overview.md) instead.
+
+---
+
+::: zone-end
 
 Call the function with the following line. Use 2 seconds for the timeout and 0.5 second for the retry interval:
 
@@ -1074,7 +1480,9 @@ Transfer-Encoding: chunked
 ```
 
 > [!NOTE]
-> The format of the webhook URLs might differ, depending on which version of the Azure Functions host you are running. The preceding example is for the Azure Functions 3.0 host.
+> The format of the webhook URLs might differ, depending on which version of the Azure Functions host you're running. The preceding example is for the Azure Functions 3.0 host.
+
+::: zone pivot="durable-functions"
 
 ## Retrieve HTTP management webhook URLs
 
@@ -1084,7 +1492,7 @@ The *create HTTP management payload* API has one parameter:
 
 * *Instance ID*: The unique ID of the instance.
 
-The methods return an object with the following string properties:
+The methods return an object with the following string properties.
 
 * **Id**: The instance ID of the orchestration (should be the same as the `InstanceId` input).
 * **StatusQueryGetUri**: The status URL of the orchestration instance.
@@ -1094,7 +1502,7 @@ The methods return an object with the following string properties:
 * **suspendPostUri**: The "suspend" URL of the orchestration instance.
 * **resumePostUri**: The "resume" URL of the orchestration instance.
 
-Functions can send instances of these objects to external systems to monitor or raise events on the corresponding orchestrations, as shown in the following examples:
+Functions can send instances of these objects to external systems to monitor or raise events on the corresponding orchestrations, as shown in the following examples.
 
 # [C#](#tab/csharp)
 
@@ -1172,23 +1580,27 @@ Push-OutputBinding -Name Response -Value $Response
 <!-- Tracking issue: https://github.com/microsoft/durabletask-java/issues/63 -->
 
 > [!NOTE]
-> This feature is currently not supported in Java.
+> Java doesn't currently support this feature.
 
 ---
+
+::: zone-end
 
 ## Rewind instances
 
 If you have an orchestration failure for an unexpected reason, you can *rewind* the instance to a previously healthy state by using an API built for that purpose.
 
 > [!NOTE]
-> This API is not intended to be a replacement for proper error handling and retry policies. Rather, it is intended to be used only in cases where orchestration instances fail for unexpected reasons. Orchestrations in states other than `Failed` (e.g., `Running`, `Pending`, `Terminated`, `Completed`) cannot be "rewound". For more information on error handling and retry policies, see the [Error handling](durable-functions-error-handling.md) article.
+> This API isn't intended to be a replacement for proper error handling and retry policies. Rather, it is intended to be used only in cases where orchestration instances fail for unexpected reasons. Orchestrations in states other than `Failed` (for example, `Running`, `Pending`, `Terminated`, `Completed`) can't be "rewound". For more information on error handling and retry policies, see the [Error handling](durable-functions-error-handling.md) article.
 
-Use the `RewindAsync` (.NET) or `rewind` (JavaScript) method of the orchestration client binding to put the orchestration back into the `Running` state. This method reruns the activity or sub-orchestration execution failures that caused the orchestration failure. The method only attempts to rerun failed activities, either within the parent or failed sub-orchestrations. It doesn't remedy orchestrations that failed for other reasons.
+Use the `RewindAsync` (.NET) or `rewind` (JavaScript) method of the [orchestration client binding](durable-functions-bindings.md#orchestration-client) to put the orchestration back into the *Running* state. This method also reruns the activity or sub-orchestration execution failures that caused the orchestration failure.
 
-For example, let's say you have a workflow involving a series of [human approvals](durable-functions-overview.md#human). Suppose there are a series of activity functions that notify someone that their approval is needed, and wait out the real-time response. After all of the approval activities have received responses or timed out, suppose that another activity fails due to an application misconfiguration, such as an invalid database connection string. The result is an orchestration failure deep into the workflow. With the `RewindAsync` (.NET) or `rewind` (JavaScript) API, an application administrator can fix the configuration error, and rewind the failed orchestration back to the state immediately before the failure. None of the human-interaction steps need to be re-approved, and the orchestration can now complete successfully.
+For example, say you have a workflow involving a series of [human approvals](durable-functions-overview.md#human). Suppose there are a series of activity functions that notify someone that their approval is needed, and wait out the real-time response. After all the approval activities receive responses or time out, suppose another activity fails because of an application misconfiguration, such as an invalid database connection string. The result is an orchestration failure deep into the workflow. With the `RewindAsync` (.NET) or `rewind` (JavaScript) API, an application administrator can fix the configuration error, and rewind the failed orchestration back to the state immediately before the failure. None of the human-interaction steps need to be re-approved, and the orchestration can now complete successfully.
 
 > [!NOTE]
 > The *rewind* feature doesn't support rewinding orchestration instances that use durable timers.
+
+::: zone pivot="durable-functions"
 
 # [C#](#tab/csharp)
 
@@ -1224,7 +1636,7 @@ See [Start instances](#javascript-function-json) for the function.json configura
 # [Python](#tab/python)
 
 > [!NOTE]
-> This feature is currently not supported in Python.
+> Python doesn't currently support this feature.
 
 <!-- ```python
 import azure.functions as func
@@ -1240,7 +1652,7 @@ async def main(req: func.HttpRequest, starter: str, instance_id: str) -> func.Ht
 # [PowerShell](#tab/powershell)
 
 > [!NOTE]
-> This feature is currently not supported in PowerShell.
+> PowerShell doesn't currently support this feature.
 
 # [Java](#tab/java)
 
@@ -1264,29 +1676,130 @@ public void rewind(
 
 ---
 
-### Azure Functions Core Tools
+::: zone-end
 
-You can also rewind an orchestration instance directly by using the [`func durable rewind` command](../functions-core-tools-reference.md#func-durable-rewind) in Core Tools.
+::: zone pivot="durable-task-sdks"
+
+Currently, only the Durable Task .NET SDK supports rewinding failed orchestration instances.
+
+# [C#](#tab/csharp)
+
+```csharp
+using Microsoft.DurableTask.Client;
+
+string reason = "Orchestrator failed and needs to be revived.";
+await client.RewindInstanceAsync(instanceId, reason);
+```
+
+# [JavaScript](#tab/javascript)
+
+This sample is shown for .NET only.
+
+# [Python](#tab/python)
+
+This sample is shown for .NET only.
+
+# [PowerShell](#tab/powershell)
+
+This sample is shown for .NET only.
+
+# [Java](#tab/java)
+
+This sample is shown for .NET only.
+
+---
+
+::: zone-end
+
+## Restart instances
+
+Restarting an orchestration creates a new instance using the history of a previously run instance. This feature is useful when you want to rerun an orchestration with the same input and instance ID pattern, essentially creating a fresh run based on the original.
+
+::: zone pivot="durable-functions"
+
+# [C#](#tab/csharp)
+
+```csharp
+[FunctionName("RestartInstance")]
+public static Task Run(
+    [DurableClient] IDurableOrchestrationClient client,
+    [QueueTrigger("restart-queue")] string instanceId)
+{
+    return client.RestartAsync(instanceId, restartWithNewInstanceId: true);
+}
+```
 
 > [!NOTE]
-> The Core Tools commands are currently only supported when using the default [Azure Storage provider](durable-functions-storage-providers.md) for persisting runtime state.
+> The previous C# code is for Durable Functions 2.x. For Durable Functions 1.x, you must use `OrchestrationClient` attribute instead of the `DurableClient` attribute, and you must use the `DurableOrchestrationClient` parameter type instead of `IDurableOrchestrationClient`. For more information about the differences between versions, see the [Durable Functions versions](durable-functions-versions.md) article.
 
-The `durable rewind` command takes the following parameters:
+# [JavaScript](#tab/javascript)
 
-* **`id` (required)**: ID of the orchestration instance.
-* **`reason` (optional)**: Reason for rewinding the orchestration instance.
-* **`connection-string-setting` (optional)**: Name of the application setting containing the storage connection string to use. The default is `AzureWebJobsStorage`.
-* **`task-hub-name` (optional)**: Name of the Durable Functions task hub to use. By default, the task hub name in the [host.json](durable-functions-bindings.md#host-json) file is used.
+> [!NOTE]
+> JavaScript doesn't currently support this feature.
 
-```bash
-func durable rewind --id 0ab8c55a66644d68a3a8b220b12d209c --reason "Orchestrator failed and needs to be revived."
+# [Python](#tab/python)
+
+> [!NOTE]
+> This feature is currently not supported in Python.
+
+# [PowerShell](#tab/powershell)
+
+> [!NOTE]
+> This feature is currently not supported in PowerShell.
+
+# [Java](#tab/java)
+
+> [!NOTE]
+> This feature is currently not supported in Java.
+
+---
+
+::: zone-end
+
+::: zone pivot="durable-task-sdks"
+
+Currently, only the Durable Task .NET SDK supports restarting orchestration instances.
+
+# [C#](#tab/csharp)
+
+```csharp
+using Microsoft.DurableTask.Client;
+
+// Restart an orchestration with a new instance ID
+string newInstanceId = await client.RestartInstanceAsync(instanceId, restartWithNewInstanceId: true);
+Console.WriteLine($"Restarted as new instance: {newInstanceId}");
+
+// Restart an orchestration keeping the same instance ID
+await client.RestartInstanceAsync(instanceId, restartWithNewInstanceId: false);
 ```
+
+# [JavaScript](#tab/javascript)
+
+This sample is shown for .NET only.
+
+# [Python](#tab/python)
+
+This sample is shown for .NET only.
+
+# [PowerShell](#tab/powershell)
+
+This sample is shown for .NET only.
+
+# [Java](#tab/java)
+
+This sample is shown for .NET only.
+
+---
+
+::: zone-end
 
 ## Purge instance history
 
 To remove all the data associated with an orchestration, you can purge the instance history. For example, you might want to delete any storage resources associated with a completed instance. To do so, use the *purge instance* API defined by the [orchestration client](durable-functions-bindings.md#orchestration-client).
 
-This first example shows how to purge a single orchestration instance.
+The first example shows how to purge a single orchestration instance.
+
+::: zone pivot="durable-functions"
 
 # [C#](#tab/csharp)
 
@@ -1353,7 +1866,56 @@ public HttpResponseMessage purgeInstance(
 
 ---
 
+::: zone-end
+
+::: zone pivot="durable-task-sdks"
+
+# [C#](#tab/csharp)
+
+```csharp
+using Microsoft.DurableTask.Client;
+
+// Purge a single orchestration instance
+PurgeResult result = await client.PurgeInstanceAsync(instanceId);
+Console.WriteLine($"Purged {result.PurgedInstanceCount} instance(s).");
+```
+
+# [Python](#tab/python)
+
+```python
+from durabletask.azuremanaged.client import DurableTaskSchedulerClient
+
+# Purge a single orchestration instance
+result = client.purge_orchestration(instance_id)
+print(f"Purged {result.deleted_instance_count} instance(s).")
+```
+
+# [Java](#tab/java)
+
+```java
+import com.microsoft.durabletask.DurableTaskClient;
+import com.microsoft.durabletask.PurgeResult;
+
+// Purge a single orchestration instance
+PurgeResult result = client.purgeInstance(instanceId);
+System.out.println("Purged " + result.getDeletedInstanceCount() + " instance(s).");
+```
+
+# [JavaScript](#tab/javascript)
+
+The Durable Task SDK is not available for JavaScript. Use [Durable Functions](durable-functions-overview.md) instead.
+
+# [PowerShell](#tab/powershell)
+
+The Durable Task SDK is not available for PowerShell. Use [Durable Functions](durable-functions-overview.md) instead.
+
+---
+
+::: zone-end
+
 The next example shows a timer-triggered function that purges the history for all orchestration instances that completed after the specified time interval. In this case, it removes data for all instances completed 30 or more days ago. This example function is scheduled to run once per day, at 12:00 PM UTC:
+
+::: zone pivot="durable-functions"
 
 # [C#](#tab/csharp)
 
@@ -1459,52 +2021,89 @@ public void purgeInstances(
 
 ---
 
+::: zone-end
+
+::: zone pivot="durable-task-sdks"
+
+# [C#](#tab/csharp)
+
+```csharp
+using Microsoft.DurableTask.Client;
+
+// Purge completed instances older than 30 days
+var filter = new PurgeInstancesFilter(
+    CreatedFrom: DateTime.MinValue,
+    CreatedTo: DateTime.UtcNow.AddDays(-30),
+    Statuses: new[] { OrchestrationRuntimeStatus.Completed });
+
+PurgeResult result = await client.PurgeAllInstancesAsync(filter);
+Console.WriteLine($"Purged {result.PurgedInstanceCount} instance(s).");
+```
+
+# [Python](#tab/python)
+
+```python
+from durabletask.azuremanaged.client import DurableTaskSchedulerClient
+from datetime import datetime, timedelta
+
+# Purge completed instances older than 30 days
+result = client.purge_orchestrations(
+    created_time_from=datetime.min,
+    created_time_to=datetime.utcnow() - timedelta(days=30),
+    runtime_status=['COMPLETED']
+)
+print(f"Purged {result.deleted_instance_count} instance(s).")
+```
+
+# [Java](#tab/java)
+
+```java
+import com.microsoft.durabletask.DurableTaskClient;
+import com.microsoft.durabletask.PurgeInstanceCriteria;
+import com.microsoft.durabletask.PurgeResult;
+import com.microsoft.durabletask.OrchestrationRuntimeStatus;
+import java.time.Duration;
+import java.time.Instant;
+import java.util.List;
+
+// Purge completed instances older than 30 days
+PurgeInstanceCriteria criteria = new PurgeInstanceCriteria()
+    .setCreatedTimeTo(Instant.now().minus(Duration.ofDays(30)))
+    .setRuntimeStatusList(List.of(OrchestrationRuntimeStatus.COMPLETED));
+
+PurgeResult result = client.purgeInstances(criteria);
+System.out.println("Purged " + result.getDeletedInstanceCount() + " instance(s).");
+```
+
+# [JavaScript](#tab/javascript)
+
+The Durable Task SDK is not available for JavaScript. Use [Durable Functions](durable-functions-overview.md) instead.
+
+# [PowerShell](#tab/powershell)
+
+The Durable Task SDK is not available for PowerShell. Use [Durable Functions](durable-functions-overview.md) instead.
+
+---
+
+::: zone-end
+
 > [!NOTE]
 > For the purge history operation to succeed, the runtime status of the target instance must be **Completed**, **Terminated**, or **Failed**.
 
-### Azure Functions Core Tools
-
-You can purge an orchestration instance's history by using the [`func durable purge-history` command](../functions-core-tools-reference.md#func-durable-purge-history) in Core Tools. Similar to the second C# example in the preceding section, it purges the history for all orchestration instances created during a specified time interval. You can further filter purged instances by runtime status.
-
-> [!NOTE]
-> The Core Tools commands are currently only supported when using the default [Azure Storage provider](durable-functions-storage-providers.md) for persisting runtime state.
-
-The `durable purge-history` command has several parameters:
-
-* **`created-after` (optional)**: Purge the history of instances created after this date/time (UTC). ISO 8601 formatted datetimes accepted.
-* **`created-before` (optional)**: Purge the history of instances created before this date/time (UTC). ISO 8601 formatted datetimes accepted.
-* **`runtime-status` (optional)**: Purge the history of instances with a particular status (for example, running or completed). Can provide multiple (space separated) statuses.
-* **`connection-string-setting` (optional)**: Name of the application setting containing the storage connection string to use. The default is `AzureWebJobsStorage`.
-* **`task-hub-name` (optional)**: Name of the Durable Functions task hub to use. By default, the task hub name in the [host.json](durable-functions-bindings.md#host-json) file is used.
-
-The following command deletes the history of all failed instances created before November 14, 2021 at 7:35 PM (UTC).
-
-```bash
-func durable purge-history --created-before 2021-11-14T19:35:00.0000000Z --runtime-status failed
-```
-
-## Delete a task hub
-
-Using the [`func durable delete-task-hub` command](../functions-core-tools-reference.md#func-durable-delete-task-hub) in Core Tools, you can delete all storage artifacts associated with a particular task hub, including Azure storage tables, queues, and blobs. 
-
-> [!NOTE]
-> The Core Tools commands are currently only supported when using the default [Azure Storage provider](durable-functions-storage-providers.md) for persisting runtime state.
-
-The `durable delete-task-hub` command has two parameters:
-
-* **`connection-string-setting` (optional)**: Name of the application setting containing the storage connection string to use. The default is `AzureWebJobsStorage`.
-* **`task-hub-name` (optional)**: Name of the Durable Functions task hub to use. By default, the task hub name in the [host.json](durable-functions-bindings.md#host-json) file is used.
-
-The following command deletes all Azure storage data associated with the `UserTest` task hub.
-
-```bash
-func durable delete-task-hub --task-hub-name UserTest
-```
-
 ## Next steps
 
+::: zone pivot="durable-functions"
 > [!div class="nextstepaction"]
 > [Learn how to handle versioning](durable-functions-versioning.md)
 
 > [!div class="nextstepaction"]
 > [Built-in HTTP API reference for instance management](durable-functions-http-api.md)
+::: zone-end
+
+::: zone pivot="durable-task-sdks"
+> [!div class="nextstepaction"]
+> [Get started with Durable Task SDKs](durable-task-scheduler/quickstart-portable-durable-task-sdks.md)
+
+> [!div class="nextstepaction"]
+> [Learn about the Durable Task Scheduler](durable-task-scheduler/durable-task-overview.md)
+::: zone-end

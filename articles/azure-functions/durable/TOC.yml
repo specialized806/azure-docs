@@ -68,41 +68,17 @@
   - name: Orchestration features
     items: 
     - name: Instance management
-      items:
-      - name: Durable Functions
-        href: durable-functions-instance-management.md
-      - name: Durable Task SDKs
-        href: durable-functions-overview.md #placeholder
+      href: durable-functions-instance-management.md
     - name: Eternal orchestrations
-      items:
-      - name: Durable Functions
-        href: durable-functions-eternal-orchestrations.md
-      - name: Durable Task SDKs
-        href: durable-functions-overview.md #placeholder
+      href: durable-functions-eternal-orchestrations.md
     - name: Singleton orchestrations
-      items:
-      - name: Durable Functions
-        href: durable-functions-singletons.md
-      - name: Durable Task SDKs
-        href: durable-functions-overview.md #placeholder
+      href: durable-functions-singletons.md
     - name: External events
-      items:
-      - name: Durable Functions
-        href: durable-functions-external-events.md
-      - name: Durable Task SDKs
-        href: durable-functions-overview.md #placeholder
-    - name: Timers
-      items:
-      - name: Durable Functions
-        href: durable-functions-timers.md
-      - name: Durable Task SDKs
-        href: durable-functions-overview.md #placeholder
+      href: durable-functions-external-events.md
+    - name: Durable Timers
+      href: durable-functions-timers.md
     - name: Custom orchestration status
-      items:  
-      - name: Durable Functions
-        href: durable-functions-custom-orchestration-status.md
-      - name: Durable Task SDKs
-        href: durable-functions-overview.md #placeholder
+      href: durable-functions-custom-orchestration-status.md
 - name: Durable Functions
   items:
   - name: Overview
