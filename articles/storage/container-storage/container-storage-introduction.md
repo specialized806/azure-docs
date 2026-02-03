@@ -54,13 +54,13 @@ The following table lists key features of Azure Container Storage and indicates 
 
 | Feature | Local NVMe | Elastic SAN |
 |---|---|---|
-| Ephemeral volumes | [Supported](./use-container-storage-with-local-disk.md) | Not supported |
-| Persistent volumes | [Supported<sup>1</sup>](./use-container-storage-with-local-disk.md) | [Supported](./use-container-storage-with-elastic-san.md) |
-| PV expansion/resize | [Supported](./resize-volume.md) | [Supported](./resize-volume.md) |
-| Snapshots | Not supported | [Supported](./volume-snapshot-restore.md) |
+| Ephemeral volumes | Supported | Not supported |
+| Persistent volumes | Supported<sup>1</sup> | Supported |
+| PV expansion/resize | Supported | Supported |
+| Snapshots | Not supported | Supported |
 | Replication | Not supported | Supported (LRS and ZRS) |
-| ZRS option | N/A | [Supported](./enable-multi-zone-redundancy.md) |
-| Encryption | N/A | [Supported](./configure-encryption-for-elastic-san.md) |
+| ZRS option | N/A | Supported |
+| Encryption | N/A | Supported |
 
 <sup>1</sup> By default, Azure Container Storage uses generic ephemeral volumes for local NVMe disks, which means data isn't retained after pod deletion. To enable persistent volumes that aren't linked to the lifecycle of the pod, add the appropriate annotation to your persistent volume claim (PVC). For details, see [Create persistent volumes with local NVMe disks](use-container-storage-with-local-disk.md).
 
