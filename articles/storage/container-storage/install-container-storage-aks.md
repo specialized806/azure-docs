@@ -185,14 +185,10 @@ For local use, set the Azure CLI context:
 az account set --subscription <subscription-id>
 ```
 
-## Install Azure Container Storage on an AKS cluster
-
-Choose the scenario that matches your environment.
+## Install Azure Container Storage on a new AKS cluster
 
 > [!IMPORTANT]
 > Azure Container Storage installs the latest available version and updates itself automatically. Manual version selection isn't supported.
-
-### Option 1: Create a new AKS cluster with Azure Container Storage enabled
 
 1. In an empty working directory, create a `main.tf` file with the following minimal configuration of an AKS cluster. Update the resource names, locations, and VM sizes to meet your requirements.
 
@@ -271,7 +267,7 @@ Choose the scenario that matches your environment.
     terraform apply
     ```
 
-### Option 2: Enable Azure Container Storage on an existing AKS cluster
+## Install Azure Container Storage on an existing AKS cluster
 
 If your AKS cluster already exists and you manage it outside of Terraform, you can still enable Azure Container Storage by authoring only the extension resource. Use a data source to look up the cluster ID.
 
