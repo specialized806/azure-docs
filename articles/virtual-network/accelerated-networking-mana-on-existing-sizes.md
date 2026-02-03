@@ -1,5 +1,5 @@
 ---
-title: Microsoft Azure Network Adapter (MANA) suppot for existing VM SKUs
+title: Microsoft Azure Network Adapter (MANA) support for existing VM SKUs
 description: Update for Microsoft Azure Network Adapter (MANA) support for existing VM SKUs
 author: alisheriffMSFT
 ms.service: azure-virtual-network
