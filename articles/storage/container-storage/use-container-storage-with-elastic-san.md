@@ -9,7 +9,7 @@ ms.author: saurabsharma
 ms.custom:
   - references_regions
 
-# Customer intent: "As a Kubernetes administrator, I want to configure Azure Container Storage with Azure Elastic SAN so that I can efficiently manage persistent storage for my containerized applications."
+# Customer intent: "As a Kubernetes administrator, I want to configure Azure Container Storage to use Azure Elastic SAN as backing storage so that I can efficiently manage persistent storage for my containerized applications."
 ---
 
 # Use Azure Container Storage with Azure Elastic SAN
