@@ -307,7 +307,7 @@ productDirectory:
       summary: Import, transform, analyze, and govern data
       imageSrc: ./media/index/fabric.svg
       azureCategories:
-        - databases
+        - analytics
       url: /fabric/fundamentals/microsoft-fabric-overview
     # Card
     - title: Azure Cosmos DB
