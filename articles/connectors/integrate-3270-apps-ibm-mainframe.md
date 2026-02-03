@@ -21,15 +21,15 @@ IBM mainframe apps usually run through a 3270 emulator. To access and run IBM ma
 This how-to guide describes the following aspects about the **IBM 3270** connector:
 
 - Why use the IBM 3270 connector in Azure Logic Apps
-- How does the IBM 3270 connector run 3270 screen-driven apps
+- How the IBM 3270 connector runs 3270 screen-driven apps
 - Prerequisites and setup for using the IBM 3270 connector
 - Steps for adding IBM 3270 connector actions to your workflow
 
 ## Why use this connector?
 
-To access apps on IBM mainframes, you typically use a 3270 terminal emulator, often called a *green screen*. This method is a time-tested way but has limitations. Although Host Integration Server (HIS) helps you work directly with these apps, sometimes separating the screen and business logic might not be possible. Or, maybe you no longer have information for how the host applications work.
+To access apps on IBM mainframes, you typically use a 3270 terminal emulator, often called a *green screen*. This method is a time-tested way but has limitations. Although Host Integration Server (HIS) helps you work directly with these apps, sometimes you can't separate the screen and business logic. Or, maybe you no longer have information for how the host applications work.
 
-To extend these scenarios, the **IBM 3270** connector in Azure Logic Apps works with the [3270 Design Tool](/host-integration-server/core/application-integration-3270designer-1), which you use to record, or *capture*, the host screens used for a specific task, define the navigation flow for that task through your mainframe app, and define the methods with input and output parameters for that task. The design tool converts that information into metadata that the 3270 connector uses when it runs an action in your workflow.
+To extend these scenarios, the **IBM 3270** connector in Azure Logic Apps works with the [3270 Design Tool](/host-integration-server/core/application-integration-3270designer-1). Use the design tool to record, or *capture*, the host screens used for a specific task, define the navigation flow for that task through your mainframe app, and define the methods with input and output parameters for that task. The design tool converts that information into metadata that the 3270 connector uses when it runs an action in your workflow.
 
 First, generate the metadata file from the 3270 Design Tool. Then add that file as a map artifact either to your Standard logic app resource or to your linked integration account for a Consumption logic app. That way, your workflow can access your app's metadata when you add an **IBM 3270** connector action.
 
@@ -41,7 +41,7 @@ The IBM 3270 connector has different versions, based on [logic app type and host
 
 | Logic app | Environment | Connection version |
 |-----------|-------------|--------------------|
-| **Consumption** | Multi-tenant Azure Logic Apps | Managed connector, which appears in the designer under the **Enterprise** label. This connector provides only single action and no triggers. For more information, see [IBM 3270 managed connector reference](/connectors/si3270). |
+| **Consumption** | Multitenant Azure Logic Apps | Managed connector, which appears in the designer under the **Enterprise** label. This connector provides only single action and no triggers. For more information, see [IBM 3270 managed connector reference](/connectors/si3270). |
 | **Standard** | 	Single-tenant Azure Logic Apps and App Service Environment v3 (ASE v3 with Windows plans only) | Managed connector, which appears in the connector gallery under the **Shared** filter, and the built-in, [service provider-based](../logic-apps/custom-connector-overview.md#service-provider-interface-implementation) connector, which appears in the connector gallery under the **Built-in** filter. The built-in version differs in the following ways: <br><br>- The built-in connector requires that you upload your HIDX file to your Standard logic app resource, not an integration account. <br><br>- The built-in connector can directly connect to a 3270 server and access Azure virtual networks using a connection string. <br><br>- The built-in version supports server authentication with TLS encryption for data in transit, message encoding for its operation, and Azure virtual network integration. <br><br>For more information, see the following documentation: <br><br>- [IBM 3270 managed connector reference](/connectors/si3270) <br>- [IBM 3270 built-in connector reference](#built-in-reference) |
 
 <a name="built-in-reference"></a>
@@ -91,7 +91,7 @@ This operation also includes advanced parameters, which appear after you select 
 
 ## Upload the HIDX file
 
-For your workflow to use the HIDX file, follow these steps:
+To use the HIDX file in your workflow, follow these steps:
 
 ### [Standard](#tab/standard)
 
@@ -137,16 +137,16 @@ A Standard logic app workflow can use the IBM 3270 managed connector and the IBM
 
 1. Follow the [general steps](../logic-apps/create-workflow-with-trigger-or-action.md?tabs=standard#add-action) to add the **IBM 3270** built-in connector action named **Execute a navigation plan**.
 
-1. After the connection pane appears, provide the following necessary parameter values:
+1. After the connection pane appears, enter the following parameter values:
 
    | Parameter | Required | Value | Description |
    |-----------|----------|-------|-------------|
    | **Connection Name** | Yes | <*connection-name*> | A name for your connection. |
-   | **Code Page** | No | <*code-page*> | The code page number for the host to use for converting text. If left blank, the connector uses `37` as the default value. |
-   | **Device Type** | No | <*IBM-terminal-model*> | The model name or number for the IBM terminal to emulate. If left blank, the connector uses default values. |
+   | **Code Page** | No | <*code-page*> | The code page number for the host to use for converting text. If you leave this value blank, the connector uses `37` as the default value. |
+   | **Device Type** | No | <*IBM-terminal-model*> | The model name or number for the IBM terminal to emulate. If you leave this value blank, the connector uses default values. |
    | **Log Exception Screens** | No | True or false | Log the host screen if an error occurs during screen navigation. |
    | **Logical Unit Name** | No | <*logical-unit-name*> | The specific logical unit name to request from the host. |
-   | **Port Number** | No | <*TN3270-server-port*> | The port used by your TN3270 server. If left blank, the connector uses `23` as the default value. |
+   | **Port Number** | No | <*TN3270-server-port*> | The port used by your TN3270 server. If you leave this value blank, the connector uses `23` as the default value. |
    | **Server** | Yes | <*TN3270-server-name*> | The server name for your TN3270 service. |
    | **Timeout** | No | <*timeout-seconds*> | The timeout duration in seconds while waiting for screens. |
    | **Use TLS** | No | On or off | Turn on or turn off TLS encryption. |
@@ -158,7 +158,7 @@ A Standard logic app workflow can use the IBM 3270 managed connector and the IBM
 
 1. When you're done, select **Create new**.
 
-1. When the action information box appears, provide the necessary parameter values:
+1. When the action information box appears, enter the necessary parameter values:
 
    | Parameter | Required | Value | Description |
    |-----------|----------|-------|-------------|
@@ -175,7 +175,7 @@ A Standard logic app workflow can use the IBM 3270 managed connector and the IBM
 
    :::image type="content" source="./media/integrate-3270-apps-ibm-mainframe/select-method-standard.png" alt-text="Screenshot shows Standard workflow designer, 3270 action, and selected method." lightbox="./media/integrate-3270-apps-ibm-mainframe/select-method-standard.png":::
 
-1. When you're done, save your workflow. On designer toolbar, select **Save**.
+1. Save your workflow. On designer toolbar, select **Save**.
 
 ### [Consumption](#tab/consumption)
 
@@ -187,7 +187,7 @@ A Standard logic app workflow can use the IBM 3270 managed connector and the IBM
 
 1. Follow the [general steps](../logic-apps/create-workflow-with-trigger-or-action.md?tabs=consumption#add-action) to add the **IBM 3270** managed connector action named **Runs a mainframe program over a TN3270 connection**.
 
-1. After the connection pane appears, provide the following necessary parameter values:
+1. After the connection pane appears, enter the following parameter values:
 
    | Parameter | Required | Value | Description |
    |-----------|----------|-------|-------------|
@@ -195,9 +195,9 @@ A Standard logic app workflow can use the IBM 3270 managed connector and the IBM
    | **Integration Account ID** | Yes | <*integration-account-name*> | The name for your integration account. |
    | **Integration Account SAS URL** | Yes | <*integration-account-SAS-URL*> | Your integration account's Shared Access Signature (SAS) URL, which you can generate from your integration account's settings in the Azure portal. <br><br>1. On your integration account menu, under **Settings**, select **Callback URL**. <br><br>2. In the right-side pane, copy the **Generated Callback URL** value. |
    | **Server** | Yes | <*TN3270-server-name*> | The server name for your TN3270 service. |
-   | **Port** | No | <*TN3270-server-port*> | The port used by your TN3270 server. If left blank, the connector uses `23` as the default value. |
-   | **Device Type** | No | <*IBM-terminal-model*> | The model name or number for the IBM terminal to emulate. If left blank, the connector uses default values. |
-   | **Code Page** | No | <*code-page-number*> | The code page number for the host. If left blank, the connector uses `37` as the default value. |
+   | **Port** | No | <*TN3270-server-port*> | The port used by your TN3270 server. If you leave this value blank, the connector uses `23` as the default value. |
+   | **Device Type** | No | <*IBM-terminal-model*> | The model name or number for the IBM terminal to emulate. If you leave this value blank, the connector uses default values. |
+   | **Code Page** | No | <*code-page-number*> | The code page number for the host. If you leave this value blank, the connector uses `37` as the default value. |
    | **Logical Unit Name** | No | <*logical-unit-name*> | The specific logical unit name to request from the host. |
    | **Enable SSL?** | No | On or off | Turn on or turn off TLS encryption. |
    | **Validate Host Ssl Certificate?** | No | On or off | Turn on or turn off validation for the server's certificate. |
@@ -208,7 +208,7 @@ A Standard logic app workflow can use the IBM 3270 managed connector and the IBM
 
 1. When you're done, select **Create new**.
 
-1. When the action information box appears, provide the necessary parameter values:
+1. When the action information box appears, enter the necessary parameter values:
 
    | Parameter | Required | Value | Description |
    |-----------|----------|-------|-------------|
@@ -225,7 +225,7 @@ A Standard logic app workflow can use the IBM 3270 managed connector and the IBM
 
    :::image type="content" source="./media/integrate-3270-apps-ibm-mainframe/select-method-consumption.png" alt-text="Screenshot shows Consumption workflow designer, 3270 action, and selected method." lightbox="./media/integrate-3270-apps-ibm-mainframe/select-method-consumption.png":::
 
-1. When you're done, save your workflow. On designer toolbar, select **Save**.
+1. Save your workflow. On designer toolbar, select **Save**.
 
 ---
 
@@ -233,7 +233,7 @@ A Standard logic app workflow can use the IBM 3270 managed connector and the IBM
 
 1. To manually run your workflow, on the designer toolbar, from the **Run** menu, select **Run**.
 
-   After your workflow finishes running, your workflow's run history appears. Successful operations show check marks, while unsuccessful operations show an exclamation point (**!**).
+   After your workflow finishes running, the run history appears. Successful operations show check marks, while unsuccessful operations show an exclamation point (**!**).
 
 1. To view the inputs and outputs for each operation, select that operation.
 
