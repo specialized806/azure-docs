@@ -11,7 +11,7 @@ ms.author: saurabsharma
 
 # Resize persistent volumes in Azure Container Storage without downtime
 
-You can expand persistent volumes in Azure Container Storage without downtime. Shrinking persistent volumes is not supported.
+You can expand persistent volumes in Azure Container Storage without downtime. Shrinking persistent volumes isn't supported.
 
 You cannot increase a volume beyond the maximum capacity available in your Elastic SAN or the local NVMe storage available on your nodes. If you need more capacity, first [increase your Elastic SAN capacity](../elastic-san/elastic-san-expand.md) or [increase your ephemeral disk (local NVMe) capacity](use-container-storage-with-local-disk.md#manage-storage) by adding more nodes to your Azure Kubernetes Service (AKS) cluster. Then expand the volume size.
 
