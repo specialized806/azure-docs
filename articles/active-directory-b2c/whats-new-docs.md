@@ -23,7 +23,7 @@ Welcome to what's new in Azure Active Directory B2C documentation. This article 
 
 ### Updated articles
 
-- [OAuth 2.0 authorization code flow in Azure Active Directory B2C](authorization-code-flow.md) - Add security guidance on using the `state` parameter
+- [OAuth 2.0 authorization code flow in Azure Active Directory B2C](authorization-code-flow.md) - Added security guidance on using the `state` parameter
 - [Azure Active Directory B2C service limits and restrictions](service-limits.md) - Updated region specific service limits
 - [Securing phone-based multifactor authentication](phone-based-mfa.md) - Updated the XML code snippets
 
