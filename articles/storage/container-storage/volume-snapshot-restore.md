@@ -15,7 +15,7 @@ Azure Container Storage is a cloud-based volume management, deployment, and orch
 
 ## Limitations
 
-Volume snapshots are not supported when you use ephemeral disk (local NVMe) as backing storage.
+Volume snapshots aren't supported when you use ephemeral disk (local NVMe) as backing storage.
 
 ## Prerequisites
 
