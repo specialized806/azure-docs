@@ -99,7 +99,20 @@ To ensure your Private Endpoint can send traffic to your server:
 
 ## FAQ
 
-### 1. From logs, requests failing with HTTP 403 are not due to bad tokens but instead they are rejected by Private Links, as their origin is not allowed to access the FHIR service.
+### 1. FHIR service configured with Private endpoints are missing their privatelink DNS entries, what should I do?
+FHIR services configured with a private endpoint that are missing privatelink DNS entries will resolve through the public CNAME path instead of resolving to the private IP address via *.privatelink.fhir.azurehealthcareapis.com. This is a known issue with the FHIR service that can intermittently occur during provisioning and may prevent the correct configuration of the privatelink DNS entries.
+Due to this issue, services may be unreachable from the virtual network (VNet), which can result in connectivity failures for applications relying on private network access.
+
+To mitigate this issue, remove and re-add the private endpoint connection to the Azure Health Data Services (AHDS) Workspace. This action triggers a new provisioning cycle that correctly configures the privatelink DNS entries.
+
+Follow the steps below to resolve the issue:
+1. Navigate to the AHDS Workspace in the Azure portal.
+2. Select Networking → Private endpoint connections.
+3. Remove the existing Private Endpoint.
+4. Re-create the Private Endpoint using the same configuration.
+5. Verify that DNS resolution returns the private IP address.
+
+### 2. From logs, requests failing with HTTP 403 are not due to bad tokens but instead they are rejected by Private Links, as their origin is not allowed to access the FHIR service.
 
 Validate the below points:
 
