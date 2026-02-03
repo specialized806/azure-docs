@@ -103,7 +103,7 @@ First step of configuration is setting up the source system; this step deploys t
 
 ## Deploy self-hosted integration runtime on Azure virtual machine (VM)
 
-In this section, we will deploy the self-hosted integration runtime on an Azure virtual machine. You can follow detailed instructions on how to deploy and configure Self-Hosted Integration Runtime in the article - [Shared Integration Runtime](https://learn.microsoft.com/azure/data-factory/sap-change-data-capture-shir-preparation). This article covers detailed steps on how to prepare your virtual machine and how to perform connectivity tests. You can also use the following steps to configure your virtual machine:
+In this section, we will deploy the self-hosted integration runtime on an Azure virtual machine. You can follow detailed instructions on how to deploy and configure Self-Hosted Integration Runtime in the article - [Shared Integration Runtime](../../data-factory/sap-change-data-capture-shir-preparation.md). This article covers detailed steps on how to prepare your virtual machine and how to perform connectivity tests. You can also use the following steps to configure your virtual machine:
 
 1. Deploy Azure virtual machine in the same network / subnet as your SAP system. Direct connectivity between Self-Hosted Integration Runtime and SAP system is required to extract data.
 2. Install SAP .NET Connector.
