@@ -5,7 +5,7 @@ author: alisheriffMSFT
 ms.service: azure-virtual-network
 ms.topic: how-to # Need to determine what is the right value
 ms.date: 02/02/2026
-ms.author: alisheriffMSFT
+ms.author: mattmcinnes
 # Customer intent: As a cloud administrator, I want to learn about Microsoft Azure Network Adapter, Accelerated Networking and how these work with non-V6 VM SKUs on Intel.
 ---
 
