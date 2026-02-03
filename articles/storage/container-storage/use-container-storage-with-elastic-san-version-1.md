@@ -19,7 +19,7 @@ Azure Container Storage is a cloud-based volume management, deployment, and orch
 This article shows you how to configure Azure Container Storage (version 1.x.x) to use Azure Elastic SAN. At the end of this article, you'll have a pod that's using Elastic SAN as its storage.
 
 > [!IMPORTANT]
-> This article covers features and capabilities available in Azure Container Storage (version 1.x.x). [Azure Container Storage (version 2.x.x)](container-storage-introduction.md) is now available, but it currently only supports local NVMe for backing storage.
+> This article covers features and capabilities available in Azure Container Storage (version 1.x.x). [Azure Container Storage (version 2.x.x)](container-storage-introduction.md) is now available.
 
 ## Prerequisites
 
