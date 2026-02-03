@@ -81,7 +81,7 @@ Complete the following steps to configure an Azure DevOps pipeline to deploy to 
 > [!div class="checklist"]
 > * Create an Azure DevOps repository for your app
 > * Create a container app with managed identity enabled
-> * Assign the `AcrPull` role for the Container Registry to the container app's managed identity
+> * Assign the `AcrPull` role for the container registry to the container app's managed identity
 > * Install the Container Apps task from the Azure DevOps Marketplace
 > * Configure an Azure DevOps service connection for your Azure subscription
 > * Create an Azure DevOps pipeline
