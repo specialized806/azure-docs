@@ -278,7 +278,7 @@ properties: {
 
 | Metadata | Required | Description | Example |
 | -------- | --------- | ----------- | ------- |
-| `maxRetries` | Yes | Maximum retries to be executed for a failed http-request. | `5` |
+| `maxRetries` | Yes | Maximum retries to be executed for a failed http request. | `5` |
 | `retryBackOff` | Yes | Monitors the requests and shut off all traffic to the impacted service when timeout and retry criteria are met. | N/A |
 | `retryBackOff.initialDelayInMilliseconds` | Yes | Delay between first error and first retry. | `1000` |
 | `retryBackOff.maxIntervalInMilliseconds` | Yes | Maximum delay between retries. | `10000` |
@@ -353,7 +353,7 @@ Once debug logs are enabled, use a query similar to the following:
 ```
 ContainerAppConsoleLogs_CL
 | where ContainerName_s == "daprd"
-| where Log_s contains "Resiliency configuration:"
+| where Log_s contains "Resiliency configuration ("
 | project time_t, Category, ContainerAppName_s, Log_s
 | order by time_t desc
 ```

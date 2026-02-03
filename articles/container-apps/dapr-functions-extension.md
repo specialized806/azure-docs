@@ -31,7 +31,7 @@ The [Dapr extension for Azure Functions](../azure-functions/functions-bindings-d
 
 ## Set up the environment
 
-1. In the terminal, sign in to your Azure subscription.
+1. In the terminal, sign in to your Azure account.
 
    ```azurecli
    az login
@@ -101,6 +101,8 @@ After the template deploys successfully, run the following command to initiate a
 In the command:
 - Replace `<quickstart-functionapp-url>` with your actual function app URL. For example: `https://daprext-funcapp.wittyglacier-20884174.eastus.azurecontainerapps.io`.
 - Replace `<quickstart-functionapp-name>` with your function app name.
+
+To find your function app URL, navigate to **Container Appa** in the Azure portal, then select your new container app.
 
 # [PowerShell](#tab/powershell)
 
@@ -176,11 +178,11 @@ curl --location 'https://<quickstart-functionapp-url.io>/api/retrieveorder'
 
 After you finish with this tutorial, run the following command to delete your resource group, along with all the resources you created.
 
-```
-az group delete --resource-group $RESOURCE_GROUP
+```azurecli
+az group delete --resource-group <resource-group-name>
 ```
 
 ## Related links
 
-- [Learn more about the Dapr extension for Azure Functions](../azure-functions/functions-bindings-dapr.md)
-- [Learn more about connecting Dapr components to your container app](./dapr-component-connection.md)
+- [Dapr Extension for Azure Functions](../azure-functions/functions-bindings-dapr.md)
+- [Connect to Azure services via Dapr components in the Azure portal](./dapr-component-connection.md)

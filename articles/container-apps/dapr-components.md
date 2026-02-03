@@ -57,7 +57,7 @@ metadata:
 
 ## Component scopes
 
-By default, all Dapr-enabled container apps within the same environment load the full set of deployed components. To ensure only the appropriate container apps load components at runtime, application scopes should be used. In the following example, the component is only loaded by the two Dapr-enabled container apps with Dapr application IDs `APP-ID-1` and `APP-ID-2`:
+By default, all Dapr-enabled container apps within the same environment load the full set of deployed components. To ensure only the appropriate container apps load components at runtime, application scopes should be used. In the following example, the component is only loaded by the two Dapr-enabled container apps with Dapr application IDs `APP-ID-1` and `APP-ID-2`.
 
 ```yaml
 componentType: [COMPONENT-TYPE]
@@ -79,7 +79,7 @@ scopes:
 
 # [YAML](#tab/yaml)
 
-To create a Dapr component via the Container Apps CLI, you can use a container apps YAML manifest. When configuring multiple components, you must create and apply a separate YAML file for each component.
+To create a Dapr component by using the Container Apps CLI, you can use a container apps YAML manifest. When configuring multiple components, you must create and apply a separate YAML file for each component.
 
 ```azurecli
 az containerapp env dapr-component set --name <your-environment-name> --resource-group <your-resource-group> --dapr-component-name pubsub --yaml "./pubsub.yaml"
@@ -108,7 +108,7 @@ scopes:
 
 # [Bicep](#tab/bicep)
 
-This resource defines a Dapr component called `dapr-pubsub` via Bicep. The Dapr component is defined as a child resource of the Container Apps environment. To define multiple components, you can add a `daprComponent` resource for each.
+This resource defines a Dapr component called `dapr-pubsub` by using Bicep. The Dapr component is defined as a child resource of the Container Apps environment. To define multiple components, you can add a `daprComponent` resource for each.
 
 ```bicep
 resource daprComponent 'daprComponents@2022-03-01' = {
@@ -141,7 +141,7 @@ resource daprComponent 'daprComponents@2022-03-01' = {
 
 # [ARM](#tab/arm)
 
-This resource defines a Dapr component called `dapr-pubsub` via ARM template.
+This resource defines a Dapr component called `dapr-pubsub` by using an ARM template.
 
 ```json
 {
