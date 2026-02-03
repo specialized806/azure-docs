@@ -20,7 +20,7 @@ Volume snapshots are not supported when you use ephemeral disk (local NVMe) as b
 ## Prerequisites
 
 - This article requires the latest version of the Azure CLI. See [How to install the Azure CLI](/cli/azure/install-azure-cli). If you use Azure Cloud Shell, the latest version is already installed. If you run commands locally, use an account with administrative privileges.
-- This article assumes you installed Azure Container Storage on your Azure Kubernetes Service (AKS) cluster and created a PVC using [Elastic SAN](use-container-storage-with-elastic-san.md).
+- This article assumes you installed Azure Container Storage on your Azure Kubernetes Service (AKS) cluster and created a PVC using [Azure Elastic SAN](use-container-storage-with-elastic-san.md).
 
 ## Create a volume snapshot class
 
