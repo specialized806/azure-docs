@@ -3,10 +3,10 @@ title: Azure permissions for Analytics - Azure RBAC
 description: Lists the permissions for the Azure resource providers in the Analytics category.
 ms.service: role-based-access-control
 ms.topic: generated-reference
-author: jenniferf-skc
+author: rolyon
 manager: pmwongera
-ms.author: jfields
-ms.date: 05/25/2025
+ms.author: rolyon
+ms.date: 12/31/2025
 ms.custom: generated
 ---
 
@@ -199,6 +199,7 @@ Azure service: [Data Factory](/azure/data-factory/)
 > | Microsoft.DataFactory/factories/linkedServices/read | Reads Linked Service. |
 > | Microsoft.DataFactory/factories/linkedServices/delete | Deletes Linked Service. |
 > | Microsoft.DataFactory/factories/linkedServices/write | Create or Update Linked Service |
+> | Microsoft.DataFactory/factories/linkedServices/upgrade/action | Creates a fabric connection using the linked service. |
 > | Microsoft.DataFactory/factories/managedVirtualNetworks/read | Read Managed Virtual Network. |
 > | Microsoft.DataFactory/factories/managedVirtualNetworks/write | Create or Update Managed Virtual Network. |
 > | Microsoft.DataFactory/factories/managedVirtualNetworks/managedPrivateEndpoints/read | Read Managed Private Endpoint. |
@@ -543,7 +544,7 @@ Azure service: [Power BI Embedded](/azure/power-bi-embedded/)
 > | --- | --- |
 > | Microsoft.PowerBIDedicated/register/action | Registers Power BI Dedicated resource provider. |
 > | Microsoft.PowerBIDedicated/register/action | Registers Power BI Dedicated resource provider. |
-> | Microsoft.PowerBIDedicated/autoScaleVCores/read | Retrieves the information of the specificed Power BI Auto Scale V-Core. |
+> | Microsoft.PowerBIDedicated/autoScaleVCores/read | Retrieves the information of the specified Power BI Auto Scale V-Core. |
 > | Microsoft.PowerBIDedicated/autoScaleVCores/write | Creates or updates the specified Power BI Auto Scale V-Core. |
 > | Microsoft.PowerBIDedicated/autoScaleVCores/delete | Deletes the Power BI Auto Scale V-Core. |
 > | Microsoft.PowerBIDedicated/capacities/read | Retrieves the information of the specified Power BI capacity. |
@@ -869,9 +870,9 @@ Azure service: [Azure Synapse Analytics](/azure/synapse-analytics/)
 > | Microsoft.Synapse/workspaces/sqlUsages/read | Gets usage limits available for SQL Analytics Pools |
 > | Microsoft.Synapse/workspaces/trustedServiceBypassConfiguration/write | Update Trusted Service Bypass configuration for workspace. |
 > | Microsoft.Synapse/workspaces/usages/read | Get all uasage and quota information |
-> | Microsoft.Synapse/workspaces/vulnerabilityAssessments/write | Create or Update SQL server vulnerability assement report. |
-> | Microsoft.Synapse/workspaces/vulnerabilityAssessments/read | Read default SQL server vulnerability assement report. |
-> | Microsoft.Synapse/workspaces/vulnerabilityAssessments/delete | Delete SQL server vulnerability assement report. |
+> | Microsoft.Synapse/workspaces/vulnerabilityAssessments/write | Create or Update SQL server vulnerability assessment report. |
+> | Microsoft.Synapse/workspaces/vulnerabilityAssessments/read | Read default SQL server vulnerability assessment report. |
+> | Microsoft.Synapse/workspaces/vulnerabilityAssessments/delete | Delete SQL server vulnerability assessment report. |
 
 ## Next steps
 

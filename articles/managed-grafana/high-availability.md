@@ -4,7 +4,7 @@ description: Learn about service reliability and availability options provided b
 author: maud-lv 
 ms.author: malev 
 ms.service: azure-managed-grafana
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 05/18/2025
 ms.custom: references_regions, engagement-fy23
 #customer intent: As an IT professional who uses Azure Managed Grafana, I want to understand the service reliability features of the Standard plan. 
@@ -28,7 +28,7 @@ The network load balancer, virtual machines, and database that underpin an Azure
 
 ### With zone redundancy enabled
 
-When the zone redundancy option is enabled, virtual machines are spread across [availability zones](../reliability/availability-zones-overview.md). Other resources, such as the network load balancer and database, are also configured for availability zones.
+When the zone redundancy option is enabled, virtual machines are spread across [availability zones](/azure/reliability/availability-zones-overview). Other resources, such as the network load balancer and database, are also configured for availability zones.
 
 In a zone-wide outage, no user action is required. An impacted Azure Managed Grafana workspace rebalances itself to take advantage of the healthy zone automatically. The Azure Managed Grafana service attempts to heal the affected workspaces during zone recovery.
 

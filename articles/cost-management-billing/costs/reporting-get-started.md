@@ -1,13 +1,14 @@
 ---
 title: Get started with Cost Management reporting - Azure
 description: This article helps you to get started with Cost Management to understand, report on, and analyze your invoiced Microsoft Cloud costs.
-author: shasulin
-ms.author: shasulin
+author: vikramdesai01
+ms.author: vikdesai
 ms.date: 06/27/2025
 ms.topic: conceptual
 ms.service: cost-management-billing
 ms.subservice: cost-management
-ms.reviewer: shasulin
+ms.reviewer: vikdesai
+ms.custom: sfi-image-nochange
 ---
 
 # Get started with Cost Management reporting
@@ -59,7 +60,7 @@ Here's an example that shows credits on the Credits tab on the Credits + Commitm
 
 For more information about your invoice, see [View and download your Microsoft Azure invoice](../understand/download-azure-invoice.md)
 
-For more information about credits, see [Track Microsoft Customer Agreement Azure credit balance](../manage/mca-check-azure-credits-balance.md).
+For more information about credits, see [Track Microsoft Customer Agreement Azure credit balance](../benefits/credits/mca-check-azure-credits-balance.md).
 
 ## Microsoft Azure mobile app
 

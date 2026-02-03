@@ -16,7 +16,7 @@ ms.author: cherylmc
 
 We're simplifying our VPN Gateway SKU portfolio. Due to the lack of redundancy, lower availability, and potential higher costs associated with failover solutions, we're transitioning all non availability zone (AZ) supported SKUs to AZ supported SKUs. This article helps you understand the upcoming changes for VPN Gateway virtual network gateway SKUs. This article expands on the [official announcement.](https://azure.microsoft.com/updates/v2/vpngw1-5-non-az-skus-will-be-retired-on-30-september-2026)
 
-* **Effective June 1, 2025**: Creation of new VPN gateways using VpnGw1-5 SKUs (non-AZ) will no longer be possible. This date has been updated from the originally announced January 1, 2025 date
+* **Effective November 1, 2025**: Creation of new VPN gateways using VpnGw1-5 SKUs (non-AZ) will no longer be possible. This date has been updated from the originally announced January 1, 2025 date
 * **Migration period**: From September 2025 to September 2026, all existing VPN gateways using VpnGw1-5 SKUs (non-AZ SKUs) could be seamlessly migrated to VpnGw1-5 SKUs (AZ).
 
 To support this migration, we're reducing the prices on AZ SKUs. For more information about SKUs and pricing, see the [FAQ](#faq) section of this article.
@@ -74,7 +74,7 @@ No. This migration is seamless and there's no expected downtime during migration
 
 ### Will there be any performance impact on my gateways with this migration?
 
-Yes. AZ SKUs get the benefits of Zone redundancy for VPN gateways in [Azure regions with availability zones](../reliability/availability-zones-region-support.md). If the region doesn't support zone redundancy, the gateway is regional until the region it's deployed to supports zone redundancy.
+Yes. AZ SKUs get the benefits of Zone redundancy for VPN gateways in [Azure regions with availability zones](/azure/reliability/availability-zones-region-support). If the region doesn't support zone redundancy, the gateway is regional until the region it's deployed to supports zone redundancy.
 
 ### Is the VPN Gateway Basic SKU retiring?
 
@@ -91,6 +91,32 @@ Using the Standard SKU public IP address parameter with a VPN Gateway Basic SKU 
 ### When will my Standard and HighPerformance gateway be migrated?
 
 Standard and HighPerformance gateway will be migrated to AZ gateways in CY26. For more information, see this [announcement](https://azure.microsoft.com/updates/standard-and-highperformance-vpn-gateway-skus-will-be-retired-on-30-september-2025/) and [Working with VPN Gateway legacy SKUs](vpn-gateway-about-skus-legacy.md).
+
+### What happens to existing non-AZ VPN Gateways after the “block non-AZ SKU” rollout starting in February'26?
+### I have an existing VPN Gateway using a non-Availability Zone (non-AZ) SKU (VpnGw1–VpnGw5). What changes after this rollout?
+
+After the “block non-AZ SKU” feature flag rolls out, existing VPN Gateways using non-AZ SKUs will no longer allow configuration changes. If you attempt any management or configuration operation on a non-AZ gateway, you will receive a ValidationException. This is expected behavior after the rollout.
+
+### Why am I seeing a ValidationException? example error message: Microsoft.WindowsAzure.Networking.Nrp.Frontend.Common.ValidationException: VpnGw1-5 non-AZ SKUs are no longer supported for VPN gateways. Only VpnGw1-5AZ SKUs can be created going forward
+
+The exception indicates that configuration changes on non-AZ VPN Gateway SKUs are no longer supported. To proceed, the gateway must first be migrated to an equivalent Availability Zone–enabled (AZ) SKU.
+
+### What action is required to resolve this error?
+
+You must migrate your VPN Gateway from a non-AZ SKU to the corresponding AZ SKU before making any other changes.
+For example:
+
+VpnGw1 → VpnGw1AZ  
+VpnGw2 → VpnGw2AZ  
+
+### Will migrating to an AZ SKU cause downtime?
+
+Same SKU family migration (for example, VpnGw1 → VpnGw1AZ) is non-disruptive and is a metadata-only change.  
+Cross-family migration (for example, VpnGw1 → VpnGw3AZ) is disruptive, consistent with existing VPN Gateway resize behavior.  
+
+### Do AZ SKUs automatically become zone-redundant?
+
+AZ SKUs are AZ-capable. They become zone-redundant only in regions that support Availability Zones, as described in the [existing documentation](gateway-sku-consolidation.md#will-there-be-any-performance-impact-on-my-gateways-with-this-migration)
 
 ## Next steps
 

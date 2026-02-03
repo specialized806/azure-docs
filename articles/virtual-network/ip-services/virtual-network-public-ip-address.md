@@ -59,7 +59,7 @@ For more detail on the specific attributes of a public IP address during creatio
    |Subscription|Yes|Must exist in the same [subscription](../../azure-glossary-cloud-terminology.md?toc=%2fazure%2fvirtual-network%2ftoc.json#subscription) as the resource to which you associate the public IPs.|
    |Resource group|Yes|Can exist in the same, or different, [resource group](../../azure-glossary-cloud-terminology.md?toc=%2fazure%2fvirtual-network%2ftoc.json#resource-group) as the resource to which you associate the public IPs.|
    |Location|Yes|Must exist in the same [location](https://azure.microsoft.com/regions), also referred to as region, as the resource to which you associate the public IPs.|
-   |Availability zone| No | This setting only appears if you select a supported location and IP address type. **Basic** SKU public IPs and **Global** Tier public IPs don't support Availability Zones. You can select no-zone (default option), a specific zone, or zone-redundant. The choice depends on your specific domain failure requirements.</br> For a list of supported locations and more information about Availability Zones, see [Availability zones overview](../../reliability/availability-zones-overview.md?toc=%2fazure%2fvirtual-network%2ftoc.json). 
+   |Availability zone| No | This setting only appears if you select a supported location and IP address type. **Basic** SKU public IPs and **Global** Tier public IPs don't support Availability Zones. You can select no-zone (default option), a specific zone, or zone-redundant. The choice depends on your specific domain failure requirements.</br> For a list of supported locations and more information about Availability Zones, see [Availability zones overview](/azure/reliability/availability-zones-overview?toc=%2fazure%2fvirtual-network%2ftoc.json). 
 
 ## View, modify settings for, or delete a public IP address
 
@@ -119,6 +119,17 @@ Learn how to assign a public IP address to the following resources:
 ## Region availability
 
 Azure Public IP is available in all regions for both Public and US Gov clouds. Azure Public IP doesn't move or store customer data out of the region it's deployed in.
+
+## Moving Public IP Addresses
+
+You can move Standard Public IP addresses under certain conditions:
+
+| Scenario                     | Allowed | Notes                                                              |
+|------------------------------|---------|--------------------------------------------------------------------|
+| Move across resource groups  | Yes     | While attached to all resources except a virtual network gateway  |
+| Move across subscriptions    | Yes     | Only when detached from all resources                             |
+| Move across regions          | No      | IP addresses are tied to regional ranges and cannot be moved      |
+
 
 ## Permissions
 

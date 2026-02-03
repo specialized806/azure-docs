@@ -2,10 +2,11 @@
 title: Deploy the Dapr extension for Azure Functions in Azure Container Apps
 titleSuffix: "Azure Container Apps"
 description: Learn how to use and deploy the Azure Functions with Dapr extension in your Dapr-enabled container apps.
-author: hhunter-ms
-ms.author: hannahhunter
-ms.reviewer: paulyuk
+author: greenie-msft
+ms.author: nigreenf
+ms.reviewer: hannahhunter
 ms.service: azure-container-apps
+ms.subservice: dapr
 ms.topic: how-to
 ms.date: 11/21/2024
 ms.custom: references_regions
@@ -25,7 +26,7 @@ The [Dapr extension for Azure Functions](../azure-functions/functions-bindings-d
 
 ## Prerequisites
 
-- [An Azure account with an active subscription.](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+- [An Azure account with an active subscription.](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - [Install Azure CLI](/cli/azure/install-azure-cli)
 
 ## Set up the environment

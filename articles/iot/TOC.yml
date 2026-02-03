@@ -9,11 +9,11 @@ items:
     - name: IoT solution components
       expanded: true
       items:
-      - name: Asset and device development
+      - name: Device development
         href: iot-overview-device-development.md
-      - name: Asset and device connectivity
+      - name: Device connectivity
         href: iot-overview-device-connectivity.md
-      - name: Asset and device management and control
+      - name: Device management and control
         href: iot-overview-device-management.md
       - name: Process and route messages
         href: iot-overview-message-processing.md
@@ -53,8 +53,6 @@ items:
       href: concepts-using-c-sdk-and-embedded-c-sdk.md
     - name: Manage device reconnections
       href: concepts-manage-device-reconnections.md
-    - name: IoT device selection
-      href: concepts-iot-device-selection.md
   - name: Integrate using IoT Plug and Play
     items:
     - name: Overview
@@ -135,5 +133,3 @@ items:
         href: ../iot-edge/index.yml
       - name: Azure Maps
         href: ../azure-maps/index.yml
-      - name: Time Series Insights
-        href: ../time-series-insights/index.yml

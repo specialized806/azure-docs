@@ -14,9 +14,13 @@ The Service Bus Geo-Disaster Recovery feature is one of the options to [insulate
 
 The Geo-Disaster Recovery feature ensures that the entire configuration of a namespace (entities, configuration, properties) is continuously replicated from a primary namespace to a secondary namespace with which it is paired, and it allows you to initiate a once-only failover move from the primary to the secondary at any time. The failover move re-points the chosen alias name for the namespace to the secondary namespace and then breaks the pairing. The failover is nearly instantaneous once initiated. 
 
+## Comparison with Geo-Replication
+
+Azure Service Bus offers two features for geographic resilience: Geo-Replication and [Geo-Disaster Recovery](service-bus-geo-dr.md). The key difference is that Geo-Replication replicates both metadata and data (messages, message states, property changes), while Geo-Disaster Recovery replicates metadata only. For most disaster recovery scenarios, Geo-Replication is the recommended choice. For a detailed comparison, see [Reliability in Azure Service Bus - Resilience to region-wide failures](/azure/reliability/reliability-service-bus?toc=/azure/service-bus-messaging/TOC.json#resilience-to-region-wide-failures).
+
 ## Important points to consider
 
-- The feature enables instant continuity of operations with the same configuration, but **doesn't replicate the messages held in queues or topic subscriptions or dead-letter queues**. To preserve queue semantics, such a replication requires not only the replication of message data, but of every state change in the broker, which is offered in the [Geo-Replication feature (Public Preview)](service-bus-geo-replication.md).
+- The feature enables instant continuity of operations with the same configuration, but **doesn't replicate the messages held in queues or topic subscriptions or dead-letter queues**. To preserve queue semantics, such a replication requires not only the replication of message data, but of every state change in the broker, which is offered in the [Geo-Replication feature](service-bus-geo-replication.md).
 - Microsoft Entra role-based access control (RBAC) assignments to Service Bus entities in the primary namespace aren't replicated to the secondary namespace. Create role assignments manually in the secondary namespace to secure access to them. 
 - The following configurations aren't replicated. 
     - Virtual network configurations
@@ -120,7 +124,7 @@ Once the failover is initiated -
 1. Pull messages from the former primary namespace once it's available again. After that, use that namespace for regular messaging outside of your Geo-Disaster Recovery setup, or delete the old primary namespace.
 
 > [!NOTE]
-> Only fail forward semantics are supported. In this scenario, you fail over and then re-pair with a new namespace. Failing back is not supported; for example, like in a SQL cluster. 
+> Only *fail-forward* semantics are supported. When you initiate a failover with geo-disaster recovery, you can re-pair with a new namespace after failover completes. You can't fail back to the previous primary replica. These semantics might be different to other data stores you're used to, like Microsoft SQL Server clusters.
 
 You can automate failover either with monitoring systems, or with custom-built monitoring solutions. However, such automation takes extra planning and work, which is out of the scope of this article.
 

@@ -1,7 +1,7 @@
 ---
 title: Quickstart - Back up a VM with the Azure portal by using Azure Backup
 description: In this Quickstart, learn how to create a Recovery Services vault, enable protection on an Azure VM, and back up the VM,  with the Azure portal.
-ms.date: 07/25/2025
+ms.date: 01/27/2026
 ms.topic: quickstart
 ms.devlang: azurecli
 ms.custom: mvc, mode-ui, engagement-fy24
@@ -21,8 +21,6 @@ Azure backups can be created through the Azure portal. This method provides a br
 
 Sign in to the [Azure portal](https://portal.azure.com).
 
-[!INCLUDE [backup-center.md](../../includes/backup-center.md)]
-
 [!INCLUDE [How to create a Recovery Services vault](../../includes/backup-create-rs-vault.md)]
 
 >[!Important]
@@ -32,7 +30,7 @@ Sign in to the [Azure portal](https://portal.azure.com).
 
 To apply a backup policy to your Azure VMs, follow these steps:
 
-1. Go to **Business Continuity Center** and select **+ Configure protection**.
+1. Go to **Resiliency** and select **+ Configure protection**.
 
    :::image type="content" source="./media/backup-azure-arm-vms-prepare/configure-protection.png" alt-text="Screenshot shows how to start configuring system backup." lightbox="./media/backup-azure-arm-vms-prepare/configure-protection.png":::
 
@@ -71,7 +69,7 @@ Create a scheduled daily backup to a Recovery Services vault.
      ![Screenshot showing the Select virtual machines blade.](./media/backup-azure-arm-vms-prepare/select-vms-to-backup.png)
 
     >[!NOTE]
-    > All the VMs in the same region and subscription as that of the vault are available to configure backup. When configuring backup, you can browse to the virtual machine name and its resource group, even though you don’t have the required permission on those VMs. If your VM is in soft deleted state, then it won't be visible in this list. If you need to re-protect the VM, then you need to wait for the soft delete period to expire or undelete the VM from the soft deleted list. For more information, see [the soft delete for VMs article](soft-delete-virtual-machines.md#soft-delete-for-vms-using-azure-portal).
+    > All the VMs in the same region and subscription as that of the vault are available to configure backup. When configuring backup, you can browse to the virtual machine name and its resource group, even though you don’t have the required permission on those VMs. If your VM is in soft deleted state, then it won't be visible in this list. If you need to re-protect the VM, then you need to wait for the soft delete period to expire or undelete the VM from the soft deleted list. For more information, see [the soft delete for VMs article](soft-delete-virtual-machines.md#soft-delete-azure-vm-backups).
 
 ## Enable backup on a VM
 
@@ -112,13 +110,10 @@ If you selected to create a new backup policy, fill in the policy settings.
 
 The initial backup will run in accordance with the schedule, but you can run it immediately as follows:
 
-1. Go to **Backup center** and select the **Backup Instances** menu item.
-1. Select **Azure Virtual machines** as the **Datasource type**. Then search for the VM that you have configured for backup.
-1. Right-click the relevant row or select the more icon (…), and then select **Backup Now**.
-1. In **Backup Now**, use the calendar control to select the last day that the recovery point should be retained. Then select **OK**.
-1. Monitor the portal notifications.
-   To  monitor the job progress, go to **Backup center** > **Backup Jobs** and filter the list for **In progress** jobs.
-   Depending on the size of your VM, creating the initial backup may take a while.
+1. Go to **Resiliency** and then select **Protection Inventory** > **Protected items**.
+1. On the **Protected items** pane, filter **Datasource type** by Virtual machines, and then select the **more icon** > **Details** corresponding to the VM instance you want to back up.
+1. On the selected VM instance pane, right-click the relevant row or select the more icon (…), and then select **Backup Now**.
+1. On the **Backup now** pane, use the calendar control to select the last day that the recovery point should be retained. Then select **OK**.
 
 ## Monitor the backup job
 

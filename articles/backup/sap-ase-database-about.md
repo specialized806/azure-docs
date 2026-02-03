@@ -2,7 +2,7 @@
 title: About the SAP ASE (Sybase) database backup on Azure VMs
 description: In this article, learn about backing up SAP ASE (Sybase) databases that are running on Azure virtual machines.
 ms.topic: overview
-ms.date: 05/13/2025
+ms.date: 01/30/2026
 ms.service: azure-backup
 ms.custom:
   - ignite-2024
@@ -74,6 +74,14 @@ You can use [an Azure VM backup](backup-azure-vms-introduction.md) to back up th
 
 4. Restore the database into the VM from the Azure SAP ASE (Sybase) database backup to your intended point in time.
 
+## Back up an SAP ASE High Availability cluster 
+
+Azure Backup now supports SAP ASE databases in High Availability (HA) clusters. When a failover occurs, the service automatically manages backups, eliminating manual intervention. Even though the cluster includes multiple physical nodes (primary and secondary), Azure Backup considers them as one HA container.
+
+:::image type="content" source="./media/sap-ase-database-backup/sap-ase-high-availability-databases.png" alt-text="Screenshot shows the list of high availability databases." lightbox="./media/sap-ase-database-backup/sap-ase-high-availability-databases.png":::
+
+Learn how to configure backup for [SAP ASE (Sybase) databases in High Availability clusters](sap-ase-database-backup.md#configure-backup-for-an-sap-ase-high-availability-cluster).
+
 ## Backup pricing
 
 SAP ASE (Sybase) backup pricing has two components:
@@ -103,5 +111,5 @@ Learn how to:
 - [Restore SAP ASE database on Azure VMs using Azure portal](sap-ase-database-restore.md).
 - [Manage and monitor backed-up SAP ASE database using Azure portal](sap-ase-database-manage.md).
 - [Quickstart: Run the preregistration script for SAP ASE (Sybase) database backup in Azure Cloud Shell](sap-ase-database-backup-run-preregistration-quickstart.md).
-- [Tutorial: Back up SAP ASE (Sybase) database using Azure Business Continuity Center](sap-ase-database-backup-tutorial.md).
+- [Tutorial: Back up SAP ASE (Sybase) database using Resiliency](sap-ase-database-backup-tutorial.md).
 - [Troubleshoot SAP ASE (Sybase) database backup](troubleshoot-sap-ase-sybase-database-backup.md).

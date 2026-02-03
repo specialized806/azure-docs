@@ -1,8 +1,8 @@
 ---
 title: Prepare your Kubernetes cluster
 description: Prepare an Azure Arc-enabled Kubernetes cluster before you deploy Azure IoT Operations. This article includes guidance for both Ubuntu and Windows machines.
-author: SoniaLopezBravo
-ms.author: sonialopez
+author: dominicbetts
+ms.author: dobett
 ms.topic: how-to
 ms.custom: ignite-2023, devx-track-azurecli
 ms.date: 10/23/2024
@@ -14,7 +14,7 @@ ms.date: 10/23/2024
 
 An Azure Arc-enabled Kubernetes cluster is a prerequisite for deploying Azure IoT Operations. This article describes how to prepare a cluster before you deploy Azure IoT Operations. This article includes guidance for Ubuntu, Windows, Azure Local, and Tanzu Kubernetes Grid (TKG).
 
-The steps in this article prepare your cluster for a secure settings deployment, which is a longer but production-ready process. If you want to deploy Azure IoT Operations quickly and run a sample workload with only test settings, see the [Quickstart: Run Azure IoT Operations in GitHub Codespaces with K3s](../get-started-end-to-end-sample/quickstart-deploy.md) instead. For more information about test settings and secure settings, see [Deployment details > Choose your features](./overview-deploy.md#choose-your-features).
+If you want to deploy Azure IoT Operations quickly and run a sample workload in a test environment, see the [Quickstart: Run Azure IoT Operations in GitHub Codespaces with K3s](../get-started-end-to-end-sample/quickstart-deploy.md).
 
 ## Prerequisites
 
@@ -32,13 +32,13 @@ To prepare an Azure Arc-enabled Kubernetes cluster, you need:
   * [Azure Arc-enabled Kubernetes system requirements](/azure/azure-arc/kubernetes/system-requirements).
   * [K3s requirements](https://docs.k3s.io/installation/requirements).
 
-* If you're going to deploy Azure IoT Operations to a multi-node cluster with fault tolerance enabled, review the hardware and storage requirements in [Prepare Linux for Edge Volumes](/azure/azure-arc/container-storage/prepare-linux-edge-volumes).
+* If you're going to deploy Azure IoT Operations to a multi-node cluster with fault tolerance enabled, review the hardware and storage requirements in [Prepare Linux for Edge Volumes](/azure/azure-arc/container-storage/howto-prepare-linux-edge-volumes).
 
 ### [AKS Edge Essentials](#tab/aks-edge-essentials)
 
 To prepare an Azure Arc-enabled Kubernetes cluster, you need:
 
-* An Azure subscription. If you don't have an Azure subscription, [create one for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
+* An Azure subscription. If you don't have an Azure subscription, [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 
 * Hardware that meets the system requirements:
 
@@ -51,7 +51,7 @@ To prepare an Azure Arc-enabled Kubernetes cluster, you need:
 
 To prepare an Azure Arc-enabled Kubernetes cluster, you need:
 
-* An Azure subscription. If you don't have an Azure subscription, [create one for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
+* An Azure subscription. If you don't have an Azure subscription, [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 
 * An [Azure Local server or cluster](/azure-stack/hci/overview).
 
@@ -165,7 +165,7 @@ Connect your cluster to Azure Arc so that it can be managed remotely.
    >If your environment uses a proxy server or Azure Arc Gateway, modify the `az connectedk8s connect` command with your proxy information:
    >
    >1. Follow the instructions in either [Connect using an outbound proxy server](/azure/azure-arc/kubernetes/quickstart-connect-cluster#connect-using-an-outbound-proxy-server) or [Onboard Kubernetes clusters to Azure Arc with Azure Arc Gateway](/azure/azure-arc/kubernetes/arc-gateway-simplify-networking#onboard-kubernetes-clusters-to-azure-arc-with-your-arc-gateway-resource).
-   >1. Add `169.254.169.254` to the `--proxy-skip-range` parameter of the `az connectedk8s connect` command. [Azure Device Registry](../discover-manage-assets/overview-manage-assets.md#store-assets-as-azure-resources-in-a-centralized-registry) uses this local endpoint to get access tokens for authorization.
+   >1. Add `169.254.169.254` to the `--proxy-skip-range` parameter of the `az connectedk8s connect` command. [Azure Device Registry](../discover-manage-assets/overview-manage-assets.md#azure-device-registry) uses this local endpoint to get access tokens for authorization.
    >
    >Azure IoT Operations doesn't support proxy servers that require a trusted certificate.
 
@@ -214,13 +214,13 @@ Connect your cluster to Azure Arc so that it can be managed remotely.
    systemctl restart k3s
    ```
 
-### Configure multi-node clusters for Azure Container Storage
+### Configure multi-node clusters for Azure Container Storage enabled by Azure Arc
 
-On multi-node Ubuntu clusters with at least three nodes, you have the option of enabling fault tolerance for storage with [Azure Container Storage enabled by Azure Arc](/azure/azure-arc/container-storage/overview) when you deploy Azure IoT Operations.
+Features such as data flow local storage endpoints and the media connector optionally use [Azure Container Storage enabled by Azure Arc (ACSA)](/azure/azure-arc/container-storage/overview) to synchronize local data to the cloud. ACSA is not installed as part of Azure IoT Operations, so you must install it separately.
 
-If you want to enable fault tolerance during deployment, configure your clusters by following the steps in [Prepare Linux for Edge Volumes using a multi-node Ubuntu cluster](/azure/azure-arc/container-storage/multi-node-cluster-edge-volumes?pivots=ubuntu).
+On multi-node Ubuntu clusters with at least three nodes, you have the option to enable fault tolerance for ACSA storage. To enable fault tolerance during deployment, follow the steps in [Prepare Linux for Edge Volumes using a multi-node Ubuntu cluster](/azure/azure-arc/container-storage/howto-multi-node-cluster-edge-volumes?pivots=ubuntu-other) to configure your cluster.
 
-If you're running your cluster on a Kubernetes distribution other than k3s, review the guidance to [Prepare Linux with other platforms](/azure/azure-arc/container-storage/multi-node-cluster-edge-volumes?pivots=other).
+If you're running your cluster on a Kubernetes distribution other than k3s, review the guidance to [Prepare Linux with other platforms](/azure/azure-arc/container-storage/howto-multi-node-cluster-edge-volumes?pivots=other).
 
 ### [AKS Edge Essentials](#tab/aks-edge-essentials)
 
@@ -295,7 +295,7 @@ Connect your cluster to Azure Arc so that it can be managed remotely.
    > If your environment uses a proxy server or Azure Arc Gateway, modify the `az connectedk8s connect` command with your proxy information:
    > 
    > 1. Follow the instructions in either [Connect using an outbound proxy server](/azure/azure-arc/kubernetes/quickstart-connect-cluster#connect-using-an-outbound-proxy-server) or [Onboard Kubernetes clusters to Azure Arc with Azure Arc Gateway](/azure/azure-arc/kubernetes/arc-gateway-simplify-networking#onboard-kubernetes-clusters-to-azure-arc-with-your-arc-gateway-resource).
-   > 1. Add `169.254.169.254` to the `--proxy-skip-range` parameter of the `az connectedk8s connect` command. [Azure Device Registry](../discover-manage-assets/overview-manage-assets.md#store-assets-as-azure-resources-in-a-centralized-registry) uses this local endpoint to get access tokens for authorization.
+   > 1. Add `169.254.169.254` to the `--proxy-skip-range` parameter of the `az connectedk8s connect` command. [Azure Device Registry](../discover-manage-assets/overview-manage-assets.md#azure-device-registry) uses this local endpoint to get access tokens for authorization.
    > 
    > Azure IoT Operations doesn't support proxy servers that require a trusted certificate.
    
@@ -340,7 +340,7 @@ Connect your cluster to Azure Arc so that it can be managed remotely.
    ```
 ---
 
-## Advanced configuration
+## Advanced configuration 
 
 At this point, when you have an Azure Arc-enabled Kubernetes cluster but before you deploy Azure IoT Operations to it, you might want to configure your cluster for advanced scenarios.
 
@@ -349,4 +349,7 @@ At this point, when you have an Azure Arc-enabled Kubernetes cluster but before 
 
 ## Next steps
 
-Now that you have an Azure Arc-enabled Kubernetes cluster, you can [deploy Azure IoT Operations](howto-deploy-iot-operations.md).
+Now that you have an Azure Arc-enabled Kubernetes cluster, you can choose to deploy Azure IoT Operation with test settings or with production settings.
+
+- [Test deployment](howto-deploy-iot-test-operations.md): Recommended for quick evaluation and prototyping before deploying in production. Test deployment isn't suitable for production, it lacks observability and hardened security.
+- [Production deployment](howto-deploy-iot-operations.md): Recommended for production-ready workloads. Production deployment is suitable for real-world IoT deployments with compliance and security needs.
