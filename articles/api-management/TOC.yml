@@ -144,6 +144,7 @@
     - name: Security baseline
       href: /security/benchmark/azure/baselines/api-management-security-baseline?toc=%2Fazure/api-management%2Ftoc.json&bc=/azure/api-management/breadcrumb/toc.json
   - name: Reliability and disaster recovery
+    items:
     - name: Access resource protected by network security perimeter
       href: using-network-security-perimeter.md
   - name: Configuration management
