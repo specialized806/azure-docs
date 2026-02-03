@@ -27,7 +27,7 @@ Confidential VM restore behavior depends on the state of the DES, Key Vault, and
 
 - **Original Key or Key Version intact**: Restore succeeds if the original Disk Encryption Set (DES) and key remain intact.
 - **Key Rotation**: Restore succeeds when a new key version is active, provided the previous key version isn't expired or deleted.
-- **Key Change**: If the DES uses a new key in the same key vault, restore succeeds only if the original key(used during backup) still exists. It fails if original key is deleted. If you're using a different key vault - it should point to the same key as the original one.
+- **Key Change**: If the DES uses a new key in the same key vault, restore succeeds only if the original key, used during backup still exists. It fails if original key is deleted. If you're using a different key vault - it should point to the same key as the original one.
 - **DES or Key Deleted**: Restore fails with errors, such as `UserErrorDiskEncryptionSetDoesNotExist` or `UserErrorDiskEncryptionSetKeyDoesNotExist`. To resolve, re-create the key and DES using restored key data, then retry the restore.
 - **Input DES Provided**: If you provide a new DES created from restored key data, restore succeeds if the key and version match the ones used at backup time.
 - **Mismatched DES or Key**: Restore fails with `UserErrorInputDESKeyDoesNotMatchWithOriginalKey`. To resolve this error, restore the missing keys.
@@ -37,7 +37,7 @@ Learn how to [restore missing keys for Confidential VM restore](#restore-missing
 ## Restore a Confidential VM
 
 ### Restore with original key intact
-During the restore process, you can continue without providing a Disk encryption set input when the original(used during backup) Customer Managed Key (CMK), Key Vault, mHSM, and DES are available. In these scenarios, you can continue the restore process as usual. [Learn how to restore an Azure VM](backup-azure-arm-restore-vms.md).
+During the restore process, you can continue without providing a Disk encryption set input when the original Customer Managed Key (CMK), Key Vault, mHSM, and DES are available. In these scenarios, you can continue the restore process as usual. [Learn how to restore an Azure VM](backup-azure-arm-restore-vms.md).
 
 ### Restore when original key is rotated, lost, or compromised
 The restore process fails if the original CMK, Key Vault, mHSM, or DES referencing the CMK is unavailable, or if backup can't access the original CMK. In such cases, the initial restore attempt fails, and the CVM won't restore. To address this, follow these steps:
