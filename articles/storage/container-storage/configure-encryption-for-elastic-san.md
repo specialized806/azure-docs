@@ -1,5 +1,5 @@
 ---
-title: Configure encryption for Elastic SAN volumes
+title: Configure encryption for Azure Elastic SAN volumes
 description: Learn how to configure Azure Elastic SAN encryption with customer-managed keys (CMK) for volumes provisioned via Azure Container Storage by using Azure CLI.
 author: saurabh0501
 ms.service: azure-container-storage

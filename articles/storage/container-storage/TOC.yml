@@ -19,6 +19,8 @@
   items:
   - name: Enable zone-redundant storage
     href: enable-multi-zone-redundancy.md
+  - name: Configure encryption
+    href: configure-encryption-for-elastic-san.md
   - name: Resize persistent volumes
     href: resize-volume.md
   - name: Volume snapshots

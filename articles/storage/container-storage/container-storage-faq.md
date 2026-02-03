@@ -1,5 +1,5 @@
 ---
-title: Frequently asked questions for Azure Container Storage
+title: Frequently asked questions about Azure Container Storage
 description: Get answers to Azure Container Storage frequently asked questions (FAQ).
 author: khdownie
 ms.service: azure-container-storage
