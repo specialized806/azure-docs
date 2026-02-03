@@ -28,7 +28,7 @@ Only users who have *Owner* or *Contributor* access on the Azure subscription ca
 
 - Limit of five diagnostic settings reached. Each Azure resource can have a maximum of five diagnostic settings. For more information, see [diagnostic settings](/azure/azure-monitor/essentials/diagnostic-settings?tabs=portal).
 
-- Export of Metrics data isn't supported currently by the partner solutions under Azure Monitor diagnostic settings.
+- The partner solutions under Azure Monitor diagnostic settings don't currently support export of Metrics data.
 
 ## Diagnostic settings are active even after disabling the Elastic resource or applying necessary tag rules
 
