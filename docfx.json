@@ -1855,7 +1855,9 @@
           "articles/governance/policy/**/*.md",
           "articles/hdinsight/hdinsight-high-availability-components.md",
           "articles/hdinsight/optimize-hbase-ambari.md",
-          "articles/site-recovery/**/*.md"
+          "articles/site-recovery/**/*.md",
+          "articles/sentinel/ueba-useful-queries.md",
+          "articles/sentinel/identify-threats-with-entity-behavior-analytics.md"
         ]
       },
       "sensitive-language-sl": {
