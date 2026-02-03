@@ -117,9 +117,9 @@ The blue-green approach introduces a cost trade-off. You incur costs for both cl
 
 #### Plan a maintenance window
 
-No matter what approach you select for your workload, it's highly encouraged that a generous maintenance window is negotiated during the plan phase. This is to respect the sensitive nature of migration activities and to account for any loss of functionality during the migration. The maintenance window allows you to develop plans that reduce risk of data loss, data corruption, or inconsistent user experiences by taking advantage of no active usage of the system. For example, this time can be used to drain Amazon Simple Queue Service (SQS) messages.
+We recommend that you negotiate a generous maintenance window during the plan phase for whichever cutover strategy you use. A sufficient window respects the sensitive nature of migration activities and accounts for functionality loss during the migration. The maintenance window allows you to use the time that the system isn't in use to develop plans that reduce the risk of data loss, data corruption, or inconsistent user experiences. For example, use this time to drain Amazon Simple Queue Service (SQS) messages.
 
-If your workload has an outage budget, consider the migration window to not draw from that budget, as you might need that budget to address post-migration surprises. You'll need to consider impacts to contractual SLAs in this decision.
+If your workload has an outage budget, consider the migration window as a time to not draw from that budget. You might need that budget to address post-migration problems. Consider how this decision affects contractual SLAs.
 
 ### Choose your data migration strategy
 
