@@ -57,7 +57,7 @@ A virtual hub is a virtual network that is created and used by Azure Virtual WAN
    * **Private address space** - The CIDR IP address space located on your on-premises site. Traffic destined for this address space is routed to your local site. The CIDR block is only required if you [BGP](../vpn-gateway/bgp-howto.md) isn't enabled for the site.
     
    >[!NOTE]
-   >If you edit the address space (adding an additional address space) after creating the site , it can take 8-10 minutes to update the effective routes while the components are recreated.
+   >If you edit the address space (add more address spaces) after creating the site, it can take 8-10 minutes to update the effective routes while the components are recreated.
 
 1. Select **Links** to add information about the physical links at the branch. If you have a Virtual WAN partner CPE device, check with them to see if this information gets exchanged with Azure as a part of the branch information upload set up from their systems.
 
@@ -120,7 +120,7 @@ A virtual hub is a virtual network that is created and used by Azure Virtual WAN
 
 1. If you're deploying a firewall in the hub and it's the next hop, set the **Propagate Default Route** option to **Enable**. 
 
-   When enabled, the Virtual WAN hub propagates to a connection only if the hub already learned the default route when deploying a firewall in the hub or if another connected site forced tunneling enabled. The default route doesn't originate in the Virtual WAN hub.  
+   When enabled, the Virtual WAN hub propagates to a connection if either: the hub already learned the default route when deploying a firewall in the hub or if another connected site forced tunneling enabled. The default route doesn't originate in the Virtual WAN hub.  
 
 1. Select **Connect**. After a few minutes, the site shows the connection and connectivity status.
 
