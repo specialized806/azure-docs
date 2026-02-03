@@ -102,7 +102,7 @@ Before you create a pipeline, the source code for your app must be in a reposito
 
 1. Select **Repos** in the left pane.
 
-1.Select **Import a repository**.
+1. Select **Import a repository**.
 
 1. Enter the following values, and then select **Import**:
 
