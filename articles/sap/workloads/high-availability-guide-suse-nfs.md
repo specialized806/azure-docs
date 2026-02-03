@@ -1,5 +1,5 @@
 ---
-title: High availability for NFS on Azure VMs on SLES | Microsoft Docs
+title: High availability for NFS on Azure VMs on SUSE Linux Enterprise Server | Microsoft Docs
 description: High availability for NFS on Azure VMs on SUSE Linux Enterprise Server
 services: virtual-machines-windows,virtual-network,storage
 author: rdeltcheva
@@ -7,7 +7,7 @@ manager: juergent
 ms.service: sap-on-azure
 ms.subservice: sap-vm-workloads
 ms.topic: article
-ms.date: 06/19/2024
+ms.date: 02/02/2026
 ms.author: radeltch
 ms.custom:
   - linux-related-content
@@ -83,7 +83,7 @@ The NFS server uses a dedicated virtual hostname and virtual IP addresses for ev
 * Probe port 61001 for NW2
 
 ## Set up a highly available NFS server
-
+In the following sections, you'll learn how to set up a highly available NFS server on SUSE Linux Enterprise Server.
 ### Deploy Linux manually via Azure portal
 
 This document assumes that you've already deployed a resource group, [Azure Virtual Network](../../virtual-network/virtual-networks-overview.md), and subnet.
