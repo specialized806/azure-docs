@@ -1,7 +1,7 @@
 ---
 title: "Tutorial: Connect AKS to Azure OpenAI with Service Connector and Workload Identity"
 titleSuffix: Service Connector
-description: "Complete step-by-step guide: Connect Azure Kubernetes Service (AKS) to Azure OpenAI using Service Connector with workload identity authentication"
+description: "Complete step-by-step guide: Connect Azure Kubernetes Service (AKS) to Azure OpenAI using Service Connector with workload identity authentication."
 #customer intent: As a developer, I want to connect my AKS resource to Azure OpenAI.
 author: maud-lv
 ms.author: malev
@@ -22,12 +22,12 @@ You'll complete the following tasks:
 
 > [!div class="checklist"]
 >
-> * Create an AKS cluster and Azure OpenAI resource with GPT-4 model
-> * Configure Service Connector to establish the connection with workload identity
-> * Clone a sample application
-> * Build and push container images to Azure Container Registry
-> * Deploy the application to AKS and verify the connection
-> * Clean up resources
+> * Create an AKS cluster and Azure OpenAI resource with GPT-4 model.
+> * Configure Service Connector to establish the connection with workload identity.
+> * Clone a sample application.
+> * Build and push container images to Azure Container Registry.
+> * Deploy the application to AKS and verify the connection.
+> * Clean up resources.
 
 ## Prerequisites
 
@@ -68,7 +68,7 @@ You start this tutorial by creating several Azure resources.
         --name MyAKSCluster
     ```
 
-1. Create an Azure OpenAI resource using the [az cognitiveservices account create](/cli/azure/cognitiveservices/account#az-cognitiveservices-account-create) command. Optionally refer to [this tutorial](/azure/ai-services/openai/how-to/create-resource) for more instructions. Azure OpenAI is the target service that the AKS cluster will connect to.
+1. Create an Azure OpenAI resource using the [az cognitiveservices account create](/cli/azure/cognitiveservices/account#az-cognitiveservices-account-create) command. Optionally refer to [this tutorial](/azure/ai-services/openai/how-to/create-resource) for more instructions. Azure OpenAI is the target service that the AKS cluster connects to.
 
     ```azurecli
     az cognitiveservices account create \
@@ -104,7 +104,7 @@ You start this tutorial by creating several Azure resources.
         --sku Standard
     ```
 
-1. Enable anonymous pull using [az acr update](/cli/azure/acr#az-acr-update) command so that the AKS cluster can consume the images in the registry.
+1. Enable anonymous pull using the [az acr update](/cli/azure/acr#az-acr-update) command so that the AKS cluster can consume the images in the registry.
 
     ```azurecli-interactive
     az acr update \
@@ -131,22 +131,22 @@ Refer to the [AKS service connection quickstart](quickstart-portal-aks-connectio
 
 1. Basics tab:
 
-    | Setting             | Example value     | Description                                                                               |
-    |---------------------|-------------------| ------------------------------------------------------------------------------------------|
-    | **Kubernetes namespace** | *default*    | The Kubernetes namespace.                                                                 |
-    | **Service type**    | *OpenAI Service*  | The target service type.                                                                  |
-    | **Connection name** | *openai_conn*     | Use the connection name provided by Service Connector or choose your own connection name. |
-    | **Subscription**    | *My Subscription* | The Azure subscription containing your Azure OpenAI resource.                             |
-    | **OpenAI**          | *MyOpenAI*        | The target Azure OpenAI resource you want to connect to.                                  |
-    | **Client type**     | *Python*          | The programming language or framework for the connection configuration.                   |
+   | Setting             | Example value     | Description                                                                               |
+   |---------------------|-------------------| ------------------------------------------------------------------------------------------|
+   | **Kubernetes namespace** | *default*    | The Kubernetes namespace.                                                                 |
+   | **Service type**    | *OpenAI Service*  | The target service type.                                                                  |
+   | **Connection name** | *openai_conn*     | Use the connection name provided by Service Connector or choose your own connection name. |
+   | **Subscription**    | *My Subscription* | The Azure subscription containing your Azure OpenAI resource.                             |
+   | **OpenAI**          | *MyOpenAI*        | The target Azure OpenAI resource you want to connect to.                                  |
+   | **Client type**     | *Python*          | The programming language or framework for the connection configuration.                   |
     
 1. Authentication tab:
 
-| Authentication Setting         | Example value       | Description                                                             |
-|--------------------------------|---------------------|-------------------------------------------------------------------------|
-| **Authentication type**        | *Workload Identity* | The authentication method to connect the app to Azure OpenAI. Workload identity is recommended for enhanced security. Alternative methods include connection string and service principal, and require credential management considerations. |
-| **Subscription**               | *My Subscription*   | The subscription that contains the user-assigned managed identity.                         |
-| **User assigned managed identity** | *myidentity*    | The user-assigned managed identity that enables workload identity authentication for the AKS cluster. |
+   | Authentication Setting         | Example value       | Description                                                             |
+   |--------------------------------|---------------------|-------------------------------------------------------------------------|
+   | **Authentication type**        | *Workload Identity* | The authentication method to connect the app to Azure OpenAI. Workload identity is recommended for enhanced security. Alternative methods include connection string and service principal, and require credential management considerations. |
+   | **Subscription**               | *My Subscription*   | The subscription that contains the user-assigned managed identity.                         |
+   | **User assigned managed identity** | *myidentity*    | The user-assigned managed identity that enables workload identity authentication for the AKS cluster. |
 
 Once the connection is created, you can view its details in the **Service Connector** pane.
 
@@ -159,7 +159,7 @@ az aks connection create cognitiveservices \
    --workload-identity <user-identity-resource-id>
 ```
 
-When using the above command, Service Connector prompts you to specify the AKS resource group, AKS cluster name, target service resource group, cognitive service account name, and user-assigned identity resource ID step by step.
+When you use the preceding command, Service Connector prompts you step by step to specify the AKS resource group, AKS cluster name, target service resource group, cognitive service account name, and user-assigned identity resource ID.
 
 Alternatively, you can provide the complete command directly:
 
@@ -211,7 +211,7 @@ az aks connection create cognitiveservices \
 
 1. Replace the placeholders in the `pod.yaml` file in the `azure-openai-workload-identity` folder.
 
-   * Replace `<YourContainerImage>` with the name of the image you built earlier. For example `<myregistry>.azurecr.io/<sc-demo-openai-identity>:<latest>`.
+   * Replace `<YourContainerImage>` with the name of the image you built earlier. For example, `<myregistry>.azurecr.io/<sc-demo-openai-identity>:<latest>`.
    * Replace `<ServiceAccountCreatedByServiceConnector>` with the service account name. It can be found in the Azure portal, in the **Service Connector** pane.
    * Replace `<SecretCreatedByServiceConnector>` with the secret name. It can be found in the Azure portal, in the **Service Connector** pane.
 
