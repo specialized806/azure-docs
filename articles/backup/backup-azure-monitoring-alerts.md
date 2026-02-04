@@ -60,13 +60,16 @@ To migrate from classic alerts to built-in Azure Monitor alerts, follow these st
 
 1. To Opt-out of classic alerts to avoid receiving duplicate alerts from two solutions, on the **Alerts** pane, from the **Manage alerts** dropdown, select **Manage built-in alert settings for resources** and view the vaults for which classic alerts are currently enabled.
 
-1. Select **Update** > **Use only Azure Monitor alerts** checkbox.
+1. On the **Opt-in to use only Azure Monitor alerts** pane, select **Update**.
 
-   By doing so, you agree to receive backup alerts only via Azure Monitor, and you'll stop receiving alerts from the older (classic alerts) solution.
 
    :::image type="content" source="./media/move-to-azure-monitor-alerts/classic-alerts-vault.png" alt-text="Screenshot that shows how to opt out of classic alerts for vault." lightbox="./media/move-to-azure-monitor-alerts/classic-alerts-vault.png":::
 
-1. To select multiple vaults on a page and update the settings for these vaults with a single action, select **Update** from the top menu.
+1. On the **Monitoring Settings** pane,  select **Use only Azure Monitor alerts** checkbox, and then select **Update**.
+
+   By doing so, you agree to receive backup alerts only via Azure Monitor, and you'll stop receiving alerts from the older (classic alerts) solution.
+
+   To update the settings for multiple vaults with a single action, select the required vaults, and then select **Update** from the top menu.
 
    :::image type="content" source="./media/move-to-azure-monitor-alerts/classic-alerts-multiple-vaults.png" alt-text="Screenshot that shows how to opt out of classic alerts for multiple vaults." lightbox="./media/move-to-azure-monitor-alerts/classic-alerts-multiple-vaults.png":::
 
