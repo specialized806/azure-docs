@@ -10,7 +10,7 @@ ms.date: 01/20/2026
 # Customer intent: Use this article to learn how Azure Copilot migration agent helps you plan and analyze migrations by reasoning over Azure Migrate data, including supported scenarios, available capabilities, and example interactions.
 ---
 
-# Azure Copilot migration aent (preview)
+# Azure Copilot migration agent (preview)
 
 Azure Copilot migration agent is a planning‑focused experience that helps you plan and analyze migrations by reasoning over Azure Migrate data.
 
