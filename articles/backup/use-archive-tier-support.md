@@ -119,7 +119,7 @@ Follow these steps:
 
 1. To view the list of all eligible achievable recovery points, on the selected associated item, select **click here**.
 
-   :::image type="content" source="./media/use-archive-tier-support/view-old-virtual-machine-recovery-points.png" alt-text="Screenshot that showa the process to view recovery points for Virtual Machines that are older than seven days." lightbox="./media/use-archive-tier-support/view-old-virtual-machine-recovery-points.png":::
+   :::image type="content" source="./media/use-archive-tier-support/view-old-virtual-machine-recovery-points.png" alt-text="Screenshot that shows the process to view recovery points for Virtual Machines that are older than seven days." lightbox="./media/use-archive-tier-support/view-old-virtual-machine-recovery-points.png":::
 
 1. On the **Move recovery points to vault-archive** pane, select **Move recovery points to vault-archive** to move all recovery points to the Vault-archive tier.
 
