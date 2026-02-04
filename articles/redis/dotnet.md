@@ -24,7 +24,6 @@ Clone the [Microsoft.Azure.StackExchangeRedis](https://github.com/Azure/Microsof
 - An **Azure Managed Redis** instance provisioned in your Azure subscription.
 - Your Azure user or service principal must be added as a Redis user on the cache. In the Azure portal, go to **Authentication** on the Resource menu, select **User or service principal**, and add your identity.
 - [Azure CLI](/cli/azure/install-azure-cli?view=azure-cli-latest) for local development authentication.
-[Azure CLI](/cli/azure/install-azure-cli?view=azure-cli-latest)
 
 ## Required NuGet Packages
 

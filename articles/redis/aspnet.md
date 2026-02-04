@@ -4,11 +4,11 @@ description: In this quickstart, you learn how to create an ASP.NET Core web app
 ms.date: 01/30/2026
 ms.topic: quickstart
 ms.devlang: csharp
-zone_pivot_groups: redis-type
 appliesto:
   - ✅ Azure Managed Redis
 ai-usage: ai-assisted
-# Customer intent: As an ASP.NET developer, new to Azure Managed Redis, I want to create a new .NET app that uses Azure Managed Redis.
+
+# Customer intent: As an ASP.NET developer, new to Azure Managed Redis, I want to create a new ASP.NET app that uses Azure Managed Redis.
 ---
 
 # Azure Managed Redis sample - ASP.NET Core Web API
@@ -34,12 +34,12 @@ Clone the [Microsoft.Azure.StackExchangeRedis](https://github.com/Azure/Microsof
 
 ## Required NuGet Packages
 
-| Package | Purpose |
-| --------- | --------- |
+| Package                              | Purpose                                                                                                                    |
+|--------------------------------------|----------------------------------------------------------------------------------------------------------------------------|
 | `Microsoft.Azure.StackExchangeRedis` | Extension methods for StackExchange.Redis that enable Microsoft Entra ID token-based authentication to Azure Managed Redis |
-| `StackExchange.Redis` | The underlying Redis client library for .NET |
-| `Azure.Identity` | Provides `DefaultAzureCredential` and other credential types for authenticating with Azure services |
-| `Swashbuckle.AspNetCore` | Swagger/OpenAPI support for API documentation and testing |
+| `StackExchange.Redis`                | The underlying Redis client library for .NET                                                                               |
+| `Azure.Identity`                     | Provides `DefaultAzureCredential` and other credential types for authenticating with Azure services                        |
+| `Swashbuckle.AspNetCore`             | Swagger/OpenAPI support for API documentation and testing                                                                  |
 
 Install the primary package:
 
@@ -144,7 +144,7 @@ The controller injects the `Redis` service and demonstrates basic cache operatio
 
 1. Run the application:
 
-  ```bash
+   ```bash
    dotnet run
    ```
 
