@@ -391,8 +391,10 @@ items:
                     href: ../common/transport-layer-security-configure-minimum-version.md?toc=/azure/storage/blobs/toc.json&bc=/azure/storage/blobs/breadcrumb/toc.json
                   - name: Configure TLS version for a client
                     href: ../common/transport-layer-security-configure-client-version.md?toc=/azure/storage/blobs/toc.json&bc=/azure/storage/blobs/breadcrumb/toc.json
-                  - name: Migrate to TLS 1.2
-                    href: ../common/transport-layer-security-configure-migrate-to-TLS2.md?toc=/azure/storage/blobs/toc.json&bc=/azure/storage/blobs/breadcrumb/toc.json
+                  - name: TLS version retirement
+                    items:
+                    - name: Migrate to TLS 1.2
+                      href: ../common/transport-layer-security-configure-migrate-to-TLS2.md?toc=/azure/storage/blobs/toc.json&bc=/azure/storage/blobs/breadcrumb/toc.json
               - name: Network routing
                 href: ../common/network-routing-preference.md?toc=/azure/storage/blobs/toc.json&bc=/azure/storage/blobs/breadcrumb/toc.json
                 items:
@@ -563,18 +565,6 @@ items:
                 href: immutable-policy-configure-version-scope.md
       - name: Performance and scale
         items:
-        - name: Require secure transfer
-          href: ../common/storage-require-secure-transfer.md?toc=/azure/storage/blobs/toc.json&bc=/azure/storage/blobs/breadcrumb/toc.json
-        - name: Enforce minimum TLS version
-          href: ../common/transport-layer-security-configure-minimum-version.md?toc=/azure/storage/blobs/toc.json&bc=/azure/storage/blobs/breadcrumb/toc.json
-        - name: Configure TLS version for a client
-          href: ../common/transport-layer-security-configure-client-version.md?toc=/azure/storage/blobs/toc.json&bc=/azure/storage/blobs/breadcrumb/toc.json
-        - name: TLS version retirement
-          items:
-          - name: Migrate to TLS 1.2
-            href: ../common/transport-layer-security-configure-migrate-to-TLS2.md?toc=/azure/storage/blobs/toc.json&bc=/azure/storage/blobs/breadcrumb/toc.json
-      - name: Network routing
-        href: ../common/network-routing-preference.md?toc=/azure/storage/blobs/toc.json&bc=/azure/storage/blobs/breadcrumb/toc.json
           - name: Performance checklist
             href: storage-performance-checklist.md
           - name: Optimize data partitions
