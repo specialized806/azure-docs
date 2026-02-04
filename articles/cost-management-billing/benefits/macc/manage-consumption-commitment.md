@@ -79,7 +79,7 @@ The milestones view displays the following information for each milestone:
 
 Here's an example of the milestone view:
 
-:::image type="content" source="../media/macc/manage_macc_with_milestones.png" border="true" alt-text="Screenshot showing MACC milestones and progress tracking." lightbox="../media/macc/manage_macc_with_milestones.png" :::
+:::image type="content" source="../media/macc/manage-consumption-commitment-milestones.png" border="true" alt-text="Screenshot showing MACC milestones and progress tracking." lightbox="../media/macc/manage-consumption-commitment-milestones.png" :::
 
 
 ## Related content
