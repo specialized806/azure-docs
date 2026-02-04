@@ -151,15 +151,11 @@ To connect to your MCP server endpoint:
 
 1. Go to the [Foundry portal (new Foundry)](https://ai.azure.com/nextgen).
 
-1. Select the **Build** tab at the top. This selection opens the **Agents** page.
+1. Select the **Build** tab at the top of the page and select an agent to connect to your MCP server. 
 
-1. From the table, select the agent you want to equip with MCP tools. This selection brings you to the Agent Builder.
+1. In the **Playground** tab, expand **Tools** dropdown and select **Add**.
 
-1. Under **Playground**, expand the **Tools** dropdown and select **Add**.
-
-1. Select **+ Add a new tool** > **Custom** tab.
-
-1. Select **Model Context Protocol (MCP)** > **Create**.
+1. In the **Custom** tab in **Select a tool**, select **Model Context Protocol (MCP)** > **Create**.
 
 1. In **Add Model Content Protocol tool**, provide information from this table to configure an access key-based connection: 
 
@@ -182,15 +178,11 @@ To connect to your MCP server endpoint:
 
 1. Go to the [Foundry portal (new Foundry)](https://ai.azure.com/nextgen).
 
-1. Select the **Build** tab at the top. This selection opens the **Agents** page.
+1. Select the **Build** tab at the top of the page and select an agent to connect to your MCP server. 
 
-1. From the table, select the agent you want to equip with MCP tools. This selection brings you to the Agent Builder.
+1. In the **Playground** tab, expand **Tools** dropdown and select **Add**.
 
-1. Under **Playground**, expand the **Tools** dropdown and select **Add**.
-
-1. Select **+ Add a new tool** > **Custom** tab.
-
-1. Select **Model Context Protocol (MCP)** > **Create**.
+1. In the **Custom** tab in **Select a tool**, select **Model Context Protocol (MCP)** > **Create**.
 
 1. In **Add Model Content Protocol tool**, enter the information from this table to configure a Microsoft Entra-based connection:
 
@@ -214,15 +206,11 @@ To connect to your MCP server endpoint:
 
 1. Go to the [Foundry portal (new Foundry)](https://ai.azure.com/nextgen).
 
-1. Select the **Build** tab at the top. This selection opens the **Agents** page.
+1. Select the **Build** tab at the top of the page and select an agent to connect to your MCP server. 
 
-1. From the table, select the agent you want to equip with MCP tools. This selection brings you to the Agent Builder.
+1. In the **Playground** tab, expand **Tools** dropdown and select **Add**.
 
-1. Under **Playground**, expand the **Tools** dropdown and select **Add**.
-
-1. Select **+ Add a new tool** > **Custom** tab.
-
-1. Select **Model Context Protocol (MCP)** > **Create**.
+1. In the **Custom** tab in **Select a tool**, select **Model Context Protocol (MCP)** > **Create**.
 
 1. In **Add Model Content Protocol tool**, provide information from this table to configure an unauthenticated connection:
 
