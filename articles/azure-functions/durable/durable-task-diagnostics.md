@@ -37,7 +37,7 @@ The emulator running locally doesn't require authentication.
 For Azure-hosted schedulers, [assign the *Durable Task Data Contributor* role to your identity](durable-task-scheduler/durable-task-scheduler-identity.md). You can then access the dashboard via either:
 
 - The task hub's dashboard endpoint URL in the Azure portal
-- Navigate to `https://dashboard.durabletask.io/` combined with your task hub endpoint
+- Navigating to `https://dashboard.durabletask.io/` and entering your scheduler and task hub information
 
 ### Dashboard capabilities
 
