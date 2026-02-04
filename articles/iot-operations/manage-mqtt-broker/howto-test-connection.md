@@ -64,7 +64,7 @@ mosquitto_pub --host aio-broker --port 18883 --message "hello" --topic "world" -
 
 The output should look similar to the following example:
 
-```Output    
+```output
 Client (null) sending CONNECT
 Client (null) received CONNACK (0)
 Client (null) sending PUBLISH (d0, q0, r0, m1, 'world', ... (5 bytes))
@@ -88,7 +88,7 @@ mosquitto_sub --host aio-broker --port 18883 --topic "world" --debug --cafile /v
 
 The output should look similar to the following example:
 
-```Output
+```output
 Client (null) sending CONNECT
 Client (null) received CONNACK (0)
 Client (null) sending SUBSCRIBE (Mid: 1, Topic: world, QoS: 0, Options: 0x00)
@@ -305,6 +305,14 @@ For example, to create a new broker listener with the `LoadBalancer` service typ
 1. Select **Create** to create the listener.
 1. Select **Create** to create the listener.
 
+# [CLI](#tab/cli)
+
+To create a new broker listener with service type `LoadBalancer`, use the following Azure CLI command.
+
+```azurecli
+az iot ops broker listener port add --port 1883 --listener newlistener --in myinstance -g mygroup
+```
+
 # [Bicep](#tab/bicep)
 
 > [!CAUTION]
@@ -513,6 +521,14 @@ The reason that the MQTT broker uses TLS and service accounts authentication by 
     | Node port      | Enter a number between 30000 to 32767 if using node port. |
 
 1. Select **Create** to create the listener.
+
+# [CLI](#tab/cli)
+
+Use the following Azure CLI command to add or replace an existing listener port. Provide values that reflect the terminal resource state:
+
+```azurecli
+az iot ops broker listener port add --port 1883 --listener newlistener --in myinstance -g mygroup
+```
 
 # [Bicep](#tab/bicep)
 
