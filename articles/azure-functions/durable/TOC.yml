@@ -262,15 +262,15 @@
   - name: Orchestration patterns
     items:
     - name: Function chaining
-      href: durable-functions-sequence.md #placeholder
+      href: durable-functions-sequence.md
     - name: Fan-out/fan-in
-      href: durable-functions-cloud-backup.md #placeholder
+      href: durable-functions-fan-in-fan-out.md
     - name: Monitors (C#, JavaScript)
-      href: durable-functions-monitor.md #placeholder
+      href: durable-functions-monitor.md
     - name: Monitors (Python)
-      href: durable-functions-monitor-python.md #placeholder
+      href: durable-functions-monitor-python.md
     - name: Human interaction
-      href: durable-functions-phone-verification.md #placeholder
+      href: durable-functions-phone-verification.md
   - name: Concepts
     items:
     - name: Versioning
