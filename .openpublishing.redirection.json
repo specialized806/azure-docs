@@ -6886,6 +6886,11 @@
       "redirect_document_id": false
     },
     {
+      "source_path": "articles/synapse-analytics/sql/get-started-azure-data-studio.md",
+      "redirect_url": "/azure/synapse-analytics/sql/get-started-ssms",
+      "redirect_document_id": false
+    },
+    {
       "source_path": "articles/cyclecloud/how-to/collect-custom-metrics-gpu-infiniband-telegraf.md",
       "redirect_url": "/azure/cyclecloud/how-to/monitor-cyclecloud-cluster-using-prometheus-grafana",
       "redirect_document_id": false
