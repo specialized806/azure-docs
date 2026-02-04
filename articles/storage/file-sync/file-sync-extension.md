@@ -391,6 +391,6 @@ You can verify removal by checking the **Extensions** list in the Azure portal (
 
 ## Discounted per-server pricing
 
-Beginning January 2026, organizations with [Software Assurance (SA)][/azure/azure-arc/servers/windows-server-management-overview] and Azure Arc-enabled servers receive fully discounted per-server Azure File Sync pricing if they are using Azure File Sync agent version 22 or later. Customers using an Azure File Sync agent older than version 22 won't receive the discount.
+Beginning January 2026, organizations with [Software Assurance (SA)](/azure/azure-arc/servers/windows-server-management-overview) and Azure Arc-enabled servers receive fully discounted per-server Azure File Sync pricing if they are using Azure File Sync agent version 22 or later. Customers using an Azure File Sync agent older than version 22 won't receive the discount.
 
 This benefit helps customers reduce operational costs as hybrid file deployments scale.
