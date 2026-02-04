@@ -198,6 +198,36 @@ To connect to your MCP server endpoint:
 
 1. Select **Save** to save the MCP tool configuration in your agent.
 
+### [OAuth Identity Passthrough](#tab/oauth-id)
+
+The agent prompts the user to login and uses the access token returned there to connect to the server. 
+
+1. Go to the [Foundry portal (new Foundry)](https://ai.azure.com/nextgen).
+
+1. Select the **Build** tab at the top of the page and select an agent to connect to your MCP server. 
+
+1. In the **Playground** tab, expand **Tools** dropdown and select **Add**.
+
+1. In the **Custom** tab in **Select a tool**, select **Model Context Protocol (MCP)** > **Create**.
+
+1. In **Add Model Content Protocol tool**, enter the information from this table to configure OAuth Identity Passthrough connection:
+
+    | Field | Description | Example |
+    | ----- | ----------- | ------- |
+    | **Name** | A unique identifier for your MCP server. You can use your function app name. | `my-mcp-functions` |
+    | **Remote MCP Server endpoint** | The URL endpoint for your MCP server. | `https://my-mcp-functions.azurewebsites.net/runtime/webhooks/mcp` |
+    | **Authentication** | The authentication method to use. | `OAuth Identity Passthrough` |
+    | **Client ID** |The client ID of your Funciton app's Entra registration|  `00001111-aaaa-2222-bbbb-3333cccc4444` |
+    | **Client secret**| The client secret of your Funciton app's Entra registration | Leave it blank|
+    | **Token URL** | The endpoint your server app calls to exchange an authorization code or crednetial for an access token. | `https://login.microsoftonline.com/<TENANT ID>/oauth2/v2.0/token`|
+    | **Auth URL** | The endpoint where users are redirected to authenticate and grant authorization to your server app. | `https://login.microsoftonline.com/<TENANT ID>/oauth2/v2.0/authorize`|
+    | **Refresh URL** | The endpoint used to obtain a new access token when the current one expires. | `https://login.microsoftonline.com/<TENANT ID>/oauth2/v2.0/token` |
+    | **Scopes** | The specific permissions or resource access levels your server app requests from the authorization server | `api://00001111-aaaa-2222-bbbb-3333cccc4444` |
+
+1. Select **Connect** to create a connection to your MCP server endpoint. You should now see your server name listed under **Tools**.
+
+1. Select **Save** to save the MCP tool configuration in your agent.
+
 ### [Unauthenticated](#tab/unauthenticated)
 
 Use unauthenticated access only when your MCP server doesn't require authentication and accesses only public information.
