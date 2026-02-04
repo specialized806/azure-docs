@@ -20,14 +20,12 @@ ms.author: anfdocs
 
 * To avoid extensive restore times, only perform one "restore snapshot to new volume" operation at a time. For this reason, chained restore operations, such as restoring a snapshot to a new volume while the originating volume itself is being restored from a snapshot, should be avoided as well. Alternatively, consider using [cross-zone replication within the same zone](cross-zone-region-replication-configure.md) to create an independent volume copy.
 
-* Only enable backup, snapshots, and replication (cross-region or cross-zone) on the new volume _after_ it's fully restored from the snapshot. To ensure the volume is fully restored, check the progress indicator in the volume details.
+* Cross-region replication and cross-zone replication operations are suspended and cannot be added while restoring a snapshot to a new volume.
 
-* Depending on the size of the volume being restored, the restore operation may take a few minutes to multiple hours to complete.
+* Only enable backup, snapshots, and replication (cross-region or cross-zone) on the new volume _after_ it's fully restored from the snapshot. To ensure the volume is fully restored, check the progress indicator in the volume details.
 
 * If you use the cool access feature, see [Manage Azure NetApp Files storage with cool access](manage-cool-access.md#considerations) for more considerations.
   
-* Cross-region replication and cross-zone replication operations are suspended and cannot be added while restoring a snapshot to a new volume.
-
 ### Considerations for the Elastic service level 
 
 * The new volume must be in the same Elastic capacity pool that contains the source snapshot. 
