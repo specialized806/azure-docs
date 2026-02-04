@@ -11,7 +11,7 @@ ms.topic: concept-article
 ms.service: azure-virtual-network
 ---
 
-# Virtual Network Routing Appliance overview
+# Virtual Network routing appliance overview
 
 Azure Virtual Network Routing Appliance is a high-performance solution that provides a managed, scalable forwarding layer for your virtual networks. Unlike traditional hub-and-spoke architectures that rely on virtual machines for routing, Virtual Network Routing Appliance runs on specialized networking hardware to deliver low latency and high throughput for your traffic flows.
 
