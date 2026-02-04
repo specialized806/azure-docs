@@ -39,4 +39,7 @@ The following table walks through how to use the Azure Copilot migration agent t
 - You can continue asking questions about concepts in this chat, but all migration execution tasks must be completed in the Azure Migrate portal.
 - For execution guidance, see [Server migration overview in Azure Migrate](server-migrate-overview.md).
 
+## Related content
 
+- [Discover servers running in a VMware environment with Azure Migrate appliance](tutorial-discover-vmware.md)
+- [Import VMware inventory using RVTools (preview)](tutorial-import-vmware).

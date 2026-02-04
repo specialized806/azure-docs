@@ -33,7 +33,7 @@ Before you begin, ensure that you have:
 - Access to VMware vCenter.
 - Azure Copilot enabled for the tenant. For more information, see [Manage access to Azure Copilot](/azure/copilot/manage-access#manage-user-access-to-azure-copilot).
 - Agents (preview) enabled in Azure Copilot. For more information, see [Manage access to Agents (preview) in Azure Copilot](/azure/copilot/manage-access#manage-access-to-agents-preview-in-azure-copilot).
-
+- The Azure Copilot migration agent isn't supported when Bring your own storage (BYOS) is enabled for conversation history. For more information, see [Bring your own storage for conversation history in Azure Copilot](/azure/copilot/bring-your-own-storage).
 
 ### Migration strategy analysis 
 
@@ -69,11 +69,6 @@ Azure Copilot migration agent helps you:
 The migration agent complements Azure Migrate by helping you interpret and synthesize migration data. Migration execution is carried out in the Azure Migrate portal.
 
 During the conversations, the migration agent uses data from your Azure Migrate project—such as discovered inventory metadata, business cases, and assessment reports—to tailor responses to your stated goals. Conversation history preserves context and provides more relevant guidance throughout your migration journey.
-
-## Manage access to agents 
-
-To manage access to migration agents (preview) in Azure Copilot, you must be an administrator to request or remove access at the tenant level. For more information, see [Manage access to agents (preview)](/azure/copilot/manage-access#manage-access-to-agents-preview-in-azure-copilot) in Azure Copilot.
-
 
 ## Azure migration agent - Supported scenarios
 
@@ -178,9 +173,6 @@ Based on migration requirements such as target region, compliance needs, and con
 ## Other scenarios and limitations 
 
 - **Migration task execution**: Migration execution tasks, including server replication, test migrations, cutover, and workload move operations, aren’t performed by the Azure Copilot migration agent and must be completed through the Azure Migrate portal.
-
-- **Limitation**: The Azure Copilot migration agent isn't supported when Bring your own storage (BYOS) is enabled for conversation history. For more information, see [Bring your own storage for conversation history in Azure Copilot](/azure/copilot/bring-your-own-storage).
-
 
 ## Related content
 
