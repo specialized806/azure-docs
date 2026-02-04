@@ -31,8 +31,8 @@ Azure Virtual Network costs include several components that directly impact your
 | **Virtual Network** | Base virtual network infrastructure | Free (up to 1,000 VNets per subscription) |
 | **VNet Peering (Same Region)** | Data transfer between peered VNets in same region | $0.01 per GB (inbound and outbound) |
 | **Global VNet Peering** | Data transfer between peered VNets in different regions | Zone-based pricing ($0.035-$0.16 per GB) |
-| **Accelerated Connections** | Enhanced connection performance for network-intensive workloads | Hourly rate per NIC ($0.025-$2.50/hr based on SKU) |
-| **Virtual Network TAP** | Traffic mirroring for monitoring | $0.015 per NIC per hour |
+| **Accelerated Connections** | Enhanced connection performance for network-intensive workloads | Hourly rate per network interface (NIC) ($0.025-$2.50/hr based on SKU) |
+| **Virtual Network TAP** | Traffic mirroring for monitoring | $0.015 per network interface (NIC) per hour |
 | **VPN Gateway** | Hybrid connectivity to on-premises | Hourly compute + data transfer |
 | **NAT Gateway** | Outbound internet connectivity | Hourly + data processing charges |
 | **IP Addresses** | Public IP addresses | Hourly charges per IP |
@@ -56,10 +56,10 @@ Azure Virtual Network offers different connectivity patterns with unique cost st
 
 | Recommendation | Benefit |
 |---|---|
-| **Use hub-and-spoke topology** with centralized shared services in hub VNet and workload-specific spoke VNets connected via peering. | Hub-and-spoke reduces complexity and centralizes common services like firewalls, VPN gateways, and monitoring. You pay peering costs only between hubs and spokes, avoiding mesh peering charges. This topology scales efficiently as you add new workloads. To implement hub-and-spoke, see [Hub-spoke network topology in Azure](/azure/architecture/reference-architectures/hybrid-networking/hub-spoke). |
-| **Implement regional VNet peering** instead of global peering when workloads can be co-located in the same Azure region. | Regional peering costs significantly less than global peering ($0.01/GB vs $0.035-$0.16/GB). You reduce latency while minimizing data transfer expenses. Design workload placement to maximize same-region communication when performance requirements permit. |
-| **Use Azure Private Link** for connecting to Azure PaaS services instead of routing traffic through public endpoints. | Private Link eliminates VNet peering charges for PaaS access and improves security. You pay Private Link endpoint charges but avoid unnecessary peering costs and data transfer over public networks. This approach optimizes both cost and security. For more information, see [What is Azure Private Link?](../private-link/private-link-overview.md). |
-| **Implement subnet peering** when only specific subnets need connectivity between virtual networks. | Subnet peering reduces costs by limiting peering scope to necessary subnets rather than entire VNet address spaces. You pay for data transfer only on required communication paths. This granular approach prevents paying for unused peering capacity. To configure subnet peering, see [How to configure subnet peering](how-to-configure-subnet-peering.md). |
+| **Use hub-and-spoke topology** with centralized shared services in hub virtual network and workload-specific spoke VNets connected via peering. | Hub-and-spoke reduces complexity and centralizes common services like firewalls, VPN gateways, and monitoring. You pay peering costs only between hubs and spokes, avoiding mesh peering charges. This topology scales efficiently as you add new workloads. To implement hub-and-spoke, see [Hub-spoke network topology in Azure](/azure/architecture/reference-architectures/hybrid-networking/hub-spoke). |
+| **Implement regional VNet peering** instead of global peering when workloads can be colocated in the same Azure region. | Regional peering costs less than global peering ($0.01/GB vs $0.035-$0.16/GB). You reduce latency while minimizing data transfer expenses. Design workload placement to maximize same-region communication when performance requirements permit. |
+| **Use Azure Private Link** for connecting to Azure PaaS services instead of routing traffic through public endpoints. | Private Link eliminates virtual network peering charges for PaaS access and improves security. You pay Private Link endpoint charges but avoid unnecessary peering costs and data transfer over public networks. This approach optimizes both cost and security. For more information, see [What is Azure Private Link?](../private-link/private-link-overview.md). |
+| **Implement subnet peering** when only specific subnets need connectivity between virtual networks. | Subnet peering reduces costs by limiting peering scope to necessary subnets rather than entire virtual network address spaces. You pay for data transfer only on required communication paths. This granular approach prevents paying for unused peering capacity. To configure subnet peering, see [How to configure subnet peering](how-to-configure-subnet-peering.md). |
 
 ## Design for network efficiency
 
@@ -69,7 +69,7 @@ Optimize your network architecture to minimize unnecessary data transfer and pee
 |---|---|
 | **Minimize cross-region traffic** by deploying workload components in the same region when latency and data residency requirements permit. | Same-region communication eliminates expensive global peering charges. You reduce data transfer costs significantly while often improving application performance through reduced latency. |
 | **Consolidate virtual networks** where security and management requirements allow, reducing the total number of peering connections needed. | Fewer virtual networks mean fewer peering connections to maintain and pay for. You simplify network management while reducing per-connection overhead. Ensure consolidation doesn't compromise security boundaries or management separation requirements. |
-| **Use network security groups** and Azure Firewall efficiently to prevent unnecessary traffic flows that incur peering charges. | Blocking unnecessary traffic at source prevents paying for data transfer that provides no business value. You optimize both cost and security by implementing traffic filtering close to traffic sources. |
+| **Use network security groups (NSGs)** and Azure Firewall efficiently to prevent unnecessary traffic flows that incur peering charges. | Blocking unnecessary traffic at source prevents paying for data transfer that provides no business value. You optimize both cost and security by implementing traffic filtering close to traffic sources. |
 | **Design application architecture** to minimize chatty communication patterns between regions and optimize for batch operations when possible. | Reducing the number and size of network calls decreases data transfer costs. You can often optimize application design to bundle requests, cache data locally, or process data closer to its source. |
 
 ## Optimize gateway and connectivity costs
@@ -78,9 +78,9 @@ Gateways and specialized network services add significant costs. Use them judici
 
 | Recommendation | Benefit |
 |---|---|
-| **Share VPN gateways** across multiple virtual networks using gateway transit in hub-and-spoke topologies instead of deploying gateways in every VNet. | Gateway consolidation eliminates duplicate gateway costs while maintaining hybrid connectivity. A single gateway can serve multiple spoke VNets through peering with gateway transit enabled. You pay one gateway hourly charge instead of multiple. To configure gateway transit, see [Configure VPN gateway transit in virtual network peering](../vpn-gateway/vpn-gateway-peering-gateway-transit.md). |
-| **Right-size VPN gateways** based on actual throughput requirements rather than over-provisioning for peak capacity. | Gateway SKUs have significant price differences. You can start with lower SKUs and scale up if needed, avoiding unnecessary costs for unused capacity. Monitor gateway metrics to ensure adequate performance. |
-| **Use NAT Gateway** for outbound internet connectivity instead of public IPs on individual VMs when you have many outbound connections. | NAT Gateway provides cost-effective, scalable outbound connectivity with better performance than individual public IPs. You pay per-hour plus data processing charges, which is often more economical than many public IP addresses. For more information, see [What is Azure NAT Gateway?](../nat-gateway/nat-overview.md). |
+| **Share VPN gateways** across multiple virtual networks using gateway transit in hub-and-spoke topologies instead of deploying gateways in every virtual network. | Gateway consolidation eliminates duplicate gateway costs while maintaining hybrid connectivity. A single gateway can serve multiple spoke VNets through peering with gateway transit enabled. You pay one gateway hourly charge instead of multiple. To configure gateway transit, see [Configure VPN gateway transit in virtual network peering](../vpn-gateway/vpn-gateway-peering-gateway-transit.md). |
+| **Right-size VPN gateways** based on actual throughput requirements rather than over-provisioning for peak capacity. | Gateway stock keeping units (SKUs) have significant price differences. You can start with lower SKUs and scale up if needed, avoiding unnecessary costs for unused capacity. To ensure adequate performance, monitor gateway metrics. |
+| **Use NAT Gateway** for outbound internet connectivity instead of public IPs on individual virtual machines (VMs) when you have many outbound connections. | NAT Gateway provides cost-effective, scalable outbound connectivity with better performance than individual public IPs. You pay per-hour plus data processing charges, which is often more economical than many public IP addresses. For more information, see [What is Azure NAT Gateway?](../nat-gateway/nat-overview.md). |
 | **Evaluate Accelerated Connections** based on actual performance requirements for network-intensive workloads. | Accelerated Connections (SKUs A1-A8) improve connection performance but add hourly charges ($0.025-$2.50/hr). Only enable on workloads that genuinely need enhanced connection performance. Test performance with standard networking first before upgrading. |
 
 ## Monitor and optimize over time
@@ -101,11 +101,11 @@ Use this checklist to validate your Virtual Network cost optimization strategy:
 
 - ☑ **Free VNet foundation**: Virtual networks themselves are free. Focus optimization on data transfer, peering, and gateway costs.
 - ☑ **Hub-and-spoke topology**: Implement centralized architecture to minimize peering complexity and share expensive resources.
-- ☑ **Regional consolidation**: Keep communicating workloads in the same region to avoid expensive global peering charges.
+- ☑ **Regional consolidation**: To avoid expensive global peering charges, keep communicating workloads in the same region.
 - ☑ **Gateway sharing**: Use gateway transit to share VPN/ExpressRoute gateways across multiple VNets.
 - ☑ **Private Link for PaaS**: Connect to Azure services via Private Link instead of peering when possible.
 - ☑ **Right-sized gateways**: Match gateway SKUs to actual throughput needs, not theoretical maximums.
-- ☑ **Subnet peering**: Use subnet-level peering when only specific subnets need connectivity.
+- ☑ **Subnet peering**: Use subnet level peering when only specific subnets need connectivity.
 - ☑ **Traffic filtering**: Implement NSGs and firewall rules to prevent unnecessary data transfer.
 - ☑ **Cost monitoring**: Track VNet-related costs with Azure Cost Management alerts and regular reviews.
 - ☑ **NAT Gateway**: Consolidate outbound internet connectivity through NAT Gateway instead of multiple public IPs.
