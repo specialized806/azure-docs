@@ -66,7 +66,7 @@ As with inputs and outputs to Durable Functions APIs, if an entity's explicit st
 
 ### Fine-tune your Durable Functions concurrency settings
 
-A single worker instance can execute multiple work items concurrently to increase efficiency. However, processing too many work items concurrently can exhaust resources like CPU capacity and network connections. In many cases, this isn't a concern because scaling and limiting work items are handled automatically. That said, if you're experiencing performance issues (such as orchestrators taking too long to finish or getting stuck in pending) or are doing performance testing, you can [configure concurrency limits](durable-functions-perf-and-scale.md#configuration-of-throttles) in the host.json file.
+A single worker instance can execute multiple work items concurrently to increase efficiency. However, processing too many work items concurrently can exhaust resources like CPU capacity and network connections. In many cases, this isn't a concern because scaling and limiting work items are handled automatically. That said, if you're experiencing performance issues (such as orchestrators taking too long to finish or getting stuck in pending) or are doing performance testing, you can [configure concurrency limits](durable-functions-perf-and-scale.md#configure-throttles) in the host.json file.
 
 > [!NOTE]
 > This doesn't replace fine-tuning the performance and concurrency settings of your language runtime in Azure Functions. The Durable Functions concurrency settings only determine how much work can be assigned to a given VM at a time, but they don't determine the degree of parallelism in processing that work inside the VM. The latter requires fine-tuning the language runtime performance settings.

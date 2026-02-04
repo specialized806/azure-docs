@@ -179,7 +179,11 @@ public class GreetingOrchestration : TaskOrchestrator<string, string>
 
 All .NET orchestrators inherit from `TaskOrchestrator<TInput, TOutput>`. The `TaskOrchestrationContext` lets you call activities using `CallActivityAsync`. The code calls three activities in sequence, where each activity receives the output of the previous activity.
 
-# [JavaScript](#tab/javascript)
+# [JavaScript (PM3)](#tab/javascript-v3)
+
+No JavaScript sample is available. Use the .NET, Java, or Python sample.
+
+# [JavaScript (PM4)](#tab/javascript-v4)
 
 No JavaScript sample is available. Use the .NET, Java, or Python sample.
 
@@ -370,7 +374,11 @@ public class FinalizeResponseActivity : TaskActivity<string, string>
 
 Use dependency injection to get services like `ILogger`. Add the `[DurableTask]` attribute to register the activity with the worker.
 
-# [JavaScript](#tab/javascript)
+# [JavaScript (PM3)](#tab/javascript-v3)
+
+This sample is shown for .NET, Java, and Python.
+
+# [JavaScript (PM4)](#tab/javascript-v4)
 
 This sample is shown for .NET, Java, and Python.
 
@@ -539,7 +547,11 @@ Console.WriteLine($"Orchestration completed with result: {result.ReadOutputAs<st
 
 Create the `DurableTaskClient` by using a connection string to the Durable Task Scheduler. Use `ScheduleNewOrchestrationInstanceAsync` to start an orchestration and `WaitForInstanceCompletionAsync` to wait for completion.
 
-# [JavaScript](#tab/javascript)
+# [JavaScript (PM3)](#tab/javascript-v3)
+
+This sample is shown for .NET, Java, and Python.
+
+# [JavaScript (PM4)](#tab/javascript-v4)
 
 This sample is shown for .NET, Java, and Python.
 

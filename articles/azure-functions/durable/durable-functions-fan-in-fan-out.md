@@ -204,7 +204,11 @@ public class ParallelProcessingOrchestration : TaskOrchestrator<List<string>, Di
 
 Use `Task.WhenAll()` to wait for all parallel tasks to complete. The Durable Task SDK ensures that the tasks can run on multiple machines concurrently, and the execution is resilient to process restarts.
 
-# [JavaScript](#tab/javascript)
+# [JavaScript (PM3)](#tab/javascript-v3)
+
+Use the .NET, Java, or Python sample in this section.
+
+# [JavaScript (PM4)](#tab/javascript-v4)
 
 Use the .NET, Java, or Python sample in this section.
 
@@ -425,7 +429,11 @@ public class ProcessWorkItemActivity : TaskActivity<string, Dictionary<string, i
 }
 ```
 
-# [JavaScript](#tab/javascript)
+# [JavaScript (PM3)](#tab/javascript-v3)
+
+This sample is shown for .NET, Java, and Python.
+
+# [JavaScript (PM4)](#tab/javascript-v4)
 
 This sample is shown for .NET, Java, and Python.
 
@@ -509,7 +517,11 @@ public class AggregateResultsActivity : TaskActivity<Dictionary<string, int>[], 
 }
 ```
 
-# [JavaScript](#tab/javascript)
+# [JavaScript (PM3)](#tab/javascript-v3)
+
+This sample is shown for .NET, Java, and Python.
+
+# [JavaScript (PM4)](#tab/javascript-v4)
 
 This sample is shown for .NET, Java, and Python.
 
@@ -634,7 +646,11 @@ var result = await client.WaitForInstanceCompletionAsync(instanceId, getInputsAn
 Console.WriteLine($"Result: {result.ReadOutputAs<Dictionary<string, int>>().Count} items processed");
 ```
 
-# [JavaScript](#tab/javascript)
+# [JavaScript (PM3)](#tab/javascript-v3)
+
+This sample is shown for .NET, Java, and Python.
+
+# [JavaScript (PM4)](#tab/javascript-v4)
 
 This sample is shown for .NET, Java, and Python.
 
