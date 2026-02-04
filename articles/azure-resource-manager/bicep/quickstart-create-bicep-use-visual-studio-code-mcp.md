@@ -12,33 +12,33 @@ ms.custom:
 
 # Quickstart: Create Bicep files with Visual Studio Code and Bicep MCP Server
 
-This quickstart guides you how to use Visual Studio Code and [Bicep MCP Server](./bicep-mcp-server.md) to create a [Bicep file](overview.md).
+This quickstart shows you how to use Visual Studio Code and [Bicep MCP Server](./visual-studio-code.md) to create a [Bicep file](overview.md).
 
 ## Prerequisites
 
-If you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you start.
+If you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
-1. To set up your environment for Bicep development, see [Install Bicep tools](install.md). After completing those steps, you have [Visual Studio Code](https://code.visualstudio.com/) and the [Bicep extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-bicep) version v0.40.2 or later installed. The Bicep extension version v0.40.2 automatically installs the Bicep MCP server. You also have either the latest [Azure CLI](/cli/azure/) version or [Azure PowerShell module](/powershell/azure/new-azureps-module-az).
-1. Start Bicep MCP server.  See [Start and stop the Bicep MCP server](./bicep-mcp-server.md#start-and-stop-the-bicep-mcp-server).
-1. Enable the Bicep MCP server tools.  See [Manage the MCP server](./bicep-mcp-server.md#manage-the-mcp-server).
+1. To set up your environment for Bicep development, see [Install Bicep tools](install.md). After completing those steps, you have [Visual Studio Code](https://code.visualstudio.com/) and the [Bicep extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-bicep) version 0.40.2 or later installed. The Bicep extension version 0.40.2 automatically installs the Bicep MCP server. You also have either the latest [Azure CLI](/cli/azure/) version or [Azure PowerShell module](/powershell/azure/new-azureps-module-az).
+1. Start Bicep MCP server. See [Start and stop the Bicep MCP server](./visual-studio-code.md#start-and-stop-the-bicep-mcp-server).
+1. Enable the Bicep MCP server tools. See [Manage the MCP server](./visual-studio-code.md#manage-the-mcp-server).
 
-## Create a Bicep file using Bicep MCP
+## Create a Bicep file by using Bicep MCP
 
-You use the Copilot chat to create your Bicep files.
+Use the Copilot chat and the Bicep MCP server to create your Bicep files.
 
-1. From the `File` menu, select `New File` to create a new Bicep file called `main.bicep`.
-1. From the `View` menu, select `Chat` to open the Copilot chat pane. Notice the current file context is changed to `main.bicep`. If it is not, click the `Add context` button to add the file.
+1. From the `File` menu, select `New File` to create a new Bicep file named `main.bicep`.
+1. From the `View` menu, select `Chat` to open the Copilot chat pane. Notice the current file context changes to `main.bicep`. If it doesn't, select the `Add context` button to add the file.
 
     :::image type="content" source="./media/quickstart-create-bicep-use-visual-studio-code-mcp/vscode-copilot-chat-new.png" alt-text="Screenshot of Visual Studio Code chat pane.":::
-
-1. For the demonstration purpose, submit the following prompt to ensure the usage of the Bicep MCP server tools.
+1. Select the `Configure tools` icon.
+1. Expand Bicep to see the available Bicep MCP server tools. Select `Bicep` if it is not selected, and then select `OK`.
+1. For demonstration purposes, submit the following prompt to ensure the usage of the Bicep MCP server tools.
 
     ```
-    For this conversation, only use tools from the "bicep-mcp" MCP server.
-    Do not call any other MCP tools.
+    For this conversation, only use tools from the "bicep-mcp" MCP server. Do not call any other MCP tools.
     ```
 
-1. Submit the following prompt to create a create a simple storage account.
+1. Submit the following prompt to create a simple storage account.
 
     ```
     Add a storage account resource with only the required properties using Bicep best practices.
@@ -48,7 +48,7 @@ You use the Copilot chat to create your Bicep files.
 
     :::image type="content" source="./media/quickstart-create-bicep-use-visual-studio-code-mcp/prompt-add-storage.png" alt-text="Screenshot of adding a storage account.":::
 
-1. Hover your cursor over the code generated, select `Apply in Editor`, and then select `Active editor ...` to add the code to `main.bicep`.
+1. Hover your cursor over the generated code, select `Apply in Editor`, and then select `Active editor ...` to add the code to `main.bicep`.
 1. In the editor, select `Keep` to confirm the insert. The generated Bicep code might be slightly different from the following screenshot.
 
     :::image type="content" source="./media/quickstart-create-bicep-use-visual-studio-code-mcp/prompt-add-storage-keep.png" alt-text="Screenshot of confirming adding a storage account.":::
@@ -59,7 +59,7 @@ You use the Copilot chat to create your Bicep files.
     Update the API versions to the latest.
     ```
 
-1. If there is a newer API version, hover your cursor over the code generated, select `Apply in Editor`, and then select `Active editor ...` to add the code to `main.bicep`.
+1. If there's a newer API version identified, hover your cursor over the generated code, select `Apply in Editor`, and then select `Active editor ...` to add the code to `main.bicep`.
 
 1. Submit the following prompt to add default values for the parameters:
 
@@ -67,7 +67,7 @@ You use the Copilot chat to create your Bicep files.
     Add default values for the parameters.
     ```
 
-1. Hover your cursor over the code generated, select `Apply in Editor`, select `Active editor ...`, and then select `Keep`.
+1. Hover your cursor over the generated code, select `Apply in Editor`, select `Active editor ...`, and then select `Keep`.
 
 1. Submit the following prompt:
 
@@ -77,15 +77,7 @@ You use the Copilot chat to create your Bicep files.
 
 1. Select `Allow without Review in this Session`.
 
-    "Run Get Bicep File Diagnostics" tools is used. And it shows `no errors or warnings`.
-
-1. Submit the following prompt:
-
-    ```
-    Get a snapshot of the deployment.
-    ```
-    
-    "Ran Get deployment snapshot" is ran.
+    The "Run Get Bicep File Diagnostics" tool is used. It shows `no errors or warnings`.
 
 1. Submit the following prompt to add default values:
 
@@ -97,16 +89,23 @@ You use the Copilot chat to create your Bicep files.
 
 1. From the `File` menu, select `Save`, and save the file as `main.bicepparam`.
 
+1. Submit the following prompt:
+
+    ```
+    Get a snapshot of the deployment.
+    ```
+    
+    The "Ran Get deployment snapshot" command runs. You get the result similar to the following screenshot:
+
+    :::image type="content" source="./media/quickstart-create-bicep-use-visual-studio-code-mcp/vscode-bicep-mcp-server-deployment-snapshot.png" alt-text="Screenshot of Bicep MCP Server deployment snapshot.":::
+
 ## Deploy the Bicep file
 
-1. Open `main.bicep` file that you created in VS Code.
-1. Right-click the Bicep file inside the Visual Studio Code, and then select **Deploy Bicep file**.
-
-    :::image type="content" source="./media/quickstart-create-bicep-use-visual-studio-code/vscode-bicep-deploy.png" alt-text="Screenshot of the Deploy Bicep File option.":::
-
+1. Open the `main.bicep` file that you created in VS Code.
+1. Right-click the Bicep file inside Visual Studio Code, and then select **Deploy Bicep file**.
 1. In the **Please enter name for deployment** text box, type **deployStorage**, and then press <kbd>ENTER</kbd>.
 
-1. From the **Select Resource Group** listbox on the top, select **Create new Resource Group**.
+1. From the **Select Resource Group** list, select **Create new Resource Group**.
 
 1. Enter **exampleRG** as the resource group name, and then press <kbd>ENTER</kbd>.
 
@@ -118,7 +117,7 @@ It takes a few moments to create the resources. For more information, see [Deplo
 
 ## Clean up resources
 
-When the Azure resources are no longer needed, use the Azure CLI or Azure PowerShell module to delete the quickstart resource group.
+When you no longer need the Azure resources, use the Azure CLI or Azure PowerShell module to delete the quickstart resource group.
 
 # [Azure CLI](#tab/azure-cli)
 

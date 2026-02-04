@@ -6,7 +6,7 @@ ms.date: 02/04/2026
 ms.custom: devx-track-bicep
 ---
 
-# Create Bicep files with Visual Studio Code
+# Create Bicep files by using Visual Studio Code
 
 This article shows you how to use Visual Studio Code to create Bicep files. To use Bicep MCP server, see [Use Bicep MCP server in VS Code](./bicep-mcp-server.md).
 
@@ -235,6 +235,7 @@ After you add the Bicep MCP server, use the tools it provides in chat. MCP tools
 1. Expand `Bicep` to see the available Bicep MCP server tools. Select which tools the agent can use, and then select `OK`.
 
     :::image type="content" source="./media/visual-studio-code/mcp-Bicep-server-tools.png" alt-text="Screenshot of Bicep MCP server tools.":::
+
 ## Use quick fix suggestions
 
 The light bulb in VS Code represents a quick fix suggestion. It appears when the editor detects an issue or an improvement opportunity in your code. Clicking on the light bulb displays a menu of actions that can address the issue or enhance the code.

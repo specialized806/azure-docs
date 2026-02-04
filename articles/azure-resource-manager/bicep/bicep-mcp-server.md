@@ -20,7 +20,7 @@ The Bicep MCP (Model Context Protocol) server provides AI agents with tools to h
 * **`list_avm_metadata`** - Lists metadata for all Azure Verified Modules (AVM).
 * **`list_az_resource_types_for_provider`** - Lists all Azure resource types for a specific provider, such as Microsoft.Storage.
 
-Use the Bicep MCP Server directly in [Visual Studio Code](#visual-studio-code). You can also run it locally with [other AI services](#integration-with-other-ai-services) such as Claude Desktop and Code, OpenAI Codex CLI, LMStudio, and other MCP-compatible services.
+Use the Bicep MCP server directly in [Visual Studio Code](#visual-studio-code). You can also run it locally with [other AI services](#integration-with-other-ai-services) such as Claude Desktop and Code, OpenAI Codex CLI, LMStudio, and other MCP-compatible services.
 
 ## Limitations
 
@@ -33,12 +33,12 @@ There's no way to definitively guarantee whether the agent orchestrator uses any
 
 ## Visual Studio code
 
-The Bicep MCP server is available starting with Visual Studio Code Bicep extension version 0.40.2. For more information about installing, managing, and using Bicep MCP Server from VS Code, see [Bicep MCP server](./visual-studio-code.md#bicep-mcp-server).
+The Bicep MCP server is available starting with Visual Studio Code Bicep extension version 0.40.2. For more information about installing, managing, and using Bicep MCP server from VS Code, see [Bicep MCP server](./visual-studio-code.md#bicep-mcp-server).
 
 ## Integration with other AI services
 
-To run the Azure Bicep MCP server locally for Claude Desktop and Code, OpenAI Codex CLI and for LMStudio where you can use it with various models, see [Azure Bicep MCP Server Integrations with other AI services](https://github.com/johnlokerse/azure-bicep-mcp-integration-setup/tree/main?tab=readme-ov-file).
+To run the Azure Bicep MCP server locally for Claude Desktop and Code, OpenAI Codex CLI, and LMStudio where you can use it with various models, see [Azure Bicep MCP Server Integrations with other AI services](https://github.com/johnlokerse/azure-bicep-mcp-integration-setup/tree/main?tab=readme-ov-file).
 
 ## Next steps
 
-For a tutorial on how to apply the information in this article, see [Quickstart: Create Bicep files with Visual Studio Code](./quickstart-create-bicep-use-visual-studio-code.md).
+For a tutorial on how to apply the information in this article, see [Quickstart: Create Bicep files with Visual Studio Code and Bicep MCP server](./quickstart-create-bicep-use-visual-studio-code-mcp.md).
