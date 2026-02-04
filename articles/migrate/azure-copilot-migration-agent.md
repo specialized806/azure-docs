@@ -26,14 +26,14 @@ The migration agent supports migration planning, analysis, and decision making, 
 
 ## Prerequisites
 
-Before you begin, ensure you have:
+Before you begin, ensure that you have:
 
 - An Azure subscription with permissions to use Azure Migrate.
 - Access the Azure portal and Azure Migrate.
 - Access to VMware vCenter.
-- Azure Copilot must be enabled for the tenant. For more information, see [Manage access to Azure Copilot](/azure/copilot/manage-access#manage-user-access-to-azure-copilot).
-- Agents (preview) must be enabled in Azure Copilot. For more information, see [Manage access to Agents (preview) in Azure Copilot](/azure/copilot/manage-access#manage-access-to-agents-preview-in-azure-copilot).
-- The Azure Copilot migration agent isn't supported when Bring your own storage (BYOS) is enabled for conversation history. For more information, see [Bring your own storage for conversation history in Azure Copilot](/azure/copilot/bring-your-own-storage).
+- Azure Copilot enabled for the tenant. For more information, see [Manage access to Azure Copilot](/azure/copilot/manage-access#manage-user-access-to-azure-copilot).
+- Agents (preview) enabled in Azure Copilot. For more information, see [Manage access to Agents (preview) in Azure Copilot](/azure/copilot/manage-access#manage-access-to-agents-preview-in-azure-copilot).
+
 
 ### Migration strategy analysis 
 
@@ -81,8 +81,8 @@ This section explains how Azure Copilot migration agent supports multiple migrat
 
 Azure Copilot migration agent currently supports the following scenarios:
 
-- VMware workload migrations
-- Hyper‑V and Physical server migration planning 
+- VMware workload migrations.
+- Hyper‑V and Physical server migration planning.
 
 | **Migration scenario** | **Azure Copilot migration agent support** |
 | --- | --- | 
@@ -177,7 +177,10 @@ Based on migration requirements such as target region, compliance needs, and con
 
 ## Other scenarios and limitations 
 
-**Migration task execution**: Migration execution tasks, including server replication, test migrations, cutover, and workload move operations, aren’t performed by the Azure Copilot migration agent and must be completed through the Azure Migrate portal.
+- **Migration task execution**: Migration execution tasks, including server replication, test migrations, cutover, and workload move operations, aren’t performed by the Azure Copilot migration agent and must be completed through the Azure Migrate portal.
+
+- **Limitation**: The Azure Copilot migration agent isn't supported when Bring your own storage (BYOS) is enabled for conversation history. For more information, see [Bring your own storage for conversation history in Azure Copilot](/azure/copilot/bring-your-own-storage).
+
 
 ## Related content
 
