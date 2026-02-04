@@ -1,6 +1,6 @@
 ---
 title: "Quickstart: Configure a cross-tenant application for Microsoft Planetary Computer Pro"
-description: Learn how to configure a multi-tenant application to read and write data to customer Microsoft Planetary Computer Pro GeoCatalogs.
+description: Learn how to configure a multitenant application to read and write data to customer Microsoft Planetary Computer Pro GeoCatalogs.
 author: aloverro
 ms.author: adamloverro
 ms.service: planetary-computer-pro

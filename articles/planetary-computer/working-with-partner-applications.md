@@ -49,9 +49,9 @@ Geospatial Service Providers offer processing, analytics, and insight generation
 
 ## Partner Application Integration Architecture
 
-Partner application integration uses Microsoft Entra ID's multi-tenant application model. This architecture enables partners to manage a single application while serving multiple customers, with each customer maintaining control over access to their resources.
+Partner application integration uses Microsoft Entra ID's multitenant application model. This architecture enables partners to manage a single application while serving multiple customers, with each customer maintaining control over access to their resources.
 
-[ ![Diagram showing multi-tenant architecture with partner app registration connecting to multiple customer tenants.](media/partner-application-integration-architecture.png) ](media/partner-application-integration-architecture.png#lightbox)
+[ ![Diagram showing multitenant architecture with partner app registration connecting to multiple customer tenants.](media/partner-application-integration-architecture.png) ](media/partner-application-integration-architecture.png#lightbox)
 
 **Key architecture benefits:**
 
