@@ -198,7 +198,7 @@ az account set --subscription <subscription-id>
       required_providers {
         azurerm = {
           source  = "hashicorp/azurerm"
-          version = "~> 4.x"
+          version = "~> 4.0"
         }
       }
     }
@@ -277,7 +277,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "~> 4.x"
+      version = "~> 4.0"
     }
   }
 }
