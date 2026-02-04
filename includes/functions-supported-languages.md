@@ -125,7 +125,7 @@ The following table shows the language versions supported for Python function ap
 
 <sup>*</sup>The end-of-support date for Python 3.14 is determined when general availability (GA) is declared.
 
-<sup>**</sup>Python 3.14 preview support is currently avaialable on Elastic Premium and Dedicated plans. Preview support on Flex Consumption will be added soon.
+<sup>**</sup>Remote Build support for Python 3.14 on Flex Consumption will be added soon.
 
 For more information, see [Azure Functions Python developer guide](../articles/azure-functions/functions-reference-python.md).
 ::: zone-end
