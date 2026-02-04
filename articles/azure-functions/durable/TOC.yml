@@ -84,7 +84,7 @@
     - name: Function chaining
       href: durable-functions-sequence.md
     - name: Fan-out/fan-in
-      href: durable-functions-cloud-backup.md
+      href: durable-functions-fan-in-fan-out.md
     - name: Monitors
       href: durable-functions-monitor.md
     - name: Human interaction
@@ -257,16 +257,6 @@
   items:
   - name: Overview
     href: ./durable-task-scheduler/durable-task-overview.md
-  - name: Orchestration patterns
-    items:
-    - name: Function chaining
-      href: durable-functions-sequence.md
-    - name: Fan-out/fan-in
-      href: durable-functions-fan-in-fan-out.md
-    - name: Monitors
-      href: durable-functions-monitor.md
-    - name: Human interaction
-      href: durable-functions-human-interaction.md
   - name: Concepts
     items:
     - name: Versioning
