@@ -1,23 +1,23 @@
 ---
 title: Create a Virtual Network Routing Appliance
 titleSuffix: Azure Virtual Network
-description: Create a Virtual Network Appliance in Azure with ease. This guide covers registration, configuration, and troubleshooting for the public preview.
+description: Create a virtual network routing appliance in Azure with ease. This guide covers registration, configuration, and troubleshooting for the public preview.
 #customer intent: As a network administrator, I want to create a Virtual Network routing appliance in the Azure portal so that I can manage network traffic in a non-production environment.
 author: asudbring
 ms.author: allensu
 ms.reviewer: allensu
-ms.date: 01/27/2026
+ms.date: 02/04/2026
 ms.topic: how-to
 ms.service: azure-virtual-network
 ms.custom: references_regions
 ---
 
-# Create a Virtual Network routing appliance
+# Create a virtual network routing appliance
 
 This article explains how to register your subscription for the Virtual Network routing appliance public preview and create a Virtual Network routing appliance in the Azure portal. Use the public preview for testing, evaluation, and feedback. It doesn't support production workloads.
 
 > [!IMPORTANT]
-> Azure Virtual Network Appliance is currently in PREVIEW.
+> Azure virtual network routing appliance is currently in PREVIEW.
 > See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
 
 ## Prerequisites
@@ -29,7 +29,8 @@ This article explains how to register your subscription for the Virtual Network 
 
 ### Supported regions (public preview)
 
-The Virtual Network routing appliance public preview is limited to the following regions:  
+The virtual network routing appliance public preview is limited to the following regions:
+
 - West US  
 - East US  
 - East Asia  
@@ -43,7 +44,7 @@ The Virtual Network routing appliance public preview is limited to the following
 
 ### Register your subscription by using Azure Feature Exposure Control (AFEC)
 
-AFEC controls preview access to the Virtual Network routing appliance. The AFEC feature name for enabling the Virtual Network routing appliance preview is:  
+AFEC controls preview access to the virtual network routing appliance. The AFEC feature name for enabling the virtual network routing appliance preview is:  
 - Microsoft.network/AllowVirtualNetworkAppliance
 
 Register for the preview by activating the AFEC flag in the Azure portal.
@@ -54,11 +55,11 @@ After submitting your AFEC registration for Microsoft.network/AllowVirtualNetwor
 
 ### Confirm your subscription is enabled
 
-After Microsoft authorizes your subscription, verify the enablement by searching "Virtual Network appliance" in the Azure portal search bar. If enabled, you see "Virtual network appliances" as a selectable service entry.
+After Microsoft authorizes your subscription, verify the enablement by searching "Virtual network routing appliance" in the Azure portal search bar. If enabled, you see "Virtual network routing appliances" as a selectable service entry.
 
-:::image type="content" source="media/create-virtual-network-routing-appliance/virtual-network-appliance-1.png" alt-text="Screenshot of the Azure portal search bar with Virtual network appliances highlighted.":::
+:::image type="content" source="media/create-virtual-network-routing-appliance/virtual-network-appliance-1.png" alt-text="Screenshot of the Azure portal search bar with Virtual network routing appliances highlighted.":::
 
-:::image type="content" source="media/create-virtual-network-routing-appliance/virtual-network-appliance-2.png" alt-text="Screenshot of the Virtual network appliances service entry in the Azure portal.":::
+:::image type="content" source="media/create-virtual-network-routing-appliance/virtual-network-appliance-2.png" alt-text="Screenshot of the Virtual network routing appliances service entry in the Azure portal.":::
 
 ## Create a resource group
 
@@ -112,7 +113,7 @@ After Microsoft authorizes your subscription, verify the enablement by searching
 
 1. Select **Create**.
 
-## Create a Virtual Network routing appliance
+## Create a virtual network routing appliance
 
 1. In the search box at the top of the portal, enter **Virtual network appliance**. Select **Virtual network appliances** in the search result.
 
