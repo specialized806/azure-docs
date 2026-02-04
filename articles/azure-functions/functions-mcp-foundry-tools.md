@@ -21,6 +21,7 @@ This article follows this basic process for configuring the MCP server connectio
 > * Create and deploy an MCP server to your function app in Azure.
 > * Get the MCP server endpoint URL.
 > * Get the authentication credentials (as required).
+> * Disable key-based authentication (as required).
 > * Add an MCP server tool connection to an existing agent. 
 
 ## Prerequisites
@@ -38,10 +39,10 @@ Before you begin, make sure you have these resources in place:
 
 This table summarizes the currently supported options for authenticating your agent connection to an MCP server in Foundry Agent Service: 
 
-| Method | Description | Use case | Additional setup | Functions supportS |
+| Method | Description | Use case | Additional setup | Functions supports |
 | ------ | ----------- | -------- | ---------------- | ------------------- |
 | **Key-based**<sup>*</sup> | Agent authenticates by passing a shared [function access key](./function-keys-how-to.md) in the request header. | During development or when the MCP server doesn't require Microsoft Entra authentication. | None | Yes |
-| **Microsoft Entra** | Agent authenticates using either its own identity (*agent identity*) or the shared identity of the Foundry project (*project managed identity*). | Production-level security where users or agents share the same identity and permissions. | [Disable key-based authentication](functions-mcp-tutorial.md?tabs=mcp-extension#disable-key-based-authentication) and [configure built-in server authorization and authentication](functions-mcp-tutorial.md?tabs=mcp-extension#enable-built-in-server-authorization-and-authentication). | Project managed (shared) identity |
+| **Microsoft Entra** | Agent authenticates using either its own identity (*agent identity*) or the shared identity of the Foundry project (*project managed identity*). | Agent identity supports production scenarios, but shared identity should be limited to development. | [Disable key-based authentication](functions-mcp-tutorial.md?tabs=mcp-extension#disable-key-based-authentication) and [configure built-in server authorization and authentication](functions-mcp-tutorial.md?tabs=mcp-extension#enable-built-in-server-authorization-and-authentication). | Project managed (shared) identity |
 | **OAuth identity passthrough** | Agent prompts users to sign in and authorize access, using the provided token to authenticate. | Production when each user must authenticate with their own identity and user context must be persisted. | Not yet determined | No |
 | **Unauthenticated access** | Agent makes unauthenticated calls. | During development or when your MCP server accesses only public information. | [Disable key-based authentication](functions-mcp-tutorial.md?tabs=mcp-extension#disable-key-based-authentication). | Yes |
 
@@ -107,6 +108,36 @@ Because unauthenticated access requires no shared secrets or authentication, you
 >This option allows any client or agent to access your MCP server endpoint and should only be used for tools that return read-only public information or during private development.
 
 ---
+
+## Disable key-based authentication
+
+Key-based authentication is the default for an MCP endpoint hosted in Azure Functions. To use a different authentication method, change the MCP endpoint authentication to `anonymous`. The way that you make this change depends on the type of MCP server you are hosting:
+
+### [MCP extension server](#tab/mcp-extension/key-based)
+
+You can skip this section when using key-based authentication.
+
+### [MCP extension server](#tab/mcp-extension/entra)
+
+[!INCLUDE [functions-mcp-extension-disable-key-access](../../includes/functions-mcp-extension-disable-key-access.md)]
+
+### [MCP extension server](#tab/mcp-extension/unauthenticated)
+
+[!INCLUDE [functions-mcp-extension-disable-key-access](../../includes/functions-mcp-extension-disable-key-access.md)]
+
+### [Self-hosted server](#tab/self-hosted/key-based)
+
+You can skip this section when using key-based authentication.
+
+### [Self-hosted server](#tab/self-hosted/entra)
+
+[!INCLUDE [functions-mcp-custom-handler-disable-key-access](../../includes/functions-mcp-custom-handler-disable-key-access.md)]
+
+### [Self-hosted server](#tab/self-hosted/unauthenticated)
+
+[!INCLUDE [functions-mcp-custom-handler-disable-key-access](../../includes/functions-mcp-custom-handler-disable-key-access.md)]
+
+---  
 
 ## Add your MCP server
 
