@@ -1,11 +1,11 @@
 ---
-title: Use Bicep MCP server in VS Code
-description: Learn how to use Bicep MCP server in Visual Studio Code to create Bicep files.
+title: Bicep MCP server
+description: Learn how to use Bicep MCP server to create Bicep files.
 ms.topic: how-to
-ms.date: 01/30/2026
+ms.date: 02/04/2026
 ---
 
-# Use Bicep MCP server in VS Code
+# Use Bicep MCP server
 
 The Bicep MCP (Model Context Protocol) server provides AI agents with tools to help generate high-quality Bicep code. The current release exposes the following tools:
 
@@ -20,11 +20,7 @@ The Bicep MCP (Model Context Protocol) server provides AI agents with tools to h
 * **`list_avm_metadata`** - Lists metadata for all Azure Verified Modules (AVM).
 * **`list_az_resource_types_for_provider`** - Lists all Azure resource types for a specific provider, such as Microsoft.Storage.
 
-Use the Bicep MCP Server directly in VS Code (preferred). You can also run it locally with other AI services such as Claude Desktop and Code, OpenAI Codex CLI, LMStudio, and other MCP-compatible services. To run the Azure Bicep MCP server locally for Claude Desktop and Code, OpenAI Codex CLI and for LMStudio where you can use it with various models, see [Azure Bicep MCP Server Integrations with other AI services](https://github.com/johnlokerse/azure-bicep-mcp-integration-setup/tree/main?tab=readme-ov-file).
-
-For general information abouting using MCP servers in Visual Studio Code, see [Use MCP servers in VS Code](https://code.visualstudio.com/docs/copilot/customization/mcp-servers).
-
-For walking through a quickstart, see [Quickstart: Create Bicep files with Visual Studio Code and Bicep MCP server](./quickstart-create-bicep-use-visual-studio-code-mcp.md).
+Use the Bicep MCP Server directly in [Visual Studio Code](#visual-studio-code). You can also run it locally with [other AI services](#integration-with-other-ai-services) such as Claude Desktop and Code, OpenAI Codex CLI, LMStudio, and other MCP-compatible services.
 
 ## Limitations
 
@@ -35,34 +31,13 @@ These tools provide additional context to help the chosen model generate semanti
 
 There's no way to definitively guarantee whether the agent orchestrator uses any particular Bicep tool. As a workaround, you can view the available Bicep tools and use specific prompting to guide the agent orchestrator to invoke a tool, such as "Create a Bicep file to do X using Bicep best practices."
 
-## Prerequisites
+## Visual Studio code
 
-The Bicep MCP server is available starting with Bicep extension version 0.40.2. To set up your environment for Bicep development using Bicep MCP Server in Visual Studio Code, see [Install Bicep tools](./install.md). After completing those steps, you have Visual Studio Code and the Bicep extension installed.
+The Bicep MCP server is available starting with Visual Studio Code Bicep extension version 0.40.2. For more information about installing, managing, and using Bicep MCP Server from VS Code, see [Bicep MCP server](./visual-studio-code.md#bicep-mcp-server).
 
-Bicep MCP server doesn't appear under `MCP SERVERS` in the extension view.
+## Integration with other AI services
 
-## Start and stop the Bicep MCP server
-
-1. From the `View` menu, select `Command palette`.
-1. Type **MCP**, and then select **MCP: List Servers**.
-
-    :::image type="content" source="./media/quickstart-create-bicep-use-visual-studio-code-mcp/mcp-list-servers.png" alt-text="Screenshot of listing MCP servers.":::
-
-    You should see the `Bicep` server listed with its status. If you don't see it, make sure you have Bicep extension version 0.40.2 or later installed.
-
-    :::image type="content" source="./media/quickstart-create-bicep-use-visual-studio-code-mcp/mcp-bicep-server.png" alt-text="Screenshot of Bicep MCP server.":::
-
-1. If the status is `Stopped`, select `Bicep`, and then select `Start Server`.
-
-## Manage the MCP server
-
-After you add the Bicep MCP server, use the tools it provides in chat. MCP tools work like other tools in VS Code: agents can automatically invoke them or you can explicitly reference them in your prompts.
-
-1. From the `View` menu, select `Chat` to open the Chat pane.
-1. Select the `Configure tools` icon.
-1. Expand `Bicep` to see the available Bicep MCP server tools. Select which tools the agent can use, and then select `OK`.
-
-    :::image type="content" source="./media/quickstart-create-bicep-use-visual-studio-code-mcp/mcp-Bicep-server-tools.png" alt-text="Screenshot of Bicep MCP server tools.":::
+To run the Azure Bicep MCP server locally for Claude Desktop and Code, OpenAI Codex CLI and for LMStudio where you can use it with various models, see [Azure Bicep MCP Server Integrations with other AI services](https://github.com/johnlokerse/azure-bicep-mcp-integration-setup/tree/main?tab=readme-ov-file).
 
 ## Next steps
 

@@ -2,7 +2,7 @@
 title: Create Bicep files with Visual Studio Code
 description: Learn how to use Visual Studio Code to create Bicep files.
 ms.topic: how-to
-ms.date: 01/30/2026
+ms.date: 02/04/2026
 ms.custom: devx-track-bicep
 ---
 
@@ -203,6 +203,38 @@ The deployment pane provides an interactive UI in VS Code that can access your A
 
 See [Deployment Pane](./deploy-vscode.md#deployment-pane) for more information.
 
+## Bicep MCP Server
+
+The Bicep MCP server is available starting with Bicep extension version 0.40.2. To set up your environment for Bicep development using Bicep MCP Server in Visual Studio Code, see [Install Bicep tools](./install.md). After completing those steps, you have Visual Studio Code and the Bicep extension installed.
+
+Bicep MCP server doesn't appear under `MCP SERVERS` in the extension view.
+
+For general information abouting using MCP servers in Visual Studio Code, see [Use MCP servers in VS Code](https://code.visualstudio.com/docs/copilot/customization/mcp-servers).
+
+For walking through a quickstart, see [Quickstart: Create Bicep files with Visual Studio Code and Bicep MCP server](./quickstart-create-bicep-use-visual-studio-code-mcp.md).
+
+### Start and stop the Bicep MCP server
+
+1. From the `View` menu, select `Command palette`.
+1. Type **MCP**, and then select **MCP: List Servers**.
+
+    :::image type="content" source="./media/visual-studio-code/mcp-list-servers.png" alt-text="Screenshot of listing MCP servers.":::
+
+    You should see the `Bicep` server listed with its status. If you don't see it, make sure you have Bicep extension version 0.40.2 or later installed.
+
+    :::image type="content" source="./media/visual-studio-code/mcp-bicep-server.png" alt-text="Screenshot of Bicep MCP server.":::
+
+1. If the status is `Stopped`, select `Bicep`, and then select `Start Server`.
+
+### Manage the MCP server
+
+After you add the Bicep MCP server, use the tools it provides in chat. MCP tools work like other tools in VS Code: agents can automatically invoke them or you can explicitly reference them in your prompts.
+
+1. From the `View` menu, select `Chat` to open the Chat pane.
+1. Select the `Configure tools` icon.
+1. Expand `Bicep` to see the available Bicep MCP server tools. Select which tools the agent can use, and then select `OK`.
+
+    :::image type="content" source="./media/visual-studio-code/mcp-Bicep-server-tools.png" alt-text="Screenshot of Bicep MCP server tools.":::
 ## Use quick fix suggestions
 
 The light bulb in VS Code represents a quick fix suggestion. It appears when the editor detects an issue or an improvement opportunity in your code. Clicking on the light bulb displays a menu of actions that can address the issue or enhance the code.
