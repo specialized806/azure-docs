@@ -141,7 +141,7 @@ You can skip this section when using key-based authentication.
 
 ## Add your MCP server
 
-The way that you create the agent connection to the MCP server depends on your specific endpoint authentication options.
+The process for creating the agent connection to the MCP server depends on your specific endpoint authentication options.
 
 ### [Key-based](#tab/key-based)
 
