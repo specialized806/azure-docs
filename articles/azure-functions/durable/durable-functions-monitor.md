@@ -141,11 +141,13 @@ The monitoring pattern provides these benefits:
 
 ## Configuration
 
+# [C#](#tab/csharp)
+
 ### Configuring Twilio integration
 
 [!INCLUDE [functions-twilio-integration](../../../includes/functions-twilio-integration.md)]
 
-### Configuring Weather Underground integration (C#/JavaScript)
+### Configuring Weather Underground integration
 
 This sample involves using the Weather Underground API to check current weather conditions for a location.
 
@@ -156,6 +158,40 @@ Once you have an API key, add the following **app setting** to your function app
 | App setting name | Value description |
 | - | - |
 | **WeatherUndergroundApiKey**  | Your Weather Underground API key. |
+
+# [JavaScript](#tab/javascript)
+
+### Configuring Twilio integration
+
+[!INCLUDE [functions-twilio-integration](../../../includes/functions-twilio-integration.md)]
+
+### Configuring Weather Underground integration
+
+This sample involves using the Weather Underground API to check current weather conditions for a location.
+
+The first thing you need is a Weather Underground account. You can create one for free at [https://www.wunderground.com/signup](https://www.wunderground.com/signup). Once you have an account, you need to acquire an API key. You can do so by visiting [https://www.wunderground.com/weather/api](https://www.wunderground.com/weather/api/?MR=1), then selecting Key Settings. The Stratus Developer plan is free and sufficient to run this sample.
+
+Once you have an API key, add the following **app setting** to your function app.
+
+| App setting name | Value description |
+| - | - |
+| **WeatherUndergroundApiKey**  | Your Weather Underground API key. |
+
+# [Python](#tab/python)
+
+### Configuring Twilio integration
+
+[!INCLUDE [functions-twilio-integration](../../../includes/functions-twilio-integration.md)]
+
+# [PowerShell](#tab/powershell)
+
+PowerShell sample coming soon.
+
+# [Java](#tab/java)
+
+Java sample coming soon.
+
+---
 
 ::: zone-end
 
