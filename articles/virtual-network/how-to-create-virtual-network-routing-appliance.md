@@ -12,7 +12,7 @@ ms.service: azure-virtual-network
 ms.custom: references_regions
 ---
 
-# How to create a virtual network routing appliance
+# How to Create a Virtual Network Routing Appliance
 
 This article explains how to register your subscription for the Virtual Network routing appliance public preview and create a Virtual Network routing appliance in the Azure portal. Use the public preview for testing, evaluation, and feedback. It doesn't support production workloads.
 
@@ -102,7 +102,7 @@ After Microsoft authorizes your subscription, verify the enablement by searching
 
 1. Select **Next**. 
 
-1. In ***IP addresses**, select the **default** subnet.
+1. In **IP addresses**, select the **default** subnet.
 
 1. In **Edit subnet**, in **Name** enter **VirtualNetworkApplianceSubnet**.
 
@@ -138,8 +138,7 @@ After Microsoft authorizes your subscription, verify the enablement by searching
 
 The portal creates the Virtual Network routing appliance in a dedicated subnet named `VirtualNetworkApplianceSubnet`. If you create multiple appliance instances, you create them in the same dedicated subnet.
 
-**Optional**: Configure NSG and Route Table selection during create  
-During creation, you can choose a network security group and route table for the virtual network appliance's dedicated subnet.
+**Optional**: During creation, you can choose a network security group and route table for the virtual network appliance's dedicated subnet.
 
 ## Troubleshoot
 
