@@ -627,14 +627,9 @@
     href: functions-create-ai-enabled-apps.md
   - name: Custom remote MCP servers 
     items:  
-    - name: Quickstarts
-      items:
-      - name: Custom remote MCP server
-        displayName: AI, agent, agentic, tools, trigger
-        href: scenario-custom-remote-mcp-server.md
-      - name: Host MCP server using SDKs
-        displayName: AI, agent, agentic, tools, MCP SDKs
-        href: scenario-host-mcp-server-sdks.md
+    - name: MCP extension quickstart
+      displayName: AI, agent, agentic, tools, trigger
+      href: scenario-custom-remote-mcp-server.md
     - name: Custom remote MCP tutorial
       displayName: agent, agentic, Foundry
       href: functions-mcp-tutorial.md
