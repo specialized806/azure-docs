@@ -4,7 +4,7 @@ description: Learn how to integrate OpenTelemetry (OTEL) support within Azure Io
 author: sethmanheim
 ms.author: sethm
 ms.reviewer: sethm
-ms.date: 01/29/2026
+ms.date: 02/04/2026
 ms.topic: how-to
 ---
 

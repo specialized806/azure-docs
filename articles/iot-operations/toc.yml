@@ -185,6 +185,8 @@ items:
                 displayName: data flow, endpoint, northbound
               - name: OpenTelemetry
                 href: connect-to-cloud/howto-configure-opentelemetry-endpoint.md
+              - name: OpenTelemetry dataflow endpoints
+                href: connect-to-cloud/open-telemetry.md
                 displayName: data flow, endpoint, observability, metrics, logs, OpenTelemetry, OTLP, northbound
               - name: Local storage or ACSA
                 href: connect-to-cloud/howto-configure-local-storage-endpoint.md
@@ -226,8 +228,6 @@ items:
           - name: Clean up observability resources
             href: configure-observability-monitoring/howto-clean-up-observability-resources.md
             displayName: container insights, prometheus, opentelemetry, otel, metrics, Azure Monitor, Grafana, Log Analytics
-          - name: OpenTelemetry dataflow endpoints
-            href: configure-observability-monitoring/open-telemetry.md
       - name: Develop edge applications
         items:
           - name: Developer guide
