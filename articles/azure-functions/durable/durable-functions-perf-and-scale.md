@@ -219,9 +219,9 @@ The following languages often benefit from fine tuning their performance and con
 
 When planning to use Durable Functions for a production application, consider the performance requirements early in the planning process. Some basic usage scenarios include:
 
-* **Sequential activity execution**: This scenario describes an orchestrator function that runs a series of activity functions in sequence. It most closely resembles the [Function chaining](durable-functions-sequence.md) sample.
-* **Parallel activity execution**: This scenario describes an orchestrator function that executes many activity functions in parallel using the [Fan-out, fan-in](durable-functions-monitor.md) pattern.
-* **Parallel response processing**: This scenario is the second half of the [Fan-out, fan-in](durable-functions-monitor.md) pattern. It focuses on fan-in performance. Unlike fan-out, fan-in runs in a single orchestrator function instance, so it runs on a single VM.
+* **Sequential activity execution**: This scenario describes an orchestrator function that runs a series of activity functions one after the other. It most closely resembles the [Function Chaining](durable-functions-sequence.md) sample.
+* **Parallel activity execution**: This scenario describes an orchestrator function that executes many activity functions in parallel using the [Fan-out, Fan-in](durable-functions-monitor.md) pattern.
+* **Parallel response processing**: This scenario is the second half of the [Fan-out, Fan-in](durable-functions-monitor.md) pattern. It focuses on the performance of the fan-in. It's important to note that unlike fan-out, fan-in is done by a single orchestrator function instance, and therefore can only run on a single VM.
 * **External event processing**: This scenario represents a single orchestrator function instance that waits on [external events](durable-functions-external-events.md), one at a time.
 * **Entity operation processing**: This scenario tests how quickly a _single_ [Counter entity](durable-functions-entities.md) can process a constant stream of operations.
 
