@@ -5,7 +5,7 @@ author: cjk7989
 ms.author: jikunchen
 ms.service: azure-static-web-apps
 ms.topic: tutorial
-ms.date: 03/15/2023
+ms.date: 02/04/2026
 zone_pivot_groups: static-web-apps-api-protocols
 ms.custom: sfi-ropc-nochange
 ---

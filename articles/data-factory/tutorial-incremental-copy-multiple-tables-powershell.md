@@ -5,7 +5,7 @@ ms.author: yexu
 author: dearandyxu
 ms.reviewer: douglasl, whhender
 ms.topic: tutorial
-ms.date: 10/03/2024
+ms.date: 02/04/2026
 ms.subservice: data-movement
 ms.custom:
   - devx-track-azurepowershell
