@@ -41,4 +41,4 @@ To run the Azure Bicep MCP server locally for Claude Desktop and Code, OpenAI Co
 
 ## Next steps
 
-For a tutorial on how to apply the information in this article, see [Quickstart: Create Bicep files with Visual Studio Code and Bicep MCP server](./quickstart-create-bicep-use-visual-studio-code-mcp.md).
+For a tutorial on how to apply the information in this article, see [Quickstart: Create Bicep files with Visual Studio Code and Bicep MCP server](./quickstart-create-bicep-use-visual-studio-code-module-context-protocol.md).

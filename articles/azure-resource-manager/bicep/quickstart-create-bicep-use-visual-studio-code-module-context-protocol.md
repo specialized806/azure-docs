@@ -29,9 +29,12 @@ Use the Copilot chat and the Bicep MCP server to create your Bicep files.
 1. From the `File` menu, select `New File` to create a new Bicep file named `main.bicep`.
 1. From the `View` menu, select `Chat` to open the Copilot chat pane. Notice the current file context changes to `main.bicep`. If it doesn't, select the `Add context` button to add the file.
 
-    :::image type="content" source="./media/quickstart-create-bicep-use-visual-studio-code-mcp/vscode-copilot-chat-new.png" alt-text="Screenshot of Visual Studio Code chat pane.":::
+    :::image type="content" source="./media/quickstart-create-bicep-use-visual-studio-code-module-context-protocol/vscode-copilot-chat-new.png" alt-text="Screenshot of Visual Studio Code chat pane.":::
 1. Select the `Configure tools` icon.
 1. Expand Bicep to see the available Bicep MCP server tools. Select `Bicep` if it is not selected, and then select `OK`.
+
+After you add the Bicep MCP server, use the tools it provides in chat. MCP tools work like other tools in VS Code: agents can automatically invoke them or you can explicitly reference them in your prompts.
+
 1. For demonstration purposes, submit the following prompt to ensure the usage of the Bicep MCP server tools.
 
     ```
@@ -46,12 +49,12 @@ Use the Copilot chat and the Bicep MCP server to create your Bicep files.
 
     The chat pane lists the Bicep MCP server tools used, and the Bicep file it generated.
 
-    :::image type="content" source="./media/quickstart-create-bicep-use-visual-studio-code-mcp/prompt-add-storage.png" alt-text="Screenshot of adding a storage account.":::
+    :::image type="content" source="./media/quickstart-create-bicep-use-visual-studio-code-module-context-protocol/prompt-add-storage.png" alt-text="Screenshot of adding a storage account.":::
 
 1. Hover your cursor over the generated code, select `Apply in Editor`, and then select `Active editor ...` to add the code to `main.bicep`.
 1. In the editor, select `Keep` to confirm the insert. The generated Bicep code might be slightly different from the following screenshot.
 
-    :::image type="content" source="./media/quickstart-create-bicep-use-visual-studio-code-mcp/prompt-add-storage-keep.png" alt-text="Screenshot of confirming adding a storage account.":::
+    :::image type="content" source="./media/quickstart-create-bicep-use-visual-studio-code-module-context-protocol/prompt-add-storage-keep.png" alt-text="Screenshot of confirming adding a storage account.":::
 
 1. Submit the following prompt to update or verify that you have the latest API version:
 
@@ -97,7 +100,7 @@ Use the Copilot chat and the Bicep MCP server to create your Bicep files.
     
     The "Ran Get deployment snapshot" command runs. You get the result similar to the following screenshot:
 
-    :::image type="content" source="./media/quickstart-create-bicep-use-visual-studio-code-mcp/vscode-bicep-mcp-server-deployment-snapshot.png" alt-text="Screenshot of Bicep MCP Server deployment snapshot.":::
+    :::image type="content" source="./media/quickstart-create-bicep-use-visual-studio-code-module-context-protocol/vscode-bicep-mcp-server-deployment-snapshot.png" alt-text="Screenshot of Bicep MCP Server deployment snapshot.":::
 
 ## Deploy the Bicep file
 

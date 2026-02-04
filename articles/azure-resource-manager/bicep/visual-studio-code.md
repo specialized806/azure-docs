@@ -205,13 +205,14 @@ See [Deployment Pane](./deploy-vscode.md#deployment-pane) for more information.
 
 ## Bicep MCP Server
 
-The Bicep MCP server is available starting with Bicep extension version 0.40.2. To set up your environment for Bicep development using Bicep MCP Server in Visual Studio Code, see [Install Bicep tools](./install.md). After completing those steps, you have Visual Studio Code and the Bicep extension installed.
+The Bicep MCP (Model Context Protocol) server provides AI agents with tools to help generate high-quality Bicep code. The Bicep MCP server is available starting with Bicep extension version 0.40.2. To set up your environment for Bicep development using Bicep MCP Server in Visual Studio Code, see [Install Bicep tools](./install.md). After completing those steps, you have Visual Studio Code and the Bicep extension installed.
 
-Bicep MCP server doesn't appear under `MCP SERVERS` in the extension view.
+> [!NOTE]
+> Bicep MCP server doesn't appear under `MCP SERVERS` in the extension view.
 
 For general information abouting using MCP servers in Visual Studio Code, see [Use MCP servers in VS Code](https://code.visualstudio.com/docs/copilot/customization/mcp-servers).
 
-For walking through a quickstart, see [Quickstart: Create Bicep files with Visual Studio Code and Bicep MCP server](./quickstart-create-bicep-use-visual-studio-code-mcp.md).
+For walking through a quickstart, see [Quickstart: Create Bicep files with Visual Studio Code and Bicep MCP server](./quickstart-create-bicep-use-visual-studio-code-module-context-protocol.md).
 
 ### Start and stop the Bicep MCP server
 
@@ -227,8 +228,6 @@ For walking through a quickstart, see [Quickstart: Create Bicep files with Visua
 1. If the status is `Stopped`, select `Bicep`, and then select `Start Server`.
 
 ### Manage the MCP server
-
-After you add the Bicep MCP server, use the tools it provides in chat. MCP tools work like other tools in VS Code: agents can automatically invoke them or you can explicitly reference them in your prompts.
 
 1. From the `View` menu, select `Chat` to open the Chat pane.
 1. Select the `Configure tools` icon.
