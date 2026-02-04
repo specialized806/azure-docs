@@ -135,6 +135,14 @@ Here's the code that implements the function:
 > [!NOTE]
 > It may not be obvious at first, but this orchestrator does not violate the [deterministic orchestration constraint](durable-functions-code-constraints.md). It is deterministic because the `currentUtcDateTime` property is used to calculate the timer expiration time, and it returns the same value on every replay at this point in the orchestrator code. This behavior is important to ensure that the same `winner` results from every repeated call to `context.df.Task.any`.
 
+# [PowerShell](#tab/powershell)
+
+PowerShell sample coming soon.
+
+# [Java](#tab/java)
+
+Java sample coming soon.
+
 ---
 
 Once started, this orchestrator function does the following:
@@ -229,7 +237,11 @@ public class ApprovalOrchestration : TaskOrchestrator<ApprovalRequestData, Appro
 }
 ```
 
-# [JavaScript](#tab/javascript)
+# [JavaScript (PM3)](#tab/javascript-v3)
+
+This sample isn't available for JavaScript. Use the .NET, Java, or Python tab.
+
+# [JavaScript (PM4)](#tab/javascript-v4)
 
 This sample isn't available for JavaScript. Use the .NET, Java, or Python tab.
 
@@ -405,6 +417,14 @@ This code generates the four-digit challenge code and sends the SMS message:
 
 [!code-python[Main](~/samples-durable-functions-python/samples/human_interaction/SendSMSChallenge/\_\_init\_\_.py)]
 
+# [PowerShell](#tab/powershell)
+
+PowerShell sample coming soon.
+
+# [Java](#tab/java)
+
+Java sample coming soon.
+
 ---
 
 ::: zone-end
@@ -454,7 +474,11 @@ public class SubmitApprovalRequestActivity : TaskActivity<ApprovalRequestData, S
 }
 ```
 
-# [JavaScript](#tab/javascript)
+# [JavaScript (PM3)](#tab/javascript-v3)
+
+This sample is shown for .NET, Java, and Python.
+
+# [JavaScript (PM4)](#tab/javascript-v4)
 
 This sample is shown for .NET, Java, and Python.
 
@@ -594,7 +618,11 @@ public class ApprovalResult
 }
 ```
 
-# [JavaScript](#tab/javascript)
+# [JavaScript (PM3)](#tab/javascript-v3)
+
+This sample is shown for .NET, Java, and Python.
+
+# [JavaScript (PM4)](#tab/javascript-v4)
 
 This sample is shown for .NET, Java, and Python.
 
@@ -750,7 +778,11 @@ var result = await client.WaitForInstanceCompletionAsync(instanceId, getInputsAn
 Console.WriteLine($"Result: {result.ReadOutputAs<ApprovalResult>().Status}");
 ```
 
-# [JavaScript](#tab/javascript)
+# [JavaScript (PM3)](#tab/javascript-v3)
+
+This sample is shown for .NET, Java, and Python.
+
+# [JavaScript (PM4)](#tab/javascript-v4)
 
 This sample is shown for .NET, Java, and Python.
 
