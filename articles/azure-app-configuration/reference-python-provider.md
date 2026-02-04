@@ -97,7 +97,6 @@ color = appConfig["font"]["color"]
 > [!NOTE]
 > Starting with version *2.2.0* of `azure-appconfiguration-provider`, the configuration provider allows comments, as defined in ([JSONC](https://jsonc.org/)), in key-values with an `application/json` content type.
 
-
 ### Load specific key-values using selectors
 
 By default, the `load` method loads all configurations with no label from the configuration store. You can configure the behavior of the `load` method through the optional parameter of `selects`, which is a list of `SettingSelector`s.

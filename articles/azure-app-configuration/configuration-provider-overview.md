@@ -37,7 +37,7 @@ Module | Platform | Sample | Release Notes
 [@azure/app-configuration-provider](https://github.com/Azure/AppConfiguration-JavaScriptProvider)<br/>[![Npm](https://img.shields.io/npm/v/@azure/app-configuration-provider?color=blue)](https://www.npmjs.com/package/@azure/app-configuration-provider) | JavaScript | [Sample](https://github.com/Azure/AppConfiguration-JavaScriptProvider/tree/main/examples) | [Release Notes](https://github.com/Azure/AppConfiguration/blob/main/releaseNotes/JavaScriptProvider.md)
 [azureappconfiguration](https://github.com/Azure/AppConfiguration-GoProvider)<br/><a href="https://pkg.go.dev/github.com/Azure/AppConfiguration-GoProvider/azureappconfiguration"><img src="media/go-provider.png" alt="Go" width="90" height="20"></a> | Go | [Sample](https://github.com/Azure/AppConfiguration-GoProvider/tree/main/example) | [Release Notes](https://github.com/Azure/AppConfiguration/blob/main/releaseNotes/GoProvider.md)
 
-## Feature Development Status 
+## Feature Development Status
 
 This is an overview of each feature and its current status for different frameworks or programming languages. 
 
