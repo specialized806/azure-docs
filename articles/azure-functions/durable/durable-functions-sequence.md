@@ -11,7 +11,7 @@ ms.custom: devx-track-js, devx-track-python
 zone_pivot_groups: azure-durable-approach
 ---
 
-# Function chaining—hello sequence sample
+# Function chaining
 
 ::: zone pivot="durable-functions"
 
