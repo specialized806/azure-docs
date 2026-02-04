@@ -54,7 +54,7 @@ If your API Management service has an established networking line of sight to th
  
 For backup and restore and custom hostname certificates, you need to ensure the target key vault or storage account is publicly accessible or you need to preserve its trusted connectivity setting to allow traffic from API Management resources, even if your API Management service has a networking line of sight established with it.
 
-If you are using workspace-based gateways, you are not affected given they [do not support managed identity](./../workspaces-overview.md#gateway-constraints).
+If you are using workspace-based gateways, you are not affected given they [do not support managed identity](./../workspaces-overview.md).
 
 ### Step 1: Does my API Management gateway rely on trusted service connectivity? 
 
