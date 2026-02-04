@@ -42,4 +42,4 @@ The following table walks through how to use the Azure Copilot migration agent t
 ## Related content
 
 - [Discover servers running in a VMware environment with Azure Migrate appliance](tutorial-discover-vmware.md)
-- [Import VMware inventory using RVTools (preview)](tutorial-import-vmware).
+- [Import VMware inventory using RVTools (preview)](tutorial-import-vmware-using-rvtools-xlsx.md).
