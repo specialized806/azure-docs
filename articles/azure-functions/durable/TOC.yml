@@ -79,6 +79,18 @@
       href: durable-functions-timers.md
     - name: Custom orchestration status
       href: durable-functions-custom-orchestration-status.md
+  - name: Orchestration patterns
+    items:
+    - name: Function chaining
+      href: durable-functions-sequence.md
+    - name: Fan-out/fan-in
+      href: durable-functions-cloud-backup.md
+    - name: Monitors (C#, JavaScript)
+      href: durable-functions-monitor.md
+    - name: Monitors (Python)
+      href: durable-functions-monitor-python.md
+    - name: Human interaction
+      href: durable-functions-phone-verification.md
 - name: Durable Functions
   items:
   - name: Overview
@@ -93,18 +105,6 @@
       href: durable-functions-packages.md 
     - name: Durable Functions for .NET isolated
       href: durable-functions-dotnet-isolated-overview.md
-  - name: Orchestration patterns
-    items:
-    - name: Function chaining
-      href: durable-functions-sequence.md
-    - name: Fan-out/fan-in
-      href: durable-functions-cloud-backup.md
-    - name: Monitors (C#, JavaScript)
-      href: durable-functions-monitor.md
-    - name: Monitors (Python)
-      href: durable-functions-monitor-python.md
-    - name: Human interaction
-      href: durable-functions-phone-verification.md
   - name: Concepts
     items:
     - name: Stateful entities
