@@ -15,7 +15,7 @@ monikerRange: migrate
 
 # Azure Copilot migration agent (preview): Common questions
 
-Azure Copilot migration agent (AMCA) is built with Microsoft’s Responsible AI principles. This article answers common questions about the **Azure Copilot migration agent**. 
+Azure Copilot migration agent is built with Microsoft’s Responsible AI principles. This article answers common questions about the **Azure Copilot migration agent**. 
 
 ## What is the Azure Copilot migration agent?
 
