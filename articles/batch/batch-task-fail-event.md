@@ -35,7 +35,7 @@ ms.date: 01/28/2026
         "endTime": "2016-09-08T16:34:00.666Z",
         "exitCode": 1,
         "retryCount": 2,
-        "requeueCount": 0，
+        "requeueCount": 0,
         "result": "Failure",
         "schedulingError": {
             "category": "UserError",

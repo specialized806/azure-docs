@@ -35,7 +35,7 @@ ms.date: 01/29/2026
         "endTime": "2016-09-08T16:34:00.666Z",
         "exitCode": 0,
         "retryCount": 0,
-        "requeueCount": 0，
+        "requeueCount": 0,
         "result": "Success",
         "schedulingError": {
             "category": "",
