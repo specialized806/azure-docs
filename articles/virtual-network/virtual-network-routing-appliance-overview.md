@@ -13,7 +13,7 @@ ms.service: azure-virtual-network
 
 # Virtual Network Routing Appliance overview
 
-Azure Virtual Network Routing Appliance is a high-performance routing solution that provides a managed, scalable forwarding layer for your virtual networks. Unlike traditional hub-and-spoke architectures that rely on virtual machines for routing, Virtual Network Routing Routing Appliance runs on specialized networking hardware to deliver low latency and high throughput for your traffic flows.
+Azure Virtual Network Routing Appliance is a high-performance solution that provides a managed, scalable forwarding layer for your virtual networks. Unlike traditional hub-and-spoke architectures that rely on virtual machines for routing, Virtual Network Routing Appliance runs on specialized networking hardware to deliver low latency and high throughput for your traffic flows.
 
 As a top-level Azure resource, Virtual Network Routing Appliance integrates with Azure's management model, so you can deploy, configure, and govern it using familiar Azure tools and processes. You deploy the appliance in a dedicated subnet within your virtual network, where it acts as a high-bandwidth forwarding layer for routed traffic.
 
@@ -31,7 +31,7 @@ Virtual Network Routing Appliance is ideal for organizations that need to:
 
 Virtual Network Routing Routing Appliance is an Azure-managed network routing device that you deploy inside your virtual network. It acts as a high-bandwidth forwarding layer for routed traffic flows, so you don't need to run your own virtual machines as the forwarding layer.
 
-:::image type="content" source="media/virtual-network-routing-appliance-overview/virtual-network-appliance-diagram.png" alt-text="Screenshot of a diagram showing Virtual Network Routing Appliance architecture in Azure.":::
+:::image type="content" source="media/virtual-network-routing-appliance-overview/virtual-network-appliance-diagram.png" alt-text="Diagram showing Virtual Network Routing Appliance architecture in Azure.":::
 
 Key characteristics:  
 
