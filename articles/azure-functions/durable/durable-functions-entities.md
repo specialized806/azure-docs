@@ -1,5 +1,5 @@
 ---
-title: Durable entities - Azure Functions
+title: Durable entities
 description: Learn what durable entities are and how to use them in Durable Functions and Durable Task SDKs.
 author: cgillum
 ms.topic: overview
