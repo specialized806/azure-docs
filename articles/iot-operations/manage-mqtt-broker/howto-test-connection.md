@@ -143,7 +143,7 @@ To create a new broker listener with the `NodePort` service type, use the follow
 az iot ops broker listener port add
 ```
 
-Optionally, you can use the `--add-insecure-listener` flag to create a listener without authentication and TLS for testing purposes only. For more information, see `az iot ops broker listener port add --help`.
+Optionally, you can use the `--add-insecure-listener` flag to create a listener without authentication and TLS for testing purposes only. For more information, see [az iot ops broker listener port add](/cli/azure/iot/ops/broker/listener/port?view=azure-cli-latest).
 
 # [Bicep](#tab/bicep)
 
