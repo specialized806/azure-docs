@@ -693,7 +693,7 @@ The worker logs show each activity runs in sequence and passes its output to the
 This sample demonstrates a simple function chaining orchestration. Next, implement the fan-out/fan-in pattern.
 
 > [!div class="nextstepaction"]
-> [Run the Fan-out/fan-in sample](durable-functions-cloud-backup.md)
+> [Run the Fan-out/fan-in sample](durable-functions-fan-in-fan-out.md)
 
 ::: zone-end
 
