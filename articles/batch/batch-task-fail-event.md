@@ -86,7 +86,7 @@ ms.date: 01/28/2026
 |`startTime`|DateTime|The time when the task started running. 'Running' corresponds to the **running** state, so if the task specifies resource files or application packages, then the start time reflects the time at which the task started downloading or deploying them. If the task is restarted or retried, it's the most recent time at which the task started running.|
 |`endTime`|DateTime|The time when the task completed.|
 |`exitCode`|Int32|The exit code of the task. If the task failed before it started running, then exitCode is null.|
-|`retryCount`|Int32|The number of times the Batch service retired the task. The task is retried if it exits with a nonzero exit code, up to the specified MaxTaskRetryCount.|
+|`retryCount`|Int32|The number of times the Batch service retried the task. The task is retried if it exits with a nonzero exit code, up to the specified MaxTaskRetryCount.|
 |`requeueCount`|Int32|The number of times the Batch service requeued the task as a result of user request.<br /><br /> When users remove nodes from a pool (by resizing or shrinking it) or disable a job, they can choose to requeue the running tasks on those nodes for execution. This count tracks how many times the task is requeued for these reasons.|
 |`result`|String|The task result string, it could be "Success" or "Failure".|
 |[`schedulingError`](#schedulingError)|Complex Type|Contain detailed information about error.|
