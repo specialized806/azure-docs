@@ -55,6 +55,6 @@ landingContent:
           - text: Monitors
             url: durable-functions-monitor.md
           - text: Human interaction
-            url: durable-functions-phone-verification.md
+            url: durable-functions-human-interaction.md
           - text: Aggregator
             url: durable-functions-entities.md

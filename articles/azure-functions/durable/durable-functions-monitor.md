@@ -884,7 +884,7 @@ System.out.println("Final result: " + result.readOutputAs(JobResult.class).statu
 This sample demonstrates how to use Durable Functions to monitor an external source's status using [durable timers](durable-functions-timers.md) and conditional logic. The next sample shows how to use external events and [durable timers](durable-functions-timers.md) to handle human interaction.
 
 > [!div class="nextstepaction"]
-> [Run the human interaction sample](durable-functions-phone-verification.md)
+> [Run the human interaction sample](durable-functions-human-interaction.md)
 
 ::: zone-end
 

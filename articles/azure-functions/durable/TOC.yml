@@ -88,7 +88,7 @@
     - name: Monitors
       href: durable-functions-monitor.md
     - name: Human interaction
-      href: durable-functions-phone-verification.md
+      href: durable-functions-human-interaction.md
 - name: Durable Functions
   items:
   - name: Overview
@@ -266,7 +266,7 @@
     - name: Monitors
       href: durable-functions-monitor.md
     - name: Human interaction
-      href: durable-functions-phone-verification.md
+      href: durable-functions-human-interaction.md
   - name: Concepts
     items:
     - name: Versioning
