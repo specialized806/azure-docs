@@ -119,8 +119,27 @@ Admin consent authorizes the partner application to use the requested permission
 1. Verify that admin consent was granted by checking the service principal's permissions:
 
     ```azurecli
-    az ad sp show --id $SP_ID --query "oauth2PermissionGrants" -o table
+    az rest --method GET --url "https://graph.microsoft.com/v1.0/servicePrincipals/$SP_ID/oauth2PermissionGrants"
     ```
+
+    Example output when consent has been granted:
+
+    ```json
+    {
+      "value": [
+        {
+          "clientId": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+          "consentType": "AllPrincipals",
+          "id": "abc123def456",
+          "principalId": null,
+          "resourceId": "98765432-abcd-ef12-3456-7890abcdef12",
+          "scope": "User.Read"
+        }
+      ]
+    }
+    ```
+
+    If the `value` array is empty, admin consent hasn't been granted yet.
 
 ### Alternative: Grant consent via Azure portal
 
@@ -128,8 +147,9 @@ You can also grant admin consent through the Microsoft Entra admin center:
 
 1. Sign in to the [Microsoft Entra admin center](https://entra.microsoft.com/)
 1. Navigate to **Identity** > **Applications** > **Enterprise applications**
-1. Find and select the partner application by name or application ID
-1. Select **Permissions** in the left sidebar
+1. Select the **Application Type** filter and set to value "All Applications"
+1. Find the partner application by using the search bar to enter the application name or ID. Select the partner application from the filtered list. 
+1. Select **Security** > **Permissions** in the left sidebar
 1. Select **Grant admin consent for [your tenant]**
 1. Review and accept the permissions
 
@@ -253,7 +273,7 @@ You can also assign roles through the Azure portal:
 1. Navigate to your GeoCatalog resource
 1. Select **Access control (IAM)** in the left sidebar
 1. Select **Add** > **Add role assignment**
-1. Select **GeoCatalog Administrator** or **GeoCatalog Reader ** from the list of roles
+1. Select **GeoCatalog Administrator** or **GeoCatalog Reader** from the list of roles
 1. Select **Next**
 1. Select **User, group, or service principal**
 1. Select **Select members** and search for the partner application name
