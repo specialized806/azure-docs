@@ -79,7 +79,7 @@ For more information about connection methods and authentication options, see [A
 
 Azure Bastion pricing combines hourly SKU charges with outbound data transfer costs. Billing starts from the moment Bastion is deployed, regardless of usage.
 
-For pricing details, see [Azure Bastion pricing](https://azure.microsoft.com/pricing/details/azure-bastion/). For SLA and reliability information, see [Reliability in Azure Bastion](../reliability/reliability-bastion.md).
+For pricing details, see [Azure Bastion pricing](https://azure.microsoft.com/pricing/details/azure-bastion/). For SLA and reliability information, see [Reliability in Azure Bastion](/azure/reliability/reliability-bastion).
 ## What's new
 
 Azure Bastion is continuously updated with new features and improvements. To learn about the latest updates and announcements, see [What's new in Azure Bastion?](whats-new.md)
