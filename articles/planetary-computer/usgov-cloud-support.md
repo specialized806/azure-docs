@@ -20,13 +20,18 @@ When deploying or developing applications for Microsoft Planetary Computer Pro i
 > [!NOTE]
 > The [Open Planetary Computer](https://planetarycomputer.microsoft.com) public data catalog (`planetarycomputer.microsoft.com`) works identically in both Azure Public and Azure US Government cloud environments. No changes are required when accessing Open Planetary Computer data from either environment.
 
+## Supported Regions
+
+Microsoft Planetary Computer Pro is currently available in the following US Government Cloud Regions:
+- US Gov Virginia
+
 ## Endpoint mapping reference
 
 The following table provides a quick reference for mapping Azure Public cloud endpoints to their Azure US Government equivalents:
 
 | Service                      | Azure Public cloud                               | Azure US Government cloud                         |
 |------------------------------|--------------------------------------------------|---------------------------------------------------|
-| Microsoft Entra ID (login)   | `login.microsoftonline.com`                      | `login.microsoftonline.us`                        |
+| Microsoft Entra ID (sign in)   | `login.microsoftonline.com`                      | `login.microsoftonline.us`                        |
 | GeoCatalog API scope         | `https://geocatalog.spatio.azure.com/.default`   | `https://geocatalog.spatio.azure.us/.default`     |
 | GeoCatalog instance URL      | `{name}.{region}.geocatalog.spatio.azure.com`    | `{name}.{region}.geocatalog.spatio.azure.us`      |
 | Azure Storage scope          | `https://storage.azure.com/.default`             | `https://storage.usgovcloudapi.net/.default`      |
@@ -41,7 +46,7 @@ The following sections detail the specific configuration changes required for ea
 
 ### Application authentication
 
-**Affected article:** [Application authentication](application-authentication.md)
+**Article:** [Application authentication](application-authentication.md)
 
 When configuring application authentication for US Government cloud:
 
@@ -52,9 +57,9 @@ When configuring application authentication for US Government cloud:
 
 ### Build a web application
 
-**Affected article:** [Build a web application](build-web-application.md)
+**Article:** [Build a web application](build-web-application.md)
 
-When building web applications with MSAL authentication:
+When building web applications with Microsoft Authentication Library (MSAL) authentication:
 
 | Configuration          | Public cloud                                          | US Government cloud                                      |
 |------------------------|-------------------------------------------------------|----------------------------------------------------------|
@@ -80,9 +85,12 @@ const tokenRequest = {
 
 ### Connect to ArcGIS Pro
 
-**Affected article:** [Connect to ArcGIS Pro](create-connection-arc-gis-pro.md)
+**Article:** [Connect to ArcGIS Pro](create-connection-arc-gis-pro.md)
 
-This article already includes zone pivot content for both Public and US Government cloud configurations. When using ArcGIS Pro with US Government cloud:
+> [!NOTE]
+> This article already includes dedicated instructions for both Public and US Government cloud configurations. 
+
+When using ArcGIS Pro with US Government cloud:
 
 | Configuration      | Public cloud                                   | US Government cloud                                          |
 |--------------------|------------------------------------------------|--------------------------------------------------------------|
@@ -92,7 +100,7 @@ This article already includes zone pivot content for both Public and US Governme
 
 ### Azure Batch integration
 
-**Affected article:** [Azure Batch and Microsoft Planetary Computer Pro](azure-batch.md)
+**Article:** [Azure Batch and Microsoft Planetary Computer Pro](azure-batch.md)
 
 When running Azure Batch jobs:
 
@@ -103,7 +111,7 @@ When running Azure Batch jobs:
 
 ### Assign managed identity to GeoCatalog
 
-**Affected article:** [Assign a user-assigned managed identity to a GeoCatalog resource](assign-managed-identity-geocatalog-resource.md)
+**Article:** [Assign a user-assigned managed identity to a GeoCatalog resource](assign-managed-identity-geocatalog-resource.md)
 
 When using Azure Resource Manager REST API:
 
@@ -123,7 +131,7 @@ When working with data cubes:
 
 ### Get collection SAS token
 
-**Affected article:** [Get a collection SAS token](get-collection-sas-token.md)
+**Article:** [Get a collection SAS token](get-collection-sas-token.md)
 
 When acquiring SAS tokens:
 
@@ -133,7 +141,7 @@ When acquiring SAS tokens:
 
 ### Get started with Planetary Computer Pro
 
-**Affected article:** [Get started with Microsoft Planetary Computer Pro](get-started-planetary-computer.md)
+**Article:** [Get started with Microsoft Planetary Computer Pro](get-started-planetary-computer.md)
 
 When setting up your environment:
 
@@ -143,7 +151,7 @@ When setting up your environment:
 
 ### Ingest data via web interface
 
-**Affected article:** [Ingest data using the web interface](ingest-via-web-interface.md)
+**Article:** [Ingest data using the web interface](ingest-via-web-interface.md)
 
 When configuring ingestion sources with storage URLs:
 
@@ -163,7 +171,7 @@ When accessing the Azure portal:
 
 ## Limitations
 
-- Some features available in Azure Public cloud might have delayed availability in Azure US Government cloud. Check the [Azure Government services availability](../azure-government/compare-azure-government-global-azure.md) documentation for the latest information.
+- Feature availability in Azure US Government cloud may be delayed compared to Azure Public cloud. Check the [Azure Government services availability](../azure-government/compare-azure-government-global-azure.md) documentation for the latest information.
 - Ensure your Azure subscription is enabled for Azure US Government before deploying Microsoft Planetary Computer Pro resources.
 
 ## Related content
