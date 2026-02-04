@@ -65,7 +65,7 @@
       href: durable-functions-code-constraints.md
     - name: Storage providers
       href: durable-functions-storage-providers.md
-  - name: Orchestration features
+  - name: Features
     items: 
     - name: Instance management
       href: durable-functions-instance-management.md
@@ -79,7 +79,9 @@
       href: durable-functions-timers.md
     - name: Custom orchestration status
       href: durable-functions-custom-orchestration-status.md
-  - name: Orchestration patterns
+    - name: Durable Entities
+      href: durable-functions-entities.md
+  - name: Durable Patterns
     items:
     - name: Function chaining
       href: durable-functions-sequence.md
@@ -105,8 +107,6 @@
       href: durable-functions-dotnet-isolated-overview.md
   - name: Concepts
     items:
-    - name: Stateful entities
-      href: durable-functions-entities.md
     - name: HTTP features
       href: durable-functions-http-features.md 
     - name: Error handling
