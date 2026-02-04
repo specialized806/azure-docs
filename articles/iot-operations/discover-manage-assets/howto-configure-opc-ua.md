@@ -25,7 +25,10 @@ This article describes how to use the operations experience web UI and the Azure
 
 These assets, data points, and events map inbound data from OPC UA servers to friendly names that you can use in the MQTT broker and data flows.
 
-The connector can use `anonymous` or `username password` authentication when it connects to an OPC UA server.
+The connector can use `anonymous` or `username password` user authentication when it connects to an OPC UA server.
+
+> [!NOTE]
+> This user authentication is separate from the certificate-based application authentication that's used to establish a secure channel between the connector for OPC UA and the OPC UA server. To learn more, see [Understand the OPC UA certificates infrastructure](overview-opc-ua-connector-certificates-management.md).
 
 ## Prerequisites
 
@@ -36,6 +39,10 @@ To configure devices and assets, you need an instance of Azure IoT Operations.
 Your IT administrator must configure the OPC UA connector template for your Azure IoT Operations instance in the Azure portal.
 
 An OPC UA server that you can reach from your Azure IoT Operations cluster. If you don't have an OPC UA server, use the OPC PLC simulator from the Azure IoT Operations samples repository.
+
+## Configure a certificate trust list for the connector
+
+[!INCLUDE [connector-certificate-application](../includes/connector-certificate-application.md)]
 
 ## Create a device
 
@@ -148,8 +155,6 @@ To use the `UsernamePassword` authentication mode, complete the following steps:
 ---
 
 ### Other security options
-
-To manage the trusted certificates list for the connector for OPC UA, see [Manage certificates for external communications](../secure-iot-ops/howto-manage-certificates.md#manage-certificates-for-external-communications).
 
 When you create the inbound endpoint, you can also select:
 
@@ -381,7 +386,7 @@ Now you can define the events associated with the asset. To add OPC UA events in
 
 ### Event filters
 
-Define event filters to customize the information that's included in event notifications from the server. By default, the server sends a selection of standard fields in event notifications. The server determines the exact selection for each event type. For example:
+Define event filters to customize the information included in event notifications from the server. By default, the server sends a selection of standard fields in event notifications. The server determines the exact selection for each event type. For example:
 
 ```json
 {
@@ -398,7 +403,7 @@ Define event filters to customize the information that's included in event notif
 
 Use an event filter to:
 
-- Include additional fields in event notifications.
+- Include extra fields in event notifications.
 - Exclude fields from event notifications.
 - Modify field names in event notifications.
 
@@ -421,7 +426,7 @@ The three properties for a filter row are:
 - _Type definition ID_. Optional value that specifies the OPC UA type definition of the source field.
 - _Field ID_. Optional value that specifies the name to use for the field in the forwarded event notification. If you don't specify a field ID, the original field name is used.
 
-The resulting message forwarded by the connector now looks like the following:
+The resulting message forwarded by the connector now looks like the following example:
 
 ```json
 {
@@ -524,7 +529,7 @@ resource asset 'Microsoft.DeviceRegistry/namespaces/assets@2025-10-01' existing 
 output asset object = asset
 ```
 
-To update an existing asset, for example to modify the description and add a data point, use a template like the following:
+To update an existing asset, for example to modify the description and add a data point, use a template like the following example:
 
 ```bicep
 param aioNamespaceName string = '<AIO_NAMESPACE_NAME>'

@@ -48,6 +48,9 @@ Before you begin this tutorial, you should:
 - [Review](../site-recovery/migrate-tutorial-windows-server-2008.md#limitations-and-known-issues) the limitations related to migrating Windows Server 2008 servers to Azure.
 
 > [!NOTE]
+>  Windows Server 2008 and Windows Server 2008 R2 have reached End of Life (EOL). For more information, see, [End of support for Windows Server 2008 and Windows Server 2008 R2](/troubleshoot/windows-server/windows-server-eos-faq/end-of-support-windows-server-2008-2008r2) and [Perform in-place upgrade to Windows Server 2016, 2019, 2022, or 2025](/azure/virtual-machines/windows-in-place-upgrade#perform-in-place-upgrade-to-windows-server-2016-2019-2022-or-2025). Review your usage and plan OS upgrades and migrations accordingly.
+
+> [!NOTE]
 > If you're planning to upgrade your Windows operating system, Azure Migrate and Modernize might download the Windows SetupDiag utility for error details in case upgrade fails. Ensure that the VM created in Azure after the migration has access to [SetupDiag](https://go.microsoft.com/fwlink/?linkid=870142). If there's no access to SetupDiag, you might not be able to get detailed OS upgrade failure error codes but the upgrade can still proceed.
 
 ## Prepare Azure
@@ -160,13 +163,13 @@ This section introduces a new process, which is simplified experience. Users fol
 
 It introduces an upgraded agent-based migration stack for physical and VMware environments. Customers benefit from the ability to migrate newer Linux distributions to Azure, use WS2022 for the replication appliance, and utilize a unified OS support matrix. 
 
-## Navigate to Azure Migrate project
+## Access the Azure Migrate project
 
 Follow the steps to navigate to the Azure Migrate project:
 
-**Step 1**: Navigate to Azure Migrate project
+**Step 1**: Go to Azure Migrate project
 
-1. Open [Azure portal](https://portal.azure.com). 
+1. Go to [Azure portal](https://portal.azure.com). 
 1. Search for the **Azure Migrate** service.
 1. Create a new project or select an existing one. [Learn more](/azure/migrate/).
 
