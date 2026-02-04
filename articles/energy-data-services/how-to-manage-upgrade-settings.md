@@ -16,7 +16,7 @@ This article describes how to view and manage upgrade settings for your Azure Da
 
 ## What are milestone upgrades?
 
-Milestone upgrades are major version upgrades to Azure Data Manager for Energy, such as moving from M25 to M26. These upgrades may include significant changes to functionality and features.
+Milestone upgrades are major version upgrades to Azure Data Manager for Energy, such as moving from M25 to M26. These upgrades might include significant changes to functionality and features.
 
 ## Upgrade policy options
 
@@ -93,11 +93,11 @@ If your upgrade policy is set to **Deferred** and a milestone upgrade is availab
 1. Confirm that you want to mark your instance as ready for upgrade.
 
 > [!IMPORTANT]
-> Once you mark your instance as ready for upgrade, this action cannot be undone. Your instance will be upgraded during the next upgrade cycle.
+> Once you mark your instance as ready for upgrade, this action can't be undone. Your instance will be upgraded during the next upgrade cycle.
 
 ## Understanding the 30-day upgrade window
 
-When a new milestone release is available and your upgrade policy is set to **Deferred**:
+When a new milestone release is available and your upgrade policy is set to **Deferred**, the following apply:
 
 1. After all instances with the **Automatic** upgrade policy are upgraded, the Azure Data Manager for Energy team sets the **30-Day Window End Date**, which is approximately 30 days from that point.
 
@@ -114,7 +114,7 @@ When a new milestone release is available and your upgrade policy is set to **De
 
 ### What happens if I find an issue with Azure Data Manager for Energy during the 30-day window?
 
-If you discover an issue during the 30-day window, contact Azure support. Depending on the severity of the issue, the Azure Data Manager for Energy team may deploy a hotfix. If a hotfix is required, the 30-day timer is paused when the issue is identified and resumes once the hotfix is deployed.
+If you discover an issue during the 30-day window, contact Azure support. Depending on the severity of the issue, the Azure Data Manager for Energy team might deploy a hotfix. If a hotfix is required, the 30-day timer is paused when the issue is identified and resumes once the hotfix is deployed.
 
 ## Next steps
 
