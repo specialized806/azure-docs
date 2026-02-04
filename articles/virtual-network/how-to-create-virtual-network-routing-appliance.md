@@ -2,7 +2,7 @@
 title: Create a Virtual Network Routing Appliance
 titleSuffix: Azure Virtual Network
 description: Create a virtual network routing appliance in Azure with ease. This guide covers registration, configuration, and troubleshooting for the public preview.
-#customer intent: As a network administrator, I want to create a Virtual Network routing appliance in the Azure portal so that I can manage network traffic in a non-production environment.
+#customer intent: As a network administrator, I want to create a virtual network routing appliance in the Azure portal so that I can manage network traffic in a non-production environment.
 author: asudbring
 ms.author: allensu
 ms.reviewer: allensu
@@ -14,10 +14,10 @@ ms.custom: references_regions
 
 # Create a virtual network routing appliance
 
-This article explains how to register your subscription for the Virtual Network routing appliance public preview and create a Virtual Network routing appliance in the Azure portal. Use the public preview for testing, evaluation, and feedback. It doesn't support production workloads.
+This article explains how to register your subscription for the virtual network routing appliance public preview and create a virtual network routing appliance in the Azure portal. Use the public preview for testing, evaluation, and feedback. It doesn't support production workloads.
 
 > [!IMPORTANT]
-> Azure virtual network routing appliance is currently in PREVIEW.
+> Azure Virtual Network routing appliance is currently in PREVIEW.
 > See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
 
 ## Prerequisites
