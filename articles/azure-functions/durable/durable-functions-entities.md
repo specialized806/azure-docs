@@ -511,6 +511,10 @@ async def main(req: func.HttpRequest, starter: str, message):
 ::: zone pivot="csharp,javascript,python"
 Entity state queries are sent to the Durable tracking store and return the entity's most recently persisted state. This state is always a "committed" state, that is, it's never a temporary intermediate state assumed in the middle of executing an operation. However, it's possible that this state is stale compared to the entity's in-memory state. Only orchestrations can read an entity's in-memory state, as described in the following section.
 
+### Keep entity state small
+
+If an entity's explicit state is too large, you might run into memory issues. An entity state needs to be serialized and deserialized from storage on any request, so large states add serialization latency to each invocation. If an entity needs to track large data, offload the data to external storage (such as Azure Blob Storage) and track a lightweight identifier in the entity that allows you to retrieve the data from storage when needed.
+
 ### Example: Orchestration signals and calls an entity
 
 Orchestrator functions can access entities by using APIs on the [orchestration trigger binding](durable-functions-bindings.md#orchestration-trigger). The following example code shows an orchestrator function calling and signaling a `Counter` entity.
