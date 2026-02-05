@@ -62,6 +62,44 @@ allowVolumeExpansion: true
 
 The default Elastic SAN capacity provisioned with this storage class is 1 TiB.
 
+Alternatively, you can create the storage class using Terraform.
+
+1. Use Terraform to manage the storage class by creating a configuration like the following `main.tf`. Update the provider version or kubeconfig path as needed for your environment.
+
+    ```tf
+    terraform {
+      required_version = ">= 1.5.0"
+      required_providers {
+        kubernetes = {
+          source  = "hashicorp/kubernetes"
+          version = "~> 3.x"
+        }
+      }
+    }
+
+    provider "kubernetes" {
+      config_path = "~/.kube/config"
+    }
+
+    resource "kubernetes_storage_class_v1" "azuresan" {
+      metadata {
+        name = "azuresan"
+      }
+
+      storage_provisioner    = "san.csi.azure.com"
+      reclaim_policy         = "Delete"
+      volume_binding_mode    = "Immediate"
+      allow_volume_expansion = true
+    }
+    ```
+
+1. Initialize and apply the configuration.
+
+    ```bash
+    terraform init
+    terraform apply
+    ```
+
 ### Create a storage class with custom Elastic SAN capacity
 
 If you need a different initial capacity than the default 1 TiB, set the `initialStorageTiB` parameter in the storage class.
