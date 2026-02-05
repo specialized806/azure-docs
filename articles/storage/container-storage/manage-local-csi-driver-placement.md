@@ -14,7 +14,7 @@ ms.custom: references_regions
 
 In Kubernetes clusters, CSI drivers are typically deployed as DaemonSets, running on all nodes by default. However, in production environments, certain nodes may be equipped with specialized hardware (such as local NVMe disks), specific instance types, or designated roles that make them more suitable for particular storage workloads.
 
-By configuring node affinity in local NVMe storage class, you can control the placement of Local CSI drivers to ensure they run only on nodes that meet the designed conditions. This approach helps optimize resource utilization and minimizes the impact on other nodes in the cluster.
+Azure Container Storage uses local CSI driver to manage local NVMe volumes. By configuring node affinity in local NVMe storage class, you can control the placement of Local CSI drivers to ensure they run only on nodes that meet the designed conditions. This approach helps optimize resource utilization and minimizes the impact on other nodes in the cluster.
 
 ## When to consider managing local CSI driver placement
 
@@ -36,7 +36,7 @@ You can define a nodeAffinity rule for a local NVMe StorageClass using the **sto
 
 ## Ensure local CSI drivers are placed on nodes with local NVMe disks
 
-To ensure that local CSI drivers are deployed only on nodes equipped with local NVMe disks, you can configure node affinity based on instance type. The following is an example of a StorageClass configuration:
+To ensure that local CSI drivers are deployed only on nodes equipped with local NVMe disks, you can configure node affinity based on instance type. The following example shows a StorageClass configuration:
 
 ```bash
 cat <<EOF | kubectl apply -f -
@@ -71,7 +71,7 @@ aks-mygpu2-37383660-vmss000000  Standard_L16s_v3
 
 ## Ensure local CSI drivers are placed in specific node pools
 
-You can ensure that local CSI drivers are deployed only in selected node pools by configuring node affinity based on the `agentpool` label. The following is an example of a StorageClass configuration:
+You can ensure that local CSI drivers are deployed only in selected node pools by configuring node affinity based on the `agentpool` label. The following example shows a StorageClass configuration:
 
 ```bash
 cat <<EOF | kubectl apply -f -
