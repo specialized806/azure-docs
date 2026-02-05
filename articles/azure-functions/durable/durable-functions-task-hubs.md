@@ -152,7 +152,7 @@ Next, let's take a closer look at how task hubs are created or deleted, how to u
 
 An empty task hub with all the required resources is automatically created in storage when a function app is started the first time.
 
-If using the default Azure Storage provider, no extra configuration is required. Otherwise, follow the [instructions for configuring storage providers](durable-functions-storage-providers.md#configuring-alternate-storage-providers) to ensure that the storage provider can properly provision and access the storage resources required for the task hub.
+If using the Azure Storage provider, no extra configuration is required. Otherwise, follow the [instructions for configuring storage providers](durable-functions-storage-providers.md) to ensure that the storage provider can properly provision and access the storage resources required for the task hub.
 
 > [!NOTE]
 > The task hub is *not* automatically deleted when you stop or delete the function app. You must delete the task hub, its contents, or the containing storage account manually if you no longer want to keep that data.

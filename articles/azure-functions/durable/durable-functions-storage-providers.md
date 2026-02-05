@@ -101,8 +101,8 @@ Learn more about the Netherite storage provider:
 
 You can use the following table to understand the significant tradeoffs between the various supported storage providers and decide which storage provider is best for your needs.
 
-|   | Durable Task Scheduler | Azure Storage | MSSQL | Netherite | 
-| - | ---------------------- | ------------- | ----- | --------- |
+| Feature | Durable Task Scheduler | Azure Storage | MSSQL | Netherite | 
+| ------- | ---------------------- | ------------- | ----- | --------- |
 | Official support status | ✅ Generally available (GA) | ✅ Generally available (GA) | ✅ Generally available (GA) | ✅ Generally available (GA) |
 | External dependencies | N/A | Azure Storage account (general purpose v1) | [SQL Server 2019](https://www.microsoft.com/sql-server/sql-server-2019) or Azure SQL Database | Azure Event Hubs<br/>Azure Storage account (general purpose) | 
 | Local development and emulation options | [Durable Task Scheduler emulator](./durable-task-scheduler/durable-task-scheduler.md#emulator-for-local-development) | [Azurite v3.12+](../../storage/common/storage-use-azurite.md) (cross platform) | SQL Server Developer Edition (supports [Windows](/sql/database-engine/install-windows/install-sql-server), [Linux](/sql/linux/sql-server-linux-setup), and [Docker containers](/sql/linux/sql-server-linux-docker-container-deployment)) | Supports in-memory emulation of task hubs ([more information](https://microsoft.github.io/durabletask-netherite/#/emulation)) | 
