@@ -12,7 +12,7 @@
   - name: Use with local NVMe
     href: use-container-storage-with-local-disk.md
   - name: Manage Local CSI driver placement
-    href: manage-local-csi-driver-placement.md
+    href: manage-local-container-storage-interface-driver-placement.md
   - name: Use with Elastic SAN
     href: use-container-storage-with-elastic-san.md
   - name: Remove Azure Container Storage
