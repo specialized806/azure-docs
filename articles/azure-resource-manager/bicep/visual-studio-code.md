@@ -208,7 +208,7 @@ See [Deployment Pane](./deploy-vscode.md#deployment-pane) for more information.
 The Bicep MCP (Model Context Protocol) server provides AI agents with tools to help generate high-quality Bicep code. The Bicep MCP server is available starting with Bicep extension version 0.40.2. To set up your environment for Bicep development using Bicep MCP Server in Visual Studio Code, see [Install Bicep tools](./install.md). After completing those steps, you have Visual Studio Code and the Bicep extension installed.
 
 > [!NOTE]
-> Bicep MCP server doesn't appear under `MCP SERVERS` in the extension view.
+> The Bicep MCP server doesn't appear under `MCP SERVERS` in the extension view, because it is automatically included with the Bicep VSCode extension.
 
 For general information abouting using MCP servers in Visual Studio Code, see [Use MCP servers in VS Code](https://code.visualstudio.com/docs/copilot/customization/mcp-servers).
 
