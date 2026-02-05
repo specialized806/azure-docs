@@ -21,7 +21,7 @@ Single sign-on (SSO) is already enabled when you created your Informatica Organi
 1. The first time you access this Url, depending on your Azure tenant settings, you might see a request to grant permissions and User consent. This step is only needed the first time you access the SSO Url.
 
    > [!NOTE]
-   > If you are also seeing Admin consent screen then please check your [tenant consent settings](/azure/active-directory/manage-apps/configure-user-consent).
+   > If you're also seeing Admin consent screen, then check your [tenant consent settings](/azure/active-directory/manage-apps/configure-user-consent).
    >
 
 1. Choose a Microsoft Entra account for the Single Sign-on. Once consent is provided, you're redirected to the Informatica portal.

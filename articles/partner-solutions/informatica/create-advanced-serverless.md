@@ -1,6 +1,6 @@
 ---
 title: "Quickstart: Create an advanced serverless deployment using Informatica Intelligent Data Management Cloud"
-description: This article describes how to setup a serverless runtime environment using the Azure portal and an Informatica IDMC organization.
+description: This article describes how to set up a serverless runtime environment using the Azure portal and an Informatica IDMC organization.
 
 ms.topic: quickstart  
 ms.date: 02/04/2026
@@ -47,7 +47,7 @@ Set the following values in the _Basics_ pane.
   | **Description** | Description of the serverless runtime environment. |
   | **Task Type** | Type of tasks that run in the serverless runtime environment. Select **Data Integration** to run mappings outside of advanced mode. Select **Advanced Data Integration** to run mappings in advanced mode. |
   | **Maximum Compute Units per Task** | Maximum number of serverless compute units corresponding to machine resources that a task can use. |
-  | **Task Timeout (Minutes)** | By default, the timeout is 2,880 minutes (48 hours). You can set the timeout to a value that is less than 2880 minutes. |
+  | **Task Timeout (Minutes)** | By default, the timeout is 2,880 minutes (48 hours). You can set the timeout to a value that's less than 2880 minutes. |
 
 ### Platform Detail
 

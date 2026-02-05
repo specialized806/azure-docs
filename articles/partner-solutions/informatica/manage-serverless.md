@@ -28,4 +28,4 @@ In this article, you learn different actions available for each of the serverles
 
 ## Next steps
 
-- Get help with troubleshooting, [contact Informatica for customer support](https://support.informatica.com/).
+- Get help with troubleshooting, and [contact Informatica for customer support](https://support.informatica.com/).
