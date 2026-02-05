@@ -23,8 +23,7 @@ Metrics for your App Configuration store are collected automatically, no manual 
 ### Metrics overview
 In the Azure portal, navigate to your App Configuration store. The **Overview** blade displays key usage metrics, including the total number of requests over the time and the average request duration.
 
-> [!div class="mx-imgBorder"]
-> ![Monitoring on the Overview Page](./media/monitoring-overview-page.png)
+:::image type="content" source="./media/monitoring-overview-page.png" alt-text="Screenshot showing the monitoring metrics on the Overview page." lightbox="./media/monitoring-overview-page.png":::
 
 ### Metrics analysis
 
@@ -42,8 +41,7 @@ The following list summarizes all metrics collected for App Configuration.
 
 Select the **Metric** name and the **Aggregation** type. The following screenshot shows a **Sum** of **HTTP Incoming Request Count** for an App Configuration store.
 
-> [!div class="mx-imgBorder"]
-> ![How to use App Config Metrics](./media/monitoring/analyze-metrics.png)
+:::image type="content" source="./media/monitoring/analyze-metrics.png" alt-text="Screenshot showing how to use App Configuration metrics in Azure portal." lightbox="./media/monitoring/analyze-metrics.png":::
 
 For more information about App Configuration metrics, see [supported metrics for Microsoft.AppConfiguration/configurationStores](/azure/azure-monitor/reference/supported-metrics/microsoft-appconfiguration-configurationstores-metrics).
 
@@ -70,13 +68,11 @@ Resource Logs (including audit logs and HTTP request logs) aren't collected and 
 1. Navigate to your App Configuration store.
 
 1. In the **Monitoring** section, select **Diagnostic settings**, then select **+Add diagnostic setting**. 
-    > [!div class="mx-imgBorder"]
-    > ![Add a diagnostic setting](./media/diagnostic-settings-add.png)
+    :::image type="content" source="./media/diagnostic-settings-add.png" alt-text="Screenshot showing how to add a diagnostic setting." lightbox="./media/diagnostic-settings-add.png":::
 
 1. In the **Diagnostic setting** page, enter a name for your setting, then select the log categories you want to collect (such as **HTTP Requests** or **Audit**) and choose the destination to send your logs to. Available destinations include Log Analytics workspace, storage account, and event hub. We recommend using Log Analytics workspace. To send them to a Log Analytics workspace, choose **Send to Log Analytics workspace**.
 
-    > [!div class="mx-imgBorder"]
-    > ![Details of the diagnostic settings](./media/monitoring-diagnostic-settings-details.png)
+    :::image type="content" source="./media/monitoring-diagnostic-settings-details.png" alt-text="Screenshot showing the details of the diagnostic settings page." lightbox="./media/monitoring-diagnostic-settings-details.png":::
 
 1. Enter the name of your **Subscription** and **Log Analytics workspace**. 
 1. Select **Save** and verify that the Diagnostic settings page now lists your new diagnostic setting. 
@@ -128,8 +124,7 @@ For more information on creating a diagnostic setting using the Azure portal, CL
 #### Audit Log
 In the portal, navigate to **Monitoring** > **Logs**, and then go to the query editor. Expand **Tables** and select **AACAudit** to see the audit logs of your configuration store. Select **KQL mode**, enter a Kusto query into the editor, and results are displayed below.
 
-> [!div class="mx-imgBorder"]
-> ![Audit log](./media/monitoring/monitoring-audit-log.png)
+:::image type="content" source="./media/monitoring/monitoring-audit-log.png" alt-text="Screenshot showing the audit log query results." lightbox="./media/monitoring/monitoring-audit-log.png":::
 
 The following queries are samples that you can use to help you monitor your App Configuration resource through audit logs.
 
@@ -142,8 +137,7 @@ The following queries are samples that you can use to help you monitor your App 
 #### HTTP request log
 In the portal, navigate to **Monitoring** > **Logs**, and then go to the query editor. Expand **Tables** and select **AACHttpRequest** to see the HTTP request logs of your configuration store. Select **KQL mode**, enter a Kusto query into the editor, and results are displayed below.
 
-> [!div class="mx-imgBorder"]
-> ![Writing kusto queries in our logs](./media/monitoring/monitoring-http-request-log.png)
+:::image type="content" source="./media/monitoring/monitoring-http-request-log.png" alt-text="Screenshot showing the HTTP request log query results." lightbox="./media/monitoring/monitoring-http-request-log.png":::
 
 Following are sample queries that you can use to help you monitor your App Configuration resource through HTTP request logs.
 

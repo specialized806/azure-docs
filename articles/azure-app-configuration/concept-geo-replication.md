@@ -41,7 +41,7 @@ To add once these links become available:
 
 ## Cost and billing 
 
-Each replica created will add extra charges. Reference the [App Configuration pricing page](https://azure.microsoft.com/pricing/details/app-configuration/) for details. As an example, if your origin is a standard tier configuration store and you have five replicas, you would be charged the rate of six standard tier configuration stores for your system, but each of your replica's isolated quota and requests are included in this charge.
+Each replica created will add extra charges. Reference the [App Configuration pricing page](https://azure.microsoft.com/pricing/details/app-configuration/) for details. As an example, if your origin is a standard tier configuration store and you have five replicas, you would be charged the rate of six standard tier configuration stores for your system, but each of your replica's isolated quotas and requests are included in this charge.
 
 ## Monitoring
 
