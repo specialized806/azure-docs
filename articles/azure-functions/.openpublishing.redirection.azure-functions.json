@@ -6,6 +6,21 @@
           "redirect_document_id": false
         },
         {
+          "source_path": "articles/azure-functions/durable/durable-functions-cloud-backup.md",
+          "redirect_url": "/azure/azure-functions/durable/durable-functions-fan-in-fan-out",
+          "redirect_document_id": false
+        },
+        {
+          "source_path": "articles/azure-functions/durable/durable-functions-monitor-python.md",
+          "redirect_url": "/azure/azure-functions/durable/durable-functions-monitor",
+          "redirect_document_id": false
+        },
+        {
+          "source_path": "articles/azure-functions/durable/durable-functions-phone-verification.md",
+          "redirect_url": "/azure/azure-functions/durable/durable-functions-human-interaction",
+          "redirect_document_id": false
+        },
+        {
           "source_path": "articles/azure-functions/durable/durable-task-scheduler/develop-with-durable-task-scheduler-functions.md",
           "redirect_url": "/azure/azure-functions/durable/durable-task-scheduler/develop-with-durable-task-scheduler",
           "redirect_document_id": false
