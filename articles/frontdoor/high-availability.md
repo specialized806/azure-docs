@@ -15,7 +15,7 @@ ms.date: 01/28/2026
 
 Azure Front Door is designed to provide exceptional resilience and availability for both external customers and Microsoft's internal properties. Although the architecture of Azure Front Door meets or exceeds the needs of most production workloads, no distributed system is immune to failure.
 
-This article provides high‑level, step‑by‑step instructions for implementing Azure Traffic Manager to enable manual failover from Azure Front Door to either an alternate content delivery network (CDN) or Azure Application Gateway web application firewall (WAF) during rare Azure Front Door service interruptions. It supplements the guidance in [Global routing redundancy for mission-critical web applications](/azure/architecture/guide/networking/global-web-applications/overview).
+This article provides high‑level, step‑by‑step instructions for implementing Azure Traffic Manager to enable manual failover from Azure Front Door to either an alternate content delivery network (CDN) or an Azure Application Gateway web application firewall (WAF) during rare Azure Front Door service interruptions. It supplements the guidance in [Global routing redundancy for mission-critical web applications](/azure/architecture/guide/networking/global-web-applications/overview).
 
 Multiple strategies exist within the industry for achieving high availability (HA) in CDN and web application architectures. The approach outlined in this article focuses on a straightforward, manual "break‑glass" failover pattern. Customers can use the pattern to quickly redirect traffic during an outage and seamlessly restore routing back to Azure Front Door after service health is confirmed.
 
@@ -39,7 +39,7 @@ When you're implementing HA architectures for production workloads, consider the
 
 - Don't configure the primary Traffic Manager instance for automatic failover.
 
-  Azure Traffic Manager health probes originate only from US-based Azure regions. For probes of Azure Front Door endpoints (or any CDN by using anycast routing), these US-based probes almost always reach US POP servers and leave the health of non-US POP servers unverified. This situation prevents Traffic Manager from automatically failing over between Azure Azure Front Door and another ingress service based on the true global health of the anycast CDN, such as Azure Front Door.
+  Azure Traffic Manager health probes originate only from US-based Azure regions. For probes of Azure Front Door endpoints (or any CDN by using anycast routing), these US-based probes almost always reach US POP servers and leave the health of non-US POP servers unverified. This situation prevents Traffic Manager from automatically failing over between Azure Front Door and another ingress service based on the true global health of the anycast CDN, such as Azure Front Door.
   
   For global workloads that require health validation from multiple geographies, manual failover with weighted routing and monitoring disabled provides more reliable control than automated health-based routing.
 
@@ -47,11 +47,11 @@ When you're implementing HA architectures for production workloads, consider the
 
   Ensure that your TLS certificates are compatible with Azure Front Door. For more information, see [Configure HTTPS on an Azure Front Door custom domain](/azure/frontdoor/standard-premium/how-to-configure-https-custom-domain) and [TLS encryption with Azure Front Door](/azure/frontdoor/end-to-end-tls).
 
-- Always test failover procedures ahead of time in non-production environments first.
+- Always test failover procedures in non-production environments first.
 
 - Traffic Manager doesn't support CNAME flattening at the DNS zone apex (root domain). If you require Traffic Manager at the apex, you must use DNS providers that support alias records or similar mechanisms. [Azure DNS](/azure/dns/dns-alias) is one such DNS provider.
 
-- Use short DNS time-to-live (TTL) values (300 to 600 seconds), and monitor DNS TTL propagation times.
+- Use short DNS time-to-live (TTL) values (300-600 seconds), and monitor DNS TTL propagation times.
 
 - Lock down Application Gateway with network security groups (NSGs) and access control lists (ACLs). Allow required platform ranges and inbound application ports. Keep origins secured for all ingress paths. For more information, see [Network security groups](/azure/application-gateway/configuration-infrastructure#network-security-groups).
 
@@ -77,7 +77,7 @@ When you're implementing HA architectures for production workloads, consider the
 
 - Test certificate renewal processes across all platforms.
 
-- Regularly validate that failover endpoints remain functional (quarterly testing recommended).
+- Regularly validate that failover endpoints remain functional. We recommend quarterly testing.
 
 - This guide uses Azure CLI sample commands that you run from PowerShell.
 
@@ -85,7 +85,7 @@ When you're implementing HA architectures for production workloads, consider the
 
 ## Scenario 1: Traffic Manager failover from Azure Front Door to an Application Gateway WAF
 
-This DNS-based load balancing solution uses multiple Azure Traffic Manager profiles. In the unlikely event of an availability problem with Azure Front Door, Traffic Manager redirects traffic through the Application Gateway WAF. The primary Traffic Manager instance routes traffic between Azure Front Door (primary) and a nested secondary Traffic Manager instance that points to multi-region Application Gateway instances. During an Azure Front Door outage, traffic is manually failed over to regional Application Gateway deployments that have WAF protection.
+This DNS-based load-balancing solution uses multiple Azure Traffic Manager profiles. In the unlikely event of an availability problem with Azure Front Door, Traffic Manager redirects traffic through the Application Gateway WAF. The primary Traffic Manager instance routes traffic between Azure Front Door (primary) and a nested secondary Traffic Manager instance that points to multi-region Application Gateway instances. During an Azure Front Door outage, traffic is manually failed over to regional Application Gateway deployments that have WAF protection.
 
 :::image type="content" source="./media/high-availability/front-door-application-gateway.svg" alt-text="Diagram that shows Traffic Manager with weighted routing to Azure Front Door, and a nested Traffic Manager profile that uses performance routing to send to Application Gateway instances in two regions." border="false" lightbox="./media/high-availability/front-door-application-gateway.svg":::
 
@@ -111,7 +111,7 @@ It's important to understand the feature differences between Azure Front Door an
 | **Core architecture and features** | | |
 | Service scope | Global service | Regional service |
 | OSI layer | Layer 7 (application layer) | Layer 7 (application layer) |
-| Load balancing level | Across regions | Within region/virtual network |
+| Load-balancing level | Across regions | Within region or virtual network |
 | Deployment model | Single global instance | Per-region instances |
 | Backend scope | Any public endpoint (Azure or external), and selected Private Link endpoints | Any public endpoint (Azure or external), private IP addresses, and Kubernetes pods in a virtual network |
 | Content edge caching | Yes | No |
@@ -123,13 +123,13 @@ It's important to understand the feature differences between Azure Front Door an
 | Backend selection | Based on priority, weight, latency | Round-robin, cookie affinity |
 | **Routing rules** | | |
 | Path-based routing | ✓ Yes | ✓ Yes |
-| Pattern matching | Exact match paths, wildcard paths (`/*`), case-insensitive, wildcard must be preceded by `/` | URL path maps, path-based rules, regex patterns supported |
+| Pattern matching | Exact-match paths, wildcard paths (`/*`), case-insensitive, wildcard must be preceded by `/` | URL path maps, path-based rules, regex patterns supported |
 | Host-based routing | ✓ Multiple frontend hosts | ✓ Multi-site hosting |
-| URL rewrite | Static path to static path (Classic) | URL path rewrite |
-| Routing methods | Priority, weight, latency-based | Load aware for latency optimization*, weighted (available with Application Gateway for Containers), session affinity |
+| URL rewrite | Static path to static path (classic) | URL path rewrite |
+| Routing methods | Priority, weight, latency-based | Load aware for latency optimization*, weighted*, session affinity (*available with Application Gateway for Containers) |
 | **Routing features** | | |
 | Rules engine/rewrite rules | Rule sets with conditions and actions | Rewrite rule sets with conditions and actions |
-| Regex in path patterns | Not supported in "Patterns to match" | Supported with PCRE |
+| Regex in path patterns | Not supported in **Patterns to match** | Supported with PCRE |
 | **Header and request manipulation** | | |
 | Header rewrite | ✓ Request and response headers | ✓ Request and response headers |
 | Header value character limit | No documented limit | 1,000 characters in rewrite rules |
@@ -148,9 +148,9 @@ It's important to understand the feature differences between Azure Front Door an
 
 | Azure Front Door | Application Gateway |
 | ---- | ---- |
-| Microsoft Default Rule Set (DRS 2.1) | OWASP Core Rule Set (CRS 3.2 or 4.0) |
+| Microsoft Default Rule Set (DRS) 2.1 | OWASP Core Rule Set (CRS) 3.2 or 4.0 |
 | Rule IDs: 949xxx series | Rule IDs: 9xxxxx series |
-| Azure Front Door WAF (DRS): inspects first 128 KB of request body | Application Gateway WAF (CRS 3.2+): up to 2 MB inspection; 4 GB file upload; enforcement and inspection can be configured independently |
+| Azure Front Door WAF (DRS): inspects first 128 KB of request body | Application Gateway WAF (CRS 3.2+): up to 2-MB inspection; 4-GB file upload; enforcement and inspection can be configured independently |
 
 ### Recommendations
 
@@ -164,29 +164,29 @@ It's important to understand the feature differences between Azure Front Door an
 
 - Adhere to the network guidance in [Azure Application Gateway infrastructure configuration](/azure/application-gateway/configuration-infrastructure). Be sure to exercise the following virtual network and subnet requirements:
 
-- Use the following subnet sizing (per region):
+  - Use the following subnet sizing (per region):
 
-  - Minimum: /27 (32 addresses)
+    - Minimum: /27 (32 addresses)
 
-  - Recommended: /24 (256 addresses) for autoscaling and hitless maintenance
+    - Recommended: /24 (256 addresses) for autoscaling and hitless maintenance
 
-  - Formula: (max instances \* 10) + 5 Azure reserved IPs
+    - Formula: (max instances \* 10) + 5 Azure reserved IPs
 
-  - Example: 20 max instances → (20 \* 10) + 5 = 205 IPs → use /24
+    - Example: 20 max instances → (20 \* 10) + 5 = 205 IPs → use /24
 
-- For optimal security, use a dedicated subnet for Application Gateway (no other resources).
+  - For optimal security, use a dedicated subnet for Application Gateway (no other resources).
 
-- Make sure that the inbound connection allows:
+  - Make sure that the inbound connection allows:
 
-  - 443/80 from the internet (or specific source ranges)
+    - 443/80 from the internet (or specific source ranges)
 
-  - 65200-5535 from Azure Gateway Manager (Application Gateway v2)
+    - 65200-5535 from Azure Gateway Manager (Application Gateway v2)
 
-  - Azure Load Balancer
+    - Azure Load Balancer
 
-- Block other inbound connections. Don't block required outbound internet connections.
+  - Block other inbound connections. Don't block required outbound internet connections.
 
-- Use application security groups for backend segmentation and least-privilege rules.
+  - Use application security groups for backend segmentation and least-privilege rules.
 
 For capacity planning and autoscaling strategy, see [Architecture best practices for Azure Application Gateway v2](/azure/well-architected/service-guides/azure-application-gateway).
 
@@ -196,7 +196,7 @@ For capacity planning and autoscaling strategy, see [Architecture best practices
 
 - Azure Front Door configured with a custom domain and BYO certificate.
 
-- Lower DNS TTL for your CNAME is Azure Front Door serving traffic to the lowest time setting.
+- A lower DNS TTL for your CNAME so that Azure Front Door serves traffic to the lowest time setting.
 
 - Azure subscription with permissions to create virtual networks, an Application Gateway instance, and a Traffic Manager instance.
 
@@ -245,18 +245,18 @@ Evaluate your global traffic patterns and deploy Application Gateway instances i
 
 #### Step 4: Create a Traffic Manager architecture to support the Application Gateway WAF endpoints
 
-1. Create a secondary **Performance Mode** Traffic Manager instance, as shown in the earlier diagram for this scenario. For more information, see [Create a Traffic Manager profile](/azure/traffic-manager/traffic-manager-create-profile).
+1. Create a secondary Traffic Manager instance in performance mode, as shown earlier in the diagram for this scenario. For more information, see [Create a Traffic Manager profile](/azure/traffic-manager/traffic-manager-create-profile).
 
     For a single-region configuration, use these details:
 
-    - Routing method: Priority.
-    - Endpoint: Single Application Gateway public IP address.
+    - **Routing method**: Priority.
+    - **Endpoint**: Single Application Gateway public IP address.
 
     For a multi-region configuration, use these details:
 
-    - Routing method: Performance (routes users to nearest healthy Application Gateway instance).
-    - Endpoints: Multiple Application Gateway public IP addresses across regions.
-    - Endpoint locations: Specify the Azure region for each endpoint (required for performance routing).
+    - **Routing method**: Performance (routes users to nearest healthy Application Gateway instance).
+    - **Endpoints**: Multiple Application Gateway public IP addresses across regions.
+    - **Endpoint locations**: The Azure region for each endpoint (required for performance routing).
 
     Use these configuration settings:
 
@@ -271,7 +271,7 @@ Evaluate your global traffic patterns and deploy Application Gateway instances i
     > [!NOTE]
     > By default, Azure public IPs for Application Gateway don't have DNS names configured. You must use the public IP address directly in Traffic Manager endpoints, not a DNS name. The `--endpoint-location` parameter is required for performance routing to enable geographic routing.
 
-1. Create a primary **Weighted Mode Always Serve** Traffic Manager instance, as shown in the earlier diagram for this scenario. For more information, see [Create a Traffic Manager profile](/azure/traffic-manager/traffic-manager-create-profile)
+1. Create a primary weighted/always-serve Traffic Manager instance, as shown earlier in the diagram for this scenario. For more information, see [Create a Traffic Manager profile](/azure/traffic-manager/traffic-manager-create-profile)
 
     For both endpoints, use these configurations:
 
@@ -291,7 +291,7 @@ Evaluate your global traffic patterns and deploy Application Gateway instances i
 
     - **Name**: **endpoint-afd-primary**
 
-    - **Target**: Azure Front Door endpoint host name (for example, `myapp-12345.z01.azurefd.net`)
+    - **Target**: Host name of the Azure Front Door endpoint (for example, `myapp-12345.z01.azurefd.net`)
 
     - **Enable endpoint**: Selected (enabled)
 
@@ -323,28 +323,28 @@ Evaluate your global traffic patterns and deploy Application Gateway instances i
         --query "{ProfileStatus:profileStatus, MonitorStatus:monitorConfig.profileMonitorStatus, Endpoints:endpoints\[\].{Name:name, Target:target, Priority:priority, Status:endpointMonitorStatus}}"
     ```
 
-    Both endpoints should show `Status: Online`. If an endpoint shows `Degraded` or `CheckingEndpoint`, wait 1 to 2 minutes for health probes to finish.
+    Both endpoints should show `Status: Online`. If an endpoint shows `Degraded` or `CheckingEndpoint`, wait 1-2 minutes for health probes to finish.
 
-#### Step 5: Update the DNS CNAME to Traffic Manager and verify the update
+#### Step 5: Update DNS CNAME to Traffic Manager and verify the update
 
 > [!WARNING]
 > The following steps will redirect your production traffic from Azure Front Door directly to Traffic Manager and cause a potential service impact. Before you proceed:
 >
-> - Test these steps in a non-production environment first. For example, temporarily modify the local `hosts` file on a non‑production workstation to resolve the custom domain to the Traffic Manager endpoint. This modification allows validation without affecting live traffic.
-> - Reduce your DNS CNAME TTL to the lowest value possible (for example, 60 to 300 seconds) at least 24 hours before you make changes.
+> - Test these steps in a non-production environment. For example, temporarily modify the local `hosts` file on a non‑production workstation to resolve the custom domain to the Traffic Manager endpoint. This modification allows validation without affecting live traffic.
+> - Reduce your DNS CNAME TTL to the lowest value possible (for example, 60-300 seconds) at least 24 hours before you make changes.
 > - Plan for a maintenance window during low-traffic periods if possible.
-> - Have rollback procedures ready in case issues arise.
+> - Have rollback procedures ready in case problems arise.
 
 1. Update your DNS CNAME record to point to the primary Traffic Manager instance instead of directly to Azure Front Door.
 
     | Field | Old value | New value |
     | ---- | ---- | ---- |
-    | **Name / Host** | **www** | **www** (no change) |
-    | **Value / Points to** | Host name of the Azure Front Door endpoint | `$ATM_DNS_NAME.trafficmanager.net` |
+    | **Name/Host** | **www** | **www** (no change) |
+    | **Value/Points to** | Host name of the Azure Front Door endpoint | `$ATM_DNS_NAME.trafficmanager.net` |
 
-1. Verify Traffic Manager resolution (wait for DNS propagation and test).
+1. Verify Traffic Manager resolution. Wait for DNS propagation and test.
 
-    DNS propagation typically takes 5 to 10 minutes but can take up to 48 hours globally. Monitor propagation progress:
+    DNS propagation typically takes 5-10 minutes but can take up to 48 hours globally. Monitor propagation progress:
 
     ```
     # Verify Traffic Manager profile is resolving
@@ -367,13 +367,13 @@ Evaluate your global traffic patterns and deploy Application Gateway instances i
 
 1. After the DNS cutover, actively monitor the following Azure Front Door metrics:
 
-    - Request count: The count should remain consistent, with no drop in traffic.
+    - **Request count**: The count should remain consistent, with no drop in traffic.
 
-    - Response time: The time should remain within normal ranges.
+    - **Response time**: The time should remain within normal ranges.
 
-    - Error rates: 4xx/5xx errors shouldn't increase.
+    - **Error rates**: 4xx/5xx errors shouldn't increase.
 
-    - Origin health: Backend health should remain `Online`.
+    - **Origin health**: Backend health should remain `Online`.
 
 #### Step 6: Test failover procedures
 
@@ -489,32 +489,32 @@ Configure your secondary CDN provider with:
 
 - Azure Front Door configured with a custom domain and a BYO certificate.
 
-- Alternative CDN account.
+- An alternative CDN account.
 
-- Lower DNS TTL for your CNAME is Azure Front Door serving traffic to the lowest time setting.
+- A lower DNS TTL for your CNAME so that Azure Front Door serves traffic to the lowest time setting.
 
 - Origin servers that both Azure Front Door and the alternative CDN can access.
 
-- Custom domain with the ability to modify DNS records.
+- A custom domain with the ability to modify DNS records.
 
 > [!IMPORTANT]
-> If you're currently using Azure Front Door-managed certificates, you must migrate to BYO certificates before implementing this HA solution. Azure Front Door-managed certificates can't be exported and installed on alternative CDNs. For more information and BYO certificate configuration instructions, see [Configure HTTPS on an Azure Front Door custom domain](/azure/frontdoor/standard-premium/how-to-configure-https-custom-domain).
+> If you're currently using Azure Front Door-managed certificates, you must migrate to BYO certificates before implementing this HA solution. Azure Front Door-managed certificates can't be exported and installed on alternative CDNs. For more information and configuration instructions for BYO certificates, see [Configure HTTPS on an Azure Front Door custom domain](/azure/frontdoor/standard-premium/how-to-configure-https-custom-domain).
 
-#### Step 2: Configure alternative CDN
+#### Step 2: Configure an alternative CDN
 
 Configure your secondary CDN provider:
 
 - Set up the CDN zone/property with your custom domain.
 
-- Configure origin servers (same as the Azure Front Door backend pool).
+- Configure origin servers the same way that you configured the Azure Front Door backend pool.
 
-- Upload the BYO SSL/TLS certificate (the same certificate used in Azure Front Door).
+- Upload the BYO SSL/TLS certificate. This cerficate is the same one that you used in Azure Front Door.
 
-- Configure CDN caching rules to match Azure Front Door behavior (for example, cache durations and query string handling).
+- Configure CDN caching rules to match Azure Front Door behavior.  For example, configure cache durations and query string handling.
 
 - Set up caching settings, control headers, and compression settings to match your Azure Front Door configuration.
 
-- Set up WAF rules if the CDN provider offers WAF capabilities. Attempt to match the Azure Front Door WAF policy.
+- Set up WAF rules if the CDN provider offers WAF capabilities. Try to match the Azure Front Door WAF policy.
 
 - Configure a custom domain to match your Azure Front Door custom domain (for example, `www.contoso.com`).
 
@@ -526,77 +526,76 @@ Apply the following configurations to create the Traffic Manager profile. For mo
 
 | Setting | Value | Notes |
 | ---- | ---- | ---- |
-| **Routing Method** | **Weighted** | Allows manual control via endpoint status (Enabled/Disabled). |
-| **Weight** | **100** | Enter 100 when the Traffic Manager profile is created and for both endpoints. |
+| **Routing Method** | **Weighted** | Allows manual control via endpoint status (enabled or disabled). |
+| **Weight** | **100** | Enter **100** when the Traffic Manager profile is created and for both endpoints. |
 | **Protocol** | **HTTPS** | Required for validating SSL/TLS endpoints. |
 | **Port** | **443** | Standard HTTPS port. |
 | **Path** | `/index.html` | Choose a lightweight endpoint for health checks. |
-| **TTL** | **300 seconds** | DNS TTL - lower values enable faster failover but increase DNS queries. |
+| **TTL** | **300 seconds** | DNS TTL. Lower values enable faster failover but increase DNS queries. |
 
 #### Step 4: Configure Traffic Manager endpoints
 
-Create two endpoints within the Traffic Manager profile with the following configurations.
+Create two endpoints within the Traffic Manager profile. Use the following configurations.
 
 Use these configurations for the primary endpoint (Azure Front Door):
 
-- **Name**: endpoint-afd-primary
+- **Type**: **External endpoint**
 
-- **Type**: External endpoint
+- **Name**: **endpoint-afd-primary**
 
 - **Target**: Azure Front Door endpoint hostname (for example, `myapp-endpoint-12345.z01.azurefd.net`)
 
-- **Weight**: 100
+- **Weight**: **100**
 
-- **Status**: Enabled (initially)
+- **Enable Endpoint**: Selected (enabled) initially
 
-- **Custom headers**: `Host=$CUSTOM_DOMAIN` (required for Azure Front Door to route to correct custom domain)
+- **Custom Header settings**: `Host=$CUSTOM_DOMAIN` (required for Azure Front Door to route to the correct custom domain)
 
-- **Health checks**: Always serve traffic (disable health checks)
+  The `--custom-headers "Host=$CUSTOM_DOMAIN"` parameter is critical for Azure Front Door endpoints. Without it, Azure Front Door might not properly route requests to your custom domain configuration. It's a supported feature of Azure Traffic Manager.
 
-:::image type="content" source="./media/high-availability/traffic-manager-primary-endpoint.png" alt-text="Screenshot of adding Traffic Manager primary endpoint in the Azure portal." lightbox="./media/high-availability/traffic-manager-primary-endpoint.png":::
+- **Health Checks**: **Always serve traffic** (disable health checks)
 
-**Custom headers for Azure Front Door**: The `--custom-headers "Host=$CUSTOM_DOMAIN"` parameter is critical for Azure Front Door endpoints. Without it, Azure Front Door might not properly route requests to your custom domain configuration. It's a supported feature of Azure Traffic Manager.
+:::image type="content" source="./media/high-availability/traffic-manager-primary-endpoint.png" alt-text="Screenshot of configurations for adding a Traffic Manager primary endpoint in the Azure portal." lightbox="./media/high-availability/traffic-manager-primary-endpoint.png":::
 
 Use these configurations for the secondary endpoint (alternative CDN):
 
-- **Name**: endpoint-cdn-secondary
+- **Type**: **External endpoint**
 
-- **Type**: External endpoint
+- **Name**: **endpoint-cdn-secondary**
 
-- **Target**: CDN edge hostname (for example, `myapp.cdn.net`)
+- **Target**: CDN edge host name (for example, `myapp.cdn.net`)
 
-- **Weight**: 100
+- **Weight**: **100**
 
-- **Status**: Disabled (initially - standby mode)
+- **Enable Endpoint**: Cleared (disabled) initially for standby mode
 
-:::image type="content" source="./media/high-availability/traffic-manager-secondary-endpoint.png" alt-text="Screenshot of adding Traffic Manager secondary endpoint in the Azure portal." lightbox="./media/high-availability/traffic-manager-secondary-endpoint.png":::
+:::image type="content" source="./media/high-availability/traffic-manager-secondary-endpoint.png" alt-text="Screenshot of configurations for adding a Traffic Manager secondary endpoint in the Azure portal." lightbox="./media/high-availability/traffic-manager-secondary-endpoint.png":::
 
-#### Step 5: Update the DNS CNAME to Traffic Manager and verify the update
+#### Step 5: Update DNS CNAME to Traffic Manager and verify the update
 
 > [!WARNING]
-> The configurations in this step will redirect your production traffic from Azure Front Door directly to Traffic Manager. Before you proceed, ensure that you took the following steps:
+> The following steps will redirect your production traffic from Azure Front Door directly to Traffic Manager. Before you proceed:
 >
-> - Test these steps in a non-production environment first.
-> - Reduce your DNS CNAME TTL to the lowest value possible (for example, 60-300 seconds) at least 24 hours before making changes.
+> - Test these steps in a non-production environment.
+> - Reduce your DNS CNAME TTL to the lowest value possible (for example, 60-300 seconds) at least 24 hours before you make changes.
 > - Plan for a maintenance window during low-traffic periods if possible.
-> - Have rollback procedures ready in case issues arise.
+> - Have rollback procedures ready in case problems arise.
 
 1. Update your DNS CNAME record to point to Traffic Manager instead of directly to Azure Front Door:
 
     | Field | Old value | New value |
     | ---- | ---- | ---- |
-    | Name/Host | www | www (no change) |
-    | Value/Points to | Azure Front Door endpoint hostname | `$ATM_CDN_DNS_NAME.trafficmanager.net` |
+    | **Name/Host** | **www** | **www** (no change) |
+    | **Value/Points to** | Host name of the Azure Front Door endpoint | `$ATM_CDN_DNS_NAME.trafficmanager.net` |
 
-    > [!NOTE]
-    > DNS propagation typically takes 5-10 minutes but can take up to 48 hours globally.
+    DNS propagation typically takes 5-10 minutes but can take up to 48 hours globally.
 
 2. Verify Traffic Manager resolution. Wait for DNS propagation and test HTTPS connectivity.
 
     ```
     # Verify Traffic Manager profile is resolving
     nslookup "$ATM_CDN_DNS_NAME.trafficmanager.net"
-    # Expected result: Should return IP address(es) of Azure Front Door endpoint
+    # Expected result: Should return IP address of Azure Front Door endpoint
     
     # Check DNS from different resolvers
     nslookup $CUSTOM_DOMAIN 8.8.8.8    # Google DNS
@@ -608,13 +607,13 @@ Use these configurations for the secondary endpoint (alternative CDN):
 
 3. After the DNS cutover, actively monitor the following Azure Front Door metrics:
 
-    - Request count: Should remain consistent (no drop in traffic).
+    - **Request count**: The count should remain consistent, with no drop in traffic.
 
-    - Response time: Should remain within normal ranges.
+    - **Response time**: The time should remain within normal ranges.
 
-    - Error rates: 4xx/5xx errors shouldn't increase.
+    - **Error rates**: 4xx/5xx errors shouldn't increase.
 
-    - Origin health: Backend health should remain `Online`.
+    - **Origin health**: Backend health should remain `Online`.
 
 #### Step 6: Test failover procedures
 
@@ -653,7 +652,7 @@ Use these configurations for the secondary endpoint (alternative CDN):
 2. Fail back to Azure Front Door:
 
     ```
-    # Failback: Enable Azure Front Door, Disable CDN
+    # Failback: Enable Azure Front Door, disable CDN
     az network traffic-manager endpoint update `
         --name "endpoint-afd-primary" `
         --profile-name $ATM_CDN_PROFILE_NAME `
@@ -678,16 +677,16 @@ Use these configurations for the secondary endpoint (alternative CDN):
 ## Monitoring
 
 > [!IMPORTANT]
-> Configure synthetic monitors to alert immediately on failures. These alerts should trigger manual failover if automatic failover is insufficient (for example, Azure Front Door custom domain issues that Traffic Manager can't detect).
+> Configure synthetic monitors to alert immediately on failures. These alerts should trigger manual failover if automatic failover is insufficient (for example, Azure Front Door custom domain problems that Traffic Manager can't detect).
 
 We recommend the following monitoring solutions for production environments:
 
-- **Azure Monitor workbooks**: Track Traffic Manager queries, Azure Front Door requests, Application Gateway health. For more information, see [Workbooks overview](/azure/azure-monitor/visualize/workbooks-overview).
+- **Azure Monitor workbooks**: Track Traffic Manager queries, Azure Front Door requests, and Application Gateway health. For more information, see the [overview of workbooks](/azure/azure-monitor/visualize/workbooks-overview).
 
-- **Outside-in monitoring to detect global Azure Front Door issues**: Implement outside-in global synthetic monitoring solutions (such as Catchpoint or ThousandEyes) to monitor endpoints. Services like [WebPageTest](https://www.webpagetest.org/) offer a free alternative that provides limited global visibility.
+- **Outside-in monitoring to detect global Azure Front Door problems**: Implement outside-in global synthetic monitoring solutions (such as Catchpoint or ThousandEyes) to monitor endpoints. Services like [WebPageTest](https://www.webpagetest.org/) offer a free alternative that provides limited global visibility.
 
-- **Application Insights availability tests**: Multi-region HTTP checks. For more information, see [Availability testing](/azure/azure-monitor/app/availability-overview).
+- **Application Insights availability tests**: Use multi-region HTTP checks. For more information, see [Application Insights availability tests](/azure/azure-monitor/app/availability-overview).
 
 - **DNS monitoring**: Validate CNAME resolution chain and TTL propagation via DNSPerf, Pingdom, or Uptime.com.
 
-- **Certificate monitoring**: For more information, see [SSL Labs Server Test](https://www.ssllabs.com/ssltest/).
+- **Certificate monitoring**: Use [SSL Server Test](https://www.ssllabs.com/ssltest/) from Qualys SSL Labs to analyze your server's configuration.
