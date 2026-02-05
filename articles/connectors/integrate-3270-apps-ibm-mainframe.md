@@ -1,6 +1,6 @@
 ---
 title: Connect to 3270 Apps on IBM Mainframes
-description: Learn how to access 3270 screen-driven apps on IBM mainframes workflows from workflows in Azure Logic Apps.
+description: Learn how to access 3270 screen-driven apps on IBM mainframes from workflows in Azure Logic Apps.
 services: logic-apps
 ms.suite: integration
 author: haroldcampos
