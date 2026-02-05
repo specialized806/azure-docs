@@ -23,5 +23,5 @@ The following tables provide quotas and limits specific to [Azure Event Hubs](ht
 You can learn more about Event Hubs by visiting the following links:
 
 * [Event Hubs overview](./event-hubs-about.md)
-* [Event Hubs Auto-inflate](event-hubs-auto-inflate.md)
+* [Auto-inflate](event-hubs-auto-inflate.md)
 * [Event Hubs FAQ](event-hubs-faq.yml)
