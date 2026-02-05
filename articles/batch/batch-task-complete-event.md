@@ -86,7 +86,7 @@ ms.date: 01/29/2026
 |`endTime`|DateTime|The time when the task completed.|
 |`exitCode`|Int32|The exit code of the task. If the task failed before it started running, then exitCode is null.|
 |`retryCount`|Int32|The number of times the Batch service retried the task. The task is retried if it exits with a nonzero exit code, up to the specified MaxTaskRetryCount.|
-|`requeueCount`|Int32|The number of times the Batch service requeued the task as the result of a user request.<br /><br /> When you remove nodes from a pool (by resizing or shrinking it) or disable a job, you can choose to requeue the running tasks on those nodes for execution. It count tracks how many times the task requeued.|
+|`requeueCount`|Int32|The number of times the Batch service requeued the task as the result of a user request.<br /><br /> When nodes are removed from a pool (through resizing or shrinking) or a job is disabled, you can choose to requeue the running tasks on those nodes. This count tracks how many times a task was requeued for these reasons.|
 |`result`|String|The task result string, it could be "Success" or "Failure"|
 |[`schedulingError`](#schedulingError)|Complex Type|Contain detailed information about error.|
 
