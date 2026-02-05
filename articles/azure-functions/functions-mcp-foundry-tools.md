@@ -5,7 +5,7 @@ description: Learn how to connect your MCP server hosted on Azure Functions to A
 ms.author: samuelzhang
 ms.reviewer: glenga
 ms.topic: how-to
-ms.date: 02/02/2026
+ms.date: 02/05/2026
 ms.collection: ce-skilling-ai-copilot
 
 #Customer intent: As a developer, I want to learn how to connect an Azure Functions-hosted MCP server to Foundry Agent Service, so that my agent has access to my MCP tools.
@@ -132,12 +132,12 @@ To get the required credentials from the Azure portal:
 
     Replace `<TENANT_ID>` with your actual tenant ID value.
 
-1. Select **Manage** > **Expose an API** and create or copy an existing scope.  
+1. Select **Manage** > **Expose an API** and copy the existing scope.  
 
 <!---Seems like we don't need this...
 1. (Optional) If your app requires a client secret, select **Manage** > **Certificates & secrets**, and then create or copy an existing client secret value.
 -->
-After you configure OAuth identity passthrough in the Foundry portal, you receive a redirect URL. You must return to this Entra app registration to add this redirect URL to your Microsoft Entra app registration.
+After you configure OAuth identity passthrough in the Foundry portal, you receive a redirect URL. You must return to your Entra app registration to add this redirect URL to the Microsoft Entra app registration.
 
 ### [Unauthenticated](#tab/unauthenticated)
 
@@ -314,7 +314,7 @@ To connect to your MCP server endpoint:
 After connecting your MCP server to your agent, verify that the tools work correctly.
 
 1. In the Agent Builder, find the chat window under **Playground**.
-1. Enter a prompt that should trigger one of your MCP tools. For example, if your MCP server has a greeting tool, try: `Use the greeting tool to say hello`.
+1. Enter a prompt that triggers one of your MCP tools. For example, if your MCP server has a greeting tool, try: `Use the greeting tool to say hello`.
 1. If you're using OAuth identity passthrough, select **Open Consent** and sign in with your Entra account.
 1. When the agent requests to invoke an MCP tool, review the tool name and arguments, and select **Approve** to allow the call.
 1. Verify the tool returns the expected result.
