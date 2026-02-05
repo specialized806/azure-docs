@@ -1,5 +1,6 @@
 ---
 title: Azure Storage provider for Durable Functions
+titleSuffix: Durable Task
 description: Learn about the characteristics of the Durable Functions Azure Storage provider.
 author: cgillum
 reviewer: hhunter-ms
