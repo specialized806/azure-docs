@@ -108,7 +108,7 @@ Make sure to specify the following properties for your VM in the parameters sect
 
 - VM size (`vmSize`). Choose from the different [confidential VM families and sizes](#sizes).
 - OS image name (`osImageName`). Choose from the qualified OS images. 
-- Disk encryption type (`securityType`). Choose from VMGS-only encryption (`VMGuestStateOnly`) or full OS disk pre-encryption (`DiskWithVMGuestState`), which might result in longer provisioning times. For Intel TDX instances only we also support another security type (`NonPersistedTPM`) which has no VMGS or OS disk encryption.
+- Disk encryption type (`securityType`). Choose from VMGS-only encryption (`VMGuestStateOnly`) or full OS disk pre-encryption (`DiskWithVMGuestState`), which might result in longer provisioning times.
 
 ## Next steps 
 
