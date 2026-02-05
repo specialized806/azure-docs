@@ -114,7 +114,7 @@ aks-mygpu2-37383660-vmss000000  mygpu2
 
 ## See also
 
-- [What is Azure Container Storage?](./container-storage-introduction)
-- [Install Azure Container Storage with AKS](./install-container-storage-aks)
-- [Use Azure Container Storage with local NVMe](./use-container-storage-with-local-disk)
-- [Best practices for ephemeral NVMe data disks in Azure Kubernetes Service (AKS)](/azure/aks/best-practices-storage-nvme)
+- [What is Azure Container Storage?](./container-storage-introduction.md)
+- [Install Azure Container Storage with AKS](./install-container-storage-aks.md)
+- [Use Azure Container Storage with local NVMe](./use-container-storage-with-local-disk.md)
+- [Best practices for ephemeral NVMe data disks in Azure Kubernetes Service (AKS)](/azure/aks/best-practices-storage-nvme.md)
