@@ -28,7 +28,7 @@ Managing the placement of Local CSI drivers is essential in the following scenar
 
 The Local CSI driver placement mechanism uses:
 
-- Kubernetes (nodeAffinity)[https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#node-affinity]. The **preferredDuringSchedulingIgnoredDuringExecution** option isn't supported.
+- [ubernetes nodeAffinity](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#node-affinity). The **preferredDuringSchedulingIgnoredDuringExecution** option isn't supported.
 - Storage class annotations to express placement requirements
 - Only creation or modification of storage classes triggers nodeAffinity recomputation
 
@@ -110,7 +110,7 @@ aks-mygpu2-37383660-vmss000000  mygpu2
 - Keep StorageClasses consistent and avoid mixing annotated and nonannotated classes unless intentional.
 - Use multiple nodeSelectorTerms to express OR‑style placement.
 - Validate node labels before deploying StorageClasses.
-- Learn more capabilities in (Kubernetes nodeAffinity)[https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/].
+- Learn more capabilities in [Kubernetes nodeAffinity](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/).
 
 ## See also
 
