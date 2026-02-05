@@ -1,5 +1,6 @@
 ---
-title: Diagnostics in Durable Task SDKs - Azure
+title: Diagnostics in Durable Task SDKs
+titleSuffix: Azure Durable
 description: Learn how to diagnose problems with the Durable Task SDKs in Azure Durable.
 author: cgillum
 ms.topic: conceptual
