@@ -18,6 +18,9 @@ You set up an on-premises configuration server when you use [Azure Site Recovery
 
 [!INCLUDE [updated-for-az](~/reusable-content/ce-skilling/azure/includes/updated-for-az.md)]
 
+>[!Note]
+>This article describes the classic ASR experience for VMware. For the modernized experience and updated workflows, see [VMware to Azure disaster recovery architecture – Modernized](articles/site-recovery/vmware-azure-architecture-modernized.md) and [Set up disaster recovery for VMware VMs – Modernized](articles/site-recovery/vmware-azure-set-up-replication-tutorial-modernized.md).
+
 ## Update Windows license
 
 The license provided with the Open Virtualization Format (OVF) template is an evaluation license valid for 180 days. For uninterrupted usage, you must activate Windows with a procured license. You can update a license either through a standalone key or a Key Management Services (KMS) standard key. For guidance, see [DISM Windows edition servicing command-line options](/windows-hardware/manufacture/desktop/dism-windows-edition-servicing-command-line-options). To obtain keys, refer to [KMS client setup](/windows-server/get-started/kmsclientkeys).
