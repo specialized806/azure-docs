@@ -135,10 +135,11 @@ For a Functions-hosted MCP server with built-in authentication, use custom OAuth
 
     Replace `<TENANT_ID>` with your actual tenant ID value.
 
+1. Select **Manage** > **Expose an API** and create or copy an existing scope.  
+
+<!---Seems like we don't need this...
 1. (Optional) If your app requires a client secret, select **Manage** > **Certificates & secrets**, and then create or copy an existing client secret value.
-
-1. (Optional) Select **Manage** > **Expose an API** and create or copy an existing scope.  
-
+-->
 After you configure OAuth identity passthrough in the Foundry portal, you receive a redirect URL. You must return to this Entra app registration to add this redirect URL to your Microsoft Entra app registration.
 
 ### [Unauthenticated](#tab/unauthenticated)
