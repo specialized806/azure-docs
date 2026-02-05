@@ -7,9 +7,14 @@ ms.topic: release-notes
 
 # Azure Cloud Shell release notes
 
-The following document outlines the changes to Azure Cloud Shell. The container image for Cloud
-Shell is updated semimonthly. Changes can include new or updated features and tools, security
-updates, and bug fixes.
+The following article outlines the changes to Azure Cloud Shell. Changes can include new or updated
+features and tools, security updates, and bug fixes.
+
+Cloud Shell regularly updates Azure CLI and Azure PowerShell, including breaking change releases.
+For more information about upcoming breaking changes, see the following articles:
+
+- [Upcoming breaking changes in Azure PowerShell][10]
+- [Azure CLI upcoming breaking changes][07]
 
 For a tool to be included in Cloud Shell, it must meet the certain criteria. For security
 compliance, tool packages become deprecated when they're no longer actively maintained. There's
@@ -19,12 +24,6 @@ inclusion criteria, see [Cloud Shell Package inclusion guide][16].
 
 You can install any tool you need in your Cloud Shell session as long as it doesn't require root
 access. For installation instructions, consult the documentation for the package you require.
-
-Cloud Shell regularly updates Azure CLI and Azure PowerShell, including breaking change releases.
-For more information about upcoming breaking changes, see the following articles:
-
-- [Upcoming breaking changes in Azure PowerShell][10]
-- [Azure CLI upcoming breaking changes][07]
 
 ## February 2026
 
