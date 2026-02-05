@@ -1,6 +1,6 @@
 ---
-title: Handling errors in Durable Functions - Azure
-description: Learn how to handle errors in the Durable Functions extension for Azure Functions.
+title: Handling errors and Retries
+description: Learn how to handle errors in the Durable Functions extension for Azure Functions and Durable Task SDKs.
 ms.topic: conceptual
 ms.date: 02/04/2026
 ms.author: azfuncdf
@@ -10,7 +10,7 @@ ms.custom: devx-track-js
 zone_pivot_groups: azure-durable-approach
 ---
 
-# Handling errors in Durable Functions orchestrations
+# Handling errors in orchestrations
 
 ::: zone pivot="durable-functions"
 
