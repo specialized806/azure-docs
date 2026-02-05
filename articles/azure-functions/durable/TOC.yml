@@ -63,6 +63,8 @@
       href: durable-functions-task-hubs.md
     - name: Orchestrator code constraints
       href: durable-functions-code-constraints.md
+    - name: Durable Entities
+      href: durable-functions-entities.md
     - name: Storage providers
       href: durable-functions-storage-providers.md
   - name: Features
@@ -79,8 +81,6 @@
       href: durable-functions-timers.md
     - name: Custom orchestration status
       href: durable-functions-custom-orchestration-status.md
-    - name: Durable Entities
-      href: durable-functions-entities.md
   - name: Durable Patterns
     items:
     - name: Function chaining
