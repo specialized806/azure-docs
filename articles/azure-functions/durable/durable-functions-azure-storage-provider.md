@@ -162,6 +162,37 @@ As a result, persisting large data payloads can cause high memory usage. To mini
 
 Storing payloads to local disks is *not* recommended, since on-disk state isn't guaranteed to be available. Functions may execute on different virtual machines throughout their lifetimes.
 
+## Configuring the Azure storage provider
+
+The Azure Storage provider is the default storage provider and doesn't require any explicit configuration, NuGet package references, or extension bundle references. You can find the full set of **host.json** configuration options [here](durable-functions-bindings.md#durable-functions-settings-in-hostjson), under the `extensions/durableTask/storageProvider` path.
+
+### Connections
+
+The `connectionName` property in host.json is a reference to environment configuration which specifies how the app should connect to Azure Storage. It may specify:
+
+- The name of a shared prefix for multiple application settings, together defining an [identity-based connection](#identity-based-connections). Managed identities use Microsoft Entra authentication to provide the most secure connection to your storage account. 
+- The name of an application setting containing a connection string. To obtain a connection string, follow the steps shown at [Manage storage account access keys](../../storage/common/storage-account-keys-manage.md). 
+
+If the configured value is both an exact match for a single setting and a prefix match for other settings, the exact match is used. If no value is specified in host.json, the default value is `AzureWebJobsStorage`.
+
+### Identity-based connections 
+
+If you are using [version 2.7.0 or higher of the extension](https://github.com/Azure/azure-functions-durable-extension/releases/tag/v2.7.0) and the Azure storage provider, instead of using a connection string with a secret, you can have the app use an [Microsoft Entra identity](../../active-directory/fundamentals/active-directory-whatis.md). To do this, you would define settings under a common prefix which maps to the `connectionName` property in the trigger and binding configuration.
+
+To use an identity-based connection for Durable Functions, configure the following app settings:
+
+|Property | Environment variable template                       | Description                                | Example value                                        |
+|-|-----------------------------------------------------|--------------------------------------------|------------------------------------------------|
+| Blob service URI | `<CONNECTION_NAME_PREFIX>__blobServiceUri`| The data plane URI of the blob service of the storage account, using the HTTPS scheme. | https://<storage_account_name>.blob.core.windows.net |
+| Queue service URI | `<CONNECTION_NAME_PREFIX>__queueServiceUri` | The data plane URI of the queue service of the storage account, using the HTTPS scheme. | https://<storage_account_name>.queue.core.windows.net |
+| Table service URI | `<CONNECTION_NAME_PREFIX>__tableServiceUri` | The data plane URI of a table service of the storage account, using the HTTPS scheme. | https://<storage_account_name>.table.core.windows.net |
+
+Additional properties may be set to customize the connection. See [Common properties for identity-based connections](../functions-reference.md#common-properties-for-identity-based-connections).
+
+[!INCLUDE [functions-identity-based-connections-configuration](../../../includes/functions-identity-based-connections-configuration.md)]
+
+[!INCLUDE [functions-durable-permissions](../../../includes/functions-durable-permissions.md)]
+
 ## Storage account selection
 
 Durable Functions creates the queues, tables, and blobs it uses in a configured Azure Storage account. You can specify which account to use in your `host.json` file with
@@ -197,8 +228,6 @@ Durable Functions creates the queues, tables, and blobs it uses in a configured 
 
 Keep these considerations in mind when choosing the storage account for your Durable function app: 
 
-- When you don't specify an account, the system uses the default `AzureWebJobsStorage` storage account. 
-- When possible, use [Microsoft Entra authentication with managed identities](./durable-functions-configure-managed-identity.md) to secure your storage account connection.
 - For performance-sensitive workloads, configure a storage account other than the default account (`AzureWebJobsStorage`). Since Durable Functions uses Azure Storage heavily, using a dedicated storage account isolates Durable Functions storage usage from the internal usage by the Azure Functions host.
 - You need standard general purpose Azure Storage accounts when using the Azure Storage provider. All other storage account types aren't currently supported. 
 - Legacy v1 general purpose storage accounts for Durable Functions is recommended. The newer v2 storage accounts can be more expensive for Durable Functions workloads. [Learn more about Azure Storage account types](../../storage/common/storage-account-overview.md).
