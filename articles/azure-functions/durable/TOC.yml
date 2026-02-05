@@ -91,6 +91,8 @@
       href: durable-functions-monitor.md
     - name: Human interaction
       href: durable-functions-human-interaction.md
+    - name: Error handling and retries
+      href: durable-functions-error-handling.md
 - name: Durable Functions
   items:
   - name: Overview
@@ -109,8 +111,6 @@
     items:
     - name: HTTP features
       href: durable-functions-http-features.md 
-    - name: Error handling
-      href: durable-functions-error-handling.md
     - name: Data persistence and serialization
       href: durable-functions-serialization-and-persistence.md
     - name: Versioning
