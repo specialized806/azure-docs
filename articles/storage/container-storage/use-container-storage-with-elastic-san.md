@@ -14,9 +14,10 @@ ms.custom:
 
 # Use Azure Container Storage with Azure Elastic SAN
 
-Azure Container Storage is a cloud-based volume management, deployment, and orchestration service built for containers. Azure Elastic SAN is a fully integrated solution that simplifies deploying, scaling, and managing a storage area network (SAN), with built-in cloud capabilities such as high availability.
+[Azure Container Storage](container-storage-introduction.md) is a cloud-based volume management, deployment, and orchestration service built natively for containers. This article shows you how to configure Azure Container Storage to use Azure Elastic SAN as back-end storage for your Kubernetes workloads. 
 
-This article shows how to configure Azure Container Storage to use Azure Elastic SAN. At the end, you can use Elastic SAN as a storage option for your stateful workloads.
+> [!IMPORTANT]
+> This article applies to [Azure Container Storage (version 2.x.x)](container-storage-introduction.md), which supports local NVMe disk and Azure Elastic SAN as backing storage types. For details about earlier versions, see [Azure Container Storage (version 1.x.x) documentation](container-storage-introduction-version-1.md).
 
 ## What is Azure Elastic SAN?
 
