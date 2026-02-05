@@ -3,7 +3,7 @@ title: Manage an Informatica resource through the Azure portal
 description: This article describes the management functions for Informatica IDMC on the Azure portal. 
 
 ms.topic: how-to
-ms.date: 02/05/2026
+ms.date: 02/04/2026
 ---
 
 # Manage your Informatica organization through the portal
