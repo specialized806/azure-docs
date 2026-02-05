@@ -5,12 +5,12 @@ services: logic-apps
 ms.suite: integration
 ms.reviewer: haroldcampos, azla
 ms.topic: how-to
-ms.date: 01/26/2026
+ms.date: 02/05/2026
 ms.custom: sfi-image-nochange
 #Customer intent: As a developer who works with Azure Logic Apps, I want to access and manage IBM DB2 resources for my cloud or on-premises databases.
 ---
 
-# Connec to IBM DB2 resources from workflows in Azure Logic Apps
+# Connect to IBM DB2 resources from workflows in Azure Logic Apps
 
 [!INCLUDE [logic-apps-sku-consumption-standard](../../includes/logic-apps-sku-consumption-standard.md)]
 
