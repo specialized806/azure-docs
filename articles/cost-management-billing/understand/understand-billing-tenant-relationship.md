@@ -74,5 +74,5 @@ The following diagram shows the relationship between a billing contract and asso
 ## Related content
 
 - [What is Microsoft Billing?](../cost-management-billing-overview.md)
-- [What is a cloud subscription?](./manage/cloud-subscription.md)
+- [What is a cloud subscription?](../manage/cloud-subscription.md)
 - [Plan to manage Azure costs](plan-manage-costs.md)
