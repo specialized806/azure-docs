@@ -44,13 +44,13 @@ This guide shows how to add a scope to your workflow and how scopes work using a
 
 - A Consumption or Standard logic app resource and workflow
 
-  If your workflow is blank, first [add a trigger](add-trigger-action-workflow.md#add-trgger) to run the workflow.
+  If your workflow is blank, first [add a trigger](add-trigger-action-workflow.md#add-trigger) to run the workflow.
 
   This guide's examples use the [**Recurrence** trigger](../connectors/connectors-native-recurrence.md). To add this trigger, follow these steps:
 
   1. In the [Azure portal](https://portal.azure.com), open your logic app and workflow in the designer.
 
-  1. Follow the [general steps](add-trigger-action-workflow.md#add-trgger) to add the **Schedule** trigger named **Recurrence** trigger to your workflow.
+  1. Follow the [general steps](add-trigger-action-workflow.md#add-trigger) to add the **Schedule** trigger named **Recurrence** trigger to your workflow.
 
   1. On the designer, select the trigger. After the trigger information pane opens, on the **Parameters** tab, set the trigger parameters to the following values:
 
