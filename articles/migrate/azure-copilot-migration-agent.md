@@ -130,6 +130,7 @@ Azure Copilot migration agent enables conversational interaction with Azure Migr
 You can ask the agent for guidance on planning migrations and selecting appropriate discovery approaches. Based on your stated migration intent, the agent surfaces relevant discovery options and summarizes the discovered inventory.  
 
 **Sample prompts**: 
+
 - How should I plan to move my VMware workloads to Azure? 
 - What discovery methods are available for my environment? 
 - Tell me more about the prerequisites of deploying the Azure Migrate collector? 
@@ -140,6 +141,7 @@ You can ask the agent for guidance on planning migrations and selecting appropri
 After inventory data is discovered or imported, you can ask the agent to analyze and organize workloads. This includes highlighting attributes such as operating system details and support status, and grouping workloads using tags. 
 
 **Sample prompts**:
+
 - Show servers that are out of support. 
 - Summarize my inventory discovered using RVTools. 
 - List workloads tagged for a specific application. 
@@ -149,6 +151,7 @@ After inventory data is discovered or imported, you can ask the agent to analyze
 The agent supports create, summarize, and compare Azure Migrate business cases. You can ask it to explain cost estimates, highlight savings drivers, and compare return‑on‑investment across migration strategies.  
 
 **Sample prompts**:
+
 - Provide the ROI summary for lift‑and‑shift. 
 - Compare the ROI between lift‑and‑shift and modernization. 
 - Explain how the savings in this business case are achieved. 
@@ -158,6 +161,7 @@ The agent supports create, summarize, and compare Azure Migrate business cases. 
 You can use the agent to interpret Azure readiness assessment outputs, summarize readiness signals, identify blockers, and review sizing and cost estimates across workload groupings.  
 
 **Sample prompts**: 
+
 - What is the readiness of my workloads for Azure VMs? 
 - Summarize the readiness assessment for my tagged workloads. 
 - Tell me about the readiness of this specific workload: WorkloadXYZ. 
@@ -167,12 +171,13 @@ You can use the agent to interpret Azure readiness assessment outputs, summarize
 Based on migration requirements such as target region, compliance needs, and connectivity preferences, the agent helps generate Azure platform landing zone configurations for downstream deployment workflows. Actual deployment occurs outside the agent's experience. 
 
 **Sample prompts**:
+
 - What is an Azure landing zone? 
 - Generate a landing zone based on my region and compliance requirements. 
 
-## Other scenarios and limitations 
+## Scenarios supported only in the Azure Migrate portal
 
-- **Migration task execution**: Migration execution tasks, including server replication, test migrations, cutover, and workload move operations, aren’t performed by the Azure Copilot migration agent and must be completed through the Azure Migrate portal.
+**Migration task execution**: Migration execution tasks, including server replication, test migrations, cutover, and workload move operations, aren’t performed by the Azure Copilot migration agent and must be completed through the Azure Migrate portal.
 
 ## Related content
 
