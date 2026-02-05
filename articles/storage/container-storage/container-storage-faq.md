@@ -18,7 +18,7 @@ Azure Container Storage is a cloud-based volume management, deployment, and orch
 
 * <a id="azure-container-storage-versions"></a>
   **What's the difference between Azure Container Storage version 2.x.x and version 1.x.x?**
-  Azure Container Storage (version 2.x.x) features a lighter weight, on-demand installation, and optimized resource utilization. However, version 2.x.x currently only supports Ephemeral Disk (Local NVMe) as backing storage, whereas version 1.x.x supports Azure Disks, Ephemeral Disk, and Azure Elastic SAN.
+  Azure Container Storage (version 2.x.x) features a lighter weight, on-demand installation, and optimized resource utilization. However, version 2.x.x currently supports local NVMe and Azure Elastic SAN as backing storage, whereas version 1.x.x supports Azure Disks, Ephemeral Disk (local NVMe and temp SSD), and Azure Elastic SAN.
 
 * <a id="azure-container-storage-applicability"></a>
   **What changes between Azure Container Storage versions 2.0.x and 2.1.x+?**

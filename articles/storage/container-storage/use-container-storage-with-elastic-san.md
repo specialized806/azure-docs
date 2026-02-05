@@ -18,6 +18,10 @@ Azure Container Storage is a cloud-based volume management, deployment, and orch
 
 This article shows how to configure Azure Container Storage to use Azure Elastic SAN. At the end, you can use Elastic SAN as a storage option for your stateful workloads.
 
+## What is Azure Elastic SAN?
+
+Azure Elastic SAN is a managed, shared block-storage service that provides a central pool of capacity and performance (IOPS and throughput) from which multiple volumes are created and attached to many compute resources. Instead of provisioning and tuning individual disks per workload, Elastic SAN lets you allocate storage from a single capacity pool and consume performance elastically across all attached volumes. This model is well suited to environments with many dynamic workloads—such as container platforms like Azure Kubernetes Service—where demand varies over time and unused performance on one volume can be used by another. Elastic SAN is typically used when you need shared, scalable block storage across many volumes or nodes, faster volume attach/detach for orchestrated workloads, support for higher volume density per node, and a single place to provision and manage storage capacity and performance.
+
 ## Prerequisites
 
 [!INCLUDE [container-storage-prerequisites](../../../includes/container-storage-prerequisites.md)]
@@ -36,11 +40,11 @@ Azure Container Storage supports three ways to use Elastic SAN with Azure Kubern
 - **Pre-provisioned Elastic SAN and volume group**: You create the Elastic SAN and volume group first, then Azure Container Storage provisions volumes within those existing resources.
 - **Static provisioning**: You pre-create the Elastic SAN, volume group, and volume, then surface the volume to Kubernetes as a statically defined persistent volume (PV).
 
-The following sections show how to configure a StorageClass for each model.
+The following sections show how to configure a storage class for each model.
 
 ## Dynamic provisioning of Elastic SAN
 
-### Create a default StorageClass
+### Create a default storage class
 
 Create a YAML manifest file such as `storageclass.yaml`, then use the following specification.
 
@@ -55,11 +59,11 @@ volumeBindingMode: Immediate
 allowVolumeExpansion: true
 ```
 
-The default Elastic SAN capacity provisioned with this StorageClass is 1 TiB.
+The default Elastic SAN capacity provisioned with this storage class is 1 TiB.
 
-### Create a StorageClass with custom Elastic SAN capacity
+### Create a storage class with custom Elastic SAN capacity
 
-If you need a different initial capacity than the default 1 TiB, set the `initialStorageTiB` parameter in the StorageClass.
+If you need a different initial capacity than the default 1 TiB, set the `initialStorageTiB` parameter in the storage class.
 
 ```yaml
 apiVersion: storage.k8s.io/v1
@@ -76,9 +80,11 @@ parameters:
 
 ## Pre-provisioned Elastic SAN and volume groups
 
-You can pre-create an Elastic SAN or an Elastic SAN and volume group, then reference those resources in the StorageClass.
+You can pre-create an Elastic SAN or an Elastic SAN and volume group, then reference those resources in the storage class.
 
-### Create a StorageClass for a pre-provisioned Elastic SAN
+### Create a storage class for a pre-provisioned Elastic SAN
+
+If you haven't already done so, [install Azure Container Storage.](install-container-storage-aks.md) 
 
 1. Identify the managed resource group of the AKS cluster.
 
@@ -94,7 +100,7 @@ You can pre-create an Elastic SAN or an Elastic SAN and volume group, then refer
    az elastic-san create --resource-group <node-resource-group> --name <san-name> --location <node-region> --sku Premium_ZRS --base-size-tib 1 --extended-capacity-size-tib 1
    ```
 
-1. Create a StorageClass that references the Elastic SAN:
+1. Create a storage class that references the Elastic SAN:
 
    ```yaml
    apiVersion: storage.k8s.io/v1
@@ -109,7 +115,7 @@ You can pre-create an Elastic SAN or an Elastic SAN and volume group, then refer
      san: <san-name> # replace with the name of your pre-created Elastic SAN
    ```
 
-### Create a StorageClass for a pre-provisioned Elastic SAN and volume group
+### Create a storage class for a pre-provisioned Elastic SAN and volume group
 
 1. Repeat the steps above to create an Elastic SAN in the managed resource group.
 
@@ -139,7 +145,7 @@ You can pre-create an Elastic SAN or an Elastic SAN and volume group, then refer
    az elastic-san volume-group create --resource-group <node-resource-group> --elastic-san-name <san-name> --name <volume-group-name> --network-acls '{"virtual-network-rules":[{"id":"<subnet-id>","action":"Allow"}]}'
    ```
 
-1. Create a StorageClass that references the Elastic SAN and volume group:
+1. Create a storage class that references the Elastic SAN and volume group:
 
    ```yaml
    apiVersion: storage.k8s.io/v1
@@ -155,7 +161,7 @@ You can pre-create an Elastic SAN or an Elastic SAN and volume group, then refer
      volumegroup: <volume-group-name> # replace with the name of your pre-created volume group
    ```
 
-## Apply the manifest and verify StorageClass creation
+## Apply the manifest and verify storage class creation
 
 Apply the manifest:
 
@@ -163,7 +169,7 @@ Apply the manifest:
 kubectl apply -f storageclass.yaml
 ```
 
-Verify that the StorageClass is created:
+Verify that the storage class is created:
 
 ```azurecli
 kubectl get storageclass azuresan
@@ -178,7 +184,7 @@ azuresan   san.csi.azure.com    Delete          Immediate           true        
 
 ## Create a persistent volume claim
 
-A persistent volume claim (PVC) automatically provisions storage based on a StorageClass. Follow these steps to create a PVC using the new StorageClass.
+A persistent volume claim (PVC) automatically provisions storage based on a storage class. Follow these steps to create a PVC using the new storage class.
 
 1. Create a YAML manifest file such as `acstor-pvc.yaml`.
 
@@ -274,9 +280,9 @@ You now have a pod that uses Elastic SAN for storage.
 
 You can pre-create the volume in Elastic SAN and surface it to Kubernetes as a static PV. Use the steps above to create the Elastic SAN and volume group. You can also perform these steps in the Azure portal by using the [Elastic SAN service blade](../elastic-san/elastic-san-create.md).
 
-### Create a default Elastic SAN StorageClass
+### Create a default Elastic SAN storage class
 
-Use the following YAML manifest to create a default Elastic SAN StorageClass:
+Use the following YAML manifest to create a default Elastic SAN storage class:
 
 ```yaml
 apiVersion: storage.k8s.io/v1
@@ -289,13 +295,13 @@ volumeBindingMode: Immediate
 allowVolumeExpansion: true
 ```
 
-Apply the manifest to create the StorageClass:
+Apply the manifest to create the storage class:
 
 ```azurecli
 kubectl apply -f storageclass.yaml
 ```
 
-Verify the StorageClass:
+Verify the storage class:
 
 ```azurecli
 kubectl get storageclass azuresan

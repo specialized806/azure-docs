@@ -384,5 +384,6 @@ kubectl describe ocirepositories.source.installer.acstor.io -n kube-system
 ## Next steps
 
 - [Use Azure Container Storage with local NVMe](use-container-storage-with-local-disk.md)
+- [Use Azure Container Storage with Elastic SAN](use-container-storage-with-elastic-san.md)
 - [Overview of deploying a highly available PostgreSQL database on Azure Kubernetes Service (AKS)](/azure/aks/postgresql-ha-overview#storage-considerations)
 - [Frequently asked questions (FAQ) about Azure Container Storage](container-storage-faq.md)
