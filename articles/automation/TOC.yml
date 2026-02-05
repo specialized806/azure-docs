@@ -297,6 +297,10 @@
       href: ../event-grid/ensure-tags-exists-on-new-virtual-machines.md
     - name: Automate start/stop of Azure-SSIS IR
       href: ../data-factory/how-to-schedule-azure-ssis-integration-runtime.md#create-and-schedule-an-azure-automation-runbook-that-starts-and-stops-an-azure-ssis-ir
+- name: Troubleshoot
+  items:
+  - name: Managed identity
+    href: troubleshoot/managed-identity.md
 - name: Reference
   items:
   - name: Azure CLI
