@@ -469,17 +469,17 @@ Evaluate your global traffic patterns and deploy Application Gateway instances i
 
 ## Scenario 2: Traffic Manager failover from Azure Front Door to an alternative CDN
 
-This solution uses a single Traffic Manager profile with weighted/always serve routing so that traffic can be manually switched over between Azure Front Door and an alternative CDN:
-
-**Primary endpoint**: Azure Front Door custom domain endpoint.
-
-**Secondary endpoint**: Alternative CDN endpoint.
+This solution uses a single Traffic Manager profile with weighted/always-serve routing so that you can manually switch over traffic between Azure Front Door and an alternative CDN.
 
 :::image type="content" source="./media/high-availability/front-door-alternative-cdn.svg" alt-text="Diagram of Traffic Manager routing between Azure Front Door and another CDN." border="false" lightbox="./media/high-availability/front-door-alternative-cdn.svg":::
 
-**Traffic flow (Normal Operation)**: User → DNS Query → Traffic Manager (weighted/always-serve routing) → Azure Front Door (priority 1) → origin servers.
+- **Primary endpoint**: Azure Front Door custom domain endpoint.
 
-**Traffic flow (Azure Front Door failure)**: User → DNS Query → Traffic Manager (Weighted routing / Always serve routing) → Alternative CDN (Priority 2) → Origin servers.
+- **Secondary endpoint**: Alternative CDN endpoint.
+
+- **Traffic flow (normal operation)**: User → DNS query → Traffic Manager (weighted/always-serve routing) → Azure Front Door (priority 1) → origin servers.
+
+- **Traffic flow (Azure Front Door failure)**: User → DNS query → Traffic Manager (weighted/always-serve routing) → alternative CDN (priority 2) → origin servers.
 
 ### Key implementation steps
 
@@ -487,91 +487,91 @@ This solution uses a single Traffic Manager profile with weighted/always serve r
 
 Configure your secondary CDN provider with:
 
-- Azure Front Door configured with custom domain and BYO certificate.
+- Azure Front Door configured with a custom domain and a BYO certificate.
 
 - Alternative CDN account.
 
 - Lower DNS TTL for your CNAME is Azure Front Door serving traffic to the lowest time setting.
 
-- Origin servers accessible by both Azure Front Door and the alternative CDN.
+- Origin servers that both Azure Front Door and the alternative CDN can access.
 
-- Custom domain with ability to modify DNS records.
+- Custom domain with the ability to modify DNS records.
 
 > [!IMPORTANT]
-> If you're currently using Azure Front Door-managed certificates, you must migrate to BYO certificates before implementing this HA solution. Azure Front Door-managed certificates can't be exported and installed on alternative CDNs. For more information, see [Configure HTTPS on an Azure Front Door custom domain](/azure/frontdoor/standard-premium/how-to-configure-https-custom-domain) for BYO certificate configuration instructions.
+> If you're currently using Azure Front Door-managed certificates, you must migrate to BYO certificates before implementing this HA solution. Azure Front Door-managed certificates can't be exported and installed on alternative CDNs. For more information and BYO certificate configuration instructions, see [Configure HTTPS on an Azure Front Door custom domain](/azure/frontdoor/standard-premium/how-to-configure-https-custom-domain).
 
 #### Step 2: Configure alternative CDN
 
 Configure your secondary CDN provider:
 
-- Set up CDN zone/property with your custom domain.
+- Set up the CDN zone/property with your custom domain.
 
-- Configure origin servers (same as Azure Front Door backend pool).
+- Configure origin servers (same as the Azure Front Door backend pool).
 
-- **Upload BYO SSL/TLS certificate**: (the same certificate used in Azure Front Door).
+- Upload the BYO SSL/TLS certificate (the same certificate used in Azure Front Door).
 
-- **Replicate caching rules**: Configure CDN caching rules to match Azure Front Door behavior (cache durations, query string handling, etc.)
+- Configure CDN caching rules to match Azure Front Door behavior (for example, cache durations and query string handling).
 
-- **Enable similar features**: Set up caching settings, control headers, and compression settings to match Azure Front Door configuration.
+- Set up caching settings, control headers, and compression settings to match your Azure Front Door configuration.
 
-- Set up WAF rules if the CDN provider offers WAF capabilities (attempt to match Azure Front Door WAF policy).
+- Set up WAF rules if the CDN provider offers WAF capabilities. Attempt to match the Azure Front Door WAF policy.
 
-- Configure custom domain to match your Azure Front Door custom domain (for example, `www.contoso.com`).
+- Configure a custom domain to match your Azure Front Door custom domain (for example, `www.contoso.com`).
 
-- Record the CDN edge hostname for Traffic Manager configuration (for example, `your-site.cdn.provider.net`).
+- Record the CDN edge host name for Traffic Manager configuration (for example, `your-site.cdn.provider.net`).
 
-#### Step 3: Create Traffic Manager profile
+#### Step 3: Create a Traffic Manager profile
 
-Apply the following configuration to create the Traffic Manager profile. For more information, see [Create a Traffic Manager profile](/azure/traffic-manager/quickstart-create-traffic-manager-profile).
+Apply the following configurations to create the Traffic Manager profile. For more information, see [Create a Traffic Manager profile](/azure/traffic-manager/quickstart-create-traffic-manager-profile).
 
 | Setting | Value | Notes |
 | ---- | ---- | ---- |
-| **Routing Method** | Weighted | Allows manual control via endpoint status (Enabled/Disabled). |
-| **Weight** | 100 | Enter 100 when the Traffic Manager profile is created and for both endpoints. |
-| **Protocol** | HTTPS | Required for validating SSL/TLS endpoints. |
-| **Port** | 443 | Standard HTTPS port. |
-| **Path** | /index.html | Choose a lightweight endpoint for health checks. |
-| **TTL** | 300 seconds | DNS TTL - lower values enable faster failover but increase DNS queries. |
+| **Routing Method** | **Weighted** | Allows manual control via endpoint status (Enabled/Disabled). |
+| **Weight** | **100** | Enter 100 when the Traffic Manager profile is created and for both endpoints. |
+| **Protocol** | **HTTPS** | Required for validating SSL/TLS endpoints. |
+| **Port** | **443** | Standard HTTPS port. |
+| **Path** | `/index.html` | Choose a lightweight endpoint for health checks. |
+| **TTL** | **300 seconds** | DNS TTL - lower values enable faster failover but increase DNS queries. |
 
 #### Step 4: Configure Traffic Manager endpoints
 
-Create two endpoints within the Traffic Manager profile with the following configurations:
+Create two endpoints within the Traffic Manager profile with the following configurations.
 
-**Primary endpoint (Azure Front Door)**:
+Use these configurations for the primary endpoint (Azure Front Door):
 
-- Name: endpoint-afd-primary
+- **Name**: endpoint-afd-primary
 
-- Type: External endpoint
+- **Type**: External endpoint
 
-- Target: Azure Front Door endpoint hostname (for example, `myapp-endpoint-12345.z01.azurefd.net`)
+- **Target**: Azure Front Door endpoint hostname (for example, `myapp-endpoint-12345.z01.azurefd.net`)
 
-- Weight: 100
+- **Weight**: 100
 
-- Status: Enabled (initially)
+- **Status**: Enabled (initially)
 
-- Custom headers: `Host=$CUSTOM_DOMAIN` (required for Azure Front Door to route to correct custom domain)
+- **Custom headers**: `Host=$CUSTOM_DOMAIN` (required for Azure Front Door to route to correct custom domain)
 
-- Health checks: Always serve traffic (disable health checks)
+- **Health checks**: Always serve traffic (disable health checks)
 
 :::image type="content" source="./media/high-availability/traffic-manager-primary-endpoint.png" alt-text="Screenshot of adding Traffic Manager primary endpoint in the Azure portal." lightbox="./media/high-availability/traffic-manager-primary-endpoint.png":::
 
 **Custom headers for Azure Front Door**: The `--custom-headers "Host=$CUSTOM_DOMAIN"` parameter is critical for Azure Front Door endpoints. Without it, Azure Front Door might not properly route requests to your custom domain configuration. It's a supported feature of Azure Traffic Manager.
 
-**Secondary endpoint (alternative CDN)**:
+Use these configurations for the secondary endpoint (alternative CDN):
 
-- Name: endpoint-cdn-secondary
+- **Name**: endpoint-cdn-secondary
 
-- Type: External endpoint
+- **Type**: External endpoint
 
-- Target: CDN edge hostname (for example, `myapp.cdn.net`)
+- **Target**: CDN edge hostname (for example, `myapp.cdn.net`)
 
-- Weight: 100
+- **Weight**: 100
 
-- Status: Disabled (initially - standby mode)
+- **Status**: Disabled (initially - standby mode)
 
 :::image type="content" source="./media/high-availability/traffic-manager-secondary-endpoint.png" alt-text="Screenshot of adding Traffic Manager secondary endpoint in the Azure portal." lightbox="./media/high-availability/traffic-manager-secondary-endpoint.png":::
 
-#### Step 5: Update DNS CNAME to Traffic Manager and verify update
+#### Step 5: Update the DNS CNAME to Traffic Manager and verify the update
 
 > [!WARNING]
 > The configurations in this step will redirect your production traffic from Azure Front Door directly to Traffic Manager. Before you proceed, ensure that you took the following steps:
@@ -618,7 +618,7 @@ Create two endpoints within the Traffic Manager profile with the following confi
 
 #### Step 6: Test failover procedures
 
-1. Manual failover to alternative CDN:
+1. Manually fail over to the alternative CDN:
 
     ```
     # Failover: Disable Azure Front Door and enable CDN
@@ -650,7 +650,7 @@ Create two endpoints within the Traffic Manager profile with the following confi
     curl --head https://$CUSTOM_DOMAIN/
     ```
 
-2. Failback to Azure Front Door:
+2. Fail back to Azure Front Door:
 
     ```
     # Failback: Enable Azure Front Door, Disable CDN
@@ -680,7 +680,7 @@ Create two endpoints within the Traffic Manager profile with the following confi
 > [!IMPORTANT]
 > Configure synthetic monitors to alert immediately on failures. These alerts should trigger manual failover if automatic failover is insufficient (for example, Azure Front Door custom domain issues that Traffic Manager can't detect).
 
-The following monitoring solutions are recommended for production environments:
+We recommend the following monitoring solutions for production environments:
 
 - **Azure Monitor workbooks**: Track Traffic Manager queries, Azure Front Door requests, Application Gateway health. For more information, see [Workbooks overview](/azure/azure-monitor/visualize/workbooks-overview).
 
