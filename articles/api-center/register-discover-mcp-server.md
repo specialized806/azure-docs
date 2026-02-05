@@ -17,6 +17,9 @@ ms.custom:
 
 This article describes how to use Azure API Center to maintain an inventory (or *registry*) of remote model context protocol (MCP) servers and help stakeholders discover them through the API Center portal. MCP servers expose backend APIs or data sources in a standard way to AI agents and models that consume them.
 
+> [!NOTE]
+> New! MCP servers registered in your API Center can now be integrated with Azure AI Foundry's tool catalogs, enabling you to govern MCP tools and make them available to AI agents. Learn more in [Tool catalog for agents in Azure AI Foundry](https://learn.microsoft.com/en-us/azure/ai-foundry/agents/concepts/tool-catalog?view=foundry) and [Private tool catalogs for Azure AI Foundry agents](https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/private-tool-catalog?view=foundry).
+
 [!INCLUDE [about-mcp-servers](includes/about-mcp-servers.md)]
 
 ## Manually register an MCP server in your API inventory
@@ -97,8 +100,6 @@ Set up your [API Center portal](set-up-api-center-portal.md) so that developers 
 
 ## Related content
 
-* [Tool catalog for agents in Azure AI Foundry](https://learn.microsoft.com/en-us/azure/ai-foundry/agents/concepts/tool-catalog?view=foundry)
-* [Private tool catalogs for Azure AI Foundry agents](https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/private-tool-catalog?view=foundry)
 * [About MCP servers in API Management](../api-management/mcp-server-overview.md)
 * [Import APIs to your API center from API Management](import-api-management-apis.md)
 * [Use the Visual Studio extension for API Center](build-register-apis-vscode-extension.md) to build and register APIs from Visual Studio Code.
