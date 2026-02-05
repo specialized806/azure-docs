@@ -2,7 +2,7 @@
 title: Azure Batch task fail event
 description: Reference for Batch task fail event. This event is emitted in addition to a task complete event and can be used to detect when a task fails.
 ms.topic: reference
-ms.date: 01/28/2026
+ms.date: 02/05/2026
 # Customer intent: As a cloud operations engineer, I want to receive notifications for task failure events, so that I can quickly identify issues and take corrective actions to ensure job reliability and efficiency.
 ---
 
@@ -87,7 +87,7 @@ ms.date: 01/28/2026
 |`endTime`|DateTime|The time when the task completed.|
 |`exitCode`|Int32|The exit code of the task. If the task failed before it started running, then exitCode is null.|
 |`retryCount`|Int32|The number of times the Batch service retried the task. The task is retried if it exits with a nonzero exit code, up to the specified MaxTaskRetryCount.|
-|`requeueCount`|Int32|The number of times the Batch service requeued the task as a result of user request.<br /><br /> When users remove nodes from a pool (by resizing or shrinking it) or disable a job, they can choose to requeue the running tasks on those nodes for execution. This count tracks how many times the task is requeued for these reasons.|
+|`requeueCount`|Int32|The number of times the Batch service requeued the task as a result of user request.<br /><br /> When nodes are removed from a pool (through resizing or shrinking) or a job is disabled, you can choose to requeue the running tasks on those nodes. This count tracks how many times a task was requeued for these reasons.|
 |`result`|String|The task result string, it could be "Success" or "Failure".|
 |[`schedulingError`](#schedulingError)|Complex Type|Contain detailed information about error.|
 
