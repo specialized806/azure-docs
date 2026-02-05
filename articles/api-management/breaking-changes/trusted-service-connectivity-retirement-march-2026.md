@@ -37,6 +37,12 @@ First, check for an Azure Advisor recommendation:
 1. If it does, update the networking configuration to eliminate the dependency on trusted service connectivity. If it doesn’t, proceed to the next step. 
 1. Disable trusted service connectivity in your API Management gateway.
 
+> [!NOTE]
+> Azure Advisor recommendation shows the Azure backend services your API Management instance has sent outbound requests to in the past 24 hours, regardless of the authentication method used.
+> Use this to identify the backends your API Management instance depends on and validate their configuration.
+>
+> If no traffic is reported, continue monitoring for a few days and disable the feature if results are consistent.
+
 #### Scenarios that are not affected by the breaking change
 
 All scenarios involving control plane operations that use trusted service connectivity remain supported and aren't affected by the breaking change, including accessing:
@@ -47,6 +53,8 @@ All scenarios involving control plane operations that use trusted service connec
 If your API Management service has an established networking line of sight to the key vault used for named values and client certificates, you can but don't have to remove trusted connectivity configuration on the key vault.
  
 For backup and restore and custom hostname certificates, you need to ensure the target key vault or storage account is publicly accessible or you need to preserve its trusted connectivity setting to allow traffic from API Management resources, even if your API Management service has a networking line of sight established with it.
+
+APIs in workspaces aren't affect by this change, since they [do not support managed identity](../workspaces-overview.md).
 
 ### Step 1: Does my API Management gateway rely on trusted service connectivity? 
 

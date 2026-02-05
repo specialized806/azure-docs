@@ -164,6 +164,9 @@ If using the default Azure Storage provider, no extra configuration is required.
 
 If multiple function apps share a storage account, each function app *must* be configured with a separate [task hub name](durable-functions-task-hubs.md#task-hub-names). This requirement also applies to staging slots: each staging slot must be configured with a unique task hub name. A single storage account can contain multiple task hubs. This restriction generally applies to other storage providers as well.
 
+> [!IMPORTANT]
+> By default, the name of the app is used as the task hub name, which ensures that accidental sharing of task hubs won't happen. If you explicitly configure task hub names for your apps in host.json, you must ensure that the names are unique. Otherwise, the multiple apps will compete for messages, which could result in undefined behavior, including orchestrations getting unexpectedly "stuck" in the Pending or Running state. The only exception is if you deploy *copies* of the same app in [multiple regions](durable-functions-disaster-recovery-geo-distribution.md); in this case, you can use the same task hub for the copies.
+
 The following diagram illustrates one task hub per function app in shared and dedicated Azure Storage accounts.
 
 ![Diagram showing shared and dedicated storage accounts.](./media/durable-functions-task-hubs/multiple-apps.png)
