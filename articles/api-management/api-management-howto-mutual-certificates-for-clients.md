@@ -64,7 +64,7 @@ To receive and verify client certificates over HTTP/2 in the Developer, Basic, S
 
 1. Select **Deployment + infrastructure**, then **Custom domains**. 
 1. Select the gateway hostname.
-1. In the **Gateway** pane, select **Negotiate client certificate**.
+1. In the **Gateway** page, select **Negotiate client certificate**, then **Update**.
 
    :::image type="content" source="./media/api-management-howto-mutual-certificates-for-clients/negotiate-client-certificate.png" alt-text="Screenshot shows the negotiate client certificate option for a custom domain.":::
 
