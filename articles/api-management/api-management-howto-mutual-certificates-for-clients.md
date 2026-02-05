@@ -60,7 +60,7 @@ We recommend using key vault certificates because the approach helps improve API
 
 ### Developer, Basic, Standard, or Premium tier
 
-To receive and verify client certificates over HTTP/2 in the Developer, Basic, Standard, or Premium tiers, you must enable the **Negotiate client certificate**.
+To receive and verify client certificates over HTTP/2 in the Developer, Basic, Standard, or Premium tiers, you must enable **Negotiate client certificate**.
 
 1. Select **Deployment + infrastructure**, then **Custom domains**. 
 1. Select the gateway hostname.
@@ -70,7 +70,7 @@ To receive and verify client certificates over HTTP/2 in the Developer, Basic, S
 
 ### Consumption, Basic v2, Standard v2, or Premium v2 tier
 
-To receive and verify client certificates in the Consumption, Basic v2, Standard v2, or Premium v2 tier, you must enable the **Request client certificate**. 
+To receive and verify client certificates in the Consumption, Basic v2, Standard v2, or Premium v2 tier, you must enable **Request client certificate**. 
 
 1. Select **Deployment + infrastructure**, then **Custom domains**. 
 1. Under **Client certificates**, enable **Request client certificate**.
