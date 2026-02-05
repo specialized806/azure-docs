@@ -93,6 +93,12 @@
       href: durable-functions-human-interaction.md
     - name: Error handling and retries
       href: durable-functions-error-handling.md
+    - name: Versioning
+      items:
+      - name: Durable Functions versioning
+        href: durable-functions-versioning.md
+      - name: Orchestration versioning
+        href: durable-functions-orchestration-versioning.md
 - name: Durable Functions
   items:
   - name: Overview
@@ -113,12 +119,6 @@
       href: durable-functions-http-features.md 
     - name: Data persistence and serialization
       href: durable-functions-serialization-and-persistence.md
-    - name: Versioning
-      items:
-      - name: Durable Functions versioning
-        href: durable-functions-versioning.md
-      - name: Orchestration versioning
-        href: durable-functions-orchestration-versioning.md
     - name: Performance & scale
       href: durable-functions-perf-and-scale.md
     - name: High availability
