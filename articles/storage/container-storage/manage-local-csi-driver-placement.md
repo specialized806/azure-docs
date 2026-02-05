@@ -28,11 +28,11 @@ Managing the placement of Local CSI drivers is essential in the following scenar
 
 The Local CSI driver placement mechanism uses:
 
-- [Kubernetes nodeAffinity](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#node-affinity). The **preferredDuringSchedulingIgnoredDuringExecution** option isn't supported.
+- [Kubernetes nodeAffinity](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#node-affinity). The `preferredDuringSchedulingIgnoredDuringExecution` option isn't supported.
 - Storage class annotations to express placement requirements
 - Only creation or modification of storage classes triggers nodeAffinity recomputation
 
-You can define a nodeAffinity rule for a local NVMe StorageClass using the **storageoperator.acstor.io/nodeAffinity** annotation. These rules ensure that local CSI driver pods are scheduled only on nodes that meet the specified criteria. If no nodeAffinity rule is defined, local CSI driver pods are deployed across all nodes in the cluster by default.
+You can define a nodeAffinity rule for a local NVMe StorageClass using the `storageoperator.acstor.io/nodeAffinity` annotation. These rules ensure that local CSI driver pods are scheduled only on nodes that meet the specified criteria. If no nodeAffinity rule is defined, local CSI driver pods are deployed across all nodes in the cluster by default.
 
 ## Ensure local CSI drivers are placed on nodes with local NVMe disks
 
