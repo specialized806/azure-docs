@@ -26,7 +26,8 @@ Entities help you scale out an app by distributing work across many entities, ea
 
 ::: zone pivot="durable-task-sdks"
 
-Entities define operations that read and update state for a *durable entity*. Unlike orchestrators, they manage state explicitly instead of representing state through control flow. Entities help you scale out an app by distributing work across many entities, each with a small amount of state.
+Entity define operations that read and update a small, named state object called a *durable entity*. Like orchestrators, they use a trigger type called the *entity trigger*. Unlike orchestrators, they manage entity state explicitly instead of representing state through control flow.
+Entities help you scale out an app by distributing work across many entities, each with a small amount of state.
 
 > [!NOTE]
 > Durable entities are supported in the .NET and Python Durable Task SDKs. The Java Durable Task SDK doesn't support durable entities.
