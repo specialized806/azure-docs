@@ -4,7 +4,7 @@ titleSuffix: Azure Durable
 description: Learn about and compare the different storage providers for Durable Functions and the Durable Task SDKs
 author: cgillum
 ms.topic: conceptual
-ms.date: 04/10/2025
+ms.date: 02/05/2026
 ms.author: azfuncdf
 zone_pivot_groups: azure-durable-approach
 #Customer intent: As a developer, I want to understand what storage providers are available Durable Functions and which one I should choose.
