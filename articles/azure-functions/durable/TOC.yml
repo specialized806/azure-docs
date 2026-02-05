@@ -143,8 +143,6 @@
     items:
     - name: Develop
       items:
-      - name: Best practices and diagnostic tools
-        href: durable-functions-best-practice-reference.md
       - name: Manage connections
         href: ../manage-connections.md?toc=/azure/azure-functions/durable/toc.json
       - name: Create as WebJobs
@@ -279,6 +277,10 @@
     items:
     - name: Configure autoscale for Azure Container Apps hosting
       href: ./durable-task-scheduler/durable-task-scheduler-auto-scaling.md
+  - name: How-to guides
+    items:
+    - name: Diagnostics
+      href: durable-task-diagnostics.md
   - name: Reference
     items:
     - name: .NET APIs
