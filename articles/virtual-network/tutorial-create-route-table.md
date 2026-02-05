@@ -403,25 +403,22 @@ Network virtual appliances (NVAs) are virtual machines that help with network fu
 Create the virtual machine with [New-AzVM](/powershell/module/az.compute/new-azvm). The following example creates a virtual machine named *vm-nva*.
 
 ```azurepowershell-interactive
-# Create an SSH key for the virtual machine
-$sshParams = @{
-    ResourceGroupName = "test-rg"
-    Name = "vm-nva-ssh-key"
-    PublicKey = (ssh-keygen -t rsa -b 4096 -f ~/.ssh/vm-nva-key -N "" -q; Get-Content ~/.ssh/vm-nva-key.pub -Raw)
-}
-New-AzSshKey @sshParams
+# Create a credential object
+$cred = Get-Credential
 
 # Define the virtual machine parameters
 $vmParams = @{
     ResourceGroupName = "test-rg"
     Location = "EastUS2"
     Name = "vm-nva"
-    ImageName = "Canonical:ubuntu-24_04-lts:server-gen1:latest"
+    Image = "Ubuntu2204"
     Size = "Standard_DS1_v2"
+    Credential = $cred
     VirtualNetworkName = "vnet-1"
     SubnetName = "subnet-dmz"
-    PublicIpAddressName = $null  # No public IP address
+    PublicIpAddressName = ""  # No public IP address
     SshKeyName = "vm-nva-ssh-key"
+    GenerateSshKey = $true
 }
 
 # Create the virtual machine
@@ -551,25 +548,19 @@ The public virtual machine is used to simulate a machine in the public internet.
 Create a virtual machine in the *subnet-1* subnet with [New-AzVM](/powershell/module/az.compute/new-azvm). The following example creates a virtual machine named *vm-public* in the *subnet-public* subnet of the *vnet-1* virtual network.
 
 ```azurepowershell-interactive
-# Create an SSH key for the virtual machine
-$sshParams = @{
-    ResourceGroupName = "test-rg"
-    Name = "vm-public-ssh-key"
-    PublicKey = (ssh-keygen -t rsa -b 4096 -f ~/.ssh/vm-public-key -N "" -q; Get-Content ~/.ssh/vm-public-key.pub -Raw)
-}
-New-AzSshKey @sshParams
-
 # Define the virtual machine parameters
 $vmParams = @{
     ResourceGroupName = "test-rg"
     Location = "EastUS2"
     Name = "vm-public"
-    ImageName = "Canonical:ubuntu-24_04-lts:server-gen1:latest"
+    Image = "Ubuntu2204"
     Size = "Standard_DS1_v2"
+    Credential = $cred
     VirtualNetworkName = "vnet-1"
     SubnetName = "subnet-1"
-    PublicIpAddressName = $null  # No public IP address
+    PublicIpAddressName = ""  # No public IP address
     SshKeyName = "vm-public-ssh-key"
+    GenerateSshKey = $true
 }
 
 # Create the virtual machine
@@ -579,25 +570,19 @@ New-AzVM @vmParams
 Create a virtual machine in the *subnet-private* subnet.
 
 ```azurepowershell-interactive
-# Create an SSH key for the virtual machine
-$sshParams = @{
-    ResourceGroupName = "test-rg"
-    Name = "vm-private-ssh-key"
-    PublicKey = (ssh-keygen -t rsa -b 4096 -f ~/.ssh/vm-private-key -N "" -q; Get-Content ~/.ssh/vm-private-key.pub -Raw)
-}
-New-AzSshKey @sshParams
-
 # Define the virtual machine parameters
 $vmParams = @{
     ResourceGroupName = "test-rg"
     Location = "EastUS2"
     Name = "vm-private"
-    ImageName = "Canonical:ubuntu-24_04-lts:server-gen1:latest"
+    Image = "Ubuntu2204"
     Size = "Standard_DS1_v2"
+    Credential = $cred
     VirtualNetworkName = "vnet-1"
     SubnetName = "subnet-private"
-    PublicIpAddressName = $null  # No public IP address
+    PublicIpAddressName = ""  # No public IP address
     SshKeyName = "vm-private-ssh-key"
+    GenerateSshKey = $true
 }
 
 # Create the virtual machine
@@ -699,6 +684,8 @@ az network nic update \
 
 In this section, turn on IP forwarding for the operating system of the **vm-nva** virtual machine to forward network traffic. Use the Run Command feature to execute a script on the virtual machine.
 
+### [Portal](#tab/portal)
+
 1. In the search box at the top of the portal, enter **Virtual machine**. Select **Virtual machines** in the search results.
 
 1. In **Virtual machines**, select **vm-nva**.
@@ -719,6 +706,37 @@ In this section, turn on IP forwarding for the operating system of the **vm-nva*
 1. Wait for the script to complete. The output shows the IP forwarding setting has been enabled.
 
 1. Return to the **Overview** page of **vm-nva** and select **Restart** to restart the virtual machine.
+
+### [PowerShell](#tab/powershell)
+
+Enable IP forwarding in the operating system of the **vm-nva** virtual machine with [Invoke-AzVMRunCommand](/powershell/module/az.compute/invoke-azvmruncommand). The following example enables IP forwarding in the operating system.
+
+```azurepowershell-interactive
+$runCommandParams = @{
+    ResourceGroupName = "test-rg"
+    VMName = "vm-nva"
+    CommandId = "RunShellScript"
+    ScriptString = @"
+sudo sed -i 's/#net.ipv4.ip_forward=1/net.ipv4.ip_forward=1/' /etc/sysctl.conf
+sudo sysctl -p
+"@
+}
+Invoke-AzVMRunCommand @runCommandParams
+```
+
+### [CLI](#tab/cli)
+
+Enable IP forwarding in the operating system of the **vm-nva** virtual machine with [az vm run-command invoke](/cli/azure/vm/run-command). The following example enables IP forwarding in the operating system.
+
+```azurecli-interactive
+az vm run-command invoke \
+    --resource-group test-rg \
+    --name vm-nva \
+    --command-id RunShellScript \
+    --scripts "sudo sed -i 's/#net.ipv4.ip_forward=1/net.ipv4.ip_forward=1/' /etc/sysctl.conf" "sudo sysctl -p"
+```
+
+---
 
 ## Create a route table
 
