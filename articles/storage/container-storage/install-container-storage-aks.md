@@ -104,9 +104,9 @@ Run the following command to create a new AKS cluster and install Azure Containe
 az aks create -n <cluster-name> -g <resource-group> --node-vm-size Standard_L8s_v3 --enable-azure-container-storage --generate-ssh-keys
 ```
 
-The deployment can take up to 5 minutes. CSI driver installation is deferred until you create a StorageClass or enable a storage type later.
+The deployment can take up to 5 minutes. CSI driver installation is deferred until you create a storage class or enable a storage type later.
 
-Follow the instructions for creating a [local NVMe](use-container-storage-with-local-disk.md) StorageClass or [Elastic SAN](use-container-storage-with-elastic-san.md) StorageClass.
+Follow the instructions for creating a [local NVMe](use-container-storage-with-local-disk.md) storage class or [Elastic SAN](use-container-storage-with-elastic-san.md) storage class.
 
 ### Installer + storage type installation
 
@@ -116,7 +116,7 @@ Run the following command to create a new AKS cluster and install Azure Containe
 az aks create -n <cluster-name> -g <resource-group> --node-vm-size Standard_L8s_v3 --enable-azure-container-storage ephemeralDisk --generate-ssh-keys
 ```
 
-This command installs the installer, deploys the `ephemeralDisk` driver, and creates a default StorageClass. You can install and use both local NVMe and Elastic SAN by providing comma-separated values such as `ephemeralDisk,elasticSan`.
+This command installs the installer, deploys the `ephemeralDisk` driver, and creates a default storage class. You can install and use both local NVMe and Elastic SAN by providing comma-separated values such as `ephemeralDisk,elasticSan`.
 
 ## Install Azure Container Storage on an existing AKS cluster
 
@@ -128,7 +128,7 @@ Run the following command to enable Azure Container Storage on an existing AKS c
 az aks update -n <cluster-name> -g <resource-group> --enable-azure-container-storage
 ```
 
-The deployment can take up to 5 minutes. When it completes, the cluster has the Azure Container Storage installer component installed. CSI driver installation is deferred until you create a StorageClass or enable a storage type later. Follow the instructions for creating a [local NVMe](use-container-storage-with-local-disk.md) StorageClass or [Elastic SAN](use-container-storage-with-elastic-san.md) StorageClass.
+The deployment can take up to 5 minutes. When it completes, the cluster has the Azure Container Storage installer component installed. CSI driver installation is deferred until you create a storage class or enable a storage type later. Follow the instructions for creating a [local NVMe](use-container-storage-with-local-disk.md) storage class or [Elastic SAN](use-container-storage-with-elastic-san.md) storage class.
 
 ### Installer + storage type installation
 
@@ -138,7 +138,7 @@ Run the following command to enable Azure Container Storage on an existing AKS c
 az aks update -n <cluster-name> -g <resource-group> --enable-azure-container-storage elasticSan
 ```
 
-This command installs the installer, deploys the Elastic SAN CSI driver, and creates a default StorageClass. You can install and use both local NVMe and Elastic SAN by providing comma-separated values such as `ephemeralDisk,elasticSan`.
+This command installs the installer, deploys the Elastic SAN CSI driver, and creates a default storage class. You can install and use both local NVMe and Elastic SAN by providing comma-separated values such as `ephemeralDisk,elasticSan`.
 
 ::: zone-end
 
@@ -237,37 +237,20 @@ az account set --subscription <subscription-id>
     }
     ```
 
-    To enable storage drivers during deployment, pass the necessary Helm chart settings:
-
-    ```tf
-    resource "azurerm_kubernetes_cluster_extension" "container_storage" {
-      # NOTE: the `name` parameter must be "acstor" for Azure CLI compatibility
-      name           = "acstor"
-      cluster_id     = azurerm_kubernetes_cluster.aks.id
-      extension_type = "microsoft.azurecontainerstoragev2"
-
-      configuration_settings = {
-        # Enable local NVMe
-        "csiDriverConfigs.local-csi-driver.enabled" = "true"
-        # Enable Azure Elastic SAN
-        "csiDriverConfigs.azuresan-csi-driver.enabled" = "true"
-      }
-    }
-    ```
-
-2. Initialize the working directory to download the AzureRM provider.
+1. Initialize the working directory to download the AzureRM provider.
 
     ```bash
     terraform init
     ```
 
-3. Review the planned changes.
+1. Review the planned changes.
 
     ```bash
     terraform plan
     ```
 
-4. Apply the configuration to create the resource group, AKS cluster, and Azure Container Storage extension. Deployment typically takes 5 to 10 minutes.
+1. Apply the configuration to create the resource group, AKS cluster, and Azure Container Storage extension. Deployment typically takes 5 minutes. When it completes, the cluster has the Azure Container Storage installer component installed. CSI driver installation is deferred until you create a storage class. Follow the instructions for creating a [local NVMe](use-container-storage-with-local-disk.md) storage class or [Elastic SAN](use-container-storage-with-elastic-san.md) storage class.
+
 
     ```bash
     terraform apply
@@ -305,25 +288,7 @@ resource "azurerm_kubernetes_cluster_extension" "container_storage" {
 }
 ```
 
-To enable storage drivers during deployment, pass the necessary Helm chart settings:
-
-```tf
-resource "azurerm_kubernetes_cluster_extension" "container_storage" {
-  # NOTE: the `name` parameter must be "acstor" for Azure CLI compatibility
-  name           = "acstor"
-  cluster_id     = data.azurerm_kubernetes_cluster.existing.id
-  extension_type = "microsoft.azurecontainerstoragev2"
-
-  configuration_settings = {
-    # Enable local NVMe
-    "csiDriverConfigs.local-csi-driver.enabled" = "true"
-    # Enable Azure Elastic SAN
-    "csiDriverConfigs.azuresan-csi-driver.enabled" = "true"
-  }
-}
-```
-
-Run `terraform init` (if this is a new working directory) followed by `terraform apply` to install Azure Container Storage on the targeted cluster.
+Run `terraform init` (if this is a new working directory) followed by `terraform apply` to install Azure Container Storage on the targeted cluster. Deployment typically takes 5 minutes. When it completes, the cluster has the Azure Container Storage installer component installed. CSI driver installation is deferred until you create a storage class. Follow the instructions for creating a [local NVMe](use-container-storage-with-local-disk.md) storage class or [Elastic SAN](use-container-storage-with-elastic-san.md) storage class.
 
 ::: zone-end
 
@@ -344,9 +309,9 @@ acstor-cluster-manager                2/2     2            2           4d9h
 acstor-geneva                         2/2     2            2           4d9h
 ```
 
-### Verify StorageClass presence
+### Verify storage class presence
 
-After you create a StorageClass or enable a storage type, verify the StorageClass:
+After you create a storage class or enable a storage type, verify the storage class:
 
 ```azurecli
 kubectl get sc
@@ -362,7 +327,7 @@ local                   localdisk.csi.acstor.io   Delete          WaitForFirstCo
 
 ### Verify driver installation
 
-Verify the components expected after StorageClass creation or storage type installation:
+Verify the components expected after storage class creation or storage type installation:
 
 ```azurecli
 kubectl get pod -n kube-system | grep acstor
