@@ -102,7 +102,7 @@ The following table shows locations by service provider. If you want to view ava
 | **[Deutsche Telekom AG](https://www.t-systems.com/de/en/cloud-services/solutions/public-cloud/azure-managed-cloud-services/cloud-connect-for-azure)** | &check; |&check; | Amsterdam<br/>Dublin<br/>Frankfurt2<br/>Hong Kong2 |
 | **[Digital Realty](https://www.digitalrealty.com/partners/microsoft-azure)** | &check; | &check; | Amsterdam Metro<br/>Amsterdam2<br/>Atlanta2<br/>Brussels<br/>Dallas2<br/>Hong Kong2<br/>London<br/>Phoenix2<br/>Seattle<br/>Seoul<br/>Silicon Valley<br/>Singapore2<br/>Sydney2<br/>Tokyo2<br/>Vienna<br/>Washington DC<br/>Zurich Metro |
 | **du datamena** |&check; |&check; | Dubai2 |
-| **[eir evo](https://www.eirevo.ie/cloud-services/cloud-connectivity)** |&check; |&check; | Dublin |
+| **[eir evo](https://support.eirevo.ie/communications/connectivity-networking)** |&check; |&check; | Dublin |
 | **[Elisa](https://elisa.fi/)** |&check; |&check; | Stockholm |
 | **[Embratel](https://www.embratel.com.br/rede-de-dados/cloud-interconnect)** |&check; |&check; | Sao Paulo |
 | **[Epsilon Global Communications](https://epsilontel.com/solutions/cloud-connect/)** | &check; | &check; | Hong Kong2<br/>London2<br/>Singapore<br/>Singapore2<br/>Washington DC |
@@ -221,7 +221,7 @@ The following table shows locations by service provider. If you want to view ava
 | **[Telstra Corporation](https://www.telstra.com.au/business-enterprise/network-services/networks/cloud-direct-connect/)** | &check; | &check; | Canberra<br/>Melbourne<br/>Singapore<br/>Sydney |
 | **[Telus](https://www.telus.com)** | &check; | &check; | Montreal<br/>Quebec City<br/>Seattle<br/>Toronto<br/>Vancouver |
 | **[Teraco](https://www.teraco.co.za/services/africa-cloud-exchange/)** | &check; | &check; | Cape Town<br/>Johannesburg |
-| **[TIME dotCom](https://www.time.com.my/enterprise/connectivity/direct-cloud)** | &check; | &check; | Kuala Lumpur<br/>Kuala Lumpur2<br/>Singapore |
+| **[TIME dotCom](https://www.time.com.my/for-enterprise/network)** | &check; | &check; | Kuala Lumpur<br/>Kuala Lumpur2<br/>Singapore |
 | **[Tivit](https://onecloud.tivit.com/en/home-en/)** |&check; |&check; | Sao Paulo2 |
 | **[Tokai Communications](https://www.tokai-com.co.jp/en/)** | &check; | &check; | Osaka<br/>Tokyo2 |
 | **TPG Telecom**| &check; | &check; | Melbourne<br/>Sydney |
