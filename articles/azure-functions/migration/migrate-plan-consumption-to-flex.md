@@ -452,7 +452,7 @@ Here are some strategies to protect both upstream and downstream data during the
 + **Idempotency**: Ensure your functions can safely process the same message multiple times without negative side effects. For more information, see [Designing Azure Functions for identical input](../functions-idempotent.md).
 + **Logging and monitoring**: Enable detailed logging in both apps during migration to track message processing. For more information, see [Monitor executions in Azure Functions](../functions-monitoring.md).
 + **Checkpointing**: For streaming triggers, such as the Event Hubs trigger, implement correct checkpoint behaviors to track processing position. For more information, see [Azure Functions reliable event processing](../functions-reliable-event-processing.md).
-+ **Parallel processing**: Consider temporarily running both apps in parallel during the cutover. Make sure to carefully monitor and validate how data is processed from the upstream service. For more information, see [Active-active pattern for non-HTTPS trigger functions](../../reliability/reliability-functions.md#active-active-pattern-for-non-https-trigger-functions).
++ **Parallel processing**: Consider temporarily running both apps in parallel during the cutover. Make sure to carefully monitor and validate how data is processed from the upstream service. For more information, see [Active-active pattern for non-HTTPS trigger functions](/azure/reliability/reliability-functions#active-active-pattern-for-non-https-trigger-functions).
 + **Gradual cutover**: For high-volume systems, consider implementing a gradual cutover by redirecting portions of traffic to the new app. You can manage the routing of requests upstream from your apps by using services such as [Azure API Management](../functions-openapi-definition.md) or [Azure Application Gateway](../../app-service/overview-app-gateway-integration.md).
 
 ### Mitigations by trigger type
@@ -1215,7 +1215,10 @@ Consider concurrency settings first if you want your new app to scale similarly 
 
 If you had a custom scale-out limit set in your original app, you can also apply it to your new app. Otherwise, you can skip to the next section.
 
-The default maximum instance count is 100, and it must be set to a value of 40 or higher.
+The default maximum instance count is 100, and it must be set to a value between 1 and 1,000.
+
+> [!NOTE]
+> Reducing maximum instance count below 40 for HTTP function apps can cause frequent request failures and prolonged throttling windows when traffic exceeds capacity. This setting is intended only for advanced scenarios where limited scale-out is acceptable and has been fully tested.
 
 #### [Azure CLI](#tab/azure-cli)
 

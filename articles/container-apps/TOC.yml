@@ -195,6 +195,8 @@ items:
               href: gpu-image-generation.md
             - name: Deploy an NVIDIA Llama3 NIM
               href: serverless-gpu-nim.md
+            - name: Deploy OpenAI GPT with OSS Ollama
+              href: deploy-openai-gpt-oss-ollama.md
     - name: Dynamic sessions
       items:
         - name: Overview
@@ -330,7 +332,7 @@ items:
 - name: Reliability
   items:
     - name: Reliability in Azure Container Apps
-      href: ../reliability/reliability-container-apps.md?toc=/azure/container-apps/toc.json&bc=/azure/container-apps/breadcrumb/toc.json
+      href: /azure/reliability/reliability-container-apps?toc=/azure/container-apps/toc.json&bc=/azure/container-apps/breadcrumb/toc.json
     - name: Create a zone-redundant container app
       href: how-to-zone-redundancy.md
 - name: Dedicated compute
