@@ -6,7 +6,7 @@ author: wchigit
 ms.author: wchi
 ms.service: service-connector
 ms.topic: how-to
-ms.date: 09/30/2025
+ms.date: 02/05/2026
 ms.update-cycle: 180-days
 ms.collection: ce-skilling-ai-copilot
 ---
