@@ -881,7 +881,13 @@ Test routing of network traffic from **vm-public** to **vm-private**. Test routi
 
 1. Select **Connect** then **Connect via Bastion** in the **Overview** section.
 
-1. Enter the username and password you entered when the virtual machine was created.
+1. In the **Bastion** connection page, enter or select the following information:
+
+    | Setting | Value |
+    | ------- | ----- |
+    | Authentication Type | Select **SSH Private Key from Local File**. |
+    | Username | Enter the username you created. |
+    | Local File | Select the **vm-public-key** private key file you downloaded. |
 
 1. Select **Connect**.
 
@@ -916,7 +922,13 @@ Test routing of network traffic from **vm-public** to **vm-private**. Test routi
 
 1. Select **Connect** then **Connect via Bastion** in the **Overview** section.
 
-1. Enter the username and password you entered when the virtual machine was created.
+1. In the **Bastion** connection page, enter or select the following information:
+
+    | Setting | Value |
+    | ------- | ----- |
+    | Authentication Type | Select **SSH Private Key from Local File**. |
+    | Username | Enter the username you created. |
+    | Local File | Select the **vm-private-key** private key file you downloaded. |
 
 1. Select **Connect**.
 
