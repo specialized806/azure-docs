@@ -95,29 +95,75 @@ Both **Agent Identity** and **Project Managed Identity** use Microsoft Entra aut
 To get the Application ID URI from the Azure portal:
 
 1. Go to your function app resource in the [Azure portal](https://portal.azure.com).
+
 1. Select **Settings** > **Authentication** from the left menu.
+
 1. Select the name of the Entra app next to **Microsoft**. This selection takes you to the Entra app resource.
+
 1. In the left menu, select **Manage** > **Expose an API**.
+
 1. Copy the **Application ID URI** at the top of the page. This ID value looks like `api://00001111-aaaa-2222-bbbb-3333cccc4444`.
+
+### [OAuth identity](#tab/oauth-id)
+
+OAuth identity passthrough prompts users to sign in and authorize access to your MCP server. Foundry Agent Service supports two OAuth options:
+
+- **Managed OAuth**: Microsoft or the MCP server publisher manages the OAuth app. No credential setup is required.
+- **Custom OAuth**: You bring your own OAuth app registration, which can be a Microsoft Entra app or any OAuth-compliant provider.
+
+For a Functions-hosted MCP server with built-in authentication, use custom OAuth with a Microsoft Entra app registration. To get the required credentials from the Azure portal:
+
+1. Go to your function app resource in the [Azure portal](https://portal.azure.com).
+
+1. Select **Settings** > **Authentication** from the left menu.
+
+1. Select the name of the Entra app next to **Microsoft**. This selection takes you to the Entra app resource.
+
+1. From **Essentials** in the **Overview** page, copy the values from these fields:
+
+    + **Application (client) ID**
+    + **Directory (tenant) ID**
+    + **Application ID URI**
+
+1. Use the tenant ID to construct these required OAuth URLs:
+
+    | URL type | Format |
+    | -------- | ------ |
+    | **Auth URL** | `https://login.microsoftonline.com/<TENANT_ID>/oauth2/v2.0/authorize` |
+    | **Token URL** | `https://login.microsoftonline.com/<TENANT_ID>/oauth2/v2.0/token` |
+    | **Refresh URL** | `https://login.microsoftonline.com/<TENANT_ID>/oauth2/v2.0/token` |
+
+    Replace `<TENANT_ID>` with your actual tenant ID value.
+
+1. (Optional) If your app requires a client secret, select **Manage** > **Certificates & secrets**, and then create or copy an existing client secret value.
+
+1. (Optional) Select **Manage** > **Expose an API** and create or copy an existing scope.  
+
+>[!IMPORTANT]
+>After you configure OAuth identity passthrough in the Foundry portal, you receive a redirect URL. You must add this redirect URL to your Microsoft Entra app registration under **Manage** > **Authentication** > **Platform configurations**.
 
 ### [Unauthenticated](#tab/unauthenticated)
 
 Because unauthenticated access requires no shared secrets or authentication, you can skip to the next section. 
 
 >[!IMPORTANT]  
->This option allows any client or agent to access your MCP server endpoint and should only be used for tools that return read-only public information or during private development.
+>This option allows any client or agent to access your MCP server endpoint. Use it only for tools that return read-only public information or during private development.
 
 ---
 
 ## Disable key-based authentication
 
-Key-based authentication is the default for an MCP endpoint hosted in Azure Functions. To use a different authentication method, change the MCP endpoint authentication to `anonymous`. The way that you make this change depends on the type of MCP server you are hosting:
+Key-based authentication is the default for an MCP endpoint hosted in Azure Functions. To use a different authentication method, change the MCP endpoint authentication to `anonymous`. How you make this change depends on the type of MCP server you're hosting:
 
 ### [MCP extension server](#tab/mcp-extension/key-based)
 
-You can skip this section when using key-based authentication.
+Skip this section when using key-based authentication.
 
 ### [MCP extension server](#tab/mcp-extension/entra)
+
+[!INCLUDE [functions-mcp-extension-disable-key-access](../../includes/functions-mcp-extension-disable-key-access.md)]
+
+### [MCP extension server](#tab/mcp-extension/oauth-id)
 
 [!INCLUDE [functions-mcp-extension-disable-key-access](../../includes/functions-mcp-extension-disable-key-access.md)]
 
@@ -127,9 +173,13 @@ You can skip this section when using key-based authentication.
 
 ### [Self-hosted server](#tab/self-hosted/key-based)
 
-You can skip this section when using key-based authentication.
+Skip this section when using key-based authentication.
 
 ### [Self-hosted server](#tab/self-hosted/entra)
+
+[!INCLUDE [functions-mcp-custom-handler-disable-key-access](../../includes/functions-mcp-custom-handler-disable-key-access.md)]
+
+### [Self-hosted server](#tab/self-hosted/oauth-id)
 
 [!INCLUDE [functions-mcp-custom-handler-disable-key-access](../../includes/functions-mcp-custom-handler-disable-key-access.md)]
 
@@ -153,7 +203,7 @@ To connect to your MCP server endpoint:
 
 1. Select the **Build** tab at the top of the page and select an agent to connect to your MCP server. 
 
-1. In the **Playground** tab, expand **Tools** dropdown and select **Add**.
+1. In the **Playground** tab, expand the **Tools** dropdown and select **Add**.
 
 1. In the **Custom** tab in **Select a tool**, select **Model Context Protocol (MCP)** > **Create**.
 
@@ -161,8 +211,8 @@ To connect to your MCP server endpoint:
 
     | Field | Description | Example |
     | ----- | ----------- | ------- |
-    | **Name** | A unique identifier for your MCP server. You can use your function app name as the default. | `my-mcp-function-app` |
-    | **Remote MCP Server endpoint** | The URL endpoint for your MCP server. | `https://my-mcp-function-app.azurewebsites.net/runtime/webhooks/mcp` |
+    | **Name** | A unique identifier for your MCP server. You can use your function app name as the default. | `contoso-mcp-tools` |
+    | **Remote MCP Server endpoint** | The URL endpoint for your MCP server. | `https://contoso-mcp-tools.azurewebsites.net/runtime/webhooks/mcp` |
     | **Authentication** | The authentication method to use. | `Key-based` |
     | **Credential** | The key-value pair to authenticate with your function app. | `x-functions-key`: `aaaaaaaa-0b0b-1c1c-2d2d-333333333333` |
 
@@ -180,7 +230,7 @@ To connect to your MCP server endpoint:
 
 1. Select the **Build** tab at the top of the page and select an agent to connect to your MCP server. 
 
-1. In the **Playground** tab, expand **Tools** dropdown and select **Add**.
+1. In the **Playground** tab, expand the **Tools** dropdown and select **Add**.
 
 1. In the **Custom** tab in **Select a tool**, select **Model Context Protocol (MCP)** > **Create**.
 
@@ -188,8 +238,8 @@ To connect to your MCP server endpoint:
 
     | Field | Description | Example |
     | ----- | ----------- | ------- |
-    | **Name** | A unique identifier for your MCP server. You can use your function app name. | `my-mcp-functions` |
-    | **Remote MCP Server endpoint** | The URL endpoint for your MCP server. | `https://my-mcp-functions.azurewebsites.net/runtime/webhooks/mcp` |
+    | **Name** | A unique identifier for your MCP server. You can use your function app name. | `contoso-mcp-tools` |
+    | **Remote MCP Server endpoint** | The URL endpoint for your MCP server. | `https://contoso-mcp-tools.azurewebsites.net/runtime/webhooks/mcp` |
     | **Authentication** | The authentication method to use. | `Microsoft Entra` |
     | **Type** | The identity type the agent uses to authenticate. | `Project Managed Identity` |
     | **Audience** | The Application ID URI of your function app's Entra registration. This value tells the identity provider which app the token is intended for. | `api://00001111-aaaa-2222-bbbb-3333cccc4444` |
@@ -198,15 +248,15 @@ To connect to your MCP server endpoint:
 
 1. Select **Save** to save the MCP tool configuration in your agent.
 
-### [OAuth Identity Passthrough](#tab/oauth-id)
+### [OAuth identity](#tab/oauth-id)
 
-The agent prompts the user to login and uses the access token returned there to connect to the server. 
+When you use OAuth identity passthrough, the agent prompts the user to sign in and then uses the returned access token when connecting to the server. 
 
 1. Go to the [Foundry portal (new Foundry)](https://ai.azure.com/nextgen).
 
 1. Select the **Build** tab at the top of the page and select an agent to connect to your MCP server. 
 
-1. In the **Playground** tab, expand **Tools** dropdown and select **Add**.
+1. In the **Playground** tab, expand the **Tools** dropdown and select **Add**.
 
 1. In the **Custom** tab in **Select a tool**, select **Model Context Protocol (MCP)** > **Create**.
 
@@ -214,15 +264,17 @@ The agent prompts the user to login and uses the access token returned there to 
 
     | Field | Description | Example |
     | ----- | ----------- | ------- |
-    | **Name** | A unique identifier for your MCP server. You can use your function app name. | `my-mcp-functions` |
-    | **Remote MCP Server endpoint** | The URL endpoint for your MCP server. | `https://my-mcp-functions.azurewebsites.net/runtime/webhooks/mcp` |
+    | **Name** | A unique identifier for your MCP server. You can use your function app name. | `contoso-mcp-tools` |
+    | **Remote MCP Server endpoint** | The URL endpoint for your MCP server. | `https://contoso-mcp-tools.azurewebsites.net/runtime/webhooks/mcp` |
     | **Authentication** | The authentication method to use. | `OAuth Identity Passthrough` |
-    | **Client ID** |The client ID of your Funciton app's Entra registration|  `00001111-aaaa-2222-bbbb-3333cccc4444` |
-    | **Client secret**| The client secret of your Funciton app's Entra registration | Leave it blank|
-    | **Token URL** | The endpoint your server app calls to exchange an authorization code or crednetial for an access token. | `https://login.microsoftonline.com/<TENANT ID>/oauth2/v2.0/token`|
-    | **Auth URL** | The endpoint where users are redirected to authenticate and grant authorization to your server app. | `https://login.microsoftonline.com/<TENANT ID>/oauth2/v2.0/authorize`|
-    | **Refresh URL** | The endpoint used to obtain a new access token when the current one expires. | `https://login.microsoftonline.com/<TENANT ID>/oauth2/v2.0/token` |
+    | **Client ID** | The client ID of your function app Entra registration | `00001111-aaaa-2222-bbbb-3333cccc4444` |
+    | **Token URL** | The endpoint your server app calls to exchange an authorization code or credential for an access token. | `https://login.microsoftonline.com/aaaabbbb-0000-cccc-1111-dddd2222eeee/oauth2/v2.0/token` |
+    | **Auth URL** | The endpoint where users are redirected to authenticate and grant authorization to your server app. | `https://login.microsoftonline.com/aaaabbbb-0000-cccc-1111-dddd2222eeee/oauth2/v2.0/authorize` |
+    | **Refresh URL** | The endpoint used to obtain a new access token when the current one expires. | `https://login.microsoftonline.com/aaaabbbb-0000-cccc-1111-dddd2222eeee/oauth2/v2.0/token` |
     | **Scopes** | The specific permissions or resource access levels your server app requests from the authorization server | `api://00001111-aaaa-2222-bbbb-3333cccc4444` |
+
+    >[!NOTE]  
+    >A **Client secret** value isn't needed, so you should leave this field blank.
 
 1. Select **Connect** to create a connection to your MCP server endpoint. You should now see your server name listed under **Tools**.
 
@@ -238,7 +290,7 @@ To connect to your MCP server endpoint:
 
 1. Select the **Build** tab at the top of the page and select an agent to connect to your MCP server. 
 
-1. In the **Playground** tab, expand **Tools** dropdown and select **Add**.
+1. In the **Playground** tab, expand the **Tools** dropdown and select **Add**.
 
 1. In the **Custom** tab in **Select a tool**, select **Model Context Protocol (MCP)** > **Create**.
 
@@ -246,8 +298,8 @@ To connect to your MCP server endpoint:
 
     | Field | Description | Example |
     | ----- | ----------- | ------- |
-    | **Name** | A unique identifier for your MCP server. You can use your function app name. | `my-mcp-functions` |
-    | **Remote MCP Server endpoint** | The URL endpoint for your MCP server. | `https://my-mcp-functions.azurewebsites.net/runtime/webhooks/mcp` |
+    | **Name** | A unique identifier for your MCP server. You can use your function app name. | `contoso-mcp-tools` |
+    | **Remote MCP Server endpoint** | The URL endpoint for your MCP server. | `https://contoso-mcp-tools.azurewebsites.net/runtime/webhooks/mcp` |
     | **Authentication** | The authentication method to use. | `Unauthenticated` |
 
 1. Select **Connect** to create an unauthenticated connection to your MCP server endpoint. You should now see your server name listed under **Tools**.
