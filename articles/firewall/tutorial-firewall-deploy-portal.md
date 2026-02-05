@@ -158,7 +158,7 @@ Now create the workload virtual machine, and place it in the **Workload-SN** sub
 
 When you create a route for outbound and inbound connectivity through the firewall, a default route to 0.0.0.0/0 with the virtual appliance private IP as a next hop is sufficient. This directs any outgoing and incoming connections through the firewall. As an example, if the firewall is fulfilling a TCP-handshake and responding to an incoming request, then the response is directed to the IP address who sent the traffic. This is by design. 
 
-As a result, there's no need create another user defined route to include the AzureFirewallSubnet IP range. This might result in dropped connections. The original default route is sufficient.
+As a result, there's no need to create another user defined route to include the AzureFirewallSubnet IP range. This might result in dropped connections. The original default route is sufficient.
 
 For the **Workload-SN** subnet, configure the outbound default route to go through the firewall.
 
