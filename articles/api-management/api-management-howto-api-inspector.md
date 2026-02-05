@@ -131,14 +131,11 @@ Detailed steps follow.
 
 1. **Evaluate the response**. The response can contain one of the following headers depending on the state of the debug token:
 
-   - If the debug token is valid, the response includes an `Apim-Trace-Id` header whose value is the trace ID, similar to the following example:
-
-     ```http
-     Apim-Trace-Id: 0123456789abcdef....
-     ```
-        
-   - If the debug token is expired, the response includes an `Apim-Debug-Authorization-Expired` header with information about expiration date.
-   - If the debug token was obtained for a different API, the response includes an `Apim-Debug-Authorization-WrongAPI` header with an error message.
+   | Header in response | Explanation | 
+   |:-------------------|:------------|
+   | `Apim-Trace-Id`                     | Debug token valid. The value is the trace ID, such as: `Apim-Trace-Id: 0123456789abcdef....` |
+   | `Apim-Debug-Authorization-Expired`  | Token is expired. Header includes information about expiration date. |
+   | `Apim-Debug-Authorization-WrongAPI` | Token obtained for a different API. Header includes an error message. |
 
 1. **Retrieve the trace**. Pass the trace ID obtained in the previous step to the gateway's [List trace](/rest/api/apimanagement/gateway/list-trace) API. For example, to retrieve the trace for the managed gateway, use a request similar to the following example:
 
