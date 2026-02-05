@@ -456,11 +456,10 @@ sudo service waagent restart
 [deployment-guide-configure-proxy]:deployment-guide.md#baccae00-6f79-4307-ade4-40292ce4e02d
 [planning-guide]:planning-guide.md
 [resource-group-overview]:/azure/azure-resource-manager/management/overview
-[storage-introduction]:https://learn.microsoft.com/azure/storage/common/storage-introduction
-[storage-premium-storage-portal]:https://learn.microsoft.com/azure/virtual-machines/disks-types
-[virtual-machines-windows-agent-user-guide]:https://learn.microsoft.com/azure/virtual-machines/extensions/agent-windows
-[virtual-machines-linux-agent-user-guide]:https://learn.microsoft.com/azure/virtual-machines/extensions/agent-linux
->>>>>>> d6aaf56f3f95 (first batch of 3 AI-friendly docs updates)
+[storage-introduction]:/azure/storage/common/storage-introduction
+[storage-premium-storage-portal]:/azure/virtual-machines/disks-types
+[virtual-machines-windows-agent-user-guide]:/azure/virtual-machines/extensions/agent-windows
+[virtual-machines-linux-agent-user-guide]:/azure/virtual-machines/extensions/agent-linux
 [virtual-machines-linux-agent-user-guide-command-line-options]:/azure/virtual-machines/extensions/agent-linux#command-line-options
 [virtual-machines-linux-capture-image]:/azure/virtual-machines/linux/capture-image
 [virtual-machines-linux-tutorial]:/azure/virtual-machines/linux/quick-create-cli
@@ -470,10 +469,6 @@ sudo service waagent restart
 [virtual-machines-windows-tutorial]:/azure/virtual-machines/windows/quick-create-portal
 [virtual-networks-nsg]:../../virtual-network/security-overview.md
 [virtual-networks-udr-overview]:../../virtual-network/virtual-networks-udr-overview.md
-
-## Next Steps
-
-Learn about [RHEL for SAP in-place upgrade](/azure/virtual-machines/workloads/redhat/redhat-in-place-upgrade#upgrade-sap-environments-from-rhel-7-vms-to-rhel-8-vms)
 
 Setting up an Azure virtual machine for SAP software deployment involves multiple steps and resources. Before you start, make sure that you meet the prerequisites for installing SAP software on virtual machines in Azure.
 
@@ -1015,8 +1010,6 @@ For more information about user-defined routes, see [User-defined routes and IP 
 > Support for the Azure Extension for SAP is provided through SAP support channels. If you need assistance with the Azure Extension for SAP, please open a support case with [SAP Support](https://support.sap.com/).
 
 When you've prepared the VM as described in [Deployment scenarios of VMs for SAP on Azure][deployment-guide-3], the Azure VM Agent is installed on the virtual machine. The next step is to deploy the Azure Extension for SAP, which is available in the Azure Extension Repository in the global Azure datacenters. For more information, see [Configure the Azure Extension for SAP][deployment-guide-4.5].
-
-## Next steps
 
 ## Next Steps
 
