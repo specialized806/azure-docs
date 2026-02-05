@@ -101,7 +101,7 @@ To use the HIDX file in your workflow, follow these steps:
 
    - 3270 built-in connector: [Upload your HIDX file to your Standard logic app resource](../logic-apps/logic-apps-enterprise-integration-maps.md?tabs=standard#add-map-to-standard-logic-app-resource).
 
-   - 3279 managed connector:
+   - 3270 managed connector:
 
      - [Upload your HIDX file to a linked integration account](../logic-apps/logic-apps-enterprise-integration-maps.md?tabs=standard#add-map-to-integration-account). Make sure that you select **HIDX** as the **Map type**.
 
