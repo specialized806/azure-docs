@@ -1,6 +1,6 @@
 ---
 title: Manage Local CSI driver placement
-description: Configure node affinity in local NVMe storage class to manage local CSI driver placement.
+description: Manage local CSI driver placement through node affinity configuration in the local NVMe storage class.
 author: fhryo-msft
 ms.service: azure-container-storage
 ms.topic: how-to
@@ -20,23 +20,23 @@ By configuring node affinity in local NVMe storage class, you can control the pl
 
 Managing the placement of Local CSI drivers is essential in the following scenarios:
 
-- Scenario 1: Mixed node pools with different capabilities. Clusters often contain multiple node pools with different instance types. Without node affinity, Local CSI driver pods may be scheduled onto nodes that don't have local NVMe disks and cannot successfully service storage requests.
+- Scenario 1: Mixed node pools with different capabilities. Clusters often contain multiple node pools with different instance types. Without node affinity, Local CSI driver pods may be scheduled onto nodes that don't have local NVMe disks and can't successfully service storage requests.
 
-- Scenario 2: Mixed node pools for distinct workloads. In large clusters, it is common to have multiple node pools, each tailored for specific types of workloads. Without node affinity, Local CSI driver pods might be scheduled onto node pools where local NVMe disks are not intended to be used, even if they are configured.
+- Scenario 2: Mixed node pools for distinct workloads. In large clusters, it's common to have multiple node pools, each tailored for specific types of workloads. Without node affinity, Local CSI driver pods may be scheduled on node pools that aren’t meant to use local NVMe disks, even if those disks are configured.
 
 ## Node affinity via StorageClass annotations
 
 The Local CSI driver placement mechanism uses:
 
-- Kubernetes (nodeAffinity)[https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#node-affinity]. Note that **preferredDuringSchedulingIgnoredDuringExecution** is not supported.
+- Kubernetes (nodeAffinity)[https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#node-affinity]. The **preferredDuringSchedulingIgnoredDuringExecution** option isn't supported.
 - Storage class annotations to express placement requirements
 - Only creation or modification of storage classes triggers nodeAffinity recomputation
 
-You can define a nodeAffinity rule for a local NVMe StorageClass using the **storageoperator.acstor.io/nodeAffinity** annotation. These rules ensure that local CSI driver pods are scheduled only on nodes that meet the specified criteria. If no nodeAffinity rule is defined, the local CSI driver pods will be deployed across all nodes in the cluster by default.
+You can define a nodeAffinity rule for a local NVMe StorageClass using the **storageoperator.acstor.io/nodeAffinity** annotation. These rules ensure that local CSI driver pods are scheduled only on nodes that meet the specified criteria. If no nodeAffinity rule is defined, local CSI driver pods are deployed across all nodes in the cluster by default.
 
 ## Ensure local CSI drivers are placed on nodes with local NVMe disks
 
-To ensure that local CSI drivers are deployed only on nodes equipped with local NVMe disks, you can configure node affinity based on instance type. Below is an example of a StorageClass configuration:
+To ensure that local CSI drivers are deployed only on nodes equipped with local NVMe disks, you can configure node affinity based on instance type. The following is an example of a StorageClass configuration:
 
 ```bash
 cat <<EOF | kubectl apply -f -
@@ -71,7 +71,7 @@ aks-mygpu2-37383660-vmss000000  Standard_L16s_v3
 
 ## Ensure local CSI drivers are placed in specific node pools
 
-You can ensure that local CSI drivers are deployed only in selected node pools by configuring node affinity based on the `agentpool` label. Below is an example of a StorageClass configuration:
+You can ensure that local CSI drivers are deployed only in selected node pools by configuring node affinity based on the `agentpool` label. The following is an example of a StorageClass configuration:
 
 ```bash
 cat <<EOF | kubectl apply -f -
@@ -107,7 +107,7 @@ aks-mygpu2-37383660-vmss000000  mygpu2
 ## Best Practices
 
 - Always label nodes explicitly before using node affinity.
-- Keep StorageClasses consistent and avoid mixing annotated and non‑annotated classes unless intentional.
+- Keep StorageClasses consistent and avoid mixing annotated and nonannotated classes unless intentional.
 - Use multiple nodeSelectorTerms to express OR‑style placement.
 - Validate node labels before deploying StorageClasses.
 - Learn more capabilities in (Kubernetes nodeAffinity)[https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/].
