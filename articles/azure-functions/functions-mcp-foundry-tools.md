@@ -70,7 +70,7 @@ The credentials that your agent needs to connect to the MCP server depend on the
 When you use an access key to connect to your MCP server endpoint, you use a shared secret key to make it more difficult for random agents to connect to your server.
 
 >[!IMPORTANT]
->While access keys can mitigate unwanted endpoint access, consider using Microsoft Entra ID authentication to secure your MCP server endpoints in production.   
+>While access keys can help prevent unwanted endpoint access, consider using Microsoft Entra ID authentication to secure your MCP server endpoints in production.   
 
 The name of the access key you need depends on your MCP server deployment:
 
@@ -139,8 +139,7 @@ For a Functions-hosted MCP server with built-in authentication, use custom OAuth
 
 1. (Optional) Select **Manage** > **Expose an API** and create or copy an existing scope.  
 
->[!IMPORTANT]
->After you configure OAuth identity passthrough in the Foundry portal, you receive a redirect URL. You must add this redirect URL to your Microsoft Entra app registration under **Manage** > **Authentication** > **Platform configurations**.
+After you configure OAuth identity passthrough in the Foundry portal, you receive a redirect URL. You must return to this Entra app registration to add this redirect URL to your Microsoft Entra app registration.
 
 ### [Unauthenticated](#tab/unauthenticated)
 
@@ -195,7 +194,7 @@ The process for creating the agent connection to the MCP server depends on your 
 
 ### [Key-based](#tab/key-based)
 
-When you use key-based authentication, the agent authenticates with your MCP server by passing a function access key in the request header.
+When you use key-based authentication, the agent authenticates by passing a function access key in the request header to your MCP server.
 
 To connect to your MCP server endpoint:
 
@@ -211,7 +210,7 @@ To connect to your MCP server endpoint:
 
     | Field | Description | Example |
     | ----- | ----------- | ------- |
-    | **Name** | A unique identifier for your MCP server. You can use your function app name as the default. | `contoso-mcp-tools` |
+    | **Name** | A unique identifier for your MCP server. Use your function app name as the default. | `contoso-mcp-tools` |
     | **Remote MCP Server endpoint** | The URL endpoint for your MCP server. | `https://contoso-mcp-tools.azurewebsites.net/runtime/webhooks/mcp` |
     | **Authentication** | The authentication method to use. | `Key-based` |
     | **Credential** | The key-value pair to authenticate with your function app. | `x-functions-key`: `aaaaaaaa-0b0b-1c1c-2d2d-333333333333` |
@@ -274,11 +273,15 @@ When you use OAuth identity passthrough, the agent prompts the user to sign in a
     | **Scopes** | The specific permissions or resource access levels your server app requests from the authorization server | `api://00001111-aaaa-2222-bbbb-3333cccc4444` |
 
     >[!NOTE]  
-    >A **Client secret** value isn't needed, so you should leave this field blank.
+    >A **Client secret** value isn't needed, so leave this field blank.
 
-1. Select **Connect** to create a connection to your MCP server endpoint. You should now see your server name listed under **Tools**.
+1. Select **Connect** to create a connection to your MCP server endpoint. 
 
-1. Select **Save** to save the MCP tool configuration in your agent.
+1. After you create your credential provider, you receive a **Redirect URL**. Before you **Close** this window, make sure to copy the URL value. You must add this redirect URL to your Entra app registration.
+
+1. Return to your Entra app registration and under **Manage** > **Authentication** select **+ Add redirect URI**. Select **Web**, paste the copied **Redirect URI** value, and select **Configure**. 
+
+1. Go back to the agent window, select **Close** > **Save** to save the MCP tool configuration in your agent.
 
 ### [Unauthenticated](#tab/unauthenticated)
 
@@ -314,6 +317,7 @@ After connecting your MCP server to your agent, verify that the tools work corre
 
 1. In the Agent Builder, find the chat window under **Playground**.
 1. Enter a prompt that should trigger one of your MCP tools. For example, if your MCP server has a greeting tool, try: `Use the greeting tool to say hello`.
+1. If you're using OAuth identity passthrough, select **Open Consent** and sign in with your Entra account.
 1. When the agent requests to invoke an MCP tool, review the tool name and arguments, and select **Approve** to allow the call.
 1. Verify the tool returns the expected result.
 
