@@ -106,12 +106,9 @@ To get the Application ID URI from the Azure portal:
 
 ### [OAuth identity](#tab/oauth-id)
 
-OAuth identity passthrough prompts users to sign in and authorize access to your MCP server. Foundry Agent Service supports two OAuth options:
+OAuth identity passthrough prompts users to sign in and authorize access to your MCP server. For a Functions-hosted MCP server with built-in authentication, use custom OAuth with a Microsoft Entra app registration. 
 
-- **Managed OAuth**: Microsoft or the MCP server publisher manages the OAuth app. No credential setup is required.
-- **Custom OAuth**: You bring your own OAuth app registration, which can be a Microsoft Entra app or any OAuth-compliant provider.
-
-For a Functions-hosted MCP server with built-in authentication, use custom OAuth with a Microsoft Entra app registration. To get the required credentials from the Azure portal:
+To get the required credentials from the Azure portal:
 
 1. Go to your function app resource in the [Azure portal](https://portal.azure.com).
 
