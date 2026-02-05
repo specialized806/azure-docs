@@ -16,11 +16,11 @@ For more information about upcoming breaking changes, see the following articles
 - [Upcoming breaking changes in Azure PowerShell][10]
 - [Azure CLI upcoming breaking changes][07]
 
-For a tool to be included in Cloud Shell, it must meet the certain criteria. For security
-compliance, tool packages become deprecated when they're no longer actively maintained. There's
-usually a 30-day notice before a package is removed from the image. We can remove a package sooner
-if there's a security vulnerability or other critical issue. For more information about the package
-inclusion criteria, see [Cloud Shell Package inclusion guide][16].
+For a tool to be included in Cloud Shell, it must meet certain criteria. For security compliance,
+tool packages become deprecated when they're no longer actively maintained. There's usually a 30-day
+notice before a package is removed from the image. We can remove a package sooner if there's a
+security vulnerability or other critical issue. For more information about the package inclusion
+criteria, see [Cloud Shell Package inclusion guide][16].
 
 You can install any tool you need in your Cloud Shell session as long as it doesn't require root
 access. For installation instructions, consult the documentation for the package you require.
