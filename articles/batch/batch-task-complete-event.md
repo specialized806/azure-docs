@@ -2,7 +2,7 @@
 title: Azure Batch task complete event
 description: Reference for Batch task complete event. This event is emitted once a task is completed, regardless of the exit code.
 ms.topic: reference
-ms.date: 01/29/2026
+ms.date: 02/05/2026
 # Customer intent: "As a cloud developer, I want to receive task completion events, so that I can monitor task durations, retry counts, and execution details for better performance analysis and troubleshooting."
 ---
 
@@ -88,7 +88,7 @@ ms.date: 01/29/2026
 |`retryCount`|Int32|The number of times the Batch service retried the task. The task is retried if it exits with a nonzero exit code, up to the specified MaxTaskRetryCount.|
 |`requeueCount`|Int32|The number of times the Batch service requeued the task as the result of a user request.<br /><br /> When nodes are removed from a pool (through resizing or shrinking) or a job is disabled, you can choose to requeue the running tasks on those nodes. This count tracks how many times a task was requeued for these reasons.|
 |`result`|String|The task result string, it could be "Success" or "Failure"|
-|[`schedulingError`](#schedulingError)|Complex Type|Contain detailed information about error.|
+|[`schedulingError`](#schedulingError)|Complex Type|Contains detailed information about error.|
 
 ###  <a name="schedulingError"></a> schedulingError
 
