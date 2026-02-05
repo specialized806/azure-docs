@@ -88,7 +88,7 @@ To determine discount amount = `( paygCostInBillingCurrency) - ( costInBillingCu
 
 To determine discount percentage =  `( paygCostInBillingCurrency - costInBillingCurrency) / paygCostInBillingCurrency * 100`
 
-For more information on cost details fields, see: [Understand cost details fields](/cost-management-billing/automate/understand-usage-details-fields.md#list-of-fields-and-descriptions)
+For more information on cost details fields, see: [Understand cost details fields](/azure/cost-management-billing/automate/understand-usage-details-fields.md#list-of-fields-and-descriptions)
 
 ## Get usage data with Azure CLI
 
