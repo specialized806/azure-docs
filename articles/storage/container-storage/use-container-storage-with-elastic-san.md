@@ -72,7 +72,7 @@ Alternatively, you can create the storage class using Terraform.
       required_providers {
         kubernetes = {
           source  = "hashicorp/kubernetes"
-          version = "~> 3.x"
+          version = "~> 3.0"
         }
       }
     }
