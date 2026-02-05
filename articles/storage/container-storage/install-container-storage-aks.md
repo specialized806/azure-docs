@@ -234,18 +234,24 @@ az account set --subscription <subscription-id>
       name           = "acstor"
       cluster_id     = azurerm_kubernetes_cluster.aks.id
       extension_type = "microsoft.azurecontainerstoragev2"
-
-      configuration_settings = {
-        enable-azure-container-storage = "true"
-      }
     }
     ```
 
-    To install Elastic SAN during deployment, set `enable-azure-container-storage` to `elasticSan` or a comma-separated list:
+    To enable storage drivers during deployment, pass the necessary Helm chart settings:
 
     ```tf
-    configuration_settings = {
-      enable-azure-container-storage = "elasticSan"
+    resource "azurerm_kubernetes_cluster_extension" "container_storage" {
+      # NOTE: the `name` parameter must be "acstor" for Azure CLI compatibility
+      name           = "acstor"
+      cluster_id     = azurerm_kubernetes_cluster.aks.id
+      extension_type = "microsoft.azurecontainerstoragev2"
+
+      configuration_settings = {
+        # Enable local NVMe
+        "csiDriverConfigs.local-csi-driver.enabled" = "true"
+        # Enable Azure Elastic SAN
+        "csiDriverConfigs.azuresan-csi-driver.enabled" = "true"
+      }
     }
     ```
 
@@ -296,14 +302,26 @@ resource "azurerm_kubernetes_cluster_extension" "container_storage" {
   name           = "acstor"
   cluster_id     = data.azurerm_kubernetes_cluster.existing.id
   extension_type = "microsoft.azurecontainerstoragev2"
-
-  configuration_settings = {
-    enable-azure-container-storage = "true"
-  }
 }
 ```
 
-To install Elastic SAN or local NVMe during deployment, set `enable-azure-container-storage` to a storage type or comma-separated list (for example, `elasticSan` or `ephemeralDisk,elasticSan`).
+To enable storage drivers during deployment, pass the necessary Helm chart settings:
+
+```tf
+resource "azurerm_kubernetes_cluster_extension" "container_storage" {
+  # NOTE: the `name` parameter must be "acstor" for Azure CLI compatibility
+  name           = "acstor"
+  cluster_id     = data.azurerm_kubernetes_cluster.existing.id
+  extension_type = "microsoft.azurecontainerstoragev2"
+
+  configuration_settings = {
+    # Enable local NVMe
+    "csiDriverConfigs.local-csi-driver.enabled" = "true"
+    # Enable Azure Elastic SAN
+    "csiDriverConfigs.azuresan-csi-driver.enabled" = "true"
+  }
+}
+```
 
 Run `terraform init` (if this is a new working directory) followed by `terraform apply` to install Azure Container Storage on the targeted cluster.
 
