@@ -20,7 +20,7 @@ When deploying or developing applications for Microsoft Planetary Computer Pro i
 > [!NOTE]
 > The [Open Planetary Computer](https://planetarycomputer.microsoft.com) public data catalog (`planetarycomputer.microsoft.com`) works identically in both Azure Public and Azure US Government cloud environments. No changes are required when accessing Open Planetary Computer data from either environment.
 
-## Supported Regions
+## Supported regions
 
 Microsoft Planetary Computer Pro is currently available in the following US Government Cloud Regions:
 - US Gov Virginia
