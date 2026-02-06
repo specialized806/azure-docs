@@ -1,9 +1,9 @@
-- name: Azure Durable Documentation
+- name: Durable Task Documentation
   href: index.yml
 - name: Overview
   expanded: true
   items:
-  - name: What is Azure Durable?
+  - name: What is Durable Task?
     href: durable-overview.md
   - name: Choose your orchestration framework
     href: ./durable-task-scheduler/choose-orchestration-framework.md

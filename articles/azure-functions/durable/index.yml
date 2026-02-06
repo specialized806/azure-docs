@@ -1,11 +1,11 @@
 ### YamlMime:Landing
 
-title: Azure Durable documentation # <60 chars
-summary: Azure Durable automatically handles retries, state persistence, and crash recovery so you can focus on your business logic. # < 160 chars
+title: Durable Task documentation # <60 chars
+summary: Durable Task automatically handles retries, state persistence, and crash recovery so you can focus on your business logic. # < 160 chars
 
 metadata:
-  title: Azure Durable documentation
-  description: Azure Durable automatically handles retries, state persistence, and crash recovery so you can focus on your business logic.
+  title: Durable Task documentation
+  description: Durable Task automatically handles retries, state persistence, and crash recovery so you can focus on your business logic.
   ms.service: azure-functions
   ms.topic: landing-page
   author: hhunter-ms 
@@ -18,11 +18,11 @@ landingContent:
 # Cards and links should be based on top customer tasks or top subjects
 # Start card title with a verb
   # Card (optional)
-  - title: About Azure Durable
+  - title: About Durable Task
     linkLists:
       - linkListType: overview
         links:
-          - text: What is Azure Durable?
+          - text: What is Durable Task?
             url: durable-overview.md
       - linkListType: concept
         links:
