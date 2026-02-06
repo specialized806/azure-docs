@@ -297,30 +297,26 @@
   items:
   - name: Overview
     href: durable-functions-storage-providers.md
-  - name: Durable Task SDKs
+  - name: Durable Task Scheduler
     items:
-    - name: Durable Task Scheduler
-      items:
-      - name: Overview
-        href: ./durable-task-scheduler/durable-task-scheduler.md
-      - name: Develop
-        href: ./durable-task-scheduler/develop-with-durable-task-scheduler.md
-      - name: Identity-based access
-        href: ./durable-task-scheduler/durable-task-scheduler-identity.md
-      - name: Monitoring dashboard
-        href: ./durable-task-scheduler/durable-task-scheduler-dashboard.md
-      - name: Auto-purge
-        href: ./durable-task-scheduler/durable-task-scheduler-auto-purge.md
-      - name: Throughput benchmarks
-        href: ./durable-task-scheduler/durable-task-scheduler-work-item-throughput.md
-      - name: Billing
-        href: ./durable-task-scheduler/durable-task-scheduler-dedicated-sku.md
-      - name: Troubleshoot
-        href: ./durable-task-scheduler/troubleshoot-durable-task-scheduler.md
-  - name: Durable Functions supported providers
-    items:
-    - name: Durable Task Scheduler
+    - name: Overview
       href: ./durable-task-scheduler/durable-task-scheduler.md
+    - name: Develop
+      href: ./durable-task-scheduler/develop-with-durable-task-scheduler.md
+    - name: Identity-based access
+      href: ./durable-task-scheduler/durable-task-scheduler-identity.md
+    - name: Monitoring dashboard
+      href: ./durable-task-scheduler/durable-task-scheduler-dashboard.md
+    - name: Auto-purge
+      href: ./durable-task-scheduler/durable-task-scheduler-auto-purge.md
+    - name: Throughput benchmarks
+      href: ./durable-task-scheduler/durable-task-scheduler-work-item-throughput.md
+    - name: Billing
+      href: ./durable-task-scheduler/durable-task-scheduler-dedicated-sku.md
+    - name: Troubleshoot
+      href: ./durable-task-scheduler/troubleshoot-durable-task-scheduler.md
+  - name: Durable Functions only
+    items:
     - name: Azure Storage
       href: durable-functions-azure-storage-provider.md
     - name: MSSQL

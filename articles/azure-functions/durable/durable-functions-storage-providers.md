@@ -7,12 +7,16 @@ ms.topic: conceptual
 ms.date: 02/05/2026
 ms.author: azfuncdf
 zone_pivot_groups: azure-durable-approach
-#Customer intent: As a developer, I want to understand what storage providers are available Durable Functions and which one I should choose.
+#Customer intent: As a developer, I want to understand what storage providers are available in Durable Functions and the Durable Task SDKs and which one I should choose.
 ---
 
 # Manage orchestration data using storage providers
 
-Durable Functions and the Durable Task SDKs with Azure Durable support various backend storage providers. You can configure your apps to use the two types of storage providers available to Azure Durable:
+When you build workflows with Durable Functions or the Durable Task SDKs, your orchestrations need somewhere to store their state. Storage providers handle this by persisting orchestration history, entity state, and internal messages to a backend of your choice. This durable storage is what makes your workflows reliable—they can pause, scale, restart, and recover without losing progress.
+
+::: zone pivot="durable-functions"
+
+Durable Functions support various backend storage providers. You can configure your apps to use the two types of storage providers available to Durable Task:
 
 - Azure managed:
   - Durable Task Scheduler 
@@ -21,15 +25,16 @@ Durable Functions and the Durable Task SDKs with Azure Durable support various b
   - Netherite
   - Microsoft SQL Server (MSSQL)
 
-In this article, you:
-
-> [!div class="checklist"]
->
-> - Compare and contrast all supported backend providers. 
-> - Learn how to get started using them.
-
 > [!NOTE]
 > Currently, you aren't able to migrate data from one storage backend provider to another. If you want to use a new provider, create a new app configured with the new provider.
+
+::: zone-end
+
+::: zone pivot="durable-task-sdks"
+
+The Durable Task SDKs support the Azure managed [Durable Task Scheduler](./durable-task-scheduler/durable-task-scheduler.md) as a storage provider. 
+
+::: zone-end
 
 ## <a name="dts"></a>Durable Task Scheduler
 
