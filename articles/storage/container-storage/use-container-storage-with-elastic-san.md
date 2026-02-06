@@ -27,6 +27,8 @@ Azure Elastic SAN is a managed, shared block-storage service that provides a cen
 
 [!INCLUDE [container-storage-prerequisites](../../../includes/container-storage-prerequisites.md)]
 
+- [Review the installation instructions](install-container-storage-aks.md) and ensure Azure Container Storage is properly installed.
+
 ## Limitations
 
 The following features aren't supported when you use Azure Container Storage to deploy and orchestrate an Elastic SAN:
