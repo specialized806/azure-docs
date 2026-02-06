@@ -50,7 +50,7 @@ We recommend that you run the latest stable version of our container image. Give
 
 - **Fixes** 
 
-    If we discover a bug, CVE, or performance issue in a supported version, the fix appears as a patch in the latest minor version. For example, a bug is found in the container image 2.0.0, the fix lands in 2.2.x. 
+    If we discover a bug, CVE, or performance issue in a supported version, the fix appears as a patch in the latest minor version. For example, if a bug is found in the container image 2.0.0, the fix lands in 2.2.x. 
 
 ### Unsupported versions 
 
