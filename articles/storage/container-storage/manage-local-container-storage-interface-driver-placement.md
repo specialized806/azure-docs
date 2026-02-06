@@ -4,7 +4,7 @@ description: Manage local CSI driver placement through node affinity configurati
 author: fhryo-msft
 ms.service: azure-container-storage
 ms.topic: how-to
-ms.date: 2/5/2025
+ms.date: 2/5/2026
 ms.author: fryu
 ## Customer Intent: As a Kubernetes administrator, I want to manage local CSI driver placement through node affinity configuration in the local NVMe storage class.
 ---
