@@ -28,7 +28,7 @@ Search-AzGraph -Query "Resources | project id, name | order by id asc" -First 10
 ```
 
 > [!IMPORTANT]
-> The response won't include the `$skipToken` if:
+> The response won't contain `$skipToken` if:
 > - The query contains a `limit` or `sample`/`take` operator.
 > - All output columns are either `dynamic` or `null` type.
 
@@ -45,9 +45,7 @@ This article explains pagination considerations and provides strategies for scen
 If your scenario requires a more consistent retrieval of resources, consider one of the following approaches. These strategies partition your data in a way that's resilient to changes and can also improve performance through parallel execution. 
 
 > [!NOTE]
-> These client-side strategies move the pagination logic to your application, which helps avoid skip-token limitations. However, they don't guarantee complete consistency across calls. Resources might be added or deleted between your initial query (for counting or retrieving IDs) and subsequent data fetches. 
->
-> This can result in discrepancies such as a mismatch between expected count and total resources fetched, or missing results if a resource was deleted during the operation. For scenarios requiring strict consistency, consider whether point-in-time accuracy is critical for your use case. 
+> These client-side strategies move the pagination logic to your application, which helps avoid skip-token limitations. However, they don't guarantee complete consistency across calls. Resources might be added or deleted between your initial query (for counting or retrieving IDs) and subsequent data fetches. This can result in discrepancies such as a mismatch between expected count and total resources fetched, or missing results if a resource was deleted during the operation. For scenarios requiring strict consistency, consider whether point-in-time accuracy is critical for your use case. 
 
 #### Option 1: Hash-based data partitioning 
 
@@ -63,7 +61,7 @@ Resources
 | count 
 ``` 
 
-Use the count to determine the number of partitions needed. For example, if your count returns 7,712 records and since ARG size limit dictates that each partition can contain at most 1000 records, you would need at least 8 partitions. 
+Use the count to determine the number of partitions needed. For example, if your count returns 7,712 records and since ARG size limit dictates that each partition can contain at most 1,000 records, you would need at least eight partitions. 
 
 ##### Step 2: Query each position
 
@@ -174,9 +172,9 @@ Continue until all IDs are covered.
 - **Parallel execution:** Batch queries can run simultaneously.
 
 
-If the response of the query is huge (> 16MB) and doesn’t fit in a single call, it is suggested to use the previously mentioned partitioning technique to fetch all the data in multiple calls.
+If the response of the query is huge (> 16 MB) and doesn’t fit in a single call, it's suggested to use the previously mentioned partitioning technique to fetch all the data in multiple calls.
 
-The following is an example of a query that might exceed response size limit of 16MB:
+The following is an example of a query that might exceed response size limit of 16 MB:
 
 ```kusto
 Resources 
@@ -233,7 +231,7 @@ Resources
 
 If multiple VMs share the same location value (for example, eastus), their relative order isn't deterministic. When paginating: 
 
-**Page 1 request:** Retrieve the first 5 virtual machines. 
+**Page 1 request:** Retrieve the first five virtual machines. 
 
 | Position | Name| Location|
 |----|-----|-----|
@@ -243,7 +241,7 @@ If multiple VMs share the same location value (for example, eastus), their relat
 |4| vm-cache-01 | eastus | 
 |5| vm-api-01 | eastus | 
 
-**Page 2 request:** Skip 5 records and retrieve the next 5.
+**Page 2 request:** Skip five records and retrieve the next 5.
 
 Because all these VMs have the same location value (eastus), the query engine has no deterministic way to order them. On the second call, the engine might return: 
 
@@ -255,7 +253,7 @@ Because all these VMs have the same location value (eastus), the query engine ha
 |4| vm-backup-01 | westus | 
 |5| vm-test-01 | westus | 
 
-Notice that *vm-app-01* appears in both pages (duplicate). Due to the same reordering when there is lack of sorting , a record for e.g *vm-db-01* might never appear in any subsequent page (missing). 
+Notice that *vm-app-01* appears in both pages (duplicate). Due to the same reordering when there's lack of sorting, a record for e.g *vm-db-01* might never appear in any subsequent page (missing). 
 
 #### Solution: sort by a unique column
 
@@ -307,7 +305,7 @@ Similarly, if a new resource is created between requests, you might see duplicat
 
 ### Summary
 
-From this article you were able to learn:
+From this article, you were able to learn:
 
 - How sorting by non-unique columns can cause duplicate or missing records during pagination 
 - How dynamic environments with changing resources can affect paginated results 
