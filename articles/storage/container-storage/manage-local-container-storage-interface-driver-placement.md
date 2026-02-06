@@ -14,7 +14,7 @@ ms.custom: references_regions
 
 In Kubernetes clusters, CSI drivers are typically deployed as DaemonSets, running on all nodes by default. However, in production environments, certain nodes may be equipped with specialized hardware (such as local NVMe disks), specific instance types, or designated roles that make them more suitable for particular storage workloads.
 
-Azure Container Storage uses local CSI driver to manage local NVMe volumes. By configuring node affinity in local NVMe storage class, you can control the placement of Local CSI drivers to ensure they run only on nodes that meet the designed conditions. This approach helps optimize resource utilization and minimizes the impact on other nodes in the cluster.
+Azure Container Storage uses the local CSI driver to manage local NVMe volumes. By configuring node affinity in the local NVMe storage class, you can control the placement of local CSI drivers to ensure they run only on nodes that meet the designed conditions. This approach helps optimize resource utilization and minimizes the impact on other nodes in the cluster.
 
 ## When to consider managing local CSI driver placement
 
