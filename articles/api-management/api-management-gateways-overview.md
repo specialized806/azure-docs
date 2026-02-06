@@ -198,6 +198,13 @@ For estimated maximum gateway throughput in the API Management service tiers, se
 
 Scale capacity by adding and removing scale [units](upgrade-and-scale.md) in the workspace gateway.
 
+## Gateway constraints
+
+The following table lists constraints that apply to requests and responses handled by the API Management gateway.
+
+[!INCLUDE [api-management-gateway-constraints](../../includes/api-management-gateway-constraints.md)]
+
+
 ## Gateway health check endpoint
 
 In all tiers except the Consumption tier, Azure API Management provides a built-in gateway health check endpoint at path `/status-0123456789abcdef`. Reach this endpoint to help confirm that the API gateway is available and functioning correctly. It doesn't test backend APIs, only the gateway itself.

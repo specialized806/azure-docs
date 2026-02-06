@@ -2,7 +2,7 @@
 title: Azure subscription and service limits, quotas, and constraints
 description: Understand common Azure subscription and service limits, quotas, and constraints. This article includes information about how to increase limits along with maximum values.
 ms.topic: article
-ms.date: 01/23/2025
+ms.date: 02/05/2026
 ms.custom: ignite-2024
 #customer intent: As a subscription owner or cloud operator, I want an authoritative list of subscription and service limits and guidance for requesting increases so that I can plan capacity and avoid service interruptions.
 ---
@@ -74,18 +74,14 @@ Note that subscription IDs must be non-empty GUIDs.
 
 This section provides information about limits that apply to Azure API Management instances in different [service tiers](../../api-management/api-management-features.md), including the following:
 
-- [API Management classic tiers](#limits---api-management-classic-tiers)
-- [API Management v2 tiers](#limits---api-management-v2-tiers)
-- [API Management workspaces](#limits---api-management-workspaces)
-- [Developer portal in API Management v2 tiers](#limits---developer-portal-in-api-management-v2-tiers)
+- [Resource limits in API Management classic and v2 tiers](#limits---api-management-classic-and-v2-tiers)
+- [Resource limits in API Management workspaces](#limits---api-management-workspaces)
+- [Resource limits in developer portal in API Management v2 tiers](#limits---developer-portal-in-api-management-v2-tiers)
+- [API Management gateway constraints](#constraints---api-management-gateway)
 
-### Limits - API Management classic tiers
+### Limits - API Management classic and v2 tiers
 
 [!INCLUDE [api-management-service-limits](../../../includes/api-management-service-limits.md)]
-
-### Limits - API Management v2 tiers
-
-[!INCLUDE [api-management-service-limits-v2](../../../includes/api-management-service-limits-v2.md)]
 
 ### Limits - API Management workspaces
 
@@ -94,6 +90,10 @@ This section provides information about limits that apply to Azure API Managemen
 ### Limits - Developer portal in API Management v2 tiers
 
 [!INCLUDE [api-management-developer-portal-limits-v2](../../../includes/api-management-developer-portal-limits-v2.md)]
+
+### Constraints - API Management gateway
+
+[!INCLUDE [api-management-gateway-constraints](../../../includes/api-management-gateway-constraints.md)]
 
 ## Azure App Service limits
 
