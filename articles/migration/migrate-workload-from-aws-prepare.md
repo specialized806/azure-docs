@@ -73,7 +73,7 @@ During this phase, you build your Azure environment, refactor any code if needed
 
 - **Prepare your operational functions.** Work with your operations team to implement workload monitoring in Azure. Set up Azure Monitor or Application Insights with dashboards and alert rules equivalent to your AWS CloudWatch alarms. Train the operations team on these tools. Collaborate with the security team to implement security monitoring and validate the Azure architecture. Validate that you can conduct your workload's routine, unplanned, and emergency operational tasks on Azure.
 
-For guidance on preparing your workloads and building your Azure environment, see [Prepare workloads for the cloud](/azure/cloud-adoption-framework/migrate/prepare-workloads-cloud).
+For more information about preparing your workloads and building your Azure environment, see [Prepare workloads for the cloud](/azure/cloud-adoption-framework/migrate/prepare-workloads-cloud).
 
 ## Checklist
 
@@ -95,4 +95,4 @@ For guidance on preparing your workloads and building your Azure environment, se
 ## Next step
 
 > [!div class="nextstepaction"]
-> [Run your migration](./migrate-workload-from-aws-execute.md)
+> [Run your migration](./migrate-workload-from-aws-run.md)

@@ -43,7 +43,7 @@ Use [Workload Discovery on AWS](https://aws.amazon.com/solutions/implementations
 The migration of a workload can span several weeks or months. The duration depends on the complexity of the workload and your migration and cutover strategy. The following timeline shows a typical workload migration that uses an equivalent approach for a moderately complex workload. A moderately complex workload typically includes multiple components and dependencies, but it's not mission-critical and doesn't integrate deeply with other systems.
 
 :::image type="complex" source="./images/migrate-from-aws-phases.svg" alt-text="Diagram that shows three phases of workload migration." lightbox="./images/migrate-from-aws-phases.svg" border="false":::
-    The diagram shows three phases of workload migration from AWS to Azure. Across the top, three labeled boxes indicate the following phases and durations: before migration (two to four weeks), during migration (three to seven weeks), and after migration (one to two weeks). Each box includes a summary of key activities, like planning, infrastructure setup, and optimization. Underneath the boxes, a horizontal sequence of five icons represents the plan, prepare, execute, evaluate, and decommission steps.
+    The diagram shows three phases of workload migration from AWS to Azure. Across the top, three labeled boxes indicate the following phases and durations: before migration (two to four weeks), during migration (three to seven weeks), and after migration (one to two weeks). Each box includes a summary of key activities, like planning, infrastructure setup, and optimization. Underneath the boxes, a horizontal sequence of five icons represents the plan, prepare, run, evaluate, and decommission steps.
 :::image-end:::
 
 ## Workload team responsibility
@@ -78,7 +78,7 @@ To help you plan and successfully migrate your workload, proceed through the fiv
 > [!div class="checklist"]
 > * [1. Plan](/azure/migration/migrate-workload-from-aws-plan)
 > * [2. Prepare](/azure/migration/migrate-workload-from-aws-prepare)
-> * [3. Execute](/azure/migration/migrate-workload-from-aws-execute)
+> * [3. Run](/azure/migration/migrate-workload-from-aws-run)
 > * [4. Evaluate](/azure/migration/migrate-workload-from-aws-evaluate)
 > * [5. Decommission](/azure/migration/migrate-workload-from-aws-decommission)
 

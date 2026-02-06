@@ -18,8 +18,8 @@ items:
         href: ./migrate-workload-from-aws-plan.md
       - name: 2. Prepare
         href: ./migrate-workload-from-aws-prepare.md
-      - name: 3. Execute
-        href: ./migrate-workload-from-aws-execute.md
+      - name: 3. Run
+        href: ./migrate-workload-from-aws-run.md
       - name: 4. Evaluate
         href: ./migrate-workload-from-aws-evaluate.md
       - name: 5. Decommission
