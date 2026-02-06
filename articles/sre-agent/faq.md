@@ -1,9 +1,11 @@
 ---
 title: Azure SRE Agent Preview frequently asked questions
 description: Frequently asked questions in Azure SRE Agent.
+#customer intent: As an IT admin, I want to resolve permissions errors in Azure SRE Agent so that I can ensure proper access for users.
 author: craigshoemaker
 ms.author: cshoe
-ms.topic: concept-article
+ms.reviewer: cshoe
+ms.topic: faq
 ms.date: 10/13/2025
 ms.service: azure-sre-agent
 ---
