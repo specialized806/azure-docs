@@ -693,27 +693,27 @@
     href: functions-app-settings.md
   - name: Triggers and bindings
     items:
-    - name: Azure Cache for Redis
+    - name: Azure Managed Redis
       items:
       - name: Overview
-        displayName: Azure Cache for Redis
+        displayName: Azure Managed Redis
         href: functions-bindings-cache.md
       - name: Trigger
         items:
         - name: Pub Sub
-          displayName: Azure Cache for Redis
+          displayName: Azure Managed Redis
           href: functions-bindings-cache-trigger-redispubsub.md
         - name: List
-          displayName: Azure Cache for Redis
+          displayName: Azure Managed Redis
           href: functions-bindings-cache-trigger-redislist.md
         - name: Stream
-          displayName: Azure Cache for Redis
+          displayName: Azure Managed Redis
           href: functions-bindings-cache-trigger-redisstream.md
       - name: Input
-        displayName: Azure Cache for Redis
+        displayName: Azure Managed Redis
         href: functions-bindings-cache-input.md
       - name: Output
-        displayName: Azure Cache for Redis
+        displayName: Azure Managed Redis
         href: functions-bindings-cache-output.md
     - name: Azure Cosmos DB
       items:
