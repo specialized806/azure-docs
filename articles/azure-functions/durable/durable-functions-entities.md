@@ -896,16 +896,6 @@ Entity functions aren't currently supported in Java.
 
 ## Entity coordination
 
-Sometimes you need to coordinate operations across multiple entities. For example, in a banking application, entities can represent individual bank accounts. When you transfer funds from one account to another, you need to make sure the source account has enough funds. You also need to update both accounts in a single, consistent transaction.
-
-### Example: Transfer funds (C#)
-
-Entity-to-entity signaling isn't currently supported in the Durable Task SDKs. Use an orchestrator to coordinate communication between entities instead.
-
-::: zone-end
-
-## Entity coordination
-
 ::: zone pivot="durable-functions"
 
 Sometimes you need to coordinate operations across multiple entities. For example, in a banking application, entities can represent individual bank accounts. When you transfer funds from one account to another, you need to make sure the source account has enough funds. You also need to update both accounts as one consistent operation.
