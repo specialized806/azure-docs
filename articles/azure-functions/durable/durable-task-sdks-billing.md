@@ -9,6 +9,7 @@ ms.date: 02/06/2026
 ms.topic: conceptual
 ms.service: azure-functions
 ms.subservice: durable
+ai-usage: ai-generated
 #Customer intent: As a developer, I want to understand how using the Durable Task SDKs influences my Azure consumption bill.
 ---
 
