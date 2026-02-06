@@ -78,7 +78,7 @@ This section shows you how to configure a custom response header using the `set-
 1. To configure the Set headers policy:
 
    1. Under **Name**, enter *Custom*.
-   1. Under **Value**, select **+ Add value**. Enter *\<My custom value>*.
+   1. Under **Value**, select **+ Add value**. Enter *My custom value*.
    1. Select **Save**.
   
    After configuration, a **set-header** policy element appears in the **Outbound processing** section.
@@ -97,18 +97,17 @@ This section shows how to add protection to your backend API by configuring rate
 
    :::image type="content" source="media/transform-api/inbound-policy-code.png" lightbox="media/transform-api/inbound-policy-code.png" alt-text="Screenshot of navigating to inbound policy code editor in the portal.":::
 
-1. Position the cursor inside the **\<inbound>** element on a blank line. Then, select **Show snippets** at the top-right corner of the screen.
+1. Position the cursor inside the `<inbound>` element on a blank line. Then, select **Show snippets** at the top-right corner of the screen.
 
     :::image type="content" source="media/transform-api/show-snippets-2.png" alt-text="Screenshot of selecting show snippets in inbound policy editor in the portal.":::
 
 1. In the right window, under **Access restriction policies**, select **Limit call rate per key**. 
 
-    The **\<rate-limit-by-key />** element is added at the cursor. 
+    The `<rate-limit-by-key />` element is added at the cursor. 
 
    :::image type="content" source="media/transform-api/limit-call-rate-per-key.png" alt-text="Screenshot of inserting limit call rate per key policy in the portal.":::
 
-1. Modify your **\<rate-limit-by-key />** code in the  **`<inbound>`** element to the following code. Then select **Save**.
-
+1. Modify your `<rate-limit-by-key />` code in the `<inbound>` element to the following code. Then select **Save**.
     ```xml
     <rate-limit-by-key calls="3" renewal-period="15" counter-key="@(context.Subscription.Id)" />
     ```
