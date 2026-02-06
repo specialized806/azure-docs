@@ -1,6 +1,6 @@
 ---
-title: What is Azure Durable?
-description: Learn more about Azure Durable and how you can use it to build fault-tolerant workflows that automatically handle failures, retries, and state persistence.
+title: What is Durable Task?
+description: Learn more about Durable Task and how you can use it to build fault-tolerant workflows that automatically handle failures, retries, and state persistence.
 author: hhunter-ms
 ms.author: hannahhunter
 ms.reviewer: azfuncdf
@@ -10,9 +10,9 @@ ms.service: azure-functions
 ms.subservice: durable
 ---
 
-# What is Azure Durable?
+# What is Durable Task?
 
-Build workflows that never fail. Azure Durable automatically handles retries, state persistence, and crash recovery—so you can focus on your business logic.
+Build workflows that never fail. Durable Task automatically handles retries, state persistence, and crash recovery—so you can focus on your business logic.
 
 | Component | Description | Best For |
 |-----------|-------------|----------|
