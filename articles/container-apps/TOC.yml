@@ -191,6 +191,8 @@ items:
           href: gpu-types.md
         - name: Tutorials
           items:
+            - name: Build an AI image generator with Azure Functions
+              href: tutorial-gpu-ai-image-generator.md
             - name: Generate images with serverless GPUs
               href: gpu-image-generation.md
             - name: Deploy an NVIDIA Llama3 NIM
