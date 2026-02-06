@@ -68,11 +68,11 @@ items:
     items:
       - name: Frequently asked questions
         items:
-          - name: General FAQ
-            href: faq-general.md
-          - name: Troubleshooting FAQ
+          - name: General
+            href: faq.md
+          - name: Troubleshooting
             href: faq-troubleshooting.md
-          - name: Security and compliance FAQ
+          - name: Security and compliance
             href: faq-security-compliance.md
       - name: Billing
         href: billing.md
