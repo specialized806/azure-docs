@@ -19,7 +19,7 @@ ms.custom: Include file
 > * When counting the number of API-related resources (such as API operations and tags), API Management also includes API versions and revisions.
 >
 
-| Entity/Resource | Consumption | Developer | Basic<br/><br/>Basic v2 | Standard<br><br/>Standard v2 | Premium<br/><br/>Premium v2 |
+| Entity/Resource | Consumption | Developer | Basic/<br/>Basic v2 | Standard/<br/>Standard v2 | Premium/<br/>Premium v2 |
 |-----------------|-------------|-----------|-------|----------|---------| 
 | API operations | 3,000 | 3,000 | 10,000 | 50,000 | 75,000 |
 | API tags | 1,500 | 1,500 | 1,500 | 2,500 | 15,000 |
