@@ -1,5 +1,6 @@
 ---
-title: Durable Functions billing - Azure Functions
+title: Durable Functions billing
+titleSuffix: Durable Task
 description: Learn about the internal behaviors of Durable Functions and how they affect billing for Azure Functions.
 author: cgillum
 reviewer: hhunter-ms
