@@ -20,7 +20,6 @@ Azure Container Storage is a cloud-based volume management, deployment, and orch
 ## Prerequisites
 
 [!INCLUDE [container-storage-prerequisites](../../../includes/container-storage-prerequisites.md)]
-
 - If you haven't already created an AKS cluster, follow the instructions for [Installing an AKS Cluster](install-container-storage-aks-version-1.md).
 
 ## Getting started

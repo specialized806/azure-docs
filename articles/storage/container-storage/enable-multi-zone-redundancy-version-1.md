@@ -19,7 +19,6 @@ You can improve stateful application availability by using multi-zone storage po
 ## Prerequisites
 
 [!INCLUDE [container-storage-prerequisites](../../../includes/container-storage-prerequisites.md)]
-
 - You'll need an AKS cluster with a node pool of at least three virtual machines (VMs) for the cluster nodes, each with a minimum of four virtual CPUs (vCPUs).
 
 ## Create a multi-zone storage pool
