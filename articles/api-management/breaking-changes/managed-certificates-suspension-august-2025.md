@@ -6,7 +6,7 @@ author: dlepow
 ms.service: azure-api-management
 ms.topic: reference
 ai-usage: ai-assisted
-ms.date: 01/26/2026
+ms.date: 02/06/2026
 ms.author: danlep
 ---
 
@@ -46,15 +46,17 @@ If you already have managed certificates for your custom domains, do the followi
 
 ### Step 2: Configure DNS records
 
+Configure DNS records for your custom domain to point to your API Management gateway. The type of DNS record you need to add depends on your API Management tier.
+
 #### DNS records for Developer, Basic, Standard, or Premium tier
 
-1. Add either a [CNAME](..configure-custom-domain.md?tabs=managed#cname-record) or A-record with your DNS provider. 
+1. Add either a [CNAME](../configure-custom-domain.md?tabs=managed#cname-record) or A-record with your DNS provider. 
 
 1. Add DigiCert as an authorized certificate authority (CA) in Azure DNS. For this, create a specific CAA record set within your domain's DNS zone using the Azure portal or other management tools.
 
-#### DNS record for Consumption tier
+#### DNS records for Consumption tier
 
-1. Add either a [CNAME](../configure-custom-domain.md?tabs=managed#cname-record) or [TXT](../articles/api-management/configure-custom-domain?tabs=managed#txt-record) record with your DNS provider. If you configure both, the TXT record takes precedence.
+1. Add either a [CNAME](../configure-custom-domain.md?tabs=managed#cname-record) or [TXT](../configure-custom-domain.md?tabs=managed#txt-record) record with your DNS provider. If you configure both, the TXT record takes precedence.
 1. Add DigiCert as an authorized certificate authority (CA) in Azure DNS. For this, you need to create a specific CAA record set within your domain's DNS zone using the Azure portal or other management tools
 
 ### Step 3: Allow API Management service access to port 80
