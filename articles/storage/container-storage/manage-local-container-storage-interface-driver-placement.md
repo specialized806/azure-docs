@@ -7,7 +7,7 @@ ms.topic: how-to
 ms.date: 2/5/2025
 ms.author: fryu
 ms.custom: references_regions
-## Customer Intent: As a Kubernetes administrator, I want to configure Azure Container Storage to use local NVMe for ephemeral volumes. Additionally, I want to ensure that these volumes are utilized only on nodes specifically designed to process data with local high-performance storage.
+## Customer Intent: As a Kubernetes administrator, I want to manage local CSI driver placement through node affinity configuration in the local NVMe storage class.
 ---
 
 # Manage local CSI driver placement with node affinity
