@@ -10,7 +10,7 @@ ms.custom: references_regions
 ## Customer Intent: As a Kubernetes administrator, I want to configure Azure Container Storage to use local NVMe for ephemeral volumes. Additionally, I want to ensure that these volumes are utilized only on nodes specifically designed to process data with local high-performance storage.
 ---
 
-# Manage Local CSI driver placement with node affinity
+# Manage local CSI driver placement with node affinity
 
 In Kubernetes clusters, CSI drivers are typically deployed as DaemonSets, running on all nodes by default. However, in production environments, certain nodes may be equipped with specialized hardware (such as local NVMe disks), specific instance types, or designated roles that make them more suitable for particular storage workloads.
 
