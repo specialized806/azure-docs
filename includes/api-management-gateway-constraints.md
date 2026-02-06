@@ -11,7 +11,7 @@ ms.author: danlep
 ms.custom: Include file
 ---
 
-<!-- Constraints - API Management v2 tiers  -->
+<!-- Constraints - API Management gateways  -->
 
 
 | Gateway constraint | Value | 
