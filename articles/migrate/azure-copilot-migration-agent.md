@@ -14,7 +14,7 @@ ms.date: 01/20/2026
 
 Azure Copilot migration agent is a planning‑focused experience that helps you plan and analyze migrations by reasoning over Azure Migrate data.
 
-The migration agent supports migration planning, analysis, and decision making, but not migration execution. You can interact with the Agent using naturallanguage prompts to explore inventory, migration readiness, strategies, ROI considerations, and landing zone requirements. 
+The migration agent supports migration planning, analysis, and decision making, but not migration execution. You can interact with the Agent using natural language prompts to explore inventory, migration readiness, strategies, ROI considerations, and landing zone requirements. 
 
 **Migration planning and analysis capabilities**: Azure Copilot migration agent provides comprehensive analysis and guidance across the following phases of your migration journey: 
 
