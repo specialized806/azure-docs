@@ -18,7 +18,7 @@ ms.custom:
 This article describes how to use Azure API Center to maintain an inventory (or *registry*) of remote model context protocol (MCP) servers and help stakeholders discover them through the API Center portal. MCP servers expose backend APIs or data sources in a standard way to AI agents and models that consume them.
 
 > [!NOTE]
-> New! MCP servers registered in your API Center can now be integrated with Azure AI Foundry's tool catalogs, enabling you to govern MCP tools and make them available to AI agents. Learn more in  [Tool catalog for agents in Azure AI Foundry](/azure/ai-foundry/agents/concepts/tool-catalog?view=foundry)and [Private tool catalogs for Azure AI Foundry agents](/azure/ai-foundry/agents/how-to/private-tool-catalog?view=foundry).
+> New! MCP servers registered in your API Center can now be integrated with Azure AI Foundry's tool catalogs, enabling you to govern MCP tools and make them available to AI agents. Learn more in  [Tool catalog for agents in Azure AI Foundry](/azure/ai-foundry/agents/concepts/tool-catalog)and [Private tool catalogs for Azure AI Foundry agents](/azure/ai-foundry/agents/how-to/private-tool-catalog).
 
 [!INCLUDE [about-mcp-servers](includes/about-mcp-servers.md)]
 
