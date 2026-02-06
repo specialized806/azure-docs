@@ -36,10 +36,34 @@ If you need to add new managed certificates, plan to do so before August 15, 202
 
 If you already have managed certificates for your custom domains, do the following to ensure continued access:
 
-- Ensure that your API Management service allows [inbound traffic from DigiCert IP addresses on port 80](#allow-access-to-digicert-ip-addresses). This access is now required for the certificate autorenewal process.
+1. Ensure that your API Management service [allows inbound traffic from DigiCert IP addresses on port 80](#step-1-allow-access-to-digicert-ip-addresses). This access is now required for the certificate autorenewal process.
+1. [Configure DNS records](#step-2-configure-dns-records) to resolve your custom domain name.
+1. [Allow API management service access to port 80](#step-3-allow-api-management-service-access-to-port-80) if you have inbound network restrictions in place.
 
+### Step 1: Allow access to DigiCert IP addresses
 
 [!INCLUDE [api-management-managed-certificate-ip-access.md](../../../includes/api-management-managed-certificate-ip-access.md)]
+
+### Step 2: Configure DNS records
+
+#### DNS records for Developer, Basic, Standard, or Premium tier
+
+1. Add either a [CNAME](..configure-custom-domain.md?tabs=managed#cname-record) or A-record with your DNS provider. 
+
+1. Add DigiCert as an authorized certificate authority (CA) in Azure DNS. For this, create a specific CAA record set within your domain's DNS zone using the Azure portal or other management tools.
+
+#### DNS record for Consumption tier
+
+1. Add either a [CNAME](../configure-custom-domain.md?tabs=managed#cname-record) or [TXT](../articles/api-management/configure-custom-domain?tabs=managed#txt-record) record with your DNS provider. If you configure both, the TXT record takes precedence.
+1. Add DigiCert as an authorized certificate authority (CA) in Azure DNS. For this, you need to create a specific CAA record set within your domain's DNS zone using the Azure portal or other management tools
+
+### Step 3: Allow API Management service access to port 80
+
+If you have inbound network restrictions configured for your API Management service, allow the Azure API Management resource provider access on port 80. This is required to allow inbound traffic to support certificate revocation list (CRL) checks, certificate renewal, and management communication. 
+
+1. In the Azure portal, go to **Network security groups**.
+1. Select the network security group associated with your API Management subnet.
+1. Under **Settings** > **Inbound security rules**, add a new rule allowing traffic on port 80 from the **ApiManagement** service tag to the API Management instance.
 
 ## Help and support
 
