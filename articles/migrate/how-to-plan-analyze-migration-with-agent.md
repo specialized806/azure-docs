@@ -13,7 +13,7 @@ monikerRange:
 
 # Plan and analyze VMware migrations using Azure Copilot migration agent
 
-This article explains you how to plan and analyze a VMware migration to Azure by using Azure Copilot migration agent with Azure Migrate data. You use the agent to explore migration paths, review discovered inventory, analyze costs and readiness, and design an Azure landing zone.
+This article explains how to plan and analyze a VMware migration to Azure by using Azure Copilot migration agent with Azure Migrate data. You use the agent to explore migration paths, review discovered inventory, analyze costs and readiness, and design an Azure landing zone.
 
 >[!NOTE]
 > Azure Copilot migration agent supports migration planning and analysis only.
