@@ -374,7 +374,7 @@ With an architecture completely different from BizTalk Server, most services in 
 
 Azure Logic Apps includes an [Azure Service Bus connector](/connectors/servicebus/) that you can use to publish and subscribe to messages. The benefit is that you can use messaging independently from your workflow. Unlike BizTalk Server, your messaging is decoupled from your workflow platform. Although messaging and workflow capabilities are decoupled in Azure Logic Apps, you can create message subscriptions in Azure Service Bus, which supports [message properties (user properties)](/rest/api/servicebus/message-headers-and-properties#message-properties). You can use these properties to provide key-value pairs that are evaluated by filters created on a [topic subscription](../service-bus-messaging/service-bus-quickstart-topics-subscriptions-portal.md). You define these user properties when you set up an Azure Service Bus operation by adding one or more key-value pairs. For a demonstration, see the following video: [Pub Sub Messaging using Azure Integration Services - Part 2 Content Based Routing](https://youtu.be/1ZMJhWGDVro).
 
-Outside Azure Integration Services, you can also implement publish-subscribe scenarios by using we can also use [Azure Managed Redis](../azure-cache-for-redis/cache-overview.md).
+Outside Azure Integration Services, you can also implement publish-subscribe scenarios by using [Azure Managed Redis](../azure-cache-for-redis/cache-overview.md).
 
 ### Business rules engine
 
