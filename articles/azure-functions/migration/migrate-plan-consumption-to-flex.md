@@ -106,14 +106,15 @@ This guide provides instructions for both the [Azure portal] and the [Azure CLI]
 
 ## Identify potential apps to migrate
 
-Use these steps to make a list of the function apps you need to migrate. In this list, make note of their names, resource groups, locations, and runtime stacks. You can then repeat the steps in this guide for each app you decide to migrate to the Flex Consumption plan.
+> [!TIP]
+> **Already know which app to migrate?** You can skip this section and go straight to [Assess your existing app](#assess-your-existing-app).
 
-The way that function app information is maintained depends on whether your app runs on Linux or Windows.
+If you have multiple function apps and aren't sure which ones need to migrate, this section helps you find them. You'll get a list of app names, resource groups, locations, and runtime stacks.
 
 ::: zone pivot="platform-linux" 
 ### [Azure CLI](#tab/azure-cli)
 
-For Linux Consumption apps, use the new [`az functionapp flex-migration list`](/cli/azure/functionapp/flex-migration#az-functionapp-flex-migration-list) command to identify apps that are eligible for migration:
+Run this command to see which of your Linux Consumption apps are ready to migrate:
 
 ```azurecli
 az functionapp flex-migration list
@@ -190,7 +191,7 @@ This command generates a table with the app name, location, and resource group f
 
 ## Assess your existing app
 
-Before migrating to the Flex Consumption plan, you should perform these checks to make sure that your function app can be migrated successfully:
+Before migrating, run through this quick checklist to make sure your app is ready. Most apps pass these checks without issues:
 
 > [!div class="checklist"]
 > + [Confirm region compatibility](#confirm-region-compatibility)
@@ -459,7 +460,10 @@ For more information, see [Tutorial: Trigger Azure Functions on blob containers 
 
 ## Consider dependent services
 
-Because Azure Functions is a compute service, you must consider the effect of migration on data and services both upstream and downstream of your app.
+> [!TIP]
+> **Simple HTTP-only app?** If your functions only use HTTP triggers and don't connect to other Azure services, you can likely skip most of this section—just remember to update any clients to point to your new app's URL after migration.
+
+Because Azure Functions is a compute service, you should consider the effect of migration on data and services both upstream and downstream of your app.
 
 ### Data protection strategies
 
@@ -490,7 +494,7 @@ You should plan mitigation strategies to protect data for the specific function 
 
 ## Start the migration for Linux
 
-The [az functionapp flex-migration start](/cli/azure/functionapp/flex-migration#az-functionapp-flex-migration-start) command automatically collects application configuration information and creates a new Flex Consumption app with the same configurations as the source app. Use the command as shown in this example:
+Here's the easy part! The [`az functionapp flex-migration start`](/cli/azure/functionapp/flex-migration#az-functionapp-flex-migration-start) command does most of the work for you—it collects your app's configuration and creates a new Flex Consumption app with the same settings.
 
 ```azurecli
 az functionapp flex-migration start \
@@ -539,9 +543,12 @@ After you've completed running `az functionapp flex-migration start` successfull
 
 ## Premigration tasks
 
-Before proceeding with the migration, you must collect key information about and resources used by your Consumption plan app to help make a smooth transition to running in the Flex Consumption plan.
+Before creating your new Flex Consumption app, you'll gather some information about your current app. This ensures nothing gets lost in the transition.
 
-You should complete these tasks before you migrate your app to run in a Flex Consumption plan:
+> [!TIP]
+> **This is mostly copy-paste work.** You're just collecting settings from your existing app so you can apply them to the new one.
+
+Complete these tasks before migrating:
 
 > [!div class="checklist"]
 > + [Collect app settings](#collect-app-settings)
@@ -1522,7 +1529,7 @@ In this example, replace `<RESOURCE_GROUP>` and `<APP_NAME>` with your resource 
 
 ## Post-migration tasks
 
-After a successful migration, you should perform these follow-up tasks:
+🎉 **Congratulations!** Your app is now running on Flex Consumption. Here are some optional follow-up tasks to get the most out of your new plan:
 
 > [!div class="checklist"]
 > + [Verify basic functionality](#verify-basic-functionality)
@@ -1841,7 +1848,10 @@ If you use Infrastructure as Code (IaC) to manage your Azure resources, you need
 
 ### Remove the original app (optional)
 
-After thoroughly testing your new Flex Consumption function app and validating that everything is working as expected, you might want to clean up resources to avoid unnecessary costs. Even though triggers in the original app are likely already disabled, you might wait a few days or even weeks before removing the original app entirely. This delay, which depends on your application's usage patterns, makes sure that all scenarios, including infrequent ones, are properly tested. Only after you're satisfied with the migration results, should you proceed to remove your original function app.
+> [!TIP]
+> **No rush here.** We recommend keeping your original app around for a few days or weeks while you verify everything works. The Consumption plan only charges for actual usage, so keeping the old app (with triggers disabled) costs very little.
+
+Once you're confident the new app is working correctly, you can clean up the original. This is entirely optional—some teams keep the old app around as a reference or rollback option.
 
 >[!IMPORTANT]  
 >This action deletes your original function app. The Consumption plan remains intact if other apps are using it. Before you proceed, make sure you've successfully migrated all functionality to the new Flex Consumption app, verified no traffic is being directed to the original app, and backed up any relevant logs, configuration, or data that might be needed for reference.
@@ -1867,7 +1877,7 @@ In this example, replace `<RESOURCE_GROUP>` and `<APP_NAME>` with your resource 
 
 ## Troubleshooting and Recovery Strategies
 
-Despite careful planning, migration issues can occur. Here's how to handle potential issues during migration:
+Most migrations complete without issues, but if something doesn't work as expected, here's how to fix common problems:
 
 | Issue | Solution |
 |-------|----------|
