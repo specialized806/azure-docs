@@ -27,11 +27,9 @@ Resource limits are interrelated and tuned to work together. They prevent any si
 
 ## Changes to service limits - 2026 update
 
-Starting in March 2026, Azure API Management is phasing in updated resource limits for instances across all tiers:
+Azure API Management is phasing in updated resource limits for instances across all tiers. These updates align with each tier's capabilities and help customers choose the right option for their needs.
 
 [!INCLUDE [api-management-service-limits](../../includes/api-management-service-limits.md)]
-
-These updates align with each tier's capabilities and help customers choose the right option for their needs.
 
 ### What's changing
 
@@ -40,7 +38,7 @@ These updates align with each tier's capabilities and help customers choose the 
 
 ### Rollout process
 
-New limits roll out in a phased approach starting in March 2026 in the Developer, Basic, and Basic v2 tiers, followed later by the Standard, Standard v2, and Premium tiers. 
+New limits roll out in a phased approach starting in March 2026 in the Developer, Basic, and Basic v2 tiers, followed later by the Standard, Standard v2, Premium, and Premium v2 tiers. 
 
 ### Limits policy for existing classic tier customers
 
@@ -49,13 +47,13 @@ After the new limits take effect, you can continue using your pre-existing API M
 * Existing classic tier services, where current usage exceeds the new limits, are "grandfathered" when the new limits are introduced. You can continue using these resources at the previous limits. (Customers in the v2 tiers are already subject to the new limits, so no grandfathering is needed for those services.) 
 * Grandfathered limits will be set to 10% higher than the customer's current observed usage at the time limits take effect. 
 * Grandfathering applies per service and service tier at the time these limits take effect.
-* Other existing services are subject to the new limits when they take effect. 
+* Other existing services and new services are subject to the new limits when they take effect. 
 
 ## Strategies to manage resources
 
 If you're approaching or reaching certain resource limits, you might notice impacts such as being unable to create new resources or update existing ones. In some cases, you might also experience degraded performance in some service operations.
 
-Consider the following strategies to manage your resources effectively in these cases:
+Consider the following strategies to manage your resources effectively in these cases.
 
 ### Improve resource management
 

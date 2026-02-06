@@ -13,15 +13,13 @@ ms.custom: Include file
 
 <!-- Limits - API Management classic and v2 tiers -->
 
-The following limits will be introduced starting March 2026 and will replace the existing limits for classic and v2 tiers. Services in the classic tiers that surpass the revised limits will be allowed to keep their existing capacity. For more information, see [Understanding API Management service limits](../articles/api-management/service-limits.md).
-
 > [!NOTE]
 > * Limits are per service instance unless stated otherwise.
 >
 > * When counting the number of API-related resources (such as API operations and tags), API Management also includes API versions and revisions.
 >
 
-| Entity/Resource | Consumption | Developer | Basic<br/>Basic v2 | Standard<br>Standard v2 | Premium<br/>Premium v2 |
+| Entity/Resource | Consumption | Developer | Basic<br/><br/>Basic v2 | Standard<br><br/>Standard v2 | Premium<br/><br/>Premium v2 |
 |-----------------|-------------|-----------|-------|----------|---------| 
 | API operations | 3,000 | 3,000 | 10,000 | 50,000 | 75,000 |
 | API tags | 1,500 | 1,500 | 1,500 | 2,500 | 15,000 |
