@@ -85,7 +85,7 @@ This section shows you how to configure a custom response header using the `set-
 
    :::image type="content" source="media/transform-api/set-policy.png" alt-text="Screenshot of the Set headers outbound policies in the portal.":::
 
-## Protect an API by adding rate limit policy (throttling)
+## Protect an API by adding rate limit policy
 
 This section shows how to add protection to your backend API by configuring rate limits, so that developers don't overuse the API. This example shows how to configure the `rate-limit-by-key` policy using the code editor. In this example, the limit is set to three calls per 15 seconds. After 15 seconds, a developer can retry calling the API.
 
@@ -146,7 +146,7 @@ The rest of this section tests policy transformations that you set in this artic
     :::image type="content" source="media/transform-api/custom-response-header.png" alt-text="Screenshot showing custom response header in the portal.":::
 
 
-### Test the rate limit (throttling)
+### Test the rate limit
 
 1. Select **Swagger Petstore** > **Test**.
 1. Select the **GET Finds Pets by status** operation. Select **Send** several times in a row.
@@ -166,7 +166,7 @@ In this tutorial, you learned how to:
 > [!div class="checklist"]
 >
 > - Transform an API to set a custom response header
-> - Protect an API by adding a rate limit policy (throttling)
+> - Protect an API by adding a rate limit policy
 > - Test the transformations
 
 ## Next step
