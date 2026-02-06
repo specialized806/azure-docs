@@ -143,7 +143,7 @@ The Audience for the target cloud must be configured for the following packages.
 
 You need to import the following packages:
 
-```go
+```golang
 import (
     "github.com/Azure/azure-sdk-for-go/sdk/azcore/cloud"
     "github.com/Azure/azure-sdk-for-go/sdk/azcore/policy"
