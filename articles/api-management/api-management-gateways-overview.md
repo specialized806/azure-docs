@@ -198,7 +198,7 @@ For estimated maximum gateway throughput in the API Management service tiers, se
 
 Scale capacity by adding and removing scale [units](upgrade-and-scale.md) in the workspace gateway.
 
-## Gateway constraints
+## Gateway runtime constraints
 
 The following table lists constraints that apply to requests and responses handled by the API Management gateway.
 
