@@ -6,7 +6,6 @@ ms.author: prsadhu
 ms.service: azure-migrate
 ms.topic: concept-article
 ms.reviewer: v-uhabiba
-ms.date: 06/02/2026
 # Customer intent: As a migration owner, I want to automate the migration of my VMware virtual machines to Azure using Azure Site Recovery REST API, so that I can efficiently manage large-scale migrations with custom automation solutions.
 ---
 
@@ -150,7 +149,7 @@ This documentation uses the **2025-08-01** API version for Azure Site Recovery r
 
 ## Step 1: Enable replication
 
-To start replicating a VM to Azure, use the [Create Replication Protected Item](https://learn.microsoft.com/rest/api/site-recovery/replication-protected-items/create) API.
+To start replicating a VM to Azure, use the [Create Replication Protected Item](/rest/api/site-recovery/replication-protected-items/create) API.
 
 ### Request
 
@@ -264,7 +263,7 @@ A successful request returns HTTP 200 (OK) or 202 (Accepted) with the replicatio
 
 ## Step 2: Update replication settings
 
-After enabling replication, you can modify the target VM properties using the [Update Replication Protected Item](https://learn.microsoft.com/rest/api/site-recovery/replication-protected-items/update) API.
+After enabling replication, you can modify the target VM properties using the [Update Replication Protected Item](/rest/api/site-recovery/replication-protected-items/update) API.
 
 ### Request
 
@@ -362,7 +361,7 @@ PATCH https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups
 
 ## Step 3: Test migration
 
-Before performing the actual migration, validate your configuration using test migration (test failover). Use the [Test Failover](https://learn.microsoft.com/rest/api/site-recovery/replication-protected-items/test-failover) API.
+Before performing the actual migration, validate your configuration using test migration (test failover). Use the [Test Failover](/rest/api/site-recovery/replication-protected-items/test-failover) API.
 
 ### Request
 
@@ -418,7 +417,7 @@ The API returns a job that tracks the test migration progress:
 
 ### Test failover cleanup
 
-After validating the test migration, clean up the test resources using the [Test Failover Cleanup](https://learn.microsoft.com/rest/api/site-recovery/replication-protected-items/test-failover-cleanup) API.
+After validating the test migration, clean up the test resources using the [Test Failover Cleanup](/rest/api/site-recovery/replication-protected-items/test-failover-cleanup) API.
 
 ```http
 POST https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/replicationFabrics/{fabricName}/replicationProtectionContainers/{protectionContainerName}/replicationProtectedItems/{replicatedItemName}/testFailoverCleanup?api-version={api_version}
@@ -434,7 +433,7 @@ POST https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/
 
 ## Step 4: Perform migration (failover)
 
-When you're ready to migrate the VM to Azure, use the [Unplanned Failover](https://learn.microsoft.com/rest/api/site-recovery/replication-protected-items/unplanned-failover) API.
+When you're ready to migrate the VM to Azure, use the [Unplanned Failover](/rest/api/site-recovery/replication-protected-items/unplanned-failover) API.
 
 ### Request
 
@@ -486,7 +485,7 @@ POST https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/
 
 ## Step 5: Complete/Disable migration
 
-After a successful failover,  disable replication to clean up resources using the [Delete](https://learn.microsoft.com/rest/api/site-recovery/replication-protected-items/delete) API:
+After a successful failover,  disable replication to clean up resources using the [Delete](/rest/api/site-recovery/replication-protected-items/delete) API:
 
 ```http
 DELETE https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/replicationFabrics/{fabricName}/replicationProtectionContainers/{protectionContainerName}/replicationProtectedItems/{replicatedItemName}?api-version={api_version}
@@ -494,7 +493,7 @@ DELETE https://management.azure.com/subscriptions/{subscriptionId}/resourceGroup
 
 ## Monitoring jobs
 
-Track the status of migration operations using the [Get Job](https://learn.microsoft.com/rest/api/site-recovery/replication-jobs/get) API:
+Track the status of migration operations using the [Get Job](/rest/api/site-recovery/replication-jobs/get) API:
 
 ```http
 GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/replicationJobs/{jobId}?api-version={api_version}
@@ -575,6 +574,6 @@ $enableResponse = Invoke-RestMethod -Uri $enableUri -Method Put -Headers $header
 
 ## Related content
 
-- [Azure Site Recovery REST API reference](/https://learn.microsoft.com/rest/api/site-recovery/)
-- [VMware VM migration to Azure overview](https://learn.microsoft.com/azure/site-recovery/vmware-azure-architecture-modernized)
-- [Azure Site Recovery replication appliance](https://learn.microsoft.com/azure/site-recovery/replication-appliance-support-matrix)
+- [Azure Site Recovery REST API reference](//rest/api/site-recovery/)
+- [VMware VM migration to Azure overview](/azure/site-recovery/vmware-azure-architecture-modernized)
+- [Azure Site Recovery replication appliance](/azure/site-recovery/replication-appliance-support-matrix)
