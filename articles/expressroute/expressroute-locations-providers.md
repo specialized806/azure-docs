@@ -111,7 +111,7 @@ The following table shows connectivity locations and the service providers for e
 | **Madrid2** | [Equinix MD2](https://www.equinix.com/data-centers/europe-colocation/spain-colocation/madrid-data-centers/md2) | 1 | Spain Central | &check; | 1-IX.EU<br/>DE-CIX<br/>Equinix<br/>GÉANT<br/>Intercloud |
 | **Marseille** | [Digital Realty(Interxion) MRS1](https://www.digitalrealty.com/data-centers/emea/marseille/mrs1) | 1 | France South | &cross; | Colt<br/>DE-CIX<br/>GEANT<br/>Interxion (Digital Realty)<br/>Jaguar Network<br/>Ooredoo Cloud Connect |
 | **Melbourne** | [NextDC M1](https://www.nextdc.com/data-centres/m1-melbourne-data-centre) | 2 | Australia Southeast | &check; | AARNet<br/>Devoli<br/>Equinix<br/>Internet Association of Australia<br/>Megaport<br/>NETSG<br/>NEXTDC<br/>Optus<br/>Orange<br/>Telstra Corporation<br/>TPG Telecom |
-| **Miami** | [Equinix MI1](https://www.equinix.com/locations/americas-colocation/united-states-colocation/miami-data-centers/mi1/) | 1 | &cross; | &check; | AT&T Dynamic Exchange<br/>C3ntro<br/>Claro<br/>C3ntro<br/>Equinix<br/>Flo Networks<br/>Lightpath<br/>Megaport<br/>Momentum Telecom<br/>PacketFabric<br/>PitChile |
+| **Miami** | [Equinix MI1](https://www.equinix.com/locations/americas-colocation/united-states-colocation/miami-data-centers/mi1/) | 1 | &cross; | &check; | AT&T Dynamic Exchange<br/>C3ntro<br/>Claro<br/>Equinix<br/>Flo Networks<br/>Lightpath<br/>Megaport<br/>Momentum Telecom<br/>PacketFabric<br/>PitChile |
 | **Milan** | [IRIDEOS](https://irideos.it/en/data-centers/) | 1 | Italy North | &check; | Colt<br/>Equinix<br/>Fastweb<br/>IRIDEOS<br/>Megaport<br/>Noovle<br/>Retelit<br/>Telecom Italia Sparkle<br/>Vodafone |
 | **Milan2** | [DATA4](https://www.data4group.com/it/data-center-a-milano-italia/) | 1 | Italy North | &check; | Retelit |
 | **Minneapolis** | [Cologix MIN1](https://www.cologix.com/data-centers/minneapolis/min1/) and [Cologix MIN3](https://www.cologix.com/data-centers/minneapolis/min3/) | 1 | &cross; | &check; | Cologix<br/>Megaport<br/>Zayo |
@@ -137,7 +137,7 @@ The following table shows connectivity locations and the service providers for e
 | **Pune** | [STT GDC Pune DC1](https://www.sttelemediagdc.in/our-data-centres-in-india) | 2 | Central India | &check; | Airtel<br/>Lightstorm<br/>SIFY<br/>Tata Communications |
 | **Quebec City** | [Vantage](https://vantage-dc.com/data_centers/quebec-city-data-center-campus/) | 1 | Canada East | &check; | Bell Canada<br/>Equinix<br/>Fibrenoire<br/>Megaport<br/>RISQ<br/>Telus |
 | **Queretaro (Mexico)** | [KIO Networks QR01](https://www.kio.tech/) | 4 | Mexico Central | &check; | Axtel<br/>Cirion Technologies<br/>C3ntro<br/>Console Connect (PCCW Global Limited)<br/>DE-CIX<br/>Equinix<br/>Flo Networks<br/>KIO<br/>MCM Telecom<br/>Megaport<br/>Transtelco |
-| **Quincy** | Sabey Datacenter - Building A | 1 | West US 2 | &check; | Ziply FIber |
+| **Quincy** | Sabey Datacenter - Building A | 1 | West US 2 | &check; | Ziply Fiber |
 
 
 #### [R-S](#tab/r-s)
