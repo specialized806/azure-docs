@@ -896,8 +896,6 @@ Entity functions aren't currently supported in Java.
 
 ## Entity coordination
 
-::: zone pivot="durable-functions"
-
 Sometimes you need to coordinate operations across multiple entities. For example, in a banking application, entities can represent individual bank accounts. When you transfer funds from one account to another, you need to make sure the source account has enough funds. You also need to update both accounts as one consistent operation.
 
 ### Example: Transfer funds (C#)
