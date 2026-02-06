@@ -18,27 +18,27 @@ This article answers general questions about Azure SRE Agent service overview, l
 
 ### What is Azure SRE Agent?
 
-Azure SRE Agent is an AI-powered service that helps Site Reliability Engineers and operations teams investigate incidents, troubleshoot issues, and automate remediation tasks across Azure resources. The agent uses large language models to understand natural language queries and can take actions on your behalf.
+Azure SRE Agent is an AI-powered service that helps Site Reliability Engineers and operations teams investigate incidents, troubleshoot problems, and automate remediation tasks across Azure resources. The agent uses large language models to understand natural language queries and can take actions on your behalf.
 
 ### What can Azure SRE Agent do?
 
 Azure SRE Agent can:
-- Investigate incidents across Azure resources
-- Query logs and metrics from Azure Monitor and Application Insights
-- Analyze error patterns and suggest solutions
-- Create incident response plans
-- Build custom subagents for specialized scenarios
-- Connect to external services through integrations
-- Take remediation actions when configured in Privileged mode
+- Investigate incidents across Azure resources.
+- Query logs and metrics from Azure Monitor and Application Insights.
+- Analyze error patterns and suggest solutions.
+- Create incident response plans.
+- Build custom subagents for specialized scenarios.
+- Connect to external services through integrations.
+- Take remediation actions when configured in privileged mode.
 
 ### How is Azure SRE Agent different from other AI assistants?
 
 Azure SRE Agent is specifically designed for operations and reliability scenarios with:
-- Deep integration with Azure monitoring and observability tools
-- Understanding of SRE methodologies and incident response patterns
-- Ability to take actions on Azure resources (when authorized)
-- Context retention across investigation sessions
-- Specialized knowledge of Azure services and common failure patterns
+- Deep integration with Azure monitoring and observability tools.
+- Understanding of SRE methodologies and incident response patterns.
+- Ability to take actions on Azure resources (when authorized).
+- Context retention across investigation sessions.
+- Specialized knowledge of Azure services and common failure patterns.
 
 ## Pricing and licensing
 
@@ -48,7 +48,7 @@ For current pricing information, see [Azure SRE Agent pricing](billing.md).
 
 ### Is there a free tier?
 
-Azure SRE Agent is currently in Preview. Pricing details for the general availability release will be announced before the Preview period ends.
+Azure SRE Agent is currently in preview. Pricing details for the general availability release will be announced before the preview period ends.
 
 ### What costs are included?
 
@@ -58,7 +58,7 @@ Pricing includes:
 - AI model usage
 - Integration with Azure services
 
-Separate charges may apply for:
+Separate charges might apply for:
 - Azure Monitor logs and metrics consumption
 - Third-party integrations
 - Data egress charges
@@ -114,17 +114,17 @@ For a complete list, see [Connect to external services](connectors.md).
 
 ### Can I connect custom tools or APIs?
 
-Yes, through Model Context Protocol (MCP) servers. See [Connect to custom MCP server](custom-mcp-server.md) for details.
+Yes, you can connect custom tools or APIs through Model Context Protocol (MCP) servers. For more information, see [Connect to custom MCP server](custom-mcp-server.md).
 
 ## Data and privacy
 
 ### Where is my data stored?
 
-Data is stored in the same Azure region where you deploy your agent. For detailed information, see [Data residency and privacy](data-privacy.md).
+The agent stores data in the same Azure region where you deploy it. For detailed information, see [Data residency and privacy](data-privacy.md).
 
 ### Is my data used to train AI models?
 
-No, your data is not used to train AI models. Azure SRE Agent uses enterprise-grade AI services with strict data handling policies.
+No, Azure SRE Agent doesn't use your data to train AI models. Azure SRE Agent uses enterprise-grade AI services that follow strict data handling policies.
 
 ## Related content
 

@@ -12,7 +12,7 @@ ms.service: azure-sre-agent
 
 # Azure SRE Agent operations troubleshooting FAQ
 
-This article covers common operational problems when working with Azure SRE Agent, along with practical solutions. The problems are typically related to permissions, regional availability, deployment issues, and administrative access requirements.
+This article covers common operational problems when working with Azure SRE Agent, along with practical solutions. These problems typically relate to permissions, regional availability, deployment issues, and administrative access requirements.
 
 ## Common troubleshooting scenarios
 
@@ -30,7 +30,7 @@ The following table outlines common problems and their solutions. For more infor
 
 ### Deployment not found
 
-There are few reasons why you might encounter an error that says the deployment isn't found. First, make sure that you're naming your agent correctly, and that you have the proper firewall rules in place:
+You might encounter an error that says the deployment isn't found for several reasons. First, make sure that you're naming your agent correctly, and that you have the proper firewall rules in place:
 
 * Ensure that the agent's name is unique across the subscription.
 * Check for geo-blocking or firewall rules that can prevent access to the agent endpoint.
@@ -71,7 +71,7 @@ If deployment validation fails:
 1. **Verify resource provider registration**: Confirm Microsoft.App provider is registered.
 1. **Review Azure Policy**: Check if organizational policies block resource creation.
 
-## Permission and access issues
+## Permission and access problems
 
 ### Permission errors
 
@@ -89,15 +89,15 @@ To resolve the problem:
 * Avoid relying solely on group-based role assignments. Assign roles directly to your account if problems persist.
 * Use the **Check Access** feature in the Azure portal to verify that you have the right permissions.
 
-### Agent managed identity issues
+### Agent managed identity problems
 
-If the agent cannot access Azure resources:
+If the agent can't access Azure resources:
 
-1. **Verify managed identity creation**: Check that the agent's managed identity was created successfully.
-1. **Check role assignments**: Ensure the managed identity has appropriate permissions on target resources.
-1. **Review conditional access policies**: Verify organizational policies don't block managed identity access.
+1. **Verify managed identity creation**: Check that the agent's managed identity is created successfully.
+1. **Check role assignments**: Make sure the managed identity has the right permissions on target resources.
+1. **Review conditional access policies**: Make sure organizational policies don't block managed identity access.
 
-## Network and connectivity issues
+## Network and connectivity problems
 
 ### Portal becomes unresponsive
 
@@ -109,31 +109,31 @@ To grant access to the proper domain, add `*.azuresre.ai` to the allow list in y
 
 If real-time chat features don't work:
 
-1. **Check proxy settings**: Corporate proxies may block WebSocket connections.
-1. **Verify firewall rules**: Ensure `*.azuresre.ai` is allowlisted for both HTTP and WebSocket traffic.
+1. **Check proxy settings**: Corporate proxies might block WebSocket connections.
+1. **Verify firewall rules**: Make sure `*.azuresre.ai` is on the allow list for both HTTP and WebSocket traffic.
 1. **Test network connectivity**: Use browser developer tools to check for connection errors.
 
-## Performance issues
+## Performance problems
 
 ### Slow response times
 
 If agent responses are slower than expected:
 
 1. **Check Azure service health**: Verify no outages in your deployment region.
-1. **Review query complexity**: Complex log queries may take longer to process.
-1. **Monitor resource limits**: Ensure target resources (Log Analytics, etc.) aren't throttled.
+1. **Review query complexity**: Complex log queries might take longer to process.
+1. **Monitor resource limits**: Ensure target resources (Log Analytics, and others) aren't throttled.
 
-### Chat interface loading issues
+### Chat interface loading problems
 
 If the chat interface doesn't load:
 
 1. **Clear browser cache**: Force refresh the page (Ctrl+F5).
-1. **Try incognito/private browsing**: Rule out browser extension conflicts.
+1. **Try incognito or private browsing**: Rule out browser extension conflicts.
 1. **Check JavaScript console**: Look for error messages in browser developer tools.
 
 ## Integration troubleshooting
 
-### GitHub/Azure DevOps connection failures
+### GitHub or Azure DevOps connection failures
 
 If source control integrations fail:
 
@@ -141,7 +141,7 @@ If source control integrations fail:
 1. **Test API access**: Ensure the agent can reach external service APIs.
 1. **Review firewall rules**: Confirm outbound access to github.com or dev.azure.com.
 
-### Custom MCP server issues
+### Custom MCP server problems
 
 If custom Model Context Protocol servers don't work:
 
@@ -149,9 +149,9 @@ If custom Model Context Protocol servers don't work:
 1. **Test authentication**: Ensure proper authentication configuration.
 1. **Review logs**: Check agent logs for connection or protocol errors.
 
-## Data and storage issues
+## Data and storage problems
 
-### Conversation history missing
+### Missing conversation history
 
 If conversation threads disappear:
 
@@ -171,11 +171,11 @@ If document uploads to the knowledge base fail:
 
 ### Escalation paths
 
-For issues not covered in this guide:
+For problems that this guide doesn't cover, try the following options:
 
-1. **Azure Support**: Create a support ticket for deployment or service issues.
-1. **Microsoft Docs**: Check for updates in the [official documentation](overview.md).
-1. **Azure Status**: Monitor [Azure Status page](https://status.azure.com) for service outages.
+1. **Azure Support**: Create a support ticket for deployment or service problems.
+1. **Microsoft Docs**: Check the [official documentation](overview.md) for updates.
+1. **Azure Status**: Monitor the [Azure Status page](https://status.azure.com) for service outages.
 
 ## Related content
 

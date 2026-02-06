@@ -14,9 +14,9 @@ ms.collection: rai-skilling-ai-copilot
 # Azure SRE Agent security and compliance FAQ
 
 > [!IMPORTANT]
-> Azure SRE Agent is currently in **Preview**. Security details, compliance certifications, and data handling policies may change before General Availability.
+> Azure SRE Agent is currently in **Preview**. Security details, compliance certifications, and data handling policies might change before General Availability.
 > 
-> For the most current information, consult the [Azure SRE Agent overview](overview.md).
+> For the most current information, see the [Azure SRE Agent overview](overview.md).
 
 This FAQ addresses security, compliance, and data handling questions that enterprise teams ask when evaluating Azure SRE Agent for production use.
 
@@ -78,26 +78,26 @@ The agent uses **Managed Identities** for all Azure resource access:
 | Tool Execution | System-Assigned Managed Identity | Azure ARM, Log Analytics, Kusto |
 | AI Search | User-Assigned Managed Identity | Blob Storage |
 
-No secrets or connection strings are stored in configuration.
+The configuration doesn't store any secrets or connection strings.
 
 ### How do I control what resources the agent can access?
 
-You associate specific resource groups with your agent during creation. The agent only has access to resources within those associated resource groups.
+Associate specific resource groups with your agent during creation. The agent only accesses resources within those associated resource groups.
 
-RBAC assignments grant minimum required permissions:
+RBAC assignments grant the minimum required permissions:
 - **Log Analytics:** Reader access for queries
 - **Azure Resources:** Reader for ARM operations  
 - **Storage:** Blob Data Contributor for knowledge base
 
-### What user authentication is used?
+### What user authentication does the solution use?
 
-Users authenticate via **Azure AD (Entra ID)**. The Frontend API validates tokens and enforces access policies.
+Users authenticate by using **Azure AD (Entra ID)**. The Frontend API validates tokens and enforces access policies.
 
 ## Data handling and storage
 
 ### Where is my data stored?
 
-Data is stored in the Azure region where you deploy your agent. The data plane uses:
+You store data in the Azure region where you deploy your agent. The data plane uses:
 
 | Service | Data Stored | Replication |
 |---------|-------------|-------------|
@@ -108,20 +108,20 @@ Data is stored in the Azure region where you deploy your agent. The data plane u
 
 ### What data is sent to the LLM?
 
-When you interact with Azure SRE Agent, the following may be sent to the underlying LLM:
+When you interact with Azure SRE Agent, the following data types might be sent to the underlying LLM:
 
 | Data Type | Sent to LLM | Purpose |
 |-----------|-------------|----------|
-| User message | Yes | Your question/request |
+| User message | Yes | Your question or request |
 | System prompt | Yes | Agent behavior instructions |
 | Conversation history | Yes (limited) | Multi-turn context |
 | Retrieved knowledge | Yes | RAG context from your docs |
 | Tool results | Yes | Output from Azure API calls |
 
 Azure SRE Agent uses enterprise-grade AI services with the following data handling policies:
-- Your data is NOT used to train models
-- Prompts/completions are NOT stored (unless you opt-in)
-- Abuse monitoring may store data up to 30 days (can opt-out)
+- Your data isn't used to train models.
+- Prompts and completions aren't stored unless you opt in.
+- Abuse monitoring might store data for up to 30 days, but you can opt out.
 
 ### What actions can the agent take?
 
@@ -129,14 +129,14 @@ Azure SRE Agent operates in one of two access modes:
 
 | Mode | Capabilities |
 |------|-------------|
-| **Reader Mode** | Read-only access. The agent can investigate, query logs, and analyze resources but cannot make changes. |
-| **Privileged Mode** | Full access. The agent can take remediation actions (restart services, scale resources, etc.) on your resources. |
+| **Reader Mode** | Read-only access. The agent can investigate, query logs, and analyze resources but can't make changes. |
+| **Privileged Mode** | Full access. The agent can take remediation actions (restart services, scale resources, and more) on your resources. |
 
-By default, agents start in **Reader mode**. Upgrading to Privileged mode:
-1. Requires connected resource groups
-2. Grants write permissions to the agent's managed identity
-3. Enables the agent to execute remediation actions
-4. All actions are logged with user context
+By default, agents start in **Reader mode**. To upgrade to Privileged mode:
+1. Connect resource groups.
+1. Grant write permissions to the agent's managed identity.
+1. Enable the agent to execute remediation actions.
+1. Log all actions with user context.
 
 You can downgrade back to Reader mode at any time.
 
@@ -173,7 +173,7 @@ Yes, Azure SRE Agent supports:
 
 ### What compliance certifications apply?
 
-Azure SRE Agent is built on Azure platform services (Cosmos DB, AI Search, Blob Storage). These underlying services hold compliance certifications, which SRE Agent inherits through its architecture:
+Azure SRE Agent is built on Azure platform services, such as Cosmos DB, AI Search, and Blob Storage. These underlying services hold compliance certifications, which SRE Agent inherits through its architecture:
 
 | Certification | Status | How Inherited |
 |---------------|--------|---------------|
@@ -186,14 +186,14 @@ Azure SRE Agent is built on Azure platform services (Cosmos DB, AI Search, Blob 
 | FedRAMP High | Contact support | Check current status |
 | PCI DSS | Contact support | Customer responsibility |
 
-For authoritative compliance information, see [Azure Compliance Documentation](https://learn.microsoft.com/azure/compliance/).
+For authoritative compliance information, see [Azure Compliance Documentation](/azure/compliance/).
 
-### What about GDPR?
+### What about European data protection compliance?
 
-Azure SRE Agent supports GDPR compliance:
+Azure SRE Agent supports compliance with European data protection regulations:
 
 - **Data residency:** Single-region deployment available
-- **Right to erasure:** Delete threads, memories via API
+- **Right to erasure:** Delete threads and memories via API
 - **Data portability:** Export conversations via API
 - **DPA available:** Via Microsoft DPA
 
@@ -201,22 +201,22 @@ Azure SRE Agent supports GDPR compliance:
 
 ### How long is data retained?
 
-Retention depends on the underlying services:
-- **Threads/Messages:** Stored until deleted (configurable TTL in Cosmos DB)
-- **Knowledge Documents:** Stored until deleted
-- **Application Insights:** 90 days default (configurable)
-- **Activity Logs:** 90 days (configurable via diagnostic settings)
+Data retention depends on the underlying services:
+- **Threads/Messages:** Stored until you delete them (configurable TTL in Cosmos DB).
+- **Knowledge Documents:** Stored until you delete them.
+- **Application Insights:** 90 days default (configurable).
+- **Activity Logs:** 90 days (configurable via diagnostic settings).
 
 ### Can I delete my data?
 
-Yes. APIs support:
-- Deleting individual threads
-- Removing user memories
-- Purging knowledge documents
+Yes. The APIs support:
+- Deleting individual threads.
+- Removing user memories.
+- Purging knowledge documents.
 
 ### What happens if Microsoft support needs access?
 
-Microsoft follows standard Azure support procedures. For sensitive access, [Customer Lockbox](https://learn.microsoft.com/azure/security/fundamentals/customer-lockbox-overview) provides approval workflows for Microsoft engineer access.
+Microsoft follows standard Azure support procedures. For sensitive access, [Customer Lockbox](/azure/security/fundamentals/customer-lockbox-overview) provides approval workflows for Microsoft engineer access.
 
 ## Audit and monitoring
 
@@ -230,16 +230,16 @@ Microsoft follows standard Azure support procedures. For sensitive access, [Cust
 | Tool executions | Application Insights traces |
 | Approvals | Cosmos DB (queryable via API) |
 
-All logs can be exported to SIEM via Azure Event Hub.
+You can export all logs to a SIEM through Azure Event Hub.
 
 ### Is there an approval workflow for sensitive actions?
 
-When in Privileged mode, the agent can execute remediation actions, but:
+When the agent is in Privileged mode, it can execute remediation actions, but:
 
-- All actions are tracked with user context, timestamps, and decision history
-- You can configure scheduled tasks, runbooks, and subagents with specific action scopes
-- Azure RBAC still limits what the managed identity can access
-- You can downgrade to Reader mode at any time to disable all write operations
+- The system tracks all actions with user context, timestamps, and decision history.
+- You can configure scheduled tasks, runbooks, and subagents with specific action scopes.
+- Azure RBAC still limits what the managed identity can access.
+- You can downgrade to Reader mode at any time to disable all write operations.
 
 ## Encryption
 
@@ -272,7 +272,7 @@ When in Privileged mode, the agent can execute remediation actions, but:
 | Is data used to train models? | No |
 | How long is data retained? | Configurable (default: 90 days) |
 
-### Access Control
+### Access control
 
 | Question | Answer |
 |----------|--------|
@@ -281,7 +281,7 @@ When in Privileged mode, the agent can execute remediation actions, but:
 | Service identity? | Managed identity (no secrets) |
 | Can access be scoped? | Yes, standard Azure RBAC |
 
-### Network Security
+### Network security
 
 | Question | Answer |
 |----------|--------|
@@ -292,19 +292,19 @@ When in Privileged mode, the agent can execute remediation actions, but:
 
 ## Key takeaways
 
-✅ **No Surprise Architecture:** Azure SRE Agent uses standard Azure services (Cosmos DB, AI Search, Blob Storage). If your INFOSEC has approved these, you're largely covered.
+✅ **No Surprise Architecture:** Azure SRE Agent uses standard Azure services like Cosmos DB, AI Search, and Blob Storage. If your INFOSEC approves these services, you're largely covered.
 
-✅ **Reader Mode by Default:** Agents start in read-only mode. You explicitly opt-in to Privileged mode for write access.
+✅ **Reader Mode by Default:** Agents start in read-only mode. You explicitly opt in to Privileged mode for write access.
 
-✅ **Data Stays Where You Put It:** Data residency is customer-controlled. Single-region deployment with no cross-region replication is the default.
+✅ **Data Stays Where You Put It:** You control data residency. Single-region deployment with no cross-region replication is the default.
 
-✅ **Standard Azure Security Model:** RBAC, managed identities, private endpoints, audit logging—it's the same security model as any other Azure first-party service.
+✅ **Standard Azure Security Model:** RBAC, managed identities, private endpoints, and audit logging - it's the same security model as any other Azure first-party service.
 
-✅ **Strong Encryption:** AES-256 at rest, TLS 1.3 in transit for all data.
+✅ **Strong Encryption:** AES-256 at rest and TLS 1.3 in transit for all data.
 
-✅ **Compliance Ready:** SOC 2, ISO 27001, HIPAA (with configuration), GDPR supported.
+✅ **Compliance Ready:** SOC 2, ISO 27001, HIPAA (with configuration), and GDPR supported.
 
-✅ **Customer Control Preserved:** You control what resources SRE Agent can access, what data it can see, and whether it can take actions via mode selection.
+✅ **Customer Control Preserved:** You control what resources SRE Agent can access, what data it can see, and whether it can take actions through mode selection.
 
 ## Related content
 
