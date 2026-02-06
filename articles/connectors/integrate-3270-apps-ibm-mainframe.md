@@ -200,7 +200,7 @@ A Standard logic app workflow can use the IBM 3270 managed connector and the IBM
    | **Code Page** | No | <*code-page-number*> | The code page number for the host. If you leave this value blank, the connector uses `37` as the default value. |
    | **Logical Unit Name** | No | <*logical-unit-name*> | The specific logical unit name to request from the host. |
    | **Enable SSL?** | No | On or off | Turn on or turn off TLS encryption. |
-   | **Validate Host SSL Certificate?** | No | On or off | Turn on or turn off validation for the server's certificate. |
+   | **Validate Host Ssl Certificate?** | No | On or off | Turn on or turn off validation for the server's certificate. |
 
    For example:
 
