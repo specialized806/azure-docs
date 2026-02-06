@@ -17,7 +17,7 @@ Azure Container Storage uses the local CSI driver to manage local NVMe volumes. 
 
 ## When to consider managing local CSI driver placement
 
-Managing the placement of Local CSI drivers is essential in the following scenarios:
+Managing the placement of local CSI drivers is essential in the following scenarios:
 
 - Scenario 1: Mixed node pools with different capabilities. Clusters often contain multiple node pools with different instance types. Without node affinity, local CSI driver pods might be scheduled onto nodes that don't have local NVMe disks and can't successfully service storage requests.
 
