@@ -104,7 +104,7 @@ aks-mygpu-23116656-vmss000000   mygpu
 aks-mygpu2-37383660-vmss000000  mygpu2
 ```
 
-## Best Practices
+## Best practices
 
 - Always label nodes explicitly before using node affinity.
 - Keep StorageClasses consistent and avoid mixing annotated and nonannotated classes unless intentional.
