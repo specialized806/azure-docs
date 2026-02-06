@@ -44,7 +44,10 @@ This article explains pagination considerations and provides strategies for scen
 
 If your scenario requires a more consistent retrieval of resources, consider one of the following approaches. These strategies partition your data in a way that's resilient to changes and can also improve performance through parallel execution. 
 
-Note: These client-side strategies move the pagination logic to your application, which helps avoid skip-token limitations. However, they don't guarantee complete consistency across calls. Resources might be added or deleted between your initial query (for counting or retrieving IDs) and subsequent data fetches. This can result in discrepancies such as a mismatch between expected count and total resources fetched, or missing results if a resource was deleted during the operation. For scenarios requiring strict consistency, consider whether point-in-time accuracy is critical for your use case. 
+> [!NOTE]
+> These client-side strategies move the pagination logic to your application, which helps avoid skip-token limitations. However, they don't guarantee complete consistency across calls. Resources might be added or deleted between your initial query (for counting or retrieving IDs) and subsequent data fetches. 
+>
+> This can result in discrepancies such as a mismatch between expected count and total resources fetched, or missing results if a resource was deleted during the operation. For scenarios requiring strict consistency, consider whether point-in-time accuracy is critical for your use case. 
 
 #### Option 1: Hash-based data partitioning 
 
@@ -66,14 +69,15 @@ Use the count to determine the number of partitions needed. For example, if your
 
 Use the hash() function to partition data based on the resource ID. Query each partition separately: 
 
-// Partition 0 
+**Partition 0**
+
 ```kusto
 Resources 
 | where type =~ 'microsoft.compute/virtualmachines' 
 | where hash(tolower(id)) % 8 == 0 
 ```
 
-// Partition 1 
+**Partition 1**
 
 ```kusto
 Resources 
@@ -83,7 +87,7 @@ Resources
 
 Continue for each partition through partition 7: 
 
-// Partition 7 
+**Partition 7** 
 
 ```kusto
 Resources 
@@ -91,9 +95,9 @@ Resources
 | where hash(tolower(id)) % 8 == 7
 ```
 
-###### Pseudo code
+##### Pseudo code
 
-// Step 1: Get total count and calculate partitions 
+###### Step 1: Get total count and calculate partitions
 
 ```kusto
 totalCount = executeQuery("Resources | where type =~ 'microsoft.compute/virtualmachines' | count") 
@@ -101,8 +105,7 @@ totalCount = executeQuery("Resources | where type =~ 'microsoft.compute/virtualm
 numPartitions = ceiling(totalCount / 1000) 
 ```
   
-
-// Step 2: Build queries for each partition 
+###### Step 2: Build queries for each partition
 
 ```kusto
 queries = [] 
@@ -118,7 +121,7 @@ for i = 0 to numPartitions - 1:
   
 ```
 
-// Step 3: Execute all queries in parallel and combine results 
+###### Step 3: Execute all queries in parallel and combine results
 
 ```kusto
 allResults = executeInParallel(queries) 
@@ -147,14 +150,16 @@ Resources
 
 Once you have the list of resource IDs, query for full records in batches of 1,000 or fewer: 
 
-// Batch 1 
+**Batch 1**
+
 ```kusto
 Resources 
 | where type =~ 'microsoft.compute/virtualmachines' 
 | where id in~ ('id1', 'id2', ... , 'id1000') 
 ```
 
-// Batch 2 
+**Batch 2**
+
 ```kusto
 Resources 
 | where type =~ 'microsoft.compute/virtualmachines' 
@@ -168,46 +173,47 @@ Continue until all IDs are covered.
 - **Guaranteed completeness:** You have a fixed set of IDs before querying for details. 
 - **Parallel execution:** Batch queries can run simultaneously.
 
-> [!NOTE]
-> If the response of the below query is huge (> 16MB) and doesn’t fit in a single call, it is suggested to use the previously mentioned partitioning technique to fetch all the data in multiple calls. 
 
-> Might exceed response size limit of 16MB 
->
->```kusto
-> Resources 
-> | where type =~ 'microsoft.compute/virtualmachines' 
-> | summarize make_set(id) 
->```
->
-> Use partioning in that case:
->
->```kusto
-> Partition 0
-> Resources 
-> | where type =~ 'microsoft.compute/virtualmachines' 
-> | where hash(tolower(id))%10 == 0 
-> | summarize make_set(id) 
->```
->
-> partition 1 
->
->```kusto
-> Resources 
-> | where type =~ 'microsoft.compute/virtualmachines' 
-> | where hash(tolower(id))%10 == 1 
-> | summarize make_set(id) 
->```
->
-> Partition 9 
->
->```kusto
-> Resources 
-> | where type =~ 'microsoft.compute/virtualmachines' 
-> | where hash(tolower(id))%10 == 9 
-> | summarize make_set(id) 
->```
+If the response of the query is huge (> 16MB) and doesn’t fit in a single call, it is suggested to use the previously mentioned partitioning technique to fetch all the data in multiple calls.
 
-### Scenario 1: Sorting by non-unique columns
+The following is an example of a query that might exceed response size limit of 16MB:
+
+```kusto
+Resources 
+| where type =~ 'microsoft.compute/virtualmachines' 
+| summarize make_set(id) 
+```
+In this case, use partitioning:
+
+**Partition 0**
+
+```kusto
+Resources 
+| where type =~ 'microsoft.compute/virtualmachines' 
+| where hash(tolower(id))%10 == 0 
+| summarize make_set(id) 
+```
+
+**Partition 1**
+
+```kusto
+ Resources 
+ | where type =~ 'microsoft.compute/virtualmachines' 
+ | where hash(tolower(id))%10 == 1 
+ | summarize make_set(id) 
+```
+.... 
+
+**Partition 9** 
+
+```kusto
+ Resources 
+ | where type =~ 'microsoft.compute/virtualmachines' 
+ | where hash(tolower(id))%10 == 9 
+ | summarize make_set(id) 
+```
+
+### Pagination limitations scenario: Sorting by non-unique columns
 
 When paginating results sorted by a non-unique column, you might encounter duplicate or missing records even in static environments where resources aren't changing. This occurs because records with identical sort values have no guaranteed order, and their positions can shift between pagination calls. 
 
@@ -250,6 +256,54 @@ Because all these VMs have the same location value (eastus), the query engine ha
 |5| vm-test-01 | westus | 
 
 Notice that *vm-app-01* appears in both pages (duplicate). Due to the same reordering when there is lack of sorting , a record for e.g *vm-db-01* might never appear in any subsequent page (missing). 
+
+#### Solution: sort by a unique column
+
+Always include a unique column such as id in your sort order to ensure deterministic results: 
+
+Resources 
+| where type =~ 'microsoft.compute/virtualmachines' 
+| order by location asc, id asc 
+| project name, location, resourceGroup
+
+By adding id (which is unique for every resource) as a secondary sort column, you establish a stable, deterministic order that remains consistent across pagination calls. 
+
+> [!NOTE]
+> Sorting by a unique column resolves pagination inconsistencies in static environments where resources aren't frequently changing. If you're still experiencing duplicate or missing records after adding a unique sort column, your environment is likely dynamic with resources being created or deleted during pagination. See Scenario 2 for strategies to handle dynamic environments. 
+
+### Pagination limitations scenario: pagination in dynamic environments
+
+If you're experiencing duplicate or missing records despite sorting by a unique column, the cause is likely changes occurring in your Azure environment during pagination. Azure Resource Graph uses a limit/offset pagination approach with skip tokens, which provides an intuitive way to navigate large datasets. However, when resources are frequently created, modified, or deleted between pagination requests, the underlying data shifts, affecting which records appear on each page. 
+
+#### Why this happens
+
+When resources change between pagination requests, the underlying data shifts. Consider the following scenario: 
+
+**Page 1 request:** Retrieve the first 100 virtual machines sorted by id. 
+
+```kusto
+Resources 
+| where type =~ 'microsoft.compute/virtualmachines' 
+| order by id asc 
+| take 100
+```
+
+This request returns VMs with IDs from vm-001 through vm-100. 
+**Between requests:** Resource vm-050 is deleted from your environment. 
+**Page 2 request:** Skip the first 100 records and retrieve the next 100. 
+
+```kusto
+Resources 
+| where type =~ 'microsoft.compute/virtualmachines' 
+| order by id asc 
+| skip 100 
+| take 100 
+```
+
+Because vm-050 was deleted, all subsequent resources shifted up by one position. The resource vm-101 is now at position 100, so when you skip 100 records, vm-101 isn't included in the results. 
+
+Similarly, if a new resource is created between requests, you might see duplicate records in your results. 
+
 
 ### Summary
 
