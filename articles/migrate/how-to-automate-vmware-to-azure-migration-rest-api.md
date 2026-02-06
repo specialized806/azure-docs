@@ -6,6 +6,7 @@ ms.author: prsadhu
 ms.service: azure-migrate
 ms.topic: concept-article
 ms.reviewer: v-uhabiba
+ms.date: 12/02/2025
 # Customer intent: As a migration owner, I want to automate the migration of my VMware virtual machines to Azure using Azure Site Recovery REST API, so that I can efficiently manage large-scale migrations with custom automation solutions.
 ---
 
@@ -574,6 +575,6 @@ $enableResponse = Invoke-RestMethod -Uri $enableUri -Method Put -Headers $header
 
 ## Related content
 
-- [Azure Site Recovery REST API reference](//rest/api/site-recovery/)
+- [Azure Site Recovery REST API reference](/rest/api/site-recovery/)
 - [VMware VM migration to Azure overview](/azure/site-recovery/vmware-azure-architecture-modernized)
 - [Azure Site Recovery replication appliance](/azure/site-recovery/replication-appliance-support-matrix)
