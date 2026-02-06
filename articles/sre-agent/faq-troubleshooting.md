@@ -28,6 +28,8 @@ The following table outlines common problems and their solutions. For more infor
 
 ## Deployment issues
 
+The following sections cover common problems you might encounter when deploying Azure SRE Agent.
+
 ### Deployment not found
 
 You might encounter an error that says the deployment isn't found for several reasons. First, make sure that you're naming your agent correctly, and that you have the proper firewall rules in place:
@@ -73,6 +75,8 @@ If deployment validation fails:
 
 ## Permission and access problems
 
+The following sections address issues related to permissions and access control for Azure SRE Agent.
+
 ### Permission errors
 
 If you can't chat or interact with the agent, the problem might be related to a 403 Forbidden error or a cross-origin resource sharing (CORS) policy error. The following screenshot shows an example of the error message.
@@ -99,6 +103,8 @@ If the agent can't access Azure resources:
 
 ## Network and connectivity problems
 
+The following sections help you resolve network and connectivity issues that can affect Azure SRE Agent.
+
 ### Portal becomes unresponsive
 
 If the Azure portal becomes unresponsive as you try to use SRE Agent, your firewall rules might be blocking access to an Azure domain.
@@ -114,6 +120,8 @@ If real-time chat features don't work:
 1. **Test network connectivity**: Use browser developer tools to check for connection errors.
 
 ## Performance problems
+
+The following sections address common performance-related issues with Azure SRE Agent.
 
 ### Slow response times
 
@@ -133,6 +141,8 @@ If the chat interface doesn't load:
 
 ## Integration troubleshooting
 
+The following sections help you troubleshoot problems with external service integrations.
+
 ### GitHub or Azure DevOps connection failures
 
 If source control integrations fail:
@@ -151,6 +161,8 @@ If custom Model Context Protocol servers don't work:
 
 ## Data and storage problems
 
+The following sections cover issues related to data storage and retrieval in Azure SRE Agent.
+
 ### Missing conversation history
 
 If conversation threads disappear:
@@ -168,6 +180,8 @@ If document uploads to the knowledge base fail:
 1. **Review storage permissions**: Check managed identity access to blob storage.
 
 ## Getting help
+
+Use the following resources if you need additional assistance beyond what this guide covers.
 
 ### Escalation paths
 
