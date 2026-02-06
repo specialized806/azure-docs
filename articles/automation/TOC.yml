@@ -299,8 +299,20 @@
       href: ../data-factory/how-to-schedule-azure-ssis-integration-runtime.md#create-and-schedule-an-azure-automation-runbook-that-starts-and-stops-an-azure-ssis-ir
 - name: Troubleshoot
   items:
-  - name: Managed identity
+  - name: Troubleshoot managed identity
     href: troubleshoot/managed-identity.md
+  - name: Troubleshoot shared resources
+    href: troubleshoot/shared-resources.md
+  - name: Troubleshoot runbook issues
+    href: troubleshoot/runbooks.md
+  - name: Troubleshoot hybrid runbook workers issues
+    items:
+      - name: Troubleshoot extension-based hybrid runbook worker issues
+        href: troubleshoot/extension-based-hybrid-runbook-worker.md
+      - name: Troubleshoot agent-based hybrid runbook worker issues
+        href: troubleshoot/hybrid-runbook-worker.md
+  - name: Troubleshoot State Configuration issues
+    href: troubleshoot/desired-state-configuration.md
 - name: Reference
   items:
   - name: Azure CLI
