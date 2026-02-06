@@ -125,8 +125,6 @@
       href: durable-functions-perf-and-scale.md
     - name: High availability
       href: durable-functions-disaster-recovery-geo-distribution.md
-    - name: Azure Storage provider
-      href: durable-functions-azure-storage-provider.md
   - name: Tutorials
     items: 
     - name: Configure Durable Functions with managed identity
