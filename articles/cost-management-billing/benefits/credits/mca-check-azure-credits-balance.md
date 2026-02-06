@@ -333,6 +333,18 @@ Credits that you acquire are assigned to a billing profile. When an invoice is g
 - Azure Marketplace products
 - Azure support plans
 
+### Note on third-party products and services (3PP)
+
+Azure Sponsorship credits **don’t apply to third-party products or services (3PP)**. Any usage of third-party offerings is billed separately and charged regardless of available Azure Sponsorship credit balance.
+
+For AI model usage, the following guidance applies:
+
+- **Models sold directly by Azure (1PP)** may be covered by Azure Sponsorship credits  
+  Examples: [Models sold directly by Azure](https://learn.microsoft.com/en-us/azure/ai-foundry/foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic&tabs=global-standard-aoai%2Cglobal-standard)
+
+- **Models from partners and the community (3PP)** aren’t covered by Azure Sponsorship credits  
+  Examples: [Models from partners and the community](https://learn.microsoft.com/en-us/azure/ai-foundry/foundry-models/concepts/models-from-partners?view=foundry-classic)
+  
 ## Check access to a Microsoft Customer Agreement
 [!INCLUDE [billing-check-mca](../../../../includes/billing-check-mca.md)]
 
