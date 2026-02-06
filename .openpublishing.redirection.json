@@ -1,6 +1,21 @@
 {
   "redirections": [
     {
+      "source_path": "articles/azure-functions/durable/durable-functions-cloud-backup.md",
+      "redirect_url": "/azure/azure-functions/durable/durable-functions-fan-in-fan-out",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-functions/durable/durable-functions-monitor-python.md",
+      "redirect_url": "/azure/azure-functions/durable/durable-functions-monitor",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-functions/durable/durable-functions-phone-verification.md",
+      "redirect_url": "/azure/azure-functions/durable/durable-functions-human-interaction",
+      "redirect_document_id": false
+    },
+    {
       "source_path": "articles/azure-health-insights/configure-containers.md",
       "redirect_url": "/previous-versions/azure/azure-health-insights/configure-containers",
       "redirect_document_id": false
@@ -6860,16 +6875,16 @@
       "redirect_url": "/azure/oracle/oracle-db/database-overview",
       "redirect_document_id": false
     },
-    { 
+    {
       "source_path": "articles/cyclecloud/how-to/ccws/register-entra-id-app.md",
       "redirect_url": "/azure/cyclecloud/how-to/create-app-registration",
       "redirect_document_id": false
     },
-    { 
+    {
       "source_path": "articles/cyclecloud/how-to/ccws/open-ondemand-add-users.md",
       "redirect_url": "/azure/cyclecloud/how-to/ccws/configure-open-ondemand",
       "redirect_document_id": false
-    },   
+    },
     {
       "source_path": "articles/reliability/reliability-health-insights.md",
       "redirect_url": "/azure/azure-health-insights/reliability-health-insights",
@@ -6894,6 +6909,6 @@
       "source_path": "articles/cyclecloud/how-to/collect-custom-metrics-gpu-infiniband-telegraf.md",
       "redirect_url": "/azure/cyclecloud/how-to/monitor-cyclecloud-cluster-using-prometheus-grafana",
       "redirect_document_id": false
-    }    
+    }
   ]
 }
