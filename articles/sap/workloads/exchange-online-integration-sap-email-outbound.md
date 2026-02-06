@@ -1,6 +1,6 @@
 ---
-title: Exchange Online Integration for Email-Outbound from SAP NetWeaver | Microsoft Docs
-description: Learn about Exchange Online integration for email outbound from SAP NetWeaver.
+title: Exchange Online Integration for Email-Outbound from SAP ABAP Platform | Microsoft Docs
+description: Learn about Exchange Online integration for email outbound from SAP ABAP Platform.
 author: MartinPankraz
 
 ms.service: sap-on-azure
@@ -11,11 +11,11 @@ ms.author: mapankra
 ms.custom: sfi-image-nochange
 # Customer intent: "As an SAP system administrator, I want to configure outbound email communication from SAP ABAP Platform to Exchange Online, so that I can efficiently manage notifications and workflows while ensuring compliance with modern authentication standards."
 ---
-# Exchange Online Integration for Email-Outbound from SAP NetWeaver
+# Exchange Online Integration for Email-Outbound from SAP ABAP Platform
 
 Sending emails from your SAP backend is a standard feature widely distributed for use cases such as alerting for batch jobs, SAP workflow state changes, or invoice distribution. Many customers established the setup using [Exchange Server on-premises](/exchange/exchange-server). With a shift to [Microsoft 365](https://www.microsoft.com/microsoft-365) and [Exchange Online](/exchange/exchange-online) comes a set of cloud-native approaches impacting that setup.
 
-This article describes the setup for **outbound** email-communication from NetWeaver-based SAP systems to Exchange Online. That applies to SAP ECC, S/4HANA, SAP RISE managed, and any other NetWeaver based system.
+This article describes the setup for **outbound** email-communication from ABAP Platform-based SAP systems to Exchange Online. That applies to SAP ECC, SAP S/4HANA on-premises, SAP S/4HANA Cloud (Public and Private Edition), SAP Business Technology Platform (BTP) ABAP Environment, and any other ABAP Platform-based system.
 
 ## Overview
 
@@ -40,7 +40,7 @@ This guide is updated when more SAP-supported options become available.
 ## Option 1: SMTP OAuth 2.0 (recommended)
 
 > [!IMPORTANT]
-> We strongly recommend **not** using this option. **SMTP Auth is being retired**. Find exact timelines [here](https://techcommunity.microsoft.com/blog/exchange/exchange-online-to-retire-basic-auth-for-client-submission-smtp-auth/4114750). We recommend adopting option 3 instead.
+> Use this option for the integration between Exchange Online and SAP S/4HANA on-premises, SAP S/4HANA Cloud Private Edition, SAP S/4HANA Cloud Public Edition, and the SAP BTP ABAP Environment. This option is also recommended for all other SAP ABAP Platform-based systems from release 7.50 upwards. This option enables you to send mail to **recipients inside and outside** your organization.
 
 ### Prerequisites
 
@@ -65,9 +65,9 @@ To create a new application, follow these instructions (see also [Register an ap
 
 1. Go to **App registrations** in the [Microsoft Entra Admin Center](https://entra.microsoft.com). Click **New registration**.
 
-### How to Enable SMTP auth for mailboxes in Exchange Online
+:::image type="content" source="media/exchange-online-integration/register-application-1.png" alt-text="Screenshot of new application registration.":::
 
-There are two ways to enable SMTP AUTH in Exchange online:
+2. Enter a name for the new application representing the SAP system. Select **Accounts in this organizational directory only** and click **Register**.
 
 :::image type="content" source="media/exchange-online-integration/register-application-2.png" alt-text="Screenshot of register app.":::
 
@@ -262,7 +262,7 @@ There's no customer-managed configuration in SAP S/4HANA Cloud Public Edition. S
 
 Microsoft 365 offers the ability to configure [direct send](/exchange/mail-flow-best-practices/how-to-set-up-a-multifunction-device-or-application-to-send-email-using-microsoft-365-or-office-365#option-2-send-mail-directly-from-your-printer-or-application-to-microsoft-365-or-office-365-direct-send) from the SAP application server. This option is limited. It only permits mails to addresses in your own Microsoft 365 organization with a valid e-mail address. It can't be used for external recipients (for example vendors or customers).
 
-## Option 3: Using Microsoft 365 SMTP Relay Connector (recommended)
+## Option 3: Using Microsoft 365 SMTP Relay Connector
 
 Only choose this option when:
 
