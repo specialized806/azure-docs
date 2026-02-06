@@ -59,7 +59,7 @@ allowVolumeExpansion: true
 EOF
 ```
 
-> **Note**: Match expressions are case-sensitive. It is recommended to verify the actual instance type values on your nodes before configuring node affinity. You can use the following command to validate:
+Match expressions are case-sensitive. We recommend verifying the actual instance type values on your nodes before configuring node affinity. Use the following command to validate:
 
 ```bash
 $ kubectl get nodes -o custom-columns="NAME:.metadata.name,INSTANCE-TYPE:.metadata.labels.node\.kubernetes\.io/instance-type"
