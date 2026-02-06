@@ -14,7 +14,7 @@ service.tree.id: 95459a4b-434c-4f83-879b-aa5f509fc7fa
 
 # Billing and tenant relationship
 
-A *tenant* is an account for an organization that has its data stored separately from that of other organizations but which is accessed through a shared service. As you plan for and manage your Azure subscriptions, understand the relationship between billing and your tenant account or accounts.
+As you plan for and manage your Azure subscriptions, understand the relationship between billing and your tenant account or accounts.
 
 ## Customer to contract
 
@@ -24,9 +24,9 @@ For example, during a transition period from an Enterprise Agreement (EA) to Mic
 
 Every contract is associated with a price sheet specific to a customer. This association determines the individual customer prices in the agreed billing currency. In an MCA, the default associated price sheet equals the Azure retail price list in US currency (USD). You can access the price sheet in the Azure portal.
 
-### Microsoft Azure Consumption Commitment (MACC)
+### Microsoft Azure Consumption Commitment
 
-Your organization might decide to sign a MACC. There's usually a 1:1 relationship between a contract and a MACC. As a benefit of this commitment, you might get discounted pricing on Azure resources (usage). The discount is reflected in the price sheet associated with the contract.
+Your organization might decide to sign a Microsoft Azure Consumption Commitment (MACC). There's usually a 1:1 relationship between a contract and a MACC. As a benefit of this commitment, you might get discounted pricing on Azure resources (usage). The discount is reflected in the price sheet associated with the contract.
 
 ### Billing roles
 
@@ -34,16 +34,16 @@ With both EA and MCA contracts, you can manage certain aspects of the contract w
 
 ## Contract to tenant
 
-To manage billing roles, you must associate exactly one Microsoft Entra ID tenant with the contract. You're required to complete this association at the time the contract is set up. You can then assign billing roles to identities within this tenant and contract.
+To manage billing roles, you must associate exactly one Microsoft Entra ID tenant with the contract. You must complete this association at the time the contract is set up. You can then assign billing roles to identities within this tenant and contract.
 
 With this association of tenant and contract, for example:
 
-- In EA, a user from the contoso.com tenant can be assigned to the EA admin role in Contoso’s EA contract.
+- In EA, a user from the contoso.com tenant can be assigned to the EA admin role in Contoso's EA contract.
 
 - In MCA, this tenant is called the *primary billing tenant*. Only users from this tenant can be assigned to billing roles within the MCA contract.
 
 > [!IMPORTANT]
-> In the hierarchy of roles, the tenant global administrator role is above the billing account administrator role. Global administrators in a Microsoft Entra ID tenant can add or remove themselves as billing account administrators at any time to the Microsoft Customer Agreement.
+> In the hierarchy of roles, the tenant global administrator is above the billing account administrator. Global administrators in a Microsoft Entra ID tenant can add or remove themselves as billing account administrators at any time to the Microsoft Customer Agreement.
 
 If you want to assign identities from tenants other than the primary billing tenant, you can add associated billing tenants.
 
@@ -51,7 +51,7 @@ We recommend that you use only a single tenant, but you're not restricted from c
 
 ## Contract to subscription
 
-You use your Azure subscription to provision and manage Azure resources. You get access to Azure resources because of a trust relationship to an Entra ID tenant. You get billed according to your contract with Microsoft (EA or MCA).
+You use your Azure subscription to provision and manage Azure resources. You get access to Azure resources because of a trust relationship to a Microsoft Entra ID tenant. You get billed according to your contract with Microsoft (EA or MCA).
 
 Every subscription can only have one billing relationship to one contract. This billing relationship can be moved to a different contract based on certain conditions (for example, in EA/MCA transition scenarios or M&A scenarios). Every contract can manage 5,000 subscriptions by default.
 
@@ -59,7 +59,7 @@ The billing relationship determines the prices for the consumed resources within
 
 ### Subscription to tenant
 
-Every subscription has a 1:1 trust relationship to an Entra ID tenant. This trust relationship determines which identities can manage the resources within the subscription.
+Every subscription has a 1:1 trust relationship to a Microsoft Entra ID tenant. This trust relationship determines which identities can manage the resources within the subscription.
 
 ### Tenant to subscription
 
@@ -70,9 +70,3 @@ Every tenant can manage trust relationships with an unlimited number of subscrip
 The following diagram shows the relationship between a billing contract and associated tenant and subsequent subscriptions.
 
 :::image type="content" source="./media/understand-billing-tenant-relationship/azure-billing-tenant-relationship.png" alt-text="Diagram that shows the relationship between a billing contract and associated tenant and subsequent subscriptions." border="false":::
-
-## Related content
-
-- [What is Microsoft Billing?](../cost-management-billing-overview.md)
-- [What is a cloud subscription?](../manage/cloud-subscription.md)
-- [Plan to manage Azure costs](plan-manage-costs.md)
