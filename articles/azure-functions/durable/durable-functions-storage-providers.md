@@ -38,7 +38,7 @@ The Durable Task SDKs support the Azure managed [Durable Task Scheduler](./durab
 
 ## <a name="dts"></a>Durable Task Scheduler
 
-The Durable Task Scheduler is a fully managed, high performance backend provider designed and developed by [Microsoft Research](https://www.microsoft.com/research). It aims to provide the best user experience in aspects such as management, observability, performance, and security. 
+The Durable Task Scheduler is a fully managed, high performance backend provider designed and developed in collaboration with [Microsoft Research](https://www.microsoft.com/research). It aims to provide the best user experience in aspects such as management, observability, performance, and security. 
 
 The key benefits of the Durable Task Scheduler include:
 
