@@ -19,8 +19,8 @@ This quickstart shows you how to use Visual Studio Code and [Bicep MCP Server](.
 If you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 1. To set up your environment for Bicep development, see [Install Bicep tools](install.md). After completing those steps, you have [Visual Studio Code](https://code.visualstudio.com/) and the [Bicep extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-bicep) version 0.40.2 or later installed. The Bicep extension version 0.40.2 automatically installs the Bicep MCP server. You also have either the latest [Azure CLI](/cli/azure/) version or [Azure PowerShell module](/powershell/azure/new-azureps-module-az).
-1. Start Bicep MCP server. See [Start and stop the Bicep MCP server](./visual-studio-code.md#start-and-stop-the-bicep-mcp-server).
-1. Enable the Bicep MCP server tools. See [Manage the MCP server](./visual-studio-code.md#manage-the-mcp-server).
+1. Start Bicep MCP server. See the third option of [Manage installed MCP servers](https://code.visualstudio.com/docs/copilot/customization/mcp-servers#_manage-installed-mcp-servers).
+1. Enable the Bicep MCP server tools. See [Use MCP tools in chat](https://code.visualstudio.com/docs/copilot/customization/mcp-servers#_use-mcp-tools-in-chat).
 
 ## Create a Bicep file by using Bicep MCP
 

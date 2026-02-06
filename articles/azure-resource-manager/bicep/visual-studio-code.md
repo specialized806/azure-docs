@@ -214,27 +214,6 @@ For general information abouting using MCP servers in Visual Studio Code, see [U
 
 For walking through a quickstart, see [Quickstart: Create Bicep files with Visual Studio Code and Bicep MCP server](./quickstart-create-bicep-use-visual-studio-code-module-context-protocol.md).
 
-### Start and stop the Bicep MCP server
-
-1. From the `View` menu, select `Command palette`.
-1. Type **MCP**, and then select **MCP: List Servers**.
-
-    :::image type="content" source="./media/visual-studio-code/mcp-list-servers.png" alt-text="Screenshot of listing MCP servers.":::
-
-    You should see the `Bicep` server listed with its status. If you don't see it, make sure you have Bicep extension version 0.40.2 or later installed.
-
-    :::image type="content" source="./media/visual-studio-code/mcp-bicep-server.png" alt-text="Screenshot of Bicep MCP server.":::
-
-1. If the status is `Stopped`, select `Bicep`, and then select `Start Server`.
-
-### Manage the MCP server
-
-1. From the `View` menu, select `Chat` to open the Chat pane.
-1. Select the `Configure tools` icon.
-1. Expand `Bicep` to see the available Bicep MCP server tools. Select which tools the agent can use, and then select `OK`.
-
-    :::image type="content" source="./media/visual-studio-code/mcp-Bicep-server-tools.png" alt-text="Screenshot of Bicep MCP server tools.":::
-
 ## Use quick fix suggestions
 
 The light bulb in VS Code represents a quick fix suggestion. It appears when the editor detects an issue or an improvement opportunity in your code. Clicking on the light bulb displays a menu of actions that can address the issue or enhance the code.

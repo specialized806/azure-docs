@@ -37,7 +37,28 @@ The Bicep MCP server is available starting with Visual Studio Code Bicep extensi
 
 ## Integration with other AI services
 
-To run the Azure Bicep MCP server locally for Claude Desktop and Code, OpenAI Codex CLI, and LMStudio where you can use it with various models, see [Azure Bicep MCP Server Integrations with other AI services](https://github.com/johnlokerse/azure-bicep-mcp-integration-setup/tree/main?tab=readme-ov-file).
+You can run the Azure Bicep MCP server locally for Claude Desktop and Code, OpenAI Codex CLI, and LMStudio where you can use it with various models.
+
+By using [.NET 10.0 SDK](https://dotnet.microsoft.com/download/dotnet/10.0?WT.mc_id=MVP_323261), you can use `dnx` to get the latest version of the Bicep MCP server directly from the NuGet package without needing to build it yourself.
+
+```
+dnx -y Azure.Bicep.McpServer
+```
+
+The following JSON is an example of configuration for Visual Studio Code:
+
+```json
+"Bicep": {
+  "type": "stdio",
+  "command": "dnx",
+  "args": [
+    "-y",
+    "Azure.Bicep.McpServer"
+  ]
+}
+```
+
+For more information, see [Configuration format](https://code.visualstudio.com/docs/copilot/customization/mcp-servers#_configuration-format).
 
 ## Next steps
 
