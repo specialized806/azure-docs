@@ -13,7 +13,9 @@ ms.date: 02/06/2026
 
 [!INCLUDE [api-management-availability-premium-dev](../../includes/api-management-availability-premium-dev.md)]
 
-The Azure API Management service, in the Developer and Premium tiers, allows the deployment of the API Management gateway as a *self-hosted gateway*. A self-hosted gateway runs on a container in on-premises infrastructure, other clouds, and Azure infrastructure options that support containers. This article provides details about technical support policies and limitations for the API Management [self-hosted gateway](self-hosted-gateway-overview.md).  
+The Azure API Management service, in the Developer and Premium tiers, allows the deployment of the API Management gateway as a *self-hosted gateway*. A self-hosted gateway runs on a container in on-premises infrastructure, other clouds, and Azure infrastructure options that support containers.
+
+This article provides details about technical support policies and limitations for the API Management [self-hosted gateway](self-hosted-gateway-overview.md).  
 
 ## Differences between managed gateway and self-hosted gateway
 
@@ -21,7 +23,7 @@ When you deploy an instance of the API Management service, you always get a mana
 
 In supported service tiers, the self-hosted gateway is an optional deployment option.
 
-While the managed and self-hosted gateways share many common features, there are also [several differences](api-management-gateways-overview.md#feature-comparison-managed-versus-self-hosted-gateways).
+Managed and self-hosted gateways share common features. For more information, see [Feature comparison](api-management-gateways-overview.md#feature-comparison-managed-versus-self-hosted-gateways).
 
 ## Responsibilities
 
@@ -29,11 +31,13 @@ The following table shows Microsoft's responsibilities, shared responsibilities,
 
 |Microsoft Azure  |Shared responsibilities  |Customers  |
 |---------|---------|---------|
-|▪️ **Configuration endpoint (management plane)**. The self-hosted gateway depends on a configuration endpoint that provides the configuration, APIs, hostnames, and policy information. This configuration endpoint is part of the management plane of every API Management service.<br/><br/>▪️ **Gateway container image maintenance and updates**. Bug fixes, patches, performance improvements, and new features in the self-hosted gateway [container image](self-hosted-gateway-overview.md#packaging).        |▪ **Securing self-hosted gateway communication with configuration endpoint**. The communication between the self-hosted gateway and the configuration endpoint can be secured by two mechanisms: <br/><br/>- An access token that expires automatically every 30 days and needs to be updated for the running containers. <br/>- Authentication with Microsoft Entra ID, which doesn't require token refresh.<br/><br/> ▪ **Keeping the gateway up to date**. The customer oversees regularly updating the gateway to the latest version and latest features. Microsoft provides updated images with new features, bug fixes, and patches.      | ▪  **Gateway hosting**. Deploying and operating the gateway infrastructure: virtual machines with container runtime or Kubernetes cluster.<br/><br/>▪ **Network configuration**. Necessary to maintain management plane connectivity and API access.<br/><br/>    ▪ **Gateway SLA**. Capacity management, scaling, and uptime.<br/><br/>  ▪ **Providing diagnostics data to support**. Collecting and sharing diagnostics data with support engineers.<br/><br/>▪ **Third party OSS (open-source software) software components**. Combining the self-hosted gateway with other software like Prometheus, Grafana, service meshes, container runtimes, Kubernetes distributions, and proxies are the customer's responsibility.  |
+|▪️ **Configuration endpoint (management plane)**. The self-hosted gateway depends on a configuration endpoint that provides the configuration, APIs, hostnames, and policy information. This configuration endpoint is part of the management plane of every API Management service.<br/><br/>▪️ **Gateway container image maintenance and updates**. Bug fixes, patches, performance improvements, and new features in the self-hosted gateway [container image](self-hosted-gateway-overview.md#packaging).        |▪ **Securing self-hosted gateway communication with configuration endpoint**. The communication between the self-hosted gateway and the configuration endpoint can be secured by two mechanisms: <br/>- An access token that expires automatically every 30 days and needs to be updated for the running containers. <br/>- Authentication with Microsoft Entra ID, which doesn't require token refresh.<br/><br/> ▪ **Keeping the gateway up to date**. The customer oversees regularly updating the gateway to the latest version and latest features. Microsoft provides updated images with new features, bug fixes, and patches.      | ▪  **Gateway hosting**. Deploying and operating the gateway infrastructure: virtual machines with container runtime or Kubernetes cluster.<br/><br/>▪ **Network configuration**. Necessary to maintain management plane connectivity and API access.<br/><br/>    ▪ **Gateway SLA**. Capacity management, scaling, and uptime.<br/><br/>  ▪ **Providing diagnostics data to support**. Collecting and sharing diagnostics data with support engineers.<br/><br/>▪ **Third party OSS (open-source software) software components**. Combining the self-hosted gateway with other software like Prometheus, Grafana, service meshes, container runtimes, Kubernetes distributions, and proxies are the customer's responsibility.  |
 
 ## Self-hosted gateway container image support coverage 
 
-Microsoft has the following tagging strategy for the [self-hosted gateway container image](self-hosted-gateway-overview.md#packaging), following the major, minor, patch convention: `{major}.{minor}.{patch}`. For a full list of available tags, see [available tags](https://mcr.microsoft.com/product/azure-api-management/gateway/tags). As a best practice, we recommend that you run the latest stable version of our container image. Given the continuous releases of our container image, Microsoft provides official support for the following versions.
+Microsoft has the following tagging strategy for the [self-hosted gateway container image](self-hosted-gateway-overview.md#packaging), following the major, minor, patch convention: `{major}.{minor}.{patch}`. For a full list of available tags, see [available tags](https://mcr.microsoft.com/product/azure-api-management/gateway/tags).
+
+We recommend that you run the latest stable version of our container image. Given the continuous releases of our container image, Microsoft provides official support for the following versions.
 
 > [!TIP]
 > We highly encourage you to upgrade to a newer self-hosted gateway by following [Safe Deployment Practices (SDP)](https://azure.microsoft.com/blog/advancing-safe-deployment-practices/).
@@ -56,7 +60,7 @@ Microsoft has the following tagging strategy for the [self-hosted gateway contai
 
 ## Self-hosted gateway support scenarios
 
-### Microsoft provides technical support for the following examples
+Microsoft provides technical support for the following situations:
 
 - Configuration endpoint and management plane uptime and configuration for the supported tiers. 
 
@@ -66,7 +70,7 @@ Microsoft has the following tagging strategy for the [self-hosted gateway contai
 
 - Supported non-Microsoft open-source projects, for example: Open Telemetry and Distributed Application Runtime (DAPR). 
 
-### Microsoft does not provide technical support for the following examples 
+Microsoft Support doesn't provide technical support for the following issues:
 
 - Questions about how to use the self-hosted gateway inside Kubernetes. For example, Microsoft Support doesn't provide advice on how to:
 
@@ -75,11 +79,18 @@ Microsoft has the following tagging strategy for the [self-hosted gateway contai
   - Use application workloads
   - Apply non-Microsoft or open-source software packages or tools
 
-- Non-Microsoft open-source projects combined with our self-hosted gateway, except for specific supported projects, for example: Open Telemetry and DAPR (Distributed Application Runtime). 
+- Non-Microsoft open-source projects combined with our self-hosted gateway, except for specific supported projects, for example: Open Telemetry and DAPR.
 
 - Non-Microsoft closed-source software, including security scanning tools and networking devices or software. 
 
-- Troubleshooting network customizations, Container Network Interfaces (CNIs), service meshes, network policies, firewalls, and complex networking circuits. Microsoft checks only that the communication between self-hosted gateway and the configuration endpoint is working. 
+- Microsoft Support checks only that the communication between self-hosted gateway and the configuration endpoint works. Microsoft Support doesn't troubleshoot:
+
+  - Network customization
+  - Container Network Interfaces (CNIs)
+  - Service meshes
+  - Network policies
+  - Firewalls
+  - Complex networking circuits
 
 ## Bugs and issues
 
