@@ -237,7 +237,12 @@
         },
         {
             "source_path_from_root": "/articles/azure-functions/durable-functions-webjobs-sdk.md",
-            "redirect_url": "/azure/azure-functions/durable/durable-functions-webjobs-sdk",
+            "redirect_url": "/azure/azure-functions/durable/durable-task-scheduler/durable-task-overview",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/azure-functions/durable/durable-functions-webjobs-sdk.md",
+            "redirect_url": "/azure/azure-functions/durable/durable-task-scheduler/durable-task-overview",
             "redirect_document_id": false
         },
         {

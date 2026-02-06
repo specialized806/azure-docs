@@ -143,8 +143,6 @@
       items:
       - name: Manage connections
         href: ../manage-connections.md?toc=/azure/azure-functions/durable/toc.json
-      - name: Create as WebJobs
-        href: durable-functions-webjobs-sdk.md
       - name: C#
         items:
         - name: Roslyn Analyzer (C# only)
