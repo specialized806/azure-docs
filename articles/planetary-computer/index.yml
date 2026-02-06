@@ -32,7 +32,7 @@ landingContent:
       - linkListType: reference
         links:
           - text: US Government cloud support
-            url: usgov-cloud-support.md
+            url: us-government-cloud-support.md
       - linkListType: concept
         links:
           - text: STAC overview
