@@ -1,3 +1,11 @@
+---
+title: Paging results
+description: Learn about paging results and pagination limits.
+ms.date: 02/06/2026
+ms.topic: reference
+ms.custom: devx-track-csharp
+---
+
 # Paging results
 
 When it's necessary to break a result set into smaller sets of records for processing or because a result set would exceed the maximum allowed value of _1000_ returned records, use paging. The [REST API](/rest/api/azureresourcegraph/resourcegraph(2021-03-01)/resources/resources) `QueryResponse` provides values that indicate a results set was broken up: `resultTruncated` and `$skipToken`. `resultTruncated` is a Boolean value that informs the consumer if there are more records not returned in the response. This condition can also be identified when the `count` property is less than the `totalRecords` property. `totalRecords` defines how many records that match the query.
@@ -46,10 +54,11 @@ This approach partitions your data using a hash function to ensure consistent an
 
 First, determine how many records match your query: 
 
+```kusto
 Resources 
 | where type =~ 'microsoft.compute/virtualmachines' 
 | count 
-  
+``` 
 
 Use the count to determine the number of partitions needed. For example, if your count returns 7,712 records and since ARG size limit dictates that each partition can contain at most 1000 records, you would need at least 8 partitions. 
 
@@ -58,36 +67,44 @@ Use the count to determine the number of partitions needed. For example, if your
 Use the hash() function to partition data based on the resource ID. Query each partition separately: 
 
 // Partition 0 
+```kusto
 Resources 
 | where type =~ 'microsoft.compute/virtualmachines' 
 | where hash(tolower(id)) % 8 == 0 
-  
+```
 
 // Partition 1 
+
+```kusto
 Resources 
 | where type =~ 'microsoft.compute/virtualmachines' 
 | where hash(tolower(id)) % 8 == 1 
-  
+```
 
 Continue for each partition through partition 7: 
 
 // Partition 7 
+
+```kusto
 Resources 
 | where type =~ 'microsoft.compute/virtualmachines' 
 | where hash(tolower(id)) % 8 == 7
+```
 
 ###### Pseudo code
 
 // Step 1: Get total count and calculate partitions 
 
+```kusto
 totalCount = executeQuery("Resources | where type =~ 'microsoft.compute/virtualmachines' | count") 
 
 numPartitions = ceiling(totalCount / 1000) 
-
+```
   
 
 // Step 2: Build queries for each partition 
 
+```kusto
 queries = [] 
 
 for i = 0 to numPartitions - 1: 
@@ -99,10 +116,13 @@ for i = 0 to numPartitions - 1:
                     | where hash(tolower(id)) % {numPartitions} == {i}") 
 
   
+```
 
 // Step 3: Execute all queries in parallel and combine results 
 
+```kusto
 allResults = executeInParallel(queries) 
+```
 
 ##### Benefits
 
@@ -117,23 +137,29 @@ This approach retrieves all resource IDs first, then queries for complete record
 
 Use summarize with make_set() to retrieve all resource IDs: 
 
+```kusto
 Resources 
 | where type =~ 'microsoft.compute/virtualmachines' 
 | summarize make_set(id)
+```
 
 ##### Step 2: Query in batches
 
 Once you have the list of resource IDs, query for full records in batches of 1,000 or fewer: 
 
 // Batch 1 
+```kusto
 Resources 
 | where type =~ 'microsoft.compute/virtualmachines' 
 | where id in~ ('id1', 'id2', ... , 'id1000') 
+```
+
 // Batch 2 
+```kusto
 Resources 
 | where type =~ 'microsoft.compute/virtualmachines' 
 | where id in~ ('id1001', 'id1002', ... , 'id2000') 
-  
+``` 
 
 Continue until all IDs are covered. 
 
@@ -147,31 +173,39 @@ Continue until all IDs are covered.
 
 > Might exceed response size limit of 16MB 
 >
+>```kusto
 > Resources 
 > | where type =~ 'microsoft.compute/virtualmachines' 
 > | summarize make_set(id) 
+>```
 >
-> Use partioning in that case
+> Use partioning in that case:
 >
+>```kusto
 > Partition 0
 > Resources 
 > | where type =~ 'microsoft.compute/virtualmachines' 
 > | where hash(tolower(id))%10 == 0 
 > | summarize make_set(id) 
+>```
 >
 > partition 1 
 >
+>```kusto
 > Resources 
 > | where type =~ 'microsoft.compute/virtualmachines' 
 > | where hash(tolower(id))%10 == 1 
 > | summarize make_set(id) 
+>```
 >
 > Partition 9 
 >
+>```kusto
 > Resources 
 > | where type =~ 'microsoft.compute/virtualmachines' 
 > | where hash(tolower(id))%10 == 9 
 > | summarize make_set(id) 
+>```
 
 ### Scenario 1: Sorting by non-unique columns
 
@@ -184,11 +218,12 @@ When paginating results sorted by a non-unique column, you might encounter dupli
 
 Consider a query that retrieves virtual machines sorted by location: 
 
+```kusto
 Resources 
 | where type =~ 'microsoft.compute/virtualmachines' 
 | order by location asc 
 | project name, location, resourceGroup 
-  
+```
 
 If multiple VMs share the same location value (for example, eastus), their relative order isn't deterministic. When paginating: 
 
