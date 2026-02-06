@@ -81,7 +81,7 @@
       href: durable-functions-timers.md
     - name: Custom orchestration status
       href: durable-functions-custom-orchestration-status.md
-  - name: Durable Patterns
+  - name: Durable patterns
     items:
     - name: Function chaining
       href: durable-functions-sequence.md
