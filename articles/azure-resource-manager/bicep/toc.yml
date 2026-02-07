@@ -23,7 +23,7 @@ items:
         href: quickstart-create-bicep-use-visual-studio-code.md
         displayName: vscode,vs code
       - name: Create Bicep files - Bicep MCP Server
-        href: quickstart-create-bicep-use-visual-studio-code-mcp.md
+        href: quickstart-create-bicep-use-visual-studio-code-module-context-protocol.md
         displayName: vscode,vs code
       - name: Create Bicep files - Visual Studio
         href: quickstart-create-bicep-use-visual-studio.md
