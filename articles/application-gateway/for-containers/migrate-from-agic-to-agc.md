@@ -90,7 +90,7 @@ Steps 2 through 4 will be repeated for each service you plan to migrate.
 
 The first step of migration is to ensure the ALB Controller for Application Gateway for Containers is installed and running. Validate that both Application Gateway Ingress Controller and the Application Gateway for Containers ALB controller can run in parallel on the same cluster.
 
-For instructions on how to deploy the ALB Controller, see [Install Application Gateway for Containers ALB Controller](quickstart-deploy-application-gateway-for-containers-alb-controller.md).
+For instructions on how to deploy the ALB Controller, see the install guide for [Add-on](quickstart-deploy-application-gateway-for-containers-alb-controller-addon.md) or [Helm](quickstart-deploy-application-gateway-for-containers-alb-controller-helm.md).
 
 ### Step 2: Translate Ingress
 
