@@ -19,7 +19,7 @@ When you build workflows with Durable Functions or the Durable Task SDKs, your o
 Durable Functions support various backend storage providers. You can configure your apps to use the two types of storage providers available to Durable Task:
 
 - Azure managed:
-  - Durable Task Scheduler 
+  - Durable Task Scheduler (recommended)
 - "Bring your own" (BYO) storage:
   - Azure Storage
   - Netherite
