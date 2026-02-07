@@ -5,7 +5,7 @@ services: logic-apps
 ms.suite: integration
 ms.reviewer: rohithah, laveeshb, rarayudu, azla
 ms.topic: reference
-ms.date: 12/05/2025
+ms.date: 02/07/2026
 ms.custom: sfi-image-nochange
 ---
 
@@ -413,7 +413,7 @@ For Standard logic app resources in single-tenant Azure Logic Apps, stateless wo
 
 | Name | Multitenant | Single-tenant | Notes |
 |------|-------------|---------------|-------|
-| Outbound request | 120 sec <br>(2 min) | 225 sec <br>(3 min and 45 seconds) <br>(Default) | Examples of outbound requests include calls made by the HTTP trigger or action. <br><br>**Tip**: For longer running operations, use an [asynchronous polling pattern](logic-apps-create-api-app.md#async-pattern) or an ["Until" loop](logic-apps-workflow-actions-triggers.md#until-action). To work around time-out limits when you call another workflow that has a [callable endpoint](logic-apps-http-endpoint.md), you can use the built-in Azure Logic Apps action instead, which you can find in the designer's operation picker under **Built-in**. <br><br>To change the default limit in the single-tenant service, review [Edit host and app settings for logic apps in single-tenant Azure Logic Apps](edit-app-settings-host-settings.md). |
+| Outbound request | 120 sec <br>(2 min) | 225 sec <br>(3 min and 45 seconds) <br>(Default) | Examples of outbound requests include calls made by the HTTP trigger or action. If the server doesn't respond within the time-out limit, the HTTP action fails. <br><br>**Tip**: For longer running operations, use an [asynchronous polling pattern](logic-apps-create-api-app.md#async-pattern) or an ["Until" loop](logic-apps-workflow-actions-triggers.md#until-action). To work around time-out limits when you call another workflow that has a [callable endpoint](logic-apps-http-endpoint.md), you can use the built-in Azure Logic Apps action instead, which you can find in the designer's operation picker under **Built-in**. <br><br>To change the default time-out limit in the single-tenant service, follow these steps in the Azure portal or see [Edit host and app settings for logic apps in single-tenant Azure Logic Apps](edit-app-settings-host-settings.md): <br><br>1. On the designer, in the workflow, select the **HTTP** action. <br>2. In the action pane, select the **Settings** tab. <br>3. Under **Request options - Timeout**, change the duration. |
 | Inbound request | 120 sec <br>(2 min) | 225 sec <br>(3 min and 45 seconds) <br>(Default) | Examples of inbound requests include calls received by the Request trigger, HTTP Webhook trigger, and HTTP Webhook action. <br><br>**Note**: For the original caller to get the response, all steps in the response must finish within the limit unless you call another nested workflow. For more information, see [Call, trigger, or nest logic apps](../logic-apps/logic-apps-http-endpoint.md). <br><br>To change the default limit in the single-tenant service, review [Edit host and app settings for logic apps in single-tenant Azure Logic Apps](edit-app-settings-host-settings.md). |
 
 <a name="content-storage-size-limits"></a>
