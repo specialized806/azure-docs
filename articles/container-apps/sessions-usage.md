@@ -12,7 +12,7 @@ ms.custom: references_regions, ignite-2024
 
 # Use dynamic sessions in Azure Container Apps
 
-Azure Container Apps dynamic [sessions](sessions.md) offer isolated, secure contexts when you need to run code or applications separately from other workloads. Sessions run inside a [session pool](session-pool.md) which provides immediate access to new and existing sessions. These sessions are ideal for scenarios where user-generated input needs to be processed in a controlled manner or when integrating third-party services that require executing code in an isolated environment.
+Azure Container Apps dynamic [sessions](sessions.md) offer isolated, secure contexts when you need to run code or applications separately from other workloads. Sessions run inside a [session pool](session-pool.md) which provides immediate access to new and existing sessions. These sessions are ideal for scenarios where user-generated input needs to be processed in a controlled manner or when integrating third-party services that require executing code in an isolated environment. You don't need to deploy a container app resource to use dynamic sessions, create a session pool and call its management API.
 
 This article shows you how to manage and interact with dynamic sessions.
 
@@ -20,19 +20,17 @@ This article shows you how to manage and interact with dynamic sessions.
 
 Your application interacts with a session using the session pool's management API.
 
-A pool management endpoint follows this format:
+To get the session pool management endpoint, see [session pools management endpoint](./session-pool.md#management-endpoint).
 
-```text
-https://<SESSION_POOL_NAME>.<ENVIRONMENT_ID>.<REGION>.azurecontainerapps.io
-```
+### Management API authentication and authorization
 
-For more information about managing session pools, see [session pools management endpoint](./session-pool.md#management-endpoint).
+All requests to the session pool management API require authentication (AuthN) with a Microsoft Entra token and authorization (AuthZ) via the *Azure ContainerApps Session Executor* role on the session pool. For details and examples, see [Authentication and authorization](#authentication).
 
 ## Send requests to a session
 
 To send a request into a session's container, you use the management endpoint as the root for your request. Anything in the path following the base pool management endpoint is forwarded to the session's container.
 
-For example, if you make a call to `<POOL_MANAGEMENT_ENDPOINT>/api/uploadfile`, the request is routed to the session's container at `0.0.0.0:<TARGET_PORT>/api/uploadfile`.
+For example, if you make a call to `<POOL_MANAGEMENT_ENDPOINT>/api/uploadfile`, the request is routed to the session container on its target port at `<TARGET_PORT>/api/uploadfile`.
 
 ### Sample request
 
@@ -52,7 +50,7 @@ This request is forwarded to the container in the session with the identifier fo
 
 If the session isn't already running, Azure Container Apps automatically allocates a session from the pool before forwarding the request.
 
-In this example, the session's container receives the request at `http://0.0.0.0:<INGRESS_PORT>/<API_PATH_EXPOSED_BY_CONTAINER>`.
+In this example, the session's container receives the request on the target port at `<TARGET_PORT>/<API_PATH_EXPOSED_BY_CONTAINER>`.
 
 ### Identifiers
 
@@ -62,7 +60,9 @@ To send an HTTP request to a session, you must provide a session identifier in t
 
 - If a session with the identifier doesn't exist, a new session is automatically allocated before the request is sent to it.
 
-:::image type="content" source="media/sessions/sessions-overview.png" alt-text="Screenshot of session pool and sessions usage.":::
+The following diagram shows how a session pool routes requests to existing sessions or allocates a new session when needed.
+
+:::image type="content" source="media/sessions/sessions-overview.png" alt-text="Diagram showing a session pool routing requests to existing sessions or creating new sessions based on the identifier.":::
 
 #### Identifier format
 
@@ -78,12 +78,15 @@ As you continue to make calls to the same session, the session remains [allocate
 
 ### Stop a session
 
-Session pools can manage session lifecycle automatically, but you can also terminate a session manually using the Stop Session API. This is useful when you need to free resources immediately (for example, after work completes or when the pool is at its max concurrent sessions).
+Session pools can manage session lifecycle automatically, but you can also terminate a session manually when you need to free resources immediately (for example, after work completes or when the pool is at its max concurrent sessions). The API you use depends on the session pool type.
 
-> [!NOTE]
-> The Stop Session API is only supported for **Custom Container Session Pools**.
+#### Code interpreter session pools (Delete Session API)
 
-#### Request
+To terminate a code interpreter session, use the Delete Session API (`DELETE`). See the data-plane REST reference for the latest endpoint shape and API version: [Container Apps data-plane operations overview](https://learn.microsoft.com/en-us/rest/api/data-plane/containerapps/operation-groups?view=rest-data-plane-containerapps-2025-10-02-preview).
+
+#### Custom container session pools (Stop Session API)
+
+##### Request
 
 ```http
 POST {PoolManagementEndpoint}/.management/stopSession?api-version=2025-02-02-preview&identifier={SessionIdentifier}
@@ -94,7 +97,7 @@ POST {PoolManagementEndpoint}/.management/stopSession?api-version=2025-02-02-pre
 | `api-version` | string | Yes | The API version to use (for example, `2025-02-02-preview`). |
 | `identifier` | string | Yes | The unique identifier of the session to stop. |
 
-#### Example
+##### Example
 
 ```http
 POST https://{PoolManagementEndpoint}/.management/stopSession?api-version=2025-02-02-preview&identifier=testSessionIdentifier
@@ -122,6 +125,8 @@ By default, sessions are prevented from making outbound network requests. You ca
 - **Implement short expiration times**: Configure session identifiers to expire after a short period of inactivity. This approach minimizes the risk of sessions being hijacked after a user has finished interacting with your application.
 
 - **Regularly rotate session credentials**: Periodically review and update the credentials associated with your sessions. Rotation decreases the risk of unauthorized access.
+
+### Additional guidance for custom container sessions
 
 - **Utilize secure transmission protocols**: Always use HTTPS to encrypt data in transit, including session identifiers. This approach protects against man-in-the-middle attacks.
 
@@ -348,7 +353,7 @@ This template contains the following settings for managed identity:
 
 ## Logging
 
-Custom container session pools can send session logs to a Log Analytics workspace by using Azure Monitor diagnostic settings on the Container Apps environment.
+Session pools can send session logs to a Log Analytics workspace by using Azure Monitor diagnostic settings on the Container Apps environment. Some log tables are available only for custom container session pools.
 
 > [!NOTE]
 > Session log tables are available after diagnostic settings are configured to send logs to Log Analytics.
@@ -364,11 +369,11 @@ Custom container session pools can send session logs to a Log Analytics workspac
 
 Use these tables to query session logs:
 
-| Table name | Description |
-| --- | --- |
-| `AppEnvSessionConsoleLogs` | Console output and logs from session containers. |
-| `AppEnvSessionLifecycleLogs` | System logs for session allocation and lifecycle events. |
-| `AppEnvSessionPoolEvents` | Events related to session pool management, pod creation, and deletion. |
+| Table name | Description | Applies to |
+| --- | --- | --- |
+| `AppEnvSessionLifecycleLogs` | System logs for session allocation and lifecycle events. | All session pools |
+| `AppEnvSessionPoolEvents` | Events related to session pool management, pod creation, and deletion. | All session pools |
+| `AppEnvSessionConsoleLogs` | Console output and logs from session containers. | Custom container session pools only |
 
 ### Sample queries
 

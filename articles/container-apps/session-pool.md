@@ -13,13 +13,11 @@ ms.author: cshoe
 
 Session pools provide subsecond session allocation times and manage the lifecycle of each session.
 
-## Create a pool
+## Common concepts for both pools
 
-The process for creating a pool is slightly different depending on whether you're creating a code interpreter pool or a custom container pool.
+The process for creating a pool is slightly different depending on whether you're creating a code interpreter session pool or a custom container pool. The following concepts apply to both.
 
-### Code interpreter pool
-
-To create a code interpreter session pool using the Azure CLI, ensure you have the latest versions of the Azure CLI and the Azure Container Apps extension with the following commands:
+To create session pools using the Azure CLI, ensure you have the latest versions of the Azure CLI and the Azure Container Apps extension:
 
 ```bash
 # Upgrade the Azure CLI
@@ -28,6 +26,35 @@ az upgrade
 # Install or upgrade the Azure Container Apps extension
 az extension add --name containerapp --upgrade --allow-preview true -y
 ```
+
+Common session pool commands include:
+
+- `az containerapp sessionpool create`
+- `az containerapp sessionpool show`
+- `az containerapp sessionpool list`
+- `az containerapp sessionpool update`
+- `az containerapp sessionpool delete`
+
+Use `--help` with any command to see available arguments and supported values.
+
+To check the status of a session pool, use the `az containerapp sessionpool show` command:
+
+```bash
+az containerapp sessionpool show \
+    --name <SESSION_POOL_NAME> \
+    --resource-group <RESOURCE_GROUP> \
+    --query "properties.poolManagementEndpoint" \
+    --output tsv
+```
+
+When you create or update a pool, you can set a maximum number of concurrent sessions, an idle cooldown period, and whether outbound network traffic is allowed for sessions.
+
+> [!IMPORTANT]
+> If you enable egress, code running in the session can access the internet. Use caution when the code is untrusted because it can be used to perform malicious activities such as denial-of-service attacks.
+
+## Code interpreter session pool
+
+# [Azure CLI](#tab/azure-cli)
 
 Use the `az containerapps sessionpool create` command to create the pool. The following example creates a Python code interpreter session pool named `my-session-pool`. Make sure to replace `<RESOURCE_GROUP>` with your resource group name before you run the command.
 
@@ -46,28 +73,48 @@ You can define the following settings when you create a session pool:
 
 | Setting | Description |
 |---------|-------------|
-| `--container-type` | The type of code interpreter to use. Supported values include `PythonLTS`, `NodeLTS`, and `Shell`. |
+| `--container-type` | The type of code interpreter to use. Supported values include `PythonLTS`, `NodeLTS`, `Shell`, and `CustomContainer`. |
 | `--max-sessions` | The maximum number of allocated sessions allowed concurrently. The maximum value is `600`. |
 | `--cooldown-period` | The number of allowed idle seconds before termination. The idle period is reset each time the session's API is called. The allowed range is between `300` and `3600`. |
 | `--network-status` | Specifies whether outbound network traffic is allowed from the session. Valid values are `EgressDisabled` (default) and `EgressEnabled`. |
 
-> [!IMPORTANT]
-> If you enable egress, code running in the session can access the internet. Use caution when the code is untrusted because it can be used to perform malicious activities such as denial-of-service attacks.
+# [Azure portal](#tab/azure-portal)
 
-### Custom container pool
+> [!NOTE]
+> Azure portal steps for creating a code interpreter session pool are being updated. Check back soon.
+
+---
+
+### Code interpreter management endpoint
+
+To use code interpreter sessions with LLM framework integrations or by calling the management API endpoints directly, you need the pool's management API endpoint.
+
+The endpoint is in the format `https://<REGION>.dynamicsessions.io/subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<RESOURCE_GROUP>/sessionPools/<SESSION_POOL_NAME>`.
+
+To retrieve the management API endpoint for a session pool, see the common section above for an example command.
+
+The following endpoints are available for managing sessions in a pool:
+
+| Endpoint path | Method | Description |
+|----------|--------|-------------|
+| `code/execute` | `POST` | Execute code in a session. |
+| `files/upload` | `POST` | Upload a file to a session. |
+| `files/content/{filename}` | `GET` | Download a file from a session. |
+| `files` | `GET` | List the files in a session. |
+
+You build the full URL for each endpoint by concatenating the pool's management API endpoint with the endpoint path. The query string must include an `identifier` parameter containing the session identifier, and an `api-version` parameter with the value `2024-02-02-preview`.
+
+For example: `{sessionManagementEndpoint}code/execute?api-version=2024-02-02-preview&identifier=<IDENTIFIER>`
+
+For REST API references, see [Container Apps data-plane APIs](https://learn.microsoft.com/en-us/rest/api/containerapps/#data-plane-apis) and the [Container Apps data-plane operations overview](https://learn.microsoft.com/en-us/rest/api/data-plane/containerapps/operation-groups?view=rest-data-plane-containerapps-2025-10-02-preview).
+
+## Custom session pool
 
 To create a custom container session pool, you need to provide a container image and pool configuration settings.
 
 You invoke or communicate with each session using HTTP requests. The custom container must expose an HTTP server on a port that you specify to respond to these requests.
 
 # [Azure CLI](#tab/azure-cli)
-
-To create a custom container session pool using the Azure CLI, ensure you have the latest versions of the Azure CLI and the Azure Container Apps extension with the following commands:
-
-```bash
-az upgrade
-az extension add --name containerapp --upgrade --allow-preview true -y
-```
 
 Custom container session pools require a workload profiles-enabled Azure Container Apps environment. If you don't have an environment, use the `az containerapp env create -n <ENVIRONMENT_NAME> -g <RESOURCE_GROUP> --location <LOCATION>` command to create one.
 
@@ -119,148 +166,25 @@ This command creates a session pool with the following settings:
 | `--env-vars` | `"key1=value1" "key2=value2"` | The environment variables to set in the container. |
 | `--location` | `"Supported Location"` | The location of the session pool. |
 
-To check the status of the session pool, use the `az containerapp sessionpool show` command:
-
-```bash
-az containerapp sessionpool show \
-    --name <SESSION_POOL_NAME> \
-    --resource-group <RESOURCE_GROUP> \
-    --query "properties.poolManagementEndpoint" \
-    --output tsv
-```
-
 To update the session pool, use the `az containerapp sessionpool update` command.
+
+# [Azure portal](#tab/azure-portal)
+
+> [!NOTE]
+> Azure portal steps for creating a custom container session pool are being updated. Check back soon.
 
 # [Azure Resource Manager](#tab/arm)
 
-To create a custom container session pool using Azure Resource Manager, create a session pool resource with the `Microsoft.ContainerApps/sessionPools` resource type. The following example shows an ARM template snippet that creates a custom container session pool.
-
-Before you send the request, replace the placeholders between the `<>` brackets with the appropriate values for your session pool and session identifier.
-
-```json
-{
-  "type": "Microsoft.App/sessionPools",
-  "apiVersion": "2024-08-02-preview",
-  "name": "my-session-pool",
-  "location": "westus2",
-  "properties": {
-    "environmentId": "/subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<RESOURCE_GROUP>/providers/Microsoft.ContainerApps/environments/<ENVIRONMENT_NAME>",
-    "poolManagementType": "Dynamic",
-    "containerType": "CustomContainer",
-    "scaleConfiguration": {
-      "maxConcurrentSessions": 10,
-      "readySessionInstances": 5
-    },
-    "dynamicPoolConfiguration": {
-      "executionType": "Timed",
-      "cooldownPeriodInSeconds": 600
-    },
-    "secrets": [
-      {
-        "name": "registrypassword",
-        "value": "<REGISTRY_PASSWORD>"
-      }
-    ],
-    "customContainerTemplate": {
-      "registryCredentials": {
-          "server": "myregistry.azurecr.io",
-          "username": "myregistry",
-          "passwordSecretRef": "registrypassword"
-      },
-      "containers": [
-        {
-          "image": "myregistry.azurecr.io/my-container-image:1.0",
-          "name": "mycontainer",
-          "resources": {
-            "cpu": 0.25,
-            "memory": "0.5Gi"
-          },
-          "command": [
-            "/bin/sh"
-          ],
-          "args": [
-            "-c",
-            "while true; do echo hello; sleep 10;done"
-          ],
-          "env": [
-            {
-              "name": "key1",
-              "value": "value1"
-            },
-            {
-              "name": "key2",
-              "value": "value2"
-            }
-          ]
-        }
-      ],
-      "ingress": {
-        "targetPort": 80
-      }
-    },
-    "sessionNetworkConfiguration": {
-      "status": "EgressEnabled"
-    }
-  }
-}
-```
-
-This template creates a session pool with the following settings:
-
-| Parameter | Value | Description |
-|---------|-------|-------------|
-| `name` | `my-session-pool` | The name of the session pool. |
-| `location` | `westus2` | The location of the session pool. |
-| `environmentId` | `/subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<RESOURCE_GROUP>/providers/Microsoft.ContainerApps/environments/<ENVIRONMENT_NAME>` | The resource ID of the container app's environment. |
-| `poolManagementType` | `Dynamic` | Must be `Dynamic` for custom container sessions. |
-| `containerType` | `CustomContainer` | The container type of the session pool. Must be `CustomContainer` for custom container sessions. |
-| `scaleConfiguration.maxConcurrentSessions` | `10` | The maximum number of sessions that can be allocated at the same time. |
-| `scaleConfiguration.readySessionInstances` | `5` | The target number of sessions that are ready in the session pool all the time. Increase this number if sessions are allocated faster than the pool is being replenished. |
-| `dynamicPoolConfiguration.executionType` | `Timed` | The type of execution for the session pool. Must be `Timed` for custom container sessions. |
-| `dynamicPoolConfiguration.cooldownPeriodInSeconds` | `600` | The number of seconds that a session can be idle before the session is terminated. The idle period is reset each time the session's API is called. Value must be between `300` and `3600`. |
-| `secrets` | `[{ "name": "registrypassword", "value": "<REGISTRY_PASSWORD>" }]` | A list of secrets. |
-| `customContainerTemplate.registryCredentials.server` | `myregistry.azurecr.io` | The container registry server hostname. |
-| `customContainerTemplate.registryCredentials.username` | `myregistry` | The username to log in to the container registry. |
-| `customContainerTemplate.registryCredentials.passwordSecretRef` | `registrypassword` | The name of the secret that contains the password to log in to the container registry. |
-| `customContainerTemplate.containers[0].image` | `myregistry.azurecr.io/my-container-image:1.0` | The container image to use for the session pool. |
-| `customContainerTemplate.containers[0].name` | `mycontainer` | The name of the container. |
-| `customContainerTemplate.containers[0].resources.cpu` | `0.25` | The required CPU in cores. |
-| `customContainerTemplate.containers[0].resources.memory` | `0.5Gi` | The required memory. |
-| `customContainerTemplate.containers[0].env` | Array of name-value pairs | The environment variables to set in the container. |
-| `customContainerTemplate.containers[0].command` | `["/bin/sh"]` | The command to run in the container. |
-| `customContainerTemplate.containers[0].args` | `["-c", "while true; do echo hello; sleep 10;done"]` | The arguments to pass to the command. |
-| `customContainerTemplate.containers[0].ingress.targetPort` | `80` | The session port used for ingress traffic. |
-| `sessionNetworkConfiguration.status` | `EgressDisabled` | Specifies whether outbound network traffic is allowed from the session. Valid values are `EgressDisabled` (default) and `EgressEnabled`. |
+To use Azure Resource Manager for session pools, see the [SessionPools REST API overview](https://learn.microsoft.com/en-us/rest/api/resource-manager/containerapps/container-apps-session-pools?view=rest-resource-manager-containerapps-2025-07-01).
 
 ---
 
 > [!IMPORTANT]
 > If the session is used to run untrusted code, don't include information or data that you don't want the untrusted code to access. Assume the code is malicious and has full access to the container, including its environment variables, secrets, and files.
 
-### Get the management API endpoint
-
-To use code interpreter sessions with LLM framework integrations or by calling the management API endpoints directly, you need the pool's management API endpoint.
-
-The endpoint is in the format `https://<REGION>.dynamicsessions.io/subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<RESOURCE_GROUP>/sessionPools/<SESSION_POOL_NAME>`.
-
-To retrieve the management API endpoint for a session pool, use the `az containerapp sessionpool show` command. Make sure to replace `<RESOURCE_GROUP>` with your resource group name before you run the command.
-
-```bash
-az containerapp sessionpool show \
-    --name my-session-pool \
-    --resource-group <RESOURCE_GROUP> \
-    --query 'properties.poolManagementEndpoint' -o tsv
-```
-
 ## Configure a pool
 
-You can control the behavior of session pools using the following parameters available to `az containerapp sessionpool create`.
-
-| Purpose | Property | Description |
-|---|---|---|
-| **Set max number of sessions** | `max-sessions` | The maximum number of concurrent sessions allowed in a pool. Requests that come in after the max limit is met are returned a `404` server error indicating there are no more sessions being allocated to the pool. |
-| **Wait duration** | `cooldown-period` | The number of seconds that a session can be idle before the session is terminated. The idle period is reset each time the session's API is called. Value must be between `300` and `3600`. |
-| **Target session quantity** | `ready-sessions` | The target number of sessions to keep ready in a pool. |
+Use `az containerapp sessionpool create --help` to see the latest CLI arguments for session pool configuration. This section focuses on advanced configuration options that apply across API versions.
 
 ### Session lifecycle configuration
 
@@ -371,29 +295,6 @@ If the pool isn't maintaining the expected number of healthy ready sessions, rev
 > The session identifier is sensitive information which requires a secure process as you create and manage its value. To protect this value, your application must ensure each user or tenant only has access to their own sessions.
 >
 > Failure to secure access to sessions could result in misuse or unauthorized access to data stored in your users' sessions. For more information, see [Session identifiers](./sessions-usage.md#identifiers)
-
-The following endpoints are available for managing sessions in a pool:
-
-| Endpoint path | Method | Description |
-|----------|--------|-------------|
-| `code/execute` | `POST` | Execute code in a session. |
-| `files/upload` | `POST` | Upload a file to a session. |
-| `files/content/{filename}` | `GET` | Download a file from a session. |
-| `files` | `GET` | List the files in a session. |
-
-You build the full URL for each endpoint by concatenating the pool's management API endpoint with the endpoint path. The query string must include an `identifier` parameter containing the session identifier, and an `api-version` parameter with the value `2024-02-02-preview`.
-
-For example: `https://<REGION>.dynamicsessions.io/subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<RESOURCE_GROUP>/sessionPools/<SESSION_POOL_NAME>/code/execute?api-version=2024-02-02-preview&identifier=<IDENTIFIER>`
-
-To retrieve the session pool's management endpoint, use the `az containerapp sessionpool show` command:
-
-```bash
-az containerapp sessionpool show \
-    --name <SESSION_POOL_NAME> \
-    --resource-group <RESOURCE_GROUP> \
-    --query "properties.poolManagementEndpoint" \
-    --output tsv
-```
 
 All requests to the pool management endpoint must include an `Authorization` header with a bearer token. To learn how to authenticate with the pool management API, see [Authentication](sessions-usage.md#authentication).
 
