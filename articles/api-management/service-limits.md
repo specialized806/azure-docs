@@ -38,13 +38,19 @@ Starting in March 2026, Azure API Management is phasing in updated resource limi
 
 ### Rollout process
 
-New limits roll out in a phased approach starting in March 2026 in the Developer, Basic, and Basic v2 tiers, followed later by the Standard, Standard v2, Premium, and Premium v2 tiers. 
+New limits roll out in a phased approach by tier as follows:
+
+|Tier  |Expected rollout date  |
+|---------|---------|
+|Developer, Basic, Basic v2     | March 2026     |
+|Standard, Standard v2      |  April 2026       |
+|Premium, Premium v2     |  May 2026       |
 
 ### Limits policy for existing classic tier customers
 
 After the new limits take effect, you can continue using your pre-existing API Management resources without interruption. This means:
 
-* Existing classic tier services, where current usage exceeds the new limits, are "grandfathered" when the new limits are introduced. You can continue using these resources at the previous limits. (Customers in the v2 tiers are already subject to the new limits, so no grandfathering is needed for those services.) 
+* Existing classic tier services, where current usage exceeds the new limits, are "grandfathered" when the new limits are introduced. (Customers in the v2 tiers are already subject to the new limits, so no grandfathering is needed for those services.) 
 * Grandfathered limits will be set to 10% higher than the customer's current observed usage at the time limits take effect. 
 * Grandfathering applies per service and service tier at the time these limits take effect.
 * Other existing services and new services are subject to the new limits when they take effect. 
