@@ -17,7 +17,7 @@ This guide assumes you're following the **managed by ALB controller** [deploymen
 
 ## Prerequisites
 
-Ensure you have first deployed ALB Controller into your Kubernetes cluster.  See [Quickstart: Deploy Application Gateway for Containers ALB Controller](quickstart-deploy-application-gateway-for-containers-alb-controller.md) if you haven't already deployed the ALB Controller.
+Ensure you have first deployed ALB Controller into your Kubernetes cluster.  See the ALB Controller quickstart guide for [Add-on](quickstart-deploy-application-gateway-for-containers-alb-controller-addon.md) or [Helm](quickstart-deploy-application-gateway-for-containers-alb-controller-helm.md) if you haven't already deployed the ALB Controller.
 
 ### Prepare your virtual network / subnet for Application Gateway for Containers
 

@@ -30,7 +30,7 @@ Example output:
 
 In this example, the ALB controller version is **1.5.2**.
 
-The ALB Controller version can be upgraded by running the `helm upgrade alb-controller` command. For more information, see [Install the ALB Controller](quickstart-deploy-application-gateway-for-containers-alb-controller.md#install-the-alb-controller).
+The ALB Controller version can be upgraded by running the `helm upgrade alb-controller` command. For more information, see the ALB Controller install guide for [Add-on](quickstart-deploy-application-gateway-for-containers-alb-controller-addon.md#install-the-alb-controller) or [Helm](quickstart-deploy-application-gateway-for-containers-alb-controller-helm.md#install-the-alb-controller).
 
 > [!Tip]
 > The latest ALB Controller version can be found in the [ALB Controller release notes](alb-controller-release-notes.md#latest-release-recommended).
@@ -165,4 +165,4 @@ status:
 
 Ensure the federated credentials of the managed identity for the ALB Controller pod to make changes to Application Gateway for Containers are configured in Azure. Instructions on how to configure federated credentials can be found in the quickstart guides:
 
-- [Quickstart: Deploy ALB Controller](quickstart-deploy-application-gateway-for-containers-alb-controller.md#install-the-alb-controller)
+- Quickstart: Deploy ALB Controller - [Add-on](quickstart-deploy-application-gateway-for-containers-alb-controller-addon.md#install-the-alb-controller) or [Helm](quickstart-deploy-application-gateway-for-containers-alb-controller-helm.md#install-the-alb-controller)
