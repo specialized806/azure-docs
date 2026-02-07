@@ -1,9 +1,9 @@
-- name: Azure Durable Documentation
+- name: Durable Task Documentation
   href: index.yml
 - name: Overview
   expanded: true
   items:
-  - name: What is Azure Durable?
+  - name: What is Durable Task?
     href: durable-overview.md
   - name: Choose your orchestration framework
     href: ./durable-task-scheduler/choose-orchestration-framework.md
@@ -63,9 +63,11 @@
       href: durable-functions-task-hubs.md
     - name: Orchestrator code constraints
       href: durable-functions-code-constraints.md
+    - name: Durable Entities
+      href: durable-functions-entities.md
     - name: Storage providers
       href: durable-functions-storage-providers.md
-  - name: Orchestration features
+  - name: Features
     items: 
     - name: Instance management
       href: durable-functions-instance-management.md
@@ -79,6 +81,24 @@
       href: durable-functions-timers.md
     - name: Custom orchestration status
       href: durable-functions-custom-orchestration-status.md
+  - name: Durable patterns
+    items:
+    - name: Function chaining
+      href: durable-functions-sequence.md
+    - name: Fan-out/fan-in
+      href: durable-functions-fan-in-fan-out.md
+    - name: Monitors
+      href: durable-functions-monitor.md
+    - name: Human interaction
+      href: durable-functions-human-interaction.md
+    - name: Error handling and retries
+      href: durable-functions-error-handling.md
+    - name: Versioning
+      items:
+      - name: Durable Functions versioning
+        href: durable-functions-versioning.md
+      - name: Orchestration versioning
+        href: durable-functions-orchestration-versioning.md
 - name: Durable Functions
   items:
   - name: Overview
@@ -93,34 +113,12 @@
       href: durable-functions-packages.md 
     - name: Durable Functions for .NET isolated
       href: durable-functions-dotnet-isolated-overview.md
-  - name: Orchestration patterns
-    items:
-    - name: Function chaining
-      href: durable-functions-sequence.md
-    - name: Fan-out/fan-in
-      href: durable-functions-cloud-backup.md
-    - name: Monitors (C#, JavaScript)
-      href: durable-functions-monitor.md
-    - name: Monitors (Python)
-      href: durable-functions-monitor-python.md
-    - name: Human interaction
-      href: durable-functions-phone-verification.md
   - name: Concepts
     items:
-    - name: Stateful entities
-      href: durable-functions-entities.md
     - name: HTTP features
       href: durable-functions-http-features.md 
-    - name: Error handling
-      href: durable-functions-error-handling.md
     - name: Data persistence and serialization
       href: durable-functions-serialization-and-persistence.md
-    - name: Versioning
-      items:
-      - name: Durable Functions versioning
-        href: durable-functions-versioning.md
-      - name: Orchestration versioning
-        href: durable-functions-orchestration-versioning.md
     - name: Performance & scale
       href: durable-functions-perf-and-scale.md
     - name: High availability
@@ -253,18 +251,6 @@
   items:
   - name: Overview
     href: ./durable-task-scheduler/durable-task-overview.md
-  - name: Orchestration patterns
-    items:
-    - name: Function chaining
-      href: durable-functions-sequence.md #placeholder
-    - name: Fan-out/fan-in
-      href: durable-functions-cloud-backup.md #placeholder
-    - name: Monitors (C#, JavaScript)
-      href: durable-functions-monitor.md #placeholder
-    - name: Monitors (Python)
-      href: durable-functions-monitor-python.md #placeholder
-    - name: Human interaction
-      href: durable-functions-phone-verification.md #placeholder
   - name: Concepts
     items:
     - name: Versioning

@@ -525,7 +525,7 @@ The Durable Task SDK is not available for PowerShell. Use [Durable Functions](du
 ::: zone pivot="durable-functions"
 This cancellation mechanism using the *when-any* pattern doesn't terminate in-progress activity function or sub-orchestration executions. Rather, it simply allows the orchestrator function to ignore the result and move on. If your function app uses the Consumption plan, you're still billed for any time and memory that the abandoned activity function consumes. By default, functions running in the Consumption plan have a timeout of five minutes. If this limit is exceeded, the Azure Functions host recycles to stop all execution and prevent a runaway billing situation. The [function timeout is configurable](../functions-host-json.md#functiontimeout).
 
-For a more in-depth example of how to implement timeouts in orchestrator functions, see the [Human interaction and timeouts - Phone verification](durable-functions-phone-verification.md) article.
+For a more in-depth example of how to implement timeouts in orchestrator functions, see the [Human interaction](durable-functions-human-interaction.md) article.
 ::: zone-end
 
 ::: zone pivot="durable-task-sdks"

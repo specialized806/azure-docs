@@ -1,5 +1,5 @@
 ---
-title: Azure Durable Task SDKs overview
+title: Durable Task SDKs overview
 description: Understand the different Durable Task SDK flavors and when to use each.
 author: hhunter-ms
 ms.author: hannahhunter
