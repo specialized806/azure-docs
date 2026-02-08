@@ -29,13 +29,13 @@ A redirect sets the response status code returned to clients to understand the p
 
 - Protocol redirection is commonly used to tell the client to move from an unencrypted traffic scheme to traffic, such as HTTP to HTTPS redirection.
 
-- Hostname redirection matches the fully qualified domain name (fqdn) of the request. This is commonly observed in redirecting an old domain name to a new domain name; such as `contoso.com` to `fabrikam.com`.
+- Hostname redirection matches the fully qualified domain name (FQDN) of the request. This is commonly observed in redirecting an old domain name to a new domain name; such as `contoso.com` to `fabrikam.com`.
 
 - Path redirection has two different variants: `prefix` and `full`.
   - `Prefix` redirection type will redirect all requests starting with a defined value. For example: a prefix of /shop would match /shop and any text after. For example, /shop, /shop/checkout, and /shop/item-a would all redirect to /shop as well.
   - `Full` redirection type matches an exact value. For example: /shop could redirect to /store, but /shop/checkout wouldn't redirect to /store.
 
-The following figure illustrates an example of a request destined for _contoso.com/summer-promotion_ being redirected to _contoso.com/shop/category/5_. In addition, a second request initiated to contoso.com via http protocol is returned a redirect to initiate a new connection to its https variant.
+The following figure illustrates an example of a request destined for _contoso.com/summer-promotion_ being redirected to _contoso.com/shop/category/5_. In addition, a second request initiated to contoso.com via http protocol returns a redirect to initiate a new connection to its https variant.
 
 [![A diagram showing the Application Gateway for Containers returning a redirect URL to a client.](./media/how-to-url-redirect-gateway-api/url-redirect.png)](./media/how-to-url-redirect-gateway-api/url-redirect.png#lightbox)
 
