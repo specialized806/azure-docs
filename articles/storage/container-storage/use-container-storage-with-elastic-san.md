@@ -26,6 +26,7 @@ Azure Elastic SAN is a managed, shared block-storage service that provides a cen
 ## Prerequisites
 
 [!INCLUDE [container-storage-prerequisites](../../../includes/container-storage-prerequisites.md)]
+- [Review the installation instructions](install-container-storage-aks.md) and ensure Azure Container Storage is properly installed.
 
 ## Limitations
 
@@ -61,6 +62,44 @@ allowVolumeExpansion: true
 ```
 
 The default Elastic SAN capacity provisioned with this storage class is 1 TiB.
+
+Alternatively, you can create the storage class using Terraform.
+
+1. Use Terraform to manage the storage class by creating a configuration like the following `main.tf`. Update the provider version or kubeconfig path as needed for your environment.
+
+    ```tf
+    terraform {
+      required_version = ">= 1.5.0"
+      required_providers {
+        kubernetes = {
+          source  = "hashicorp/kubernetes"
+          version = "~> 3.0"
+        }
+      }
+    }
+
+    provider "kubernetes" {
+      config_path = "~/.kube/config"
+    }
+
+    resource "kubernetes_storage_class_v1" "azuresan" {
+      metadata {
+        name = "azuresan"
+      }
+
+      storage_provisioner    = "san.csi.azure.com"
+      reclaim_policy         = "Delete"
+      volume_binding_mode    = "Immediate"
+      allow_volume_expansion = true
+    }
+    ```
+
+1. Initialize and apply the configuration.
+
+    ```bash
+    terraform init
+    terraform apply
+    ```
 
 ### Create a storage class with custom Elastic SAN capacity
 
@@ -98,7 +137,7 @@ If you haven't already done so, [install Azure Container Storage.](install-conta
 1. Create an Elastic SAN in the managed resource group.
 
    ```azurecli
-   az elastic-san create --resource-group <node-resource-group> --name <san-name> --location <node-region> --sku Premium_ZRS --base-size-tib 1 --extended-capacity-size-tib 1
+   az elastic-san create --resource-group <node-resource-group> --name <san-name> --location <node-region> --sku "{name:Premium_LRS,tier:Premium}" --base-size-tib 1 --extended-capacity-size-tib 1
    ```
 
 1. Create a storage class that references the Elastic SAN:
