@@ -452,9 +452,8 @@ To stay updated about the latest investments, subscribe to the [Integrations on 
 
 ## Next steps
 
-You've learned more about how Azure Logic Apps compares to BizTalk Server. Next, learn how to choose the best Azure capabilities for your scenarios. Or, skip ahead to review suggested approaches and resources, planning considerations, and best practices for your migration.
+You've learned more about how Azure Logic Apps compares to BizTalk Server. Next, review suggested approaches and resources, planning considerations, and best practices for your migration.
 
 > [!div class="nextstepaction"]
-> [Choose the best Azure Integration Services offerings for your scenario](azure-integration-services-choose-capabilities.md)
 >
 > [Migration approaches for BizTalk Server to Azure Logic Apps](biztalk-server-azure-integration-services-migration-approaches.md)
