@@ -22,12 +22,7 @@ Instructions for new or existing deployments of ALB Controller deployed with hel
 
 - [New deployment of ALB Controller with helm](quickstart-deploy-application-gateway-for-containers-alb-controller-helm.md#for-new-deployments)
 - [Upgrade existing ALB Controller with helm](quickstart-deploy-application-gateway-for-containers-alb-controller-helm.md#for-existing-deployments)
-Instructions for new or existing deployments of ALB Controller deployed with helm are found in the following links:
 
-- [New deployment of ALB Controller with helm](quickstart-deploy-application-gateway-for-containers-alb-controller-helm.md#for-new-deployments)
-- [Upgrade existing ALB Controller with helm](quickstart-deploy-application-gateway-for-containers-alb-controller-helm.md#for-existing-deployments)
-
-If using the AKS add-on, updates will automatically be applied to the cluster.
 If using the AKS add-on, updates will automatically be applied to the cluster.
 
 ## Latest Release (Recommended)
