@@ -121,18 +121,23 @@ For more information, see the following documentation:
 When migrating integrations to Azure Logic Apps, you typically need (1) in-workflow data shaping (for example, parsing, composing, and mapping) and (2) a clear strategy for storing and deploying reusable artifacts such as schemas, maps, templates, and assemblies. The sections below summarize the main built-in options for transformations and the common places to keep the supporting artifacts for Standard workflows and shared B2B scenarios.
 
 - Data shaping in workflows (Data Operations, expressions, and Liquid templates)
+
 For most JSON transformations in logic app workflows, you can use built-in Data Operations such as Compose and Parse JSON, together with expressions and workflow actions (for example, loops and conditions) to shape data. For more advanced mapping scenarios—especially when you want a reusable template for transformations like JSON-to-JSON, JSON-to-text, XML-to-JSON, or XML-to-text—you can use a Liquid template. Liquid templates describe the mapping by using the open-source Liquid template language and can be versioned and deployed as an artifact alongside your workflow.
 
 - Schema-based XML operations (parse and compose)
+
 For XML creation and validation scenarios in logic app workflows, you can use built-in XML operations such as Compose XML with schema and Parse XML with schema. These actions are most useful when you want strongly-typed XML handling (based on an XSD) rather than treating the payload as plain text, for example when you need consistent element names, data types, and structure across multiple workflows.
 
 - Store artifacts with Standard logic apps
+
 For Standard logic apps, you can store integration artifacts with the logic app itself. In the Azure portal, you can upload maps and schemas directly to the Standard logic app resource. If you’re working in Visual Studio Code, you add schemas, maps, and templates to the appropriate folders under the project’s Artifacts directory and deploy them together with the workflow (which also makes it easier to keep artifacts in source control). Standard also supports calling custom compiled assemblies from XSLT maps (for example, .NET Framework assemblies), which is helpful for BizTalk migration scenarios that rely on existing transformation logic.
 
 - Use an integration account for shared B2B artifacts
+
 An integration account is an Azure resource that provides centralized access to reusable B2B and integration artifacts that multiple workflows can share. Artifacts can include trading partners, agreements, XSD schemas, XSLT maps, Liquid template-based maps, certificates, batch configurations, and .NET Framework assemblies. Integration accounts are commonly used in B2B/EDI scenarios where you want a shared, governed artifact store separate from any single workflow. For Standard workflows, you can often avoid an integration account by packaging schemas, maps, and templates with the Standard logic app project and deploying them together. Standard also supports calling .NET Framework assemblies from XSLT transformations (see announcement), which can help when porting existing BizTalk maps and helper libraries. If you prefer a project-based approach, add schemas, maps, and assemblies in Visual Studio Code and then deploy to Azure.
 
 - EDI schemas (specialized XSD artifacts for B2B integrations)
+
 EDI document schemas define the structure (body) of an EDI transaction document type. In BizTalk migration projects, teams often start by reusing the same XSD definitions and then iteratively validate trading-partner-specific variations. For Logic Apps workflows, many BizTalk EDI schemas in the [Microsoft Integration GitHub repository](https://github.com/microsoft/Integration/tree/master/BizTalk%20Server/Schema) are publicly available for you to use. Depending on your implementation approach, you can store these schemas either alongside a Standard logic app (as project artifacts) or centrally in an integration account for reuse across multiple workflows.
 
 #### Connectivity
