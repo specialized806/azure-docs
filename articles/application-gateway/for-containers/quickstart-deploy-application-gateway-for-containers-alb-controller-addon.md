@@ -41,6 +41,7 @@ You need to complete the following tasks before enabling the ALB Controller add-
     # Install Azure CLI extensions.
     az extension add --name alb
     ```
+    
     # [Azure PowerShell](#tab/azure-powershell)
 
     ```azurepowershell-interactive
@@ -115,7 +116,7 @@ az aks create \
 
 If using an existing cluster, ensure you enable Workload Identity support on your AKS cluster. Workload identities can be enabled via the following commands:
 
-# [Azure CLI](#tab/azure-cli2)
+# [Azure CLI](#tab/azure-cli)
 
 ```azurecli-interactive
 AKS_NAME='<your cluster name>'
@@ -123,7 +124,7 @@ RESOURCE_GROUP='<your resource group name>'
 az aks update -g $RESOURCE_GROUP -n $AKS_NAME --enable-oidc-issuer --enable-workload-identity --no-wait
 ```
 
-# [Azure PowerShell](#tab/azure-powershell2)
+# [Azure PowerShell](#tab/azure-powershell)
 
 ```azurepowershell-interactive
 $AKS_NAME = '<your cluster name>'
@@ -145,7 +146,7 @@ Set-AzAksCluster -InputObject $cluster -EnableOidcIssuer
 
 With an existing cluster, you can enable the Gateway API and Application Gateway for Containers add-ons with the following commands:
 
-# [Azure CLI](#tab/azure-cli)
+# [Azure CLI](#tab/azure-cli2)
 
 ```azurecli-interactive
 AKS_NAME='<your cluster name>'
@@ -155,7 +156,7 @@ RESOURCE_GROUP='<your resource group name>'
 az aks update --name ${AKS_NAME} --resource-group ${RESOURCE_GROUP} --enable-gateway-api --enable-application-load-balancer
 ```
 
-# [Azure Rest](#tab/azure-rest)
+# [Azure Rest](#tab/azure-rest2)
 
 Here's how to update an existing AKS cluster via REST API, by using the Azure CLI REST command.
 
@@ -287,7 +288,7 @@ If you wish to uninstall the ALB Controller add-on, complete the following steps
 
 Disable the ALB Controller add-on on your cluster:
 
-# [Azure CLI](#tab/azure-cli)
+# [Azure CLI](#tab/azure-cli2)
 
 ```azurecli-interactive
 AKS_NAME='<your cluster name>'
@@ -297,7 +298,7 @@ RESOURCE_GROUP='<your resource group name>'
 az aks update --name ${AKS_NAME} --resource-group ${RESOURCE_GROUP} --disable-gateway-api --disable-application-load-balancer
 ```
 
-# [Azure Rest](#tab/azure-rest)
+# [Azure Rest](#tab/azure-rest2)
 
 Here's how to update an existing AKS cluster via REST API, through the use of the Azure CLI REST command.
 
