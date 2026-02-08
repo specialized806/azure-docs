@@ -456,4 +456,4 @@ You've learned more about how Azure Logic Apps compares to BizTalk Server. Next,
 
 > [!div class="nextstepaction"]
 >
-> [Migration approaches for BizTalk Server to Azure Logic Apps](biztalk-server-azure-integration-services-migration-approaches.md)
+> [Migration approaches for BizTalk Server to Azure Logic Apps](biztalk-server-migration-approaches.md)
