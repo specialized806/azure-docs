@@ -30,7 +30,6 @@ If using the AKS add-on, updates will automatically be applied to the cluster.
 | ALB Controller Version | Gateway API Version | Minimum Kubernetes Version | Release Notes |
 | ---------------------- | ------------------- | ------------------ | ------------- |
 | 1.9.13 | v1.2.1 | v1.27 | Concurrency-related pod crash fix, security updates |
-| 1.9.13 | v1.2.1 | v1.27 | Concurrency-related pod crash fix, security updates |
 
 ## Release history
 
