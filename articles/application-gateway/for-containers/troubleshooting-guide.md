@@ -30,7 +30,7 @@ Example output:
 
 In this example, the ALB controller version is **1.9.13**.
 
-The ALB Controller version can be upgraded by running the `helm upgrade alb-controller` command. For more information, see the ALB Controller install guide for [Add-on](quickstart-deploy-application-gateway-for-containers-alb-controller-addon.md#install-the-alb-controller) or [Helm](quickstart-deploy-application-gateway-for-containers-alb-controller-helm.md).
+The ALB Controller version can be upgraded by running the `helm upgrade alb-controller` command. For more information, see the ALB Controller install guide for [Add-on](quickstart-deploy-application-gateway-for-containers-alb-controller-addon.md) or [Helm](quickstart-deploy-application-gateway-for-containers-alb-controller-helm.md).
 
 > [!Tip]
 > The latest ALB Controller version can be found in the [ALB Controller release notes](alb-controller-release-notes.md#latest-release-recommended).
