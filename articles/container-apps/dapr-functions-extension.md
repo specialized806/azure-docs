@@ -102,7 +102,7 @@ In the command:
 - Replace `<quickstart-functionapp-url>` with your actual function app URL. For example: `https://daprext-funcapp.wittyglacier-20884174.eastus.azurecontainerapps.io`.
 - Replace `<quickstart-functionapp-name>` with your function app name.
 
-To find your function app URL, navigate to **Container Appa** in the Azure portal, then select your new container app.
+To find your function app URL, navigate to **Container Apps** in the Azure portal, then select your new container app.
 
 # [PowerShell](#tab/powershell)
 
