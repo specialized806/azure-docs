@@ -6,7 +6,6 @@ author: mbender-ms
 ms.service: azure-appgw-for-containers
 ms.topic: release-notes
 ms.date: 2/7/2026
-ms.date: 2/7/2026
 ms.author: mbender
 # Customer intent: As a Kubernetes operator, I want to access the release notes for the ALB Controller, so that I can understand the latest updates and changes to optimize my configuration and deployments of Application Gateway for Containers.
 ---
