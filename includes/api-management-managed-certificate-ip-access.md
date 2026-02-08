@@ -12,7 +12,7 @@ Starting January 2026, Azure API Management needs inbound access on port 80 to [
 If your API Management instance restricts incoming IP addresses, we recommend that you remove or modify existing IP restrictions by using one of the following methods based on your deployment architecture.
 
 > [!NOTE]
-> Anytime you make changes to policy configurations, network security groups, or firewall rules, it's recommended to test access to your APIs to confirm the restrictions have been removed as intended.
+> Any time you make changes to policy configurations, network security groups, or firewall rules, it's recommended to test access to your APIs to confirm the restrictions have been removed as intended.
 
 ### Remove or edit IP filter policies in API Management
 
