@@ -225,7 +225,7 @@ An identity named `applicationloadbalancer-<cluster-name>` is created with the f
 | AppGw for Containers Configuration Manager | MC resource group |
 | Reader | MC resource group |
 
-The `applicationloadbalancer-<cluster-name>` identity will have a federated identity credential configured with the following properties:
+The `applicationloadbalancer-<cluster-name>` identity has a federated identity credential configured with the following properties:
 
 - **Name:** aksfic
 - **Namespace:** kube-system
