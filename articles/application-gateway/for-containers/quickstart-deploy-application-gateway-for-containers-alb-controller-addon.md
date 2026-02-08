@@ -7,7 +7,7 @@ author: mbender-ms
 ms.service: azure-appgw-for-containers
 ms.custom: devx-track-azurecli
 ms.topic: quickstart
-ms.date: 12/19/2025
+ms.date: 2/7/2026
 ms.author: mbender
 # Customer intent: As a Kubernetes administrator, I want to install the Application Gateway for Containers ALB Controller on my AKS cluster using the AKS add-on, so that I can efficiently manage load balancing rules with simplified configuration and automated identity management.
 ---
@@ -68,7 +68,7 @@ You need to complete the following tasks before enabling the ALB Controller add-
     az feature register --namespace "Microsoft.ContainerService" --name "ApplicationLoadBalancerPreview"
     ```
 
-## Setup an AKS cluster with the AKS add-on
+## Set up an AKS cluster with the AKS add-on
 
 The AKS add-on can be enabled on new or existing clusters.
 
@@ -157,7 +157,7 @@ az aks update --name ${AKS_NAME} --resource-group ${RESOURCE_GROUP} --enable-gat
 
 # [Azure Rest](#tab/azure-rest)
 
-Here's how to update an existing AKS cluster via REST api, through the use of the Azure CLI REST command.
+Here's how to update an existing AKS cluster via REST API, by using the Azure CLI REST command.
 
 ```azurecli-interactive
 AKS_NAME='<your cluster name>'
@@ -211,7 +211,7 @@ Verify GatewayClass `azure-alb-external` is installed on your cluster:
 kubectl get gatewayclass azure-alb-external -o yaml
 ```
 
-##### Validate Add-on Resources in Azure Portal
+##### Validate Add-on Resources in Azure portal
 
 Navigate to the `MC_` (node) resource group for your AKS cluster. You should see the following resources automatically created by the add-on:
 
@@ -299,7 +299,7 @@ az aks update --name ${AKS_NAME} --resource-group ${RESOURCE_GROUP} --disable-ga
 
 # [Azure Rest](#tab/azure-rest)
 
-Here's how to update an existing AKS cluster via REST api, through the use of the Azure CLI REST command.
+Here's how to update an existing AKS cluster via REST API, through the use of the Azure CLI REST command.
 
 ```azurecli-interactive
 AKS_NAME='<your cluster name>'
