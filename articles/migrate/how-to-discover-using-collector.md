@@ -14,8 +14,9 @@ ms.custom: engagement-fy26
 
 # Discover servers & workloads using Azure Migrate collector
 
-This article explains how to use Azure Migrate collector to discover servers and workloads running in your IT estate. The collected inventory data can be used to generate quick business case and perf-based assessment reports to support lift & shift migration and modernization of your IT estate. 
-You can deploy Azure Migrate collector in any supported version of Windows Server Machine that has network line of sight to vCenter to discover servers, performance data, software running on the servers, SQL Server, and PostgreSQL database instances and Web apps (.NET on IIS and Java on Tomcat). The Azure Migrate Collector doesn't require connectivity to Azure, helping customers save time typically spent on obtaining networking and Azure access approvals. It allows customers to flexibly scan their IT estate locally and upload the data securely on their own terms. Azure Migrate collector can be used to discover VMware estate or discover individual Windows and Linux servers running in any Hypervisor or public cloud. 
+This article explains how to use Azure Migrate collector to quickly discover servers and workloads across your IT estate without needing direct Azure connectivity. You deploy the collector on a Windows Server to scan VMware environments and physical or virtual servers. The collected inventory data can be used to generate quick business case, perf-based assessment reports to support lift & shift migration and modernization of your IT estate. 
+
+Azure Migrate collector can discover your VMware estate or individual Windows and Linux servers running on any hypervisor or public cloud. You can gather server configurations, performance metrics, installed software, SQL Server and PostgreSQL database instances, and web apps (.NET on IIS and Java on Tomcat). Because the collector doesn't require connectivity to Azure, you can scan your IT estate locally and upload data securely on your own terms—saving time typically spent obtaining networking and Azure access approvals. 
 
 
 ## Collect data from VMware estate

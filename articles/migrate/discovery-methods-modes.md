@@ -26,7 +26,7 @@ This article explains the different discovery methods in Azure Migrate and gives
 | Mode of Discovery | Continuous data collection | One-time data collection, manually upload the collected data to Azure | Upload pre-existing inventory files |
 | Time to Discover | Requires setup time | Quick to setup | Instant (reuse existing inventory data) |
 | Assessment Types | Lift and Shift, Modernize | Lift and Shift, Modernize | Lift and Shift |
-| Perf-based Assessment | Yes | Yes | No |
+| Performance based Assessment | Yes | Yes | No |
 | Guest Discovery (installed software, security insights, database instances) | Yes | Yes | No |
 | Security insights | Yes | Yes | No |
 | Workload Discovery (Webapps, SQL, PostgreSQL, MySQL) | Yes | Yes | No |
@@ -65,7 +65,7 @@ Ensure that software inventory is enabled before initiating workload discovery. 
 
 ## Collector-based discovery
 
-The collector-based discovery method involves deploying a lightweight virtual appliance that scans your environment offline to collect metadata about resources. This approach is ideal for scenarios where quick discovery of your IT estate is required. It supports discovery of VMware environments and physical or virtual servers in a hypervisor-agnostic approach.
+Azure Migrate collector enables offline discovery of IT esate. Using this lightweight tool, you can collect server configuration, performance, software inventory, and workload metadata without requiring connectivity to Azure during discovery. You can securely upload the collected data back to the Azure Migrate project you created. This approach is ideal for scenarios where quick discovery of your IT estate is required. It supports the discovery of VMware environments and physical or virtual servers in a hypervisor-agnostic approach.
 
 ### Key features
 
