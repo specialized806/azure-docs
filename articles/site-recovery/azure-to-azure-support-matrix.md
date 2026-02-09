@@ -92,8 +92,8 @@ When you enable replication via the VM workflow for cross-subscriptions, the por
 Site Recovery supports replication of Azure VMs running the operating systems listed in this section. For example, an already-replicating machine's operating system is later upgraded (or downgraded) to a different major version of the operating system, as in Red Hat Enterprise Linux (RHEL) 8 to RHEL 9. Then you must disable replication, uninstall the mobility agent, and re-enable replication after the upgrade.
 
 >[!NOTE]
->Major Linux OS upgrade without disable is currently in Preview. [Learn more](#upgrade-linux-major-os-version-without-disabling-replication-preview).
->Windows OS upgrade without disable replication is supported.
+>- Major Linux OS upgrade without disable is currently in Preview. [Learn more](#upgrade-linux-major-os-version-without-disabling-replication-preview).
+>- Windows OS upgrade without disable replication is supported.
 
 ### Windows
 
