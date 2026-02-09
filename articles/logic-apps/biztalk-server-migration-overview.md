@@ -96,7 +96,7 @@ With BizTalk, day-to-day integration work is done in Visual Studio and spread ac
 
 - Why the move to Logic Apps is an improvement
 
-Logic Apps pairs VS Code-based development with cloud-native diagnostics: you can validate and update workflows quickly, then use run history to see trigger/action inputs and outputs without relying on server-side consoles and host instance troubleshooting. In migration projects, this typically speeds up iteration (edit, deploy/update, validate), improves collaboration because workflows are easier to review and version, and supports cleaner environment separation by externalizing connections and settings—reducing “it works on that server” configuration drift.
+Azure Logic Apps pairs Visual Studio Code-based development with cloud-native diagnostics. You can quickly validate and update workflows, then use the workflow run history to see operation inputs and outputs without relying on server-side consoles and troubleshooting host instances. In migration projects, this benefit typically speeds up iteration (edit, deploy, update, validate), improves collaboration because workflows are easier to review and version, and supports cleaner environment separation by externalizing connections and settings, reducing the “it works on that server” configuration drift.
 
 #### Connectors
 
