@@ -2,7 +2,7 @@
 title: Tag support for resources
 description: Shows which Azure resource types support tags. Provides details for all Azure services.
 ms.topic: article
-ms.date: 02/06/2026
+ms.date: 02/09/2026
 ---
 
 # Tag support for Azure resources
@@ -3759,6 +3759,7 @@ To get the same data as a file of comma-separated values, download [tag-support.
 > [!div class="mx-tableFixed"]
 > | Resource type | Supports tags | Tag in cost report |
 > | ------------- | ----------- | ----------- |
+> | instanceFailoverGroup | No | No |
 > | instancePools | Yes | Yes |
 > | managedInstances | Yes | Yes |
 > | managedInstances / administrators | No | No |
@@ -3767,6 +3768,7 @@ To get the same data as a file of comma-separated values, download [tag-support.
 > | managedInstances / databases / advancedThreatProtectionSettings | No | No |
 > | managedInstances / databases / backupLongTermRetentionPolicies | No | No |
 > | managedInstances / databases / ledgerDigestUploads | No | No |
+> | managedInstances / databases / LongTermRetentionBackups | No | No |
 > | managedInstances / databases / vulnerabilityAssessments | No | No |
 > | managedInstances / dnsAliases | No | No |
 > | managedInstances / metricDefinitions | No | No |
@@ -3803,6 +3805,7 @@ To get the same data as a file of comma-separated values, download [tag-support.
 > | servers / databases / extensions | No | No |
 > | servers / databases / geoBackupPolicies | No | No |
 > | servers / databases / ledgerDigestUploads | No | No |
+> | servers / databases / LongTermRetentionBackups | No | No |
 > | servers / databases / metricDefinitions | No | No |
 > | servers / databases / metrics | No | No |
 > | servers / databases / recommendedSensitivityLabels | No | No |
