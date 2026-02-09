@@ -57,7 +57,7 @@ nodepool1   standard_l8s_v3
 > [!NOTE]
 > In Azure Container Storage (version 2.x.x), you can now use clusters with fewer than three nodes.
 
-In scenarios where VM sizes with a single local NVMe disk are used alongside ephemeral OS disks, the local NVMe disk is allocated for the OS, leaving no capacity for Azure Container Storage to utilize. To ensure optimal performance and availability of local NVMe disks for high-performance data processing, it is recommended to:
+In scenarios where VM sizes with a single local NVMe disk are used alongside ephemeral OS disks, the local NVMe disk is allocated for the OS, leaving no capacity for Azure Container Storage to utilize. To ensure optimal performance and availability of local NVMe disks for high-performance data processing, we recommend that you do the following:
 
 1. Select VM sizes with two or more local NVMe disks.
 2. Use managed disks for the OS, freeing up all local NVMe disks for data processing.
