@@ -88,13 +88,15 @@ Azure Logic Apps offers the following example advantages:
 
 #### Developer experiences
 
-This section describes the developer tools that BizTalk server and Azure Integration Services support:
+This section summarizes how development tooling changes when migrating from BizTalk Server (Visual Studio–centric) to Azure Logic Apps (Visual Studio Code–centric), and why many teams find the Logic Apps workflow model faster to build and easier to maintain.
 
-| Offering | Product or     service with supported tools |
-|----------|-----------------------------------------|
-| BizTalk Server | Each BizTalk Server version supports a specific version of Visual Studio. <br><br>For example, BizTalk Server 2020 supports Visual Studio 2022, with Cumulative Update 7. |
-| Azure Logic Apps | Customers can build workflows, using the Azure portal and Visual Studio Code.|
+- Tooling and authoring model
 
+With BizTalk, day-to-day integration work is done in Visual Studio and spread across multiple artifact types (schemas, maps, orchestrations, pipelines), plus deployment packaging (MSI/bindings) to shared server environments. With Logic Apps, many teams move to Visual Studio Code for editing workflow definitions and related files, using a simpler “workflow + connectors” approach that reduces solution complexity and encourages smaller, more incremental changes. In practice, VS Code is usually faster to install, update, and standardize across teams than maintaining BizTalk/Visual Studio version alignment, and the text-based workflow definitions tend to improve Git diff/merge, code reviews, and reuse compared to large compiled BizTalk solutions.
+
+- Why the move to Logic Apps is an improvement
+
+Logic Apps pairs VS Code-based development with cloud-native diagnostics: you can validate and update workflows quickly, then use run history to see trigger/action inputs and outputs without relying on server-side consoles and host instance troubleshooting. In migration projects, this typically speeds up iteration (edit, deploy/update, validate), improves collaboration because workflows are easier to review and version, and supports cleaner environment separation by externalizing connections and settings—reducing “it works on that server” configuration drift.
 
 #### Connectors
 
