@@ -35,7 +35,7 @@ There's no way to definitively guarantee whether the agent orchestrator uses any
 
 The Bicep MCP server is available starting with Visual Studio Code Bicep extension version 0.40.2. For more information about installing, managing, and using Bicep MCP server from VS Code, see [Bicep MCP server](./visual-studio-code.md#bicep-mcp-server).
 
-## Integration with other AI services
+## Integration with other Foundry Tools
 
 You can run the Azure Bicep MCP server locally for Claude Desktop and Code, OpenAI Codex CLI, and LMStudio where you can use it with various models.
 
