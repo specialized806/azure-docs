@@ -78,7 +78,7 @@ Azure Logic Apps offers the following example advantages:
 
   Design complex processes by using easy-to-understand design tools to implement patterns and workflows that might otherwise be difficult to implement in code.
 
-- Code-first
+- Code-first development
 
   Create comprehensive code based solutions using VSCode, allowing you to reuse existing legacy .net framework code, and incorporate the latest .NET versions.
 
