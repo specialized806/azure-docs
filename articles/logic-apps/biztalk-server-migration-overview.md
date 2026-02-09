@@ -62,7 +62,7 @@ After a Receive port receives a message, MessageBox stores that message for proc
 For more information, see [Publish-subscribe architecture](#publish-subscribe-architecture) later in this guide.
 
 
-### Azure Logic Apps: The BizTalk successor
+### Azure Logic Apps: successor to BizTalk
 
 Azure Logic Apps is Microsoft’s enterprise-grade workflow orchestration and integration platform, designed for deterministic, long‑running, stateful processes across cloud and hybrid environments. Its key differentiator is combining low‑code visual workflows with first‑class Azure platform capabilities: security, identity, networking, monitoring, and governance. Logic Apps supports multiple deployment models (Consumption, Standard, Hybrid), enabling customers to run workflows fully managed in Azure or close to on‑premises systems while maintaining reliability, state management, and auditable execution. This makes it the natural backbone for modernizing BizTalk Server estates, orchestrating B2B/EDI integrations, and connecting SaaS, ERP, CRM, and legacy systems where durability and observability are non‑negotiable.
 
