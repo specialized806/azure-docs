@@ -193,7 +193,7 @@ For problems that this guide doesn't cover, try the following options:
 
 ## Related content
 
-- [General FAQ](faq-general.md)
+- [General FAQ](faq.md)
 - [Security and compliance FAQ](faq-security-compliance.md)
 - [Roles and permissions](roles-permissions-overview.md)
 - [Agent run modes](agent-run-modes.md)

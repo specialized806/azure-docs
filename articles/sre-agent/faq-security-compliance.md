@@ -299,7 +299,7 @@ Use this checklist to quickly verify that Azure SRE Agent meets your organizatio
 
 ## Related content
 
-- [General FAQ](faq-general.md)
+- [General FAQ](faq.md)
 - [Operations troubleshooting FAQ](faq-troubleshooting.md)
 - [Roles and permissions overview](roles-permissions-overview.md)
 - [Agent run modes](agent-run-modes.md)
