@@ -128,3 +128,7 @@ When the tenant is first provisioned Azure enforces
 
 ensuring newly created admin or high‑privilege accounts never start in a weak or misconfigured state.
 
+When identities, subscriptions, or resources are created, **Security defaults** + **CA** give a hardened starting posture; **Azure Policy** applies baseline guardrails at MG/sub scopes so new assets inherit secure defaults automatically.
+
+Learn: [Security defaults](/entra/fundamentals/security-defaults) · [Conditional Access Overview](/entra/identity/conditional-access/overview). [Plan CA deployment](/entra/identity/conditional-access/plan-conditional-access) · [What is Azure Policy?](/azure/governance/policy/overview) 
+
