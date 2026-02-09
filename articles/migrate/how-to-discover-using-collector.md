@@ -14,10 +14,9 @@ ms.custom: engagement-fy26
 
 # Discover servers & workloads using Azure Migrate collector
 
-This article explains how to use Azure Migrate collector to quickly discover servers and workloads across your IT estate without needing direct Azure connectivity. You deploy the collector on a Windows Server to scan VMware environments and physical or virtual servers. The collected inventory data can be used to generate quick business case, perf-based assessment reports to support lift & shift migration and modernization of your IT estate. 
+This article explains how to use Azure Migrate collector to quickly discover servers and workloads across your IT estate without needing direct Azure connectivity. You deploy the collector on a Windows Server to scan VMware environments and physical or virtual servers. The collected inventory data can be used to generate business case and performance-based assessment reports to support lift-and-shift migration and modernization of your IT estate.
 
-Azure Migrate collector can discover your VMware estate or individual Windows and Linux servers running on any hypervisor or public cloud. You can gather server configurations, performance metrics, installed software, SQL Server and PostgreSQL database instances, and web apps (.NET on IIS and Java on Tomcat). Because the collector doesn't require connectivity to Azure, you can scan your IT estate locally and upload data securely on your own terms—saving time typically spent obtaining networking and Azure access approvals. 
-
+Azure Migrate collector can discover your VMware estate or individual Windows and Linux servers running on any hypervisor or public cloud. You can collect server configurations, performance metrics, installed software, SQL Server and PostgreSQL database instances, and web apps (.NET on IIS and Java on Tomcat). With no Azure connectivity required, you can scan the estate locally and upload data securely, saving time and avoiding complex networking or access approval requirements.
 
 ## Collect data from VMware estate
 
@@ -59,7 +58,7 @@ Note: *You can set up custom least privileged Windows, Linux, and SQL accounts b
 3. Run the installer script:
    
    ```pwsh
-   .\DisconnectedApplianceInstaller.ps1
+   .\AzureMigratecollector.ps1
    ```
 
 4. During the first installation of the script, select fresh option f.
@@ -123,31 +122,14 @@ The same Azure migrate collector can be used to discover both VMware machines an
 > -To add multiple credentials at once, select Add more to save and enter more credentials. 
 
 ### Provide Windows and Linux server details:
-1.	Provide physical or virtual server details.
-2.	Select Add discovery source to enter the server IP address or FQDN and the friendly name for the credentials used to connect to the server.
-3.	The appliance uses WinRM port 5986 (HTTPS) by default to communicate with Windows servers, and port 22 (TCP) for Linux servers.
-4.	If the target Hyper-V servers do not have HTTPS prerequisites set up, the appliance switches to WinRM port 5985 (HTTP).
-5.	You can Add single item at a time or Add multiple items together. You can also provide server details through Import a CSV file.
-6.	If you choose Add single item, select the OS type.
-7.	Enter a friendly name for the credentials, add the server IP address or FQDN.
-8.	Select Save.
-9.	If you choose Add multiple items, enter multiple records at once by specifying the server IP address or FQDN.
-10.	Enter the friendly name for the credentials in the text box.
-11.	Verify the records and then select Save.
-12.	If you choose Import CSV (this is selected by default), download the CSV template file.
-13.	Fill it with the server IP address or FQDN.
-14.	Enter the friendly name for the credentials. Then import the file into the appliance.
-15.	Verify the records, and then select Save.
-16.	When you select Save, the collector validates the connection to the added servers and shows the Validation status in the table next to each server.
-17.	If validation fails for a server, you can review the error by selecting Validation failed in the Status column. Fix the issue and validate again.
-18.	To remove a server, select Delete.
-19.	You can revalidate the connectivity to servers any time before you start the data collection.
-20.	Before you start data collection, you can turn off the slider to skip software inventory on the added servers. You can change this option at any time.
-21.	To discover SQL Server instances and databases, you add extra credentials (Windows domain, non-domain, or SQL authentication). The appliance then tries to automatically map these credentials to the SQL servers. If you add domain credentials, the appliance authenticates them with the domain’s Active Directory to prevent user account lockouts. To check if the domain credentials are valid, follow these steps:
-22.	In the configuration manager credentials table, you see the Validation status for domain credentials. Only domain credentials are validated.
-23.	If you use domain accounts, the username must be in Down-Level format (domain\username). The UPN format (username@domain.com) isn't supported.
-24.	If validation fails, you can select the Failed status to view the error. Fix the issue, and then select Revalidate credentials to try again.
-
+1.	Provide physical or virtual server details by adding discovery sources using Add single item, Add multiple items, or Import CSV (default). You can enter the server IP address or FQDN along with a friendly name for the credentials used to connect. 
+2.	For Add single item, select the OS type, enter the server IP address or FQDN, provide a friendly credential name, and select Save. For Add multiple items, enter multiple server records at once, specify the credential name, verify the records, and then save. 
+3.	For Import CSV, download the CSV template, fill in the server IP address or FQDN and credential friendly name, import the file into the appliance, verify the records, and select Save. 
+4.	The collector communicates with Windows servers using WinRM port 5986 (HTTPS) and Linux servers using port 22 (TCP). If HTTPS prerequisites are not configured on Hyper‑V servers, it automatically switches to WinRM port 5985 (HTTP). 
+5.	When you save, the collector validates connectivity to each server and shows the Validation status in the table. If validation fails, select Validation failed to review the error, fix the issue, and validate again. You can revalidate connectivity at any time before starting data collection or remove servers by selecting Delete. 
+6.	Before starting data collection, you can optionally turn off the workload discovery slider for the added servers. This setting can be changed at any time. 
+7.	To discover SQL Server instances and databases, add additional credentials (Windows domain, non‑domain, or SQL authentication). The appliance attempts to automatically map these credentials to SQL servers. Domain credentials are authenticated against Active Directory to prevent account lockouts and must be provided in Down‑Level format (domain\username), as UPN format is not supported. 
+8.	Domain credential validation status is shown in the credentials table. If validation fails, select the failed status to view details, fix the issue, and select Revalidate credentials.
 
 ### Start data collection
 
@@ -189,7 +171,7 @@ The same Azure migrate collector can be used to discover both VMware machines an
 3.	You will be able to see the import status as it proceeds. 
 
 > [!NOTE]
-> Discovery may take up to 30 minutes. Keep the page open until import completes.
+> Discovery may take up to 30 minutes. 
 
 ### Create business cases and assessments
 
@@ -205,5 +187,12 @@ The same Azure migrate collector can be used to discover both VMware machines an
 5.	Select “Azure migrate collector (ZIP)” in the file type dropdown
 6.	Click Browse and select the ZIP file exported from your collector.
 7.	Once you have selected the right file, click on import to ingest the file. 
-8.	Multiple zip files of different hypervisor type (VMware, physical) can be imported to the same project. 
 
+> [!NOTE]
+> Multiple zip files of different hypervisor type (VMware, physical) can be imported to the same project. 
+
+## Next steps
+
+- Review the [discovered inventory](how-to-review-discovered-inventory.md.md).
+- Generate a [a business case](migrate-appliance.md).
+- Create an [assessment](tutorial-discover-import.md).
