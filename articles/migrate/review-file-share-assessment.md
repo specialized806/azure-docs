@@ -1,6 +1,6 @@
 ---
-title: Review an Azure Files assessment
-description: Review the Azure Files assessment created using Azure Migrate.
+title: Review Azure Files assessment results in Azure Migrate
+description: Learn how to review Azure Files assessment results created using Azure Migrate to evaluate readiness, risks, and cost estimates.
 author: ankitsurkar06
 ms.author: ankitsurkar
 ms.service: azure-migrate
@@ -13,11 +13,11 @@ monikerRange:
 
 # Review an Azure Files assessment
 
-This article describes the various components of a Fileshare assessment and how you can review the assessment after it is created. 
+This article describes the components of an Azure Files assessment and how to review the assessment after it’s created.
 
 ## Overview
 
-An Azure Migrate assessment evaluates your on-premises workloads or workloads hosted on other public clouds for migration to Azure, analyzing Azure readiness for different Azure targets, right-sizing, and cost. The Azure Files assessment enables you to assess the Fileshares and identify a strategy to migrate them to Azure Files on Azure. Use this article for a guided walkthrough of a Fileshare assessment.  
+An Azure Migrate assessment evaluates on‑premises workloads or workloads hosted in other public clouds for migration to Azure by analyzing readiness, right‑sizing, and cost. An Azure Files assessment helps you evaluate file shares and identify a strategy to migrate them to Azure Files. 
 
 ## Review an assessment
 
@@ -27,37 +27,37 @@ To review an Azure Files assessment, follow the steps:
 
    ![Screenshot of Overview page.](./media/review-application-assessment/overview.png)
    
-1. Search for the assessment with the **Workloads** filter and select it.
+1. Use the **Workloads** filter to search for the assessment, and then select it.
 
    ![Screenshot of list of assessments.](./media/review-application-assessment/assessments.png)
 
-1. Review the **Overview** page to get the summary of assessed Fileshares and different migration paths. You can check the recommended migration path that is selected based on your migration preference.  
+1. Review the **Overview** page to view a summary of the assessed fileshares and available migration paths. The recommended migration path is automatically selected based on your migration preferences. 
       :::image type="content" source="./media/review-fileshare-assessment/file-share-assessment-overview.jpg" alt-text="The screenshot that shows where the user can start with application assessment review." lightbox="./media/review-fileshare-assessment/file-share-assessment-overview.jpg":::
 
 ## Migration Scenarios
-   Migration scenarios include the various migration paths a customer can choose to complete the migration of the assessed file shares. You can review the readiness for target deployment types and the cost estimates for assessed shares that are marked ready or ready with conditions: 
+   Migration scenarios represent the available migration paths for assessed file shares. For each scenario, you can review readiness for the target deployment type and cost estimates for shares that are marked as Ready or Ready with conditions. 
 
 **Recommended path**
 
-Choosing a Microsoft-recommended target minimizes your migration effort. If your file share instance supports both Azure Files and on share on Azure VM, the most cost-effective and migration-ready option is recommended. The details include readiness checks and monthly cost estimates for instances marked as Ready or Ready with conditions. The recommended path is set to ‘Modernize’ by default to always prefer and assess for PaaS services wherever possible. 
+A Microsoft‑recommended target minimizes migration effort. When a fileshare supports both Azure Files and Azure VM options, Azure Migrate recommends the most cost‑effective and migration‑ready path, including readiness checks and monthly cost estimates for shares marked Ready or Ready with conditions. By default, the Modernize option is recommended to prioritize PaaS targets.
 :::image type="content" source="./media/review-fileshare-assessment/recommended-path.jpg" alt-text="The screenshot that shows where the user can start with recommended path review." lightbox="./media/review-fileshare-assessment/recommended-path.jpg":::
 
 You can use this path to: 
 
-- Review the best recommended path, readiness states, cost estimates and suggested configurations for Azure Files or Azure VMs or a combination of both. 
+- Review the best recommended path, readiness states, cost estimates, and suggested configurations for Azure Files or Azure VMs or a combination of both. 
 
-- Understand details around migration issues, warnings that you can remediate before migration to the different Azure Files share.  
+- Understand migration issues and warnings that must be remediated before migrating to Azure Files.  
 
 > [!Note]
-> In the image, the recommended deployment strategy for the demo-assessment2 workloads is migrating to Azure Files since all shares have been successfully assessed without any issues along with cost benefits.  
-> Azure migrate will always try to provide a successful migration path for all chosen shares. 
-> If we encounter an error during assessment either for the share volume or size estimations, we will count the file share and all the other collocated shares of that server for an Azure VM migration path. 
+> - The recommended deployment strategy is Azure Files when fileshares are assessed successfully and meet readiness requirements with cost benefits.
+> - Azure Migrate attempts to provide a successful migration path for all selected file shares.
+> - If an error is encountered during assessment, such as volume or size estimation issues, the affected fileshare and all collocated shares on the server are recommended for an Azure virtual machine migration path.
 
 **Migrate all files shares to Azure Files** 
-In this strategy, you can see the readiness and cost estimates for migrating to Azure Files shares. You can check details for each of the shares, its sources, target recommendations, monthly cost etc. 
+This strategy shows readiness and cost estimates for migrating fileshares to Azure Files. Review individual share details, source information, target recommendations, and estimated monthly costs.
 :::image type="content" source="./media/review-fileshare-assessment/to-azure-files.jpg" alt-text="The screenshot that shows where the user can start with Azure Files path review." lightbox="./media/review-fileshare-assessment/to-azure-files.jpg":::
 
-You can select on ‘View details’ to see: 
+Select **View details** to see following information on each fileshare: 
 - Various readiness states of each of the file shares 
 - Source servers hosting such instances 
 - Monthly cost 
@@ -66,12 +66,12 @@ You can select on ‘View details’ to see:
 
 :::image type="content" source="./media/review-fileshare-assessment/view-assessment-details.jpg" alt-text="The screenshot that shows where the user can check the assessment details." lightbox="./media/review-fileshare-assessment/view-assessment-details.jpg":::
 
-A further drill-down view provides you with the details of readiness states, source properties, and target recommendations. 
+A drill-down view provides details on readiness states, source properties, and target recommendations.
 
 :::image type="content" source="./media/review-fileshare-assessment/instance-level-details.jpg" alt-text="The screenshot that shows where the user can check the instance level details." lightbox="./media/review-fileshare-assessment/instance-level-details.jpg":::
 
 **Migrate all shares to Azure VM** 
-In this strategy, you can see how you can rehost all the shares on Azure VM. You can review the readiness and cost estimates. The readiness and sizing logic is similar to Azure VM assessment type. 
+This strategy lets you rehost all file shares on Azure virtual machines. You can review readiness and cost estimates, using the same readiness and sizing logic as Azure virtual machine assessments. 
 
 This assessment accounts for all the shares on a server to a suitable size Azure VM. It includes: 
 - Server readiness state 
@@ -82,7 +82,7 @@ This assessment accounts for all the shares on a server to a suitable size Azure
 
 
 **Migration Issues** 
-1. Fileshare size is 0: In case the fileshare size is 0 the target recommendation is not given for that fileshares. It is recommended to check if the fileshares still exist on the on-premises servers. 
+1. Fileshare size is 0: If the file share size is reported as 0, a target recommendation isn’t generated. Verify that the file share still exists on the on-premises server.
 
-1. Fileshare size exceeds maximum size: In case, the on-premises fileshare size is greater than 200 TB, it cannot be migrated to Azure as the maximum fileshare size supported by Azure Files is 200 GB. It is recommended to distribute the fileshare data in multiple fileshares. 
+1. Fileshare size exceeds maximum size: If the on-premises file share size exceeds the maximum supported size for Azure Files, the share can’t be migrated to Azure Files. Consider splitting the data across multiple file shares before migration.
 

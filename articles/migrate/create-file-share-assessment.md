@@ -1,6 +1,6 @@
 ---
 title: Create a fileshare assessment
-description: Learn how to create a Fileshare assessment using Azure Migrate.
+description: Learn how to create an Azure Files assessment in Azure Migrate to evaluate readiness, cost, and migration options for on-premises file shares.
 author: ankitsurkar06
 ms.author: ankitsurkar
 ms.service: azure-migrate
@@ -9,40 +9,50 @@ ms.reviewer: v-uhabiba
 ms.date: 11/05/2024
 # Customer intent: As a cloud architect, I want to create an application assessment using Azure Migrate, so that I can evaluate migration strategies, identify optimal targets, and understand the cost and readiness of my application workloads for the cloud transition.
 ---
+An Azure Files assessment in Azure Migrate helps you evaluate the readiness, cost, and suitability of migrating on-premises file shares to Azure Files. The assessment analyzes discovered file shares and provides recommendations to support your migration planning.
+
 
 # Create an Azure Files assessment
 
-This article explains how to create Azure Files assessments for fileshares hosted on Windows and Linux servers. For details information on general Azure Migrate assessment concepts, see [assessment overview](concepts-assessment-overview.md). 
+This article explains how to create Azure Files assessments for **file shares** hosted on Windows and Linux servers. For details information on general Azure Migrate assessment concepts, see [assessment overview](concepts-assessment-overview.md). 
 
-To quickly migrate your on-premises fileshares to Azure, create an Azure Files assessment to check readiness, cost, and get migration advice for your workloads. 
+To quickly migrate your on-premises **file shares** to Azure, create an Azure Files assessment to check readiness, cost, and get migration advice for your workloads. 
 
 > [!Note]
-> All assessments you create with Azure Migrate are a point-in-time snapshot of data. The assessment results are subject to change based on aggregated server performance data collected or change in the source configuration.  
+>  All assessments created with Azure Migrate are point‑in‑time snapshots. Assessment results can change based on aggregated server performance data or changes in the source environment configuration.  
 
 ## Prerequisites 
 
-Before you start creating assessments, ensure you have discovered the inventory of your on-premises servers, and file shares hosted on these VMs, and you can view all the servers in the **All inventory** and **Infrastructure** tab. For more information about prerequisites, see [Prerequisites for assessments](assessment-prerequisites.md). 
+Before you create an Azure File assessment, ensure that
+ - Your on-premises servers, and file shares hosted on these VMs are discovered.
+ - You can view all the servers and file shares in the **All inventory** and **Infrastructure** tab. 
+For more information about prerequisites, see [Prerequisites for assessments](assessment-prerequisites.md). 
 
-Once you have discovered your servers and file shares, identify if you want to create an As-is on-premises assessment or Performance-based assessment. Check [Performance vs. As-is on-premises assessments](target-right-sizing.md) for more details.  
+After discovery, decide whether you want to create:
+- An As-is on-premises assessment, or
+- A Performance-based assessment.
+Check [Performance vs. As-is on-premises assessments](target-right-sizing.md) for more details.  
 
 ## Create an assessment 
 
 To create an assessment, follow these steps:
 
-1. Go to **Infrastructure** tab and select the Fileshares card on top.
-1. Select all the shares you want to assess.
-1. You can apply column based or custom tags-based filters to identify and add fileshares to the scope of your assessment. 
-    After you have selected all the fileshares, select **Create assessment**.  
-1. Provide a friendly name for the assessment. You see a query that you used to select the servers on the previous screen. Review the number of fileshares added and the query used before moving ahead. If you want to add more fileshares to the assessment, select **Add workloads**. Once you have added all the fileshares to the assessment scope, select **Next**. 
+1. In the **Azure Migrate** portal, select **Infrastructure** and then select Fileshares .
+1. Select the file shares you want to assess.
+1. Apply column-based filters or custom tag–based filters to identify and add file shares to the assessment scope. 
+1. After selecting the required file shares, select **Create assessment**.  
+1. Provide a friendly name for the assessment. 
+1. Review the query used to select the fileshares and verify the number of fileshares added.
+1. (Optional) To add more fileshares to the assessment, select **Add workloads**.
+1. After the assessment scope is complete, select **Next**.
+ 
 > [!Note]
-> For accurate calculations servers hosting the selected fileshares and other colocated fileshares will be automatically added to the assessment scope.   
-1. You can customize the assessment properties to fit your requirements. Specify the general properties for **Target region**, **Default environment**, **Pricing options**, **Saving options**, and **Sizing criteria**. [Learn more](assessment-report.md). 
-1. Select **Next** to navigate to the Azure Files specific assessment properties.  
-1. Select **Edit defaults**:
-    1. To review and customize Azure Files-specific settings.  
-1. Select **Save** if you customized any property.
-1. In **Review + create assessment**, review the assessment details, and select **Create Assessment** to run the assessment. 
-1. After the assessment is created, view the assessment in **Decide and plan** > **Assessments** > **Workloads**.  
+> For accurate calculations, servers hosting the selected fileshares and other colocated fileshares will be automatically added to the assessment scope.  
+1. Select Next to move to the Azure Files–specific assessment properties.
+1. Select Edit defaults to review and customize Azure Files–specific settings.
+1. Select Save after updating any settings.
+1. On the Review + create assessment page, review the assessment details, and then select **Create Assessment** to run the assessment.
+1. After the assessment is created, view it under **Decide and plan** > **Assessments** > **Workloads**
 
 ## Next steps
 

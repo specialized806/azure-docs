@@ -14,7 +14,7 @@ monikerRange:
 # Assess MySQL databases for migration to Azure Database for MySQL (preview)
 
 
-As part of your migration journey to Azure, you assess the workloads to measure cloud readiness, identify risks, and estimate costs and complexity. This article describes how to assess discovered MySQL/MariaDB database instances before migrating to Azure Database for MySQL, using the Azure Migrate: Discovery and assessment tool.
+As part of your Azure migration journey, you assess your workloads to evaluate cloud readiness, identify potential risks, and estimate costs and migration complexity. This article explains how to assess discovered MySQL and MariaDB database instances by using Azure Migrate: Discovery and assessment before migrating them to Azure Database for MySQL.
 
 ## Prerequisites
 
@@ -26,15 +26,16 @@ As part of your migration journey to Azure, you assess the workloads to measure 
 
 To create and run a MySQL assessment, follow these steps:
 
-1. Select **Database** on the ToC under **Explore Inventory** then select **MySQL/MariaDB** to find MySQL databases. Select the MySQL instances to be assessed for Azure Database for MySQL. Select **Create Assessment** on task bar. 
+1. In the **Azure Migrate** portal, select **Database** under **Explore inventory**
+1. Select **MySQL/MariaDB** to view MySQL and MariaDB databases. Select the MySQL instances to be assessed for Azure Database for MySQL. 1. On command bar select **Create Assessment** on task bar. 
 
    :::image type="content" source="./media/create-mysql-assessment/mysql-scope-addition.png" alt-text="Screenshot on how to get started with creating scope for MySQL databases.":::
    
-1. Provide a friendly name for the assessment. Review the scope and confirm by selecting **Next**
+1. Provide a friendly name for the assessment, review the scope, and then select **Next**.
    
    :::image type="content" source="./media/create-mysql-assessment/provide-mysql-name.png" alt-text="Screenshot on how to get started with assessment of mysql database.":::
    
-1. Make appropriate changes to the assessment settings to provide preferences that will be used to calculate assessments. Select **Next** to move ahead. 
+1. Update the assessment settings to reflect your preferences for calculating the assessment. Select **Next** to continue.
 
    **Target and pricing settings**
 
@@ -73,7 +74,7 @@ To create and run a MySQL assessment, follow these steps:
 
 To view an assessment, follow these steps:
 
-1. In **Decide and plan** > **Assessments**, select **Workloads** on top. Search for the assessment friendly name to find the assessment.  
+1. In **Decide and plan** > **Assessments**, select **Workloads** from the upper-right. Search for the assessment friendly name to locate the assessment.  
    
 1. Select the MySQL assessment which you wish to view.
 1. Review the assessment summary. 
