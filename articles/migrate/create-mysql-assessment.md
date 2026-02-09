@@ -33,7 +33,7 @@ To create and run a MySQL assessment, follow these steps:
    
 1. Provide a friendly name for the assessment, review the scope, and then select **Next**.
    
-   :::image type="content" source="./media/create-mysql-assessment/provide-mysql-name.png" alt-text="Screenshot on how to get started with assessment of mysql database.":::
+   :::image type="content" source="./media/create-mysql-assessment/provide-mysql-name.png" alt-text="Screenshot on how to get started with assessment of MySQL database.":::
    
 1. Update the assessment settings to reflect your preferences for calculating the assessment. Select **Next** to continue.
 
