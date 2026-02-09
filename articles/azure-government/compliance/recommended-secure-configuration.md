@@ -14,17 +14,17 @@ ms.date:     02/06/2026
 
 # Recommended Secure Configuration
 
-FedRAMP Rev 5 has mandated recommended Secure Configuration requirements for all Cloud Service Providers at [https://www.fedramp.gov/docs/rev5/balance/secure-configuration-guide/](https://www.fedramp.gov/docs/rev5/balance/secure-configuration-guide/)
+FedRAMP Rev 5 has mandated recommended Secure Configuration requirements for all Cloud Service Providers at [Secure Configuration Guide](https://www.fedramp.gov/docs/rev5/balance/secure-configuration-guide/)
 
 Azure provides the following instructions and guidelines for the customers to meet these requirements.
 
-#### **SCG-CSO-RSC**
+### SCG-CSO-RSC
 
 Providers MUST create, maintain, and make available recommendations for securely configuring their cloud services (the Secure Configuration Guide) that includes at least the following information:
 
-Required: Instructions on how to securely access, configure, operate, and decommission top-level administrative accounts that control enterprise access to the entire cloud service offering.
+1. Required: Instructions on how to securely access, configure, operate, and decommission top-level administrative accounts that control enterprise access to the entire cloud service offering.
 
-Required: Explanations of security-related settings that can be operated only by top-level administrative accounts and their security implications.
+1. Required: Explanations of security-related settings that can be operated only by top-level administrative accounts and their security implications.
 
 1. Recommended: Explanations of security-related settings that can be operated only by privileged accounts and their security implications.
 
@@ -34,7 +34,7 @@ Required: Explanations of security-related settings that can be operated only by
 
 - *This guidance should explain how top-level administrative accounts are named and referred to in the cloud service offering.*
 
-#### Azure's recommendation and Instructions
+#### Azure's response with recommendation and Instructions
 
 Azure defines the below top-level administrative accounts
 
@@ -83,4 +83,48 @@ More detailed instructions to securely access, configure, operate, and decommiss
 __[Azure RBAC documentation](/azure/role-based-access-control/best-practices)__
 
 __[Emergency Accounts - Manage emergency access accounts in Microsoft Entra ID](/entra/identity/role-based-access-control/security-emergency-access)__
+
+### Use Instructions
+
+#### SCG-CSO-AUP
+
+Providers MUST include instructions in the FedRAMP authorization package that explain how to obtain and use the Secure Configuration Guide.
+
+***Note:** These instructions may appear in a variety of ways; it is up to the provider to do so in the most appropriate and effective ways for their specific customer needs*
+
+#### Azure's response
+
+Azure FedRAMP authorization packages will contain a word document with instructions to access and use the Secure Configuration Guide. *[Review comment Ateeque] Is a link needed at this point?*
+
+### Public Guidance
+
+#### SCG-CSO-PUB
+
+Providers SHOULD make the Secure Configuration Guide available publicly
+
+#### Azure's response 
+
+Azure's Secure Configuration Guide is available publicly and can be accessed at [Secure Configuration Guide](/azure/azure-government/compliance/azure-services-in-fedramp-auditscope?branch=pr-en-us-76518) *[Review comment Ateeque] this link currently points to the scope of the services but will be replaced by the link to the Guide.*
+
+### Secure Defaults
+
+#### SCG-CSO-SDF
+
+Providers SHOULD set all settings to their recommended secure defaults for top-level administrative accounts and privileged accounts when initially provisioned.
+
+#### Azure's response
+
+Azure supports and applies secure defaults for top-level administrative accounts at provisioning via policy initiatives, security baselines, and baseline-as-code applied through automation. Azure sets security‑hardened defaults the moment a tenant, subscription, or administrative role is created.
+
+When the tenant is first provisioned Azure enforces 
+
+1. **Privileged Identity Management (PIM)** eligibility, not permanent assignment
+
+1. **Multi‑Factor Authentication (MFA)** required for all privileged accounts
+
+1. **Conditional Access** controls (device requirements, session controls)
+
+1. Alignment to **Azure Policy** + **Defender for Cloud** FedRAMP initiatives
+
+ensuring newly created admin or high‑privilege accounts never start in a weak or misconfigured state.
 
