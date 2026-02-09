@@ -2,7 +2,7 @@
 title: Support Matrix for Azure VM Disaster Recovery with Azure Site Recovery
 description: Summarizes support for Azure VMs disaster recovery to a secondary region with Azure Site Recovery.
 ms.topic: concept-article
-ms.date: 01/01/2026
+ms.date: 02/09/2026
 ms.service: azure-site-recovery
 author: Jeronika-MS
 ms.author: v-gajeronika
@@ -93,6 +93,7 @@ Site Recovery supports replication of Azure VMs running the operating systems li
 
 >[!NOTE]
 >Major Linux OS upgrade without disable is currently in Preview. [Learn more](#upgrade-linux-major-os-version-without-disabling-replication-preview).
+>Windows OS upgrade without disable replication is supported.
 
 ### Windows
 
