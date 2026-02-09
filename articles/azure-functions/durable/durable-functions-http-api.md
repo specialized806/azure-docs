@@ -48,7 +48,7 @@ Generate complete URLs automatically using [orchestration client binding](durabl
 - **`connection`**: Name of the app setting containing the storage connection. Retrieved from `host.json`:
   - **v2.x**: `extensions.durableTask.storageProvider.connectionStringName` (defaults to `AzureWebJobsStorage` if not specified)
   - **v1.x**: `durableTask.azureStorageConnectionStringName` (defaults to `AzureWebJobsStorage` if not specified)
-  - Can use connection strings or [identity-based connections](durable-functions-storage-providers.md#identity-based-connections) (Microsoft Entra authentication)
+  - Can use connection strings or [identity-based connections](durable-functions-azure-storage-provider.md#identity-based-connections) (Microsoft Entra authentication)
 
 - **`systemKey`**: Extension-specific authorization key for Durable Task APIs. Retrieved from Azure portal:
   1. Open your Function App
@@ -388,7 +388,7 @@ Here is an example of response payloads including the orchestration status (form
 ```
 
 > [!NOTE]
-> This operation can be expensive in terms of Azure Storage I/O if you're using the [default Azure Storage provider](durable-functions-storage-providers.md#azure-storage) and there are many rows in the Instances table. For more information about the Instances table, see the [Azure Storage provider](durable-functions-azure-storage-provider.md#instances-table) documentation.
+> This operation can be expensive in terms of Azure Storage I/O if you're using the [Azure Storage provider](durable-functions-storage-providers.md#azure-storage) and there are many rows in the Instances table. For more information about the Instances table, see the [Azure Storage provider](durable-functions-azure-storage-provider.md#instances-table) documentation.
 
 If more results exist, a continuation token is returned in the response header. The name of the header is `x-ms-continuation-token`.
 
@@ -487,7 +487,7 @@ Request parameters for this API include the default set mentioned previously and
 | **`runtimeStatus`**   | Query string    | Optional parameter. When specified, filters the list of purged instances based on their runtime status. To see the list of possible runtime status values, see the [Querying instances](durable-functions-instance-management.md) article. |
 
 > [!NOTE]
-> This operation can be expensive in terms of Azure Storage I/O if you're using the [default Azure Storage provider](durable-functions-storage-providers.md#azure-storage) and there are many rows in the Instances or History tables. For more information about these tables, see [Performance and scale in Durable Functions (Azure Functions)](durable-functions-azure-storage-provider.md#instances-table).
+> This operation can be expensive in terms of Azure Storage I/O if you're using the [Azure Storage provider](durable-functions-storage-providers.md#azure-storage) and there are many rows in the Instances or History tables. For more information about these tables, see [Performance and scale in Durable Functions (Azure Functions)](durable-functions-azure-storage-provider.md#instances-table).
 
 ### Response
 
