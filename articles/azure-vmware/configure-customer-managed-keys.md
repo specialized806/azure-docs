@@ -135,7 +135,7 @@ Go to your Key Vault instance and provide access to the SDDC on Key Vault by usi
     Option 1:
 
     1. Under **Encryption key**, choose **select from Key Vault**.
-    1. Select the encryption type. Then select the **Select Key Vault and key** option.
+    1. Select the encryption type, then select the **Select Key Vault and key** option.
     1. Select the **Key Vault and key** from the dropdown. Then choose **Select**.
     
     Option 2:
