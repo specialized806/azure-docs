@@ -201,16 +201,16 @@ The deployment pane provides an interactive UI in VS Code that can access your A
 
 :::image type="content" source="./media/visual-studio-code/visual-studio-code-deployment-pane.png" alt-text="Screenshot of deployment pane in Visual Studio Code.":::
 
-See [Deployment Pane](./deploy-vscode.md#deployment-pane) for more information.
+See [Deployment Pane](./deploy-visual-studio-code.md#deployment-pane) for more information.
 
-## Bicep MCP Server
+## Bicep MCP server
 
 The Bicep MCP (Model Context Protocol) server provides AI agents with tools to help generate high-quality Bicep code. The Bicep MCP server is automatically included with the Bicep Visual Studio Code extension version 0.40.2. To set up your environment for Bicep development using the Bicep MCP server in Visual Studio Code, see [Install Bicep tools](./install.md).
 
 > [!NOTE]
 > The Bicep MCP server doesn't appear under `MCP SERVERS` in the extension view, because it is automatically included with the Bicep VSCode extension.
 
-For general information abouting using MCP servers in Visual Studio Code, see [Use MCP servers in VS Code](https://code.visualstudio.com/docs/copilot/customization/mcp-servers).
+For general information about using MCP servers in Visual Studio Code, see [Use MCP servers in VS Code](https://code.visualstudio.com/docs/copilot/customization/mcp-servers).
 
 For walking through a quickstart, see [Quickstart: Create Bicep files with Visual Studio Code and Bicep MCP server](./quickstart-create-bicep-use-visual-studio-code-module-context-protocol.md).
 

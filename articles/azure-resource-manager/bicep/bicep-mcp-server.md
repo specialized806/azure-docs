@@ -20,7 +20,7 @@ The Bicep MCP (Model Context Protocol) server provides AI agents with tools to h
 * **`list_avm_metadata`** - Lists metadata for all Azure Verified Modules (AVM).
 * **`list_az_resource_types_for_provider`** - Lists all Azure resource types for a specific provider, such as Microsoft.Storage.
 
-Use the Bicep MCP server directly in [Visual Studio Code](#visual-studio-code). You can also run it locally with [other AI services](#integration-with-other-ai-services) such as Claude Desktop and Code, OpenAI Codex CLI, LMStudio, and other MCP-compatible services.
+Use the Bicep MCP server directly in [Visual Studio Code](#visual-studio-code). You can also run it locally with [MCP-compatible services](#integration-with-other-ai-services).
 
 ## Limitations
 
@@ -31,7 +31,7 @@ These tools provide additional context to help the chosen model generate semanti
 
 There's no way to definitively guarantee whether the agent orchestrator uses any particular Bicep tool. As a workaround, you can view the available Bicep tools and use specific prompting to guide the agent orchestrator to invoke a tool, such as "Create a Bicep file to do X using Bicep best practices."
 
-## Visual Studio code
+## Visual Studio Code
 
 The Bicep MCP server is available starting with Visual Studio Code Bicep extension version 0.40.2. For more information about installing, managing, and using Bicep MCP server from VS Code, see [Bicep MCP server](./visual-studio-code.md#bicep-mcp-server).
 
@@ -62,4 +62,4 @@ For more information, see [Configuration format](https://code.visualstudio.com/d
 
 ## Next steps
 
-For a tutorial on how to apply the information in this article, see [Quickstart: Create Bicep files with Visual Studio Code and Bicep MCP server](./quickstart-create-bicep-use-visual-studio-code-module-context-protocol.md).
+For a tutorial on how to apply the information in this article, see [Quickstart: Create Bicep files with Visual Studio Code and Bicep MCP server](./quickstart-create-bicep-use-visual-studio-code-model-context-protocol.md).
