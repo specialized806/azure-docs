@@ -76,7 +76,7 @@ In principle, it's always best to use the most recent operating system releases.
 
 ## Deploying infrastructure in Azure for SAP Business One
 
-In the next few chapters, the infrastructure pieces that matter for deploying SAP.
+The next sections provide an overview of the critical infrastructure components involved in deploying SAP.
 
 ### Azure network infrastructure
 
