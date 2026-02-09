@@ -47,7 +47,7 @@ To see all resource providers and the registration status for your subscription:
 1. Repeat the previous steps for the **Microsoft.ContainerInstance** and **Microsoft.Relay**
    resource providers.
 
-[![Screenshot of selecting resource providers in the Azure portal.][22]][97b]
+[![Screenshot of selecting resource providers in the Azure portal.][22]][23]
 
 ## 2. Collect the required information
 
@@ -112,7 +112,7 @@ command line, see [Alternate way to get the Azure Container Instance ID][11].
 1. On the left menu, select **Overview**. Then enter `azure container instance service` in the
    search bar.
 
-   [![Screenshot of searching for Azure Container Instance Service.][18]][95b]
+   [![Screenshot of searching for Azure Container Instance Service.][18]][19]
 
 1. In the results, under **Enterprise applications**, select **Azure Container Instance Service**.
 1. On the **Overview** page for **Azure Container Instance Service**, locate the **Object ID** value
@@ -120,7 +120,7 @@ command line, see [Alternate way to get the Azure Container Instance ID][11].
 
    You use this ID in the quickstart template for the virtual network.
 
-   [![Screenshot of Azure Container Instance Service details.][16]][96b]
+   [![Screenshot of Azure Container Instance Service details.][16]][17]
 
 ## 3. Create the required network resources by using the ARM template
 
@@ -244,13 +244,13 @@ reset your user settings:
    1. Select your subscription from the **Storage account subscription** drop-down list.
    1. Select the **Use an existing private virtual network** checkbox.
 
-   [![Screenshot of the Getting started dialog.][20]][93b]
+   [![Screenshot of the Getting started dialog.][20]][21]
 
 1. Select **Apply** to continue.
 1. In the **Select virtual network configuration** dialog box, select the resources that you created
    for this deployment.
 
-   [![Screenshot of the GSelect virtual network configuration dialog.][24]][94b]
+   [![Screenshot of the Select virtual network configuration dialog.][24]][25]
 
 1. Click **Select** to continue.
 
@@ -307,7 +307,12 @@ information, see [Connect to a storage account using an Azure private endpoint][
 [14]: https://azure.microsoft.com/resources/templates/cloud-shell-vnet-storage/
 [15]: https://portal.azure.com
 [16]: media/deployment/container-service-details.png
+[17]: media/deployment/container-service-details.png#lightbox
 [18]: media/deployment/container-service-search.png
+[19]: media/deployment/container-service-search.png#lightbox
 [20]: media/deployment/getting-started.png
+[21]: media/deployment/getting-started.png#lightbox
 [22]: media/deployment/resource-provider.png
+[23]: media/deployment/resource-provider.png#lightbox
 [24]: media/deployment/vnet-configuration.png
+[25]: media/deployment/vnet-configuration.png#lightbox
