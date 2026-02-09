@@ -84,7 +84,7 @@ The following AKS cluster requirements are needed for successful provisioning of
 >While enablement of the add-on will register and deploy the ALB controller in all regions, provisioning of the Application Gateway for Containers resources will fail if not deployed in a [region where Application Gateway for Containers is available](overview.md#supported-regions).
 
 >[!Warning]
->AKS Automatic clusters aren't currently supported.
+>Enablement of the Application Gateway for Containers AKS add-on on an AKS Automatic cluster isn't currently supported.
 
 ### New Cluster
 
