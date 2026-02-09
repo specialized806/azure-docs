@@ -169,7 +169,7 @@ While this section focused on RESTful connectivity through connectors, you can i
 
 Azure Logic Apps provides message durability in the following ways:
 
-- Stateful workflows (available in Standard logic apps) persist workflow state and action inputs/outputs to storage using checkpoints. This persistence provides durable execution and rich run history so you can review detailed trigger and action inputs/outputs.
+- Stateful workflows in Standard logic apps persist workflow state and operation inputs and outputs to storage using checkpoints. This persistence provides durable execution and rich workflow run history so you can review detailed operation inputs and outputs.
 
 - You can resubmit (rerun) a workflow run through the Azure portal or APIs. Resubmission can cause the workflow to process the same message again, so designs should assume at-least-once processing and implement idempotency (for example, deduplication keys, upserts, or exactly-once effects at the destination). Depending on the workflow type and configuration, you might also be able to resubmit from a specific point in the run, but you should still design downstream systems to safely handle retries and potential duplicates.
 
