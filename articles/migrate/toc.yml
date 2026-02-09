@@ -43,6 +43,8 @@ items:
     href: hyper-v-migration-architecture.md
   - name: Azure Copilot Migration Agent
     href: azure-copilot-migration-agent.md
+  - name: Generate and deploy a Platform Landing Zone using Azure Migrate
+    href: platform-landing-zone.md
 - name: Discover inventory
   items:
   - name: Discovery methods
