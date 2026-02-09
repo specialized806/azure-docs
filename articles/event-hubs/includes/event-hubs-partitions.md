@@ -32,12 +32,7 @@ Event Hubs is designed to help with processing of large volumes of events, and p
 ### Number of partitions
 The number of partitions is specified at the time of creating an event hub. It must be between one and the maximum partition count allowed for each pricing tier. For the partition count limit for each tier, see [this article](../event-hubs-quotas.md#basic-vs-standard-vs-premium-vs-dedicated-tiers). 
 
-We recommend that you choose at least as many partitions as you expect that are required during the peak load of your application for that particular event hub. Start with the workload profile (payload size, events per second, and sensitivity to throughput drops or latency spikes) and use these per-partition throughput starting points:
-
-- **Standard tier**: ~1 MB/s ingress and ~2 MB/s egress per partition.
-- **Premium and Dedicated tiers**: ~1-2 MB/s ingress and ~2-5 MB/s egress per partition.
-
-Estimate partitions by dividing expected ingress and egress by the per-partition rates and taking the larger result. If observed throughput or latency doesn't meet expectations, increase partitions (Premium and Dedicated tiers only) and retest.
+We recommend that you choose at least as many partitions as you expect that are required during the peak load of your application for that particular event hub.
 
 For tiers other than the premium and dedicated tiers, you can't change the partition count for an event hub after its creation. For an event hub in a premium or dedicated tier, you can [increase the partition count](../dynamically-add-partitions.md) after its creation, but you can't decrease them. The distribution of streams across partitions will change when it's done as the mapping of partition keys to partitions changes, so you should try hard to avoid such changes if the relative order of events matters in your application.
 
