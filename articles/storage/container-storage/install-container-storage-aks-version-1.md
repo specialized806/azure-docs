@@ -28,13 +28,11 @@ Azure Container Storage is a cloud-based volume management, deployment, and orch
 
 ## Prerequisites
 
-* If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
-
-* This article requires the latest version of the Azure CLI. See [How to install the Azure CLI](/cli/azure/install-azure-cli). If you're using the Bash environment in Azure Cloud Shell, the latest version is already installed. If you plan to run the commands locally instead of in Azure Cloud Shell, be sure to run them with administrative privileges. For more information, see [Get started with Azure Cloud Shell](/azure/cloud-shell/get-started).
-
-* You'll need the Kubernetes command-line client, `kubectl`. It's already installed if you're using Azure Cloud Shell, or you can install it locally by running the `az aks install-cli` command.
-
-* Check if your target region is supported in [Azure Container Storage regions](container-storage-introduction.md#regional-availability).
+[!INCLUDE [container-storage-prerequisites](../../../includes/container-storage-prerequisites.md)]
+- Plan your node pool configuration:
+  - Use Linux as the OS type (Windows isn't supported).
+  - Select a virtual machine (VM) SKU that supports local NVMe data disks if you plan to use the local NVMe storage type, such as [storage-optimized](/azure/virtual-machines/sizes/overview#storage-optimized) or [GPU-accelerated](/azure/virtual-machines/sizes/overview#gpu-accelerated) VMs.
+  - For existing clusters, ensure node pools already use a supported VM SKU before enabling Azure Container Storage.
 
 ## Getting started
 
@@ -56,7 +54,7 @@ az extension add --upgrade --name k8s-extension
 
 Set your Azure subscription context using the `az account set` command. You can view the subscription IDs for all the subscriptions you have access to by running the `az account list --output table` command. Remember to replace `<subscription-id>` with your subscription ID.
 
-```azurecli-interactive
+```azurecli
 az account set --subscription <subscription-id>
 ```
 
@@ -69,7 +67,7 @@ An Azure resource group is a logical group that holds your Azure resources that 
 
 Create a resource group using the `az group create` command. Replace `<resource-group-name>` with the name of the resource group you want to create, and replace `<location>` with an Azure region such as *eastus*, *westus2*, *westus3*, or *westeurope*.
 
-```azurecli-interactive
+```azurecli
 az group create --name <resource-group-name> --location <location>
 ```
 
@@ -137,7 +135,7 @@ By default, the system node pool is named `nodepool1`. If you want to enable Azu
 
 \*If there are any existing node pools with the `acstor.azure.com/io-engine:acstor` label, Azure Container Storage will install the data plane components by default. Otherwise, users have the option to pass the preferred node pool to `acstor` through Azure CLI. If the cluster only has the system node pool, it will be labeled and used for Azure Container Storage by default. It's important to note that only data plane components will be restricted to the labeled node pool. The control plane components of Azure Container Storage aren't limited to the labeled nodes and may be installed on the system node pool as well. 
 
-```azurecli-interactive
+```azurecli
 az aks create -n <cluster-name> -g <resource-group> --node-vm-size Standard_D4s_v3 --node-count 3 --enable-azure-container-storage <storage-pool-type> --container-storage-version 1 --generate-ssh-keys
 ```
 
@@ -150,13 +148,13 @@ The deployment will take 10-15 minutes. When it completes, you'll have an AKS cl
 
 To get the list of available storage pools, run the following command:
 
-```azurecli-interactive
+```azurecli
 kubectl get sp -n acstor
 ```
 
 To check the status of a storage pool, run the following command:
 
-```azurecli-interactive
+```azurecli
 kubectl describe sp <storage-pool-name> -n acstor
 ```
 
@@ -167,7 +165,7 @@ If the `Message` doesn't say `StoragePool is ready`, then your storage pool is s
 Select the link for the backing storage type you selected and follow the instructions for creating volumes.
 
 - [Create persistent volume with Azure managed disks](use-container-storage-with-managed-disks.md)
-- [Create persistent volume with Azure Elastic SAN](use-container-storage-with-elastic-san.md)
+- [Create persistent volume with Azure Elastic SAN](use-container-storage-with-elastic-san-version-1.md)
 - [Create generic ephemeral volume with local NVMe](use-container-storage-with-local-disk-version-1.md)
 - [Create generic ephemeral volume with temp SSD](use-container-storage-with-temp-ssd.md)
 - [Create persistent volume with local NVMe and volume replication](use-container-storage-with-local-nvme-replication.md)

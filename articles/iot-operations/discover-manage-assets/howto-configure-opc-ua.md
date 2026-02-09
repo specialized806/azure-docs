@@ -69,7 +69,7 @@ An Azure IoT Operations deployment can include a sample OPC PLC simulator. To cr
     | Connector for OPC UA URL | `opc.tcp://opcplc-000000:50000` |
     | User authentication | `Anonymous` |
 
-1. Select **Next** and on the **Additional Info** page. Enter any custom properties for the device.
+1. Select **Next**. On the **Additional Info** page enter any custom properties for the device.
 
 1. Select **Next** to review your device details. Then select **Create**.
 
