@@ -88,7 +88,7 @@ Azure Logic Apps offers the following example advantages:
 
 #### Developer experiences
 
-This section summarizes how development tooling changes when migrating from BizTalk Server (Visual Studio–centric) to Azure Logic Apps (Visual Studio Code–centric), and why many teams find the Logic Apps workflow model faster to build and easier to maintain.
+This section summarizes how development tooling changes when migrating from BizTalk Server (Visual Studio–centric) to Azure Logic Apps (Visual Studio Code–centric), and why many teams find the Azure Logic Apps workflow model faster to build and easier to maintain.
 
 - Tooling and authoring model
 
