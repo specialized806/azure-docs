@@ -512,7 +512,7 @@ items:
         href: tutorials/integrate-express-route.md
     - name: Using VDI to make audio calls from Azure Virtual Desktop
       href: quickstarts/voice-video-calling/calling-from-virtual-desktop-infrastructure.md
-    - name: Advanced audio and video features
+  - name: Advanced audio and video features
     items:
     - name: Music mode
       href: concepts/voice-video-calling/music-mode.md
