@@ -62,7 +62,7 @@ In scenarios where VM sizes with a single local NVMe disk are used alongside eph
 1. Select VM sizes with two or more local NVMe disks.
 2. Use managed disks for the OS, freeing up all local NVMe disks for data processing.
 
-For more information, refer to [Best practices for ephemeral NVMe data disks in Azure Kubernetes Service](/aks/best-practices-storage-nvme#ephemeral-nvme-data-disks-with-ephemeral-os-disks).
+For more information, refer to [Best practices for ephemeral NVMe data disks in Azure Kubernetes Service](/azure/aks/best-practices-storage-nvme#ephemeral-nvme-data-disks-with-ephemeral-os-disks).
 
 ## Create a storage class for local NVMe
 
