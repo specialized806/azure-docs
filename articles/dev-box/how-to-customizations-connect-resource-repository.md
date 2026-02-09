@@ -11,8 +11,9 @@ ms.custom:
   - ai-gen-title
   - ai-seo-date:05/10/2025
   - ai-gen-description
+  - ai-usage: ai-assisted
 ms.topic: how-to
-ms.date: 09/26/2025
+ms.date: 02/06/2026
 ---
 
 # Securely connect to Azure resources or clone private repositories
@@ -207,5 +208,5 @@ For details on how to add users to DevOps organizations, see [Add organization u
 ## Related content
 
 - Learn how to [Set and retrieve a secret from Azure Key Vault using the Azure portal](/azure/key-vault/secrets/quick-create-portal).
-- Learn how to [Add and configure a catalog from GitHub or Azure Repos](../deployment-environments/how-to-configure-catalog.md).
+- Learn how to [Add and manage catalogs in Microsoft Dev Box](how-to-configure-catalog.md).
 - Learn how to [Use service principals & managed identities in Azure DevOps](/azure/devops/integrate/get-started/authentication/service-principal-managed-identity).

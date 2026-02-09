@@ -6,8 +6,9 @@ ms.author: rosemalcolm
 ms.service: dev-box
 ms.custom:
   - ignite-2024
+  - ai-usage: ai-assisted
 ms.topic: how-to
-ms.date: 11/05/2024
+ms.date: 02/06/2026
 
 #customer intent: As a Dev Center Admin or Project Admin, I want to create additional tasks in a catalog so that I can create a specific customization in a customization or image definition file.
 ---
@@ -23,9 +24,7 @@ To complete the steps in this article, you must have:
 - A dev center configured with a dev box project.
 - An existing catalog in GitHub or Azure Repos.
 
-## Permissions required to configure customizations
-  
-[!INCLUDE [permissions-for-customizations](includes/permissions-for-customizations.md)]
+For permissions required to configure customizations, see [Permissions for customizations](concept-what-are-dev-box-customizations.md#permissions-for-customizations).
 
 ## What are tasks?
 
@@ -57,27 +56,18 @@ To create and manage tasks for Dev Box team customizations, follow these steps:
 
 1. Attach your repository to your dev center as a catalog.
 
-1. Create a configuration file for those tasks by following the steps in [Write a customization file](./how-to-write-customization-file.md).
+1. Create a configuration file for those tasks by following the steps in [Configure team customizations](how-to-configure-team-customizations.md).
 
 ### Use secrets from an Azure key vault
 
-You can use secrets from your Azure key vault in your YAML configurations to clone private repositories, or with any custom task you author that requires an access token.
-
-Your dev center needs access to your key vault. DevCenter doesn't support service tags, so if your key vault is kept private, you must allow trusted Microsoft services to bypass the firewall.
-
-To configure your key vault secrets for use in your YAML configurations:
-
-1. Ensure that your dev center project's managed identity has the Key Vault Reader role and Key Vault Secrets User role on your key vault.
-
-1. Grant the Key Vault Secrets User role for the key vault secret to each user or user group that should be able to consume the secret during the customization of a dev box. The user or group granted the role must include the managed identity for the dev center, your own user account, and any user or group that needs the secret during the customization of a dev box.
-
-For more information on using key vault secrets in a customization file, see [Clone a private repository by using a customization file](how-to-customizations-connect-resource-repository.md#use-key-vault-secrets-in-customization-files).
+You can use secrets from your Azure key vault in your YAML configurations to clone private repositories or run tasks that require an access token. For detailed configuration steps and examples, see [Connect to Azure resources or clone private repositories](how-to-customizations-connect-resource-repository.md).
 
 ## Attach a catalog
 
-You can attach a catalog to a project to make tasks accessible to the developer team. To attach a catalog to a project, follow the steps in [Add and configure a catalog from GitHub or Azure Repos](../deployment-environments/how-to-configure-catalog.md).
+You can attach a catalog to a project to make tasks accessible to the developer team. To attach a catalog to a project, follow the steps in [Add and manage catalogs in Microsoft Dev Box](how-to-configure-catalog.md).
 
 ## Related content
 
 - [Microsoft Dev Box customizations](concept-what-are-dev-box-customizations.md)
-- [Write a customization file for a dev box](./how-to-write-customization-file.md)
+- [Configure team customizations](how-to-configure-team-customizations.md)
+- [Customizations schema reference](reference-dev-box-customizations.md)
