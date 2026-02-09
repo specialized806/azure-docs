@@ -7,7 +7,7 @@ author: mbender-ms
 ms.service: azure-appgw-for-containers
 ms.custom: devx-track-azurecli
 ms.topic: quickstart
-ms.date: 2/7/2026
+ms.date: 2/9/2026
 ms.author: mbender
 # Customer intent: As a Kubernetes administrator, I want to install the Application Gateway for Containers ALB Controller on my AKS cluster using the AKS add-on, so that I can efficiently manage load balancing rules with simplified configuration and automated identity management.
 ---
@@ -82,6 +82,9 @@ The following AKS cluster requirements are needed for successful provisioning of
 
 >[!Note]
 >While enablement of the add-on will register and deploy the ALB controller in all regions, provisioning of the Application Gateway for Containers resources will fail if not deployed in a [region where Application Gateway for Containers is available](overview.md#supported-regions).
+
+>[!Warning]
+>Enablement of the Application Gateway for Containers AKS add-on on an AKS Automatic cluster isn't currently supported.
 
 ### New Cluster
 
