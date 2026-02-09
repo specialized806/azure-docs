@@ -133,7 +133,7 @@ The sizing listed should give an idea where to start with. It may be that you ne
 
 #### SAP HANA as DBMS
 
-Using SAP HANA as DBMS the following sections you should follow the considerations of the document [SAP HANA on Azure operations guide](./hana-vm-operations.md).
+When you use SAP HANA as DBMS, you should follow the considerations from the [SAP HANA on Azure operations guide](./hana-vm-operations.md).
 
 For details on setting up high availability and disaster recovery setups for SAP HANA used as the Business One database in Azure, see [SAP HANA high availability for Azure virtual machines](./sap-hana-availability-overview.md).
 
@@ -141,7 +141,7 @@ For SAP HANA backup and restore strategies, you should read the document [Backup
 
 ### Business One client server
 
-For these components storage, considerations aren't the primary concern. Nevertheless, you want to have a reliable platform. Therefore, you should use Azure Premium Storage for this VM, even for the base VHD. Sizing the VM, with the data given in [SAP Business One Hardware Requirements Guide](https://help.sap.com/doc/bfa9770d12284cce8509956dcd4c5fcb/9.3/en-US/B1_Hardware_Requirements_Guide.pdf). For Azure, you need to focus and calculate with the requirements stated in chapter 2.4 of the document. As you calculate the requirements, you need to compare them against the following documents to find the ideal VM for you:
+For these components, storage considerations aren't the primary concern. Nevertheless, you want to have a reliable platform. Therefore, you should use Azure Premium Storage for this VM, even for the base VHD. Sizing the VM, with the data given in [SAP Business One Hardware Requirements Guide](https://help.sap.com/doc/bfa9770d12284cce8509956dcd4c5fcb/9.3/en-US/B1_Hardware_Requirements_Guide.pdf). For Azure, you need to focus and calculate with the requirements stated in chapter 2.4 of the document. As you calculate the requirements, you need to compare them against the following documents to find the ideal VM for you:
 
 - [Sizes for Windows virtual machines in Azure](/azure/virtual-machines/sizes)
 - [SAP Note #1928533](https://launchpad.support.sap.com/#/notes/1928533)
