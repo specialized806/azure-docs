@@ -10,7 +10,7 @@ ms.date: 11/05/2024
 # Customer intent: As a cloud architect, I want to create an application assessment using Azure Migrate, so that I can evaluate migration strategies, identify optimal targets, and understand the cost and readiness of my application workloads for the cloud transition.
 ---
 
-# Overview
+# Assessment of Fileshare to Azure Files
 
 An Azure Files assessment in Azure Migrate helps you evaluate the readiness, cost, and suitability of migrating on-premises file shares to Azure Files. The assessment analyzes discovered file shares and provides recommendations to support your migration planning.
 
