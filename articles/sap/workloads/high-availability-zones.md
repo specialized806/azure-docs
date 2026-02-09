@@ -5,7 +5,7 @@ author: msjuergent
 manager: ericl
 ms.service: sap-on-azure
 ms.subservice: sap-vm-workloads
-ms.topic: article
+ms.topic: concept-article
 ms.date: 02/09/2026
 ms.author: juergent
 ms.custom:
