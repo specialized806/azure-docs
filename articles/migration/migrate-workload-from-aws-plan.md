@@ -13,7 +13,7 @@ ms.collection:
 ---
 # Plan your workload migration from Amazon Web Services (AWS) to Azure
 
-This article is part of a series about [how to migrate a workload from Amazon Web Services (AWS) to Azure](/azure/migration/migrate-workload-from-aws-introduction). 
+This article is part of a series about how to [migrate a workload from Amazon Web Services (AWS) to Azure](/azure/migration/migrate-workload-from-aws-introduction). 
 
 The planning phase consists of these steps: 
 

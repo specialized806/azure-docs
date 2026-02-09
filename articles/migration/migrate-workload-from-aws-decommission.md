@@ -1,6 +1,6 @@
 ---
-title: Decommission your workload from Amazon Web Services (AWS) after migrating to Azure
-description: Learn how to decommission AWS resources after migrating a single workload from AWS to Azure
+title: Decommission Your Amazon Web Services (AWS) Workload After You Migrate to Azure
+description: Learn how to decommission AWS resources after you migrate a single workload from AWS to Azure. Take final backups, delete resources, and establish new baselines.
 ms.author: rhackenberg
 ai-usage: ai-assisted
 ms.date: 01/29/2026
@@ -11,29 +11,36 @@ ms.collection:
   - migration
   - aws-to-azure
 ---
-# Decommission your workload from Amazon Web Services (AWS) after migrating to Azure
+# Decommission your Amazon Web Services (AWS) workload after you migrate to Azure
 
-This article is part of a series on [how to migrate a workload from AWS to Azure](/azure/migration/migrate-workload-from-aws-introduction). 
+This article is part of a series about how to [migrate a workload from Amazon Web Services (AWS) to Azure](/azure/migration/migrate-workload-from-aws-introduction). 
 
-This step is the final step in the workload migration. Proceed after the evaluation phase is complete and you confirm that your workload operates as expected in Azure.
+This step is the final step in the workload migration. Proceed after you complete the evaluation phase and confirm that your workload operates as expected in Azure.
 
 :::image type="icon" source="images/goal.svg" alt-text="Goal  icon"::: The goal of this phase is to safely retire AWS dependencies, remove redundant resources, and complete the transition to Azure.
 
 > [!IMPORTANT] 
->
-> If you prematurely delete AWS resources, overlook hidden dependencies, or skip final data and access checks, you risk data loss, unexpected downtime, compliance violations, or ongoing cost from orphaned assets.
+> If you prematurely delete AWS resources, overlook hidden dependencies, or skip final data and access checks, you risk data loss, unexpected downtime, compliance violations, or ongoing cost from unused assets.
 
-- **Take any final backups and snapshots** for archival purposes.
-- **Export your AWS Well-Architected assessment.** Export a static copy of your workload's AWS Well-Architected assessment.
-- **Retire AWS workload resources:**  Plan the sunset date. Stop and delete any AWS EC2 instances, databases, and services that you no longer need. Ensure that nothing critical is still running in AWS before deleting.
-- **Confirm deletion:** [AWS Config](https://docs.aws.amazon.com/config/latest/developerguide/WhatIsConfig.html) maintains an inventory of all your AWS resources. You can use it during the decommission phase to ensure no resources related to your workload are left active.
-- **Clean up artifacts:** Update your configuration management database (CMDB), billing, and documentation.
-- **Reset your TTL:** Configure your TTL back to its original setting.
-- **Establish new baselines:** Establish a new performance baseline for your migrated workload in Azure. Measure how your workload and its components perform in terms of response time, throughput, resource utilization etc. This will give you a point of reference for any future optimizations. Having new baseline metrics allows to verify the workload is meeting expectations and detect any post-migration regression.
-- **Perform a WAF workload assessment:** Take the [Azure Well-Architected Framework Review](/assessments/azure-architecture-review/) assessment on your workload. This will establish a baseline and give you potential backlog items for future optimization. Schedule a periodic assessment going forward.
-- **Retire AWS monitoring:** Disable or remove any AWS CloudWatch alarms, dashboards, or logging configurations that were used by the workload. Ensure all critical monitoring has fully shifted to Azure’s tools. Update any runbooks or notification settings so they no longer reference AWS services.
+- **Take final backups and snapshots for archival purposes.**
 
-For a thorough review of decommissioning steps, see the [CAF Decommission source workload](/azure/cloud-adoption-framework/migrate/decommission-source-workload) guide.
+- **Export your Azure Well-Architected Framework assessment.** Export a static copy of your AWS workload's Well-Architected Framework assessment.
+
+- **Retire AWS workload resources.**  Set a date to retire AWS workload resources. Stop and delete Amazon Elastic Compute Cloud (Amazon EC2) instances, databases, and services that you don't need. Ensure that no critical resources still run in AWS before you delete them.
+
+- **Confirm resource deletion.** [AWS Config](https://docs.aws.amazon.com/config/latest/developerguide/WhatIsConfig.html) maintains an inventory of all your AWS resources. You can use it during the decommission phase to ensure that no resources related to your workload are still active.
+
+- **Clean up artifacts.** Update your configuration management database (CMDB), billing, and documentation.
+
+- **Reset your time to live (TTL).** Update your TTL to match its original setting.
+
+- **Establish new baselines.** Establish a new performance baseline for your migrated workload in Azure. Measure how your workload and its components perform in terms of response time, throughput, and resource utilization. These metrics give you a point of reference for future optimizations. New baseline metrics also help you check that the workload meets expectations and detect post-migration regression.
+
+- **Do another Well-Architected Framework assessment.** Take the [Well-Architected Review](/assessments/azure-architecture-review/) assessment on your workload. This assessment establishes a baseline and gives you potential backlog items for future optimization. Schedule a periodic assessment going forward.
+
+- **Retire AWS monitoring services.** Disable or remove AWS CloudWatch alarms, dashboards, or logging configurations that the workload used. Shift all critical monitoring to Azure tools. Update runbooks and notification settings so that they don't reference AWS services.
+
+For more information, see [Decommission source workloads after migration to cloud](/azure/cloud-adoption-framework/migrate/decommission-source-workload).
 
 ## Checklist
 
@@ -45,8 +52,8 @@ For a thorough review of decommissioning steps, see the [CAF Decommission source
 | &#9744; | Check successful deletion         |
 | &#9744; | Clean up artifacts                |
 | &#9744; | Reset TTL                         |
-| &#9744; | Establish new baseline            |
-| &#9744; | Perform a WAF workload assessment |
+| &#9744; | Establish new baselines           |
+| &#9744; | Do a workload assessment          |
 | &#9744; | Retire AWS monitoring             |
 
 ## Next step

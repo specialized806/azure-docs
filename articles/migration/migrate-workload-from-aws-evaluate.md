@@ -13,7 +13,7 @@ ms.collection:
 ---
 # Evaluate your workload from Amazon Web Services (AWS) after migration to Azure
 
-This article is part of a series about [how to migrate a workload from Amazon Web Services (AWS) to Azure](/azure/migration/migrate-workload-from-aws-introduction). 
+This article is part of a series about how to [migrate a workload from Amazon Web Services (AWS) to Azure](/azure/migration/migrate-workload-from-aws-introduction). 
 
 Congratulations, your workload is serving its users from Azure!
 
