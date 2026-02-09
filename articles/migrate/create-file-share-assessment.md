@@ -14,9 +14,6 @@ ms.date: 11/05/2024
 
 An Azure Files assessment in Azure Migrate helps you evaluate the readiness, cost, and suitability of migrating on-premises file shares to Azure Files. The assessment analyzes discovered file shares and provides recommendations to support your migration planning.
 
-
-# Create an Azure Files assessment
-
 This article explains how to create Azure Files assessments for **file shares** hosted on Windows and Linux servers. For details information on general Azure Migrate assessment concepts, see [assessment overview](concepts-assessment-overview.md). 
 
 To quickly migrate your on-premises **file shares** to Azure, create an Azure Files assessment to check readiness, cost, and get migration advice for your workloads. 
