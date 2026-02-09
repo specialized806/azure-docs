@@ -212,7 +212,7 @@ The Bicep MCP (Model Context Protocol) server provides AI agents with tools to h
 
 For general information about using MCP servers in Visual Studio Code, see [Use MCP servers in VS Code](https://code.visualstudio.com/docs/copilot/customization/mcp-servers).
 
-For walking through a quickstart, see [Quickstart: Create Bicep files with Visual Studio Code and Bicep MCP server](./quickstart-create-bicep-use-visual-studio-code-module-context-protocol.md).
+For walking through a quickstart, see [Quickstart: Create Bicep files with Visual Studio Code and Bicep MCP server](./quickstart-create-bicep-use-visual-studio-code-model-context-protocol.md).
 
 ## Use quick fix suggestions
 
