@@ -12,7 +12,7 @@ zone_pivot_groups: azure-durable-approach
 
 ::: zone pivot="durable-functions"
 
-*Fan-out/fan-in* runs multiple functions in parallel and then aggregates the results. This article shows an example that uses [Durable Functions](durable-functions-overview.md) to back up some or all of an app's site content to Azure Storage.
+*Fan-out/fan-in* runs multiple functions in parallel and then aggregates the results. This article shows an example that uses [Durable Functions](what-is-durable-task.md) to back up some or all of an app's site content to Azure Storage.
 
 [!INCLUDE [functions-nodejs-durable-model-description](../../../includes/functions-nodejs-durable-model-description.md)]
 

@@ -9,7 +9,7 @@ ms.author: azfuncdf
 
 # Versioning challenges and approaches in Durable Functions (Azure Functions)
 
-It's inevitable that functions are added, removed, and changed over the lifetime of an application. [Durable Functions](durable-functions-overview.md) allows chaining functions together in ways that weren't previously possible, and this chaining affects how you can handle versioning.
+It's inevitable that functions are added, removed, and changed over the lifetime of an application. [Durable Functions](what-is-durable-task.md) allows chaining functions together in ways that weren't previously possible, and this chaining affects how you can handle versioning.
 
 > [!IMPORTANT]
 > When deploying code changes that affect running orchestrations, incorrect deployments can lead to orchestrations failing with nondeterministic errors, getting stuck indefinitely, or experiencing performance degradation. Always follow the recommended [mitigation strategies](#mitigation-strategies) described in this article when making changes that might affect in-flight orchestrations.

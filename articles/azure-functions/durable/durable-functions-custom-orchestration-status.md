@@ -253,11 +253,11 @@ public class HelloCities implements TaskOrchestration {
 
 # [JavaScript](#tab/javascript)
 
-The Durable Task SDK is not available for JavaScript. Use [Durable Functions](durable-functions-overview.md) instead.
+The Durable Task SDK is not available for JavaScript. Use [Durable Functions](what-is-durable-task.md) instead.
 
 # [PowerShell](#tab/powershell)
 
-The Durable Task SDK is not available for PowerShell. Use [Durable Functions](durable-functions-overview.md) instead.
+The Durable Task SDK is not available for PowerShell. Use [Durable Functions](what-is-durable-task.md) instead.
 
 ---
 
@@ -308,11 +308,11 @@ while (!"London".equals(metadata.readCustomStatusAs(String.class))) {
 
 # [JavaScript](#tab/javascript)
 
-The Durable Task SDK is not available for JavaScript. Use [Durable Functions](durable-functions-overview.md) instead.
+The Durable Task SDK is not available for JavaScript. Use [Durable Functions](what-is-durable-task.md) instead.
 
 # [PowerShell](#tab/powershell)
 
-The Durable Task SDK is not available for PowerShell. Use [Durable Functions](durable-functions-overview.md) instead.
+The Durable Task SDK is not available for PowerShell. Use [Durable Functions](what-is-durable-task.md) instead.
 
 ---
 
@@ -749,11 +749,11 @@ class Recommendation {
 
 # [JavaScript](#tab/javascript)
 
-The Durable Task SDK is not available for JavaScript. Use [Durable Functions](durable-functions-overview.md) instead.
+The Durable Task SDK is not available for JavaScript. Use [Durable Functions](what-is-durable-task.md) instead.
 
 # [PowerShell](#tab/powershell)
 
-The Durable Task SDK is not available for PowerShell. Use [Durable Functions](durable-functions-overview.md) instead.
+The Durable Task SDK is not available for PowerShell. Use [Durable Functions](what-is-durable-task.md) instead.
 
 ---
 
@@ -1005,11 +1005,11 @@ class DiscountInfo {
 
 # [JavaScript](#tab/javascript)
 
-The Durable Task SDK is not available for JavaScript. Use [Durable Functions](durable-functions-overview.md) instead.
+The Durable Task SDK is not available for JavaScript. Use [Durable Functions](what-is-durable-task.md) instead.
 
 # [PowerShell](#tab/powershell)
 
-The Durable Task SDK is not available for PowerShell. Use [Durable Functions](durable-functions-overview.md) instead.
+The Durable Task SDK is not available for PowerShell. Use [Durable Functions](what-is-durable-task.md) instead.
 
 ---
 
@@ -1185,11 +1185,11 @@ class CustomStatusPayload {
 
 # [JavaScript](#tab/javascript)
 
-The Durable Task SDK is not available for JavaScript. Use [Durable Functions](durable-functions-overview.md) instead.
+The Durable Task SDK is not available for JavaScript. Use [Durable Functions](what-is-durable-task.md) instead.
 
 # [PowerShell](#tab/powershell)
 
-The Durable Task SDK is not available for PowerShell. Use [Durable Functions](durable-functions-overview.md) instead.
+The Durable Task SDK is not available for PowerShell. Use [Durable Functions](what-is-durable-task.md) instead.
 
 ---
 
@@ -1223,11 +1223,11 @@ CustomStatusPayload payload = metadata.readCustomStatusAs(CustomStatusPayload.cl
 
 # [JavaScript](#tab/javascript)
 
-The Durable Task SDK is not available for JavaScript. Use [Durable Functions](durable-functions-overview.md) instead.
+The Durable Task SDK is not available for JavaScript. Use [Durable Functions](what-is-durable-task.md) instead.
 
 # [PowerShell](#tab/powershell)
 
-The Durable Task SDK is not available for PowerShell. Use [Durable Functions](durable-functions-overview.md) instead.
+The Durable Task SDK is not available for PowerShell. Use [Durable Functions](what-is-durable-task.md) instead.
 
 ---
 

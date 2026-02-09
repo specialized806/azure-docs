@@ -16,7 +16,7 @@ The Durable Functions extension exposes a set of built-in HTTP APIs that can per
 Before using these HTTP APIs, make sure you have:
 
 - A basic understanding of [Durable Functions concepts](durable-functions-types-features-overview.md) (orchestrators, activities, entities)
-- A [Durable Functions project](durable-functions-overview.md) initialized with configured bindings
+- A [Durable Functions project](what-is-durable-task.md) initialized with configured bindings
 - Access to your function app's base URL, task hub name, connection settings, and authorization key
 
 ## Base URL and common parameters

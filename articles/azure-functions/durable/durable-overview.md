@@ -54,7 +54,7 @@ dotnet add package Microsoft.DurableTask.Worker.AzureManaged
 | **Understand the concepts** | [Core concepts](./durable-functions-types-features-overview.md) |
 | **Build serverless workflows** | [Durable Functions quickstart](./durable-task-scheduler/quickstart-durable-task-scheduler.md) |
 | **Run using the Durable Task SDKs** | [Durable Task SDK quickstart](./durable-task-scheduler/quickstart-portable-durable-task-sdks.md) |
-| **Learn orchestration patterns** | [Patterns](./durable-functions-overview.md#application-patterns) |
+| **Learn orchestration patterns** | [Patterns](./what-is-durable-task.md#application-patterns) |
 | **Set up the Azure-managed backend** | [Durable Task Scheduler](./durable-task-scheduler/durable-task-scheduler.md) |
 
 ## Getting started
@@ -133,4 +133,4 @@ flowchart TB
 - [Functions types and features overview](durable-functions-types-features-overview.md)
 - [Orchestrator functions overview](durable-functions-orchestrations.md)
 - [Create a Durable Functions app - C#](durable-functions-isolated-create-first-csharp.md)
-- [Durable Functions overview](durable-functions-overview.md)
+- [Durable Functions overview](what-is-durable-task.md)

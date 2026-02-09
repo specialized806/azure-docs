@@ -60,7 +60,7 @@ Both Durable Functions and Durable Task SDK are available in multiple languages,
 
 ### Durable Functions
  
-As a feature of Azure Functions, [Durable Functions](../durable-functions-overview.md) inherits numerous assets, such as:
+As a feature of Azure Functions, [Durable Functions](../what-is-durable-task.md) inherits numerous assets, such as:
 - Integrations with other Azure services through the Functions extensions
 - Local development experience 
 - Serverless pricing model
@@ -386,7 +386,7 @@ TaskOrchestration processOrder = ctx -> {
 
 ## Next steps
 
-- [Durable Functions overview](../durable-functions-overview.md)
+- [Durable Functions overview](../what-is-durable-task.md)
 - [Durable Functions types and features](../durable-functions-types-features-overview.md)
 - [Durable Task Scheduler overview](./durable-task-scheduler.md)
 - [Configure managed identity for Durable Task Scheduler](./durable-task-scheduler-identity.md)

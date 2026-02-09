@@ -555,7 +555,7 @@ Use this checklist to ensure a complete migration:
 ## Next steps
 
 - [Learn about the Isolated Worker Model →](../dotnet-isolated-process-guide.md)
-- [Explore Durable Functions Patterns →](./durable-functions-overview.md#application-patterns)
+- [Explore Durable Functions Patterns →](./what-is-durable-task.md#application-patterns)
 - [Configure Durable Task Scheduler →](./durable-task-scheduler/develop-with-durable-task-scheduler.md)
 - [View Code Samples →](/samples/browse/?term=durable%20functions)
 
