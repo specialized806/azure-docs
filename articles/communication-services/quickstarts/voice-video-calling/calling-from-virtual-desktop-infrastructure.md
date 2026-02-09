@@ -77,7 +77,7 @@ To support real-time calling functionality from an Azure Virtual Desktop (AVD) v
 | Media Capture/WebRTC API | No                    | Direct access not supported; affects low-level device control           |
 
 > [!IMPORTANT]
-> Using Azure Communication Service WebJS  to make calls to an Azure Virtual Desktop is in **public preview**. You must use calling versions [1.42.1-beta.1](https://github.com/Azure/Communication/blob/master/releasenotes/acs-javascript-calling-library-release-notes.md) version or higher.
+> Using Azure Communication Service WebJS  to make calls to an Azure Virtual Desktop is in **public preview**. You must use calling versions [1.42.2-beta.1](https://www.npmjs.com/package/@azure/communication-calling/v/1.42.2-beta.1) version or higher.
 
 ## VDI Communication Workflow
 
