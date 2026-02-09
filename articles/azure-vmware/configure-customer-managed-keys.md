@@ -19,7 +19,7 @@ When you manage your own encryption keys, you can:
 - Centrally manage the lifecycle of CMKs.
 - Revoke Azure access to the KEK.
 
-The CMK feature supports the following key types and their key sizes:
+CMK feature supports the following key types and their key sizes:
 
 - **RSA**: 2048, 3072, 4096
 - **RSA-HSM**: 2048, 3072, 4096
