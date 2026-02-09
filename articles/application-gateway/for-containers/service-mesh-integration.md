@@ -5,7 +5,7 @@ services: application-gateway
 author: JackStromberg
 ms.service: azure-appgw-for-containers
 ms.topic: how-to
-ms.date: 1/28/2026
+ms.date: 2/9/2026
 ms.author: jstrom
 ---
 
@@ -347,5 +347,4 @@ There's no extra price to enable service mesh integration.
 
 ## Limitations
 
-- Application Gateway for Containers only supports the community/open source version of Istio today. Istio-based service mesh add-on for AKS isn't supported at this time.
 - Ingress API isn't supported; consider migrating to Gateway API.
