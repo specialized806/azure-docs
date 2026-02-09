@@ -96,7 +96,7 @@ With BizTalk, day-to-day integration work is done in Visual Studio and spread ac
 
 With Azure Logic Apps, many teams move to Visual Studio Code for editing workflow definitions and related files by using a simpler “workflow + connectors” approach that reduces solution complexity and encourages smaller, more incremental changes. In practice, Visual Studio Code is usually faster to install, update, and standardize across teams than maintaining BizTalk and Visual Studio version alignment. Text-based workflow definitions tend to improve Git diff and merge, code reviews, and reuse compared to large, compiled BizTalk solutions.
 
-- Why the move to Logic Apps is an improvement
+- What makes the move to Azure Logic Apps an improvement
 
 Azure Logic Apps pairs Visual Studio Code-based development with cloud-native diagnostics. You can quickly validate and update workflows, then use the workflow run history to see operation inputs and outputs without relying on server-side consoles and troubleshooting host instances. In migration projects, this benefit typically speeds up iteration (edit, deploy, update, validate), improves collaboration because workflows are easier to review and version, and supports cleaner environment separation by externalizing connections and settings, reducing the “it works on that server” configuration drift.
 
