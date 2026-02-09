@@ -163,7 +163,7 @@ If you no longer need the resources that you created to complete the quickstart,
 
 ## Related content
 
-* Learn about [common Durable Functions app patterns](what-is-durable-task.md#application-patterns).
+* Learn about [common Durable Functions app patterns](durable-functions-sequence.md).
 
 ::: zone-end
 
@@ -293,6 +293,6 @@ If you no longer need the resources that you created to complete the quickstart,
 
 ## Related content
 
-* Learn about [common Durable Functions app patterns](what-is-durable-task.md#application-patterns).
+* Learn about [common Durable Functions app patterns](durable-functions-sequence.md).
 
 ::: zone-end

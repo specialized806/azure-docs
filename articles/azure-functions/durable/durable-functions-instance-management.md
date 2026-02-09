@@ -1130,13 +1130,13 @@ When a suspended orchestrator is resumed, its status changes back to `Running`.
 
 ::: zone pivot="durable-functions"
 
-In some scenarios, orchestrator functions need to wait and listen for external events. Example scenarios where this is useful include the [monitoring](what-is-durable-task.md#monitoring) and [human interaction](what-is-durable-task.md#human) scenarios.
+In some scenarios, orchestrator functions need to wait and listen for external events. Example scenarios where this is useful include the [monitoring](durable-functions-monitor.md) and [human interaction](durable-functions-human-interaction.md) scenarios.
 
 ::: zone-end
 
 ::: zone pivot="durable-task-sdks"
 
-In some scenarios, orchestrations need to wait and listen for external events. Example scenarios where this is useful include the [monitoring](what-is-durable-task.md#monitoring) and [human interaction](what-is-durable-task.md#human) scenarios.
+In some scenarios, orchestrations need to wait and listen for external events. Example scenarios where this is useful include the [monitoring](durable-functions-monitor.md) and [human interaction](durable-functions-human-interaction.md) scenarios.
 
 ::: zone-end
 
@@ -1595,7 +1595,7 @@ If you have an orchestration failure for an unexpected reason, you can *rewind* 
 
 Use the `RewindAsync` (.NET) or `rewind` (JavaScript) method of the [orchestration client binding](durable-functions-bindings.md#orchestration-client) to put the orchestration back into the *Running* state. This method also reruns the activity or sub-orchestration execution failures that caused the orchestration failure.
 
-For example, say you have a workflow involving a series of [human approvals](what-is-durable-task.md#human). Suppose there are a series of activity functions that notify someone that their approval is needed, and wait out the real-time response. After all the approval activities receive responses or time out, suppose another activity fails because of an application misconfiguration, such as an invalid database connection string. The result is an orchestration failure deep into the workflow. With the `RewindAsync` (.NET) or `rewind` (JavaScript) API, an application administrator can fix the configuration error, and rewind the failed orchestration back to the state immediately before the failure. None of the human-interaction steps need to be re-approved, and the orchestration can now complete successfully.
+For example, say you have a workflow involving a series of [human approvals](durable-functions-human-interaction.md). Suppose there are a series of activity functions that notify someone that their approval is needed, and wait out the real-time response. After all the approval activities receive responses or time out, suppose another activity fails because of an application misconfiguration, such as an invalid database connection string. The result is an orchestration failure deep into the workflow. With the `RewindAsync` (.NET) or `rewind` (JavaScript) API, an application administrator can fix the configuration error, and rewind the failed orchestration back to the state immediately before the failure. None of the human-interaction steps need to be re-approved, and the orchestration can now complete successfully.
 
 > [!NOTE]
 > The *rewind* feature doesn't support rewinding orchestration instances that use durable timers.

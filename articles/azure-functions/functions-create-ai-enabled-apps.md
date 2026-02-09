@@ -156,7 +156,7 @@ AI-driven processes often determine how to interact with models and other AI ass
 
 The [Durable Functions extension](durable/what-is-durable-task.md) helps you take advantage of the strengths of Functions to create multistep, long-running operations with built-in fault tolerance. These workflows work well for your directed agentic workflows. For example, a trip planning solution might first gather requirements from the user, search for plan options, obtain user approval, and finally make required bookings. In this scenario, you can build an agent for each step and then coordinate their actions as a workflow using Durable Functions. 
 
-For more workflow scenario ideas, see [Application patterns](durable/what-is-durable-task.md#application-patterns) in Durable Functions. 
+For more workflow scenario ideas, see [Application patterns](durable/durable-functions-sequence.md) in Durable Functions. 
 
 ## Retrieval-augmented generation
 
