@@ -20,7 +20,7 @@ The Bicep MCP (Model Context Protocol) server provides AI agents with tools to h
 * **`list_avm_metadata`** - Lists metadata for all Azure Verified Modules (AVM).
 * **`list_az_resource_types_for_provider`** - Lists all Azure resource types for a specific provider, such as Microsoft.Storage.
 
-Use the Bicep MCP server directly in [Visual Studio Code](#visual-studio-code). You can also run it locally with [MCP-compatible services](#integration-with-other-ai-services).
+Use the Bicep MCP server directly in [Visual Studio Code](#visual-studio-code). You can also run it locally with [MCP-compatible services](#integration-with-other-foundry-tools).
 
 ## Limitations
 
