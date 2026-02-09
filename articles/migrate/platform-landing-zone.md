@@ -102,3 +102,5 @@ A typical deployment workflow includes:
 ## Design document generation
 
 The design document included in the platform landing zone package is generated using a template-based approach. Azure Migrate compiles the document based on the selected platform landing zone configuration, such as region type, network architecture, firewall type, and region selection. The output is a tailored Markdown document that reflects the chosen configuration.
+
+## Next steps
