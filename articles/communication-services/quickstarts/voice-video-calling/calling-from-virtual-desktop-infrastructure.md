@@ -1,5 +1,5 @@
 ---
-title: Optimize audio calling. From within an Azure Virtual Desktop VDI environment.
+title: Optimize audio calling from within an azure virtual desktop VDI environment
 titleSuffix: An Azure Communication Services article
 description: This article describes how to place audio Calls that are hosted and managed on an Azure Virtual Desktop. Environment and use VDI technologies to manage the full call workflow.
 author: sloanster
@@ -12,7 +12,7 @@ ms.subservice: calling
 ms.custom: mode-other, devx-track-js
 ---
 
-# Placing audio calls from Azure Virtual Desktop
+# Place audio calls from Azure Virtual Desktop
 
 [!INCLUDE [Public Preview Notice](../../includes/public-preview-include.md)]
 
@@ -22,7 +22,7 @@ This document explains how to enable and optimize calling scenarios using Azure 
 
 VDI stands for **Virtual Desktop Infrastructure** — a technology that allows users to access a desktop operating system hosted on a centralized server. Instead of running the OS locally on your device, you're essentially streaming a desktop experience from the cloud or a data center.
 
-## What VDI Does?
+## What VDI Does
 
 -   **Centralizes desktop environments**: All desktops are hosted on virtual machines in a data center.
 -   **Delivers remote access**: Users connect to their virtual desktops via a client device (PC, tablet, thin client, etc.).
@@ -131,10 +131,7 @@ The default value is false.
 
 **The call object isn't immediately accessible when the call is created with synchronous functions**
 
-There are two ACS APIs that create a call object but are synchronous functions
-
-1.  startCall
-2.  join
+There are two ACS APIs that create a call object but are synchronous functions *startCall* and *join* :
 ```javascript
 startCall(participants: (CommunicationUserIdentifier \| PhoneNumberIdentifier \| MicrosoftTeamsAppIdentifier \| UnknownIdentifier)[], options?: StartCallOptions): Call;
 startCall(participants: (CommunicationIdentifier)[], options?: StartCallOptions): Call;
@@ -161,10 +158,10 @@ message": "The call object is initializing",
 The app should subscribe to callsUpdated event.  
 In VDI3 scenario, when the call is initiated, the SDK fires callsUpdated event and put the call object in the added argument.
 ```javascript
-callAgent.on('callsUpdated', e =\> {
-e.added.forEach(call =\> {
-// call object has been initialized
-});
+callAgent.on('callsUpdated', e => {
+  e.added.forEach(call => {
+    // call object has been initialized
+  });
 });
 //...
 // join() returns a call object, but don't use the call object now
@@ -178,10 +175,10 @@ If the RDP is disconnected during an ACS call, the SDK fires stateChanged event 
 The code/subcode is 0/4521
 ```javascript
 {
-callControllerCode: 0,
-callControllerSubCode: 4521,
-phrase: 'call ended due to RDP disconnection',
-resultCategories: [skype.calling.ResultCategory.ExpectedError]
+    callControllerCode: 0,
+    callControllerSubCode: 4521,
+    phrase: 'call ended due to RDP disconnection',
+    resultCategories: [skype.calling.ResultCategory.ExpectedError]
 }
 ```
 
@@ -260,7 +257,7 @@ You may encounter errors after reconnecting to a Remote Desktop session. This be
 
 To recover from this state:
 
-1. **Create a new instance of `CallClient`.**
-2. **Use the new `CallClient` to create a fresh `CallAgent`.**
+1. Create a new instance of `CallClient`.
+2. Use the new `CallClient` to create a fresh `CallAgent`.
 
 This guarantees that your application reestablishes communication seamlessly after a Remote Desktop reconnection.
