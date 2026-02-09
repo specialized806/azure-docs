@@ -65,7 +65,7 @@ To support real-time calling functionality from an Azure Virtual Desktop (AVD) v
 - Installed in the **browser** (Microsoft Edge or Google Chrome) on the AVD VM.
 - Interfaces with the MMR Host to support **device enumeration** and **media routing**
 - Required for enabling calling features in browser-based communication platforms
-- **Install the Web Plugin Extension on the Azure Virtual Desktop VM** The Web plugin must installed directly on the AVD VM instance. For complete installation instructions and guidance on managing the browser extension centrally, please refer to the official Microsoft documentation on how to [enable and manage the browser extension centrally](/azure/virtual-desktop/multimedia-redirection-video-playback-calls?tabs=intune&pivots=azure-virtual-desktop#enable-and-manage-the-browser-extension-centrally).
+- **Install the Web Plugin Extension on the Azure Virtual Desktop VM** The Web plugin must be installed directly on the AVD VM instance. For complete installation instructions and guidance on managing the browser extension centrally, please refer to the official Microsoft documentation on how to [enable and manage the browser extension centrally](/azure/virtual-desktop/multimedia-redirection-video-playback-calls?tabs=intune&pivots=azure-virtual-desktop#enable-and-manage-the-browser-extension-centrally).
 
 ## Supported Features & Limitations
 
@@ -171,7 +171,7 @@ callAgent.join({ groupId: this.destinationGroup.value }, callOptions);
 **The callAgent cannot be used after the RDP recovers from disconnection**
 ```
 Currently, the MMR doesn't keep the state after RDP connection has dropped. The states between the thin client and VM aren't synchronized in this case.  
-If the RDP is disconnected during an ACS call, the SDK fires stateChanged event and mark the call as disconnected.  
+If the RDP is disconnected during an ACS call, the SDK fires stateChanged event and marks the call as disconnected.  
 The code/subcode is 0/4521
 ```javascript
 {
