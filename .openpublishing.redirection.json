@@ -2756,6 +2756,11 @@
       "redirect_document_id": false
     },
     {
+      "source_path_from_root": "/articles/azure-resource-manager/bicep/deploy-vscode.md",
+      "redirect_url": "/azure/azure-resource-manager/bicep/deploy-visual-studio-code",
+      "redirect_document_id": false
+    },
+    {
       "source_path_from_root": "/articles/azure-resource-manager/management/control-plane-metrics.md",
       "redirect_url": "/azure/azure-resource-manager/management/monitor-resource-manager",
       "redirect_document_id": false
