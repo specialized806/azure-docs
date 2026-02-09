@@ -1,7 +1,7 @@
 ---
-title: Create a Platform Landing Zone with Azure Migrate 
-description: Learn how to create a Platform Landing Zone with Azure Migrate to set up governance, networking, and core Azure services for migration readiness.
-ms.topic: conceptual
+title: Generate and deploy Platform Landing Zone with Azure Migrate 
+description: Learn how to generate and deploy Platform Landing Zone with Azure Migrate to set up governance, networking, and core Azure services for migration readiness.
+ms.topic: how-to
 author: piyushdhore-microsoft
 ms.author: piyushdhore
 ms.service: azure-migrate
