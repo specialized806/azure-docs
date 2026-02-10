@@ -350,7 +350,7 @@ Beyond Azure RBAC, you can also [restrict access to run history in Azure Logic A
 
   In single-tenant Azure Logic Apps, you can use a single Workflow Service plan to host multiple Standard logic apps. This means you don't have to deploy all your workflows in a single Standard logic app resource. Instead, you can organize these workflows into logical groups (logic apps) to help you better manage other aspects of your solution. This approach helps you get the most out of your Workflow Service plan and future-proof your applications, which you can implement so that they can individually scale.
 
-  A Standard logic app has the following pricing tiers: WS1, WS2 and WS3. Functionally, each tier provides the same capabilities. Your requirements for compute and memory determine is best for your scenario, for example:
+  A Standard logic app has the following pricing tiers: WS1, WS2 and WS3. Functionally, each tier provides the same capabilities. Your requirements for compute and memory determine what's best for your scenario, for example:
 
   | Pricing tier | Virtual CPU (vCPU) | Memory (GB) |
   |--------------|--------------------|-------------|
