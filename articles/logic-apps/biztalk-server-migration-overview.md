@@ -104,16 +104,15 @@ Connectors provide operations that you can use as steps in your workflows. When 
 
 Technically, a connector is a proxy or wrapper around an API that the underlying service or system uses to communicate with Azure Logic Apps. Connectors provide the connectivity capabilities in Azure Logic Apps and offer an abstraction on top of APIs that are usually owned by the underlying SaaS system. To simplify calling these APIs, connectors use metadata to describe the messaging contract so that developers know what data is expected in the request and in the response. The connector then exposes operations as triggers or actions with configurable properties. Some triggers and actions require that you first create and configure a connection to the underlying service or system and authenticate access to a user account.
 
-Most connectors in Azure Logic Apps are either built in or managed. Some connectors are available in both versions, and availability depends on whether you create a Consumption or Standard logic app workflow. For BizTalk Server migration scenarios, Standard logic app workflows are recommended because BizTalk migration capabilities are available in the Standard tier.
+Most connectors in Azure Logic Apps are either built in or managed. Some connectors are available in both versions, and availability depends on whether you create a Consumption or Standard logic app workflow. For BizTalk Server migration scenarios, Standard logic app workflows are recommended because BizTalk migration capabilities are available at the Standard level.
 
-For many BizTalk migrations, connector selection is driven by common integration requirements such as on-premises connectivity, file transfer such as SFTP, messaging systems, and line-of-business systems.
+For many BizTalk migrations, the connectors that you select are driven by common integration requirements such as on-premises connectivity, file transfer such as SFTP, messaging systems, and line-of-business systems.
 
 -	Built-in connectors natively run on the Azure Logic Apps runtime. Compared to managed connectors, built-in connectors usually reduce latency and avoid per-connection calls to the managed connector service, depending on the connector and scenario.
 
-
 -	Managed connectors are deployed, hosted, and managed by Microsoft in Azure. These connectors provide triggers and actions for cloud services, on-premises systems, or both.
 
-  In the designer's connector gallery, built-in connectors appear under the **Built-in** label, while managed connectors appear under the **Shared** label. For Consumption logic app workflows, managed connectors follow either the Standard or Enterprise pricing tier.
+  In the designer's connector gallery, built-in connectors appear under the **Built-in** label, while managed connectors appear under the **Shared** label. For Consumption logic app workflows, managed connectors follow either the Standard or Enterprise pricing model.
 
 -	Custom connectors let you wrap REST APIs, commonly by using an OpenAPI definition or SOAP APIs by using a WSDL, when no prebuilt connector exists. If no prebuilt connectors exist for the APIs you want to use, you can create a custom connector and access that connector from logic app workflows with the appropriate permissions.
 
@@ -156,7 +155,7 @@ The following sections summarize the main built-in options for transformations a
 
   An *integration account* is an Azure resource that provides centralized access to reusable B2B and integration artifacts that multiple workflows can share. Artifacts can include trading partners, agreements, XSD schemas, XSLT maps, Liquid template-based maps, certificates, batch configurations, and .NET Framework assemblies.
 
-  You commonly use integration accounts in B2B/EDI scenarios where you want a shared, governed artifact store separate from any single workflow. For Standard workflows, you can often avoid an integration account by packaging schemas, maps, and templates with the Standard logic app project and deploying them together. Standard workflows also support calling .NET Framework assemblies from XSLT transformations, which can help when you port existing BizTalk maps and helper libraries. If you prefer a project-based approach, add schemas, maps, and assemblies in Visual Studio Code and then deploy to Azure.
+  You commonly use integration accounts in B2B/EDI scenarios where you want a shared, governed artifact store separate from any single workflow. For Standard workflows, you can often avoid an integration account by packaging schemas, maps, and templates with the Standard logic app project and deploying them together. Standard workflows also support [calling .NET Framework assemblies from XSLT transformations](https://techcommunity.microsoft.com/blog/integrationsonazureblog/-net-framework-assembly-support-added-to-azure-logic-apps-standard-xslt-transfor/3669120), which can help when you port existing BizTalk maps and helper libraries. If you prefer a project-based approach, add schemas, maps, and assemblies in Visual Studio Code and then deploy to Azure.
 
 - EDI schemas: Specialized XSD artifacts for B2B integrations
 
