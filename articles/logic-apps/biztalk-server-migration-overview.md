@@ -196,7 +196,7 @@ Azure Logic Apps provides message durability in the following ways:
 
   To use this capability in Azure Logic Apps, use the Azure Service Bus connector. Peek-lock mode improves reliability and supports retry or redelivery patterns. However, end-to-end, exactly once processing still typically requires idempotency in downstream systems.
 
-- With RabbitMQ, durability is commonly achieved by using durable queues/exchanges together with persistent messages, and by relying on consumer acknowledgements so messages can be redelivered if processing fails before an ack is sent. When integrating through the RabbitMQ connector, apply the same design principle as other brokers: assume retries and potential duplicates and make downstream processing idempotent.
+- With RabbitMQ, you can commonly achieve durability by using durable queues or exchanges together with persistent messages and by relying on consumer acknowledgments so the system can redeliver messages if processing fails before sending an acknowledgment. When you integrate using the RabbitMQ connector, apply the same design principle as other brokers: assume retries and potential duplicates, and make downstream processing idempotent.
 
 - With IBM MQ, durability and reliable delivery are typically addressed by using persistent messages and transactional processing (units of work) so that message receive and downstream work can be committed or rolled back together. If a failure occurs before the work is committed or a message is acknowledged, the message can become available for redelivery. When using the IBM MQ connector, design for at-least-once delivery and handle possible duplicates at the destination.
 
