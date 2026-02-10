@@ -1,5 +1,5 @@
 ---
-title: Microsoft Agent Pre-Purchase Plan
+title: Microsoft Agent Prepurchase Plan
 description: Learn about Microsoft Agent Prepurchase Plan in Azure reservations.
 author: pri-mittal
 ms.reviewer: primittal
@@ -21,7 +21,7 @@ Your Microsoft Agent prepurchase plan automatically uses your ACUs to pay for el
 ## Services covered by Microsoft Agent prepurchase plan
 
 
-:::image type="content" source="./media/agentp3/services-covered-screenshot.jpg" alt-text="Screenshot showing services covered by Microsoft Agent prepurchase plan." lightbox="./media/agentp3/services-covered-screenshot.jpg":::
+:::image type="content" source="./media/agentprepurchase/services-covered-screenshot.jpg" alt-text="Screenshot showing services covered by Microsoft Agent prepurchase plan." lightbox="./media/agentprepurchase/services-covered-screenshot.jpg":::
 
 
 
@@ -62,7 +62,7 @@ Purchase Microsoft Agent Prepurchase Plans in the [Azure portal reservations](ht
 1. Go to the [Azure portal](https://portal.azure.com)
 2. Navigate to the **Reservations** service.
 3. On the **Purchase reservations page**, select [**Microsoft Agent Prepurchase Plan**](https://aka.ms/MAF-P3-Purchase).
-   :::image type="content" source="./media/agentp3/azure-portal-screenshot.jpg" alt-text="Screenshot showing Microsoft Agent prepurchase plan." lightbox="./media/agentp3/azure-portal-screenshot.jpg":::
+   :::image type="content" source="./media/agentprepurchase/azure-portal-screenshot.jpg" alt-text="Screenshot showing Microsoft Agent prepurchase plan." lightbox="./media/agentprepurchase/azure-portal-screenshot.jpg":::
 5. On the **Select the product you want to purchase** page, select a subscription. Use the **Subscription** list to select the subscription used to pay for the purchase. The payment method of the subscription is charged the upfront cost for the reservation. Charges are **not** deducted from the enrollment's Azure Prepayment (previously called monetary commitment) balance or charged as overage.
 6. Select a scope.
    - **Single resource group scope** - Applies the reservation discount to the matching resources in the selected resource group only.
