@@ -173,7 +173,7 @@ The following diagram shows an example initial migration environment with an on-
 
 :::image type="content" source="./media/biztalk-server-to-azure-integration-services-overview/architecture-overview-hybrid.png" alt-text="Diagram shows example migration environment with deployed on-premises Standard logic app." border="false":::
 
-#### Test your migration
+## Test your migration
 
 Each *wave* has its own testing activities, which are embedded in each user story. To use [shift-left testing](/devops/develop/shift-left-make-testing-fast-reliable), make sure that you use the following guidance:
 
@@ -185,7 +185,7 @@ Each *wave* has its own testing activities, which are embedded in each user stor
 
   Unit test agent profiles are a focused set of agents that help you discover workflows and maps, write reusable specifications, generate typed mocks and test data, and implement MSTest suites for Azure Logic Apps Standard projects. Follow the steps in [Introducing Unit Test Agent Profiles for Logic Apps & Data Maps](https://techcommunity.microsoft.com/blog/integrationsonazureblog/introducing-unit-test-agent-profiles-for-logic-apps--data-maps/4490216).
 
-#### Deployment
+## Deployment
 
 After your team finishes and meets the "definition of done" for the user stories, consider the following tasks:
 
@@ -215,7 +215,7 @@ After your team finishes and meets the "definition of done" for the user stories
 
 1. Hold a retrospective.
 
-### Best practices for a BizTalk migration
+## Best practices for a BizTalk migration
 
 While best practices might vary across organizations, consider a conscious effort to promote consistency, which helps reduce unnecessary efforts that "reinvent the wheel" and the redundancy of similar common components. When you help enable reusability, your organization can more quickly build interfaces that become easier to support. Time to market is a key enabler for digital transformation, so a top priority is reducing unnecessary friction for developers and support teams.
 
@@ -247,7 +247,7 @@ From an organizational perspective, you might design a naming pattern that inclu
 
 Suppose you have a Standard logic app in development that implements workflows for the HR department in the Corporate Services business unit. You might name the logic app resource **LAStd-CorporateServices-HR-DEV**, and use [Pascal Case notation](https://www.theserverside.com/definition/Pascal-case) where appropriate for consistency.
 
-#### Logic app workflow names
+### Logic app workflow names
 
 A Consumption logic app resource always maps to only one workflow, so you only need a single name. A Standard logic app resource can include multiple workflows, so design a naming convention that you can also apply to member workflows. For these workflows, consider a naming convention based on the process name, for example:
 
@@ -260,7 +260,7 @@ Here are more considerations for designing your workflow naming convention:
 - Follow the parent-child pattern for workflows where you want to highlight some relationship between one or more workflows.
 - Take into account whether a workflow publishes or consumes a message.
 
-#### Workflow operation names
+### Workflow operation names
 
 When you add a trigger or action to your workflow, the designer automatically assigns the default generic name for that operation. However, operation names must be unique within your workflow, so the designer appends sequential numerical suffixes on subsequent operation instances, which makes readability and deciphering the developer's original intent difficult.
 
@@ -276,7 +276,7 @@ To make operation names more meaningful and easier to understand, you can add a 
 
 To avoid later possible rework and problems around downstream dependencies, which are created when you use operation outputs, rename your operations immediately when you add them to your workflow. Usually, downstream actions are automatically updated when you rename an operation. However, Azure Logic Apps doesn't automatically rename custom expressions that you created before you perform the rename.
 
-#### Connection names
+### Connection names
 
 When you create a connection in your workflow, the underlying connection resource automatically gets a generic name, such as **sql** or **office365**. Like operation names, connection names must also be unique. Subsequent connections with the same type get a sequential numerical suffix, for example, **sql-1**, **sql-2**, and so on. Such names don't provide any context, which makes differentiating and mapping connections to their workflows extremely challenging, especially for developers who don't know the solution space and have to maintain these workflows.
 
@@ -303,7 +303,7 @@ When you implement this pattern, you can also specify when to run the **Scope** 
 - **Is skipped**
 - **Has timed out**
 
-### Consolidate shared services
+## Consolidate shared services
 
 When you build integration solutions, consider creating and using shared services for common tasks. You can have your team build and expose a collection of shared services that your project team and others can use. Everyone gains increased productivity, uniformity, and the capability to enforce governance on your organization's solutions. The following sections describe some areas where you might consider introducing shared services:
 
@@ -317,7 +317,7 @@ When you build integration solutions, consider creating and using shared service
 
 ## Next steps
 
-You've now learned more about available migration approaches and best practices for moving BizTalk Server workloads to Azure Logic Apps. To provide detailed feedback about this guide, you can use the following form:
+You learned more about available migration approaches and best practices for moving BizTalk Server workloads to Azure Logic Apps. To provide detailed feedback about this guide, use the following form:
 
 > [!div class="nextstepaction"]
 >
