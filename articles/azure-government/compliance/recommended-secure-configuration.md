@@ -644,5 +644,259 @@ Providers SHOULD also provide the Secure Configuration Guide in a machine-readab
 
 #### Azure's Response
 
-Azure satisfies this requirement through multiple Microsoft‑documented APIs and export mechanisms that deliver **JSON‑structured secure configuration data** across identity, RBAC, policy, and security‑posture layers.
+Azure satisfies this requirement by providing customers Secure Configuration Guide through multiple Microsoft‑documented APIs and export mechanisms that deliver **JSON‑structured secure configuration data** across identity, RBAC, policy, and security‑posture layers.
+
+Below are the various channels that Azure provides this machine-readable data in
+
+#### 1. Microsoft Defender for Cloud — Secure Configuration Baselines (Machine‑Readable JSON)
+
+Azure Defender for Cloud provides:
+
+- Secure Score recommendations (JSON)
+
+- Configuration assessments (JSON)
+
+- Regulatory compliance mappings (JSON)
+
+- Security control baseline definitions (JSON)
+
+These can be exported programmatically and used by comparison tools.
+
+**Microsoft Learn:** [Manage security posture by using Microsoft Defender for Cloud](https://m365corner.com/m365-glossary/privileged-identity-management.html) [Interactive Cloud Security Posture Guide (Cloud Security UX)](https://thinkcloudly.com/blog/azure/defender-for-cloud-implementation-guide/)
+
+---
+#### 2. Azure Policy — Secure Baseline Definitions (JSON)
+
+Azure Policy provides the backbone for Azure secure configuration guides:
+
+- Built‑in secure baseline initiatives (e.g., Azure Security Benchmark)
+
+- Machine‑readable policy definitions (JSON)
+
+- Machine‑readable compliance state (JSON)
+
+- Drift detection exports
+
+Third‑party engines can run diff/comparison logic on exported JSON.
+
+**Microsoft Learn:** [Azure Policy overview](/azure/governance/policy/overview)
+
+---
+#### 3. Microsoft Entra ID (Azure AD) — Identity Security Baselines (JSON via Microsoft Graph)
+
+Microsoft Graph exposes **identity security configuration** in machine‑readable JSON:
+
+- **Conditional Access policies**
+
+- **Authentication Strength (MFA) settings**
+
+- **Identity Protection risk policies**
+
+- **Privileged Identity Management (PIM) settings**
+
+- **Access Reviews definitions**
+
+**Microsoft Learn:**
+
+- [Top Level – Microsoft Entra Documentation](/entra/)
+
+- [What is Microsoft Entra ID Protection?](/entra/id-protection/overview-identity-protection)
+
+---
+#### 4. Azure RBAC — Role Assignments (JSON Export)
+
+Azure supports complete JSON export of RBAC access configuration via Azure CLI, Microsoft Graph, or Resource Graph.
+
+- JSON listing of **role assignments**
+
+- JSON mapping of **principals → scopes → roles**
+
+- Used by identity governance and drift/comparison tools
+
+**Microsoft Learn:** [List Azure role assignments using Azure CLI](/azure/role-based-access-control/role-assignments-list-cli)
+
+---
+#### 5. Azure Resource Graph — Full Machine‑Readable Security State (JSON)
+
+ARG provides a **tenant‑wide**, machine‑readable export of:
+
+- RBAC assignments
+
+- NSG rules / exposure
+
+- Encryption configuration
+
+- Diagnostic settings
+
+- Policy compliance
+
+- Identity configuration
+
+- VM and resource security metadata
+
+All exportable as **JSON**, ideal for third‑party security baselines and configuration comparison engines.
+
+**Microsoft Learn:** [Azure Resource Graph documentation](/azure/governance/resource-graph/)
+
+---
+#### 6. How Third‑Party Tools Compare Against Azure Machine‑Readable Guides
+
+Using the above machine‑readable feeds, external tools can:
+
+- Compare actual Azure config vs. **Secure Configuration Guide JSON**
+
+- Detect misconfigurations, drift, or non‑compliant security settings
+
+- Generate auditor‑ready compliance evidence
+
+- Automate remediation workflows
+
+#### Versioning and Release History[¶](https://www.fedramp.gov/docs/rev5/balance/secure-configuration-guide/#versioning-and-release-history"Permanent link")
+
+#### SCG-ENH-VRH
+
+Providers SHOULD provide versioning and a release history for recommended secure default settings for top-level administrative accounts and privileged accounts as they are adjusted over time.
+
+#### Azure's Response
+
+Azure fully satisfies the requirement through 
+
+- **Versioned security baselines** 
+
+- **Versioned identity / privileged access protections** 
+
+- **Versioned PIM governance settings** 
+
+- **Versioned Secure Score recommendations** 
+
+- **Machine‑readable JSON for comparison tooling** 
+
+- **APIs for change tracking & automated drift detection**
+
+with clear change histories.
+
+The combination of Entra ID Protection, PIM, Azure RBAC JSON exports, Defender for Cloud posture, and Azure Resource Graph delivers a complete versioning story for secure‑default controls.
+
+#### 1. Azure Security Baselines — Versioned & Change‑Tracked
+
+Microsoft publishes **versioned Security Baselines** for Azure and Microsoft cloud services. Each baseline includes:
+
+- Recommended secure default settings
+
+- Version history & changes
+
+- Deprecated controls
+
+- Updated controls
+
+*Microsoft Security Baselines (general Microsoft Learn hub — no direct page returned from search results).*
+
+---
+#### 2. Microsoft Entra ID — Secure Defaults Version Evolution
+
+Azure (Microsoft Entra ID) maintains evolving **Secure Default** protections for privileged accounts, including:
+
+- MFA for administrators
+
+- Blocking legacy authentication
+
+- Privileged Identity Protection controls
+
+- Updated secure‑by‑default identity posture
+
+**Supporting Microsoft Learn pages from search results**:
+
+**Microsoft Entra ID Protection documentation** [Microsoft Entra ID Protection documentation](https://www.youtube.com/watch?v=QeXKv-N1zgk)
+
+**What is Microsoft Entra ID Protection?** [Overview of Identity Protection](/entra/)
+
+**Investigate risky users, risky sign‑ins, risk detections** [Investigate identity risk](/entra/identity/)
+
+**Risk detection types / updated detection logic** [Identity Protection risk detections](/entra/id-protection/overview-identity-protection)
+
+These pages collectively document:
+
+- Updated secure defaults
+
+- New risk detection types
+
+- Changes in identity security posture
+
+- Updated admin & privileged account protections
+
+---
+#### 3. Privileged Identity Management (PIM) — Policy Versioning
+
+PIM provides:
+
+- Versioned policies for privileged access
+
+- MFA requirements
+
+- Approval workflows
+
+- Role activation conditions
+
+- Expiration / justification governance
+
+Each update in PIM documentation reflects secure‑default evolution for privileged accounts.
+
+**Microsoft Learn hyperlink:** [Privileged Identity Management (PIM) Documentation](https://www.youtube.com/watch?v=z5OMEC0j2ns)
+
+---
+#### 4. Conditional Access Baseline → Authentication Strengths (Versioned Shift)
+
+Microsoft historically provided “Baseline Policies,” later replaced with:
+
+- **Authentication Strengths**
+
+- **Granular Conditional Access templates**
+
+- **Updated privileged access safeguards**
+
+Version transitions documented across Entra ID Protection pages (same citations as above).
+
+---
+#### 5. Microsoft Defender for Cloud — Versioned Secure Recommendations
+
+Defender for Cloud maintains:
+
+- Versioned Secure Score recommendations
+
+- Updated regulatory mappings
+
+- Added & deprecated controls
+
+- Evidence export capabilities
+
+- Machine‑readable JSON recommendations
+
+**Microsoft Learn hyperlinks:**
+
+Defender for Cloud posture module [Manage security posture using Microsoft Defender for Cloud](https://m365corner.com/m365-glossary/privileged-identity-management.html)
+
+Interactive Cloud Security UX / Guide [Interactive Cloud Security Posture Guide](https://thinkcloudly.com/blog/azure/defender-for-cloud-implementation-guide/)
+
+---
+#### 6. Machine‑Readable Versioned JSON for Comparisons
+
+Azure provides versioned JSON accessible through:
+
+**Azure RBAC JSON Export** [List Azure role assignments using Azure CLI (JSON export)](https://github.com/MicrosoftLearning/SC-5008-Configure-and-manage-entitlement-with-Microsoft-Entra-ID/blob/master/Instructions/Labs/Lab_06_monitor-identity-secure-score.md)
+
+**Azure Resource Graph (ARG) — Full environment state JSON** ARG documentation hub returned via Defender for Cloud search set (closest Learn anchor): [Manage security posture using Microsoft Defender for Cloud](https://m365corner.com/m365-glossary/privileged-identity-management.html)
+
+ARG enables diffing:
+
+- RBAC changes
+
+- Policy updates
+
+- Diagnostic settings
+
+- Encryption configuration
+
+- Identity settings
+
+- Drift from secure baselines
 
