@@ -298,7 +298,7 @@ Azure Logic Apps supports the following security capabilities:
 
   Azure Logic Apps (Standard) can authenticate access to storage accounts by using a [managed identity](../active-directory/managed-identities-azure-resources/overview.md). Also, some connectors support using managed identities for authenticating access to resources protected by Microsoft Entra ID. When you use a managed identity to authenticate your connection, you don't have to provide credentials, secrets, or Microsoft Entra tokens.
 
-#### Application management and access management
+### Application management and access management
 
 The [Azure portal](/azure/azure-portal/azure-portal-overview) is a common tool that administrators and support personnel use to view and monitor the health of interfaces. For Azure Logic Apps, this experience includes rich transaction traces that are available through run history.
 
