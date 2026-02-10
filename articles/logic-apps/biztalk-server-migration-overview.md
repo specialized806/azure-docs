@@ -1,6 +1,6 @@
 ---
 title: Why Move from BizTalk Server to Azure Logic Apps?
-description: Get an overview about moving from BizTalk Server to Azure Logic Apps and Azure Integration Services. This section provides an end-to-end approach for migration.
+description: Learn about the reasons for moving from BizTalk Server to Azure Logic Apps.
 services: logic-apps
 ms.service: azure-logic-apps
 ms.suite: integration
