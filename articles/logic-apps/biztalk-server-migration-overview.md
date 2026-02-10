@@ -145,7 +145,7 @@ For most JSON transformations in logic app workflows, you can use built-in Data 
 
   For XML creation and validation scenarios in logic app workflows, you can use built-in XML operations such as the **Compose XML with schema** and **Parse XML with schema** actions. These actions are the most useful when you need strongly typed XML handling (XSD-based), rather than treating the payload as plain text. For example, you need consistent element names, data types, and structure across multiple workflows.
 
-- Store artifacts with Standard logic apps
+- Store artifacts in Standard logic apps 
 
 For Standard logic app workflows, you can store integration artifacts in the logic app resource itself. In the Azure portal, you can upload maps and schemas directly to the Standard logic app resource. If you work in Visual Studio Code, you can add schemas, maps, and templates to the appropriate folders under the project’s Artifacts directory and deploy them together with the workflow. This capability makes it easier for you to keep artifacts in source control.
 
