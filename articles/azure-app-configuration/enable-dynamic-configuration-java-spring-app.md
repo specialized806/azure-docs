@@ -126,7 +126,7 @@ Then, open the *pom.xml* file in a text editor and add a `<dependency>` for `spr
 <dependency>
     <groupId>com.azure.spring</groupId>
     <artifactId>spring-cloud-azure-appconfiguration-config-web</artifactId>
-    <version>6.0.0</version>
+    <version>7.0.0</version>
 </dependency>
 ```
 
