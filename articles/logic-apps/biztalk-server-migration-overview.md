@@ -177,7 +177,7 @@ Microsoft provides strong layers of protection by [encrypting data during transi
 
 Microsoft gives you the option to use [Transport Layer Security (TLS) protocol](../security/fundamentals/encryption-overview.md#tls-encryption) for protecting data that travels between cloud services and customers. Microsoft datacenters negotiate a TLS connection with client systems that connect to Azure services. TLS provides strong authentication, message privacy, and integrity, which enables detection of message tampering, interception, and forgery along with interoperability, algorithm flexibility, and ease of deployment and use.
 
-While this section focused on RESTful connectivity through connectors, you can implement SOAP web service connectivity through the custom connector experience or by using the API Management experience, which provides great SOAP capabilities. For more information, see [Increasing business value by integrating SOAP legacy assets with Azure logic Apps and Azure APIM](https://techcommunity.microsoft.com/t5/azure-integration-services-blog/increasing-business-value-by-integrating-soap-legacy-assets-with/ba-p/4238077).
+While this section focused on RESTful connectivity through connectors, you can implement SOAP web service connectivity through the custom connector experience or by using the API Management experience, which provides great SOAP capabilities. For more information, see [Increasing business value by integrating SOAP legacy assets with Azure Logic Apps and Azure API Management](https://techcommunity.microsoft.com/t5/azure-integration-services-blog/increasing-business-value-by-integrating-soap-legacy-assets-with/ba-p/4238077).
 
 ### Message durability
 
@@ -297,7 +297,7 @@ Azure Logic Apps relies on [Azure Storage](../storage/common/storage-introductio
 
 When you work with Azure Storage in the Azure portal, [all transactions take place over HTTPS](../security/fundamentals/encryption-overview.md#azure-storage-transactions). You can also work with Azure Storage by using the Storage REST API over HTTPS. To enforce using HTTPS when you call the REST APIs to access objects in storage accounts, enable the secure transfer that's required for the storage account.
 
-The Azure Logic Apps hybrid deployment model relies on SQL Server. This dependency lets you use existing on-premises SQL Server environments with BizTalk Server.
+The Azure Logic Apps (Standard) hybrid deployment model relies on SQL Server. This dependency lets you use existing on-premises SQL Server environments with BizTalk Server.
 
 ### Large file processing
 
@@ -402,7 +402,7 @@ The following diagram shows the core and optional dependencies for Azure Logic A
 
 :::image type="content" source="./media/biztalk-server-to-azure-integration-services-overview/LAWorkflows.png" alt-text="Diagram that shows multiple workflows in Azure Logic Apps." border="false":::
 
-In the hybrid deployment model, two core dependencies exist: a Kubernetes cluster and SQL Server. 
+The hybrid deployment model has two core dependencies: a Kubernetes cluster and SQL Server. 
 
 ## Feature matchup
 
