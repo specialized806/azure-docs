@@ -449,7 +449,7 @@ The following table and diagram shosw how resources, artifacts, features, and ca
 | Monitoring | - BizTalk Administration Console <br>- BizTalk Health Monitor | Opentelemetry |
 | Operations | - BizTalk Server Administration Console <br>- Azure Pipelines <br>- MSI, PowerShell <br>- BizTalk Deployment Framework | - Azure portal <br>- Opentelemetry <br>- Azure Resource Manager templates <br>- Azure Pipelines <br>- PowerShell, CLI, Bicep |
 
-:::image type="content" source="./media/biztalk-server-to-azure-integration-services-overview/enterprise-integration-platform-hybrid.png" alt-text="Diagram shows matchup between components from BizTalk Server and Azure Logic Apps for the enterprise integration platform." border="false":::
+:::image type="content" source="./media/biztalk-server-to-azure-integration-services-overview/enterprise-integration-platform-hybrid.png" alt-text="Diagram shows matchup between components from BizTalk Server and Azure Logic Apps with hybrid deployment model for the enterprise integration platform." border="false":::
 
 To stay updated about the latest investments, subscribe to the [Integrations on Azure Blog - Tech Community](https://techcommunity.microsoft.com/t5/integrations-on-azure-blog/bg-p/IntegrationsonAzureBlog).
 
