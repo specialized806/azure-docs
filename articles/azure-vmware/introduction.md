@@ -29,9 +29,6 @@ Azure VMware Solution provides two different private cloud generations:
 
 [!INCLUDE [host-sku-sizes](includes/disk-capabilities-of-the-host.md)]
 
-> [!NOTE]
-> ESA applies to AV64 Gen 2 deployments only.
-
 You can deploy new or scale existing private clouds through the Azure portal or Azure CLI.
 
 ## Azure VMware Solution private cloud extension with AV64 node size
