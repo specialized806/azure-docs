@@ -316,7 +316,7 @@ In Azure Logic Apps (Standard), the hybrid deployment model relies on SQL Server
 
 Some foundational differences exist between processing large files with BizTalk Server versus Azure Logic Apps. For example, carefully scrutinize large message scenarios to find the right solution because potentially different ways exist to solve this problem in a modern cloud environment.
 
-##### File size limits
+#### File size limits
 
 In Azure, file size limits exist to ensure consistent and reliable experiences. To validate your scenario, make sure to review the [service limits documentation for Azure Logic Apps](logic-apps-limits-and-config.md#messages). Some connectors support [message chunking](logic-apps-handle-large-messages.md) for messages that exceed the default message size limit, which varies based on the connector. Message chunking works by splitting a large message into smaller messages.
 
