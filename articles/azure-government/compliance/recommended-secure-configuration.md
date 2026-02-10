@@ -284,7 +284,9 @@ This enables complete, verifiable evidence trails for:
 
 - Regulatory mapping
 
-## **1. Azure Policy — Machine‑Readable Configuration & Compliance Export**
+Different methods of exporting security settings in machine readable format are described below.
+
+#### 1. Azure Policy — Machine‑Readable Configuration & Compliance Export
 
 Azure Policy supports exporting:
 
@@ -300,12 +302,12 @@ Azure Policy supports exporting:
 
 **Microsoft Learn:**
 
-- https://learn.microsoft.com/en-us/azure/governance/policy/overview
+- [Azure Policy overview](/azure/governance/policy/overview)
 
-- https://learn.microsoft.com/en-us/azure/governance/policy/how-to/get-compliance-data
+- [How to get compliance data](/azure/governance/policy/how-to/get-compliance-data)
 
 ---
-## **2. Azure RBAC — Role Assignments & Privileged Access (JSON Export)**
+#### 2. Azure RBAC — Role Assignments & Privileged Access (JSON Export)
 
 Exportable via Azure CLI / Microsoft Graph:
 
@@ -317,12 +319,12 @@ Exportable via Azure CLI / Microsoft Graph:
 
 **Microsoft Learn:**
 
-- https://learn.microsoft.com/en-us/azure/role-based-access-control/role-assignments-list
+- [Role Assignments list](/azure/role-based-access-control/role-assignments-list-cli)
 
 ---
-## **3. Microsoft Entra ID — Identity Security Configuration Export**
+#### 3. Microsoft Entra ID — Identity Security Configuration Export
 
-All identity configuration can be exported in **JSON** using Microsoft Graph:
+All identity configurations can be exported in **JSON** using Microsoft Graph:
 
 - Conditional Access Policies
 
@@ -336,16 +338,16 @@ All identity configuration can be exported in **JSON** using Microsoft Graph:
 
 **Microsoft Learn:**
 
-- **Entra ID Protection Documentation** [Microsoft Entra ID Protection documentation](/entra/id-protection/) [[learn.microsoft.com]](/entra/id-protection/howto-identity-protection-investigate-risk)
+- **Entra ID Protection Documentation** [Microsoft Entra ID Protection documentation](/entra/id-protection/) 
 
-- **What is Entra ID Protection?** [Overview: Microsoft Entra ID Protection](/entra/id-protection/overview-identity-protection) [[bing.com]](https://bing.com/search?q=Microsoft+Learn+PIM+privileged+identity+management)
+- **What is Entra ID Protection?** [Overview: Microsoft Entra ID Protection](/entra/id-protection/overview-identity-protection) 
 
-- **Risk Investigation** [Investigate risk with Entra ID Protection](/entra/id-protection/howto-identity-protection-investigate-risk) [[bing.com]](https://bing.com/search?q=Microsoft+Learn+PIM+privileged+identity+management)
+- **Risk Investigation** [Investigate risk with Entra ID Protection](/entra/id-protection/howto-identity-protection-investigate-risk) 
 
-- **Risk Detection Types** [Identity Protection risk detections](/entra/id-protection/concept-identity-protection-risks) [[bing.com]](https://bing.com/search?q=Microsoft+Learn+PIM+privileged+identity+management)
+- **Risk Detection Types** [Identity Protection risk detections](/entra/id-protection/concept-identity-protection-risks) 
 
 ---
-## **4. Privileged Identity Management (PIM) — Machine‑Readable Role & Policy Export**
+#### 4. Privileged Identity Management (PIM) — Machine‑Readable Role & Policy Export
 
 PIM exports via Graph (JSON):
 
@@ -359,12 +361,12 @@ PIM exports via Graph (JSON):
 
 **Microsoft Learn:**
 
-- [PIM documentation](/entra/id-governance/privileged-identity-management/) [[learn.microsoft.com]](/entra/id-governance/privileged-identity-management/)
+- [PIM documentation](/entra/id-governance/privileged-identity-management/) 
 
-- [Configure PIM](/entra/id-governance/privileged-identity-management/pim-configure) [[bing.com]](https://bing.com/search?q=Microsoft+Learn+PIM+privileged+identity+management)
+- [Configure PIM](/entra/id-governance/privileged-identity-management/pim-configure) 
 
 ---
-## **5. Access Reviews — JSON Export for Privileged Access Governance**
+#### 5. Access Reviews — JSON Export for Privileged Access Governance
 
 Exportable:
 
@@ -378,12 +380,12 @@ Exportable:
 
 **Microsoft Learn:**
 
-- [Access Reviews Overview](/entra/id-governance/access-reviews-overview) [[bing.com]](https://bing.com/search?q=Microsoft+Learn+PIM+privileged+identity+management)
+- [Access Reviews Overview](/entra/id-governance/access-reviews-overview) 
 
-- [Manage Access Reviews](/entra/id-governance/manage-access-review) [[microsoftl....github.io]](https://microsoftlearning.github.io/SC-900-Microsoft-Security-Compliance-and-Identity-Fundamentals/Instructions/Labs/LAB_04_explore_pim.html)
+- [Manage Access Reviews](/entra/id-governance/manage-access-review) 
 
 ---
-## **6. Microsoft Defender for Cloud — Posture, Recommendations & Secure Score Export**
+#### 6. Microsoft Defender for Cloud — Posture, Recommendations & Secure Score Export
 
 Exportable:
 
@@ -395,16 +397,16 @@ Exportable:
 
 - Regulatory compliance mappings
 
-- SecurityAssessment objects
+- Security Assessment objects
 
 **Microsoft Learn:**
 
-- [Manage security posture with Defender for Cloud](/training/modules/microsoft-defender-cloud-security-posture/) [[bing.com]](https://bing.com/search?q=Microsoft+Learn+PIM+privileged+identity+management)
+- [Manage security posture with Defender for Cloud](/training/modules/microsoft-defender-cloud-security-posture/) 
 
-- [Interactive Cloud Security Posture Guide](https://mslearn.cloudguides.com/en-US/guides/Manage%20your%20cloud%20security%20posture%20with%20Microsoft%20Defender%20for%20Cloud) [[bing.com]](https://bing.com/search?q=Microsoft+Learn+PIM+privileged+identity+management)
+- [Interactive Cloud Security Posture Guide](https://mslearn.cloudguides.com/en-US/guides/Manage%20your%20cloud%20security%20posture%20with%20Microsoft%20Defender%20for%20Cloud)
 
 ---
-## **7. Azure Resource Graph — Full Environment Export (JSON)**
+#### 7. Azure Resource Graph — Full Environment Export (JSON)
 
 Export complete resource state:
 
@@ -422,10 +424,10 @@ ARG supports KQL → JSON export.
 
 **Microsoft Learn:**
 
-- https://learn.microsoft.com/en-us/azure/governance/resource-graph/
+- [Azure Resource Graph documentation](/azure/governance/resource-graph/)
 
 ---
-## **8. Infrastructure‑as‑Code (IaC) — Full Machine‑Readable Export**
+#### 8. Infrastructure‑as‑Code (IaC) — Full Machine‑Readable Export
 
 Azure supports exporting all deployed resources into:
 
@@ -439,5 +441,5 @@ These provide **100% environment configuration** in machine‑readable form.
 
 **Microsoft Learn:**
 
-- https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/export-template
+- [ARM template documentation](/azure/azure-resource-manager/templates/)
 
