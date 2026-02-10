@@ -8,7 +8,7 @@ author: haroldcampos
 ms.author: hcampos
 ms.reviewer: estfan, azla
 ms.topic: concept-article
-ms.date: 07/03/2025
+ms.date: 02/11/2026
 # Customer intent: As a BizTalk Server customer, I want to better understand why I should migrate from BizTalk Server to Azure Logic Apps in the cloud or hybrid deployment.
 ---
 
