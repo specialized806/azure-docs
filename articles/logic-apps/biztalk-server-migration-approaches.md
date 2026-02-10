@@ -14,14 +14,7 @@ ms.date: 02/11/2026
 
 # Migration approaches for BizTalk Server to Azure Logic Apps
 
-This guide covers migration strategies and resources along with planning considerations and best practices to help you deliver successful migration solutions.
-
-> [!NOTE]
->
-> For an overview and guide to choosing services in Azure for your migration, review the following documentation:
->
-> - [Why migrate from BizTalk Server to Azure Logic Apps?](biztalk-server-to-azure-integration-services-overview.md)
-> - [Choose the best integration service in Azure for your scenario](azure-integration-services-choose-capabilities.md)
+This guide covers migration strategies and resources along with planning considerations and best practices to help you deliver successful migration solutions. For more information, see [Why migrate from BizTalk Server to Azure Logic Apps?](biztalk-server-to-azure-integration-services-overview.md).
 
 ## Strategy options
 
