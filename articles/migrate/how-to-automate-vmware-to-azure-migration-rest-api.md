@@ -22,7 +22,7 @@ Use this article if you want to:
 
 Before you begin, make sure you have the following:
 
-- An Azure subscription with Azure Migrate Owner role to create and manage Azure Migrate resources. [Azure Migrate built-in roles](azure/migrate/prepare-azure-accounts)
+- An Azure subscription with Azure Migrate Owner role to create and manage Azure Migrate resources. [Azure Migrate built-in roles](/azure/migrate/prepare-azure-accounts)
 [!IMPORTANT]
 Insufficient permissions can cause API calls to fail with authorization or resource access errors.
 - A Migrate project configured for agent-based migration.
@@ -526,7 +526,7 @@ Common error scenarios and resolutions:
 | `ReplicationNotHealthy` | Check replication health before test/actual migration |
 | `RecoveryPointNotFound` | Use the latest recovery point or verify the specified recovery point exists |
 
-See [Troubleshoot](azure/site-recovery/vmware-azure-troubleshoot-replication) for more details.
+See [Troubleshoot](/azure/site-recovery/vmware-azure-troubleshoot-replication) for more details.
 
 ## PowerShell automation example
 
