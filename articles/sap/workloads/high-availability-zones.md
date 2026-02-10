@@ -6,7 +6,7 @@ manager: ericl
 ms.service: sap-on-azure
 ms.subservice: sap-vm-workloads
 ms.topic: concept-article
-ms.date: 02/09/2026
+ms.date: 02/10/2026
 ms.author: juergent
 ms.custom:
   - references_regions
@@ -113,7 +113,7 @@ This deployment architecture is called active/active because you deploy your act
 
 A simplified schema of an active/active deployment across two zones could look like this:
 
-![The schema for an active-active SAP application deployment across two zones.](./media/sap-ha-availability-zones/active_active_zones_deployment.png)
+![Diagram that shows the schema for an active-active SAP application deployment across two zones.](./media/sap-ha-availability-zones/active_active_zones_deployment.png)
 
 The following considerations apply for this configuration:
 
@@ -139,7 +139,7 @@ If you can't find a configuration that mitigates the potential differences in SA
 
 The basic layout of the architecture looks like this:
 
-![The schema for an active-passive SAP application deployment across two zones.](./media/sap-ha-availability-zones/active_passive_zones_deployment.png)
+![Diagram that shows the schema for an active-passive SAP application deployment across two zones.](./media/sap-ha-availability-zones/active_passive_zones_deployment.png)
 
 The following considerations apply for this configuration:
 
