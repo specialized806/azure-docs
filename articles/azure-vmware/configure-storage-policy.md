@@ -220,20 +220,12 @@ After reviewing the list of unassociated objects, delete them **individually** b
 | **Retain up to** | Retention period for the Run Command output. |
 | **Specify name for execution** | Alphanumeric name used to identify this Run Command execution. |
 | **Timeout** | Time after which the command exits if it does not complete. |
- 
-:::image type="content"
-source="media/run-command/run-command-overview-remove-unassociated-object.png"
-alt-text="Screenshot showing the Remove-AvsUnassociatedObject Run Command in the Azure portal."
-lightbox="media/run-command/run-command-overview-remove-unassociated-object.png"
-:::
+
+  :::image type="content" source="media/run-command/run-command-overview-remove-unassociated-object.png" alt-text="Screenshot showing the Remove-AvsUnassociatedObject Run Command in the Azure portal." lightbox="media/run-command/run-command-overview-remove-unassociated-object.png":::
  
 4. Provide the **UUID** and **ClusterName** of the unassociated object you want to remove.
- 
-:::image type="content"
-source="media/run-command/run-command-remove-unassociated-object.png"
-alt-text="Screenshot of the Remove-AvsUnassociatedObject Run Command execution."
-lightbox="media/run-command/run-command-remove-unassociated-object.png"
-:::
+
+ :::image type="content" source="media/run-command/run-command-remove-unassociated-object.png" alt-text="Screenshot of the Remove-AvsUnassociatedObject Run Command execution." lightbox="media/run-command/run-command-remove-unassociated-object.png":::
  
 5. Select **Run** and monitor execution progress.
  
