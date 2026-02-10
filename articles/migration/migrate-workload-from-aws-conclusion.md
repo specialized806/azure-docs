@@ -1,6 +1,6 @@
 ---
 title: Conclude Your Workload Migration from Amazon Web Services (AWS) to Azure
-description: Learn about the next steps after you migrate a single workload from AWS to Azure. Optimize, access training resources, and explore example workload migrations.
+description: Learn about the next steps after you migrate a single workload from AWS to Azure. Access training resources and explore example workload migrations.
 ms.author: rhackenberg
 ai-usage: ai-assisted
 ms.date: 01/29/2026
@@ -15,9 +15,9 @@ ms.collection:
 
 This article is part of a series about how to [migrate a workload from Amazon Web Services (AWS) to Azure](/azure/migration/migrate-workload-from-aws-introduction). 
 
-Workload migration, especially if it's your first migration or if the workload has many dependencies, is an intense project.
+Workload migration, especially if it's your first migration or if the workload has many dependencies, is an intensive project.
 
-Use this series and the right approach to migrate the workload confidently and be prepared to handle problems.
+Use this series and the right approach to migrate the workload confidently and prepare to handle problems.
 
 This series covers the following items that you need for success:
 
@@ -32,11 +32,7 @@ This series covers the following items that you need for success:
 
 Migration requires effort, coordination, and cooperation across teams. After you successfully migrate and decommission your AWS workload, **celebrate your win**!
 
-## Next steps
-
-After you finish your workload's migration, learn more about recommendations for post-migration tuning and cost optimization in [Optimize workloads after migration](/azure/cloud-adoption-framework/migrate/optimize-workloads-after-migration).
-
-Monitor the [Microsoft developer changelog](https://developer.microsoft.com/changelog) to stay up-to-date with Azure, GitHub, and Microsoft development tool changes.
+To continue improving your environment, review recommendations for post-migration tuning and cost optimization in [Optimize workloads after migration](/azure/cloud-adoption-framework/migrate/optimize-workloads-after-migration). Monitor the [Microsoft developer changelog](https://developer.microsoft.com/changelog) to stay up-to-date with Azure, GitHub, and Microsoft development tool changes.
 
 ## Tools and references 
 
@@ -46,7 +42,7 @@ Monitor the [Microsoft developer changelog](https://developer.microsoft.com/chan
 ## Training
 
 - [Introduction to migrating from AWS to Azure](/training/modules/introduction-to-migrating-aws-to-azure/)
-- [Configure and migrate to Azure Database for PostgreSQL](/training/paths/microsoft-learn-azure-database-for-postgresql/)
+- [Set up and migrate to Azure Database for PostgreSQL](/training/paths/microsoft-learn-azure-database-for-postgresql/)
 - [Migrate to Azure Database for PostgreSQL flexible server](/training/modules/migrate-azure-database-postgresql-flexible-server/)
 
 ## Example workload migrations
