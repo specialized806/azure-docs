@@ -1,5 +1,5 @@
 ---
-title: 'Migration approaches: BizTalk Server to Azure Logic Apps'
+title: Migration Approaches for BizTalk Server to Azure Logic Apps
 description: Learn about migration strategies, planning, and best practices for moving from BizTalk Server to Azure Logic Apps.
 services: logic-apps
 ms.service: azure-logic-apps
