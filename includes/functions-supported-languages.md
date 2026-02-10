@@ -12,7 +12,7 @@ Make sure to select your preferred development language at the [top of the artic
 ::: zone pivot="programming-language-csharp"
 The following table shows the .NET versions supported by Azure Functions.
 
-The supported version of .NET depends on both your Functions runtime version and your selected execution model.
+The supported version of .NET depends we on both your Functions runtime version and your selected execution model.
 
 ### [Isolated worker model](#tab/isolated-process)
 
@@ -61,7 +61,7 @@ For more information, see [Develop C# class library functions using Azure Functi
 <sup>1</sup> .NET 9 previously had an expected end-of-support date of May 12, 2026. During the .NET 9 service window, the .NET team extended support for STS versions to 24 months, starting with .NET 9. For more information, see [the blog post](https://devblogs.microsoft.com/dotnet/dotnet-sts-releases-supported-for-24-months/).
 
 > [!NOTE]
-> .NET 9 is the last .NET version supported for Linux Consumption plan apps. Newer .NET versions aren't added to Linux Consumption. For more information, see [Migrate Consumption plan apps to the Flex Consumption plan](./migration/migrate-plan-consumption-to-flex.md).
+> .NET 9 is the last .NET version supported for Linux Consumption plan apps. Newer .NET versions aren't added to Linux Consumption. For more information, see [Migrate Consumption plan apps to the Flex Consumption plan](../articles/azure-functions/migration/migrate-plan-consumption-to-flex.md).
 
 [dotnet-policy]: https://dotnet.microsoft.com/platform/support/policy/dotnet-core#lifecycle
 [dotnet-framework-policy]: https://dotnet.microsoft.com/platform/support/policy/dotnet-framework
@@ -93,7 +93,7 @@ The following table shows the language versions supported for Java function apps
 <sup>*</sup>The end-of-support date for Java 25 is determined when general availability (GA) is declared.
 
 > [!NOTE]
-> Java 21 is the last Java version supported for Linux Consumption plan apps. Newer Java versions aren't added to Linux Consumption. For more information, see [Migrate Consumption plan apps to the Flex Consumption plan](./migration/migrate-plan-consumption-to-flex.md).
+> Java 21 is the last Java version supported for Linux Consumption plan apps. Newer Java versions aren't added to Linux Consumption. For more information, see [Migrate Consumption plan apps to the Flex Consumption plan](../articles/azure-functions/migration/migrate-plan-consumption-to-flex.md).
 
 For more information on developing and running Java function apps, see [Azure Functions Java developer guide](../articles/azure-functions/functions-reference-java.md).
 
@@ -121,7 +121,7 @@ The following table shows the language version supported for PowerShell function
 | [PowerShell 7.4](/powershell/scripting/install/powershell-support-lifecycle#powershell-end-of-support-dates) | GA | November 10, 2026 |
 
 > [!NOTE]
-> PowerShell 7.4 is the last PowerShell version supported for Linux Consumption plan apps. Newer PowerShell versions aren't added to Linux Consumption. For more information, see [Migrate Consumption plan apps to the Flex Consumption plan](./migration/migrate-plan-consumption-to-flex.md).
+> PowerShell 7.4 is the last PowerShell version supported for Linux Consumption plan apps. Newer PowerShell versions aren't added to Linux Consumption. For more information, see [Migrate Consumption plan apps to the Flex Consumption plan](../articles/azure-functions/migration/migrate-plan-consumption-to-flex.md).
 
 For more information, see [Azure Functions PowerShell developer guide](../articles/azure-functions/functions-reference-powershell.md).
 ::: zone-end
@@ -140,7 +140,7 @@ The following table shows the language versions supported for Python function ap
 2. Remote build support for Python 3.14 isn't yet available when running in a Flex Consumption plan.
 
 > [!NOTE]
-> Python 3.12 is the last Python version supported for Linux Consumption plan apps. Newer Python versions aren't added to Linux Consumption. For more information, see [Migrate Consumption plan apps to the Flex Consumption plan](./migration/migrate-plan-consumption-to-flex.md).
+> Python 3.12 is the last Python version supported for Linux Consumption plan apps. Newer Python versions aren't added to Linux Consumption. For more information, see [Migrate Consumption plan apps to the Flex Consumption plan](../articles/azure-functions/migration/migrate-plan-consumption-to-flex.md).
 
 For more information, see [Azure Functions Python developer guide](../articles/azure-functions/functions-reference-python.md).
 ::: zone-end
