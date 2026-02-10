@@ -86,7 +86,7 @@ Azure Logic Apps offers the following example advantages:
 
   Azure Logic Apps is a cloud-based, serverless, highly scalable, computing service that automatically scales and adapts to meet evolving business needs.
 
-#### Developer experiences
+### Developer experiences
 
 This section summarizes how development tooling changes when migrating from BizTalk Server (Visual Studio–centric) to Azure Logic Apps (Visual Studio Code–centric), and why many teams find the Azure Logic Apps workflow model faster to build and easier to maintain.
 
