@@ -184,7 +184,11 @@ Azure Logic Apps provides message durability in the following ways:
 
 - Stateful workflows in Standard logic apps persist workflow state and operation inputs and outputs to storage using checkpoints. This persistence provides durable execution and rich workflow run history so you can review detailed operation inputs and outputs.
 
-- You can resubmit (rerun) a workflow run through the Azure portal or APIs. Resubmission can cause the workflow to process the same message again, so designs should assume at-least-once processing and implement idempotency (for example, deduplication keys, upserts, or exactly-once effects at the destination). Depending on the workflow type and configuration, you might also be able to resubmit from a specific point in the run, but you should still design downstream systems to safely handle retries and potential duplicates.
+- You can *resubmit* or rerun a workflow run in the Azure portal or by using APIs.
+
+   Resubmission might cause the workflow to process the same message again, so make sure your designs assume at-least-once processing and implement *idempotency*. For example, use deduplication keys, upserts, or exactly-once effects at the destination.
+   
+   Based on the workflow type and configuration, you can also resubmit from a specific point in the run. However, make sure your downstream systems can safely handle retries and potential duplicates.
 
 - With [peek-lock messaging](/rest/api/servicebus/peek-lock-message-non-destructive-read) in Azure Service Bus, a receiver can process a message and then explicitly settle it (for example, complete to remove it from the queue, or abandon so it becomes available for redelivery). To use this capability in Azure Logic Apps, select the Azure Service Bus connector. Peek-lock improves reliability and supports retry/redelivery patterns, but end-to-end exactly-once processing typically still requires idempotency in downstream systems.
 
