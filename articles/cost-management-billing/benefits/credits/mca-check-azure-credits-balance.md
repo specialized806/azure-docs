@@ -6,7 +6,7 @@ ms.reviewer: shrshett
 ms.service: cost-management-billing
 ms.subservice: billing
 ms.topic: how-to
-ms.date: 09/23/2025
+ms.date: 02/10/2026
 ms.author: shrshett
 ---
 
@@ -315,15 +315,24 @@ In a billing account for a Microsoft customer agreement, you use billing profile
 
 Credits that you acquire are assigned to a billing profile. When an invoice is generated for the billing profile, credits are automatically applied to the total charges to calculate the amount that you need to pay. You pay the remaining amount with your payment methods like check/ wire transfer or credit card.
 
-## Products that aren't covered by Azure credits
+## Products and services not covered by Azure credits
 
-Azure credits don’t apply to certain products and services. Usage of these offerings is billed separately and charged regardless of your available Azure credit balance.
-In general, Azure credits can’t be used for:
-Third-party products or services, including partner-provided offerings and non-first party Azure Marketplace products
-Azure support plans
-Software subscriptions or licenses that aren’t billed as Azure consumption
+Azure credits don’t apply to certain products and services. Any usage of these offerings is billed separately and charged regardless of your available Azure credit balance.
 
-### AI Model Coverage Clarification
+### General credit limitations
+
+In general, Azure credits don’t cover:
+- Third-party (3PP) products or services, including partner-provided offerings and non–first-party Azure Marketplace products
+- Azure support plans
+- Software subscriptions or licenses that aren’t billed as Azure consumption
+
+### Azure Sponsorship–specific limitations
+
+In addition to the general limitations above, Azure Sponsorship credits don’t cover:
+- First-party (1PP) entitlement-based purchases, even when those offerings are sold directly by Azure (for example, Savings Plans or Reserved Instances)
+
+### AI model coverage clarification
+
 
 - **Models sold directly by Azure (1PP)** may be covered by Azure Sponsorship credits  
   Examples: [Models sold directly by Azure](https://learn.microsoft.com/azure/ai-foundry/foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic&tabs=global-standard-aoai%2Cglobal-standard)
