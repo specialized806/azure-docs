@@ -1,5 +1,5 @@
 ---
-title: Policy execution with fragments
+title: Policy Execution with Fragments
 titleSuffix: Azure API Management
 description: Fragment execution via product-scoped and API-scoped policies in Azure API Management.
 services: api-management
@@ -7,7 +7,7 @@ author: nicolela
 
 ms.service: azure-api-management
 ms.topic: concept-article
-ms.date: 08/19/2025
+ms.date: 02/10/2026
 ms.author: nicolela 
 ---
 
@@ -267,5 +267,5 @@ To help troubleshoot pipeline issues, copy the complete trace output and provide
 ## Related content
 
 - **[Architecture for building advanced execution pipelines with policy fragments](fragment-pipeline-architecture.md)** - Foundational patterns for designing modular, scalable policy fragment architectures with clear separation of concerns.
-- **[Variable management for policy fragments](fragment-variable-mgmt.md)** - Comprehensive guidance on context variable handling, safe access patterns, and inter-fragment communication.
+- **[Variable management for policy fragments](fragment-variable-management.md)** - Comprehensive guidance on context variable handling, safe access patterns, and inter-fragment communication.
 - **[Central metadata cache for policy fragments](fragment-metadata-cache.md)** - Implementation guidance for shared metadata caching patterns across fragments.

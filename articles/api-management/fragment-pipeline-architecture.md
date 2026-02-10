@@ -1,5 +1,5 @@
 ---
-title: Architecture for building advanced execution pipelines with policy fragments
+title: Architecture for Building Advanced Execution Pipelines with Policy Fragments
 titleSuffix: Azure API Management
 description: Foundational patterns for designing modular, scalable policy fragment architectures in Azure API Management with clear separation of concerns.
 services: api-management
@@ -7,7 +7,7 @@ author: nicolela
 
 ms.service: azure-api-management
 ms.topic: concept-article
-ms.date: 08/19/2025
+ms.date: 02/10/2026
 ms.author: nicolela 
 ---
 
@@ -34,7 +34,7 @@ Design each fragment with a single, well-defined responsibility. Each fragment s
 
 Share data between fragments using [context variables](api-management-policy-expressions.md#ContextVariables).
 
-- **Define data contracts**: Use context variables as data contracts for sequentially passing data between fragments. For example, a `security-authentication` fragment can set a context variable called `user-id` that contains the authenticated user's extracted ID, making it available for downstream fragments in the pipeline. Under the covers, each request maintains its own isolated `context.Variables` dictionary for storing context variables, ensuring thread-safe communication between fragments. See [Variable Management for Policy Fragments](fragment-variable-mgmt.md) for details.
+- **Define data contracts**: Use context variables as data contracts for sequentially passing data between fragments. For example, a `security-authentication` fragment can set a context variable called `user-id` that contains the authenticated user's extracted ID, making it available for downstream fragments in the pipeline. Under the covers, each request maintains its own isolated `context.Variables` dictionary for storing context variables, ensuring thread-safe communication between fragments. See [Variable Management for Policy Fragments](fragment-variable-management.md) for details.
 
 - **Cache shared data**: When multiple fragments need to access the same data, use cross-request caching to reduce parsing overhead and improve performance. See [Central Metadata Cache for Policy Fragments](fragment-metadata-cache.md) for implementation guidance.
 
@@ -68,6 +68,6 @@ For comprehensive implementation details, see the guidance in the below [Related
 
 ## Related content
 
-- **[Variable management for policy fragments](fragment-variable-mgmt.md)** - Comprehensive guidance on context variable handling, safe access patterns, and inter-fragment communication.
+- **[Variable management for policy fragments](fragment-variable-management.md)** - Comprehensive guidance on context variable handling, safe access patterns, and inter-fragment communication.
 - **[Central metadata cache for policy fragments](fragment-metadata-cache.md)** - Implementation guidance for shared metadata caching patterns across fragments.
 - **[Policy injection and coordination with fragments](fragment-policy-coordination.md)** - Fragment injection patterns and coordination between product and API policies.
