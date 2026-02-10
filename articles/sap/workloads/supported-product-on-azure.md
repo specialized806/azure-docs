@@ -137,7 +137,7 @@ Support for SAP BPC 10.1 SP08 is described in [SAP support note #2451795](https:
 Support for SAP Hybris Commerce Platform on Azure is detailed in the [Hybris Documentation](https://help.sap.com/viewer/a74589c3a81a4a95bf51d87258c0ab15/1811/en-US/8c71300f866910149b40c88dfc0de431.html). As of supported DBMS for SAP Hybris Commerce Platform, it lists like:
 
 - SQL Server and Oracle on the Windows operating system platform. Same minimum releases apply as for SAP NetWeaver. See [SAP support note #1928533](https://launchpad.support.sap.com/#/notes/1928533) for details.
-- SAP HANA on Red Hat and SUSE Linux. SAP HANA certified VM types are required as documented earlier in [this document](#sap-hana-support). SAP (Hybris) Commerce Platform is considered OLTP workload.
+- SAP HANA on Red Hat and SUSE Linux. SAP HANA certified VM types are required as documented earlier in the [SAP HANA support](#sap-hana-support) section. SAP (Hybris) Commerce Platform is considered OLTP workload.
 - SQL Azure DB as of SAP (Hybris) Commerce Platform version 1811.
 
 ## Next steps
