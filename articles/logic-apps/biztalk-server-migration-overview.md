@@ -398,16 +398,6 @@ The process to get each component ready for deployment usually takes the followi
 
   1. Get your application ready for execution, if required.
 
-### Product dependencies
-
-Azure Logic Apps (Standard) has two core dependencies in Azure: Azure Storage and Azure App Service. Other optional dependencies apply based on your implementation scenario. Each previously mentioned feature has a direct relationship with any of the core or optional dependencies. Azure Storage directly impacts performance along with the selected instances for deployment.
-
-The following diagram shows the core and optional dependencies for Azure Logic Apps:
-
-:::image type="content" source="./media/biztalk-server-to-azure-integration-services-overview/logic-app-workflows.png" alt-text="Diagram that shows multiple workflows in Azure Logic Apps." border="false":::
-
-The hybrid deployment model has two core dependencies: a Kubernetes cluster and SQL Server. 
-
 ## Feature matchup
 
 The following table and diagram shows how resources, artifacts, features, and capabilities compare and match between BizTalk Server, Azure Logic Apps (Standard), and other services. Try to use Azure Logic Apps features as much as possible to build a cohesive, more cost-effective solution.
