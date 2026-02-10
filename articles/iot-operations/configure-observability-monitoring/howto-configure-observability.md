@@ -260,7 +260,7 @@ Complete the following steps to install the Azure IoT Operations curated Grafana
 1. Select **Import**.
 
 > [!NOTE]
-> In the **aio-observability-dashboard.json** file, make sure to configure both the Prometheus and Azure Monitor datasources, and set the `subscriptionId` variable to your Azure subscription ID, for log queries.
+> In the **aio-observability.json** file, make sure to configure both the Prometheus and Azure Monitor datasources, and set the `subscriptionId` variable to your Azure subscription ID, for log queries.
 
 ## Next steps
 
