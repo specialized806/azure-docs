@@ -160,9 +160,9 @@ To initialize the kernel, add the following code to the `OpenAI.razor` file.
 
 In this step, you add the using statement and create the kernel in a method that you can use when you send the request to the service.
 
-## 4. Add your AI service
+## 4. Add your Foundry Tool
 
-After the kernel is initialized, you can add your chosen AI service to the kernel. You define your model and pass in your key and endpoint information that the chosen model consumes. If you plan to use a managed identity with Azure OpenAI, add the service by using the example in the next section.
+After the kernel is initialized, you can add your chosen Foundry Tool to the kernel. You define your model and pass in your key and endpoint information that the chosen model consumes. If you plan to use a managed identity with Azure OpenAI, add the service by using the example in the next section.
 
 Use the following code for Azure OpenAI:
 
