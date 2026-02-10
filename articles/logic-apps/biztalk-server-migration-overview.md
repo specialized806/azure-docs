@@ -100,7 +100,7 @@ With Azure Logic Apps, many teams move to Visual Studio Code for editing workflo
 
   Azure Logic Apps pairs Visual Studio Code-based development with cloud-native diagnostics. You can quickly validate and update workflows, then use the workflow run history to see operation inputs and outputs without relying on server-side consoles and troubleshooting host instances. In migration projects, this benefit typically speeds up iteration (edit, deploy, update, validate), improves collaboration because workflows are easier to review and version, and supports cleaner environment separation by externalizing connections and settings, reducing the “it works on that server” configuration drift.
 
-#### Connectors
+### Connectors
 
 Connectors provide operations that you can use as steps in your workflows. When you build workflows with Azure Logic Apps, connectors help you work with data, events, and resources across apps, services, systems, protocols, and platforms often without writing code. You can build integration solutions for services and systems from both Microsoft and partners, including BizTalk Server, Salesforce, Office 365, IBM Mainframes, SQL databases, and many Azure services, such as Azure Functions, Azure Storage, and Azure Service Bus, plus on-premises apps, SaaS, and APIs. If no prebuilt connector exists for the resource you want to access, you can use the generic HTTP operation to communicate with the service, or you can create a custom connector.
 
