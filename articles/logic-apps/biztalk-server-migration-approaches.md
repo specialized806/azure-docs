@@ -8,7 +8,7 @@ author: haroldcampos
 ms.author: hcampos
 ms.reviewer: estfan, azla
 ms.topic: concept-article
-ms.date: 06/03/2025
+ms.date: 02/11/2026
 # Customer intent: As a BizTalk Server customer, I want to learn about migration options, planning considerations, and best practices for moving from BizTalk Server to Azure Logic Apps.
 ---
 
@@ -18,7 +18,7 @@ This guide covers migration strategies and resources along with planning conside
 
 > [!NOTE]
 >
-> For a migration overview and guide to choosing services in Azure for your migration, review the following documentation:
+> For an overview and guide to choosing services in Azure for your migration, review the following documentation:
 >
 > - [Why migrate from BizTalk Server to Azure Logic Apps?](biztalk-server-to-azure-integration-services-overview.md)
 > - [Choose the best integration service in Azure for your scenario](azure-integration-services-choose-capabilities.md)
@@ -71,7 +71,7 @@ During this sprint, we recommend that you execute BizTalk Server Environments Di
 
 To help you with migration discovery, you can use the Azure Integration Migrator command-line tool, also called the [BizTalk Migration tool](https://github.com/Azure/aimbiztalk), which is a Microsoft open-source project. This tool uses a phased approach to help you uncover useful insights and strategies for migrating your solutions to the cloud. We recommend using the migrator tool only for discovery and report generation. You might also want to consider using other products for discovery from partners who provide solutions in this space.
 
-For another way to generate an inventory with BizTalk Server elements, you can use [The BizTalk Documenter](https://github.com/mbrimble/biztalkdocumenter), which is developed by Mark Brimble. This tool works with BizTalk Server 2020, despite stating that only BizTalk Server 2016 is supported.
+For another way to generate an inventory with BizTalk Server elements, you can use the [BizTalk Documenter](https://github.com/mbrimble/biztalkdocumenter), which is developed by Mark Brimble. This tool works with BizTalk Server 2020, despite stating that only BizTalk Server 2016 is supported.
 
 #### Architecture design
 
@@ -166,7 +166,7 @@ The following diagram shows the events that should happen during migration waves
 |------|--------------|
 | 1 | Discover existing BizTalk apps and interfaces. Although introduced in Sprint 0, this activity should happen when each wave starts. Customers might continue making changes in your BizTalk environment. <br><br>Resources: <br>- [BizTalk Migration tool](https://github.com/Azure/aimtool) <br>- [BizTalk Documenter tool](https://github.com/mbrimble/biztalkdocumenter) |
 | 2 | Set up your initial migration environment. You can use the [Azure Integration Services Landing Zone Accelerator](https://github.com/Azure/Integration-Services-Landing-Zone-Accelerator), which is a cloud adoption framework for building and deploying an integration platform that has a typical enterprise landing zone design. As the workload owner, you can confidently achieve your target technical state by using the provided [architectural guidance and BizTalk migration resources](https://techcommunity.microsoft.com/blog/integrationsonazureblog/biztalk-server-migration-to-azure-integration-services-resources/3733464). <br><br>For an example architecture, see [Example migration environment](#initial-migration-environment). |
-| 3 | Create and test Standard logic app workflows that run in single-tenant Azure Logic Apps using either the Azure portal or Visual Studio Code with the Azure Logic Apps (Standard) extension. With Visual Studio Code, you can locally develop, test, and store your logic app project using any source control system. <br><br>For more information, see the following documentation: <br><br>- [Create a Standard logic app workflow using the Azure portal](/azure/logic-apps/create-single-tenant-workflows-azure-portal) <br>- [Create a Standard logic app workflow using Visual Studio Code](/azure/logic-apps/create-single-tenant-workflows-visual-studio-code) <br><br>To begin a rapid migration using your BizTalk application source code and bindings, use the [BizTalk Migration Starter](https://github.com/haroldcampos/BizTalkMigrationStarter). With this tool, you can quickly build a proof of concept for your migration that helps you reduce the risks and the number of waves for your migration,. This tool creates a logic app workflow definition that resembles your BizTalk orchestration. For Content Based Routing Scenarios (CBR), the tool creates a workflow as well. <br><br>For a diagram that shows an example logic app workflow and connections, see [Example migration environment](#initial-migration-environment). |
+| 3 | Create and test Standard logic app workflows that run in single-tenant Azure Logic Apps using either the Azure portal or Visual Studio Code with the Azure Logic Apps (Standard) extension. With Visual Studio Code, you can locally develop, test, and store your logic app project using any source control system. <br><br>For more information, see the following documentation: <br><br>- [Create a Standard logic app workflow using the Azure portal](/azure/logic-apps/create-single-tenant-workflows-azure-portal) <br>- [Create a Standard logic app workflow using Visual Studio Code](/azure/logic-apps/create-single-tenant-workflows-visual-studio-code) <br><br>To begin a rapid migration using your BizTalk application source code and bindings, use the [BizTalk Migration Starter](https://github.com/haroldcampos/BizTalkMigrationStarter). With this tool, you can quickly build a proof of concept for your migration that helps you reduce the risks and the number of waves for your migration. This tool creates a logic app workflow definition that resembles your BizTalk orchestration. For Content Based Routing Scenarios (CBR), the tool creates a workflow as well. <br><br>For a diagram that shows an example logic app workflow and connections, see [Example migration environment](#initial-migration-environment). |
 | 4 | To get the full benefits from easily and consistently deploying your Standard logic app workflows across different environments and platforms, you must also automate your build and deployment process. The Azure Logic Apps (Standard) extension for Visual Studio Code provides tools for you to create and maintain automated build and deployment processes using Azure DevOps. <br><br>For more information, see [Automate build and deployment for Standard logic app workflows with Azure DevOps](/azure/logic-apps/automate-build-deployment-standard). | 
 | 5 | To deploy mission-critical Standard logic apps that are always available and responsive, even during updates or maintenance, enable zero downtime deployment by creating and using deployment slots. Zero downtime means that when you deploy new versions of your app, end users shouldn't experience disruption or downtime. <br><br>For more information, see [Set up deployment slots to enable zero downtime deployment in Azure Logic Apps](/azure/logic-apps/set-up-deployment-slots). | 
 
