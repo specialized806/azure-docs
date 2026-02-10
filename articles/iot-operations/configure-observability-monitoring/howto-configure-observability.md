@@ -255,7 +255,7 @@ Complete the following steps to install the Azure IoT Operations curated Grafana
 
 1. On the Grafana landing page, select the **Create your first dashboard** tile.
 1. Select **Import Dashboard**.
-1. Browse to the sample dashboard directory in your local copy of the Azure IoT Operations repository, **explore-iot-operations > samples > observability**, then select the  **aio-observability-dashboard.json** dashboard file.
+1. Browse to the sample dashboard directory in your local copy of the Azure IoT Operations repository, **explore-iot-operations > samples > observability > grafana-dashboard**, then select the  **aio-observability.json** dashboard file.
 1. When the application prompts, select your managed Prometheus data source.
 1. Select **Import**.
 
