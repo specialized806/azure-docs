@@ -22,9 +22,11 @@ Use this article if you want to:
 
 Before you begin, make sure you have the following:
 
-- An Azure subscription with Azure Migrate Owner role to create and manage Azure Migrate resources. [Azure Migrate built-in roles](/azure/migrate/prepare-azure-accounts)
-[!IMPORTANT]
-Insufficient permissions can cause API calls to fail with authorization or resource access errors.
+- An Azure subscription with Azure Migrate Owner role to create and manage Azure Migrate resources. [Azure Migrate built-in roles](/azure/migrate/prepare-azure-accounts).
+
+> [!IMPORTANT]
+> Insufficient permissions can cause API calls to fail with authorization or resource access errors.
+
 - A Migrate project configured for agent-based migration.
 - A replication appliance deployed and registered with the vault.
 - VMware or physical virtual machines discovered by the appliance.
@@ -92,9 +94,9 @@ The site information is present in `properties.customDetails.vmwareSiteId` and `
       "physicalSiteId": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OffAzure/ServerSites/{siteName}",
       "processServers": [
         {
-          "id": "12345678-1234-1234-1234-123456789012",
+          "id": "00001111-aaaa-2222-bbbb-3333cccc4444",
           "name": "yourappliancename",
-          "biosId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+          "biosId": "00001111-aaaa-2222-bbbb-3333cccc4444",
           "fqdn": "yourappliancename.domain.com",
           "health": "Normal",
           "healthErrors": []
@@ -137,7 +139,7 @@ The Azure Site Recovery REST API–based migration workflow includes the followi
 
 ## Authentication
 
-All REST API calls require authentication with Azure Active Directory (Azure AD). To authenticate, obtain a bearer access token using one of the supported methods.
+All REST API calls require authentication with Microsoft Entra ID. To authenticate, obtain a bearer access token using one of the supported methods.
 
 - Azure CLI: `az account get-access-token`
 - Azure PowerShell: `Get-AzAccessToken`
@@ -151,8 +153,8 @@ Authorization: Bearer <access-token>
 
 Alternatively you can use armclient or Invoke-AzRestMethod in PowerShell.
 
-[!NOTE]
-All examples in this article use the **2025‑08‑01** API version for the Azure Site Recovery resource provider. Ensure that the same API version is specified for all REST requests.
+> [!NOTE]
+> All examples in this article use the **2025‑08‑01** API version for the Azure Site Recovery resource provider. Ensure that the same API version is specified for all REST requests.
 
 ## Step 1: Enable replication
 
@@ -368,8 +370,9 @@ PATCH https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups
 
 ## Step 3: Test migration
 
-[!IMPORTANT]
-Always perform a test migration (test failover) before initiating an actual migration to validate configuration and minimize production impact.
+> [!IMPORTANT]
+> Always perform a test migration (test failover) before initiating an actual migration to validate configuration and minimize production impact.
+
 Use the [Test Failover](/rest/api/site-recovery/replication-protected-items/test-failover) API.
 
 ### Request
@@ -584,7 +587,7 @@ $enableResponse = Invoke-RestMethod -Uri $enableUri -Method Put -Headers $header
 - **Retain recovery points until validation**: Keep recovery points until the migration is validated in the production environment.
 
 ## Next steps
-Write a script to automate the above steps. If you face any issues, please reach out to Microsoft support for same.
+Write a script to automate the above step. If you face any issues, please reach out to Microsoft support for same.
 
 ## Related content
 
