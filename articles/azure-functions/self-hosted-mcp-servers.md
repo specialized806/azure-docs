@@ -144,7 +144,7 @@ For more information, see [Configure built-in server authorization (preview)](..
 
 ## Microsoft Foundry agent integrations
 
-Agents in Foundry can be [configured to use tools](./functions-mcp-tutorial.md#configure-azure-ai-foundry-agent-to-use-your-tools) in MCP servers hosted in Azure Functions. <!-- Re-add this link after the release branch is published: For more information, see [Build and register a Model Context Protocol (MCP) server](/azure/ai-foundry/mcp/build-your-own-mcp-server).-->
+Agents in Foundry can be [configured to use tools](./functions-mcp-tutorial.md#configure-microsoft-foundry-agent-to-use-your-tools) in MCP servers hosted in Azure Functions. <!-- Re-add this link after the release branch is published: For more information, see [Build and register a Model Context Protocol (MCP) server](/azure/ai-foundry/mcp/build-your-own-mcp-server).-->
 
 ## Register your server in Azure API Center 
 
