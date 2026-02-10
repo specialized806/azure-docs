@@ -282,7 +282,7 @@
       - name: Architecture using policy fragments
         href: fragment-pipeline-architecture.md
       - name: Variable management in execution pipeline
-        href: fragment-variable-mgmt.md
+        href: fragment-variable-management.md
       - name: Central metadata cache for policy fragments
         href: fragment-metadata-cache.md
       - name: Policy fragment injection and coordination
