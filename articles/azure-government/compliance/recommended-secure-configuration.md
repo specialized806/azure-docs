@@ -636,3 +636,13 @@ Supports automated:
 
 - Auditor‑ready JSON bundles
 
+#### Machine-Readable Guidance[¶](https://www.fedramp.gov/docs/rev5/balance/secure-configuration-guide/#machine-readable-guidance"Permanent link")
+
+#### SCG-ENH-MRG
+
+Providers SHOULD also provide the Secure Configuration Guide in a machine-readable format that can be used by customers or third-party tools to compare against current settings.
+
+#### Azure's Response
+
+Azure satisfies this requirement through multiple Microsoft‑documented APIs and export mechanisms that deliver **JSON‑structured secure configuration data** across identity, RBAC, policy, and security‑posture layers.
+
