@@ -312,7 +312,7 @@ When you work with Azure Storage through the Azure portal, [all transactions tak
 
 In Azure Logic Apps (Standard), the hybrid deployment model relies on SQL Server. This dependence lets customers leverage existing SQL Server on-premises environments with BizTalk Server.
 
-#### Large file processing
+### Large file processing
 
 Some foundational differences exist between processing large files with BizTalk Server versus Azure Logic Apps. For example, carefully scrutinize large message scenarios to find the right solution because potentially different ways exist to solve this problem in a modern cloud environment.
 
