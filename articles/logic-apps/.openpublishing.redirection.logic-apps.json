@@ -3,7 +3,7 @@
         {
             "source_path_from_root": "/articles/logic-apps/azure-integration-services-choose-capabilities.md",
             "redirect_url": "/azure/logic-apps/biztalk-server-migration-approaches",
-            "redirect_document_id": true
+            "redirect_document_id": false
         },
         {
             "source_path_from_root": "/articles/logic-apps/set-up-sql-db-storage-single-tenant-standard-workflows.md",
