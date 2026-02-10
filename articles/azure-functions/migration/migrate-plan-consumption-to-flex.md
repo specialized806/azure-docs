@@ -1837,7 +1837,7 @@ If you use Infrastructure as Code (IaC) to manage your Azure resources, you need
 
 2. **Update resource names or use lifecycle management**: Since you can't convert a Consumption app to Flex Consumption in place, you have two options:
    + **New resource names**: Update your IaC to use new names for the hosting plan and function app. This approach keeps your old resources intact until you're confident the migration succeeded.
-   + **Import existing resources**: If you want to keep the same names, delete the old resources first, then let your IaC create the new Flex Consumption resources. Alternatively, import the manually-created resources into your Terraform state using `terraform import` or reference existing resources in Bicep.
+   + **Import existing resources**: If you want to keep the same names, delete the old resources first, then let your IaC create the new Flex Consumption resources. Alternatively, import the manually created resources into your Terraform state using `terraform import` or reference existing resources in Bicep.
 
 3. **Verify state alignment**: After updating your IaC files, run a plan/preview operation (`terraform plan` or `az deployment group what-if`) to confirm no unexpected changes will occur.
 
