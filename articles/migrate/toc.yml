@@ -257,7 +257,7 @@ items:
     href: tutorial-migrate-vmware-agent.md
   - name: Redeploy servers using IaC 
     href: server-redeploy.md
-  - name: Generate and deploy a Platform Landing Zone using Azure Migrate
+  - name: Generate and deploy a platform landing zone
     href: platform-landing-zone.md
   - name: Support Matrix
     items:

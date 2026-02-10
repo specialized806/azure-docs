@@ -13,7 +13,7 @@ monikerRange:
 
 # Generate and deploy a Platform Landing Zone using Azure Migrate
 
-This article describes how to generate a **Platform Landing Zone (PLZ)** by using **Azure Migrate** and iterate on the generated configuration before deploying it with **Visual Studio Code**, **GitHub Copilot Chat**, and the **Azure Model Context Protocol (MCP) server**.
+This article describes how to generate a **Platform Landing Zone (PLZ)** by using **Azure Migrate**. It also explains how to iterate on the generated configuration before deploying it with **Visual Studio Code**, **GitHub Copilot Chat**, and the **Azure Model Context Protocol (MCP) server**.
 
 A Platform Landing Zone provides foundational Azure capabilities such as resource organization, governance, identity, networking, and management. Teams use it as a standardized baseline for deploying workloads in Azure.
 
@@ -39,7 +39,7 @@ Before you begin, ensure that you have the following:
 
 The following steps show how to generate a **Platform Landing Zone** using Azure Migrate, and then iterate and deploy it using **Visual Studio Code** with **GitHub Copilot Chat** and the **Azure MCP Server**.
 
-### Step 1: Generate the Platform Landing Zone in Azure Migrate
+### Generate the Platform Landing Zone in Azure Migrate
 
 This section describes how to generate a Platform Landing Zone in Azure Migrate and review the generated artifacts in Visual Studio Code.
 
@@ -60,7 +60,7 @@ The downloaded ZIP file typically includes the following artifacts:
 - Scripts for configuration and deployment
 - CI/CD workflow definitions (if applicable)
 
-### Step 2: Enable iteration in Visual Studio Code by installing the Azure MCP Server
+### Enable iteration in Visual Studio Code by installing the Azure MCP Server
 
 To iterate on the platform landing zone using natural language prompts in Copilot Chat (for example, turn off DDoS or switch to vWAN), you must enable the Azure Model Context Protocol (MCP) Server in Visual Studio Code.
 
@@ -74,11 +74,11 @@ To iterate on the platform landing zone using natural language prompts in Copilo
 1. Enable **Azure MCP**, and then select **Update tools**.
 1. Verify that the `azuremigrate` tool appears in the tools list.
 
-### Step 3: Iterate on the Platform Landing Zone (Visual Studio Code and MCP)
+### Iterate on the Platform Landing Zone (Visual Studio Code and MCP)
 
 After you enable the Azure Model Context Protocol (MCP) server, use GitHub Copilot Chat in Visual Studio Code to apply changes across the platform landing zone artifacts.
 
-You can use Copilot Chat to make updates such as:
+Use Copilot Chat to make updates such as:
 
 - Disable DDoS protection
 - Change Azure regions
@@ -88,7 +88,7 @@ You can use Copilot Chat to make updates such as:
 
 Copilot applies changes across the relevant files, including Terraform variables, configuration files, and policy overrides, and summarizes the updates that were made.
 
-### Step 4: Deploy the Platform Landing Zone
+### Deploy the Platform Landing Zone
 
 Deploy the platform landing zone by following the deployment instructions included in the generated package (README and scripts).
 
@@ -101,6 +101,6 @@ A typical deployment workflow includes:
 
 ## Design document generation
 
-The design document included in the platform landing zone package is generated using a template-based approach. Azure Migrate compiles the document based on the selected platform landing zone configuration, such as region type, network architecture, firewall type, and region selection. The output is a tailored Markdown document that reflects the chosen configuration.
+The design document included in the platform landing zone package uses template-based approach. Azure Migrate generates the document based on the selected platform landing zone configuration  you select, such as region type, network architecture, firewall type, and region selection. The output is a customized Markdown document that matches your chosen configuration.
 
 ## Next steps
