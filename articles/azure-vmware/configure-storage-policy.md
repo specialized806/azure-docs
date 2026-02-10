@@ -205,21 +205,19 @@ After reviewing the list of unassociated objects, delete them **individually** b
 > [!IMPORTANT]  
 > Deleting a vSAN object is irreversible. Ensure that the object is not associated with any VM, management component, or system service before proceeding.
  
-### Run Command: `Remove-AvsUnassociatedObject`
- 
-1. Navigate to your AVS private cloud in the Azure portal.
-2. Select **Run command** > **Packages** > **Microsoft.AVS.Management**.
-3. Select **Remove-AvsUnassociatedObject**.
- 
-### Run Command parameters
- 
+### Run Command parameters: `Remove-AvsUnassociatedObject`
+  
 | Field | Description |
 |------|-------------|
-| **Uuid** | UUID of the unassociated vSAN object to delete. Obtain this value from the output of `Get‑UnassociatedVsanObjectsWithPolicy`. |
+| **UUID** | UUID of the unassociated vSAN object to delete. Obtain this value from the output of `Get‑UnassociatedVsanObjectsWithPolicy`. |
 | **ClusterName** | Name of the vSAN cluster that contains the unassociated object. |
 | **Retain up to** | Retention period for the Run Command output. |
 | **Specify name for execution** | Alphanumeric name used to identify this Run Command execution. |
 | **Timeout** | Time after which the command exits if it does not complete. |
+
+1. Navigate to your AVS private cloud in the Azure portal.
+2. Select **Run command** > **Packages** > **Microsoft.AVS.Management**.
+3. Select **Remove-AvsUnassociatedObject**.
 
   :::image type="content" source="media/run-command/run-command-overview-remove-unassociated-object.png" alt-text="Screenshot showing the Remove-AvsUnassociatedObject Run Command in the Azure portal." lightbox="media/run-command/run-command-overview-remove-unassociated-object.png":::
  
