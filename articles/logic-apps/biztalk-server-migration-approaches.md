@@ -71,7 +71,7 @@ During this sprint, we recommend that you execute BizTalk Server Environments Di
 
 To help you with migration discovery, you can use the Azure Integration Migrator command-line tool, also called the [BizTalk Migration tool](https://github.com/Azure/aimbiztalk), which is a Microsoft open-source project. This tool uses a phased approach to help you uncover useful insights and strategies for migrating your solutions to the cloud. We recommend using the migrator tool only for discovery and report generation. You might also want to consider using other products for discovery from partners who provide solutions in this space.
 
-For another way to generate an inventory with BizTalk Server elements, you can use the [BizTalk Documenter](https://github.com/mbrimble/biztalkdocumenter), which is developed by Mark Brimble. This tool works with BizTalk Server 2020, despite stating that only BizTalk Server 2016 is supported.
+For another way to generate an inventory with BizTalk Server elements, you can use the [BizTalk Documenter](https://github.com/mbrimble/biztalkdocumenter) developed by Mark Brimble. This tool works with BizTalk Server 2020, despite stating that only BizTalk Server 2016 is supported.
 
 #### Architecture design
 
@@ -206,8 +206,8 @@ After your team finishes and meets the "definition of done" for the user stories
    - Dress rehearsal
    - People
    - Schedule estimates
-   - Disable interfaces in the BizTalk Server environment.
-   - Enable interfaces in the logic apps environment.
+   - Disable interfaces in the BizTalk Server environment
+   - Enable interfaces in the logic apps environment
    - Validation testing
 
 1. Determine a rollback plan.
