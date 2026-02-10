@@ -46,9 +46,88 @@ Azure defines the below top-level administrative accounts
 |     Enterprise   Agreement    |     Enterprise Administrator           |     Controls all Azure accounts and billing under the EA           |
 |                               |     Account Owner                      |     Creates subscriptions; controls subscription‑level   admins    |
 |     Subscription‑level        |     Service Administrator              |     Full management permissions on each subscription               |
-Azure publishes authoritative guidance for top-level admin roles via Microsoft Learn (Entra documentation), including privileged role definitions, emergency access (“break-glass”) account guidance, and FedRAMP High identity access controls, which customers can consume directly through public documentation.
+Azure publishes authoritative guidance for top-level admin roles via Microsoft Learn (Entra documentation), including privileged role definitions, emergency access (“break-glass”) account guidance, and FedRAMP High identity access controls, which customers can consume directly through public documentation at [RBAC and Directory Admin Roles](https://docs.azure.cn/en-us/role-based-access-control/rbac-and-directory-admin-roles)
 
-Microsoft Learn documents which tenant-wide security settings exist, which privileged roles can change them, and why those settings matter (e.g., Security Defaults, blocking legacy auth), allowing customers to understand and securely manage top-level controls.
+#### Privileged Administrative Role Definitions
+
+Microsoft Learn documents the built‑in administrative roles that are authorized to change tenant‑wide security settings, including:
+
+- Global Administrator
+
+- Security Administrator
+
+- Conditional Access Administrator
+
+- Privileged Role Administrator
+
+These roles have the ability to alter authentication requirements, disable protections, and grant or revoke privileged access, making their governance critical.
+
+Microsoft Learn publicly documents tenant‑wide identity and access security settings that are **operated only by top‑level administrative roles** (for example, Global Administrator, Conditional Access Administrator). These settings have direct and significant security implications because they control how privileged accounts authenticate, how legacy attack paths are blocked, and how identity risk is mitigated across the tenant. The security settings are described below.
+
+#### 1. Security Defaults (Tenant‑Wide Secure‑by‑Default Controls)
+
+Security Defaults are Microsoft‑recommended tenant‑wide protections that enforce a baseline identity security posture. These controls are **enabled, disabled, and governed by top‑level administrative roles**.
+
+Security Defaults enforce:
+
+- Multifactor authentication (MFA) for administrators
+
+- MFA registration for all users
+
+- Blocking of legacy authentication protocols
+
+- Protection of privileged access to administrative portals
+
+#### 2. Blocking Legacy Authentication (Tenant‑Wide Risk Reduction)
+
+Legacy authentication protocols (for example, IMAP, POP, SMTP AUTH) do not support modern protections such as MFA and are a primary entry point for account compromise. Microsoft documents blocking legacy authentication as a **critical tenant‑wide security control**.
+
+Only privileged administrators can enforce blocking of legacy authentication through Security Defaults or Conditional Access policies.
+
+Microsoft Learn documents that these controls significantly reduce common identity attacks such as password spray and phishing.
+
+**Microsoft Learn:** [Security defaults in Microsoft Entra ID](/entra/fundamentals/security-defaults)
+
+#### 3. Conditional Access (Tenant‑Wide Policy Enforcement Engine)
+
+Conditional Access is Microsoft’s primary tenant‑wide policy engine for enforcing:
+
+- MFA for privileged roles
+
+- Risk‑based access controls
+
+- Blocking insecure authentication paths
+
+- Enforcement of Zero Trust principles
+
+Conditional Access policies can only be created and modified by **privileged administrative roles**, and misconfiguration or absence of these policies materially increases identity compromise risk.
+
+#### 4. Emergency Access (“Break‑Glass”) Accounts
+
+Microsoft documents emergency access accounts as highly privileged accounts designed for tenant recovery when normal administrative access is unavailable. These accounts:
+
+- Are configured only by top‑level administrators
+
+- Bypass certain tenant‑wide controls by design
+
+- Require strict monitoring and governance due to elevated risk
+
+**Microsoft Learn:**  [Manage emergency access accounts in Microsoft Entra ID](/entra/identity/role-based-access-control/security-emergency-access)
+
+---
+#### 5. Identity Protection (Tenant‑Wide Risk Policies)
+
+Microsoft Entra ID Protection provides tenant‑wide risk detection and enforcement for:
+
+- Risky users
+
+- Risky sign‑ins
+
+- Automated remediation actions
+
+Privileged administrators configure these policies, which directly protect high‑value and administrative accounts from compromise.
+
+**Microsoft Learn:** [Microsoft Entra ID Protection overview](/entra/id-protection/overview-identity-protection)
 
 Azure provides guidance to protect administrator sign-in, enforce MFA, conditional access, and protected admin workstations which detail how to securely access top-level administrative accounts in Azure. Instructions can be found at __[Privileged roles and permissions](/entra/identity/role-based-access-control/privileged-roles-permissions?branch=main&tabs=admin-center)__
 
@@ -72,8 +151,6 @@ More detailed instructions to securely access, configure, operate, and decommiss
 
 [Plan a Privileged Identity Management deployment](/entra/id-governance/privileged-identity-management/pim-deployment-plan)
 
-[Configure Privileged Identity Management role settings](/security/privileged-access-workstations/overview)
-
 [Securing Privileged Access](/security/privileged-access-workstations/overview)
 
 [Configure identity access controls to meet FedRAMP High Impact level](/entra/standards/fedramp-access-controls)
@@ -86,7 +163,7 @@ More detailed instructions to securely access, configure, operate, and decommiss
 
 [Conditional Access Overview](/entra/identity/conditional-access/overview)
 
-### Use Instructions
+### [Use Instructions](https://www.fedramp.gov/docs/rev5/balance/secure-configuration-guide/#use-instructions)
 
 #### SCG-CSO-AUP
 
