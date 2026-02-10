@@ -129,7 +129,7 @@ For more information, see:
 - [Managed connectors available in Azure Logic Apps](/connectors/connector-reference/connector-reference-logicapps-connectors)
 - [Custom connectors and APIs](/connectors/custom-connectors/)
 
-#### Data shaping and artifacts
+### Data shaping and artifacts
 
 When you migrate integrations to Azure Logic Apps, you typically need the following:
 
