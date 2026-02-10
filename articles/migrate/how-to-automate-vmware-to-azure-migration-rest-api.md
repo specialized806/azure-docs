@@ -36,7 +36,7 @@ Before you begin, make sure you have the following:
 
 Before you call the APIs, gather the required resource identifiers. This section describes how to obtain each identifier.
 
-### Get the Azure Site Recovery Vault Id
+### Get the Azure Site Recovery Vault ID
 
 In the Azure portal, go to your **Azure Migrate project > Execute > Migrations > Replications summary > Properties**.
 Under Linked Recovery Services vaults, identify the vault where Replication type is set to Other, and copy the Vault ID.
@@ -46,7 +46,7 @@ The resource ID format is:
 /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{migrateProjectName-MigrateVault-numbers}
 ```
 
-### Get the Process server Id and Site Ids
+### Get the Process server ID and Site IDs
 
 The `processServerId` is the machine ID of the replication appliance that handles VM replication. To retrieve it:
 
@@ -111,7 +111,7 @@ Use the `id` value from the process server entry as your `processServerId` that 
 
 ### Get the Fabric Discovery Machine ID
 
-The `fabricDiscoveryMachineId` is the ARM ID of the discovered VM from Azure Migrate. To find it:
+The `fabricDiscoveryMachineId` is the Azure Resource Manager ID of the discovered VM from Azure Migrate. To find it:
 
 ```http
 (for VMware VMs) GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OffAzure/VMwareSites/{siteName}/machines?api-version=2023-06-06
@@ -208,13 +208,13 @@ PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{
 | Parameter | Required | Description |
 |-----------|----------|-------------|
 | `instanceType` | Yes | Must be `InMageRcm` |
-| `fabricDiscoveryMachineId` | Yes | ARM ID of the discovered VMware machine from Azure Migrate |
+| `fabricDiscoveryMachineId` | Yes | Azure Resource Manager ID of the discovered VMware machine from Azure Migrate |
 | `processServerId` | Yes | ID of the process server to use for replication |
-| `targetResourceGroupId` | Yes | ARM ID of the target resource group in Azure |
+| `targetResourceGroupId` | Yes | Azure Resource Manager ID of the target resource group in Azure |
 | `disksToInclude` | Yes* | List of disks to replicate with their configuration |
 | `disksDefault` | Yes* | Default disk configuration (use either `disksToInclude` or `disksDefault`, not both) |
-| `targetNetworkId` | No | ARM ID of the target virtual network |
-| `testNetworkId` | No | ARM ID of the test virtual network |
+| `targetNetworkId` | No | Azure Resource Manager ID of the target virtual network |
+| `testNetworkId` | No | Azure Resource Manager ID of the test virtual network |
 | `targetSubnetName` | No | Name of the target subnet |
 | `testSubnetName` | No | Name of the test subnet |
 | `targetVmName` | No | Name for the target Azure VM |
@@ -222,11 +222,11 @@ PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{
 | `licenseType` | No | License type: `NoLicenseType`, `WindowsServer` |
 | `sqlServerLicenseType` | No | SQL Server license: `NotSpecified`, `NoLicenseType`, `PAYG`, `AHUB` |
 | `linuxLicenseType` | No | Linux license: `NotSpecified`, `NoLicenseType`, `RHEL_BYOS`, `SLES_BYOS` |
-| `targetAvailabilitySetId` | No | ARM ID of target availability set |
+| `targetAvailabilitySetId` | No | Azure Resource Manager ID of target availability set |
 | `targetAvailabilityZone` | No | Target availability zone (1, 2, or 3) |
-| `targetProximityPlacementGroupId` | No | ARM ID of target proximity placement group |
-| `targetBootDiagnosticsStorageAccountId` | No | ARM ID of boot diagnostics storage account |
-| `runAsAccountId` | No | ARM ID of the run-as account for mobility agent installation |
+| `targetProximityPlacementGroupId` | No | Azure Resource Manager ID of target proximity placement group |
+| `targetBootDiagnosticsStorageAccountId` | No | Azure Resource Manager ID of boot diagnostics storage account |
+| `runAsAccountId` | No | Azure Resource Manager ID of the run-as account for mobility agent installation |
 | `multiVmGroupName` | No | Multi-VM consistency group name |
 | `targetVmTags` | No | Tags to apply to the target VM |
 | `seedManagedDiskTags` | No | Tags for seed managed disks |
@@ -241,16 +241,16 @@ When using `disksToInclude`, each disk object requires:
 |-----------|----------|-------------|
 | `diskId` | Yes | UUID of the disk to replicate |
 | `diskType` | Yes | Target disk type: `Standard_LRS`, `Premium_LRS`, `StandardSSD_LRS`, `Premium_ZRS`, `StandardSSD_ZRS` |
-| `logStorageAccountId` | Yes | ARM ID of the cache storage account for replication |
-| `diskEncryptionSetId` | No | ARM ID of disk encryption set for server-side encryption |
+| `logStorageAccountId` | Yes | Azure Resource Manager ID of the cache storage account for replication |
+| `diskEncryptionSetId` | No | Azure Resource Manager ID of disk encryption set for server-side encryption |
 
 When using `disksDefault`:
 
 | Parameter | Required | Description |
 |-----------|----------|-------------|
 | `diskType` | Yes | Default disk type for all disks |
-| `logStorageAccountId` | Yes | ARM ID of the cache storage account |
-| `diskEncryptionSetId` | No | ARM ID of default disk encryption set |
+| `logStorageAccountId` | Yes | Azure Resource Manager ID of the cache storage account |
+| `diskEncryptionSetId` | No | Azure Resource Manager ID of default disk encryption set |
 
 ### Response
 
@@ -340,13 +340,13 @@ PATCH https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups
 | `instanceType` | Must be `InMageRcm` |
 | `targetVmName` | Updated name for the target Azure VM |
 | `targetVmSize` | Updated Azure VM size |
-| `targetResourceGroupId` | Updated target resource group ARM ID |
-| `targetNetworkId` | Updated target virtual network ARM ID |
-| `testNetworkId` | Updated test virtual network ARM ID |
-| `targetAvailabilitySetId` | Updated availability set ARM ID (set to empty string to remove) |
+| `targetResourceGroupId` | Updated target resource group Azure Resource Manager ID |
+| `targetNetworkId` | Updated target virtual network Azure Resource Manager ID |
+| `testNetworkId` | Updated test virtual network Azure Resource Manager ID |
+| `targetAvailabilitySetId` | Updated availability set Azure Resource Manager ID (set to empty string to remove) |
 | `targetAvailabilityZone` | Updated availability zone (set to empty string to remove) |
-| `targetProximityPlacementGroupId` | Updated proximity placement group ARM ID |
-| `targetBootDiagnosticsStorageAccountId` | Updated boot diagnostics storage account ARM ID |
+| `targetProximityPlacementGroupId` | Updated proximity placement group Azure Resource Manager ID |
+| `targetBootDiagnosticsStorageAccountId` | Updated boot diagnostics storage account Azure Resource Manager ID |
 | `licenseType` | Updated license type |
 | `sqlServerLicenseType` | Updated SQL Server license type |
 | `linuxLicenseType` | Updated Linux license type |
@@ -371,7 +371,7 @@ PATCH https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups
 ## Step 3: Test migration
 
 > [!IMPORTANT]
-> Always perform a test migration (test failover) before initiating an actual migration to validate configuration and minimize production impact.
+> Always perform a test migration (test failover) before initiating an actual migration to validate configuration.
 
 Use the [Test Failover](/rest/api/site-recovery/replication-protected-items/test-failover) API.
 
@@ -405,8 +405,8 @@ Take a recovery point from the latest processed recovery point to minimize data 
 | Parameter | Required | Description |
 |-----------|----------|-------------|
 | `instanceType` | Yes | Must be `InMageRcm` |
-| `networkId` | No | ARM ID of the test network. If not specified, uses the configured test network. |
-| `recoveryPointId` | No | ARM ID of a specific recovery point. Leave empty for the latest recovery point. |
+| `networkId` | No | Azure Resource Manager ID of the test network. If not specified, uses the configured test network. |
+| `recoveryPointId` | No | Azure Resource Manager ID of a specific recovery point. Leave empty for the latest recovery point. |
 | `osUpgradeVersion` | No | Target OS version for in-place OS upgrade during test migration |
 
 ### Response
@@ -474,10 +474,10 @@ POST https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/
 | Parameter | Required | Description |
 |-----------|----------|-------------|
 | `instanceType` | Yes | Must be `InMageRcm` |
-| `recoveryPointId` | No | ARM ID of recovery point to fail over to. Leave empty for latest. |
+| `recoveryPointId` | No | Azure Resource Manager ID of recovery point to fail over to. Leave empty for latest. |
 | `performShutdown` | No | Whether to shut down the source VM before failover (recommended for minimal data loss) |
 | `osUpgradeVersion` | No | Target OS version for in-place OS upgrade during migration |
-| `targetCapacityReservationGroupId` | No | ARM ID of target capacity reservation group |
+| `targetCapacityReservationGroupId` | No | Azure Resource Manager ID of target capacity reservation group |
 
 ### Response
 
@@ -525,7 +525,7 @@ Common error scenarios and resolutions:
 | Error | Resolution |
 |-------|------------|
 | `InvalidParameter` | Verify all required parameters are provided with valid values |
-| `ResourceNotFound` | Ensure all ARM resource IDs are correct and resources exist |
+| `ResourceNotFound` | Ensure all Azure Resource Manager resource IDs are correct and resources exist |
 | `ReplicationNotHealthy` | Check replication health before test/actual migration |
 | `RecoveryPointNotFound` | Use the latest recovery point or verify the specified recovery point exists |
 
@@ -582,7 +582,7 @@ $enableResponse = Invoke-RestMethod -Uri $enableUri -Method Put -Headers $header
 - **Run a test migration first**: Always perform a test migration to validate the configuration before starting the actual migration.
 - **Use appropriate recovery points**: To minimize data loss, select the latest processed recovery point.
 - **Monitor replication health**: Verify that replication is healthy before you initiate migration.
-- **Plan maintenance windows**: Schedule migrations during planned maintenance windows to reduce impact on workloads.
+- **Plan maintenance windows**: Schedule migrations during planned maintenance windows.
 - **Migrate in batches**: Group virtual machines into multi-VM consistency groups to enable application-consistent migrations.
 - **Retain recovery points until validation**: Keep recovery points until the migration is validated in the production environment.
 
