@@ -325,7 +325,7 @@ Azure Logic Apps isn't the only service that has message size limits. For exampl
 To avoid file size limitations, you can implement the [claim-check pattern](/azure/architecture/patterns/claim-check), which works by splitting a large message into a *claim check* and a payload. You send the claim check to the messaging platform and store the payload on an external service. That way, you can process large messages, while you protect the message bus and the client from overload. This pattern also helps to reduce costs because storage is usually cheaper than resource units used by the messaging platform.
 
 
-#### Monitoring and alerts
+### Monitoring and alerts
 
 
 In Azure Logic Apps, you can enable Application Insights support, which provides curated visualizations as a foundation for monitoring Azure services. These visualizations help you more effectively monitor Standard workflows by using dashboards specifically designed for Azure Logic Apps (Standard). The dashboard scope covers the workflows inside a Standard logic app. The dashboard is built on [Azure Workbooks](/azure/azure-monitor/visualize/workbooks-overview) and offers various visualizations. You can easily extend and customize these workbooks to meet specific needs.
