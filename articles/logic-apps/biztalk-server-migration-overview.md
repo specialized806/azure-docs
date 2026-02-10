@@ -380,7 +380,7 @@ For scenarios that require additional Azure integration services, see the follow
 - [Azure Service Bus Premium and Standard messaging tiers](../service-bus-messaging/service-bus-premium-messaging.md)
 - [Azure API Management - Feature-based tier comparison](../api-management/api-management-features.md)
 
-#### Deployment
+### Deployment
 
 
 Azure Logic Apps supports Infrastructure as Code (IaC) by providing the capability to create infrastructure resources using Azure Resource Management templates. Although ARM templates can seem complex to understand and implement as a unified solution, you can use abstraction tools, such as Bicep, Terraform, or Pulumi, which provide a code-like experience for creating your infrastructure definition. Although these tools provide abstraction layers over ARM templates, the tools ultimately generate ARM templates and can deploy those templates for you.
