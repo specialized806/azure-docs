@@ -20,7 +20,10 @@ Your Microsoft Agent pre-purchase plan automatically uses your ACUs to pay for e
 
 ## Services covered by Microsoft Agent pre-purchase plan*
 
-:::image type="content" source="./media/agentp3/Services Covered Screenshot.jpg" alt-text="Screenshot showing services covered by Microsoft Agent pre-purchase plan." lightbox="./media/agentp3/Services Covered Screenshot.jpg":::
+
+:::image type="content" source="./media/agentp3/services_covered_screenshot.jpg" alt-text="Screenshot showing services covered by Microsoft Agent pre-purchase plan." lightbox="./media/agentp3/services_covered_screenshot.jpg":::
+
+
 
 ## Prerequisites
 
@@ -59,7 +62,7 @@ Purchase Microsoft Agent Pre-Purchase Plans in the [Azure portal reservations](h
 1. Go to the [Azure portal](https://portal.azure.com)
 2. Navigate to the **Reservations** service.
 3. On the **Purchase reservations page**, select [**Microsoft Agent Pre-Purchase Plan**](https://aka.ms/MAF-P3-Purchase).
-   :::image type="content" source="./media/agentp3/Azure Portal Screenshot.jpg" alt-text="Screenshot showing Microsoft Agent pre-purchase plan." lightbox="./media/agentp3/Azure Portal Screenshot.jpg":::
+   :::image type="content" source="./media/agentp3/azure_portal_screenshot.jpg" alt-text="Screenshot showing Microsoft Agent pre-purchase plan." lightbox="./media/agentp3/azure_portal_screenshot.jpg":::
 5. On the **Select the product you want to purchase** page, select a subscription. Use the **Subscription** list to select the subscription used to pay for the purchase. The payment method of the subscription is charged the upfront cost for the reservation. Charges are **not** deducted from the enrollment's Azure Prepayment (previously called monetary commitment) balance or charged as overage.
 6. Select a scope.
    - **Single resource group scope** - Applies the reservation discount to the matching resources in the selected resource group only.
