@@ -310,7 +310,7 @@ Azure Logic Apps relies on [Azure Storage](../storage/common/storage-introductio
 
 When you work with Azure Storage through the Azure portal, [all transactions take place over HTTPS](../security/fundamentals/encryption-overview.md#azure-storage-transactions). You can also work with Azure Storage by using the Storage REST API over HTTPS. To enforce using HTTPS when you call the REST APIs to access objects in storage accounts, enable the secure transfer that's required for the storage account.
 
-The Hybrid deployment model of Azure Logic Apps, relies on [SQL Server]. This allows customers to leverage their existing SQL Server environments they used on-premises, with BizTalk Server.
+In Azure Logic Apps (Standard), the hybrid deployment model relies on SQL Server. This dependence lets customers leverage existing SQL Server on-premises environments with BizTalk Server.
 
 #### Large file processing
 
