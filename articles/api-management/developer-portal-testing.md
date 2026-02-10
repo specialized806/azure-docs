@@ -200,7 +200,7 @@ npm run test
 
 **Test Explorer**
 
-The Test Explorer extension for VS Code. For example, [Mocha Test Explorer](https://marketplace.visualstudio.com/items?itemName=hbenl.vscode-mocha-test-adapter) has a convenient UI and an option to run tests automatically on every change of the source code:
+Use a Test Explorer extension for VS Code. For example, [Mocha Test Explorer](https://marketplace.visualstudio.com/items?itemName=hbenl.vscode-mocha-test-adapter) has a convenient UI and an option to run tests automatically on every change of the source code:
 
 :::image type="content" source="media/developer-portal-testing/visual-studio-code-test-explorer.png" alt-text="Screenshot of Visual Studio Code Test Explorer":::
 
