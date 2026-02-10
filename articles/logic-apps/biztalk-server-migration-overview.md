@@ -256,7 +256,7 @@ As previously mentioned, support for calling .NET Framework assemblies from an X
 
 #### Application groups
 
-In Azure Logic Apps, you can include and run multiple workflows with a Logic Apps resource, resulting in a 1-to-many relationship. If you're working locally on a Standard logic app project in Visual Studio Code, your logic app resource maps to this single project. With this approach, you can easily and logically group related workloads, code, and artifacts in the same project and deploy that project as a single unit.
+In Azure Logic Apps, you can include and run multiple workflows in a Standard logic app resource, resulting in a 1-to-many relationship. If you're working locally on a Standard logic app project in Visual Studio Code, your logic app resource maps to this single project. With this approach, you can easily and logically group related workloads, code, and artifacts in the same project and deploy that project as a single unit.
 
 Cloud architectures work differently than server-based paradigms such as BizTalk. Azure Logic Apps (Standard) uses a pull model to bring in code and artifacts. So, as a result, you'll copy any additional necessary artifacts into your project and subsequently deploy them with your code and other artifacts. In some cases, you might want to avoid having to copy all the necessary code and artifacts. If so, you might consider turning this functionality into a service that you can manage separately but can call from a workflow.
 
