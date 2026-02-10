@@ -44,6 +44,6 @@ OEPAirFlowTask
 Use **getRetrievalInstructions** API in `005: Dataset Service collection` to retrieve bulk data from external data sources on demand. 
 
 ## References
-* [External data sources FAQ](faq-energy-data-services.yml#external-data-sources)
+* [External data services FAQ](faq-energy-data-services.yml#external-data-services)
 * [EDS documentation 1.0](https://gitlab.opengroup.org/osdu/subcommittees/ea/projects/extern-data/docs/-/blob/master/Design%20Documents/Training/EDS_Documentation-1.0.docx)
 * [OSDU EDS Documentation](https://osdu.pages.opengroup.org/platform/data-flow/ingestion/osdu-airflow-lib/)
