@@ -26,7 +26,7 @@ Execute the APIs in the following collections to register your external data sou
 1. `001: Pre-req: Validate Schema Registration`
 1. `002: Pre-req: Validate Reference Data` 
 1. `003: Secret Service` 
-1. `004: Pre-req: Add Source Registry` 
+1. `004: Add Source Registry and Data Job` 
 
 After successful data registration, data is regularly fetched from external sources and added to your Azure Data Manager for Energy. You can use the Search service to search for your ingested data. 
 
