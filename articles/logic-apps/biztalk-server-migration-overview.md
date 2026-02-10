@@ -421,7 +421,7 @@ The following diagram shows the core and optional dependencies for Azure Logic A
 
 In the hybrid deployment model, there are two core dependencies. The Kubernetss cluster and SQL Server. 
 
-### Feature matchup
+## Feature matchup
 
 The following table and diagram shosw how resources, artifacts, features, and capabilities compare and match between BizTalk Server, Azure Logic Apps (Standard), and other services. Try to use Azure Logic Apps features as much as possible to build a cohesive, more cost-effective solution.
 
