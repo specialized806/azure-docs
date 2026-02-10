@@ -1,5 +1,5 @@
----
-title: Automate VMware to Azure migration (simplified) using Azure Site Recovery REST API
+﻿---
+title: Automate VMware to Azure migration using Azure Site Recovery REST API
 description: Learn how to automate VMware virtual machine migration to Azure using Azure Site Recovery REST API with the InMageRcm replication provider.
 author: prsadhu-ms-idc
 ms.author: prsadhu
@@ -10,28 +10,36 @@ ms.date: 12/02/2025
 # Customer intent: As a migration owner, I want to automate the migration of my VMware virtual machines to Azure using Azure Site Recovery REST API, so that I can efficiently manage large-scale migrations with custom automation solutions.
 ---
 
-# Automate VMware to Azure agent-based migration (simplified) using Azure Site Recovery REST API
+# Automate VMware to Azure agent-based migration using Azure Site Recovery REST API
 
-This article describes how to automate agent-based virtual machine migration to Azure using the Azure Site Recovery REST API. You can use these APIs to build custom automation solutions for large-scale migrations using the **InMageRcm** replication provider.
+This article describes how to automate **simplified** agent-based virtual machine migration to Azure using the Azure Site Recovery REST API. You can use these APIs to build custom automation solutions for large-scale migrations using the **InMageRcm** replication provider.
+Use this article if you want to:
+- Automate simplified VMware/Physical to Azure agent-based migrations at scale.
+- Integrate migration process into your existing tools or pipelines.
+- Programmatically control replication, test migration, and failover operations.
 
 ## Prerequisites
 
-Before you begin, ensure you have:
+Before you begin, make sure you have the following:
 
-- An Azure subscription with the required permissions to create and manage Azure Migrate resources.
+- An Azure subscription with Azure Migrate Owner role to create and manage Azure Migrate resources. [Azure Migrate built-in roles](azure/migrate/prepare-azure-accounts)
+[!IMPORTANT]
+Insufficient permissions can cause API calls to fail with authorization or resource access errors.
 - A Migrate project configured for agent-based migration.
 - A replication appliance deployed and registered with the vault.
 - VMware or physical virtual machines discovered by the appliance.
-- An enable replication already done from Azure Portal to create the first set of resources needed for replication.
+- First replication enabled from the Azure portal to create the initial resources required for replication.
 
-## Gathering Required Resource IDs
+## Gather required resource IDs
 
-Before calling the APIs, you need to gather several resource identifiers. This section explains how to obtain each one.
+Before you call the APIs, gather the required resource identifiers. This section describes how to obtain each identifier.
 
 ### Get the Azure Site Recovery Vault Id
 
-Go to the Azure Portal, navigate to your **Migrate project ->Execute ->Migrations ->Replications summary ->Properties**, and copy its vault ID from the **Linked Recovery Services vaults** section with **Replication type** set to "Other". Alternatively, it's available via the resource group where migrate project is created. The resource ID format is:
-
+In the Azure portal, go to your **Azure Migrate project > Execute > Migrations > Replications summary > Properties**.
+Under Linked Recovery Services vaults, identify the vault where Replication type is set to Other, and copy the Vault ID.
+Alternatively, you can find the vault ID in the resource group where the Azure Migrate project is created.
+The resource ID format is:
 ```
 /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{migrateProjectName-MigrateVault-numbers}
 ```
@@ -108,29 +116,28 @@ The `fabricDiscoveryMachineId` is the ARM ID of the discovered VM from Azure Mig
 (for physical machines) GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OffAzure//ServerSites/{siteName}/machines?api-version=2023-06-06
 ```
 
-The response contains a list of discovered machines with their full ARM IDs. The content will have machine friendly name to identify a particular VM.
+The response returns a list of discovered machines, including their full Azure Resource Manager (ARM) IDs. Each machine entry also includes a friendly name to help identify the corresponding virtual machine.
 
 ### Get the Run-As Account ID (Optional)
 
-Since you need to specify credentials for mobility agent push installation:
+To push-install the Mobility agent, you must specify credentials:
 
 ```http
 (for VMware VMs) GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OffAzure/VMwareSites/{siteName}/runasaccounts?api-version=2023-06-06
 ```
 For physical machines, use runasaccounts from `properties.runAsAccountId` from machine details.
 
-## Overview
+## Migration workflow overview
 
-The migration workflow using Azure Site Recovery REST API consists of the following steps:
-
-1. **Enable replication** - Start replicating VMware VMs to Azure
-2. **Update replication settings** - Modify target VM properties as needed
-3. **Test migration** - Validate the migration without impacting production
-4. **Perform migration** - Execute the actual migration (failover) to Azure
+The Azure Site Recovery REST API–based migration workflow includes the following steps:
+1. **Enable replication** - Start replicating VMware VMs to Azure.
+2. **Update replication settings** - Modify target VM properties as needed.
+3. **Test migration** - Validate the migration without impacting production.
+4. **Perform migration** - Execute the actual migration (failover) to Azure.
 
 ## Authentication
 
-All REST API calls require authentication using Azure Active Directory (Azure AD). Obtain a bearer token using the following methods:
+All REST API calls require authentication with Azure Active Directory (Azure AD). To authenticate, obtain a bearer access token using one of the supported methods.
 
 - Azure CLI: `az account get-access-token`
 - Azure PowerShell: `Get-AzAccessToken`
@@ -144,9 +151,8 @@ Authorization: Bearer <access-token>
 
 Alternatively you can use armclient or Invoke-AzRestMethod in PowerShell.
 
-## API version
-
-This documentation uses the **2025-08-01** API version for Azure Site Recovery resource provider. Specify this in the `api-version` query parameter for all requests.
+[!NOTE]
+All examples in this article use the **2025‑08‑01** API version for the Azure Site Recovery resource provider. Ensure that the same API version is specified for all REST requests.
 
 ## Step 1: Enable replication
 
@@ -362,7 +368,9 @@ PATCH https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups
 
 ## Step 3: Test migration
 
-Before performing the actual migration, validate your configuration using test migration (test failover). Use the [Test Failover](/rest/api/site-recovery/replication-protected-items/test-failover) API.
+[!IMPORTANT]
+Always perform a test migration (test failover) before initiating an actual migration to validate configuration and minimize production impact.
+Use the [Test Failover](/rest/api/site-recovery/replication-protected-items/test-failover) API.
 
 ### Request
 
@@ -387,7 +395,7 @@ POST https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/
 }
 ```
 
-Take recovery point from latest processed recovery point for minimal data loss, from properties.providerspecificDetails.lastRecoveryPointId of Get Replication Protected Item API.
+Take a recovery point from the latest processed recovery point to minimize data loss. Use the value from `properties.providerSpecificDetails.lastRecoveryPointId` returned by the **Get Replication Protected Item API**.
 
 ### InMageRcm test failover input parameters
 
@@ -518,6 +526,8 @@ Common error scenarios and resolutions:
 | `ReplicationNotHealthy` | Check replication health before test/actual migration |
 | `RecoveryPointNotFound` | Use the latest recovery point or verify the specified recovery point exists |
 
+See [Troubleshoot](azure/site-recovery/vmware-azure-troubleshoot-replication) for more details.
+
 ## PowerShell automation example
 
 Here's a sample PowerShell script that automates the enable replication workflow:
@@ -566,12 +576,15 @@ $enableResponse = Invoke-RestMethod -Uri $enableUri -Method Put -Headers $header
 
 ## Best practices
 
-1. **Test migration first** - Always perform a test migration before the actual migration to validate configuration
-2. **Use recovery points** - For minimal data loss, use the latest processed recovery point
-3. **Monitor replication health** - Ensure replication is healthy before initiating migration
-4. **Plan maintenance windows** - Schedule migrations during maintenance windows to minimize impact
-5. **Batch migrations** - Group VMs in multi-VM consistency groups for application-consistent migration
-6. **Retain recovery points** - Keep recovery points until migration is validated in production
+- **Run a test migration first**: Always perform a test migration to validate the configuration before starting the actual migration.
+- **Use appropriate recovery points**: To minimize data loss, select the latest processed recovery point.
+- **Monitor replication health**: Verify that replication is healthy before you initiate migration.
+- **Plan maintenance windows**: Schedule migrations during planned maintenance windows to reduce impact on workloads.
+- **Migrate in batches**: Group virtual machines into multi-VM consistency groups to enable application-consistent migrations.
+- **Retain recovery points until validation**: Keep recovery points until the migration is validated in the production environment.
+
+## Next steps
+Write a script to automate the above steps. If you face any issues, please reach out to Microsoft support for same.
 
 ## Related content
 
