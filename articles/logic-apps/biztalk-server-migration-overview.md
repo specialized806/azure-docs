@@ -207,7 +207,7 @@ Azure Logic Apps provides message durability in the following ways:
 In BizTalk migration scenarios, this typically maps to designing the Logic Apps workflow and downstream endpoints for safe reprocessing (for example, by using correlation identifiers, de-duplication, and idempotent writes) rather than relying on the broker alone for end-to-end exactly-once behavior.
 
 
-#### Publish-subscribe architecture
+### Publish-subscribe architecture
 
 Compared to BizTalk Server’s messaging engine, Azure Logic Apps uses connectors and external messaging services to implement messaging patterns alongside workflow orchestration. For publish-subscribe (pub-sub) patterns with Azure Logic Apps, common broker options include Azure Service Bus (topics and subscriptions) and [RabbitMQ](/azure/logic-apps/connectors/built-in/reference/rabbitmq). [Azure Service Bus](../service-bus-messaging/service-bus-messaging-overview.md) is a fully managed enterprise message broker with queues and pub-sub topics that you can use to decouple applications and services, which provides the following benefits:
 
