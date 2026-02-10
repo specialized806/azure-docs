@@ -178,7 +178,7 @@ The following diagram shows an example initial migration environment with a Stan
 
 The following diagram shows an example initial migration environment with an on-premises deployed Standard logic app that orchestrates workflows for communicating with APIs, services, hybrid solutions, and on-premises resources:
 
-:::image type="content" source="./media/biztalk-server-to-azure-integration-services-overview/architecture-overview-hybrid.png" alt-text="Diagram shows example initial migration environment." border="false":::
+:::image type="content" source="./media/biztalk-server-to-azure-integration-services-overview/architecture-overview-hybrid.png" alt-text="Diagram shows example migration environment with deployed on-premises Standard logic app." border="false":::
 
 #### Test your migration
 
