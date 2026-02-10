@@ -98,7 +98,7 @@ This section summarizes how development tooling changes when migrating from BizT
 
 - What makes the move to Azure Logic Apps an improvement
 
-  Azure Logic Apps pairs Visual Studio Code-based development with cloud-native diagnostics. You can quickly validate and update workflows, then use the workflow run history to see operation inputs and outputs without relying on server-side consoles and troubleshooting host instances. In migration projects, this benefit typically speeds up iteration (edit, deploy, update, validate), improves collaboration because workflows are easier to review and version, and supports cleaner environment separation by externalizing connections and settings, reducing the “it works on that server” configuration drift.
+  Azure Logic Apps pairs Visual Studio Code-based development with cloud-native diagnostics. You can quickly validate and update workflows, then use the workflow run history to see operation inputs and outputs without relying on server-side consoles and troubleshooting host instances. In migration projects, this benefit typically speeds up iteration (edit, deploy, update, validate), improves collaboration because workflows are easier to review and version, and supports cleaner environment separation by externalizing connections and settings, reducing the "it works on that server" configuration drift.
 
 ### Connectors
 
