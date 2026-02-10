@@ -241,7 +241,7 @@ Each template follows a common workflow pattern that supports a specific scenari
 The following table describes some example workflow templates:
 
 | Document source | Template description | Foundry Tools used |
-|-----------------|----------------------|------------------|
+|-----------------|----------------------|--------------------|
 | Document Intelligence | Standard: Analyze complex documents using Azure OpenAI. | Azure OpenAI |
 | Azure Blob Storage | Standard: <br>- Ingest and index files using the RAG pattern. <br>- Ingest and vectorize documents into Azure Cosmos DB for NoSQL using the RAG pattern. | - Azure OpenAI <br>- Azure AI Search |
 | Azure File Storage | Standard: <br>- Ingest documents into AI Search on a schedule. <br>- Ingest and index files on a schedule using the RAG pattern. <br>- Ingest and index files using the RAG pattern. | - Azure OpenAI <br>- Azure AI Search |
