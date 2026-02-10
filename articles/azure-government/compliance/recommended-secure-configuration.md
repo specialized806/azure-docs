@@ -179,7 +179,7 @@ Providers MUST include instructions in the FedRAMP authorization package that ex
 
 Azure FedRAMP authorization packages will contain a word document with instructions to access and use the Secure Configuration Guide. *[Review comment Ateeque] Is a link needed at this point?*
 
-### Public Guidance
+### [Public Guidance](https://www.fedramp.gov/docs/rev5/balance/secure-configuration-guide/#public-guidance)
 
 #### SCG-CSO-PUB
 
@@ -189,7 +189,7 @@ Providers SHOULD make the Secure Configuration Guide available publicly
 
 Azure's Secure Configuration Guide is available publicly and can be accessed at [Secure Configuration Guide](/azure/azure-government/compliance/azure-services-in-fedramp-auditscope?branch=pr-en-us-76518) *[Review comment Ateeque] this link currently points to the scope of the services but will be replaced by the link to the Guide.*
 
-### Secure Defaults
+### [Secure Defaults](https://www.fedramp.gov/docs/rev5/balance/secure-configuration-guide/#secure-defaults)
 
 #### SCG-CSO-SDF
 
