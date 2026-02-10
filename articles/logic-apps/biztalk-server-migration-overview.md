@@ -94,7 +94,7 @@ This section summarizes how development tooling changes when migrating from BizT
 
   With BizTalk, day-to-day integration work happens in Visual Studio and is spread across multiple artifact types, such as schemas, maps, orchestrations, and pipelines, plus deployment packaging (MSI/bindings) to shared server environments.
 
-With Azure Logic Apps, many teams move to Visual Studio Code for editing workflow definitions and related files by using a simpler “workflow + connectors” approach that reduces solution complexity and encourages smaller, more incremental changes. In practice, Visual Studio Code is usually faster to install, update, and standardize across teams than maintaining BizTalk and Visual Studio version alignment. Text-based workflow definitions tend to improve Git diff and merge, code reviews, and reuse compared to large, compiled BizTalk solutions.
+  With Azure Logic Apps, many teams move to Visual Studio Code for editing workflow definitions and related files by using a simpler "workflow + connectors" approach that reduces solution complexity and encourages smaller, more incremental changes. In practice, Visual Studio Code is usually faster to install, update, and standardize across teams than maintaining BizTalk and Visual Studio version alignment. Text-based workflow definitions tend to improve Git diff and merge, code reviews, and reuse compared to large, compiled BizTalk solutions.
 
 - What makes the move to Azure Logic Apps an improvement
 
