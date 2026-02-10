@@ -443,3 +443,27 @@ These provide **100% environment configuration** in machine‑readable form.
 
 - [ARM template documentation](/azure/azure-resource-manager/templates/)
 
+#### API Capability[¶](https://www.fedramp.gov/docs/rev5/balance/secure-configuration-guide/#api-capability"Permanent link")
+
+#### SCG-ENH-EXP
+
+Providers SHOULD offer the capability to view and adjust security settings via an API or similar capability.
+
+#### Azure's response
+
+Azure fully satisfies this requirement by exposing *all major security configurations* through documented APIs (ARM, Microsoft Graph, Azure Policy, Defender for Cloud APIs, and Azure Resource Graph). These APIs allow organizations to **retrieve**, **audit**, **modify**, and **enforce** security settings programmatically.
+
+Azure **fully meets and exceeds** SCG-ENH-EXP by providing comprehensive, documented, and secure APIs that allow organizations to:
+
+- Programmatically **view** all security settings
+
+- Programmatically **modify/enforce** security settings
+
+- Automate governance, remediation, and compliance workflows
+
+- Export full configuration state for audit evidence
+
+- Integrate with Continuous Integration / Continuous Deployment (CI/CD), Security Orchestration, Automation, and Response (SOAR), Security Information and Event Management (SIEM), and Compliance pipelines
+
+The combination of **ARM**, **Microsoft Graph**, **Azure Policy**, **RBAC APIs**, **Defender for Cloud APIs**, and **Azure Resource Graph** ensures **complete transparency, adjustability, and automation** of all security posture components.
+
