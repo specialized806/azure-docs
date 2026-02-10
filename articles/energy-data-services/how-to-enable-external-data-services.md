@@ -76,8 +76,8 @@ Use the following steps if you're using a system-assigned managed identity inste
 Use the following steps to enable External Data Services in your Azure Data Manager for Energy resource.
 
 1. Go to your Azure Data Manager for Energy resource in the Azure portal.
-1. In the left menu, under **Advanced**, select **External Data Sources**.
-1. Select the checkbox to **Enable External Data Sources**.
+1. In the left menu, under **Advanced**, select **External Data Services**.
+1. Select the checkbox to **Enable External Data Services**.
 1. Select **Select a Key Vault** to open the form. Select the subscription and the Key Vault you created earlier, and then select **Add**.
    :::image type="content" source="media/how-to-enable-external-data-services/external-data-services-select-a-key-vault.png" alt-text="Screenshot of selecting a Key Vault for External Data Services" lightbox="media/how-to-enable-external-data-services/external-data-services-select-a-key-vault.png":::
 1. Under **Managed identity type**, select **User-assigned managed identity** or **System-assigned managed identity**.
