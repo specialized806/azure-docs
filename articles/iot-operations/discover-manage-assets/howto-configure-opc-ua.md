@@ -423,7 +423,7 @@ Now you can define the events associated with the event group. To add OPC UA eve
       - Topic. The MQTT topic that you want the event to be published to.
       - Sampling interval (milliseconds). You can override the default value for this data point.
       - Queue size. You can override the default value for this data point.
-      - Start instance. This value is the starting node for resolving relative browse paths for this event. This field is required if you use relative browse paths in the Data source field. For more information, see [Resolve nodes dynamically using browse paths](overview-opc-ua-connector.md#resolve-nodes-dynamically-using-browse-paths).
+      - Start instance. This value is the starting node for resolving relative browse paths for this event. This field is required if you use relative browse paths in the Data source field. For more information, see [Resolve nodes dynamically using browse paths](overview-opc-ua-connector.md#resolve-nodes-dynamically-by-using-browse-paths).
       - Event filter. An optional configuration that defines the event filter for this event. For more information, see the [Event filters](#event-filters) section.
 
     :::image type="content" source="media/howto-configure-opc-ua/add-event.png" alt-text="Screenshot that shows adding events in the operations experience." lightbox="media/howto-configure-opc-ua/add-event.png":::
