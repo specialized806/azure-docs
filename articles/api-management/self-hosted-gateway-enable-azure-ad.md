@@ -16,7 +16,7 @@ ms.author: danlep
 
 The Azure API Management [self-hosted gateway](self-hosted-gateway-overview.md) needs connectivity with its associated cloud-based API Management instance for reporting status, checking for and applying configuration updates, and sending metrics and events. 
 
-In addition to using a gateway access token (authentication key) to connect with its cloud-based API Management instance, you can enable the self-hosted gateway to authenticate to its associated cloud instance by using an [Microsoft Entra app](../active-directory/develop/app-objects-and-service-principals.md). With Microsoft Entra authentication, you can configure longer expiry times for secrets and use standard steps to manage and rotate secrets in Active Directory. 
+In addition to using a gateway access token (authentication key) to connect with its cloud-based API Management instance, you can enable the self-hosted gateway to authenticate to its associated cloud instance by using a [Microsoft Entra app](../active-directory/develop/app-objects-and-service-principals.md). With Microsoft Entra authentication, you can configure longer expiry times for secrets and use standard steps to manage and rotate secrets in Active Directory. 
 
 ## Scenario overview
 

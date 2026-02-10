@@ -45,7 +45,7 @@ AI adoption in organizations involves several phases:
 
 As AI adoption matures, especially in larger enterprises, the AI gateway helps address key challenges. It helps you:
 
-* Authenticate and authorize access to AI services
+* Authenticate and authorize access to Foundry Tools
 * Load balance across multiple AI endpoints
 * Monitor and log AI interactions
 * Manage token usage and quotas across multiple applications
@@ -68,7 +68,7 @@ For example, to onboard a model deployed in Microsoft Foundry or another provide
 
 More information:
 
-* [Import an Microsoft Foundry API](azure-ai-foundry-api.md)
+* [Import a Microsoft Foundry API](azure-ai-foundry-api.md)
 * [Import a language model API](openai-compatible-llm-api.md)
 * [Expose a REST API as an MCP server](export-rest-mcp-server.md)
 * [Expose and govern an existing MCP server](expose-existing-mcp-server.md)
@@ -78,15 +78,15 @@ More information:
 
 One of the main resources in generative AI services is *tokens*. Microsoft Foundry and other providers assign quotas for your model deployments as tokens per minute (TPM). You distribute these tokens across your model consumers, such as different applications, developer teams, or departments within the company.
 
-If you have a single app connecting to an AI service backend, you can manage token consumption with a TPM limit that you set directly on the model deployment. However, when your application portfolio grows, you might have multiple apps calling single or multiple AI service endpoints. These endpoints can be pay-as-you-go or [Provisioned Throughput Units](/azure/ai-services/openai/concepts/provisioned-throughput) (PTU) instances. You need to make sure that one app doesn't use the whole TPM quota and block other apps from accessing the backends they need.
+If you have a single app connecting to an AI service backend, you can manage token consumption with a TPM limit that you set directly on the model deployment. However, when your application portfolio grows, you might have multiple apps calling single or multiple Azure AI Services endpoints. These endpoints can be pay-as-you-go or [Provisioned Throughput Units](/azure/ai-services/openai/concepts/provisioned-throughput) (PTU) instances. You need to make sure that one app doesn't use the whole TPM quota and block other apps from accessing the backends they need.
 
 ### Token rate limiting and quotas
 
-Configure a token limit policy on your LLM APIs to manage and enforce limits per API consumer based on the usage of AI service tokens. By using this policy, you can set a TPM limit or a token quota over a specified period, such as hourly, daily, weekly, monthly, or yearly. 
+Configure a token limit policy on your LLM APIs to manage and enforce limits per API consumer based on the usage of Foundry Tool tokens. By using this policy, you can set a TPM limit or a token quota over a specified period, such as hourly, daily, weekly, monthly, or yearly. 
 
 :::image type="content" source="media/genai-gateway-capabilities/token-rate-limiting.png" alt-text="Diagram of limiting Azure OpenAI Service tokens in API Management.":::
 
-This policy provides flexibility to assign token-based limits on any counter key, such as subscription key, originating IP address, or an arbitrary key defined through a policy expression. The policy also enables precalculation of prompt tokens on the Azure API Management side, minimizing unnecessary requests to the AI service backend if the prompt already exceeds the limit. 
+This policy provides flexibility to assign token-based limits on any counter key, such as subscription key, originating IP address, or an arbitrary key defined through a policy expression. The policy also enables precalculation of prompt tokens on the Azure API Management side, minimizing unnecessary requests to the Foundry Tool backend if the prompt already exceeds the limit. 
 
 The following basic example demonstrates how to set a TPM limit of 500 per subscription key:
 
@@ -102,7 +102,7 @@ More information:
 
 ### Semantic caching
 
-Semantic caching is a technique that improves the performance of LLM APIs by caching the results (completions) of previous prompts and reusing them by comparing the vector proximity of the prompt to prior requests. This technique reduces the number of calls made to the AI service backend, improves response times for end users, and can help reduce costs.
+Semantic caching is a technique that improves the performance of LLM APIs by caching the results (completions) of previous prompts and reusing them by comparing the vector proximity of the prompt to prior requests. This technique reduces the number of calls made to the Foundry Tool backend, improves response times for end users, and can help reduce costs.
 
 In API Management, enable semantic caching by using [Azure Managed Redis](/azure/redis/overview) or another external cache compatible with RediSearch and onboarded to Azure API Management. By using the Embeddings API, the [llm-semantic-cache-store](llm-semantic-cache-store-policy.md) and [llm-semantic-cache-lookup](llm-semantic-cache-lookup-policy.md) policies store and retrieve semantically similar prompt completions from the cache. This approach ensures completions reuse, resulting in reduced token consumption and improved response performance. 
 
@@ -124,13 +124,13 @@ More information:
 * [Deploy an API Management instance in multiple regions](api-management-howto-deploy-multi-region.md)
 
 > [!NOTE]
-> While API Management can scale gateway capacity, you also need to scale and distribute traffic to your AI backends to accommodate increased load (see the [Resiliency](#resiliency) section). For example, to take advantage of geographical distribution of your system in a multiregion configuration, deploy backend AI services in the same regions as your API Management gateways.
+> While API Management can scale gateway capacity, you also need to scale and distribute traffic to your AI backends to accommodate increased load (see the [Resiliency](#resiliency) section). For example, to take advantage of geographical distribution of your system in a multiregion configuration, deploy backend Foundry Tools in the same regions as your API Management gateways.
 
 ## Security and safety
 
 An AI gateway secures and controls access to your AI APIs. By using the AI gateway, you can:
 
-* Use managed identities to authenticate to Azure AI services, so you don't need API keys for authentication
+* Use managed identities to authenticate to Foundry Tools, so you don't need API keys for authentication
 * Configure OAuth authorization for AI apps and agents to access APIs or MCP servers by using API Management's credential manager
 * Apply policies to automatically moderate LLM prompts by using [Azure AI Content Safety](/azure/ai-services/content-safety/overview)
 
@@ -146,7 +146,7 @@ More information:
 
 ## Resiliency
 
-One challenge when building intelligent applications is ensuring that the applications are resilient to backend failures and can handle high loads. By configuring your LLM endpoints with [backends](backends.md) in Azure API Management, you can balance the load across them. You can also define circuit breaker rules to stop forwarding requests to AI service backends if they're not responsive. 
+One challenge when building intelligent applications is ensuring that the applications are resilient to backend failures and can handle high loads. By configuring your LLM endpoints with [backends](backends.md) in Azure API Management, you can balance the load across them. You can also define circuit breaker rules to stop forwarding requests to Foundry Tool backends if they're not responsive. 
 
 ### Load balancer 
 

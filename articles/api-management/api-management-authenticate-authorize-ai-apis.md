@@ -102,7 +102,7 @@ Follow these steps to configure your API Management instance to use a managed id
     ```
     
 > [!TIP]
-> Instead of using the `authentication-managed-identity` and `set-header` policies shown in this example, you can configure a [backend](backends.md) resource that directs API requests to the AI service endpoint. In the backend configuration, configure managed identity credentials to the `https://cognitiveservices.azure.com/` resource. Azure API Management automates these steps when you [import an API directly from Microsoft Foundry](azure-ai-foundry-api.md).  
+> Instead of using the `authentication-managed-identity` and `set-header` policies shown in this example, you can configure a [backend](backends.md) resource that directs API requests to the Azure AI Services endpoint. In the backend configuration, configure managed identity credentials to the `https://cognitiveservices.azure.com/` resource. Azure API Management automates these steps when you [import an API directly from Microsoft Foundry](azure-ai-foundry-api.md).  
 
 ## OAuth 2.0 authorization by using identity provider
 

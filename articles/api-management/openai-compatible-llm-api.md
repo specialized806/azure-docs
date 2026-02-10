@@ -15,7 +15,7 @@ ms.custom: template-how-to
 
 [!INCLUDE [api-management-availability-all-tiers](../../includes/api-management-availability-all-tiers.md)]
 
-You can import OpenAI-compatible language model endpoints to your API Management instance as APIs. You can also import language models that aren't compatible with OpenAI as passthrough APIs, which forward requests directly to the backend endpoints. For example, you might want to manage an LLM that you self-host, or that's hosted on an inference provider other than Azure AI services. Use AI gateway policies and other capabilities in API Management to simplify integration, improve observability, and enhance control over the model endpoints.
+You can import OpenAI-compatible language model endpoints to your API Management instance as APIs. You can also import language models that aren't compatible with OpenAI as passthrough APIs, which forward requests directly to the backend endpoints. For example, you might want to manage an LLM that you self-host, or that's hosted on an inference provider other than Foundry Tools. Use AI gateway policies and other capabilities in API Management to simplify integration, improve observability, and enhance control over the model endpoints.
 
 Learn more about managing AI APIs in API Management:
 
@@ -23,7 +23,7 @@ Learn more about managing AI APIs in API Management:
 
 ## Language model API types
 
-API Management supports two types of language model APIs for this scenario. Choose the option suitable for your model deployment. The option determines how clients call the API and how the API Management instance routes requests to the AI service.
+API Management supports two types of language model APIs for this scenario. Choose the option suitable for your model deployment. The option determines how clients call the API and how the API Management instance routes requests to the Foundry Tool.
 
 * **OpenAI-compatible** - Language model endpoints that are compatible with OpenAI's API. Examples include certain models exposed by inference providers such as [Hugging Face Text Generation Inference (TGI)](https://huggingface.co/docs/text-generation-inference/en/index) and [Google Gemini API](openai-compatible-google-gemini-api.md).
 

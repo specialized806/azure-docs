@@ -256,7 +256,7 @@ Blob index tags are a subresource to the blob data. A user with permissions or a
 
 ### Role-based access control
 
-Callers using an [Microsoft Entra identity](../common/authorize-data-access.md) may be granted the following permissions to operate on blob index tags.
+Callers using a [Microsoft Entra identity](../common/authorize-data-access.md) may be granted the following permissions to operate on blob index tags.
 
 | Blob index tag operations                                          | Azure RBAC action                                                             |
 |--------------------------------------------------------------------|-------------------------------------------------------------------------------|
