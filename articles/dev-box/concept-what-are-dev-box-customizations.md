@@ -28,15 +28,6 @@ Dev Box offers two ways to use customizations:
 - **Team customizations**: Used to create a standard shared configuration for a team of developers in place of creating multiple standard or *golden* images for your teams.
 - **User customizations**: Used by developers to create configurations for their personal preferences. With user customizations, developers can store their configurations in files and run them when they create dev boxes. Customizations provide consistency across all dev boxes.
 
-| Feature                     | Team customizations       | User customizations |
-|-----------------------------|---------------------------|---------------------------|
-| Configure on            | Dev box pool             | Dev box                   |
-| Customizations apply to | All dev boxes in pool    | Individual dev box        |
-| Easily shareable        | Yes                      | No                        |
-| Customizations file name| `imagedefinition.yaml`    | `myfilename.yaml`         |
-| Sourced from            | Catalog or personal repository | Uploaded or from personal repository |
-| Supports key vault secrets | Yes                  | Yes                       |
-
 ### Choose the right customization type
 
 | If you want to... | Use |
