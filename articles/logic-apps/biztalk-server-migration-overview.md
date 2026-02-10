@@ -451,7 +451,7 @@ The following table and diagram shosw how resources, artifacts, features, and ca
 
 :::image type="content" source="./media/biztalk-server-to-azure-integration-services-overview/enterprise-integration-platform.png" alt-text="Diagram shows matchup between components from BizTalk Server and Azure Logic Apps for the enterprise integration platform." border="false":::
 
-#### Azure Logic Apps Standard Hybrid (On-premises)
+### Azure Logic Apps Standard Hybrid (On-premises)
 
 | Feature or functionality | BizTalk Server | Azure Logic Apps (Hybrid) |
 |--------------------------|----------------|--------------------------|
