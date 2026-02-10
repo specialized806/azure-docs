@@ -40,6 +40,7 @@ You need to complete the following tasks before enabling the ALB Controller add-
 
     # Install Azure CLI extensions.
     az extension add --name alb
+    az extension add --name aks-preview 
     ```
     
     # [Azure PowerShell](#tab/azure-powershell)
