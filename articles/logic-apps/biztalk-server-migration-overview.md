@@ -399,7 +399,7 @@ In the hybrid deployment model, there are two core dependencies. The Kubernetss 
 
 ### Feature matchup
 
-The following table and diagram shosw how resources, artifacts, features, and capabilities compare and match up between BizTalk Server, Azure Logic Apps Standard, and other services. Try to leverage as much as possible Azure Logic Apps features, to build a cohesive, more cost-effective solution.
+The following table and diagram shosw how resources, artifacts, features, and capabilities compare and match between BizTalk Server, Azure Logic Apps (Standard), and other services. Try to use Azure Logic Apps features as much as possible to build a cohesive, more cost-effective solution.
 
 #### Azure Logic Apps Standard (Cloud)
 
