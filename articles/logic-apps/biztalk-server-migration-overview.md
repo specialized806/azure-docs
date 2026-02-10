@@ -304,7 +304,7 @@ The [Azure portal](/azure/azure-portal/azure-portal-overview) is a common tool t
 
 Granular [role-based access controls (RBAC)](../role-based-access-control/overview.md) are also available so you can manage and restrict access to Azure resources at various levels.
 
-#### Storage
+### Storage
 
 Azure Logic Apps relies on [Azure Storage](../storage/common/storage-introduction.md) to store and automatically [encrypt data at rest](logic-apps-securing-a-logic-app.md). This encryption protects your data and helps you meet your organizational security and compliance commitments. By default, Azure Storage uses Microsoft-managed keys to encrypt your data. For more information, see [Azure Storage encryption for data at rest](../storage/common/storage-service-encryption.md).
 
