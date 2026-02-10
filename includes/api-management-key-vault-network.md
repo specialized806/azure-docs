@@ -25,12 +25,6 @@ If [Key Vault firewall](/azure/key-vault/general/network-security) is enabled on
 
   After you complete the configuration, you can block your client address in the key vault firewall.
 
-> [!IMPORTANT]
->
-> Starting March 2026, trusted service connectivity to Azure services from the API Management gateway by enabling the **Allow Trusted Microsoft Services to bypass this firewall** firewall setting are no longer supported.
->
-> To continue accessing these services from the API Management gateway after this change, ensure that you choose a different supported network access option. For control-plane operations, you can continue to use trusted service connectivity. [Learn more](../articles/api-management/breaking-changes/trusted-service-connectivity-retirement-march-2026.md).
-
 #### Virtual network requirements
 
 If the API Management instance is deployed in a virtual network, also configure the following network settings:
