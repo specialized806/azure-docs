@@ -410,7 +410,9 @@ The process to get each component ready for deployment usually takes the followi
 
 ### Product dependencies
 
-Logic Apps Standard has two core dependencies when running in Azure: Azure Storage and App Service. Other optional dependencies will be applicable based on the implementation scenario. Each one of the aforementioned features has a direct relationship with any of the core or optional dependencies. Azure Storage has a direct impact in performance, along with the instances selected for deployment. The following is a diagram that shows the core and optional dependencies of Logic Apps:   
+Azure Logic Apps (Standard) has two core dependencies in Azure: Azure Storage and Azure App Service. Other optional dependencies apply based on your implementation scenario. Each previously mentioned feature has a direct relationship with any of the core or optional dependencies. Azure Storage directly impacts performance along with the selected instances for deployment.
+
+The following diagram shows the core and optional dependencies for Azure Logic Apps:
 
 :::image type="content" source="./media/biztalk-server-to-azure-integration-services-overview/LAWorkflows.png" alt-text="Diagram that shows multiple workflows in Azure Logic Apps." border="false":::
 
