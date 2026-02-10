@@ -4,7 +4,7 @@ description: Learn how to scale an Azure SignalR Service instance to add or redu
 author: vicancy
 ms.service: azure-signalr-service
 ms.topic: how-to
-ms.date: 07/18/2022
+ms.date: 02/10/2026
 ms.author: lianwei 
 ms.custom: devx-track-azurecli
 ---
@@ -19,8 +19,16 @@ The scale settings take a few minutes to apply. In rare cases, it may take aroun
 For information about the pricing and capacities of individual SignalR Service, see [Azure SignalR Service Pricing Details](https://azure.microsoft.com/pricing/details/signalr-service/).  
 
 > [!NOTE]
-> Changing SignalR Service from **Free** tier to **Standard** or **Premium** tier or vice versa, the public service IP will be changed and it usually takes 30-60 minutes to propagate the change to DNS servers across the entire internet. 
-> Your service might be unreachable before DNS gets updated. Generally it’s not recommended to change your pricing tier too often.
+> Scaling Azure SignalR Service between different pricing tiers may result in service downtime.
+> The downtime behavior varies by tier combination and is summarized in the table below.
+>
+> | Scale Scenario | Downtime Expected |
+> | -- | -- |
+> | Free ↔ Standard / Premium | Yes |
+> | Standard_S1 ↔ Premium_P1 | No |
+> | Premium_P1 ↔ Premium_P2 | Yes |
+>
+> For scale scenarios where downtime is expected, the downtime occurs because the **public service IP address changes** during the scaling operation. This IP change typically takes **30–60 minutes** to propagate across DNS servers globally, during which the service may be temporarily unreachable. Generally it’s not recommended to change your pricing tier too often.
 
 
 ## Scale Up on Azure portal
