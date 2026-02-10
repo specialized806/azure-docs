@@ -129,7 +129,13 @@ For more information, see the following documentation:
 
 #### Data shaping & artifacts
 
-When migrating integrations to Azure Logic Apps, you typically need (1) in-workflow data shaping (for example, parsing, composing, and mapping) and (2) a clear strategy for storing and deploying reusable artifacts such as schemas, maps, templates, and assemblies. The sections below summarize the main built-in options for transformations and the common places to keep the supporting artifacts for Standard workflows and shared B2B scenarios.
+When you migrate integrations to Azure Logic Apps, you typically need the following:
+
+- In-workflow data shaping, for example, parsing, composing, and mapping.
+
+- A clear strategy for storing and deploying reusable artifacts such as schemas, maps, templates, and assemblies.
+
+The following sections summarize the main built-in options for transformations and the common places to store the supporting artifacts for Standard workflows and shared B2B scenarios.
 
 - Data shaping in workflows (Data Operations, expressions, and Liquid templates)
 
