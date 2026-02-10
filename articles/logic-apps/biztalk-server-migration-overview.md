@@ -231,7 +231,9 @@ For inbound and outbound connectivity, Azure provides multiple ways to isolate t
 
   With [Azure Virtual Network](../virtual-network/virtual-networks-overview.md) integration, you can connect your Azure resource to a virtual network configured in Azure, giving your app access to resources in that virtual network. Virtual network integration in Azure Logic Apps is used only to make outbound calls from your Azure resource to your virtual network.
 
-  With [virtual network peering](../virtual-network/virtual-network-peering-overview.md), you can connect your on-premises networks to Azure, which provides bi-directional connectivity between on-premises resources and Azure services. Azure Integration Services provides virtual network connectivity, allowing for hybrid integration. The following image shows a Standard logic app resource with the Networking page open and virtual network integration enabled as highlighted in the **Outbound Traffic** box. This configuration makes sure that all outbound traffic leaves from this virtual network.
+  With [virtual network peering](../virtual-network/virtual-network-peering-overview.md), you can connect your on-premises networks to Azure, which provides bi-directional connectivity between on-premises resources and Azure services. Azure Integration Services provides virtual network connectivity, allowing for hybrid integration.
+  
+  The following image shows a Standard logic app resource with the Networking page open and virtual network integration enabled as highlighted in the **Outbound Traffic** box. This configuration makes sure that all outbound traffic leaves from this virtual network.
 
   :::image type="content" source="./media/biztalk-server-to-azure-integration-services-overview/standard-logic-app-networking-page-virtual-network-integration.png" alt-text="Screenshot shows Azure portal, Standard logic app resource, and Networking page with virtual network integration enabled.":::
 
