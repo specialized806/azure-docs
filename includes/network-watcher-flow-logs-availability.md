@@ -8,8 +8,6 @@ ms.custom: include file, references_regions
 ---
 # [North America / South America](#tab/Americas)
 
-# [North America / South America](#tab/Americas)
-
 > [!div class="mx-tableFixed"]
 >
 > | Region | Virtual network flow logs | Traffic analytics | Log Analytics workspace |
