@@ -467,3 +467,172 @@ Azure **fully meets and exceeds** SCG-ENH-EXP by providing comprehensive, docume
 
 The combination of **ARM**, **Microsoft Graph**, **Azure Policy**, **RBAC APIs**, **Defender for Cloud APIs**, and **Azure Resource Graph** ensures **complete transparency, adjustability, and automation** of all security posture components.
 
+---
+#### 1. Azure Resource Manager (ARM) — Security Configuration API
+
+Azure Resource Manager (ARM) exposes **every Azure resource’s configuration** (including security settings) via REST API. This allows programmatic **view** (`GET`) and **adjust** (`PUT/PATCH`) operations for:
+
+- Network Security Group (NSG) rules
+
+- Key Vault access policies
+
+- Storage encryption settings
+
+- Diagnostic settings
+
+- Azure Policy assignments
+
+**Microsoft Learn:** [Azure Resource Manager](/rest/api/resources/)
+
+---
+#### 2. Microsoft Graph API — Identity & Access Security Settings
+
+Microsoft Graph exposes the **entire identity security plane**, enabling automation to view/adjust:
+
+- Conditional Access policies
+
+- Authentication Strength (MFA) policies
+
+- Identity Protection risk policies, risky users, risky sign‑ins
+
+- Privileged Identity Management (PIM) settings
+
+- Access Review definitions, decisions, and remediation actions
+
+**Microsoft Learn:**
+
+- [Top Level – Microsoft Entra Documentation](/entra/)
+
+- [What is Microsoft Entra ID Protection?](/entra/id-protection/overview-identity-protection)
+
+---
+#### 3. Azure Policy API — Secure Defaults, Baselines, Compliance
+
+Programmatically enforce and adjust secure settings using Policy APIs:
+
+- Assign / unassign policy definitions
+
+- Enforce secure baselines
+
+- Evaluate compliance state
+
+- Detect drift
+
+- Export compliance state (JSON)
+
+**Microsoft Learn:**
+
+- [Azure Policy documentation](/azure/governance/policy/)
+
+---
+#### 4. Azure RBAC — View & Adjust Role Assignments (JSON Export)
+
+Azure exposes all RBAC assignments and allows programmatic adjustments using:
+
+Azure CLI (JSON Export)
+
+- **Microsoft Learn:** [List Azure role assignments using Azure CLI](/azure/role-based-access-control/role-assignments-list-cli)
+
+### 
+
+---
+#### 5. Microsoft Defender for Cloud APIs — Secure Score & Recommendations
+
+View and adjust cloud security posture via API:
+
+- Secure Score export
+
+- Recommendations retrieval
+
+- Regulatory compliance mapping
+
+- Automated remediation
+
+**Microsoft Learn:**
+
+- [Manage security posture with Microsoft Defender for Cloud](/training/modules/microsoft-defender-cloud-security-posture/)
+
+- [Interactive security posture guide (Cloud Security Posture UX)](https://thinkcloudly.com/blog/azure/defender-for-cloud-implementation-guide/)
+
+---
+#### 6. Azure Resource Graph — Full Security Inventory (JSON Export)
+
+ARG enables querying and exporting:
+
+- RBAC assignments
+
+- NSG exposure
+
+- Encryption settings
+
+- Diagnostic settings
+
+- Identity configurations
+
+- Compliance posture
+
+**Microsoft Learn:** [Azure Resource Graph documentation](/azure/governance/resource-graph/)
+
+---
+#### 7. Integration With CI/CD, SOAR, SIEM & Compliance Pipelines (Expanded)
+
+#### Continuous Integration / Continuous Deployment (CI/CD)
+
+Azure’s APIs integrate with:
+
+- GitHub Actions
+
+- Azure DevOps
+
+- GitLab CI
+
+Enables pipelines to:
+
+- Pull security configuration
+
+- Validate RBAC & Policy compliance before deployment
+
+- Enforce secure defaults using IaC
+
+#### Security Orchestration Automation & Response (SOAR)
+
+Using Microsoft Sentinel & Defender XDR automation:
+
+- Pull risk events via Graph
+
+- Trigger remediation workflows
+
+- Auto‑adjust Conditional Access / RBAC
+
+- Update policies on drift
+
+#### Security Information & Event Management (SIEM)
+
+Microsoft Sentinel, Splunk, QRadar can ingest:
+
+- RBAC assignment exports
+
+- Identity Protection alerts
+
+- Defender for Cloud posture data
+
+Enables:
+
+- Real‑time misconfiguration detection
+
+- Compliance verification
+
+- Long‑term audit logging
+
+#### Compliance / GRC Pipelines
+
+Supports automated:
+
+- Export of configuration evidence
+
+- Comparison with NIST 800‑53, FedRAMP, CIS, ISO 27001
+
+- Drift detection
+
+- Auditor‑ready JSON bundles
+
