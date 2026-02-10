@@ -84,7 +84,7 @@ Azure Logic Apps offers the following example advantages:
 
 - Flexible and scalable
 
-  Azure Logic Apps is a cloud-based, serverless, highly scalable, computing service, which automatically scales and adapts to meet evolving business needs.
+  Azure Logic Apps is a cloud-based, serverless, highly scalable, computing service that automatically scales and adapts to meet evolving business needs.
 
 #### Developer experiences
 
