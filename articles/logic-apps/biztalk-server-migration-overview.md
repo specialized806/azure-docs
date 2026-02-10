@@ -120,7 +120,7 @@ For many BizTalk migrations, connector selection is driven by common integration
   For REST APIs, you typically describe the API by using an OpenAPI definition. For SOAP APIs, you use a WSDL. The custom connector creates a contract between Azure Logic Apps and the API that helps you assemble request messages and receive typed responses that you can use in downstream actions. Custom connectors can reference public APIs or private APIs, including APIs on your local network.
   By implementing a custom connector, you provide a common interface for sending requests and receiving typed responses, which simplifies the development experience.
 
-For more information, see the following documentation:
+For more information, see:
 
 - [Built-in connectors overview](../connectors/built-in.md)
 - [Managed connectors overview](../connectors/managed.md)
