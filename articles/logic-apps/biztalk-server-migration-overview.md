@@ -35,7 +35,7 @@ By migrating your integration workloads to Azure Logic Apps, you can reap the fo
 
 <a name="how-does-biztalk-server-work"></a>
 
-### How does BizTalk Server work?
+## How does BizTalk Server work?
 
 BizTalk Server uses a publish-subscribe messaging engine architecture with the [MessageBox database](/biztalk/core/the-messagebox-database) at the heart. MessageBox is responsible for storing messages, message properties, subscriptions, orchestration states, tracking data, and other information.
 
