@@ -123,8 +123,6 @@
       href: durable-functions-perf-and-scale.md
     - name: High availability
       href: durable-functions-disaster-recovery-geo-distribution.md
-    - name: Azure Storage provider
-      href: durable-functions-azure-storage-provider.md
   - name: Tutorials
     items: 
     - name: Configure Durable Functions with managed identity
@@ -279,8 +277,8 @@
       href: /java/api/com.microsoft.durabletask
 - name: Storage providers
   items:
-  - name: What is a storage provider?
-    href: durable-functions-storage-providers.md #placeholder
+  - name: Overview
+    href: durable-functions-storage-providers.md
   - name: Durable Task Scheduler
     items:
     - name: Overview
@@ -299,12 +297,10 @@
       href: ./durable-task-scheduler/durable-task-scheduler-dedicated-sku.md
     - name: Troubleshoot
       href: ./durable-task-scheduler/troubleshoot-durable-task-scheduler.md
-  - name: Durable Functions supported providers
+  - name: Durable Functions only
     items:
-    - name: Durable Task Scheduler
-      href: durable-functions-storage-providers.md#dts
     - name: Azure Storage
-      href: durable-functions-storage-providers.md#azure-storage
+      href: durable-functions-azure-storage-provider.md
     - name: MSSQL
       href: durable-functions-storage-providers.md#mssql
     - name: Netherite
