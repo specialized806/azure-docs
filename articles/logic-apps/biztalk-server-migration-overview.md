@@ -16,8 +16,6 @@ ms.date: 02/11/2026
 
 This guide provides an overview about the reasons and benefits, capabilities, and other information to help you start migrating from BizTalk Server to Azure Logic Apps. Following this guide, you'll find more guides that cover migration strategies, planning considerations, and best practices to help you deliver successful results.
 
-
-
 ## Reasons and benefits
 
 By migrating your integration workloads to Azure Logic Apps, you can reap the following primary benefits:
@@ -31,7 +29,6 @@ By migrating your integration workloads to Azure Logic Apps, you can reap the fo
 | Lower barrier to entry | BizTalk Server is a very capable middleware broker but requires significant time to learn and gain proficiency. Azure Logic Apps reduces the time required to start, learn, build, and deliver solutions. For example, [Azure Logic Apps](logic-apps-overview.md) includes a visual designer that gives you a no-code or low-code experience for building the declarative workflows that you want to replace BizTalk orchestrations. |
 | SaaS connectivity | With REST APIs becoming standard for application integration, more SaaS companies have adopted this approach for exchanging data. Microsoft has built an expansive and continually growing connector ecosystem with hundreds of APIs to work with Microsoft and non-Microsoft services, systems, and protocols. In Azure Logic Apps, you can use the workflow designer to select operations from these connectors, easily create and authenticate connections, and configure the operations they want to use. This capability speeds up development and provides more consistency when authenticating access to these services using OAuth2. |
 | Multiple geographical deployments | Azure currently offers [60+ announced regions](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/), more than any other cloud provider, so that you can easily choose the datacenters and regions that are right for you and your customers. This reach lets you deploy solutions in a consistent manner across many geographies and provides opportunities from both a scalability and redundancy perspective. |
-
 
 <a name="how-does-biztalk-server-work"></a>
 
@@ -51,7 +48,7 @@ The MessageBox database has the following components:
 
   These databases provide the persistence store for messages, message parts, message properties, subscriptions, orchestration state, tracking data, host queues for routing, and more.
 
-The following image shows how BizTalk Server Messaging Engine works:
+The following image shows how the BizTalk Server Messaging Engine works:
 
 :::image type="content" source="./media/biztalk-server-to-azure-integration-services-overview/biztalk-server-messaging-engine.png" alt-text="Diagram shows BizTalk Server Messaging Engine." border="false":::
 
@@ -61,16 +58,15 @@ After a Receive port receives a message, MessageBox stores that message for proc
 
 For more information, see [Publish-subscribe architecture](#publish-subscribe-architecture) later in this guide.
 
+## Azure Logic Apps: Successor to BizTalk
 
-## Azure Logic Apps: successor to BizTalk
-
-Azure Logic Apps is the enterprise-grade workflow orchestration and integration platform from Microsoft. This platform is designed for deterministic, long‑running, stateful processes across cloud and hybrid environments. The key differentiator combines low‑code visual workflows with first‑class Azure platform capabilities: security, identity, networking, monitoring, and governance. Azure Logic Apps supports multiple deployment models (Consumption, Standard, Hybrid), which empower customers to run workflows fully managed in Azure or close to on‑premises systems while maintaining reliability, state management, and auditable execution. This flexibility makes the platform the natural backbone for modernizing BizTalk Server estates, orchestrating B2B/EDI integrations, and connecting SaaS, ERP, CRM, and legacy systems where durability and observability are non‑negotiable.
+[Azure Logic Apps](logic-apps-overview.md) is the enterprise-grade workflow orchestration and integration platform from Microsoft. This platform is designed for deterministic, long‑running, stateful processes across cloud and hybrid environments. The key differentiator combines low‑code visual workflows with first‑class Azure platform capabilities: security, identity, networking, monitoring, and governance. Azure Logic Apps supports multiple deployment models (Consumption, Standard, Hybrid), which empower customers to run workflows fully managed in Azure or close to on‑premises systems while maintaining reliability, state management, and auditable execution. This flexibility makes the platform the natural backbone for modernizing BizTalk Server estates, orchestrating B2B/EDI integrations, and connecting SaaS, ERP, CRM, and legacy systems where durability and observability are non‑negotiable.
 
 :::image type="content" source="./media/biztalk-server-to-azure-integration-services-overview/simpleworkflow.png" alt-text="Diagram that shows a simple workflow." border="false":::
 
-However, Azure Logic Apps is not solely "low‑code". Customers routinely use pro-code extensibility alongside visual workflows: inline C#, JavaScript, and PowerShell, custom code through local functions that run in Azure Logic Apps, and custom connectors. This extensibility lets teams embed complex business logic, transformations, protocol handling, and validation directly inside orchestrations without breaking the workflow model. In real‑world scenarios, such as claims processing, onboarding, compliance pipelines, mainframe and healthcare integrations, customers rely on Azure Logic Apps to act as the controlled execution layer that blends deterministic orchestration with custom code and, increasingly, AI‑assisted decisions, while preserving governance, security, and operational confidence at scale.
+However, Azure Logic Apps isn't solely "low‑code". Customers routinely use pro-code extensibility alongside visual workflows: inline C#, JavaScript, and PowerShell, custom code through local functions that run in Azure Logic Apps, and custom connectors. This extensibility lets teams embed complex business logic, transformations, protocol handling, and validation directly inside orchestrations without breaking the workflow model. In real‑world scenarios, such as claims processing, onboarding, compliance pipelines, mainframe and healthcare integrations, customers rely on Azure Logic Apps to act as the controlled execution layer that blends deterministic orchestration with custom code and, increasingly, AI‑assisted decisions, while preserving governance, security, and operational confidence at scale.
 
-In [Azure Logic Apps](logic-apps-overview.md), you can create executable business processes and applications as logic app workflows by using a "building block" way of programming with a visual designer and prebuilt operations from hundreds of connectors, requiring minimal code. A logic app workflow starts with a trigger operation followed by one or more action operations with each operation functioning as a logical step in the workflow implementation process. Your workflow can use actions to call external software, services, and systems. Some actions perform programming tasks, such as conditions, loops, data operations, variable management, and more.
+In Azure Logic Apps, you can create executable business processes and applications as logic app workflows by using a "building block" way of programming with a visual designer and prebuilt operations from hundreds of connectors, requiring minimal code. A logic app workflow starts with a trigger operation followed by one or more action operations with each operation functioning as a logical step in the workflow implementation process. Your workflow can use actions to call external software, services, and systems. Some actions perform programming tasks, such as conditions, loops, data operations, variable management, and more.
 
 Azure Logic Apps offers the following example advantages:
 
@@ -112,7 +108,6 @@ Most connectors in Azure Logic Apps are either built in or managed. Some connect
 
 For many BizTalk migrations, connector selection is driven by common integration requirements such as on-premises connectivity, file transfer such as SFTP, messaging systems, and line-of-business systems.
 
-
 -	Built-in connectors natively run on the Azure Logic Apps runtime. Compared to managed connectors, built-in connectors usually reduce latency and avoid per-connection calls to the managed connector service, depending on the connector and scenario.
 
 -	Managed connectors are deployed, hosted, and managed by Microsoft in Azure. These connectors provide triggers and actions for cloud services, on-premises systems, or both. In the designer's connector gallery, built-in connectors appear under the **Built-in** label, while managed connectors appear under the **Shared** label. For Consumption logic app workflows, managed connectors follow either the Standard or Enterprise pricing tier.
@@ -120,7 +115,8 @@ For many BizTalk migrations, connector selection is driven by common integration
 -	Custom connectors let you wrap REST APIs, commonly by using an OpenAPI definition or SOAP APIs by using a WSDL, when no prebuilt connector exists. If no prebuilt connectors exist for the APIs you want to use, you can create a custom connector and access that connector from logic app workflows with the appropriate permissions.
 
   For REST APIs, you typically describe the API by using an OpenAPI definition. For SOAP APIs, you use a WSDL. The custom connector creates a contract between Azure Logic Apps and the API that helps you assemble request messages and receive typed responses that you can use in downstream actions. Custom connectors can reference public APIs or private APIs, including APIs on your local network.
-  By implementing a custom connector, you provide a common interface for sending requests and receiving typed responses, which simplifies the development experience.
+
+  When you implement a custom connector, you provide a common interface for sending requests and receiving typed responses, which simplifies the development experience.
 
 For more information, see:
 
@@ -129,7 +125,7 @@ For more information, see:
 - [Managed connectors available in Azure Logic Apps](/connectors/connector-reference/connector-reference-logicapps-connectors)
 - [Custom connectors and APIs](/connectors/custom-connectors/)
 
-#### Data shaping and artifacts
+### Data shaping and artifacts
 
 When you migrate integrations to Azure Logic Apps, you typically need the following:
 
@@ -149,21 +145,21 @@ The following sections summarize the main built-in options for transformations a
 
 - Store artifacts in Standard logic apps 
 
-For Standard logic app workflows, you can store integration artifacts in the logic app resource itself. In the Azure portal, you can upload maps and schemas directly to the Standard logic app resource. If you work in Visual Studio Code, you can add schemas, maps, and templates to the appropriate folders under the project’s Artifacts directory and deploy them together with the workflow. This capability makes it easier for you to keep artifacts in source control.
+  For Standard logic app workflows, you can store integration artifacts in the logic app resource itself. In the Azure portal, you can upload maps and schemas directly to the Standard logic app resource. If you work in Visual Studio Code, you can add schemas, maps, and templates to the appropriate folders under the project’s Artifacts directory and deploy them together with the workflow. This capability makes it easier for you to keep artifacts in source control.
 
-Standard workflows support calling custom compiled assemblies, such as .NET Framework assemblies, from XSLT maps. This support helps you with BizTalk migration scenarios that rely on existing transformation logic.
+  Standard workflows support calling custom compiled assemblies, such as .NET Framework assemblies, from XSLT maps. This support helps you with BizTalk migration scenarios that rely on existing transformation logic.
 
 - Store shared B2B artifacts in an integration account
 
-An *integration account* is an Azure resource that provides centralized access to reusable B2B and integration artifacts that multiple workflows can share. Artifacts can include trading partners, agreements, XSD schemas, XSLT maps, Liquid template-based maps, certificates, batch configurations, and .NET Framework assemblies.
+  An *integration account* is an Azure resource that provides centralized access to reusable B2B and integration artifacts that multiple workflows can share. Artifacts can include trading partners, agreements, XSD schemas, XSLT maps, Liquid template-based maps, certificates, batch configurations, and .NET Framework assemblies.
 
-You commonly use integration accounts in B2B/EDI scenarios where you want a shared, governed artifact store separate from any single workflow. For Standard workflows, you can often avoid an integration account by packaging schemas, maps, and templates with the Standard logic app project and deploying them together. Standard workflows also support calling .NET Framework assemblies from XSLT transformations [see announcement](), which can help when porting existing BizTalk maps and helper libraries. If you prefer a project-based approach, add schemas, maps, and assemblies in Visual Studio Code and then deploy to Azure.
+  You commonly use integration accounts in B2B/EDI scenarios where you want a shared, governed artifact store separate from any single workflow. For Standard workflows, you can often avoid an integration account by packaging schemas, maps, and templates with the Standard logic app project and deploying them together. Standard workflows also support calling .NET Framework assemblies from XSLT transformations, which can help when you port existing BizTalk maps and helper libraries. If you prefer a project-based approach, add schemas, maps, and assemblies in Visual Studio Code and then deploy to Azure.
 
-- EDI schemas: specialized XSD artifacts for B2B integrations
+- EDI schemas: Specialized XSD artifacts for B2B integrations
 
-EDI document schemas define the structure or body for an EDI transaction document type. In BizTalk migration projects, teams often start by reusing the same XSD definitions and then iteratively validate trading-partner-specific variations. For workflows in Azure Logic Apps, many BizTalk EDI schemas in the [Microsoft Integration GitHub repository](https://github.com/microsoft/Integration/tree/master/BizTalk%20Server/Schema) are publicly available for you to use. Based on your implementation approach, you can store these schemas either alongside a Standard logic app as project artifacts or centrally in an integration account for reuse across multiple workflows.
+  EDI document schemas define the structure or body for an EDI transaction document type. In BizTalk migration projects, teams often start by reusing the same XSD definitions and then iteratively validate trading-partner-specific variations. For workflows in Azure Logic Apps, many BizTalk EDI schemas in the [Microsoft Integration GitHub repository](https://github.com/microsoft/Integration/tree/master/BizTalk%20Server/Schema) are publicly available for you to use. Based on your implementation approach, you can store these schemas either alongside a Standard logic app as project artifacts or centrally in an integration account for reuse across multiple workflows.
 
-#### Connectivity
+### Connectivity
 
 The connectivity model in Azure Logic Apps differs from BizTalk Server, partially due to the evolution of the API economy. As more organizations expose access to underlying systems and data, a platform-agnostic approach was needed. REST is now the dominant architectural approach to designing modern web services.
 
@@ -183,8 +179,7 @@ Microsoft gives you the option to use [Transport Layer Security (TLS) protocol](
 
 While this section focused on RESTful connectivity through connectors, you can implement SOAP web service connectivity through the custom connector experience or by using the API Management experience, which provides great SOAP capabilities. For more information, see [Increasing business value by integrating SOAP legacy assets with Azure logic Apps and Azure APIM](https://techcommunity.microsoft.com/t5/azure-integration-services-blog/increasing-business-value-by-integrating-soap-legacy-assets-with/ba-p/4238077).
 
-
-#### Message durability
+### Message durability
 
 Azure Logic Apps provides message durability in the following ways:
 
@@ -192,7 +187,7 @@ Azure Logic Apps provides message durability in the following ways:
 
 - You can *resubmit* or rerun a workflow run in the Azure portal or by using APIs.
 
-   Resubmission might cause the workflow to process the same message again, so make sure your designs assume at-least-once processing and implement *idempotency*. For example, use deduplication keys, upserts, or exactly-once effects at the destination.
+   Resubmission might cause the workflow to process the same message again, so make sure your designs assume at-least-once processing and implement *idempotency*. For example, use deduplication keys, upserts, or exactly once effects at the destination.
    
    Based on the workflow type and configuration, you can also resubmit from a specific point in the run. However, make sure your downstream systems can safely handle retries and potential duplicates.
 
@@ -202,40 +197,35 @@ Azure Logic Apps provides message durability in the following ways:
 
 - With RabbitMQ, you can commonly achieve durability by using durable queues or exchanges together with persistent messages and by relying on consumer acknowledgments so the system can redeliver messages if processing fails before sending an acknowledgment. When you integrate using the RabbitMQ connector, apply the same design principle as other brokers: assume retries and potential duplicates, and make downstream processing idempotent.
 
-- With IBM MQ, you can typically address durability and reliable delivery by using persistent messages and transactional processing (units of work). You then have the capability to commit or roll back received messages and downstream work together. If a failure occurs before work is committed, or a message is acknowledged, the message can become available for redelivery. When you use the IBM MQ connector, design for at-least-once delivery and handle possible duplicates at the destination.
+- With IBM MQ, you can typically address durability and reliable delivery by using persistent messages and transactional processing (units of work). You then have the capability to commit or roll back received messages and downstream work together. If a failure occurs before work is committed, or a message is acknowledged, the message can become available for redelivery.
 
-In BizTalk migration scenarios, this typically maps to designing the Logic Apps workflow and downstream endpoints for safe reprocessing (for example, by using correlation identifiers, de-duplication, and idempotent writes) rather than relying on the broker alone for end-to-end exactly-once behavior.
+  When you use the IBM MQ connector, design for at-least-once delivery and handle possible duplicates at the destination. In BizTalk migration scenarios, this pattern typically maps to designing the logic app workflow and downstream endpoints for safe reprocessing, for example, by using correlation identifiers, deduplication, and idempotent writes, rather than relying on the broker alone for end-to-end, exactly once behavior.
 
+### Publish-subscribe architecture
 
-#### Publish-subscribe architecture
-
-Compared to BizTalk Server’s messaging engine, Azure Logic Apps uses connectors and external messaging services to implement messaging patterns alongside workflow orchestration. For publish-subscribe (pub-sub) patterns with Azure Logic Apps, common broker options include Azure Service Bus (topics and subscriptions) and [RabbitMQ](/azure/logic-apps/connectors/built-in/reference/rabbitmq). [Azure Service Bus](../service-bus-messaging/service-bus-messaging-overview.md) is a fully managed enterprise message broker with queues and pub-sub topics that you can use to decouple applications and services, which provides the following benefits:
+Compared to the BizTalk Server messaging engine, Azure Logic Apps uses connectors and external messaging services to implement messaging patterns alongside workflow orchestration. For publish-subscribe (pub-sub) patterns with Azure Logic Apps, common broker options include Azure Service Bus (topics and subscriptions) and [RabbitMQ](/azure/logic-apps/connectors/built-in/reference/rabbitmq). [Azure Service Bus](../service-bus-messaging/service-bus-messaging-overview.md) is a fully managed enterprise message broker with queues and pub-sub topics that you can use to decouple applications and services, which provides the following benefits:
 
 -	Load balance work across competing workers.
 -	Safely route and transfer data with control across service and application boundaries.
 -	Coordinate transactional work that requires a high degree of reliability.
 
-Azure Logic Apps includes an [Azure Service Bus connector](/connectors/servicebus/) that you can use to publish and subscribe to messages. The benefit is that you can use messaging independently from your workflow. Unlike BizTalk Server, messaging is decoupled from the workflow engine. You can create message subscriptions in Azure Service Bus and use [message properties (user properties)](/rest/api/servicebus/message-headers-and-properties#message-properties) as key-value pairs that are evaluated by filters on a [topic subscription](../service-bus-messaging/service-bus-quickstart-topics-subscriptions-portal.md). You define these user properties when you set up an Azure Service Bus operation by adding one or more key-value pairs. For a demonstration, see the following video: [Pub Sub Messaging using Azure Integration Services - Part 2 Content Based Routing](https://youtu.be/1ZMJhWGDVro).
+Azure Logic Apps includes an [Azure Service Bus connector](/connectors/servicebus/) that you can use to publish and subscribe to messages. The benefit is that you can use messaging independently from your workflow. Unlike BizTalk Server, messaging is decoupled from the workflow engine. You can create message subscriptions in Azure Service Bus and use [message properties (user properties)](/rest/api/servicebus/message-headers-and-properties#message-properties) as key-value pairs that are evaluated by filters on a [topic subscription](../service-bus-messaging/service-bus-quickstart-topics-subscriptions-portal.md). You define these user properties when you set up an Azure Service Bus operation by adding one or more key-value pairs. For a demonstration, see the video: [Pub Sub Messaging using Azure Integration Services - Part 2 Content Based Routing](https://youtu.be/1ZMJhWGDVro).
 
-Azure Logic Apps also includes a RabbitMQ connector (built-in connector for Standard workflows) that you can use to send and receive messages. In RabbitMQ, pub-sub is commonly implemented by publishing to an exchange and having multiple consumers receive messages through separate queues that are bound to that exchange (often using routing keys or header-based routing, depending on the exchange type). This approach supports fan-out and routing-based distribution patterns similar in intent to Service Bus topics and subscription rules, but configured using RabbitMQ exchanges, bindings, and queue settings. RabbitMQ is often a strong option when you already have an on-premises RabbitMQ estate, need broker capabilities in environments where Azure Service Bus isn’t available, or want to keep messaging local to the network where producers/consumers run. As with any broker-based integration, design for retries and potential duplicates (for example, use acknowledgements, durable queues, and persistent messages where appropriate) and make downstream processing idempotent.
+Azure Logic Apps with Standard workflows also includes a RabbitMQ built-in connector that you can use to send and receive messages. In RabbitMQ, you commonly implment the pub-sub pattern by publishing to an exchange and have multiple consumers receive messages through separate queues bound to that exchange, often by using routing keys or header-based routing, based on the exchange type. This approach supports fan-out and routing-based distribution patterns similar in intent to Service Bus topics and subscription rules, but configured using RabbitMQ exchanges, bindings, and queue settings. RabbitMQ is often a strong option when you have an existing on-premises RabbitMQ estate, need broker capabilities in environments where Azure Service Bus isn't available, or want to keep messaging local to the network where producers and consumers run. As with any broker-based integration, design for retries and potential duplicates, for example, by using acknowledgments, durable queues, and persistent messages where appropriate, and make downstream processing idempotent.
 
-For many BizTalk migration projects, Azure Service Bus is a common default choice for cloud-native pub-sub because it’s fully managed and provides built-in topic/subscription semantics with filtering. For on-premises pub-sub requirements, RabbitMQ can be a better fit—especially with the Logic Apps Hybrid deployment model—because Azure Service Bus is a cloud service and doesn’t have an on-premises deployment option. In these cases, standardize on durability and retry semantics and apply idempotency at the workflow and endpoint boundaries.
+For many BizTalk migration projects, Azure Service Bus is the common default choice for cloud-native pub-sub because the service is fully managed and provides built-in topic and subscription semantics with filtering. For on-premises pub-sub requirements, RabbitMQ can be a better fit, especially with the Azure Logic Apps hybrid deployment model, because Azure Service Bus is a cloud service and doesn't have an on-premises deployment option. In these cases, standardize on durability and retry semantics and apply idempotency at the workflow and endpoint boundaries.
 
-#### Business rules engine
+### Business rules engine
 
 Azure Logic Apps includes the [Azure Logic Apps Rules Engine](rules-engine/rules-engine-overview.md). This rules engine includes the BizTalk Business Rules Engine (BRE) runtime so you can use reuse existing BizTalk BRE policies. Currently, support exists only for XML and .NET Framework facts.
 
+### Networking
 
-#### Networking
-
-- Inbound and outbound connectivity
-
-  Azure provides multiple ways to isolate their services within a network boundary and connect on-premises and cloud workloads. The following list describes different ways that you can integrate Azure resources with resources inside a network perimeter:
-
+For inbound and outbound connectivity, Azure provides multiple ways to isolate their services within a network boundary and connect on-premises and cloud workloads. The following list describes different ways that you can integrate Azure resources with resources inside a network perimeter:
 
 - Hybrid Connections
 
-  Both an Azure service and a feature in Azure App Service, Hybrid Connections support scenarios and offers capabilities beyond those used in Azure App Service. For more information about usage outside Azure App Service, see [Azure Relay Hybrid Connections](../azure-relay/relay-hybrid-connections-protocol.md). Within Azure App Service, you can use Hybrid Connections to access application resources in any network that can make outbound calls to Azure over port 443. Hybrid Connections provide access from your app to a TCP endpoint and doesn't enable a new way to access your app. In Azure App Service, each hybrid connection correlates to a single TCP host and port combination. This functionality enables your apps to access resources on any OS, provided that a TCP endpoint exists. Hybrid Connections doesn't know or care about the application protocol or what you want to access. This feature simply provides network access.
+  Both an Azure service and a feature in Azure App Service, Hybrid Connections supports scenarios and offers capabilities beyond those in Azure App Service. For more information about usage outside Azure App Service, see [Azure Relay Hybrid Connections](../azure-relay/relay-hybrid-connections-protocol.md). In Azure App Service, you can use Hybrid Connections to access application resources in any network that can make outbound calls to Azure over port 443. Hybrid Connections provide access from your app to a TCP endpoint and doesn't enable a new way to access your app. In Azure App Service, each hybrid connection correlates to a single TCP host and port combination. This functionality enables your apps to access resources on any OS, provided that a TCP endpoint exists. Hybrid Connections doesn't know or care about the application protocol or what you want to access. This feature simply provides network access.
 
 - Virtual network integration
 
@@ -243,26 +233,25 @@ Azure Logic Apps includes the [Azure Logic Apps Rules Engine](rules-engine/rules
 
   With [virtual network peering](../virtual-network/virtual-network-peering-overview.md), you can connect your on-premises networks to Azure, which provides bi-directional connectivity between on-premises resources and Azure services. Azure Integration Services provides virtual network connectivity, allowing for hybrid integration. The following image shows a Standard logic app resource with the Networking page open and virtual network integration enabled as highlighted in the **Outbound Traffic** box. This configuration makes sure that all outbound traffic leaves from this virtual network.
 
-    :::image type="content" source="./media/biztalk-server-to-azure-integration-services-overview/standard-logic-app-networking-page-virtual-network-integration.png" alt-text="Screenshot shows Azure portal, Standard logic app resource, and Networking page with virtual network integration enabled.":::
+  :::image type="content" source="./media/biztalk-server-to-azure-integration-services-overview/standard-logic-app-networking-page-virtual-network-integration.png" alt-text="Screenshot shows Azure portal, Standard logic app resource, and Networking page with virtual network integration enabled.":::
 
 - Private endpoints
 
-    A [private endpoint](../private-link/private-endpoint-overview.md) is a network interface that uses a private IP address from your virtual network. This network interface privately and securely connects to an Azure resource that's powered by [Azure Private Link](../private-link/private-link-overview.md). By enabling a private endpoint, you bring that Azure resource into your virtual network and allow resources in the network to make inbound calls to your Azure resource.
+  A [private endpoint](../private-link/private-endpoint-overview.md) is a network interface that uses a private IP address from your virtual network. This network interface privately and securely connects to an Azure resource that's powered by [Azure Private Link](../private-link/private-link-overview.md). By enabling a private endpoint, you bring that Azure resource into your virtual network and allow resources in the network to make inbound calls to your Azure resource.
 
-#### Custom code
+### Custom code
 
-Azure Logic Apps provides the capability for you to author and run .NET code from your Standard logic app workflow. For this, you need to use [Visual Studio Code with the Azure Logic Apps (Standard) extension](create-run-custom-code-functions.md).
+In Azure Logic Apps, you can author and run .NET code in your Standard logic app workflow. For this, you need to use [Visual Studio Code with the Azure Logic Apps (Standard) extension](create-run-custom-code-functions.md).
 
-Also, the **Inline Code Operations** connector provides the actions named **Execute JavaScript Code**, **Execute CSharp Script Code**, and **Execute PowerShell Code**. You can use these actions to add code, which supports dynamic content inputs and outputs. The Azure Logic Apps engine expects these code to have short execution times. After the code completes execution, the output is available for use by downstream actions in the workflow.
+The **Inline Code Operations** connector provides the actions named **Execute JavaScript Code**, **Execute CSharp Script Code**, and **Execute PowerShell Code**. You can use these actions to add code, which supports dynamic content inputs and outputs. The Azure Logic Apps engine expects this code to have short execution times. After the code completes execution, the output is available for downstream actions to use in the workflow.
 
 As previously mentioned, support for calling .NET Framework assemblies from an XSLT map is currently available in logic app workflows when you upload those assemblies to an integration account. This capability helps support custom data transformation rules. For Standard logic app workflows, you can call .NET Framework code from XSLT maps without an integration account. You can also add assemblies and maps to a Standard logic app project in Visual Studio Code and subsequently deploy to Azure. For more information, see [.NET Framework assembly support added to Azure Logic Apps (Standard) XSLT transformations](https://techcommunity.microsoft.com/t5/integrations-on-azure-blog/net-framework-assembly-support-added-to-azure-logic-apps/ba-p/3669120).
 
-
-#### Application groups
+### Application groups
 
 In Azure Logic Apps, you can include and run multiple workflows in a Standard logic app resource, resulting in a 1-to-many relationship. If you're working locally on a Standard logic app project in Visual Studio Code, your logic app resource maps to this single project. With this approach, you can easily and logically group related workloads, code, and artifacts in the same project and deploy that project as a single unit.
 
-Cloud architectures work differently than server-based paradigms such as BizTalk. Azure Logic Apps (Standard) uses a pull model to bring in code and artifacts. So, as a result, you'll copy any additional necessary artifacts into your project and subsequently deploy them with your code and other artifacts. In some cases, you might want to avoid having to copy all the necessary code and artifacts. If so, you might consider turning this functionality into a service that you can manage separately but can call from a workflow.
+Cloud architectures work differently than server-based paradigms such as BizTalk. Azure Logic Apps (Standard) uses a pull model to bring in code and artifacts. As a result, you'll copy any additional necessary artifacts into your project and subsequently deploy them with your code and other artifacts. In some cases, you might want to avoid having to copy the necessary code and artifacts. If so, you might consider turning this functionality into a service that you can manage separately but can call from a workflow.
 
 For example, suppose you have a data transformation that's widely used by your organization. Rather than including the map for the transformation across multiple logic app projects, you can implement an interface that provides the transformation as a service. You can then manage the lifecycle for that service separately from your logic app projects and call that service from your workflows.
 
@@ -276,7 +265,7 @@ With the ability to include multiple workflows in a Standard logic app project, 
 
 For more information, see [Organizing logic app workflows in Azure Logic Apps (Standard)](https://techcommunity.microsoft.com/t5/integrations-on-azure-blog/organizing-logic-apps-workflows-with-logic-apps-standard/ba-p/3251179).
 
-#### Security and governance
+### Security and governance
 
 Azure Logic Apps supports the following security capabilities:
 
@@ -286,7 +275,7 @@ Azure Logic Apps supports the following security capabilities:
 
   Later in the [Tracking](#tracking) section, this guide describes the run history functionality, which provides a step-by-step replay of a workflow's execution. Although Azure Logic Apps offers the value proposition of capturing every input and output in a workflow run, sometimes you need to manage access to sensitive data more granularly. You can set up obfuscation for this data by using the secure inputs and outputs capability on triggers and actions to hide such content from run history and prevent sending this data to Azure Monitor, specifically Log Analytics and Application Insights. The following image shows an example result from enabling secure inputs and secure outputs in run history.
 
-    :::image type="content" source="./media/biztalk-server-to-azure-integration-services-overview/azure-logic-apps-secure-inputs-outputs.png" alt-text="Screenshot showing hidden inputs and outputs in workflow run history after enabling secure inputs and outputs.":::
+  :::image type="content" source="./media/biztalk-server-to-azure-integration-services-overview/azure-logic-apps-secure-inputs-outputs.png" alt-text="Screenshot shows hidden inputs and outputs in workflow run history after you enable secure inputs and outputs.":::
 
 - OAuth-based integration
 
@@ -298,25 +287,23 @@ Azure Logic Apps supports the following security capabilities:
 
   Azure Logic Apps (Standard) can authenticate access to storage accounts by using a [managed identity](../active-directory/managed-identities-azure-resources/overview.md). Also, some connectors support using managed identities for authenticating access to resources protected by Microsoft Entra ID. When you use a managed identity to authenticate your connection, you don't have to provide credentials, secrets, or Microsoft Entra tokens.
 
-#### Application management and access management
+### Application management and access management
 
-The [Azure portal](/azure/azure-portal/azure-portal-overview) is a common tool that administrators and support personnel use to view and monitor the health of interfaces. For Azure Logic Apps, this experience includes rich transaction traces that are available through run history.
+The [Azure portal](/azure/azure-portal/azure-portal-overview) is a common tool that administrators and support personnel use to view and monitor the health of interfaces. For Azure Logic Apps, this experience includes rich transaction traces that are available through run history. Granular [role-based access controls (RBAC)](../role-based-access-control/overview.md) are also available so you can manage and restrict access to Azure resources at various levels.
 
-Granular [role-based access controls (RBAC)](../role-based-access-control/overview.md) are also available so you can manage and restrict access to Azure resources at various levels.
-
-#### Storage
+### Storage
 
 Azure Logic Apps relies on [Azure Storage](../storage/common/storage-introduction.md) to store and automatically [encrypt data at rest](logic-apps-securing-a-logic-app.md). This encryption protects your data and helps you meet your organizational security and compliance commitments. By default, Azure Storage uses Microsoft-managed keys to encrypt your data. For more information, see [Azure Storage encryption for data at rest](../storage/common/storage-service-encryption.md).
 
-When you work with Azure Storage through the Azure portal, [all transactions take place over HTTPS](../security/fundamentals/encryption-overview.md#azure-storage-transactions). You can also work with Azure Storage by using the Storage REST API over HTTPS. To enforce using HTTPS when you call the REST APIs to access objects in storage accounts, enable the secure transfer that's required for the storage account.
+When you work with Azure Storage in the Azure portal, [all transactions take place over HTTPS](../security/fundamentals/encryption-overview.md#azure-storage-transactions). You can also work with Azure Storage by using the Storage REST API over HTTPS. To enforce using HTTPS when you call the REST APIs to access objects in storage accounts, enable the secure transfer that's required for the storage account.
 
-The Hybrid deployment model of Azure Logic Apps, relies on [SQL Server]. This allows customers to leverage their existing SQL Server environments they used on-premises, with BizTalk Server.
+The Azure Logic Apps hybrid deployment model relies on SQL Server. This dependency lets you use existing on-premises SQL Server environments with BizTalk Server.
 
-#### Large file processing
+### Large file processing
 
 Some foundational differences exist between processing large files with BizTalk Server versus Azure Logic Apps. For example, carefully scrutinize large message scenarios to find the right solution because potentially different ways exist to solve this problem in a modern cloud environment.
 
-##### File size limits
+#### File size limits
 
 In Azure, file size limits exist to ensure consistent and reliable experiences. To validate your scenario, make sure to review the [service limits documentation for Azure Logic Apps](logic-apps-limits-and-config.md#messages). Some connectors support [message chunking](logic-apps-handle-large-messages.md) for messages that exceed the default message size limit, which varies based on the connector. Message chunking works by splitting a large message into smaller messages.
 
@@ -324,9 +311,7 @@ Azure Logic Apps isn't the only service that has message size limits. For exampl
 
 To avoid file size limitations, you can implement the [claim-check pattern](/azure/architecture/patterns/claim-check), which works by splitting a large message into a *claim check* and a payload. You send the claim check to the messaging platform and store the payload on an external service. That way, you can process large messages, while you protect the message bus and the client from overload. This pattern also helps to reduce costs because storage is usually cheaper than resource units used by the messaging platform.
 
-
-#### Monitoring and alerts
-
+### Monitoring and alerts
 
 In Azure Logic Apps, you can enable Application Insights support, which provides curated visualizations as a foundation for monitoring Azure services. These visualizations help you more effectively monitor Standard workflows by using dashboards specifically designed for Azure Logic Apps (Standard). The dashboard scope covers the workflows inside a Standard logic app. The dashboard is built on [Azure Workbooks](/azure/azure-monitor/visualize/workbooks-overview) and offers various visualizations. You can easily extend and customize these workbooks to meet specific needs.
 
@@ -334,21 +319,19 @@ In Azure Logic Apps, you can enable Application Insights support, which provides
 
 You can configure custom monitoring rules and view logs in a portal experience. You can send notifications through various channels, such as email, Microsoft Teams, and ServiceNow. To visually determine the health of your interfaces, service maps are available.
 
-#### Business activity monitoring
+### Business activity monitoring
 
 As a developer or business analyst working on solutions that integrate services and systems using various Azure resources, you might have difficulties visualizing the relationship between the technical components in your solution and your business scenario. To include business context about the Azure resources in your solution, you can build business processes that visually represent the business logic implemented by these resources. In [Azure Business Process Tracking](/azure/business-process-tracking/overview), a business process is a series of stages that represent the tasks flowing through real-world business scenario.
 
 Another option is that you can use an external solution from [Kovai](https://www.kovai.co/) called [Serverless 360](https://www.serverless360.com/). Along with the monitoring platform, you can use the [business activity monitoring feature](https://www.serverless360.com/business-activity-monitoring) that provides end-to-end tracking for business process flows across cloud-native and hybrid integrations. This feature includes a managed connector that developers can use to instrument code and capture important business data. Administrators can subsequently build dashboards and share them with business analysts.
 
-#### Tracking
+### Tracking
 
-Azure Logic Apps also provides rich run history so that developers and support analysts can review action by action telemetry, including all processed inputs and outputs. To help protect any sensitive data, you can [enable secure inputs and outputs](logic-apps-securing-a-logic-app.md?tabs=azure-portal#obfuscate) on individual actions in workflows. This capability obfuscates or hides the data in logs and workflow run histories to avoid leaks.
+Azure Logic Apps provides rich workflow run history so that developers and support analysts can review action-by-action telemetry, including all processed inputs and outputs. To help protect any sensitive data, you can [enable secure inputs and outputs](logic-apps-securing-a-logic-app.md?tabs=azure-portal#obfuscate) on individual actions in workflows. This capability obfuscates or hides the data in logs and workflow run histories to avoid leaks.
 
-Beyond data obfuscation, you can use [Azure RBAC](../role-based-access-control/overview.md) rules to protect data access. Azure RBAC includes [specific built-in roles for Azure Logic Apps (Standard)](logic-apps-securing-a-logic-app.md?tabs=azure-portal#standard-workflows).
+Beyond data obfuscation, you can use [Azure RBAC](../role-based-access-control/overview.md) rules to protect data access. Azure RBAC includes [specific built-in roles for Azure Logic Apps (Standard)](logic-apps-securing-a-logic-app.md?tabs=azure-portal#standard-workflows). Beyond Azure RBAC, you can [restrict access to run history in Azure Logic Apps by IP address range](logic-apps-securing-a-logic-app.md#restrict-ip).
 
-Beyond Azure RBAC, you can also [restrict access to run history in Azure Logic Apps by IP address range](logic-apps-securing-a-logic-app.md#restrict-ip).
-
-#### Hosting
+### Hosting
 
 - Hosting plans
 
@@ -382,7 +365,6 @@ For scenarios that require additional Azure integration services, see the follow
 - [Azure API Management - Feature-based tier comparison](../api-management/api-management-features.md)
 
 ### Deployment
-
 
 Azure Logic Apps supports Infrastructure as Code (IaC) by providing the capability to create infrastructure resources using Azure Resource Management templates. Although ARM templates can seem complex to understand and implement as a unified solution, you can use abstraction tools, such as Bicep, Terraform, or Pulumi, which provide a code-like experience for creating your infrastructure definition. Although these tools provide abstraction layers over ARM templates, the tools ultimately generate ARM templates and can deploy those templates for you.
 
@@ -420,7 +402,7 @@ The following diagram shows the core and optional dependencies for Azure Logic A
 
 :::image type="content" source="./media/biztalk-server-to-azure-integration-services-overview/LAWorkflows.png" alt-text="Diagram that shows multiple workflows in Azure Logic Apps." border="false":::
 
-In the hybrid deployment model, there are two core dependencies. The Kubernetss cluster and SQL Server. 
+In the hybrid deployment model, two core dependencies exist: a Kubernetes cluster and SQL Server. 
 
 ## Feature matchup
 
@@ -430,8 +412,8 @@ The following table and diagram shosw how resources, artifacts, features, and ca
 
 | Feature or functionality | BizTalk Server | Azure Logic Apps (Cloud) |
 |--------------------------|----------------|--------------------------|
-| Orchestrations | - BizTalk Server orchestration <br>- C# code | - Azure Logic Apps workflow <br>- Azure Logic Apps workflow templates <br>- Local Functions |
-| Pipelines | - BizTalk Server pipelines <br>- Pipeline components | - Azure Logic Apps workflows (as pipelines) <br>- Local functions|
+| Orchestrations | - BizTalk Server orchestration <br>- C# code | - Azure Logic Apps workflow <br>- Azure Logic Apps workflow templates <br>- Local functions |
+| Pipelines | - BizTalk Server pipelines <br>- Pipeline components | - Azure Logic Apps workflows as pipelines <br>- Local functions |
 | Message routing | - MessageBox <br>- Property Promotions <br>- Filters | - Azure Service Bus queues and topics (message headers, message properties, and subscriptions) <br>- RabbitMQ Exchanges |
 | Application connectivity | - BizTalk Server out-of-the-box and custom adapters <br>- Internet Information Services (IIS) and Azure API Management (hybrid capabilities) | - Azure Logic Apps connectors |
 | Cross-references | xref_ * tables on BizTalk Management database (BizTalkMgmtDb) | - Local functions |
@@ -441,17 +423,17 @@ The following table and diagram shosw how resources, artifacts, features, and ca
 | Business activity monitoring | BizTalk Server Business Activity Monitoring | Azure Business Process Tracking |
 | EDI | - BizTalk Server out-of-the-box capabilities <br>- Parties, partners, agreements, AS2, X12, EDIFACT | Azure Logic Apps and Azure integration account (partners, agreements, AS2, X12, EDIFACT) |
 | HL7, RosettaNet, and SWIFT | BizTalk Server accelerators for HL7, RosettaNet, and SWIFT | - Azure Logic Apps: Azure integration account and HL7, MLLP, RosettaNet, and SWIFT connectors |
-| Secrets | Enterprise Single Sign-On (SSO) | - Azure Key Vault <br>- SQL Server <br>- Application configuration |
+| Secrets | Enterprise single sign-on (SSO) | - Azure Key Vault <br>- SQL Server <br>- Application configuration |
 | Security and governance | - Enterprise Single Sign-On (SSO) <br>- SSO affiliate applications <br>- Active Directory <br>- Signing certificates <br>- IIS Security Authentication <br>- Network security | - Microsoft Entra ID <br>- Azure Network Security <br>- Azure role-based access control (Azure RBAC) <br>- Claims, tokens <br>- Shared Access Policies |
 | Data configuration | - Config files <br>- Enterprise SSO application configuration <br>- Custom cache components <br>- Custom database <br>- Windows registry | - Azure Key Vault <br>- Azure App Configuration <br>- Azure Cosmos DB <br>- Azure Table Storage <br>- Azure Logic Apps (Standard) configuration <br>- SQL Server <br>- Custom caching <br>- Custom database |
 | Deployment | - BizTalk Server binding file | - Azure Pipelines <br>- Bicep scripts <br>- Terraform |
-| Tracking | - BizTalk Server tracking capabilities (Receive ports, Send ports, pipelines, orchestrations) <br>- IIS tracking <br>- Azure API Management built-in analytics (hybrid capabilities) | - Azure Logic Apps run history and tracked properties <br>- Azure Storage Account <br>- Azure Monitor (Application Insights) |
+| Tracking | - BizTalk Server tracking capabilities (Receive ports, Send ports, pipelines, orchestrations) <br>- IIS tracking <br>- Azure API Management built-in analytics (hybrid capabilities) | - Azure Logic Apps workflow run history and tracked properties <br>- Azure Storage Account <br>- Azure Monitor (Application Insights) |
 | Monitoring | - BizTalk Administration Console <br>- BizTalk Health Monitor | Azure Monitor (Application Insights, Log Analytics) |
 | Operations | - BizTalk Server Administration Console <br>- Azure Pipelines <br>- MSI, PowerShell <br>- BizTalk Deployment Framework | - Azure portal <br>- Azure Monitor <br>- Azure Resource Manager templates <br>- Azure Pipelines <br>- PowerShell, CLI, Bicep |
 
 :::image type="content" source="./media/biztalk-server-to-azure-integration-services-overview/enterprise-integration-platform.png" alt-text="Diagram shows matchup between components from BizTalk Server and Azure Logic Apps for the enterprise integration platform." border="false":::
 
-#### Azure Logic Apps Standard Hybrid (On-premises)
+### Azure Logic Apps Standard Hybrid (On-premises)
 
 | Feature or functionality | BizTalk Server | Azure Logic Apps (Hybrid) |
 |--------------------------|----------------|--------------------------|
@@ -465,14 +447,14 @@ The following table and diagram shosw how resources, artifacts, features, and ca
 | Business rules | BizTalk Server Business Rules Engine | Azure Logic Apps Rules Engine |
 | Business activity monitoring | BizTalk Server Business Activity Monitoring | Azure Business Process Tracking |
 | EDI | - BizTalk Server out-of-the-box capabilities <br>- Parties, partners, agreements, AS2, X12, EDIFACT | Azure Logic Apps and Azure integration account (partners, agreements, AS2, X12, EDIFACT) |
-| HL7, RosettaNet, and SWIFT | BizTalk Server accelerators for HL7, RosettaNet, and SWIFT | - Azure Logic Apps HL7 and MLLP connectors, Azure integration account, RosettaNet and SWIFT connectors |
-| Secrets | Enterprise Single Sign-On (SSO) | - Azure Key Vault <br>- SQL Server <br>- Application configuration |
-| Security and governance | - Enterprise Single Sign-On (SSO) <br>- SSO affiliate applications <br>- Active Directory <br>- Signing certificates <br>- IIS Security Authentication <br>- Network security | - Microsoft Entra ID <br>- Azure Network Security <br>- Azure role-based access control (Azure RBAC) <br>- Claims, tokens <br>- Shared Access Policies |
+| HL7, RosettaNet, and SWIFT | BizTalk Server accelerators for HL7, RosettaNet, and SWIFT | - Azure Logic Apps: Azure integration account, HL7, MLLP, RosettaNet, and SWIFT connectors |
+| Secrets | Enterprise single sign-on (SSO) | - Azure Key Vault <br>- SQL Server <br>- Application configuration |
+| Security and governance | - Enterprise single sign-on (SSO) <br>- SSO affiliate applications <br>- Active Directory <br>- Signing certificates <br>- IIS Security Authentication <br>- Network security | - Microsoft Entra ID <br>- Azure Network Security <br>- Azure role-based access control (Azure RBAC) <br>- Claims, tokens <br>- Shared Access Policies |
 | Data configuration | - Config files <br>- Enterprise SSO application configuration <br>- Custom cache components <br>- Custom database <br>- Windows registry | - Azure Key Vault <br>- Azure App Configuration <br>- Azure Cosmos DB <br>- Kubernetes Config maps <br>- Azure Logic Apps (Standard) configuration <br>- SQL Server <br>- Custom caching <br>- Custom database |
 | Deployment | - BizTalk Server binding file | - Azure Pipelines <br>- Bicep scripts <br>- Terraform |
-| Tracking | - BizTalk Server tracking capabilities (Receive ports, Send ports, pipelines, orchestrations) <br>- IIS tracking <br>- Azure API Management built-in analytics (hybrid capabilities) | - Azure Logic Apps run history and tracked properties <br>- Azure Storage Account <br>- Azure Monitor (Application Insights) |
-| Monitoring | - BizTalk Administration Console <br>- BizTalk Health Monitor | Opentelemetry |
-| Operations | - BizTalk Server Administration Console <br>- Azure Pipelines <br>- MSI, PowerShell <br>- BizTalk Deployment Framework | - Azure portal <br>- Opentelemetry <br>- Azure Resource Manager templates <br>- Azure Pipelines <br>- PowerShell, CLI, Bicep |
+| Tracking | - BizTalk Server tracking capabilities (Receive ports, Send ports, pipelines, orchestrations) <br>- IIS tracking <br>- Azure API Management built-in analytics (hybrid capabilities) | - Azure Logic Apps workflow run history and tracked properties <br>- Azure Storage Account <br>- Azure Monitor (Application Insights) |
+| Monitoring | - BizTalk Administration Console <br>- BizTalk Health Monitor | OpenTelemetry |
+| Operations | - BizTalk Server Administration Console <br>- Azure Pipelines <br>- MSI, PowerShell <br>- BizTalk Deployment Framework | - Azure portal <br>- OpenTelemetry <br>- Azure Resource Manager templates <br>- Azure Pipelines <br>- PowerShell, CLI, Bicep |
 
 :::image type="content" source="./media/biztalk-server-to-azure-integration-services-overview/enterprise-integration-platform-hybrid.png" alt-text="Diagram shows matchup between components from BizTalk Server and Azure Logic Apps with hybrid deployment model for the enterprise integration platform." border="false":::
 
@@ -480,7 +462,7 @@ To stay updated about the latest investments, subscribe to the [Integrations on 
 
 ## Next steps
 
-You've learned more about how Azure Logic Apps compares to BizTalk Server. Next, review suggested approaches and resources, planning considerations, and best practices for your migration.
+You learned more about how Azure Logic Apps compares with BizTalk Server. Next, review suggested approaches and resources, planning considerations, and best practices for your migration.
 
 > [!div class="nextstepaction"]
 >
