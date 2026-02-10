@@ -139,7 +139,7 @@ The following sections summarize the main built-in options for transformations a
 
 - Data shaping in workflows: data operations, expressions, and Liquid templates
 
-For most JSON transformations in logic app workflows, you can use built-in Data Operations such as Compose and Parse JSON, together with expressions and workflow actions (for example, loops and conditions) to shape data. For more advanced mapping scenarios—especially when you want a reusable template for transformations like JSON-to-JSON, JSON-to-text, XML-to-JSON, or XML-to-text—you can use a Liquid template. Liquid templates describe the mapping by using the open-source Liquid template language and can be versioned and deployed as an artifact alongside your workflow.
+  For most JSON transformations in logic app workflows, use built-in data operations, such as the Compose and Parse JSON actions, together with expressions and workflow control actions, such as conditions and loops, to shape data. For more advanced mapping scenarios, especially where you want a reusable template for transformations like JSON-to-JSON, JSON-to-text, XML-to-JSON, or XML-to-text, you can use a Liquid template. Liquid templates describe mappings by using the open-source Liquid template language. You can version and deploy templates as artifacts alongside your workflow.
 
 - Schema-based XML operations: Parse XML and Compose XML
 
