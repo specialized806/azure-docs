@@ -439,7 +439,7 @@ The following table and diagram shosw how resources, artifacts, features, and ca
 | Business rules | BizTalk Server Business Rules Engine | Azure Logic Apps Rules Engine |
 | Business activity monitoring | BizTalk Server Business Activity Monitoring | Azure Business Process Tracking |
 | EDI | - BizTalk Server out-of-the-box capabilities <br>- Parties, partners, agreements, AS2, X12, EDIFACT | Azure Logic Apps and Azure integration account (partners, agreements, AS2, X12, EDIFACT) |
-| HL7, RosettaNet, and SWIFT | BizTalk Server accelerators for HL7, RosettaNet, and SWIFT | - Azure Logic Apps HL7 and MLLP connectors, Azure integration account, RosettaNet and SWIFT connectors |
+| HL7, RosettaNet, and SWIFT | BizTalk Server accelerators for HL7, RosettaNet, and SWIFT | - Azure Logic Apps: Azure integration account and HL7, MLLP, RosettaNet, and SWIFT connectors |
 | Secrets | Enterprise Single Sign-On (SSO) | - Azure Key Vault <br>- SQL Server <br>- Application configuration |
 | Security and governance | - Enterprise Single Sign-On (SSO) <br>- SSO affiliate applications <br>- Active Directory <br>- Signing certificates <br>- IIS Security Authentication <br>- Network security | - Microsoft Entra ID <br>- Azure Network Security <br>- Azure role-based access control (Azure RBAC) <br>- Claims, tokens <br>- Shared Access Policies |
 | Data configuration | - Config files <br>- Enterprise SSO application configuration <br>- Custom cache components <br>- Custom database <br>- Windows registry | - Azure Key Vault <br>- Azure App Configuration <br>- Azure Cosmos DB <br>- Azure Table Storage <br>- Azure Logic Apps (Standard) configuration <br>- SQL Server <br>- Custom caching <br>- Custom database |
