@@ -80,9 +80,11 @@ More detailed instructions to securely access, configure, operate, and decommiss
 
 [More specific guidance on configuring top-level accounts](/entra/identity/role-based-access-control/privileged-roles-permissions?tabs=admin-center)
 
-__[Azure RBAC documentation](/azure/role-based-access-control/best-practices)__
+[Azure RBAC documentation](/azure/role-based-access-control/best-practices)
 
-__[Emergency Accounts - Manage emergency access accounts in Microsoft Entra ID](/entra/identity/role-based-access-control/security-emergency-access)__
+[Emergency Accounts - Manage emergency access accounts in Microsoft Entra ID](/entra/identity/role-based-access-control/security-emergency-access)
+
+[Conditional Access Overview](/entra/identity/conditional-access/overview)
 
 ### Use Instructions
 
@@ -124,11 +126,318 @@ When the tenant is first provisioned Azure enforces
 
 1. **Conditional Access** controls (device requirements, session controls)
 
+1. Configure two break-glass accounts with restricted usage and continuous monitoring.
+
 1. Alignment to **Azure Policy** + **Defender for Cloud** FedRAMP initiatives
 
 ensuring newly created admin or high‑privilege accounts never start in a weak or misconfigured state.
 
 When identities, subscriptions, or resources are created, **Security defaults** + **CA** give a hardened starting posture; **Azure Policy** applies baseline guardrails at MG/sub scopes so new assets inherit secure defaults automatically.
 
-Learn: [Security defaults](/entra/fundamentals/security-defaults) · [Conditional Access Overview](/entra/identity/conditional-access/overview). [Plan CA deployment](/entra/identity/conditional-access/plan-conditional-access) · [What is Azure Policy?](/azure/governance/policy/overview) 
+Learn: [Security defaults](/entra/fundamentals/security-defaults) · [Conditional Access Overview](/entra/identity/conditional-access/overview) · [Azure RBAC Overview](/azure/role-based-access-control/overview) · [Plan CA deployment](/entra/identity/conditional-access/plan-conditional-access) · [What is Azure Policy?](/azure/governance/policy/overview) 
+
+### Enhanced Capabilities[¶](https://www.fedramp.gov/docs/rev5/balance/secure-configuration-guide/#enhanced-capabilities"Permanent link")
+
+These recommendations apply to all cloud service offerings in the FedRAMP Marketplace for enhanced capabilities related to the Secure Configuration Guide.
+
+#### Comparison Capability
+
+#### SCG-ENH-CMP
+
+Providers SHOULD offer the capability to compare all current settings for top-level administrative accounts and privileged accounts to the recommended secure defaults.
+
+#### Azure's response
+
+Azure satisfies this requirement through built‑in security baseline comparison capabilities across **Azure AD (Entra ID)** privileged accounts and tenant‑level security settings.
+
+Azure provides multiple mechanisms that allow customers to compare the current configuration of privileged identities against Microsoft’s published secure‑by‑default baseline. Azure meets this requirement by providing built‑in comparison tools—Secure Score, Microsoft Entra ID Protection, PIM, Access Reviews, and Defender for Cloud—that continuously evaluate the configuration of all top-level and privileged accounts against Microsoft’s published secure-by-default identity baselines. These services surface deviations, provide gap analyses, and supply prescriptive remediation guidance, ensuring customers can easily compare current settings to recommended secure defaults at any time
+
+#### How Azure Fulfills This
+
+#### 1. Microsoft Entra ID Protection Baseline
+
+- Microsoft publishes secure configuration baselines for identity.
+
+- Entra compares current tenant settings—including MFA enforcement, risky sign‑in detection, password protection, and conditional access posture—against Microsoft's recommended defaults.
+
+- Deviations surface as alerts or “unmet recommendations.”
+
+  [Entra ID Protection documentation hub](/entra/id-protection/)
+  
+  [Overview — What is Microsoft Entra ID Protection?](/entra/id-protection/overview-identity-protection)
+  
+  [Investigate Risk (Risky users, Risky sign](/entra/id-protection/howto-identity-protection-investigate-risk)[‑](/entra/id-protection/howto-identity-protection-investigate-risk)[ins)](/entra/id-protection/howto-identity-protection-investigate-risk)
+  
+  [Risk Detection Types](/entra/id-protection/concept-identity-protection-risks)
+  
+#### 2. Microsoft Secure Score
+
+- Secure Score automatically evaluates:
+
+   - Privileged roles assigned
+   
+      - MFA status for all privileged accounts
+      
+         - Conditional Access configurations for admins
+         
+            - Standing vs. Just‑in‑Time privilege (Privileged Identity Management)
+            
+            - Each control includes:
+            
+               - **Recommended default configuration**
+               
+                  - **Current configuration**
+                  
+                     - **Gap analysis**
+                     
+                        - **Remediation guidance**
+                        
+This directly meets the requirement to compare *“all current settings”* against recommended defaults.  
+
+[Microsoft Entra Identity Secure Score](/entra/identity/monitoring-health/concept-identity-secure-score?toc=%2Fentra%2Ffundamentals%2Ftoc.json&bc=%2Fentra%2Ffundamentals%2Fbreadcrumb%2Ftoc.json)
+
+#### 3. Azure AD (Entra ID) Access Reviews
+
+- Reviews can be conducted specifically on:
+
+  - **Global Administrators**
+  
+  - **Privileged Role Administrators**
+  
+  - **Any high‑privilege custom role**
+  
+- Review results show:
+
+  - Who currently has access
+  
+  - Whether access conforms to least privilege and Azure’s recommended defaults
+  
+  - Whether administrators maintain unnecessary standing rights
+  
+    [What are Access Reviews?](/entra/id-governance/access-reviews-overview)
+    
+    [Manage access with Access Reviews](/entra/id-governance/manage-access-review)
+    
+#### 4. Privileged Identity Management (PIM) Policy Comparison
+
+PIM provides a built‑in control comparison:
+
+- Shows whether default protections (approval, MFA-on-activation, time-bound privilege) are enabled.
+
+- Highlights discrepancies between your configuration and Microsoft’s baseline.
+
+  [Privileged Identity Management documentation (Microsoft Entra)](/entra/id-governance/privileged-identity-management/pim-how-to-change-default-settings)
+  
+  [PIM configuration (What PIM does, how to configure)](/entra/id-governance/privileged-identity-management/pim-configure)
+  
+#### 5. Baseline Comparison via Defender for Cloud
+
+For hybrid and cloud resources:
+
+- Identity and entitlement management controls map to secure defaults.
+
+- Defender for Cloud surfaces misconfigurations and recommends compliant baseline settings. Azure satisfies this requirement through built‑in security baseline comparison capabilities across **Azure AD (Entra ID)** privileged accounts and tenant‑level security settings.
+
+  [Manage security posture with Microsoft Defender for Cloud (official Learn module)](/training/modules/microsoft-defender-cloud-security-posture/)
+  
+  [Interactive Guide — Manage your cloud security posture](https://mslearn.cloudguides.com/en-US/guides/Manage%20your%20cloud%20security%20posture%20with%20Microsoft%20Defender%20for%20Cloud)
+  
+#### Export Capability[¶](https://www.fedramp.gov/docs/rev5/balance/secure-configuration-guide/#export-capability"Permanent link")
+
+#### SCG-ENH-EXP
+
+Providers SHOULD offer the capability to export all security settings in a machine-readable format.
+
+#### Azure's response
+
+Azure meets this requirement through **multiple machine‑readable export paths**, all providing **structured JSON**.
+
+Azure **meets and exceeds** SCG-ENH-EXP by offering **full security configuration export** in **machine‑readable JSON** across:
+
+- Identity
+
+- RBAC
+
+- Conditional Access
+
+- PIM
+
+- Access Reviews
+
+- Policy & Compliance
+
+- Defender Secure Score
+
+- Resource configurations
+
+- IaC representations
+
+This enables complete, verifiable evidence trails for:
+
+- Audit
+
+- Compliance
+
+- Drift detection
+
+- Automation pipelines
+
+- Regulatory mapping
+
+## **1. Azure Policy — Machine‑Readable Configuration & Compliance Export**
+
+Azure Policy supports exporting:
+
+- Policy Assignments
+
+- Policy Definitions
+
+- Compliance State
+
+- Drift Results
+
+- Export formats: **JSON (REST API, Azure CLI, ARM/Bicep)**
+
+**Microsoft Learn:**
+
+- https://learn.microsoft.com/en-us/azure/governance/policy/overview
+
+- https://learn.microsoft.com/en-us/azure/governance/policy/how-to/get-compliance-data
+
+---
+## **2. Azure RBAC — Role Assignments & Privileged Access (JSON Export)**
+
+Exportable via Azure CLI / Microsoft Graph:
+
+- Role assignments
+
+- Principal identities (users, groups, service principals)
+
+- Standing vs. privileged roles (Owner, UAA, etc.)
+
+**Microsoft Learn:**
+
+- https://learn.microsoft.com/en-us/azure/role-based-access-control/role-assignments-list
+
+---
+## **3. Microsoft Entra ID — Identity Security Configuration Export**
+
+All identity configuration can be exported in **JSON** using Microsoft Graph:
+
+- Conditional Access Policies
+
+- Authentication Strength / MFA Settings
+
+- Identity Protection Policies
+
+- PIM (Privileged Identity Management) settings
+
+- Access Reviews configuration
+
+**Microsoft Learn:**
+
+- **Entra ID Protection Documentation** [Microsoft Entra ID Protection documentation](/entra/id-protection/) [[learn.microsoft.com]](/entra/id-protection/howto-identity-protection-investigate-risk)
+
+- **What is Entra ID Protection?** [Overview: Microsoft Entra ID Protection](/entra/id-protection/overview-identity-protection) [[bing.com]](https://bing.com/search?q=Microsoft+Learn+PIM+privileged+identity+management)
+
+- **Risk Investigation** [Investigate risk with Entra ID Protection](/entra/id-protection/howto-identity-protection-investigate-risk) [[bing.com]](https://bing.com/search?q=Microsoft+Learn+PIM+privileged+identity+management)
+
+- **Risk Detection Types** [Identity Protection risk detections](/entra/id-protection/concept-identity-protection-risks) [[bing.com]](https://bing.com/search?q=Microsoft+Learn+PIM+privileged+identity+management)
+
+---
+## **4. Privileged Identity Management (PIM) — Machine‑Readable Role & Policy Export**
+
+PIM exports via Graph (JSON):
+
+- Eligible vs. Active Roles
+
+- Activation history
+
+- MFA / Approval requirements
+
+- Privileged Access Policies
+
+**Microsoft Learn:**
+
+- [PIM documentation](/entra/id-governance/privileged-identity-management/) [[learn.microsoft.com]](/entra/id-governance/privileged-identity-management/)
+
+- [Configure PIM](/entra/id-governance/privileged-identity-management/pim-configure) [[bing.com]](https://bing.com/search?q=Microsoft+Learn+PIM+privileged+identity+management)
+
+---
+## **5. Access Reviews — JSON Export for Privileged Access Governance**
+
+Exportable:
+
+- Review definitions
+
+- Reviewers
+
+- Review decisions
+
+- Remediation actions
+
+**Microsoft Learn:**
+
+- [Access Reviews Overview](/entra/id-governance/access-reviews-overview) [[bing.com]](https://bing.com/search?q=Microsoft+Learn+PIM+privileged+identity+management)
+
+- [Manage Access Reviews](/entra/id-governance/manage-access-review) [[microsoftl....github.io]](https://microsoftlearning.github.io/SC-900-Microsoft-Security-Compliance-and-Identity-Fundamentals/Instructions/Labs/LAB_04_explore_pim.html)
+
+---
+## **6. Microsoft Defender for Cloud — Posture, Recommendations & Secure Score Export**
+
+Exportable:
+
+- Secure Score
+
+- Resource configurations
+
+- Identity posture
+
+- Regulatory compliance mappings
+
+- SecurityAssessment objects
+
+**Microsoft Learn:**
+
+- [Manage security posture with Defender for Cloud](/training/modules/microsoft-defender-cloud-security-posture/) [[bing.com]](https://bing.com/search?q=Microsoft+Learn+PIM+privileged+identity+management)
+
+- [Interactive Cloud Security Posture Guide](https://mslearn.cloudguides.com/en-US/guides/Manage%20your%20cloud%20security%20posture%20with%20Microsoft%20Defender%20for%20Cloud) [[bing.com]](https://bing.com/search?q=Microsoft+Learn+PIM+privileged+identity+management)
+
+---
+## **7. Azure Resource Graph — Full Environment Export (JSON)**
+
+Export complete resource state:
+
+- NSG rules
+
+- Key Vault access policies
+
+- Storage account configs
+
+- Diagnostic settings
+
+- Any resource’s full properties (ARM schema)
+
+ARG supports KQL → JSON export.
+
+**Microsoft Learn:**
+
+- https://learn.microsoft.com/en-us/azure/governance/resource-graph/
+
+---
+## **8. Infrastructure‑as‑Code (IaC) — Full Machine‑Readable Export**
+
+Azure supports exporting all deployed resources into:
+
+- ARM Templates (JSON)
+
+- Bicep (JSON‑transpiled)
+
+- Terraform state (JSON)
+
+These provide **100% environment configuration** in machine‑readable form.
+
+**Microsoft Learn:**
+
+- https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/export-template
 
