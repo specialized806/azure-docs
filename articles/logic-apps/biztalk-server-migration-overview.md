@@ -221,7 +221,7 @@ Azure Logic Apps also includes a RabbitMQ connector (built-in connector for Stan
 
 For many BizTalk migration projects, Azure Service Bus is a common default choice for cloud-native pub-sub because the service is fully managed and provides built-in topic and subscription semantics with filtering. For on-premises pub-sub requirements, RabbitMQ can be a better fit, especially with the Azure Logic Apps hybrid deployment model, because Azure Service Bus is a cloud service and doesn’t have an on-premises deployment option. In these cases, standardize on durability and retry semantics and apply idempotency at the workflow and endpoint boundaries.
 
-#### Business rules engine
+### Business rules engine
 
 Azure Logic Apps includes the [Azure Logic Apps Rules Engine](rules-engine/rules-engine-overview.md). This rules engine includes the BizTalk Business Rules Engine (BRE) runtime so you can use reuse existing BizTalk BRE policies. Currently, support exists only for XML and .NET Framework facts.
 
