@@ -247,7 +247,7 @@ Azure Logic Apps includes the [Azure Logic Apps Rules Engine](rules-engine/rules
 
 - Private endpoints
 
-    A [private endpoint](../private-link/private-endpoint-overview.md) is a network interface that uses a private IP address from your virtual network. This network interface privately and securely connects to an Azure resource that's powered by [Azure Private Link](../private-link/private-link-overview.md). By enabling a private endpoint, you bring that Azure resource into your virtual network and allow resources in the network to make inbound calls to your Azure resource.
+  A [private endpoint](../private-link/private-endpoint-overview.md) is a network interface that uses a private IP address from your virtual network. This network interface privately and securely connects to an Azure resource that's powered by [Azure Private Link](../private-link/private-link-overview.md). By enabling a private endpoint, you bring that Azure resource into your virtual network and allow resources in the network to make inbound calls to your Azure resource.
 
 #### Custom code
 
