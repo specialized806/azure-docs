@@ -163,7 +163,7 @@ An *integration account* is an Azure resource that provides centralized access t
 
 EDI document schemas define the structure or body for an EDI transaction document type. In BizTalk migration projects, teams often start by reusing the same XSD definitions and then iteratively validate trading-partner-specific variations. For workflows in Azure Logic Apps, many BizTalk EDI schemas in the [Microsoft Integration GitHub repository](https://github.com/microsoft/Integration/tree/master/BizTalk%20Server/Schema) are publicly available for you to use. Based on your implementation approach, you can store these schemas either alongside a Standard logic app as project artifacts or centrally in an integration account for reuse across multiple workflows.
 
-#### Connectivity
+### Connectivity
 
 The connectivity model in Azure Logic Apps differs from BizTalk Server, partially due to the evolution of the API economy. As more organizations expose access to underlying systems and data, a platform-agnostic approach was needed. REST is now the dominant architectural approach to designing modern web services.
 
