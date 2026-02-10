@@ -110,7 +110,10 @@ For many BizTalk migrations, connector selection is driven by common integration
 
 -	Built-in connectors natively run on the Azure Logic Apps runtime. Compared to managed connectors, built-in connectors usually reduce latency and avoid per-connection calls to the managed connector service, depending on the connector and scenario.
 
--	Managed connectors are deployed, hosted, and managed by Microsoft in Azure. These connectors provide triggers and actions for cloud services, on-premises systems, or both. In the designer's connector gallery, built-in connectors appear under the **Built-in** label, while managed connectors appear under the **Shared** label. For Consumption logic app workflows, managed connectors follow either the Standard or Enterprise pricing tier.
+
+-	Managed connectors are deployed, hosted, and managed by Microsoft in Azure. These connectors provide triggers and actions for cloud services, on-premises systems, or both.
+
+  In the designer's connector gallery, built-in connectors appear under the **Built-in** label, while managed connectors appear under the **Shared** label. For Consumption logic app workflows, managed connectors follow either the Standard or Enterprise pricing tier.
 
 -	Custom connectors let you wrap REST APIs, commonly by using an OpenAPI definition or SOAP APIs by using a WSDL, when no prebuilt connector exists. If no prebuilt connectors exist for the APIs you want to use, you can create a custom connector and access that connector from logic app workflows with the appropriate permissions.
 
