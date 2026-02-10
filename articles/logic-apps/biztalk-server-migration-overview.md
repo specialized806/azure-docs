@@ -62,7 +62,7 @@ For more information, see [Publish-subscribe architecture](#publish-subscribe-ar
 
 [Azure Logic Apps](logic-apps-overview.md) is the enterprise-grade workflow orchestration and integration platform from Microsoft. This platform is designed for deterministic, long‑running, stateful processes across cloud and hybrid environments. The key differentiator combines low‑code visual workflows with first‑class Azure platform capabilities: security, identity, networking, monitoring, and governance. Azure Logic Apps supports multiple deployment models (Consumption, Standard, Hybrid), which empower customers to run workflows fully managed in Azure or close to on‑premises systems while maintaining reliability, state management, and auditable execution. This flexibility makes the platform the natural backbone for modernizing BizTalk Server estates, orchestrating B2B/EDI integrations, and connecting SaaS, ERP, CRM, and legacy systems where durability and observability are non‑negotiable.
 
-:::image type="content" source="./media/biztalk-server-to-azure-integration-services-overview/simpleworkflow.png" alt-text="Diagram that shows a simple workflow." border="false":::
+:::image type="content" source="./media/biztalk-server-to-azure-integration-services-overview/integration-workflow.png" alt-text="Diagram that shows example integration points in a workflow." border="false":::
 
 However, Azure Logic Apps isn't solely "low‑code". Customers routinely use pro-code extensibility alongside visual workflows: inline C#, JavaScript, and PowerShell, custom code through local functions that run in Azure Logic Apps, and custom connectors. This extensibility lets teams embed complex business logic, transformations, protocol handling, and validation directly inside orchestrations without breaking the workflow model. In real‑world scenarios, such as claims processing, onboarding, compliance pipelines, mainframe and healthcare integrations, customers rely on Azure Logic Apps to act as the controlled execution layer that blends deterministic orchestration with custom code and, increasingly, AI‑assisted decisions, while preserving governance, security, and operational confidence at scale.
 
@@ -404,7 +404,7 @@ Azure Logic Apps (Standard) has two core dependencies in Azure: Azure Storage an
 
 The following diagram shows the core and optional dependencies for Azure Logic Apps:
 
-:::image type="content" source="./media/biztalk-server-to-azure-integration-services-overview/LAWorkflows.png" alt-text="Diagram that shows multiple workflows in Azure Logic Apps." border="false":::
+:::image type="content" source="./media/biztalk-server-to-azure-integration-services-overview/logic-app-workflows.png" alt-text="Diagram that shows multiple workflows in Azure Logic Apps." border="false":::
 
 The hybrid deployment model has two core dependencies: a Kubernetes cluster and SQL Server. 
 
