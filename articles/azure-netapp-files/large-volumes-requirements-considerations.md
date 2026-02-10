@@ -12,7 +12,7 @@ ms.author: anfdocs
 ---
 # Requirements and considerations for Azure NetApp Files large volumes
 
-Large volumes are Azure NetApp Files volumes with a size of 50 TiB to 1,024 TiB.
+Azure NetApp Files large volumes support sizes between 50 TiB  and 1,024 TiB.
 
 With breakthrough mode, you can create large volumes at sizes between 2,400 GiB and 2,400 TiB. You must [request the feature](#register-for-breakthrough-mode) before using it for the first time. With cool access enabled, large volumes can scale to 7.2 PiB in certain situations; for more information, see [large volumes up to 7.2 PiB](#requirements-and-considerations-for-large-volumes-up-to-72-pib-preview).
 
@@ -38,11 +38,11 @@ The following requirements and considerations apply to large volumes. For perfor
       </tr></thead>
     <tbody>
       <tr>
-        <td>Capacity tier</td>
+        <td>Service level</td>
         <td>Minimum volume size<br>(TiB)</td>
-        <td>Maximum volume size (TiB)*</td>
-        <td>Minimum throughput for capacity tier (MiB/s)</td>
-        <td>Maximum throughput for capacity tier (MiB/s)</td>
+        <td>Maximum volume size (TiB)</td>
+        <td>Base throughput (MiB/s) at 50TiB</td>
+        <td>Maximum throughput for service level (MiB/s)</td>
       </tr>
       <tr>
         <td>Standard (16 MiB/s per TiB)</td>
