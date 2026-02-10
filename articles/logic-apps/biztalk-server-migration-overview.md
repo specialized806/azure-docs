@@ -151,7 +151,7 @@ The following sections summarize the main built-in options for transformations a
 
   For Standard logic app workflows, you can store integration artifacts in the logic app resource itself. In the Azure portal, you can upload maps and schemas directly to the Standard logic app resource. If you work in Visual Studio Code, you can add schemas, maps, and templates to the appropriate folders under the project’s Artifacts directory and deploy them together with the workflow. This capability makes it easier for you to keep artifacts in source control.
 
-Standard workflows support calling custom compiled assemblies, such as .NET Framework assemblies, from XSLT maps. This support helps you with BizTalk migration scenarios that rely on existing transformation logic.
+  Standard workflows support calling custom compiled assemblies, such as .NET Framework assemblies, from XSLT maps. This support helps you with BizTalk migration scenarios that rely on existing transformation logic.
 
 - Store shared B2B artifacts in an integration account
 
