@@ -157,7 +157,7 @@ The following sections summarize the main built-in options for transformations a
 
 An *integration account* is an Azure resource that provides centralized access to reusable B2B and integration artifacts that multiple workflows can share. Artifacts can include trading partners, agreements, XSD schemas, XSLT maps, Liquid template-based maps, certificates, batch configurations, and .NET Framework assemblies.
 
-You commonly use integration accounts in B2B/EDI scenarios where you want a shared, governed artifact store separate from any single workflow. For Standard workflows, you can often avoid an integration account by packaging schemas, maps, and templates with the Standard logic app project and deploying them together. Standard workflows also support calling .NET Framework assemblies from XSLT transformations [see announcement](), which can help when porting existing BizTalk maps and helper libraries. If you prefer a project-based approach, add schemas, maps, and assemblies in Visual Studio Code and then deploy to Azure.
+  You commonly use integration accounts in B2B/EDI scenarios where you want a shared, governed artifact store separate from any single workflow. For Standard workflows, you can often avoid an integration account by packaging schemas, maps, and templates with the Standard logic app project and deploying them together. Standard workflows also support calling .NET Framework assemblies from XSLT transformations [see announcement](), which can help when porting existing BizTalk maps and helper libraries. If you prefer a project-based approach, add schemas, maps, and assemblies in Visual Studio Code and then deploy to Azure.
 
 - EDI schemas: specialized XSD artifacts for B2B integrations
 
