@@ -12,7 +12,7 @@ Make sure to select your preferred development language at the [top of the artic
 ::: zone pivot="programming-language-csharp"
 The following table shows the .NET versions supported by Azure Functions.
 
-The supported version of .NET depends we on both your Functions runtime version and your selected execution model.
+The supported version of .NET depends on both your Functions runtime version and your selected execution model.
 
 ### [Isolated worker model](#tab/isolated-process)
 
