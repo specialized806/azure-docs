@@ -348,7 +348,7 @@ Beyond data obfuscation, you can use [Azure RBAC](../role-based-access-control/o
 
 Beyond Azure RBAC, you can also [restrict access to run history in Azure Logic Apps by IP address range](logic-apps-securing-a-logic-app.md#restrict-ip).
 
-#### Hosting
+### Hosting
 
 - Hosting plans
 
