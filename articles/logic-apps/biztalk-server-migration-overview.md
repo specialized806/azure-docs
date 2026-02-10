@@ -404,7 +404,7 @@ The following table and diagram shosw how resources, artifacts, features, and ca
 #### Azure Logic Apps Standard (Cloud)
 
 | Feature or functionality | BizTalk Server | Azure Logic Apps (Cloud) |
-|--------------------------|----------------|-------|
+|--------------------------|----------------|--------------------------|
 | Orchestrations | - BizTalk Server orchestration <br>- C# code | - Azure Logic Apps workflow <br>- Azure Logic Apps workflow templates <br>- Local Functions |
 | Pipelines | - BizTalk Server pipelines <br>- Pipeline components | - Azure Logic Apps workflows (as pipelines) <br>- Local functions|
 | Message routing | - MessageBox <br>- Property Promotions <br>- Filters | - Azure Service Bus queues and topics (message headers, message properties, and subscriptions) <br>- RabbitMQ Exchanges |
