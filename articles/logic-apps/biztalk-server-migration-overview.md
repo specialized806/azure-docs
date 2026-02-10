@@ -334,7 +334,7 @@ In Azure Logic Apps, you can enable Application Insights support, which provides
 
 You can configure custom monitoring rules and view logs in a portal experience. You can send notifications through various channels, such as email, Microsoft Teams, and ServiceNow. To visually determine the health of your interfaces, service maps are available.
 
-#### Business activity monitoring
+### Business activity monitoring
 
 As a developer or business analyst working on solutions that integrate services and systems using various Azure resources, you might have difficulties visualizing the relationship between the technical components in your solution and your business scenario. To include business context about the Azure resources in your solution, you can build business processes that visually represent the business logic implemented by these resources. In [Azure Business Process Tracking](/azure/business-process-tracking/overview), a business process is a series of stages that represent the tasks flowing through real-world business scenario.
 
