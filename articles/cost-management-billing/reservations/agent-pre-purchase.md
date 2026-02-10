@@ -6,15 +6,19 @@ ms.reviewer: primittal
 ms.service: cost-management-billing
 ms.subservice: reservations
 ms.topic: conceptual
-ms.date: 01/15/2026
+ms.date: 02/10/2026
 ms.author: primittal
 ---
 
-# Optimize Microsoft Foundry and Copilot Credit costs with Microsoft Agent pre-purchase plan 
+# Optimize Microsoft Foundry, Microsoft Copilot Studio, Microsoft Fabric, and GitHub costs with Microsoft Agent pre-purchase plan
 
-Save on your Copilot Credit and Microsoft Foundry costs when you buy a pre-purchase plan. Pre-purchase plans are commit units (CUs) bought at discounted tiers in your purchasing currency for a specific product. The more you buy, the greater the discount. Purchased CUs pay down qualifying costs in US dollars (USD). So, for example if Microsoft Copilot Studio or Microsoft Foundry generates a retail cost of $100 based on Copilot Credit and Microsoft Foundry usage, then 100 Agent CUs (ACUs) are consumed.
+Save on select services across Microsoft Foundry, Microsoft Copilot Studio*, Microsoft Fabric, and GitHub costs when you buy a pre-purchase plan. Pre-purchase plans are commit units (CUs) bought at discounted tiers in your purchasing currency for a specific product. The more you buy, the greater the discount. Purchased CUs pay down qualifying costs in US dollars (USD). So, for example if Microsoft Copilot Studio or Microsoft Foundry generates a retail cost of $100 based on Copilot Credit and Microsoft Foundry usage, then 100 Agent CUs (ACUs) are consumed.
 
 Your Microsoft Agent pre-purchase plan automatically uses your ACUs to pay for eligible Copilot and AI Foundry usage during its one-year term or until Agent CUs run out. Your pre-purchase plan Agent CUs start paying for your Copilot Credit and Microsoft Foundry usage without having to redeploy or reassign the plan. By default, plans are configured to renew at the end of the one-year term.
+
+*Covers Copilot Credits enabled agentic services: Microsoft Copilot Studio, Dynamics 365 first-party agents, and Copilot Microsoft reserves the right to update Copilot Credit eligible products.
+
+## Services covered by Microsoft Agent pre-purchase plan*
 
 ## Prerequisites
 
@@ -27,7 +31,7 @@ To buy a pre-purchase plan, you must have one of the following Azure subscriptio
 
 ## Determine the right size to buy
 
-To get started, estimate your expected Copilot Credit and Microsoft Foundry usage for the term. This helps you determine the appropriate size for your pre-purchase plan. Each pre-purchase plan has a one-year term.
+To get started, estimate your expected Microsoft Foundry, Microsoft Copilot Studio, Microsoft Fabric, and GitHub usage for the term. This helps you determine the appropriate size for your pre-purchase plan. Each pre-purchase plan has a one-year term.
 
 **Example calculation:**
 
@@ -52,7 +56,7 @@ Purchase Microsoft Agent Pre-Purchase Plans in the [Azure portal reservations](h
 
 1. Go to the [Azure portal](https://portal.azure.com)
 2. Navigate to the **Reservations** service.
-3. On the **Purchase reservations page**, select **Microsoft Agent Pre-Purchase Plan**.  
+3. On the **Purchase reservations page**, select [**Microsoft Agent Pre-Purchase Plan**](https://aka.ms/MAF-P3-Purchase).  
 4. On the **Select the product you want to purchase** page, select a subscription. Use the **Subscription** list to select the subscription used to pay for the purchase. The payment method of the subscription is charged the upfront cost for the reservation. Charges are **not** deducted from the enrollment's Azure Prepayment (previously called monetary commitment) balance or charged as overage.
 5. Select a scope.
    - **Single resource group scope** - Applies the reservation discount to the matching resources in the selected resource group only.
