@@ -420,7 +420,7 @@ The following diagram shows the core and optional dependencies for Azure Logic A
 
 :::image type="content" source="./media/biztalk-server-to-azure-integration-services-overview/LAWorkflows.png" alt-text="Diagram that shows multiple workflows in Azure Logic Apps." border="false":::
 
-In the hybrid deployment model, there are two core dependencies. The Kubernetss cluster and SQL Server. 
+The hybrid deployment model has two core dependencies: a Kubernetss cluster and SQL Server. 
 
 ## Feature matchup
 
