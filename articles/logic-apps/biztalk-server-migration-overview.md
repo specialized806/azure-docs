@@ -258,7 +258,7 @@ Also, the **Inline Code Operations** connector provides the actions named **Exec
 As previously mentioned, support for calling .NET Framework assemblies from an XSLT map is currently available in logic app workflows when you upload those assemblies to an integration account. This capability helps support custom data transformation rules. For Standard logic app workflows, you can call .NET Framework code from XSLT maps without an integration account. You can also add assemblies and maps to a Standard logic app project in Visual Studio Code and subsequently deploy to Azure. For more information, see [.NET Framework assembly support added to Azure Logic Apps (Standard) XSLT transformations](https://techcommunity.microsoft.com/t5/integrations-on-azure-blog/net-framework-assembly-support-added-to-azure-logic-apps/ba-p/3669120).
 
 
-#### Application groups
+### Application groups
 
 In Azure Logic Apps, you can include and run multiple workflows in a Standard logic app resource, resulting in a 1-to-many relationship. If you're working locally on a Standard logic app project in Visual Studio Code, your logic app resource maps to this single project. With this approach, you can easily and logically group related workloads, code, and artifacts in the same project and deploy that project as a single unit.
 
