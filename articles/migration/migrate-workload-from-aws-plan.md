@@ -137,7 +137,7 @@ In most scenarios, data migration occurs in multiple phases. For example, you mi
 
 | Tool | Purpose |
 |---|---|
-| [AzCopy](/azure/storage/common/storage-use-azcopy-s3) | Quickly transfer data in bulk by using the CLI. |
+| [AzCopy](/azure/storage/common/storage-use-azcopy-s3) | Quickly transfers data in bulk by using the CLI. |
 | [Azure Data Factory](/azure/data-factory/data-migration-guidance-s3-azure-storage) | Provides enterprise-grade orchestration and transform-heavy data transfer. |
 | [AWS DataSync](https://aws.amazon.com/datasync/) | Automates the transfer of files and replication of unstructured data from AWS to Azure. |
 
@@ -156,13 +156,13 @@ Document the following information in a runbook to share with all teams and stak
 
 **Sign-off acceptance criteria:** Define what a *stable operation* means and make it measurable. For example, agree that after cutover, Azure must run for a specific number of minutes or hours without errors and that the workload passes all tests.
 
-**Rollback trigger criteria and steps:** Document the exact conditions that trigger a rollback to the AWS environment. For example, if any critical functionality is down or the system is in a degraded state, like a specific percentage below baseline, for more than a specified number of minutes, initiate a rollback. Document the rollback steps.
+**Rollback trigger criteria and steps:** Document the exact conditions that trigger a rollback to the AWS environment. For example, initiate a rollback if any critical functionality is down or the system is in a degraded state, like a specific percentage below baseline, for more than a specified number of minutes. Document the rollback steps.
 
-Depending on state changes, rollbacks can be more complex than mitigating the problem in Azure. Failed mitigation attempts might also complicate a rollback. Understand break-and-fix scenarios versus revert scenarios to help reduce risk during migration.
+Depending on state changes, rollbacks can be more complex than mitigating the problem in Azure. Failed mitigation attempts might also complicate a rollback. Understand when you should fix a problem and when you should roll back changes to help reduce risk during migration.
 
 **Client configuration changes:** Identify and document all client-facing configuration items that the workload migration affects. These items include DNS endpoints, authentication flows, and connection strings. Involve the client teams early and communicate the upcoming changes, timelines, and responsibilities.
 
-**Traffic and routing changes:** Plan and document your traffic routing changes in detail. Define exactly how to update DNS records, load balancer configuration, and routing rules to direct traffic to Azure. Consider any TTL that you configure because it determines how long DNS changes take to propagate. 
+**Traffic and routing changes:** Plan and document your traffic routing changes in detail. Define exactly how to update DNS records, load balancer configuration, and routing rules to direct traffic to Azure. Consider any TTL value that you configure because it determines how long DNS changes take to propagate. 
 
 Many applications and scripts reference fully qualified domain names (FQDNs) for endpoints, APIs, and services. If FQDNs change unexpectedly during migration, integrations can break. As part of your routing and cutover planning, inventory all FQDNs that your workload uses. Decide whether to retain existing names via DNS forwarding or update application configurations to use new Azure FQDNs. For public-facing services, plan DNS cutover carefully to minimize downtime and ensure a smooth transition.
 
@@ -195,7 +195,7 @@ At the end of the planning phase, you should have the following items in place:
 | &#9744; | Involve application team                              |
 | &#9744; | Assess skills                                         |
 | &#9744; | Document KPIs                                         |
-| &#9744; | Plan monitoring and operations hand off               |
+| &#9744; | Plan monitoring and operations handoff                |
 | &#9744; | Address networking                                    |
 | &#9744; | Identify matching Azure services                      |
 | &#9744; | Plan identity management                              |

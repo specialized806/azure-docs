@@ -15,7 +15,7 @@ ms.collection:
 
 This article is part of a series about how to [migrate a workload from Amazon Web Services (AWS) to Azure](/azure/migration/migrate-workload-from-aws-introduction). 
 
-The prepartion phase consists of these steps:
+The preparation phase consists of these steps:
 
 > [!div class="checklist"]
 > * Prepare the environment.
