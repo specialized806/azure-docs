@@ -143,7 +143,7 @@ For most JSON transformations in logic app workflows, you can use built-in Data 
 
 - Schema-based XML operations (parse and compose)
 
-For XML creation and validation scenarios in logic app workflows, you can use built-in XML operations such as Compose XML with schema and Parse XML with schema. These actions are most useful when you want strongly-typed XML handling (based on an XSD) rather than treating the payload as plain text, for example when you need consistent element names, data types, and structure across multiple workflows.
+  For XML creation and validation scenarios in logic app workflows, you can use built-in XML operations such as the **Compose XML with schema** and **Parse XML with schema** actions. These actions are the most useful when you need strongly typed XML handling (XSD-based), rather than treating the payload as plain text. For example, you need consistent element names, data types, and structure across multiple workflows.
 
 - Store artifacts with Standard logic apps
 
