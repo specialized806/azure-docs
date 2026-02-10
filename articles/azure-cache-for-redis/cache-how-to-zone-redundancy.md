@@ -96,7 +96,7 @@ Users are allowed to pass this value only for Premium caches and can be passed i
 
 Users are allowed to pass this value only for Premium caches. This is the only value supported in the regions that don't support zones.
 
-- This value can't be passed by user in the request for Standard caches, since they can't explicitly choose for non zonal standard caches.
+- This value can't be passed by user in the request for Standard caches, since they can't explicitly choose for non-zonal standard caches.
 
 It is selected as default option for caches if `ZonalAllocationPolicy` isn't passed in the request in cases:
 
