@@ -340,7 +340,7 @@ As a developer or business analyst working on solutions that integrate services 
 
 Another option is that you can use an external solution from [Kovai](https://www.kovai.co/) called [Serverless 360](https://www.serverless360.com/). Along with the monitoring platform, you can use the [business activity monitoring feature](https://www.serverless360.com/business-activity-monitoring) that provides end-to-end tracking for business process flows across cloud-native and hybrid integrations. This feature includes a managed connector that developers can use to instrument code and capture important business data. Administrators can subsequently build dashboards and share them with business analysts.
 
-#### Tracking
+### Tracking
 
 Azure Logic Apps provides rich workflow run history so that developers and support analysts can review action by action telemetry, including all processed inputs and outputs. To help protect any sensitive data, you can [enable secure inputs and outputs](logic-apps-securing-a-logic-app.md?tabs=azure-portal#obfuscate) on individual actions in workflows. This capability obfuscates or hides the data in logs and workflow run histories to avoid leaks.
 
