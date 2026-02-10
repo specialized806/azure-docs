@@ -186,15 +186,7 @@ After the upgrade completes, verify that your Bastion host is functioning correc
 
 ## Troubleshooting
 
-| Issue | Possible cause | Solution |
-|-------|---------------|----------|
-| Upgrade fails to start | Insufficient permissions | Verify you have Contributor or Owner role on the resource group. |
-| Upgrade fails with subnet error | AzureBastionSubnet doesn't exist or is too small | Create a subnet named **AzureBastionSubnet** with /26 or larger prefix. |
-| Upgrade times out | Network or service issues | Wait a few minutes and check the Bastion host status. If still updating, wait for completion. If failed, try again. |
-| Features not available after upgrade | Feature not enabled during upgrade | Go to **Configuration** and enable the desired features. |
-| Can't connect after upgrade | Temporary service interruption | Wait a few minutes for the service to stabilize, then try again. |
-
-If issues persist, check the [Azure Bastion FAQ](bastion-faq.md) or [contact Azure support](https://azure.microsoft.com/support/).
+If you encounter issues during or after the upgrade, see [Troubleshoot Azure Bastion](troubleshoot.md#sku-upgrade-issues).
 
 ## Next steps
 
