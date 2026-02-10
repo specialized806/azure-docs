@@ -190,7 +190,9 @@ Azure Logic Apps provides message durability in the following ways:
    
    Based on the workflow type and configuration, you can also resubmit from a specific point in the run. However, make sure your downstream systems can safely handle retries and potential duplicates.
 
-- With [peek-lock messaging](/rest/api/servicebus/peek-lock-message-non-destructive-read) in Azure Service Bus, a receiver can process a message and then explicitly settle it (for example, complete to remove it from the queue, or abandon so it becomes available for redelivery). To use this capability in Azure Logic Apps, select the Azure Service Bus connector. Peek-lock improves reliability and supports retry/redelivery patterns, but end-to-end exactly-once processing typically still requires idempotency in downstream systems.
+- With [peek-lock messaging](/rest/api/servicebus/peek-lock-message-non-destructive-read) in Azure Service Bus, a receiver can process a message and then explicitly settle that message. For example, the receiver can complete the message and then remove it from the queue, or the receiver can abandon the message and make it available for redelivery.
+
+  To use this capability in Azure Logic Apps, use the Azure Service Bus connector. Peek-lock mode improves reliability and supports retry or redelivery patterns. However, end-to-end, exactly once processing still typically requires idempotency in downstream systems.
 
 - With RabbitMQ, durability is commonly achieved by using durable queues/exchanges together with persistent messages, and by relying on consumer acknowledgements so messages can be redelivered if processing fails before an ack is sent. When integrating through the RabbitMQ connector, apply the same design principle as other brokers: assume retries and potential duplicates and make downstream processing idempotent.
 
