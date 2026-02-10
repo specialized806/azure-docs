@@ -3,7 +3,7 @@ title: Restore Azure VMs using REST API
 description: In this article, learn how to manage to restore operations of Azure Virtual Machine Backup using REST API.
 ms.topic: how-to
 ms.service: azure-backup
-ms.date: 02/09/2025
+ms.date: 02/10/2026
 ms.assetid: b8487516-7ac5-4435-9680-674d9ecf5642
 author: AbhishekMallick-MS
 ms.author: v-mallicka
@@ -12,13 +12,13 @@ ms.author: v-mallicka
 
 # Restore Azure Virtual machines using REST API
 
-This article describes how to restore an Azure VM or disks using the REST API.
+This article describes how to restore Azure Virtual Machines or individual disks from a recovery point by using the Azure Backup REST API. It covers selecting recovery points, triggering restore operations, and performing cross-region restores.
 
 ## Prerequisites
 
 After completing an Azure VM backup with Azure Backup, you can restore entire VMs, disks, or files from the same backup copy. For any restore operation, you have to first identify the relevant recovery point.
 
-## Select Recovery point
+## Select Recovery point for Azure VM restore
 
 The available recovery points of a backup item can be listed using the [list recovery point REST API](/rest/api/backup/recovery-points/list). It's a simple *GET* operation with all the relevant values.
 
@@ -116,7 +116,7 @@ X-Powered-By: ASP.NET
 
 The recovery point is identified with the `{name}` field in the given response.
 
-## Restore operations
+## Trigger the restore operations for Azure VM
 
 After selecting the [relevant restore point](#select-recovery-point), proceed to trigger the restore operation.
 
@@ -340,7 +340,7 @@ As explained [above](#restore-operations), the following request body defines pr
 
 The response should be handled in the same way as [explained above for restoring disks](#responses).
 
-## Cross Region Restore
+## Cross Region Restore for Azure VMs
 
 If Cross Region Restore (CRR) is enabled on the vault with which you've protected your VMs, the backup data is replicated to the secondary region. You can use the backup data to perform a restore operation. To trigger a restore operation in the secondary region using REST API, follow these steps:
 
