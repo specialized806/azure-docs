@@ -145,8 +145,8 @@ items:
         href: add-agent-action-create-run-workflow.md
       - name: Create MCP servers and tools from connectors
         href: create-mcp-server-api-center.md
-      - name: Set up Standard logic apps as MCP servers
-        href: set-up-model-context-protocol-server-standard.md
+      - name: Create MCP servers from Standard workflows
+        href: create-model-context-protocol-server-standard.md
       - name: Run Python code in agent workflows
         href: connectors/code-interpreter-python-container-apps-session.md
       - name: Parse or chunk content

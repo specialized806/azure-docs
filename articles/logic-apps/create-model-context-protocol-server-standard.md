@@ -1,18 +1,19 @@
 ---
-title: Set up Standard workflows as MCP servers
-description: Learn to set up Standard logic apps as remote Model Context Protocol (MCP) servers for use with large language models (LLMs), AI agents, and MCP clients. Expose workflows as tools for agents, models, and MCP clients in AI enterprise integrations.
+title: Create MCP Servers from Standard Workflows
+description: Learn to create or register remote Model Context Protocol (MCP) servers powered by workflows in a Standard logic app. Expose workflows as tools for AI agents, large language models (LLMs), and MCP clients to use in AI enterprise integrations. Expose workflows as tools for agents, models, and MCP clients in AI enterprise integrations.
 services: logic-apps
 ms.suite: integration
+author: kewear
 ms.author: kewear
 ms.reviewers: estfan, azla
 ms.topic: how-to
 ms.collection: ce-skilling-ai-copilot
-ms.date: 11/18/2025
+ms.date: 02/16/2026
 ms.update-cycle: 180-days
-#Customer intent: As an AI integration developer who works with MCP servers and Azure Logic Apps, I want to set up Standard logic app workflows in Azure Logic Apps as tools for one or multiple remote Model Context Protocol (MCP) servers that work with LLMs, AI agents, and MCP clients.
+#Customer intent: As an AI developer working with Azure Logic Apps, I want to create and register a remote MCP server that provides tools for AI agents and large language models (LLMs) to use for completing tasks. I can build these tools from connector actions in Azure Logic Apps.
 ---
 
-# Set up Standard logic apps as remote MCP servers (preview)
+# Create remote model context protocol (MCP) servers from Standard workflows (preview)
 
 [!INCLUDE [logic-apps-sku-standard](../../includes/logic-apps-sku-standard.md)]
 
@@ -23,7 +24,7 @@ ms.update-cycle: 180-days
 
 Typically, large language models (LLMs) work with AI agents that handle and fulfill requests by using prebuilt *tools* that agents call to complete tasks, like send an email, query a database, or trigger a workflow. In Azure Logic Apps, you can jumpstart building these tools by reconfiguring a Standard logic app as a single or multiple *remote* Model Context Protocol (MCP) servers. This capability means that you can expose existing workflows as tools that LLMs, AI agents, and MCP clients can use to interact with enterprise resources and assets. In this context, *remote* means that the MCP server runs outside the environment where the interface for your AI agent interface.
 
-This guide shows how to set up a Standard logic app resource with one or multiple MCP servers and test your servers with an MCP client.
+This guide shows how to set up a Standard logic app resource with one or multiple MCP servers. You learn how to set up authentication, generate API keys, manage your workflows, and test your servers with an MCP client.
 
 ## Why set up logic apps as MCP servers
 
@@ -36,7 +37,7 @@ For example, suppose you have a Standard logic app-based MCP server that runs in
 - The inputs that go in through the MCP client to the agent or model
 - The outputs from the agent or model that go out through the MCP client
 
-:::image type="content" source="media/set-up-model-context-protocol-server-standard/mcp-server-architecture.png" alt-text="Diagram that shows agent or model interactions with MCP client and MCP server components." lightbox="media/set-up-model-context-protocol-server-standard/mcp-server-architecture.png":::
+:::image type="content" source="media/create-model-context-protocol-server-standard/mcp-server-architecture.png" alt-text="Diagram that shows agent or model interactions with MCP client and MCP server components." lightbox="media/create-model-context-protocol-server-standard/mcp-server-architecture.png":::
 
 When you logically group multiple MCP servers in a single Standard logic app, this approach provides a more scalable, organized, and flexible way to expose workflows as tools. Each MCP server works as an independent workflow group that your MCP client can individually discover and call.
 
@@ -65,7 +66,11 @@ Standard logic app based MCP servers support the [Streamable HTTP and Server-Sen
 
 - An Azure account with an active subscription. [Get a free Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
-- The Standard logic app resource and workflows that you want to set up as an MCP server with tools that agents or models can use.
+- The Standard logic app resource that you want to set up as an MCP server with tools that agents or models can use.
+
+- The workflow in your logic app that you want to use as a tool for your MCP server.
+
+  - You can select an existing workflow in your logic app or create a new workflow.
 
   - This capability applies only to Standard workflows that use the Workflow Service Plan or App Service Environment v3 option.
 
@@ -120,7 +125,7 @@ To help agents or models find and run tools, add the following metadata to the *
 
   Your MCP server uses this metadata as the tool description to show end users and to route requests to the correct tool, for example:
 
-  :::image type="content" source="media/set-up-model-context-protocol-server-standard/trigger-description.png" alt-text="Screenshot shows trigger information pane with description box and example description." lightbox="media/set-up-model-context-protocol-server-standard/trigger-description.png":::
+  :::image type="content" source="media/create-model-context-protocol-server-standard/trigger-description.png" alt-text="Screenshot shows trigger information pane with description box and example description." lightbox="media/create-model-context-protocol-server-standard/trigger-description.png":::
 
   To add this description, follow these steps:
 
@@ -136,7 +141,7 @@ To help agents or models find and run tools, add the following metadata to the *
 
   This metadata improves the agent's accuracy in passing the correct inputs to tools at runtime, for example:
 
-  :::image type="content" source="media/set-up-model-context-protocol-server-standard/input-parameter-descriptions.png" alt-text="Screenshot shows trigger information pane with Request Body Json Schema box and example descriptions for input parameters." lightbox="media/set-up-model-context-protocol-server-standard/input-parameter-descriptions.png":::
+  :::image type="content" source="media/create-model-context-protocol-server-standard/input-parameter-descriptions.png" alt-text="Screenshot shows trigger information pane with Request Body Json Schema box and example descriptions for input parameters." lightbox="media/create-model-context-protocol-server-standard/input-parameter-descriptions.png":::
 
   To add a description for each input parameter, follow these steps:
 
@@ -283,145 +288,91 @@ Now set up Easy Auth authentication on the Standard logic app that you want to u
 
 1. To finish, select **Add**.
 
-1. Continue on to set up a single or multiple MCP servers in your logic app.
+1. Continue with the steps to create an MCP server in your logic app.
 
-## Set up one or more MCP servers in a logic app
-
-For this task, you need to create an *mcpservers.json* file for your Standard logic app resource. This file contains the configuration for your MCP servers.
+## Create an MCP server by using workflows
 
 1. In the [Azure portal](https://portal.azure.com), open your Standard logic app resource.
 
-1. On the resource sidebar, under **Development Tools**, select **Advanced Tools** **>** **Go**. If prompted, consent to leave the Azure portal.
+1. On the resource sidebar, under **Workflows**, expand **Agents**, and select **MCP servers** to open the **MCP servers** page, for example:
 
-1. On the **Kudu** toolbar, from the **Debug console** menu, select **CMD**.
+   :::image type="content" source="media/create-model-context-protocol-server-standard/mcp-servers.png" alt-text="Screenshot shows the Azure portal, Standard logic app resource, and MCP servers page.":::
 
-1. From the directory table, go to the following folder: **site/wwwroot**
-   
-1. If the *mcpservers.json* file doesn't exist, create this file by following these steps:
+1. Choose one of the following options:
 
-   1. On the **.../wwwroot** toolbar, select the plus sign (**+**) > **New file**.
+   | Option | Description |
+   |--------|-------------|
+   | **Use existing workflows** | When you have one or more existing workflows to use for your MCP server. Continue to [Choose existing workflows](#choose-workflows). |
+   | **Create new workflows**. | When you want create new workflows to use for your MCP server. Continue to [Create new workflows](#create-workflows). |
 
-   1. For the file name, enter `mcpservers.json`.
+<a id="choose-workflows"></a>
 
-   1. In the file list, find the new *mcpservers.json* file. Next to the file name, select **Edit** (pencil icon).
+### Choose existing workflows
 
-   1. In the editor, add your configuration for one or more MCP servers, for example:
+1. On the **Create an MCP server** pane, under **MCP server details**, enter a name and description for your MCP server.
 
-      ```json
-      {
-         "mcpServers": [
-            {
-               "name": "mcp-server1",
-               "description": "First MCP server",
-               "tools": [
-                  {
-                     "name": "CreateTicket"
-                  },
-                  {
-                     "name": "CloseTicket"
-                  }
-               ]
-            },
-            {
-               "name": "mcp-server2",
-               "description": "Second MCP server",
-               "tools": [
-                  {
-                     "name": "SubmitLeave"
-                  },
-                  {
-                     "name": "ApproveLeave"
-                  }
-               ]
-            }
-         ]
-      }
-      ```
+1. Under **Workflows**, select one or multiple workflows to use as tools for your MCP server.
 
-      | Field | Type | Required | Description |
-      |------ |------|----------|-------------|
-      | `mcpServers` | Array | Yes | The list of MCP server definitions where each represents a logical MCP server. |
-      | `mcpServers[].name` | String | Yes | The MCP server name, which appears in the following server endpoint path: `/api/mcpservers/{name}/mcp`. |
-      | `mcpServers[].description` | String | No | The optional friendly description for this server. |
-      | `mcpServers[].tools` | Array | Yes | The list of tools, which are logic app workflows, exposed by this server. |
-      | `mcpServers[].tools[].name` | String | Yes | The tool name, which must match the corresponding workflow name in your logic app. Each workflow is a callable MCP server tool. |
+1. When you finish, select **Create**.
 
-   1. When you're done, save your *mcpservers.json* file.
+<a id="create-workflows"></a>
 
-1. In the same folder, find and edit the *host.json* file. Next to the file name, select **Edit** (pencil icon). 
+### Create new workflows
 
-1. In the editor, following the `extensionBundle` JSON object, add the `extensions` JSON object at the same level as `extensionBundle`.
+1. On the **Register an MCP server with Azure Logic Apps** page, follow these steps:
 
-   1. Set the `extensions.workflow.McpServerEndpoints.enable` property to `true`.
+   1. Under **Project details**, enter an **MCP server name** and a **Description**.
 
-      This property enables MCP server specific APIs in your logic app and is the only property value that you must change. All other property values don't require changes unless you want to use SSE transport or override the default values.
+      By default, the **Logic app** value is set to the current logic app name and is uneditable.
 
-   1. To override the default values for the properties in `ProtectedResourceMetadata`, replace the placeholder values with the following values that you saved earlier:
+   1. Under **Tools**, select a connector and actions to build the workflow as a tool for your MCP server.
 
-      - Logic app name
-      - Application ID URI
+      1. In the **Connectors** section, select **Add**.
 
-      If you override the default values in `McpServerEndpoints` or `ProtectedResourceMetadata`, make sure to follow these rules:
+      1. On the **Add connector** pane and the **Choose connector** tab, find and select the connector to use, for example:
 
-      - To completely remove the authentication type, you must change the type to `"anonymous"`.
+      :::image type="content" source="media/create-mcp-server-api-center/choose-connector.png" alt-text="Screenshot shows Add connector pane with selected Office 365 Outlook connector." lightbox="media/create-mcp-server-api-center/choose-connector.png":::
 
-      - For `Resource`, the value must be the same as the MCP server URL.
+   1. On the **Select actions** tab, select each action that you want to create as a tool. When you're done, select **Next**.
 
-      - `BearerMethodsSupported` and `ScopesSupported` support only the specified values.
+      You can select multiple actions, but you can create only one tool for each selected action.
 
-      - For `ScopesSupported`, the allowed token audience is `"api://<client-ID>/"`. Make sure to include the trailing slash unless you know this character doesn't exist in the token's audience claim.
+      :::image type="content" source="media/create-mcp-server-api-center/select-actions.png" alt-text="Screenshot shows Add connector pane with selected connector actions to create as tools." lightbox="media/create-mcp-server-api-center/select-actions.png":::
 
-      - `AuthorizationServers` specifies the recommended value for your tenant.
+   1. On the **Create connection** tab, provide any connection information or sign in and authenticate your credentials, if required.
 
-      - You can override the `ProtectedResourceMetadata` values returned with the [HTTP WWW-Authenticate response header](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/WWW-Authenticate), but only if the overriding values follow the standards in [3.3 Protected Resource Metadata Validation - OAuth 2.0 Protected Resource Metadata](https://datatracker.ietf.org/doc/html/rfc9728#PRConfigurationValidation).
+      If you must create a different connection, select **Add new**.
 
-   The following example shows a minimal *host.json* file where the `extensions` JSON object appears to enable your MCP server to use streamable HTTP transport:
+   1. When you're done, select **Save**, which returns you to the **Register an MCP Server with Azure Logic Apps** page.
 
-   ```json
-   "extensionBundle": {
-      "id": "Microsoft.Azure.Functions.ExtensionBundle.Workflows",
-      "version": "<version-number>"
-   },
-   "extensions": {
-      "workflow": {
-         "McpServerEndpoints": {
-            "enable": true
-         }
-      }
-   }
-   ```
+      The **Connectors** section now shows your selected connector. The **Actions** section shows the selected actions that power the tools that your MCP server provides. By default, any parameters for these actions use an LLM as the input source. You can change this input source to user-provided, based on your scenario's needs.
 
-   The following example shows a *host.json* file where the `extensions` JSON object appears with all the default values that you can override:
+      :::image type="content" source="media/create-mcp-server-api-center/tools-list.png" alt-text="Screenshot shows Connectors and Actions sections with tools list." lightbox="media/create-mcp-server-api-center/tools-list.png":::
 
-   ```json
-   "extensionBundle": {
-      "id": "Microsoft.Azure.Functions.ExtensionBundle.Workflows",
-      "version": "<version-number>"
-   },
-   "extensions": {
-      "workflow": {
-         "Settings": {
-            "Runtime.McpServerToMcpClientPingIntervalInSeconds": 30, // Optional: Available for enabling SSE transport. Overrides the ping interval default value, which is 30 seconds.
-            "Runtime.Backend.EdgeWorkflowRuntimeTriggerListener.AllowCrossWorkerCommunication": false // Available and required for SSE transport. You must set this property to `true`.
-         },
-         "McpServerEndpoints": {
-            "enable": true,
-            "authentication": {
-               "type": "oauth2" // Defaults to "oauth2" if not provided. Optional: To remove authentication, change to "anonymous".
-            },
-            // The following section applies only if you want to override the default values.
-            "ProtectedResourceMetadata": {
-               "BearerMethodsSupported": ["header"],
-               "ScopesSupported": ["api://<application-ID-URI>/user_impersonation"],
-               "Resource": "https://<logic-app-name>.azurewebsites.net/api/mcp",
-               "AuthorizationServers": ["https://login.microsoftonline.com/<tenant-ID>/v2.0"]
-            }
-         }
-      }
-   }
-   ```
+  1. To help an agent or LLM choose the correct tool and pass correctly sourced inputs to tool parameters, review and update each tool's setup by following these steps:
 
-1. When you're done, save your *host.json* file.
+     1. In the **Actions** section, select either the tool name or the edit (pencil) button for that tool.
+
+     1. On the **Edit: <*tool-name*>** pane, provide the following information:
+
+        | Section | Description |
+        |---------|-------------|
+        | **Description** | Describes the purpose for the action-backed tool to help an agent or LLM determine when to use the tool. A default description exists, but you can customize the text for your needs. <br><br>The default text comes from the [connector's API Swagger description](/connectors/connector-reference/connector-reference-logicapps-connectors), for example, [Actions - Office 365 Outlook](/connectors/office365/). |
+        | **Default parameters** | Lists any parameters required to run the tool. For each parameter, the input source options are **Model** and **User**. By default, the model (LLM) provides the inputs. If you select **User**, the appropriate UX appears for you to provide the input source. For more information, see [Learn how parameter values resolve at runtime](#runtime-value-resolution). |
+        | **Optional parameters** | Select any other parameters that you want to include for the tool. |
+
+        The following example shows the description and parameters for the **Send email (V2)** tool:
+
+        :::image type="content" source="media/create-mcp-server-api-center/tool-parameters.png" alt-text="Screenshot shows Edit pane for an example tool." lightbox="media/create-mcp-server-api-center/tool-parameters.png":::
+
+     1. When you're done, select **Save changes**.
+
+1. When you're done reviewing or updating each tool, select **Register**.
+
+1. Wait for the notifications that Azure successfully registered your MCP server.
+
+[!INCLUDE [ai-action-parameter-values-runtime](includes/ai-action-parameter-values-runtime.md)]
+
 
 ## Test your MCP servers setup
 
@@ -466,7 +417,7 @@ For this task, you need to create an *mcpservers.json* file for your Standard lo
 
 1. In Visual Studio Code, from the **View** menu, select **Command Palette**. Find and select **MCP: Add Server**.
 
-   :::image type="content" source="media/set-up-model-context-protocol-server-standard/visual-studio-code-mcp-add-server.png" alt-text="Screenshot shows Visual Studio Code, Command Palette, and command to add MCP server." lightbox="media/set-up-model-context-protocol-server-standard/visual-studio-code-mcp-add-server.png":::
+   :::image type="content" source="media/create-model-context-protocol-server-standard/visual-studio-code-mcp-add-server.png" alt-text="Screenshot shows Visual Studio Code, Command Palette, and command to add MCP server." lightbox="media/create-model-context-protocol-server-standard/visual-studio-code-mcp-add-server.png":::
 
 1. Select **HTTP (HTTP or Server-Sent Events)**. For **Enter Server URL**, provide the URL for your MCP server. 
 
@@ -481,7 +432,7 @@ For this task, you need to create an *mcpservers.json* file for your Standard lo
 
 1. In the *mcp.json* file, select the **Start** or **Restart** link to establish connectivity for your MCP server, for example:
 
-   :::image type="content" source="media/set-up-model-context-protocol-server-standard/start-server-mcp-json-file.png" alt-text="Screenshot shows mcp.json file with Start link selected." lightbox="media/set-up-model-context-protocol-server-standard/start-server-mcp-json-file.png":::
+   :::image type="content" source="media/create-model-context-protocol-server-standard/start-server-mcp-json-file.png" alt-text="Screenshot shows mcp.json file with Start link selected." lightbox="media/create-model-context-protocol-server-standard/start-server-mcp-json-file.png":::
 
 1. When the authentication prompt appears, select **Allow**, and then select the account to use for authentication.
 
@@ -489,7 +440,7 @@ For this task, you need to create an *mcpservers.json* file for your Standard lo
 
    After authentication completes, the *mcp.json* file shows **Running** as the MCP server status.
 
-   :::image type="content" source="media/set-up-model-context-protocol-server-standard/running-mcp-json-file.png" alt-text="Screenshot shows mcp.json file with Running status selected." lightbox="media/set-up-model-context-protocol-server-standard/running-mcp-json-file.png":::
+   :::image type="content" source="media/create-model-context-protocol-server-standard/running-mcp-json-file.png" alt-text="Screenshot shows mcp.json file with Running status selected." lightbox="media/create-model-context-protocol-server-standard/running-mcp-json-file.png":::
 
 1. As a test, try calling your MCP server from GitHub Copilot:
 
