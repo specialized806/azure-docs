@@ -7,8 +7,8 @@ author: divyaswarnkar
 ms.author: divswa
 ms.reviewers: estfan, azla
 ms.topic: how-to
-ms.date: 12/09/2025
-#Customer intent: As an integration developer who works with Azure Logic Apps, I want to validate XML using schemas before processing messages in B2B workflows.
+ms.date: 02/11/2026
+#Customer intent: As an integration developer who works with Azure Logic Apps, I want to validate XML by using schemas before trading partners process messages in B2B workflows.
 ---
 
 # Validate XML using schemas in B2B workflows with Azure Logic Apps
@@ -97,7 +97,7 @@ Confirm that the workflow works the way that you expect.
 
 1. From the **HTTP URL** property, copy and save the endpoint URL for the trigger.
 
-1. On the designer toolbar. select **Run** > **Run**.
+1. On the designer toolbar, from the **Run** menu, select **Run**.
 
 1. To fire the **Request** trigger, use your preferred HTTP request tool to send a request with the XML content to the trigger's endpoint URL.
 

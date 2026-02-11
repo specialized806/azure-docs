@@ -7,7 +7,7 @@ ms.suite: integration
 ms.reviewers: estfan, divswa, krmitta, azla
 ms.topic: how-to
 ms.collection: ce-skilling-ai-copilot
-ms.date: 11/18/2025
+ms.date: 12/12/2025
 ms.update-cycle: 180-days
 # Customer intent: As an AI integration developer who uses Azure Logic Apps, I want to build workflows that complete tasks by using AI agent loops, large language models (LLMs), natural language, and chat capabilities in my integration solutions.
 ---
@@ -31,15 +31,15 @@ This guide shows how to create a Consumption or Standard logic app using the **C
 
 ## Prerequisites
 
-Based on whether you want to create a Consumption or Standard logic app, the following prerequisites apply:
-
 - An Azure account and subscription. [Get a free Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+
+Based on whether you want to create a Consumption or Standard logic app, the following prerequisites apply:
 
 ### [Consumption (preview)](#tab/consumption)
 
 - A Consumption logic app resource that uses the workflow type named **Conversational Agents**. See [Create Consumption logic app workflows in the Azure portal](quickstart-create-example-consumption-workflow.md).
 
-  Consumption conversational agent workflows don't require that you manually set up a separate AI model. Your workflow automatically includes an agent action that uses an Azure OpenAI Service model hosted in Azure AI Foundry. Agent workflows support only specific models. See [Supported models](#supported-models).
+  Consumption conversational agent workflows don't require that you manually set up a separate AI model. Your workflow automatically includes an agent action that uses an Azure OpenAI Service model hosted in Microsoft Foundry. Agent workflows support only specific models. See [Supported models](#supported-models).
 
   > [!NOTE]
   >
@@ -71,7 +71,7 @@ For external chat authentication and authorization, Consumption conversational a
   | Model source | Description |
   |--------------|-------------|
   | **Azure OpenAI** | An [Azure OpenAI Service resource](/azure/ai-services/openai/overview) with a deployed [Azure OpenAI Service model](/azure/ai-services/openai/concepts/models). <br><br>You need the resource name when you connect from the agent in your workflow to the deployed AI model in Azure OpenAI Service. <br><br>For more information, see: <br>- [Create and deploy an Azure OpenAI Service resource](/azure/ai-services/openai/how-to/create-resource?pivots=web-portal) <br>- [Deploy a model](/azure/ai-services/openai/how-to/create-resource?pivots=web-portal#deploy-a-model) |
-  | **APIM Gen AI Gateway** | An [Azure API Management account](/azure/api-management/genai-gateway-capabilities) with the LLM API to use. <br><br>For more information, see: <br>- [AI gateway in Azure API Management](/azure/api-management/genai-gateway-capabilities) <br>- [Import an Azure AI Foundry API](/azure/api-management/azure-ai-foundry-api) <br>- [Import an Azure OpenAI API](/azure/api-management/azure-openai-api-from-specification) |
+  | **APIM Gen AI Gateway** | An [Azure API Management account](/azure/api-management/genai-gateway-capabilities) with the LLM API to use. <br><br>For more information, see: <br>- [AI gateway in Azure API Management](/azure/api-management/genai-gateway-capabilities) <br>- [Import a Foundry API](/azure/api-management/azure-ai-foundry-api) <br>- [Import an Azure OpenAI API](/azure/api-management/azure-openai-api-from-specification) |
  
 - The authentication to use when you connect your agent to your AI model.
 
@@ -596,6 +596,29 @@ Except for the different agent parameters to set up for the **Send an email (V2)
    :::image type="content" source="media/create-conversational-agent-workflows/send-email-tool-complete.png" alt-text="Screenshot shows the agent and finished Send email tool." lightbox="media/create-conversational-agent-workflows/send-email-tool-complete.png":::
 
 [!INCLUDE [best-practices-agent-workflows](includes/best-practices-agent-workflows.md)]
+
+## Trigger or run the workflow
+
+You can trigger or run conversational agent workflows in the following ways, based on the deployment environment:
+
+| Environment | Description |
+|-------------|-------------|
+| Nonproduction | On the workflow designer toolbar, select **Chat** to manually start a chat session with the conversational agent in the Azure portal. <br><br>**Important**: This method is intended only for test activities. Portal-based testing uses a temprary developer key. External users or production systems can't use this key. For more information, see [Authentication and authorization](#authentication-and-authorization). |
+| Production | Requires that you set up authentication for external users or clients such as websites, mobile apps, bots, or other Azure services to access the conversational agent. They can then trigger the workflow by using the chat client URL. |
+
+The following table describes how chat users or clients use the chat client URL to run the workflow in production:
+
+| Workflow type | Chat client URL usage | Required authentication |
+|---------------|-----------------------|-------------------------|
+| **Consumption** | Open the URL in a browser or embed the URL in an *iFrame* HTML element. | OAuth 2.0 with Microsoft Entra ID |
+| **Standard** | Open the URL in a browser, embed the URL in an *iFrame* element, or if you use the **Request** trigger, call the trigger's HTTP URL. | Managed identity or Easy Auth |
+
+To embed the chat client URL in an [*iFrame* HTML element](https://developer.mozilla.org/docs/Web/HTML/Reference/Elements/iframe), use the following format:
+
+| Workflow type | iFrame HTML element |
+|---------------|---------------------|
+| Consumption | `<iframe src="https://agents.<region>.logic.azure.com/scaleunits/<scale-unit-ID>/flows/<workflow-ID>/agentChat/IFrame" title="<chat-client-name>"></iframe>` |
+| Standard | `<iframe src="https://<logic-app-name>.azurewebsites.net/api/agentsChat/<workflow-name>/IFrame" title="<chat-client-name>"></iframe>` |
 
 ## Authentication and authorization
 

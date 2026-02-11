@@ -32,7 +32,7 @@ SRE Agent can manage all Azure services through the Azure CLI and REST APIs. Thi
 
 - **Monitoring and management**: Azure Monitor, Log Analytics, Application Insights, and Resource Manager
 
-You can automate any operation you perform with the Azure CLI or Azure PowerShell through SRE Agent by using custom runbooks and [subagents](subagent-builder-overview.md).
+You can automate any operation you perform with the Azure CLI through SRE Agent by using custom runbooks and [subagents](subagent-builder-overview.md).
 
 ## Primary use cases
 
@@ -54,7 +54,7 @@ The agent operates through multiple automation mechanisms, including:
 
 - **Built-in Azure knowledge**: Preconfigured understanding of Azure services with optimized operational patterns
 
-- **Custom runbooks**: Execute Azure CLI commands, PowerShell scripts, and REST API calls for any Azure service
+- **Custom runbooks**: Execute Azure CLI commands, and REST API calls for any Azure service
 
 - **Subagent extensibility**: Build specialized agents for specific services like VMs, databases, or networking components
 

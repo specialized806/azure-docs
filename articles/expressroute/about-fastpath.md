@@ -37,7 +37,7 @@ Before you configure FastPath, ensure your environment meets the following requi
 
 You can use FastPath with the following circuit types:
 
-- **ExpressRoute Direct**: Supports all FastPath features including IPv6, virtual network peering, User-Defined Routes (UDR), and Private Link connectivity
+- **ExpressRoute Direct**: Supports FastPath with IPv4 connectivity for User-Defined Routes (UDR) and Private Link. Supports FastPath with both IPv4 and IPv6 connectivity for VNET Peering
 - **ExpressRoute provider circuits**: Supports FastPath with IPv4 connectivity
 
 The following table shows feature availability for each circuit type:
@@ -139,6 +139,10 @@ FastPath doesn't support all scenarios. Review the following limitations when pl
 FastPath doesn't support traffic to Azure internal load balancers or Azure PaaS services deployed in spoke virtual networks. Traffic to these services flows through the ExpressRoute gateway instead.
 
 Internal load balancers deployed in the hub virtual network work with FastPath and traffic bypasses the gateway.
+
+### Azure Firewall 
+
+You can use Azure Firewall with FastPath in the hub virtual network. However, Azure Firewall deployed in spoke virtual networks isn't supported. Traffic to Azure Firewall in spoke networks flows through the ExpressRoute gateway instead of FastPath.
 
 ### Virtual network peering configurations
 
