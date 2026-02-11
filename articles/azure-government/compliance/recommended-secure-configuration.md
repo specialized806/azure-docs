@@ -214,11 +214,11 @@ When identities, subscriptions, or resources are created, **Security defaults** 
 
 **Microsoft Learn:** [Security defaults](/entra/fundamentals/security-defaults) · [Conditional Access Overview](/entra/identity/conditional-access/overview) · [Azure RBAC Overview](/azure/role-based-access-control/overview) · [Plan CA deployment](/entra/identity/conditional-access/plan-conditional-access) · [What is Azure Policy?](/azure/governance/policy/overview) 
 
-### Enhanced Capabilities[¶](https://www.fedramp.gov/docs/rev5/balance/secure-configuration-guide/#enhanced-capabilities"Permanent link")
+### [Enhanced Capabilities](https://www.fedramp.gov/docs/rev5/balance/secure-configuration-guide/#enhanced-capabilities)
 
 These recommendations apply to all cloud service offerings in the FedRAMP Marketplace for enhanced capabilities related to the Secure Configuration Guide.
 
-#### Comparison Capability
+#### [Comparison Capability](https://www.fedramp.gov/docs/rev5/balance/secure-configuration-guide/#comparison-capability)
 
 #### SCG-ENH-CMP
 
@@ -226,9 +226,9 @@ Providers SHOULD offer the capability to compare all current settings for top-le
 
 #### Azure's response
 
-Azure satisfies this requirement through built‑in security baseline comparison capabilities across **Azure AD (Entra ID)** privileged accounts and tenant‑level security settings.
+Azure satisfies this requirement through built‑in security baseline comparison capabilities across **Microsoft Entra ID** privileged accounts and tenant‑level security settings.
 
-Azure provides multiple mechanisms that allow customers to compare the current configuration of privileged identities against Microsoft’s published secure‑by‑default baseline. Azure meets this requirement by providing built‑in comparison tools—Secure Score, Microsoft Entra ID Protection, PIM, Access Reviews, and Defender for Cloud—that continuously evaluate the configuration of all top-level and privileged accounts against Microsoft’s published secure-by-default identity baselines. These services surface deviations, provide gap analyses, and supply prescriptive remediation guidance, ensuring customers can easily compare current settings to recommended secure defaults at any time
+Azure provides multiple mechanisms that allow customers to compare the current configuration of privileged identities against Microsoft’s published secure‑by‑default baseline. Azure provides built‑in comparison tools—Secure Score, Microsoft Entra ID Protection, Privileged Identity Management (PIM), Access Reviews, and Defender for Cloud—that continuously evaluate the configuration of all top-level and privileged accounts against Microsoft’s published secure-by-default identity baselines. These services surface deviations, provide gap analyses, and supply prescriptive remediation guidance, ensuring customers can easily compare current settings to recommended secure defaults at any time
 
 #### How Azure Fulfills This
 
@@ -250,26 +250,26 @@ Azure provides multiple mechanisms that allow customers to compare the current c
   
 #### 2. Microsoft Secure Score
 
-- Secure Score automatically evaluates:
+Secure Score automatically evaluates:
 
-   - Privileged roles assigned
-   
-      - MFA status for all privileged accounts
-      
-         - Conditional Access configurations for admins
-         
-            - Standing vs. Just‑in‑Time privilege (Privileged Identity Management)
-            
-            - Each control includes:
-            
-               - **Recommended default configuration**
-               
-                  - **Current configuration**
-                  
-                     - **Gap analysis**
-                     
-                        - **Remediation guidance**
-                        
+- Privileged roles assigned
+
+- MFA status for all privileged accounts
+
+- Conditional Access configurations for admins
+
+- Standing vs. Just‑in‑Time privilege (Privileged Identity Management)
+
+- Each control includes:
+
+  - **Recommended default configuration**
+  
+  - **Current configuration**
+  
+  - **Gap analysis**
+  
+  - **Remediation guidance**
+  
 This directly meets the requirement to compare *“all current settings”* against recommended defaults.  
 
 [Microsoft Entra Identity Secure Score](/entra/identity/monitoring-health/concept-identity-secure-score?toc=%2Fentra%2Ffundamentals%2Ftoc.json&bc=%2Fentra%2Ffundamentals%2Fbreadcrumb%2Ftoc.json)
