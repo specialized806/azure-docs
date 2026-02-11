@@ -184,16 +184,17 @@ sections:
           
           **When the checkbox is NOT selected:**
           
-          Enhanced Policy will attempt to take application-consistent or filesystem-consistent backups. However, if these attempts fail, the policy will fall back to crash-consistent backups at specific intervals:
+          Enhanced Policy will attempt to take application-consistent or filesystem-consistent backups. However, if these attempts fail, the policy will fallback to crash-consistent backups at specific intervals:
             - A crash-consistent snapshot will be taken on the 4th, 6th, and 8th attempt.
             - This fallback ensures backup continuity even when consistency cannot be guaranteed.
-          
+          Reasons for fallback to MDCC include offline VMs, VMs with unsupported OS, Guest Agent issues, VMSnapshotLinux extension provisioning issues etc.   
+
           **When the checkbox is selected:**
 
           The policy will not attempt application or filesystem consistency. Instead, it will directly initiate a crash-consistent MDCC backup without any retries for higher consistency levels.
           
           This option is useful when speed and simplicity are prioritized over consistency guarantees.
-      - question: When we migrate the policy from the Standard to enhanced, how does the retention period will apply on the restore points?
+      - question: When we migrate a protected item from the Standard to Enhanced policy, which retention period  applies on the restore points?
         answer: |
           Retention Period will apply as per the new enhanced policy for all the restore points.
       - question: Why don’t I see the updated expiry time for my Recovery Points immediately after changing the backup policy?
