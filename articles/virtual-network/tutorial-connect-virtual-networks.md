@@ -459,8 +459,6 @@ Test the communication between the virtual machines by creating a virtual machin
 
 ### [Portal](#tab/portal)
 
-## Create virtual machines
-
 1. In the search box at the top of the portal, enter **Virtual machine**. Select **Virtual machines** in the search results.
 
 1. Select **+ Create** then **Azure virtual machine**.
