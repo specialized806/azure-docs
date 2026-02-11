@@ -69,10 +69,10 @@ Azure Migrate collector enables offline discovery of IT esate. Using this lightw
 
 ### Key features
 
-- One-time snapshot of configuration data.
-- Collection of historic performance data.
-- Supports discovering workloads such as SQL databases, web apps, PostgreSQL, and MySQL.
-- Discover software inventory.
+- Captures a one-time snapshot of server configuration data.
+- Collects historical performance data.
+- Discovers installed software.
+- Discovers workloads such as SQL Server, web apps, PostgreSQL, and MySQL..
 
 ## Import-based discovery
 
@@ -81,8 +81,8 @@ Import-based discovery is a simpler and faster alternative, relying on manual up
 ### Key features
 
 - Manual data entry via CSV file uploads.
-- Add output inventory from CMDB tools to CSV templates.
-- Supports VMware inventory exported from RVTools XLSX file.
+- Add inventory output from CMDB tools using provided CSV templates.
+- Import VMware inventory exported from RVTools.
 - Build a quick business case using the servers discovered via import.
 
 ## Arc-based discovery (Preview)

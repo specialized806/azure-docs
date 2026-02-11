@@ -1,6 +1,6 @@
 ---
 title: Discovery using Azure Migrate Collector
-description: User guide for Azure Migrate Collector to discover VMware servers and workloads, upload data to Azure Migrate, and generate business case and assessment reports.
+description: Learn how to use Azure Migrate Collector to discover VMware servers and workloads, upload inventory and performance data to Azure Migrate, and generate business case and assessment reports..
 author: molishv
 ms.author: molir
 ms.manager: ronai
@@ -9,12 +9,12 @@ ms.topic: how-to
 ms.reviewer: v-uhabiba
 ms.date: 02/11/2026
 ms.custom: engagement-fy26
-# Customer intent: As an IT professional, I want to use Azure Migrate Collector to discover my IT estate and generate reports, so I can plan migration and modernization efficiently.
+# Customer intent: As an IT professional, I want to use Azure Migrate Collector to discover my IT estate and generate assessment and business case reports, so that I can plan migration and modernization effectively.
 ---
 
-# Discover servers & workloads using Azure Migrate collector
+# Discover servers and workloads using Azure Migrate collector
 
-This article explains how to use Azure Migrate collector to quickly discover servers and workloads across your IT estate without needing direct Azure connectivity. You deploy the collector on a Windows Server to scan VMware environments and physical or virtual servers. The collected inventory data can be used to generate business case and performance-based assessment reports to support lift-and-shift migration and modernization of your IT estate.
+This article explains how to use Azure Migrate collector to quickly discover servers and workloads across your IT estate without direct Azure connectivity. You deploy the collector on a Windows Server to scan VMware environments and physical or virtual servers. The collected inventory data can be used to generate business case and performance-based assessment reports to support lift-and-shift migration and modernization of your IT estate.
 
 Azure Migrate collector can discover your VMware estate or individual Windows and Linux servers running on any hypervisor or public cloud. You can collect server configurations, performance metrics, installed software, SQL Server and PostgreSQL database instances, and web apps (.NET on IIS and Java on Tomcat). With no Azure connectivity required, you can scan the estate locally and upload data securely, saving time and avoiding complex networking or access approval requirements.
 
@@ -45,25 +45,25 @@ Before you set up the collector, [create a new Azure Migrate project](quickstart
 
 Note: *You can set up custom least privileged Windows, Linux, and SQL accounts by referring [this article](best-practices-least-privileged-account.md). 
 
-### Download Azure Migrate Collector
+### Download the Azure Migrate Collector
 
-1.	From Azure Migrate project, select Discover -> using Collector and select Download.  
-2.	You can also download the Azure Migrate collector installer script directly using this link: https://aka.ms/Migrate/DownloadCollector 
+1.	In the Azure Migrate project, select Discover -> using Collector and then select **Download**.  
+2.	Alternatively, download the Azure Migrate collector installer script from: https://aka.ms/Migrate/DownloadCollector 
 3.	Extract the installer zip file to a folder on the server that hosts the Azure Migrate collector.
 
 ### Run the installer script
 
 1. Launch PowerShell with administrative privileges on the host server.
-2. Change directory to the extracted folder.
+2. Change the directory to the extracted folder.
 3. Run the installer script:
    
    ```pwsh
    .\AzureMigratecollector.ps1
    ```
 
-4. During the first installation of the script, select fresh option f.
-5.	When upgrading the collector to the new versions, select update option u.  
-6. The installer script:
+4. For the first installation, select the **fresh (f)** option..
+5. To upgrade the collector to a newer version, select the **update (u)** option.  
+6. The installer script performs the following actions::
    - Installs agents and web applications.
    - Enables Windows features: Windows Activation Service, Web-Server, Web-Mgmt-Service.
    - Updates a registry key (HKLM) with persistent setting details for Azure Migrate.
@@ -75,19 +75,23 @@ Note: *You can set up custom least privileged Windows, Linux, and SQL accounts b
 
 ### Provide vCenter credentials
 
-1.	In Step 1: Select Add credentials to enter a name for the credentials. Add the username and password for the vCenter Server account that the collector will use to discover servers running on vCenter Server.
-2.	If you want to add multiple credentials at once, select Add more to save and add more credentials. Multiple credentials are supported for discovery of servers across multiple vCenter Servers using a single collector.
-3.	In Step 2: Provide vCenter Server details, select Add discovery source to add the IP address or FQDN of a vCenter Server. You can leave the port as the default (443) or specify a custom port on which vCenter Server listens. Select the friendly name for credentials you would like to map to the vCenter Server and select Save.
-4.	Select Add more to save the previous details and add more vCenter Server details. You can add up to 10 vCenter Servers per collector.
+1.	Select **Add credentials**, and then enter a name for the credentials.
+Provide the username and password for the vCenter Server account that the collector uses to discover servers.
+2. To add multiple credentials, select **Add more** to save the current credentials and add additional ones.
+You can add multiple credentials to discover servers across multiple vCenter Servers using a single collector.
+3. Provide **vCenter Server details**, select **Add discovery source**, and then enter the IP address or FQDN of the vCenter Server.
+Use the default port (**443**) for discovery or specify a custom port. Select the credential name to map to the vCenter Server, and then select **Save**.
+4. Select **Add more** to save the details and add additional vCenter Servers.
+You can add up to 10 vCenter Servers per collector
 
 ### Provide guest and database credentials
 
 1.	Refer security best practices to set up least privileged accounts to set up least privileged accounts. 
 2.	Provide Windows & Linux guest accounts to collect data about installed software, database instances and web apps. Provide SQL credentials (Windows or SQL server authentication) to collect SQL suitability data. 
-3.	Verify the guest credentials by validating against a target server. 
+3.	To verify if the guest credentials are valid, test them against few target servers. 
 4.	Enable the checkbox to validate credential. 
 5.	Select the vCenter and select up to 5 virtual machines from the drop down.
-6.	Click on validate.   
+6.	Select **validate**.   
 7.	If the credentials are not valid, fix the errors by following the recommendation step before triggering data collection. 
 8.	If the credentials are successfully validated, guest discovery of installed software, inventory of database instance on the machines will be successful. 
 > [!NOTE]
@@ -100,19 +104,19 @@ The same Azure migrate collector can be used to discover both VMware machines an
 ### Provide credentials for Windows & Linux servers:
 1. Provide credentials for discovery of Windows and Linux physical or virtual servers, select Add credentials.
 2. For a Windows server:
-    Select the source type as Windows Server.
-    Enter a friendly name for the credentials.
-    Add the username and password.
-    Select Save.
+    - Select the source type as **Windows Server**.
+    - Enter a friendly name for the credentials.
+    - Add the username and password.
+    - Select **Save**.
 3. If you use password-based authentication for a Linux server, select the source type as Linux Server (Password-based).
     Enter a friendly name for the credentials.
-    Add the username and password, and then select Save.
+    Add the username and password, and then select **Save**.
 4. If you use SSH key-based authentication for a Linux server:
     Select the source type as Linux Server (SSH key-based).
     Enter a friendly name for the credentials.
     Add the username.
     Browse and select the SSH private key file.
-    Select Save.
+    Select **Save**.
 
 > [!NOTE]
 > -Azure Migrate supports SSH private keys created using the ssh-keygen command with RSA, DSA, ECDSA, and ed25519 algorithms.
@@ -128,8 +132,9 @@ The same Azure migrate collector can be used to discover both VMware machines an
 4.	The collector communicates with Windows servers using WinRM port 5986 (HTTPS) and Linux servers using port 22 (TCP). If HTTPS prerequisites are not configured on Hyper‑V servers, it automatically switches to WinRM port 5985 (HTTP). 
 5.	When you save, the collector validates connectivity to each server and shows the Validation status in the table. If validation fails, select Validation failed to review the error, fix the issue, and validate again. You can revalidate connectivity at any time before starting data collection or remove servers by selecting Delete. 
 6.	Before starting data collection, you can optionally turn off the workload discovery slider for the added servers. This setting can be changed at any time. 
-7.	To discover SQL Server instances and databases, add additional credentials (Windows domain, non‑domain, or SQL authentication). The appliance attempts to automatically map these credentials to SQL servers. Domain credentials are authenticated against Active Directory to prevent account lockouts and must be provided in Down‑Level format (domain\username), as UPN format is not supported. 
-8.	Domain credential validation status is shown in the credentials table. If validation fails, select the failed status to view details, fix the issue, and select Revalidate credentials.
+7.	Add additional credentials (Windows domain, Windows non‑domain, or SQL authentication) to discover SQL Server instances and databases. The appliance automatically maps these credentials to SQL servers. 
+8. Provide domain credentials in Down‑Level format (domain\username). UPN format is not supported.Domain credentials are authenticated against Active Directory to prevent account lockouts. 
+9.	Domain credential validation status is shown in the credentials table. If validation fails, select the failed status to view details, fix the issue, and select Revalidate credentials.
 
 ### Start data collection
 
@@ -162,12 +167,12 @@ The same Azure migrate collector can be used to discover both VMware machines an
 
 ## Upload the collected data to an Azure Migrate project
 1.	Refer this article to create a new Azure Migrate project. Inventory Import from collector is supported only for newly created projects. 
-2.	Once the project is created, select start discovery using collector option. 
+2.	After creating the project, select Start discovery using collector. 
 
 ### Import the zip file generated using collector
 
-1.	Click Browse and select the ZIP file exported from your collector.
-2.	Once you have selected the right file, click on import. 
+1.	Select Browse and select the ZIP file exported from your collector.
+2.	Once you have selected the right file, select import. 
 3.	You will be able to see the import status as it proceeds. 
 
 > [!NOTE]
@@ -176,17 +181,17 @@ The same Azure migrate collector can be used to discover both VMware machines an
 ### Create business cases and assessments
 
 1. After upload is successful, create business cases and assessments.
-2. Wait 45 minutes after successful upload before creating a business case or assessment to ensure all discovery data is updated.
+2. After a successful upload, wait 45 minutes before creating a business case or assessment to ensure all discovery data is updated.
 
 ### Import more inventory
 
 1.	If you wish to discover more inventory with the Azure migrate collector after your initial import, follow these steps to add the new data to your Azure Migrate project:
-2.	Navigate to “All inventory” view. You will be able to see your existing discovery data here.
-3.	Click on the “Discover” option at the top and select “Using collector”. 
+2.	Navigate to **All inventory** view. You will be able to see your existing discovery data here.
+3.	Select **Discover** option at the top and select **Using collector**. 
 4.	You will be able to navigate to the import page. 
-5.	Select “Azure migrate collector (ZIP)” in the file type dropdown
-6.	Click Browse and select the ZIP file exported from your collector.
-7.	Once you have selected the right file, click on import to ingest the file. 
+5.	Select **Azure migrate collector (ZIP)** in the file type dropdown
+6.	Select Browse and select the ZIP file exported from your collector.
+7.	Once you have selected the right file, select import to ingest the file. 
 
 > [!NOTE]
 > Multiple zip files of different hypervisor type (VMware, physical) can be imported to the same project. 
