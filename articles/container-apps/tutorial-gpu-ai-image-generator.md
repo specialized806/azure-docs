@@ -10,7 +10,7 @@ ms.service: azure-container-apps
 ms.topic: tutorial
 ms.date: 02/06/2026
 ms.ai-usage: ai-assisted
-zone_pivot_groups: container-apps-cli-portal
+zone_pivot_groups: container-apps-portal-or-cli
 ---
 
 # Tutorial: Build an AI image generator with Azure Functions on Container Apps
@@ -219,7 +219,7 @@ Azure Application Insights automatically captures:
 - Container startup times
 - Function execution telemetry
 
-You can access monitoring data through the [Azure portal monitoring section](monitoring.md).
+You can access monitoring data through the [Azure portal monitoring section](observability.md).
 
 ### Cost optimization
 
@@ -255,4 +255,4 @@ Now that you have a working AI image generator, consider these next steps:
 - [Azure Container Apps GPU support](gpu-serverless-overview.md)
 - [Azure Functions on Container Apps overview](functions-overview.md)
 - [Performance optimization for Container Apps](cold-start.md)
-- [Monitoring Azure Container Apps](monitoring.md)
+- [Monitoring Azure Container Apps](observability.md)
