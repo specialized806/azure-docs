@@ -1,5 +1,5 @@
 ---
-title: Restore Azure Data Lake Storage using Azure portal
+title: Restore Azure Data Lake Storage using Azure Portal
 description: Learn how to restore Azure Data Lake Storage backups using Azure portal.
 ms.topic: how-to
 ms.date: 04/16/2025

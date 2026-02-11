@@ -90,7 +90,7 @@ For AI and machine learning services availability in Azure Government, see [Prod
 
 <a name='cognitive-services-language-understanding-luis'></a>
 
-### [Azure Language in Foundry Tools Understanding (LUIS)](/azure/ai-services/luis/)
+### [Language Understanding (LUIS)](/azure/ai-services/luis/)
 
 - Configure encryption at rest of content in the Language Understanding service by [using customer-managed keys in Azure Key Vault](/azure/ai-services/luis/encrypt-data-at-rest#customer-managed-keys-with-azure-key-vault).
 
