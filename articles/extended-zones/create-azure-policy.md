@@ -11,8 +11,8 @@ ms.date: 02/12/2026
 # Create a custom Azure Policy in an Azure Extended Zone
 
 In this article, you learn how to create and deploy a custom Azure Policy in an Extended Zone.
-    > [!NOTE]
-    > Built-in Azure Policy definitions aren't supported in Extended Zones yet, but Azure Policy does support Azure Extended Zones as part of allow/deny custom policies. Thus, to enforce governance in Extended Zones you must create and deploy custom Azure Policy definitions that are tailored to the unique characteristics of these zones, namely ***extendedLocation***, ***extendedLocation.name***, and ***extendedLocation.type***. You may find it helpful to use built-in policy definitions as a reference when creating your custom policies. 
+> [!NOTE]
+> Built-in Azure Policy definitions aren't supported in Extended Zones yet, but Azure Policy does support Azure Extended Zones as part of allow/deny custom policies. Thus, to enforce governance in Extended Zones you must create and deploy custom Azure Policy definitions that are tailored to the unique characteristics of these zones, namely ***extendedLocation***, ***extendedLocation.name***, and ***extendedLocation.type***. You may find it helpful to use built-in policy definitions as a reference when creating your custom policies. 
 
 ## Prerequisites
 
@@ -20,7 +20,7 @@ In this article, you learn how to create and deploy a custom Azure Policy in an 
 
 - Access to an Extended Zone. For more information, see [Request access to an Azure Extended Zone](request-access.md).
 
-- Basic understanding of Azure Policy. For more information, see [What is Azure Policy?](https://learn.microsoft.com/azure/governance/policy/overview). 
+- Basic understanding of Azure Policy. For more information, see [What is Azure Policy?](/azure/governance/policy/overview). 
 
 ## Sign in to Azure
 
@@ -115,7 +115,7 @@ If you're done working with resources from this tutorial, use the following step
 1. Right-click the row or select the ellipses at the end of the definition (or assignment), and select **Delete definition** (or **Delete assignment**).
 
 ## Related content
-- [What is Azure Policy?](https://learn.microsoft.com/azure/governance/policy/overview)
+- [What is Azure Policy?](/azure/governance/policy/overview)
 - [What is Azure Extended Zones?](overview.md)
 - [Deploy a virtual machine in an Extended Zone](deploy-vm-portal.md)
 - [Frequently asked questions](faq.md)
