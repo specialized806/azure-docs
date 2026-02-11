@@ -141,51 +141,6 @@ az group create \
 
 1. Select **Review + create** at the bottom of the screen, and when validation passes, select **Create**.
 
-## Deploy Azure Bastion
-
-Azure Bastion uses your browser to connect to virtual machines (VMs) in your virtual network over secure shell (SSH) or remote desktop protocol (RDP) by using their private IP addresses. The virtual machines don't need public IP addresses, client software, or special configuration. For more information about Azure Bastion, see [Azure Bastion](/azure/bastion/bastion-overview).
-
->[!NOTE]
->[!INCLUDE [Pricing](~/reusable-content/ce-skilling/azure/includes/bastion-pricing.md)]
-
-1. In the search box at the top of the portal, enter **Bastion**. Select **Bastions** in the search results.
-
-1. Select **+ Create**.
-
-1. In the **Basics** tab of **Create a Bastion**, enter, or select the following information:
-
-    | Setting | Value |
-    |---|---|
-    | **Project details** |  |
-    | Subscription | Select your subscription. |
-    | Resource group | Select **test-rg**. |
-    | **Instance details** |  |
-    | Name | Enter **bastion**. |
-    | Region | Select **East US 2**. |
-    | Tier | Select **Developer**. |
-    | **Configure virtual networks** |  |
-    | Virtual network | Select **vnet-1**. |
-    | Subnet | The **AzureBastionSubnet** is created automatically with an address space of **/26** or larger. |
-
-1. Select **Review + create**.
-
-1. Select **Create**.
-
-## Create a second virtual network
-   
-Repeat the previous steps to create a second virtual network with the following values:
-
->[!NOTE]
->The second virtual network can be in the same region as the first virtual network or in a different region. You can skip the Bastion deployment for the second virtual network. After the virtual network peering is established, you can connect to both virtual machines with the same Bastion deployment.
-
-| Setting | Value |
-| --- | --- |
-| Name | **vnet-2** |
-| Address space | **10.1.0.0/16** |
-| Resource group | **test-rg** |
-| Subnet name | **subnet-1** |
-| Subnet address range | **10.1.0.0/24** |
-
 ### [PowerShell](#tab/powershell)
 
 Create a virtual network with [New-AzVirtualNetwork](/powershell/module/az.network/new-azvirtualnetwork). The following example creates a virtual network named **vnet-1** with the address prefix **10.0.0.0/16**.
@@ -228,7 +183,65 @@ Write the subnet configuration to the virtual network with [Set-AzVirtualNetwork
 $virtualNetwork1 | Set-AzVirtualNetwork
 ```
 
-### Create Azure Bastion
+### [CLI](#tab/cli)
+
+Create a virtual network with [az network vnet create](/cli/azure/network/vnet#az-network-vnet-create). The following example creates a virtual network named **vnet-1** with the address prefix **10.0.0.0/16**.
+
+```azurecli-interactive 
+az network vnet create \
+    --name vnet-1 \
+    --resource-group test-rg \
+    --address-prefixes 10.0.0.0/16 \
+    --subnet-name subnet-1 \
+    --subnet-prefix 10.0.0.0/24
+```
+
+Create the Bastion subnet with [az network vnet subnet create](/cli/azure/network/vnet/subnet).
+
+```azurecli-interactive
+# Create a bastion subnet.
+az network vnet subnet create \
+    --vnet-name vnet-1 \
+    --resource-group test-rg \
+    --name AzureBastionSubnet \
+    --address-prefix 10.0.1.0/24
+```
+
+---
+
+## Deploy Azure Bastion
+
+### [Portal](#tab/portal)
+
+Azure Bastion uses your browser to connect to virtual machines (VMs) in your virtual network over secure shell (SSH) or remote desktop protocol (RDP) by using their private IP addresses. The virtual machines don't need public IP addresses, client software, or special configuration. For more information about Azure Bastion, see [Azure Bastion](/azure/bastion/bastion-overview).
+
+>[!NOTE]
+>[!INCLUDE [Pricing](~/reusable-content/ce-skilling/azure/includes/bastion-pricing.md)]
+
+1. In the search box at the top of the portal, enter **Bastion**. Select **Bastions** in the search results.
+
+1. Select **+ Create**.
+
+1. In the **Basics** tab of **Create a Bastion**, enter, or select the following information:
+
+    | Setting | Value |
+    |---|---|
+    | **Project details** |  |
+    | Subscription | Select your subscription. |
+    | Resource group | Select **test-rg**. |
+    | **Instance details** |  |
+    | Name | Enter **bastion**. |
+    | Region | Select **East US 2**. |
+    | Tier | Select **Developer**. |
+    | **Configure virtual networks** |  |
+    | Virtual network | Select **vnet-1**. |
+    | Subnet | The **AzureBastionSubnet** is created automatically with an address space of **/26** or larger. |
+
+1. Select **Review + create**.
+
+1. Select **Create**.
+
+### [PowerShell](#tab/powershell)
 
 Create a public IP address for the Azure Bastion host with [New-AzPublicIpAddress](/powershell/module/az.network/new-azpublicipaddress). The following example creates a public IP address named *public-ip-bastion* in the *vnet-1* virtual network.
 
@@ -258,7 +271,52 @@ $bastionParams = @{
 New-AzBastion @bastionParams -AsJob
 ```
 
-### Create a second virtual network
+### [CLI](#tab/cli)
+
+Create a public IP address for the Azure Bastion host with [az network public-ip create](/cli/azure/network/public-ip). The following example creates a public IP address named *public-ip-bastion* in the *vnet-1* virtual network.
+
+```azurecli-interactive
+az network public-ip create \
+    --resource-group test-rg \
+    --name public-ip-bastion \
+    --location eastus2 \
+    --allocation-method Static \
+    --sku Standard
+```
+
+Create an Azure Bastion host with [az network bastion create](/cli/azure/network/bastion). The following example creates an Azure Bastion host named *bastion* in the *AzureBastionSubnet* subnet of the *vnet-1* virtual network. Azure Bastion is used to securely connect Azure virtual machines without exposing them to the public internet.
+
+```azurecli-interactive
+az network bastion create \
+    --resource-group test-rg \
+    --name bastion \
+    --vnet-name vnet-1 \
+    --public-ip-address public-ip-bastion \
+    --location eastus2 \
+    --sku Basic \
+    --no-wait
+```
+
+---
+
+## Create a second virtual network
+
+### [Portal](#tab/portal)
+   
+Repeat the previous steps to create a second virtual network with the following values:
+
+>[!NOTE]
+>The second virtual network can be in the same region as the first virtual network or in a different region. You can skip the Bastion deployment for the second virtual network. After the virtual network peering is established, you can connect to both virtual machines with the same Bastion deployment.
+
+| Setting | Value |
+| --- | --- |
+| Name | **vnet-2** |
+| Address space | **10.1.0.0/16** |
+| Resource group | **test-rg** |
+| Subnet name | **subnet-1** |
+| Subnet address range | **10.1.0.0/24** |
+
+### [PowerShell](#tab/powershell)
 
 Create a second virtual network with [New-AzVirtualNetwork](/powershell/module/az.network/new-azvirtualnetwork). The following example creates a virtual network named **vnet-2** with the address prefix **10.1.0.0/16**.
 
@@ -294,6 +352,24 @@ $virtualNetwork2 | Set-AzVirtualNetwork
 
 ### [CLI](#tab/cli)
 
+Create a second virtual network with [az network vnet create](/cli/azure/network/vnet#az-network-vnet-create). The following example creates a virtual network named **vnet-2** with the address prefix **10.1.0.0/16**.
+
+>[!NOTE]
+>The second virtual network can be in the same region as the first virtual network or in a different region. You don't need a Bastion deployment for the second virtual network. After the virtual network peering is established, you can connect to both virtual machines with the same Bastion deployment.
+
+```azurecli-interactive
+az network vnet create \
+    --name vnet-2 \
+    --resource-group test-rg \
+    --address-prefixes 10.1.0.0/16 \
+    --subnet-name subnet-1 \
+    --subnet-prefix 10.1.0.0/24
+```
+
+---
+
+### [Portal](#tab/portal)
+
 Create a virtual network with [az network vnet create](/cli/azure/network/vnet#az-network-vnet-create). The following example creates a virtual network named **vnet-1** with the address prefix **10.0.0.0/16**.
 
 ```azurecli-interactive 
@@ -315,8 +391,6 @@ az network vnet subnet create \
     --name AzureBastionSubnet \
     --address-prefix 10.0.1.0/24
 ```
-
-### Create Azure Bastion
 
 Create a public IP address for the Azure Bastion host with [az network public-ip create](/cli/azure/network/public-ip). The following example creates a public IP address named *public-ip-bastion* in the *vnet-1* virtual network.
 
@@ -342,13 +416,6 @@ az network bastion create \
     --no-wait
 ```
 
-### Create a second virtual network
-
-Create a second virtual network with [az network vnet create](/cli/azure/network/vnet#az-network-vnet-create). The following example creates a virtual network named **vnet-2** with the address prefix **10.1.0.0/16**.
-
->[!NOTE]
->The second virtual network can be in the same region as the first virtual network or in a different region. You don't need a Bastion deployment for the second virtual network. After the virtual network peering is established, you can connect to both virtual machines with the same Bastion deployment.
-
 ```azurecli-interactive
 az network vnet create \
     --name vnet-2 \
@@ -359,6 +426,120 @@ az network vnet create \
 ```
 
 ---
+
+## Deploy Azure Bastion
+
+### [Portal](#tab/portal)
+
+Azure Bastion uses your browser to connect to virtual machines (VMs) in your virtual network over secure shell (SSH) or remote desktop protocol (RDP) by using their private IP addresses. The virtual machines don't need public IP addresses, client software, or special configuration. For more information about Azure Bastion, see [Azure Bastion](/azure/bastion/bastion-overview).
+
+>[!NOTE]
+>[!INCLUDE [Pricing](~/reusable-content/ce-skilling/azure/includes/bastion-pricing.md)]
+
+1. In the search box at the top of the portal, enter **Bastion**. Select **Bastions** in the search results.
+
+1. Select **+ Create**.
+
+1. In the **Basics** tab of **Create a Bastion**, enter, or select the following information:
+
+    | Setting | Value |
+    |---|---|
+    | **Project details** |  |
+    | Subscription | Select your subscription. |
+    | Resource group | Select **test-rg**. |
+    | **Instance details** |  |
+    | Name | Enter **bastion**. |
+    | Region | Select **East US 2**. |
+    | Tier | Select **Developer**. |
+    | **Configure virtual networks** |  |
+    | Virtual network | Select **vnet-1**. |
+    | Subnet | The **AzureBastionSubnet** is created automatically with an address space of **/26** or larger. |
+
+1. Select **Review + create**.
+
+1. Select **Create**.
+
+### [PowerShell](#tab/powershell)
+
+Create a public IP address for the Azure Bastion host with [New-AzPublicIpAddress](/powershell/module/az.network/new-azpublicipaddress). The following example creates a public IP address named *public-ip-bastion* in the *vnet-1* virtual network.
+
+```azurepowershell-interactive
+$publicIpParams = @{
+    ResourceGroupName = "test-rg"
+    Name = "public-ip-bastion"
+    Location = "EastUS2"
+    AllocationMethod = "Static"
+    Sku = "Standard"
+}
+New-AzPublicIpAddress @publicIpParams
+```
+
+Create an Azure Bastion host with [New-AzBastion](/powershell/module/az.network/new-azbastion). The following example creates an Azure Bastion host named *bastion* in the *AzureBastionSubnet* subnet of the *vnet-1* virtual network. Azure Bastion is used to securely connect Azure virtual machines without exposing them to the public internet.
+
+```azurepowershell-interactive
+$bastionParams = @{
+    ResourceGroupName = "test-rg"
+    Name = "bastion"
+    VirtualNetworkName = "vnet-1"
+    PublicIpAddressName = "public-ip-bastion"
+    PublicIpAddressRgName = "test-rg"
+    VirtualNetworkRgName = "test-rg"
+    Sku = "Basic"
+}
+New-AzBastion @bastionParams -AsJob
+```
+
+### [CLI](#tab/cli)
+
+Create a public IP address for the Azure Bastion host with [az network public-ip create](/cli/azure/network/public-ip). The following example creates a public IP address named *public-ip-bastion* in the *vnet-1* virtual network.
+
+```azurecli-interactive
+az network public-ip create \
+    --resource-group test-rg \
+    --name public-ip-bastion \
+    --location eastus2 \
+    --allocation-method Static \
+    --sku Standard
+```
+
+Create an Azure Bastion host with [az network bastion create](/cli/azure/network/bastion). The following example creates an Azure Bastion host named *bastion* in the *AzureBastionSubnet* subnet of the *vnet-1* virtual network. Azure Bastion is used to securely connect Azure virtual machines without exposing them to the public internet.
+
+```azurecli-interactive
+az network bastion create \
+    --resource-group test-rg \
+    --name bastion \
+    --vnet-name vnet-1 \
+    --public-ip-address public-ip-bastion \
+    --location eastus2 \
+    --sku Basic \
+    --no-wait
+```
+
+---
+
+## Create a second virtual network
+
+### [Portal](#tab/portal)
+   
+Repeat the previous steps to create a second virtual network with the following values:
+
+>[!NOTE]
+>The second virtual network can be in the same region as the first virtual network or in a different region. You can skip the Bastion deployment for the second virtual network. After the virtual network peering is established, you can connect to both virtual machines with the same Bastion deployment.
+
+| Setting | Value |
+| --- | --- |
+| Name | **vnet-2** |
+| Address space | **10.1.0.0/16** |
+| Resource group | **test-rg** |
+| Subnet name | **subnet-1** |
+| Subnet address range | **10.1.0.0/24** |
+
+### [PowerShell](#tab/powershell)
+
+Create a second virtual network with [New-AzVirtualNetwork](/powershell/module/az.network/new-azvirtualnetwork). The following example creates a virtual network named **vnet-2** with the address prefix **10.1.0.0/16**.
+
+>[!NOTE]
+>The second virtual network can be in the same region as the first virtual network or in a different region. You don't need a Bastion deployment for the second virtual network. After the virtual network peering is established, you can connect to both virtual machines with the same Bastion deployment.
 
 ### [Portal](#tab/portal)
 
