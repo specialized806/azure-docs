@@ -139,7 +139,7 @@ landingContent:
             url: archive-tier-support.md
           - text: Monitor backup operations
             url: monitoring-and-alerts-overview.md
-          - text: Audit and Enforce Azure Files Backup with Azure Policy
+          - text: Audit and Enforce Azure Files backup with Azure Policy
             url: backup-azure-files-policy-automation.md
           - text: Automate datasource protection
             url: automation-backup.md
