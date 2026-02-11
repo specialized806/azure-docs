@@ -49,13 +49,13 @@ The terms *geo* and *zonal* refer to two different types of strategies for provi
 
 As their names imply, zone redundancy protects against zone failures, while geo-redundancy protects against large-scale regional disasters. When you change a storage account's redundancy option, the type of conversion you initiate affects the duration of the process, potential costs, and conflicting features or scenarios. For more information, see the [Change the redundancy option for a storage account](redundancy-migration.md) article.
 
-#### Zonal conversion
+#### Zone-redundant conversion
 
 Zone redundancy replicates data across multiple availability zones, or isolated data centers, within a single region. These zones, or data centers, have independent power, cooling, and networking. 
 
-When you add zone redundancy to a storage account, your storage account undergoes a zonal conversion that protects your data from failures within a specific data center. Removing zone redundancy reverses this protection.
+When you add zone redundancy to a storage account, your storage account undergoes a conversion that protects your data from failures within a specific data center. Removing zone redundancy reverses this protection.
 
-Zonal conversions include:
+Zone-redundant conversions include:
 
 - LRS &rarr; ZRS
 - ZRS &rarr; LRS
@@ -96,7 +96,7 @@ The type of account conversion you initiate affects the duration of the process.
 
 The actual time it takes to complete either type of conversion can vary based on several factors. You can read more about the differences between conversions and the factors affecting SKU conversion times in the [How are geo- and zonal-conversions different](#how-are-geo--and-zonal-conversions-different) section.
 
-#### Zonal conversion
+#### Zone-redundant conversions
 
 Zone redundancy conversions typically begin within a few days after a request is validated. However, it might take weeks to complete, depending on current resource demands in the region, account size, and other factors. The conversion's progress changes to `In progress` when data movement begins.
 

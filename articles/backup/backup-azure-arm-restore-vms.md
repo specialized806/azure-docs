@@ -268,7 +268,7 @@ Currently, secondary region [RPO](azure-backup-glossary.md#recovery-point-object
 
 [Azure zone pinned VMs](/azure/virtual-machines/windows/create-portal-availability-zone) can be restored in any [availability zones](/azure/reliability/availability-zones-overview) of the same region.
 
-In the restore process, you'll see the option **Availability Zone.** You'll see your default zone first. To choose a different zone, choose the number of the zone of your choice. If the pinned zone is unavailable, you won't be able to restore the data to another zone because the backed-up data isn't zone replicated. The restore in availability zones is possible from recovery points in vault tier only.
+In the restore process, you'll see the option **Availability Zone.** You'll see your default zone first. To choose a different zone, choose the number of the zone of your choice. If the pinned zone is unavailable, you won't be able to restore the data to another zone because the backed-up data isn't replicated across zones. The restore in availability zones is possible from recovery points in vault tier only.
 
 In summary, the **Availability Zone** will only appear when
  - The source VM is zone pinned and is NOT encrypted
