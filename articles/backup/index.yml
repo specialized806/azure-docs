@@ -32,34 +32,23 @@ landingContent:
             url: backup-architecture.md
           - text: Azure Backup security
             url: security-overview.md
+          - text: Azure Backup pricing
+            url: azure-backup-pricing.md  
 
   # Card (optional)
-  - title: Get started with Azure Backup
+  - title: Learn about backup management planes
     linkLists:
-      - linkListType: quickstart
+      - linkListType: concept
         links:
-          - text: Back up a VM with the Azure portal
-            url: quick-backup-vm-portal.md
-          - text: Back up a VM with PowerShell
-            url: quick-backup-vm-powershell.md
-          - text: Back up a VM with Azure CLI
-            url: quick-backup-vm-cli.md
-          - text: Back up a VM with Resource Manager template
-            url: quick-backup-vm-template.md
-      - linkListType: tutorial
-        links:
-          - text: Back up Azure VMs
-            url: tutorial-backup-vm-at-scale.md
-          - text: Back up SQL Server on Azure VM
-            url: tutorial-sql-backup.md
-          - text: Backup files and folders on Windows Server
-            url: tutorial-backup-windows-server-to-azure.md
-          - text: Back up SAP HANA databases in an Azure VM
-            url: tutorial-backup-sap-hana-db.md
-          - text: Configure SAP HANA database instance snapshot backup
-            url: tutorial-configure-sap-hana-database-instance-snapshot-backup.md 
-          - text: Configure item-level backup for an AKS cluster  
-            url: tutorial-configure-backup-aks.md
+          - text: Resiliency
+            url: ../resiliency/index.yml
+          - text: Recovery Services vault
+            url: backup-azure-recovery-services-vault-overview.md
+          - text: Backup vault
+            url: backup-vault-overview.md
+          - text: Backup center
+            url: backup-center-overview.md
+
   # Card
   - title: Learn about the latest features in Azure Backup
     linkLists:
@@ -75,33 +64,25 @@ landingContent:
             url: azure-data-lake-storage-backup-overview.md
 
   # Card
-  - title: Back up Azure VMs
+  - title: Back up core infrastructure datasources
     linkLists:
       - linkListType: concept
         links:
-          - text: About Azure VM backup
+          - text: Azure Virtual Machine backup
             url: backup-azure-vms-introduction.md
-          - text: Support matrix for Azure VM backup
-            url: backup-support-matrix-iaas.md
-          - text: FAQ - Azure VM backup
-            url: backup-azure-vm-backup-faq.yml
-          - text: Manage Azure VM backups
-            url: backup-azure-manage-vms.md
+
   # Card
-  - title: Back up Azure Managed Disks
+  - title: Back up storage datasources
     linkLists:
       - linkListType: concept
         links:
-          - text: Overview of Azure Disk Backup
+          - text: Azure Disk Backup
             url: disk-backup-overview.md
-          - text: Support matrix for Azure Disk Backup
-            url: disk-backup-support-matrix.md
-          - text: Back up Azure Managed Disks
-            url: backup-managed-disks.md
-          - text: FAQ - Azure Managed Disks
-            url: disk-backup-faq.yml
-          - text: Troubleshoot Azure Managed Disks backup
-            url: disk-backup-troubleshoot.md
+          - text: Azure Blob backup
+            url: blob-backup-overview.md
+          - text: Azure Files backup
+            url: azure-file-share-backup-overview.md
+
   # Card
   - title: Back up SQL Server on Azure VMs
     linkLists:
