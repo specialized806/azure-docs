@@ -167,8 +167,6 @@ More detailed instructions to securely access, configure, operate, and decommiss
 
 [Back to the top](#secure-configuration-guide)
 
-
-
 ## [Use Instructions](https://www.fedramp.gov/docs/rev5/balance/secure-configuration-guide/#use-instructions)
 
 ## SCG-CSO-AUP
