@@ -14,14 +14,22 @@ ms.date:     02/06/2026
 
 # Secure Configuration Guide
 
-FedRAMP Rev 5 has mandated Secure Configuration Guide requirements for all Cloud Service Providers at [Secure Configuration Guide](https://www.fedramp.gov/docs/rev5/balance/secure-configuration-guide/)
+FedRAMP Rev 5 has mandated the following Secure Configuration Guide requirements for all Cloud Service Providers at [Secure Configuration Guide](https://www.fedramp.gov/docs/rev5/balance/secure-configuration-guide/)
+
+[SCG-CSO-RSC](####SCG-CSO-RSC) 
+[SCG-CSO-AUP](####SCG-CSO-AUP)
+[SCG-CSO-PUB](####SCG-CSO-PUB)
+[SCG-CSO-SDF](####SCG-CSO-SDF)
+[SCG-ENH-CMP](####SCG-ENH-CMP)
+[SCG-ENH-EXP](####SCG-ENH-EXP)
+[SCG-ENH-API](####SCG-ENH-API)
+[SCG-ENH-MRG](####SCG-ENH-MRG)
+[SCG-ENH-VRH](####SCG-ENH-VRH)
 
 Azure provides the following instructions and guidelines for the customers to meet these requirements.
 
 #### [Recommended Secure Configuration](https://www.fedramp.gov/docs/rev5/balance/secure-configuration-guide/#recommended-secure-configuration)
-#### [SCG-CSO-RSC](#SCG-CSO-RSC)
-#### [SCG-CSO-AUP](#SCG-CSO-AUP) 
-### SCG-CSO-RSC
+#### SCG-CSO-RSC 
 
 Providers MUST create, maintain, and make available recommendations for securely configuring their cloud services (the Secure Configuration Guide) that includes at least the following information:
 
