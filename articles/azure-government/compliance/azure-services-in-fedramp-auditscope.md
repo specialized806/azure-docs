@@ -123,7 +123,7 @@ This article provides a detailed list of Azure, Dynamics 365, Microsoft 365, and
 | [Cloud Services Extended Support](../../cloud-services-extended-support/index.yml) | &#x2705; | &#x2705; |
 | [Cloud Shell](../../cloud-shell/overview.md) | &#x2705; | &#x2705; |
 | [Azure AI Health Bot](/healthbot/) | &#x2705; | &#x2705; |
-| [Microsoft Foundry: Azure AI Search](/azure/search/) (formerly Azure Cognitive Search) | &#x2705; | &#x2705; |
+| [Foundry: Azure AI Search](/azure/search/) (formerly Azure Cognitive Search) | &#x2705; | &#x2705; |
 | [Foundry: Azure AI Anomaly Detector](/azure/ai-services/anomaly-detector/) | &#x2705; | &#x2705; |
 | [Foundry: Azure AI Computer Vision](/azure/ai-services/computer-vision/) | &#x2705; | &#x2705; |
 | [Foundry: Azure AI Content Moderator](/azure/ai-services/content-moderator/) | &#x2705; | &#x2705; |
