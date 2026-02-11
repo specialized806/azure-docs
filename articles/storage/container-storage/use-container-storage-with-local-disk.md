@@ -27,7 +27,7 @@ By default, Azure Container Storage creates *generic ephemeral volumes* when usi
 
 To maximize performance, Azure Container Storage automatically stripes data across all available local NVMe disks on a per-VM basis. Striping is a technique where data is divided into small chunks and evenly written across multiple disks simultaneously, which increases throughput and improves overall I/O performance. This behavior is enabled by default and cannot be disabled.
 
-Because performance aggregates across those striped devices, larger VM sizes that expose more NVMe drives can unlock substantially higher IOPS and bandwidth. Selecting a larger VM family lets your workloads benefit from the extra aggregate throughput without additional configuration.
+Because performance aggregates across those striped devices, larger VM sizes that expose more NVMe drives can unlock substantially higher IOPS and bandwidth. Selecting a larger VM family lets your workloads benefit from the extra aggregate throughput without more configuration.
 
 For example, the [Lsv3 series](/azure/virtual-machines/sizes/storage-optimized/lsv3-series?tabs=sizestoragelocal) scales from a single 1.92-TB NVMe drive on Standard_L8s_v3 (around 400,000 IOPS and 2,000 MB/s) up to 10 NVMe drives on Standard_L80s_v3 (about 3.8 million IOPS and 20,000 MB/s). 
 
@@ -57,7 +57,7 @@ nodepool1   standard_l8s_v3
 > [!NOTE]
 > In Azure Container Storage (version 2.x.x), you can now use clusters with fewer than three nodes.
 
-In scenarios where VM sizes with a single local NVMe disk are used alongside ephemeral OS disks, the local NVMe disk is allocated for the OS, leaving no capacity for Azure Container Storage to utilize. To ensure optimal performance and availability of local NVMe disks for high-performance data processing, we recommend that you do the following:
+In scenarios where VM sizes with a single local NVMe disk are used alongside ephemeral OS disks, the local NVMe disk is allocated for the OS, leaving no capacity for Azure Container Storage to use. To ensure optimal performance and availability of local NVMe disks for high-performance data processing, we recommend that you do the following:
 
 - Select VM sizes with two or more local NVMe disks.
 - Use managed disks for the OS, freeing up all local NVMe disks for data processing.

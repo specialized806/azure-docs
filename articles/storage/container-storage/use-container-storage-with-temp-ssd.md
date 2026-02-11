@@ -12,14 +12,14 @@ ms.custom: references_regions
 
 # Use Azure Container Storage (version 1.x.x) with temp SSD
 
-[Azure Container Storage](container-storage-introduction.md) is a cloud-based volume management, deployment, and orchestration service built natively for containers. This article shows you how to configure Azure Container Storage (version 1.x.x) to use Ephemeral Disk with temp SSD as backend storage for your Kubernetes workloads. At the end, you'll have a pod that's using temp SSD as its storage.
+[Azure Container Storage](container-storage-introduction.md) is a cloud-based volume management, deployment, and orchestration service built natively for containers. This article shows you how to configure Azure Container Storage (version 1.x.x) to use Ephemeral Disk with temp SSD as backend storage for your Kubernetes workloads. At the end, you have a pod that's using temp SSD as its storage.
 
 > [!IMPORTANT]
 > This article covers features and capabilities available in Azure Container Storage (version 1.x.x). [Azure Container Storage (version 2.x.x)](container-storage-introduction.md) is now available and supports local NVMe and Azure Elastic SAN for backing storage.
 
 ## What is Ephemeral Disk?
 
-When your application needs sub-millisecond storage latency and doesn't require data durability, you can use Ephemeral Disk with Azure Container Storage to meet your performance requirements. Ephemeral means that the disks are deployed on the local virtual machine (VM) hosting the AKS cluster and not saved to an Azure storage service. Data will be lost on these disks if you stop/deallocate your VM.
+When your application needs sub-millisecond storage latency and doesn't require data durability, you can use Ephemeral Disk with Azure Container Storage to meet your performance requirements. Ephemeral means that the disks are deployed on the local virtual machine (VM) hosting the AKS cluster and not saved to an Azure storage service. Data is lost on these disks if you stop/deallocate your VM.
 
 There are two types of Ephemeral Disk available: local NVMe and temp SSD. NVMe is designed for high-speed data transfer between storage and CPU. Choose NVMe when your application needs higher IOPS or throughput than temp SSD, or requires more storage space. Be aware that Azure Container Storage only supports synchronous data replication for local NVMe.
 
@@ -83,7 +83,7 @@ Follow these steps to create a storage pool using temp SSD.
    kubectl apply -f acstor-storagepool.yaml 
    ```
    
-   When storage pool creation is complete, you'll see a message like:
+   When storage pool creation is complete, you see a message like:
    
    ```output
    storagepool.containerstorage.azure.com/ephemeraldisk-temp created
@@ -95,7 +95,7 @@ Follow these steps to create a storage pool using temp SSD.
    kubectl describe sp <storage-pool-name> -n acstor
    ```
 
-When the storage pool is created, Azure Container Storage will create a storage class on your behalf, using the naming convention `acstor-<storage-pool-name>`.
+When the storage pool is created, Azure Container Storage creates a storage class on your behalf, using the naming convention `acstor-<storage-pool-name>`.
 
 ### 2. Display the available storage classes
 
@@ -166,7 +166,7 @@ Create a pod using [Fio](https://github.com/axboe/fio) (Flexible I/O Tester) for
    pod/fiopod created
    ```
 
-1. Check that the pod is running and that the ephemeral volume claim has been bound successfully to the pod:
+1. Check that the pod is running and that the ephemeral volume claim is bound successfully to the pod:
 
    ```azurecli-interactive
    kubectl describe pod fiopod
@@ -179,11 +179,11 @@ Create a pod using [Fio](https://github.com/axboe/fio) (Flexible I/O Tester) for
    kubectl exec -it fiopod -- fio --name=benchtest --size=800m --filename=/volume/test --direct=1 --rw=randrw --ioengine=libaio --bs=4k --iodepth=16 --numjobs=8 --time_based --runtime=60
    ```
 
-You've now deployed a pod that's using temp SSD as its storage, and you can use it for your Kubernetes workloads.
+You now have a pod that uses temp SSD as its storage, and you can use it for your Kubernetes workloads.
 
 ## Create and attach persistent volumes
 
-To create a persistent volume from an ephemeral disk storage pool, you must include an annotation in your persistent volume claims (PVCs) as a safeguard to ensure that you intend to use persistent volumes even when the data is ephemeral. Additionally, you need to enable the `--ephemeral-disk-volume-type` flag with the `PersistentVolumeWithAnnotation` value on your cluster before creating your persistent volume claims.
+To create a persistent volume from an ephemeral disk storage pool, you must include an annotation in your persistent volume claims (PVCs) as a safeguard to ensure you intend to use persistent volumes even when the data is ephemeral. Additionally, you need to enable the `--ephemeral-disk-volume-type` flag with the `PersistentVolumeWithAnnotation` value on your cluster before creating your persistent volume claims.
 
 Follow these steps to create and attach a persistent volume.
 
@@ -225,7 +225,7 @@ Follow these steps to create a storage pool using temp SSD.
    kubectl apply -f acstor-storagepool.yaml 
    ```
 
-   When storage pool creation is complete, you'll see a message like:
+   When storage pool creation is complete, you see a message like:
 
    ```output
    storagepool.containerstorage.azure.com/ephemeraldisk-temp created
@@ -237,7 +237,7 @@ Follow these steps to create a storage pool using temp SSD.
    kubectl describe sp <storage-pool-name> -n acstor
    ```
 
-When the storage pool is created, Azure Container Storage will create a storage class on your behalf, using the naming convention `acstor-<storage-pool-name>`.
+When the storage pool is created, Azure Container Storage creates a storage class on your behalf, using the naming convention `acstor-<storage-pool-name>`.
 
 ### 3. Display the available storage classes
 
@@ -343,7 +343,7 @@ Create a pod using [Fio](https://github.com/axboe/fio) (Flexible I/O Tester) for
    pod/fiopod created
    ```
 
-1. Check that the pod is running and that the persistent volume claim has been bound successfully to the pod:
+1. Check that the pod is running and that the persistent volume claim is bound successfully to the pod:
 
    ```azurecli-interactive
    kubectl describe pod fiopod
@@ -356,11 +356,11 @@ Create a pod using [Fio](https://github.com/axboe/fio) (Flexible I/O Tester) for
    kubectl exec -it fiopod -- fio --name=benchtest --size=800m --filename=/volume/test --direct=1 --rw=randrw --ioengine=libaio --bs=4k --iodepth=16 --numjobs=8 --time_based --runtime=60
    ```
 
-You've now deployed a pod that's using temp SSD and you can use it for your Kubernetes workloads.
+You now have a pod that uses temp SSD, and you can use it for your Kubernetes workloads.
 
 ## Manage volumes and storage pools
 
-In this section, you'll learn how to check the available capacity of ephemeral disk for a single node, and how to expand or delete a storage pool.
+In this section, you learn how to check the available capacity of ephemeral disk for a single node and how to expand or delete a storage pool.
 
 ### Check node temp disk capacity
 
@@ -390,9 +390,9 @@ Because a storage pool backed by Ephemeral Disk uses local storage resources on 
    az aks nodepool add --cluster-name <cluster name> --name <nodepool name> --resource-group <resource group> --node-vm-size Standard_L8s_v3 --node-count 1 --labels acstor.azure.com/io-engine=acstor
    ```
    
-1. Run `kubectl get nodes` and you'll see that a node has been added to the cluster.
+1. Run `kubectl get nodes` and you see a new node in the cluster.
 
-1. Run `kubectl get sp -A` and you should see that the capacity of the storage pool has increased.
+1. Run `kubectl get sp -A` and you should see that the storage pool capacity is higher.
 
 ### Delete a storage pool
 

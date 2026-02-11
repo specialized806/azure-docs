@@ -186,7 +186,7 @@ When the storage pool is created, Azure Container Storage creates a storage clas
 
 #### Create a dynamic storage pool using your own encryption key (optional)
 
-All data in an Azure storage account is encrypted at rest. By default, data is encrypted with Microsoft-managed keys. For more control over encryption keys, you can supply customer-managed keys (CMK) when you create your storage pool to encrypt the persistent volumes that you'll create.
+All data in an Azure storage account is encrypted at rest. By default, data is encrypted with Microsoft-managed keys. For more control over encryption keys, you can supply customer-managed keys (CMK) when you create your storage pool to encrypt the persistent volumes that you create.
 
 To use your own key for server-side encryption, you must have an [Azure Key Vault](/azure/key-vault/general/overview) with a key. The Key Vault should have purge protection enabled, and it must use the Azure RBAC permission model. Learn more about [customer-managed keys on Linux](/azure/virtual-machines/disk-encryption#customer-managed-keys).
 
@@ -338,7 +338,7 @@ Create a pod using [Fio](https://github.com/axboe/fio) (Flexible I/O Tester) for
    pod/fiopod created
    ```
 
-1. Check that the pod is running and that the persistent volume claim has been bound successfully to the pod:
+1. Check that the pod is running and that the persistent volume claim is bound successfully to the pod:
 
    ```azurecli-interactive
    kubectl describe pod fiopod
@@ -351,11 +351,11 @@ Create a pod using [Fio](https://github.com/axboe/fio) (Flexible I/O Tester) for
    kubectl exec -it fiopod -- fio --name=benchtest --size=800m --filename=/volume/test --direct=1 --rw=randrw --ioengine=libaio --bs=4k --iodepth=16 --numjobs=8 --time_based --runtime=60
    ```
 
-You've now deployed a pod that's using Azure Disks as its storage, and you can use it for your Kubernetes workloads.
+You now have a pod that uses Azure Disks as its storage, and you can use it for your Kubernetes workloads.
 
 ## Manage persistent volumes and storage pools
 
-Now that you've created a persistent volume, you can detach and reattach it as needed. You can also expand or delete a storage pool.
+Now that you have a persistent volume, you can detach and reattach it as needed. You can also expand or delete a storage pool.
 
 ### Detach and reattach a persistent volume
 

@@ -19,13 +19,13 @@ You can improve stateful application availability by using multi-zone storage po
 ## Prerequisites
 
 [!INCLUDE [container-storage-prerequisites](../../../includes/container-storage-prerequisites.md)]
-- You'll need an AKS cluster with a node pool of at least three virtual machines (VMs) for the cluster nodes, each with a minimum of four virtual CPUs (vCPUs).
+- You need an AKS cluster with a node pool of at least three virtual machines (VMs) for the cluster nodes, each with a minimum of four virtual CPUs (vCPUs).
 
 ## Create a multi-zone storage pool
 
-In your storage pool definition, you can specify the zones where you want your storage capacity to be distributed across. The total storage pool capacity will be distributed evenly across the number of zones specified. For example, if two zones are specified, each zone gets half of the storage pool capacity; if three zones are specified, each zone gets one-third of the total capacity. Corresponding storage will be provisioned in each of the zones. This is useful when running workloads that offer application-level replication such as Cassandra.
+In your storage pool definition, you can specify the zones where you want your storage capacity to be distributed. The total storage pool capacity is distributed evenly across the number of zones specified. For example, if two zones are specified, each zone gets half of the storage pool capacity; if three zones are specified, each zone gets one-third of the total capacity. Azure Container Storage provisions corresponding storage in each zone. This is useful when running workloads that offer application-level replication such as Cassandra.
 
-If there are no nodes available in a specified zone, the capacity will be provisioned once a node is available in that zone. Persistent volumes (PVs) can only be created from storage pool capacity from one zone.
+If there are no nodes available in a specified zone, Azure Container Storage provisions the capacity when a node is available in that zone. Persistent volumes (PVs) can only be created from storage pool capacity from one zone.
 
 Valid values for `zones` are:
 

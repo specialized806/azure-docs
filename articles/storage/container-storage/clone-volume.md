@@ -19,8 +19,8 @@ You can clone persistent volumes in Azure Container Storage (version 1.x.x). A c
 ## Prerequisites
 
 [!INCLUDE [container-storage-prerequisites](../../../includes/container-storage-prerequisites.md)]
-- You'll need an Azure Kubernetes Service (AKS) cluster with a node pool of at least three virtual machines (VMs) for the cluster nodes, each with a minimum of four virtual CPUs (vCPUs).
-- This article assumes you've already installed Azure Container Storage on your AKS cluster, and that you've created a storage pool and persistent volume claim (PVC) using either [Azure Disks](use-container-storage-with-managed-disks.md) or [ephemeral disk (local storage)](use-container-storage-with-local-disk-version-1.md). Azure Elastic SAN doesn't support resizing volumes.
+- You need an Azure Kubernetes Service (AKS) cluster with a node pool of at least three virtual machines (VMs) for the cluster nodes, each with a minimum of four virtual CPUs (vCPUs).
+- This article assumes your AKS cluster already runs Azure Container Storage and has a storage pool and persistent volume claim (PVC) created with either [Azure Disks](use-container-storage-with-managed-disks.md) or [ephemeral disk (local storage)](use-container-storage-with-local-disk-version-1.md). Azure Elastic SAN doesn't support resizing volumes.
 
 ## Clone a volume
 
@@ -98,7 +98,7 @@ Follow the instructions below to clone a persistent volume.
    pod/fiopod2 created
    ```
 
-1. Check that the pod is running and that the persistent volume claim has been bound successfully to the pod:
+1. Check that the pod is running and that the persistent volume claim is bound successfully to the pod:
 
    ```azurecli-interactive
    kubectl describe pod fiopod2

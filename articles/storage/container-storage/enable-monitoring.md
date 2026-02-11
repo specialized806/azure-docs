@@ -26,7 +26,7 @@ Azure Managed Grafana default dashboard support isn't currently enabled for Azur
 
 ## Collect Azure Container Storage Prometheus metrics
 
-You can use Azure Monitor managed service for Prometheus to collect Azure Container Storage metrics along with other Prometheus metrics from your AKS cluster. To start collecting Azure Container Storage metrics, [enable Managed Prometheus on the AKS cluster](/azure/azure-monitor/containers/kubernetes-monitoring-enable?tabs=cli#enable-prometheus-and-grafana). If your AKS cluster already has Prometheus enabled, then installing Azure Container Storage on that cluster will automatically start collecting Azure Container Storage metrics.
+You can use Azure Monitor managed service for Prometheus to collect Azure Container Storage metrics along with other Prometheus metrics from your AKS cluster. To start collecting Azure Container Storage metrics, [enable Managed Prometheus on the AKS cluster](/azure/azure-monitor/containers/kubernetes-monitoring-enable?tabs=cli#enable-prometheus-and-grafana). If your AKS cluster already has Prometheus enabled, then installing Azure Container Storage on that cluster automatically starts collecting Azure Container Storage metrics.
 
 ### Scrape frequency
 
@@ -85,7 +85,7 @@ To view Azure Container Storage metrics, follow these steps:
 
    :::image type="content" source="media/enable-monitoring/metrics.png" alt-text="Screenshot showing how to query Azure Container Storage metrics using the Azure portal." lightbox="media/enable-monitoring/metrics.png":::
 
-1. Alternatively, you can select the Managed Grafana instance, and on the instance overview page, click on the endpoint URL. This will navigate to the Grafana portal where you can query the metrics. The data source will be automatically configured for you to query metrics from the associated Azure Monitor workspace.
+1. Alternatively, you can select the Managed Grafana instance, and on the instance overview page, click on the endpoint URL. This navigates to the Grafana portal where you can query the metrics. The data source is automatically configured for you to query metrics from the associated Azure Monitor workspace.
 
    :::image type="content" source="media/enable-monitoring/dashboard.png" alt-text="Screenshot of an Azure Managed Prometheus dashboard and metrics browser." lightbox="media/enable-monitoring/dashboard.png":::
 

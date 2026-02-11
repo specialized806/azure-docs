@@ -46,7 +46,16 @@ az feature register \
 
 ## Setting up permissions
 
-In order to use Elastic SAN, you'll need to grant permissions to allow Azure Container Storage to provision storage for your cluster. Specifically, you must assign the [Azure Container Storage Operator](../../role-based-access-control/built-in-roles/containers.md#azure-container-storage-operator) role to the AKS managed identity. You can do this using the Azure portal or Azure CLI. You'll need either an [Azure Container Storage Owner](../../role-based-access-control/built-in-roles/containers.md#azure-container-storage-owner) role or [Azure Container Storage Contributor](../../role-based-access-control/built-in-roles/containers.md#azure-container-storage-contributor) role for your Azure subscription in order to do this. If you don't have sufficient permissions, ask your admin to perform these steps.
+For Azure Container Storage to deploy an Elastic SAN, you need to assign the [Azure Container Storage Operator](../../role-based-access-control/built-in-roles/containers.md#azure-container-storage-operator) role to the AKS managed identity. You need either an [Azure Container Storage Owner](../../role-based-access-control/built-in-roles/containers.md#azure-container-storage-owner) role or [Azure Container Storage Contributor](../../role-based-access-control/built-in-roles/containers.md#azure-container-storage-contributor) role for your Azure subscription to do this.
+
+# [Azure CLI](#tab/cli)
+
+Run the following commands to assign **Azure Container Storage Operator** role to your AKS Managed Identity. Remember to replace `<resource-group>`, `<cluster-name>`, and `<azure-subscription-id>` with your own values. You can also narrow the scope to your resource group, for example `/subscriptions/<azure-subscription-id>/resourceGroups/<resource-group>`.
+
+```azurecli-interactive
+export AKS_MI_OBJECT_ID=$(az aks show --name <cluster-name> --resource-group <resource-group> --query "identityProfile.kubeletidentity.objectId" -o tsv)
+az role assignment create --assignee $AKS_MI_OBJECT_ID --role "Azure Container Storage Operator" --scope "/subscriptions/<azure-subscription-id>"
+```
 
 # [Azure portal](#tab/portal)
 
@@ -57,19 +66,11 @@ In order to use Elastic SAN, you'll need to grant permissions to allow Azure Con
 1. Select **Add > Add role assignment**.
 1. Under the **Job function roles** tab, select or search for **Azure Container Storage Operator**, then select **Next**. If you don't have an **Azure Container Storage Owner** or **Azure Container Storage Contributor** role on the subscription, you won't be able to add the **Azure Container Storage Operator** role.
 1. Under **Assign access to**, select **Managed identity**.
-1. Under **Members**, click **+ Select members**. The **Select managed identities** menu will appear.
+1. Under **Members**, click **+ Select members**. The **Select managed identities** menu appears.
 1. Under **Managed identity**, select **User-assigned managed identity**.
 1. Under **Select**, search for and select the managed identity with your cluster name and `-agentpool` appended.
 1. Click **Select**, then **Review + assign**.
-
-# [Azure CLI](#tab/cli)
-
-Run the following commands to assign **Azure Container Storage Operator** role to your AKS Managed Identity. Remember to replace `<resource-group>`, `<cluster-name>`, and `<azure-subscription-id>` with your own values. You can also narrow the scope to your resource group, for example `/subscriptions/<azure-subscription-id>/resourceGroups/<resource-group>`.
-
-```azurecli-interactive
-export AKS_MI_OBJECT_ID=$(az aks show --name <cluster-name> --resource-group <resource-group> --query "identityProfile.kubeletidentity.objectId" -o tsv)
-az role assignment create --assignee $AKS_MI_OBJECT_ID --role "Azure Container Storage Operator" --scope "/subscriptions/<azure-subscription-id>"
-```
+---
 
 ## Choose a provisioning model
 

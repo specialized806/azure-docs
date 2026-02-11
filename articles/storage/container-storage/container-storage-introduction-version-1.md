@@ -79,7 +79,7 @@ With Azure Container Storage, you don't need to worry about configuring individu
 
 You can use Azure Container Storage to:
 
-- **Accelerate VM-to-container initiatives:** Azure Container Storage surfaces the full spectrum of Azure block storage offerings that were previously only available for VMs and makes them available for containers. This includes ephemeral disk that provides extremely low latency for workloads like Cassandra, as well as Azure Elastic SAN (Preview) that provides native iSCSI and shared provisioned targets.
+- **Accelerate VM-to-container initiatives:** Azure Container Storage surfaces the full spectrum of Azure block storage offerings that were previously only available for VMs and makes them available for containers. This includes ephemeral disk that provides extremely low latency for workloads like Cassandra, and Azure Elastic SAN (Preview) that provides native iSCSI and shared provisioned targets.
 
 - **Simplify volume management with Kubernetes:** By providing volume orchestration via the Kubernetes control plane, Azure Container Storage makes it easy to deploy and manage volumes within Kubernetes - without the need to move back and forth between different control planes.
 
