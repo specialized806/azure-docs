@@ -497,7 +497,7 @@ Test the communication between the virtual machines by creating a virtual machin
     | Subnet | Select **subnet-1 (10.0.0.0/24)**. |
     | Public IP | Select **None**. |
     | Network interface (NIC) network security group | Select **Advanced**. |
-    | Configure network security group | Select **Create new**. </br> In **Name** enter **nsg-1**. </br> Select **OK**. |
+    | Configure network security group | Select **Create new**.</br> In **Name** enter **nsg-1**.</br> Select **OK**. |
 
 1. Leave the rest of the options at the defaults and select **Review + create**.
 
