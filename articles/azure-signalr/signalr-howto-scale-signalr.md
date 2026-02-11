@@ -26,7 +26,7 @@ For information about the pricing and capacities of individual SignalR Service, 
 > | -- | -- |
 > | Free ↔ Standard / Premium | Yes |
 > | Standard_S1 ↔ Premium_P1 | No |
-> | Premium_P1 ↔ Premium_P2 | Yes |
+> | Premium_P1 ↔ Premium_P2 | No |
 >
 > For scale scenarios where downtime is expected, the downtime occurs because the **public service IP address changes** during the scaling operation. This IP change typically takes **30–60 minutes** to propagate across DNS servers globally, during which the service may be temporarily unreachable. Generally it’s not recommended to change your pricing tier too often.
 
