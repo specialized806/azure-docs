@@ -166,7 +166,6 @@ More detailed instructions to securely access, configure, operate, and decommiss
 [Conditional Access Overview](/entra/identity/conditional-access/overview)
 [Back to the top](#secure-configuration-guide)
 
-
 ## [Use Instructions](https://www.fedramp.gov/docs/rev5/balance/secure-configuration-guide/#use-instructions)
 
 ## SCG-CSO-AUP
