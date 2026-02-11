@@ -5,7 +5,7 @@ author: sethmanheim
 ms.author: sethm
 ms.subservice: azure-mqtt-broker
 ms.topic: how-to
-ms.date: 02/05/2026
+ms.date: 02/11/2026
 
 #CustomerIntent: As an operator or developer, I want to test MQTT connectivity with tools that I'm already familiar with to know that I set up my MQTT broker correctly.
 ms.service: azure-iot-operations
@@ -140,10 +140,12 @@ For example, to create a new broker listener with the `NodePort` service type, s
 To create a new broker listener with the `NodePort` service type, use the following Azure CLI command.
 
 ```azurecli
-az iot ops broker listener port add
+az iot ops broker listener port add --service-type NodePort --nodeport <static port value>
 ```
 
-Optionally, you can use the `--add-insecure-listener` flag to create a listener without authentication and TLS for testing purposes only. For more information, see [az iot ops broker listener port add](/cli/azure/iot/ops/broker/listener/port).
+Optionally, for testing purposes only, you can use the `--add-insecure-listener` flag to create a listener without authentication and TLS. The `--add-insecure-listener` flag is only available on the instance deployment operation via the `az iot ops create` command. To add a port without authentication and TLS after deployment, you can use the `listener port add` operation as in the previous example, but omit the options for authentication or TLS.
+
+For more information, see [az iot ops broker listener port add](/cli/azure/iot/ops/broker/listener/port).
 
 # [Bicep](#tab/bicep)
 
