@@ -18,6 +18,9 @@ FedRAMP Rev 5 has mandated the following Secure Configuration Guide requirements
 
 Azure provides the following instructions and guidelines for the customers to meet these requirements 
 
+
+## [Recommended Secure Configuration](https://www.fedramp.gov/docs/rev5/balance/secure-configuration-guide/#recommended-secure-configuration)
+
 ## SCG-CSO-RSC 
 
 Providers MUST create, maintain, and make available recommendations for securely configuring their cloud services (the Secure Configuration Guide) that includes at least the following information:
@@ -34,7 +37,7 @@ Providers MUST create, maintain, and make available recommendations for securely
 
 - *This guidance should explain how top-level administrative accounts are named and referred to in the cloud service offering.*
 
-### Azure's response with recommendation and instructions to SCG-xxx-xxx
+### Azure's response with recommendation and instructions
 
 Azure defines the below top-level administrative accounts
 
@@ -65,7 +68,7 @@ These roles have the ability to alter authentication requirements, disable prote
 
 Microsoft Learn publicly documents tenant‑wide identity and access security settings that are **operated only by top‑level administrative roles** (for example, Global Administrator, Conditional Access Administrator). These settings have direct and significant security implications because they control how privileged accounts authenticate, how legacy attack paths are blocked, and how identity risk is mitigated across the tenant. The security settings are described below.
 
-### 1. Security Defaults (Tenant‑Wide Secure‑by‑Default Controls)
+#### 1. Security Defaults (Tenant‑Wide Secure‑by‑Default Controls)
 
 Security Defaults are Microsoft‑recommended tenant‑wide protections that enforce a baseline identity security posture. These controls are **enabled, disabled, and governed by top‑level administrative roles**.
 
@@ -79,7 +82,7 @@ Security Defaults enforce:
 
 - Protection of privileged access to administrative portals
 
-### 2. Blocking Legacy Authentication (Tenant‑Wide Risk Reduction)
+#### 2. Blocking Legacy Authentication (Tenant‑Wide Risk Reduction)
 
 Legacy authentication protocols (for example, IMAP, POP, SMTP AUTH) do not support modern protections such as MFA and are a primary entry point for account compromise. Microsoft documents blocking legacy authentication as a **critical tenant‑wide security control**.
 
@@ -89,7 +92,7 @@ Microsoft Learn documents that these controls significantly reduce common identi
 
 **Microsoft Learn:** [Security defaults in Microsoft Entra ID](/entra/fundamentals/security-defaults)
 
-### 3. Conditional Access (Tenant‑Wide Policy Enforcement Engine)
+#### 3. Conditional Access (Tenant‑Wide Policy Enforcement Engine)
 
 Conditional Access is Microsoft’s primary tenant‑wide policy engine for enforcing:
 
@@ -103,7 +106,7 @@ Conditional Access is Microsoft’s primary tenant‑wide policy engine for enfo
 
 Conditional Access policies can only be created and modified by **privileged administrative roles**, and misconfiguration or absence of these policies materially increases identity compromise risk.
 
-### 4. Emergency Access (“Break‑Glass”) Accounts
+#### 4. Emergency Access (“Break‑Glass”) Accounts
 
 Microsoft documents emergency access accounts as highly privileged accounts designed for tenant recovery when normal administrative access is unavailable. These accounts:
 
@@ -115,7 +118,7 @@ Microsoft documents emergency access accounts as highly privileged accounts desi
 
 **Microsoft Learn:**  [Manage emergency access accounts in Microsoft Entra ID](/entra/identity/role-based-access-control/security-emergency-access)
 
-### 5. Identity Protection (Tenant‑Wide Risk Policies)
+#### 5. Identity Protection (Tenant‑Wide Risk Policies)
 
 Microsoft Entra ID Protection provides tenant‑wide risk detection and enforcement for:
 
@@ -165,7 +168,9 @@ More detailed instructions to securely access, configure, operate, and decommiss
 [Back to the top](#secure-configuration-guide)
 
 
-#### SCG-CSO-AUP
+## [Use Instructions](https://www.fedramp.gov/docs/rev5/balance/secure-configuration-guide/#use-instructions)
+
+## SCG-CSO-AUP
 
 Providers MUST include instructions in the FedRAMP authorization package that explain how to obtain and use the Secure Configuration Guide.
 
