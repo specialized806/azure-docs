@@ -5,7 +5,7 @@ description: Learn how to connect your MCP server hosted on Azure Functions to A
 ms.author: samuelzhang
 ms.reviewer: glenga
 ms.topic: how-to
-ms.date: 02/05/2026
+ms.date: 02/11/2026
 ms.collection: ce-skilling-ai-copilot
 
 #Customer intent: As a developer, I want to learn how to connect an Azure Functions-hosted MCP server to Foundry Agent Service, so that my agent has access to my MCP tools.
@@ -21,7 +21,6 @@ This article follows this basic process for configuring the MCP server connectio
 > * Create and deploy an MCP server to your function app in Azure.
 > * Get the MCP server endpoint URL.
 > * Get the authentication credentials (as required).
-> * Disable key-based authentication (as required).
 > * Add an MCP server tool connection to an existing agent. 
 
 ## Prerequisites
@@ -148,44 +147,6 @@ Because unauthenticated access requires no shared secrets or authentication, you
 
 ---
 
-## Disable key-based authentication
-
-Key-based authentication is the default for an MCP endpoint hosted in Azure Functions. To use a different authentication method, change the MCP endpoint authentication to `anonymous`. How you make this change depends on the type of MCP server you're hosting:
-
-### [MCP extension server](#tab/mcp-extension/key-based)
-
-Skip this section when using key-based authentication.
-
-### [MCP extension server](#tab/mcp-extension/entra)
-
-[!INCLUDE [functions-mcp-extension-disable-key-access](../../includes/functions-mcp-extension-disable-key-access.md)]
-
-### [MCP extension server](#tab/mcp-extension/oauth-id)
-
-[!INCLUDE [functions-mcp-extension-disable-key-access](../../includes/functions-mcp-extension-disable-key-access.md)]
-
-### [MCP extension server](#tab/mcp-extension/unauthenticated)
-
-[!INCLUDE [functions-mcp-extension-disable-key-access](../../includes/functions-mcp-extension-disable-key-access.md)]
-
-### [Self-hosted server](#tab/self-hosted/key-based)
-
-Skip this section when using key-based authentication.
-
-### [Self-hosted server](#tab/self-hosted/entra)
-
-[!INCLUDE [functions-mcp-custom-handler-disable-key-access](../../includes/functions-mcp-custom-handler-disable-key-access.md)]
-
-### [Self-hosted server](#tab/self-hosted/oauth-id)
-
-[!INCLUDE [functions-mcp-custom-handler-disable-key-access](../../includes/functions-mcp-custom-handler-disable-key-access.md)]
-
-### [Self-hosted server](#tab/self-hosted/unauthenticated)
-
-[!INCLUDE [functions-mcp-custom-handler-disable-key-access](../../includes/functions-mcp-custom-handler-disable-key-access.md)]
-
----  
-
 ## Add your MCP server
 
 The process for creating the agent connection to the MCP server depends on your specific endpoint authentication options.
@@ -245,6 +206,10 @@ To connect to your MCP server endpoint:
 
 1. Select **Save** to save the MCP tool configuration in your agent.
 
+Beause you are using built-in authentication, you should also disable the default key-based authentication.
+
+[!INCLUDE [functions-mcp-custom-handler-disable-key-access](../../includes/functions-mcp-custom-handler-disable-key-access.md)]
+
 ### [OAuth identity](#tab/oauth-id)
 
 When you use OAuth identity passthrough, the agent prompts the user to sign in and then uses the returned access token when connecting to the server. 
@@ -280,6 +245,10 @@ When you use OAuth identity passthrough, the agent prompts the user to sign in a
 1. Return to your Entra app registration and under **Manage** > **Authentication** select **+ Add redirect URI**. Select **Web**, paste the copied **Redirect URI** value, and select **Configure**. 
 
 1. Go back to the agent window, select **Close** > **Save** to save the MCP tool configuration in your agent.
+
+Beause you are using built-in authentication, you should also disable the default key-based authentication.
+
+[!INCLUDE [functions-mcp-custom-handler-disable-key-access](../../includes/functions-mcp-custom-handler-disable-key-access.md)]
 
 ### [Unauthenticated](#tab/unauthenticated)
 
