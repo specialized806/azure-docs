@@ -108,7 +108,7 @@ It is selected as default option for caches if `ZonalAllocationPolicy` isn't pas
 
 > [!IMPORTANT]
 >
-> - Starting with 2024-11-01 API version, Automatic Zonal Allocation is chosen as default option for Premium, Standard caches. In rare cases, when sufficient zonal capacity is unavailable to at-least allocate two zones, and user does not pass `ZonalAllocationPolicy` in the request, Azure will create a non-zonal cache which user can verify by checking the `ZonalAllocationPolicy` property in the response.
+> - Starting with 2024-11-01 API version, Automatic Zonal Allocation is chosen as default option for Premium, Standard caches. In rare cases, when sufficient zone capacity is unavailable to at-least allocate two zones, and user does not pass `ZonalAllocationPolicy` in the request, Azure will create a non-zonal cache which user can verify by checking the `ZonalAllocationPolicy` property in the response.
 >   - Hence, it is recommended not to pass `ZonalAllocationPolicy` in the request body while creating the cache as it will enable Azure to choose the best option among **Automatic**, **NoZones** for the cache based on the region's zonal supportability and capacity. Otherwise, users can pass `ZonalAllocationPolicy` if they want to explicitly use a specific zonal allocation policy.
 
 > [!IMPORTANT]
