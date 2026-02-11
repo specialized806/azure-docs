@@ -172,7 +172,7 @@ More detailed instructions to securely access, configure, operate, and decommiss
 [Emergency Accounts - Manage emergency access accounts in Microsoft Entra ID](/entra/identity/role-based-access-control/security-emergency-access)
 
 [Conditional Access Overview](/entra/identity/conditional-access/overview)
-[Back to the top](#Secure-Configuration-Guide)
+[Back to the top](#secure-configuration-guide)
 
 ### [Use Instructions](https://www.fedramp.gov/docs/rev5/balance/secure-configuration-guide/#use-instructions)
 
