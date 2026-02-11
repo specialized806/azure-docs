@@ -4,7 +4,7 @@ description: Learn about service limits in Azure API Management, including their
 author: dlepow
 ms.service: azure-api-management
 ms.topic: concept-article
-ms.date: 02/09/2026
+ms.date: 02/11/2026
 ms.author: danlep
 ai-usage: ai-assisted
 ---
@@ -35,6 +35,7 @@ Starting in March 2026, Azure API Management is phasing in updated resource limi
 
 * Limits in the classic tiers now align with those set in the v2 tiers.
 * Limits are defined and enforced for a smaller set of resource types that are directly related to service capacity and performance, such as API operations, tags, products, and subscriptions.
+* These limits (and the resources that have limits) could be adjusted over time to reflect the latest service capabilities.
 
 ### Rollout process
 

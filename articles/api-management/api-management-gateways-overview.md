@@ -8,7 +8,7 @@ ms.service: azure-api-management
 ms.custom:
   - build-2024
 ms.topic: concept-article
-ms.date: 11/21/2025
+ms.date: 02/11/2026
 ms.author: danlep
 ---
 
@@ -200,7 +200,7 @@ Scale capacity by adding and removing scale [units](upgrade-and-scale.md) in the
 
 ## Gateway runtime constraints
 
-The following table lists constraints that apply to requests and responses handled by the API Management gateway.
+The following table lists constraints that apply to the API Management gateway so that it efficiently handles API requests and responses.
 
 [!INCLUDE [api-management-gateway-constraints](../../includes/api-management-gateway-constraints.md)]
 
