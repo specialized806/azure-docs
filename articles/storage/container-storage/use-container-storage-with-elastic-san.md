@@ -28,11 +28,16 @@ Azure Elastic SAN is a managed, shared block-storage service that provides a cen
 [!INCLUDE [container-storage-prerequisites](../../../includes/container-storage-prerequisites.md)]
 - [Review the installation instructions](install-container-storage-aks.md) and ensure Azure Container Storage is properly installed.
 - If you use Elastic SAN for the first time in the subscription, run this one-time registration command:
-
 ```azurecli-interactive
 az provider register --namespace Microsoft.ElasticSan
 ```
 - Assign the **Azure Container Storage Operator** role to the `*-agentpool` managed identity in the AKS node resource group. In the Azure portal, open the node resource group (for example, *MC_myResourceGroup_myAKSCluster_eastus*), go to **Access Control (IAM) > Add > Add role assignment**, select **Azure Container Storage Operator**, and assign it to the managed identity created by the cluster (typically named *myAKSCluster-agentpool*).
+- When [ZRS is newly enabled](enable-multi-zone-redundancy.md) in a region, you might need to register a subscription-level feature flag so Azure Container Storage can deploy SAN targets:
+```azurecli
+az feature register \
+  --namespace Microsoft.ElasticSan \
+  --name EnableElasticSANTargetDeployment
+```
 
 ## Limitations
 
