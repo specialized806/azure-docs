@@ -58,12 +58,99 @@ If you choose to install and use PowerShell locally, this article requires the A
 
 ### [Portal](#tab/portal)
 
-[!INCLUDE [virtual-network-create-with-bastion.md](~/reusable-content/ce-skilling/azure/includes/virtual-network-create-with-bastion.md)]
+## Create a resource group
+
+1. Sign in to the [Azure portal](https://portal.azure.com).
+
+1. In the search box at the top of the portal, enter **Resource group**. Select **Resource groups** in the search results.
+
+1. Select **+ Create**.
+
+1. In the **Basics** tab of **Create a resource group**, enter or select the following information:
+
+    | Setting | Value |
+    | ------- | ----- |
+    | Subscription | Select your subscription. |
+    | Resource group | Enter **test-rg**. |
+    | Region | Select **East US 2**. |
+
+1. Select **Review + create**.
+
+1. Select **Create**.
+
+## Create a virtual network
+
+1. In the search box at the top of the portal, enter **Virtual network**. Select **Virtual networks** in the search results.
+
+1. Select **+ Create**.
+
+1. On the **Basics** tab of **Create virtual network**, enter or select the following information:
+
+    | Setting | Value |
+    |---|---|
+    | **Project details** |  |
+    | Subscription | Select your subscription. |
+    | Resource group | Select **test-rg**. |
+    | **Instance details** |  |
+    | Name | Enter **vnet-1**. |
+    | Region | Select **East US 2**. |
+
+1. Select **Next** to proceed to the **Security** tab.
+
+1. Select **Next** to proceed to the **IP Addresses** tab.
+
+1. In the address space box in **Subnets**, select the **default** subnet.
+
+1. In **Edit subnet**, enter or select the following information:
+
+    | Setting | Value |
+    |---|---|
+    | **Subnet details** |  |
+    | Subnet template | Leave the default **Default**. |
+    | Name | Enter **subnet-1**. |
+    | Starting address | Leave the default of **10.0.0.0**. |
+    | Subnet size | Leave the default of **/24 (256 addresses)**. |
+
+1. Select **Save**.
+
+1. Select **Review + create** at the bottom of the screen, and when validation passes, select **Create**.
+
+## Deploy Azure Bastion
+
+Azure Bastion uses your browser to connect to VMs in your virtual network over secure shell (SSH) or remote desktop protocol (RDP) by using their private IP addresses. The VMs don't need public IP addresses, client software, or special configuration. For more information about Azure Bastion, see [Azure Bastion](/azure/bastion/bastion-overview).
+
+>[!NOTE]
+>[!INCLUDE [Pricing](~/reusable-content/ce-skilling/azure/includes/bastion-pricing.md)]
+
+1. In the search box at the top of the portal, enter **Bastion**. Select **Bastions** in the search results.
+
+1. Select **+ Create**.
+
+1. In the **Basics** tab of **Create a Bastion**, enter or select the following information:
+
+    | Setting | Value |
+    |---|---|
+    | **Project details** |  |
+    | Subscription | Select your subscription. |
+    | Resource group | Select **test-rg**. |
+    | **Instance details** |  |
+    | Name | Enter **bastion**. |
+    | Region | Select **East US 2**. |
+    | Tier | Select **Developer**. |
+    | **Configure virtual networks** |  |
+    | Virtual network | Select **vnet-1**. |
+    | Subnet | The **AzureBastionSubnet** is created automatically with an address space of **/26** or larger. |
+
+1. Select **Review + create**.
+
+1. Select **Create**.
+
+## Create a second virtual network
    
 Repeat the previous steps to create a second virtual network with the following values:
 
 >[!NOTE]
->The second virtual network can be in the same region as the first virtual network or in a different region. You can skip the **Security** tab and the Bastion deployment for the second virtual network. After the virtual network peering is established, you can connect to both virtual machines with the same Bastion deployment.
+>The second virtual network can be in the same region as the first virtual network or in a different region. You can skip the Bastion deployment for the second virtual network. After the virtual network peering is established, you can connect to both virtual machines with the same Bastion deployment.
 
 | Setting | Value |
 | --- | --- |
@@ -150,6 +237,7 @@ $bastionParams = @{
     PublicIpAddressName = "public-ip-bastion"
     PublicIpAddressRgName = "test-rg"
     VirtualNetworkRgName = "test-rg"
+    Sku = "Basic"
 }
 New-AzBastion @bastionParams -AsJob
 ```
@@ -242,6 +330,7 @@ az network bastion create \
     --vnet-name vnet-1 \
     --public-ip-address public-ip-bastion \
     --location eastus2 \
+    --sku Basic \
     --no-wait
 ```
 
@@ -370,7 +459,51 @@ Test the communication between the virtual machines by creating a virtual machin
 
 ### [Portal](#tab/portal)
 
-[!INCLUDE [create-test-virtual-machine-linux.md](~/reusable-content/ce-skilling/azure/includes/create-test-virtual-machine-linux.md)]
+## Create virtual machines
+
+1. In the search box at the top of the portal, enter **Virtual machine**. Select **Virtual machines** in the search results.
+
+1. Select **+ Create** then **Azure virtual machine**.
+
+1. In **Create a virtual machine** enter or select the following information in the **Basics** tab:
+
+    | Setting | Value |
+    | ------- | ----- |
+    | **Project details** |   |
+    | Subscription | Select your subscription. |
+    | Resource group | Select **test-rg**. |
+    | **Instance details** |   |
+    | Virtual machine name | Enter **vm-1**. |
+    | Region | Select **(US) East US 2**. |
+    | Availability options | Select **No infrastructure redundancy required**. |
+    | Security type | Select **Standard**. |
+    | Image | Select **Ubuntu Server 24.04 LTS - x64 Gen2**. |
+    | VM architecture | Leave the default of **x64**. |
+    | Size | Select a size. |
+    | **Administrator account** |   |
+    | Authentication type | Select **SSH public key**. |
+    | Username | Enter a username. |
+    | SSH public key source | Select **Generate new key pair**. |
+    | Key pair name | Enter **vm-1-key**. |
+    | **Inbound port rules** |  |
+    | Public inbound ports | Select **None**. |
+
+1. Select **Next: Disks** then **Next: Networking**.
+
+1. In the Networking tab, enter or select the following information:
+
+    | Setting | Value |
+    | ------- | ----- |
+    | **Network interface** |   |
+    | Virtual network | Select **vnet-1**. |
+    | Subnet | Select **subnet-1 (10.0.0.0/24)**. |
+    | Public IP | Select **None**. |
+    | NIC network security group | Select **Advanced**. |
+    | Configure network security group | Select **Create new**. </br> In **Name** enter **nsg-1**. </br> Select **OK**. |
+
+1. Leave the rest of the options at the defaults and select **Review + create**.
+
+1. Select **Create**.
 
 Repeat the previous steps to create a second virtual machine in the second virtual network with the following values:
 
@@ -378,6 +511,8 @@ Repeat the previous steps to create a second virtual machine in the second virtu
 | --- | --- |
 | Virtual machine name | **vm-2** |
 | Region | **East US 2** or same region as **vnet-2**. |
+| SSH public key source | **Generate new key pair**. |
+| Key pair name | **vm-2-key**. |
 | Virtual network | Select **vnet-2**. |
 | Subnet | Select **subnet-1 (10.1.0.0/24)**. |
 | Public IP | **None** |
@@ -398,12 +533,14 @@ $vmParams = @{
     ResourceGroupName = "test-rg"
     Location = "EastUS2"
     Name = "vm-1"
-    ImageName = "Canonical:ubuntu-24_04-lts:server-gen1:latest"
+    Image = "Ubuntu2204"
     Size = "Standard_DS1_v2"
     Credential = $cred
     VirtualNetworkName = "vnet-1"
     SubnetName = "subnet-1"
-    PublicIpAddressName = $null  # No public IP address
+    PublicIpAddressName = ""  # No public IP address
+    SshKeyName = "vm-1-ssh-key"
+    GenerateSshKey = $true
 }
 
 # Create the virtual machine
@@ -421,12 +558,14 @@ $vmParams = @{
     ResourceGroupName = "test-rg"
     Location = "EastUS2"
     Name = "vm-2"
-    ImageName = "Canonical:ubuntu-24_04-lts:server-gen1:latest"
+    Image = "Ubuntu2204"
     Size = "Standard_DS1_v2"
     Credential = $cred
     VirtualNetworkName = "vnet-2"
     SubnetName = "subnet-1"
-    PublicIpAddressName = $null  # No public IP address
+    PublicIpAddressName = ""  # No public IP address
+    SshKeyName = "vm-2-ssh-key"
+    GenerateSshKey = $true
 }
 
 # Create the virtual machine
@@ -446,6 +585,7 @@ az vm create \
     --image Ubuntu2204 \
     --vnet-name vnet-1 \
     --subnet subnet-1 \
+    --public-ip-address "" \
     --admin-username azureuser \
     --generate-ssh-keys \
     --no-wait
@@ -462,6 +602,7 @@ az vm create \
     --image Ubuntu2204 \
     --vnet-name vnet-2 \
     --subnet subnet-1 \
+    --public-ip-address "" \
     --admin-username azureuser \
     --generate-ssh-keys
 ```
