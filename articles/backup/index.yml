@@ -38,7 +38,7 @@ landingContent:
   # Card (optional)
   - title: Learn about backup management planes
     linkLists:
-      - linkListType: concept
+      - linkListType: overview
         links:
           - text: Resiliency
             url: ../resiliency/index.yml
