@@ -252,9 +252,11 @@ When you finish these steps, you have the following values to use later with you
 - Application (client) ID
 - Application ID URI
 
+<a id="set-up-easy-auth"></a>
+
 ## Set up Easy Auth for your MCP server
 
-Now set up Easy Auth authentication on the Standard logic app that you want to use as your MCP server.
+Set up Easy Auth authentication on the Standard logic app that you want to use as your MCP server.
 
 1. In the [Azure portal](https://portal.azure.com), open your Standard logic app resource.
 
@@ -309,11 +311,52 @@ Now set up Easy Auth authentication on the Standard logic app that you want to u
 
 ### Choose existing workflows
 
-1. On the **Create an MCP server** pane, under **MCP server details**, enter a name and description for your MCP server.
+On the **Create an MCP server** pane, follow these steps:
+
+1. Under **MCP server details**, enter a unique **Name** that uses only letters and numbers.
+
+1. Enter a **Description** about the purpose for your MCP server.
 
 1. Under **Workflows**, select one or multiple workflows to use as tools for your MCP server.
 
 1. When you finish, select **Create**.
+
+   The **MCP servers** page now shows the **Authentication** and **Servers** sections.
+
+   | Section | Description |
+   |---------|-------------|
+   | **Authentication** | Select the authentication that your MCP server uses. |
+   | **Servers** | Shows the created MCP servers and workflows that the server provides as tools. You can also edit, copy the URL, or delete the server. |
+
+1. To select the authentication for your MCP server, follow these steps:
+
+   1. Next to the **Method** box, select **Edit**.
+
+   1. Select the authentication method, then select **Save**.
+
+   1. Based on your selection, follow the corresponding steps:
+
+      **Key-based**
+
+      1. Select **Generate key** to create an API key.
+
+      1. On the **Generate MCP API key** pane, select the **Duration**.
+
+      1. For **Access key**, select **Primary key** or **Secondary key** to generate the MCP API key.
+
+      1. Select **Generate**.
+
+      1. After the key generates, make sure to copy and save the key in a safe place. You can't access the key later.
+
+      1. When you finish, select **Close**.
+
+      **OAuth**
+
+      1. Select **Manage authentication** to view the logic app **Authentication** page.
+
+      1. Follow the steps in [Set up Easy Auth for your MCP server](#set-up-easy-auth).
+
+You're now ready to [test your MCP server](#test-your-mcp-server-setup).
 
 <a id="create-workflows"></a>
 
@@ -325,29 +368,33 @@ Now set up Easy Auth authentication on the Standard logic app that you want to u
 
       By default, the **Logic app** value is set to the current logic app name and is uneditable.
 
-   1. Under **Tools**, select a connector and actions to build the workflow as a tool for your MCP server.
+1. Under **Tools**, follow these steps to select a connector and the actions to create as workflows.
+
+      Each action that you select creates a workflow that works as a tool in your MCP server. This example uses the **Office 365 Outlook** connector. Based on your Azure subscription, you might need to use the **Outlook.com** connector instead.
 
       1. In the **Connectors** section, select **Add**.
 
+         :::image type="content" source="media/create-model-context-protocol-server-standard/add-connector.png" alt-text="Screenshot shows the Connectors section with the selected option for Add." lightbox="media/create-model-context-protocol-server-standard/add-connector.png":::
+
       1. On the **Add connector** pane and the **Choose connector** tab, find and select the connector to use, for example:
 
-      :::image type="content" source="media/create-mcp-server-api-center/choose-connector.png" alt-text="Screenshot shows Add connector pane with selected Office 365 Outlook connector." lightbox="media/create-mcp-server-api-center/choose-connector.png":::
+         :::image type="content" source="media/create-model-context-protocol-server-standard/choose-connector.png" alt-text="Screenshot shows Add connector pane with selected Office 365 Outlook connector." lightbox="media/create-model-context-protocol-server-standard/choose-connector.png":::
 
-   1. On the **Select actions** tab, select each action that you want to create as a tool. When you're done, select **Next**.
+      1. On the **Select actions** tab, select each action that you want to create as a tool, for example:
 
-      You can select multiple actions, but you can create only one tool for each selected action.
+         :::image type="content" source="media/create-model-context-protocol-server-standard/select-actions.png" alt-text="Screenshot shows Add connector pane with selected connector actions to create as tools." lightbox="media/create-model-context-protocol-server-standard/select-actions.png":::
 
-      :::image type="content" source="media/create-mcp-server-api-center/select-actions.png" alt-text="Screenshot shows Add connector pane with selected connector actions to create as tools." lightbox="media/create-mcp-server-api-center/select-actions.png":::
+      1. When you're done, select **Next**.
 
-   1. On the **Create connection** tab, provide any connection information or sign in and authenticate your credentials, if required.
+      1. On the **Create connection** tab, provide the requested connection information or sign in to authenticate your credentials, if required.
 
-      If you must create a different connection, select **Add new**.
+         If you have an existing connection that you want to change, select **Add new**.
 
-   1. When you're done, select **Save**, which returns you to the **Register an MCP Server with Azure Logic Apps** page.
+      1. Select **Save** to return the **Register an MCP Server with Azure Logic Apps** page.
 
       The **Connectors** section now shows your selected connector. The **Actions** section shows the selected actions that power the tools that your MCP server provides. By default, any parameters for these actions use an LLM as the input source. You can change this input source to user-provided, based on your scenario's needs.
 
-      :::image type="content" source="media/create-mcp-server-api-center/tools-list.png" alt-text="Screenshot shows Connectors and Actions sections with tools list." lightbox="media/create-mcp-server-api-center/tools-list.png":::
+      :::image type="content" source="media/create-model-context-protocol-server-standard/tools-list.png" alt-text="Screenshot shows the Connectors and Actions sections with the added actions as tools." lightbox="media/create-model-context-protocol-server-standard/tools-list.png":::
 
   1. To help an agent or LLM choose the correct tool and pass correctly sourced inputs to tool parameters, review and update each tool's setup by following these steps:
 
@@ -363,65 +410,42 @@ Now set up Easy Auth authentication on the Standard logic app that you want to u
 
         The following example shows the description and parameters for the **Send email (V2)** tool:
 
-        :::image type="content" source="media/create-mcp-server-api-center/tool-parameters.png" alt-text="Screenshot shows Edit pane for an example tool." lightbox="media/create-mcp-server-api-center/tool-parameters.png":::
+        :::image type="content" source="media/create-model-context-protocol-server-standard/tool-parameters.png" alt-text="Screenshot shows Edit pane for an example tool." lightbox="media/create-model-context-protocol-server-standard/tool-parameters.png":::
 
-     1. When you're done, select **Save changes**.
+     1. When you finish, select **Save changes**.
 
-1. When you're done reviewing or updating each tool, select **Register**.
+1. When you finish reviewing or updating each tool, select **Register**.
 
-1. Wait for the notifications that Azure successfully registered your MCP server.
+   The **MCP servers** page now shows the following sections:
 
-[!INCLUDE [ai-action-parameter-values-runtime](includes/ai-action-parameter-values-runtime.md)]
+   | Section | Description |
+   |---------|-------------|
+   | **Authentication** | Specify the authentication to use with your MCP server. |
+   | **Servers** | Shows the created MCP servers and workflows that the server provides as tools. You can also edit, copy the URL, or delete the server. |
 
+1. To select the authentication you want, follow these steps:
 
-## Test your MCP servers setup
+   1. Next to the **Method** box, select **Edit**
 
-1. Get the URLs for your MCP servers.
+   1. Select the method, then select **Save**.
 
-   In your *mcpservers.json* file, each MCP server definition has a unique endpoint URL. You can get all the URLs by calling the List MCP Servers API.
+You're now ready to [test your MCP server](#test-your-mcp-server-setup).
 
-   With a tool that can send HTTPS requests, send an HTTPS request using the **POST** method and the following URL:
+## Test your MCP server setup
 
-   `https://management.azure.com/subscriptions/<subscription-ID>/resourceGroups/<resource-group-name>/providers/Microsoft.Web/sites/<logic-app-name>/hostruntime/runtime/webhooks/workflow/api/management/listMcpServers?api-version=<version-number>`
+You'll need the URL for your MCP server so you can send a request from Visual Studio Code.
 
-   The following example shows a sample request and response:
+1. On your logic app resource sidebar, under **Workflows**, expand **Agents**, and select **MCP servers**.
 
-   `POST https://management.azure.com/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/fabrikam-resource-group/providers/Microsoft.Web/sites/fabrikam-mcpserver/hostruntime/runtime/webhooks/workflow/api/management/listMcpServers?api-version=2021-02-01`
-
-   ```json
-   {
-      "values": [
-         {
-            "name": "MyEmailsManagementMCPServer",
-            "description": "My email MCP server",
-            "url": "https://fabrikam-mcpserver.azurewebsites.net/api/mcpservers/myemailsmanagementmcpserver/mcp",
-            "tools": [
-               { "name": "SendEmailToVendors" },
-               { "name": "SendApprovalEmailForOrder" },
-               { "name": "StatefulWorkflow1" }
-            ]
-         },
-         {
-            "name": "MyCalendarManagementMCPServer",
-            "description": "My calendar MCP server",
-            "url": "https://fabrikam-mcpserver.azurewebsites.net/api/mcpservers/mycalendarManagementMCPServer/mcp",
-            "tools": [
-                { "name": "GetCalendars" },
-                { "name": "GetCalendar" },
-                { "name": "GetMeetingInfo" }
-            ]
-         }
-      ]
-   }
-   ```
+1. Under **Servers**, find your MCP server, and select **Copy URL**.
 
 1. In Visual Studio Code, from the **View** menu, select **Command Palette**. Find and select **MCP: Add Server**.
 
    :::image type="content" source="media/create-model-context-protocol-server-standard/visual-studio-code-mcp-add-server.png" alt-text="Screenshot shows Visual Studio Code, Command Palette, and command to add MCP server." lightbox="media/create-model-context-protocol-server-standard/visual-studio-code-mcp-add-server.png":::
 
-1. Select **HTTP (HTTP or Server-Sent Events)**. For **Enter Server URL**, provide the URL for your MCP server. 
+1. Select **HTTP (HTTP or Server-Sent Events)**. For **Enter Server URL**, enter the URL for your MCP server.
 
-1. For **Enter Server ID**, provide a meaningful name for your MCP server.
+1. For **Enter Server ID**, enter a meaningful name for your MCP server.
 
    When you add an MCP server for the first time, you must choose where to store your MCP configuration. You get the following options, so choose the best option for your scenario:
 
@@ -455,6 +479,8 @@ Now set up Easy Auth authentication on the Standard logic app that you want to u
    1. In the tools list, select or clear tools as appropriate, but make sure that your new MCP server is selected.
 
 Now you can interact with your MCP server through the Copilot chat interface.
+
+[!INCLUDE [ai-action-parameter-values-runtime](includes/ai-action-parameter-values-runtime.md)]
 
 ## Related content
 
