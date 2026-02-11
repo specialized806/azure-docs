@@ -16,16 +16,6 @@ ms.date:     02/06/2026
 
 FedRAMP Rev 5 has mandated the following Secure Configuration Guide requirements for all Cloud Service Providers at [Secure Configuration Guide](https://www.fedramp.gov/docs/rev5/balance/secure-configuration-guide/)
 
-[SCG-CSO-RSC](####scg-cso-rsc)
-[SCG-CSO-AUP](####SCG-CSO-AUP)
-[SCG-CSO-PUB](####SCG-CSO-PUB)
-[SCG-CSO-SDF](####SCG-CSO-SDF)
-[SCG-ENH-CMP](####SCG-ENH-CMP)
-[SCG-ENH-EXP](####SCG-ENH-EXP)
-[SCG-ENH-API](####SCG-ENH-API)
-[SCG-ENH-MRG](####SCG-ENH-MRG)
-[SCG-ENH-VRH](####SCG-ENH-VRH)
-
 Azure provides the following instructions and guidelines for the customers to meet these requirements.
 
 #### [Recommended Secure Configuration](https://www.fedramp.gov/docs/rev5/balance/secure-configuration-guide/#recommended-secure-configuration)
@@ -57,6 +47,7 @@ Azure defines the below top-level administrative accounts
 |     Enterprise   Agreement    |     Enterprise Administrator           |     Controls all Azure accounts and billing under the EA           |
 |                               |     Account Owner                      |     Creates subscriptions; controls subscription‑level   admins    |
 |     Subscription‑level        |     Service Administrator              |     Full management permissions on each subscription               |
+
 Azure publishes authoritative guidance for top-level admin roles via Microsoft Learn (Entra documentation), including privileged role definitions, emergency access (“break-glass”) account guidance, and FedRAMP High identity access controls, which customers can consume directly through public documentation at [RBAC and Directory Admin Roles](https://docs.azure.cn/en-us/role-based-access-control/rbac-and-directory-admin-roles)
 
 #### Privileged Administrative Role Definitions
