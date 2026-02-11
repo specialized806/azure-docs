@@ -112,7 +112,7 @@ You can configure the networking of target resources to one of the following opt
   - [How to front a network security perimeter-protected Azure resource with Azure API Management](../using-network-security-perimeter.md)
 
 > [!IMPORTANT]
-> Customers can remain on using trusted services on the target Azure service for non-Azure API Management scenarios. However, Azure API Management will no longer support it so the gateway needs alternative ways to communicate and have network line-of-sight.
+> Customers can continue using trusted services on the target Azure service for non-Azure API Management scenarios. However, Azure API Management will no longer support it so the gateway needs alternative ways to communicate and have network line-of-sight.
 >
 > Example - You can have trusted service enable on Azure Storage, and use Network Security Perimeter to allow Azure API Management with migration applied to still access the resource.
  
