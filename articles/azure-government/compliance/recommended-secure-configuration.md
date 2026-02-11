@@ -812,7 +812,7 @@ All exportable as **JSON**, ideal for third‑party security baselines and confi
 
 #### 6. How Third‑Party Tools Compare Against Azure Machine‑Readable Guides
 
-Using the above machine‑readable feeds, external tools can:
+Using the above methods machine‑readable feeds, external tools can:
 
 - Compare actual Azure config vs. **Secure Configuration Guide JSON**
 
@@ -846,7 +846,7 @@ Azure fully satisfies the requirement through
 
 - **APIs for change tracking & automated drift detection**
 
-with clear change histories.
+With clear change histories.
 
 The combination of Entra ID Protection, PIM, Azure RBAC JSON exports, Defender for Cloud posture, and Azure Resource Graph delivers a complete versioning story for secure‑default controls.
 
