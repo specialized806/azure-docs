@@ -56,9 +56,9 @@ If you choose to install and use PowerShell locally, this article requires the A
 
 ---
 
-### [Portal](#tab/portal)
-
 ## Create a resource group
+
+### [Portal](#tab/portal)
 
 1. Sign in to the [Azure portal](https://portal.azure.com).
 
@@ -78,7 +78,33 @@ If you choose to install and use PowerShell locally, this article requires the A
 
 1. Select **Create**.
 
+### [PowerShell](#tab/powershell)
+
+Create a resource group with [New-AzResourceGroup](/powershell/module/az.resources/new-azresourcegroup). The following example creates a resource group named **test-rg** in the **eastus2** location.
+
+```azurepowershell-interactive
+$resourceGroup = @{
+    Name = "test-rg"
+    Location = "EastUS2"
+}
+New-AzResourceGroup @resourceGroup
+```
+
+### [CLI](#tab/cli)
+
+Create a resource group with [az group create](/cli/azure/group). The following example creates a resource group named **test-rg** in the **eastus2** location.
+
+```azurecli-interactive 
+az group create \
+    --name test-rg \
+    --location eastus2
+```
+
+---
+
 ## Create a virtual network
+
+### [Portal](#tab/portal)
 
 1. In the search box at the top of the portal, enter **Virtual network**. Select **Virtual networks** in the search results.
 
@@ -161,16 +187,6 @@ Repeat the previous steps to create a second virtual network with the following 
 | Subnet address range | **10.1.0.0/24** |
 
 ### [PowerShell](#tab/powershell)
-
-Before creating a virtual network, you must create a resource group for the virtual network and all other resources created in this article. Create a resource group with [New-AzResourceGroup](/powershell/module/az.resources/new-azresourcegroup). The following example creates a resource group named **test-rg** in the **eastus** location.
-
-```azurepowershell-interactive
-$resourceGroup = @{
-    Name = "test-rg"
-    Location = "EastUS2"
-}
-New-AzResourceGroup @resourceGroup
-```
 
 Create a virtual network with [New-AzVirtualNetwork](/powershell/module/az.network/new-azvirtualnetwork). The following example creates a virtual network named **vnet-1** with the address prefix **10.0.0.0/16**.
 
@@ -277,14 +293,6 @@ $virtualNetwork2 | Set-AzVirtualNetwork
 ```
 
 ### [CLI](#tab/cli)
-
-Before creating a virtual network, you must create a resource group for the virtual network and all other resources created in this article. Create a resource group with [az group create](/cli/azure/group). The following example creates a resource group named **test-rg** in the **eastus** location.
-
-```azurecli-interactive 
-az group create \
-    --name test-rg \
-    --location eastus2
-```
 
 Create a virtual network with [az network vnet create](/cli/azure/network/vnet#az-network-vnet-create). The following example creates a virtual network named **vnet-1** with the address prefix **10.0.0.0/16**.
 
