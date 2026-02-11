@@ -16,7 +16,7 @@ ms.date:     02/06/2026
 
 FedRAMP Rev 5 has mandated the following Secure Configuration Guide requirements for all Cloud Service Providers at [Secure Configuration Guide](https://www.fedramp.gov/docs/rev5/balance/secure-configuration-guide/)
 
-[SCG-CSO-RSC](####SCG-CSO-RSC)
+[SCG-CSO-RSC](####scg-cso-rsc)
 [SCG-CSO-AUP](####SCG-CSO-AUP)
 [SCG-CSO-PUB](####SCG-CSO-PUB)
 [SCG-CSO-SDF](####SCG-CSO-SDF)
