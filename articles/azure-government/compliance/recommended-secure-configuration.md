@@ -18,8 +18,6 @@ FedRAMP Rev 5 has mandated Secure Configuration Guide requirements for all Cloud
 
 Azure provides the following instructions and guidelines for the customers to meet these requirements.
 
- 
-
 #### [Recommended Secure Configuration](https://www.fedramp.gov/docs/rev5/balance/secure-configuration-guide/#recommended-secure-configuration)
 
 ### SCG-CSO-RSC
@@ -118,7 +116,6 @@ Microsoft documents emergency access accounts as highly privileged accounts desi
 
 **Microsoft Learn:**  [Manage emergency access accounts in Microsoft Entra ID](/entra/identity/role-based-access-control/security-emergency-access)
 
----
 #### 5. Identity Protection (Tenant‑Wide Risk Policies)
 
 Microsoft Entra ID Protection provides tenant‑wide risk detection and enforcement for:
@@ -213,9 +210,9 @@ When the tenant is first provisioned Azure enforces
 
 ensuring newly created admin or high‑privilege accounts never start in a weak or misconfigured state.
 
-When identities, subscriptions, or resources are created, **Security defaults** + **CA** give a hardened starting posture; **Azure Policy** applies baseline guardrails at MG/sub scopes so new assets inherit secure defaults automatically.
+When identities, subscriptions, or resources are created, **Security defaults** + **Conditional Access** give a hardened starting posture; **Azure Policy** applies baseline guardrails at MG/sub scopes so new assets inherit secure defaults automatically.
 
-Learn: [Security defaults](/entra/fundamentals/security-defaults) · [Conditional Access Overview](/entra/identity/conditional-access/overview) · [Azure RBAC Overview](/azure/role-based-access-control/overview) · [Plan CA deployment](/entra/identity/conditional-access/plan-conditional-access) · [What is Azure Policy?](/azure/governance/policy/overview) 
+**Microsoft Learn:** [Security defaults](/entra/fundamentals/security-defaults) · [Conditional Access Overview](/entra/identity/conditional-access/overview) · [Azure RBAC Overview](/azure/role-based-access-control/overview) · [Plan CA deployment](/entra/identity/conditional-access/plan-conditional-access) · [What is Azure Policy?](/azure/governance/policy/overview) 
 
 ### Enhanced Capabilities[¶](https://www.fedramp.gov/docs/rev5/balance/secure-configuration-guide/#enhanced-capabilities"Permanent link")
 
