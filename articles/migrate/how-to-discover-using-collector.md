@@ -7,7 +7,7 @@ ms.manager: ronai
 ms.service: azure-migrate
 ms.topic: how-to
 ms.reviewer: v-uhabiba
-ms.date: 06/02/2026
+ms.date: 02/11/2026
 ms.custom: engagement-fy26
 # Customer intent: As an IT professional, I want to use Azure Migrate Collector to discover my IT estate and generate reports, so I can plan migration and modernization efficiently.
 ---
@@ -43,7 +43,7 @@ Before you set up the collector, create a new Azure Migrate project.
 | Linux | Root account* | To collect installed software, SQL & PostgreSQL database instance and web apps data. |
 | Domain | Domain account with SQL permissions | To collect SQL readiness data |
 
-Note: *You can set up custom least privileged Windows, Linux, and SQL accounts by referring this article. 
+Note: *You can set up custom least privileged Windows, Linux, and SQL accounts by referring [this article](best-practices-least-privileged-account.md). 
 
 ### Download Azure Migrate Collector
 
@@ -193,6 +193,6 @@ The same Azure migrate collector can be used to discover both VMware machines an
 
 ## Next steps
 
-- Review the [discovered inventory](how-to-review-discovered-inventory.md.md).
+- Review the [discovered inventory](how-to-review-discovered-inventory.md).
 - Generate a [a business case](migrate-appliance.md).
 - Create an [assessment](tutorial-discover-import.md).
