@@ -32,7 +32,7 @@ This section describes common deployment and configuration issues and their reso
 This section describes common issues when upgrading your Azure Bastion SKU and their resolutions. For upgrade instructions, see [View or upgrade an Azure Bastion SKU](upgrade-sku.md).
 
 |Issue  |Description  |Resolution  |
-|---------|---------|---------||
+|---------|---------|---------|
 |Upgrade fails to start|When you try to upgrade your Bastion SKU, the operation fails immediately.|Verify you have Contributor or Owner role on the resource group containing your Bastion host.|
 |Upgrade fails with subnet error|Upgrade from Developer SKU fails with a subnet-related error.|Create a subnet named **AzureBastionSubnet** with a /26 or larger prefix before upgrading. The Developer SKU uses shared infrastructure, while Basic, Standard, and Premium require a dedicated subnet.|
 |Upgrade times out|The upgrade operation takes longer than expected or times out.|The upgrade process typically takes approximately 10 minutes. Wait a few minutes and check the Bastion host status in the portal. If the status shows updating, wait for completion. If the status shows failed, try the upgrade again.|
