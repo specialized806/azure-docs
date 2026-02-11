@@ -451,20 +451,5 @@ The `--no-wait` flag returns immediately while deletion continues in the backgro
 
 ## Next steps
 
-Now that you have a working AI image generator, consider these enhancements:
-
 > [!div class="nextstepaction"]
 > [Improve cold start for serverless GPUs](gpu-serverless-overview.md#improve-gpu-cold-start)
-
-* **Add authentication**: Secure your API by using [Azure Container Apps authentication](authentication.md).
-* **Configure scaling**: Set up [custom scaling rules](scale-app.md) based on request load.
-* **Try different models**: Experiment with other Stable Diffusion variants or deploy models from Hugging Face.
-* **Build a web frontend**: Create a user-facing application that calls your image generation API.
-
-## Related content
-
-* [Using serverless GPUs in Azure Container Apps](gpu-serverless-overview.md)
-* [GPU workload profile types](gpu-types.md)
-* [Azure Functions on Container Apps overview](functions-overview.md)
-* [Monitor Azure Container Apps](observability.md)
-* [Manage costs with Azure Container Apps](billing.md)
