@@ -320,7 +320,7 @@ For hybrid and cloud resources:
   
   [Interactive Guide — Manage your cloud security posture](https://mslearn.cloudguides.com/en-US/guides/Manage%20your%20cloud%20security%20posture%20with%20Microsoft%20Defender%20for%20Cloud)
   
-#### Export Capability[¶](https://www.fedramp.gov/docs/rev5/balance/secure-configuration-guide/#export-capability"Permanent link")
+#### [Export Capability](https://www.fedramp.gov/docs/rev5/balance/secure-configuration-guide/#export-capability)
 
 #### SCG-ENH-EXP
 
@@ -399,7 +399,6 @@ Exportable via Azure CLI / Microsoft Graph:
 
 - [Role Assignments list](/azure/role-based-access-control/role-assignments-list-cli)
 
----
 #### 3. Microsoft Entra ID — Identity Security Configuration Export
 
 All identity configurations can be exported in **JSON** using Microsoft Graph:
@@ -424,7 +423,6 @@ All identity configurations can be exported in **JSON** using Microsoft Graph:
 
 - **Risk Detection Types** [Identity Protection risk detections](/entra/id-protection/concept-identity-protection-risks) 
 
----
 #### 4. Privileged Identity Management (PIM) — Machine‑Readable Role & Policy Export
 
 PIM exports via Graph (JSON):
@@ -443,7 +441,6 @@ PIM exports via Graph (JSON):
 
 - [Configure PIM](/entra/id-governance/privileged-identity-management/pim-configure) 
 
----
 #### 5. Access Reviews — JSON Export for Privileged Access Governance
 
 Exportable:
@@ -462,7 +459,6 @@ Exportable:
 
 - [Manage Access Reviews](/entra/id-governance/manage-access-review) 
 
----
 #### 6. Microsoft Defender for Cloud — Posture, Recommendations & Secure Score Export
 
 Exportable:
@@ -483,7 +479,6 @@ Exportable:
 
 - [Interactive Cloud Security Posture Guide](https://mslearn.cloudguides.com/en-US/guides/Manage%20your%20cloud%20security%20posture%20with%20Microsoft%20Defender%20for%20Cloud)
 
----
 #### 7. Azure Resource Graph — Full Environment Export (JSON)
 
 Export complete resource state:
@@ -504,7 +499,6 @@ ARG supports KQL → JSON export.
 
 - [Azure Resource Graph documentation](/azure/governance/resource-graph/)
 
----
 #### 8. Infrastructure‑as‑Code (IaC) — Full Machine‑Readable Export
 
 Azure supports exporting all deployed resources into:
@@ -521,7 +515,7 @@ These provide **100% environment configuration** in machine‑readable form.
 
 - [ARM template documentation](/azure/azure-resource-manager/templates/)
 
-#### API Capability[¶](https://www.fedramp.gov/docs/rev5/balance/secure-configuration-guide/#api-capability"Permanent link")
+#### [API Capability](https://www.fedramp.gov/docs/rev5/balance/secure-configuration-guide/#api-capability)
 
 #### SCG-ENH-EXP
 
@@ -529,7 +523,7 @@ Providers SHOULD offer the capability to view and adjust security settings via a
 
 #### Azure's response
 
-Azure fully satisfies this requirement by exposing *all major security configurations* through documented APIs (ARM, Microsoft Graph, Azure Policy, Defender for Cloud APIs, and Azure Resource Graph). These APIs allow organizations to **retrieve**, **audit**, **modify**, and **enforce** security settings programmatically.
+Azure fully satisfies this requirement by exposing *all major security configurations* through documented APIs (ARM, Microsoft Graph, Azure Policy, Defender for Cloud APIs, and Azure Resource Graph). 
 
 Azure **fully meets and exceeds** SCG-ENH-EXP by providing comprehensive, documented, and secure APIs that allow organizations to:
 
@@ -545,7 +539,8 @@ Azure **fully meets and exceeds** SCG-ENH-EXP by providing comprehensive, docume
 
 The combination of **ARM**, **Microsoft Graph**, **Azure Policy**, **RBAC APIs**, **Defender for Cloud APIs**, and **Azure Resource Graph** ensures **complete transparency, adjustability, and automation** of all security posture components.
 
----
+Below is the description of each of the methods available to customers.
+
 #### 1. Azure Resource Manager (ARM) — Security Configuration API
 
 Azure Resource Manager (ARM) exposes **every Azure resource’s configuration** (including security settings) via REST API. This allows programmatic **view** (`GET`) and **adjust** (`PUT/PATCH`) operations for:
@@ -579,11 +574,8 @@ Microsoft Graph exposes the **entire identity security plane**, enabling automat
 
 **Microsoft Learn:**
 
-- [Top Level – Microsoft Entra Documentation](/entra/)
+- [Authorization and the Microsoft Graph Security API](/graph/security-authorization)
 
-- [What is Microsoft Entra ID Protection?](/entra/id-protection/overview-identity-protection)
-
----
 #### 3. Azure Policy API — Secure Defaults, Baselines, Compliance
 
 Programmatically enforce and adjust secure settings using Policy APIs:
@@ -602,7 +594,6 @@ Programmatically enforce and adjust secure settings using Policy APIs:
 
 - [Azure Policy documentation](/azure/governance/policy/)
 
----
 #### 4. Azure RBAC — View & Adjust Role Assignments (JSON Export)
 
 Azure exposes all RBAC assignments and allows programmatic adjustments using:
@@ -611,9 +602,6 @@ Azure CLI (JSON Export)
 
 - **Microsoft Learn:** [List Azure role assignments using Azure CLI](/azure/role-based-access-control/role-assignments-list-cli)
 
-### 
-
----
 #### 5. Microsoft Defender for Cloud APIs — Secure Score & Recommendations
 
 View and adjust cloud security posture via API:
@@ -632,7 +620,6 @@ View and adjust cloud security posture via API:
 
 - [Interactive security posture guide (Cloud Security Posture UX)](https://thinkcloudly.com/blog/azure/defender-for-cloud-implementation-guide/)
 
----
 #### 6. Azure Resource Graph — Full Security Inventory (JSON Export)
 
 ARG enables querying and exporting:
@@ -651,7 +638,6 @@ ARG enables querying and exporting:
 
 **Microsoft Learn:** [Azure Resource Graph documentation](/azure/governance/resource-graph/)
 
----
 #### 7. Integration With CI/CD, SOAR, SIEM & Compliance Pipelines (Expanded)
 
 #### Continuous Integration / Continuous Deployment (CI/CD)
@@ -714,7 +700,7 @@ Supports automated:
 
 - Auditor‑ready JSON bundles
 
-#### Machine-Readable Guidance[¶](https://www.fedramp.gov/docs/rev5/balance/secure-configuration-guide/#machine-readable-guidance"Permanent link")
+#### [Machine-Readable Guidance](https://www.fedramp.gov/docs/rev5/balance/secure-configuration-guide/#machine-readable-guidance)
 
 #### SCG-ENH-MRG
 
@@ -742,7 +728,6 @@ These can be exported programmatically and used by comparison tools.
 
 **Microsoft Learn:** [Manage security posture by using Microsoft Defender for Cloud](https://m365corner.com/m365-glossary/privileged-identity-management.html) [Interactive Cloud Security Posture Guide (Cloud Security UX)](https://thinkcloudly.com/blog/azure/defender-for-cloud-implementation-guide/)
 
----
 #### 2. Azure Policy — Secure Baseline Definitions (JSON)
 
 Azure Policy provides the backbone for Azure secure configuration guides:
@@ -759,8 +744,7 @@ Third‑party engines can run diff/comparison logic on exported JSON.
 
 **Microsoft Learn:** [Azure Policy overview](/azure/governance/policy/overview)
 
----
-#### 3. Microsoft Entra ID (Azure AD) — Identity Security Baselines (JSON via Microsoft Graph)
+#### 3. Microsoft Entra ID  — Identity Security Baselines (JSON via Microsoft Graph)
 
 Microsoft Graph exposes **identity security configuration** in machine‑readable JSON:
 
@@ -780,7 +764,6 @@ Microsoft Graph exposes **identity security configuration** in machine‑readabl
 
 - [What is Microsoft Entra ID Protection?](/entra/id-protection/overview-identity-protection)
 
----
 #### 4. Azure RBAC — Role Assignments (JSON Export)
 
 Azure supports complete JSON export of RBAC access configuration via Azure CLI, Microsoft Graph, or Resource Graph.
@@ -793,7 +776,6 @@ Azure supports complete JSON export of RBAC access configuration via Azure CLI, 
 
 **Microsoft Learn:** [List Azure role assignments using Azure CLI](/azure/role-based-access-control/role-assignments-list-cli)
 
----
 #### 5. Azure Resource Graph — Full Machine‑Readable Security State (JSON)
 
 ARG provides a **tenant‑wide**, machine‑readable export of:
@@ -816,7 +798,6 @@ All exportable as **JSON**, ideal for third‑party security baselines and confi
 
 **Microsoft Learn:** [Azure Resource Graph documentation](/azure/governance/resource-graph/)
 
----
 #### 6. How Third‑Party Tools Compare Against Azure Machine‑Readable Guides
 
 Using the above machine‑readable feeds, external tools can:
@@ -829,7 +810,7 @@ Using the above machine‑readable feeds, external tools can:
 
 - Automate remediation workflows
 
-#### Versioning and Release History[¶](https://www.fedramp.gov/docs/rev5/balance/secure-configuration-guide/#versioning-and-release-history"Permanent link")
+#### [Versioning and Release History](https://www.fedramp.gov/docs/rev5/balance/secure-configuration-guide/#versioning-and-release-history)
 
 #### SCG-ENH-VRH
 
@@ -867,9 +848,8 @@ Microsoft publishes **versioned Security Baselines** for Azure and Microsoft clo
 
 - Updated controls
 
-*Microsoft Security Baselines (general Microsoft Learn hub — no direct page returned from search results).*
+**Microsoft Learn:** [Security Baselines](/windows/security/operating-system-security/device-management/windows-security-configuration-framework/windows-security-baselines)
 
----
 #### 2. Microsoft Entra ID — Secure Defaults Version Evolution
 
 Azure (Microsoft Entra ID) maintains evolving **Secure Default** protections for privileged accounts, including:
@@ -882,7 +862,7 @@ Azure (Microsoft Entra ID) maintains evolving **Secure Default** protections for
 
 - Updated secure‑by‑default identity posture
 
-**Supporting Microsoft Learn pages from search results**:
+**Microsoft Learn**:
 
 **Microsoft Entra ID Protection documentation** [Microsoft Entra ID Protection documentation](https://www.youtube.com/watch?v=QeXKv-N1zgk)
 
@@ -902,7 +882,6 @@ These pages collectively document:
 
 - Updated admin & privileged account protections
 
----
 #### 3. Privileged Identity Management (PIM) — Policy Versioning
 
 PIM provides:
