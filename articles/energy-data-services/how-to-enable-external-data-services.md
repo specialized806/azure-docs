@@ -11,9 +11,9 @@ ms.custom: template-how-to
 
 # Enable External Data Services (EDS) in Azure Data Manager for Energy
 
-This article describes how to enable External Data Services (EDS) in Azure Data Manager for Energy. EDS allow you to pull metadata from OSDU-compliant external data sources into Azure Data Manager for Energy. 
+This article describes how to enable External Data Services (EDS) in Azure Data Manager for Energy. EDS allows you to pull metadata from OSDU-compliant external data sources into Azure Data Manager for Energy. 
 
-By using a [managed identity](/entra/identity/managed-identities-azure-resources/overview), Azure resources can authenticate to other services without storing credentials in code. Use either a system-assigned or user-assigned managed identity to enable the EDS secret service to access secrets stored in your Azure Key Vault.
+Azure resources can use a [managed identity](/entra/identity/managed-identities-azure-resources/overview) to authenticate to other services without storing credentials in code. Use either a system-assigned or user-assigned managed identity to enable the EDS secret service to access secrets stored in your Azure Key Vault.
 
 ## Prerequisites
 
@@ -30,13 +30,13 @@ Use an Azure Key Vault to store secrets managed by the secret service.
    > Your Key Vault must exist in the same tenant as your Azure Data Manager for Energy resource. When you create the Key Vault, select [Enable purge protection (enforce a mandatory retention period for deleted vaults and vault objects)](/azure/key-vault/general/key-vault-recovery?tabs=azure-portal#what-are-soft-delete-and-purge-protection).
 
 1. In the **Access configuration** tab, under **Permission model**, select **Azure role-based access control (recommended)**.
-   :::image type="content" source="media/how-to-enable-external-data-services/create-a-key-vault.jpg" lightbox="media/how-to-enable-external-data-services/create-a-key-vault.jpg" alt-text="Screenshot of Azure portal Create a Key Vault page showing the Access configuration tab with Permission model set to Azure role-based access control and Resource access checkboxes for Virtual Machines, Resource Manager, and Disk Encryption.":::
+   :::image type="content" source="media/how-to-enable-external-data-services/create-a-key-vault.jpg" lightbox="media/how-to-enable-external-data-services/create-a-key-vault.jpg" alt-text="Screenshot showing the Access configuration tab with Permission model set to Azure role-based access control.":::
 
 1. Select **Review + create** to create the key vault.
 
 ## Grant user-assigned managed identity permissions to the Key Vault
 
-Use the following steps to grant a user-assigned managed identity permissions to the Key Vault.
+Use the following steps to grant a user-assigned managed identity with permissions to the Key Vault.
 
 1. In the Azure portal, go to your Key Vault.
 1. Select **Access control (IAM)** from the left menu and select **+ Add** > **Add role assignment**.
