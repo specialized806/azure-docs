@@ -126,7 +126,7 @@ The function integrates with Azure through:
 
 ## Deploy to Azure
 
-::: zone pivot="container-apps-cli"
+::: zone pivot="azure-cli"
 
 Deploy by using Azure Developer CLI for the fastest deployment experience:
 
@@ -155,7 +155,7 @@ When deployment completes, note the endpoint URL for testing.
 
 ::: zone-end
 
-::: zone pivot="container-apps-portal"
+::: zone pivot="azure-portal"
 
 For portal-based deployment, refer to the [Azure Container Apps quickstart](get-started-existing-container-image-portal.md) and configure:
 
