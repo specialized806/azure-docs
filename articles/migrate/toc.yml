@@ -591,100 +591,35 @@ items:
 #       href: least-privilege-credentials.md  
 #     - name: Discover applications/roles/features
 #       href: how-to-discover-applications.md
-#     - name: Discover SQL instances and web apps in an existing project
-#       href: how-to-discover-sql-existing-project.md
-#     - name: Analyze machine dependencies (agent-based)
-#       href: how-to-create-group-machine-dependencies.md
-#     - name: Analyze machine dependencies (agentless)
-#       href: how-to-create-group-machine-dependencies-agentless.md
-#   - name: Decide
-#     items:
-#     - name: Review a business case
-#       href: how-to-view-a-business-case.md
 #   - name: Assess
 #     items:
 #     - name: Azure Migrate application and code assessment
 #       href: appcat/index.yml
-#     - name: Add assessment tools
-#       href: how-to-assess.md
 #     - name: Group machines for assessment
 #       href: how-to-create-a-group.md
-#     - name: Create an Azure VM assessment
-#       href: how-to-create-assessment.md
 #     - name: Create an Azure SQL assessment
 #       href: how-to-create-azure-sql-assessment.md
 #     - name: Create an Azure App Service assessment
 #       href: how-to-create-azure-app-service-assessment.md
-#     - name: Create an Azure Spring Apps assessment
-#       href: how-to-create-azure-spring-apps-assessment.md
 #     - name: Create an AVS assessment
 #       href: how-to-create-azure-vmware-solution-assessment.md
-#     - name: Assess a SQL Server database
-#       href: /sql/dma/dma-assess-sql-data-estate-to-sqldb
-#     - name: Customize an assessment
-#       href: how-to-modify-assessment.md
-#     - name: Scale assessment
-#       items:
-#       - name: Assess large number of servers in VMware environment
-#         href: scale-vmware-assessment.md
-#       - name: Assess large number of servers in Hyper-V environment
-#         href: scale-hyper-v-assessment.md
-#       - name: Assess large numbers of physical servers
-#         href: scale-physical-assessment.md
 #   - name: Migrate
 #     items:
 #     - name: Add migration tools
 #       href: how-to-migrate.md
-#     - name: Replicate using ExpressRoute
-#       href: replicate-using-expressroute.md
-#     - name: Prepare machines for migration
-#       href: prepare-for-migration.md
-#     - name: Prepare Windows 2003 servers for migration
-#       href: prepare-windows-server-2003-migration.md
-#     - name: Migrate VMware VMs
-#       items:
-#       - name: Migrate VMware VMs to encrypted Azure VMs
-#         href: how-to-migrate-vmware-vms-with-cmk-disks.md
-#     - name: Test migration
-#       href: how-to-test-replicating-virtual-machines.md
-#     - name: Upgrade Windows OS
-#       href: how-to-upgrade-windows.md
-#     - name: Scale migration
-#       items:
-#       - name: How to migrate VMware VMs at scale using the agentless replication method
-#         href: how-to-scale-out-for-migration.md
-#       - name: Automate migration of large number of VMs
-#         href: how-to-migrate-at-scale.md
-#       - name: How to automate VMware migration
-#         href: how-to-automate-migration.md
-#   - name: Manage
-#     items:
-#     - name: Work with previous version of Azure Migrate
-#       href: migrate-v1.md
-#     - name: Onboard on-premises servers in VMware virtual environment to Azure Arc
-#       href: onboard-to-azure-arc-with-azure-migrate.md
-#     - name: Manage migration projects with Azure Lighthouse
-#       href: ../lighthouse/how-to/migration-at-scale.md?toc=/azure/migrate/toc.json&bc=/azure/migrate/breadcrumb/toc.json
 # - name: Troubleshoot
 #   items:
 #   - name: General
 #     items:
 #     - name: Troubleshoot Azure Migrate
 #       href: troubleshoot-general.md
-#   - name: Discover
-#     items:
-#     - name: Troubleshoot Spring Boot discovery and assessment
-#       href: troubleshoot-spring-boot-discovery.md
 #   - name: Assess
 #     items:
 #     - name: Troubleshoot assessment
 #       items:
 #         - name: FAQ
 #           href: troubleshoot-assessment-faq.md
-#   - name: Migrate
-#     items:
-#     - name: Troubleshoot web app migration issues
-#       href: troubleshoot-webapps-migration.md
+
 
 
 
