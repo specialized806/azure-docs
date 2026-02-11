@@ -16,7 +16,7 @@ ms.date:     02/06/2026
 
 FedRAMP Rev 5 has mandated the following Secure Configuration Guide requirements for all Cloud Service Providers at [Secure Configuration Guide](https://www.fedramp.gov/docs/rev5/balance/secure-configuration-guide/)
 
-[SCG-CSO-RSC](####SCG-CSO-RSC) 
+[SCG-CSO-RSC](####SCG-CSO-RSC)
 [SCG-CSO-AUP](####SCG-CSO-AUP)
 [SCG-CSO-PUB](####SCG-CSO-PUB)
 [SCG-CSO-SDF](####SCG-CSO-SDF)
@@ -172,6 +172,7 @@ More detailed instructions to securely access, configure, operate, and decommiss
 [Emergency Accounts - Manage emergency access accounts in Microsoft Entra ID](/entra/identity/role-based-access-control/security-emergency-access)
 
 [Conditional Access Overview](/entra/identity/conditional-access/overview)
+[Back to the top](#Secure-Configuration-Guide)
 
 ### [Use Instructions](https://www.fedramp.gov/docs/rev5/balance/secure-configuration-guide/#use-instructions)
 
@@ -184,7 +185,7 @@ Providers MUST include instructions in the FedRAMP authorization package that ex
 #### Azure's response
 
 Azure FedRAMP authorization packages will contain a word document with instructions to access and use the Secure Configuration Guide. *[Review comment Ateeque] Is a link needed at this point?*
-
+[Back to the top](#Secure-Configuration-Guide)
 ### [Public Guidance](https://www.fedramp.gov/docs/rev5/balance/secure-configuration-guide/#public-guidance)
 
 #### SCG-CSO-PUB
@@ -194,6 +195,8 @@ Providers SHOULD make the Secure Configuration Guide available publicly
 #### Azure's response 
 
 Azure's Secure Configuration Guide is available publicly and can be accessed at [Secure Configuration Guide](/azure/azure-government/compliance/azure-services-in-fedramp-auditscope?branch=pr-en-us-76518) *[Review comment Ateeque] this link currently points to the scope of the services but will be replaced by the link to the Guide.*
+
+[Back to the top](#Secure-Configuration-Guide)
 
 ### [Secure Defaults](https://www.fedramp.gov/docs/rev5/balance/secure-configuration-guide/#secure-defaults)
 
@@ -222,6 +225,8 @@ ensuring newly created admin or high‑privilege accounts never start in a weak 
 When identities, subscriptions, or resources are created, **Security defaults** + **Conditional Access** give a hardened starting posture; **Azure Policy** applies baseline guardrails at MG/sub scopes so new assets inherit secure defaults automatically.
 
 **Microsoft Learn:** [Security defaults](/entra/fundamentals/security-defaults) · [Conditional Access Overview](/entra/identity/conditional-access/overview) · [Azure RBAC Overview](/azure/role-based-access-control/overview) · [Plan CA deployment](/entra/identity/conditional-access/plan-conditional-access) · [What is Azure Policy?](/azure/governance/policy/overview) 
+
+[Back to the top](#Secure-Configuration-Guide)
 
 ### [Enhanced Capabilities](https://www.fedramp.gov/docs/rev5/balance/secure-configuration-guide/#enhanced-capabilities)
 
@@ -329,6 +334,8 @@ For hybrid and cloud resources:
   
   [Interactive Guide — Manage your cloud security posture](https://mslearn.cloudguides.com/en-US/guides/Manage%20your%20cloud%20security%20posture%20with%20Microsoft%20Defender%20for%20Cloud)
   
+[Back to the top](#Secure-Configuration-Guide)
+
 #### [Export Capability](https://www.fedramp.gov/docs/rev5/balance/secure-configuration-guide/#export-capability)
 
 #### SCG-ENH-EXP
@@ -393,7 +400,6 @@ Azure Policy supports exporting:
 
 - [How to get compliance data](/azure/governance/policy/how-to/get-compliance-data)
 
----
 #### 2. Azure RBAC — Role Assignments & Privileged Access (JSON Export)
 
 Exportable via Azure CLI / Microsoft Graph:
@@ -524,9 +530,11 @@ These provide **100% environment configuration** in machine‑readable form.
 
 - [ARM template documentation](/azure/azure-resource-manager/templates/)
 
+[Back to the top](#Secure-Configuration-Guide)
+
 #### [API Capability](https://www.fedramp.gov/docs/rev5/balance/secure-configuration-guide/#api-capability)
 
-#### SCG-ENH-EXP
+#### SCG-ENH-API
 
 Providers SHOULD offer the capability to view and adjust security settings via an API or similar capability.
 
@@ -534,7 +542,7 @@ Providers SHOULD offer the capability to view and adjust security settings via a
 
 Azure fully satisfies this requirement by exposing *all major security configurations* through documented APIs (ARM, Microsoft Graph, Azure Policy, Defender for Cloud APIs, and Azure Resource Graph). 
 
-Azure **fully meets and exceeds** SCG-ENH-EXP by providing comprehensive, documented, and secure APIs that allow organizations to:
+Azure **fully meets and exceeds** SCG-ENH-API by providing comprehensive, documented, and secure APIs that allow organizations to:
 
 - Programmatically **view** all security settings
 
@@ -709,6 +717,8 @@ Supports automated:
 
 - Auditor‑ready JSON bundles
 
+[Back to the top](#Secure-Configuration-Guide)
+
 #### [Machine-Readable Guidance](https://www.fedramp.gov/docs/rev5/balance/secure-configuration-guide/#machine-readable-guidance)
 
 #### SCG-ENH-MRG
@@ -818,6 +828,8 @@ Using the above machine‑readable feeds, external tools can:
 - Generate auditor‑ready compliance evidence
 
 - Automate remediation workflows
+
+[Back to the top](#Secure-Configuration-Guide)
 
 #### [Versioning and Release History](https://www.fedramp.gov/docs/rev5/balance/secure-configuration-guide/#versioning-and-release-history)
 
@@ -947,3 +959,4 @@ ARG enables diffing:
 
 - Drift from secure baselines
 
+[Back to the top](#Secure-Configuration-Guide)
