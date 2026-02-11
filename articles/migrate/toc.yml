@@ -310,8 +310,6 @@ items:
   #   items:
     - name: Modernize applications 
       items:
-      - name: Containerize Java web apps and migrate to AKS
-        href: tutorial-app-containerization-java-kubernetes.md
       - name: Containerize ASP.NET apps and migrate to App Service containers
         href: tutorial-app-containerization-aspnet-app-service.md
       - name: Containerize Java web apps and migrate to App Service containers
@@ -518,26 +516,10 @@ items:
   #   items:
   #   - name: Migrate servers in VMware environment
   #     items:
-  #     - name: Migration options for servers in VMware environment
-  #       href: server-migrate-overview.md
-  #     - name: Migrate with agentless migration (portal)
-  #       href: tutorial-migrate-vmware.md
-  #     - name: Migrate with agent-based migration
-  #       href: tutorial-migrate-vmware-agent.md
-  #     - name: Migrate with agentless migration (PowerShell)
-  #       href: tutorial-migrate-vmware-powershell.md
-  #   - name: Migrate servers in Hyper-V environment
-  #     href: tutorial-migrate-hyper-v.md
-  #   - name: Migrate physical servers
-  #     href: tutorial-migrate-physical-virtual-machines.md
-  #   - name: Migrate AWS instances
-  #     href: tutorial-migrate-aws-virtual-machines.md
   #   - name: Migrate GCP instances
   #     href: tutorial-migrate-gcp-virtual-machines.md
   # - name: Modernize
   #   items:
-  #   - name: Containerize Java web apps and migrate to AKS
-  #     href: tutorial-app-containerization-java-kubernetes.md
 # - name: Concepts
 #   items:
 #   - name: General
@@ -558,8 +540,6 @@ items:
 #     items:
 #     - name: Build a migration plan
 #       href: concepts-migration-planning.md
-#     - name: Hyper-V migration support
-#       href: migrate-support-matrix-hyper-v-migration.md
 #     - name: Physical server migration support
 #       href: migrate-support-matrix-physical-migration.md
 #     - name: Replication appliance requirements
@@ -569,12 +549,6 @@ items:
 #           href: prepare-for-agentless-migration.md
 #     - name: Web apps migration support
 #       href: concepts-migration-webapps.md
-# - name: How-to guides
-#   items:
-#   - name: Use Azure Migrate with private endpoints 
-#     items:
-#       - name: Discover and assess using Azure Private Link
-#         href: discover-and-assess-using-private-endpoints.md
 #   - name: Discover
 #     items:
 #     - name: Deploy the Azure Migrate appliance
@@ -583,14 +557,6 @@ items:
 #         href: how-to-set-up-appliance-vmware.md
 #       - name: Deploy appliance with template (Hyper-V)
 #         href: how-to-set-up-appliance-hyper-v.md
-#       - name: Deploy appliance for physical servers
-#         href: how-to-set-up-appliance-physical.md
-#     - name: Limit discovery scope for servers in VMware environment
-#       href: set-discovery-scope.md
-#     - name: Create least privilege credentials for SQL Server discovery
-#       href: least-privilege-credentials.md  
-#     - name: Discover applications/roles/features
-#       href: how-to-discover-applications.md
 #   - name: Assess
 #     items:
 #     - name: Azure Migrate application and code assessment
