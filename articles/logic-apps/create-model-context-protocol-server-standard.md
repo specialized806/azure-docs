@@ -321,43 +321,6 @@ On the **Create an MCP server** pane, follow these steps:
 
 1. When you finish, select **Create**.
 
-   The **MCP servers** page now shows the **Authentication** and **Servers** sections.
-
-   | Section | Description |
-   |---------|-------------|
-   | **Authentication** | Select the authentication that your MCP server uses. |
-   | **Servers** | Shows the created MCP servers and workflows that the server provides as tools. You can also edit, copy the URL, or delete the server. |
-
-1. To select the authentication for your MCP server, follow these steps:
-
-   1. Next to the **Method** box, select **Edit**.
-
-   1. Select the authentication method, then select **Save**.
-
-   1. Based on your selection, follow the corresponding steps:
-
-      **Key-based**
-
-      1. Select **Generate key** to create an API key.
-
-      1. On the **Generate MCP API key** pane, select the **Duration**.
-
-      1. For **Access key**, select **Primary key** or **Secondary key** to generate the MCP API key.
-
-      1. Select **Generate**.
-
-      1. After the key generates, make sure to copy and save the key in a safe place. You can't access the key later.
-
-      1. When you finish, select **Close**.
-
-      **OAuth**
-
-      1. Select **Manage authentication** to view the logic app **Authentication** page.
-
-      1. Follow the steps in [Set up Easy Auth for your MCP server](#set-up-easy-auth).
-
-You're now ready to [test your MCP server](#test-your-mcp-server-setup).
-
 <a id="create-workflows"></a>
 
 ### Create new workflows
@@ -416,22 +379,48 @@ You're now ready to [test your MCP server](#test-your-mcp-server-setup).
 
 1. When you finish reviewing or updating each tool, select **Register**.
 
-   The **MCP servers** page now shows the following sections:
+1. Continue to [select authentication and review your MCP servers](#select-authentication-and-review-mcp-servers).
 
-   | Section | Description |
-   |---------|-------------|
-   | **Authentication** | Specify the authentication to use with your MCP server. |
-   | **Servers** | Shows the created MCP servers and workflows that the server provides as tools. You can also edit, copy the URL, or delete the server. |
+### Select authentication and review MCP servers
 
-1. To select the authentication you want, follow these steps:
+The **MCP servers** page now shows the **Authentication** and **Servers** sections.
 
-   1. Next to the **Method** box, select **Edit**
+| Section | Description |
+|---------|-------------|
+| **Authentication** | Select the authentication that your MCP server uses. |
+| **Servers** | Shows the created MCP servers and workflows that the server provides as tools. You can also edit, copy the URL, or delete the server. |
 
-   1. Select the method, then select **Save**.
+1. To select the authentication for your MCP server, follow these steps:
 
-You're now ready to [test your MCP server](#test-your-mcp-server-setup).
+   1. Next to the **Method** box, select **Edit**.
 
-## Test your MCP server setup
+   1. Select the authentication method, then select **Save**.
+
+   1. Based on your selection, follow the corresponding steps:
+
+      **Key-based**
+
+      1. Select **Generate key** to create an API key.
+
+      1. On the **Generate MCP API key** pane, select the **Duration**.
+
+      1. For **Access key**, select **Primary key** or **Secondary key** to generate the MCP API key.
+
+      1. Select **Generate**.
+
+      1. After the key generates, make sure to copy and save the key in a safe place. You can't access the key later.
+
+      1. When you finish, select **Close**.
+
+      **OAuth**
+
+      1. Select **Manage authentication** to view the logic app **Authentication** page.
+
+      1. Follow the steps in [Set up Easy Auth for your MCP server](#set-up-easy-auth).
+
+You're now ready to [test your MCP server](#test-your-mcp-server).
+
+## Test your MCP server
 
 You'll need the URL for your MCP server so you can send a request from Visual Studio Code.
 
