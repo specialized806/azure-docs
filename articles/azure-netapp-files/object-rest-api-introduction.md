@@ -23,8 +23,9 @@ This mapping is accomplished by presenting a specified NAS directory hierarchy a
 * You are responsible for maintaining the lifecycle of your bucket certificates. To check the expiration and renew certificates view the **Bucket** menu then check the **Certificate** status and **Certificate expiration date** fields. 
 * You must enable diagnostic logging on all Azure Key Vaults to ensure audit trails are available for security investigations.
 * You must configure network access control lists (ACLs) to restrict Key Vault access to only authorized networks (NetApp VNet and customer VNet).
-* You must implement separate Azure Key Vaults for certificates (read-only access) and S3 credentials (write access) to adhere to the principle of least privilege.
-* You must store Azure Key Vaults object references for certificates and credentials in separate buckets to maintain proper access control boundaries.
+* It is recommended to implement separate Azure Key Vaults for certificates (read-only access) and S3 credentials (write access) to adhere to the principle of least privilege.
+* It is recommended to store Azure Key Vaults object references for certificates and credentials in separate buckets to maintain proper access control boundaries.
+* Buckets are not supported on Azure NetApp Files cache volumes.
 
 
 ## Supported actions
