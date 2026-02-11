@@ -40,7 +40,6 @@ By the end of this tutorial, you can:
   - Select a virtual machine (VM) SKU that supports local NVMe data disks if you plan to use the local NVMe storage type, such as [storage-optimized](/azure/virtual-machines/sizes/overview#storage-optimized) or [GPU-accelerated](/azure/virtual-machines/sizes/overview#gpu-accelerated) VMs.
   - For existing clusters, ensure node pools already use a supported VM SKU before enabling Azure Container Storage.
 - If you use Elastic SAN for the first time in the subscription, run this one-time registration command:
-
 ```azurecli-interactive
 az provider register --namespace Microsoft.ElasticSan
 ```
@@ -152,15 +151,12 @@ This command installs the installer, deploys the Elastic SAN CSI driver, and cre
 
 ## Prerequisites
 
-- Create an Azure subscription if you don't already have one by signing up for a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-- Verify that your target region is supported by checking the [Azure Container Storage regional availability](container-storage-introduction.md#regional-availability).
+[!INCLUDE [container-storage-prerequisites](../../../includes/container-storage-prerequisites.md)]
 - Plan your node pool configuration:
   - Use Linux as the OS type (Windows isn't supported).
   - Select a virtual machine (VM) SKU that supports local NVMe data disks, such as [storage-optimized](/azure/virtual-machines/sizes/overview#storage-optimized) or [GPU-accelerated](/azure/virtual-machines/sizes/overview#gpu-accelerated) VMs.
   - For existing clusters, ensure node pools already use a supported VM SKU before enabling Azure Container Storage.
-- Install the [Azure CLI](/cli/azure/install-azure-cli) version 2.83.0 or later, then sign in with `az login`.
 - Install [Terraform](https://developer.hashicorp.com/terraform/install) version 1.5 or later and confirm the installation with `terraform version`. Terraform can reuse your Azure CLI authentication.
-- Install `kubectl` so you can validate the cluster after deployment. If needed, run `az aks install-cli` to install it locally.
 - If you use Elastic SAN for the first time in the subscription, run this one-time registration command:
 ```azurecli
 az provider register --namespace Microsoft.ElasticSan

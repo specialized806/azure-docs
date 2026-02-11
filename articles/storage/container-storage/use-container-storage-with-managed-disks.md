@@ -12,7 +12,7 @@ ms.custom: references_regions
 
 # Use Azure Container Storage (version 1.x.x) with Azure managed disks
 
-Azure Container Storage is a cloud-based volume management, deployment, and orchestration service built natively for containers. This article shows you how to configure Azure Container Storage (version 1.x.x) to use Azure managed disks as back-end storage for your Kubernetes workloads. At the end, you have a pod that's using Azure managed disks as its storage.
+Azure Container Storage is a cloud-based volume management, deployment, and orchestration service built natively for containers. This article shows you how to configure Azure Container Storage (version 1.x.x) to use Azure managed disks as backend storage for your Kubernetes workloads. At the end, you have a pod that's using Azure managed disks as its storage.
 
 > [!IMPORTANT]
 > This article covers features and capabilities available in Azure Container Storage (version 1.x.x). [Azure Container Storage (version 2.x.x)](container-storage-introduction.md) is now available and supports local NVMe and Azure Elastic SAN for backing storage.

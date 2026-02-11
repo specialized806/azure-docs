@@ -78,7 +78,7 @@ To connect to the cluster, use the Kubernetes command-line client, `kubectl`. It
    
 ## Choose a data storage option for your storage pool
 
-Before deploying Azure Container Storage, you'll need to decide which back-end storage option you want to use to create your storage pool and volumes. Three options are currently available:
+Before deploying Azure Container Storage, you'll need to decide which backend storage option you want to use to create your storage pool and volumes. Three options are currently available:
 
 - **Azure Elastic SAN**: Azure Elastic SAN is a good fit for general purpose databases, streaming and messaging services, CI/CD environments, and other tier 1/tier 2 workloads. Storage is provisioned on demand per created volume and volume snapshot. Multiple clusters can access a single SAN concurrently, however persistent volumes can only be attached by one consumer at a time.
 

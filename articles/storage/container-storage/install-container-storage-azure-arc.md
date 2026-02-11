@@ -83,7 +83,7 @@ If the resource group was created successfully, you'll see output similar to thi
 
 ## Choose a data storage option and virtual machine type
 
-Before you create your cluster, you should understand which back-end storage option you'll ultimately choose to create your storage pool. This is because different storage services work best with different virtual machine (VM) types as cluster nodes, and you'll deploy your cluster before you create the storage pool.
+Before you create your cluster, you should understand which backend storage option you'll ultimately choose to create your storage pool. This is because different storage services work best with different virtual machine (VM) types as cluster nodes, and you'll deploy your cluster before you create the storage pool.
 
 ### Data storage options
 

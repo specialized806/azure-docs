@@ -12,7 +12,7 @@ ms.custom: references_regions
 
 # Use Azure Container Storage (version 1.x.x) with local NVMe and volume replication
 
-Azure Container Storage is a cloud-based volume management, deployment, and orchestration service built natively for containers. This article shows you how to configure Azure Container Storage (version 1.x.x) to use Ephemeral Disk with local NVMe and volume replication as back-end storage for your Kubernetes workloads. At the end, you'll have a pod that's using local NVMe as its storage. Replication copies data across volumes on different nodes and restores a volume when a replica is lost, providing resiliency for Ephemeral Disk.
+Azure Container Storage is a cloud-based volume management, deployment, and orchestration service built natively for containers. This article shows you how to configure Azure Container Storage (version 1.x.x) to use Ephemeral Disk with local NVMe and volume replication as backend storage for your Kubernetes workloads. At the end, you'll have a pod that's using local NVMe as its storage. Replication copies data across volumes on different nodes and restores a volume when a replica is lost, providing resiliency for Ephemeral Disk.
 
 > [!IMPORTANT]
 > This article covers features and capabilities available in Azure Container Storage (version 1.x.x). [Azure Container Storage (version 2.x.x)](container-storage-introduction.md) is now available, but it doesn't currently support replication.

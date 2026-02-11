@@ -99,7 +99,7 @@ Now you can create a new persistent volume claim that uses the volume snapshot a
 
 1. Use your favorite text editor to create a YAML manifest file such as `code acstor-pvc-restored.yaml`.
 
-1. Paste in the following code. The `storageClassName` must match the storage class that you used when creating the original persistent volume. For example, if you're using ephemeral disk (local NVMe) instead of Azure Disks for back-end storage, change `storageClassName` to `acstor-ephemeraldisk`. For the data source **name** value, use the name of the volume snapshot that you created in the previous step. The metadata **name** value for the persistent volume claim can be whatever you want.
+1. Paste in the following code. The `storageClassName` must match the storage class that you used when creating the original persistent volume. For example, if you're using ephemeral disk (local NVMe) instead of Azure Disks for backend storage, change `storageClassName` to `acstor-ephemeraldisk`. For the data source **name** value, use the name of the volume snapshot that you created in the previous step. The metadata **name** value for the persistent volume claim can be whatever you want.
 
    ```yml
    apiVersion: v1
