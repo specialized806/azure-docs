@@ -22,7 +22,7 @@ Azure Migrate collector can discover your VMware estate or individual Windows an
 
 ### Prerequisites
 
-Before you set up the collector, create a new Azure Migrate project.
+Before you set up the collector, [create a new Azure Migrate project](quickstart-create-project.md).
 
 | Requirement | Details |
 |---|---|
