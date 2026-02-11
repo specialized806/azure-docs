@@ -185,7 +185,7 @@ Providers MUST include instructions in the FedRAMP authorization package that ex
 #### Azure's response
 
 Azure FedRAMP authorization packages will contain a word document with instructions to access and use the Secure Configuration Guide. *[Review comment Ateeque] Is a link needed at this point?*
-[Back to the top](#Secure-Configuration-Guide)
+[Back to the top](#secure-configuration-guide)
 ### [Public Guidance](https://www.fedramp.gov/docs/rev5/balance/secure-configuration-guide/#public-guidance)
 
 #### SCG-CSO-PUB
@@ -196,7 +196,7 @@ Providers SHOULD make the Secure Configuration Guide available publicly
 
 Azure's Secure Configuration Guide is available publicly and can be accessed at [Secure Configuration Guide](/azure/azure-government/compliance/azure-services-in-fedramp-auditscope?branch=pr-en-us-76518) *[Review comment Ateeque] this link currently points to the scope of the services but will be replaced by the link to the Guide.*
 
-[Back to the top](#Secure-Configuration-Guide)
+[Back to the top](#secure-configuration-guide)
 
 ### [Secure Defaults](https://www.fedramp.gov/docs/rev5/balance/secure-configuration-guide/#secure-defaults)
 
@@ -226,7 +226,7 @@ When identities, subscriptions, or resources are created, **Security defaults** 
 
 **Microsoft Learn:** [Security defaults](/entra/fundamentals/security-defaults) · [Conditional Access Overview](/entra/identity/conditional-access/overview) · [Azure RBAC Overview](/azure/role-based-access-control/overview) · [Plan CA deployment](/entra/identity/conditional-access/plan-conditional-access) · [What is Azure Policy?](/azure/governance/policy/overview) 
 
-[Back to the top](#Secure-Configuration-Guide)
+[Back to the top](#secure-configuration-guide)
 
 ### [Enhanced Capabilities](https://www.fedramp.gov/docs/rev5/balance/secure-configuration-guide/#enhanced-capabilities)
 
@@ -334,7 +334,7 @@ For hybrid and cloud resources:
   
   [Interactive Guide — Manage your cloud security posture](https://mslearn.cloudguides.com/en-US/guides/Manage%20your%20cloud%20security%20posture%20with%20Microsoft%20Defender%20for%20Cloud)
   
-[Back to the top](#Secure-Configuration-Guide)
+[Back to the top](#secure-configuration-guide)
 
 #### [Export Capability](https://www.fedramp.gov/docs/rev5/balance/secure-configuration-guide/#export-capability)
 
@@ -530,7 +530,7 @@ These provide **100% environment configuration** in machine‑readable form.
 
 - [ARM template documentation](/azure/azure-resource-manager/templates/)
 
-[Back to the top](#Secure-Configuration-Guide)
+[Back to the top](#secure-configuration-guide)
 
 #### [API Capability](https://www.fedramp.gov/docs/rev5/balance/secure-configuration-guide/#api-capability)
 
@@ -717,7 +717,7 @@ Supports automated:
 
 - Auditor‑ready JSON bundles
 
-[Back to the top](#Secure-Configuration-Guide)
+[Back to the top](#secure-configuration-guide)
 
 #### [Machine-Readable Guidance](https://www.fedramp.gov/docs/rev5/balance/secure-configuration-guide/#machine-readable-guidance)
 
@@ -829,7 +829,7 @@ Using the above machine‑readable feeds, external tools can:
 
 - Automate remediation workflows
 
-[Back to the top](#Secure-Configuration-Guide)
+[Back to the top](#secure-configuration-guide)
 
 #### [Versioning and Release History](https://www.fedramp.gov/docs/rev5/balance/secure-configuration-guide/#versioning-and-release-history)
 
@@ -959,4 +959,4 @@ ARG enables diffing:
 
 - Drift from secure baselines
 
-[Back to the top](#Secure-Configuration-Guide)
+[Back to the top](#secure-configuration-guide)
