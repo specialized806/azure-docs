@@ -19,7 +19,7 @@ Resiliency in Azure is a cloud-native unified experience for resiliency posture 
 
 ## Expanded scope and capabilities of Resiliency in Azure
 
-Azure Business Continuity Center (ABCC) is now Resiliency in Azure, indicating a broader scope and expanded capabilities. The platform, originally focused on backup and disaster recovery, now includes built-in resiliency experiences that integrate Zone Resilience and High Availability, Backup & Disaster Recovery, and Ransomware Protection within a single solution.
+Azure Business Continuity Center (ABCC) is now Resiliency in Azure, indicating a broader scope and expanded capabilities. The platform, originally focused on backup and disaster recovery, now includes built-in resiliency experiences that integrate Zone Resiliency and High Availability, Backup & Disaster Recovery, and Ransomware Protection within a single solution.
 
 Resiliency in Azure consolidates all aspects of resiliency into one platform:
 
