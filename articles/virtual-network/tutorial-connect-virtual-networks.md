@@ -66,7 +66,7 @@ If you choose to install and use PowerShell locally, this article requires the A
 
 1. Select **+ Create**.
 
-1. In the **Basics** tab of **Create a resource group**, enter or select the following information:
+1. In the **Basics** tab of **Create a resource group**, enter, or select the following information:
 
     | Setting | Value |
     | ------- | ----- |
@@ -84,7 +84,7 @@ If you choose to install and use PowerShell locally, this article requires the A
 
 1. Select **+ Create**.
 
-1. On the **Basics** tab of **Create virtual network**, enter or select the following information:
+1. On the **Basics** tab of **Create virtual network**, enter, or select the following information:
 
     | Setting | Value |
     |---|---|
@@ -101,7 +101,7 @@ If you choose to install and use PowerShell locally, this article requires the A
 
 1. In the address space box in **Subnets**, select the **default** subnet.
 
-1. In **Edit subnet**, enter or select the following information:
+1. In **Edit subnet**, enter, or select the following information:
 
     | Setting | Value |
     |---|---|
@@ -117,7 +117,7 @@ If you choose to install and use PowerShell locally, this article requires the A
 
 ## Deploy Azure Bastion
 
-Azure Bastion uses your browser to connect to VMs in your virtual network over secure shell (SSH) or remote desktop protocol (RDP) by using their private IP addresses. The VMs don't need public IP addresses, client software, or special configuration. For more information about Azure Bastion, see [Azure Bastion](/azure/bastion/bastion-overview).
+Azure Bastion uses your browser to connect to virtual machines (VMs) in your virtual network over secure shell (SSH) or remote desktop protocol (RDP) by using their private IP addresses. The virtual machines don't need public IP addresses, client software, or special configuration. For more information about Azure Bastion, see [Azure Bastion](/azure/bastion/bastion-overview).
 
 >[!NOTE]
 >[!INCLUDE [Pricing](~/reusable-content/ce-skilling/azure/includes/bastion-pricing.md)]
@@ -126,7 +126,7 @@ Azure Bastion uses your browser to connect to VMs in your virtual network over s
 
 1. Select **+ Create**.
 
-1. In the **Basics** tab of **Create a Bastion**, enter or select the following information:
+1. In the **Basics** tab of **Create a Bastion**, enter, or select the following information:
 
     | Setting | Value |
     |---|---|
@@ -400,7 +400,7 @@ Resources in one virtual network can't communicate with resources in the other v
 
 ## Peer virtual networks
 
-Peerings are established between virtual network IDs. Obtain the ID of each virtual network with [az network vnet show](/cli/azure/network/vnet#az-network-vnet-show) and store the IDs in their respective variables.
+Peerings are established between virtual network resource IDs. Obtain the ID of each virtual network with [az network vnet show](/cli/azure/network/vnet#az-network-vnet-show) and store the resource IDs in their respective variables.
 
 ```azurecli-interactive
 # Get the id for vnet-1.
@@ -455,7 +455,7 @@ Resources in one virtual network can't communicate with resources in the other v
 
 ## Create virtual machines
 
-Test the communication between the virtual machines by creating a virtual machine in each virtual network. The virtual machines can communicate with each other over the virtual network peering you just created.
+Test the communication between the virtual machines by creating a virtual machine in each virtual network. The virtual machines can communicate with each other over the virtual network peering you created.
 
 ### [Portal](#tab/portal)
 
@@ -463,7 +463,7 @@ Test the communication between the virtual machines by creating a virtual machin
 
 1. Select **+ Create** then **Azure virtual machine**.
 
-1. In **Create a virtual machine** enter or select the following information in the **Basics** tab:
+1. In **Create a virtual machine** enter, or select the following information in the **Basics** tab:
 
     | Setting | Value |
     | ------- | ----- |
@@ -488,7 +488,7 @@ Test the communication between the virtual machines by creating a virtual machin
 
 1. Select **Next: Disks** then **Next: Networking**.
 
-1. In the Networking tab, enter or select the following information:
+1. In the Networking tab, enter, or select the following information:
 
     | Setting | Value |
     | ------- | ----- |
@@ -496,7 +496,7 @@ Test the communication between the virtual machines by creating a virtual machin
     | Virtual network | Select **vnet-1**. |
     | Subnet | Select **subnet-1 (10.0.0.0/24)**. |
     | Public IP | Select **None**. |
-    | NIC network security group | Select **Advanced**. |
+    | Network interface (NIC) network security group | Select **Advanced**. |
     | Configure network security group | Select **Create new**. </br> In **Name** enter **nsg-1**. </br> Select **OK**. |
 
 1. Leave the rest of the options at the defaults and select **Review + create**.
