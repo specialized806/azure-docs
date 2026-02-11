@@ -206,9 +206,17 @@ To connect to your MCP server endpoint:
 
 1. Select **Save** to save the MCP tool configuration in your agent.
 
-Beause you are using built-in authentication, you should also disable the default key-based authentication.
+1. Beause you are using built-in authentication, you should also disable the default key-based authentication. The way you disable key access depends on your hosting method:
 
-[!INCLUDE [functions-mcp-custom-handler-disable-key-access](../../includes/functions-mcp-custom-handler-disable-key-access.md)]
+    ### [MCP extension server](#tab/mcp-extension/entra)
+    
+    [!INCLUDE [functions-mcp-extension-disable-key-access](../../includes/functions-mcp-extension-disable-key-access.md)]
+    
+    ### [Self-hosted server](#tab/self-hosted/entra)
+    
+    [!INCLUDE [functions-mcp-custom-handler-disable-key-access](../../includes/functions-mcp-custom-handler-disable-key-access.md)]
+    
+    ---
 
 ### [OAuth identity](#tab/oauth-id)
 
@@ -246,9 +254,17 @@ When you use OAuth identity passthrough, the agent prompts the user to sign in a
 
 1. Go back to the agent window, select **Close** > **Save** to save the MCP tool configuration in your agent.
 
-Beause you are using built-in authentication, you should also disable the default key-based authentication.
+1. Beause you are using built-in authentication, you should also disable the default key-based authentication. The way you disable key access depends on your hosting method:
 
-[!INCLUDE [functions-mcp-custom-handler-disable-key-access](../../includes/functions-mcp-custom-handler-disable-key-access.md)]
+    ### [MCP extension server](#tab/mcp-extension/entra)
+    
+    [!INCLUDE [functions-mcp-extension-disable-key-access](../../includes/functions-mcp-extension-disable-key-access.md)]
+    
+    ### [Self-hosted server](#tab/self-hosted/entra)
+    
+    [!INCLUDE [functions-mcp-custom-handler-disable-key-access](../../includes/functions-mcp-custom-handler-disable-key-access.md)]
+
+    ---
 
 ### [Unauthenticated](#tab/unauthenticated)
 
