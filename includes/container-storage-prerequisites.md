@@ -7,6 +7,6 @@ ms.author: kendownie
 ---
 
 - If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
-- This article requires the latest version of the Azure CLI. See [How to install the Azure CLI](/cli/azure/install-azure-cli) for more information. Disable conflicting extensions such as `aks-preview` if issues occur.
-- You'll need the Kubernetes command-line client, `kubectl`. It's already installed if you're using Azure Cloud Shell, or you can install it locally by running the `az aks install-cli` command.
+- This article requires the latest version of the Azure CLI. For more information, see [How to install the Azure CLI](/cli/azure/install-azure-cli). Disable extensions such as `aks-preview` if issues occur.
+- You need the Kubernetes command-line client, `kubectl`. It's already installed if you're using Azure Cloud Shell, or you can install it locally by running the `az aks install-cli` command.
 - Check if your target region is supported in [Azure Container Storage regions](../articles/storage/container-storage/container-storage-introduction.md#regional-availability).
