@@ -34,8 +34,8 @@ landingContent:
         links:
           - text: Connect to compute services
             url: create-service-connection.md
-          - text: Troubleshooting Neon Serverless Postgres
-            url: troubleshoot.md
+          - text: Neon Support
+            url: https://neon.com/docs/introduction/support
   
   - title: Tools
     linkLists:
