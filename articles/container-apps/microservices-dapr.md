@@ -6,7 +6,7 @@ author: greenie-msft
 ms.service: azure-container-apps
 ms.subservice: dapr
 ms.topic: quickstart
-ms.date: 01/29/2026
+ms.date: 02/10/2026
 ms.author: nigreenf
 ms.reviewer: hannahhunter
 ms.custom: devx-track-azurecli, devx-track-azurepowershell
@@ -15,7 +15,7 @@ ms.devlang: azurecli
 
 # Quickstart: Deploy a Dapr application to Azure Container Apps by using the Azure CLI
 
-[Dapr](./dapr-overview.md) (Distributed Application Runtime) helps developers build resilient, reliable microservices. In this quickstart, you learn how to enable Dapr sidecars to run alongside your microservices container apps. You'll:
+[Distributed Application Runtime (Dapr)](./dapr-overview.md) helps developers build resilient, reliable microservices. In this quickstart, you learn how to enable Dapr sidecars to run alongside your microservices container apps. You'll:
 
 > [!div class="checklist"]
 > * Create a Container Apps environment and Azure Blog Storage state store for your container apps.
@@ -29,8 +29,8 @@ This quickstart mirrors the applications you deploy in the open-source Dapr [Hel
 
 ## Prerequisites
 
-- An Azure account with an active subscription. If you don't already have one, you can [create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-- A GitHub account. If you don't already have one, sign up for [free](https://github.com/join).
+- An Azure account with an active subscription. If you don't have one, [create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+- A GitHub account. If you don't have one, [sign up for free](https://github.com/join).
 - Install [Azure CLI](/cli/azure/install-azure-cli).
 - Install [Git](https://git-scm.com/downloads).
 
@@ -113,7 +113,6 @@ While Container Apps supports both user-assigned and system-assigned managed ide
     Install-Module -Name AZ.ManagedServiceIdentity
     
     New-AzUserAssignedIdentity -ResourceGroupName $ResourceGroupName -Name 'nodeAppIdentity' -Location $Location
-    
     ```
     
     ---
@@ -195,7 +194,7 @@ While you have multiple options for authenticating to external resources via Dap
       - nodeapp
     ```
 
-    This file helps enable your Dapr app to access your state store. 
+    This file helps enable your Dapr app to access your state store.
 
 1. Navigate to the directory in which you stored the yaml file and run the following command to configure the Dapr component in the Container Apps environment. 
 
@@ -211,7 +210,6 @@ While you have multiple options for authenticating to external resources via Dap
     # [PowerShell](#tab/powershell)
     
     ```azurepowershell
-    
     $AcctName = New-AzContainerAppDaprMetadataObject -Name "accountName" -Value $StorageAcctName
     
     $ContainerName = New-AzContainerAppDaprMetadataObject -Name "containerName" -Value 'mycontainer'
@@ -252,7 +250,7 @@ az containerapp create \
   --env-vars 'APP_PORT=3000'
 ```
 
-If you're using an Azure Container Registry, include the `--registry-server <REGISTRY_NAME>.azurecr.io` flag in the command.
+If you're using an Azure Container Registry, include the `--registry-server <registry-name>.azurecr.io` flag in the command.
 
 # [PowerShell](#tab/powershell)
 
@@ -289,7 +287,7 @@ $ServiceArgs = @{
 New-AzContainerApp @ServiceArgs
 ```
 
-If you're using an Azure Container Registry, include the `RegistryServer = '<REGISTRY_NAME>.azurecr.io'` flag in the command.
+If you're using an Azure Container Registry, include the `RegistryServer = '<registry-name>.azurecr.io'` flag in the command.
 
 ---
 
@@ -311,12 +309,11 @@ az containerapp create \
   --dapr-app-id pythonapp
 ```
 
-If you're using an Azure Container Registry, include the `--registry-server <REGISTRY_NAME>.azurecr.io` flag in the command.
+If you're using an Azure Container Registry, include the `--registry-server <registry-name>.azurecr.io` flag in the command.
 
 # [PowerShell](#tab/powershell)
 
 ```azurepowershell
-
 $TemplateArgs = @{
   Name = 'pythonapp'
   Image = 'dapriosamples/hello-k8s-python:latest'
@@ -339,7 +336,7 @@ $ClientArgs = @{
 New-AzContainerApp @ClientArgs
 ```
 
-If you're using an Azure Container Registry, include the `RegistryServer = '<REGISTRY_NAME>.azurecr.io'` flag in the command.
+If you're using an Azure Container Registry, include the `RegistryServer = '<registry-name>.azurecr.io'` flag in the command.
 
 ---
 
@@ -351,7 +348,7 @@ You can confirm that the services are working correctly by viewing data in your 
 
 1. Open the [Azure portal](https://portal.azure.com) in your browser and navigate to your storage account.
 
-1. Select **Data Storage** > **Containers** in the left side menu.
+1. Select **Data Storage** > **Containers** in the sidebar menu.
 
 1. Select the container app.
 
@@ -383,11 +380,9 @@ az monitor log-analytics query \
 # [PowerShell](#tab/powershell)
 
 ```azurepowershell
-
 $queryResults = Invoke-AzOperationalInsightsQuery -WorkspaceId $WorkspaceId -Query "ContainerAppConsoleLogs_CL | where ContainerAppName_s == 'nodeapp' and (Log_s contains 'persisted' or Log_s contains 'order') | project ContainerAppName_s, Log_s, TimeGenerated | take 5 "
 
 $queryResults.Results
-
 ```
 
 ---
