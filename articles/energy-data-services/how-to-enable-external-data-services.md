@@ -30,7 +30,7 @@ Use an Azure Key Vault to store secrets managed by the secret service.
    > Your Key Vault must exist in the same tenant as your Azure Data Manager for Energy resource. When you create the Key Vault, select [Enable purge protection (enforce a mandatory retention period for deleted vaults and vault objects)](/azure/key-vault/general/key-vault-recovery?tabs=azure-portal#what-are-soft-delete-and-purge-protection).
 
 1. In the **Access configuration** tab, under **Permission model**, select **Azure role-based access control (recommended)**.
-:::image type="content" source="media/how-to-enable-external-data-services/create-a-key-vault.jpg" lightbox="media/how-to-enable-external-data-services/create-a-key-vault.jpg" alt-text="Azure portal showing the Create a key vault page with the Access configuration tab selected. The Permission model section displays the Azure role-based access control (recommended) option selected. The Resource access section shows unchecked options for Azure Virtual Machines for deployment, Azure Resource Manager for template deployment, and Azure Disk Encryption for volume encryption. Previous, Next, and Review + create buttons appear at the bottom.":::
+   :::image type="content" source="media/how-to-enable-external-data-services/create-a-key-vault.jpg" lightbox="media/how-to-enable-external-data-services/create-a-key-vault.jpg" alt-text="Screenshot of Azure portal Create a Key Vault page showing the Access configuration tab with Permission model set to Azure role-based access control and Resource access checkboxes for Virtual Machines, Resource Manager, and Disk Encryption.":::
 
 1. Select **Review + create** to create the key vault.
 
