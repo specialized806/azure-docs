@@ -16,12 +16,12 @@ Save on select services across Microsoft Foundry, Microsoft Copilot Studio*, Mic
 
 Your Microsoft Agent prepurchase plan automatically uses your ACUs to pay for eligible Copilot and AI Foundry usage during its one-year term or until Agent CUs run out. Your prepurchase plan Agent CUs start paying for your Copilot Credit and Microsoft Foundry usage without having to redeploy or reassign the plan. By default, plans are configured to renew at the end of the one-year term.
 
-*Covers Copilot Credits enabled agentic services: Microsoft Copilot Studio, Dynamics 365 first-party agents, and Copilot Microsoft reserves the right to update Copilot Credit eligible products.
+*Covers Copilot Credits-enabled agentic services: Microsoft Copilot Studio, Dynamics 365 first-party agents, and Copilot. Microsoft reserves the right to update Copilot Credit-eligible products.
 
 ## Services covered by Microsoft Agent prepurchase plan
 
 
-:::image type="content" source="./media/agentprepurchase/services-covered-screenshot.jpg" alt-text="Screenshot showing services covered by Microsoft Agent prepurchase plan." lightbox="./media/agentprepurchase/services-covered-screenshot.jpg":::
+:::image type="content" source="./media/agentprepurchase/services-covered-screenshot-v2.jpg" alt-text="Screenshot showing services covered by Microsoft Agent prepurchase plan." lightbox="./media/agentprepurchase/services-covered-screenshot-v2.jpg":::
 
 
 
@@ -63,14 +63,14 @@ Purchase Microsoft Agent Prepurchase Plans in the [Azure portal reservations](ht
 2. Navigate to the **Reservations** service.
 3. On the **Purchase reservations page**, select [**Microsoft Agent Prepurchase Plan**](https://aka.ms/MAF-P3-Purchase).
    :::image type="content" source="./media/agentprepurchase/azure-portal-screenshot.jpg" alt-text="Screenshot showing Microsoft Agent prepurchase plan." lightbox="./media/agentprepurchase/azure-portal-screenshot.jpg":::
-5. On the **Select the product you want to purchase** page, select a subscription. Use the **Subscription** list to select the subscription used to pay for the purchase. The payment method of the subscription is charged the upfront cost for the reservation. Charges are **not** deducted from the enrollment's Azure Prepayment (previously called monetary commitment) balance or charged as overage.
-6. Select a scope.
+4. On the **Select the product you want to purchase** page, select a subscription. Use the **Subscription** list to select the subscription used to pay for the purchase. The payment method of the subscription is charged the upfront cost for the reservation. Charges are **not** deducted from the enrollment's Azure Prepayment (previously called monetary commitment) balance or charged as overage.
+5. Select a scope.
    - **Single resource group scope** - Applies the reservation discount to the matching resources in the selected resource group only.
    - **Single subscription scope** - Applies the reservation discount to the matching resources in the selected subscription.
    - **Shared scope** - Applies the reservation discount to matching resources in eligible subscriptions that are in the billing context. For Enterprise Agreement customers, the billing context is the enrollment.
    - **Management group** - Applies the reservation discount to the matching resource in the list of subscriptions that are a part of both the management group and billing scope.
-7. Select how many Agent Credit commit units you want to purchase.
-8. Choose to automatically renew the prepurchase reservation. *The setting is configured to renew automatically by default*. For more information, see [Renew a reservation](reservation-renew.md).
+6. Select how many Agent Credit commit units you want to purchase.
+7. Choose to automatically renew the prepurchase reservation. *The setting is configured to renew automatically by default*. For more information, see [Renew a reservation](reservation-renew.md).
 
 ## Change scope and ownership
 
