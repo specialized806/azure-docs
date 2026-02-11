@@ -8,6 +8,7 @@ ms.reviewer: cshoe
 ms.topic: faq
 ms.date: 02/06/2026
 ms.service: azure-sre-agent
+ms.custom: references_regions
 ---
 
 # Azure SRE Agent Preview general FAQ

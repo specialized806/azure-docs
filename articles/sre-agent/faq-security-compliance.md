@@ -80,7 +80,7 @@ RBAC assignments grant the minimum required permissions:
 
 ### What user authentication does the solution use?
 
-Users authenticate by using **Azure AD (Entra ID)**. The Frontend API validates tokens and enforces access policies.
+Users authenticate by using **Azure AD (Microsoft Entra ID)**. The Frontend API validates tokens and enforces access policies.
 
 ## Data handling and storage
 

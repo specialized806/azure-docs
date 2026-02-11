@@ -187,9 +187,9 @@ Use the following resources if you need additional assistance beyond what this g
 
 For problems that this guide doesn't cover, try the following options:
 
-1. **Azure Support**: Create a support ticket for deployment or service problems.
-1. **Microsoft Docs**: Check the [official documentation](overview.md) for updates.
-1. **Azure Status**: Monitor the [Azure Status page](https://status.azure.com) for service outages.
+- **Azure Support**: Create a support ticket for deployment or service problems.
+- **Microsoft Docs**: Check the [official documentation](overview.md) for updates.
+- **Azure Status**: Monitor the [Azure Status page](https://status.azure.com) for service outages.
 
 ## Related content
 
