@@ -11,7 +11,7 @@ ms.date: 02/11/2026
 
 # Troubleshooting known issues
 
-This article consolidates common issues observed in Business Process Solutions. Use it as a quick reference while investigating errors across ingestion, processing, and reporting layers.
+Within the Business Process Solutions, we recognize that there are many moving parts.  This article is intended to help you troubleshoot knownissues that you can encounter. Use this article to quickly diagnose and remediate known issues. Each section summarizes symptoms, root cause, and the exact steps to fix and validate.
 
 ## Issue with semantic model refresh
 
