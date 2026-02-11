@@ -920,9 +920,9 @@ Interactive Cloud Security UX / Guide [Interactive Cloud Security Posture Guide]
 
 Azure provides versioned JSON accessible through:
 
-**Azure RBAC JSON Export** [List Azure role assignments using Azure CLI (JSON export)](https://github.com/MicrosoftLearning/SC-5008-Configure-and-manage-entitlement-with-Microsoft-Entra-ID/blob/master/Instructions/Labs/Lab_06_monitor-identity-secure-score.md)
+**Azure RBAC JSON Export** [List Azure role assignments using Azure CLI](/azure/role-based-access-control/role-assignments-list-cli)
 
-**Azure Resource Graph (ARG) — Full environment state JSON** ARG documentation hub returned via Defender for Cloud search set (closest Learn anchor): [Manage security posture using Microsoft Defender for Cloud](https://m365corner.com/m365-glossary/privileged-identity-management.html)
+**Azure Resource Graph (ARG) — Full environment state JSON** <u>[Quickstart: Execute a Resource Graph Query Using Azure CLI](/azure/governance/resource-graph/first-query-azurecli)</u>
 
 ARG enables diffing:
 
