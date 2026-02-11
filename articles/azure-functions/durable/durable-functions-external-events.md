@@ -862,7 +862,7 @@ Keep the following best practices in mind when working with external events:
 External events have an *at-least-once* delivery guarantee. Under certain rare conditions (which can occur during restarts, scaling, or crashes), your application might receive duplicates of the same external event. We recommend that external events contain a unique ID that allows them to be manually deduplicated in orchestrators.
 
 > [!NOTE]
-> The [MSSQL storage provider](./durable-functions-storage-providers.md#mssql) consumes external events and updates orchestrator state transactionally, so there's no risk of duplicate events with that backend, unlike the default [Azure Storage provider](./durable-functions-storage-providers.md). However, it's still recommended that external events have unique names so that code is portable across backends.
+> The [MSSQL storage provider](./durable-functions-storage-providers.md#mssql) consumes external events and updates orchestrator state transactionally, so there's no risk of duplicate events with that backend, unlike the [Azure Storage provider](./durable-functions-storage-providers.md#azure-storage). However, it's still recommended that external events have unique names so that code is portable across backends.
 
 ## Next steps
 
@@ -871,7 +871,7 @@ External events have an *at-least-once* delivery guarantee. Under certain rare c
 > [Learn how to implement error handling](durable-functions-error-handling.md)
 
 > [!div class="nextstepaction"]
-> [Run a sample that waits for human interaction](durable-functions-phone-verification.md)
+> [Run a sample that waits for human interaction](durable-functions-human-interaction.md)
 ::: zone-end
 
 ::: zone pivot="durable-task-sdks"
