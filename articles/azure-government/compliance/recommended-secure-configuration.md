@@ -868,10 +868,6 @@ Azure (Microsoft Entra ID) maintains evolving **Secure Default** protections for
 
 **What is Microsoft Entra ID Protection?** [Overview of Identity Protection](/entra/)
 
-**Investigate risky users, risky sign‑ins, risk detections** [Investigate identity risk](/entra/identity/)
-
-**Risk detection types / updated detection logic** [Identity Protection risk detections](/entra/id-protection/overview-identity-protection)
-
 These pages collectively document:
 
 - Updated secure defaults
@@ -900,21 +896,7 @@ Each update in PIM documentation reflects secure‑default evolution for privile
 
 **Microsoft Learn hyperlink:** [Privileged Identity Management (PIM) Documentation](https://www.youtube.com/watch?v=z5OMEC0j2ns)
 
----
-#### 4. Conditional Access Baseline → Authentication Strengths (Versioned Shift)
-
-Microsoft historically provided “Baseline Policies,” later replaced with:
-
-- **Authentication Strengths**
-
-- **Granular Conditional Access templates**
-
-- **Updated privileged access safeguards**
-
-Version transitions documented across Entra ID Protection pages (same citations as above).
-
----
-#### 5. Microsoft Defender for Cloud — Versioned Secure Recommendations
+#### 4. Microsoft Defender for Cloud — Versioned Secure Recommendations
 
 Defender for Cloud maintains:
 
@@ -928,14 +910,13 @@ Defender for Cloud maintains:
 
 - Machine‑readable JSON recommendations
 
-**Microsoft Learn hyperlinks:**
+**Microsoft Learn:**
 
 Defender for Cloud posture module [Manage security posture using Microsoft Defender for Cloud](https://m365corner.com/m365-glossary/privileged-identity-management.html)
 
 Interactive Cloud Security UX / Guide [Interactive Cloud Security Posture Guide](https://thinkcloudly.com/blog/azure/defender-for-cloud-implementation-guide/)
 
----
-#### 6. Machine‑Readable Versioned JSON for Comparisons
+#### 5. Machine‑Readable Versioned JSON for Comparisons
 
 Azure provides versioned JSON accessible through:
 
