@@ -11,14 +11,14 @@
             "redirect_document_id": false
         },
         {
-            "source_path_from_root": "/azure/energy-data-services/how-to-enable-external-data-sources.md",
-            "redirect_url": "/azure/energy-data-services/how-to-enable-external-data-services",
-            "redirect_document_id": true
+            "source_path": "how-to-enable-external-data-sources.md",
+            "redirect_url": "how-to-enable-external-data-services.md",
+            "redirect_document_id": false
         },
         {
-            "source_path_from_root": "/azure/energy-data-services/how-to-register-external-data-sources.md",
-            "redirect_url": "/azure/energy-data-services/how-to-register-external-data-services",
-            "redirect_document_id": true
+            "source_path": "how-to-register-external-data-sources.md",
+            "redirect_url": "how-to-register-external-data-services.md",
+            "redirect_document_id": false
         }
     ]
 }
