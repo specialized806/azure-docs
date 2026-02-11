@@ -79,10 +79,6 @@ items:
         href: migrate-support-matrix-physical.md
     # - name: Appliance configuration
     #   items:
-    #     - name: Appliance diagnostics
-    #       href: troubleshoot-appliance-diagnostic.md 
-    - name: Discover software and workloads
-      href: how-to-discover-applications.md
     - name: Deep discover database workloads
       items:
       - name: SQL instances
@@ -99,10 +95,6 @@ items:
         items: 
         - name: Discover MySQL database instances
           href: tutorial-discover-mysql-database-instances.md
-      # - name: Discover software, databases, and web apps
-      #   href: how-to-discover-applications.md
-        # - name: Create least privileged credentials for PostgreSQL discovery
-        #   href: postgresql-least-privilege-configuration.md
   - name: Discovery using Azure Arc
     items:
     - name: Overview
@@ -215,20 +207,10 @@ items:
           href: review-web-app-assessment.md
 #     - name: AVS assessment
 #       items:
-#       - name: Create an AVS assessment
-#         href: tutorial-assess-vmware-azure-vmware-solution.md
-#       - name: Customize assessment settings
-#         href: assessment-properties.md
-#       - name: Review assessment report
-#         href: review-azure-vmware-solution-assessment.md
         - name: Enhance web app assessment by adding code scan report
           href: add-copilot-code-insights.md
 #      - name: SAP assessment
 #       items:
-#       - name: Create a SAP assessment
-#         href: tutorial-assess-sap-systems.md
-#       - name: Customize assessment settings
-#         href: assessment-properties.md
 #       - name: Review assessment report
 #         href: review-sap-assessment.md
   - name: Wave planning
@@ -267,7 +249,6 @@ items:
   #     href: hydration-process.md
   #   - name: Agentless migrations using scripts
   #     href: tutorial-migrate-vmware-powershell.md
-#   - name: Limitations
 - name: Modernize applications
   items:
   - name: Overview of Web App Migration and Modernization
@@ -323,12 +304,6 @@ items:
   #       href: tutorial-assess-aws.md
         - name: Migrate AWS EC2 to Azure
           href: tutorial-migrate-aws-virtual-machines.md
-  #  - name: Migrate Spring Boot applications
-  #    items:
-  #   - name: Discover Spring Boot apps
-  #     href: tutorial-discover-spring-boot.md
-  #   - name: Assess Spring Boot web apps for migration
-  #     href: tutorial-assess-spring-boot.md
   # - name: Migrate SAP applications
   #   items:
   #  - name: Discover SAP systems (preview)
@@ -337,18 +312,10 @@ items:
   #     href: tutorial-assess-sap-systems.md
   # - name: Use Azure Migrate with private endpoints 
   #   items:
-  #   - name: Support requirements and considerations
-  #     href: how-to-use-azure-migrate-with-private-endpoints.md
   #   - name: Discover and assess using Azure Private Link
   #     href: discover-and-assess-using-private-endpoints.md
-  #   - name: Migrate servers to Azure using Private Link
-  #     href: migrate-servers-to-azure-using-private-link.md
-  #   - name: Troubleshoot network connectivity
-  #     href: troubleshoot-network-connectivity.md
     - name: Modernize applications 
       items:
-      - name: Containerize ASP.NET apps and migrate to AKS
-        href: tutorial-app-containerization-aspnet-kubernetes.md
       - name: Containerize Java web apps and migrate to AKS
         href: tutorial-app-containerization-java-kubernetes.md
       - name: Containerize ASP.NET apps and migrate to App Service containers
@@ -361,8 +328,6 @@ items:
         href: tutorial-app-containerization-azure-pipeline.md  
 - name: How-to
   items:
-  - name: Create project with private endpoint 
-    href: how-to-use-azure-migrate-with-private-endpoints.md
   - name: Discover and assess using Azure Private Link
     href: discover-and-assess-using-private-endpoints.md
   - name: Migrate servers to Azure using Private Link
@@ -466,8 +431,6 @@ items:
     href: centralized-issue-tracking.md
   - name: Server discovery
     href: troubleshoot-discovery.md
-#   - name: Spring Boot discovery
-#     href: troubleshoot-spring-boot-discovery.md
   - name: Dependency analysis
     items:
     - name: Troubleshoot dependency visualization
@@ -539,18 +502,12 @@ items:
     href: https://azure.microsoft.com/updates/
   # - name: Decide
   #   items:
-  #   - name: Build a business case
-  #     href: how-to-build-a-business-case.md
   # - name: Assess
   #   items:
   #   - name: Assess servers in VMware environment
   #     items:
   #     - name: Assess servers for migration to Azure VMs
   #       href: tutorial-assess-vmware-azure-vm.md
-  #     - name: Assess SQL instances for migration to Azure SQL
-  #       href: tutorial-assess-sql.md
-  #     - name: Assess servers for migration to AVS
-  #       href: tutorial-assess-vmware-azure-vmware-solution.md
   #   - name: Assess servers in Hyper-V environment 
   #     items:
   #     - name: Assess servers for migration to Azure VMs
@@ -559,24 +516,14 @@ items:
   #       href: tutorial-assess-sql.md
   #   - name: Assess physical servers
   #     items:
-  #     - name: Assess servers for migration to Azure VMs
-  #       href: tutorial-assess-physical.md
   #     - name: Assess SQL instances for migration to Azure SQL
   #       href: tutorial-assess-sql.md 
-  #   - name: Assess AWS instances for migration to Azure
-  #     href: tutorial-assess-aws.md
   #   - name: Assess GCP instances for migration to Azure
   #     href: tutorial-assess-gcp.md
   #   - name: Assess web apps for migration to Azure Kubernetes Service (AKS)
   #     href: tutorial-assess-aspnet-aks.md
   #   - name: Assess web apps for migration to Azure App Service
   #     href: tutorial-assess-webapps.md
-  #   - name: Assess Spring Boot web apps for migration
-  #     href: tutorial-assess-spring-boot.md
-  #   - name: Build business case or assess imported servers for migration to Azure
-  #     href: tutorial-discover-import.md
-  #   - name: Assess SAP systems for migration (preview)
-  #     href: tutorial-assess-sap-systems.md
   # - name: Migrate
   #   items:
   #   - name: Migrate servers in VMware environment
@@ -599,8 +546,6 @@ items:
   #     href: tutorial-migrate-gcp-virtual-machines.md
   # - name: Modernize
   #   items:
-  #   - name: Containerize ASP.NET apps and migrate to AKS
-  #     href: tutorial-app-containerization-aspnet-kubernetes.md
   #   - name: Containerize Java web apps and migrate to AKS
   #     href: tutorial-app-containerization-java-kubernetes.md
   #   - name: Containerize ASP.NET apps and migrate to App Service containers
@@ -617,8 +562,6 @@ items:
 #   items:
 #   - name: General
 #     items:
-#     - name: Azure Migrate support
-#       href: migrate-support-matrix.md
 #   - name: Security
 #     items:
 #     - name: Security baseline
@@ -674,14 +617,8 @@ items:
 #     href: create-manage-projects.md
 #   - name: Use Azure Migrate with private endpoints 
 #     items:
-#       - name: Support requirements and considerations
-#         href: how-to-use-azure-migrate-with-private-endpoints.md
 #       - name: Discover and assess using Azure Private Link
 #         href: discover-and-assess-using-private-endpoints.md
-#       - name: Migrate servers to Azure using Private Link
-#         href: migrate-servers-to-azure-using-private-link.md
-#       - name: Troubleshoot network connectivity
-#         href: troubleshoot-network-connectivity.md
 #   - name: Prepare to work with ISV tools/Movere
 #     href: prepare-isv-movere.md
 #   - name: Discover
@@ -712,8 +649,6 @@ items:
 #       href: how-to-create-group-machine-dependencies-agentless.md
 #   - name: Decide
 #     items:
-#     - name: Build a business case
-#       href: how-to-build-a-business-case.md
 #     - name: Review a business case
 #       href: how-to-view-a-business-case.md
 #   - name: Assess
