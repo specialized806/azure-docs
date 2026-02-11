@@ -178,7 +178,9 @@ Providers MUST include instructions in the FedRAMP authorization package that ex
 #### Azure's response
 
 Azure FedRAMP authorization packages will contain a word document with instructions to access and use the Secure Configuration Guide. *[Review comment Ateeque] Is a link needed at this point?*
+
 [Back to the top](#secure-configuration-guide)
+
 ## [Public Guidance](https://www.fedramp.gov/docs/rev5/balance/secure-configuration-guide/#public-guidance)
 
 ## SCG-CSO-PUB
