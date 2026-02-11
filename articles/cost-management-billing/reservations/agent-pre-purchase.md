@@ -12,9 +12,9 @@ ms.author: primittal
 
 # Optimize Microsoft Foundry and Copilot Credit costs with Microsoft Agent pre-purchase plan 
 
-Save on your Copilot Credit and Microsoft Foundry costs when you buy a pre-purchase plan. Pre-purchase plans are commit units (CUs) bought at discounted tiers in your purchasing currency for a specific product. The more you buy, the greater the discount. Purchased CUs pay down qualifying costs in US dollars (USD). So, for example if Microsoft Copilot Studio or Microsoft Foundry generates a retail cost of $100 based on Copilot Credit and Microsoft Foundry usage, then 100 Agent CUs (ACUs) are consumed.
+Save on your Copilot Credit and Microsoft Foundry costs when you buy a pre-purchase plan. Pre-purchase plans are commit units (CUs) bought at discounted tiers in your purchasing currency for a specific product. The more you buy, the greater the discount. Purchased CUs pay down qualifying costs in US dollars (USD). So, for example if Microsoft Copilot Studio or Foundry generates a retail cost of $100 based on Copilot Credit and Foundry usage, then 100 Agent CUs (ACUs) are consumed.
 
-Your Microsoft Agent pre-purchase plan automatically uses your ACUs to pay for eligible Copilot and AI Foundry usage during its one-year term or until Agent CUs run out. Your pre-purchase plan Agent CUs start paying for your Copilot Credit and Microsoft Foundry usage without having to redeploy or reassign the plan. By default, plans are configured to renew at the end of the one-year term.
+Your Microsoft Agent pre-purchase plan automatically uses your ACUs to pay for eligible Copilot and Foundry usage during its one-year term or until Agent CUs run out. Your pre-purchase plan Agent CUs start paying for your Copilot Credit and Foundry usage without having to redeploy or reassign the plan. By default, plans are configured to renew at the end of the one-year term.
 
 ## Prerequisites
 
@@ -27,13 +27,13 @@ To buy a pre-purchase plan, you must have one of the following Azure subscriptio
 
 ## Determine the right size to buy
 
-To get started, estimate your expected Copilot Credit and Microsoft Foundry usage for the term. This helps you determine the appropriate size for your pre-purchase plan. Each pre-purchase plan has a one-year term.
+To get started, estimate your expected Copilot Credit and Foundry usage for the term. This helps you determine the appropriate size for your pre-purchase plan. Each pre-purchase plan has a one-year term.
 
 **Example calculation:**
 
 Consider a hypothetical scenario where your organization plans to use:
 - **Copilot Credit**: 1,500,000 credits for custom agents in Microsoft Copilot Studio
-- **Microsoft Foundry PTUs**: 5,000 PTU hours for AI model deployments in Microsoft Foundry
+- **Foundry PTUs**: 5,000 PTU hours for AI model deployments in Foundry
 
 **Assumed pay-as-you-go rates (for illustration purposes):**
 - Copilot Credit at hypothetical $0.01 per credit = $15,000
@@ -75,21 +75,21 @@ You can't split or merge a **Microsoft Agent Pre-Purchase Plan**. For more infor
 
 When you have multiple AI-related purchasing options, understanding how benefits are applied helps you maximize your cost savings. You might have several types of purchases for your AI workloads:
 
-- [Microsoft Foundry Provisioned Throughput reservation](microsoft-foundry.md) - Covers Microsoft Foundry PTU (Provisioned Throughput Units) usage
+- [Microsoft Foundry Provisioned Throughput reservation](microsoft-foundry.md) - Covers Foundry PTU (Provisioned Throughput Units) usage
 - [Copilot Credit pre-purchase plan](copilot-credit-p3.md) - Covers Copilot Credit-specific usage  
-- Microsoft Agent pre-purchase plan - Covers broader AI workloads including both Copilot Credit and Microsoft Foundry
+- Microsoft Agent pre-purchase plan - Covers broader AI workloads including both Copilot Credit and Foundry
 
 ### Understanding benefit overlap
 
 **What is overlap?** Overlap occurs when multiple benefits can cover the same usage. For example:
 - Copilot credits are eligible for both Copilot Credit pre-purchase plan and Microsoft Agent pre-purchase plan
-- Microsoft Foundry PTU workloads are eligible for both Microsoft Foundry PTU reservations and Microsoft Agent pre-purchase plan
+- Foundry PTU workloads are eligible for both Foundry PTU reservations and Microsoft Agent pre-purchase plan
 
 ### Benefit application order (precedence)
 
 When overlap occurs, Microsoft applies benefits in this specific order to maximize your savings:
 
-1. **Microsoft Foundry PTU Reservations**
+1. **Foundry PTU Reservations**
    - Always applied first to PTU usage
    - PTU-specific and most cost-effective for provisioned throughput
 
@@ -99,7 +99,7 @@ When overlap occurs, Microsoft applies benefits in this specific order to maximi
 
 3. **Microsoft Agent Pre-Purchase Plan**
    - Applied last to remaining AI usage across both platforms
-   - Broader coverage for heterogeneous AI workloads for Copilot Credit and Microsoft Foundry usage
+   - Broader coverage for heterogeneous AI workloads for Copilot Credit and Foundry usage
 
 > [!IMPORTANT]
 > Microsoft Agent pre-purchase plan does not cover the purchase cost of other reservations or pre-purchase plans - only actual usage costs.
@@ -108,10 +108,10 @@ When overlap occurs, Microsoft applies benefits in this specific order to maximi
 
 These scenarios show how benefits work together in different purchasing combinations:
 
-#### Scenario 1: Microsoft Foundry reservation only
+#### Scenario 1: Foundry reservation only
 
 **What you have:**
-- Microsoft Foundry PTU reservation for 10 PTUs
+- Foundry PTU reservation for 10 PTUs
 
 **How benefits apply:**
 1. Reservation covers first 10 PTUs at discounted rate
@@ -127,12 +127,12 @@ These scenarios show how benefits work together in different purchasing combinat
 **How benefits apply:**
 1. Copilot workloads consume Copilot Credit pre-purchase plan first (up to 5,000 CCCUs)
 2. Additional Copilot usage draws from Microsoft Agent pre-purchase plan
-3. Microsoft Foundry usage draws from Microsoft Agent pre-purchase plan
+3. Foundry usage draws from Microsoft Agent pre-purchase plan
 
-#### Scenario 3: Microsoft Foundry reservation + Microsoft Agent pre-purchase plan
+#### Scenario 3: Foundry reservation + Microsoft Agent pre-purchase plan
 
 **What you have:**
-- Microsoft Foundry PTU reservation: 15 PTUs
+- Foundry PTU reservation: 15 PTUs
 - Microsoft Agent pre-purchase plan: 25,000 CUs
 
 **How benefits apply:**
@@ -143,7 +143,7 @@ These scenarios show how benefits work together in different purchasing combinat
 #### Scenario 4: Complete coverage (all three benefits)
 
 **What you have:**
-- Microsoft Foundry PTU reservation: 10 PTUs
+- Foundry PTU reservation: 10 PTUs
 - Copilot Credit pre-purchase plan: 3,000 CUs
 - Microsoft Agent pre-purchase plan: 15,000 CUs
 
