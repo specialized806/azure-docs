@@ -16,7 +16,7 @@ ms.date:     02/06/2026
 
 FedRAMP Rev 5 has mandated the following Secure Configuration Guide requirements for all Cloud Service Providers at [Secure Configuration Guide](https://www.fedramp.gov/docs/rev5/balance/secure-configuration-guide/)
 
-Azure provides the following instructions and guidelines for the customers to meet these requirements based on the [Recommended Secure Configuration](https://www.fedramp.gov/docs/rev5/balance/secure-configuration-guide/#recommended-secure-configuration) provided by...  xxxxxxxx. and their [Use Instructions](https://www.fedramp.gov/docs/rev5/balance/secure-configuration-guide/#use-instructions)
+Azure provides the following instructions and guidelines for the customers to meet these requirements 
 
 ## SCG-CSO-RSC 
 
