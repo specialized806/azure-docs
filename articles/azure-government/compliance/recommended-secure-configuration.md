@@ -16,8 +16,7 @@ ms.date:     02/06/2026
 
 FedRAMP Rev 5 has mandated the following Secure Configuration Guide requirements for all Cloud Service Providers at [Secure Configuration Guide](https://www.fedramp.gov/docs/rev5/balance/secure-configuration-guide/)
 
-Azure provides the following instructions and guidelines for the customers to meet these requirements 
-
+Azure provides the instructions and guidelines for the customers to meet these requirements 
 
 ## [Recommended Secure Configuration](https://www.fedramp.gov/docs/rev5/balance/secure-configuration-guide/#recommended-secure-configuration)
 
@@ -180,25 +179,25 @@ Providers MUST include instructions in the FedRAMP authorization package that ex
 
 Azure FedRAMP authorization packages will contain a word document with instructions to access and use the Secure Configuration Guide. *[Review comment Ateeque] Is a link needed at this point?*
 [Back to the top](#secure-configuration-guide)
-### [Public Guidance](https://www.fedramp.gov/docs/rev5/balance/secure-configuration-guide/#public-guidance)
+## [Public Guidance](https://www.fedramp.gov/docs/rev5/balance/secure-configuration-guide/#public-guidance)
 
-#### SCG-CSO-PUB
+## SCG-CSO-PUB
 
 Providers SHOULD make the Secure Configuration Guide available publicly
 
-#### Azure's response 
+### Azure's response
 
 Azure's Secure Configuration Guide is available publicly and can be accessed at [Secure Configuration Guide](/azure/azure-government/compliance/azure-services-in-fedramp-auditscope?branch=pr-en-us-76518) *[Review comment Ateeque] this link currently points to the scope of the services but will be replaced by the link to the Guide.*
 
 [Back to the top](#secure-configuration-guide)
 
-### [Secure Defaults](https://www.fedramp.gov/docs/rev5/balance/secure-configuration-guide/#secure-defaults)
+## [Secure Defaults](https://www.fedramp.gov/docs/rev5/balance/secure-configuration-guide/#secure-defaults)
 
-#### SCG-CSO-SDF
+## SCG-CSO-SDF
 
 Providers SHOULD set all settings to their recommended secure defaults for top-level administrative accounts and privileged accounts when initially provisioned.
 
-#### Azure's response
+### Azure's response
 
 Azure supports and applies secure defaults for top-level administrative accounts at provisioning via policy initiatives, security baselines, and baseline-as-code applied through automation. Azure sets security‑hardened defaults the moment a tenant, subscription, or administrative role is created.
 
@@ -222,17 +221,17 @@ When identities, subscriptions, or resources are created, **Security defaults** 
 
 [Back to the top](#secure-configuration-guide)
 
-### [Enhanced Capabilities](https://www.fedramp.gov/docs/rev5/balance/secure-configuration-guide/#enhanced-capabilities)
+## [Enhanced Capabilities](https://www.fedramp.gov/docs/rev5/balance/secure-configuration-guide/#enhanced-capabilities)
 
 These recommendations apply to all cloud service offerings in the FedRAMP Marketplace for enhanced capabilities related to the Secure Configuration Guide.
 
-#### [Comparison Capability](https://www.fedramp.gov/docs/rev5/balance/secure-configuration-guide/#comparison-capability)
+## [Comparison Capability](https://www.fedramp.gov/docs/rev5/balance/secure-configuration-guide/#comparison-capability)
 
-#### SCG-ENH-CMP
+## SCG-ENH-CMP
 
 Providers SHOULD offer the capability to compare all current settings for top-level administrative accounts and privileged accounts to the recommended secure defaults.
 
-#### Azure's response
+### Azure's response
 
 Azure satisfies this requirement through built‑in security baseline comparison capabilities across **Microsoft Entra ID** privileged accounts and tenant‑level security settings.
 
@@ -330,13 +329,13 @@ For hybrid and cloud resources:
   
 [Back to the top](#secure-configuration-guide)
 
-#### [Export Capability](https://www.fedramp.gov/docs/rev5/balance/secure-configuration-guide/#export-capability)
+## [Export Capability](https://www.fedramp.gov/docs/rev5/balance/secure-configuration-guide/#export-capability)
 
-#### SCG-ENH-EXP
+## SCG-ENH-EXP
 
 Providers SHOULD offer the capability to export all security settings in a machine-readable format.
 
-#### Azure's response
+### Azure's response
 
 Azure meets this requirement through **multiple machine‑readable export paths**, all providing **structured JSON**.
 
@@ -526,13 +525,13 @@ These provide **100% environment configuration** in machine‑readable form.
 
 [Back to the top](#secure-configuration-guide)
 
-#### [API Capability](https://www.fedramp.gov/docs/rev5/balance/secure-configuration-guide/#api-capability)
+## [API Capability](https://www.fedramp.gov/docs/rev5/balance/secure-configuration-guide/#api-capability)
 
-#### SCG-ENH-API
+## SCG-ENH-API
 
 Providers SHOULD offer the capability to view and adjust security settings via an API or similar capability.
 
-#### Azure's response
+### Azure's response
 
 Azure fully satisfies this requirement by exposing *all major security configurations* through documented APIs (ARM, Microsoft Graph, Azure Policy, Defender for Cloud APIs, and Azure Resource Graph). 
 
@@ -713,9 +712,9 @@ Supports automated:
 
 [Back to the top](#secure-configuration-guide)
 
-#### [Machine-Readable Guidance](https://www.fedramp.gov/docs/rev5/balance/secure-configuration-guide/#machine-readable-guidance)
+## [Machine-Readable Guidance](https://www.fedramp.gov/docs/rev5/balance/secure-configuration-guide/#machine-readable-guidance)
 
-#### SCG-ENH-MRG
+## SCG-ENH-MRG
 
 Providers SHOULD also provide the Secure Configuration Guide in a machine-readable format that can be used by customers or third-party tools to compare against current settings.
 
@@ -825,9 +824,9 @@ Using the above machine‑readable feeds, external tools can:
 
 [Back to the top](#secure-configuration-guide)
 
-#### [Versioning and Release History](https://www.fedramp.gov/docs/rev5/balance/secure-configuration-guide/#versioning-and-release-history)
+## [Versioning and Release History](https://www.fedramp.gov/docs/rev5/balance/secure-configuration-guide/#versioning-and-release-history)
 
-#### SCG-ENH-VRH
+## SCG-ENH-VRH
 
 Providers SHOULD provide versioning and a release history for recommended secure default settings for top-level administrative accounts and privileged accounts as they are adjusted over time.
 
