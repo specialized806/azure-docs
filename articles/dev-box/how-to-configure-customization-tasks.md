@@ -17,17 +17,6 @@ ms.date: 02/06/2026
 
 When you create tasks for Microsoft Dev Box customizations, you can define specific actions for your dev boxes to help ensure a consistent and efficient development environment. Creating new tasks in a catalog allows you to define reusable components tailored to your development teams and add guardrails around the configurations that are possible. This article guides you through creating a catalog for customization tasks, adding tasks, and attaching the catalog to a dev center or project.
 
-## Prerequisites
-
-To complete the steps in this article, you must have:
-
-- A dev center configured with a dev box project.
-- An existing catalog in GitHub or Azure Repos.
-
-For permissions required to configure customizations, see [Permissions for customizations](concept-what-are-dev-box-customizations.md#permissions-for-customizations).
-
-## What are tasks?
-
 A task performs a specific action, like installing software. Each task consists of one or more PowerShell scripts, along with a task.yaml file that provides parameters and defines how the scripts run. You can also include a PowerShell command in the task.yaml file.
 
 You can store a collection of curated tasks in a catalog attached to your dev center, with each task in a separate folder. Dev Box supports using a GitHub repository or an Azure Repos repository as a catalog. Dev Box scans a specified folder of the catalog recursively to find task definitions.
@@ -41,6 +30,15 @@ Microsoft provides a quickstart catalog to help you get started with customizati
 - Clone a repository by using `git-clone`.
 - Configure applications like installing Visual Studio extensions.
 - Run PowerShell scripts.
+
+## Prerequisites
+
+To complete the steps in this article, you must have:
+
+- A dev center configured with a dev box project.
+- An existing catalog in GitHub or Azure Repos.
+
+For permissions required to configure customizations, see [Permissions for customizations](concept-what-are-dev-box-customizations.md#permissions-for-customizations).
 
 ## Create tasks in a catalog
 
