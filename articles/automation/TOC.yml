@@ -223,10 +223,6 @@
         href: automation-hrw-run-runbooks.md
       - name: Use Azure Policy to enforce job execution
         href: enforce-job-execution-hybrid-worker.md
-      - name: Troubleshoot extension-based worker issues
-        href: troubleshoot/extension-based-hybrid-runbook-worker.md
-      - name: Troubleshoot agent-based worker issues
-        href: troubleshoot/hybrid-runbook-worker.md
     - name: Use source control integration
       href: source-control-integration.md
   - name: Configuration Management
