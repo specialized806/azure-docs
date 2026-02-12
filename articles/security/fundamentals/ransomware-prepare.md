@@ -39,7 +39,7 @@ Ultimately, the Framework is aimed at reducing and better managing cybersecurity
 | [Endpoint&nbsp;Security&nbsp;(ES)](/security/benchmark/azure/mcsb-v2-endpoint-security) |
 | [Backup&nbsp;and&nbsp;Recovery&nbsp;(BR)](/security/benchmark/azure/mcsb-v2-backup-recovery) |
 | [DevOps&nbsp;Security&nbsp;(DS)](/security/benchmark/azure/mcsb-v2-devop-security) |
-| [Governance&nbsp;and&nbsp;Strategy&nbsp;(GS)](/security/benchmark/azure/mcsb-v2-governance-strategy) |
+| [Governance&nbsp;and&nbsp;Strategy&nbsp;(GS)](/security/benchmark/azure/mcsb-governance-strategy) |
 
 ## Prioritize mitigation
 

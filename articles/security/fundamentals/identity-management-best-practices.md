@@ -287,25 +287,25 @@ Require Microsoft Entra multifactor authentication at sign-in for all individual
 
 **Best practice**: Take steps to mitigate the most frequently used attacked techniques.  
 **Detail**:
-[Identify Microsoft accounts in administrative roles that need to be switched to work or school accounts](/entra/identity/role-based-access-control/security-planning.md#identify-microsoft-accounts-in-administrative-roles-that-need-to-be-switched-to-work-or-school-accounts)  
+[Identify Microsoft accounts in administrative roles that need to be switched to work or school accounts](/entra/identity/role-based-access-control/security-planning#identify-microsoft-accounts-in-administrative-roles-that-need-to-be-switched-to-work-or-school-accounts)  
 
 [Ensure separate user accounts and mail forwarding for global administrator accounts](/entra/identity/role-based-access-control/security-planning)  
 
-[Ensure that the passwords of administrative accounts have recently changed](/entra/identity/role-based-access-control/security-planning.md#ensure-the-passwords-of-administrative-accounts-have-recently-changed)  
+[Ensure that the passwords of administrative accounts have recently changed](/entra/identity/role-based-access-control/security-planning#ensure-the-passwords-of-administrative-accounts-have-recently-changed)  
 
-[Turn on password hash synchronization](/entra/identity/role-based-access-control/security-planning.md#turn-on-password-hash-synchronization)  
+[Turn on password hash synchronization](/entra/identity/role-based-access-control/security-planning#turn-on-password-hash-synchronization)  
 
-[Require multifactor authentication for users in all privileged roles as well as exposed users](/entra/identity/role-based-access-control/security-planning.md#require-multi-factor-authentication-for-users-in-privileged-roles-and-exposed-users)  
+[Require multifactor authentication for users in all privileged roles as well as exposed users](/entra/identity/role-based-access-control/security-planning#require-multi-factor-authentication-for-users-in-privileged-roles-and-exposed-users)  
 
-[Obtain your Microsoft 365 Secure Score (if using Microsoft 365)](/entra/identity/role-based-access-control/security-planning.md#obtain-your-microsoft-365-secure-score-if-using-microsoft-365)  
+[Obtain your Microsoft 365 Secure Score (if using Microsoft 365)](/entra/identity/role-based-access-control/security-planning#obtain-your-microsoft-365-secure-score-if-using-microsoft-365)  
 
-[Review the Microsoft 365 security guidance (if using Microsoft 365)](/entra/identity/role-based-access-control/security-planning.md#review-the-microsoft-365-security-and-compliance-guidance-if-using-microsoft-365)  
+[Review the Microsoft 365 security guidance (if using Microsoft 365)](/entra/identity/role-based-access-control/security-planning#review-the-microsoft-365-security-and-compliance-guidance-if-using-microsoft-365)  
 
-[Configure Microsoft 365 Activity Monitoring (if using Microsoft 365)](/entra/identity/role-based-access-control/security-planning.md#configure-microsoft-365-activity-monitoring-if-using-microsoft-365)  
+[Configure Microsoft 365 Activity Monitoring (if using Microsoft 365)](/entra/identity/role-based-access-control/security-planning#configure-microsoft-365-activity-monitoring-if-using-microsoft-365)  
 
-[Establish incident/emergency response plan owners](/entra/identity/role-based-access-control/security-planning.md#establish-incidentemergency-response-plan-owners)  
+[Establish incident/emergency response plan owners](/entra/identity/role-based-access-control/security-planning#establish-incidentemergency-response-plan-owners)  
 
-[Secure on-premises privileged administrative accounts](/entra/identity/role-based-access-control/security-planning.md#turn-on-password-hash-synchronization)
+[Secure on-premises privileged administrative accounts](/entra/identity/role-based-access-control/security-planning#turn-on-password-hash-synchronization)
 
 If you don’t secure privileged access, you might find that you have too many users in highly privileged roles and are more vulnerable to attacks. Malicious actors, including cyber attackers, often target admin accounts and other elements of privileged access to gain access to sensitive data and systems by using credential theft.
 
