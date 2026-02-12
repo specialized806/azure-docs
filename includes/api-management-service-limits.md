@@ -6,7 +6,7 @@ author: dlepow
 
 ms.service: azure-api-management
 ms.topic: include
-ms.date: 12/15/2025
+ms.date: 02/12/2026
 ms.author: danlep
 ms.custom: Include file
 ---

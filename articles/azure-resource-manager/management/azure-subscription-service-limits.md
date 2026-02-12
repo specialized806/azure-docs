@@ -77,8 +77,7 @@ This section provides information about limits that apply to Azure API Managemen
 - [Resource limits in API Management classic and v2 tiers](#limits---api-management-classic-and-v2-tiers)
 - [Resource limits in API Management workspaces](#limits---api-management-workspaces)
 - [Resource limits in developer portal in API Management v2 tiers](#limits---developer-portal-in-api-management-v2-tiers)
-
-API Management also has certain constraints that apply to the gateway component of the service when handling API requests and responses. For more information, see [Gateway runtime constraints](../../api-management/api-management-gateways-overview.md#gateway-runtime-constraints).
+- [Gateway runtime limits](#api-management-gateway-runtime-limits)
 
 ### Limits - API Management classic and v2 tiers
 
@@ -93,6 +92,10 @@ The following limits will be introduced starting March 2026 and will replace the
 ### Limits - Developer portal in API Management v2 tiers
 
 [!INCLUDE [api-management-developer-portal-limits-v2](../../../includes/api-management-developer-portal-limits-v2.md)]
+
+### API Management gateway runtime limits
+
+[!INCLUDE [api-management-gateway-constraints](../../../includes/api-management-gateway-constraints.md)]
 
 ## Azure App Service limits
 

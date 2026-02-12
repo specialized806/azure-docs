@@ -1,5 +1,5 @@
 ---
-title: API Management gateway constraints
+title: API Management gateway runtime limits
 description: Include file
 services: api-management
 author: dlepow
@@ -14,7 +14,7 @@ ms.custom: Include file
 <!-- Constraints - API Management gateways  -->
 
 
-| Gateway constraint | Value | 
+| Runtime limit | Value | 
 | ---------| ----------- | 
 | Concurrent back-end connections<sup>1</sup> per HTTP authority | 2,048 |
 | Cached response size | 2 MiB |
