@@ -1,6 +1,6 @@
 ---
 title: Migrate a Workload from Amazon Web Services (AWS) to Azure
-description: Learn how to migrate a single workload from AWS to Azure. Plan, prepare, run, evaluate, and decommission your previous workload with minimal risk.
+description: Learn how to migrate a single workload from AWS to Azure. Plan, prepare, execute, evaluate, and decommission your previous workload with minimal risk.
 ms.author: rhackenberg
 ai-usage: ai-assisted
 ms.date: 01/29/2026
@@ -21,7 +21,7 @@ Migrating a workload from AWS is a strategic initiative that requires careful pl
 
 ## Workload migration strategy
 
-An equivalent migration strategy minimizes risk and is typically the safest path to Azure. When you take this approach, the workload continues to use existing architecture and operational patterns. Migrations are most successful when they avoid scope creep, like paying existing technical debt or introducing optimizations during the workload hosting transition. The goal is that the migrated workload meets the same key performance indicators (KPIs) on Azure that it met on AWS. It should maintain the same service-level agreements (SLAs), service-level objectives (SLOs), and any bugs that currently exist in the workload.
+A like-for-like migration strategy minimizes risk and is typically the safest path to Azure. When you take this approach, the workload continues to use existing architecture and operational patterns. Migrations are most successful when they avoid scope creep, like paying existing technical debt or introducing optimizations during the workload hosting transition. The goal is that the migrated workload meets the same key performance indicators (KPIs) on Azure that it met on AWS. It should maintain the same service-level agreements (SLAs), service-level objectives (SLOs), and any bugs that currently exist in the workload.
  
 > [!TIP]
 > Minimize changes during migration and focus on validating performance and stability. After you complete the migration, you can explore technical debt repayment and further optimizations.
@@ -40,10 +40,10 @@ Use [Workload Discovery on AWS](https://aws.amazon.com/solutions/implementations
 
 ## Timeline assumptions
 
-The migration of a workload can span several weeks or months. The duration depends on the complexity of the workload and your migration and cutover strategy. The following timeline shows a typical workload migration that uses an equivalent approach for a moderately complex workload. A moderately complex workload typically includes multiple components and dependencies, but it's not mission-critical and doesn't integrate deeply with other systems.
+The migration of a workload can span several weeks or months. The duration depends on the complexity of the workload and your migration and cutover strategy. The following timeline shows a typical workload migration that uses a like-for-like approach for a moderately complex workload. A moderately complex workload typically includes multiple components and dependencies, but it's not mission-critical and doesn't integrate deeply with other systems.
 
 :::image type="complex" source="./images/migrate-from-aws-phases.svg" alt-text="Diagram that shows three phases of workload migration." lightbox="./images/migrate-from-aws-phases.svg" border="false":::
-    The diagram shows three phases of workload migration from AWS to Azure. Across the top, three labeled boxes indicate the following phases and durations: before migration (two to four weeks), during migration (three to seven weeks), and after migration (one to two weeks). Each box includes a summary of key activities, like planning, infrastructure setup, and optimization. Underneath the boxes, a horizontal sequence of five icons represents the plan, prepare, run, evaluate, and decommission steps.
+    The diagram shows three phases of workload migration from AWS to Azure. Across the top, three labeled boxes indicate the following phases and durations: before migration (two to four weeks), during migration (three to seven weeks), and after migration (one to two weeks). Each box includes a summary of key activities, like planning, infrastructure setup, and optimization. Underneath the boxes, a horizontal sequence of five icons represents the plan, prepare, execute, evaluate, and decommission steps.
 :::image-end:::
 
 ## Workload team responsibility
@@ -62,7 +62,7 @@ Workload teams should consult with migration experts as part of the process, but
 
 Before you plan the migration, ensure that you have the following prerequisites in place:
 
-- **Prior experience:** You need prior experience with core cloud concepts and AWS. Understand Azure services and cloud migration processes.
+- **Prior experience:** You need prior experience with core cloud concepts and AWS and a basic understanding of Azure services and cloud migration processes.
 - **Stakeholder alignment:** You need to share and agree on timelines, budget estimates, and project milestones with stakeholders to ensure that all parties align.
 - **Support strategy:** Purchase a Microsoft support plan and investigate options for free or community support.
 - **Platform strategy:** This series describes how to migrate a single workload. It assumes that your platform foundation is in place and that your migration strategy is defined and aligns with the [Cloud Adoption Framework for Azure](/azure/cloud-adoption-framework/strategy).
@@ -78,7 +78,7 @@ To help you plan and successfully migrate your workload, proceed through the fiv
 > [!div class="checklist"]
 > * [1. Plan](/azure/migration/migrate-workload-from-aws-plan)
 > * [2. Prepare](/azure/migration/migrate-workload-from-aws-prepare)
-> * [3. Run](/azure/migration/migrate-workload-from-aws-run)
+> * [3. Execute](/azure/migration/migrate-workload-from-aws-execute)
 > * [4. Evaluate](/azure/migration/migrate-workload-from-aws-evaluate)
 > * [5. Decommission](/azure/migration/migrate-workload-from-aws-decommission)
 

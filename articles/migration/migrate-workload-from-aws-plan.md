@@ -19,7 +19,7 @@ The planning phase consists of these steps:
 
 > [!div class="checklist"]
 > * Assess your workload.
-> * Design an equivalent architecture.
+> * Design a like-for-like architecture.
 > * Develop and document a migration plan.
 
 :::image type="icon" source="images/goal.svg" alt-text="Goal icon"::: The goal of the planning phase is to understand your existing AWS workload from a technical and business standpoint so that you can confidently build a plan to replicate it in Azure.
@@ -37,25 +37,25 @@ To build a comparable system in Azure, you first need to fully understand your c
 1. **Identify critical flows:** Map out essential user and system interactions and [workflows](/azure/well-architected/reliability/identify-flows). When you design the target architecture in the next section, this information helps you prioritize reliability efforts and protect the most important and impactful components against failure.
 1. **Create a detailed inventory:** Make a list of what your current AWS environment needs to run the workload, including all servers, storage components, databases, and services. Also include usage patterns, performance metrics, and licensing requirements.
 1. **Involve subject matter experts (SMEs):** In addition to automated discovery tools, engage experts throughout the workload team to uncover hidden dependencies, complex component relationships, and sensitive state. Tooling often misses critical components, like scheduled scripts, undocumented integrations, or legacy configurations. A conversation with SMEs can reveal these nuances and prevent unexpected behavior during migration. Include their input in the migration plan and runbook.
-1. **Assess your team's skills:** Focus on equivalent capability mapping. Identify the skills that your team already uses in AWS and align them with equivalent Azure services and tools. Include Azure training in your project timeline to prepare your workload and operations teams. This approach reduces friction and builds confidence with Azure because existing experience in AWS translates directly to the new environment.
+1. **Assess your team's skills:** Focus on like-for-like capability mapping. Identify the skills that your team already uses in AWS and align them with equivalent Azure services and tools. Include Azure training in your project timeline to prepare your workload and operations teams. This approach reduces friction and builds confidence with Azure because existing experience in AWS translates directly to the new environment.
 1. **Document existing commitments:** Document the defined performance baseline of your workload, including throughput, latency, error rates, and resource utilization. If these key performance indicators (KPIs) aren't available, collect these metrics from your AWS environment to establish this baseline. You use these KPIs in the evaluation phase after migration to validate that the workload in Azure performs like it did in AWS.
    
    Find out if there are any service-level agreements (SLAs) or service-level objectives (SLOs) associated with the workload. These commitments to users or stakeholders don't change based on your cloud platform. For example, if your recovery time objective (RTO) in AWS is 45 minutes, you need to design the workload in Azure to also have an RTO of 45 minutes.
 1. **Document current monitoring and alerting:** Document how you currently monitor the workload in AWS. For example, you might use CloudWatch metrics, alarms, or dashboards. Plan equivalent Azure monitoring for the target environment. You can use Azure Monitor logs, metrics, or Application Insights dashboards. Engage your operations team in this assessment so that they're ready to implement and manage Azure-based monitoring and alerts.
 
-## Design an equivalent architecture in Azure
+## Design a like-for-like architecture in Azure
 
 Many cloud-based modern workloads use managed or serverless services instead of virtual machines (VMs) for many of their functions. If your AWS workload uses managed services, like Amazon Elastic Kubernetes Service (EKS) or Amazon Elastic Container Service (ECS), you need to find the best match in Azure for your use case. In some cases, Azure might have multiple services that you can choose from, like containerized apps. Choose the most similar service. For example, don't switch container orchestration platforms during migration.
 
-The following diagram shows an example equivalent architecture for a Kubernetes workload on AWS and Azure.
+The following diagram shows an example like-for-like architecture for a Kubernetes workload on AWS and Azure.
 
-:::image type="complex" source="./images/equivalent-architecture-aws-azure.svg" alt-text="Diagram that shows an equivalent architecture for a Kubernetes-based workload." lightbox="./images/equivalent-architecture-aws-azure.svg" border="false":::
+:::image type="complex" source="./images/like-for-like-architecture-aws-azure.svg" alt-text="Diagram that shows a like-for-like architecture for a Kubernetes-based workload." lightbox="./images/like-for-like-architecture-aws-azure.svg" border="false":::
    The diagram shows a like-to-like architecture between AWS and Azure clouds for Kubernetes workloads. On the left, the AWS cloud contains Amazon ECR, AWS IAM, AWS KMS, and Amazon CloudWatch. An Amazon EKS cluster inside of a virtual private cloud (VPC) connects to compute nodes and a network load balancer. On the right, the Azure cloud contains Azure Container Registry, Microsoft Entra ID, Azure Key Vault, and Azure Monitor. An Azure Kubernetes Service (AKS) cluster inside a virtual network contains private endpoints, an application gateway, and node pools. In the center, admins and engineers use Terraform for infrastructure automation. Connectivity between AWS and Azure is established via site-to-site VPN, AWS Direct Connect, and Azure ExpressRoute. Users interact from the top of the diagram.
 :::image-end:::
 
-To begin mapping your equivalent architecture, first establish a solid foundation.
+To begin mapping your like-for-like architecture, first establish a solid foundation.
 
-**Start with networking:** Discuss your workload's networking requirements with the platform team. This discussion should cover the target architecture and the migration connectivity. AWS uses a transit gateway as the network hub with Amazon Virtual Private Cloud (VPC) as the spoke network. In the Azure application landing zone design, the platform team provisions spoke virtual networks to workload teams. These spoke networks communicate with other internal and external networks through the hub or the Azure Virtual WAN network.
+**Start with networking.** Discuss your workload's networking requirements with the platform team. This discussion should cover the target architecture and the migration connectivity. AWS Transit Gateway serves as the network hub with Amazon Virtual Private Cloud (VPC) as the spoke network. In the Azure application landing zone design, the platform team provisions spoke virtual networks to workload teams. These spoke networks communicate with other internal and external networks through the hub or the Azure Virtual WAN network.
 
 To exchange data during migration, you can use a site-to-site virtual private network (VPN) or Azure ExpressRoute with AWS Direct Connect. You can rely on a site-to-site VPN for smaller or proof-of-concept (POC) migrations. We recommend ExpressRoute with AWS Direct Connect for production-scale migrations or large data transfers. If you use both options for higher reliability, use the site-to-site VPN for failover.
 
@@ -67,7 +67,7 @@ For more information, see [Migrate networking from AWS to Azure](/azure/migratio
 
 After you plan your networking, follow these steps:
 
-1. **Identify Azure services.** Use the [AWS to Azure resource comparison guide](/azure/architecture/aws-professional) to help you choose your workload's Azure components. Build POCs to gain confidence or help you choose components and their configuration. Use the [Azure Well-Architected Framework service guides](/azure/well-architected/service-guides/) to help ensure that your equivalent architecture is functionally equivalent and optimized for the platform characteristics and best practices on Azure.
+1. **Identify Azure services.** Use the [AWS to Azure resource comparison guide](/azure/architecture/aws-professional) to help you choose your workload's Azure components. Build POCs to gain confidence or help you choose components and their configuration. Use the [Azure Well-Architected Framework service guides](/azure/well-architected/service-guides/) to help ensure that your like-for-like architecture is functionally equivalent and optimized for the platform characteristics and best practices on Azure.
 
 1. **Plan identity management.** Plan how to handle identity and access in Azure for users and for workload operations. If your workload uses AWS IAM roles or federated identity providers, determine how these roles translate to Microsoft Entra ID roles, managed identities, or service principals. Review any hardcoded Amazon Resource Names (ARNs), IAM policies, or identity integrations in the application. If you overlook identity mapping, you might face post-migration access problems or broken integrations. Integration with partner identity providers is a challenge during migrations. If possible, consolidate identity management by transitioning to Microsoft Entra ID.
 
@@ -77,7 +77,7 @@ After you plan your networking, follow these steps:
 
 1. **Check availability.** Check Azure service availability and capacity in your preferred region, especially if you plan to use specialized resource types. When you select your target region, align it closely with your current AWS region. Migrating to a geographically similar Azure region helps maintain consistent latency.
 
-1. **Validate requirements.** If you decide to use Azure Accelerate, review the [Azure Accelerate support matrix](/azure/migrate/migrate-support-matrix-physical) to ensure that your AWS instances meet operating system (OS) and configuration requirements. If you don't use Azure Accelerate, manually check your workload's compatibility with Azure services. This check includes verifying supported OS versions, VM sizes, disk configurations, and network dependencies.
+1. **Validate requirements.** If you decide to use Azure Migrate, review the [Azure Migrate support matrix](/azure/migrate/migrate-support-matrix-physical) to ensure that your AWS instances meet operating system (OS) and configuration requirements. If you don't use Azure Migrate, manually check your workload's compatibility with Azure services. This check includes verifying supported OS versions, VM sizes, disk configurations, and network dependencies.
 
 1. **Meet compliance and security requirements.** Maintain an identical security posture in your workload. Ensure that your Azure implementation matches security expectations like OS security patching, network isolation, ingress and egress inspection, least-privileged access, static code analysis, and penetration testing schedules.
 
@@ -107,7 +107,7 @@ Plan how to cut over production traffic from the AWS environment to the Azure en
 
 To keep the risk low and rollback easy, choose a blue-green approach. In this scenario, you maintain two environments. Blue is the current environment (AWS), and green is the new environment (Azure).
 
-In the blue-green scenario, you plan a migration window, run your workload in AWS throughout migration, and move traffic to Azure after you successfully test the workload. Both environments run in parallel throughout migration, so you can shift traffic back to AWS if problems arise in the Azure environment. In this scenario, you also need a rollback strategy for state that might change. Consider databases and less obvious state, like unprocessed items in message queues.
+In the blue-green scenario, you plan a migration window, run your workload in AWS throughout migration, and move traffic to Azure after a successful dry run. Both environments run in parallel throughout migration, so you can shift traffic back to AWS if problems arise in the Azure environment. In this scenario, you also need a rollback strategy for state that might change. Consider databases and less obvious state, like unprocessed items in message queues.
 
 If your workload is more complex and you want to minimize risk, you can combine the blue-green strategy with a canary approach to switch over traffic. The canary approach routes a small percentage of traffic to the new environment and then increases it incrementally. The canary approach increases migration complexity because live state needs to exist in both AWS and Azure during the transition.
  
@@ -150,7 +150,7 @@ In most scenarios, data migration occurs in multiple phases. For example, you mi
 
 Document the following information in a runbook to share with all teams and stakeholders involved in the migration.
 
-**Sequence of steps:** Document the sequence of steps at a high level. Define the exact steps, their sequence, and the migration timing. Include the planned maintenance window in your documentation. Consider including a test run, especially for complex cutovers. Document your rollback strategy, DNS time to live (TTL), and how to test success metrics.
+**Sequence of steps:** Document the sequence of steps at a high level. Define the exact steps, their sequence, and the migration timing. Include the planned maintenance window in your documentation. Consider including a dry run, especially for complex cutovers. Document your rollback strategy, DNS time to live (TTL), and how to test success metrics.
 
 **Security and networking configuration:** Include all firewall rule changes, required port openings, and updates to network security groups (NSGs) or application security groups (ASGs) needed to support Azure connectivity. Document any temporary exceptions or overrides required during cutover and ensure that rollback procedures account for these changes.
 
@@ -202,7 +202,7 @@ At the end of the planning phase, you should have the following items in place:
 | &#9744; | Document migration decisions                          |
 | &#9744; | Reduce risks                                          |
 | &#9744; | Check resource availability                           |
-| &#9744; | Validate requirements if you use Azure Accelerate     |
+| &#9744; | Validate requirements if you use Azure Migrate     |
 | &#9744; | Address compliance and security requirements          |
 | &#9744; | Choose cutover strategy                               |
 | &#9744; | Choose database migration strategy                    |

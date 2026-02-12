@@ -1,6 +1,6 @@
 ---
-title: Run Your Migration from Amazon Web Services (AWS) to Azure
-description: Learn how to run the migration from AWS to Azure. Follow proven cutover strategies, sync data, validate workloads, and ensure rollback readiness.
+title: Execute Your Migration from Amazon Web Services (AWS) to Azure
+description: Learn how to execute the migration from AWS to Azure. Follow proven cutover strategies, sync data, validate workloads, and ensure rollback readiness.
 ms.author: rhackenberg
 ai-usage: ai-assisted
 ms.date: 01/29/2026
@@ -11,11 +11,11 @@ ms.collection:
   - migration
   - aws-to-azure
 ---
-#  Run your workload migration from Amazon Web Services (AWS) to Azure
+#  Execute your workload migration from Amazon Web Services (AWS) to Azure
 
 This article is part of a series about how to [migrate a workload from Amazon Web Services (AWS) to Azure](/azure/migration/migrate-workload-from-aws-introduction). 
 
-The run phase consists of these stages:
+The execute phase consists of these stages:
 
 > [!div class="checklist"]
 > * Before cutover
@@ -27,13 +27,13 @@ The run phase consists of these stages:
 > [!IMPORTANT] 
 > Don't rush testing or skip validation steps.
 > 
-> The run phase has the highest risk of service disruption. Data sync problems, network misconfigurations, or unexpected application behavior can cause outages or data loss.
+> The execute phase has the highest risk of service disruption. Data sync problems, network misconfigurations, or unexpected application behavior can cause outages or data loss.
 
 ## Before cutover
 
 1. **Open your negotiated maintenance window.**
 
-1. **Migrate your data.** Align the order of operations with your cutover model. Fully script and test all data migration steps in a nonproduction environment before you start to help ensure that these steps run reliably during cutover.
+1. **Execute your data migration.** Align the order of operations with your cutover model. Fully script and test all data migration steps in a nonproduction environment before you start to help ensure that these steps run reliably during cutover.
 
    - For live, or active, replication scenarios, set up continuous data sync between AWS and Azure. This approach minimizes downtime and helps ensure data consistency during cutover.
 
@@ -78,7 +78,7 @@ For more information, see [Migrate to the cloud](/azure/cloud-adoption-framework
 
 | &nbsp; | Deliverable tasks |
 | ------- | ----------------------------------- |
-| &#9744; | Migrate data |
+| &#9744; | Execute data migration |
 | &#9744; | Set up application components |
 | &#9744; | Modify connectivity and networking settings |
 | &#9744; | Do functional tests |

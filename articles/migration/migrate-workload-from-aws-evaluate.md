@@ -36,7 +36,7 @@ The evaluation phase consists of these steps:
 
 - **Validate cutover via AWS logs.** [AWS CloudTrail](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html) logs every API call and console action in your AWS account. It exposes any components in your workload that make calls to AWS services. Check that these logs don't show any unintended workload traffic.
 
-- **Check firewall and network flow logs.** Review firewall and network flow logs in Azure to ensure that only the anticipated network traffic occurs. As part of your equivalent migration, some network traffic allowances might now be obsolete. You can remove them from the network allow lists.
+- **Check firewall and network flow logs.** Review firewall and network flow logs in Azure to ensure that only the anticipated network traffic occurs. As part of your like-for-like migration, some network traffic allowances might now be obsolete. You can remove them from the network allow lists.
 
 - **Confirm data cutover.** Confirm that Azure serves all production writes and reads based on your cutover strategy. If you use continuous replication or sync, stop it after you confirm that Azure has the authoritative copy of the data.
 

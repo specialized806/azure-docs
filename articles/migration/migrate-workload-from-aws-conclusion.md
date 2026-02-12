@@ -37,12 +37,12 @@ To continue improving your environment, review recommendations for post-migratio
 ## Tools and references 
 
 - [Azure for AWS professionals](/azure/architecture/aws-professional/)
-- [Azure Accelerate documentation](/azure/migrate/)
+- [Azure Migrate documentation](/azure/migrate/)
 
 ## Training
 
 - [Introduction to migrating from AWS to Azure](/training/modules/introduction-to-migrating-aws-to-azure/)
-- [Set up and migrate to Azure Database for PostgreSQL](/training/paths/microsoft-learn-azure-database-for-postgresql/)
+- [Configure and migrate to Azure Database for PostgreSQL](/training/paths/microsoft-learn-azure-database-for-postgresql/)
 - [Migrate to Azure Database for PostgreSQL flexible server](/training/modules/migrate-azure-database-postgresql-flexible-server/)
 
 ## Example workload migrations
