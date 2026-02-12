@@ -41,10 +41,10 @@ This table summarizes the currently supported options for authenticating your ag
 
 | Method | Description | Use case | Additional setup | Functions supports |
 | ------ | ----------- | -------- | ---------------- | ------------------- |
-| **Key-based**<sup>*</sup> | Agent authenticates by passing a shared [function access key](./function-keys-how-to.md) in the request header. This is the default authentication for HTTP endpoints in Functions. | During development or when the MCP server doesn't require Microsoft Entra authentication. | None | Yes |
-| **Microsoft Entra** | Agent authenticates using either its own identity (*agent identity*) or the shared identity of the Foundry project (*project managed identity*). | Agent identity supports production scenarios, but shared identity should be limited to development. | [Disable key-based authentication](functions-mcp-tutorial.md?tabs=mcp-extension#disable-key-based-authentication) and [configure built-in server authorization and authentication](functions-mcp-tutorial.md?tabs=mcp-extension#enable-built-in-server-authorization-and-authentication). | Project managed (shared) identity |
-| **OAuth identity passthrough** | Agent prompts users to sign in and authorize access, using the provided token to authenticate. | Production when each user must authenticate with their own identity and user context must be persisted. | [Disable key-based authentication](functions-mcp-tutorial.md?tabs=mcp-extension#disable-key-based-authentication) and [configure built-in server authorization and authentication](functions-mcp-tutorial.md?tabs=mcp-extension#enable-built-in-server-authorization-and-authentication). | Yes |
-| **Unauthenticated access** | Agent makes unauthenticated calls. | During development or when your MCP server accesses only public information. | [Disable key-based authentication](functions-mcp-tutorial.md?tabs=mcp-extension#disable-key-based-authentication). | Yes |
+| **Key-based**<sup>*</sup> | Agent authenticates by passing a shared [function access key](./function-keys-how-to.md) in the request header. This method is the default authentication for HTTP endpoints in Functions. | Use during development or when the MCP server doesn't require Microsoft Entra authentication. | None | Yes |
+| **Microsoft Entra** | Agent authenticates using either its own identity (*agent identity*) or the shared identity of the Foundry project (*project managed identity*). | Use agent identity for production scenarios, but limit shared identity to development. | [Disable key-based authentication](functions-mcp-tutorial.md?tabs=mcp-extension#disable-key-based-authentication) and [configure built-in server authorization and authentication](functions-mcp-tutorial.md?tabs=mcp-extension#enable-built-in-server-authorization-and-authentication). | Project managed (shared) identity |
+| **OAuth identity passthrough** | Agent prompts users to sign in and authorize access, using the provided token to authenticate. | Use in production when each user must authenticate with their own identity and user context must be persisted. | [Disable key-based authentication](functions-mcp-tutorial.md?tabs=mcp-extension#disable-key-based-authentication) and [configure built-in server authorization and authentication](functions-mcp-tutorial.md?tabs=mcp-extension#enable-built-in-server-authorization-and-authentication). | Yes |
+| **Unauthenticated access** | Agent makes unauthenticated calls. | Use during development or when your MCP server accesses only public information. | [Disable key-based authentication](functions-mcp-tutorial.md?tabs=mcp-extension#disable-key-based-authentication). | Yes |
 
 <sup>*</sup>Default for Functions-hosted MCP servers.
 
@@ -92,11 +92,11 @@ For more information, see [Work with access keys in Azure Functions](function-ke
 
 Both **Agent Identity** and **Project Managed Identity** use Microsoft Entra authentication. Currently, Functions only supports **Project managed identity**, which requires your server to use built-in authentication and authorization. 
 
-1. Connect a user-assigned managed identity from your function app to your Foundry project. If you don't have a user-assigned managed identity, you must [first create one](../app-service/overview-managed-identity.md#add-a-user-assigned-identity).
+1. Connect a user-assigned managed identity from your function app to your Foundry project. If you don't have a user-assigned managed identity, [first create one](../app-service/overview-managed-identity.md#add-a-user-assigned-identity).
 
-    1. In the [Azure portal](https://portal.azure.com), search for `Foundry` and in Microsoft Foundry select your Foundry resource from **All resources**.
+    1. In the [Azure portal](https://portal.azure.com), search for `Foundry`. In Microsoft Foundry, select your Foundry resource from **All resources**.
     
-    1. In **Resource management** > **Identity** > **User assigned** select **+ Add**, select the user-assigned managed identity used by your function app, and then select **Add**.   
+    1. In **Resource management** > **Identity** > **User assigned**, select **+ Add**. Select the user-assigned managed identity used by your function app, and then select **Add**.   
     
     1. Select the newly added identity and copy the **Client ID** value. 
     
@@ -170,7 +170,7 @@ When you choose to use a different authentication method than the default key-ba
 
 ### [MCP extension server](#tab/mcp-extension/key-based)
 
-When you are using the default key-based authentication, no changes are required.
+When you use the default key-based authentication, no changes are required.
 
 ### [MCP extension server](#tab/mcp-extension/entra)
 
@@ -229,7 +229,7 @@ To connect to your MCP server endpoint:
     | **Authentication** | The authentication method to use. | `Key-based` |
     | **Credential** | The key-value pair to authenticate with your function app. | `x-functions-key`: `aaaaaaaa-0b0b-1c1c-2d2d-333333333333` |
 
-1. Select **Connect** to create a connection to your MCP server endpoint. You should now see your server name listed under **Tools**. 
+1. Select **Connect** to create a connection to your MCP server endpoint. You see your server name listed under **Tools**. 
 
 1. Select **Save** to save the MCP tool configuration in your agent.
 
@@ -257,7 +257,7 @@ To connect to your MCP server endpoint:
     | **Type** | The identity type the agent uses to authenticate. | `Project Managed Identity` |
     | **Audience** | The Application ID URI of your function app's Entra registration. This value tells the identity provider which app the token is intended for. | `api://00001111-aaaa-2222-bbbb-3333cccc4444` |
 
-1. Select **Connect** to create a connection to your MCP server endpoint. You should now see your server name listed under **Tools**.
+1. Select **Connect** to create a connection to your MCP server endpoint. You see your server name listed under **Tools**.
 
 1. Select **Save** to save the MCP tool configuration in your agent.
 
