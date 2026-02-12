@@ -27,7 +27,7 @@ Resource limits are interrelated and tuned to work together. They prevent any si
 
 ## Changes to service limits - 2026 update
 
-Starting in March 2026, Azure API Management is phasing in updated resource limits for instances across all tiers. These updates align with each tier's capabilities and help customers choose the right option for their needs.
+Starting in March 2026, Azure API Management is phasing in updated resource limits for instances across all tiers over several months. These updates align with each tier's capabilities and help customers choose the right option for their needs.
 
 [!INCLUDE [api-management-service-limits](../../includes/api-management-service-limits.md)]
 
