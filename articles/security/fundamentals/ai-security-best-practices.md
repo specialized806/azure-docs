@@ -45,7 +45,7 @@ Before you can secure AI workloads, you need visibility into what AI application
 Azure OpenAI Service provides REST API access to powerful language models. Securing these deployments is critical for protecting your data and preventing misuse.
 
 **Best practice**: Use private endpoints for network isolation.
-**Detail**: Configure Azure OpenAI Service to use private endpoints, removing the public endpoint and restricting access to your virtual network. For more information, see [Configure Azure OpenAI Service with private endpoints](/azure/ai-services/openai/how-to/private-endpoints).
+**Detail**: Configure Azure OpenAI Service to use private endpoints, removing the public endpoint and restricting access to your virtual network. For more information, see [Network and access configuration for Azure OpenAI](/azure/ai-foundry/openai/how-to/on-your-data-configuration).
 
 **Best practice**: Use managed identity for authentication.
 **Detail**: Configure applications to authenticate using Microsoft Entra managed identities instead of API keys, eliminating the need to manage and rotate secrets. For more information, see [Configure Azure OpenAI Service with Microsoft Entra ID authentication](/azure/ai-services/openai/how-to/managed-identity).
@@ -63,7 +63,7 @@ For more information, see [Content filtering](/azure/ai-services/openai/concepts
 **Detail**: Design system prompts that clearly define the model's role, include explicit instructions to reject malicious inputs, and instruct the model to prioritize system instructions over user inputs. Use spotlighting techniques to isolate untrusted data within prompts and integrate [Prompt Shields](/azure/ai-services/content-safety/concepts/jailbreak-detection) to detect jailbreak attempts.
 
 **Best practice**: Monitor usage with diagnostic logs.
-**Detail**: Enable diagnostic logging to track API requests, token usage, content filtering results, and errors. Send logs to Azure Monitor for analysis and alerting. For more information, see [Monitor Azure OpenAI Service](/azure/ai-services/openai/how-to/monitor).
+**Detail**: Enable diagnostic logging to track API requests, token usage, content filtering results, and errors. Send logs to Azure Monitor for analysis and alerting. For more information, see [Monitor Azure OpenAI](/azure/ai-foundry/openai/how-to/monitor-openai).
 
 ## Secure Azure AI Foundry and Azure Machine Learning
 
@@ -73,13 +73,13 @@ Azure AI Foundry and Azure Machine Learning provide platforms for building and d
 **Detail**: Create Azure AI Foundry hubs and Azure Machine Learning workspaces with managed virtual networks that provide private endpoints for dependent services and outbound traffic control. For more information, see [Managed network isolation for Azure AI Foundry](/azure/ai-studio/how-to/configure-managed-network) and [Configure a private endpoint for Azure Machine Learning](/azure/machine-learning/how-to-configure-private-link).
 
 **Best practice**: Implement least-privilege access control.
-**Detail**: Configure RBAC using built-in roles and assign permissions at the project or workspace level. Use Microsoft Entra Agent ID for AI agent identity management, applying scoped, short-lived tokens for agent function access. For more information, see [Role-based access control in Azure AI Foundry](/azure/ai-studio/concepts/rbac-azure-ai-studio).
+**Detail**: Configure RBAC using built-in roles and assign permissions at the project or workspace level. Use Microsoft Entra Agent ID for AI agent identity management, applying scoped, short-lived tokens for agent function access. For more information, see [Role-based access control for Microsoft Foundry](/azure/ai-foundry/concepts/rbac-foundry).
 
 **Best practice**: Deploy only approved AI models.
 **Detail**: Use Azure Machine Learning model registry to track model provenance, verification status, and approval history. Configure automated scanning to validate model integrity and test against adversarial inputs before deployment. Deploy the "[Preview]: Azure Machine Learning Deployments should only use approved Registry Models" Azure Policy to enforce governance. For more information, see [Model management and deployment](/azure/machine-learning/concept-model-management-and-deployment).
 
 **Best practice**: Secure compute resources.
-**Detail**: Configure compute instances without public IPs, use managed identity authentication, enable user isolation for shared clusters, and encrypt disks with customer-managed keys. For more information, see [Compute isolation](/azure/machine-learning/concept-compute-isolation).
+**Detail**: Configure compute instances without public IPs, use managed identity authentication, enable user isolation for shared clusters, and encrypt disks with customer-managed keys. For more information, see [Secure an Azure Machine Learning training environment](/azure/machine-learning/how-to-secure-training-vnet).
 
 ## Implement AI-specific threat protection
 
@@ -127,4 +127,3 @@ AI applications must comply with regulatory requirements and organizational poli
 - Learn about the [AI shared responsibility model](shared-responsibility-ai.md)
 - Review [Microsoft Cloud Security Benchmark v2 - Artificial Intelligence Security](/security/benchmark/azure/mcsb-v2-artificial-intelligence-security)
 - Explore [Security for AI](/security/security-for-ai/) for comprehensive AI security guidance
-- Learn about [Secure Foundations Initiative (SFI)](/security/zero-trust/sfi/security-pillars) security principles
