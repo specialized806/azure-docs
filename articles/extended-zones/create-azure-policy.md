@@ -50,9 +50,7 @@ For this example, we created an Allowed Locations policy that restricts the loca
 | Category | Use an existing category or create one (for example, *Governance* or *Networking*). |
 
 
-1. Next, define the Policy Rule. Policy rules are written in JSON using an **`if` / `then`** structure and evaluate against the Azure Resource Manager (ARM) representation of resources.
-
-In the **Policy rule** section, for this example, enter the following JSON code to create a policy that denies the creation of resources in locations other than an Azure Extended Zone:
+5. Next, define the Policy Rule. In the **Policy rule** section, for this example, enter the following JSON code to create a policy that denies the creation of resources in locations other than an Azure Extended Zone:
 
 ```json
 {
@@ -95,10 +93,10 @@ In the **Policy rule** section, for this example, enter the following JSON code 
 }
 ```
 In this example, replace `losangeles` with the name of the Extended Zone location you have access to. You can find the location name in the Azure portal when deploying resources in the Extended Zone, or by using Azure CLI or PowerShell.
-    > [!NOTE]
-    > The **extendedlocation.name** or similar Extended Zone-specific fields may be highlighted  as errors in the json editor. However, you can still successfully save, deploy and enforce the policy with these fields included. 
+> [!NOTE]
+> The **extendedlocation.name** or similar Extended Zone-specific fields may be highlighted  as errors in the json editor. You may disregard this, as you can still successfully save, deploy and enforce the policy with these fields included. 
 
-1. Select **Save** to create the policy definition.
+6. Select **Save** to create the policy definition.
 
 
 ## Policy management and monitoring
