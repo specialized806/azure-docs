@@ -27,9 +27,10 @@ Ensure you have the correct permissions to create a project using the following 
 
 1. In the Azure portal, open the relevant subscription, and select **Access control (IAM)**.
 2. In **Check access**, find the relevant account, and select it and view permissions. You should have *Azure Migrate Owner* or a role with higher permissions. [Learn more](prepare-azure-accounts.md). 
- > [!Note]
- > Starting November 2025, only users assigned the **Azure Migrate Owner** or a higher privileged role will be able to create Azure Migrate projects. Users without these role assignments will no longer have the required permissions to create new projects.
-> For detailed subscription, role, and account requirements, see [Prepare Azure accounts for Azure Migrate](prepare-azure-accounts.md).
+
+ > [!NOTE]
+ > - Starting November 2025, only users assigned the **Azure Migrate Owner** or a higher privileged role will be able to create Azure Migrate projects. Users without these role assignments will no longer have the required permissions to create new projects.
+> - For detailed subscription, role, and account requirements, see [Prepare Azure accounts for Azure Migrate](prepare-azure-accounts.md).
 
 ::: moniker range="migrate"
 
