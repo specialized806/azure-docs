@@ -20,14 +20,13 @@ OpenTelemetry (OTEL) data flow endpoints send metrics and logs to OpenTelemetry 
 
 This guide describes how to create and configure an OpenTelemetry dataflow endpoint to export device and asset data from your MQTT broker to an OpenTelemetry collector. The article describes the *OTEL dataflow endpoint*, which routes device and asset data from the MQTT broker to external OTEL collectors. You can also send device and asset data to observability endpoints using the OpenTelemetry dataflow endpoint if you want to route telemetry to platforms like Grafana or Azure Monitor.
  
-If you need to monitor the health and performance of Azure IoT Operations itself, see [Configure observability and monitoring](../configure-observability-monitoring/howto-configure-observability.md).
+This feature is for routing device and asset data, not for collecting Azure IoT Operations component health metrics or logs. For cluster observability (monitoring the health of the MQTT broker, dataflow components, etc.), see [Configure observability and monitoring](../configure-observability-monitoring/howto-configure-observability.md).
 
 ## Prerequisites
 
-- An instance of [Azure IoT Operations](../deploy-iot-ops/howto-deploy-iot-operations.md)
-- An OpenTelemetry collector deployed and accessible from your Azure IoT Operations cluster
-- Administrative access to your Azure IoT Operations cluster
-- Basic familiarity with observability concepts
+- An instance of [Azure IoT Operations](../deploy-iot-ops/howto-deploy-iot-operations.md).
+- An OpenTelemetry collector deployed and accessible from your Azure IoT Operations cluster.
+- Administrative access to your Azure IoT Operations cluster.
 
 ## Terminology
 
@@ -42,8 +41,6 @@ If you need to monitor the health and performance of Azure IoT Operations itself
 
 OpenTelemetry endpoints enable you to export device and asset telemetry data from Azure IoT Operations dataflows to OpenTelemetry collectors using the OpenTelemetry Protocol (OTLP). This allows you to integrate device and system telemetry into your existing observability infrastructure.
 
-This feature is for routing device and asset data, not for collecting Azure IoT Operations component health metrics or logs. For cluster observability (monitoring the health of the MQTT broker, dataflow components, etc.), see [Configure observability and monitoring](../configure-observability-monitoring/howto-configure-observability.md).
-
 In Azure IoT Operations, OpenTelemetry enables you to:
 
 - Export device and asset telemetry as OTEL metrics: send sensor readings, production data, or equipment status to observability platforms.
@@ -51,7 +48,7 @@ In Azure IoT Operations, OpenTelemetry enables you to:
 - Collect and export telemetry data to your preferred observability platform.
 - Integrate with existing observability pipelines: send data to any OTLP-compatible backend (Grafana, Prometheus, Azure Monitor, Datadog).
 
-OTEL dataflow endpoints are first‑class endpoints in Azure IoT Operations. They appear in the list of available dataflow endpoints and can be selected when configuring modern dataflow graphs. This makes it straightforward to route telemetry to OTEL‑compatible backends while keeping a consistent configuration experience.
+OTEL dataflow endpoints are first‑class endpoints in Azure IoT Operations. They appear in the list of available dataflow endpoints in the Operations experience portal, and can be selected when configuring modern dataflow graphs. This makes it straightforward to route telemetry to OTEL‑compatible backends while keeping a consistent configuration experience.
 
 ### Common scenarios
 
@@ -75,7 +72,7 @@ The JSON payload must use this top-level structure:
 }
 ```
 
-At least one value of `metrics` or `logs` must be present.
+At least one `metrics` or `logs` value must be present.
 
 All incoming messages are validated against the required schema. Messages that fail validation are dropped, acknowledged back to the broker, and logged for troubleshooting. Common validation failures include missing required fields, invalid data types, unsupported metric types or log levels, and malformed timestamps. If MQTT messages include expiration timestamps, expired messages are filtered out before processing.
 
@@ -536,7 +533,7 @@ OTEL dataflow endpoints can be selected as destinations in modern dataflow graph
 
 :::image type="content" source="media/open-telemetry/dataflow-graphs-destination.png" alt-text="Screenshot showing endpoint destination properties.":::
 
-## Walkthrough: Configure OTEL dataflow endpoint
+## Walkthrough: Configure an OTEL dataflow endpoint
 
 This section provides a step‑by‑step walkthrough to create and configure an OTEL dataflow endpoint in Azure IoT Operations.
 
