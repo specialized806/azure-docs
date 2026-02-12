@@ -129,9 +129,7 @@ When you build workflows to use as MCP tools, review these considerations and be
 
 To help agents or models find and run tools, add the following metadata to the **Request** trigger and request payloads. This metadata improves the agent's reliability and accuracy when using tools.
 
-> [!NOTE]
->
-> The following steps use the Azure portal, but you can alternatively use Visual Studio Code.
+The steps in this section use the Azure portal, but you can alternatively use Visual Studio Code.
 
 - Trigger description
 
