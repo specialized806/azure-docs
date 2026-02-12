@@ -11,7 +11,7 @@ ms.custom:
   - ai-seo-date:04/18/2025
   - ai-usage: ai-assisted
 ms.topic: how-to
-ms.date: 02/06/2026
+ms.date: 02/11/2026
 
 #customer intent: As a Dev Center admin or project admin, I want to create image definition files so that my development teams can create customized dev boxes.
 ---
@@ -252,54 +252,6 @@ Dev Box applies customizations as the final stage of creation. You receive an em
 1. On the **Customization details** pane, confirm the customizations that were applied to the dev box.
 
 If the customizations aren't applied as expected, make changes to your image definition file and create a new dev box to test them. When the customizations are correct, [build a reusable image](how-to-configure-dev-center-imaging.md) to optimize dev box creation time.
-
-## Try it: Use the example catalog
-
-To quickly try team customizations, use the Microsoft-provided example catalog that contains sample image definitions for a frontend and backend development environment.
-
-### Fork the example repository
-
-1. Open the [example catalog repository](https://aka.ms/devcenter/preview/imaging/examples/repo).
-
-1. Select **Fork** > **Create a new fork** to fork the repository to your GitHub organization.
-
-### Add the example catalog to your project
-
-1. In the [Azure portal](https://portal.azure.com), navigate to your project and select **Catalogs** > **Add**.
-
-1. On the **Add catalog** pane:
-
-   | Field | Value |
-   |-----|-----|
-   | **Name** | Enter a name for the catalog (for example, *example-catalog*). |
-   | **Catalog source** | Select **GitHub**. |
-   | **Authentication type** | Select **GitHub app**. |
-
-1. Select the **configure your repositories** link and authenticate to GitHub if prompted.
-
-1. On the **Microsoft DevCenter** page, select **Configure**, then select your GitHub organization.
-
-1. Select **Only select repositories**, choose your forked repository, and select **Save**.
-
-1. Back in the Azure portal, select **Sign in with GitHub**.
-
-1. Complete the catalog configuration:
-
-   | Field | Value |
-   | ----- | ----- |
-   | **Repo** | Select your forked repository. |
-   | **Branch** | Select *main*. |
-   | **Folder path** | Enter the path to image definitions (for example, *.devcenter/catalog/image-definitions*). |
-
-1. Select **Add**.
-
-1. Verify the catalog shows **Sync successful** status, then check **Image definitions** to see the available definitions.
-
-### Create a pool and dev box from the example
-
-1. Create a dev box pool using one of the example image definitions (such as *frontend-dev* or *backend-dev*).
-
-1. Create a dev box from the pool and verify the customizations are applied.
 
 [!INCLUDE [customizations-modular-scripts](includes/customizations-modular-scripts.md)]
 
