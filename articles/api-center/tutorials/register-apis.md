@@ -77,7 +77,7 @@ The following steps register two sample APIs: Swagger Petstore API and Conferenc
 
 The APIs appear on the **Assets** page in the portal. If you add a large number of APIs to the API center, use the search box and filters on this page to find the APIs you want.
 
-:::image type="content" source="./media/register-apis/apis-page.png" alt-text="Screenshot of the APIs page in the portal." lightbox="./media/register-apis/apis-page.png":::
+<!-- :::image type="content" source="./media/register-apis/apis-page.png" alt-text="Screenshot of the APIs page in the portal." lightbox="./media/register-apis/apis-page.png"::: -->
 
 After registering an API, you can view or edit the API's properties. On the **Assets** page, select the API to see pages to manage the API registration. 
 
