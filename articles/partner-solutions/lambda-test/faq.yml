@@ -24,7 +24,7 @@ sections:
 
       - question: What benefits do I get by using it through Azure?
         answer: |
-          You create and manage the resource in the Azure portal, use Azure identity and authorization controls, and get unified billing through Azure Marketplace. LambdaTest operates the SaaS application and the resources you create.
+          You create and manage the resource in the Azure portal, use Azure identity and authorization controls, and get unified billing through Azure Marketplace.
 
   - name: Resource creation
     questions:
