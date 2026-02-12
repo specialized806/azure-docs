@@ -87,7 +87,7 @@ At this point, your IoT Hub with ADR integration and certificate management is s
 
 **New**: Certificate management is supported across select [DPS Device SDKs](../iot-dps/libraries-sdks.md#device-sdks). You can now onboard devices using Microsoft-backed X.509 certificate management with the following SDK samples:
 
-- [DPS Device SDKs](../iot-dps/libraries-sdks.md#certificate-management-device-sdks-oreview)
+- [DPS Device SDKs](../iot-dps/libraries-sdks.md#certificate-management-device-sdks-preview)
 - [Embedded Device SDKs](../iot-dps/libraries-sdks.md#certificate-management-embedded-device-sdks-preview)
 
 
