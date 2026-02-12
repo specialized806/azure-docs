@@ -4,7 +4,7 @@ description: Learn how to run a disaster recovery drill from an Azure VMware Sol
 author: Jeronika-MS
 ms.service: azure-site-recovery
 ms.topic: tutorial
-ms.date: 02/19/2024
+ms.date: 02/12/2026
 ms.author: v-gajeronika
 ms.custom: MVC
 
