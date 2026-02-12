@@ -117,6 +117,7 @@ Microsoft provides detailed playbooks for common attack scenarios:
 | [Phishing investigation](/security/operations/incident-response-playbook-phishing) | Investigate phishing attacks |
 | [Password spray investigation](/security/operations/incident-response-playbook-password-spray) | Respond to password spray attacks |
 | [App consent grant investigation](/security/operations/incident-response-playbook-app-consent) | Investigate malicious OAuth consent grants |
+| [Compromised and malicious applications](/security/operations/incident-response-playbook-compromised-malicious-app) | Investigate compromised or malicious applications |
 | [Token theft](/security/operations/token-theft-playbook) | Investigate token theft attacks |
 
 For more playbooks, see [Incident response playbooks](/security/operations/incident-response-playbooks).
