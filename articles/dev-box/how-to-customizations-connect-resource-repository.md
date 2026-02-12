@@ -30,9 +30,9 @@ To use a secret, like a PAT, in your customization files, store it as a key vaul
 
 ### Configure key vault access for customizations
 
-To configure key vault secrets for use in your team or user customizations, make sure the Dev Center project's managed identity has the Key Vault Secrets User role on your key vault.
+Your dev center needs access to your key vault. To configure key vault secrets for use in your team or user customizations, make sure the Dev Center project's managed identity has the Key Vault Secrets User role on your key vault.
 
-If your organization's policies require you to keep your Key Vault private from the internet, you can create a firewall rule to disable or limit public access. You will need to let trusted Microsoft services bypass the firewall because Dev Center doesn't yet support service tags. Key vaults with private endpoints or private link integration are not currently supported for this scenario.
+If your organization's policies require you to keep your Key Vault private from the internet, you can create a firewall rule to disable or limit public access. You will need to let trusted Microsoft services bypass the firewall because Dev Center doesn't support service tags. Key vaults with private endpoints or private link integration are not currently supported for this scenario.
 
 The following screenshot shows the option to allow trusted Microsoft services to bypass the firewall in Azure Key Vault settings.
 

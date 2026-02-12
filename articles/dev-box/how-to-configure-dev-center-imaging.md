@@ -127,6 +127,8 @@ During the image build process, Dev Box creates a temporary storage account in y
 > [!IMPORTANT]
 > When an image is built from an image definition, a dev box is created to apply all the customizations and generate an image. By default, if no custom network is configured at the image definition level, the dev box is connected to a virtual network that Microsoft manages. Use the [network configuration](./reference-dev-box-customizations.md#networkconnection) property in image definitions for tasks that need access to on-premises or private resources to ensure that image generation is successful.
 
+
+
 ## Configure a dev box pool to use an image definition
 
 To use an image definition, you must configure a dev box pool to reference it. When developers create dev boxes from the pool, the customizations from the image definition are applied automatically.
