@@ -13,7 +13,7 @@ ms.custom: H1Hack27Feb2017, linux-related-content
 # Customer intent: As a database administrator, I want to deploy Oracle Database for SAP workloads on Azure, so that I can optimize performance and ensure compatibility with SAP application requirements.
 ---
 
-# Azure Virtual Machines Oracle database deployment for SAP workload
+# Azure virtual machines Oracle database deployment for SAP workload
 
 This document covers several different areas to consider when deploying Oracle Database for SAP workload in Azure IaaS. Before you read this document, we recommend you read [Considerations for Azure Virtual Machines DBMS deployment for SAP workload](./dbms-guide-general.md). We also recommend that you read other guides in the [SAP workload on Azure documentation](./get-started.md).
 
