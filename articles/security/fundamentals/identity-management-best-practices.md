@@ -166,7 +166,7 @@ Following are options and benefits for enabling multifactor authentication:
 * Require MFA challenge via Microsoft Authenticator for all users
 * Restrict legacy authentication protocols.
 
-This method is available to all licensing tiers but is not able to be mixed with existing Conditional Access policies. You can find more information in [Microsoft Entra Security Defaults](/entra/fundamentals/concept-fundamentals-security-defaults)
+This method is available to all licensing tiers but is not able to be mixed with existing Conditional Access policies. You can find more information in [Microsoft Entra Security Defaults](/entra/fundamentals/security-defaults)
 
 **Option 2**: [Enable multifactor authentication by changing user state](/entra/identity/authentication/howto-mfa-userstates).   
 **Benefit**: This is the traditional method for requiring two-step verification. It works with both [Microsoft Entra multifactor authentication in the cloud and Azure Multi-Factor Authentication Server](/entra/identity/authentication/concept-mfa-howitworks). Using this method requires users to perform two-step verification every time they sign in and overrides Conditional Access policies.
@@ -334,7 +334,7 @@ An active identity monitoring system can quickly detect suspicious behavior and 
 - Sign-ins from [infected devices](/entra/identity/monitoring-health/howto-access-activity-logs).
 - Suspicious IP addresses.
 
-**Detail**: Use Microsoft Entra ID P1 or P2 [anomaly reports](/entra/identity/monitoring-health/overview-reports). Have processes and procedures in place for IT admins to run these reports on a daily basis or on demand (usually in an incident response scenario).
+**Detail**: Use Microsoft Entra ID P1 or P2 [anomaly reports](/entra/identity/monitoring-health/howto-access-activity-logs). Have processes and procedures in place for IT admins to run these reports on a daily basis or on demand (usually in an incident response scenario).
 
 **Best practice**: Have an active monitoring system that notifies you of risks and can adjust risk level (high, medium, or low) to your business requirements.   
 **Detail**: Use [Microsoft Entra ID Protection](/entra/id-protection/overview-identity-protection), which flags the current risks on its own dashboard and sends daily summary notifications via email. To help protect your organization's identities, you can configure risk-based policies that automatically respond to detected issues when a specified risk level is reached.

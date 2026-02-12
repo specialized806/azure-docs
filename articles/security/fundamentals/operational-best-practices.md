@@ -40,7 +40,7 @@ Following are options and benefits for enabling two-step verification:
 * Require MFA challenge via Microsoft Authenticator for all users
 * Restrict legacy authentication protocols.
 
-This method is available to all licensing tiers but is not able to be mixed with existing Conditional Access policies. You can find more information in [Microsoft Entra Security Defaults](/entra/fundamentals/concept-fundamentals-security-defaults)
+This method is available to all licensing tiers but is not able to be mixed with existing Conditional Access policies. You can find more information in [Microsoft Entra Security Defaults](/entra/fundamentals/security-defaults)
 
 **Option 2**: [Enable multifactor authentication by changing user state](/entra/identity/authentication/howto-mfa-userstates).   
 **Benefit**: This is the traditional method for requiring two-step verification. It works with both [Microsoft Entra multifactor authentication in the cloud and Azure Multi-Factor Authentication Server](/entra/identity/authentication/concept-mfa-howitworks). Using this method requires users to perform two-step verification every time they sign in and overrides Conditional Access policies.
