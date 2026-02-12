@@ -44,7 +44,7 @@ Before you begin:
 * Review the [architecture for VMware](vmware-azure-architecture.md) disaster recovery.
 * Read [common questions for VMware](vmware-azure-common-questions.md).
 
-If you create a free Azure account, you're the administrator of your subscription and you have the necessary permissions. If you're not the subscription administrator, work with the administrator to assign the necessary permissions. To enable replication for a new virtual machine, you need permission to:
+If you just created your free Azure account, you're the administrator of your subscription and you have the necessary permissions. If you're not the subscription administrator, work with the administrator to assign the necessary permissions. To enable replication for a new virtual machine, you need permission to:
 
 * Create a VM in the selected resource group.
 * Create a VM in the selected virtual network.
@@ -58,7 +58,7 @@ To complete these tasks, your account should be assigned the Virtual Machine Con
 1. In the [Azure portal](https://portal.azure.com), select **Create a resource**.
 1. Search Azure Marketplace for **Recovery Services**.
 1. Select **Backup and Site Recovery** from the search results. Then, select **Create**.
-1. On **Create Recovery Services vault**, on the **Basics** tab, complete the following steps:
+1. On **Create Recovery Services vault**, on the **Basics** tab, do the following:
 
     1. For **Subscription**, select the subscription where you want to create the Recovery Services vault.
     1. For **Resource group**, select an existing resource group or create a new one. For example, create one named **contosoRG**.
@@ -89,8 +89,8 @@ Azure VMware Solution VMs replicate to Azure managed disks. When failover occurs
 
     :::image type="Protection state" source="media/tutorial-prepare-azure/create-network.png" alt-text="Screenshot of basic options for creating a virtual network.":::
 
-1. On the **IP addresses** tab, complete the following steps:
-    1. Because there's no subnet for this network, first delete the pre-existing address range. Select the ellipsis (**...**) for the available IP address range, and then select **Delete address space**.
+1. On the **IP addresses** tab, do the following:
+    1. Because there's no subnet for this network, you first delete the pre-existing address range. To delete the address range, select the ellipsis (**...**) for the available IP address range, and then select **Delete address space**.
 
        :::image type="Protection state" source="media/tutorial-prepare-azure/delete-ip-address.png" alt-text="Screenshot of selections for deleting an address space.":::
     1. Select **Add an IP address space**.
@@ -114,4 +114,4 @@ Learn more about:
 
 - [Preparing your infrastructure](avs-tutorial-prepare-avs.md)
 - [Azure networks](../virtual-network/virtual-networks-overview.md)
-- [Managed disks](/azure/virtual-machines/managed-disks-overview).
+- [Managed disks](/azure/virtual-machines/managed-disks-overview)

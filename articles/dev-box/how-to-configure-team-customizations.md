@@ -206,6 +206,9 @@ Set up your project to sync image definitions from the catalog. This setting let
 
 To use an image definition file, attach the catalog containing the file to your project. This makes the image definition available for selection when configuring your dev box pools.
 
+> [!NOTE]
+> Image definitions are only supported at the project level. You must attach catalogs containing image definitions to a project, not to a dev center.
+
 The **Image definitions** pane shows the image definitions your project can use.
 
 :::image type="content" source="media/how-to-configure-team-customizations/team-customizations-image-definitions-small.png" alt-text="Screenshot of the Azure portal pane showing image definitions available for a project.":::

@@ -1,11 +1,11 @@
 ---
 title: Troubleshoot error ID 78144 - No app-consistent recovery point available for the VM in the last 'XXX' minutes
 description: This article provides troubleshooting information for error ID 78144 - No app-consistent recovery point available for the VM in the last 'XXX' minutes.
-author: jyothisuri
 ms.service: azure-site-recovery
 ms.topic: troubleshooting
-ms.date: 09/23/2025
-ms.author: jsuri
+ms.date: 12/09/2025
+author: Jeronika-MS
+ms.author: v-gajeronika 
 
 # Customer intent: As a cloud operations manager, I want to troubleshoot replication issues of VMware VMs and physical servers to Azure, so that I can ensure consistent disaster recovery performance and maintain business continuity.
 ---

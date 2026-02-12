@@ -129,6 +129,8 @@
       href: protect-with-ddos-protection.md
     - name: Configure Front Door
       href: front-door-api-management.md
+    - name: Access resource protected by network security perimeter
+      href: using-network-security-perimeter.md
   - name: Configuration management
     items:
     - name: Landing zone accelerator
@@ -260,8 +262,8 @@
       href: amazon-bedrock-passthrough-llm-api.md
     - name: Semantic caching for LLM API requests
       href: azure-openai-enable-semantic-caching.md
-    - name: Authenticate and authorize to Azure OpenAI
-      href: api-management-authenticate-authorize-azure-openai.md
+    - name: Authenticate and authorize to LLM APIs
+      href: api-management-authenticate-authorize-ai-apis.md
     - name: Log LLM tokens, requests, and responses
       href: api-management-howto-llm-logs.md
   - name: Manage AI tools and agents
@@ -291,6 +293,16 @@
   - name: Reuse policy configurations
     displayName: policy fragments
     href: policy-fragments.md
+  - name: Build advanced execution pipeline
+    items:
+      - name: Architecture using policy fragments
+        href: fragment-pipeline-architecture.md
+      - name: Variable management in execution pipeline
+        href: fragment-variable-management.md
+      - name: Central metadata cache for policy fragments
+        href: fragment-metadata-cache.md
+      - name: Policy fragment injection and coordination
+        href: fragment-policy-coordination.md
   - name: Error handling
     href: api-management-error-handling-policies.md
   - name: Advanced monitoring
@@ -364,6 +376,7 @@
     href: api-management-howto-ca-certificates.md
   - name: Manage protocols and ciphers
     href: api-management-howto-manage-protocols-ciphers.md
+    displayName: TLS, TLS 1.3
   - name: Protect with Defender for APIs
     href: protect-with-defender-for-apis.md
   - name: Mitigate OWASP API threats

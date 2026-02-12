@@ -42,18 +42,18 @@ Map networks as follows:
 
 ## Map networks when you enable replication
 
-If you don't prepare network mapping before you configure disaster recovery for Azure virtual machines, you can specify a target network when you [set up and enable replication](azure-to-azure-how-to-enable-replication.md). When you specify a target network, the following actions occur:
+If you don't prepare network mapping before you configure disaster recovery for Azure virtual machines, you can specify a target network when you [set up and enable replication](azure-to-azure-how-to-enable-replication.md). When you specify a target network, the following happens:
 
 - Based on the target you select, Site Recovery automatically creates network mappings from the source to target region, and from the target to source region.
 - By default, Site Recovery creates a network in the target region that's identical to the source network. Site Recovery adds **-asr** as a suffix to the name of the target network. You can customize the target network. For example, if the source network name was *contoso-vnet*, then the target network is named *contoso-vnet-asr*.
 
 So, if the source network name was "contoso-vnet", the target network name is `contoso-vnet-asr`. Azure Site Recovery doesn't change the source network name.
-- If network mapping already exists for a source network, the mapped target network is always the default when you enable replications for more virtual machines. You can choose to change the target virtual network by choosing other available options from the dropdown.
+- If network mapping already exists for a source network, the mapped target network is always the default at the time of enabling replications for more virtual machines. You can choose to change the target virtual network by choosing other available options from the dropdown.
 - To change the default target virtual network for new replications, you need to modify the existing network mapping.
 - To modify a network mapping from region A to region B, first delete the network mapping from region B to region A. After reverse mapping deletion, modify the network mapping from region A to region B and then create the relevant reverse mapping.
 
 >[!NOTE]
->* Modifying the network mapping only changes the defaults for new virtual machine replications. It doesn't impact the target virtual network selections for existing replications.
+>* Modifying the network mapping changes the defaults for new virtual machine replications. It doesn't impact the target virtual network selections for existing replications.
 >* To modify the target network for an existing replication, go to **Network** Settings of the replicated item.
 
 ## Specify a subnet
@@ -68,24 +68,22 @@ The subnet of the target virtual machine is selected based on the name of the su
 
 ## Set up IP addressing for target virtual machines
 
-You configure the IP address for each NIC on a target virtual machine as follows:
+Configure the IP address for each NIC on a target virtual machine as follows:
 
-- **DHCP**: If the NIC of the source virtual machine uses DHCP, the NIC of the target virtual machine also uses DHCP.
-- **Static IP address**: If the NIC of the source virtual machine uses a static IP address, the target virtual machine NIC also uses a static IP address.
+- **DHCP**: If the NIC of the source virtual machine uses DHCP, set the NIC of the target virtual machine to also use DHCP.
+- **Static IP address**: If the NIC of the source virtual machine uses static IP addressing, the target virtual machine NIC also uses a static IP address.
 
 The same configuration applies to the Secondary IP Configurations.
 
 ## IP address assignment during failover
 
 >[!NOTE]
->The following approach assigns an IP address to the target virtual machine, regardless of the NIC settings.
+> The following approach assigns an IP address to the target virtual machine, regardless of the NIC settings.
 
 **Source and target subnets** | **Details**
 --- | ---
-Same address space | The IP address of the source virtual machine NIC becomes the target virtual machine NIC IP address.<br/><br/> If the IP address isn't available, the next available IP address is set as the target.
-Different address space | The next available IP address in the target subnet becomes the target virtual machine NIC address.
-
-
+Same address space | Use the IP address of the source virtual machine NIC as the target virtual machine NIC IP address.<br/><br/> If the address isn't available, use the next available IP address.
+Different address space | Use the next available IP address in the target subnet as the target virtual machine NIC address.
 
 ## IP address assignment during test failover
 

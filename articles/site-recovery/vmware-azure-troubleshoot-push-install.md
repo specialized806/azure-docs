@@ -1,11 +1,11 @@
 ---
 title: Troubleshoot Mobility Service push installation with Azure Site Recovery
 description: Troubleshoot Mobility Services installation errors when enabling replication for disaster recovery with Azure Site Recovery.
-author: Jeronika-MS
 ms.service: azure-site-recovery
 ms.topic: troubleshooting
-ms.date: 09/25/2025
-ms.author: v-gajeronika
+ms.date: 12/09/2025
+author: Jeronika-MS
+ms.author: v-gajeronika 
 ms.custom: sfi-image-nochange
 # Customer intent: "As a system administrator, I want to troubleshoot and resolve Mobility service installation errors during disaster recovery setup, so that I can ensure successful replication and recovery of virtual machines."
 ---

@@ -63,9 +63,9 @@ Before you run a failover, check the VM properties to make sure that the VMs mee
 ## Run a failover to Azure
 
 1. In **Settings** > **Replicated items**, select the VM that you want to fail over, and then select **Failover**.
-1. In **Failover**, for **Recovery Point**, select a recovery point to fail over to. You can use one of the following options:
+1. In **Failover**, for **Recovery Point**, select a recovery point to fail over to. Use one of the following options:
    * **Latest**: This option first processes all the data sent to Site Recovery. It provides the lowest recovery point objective (RPO) because the Azure VM that's created after failover has all the data that was replicated to Site Recovery when the failover was triggered.
-   * **Latest processed**: This option fails over the VM to the latest recovery point that Site Recovery processed. This option provides a low recovery time objective (RTO) because no time is spent processing unprocessed data.
+   * **Latest processed**: This option fails over the VM to the latest recovery point that Site Recovery processed. This option provides a low recovery time objective (RTO) because the process doesn't spend any time on unprocessed data.
    * **Latest app-consistent**: This option fails over the VM to the latest app-consistent recovery point that Site Recovery processed.
    * **Custom**: This option lets you specify a recovery point.
 
@@ -79,7 +79,7 @@ In some scenarios, failover requires extra processing that takes around 8 to 10 
 * VMware vSphere VMs that don't have the following boot drivers: storvsc, vmbus, storflt, intelide, atapi.
 
 > [!WARNING]
-> Don't cancel a failover in progress. Before failover starts, VM replication stops. If you cancel a failover in progress, failover stops, but the VM doesn't replicate again.
+> Don't cancel a failover in progress. Before failover starts, VM replication stops. If you cancel a failover in progress, failover stops, but the VM won't replicate again.
 
 ## Connect to a failed-over VM
 

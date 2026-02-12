@@ -4,7 +4,7 @@ description: Learn how to prepare Azure VMware Solution servers for disaster rec
 author: Jeronika-MS
 ms.service: azure-site-recovery
 ms.topic: tutorial
-ms.date: 02/12/2026
+ms.date: 02/11/2026
 ms.author: v-gajeronika
 ms.reviewer: v-gajeronika
 ms.custom: MVC, engagement-fy23
@@ -52,7 +52,7 @@ Full replication, failover, failback |  Create a role (Azure_Site_Recovery) with
 
 ## Prepare an account for Mobility service installation
 
-You must install the Mobility service on machines that you want to replicate. Azure Site Recovery can install this service through push installation when you enable replication for a machine. Or, you can install it manually or by using installation tools.
+You must install the Mobility service on machines that you want to replicate. Azure Site Recovery can push-install this service when you enable replication for a machine. Or, you can install it manually or by using installation tools.
 
 In this tutorial, you install the Mobility service by using the push installation. For this push installation, you need to prepare an account that Azure Site Recovery can use to access the VM. You specify this account when you set up disaster recovery in the Azure console.
 
@@ -73,8 +73,7 @@ Make sure that the VMware vCenter server and VMs comply with requirements:
 * Check [network](vmware-physical-azure-support-matrix.md#network) and [storage](vmware-physical-azure-support-matrix.md#storage) support.
 * Check what's supported for [Azure networking](vmware-physical-azure-support-matrix.md#azure-vm-network-after-failover), [storage](vmware-physical-azure-support-matrix.md#azure-storage), and [compute](vmware-physical-azure-support-matrix.md#azure-compute) after failover.
 * Verify that the Azure VMware Solution VMs that you replicate to Azure comply with [Azure VM requirements](vmware-physical-azure-support-matrix.md#azure-vm-requirements).
-* For Linux VMs, ensure that no two devices or mount points have the same names. These names must be unique and aren't case-insensitive. For example, you can't name two devices for the same VM as *device1* and *Device1*.
-
+* For Linux VMs, ensure that no two devices or mount points have the same names. These names must be unique and aren't case-sensitive. For example, you can't name two devices for the same VM as *device1* and *Device1*.
 
 ## Prepare to connect to Azure VMs after failover
 
