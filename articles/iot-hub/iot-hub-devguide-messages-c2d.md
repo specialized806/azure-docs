@@ -47,7 +47,7 @@ The **max delivery count** property on the IoT hub determines the maximum number
 
 ### Understanding delivery count behavior
 
-IoT Hub increments the delivery count **only when your device explicitly abandons a message**. If a message lock expires without explicit completion, rejection, or abandonment, the message returns to the queue without incrementing the delivery count. This behavior means that messages might be redelivered more times than the configured max delivery count.
+IoT Hub increments the delivery count only when your device explicitly abandons a message. If a message lock expires without explicit completion, rejection, or abandonment, the message returns to the queue without incrementing the delivery count. This behavior means that messages might be redelivered more times than the configured max delivery count.
 
 To avoid unexpected message redelivery behavior, consider the following guidance when you design your device code:
 
