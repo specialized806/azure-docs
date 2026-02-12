@@ -1,5 +1,5 @@
 ---
-title: 'Tutorial: Vision with Foundry Tools'
+title: 'Tutorial: Azure Vision in Foundry Tools'
 description: Learn how to use Azure Vision in Foundry Tools in Azure Synapse Analytics.
 ms.service: azure-synapse-analytics
 ms.subservice: machine-learning
@@ -9,7 +9,7 @@ author: ruixinxu
 ms.author: ruxu
 ---
 
-# Tutorial: Vision with Foundry Tools
+# Tutorial: Azure Vision in Foundry Tools
 
 [Azure Vision in Foundry Tools](/azure/ai-services/computer-vision/) is a [Foundry Tool](/azure/ai-services/) that enables you to process images and return information based on the visual features. In this tutorial, you'll learn how to use [Vision](/azure/ai-services/computer-vision/) to analyze images on Azure Synapse Analytics.
 
