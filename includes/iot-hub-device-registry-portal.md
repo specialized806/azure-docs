@@ -107,7 +107,7 @@ Repeat these steps to assign the **Azure Device Registry Contributor** role:
 
 ### Create a custom policy for your namespace
 
-Create custom policies within your ADR namespace to define how certificates are issued and managed for your devices. Policies allow you to set parameters such as certificate validity periods and subjects. Editing or disabling a policy isn't supported in public preview.
+Create custom policies within your ADR namespace to define how certificates are issued and managed for your devices. Policies allow you to set parameters such as certificate validity periods and subjects. Editing or disabling a policy isn't supported in preview.
 
 1. In the [Azure portal](https://portal.azure.com), search for and select **Azure Device Registry**.
 1. Go to the **Namespaces** page.
