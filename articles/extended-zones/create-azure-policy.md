@@ -40,7 +40,7 @@ For this example, we created an Allowed Locations policy that restricts the loca
 
 1. In **Create a policy definition**, fill in the required fields. Use the following table for guidance. 
 
-### Required Fields
+**Required fields:**
 
 | Field | Guidance |
 |------|---------|
