@@ -203,11 +203,7 @@ The steps in this section use the Azure portal, but you can alternatively use Vi
      }
      ```
 
-> [!NOTE]
->
-> If you get inconsistent results when an agent calls and runs your tool, check whether you can make the trigger and parameter descriptions more unique. For example, try describing the format for parameter inputs. If a parameter expects a base64 encoded string, include this detail in the parameter description.
->
-> You can also set up error handling and use the `runAfter` property to return the appropriate error message to the caller. For more information, see [Manage the "run after" behavior](error-exception-handling.md#manage-the-run-after-behavior).
+If you get inconsistent results when an agent calls and runs your tool, check whether you can make the trigger and parameter descriptions more unique. For example, try describing the format for parameter inputs. If a parameter expects a base64 encoded string, include this detail in the parameter description. You can also set up error handling and use the `runAfter` property to return the appropriate error message to the caller. For more information, see [Manage the "run after" behavior](error-exception-handling.md#manage-the-run-after-behavior).
 
 ## Create an app registration
 
