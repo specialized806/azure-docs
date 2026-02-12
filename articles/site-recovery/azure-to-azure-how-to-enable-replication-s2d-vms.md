@@ -13,19 +13,19 @@ ms.service: azure-site-recovery
 
 # Replicate Azure virtual machines running Storage Spaces Direct to another region
 
-This article describes how to enable disaster recovery for Azure virtual machines running storage spaces direct.
+This article describes how to enable disaster recovery for Azure virtual machines running Storage Spaces Direct.
 
 >[!NOTE]
->Only crash-consistent recovery points are supported for storage spaces direct clusters.
+>Only crash-consistent recovery points are supported for Storage Spaces Direct clusters.
 
 
-[Storage spaces direct (S2D)](/windows-server/storage/storage-spaces/deploy-storage-spaces-direct) is software-defined storage, which provides a way to create [guest clusters](https://techcommunity.microsoft.com/t5/failover-clustering/bg-p/FailoverClustering) on Azure.  A guest cluster in Microsoft Azure is a failover cluster comprised of IaaS virtual machines. It allows hosted virtual machine workloads to fail over across guest clusters, achieving higher availability SLA for applications than a single Azure virtual machine can provide. It's useful in scenarios where a virtual machine hosts a critical application like SQL or scale-out file server.
+[Storage Spaces Direct (S2D)](/windows-server/storage/storage-spaces/deploy-storage-spaces-direct) is software-defined storage, which provides a way to create [guest clusters](https://techcommunity.microsoft.com/t5/failover-clustering/bg-p/FailoverClustering) on Azure.  A guest cluster in Microsoft Azure is a failover cluster comprised of IaaS virtual machines. It allows hosted virtual machine workloads to fail over across guest clusters, achieving higher availability SLA for applications than a single Azure virtual machine can provide. It is useful in scenarios where a virtual machine hosts a critical application like SQL or scale-out file server.
 
-## Disaster recovery with storage spaces direct
+## Disaster recovery with Storage Spaces Direct
 
-In a typical scenario, you might use virtual machines in a guest cluster on Azure for higher resiliency of your application like Scale out file server. While this configuration can provide your application higher availability, you need to protect these applications by using Site Recovery for any region level failure. Site Recovery replicates the data from one region to another Azure region and brings up the cluster in disaster recovery region in an event of failover.
+In a typical scenario, you use virtual machines in a guest cluster on Azure to provide higher resiliency for your application, such as a scale-out file server. While this configuration provides higher availability for your application, you also want to protect these applications by using Site Recovery for any region level failure. Site Recovery replicates the data from one region to another Azure region and brings up the cluster in disaster recovery region in an event of failover.
 
-The following diagram shows a two-node Azure virtual machine failover cluster using storage spaces direct.
+The following diagram shows a two-node Azure virtual machine failover cluster using Storage Spaces Direct.
 
 :::image type="content" source="./media/azure-to-azure-how-to-enable-replication-s2d-vms/storagespacedirect.png" alt-text="Screenshot of storage spaces.":::
 
@@ -35,10 +35,10 @@ The following diagram shows a two-node Azure virtual machine failover cluster us
 - The storage pool presents as a cluster shared volume (CSV) to the failover cluster.
 - The Failover cluster uses the CSV for the data drives.
 
-**Disaster Recovery Considerations**
+**Disaster recovery considerations**
 
-1. When you set up [cloud witness](/windows-server/failover-clustering/deploy-cloud-witness#CloudWitnessSetUp) for the cluster, keep witness in the disaster recovery region.
-1. If you fail over the virtual machines to the subnet on the disaster recovery region, which is different from the source region, then cluster IP address needs to be changed after failover.  To change IP of the cluster, you need to use the Site Recovery [recovery plan script.](./site-recovery-runbook-automation.md)
+1. When you set up a [cloud witness](/windows-server/failover-clustering/deploy-cloud-witness#CloudWitnessSetUp) for the cluster, keep the witness in the disaster recovery region.
+1. If you fail over the virtual machines to the subnet in the disaster recovery region, which is different from the source region, you need to change the cluster IP address after failover. To change the IP of the cluster, use the Site Recovery [recovery plan script](./site-recovery-runbook-automation.md).
 
 ### Enable Site Recovery for S2D cluster
 

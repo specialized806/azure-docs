@@ -16,11 +16,11 @@ Accelerated Networking enables single root I/O virtualization (SR-IOV) to a VM, 
 
 :::image type="content" source="./media/azure-vm-disaster-recovery-with-accelerated-networking/accelerated-networking-benefit.png" alt-text="Screenshot of difference between accelerated and nonaccelerated networking." lightbox="./media/azure-vm-disaster-recovery-with-accelerated-networking/accelerated-networking-benefit.png":::
 
-By using Azure Site Recovery, you can take advantage of Accelerated Networking for Azure virtual machines that you fail over to a different Azure region. This article describes how you can enable Accelerated Networking for Azure virtual machines replicated with Azure Site Recovery.
+Azure Site Recovery enables you to use the benefits of Accelerated Networking for Azure virtual machines that you fail over to a different Azure region. This article describes how you can enable Accelerated Networking for Azure virtual machines replicated with Azure Site Recovery.
 
 ## Prerequisites
 
-Before you begin, make sure that you understand:
+Before you begin, make sure you understand:
 -	Azure virtual machine [replication architecture](azure-to-azure-architecture.md)
 -	[Setting up replication](azure-to-azure-tutorial-enable-replication.md) for Azure virtual machines
 -	[Failing over](azure-to-azure-tutorial-failover-failback.md) Azure virtual machines
@@ -31,6 +31,8 @@ Azure Site Recovery supports enabling Accelerated Networking for replicated virt
 
 ### Supported operating systems
 The following distributions are supported out of the box from the Azure Gallery:
+* **Windows Server 2022 Datacenter**
+* **Windows Server 2019 Datacenter**
 * **Windows Server 2016 Datacenter**
 * **Windows Server 2012 R2 Datacenter**
 
@@ -69,9 +71,7 @@ You can verify the status of Accelerated Networking under the respective NIC's t
 
 :::image type="content" source="./media/azure-vm-disaster-recovery-with-accelerated-networking/compute-network-accelerated-networking.png" alt-text="Screenshot of Accelerated Networking setting." lightbox="./media/azure-vm-disaster-recovery-with-accelerated-networking/compute-network-accelerated-networking.png":::
 
-
-
-If you enable Accelerated Networking on the source virtual machine after enabling replication, you can enable Accelerated Networking for the replicated virtual machine's network interfaces by using the following process:
+If you enable Accelerated Networking on the source virtual machine after enabling replication, you can enable Accelerated Networking for the replicated virtual machine's network interfaces by the following process:
 1. Open **Network** settings for the replicated virtual machine.
 1. Select the name of the network interface under the **Network interfaces** section.
 1. Select **Enabled** from the dropdown for Accelerated Networking under the **Target** column.

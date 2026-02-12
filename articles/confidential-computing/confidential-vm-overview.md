@@ -1,10 +1,10 @@
 ---
 title: About Azure confidential VMs
 description: Learn about Azure confidential virtual machines. These series are for tenants with high security and confidentiality requirements.
-author: ju-shim
+author: cynthn
 ms.author: mmcrey
 ms.reviewer: mattmcinnes
-ms.service: azure-virtual-machines
+ms.service: azure-confidential-computing
 ms.custom:
   - ignite-2023
 ms.topic: overview
@@ -41,8 +41,14 @@ If the compute platform is missing critical settings for your VM's isolation, [A
 
 Confidential OS disk encryption is optional, as this process can lengthen the initial VM creation time. You can choose between:
 
-- A confidential VM with Confidential OS disk encryption before VM deployment that uses platform-managed keys (PMK) or a customer-managed key (CMK).
-- A confidential VM without Confidential OS disk encryption before VM deployment.
+- A confidential VM with Confidential OS disk encryption that uses platform-managed keys (PMK) or a customer-managed key (CMK).
+
+- A confidential VM without Confidential OS disk encryption.
+
+
+
+> [!NOTE]
+> Confidential OS disk encryption setting can't be changed after VM deployment
 
 For further integrity and protection, confidential VMs offer [Secure Boot](/windows-hardware/design/device-experiences/oem-secure-boot) by default when confidential OS disk encryption is selected.
 
@@ -83,10 +89,10 @@ The following limitations exist for confidential VMs. For frequently asked quest
 
 Confidential VMs support the following VM sizes:
 
-- General Purpose without local disk: DCasv5-series, DCesv5-series
-- General Purpose with local disk: DCadsv5-series, DCedsv5-series
-- Memory Optimized without local disk: ECasv5-series, ECesv5-series
-- Memory Optimized with local disk: ECadsv5-series, ECedsv5-series
+- General Purpose without local disk: DCasv5-series, DCasv6-series DCesv6-series
+- General Purpose with local disk: DCadsv5-series, DCadsv6-series DCedsv6-series
+- Memory Optimized without local disk: ECasv5-series, ECasv6-series ECesv6-series
+- Memory Optimized with local disk: ECadsv5-series, ECadsv6-series ECedsv6-series
 - NVIDIA H100 Tensor Core GPU powered NCCadsH100v5-series
 
 ### OS support

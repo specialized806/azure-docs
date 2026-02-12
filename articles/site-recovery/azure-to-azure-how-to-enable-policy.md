@@ -20,7 +20,7 @@ This article describes how to set up [Azure Site Recovery](./site-recovery-overv
 
 Site Recovery helps you keep your applications running during planned or unplanned zonal or regional outages. Enabling Site Recovery on your machines at scale through the Azure portal can be challenging. Azure Policy can help you enable replication at scale without resorting to any scripting.
 
-By using built-in Azure Policy capabilities, you can enable Site Recovery on specific subscriptions or resource groups through the portal. When you create a disaster recovery (DR) policy for subscriptions or resource groups, all the new virtual machines (VMs) that you add to those subscriptions or resource groups automatically have Site Recovery enabled. For all the virtual machines already in the resource group, you can enable Site Recovery through a process called _remediation_ (details later in this article).
+By using built-in Azure Policy capabilities, you can enable Site Recovery on specific subscriptions or resource groups through the portal. After you create a disaster recovery (DR) policy for subscriptions or resource groups, all the new virtual machines (VMs) that you add to those subscriptions or resource groups automatically have Site Recovery enabled. For all the virtual machines already present in the resource group, you can enable Site Recovery through a process called _remediation_ (details later in this article).
 
 >[!NOTE]
 >A *scope* determines the resources or the grouping of resources where the policy assignment is enforced. You can set the scope of this policy at a subscription level or a resource group level.
@@ -123,7 +123,7 @@ You're on your way to creating a policy that enables Azure Site Recovery. Now, c
 
 ## Configure remediation and other properties
 
-You configured the target properties for Azure Site Recovery. However, this policy takes effect only for newly created virtual machines in the scope of the policy. Replication isn't automatically enabled on pre-existing VMs in the scope of the policy. You can solve this problem by creating a remediation task after the policy is assigned. 
+You configured the target properties for Azure Site Recovery. However, this policy takes effect only for newly created virtual machines in the scope of the policy. Replication isn't automatically enabled on pre-existing VMs in the scope of the policy. You can solve this limitation by creating a remediation task after the policy is assigned. 
 
 To create a remediation task and set other properties:
 

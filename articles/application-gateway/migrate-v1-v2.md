@@ -38,13 +38,20 @@ This article primarily helps with the configuration migration. Client traffic mi
 * Make sure you have the latest PowerShell modules, or you can use Azure Cloud Shell in the portal.
 * If you're running PowerShell locally, you also need to run `Connect-AzAccount` to create a connection with Azure.
 * Ensure that there's no existing Application gateway with the provided AppGW V2 Name and Resource group name in V1 subscription. This rewrites the existing resources.
+* Ensure that no other operation is planned on the V1 gateway or any associated resources during migration.
 * If a public IP address is provided, ensure that it's in a succeeded state. If not provided and AppGWResourceGroupName is provided ensure that public IP resource with name AppGWV2Name-IP  doesn’t  exist in a resource group with the name AppGWResourceGroupName in the V1 subscription.
 * For the V1 SKU, authentication certificates are required to set up TLS connections with backend servers. The V2 SKU requires uploading [trusted root certificates](./certificates-for-backend-authentication.md) for the same purpose. While V1 allows the use of self-signed certificates as authentication certificates, V2 mandates [generating and uploading a self-signed Root certificate](./self-signed-certificates.md) if self-signed certificates are used in the backend.
-* Ensure that no other operation is planned on the V1 gateway or any associated resources during migration.
+
+> [!NOTE]
+> Application Gateway V2 includes [customer controlled Backend TLS Relaxation](configuration-http-settings.md#backend-https-validation-settings), a capability that streamlines backend certificate validation during migration. This feature allows you to temporarily relax TLS checks by skipping certificate‑chain , expiry validation or overriding SNI validation, aligning behavior with what is already permitted in the V1 SKU. When the [enhanced migration script](migrate-v1-v2.md#1-enhanced-cloning-script) runs, these relaxation settings are enabled by default for HTTPS backends to prevent disruptions caused by the stricter certificate enforcement in V2. After completing the migration, you can upload the appropriate trusted root certificates and disable Backend TLS Relaxation to align with the recommended security posture for V2.
+  
 
 [!INCLUDE [cloud-shell-try-it.md](~/reusable-content/ce-skilling/azure/includes/cloud-shell-try-it.md)]
 
 [!INCLUDE [updated-for-az](~/reusable-content/ce-skilling/azure/includes/updated-for-az.md)]
+
+> [!NOTE]
+> If NetworkIsolation is enabled on the subscription, all Application Gateway v2 deployments whether public‑only or  private‑only must be deployed in a subnet delegated to Microsoft.Network/applicationGateways.  Use the following [steps to set up subnet delegation](/azure/virtual-network/manage-subnet-delegation?tabs=manage-subnet-delegation-portal).
 
 ## Configuration migration
 The configuration migration focuses on setting up the new V2 gateway with the settings from your existing V1 environment. We provide two Azure PowerShell scripts designed to facilitate the migration of configurations from V1 (Standard or WAF) to V2 (Standard_V2 or WAF_V2) gateways. These scripts help streamline the transition process by automating key deployment and configuration tasks.
@@ -306,7 +313,11 @@ After successfully migrating the configuration and thoroughly testing your new V
 We provide an Azure PowerShell script designed to **retain the Public IP address from V1**.
 * Swaps Public IP: This script reserves the Basic public IP from V1, converts it to Standard, and attaches it to the V2 gateway. This effectively redirects all incoming traffic to the V2 gateway.
 *	Expected Downtime: This IP swap operation typically results in a brief **downtime of approximately 1-5 minutes**. Plan accordingly.
-*	After a successful script run, the Public IP is moved from Application Gateway V1 to Application Gateway V2, with Application Gateway V1 receiving a new public IP. 
+*	After a successful script run, the Public IP is moved from Application Gateway V1 to Application Gateway V2, with Application Gateway V1 receiving a new public IP.
+
+> [!NOTE]
+> The IP migration script does not support Public IP address resources that have a DNS name beginning with a numeric character. This limitation exists because Public IP address resources do not allow DNS name labels that start with a number. This issue is more likely to occur for V1 gateways **created before May 2023**, when Public IP addresses were automatically assigned a default DNS name of the form **{GUID}.cloudapp.net**.
+> To proceed with migration, update the Public IP address resource to use a DNS name label that begins with a letter before running the script. [Learn about configuring Public IP DNS](../virtual-network/ip-services/public-ip-addresses.md#domain-name-label)
 
 You can **download** this Public IP retention script  from the  [PowerShell Gallery](https://www.powershellgallery.com/packages/AzureAppGWIPMigrate)
 
