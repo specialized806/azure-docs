@@ -30,7 +30,7 @@ Not sure which framework fits your scenario? Start with the following rules to q
 
 1. **If the target platform is Azure Functions** → Use *Durable Functions*.
 1. **If the target platform is AKS, Azure App Service, VMs, or other containers** → Use *Durable Task SDKs*.
-1. **If the target platform is Azure Container Apps** → Either framework works. See decision factors in [Which should I choose on Azure Container Apps?](#which-should-i-choose-on-azure-container-apps)
+1. **If the target platform is Azure Container Apps** → Either framework works. 
 1. **If you have existing Azure Functions code** → Use *Durable Functions* for consistency.
 1. **If you have existing non-Functions application code** → Use *Durable Task SDKs*.
 1. **If compute portability is required** (same code on different container platforms) → Use *Durable Task SDKs*.
