@@ -42,7 +42,7 @@ The appliance-based discovery method involves deploying a virtual appliance that
 ### Key features
 
 - Continuous collection of configuration data.
-- Real time colleciton of performance data.
+- Real time collection of performance data.
 - Supports discovering workloads such as SQL databases, webapps, PostgreSQL and MySQL.
 - Discover software inventory and enable dependency analysis.
 
@@ -65,14 +65,14 @@ Ensure that software inventory is enabled before initiating workload discovery. 
 
 ## Collector-based discovery
 
-Azure Migrate collector enables offline discovery of IT esate. Using this lightweight tool, you can collect server configuration, performance, software inventory, and workload metadata without requiring connectivity to Azure during discovery. You can securely upload the collected data back to the Azure Migrate project you created. This approach is ideal for scenarios where quick discovery of your IT estate is required. It supports the discovery of VMware environments and physical or virtual servers in a hypervisor-agnostic approach.
+Azure Migrate collector enables offline discovery of IT estate. Using this lightweight tool, you can collect server configuration, performance, software inventory, and workload metadata without requiring connectivity to Azure during discovery. You can securely upload the collected data back to the Azure Migrate project you created. This approach is ideal for scenarios where quick discovery of your IT estate is required. It supports the discovery of VMware environments and physical or virtual servers in a hypervisor-agnostic approach.
 
 ### Key features
 
 - Captures a one-time snapshot of server configuration data.
 - Collects historical performance data.
 - Discovers installed software.
-- Discovers workloads such as SQL Server, web apps, PostgreSQL, and MySQL..
+- Discovers workloads such as SQL Server, web apps, PostgreSQL, and MySQL.
 
 ## Import-based discovery
 

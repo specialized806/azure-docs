@@ -86,17 +86,16 @@ You can add up to 10 vCenter Servers per collector
 
 ### Provide guest and database credentials
 
-1.	Refer security best practices to set up least privileged accounts to set up least privileged accounts. 
-2.	Provide Windows & Linux guest accounts to collect data about installed software, database instances and web apps. Provide SQL credentials (Windows or SQL server authentication) to collect SQL suitability data. 
-3.	To verify if the guest credentials are valid, test them against few target servers. 
-4.	Enable the checkbox to validate credential. 
-5.	Select the vCenter and select up to 5 virtual machines from the drop down.
-6.	Select **validate**.   
-7.	If the credentials are not valid, fix the errors by following the recommendation step before triggering data collection. 
-8.	If the credentials are successfully validated, guest discovery of installed software, inventory of database instance on the machines will be successful. 
+1.	Provide Windows & Linux guest accounts to collect data about installed software, database instances and web apps. Provide SQL credentials (Windows or SQL server authentication) to collect SQL suitability data. 
+2.	To verify if the guest credentials are valid, test them against few target servers. 
+3.	Enable the checkbox to validate credential. 
+4.	Select the vCenter and select up to 5 virtual machines from the drop down.
+5.	Select **validate**.   
+6.	If the credentials are not valid, fix the errors by following the recommendation step before triggering data collection. 
+7.	If the credentials are successfully validated, guest discovery of installed software, inventory of database instance on the machines will be successful. 
 > [!NOTE]
 > - For the collection of data about installed software, web apps and for identifying SQL/PostgreSQL server instances, collector doesn’t need network line of sight to guest machines. The guest data collection is done via the ESXi hosts using the installed VMware tools. However, for collecting readiness data directly from database instances, collector must have network line of sight to the target SQL server instances. 
-> - Identifying server dependencies and in-depth discovery of MySQL/PostgreSQL instances using MySQL/PostgreSQL accounts are not supported in this version of Collector.
+> - Identifying server dependencies and in-depth discovery of MySQL and PostgreSQL instances is not supported in this version of Collector.
 
 ## Collect data from physical servers: 
 The same Azure migrate collector can be used to discover both VMware machines and physical servers that’s hypervisor agnostic. To collect data about physical servers, switch the fabric type at the top to physical. 
