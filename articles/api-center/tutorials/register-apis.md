@@ -47,6 +47,8 @@ The following steps register two sample APIs: Swagger Petstore API and Conferenc
 
 1. In the sidebar menu, under **Inventory**, select **Assets**, then select **Register an asset** and choose **API**.
 
+    :::image type="content" source="./media/register-apis/register-asset.png" alt-text="Screenshot of the Assets page in the Azure portal with the Register an asset menu showing API, MCP server, and A2A agent options." lightbox="./media/register-apis/register-asset.png":::
+
 1. In the **Register an API** page, add the following information for the Swagger Petstore API. You should see the custom *Line of business* and *Public-facing* metadata that you defined in the previous tutorial at the bottom of the page.
 
     |Setting|Value|Description|
@@ -65,8 +67,6 @@ The following steps register two sample APIs: Swagger Petstore API and Conferenc
     |**Contact information**         |  Optionally add information for one or more contacts.       | Name, email, and URL of a contact for the API     |
     | **Line of business** | If you added this metadata in the previous tutorial, make a selection from the dropdown, such as **Marketing**. | Custom metadata that identifies the business unit that owns the API  |
     | **Public-facing**  | If you added this metadata, select the checkbox.    |  Custom metadata that identifies whether the API is public-facing or internal only    |
-
-    :::image type="content" source="./media/register-apis/register-asset.png" alt-text="Screenshot of the Assets page in the Azure portal with the Register an asset menu showing API, MCP server, and A2A agent options." lightbox="./media/register-apis/register-asset.png":::
 
 1. Select **Create** to register the API.
 
