@@ -435,7 +435,7 @@ The **MCP servers** page now shows the **Authentication** and **Servers** sectio
 
 You need the URL for your MCP server so you can send a request from Visual Studio Code.
 
-1. On your logic app resource sidebar, under **Workflows**, expand **Agents**, and select **MCP servers**.
+1. On the logic app sidebar, under **Agents**, select **MCP servers**.
 
 1. Under **Servers**, find your MCP server, and select **Copy URL**.
 
@@ -443,7 +443,7 @@ You need the URL for your MCP server so you can send a request from Visual Studi
 
    :::image type="content" source="media/create-model-context-protocol-server-standard/visual-studio-code-mcp-add-server.png" alt-text="Screenshot shows Visual Studio Code, Command Palette, and command to add MCP server." lightbox="media/create-model-context-protocol-server-standard/visual-studio-code-mcp-add-server.png":::
 
-1. Select **HTTP (HTTP or Server-Sent Events)**. For **Enter Server URL**, enter the URL for your MCP server.
+1. Select **HTTP (HTTP or Server-Sent Events)**. For **Enter Server URL**, enter your MCP server URL.
 
 1. For **Enter Server ID**, enter a meaningful name for your MCP server.
 
