@@ -19,7 +19,7 @@ This article shows you how to create an [Azure Kubernetes Service (AKS)](/azure/
 
 ## Prerequisites
 
-[!INCLUDE [container-storage-prerequisites](../../../includes/container-storage-prerequisites.md)]
+- [!INCLUDE [container-storage-prerequisites](../../../includes/container-storage-prerequisites.md)]
 
 ## Getting started
 
@@ -91,7 +91,7 @@ Before you create your cluster, decide which backend storage option you want for
 
 * **[Azure Disks](/azure/virtual-machines/managed-disks-overview)**: Azure Disks are a good fit for databases such as MySQL, MongoDB, and PostgreSQL. Storage is provisioned per target container storage pool size and maximum volume size.
 
-* **Ephemeral Disk**: This option uses local NVMe or temp SSD drives on the AKS nodes and is extremely latency sensitive (low sub-ms latency), so it's best for applications with no data durability requirement or with built-in data replication support such as Cassandra. AKS discovers the available ephemeral storage on AKS nodes and acquires the drives for volume deployment.
+* **Ephemeral Disk**: This option uses local NVMe or temp SSD drives on the AKS nodes and has sub-ms latency, so it's best for applications that don't require data durability or that include data replication, such as Cassandra. AKS discovers the available ephemeral storage on AKS nodes and acquires the drives for volume deployment.
 
 ### VM types
 

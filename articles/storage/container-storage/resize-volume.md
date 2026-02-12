@@ -17,7 +17,7 @@ You can't increase a volume beyond the maximum capacity available in your Elasti
 
 ## Prerequisites
 
-[!INCLUDE [container-storage-prerequisites](../../../includes/container-storage-prerequisites.md)]
+- [!INCLUDE [container-storage-prerequisites](../../../includes/container-storage-prerequisites.md)]
 - This article assumes you [installed Azure Container Storage version 2.x.x](./install-container-storage-aks.md) on your AKS cluster and created a persistent volume claim (PVC) using [Elastic SAN](use-container-storage-with-elastic-san.md) or [ephemeral disk (local NVMe)](use-container-storage-with-local-disk.md).
 
 ## Expand a volume

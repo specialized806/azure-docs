@@ -27,7 +27,7 @@ Due to the ephemeral nature of these disks, Azure Container Storage supports the
 
 ## Prerequisites
 
-[!INCLUDE [container-storage-prerequisites](../../../includes/container-storage-prerequisites.md)]
+- [!INCLUDE [container-storage-prerequisites](../../../includes/container-storage-prerequisites.md)]
 
 ## Choose a VM type that supports local NVMe
 

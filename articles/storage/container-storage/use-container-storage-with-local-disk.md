@@ -33,7 +33,7 @@ For example, the [Lsv3 series](/azure/virtual-machines/sizes/storage-optimized/l
 
 ## Prerequisites
 
-[!INCLUDE [container-storage-prerequisites](../../../includes/container-storage-prerequisites.md)]
+- [!INCLUDE [container-storage-prerequisites](../../../includes/container-storage-prerequisites.md)]
 - [Review the installation instructions](install-container-storage-aks.md) and ensure Azure Container Storage is properly installed.
 
 ## Choose a VM type that supports local NVMe

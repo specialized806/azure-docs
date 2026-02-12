@@ -34,15 +34,11 @@ By the end of this tutorial, you can:
 
 ## Prerequisites
 
-[!INCLUDE [container-storage-prerequisites](../../../includes/container-storage-prerequisites.md)]
+- [!INCLUDE [container-storage-prerequisites](../../../includes/container-storage-prerequisites.md)]
 - Plan your node pool configuration:
   - Use Linux as the OS type (Windows isn't supported).
   - Select a virtual machine (VM) SKU that supports local NVMe data disks if you plan to use the local NVMe storage type, such as [storage-optimized](/azure/virtual-machines/sizes/overview#storage-optimized) or [GPU-accelerated](/azure/virtual-machines/sizes/overview#gpu-accelerated) VMs.
   - For existing clusters, ensure node pools already use a supported VM SKU before enabling Azure Container Storage.
-- Add or upgrade to the latest version of the `k8s-extension` extension:
-```azurecli-interactive
-az extension add --upgrade --name k8s-extension
-```
 - If you use Elastic SAN for the first time in the subscription, run this one-time registration command:
 ```azurecli
 az provider register --namespace Microsoft.ElasticSan
@@ -147,7 +143,7 @@ This command installs the installer, deploys the Elastic SAN CSI driver, and cre
 
 ## Prerequisites
 
-[!INCLUDE [container-storage-prerequisites](../../../includes/container-storage-prerequisites.md)]
+- [!INCLUDE [container-storage-prerequisites](../../../includes/container-storage-prerequisites.md)]
 - Plan your node pool configuration:
   - Use Linux as the OS type (Windows isn't supported).
   - Select a virtual machine (VM) SKU that supports local NVMe data disks, such as [storage-optimized](/azure/virtual-machines/sizes/overview#storage-optimized) or [GPU-accelerated](/azure/virtual-machines/sizes/overview#gpu-accelerated) VMs.

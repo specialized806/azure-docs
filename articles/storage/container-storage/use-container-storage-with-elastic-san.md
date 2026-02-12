@@ -27,14 +27,10 @@ Expanding the capacity of an Elastic SAN through Azure Container Storage is curr
 
 ## Prerequisites
 
-[!INCLUDE [container-storage-prerequisites](../../../includes/container-storage-prerequisites.md)]
+- [!INCLUDE [container-storage-prerequisites](../../../includes/container-storage-prerequisites.md)]
 - [Review the installation instructions](install-container-storage-aks.md) and ensure Azure Container Storage is properly installed.
-- Add or upgrade to the latest version of the `elastic-san` extension:
-```azurecli-interactive
-az extension add --upgrade --name elastic-san
-```
 - If you use Elastic SAN for the first time in the subscription, run this one-time registration command:
-```azurecli-interactive
+```azurecli
 az provider register --namespace Microsoft.ElasticSan
 ```
 - When [ZRS is newly enabled](enable-multi-zone-redundancy.md) in a region, you might need to register a subscription-level feature flag so Azure Container Storage can deploy SAN targets:

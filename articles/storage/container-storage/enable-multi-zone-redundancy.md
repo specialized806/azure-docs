@@ -21,7 +21,7 @@ With Azure Container Storage, you can improve stateful application availability 
 
 ## Prerequisites
 
-[!INCLUDE [container-storage-prerequisites](../../../includes/container-storage-prerequisites.md)]
+- [!INCLUDE [container-storage-prerequisites](../../../includes/container-storage-prerequisites.md)]
 - If you use Elastic SAN for the first time in the subscription, run this one-time registration command:
 ```azurecli-interactive
 az provider register --namespace Microsoft.ElasticSan

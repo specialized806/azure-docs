@@ -28,7 +28,7 @@ Azure Container Storage is a cloud-based volume management, deployment, and orch
 
 ## Prerequisites
 
-[!INCLUDE [container-storage-prerequisites](../../../includes/container-storage-prerequisites.md)]
+- [!INCLUDE [container-storage-prerequisites](../../../includes/container-storage-prerequisites.md)]
 - Plan your node pool configuration:
   - Use Linux as the OS type (Windows isn't supported).
   - Select a virtual machine (VM) SKU that supports local NVMe data disks if you plan to use the local NVMe storage type, such as [storage-optimized](/azure/virtual-machines/sizes/overview#storage-optimized) or [GPU-accelerated](/azure/virtual-machines/sizes/overview#gpu-accelerated) VMs.
@@ -41,14 +41,6 @@ Azure Container Storage is a cloud-based volume management, deployment, and orch
 * [Launch Azure Cloud Shell](https://shell.azure.com), or if you're using a local installation, sign in to the Azure CLI by using the [az login](/cli/azure/reference-index#az-login) command.
 
 * If you're using Azure Cloud Shell, you might be prompted to mount storage. Select the Azure subscription where you want to create the storage account and select **Create**.
-
-## Install the required extension
-
-Add or upgrade to the latest version of `k8s-extension` by running the following command.
-
-```azurecli-interactive
-az extension add --upgrade --name k8s-extension
-```
 
 ## Set subscription context
 
@@ -96,7 +88,7 @@ Before you create your cluster, decide which backend storage option you want for
 
 * **[Azure Disks](/azure/virtual-machines/managed-disks-overview)**: Azure Disks are a good fit for databases such as MySQL, MongoDB, and PostgreSQL. Storage is provisioned per target container storage pool size and maximum volume size.
 
-* **Ephemeral Disk**: This option uses local NVMe or temp SSD drives on the AKS nodes and is extremely latency sensitive (low sub-ms latency), so it's best for applications with no data durability requirement or with built-in data replication support such as Cassandra. AKS discovers the available ephemeral storage on AKS nodes and acquires the drives for volume deployment.
+* **Ephemeral Disk**: This option uses local NVMe or temp SSD drives on the AKS nodes and has sub-ms latency, so it's best for applications that don't require data durability or that include data replication, such as Cassandra. AKS discovers the available ephemeral storage on AKS nodes and acquires the drives for volume deployment.
 
 ### Resource consumption
 

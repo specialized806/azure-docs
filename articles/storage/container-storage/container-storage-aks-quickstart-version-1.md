@@ -19,7 +19,7 @@ Azure Container Storage is a cloud-based volume management, deployment, and orch
 
 ## Prerequisites
 
-[!INCLUDE [container-storage-prerequisites](../../../includes/container-storage-prerequisites.md)]
+- [!INCLUDE [container-storage-prerequisites](../../../includes/container-storage-prerequisites.md)]
 - If you haven't already created an AKS cluster, follow the instructions for [Installing an AKS Cluster](install-container-storage-aks-version-1.md).
 
 ## Getting started
@@ -29,14 +29,6 @@ Azure Container Storage is a cloud-based volume management, deployment, and orch
 - [Launch Azure Cloud Shell](https://shell.azure.com), or if you're using a local installation, sign in to Azure by using the [az login](/cli/azure/reference-index#az-login) command.
 
 - If you're using Azure Cloud Shell, you might be prompted to mount storage. Select the Azure subscription where you want to create the storage account and select **Create**.
-
-## Install the required extension
-
-Add or upgrade to the latest version of `k8s-extension` by running the following command.
-
-```azurecli-interactive
-az extension add --upgrade --name k8s-extension
-```
 
 ## Set subscription context
 
@@ -84,7 +76,7 @@ Before deploying Azure Container Storage, you need to decide which backend stora
 
 - **Azure Disks**: Azure Disks are a good fit for databases such as MySQL, MongoDB, and PostgreSQL. Storage is provisioned per target container storage pool size and maximum volume size.
 
-- **Ephemeral Disk**: This option uses local NVMe drives or temp SSD on the AKS cluster nodes. It's extremely latency sensitive (low sub-ms latency), so it's best for applications with no data durability requirement or with built-in data replication support such as Cassandra. AKS discovers the available ephemeral storage on AKS nodes and acquires the drives for volume deployment.
+- **Ephemeral Disk**: This option uses local NVMe drives or temp SSD on the AKS cluster nodes. It has sub-ms latency, so it's best for applications that don't require data durability or that include data replication, such as Cassandra. AKS discovers the available ephemeral storage on AKS nodes and acquires the drives for volume deployment.
 
 > [!NOTE]
 > For Azure Elastic SAN and Azure Disks, Azure Container Storage deploys the backing storage for you as part of the installation. You don't need to create your own Elastic SAN or Azure Disk. To use Elastic SAN, you need either an [Azure Container Storage Owner](../../role-based-access-control/built-in-roles/containers.md#azure-container-storage-owner) role or [Azure Container Storage Contributor](../../role-based-access-control/built-in-roles/containers.md#azure-container-storage-contributor) role on the Azure subscription.
