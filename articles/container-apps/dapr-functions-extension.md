@@ -43,6 +43,16 @@ The [Dapr extension for Azure Functions](../azure-functions/functions-bindings-d
    az account set --subscription <subscription-id-or-name>
    ```
 
+1. Register the `Microsoft.App` and `Microsoft.OperationalInsights` namespaces.
+
+   ```azurecli
+   az provider register --namespace Microsoft.App
+   ```
+
+   ```azurecli
+   az provider register --namespace Microsoft.OperationalInsights
+   ```
+
 1. Clone the [Dapr extension for Azure Functions repo](https://github.com/Azure/azure-functions-dapr-extension).
 
    ```azurecli
