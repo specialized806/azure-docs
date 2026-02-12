@@ -350,6 +350,8 @@
     href: self-hosted-gateway-enable-dapr.md
   - name: Use Microsoft Entra authentication on self-hosted gateway
     href: self-hosted-gateway-enable-azure-ad.md
+  - name: Use workload identity authentication on self-hosted gateway
+    href: self-hosted-gateway-enable-workload-identity.md
   - name: Guidance for running on Kubernetes
     href: how-to-self-hosted-gateway-on-kubernetes-in-production.md
   - name: Support policy for self-hosted gateway
