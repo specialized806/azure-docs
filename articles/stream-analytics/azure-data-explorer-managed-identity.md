@@ -131,11 +131,11 @@ Extra or mismatched columns cause ingestion failures. Stream Analytics sends dat
 
 If you experience issues, verify the following:
 
-- [ ] Managed identity is enabled on the Stream Analytics job
-- [ ] Identity is added as **Database Ingestor** and **Database Monitor** at the database level (not cluster IAM)
-- [ ] Azure Data Explorer output is configured in the Stream Analytics job
-- [ ] Table schema matches the Stream Analytics query output exactly
-- [ ] Sufficient time has passed for permission propagation (up to 8 minutes)
+- :heavy_check_mark: Managed identity is enabled on the Stream Analytics job
+- :heavy_check_mark: Identity is added as **Database Ingestor** and **Database Monitor** at the database level (not cluster IAM)
+- :heavy_check_mark: Azure Data Explorer output is configured in the Stream Analytics job
+- :heavy_check_mark: Table schema matches the Stream Analytics query output exactly
+- :heavy_check_mark: Sufficient time has passed for permission propagation (up to 8 minutes)
 
 ## Next steps
 
