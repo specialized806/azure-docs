@@ -22,7 +22,7 @@ Use this series and the right approach to migrate the workload confidently and p
 This series covers the following items that you need for success:
 
 - A concrete and well-reasoned plan
-- Approval from the relevant stakeholders
+- Involvement, alignment, and final approval from the relevant stakeholders
 - A solid target architecture
 - The right migration strategy for each workload component 
 - A phased approach and clear checklists
