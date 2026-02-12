@@ -1,10 +1,11 @@
 ---
-title: Durable Functions billing - Azure Functions
+title: Durable Functions billing
+titleSuffix: Durable Task
 description: Learn about the internal behaviors of Durable Functions and how they affect billing for Azure Functions.
 author: cgillum
 reviewer: hhunter-ms
 ms.topic: conceptual
-ms.date: 01/14/2026
+ms.date: 02/11/2026
 ms.author: azfuncdf
 ms.service: azure-functions
 ms.subservice: durable
@@ -34,18 +35,32 @@ Orchestrator functions can make long-running HTTP calls to external endpoints. T
 
 You currently aren't directly billed for internal HTTP polling operations. However, internal polling might cause your orchestrator function to periodically replay. You're billed standard charges for these internal function replays.
 
+## Durable Task Scheduler transactions (recommended)
+
+The [Durable Task Scheduler](durable-task-scheduler/durable-task-scheduler.md) is a purpose-built backend-as-a-service optimized for Durable Task. You use the Durable Task Scheduler with [any of the Functions SKUs](../functions-scale.md) and choose between two pricing models:
+
+| SKU | Description |
+| --- | --- |
+| **Dedicated** | Fixed monthly cost per Capacity Unit (CU). Each CU supports up to 2,000 actions per second and 50 GB of orchestration data storage. |
+| **Consumption (preview)** | Pay-per-use model where you only pay for actions dispatched. Ideal for variable workloads and development scenarios. |
+
+An *action* is a message dispatched by the Durable Task Scheduler to your application, triggering the execution of an orchestrator, activity, or entity function. Actions include starting orchestrations, scheduling activities, completing timers, and processing results.
+
+For detailed pricing information, SKU comparisons, and capacity planning examples, see [Durable Task Scheduler pricing and SKU options](durable-task-scheduler/durable-task-scheduler-dedicated-sku.md).
+
 ## Azure Storage transactions
 
-By default, Durable Functions uses Azure Storage to keep state persistent, process messages, and manage partitions via blob leases. Since you own this storage account, any transaction costs are billed to your Azure subscription. For more information about the Azure Storage artifacts used by Durable Functions, see the [Task hubs article](durable-functions-task-hubs.md).
+When using the [Azure Storage provider](durable-functions-azure-storage-provider.md), Durable Functions can keep state persistent, process messages, and manage partitions via blob leases. Since you own this storage account, any transaction costs are billed to your Azure subscription.
 
-Several factors contribute to the actual Azure Storage costs your Durable Functions app incurs:
+Several factors contribute to Azure Storage costs, including:
 
-- A single function app is associated with a single task hub, which shares a set of Azure Storage resources. All Durable Functions in your function app use these resources. The actual number of functions in the function app has no effect on Azure Storage transaction costs.
-- Each function app instance internally polls multiple queues in the storage account using an exponential-backoff polling algorithm. An idle app instance polls the queues less often than an active app, which results in fewer transaction costs. [Learn more about Durable Functions queue-polling behavior when using the Azure Storage provider](durable-functions-azure-storage-provider.md#queue-polling).
-- When you run in the Azure Functions Consumption or Premium plans, the [Azure Functions scale controller](../event-driven-scaling.md) regularly polls all task-hub queues in the background. If your function app is under light to moderate scale, only a single scale controller instance polls these queues. If your function app scales out to a large number of instances, more scale controller instances might be added. These additional scale controller instances can increase the total queue-transaction costs.
-- Each function app instance competes for a set of blob leases. These instances periodically make calls to the Azure Blob service either to renew held leases or to attempt to acquire new leases. The task hub's configured partition count determines the number of blob leases. Scaling out to a larger number of function app instances likely increases the Azure Storage transaction costs associated with these lease operations.
+- Queue polling by function app instances and the scale controller
+- Blob lease operations for partition management
+- Task hub resource sharing across functions
+
+For more information about Azure Storage costs and queue-polling behavior, see [Azure Storage provider](durable-functions-azure-storage-provider.md).
 
 ## Next steps
 
-> [!div class="nextstepaction"]
-> [Learn more about Azure Functions pricing](https://azure.microsoft.com/pricing/details/functions/)
+- [Durable Task Scheduler pricing and SKU options](durable-task-scheduler/durable-task-scheduler-dedicated-sku.md)
+- [Azure Functions pricing](https://azure.microsoft.com/pricing/details/functions/)
