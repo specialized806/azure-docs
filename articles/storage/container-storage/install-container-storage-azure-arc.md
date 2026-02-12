@@ -19,7 +19,7 @@ This article shows you how to create an [Azure Kubernetes Service (AKS)](/azure/
 
 ## Prerequisites
 
-- [!INCLUDE [container-storage-prerequisites](../../../includes/container-storage-prerequisites.md)]
+[!INCLUDE [container-storage-prerequisites](../../../includes/container-storage-prerequisites.md)]
 
 ## Getting started
 
@@ -155,7 +155,7 @@ To connect to the cluster, use the Kubernetes command-line client, `kubectl`. It
 Next, you must update your node pool label to associate the node pool with the correct IO engine for Azure Container Storage.
 
 > [!IMPORTANT]
-> **If you created your AKS cluster using the Azure portal:** The cluster likely has a user node pool and a system/agent node pool. Before you can install Azure Container Storage, you must update the user node pool label as described in this section. However, if your cluster consists of only a system node pool, which is the case with test/dev clusters created with the Azure portal, first [add a new user node pool](/azure/aks/create-node-pools#add-a-node-pool) and then label it. This is because when you create an AKS cluster using the Azure portal, a taint `CriticalAddOnsOnly` is added to the agent/system nodepool, which blocks installation of Azure Container Storage on the system node pool. This taint isn't added when an AKS cluster is created using Azure CLI.
+> **If you created your AKS cluster using the Azure portal:** The cluster likely has a user node pool and a system/agent node pool. Before you can install Azure Container Storage, you must update the user node pool label as described in this section. However, if your cluster consists of only a system node pool, which is the case with test/dev clusters created with the Azure portal, first [add a new user node pool](/azure/aks/create-node-pools#add-a-node-pool) and then label it. This behavior occurs because when you create an AKS cluster using the Azure portal, a taint `CriticalAddOnsOnly` is added to the agent/system nodepool, which blocks installation of Azure Container Storage on the system node pool. This taint isn't added when an AKS cluster is created using Azure CLI.
 
 Run the following command to update the node pool label. Remember to replace `<resource-group>` and `<cluster-name>` with your own values, and replace `<nodepool-name>` with the name of your node pool.
 
@@ -167,7 +167,7 @@ You can verify that the node pool is correctly labeled by signing into the [Azur
 
 ## Assign Azure Container Storage Operator role to AKS managed identity
 
-You only need to perform this step if you plan to use Azure Elastic SAN as backing storage. To use Elastic SAN, you need to grant permissions to allow Azure Container Storage to provision storage for your cluster. Specifically, you must assign the [Azure Container Storage Operator](../../role-based-access-control/built-in-roles/containers.md#azure-container-storage-operator) role to the AKS managed identity. You can do this using the Azure portal or Azure CLI. You need either an [Azure Container Storage Owner](../../role-based-access-control/built-in-roles/containers.md#azure-container-storage-owner) role or [Azure Container Storage Contributor](../../role-based-access-control/built-in-roles/containers.md#azure-container-storage-contributor) role for your Azure subscription to do this. If you don't have sufficient permissions, ask your admin to perform these steps.
+You only need to perform this step if you plan to use Azure Elastic SAN as backing storage. To use Elastic SAN, you need to grant permissions to allow Azure Container Storage to provision storage for your cluster. Specifically, you must assign the [Azure Container Storage Operator](../../role-based-access-control/built-in-roles/containers.md#azure-container-storage-operator) role to the AKS managed identity. You can do this using the Azure portal or Azure CLI. You need either an [Azure Container Storage Owner](../../role-based-access-control/built-in-roles/containers.md#azure-container-storage-owner) role or [Azure Container Storage Contributor](../../role-based-access-control/built-in-roles/containers.md#azure-container-storage-contributor) role for your Azure subscription to complete this step. If you don't have sufficient permissions, ask your admin to perform these steps.
 
 # [Azure portal](#tab/portal)
 
@@ -176,7 +176,7 @@ You only need to perform this step if you plan to use Azure Elastic SAN as backi
 1. Under **Infrastructure resource group**, you should see a link to the resource group that AKS created when you created the cluster. Select it.
 1. Select **Access control (IAM)** from the left pane.
 1. Select **Add > Add role assignment**.
-1. Under the **Job function roles** tab, select or search for **Azure Container Storage Operator**, then select **Next**. If you don't have an **Azure Container Storage Owner** or **Azure Container Storage Contributor** role on the subscription, you won't be able to add the **Azure Container Storage Operator** role.
+1. Under the **Job function roles** tab, select or search for **Azure Container Storage Operator**, then select **Next**. If you don't have an **Azure Container Storage Owner** or **Azure Container Storage Contributor** role on the subscription, you can't add the **Azure Container Storage Operator** role.
 1. Under **Assign access to**, select **Managed identity**.
 1. Under **Members**, click **+ Select members**. The **Select managed identities** menu appears.
 1. Under **Managed identity**, select **User-assigned managed identity**.

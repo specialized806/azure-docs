@@ -269,7 +269,7 @@ Run the following command to get a list of pods.
 kubectl get pods
 ```
 
-You may see output similar to the following.
+You may see output similar to this example.
 
 ```output
 NAME     READY   STATUS              RESTARTS   AGE 
@@ -304,7 +304,7 @@ You can also run the following command to check the status of `etcd` instances:
 kubectl get pods -n acstor | grep "^etcd"
 ```
 
-You should see output similar to the following, with all instances in the Running state:
+You should see output similar to this example, with all instances in the Running state:
 
 ```output
 etcd-azurecontainerstorage-bn89qvzvzv                            1/1     Running   0               4d19h

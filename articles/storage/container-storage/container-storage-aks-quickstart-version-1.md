@@ -19,8 +19,9 @@ Azure Container Storage is a cloud-based volume management, deployment, and orch
 
 ## Prerequisites
 
-- [!INCLUDE [container-storage-prerequisites](../../../includes/container-storage-prerequisites.md)]
-- If you haven't already created an AKS cluster, follow the instructions for [Installing an AKS Cluster](install-container-storage-aks-version-1.md).
+[!INCLUDE [container-storage-prerequisites](../../../includes/container-storage-prerequisites.md)]
+
+- If you don't already have an AKS cluster, follow the instructions for [Installing an AKS Cluster](install-container-storage-aks-version-1.md).
 
 ## Getting started
 
@@ -131,7 +132,7 @@ Running this command enables Azure Container Storage on the system node pool, wh
 \*If there are any existing node pools with the `acstor.azure.com/io-engine:acstor` label then Azure Container Storage installs there by default. Otherwise, it installs on the system node pool.
 
 > [!IMPORTANT]
-> **If you created your AKS cluster using the Azure portal:** The cluster likely has a user node pool and a system/agent node pool. However, if your cluster consists of only a system node pool, which is the case with test/dev clusters created with the Azure portal, first [add a new user node pool](/azure/aks/create-node-pools#add-a-node-pool) and then label it. This is because when you create an AKS cluster using the Azure portal, a taint `CriticalAddOnsOnly` is added to the system/agent node pool, which blocks installation of Azure Container Storage on the system node pool. This taint isn't added when an AKS cluster is created using Azure CLI.
+> **If you created your AKS cluster using the Azure portal:** The cluster likely has a user node pool and a system/agent node pool. However, if your cluster consists of only a system node pool, which is the case with test/dev clusters created with the Azure portal, first [add a new user node pool](/azure/aks/create-node-pools#add-a-node-pool) and then label it. This behavior occurs because when you create an AKS cluster using the Azure portal, a taint `CriticalAddOnsOnly` is added to the system/agent node pool, which blocks installation of Azure Container Storage on the system node pool. This taint isn't added when an AKS cluster is created using Azure CLI.
 >
 > **If you're using a multi-zone AKS cluster with Azure Elastic SAN:** You need to use a zone-redundant storage (ZRS) Elastic SAN. The default for an Elastic SAN storage pool is locally redundant storage (LRS). To enable ZRS for Elastic SAN, use `elasticSan` for the storage pool type and append the `--storage-pool-sku Premium_ZRS` flag to the following CLI command.
 

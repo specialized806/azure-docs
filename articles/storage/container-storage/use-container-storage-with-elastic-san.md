@@ -21,28 +21,31 @@ ms.custom:
 
 ## What is Azure Elastic SAN?
 
-Azure Elastic SAN is a managed, shared block storage service. It provides a central pool of storage capacity and performance, including IOPS and throughput. From this pool, you create multiple volumes and attach them to many compute resources. Instead of provisioning and tuning individual disks for each workload, Elastic SAN allocates storage from a single capacity pool and distributes performance across attached volumes. This approach suits environments with many dynamic workloads where demand changes over time and unused performance from one volume serves another. Elastic SAN is typically used for shared, scalable block storage across many volumes or nodes. It also supports faster volume attach and detach for orchestrated workloads, higher volume density per node, and centralized provisioning and management of storage capacity and performance.
+Azure Elastic SAN is a managed, shared block storage service. It provides a central pool of storage capacity and performance, including IOPS and throughput. From this pool, you create multiple volumes and attach them to many compute resources. Instead of provisioning and tuning individual disks for each workload, Elastic SAN allocates storage from a single capacity pool and distributes performance across attached volumes. This approach suits environments with many dynamic workloads where demand changes over time and unused performance from one volume serves other volumes. Elastic SAN is typically used for shared, scalable block storage across many volumes or nodes. It also supports faster volume attach and detach for orchestrated workloads, higher volume density per node, and centralized provisioning and management of storage capacity and performance.
 
 Expanding the capacity of an Elastic SAN through Azure Container Storage is currently unsupported. You can [resize Elastic SAN](../elastic-san/elastic-san-expand.md) directly from the Azure portal or by using Azure CLI.
 
 ## Prerequisites
 
-- [!INCLUDE [container-storage-prerequisites](../../../includes/container-storage-prerequisites.md)]
+[!INCLUDE [container-storage-prerequisites](../../../includes/container-storage-prerequisites.md)]
+
 - [Review the installation instructions](install-container-storage-aks.md) and ensure Azure Container Storage is properly installed.
+
 - If you use Elastic SAN for the first time in the subscription, run this one-time registration command:
-```azurecli
-az provider register --namespace Microsoft.ElasticSan
-```
+  ```azurecli
+  az provider register --namespace Microsoft.ElasticSan
+  ```
+
 - When [ZRS is newly enabled](enable-multi-zone-redundancy.md) in a region, you might need to register a subscription-level feature flag so Azure Container Storage can deploy SAN targets:
-```azurecli
-az feature register \
+  ```azurecli
+  az feature register \
   --namespace Microsoft.ElasticSan \
   --name EnableElasticSANTargetDeployment
-```
+  ```
 
 ## Setting up permissions
 
-For Azure Container Storage to deploy an Elastic SAN, you need to assign the [Azure Container Storage Operator](../../role-based-access-control/built-in-roles/containers.md#azure-container-storage-operator) role to the AKS managed identity. You need either an [Azure Container Storage Owner](../../role-based-access-control/built-in-roles/containers.md#azure-container-storage-owner) role or [Azure Container Storage Contributor](../../role-based-access-control/built-in-roles/containers.md#azure-container-storage-contributor) role for your Azure subscription to do this.
+For Azure Container Storage to deploy an Elastic SAN, you need to assign the [Azure Container Storage Operator](../../role-based-access-control/built-in-roles/containers.md#azure-container-storage-operator) role to the AKS managed identity. You need either an [Azure Container Storage Owner](../../role-based-access-control/built-in-roles/containers.md#azure-container-storage-owner) role or [Azure Container Storage Contributor](../../role-based-access-control/built-in-roles/containers.md#azure-container-storage-contributor) role for your Azure subscription to complete this step.
 
 # [Azure CLI](#tab/cli)
 
@@ -60,7 +63,7 @@ az role assignment create --assignee $AKS_MI_OBJECT_ID --role "Azure Container S
 1. Under **Infrastructure resource group**, you should see a link to the resource group that AKS created when you created the cluster. Select it.
 1. Select **Access control (IAM)** from the left pane.
 1. Select **Add > Add role assignment**.
-1. Under the **Job function roles** tab, select or search for **Azure Container Storage Operator**, then select **Next**. If you don't have an **Azure Container Storage Owner** or **Azure Container Storage Contributor** role on the subscription, you won't be able to add the **Azure Container Storage Operator** role.
+1. Under the **Job function roles** tab, select or search for **Azure Container Storage Operator**, then select **Next**. If you don't have an **Azure Container Storage Owner** or **Azure Container Storage Contributor** role on the subscription, you can't add the **Azure Container Storage Operator** role.
 1. Under **Assign access to**, select **Managed identity**.
 1. Under **Members**, click **+ Select members**. The **Select managed identities** menu appears.
 1. Under **Managed identity**, select **User-assigned managed identity**.
@@ -158,7 +161,7 @@ You can precreate an Elastic SAN or an Elastic SAN and volume group, then refere
 
 ### Create a storage class for a pre-provisioned Elastic SAN
 
-If you haven't already done so, [install Azure Container Storage.](install-container-storage-aks.md) 
+If you don't already have Azure Container Storage installed, [install it](install-container-storage-aks.md).
 
 1. Identify the managed resource group of the AKS cluster.
 
@@ -191,7 +194,7 @@ If you haven't already done so, [install Azure Container Storage.](install-conta
 
 ### Create a storage class for a pre-provisioned Elastic SAN and volume group
 
-1. Repeat the steps above to create an Elastic SAN in the managed resource group.
+1. Create an Elastic SAN in the managed resource group by following the steps in [Create a storage class for a pre-provisioned Elastic SAN](#create-a-storage-class-for-a-pre-provisioned-elastic-san).
 
 1. Create a volume group.
 
@@ -294,7 +297,7 @@ You can verify the status of the PVC by running the following command:
 kubectl describe pvc managedpvc
 ```
 
-When the PVC is created, it is ready for use by a pod.
+When the PVC is created, it's ready for use by a pod.
 
 ## Deploy a pod and attach a persistent volume
 
@@ -327,7 +330,7 @@ Create a pod using Flexible I/O Tester (fio) for benchmarking and workload simul
    kubectl apply -f acstor-pod.yaml
    ```
 
-   You should see output similar to the following:
+   You should see output similar to this example:
 
    ```output
    pod/fiopod created
@@ -350,7 +353,7 @@ You now have a pod that uses Elastic SAN for storage.
 
 ## Static provisioning of an Elastic SAN volume
 
-You can precreate the volume in Elastic SAN and surface it to Kubernetes as a static PV. Use the steps above to create the Elastic SAN and volume group. You can also perform these steps in the Azure portal by using the [Elastic SAN service blade](../elastic-san/elastic-san-create.md).
+You can precreate the volume in Elastic SAN and surface it to Kubernetes as a static PV. Use the steps in [Create a storage class for a pre-provisioned Elastic SAN and volume group](#create-a-storage-class-for-a-pre-provisioned-elastic-san-and-volume-group) to create the Elastic SAN and volume group. You can also perform these steps in the Azure portal by using the [Elastic SAN service blade](../elastic-san/elastic-san-create.md).
 
 ### Create a default Elastic SAN storage class
 

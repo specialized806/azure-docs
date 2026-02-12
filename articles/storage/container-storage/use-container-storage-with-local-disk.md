@@ -33,7 +33,8 @@ For example, the [Lsv3 series](/azure/virtual-machines/sizes/storage-optimized/l
 
 ## Prerequisites
 
-- [!INCLUDE [container-storage-prerequisites](../../../includes/container-storage-prerequisites.md)]
+[!INCLUDE [container-storage-prerequisites](../../../includes/container-storage-prerequisites.md)]
+
 - [Review the installation instructions](install-container-storage-aks.md) and ensure Azure Container Storage is properly installed.
 
 ## Choose a VM type that supports local NVMe
@@ -66,7 +67,7 @@ For more information, refer to [Best practices for ephemeral NVMe data disks in 
 
 ## Create a storage class for local NVMe
 
-If you haven't already done so, [install Azure Container Storage.](install-container-storage-aks.md) 
+If you don't already have Azure Container Storage installed, [install it](install-container-storage-aks.md).
 
 Azure Container Storage (version 2.x.x) presents local NVMe as a standard Kubernetes storage class. Create the `local` storage class once per cluster and reuse it for both generic ephemeral volumes and persistent volume claims.
 
@@ -284,7 +285,7 @@ Make sure a StorageClass for `localdisk.csi.acstor.io` exists. Run the following
 kubectl get csistoragecapacities.storage.k8s.io -n kube-system -o custom-columns=NAME:.metadata.name,STORAGE_CLASS:.storageClassName,CAPACITY:.capacity,NODE:.nodeTopology.matchLabels."topology\.localdisk\.csi\.acstor\.io/node"
 ```
 
-You should see output similar to the following example:
+You should see output similar to this example:
 
 ```output
 NAME          STORAGE_CLASS   CAPACITY    NODE

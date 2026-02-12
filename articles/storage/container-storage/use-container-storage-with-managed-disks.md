@@ -19,7 +19,8 @@ Azure Container Storage is a cloud-based volume management, deployment, and orch
 
 ## Prerequisites
 
-- [!INCLUDE [container-storage-prerequisites](../../../includes/container-storage-prerequisites.md)]
+[!INCLUDE [container-storage-prerequisites](../../../includes/container-storage-prerequisites.md)]
+
 - To use Azure Container Storage with Azure managed disks, your AKS cluster must have a node pool of at least three [general purpose VMs](/azure/virtual-machines/sizes-general) such as **standard_d4s_v5** for the cluster nodes, each with a minimum of four virtual CPUs (vCPUs).
 
 ## Create and attach persistent volumes
@@ -332,7 +333,7 @@ Create a pod using [Fio](https://github.com/axboe/fio) (Flexible I/O Tester) for
    kubectl apply -f acstor-pod.yaml
    ```
 
-   You should see output similar to the following:
+   You should see output similar to this example:
 
    ```output
    pod/fiopod created

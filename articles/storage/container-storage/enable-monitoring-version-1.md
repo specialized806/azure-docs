@@ -53,7 +53,7 @@ Azure Container Storage provides the following storage pool metrics collected fr
 
 | **Metric** | **Description** |
 |------------------|-----------------|
-| `storage_pool_ready_state` | This is a gauge metric to detect storage pool state (0 = not ready, 1 = ready). |
+| `storage_pool_ready_state` | This metric is a gauge that detects storage pool state (0 = not ready, 1 = ready). |
 | `storage_pool_capacity_provisioned_bytes` | Storage pool capacity provisioned in bytes. |
 | `storage_pool_capacity_used_bytes` | Storage pool capacity used in bytes from the provisioned storage pool capacity. |
 | `storage_pool_snapshot_capacity_reserved_bytes` | Storage pool capacity reserved in bytes for storing local snapshots. |
@@ -64,7 +64,7 @@ Azure Container Storage provides the following disk metrics collected from the `
 
 | **Metric** | **Description** |
 |------------------|-----------------|
-| `disk_pool_ready_state` | This is a gauge metric to detect disk pool state (0 = not ready, 1 = ready). |
+| `disk_pool_ready_state` | This metric is a gauge that detects disk pool state (0 = not ready, 1 = ready). |
 | `disk_read_operations_completed_total` | The number of total disk read operations performed successfully over the disk. |
 | `disk_write_operations_completed_total` | The number of total disk write operations performed successfully over the disk. |
 | `disk_read_operations_time_seconds_total` | The total time spent performing read operations in seconds. |
@@ -72,7 +72,7 @@ Azure Container Storage provides the following disk metrics collected from the `
 | `disk_errors_total` | Count of disk errors. |
 | `disk_read_bytes_total` | The total number of bytes read successfully. |
 | `disk_written_bytes_total` | The total number of bytes written successfully. |
-| `disk_readonly_errors_gauge` | This is a gauge metric to measure read-only volume mounts. |
+| `disk_readonly_errors_gauge` | This metric is a gauge that measures read-only volume mounts. |
 
 ## Query Azure Container Storage metrics
 

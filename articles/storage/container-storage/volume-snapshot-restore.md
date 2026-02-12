@@ -19,7 +19,8 @@ Volume snapshots aren't supported when you use ephemeral disk (local NVMe) as ba
 
 ## Prerequisites
 
-- [!INCLUDE [container-storage-prerequisites](../../../includes/container-storage-prerequisites.md)]
+[!INCLUDE [container-storage-prerequisites](../../../includes/container-storage-prerequisites.md)]
+
 - This article assumes you [installed Azure Container Storage](./install-container-storage-aks.md) on your Azure Kubernetes Service (AKS) cluster and created a PVC using [Azure Elastic SAN](use-container-storage-with-elastic-san.md).
 
 ## Create a volume snapshot class
@@ -173,7 +174,7 @@ Create a new pod using the restored PVC. Create the pod using Flexible I/O Teste
    kubectl apply -f fio-pod-restore.yaml
    ```
 
-   You should see output similar to the following:
+   You should see output similar to this example:
 
    ```output
    pod/fio-restore created

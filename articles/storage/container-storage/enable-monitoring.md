@@ -53,7 +53,7 @@ Azure Container Storage provides the following disk metrics collected from the `
 | `disk_errors_total` | Count of disk errors. |
 | `disk_read_bytes_total` | The total number of bytes read successfully. |
 | `disk_written_bytes_total` | The total number of bytes written successfully. |
-| `disk_readonly_errors_gauge` | This is a gauge metric to measure read-only volume mounts. |
+| `disk_readonly_errors_gauge` | This metric is a gauge that measures read-only volume mounts. |
 | `disk_discard_operations_completed_total` | The number of total discards completed successfully over the disk. |
 | `disk_discard_operations_time_seconds_total` | The total time spent by all discards on the disk in seconds. |
 | `disk_discarded_sectors_total` | The total number of sectors discarded successfully. |
@@ -63,11 +63,11 @@ Azure Container Storage provides the following disk metrics collected from the `
 | `disk_io_now` | The number of I/Os currently in progress. |
 | `disk_io_time_seconds_total` | The total time spent doing I/Os in seconds. |
 | `disk_io_time_weighted_seconds_total` | The weighted time spent doing I/Os in seconds. |
-| `disk_readonly_status_gauge` | This is a gauge metric to measure the readonly status of volume mounts |
+| `disk_readonly_status_gauge` | This metric is a gauge that measures the read-only status of volume mounts. |
 | `disk_reads_merged_total` | The total number of reads merged. |
 | `disk_writes_merged_total` | The total number of writes merged. |
-| `disk_scrape_collector_duration_seconds` | This is the duration of a collector scrape. |
-| `disk_scrape_collector_success` | This is a gauge metric which indicates whether the disk information was successfully collected. |
+| `disk_scrape_collector_duration_seconds` | This metric captures the duration of a collector scrape. |
+| `disk_scrape_collector_success` | This metric is a gauge that indicates whether the disk information was collected successfully. |
 
 ## Query Azure Container Storage metrics
 
