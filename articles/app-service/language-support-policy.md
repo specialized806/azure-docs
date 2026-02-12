@@ -13,7 +13,7 @@ ms.service: azure-app-service
 
 # Language runtime support policy for Azure App Service
 
-This article describes the language runtime support policy for updating existing stacks and retiring end-of-support stacks in Azure App Service. This policy clarifies existing practices and doesn't present any changes to customer commitments.
+This article describes the language runtime support policy for updating existing stacks and retiring end-of-support stacks in Azure App Service. This policy clarifies existing practices and presents no changes to any customer commitments.
 
 ## Updates to existing stacks
 
@@ -24,11 +24,11 @@ App Service updates existing stacks after they become available from each langua
 App Service follows community support timelines for the lifecycle of the runtime. After community support for a language reaches the end of support, your applications that use the language continue to run unchanged. However, App Service can't provide security patches or related customer support for that runtime version past its end-of-support date. If your application has any problems past the end-of-support date for that version, you should move up to a supported version to receive the latest security patches and features.
 
 > [!IMPORTANT]
-> If your app uses an unsupported language version, you must upgrade the app to a supported language version before it can get support from App Service.
+> If your app uses an unsupported language version, you must upgrade the app to a supported language version before it can get App Service support.
 
 ## Notifications
 
-End-of-support dates for runtime versions are determined independently by their respective stack owners and are outside the control of App Service. App Service sends reminder notifications to subscription owners about upcoming end-of-support dates when they become available.
+Stack owners independently determine end-of-support dates for their respective runtime versions, which are outside of App Service control. App Service sends reminder notifications to subscription owners about upcoming end-of-support dates when they become available.
 
 Roles that receive notifications include account administrators, service administrators, and coadministrators. Contributors, readers, or other roles don't directly receive notifications unless they opt in to receive notification emails by using [Service Health Alerts](/azure/service-health/alerts-activity-log-service-notifications-portal).
 
@@ -58,7 +58,7 @@ To show the language version an app uses, see the following resources:
 - [Python](configure-language-python.md#configure-the-python-version)
 - [PHP](configure-language-php.md#show-the-php-version)
 
-## Set language versions
+### Set language versions
 
 To set the language version for an app, see the following resources:
 
@@ -70,76 +70,76 @@ To set the language version for an app, see the following resources:
 
 ## Java-specific runtime support
 
-- [JDK versions and maintenance](#jdk-versions-and-maintenance)
+- [Java Development Kit (JDK) versions and maintenance](#jdk-versions-and-maintenance)
 - [Security updates](#security-updates)
 - [Deprecation and retirement](#deprecation-and-retirement)
 - [Local development](#local-development)
 
 ### JDK versions and maintenance
 
-Microsoft and Adoptium builds of OpenJDK are provided and supported on App Service for Java 8, 11, 17 and 21. These binaries are provided as a no-cost, multiplatform, production-ready distribution of OpenJDK for Azure. The binaries contain all the components for building and running Java SE applications. For local development or testing, you can [download the Microsoft build of OpenJDK](/java/openjdk/download).
+Microsoft and `Adoptium` builds of OpenJDK are provided and supported on App Service for Java 8, 11, 17, 21, and 25. These binaries are provided as a no-cost, multiplatform, production-ready distribution of OpenJDK for Azure. The binaries contain all the components for building and running Java Standard Edition (SE) applications. For local development or testing, you can [download the Microsoft build of OpenJDK](/java/openjdk/download).
 
 # [Linux](#tab/linux)
 
 | Java stack name       | Linux distribution | Java distribution |
 | ----------------------- | ------------- | ------------------------- |
-| Java 8                  | Alpine 3.16\* | Adoptium Temurin 8 (MUSL) |
-| Java 11                 | Alpine 3.16\* | MSFT OpenJDK 11 (MUSL)    |
-| Java 17                 | Ubuntu        | MSFT OpenJDK 17           |
-| Java 21                 | Ubuntu        | MSFT OpenJDK 21           |
-| Tomcat 8.5 Java 8       | Alpine 3.16\* | Adoptium Temurin 8 (MUSL) |
-| Tomcat 8.5 Java 11      | Alpine 3.16\* | MSFT OpenJDK 11 (MUSL)    |
-| Tomcat 9.0 Java 8       | Alpine 3.16\* | Adoptium Temurin 8 (MUSL) |
-| Tomcat 9.0 Java 11      | Alpine 3.16\* | MSFT OpenJDK 11 (MUSL)    |
-| Tomcat 9.0 Java 17      | Ubuntu        | MSFT OpenJDK 17           |
-| Tomcat 9.0 Java 21      | Ubuntu        | MSFT OpenJDK 21           |
-| Tomcat 10.0 Java 8      | Ubuntu        | Adoptium Temurin 8        |
-| Tomcat 10.0 Java 11     | Ubuntu        | MSFT OpenJDK 11           |
-| Tomcat 10.0 Java 17     | Ubuntu        | MSFT OpenJDK 17           |
-| Tomcat 10.0 Java 21     | Ubuntu        | MSFT OpenJDK 21           |
-| Tomcat 10.1 Java 11     | Ubuntu        | MSFT OpenJDK 11           |
-| Tomcat 10.1 Java 17     | Ubuntu        | MSFT OpenJDK 17           |
-| Tomcat 10.1 Java 21     | Ubuntu        | MSFT OpenJDK 21           |
-| Tomcat 11.0 Java 17     | Ubuntu        | MSFT OpenJDK 17           |
-| Tomcat 11.0 Java 21     | Ubuntu        | MSFT OpenJDK 21           |
-| JBoss 7.3 Java 8        | Ubuntu        | Adoptium Temurin 8        |
-| JBoss 7.3 Java 11       | Ubuntu        | MSFT OpenJDK 11           |
-| JBoss 7.4 Java 8        | Ubuntu        | Adoptium Temurin 8        |
-| JBoss 7.4 Java 11       | Ubuntu        | MSFT OpenJDK 11           |
-| JBoss 7.4 Java 17       | Ubuntu        | MSFT OpenJDK 17           |
-| JBoss 8.0 Java 11       | Ubuntu        | MSFT OpenJDK 11           |
-| JBoss 8.0 Java 17       | Ubuntu        | MSFT OpenJDK 17           |
-| JBoss 8.0 Java 21       | Ubuntu        | MSFT OpenJDK 21           |
+| Java 8                  | Alpine 3.16\* | `Adoptium` Temurin 8 (`MUSL`) |
+| Java 11                 | Alpine 3.16\* | Microsoft OpenJDK 11 (`MUSL`)    |
+| Java 17                 | Ubuntu        | Microsoft OpenJDK 17           |
+| Java 21                 | Ubuntu        | Microsoft OpenJDK 21           |
+| Tomcat 8.5 Java 8       | Alpine 3.16\* | `Adoptium` Temurin 8 (`MUSL`) |
+| Tomcat 8.5 Java 11      | Alpine 3.16\* | Microsoft OpenJDK 11 (`MUSL`)    |
+| Tomcat 9.0 Java 8       | Alpine 3.16\* | `Adoptium` Temurin 8 (`MUSL`) |
+| Tomcat 9.0 Java 11      | Alpine 3.16\* | Microsoft OpenJDK 11 (`MUSL`)    |
+| Tomcat 9.0 Java 17      | Ubuntu        | Microsoft OpenJDK 17           |
+| Tomcat 9.0 Java 21      | Ubuntu        | Microsoft OpenJDK 21           |
+| Tomcat 10.0 Java 8      | Ubuntu        | `Adoptium` Temurin 8        |
+| Tomcat 10.0 Java 11     | Ubuntu        | Microsoft OpenJDK 11           |
+| Tomcat 10.0 Java 17     | Ubuntu        | Microsoft OpenJDK 17           |
+| Tomcat 10.0 Java 21     | Ubuntu        | Microsoft OpenJDK 21           |
+| Tomcat 10.1 Java 11     | Ubuntu        | Microsoft OpenJDK 11           |
+| Tomcat 10.1 Java 17     | Ubuntu        | Microsoft OpenJDK 17           |
+| Tomcat 10.1 Java 21     | Ubuntu        | Microsoft OpenJDK 21           |
+| Tomcat 11.0 Java 17     | Ubuntu        | Microsoft OpenJDK 17           |
+| Tomcat 11.0 Java 21     | Ubuntu        | Microsoft OpenJDK 21           |
+| JBoss 7.3 Java 8        | Ubuntu        | `Adoptium` Temurin 8        |
+| JBoss 7.3 Java 11       | Ubuntu        | Microsoft OpenJDK 11           |
+| JBoss 7.4 Java 8        | Ubuntu        | `Adoptium` Temurin 8        |
+| JBoss 7.4 Java 11       | Ubuntu        | Microsoft OpenJDK 11           |
+| JBoss 7.4 Java 17       | Ubuntu        | Microsoft OpenJDK 17           |
+| JBoss 8.0 Java 11       | Ubuntu        | Microsoft OpenJDK 11           |
+| JBoss 8.0 Java 17       | Ubuntu        | Microsoft OpenJDK 17           |
+| JBoss 8.0 Java 21       | Ubuntu        | Microsoft OpenJDK 21           |
 
-\* Alpine 3.16 is the last supported Alpine distribution in App Service. To avoid switching over to Ubuntu automatically, pin to a version . Make sure to test and switch to a Java offering that's supported by Ubuntu-based distributions when possible.
+\* Alpine 3.16 is the last supported Alpine distribution in App Service. To avoid switching over to Ubuntu automatically, pin to a version. Test and switch to a Java offering that's supported by Ubuntu-based distributions when possible.
 
 # [Windows](#tab/windows)
 
 | Java stack name  | Windows version | Java distribution |
 | -------------------- | ------------------- | --------------------- |
-| Java SE, Java 8      | Windows Server 2022 | Adoptium Temurin 8    |
-| Java SE, Java 11     | Windows Server 2022 | MSFT OpenJDK 11       |
-| Java SE, Java 17     | Windows Server 2022 | MSFT OpenJDK 17       |
-| Java SE, Java 21     | Windows Server 2022 | MSFT OpenJDK 21       |
-| Tomcat 8.5, Java 8   | Windows Server 2022 | Adoptium Temurin 8    |
-| Tomcat 8.5, Java 11  | Windows Server 2022 | MSFT OpenJDK 11       |
-| Tomcat 9.0, Java 8   | Windows Server 2022 | Adoptium Temurin 8    |
-| Tomcat 9.0, Java 11  | Windows Server 2022 | MSFT OpenJDK 11       |
-| Tomcat 9.0, Java 17  | Windows Server 2022 | MSFT OpenJDK 17       |
-| Tomcat 9.0, Java 21  | Windows Server 2022 | MSFT OpenJDK 21       |
-| Tomcat 10.0, Java 8  | Windows Server 2022 | Adoptium Temurin 8    |
-| Tomcat 10.0, Java 11 | Windows Server 2022 | MSFT OpenJDK 11       |
-| Tomcat 10.0, Java 17 | Windows Server 2022 | MSFT OpenJDK 17       |
-| Tomcat 10.0, Java 21 | Windows Server 2022 | MSFT OpenJDK 21       |
-| Tomcat 10.1, Java 11 | Windows Server 2022 | MSFT OpenJDK 11       |
-| Tomcat 10.1, Java 17 | Windows Server 2022 | MSFT OpenJDK 17       |
-| Tomcat 10.1, Java 21 | Windows Server 2022 | MSFT OpenJDK 21       |
-| Tomcat 11.0, Java 17 | Windows Server 2022 | MSFT OpenJDK 17       |
-| Tomcat 11.0, Java 21 | Windows Server 2022 | MSFT OpenJDK 21       |
+| Java SE, Java 8      | Windows Server 2022 | `Adoptium` Temurin 8    |
+| Java SE, Java 11     | Windows Server 2022 | Microsoft OpenJDK 11       |
+| Java SE, Java 17     | Windows Server 2022 | Microsoft OpenJDK 17       |
+| Java SE, Java 21     | Windows Server 2022 | Microsoft OpenJDK 21       |
+| Tomcat 8.5, Java 8   | Windows Server 2022 | `Adoptium` Temurin 8    |
+| Tomcat 8.5, Java 11  | Windows Server 2022 | Microsoft OpenJDK 11       |
+| Tomcat 9.0, Java 8   | Windows Server 2022 | `Adoptium` Temurin 8    |
+| Tomcat 9.0, Java 11  | Windows Server 2022 | Microsoft OpenJDK 11       |
+| Tomcat 9.0, Java 17  | Windows Server 2022 | Microsoft OpenJDK 17       |
+| Tomcat 9.0, Java 21  | Windows Server 2022 | Microsoft OpenJDK 21       |
+| Tomcat 10.0, Java 8  | Windows Server 2022 | `Adoptium` Temurin 8    |
+| Tomcat 10.0, Java 11 | Windows Server 2022 | Microsoft OpenJDK 11       |
+| Tomcat 10.0, Java 17 | Windows Server 2022 | Microsoft OpenJDK 17       |
+| Tomcat 10.0, Java 21 | Windows Server 2022 | Microsoft OpenJDK 21       |
+| Tomcat 10.1, Java 11 | Windows Server 2022 | Microsoft OpenJDK 11       |
+| Tomcat 10.1, Java 17 | Windows Server 2022 | Microsoft OpenJDK 17       |
+| Tomcat 10.1, Java 21 | Windows Server 2022 | Microsoft OpenJDK 21       |
+| Tomcat 11.0, Java 17 | Windows Server 2022 | Microsoft OpenJDK 17       |
+| Tomcat 11.0, Java 21 | Windows Server 2022 | Microsoft OpenJDK 21       |
 
 -----
 
-If you [pin](configure-language-java-deploy-run.md#choosing-a-java-runtime-version) to an earlier minor version of Java, your app might be using the deprecated [Azul Zulu for Azure](https://devblogs.microsoft.com/java/end-of-updates-support-and-availability-of-zulu-for-azure/) binaries that were provided through [Azul Systems](https://www.azul.com/). You can keep using these binaries for your apps, but security patches and improvements are available only for more recent versions of OpenJDK. Update to a more recent version of Java as soon as possible.
+If you [pinned](configure-language-java-deploy-run.md#choosing-a-java-runtime-version) to an earlier minor version of Java, your app might be using the deprecated [Azul Zulu for Azure](https://devblogs.microsoft.com/java/end-of-updates-support-and-availability-of-zulu-for-azure/) binaries that were provided through [Azul Systems](https://www.azul.com/). You can keep using these binaries for your apps, but security patches and improvements are available only for more recent versions of OpenJDK. Update to a more recent version of Java as soon as possible.
 
 Azure App Service provides major version updates through new runtime options. Update to these later versions of Java by configuring your App Service deployment. Make sure to test and ensure that the major update meets your needs.
 
@@ -147,7 +147,7 @@ Supported JDKs are automatically patched on a quarterly basis in January, April,
 
 ### Security updates
 
-Patches and fixes for major security vulnerabilities are released as soon as they become available in Microsoft builds of OpenJDK. A *major vulnerability* is a vulnerability that has a base score of 9.0 or higher on the [NIST Common Vulnerability Scoring System, version 2](https://nvd.nist.gov/vuln-metrics/cvss).
+Patches and fixes for major security vulnerabilities are released as soon as they become available in Microsoft builds of OpenJDK. A *major vulnerability* is a vulnerability that has a base score of 9.0 or higher on the [`NIST` Common Vulnerability Scoring System, version 2](https://nvd.nist.gov/vuln-metrics/cvss).
 
 Tomcat 8.5 reached [end of support as of March 31, 2024](https://tomcat.apache.org/tomcat-85-eol.html) and Tomcat 10.0 reached [end of support as of October 31, 2022](https://tomcat.apache.org/tomcat-10.0-eol.html). Although those runtimes are still available on Azure App Service, Tomcat 10 and Tomcat 8.5 don't receive security updates. As soon as possible, migrate your applications to Tomcat 9.0 or Tomcat 10.1, which are available on Azure App Service. For more information, see the [Apache Tomcat documentation](https://tomcat.apache.org/whichversion.html).
 
