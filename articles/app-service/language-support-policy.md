@@ -3,36 +3,38 @@ title: Language Runtime Support Policy
 description: Learn about the language runtime support policy for Azure App Service.
 author: jeffwmartinez
 ms.topic: concept-article
-ms.date: 05/06/2024
+ms.date: 02/12/2026
 ms.author: jefmarti
 ms.custom: devx-track-extended-java
 ms.service: azure-app-service
+#customer intent: As an app owner, I want to understand the Azure App Service language runtime support policies so I can ensure that my apps get needed updates and support.
+
 ---
 
 # Language runtime support policy for Azure App Service
 
-This article describes the language runtime support policy for updating existing stacks and retiring end-of-support stacks in Azure App Service. This policy clarifies existing practices and doesn't represent a change to customer commitments.
+This article describes the language runtime support policy for updating existing stacks and retiring end-of-support stacks in Azure App Service. This policy clarifies existing practices and doesn't present any changes to customer commitments.
 
 ## Updates to existing stacks
 
-App Service updates existing stacks after they become available from each community. App Service updates major versions of stacks but can't guarantee any specific minor versions or patch versions. The platform controls minor and patch versions. For example, App Service updates Node 24 but doesn't guarantee a specific Node 24.x.x version. If you need a specific minor or patch version, use a [custom container](quickstart-custom-container.md).
+App Service updates existing stacks after they become available from each language community. App Service updates major versions of stacks but can't guarantee any specific minor versions or patch versions. The platform controls minor and patch versions. For example, App Service updates Node 24 but doesn't guarantee a specific Node 24.x.x version. If you need a specific minor or patch version, use a [custom container](quickstart-custom-container.md).
 
 ## Retirements
 
-App Service follows community support timelines for the lifecycle of the runtime. After community support for a language reaches the end of support, your applications continue to run unchanged. However, App Service can't provide security patches or related customer support for that runtime version past its end-of-support date. If your application has any problems past the end-of-support date for that version, you should move up to a supported version to receive the latest security patches and features.
+App Service follows community support timelines for the lifecycle of the runtime. After community support for a language reaches the end of support, your applications that use the language continue to run unchanged. However, App Service can't provide security patches or related customer support for that runtime version past its end-of-support date. If your application has any problems past the end-of-support date for that version, you should move up to a supported version to receive the latest security patches and features.
 
 > [!IMPORTANT]
-> If you're running apps that use an unsupported language version, you need to upgrade to a supported language version before you can get support for those apps.
+> If your app uses an unsupported language version, you must upgrade the app to a supported language version before it can get support from App Service.
 
 ## Notifications
 
-End-of-support dates for runtime versions are determined independently by their respective stacks and are outside the control of App Service. App Service sends reminder notifications to subscription owners for upcoming end-of-support runtime versions when they become available for each language.
+End-of-support dates for runtime versions are determined independently by their respective stack owners and are outside the control of App Service. App Service sends reminder notifications to subscription owners about upcoming end-of-support dates when they become available.
 
-Roles that receive notifications include account administrators, service administrators, and coadministrators. Contributors, readers, or other roles don't directly receive notifications unless they opt in to receive notification emails by using [Service Health Alerts](/azure/service-health/alerts-activity-log-service-notifications-portal).  
+Roles that receive notifications include account administrators, service administrators, and coadministrators. Contributors, readers, or other roles don't directly receive notifications unless they opt in to receive notification emails by using [Service Health Alerts](/azure/service-health/alerts-activity-log-service-notifications-portal).
 
 ## Timelines for language runtime version support
 
-To learn more about specific timelines for the language support policy, see the following resources:
+To learn more about language-specific support policy timelines, see the following resources:
 
 - [.NET and ASP.NET Core](https://aka.ms/dotnetrelease)
 - [.NET Framework and ASP.NET](https://aka.ms/aspnetrelease)
@@ -42,9 +44,13 @@ To learn more about specific timelines for the language support policy, see the 
 - [PHP](https://aka.ms/phprelease)
 - [Go](https://aka.ms/gorelease)
 
-## Support status
+## Show and set language versions
 
-App Service supports languages on both Linux and Windows operating systems. See the following resources for the list of OS support for each language:
+App Service supports languages on both Linux and Windows operating systems.
+
+### Show language version
+
+To show the language version an app uses, see the following resources:
 
 - [.NET](configure-language-dotnetcore.md#show-supported-net-core-runtime-versions)
 - [Java](#jdk-versions-and-maintenance)
@@ -52,9 +58,9 @@ App Service supports languages on both Linux and Windows operating systems. See 
 - [Python](configure-language-python.md#configure-the-python-version)
 - [PHP](configure-language-php.md#show-the-php-version)
 
-## Configure language versions
+## Set language versions
 
-To learn more about how to update language versions for your App Service applications, see the following resources:
+To set the language version for an app, see the following resources:
 
 - [.NET](configure-language-dotnetcore.md#set-net-core-version)
 - [Java](configure-language-java-deploy-run.md#show-the-java-version)
@@ -62,7 +68,7 @@ To learn more about how to update language versions for your App Service applica
 - [Python](configure-language-python.md#configure-the-python-version)
 - [PHP](configure-language-php.md#set-the-php-version)
 
-## Java-specific runtime statement of support
+## Java-specific runtime support
 
 - [JDK versions and maintenance](#jdk-versions-and-maintenance)
 - [Security updates](#security-updates)
@@ -105,7 +111,7 @@ Microsoft and Adoptium builds of OpenJDK are provided and supported on App Servi
 | JBoss 8.0 Java 17       | Ubuntu        | MSFT OpenJDK 17           |
 | JBoss 8.0 Java 21       | Ubuntu        | MSFT OpenJDK 21           |
 
-\* Alpine 3.16 is the last supported Alpine distribution in App Service. You should pin to a version to avoid switching over to Ubuntu automatically. Make sure that you test and switch to a Java offering that is supported by Ubuntu-based distributions when possible.
+\* Alpine 3.16 is the last supported Alpine distribution in App Service. To avoid switching over to Ubuntu automatically, pin to a version . Make sure to test and switch to a Java offering that's supported by Ubuntu-based distributions when possible.
 
 # [Windows](#tab/windows)
 
@@ -133,9 +139,9 @@ Microsoft and Adoptium builds of OpenJDK are provided and supported on App Servi
 
 -----
 
-If you're [pinned](configure-language-java-deploy-run.md#choosing-a-java-runtime-version) to an earlier minor version of Java, your app might be using the deprecated [Azul Zulu for Azure](https://devblogs.microsoft.com/java/end-of-updates-support-and-availability-of-zulu-for-azure/) binaries that are provided through [Azul Systems](https://www.azul.com/). You can keep using these binaries for your app, but any security patches or improvements are available only in more recent versions of OpenJDK. In this scenario, we recommend that you periodically update your web apps to a more recent version of Java.
+If you [pin](configure-language-java-deploy-run.md#choosing-a-java-runtime-version) to an earlier minor version of Java, your app might be using the deprecated [Azul Zulu for Azure](https://devblogs.microsoft.com/java/end-of-updates-support-and-availability-of-zulu-for-azure/) binaries that were provided through [Azul Systems](https://www.azul.com/). You can keep using these binaries for your apps, but security patches and improvements are available only for more recent versions of OpenJDK. Update to a more recent version of Java as soon as possible.
 
-Major version updates are provided through new runtime options in Azure App Service. Update to these later versions of Java by configuring your App Service deployment. You're responsible for testing and ensuring the major update meets your needs.
+Azure App Service provides major version updates through new runtime options. Update to these later versions of Java by configuring your App Service deployment. Make sure to test and ensure that the major update meets your needs.
 
 Supported JDKs are automatically patched on a quarterly basis in January, April, July, and October of each year. For more information, see [Java on Azure](/azure/developer/java/fundamentals/java-support-on-azure).
 
@@ -143,23 +149,18 @@ Supported JDKs are automatically patched on a quarterly basis in January, April,
 
 Patches and fixes for major security vulnerabilities are released as soon as they become available in Microsoft builds of OpenJDK. A *major vulnerability* is a vulnerability that has a base score of 9.0 or higher on the [NIST Common Vulnerability Scoring System, version 2](https://nvd.nist.gov/vuln-metrics/cvss).
 
-Tomcat 8.5 reached [end of support as of March 31, 2024](https://tomcat.apache.org/tomcat-85-eol.html) and Tomcat 10.0 reached [end of support as of October 31, 2022](https://tomcat.apache.org/tomcat-10.0-eol.html).
+Tomcat 8.5 reached [end of support as of March 31, 2024](https://tomcat.apache.org/tomcat-85-eol.html) and Tomcat 10.0 reached [end of support as of October 31, 2022](https://tomcat.apache.org/tomcat-10.0-eol.html). Although those runtimes are still available on Azure App Service, Tomcat 10 and Tomcat 8.5 don't receive security updates. As soon as possible, migrate your applications to Tomcat 9.0 or Tomcat 10.1, which are available on Azure App Service. For more information, see the [Apache Tomcat documentation](https://tomcat.apache.org/whichversion.html).
 
-Although the runtimes are still available on Azure App Service, Tomcat 10 and Tomcat 8.5 don't receive security updates.
-
-When possible, migrate your applications to Tomcat 9.0 or Tomcat 10.1. Tomcat 9.0 and Tomcat 10.1 are available on Azure App Service. For more information, see the [Apache Tomcat documentation](https://tomcat.apache.org/whichversion.html).
-
-Community support for Java 7 ended on July 29, 2022 and [Java 7 was retired from App Service](https://azure.microsoft.com/updates/transition-to-java-11-or-8-by-29-july-2022/). If you have a web app running on Java 7, upgrade to Java 8 or Java 11 immediately.
+Community support for Java 7 ended on July 29, 2022 and [Java 7 was retired from App Service](https://azure.microsoft.com/updates/transition-to-java-11-or-8-by-29-july-2022/). If you have a web app running on Java 7, upgrade to Java 8 or Java 11 as soon as possible.
 
 ### Deprecation and retirement
 
 If a supported Java runtime is retired, Azure developers who use the affected runtime receive a deprecation notice at least six months before the runtime is retired.
 
-- [Reasons to move to Java 11](/java/openjdk/reasons-to-move-to-java-11?bc=/azure/developer/breadcrumb/toc.json&toc=/azure/developer/java/fundamentals/toc.json)
-- [Java 7 migration guide](/java/openjdk/transition-from-java-7-to-java-8?bc=/azure/developer/breadcrumb/toc.json&toc=/azure/developer/java/fundamentals/toc.json)
+- [Reasons to move to Java 11 and beyond](/java/openjdk/reasons-to-move-to-java-11?bc=/azure/developer/breadcrumb/toc.json&toc=/azure/developer/java/fundamentals/toc.json)
+- [Transition from Java 7 to Java 8](/java/openjdk/transition-from-java-7-to-java-8?bc=/azure/developer/breadcrumb/toc.json&toc=/azure/developer/java/fundamentals/toc.json)
 
 ### Local development
 
-Developers can [download](/java/openjdk/download) the Microsoft build of OpenJDK for local development.
+You can [download](/java/openjdk/download) the [Microsoft build of OpenJDK](/java/openjdk/download) for local development. Microsoft product support for the Microsoft build of OpenJDK is available when you develop for Azure or [Azure Stack](https://azure.microsoft.com/overview/azure-stack/) with a [qualified Azure support plan](https://azure.microsoft.com/support/plans/).
 
-Product support for the [Microsoft build of OpenJDK](/java/openjdk/download) is available through Microsoft when you develop for Azure or [Azure Stack](https://azure.microsoft.com/overview/azure-stack/) with a [qualified Azure support plan](https://azure.microsoft.com/support/plans/).
