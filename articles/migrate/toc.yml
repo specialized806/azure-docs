@@ -356,8 +356,7 @@ items:
 #     href: how-to-review-sql-assessment.md
 #   - name: Customize an assessment
 #     href: how-to-modify-assessment.md
-#   - name: Recalculate an assessment
-#   - name: Scale assessment
+    - name: Scale assessment
       items:
       - name: Assess large number of servers in VMware environment
         href: scale-vmware-assessment.md
@@ -488,24 +487,14 @@ items:
     href: https://azure.microsoft.com/products/azure-migrate
   - name: Azure Roadmap
     href: https://azure.microsoft.com/updates/
-  # - name: Decide
-  #   items:
   # - name: Assess
   #   items:
   #   - name: Assess servers in VMware environment
   #     items:
-  #     - name: Assess servers for migration to Azure VMs
-  #       href: tutorial-assess-vmware-azure-vm.md
   #   - name: Assess servers in Hyper-V environment 
   #     items:
-  #     - name: Assess servers for migration to Azure VMs
-  #       href: tutorial-assess-hyper-v.md
-  #     - name: Assess SQL instances for migration to Azure SQL
-  #       href: tutorial-assess-sql.md
-  #   - name: Assess physical servers
+  #     - name: Assess physical servers
   #     items:
-  #     - name: Assess SQL instances for migration to Azure SQL
-  #       href: tutorial-assess-sql.md 
   #   - name: Assess GCP instances for migration to Azure
   #     href: tutorial-assess-gcp.md
   #   - name: Assess web apps for migration to Azure Kubernetes Service (AKS)
