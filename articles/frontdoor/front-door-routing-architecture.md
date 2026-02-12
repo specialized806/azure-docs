@@ -6,7 +6,7 @@ author: halkazwini
 ms.author: halkazwini
 ms.service: azure-frontdoor
 ms.topic: concept-article
-ms.date: 09/25/2025
+ms.date: 02/17/2026
 zone_pivot_groups: front-door-tiers
 ---
 
@@ -32,13 +32,15 @@ The following diagram illustrates the routing architecture:
 
 The following sections describe these steps in detail.
 
-## Select and connect to the Front Door edge location
-
-The user or client application initiates a connection to the Front Door. The connection terminates at an edge location closest to the end user. Front Door's edge location processes the request.
-
-For more information about how requests are made to Front Door, see [Front Door traffic acceleration](front-door-traffic-acceleration.md).
-
 ::: zone pivot="front-door-standard-premium"
+
+## Name resolution by Azure Front Door's Traffic Manager returns POP unicast IP
+
+The user or client application initiates a connection to the origin behind Azure Front Door. The domain name resolves to the Front Door's Azure Traffic Manager endpoint. The Traffic Manager consumes health and availability signals from all the Front Door POPs across the world. It determines the optimal POP to serve the request and returns the unicast IP of that POP.
+
+## Connect to Azure Front Door POP Unicast IP
+
+Client makes a direct connection to the returned IP address of the Front Door POP location.
 
 ## Match request to a Front Door profile
 
@@ -47,6 +49,12 @@ When Front Door receives an HTTP request, it uses the request's `Host` header to
 ::: zone-end
 
 ::: zone pivot="front-door-classic"
+
+## Select and connect to the Front Door edge location
+
+The user or client application initiates a connection to the Front Door. The connection terminates at an edge location closest to the end user. Front Door's edge location processes the request.
+
+For more information about how requests are made to Front Door, see [Front Door traffic acceleration](front-door-traffic-acceleration.md).
 
 ## Match request to a front door
 
