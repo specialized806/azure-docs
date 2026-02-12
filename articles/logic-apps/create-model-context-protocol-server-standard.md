@@ -68,11 +68,10 @@ The following table describes the benefits from setting up Standard logic apps a
 | Reusability | Call existing workflows, connectors, and codeful functions from an AI agent, which gives you extra return on your investments. |
 | Flexibility | Choose from more than 1,400 connectors that provide access and actions to work with enterprise assets and resources in the cloud or on-premises. |
 | Access points | Azure Logic Apps supports different connectivity models for running your MCP server. You can run your server in the cloud, expose your server as a private endpoint, or connect to virtual networks and on-premises resources. |
-| Security | When you expose your logic app as an MCP server, you set up a strong security posture so you can meet your enterprise security requirements. By default, MCP endpoints use [OAuth 2.0](/entra/identity-platform/v2-oauth2-auth-code-flow) for authentication and authorization. For more information, see [What is OAuth](https://www.microsoft.com/security/business/security-101/what-is-oauth)? <br><br>You can also use *Easy Auth* to secure your MCP server and Standard workflows. Easy Auth is the native authentication and authorization feature in Azure App Service, Azure Functions, and Azure Container Apps. To set up Easy Auth for your MCP server, [Set up Easy Auth for your MCP server](#set-up-easy-auth). For more information, see [Authentication and authorization in Azure App Service and Azure Functions](../app-service/overview-authentication-authorization.md). |
+| Security | When you expose your logic app as an MCP server, you set up a strong security posture so you can meet your enterprise security requirements. By default, MCP endpoints use [OAuth 2.0](/entra/identity-platform/v2-oauth2-auth-code-flow) for authentication and authorization. For more information, see [What is OAuth](https://www.microsoft.com/security/business/security-101/what-is-oauth)? <br><br>**Important**: To use OAuth authentication, you must set up *Easy Auth* to secure your MCP server and Standard workflows. Easy Auth is the native authentication and authorization feature in Azure App Service, Azure Functions, and Azure Container Apps. To set up Easy Auth for your MCP server, see [Set up Easy Auth for your MCP server](#set-up-easy-auth) later in this guide. For more information, see [Authentication and authorization in Azure App Service and Azure Functions](../app-service/overview-authentication-authorization.md). |
 | Monitoring, governance, and compliance | Azure Logic Apps provides workflow run history and integration with Application Insights or Log Analytics so you get the data necessary to manage and monitor your MCP server tools and support diagnostics, troubleshooting, reporting, traceability, and auditing. |
 | Scalability | Host multiple logical MCP servers in a single logic app. Each logical MCP server group contains related workflows. |
-
-Standard logic app based MCP servers support the [Streamable HTTP and Server-Sent Events (SSE) transports for MCP](https://modelcontextprotocol.io/specification/2025-06-18/basic/transports).
+| [Streamable HTTP and Server-Sent Events (SSE) transports for MCP](https://modelcontextprotocol.io/specification/2025-06-18/basic/transports) | Standard logic app-based MCP servers support SSE. |
 
 ## Prerequisites
 
@@ -209,11 +208,9 @@ To help agents or models find and run tools, add the following metadata to the *
      > [!TIP]
      >
      > If you get inconsistent results when an agent calls and runs your tool, check whether you can make 
-     > the trigger and parameter descriptions more unique. For example, try describing the format for parameter inputs. 
-     > If a parameter expects a base64 encoded string, include this detail in the parameter description.
+     > the trigger and parameter descriptions more unique. For example, try describing the format for parameter inputs. If a parameter expects a base64 encoded string, include this detail in the parameter description.
      >
-     > You can also set up error handling and use the `runAfter` property to return the appropriate 
-     > error message to the caller. For more information, see [Manage the "run after" behavior](error-exception-handling.md#manage-the-run-after-behavior).
+     > You can also set up error handling and use the `runAfter` property to return the appropriate error message to the caller. For more information, see [Manage the "run after" behavior](error-exception-handling.md#manage-the-run-after-behavior).
 
 ## Create an app registration
 
@@ -331,6 +328,10 @@ On the **Create an MCP server** pane, follow these steps:
 1. Enter a **Description** about the purpose for your MCP server.
 
 1. Under **Workflows**, select one or multiple workflows to use as tools for your MCP server.
+
+   > [!NOTE]
+   >
+   > The list shows only workflows that start with the **Request** trigger and end with the **Response** action.
 
 1. When you finish, select **Create**.
 
@@ -450,13 +451,20 @@ You need the URL for your MCP server so you can send a request from Visual Studi
    When you add an MCP server for the first time, you must choose where to store your MCP configuration. You get the following options, so choose the best option for your scenario:
 
    - **Global**: Your user configuration, which is the `c:\users\<your-username>\AppData\Roaming\Code\User` directory and available across all workspaces.
+
    - **Workspace**: Your current workspace in Visual Studio Code.
 
    This guide selects **Global** to store the MCP server information in the user configuration. As a result, Visual Studio Code creates and opens an **mcp.json** file, which shows your MCP server information.
 
 1. In the *mcp.json* file, select the **Start** or **Restart** link to establish connectivity for your MCP server, for example:
 
-   :::image type="content" source="media/create-model-context-protocol-server-standard/start-server-mcp-json-file.png" alt-text="Screenshot shows mcp.json file with Start link selected." lightbox="media/create-model-context-protocol-server-standard/start-server-mcp-json-file.png":::
+   **OAuth**
+
+   :::image type="content" source="media/create-model-context-protocol-server-standard/start-server-mcp-json-file-oauth.png" alt-text="Screenshot shows mcp.json file for OAuth with Start link selected." lightbox="media/create-model-context-protocol-server-standard/start-server-mcp-json-file-oauth.png":::
+
+   **Key-based**
+
+   :::image type="content" source="media/create-model-context-protocol-server-standard/start-server-mcp-json-file-key-based.png" alt-text="Screenshot shows mcp.json file for Key-based with Start link selected." lightbox="media/create-model-context-protocol-server-standard/start-server-mcp-json-file-key-based.png":::
 
 1. When the authentication prompt appears, select **Allow**, and then select the account to use for authentication.
 
@@ -464,7 +472,13 @@ You need the URL for your MCP server so you can send a request from Visual Studi
 
    After authentication completes, the *mcp.json* file shows **Running** as the MCP server status.
 
-   :::image type="content" source="media/create-model-context-protocol-server-standard/running-mcp-json-file.png" alt-text="Screenshot shows mcp.json file with Running status selected." lightbox="media/create-model-context-protocol-server-standard/running-mcp-json-file.png":::
+   **OAuth**
+
+   :::image type="content" source="media/create-model-context-protocol-server-standard/running-mcp-json-file-oauth.png" alt-text="Screenshot shows mcp.json file for OAuth with Running status selected." lightbox="media/create-model-context-protocol-server-standard/running-mcp-json-file-oauth.png":::
+
+   **Key-based**
+
+   :::image type="content" source="media/create-model-context-protocol-server-standard/running-mcp-json-file-key-based.png" alt-text="Screenshot shows mcp.json file for Key-based with Running status selected." lightbox="media/create-model-context-protocol-server-standard/running-mcp-json-file-key-based.png":::
 
 1. As a test, try calling your MCP server from GitHub Copilot:
 
