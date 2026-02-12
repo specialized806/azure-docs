@@ -5,7 +5,7 @@ author: Jeronika-MS
 ms.author: v-gajeronika
 ms.reviewer: v-gajeronika
 ms.topic: how-to
-ms.date: 02/11/2026
+ms.date: 02/12/2026
 ms.service: azure-site-recovery
 ms.custom: template-how-to
 

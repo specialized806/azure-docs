@@ -185,6 +185,9 @@ To use an image definition file, attach the catalog containing the file to your 
 
 After you attach the catalog, verify the image definitions synced successfully:
 
+> [!NOTE]
+> Image definitions are only supported at the project level. You must attach catalogs containing image definitions to a project, not to a dev center.
+
 1. In the Azure portal, navigate to your project.
 1. In the left menu, select **Manage** > **Image definitions**.
 1. Verify your image definitions appear in the list.
