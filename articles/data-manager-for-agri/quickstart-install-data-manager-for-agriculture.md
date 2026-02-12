@@ -26,7 +26,7 @@ In step 5 in the above documentation, search for `Microsoft.AgFoodPlatform` and 
 ## 2: Search in marketplace
 
 > [!IMPORTANT]
-> Access the  Azure Portal using <a href="https://portal.azure.com/?microsoft_azure_marketplace_ItemHideKey=Microsoft_Azure_AgFoodPlatformHidden#create/hub" target="_blank">**this link**</a> . This link enables visibility of the Azure Data Manager for Agriculture installation card in the Marketplace for our preview customers.
+> Access the  Azure portal using <a href="https://portal.azure.com/?microsoft_azure_marketplace_ItemHideKey=Microsoft_Azure_AgFoodPlatformHidden#create/hub" target="_blank">**this link**</a> . This link enables visibility of the Azure Data Manager for Agriculture installation card in the Marketplace for our preview customers.
 
 Enter Data manager for agriculture in the marketplace search bar. Then select 'create' on the listing tile as shown below.
 

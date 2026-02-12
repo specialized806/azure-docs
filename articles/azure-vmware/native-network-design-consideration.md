@@ -27,7 +27,7 @@ The following functionality is limited during this time. These limitations will 
 4. Your private cloud and virtual network for your private cloud must be in the ***same*** Resource Group.  
 5. You cannot ***move*** your private cloud from one Resource Group to another after the private cloud is created.  
 6. You cannot ***move*** your private cloud from one tenant to another after the private cloud is created.  
-1. If you require **ExpressRoute FastPath** or **Global Virtual Network Peering** for your AVS Private Cloud**,** create a Support Case through the Azure Portal. 
+1. If you require **ExpressRoute FastPath** or **Global Virtual Network Peering** for your AVS Private Cloud**,** create a Support Case through the Azure portal. 
 
 1. **Service Endpoints** direct connectivity from Azure VMware Solution workloads isn't supported.
 

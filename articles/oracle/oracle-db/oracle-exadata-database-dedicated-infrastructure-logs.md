@@ -275,7 +275,7 @@ the Azure portal provides a broad range of benefits, including:
 
 ## Step 6: Setup Alerts and Monitoring
 
-1. Go to **Azure Portal** \> **Monitor** \> **Alerts** \> **+ Create**
+1. Go to **Azure portal** \> **Monitor** \> **Alerts** \> **+ Create**
     \> **Alert rule**. [Overview of Azure Monitor alerts - Azure Monitor \| Microsoft Learn](/azure/azure-monitor/alerts/alerts-overview)
 
 1. Select the target resource in search tab by typing LA workspace name
