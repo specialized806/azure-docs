@@ -38,7 +38,7 @@
 - name: Core concepts
   items:
   - name: Concepts shared between Durable Functions and Durable Task SDKs
-    href: durable-functions-overview.md #placeholder
+    href: durable-task-shared-concepts.md
   - name: Fundamentals
     items: 
     - name: Function types
