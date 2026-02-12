@@ -79,7 +79,7 @@ Follow these steps to create a storage pool using local NVMe.
 
 1. Apply the YAML manifest file to create the storage pool.
    
-   ```azurecli-interactive
+   ```azurecli
    kubectl apply -f acstor-storagepool.yaml 
    ```
    
@@ -91,7 +91,7 @@ Follow these steps to create a storage pool using local NVMe.
    
    You can also run this command to check the status of the storage pool. Replace `<storage-pool-name>` with your storage pool **name** value. For this example, the value would be **ephemeraldisk-nvme**.
    
-   ```azurecli-interactive
+   ```azurecli
    kubectl describe sp <storage-pool-name> -n acstor
    ```
 
@@ -156,7 +156,7 @@ Create a pod using [Fio](https://github.com/axboe/fio) (Flexible I/O Tester) for
 
 1. Apply the YAML manifest file to deploy the pod.
    
-   ```azurecli-interactive
+   ```azurecli
    kubectl apply -f acstor-pod.yaml
    ```
    
@@ -168,14 +168,14 @@ Create a pod using [Fio](https://github.com/axboe/fio) (Flexible I/O Tester) for
 
 1. Check that the pod is running and that the ephemeral volume claim is bound successfully to the pod:
 
-   ```azurecli-interactive
+   ```azurecli
    kubectl describe pod fiopod
    kubectl describe pvc fiopod-ephemeralvolume
    ```
 
 1. Check fio testing to see its current status:
 
-   ```azurecli-interactive
+   ```azurecli
    kubectl exec -it fiopod -- fio --name=benchtest --size=800m --filename=/volume/test --direct=1 --rw=randrw --ioengine=libaio --bs=4k --iodepth=16 --numjobs=8 --time_based --runtime=60
    ```
 
@@ -191,7 +191,7 @@ Follow these steps to create and attach a persistent volume.
 
 Run the following command to update your Azure Container Storage installation to allow the creation of persistent volumes from ephemeral disk storage pools.
 
-```azurecli-interactive
+```azurecli
 az aks update -n <cluster-name> -g <resource-group> --enable-azure-container-storage ephemeralDisk --storage-pool-option NVMe --ephemeral-disk-volume-type PersistentVolumeWithAnnotation 
 ```
 
@@ -221,7 +221,7 @@ Follow these steps to create a storage pool using local NVMe.
 
 1. Apply the YAML manifest file to create the storage pool.
 
-   ```azurecli-interactive
+   ```azurecli
    kubectl apply -f acstor-storagepool.yaml 
    ```
 
@@ -233,7 +233,7 @@ Follow these steps to create a storage pool using local NVMe.
 
    You can also run this command to check the status of the storage pool. Replace `<storage-pool-name>` with your storage pool **name** value. For this example, the value would be **ephemeraldisk-nvme**.
 
-   ```azurecli-interactive
+   ```azurecli
    kubectl describe sp <storage-pool-name> -n acstor
    ```
 
@@ -282,7 +282,7 @@ A persistent volume claim is used to automatically provision storage based on a 
 
 1. Apply the YAML manifest file to create the PVC.
 
-   ```azurecli-interactive
+   ```azurecli
    kubectl apply -f acstor-pvc.yaml
    ```
 
@@ -294,7 +294,7 @@ A persistent volume claim is used to automatically provision storage based on a 
 
    You can verify the status of the PVC by running the following command:
 
-   ```azurecli-interactive
+   ```azurecli
    kubectl describe pvc ephemeralpvc
    ```
 
@@ -333,7 +333,7 @@ Create a pod using [Fio](https://github.com/axboe/fio) (Flexible I/O Tester) for
 
 1. Apply the YAML manifest file to deploy the pod.
 
-   ```azurecli-interactive
+   ```azurecli
    kubectl apply -f acstor-pod.yaml
    ```
 
@@ -345,14 +345,14 @@ Create a pod using [Fio](https://github.com/axboe/fio) (Flexible I/O Tester) for
 
 1. Check that the pod is running and that the persistent volume claim is bound successfully to the pod:
 
-   ```azurecli-interactive
+   ```azurecli
    kubectl describe pod fiopod
    kubectl describe pvc ephemeralpvc
    ```
 
 1. Check fio testing to see its current status:
 
-   ```azurecli-interactive
+   ```azurecli
    kubectl exec -it fiopod -- fio --name=benchtest --size=800m --filename=/volume/test --direct=1 --rw=randrw --ioengine=libaio --bs=4k --iodepth=16 --numjobs=8 --time_based --runtime=60
    ```
 
@@ -368,7 +368,7 @@ An ephemeral volume is allocated on a single node. When you configure the size o
 
 Run the following command to check the available capacity of ephemeral disk for a single node.
 
-```azurecli-interactive
+```azurecli
 kubectl get diskpool -n acstor
 ```
 
@@ -391,7 +391,7 @@ Because a storage pool backed by Ephemeral Disk uses local storage resources on 
 
 1. Run the following command to add a node to the AKS cluster. Replace `<cluster-name>`, `<nodepool name>`, and `<resource-group-name>` with your own values. To get the name of your node pool, run `kubectl get nodes`.
    
-   ```azurecli-interactive
+   ```azurecli
    az aks nodepool add --cluster-name <cluster name> --name <nodepool name> --resource-group <resource group> --node-vm-size Standard_L8s_v3 --node-count 1 --labels acstor.azure.com/io-engine=acstor
    ```
    
@@ -403,7 +403,7 @@ Because a storage pool backed by Ephemeral Disk uses local storage resources on 
 
 If you want to delete a storage pool, run the following command. Replace `<storage-pool-name>` with the storage pool name.
 
-```azurecli-interactive
+```azurecli
 kubectl delete sp -n acstor <storage-pool-name>
 ```
 
@@ -427,7 +427,7 @@ These three tiers offer a different range of IOPS. The following table contains 
 
 Once you identify the performance tier that aligns best to your needs, you can run the following command to update the performance tier of your Azure Container Storage installation. Replace `<performance tier>` with basic, standard, or premium.
 
-```azurecli-interactive
+```azurecli
 az aks update -n <cluster-name> -g <resource-group> --enable-azure-container-storage <storage-pool-type> --ephemeral-disk-nvme-perf-tier <performance-tier>
 ```
 

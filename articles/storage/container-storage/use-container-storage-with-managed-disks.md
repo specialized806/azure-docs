@@ -99,7 +99,7 @@ Follow these steps to create a dynamic storage pool for Azure Disks.
    
    You can also run this command to check the status of the storage pool. Replace `<storage-pool-name>` with your storage pool **name** value. For this example, the value would be **azuredisk**.
    
-   ```azurecli-interactive
+   ```azurecli
    kubectl describe sp <storage-pool-name> -n acstor
    ```
 
@@ -167,7 +167,7 @@ Follow these steps to create a pre-provisioned storage pool for Azure Disks.
 
 1. Apply the YAML manifest file to create the storage pool.
    
-   ```azurecli-interactive
+   ```azurecli
    kubectl apply -f acstor-storagepool.yaml 
    ```
    
@@ -179,7 +179,7 @@ Follow these steps to create a pre-provisioned storage pool for Azure Disks.
    
    You can also run this command to check the status of the storage pool. Replace `<storage-pool-name>` with your storage pool **name** value. For this example, the value would be **sp-preprovisioned**.
    
-   ```azurecli-interactive
+   ```azurecli
    kubectl describe sp <storage-pool-name> -n acstor
    ```
 
@@ -227,7 +227,7 @@ Follow these steps to create a storage pool using your own encryption key. All p
 
 1. Apply the YAML manifest file to create the storage pool.
    
-   ```azurecli-interactive
+   ```azurecli
    kubectl apply -f acstor-storagepool-cmk.yaml 
    ```
    
@@ -239,7 +239,7 @@ Follow these steps to create a storage pool using your own encryption key. All p
    
    You can also run this command to check the status of the storage pool. Replace `<storage-pool-name>` with your storage pool **name** value. For this example, the value would be **azuredisk**.
    
-   ```azurecli-interactive
+   ```azurecli
    kubectl describe sp <storage-pool-name> -n acstor
    ```
 
@@ -278,7 +278,7 @@ A persistent volume claim (PVC) is used to automatically provision storage based
 
 1. Apply the YAML manifest file to create the PVC.
 
-   ```azurecli-interactive
+   ```azurecli
    kubectl apply -f acstor-pvc.yaml
    ```
 
@@ -290,7 +290,7 @@ A persistent volume claim (PVC) is used to automatically provision storage based
 
    You can verify the status of the PVC by running the following command:
 
-   ```azurecli-interactive
+   ```azurecli
    kubectl describe pvc azurediskpvc
    ```
 
@@ -329,7 +329,7 @@ Create a pod using [Fio](https://github.com/axboe/fio) (Flexible I/O Tester) for
 
 1. Apply the YAML manifest file to deploy the pod.
 
-   ```azurecli-interactive
+   ```azurecli
    kubectl apply -f acstor-pod.yaml
    ```
 
@@ -341,14 +341,14 @@ Create a pod using [Fio](https://github.com/axboe/fio) (Flexible I/O Tester) for
 
 1. Check that the pod is running and that the persistent volume claim is bound successfully to the pod:
 
-   ```azurecli-interactive
+   ```azurecli
    kubectl describe pod fiopod
    kubectl describe pvc azurediskpvc
    ```
 
 1. Check fio testing to see its current status:
 
-   ```azurecli-interactive
+   ```azurecli
    kubectl exec -it fiopod -- fio --name=benchtest --size=800m --filename=/volume/test --direct=1 --rw=randrw --ioengine=libaio --bs=4k --iodepth=16 --numjobs=8 --time_based --runtime=60
    ```
 
@@ -362,7 +362,7 @@ Now that you have a persistent volume, you can detach and reattach it as needed.
 
 To detach a persistent volume, delete the pod that the persistent volume is attached to. Replace `<pod-name>` with the name of the pod, for example **fiopod**.
 
-```azurecli-interactive
+```azurecli
 kubectl delete pods <pod-name>
 ```
 
@@ -399,13 +399,13 @@ Follow these instructions to expand an existing storage pool for Azure Disks.
 
 1. Apply the YAML manifest file to expand the storage pool.
    
-   ```azurecli-interactive
+   ```azurecli
    kubectl apply -f acstor-storagepool.yaml 
    ```
 
 1. Run this command to check the status of the storage pool. Replace `<storage-pool-name>` with your storage pool **name** value.
    
-   ```azurecli-interactive
+   ```azurecli
    kubectl describe sp <storage-pool-name> -n acstor
    ```
 
@@ -417,7 +417,7 @@ Follow these instructions to expand an existing storage pool for Azure Disks.
 
 If you want to delete a storage pool, run the following command. Replace `<storage-pool-name>` with the storage pool name.
 
-```azurecli-interactive
+```azurecli
 kubectl delete sp -n acstor <storage-pool-name>
 ```
 

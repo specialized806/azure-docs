@@ -43,7 +43,7 @@ Local NVMe disks are only available in certain types of VMs, for example, [stora
 
 Run the following command to get the VM type that's used with your node pool. Replace `<resource group>` and `<cluster name>` with your own values. You don't need to supply values for `PoolName` or `VmSize`, so keep the query as shown here.
 
-```azurecli
+```azurecli-interactive
 az aks nodepool list --resource-group <resource group> --cluster-name <cluster name> --query "[].{PoolName:name, VmSize:vmSize}" -o table
 ```
 

@@ -41,14 +41,14 @@ az account set --subscription <subscription-id>
 
 The `Microsoft.ContainerService` and `Microsoft.KubernetesConfiguration` resource providers must be registered on your Azure subscription. To register these providers, run the following command:
 
-```azurecli-interactive
+```azurecli
 az provider register --namespace Microsoft.ContainerService --wait 
 az provider register --namespace Microsoft.KubernetesConfiguration --wait 
 ```
 
 To check if these providers are registered successfully, run the following command:
 
-```azurecli-interactive
+```azurecli
 az provider list --query "[?namespace=='Microsoft.ContainerService'].registrationState"
 az provider list --query "[?namespace=='Microsoft.KubernetesConfiguration'].registrationState"
 ```
@@ -62,7 +62,7 @@ An Azure resource group is a logical group that holds your Azure resources that 
 
 Create a resource group using the `az group create` command. Replace `<resource-group-name>` with the name of the resource group you want to create, and replace `<location>` with an Azure region such as *eastus*, *westus2*, *westus3*, or *westeurope*.
 
-```azurecli-interactive
+```azurecli
 az group create --name <resource-group-name> --location <location>
 ```
 
@@ -111,7 +111,7 @@ Run the following command to create a Linux-based AKS cluster and enable a syste
 Replace `<resource-group>` with the name of the resource group you created, `<cluster-name>` with the name of the cluster you want to create, and `<vm-type>` with the VM type you selected in the previous step. In this example, we create a cluster with three nodes. Increase the `--node-count` if you want a larger cluster. **If you want to use local NVMe for your storage pool type, be sure to set the node count to 4 or greater.**
 
 
-```azurecli-interactive
+```azurecli
 az aks create -g <resource-group> -n <cluster-name> --node-count 3 -s <vm-type> --generate-ssh-keys
 ```
 
@@ -129,13 +129,13 @@ To connect to the cluster, use the Kubernetes command-line client, `kubectl`. It
     * Downloads credentials and configures the Kubernetes CLI to use them.
     * Uses `~/.kube/config`, the default location for the Kubernetes configuration file. You can specify a different location for your Kubernetes configuration file using the *--file* argument.
 
-    ```azurecli-interactive
+    ```azurecli
     az aks get-credentials --resource-group <resource-group> --name <cluster-name>
     ```
 
 2. Verify the connection to your cluster using the `kubectl get` command. This command returns a list of the cluster nodes.
 
-    ```azurecli-interactive
+    ```azurecli
     kubectl get nodes
     ```
 
@@ -159,7 +159,7 @@ Next, you must update your node pool label to associate the node pool with the c
 
 Run the following command to update the node pool label. Remember to replace `<resource-group>` and `<cluster-name>` with your own values, and replace `<nodepool-name>` with the name of your node pool.
 
-```azurecli-interactive
+```azurecli
 az aks nodepool update --resource-group <resource-group> --cluster-name <cluster-name> --name <nodepool-name> --labels acstor.azure.com/io-engine=acstor
 ```
 
@@ -187,7 +187,7 @@ You only need to perform this step if you plan to use Azure Elastic SAN as backi
 
 Run the following commands to assign **Azure Container Storage Operator** role to AKS managed identity. Remember to replace `<resource-group>`, `<cluster-name>`, and `<azure-subscription-id>` with your own values. You can also narrow the scope to your resource group, for example `/subscriptions/<azure-subscription-id>/resourceGroups/<resource-group>`.
 
-```azurecli-interactive
+```azurecli
 export AKS_MI_OBJECT_ID=$(az aks show --name <cluster-name> --resource-group <resource-group> --query "identityProfile.kubeletidentity.objectId" -o tsv)
 az role assignment create --assignee $AKS_MI_OBJECT_ID --role "Azure Container Storage Operator" --scope "/subscriptions/<azure-subscription-id>"
 ```
@@ -199,13 +199,13 @@ The initial install uses Azure Arc CLI commands to download a new extension. Rep
 
 During installation, you might be asked to install the `k8s-extension`. Select **Y**.
 
-```azurecli-interactive
+```azurecli
 az k8s-extension create --cluster-type managedClusters --cluster-name <cluster-name> --resource-group <resource-group> --name <extension-name> --extension-type microsoft.azurecontainerstorage --scope cluster --release-train stable --release-namespace acstor
 ```
 
 Installation takes 10-15 minutes to complete. You can check if the installation completed correctly by running the following command and ensuring that `provisioningState` says **Succeeded**:
 
-```azurecli-interactive
+```azurecli
 az k8s-extension list --cluster-name <cluster-name> --resource-group <resource-group> --cluster-type managedClusters
 ```
 

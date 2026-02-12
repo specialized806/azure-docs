@@ -38,7 +38,7 @@ Follow these instructions to resize a persistent volume. A built-in storage clas
    
 1. Check the PVC to make sure the volume is expanded:
    
-   ```azurecli-interactive
+   ```azurecli
    kubectl describe pvc <pvc-name>
    ```
    

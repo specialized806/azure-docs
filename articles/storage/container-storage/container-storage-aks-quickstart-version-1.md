@@ -35,7 +35,7 @@ Azure Container Storage is a cloud-based volume management, deployment, and orch
 
 Set your Azure subscription context using the `az account set` command. You can view the subscription IDs for all the subscriptions you have access to by running the `az account list --output table` command. Remember to replace `<subscription-id>` with your subscription ID.
 
-```azurecli
+```azurecli-interactive
 az account set --subscription <subscription-id>
 ```
 
@@ -48,13 +48,13 @@ To connect to the cluster, use the Kubernetes command-line client, `kubectl`. It
     * Downloads credentials and configures the Kubernetes CLI to use them.
     * Uses `~/.kube/config`, the default location for the Kubernetes configuration file. You can specify a different location for your Kubernetes configuration file using the *--file* argument.
 
-    ```azurecli-interactive
+    ```azurecli
     az aks get-credentials --resource-group <resource-group> --name <cluster-name>
     ```
 
 2. Verify the connection to your cluster using the `kubectl get` command. This command returns a list of the cluster nodes.
 
-    ```azurecli-interactive
+    ```azurecli
     kubectl get nodes
     ```
 
@@ -151,13 +151,13 @@ If you want to install Azure Container Storage on specific node pools, follow th
 
 1. Run the following command to view the list of available node pools. Replace `<resource-group>` and `<cluster-name>` with your own values.
    
-   ```azurecli-interactive
+   ```azurecli
    az aks nodepool list --resource-group <resource-group> --cluster-name <cluster-name>
    ```
    
 2. Run the following command to install Azure Container Storage on specific node pools. Replace `<cluster-name>` and `<resource-group>` with your own values. Replace `<storage-pool-type>` with `azureDisk`, `ephemeralDisk`, or `elasticSan`. If you select `ephemeralDisk`, you can also specify --storage-pool-option, and the values can be `NVMe` or `Temp`.
    
-   ```azurecli-interactive
+   ```azurecli
    az aks update -n <cluster-name> -g <resource-group> --enable-azure-container-storage <storage-pool-type> --container-storage-version 1 --azure-container-storage-nodepools <comma separated values of nodepool names>
    ```
 

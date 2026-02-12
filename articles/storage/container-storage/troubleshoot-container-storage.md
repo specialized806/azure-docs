@@ -265,7 +265,7 @@ Azure Container Storage uses `etcd`, a distributed, reliable key-value store, to
 
 Run the following command to get a list of pods.
 
-```azurecli-interactive
+```azurecli
 kubectl get pods
 ```
 
@@ -278,7 +278,7 @@ fiopod   0/1     ContainerCreating   0          25m
 
 Describe the pod:
 
-```azurecli-interactive
+```azurecli
 kubectl describe pod fiopod
 ```
 
@@ -300,7 +300,7 @@ Warning  FailedAttachVolume  3m8s (x6 over 23m)  attachdetach-controller  Attach
 
 You can also run the following command to check the status of `etcd` instances:
 
-```azurecli-interactive
+```azurecli
 kubectl get pods -n acstor | grep "^etcd"
 ```
 

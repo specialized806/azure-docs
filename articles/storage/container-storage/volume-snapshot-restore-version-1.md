@@ -83,7 +83,7 @@ Next, create a snapshot of an existing persistent volume claim and apply the vol
 
 1. Apply the YAML manifest file to create the volume snapshot.
    
-   ```azurecli-interactive
+   ```azurecli
    kubectl apply -f acstor-volumesnapshot.yaml
    ```
    
@@ -123,7 +123,7 @@ Now you can create a new persistent volume claim that uses the volume snapshot a
 
 1. Apply the YAML manifest file to create the PVC.
    
-   ```azurecli-interactive
+   ```azurecli
    kubectl apply -f acstor-pvc-restored.yaml
    ```
    
@@ -178,7 +178,7 @@ Next, create a new pod using the restored persistent volume claim. Create the po
 
 1. Apply the YAML manifest file to deploy the pod.
    
-   ```azurecli-interactive
+   ```azurecli
    kubectl apply -f acstor-pod2.yaml
    ```
    
@@ -190,14 +190,14 @@ Next, create a new pod using the restored persistent volume claim. Create the po
 
 1. Check that the pod is running and that the persistent volume claim is bound successfully to the pod:
 
-   ```azurecli-interactive
+   ```azurecli
    kubectl describe pod fiopod2
    kubectl describe pvc pvc-azuredisk-snapshot-restored
    ```
 
 1. Check fio testing to see its current status:
 
-   ```azurecli-interactive
+   ```azurecli
    kubectl exec -it fiopod2 -- fio --name=benchtest --size=800m --filename=/volume/test --direct=1 --rw=randrw --ioengine=libaio --bs=4k --iodepth=16 --numjobs=8 --time_based --runtime=60
    ```
 

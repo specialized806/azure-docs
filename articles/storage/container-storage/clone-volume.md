@@ -90,7 +90,7 @@ Follow the instructions below to clone a persistent volume.
 
 1. Apply the YAML manifest file to deploy the new pod.
    
-   ```azurecli-interactive
+   ```azurecli
    kubectl apply -f acstor-pod.yaml
    ```
    
@@ -102,7 +102,7 @@ Follow the instructions below to clone a persistent volume.
 
 1. Check that the pod is running and that the persistent volume claim is bound successfully to the pod:
 
-   ```azurecli-interactive
+   ```azurecli
    kubectl describe pod fiopod2
    kubectl describe pvc azurediskpvc
    ```

@@ -47,7 +47,7 @@ Azure Container Storage is a cloud-based volume management, deployment, and orch
 
 Set your Azure subscription context using the `az account set` command. You can view the subscription IDs for all the subscriptions you have access to by running the `az account list --output table` command. Remember to replace `<subscription-id>` with your subscription ID.
 
-```azurecli
+```azurecli-interactive
 az account set --subscription <subscription-id>
 ```
 

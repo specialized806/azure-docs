@@ -42,7 +42,7 @@ By the end of this tutorial, you can:
   - For existing clusters, ensure node pools already use a supported VM SKU before enabling Azure Container Storage.
 
 - If you use Elastic SAN for the first time in the subscription, run this one-time registration command:
-  ```azurecli
+  ```azurecli-interactive
   az provider register --namespace Microsoft.ElasticSan
   ```
 

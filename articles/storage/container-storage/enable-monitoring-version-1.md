@@ -24,7 +24,7 @@ Prometheus metrics are stored in an Azure Monitor workspace, where you can analy
 
 This feature only supports Azure Monitor managed service for Prometheus. If you have your own Prometheus instance deployed, then you must disable Azure Container Storage's Prometheus instance by running the following Azure CLI command. Replace `<cluster_name>` and `<resource_group_name>` with your own values.
 
-```azurecli
+```azurecli-interactive
 az k8s-extension update --cluster-type managedClusters --cluster-name <cluster_name> --resource-group <resource_group_name> --name azurecontainerstorage --config base.metrics.enablePrometheusStack=false
 ```
 

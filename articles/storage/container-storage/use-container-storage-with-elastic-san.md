@@ -32,7 +32,7 @@ Expanding the capacity of an Elastic SAN through Azure Container Storage is curr
 - [Review the installation instructions](install-container-storage-aks.md) and ensure Azure Container Storage is properly installed.
 
 - If you use Elastic SAN for the first time in the subscription, run this one-time registration command:
-  ```azurecli
+  ```azurecli-interactive
   az provider register --namespace Microsoft.ElasticSan
   ```
 
@@ -51,7 +51,7 @@ For Azure Container Storage to deploy an Elastic SAN, you need to assign the [Az
 
 Run the following commands to assign **Azure Container Storage Operator** role to your AKS Managed Identity. Remember to replace `<resource-group>`, `<cluster-name>`, and `<azure-subscription-id>` with your own values. You can also narrow the scope to your resource group, for example `/subscriptions/<azure-subscription-id>/resourceGroups/<resource-group>`.
 
-```azurecli-interactive
+```azurecli
 export AKS_MI_OBJECT_ID=$(az aks show --name <cluster-name> --resource-group <resource-group> --query "identityProfile.kubeletidentity.objectId" -o tsv)
 az role assignment create --assignee $AKS_MI_OBJECT_ID --role "Azure Container Storage Operator" --scope "/subscriptions/<azure-subscription-id>"
 ```
@@ -338,14 +338,14 @@ Create a pod using Flexible I/O Tester (fio) for benchmarking and workload simul
 
 1. Check that the pod is running and the PVC is bound:
 
-   ```azurecli-interactive
+   ```azurecli
    kubectl describe pod fiopod
    kubectl describe pvc managedpvc
    ```
 
 1. Check fio testing to see its current status:
 
-   ```azurecli-interactive
+   ```azurecli
    kubectl exec -it fiopod -- fio --name=benchtest --size=800m --filename=/volume/test --direct=1 --rw=randrw --ioengine=libaio --bs=4k --iodepth=16 --numjobs=8 --time_based --runtime=60
    ```
 

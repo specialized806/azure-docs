@@ -80,7 +80,7 @@ Next, create a snapshot of an existing PVC and apply the volume snapshot class y
 
 1. Apply the manifest to create the volume snapshot.
 
-   ```azurecli-interactive
+   ```azurecli
    kubectl apply -f acstor-volumesnapshot.yaml
    ```
 
@@ -120,7 +120,7 @@ Create a new PVC that uses the volume snapshot as a data source.
 
 1. Apply the manifest to create the PVC.
 
-   ```azurecli-interactive
+   ```azurecli
    kubectl apply -f acstor-pvc-restored.yaml
    ```
 
@@ -170,7 +170,7 @@ Create a new pod using the restored PVC. Create the pod using Flexible I/O Teste
 
 1. Apply the manifest to deploy the pod.
 
-   ```azurecli-interactive
+   ```azurecli
    kubectl apply -f fio-pod-restore.yaml
    ```
 
@@ -182,14 +182,14 @@ Create a new pod using the restored PVC. Create the pod using Flexible I/O Teste
 
 1. Check that the pod is running and the PVC is bound:
 
-   ```azurecli-interactive
+   ```azurecli
    kubectl describe pod fio-restore
    kubectl describe pvc pvc-elasticsan-snapshot-restored
    ```
 
 1. Check fio testing to see its current status:
 
-   ```azurecli-interactive
+   ```azurecli
    kubectl exec -it fio-restore -- fio --name=benchtest --size=800m --filename=/volume/test --direct=1 --rw=randrw --ioengine=libaio --bs=4k --iodepth=16 --numjobs=8 --time_based --runtime=60
    ```
 

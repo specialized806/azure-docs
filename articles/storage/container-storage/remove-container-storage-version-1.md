@@ -28,7 +28,7 @@ az aks update -n <cluster-name> -g <resource-group> --disable-azure-container-st
 
 To delete an AKS cluster and all persistent volumes, run the following Azure CLI command. Replace `<resource-group>` and `<cluster-name>` with your own values.
 
-```azurecli-interactive
+```azurecli
 az aks delete --resource-group <resource-group> --name <cluster-name>
 ```
 
@@ -36,7 +36,7 @@ az aks delete --resource-group <resource-group> --name <cluster-name>
 
 You can also use the [`az group delete`](/cli/azure/group) command to delete the resource group and all resources it contains. Replace `<resource-group>` with your resource group name.
 
-```azurecli-interactive
+```azurecli
 az group delete --name <resource-group>
 ```
 
