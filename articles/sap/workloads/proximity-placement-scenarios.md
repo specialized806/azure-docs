@@ -5,7 +5,7 @@ ms.service: sap-on-azure
 ms.subservice: sap-vm-workloads
 ms.custom: devx-track-azurepowershell
 ms.topic: concept-article
-ms.date: 02/11/2026
+ms.date: 02/12/2026
 ms.author: juergent
 author: msjuergent
 manager: bburns
@@ -91,7 +91,7 @@ Proximity placement groups might be necessary when you use Azure NetApp Files fo
 
 In this case, the purpose is to use proximity placement groups to collocate the VMs that are deployed through different availability sets. In this usage scenario, you aren't using a controlled deployment across different availability zones in a region. Instead you want to deploy the SAP system by using availability sets. As a result, you have at least an availability set for the DBMS VMs, ASCS/SCS VMs, and the application tier VMs. Since you can't specify at deployment time of a VM an availability set and an availability zone, you can't control where the VMs in the different availability sets are going to be allocated. This could result in some Azure regions that the network latency between different VMs, still could be too high to give a sufficiently good performance experience. So the resulting architecture would look like:
 
-![A diagram of proximity placement groups within a v sets.](./media/sap-proximity-placement-scenarios/vm-ppg-avsets.png)
+![A diagram of proximity placement groups within a-v sets.](./media/sap-proximity-placement-scenarios/vm-ppg-avsets.png)
 
 In this graphic, a single proximity placement group would be assigned to a single SAP system. This PPG gets assigned to the three availability sets. The proximity placement group is then scoped by deploying the first database tier VMs into the DBMS availability set. This architecture recommendation collocates all VMs under the same network spine. It's introducing the restrictions mentioned earlier in this article. Therefore, the proximity placement group architecture should be used sparsely.
 
@@ -150,7 +150,7 @@ The result of this deployment is:
 
 ### Change proximity placement group configurations of an existing system
 
-If you implemented proximity placement groups as of the recommendations given thus far, and you want to adjust to the new configuration. You can do so with the methods described in these articles:
+If you implemented proximity placement groups based on the given recommendations and you want to adjust to the new configuration, follow the methods described in these articles:
 
 - [Deploy VMs to proximity placement groups using Azure CLI](/azure/virtual-machines/linux/proximity-placement-groups).
 - [Deploy VMs to proximity placement groups using PowerShell](/azure/virtual-machines/windows/proximity-placement-groups).
