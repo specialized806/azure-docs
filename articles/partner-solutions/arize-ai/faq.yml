@@ -23,14 +23,12 @@ sections:
           - Tracking and analyzing AI model performance in production
           - Evaluating model outputs and prompt effectiveness
           - Managing and versioning prompts for generative AI applications
-          - Integrating and querying trace data from Azure storage for observability
           - Supporting compliance and troubleshooting for enterprise AI deployments
 
       - question: What are the key features of Azure Native Arize AI Cloud Service?
         answer: |
           Key features include:
           - **Seamless Onboarding:** Integrate data into the Arize Ax platform with minimal setup.
-          - **Cloud Data Integration:** Directly query trace data from Azure storage buckets.
           - **Unified Billing:** Manage all billing through your Azure subscription.
           - **Single Sign-On:** Access the service using your Azure credentials.
           - **Resource Management:** Provision and manage Arize AI resources from the Azure portal.
