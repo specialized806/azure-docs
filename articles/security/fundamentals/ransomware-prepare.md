@@ -28,18 +28,18 @@ Ultimately, the Framework is aimed at reducing and better managing cybersecurity
 
 | Microsoft cloud security benchmark stack |
 |--|
-| [Network&nbsp;security&nbsp;(NS)](/security/benchmark/azure/mcsb-network-security) |
-| [Identity&nbsp;Management&nbsp;(IM)](/security/benchmark/azure/mcsb-identity-management) |
-| [Privileged&nbsp;Access&nbsp;(PA)](/security/benchmark/azure/mcsb-privileged-access) |
-| [Data&nbsp;Protection&nbsp;(DP)](/security/benchmark/azure/mcsb-data-protection) |
-| [Asset&nbsp;Management&nbsp;(AM)](/security/benchmark/azure/mcsb-asset-management) |
-| [Logging&nbsp;and&nbsp;Threat&nbsp;Detection (LT)](/security/benchmark/azure/security-controls-v2-logging-threat-detection) |
-| [Incident&nbsp;Response&nbsp;(IR)](/security/benchmark/azure/mcsb-incident-response) |
-| [Posture&nbsp;and&nbsp;Vulnerability&nbsp;Management&nbsp;(PV)](/security/benchmark/azure/mcsb-posture-vulnerability-management) |
-| [Endpoint&nbsp;Security&nbsp;(ES)](/security/benchmark/azure/mcsb-endpoint-security) |
-| [Backup&nbsp;and&nbsp;Recovery&nbsp;(BR)](/security/benchmark/azure/mcsb-backup-recovery) |
-| [DevOps&nbsp;Security&nbsp;(DS)](/security/benchmark/azure/mcsb-devops-security) |
-| [Governance&nbsp;and&nbsp;Strategy&nbsp;(GS)](/security/benchmark/azure/mcsb-governance-strategy) |
+| [Network&nbsp;security&nbsp;(NS)](/security/benchmark/azure/mcsb-v2-network-security) |
+| [Identity&nbsp;Management&nbsp;(IM)](/security/benchmark/azure/mcsb-v2-identity-management) |
+| [Privileged&nbsp;Access&nbsp;(PA)](/security/benchmark/azure/mcsb-v2-privileged-access) |
+| [Data&nbsp;Protection&nbsp;(DP)](/security/benchmark/azure/mcsb-v2-data-protection) |
+| [Asset&nbsp;Management&nbsp;(AM)](/security/benchmark/azure/mcsb-v2-asset-management) |
+| [Logging&nbsp;and&nbsp;Threat&nbsp;Detection (LT)](/security/benchmark/azure/mcsb-v2-logging-threat-detection) |
+| [Incident&nbsp;Response&nbsp;(IR)](/security/benchmark/azure/mcsb-v2-incident-response) |
+| [Posture&nbsp;and&nbsp;Vulnerability&nbsp;Management&nbsp;(PV)](/security/benchmark/azure/mcsb-v2-posture-vulnerability-management) |
+| [Endpoint&nbsp;Security&nbsp;(ES)](/security/benchmark/azure/mcsb-v2-endpoint-security) |
+| [Backup&nbsp;and&nbsp;Recovery&nbsp;(BR)](/security/benchmark/azure/mcsb-v2-backup-recovery) |
+| [DevOps&nbsp;Security&nbsp;(DS)](/security/benchmark/azure/mcsb-v2-devop-security) |
+| [Governance&nbsp;and&nbsp;Strategy&nbsp;(GS)](/security/benchmark/azure/mcsb-v2-governance-strategy) |
 
 ## Prioritize mitigation
 

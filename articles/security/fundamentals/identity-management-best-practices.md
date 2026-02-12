@@ -348,6 +348,8 @@ Organizations that don’t actively monitor their identity systems are at risk o
 
 We recommend that you use [Microsoft Entra ID for authenticating access to storage](https://azure.microsoft.com/blog/azure-storage-support-for-azure-ad-based-access-control-now-generally-available/).
 
-## Next step
+## Next steps
 
-See [Azure security best practices and patterns](best-practices-and-patterns.md) for more security best practices to use when you’re designing, deploying, and managing your cloud solutions by using Azure.
+- See [Azure security best practices and patterns](best-practices-and-patterns.md) for more security best practices to use when you're designing, deploying, and managing your cloud solutions by using Azure.
+- Review the [Microsoft Cloud Security Benchmark v2 (preview) - Identity Management](/security/benchmark/azure/mcsb-v2-identity-management) controls for comprehensive identity security guidance with Azure Policy mappings.
+- Learn about the [Microsoft Secure Future Initiative (SFI)](/security/zero-trust/sfi/secure-future-initiative-overview), Microsoft's internal security best practices for protecting identities and secrets that we also recommend to customers.

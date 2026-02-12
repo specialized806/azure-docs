@@ -203,4 +203,7 @@ To learn more about private endpoints and the Azure services and regions that pr
 
 
 ## Next steps
-See [Azure security best practices and patterns](best-practices-and-patterns.md) for more security best practices to use when you're designing, deploying, and managing your cloud solutions by using Azure.
+
+- See [Azure security best practices and patterns](best-practices-and-patterns.md) for more security best practices to use when you're designing, deploying, and managing your cloud solutions by using Azure.
+- Review the [Microsoft Cloud Security Benchmark v2 (preview) - Network Security](/security/benchmark/azure/mcsb-v2-network-security) controls for comprehensive network security guidance with Azure Policy mappings.
+- Learn about the [Microsoft Secure Future Initiative (SFI)](/security/zero-trust/sfi/secure-future-initiative-overview), Microsoft's internal security best practices for protecting networks that we also recommend to customers.

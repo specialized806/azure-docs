@@ -263,7 +263,7 @@ The vast majority of security breaches take place when attackers gain access to 
 
 ## Next steps
 See [Azure security best practices and patterns](best-practices-and-patterns.md) for more security best practices to use when you’re designing, deploying, and managing your cloud solutions by using Azure.
-
+Learn about the [Microsoft Secure Future Initiative (SFI)](/security/zero-trust/sfi/secure-future-initiative-overview), Microsoft's internal security framework based on Zero Trust principles and aligned with NIST CSF 2.0.
 The following resources are available to provide more general information about Azure security and related Microsoft services:
 * [Azure Security Team Blog](/archive/blogs/azuresecurity/) - for up to date information on the latest in Azure Security
 * [Microsoft Security Response Center](https://technet.microsoft.com/library/dn440717.aspx) - where Microsoft security vulnerabilities, including issues with Azure, can be reported or via email to secure@microsoft.com
