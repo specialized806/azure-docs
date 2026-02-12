@@ -66,7 +66,7 @@ Here you add a deployment by associating one of your APIs with the environment y
 
 1. In the Azure portal, navigate to your API center.
 
-1. In the sidebar menu, under **Assets**, select **APIs**.
+1. In the sidebar menu, under **Inventory**, select **Assets**.
 
 1. Select an API, for example, the *Conference API*.
 

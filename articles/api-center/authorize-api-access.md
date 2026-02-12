@@ -140,7 +140,7 @@ To manage the secret securely, store it in Azure Key Vault, and access the key v
 After configuring settings for an API key or an OAuth 2.0 flow, add the API key or OAuth 2.0 configuration to an API version in your API center. 
 
 1. In the [portal](https://azure.microsoft.com), navigate to your API center.
-1. In the left menu, under **Assets**, select **APIs**.
+1. In the left menu, under **Inventory**, select **Assets**.
 1. Select an API that you want to associate the authorization configuration with.
 1. In the left menu, under **Details**, select **Versions**.
 1. Select the API version that you want to add the authentication configuration to.

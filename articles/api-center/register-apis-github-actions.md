@@ -213,7 +213,7 @@ Test the workflow by adding an API definition file to the repository. Follow the
 Verify that the API is registered in your API center.
 
 1. In the [Azure portal](https://portal.azure.com), navigate to your API center.
-1. In the left menu, under **Assets**, select **APIs**.
+1. In the left menu, under **Inventory**, select **Assets**.
 1. Verify that the newly registered API appears in the list of APIs.
 
 :::image type="content" source="media/register-apis-github-actions/api-registered-api-center.png" alt-text="Screenshot of API registered in API Center after workflow."::: 

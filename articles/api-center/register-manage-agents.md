@@ -5,7 +5,7 @@ description: "Learn how to update agent metadata, add skills, configure capabili
 
 ms.service: azure-api-center
 ms.topic: how-to
-ms.date: 11/11/2025
+ms.date: 02/12/2026
 ms.update-cycle: 180-days
 ms.collection: ce-skilling-ai-copilot
 ---
@@ -29,7 +29,7 @@ Enter required values from the agent's agent card. Optionally add skills and oth
 
 1. Sign in to the [Azure portal](https://portal.azure.com), then navigate to your API center.
 
-1. In the sidebar menu, under **Assets**, select **APIs** > **+ Register an API**.
+1. In the sidebar menu, under **Inventory**, select **Assets**, then select **Register an asset** and choose **A2A agent**.
 
 1. In the **Register an API** page, fill in the [standard properties](tutorials/register-apis.md) to register an API and choose **A2A** as the agent type.
 
@@ -72,7 +72,7 @@ Enter required values from the agent's agent card. Optionally add skills and oth
 ## Update agent
 
 1. In the [Azure portal](https://azure.microsoft.com), go to your API center.
-1. In the sidebar menu, under **Assets**, select **APIs**.
+1. In the sidebar menu, under **Inventory**, select **Assets**.
 1. From the table, select your A2A agent by selecting the agent name in the **Title** column.
 1. Select the **Edit** button to open the **Edit** page in the working pane.
 
