@@ -372,7 +372,7 @@ items:
           items:
             - name: Components overview
               href: dapr-components.md
-            - name: Connect to Azure or third-party services
+            - name: Connect to Azure or partner services
               href: dapr-component-connect-services.md
             - name: Connect to Azure services via Azure portal
               href: dapr-component-connection.md
