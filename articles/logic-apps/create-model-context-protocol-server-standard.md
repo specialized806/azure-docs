@@ -131,79 +131,85 @@ To help agents or models find and run tools, add the following metadata to the *
 
 The steps in this section use the Azure portal, but you can alternatively use Visual Studio Code.
 
-- Trigger description
+### Trigger description
 
-  Your MCP server uses this metadata as the tool description to show end users and to route requests to the correct tool, for example:
+Your MCP server uses this metadata as the tool description to show end users and to route requests to the correct tool, for example:
 
-  :::image type="content" source="media/create-model-context-protocol-server-standard/trigger-description.png" alt-text="Screenshot shows trigger information pane with description box and example description." lightbox="media/create-model-context-protocol-server-standard/trigger-description.png":::
+:::image type="content" source="media/create-model-context-protocol-server-standard/trigger-description.png" alt-text="Screenshot shows trigger information pane with description box and example description." lightbox="media/create-model-context-protocol-server-standard/trigger-description.png":::
 
-  To add this description, follow these steps:
+To add this description, follow these steps:
 
-  1. In the [Azure portal](https://portal.azure.com), open your Standard logic app resource and workflow.
+1. In the [Azure portal](https://portal.azure.com), open your Standard logic app resource and workflow.
 
-  1. In the workflow sidebar, under **Tools**, select the designer to open the workflow.
+1. In the workflow sidebar, under **Tools**, select the designer to open the workflow.
 
-  1. In the designer, select the **Request** trigger.
+1. In the designer, select the **Request** trigger.
 
-  1. In the trigger information pane, under the trigger name, describe the purpose for the trigger and workflow.
+1. In the trigger information pane, under the trigger name, describe the purpose for the trigger and workflow.
 
-- Input parameter descriptions
+### Input parameter descriptions
 
-  This metadata improves the agent's accuracy in passing the correct inputs to tools at runtime, for example:
+This metadata improves the agent's accuracy in passing the correct inputs to tools at runtime, for example:
 
-  :::image type="content" source="media/create-model-context-protocol-server-standard/input-parameter-descriptions.png" alt-text="Screenshot shows trigger information pane with Request Body Json Schema box and example descriptions for input parameters." lightbox="media/create-model-context-protocol-server-standard/input-parameter-descriptions.png":::
+:::image type="content" source="media/create-model-context-protocol-server-standard/input-parameter-descriptions.png" alt-text="Screenshot shows trigger information pane with Request Body Json Schema box and example descriptions for input parameters." lightbox="media/create-model-context-protocol-server-standard/input-parameter-descriptions.png":::
 
-  To add a description for each input parameter, follow these steps:
+To add a description for each input parameter, follow these steps:
 
-  1. In the [Azure portal](https://portal.azure.com), open your Standard logic app resource and workflow.
+1. In the [Azure portal](https://portal.azure.com), open your Standard logic app resource and workflow.
 
-  1. In the workflow sidebar, under **Tools**, select the designer to open the workflow.
+1. In the workflow sidebar, under **Tools**, select the designer to open the workflow.
 
-     > [!NOTE]
-     >
-     > You can also use code view to add this information. 
+   > [!NOTE]
+   >
+   > You can also use code view to add this information. 
 
-  1. In the designer, select the **Request** trigger.
+1. In the designer, select the **Request** trigger.
 
-  1. In the trigger information pane, under **Request Body JSON Schema**, enter a schema for the expected request content payload.
+1. In the trigger information pane, under **Request Body JSON Schema**, enter a schema for the expected request content payload.
 
-     - For each input parameter, add the `description` attribute and the corresponding description.
+   - For each input parameter, add the `description` attribute and the corresponding description.
 
-     - If your tool requires specific parameters to run, include them as required parameters by adding the `required` object and an array with these parameters.
+   - If your tool requires specific parameters to run, include them as required parameters by adding the `required` object and an array with these parameters.
 
-     The following example shows sample input parameters, descriptions, and required parameters:
+   The following example shows sample input parameters, descriptions, and required parameters:
 
-     ```json
-     {
-         "type": "object",
-         "properties": {
-             "TicketNumber": {
-                 "type": "string",
-                 "description": "The ticket number for the IT issue."
-             },
-             "OpenedBy_FirstName": {
-                  "type": "string",
-                  "description": "The first name for the person who reported the issue."
-             },
-             "OpenedBy_LastName": {
-                  "type": "string",
-                  "description": "The last name for the person who reported the issue."
-             },
+   ```json
+   {
+       "type": "object",
+       "properties": {
+           "TicketNumber": {
+               "type": "string",
+               "description": "The ticket number for the IT issue."
+           },
+           "OpenedBy_FirstName": {
+               "type": "string",
+               "description": "The first name for the person who reported the issue."
+           },
+           "OpenedBy_LastName": {
+               "type": "string",
+               "description": "The last name for the person who reported the issue."
+           },
              "Notes": {
-                 "type": "string",
-                 "description": "Other information to include in the ticket about the issue."
-             }
-         },
-         "required": [
-             "TicketNumber",
-             "OpenedBy_FirstName",
-             "OpenedBy_LastName",
-             "Notes"
-         ]
-     }
-     ```
+               "type": "string",
+               "description": "Other information to include in the ticket about the issue."
+           }
+       },
+       "required": [
+           "TicketNumber",
+           "OpenedBy_FirstName",
+           "OpenedBy_LastName",
+           "Notes"
+       ]
+   }
+   ```
 
-If you get inconsistent results when an agent calls and runs your tool, check whether you can make the trigger and parameter descriptions more unique. For example, try describing the format for parameter inputs. If a parameter expects a base64 encoded string, include this detail in the parameter description. You can also set up error handling and use the `runAfter` property to return the appropriate error message to the caller. For more information, see [Manage the "run after" behavior](error-exception-handling.md#manage-the-run-after-behavior).
+  - If you get inconsistent results when an agent calls and runs your tool, check whether you can make the trigger and parameter descriptions more unique.
+
+    For example, try describing the format for parameter inputs.
+
+  - If a parameter expects a base64 encoded string, include this detail in the parameter description.
+
+  - You can set up error handling and use the `runAfter` property to return the appropriate error message to the caller. For more information, see [Manage the "run after" behavior](error-exception-handling.md#manage-the-run-after-behavior).
 
 ## Create an app registration
 
