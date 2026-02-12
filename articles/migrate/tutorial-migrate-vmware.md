@@ -41,7 +41,7 @@ Before you begin this tutorial, you should:
 2. We recommend that you complete the second tutorial to [assess VMware VMs](./tutorial-assess-vmware-azure-vm.md) before migrating them to Azure, but you don't have to.
 3. Go to the already created project or [create a new project](create-manage-projects.md)
 4. Verify permissions for your Azure account - Your Azure account needs permissions to create a VM, and write to an Azure managed disk.
-5. Ensure that your Azure account is assigned the required Azure Migrate built‑in roles. For detailed role requirements and permissions, see [Azure Migrate built‑in roles](prepare-azure-accounts.md).
+5. Ensure your Azure account is assigned the required Azure Migrate built‑in roles. For role requirements and permissions, see [Azure Migrate built‑in roles](prepare-azure-accounts.md).
 
 > [!NOTE]
 > If you're planning to upgrade your Windows operating system, Azure Migrate may download the Windows SetupDiag for error details in case upgrade fails. Ensure the VM created in Azure post the migration has access to [SetupDiag](https://go.microsoft.com/fwlink/?linkid=870142). In case there's no access to SetupDiag, you may not be able to get detailed OS upgrade failure error codes but the upgrade can still proceed.

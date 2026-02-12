@@ -51,7 +51,7 @@ Requirement | Details
 ## Prepare an Azure user account
 Refer [this article](prepare-azure-accounts.md) to prepare Azure accounts.
 
->[IMPORTANT]
+>[!IMPORTANT]
 > Ensure the Azure user account has the required Azure Migrate built-in roles to create projects, register appliances, and access discovery results. To understand the minimum role requirements, see [Azure Migrate built‑in roles](prepare-azure-accounts.md).
 
 ## Prepare VMware

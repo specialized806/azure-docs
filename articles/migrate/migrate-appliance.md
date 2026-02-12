@@ -29,7 +29,7 @@ The Azure Migrate appliance is used in the following scenarios.
 **Discovery and assessment of physical or virtualized servers on-premises** |  Azure Migrate: Discovery and assessment |  Discover physical or virtualized servers on-premises.<br/><br/> Perform discovery of installed software inventory, ASP.NET web apps, SQL Server instances and databases, and agentless dependency analysis.<br/><br/> Collect server configuration and performance metadata for assessments.
 
 >[!IMPORTANT]
-> Before deploying the appliance using any method, ensure your Azure account and subscription meet the required role-based access control (RBAC) and permission prerequisites, see [Prepare Azure accounts for Azure Migrate](prepare-azure-accounts.md).
+> Before deploying the appliance using any method, ensure your Azure account and subscription meet the required role-based access control (RBAC) and permission prerequisites. For more information, see [Prepare Azure accounts for Azure Migrate](prepare-azure-accounts.md).
 
 ## Deployment methods
 
