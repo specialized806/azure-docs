@@ -309,7 +309,7 @@ Set up Easy Auth authentication on the Standard logic app that you want to use a
 
 1. In the [Azure portal](https://portal.azure.com), open your Standard logic app resource.
 
-1. On the resource sidebar, under **Workflows**, expand **Agents**, and select **MCP servers** to open the **MCP servers** page, for example:
+1. On the logic app sidebar, under **Agents**, select **MCP servers** to open the **MCP servers** page, for example:
 
    :::image type="content" source="media/create-model-context-protocol-server-standard/mcp-servers.png" alt-text="Screenshot shows the Azure portal, Standard logic app resource, and MCP servers page.":::
 
@@ -318,7 +318,7 @@ Set up Easy Auth authentication on the Standard logic app that you want to use a
    | Option | Description |
    |--------|-------------|
    | **Use existing workflows** | When you have one or more existing workflows to use for your MCP server. Continue to [Choose existing workflows](#choose-workflows). |
-   | **Create new workflows**. | When you want to create new workflows to use for your MCP server. Continue to [Create new workflows](#create-workflows). |
+   | **Create new workflows** | When you want to create new workflows to use for your MCP server. Continue to [Create new workflows](#create-workflows). |
 
 <a id="choose-workflows"></a>
 
@@ -338,11 +338,9 @@ On the **Create an MCP server** pane, follow these steps:
 
 ### Create new workflows
 
-1. On the **Register an MCP server with Azure Logic Apps** page, follow these steps:
+1. On the **Register an MCP server with Azure Logic Apps** page, under **Project details**, enter an **MCP server name** and a **Description**.
 
-   1. Under **Project details**, enter an **MCP server name** and a **Description**.
-
-      By default, the **Logic app** value is set to the current logic app name and is uneditable.
+   By default, the **Logic app** value is set to the current logic app name and is uneditable.
 
 1. Under **Tools**, follow these steps to select a connector and the actions to create as workflows.
 
