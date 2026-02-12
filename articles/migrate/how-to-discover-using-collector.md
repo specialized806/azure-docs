@@ -89,7 +89,7 @@ You can add up to 10 vCenter Servers per collector
 1.	Provide Windows & Linux guest accounts to collect data about installed software, database instances and web apps. Provide SQL credentials (Windows or SQL server authentication) to collect SQL suitability data. 
 2.	To verify if the guest credentials are valid, test them against few target servers. 
 3.	Enable the checkbox to validate credential. 
-4.	Select the vCenter and select up to 5 virtual machines from the drop down.
+4.	Select the vCenter and select up to 5 virtual machines from the drop-down.
 5.	Select **validate**.   
 6.	If the credentials are not valid, fix the errors by following the recommendation step before triggering data collection. 
 7.	If the credentials are successfully validated, guest discovery of installed software, inventory of database instance on the machines will be successful. 

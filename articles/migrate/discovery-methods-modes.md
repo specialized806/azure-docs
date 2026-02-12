@@ -24,7 +24,7 @@ This article explains the different discovery methods in Azure Migrate and gives
 |---|---|---|---|
 | Description | Continuous discovery of IT estate to generate lift and shift or modernize TCO benchmark reports, map server dependencies, and execute migrations. | Quick offline snapshot of IT estate to generate lift and shift or modernize TCO benchmark reports. | Upload inventory via CSV or RVTools to generate lift and shift TCO benchmark reports. |
 | Mode of Discovery | Continuous data collection | One-time data collection, manually upload the collected data to Azure | Upload pre-existing inventory files |
-| Time to Discover | Requires setup time | Quick to setup | Instant (reuse existing inventory data) |
+| Time to Discover | Requires setup time | Quick to set up | Instant (reuse existing inventory data) |
 | Assessment Types | Lift and Shift, Modernize | Lift and Shift, Modernize | Lift and Shift |
 | Performance based Assessment | Yes | Yes | No |
 | Guest Discovery (installed software, security insights, database instances) | Yes | Yes | No |
