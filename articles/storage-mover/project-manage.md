@@ -49,7 +49,7 @@ The first step in defining a migration job is the creation of a project resource
 
    1. Navigate to the **Project Explorer** page in the [Azure portal](https://portal.azure.com) to access your projects. The default **All projects** view displays the names of any provisioned projects and a summary of the jobs they contain.
 
-       :::image type="content" source="media/project-manage/project-explorer-sml.png" alt-text="Image of the Project Explorer's Overview tab within the Azure Portal showing " lightbox="media/project-manage/project-explorer-lrg.png":::
+       :::image type="content" source="media/project-manage/project-explorer-sml.png" alt-text="Image of the Project Explorer's Overview tab within the Azure portal showing " lightbox="media/project-manage/project-explorer-lrg.png":::
 
    1. Select **Create project** to open the **Create a Project** pane. Provide a project name value in the **Project name** field, but leave the **Project description** field empty. Finally, select **Create** to provision the project.
 
