@@ -188,6 +188,7 @@ For more information, see [What is Azure Web Application Firewall?](/azure/web-a
 
 ## Next steps
 
+- [Incident response for Azure](incident-response-overview.md) - Learn how to respond to security incidents
 - [Responding to today's threats](/azure/defender-for-cloud/managing-and-responding-alerts) - Identify active threats and respond quickly
 - [Azure security best practices and patterns](/azure/security/fundamentals/best-practices-and-patterns) - Collection of security best practices
 - [Microsoft Defender for Cloud documentation](/azure/defender-for-cloud/) - Comprehensive guide to Defender for Cloud

@@ -262,6 +262,7 @@ For more information, see [Create and manage policies to enforce compliance](../
 The vast majority of security breaches take place when attackers gain access to an environment by stealing a user’s identity. Discovering compromised identities is no easy task. Microsoft Entra ID uses adaptive machine learning algorithms and heuristics to detect suspicious actions that are related to your user accounts. Each detected suspicious action is stored in a record called a [risk detection](/entra/id-protection/overview-identity-protection). Risk detections are recorded in Microsoft Entra security reports. For more information, read about the [users at risk security report](/entra/id-protection/overview-identity-protection) and the [risky sign-ins security report](/entra/id-protection/overview-identity-protection).
 
 ## Next steps
+See [Incident response overview](incident-response-overview.md) for guidance on responding to security incidents in your Azure environment.
 See [Azure security best practices and patterns](best-practices-and-patterns.md) for more security best practices to use when you’re designing, deploying, and managing your cloud solutions by using Azure.
 Learn about the [Microsoft Secure Future Initiative (SFI)](/security/zero-trust/sfi/secure-future-initiative-overview), Microsoft's internal security framework based on Zero Trust principles and aligned with NIST CSF 2.0.
 The following resources are available to provide more general information about Azure security and related Microsoft services:
