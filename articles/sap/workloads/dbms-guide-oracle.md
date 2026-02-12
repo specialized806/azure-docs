@@ -1,6 +1,6 @@
 ---
 title: Oracle Azure Virtual Machines database deployment for SAP workload
-description: Oracle Azure Virtual Machines DBMS deployment for SAP workload
+description: Learn about Oracle Azure virtual machines DBMS deployment for SAP workloads.
 keywords: 'SAP, Azure, Oracle, Data Guard'
 ms.service: sap-on-azure
 ms.subservice: sap-vm-workloads
