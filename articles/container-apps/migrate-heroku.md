@@ -4,7 +4,7 @@ description: Deploy a Heroku application to Azure Container Apps with data migra
 ms.service: azure-container-apps
 ms.topic: tutorial
 ms.date: 02/12/2026
-ms.author: simonjj
+ms.author: simonjakesch
 author: simonjj
 ms.reviewer: cshoe
 ms.custom: migration-heroku

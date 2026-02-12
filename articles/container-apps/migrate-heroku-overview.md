@@ -4,7 +4,7 @@ description: Plan your migration from Heroku to Azure Container Apps with concep
 ms.service: azure-container-apps
 ms.topic: conceptual
 ms.date: 02/12/2026
-ms.author: simonjj
+ms.author: simonjakesch
 author: simonjj
 ms.reviewer: cshoe
 ms.custom: migration-heroku
@@ -114,7 +114,7 @@ Review these common issues before and during your migration to avoid delays.
 | **Scaling misconfiguration** | Unexpected costs or poor performance under load. | Start with HTTP concurrency scaling for web apps and monitor with Azure Monitor. Avoid setting `max-replicas` too high before you understand your app's resource consumption. |
 | **Environment parity** | Configuration drift between dev, staging, and production. | Use infrastructure as code ([Bicep](/azure/azure-resource-manager/bicep/overview) or [Terraform](/azure/developer/terraform/overview)) to keep environments consistent. This approach replaces the consistency Heroku Pipelines provided. |
 | **Third-party services** | Unnecessary migration work for SaaS add-ons. | Many Heroku add-ons are standalone SaaS products (SendGrid, MongoDB Atlas, Elasticsearch). These services often continue to work from Container Apps — update the connection URL only. Only Heroku-managed services (Heroku Postgres, Heroku Redis, Heroku Kafka) require migration to Azure equivalents. |
-| **Cloud Build availability** | `az containerapp up --source` fails with `ManagedEnvironmentNotFound` or builder errors. | Cloud Build isn't available in all regions or for all language stacks. Fall back to the ACR-based approach: create a Dockerfile, build with `az acr build`, and deploy the image. See [Migrate an app from Heroku](migrate-heroku.md#deploy-your-app) for both approaches. |
+| **Cloud Build availability** | `az containerapp up --source` fails with `ManagedEnvironmentNotFound` or builder errors. | Cloud Build isn't available in all regions or for all language stacks. Fall back to the ACR-based approach: create a Dockerfile, build with `az acr build`, and deploy the image. See [Migrate an app from Heroku](migrate-heroku.md#3---deploy-your-app) for both approaches. |
 | **Secrets and env vars ordering** | Environment variables referencing secrets resolve as empty. | Set secrets with `az containerapp secret set` *before* referencing them in environment variables. Also note that setting secrets alone doesn't restart the app — you need `az containerapp update` to create a new revision. |
 | **Azure service provisioning times** | Migration takes longer than expected. | Azure managed services take longer to provision than Heroku add-ons. Azure Cache for Redis can take 10–20 minutes; Azure Database for PostgreSQL can take 5–10 minutes. Provision these services in parallel while deploying your app. |
 
