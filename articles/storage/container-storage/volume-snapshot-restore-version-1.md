@@ -55,7 +55,7 @@ First, create a volume snapshot class, which allows you to specify the attribute
    volumesnapshotclass.snapshot.storage.k8s.io/csi-acstor-vsc created
    ```
    
-   You can also run `kubectl get volumesnapshotclass` to check that the volume snapshot class exists. You should see output such as:
+   You can also run `kubectl get volumesnapshotclass` to check that the volume snapshot class exists. You should see output similar to this example:
    
    ```output
    NAME            DRIVER                            DELETIONPOLICY    AGE

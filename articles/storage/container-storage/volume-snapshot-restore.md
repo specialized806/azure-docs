@@ -52,7 +52,7 @@ A volume snapshot class defines snapshot settings. Follow these steps to create 
    volumesnapshotclass.snapshot.storage.k8s.io/elasticsan-snapshot-class created
    ```
 
-   You can also run `kubectl get volumesnapshotclass` to confirm creation. You should see output such as:
+   You can also run `kubectl get volumesnapshotclass` to confirm creation. You should see output similar to this example:
 
    ```output
    NAME                        DRIVER                DELETIONPOLICY    AGE

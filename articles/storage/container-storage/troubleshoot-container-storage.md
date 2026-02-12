@@ -269,7 +269,7 @@ Run the following command to get a list of pods.
 kubectl get pods
 ```
 
-You may see output similar to this example.
+You should see output similar to this example.
 
 ```output
 NAME     READY   STATUS              RESTARTS   AGE 
