@@ -263,6 +263,8 @@
     items:
     - name: Diagnostics
       href: durable-task-diagnostics.md
+  - name: Billing
+    href: durable-task-billing.md
   - name: Reference
     items:
     - name: .NET APIs
