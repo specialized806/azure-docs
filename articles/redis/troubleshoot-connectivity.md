@@ -52,8 +52,6 @@ If your application can't connect to your Azure Managed Redis instance, it's pos
 
 ### Test connectivity using Azure CLI
 
-### Test connectivity with Azure CLI
-
 You can use the Azure CLI to quickly test if you can connect to your Redis cluster. The [az redisenterprise test-connection](/cli/azure/redisenterprise#az_redisenterprise_test_connection) command is helpful for debugging connection issues and verifies end-to-end connectivity by sending a `ping` command. 
 
 For prerequisites to use the Azure CLI with Azure Managed Redis, see [Manage an Azure Managed Redis cache using the Azure CLI](scripts/create-manage-cache.md).
