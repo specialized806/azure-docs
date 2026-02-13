@@ -203,7 +203,7 @@ const appConfig = await load(myStoreEndpoint, credential, {
 The Audience for the target cloud must be configured for the following packages.
 
 - Azure SDK for Go: azappconfig >= 2.1.0
-- Go configuration provider: azureappconfiguration >= 1.0.0
+- Go configuration provider: azureappconfiguration >= 1.4.1
 
 You need to import the following packages:
 
