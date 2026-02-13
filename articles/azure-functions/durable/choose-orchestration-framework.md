@@ -84,8 +84,10 @@ Azure Container Apps supports both Durable Functions and Durable Task SDK framew
 
 ## Durable Task Framework (DTFx)
 
-The Durable Task Framework (DTFx) is an open-source .NET orchestration framework. While it can be used to build apps that run on platforms like Azure Kubernetes Services, DTFx doesn't receive official Microsoft support. [Learn more from the DTFx GitHub repo.](https://github.com/Azure/durabletask)
+The Durable Task Framework (DTFx) is an open-source .NET orchestration framework intended for bring-your-own compute environments. While it can be used to build distributed applications, it does not come with official Microsoft support and requires users to manage hosting, operations, and long-term maintenance themselves.
 
+[Learn more from the DTFx GitHub repo.](https://github.com/Azure/durabletask)
+ 
 ## Next steps
 
 > [!div class="nextstepaction"]
