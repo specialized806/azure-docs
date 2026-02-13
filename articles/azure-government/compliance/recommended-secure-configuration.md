@@ -285,7 +285,7 @@ Secure Score automatically evaluates:
   
   - **Remediation guidance**
   
-This directly meets the requirement to compare *“all current settings”* against recommended defaults.  
+This directly supports the requirement to compare *“all current settings”* against recommended defaults.  
 
 [Microsoft Entra Identity Secure Score](/entra/identity/monitoring-health/concept-identity-secure-score?toc=%2Fentra%2Ffundamentals%2Ftoc.json&bc=%2Fentra%2Ffundamentals%2Fbreadcrumb%2Ftoc.json)
 
@@ -345,9 +345,7 @@ Providers SHOULD offer the capability to export all security settings in a machi
 
 ### Azure's response
 
-Azure meets this requirement through **multiple machine‑readable export paths**, all providing **structured JSON**.
-
-Azure **meets and exceeds** SCG-ENH-EXP by offering **full security configuration export** in **machine‑readable JSON** across:
+Azure supports SCG-ENH-EXP requirement through **multiple machine‑readable export paths** by offering **full security configuration export**, all providing **structured JSON** across
 
 - Identity
 
@@ -543,7 +541,7 @@ Providers SHOULD offer the capability to view and adjust security settings via a
 
 Azure fully satisfies this requirement by exposing *all major security configurations* through documented APIs (ARM, Microsoft Graph, Azure Policy, Defender for Cloud APIs, and Azure Resource Graph). 
 
-Azure **fully meets and exceeds** SCG-ENH-API by providing comprehensive, documented, and secure APIs that allow organizations to:
+Azure **supports** SCG-ENH-API by providing comprehensive, documented, and secure APIs that allow organizations to:
 
 - Programmatically **view** all security settings
 
