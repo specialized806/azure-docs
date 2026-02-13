@@ -1,7 +1,7 @@
 ---
 title: Troubleshooting Elastic Cloud (Elasticsearch) - An Azure Native ISV Service
 description: This article provides information about troubleshooting Elastic integration with Azure
-ms.topic: conceptual
+ms.topic: troubleshooting-general
 ms.date: 02/03/2026
 
 
