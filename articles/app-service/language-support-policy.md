@@ -17,7 +17,7 @@ This article describes the language runtime support policy for updating existing
 
 ## Updates to existing stacks
 
-App Service updates existing stacks after they become available from each language community. App Service updates major versions of stacks but can't guarantee any specific minor versions or patch versions. The platform controls minor and patch versions. For example, App Service updates Node 24 but doesn't guarantee a specific Node 24.x.x version. If you need a specific minor or patch version, use a [custom container](quickstart-custom-container.md).
+App Service updates existing stacks after updates become available from each language community. App Service updates major versions of stacks but can't guarantee any specific minor versions or patch versions. The platform controls minor and patch versions. For example, App Service updates Node 24 but doesn't guarantee a specific Node 24.x.x version. If you need a specific minor or patch version, use a [custom container](quickstart-custom-container.md).
 
 ## Retirements
 
@@ -77,57 +77,64 @@ To set the language version for an app, see the following resources:
 
 ### JDK versions and maintenance
 
-Microsoft and `Adoptium` builds of OpenJDK are provided and supported on App Service for Java 8, 11, 17, 21, and 25. These binaries are provided as a no-cost, multiplatform, production-ready distribution of OpenJDK for Azure. The binaries contain all the components for building and running Java Standard Edition (SE) applications. For local development or testing, you can [download the Microsoft build of OpenJDK](/java/openjdk/download).
+Microsoft and [`Adoptium`](https://adoptium.net/) builds of OpenJDK are provided and supported on App Service for Java 8, 11, 17, 21, and 25. These binaries are provided as a no-cost, multiplatform, production-ready distribution of OpenJDK for Azure. The binaries contain all the components for building and running Java Standard Edition (SE) applications. For local development or testing, you can [download the Microsoft build of OpenJDK](/java/openjdk/download).
 
 # [Linux](#tab/linux)
 
 | Java stack name       | Linux distribution | Java distribution |
 | ----------------------- | ------------- | ------------------------- |
-| Java 8                  | Alpine 3.16\* | `Adoptium` Temurin 8 (`MUSL`) |
+| Java 8                  | Alpine 3.16\* | [`Adoptium`](https://adoptium.net/) Temurin 8 (`MUSL`) |
 | Java 11                 | Alpine 3.16\* | Microsoft OpenJDK 11 (`MUSL`)    |
 | Java 17                 | Ubuntu        | Microsoft OpenJDK 17           |
 | Java 21                 | Ubuntu        | Microsoft OpenJDK 21           |
-| Tomcat 8.5 Java 8       | Alpine 3.16\* | `Adoptium` Temurin 8 (`MUSL`) |
+| Tomcat 8.5 Java 8       | Alpine 3.16\* | [`Adoptium`](https://adoptium.net/) Temurin 8 (`MUSL`) |
 | Tomcat 8.5 Java 11      | Alpine 3.16\* | Microsoft OpenJDK 11 (`MUSL`)    |
-| Tomcat 9.0 Java 8       | Alpine 3.16\* | `Adoptium` Temurin 8 (`MUSL`) |
+| Tomcat 9.0 Java 8       | Alpine 3.16\* | [`Adoptium`](https://adoptium.net/) Temurin 8 (`MUSL`) |
 | Tomcat 9.0 Java 11      | Alpine 3.16\* | Microsoft OpenJDK 11 (`MUSL`)    |
 | Tomcat 9.0 Java 17      | Ubuntu        | Microsoft OpenJDK 17           |
 | Tomcat 9.0 Java 21      | Ubuntu        | Microsoft OpenJDK 21           |
-| Tomcat 10.0 Java 8      | Ubuntu        | `Adoptium` Temurin 8        |
+| Tomcat 9.0 Java 25      | Ubuntu        | Microsoft OpenJDK 25           |
+| Tomcat 10.0 Java 8      | Ubuntu        | [`Adoptium`](https://adoptium.net/) Temurin 8        |
 | Tomcat 10.0 Java 11     | Ubuntu        | Microsoft OpenJDK 11           |
 | Tomcat 10.0 Java 17     | Ubuntu        | Microsoft OpenJDK 17           |
 | Tomcat 10.0 Java 21     | Ubuntu        | Microsoft OpenJDK 21           |
 | Tomcat 10.1 Java 11     | Ubuntu        | Microsoft OpenJDK 11           |
 | Tomcat 10.1 Java 17     | Ubuntu        | Microsoft OpenJDK 17           |
 | Tomcat 10.1 Java 21     | Ubuntu        | Microsoft OpenJDK 21           |
+| Tomcat 10.1 Java 25     | Ubuntu        | Microsoft OpenJDK 25           |
 | Tomcat 11.0 Java 17     | Ubuntu        | Microsoft OpenJDK 17           |
-| Tomcat 11.0 Java 21     | Ubuntu        | Microsoft OpenJDK 21           |
-| JBoss 7.3 Java 8        | Ubuntu        | `Adoptium` Temurin 8        |
+| Tomcat 10.1 Java 21     | Ubuntu        | Microsoft OpenJDK 21           |
+| Tomcat 10.1 Java 25     | Ubuntu        | Microsoft OpenJDK 25           |
+| JBoss 7.3 Java 8        | Ubuntu        | [`Adoptium`](https://adoptium.net/) Temurin 8        |
 | JBoss 7.3 Java 11       | Ubuntu        | Microsoft OpenJDK 11           |
-| JBoss 7.4 Java 8        | Ubuntu        | `Adoptium` Temurin 8        |
+| JBoss 7.4 Java 8        | Ubuntu        | [`Adoptium`](https://adoptium.net/) Temurin 8        |
 | JBoss 7.4 Java 11       | Ubuntu        | Microsoft OpenJDK 11           |
 | JBoss 7.4 Java 17       | Ubuntu        | Microsoft OpenJDK 17           |
 | JBoss 8.0 Java 11       | Ubuntu        | Microsoft OpenJDK 11           |
 | JBoss 8.0 Java 17       | Ubuntu        | Microsoft OpenJDK 17           |
 | JBoss 8.0 Java 21       | Ubuntu        | Microsoft OpenJDK 21           |
+| JBoss 8.0 Java 25       | Ubuntu        | Microsoft OpenJDK 25           |
 
-\* Alpine 3.16 is the last supported Alpine distribution in App Service. To avoid switching over to Ubuntu automatically, pin to a version. Test and switch to a Java offering that's supported by Ubuntu-based distributions when possible.
+\* Alpine 3.16 is the last supported Alpine distribution in App Service. To avoid switching over to Ubuntu automatically, pin to a version. When possible, test and switch to a Java offering that Ubuntu distributions support.
 
 # [Windows](#tab/windows)
 
+>[!NOTE]
+>Java 25 isn't yet natively available as a selectable runtime on Azure App Service for Windows. If you require Java 25 right away, you can deploy your app using a custom Windows container with the Microsoft OpenJDK 25.
+
 | Java stack name  | Windows version | Java distribution |
 | -------------------- | ------------------- | --------------------- |
-| Java SE, Java 8      | Windows Server 2022 | `Adoptium` Temurin 8    |
+| Java SE, Java 8      | Windows Server 2022 | [`Adoptium`](https://adoptium.net/) Temurin 8    |
 | Java SE, Java 11     | Windows Server 2022 | Microsoft OpenJDK 11       |
 | Java SE, Java 17     | Windows Server 2022 | Microsoft OpenJDK 17       |
 | Java SE, Java 21     | Windows Server 2022 | Microsoft OpenJDK 21       |
-| Tomcat 8.5, Java 8   | Windows Server 2022 | `Adoptium` Temurin 8    |
+| Tomcat 8.5, Java 8   | Windows Server 2022 | [`Adoptium`](https://adoptium.net/) Temurin 8    |
 | Tomcat 8.5, Java 11  | Windows Server 2022 | Microsoft OpenJDK 11       |
-| Tomcat 9.0, Java 8   | Windows Server 2022 | `Adoptium` Temurin 8    |
+| Tomcat 9.0, Java 8   | Windows Server 2022 | [`Adoptium`](https://adoptium.net/) Temurin 8    |
 | Tomcat 9.0, Java 11  | Windows Server 2022 | Microsoft OpenJDK 11       |
 | Tomcat 9.0, Java 17  | Windows Server 2022 | Microsoft OpenJDK 17       |
 | Tomcat 9.0, Java 21  | Windows Server 2022 | Microsoft OpenJDK 21       |
-| Tomcat 10.0, Java 8  | Windows Server 2022 | `Adoptium` Temurin 8    |
+| Tomcat 10.0, Java 8  | Windows Server 2022 | [`Adoptium`](https://adoptium.net/) Temurin 8    |
 | Tomcat 10.0, Java 11 | Windows Server 2022 | Microsoft OpenJDK 11       |
 | Tomcat 10.0, Java 17 | Windows Server 2022 | Microsoft OpenJDK 17       |
 | Tomcat 10.0, Java 21 | Windows Server 2022 | Microsoft OpenJDK 21       |
@@ -157,9 +164,9 @@ Community support for Java 7 ended on July 29, 2022 and [Java 7 was retired from
 
 If a supported Java runtime is retired, Azure developers who use the affected runtime receive a deprecation notice at least six months before the runtime is retired.
 
+- [Modernize to Java 21 and Make the Leap to Java 25](https://devblogs.microsoft.com/java/microsofts-openjdk-builds-now-ready-for-java-25/#modernize-to-java-21-and-make-the-leap-to-java-25)
 - [Reasons to move to Java 11 and beyond](/java/openjdk/reasons-to-move-to-java-11?bc=/azure/developer/breadcrumb/toc.json&toc=/azure/developer/java/fundamentals/toc.json)
 - [Transition from Java 7 to Java 8](/java/openjdk/transition-from-java-7-to-java-8?bc=/azure/developer/breadcrumb/toc.json&toc=/azure/developer/java/fundamentals/toc.json)
-
 ### Local development
 
 You can [download](/java/openjdk/download) the [Microsoft build of OpenJDK](/java/openjdk/download) for local development. Microsoft product support for the Microsoft build of OpenJDK is available when you develop for Azure or [Azure Stack](https://azure.microsoft.com/overview/azure-stack/) with a [qualified Azure support plan](https://azure.microsoft.com/support/plans/).
