@@ -68,7 +68,7 @@ namespace EventGridFailoverPublisher
         static async Task Main(string[] args)
         {
             // TODO: Enter the endpoint each topic. You can find this topic endpoint value
-            // in the "Overview" section in the "Event Grid topics" page in Azure portal..
+            // in the "Overview" section in the "Event Grid topics" page in Azure portal.
             string primaryTopic = "https://<primary-topic-name>.<primary-topic-region>.eventgrid.azure.net/api/events";
             string secondaryTopic = "https://<secondary-topic-name>.<secondary-topic-region>.eventgrid.azure.net/api/events";
 
