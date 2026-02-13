@@ -114,7 +114,7 @@ Both **Agent Identity** and **Project Managed Identity** use Microsoft Entra aut
 
 1. Get the **Application ID URI** from your function app's Entra app registration, which you need to complete the Entra authentication registration in your agent:
 
-    1. In the **Authentication** blade of your app, select the name of the registered Entra identity provider. This selection takes you to the Entra app resource page.
+    1. Back in the **Authentication** page for your app, select the name of the registered Entra identity provider. This selection takes you to the Entra app resource page.
     
     1. In the left menu, select **Manage** > **Expose an API**.
     
