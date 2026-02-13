@@ -279,8 +279,6 @@ You can use [Azure Resource Manager](../../azure-resource-manager/management/ove
 
 > [!NOTE]
 > Security policies are not the same as Azure RBAC. They actually use Azure RBAC to authorize users to create those resources.
->
->
 
 Organizations that are not controlling how resources are created are more susceptible to users who might abuse the service by creating more resources than they need. Hardening the resource creation process is an important step to securing a multitenant scenario.
 
@@ -288,15 +286,7 @@ Organizations that are not controlling how resources are created are more suscep
 
 An active identity monitoring system can quickly detect suspicious behavior and trigger an alert for further investigation. The following table lists Microsoft Entra capabilities that can help organizations monitor their identities:
 
-**Best practice**: Have a method to identify:
-
-- Attempts to sign in [without being traced](/entra/identity/monitoring-health/howto-access-activity-logs).
-- [Brute force](/entra/identity/monitoring-health/howto-access-activity-logs) attacks against a particular account.
-- Attempts to sign in from multiple locations.
-- Sign-ins from [infected devices](/entra/identity/monitoring-health/howto-access-activity-logs).
-- Suspicious IP addresses.
-
-**Detail**: Use Microsoft Entra ID P1 or P2 [anomaly reports](/entra/identity/monitoring-health/howto-access-activity-logs). Have processes and procedures in place for IT admins to run these reports on a daily basis or on demand (usually in an incident response scenario).
+- **Have a method to identify suspicious sign-in activities**: Monitor for attempts to sign in [without being traced](/entra/identity/monitoring-health/howto-access-activity-logs), [brute force](/entra/identity/monitoring-health/howto-access-activity-logs) attacks against a particular account, attempts to sign in from multiple locations, sign-ins from [infected devices](/entra/identity/monitoring-health/howto-access-activity-logs), and suspicious IP addresses. Use Microsoft Entra ID P1 or P2 [anomaly reports](/entra/identity/monitoring-health/howto-access-activity-logs). Have processes and procedures in place for IT admins to run these reports on a daily basis or on demand (usually in an incident response scenario).
 
 - **Have an active monitoring system that notifies you of risks and can adjust risk level (high, medium, or low) to your business requirements.**: Use [Microsoft Entra ID Protection](/entra/id-protection/overview-identity-protection), which flags the current risks on its own dashboard and sends daily summary notifications via email. To help protect your organization's identities, you can configure risk-based policies that automatically respond to detected issues when a specified risk level is reached.
 
