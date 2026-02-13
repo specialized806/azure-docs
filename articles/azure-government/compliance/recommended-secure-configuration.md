@@ -38,7 +38,9 @@ Providers MUST create, maintain, and make available recommendations for securely
 
 ### Azure's response with recommendation and instructions
 
-Azure defines the below top-level administrative accounts
+Azure supports various methods to support the requirements outlined in SCG-CSO-RSC above and more details are provided below.
+
+Azure defines the below top-level administrative accounts.
 
 |     Category                  |     Account   Type                     |     Why   It’s Top‑Level                                           |
 |-------------------------------|----------------------------------------|--------------------------------------------------------------------|
@@ -81,6 +83,8 @@ Security Defaults enforce:
 
 - Protection of privileged access to administrative portals
 
+**Microsoft Learn:** [Security defaults in Microsoft Entra ID](/entra/fundamentals/security-defaults)
+
 #### 2. Blocking Legacy Authentication (Tenant‑Wide Risk Reduction)
 
 Legacy authentication protocols (for example, IMAP, POP, SMTP AUTH) do not support modern protections such as MFA and are a primary entry point for account compromise. Microsoft documents blocking legacy authentication as a **critical tenant‑wide security control**.
@@ -104,6 +108,8 @@ Conditional Access is Microsoft’s primary tenant‑wide policy engine for enfo
 - Enforcement of Zero Trust principles
 
 Conditional Access policies can only be created and modified by **privileged administrative roles**, and misconfiguration or absence of these policies materially increases identity compromise risk.
+
+**Microsoft Learn:** [Plan a Microsoft Entra multifactor authentication deployment](/entra/identity/authentication/howto-mfa-getstarted)
 
 #### 4. Emergency Access (“Break‑Glass”) Accounts
 
