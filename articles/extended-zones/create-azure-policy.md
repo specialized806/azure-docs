@@ -20,7 +20,7 @@ In this article, you learn how to create and deploy a custom Azure Policy in an 
 
 - Access to an Extended Zone. For more information, see [Request access to an Azure Extended Zone](request-access.md).
 
-- Basic understanding of Azure Policy. For more information, see [What is Azure Policy?](/azure/governance/policy/overview). 
+- Basic understanding of Azure Policy. For more information, see [What is Azure Policy?](/azure/governance/policy/overview) 
 
 ## Sign in to Azure
 
