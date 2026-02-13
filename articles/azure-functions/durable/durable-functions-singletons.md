@@ -31,40 +31,41 @@ The following example shows an HTTP-trigger function that creates a singleton ba
 # [C#](#tab/csharp)
 
 ```cs
-[FunctionName("HttpStartSingle")]
-public static async Task<HttpResponseMessage> RunSingle(
-    [HttpTrigger(AuthorizationLevel.Function, methods: "post", Route = "orchestrators/{functionName}/{instanceId}")] HttpRequestMessage req,
-    [DurableClient] IDurableOrchestrationClient starter,
+[Function("HttpStartSingle")]
+public static async Task<HttpResponseData> RunSingle(
+    [HttpTrigger(AuthorizationLevel.Function, "post", Route = "orchestrators/{functionName}/{instanceId}")] HttpRequestData req,
+    [DurableClient] DurableTaskClient starter,
     string functionName,
     string instanceId,
-    ILogger log)
+    FunctionContext executionContext)
 {
+    ILogger logger = executionContext.GetLogger("HttpStartSingle");
+
     // Check if an instance with the specified ID already exists or an existing one stopped running(completed/failed/terminated).
-    var existingInstance = await starter.GetStatusAsync(instanceId);
+    OrchestrationMetadata? existingInstance = await starter.GetInstancesAsync(instanceId);
     if (existingInstance == null 
     || existingInstance.RuntimeStatus == OrchestrationRuntimeStatus.Completed 
     || existingInstance.RuntimeStatus == OrchestrationRuntimeStatus.Failed 
     || existingInstance.RuntimeStatus == OrchestrationRuntimeStatus.Terminated)
     {
         // An instance with the specified ID doesn't exist or an existing one stopped running, create one.
-        dynamic eventData = await req.Content.ReadAsAsync<object>();
-        await starter.StartNewAsync(functionName, instanceId, eventData);
-        log.LogInformation($"Started orchestration with ID = '{instanceId}'.");
-        return starter.CreateCheckStatusResponse(req, instanceId);
+        string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
+        await starter.ScheduleNewOrchestrationInstanceAsync(functionName, requestBody, new StartOrchestrationOptions { InstanceId = instanceId });
+        logger.LogInformation($"Started orchestration with ID = '{instanceId}'.");
+        return await starter.CreateCheckStatusResponseAsync(req, instanceId);
     }
     else
     {
         // An instance with the specified ID exists or an existing one still running, don't create one.
-        return new HttpResponseMessage(HttpStatusCode.Conflict)
-        {
-            Content = new StringContent($"An instance with ID '{instanceId}' already exists."),
-        };
+        var response = req.CreateResponse(HttpStatusCode.Conflict);
+        await response.WriteStringAsync($"An instance with ID '{instanceId}' already exists.");
+        return response;
     }
 }
 ```
 
 > [!NOTE]
-> The previous C# code is for Durable Functions 2.x. For Durable Functions 1.x, you must use `OrchestrationClient` attribute instead of the `DurableClient` attribute, and you must use the `DurableOrchestrationClient` parameter type instead of `IDurableOrchestrationClient`. For more information about the differences between versions, see the [Durable Functions versions](durable-functions-versions.md) article.
+> The previous C# code is for the isolated worker model, which is the recommended model for .NET apps. For more information about the differences between the in-process and isolated worker models, see the [Durable Functions versions](durable-functions-versions.md) article.
 
 # [JavaScript](#tab/javascript)
 
