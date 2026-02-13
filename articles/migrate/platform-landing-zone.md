@@ -95,8 +95,26 @@ Deploy the platform landing zone by following the deployment instructions includ
 A typical deployment workflow includes:
 
 1. Update the configuration files, for example, `config/inputs.yaml` with values specific to your environment.
-1. Run the configuration update script:`\scripts\update-config.ps1`
-1. Deploy bootstrap prerequisites, if they are included in the landing zone package.
+1. Run the configuration update script:
+
+```azurepowershell
+.\scripts\powershell\update-config.ps1
+
+```
+
+```bash
+./scripts/bash/update-config.ps1
+```
+
+1. Deploy bootstrap prerequisites:
+
+```azurepowershell
+.\scripts\powershell\invoke-terraform.ps1 -ModuleFolderPath "D:\azure-landing-zone-platform\output\bootstrap\v7.0.0\alz\github" -TfvarsFileName "terraform.tfvars.json" -TenantId "tenantId" -AutoApprove
+```
+
+```bash
+./scripts/bash/invoke-terraform.sh -m "azure-landing-zone-platform/output/bootstrap/v7.0.0/alz/github" -f "terraform.tfvars.json" -t "tenantId" -a
+```
 1. Deploy the platform landing zone by using the provided CI/CD pipeline (GitHub Actions or Azure DevOps), or run Terraform by using the included scripts.
 
 ## Design document generation
