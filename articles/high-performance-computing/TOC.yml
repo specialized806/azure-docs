@@ -102,8 +102,8 @@
   - name: Optimize performance for HPC and AI virtual machines
     href: performance-benchmarking/optimize-performance.md
 
- - name: AI training
-   items:
+- name: AI training
+  items:
       
-   - name: Choose your platform for AI training and fine-tuning
-     href: performance-benchmarking/ai-training/choose-training-platform.md
+  - name: Choose your platform for AI training and fine-tuning
+    href: performance-benchmarking/ai-training/choose-training-platform.md
