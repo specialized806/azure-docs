@@ -25,7 +25,7 @@ The most recent stable release of the Azure Maps services.
 | [Geolocation] |  1.0  | Convert IP addresses to country/region ISO codes. |
 | [Render] |  2024-04-01  | Get road, satellite/aerial, weather, traffic map tiles, and static map images. |
 | [Route] |  2025-01-01  | Calculate optimized travel times and distances between locations for multiple modes of transportation and returns localized travel instructions. Now supports [Snap to Roads] API that snaps GPS data to road aligned coordinates. |
-| [Search] |  2025-06-01  | Geocode addresses and coordinates, search for places and businesses by name or category, and retrieve administrative boundary polygons. The Autocomplete API returns real-time suggestions for addresses and places based on partial user input. |
+| [Search] |  2026-01-01  | Geocode addresses and coordinates, search for places and businesses by name or category, and retrieve administrative boundary polygons. The Autocomplete API returns real-time suggestions for addresses and places based on partial user input. |
 | [Timezone] |  1.0  | Get time zone and sunrise/sunset information for specified locations. |
 | [Traffic] |  2025-01-01  | Provides traffic incident data, such as construction, traffic congestion, accidents, and more, within a specified bounding box. |
 | [Weather] |  1.1  | Get current, forecasted, and historical weather conditions, air quality, tropical storm details, and weather along a route. |
