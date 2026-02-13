@@ -24,8 +24,8 @@ Azure Data Manager for Energy provides two upgrade policy options:
 
 | Policy | Description |
 |--------|-------------|
-| **Automatic** | Your instance is automatically upgraded when a new milestone release is available. This option is the default setting for all instances. |
-| **Deferred** | Your instance upgrade is deferred, giving you up to 30 days to validate the new milestone release before your instance is upgraded. |
+| **Automatic** | Instance is upgraded automatically when a new milestone release is available. This option is the default setting for all instances. |
+| **Deferred** | Upgrades are deferred for up to 30 days before instance is upgraded. |
 
 If you have multiple Azure Data Manager for Energy instances, you can set different upgrade policies for each one. For example, you might set one instance to **Automatic** so it upgrades immediately when a new milestone is released, allowing you to test and validate the changes. Meanwhile, you can set your production instance to **Deferred** to delay the upgrade until you complete your testing. At any point during the 30-day window, you can mark your deferred instance as ready for upgrade. If you don't take action, the instance is automatically upgraded at the end of the 30-day window.
 
@@ -35,17 +35,12 @@ If you have multiple Azure Data Manager for Energy instances, you can set differ
 
 1. In the left menu under **Advanced**, select **Upgrade Settings**.
 
-    ADD SCREENSHOT HERE
-
 1. On the **Upgrade Settings** page, you can view:
-   - **Current milestone version**: The current milestone version your instance is running (for example, M25 or M26).
    - **Upgrade policy**: Whether your instance is set to **Automatic** or **Deferred** upgrades.
-   - **Auto upgrade after date**: If your upgrade policy is set to **Deferred** and a milestone upgrade is available, this field shows the date when your instance is automatically upgraded.
-
-    ADD SCREENSHOT HERE
+   - **Automatic upgrade after**: If your upgrade policy is set to **Deferred** and a milestone upgrade is available, this field shows the date when your instance is automatically upgraded.
 
 > [!NOTE]
-> The current milestone version is also displayed on the **Overview** page for your Azure Data Manager for Energy instance.
+> The current milestone version is displayed in the **Essentials** section on the **Overview** page for your Azure Data Manager for Energy instance.
 
 ## Configure upgrade settings during instance creation
 
@@ -53,9 +48,7 @@ You can configure upgrade settings when you create a new Azure Data Manager for 
 
 1. When creating a new instance, navigate to the **Advanced Settings** tab.
 
-1. In the **Upgrade Settings** section, you can choose to enable **Defer Milestone Upgrades**.
-
-    ADD SCREENSHOT HERE
+1. In the **Upgrade Settings** section, select either **Automatic** or **Deferred** for the **Upgrade Policy**.
 
 1. Complete the remaining tabs and select **Create** to create your instance with the configured upgrade settings.
 
@@ -69,8 +62,6 @@ You can change the upgrade policy for an existing Azure Data Manager for Energy 
 
 1. Select either **Automatic** or **Deferred** to change your upgrade policy.
 
-    ADD SCREENSHOT HERE
-
 1. Select **Save** to apply your changes.
 
 ## Mark your instance as ready for upgrade
@@ -81,14 +72,12 @@ If your upgrade policy is set to **Deferred** and a milestone upgrade is availab
 
 1. In the left menu under **Advanced**, select **Upgrade Settings**.
 
-1. Select the **Mark Ready for Milestone Upgrade** button.
-
-    ADD SCREENSHOT HERE
+1. Select the **Mark Ready for Upgrade** button.
 
     > [!NOTE]
-    > The **Mark Ready for Milestone Upgrade** button is only available when:
+    > The **Mark Ready for Upgrade** button is only available when:
     > - Your upgrade policy is set to **Deferred**.
-    > - A milestone upgrade is available (the **30-Day Window End Date** is set).
+    > - The **Automatic upgrade after** date is set by the Azure Data Manager for Energy team.
 
 1. Confirm that you want to mark your instance as ready for upgrade.
 
@@ -99,16 +88,16 @@ If your upgrade policy is set to **Deferred** and a milestone upgrade is availab
 
 When a new milestone release is available and your upgrade policy is set to **Deferred**, the following apply:
 
-1. After all instances with the **Automatic** upgrade policy are upgraded, the Azure Data Manager for Energy team sets the **30-Day Window End Date**, which is approximately 30 days from that point.
+1. After all instances with the **Automatic** upgrade policy are upgraded, the Azure Data Manager for Energy team sets the **Automatic upgrade after** date, which is approximately 30 days from that point.
 
-1. The **30-Day Window End Date** is displayed on the **Upgrade Settings** page in the Azure portal.
+1. The **Automatic upgrade after** date is displayed on the **Upgrade Settings** page in the Azure portal for instances with a **Deferred** upgrade policy.
 
 1. During this 30-day window, you can:
    - Test the new milestone release in a nonproduction environment.
    - Mark your instance as ready for upgrade when you're satisfied with your testing.
    - Take no action and let your instance be automatically upgraded at the end of the window.
 
-1. After your instance is upgraded, the **30-Day Window End Date** is cleared until the next milestone release.
+1. After your instance is upgraded, the **Automatic upgrade after** date is cleared until the next milestone release.
 
 ## Frequently asked questions
 
