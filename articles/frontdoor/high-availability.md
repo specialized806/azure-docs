@@ -91,7 +91,7 @@ This DNS-based load-balancing solution uses multiple Azure Traffic Manager profi
 
 - **Traffic flow (normal operation)**: User → DNS query → primary Traffic Manager instance (weighted/always-serve routing) → Azure Front Door (priority 1) → origin servers.
   
-- **Traffic flow (Azure Front Door failure)**: User → DNS query → primary Traffic Manager  instance (weighted/always-serve routing) → secondary Traffic Manager instance (priority mode) → Application Gateway → origin servers.
+- **Traffic flow (Azure Front Door failure)**: User → DNS query → primary Traffic Manager instance (weighted/always-serve routing) → secondary Traffic Manager instance (priority mode) → Application Gateway → origin servers.
 
 ### Pre-deployment: Azure Front Door vs. Application Gateway
 
@@ -295,7 +295,7 @@ Evaluate your global traffic patterns and deploy Application Gateway instances i
 
     - **Enable Endpoint**: Selected (enabled)
 
-    - **Custom Header settings**: `Host=$CUSTOM_DOMAIN` (required for Azure Front Door to route to correct custom domain)
+    - **Custom Header settings**: `Host=$CUSTOM_DOMAIN` (required for Azure Front Door to route to the correct custom domain)
 
     - **Health Checks**: **Always serve traffic** (disable health checks)
 
@@ -508,7 +508,7 @@ Configure your secondary CDN provider:
 
 - Upload the BYO SSL/TLS certificate. This certificate is the same one that you used in Azure Front Door.
 
-- Configure CDN caching rules to match Azure Front Door behavior.  For example, configure cache durations and query string handling.
+- Configure CDN caching rules to match Azure Front Door behavior. For example, configure cache durations and query string handling.
 
 - Set up caching settings, control headers, and compression settings to match your Azure Front Door configuration.
 
