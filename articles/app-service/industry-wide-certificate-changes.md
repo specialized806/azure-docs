@@ -65,9 +65,8 @@ No change. ASMCs already comply with the new industry requirements.
 ### Impact on App Service Certificates (ASC)
 To maintain one year of certificate coverage, Azure App Service automatically issues overlapping certificates at no additional cost.
 
-- If App Service Certificates are used only with Azure App Service, no action is required.
-- The platform automatically syncs and updates certificates.
-- If certificates are exported and used outside App Service, they may need to be re-exported more frequently due to the shorter validity period.
+- If App Service Certificates are used only with Azure App Service, no action is required. The platform automatically syncs and updates certificates.
+- If certificates are exported and used outside Azure App Service, the certificates may need to be re-exported more frequently due to the shorter validity period.
 
 
 ## Domain validation reuse (ASC only)
@@ -115,9 +114,9 @@ For background on the managed TLS certificate authority changes across Azure ser
 | Date | Change | ASMC | ASC |
 |-----|--------|------|-----|
 | Feb–Mar 2026 | New certificate chain | Migrates to new chain | — |
-| Mar 1, 2026 | Validity + validation reuse | — | Shortened validity and validation reuse |
+| Starting March 2026 | Validity + validation reuse | — | Shortened validity and validation reuse |
 | Mar–Apr 2026 (TBD) | Chain + EKU changes | — | Migrates to new chain; EKU removed |
-| May 2026 | Client authentication EKU | EKU removed | — |
+| Mar–Apr 2026 (TBD) | Client authentication EKU | EKU removed | — |
 
 
 ## Frequently asked questions
