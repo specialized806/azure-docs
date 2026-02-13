@@ -158,14 +158,3 @@ articles/planetary-computer/geocatalog_configs/umbra-sar-ships/stac.json
 articles/planetary-computer/geocatalog_configs/umbra-sar-ships/tile-settings.json
 articles/planetary-computer/helper-content/collection-config-scraper.py
 articles/planetary-computer/helper-content/generate_collection_docs.py
-# Doc-Kit workspace files
-.github/AGENTS.md
-.github/agents/
-.github/instructions/
-.github/prompts/
-.github/skills/
-.vscode/settings.json
-.dockit/
-.env
-.env.example
-requirements.txt
