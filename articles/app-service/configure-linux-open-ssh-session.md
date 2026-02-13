@@ -53,7 +53,7 @@ You can also connect to the container directly from your local development machi
 
 ::: zone pivot="container-linux"
 
-## Open SSH session with the Azure CLI
+## Open SSH session with Azure CLI
 
 By using TCP tunneling, you can create a network connection between your development machine and Linux containers over an authenticated WebSocket connection. You can then open an SSH session with your container running in App Service from the client of your choice.
 
@@ -121,7 +121,13 @@ A P P   S E R V I C E   O N   L I N U X
 
 You're now connected to your connector.  
 
-Try running the [top](https://ss64.com/bash/top.html) command. You should be able to see your app's process in the process list. In the example output, it's the one with `PID 263`.
+Try running the [top](https://ss64.com/bash/top.html) command. 
+
+```bash
+top
+```
+
+You should be able to see your app's process in the process list. In the example output, it's the one with `PID 263`.
 
 <pre>
 Mem: 1578756K used, 127032K free, 8744K shrd, 201592K buff, 341348K cached
