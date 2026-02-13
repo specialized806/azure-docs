@@ -3,7 +3,7 @@ title: Execute Your Migration from Amazon Web Services (AWS) to Azure
 description: Learn how to execute the migration from AWS to Azure. Follow proven cutover strategies, sync data, validate workloads, and ensure rollback readiness.
 ms.author: rhackenberg
 ai-usage: ai-assisted
-ms.date: 01/29/2026
+ms.date: 02/13/2026
 ms.topic: concept-article
 ms.custom: migration-hub
 ms.service: azure

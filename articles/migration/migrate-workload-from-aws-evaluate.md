@@ -3,7 +3,7 @@ title: Evaluate your Workload from Amazon Web Services (AWS) After You Migrate t
 description: Learn how to evaluate the migration of a single workload from AWS to Azure. Monitor performance, verify baselines, and confirm data cutover.
 ms.author: rhackenberg
 ai-usage: ai-assisted
-ms.date: 01/29/2026
+ms.date: 02/13/2026
 ms.topic: concept-article
 ms.custom: migration-hub
 ms.service: azure

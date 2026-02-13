@@ -3,7 +3,7 @@ title: Decommission Your Amazon Web Services (AWS) Workload After You Migrate to
 description: Learn how to decommission AWS resources after you migrate a single workload from AWS to Azure. Create final backups, delete resources, and establish new baselines.
 ms.author: rhackenberg
 ai-usage: ai-assisted
-ms.date: 01/29/2026
+ms.date: 02/13/2026
 ms.topic: concept-article
 ms.custom: migration-hub
 ms.service: azure
