@@ -53,6 +53,8 @@ This article provides the steps for deploying self-hosted gateway component of A
 
 ## Deploy the self-hosted gateway to Kubernetes
 
+[!INCLUDE [api-management-self-hosted-gateway-authentication](../../includes/api-management-self-hosted-gateway-authentication.md)]
+
 1. Select **Gateways** from under **Deployment and infrastructure**.
 2. Select the self-hosted gateway resource you intend to deploy.
 3. Select **Deployment**.

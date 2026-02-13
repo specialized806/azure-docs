@@ -42,6 +42,8 @@ Deploying the API Management gateway on an Azure Arc-enabled Kubernetes cluster 
 
 ## Deploy the API Management gateway extension using Azure CLI
 
+[!INCLUDE [api-management-self-hosted-gateway-authentication](../../includes/api-management-self-hosted-gateway-authentication.md)]
+
 1. In the Azure portal, navigate to your API Management instance.
 1. Select **Deployment + infrastructure** > **Gateways** from the side navigation menu.
 1. Select and open your provisioned gateway resource from the list.
