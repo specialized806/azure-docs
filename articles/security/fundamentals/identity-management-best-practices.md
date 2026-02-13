@@ -243,7 +243,7 @@ Require Microsoft Entra multifactor authentication at sign-in for all individual
 - **For critical admin accounts, have an admin workstation where production tasks aren’t allowed (for example, browsing and email). This will protect your admin accounts from attack vectors that use browsing and email and significantly lower your risk of a major incident.**: Use an admin workstation. Choose a level of workstation security:
 
 - Highly secure productivity devices provide advanced security for browsing and other productivity tasks.
-- [Privileged Access Workstations (PAWs)](https://4sysops.com/archives/understand-the-microsoft-privileged-access-workstation-paw-security-model/) provide a dedicated operating system that’s protected from internet attacks and threat vectors for sensitive tasks.
+- [Privileged Access Workstations (PAWs)](/security/privileged-access-workstations/privileged-access-devices) provide a dedicated operating system that's protected from internet attacks and threat vectors for sensitive tasks.
 
 - **Deprovision admin accounts when employees leave your organization.**: Have a process in place that disables or deletes admin accounts when employees leave your organization.
 
