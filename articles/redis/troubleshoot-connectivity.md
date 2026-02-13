@@ -21,6 +21,7 @@ In this article, we provide troubleshooting help for connecting your client appl
   - [Kubernetes hosted applications](#kubernetes-hosted-applications)
   - [Linux-based client application](#linux-based-client-application)
 - [Continuous connectivity issues](#continuous-connectivity)
+  - [Test connectivity using Azure CLI](#test-connectivity-using-azure-cli)
   - [Test connectivity using _redis-cli_](#test-connectivity-using-redis-cli)
   - [Test connectivity using PSPING](#test-connectivity-using-psping)
   - [Private endpoint configuration](#private-endpoint-configuration)
