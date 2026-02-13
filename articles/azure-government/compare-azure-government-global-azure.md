@@ -410,7 +410,7 @@ This section outlines variations and considerations when using Networking servic
 
 ### [Azure ExpressRoute](../expressroute/index.yml)
 
-For an overview of ExpressRoute, see [What is Azure ExpressRoute?](../expressroute/expressroute-introduction.md). For an overview of how **BGP communities** are used with ExpressRoute in Azure Government, see [BGP community support in National Clouds](../expressroute/expressroute-routing.md#bgp-community-support-in-national-clouds).
+For an overview of ExpressRoute, see [What is Azure ExpressRoute?](../expressroute/expressroute-introduction.md) For an overview of how **BGP communities** are used with ExpressRoute in Azure Government, see [BGP community support in National Clouds](../expressroute/expressroute-routing.md#bgp-community-support-in-national-clouds).
 
 ### [Azure Front Door](../frontdoor/index.yml)
 
