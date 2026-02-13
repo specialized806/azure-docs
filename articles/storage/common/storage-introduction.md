@@ -109,7 +109,7 @@ Azure Elastic storage area network (SAN) is Microsoft's answer to the problem of
 
 Elastic SAN is designed for large scale IO-intensive workloads and top tier databases such as SQL, MariaDB, and support hosting the workloads on virtual machines, or containers such as Azure Kubernetes Service. Elastic SAN volumes are compatible with a wide variety of compute resources through the [iSCSI](https://en.wikipedia.org/wiki/ISCSI) protocol. Some other benefits of Elastic SAN include a simplified deployment and management interface. Since you can manage storage for multiple compute resources from a single interface, and cost optimization.
 
-For more information about Azure Elastic SAN, see [What is Azure Elastic SAN?](../elastic-san/elastic-san-introduction.md).
+For more information about Azure Elastic SAN, see [What is Azure Elastic SAN?](../elastic-san/elastic-san-introduction.md)
 
 ## Azure Container Storage
 
