@@ -223,7 +223,17 @@ When the tenant is first provisioned Azure enforces the below ensuring newly cre
 
 When identities, subscriptions, or resources are created, **Security defaults** + **Conditional Access** give a hardened starting posture; **Azure Policy** applies baseline guardrails at MG/sub scopes so new assets inherit secure defaults automatically.
 
-**Microsoft Learn:** [Security defaults](/entra/fundamentals/security-defaults) · [Conditional Access Overview](/entra/identity/conditional-access/overview) · [Azure RBAC Overview](/azure/role-based-access-control/overview) · [Plan CA deployment](/entra/identity/conditional-access/plan-conditional-access) · [What is Azure Policy?](/azure/governance/policy/overview) 
+**Microsoft Learn:** 
+
+[Security defaults](/entra/fundamentals/security-defaults) 
+
+[Conditional Access Overview](/entra/identity/conditional-access/overview) 
+
+[Azure RBAC Overview](/azure/role-based-access-control/overview) 
+
+[Plan CA deployment](/entra/identity/conditional-access/plan-conditional-access) 
+
+[What is Azure Policy?](/azure/governance/policy/overview) 
 
 [Back to the top](#secure-configuration-guide)
 
@@ -239,9 +249,9 @@ Providers SHOULD offer the capability to compare all current settings for top-le
 
 ### Azure's response
 
-Azure satisfies this requirement through built‑in security baseline comparison capabilities across **Microsoft Entra ID** privileged accounts and tenant‑level security settings.
+Azure supports SCG-ENH-CNP through built‑in security baseline comparison capabilities across **Microsoft Entra ID** top-level and privileged accounts and tenant‑level security settings.
 
-Azure provides multiple mechanisms that allow customers to compare the current configuration of privileged identities against Microsoft’s published secure‑by‑default baseline. Azure provides built‑in comparison tools—Secure Score, Microsoft Entra ID Protection, Privileged Identity Management (PIM), Access Reviews, and Defender for Cloud—that continuously evaluate the configuration of all top-level and privileged accounts against Microsoft’s published secure-by-default identity baselines. These services surface deviations, provide gap analyses, and supply prescriptive remediation guidance, ensuring customers can easily compare current settings to recommended secure defaults at any time
+Azure provides multiple mechanisms that allow customers to compare the current configuration of top-level and privileged identities against Microsoft’s published secure‑by‑default baseline. Azure provides built‑in comparison tools—Secure Score, Microsoft Entra ID Protection, Privileged Identity Management (PIM), Access Reviews, and Defender for Cloud—that continuously evaluate the configuration of all top-level and privileged accounts against Microsoft’s published secure-by-default identity baselines. These services surface deviations, provide gap analyses, and supply prescriptive remediation guidance, ensuring customers can easily compare current settings to recommended secure defaults at any time
 
 #### How Azure Fulfills This
 
@@ -253,6 +263,8 @@ Azure provides multiple mechanisms that allow customers to compare the current c
 
 - Deviations surface as alerts or “unmet recommendations.”
 
+  **Microsoft Learn:**
+  
   [Entra ID Protection documentation hub](/entra/id-protection/)
   
   [Overview — What is Microsoft Entra ID Protection?](/entra/id-protection/overview-identity-protection)
@@ -285,6 +297,8 @@ Secure Score automatically evaluates:
   
 This directly supports the requirement to compare *“all current settings”* against recommended defaults.  
 
+**Microsoft Learn:**
+
 [Microsoft Entra Identity Secure Score](/entra/identity/monitoring-health/concept-identity-secure-score?toc=%2Fentra%2Ffundamentals%2Ftoc.json&bc=%2Fentra%2Ffundamentals%2Fbreadcrumb%2Ftoc.json)
 
 #### 3. Azure AD (Entra ID) Access Reviews
@@ -305,6 +319,8 @@ This directly supports the requirement to compare *“all current settings”* a
   
   - Whether administrators maintain unnecessary standing rights
   
+    **Microsoft Learn:**
+    
     [What are Access Reviews?](/entra/id-governance/access-reviews-overview)
     
     [Manage access with Access Reviews](/entra/id-governance/manage-access-review)
@@ -317,6 +333,8 @@ PIM provides a built‑in control comparison:
 
 - Highlights discrepancies between your configuration and Microsoft’s baseline.
 
+  **Microsoft Learn:**
+  
   [Privileged Identity Management documentation (Microsoft Entra)](/entra/id-governance/privileged-identity-management/pim-how-to-change-default-settings)
   
   [PIM configuration (What PIM does, how to configure)](/entra/id-governance/privileged-identity-management/pim-configure)
@@ -327,8 +345,10 @@ For hybrid and cloud resources:
 
 - Identity and entitlement management controls map to secure defaults.
 
-- Defender for Cloud surfaces misconfigurations and recommends compliant baseline settings. Azure satisfies this requirement through built‑in security baseline comparison capabilities across **Azure AD (Entra ID)** privileged accounts and tenant‑level security settings.
+- Defender for Cloud surfaces misconfigurations and recommends compliant baseline settings. Azure supports this requirement through built‑in security baseline comparison capabilities across **Azure AD (Entra ID)** privileged accounts and tenant‑level security settings.
 
+  **Microsoft Learn:**
+  
   [Manage security posture with Microsoft Defender for Cloud (official Learn module)](/training/modules/microsoft-defender-cloud-security-posture/)
   
   [Interactive Guide — Manage your cloud security posture](https://mslearn.cloudguides.com/en-US/guides/Manage%20your%20cloud%20security%20posture%20with%20Microsoft%20Defender%20for%20Cloud)
@@ -507,9 +527,7 @@ Export complete resource state:
 
 ARG supports KQL → JSON export.
 
-**Microsoft Learn:**
-
-- [Azure Resource Graph documentation](/azure/governance/resource-graph/)
+**Microsoft Learn:** [Azure Resource Graph documentation](/azure/governance/resource-graph/)
 
 #### 8. Infrastructure‑as‑Code (IaC) — Full Machine‑Readable Export
 
@@ -523,9 +541,7 @@ Azure supports exporting all deployed resources into:
 
 These provide **100% environment configuration** in machine‑readable form.
 
-**Microsoft Learn:**
-
-- [ARM template documentation](/azure/azure-resource-manager/templates/)
+**Microsoft Learn:** [ARM template documentation](/azure/azure-resource-manager/templates/)
 
 [Back to the top](#secure-configuration-guide)
 
@@ -537,9 +553,7 @@ Providers SHOULD offer the capability to view and adjust security settings via a
 
 ### Azure's response
 
-Azure fully satisfies this requirement by exposing *all major security configurations* through documented APIs (ARM, Microsoft Graph, Azure Policy, Defender for Cloud APIs, and Azure Resource Graph). 
-
-Azure **supports** SCG-ENH-API by providing comprehensive, documented, and secure APIs that allow organizations to:
+Azure supports SCG-ENH-API by exposing *all major security configurations* through documented and secure APIs (ARM, Microsoft Graph, Azure Policy, Defender for Cloud APIs, and Azure Resource Graph) that allow organizations to:
 
 - Programmatically **view** all security settings
 
@@ -586,9 +600,7 @@ Microsoft Graph exposes the **entire identity security plane**, enabling automat
 
 - Access Review definitions, decisions, and remediation actions
 
-**Microsoft Learn:**
-
-- [Authorization and the Microsoft Graph Security API](/graph/security-authorization)
+**Microsoft Learn:** [Authorization and the Microsoft Graph Security API](/graph/security-authorization)
 
 #### 3. Azure Policy API — Secure Defaults, Baselines, Compliance
 
@@ -604,9 +616,7 @@ Programmatically enforce and adjust secure settings using Policy APIs:
 
 - Export compliance state (JSON)
 
-**Microsoft Learn:**
-
-- [Azure Policy documentation](/azure/governance/policy/)
+**Microsoft Learn:** [Azure Policy documentation](/azure/governance/policy/)
 
 #### 4. Azure RBAC — View & Adjust Role Assignments (JSON Export)
 
@@ -724,7 +734,7 @@ Providers SHOULD also provide the Secure Configuration Guide in a machine-readab
 
 #### Azure's Response
 
-Azure satisfies this requirement by providing customers Secure Configuration Guide through multiple Microsoft‑documented APIs and export mechanisms that deliver **JSON‑structured secure configuration data** across identity, RBAC, policy, and security‑posture layers.
+Azure supports SCG-ENH-MRG by providing customers Secure Configuration Guide through multiple Microsoft‑documented APIs and export mechanisms that deliver **JSON‑structured secure configuration data** across identity, RBAC, policy, and security‑posture layers.
 
 Below are the various channels that Azure provides this machine-readable data in
 
@@ -742,7 +752,11 @@ Azure Defender for Cloud provides:
 
 These can be exported programmatically and used by comparison tools.
 
-**Microsoft Learn:** [Manage security posture by using Microsoft Defender for Cloud](https://m365corner.com/m365-glossary/privileged-identity-management.html) [Interactive Cloud Security Posture Guide (Cloud Security UX)](https://thinkcloudly.com/blog/azure/defender-for-cloud-implementation-guide/)
+**Microsoft Learn:** 
+
+- [Manage security posture by using Microsoft Defender for Cloud](https://m365corner.com/m365-glossary/privileged-identity-management.html) 
+
+- [Interactive Cloud Security Posture Guide (Cloud Security UX)](https://thinkcloudly.com/blog/azure/defender-for-cloud-implementation-guide/)
 
 #### 2. Azure Policy — Secure Baseline Definitions (JSON)
 
@@ -836,7 +850,7 @@ Providers SHOULD provide versioning and a release history for recommended secure
 
 #### Azure's Response
 
-Azure fully satisfies the requirement through 
+Azure supports SCG-ENH-VRH through 
 
 - **Versioned security baselines** 
 
@@ -912,7 +926,7 @@ PIM provides:
 
 Each update in PIM documentation reflects secure‑default evolution for privileged accounts.
 
-**Microsoft Learn hyperlink:** [Privileged Identity Management (PIM) Documentation](https://www.youtube.com/watch?v=z5OMEC0j2ns)
+**Microsoft Learn:** [Privileged Identity Management (PIM) Documentation](https://www.youtube.com/watch?v=z5OMEC0j2ns)
 
 #### 4. Microsoft Defender for Cloud — Versioned Secure Recommendations
 
@@ -930,9 +944,9 @@ Defender for Cloud maintains:
 
 **Microsoft Learn:**
 
-Defender for Cloud posture module [Manage security posture using Microsoft Defender for Cloud](https://m365corner.com/m365-glossary/privileged-identity-management.html)
+- **Defender for Cloud posture module** [Manage security posture using Microsoft Defender for Cloud](https://m365corner.com/m365-glossary/privileged-identity-management.html)
 
-Interactive Cloud Security UX / Guide [Interactive Cloud Security Posture Guide](https://thinkcloudly.com/blog/azure/defender-for-cloud-implementation-guide/)
+- **Interactive Cloud Security UX / Guide** [Interactive Cloud Security Posture Guide](https://thinkcloudly.com/blog/azure/defender-for-cloud-implementation-guide/)
 
 #### 5. Machine‑Readable Versioned JSON for Comparisons
 
