@@ -87,11 +87,11 @@ If validation is required, certificate orders remain in a pending issuance state
 
 Failure to complete domain validation can result in certificate issuance or renewal failure, potentially leading to certificate expiration and service disruption.
 
-# Client authentication EKU (ASMC and ASC)
+## Client authentication EKU (ASMC and ASC)
 
 App Service Managed Certificates and App Service Certificates will stop supporting the client authentication extended key usage (EKU) as part of industry-driven changes to public TLS certificates.
 
-For background on this change across Azure services, see [Changes to the Managed TLS feature](https://learn.microsoft.com/azure/security/fundamentals/managed-tls-changes).
+For background on this change across Azure services, see [Changes to the Managed TLS feature](/azure/security/fundamentals/managed-tls-changes).
 
 > [!NOTE]
 > Apps that rely on these certificates for mutual TLS (mTLS) must transition to an alternative authentication mechanism before the migration dates.
@@ -103,7 +103,7 @@ Both App Service Managed Certificates and App Service Certificates will migrate 
 
 Apps that pin certificates or certificate chains must review and remove pinning before the migration dates to avoid service disruption.
 
-For background on the managed TLS certificate authority changes across Azure services, see [Changes to the Managed TLS feature](https://learn.microsoft.com/azure/security/fundamentals/managed-tls-changes).
+For background on the managed TLS certificate authority changes across Azure services, see [Changes to the Managed TLS feature](/azure/security/fundamentals/managed-tls-changes).
 
 > [!NOTE]
 > Certificate pinning is not recommended for App Service Managed Certificates (ASMC), because certificate issuance and rotation are controlled by the service.  
