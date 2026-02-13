@@ -284,11 +284,11 @@
 - name: Troubleshoot
   items:
   - name: Managed identity
-    href: troubleshoot/managed-identity.md
     items:
-      - name: Troubleshoot authentication issues
-      - name: Troubleshoot availability issues
-      - name: Troubleshoot subscription Issues
+    - name: Troubleshoot authentication issues
+      href: troubleshoot/managed-identity.md
+    - name: Troubleshoot availability issues
+    - name: Troubleshoot subscription Issues
   - name: Shared resources
     href: troubleshoot/shared-resources.md
   - name: Runbook issues
