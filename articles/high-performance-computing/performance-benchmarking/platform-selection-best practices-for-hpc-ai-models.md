@@ -3,7 +3,7 @@ title: Choose an Azure platform for AI model training and fine-tuning
 description: Architecture guidance for selecting the right Azure platform for AI model training, fine-tuning, and inference based on customer requirements.
 author: padmalathas
 ms.author: padmalathas
-ms.topic: concept
+ms.service: azure-hpc
 ms.date: 02/12/2026
 # Customer intent: "As an HPC administrator, I want to understand the lift and shift process for migrating on-premises infrastructure to the cloud, so that I can efficiently transition workloads while maintaining system performance and management."
 ---
