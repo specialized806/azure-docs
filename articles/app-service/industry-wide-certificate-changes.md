@@ -24,7 +24,7 @@ This article applies to:
 ## When action is required
 Action is required **only** in the following scenarios to avoid service disruption:
 
-- **Certificate pinning**
+- **Certificate pinning**  
   Apps that pin certificates or certificate chains must review and remove pinning before the certificate chain migration.
 
 - **Mutual TLS (mTLS)**  
@@ -42,7 +42,6 @@ Some scenarios do not require immediate action, but may require changes to how y
 - **Domain ownership validation (ASC only)**  
   Domain ownership validation may be required more frequently for certificate issuance, renewals, or rekeys.
 
-These changes do not affect certificates used exclusively within Azure App Service, which are automatically managed by the platform.
 
 ## Quick reference: What’s changing
 
@@ -79,13 +78,14 @@ No change. Domain ownership validation for ASMC is automated and requires no cus
 
 ### Impact on App Service Certificates (ASC)
 - Domain validation completed before March 2026 cannot be reused. Certificate issuance starting March 2026 requires domain ownership validation.
-- During March 2026, domain ownership validation may be required again for each certificate issuance, including renewals and rekeys.
-- After this transition period, domain ownership must be revalidated only if the domain was not validated within the past 198 days.
+- During March 2026, domain ownership validation may be required again for each renewals and rekeys.
+- After March 2026, domain ownership must be revalidated only if the domain was not validated within the past 198 days.
 - App Service Certificates do not automatically revalidate domains.
 
 If validation is required, certificate orders remain in a pending issuance state until validation is completed.
 
-Failure to complete domain validation can result in certificate issuance or renewal failure, potentially leading to certificate expiration and service disruption.
+> [!IMPORTANT]
+> Failure to complete domain validation can result in certificate issuance or renewal failure, potentially leading to certificate expiration and service disruption.
 
 ## Client authentication EKU (ASMC and ASC)
 
@@ -99,7 +99,7 @@ For background on this change across Azure services, see [Changes to the Managed
 
 ## Certificate chain changes (ASMC and ASC)
 
-Both App Service Managed Certificates and App Service Certificates will migrate to a new certificate chain as part of industry-driven updates to managed TLS certificates, including changes to certificate authorities and intermediates.
+Both App Service Managed Certificates and App Service Certificates will migrate to a new certificate chain as part of industry-driven updates to TLS certificates, which includes changes to certificate authorities and intermediates.
 
 Apps that pin certificates or certificate chains must review and remove pinning before the migration dates to avoid service disruption.
 
@@ -114,9 +114,9 @@ For background on the managed TLS certificate authority changes across Azure ser
 | Date | Change | ASMC | ASC |
 |-----|--------|------|-----|
 | Feb–Mar 2026 | New certificate chain | Migrates to new chain | — |
-| Starting March 2026 | Validity + validation reuse | — | Shortened validity and validation reuse |
-| Mar–Apr 2026 (TBD) | Chain + EKU changes | — | Migrates to new chain; EKU removed |
-| Mar–Apr 2026 (TBD) | Client authentication EKU | EKU removed | — |
+| Starting March 2026 | Validity period + validation reuse | — | Shortened validity and validation reuse |
+| Mar–Apr 2026 (TBD) | New certificate chain + Client auth EKU | — | Migrates to new chain; EKU removed |
+| Mar–Apr 2026 (TBD) | Client auth EKU | EKU removed | — |
 
 
 ## Frequently asked questions
