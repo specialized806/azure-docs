@@ -31,7 +31,7 @@ For gRPC client and server samples for each supported language, see [gRPC on App
 After you create your web app, configure the following details to enable gRPC before you deploy your application.
 
 > [!NOTE]
-> If you're deploying a .NET gRPC app to App Service by using Visual Studio, skip to [Configure the HTTP/2 port](#3-configure-the-http2-port), because Visual Studio sets the HTTP version and HTTP 2.0 proxy configuration for you.
+> If you're deploying a .NET gRPC app to App Service by using Visual Studio, skip to [Configure the HTTP/2 port](#configure-the-http2-port), because Visual Studio sets the HTTP version and HTTP 2.0 proxy configuration for you.
 
 ### Configure the HTTP version and HTTP 2.0 proxy
 
@@ -54,24 +54,24 @@ App Service requires an application setting that specifically listens for HTTP/2
 1. On the **Add/Edit application setting** screen, add the following app setting:
    - For **Name**, enter *HTTP20_ONLY_PORT*.
    - For **Value**, enter *8585*.
-1. Select **Apply**, and confirm that your application will restart if necessary.
+1. Select **Apply**, and confirm that your application might restart if necessary.
 
 This setting configures the port on your application that listens for HTTP/2 requests.
 
 Now that you configured the HTTP version, port, and proxy, you can successfully make HTTP/2 calls to your web app by using gRPC.
 
-### Provide a startup command for Python
+### Provide a startup command
 
-For Python applications only, you also need to set a custom startup command.
+For Python applications, you must provide a custom startup command. For other languages, a startup command is optional.
 
 1. On the left navigation menu of your web app page, select **Settings** > **Configuration**.
 1. On the **Stack settings** page, select the **Stack settings** tab.
 1. Under **Startup command**, enter `python app.py`.
 1. Select **Apply**.
 
-## Limitations
+## Requirements and limitations
 
-The following limitations apply to gRPC usage with App Service.
+The following requirements and limitations apply to gRPC usage with App Service.
 
 - **App Service Environment version**. App Service Environment v2 doesn't support gRPC. Use App Service Environment v3.
 - **OS support**. gRPC is available on Linux. Windows support is currently in preview.
