@@ -16,9 +16,7 @@ ms.author: danlep
 
 The Azure API Management [self-hosted gateway](self-hosted-gateway-overview.md) needs connectivity with its associated cloud-based API Management instance for reporting status, checking for and applying configuration updates, and sending metrics and events. 
 
-In addition to using a gateway access token (authentication key) or Microsoft Entra app with client secrets, you can enable the self-hosted gateway to authenticate to its associated cloud instance by using [Microsoft Entra workload identity](../aks/workload-identity-overview.md). With workload identity authentication, you can eliminate the need to manage secrets or certificates, as authentication is handled through federated identity credentials between your Kubernetes cluster and Microsoft Entra ID.
-
-<!-- TODO: Confirm if workload identity is supported on non-AKS Kubernetes platforms. Currently documented for AKS only. -->
+In addition to using a gateway access token (authentication key) or Microsoft Entra app with client secrets, you can enable the self-hosted gateway to authenticate to its associated cloud instance by using [Microsoft Entra workload identity](../aks/workload-identity-overview.md). With workload identity authentication, you can eliminate the need to manage secrets or certificates, since authentication is handled through federated identity credentials between your Kubernetes cluster and Microsoft Entra ID.
 
 ## Scenario overview
 
@@ -47,76 +45,14 @@ To enable workload identity authentication, complete the following steps:
 - An Azure Kubernetes Service (AKS) cluster with [workload identity and OIDC issuer enabled](../aks/workload-identity-deploy-cluster.md).
 - Provision a [gateway resource](api-management-howto-provision-self-hosted-gateway.md) on the instance.
 - Enable a [system-assigned managed identity](api-management-howto-use-managed-service-identity.md) on the instance.
-- Self-hosted gateway container image version 2.2 or later <!-- TODO: PENDING - Confirm minimum version requirement for workload identity support -->
+- Self-hosted gateway container image version 2.11.0 or later 
 
 ### Limitations and notes
 
 - Only system-assigned managed identity is supported.
 - This article focuses on deployment to Azure Kubernetes Service (AKS).
 
-## Create custom roles
-
-Create the following two [custom roles](../role-based-access-control/custom-roles.md) that are assigned in later steps. You can use the permissions listed in the following JSON templates to create the custom roles using the [Azure portal](../role-based-access-control/custom-roles-portal.md), [Azure CLI](../role-based-access-control/custom-roles-cli.md), [Azure PowerShell](../role-based-access-control/custom-roles-powershell.md), or other Azure tools.
-
-When configuring the custom roles, update the [`AssignableScopes`](../role-based-access-control/role-definitions.md#assignablescopes) property with appropriate scope values for your directory, such as a subscription in which your API Management instance is deployed. 
-
-**API Management Configuration API Access Validator Service Role**
-
-```json
-{
-  "Description": "Can access RBAC permissions on the API Management resource to authorize requests in Configuration API.",
-  "IsCustom": true,
-  "Name": "API Management Configuration API Access Validator Service Role",
-  "Permissions": [
-    {
-      "Actions": [
-        "Microsoft.Authorization/*/read"
-      ],
-      "NotActions": [],
-      "DataActions": [],
-      "NotDataActions": []
-    }
-  ],
-  "NotDataActions": [],
-  "AssignableScopes": [
-    "/subscriptions/{subscriptionID}"
-  ]
-}
-```
-
-**API Management Gateway Configuration Reader Role**
-
-```json
-{
-  "Description": "Can read self-hosted gateway configuration from Configuration API",
-  "IsCustom": true,
-  "Name": "API Management Gateway Configuration Reader Role",
-  "Permissions": [
-    {
-      "Actions": [],
-      "NotActions": [],
-      "DataActions": [
-        "Microsoft.ApiManagement/service/gateways/getConfiguration/action"
-      ],
-      "NotDataActions": []
-    }
-  ],
-  "NotDataActions": [],
-  "AssignableScopes": [
-    "/subscriptions/{subscriptionID}"
-  ]
-}
-```
-
-## Add role assignments
-
-### Assign API Management Configuration API Access Validator Service Role 
-
-Assign the API Management Configuration API Access Validator Service Role to the managed identity of the API Management instance. For detailed steps to assign a role, see [Assign Azure roles using the portal](/azure/role-based-access-control/role-assignments-portal). 
-
-- Scope: The  resource group or subscription in which the API Management instance is deployed
-- Role: API Management Configuration API Access Validator Service Role
-- Assign access to: Managed identity of API Management instance
+[!INCLUDE [api-management-gateway-role-assignments](../../includes/api-management-gateway-role-assignments.md)]
 
 ### Assign API Management Gateway Configuration Reader Role
 
@@ -127,7 +63,7 @@ Assign the API Management Configuration API Access Validator Service Role to the
 Create a new Microsoft Entra app. For steps, see [Create a Microsoft Entra application and service principal that can access resources](../active-directory/develop/howto-create-service-principal-portal.md). The Microsoft Entra app is used by the self-hosted gateway to authenticate to the API Management instance.
 
 > [!IMPORTANT]
-> Unlike the standard Microsoft Entra authentication method, workload identity does **not** require you to create a client secret. Authentication is handled through federated identity credentials.
+> The workload identity does **not** require you to create a client secret. Authentication is handled through federated identity credentials.
 
 Take note of the following application values for use in the next steps:
 - Application (client) ID
@@ -136,13 +72,13 @@ Take note of the following application values for use in the next steps:
 Next, configure federated identity credentials to establish trust between your Microsoft Entra app and the Kubernetes service account:
 
 1. In the Azure portal, navigate to your Microsoft Entra app registration.
-1. Select **Certificates & secrets** > **Federated credentials** > **Add credential**.
+1. Select **Certificates & secrets** > **Federated credentials** > **+ Add credential**.
 1. Select the **Kubernetes accessing Azure resources** scenario.
 1. Configure the federated credential:
    - **Cluster issuer URL**: The OIDC issuer URL from your AKS cluster (obtain using `az aks show --resource-group <resource-group> --name <cluster-name> --query "oidcIssuerProfile.issuerUrl"`)
-   - **Namespace**: The Kubernetes namespace where you'll deploy the gateway (e.g., `apim-gateway-wi`)
-   - **Service account**: The name of the Kubernetes service account (e.g., `apim-gateway-workload-identity`)
-   - **Name**: A descriptive name for the credential (e.g., `apim-gateway-federated-credential`)
+   - **Namespace**: The Kubernetes namespace where you'll deploy the gateway (for example, `apim-gateway-wi`)
+   - **Service account**: The name of the Kubernetes service account (for example, `apim-gateway-workload-identity`)
+   - **Name**: A descriptive name for the credential (for example, `apim-gateway-federated-credential`)
 1. Select **Add** to create the federated credential.
 
 For more information, see [Configure a federated identity credential on an app](/entra/workload-id/workload-identity-federation-create-trust).
@@ -312,7 +248,7 @@ The Service resource creates a LoadBalancer to expose the gateway's HTTP and HTT
 
 ### Deploy to Kubernetes
 
-Save the YAML configuration to a file (e.g., `apim-gateway-workload-identity.yaml`) and deploy it to your AKS cluster:
+Save the YAML configuration to a file (for example, `apim-gateway-workload-identity.yaml`) and deploy it to your AKS cluster:
 
 ```bash
 kubectl apply -f apim-gateway-workload-identity.yaml
