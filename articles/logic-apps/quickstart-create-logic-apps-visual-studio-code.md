@@ -227,7 +227,7 @@ To review your logic app in Azure portal, follow these steps:
 
 1. Sign in to the [Azure portal](https://portal.azure.com) by using the same Azure account and subscription that's associated with your logic app.
 
-1. In the Azure portal's search box, enter your logic app's name. From the results list, select your logic app.
+1. In the Azure portal's search box, enter the logic app name. From the results list, select the logic app.
 
    ![Your new logic app in Azure portal](./media/quickstart-create-logic-apps-visual-studio-code/published-logic-app-in-azure.png)
 
