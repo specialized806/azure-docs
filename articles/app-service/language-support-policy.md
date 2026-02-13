@@ -21,7 +21,7 @@ App Service updates existing stacks after updates become available from each lan
 
 ## Retirements
 
-App Service follows community support timelines for the lifecycle of the runtime. After community support for a language reaches the end of support, your applications that use the language continue to run unchanged. However, App Service can't provide security patches or related customer support for that runtime version past its end-of-support date. If your application has any problems past the end-of-support date for that version, you should move up to a supported version to receive the latest security patches and features.
+App Service follows community support timelines for the lifecycle of the runtime. After community support for a language reaches the end of support, applications that use the language continue to run unchanged. However, App Service can't provide security patches or related customer support for that runtime version past its end-of-support date. If your application has any problems past the end-of-support date for that version, you should move up to a supported version to receive the latest security patches and features.
 
 > [!IMPORTANT]
 > If your app uses an unsupported language version, you must upgrade the app to a supported language version before it can get App Service support.
@@ -77,7 +77,7 @@ To set the language version for an app, see the following resources:
 
 ### JDK versions and maintenance
 
-Microsoft and [`Adoptium`](https://adoptium.net/) builds of OpenJDK are provided and supported on App Service for Java 8, 11, 17, 21, and 25. These binaries are provided as a no-cost, multiplatform, production-ready distribution of OpenJDK for Azure. The binaries contain all the components for building and running Java Standard Edition (SE) applications. For local development or testing, you can [download the Microsoft build of OpenJDK](/java/openjdk/download).
+Microsoft and [`Adoptium`](https://adoptium.net/) Open JDK builds are provided and supported on App Service for Java 8, 11, 17, 21, and 25. These binaries are provided as a no-cost, multiplatform, production-ready distribution of OpenJDK for Azure. The binaries contain all the components for building and running Java Standard Edition (SE) applications. For local development or testing, you can [download the Microsoft build of OpenJDK](/java/openjdk/download).
 
 # [Linux](#tab/linux)
 
