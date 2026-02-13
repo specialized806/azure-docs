@@ -106,4 +106,4 @@
   items:
       
   - name: Choose your platform for AI training and fine-tuning
-    href: performance-benchmarking/ai-training/choose-training-platform.md
+    href: performance-benchmarking/ai-training/platform-selection-best-practices-for-hpc-ai-models.md
