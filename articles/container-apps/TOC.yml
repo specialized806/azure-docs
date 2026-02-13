@@ -137,10 +137,14 @@ items:
       items:
         - name: Overview
           href: functions-overview.md
-        - name: Create your Azure functions on Azure Container Apps
+        - name: Create a Functions app through custom containers
           href: functions-container-apps.md
-        - name: Manage a Functions app through the portal and CLI
+        - name: Create a Functions app through the portal and CLI
           href: functions-usage.md
+        - name: Manage a Functions app
+          href: functions-manage.md 
+        - name: KEDA scaling mappings reference
+          href: functions-keda-mappings.md      
         - name: Migrate from Functions v1 to v2
           href: migrate-functions.md
         - name: Run event-driven and batch workloads
@@ -173,6 +177,12 @@ items:
               href: troubleshoot-target-port-settings.md
             - name: Container start
               href: troubleshoot-container-start-failures.md
+    - name: Migration
+      items:
+        - name: Heroku migration overview
+          href: migrate-heroku-overview.md
+        - name: Migrate from Heroku
+          href: migrate-heroku.md
 - name: AI integration
   items:
     - name: Overview
@@ -187,10 +197,12 @@ items:
           href: gpu-types.md
         - name: Tutorials
           items:
-            - name: Generate images with serverless GPUs
-              href: gpu-image-generation.md
+            - name: Deploy AI image generation with serverless GPUs
+              href: tutorial-gpu-image-generation.md
             - name: Deploy an NVIDIA Llama3 NIM
               href: serverless-gpu-nim.md
+            - name: Deploy OpenAI GPT with OSS Ollama
+              href: deploy-openai-gpt-oss-ollama.md
     - name: Dynamic sessions
       items:
         - name: Overview
@@ -326,7 +338,7 @@ items:
 - name: Reliability
   items:
     - name: Reliability in Azure Container Apps
-      href: ../reliability/reliability-container-apps.md?toc=/azure/container-apps/toc.json&bc=/azure/container-apps/breadcrumb/toc.json
+      href: /azure/reliability/reliability-container-apps?toc=/azure/container-apps/toc.json&bc=/azure/container-apps/breadcrumb/toc.json
     - name: Create a zone-redundant container app
       href: how-to-zone-redundancy.md
 - name: Dedicated compute
@@ -360,7 +372,7 @@ items:
           items:
             - name: Components overview
               href: dapr-components.md
-            - name: Connect to Azure or third-party services
+            - name: Connect to Azure or partner services
               href: dapr-component-connect-services.md
             - name: Connect to Azure services via Azure portal
               href: dapr-component-connection.md

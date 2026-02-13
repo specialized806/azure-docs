@@ -5,13 +5,16 @@ services: azure-netapp-files
 author: b-hchen
 ms.service: azure-netapp-files
 ms.topic: concept-article
-ms.date: 12/17/2025
+ms.date: 01/16/2026
 ms.author: anfdocs
 # Customer intent: As a cloud storage administrator, I want to analyze performance and usage metrics for Azure NetApp Files, so that I can optimize storage provisioning and ensure efficient operation of my storage resources.
 ---
 # Metrics for Azure NetApp Files
 
 Azure NetApp Files provides metrics on allocated storage, actual storage usage, volume I/OPS, and latency. By analyzing these metrics, you can gain a better understanding on the usage pattern and volume performance of your NetApp accounts.  
+
+>[!IMPORTANT]
+>These metrics are for the Flexible, Standard, Premium, and Ultra services levels. For Elastic zone-redundant storage, see [Metrics for Azure NetApp Files' Elastic zone-redundant storage](elastic-metrics.md).
 
 ## Definitions 
 
@@ -124,7 +127,7 @@ SMB commands included in **Other IOPS** with opcode value:
 
 Azure NetApp Files metrics are natively integrated into Azure monitor. From within the Azure portal, you can find metrics for Azure NetApp Files capacity pools and volumes from two locations:
 
-- From Azure monitor, select **Metrics**, select a capacity pool or volume. Then select **Metric** to view the available metrics:
+- From [Azure monitor](/azure/azure-monitor/platform/monitor-azure-resource), select **Metrics** then choose a capacity pool or volume. Select **Metric** to view the available metrics:
    
     :::image type="content" source="./media/azure-netapp-files-metrics/metrics-select-pool-volume.png" alt-text="Screenshot that shows how to access Azure NetApp Files metrics for capacity pools or volumes." lightbox="./media/azure-netapp-files-metrics/metrics-select-pool-volume.png":::
 
@@ -267,6 +270,13 @@ Azure NetApp Files provides metrics on allocated storage, actual storage usage, 
         Consider repurposing the volume and delegating a different volume with a larger size and/or in a higher service level to meet your application requirements. If it's an NFS volume, consider changing mount options to reduce data flow if your application supports those changes.
 
     :::image type="content" source="./media/azure-netapp-files-metrics/throughput-limit-reached.png" alt-text="Screenshot that shows Azure NetApp Files metrics a line graph demonstrating throughput limit reached." lightbox="./media/azure-netapp-files-metrics/throughput-limit-reached.png":::
+
+- *QoS Latency Delta*
+    
+    QoS Latency Delta represents the total QoS latency for a volume over a time period.
+    
+    :::image type="content" source="./media/azure-netapp-files-metrics/quality-of-service-latency-delta.png" alt-text="Screenshot that shows Azure NetApp Files metrics displaying the total latency for the exceeded throughput." lightbox="./media/azure-netapp-files-metrics/quality-of-service-latency-delta.png":::
+
 
 ## Performance metrics for volumes
 
