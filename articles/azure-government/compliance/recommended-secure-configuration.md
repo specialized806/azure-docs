@@ -38,7 +38,7 @@ Providers MUST create, maintain, and make available recommendations for securely
 
 ### Azure's response with recommendation and instructions
 
-Azure supports various methods to support the requirements outlined in SCG-CSO-RSC above and more details are provided below.
+Azure supports all the requirements outlined in SCG-CSO-RSC above and more details are provided below.
 
 Azure defines the below top-level administrative accounts.
 
@@ -183,7 +183,7 @@ Providers MUST include instructions in the FedRAMP authorization package that ex
 
 #### Azure's response
 
-Azure FedRAMP authorization packages will contain a word document with instructions to access and use the Secure Configuration Guide. *[Review comment Ateeque] Is a link needed at this point?*
+Azure includes the Secure Configuration Guide in the FedRAMP authorization packages. 
 
 [Back to the top](#secure-configuration-guide)
 
@@ -207,9 +207,9 @@ Providers SHOULD set all settings to their recommended secure defaults for top-l
 
 ### Azure's response
 
-Azure supports and applies secure defaults for top-level administrative accounts at provisioning via policy initiatives, security baselines, and baseline-as-code applied through automation. Azure sets security‑hardened defaults the moment a tenant, subscription, or administrative role is created.
+Azure supports SCG-CSO-SDF and applies secure defaults for top-level administrative accounts and privileged accounts at provisioning via policy initiatives, security baselines, and baseline-as-code applied through automation. Azure sets security‑hardened defaults the moment a tenant, subscription, or administrative role is created.
 
-When the tenant is first provisioned Azure enforces 
+When the tenant is first provisioned Azure enforces the below ensuring newly created admin or high‑privilege accounts never start in a weak or misconfigured state.
 
 1. **Privileged Identity Management (PIM)** eligibility, not permanent assignment
 
@@ -220,8 +220,6 @@ When the tenant is first provisioned Azure enforces
 1. Configure two break-glass accounts with restricted usage and continuous monitoring.
 
 1. Alignment to **Azure Policy** + **Defender for Cloud** FedRAMP initiatives
-
-ensuring newly created admin or high‑privilege accounts never start in a weak or misconfigured state.
 
 When identities, subscriptions, or resources are created, **Security defaults** + **Conditional Access** give a hardened starting posture; **Azure Policy** applies baseline guardrails at MG/sub scopes so new assets inherit secure defaults automatically.
 
