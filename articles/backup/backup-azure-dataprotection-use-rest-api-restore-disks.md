@@ -2,7 +2,7 @@
 title: Restore Azure Disks using Azure Data Protection REST API
 description: In this article, learn how to restore Azure Disks using Azure Data protection REST API.
 ms.topic: how-to
-ms.date: 08/28/2025
+ms.date: 02/13/2026
 ms.assetid: 30f4e7ff-2a55-4a85-be44-55feedc24607
 ms.custom: engagement-fy24
 author: AbhishekMallick-MS
@@ -19,6 +19,8 @@ Azure Disk Backup offers a turnkey solution that provides snapshot lifecycle man
 >[!Note]
 >- Currently, the Original-Location Recovery (OLR) option to restore by replacing the existing source disk (from where the backups were taken) isn't supported.
 >- You can restore from a recovery point to create a new disk in the same resource group of the source disk or in any other resource group. It's known as Alternate-Location Recovery (ALR).
+
+To view the supported Azure Disk backup and restore scenarios, region availability, and limitations, see the [support matrix](disk-backup-support-matrix.md). For common questions, see the [frequently asked questions](disk-backup-faq.yml).
 
 ## Prerequisites
 

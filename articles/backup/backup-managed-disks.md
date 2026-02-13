@@ -2,7 +2,7 @@
 title: Back up Azure Managed Disks
 description: Learn how to back up Azure Managed Disks from the Azure portal.
 ms.topic: how-to
-ms.date: 01/29/2026
+ms.date: 02/13/2026
 ms.service: azure-backup
 author: AbhishekMallick-MS
 ms.author: v-mallicka
@@ -13,7 +13,7 @@ ms.author: v-mallicka
 
 This article describes how to back up [Azure Disk](/azure/virtual-machines/managed-disks-overview) using the Azure portal. You can also use REST API to [create a Backup policy](backup-azure-dataprotection-use-rest-api-create-update-disk-policy.md) and [configure backup](backup-azure-dataprotection-use-rest-api-backup-disks.md) for Azure Managed Disk.
 
-Learn about the [Azure Disk backup region availability, supported scenarios, and limitations](disk-backup-support-matrix.md).
+To view the supported Azure Disk backup and restore scenarios, region availability, and limitations, see the [support matrix](disk-backup-support-matrix.md). For common questions, see the [frequently asked questions](disk-backup-faq.yml).
 
 >[!Note]
 >If the target disk is attached as a Persistent Volume to an AKS cluster, choose [Azure Backup for AKS](./azure-kubernetes-service-cluster-backup.md) over the standalone Disk Backup solution. It enables backing up the disk as snapshots along with the containerized application in a Kubernetes-aware manner, all as a single unit.  Additionally, you get Cross Region Restore and ransomware protection capabilities with AKS Backup.

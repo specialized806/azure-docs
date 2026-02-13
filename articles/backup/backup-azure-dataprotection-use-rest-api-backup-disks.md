@@ -2,7 +2,7 @@
 title: Back up Azure Disks using Azure Data Protection REST API.
 description: In this article, learn how to configure, initiate, and manage backup operations of Azure Disks using REST API.
 ms.topic: how-to
-ms.date: 06/11/2025
+ms.date: 02/13/2026
 ms.assetid: 6050a941-89d7-4b27-9976-69898cc34cde
 author: AbhishekMallick-MS
 ms.author: v-mallicka
@@ -16,7 +16,7 @@ This article describes how to manage backups for Azure Disks via REST API.
 
 Azure Disk Backup simplifies snapshot lifecycle management for managed disks by automating periodic snapshots and retention based on backup policies. It eliminates infrastructure costs, custom scripting, and management overhead, providing a crash-consistent, point-in-time backup via incremental snapshots—supporting multiple backups per day. This agentless solution ensures zero impact on production performance and enables backup and restore of both OS and data disks (including shared disks), irrespective of whether they're attached to an Azure VM.
 
-For information on the Azure Disk backup region availability, supported scenarios and limitations, see the [support matrix](disk-backup-support-matrix.md).
+For information on the Azure Disk backup region availability, supported scenarios and limitations, see the [support matrix](disk-backup-support-matrix.md). For common questions, see the [frequently asked questions](disk-backup-faq.yml).
 
 ## Prerequisites
 

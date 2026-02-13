@@ -2,7 +2,7 @@
 title: Create backup policies for disks using data protection REST API
 description: In this article, you'll learn how to create and manage backup policies for disks using REST API.
 ms.topic: how-to
-ms.date: 08/25/2025
+ms.date: 02/13/2026
 ms.assetid: ecc107c0-311c-42d0-a094-654d7ee30443
 ms.service: azure-backup
 author: AbhishekMallick-MS
@@ -19,7 +19,7 @@ Azure Disk Backup offers a turnkey solution that provides snapshot lifecycle man
 
 The backup policy helps to govern the retention and schedule of your backups. The backup policy offers multiple backups per day. You can reuse the backup policy to configure backup for multiple Azure Disks to a vault or [create a backup policy for an Azure Recovery Services vault using REST API](/rest/api/dataprotection/backup-policies/create-or-update).
 
-To create a policy for backing up disks, perform the following actions:
+To view the supported Azure Disk backup and restore scenarios, region availability, and limitations, see the [support matrix](disk-backup-support-matrix.md). For common questions, see the [frequently asked questions](disk-backup-faq.yml).
 
 ## Create a policy
 

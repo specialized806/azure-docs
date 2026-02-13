@@ -16,7 +16,7 @@ This article describes how to back up [Azure Managed Disk](/azure/virtual-machin
 > [!IMPORTANT]
 > Support for Azure Managed Disks backup and restore via CLI is in preview and available as an extension in Az 2.15.0 version and later. The extension is automatically installed when you run the **az dataprotection** commands. [Learn more](/cli/azure/azure-cli-extensions-overview) about extensions.
 
-Learn about the [Azure Disk backup region availability, supported scenarios and limitations](disk-backup-support-matrix.md).
+Learn about the [Azure Disk backup region availability, supported scenarios and limitations](disk-backup-support-matrix.md). For common questions, see the [frequently asked questions](disk-backup-faq.yml).
 
 >[!Note]
 >- If the target disk is attached as a Persistent Volume to an AKS cluster, choose [Azure Backup for AKS](./azure-kubernetes-service-cluster-backup.md) over the standalone Disk Backup solution. It enables backing up the disk as snapshots along with the containerized application in a Kubernetes-aware manner, all as a single unit.  Additionally, you get Cross Region Restore and ransomware protection capabilities with AKS Backup.
