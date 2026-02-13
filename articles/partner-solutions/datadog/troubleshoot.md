@@ -2,7 +2,7 @@
 title: Troubleshooting for Datadog
 description: This article provides information about troubleshooting for Datadog on Azure.
 
-ms.topic: conceptual
+ms.topic: troubleshooting-general
 ms.date: 01/29/2026
 ms.custom: sfi-image-nochange
 ---
