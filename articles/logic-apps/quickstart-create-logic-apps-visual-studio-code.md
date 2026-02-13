@@ -207,7 +207,7 @@ Before you start, make sure that you have these items:
 
 1. When you're prompted to upload your logic app to your Azure subscription, select **Upload**.
 
-   This step publishes your logic app to the [Azure portal](https://portal.azure.com), which makes your logic live and running in Azure.
+   This step publishes your logic app to the [Azure portal](https://portal.azure.com), which makes the workflow live and running in Azure.
 
    ![Upload new logic app to your Azure subscription](./media/quickstart-create-logic-apps-visual-studio-code/upload-new-logic-app.png)
 
