@@ -275,16 +275,41 @@ AzureStorageID:<yourStorageSIDHere>
 
 ## Disable AD DS authentication on your storage account
 
-If you want to use another authentication method, you can disable AD DS authentication on your storage account. Disabling this feature means that there will be no identity-based access for file shares in your storage account until you enable and configure one of the other identity sources.
+If you want to use another authentication method, you can disable AD DS authentication on your storage account using the Azure portal, PowerShell, or Azure CLI.
+
+Disabling this feature means that there will be no identity-based access for file shares in your storage account until you enable and configure one of the other identity sources.
 
 > [!IMPORTANT]
 > After disabling AD DS authentication on the storage account, you should also consider deleting the AD DS identity (computer account or service logon account) that was created to represent the storage account in your on-premises AD. If you leave the identity in AD DS, it will remain as an orphaned object. Removing it won't happen automatically.
 
-To disable AD DS authentication on your storage account, run the following PowerShell command. Remember to replace placeholder values, including brackets, with your values.
+# [Portal](#tab/azure-portal)
+
+To disable AD DS authentication on your storage account by using the Azure portal, follow these steps.
+
+1. Sign in to the Azure portal and select the storage account you want to disable AD DS authentication for.
+1. Under **Data storage**, select **File shares**.
+1. Next to **Identity-based access**, select the configuration status, which should be **Configured**.
+1. Under **Active Directory Domain Services (AD DS)**, select **Configure**.
+1. Check the **Disable Active Directory for this storage account** checkbox.
+1. Select **Save**.
+
+# [Azure PowerShell](#tab/azure-powershell)
+
+To disable AD DS authentication on your storage account by using PowerShell, run the following command. Remember to replace placeholder values, including brackets, with your values.
 
 ```powershell
 Set-AzStorageAccount -ResourceGroupName <resourceGroupName> -StorageAccountName <storageAccountName> -EnableActiveDirectoryDomainServicesForFile $false
 ```
+
+# [Azure CLI](#tab/azure-cli)
+
+To disable AD DS authentication on your storage account by using Azure CLI, run the following command. Remember to replace placeholder values, including brackets, with your values.
+
+```azurecli
+az storage account update --name <storage-account-name> --resource-group <resource-group-name> --enable-files-adds false
+```
+
+---
 
 
 ## Next step
