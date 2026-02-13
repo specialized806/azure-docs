@@ -119,7 +119,7 @@ To work with Durable Functions in a Node.js function app, you use a library call
 
 ::: zone pivot="nodejs-model-v4"
 
-To use the v4 programming model, you install the preview v3.x version of the durable-functions library.
+To use the v4 programming model, you install the v3.x version of the durable-functions library.
 
 ::: zone-end
 
