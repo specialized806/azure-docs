@@ -510,10 +510,11 @@ GET "https://management.azure.com/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxx
 
 ## Next steps
 
-Restore Managed Disk using [Azure portal](restore-managed-disks.md), [Azure PowerShell](restore-managed-disks-ps.md), [Azure CLI](restore-managed-disks-cli.md), [REST API](backup-azure-dataprotection-use-rest-api-restore-disks.md).
+- Restore Managed Disk using [Azure portal](restore-managed-disks.md), [Azure PowerShell](restore-managed-disks-ps.md), [Azure CLI](restore-managed-disks-cli.md), [REST API](backup-azure-dataprotection-use-rest-api-restore-disks.md).
+- [Troubleshoot Azure Disk backup](disk-backup-troubleshoot.md).
 
-For more information on the Azure Backup REST APIs, see the following articles:
+  For more information on the Azure Backup REST APIs, see the following articles:
 
-- [Azure Data Protection Provider REST API](/rest/api/dataprotection/)
-- [Get started with Azure REST API](/rest/api/azure/)
-- [Manage backup and restore jobs](backup-azure-arm-userestapi-managejobs.md)
+  - [Azure Data Protection Provider REST API](/rest/api/dataprotection/)
+  - [Get started with Azure REST API](/rest/api/azure/)
+  - [Manage backup and restore jobs](backup-azure-arm-userestapi-managejobs.md)

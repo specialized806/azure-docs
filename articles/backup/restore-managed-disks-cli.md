@@ -245,4 +245,5 @@ az dataprotection job list-from-resourcegraph --datasource-type AzureDisk --oper
 
 ## Next steps
 
-[Azure Disk Backup FAQ](./disk-backup-faq.yml)
+- [Azure Disk Backup FAQ](./disk-backup-faq.yml).
+- [Troubleshoot Azure Disk backup](disk-backup-troubleshoot.md).

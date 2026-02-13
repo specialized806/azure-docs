@@ -105,7 +105,8 @@ The number of recovery points is determined by the Backup policy used to configu
 
 ## Next steps
 
-[Azure Disk Backup support matrix](disk-backup-support-matrix.md).
+- [Azure Disk Backup support matrix](disk-backup-support-matrix.md).
+- [Troubleshoot Azure Disk backup](disk-backup-troubleshoot.md).
 
 ## Related content
 

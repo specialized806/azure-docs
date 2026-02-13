@@ -497,7 +497,8 @@ az dataprotection job list-from-resourcegraph --datasource-type AzureDisk --stat
 
 ## Next steps
 
-Restore Managed Disk using [Azure portal](restore-managed-disks.md), [Azure PowerShell](restore-managed-disks-ps.md), [Azure CLI](restore-managed-disks-cli.md).
+- Restore Managed Disk using [Azure portal](restore-managed-disks.md), [Azure PowerShell](restore-managed-disks-ps.md), [Azure CLI](restore-managed-disks-cli.md).
+- [Troubleshoot Azure Disk backup](disk-backup-troubleshoot.md).
 
 ## Related content
 

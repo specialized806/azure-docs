@@ -99,3 +99,4 @@ After you trigger the restore operation, the backup service creates a job for tr
 
 - [Azure Disk Backup FAQ](disk-backup-faq.yml).
 - [Manage Azure Managed Disks](manage-azure-managed-disks.md).
+- [Troubleshoot Azure Disk backup](disk-backup-troubleshoot.md).

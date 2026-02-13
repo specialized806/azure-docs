@@ -447,12 +447,13 @@ Use the *GET* command to track the _JobId_ present in the [trigger restore respo
 
 The job status above indicates that the restore job is completed and the disks have been recovered to the specified subscription and target resource group.
 
-## Next step
+## Next steps
 
-[Overview of Azure Disk backup](disk-backup-overview.md)
+- [Overview of Azure Disk backup](disk-backup-overview.md).
+- [Troubleshoot Azure Disk backup](disk-backup-troubleshoot.md).
 
-For more information on the Azure Backup REST APIs, see the following articles:
+  For more information on the Azure Backup REST APIs, see the following articles:
 
-- [Azure Data Protection provider REST API](/rest/api/dataprotection/)
-- [Get started with Azure REST API](/rest/api/azure/)
-- [Manage backup and restore jobs](backup-azure-arm-userestapi-managejobs.md)
+  - [Azure Data Protection provider REST API](/rest/api/dataprotection/)
+  - [Get started with Azure REST API](/rest/api/azure/)
+  - [Manage backup and restore jobs](backup-azure-arm-userestapi-managejobs.md)

@@ -208,8 +208,8 @@ The Azure Backup service creates a job for scheduled backups or if you trigger o
 
 ## Next steps
 
-Restore Managed Disk using [Azure portal](restore-managed-disks.md), [Azure PowerShell](restore-managed-disks-ps.md), [Azure CLI](restore-managed-disks-cli.md).
-
+- Restore Managed Disk using [Azure portal](restore-managed-disks.md), [Azure PowerShell](restore-managed-disks-ps.md), [Azure CLI](restore-managed-disks-cli.md).
+- [Troubleshoot Azure Disk backup](disk-backup-troubleshoot.md).
 ## Related content
 
 - [Create a backup policy to protect Managed Disk using REST API](backup-azure-dataprotection-use-rest-api-create-update-disk-policy.md).
