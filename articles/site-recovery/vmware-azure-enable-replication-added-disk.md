@@ -37,7 +37,7 @@ To enable replication for an added disk, complete the following:
     
 
     > [!NOTE]
-        > If the enable replication operation for this disk fails, you can resolve the issues and retry the operation.
+    > If the enable replication operation for this disk fails, you can resolve the issues and retry the operation.
 
 1. In **Disk Details**, select **Enable replication**.
 

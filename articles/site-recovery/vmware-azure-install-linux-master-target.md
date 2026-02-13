@@ -347,7 +347,7 @@ After the installation finishes, register the configuration server by using the 
     sudo /usr/local/ASR/Vx/bin/UnifiedAgentConfigurator.sh
     ```
 
-          Wait until the script finishes. If the master target is registered successfully, the master target appears on the **Site Recovery Infrastructure** page of the portal.
+    Wait until the script finishes. If the master target is registered successfully, the master target appears on the **Site Recovery Infrastructure** page of the portal.
 
 
 ### Install VMware tools or open-vm-tools on the master target server
