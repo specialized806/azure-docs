@@ -69,7 +69,7 @@ When using Entra ID and the following Azure App Configuration libraries in cloud
 The Audience for the target cloud must be configured for the following packages.
 
 - Azure SDK for .NET: Azure.Data.AppConfiguration >= 1.6.0
-- .NET configuration provider: Microsoft.Extensions.Configuration.AzureAppConfiguration >= 8.2.0
+- .NET configuration provider: Microsoft.Extensions.Configuration.AzureAppConfiguration >= 8.5.0
 
 In the **Azure SDK for .NET**, audience is configured by utilizing the following API calls:
 
@@ -174,7 +174,7 @@ public class Application {
 The Audience for the target cloud must be configured for the following packages.
 
 - Azure SDK for JavaScript: @azure/app-configuration >= 1.9.0
-- JavaScript configuration provider: @azure/app-configuration-provider >= 1.0.0
+- JavaScript configuration provider: @azure/app-configuration-provider >= 2.4.0
 
 In the **Azure SDK for JavaScript**, audience is configured by passing the `audience` option to the `AppConfigurationClient` constructor.
 
