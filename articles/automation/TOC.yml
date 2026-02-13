@@ -292,9 +292,9 @@
   - name: Shared resources
     href: troubleshoot/shared-resources.md
   - name: Runbook issues
-    href: troubleshoot/runbooks.md
     items:
       - name: Troubleshoot runbook failures
+        href: troubleshoot/runbooks.md
       - name: Troubleshoot account authentication issues
       - name: Troubleshoot subscription issues
       - name: Troubleshoot permissions & access issues
@@ -304,19 +304,19 @@
   - name: Troubleshoot hybrid runbook workers issues
     items:
       - name: Extension-based hybrid runbook worker
-        href: troubleshoot/extension-based-hybrid-runbook-worker.md
         items:
         - name: Troubleshoot network and connectivity issues
+          href: troubleshoot/extension-based-hybrid-runbook-worker.md
         - name: Troubleshoot deployment, configuration & execution issues
       - name: Agent-based hybrid runbook worker
-        href: troubleshoot/hybrid-runbook-worker.md
         items: 
         - name: Troubleshoot network and connectivity issues
+          href: troubleshoot/hybrid-runbook-worker.md
         - name: Troubleshoot general and platform specific issues
   - name: State configuration
-    href: troubleshoot/desired-state-configuration.md
     items: 
-    - name: General diagnose 
+    - name: General diagnose
+      href: troubleshoot/desired-state-configuration.md
     - name: Troubleshoot compilation issues
     - name: Troubleshoot agent registration & onboarding issues
     - name: Troubleshoot deployment & application issues
@@ -326,7 +326,7 @@
     href: troubleshoot/collect-data-microsoft-azure-automation-case.md 
 - name: Reference
   items:
-  - name: Azure CLI
+  - name: Azure CLI 
     href: /cli/azure/automation
   - name: Azure PowerShell Az
     href: /powershell/module/az.automation/
