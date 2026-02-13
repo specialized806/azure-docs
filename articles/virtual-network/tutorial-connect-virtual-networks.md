@@ -209,6 +209,75 @@ az network vnet subnet create \
 
 ---
 
+## Create a second virtual network
+
+### [Portal](#tab/portal)
+   
+Repeat the previous steps to create a second virtual network with the following values:
+
+>[!NOTE]
+>The second virtual network can be in the same region as the first virtual network or in a different region. You can skip the Bastion deployment for the second virtual network. After the virtual network peering is established, you can connect to both virtual machines with the same Bastion deployment.
+
+| Setting | Value |
+| --- | --- |
+| Name | **vnet-2** |
+| Address space | **10.1.0.0/16** |
+| Resource group | **test-rg** |
+| Subnet name | **subnet-1** |
+| Subnet address range | **10.1.0.0/24** |
+
+### [PowerShell](#tab/powershell)
+
+Create a second virtual network with [New-AzVirtualNetwork](/powershell/module/az.network/new-azvirtualnetwork). The following example creates a virtual network named **vnet-2** with the address prefix **10.1.0.0/16**.
+
+>[!NOTE]
+>The second virtual network can be in the same region as the first virtual network or in a different region. You don't need a Bastion deployment for the second virtual network. After the virtual network peering is established, you can connect to both virtual machines with the same Bastion deployment.
+
+```azurepowershell-interactive
+$vnet2 = @{
+    ResourceGroupName = "test-rg"
+    Location = "EastUS2"
+    Name = "vnet-2"
+    AddressPrefix = "10.1.0.0/16"
+}
+$virtualNetwork2 = New-AzVirtualNetwork @vnet2
+```
+
+Create a subnet configuration with [Add-AzVirtualNetworkSubnetConfig](/powershell/module/az.network/add-azvirtualnetworksubnetconfig). The following example creates a subnet configuration with a **10.1.0.0/24** address prefix:
+
+```azurepowershell-interactive
+$subConfig = @{
+    Name = "subnet-1"
+    AddressPrefix = "10.1.0.0/24"
+    VirtualNetwork = $virtualNetwork2
+}
+$subnetConfig = Add-AzVirtualNetworkSubnetConfig @subConfig
+```
+
+Write the subnet configuration to the virtual network with [Set-AzVirtualNetwork](/powershell/module/az.network/Set-azVirtualNetwork), which creates the subnet:
+
+```azurepowershell-interactive
+$virtualNetwork2 | Set-AzVirtualNetwork
+```
+
+### [CLI](#tab/cli)
+
+Create a second virtual network with [az network vnet create](/cli/azure/network/vnet#az-network-vnet-create). The following example creates a virtual network named **vnet-2** with the address prefix **10.1.0.0/16**.
+
+>[!NOTE]
+>The second virtual network can be in the same region as the first virtual network or in a different region. You don't need a Bastion deployment for the second virtual network. After the virtual network peering is established, you can connect to both virtual machines with the same Bastion deployment.
+
+```azurecli-interactive
+az network vnet create \
+    --name vnet-2 \
+    --resource-group test-rg \
+    --address-prefixes 10.1.0.0/16 \
+    --subnet-name subnet-1 \
+    --subnet-prefix 10.1.0.0/24
+```
+
+---
+
 ## Deploy Azure Bastion
 
 ### [Portal](#tab/portal)
@@ -295,75 +364,6 @@ az network bastion create \
     --location eastus2 \
     --sku Basic \
     --no-wait
-```
-
----
-
-## Create a second virtual network
-
-### [Portal](#tab/portal)
-   
-Repeat the previous steps to create a second virtual network with the following values:
-
->[!NOTE]
->The second virtual network can be in the same region as the first virtual network or in a different region. You can skip the Bastion deployment for the second virtual network. After the virtual network peering is established, you can connect to both virtual machines with the same Bastion deployment.
-
-| Setting | Value |
-| --- | --- |
-| Name | **vnet-2** |
-| Address space | **10.1.0.0/16** |
-| Resource group | **test-rg** |
-| Subnet name | **subnet-1** |
-| Subnet address range | **10.1.0.0/24** |
-
-### [PowerShell](#tab/powershell)
-
-Create a second virtual network with [New-AzVirtualNetwork](/powershell/module/az.network/new-azvirtualnetwork). The following example creates a virtual network named **vnet-2** with the address prefix **10.1.0.0/16**.
-
->[!NOTE]
->The second virtual network can be in the same region as the first virtual network or in a different region. You don't need a Bastion deployment for the second virtual network. After the virtual network peering is established, you can connect to both virtual machines with the same Bastion deployment.
-
-```azurepowershell-interactive
-$vnet2 = @{
-    ResourceGroupName = "test-rg"
-    Location = "EastUS2"
-    Name = "vnet-2"
-    AddressPrefix = "10.1.0.0/16"
-}
-$virtualNetwork2 = New-AzVirtualNetwork @vnet2
-```
-
-Create a subnet configuration with [Add-AzVirtualNetworkSubnetConfig](/powershell/module/az.network/add-azvirtualnetworksubnetconfig). The following example creates a subnet configuration with a **10.1.0.0/24** address prefix:
-
-```azurepowershell-interactive
-$subConfig = @{
-    Name = "subnet-1"
-    AddressPrefix = "10.1.0.0/24"
-    VirtualNetwork = $virtualNetwork2
-}
-$subnetConfig = Add-AzVirtualNetworkSubnetConfig @subConfig
-```
-
-Write the subnet configuration to the virtual network with [Set-AzVirtualNetwork](/powershell/module/az.network/Set-azVirtualNetwork), which creates the subnet:
-
-```azurepowershell-interactive
-$virtualNetwork2 | Set-AzVirtualNetwork
-```
-
-### [CLI](#tab/cli)
-
-Create a second virtual network with [az network vnet create](/cli/azure/network/vnet#az-network-vnet-create). The following example creates a virtual network named **vnet-2** with the address prefix **10.1.0.0/16**.
-
->[!NOTE]
->The second virtual network can be in the same region as the first virtual network or in a different region. You don't need a Bastion deployment for the second virtual network. After the virtual network peering is established, you can connect to both virtual machines with the same Bastion deployment.
-
-```azurecli-interactive
-az network vnet create \
-    --name vnet-2 \
-    --resource-group test-rg \
-    --address-prefixes 10.1.0.0/16 \
-    --subnet-name subnet-1 \
-    --subnet-prefix 10.1.0.0/24
 ```
 
 ---
@@ -627,19 +627,21 @@ Wait for the virtual machines to be created before continuing with the next step
 
 ## Connect to a virtual machine
 
-Use `ping` to test the communication between the virtual machines. Sign in to the Azure portal to complete the following steps.
+1. In the search box at the top of the portal, enter **Virtual machine**. Select **Virtual machines** in the search results.
 
-1. In the portal, search for and select **Virtual machines**.
+1. In **Virtual machines**, select **vm-1**.
 
-1. On the **Virtual machines** page, select **vm-1**.
+1. Select **Connect** then **Connect via Bastion** in the **Overview** section.
 
-1. In the **Overview** of **vm-1**, select **Connect**.
+1. In the **Bastion** connection page, enter or select the following information:
 
-1. In the **Connect to virtual machine** page, select the **Bastion** tab.
+    | Setting | Value |
+    | ------- | ----- |
+    | Authentication Type | Select **SSH Private Key from Local File**. |
+    | Username | Enter the username you created. |
+    | Local File | Select the **vm-1-key** private key file you downloaded. |
 
-1. Select **Use Bastion**.
-
-1. Enter the username and password you created when you created the virtual machine, then select **Connect**.
+1. Select **Connect**.
 
 ## Communicate between virtual machines
 
@@ -660,9 +662,23 @@ Use `ping` to test the communication between the virtual machines. Sign in to th
     rtt min/avg/max/mdev = 0.998/1.411/2.292/0.520 ms
     ```
 
-1. Close the Bastion connection to **vm-1**.
+1. Close the Bastion session.
 
-1. Repeat the steps in [Connect to a virtual machine](#connect-to-a-virtual-machine) to connect to **vm-2**.
+1. In the search box at the top of the portal, enter **Virtual machine**. Select **Virtual machines** in the search results.
+
+1. In **Virtual machines**, select **vm-2**.
+
+1. Select **Connect** then **Connect via Bastion** in the **Overview** section.
+
+1. In the **Bastion** connection page, enter or select the following information:
+
+    | Setting | Value |
+    | ------- | ----- |
+    | Authentication Type | Select **SSH Private Key from Local File**. |
+    | Username | Enter the username you created. |
+    | Local File | Select the **vm-2-key** private key file you downloaded. |
+
+1. Select **Connect**.
 
 1. At the bash prompt for **vm-2**, enter `ping -c 4 10.0.0.4`.
 
@@ -677,7 +693,7 @@ Use `ping` to test the communication between the virtual machines. Sign in to th
     64 bytes from 10.0.0.4: icmp_seq=4 ttl=64 time=1.28 ms
     ```
 
-1. Close the Bastion connection to **vm-2**.
+1. Close the Bastion session.
 
 ### [Portal](#tab/portal)
 
