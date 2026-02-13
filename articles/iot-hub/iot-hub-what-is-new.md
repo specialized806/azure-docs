@@ -42,7 +42,7 @@ All Azure IoT Hub preview scenarios require Device Provisioning Service (DPS). Y
 
 For more information, see [Azure IoT Hub Device Provisioning Service (DPS)](../iot-dps/index.yml).
 
-## Check supported regions
+## Supported regions
 
 To use IoT Hub with Azure Device Registry and certificate management, deploy instances of IoT Hub, Azure Device Registry, and Device Provisioning Service in one of the following supported regions:
 
