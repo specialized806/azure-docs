@@ -75,7 +75,7 @@ You can locate the next hop IP address of Cloud NGFW for Azure by viewing the ef
 
 You can use Azure rulestacks to configure security rules and apply security profiles in the Azure portal or through the API. When you're implementing the preceding architecture, configure the security rules by using Palo Alto Networks App-ID, Advanced Threat Prevention, Advanced URL Filtering, DNS Security, and [Cloud-Delivered Security Services](https://www.paloaltonetworks.com/network-security/security-subscriptions).
 
-For more information, see [Cloud NGFW Native Policy Management Using Rulestacks](https://docs.paloaltonetworks.com/cloud-ngfw/azure/cloud-ngfw-for-azure/native-policy-management).
+For more information, see [Cloud NGFW Native Policy Management Using Rulestacks](https://docs.paloaltonetworks.com/cloud-ngfw-azure/administration/protect-traffic-with-cloud-ngfw-for-azure/cloud-ngfw-for-azure-native-policy-management).
 
 > [!NOTE]
 > Use of the X-Forwarded-For (XFF) HTTP header field to enforce security policy is currently not supported with Azure rulestacks.
@@ -94,7 +94,7 @@ You need to apply special considerations to zone-based policies to ensure that t
 
 ## Related content
 
-- [Cloud NGFW for Azure](https://docs.paloaltonetworks.com/cloud-ngfw/azure/cloud-ngfw-for-azure) (documentation from Palo Alto Networks)
+- [Cloud NGFW for Azure](https://docs.paloaltonetworks.com/cloud-ngfw-azure/getting-started/introducing-cloud-ngfw-for-azure/cloud-ngfw-for-azure) (documentation from Palo Alto Networks)
 - [Zero-trust network for web applications with Azure Firewall and Application Gateway](/azure/architecture/example-scenario/gateway/application-gateway-before-azure-firewall)
 - [Firewall and Application Gateway for virtual networks](/azure/architecture/example-scenario/gateway/firewall-application-gateway)
 - [Configure Palo Alto Networks Cloud NGFW in Virtual WAN](/azure/virtual-wan/how-to-palo-alto-cloud-ngfw)
