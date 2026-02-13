@@ -82,6 +82,10 @@ Azure Container Apps supports both Durable Functions and Durable Task SDK framew
 | You want deep Azure portal integration. | You want portability across container platforms. |
 | You prefer the Functions programming model. | You have existing non-Functions code to integrate. |
 
+## Durable Task Framework (DTFx)
+
+The Durable Task Framework (DTFx) is an open-source .NET orchestration framework. While it can be used to build apps that run on platforms like Azure Kubernetes Services, DTFx doesn't receive official Microsoft support. [Learn more from the DTFx GitHub repo.](https://github.com/Azure/durabletask)
+
 ## Next steps
 
 > [!div class="nextstepaction"]

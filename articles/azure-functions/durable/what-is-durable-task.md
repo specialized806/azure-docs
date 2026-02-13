@@ -101,11 +101,9 @@ While the Durable Task SDKs themselves incur no cost, you may be billed dependin
 
 # [Durable Functions](#tab/durable-functions)
 
-Durable Functions is an extension of Azure Functions that adds durable execution capabilities. When configured with a durable backend, it provides an integrated experience for building event-driven workflows with minimal infrastructure management. 
+Durable Functions is an extension of Azure Functions that adds durable execution capabilities. When configured with a durable backend, it provides an integrated experience for building event-driven workflows with minimal infrastructure management. Durable Functions automates mission-critical processes and is a natural fit for the serverless Azure Functions environment.
 
 Like Azure Functions, you can use templates to develop Durable Functions using [Visual Studio](durable-functions-isolated-create-first-csharp.md?pivots=code-editor-visualstudio) and [Visual Studio Code](quickstart-js-vscode.md).
-
-Behind the scenes, the Durable Functions extension is built on top of the [Durable Task Framework](https://github.com/Azure/durabletask), used to build workflows in code. Durable Functions automates mission-critical processes and is a natural fit for the serverless Azure Functions environment.
 
 For example, you can get started using Durable Functions in a .NET isolated functions project with the following commands:
 
