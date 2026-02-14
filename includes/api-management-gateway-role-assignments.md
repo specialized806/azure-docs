@@ -8,9 +8,9 @@ ms.author: danlep
 
 ## Create custom roles
 
-Create the following two [custom roles](../role-based-access-control/custom-roles.md) that are assigned in later steps. You can use the permissions listed in the following JSON templates to create the custom roles using the [Azure portal](../role-based-access-control/custom-roles-portal.md), [Azure CLI](../role-based-access-control/custom-roles-cli.md), [Azure PowerShell](../role-based-access-control/custom-roles-powershell.md), or other Azure tools.
+Create the following two [custom roles](/azure/role-based-access-control/custom-roles) that are assigned in later steps. You can use the permissions listed in the following JSON templates to create the custom roles using the [Azure portal](/azure/role-based-access-control/custom-roles-portal), [Azure CLI](/azure/role-based-access-control/custom-roles-cli), [Azure PowerShell](/azure/role-based-access-control/custom-roles-powershell), or other Azure tools.
 
-When configuring the custom roles, update the [`AssignableScopes`](../role-based-access-control/role-definitions.md#assignablescopes) property with appropriate scope values for your directory, such as a subscription in which your API Management instance is deployed. 
+When configuring the custom roles, update the [`AssignableScopes`](/azure/role-based-access-control/role-definitions#assignablescopes) property with appropriate scope values for your directory, such as a subscription in which your API Management instance is deployed. 
 
 **API Management Configuration API Access Validator Service Role**
 

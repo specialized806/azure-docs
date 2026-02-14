@@ -16,7 +16,7 @@ ms.author: danlep
 
 The Azure API Management [self-hosted gateway](self-hosted-gateway-overview.md) needs connectivity with its associated cloud-based API Management instance for reporting status, checking for and applying configuration updates, and sending metrics and events. 
 
-In addition to using a gateway access token (authentication key) or Microsoft Entra app with client secrets, you can enable the self-hosted gateway to authenticate to its associated cloud instance by using [Microsoft Entra workload identity](../aks/workload-identity-overview.md). With workload identity authentication, you can eliminate the need to manage secrets or certificates, since authentication is handled through federated identity credentials between your Kubernetes cluster and Microsoft Entra ID.
+In addition to using a gateway access token (authentication key) or Microsoft Entra app with client secrets, you can enable the self-hosted gateway to authenticate to its associated cloud instance by using [Microsoft Entra workload identity](/azure/aks/workload-identity-overview). With workload identity authentication, you can eliminate the need to manage secrets or certificates, since authentication is handled through federated identity credentials between your Kubernetes cluster and Microsoft Entra ID.
 
 ## Scenario overview
 
@@ -42,7 +42,7 @@ To enable workload identity authentication, complete the following steps:
 ## Prerequisites
 
 - An API Management instance in the Developer or Premium service tier. If needed, complete the following quickstart: [Create an Azure API Management instance](get-started-create-service-instance.md).
-- An Azure Kubernetes Service (AKS) cluster with [workload identity and OIDC issuer enabled](../aks/workload-identity-deploy-cluster.md).
+- An Azure Kubernetes Service (AKS) cluster with [workload identity and OIDC issuer enabled](/azure/aks/workload-identity-deploy-cluster).
 - Provision a [gateway resource](api-management-howto-provision-self-hosted-gateway.md) on the instance.
 - Enable a [system-assigned managed identity](api-management-howto-use-managed-service-identity.md) on the instance.
 - Self-hosted gateway container image version 2.11.0 or later 
@@ -266,7 +266,7 @@ kubectl logs -n <namespace-name> <pod-name>
 ## Related content
 
 - Learn more about the API Management [self-hosted gateway](self-hosted-gateway-overview.md).
-- Learn more about [Microsoft Entra workload identity for AKS](../aks/workload-identity-overview.md).
+- Learn more about [Microsoft Entra workload identity for AKS](/azure/aks/workload-identity-overview).
 - Learn more about guidance for [running the self-hosted gateway on Kubernetes in production](how-to-self-hosted-gateway-on-kubernetes-in-production.md).
 - Learn [how to deploy API Management self-hosted gateway to Azure Arc-enabled Kubernetes clusters](how-to-deploy-self-hosted-gateway-azure-arc.md).
 - Compare with [Microsoft Entra authentication using client secrets](self-hosted-gateway-enable-azure-ad.md).
