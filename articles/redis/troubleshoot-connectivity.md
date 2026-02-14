@@ -58,7 +58,7 @@ You can use the Azure CLI to quickly test if you can connect to your Redis clust
 For prerequisites to use the Azure CLI with Azure Managed Redis, see [Manage an Azure Managed Redis cache using the Azure CLI](scripts/create-manage-cache.md).
 
 
-To test connection with Microsoft Entra ID authentication, run the following command:
+To test connection with Microsoft Entra ID authentication (the default), run the following command:
 
 ```azurecli
 az redisenterprise test-connection --name <cache-name> --resource-group <resource-group-name>
@@ -74,12 +74,6 @@ az redisenterprise test-connection --name <cache-name> --resource-group <resourc
 > This command uses the credential established through `az login`, which supports user accounts, managed identities, or service principals.
 
 To test connection with access key authentication, run the following command:
-
-```azurecli
-az redisenterprise test-connection --name <cache-name> --resource-group <resource-group-name> --auth accesskey
-```
-
-Or specify the access key directly:
 
 ```azurecli
 az redisenterprise test-connection --name <cache-name> --resource-group <resource-group-name> --auth accesskey --access-key <access-key-value>
