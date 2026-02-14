@@ -128,9 +128,9 @@ To operate properly, each self-hosted gateway needs outbound connectivity on por
 
 * **Internet connectivity**. If the self-hosted gateway needs to connect to the v2 configuration endpoint over the internet, configure a custom hostname for the configuration endpoint and expose the endpoint by using Azure Application Gateway.
 
-### Authentication options
+## Authentication options
 
-### Authentication options
+The self-hosted gateway needs connectivity with its associated cloud-based API Management instance for reporting status, checking for and applying configuration updates, and sending metrics and events.
 
 For details, see [Self-hosted gateway authentication options](self-hosted-gateway-authentication-options.md).
 

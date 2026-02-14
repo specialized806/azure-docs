@@ -6,7 +6,7 @@ author: dlepow
 
 ms.service: azure-api-management
 ms.topic: how-to
-ms.date: 10/08/2025
+ms.date: 02/13/2026
 ms.author: danlep
 ---
 
@@ -16,7 +16,7 @@ ms.author: danlep
 
 The Azure API Management [self-hosted gateway](self-hosted-gateway-overview.md) needs connectivity with its associated cloud-based API Management instance for reporting status, checking for and applying configuration updates, and sending metrics and events. 
 
-In addition to using a gateway access token (authentication key) to connect with its cloud-based API Management instance, you can enable the self-hosted gateway to authenticate to its associated cloud instance by using an [Microsoft Entra app](../active-directory/develop/app-objects-and-service-principals.md). With Microsoft Entra authentication, you can configure longer expiry times for secrets and use standard steps to manage and rotate secrets in Active Directory. 
+This article shows you how to enable the self-hosted gateway to authenticate to its associated cloud instance by using an [Microsoft Entra ID app](../active-directory/develop/app-objects-and-service-principals.md), using a client secret or certificate. With Microsoft Entra authentication, you can configure longer expiry times for secrets and use standard steps to manage and rotate secrets. For other authentication options, see [Self-hosted gateway authentication options](self-hosted-gateway-authentication-options.md). 
 
 ## Scenario overview
 
@@ -51,8 +51,11 @@ To enable Microsoft Entra authentication, complete the following steps:
 
 Create a new Microsoft Entra app. For steps, see [Create a Microsoft Entra application and service principal that can access resources](../active-directory/develop/howto-create-service-principal-portal.md). The Microsoft Entra app is used by the self-hosted gateway to authenticate to the API Management instance.
 
-- Generate a [client secret](../active-directory/develop/howto-create-service-principal-portal.md#option-3-create-a-new-client-secret) 
+- Generate a [client secret](../active-directory/develop/howto-create-service-principal-portal.md#option-3-create-a-new-client-secret) for the app.
 - Take note of the following application values for use in the next section when deploying the self-hosted gateway: application (client) ID, directory (tenant) ID, and client secret
+
+> [!NOTE]
+> Instead of using a client secret, you can choose to use a certificate for authentication. For steps to upload a certificate to your Microsoft Entra app, see [Use certificates for Azure AD app authentication](/entra/identity-platform/how-to-add-credentials).
 
 #### Step 2: Assign API Management Gateway Configuration Reader Service Role
 

@@ -16,7 +16,7 @@ ms.author: danlep
 
 The Azure API Management [self-hosted gateway](self-hosted-gateway-overview.md) needs connectivity with its associated cloud-based API Management instance for reporting status, checking for and applying configuration updates, and sending metrics and events. 
 
-In addition to using a gateway access token (authentication key) or Microsoft Entra app with client secrets, you can enable the self-hosted gateway to authenticate to its associated cloud instance by using [Microsoft Entra workload identity](/azure/aks/workload-identity-overview). With workload identity authentication, you can eliminate the need to manage secrets or certificates, since authentication is handled through federated identity credentials between your Kubernetes cluster and Microsoft Entra ID.
+This article shows you how to enable the self-hosted gateway to authenticate to its associated cloud instance by using [Microsoft Entra workload identity](/azure/aks/workload-identity-overview). With workload identity authentication, you can eliminate the need to manage secrets or certificates, since authentication is handled through federated identity credentials between your Kubernetes cluster and Microsoft Entra ID. For other authentication options, see [Self-hosted gateway authentication options](self-hosted-gateway-authentication-options.md).
 
 ## Scenario overview
 

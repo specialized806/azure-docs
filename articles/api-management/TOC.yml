@@ -403,10 +403,14 @@
       href: how-to-configure-local-metrics-logs.md
     - name: Enable Dapr support on self-hosted gateway
       href: self-hosted-gateway-enable-dapr.md
-    - name: Use Microsoft Entra authentication on self-hosted gateway
-      href: self-hosted-gateway-enable-azure-ad.md
-    - name: Use workload identity authentication on self-hosted gateway
-      href: self-hosted-gateway-enable-workload-identity.md  
+    - name: Configure authentication to cloud instance
+      items:
+        - name: Self-hosted gateway authentication options
+          href: self-hosted-gateway-authentication-options.md
+        - name: Use Microsoft Entra authentication on self-hosted gateway
+          href: self-hosted-gateway-enable-azure-ad.md
+        - name: Use workload identity authentication on self-hosted gateway
+          href: self-hosted-gateway-enable-workload-identity.md  
     - name: Run self-hosted gateway in production
       href: how-to-self-hosted-gateway-on-kubernetes-in-production.md
     - name: Self-hosted gateway support policy
