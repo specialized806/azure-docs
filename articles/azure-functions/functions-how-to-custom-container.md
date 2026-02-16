@@ -98,6 +98,13 @@ The Azure Functions extension for Visual Studio Code creates your Dockerfile whe
 
 ---
 
+### Custom Dockerfile templates
+
+If you need to build a fully custom Dockerfile instead of using the Functions-generated one, you can use the templates in the [custom-container](https://github.com/Azure/azure-functions-docker/tree/dev/custom-container) folder of the `azure-functions-docker` repository:
+
+- [**template.Dockerfile**](https://github.com/Azure/azure-functions-docker/blob/dev/custom-container/template.Dockerfile): A commented, step-by-step guide for building a custom container. It includes instructions for multiple language runtimes (Java, .NET isolated, Node.js, PowerShell, Python), optional CA certificate installation, running as a non-root user, and enabling SSH for Kudu debugging.
+- [**sample.Dockerfile**](https://github.com/Azure/azure-functions-docker/blob/dev/custom-container/sample.Dockerfile): A ready-to-use example built from the template that creates a Java-based Azure Functions container with SSH enabled for Kudu debugging.
+
 ## Create your function app in a container
 
 With a Functions-generated Dockerfile in your code project, you can use Docker to create the containerized function app on your local computer. The following `docker build` command creates an image of your containerized functions from the project in the local directory:
