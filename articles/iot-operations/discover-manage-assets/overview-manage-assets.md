@@ -154,4 +154,4 @@ The *operations experience* is a web UI that lets OT users create and configure 
 
 The *Azure portal* is a web-based application that lets IT users manage Azure resources from a unified console. Use the Azure portal to create and manage Azure IoT Operations instances, monitor IoT solutions, manage assets and devices, and troubleshoot issues. The Azure Device Registry is integrated with the Azure portal, letting you view and manage your namespaces, schemas registries, assets, and devices in the cloud:
 
-:::image type="content" source="media/overview-manage-assets/azure-portal.png" alt-text="Screenshot of the Azure portal" lightbox="media/overview-manage-assets/azure-portal.png":::
+:::image type="content" source="media/overview-manage-assets/azure-portal.png" alt-text="Screenshot of the Azure portal." lightbox="media/overview-manage-assets/azure-portal.png":::
