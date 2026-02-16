@@ -283,45 +283,20 @@
       href: ../data-factory/how-to-schedule-azure-ssis-integration-runtime.md#create-and-schedule-an-azure-automation-runbook-that-starts-and-stops-an-azure-ssis-ir
 - name: Troubleshoot
   items:
-  - name: Managed identity
-    items:
-    - name: Troubleshoot authentication issues
-      href: troubleshoot/managed-identity.md
-    - name: Troubleshoot availability issues
-    - name: Troubleshoot subscription Issues
-  - name: Shared resources
+  - name: Troubleshoot Managed Identity Issues
+    href: troubleshoot/managed-identity.md
+  - name: Troubleshoot Shared Resources Issues
     href: troubleshoot/shared-resources.md
-  - name: Runbook issues
+  - name: Troubleshoot Runbook Issues
+    href: troubleshoot/runbooks.md
+  - name: Troubleshoot Hybrid Runbook Workers Issues
     items:
-      - name: Troubleshoot runbook failures
-        href: troubleshoot/runbooks.md
-      - name: Troubleshoot account authentication issues
-      - name: Troubleshoot subscription issues
-      - name: Troubleshoot permissions & access issues
-      - name: Troubleshoot module & cmdlet issues
-      - name: Troubleshoot webhook, quota & service limit issues
-      - name: Troubleshoot service/regional Issues
-  - name: Troubleshoot hybrid runbook workers issues
-    items:
-      - name: Extension-based hybrid runbook worker
-        items:
-        - name: Troubleshoot network and connectivity issues
-          href: troubleshoot/extension-based-hybrid-runbook-worker.md
-        - name: Troubleshoot deployment, configuration & execution issues
-      - name: Agent-based hybrid runbook worker
-        items: 
-        - name: Troubleshoot network and connectivity issues
-          href: troubleshoot/hybrid-runbook-worker.md
-        - name: Troubleshoot general and platform specific issues
-  - name: State configuration
-    items: 
-    - name: General diagnose
-      href: troubleshoot/desired-state-configuration.md
-    - name: Troubleshoot compilation issues
-    - name: Troubleshoot agent registration & onboarding issues
-    - name: Troubleshoot deployment & application issues
-    - name: Troubleshoot node status & reporting issues
-    - name: Troubleshoot Credential & access issues
+      - name: Troubleshoot Extension-based Hybrid Runbook Worker
+        href: troubleshoot/extension-based-hybrid-runbook-worker.md
+      - name: Troubleshoot Agent-based Hybrid Runbook Worker
+        href: troubleshoot/hybrid-runbook-worker.md
+  - name: Troubleshoot State Configuration Issues 
+    href: troubleshoot/desired-state-configuration.md 
   - name: Data to collect when opening a case for Microsoft Azure Automation
     href: troubleshoot/collect-data-microsoft-azure-automation-case.md 
 - name: Reference
