@@ -128,9 +128,9 @@ sections:
         answer:  |
           Yes. For more information, see [Microsoft response to DDoS attacks against HTTP/2](front-door-ddos.md).
       - question: |
-          Can I force traffic from one country to use a specific Azure Front Door POP in another country?
+          Can I force traffic from one country/region to use a specific Azure Front Door POP in another country/region?
         answer:  |
-          No. Azure Front Door can't force client traffic to a specific POP. Requests are routed to the nearest available edge location for performance and reliability. If you need to restrict access by geography, use Azure Web Application Firewall (WAF) custom rules with `GeoMatch` conditions. This approach allows or blocks requests based on client country, but it doesn't reroute those clients to a different POP in another country. For example, if you block Country A, requests from clients in Country A are blocked regardless of which POP would have served them. For more information, see [Geo-filtering in Azure WAF for Azure Front Door](../web-application-firewall/afds/waf-front-door-geo-filtering.md).
+          No. Azure Front Door can't force client traffic to a specific POP. Requests are routed to the nearest available edge location for performance and reliability. If you need to restrict access by geography, use Azure Web Application Firewall (WAF) custom rules with `GeoMatch` conditions. This approach allows or blocks requests based on client country/region, but it doesn't reroute those clients to a different POP in another country/region. For example, if you block country/region A, requests from clients in country/region A are blocked regardless of which POP would have served them. For more information, see [Geo-filtering in Azure WAF for Azure Front Door](../web-application-firewall/afds/waf-front-door-geo-filtering.md).
       - question: |
           Does Azure Front Door preserve `x-forwarded-for` headers?
         answer: |
