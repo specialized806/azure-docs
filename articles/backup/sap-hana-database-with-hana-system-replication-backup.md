@@ -21,6 +21,9 @@ To learn about the supported SAP HANA database backup and restore scenarios, reg
 >[!Note]
 >The support for **HSR + DR** scenario is currently not available because there is a restriction to have VM and Vault in the same region. To enable the backup operation of a Third Node that is in a different region, you need to configure the backup in a different vault as a standalone node.
 
+You can also [back up SAP HANA database instance snapshots on Azure VMs](sap-hana-database-instances-backup.md).
+
+
 ## Prerequisites
 
 Before you back up SAP HANA System Replication database on Azure VMs, ensure that:

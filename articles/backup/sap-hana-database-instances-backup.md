@@ -23,6 +23,9 @@ Azure Backup now performs an SAP HANA storage snapshot-based backup of an entire
 
 To learn about the supported SAP HANA database backup and restore scenarios, region availability, and limitations, see the [support matrix](backup-azure-sql-database.md). For common questions, see the [frequently asked questions](sap-hana-faq-backup-azure-vm.yml).
 
+You can also [back up SAP HANA System Replication databases on Azure VMs using Azure portal](sap-hana-database-with-hana-system-replication-backup.md).
+
+
 ## Before you start
 
 ### Policy

@@ -13,7 +13,7 @@ ms.author: v-mallicka
 
 This article describes how to back up SAP HANA databases that are running on Azure VMs to an Azure Backup Recovery Services vault.
 
-SAP HANA databases are critical workloads that require a low recovery-point objective (RPO) and long-term retention. You can back up SAP HANA databases running on Azure virtual machines (VMs) by using [Azure Backup](backup-overview.md).
+SAP HANA databases are critical workloads that require a low recovery-point objective (RPO) and long-term retention. You can back up SAP HANA databases running on Azure virtual machines (VMs) by using [Azure Backup](backup-overview.md). You can also [back up SAP HANA System Replication databases on Azure VMs](sap-hana-database-with-hana-system-replication-backup.md) and [back up SAP HANA database instance snapshots on Azure VMs](sap-hana-database-instances-backup.md).
 
 To learn about the supported SAP HANA database backup and restore scenarios, region availability, and limitations, see the [support matrix](backup-azure-sql-database.md). For common questions, see the [frequently asked questions](sap-hana-faq-backup-azure-vm.yml).
 
@@ -285,7 +285,8 @@ If no data sync occurs to the Azure Backup service for more than *2 hours*, Azur
 
 ## Next steps
 
-* [Restore SAP HANA databases running on Azure VMs using Azure portal](./sap-hana-db-restore.md).
-* [Restore SAP HANA databases running on Azure VMs using Azure CLI](tutorial-sap-hana-restore-cli.md).
-* [Manage SAP HANA databases that are backed up by Azure Backup using Azure portal](./sap-hana-db-manage.md).
-* [Manage SAP HANA databases that are backed up by Azure Backup using Azure CLI](tutorial-sap-hana-manage-cli.md).
+- [Restore SAP HANA databases running on Azure VMs using Azure portal](./sap-hana-db-restore.md).
+- [Restore SAP HANA databases running on Azure VMs using Azure CLI](tutorial-sap-hana-restore-cli.md).
+- [Manage SAP HANA databases that are backed up by Azure Backup using Azure portal](./sap-hana-db-manage.md).
+- [Manage SAP HANA databases that are backed up by Azure Backup using Azure CLI](tutorial-sap-hana-manage-cli.md).
+
