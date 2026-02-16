@@ -148,7 +148,7 @@ Akri services simplify creating assets by automatically onboarding assets with p
 
 The *operations experience* is a web UI that lets OT users create and configure devices and assets in an Azure IoT Operations instance. This web UI simplifies managing devices and assets and is the recommended service for this task:
 
-:::image type="content" source="media/overview-manage-assets/operations-experience.png" alt-text="Screenshot of the operations experience web UI" lightbox="media/overview-manage-assets/operations-experience.png":::
+:::image type="content" source="media/overview-manage-assets/operations-experience.png" alt-text="Screenshot of the operations experience web UI." lightbox="media/overview-manage-assets/operations-experience.png":::
 
 ## Azure portal
 
