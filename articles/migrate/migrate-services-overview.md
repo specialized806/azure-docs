@@ -44,7 +44,7 @@ Watch this video to learn how Azure Migrate delivers enhanced experiences. It he
 ::: moniker-end
 
 >[!IMPORTANT]
-> For the required Azure Migrate built‑in roles and permission details, see [Prepare Azure accounts for Azure Migrate](prepare-azure-accounts.md).
+> For the required Azure Migrate built‑in roles and permission details to create a project and run discovery, assessments, and migrations, see [Prepare Azure accounts for Azure Migrate](prepare-azure-accounts.md).
 
 ### Decide
 
