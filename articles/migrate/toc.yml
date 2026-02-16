@@ -259,6 +259,8 @@ items:
     href: tutorial-app-containerization-java-app-service.md 
   - name: Modernize ASP.NET web apps to App Service code
     href: tutorial-modernize-asp-net-appservice-code.md
+  - name: Containerize ASP.NET apps and migrate to App Service containers
+    href: tutorial-app-containerization-aspnet-app-service.md
   - name: CI/CD for Day 2 operations
     href: tutorial-app-containerization-azure-pipeline.md
 - name: Tutorials 
@@ -306,16 +308,6 @@ items:
   #    href: tutorial-discover-sap-systems.md
   #   - name: Assess SAP systems for migration (preview)
   #     href: tutorial-assess-sap-systems.md
-  # - name: Use Azure Migrate with private endpoints 
-  #   items:
-    - name: Modernize applications 
-      items:
-      - name: Containerize ASP.NET apps and migrate to App Service containers
-        href: tutorial-app-containerization-aspnet-app-service.md
-      - name: Containerize Java web apps and migrate to App Service containers
-        href: tutorial-app-containerization-java-app-service.md
-      - name: Modernize ASP.NET web apps to App Service code
-        href: tutorial-modernize-asp-net-appservice-code.md
 - name: How-to
   items:
   - name: Discover and assess using Azure Private Link
