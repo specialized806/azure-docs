@@ -301,7 +301,7 @@
     href: troubleshoot/collect-data-microsoft-azure-automation-case.md 
 - name: Reference
   items:
-  - name: Azure CLI 
+  - name: Azure CLI
     href: /cli/azure/automation
   - name: Azure PowerShell Az
     href: /powershell/module/az.automation/
