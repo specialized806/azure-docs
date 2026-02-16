@@ -35,6 +35,26 @@ Before you begin, ensure that you have the following:
 - GitHub Copilot Chat enabled in Visual Studio Code.
 - An Azure subscription with permissions to create and deploy resources required for the platform landing zone.
 
+### Permissions
+
+The required permissions depend on the deployment scenario and the scope at which resources are deployed.
+
+#### Initial tenant or subscription setup
+
+If you are bootstrapping new subscriptions or performing initial tenant setup, Owner permission may be temporarily required at one of the following scopes:
+
+- Tenant root management group
+- Management group
+
+#### Platform Landing Zone deployment
+
+For a standard Platform Landing Zone deployment, the deployment identity must have the following permissions:
+
+- **Contributor** and **User Access Administrator** at the target management group scope.
+- **Contributor** at the target subscription scope.
+
+These permissions are required to create resources, assign policies, and configure role-based access control (RBAC) during deployment.
+
 ## End-to-end Platform Landing Zone workflow
 
 The following steps show how to generate a **Platform Landing Zone** using Azure Migrate, and then iterate and deploy it using **Visual Studio Code** with **GitHub Copilot Chat** and the **Azure MCP Server**.
@@ -47,6 +67,9 @@ This section describes how to generate a Platform Landing Zone in Azure Migrate 
 1. Start the **Azure Migrate Agent** experience.
 1. Ask the agent to create a Platform Landing Zone by entering:
     *I want to create a Platform Landing Zone (or PLZ)*.
+
+    :::image type="content" source="./media/platform-landing-zone/agent-help.png" alt-text="The screenshot shows landing zone defaults, recommendations, and options to generate code". lightbox="./media/platform-landing-zone/agent-help.png":::    
+
 1. Complete the guided conversation based on your requirements.
 1. When the process completes, download the generated output as a ZIP file.
 1. Extract the ZIP file to a local folder.
@@ -122,3 +145,5 @@ A typical deployment workflow includes:
 The design document included in the platform landing zone package uses template-based approach. Azure Migrate generates the document based on the selected platform landing zone configuration  you select, such as region type, network architecture, firewall type, and region selection. The output is a customized Markdown document that matches your chosen configuration.
 
 ## Next steps
+
+After deploying the Platform Landing Zone, you can start creating [assessments](concepts-overview.md) or proceed with [migration](server-migrate-overview.md).
