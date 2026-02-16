@@ -16,11 +16,11 @@ This article explains how to monitor data extraction and processing that are par
 Pipelines that include **B2S** in their name represent Bronze to Silver processing. These pipelines move data from mirrored databases into the Silver Lakehouse.
 Pipelines that include **S2G** in their name represent Silver to Gold processing. These pipelines move curated data from the Silver Lakehouse into the Gold Lakehouse for reporting and analytics. After successful data extraction to gold lakehouse, we can refresh the semantic models and see our data in Power BI reports.
 
-Below are the different pipelines which get deployed depending on the source system and data extraction method.
+Below are the different pipelines, which get deployed depending on the source system and data extraction method.
 
 ### Data extraction and processing pipelines in Business Process Solutions
 
-The following table contains details about the extraction and processing pipelines that are deployed in your Business Process Solutions item. We have categorized it based on source type and extraction tool.
+The following table contains details about the extraction and processing pipelines that are deployed in your Business Process Solutions item. We categorize it based on source type and extraction tool.
 
 | Source Type | Extraction type | Processing stage | Pipeline name |
 |---|---|---|---|
@@ -35,7 +35,7 @@ The following table contains details about the extraction and processing pipelin
 
 ### Access pipeline run history
 
-Once a pipeline has been triggered, the pipeline run history allows us to view both recent and historical executions. This helps us to understand how the pipeline behaved during a specific run and whether all activities completed successfully.
+Once a pipeline is triggered, the pipeline run history allows us to view both recent and historical executions. This helps us to understand how the pipeline behaved during a specific run and whether all activities completed successfully.
 
 Use the following steps to check the run history for a pipeline
 1.	Navigate to the pipeline in Fabric
@@ -47,9 +47,9 @@ Use the following steps to check the run history for a pipeline
 
 ### Check logs for a processing notebook executed from pipeline.
 
-When you want to check the logs for a notebook which was executed as a part of pipeline, follow the instructions
+When you want to check the logs for a notebook that was executed as a part of pipeline, follow the instructions
 1.	Open the pipeline run history and select the run that you want to check, follow the instructions mentioned in the previous section.
-2.	Once you open the pipeline snapshot you should be able to see the notebook inside the pipeline.
+2.	Once you open the pipeline snapshot, you should be able to see the notebook inside the pipeline.
 :::image type="content" source="./media/monitoring-fabric-data-extraction-and-processing/fabric-monitoring-notebook.png" alt-text="Screenshot showing notebooks inside pipeline." lightbox="./media/monitoring-fabric-data-extraction-and-processing/fabric-monitoring-notebook.png":::
 3.	Select the activity name to open the details and then from the dialog box open the Notebook snapshot.
 :::image type="content" source="./media/monitoring-fabric-data-extraction-and-processing/fabric-monitoring-notebook-snapshot.png" alt-text="Screenshot showing notebook snapshot." lightbox="./media/monitoring-fabric-data-extraction-and-processing/fabric-monitoring-notebook-snapshot.png":::

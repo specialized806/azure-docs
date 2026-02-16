@@ -11,15 +11,15 @@ ms.author: mimansasingh
 
 # Currency conversion in Business Process Solutions
 
-In SAP systems, transactions can be recorded in various currencies, creating a need for optional currency conversion capabilities. Wherever possible—especially for financial use cases—we recommend leveraging SAP’s internal currency conversion mechanisms. Most financial data already includes amounts in both the **Transaction Currency** and **Company Code Currency**, ensuring alignment between Business Process Solutions and the SAP system without additional conversion steps. 
+In SAP systems, transactions can be recorded in various currencies, creating a need for optional currency conversion capabilities. Wherever possible—especially for financial use cases—we recommend using SAP’s internal currency conversion mechanisms. Most financial data already includes amounts in both the **Transaction Currency** and **Company Code Currency**, ensuring alignment between Business Process Solutions and the SAP system without another conversion steps. 
 
 However, some tables contain only transaction currency, making it necessary to unify currencies for a comprehensive view—for example, to present total procurement spend in a single currency. To address this, **Business Process Solutions** provides dedicated transformation notebooks that utilize exchange rates from SAP to calculate an average exchange rate per company code and fiscal year. This allows amounts to be consistently represented in a unified currency while maintaining accuracy. 
 
-While this approach offers a reliable and standardized method for currency conversion, you also have the flexibility to implement your own algorithm if needed. Although converted values may not always match SAP’s exact transaction-level amounts, they provide a close approximation that supports meaningful analysis across many functional areas. 
+While this approach offers a reliable and standardized method for currency conversion, you also have the flexibility to implement your own algorithm if needed. Although converted values might not always match SAP’s exact transaction-level amounts, they provide a close approximation that supports meaningful analysis across many functional areas. 
 
-We use currency conversion rates from SAP systems available in CDS View I_EXCHANGERATERAWDATA. Based on this data a notebook ei_nb_s2g_currency_conversion.ipynb calculates average conversion rates using following principles:
+We use currency conversion rates from SAP systems available in CDS View I_EXCHANGERATERAWDATA. Based on this data, a notebook ei_nb_s2g_currency_conversion.ipynb calculates average conversion rates using following principles:
 
-1. The I_EXCHANGERATERAWDATA view does not contain exchange rates for every day. Instead it contains the Validity Start Date column which indicates the new exchange rate starting from a given date. The notebook forward-fill all missing dates using the Validity Start Date column.
+1. The I_EXCHANGERATERAWDATA view doesn't contain exchange rates for every day. Instead it contains the Validity Start Date column, which indicates the new exchange rate starting from a given date. The notebook forward-fill all missing dates using the Validity Start Date column.
 
 2. Business Process Solutions provides two levels of exchange rate granularity, allowing customers to choose between higher accuracy and better performance: 
 
