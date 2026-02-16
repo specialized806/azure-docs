@@ -2,7 +2,7 @@
 title: Generate and deploy Platform Landing Zone with Azure Migrate 
 description: Learn how to generate and deploy Platform Landing Zone with Azure Migrate to set up governance, networking, and core Azure services for migration readiness.
 ms.topic: how-to
-author: piyushdhore-microsoft
+author: piyushdhore-microsoft  
 ms.author: piyushdhore
 ms.service: azure-migrate
 ms.date: 02/09/2026
@@ -68,7 +68,7 @@ This section describes how to generate a Platform Landing Zone in Azure Migrate 
 1. Ask the agent to create a Platform Landing Zone by entering:
     *I want to create a Platform Landing Zone (or PLZ)*.
 
-    :::image type="content" source="./media/platform-landing-zone/agent-help.png" alt-text="The screenshot shows landing zone defaults, recommendations, and options to generate code". lightbox="./media/platform-landing-zone/agent-help.png":::    
+    :::image type="content" source="./media/platform-landing-zone/agent-help.png" alt-text="Screenshot shows landing zone defaults, recommendations, and options to generate code." lightbox="./media/platform-landing-zone/agent-help.png":::    
 
 1. Complete the guided conversation based on your requirements.
 1. When the process completes, download the generated output as a ZIP file.
