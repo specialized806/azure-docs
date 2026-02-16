@@ -85,7 +85,7 @@ The downloaded ZIP file typically includes the following artifacts:
 
 ### Enable iteration in Visual Studio Code by installing the Azure MCP Server
 
-To iterate on the platform landing zone using natural language prompts in Copilot Chat (for example, turn off DDoS or switch to vWAN), you must enable the Azure Model Context Protocol (MCP) Server in Visual Studio Code.
+To iterate on the platform landing zone using natural language prompts in Copilot Chat, for example, to denial Distributed Denial of Service (DDoS) or switch to Azure Virtual WAN (vWAN), you must enable the Azure Model Context Protocol (MCP) Server in Visual Studio Code.
 
 #### Install and configure the Azure MCP Server
 
@@ -97,47 +97,47 @@ To iterate on the platform landing zone using natural language prompts in Copilo
 1. Enable **Azure MCP**, and then select **Update tools**.
 1. Verify that the `azuremigrate` tool appears in the tools list.
 
-### Iterate on the Platform Landing Zone (Visual Studio Code and MCP)
+### Iterate on the Platform Landing Zone - Visual Studio Code and MCP
 
 After you enable the Azure Model Context Protocol (MCP) server, use GitHub Copilot Chat in Visual Studio Code to apply changes across the platform landing zone artifacts.
 
 Use Copilot Chat to make updates such as:
 
-- Disable DDoS protection
-- Change Azure regions
-- Switch the network architecture (for example, hub-and-spoke or Virtual WAN)
-- Update firewall configurations
-- Modify policy overrides
+- Disable DDoS protection.
+- Change Azure regions.
+- Switch the network architecture, for example, hub-and-spoke or Virtual WAN.
+- Update firewall configurations.
+- Modify policy overrides.
 
 Copilot applies changes across the relevant files, including Terraform variables, configuration files, and policy overrides, and summarizes the updates that were made.
 
 ### Deploy the Platform Landing Zone
 
-Deploy the platform landing zone by following the deployment instructions included in the generated package (README and scripts).
+Deploy the platform landing zone by following the deployment instructions included in the generated package, including the README file and deployment scripts.
 
 A typical deployment workflow includes:
 
 1. Update the configuration files, for example, `config/inputs.yaml` with values specific to your environment.
 1. Run the configuration update script:
 
-```azurepowershell
-.\scripts\powershell\update-config.ps1
+    ```azurepowershell
+    .\scripts\powershell\update-config.ps1
 
-```
+    ```
 
-```bash
-./scripts/bash/update-config.ps1
-```
+    ```bash
+    ./scripts/bash/update-config.ps1
+    ```
 
 1. Deploy bootstrap prerequisites:
 
-```azurepowershell
-.\scripts\powershell\invoke-terraform.ps1 -ModuleFolderPath "D:\azure-landing-zone-platform\output\bootstrap\v7.0.0\alz\github" -TfvarsFileName "terraform.tfvars.json" -TenantId "tenantId" -AutoApprove
-```
+    ```azurepowershell
+    .\scripts\powershell\invoke-terraform.ps1 -ModuleFolderPath "D:\azure-landing-zone-platform\output\bootstrap\v7.0.0\alz\github" -TfvarsFileName "terraform.tfvars.json" -TenantId "tenantId" -AutoApprove
+    ```
 
-```bash
-./scripts/bash/invoke-terraform.sh -m "azure-landing-zone-platform/output/bootstrap/v7.0.0/alz/github" -f "terraform.tfvars.json" -t "tenantId" -a
-```
+    ```bash
+    ./scripts/bash/invoke-terraform.sh -m "azure-landing-zone-platform/output/bootstrap/v7.0.0/alz/github" -f "terraform.tfvars.json" -t "tenantId" -a
+    ```
 1. Deploy the platform landing zone by using the provided CI/CD pipeline (GitHub Actions or Azure DevOps) or run Terraform by using the included scripts.
 
 ## Design document generation
