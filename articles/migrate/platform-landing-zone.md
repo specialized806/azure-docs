@@ -48,7 +48,7 @@ If you are bootstrapping new subscriptions or performing initial tenant setup, O
 
 #### Platform Landing Zone deployment
 
-For a standard Platform Landing Zone deployment, the deployment identity must have the following permissions:
+For standard Platform Landing Zone deployment, the deployment identity must have the following permissions:
 
 - **Contributor** and **User Access Administrator** at the target management group scope.
 - **Contributor** at the target subscription scope.
@@ -57,7 +57,7 @@ These permissions are required to create resources, assign policies, and configu
 
 ## End-to-end Platform Landing Zone workflow
 
-The following steps show how to generate a **Platform Landing Zone** using Azure Migrate, and then iterate and deploy it using **Visual Studio Code** with **GitHub Copilot Chat** and the **Azure MCP Server**.
+The following steps show how to generate a **Platform Landing Zone** using Azure Migrate and then iterate and deploy it using **Visual Studio Code** with **GitHub Copilot Chat** and the **Azure MCP Server**.
 
 ### Generate the Platform Landing Zone in Azure Migrate
 
@@ -138,11 +138,11 @@ A typical deployment workflow includes:
 ```bash
 ./scripts/bash/invoke-terraform.sh -m "azure-landing-zone-platform/output/bootstrap/v7.0.0/alz/github" -f "terraform.tfvars.json" -t "tenantId" -a
 ```
-1. Deploy the platform landing zone by using the provided CI/CD pipeline (GitHub Actions or Azure DevOps), or run Terraform by using the included scripts.
+1. Deploy the platform landing zone by using the provided CI/CD pipeline (GitHub Actions or Azure DevOps) or run Terraform by using the included scripts.
 
 ## Design document generation
 
-The design document included in the platform landing zone package uses template-based approach. Azure Migrate generates the document based on the selected platform landing zone configuration  you select, such as region type, network architecture, firewall type, and region selection. The output is a customized Markdown document that matches your chosen configuration.
+The design document included in the platform landing zone package uses template-based approach. Azure Migrate generates the document based on the selected platform landing zone configuration you select, such as region type, network architecture, firewall type, and region selection. The output is a customized Markdown document that matches your chosen configuration.
 
 ## Next steps
 
