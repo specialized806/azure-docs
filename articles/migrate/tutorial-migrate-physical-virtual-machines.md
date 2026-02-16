@@ -62,6 +62,9 @@ Task | Details
 Create an Azure Migrate project | Your Azure account needs Contributor or Owner permissions to [create a new project](./create-manage-projects.md).
 Verify permissions for your Azure account | Your Azure account needs permissions to create a VM and write to an Azure managed disk.
 
+>[!NOTE]
+> For the required Azure Migrate built‑in roles and permission details to create a project and run discovery, assessments, and migrations, see [Prepare Azure accounts for Azure Migrate](prepare-azure-accounts.md).
+
 ### Assign permissions to create a project
 
 1. In the Azure portal, open the subscription and select **Access control (IAM)**.
