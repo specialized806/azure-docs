@@ -15,7 +15,7 @@ ms.custom: engagement-fy24
 
 In this article, you learn how to take advantage of the latest iteration of metrics available to monitor your Azure VMware Solution private cloud. 
 
-Azure VMware Solution provides users with an array of high-level health and performance metrics to provide visibility into the health and performance of an Azure VMware Solution private cloud. Since early 2024, another set of identical metrics labeled with the word "(new)" were introduced, where a series of enhancements to the stability, reliability, and performance of these metrics were made to provide users a better experience relative to the older set of metrics.  
+Azure VMware Solution provides users with an array of high-level health and performance metrics to provide visibility into the health and performance of an Azure VMware Solution private cloud. In 2024, a set of identical metrics labeled as "new" were introduced. The "new" metrics, which include a series of enhancements to the stability, reliability, and performance of those metrics were made to provide users a better experience relative to the older set of metrics.  
   
 
 ### View Azure VMware Solution metrics
@@ -35,7 +35,7 @@ Once you're ready to save, select **Save to Dashboard**, then select one of the 
 
 ### Send metrics to other monitoring solutions using the new metrics
 
-Additionally, you can hover over each metric in the **Metric** dropdown to see the Metric ID. You can use this Metric ID in your third-party monitoring tools to monitor your Azure VMware Solution private cloud.
+Additionally, you can hover over each metric in the **Metric** dropdown to see the Metric identifier (ID). You can use this Metric ID in your third-party monitoring tools to monitor your Azure VMware Solution private cloud.
  >[!IMPORTANT]
    >We strongly encourage all users - first time and repeat - to migrate to the new metrics suffixed with **"(new)"**.
 
