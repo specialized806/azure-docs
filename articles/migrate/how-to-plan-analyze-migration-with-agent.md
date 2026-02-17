@@ -7,7 +7,7 @@ ms.author: ankug
 ms.service: azure-migrate
 ms.reviewer: v-uhabiba
 ms.date: 01/22/2026
-monikerRange:
+monikerRange: migrate 
 # Customer intent: Customers plan and analyze VMware migrations to Azure using Azure Copilot migration agent, including inventory review, readiness assessment, cost and ROI analysis, and Azure landing zone design—before migration execution in Azure Migrate.
 ---
 
