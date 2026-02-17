@@ -18,7 +18,7 @@ In Durable Task, [Durable Functions](durable-functions-overview.md) and the [Dur
 
 ## Fundamental concepts
 
-Certain fundamental concepts are shared by both the Durable Functions or Durable Task SDKs approaches in Durable Task.
+Certain fundamental concepts are shared by both the Durable Functions and Durable Task SDKs approaches in Durable Task.
 
 | Concept | Description | Learn more... |
 | --- | --- | --- |
