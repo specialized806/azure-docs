@@ -41,8 +41,6 @@ Use this example to learn how to [Get serverCallId](../../get-server-call-id.md)
 
 Let's get started with a few simple steps.
 
-Let's get started with a few simple steps.
-
 ## 1. Create a Call Automation client
 
 Call Recording APIs are part of the Azure Communication Services [Call Automation](../../../../concepts/call-automation/call-automation.md) libraries. So you need to create a Call Automation client.
