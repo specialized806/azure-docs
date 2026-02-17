@@ -324,13 +324,17 @@ On the **Create an MCP server** pane, follow these steps:
 
 1. Under **MCP server details**, enter a unique **Name** that uses only letters and numbers.
 
+   Make sure this name easily identifies your MCP server.
+
 1. Enter a **Description** about the purpose for your MCP server.
+
+   This important information helps agents and other clients choose the server they need.
 
 1. Under **Workflows**, select one or multiple workflows to use as tools for your MCP server.
 
    > [!NOTE]
    >
-   > The list shows only workflows that start with the **Request** trigger and end with the **Response** action.
+   > The list shows only workflows that start with the **Request** trigger and contains appro with the **Response** action.
 
 1. When you finish, select **Create**.
 
@@ -338,7 +342,15 @@ On the **Create an MCP server** pane, follow these steps:
 
 ### Create new workflows
 
-1. On the **Register an MCP server with Azure Logic Apps** page, under **Project details**, enter an **MCP server name** and a **Description**.
+1. On the **Register an MCP server with Azure Logic Apps** page, under **Project details**, enter the following values:
+
+   - A unique **MCP server name** that uses only letters and numbers.
+
+     Make sure this name easily identifies your MCP server.
+
+   - A **Description** about the purpose for your MCP server.
+
+     This important information helps agents and other clients choose the server they need.
 
    By default, the **Logic app** value is set to the current logic app name and is uneditable.
 
