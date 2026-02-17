@@ -2,6 +2,7 @@
 title: Migrate a Workload from Amazon Web Services (AWS) to Azure
 description: Learn how to migrate a single workload from AWS to Azure. Plan, prepare, execute, evaluate, and decommission your previous workload with minimal risk.
 ms.author: rhackenberg
+author: reginahack
 ai-usage: ai-assisted
 ms.date: 02/13/2026
 ms.topic: concept-article
