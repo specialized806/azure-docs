@@ -8,7 +8,7 @@ ms.service: azure-api-management
 ms.custom:
   - build-2024
 ms.topic: concept-article
-ms.date: 11/21/2025
+ms.date: 02/17/2026
 ms.author: danlep
 ---
 
@@ -110,7 +110,7 @@ The following tables compare features available in the following API Management 
 | [Pass-through GraphQL](graphql-apis-overview.md) |  ✔️ | ✔️ |✔️ | ✔️ | ✔️ |
 | [Synthetic GraphQL](graphql-apis-overview.md)|  ✔️ |  ✔️ | ✔️<sup>1</sup> | ✔️<sup>1</sup> | ❌ |
 | [Pass-through WebSocket](websocket-api.md) |  ✔️ |  ✔️ | ❌ | ✔️ | ✔️ |
-| [Pass-through gRPC](grpc-api.md)  |  ❌ | ❌ | ❌ | ✔️ | ❌ |
+| [Pass-through gRPC](grpc-api.md)  |  ✔️ | ❌ | ❌ | ✔️ | ❌ |
 | [OData](import-api-from-odata.md)  |  ✔️ |  ✔️ | ✔️ | ✔️ | ✔️ |
 | [Azure OpenAI in Microsoft Foundry models and LLMs](azure-ai-foundry-api.md) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 | [Pass-through MCP server](expose-existing-mcp-server.md) | ✔️  | ✔️ | ❌ | ✔️ | ❌ |
