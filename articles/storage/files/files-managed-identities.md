@@ -57,20 +57,25 @@ In addition, the clients that need to authenticate using a managed identity shou
 
 In order to authenticate a managed identity, you must enable a property called **SMBOAuth** on the storage account that contains the Azure file share you want to access. We recommend creating a new storage account for this purpose. You can use an existing storage account only if it doesn't have any other identity source configured.
 
-You can enable the **SMBOAuth** property on your storage account by using either the Azure portal or PowerShell. Select the appropriate tab for instructions.
+You can enable the **SMBOAuth** property on your storage account by using either the Azure portal or Azure PowerShell. Select the appropriate tab for instructions.
 
 ### [Portal](#tab/windows)
 
-Portal instructions here
+To create a new storage account with the **SMBOAuth** property enabled using the Azure portal, follow [these steps](create-classic-file-share.md#create-a-storage-account). Under the **Advanced** tab, check the **Enable Managed Identity for SMB** checkbox.
 
+:::image type="content" source="media/managed-identities/enable-managed-identity.png" alt-text="Screenshot showing how to enable managed identity for SMB when creating a new storage account using the Azure portal." border="true":::
 
-Next, create an SMB file share on the storage account. 
+Alternatively, you can enable the **SMBOAuth** property on an existing storage account, as long as the storage account doesn't have any other identity source configured.
 
+To do this, navigate to the storage account. From the service menu, under **Settings**, select **Configuration**. Under **Managed Identity for SMB**, select **Enabled**, then select **Save**. 
 
+:::image type="content" source="media/managed-identities/enable-managed-identity-on-existing-storage-account.png" alt-text="Screenshot showing how to enable managed identity for SMB on an existing storage account using the Azure portal." border="true":::
+
+Next, [create an SMB file share](create-classic-file-share.md) on the storage account.
 
 ### [PowerShell](#tab/linux)
 
-To enable the **SMBOAuth** property on your storage account using PowerShell, first you must prepare your PowerShell environment.
+To enable the **SMBOAuth** property on your storage account using Azure PowerShell, first you must prepare your PowerShell environment.
 
 Open PowerShell as administrator and run the following command to set the PowerShell execution policy:
 
