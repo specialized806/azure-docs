@@ -193,7 +193,8 @@ Before deleting any objects, list and review them to confirm that they are truly
 Use the **Get‑UnassociatedVsanObjectsWithPolicy** Run Command to list unassociated vSAN objects and obtain their UUIDs.
  
 For detailed steps, see:
-- **List storage policies for Unassociated objects**
+
+[List storage policies for Unassociated objects](https://learn.microsoft.com/en-us/azure/azure-vmware/configure-storage-policy#list-storage-policies-for-unassociated-objects)
  
 The output of this command includes the **UUID** of each unassociated vSAN object, which is required for deletion.
  
