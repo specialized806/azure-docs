@@ -80,7 +80,7 @@ Azure Data Manager for Energy is now available in two new regions: **Central Ind
 
 Central India is available for select customers and partners only. Reach out to your designated Microsoft account team member to unlock access. Once access is provided, you can select "Central India" as your preferred region when creating Azure Data Manager for Energy resource, using the Azure portal or your preferred provisioning method.
 
-For more information on region reliability, see [Azure Data Manager for Energy reliability](/azure/reliability/reliability-energy-data-services).
+For more information on region reliability, see [Azure Data Manager for Energy reliability](reliability-energy-data-services.md).
 
 ## April 2025
 ### Azure Data Manager for Energy available in four new regions

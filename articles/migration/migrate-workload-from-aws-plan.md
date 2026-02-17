@@ -2,6 +2,7 @@
 title: Plan Your Workload Migration from Amazon Web Services (AWS) to Azure
 description: Plan your AWS to Azure migration. Assess the workload, design the architecture, and use detailed runbooks to minimize risk and ensure success.
 ms.author: rhackenberg
+author: reginahack
 ai-usage: ai-assisted
 ms.date: 02/13/2026
 ms.topic: concept-article
