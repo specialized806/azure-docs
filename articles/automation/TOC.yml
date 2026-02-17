@@ -289,7 +289,7 @@
     href: troubleshoot/shared-resources.md
   - name: Troubleshoot runbook issues
     href: troubleshoot/runbooks.md
-  - name: troubleshoot hybrid runbook worker issues
+  - name: Troubleshoot Hybrid Runbook Worker Issues
     items:
     - name: Troubleshoot Extension-based Hybrid Runbook Worker Issues
       href: troubleshoot/extension-based-hybrid-runbook-worker.md
