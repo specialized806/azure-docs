@@ -126,15 +126,12 @@ The following table shows the properties that you can use to compose each clause
 | Metadata.Value[Name]           | Last-Modified             |                |                  |
 | Name                           |                           |                |                  |
 | Tags.Value[Name]               |                           |                |                  |
-| VersionId<sup>4</sup>          |                           |                |                  |
 
 <sup>1</sup>    Allowed values are `Hot`, `Cool`, `Cold` or `Archive`.
 
 <sup>2</sup>    Allowed values are `BlockBlob`, `PageBlob`, or `AppendBlob`
 
 <sup>3</sup>    Can be set to a specific time or to a metadata value dynamically obtained from objects. See [Reference a value from object metadata](storage-task-conditions-operations-edit.md#reference-a-value-from-object-metadata).
-
-<sup>4</sup>    Available only for versioning-enabled accounts.
 
 ## Supported operators
 
