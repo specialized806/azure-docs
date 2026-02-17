@@ -138,7 +138,7 @@ The initial backup includes two tasks:
 To complete the initial backup, use the Microsoft Azure Recovery Services agent.
 
 > [!NOTE]
-> You can back up System State on Windows Server 2012 through Windows Server 2025. System State back up isn't supported on client SKUs. System State isn't shown as an option for Windows clients, or Windows Server 2008 SP2 machines.
+> You can back up System State on Windows Server 2022 through Windows Server 2025. System State back up isn't supported on client SKUs. System State isn't shown as an option for Windows clients, or Windows Server 2008 SP2 machines.
 >
 >
 
