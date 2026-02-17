@@ -143,10 +143,10 @@ The following table shows the operators that you can use in a clause to evaluate
 | empty | greater | greater |  |
 | endsWith | greaterOrEquals |greaterOrEquals ||
 | equals | less | less ||
-| matches<sup>5</sup> | lessOrEquals | lessOrEquals ||
+| matches<sup>4</sup> | lessOrEquals | lessOrEquals ||
 | startsWith | | ||
 
-<sup>5</sup>    The `matches` operator is not supported for `Metadata.Value[Name]` and `Tags.Value[Name]` properties.
+<sup>4</sup>    The `matches` operator is not supported for `Metadata.Value[Name]` and `Tags.Value[Name]` properties.
 
 The **not** operator is a special operator that you can position before any of the operators that appear in this table to give the opposite result of conditional clause, also called the negative result.
 
