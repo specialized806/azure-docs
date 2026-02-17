@@ -14,9 +14,9 @@ titleSuffix: Durable Task
 
 # Choose your programming model
 
-As described in [What is Durable Task?](what-is-durable-task.md), the Durable Task framework supports two hosting models: **Azure Functions** (via Durable Functions) and **self-hosted** (via the standalone Durable Task SDKs). Both hosting models provide the same core durable execution capabilities — orchestrations, activities, timers, external events, etc. — but differ in how your application is hosted, scaled, and deployed.
+As described in [What is Durable Task?](what-is-durable-task.md), the Durable Task framework supports two hosting models: **Azure Functions** (via Durable Functions) and **self-hosted** (via the standalone Durable Task SDKs). Both hosting models provide the same core durable execution capabilities — orchestrations, activities, timers, external events, and more — but differ in how your application is hosted, scaled, and deployed.
 
-In general, the choice of programming model is determined by where your application runs. If you're building on Azure Functions, you use Durable Functions. If you're building on any other compute platform, you use the standalone Durable Task SDKs.
+In general, where your application runs determines which programming model you use. If you're building on Azure Functions, you use Durable Functions. If you're building on any other compute platform, you use the standalone Durable Task SDKs.
 
 ## Choosing based on hosting platform
 
@@ -44,7 +44,7 @@ The following table summarizes the key differences between the two programming m
 | **Triggers** | Built-in support for HTTP, Queue, Timer, Event Grid, and [other Azure Functions triggers](../functions-triggers-bindings.md) | You define your own entry points (for example, HTTP endpoints, message consumers, etc.) |
 | **State storage** | [Durable Task Scheduler](./durable-task-scheduler/durable-task-scheduler.md) (recommended), [Azure Storage](./durable-functions-azure-storage-provider.md), [MSSQL](./durable-functions-storage-providers.md#mssql), [Netherite](./durable-functions-storage-providers.md#netherite) | [Durable Task Scheduler](./durable-task-scheduler/durable-task-scheduler.md) |
 | **Languages** | .NET (C#/F#), JavaScript/TypeScript, Python, Java, PowerShell | .NET (C#/F#), JavaScript/TypeScript, Python, Java |
-| **Monitoring** | Built-in integration with Azure portal, Application Insights | You set up your own monitoring solution (for example, Azure Monitor, Prometheus, Grafana, etc.) |
+| **Monitoring** | Built-in integration with Azure portal, Application Insights | You set up your own monitoring solution (for example, Azure Monitor, Prometheus, or Grafana) |
 
 Both programming models support the **[Durable Task Scheduler](./durable-task-scheduler/durable-task-scheduler.md)** as a state storage backend, which provides both state storage and additional monitoring capabilities. Durable Functions additionally supports several bring-your-own (BYO) storage options for scenarios that require them. For more information, see [Storage providers](durable-functions-storage-providers.md).
 
