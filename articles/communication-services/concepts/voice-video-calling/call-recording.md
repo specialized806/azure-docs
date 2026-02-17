@@ -149,7 +149,7 @@ Many countries/regions and states have laws and regulations that apply to call r
 
 Regulations around the maintenance of personal data require the ability to export user data. In order to support these requirements, recording metadata files include the `participantId` for each call participant in the `participants` array. You can cross-reference the Azure Communication Services User Identity in the `participants` array with your internal user identities to identify participants in a call. 
 
-## Other Notes ##
+## Known Issues ##
 In rare High Availability or Disaster Recovery (HADR) scenarios, a single call recording session may produce multiple recording files that share the same `recordingId` and `chunkId`. In these cases, `StopCallRecording` may return `404 Recording not found` even though recording files are successfully delivered via `RecordingFileStatusUpdated` events. Applications should correlate recordings using `serverCallId` and not assume a one‑to‑one relationship between calls, recording IDs, chunk IDs, and output files.
 
 ## Next steps
