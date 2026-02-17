@@ -5,7 +5,7 @@ services: expressroute
 author: duongau
 ms.service: azure-expressroute
 ms.topic: concept-article
-ms.date: 02/08/2026
+ms.date: 02/14/2026
 ms.author: duau
 ms.custom:
   - references_regions
@@ -46,7 +46,7 @@ The following diagram allows for a comparison between the standard ExpressRoute 
 |--|--|--|--|--|--|
 | Amsterdam Metro | Equinix AM5<br>Digital Realty AMS8 | 1 | West Europe | &check; | Colt<br>DE-CIX<br>Digital Realty<br>Equinix<br>euNetworks<br>Megaport<br>NL-IX<br>SURF |
 | Atlanta Metro | Equinix AT1<br>Digital Realty ATL14 | 1 | &cross; | &check; |  Equinix<br>Megaport<br>|
-| Brussels Metro | Digital Realty BR4<br>LCL Brussels North | 1 | Belgium Central | &cross; | Belnet<br>Colt<sup>1</sup><br>Megaport<sup>1</sup>  |
+| Brussels Metro | Digital Realty BR4<br>LCL Brussels North | 1 | Belgium Central | &cross; | Belnet<br>Colt<br>Megaport<sup>1</sup>  |
 | Chicago Metro | Equinix CH1<br>CoreSite CH1 | 1 | North Central US | &check; |  Equinix<br>Megaport |
 | Dallas Metro | Equinix DA6 <br>Digital Realty DFW10 | 1 | &cross; | &check; | Megaport |
 | Dublin Metro | Equinix DB3 <br>Digital Realty DUB02 | 1 | North Europe | &check; | Colt<sup>1</sup><br>Equinix<br>Megaport<sup>1</sup> |
@@ -62,7 +62,7 @@ The following diagram allows for a comparison between the standard ExpressRoute 
 | Stockholm Metro | Equinix SK1<br>Digital Realty STO6 | 1 | Sweden Central | &check; | Megaport<sup>1</sup><br>Telia Carrier (Arelion)<sup>1</sup> |
 | Taipei Metro | Chief Telecom<br>Chunghwa Telecom Co. Ltd | 2 | Taiwan North | &check; | Chunghwa Telecom<sup>1</sup> |
 | Toronto Metro | Cologix TOR1<br>Allied King West | 1 | Canda Central | &check; | Megaport<sup>1</sup> |
-| Vienna Metro |  Digital Realty VIE1<br>NTT GDC | 1 | Austria East | &check; | A1 Telekom Austria<sup>1</sup><br> Colt<sup>1</sup><br> Next Layer GMBH<sup>1</sup> |
+| Vienna Metro |  Digital Realty VIE1<br>NTT GDC | 1 | Austria East | &check; | A1 Telekom Austria<sup>1</sup><br> Colt<br> Next Layer GMBH<sup>1</sup> |
 | Zurich Metro |  Digital Realty ZUR2<br>Equinix ZH5 | 1 | Switzerland North | &check; | Colt<br>Digital Realty<br>Swisscom |
 | Washington DC Metro | Equinix DC6<br>CoreSite VA3 | 1 | East US<br/>East US 2 | &check; |  Equinix<br>Megaport<br>Zayo<sup>1</sup> |
 
