@@ -4,7 +4,7 @@ description: Learn about service limits in Azure API Management, including their
 author: dlepow
 ms.service: azure-api-management
 ms.topic: concept-article
-ms.date: 02/12/2026
+ms.date: 02/17/2026
 ms.author: danlep
 ai-usage: ai-assisted
 ---
@@ -43,9 +43,9 @@ New limits roll out in a phased approach by tier as follows:
 
 |Tier  |Expected rollout date  |
 |---------|---------|
-|Consumption<br/>Developer<br/>Basic<br/>Basic v2     | March 2026     |
-|Standard<br/>Standard v2      |  April 2026       |
-|Premium<br/>Premium v2     |  May 2026       |
+|Consumption<br/>Developer<br/>Basic<br/>Basic v2     | March 15, 2026     |
+|Standard<br/>Standard v2      |  April 15,  2026       |
+|Premium<br/>Premium v2     |  May 15, 2026       |
 
 ### Limits policy for existing classic tier customers
 
