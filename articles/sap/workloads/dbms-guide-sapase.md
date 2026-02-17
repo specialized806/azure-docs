@@ -80,7 +80,7 @@ The template tables show sample configurations for both Linux and Windows. Befor
 
 The examples given are for illustrative purposes and can be modified based on individual needs. Due to the design of SAP ASE, the number of data devices isn't as critical as with other databases. The number of data devices detailed in this document is a guide only. The configurations suggested should be treated as starting points. But they're configurations that are going to need some fine-tuning to your workload and cost efficiencies.
 
-# [50 GB - 250 GB](#tab/50-250)
+# [50 GB - 250 GB](#tab/50-250gb)
 
 An example of a configuration for a small SAP ASE DB Server with a database size between 50 GB – 250 GB could look like:
 
@@ -102,7 +102,7 @@ An example of a configuration for a small SAP ASE DB Server with a database size
 | # of backup devices | 4 | 4 | --- |
 | # and type of backup disks | 1 | 1 | --- |
 
-# [250 GB - 750 GB](#tab/250-750)
+# [250 GB - 750 GB](#tab/250-750gb)
 
 An example of a configuration for a small SAP ASE DB Server with a database size between 250 GB – 750 GB, such as a smaller SAP Business Suite system, could look like:
 
@@ -124,7 +124,7 @@ An example of a configuration for a small SAP ASE DB Server with a database size
 | # of backup devices | 4 | 4| --- |
 | # and type of backup disks | 1 | 1 | --- |
 
-# [750 GB - 2 TB](#tab/750-2)
+# [750 GB - 2 TB](#tab/750-2tb)
 
 An example of a configuration for a medium SAP ASE DB Server with a database size between 750 GB – 2,000 GB, such as a larger SAP Business Suite system, could look like:
 
@@ -146,7 +146,7 @@ An example of a configuration for a medium SAP ASE DB Server with a database siz
 | # of backup devices | 4 | 4| --- |
 | # and type of backup disks | 1 | 1 | --- |
 
-# [2 TB - 4 TB](#tab/2-4)
+# [2 TB - 4 TB](#tab/2-4tb)
 
 An example of a configuration for a large SAP ASE DB Server with a database size between 2,000 GB – 4,000 GB, such as a larger SAP Business Suite system, could look like:
 
@@ -168,7 +168,7 @@ An example of a configuration for a large SAP ASE DB Server with a database size
 | # of backup devices | 4 | 4| --- |
 | # and type of backup disks | 1 | 1 | --- |
 
-# [4 TB+](#tab/4+)
+# [4 TB+](#tab/over-4tb)
 
 An example of a configuration for a larger SAP ASE DB Server with a database size of 4 TB and greater, such as a larger SAP Business Suite system, could look like:
 
