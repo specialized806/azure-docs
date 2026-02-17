@@ -19,8 +19,6 @@ ms.custom:
 
 [!INCLUDE [api-management-availability-premium-dev-standard-basic](../../includes/api-management-availability-premium-dev-standard-basic.md)]
 
-<!-- Confirm that Consumption isn't supported -->
-
 This article shows how to import a gRPC service definition as an API in API Management. You can then manage the API in API Management, secure access and apply other policies, and pass gRPC API requests through the gateway to the gRPC backend. 
 
 To add a gRPC API to API Management, you need to:
