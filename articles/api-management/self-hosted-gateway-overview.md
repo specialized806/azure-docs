@@ -130,7 +130,7 @@ To operate properly, each self-hosted gateway needs outbound connectivity on por
 
 ## Authentication options
 
-The self-hosted gateway needs connectivity with its associated cloud-based API Management instance for reporting status, checking for and applying configuration updates, and sending metrics and events.
+The self-hosted gateway needs to authenticate to its associated cloud-based API Management instance to maintain secure communication and access configuration updates.
 
 For details, see [Self-hosted gateway authentication options](self-hosted-gateway-authentication-options.md).
 
