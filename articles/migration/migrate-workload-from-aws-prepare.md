@@ -2,6 +2,7 @@
 title: Prepare Your Workload Migration from Amazon Web Services (AWS) to Azure
 description: Learn how to prepare a single workload for migration from AWS to Azure. Deploy infrastructure, refactor code, and test security for a smooth transition.
 ms.author: rhackenberg
+author: reginahack
 ai-usage: ai-assisted
 ms.date: 02/13/2026
 ms.topic: concept-article
@@ -13,7 +14,7 @@ ms.collection:
 ---
 # Prepare your workload migration from Amazon Web Services (AWS) to Azure
 
-This article is part of a series about how to [migrate a workload from Amazon Web Services (AWS) to Azure](/azure/migration/migrate-workload-from-aws-introduction). 
+This article is part of a series about how to [migrate a workload from Amazon Web Services (AWS) to Azure](/azure/migration/migrate-workload-from-aws-introduction).
 
 The preparation phase consists of these steps:
 

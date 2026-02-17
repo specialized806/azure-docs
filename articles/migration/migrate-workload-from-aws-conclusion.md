@@ -4,6 +4,7 @@ description: Learn about the next steps after you migrate a single workload from
 ms.author: rhackenberg
 ai-usage: ai-assisted
 ms.date: 02/13/2026
+author: reginahack
 ms.topic: concept-article
 ms.custom: migration-hub
 ms.service: azure
