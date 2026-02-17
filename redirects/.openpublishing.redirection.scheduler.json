@@ -1,0 +1,14 @@
+{
+  "redirections": [
+    {
+      "source_path_from_root": "/articles/scheduler/migrate-from-scheduler-to-logic-apps.md",
+      "redirect_url": "/azure/logic-apps/quickstart-create-example-consumption-workflow",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/scheduler/index.yml",
+      "redirect_url": "/azure/logic-apps/",
+      "redirect_document_id": false
+    }
+  ]
+}
