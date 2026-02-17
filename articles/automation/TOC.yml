@@ -287,18 +287,16 @@
     href: troubleshoot/managed-identity.md
   - name: Troubleshoot Shared Resources Issues
     href: troubleshoot/shared-resources.md
-  - name: Troubleshoot Runbook Issues
+  - name: Troubleshoot runbook issues
     href: troubleshoot/runbooks.md
-  - name: Troubleshoot Hybrid Runbook Workers Issues
-    items:
-      - name: Troubleshoot Extension-based Hybrid Runbook Worker
-        href: troubleshoot/extension-based-hybrid-runbook-worker.md
-      - name: Troubleshoot Agent-based Hybrid Runbook Worker
-        href: troubleshoot/hybrid-runbook-worker.md
+  - name: Troubleshoot Extension-based Hybrid Runbook Worker Issues
+    href: troubleshoot/extension-based-hybrid-runbook-worker.md
+  - name: Troubleshoot Agent-based Hybrid Runbook Worker Issues
+    href: troubleshoot/hybrid-runbook-worker.md
   - name: Troubleshoot State Configuration Issues 
-    href: troubleshoot/desired-state-configuration.md 
-  - name: Data to Collect when Opening a Case for Microsoft Azure Automation
-    href: troubleshoot/collect-data-microsoft-azure-automation-case.md 
+    href: troubleshoot/desired-state-configuration.md
+  - name: Data to collect when opening a case for Microsoft Azure Automation
+    href: troubleshoot/collect-data-microsoft-azure-automation-case.md
 - name: Reference
   items:
   - name: Azure CLI
