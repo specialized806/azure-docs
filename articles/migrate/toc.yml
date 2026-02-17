@@ -35,6 +35,8 @@ items:
     href: how-to-use-azure-migrate-with-private-endpoints.md
   - name: Support Matrix
     href: migrate-support-matrix.md
+  - name: Dependency analysis
+    href: concepts-dependency-visualization.md
   - name: Assessment rules for PostgreSQL
     href: assessment-rules-for-postgresql.md
   - name: Agentless migration architecture
