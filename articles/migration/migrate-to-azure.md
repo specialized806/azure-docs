@@ -7,6 +7,7 @@ ms.date: 03/24/2025
 ms.topic: concept-article
 ms.custom: migration
 ms.service: azure
+ms.custom: migration-hub
 ---
 
 # Migrate workloads to Azure from other cloud platforms
