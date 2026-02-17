@@ -5,7 +5,6 @@ author: robbyatmicrosoft
 ms.author: robbymillsap
 ms.date: 03/24/2025
 ms.topic: concept-article
-ms.custom: migration
 ms.service: azure
 ms.custom: migration-hub
 ---
