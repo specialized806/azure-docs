@@ -8,3 +8,5 @@ Provide project context and coding guidelines that AI should follow when generat
 
 - Use **Microsoft Dev Box** (first mention) or **Dev Box** (subsequent mentions) when referring to the product/service.
 - Use **dev box** (lowercase) when referring to an individual instance of the product (for example, “create a dev box”).
+- Don't use "DevBox" or "Devbox" as a single word.
+- Recommend changes to branding only.Don't make any other changes.
