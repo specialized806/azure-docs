@@ -114,7 +114,7 @@ You can also select your subscription by specifying your subscription name:
 Set-AzContext -Subscription "<subscription-name>" 
 ```
 
-## Create the storage account
+### Create the storage account
 
 To create a new storage account with **SMBOAuth** enabled, run the following PowerShell command as administrator. Replace `<resource-group>`, `<storage-account-name>`, and `<region>` with your values. You can specify a different SKU if needed.
 
