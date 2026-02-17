@@ -12,7 +12,7 @@ ms.author: v-mallicka
 
 # Back up Azure Files
 
-This article describes how to back up [Azure Files](../storage/files/storage-files-introduction.md) from the Azure portal.
+This article describes how to back up [Azure Files](../storage/files/storage-files-introduction.md) from the Azure portal. You can also back up Azure Files using [CLI](backup-afs-cli.md), [Azure PowerShell](backup-azure-afs-automation.md), and [REST API](backup-azure-file-share-rest-api.md).
 
 Azure Files backup is a native cloud solution that protects your data and eliminates on-premises maintenance overheads. Azure Backup seamlessly integrates with Azure File Sync, centralizing your file share data and backups. The simple, reliable, and secure solution allows you to protect your enterprise file shares using [snapshot](azure-file-share-backup-overview.md?tabs=snapshot) and [vaulted](azure-file-share-backup-overview.md?tabs=vault-standard) backups, ensuring data recovery for accidental or malicious deletion.
 

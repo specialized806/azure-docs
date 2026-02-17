@@ -10,7 +10,7 @@ ms.author: v-mallicka
 
 # Backup Azure Files using Azure Backup via REST API
 
-This article describes how to back up an Azure Files using Azure Backup via REST API.
+This article describes how to back up an Azure Files using Azure Backup via REST API. You can also back up Azure Files using [Azure portal](backup-azure-files.md), [CLI](backup-afs-cli.md), and [Azure PowerShell](backup-azure-afs-automation.md).
 
 This article assumes you've already created a Recovery Services vault and policy for configuring backup for your File Share. If you haven’t, refer to the [create vault](./backup-azure-arm-userestapi-createorupdatevault.md) and [create policy](./backup-azure-arm-userestapi-createorupdatepolicy.md) REST API tutorials for creating new vaults and policies.
 
