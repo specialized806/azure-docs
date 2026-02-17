@@ -124,6 +124,7 @@ The user who accepted the discount proposal automatically gets owner access to t
 
 ## Related content
  - [Calculate discount in the usage file](../../understand/download-azure-daily-usage.md#calculate-discount-in-the-usage-file)
+ - [Microsoft.BillingBenefits/discounts - Bicep, ARM template & Terraform AzAPI reference](https://aka.ms/DiscountReference)
  - [Understand Cost Management data](../../../cost-management-billing/costs/understand-cost-mgt-data.md)
  - [View and download your organization's Azure pricing](../../../cost-management-billing/manage/ea-pricing.md)
  - [Terms in your Microsoft Customer Agreement price sheet](../../../cost-management-billing/manage/mca-understand-pricesheet.md)
