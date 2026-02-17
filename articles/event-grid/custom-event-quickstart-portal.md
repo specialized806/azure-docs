@@ -15,8 +15,6 @@ In this quickstart, you create a topic, create a subscription to that topic usin
 - If you don't have an Azure subscription, create an [Azure free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 - If you're new Azure Event Grid, see [Event Grid overview](overview.md).
 
-[!INCLUDE [register-provider.md](./includes/register-provider.md)]
-
 ## Create a custom topic
 An Event Grid topic provides a user-defined endpoint that you post your events to. 
 
@@ -71,7 +69,7 @@ Before you create a subscription for the custom topic, create an endpoint for th
     :::image type="content" source="./media/blob-event-quickstart-portal/web-site.png" alt-text="Screenshot that shows the App Service page with the link to the site highlighted.":::
 6. Confirm that you see the site but no events have been posted to it yet.
 
-    :::image type="content" source="./media/blob-event-quickstart-portal/view-site.png" alt-text="Screenshot that shows the Event Grid Viewer sample app.":::    
+    :::image type="content" source="./media/blob-event-quickstart-portal/event-grid-viewer-site.png" alt-text="Screenshot that shows the Event Grid Viewer sample app.":::    
 
 ## Subscribe to custom topic
 
