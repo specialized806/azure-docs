@@ -50,7 +50,7 @@ You need a working knowledge of Microsoft Azure architecture and how Microsoft A
 
 In general, the Windows, Linux, and DBMS installation and configuration are essentially the same as any virtual machine or bare metal machine you install on-premises. There are some architecture and system management implementation decisions that are different when you use Azure IaaS. This document explains the specific architectural and system management differences to be prepared for when you use Azure IaaS.
 
-## Storage structure of a VM for DBMS deployments
+## Storage structure of a VM for RDBMS deployments
 
 To follow this chapter, read the information presented in:
 
