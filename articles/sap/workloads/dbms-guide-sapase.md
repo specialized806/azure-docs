@@ -62,7 +62,7 @@ Write Accelerator is designed for transaction log disk only. The disk level cach
 > [!NOTE]
 > With some of the new M(b)v3 VM types, the usage of read cached Premium SSD v1 storage could result in lower read and write IOPS rates and throughput than you would get if you don't use read cache.
 
-Separate disks are recommended for *Data* devices and *Log* devices. The system databases sybsecurity and `saptools` don't require dedicated disks and can be placed on the disks containing the SAP database data and log devices.
+Separate disks are recommended for *Data* devices and *Log* devices. The system databases `sybsecurity` and `saptools` don't require dedicated disks and can be placed on the disks containing the SAP database data and log devices.
 
 ![A diagram of a Sybase VM using SAP ASE storage configuration.](./media/dbms-guide-sap-ase/sap-ase-disk-structure.png)
 
