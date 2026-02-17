@@ -147,8 +147,7 @@ The following table shows the operators that you can use in a clause to evaluate
 | endsWith | greaterOrEquals |greaterOrEquals ||
 | equals | less | less ||
 | matches<sup>5</sup> | lessOrEquals | lessOrEquals ||
-| startsWith | utcNow | ||
-|  | dateTimeAdd | ||
+| startsWith | | ||
 
 <sup>5</sup>    The `matches` operator is not supported for `Metadata.Value[Name]` and `Tags.Value[Name]` properties.
 
