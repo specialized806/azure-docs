@@ -319,6 +319,75 @@ N/A
 
 ---
 
+## Configure Blob Index Tags replication
+
+Object replication now supports copying source blob's index tags to the destination blob. You can either configure it when creating new replication rules or enable it for existing replication rules. 
+
+> [!NOTE]
+> Tags Replication is currently in Public Preview, please refer to the following prerequisites for trying out the feature.
+
+### Prerequisites
+
+Source account must be registered for ```EnableObjectReplicationTags``` before the tags replication can be 
+enabled. You can use the Portal to register for the preview by following [Set up preview features in Azure subscription](https://github.com/MicrosoftDocs/azure-docs/blob/main/articles/azure-resource-manager/management/preview-features.md).
+
+CLI commands to register for preview,
+```
+az account set –subscription {subscription ID}
+az feature register --namespace "Microsoft.Storage" --name "EnableObjectReplicationTags"
+az provider register -n Microsoft.Storage
+```
+Users can verify the status of the registration using,
+```
+az feature show --namespace "Microsoft.Storage" --name "EnableObjectReplicationTags"
+```
+### Enable Tags replication
+
+Tags replication can be enabled on both new and existing object replication policies. For existing rules, updates to the Blobs or Tags is required to trigger replication of tags to the destination account.  
+
+#### [Azure portal](#tab/portal)
+
+You can enable tags replication using **Object Replication** blade when creating a new rule or from the new _Tags replication_ column for existing rule or by editing the _Edit Rules_ section of a policy from "…" on the OR policy row.
+
+#### [PowerShell](#tab/powershell)
+
+Not yet supported.
+
+#### [Azure CLI](#tab/azure-cli)
+
+Not yet supported.
+
+#### [REST API](#tab/rest-api)
+
+Users can use existing REST APIs: [Object Replication Policies - Create Or Update - REST API](https://learn.microsoft.com/en-us/rest/api/storagerp/object-replication-policies/create-or-update?view=rest-storagerp-2025-06-01&tabs=HTTP) to configure policies for replicating tags set on the Blobs. 
+
+Simply add the following line ``` “tagsReplication”: { “enabled”: true }``` when creating or updating the replication 
+rules on the source account.
+
+Tags replication is supported on API version 2021-08-01 and above. You can add the new tagsReplication field to the replication policy.
+
+Sample: 
+
+``` json
+{
+    "sourceAccount": "<source-account-name>",
+    "destinationAccount": "<destination-account-name>",
+    "tagsReplication":
+    {
+     "enabled": true
+    },
+    "rules":
+    [
+        {
+            "ruleId": "<rule-id>",
+            "sourceContainer": "<source-container-name>",
+            "destinationContainer": "<destination-container-name>"
+        }
+    ]
+}
+```
+---
+
 ## Configure replication metrics
 
 ### Enable replication metrics
