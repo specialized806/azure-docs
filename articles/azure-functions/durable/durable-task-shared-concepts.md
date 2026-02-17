@@ -22,7 +22,7 @@ Certain fundamental concepts are shared by both the Durable Functions or Durable
 
 | Concept | Description | Learn more... |
 | --- | --- | --- |
-| Orchestrator code constraints | Orchestrators use [event sourcing](/azure/architecture/patterns/event-sourcing) to ensure reliable execution and maintain local variable state. The replay behavior of orchestrator code creates constraints on the type of code you can write. Orchestrators must be *deterministic*: they replay multiple times and must produce the same result each time. | [Orchestrator function code constraints](durable-functions-code-constraints.md) |
+| Orchestrator code constraints | Orchestrators use [event sourcing](/azure/architecture/patterns/event-sourcing) to ensure reliable execution and maintain local variable state. The replay behavior of orchestrator code creates constraints on the type of code you can write. Orchestrators must be *deterministic*: they replay multiple times and must produce the same result each time. | [Orchestrator code constraints](durable-functions-code-constraints.md) |
 | Durable entities | Entities define operations that read and update small pieces of state, called *durable entities*. Unlike orchestrations, entities manage state explicitly instead of representing state through control flow. Entities help you scale out apps by distributing work across many entities, each with modest state. | [Durable entities](durable-functions-entities.md) |
 
 ## Advanced features
@@ -45,7 +45,7 @@ Both platforms support the same workflow patterns for building reliable, scalabl
 
 | Pattern | Description | Learn more... |
 | --- | --- | --- |
-| Function chaining | Function chaining runs a sequence of functions or activities in order, passing the output of one to the input of the next. This is the most common orchestration pattern and serves as the foundation for more complex workflows. | [Function chaining](durable-functions-sequence.md) |
+| Task chaining | Task chaining runs a sequence of functions or activities in order, passing the output of one to the input of the next. This is the most common orchestration pattern and serves as the foundation for more complex workflows. | [Task chaining](durable-functions-sequence.md) |
 | Fan-out/fan-in | Fan-out/fan-in runs multiple functions or activities in parallel, waits for all to complete, and then aggregates the results. This pattern is useful for processing batches of items concurrently or distributing work across multiple compute resources. | [Fan-out/fan-in scenario](durable-functions-fan-in-fan-out.md) |
 | Human interaction | The human interaction pattern describes workflows that pause and wait for input from a person before continuing. This pattern is useful for approval workflows, multifactor authentication, and any scenario requiring a human response within a time limit. | [Human interaction pattern](durable-functions-human-interaction.md) |
 | Monitor | The monitor pattern implements a flexible recurring process in a workflow, such as polling until certain conditions are met. Unlike timer-triggered functions, monitors can have dynamic intervals, terminate when conditions are met, and maintain state across iterations. | [Monitor scenario](durable-functions-monitor.md) |

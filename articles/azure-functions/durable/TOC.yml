@@ -39,6 +39,8 @@
   items:
   - name: Concepts shared between Durable Functions and Durable Task SDKs
     href: durable-task-shared-concepts.md
+  - name: Concepts different between Durable Functions and Durable Task SDKs
+    href: durable-task-different-concepts.md
   - name: Fundamentals
     items: 
     - name: Function types
