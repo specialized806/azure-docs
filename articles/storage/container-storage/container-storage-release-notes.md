@@ -40,7 +40,7 @@ A **major release** introduces significant changes, often including new features
 ### Improvements and issues that are fixed
 
 - Resolved security vulnerabilities through component updates.
-- Fixed an issue in the CSI node unstage workflow where the presence of filesystem journal entries after a successful unmount was incorrectly treated as a fatal error. This behavior could block NodeUnstage and disrupt operations such as pod failover, storage cleanup, upgrades, or ACStor uninstallation.
+- Fixed an issue in the CSI node unstage workflow where the presence of filesystem journal entries after a successful unmount was incorrectly treated as a fatal error. This behavior could block NodeUnstage and disrupt operations such as pod failover, storage cleanup, upgrades, or Azure Container Storage uninstallation.
 - Improved Azure authentication reliability for Elastic SAN provisioning and networking operations.
 
 ## Version 2.1.0
