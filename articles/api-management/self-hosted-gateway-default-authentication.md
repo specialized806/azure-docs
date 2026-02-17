@@ -1,5 +1,5 @@
 ---
-title: Azure API Management Self-Hosted Gateway - Default Token Authentication
+title: Azure API Management Self-Hosted Gateway - Access Token Authentication
 description: Enable the Azure API Management self-hosted gateway to authenticate with its associated cloud-based API Management instance using the default token-based authentication method.
 services: api-management
 author: dlepow
@@ -10,7 +10,7 @@ ms.date: 02/13/2026
 ms.author: danlep
 ---
 
-# Use default token authentication for the self-hosted gateway
+# Use token authentication for the self-hosted gateway
 
 [!INCLUDE [api-management-availability-premium-dev](../../includes/api-management-availability-premium-dev.md)]
 
@@ -18,23 +18,6 @@ The Azure API Management [self-hosted gateway](self-hosted-gateway-overview.md) 
 
 This article shows you how to enable the self-hosted gateway to authenticate using the default token-based authentication method. This approach uses a configuration token and endpoint URL to establish secure communication between the self-hosted gateway and your API Management instance. For other authentication options, see [Self-hosted gateway authentication options](self-hosted-gateway-authentication-options.md).
 
-## Scenario overview
-
-The default authentication method uses a gateway-specific authentication token that identifies the gateway and grants it access to read configuration from the API Management instance. The token is paired with your API Management configuration endpoint URL.
-
-This approach provides:
-
-- **Simple setup** - No complex role assignments or identity federation required
-- **Quick deployment** - Straightforward configuration without additional Azure resources
-- **Direct control** - Manage gateway access through the API Management instance directly
-- **Immediate availability** - No dependency on external identity systems
-
-To enable default token authentication, complete the following steps:
-
-1. Provision a gateway resource in your API Management instance
-1. Generate the gateway configuration token
-2. Configure the gateway with the token and endpoint
-3. Deploy the gateway to an appropriate hosting environment (for example, Kubernetes)
 
 ## Prerequisites
 
@@ -58,7 +41,11 @@ When you provision a gateway resource in API Management, a default authenticatio
 
 ## Deploy the self-hosted gateway
 
-Deploy the self-hosted gateway to Kubernetes using the default token authentication. The following YAML configuration shows the required components and settings.
+Deploy the self-hosted gateway to a containerized environment, such as Kubernetes, using the default token authentication. 
+
+#### [YAML](#tab/yaml)
+
+The following YAML configuration shows the required components and settings for deployment to Kubernetes.
 
 > [!IMPORTANT]
 > Make sure to replace the placeholder values with your actual configuration:
@@ -215,6 +202,23 @@ kubectl get pods -n <namespace-name>
 kubectl logs -n <namespace-name> <pod-name>
 ```
 
+#### [Helm](#tab/helm)
+
+You can deploy the self-hosted gateway with Microsoft Entra authentication using [Helm](https://github.com/Azure/api-management-self-hosted-gateway). 
+
+Replace the following values in the the `helm install` command with your actual values:
+
+- `<gateway-url>`: The URL of your gateway, in the format `https://<gateway-name>.configuration.azure-api.net`
+- `<gateway-key>`: Your gateway configuration token    
+
+
+```console
+helm install --name azure-api-management-gateway azure-apim-gateway/azure-api-management-gateway \
+             --set gateway.configuration.uri='<gateway-url>' \
+             --set gateway.auth.key='<gateway-key>'
+```
+---
+
 ## Token rotation and management
 
 The configuration token has a defined lifetime. When a token expires, the gateway will lose connectivity to the API Management instance.
@@ -233,6 +237,11 @@ kubectl patch secret apim-gateway-token -n <namespace-name> -p '{"data":{"config
 ```
 
 [!INCLUDE [api-management-self-hosted-gateway-kubernetes-services](../../includes/api-management-self-hosted-gateway-kubernetes-services.md)]
+
+## Event Grid events for token expiration
+
+
+API Management generates events when a self-hosted gateway access token is near expiration or has expired. Use these events to ensure that deployed gateways are always able to authenticate with their associated API Management instance. For more information, see [Azure API Management as an Event Grid source](/azure/event-grid/event-schema-api-management).
 
 ## Related content
 

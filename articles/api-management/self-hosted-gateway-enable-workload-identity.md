@@ -263,6 +263,30 @@ kubectl logs -n <namespace-name> <pod-name>
 
 [!INCLUDE [api-management-self-hosted-gateway-kubernetes-services](../../includes/api-management-self-hosted-gateway-kubernetes-services.md)]
 
+#### [Helm](#tab/helm)
+
+You can deploy the self-hosted gateway with Microsoft Entra authentication using [Helm](https://github.com/Azure/api-management-self-hosted-gateway). 
+
+Replace the following values in the the `helm install` command with your actual values:
+
+- `<gateway-name>`: Your Azure API Management instance name
+- `<gateway-url>`: The URL of your gateway, in the format `https://<gateway-name>.configuration.azure-api.net`
+- `<entra-id-app-id>`: The application (client) ID of the registered Microsoft Entra app
+- `<namespace-name>`: Your Kubernetes namespace
+
+```console
+helm install --name azure-api-management-gateway azure-apim-gateway/azure-api-management-gateway \
+             --set gateway.name=='<gateway-name>' \
+             --set gateway.configuration.uri='<gateway-url>' \
+             --set gateway.auth.type='WorkloadIdentity' \
+             --set gateway.auth.azureAd.app.id='<entra-id-app-id>'
+```
+
+[!INCLUDE [api-management-self-hosted-gateway-kubernetes-services-helm](../../includes/api-management-self-hosted-gateway-kubernetes-services-helm.md)]
+
+---
+
+
 ## Related content
 
 - Learn more about the API Management [self-hosted gateway](self-hosted-gateway-overview.md).

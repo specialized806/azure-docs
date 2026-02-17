@@ -1,5 +1,5 @@
 ---
-title: Self-Hosted Gateway Authentication Options
+title: Authentication Options for API Management Self-hosted Gateway
 description: Options for the Azure API Management self-hosted gateway to authenticate to the cloud-based API Management instance.
 services: api-management
 author: dlepow

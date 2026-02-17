@@ -67,7 +67,11 @@ Create a new Microsoft Entra app. For steps, see [Create a Microsoft Entra appli
 
 ## Deploy the self-hosted gateway
 
-Deploy the self-hosted gateway to Kubernetes, adding Microsoft Entra app registration settings to the `data` element of the gateways `ConfigMap`. In the following example YAML configuration file, the gateway is named *mygw* and the file is named `mygw.yaml`.
+Deploy the self-hosted gateway to Kubernetes, adding Microsoft Entra app registration settings to the `data` element of the gateways `ConfigMap`. 
+
+#### [YAML](#tab/yaml)
+
+In the following example YAML configuration file, the gateway is named *mygw* and the file is named `mygw.yaml`.
 
 > [!IMPORTANT]
 > If you're following the existing Kubernetes [deployment guidance](how-to-deploy-self-hosted-gateway-kubernetes.md):
@@ -192,6 +196,37 @@ kubectl apply -f mygw.yaml
 ```
 
 [!INCLUDE [api-management-self-hosted-gateway-kubernetes-services](../../includes/api-management-self-hosted-gateway-kubernetes-services.md)]
+
+#### [Helm](#tab/helm)
+
+You can deploy the self-hosted gateway with Microsoft Entra authentication using [Helm](https://github.com/Azure/api-management-self-hosted-gateway). 
+
+Replace the following values in the the `helm install` command with your actual values:
+
+- `<gateway-name>`: Your Azure API Management instance name
+- `<gateway-url>`: The URL of your gateway, in the format `https://<gateway-name>.configuration.azure-api.net`
+- `<entra-id-tenant-id>`: Your Microsoft Entra tenant ID (directory ID)
+- `<entra-id-app-id>`: The application (client) ID of the registered Microsoft Entra app
+- `<entra-id-secret>`: The client secret generated for the Microsoft Entra app
+
+```Console
+helm install --name azure-api-management-gateway azure-apim-gateway/azure-api-management-gateway \
+             --set gateway.name=='<gateway-name>' \
+             --set gateway.configuration.uri='<gateway-url>' \
+             --set gateway.auth.type='AzureAdApp' \
+             --set gateway.auth.azureAd.tenant.id='<entra-id-tenant-id>' \
+             --set gateway.auth.azureAd.app.id='<entra-id-app-id>'
+             --set config.service.auth.azureAd.clientSecret='<entra-id-secret>' 
+```
+
+
+For details, see [Deploy API Management self-hosted gateway with Helm](how-to-deploy-self-hosted-gateway-helm.md).
+
+[!INCLUDE [api-management-self-hosted-gateway-kubernetes-services-helm](../../includes/api-management-self-hosted-gateway-kubernetes-services-helm.md)]
+
+---
+
+
 
 ## Related content
 
