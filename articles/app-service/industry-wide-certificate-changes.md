@@ -78,7 +78,7 @@ No change. Domain ownership validation for ASMC is automated and requires no cus
 
 ### Impact on App Service Certificates (ASC)
 - Domain validation completed before March 2026 cannot be reused. Certificate issuance starting March 2026 requires domain ownership validation.
-- During March 2026, domain ownership validation may be required again for each renewals and rekeys.
+- During March 2026, domain ownership validation might be required again for each renewal and rekey.
 - After March 2026, domain ownership must be revalidated only if the domain was not validated within the past 198 days.
 - App Service Certificates do not automatically revalidate domains.
 
