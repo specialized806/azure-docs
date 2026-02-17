@@ -194,7 +194,7 @@ Use the **Get‑UnassociatedVsanObjectsWithPolicy** Run Command to list unassoci
  
 For detailed steps, see:
 
-[List storage policies for Unassociated objects](configure-storage-policy.md#list-storage-policies-for-unassociated-objects)
+- [List storage policies for Unassociated objects](configure-storage-policy.md#list-storage-policies-for-unassociated-objects)
  
 The output of this command includes the **UUID** of each unassociated vSAN object, which is required for deletion.
  
