@@ -208,5 +208,4 @@ landingContent:
             url: backup-reports-system-functions.md#sample-queries
           - text: Azure Backup archived release notes  
             url: backup-release-notes-archived.md
-          - text: Azure Backup video references
-            url: /shows/browse?terms=backup
+
