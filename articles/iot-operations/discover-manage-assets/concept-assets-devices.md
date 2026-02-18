@@ -23,7 +23,7 @@ The following diagram shows the relationships between assets, devices, and conne
 
 ## Devices
 
-Before you create an asset, define a device. A *device* is a configuration resource that describes [southbound](overview-manage-assets.md#southbound-and-northbound-connectivity) edge connectivity information for one or more assets.
+Before you create an asset, define a device. A device is a configuration resource that describes [southbound](overview-manage-assets.md#southbound-and-northbound-connectivity) edge connectivity information for one or more assets.
 
 ### Inbound endpoints
 
@@ -48,7 +48,7 @@ An IT user adds connector templates in the Azure portal. After the IT user adds 
 
 ## Assets
 
-An *asset* is a configuration resource that represents a physical device or asset as:
+An asset is a configuration resource that represents a physical device or asset as:
 
 - An Azure Resource Manager resource in the cloud.
 - A Kubernetes custom resource at the edge.

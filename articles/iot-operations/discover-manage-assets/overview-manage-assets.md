@@ -109,7 +109,7 @@ Akri services simplify the creation of assets by automatically onboarding assets
 
 #### Monitoring
 
-Akri services provide monitoring capabilities for physical devices and assets. These capabilities include tracking the status and health of devices. The monitoring framework works seamlessly with the connectors and Device Registry, so you can gain insights into your edge environment.
+Akri services provide monitoring capabilities for physical devices and assets. These capabilities include tracking the status and health of devices. The monitoring framework works seamlessly with the connectors and Device Registry to help you gain insights into your edge environment.
 
 ### Operations experience
 
