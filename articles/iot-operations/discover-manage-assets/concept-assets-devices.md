@@ -48,7 +48,12 @@ An IT user adds connector templates in the Azure portal. After the IT user adds 
 
 ## Assets
 
-An *asset* is a configuration resource that represents a physical device or asset as an Azure Resource Manager resource in the cloud and as a Kubernetes custom resource at the edge. When you define an asset by using the operations experience or the Azure IoT Operations CLI, set up schema information like data points, tags, events, and streams for each asset.
+An *asset* is a configuration resource that represents a physical device or asset as:
+
+- An Azure Resource Manager resource in the cloud.
+- A Kubernetes custom resource at the edge.
+
+When you define an asset by using the operations experience or the Azure IoT Operations CLI, set up schema information like data points, tags, events, and streams for each asset.
 
 The type of inbound endpoint that the asset connects to determines what schema elements you define for the asset. For example, if the asset connects to an OPC UA server, define tags and events. If the asset connects to a media resource, define streams.
 
