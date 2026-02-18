@@ -15,7 +15,7 @@ This article details some best practices when using Durable Functions. It also d
 
 ### Use the latest version of the Durable Functions extension and SDK
 
-There are two components that a function app uses to execute Durable Functions. One is the *Durable Functions SDK* that allows you to write orchestrator, activity, and entity functions using your target programming language. The other is the *Durable extension*, which is the runtime component that actually executes the code. With the exception of .NET in-process apps, the SDK and the extension are versioned independently.
+There are two components that a function app uses to execute Durable Functions. One is the *Durable Functions SDK* that allows you to write orchestrator, activity, and entity functions using your target programming language. The other is the *Durable extension*, which is the runtime component that actually executes the code. Except for .NET in-process apps, the SDK and the extension are versioned independently.
     
 Staying up to date with the latest extension and SDK ensures your application benefits from the latest performance improvements, features, and bug fixes. Upgrading to the latest versions also ensures that Microsoft can collect the latest diagnostic telemetry to help accelerate the investigation process when you open a support case with Azure.
     
