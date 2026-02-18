@@ -6,7 +6,7 @@ author: halkazwini
 ms.author: halkazwini
 ms.service: azure-web-application-firewall
 ms.topic: concept-article
-ms.date: 01/29/2026
+ms.date: 02/17/2026
 ms.custom: build-2025
 
 # Customer intent: "As a web application security administrator, I want to manage DRS and CRS rule sets in the web application firewall, so that I can customize security settings and protect against a broad range of vulnerabilities effectively."
@@ -463,6 +463,7 @@ The following rule groups and rules are available when using Web Application Fir
 |99001015|Critical - 5|2|Attempted Spring Framework unsafe class object exploitation [CVE-2022-22965](https://www.cve.org/CVERecord?id=CVE-2022-22965)|
 |99001016|Critical - 5|2|Attempted Spring Cloud Gateway Actuator injection [CVE-2022-22947](https://www.cve.org/CVERecord?id=CVE-2022-22947)|
 |99001017|Critical - 5|2|Attempted Apache Struts file upload exploitation [CVE-2023-50164](https://www.cve.org/CVERecord?id=CVE-2023-50164)|
+|99001018|Critical - 5|1|Attempted React2Shell remote code execution exploitation [CVE-2025-55182](https://www.cve.org/CVERecord?id=CVE-2025-55182)|
 
 
 ### <a name="drs99032-22"></a> MS-ThreatIntel-XSS
