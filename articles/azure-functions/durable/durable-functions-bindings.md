@@ -31,7 +31,7 @@ You can provide feedback and suggestions in the [Durable Functions SDK for Pytho
 
 ## Orchestration trigger
 
-You can use the orchestration trigger to develop [durable orchestrator functions](durable-functions-types-features-overview.md#orchestrator-functions). This trigger executes when a new orchestration instance is scheduled and when an existing orchestration instance receives an event. Examples of events that can trigger orchestrator functions include durable timer expirations, activity function responses, and events raised by external clients.
+You can use the orchestration trigger to develop [durable orchestrator functions](programming-model-overview.md#orchestrators). This trigger executes when a new orchestration instance is scheduled and when an existing orchestration instance receives an event. Examples of events that can trigger orchestrator functions include durable timer expirations, activity function responses, and events raised by external clients.
 
 ::: zone pivot="programming-language-csharp"
 When you develop functions in .NET, you use the [OrchestrationTriggerAttribute](/dotnet/api/microsoft.azure.webjobs.extensions.durabletask.orchestrationtriggerattribute) .NET attribute to configure the orchestration trigger. 
@@ -241,7 +241,7 @@ public String helloWorldOrchestration(
 
 ## Activity trigger
 
-You can use the activity trigger to develop functions known as [activity functions](durable-functions-types-features-overview.md#activity-functions) that are called by orchestrator functions.
+You can use the activity trigger to develop functions known as [activity functions](programming-model-overview.md#activities) that are called by orchestrator functions.
 
 ::: zone pivot="programming-language-csharp"
 You use the [ActivityTriggerAttribute](/dotnet/api/microsoft.azure.webjobs.extensions.durabletask.activitytriggerattribute) .NET attribute to configure the activity trigger.
@@ -427,7 +427,7 @@ app.storageQueue('helloQueueStart', {
 
 ## Orchestration client
 
-You can use the orchestration client binding to write functions that interact with orchestrator functions. These functions are often referred to as [client functions](durable-functions-types-features-overview.md#client-functions). For example, you can act on orchestration instances in the following ways:
+You can use the orchestration client binding to write functions that interact with orchestrator functions. These functions are often referred to as [client functions](programming-model-overview.md#client). For example, you can act on orchestration instances in the following ways:
 
 * Start them.
 * Query their status.
@@ -657,7 +657,7 @@ For more information and examples of defining and interacting with entity trigge
 
 ## Entity client
 
-You can use the entity client binding to asynchronously trigger [entity functions](#entity-trigger). These functions are sometimes referred to as [client functions](durable-functions-types-features-overview.md#client-functions).
+You can use the entity client binding to asynchronously trigger [entity functions](#entity-trigger). These functions are sometimes referred to as [client functions](programming-model-overview.md#client).
 
 ::: zone pivot="programming-language-csharp"
 You can bind to the entity client by using the [DurableClientAttribute](/dotnet/api/microsoft.azure.webjobs.extensions.durabletask.durableclientattribute) .NET attribute in .NET class library functions.
