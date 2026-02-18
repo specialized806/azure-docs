@@ -34,7 +34,9 @@ Before you begin, ensure that you have:
 - Access to VMware vCenter.
 - Azure Copilot enabled for the tenant. For more information, see [Manage access to Azure Copilot](/azure/copilot/manage-access#manage-user-access-to-azure-copilot).
 - Agents (preview) enabled in Azure Copilot. For more information, see [Manage access to Agents (preview) in Azure Copilot](/azure/copilot/manage-access#manage-access-to-agents-preview-in-azure-copilot).
-- The Azure Copilot migration agent isn't supported when Bring your own storage (BYOS) is enabled for conversation history. For more information, see [Bring your own storage for conversation history in Azure Copilot](/azure/copilot/bring-your-own-storage).
+
+>[!NOTE]
+> The Azure Copilot migration agent isn't supported when Bring your own storage (BYOS) is enabled for conversation history. For more information, see [Bring your own storage for conversation history in Azure Copilot](/azure/copilot/bring-your-own-storage).
 
 ### Migration strategy analysis 
 
