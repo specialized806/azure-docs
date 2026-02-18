@@ -170,7 +170,7 @@ For detailed information on all instance management operations, including code s
 
 ::: zone pivot="durable-functions"
 
-Get started by creating your first durable function app:
+Get started by creating your first Durable Function app:
 
 - [C#](durable-functions-isolated-create-first-csharp.md)
 - [JavaScript](quickstart-js-vscode.md)
