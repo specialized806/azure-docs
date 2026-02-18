@@ -1,7 +1,12 @@
 ---
-author: Nerys Santana
-ms.date: 02/17/2026
----
+title: Get started with Storage Mover Migrations requiring Private Connections
+description: Learn how to migrate sources that require a private connection
+author: stevenmatthew
+ms.author: shaas
+ms.service: azure-storage-mover
+ms.topic: how-to
+ms.date: 02/18/2026
+--- 
 
 # Get started with Storage Mover Migrations requiring Private Connections
 
@@ -162,6 +167,7 @@ The Virtual Private Cloud feature in Azure Storage Mover has the following limit
 ![](media/added-private-connection.png)
 
 ![](media/save-pc-edits.png)
+
 
 
 
