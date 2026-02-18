@@ -10,7 +10,7 @@ ms.date: 11/05/2024
 # Customer intent: As a cloud architect, I want to create an application assessment using Azure Migrate, so that I can evaluate migration strategies, identify optimal targets, and understand the cost and readiness of my application workloads for the cloud transition.
 ---
 
-# Assessment of Fileshare to Azure Files
+# Assessment of file shares hosted on servers to Azure Files
 
 An Azure Files assessment in Azure Migrate helps you evaluate the readiness, cost, and suitability of migrating on-premises file shares to Azure Files. The assessment analyzes discovered file shares and provides recommendations to support your migration planning.
 
@@ -37,7 +37,7 @@ Check [Performance vs. As-is on-premises assessments](target-right-sizing.md) fo
 
 To create an assessment, follow these steps:
 
-1. In the **Azure Migrate** portal, select **Infrastructure** and then select Fileshares .
+1. In the **Azure Migrate** portal, select **Infrastructure** and then select file shares .
 1. Select the file shares you want to assess.
 1. Apply column-based filters or custom tag–based filters to identify and add file shares to the assessment scope. 
 1. After selecting the required file shares, select **Create assessment**.  
@@ -46,8 +46,8 @@ To create an assessment, follow these steps:
 1. (Optional) To add more fileshares to the assessment, select **Add workloads**.
 1. After the assessment scope is complete, select **Next**.
  
-> [!Note]
-> For accurate calculations, servers hosting the selected fileshares and other colocated fileshares will be automatically added to the assessment scope.  
+    > [!Note]
+    > For accurate calculations, servers hosting the selected fileshares and other colocated fileshares will be automatically added to the assessment scope.  
 1. Select Next to move to the Azure Files–specific assessment properties.
 1. Select Edit defaults to review and customize Azure Files–specific settings.
 1. Select Save after updating any settings.

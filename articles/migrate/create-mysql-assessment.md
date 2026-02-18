@@ -33,8 +33,6 @@ To create and run a MySQL assessment, follow these steps:
    
 1. Provide a friendly name for the assessment, review the scope, and then select **Next**.
    
-   :::image type="content" source="./media/create-mysql-assessment/provide-mysql-name.png" alt-text="Screenshot on how to get started with assessment of MySQL database.":::
-   
 1. Update the assessment settings to reflect your preferences for calculating the assessment. Select **Next** to continue.
 
    **Target and pricing settings**
@@ -93,26 +91,26 @@ To view an assessment, follow these steps:
 
 The assessment overview page provides the following information:
 
- - **Assessed workloads:** This section indicates the number of MySQL servers, instances, and databases assessed. It also highlights the number of instances running on MySQL versions that are past their End of Life (EOL), and the discovery success percentage, which represents the percentage of MySQL performance data points collected out of the total expected data points.
+ - **Assessed workloads:** This section indicates the number of MySQL servers, instances, and databases assessed. It also highlights the number of instances running on MySQL versions that are past their End of Life, and the discovery success percentage, which represents the percentage of MySQL performance data points collected out of the total expected data points.
  
  - **Migration scenarios:** This section summarizes the readiness and cost estimates for migrating all the assessed MySQL database instances to Azure Database for MySQL. Selecting **View Details** takes you to the **Instances to Azure Database for MySQL** tab, where you can select the **Instances to Azure Database for MySQL** recommended strategy to view the detailed assessment report.
 
 
 ### View MySQL version and End of life details
 
-Select **View version and End of life** to see a graphical distribution of the MySQL versions of all the instances and their EOL status. 
+Select **View version and End of life** to see a graphical distribution of the MySQL versions of all the instances and their end of support status. 
 
  :::image type="content" source="./media/create-mysql-assessment/view-version-eol-details.png" alt-text="Screenshot on how to view the MySQL version and the details on its end of life.":::
 
 ## Review readiness recommended Azure configuration and cost estimates
 
-To view MySQL instances's readiness for migration to Azure Database for MySQL, and obtain recommendations on the suitable compute, and storage options along with the associated costs, follow these steps:
+To view readiness of MySQL instance for migration to Azure Database for MySQL, and obtain recommendations on the suitable compute, and storage options along with the associated costs, follow these steps:
 
 - The **Instances to Azure DB for MySQL** page displays a Readiness chart and a Monthly cost estimate chart aggregated for all MySQL instances in the assessed group. It also highlights the top recommended Azure DB for MySQL configurations and top migration issues/warnings, as shown below. 
 
    :::image type="content" source="./media/create-mysql-assessment/mysql-assessment-instances-to-azure.png" alt-text="Screenshot that shows a summary of readiness and cost.":::
 
-- The grid at the bottom of the page contains more details about each instance, including the instance and server name, number of user databases, readiness, MySQL version EOL status, recommended Azure Database for MySQL compute configuration and total monthly cost estimates.
+- The grid at the bottom of the page contains more details about each instance, including the instance and server name, number of user databases, readiness, MySQL version end of support status, recommended Azure Database for MySQL compute configuration and total monthly cost estimates.
 
 - Review the **Readiness** column for the assessed MySQL instances. 
 
@@ -126,7 +124,7 @@ To view MySQL instances's readiness for migration to Azure Database for MySQL, a
     :::image type="content" source="./media/create-mysql-assessment/mysql-assessment-instance-drilldown.png" alt-text="Screenshot that shows the readiness for the assessed MySQL instances.":::
 
 - Select the **Readiness** tab to view the migration issues and warnings for that instance.
-- Select the **Source properties** tab to view source instance details like MySQL edition, version, version EOL status, and total storage size. Here, you can also review the source instance’s aggregated performance data used to recommend target Azure configuration. Including:
+- Select the **Source properties** tab to view source instance details like MySQL edition, version, version end of support status, and total storage size. Here, you can also review the source instance’s aggregated performance data used to recommend target Azure configuration. Including:
         - vCores utilized
         - Memory utilized (GB)
         - IOPS
