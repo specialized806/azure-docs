@@ -74,7 +74,6 @@ Sessions follow a clear flow from creation to cleanup:
 
 For more information, see [Usage](./sessions-usage.md).
 
----
 
 ## Supported Regions
 
