@@ -514,33 +514,33 @@ In this example, each cluster node has its own HANA NFS file systems `/hana/shar
 
 1. **[1]** Configure ordering constraints so that the SAP resources on a node will stop ahead of a stop for any of the NFS mounts.
 
-   ```bash
-   pcs constraint order stop SAPHanaTopology_HN1_03-clone then stop hanadb1_nfs symmetrical=false
-   pcs constraint order stop SAPHanaTopology_HN1_03-clone then stop hanadb2_nfs symmetrical=false
-   ```
+    ```bash
+    pcs constraint order stop SAPHanaTopology_HN1_03-clone then stop hanadb1_nfs symmetrical=false
+    pcs constraint order stop SAPHanaTopology_HN1_03-clone then stop hanadb2_nfs symmetrical=false
+    ```
 
-   ### [RHEL 10](#tab/rhel10)
+    ### [RHEL 10](#tab/rhel10)
 
-   ```bash
-   pcs constraint order stop SAPHana_HN1_03-clone then stop hanadb1_nfs symmetrical=false
-   pcs constraint order stop SAPHana_HN1_03-clone then stop hanadb2_nfs symmetrical=false
-   ```
+    ```bash
+    pcs constraint order stop SAPHana_HN1_03-clone then stop hanadb1_nfs symmetrical=false
+    pcs constraint order stop SAPHana_HN1_03-clone then stop hanadb2_nfs symmetrical=false
+    ```
 
-   ### [RHEL 8/9](#tab/rhel8-9)
+    ### [RHEL 8/9](#tab/rhel8-9)
 
-   ```bash
-   pcs constraint order stop SAPHana_HN1_03-clone then stop hanadb1_nfs symmetrical=false
-   pcs constraint order stop SAPHana_HN1_03-clone then stop hanadb2_nfs symmetrical=false
-   ```
+    ```bash
+    pcs constraint order stop SAPHana_HN1_03-clone then stop hanadb1_nfs symmetrical=false
+    pcs constraint order stop SAPHana_HN1_03-clone then stop hanadb2_nfs symmetrical=false
+    ```
 
-   ### [RHEL 7](#tab/rhel7)
+    ### [RHEL 7](#tab/rhel7)
 
-   ```bash
-   pcs constraint order stop SAPHana_HN1_03-master then stop hanadb1_nfs symmetrical=false
-   pcs constraint order stop SAPHana_HN1_03-master then stop hanadb2_nfs symmetrical=false
-   ```
+    ```bash
+    pcs constraint order stop SAPHana_HN1_03-master then stop hanadb1_nfs symmetrical=false
+    pcs constraint order stop SAPHana_HN1_03-master then stop hanadb2_nfs symmetrical=false
+    ```
 
-   ---
+    ---
 
 1. Take the cluster out of maintenance mode.
 
