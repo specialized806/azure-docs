@@ -48,7 +48,7 @@ Azure Copilot migration agent interprets and summarizes discovered infrastructur
 
 ### Business case and ROI analysis 
 
-The agent supports the creation, summarization, and comparison of Azure Migrate business cases. It explains cost estimates, savings drivers, and return-on-investment insights, and enables comparisons across different migration preferences using business case outputs. This helps you understand the financial implications of migration decisions using existing Azure Migrate artifacts. You can also download business case outputs as a PowerPoint presentation to leadership discussions. 
+The agent supports the creation, summarization, and comparison of Azure Migrate business cases. It explains cost estimates, savings drivers, and return-on-investment insights, and enables comparisons across different migration preferences using business case outputs. This helps you understand the financial implications of migration decisions using existing Azure Migrate artifacts. You can also download business case outputs as a PowerPoint presentation for leadership discussions. 
 
 ### Azure readiness assessment interpretation 
 
