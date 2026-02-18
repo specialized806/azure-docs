@@ -6,7 +6,7 @@ author: halkazwini
 ms.author: halkazwini
 ms.service: azure-frontdoor
 ms.topic: concept-article
-ms.date: 02/17/2026
+ms.date: 02/19/2026
 zone_pivot_groups: front-door-tiers
 ---
 
@@ -20,13 +20,15 @@ The following diagram illustrates the routing architecture:
 
 ![Diagram that shows the Front Door routing architecture, including each step and decision point.](media/front-door-routing-architecture/routing-process-standard-premium.png)
 
+:::image type="content" source="media/front-door-routing-architecture/routing-process-standard-premium.png" alt-text="Diagram that shows the Front Door routing architecture, including each step and decision point." lightbox="media/front-door-routing-architecture/routing-process-standard-premium.png":::
+
 ::: zone-end
 
 ::: zone pivot="front-door-classic"
 
 [!INCLUDE [Azure Front Door (classic) retirement notice](../../includes/front-door-classic-retirement.md)]
 
-![Diagram that shows the Front Door routing architecture, including each step and decision point.](media/front-door-routing-architecture/routing-process-classic.png)
+:::image type="content" source="media/front-door-routing-architecture/routing-process-classic.png" alt-text="Diagram that shows the Front Door routing architecture, including each step and decision point." lightbox="media/front-door-routing-architecture/routing-process-classic.png":::
 
 ::: zone-end
 
