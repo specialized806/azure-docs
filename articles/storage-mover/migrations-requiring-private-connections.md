@@ -2,6 +2,7 @@
 author: Nerys Santana
 ms.date: 02/17/2026
 ---
+
 # Get started with Storage Mover Migrations requiring Private Connections
 
 ## Overview
@@ -40,16 +41,17 @@ The Virtual Private Cloud feature in Azure Storage Mover has the following limit
 1. Navigate to your Storage Mover instance in Azure.
 2. Under Storage endpoints, select Private Connection → Create Private Connection.
 
-   ![](media/storage-endpoints.png)
+:::image type="content" source="./media/private-connections/storage-endpoints.png" alt-text="Screenshot of navigating to private connections." lightbox="./media/private-connections/storage-endpoints.png":::
+ 
 
-3. Insert a name for this Private Connection.
-4. ***Note:**** This name matches the name of the Private Endpoint that you later approve to connect to the Private Link service.*
-5. Select the appropriate Private Link Service Direct Connect that directs you to the correct AWS S3 bucket you want to migrate to Azure.
+4. Insert a name for this Private Connection.
+5. ***Note:**** This name matches the name of the Private Endpoint that you later approve to connect to the Private Link service.*
+6. Select the appropriate Private Link Service Direct Connect that directs you to the correct AWS S3 bucket you want to migrate to Azure.
 
    ![](media/create-private-connection.png)
 
-6. Select Create and commit your changes.
-7. ***Note***: *Creating this Private Connection takes 20-30 seconds. You may need to refresh manually to view it in the grid.*
+7. Select Create and commit your changes.
+8. ***Note***: *Creating this Private Connection takes 20-30 seconds. You may need to refresh manually to view it in the grid.*
 
 ![](media/confirm-create-pc.png)
 
@@ -160,5 +162,6 @@ The Virtual Private Cloud feature in Azure Storage Mover has the following limit
 ![](media/added-private-connection.png)
 
 ![](media/save-pc-edits.png)
+
 
 
