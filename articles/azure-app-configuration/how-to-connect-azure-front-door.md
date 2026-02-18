@@ -95,9 +95,6 @@ Create a new Azure Front Door profile and connect it to your App Configuration s
    - **Tags**: The tag name and value filter to apply when querying Azure App Configuration for key-values. Reserved characters: asterisk (`*`), comma (`,`), backslash (`\`), and equals (`=`) must always be escaped using a backslash (`\`).
    - **Snapshot name**: Name of snapshot whose content should be accessible through this Azure Front Door endpoint. You can select one or more snapshots to restrict access to specific snapshots.
 
-   > [!NOTE]
-   > If your application loads feature flags, provide ".appconfig.featureflag/{YOUR-FEATURE-FLAG-PREFIX}" filter for the Key with *Starts with* operator.
-
 
 1. Select **Create & Connect** to create the profile and establish the connection.
 
