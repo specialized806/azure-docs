@@ -33,10 +33,10 @@ Reference [sample test data](https://github.com/Azure-Samples/azure-health-data-
 ### Loading US Core 7
 #### Troubleshooting
 **How do I avoid a package resolution error when uploading US Core 7?**  
-If you are using [UploadFIG](https://github.com/brianpos/UploadFIG) to upload US Core 7 profiles, you may encounter a package resolution error, as one of the packages needed for US Core 7 (VSAC package) is not yet available in the tool. To work around this issue, you can upload the required VSAC package to the tool cache following these steps:
+If you're using [UploadFIG](https://github.com/brianpos/UploadFIG) to upload US Core 7 profiles, you might encounter a package resolution error, as one of the packages needed for US Core 7 (VSAC package) isn't yet available in the tool. To work around this issue, you can upload the required VSAC package to the tool cache following these steps:
 1. Download the VSAC package: 
 Download the us.nlm.vsac package version 0.18.0 from the FHIR package registry at https://packages2.fhir.org/packages/us.nlm.vsac. 
-2. Prepare the VSAC package: During the US Core upload process, UploadFIG utility may encounter a package resolution error when attempting to retrieve the VSAC package from the registry. To avoid this issue, the VSAC package must be preloaded into the local UploadFIG utility cache.  
+2. Prepare the VSAC package: During the US Core upload process, UploadFIG utility might encounter a package resolution error when attempting to retrieve the VSAC package from the registry. To avoid this issue, the VSAC package must be preloaded into the local UploadFIG utility cache.  
   - Package downloaded at step 2 has name `us.nlm.vsac-0.18.0.tgz`  
   - Rename it to `us.nlm.vsac_0_18_0.tgz`  
   - Create this folder if it doesn’t exist: `C:\Users\<YourUser>\AppData\Local\Temp\UploadFIG\PackageCache`
