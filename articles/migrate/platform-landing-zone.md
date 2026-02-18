@@ -11,7 +11,7 @@ monikerRange:
 # Customer intent: This article helps customers generate, customize, and deploy a Platform Landing Zone using Azure Migrate to establish core Azure foundations as part of migration planning.
 ---
 
-# Generate and deploy a Platform Landing Zone using Azure Migrate (preview)
+# Generate and deploy a Platform Landing Zone using Azure Migrate agent (preview)
 
 This article describes how to generate a **Platform Landing Zone (PLZ)** by using **Azure Migrate**. It also explains how to iterate on the generated configuration before deploying it with **Visual Studio Code**, **GitHub Copilot Chat**, and the **Azure Model Context Protocol (MCP) server**.
 
