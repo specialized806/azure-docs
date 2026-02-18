@@ -55,7 +55,7 @@ Sessions follow a clear flow from creation to cleanup:
   4. **Allocated**: The session becomes active and runs your code or container. This is the execution phase.
   5. **Destroyed**: After the task completes or the cooldown period expires, the session is terminated and resources are cleaned up automatically.
 
-This lifecycle ensures fast startup, efficient resource use, and automatic cleanup without manual intervention.
+  This lifecycle ensures fast startup, efficient resource use, and automatic cleanup without manual intervention.
 
 - **Session Types**  
   - **Code Interpreter Sessions**: These are platform built-in containers that provide preconfigured environments for running code, including AI-generated scripts. Ideal for scenarios like LLM-driven workflows or secure code execution.
