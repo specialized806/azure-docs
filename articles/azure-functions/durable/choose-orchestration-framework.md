@@ -46,6 +46,64 @@ The following table summarizes the key differences between the two programming m
 | **Languages** | .NET (C#/F#), JavaScript/TypeScript, Python, Java, PowerShell | .NET (C#/F#), JavaScript/TypeScript, Python, Java |
 | **Monitoring** | Built-in integration with Azure portal, Application Insights | You set up your own monitoring solution (for example, Azure Monitor, Prometheus, or Grafana) |
 
+> [!NOTE]
+> **Cold start** occurs when a function app starts after being idle. [Premium](../functions-premium-plan.md) and [Dedicated](../dedicated-plan.md) hosting plans keep instances warm to reduce cold start latency. Learn more about [Azure Functions hosting options](../functions-scale.md).
+
+### Built-in HTTP APIs
+
+Durable Functions exposes HTTP endpoints for orchestration management automatically, while the Durable Task SDKs require you to implement your own.
+
+| Feature | Durable Functions | Durable Task SDKs |
+|---------|-------------------|-------------------|
+| **Management HTTP APIs** | ✅ Built-in | ❌ Implement your own |
+| **Automatic status URLs** | ✅ `CreateCheckStatusResponse()` | ❌ Implement your own |
+
+#### Durable Functions HTTP features
+
+Durable Functions automatically exposes HTTP endpoints for starting orchestrations, querying status, raising events, and terminating instances. These APIs follow the async HTTP polling pattern, making it easy to integrate with external systems.
+
+Learn more: [HTTP features in Durable Functions](durable-functions-http-features.md) | [HTTP API reference](durable-functions-http-api.md)
+
+#### Durable Task SDKs management
+
+With the Durable Task SDKs, you use the `DurableTaskClient` class directly to manage orchestration instances. If you need HTTP endpoints, you implement them yourself using your preferred web framework.
+
+Learn more: [Manage orchestration instances](durable-functions-instance-management.md)
+
+### Storage backends
+
+Durable Functions supports multiple storage backends, while the Durable Task SDKs exclusively use the Durable Task Scheduler.
+
+> [!TIP]
+> The **Durable Task Scheduler** is a fully managed Azure service that handles orchestration state persistence and execution. It's provisioned as a separate Azure resource with its own [pricing](./durable-task-scheduler/durable-task-scheduler-dedicated-sku.md). It's the recommended backend for Durable Functions and the only supported backend for the Durable Task SDKs.
+
+| Storage provider | Durable Functions | Durable Task SDKs |
+|------------------|-------------------|-------------------|
+| **Durable Task Scheduler** | ✅ Recommended | ✅ Required |
+| **Azure Storage** | ✅ Supported | ❌ Not supported |
+| **Microsoft SQL Server** | ✅ Supported | ❌ Not supported |
+
+Learn more: [Storage providers](durable-functions-storage-providers.md)
+
+### Task hub configuration
+
+| Feature | Durable Functions | Durable Task SDKs |
+|---------|-------------------|-------------------|
+| **Configuration location** | `host.json` file | Code (connection string/endpoint) |
+| **Task hub creation** | Automatic or via portal | Azure portal or CLI |
+
+Learn more: [Task hubs](durable-functions-task-hubs.md)
+
+### Diagnostics and versioning
+
+| Feature | Durable Functions | Durable Task SDKs |
+|---------|-------------------|-------------------|
+| **Durable Task Scheduler dashboard** | ✅ Yes | ✅ Yes |
+| **Application Insights** | ✅ Built-in | Manual setup |
+| **Zero-downtime deployment** | ✅ Functions slots | Platform-specific |
+
+Learn more: [Diagnostics](durable-functions-diagnostics.md) | [Versioning](durable-functions-versioning.md)
+
 Both programming models support the **[Durable Task Scheduler](./durable-task-scheduler/durable-task-scheduler.md)** as a state storage backend, which provides both state storage and extra monitoring capabilities. Durable Functions also supports several bring-your-own (BYO) storage options for scenarios that require them. For more information, see [Storage providers](durable-functions-storage-providers.md).
 
 ## More considerations
@@ -58,6 +116,15 @@ When choosing between the two programming models, consider the following factors
 | You're already familiar with the Azure Functions programming model. | You prefer a lightweight SDK without the Azure Functions runtime overhead. |
 | You want Azure portal integration for function management. | You want the same code to be portable across container platforms (AKS, App Service, etc.). |
 | You need to choose from [multiple storage backends](durable-functions-storage-providers.md). | You have existing non-Functions application code to integrate with. |
+| You need **serverless, event-driven apps** that scale to zero. | You need **always-on, low-latency workloads** without cold start delays. |
+| You want **pay-per-execution pricing** with the consumption plan. | You need **high-throughput scenarios** optimized for batch processing. |
+| You need **quick prototyping** with declarative triggers and bindings. | You have **existing containerized or Kubernetes applications**. |
+
+## Migration
+
+If you're already using Durable Functions and want to move to a container-based deployment or take advantage of the Durable Task SDKs' hosting flexibility, migration is straightforward. The orchestration code is very similar between both frameworks.
+
+For detailed migration guidance, see [Migrate from Durable Functions to the Durable Task SDKs](durable-functions-migrate.md).
 
 ## Unsupported Durable Task SDKs
 
@@ -78,8 +145,15 @@ The [Durable Task SDK for Go](https://github.com/Azure/durabletask-go) is a comm
 
 ## Next steps
 
-> [!div class="nextstepaction"]
-> [Quickstart: Create a Durable Functions app](durable-functions-isolated-create-first-csharp.md)
+Once you've decided which framework to use, get started with the appropriate quickstart:
+
+- **Durable Functions**: [Create your first Durable Functions app](durable-functions-isolated-create-first-csharp.md)
+- **Durable Task SDKs**: [Create an app with Durable Task SDKs](durable-task-scheduler/quickstart-durable-task-scheduler.md)
+
+For more in-depth information:
 
 > [!div class="nextstepaction"]
-> [Quickstart: Create a self-hosted app with the Durable Task SDKs](durable-task-scheduler/quickstart-durable-task-scheduler.md)
+> [Durable Functions overview](what-is-durable-task.md)
+
+> [!div class="nextstepaction"]
+> [Durable Task Scheduler overview](durable-task-scheduler/durable-task-scheduler.md)
