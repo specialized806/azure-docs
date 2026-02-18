@@ -360,10 +360,12 @@ Session pools can send session logs to a Log Analytics workspace by using Azure 
 
 ### Configure logging
 
-1. In the Azure portal, open your Container Apps environment.
-2. Under **Monitoring**, select **Diagnostic settings**, then choose **+ Add diagnostic setting**.
-3. Select the session-related log categories you want to capture and set the destination to **Send to Log Analytics workspace**.
-4. Choose your workspace and select **Save**.
+Session pools route logs through a Container Apps environment. The environment is the Azure resource that connects your session pool to a Log Analytics workspace. You specify the environment when you create a custom container session pool, or it's automatically associated with code interpreter session pools.
+
+1. In the [Azure portal](https://portal.azure.com), search for and select **Container Apps Environments**, then select the environment associated with your session pool.
+1. Under **Monitoring**, select **Diagnostic settings**, then select **+ Add diagnostic setting**.
+1. Select the session-related log categories you want to capture and set the destination to **Send to Log Analytics workspace**.
+1. Choose your workspace and select **Save**.
 
 ### Log tables
 
