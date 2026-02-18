@@ -68,7 +68,7 @@ For more information, see [What is Microsoft Sentinel?](/azure/sentinel/overview
 
 ## Microsoft Entra ID Protection
 
-[Microsoft Entra ID Protection](/entra/id-protection/overview-identity-protection) is a Microsoft Entra ID P2 feature that provides an overview of the risk detections and potential vulnerabilities that can affect your organization's identities. Identity Protection uses existing Microsoft Entra anomaly-detection capabilities and introduces new risk detection types that can detect real-time anomalies.
+[Microsoft Entra ID Protection](/entra/id-protection/overview-identity-protection) is a Microsoft Entra ID P2 feature that provides an overview of the risk detections and potential vulnerabilities that can affect your organization's identities. Identity Protection uses existing Microsoft Entra anomaly detection capabilities and introduces new risk detection types that can detect real-time anomalies.
 
 Identity Protection uses adaptive machine learning algorithms and heuristics to detect anomalies and risk detections that might indicate that an identity has been compromised. Using this data, Identity Protection generates reports and alerts so that you can investigate these risk detections and take appropriate remediation or mitigation action.
 
