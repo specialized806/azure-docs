@@ -183,6 +183,15 @@ landingContent:
             url: backup-azure-files-policy-automation.md
           - text: Automate datasource protection
             url: automation-backup.md
+          - text: Manage backup operations at scale using Azure CLI
+            url: create-manage-azure-services-using-azure-command-line-interface.md  
+          - text: Govern at scale with Azure Policy
+            url: backup-azure-auto-enable-backup.md
+          - text: Monitor and operate at scale with Backup Explorer
+            url: monitor-azure-backup-with-backup-explorer.md
+          - text: Analyze at scale with Backup Reports
+            url: configure-reports.md
+
 
 # Card
   - title: Explore resources for Azure Backup
