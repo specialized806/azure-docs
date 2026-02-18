@@ -387,7 +387,7 @@ TaskOrchestration processOrder = ctx -> {
 ## Next steps
 
 - [Durable Functions overview](../what-is-durable-task.md)
-- [Durable Functions types and features](../durable-functions-types-features-overview.md)
+- [Durable Task programming model](../programming-model-overview.md)
 - [Durable Task Scheduler overview](./durable-task-scheduler.md)
 - [Configure managed identity for Durable Task Scheduler](./durable-task-scheduler-identity.md)
 
