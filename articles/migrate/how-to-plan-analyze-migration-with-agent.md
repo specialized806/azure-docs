@@ -21,7 +21,7 @@ It doesn't perform migration execution. When you are ready to execute the migrat
 
 ## End-to-End migration workflow with Azure Copilot migration agent
 
-The following table walks through how to use the Azure Copilot migration agent to plan and assess a VMware‑to‑Azure migration, showing each step, the action you take, the prompt you use, and the response you can expect from the agent.
+The following table walks you through on how to use the Azure Copilot migration agent to plan and assess a VMware‑to‑Azure migration, showing each step, the action you take, the prompt you use, and the response you can expect from the agent.
 
 | Steps | Action | Prompt | Migration agent response | Description |
 |------|--------|--------|--------------------------|-------------|
