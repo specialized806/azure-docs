@@ -1,5 +1,5 @@
 ---
-title: Create an classic file share
+title: Create a classic file share
 titleSuffix: Azure Files
 description: How to create an Azure storage account and Azure classic file share by using the Azure portal, Azure PowerShell, or Azure CLI.
 author: khdownie
