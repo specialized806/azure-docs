@@ -60,31 +60,7 @@ The event-sourcing behavior of the Durable Task Framework is closely coupled wit
 
 [!INCLUDE [functions-nodejs-durable-model-description](../../../includes/functions-nodejs-durable-model-description.md)]
 
-# [C#](#tab/csharp)
-
-<details>
-<summary><b>C# isolated worker process</b></summary>
-
-```csharp
-[Function("HelloCities")]
-public static async Task<List<string>> Run(
-    [OrchestrationTrigger] TaskOrchestrationContext context)
-{
-    var outputs = new List<string>();
-
-    outputs.Add(await context.CallActivityAsync<string>("SayHello", "Tokyo"));
-    outputs.Add(await context.CallActivityAsync<string>("SayHello", "Seattle"));
-    outputs.Add(await context.CallActivityAsync<string>("SayHello", "London"));
-
-    // Return ["Hello Tokyo!", "Hello Seattle!", "Hello London!"].
-    return outputs;
-}
-```
-
-</details>
-<br>
-<details>
-<summary><b>C# in-process</b></summary>
+# [C# (InProc)](#tab/csharp-inproc)
 
 ```csharp
 [FunctionName("HelloCities")]
@@ -102,12 +78,25 @@ public static async Task<List<string>> Run(
 }
 ```
 
-</details>
+# [C# (Isolated)](#tab/csharp-isolated)
 
-# [JavaScript](#tab/javascript)
+```csharp
+[Function("HelloCities")]
+public static async Task<List<string>> Run(
+    [OrchestrationTrigger] TaskOrchestrationContext context)
+{
+    var outputs = new List<string>();
 
-<details>
-<summary><b>JavaScript v3</b></summary>
+    outputs.Add(await context.CallActivityAsync<string>("SayHello", "Tokyo"));
+    outputs.Add(await context.CallActivityAsync<string>("SayHello", "Seattle"));
+    outputs.Add(await context.CallActivityAsync<string>("SayHello", "London"));
+
+    // Return ["Hello Tokyo!", "Hello Seattle!", "Hello London!"].
+    return outputs;
+}
+```
+
+# [JavaScript (PM3)](#tab/javascript-v3)
 
 ```javascript
 const df = require("durable-functions");
@@ -123,10 +112,7 @@ module.exports = df.orchestrator(function*(context) {
 });
 ```
 
-</details>
-<br>
-<details>
-<summary><b>JavaScript v4</b></summary>
+# [JavaScript (PM4)](#tab/javascript-v4)
 
 ```javascript
 const df = require("durable-functions");
@@ -142,8 +128,6 @@ df.app.orchestration("helloSequence", function* (context) {
     return output;
 });
 ```
-
-</details>
 
 # [Python](#tab/python)
 
@@ -310,14 +294,31 @@ The critical section feature is also useful for coordinating changes to durable 
 
 Orchestrator functions aren't permitted to do I/O operations, as described in [Orchestrator function code constraints](durable-functions-code-constraints.md). The typical workaround for this limitation is to wrap any code that needs to do I/O operations in an activity function. Orchestrations that interact with external systems frequently use activity functions to make HTTP calls and return the results to the orchestration.
 
-# [C#](#tab/csharp)
+# [C# (InProc)](#tab/csharp-inproc)
 
 To streamline this common pattern, orchestrator functions can use the `CallHttpAsync` method to invoke HTTP APIs directly.
 
-<details>
-<summary><b>C# isolated worker process</b></summary>
+```csharp
+[FunctionName("CheckSiteAvailable")]
+public static async Task CheckSiteAvailable(
+    [OrchestrationTrigger] IDurableOrchestrationContext context)
+{
+    Uri url = context.GetInput<Uri>();
 
-The `Microsoft.Azure.Functions.Worker.Extensions.DurableTask` v1.1.0 package introduces this feature to C# (Isolated).
+    // Make an HTTP GET request to the specified endpoint.
+    DurableHttpResponse response = 
+        await context.CallHttpAsync(HttpMethod.Get, url);
+
+    if ((int)response.StatusCode == 400)
+    {
+        // Handle error codes.
+    }
+}
+```
+
+# [C# (Isolated)](#tab/csharp-isolated)
+
+To streamline this common pattern, orchestrator functions can use the `CallHttpAsync` method to invoke HTTP APIs directly. The `Microsoft.Azure.Functions.Worker.Extensions.DurableTask` v1.1.0 package introduces this feature to C# (Isolated).
 
 ```csharp
 [Function("CheckSiteAvailable")]
@@ -340,35 +341,7 @@ public static async Task CheckSiteAvailable(
 }
 ```
 
-</details>
-<br>
-<details>
-<summary><b>C# in-process</b></summary>
-
-```csharp
-[FunctionName("CheckSiteAvailable")]
-public static async Task CheckSiteAvailable(
-    [OrchestrationTrigger] IDurableOrchestrationContext context)
-{
-    Uri url = context.GetInput<Uri>();
-
-    // Make an HTTP GET request to the specified endpoint.
-    DurableHttpResponse response = 
-        await context.CallHttpAsync(HttpMethod.Get, url);
-
-    if ((int)response.StatusCode == 400)
-    {
-        // Handle error codes.
-    }
-}
-```
-
-</details>
-
-# [JavaScript](#tab/javascript)
-
-<details>
-<summary><b>JavaScript v3</b></summary>
+# [JavaScript (PM3)](#tab/javascript-v3)
 
 ```javascript
 const df = require("durable-functions");
@@ -382,10 +355,7 @@ module.exports = df.orchestrator(function*(context) {
 });
 ```
 
-</details>
-<br>
-<details>
-<summary><b>JavaScript v4</b></summary>
+# [JavaScript (PM4)](#tab/javascript-v4)
 
 ```javascript
 const df = require("durable-functions");
@@ -398,8 +368,6 @@ df.app.orchestration("checkSiteAvailable", function* (context) {
     }
 });
 ```
-
-</details>
 
 # [Python](#tab/python)
 
@@ -438,49 +406,9 @@ For more information and for detailed examples, see [HTTP features](durable-func
 
 It isn't possible to pass multiple parameters to an activity function directly. The recommendation is to pass in an array of objects or composite objects.
 
-# [C#](#tab/csharp)
+# [C# (InProc)](#tab/csharp-inproc)
 
 In .NET, you can also use [ValueTuple](/dotnet/csharp/language-reference/builtin-types/value-tuples) objects to pass multiple parameters. The following sample uses [ValueTuple](/dotnet/csharp/language-reference/builtin-types/value-tuples) features added with [C# 7](/dotnet/csharp/whats-new/csharp-version-history#c-version-70):
-
-<details>
-<summary><b>C# isolated worker process</b></summary>
-
-```csharp
-public record CourseInfo(string Major, int UniversityYear);
-
-[Function("GetCourseRecommendations")]
-public static async Task<object> RunOrchestrator(
-    [OrchestrationTrigger] TaskOrchestrationContext context, int universityYear)
-{
-    CourseInfo courseInfo = new("ComputerScience", universityYear);
-    object courseRecommendations = await context.CallActivityAsync<object>(
-        "CourseRecommendations", courseInfo);
-    return courseRecommendations;
-}
-
-[Function("CourseRecommendations")]
-public static async Task<CourseInfo> Mapper(
-    [ActivityTrigger] CourseInfo studentInfo, FunctionContext executionContext)
-{
-    // Retrieve and return course recommendations by major and university year.
-    return new
-    {
-        major = studentInfo.Major,
-        universityYear = studentInfo.UniversityYear,
-        recommendedCourses = new[]
-        {
-            "Introduction to .NET Programming",
-            "Introduction to Linux",
-            "Becoming an Entrepreneur"
-        }
-    };
-}
-```
-
-</details>
-<br>
-<details>
-<summary><b>C# in-process</b></summary>
 
 ```csharp
 [FunctionName("GetCourseRecommendations")]
@@ -517,12 +445,41 @@ public static async Task<object> Mapper([ActivityTrigger] IDurableActivityContex
 }
 ```
 
-</details>
+# [C# (Isolated)](#tab/csharp-isolated)
 
-# [JavaScript](#tab/javascript)
+```csharp
+public record CourseInfo(string Major, int UniversityYear);
 
-<details>
-<summary><b>JavaScript v3</b></summary>
+[Function("GetCourseRecommendations")]
+public static async Task<object> RunOrchestrator(
+    [OrchestrationTrigger] TaskOrchestrationContext context, int universityYear)
+{
+    CourseInfo courseInfo = new("ComputerScience", universityYear);
+    object courseRecommendations = await context.CallActivityAsync<object>(
+        "CourseRecommendations", courseInfo);
+    return courseRecommendations;
+}
+
+[Function("CourseRecommendations")]
+public static async Task<CourseInfo> Mapper(
+    [ActivityTrigger] CourseInfo studentInfo, FunctionContext executionContext)
+{
+    // Retrieve and return course recommendations by major and university year.
+    return new
+    {
+        major = studentInfo.Major,
+        universityYear = studentInfo.UniversityYear,
+        recommendedCourses = new[]
+        {
+            "Introduction to .NET Programming",
+            "Introduction to Linux",
+            "Becoming an Entrepreneur"
+        }
+    };
+}
+```
+
+# [JavaScript (PM3)](#tab/javascript-v3)
 
 #### Orchestrator
 
@@ -550,12 +507,8 @@ module.exports = async function (context, location) {
 };
 ```
 
-</details>
+# [JavaScript (PM4)](#tab/javascript-v4)
 
-<br>
-
-<details>
-<summary><b>JavaScript v4</b></summary>
 
 ```javascript
 const getWeatherActivityName = "getWeather";
@@ -577,8 +530,6 @@ df.app.activity(getWeatherActivityName, {
     }
 });
 ```
-
-</details>
 
 # [Python](#tab/python)
 
