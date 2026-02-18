@@ -322,18 +322,6 @@ MCP resources use URIs to define the address of the resource. The URI uniquely i
 
 You can use the `McpMetadata` attribute to provide additional metadata for resources. This metadata is communicated to MCP clients and can influence how the resource content is displayed or processed.
 
-For example, UI resources can include metadata about display preferences:
-
-```csharp
-private const string ResourceMetadata = """
-    {
-        "ui": {
-            "prefersBorder": true
-        }
-    }
-    """;
-```
-
 ### Return types
 
 The MCP resource trigger supports the following return types:
@@ -365,7 +353,7 @@ The resource handler function has two parameters:
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| **messages** | `T` (defaults to `unknown`) | The trigger payload passed by the MCP extension. (The sample above code names this parameter `resourceContext`.) |
+| **messages** | `T` (defaults to `unknown`) | The trigger payload passed by the MCP extension. (The example above code names this parameter `resourceContext`.) |
 | **context** | `InvocationContext` | The Azure Functions invocation context, which provides logging and other runtime information. |
 
 The function should return a `string` containing the resource content (for example, HTML, JSON, or plain text).
