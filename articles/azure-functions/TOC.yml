@@ -930,9 +930,12 @@
       - name: Overview
         displayName: MCP
         href: functions-bindings-mcp.md
-      - name: Trigger
+      - name: Tool trigger
         displayName: MCP tool
-        href: functions-bindings-mcp-trigger.md
+        href: functions-bindings-mcp-tool-trigger.md
+      - name: Resource trigger
+        displayName: MCP resource
+        href: functions-bindings-mcp-resource-trigger.md
     - name: Mobile Apps
       href: functions-bindings-mobile-apps.md
     - name: Notification Hubs

@@ -20,7 +20,8 @@ The Azure Functions MCP extension allows you to use Azure Functions to create re
 
 | Action | Type |
 |---------|---------|
-| Run a function from an MCP tool call request | [Trigger](./functions-bindings-mcp-trigger.md) |
+| Run a function from an MCP tool call request | [Tool trigger](./functions-bindings-mcp-tool-trigger.md) |
+| Expose a function as an MCP resource | [Resource trigger](./functions-bindings-mcp-resource-trigger.md) |
 
 
 [!INCLUDE [functions-mcp-extension-powershell-note](../../includes/functions-mcp-extension-powershell-note.md)]
@@ -148,7 +149,8 @@ MCP clients accept this configuration in various ways. Consult the documentation
 
 ## Related articles
 
-- [Create a tool endpoint in your remote MCP server](./functions-bindings-mcp-trigger.md) 
+- [Create a tool endpoint in your remote MCP server](./functions-bindings-mcp-tool-trigger.md) 
+- [Create a resource endpoint in your remote MCP server](./functions-bindings-mcp-resource-trigger.md)
 - [Configure built-in MCP server authorization][authorization]
 
 [authorization]: ../app-service/configure-authentication-mcp.md?toc=/azure/azure-functions/toc.json
