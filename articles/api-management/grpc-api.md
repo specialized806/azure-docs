@@ -66,9 +66,6 @@ API Management supports pass-through with the following types of gRPC service me
 
     1. For **Gateways**, select the gateway resource that you want to use to expose the API. 
 
-        > [!IMPORTANT]
-        > In public preview, you can only select a self-hosted gateway. The **Managed** gateway isn't supported.
-
 1. Enter any remaining settings to configure your API. The [Import and publish your first API](import-and-publish.md#import-and-publish-a-backend-api) tutorial explains these settings.
 
 1. Select **Create**.
