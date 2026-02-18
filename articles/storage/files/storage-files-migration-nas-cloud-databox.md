@@ -12,6 +12,10 @@ recommendations: false
 
 # Use DataBox to migrate from Network Attached Storage (NAS) to Azure file shares
 
+:heavy_check_mark: **Applies to:** Classic SMB file shares created with the Microsoft.Storage resource provider
+
+:heavy_multiplication_x: **Doesn't apply to:** All NFS file shares including file shares created with the Microsoft.FileShares resource provider (preview) or classic file shares created with the Microsoft.Storage resource provider
+
 This migration article is one of several involving the keywords NAS and Azure DataBox. Check if this article applies to your scenario:
 
 > [!div class="checklist"]
@@ -22,13 +26,6 @@ This migration article is one of several involving the keywords NAS and Azure Da
 If your scenario is different, look through the [table of migration guides](storage-files-migration-overview.md#migration-guides).
 
 This article guides you end-to-end through the planning, deployment, and networking configurations needed to migrate from your NAS appliance to functional Azure file shares. This guide uses Azure DataBox for bulk data transport (offline data transport).
-
-## Applies to
-| File share type | SMB | NFS |
-|-|:-:|:-:|
-| Standard file shares (GPv2), LRS/ZRS | ![Yes](../media/icons/yes-icon.png) | ![No](../media/icons/no-icon.png) |
-| Standard file shares (GPv2), GRS/GZRS | ![Yes](../media/icons/yes-icon.png) | ![No](../media/icons/no-icon.png) |
-| Premium file shares (FileStorage), LRS/ZRS | ![Yes](../media/icons/yes-icon.png) | ![No](../media/icons/no-icon.png) |
 
 ## Migration goals
 

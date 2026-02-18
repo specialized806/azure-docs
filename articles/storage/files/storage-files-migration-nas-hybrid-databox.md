@@ -11,6 +11,10 @@ ms.author: kendownie
 
 # Use Data Box to migrate from Network Attached Storage (NAS) to a hybrid cloud deployment by using Azure File Sync
 
+:heavy_check_mark: **Applies to:** Classic SMB file shares created with the Microsoft.Storage resource provider
+
+:heavy_multiplication_x: **Doesn't apply to:** All NFS file shares including file shares created with the Microsoft.FileShares resource provider (preview) or classic file shares created with the Microsoft.Storage resource provider
+
 This migration article is one of several that apply to the keywords NAS, Azure File Sync, and Azure Data Box. Check if this article applies to your scenario:
 
 > [!div class="checklist"]
@@ -22,13 +26,6 @@ If your scenario is different, look through the [table of migration guides](stor
 
 Azure File Sync works on Direct Attached Storage (DAS) locations. It doesn't support sync to Network Attached Storage (NAS) locations.
 So you need to migrate your files. This article guides you through the planning and implementation of that migration.
-
-## Applies to
-| File share type | SMB | NFS |
-|-|:-:|:-:|
-| Standard file shares (GPv2), LRS/ZRS | ![Yes](../media/icons/yes-icon.png) | ![No](../media/icons/no-icon.png) |
-| Standard file shares (GPv2), GRS/GZRS | ![Yes](../media/icons/yes-icon.png) | ![No](../media/icons/no-icon.png) |
-| Premium file shares (FileStorage), LRS/ZRS | ![Yes](../media/icons/yes-icon.png) | ![No](../media/icons/no-icon.png) |
 
 ## Migration goals
 

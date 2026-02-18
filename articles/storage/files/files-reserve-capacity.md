@@ -14,19 +14,16 @@ recommendations: false
 
 # Optimize costs with Azure Files Reservations
 
+:heavy_check_mark: **Applies to:** Classic file shares created with the Microsoft.Storage resource provider with either the provisioned v1 or pay-as-you-go billing models
+
+:heavy_multiplication_x: **Doesn't apply to:** All file shares using the provisioned v2 billing model including file shares created with the Microsoft.FileShares resource provider (preview) or classic file shares created with the Microsoft.Storage resource provider
+
 You can save money on the storage costs for Azure file shares with Azure Files Reservations. Azure Files Reservations (also referred to as *reserved instances*) offer you a discount on capacity for storage costs when you commit to a Reservation for either one year or three years. A Reservation provides a fixed amount of storage capacity for the term of the Reservation.
 
 Azure Files reservations can significantly reduce your capacity costs for storing data in Azure file shares. How much you save will depend on the duration of your Reservation, the total storage capacity you choose to reserve, and the tier and redundancy settings that you've chosen for your Azure file shares. Reservations provide a billing discount and don't affect the state of your Azure file shares. Reservations have no effect on performance.
 
 For pricing information about Azure Files Reservations, see [Azure Files pricing](https://azure.microsoft.com/pricing/details/storage/files/).
 
-## Applies to
-
-| File share type | SMB | NFS |
-|-|:-:|:-:|
-| Standard file shares (GPv2), LRS/ZRS | ![Yes](../media/icons/yes-icon.png) | ![No](../media/icons/no-icon.png) |
-| Standard file shares (GPv2), GRS/GZRS | ![Yes](../media/icons/yes-icon.png) | ![No](../media/icons/no-icon.png) |
-| Premium file shares (FileStorage), LRS/ZRS | ![Yes](../media/icons/yes-icon.png) | ![Yes](../media/icons/yes-icon.png) |
 
 ## Reservation terms for Azure Files
 
