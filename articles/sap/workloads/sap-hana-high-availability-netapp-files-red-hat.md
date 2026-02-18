@@ -426,28 +426,28 @@ In this example, each cluster node has its own HANA NFS file systems `/hana/shar
 
     Configure location constraints to ensure that the resources that manage hanadb1 unique mounts can never run on hanadb2, and vice versa.
 
-   ### [RHEL 10](#tab/rhel10)
+   ### [RHEL 10.x](#tab/rhel10)
 
     ```bash
     sudo pcs constraint location hanadb1_nfs rule score=-INFINITY resource-discovery=never "#uname eq hanadb2"
     sudo pcs constraint location hanadb2_nfs rule score=-INFINITY resource-discovery=never "#uname eq hanadb1"
     ```
 
-   ### [RHEL 8/9](#tab/rhel8-9)
+   ### [RHEL 8.x/9.x](#tab/rhel8-9)
 
     ```bash
     sudo pcs constraint location hanadb1_nfs rule score=-INFINITY resource-discovery=never \#uname eq hanadb2
     sudo pcs constraint location hanadb2_nfs rule score=-INFINITY resource-discovery=never \#uname eq hanadb1
     ```
 
-   ### [RHEL 7](#tab/rhel7)
+   ### [RHEL 7.x](#tab/rhel7)
 
     ```bash
     sudo pcs constraint location hanadb1_nfs rule score=-INFINITY resource-discovery=never \#uname eq hanadb2
     sudo pcs constraint location hanadb2_nfs rule score=-INFINITY resource-discovery=never \#uname eq hanadb1
     ```
 
-   ---
+    ---
 
     The `resource-discovery=never` option is set because the unique mounts for each node share the same mount point. For example, `hana_data1` uses mount point `/hana/data`, and `hana_data2` also uses mount point `/hana/data`. Sharing the same mount point can cause a false positive for a probe operation, when resource state is checked at cluster startup, and it can in turn cause unnecessary recovery behavior. To avoid this scenario, set `resource-discovery=never`.
 
@@ -489,21 +489,21 @@ In this example, each cluster node has its own HANA NFS file systems `/hana/shar
 
     Location rule constraints are set so that the SAP HANA resources can run on a node only if all of the node's NFS mounts are mounted.
 
-   ### [RHEL 10](#tab/rhel10)
+   ### [RHEL 10.x](#tab/rhel10)
 
     ```bash
     sudo pcs constraint location SAPHanaTopology_HN1_03-clone rule score=-INFINITY "hana_nfs1_active ne true and hana_nfs2_active ne true"
     sudo pcs constraint location SAPHana_HN1_03-clone rule score=-INFINITY "hana_nfs1_active ne true and hana_nfs2_active ne true"
     ```
 
-   ### [RHEL 8/9](#tab/rhel8-9)
+   ### [RHEL 8.x/9.x](#tab/rhel8-9)
 
     ```bash
     sudo pcs constraint location SAPHanaTopology_HN1_03-clone rule score=-INFINITY hana_nfs1_active ne true and hana_nfs2_active ne true
     sudo pcs constraint location SAPHana_HN1_03-clone rule score=-INFINITY hana_nfs1_active ne true and hana_nfs2_active ne true
     ```
 
-   ### [RHEL 7](#tab/rhel7)
+   ### [RHEL 7.x](#tab/rhel7)
 
     ```bash
     sudo pcs constraint location SAPHanaTopology_HN1_03-clone rule score=-INFINITY hana_nfs1_active ne true and hana_nfs2_active ne true

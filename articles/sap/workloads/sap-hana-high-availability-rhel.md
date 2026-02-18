@@ -447,7 +447,7 @@ Next, create the HANA resources.
 > [!NOTE]
 > This article contains references to a term that Microsoft no longer uses. When the term is removed from the software, we'll remove it from this article.
 
-### [RHEL 10](#tab/rhel10)
+### [RHEL 10.x](#tab/rhel10)
 
 If you're building a cluster on **RHEL 10.x**, use the following commands:
 
@@ -472,7 +472,7 @@ sudo pcs resource defaults update migration-threshold=5000
 sudo pcs property set maintenance-mode=false
 ```
 
-### [RHEL 8/9](#tab/rhel8-9)
+### [RHEL 8.x/9.x](#tab/rhel8-9)
 
 If you're building a cluster on **RHEL 8.x/9.x**, use the following commands:
 
@@ -497,7 +497,7 @@ sudo pcs resource defaults update migration-threshold=5000
 sudo pcs property set maintenance-mode=false
 ```
 
-### [RHEL 7](#tab/rhel7)
+### [RHEL 7.x](#tab/rhel7)
 
 If you're building a cluster on **RHEL 7.x**, use the following commands:
 
@@ -587,22 +587,17 @@ To proceed with more steps on provisioning a second virtual IP, make sure that y
 1. For a **standard** load balancer, follow these steps on the same load balancer that you created in an earlier section.
 
    a. Create a second front-end IP pool:
-
    * Open the load balancer, select **frontend IP pool**, and select **Add**.
    * Enter the name of the second front-end IP pool (for example, **hana-secondaryIP**).
    * Set **Assignment** to **Static** and enter the IP address (for example, **10.0.0.14**).
    * Select **OK**.
    * After the new front-end IP pool is created, note the pool IP address.
-
    b. Create a health probe:
-
    * Open the load balancer, select **health probes**, and select **Add**.
    * Enter the name of the new health probe (for example, **hana-secondaryhp**).
    * Select **TCP** as the protocol and port **62603**. Keep the **Interval** value set to **5** and the **Unhealthy threshold** value set to **2**.
    * Select **OK**.
-
    c. Create the load-balancing rules:
-
    * Open the load balancer, select **load balancing rules**, and select **Add**.
    * Enter the name of the new load balancer rule (for example, **hana-secondarylb**).
    * Select the front-end IP address, the back-end pool, and the health probe that you created earlier (for example, **hana-secondaryIP**, **hana-backend**, and **hana-secondaryhp**).
@@ -624,7 +619,7 @@ hdbnsutil -sr_register --remoteHost=hn1-db-0 --remoteInstance=03 --replicationMo
 
 The second virtual IP and the appropriate colocation constraint can be configured with the following commands:
 
-### [RHEL 10](#tab/rhel10)
+### [RHEL 10.x](#tab/rhel10)
 
 ```bash
 pcs property set maintenance-mode=true
@@ -643,7 +638,7 @@ sudo pcs resource update nc_HN1_03 meta priority=5
 pcs property set maintenance-mode=false
 ```
 
-### [RHEL 8/9](#tab/rhel8-9)
+### [RHEL 8.x/9.x](#tab/rhel8-9)
 
 ```bash
 pcs property set maintenance-mode=true
@@ -662,7 +657,7 @@ sudo pcs resource update nc_HN1_03 meta priority=5
 pcs property set maintenance-mode=false
 ```
 
-### [RHEL 7](#tab/rhel7)
+### [RHEL 7.x](#tab/rhel7)
 
 ```bash
 pcs property set maintenance-mode=true
@@ -742,19 +737,19 @@ Resource Group: g_ip_HN1_03
 
 You can migrate the SAP HANA master node by running the following command as root:
 
-### [RHEL 10](#tab/rhel10)
+### [RHEL 10.x](#tab/rhel10)
 
 ```bash
 pcs resource move SAPHana_HN1_03-clone --Promoted
 ```
 
-### [RHEL 8/9](#tab/rhel8-9)
+### [RHEL 8.x/9.x](#tab/rhel8-9)
 
 ```bash
 pcs resource move SAPHana_HN1_03-clone --master
 ```
 
-### [RHEL 7](#tab/rhel7)
+### [RHEL 7.x](#tab/rhel7)
 
 ```bash
 pcs resource move SAPHana_HN1_03-master
