@@ -120,18 +120,23 @@ The following tables outline the differences in SNI between the v1 and v2 SKU in
 
 ### Frontend TLS connection (client to application gateway)
 
-
 | Scenario | v1 | v2 |
 | --- | --- | --- |
 | If the client specifies SNI header and all the multi-site listeners are enabled with "Require SNI" flag | Returns the appropriate certificate and if the site doesn't exist (according to the server_name), then the connection is reset. | Returns appropriate certificate if available, otherwise, returns the certificate of the first HTTPS listener according to the order specified by the request routing rules associated with the HTTPS listeners |
 | If the client doesn't specify a SNI header and if all the multi-site headers are enabled with "Require SNI" | Resets the connection | Returns the certificate of the first HTTPS listener according to the order specified by the request routing rules associated with the HTTPS listeners |
-| If the client doesn't specify SNI header and if there's a basic listener configured with a certificate | Returns the certificate configured in the basic listener to the client (default or fallback certificate) | Returns the certificate configured in the basic listener |
+| If the client doesn't specify SNI header and if there's a basic listener configured with a certificate | Returns the certificate configured in the basic listener to the client (default or fallback certificate) | Returns the certificate of the HTTPS listener with the highest priority routing rule. The basic listener certificate is **not** used as a fallback. |
 
-> [!NOTE]
-> When the client does not specify an SNI header, it is recommended that the user add a basic listener and rule to present a default SSL/TLS certificate.
+> [!IMPORTANT]
+> **V2 SKU default certificate behavior:** When a client connects without an SNI header (for example, using an IP address), Application Gateway V2 does **not** fall back to a basic listener's certificate. Instead, it always returns the certificate from the HTTPS listener whose associated request routing rule has the **highest priority** (lowest priority number). This behavior differs from the V1 SKU, which returns the basic listener's certificate as a fallback.
 
 > [!TIP]
-> The SNI flag can be configured with PowerShell or by using an ARM template. For more information, see [RequireServerNameIndication](/powershell/module/az.network/set-azapplicationgatewayhttplistener#-requireservernameindication) and [Quickstart: Direct web traffic with Azure Application Gateway - ARM template](quick-create-template.md#review-the-template).
+> **Controlling the default certificate with an SNI hole:** To prevent Application Gateway V2 from exposing a production site certificate when clients connect by IP address without SNI, you can configure an "SNI hole":
+>
+> 1. Create a **multi-site HTTPS listener** with a dummy hostname that doesn't match any real site (for example, `sni-hole.invalid`).
+> 2. Upload a **self-signed certificate** to this listener.
+> 3. Create a **request routing rule** associated with this listener and assign it the **highest priority** (lowest priority number) among all your rules.
+>
+> With this configuration, any connection without a matching SNI header receives the self-signed certificate instead of a valid site certificate. This prevents IP-only connections from obtaining information about your hosted sites.
 
 ### Backend TLS connection (application gateway to the backend server)
 
