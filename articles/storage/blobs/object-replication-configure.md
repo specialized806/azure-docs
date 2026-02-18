@@ -324,7 +324,7 @@ N/A
 Object replication now supports copying source blob's index tags to the destination blob. You can either configure it when creating new replication rules or enable it for existing replication rules. 
 
 > [!NOTE]
-> Tags Replication is currently in Public Preview, please refer to the following prerequisites for trying out the feature.
+> Tags Replication is in public preview and is subject to the prerequisites described in the following section.
 
 ### Prerequisites
 
@@ -351,15 +351,15 @@ You can enable tags replication using **Object Replication** blade when creating
 
 #### [PowerShell](#tab/powershell)
 
-Not yet supported.
+N/A.
 
 #### [Azure CLI](#tab/azure-cli)
 
-Not yet supported.
+N/A.
 
 #### [REST API](#tab/rest-api)
 
-Users can use existing REST APIs: [Object Replication Policies - Create Or Update - REST API](https://learn.microsoft.com/en-us/rest/api/storagerp/object-replication-policies/create-or-update?view=rest-storagerp-2025-06-01&tabs=HTTP) to configure policies for replicating tags set on the Blobs. 
+Users can use existing REST APIs: [Object Replication Policies - Create Or Update - REST API](/rest/api/storagerp/object-replication-policies/create-or-update) to configure policies for replicating tags set on the Blobs. 
 
 Simply add the following line ``` “tagsReplication”: { “enabled”: true }``` when creating or updating the replication 
 rules on the source account.
