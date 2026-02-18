@@ -409,7 +409,7 @@
           href: self-hosted-gateway-authentication-options.md
         - name: Authenticate with a configuration token
           href: self-hosted-gateway-default-authentication.md
-        - name: Authenticate with Microsoft Entra ID - client credential
+        - name: Authenticate with Microsoft Entra ID - client secret
           href: self-hosted-gateway-enable-azure-ad.md
         - name: Authenticate with Microsoft Entra ID - workload identity
           href: self-hosted-gateway-enable-workload-identity.md  

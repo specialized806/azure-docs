@@ -46,10 +46,10 @@ Deploy the self-hosted gateway to a containerized environment, such as Kubernete
 
 #### [YAML](#tab/yaml)
 
-The following YAML configuration shows the required components and settings for deployment to Kubernetes.
+The following sample YAML configuration shows the required components and settings for deployment to Kubernetes with token authentication.
 
 > [!IMPORTANT]
-> The following YAML configuration below is an example showing the self-hosted gateway with token authentication. To install using a deployment script provided in the Azure portal, see [Deploy a self-hosted gateway to Kubernetes with YAML](how-to-deploy-self-hosted-gateway-kubernetes.md).
+> For steps to install using a deployment script provided in the Azure portal, see [Deploy a self-hosted gateway to Kubernetes with YAML](how-to-deploy-self-hosted-gateway-kubernetes.md).
 
 > [!NOTE]
 > Make sure to replace the placeholder values with your actual configuration:
