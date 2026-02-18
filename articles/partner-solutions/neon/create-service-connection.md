@@ -6,6 +6,8 @@ ms.topic: how-to
 ms.date: 03/28/2025
 ms.custom: service-connector
 ---
+> [!Important]
+> Deprecation Note: The Neon Azure Native Integration is now retired. Existing customers can transfer projects to a Neon managed organization. Learn more here [Migrate from Neon Azure Native Integration](https://neon.com/docs/import/migrate-from-azure-native).
 
 # Connect apps to Neon Serverless Postgres
 
