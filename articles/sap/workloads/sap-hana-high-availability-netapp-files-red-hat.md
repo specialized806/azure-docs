@@ -424,7 +424,7 @@ In this example, each cluster node has its own HANA NFS file systems `/hana/shar
 
 1. **[1]** Configure location constraints.
 
-    Configure location constraints to ensure that the resources that manage hanadb1 unique mounts can never run on hanadb2, and vice versa.
+   Configure location constraints to ensure that the resources that manage hanadb1 unique mounts can never run on hanadb2, and vice versa.
 
    ### [RHEL 10.x](#tab/rhel10)
 
@@ -489,28 +489,28 @@ In this example, each cluster node has its own HANA NFS file systems `/hana/shar
 
     Location rule constraints are set so that the SAP HANA resources can run on a node only if all of the node's NFS mounts are mounted.
 
-   ### [RHEL 10.x](#tab/rhel10)
+    ### [RHEL 10.x](#tab/rhel10)
 
     ```bash
     sudo pcs constraint location SAPHanaTopology_HN1_03-clone rule score=-INFINITY "hana_nfs1_active ne true and hana_nfs2_active ne true"
     sudo pcs constraint location SAPHana_HN1_03-clone rule score=-INFINITY "hana_nfs1_active ne true and hana_nfs2_active ne true"
     ```
 
-   ### [RHEL 8.x/9.x](#tab/rhel8-9)
+    ### [RHEL 8.x/9.x](#tab/rhel8-9)
 
     ```bash
     sudo pcs constraint location SAPHanaTopology_HN1_03-clone rule score=-INFINITY hana_nfs1_active ne true and hana_nfs2_active ne true
     sudo pcs constraint location SAPHana_HN1_03-clone rule score=-INFINITY hana_nfs1_active ne true and hana_nfs2_active ne true
     ```
 
-   ### [RHEL 7.x](#tab/rhel7)
+    ### [RHEL 7.x](#tab/rhel7)
 
     ```bash
     sudo pcs constraint location SAPHanaTopology_HN1_03-clone rule score=-INFINITY hana_nfs1_active ne true and hana_nfs2_active ne true
     sudo pcs constraint location SAPHana_HN1_03-master rule score=-INFINITY hana_nfs1_active ne true and hana_nfs2_active ne true
     ```
 
-   ---
+    ---
 
 1. **[1]** Configure ordering constraints so that the SAP resources on a node will stop ahead of a stop for any of the NFS mounts.
 
@@ -521,25 +521,24 @@ In this example, each cluster node has its own HANA NFS file systems `/hana/shar
 
    ### [RHEL 10](#tab/rhel10)
 
-    ```bash
+   ```bash
    pcs constraint order stop SAPHana_HN1_03-clone then stop hanadb1_nfs symmetrical=false
    pcs constraint order stop SAPHana_HN1_03-clone then stop hanadb2_nfs symmetrical=false
-
-    ```
+   ```
 
    ### [RHEL 8/9](#tab/rhel8-9)
 
-    ```bash
+   ```bash
    pcs constraint order stop SAPHana_HN1_03-clone then stop hanadb1_nfs symmetrical=false
    pcs constraint order stop SAPHana_HN1_03-clone then stop hanadb2_nfs symmetrical=false
-    ```
+   ```
 
    ### [RHEL 7](#tab/rhel7)
 
-    ```bash
+   ```bash
    pcs constraint order stop SAPHana_HN1_03-master then stop hanadb1_nfs symmetrical=false
    pcs constraint order stop SAPHana_HN1_03-master then stop hanadb2_nfs symmetrical=false
-    ```
+   ```
 
    ---
 
