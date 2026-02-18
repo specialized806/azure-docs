@@ -25,7 +25,7 @@ You can use the following options to configure your DNS settings for private end
 
 - **Use a private DNS zone**. You can use [Private DNS Zones](../dns/private-dns-privatednszone.md) to override the DNS resolution for a private endpoint. A private DNS zone can be linked to your virtual network to resolve specific domains.
 
-- **Use Azure Private Resolver (optional)**. You can use Azure Private Resolver to override the DNS resolution for a private link resource. For more information about Azure Private Resolver, see [What is Azure Private Resolver?](../dns/dns-private-resolver-overview.md).
+- **Use Azure Private Resolver (optional)**. You can use Azure Private Resolver to override the DNS resolution for a private link resource. For more information about Azure Private Resolver, see [What is Azure Private Resolver?](../dns/dns-private-resolver-overview.md)
 
 > [!CAUTION]
 >
@@ -81,7 +81,7 @@ For Azure services, use the recommended zone names as described in the following
 > | Azure Data Factory (Microsoft.DataFactory/factories) | portal | privatelink.adf.azure.com | adf.azure.com |
 > | Azure HDInsight (Microsoft.HDInsight/clusters) | gateway </br> headnode | privatelink.azurehdinsight.net | azurehdinsight.net |
 > | Azure Data Explorer (Microsoft.Kusto/Clusters) | cluster | privatelink.{regionName}.kusto.windows.net </br> privatelink.blob.core.windows.net </br> privatelink.queue.core.windows.net </br> privatelink.table.core.windows.net | {regionName}.kusto.windows.net </br> blob.core.windows.net </br> queue.core.windows.net </br> table.core.windows.net |
-> | Microsoft Power BI (Microsoft.PowerBI/privateLinkServicesForPowerBI) | tenant | privatelink.analysis.windows.net </br> privatelink.pbidedicated.windows.net </br> privatelink.tip1.powerquery.microsoft.com | analysis.windows.net </br> pbidedicated.windows.net </br> tip1.powerquery.microsoft.com |
+> | Microsoft Power BI (Microsoft.PowerBI/privateLinkServicesForPowerBI) | tenant | privatelink.analysis.windows.net </br> privatelink.pbidedicated.windows.net </br> privatelink.prod.powerquery.microsoft.com | analysis.windows.net </br> pbidedicated.windows.net </br> prod.powerquery.microsoft.com |
 > | Azure Databricks (Microsoft.Databricks/workspaces) | databricks_ui_api </br> browser_authentication | privatelink.azuredatabricks.net | azuredatabricks.net |
 > | Microsoft Fabric (Microsoft.Fabric/privateLinkServicesForFabric) | workspace | privatelink.fabric.microsoft.com  | fabric.microsoft.com |
 
