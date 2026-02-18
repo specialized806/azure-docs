@@ -212,7 +212,7 @@ kubectl apply -f apim-gateway-entra-id.yaml
 
 #### [Helm](#tab/helm)
 
-You can deploy the self-hosted gateway with Microsoft Entra authentication using a[Helm chart](https://github.com/Azure/api-management-self-hosted-gateway). 
+You can deploy the self-hosted gateway with Microsoft Entra authentication using a [Helm chart](https://github.com/Azure/api-management-self-hosted-gateway). 
 
 Replace the following values in the the `helm install` command with your actual values:
 
