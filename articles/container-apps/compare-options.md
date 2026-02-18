@@ -22,8 +22,6 @@ There are many options for teams to build and deploy cloud native and containeri
 
 There's no perfect solution for every use case and every team. The following explanation provides general guidance and recommendations as a starting point to help find the best fit for your team and your requirements.
 
-## Container option comparisons
-
 [!INCLUDE [container option comparisons](../../includes/container-apps/container-comparison.md)]
 
 ## Next steps
