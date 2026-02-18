@@ -1,6 +1,6 @@
 ---
 title: Create Autonomous AI Agentic Workflows
-description: Learn how to build intelligent automation workflows that use AI agent loops and LLMs to complete tasks without human interactions in Azure Logic Apps.
+description: Build autonomous agentic workflows that use AI agent loops and LLMs to complete tasks without human interactions in Azure Logic Apps.
 services: logic-apps
 ms.suite: integration
 ms.reviewers: estfan, divswa, krmitta, LogicApps
@@ -106,7 +106,7 @@ Based on whether you want to create a Consumption or Standard logic app, the fol
     >
     > Use this authentication option only for the examples in this guide, exploratory scenarios, nonproduction scenarios, or if your organization's policy specifies that you can't use managed identity authentication.
     >
-    > In general, make sure that you secure and protect sensitive data and personal data, such as credentials, secrets, access keys, connection strings, certificates, thumbprints, and similar information with the highest available or supported level of security. Don't hardcode sensitive data, share with other users, or save in plain text anywhere that others can access. Set up a plan to rotate or revoke secrets in the case they become compromised.
+        > In general, make sure that you secure and protect sensitive data and personal data, such as credentials, secrets, access keys, connection strings, certificates, thumbprints, and similar information by using the highest available or supported level of security. Don't hardcode sensitive data, share with other users, or save in plain text anywhere that others can access. Set up a plan to rotate or revoke secrets if they become compromised.
     >
     > For more information, see:
     >
@@ -118,7 +118,7 @@ Based on whether you want to create a Consumption or Standard logic app, the fol
 
 - To follow along with the examples, you need an email account to send email.
 
-  The examples in this guide use an Outlook.com account. For your own scenarios, you can use any supported email service or messaging app in Azure Logic Apps, such as Office 365 Outlook, Microsoft Teams, Slack, and so on. The setup for other email services or apps are similar to the examples, but have minor differences.
+  The examples in this guide use an Outlook.com account. For your own scenarios, you can use any supported email service or messaging app in Azure Logic Apps, such as Office 365 Outlook, Microsoft Teams, Slack, and so on. The setup for other email services or apps is similar to the examples, but has minor differences.
 
 [!INCLUDE [supported-models](includes/supported-models.md)]
 
@@ -126,12 +126,12 @@ Based on whether you want to create a Consumption or Standard logic app, the fol
 
 ## Limitations and known issues
 
-The following table describes current limitations and any known issues in this release, based on your logic app resource type.
+The following table describes current limitations and known issues in this release, based on your logic app resource type.
 
 | Logic app | Limitations or known issues |
 |-----------|-----------------------------|
-| Both | To create tools for your agent, the following limitations apply: <br><br>- You can add only actions, not triggers. <br>- A tool must start with an action and always contains at least one action. <br>- A tool works only inside the agent loop where that tool exists. <br>- Control flow actions are unsupported. |
-| Consumption | - You can create Consumption agentic workflows only in the Azure portal, not Visual Studio Code. <br>- The AI model that your **Agent** action uses can originate from any region, so data residency for a specific region isn't guaranteed for data that the model handles. <br>- The **Agent** action is throttled based on the number of tokens used. |
+| Both | To create tools for your agent, the following limitations apply: <br><br>- You can add only actions, not triggers. <br>- A tool must start with an action and always contains at least one action. <br>- A tool works only inside the agent loop where that tool exists. <br>- Control flow actions aren't supported. |
+| Consumption | - You can create Consumption agentic workflows only in the Azure portal, not Visual Studio Code. <br>- The AI model that your **Agent** action uses can come from any region, so data residency for a specific region isn't guaranteed for data that the model handles. <br>- The **Agent** action is throttled based on the number of tokens used. |
 | Standard | - Unsupported workflow types: **Stateless** <br><br>**Note**: Foundry projects require that you use managed identity authentication. <br><br>- For general limits in Azure OpenAI Service, Foundry, and Azure Logic Apps, see: <br><br>- [Azure OpenAI Service quotas and limits](/azure/ai-services/openai/quotas-limits) <br>- [Azure OpenAI in Foundry Models quotas and limits](/azure/ai-foundry/openai/quotas-limits) <br>- [Azure Logic Apps limits and configuration](/azure/logic-apps/logic-apps-limits-and-config) |
 
 ## Create an autonomous agentic workflow
@@ -170,7 +170,7 @@ To create a workflow with an empty **Agent** action, follow these steps:
 
 1. On the **Create workflow** pane, complete the following steps:
 
-   1. For **Workflow name**, provide a name for your workflow.
+   1. For **Workflow name**, enter a name for your workflow.
 
    1. Select **Autonomous Agents** > **Create**.
 
@@ -210,7 +210,7 @@ To create a workflow with an empty **Agent** action, follow these steps:
 
 1. Select the workflow template named **Autonomous agent**.
 
-1. Provide a name for your workflow, and press Enter.
+1. Enter a name for your workflow, and press Enter.
 
    A new workflow folder now appears in your project. This folder contains a *workflow.json* file, which contains the workflow's underlying JSON definition.
 
@@ -319,7 +319,7 @@ Update the agent loop name to clearly identify the agent's purpose by following 
 
 1. On the designer, select the agent action title bar to open the information pane.
 
-1. On the information pane, select the agent loop name, and enter the new name, for example, `Weather agent`.
+1. On the information pane, select the agent loop name, and enter the new name, such as `Weather agent`.
 
    :::image type="content" source="media/create-autonomous-agent-workflows/rename-agent.png" alt-text="Screenshot shows workflow designer, workflow trigger, and renamed agent." lightbox="media/create-autonomous-agent-workflows/rename-agent.png":::
 
@@ -350,11 +350,11 @@ For the best results, provide prescriptive instructions and be prepared to itera
 
    :::image type="content" source="media/create-autonomous-agent-workflows/weather-agent-instructions.png" alt-text="Screenshot shows workflow designer and agent loop instructions." lightbox="media/create-autonomous-agent-workflows/weather-agent-instructions.png":::
 
-1. Optionally, you can provide user instructions that the agent loop uses as prompts.
+1. Optionally, provide user instructions that the agent loop uses as prompts.
 
    For the best results, make each user instruction focus on a specific task, for example:
 
-   1. On the agent loop information pane, under **User instructions** section, in the **User instructions Item - 1** box, enter the prompt for the agent loop.
+   1. On the agent loop information pane, under the **User instructions** section, in the **User instructions Item - 1** box, enter the prompt for the agent loop.
 
    1. To add another instruction, select **Add new item**.
 
@@ -362,7 +362,7 @@ For the best results, provide prescriptive instructions and be prepared to itera
 
    1. Repeat until you finish adding all the prompts that you want.
 
-1. Now, you can save your workflow. On the designer toolbar, select **Save**.
+1. On the designer toolbar, select **Save**.
 
 ## Check for errors
 
@@ -508,7 +508,7 @@ For an action parameter that uses only model-generated outputs, create an agent 
 
    > [!NOTE]
    >
-   > Microsoft recommends that you follow the action's Swagger definition. For example, for the **Get current weather** action, which is from the **MSN Weather** "shared" connector hosted and managed by global, multitenant Azure, see the [**MSN Weather** connector technical reference article](/connectors/msnweather/#get-current-weather).
+   > Microsoft recommends that you follow the action's Swagger definition. For example, for the **Get current weather** action, which comes from the **MSN Weather** "shared" connector hosted and managed by global, multitenant Azure, see the [**MSN Weather** connector technical reference article](/connectors/msnweather/#get-current-weather).
 
 1. When you're ready, select **Create**.
 
@@ -584,7 +584,7 @@ For these scenarios, create the agent parameter on the tool by following these s
 
 ## Create a 'Send email' tool
 
-For many scenarios, an agent loop usually needs more than one tool. In this example, the agent loop needs a tool that sends the weather report in email.
+For many scenarios, an agent loop needs more than one tool. In this example, the agent loop needs a tool that sends the weather report in email.
 
 To build this tool, follow these steps:
 
@@ -614,7 +614,7 @@ Except for the different agent parameters to set up for the **Send an email (V2)
 
    The action needs three agent parameters named **To**, **Subject**, and **Body**. For the action's Swagger definition, see [**Send an email (V2)**](/connectors/outlook/#send-an-email-(v2)).
 
-   When you're done, the example action uses the previously defined agent parameters as shown here:
+   When you're done, the example action uses the previously defined agent parameters as shown in the following image:
 
    :::image type="content" source="media/create-autonomous-agent-workflows/send-email-action.png" alt-text="Screenshot shows the information pane for the action named Send an email V2, plus the previously defined agent parameters named To, Subject, and Body." lightbox="media/create-autonomous-agent-workflows/send-email-action.png":::
 
@@ -626,7 +626,7 @@ Except for the different agent parameters to set up for the **Send an email (V2)
 
 ## Create a subscriber list tool
 
-Finally, for this example, create a tool named **Get subscribers** to provide a subscriber list for the agent parameter values to use. This tool uses the **Compose** action to supply the subscriber name, email address, and location. Or, you might source these inputs from blob storage or a database. Azure Logic Apps offers many options that you can use as data sources.
+Finally, create a tool named **Get subscribers** to provide a subscriber list for the agent parameter values to use. This tool uses the **Compose** action to supply the subscriber name, email address, and location. Or, you might source these inputs from blob storage or a database. Azure Logic Apps offers many options that you can use as data sources.
 
 For this example, follow these steps:
 
@@ -636,7 +636,7 @@ For this example, follow these steps:
 
    `Get the list of subscribers, including their name, location, and email address. To generate the weather report, use the location for each subscriber. To send the weather report, use the email address for each subscriber.`
 
-1. Rename to **Compose** action to `Subscriber list`. In the **Input** box, use the following JSON array but replace the sample subscriber data with the data that you want to use for testing. For example, replace the email addresses with your own so you get the weather for different locations.
+1. Rename the **Compose** action to `Subscriber list`. In the **Input** box, use the following JSON array but replace the sample subscriber data with the data that you want to use for testing. For example, replace the email addresses with your own so you get the weather for different locations.
 
    ```json
    [
