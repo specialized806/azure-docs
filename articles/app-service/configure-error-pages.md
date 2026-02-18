@@ -13,11 +13,11 @@ ms.service: azure-app-service
 
 # Configure error pages on App Service
 
-Azure App Service lets you configure error pages for specific errors to present to web app users instead of the default error pages.This article explains how to configure these custom error pages for your web app.
+Azure App Service lets you configure error pages for specific errors that you can present to web app users instead of the default error pages. This article explains how to configure these custom error pages for your web app.
 
 The three types of error code pages available for customization in App Service are *403 Access restrictions*, *502 Gateway errors*, and *503 Service unavailable*. This article walks through adding a custom 403 error page to a web app hosted on App Service, and testing it by using an IP restriction.
 
-## Prerequisite
+## Prerequisites
 
 - A web app hosted on an Azure App Service Premium SKU. You must have a Premium SKU to customize error pages.
 - An HTML file smaller than 10 kb that presents a 403 error message such as **Forbidden**. Name the HTML file to match the error code, in this case *403.html*.
@@ -29,24 +29,24 @@ Upload your custom error page and apply it to your web app.
 1. On the Azure portal page for your web app, select **Settings** > **Configuration (preview)** from the left navigation menu.
 1. Select the **Error pages** tab on the **Configuration** page.
 1. On the **Error pages** page, select the **Browse** button next to the error code you want to configure, in this case **403**.
-1. Browse to your custom *403.html* error page and select **Open**. The filename appears in the field next to the error code.
+1. Browse to your custom *403.html* error page and select **Open**. The file uploads, and the filename appears in the field next to the error code.
 1. Select the checkbox next to **Apply to all requests**, and then select **Apply**.
 
 >[!NOTE]
 >If the configuration options are greyed out, you need to upgrade to at least a Premium SKU to use this feature.
 
 >[!NOTE]
->If you're using the old, nonpreview **Configuration** > **Error codes** page, select **Edit** next to the error code you want to configure. On the **Add custom error page (.html)** screen, select the folder icon to browse to and select your custom *403.html* file. After the file loads, select **Upload**.
+>If you're using the legacy, nonpreview **Configuration** > **Error codes** page, select **Edit** next to the error code you want to configure. On the **Add custom error page (.html)** pane, select the folder icon to browse to and select your custom *403.html* file. After the file loads, select **Upload**.
 
 ## Confirm the error page
 
 Once you upload and apply the custom error page, you can trigger and view the page. For this example, trigger the 403 error by using an IP restriction. You can also trigger a 403 error page by stopping the site.
 
 1. Select **Settings** > **Networking** from the left navigation menu.
-1. Under **Inbound traffic configuration** on the **Networking** page, copy the IP address next to **IP Addresses** to use for the access restriction.
+1. Under **Inbound traffic configuration** on the **Networking** page, copy the IP address next to **IP Addresses** to use in a later step.
 1. Next to **Public access restrictions**, select the link for **Enabled with no access restrictions**.
 1. On the **Access Restrictions** page, under **Site access**, select **Enabled from select virtual networks and IP addresses**.
-1. At the bottom of the page under **Site access and rules** ,select **Add** to add an IP restriction.
+1. At the bottom of the page under **Site access and rules**,select **Add** to add an IP restriction.
 1. On the **Add rule** pane, give the rule a **Name** like *Test403*, set **Action** to **Deny**, and set **Priority** to *300*.
 1. Paste the IP address you copied from the main **Networking** page into the **IP Address Block** field, followed by */0*, for example *20.48.204.9/0*.
 1. Select **Add rule**.
@@ -58,7 +58,7 @@ Restart the site for the changes to take effect. Return to the **Overview** page
 
 ### Why doesn't my uploaded error page show when the error is triggered?
 
-Make sure you selected **Apply to all requests** when you configured the erorr page. By default, custom error pages are triggered only from front-end failures. Errors from the app level don't trigger or show the custom error page. Selecting **Apply to all requests** for the configured error code shows the error page for all requests that match the status code, regardless of where they failed. Selecting this option overrides any existing error pages configured for the app.
+Make sure you selected **Apply to all requests** when you configured the error page. By default, custom error pages are triggered only from front-end failures. Errors from the app level don't trigger or show the custom error page. Selecting **Apply to all requests** for the configured error code shows the error page for all requests that match the status code, regardless of where they failed. Selecting this option overrides any existing error pages configured for the app.
 
 ### Why is the error page feature grayed out?
 
