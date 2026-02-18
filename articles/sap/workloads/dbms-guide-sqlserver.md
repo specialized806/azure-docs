@@ -139,7 +139,7 @@ If the result is different, STOP any deployment and investigate why the setup co
 Using SQL Server in Azure IaaS deployments for SAP, you have several different possibilities to add to deploy the database layer highly available. Azure provides different up-time SLAs for a single VM using:
 
 * Different Azure block storages
-* A pair of VMs deployed in an Azure availability set
+* A pair of VMs deployed in an Azure Availability Set
 * A pair of VMs deployed across Azure Availability Zones
 
 For production systems, we expect you to deploy a pair of VMs within a virtual machine scale set with flexible orchestration across two availability zones. To learn more, see [comparison of different deployment types for SAP workload](./sap-high-availability-architecture-scenarios.md#comparison-of-different-deployment-types-for-sap-workload). One VM runs the active SQL Server Instance. The other VM runs the passive instance.
