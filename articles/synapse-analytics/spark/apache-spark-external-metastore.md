@@ -5,7 +5,7 @@ keywords: external Hive Metastore,share,Synapse
 ms.service: azure-synapse-analytics
 ms.topic: conceptual
 ms.subservice: spark
-author: kuhuan
+author: konjac
 ms.author: kuhuan
 ms.date: 11/15/2024
 ---
