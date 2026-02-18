@@ -104,7 +104,7 @@ Depending on the type of Data Box, Data Box copy tools might be available. At th
 When your Data Box arrives, it will have pre-provisioned SMB shares available for each storage account you specified when you ordered it.
 
 * If your files go into an SSD Azure file share, there will be one SMB share per SSD "File storage" storage account.
-* If your files go into an HDD storage account, there will be three SMB shares per HDD (GPv1 and GPv2) storage account. Only the file shares that end with `_AzFiles` are relevant for your migration. Ignore any block and page blob shares.
+* If your files go into an HDD storage account, there will be three SMB shares per HDD pay-as-you-go storage account. Only the file shares that end with `_AzFiles` are relevant for your migration. Ignore any block and page blob shares.
 
 Follow the steps in the Azure Data Box documentation:
 

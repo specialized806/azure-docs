@@ -86,9 +86,10 @@ ZRS provides excellent performance, low latency, and resiliency for your data if
 
 #### ZRS support by region
 
-To understand which regions support ZRS for HDD file shares, see the [Azure regions list](/azure/reliability/regions-list#azure-regions-list-1) and refer to the availability zone support column. ZRS is supported in HDD general-purpose v2 storage accounts for all three HDD tiers: transaction optimized, hot, and cool.
+ZRS is supported for both SSD and HDD file shares. To see which regions support ZRS for each media tier, refer to the following resources:
 
-ZRS is supported for SSD file shares through the `FileStorage` storage account kind. For a list of regions that support ZRS for SSD file share accounts, see [ZRS support for SSD file shares](redundancy-premium-file-shares.md#zrs-support-for-ssd-azure-file-shares).
+- **HDD file shares**: See the availability zone support column in the [Azure regions list](/azure/reliability/regions-list#azure-regions-list-1).
+- **SSD file shares**: See [ZRS support for SSD file shares](redundancy-premium-file-shares.md#zrs-support-for-ssd-azure-file-shares).
 
 ## Redundancy in a secondary region
 
