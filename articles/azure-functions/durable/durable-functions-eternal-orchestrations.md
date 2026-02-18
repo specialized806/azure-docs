@@ -14,7 +14,7 @@ zone_pivot_groups: azure-durable-approach
 
 ::: zone pivot="durable-functions"
 
-*Eternal orchestrations* are orchestrator functions that never end. They're useful when you want to use [Durable Functions](durable-functions-overview.md) for aggregators and any scenario that requires an infinite loop.
+*Eternal orchestrations* are orchestrator functions that never end. They're useful when you want to use [Durable Functions](what-is-durable-task.md) for aggregators and any scenario that requires an infinite loop.
 
 ::: zone-end
 
@@ -233,11 +233,11 @@ public class PeriodicCleanupLoop implements TaskOrchestration {
 
 # [JavaScript](#tab/javascript)
 
-The Durable Task SDK is not available for JavaScript. Use [Durable Functions](durable-functions-overview.md) instead.
+The Durable Task SDK is not available for JavaScript. Use [Durable Functions](what-is-durable-task.md) instead.
 
 # [PowerShell](#tab/powershell)
 
-The Durable Task SDK is not available for PowerShell. Use [Durable Functions](durable-functions-overview.md) instead.
+The Durable Task SDK is not available for PowerShell. Use [Durable Functions](what-is-durable-task.md) instead.
 
 ---
 
@@ -359,11 +359,11 @@ client.scheduleNewOrchestrationInstance("PeriodicCleanupLoop", null, instanceId)
 
 # [JavaScript](#tab/javascript)
 
-The Durable Task SDK is not available for JavaScript. Use [Durable Functions](durable-functions-overview.md) instead.
+The Durable Task SDK is not available for JavaScript. Use [Durable Functions](what-is-durable-task.md) instead.
 
 # [PowerShell](#tab/powershell)
 
-The Durable Task SDK is not available for PowerShell. Use [Durable Functions](durable-functions-overview.md) instead.
+The Durable Task SDK is not available for PowerShell. Use [Durable Functions](what-is-durable-task.md) instead.
 
 ---
 
@@ -405,11 +405,11 @@ client.terminate(instanceId, "Cleanup no longer needed");
 
 # [JavaScript](#tab/javascript)
 
-The Durable Task SDK is not available for JavaScript. Use [Durable Functions](durable-functions-overview.md) instead.
+The Durable Task SDK is not available for JavaScript. Use [Durable Functions](what-is-durable-task.md) instead.
 
 # [PowerShell](#tab/powershell)
 
-The Durable Task SDK is not available for PowerShell. Use [Durable Functions](durable-functions-overview.md) instead.
+The Durable Task SDK is not available for PowerShell. Use [Durable Functions](what-is-durable-task.md) instead.
 
 ---
 

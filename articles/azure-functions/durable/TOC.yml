@@ -4,9 +4,9 @@
   expanded: true
   items:
   - name: What is Durable Task?
-    href: durable-overview.md
-  - name: Choose your orchestration framework
-    href: ./durable-task-scheduler/choose-orchestration-framework.md
+    href: what-is-durable-task.md
+  - name: Choose your programming model
+    href: choose-orchestration-framework.md
 - name: Quickstarts
   items:
   - name: Durable Functions
@@ -48,19 +48,19 @@
       - name: Durable Functions
         href: durable-functions-types-features-overview.md
       - name: Durable Task SDKs
-        href: durable-functions-overview.md #placeholder
+        href: what-is-durable-task.md #placeholder
     - name: Orchestration
       items:
       - name: Durable Functions
         href: durable-functions-orchestrations.md
       - name: Durable Task SDKs
-        href: durable-functions-overview.md #placeholder
+        href: what-is-durable-task.md #placeholder
     - name: Sub-orchestrations
       items:
       - name: Durable Functions
         href: durable-functions-sub-orchestrations.md
       - name: Durable Task SDKs
-        href: durable-functions-overview.md #placeholder
+        href: what-is-durable-task.md #placeholder
     - name: Task hubs
       href: durable-functions-task-hubs.md
     - name: Orchestrator code constraints
@@ -108,7 +108,7 @@
     - name: About Azure Functions
       href: ../functions-overview.md?toc=/azure/azure-functions/durable/toc.json
     - name: About Durable Functions
-      href: durable-functions-overview.md
+      href: what-is-durable-task.md
     - name: Versions
       href: durable-functions-versions.md
     - name: Packages
