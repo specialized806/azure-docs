@@ -6,7 +6,7 @@ ms.date: 02/17/2026
 
 ## Overview
 
-A private connection allows enterprise customers to securely migrate data between AWS S3 and Azure Storage over private networks, keeping transfers off the public internet. By using Azure Private Link Service (PLS) and Private Endpoints (PE), this solution extends the Virtual private Cloud (VPC) network into Azure, supports strict security compliance, and helps protect sensitive information.
+A private connection allows enterprise customers to securely migrate data between Azure Web Sservices (AWS) S3 and Azure Storage over private networks, keeping transfers off the public internet. By using Azure Private Link Service (PLS) and Private Endpoints (PE), this solution extends the Virtual private Cloud (VPC) network into Azure, supports strict security compliance, and helps protect sensitive information.
 
 **Prerequisites For Setting up Storage Mover** 
 
@@ -29,9 +29,9 @@ An active Azure subscription with [ permissions to create and manage Azure Stora
 
 The Virtual Private Cloud feature in Azure Storage Mover has the following limits:
 
-* A Private Link Service Direct Connect, an IP based PLS,  cannot be created directly within Storage Mover; you must establish the PLS prior to initiating the creation of a private connection. 
-* It is necessary to review your AWS S3 environment to determine whether it resides behind a Virtual Private Cloud, as this process does not validate the public or private status of your S3 bucket
-* When configuring your PLS, ensure it accurately maps to the Virtual Private Cloud associated with your S3 resource, since this experience does not offer validation at that level.
+* A Private Link Service Direct Connect, an IP based Private Link Service (PLS),  can't be created directly within Storage Mover; you must establish the Private Link Service (PLS) before initiating the creation of a private connection. 
+* It's necessary to review your AWS S3 environment to determine whether it resides behind a Virtual Private Cloud, as this process doesn't validate the public or private status of your S3 bucket
+* When configuring your PLS, ensure it accurately maps to the Virtual Private Cloud associated with your S3 resource, since this experience doesn't offer validation at that level.
 
 ## Step 1: Create a Private Connection
 
@@ -40,15 +40,15 @@ The Virtual Private Cloud feature in Azure Storage Mover has the following limit
 1. Navigate to your Storage Mover instance in Azure.
 2. Under Storage endpoints, select Private Connection → Create Private Connection.
 
-   ![](media/image1.png)
+   ![](media/storage-endpoints.png)
 
 3. Insert a name for this Private Connection.
-4. ***Note:**** this name will also reflect the name of the Private endpoint that you will later approve to connect it to Private link service.*
-5. Select the appropriate Private Link Service Direct Connect that will direct you to the correct AWS S3 bucket they want to migrate onto Azure.  
+4. ***Note:**** This name matches the name of the Private Endpoint that you later approve to connect to the Private Link service.*
+5. Select the appropriate Private Link Service Direct Connect that directs you to the correct AWS S3 bucket you want to migrate to Azure.
 
    ![](media/image2.png)
 
-6. Select Create and commit your changes
+6. Select Create and commit your changes.
 7. ***Note***: *Creating this Private Connection takes 20-30 seconds. You may need to refresh manually to view it in the grid.*
 
 ![](media/image3.png)
@@ -66,9 +66,9 @@ The Virtual Private Cloud feature in Azure Storage Mover has the following limit
 *Select and approve your newly created Private Connection *
 
 1. Select the checkbox for your newly created Private Connection. 
-2. ***Note****: You are authorizing the connection between the Private Link service you specified during Private Connection setup and the corresponding private endpoint that has been automatically generated for you*.  
+2. ***Note****: You're authorizing the connection between the Private Link service you specified during Private Connection setup and the corresponding private endpoint that has been automatically generated for you*.  
 3. Click "Approve"  
-4. ***Note****: Only a Private connection in Approved state can be used for a Migration job. Connections in a pending, rejected, or disconnected states will not appear as options when creating a Job.*
+4. ***Note****: Only a Private connection in Approved state can be used for a Migration job. Connections in pending, rejected, or disconnected states don't appear as options when creating a job.*
 
 ![](media/image6.png)
 
@@ -105,7 +105,7 @@ The Virtual Private Cloud feature in Azure Storage Mover has the following limit
 1. Source tab, select an existing or newly created source type
 2. ***Note****: Ensure your selected source type is protected by a Virtual Private Cloud.*
 3. Select a "Private" type
-   * Some sources will not require you to click "private", but they will require a private connection(s) to be added for the selected source 
+   * Some sources don't require you to click “Private,” but they do require you to add one or more private connections for the selected source.
 
 ![](media/image14.png)
 
@@ -140,7 +140,7 @@ The Virtual Private Cloud feature in Azure Storage Mover has the following limit
 
 *Create your Multi-cloud Migration job *
 
-1. Navigate to the Job you just created in your Project. 
+1. Navigate to the Job you created in your Project.
 
 ![](media/image24.png)
 
@@ -148,8 +148,8 @@ The Virtual Private Cloud feature in Azure Storage Mover has the following limit
 2. Select Private connections
    * You can either Delete or add new private connections by clicking the respective buttons
 3. Click "Save"
-   * **Note**: To locate errors related to private connections, go to the Job page and select the Monitoring tab after the Job has completed.
-4. Run your Job as normal once you have decided all configurations are correct
+   * **Note**: To locate errors related to private connections, go to the Job page and select the Monitoring tab after the job completes.
+4. Run your job as usual once you confirm that all configurations are correct.
 
 ![](media/image25.png)
 
@@ -162,3 +162,4 @@ The Virtual Private Cloud feature in Azure Storage Mover has the following limit
 ![](media/image29.png)
 
 ![](media/image30.png)
+
