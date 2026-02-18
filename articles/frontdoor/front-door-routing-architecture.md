@@ -14,11 +14,9 @@ zone_pivot_groups: front-door-tiers
 
 Azure Front Door traffic routing takes place over multiple stages. First, traffic is routed from the client to the Front Door. Then, Front Door uses your configuration to determine the origin to send the traffic to. The Front Door web application firewall, routing rules, rules engine, and caching configuration can all affect the routing process.
 
-The following diagram illustrates the routing architecture:
-
 ::: zone pivot="front-door-standard-premium"
 
-![Diagram that shows the Front Door routing architecture, including each step and decision point.](media/front-door-routing-architecture/routing-process-standard-premium.png)
+The following diagram illustrates the routing architecture:
 
 :::image type="content" source="media/front-door-routing-architecture/routing-process-standard-premium.png" alt-text="Diagram that shows the Front Door routing architecture, including each step and decision point." lightbox="media/front-door-routing-architecture/routing-process-standard-premium.png":::
 
@@ -27,6 +25,8 @@ The following diagram illustrates the routing architecture:
 ::: zone pivot="front-door-classic"
 
 [!INCLUDE [Azure Front Door (classic) retirement notice](../../includes/front-door-classic-retirement.md)]
+
+The following diagram illustrates the routing architecture:
 
 :::image type="content" source="media/front-door-routing-architecture/routing-process-classic.png" alt-text="Diagram that shows the Front Door routing architecture, including each step and decision point." lightbox="media/front-door-routing-architecture/routing-process-classic.png":::
 
