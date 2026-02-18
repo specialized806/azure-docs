@@ -7,13 +7,15 @@ ms.custom: linux-related-content
 ms.date: 02/17/2026
 ms.author: jefmarti
 ms.service: azure-app-service
+#customer intent: As a website owner and designer, I want to configure custom error pages for my App Service apps so that I can present customized error pages to my website users if they encounter errors.
+
 ---
 
 # Configure error pages on App Service
 
-This article explains how to configure error pages that Azure App Service makes available to customize for your web app. App Service presents the specific customized error page to users instead of the default error page.
+Azure App Service lets you configure error pages for specific errors to present to web app users instead of the default error pages.This article explains how to configure these custom error pages for your web app.
 
-The three types of error code pages available for customization in App Service are 403 Access restrictions, 502 Gateway errors, and 503 Service unavailable. This article walks through adding a custom 403 error page to a web app hosted on App Service, and testing it against an IP restriction.
+The three types of error code pages available for customization in App Service are *403 Access restrictions*, *502 Gateway errors*, and *503 Service unavailable*. This article walks through adding a custom 403 error page to a web app hosted on App Service, and testing it by using an IP restriction.
 
 ## Prerequisite
 
@@ -28,7 +30,7 @@ Upload your custom error page and apply it to your web app.
 1. Select the **Error pages** tab on the **Configuration** page.
 1. On the **Error pages** page, select the **Browse** button next to the error code you want to configure, in this case **403**.
 1. Browse to your custom *403.html* error page and select **Open**. The filename appears in the field next to the error code.
-1. Select the checkbox for **Apply to all requests**, and then select **Apply**.
+1. Select the checkbox next to **Apply to all requests**, and then select **Apply**.
 
 >[!NOTE]
 >If the configuration options are greyed out, you need to upgrade to at least a Premium SKU to use this feature.
@@ -38,21 +40,19 @@ Upload your custom error page and apply it to your web app.
 
 ## Confirm the error page
 
-Once you upload and apply the custom error page, trigger and view the page. For this example, trigger the 403 error by using an IP restriction. You can also trigger a 403 error page by stopping the site.
+Once you upload and apply the custom error page, you can trigger and view the page. For this example, trigger the 403 error by using an IP restriction. You can also trigger a 403 error page by stopping the site.
 
-1. To set an IP restriction, select **Settings** > **Networking** from the left navigation menu.
-1. On the **Networking** page under **Inbound traffic configuration**, copy the IP address next to **IP Addresses** to use for the access restriction.
+1. Select **Settings** > **Networking** from the left navigation menu.
+1. Under **Inbound traffic configuration** on the **Networking** page, copy the IP address next to **IP Addresses** to use for the access restriction.
 1. Next to **Public access restrictions**, select the link for **Enabled with no access restrictions**.
 1. On the **Access Restrictions** page, under **Site access**, select **Enabled from select virtual networks and IP addresses**.
-1. Under the **Site access and rules** section, select **Add** to create the IP restriction rule.
 1. At the bottom of the page under **Site access and rules** ,select **Add** to add an IP restriction.
-1. On the **Add rule** pane, give the rule a **Name** like *Test403*, and set **Action** to **Deny**.
-1. Set **Priority** to *300*, and paste the IP address you copied from the main **Networking** page into the **IP Address Block** field, followed by */0*, for example *20.48.204.9/0*.
+1. On the **Add rule** pane, give the rule a **Name** like *Test403*, set **Action** to **Deny**, and set **Priority** to *300*.
+1. Paste the IP address you copied from the main **Networking** page into the **IP Address Block** field, followed by */0*, for example *20.48.204.9/0*.
 1. Select **Add rule**.
 1. On the **Access Restrictions** page, select **Save**. If necessary, confirm the action and select **Continue**. This action disables all public access to the site.
 
-1. 
-Once saved, you need to restart the site for the changes to take effect. Return to the **Overview** page for your site and select **Restart** from the top menu. When you select the URL to go to your site, you now see your custom error page.
+Restart the site for the changes to take effect. Return to the **Overview** page for your site and select **Restart** from the top menu. When you select the URL to go to your site, you see your custom error page.
 
 ## FAQ
 
