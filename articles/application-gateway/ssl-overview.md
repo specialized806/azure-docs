@@ -150,10 +150,9 @@ The following tables outline the differences in SNI between the v1 and v2 SKU in
 
 #### For live traffic
 
-
 | Scenario | v1 | v2 |
 | --- | --- | --- |
-| When an FQDN or SNI is available | The SNI is set using the backend server's FQDN. | The SNI value is set based on the [TLS validation type](configuration-http-settings.md?tabs=backendhttpsettings#backend-https-validation-settings) in the Backend Settings.<br><br> 1. **Complete validation** – SNI is set according to the following order of precedence: <br> a) Backend Setting’s hostname (as per Overridden value or Pick from backend server) <br> b) Host header of the incoming client request <br><br> 2. **Configurable** <br> Use specific SNI: Uses this fixed hostname for validation. <br> Skip SNI: No Subject Name validation. | 
+| When an FQDN or SNI is available | The SNI is set using the backend server's FQDN. | The SNI value is set based on the [TLS validation type](configuration-http-settings.md?tabs=backendhttpsettings#backend-https-validation-settings) in the Backend Settings.<br><br> 1. **Complete validation** – SNI is set according to the following order of precedence: <br> a) Backend Setting's hostname (as per Overridden value or Pick from backend server) <br> b) Host header of the incoming client request <br><br> 2. **Configurable** <br> Use specific SNI: Uses this fixed hostname for validation. <br> Skip SNI: No Subject Name validation. |
 | When an FQDN or SNI is NOT available (only IP address is available) | SNI won't be set as per [RFC 6066](https://tools.ietf.org/html/rfc6066) if the backend pool entry isn't an FQDN | SNI won't be set as per [RFC 6066](https://tools.ietf.org/html/rfc6066). |
 
 ## Next steps

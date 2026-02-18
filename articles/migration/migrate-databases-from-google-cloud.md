@@ -9,6 +9,7 @@ ms.service: azure
 ms.collection:
  - migration
  - gcp-to-azure
+ms.custom: migration-hub
 ---
 
 # Migrate databases from Google Cloud Platform (GCP) to Azure
