@@ -52,7 +52,7 @@ DRS 2.2 includes 18 rule groups, as shown in the following table. Each group con
 
 
 #### Disabled rules
-DRS 2.2 rules configured in Paranoia Level 2 are disabled by default. You can leave their state as disabled if you wish to keep you WAF policy configured in Paranoia Level 1. If you wish to increase the policy's paranoia level, you can safely change these rules' state to enabled and their action to log mode. Analyze the logs, make the required fine tuning and enable the rules accordingly. For more information, see [#paranoia-level](Paranoia level) and [#tuning-of-managed-rule-sets](Tuning of managed rule sets)
+DRS 2.2 rules configured in Paranoia Level 2 are disabled by default. You can leave their state as disabled if you wish to keep you WAF policy configured in Paranoia Level 1. If you wish to increase the policy's paranoia level, you can safely change these rules' state to enabled and their action to log mode. Analyze the logs, make the required fine tuning and enable the rules accordingly. For more information, see [Paranoia level](?tabs=drs22%2Cowasp32#paranoia-level) and [Tuning of managed rule sets](?tabs=drs22%2Cowasp32#tuning-of-managed-rule-sets).
 
 Some OWASP rules are superseded by Microsoft-authored replacements. The original rules are disabled by default and their descriptions end with “(replaced by …)”.
 
