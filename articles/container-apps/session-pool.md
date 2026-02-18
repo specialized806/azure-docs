@@ -80,8 +80,37 @@ You can define the following settings when you create a session pool:
 
 # [Azure portal](#tab/azure-portal)
 
-> [!NOTE]
-> Azure portal steps for creating a code interpreter session pool are being updated. Check back soon.
+1. Sign in to the [Azure portal](https://portal.azure.com).
+
+1. In the search bar at the top of the portal, search for and select **Container Apps Session Pools**.
+
+1. Select **Create**.
+
+1. In the **Basics** tab, enter the following values:
+
+    | Setting | Action |
+    |---------|--------|
+    | Subscription | Select your Azure subscription. |
+    | Resource group | Select an existing resource group or select **Create new**. |
+    | Session pool name | Enter a name for your session pool. |
+    | Region | Select a supported region. |
+    | Pool type | Select **Code interpreter**. |
+    | Container type | Select **PythonLTS**, **NodeLTS**, or **Shell**. |
+
+1. In the **Configuration** section, enter the following values:
+
+    | Setting | Action |
+    |---------|--------|
+    | Maximum sessions | Enter the maximum number of concurrent sessions. The maximum value is `600`. |
+    | Cooldown period (seconds) | Enter the number of idle seconds before a session is terminated. The allowed range is `300` to `3600`. |
+    | Outbound network | Select **Disabled** to block outbound traffic, or **Enabled** to allow it. |
+
+    > [!IMPORTANT]
+    > If you enable outbound network access, code running in the session can access the internet. Use caution when the code is untrusted.
+
+1. Select **Review + create**.
+
+1. After validation passes, select **Create**.
 
 ---
 
@@ -170,8 +199,68 @@ To update the session pool, use the `az containerapp sessionpool update` command
 
 # [Azure portal](#tab/azure-portal)
 
-> [!NOTE]
-> Azure portal steps for creating a custom container session pool are being updated. Check back soon.
+Custom container session pools require a workload profiles-enabled Azure Container Apps environment.
+
+1. Sign in to the [Azure portal](https://portal.azure.com).
+
+1. In the search bar at the top of the portal, search for and select **Container Apps Session Pools**.
+
+1. Select **Create**.
+
+1. In the **Basics** tab, enter the following values:
+
+    | Setting | Action |
+    |---------|--------|
+    | Subscription | Select your Azure subscription. |
+    | Resource group | Select an existing resource group or select **Create new**. |
+    | Session pool name | Enter a name for your session pool. |
+    | Pool type | Select **Custom container**. |
+    | Maximum concurrent sessions | Enter the maximum number of sessions that can be allocated at the same time. |
+    | Session cooldown period (seconds) | Enter the number of idle seconds before a session is terminated. The allowed range is `300` to `3600`. |
+    | Ready session instances | Enter the target number of sessions to keep ready in the pool at all times. |
+    | Network egress | Select **Disabled** to block outbound traffic, or **Enabled** to allow it. |
+
+1. In the **Container Apps environment** section, enter the following values:
+
+    | Setting | Action |
+    |---------|--------|
+    | Region | Select a supported region. |
+    | Container Apps environment | Select an existing environment or select **Create new environment**. |
+
+    > [!NOTE]
+    > The environment houses your Log Analytics workspace. You can also add a virtual network and Application Insights. To see environments from all regions, select **Show environments in all regions**.
+
+1. In the **Container** tab, enter the following values:
+
+    In the **Session custom container source** section, enter the following values:
+
+    | Setting | Action |
+    |---------|--------|
+    | Name | Enter a name for the container. |
+    | Build type | Select the build type for the container. |
+    | Subscription | Select the subscription that contains your container registry. |
+    | Registry | Select your container registry. |
+    | Image | Select the container image. |
+    | Image tag | Select the image tag. |
+    | Command override | (Optional) Enter a command to override the container's default entrypoint. Example: `/bin/bash`. |
+    | Arguments override | (Optional) Enter arguments to pass to the command override. Example: `-c, while true; do echo hello; sleep 10; done`. |
+
+    > [!NOTE]
+    > You can update these settings after creating the session pool.
+
+    In the **Ingress** section, enter the following value:
+
+    | Setting | Action |
+    |---------|--------|
+    | Target port | Enter the port that the session container exposes for HTTP traffic. Default is `80`. |
+
+    In the **Container resource allocation** section, select the **CPU and memory** allocation for the container.
+
+    Optionally, add environment variables in the **Environment variables** section.
+
+1. Select **Review + create**.
+
+1. After validation passes, select **Create**.
 
 # [Azure Resource Manager](#tab/arm)
 
