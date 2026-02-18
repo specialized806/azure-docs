@@ -290,7 +290,7 @@ The trigger supports these binding options, which are defined in your code:
 
 ::: zone pivot="programming-language-csharp,programming-language-java,programming-language-python,programming-language-javascript,programming-language-typescript"
 
-See the [Example section](#example) for complete examples.
+See the [Example section](#example-1) for complete examples.
 
 ::: zone-end
 
@@ -372,7 +372,7 @@ The function should return a `string` containing the resource content (for examp
 
 ::: zone-end
 
-For more information, see [Examples](#example).
+For more information, see [Examples](#example-1).
 
 ## host.json settings
 
