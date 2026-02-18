@@ -71,7 +71,10 @@ Follow below steps to set up a linked service to the external Hive Metastore in 
 7. Click **Create** to create the linked service.
 
 
-### Test connection and get the metastore version in notebook
+### (Optional)Test connection and get the metastore version in notebook
+
+> [!NOTE]
+> The following testing code pieces only apply to user/password auth.
 
 Some network security rule settings could block access from Spark pool to the external Hive Metastore DB. Before you configure the Spark pool, run below code in any Spark pool notebook to test connection to the external Hive Metastore DB.
 
