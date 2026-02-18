@@ -4,7 +4,7 @@ description: Learn how to configure the custom error pages available on Azure Ap
 author: jefmarti
 ms.topic: how-to
 ms.custom: linux-related-content
-ms.date: 02/17/2026
+ms.date: 02/18/2026
 ms.author: jefmarti
 ms.service: azure-app-service
 #customer intent: As a website owner and designer, I want to configure custom error pages for my App Service apps so that I can present customized error pages to my website users if they encounter errors.
@@ -13,7 +13,7 @@ ms.service: azure-app-service
 
 # Configure error pages on App Service
 
-Azure App Service lets you configure error pages for specific errors that you can present to web app users instead of the default error pages. This article explains how to configure these custom error pages for your web app.
+Azure App Service lets you configure specific error pages to present to your web app users instead of the default error pages. This article explains how to configure these custom error pages for your web app.
 
 The three types of error code pages available for customization in App Service are *403 Access restrictions*, *502 Gateway errors*, and *503 Service unavailable*. This article walks through adding a custom 403 error page to a web app hosted on App Service, and testing it by using an IP restriction.
 
@@ -42,7 +42,7 @@ Upload your custom error page and apply it to your web app.
 
 Once you upload and apply the custom error page, you can trigger and view the page. For this example, trigger the 403 error by using an IP restriction. You can also trigger a 403 error page by stopping the site.
 
-1. Select **Settings** > **Networking** from the left navigation menu.
+1. On the Azure portal page for your web app, select **Settings** > **Networking** from the left navigation menu.
 1. Under **Inbound traffic configuration** on the **Networking** page, copy the IP address next to **IP Addresses** to use in a later step.
 1. Next to **Public access restrictions**, select the link for **Enabled with no access restrictions**.
 1. On the **Access Restrictions** page, under **Site access**, select **Enabled from select virtual networks and IP addresses**.
