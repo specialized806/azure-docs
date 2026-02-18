@@ -133,7 +133,7 @@ You define an entity function by using the [entity trigger binding](durable-func
 You define an entity by implementing a class and registering it with the Durable Task worker.
 
 > [!NOTE]
-> Entity support is available in the .NET and Python SDKs. The Java and JavaScript/TypeScript SDKs don't currently support entities.
+> Entity support is available in the .NET, JavaScript/TypeScript, and Python SDKs. The Java SDK doesn't currently support entities.
 
 ::: zone-end
 
