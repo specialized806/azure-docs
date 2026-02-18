@@ -10,7 +10,7 @@ ms.date: 02/12/2026
 ms.author: danlep
 ---
 
-# Use workload identity authentication for the self-hosted gateway
+# Use Microsoft Entra workload identity authentication for the self-hosted gateway
 
 [!INCLUDE [api-management-availability-premium-dev](../../includes/api-management-availability-premium-dev.md)]
 
@@ -22,12 +22,7 @@ This article shows you how to enable the self-hosted gateway to authenticate to 
 
 The self-hosted gateway configuration API can check Azure role-based access control (RBAC) to determine who has permissions to read the gateway configuration. With workload identity, you create a Microsoft Entra app that is associated with a Kubernetes service account through federated identity credentials. The self-hosted gateway can then authenticate to the API Management instance using this workload identity without requiring secrets.
 
-Workload identity uses [OpenID Connect (OIDC)](https://openid.net/connect/) to enable Kubernetes applications to access Azure resources securely. This approach provides:
-
-- **No secrets to manage** - Authentication tokens are provided automatically by the Kubernetes cluster
-- **Automatic token rotation** - Tokens are short-lived and rotated automatically
-- **Enhanced security** - Eliminates the risk of secret leakage or expiration
-- **AKS native integration** - Built-in support for Azure Kubernetes Service workload identity
+Workload identity uses [OpenID Connect (OIDC)](https://openid.net/connect/) to enable Kubernetes applications to access Azure resources securely.  
 
 To enable workload identity authentication, complete the following steps:
 
@@ -65,9 +60,7 @@ Create a new Microsoft Entra app. For steps, see [Create a Microsoft Entra appli
 > [!IMPORTANT]
 > The workload identity does **not** require you to create a client secret. Authentication is handled through federated identity credentials.
 
-Take note of the following application values for use in the next steps:
-- Application (client) ID
-- Directory (tenant) ID
+Take note of the application (client) ID for use in the next section when deploying the self-hosted gateway.
 
 Next, configure federated identity credentials to establish trust between your Microsoft Entra app and the Kubernetes service account:
 
@@ -93,9 +86,19 @@ For more information, see [Configure a federated identity credential on an app](
 
 ## Deploy the self-hosted gateway
 
-Deploy the self-hosted gateway to Kubernetes using workload identity. The following YAML configuration shows the required components and settings.
+Deploy the self-hosted gateway to Kubernetes using workload identity. 
+
+
+#### [YAML](#tab/yaml)
+
+The following YAML configuration shows the required components and settings.
 
 > [!IMPORTANT]
+> If you're following the existing Kubernetes [deployment guidance](how-to-deploy-self-hosted-gateway-kubernetes.md):
+> - Make sure to omit the step to store the default authentication key using the `kubectl create secret generic` command. 
+> - Substitute the following basic configuration file for the default YAML file that the Azure portal generates for you. The following file adds Microsoft Entra workspace identity in place of configuration to use an authentication key.
+
+> [!NOTE]
 > Make sure to replace the placeholder values with your actual configuration:
 > - `<namespace-name>`: Your Kubernetes namespace
 > - `<client-id>`: Your Microsoft Entra application (client) ID
@@ -192,60 +195,6 @@ spec:
     targetPort: 8081
 ```
 
-### Configuration breakdown
-
-The YAML file contains four key components:
-
-#### ServiceAccount
-
-```yaml
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  annotations:
-    azure.workload.identity/client-id: "<client-id>"
-  labels:
-    azure.workload.identity/use: "true"
-```
-
-The service account is configured for workload identity with:
-- **Label** `azure.workload.identity/use: "true"` - Indicates this service account uses workload identity
-- **Annotation** `azure.workload.identity/client-id` - Specifies the Microsoft Entra application (client) ID that the service account maps to
-
-#### Deployment
-
-```yaml
-spec:
-  template:
-    metadata:
-      labels:
-        azure.workload.identity/use: "true"
-    spec:
-      serviceAccountName: apim-gateway-workload-identity
-```
-
-The deployment configuration includes:
-- **Pod label** `azure.workload.identity/use: "true"` - Enables workload identity for pods in this deployment
-- **serviceAccountName** - References the workload identity-enabled service account created above
-
-#### ConfigMap
-
-```yaml
-data:
-  config.service.auth: workloadIdentity
-  config.service.endpoint: https://<service-name>.configuration.azure-api.net
-  gateway.name: <gateway-name>
-```
-
-The ConfigMap defines the gateway's authentication and connection settings:
-- **config.service.auth: workloadIdentity** - Specifies workload identity as the authentication method (no secrets required)
-- **config.service.endpoint** - The API Management configuration endpoint
-- **gateway.name** - The name of the gateway resource in your API Management instance
-
-#### Service
-
-The Service resource creates a LoadBalancer to expose the gateway's HTTP and HTTPS ports externally, allowing traffic to reach the self-hosted gateway.
-
 ### Deploy to Kubernetes
 
 Save the YAML configuration to a file (for example, `apim-gateway-workload-identity.yaml`) and deploy it to your AKS cluster:
@@ -265,14 +214,13 @@ kubectl logs -n <namespace-name> <pod-name>
 
 #### [Helm](#tab/helm)
 
-You can deploy the self-hosted gateway with Microsoft Entra authentication using [Helm](https://github.com/Azure/api-management-self-hosted-gateway). 
+You can deploy the self-hosted gateway with Microsoft Entra authentication using a[Helm chart](https://github.com/Azure/api-management-self-hosted-gateway). 
 
 Replace the following values in the the `helm install` command with your actual values:
 
 - `<gateway-name>`: Your Azure API Management instance name
 - `<gateway-url>`: The URL of your gateway, in the format `https://<gateway-name>.configuration.azure-api.net`
 - `<entra-id-app-id>`: The application (client) ID of the registered Microsoft Entra app
-- `<namespace-name>`: Your Kubernetes namespace
 
 ```console
 helm install --name azure-api-management-gateway azure-apim-gateway/azure-api-management-gateway \
@@ -282,10 +230,12 @@ helm install --name azure-api-management-gateway azure-apim-gateway/azure-api-ma
              --set gateway.auth.azureAd.app.id='<entra-id-app-id>'
 ```
 
+For prerequisites an details, see [Deploy API Management self-hosted gateway with Helm](how-to-deploy-self-hosted-gateway-kubernetes-helm.md).
+
+
 [!INCLUDE [api-management-self-hosted-gateway-kubernetes-services-helm](../../includes/api-management-self-hosted-gateway-kubernetes-services-helm.md)]
 
 ---
-
 
 ## Related content
 

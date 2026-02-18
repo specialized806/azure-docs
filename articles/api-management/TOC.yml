@@ -407,9 +407,11 @@
       items:
         - name: Self-hosted gateway authentication options
           href: self-hosted-gateway-authentication-options.md
-        - name: Use Microsoft Entra authentication on self-hosted gateway
+        - name: Authenticate with a configuration token
+          href: self-hosted-gateway-default-authentication.md
+        - name: Authenticate with Microsoft Entra ID - client credential
           href: self-hosted-gateway-enable-azure-ad.md
-        - name: Use workload identity authentication on self-hosted gateway
+        - name: Authenticate with Microsoft Entra ID - workload identity
           href: self-hosted-gateway-enable-workload-identity.md  
     - name: Run self-hosted gateway in production
       href: how-to-self-hosted-gateway-on-kubernetes-in-production.md

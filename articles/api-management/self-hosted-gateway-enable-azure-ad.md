@@ -52,7 +52,7 @@ To enable Microsoft Entra authentication, complete the following steps:
 Create a new Microsoft Entra app. For steps, see [Create a Microsoft Entra application and service principal that can access resources](../active-directory/develop/howto-create-service-principal-portal.md). The Microsoft Entra app is used by the self-hosted gateway to authenticate to the API Management instance.
 
 - Generate a [client secret](../active-directory/develop/howto-create-service-principal-portal.md#option-3-create-a-new-client-secret) for the app.
-- Take note of the following application values for use in the next section when deploying the self-hosted gateway: application (client) ID, directory (tenant) ID, and client secret
+- Take note of the following application values for use in the next section when deploying the self-hosted gateway: application (client) ID, directory (tenant) ID, and client secret.
 
 > [!NOTE]
 > Instead of using a client secret, you can choose to use a certificate for authentication. For steps to upload a certificate to your Microsoft Entra app, see [Use certificates for Azure AD app authentication](/entra/identity-platform/how-to-add-credentials).
@@ -67,16 +67,25 @@ Create a new Microsoft Entra app. For steps, see [Create a Microsoft Entra appli
 
 ## Deploy the self-hosted gateway
 
-Deploy the self-hosted gateway to Kubernetes, adding Microsoft Entra app registration settings to the `data` element of the gateways `ConfigMap`. 
+Deploy the self-hosted gateway to a containerized environment, such as Kubernetes, adding Microsoft Entra app registration settings. 
 
 #### [YAML](#tab/yaml)
 
-In the following example YAML configuration file, the gateway is named *mygw* and the file is named `mygw.yaml`.
+In the following example YAML configuration file, Microsoft Entra app registration settings are added to the `data` element of the gateway's `ConfigMap`. The gateway is named *mygw*.
 
 > [!IMPORTANT]
 > If you're following the existing Kubernetes [deployment guidance](how-to-deploy-self-hosted-gateway-kubernetes.md):
 > - Make sure to omit the step to store the default authentication key using the `kubectl create secret generic` command. 
 > - Substitute the following basic configuration file for the default YAML file that the Azure portal generates for you. The following file adds Microsoft Entra configuration in place of configuration to use an authentication key.
+
+> [!NOTE]
+> Make sure to replace the placeholder values with your actual configuration:
+> - `<entra-id-app-id>`: Your Microsoft Entra application (client) ID
+> - `<entra-id-tenant-id>`: Your Microsoft Entra tenant ID (directory ID)
+> - `<entra-id-client-secret>`: The client secret generated for your Microsoft Entra app
+> - `<gateway-id>`: Your self-hosted gateway name
+> - `<service-name>.configuration.azure-api.net`: Your API Management configuration endpoint
+
   
 ```yml
 ---
@@ -85,14 +94,14 @@ kind: ConfigMap
 metadata:
   name: mygw-env
   labels:
-    app: mygw
+    app: apim-gateway
 data:
   config.service.endpoint: "<service-name>.configuration.azure-api.net"
   config.service.auth: azureAdApp 
   config.service.auth.azureAd.authority: "https://login.microsoftonline.com"  
-  config.service.auth.azureAd.tenantId: "<Azure AD tenant ID>" 
-  config.service.auth.azureAd.clientId: "<Azure AD client ID>" 
-  config.service.auth.azureAd.clientSecret: "<Azure AD client secret>"
+  config.service.auth.azureAd.tenantId: "<entra-id-tenant-id>" 
+  config.service.auth.azureAd.clientId: "<entra-id-app-id>" 
+  config.service.auth.azureAd.clientSecret: "<entra-id-client-secret>"
   gateway.name: <gateway-id>
 ---
 apiVersion: apps/v1
@@ -100,12 +109,12 @@ kind: Deployment
 metadata:
   name: mygw
   labels:
-    app: mygw
+    app: apim-gateway
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: mygw
+      app: apim-gateway
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -114,7 +123,7 @@ spec:
   template:
     metadata:
       labels:
-        app: mygw
+        app: apim-gateway
     spec:
       terminationGracePeriodSeconds: 60
       containers:
@@ -151,7 +160,7 @@ kind: Service
 metadata:
   name: mygw-live-traffic
   labels:
-    app: mygw
+    app: apim-gateway
 spec:
   type: LoadBalancer
   externalTrafficPolicy: Local
@@ -163,14 +172,14 @@ spec:
     port: 443
     targetPort: 8081
   selector:
-    app: mygw
+    app: apim-gateway
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: mygw-instance-discovery
   labels:
-    app: mygw
+    app: apim-gateway
   annotations:
     azure.apim.kubernetes.io/notes: "Headless service being used for instance discovery of self-hosted gateway"
 spec:
@@ -186,20 +195,24 @@ spec:
     targetPort: dc-heartbeat
     protocol: UDP
   selector:
-    app: mygw
+    app: apim-gateway
 ```
 
-Deploy the gateway to Kubernetes with the following command:
+
+
+### Deploy to Kubernetes
+
+Save the YAML configuration to a file (for example, `apim-gateway-entra-id.yaml`) and deploy it to your AKS cluster:
 
 ```Console
-kubectl apply -f mygw.yaml
+kubectl apply -f apim-gateway-entra-id.yaml
 ```
 
 [!INCLUDE [api-management-self-hosted-gateway-kubernetes-services](../../includes/api-management-self-hosted-gateway-kubernetes-services.md)]
 
 #### [Helm](#tab/helm)
 
-You can deploy the self-hosted gateway with Microsoft Entra authentication using [Helm](https://github.com/Azure/api-management-self-hosted-gateway). 
+You can deploy the self-hosted gateway with Microsoft Entra authentication using a[Helm chart](https://github.com/Azure/api-management-self-hosted-gateway). 
 
 Replace the following values in the the `helm install` command with your actual values:
 
@@ -220,12 +233,11 @@ helm install --name azure-api-management-gateway azure-apim-gateway/azure-api-ma
 ```
 
 
-For details, see [Deploy API Management self-hosted gateway with Helm](how-to-deploy-self-hosted-gateway-helm.md).
+For prerequisites and details, see [Deploy API Management self-hosted gateway with Helm](how-to-deploy-self-hosted-gateway-kubernetes-helm.md).
 
 [!INCLUDE [api-management-self-hosted-gateway-kubernetes-services-helm](../../includes/api-management-self-hosted-gateway-kubernetes-services-helm.md)]
 
 ---
-
 
 
 ## Related content
@@ -233,6 +245,3 @@ For details, see [Deploy API Management self-hosted gateway with Helm](how-to-de
 - Learn more about the API Management [self-hosted gateway](self-hosted-gateway-overview.md).
 - Learn more about guidance for [running the self-hosted gateway on Kubernetes in production](how-to-self-hosted-gateway-on-kubernetes-in-production.md).
 - Learn [how to deploy API Management self-hosted gateway to Azure Arc-enabled Kubernetes clusters](how-to-deploy-self-hosted-gateway-azure-arc.md).
-
-[helm]: https://helm.sh/
-[helm-install]: https://helm.sh/docs/intro/install/
