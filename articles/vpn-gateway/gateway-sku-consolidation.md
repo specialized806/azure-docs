@@ -10,7 +10,7 @@ ms.date: 02/03/2026
 
 ms.author: cherylmc
 
-# Customer intent: "As a network administrator, I want to understand the migration process and benefits of VPN Gateway SKUs transitioning to availability zone support, so that I can ensure my organization's VPN solutions are optimized for reliability and cost-efficiency."
+#customer intent: As a network administrator, I want to understand the migration process and benefits of VPN Gateway SKUs transitioning to availability zone support, so that I can ensure my organization's VPN solutions are optimized for reliability and cost-efficiency.
 ---
 # VPN Gateway SKU consolidation and migration
 
@@ -59,7 +59,7 @@ Yes. If a region doesn't currently support availability zones, you can still cre
 
 ### Can I migrate my gateway from one generation to another?
 
-* *For gateways using a basic public IP address*: You'll need to migrate your gateway to use a standard public IP address when the migration tool becomes available. As part of this IP address migration, your gateway is upgraded to the next generation (sometimes called *Generation2*). You don't need to take any further action.
+* *For gateways using a basic public IP address*: You'll need to migrate your gateway to use a standard public IP address when the migration tool becomes available. As part of this IP address migration, your gateway is upgraded to the next generation (sometimes called *Generation 2*). You don't need to take any further action.
 * *For gateways already using a standard public IP address*: We'll migrate these gateways to the next generation separately before September 30, 2026. This happens seamlessly during regular updates, with no downtime involved.
 
 ### Will there be downtime during migration?
