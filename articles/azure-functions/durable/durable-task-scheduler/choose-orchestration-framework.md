@@ -58,6 +58,64 @@ Both Durable Functions and Durable Task SDK are available in multiple languages,
 | **Cold Start** | Yes (mitigated with Premium) | No (always running) |
 | **Pricing Model** | Pay-per-execution | Pay for compute time |
 
+> [!NOTE]
+> **Cold start** occurs when a function app starts after being idle. [Premium](../functions-premium-plan.md) and [Dedicated](../dedicated-plan.md) hosting plans keep instances warm to reduce cold start latency. Learn more about [Azure Functions hosting options](../functions-scale.md).
+
+### Built-in HTTP APIs
+
+Durable Functions exposes HTTP endpoints for orchestration management automatically, while the Durable Task SDKs require you to implement your own.
+
+| Feature | Durable Functions | Durable Task SDKs |
+|---------|-------------------|-------------------|
+| **Management HTTP APIs** | ✅ Built-in | ❌ Implement your own |
+| **Automatic status URLs** | ✅ `CreateCheckStatusResponse()` | ❌ Implement your own |
+
+#### Durable Functions HTTP features
+
+Durable Functions automatically exposes HTTP endpoints for starting orchestrations, querying status, raising events, and terminating instances. These APIs follow the async HTTP polling pattern, making it easy to integrate with external systems.
+
+Learn more: [HTTP features in Durable Functions](../durable-functions-http-features.md) | [HTTP API reference](../durable-functions-http-api.md)
+
+#### Durable Task SDKs management
+
+With the Durable Task SDKs, you use the `DurableTaskClient` class directly to manage orchestration instances. If you need HTTP endpoints, you implement them yourself using your preferred web framework.
+
+Learn more: [Manage orchestration instances](../durable-functions-instance-management.md)
+
+### Storage backends
+
+Durable Functions supports multiple storage backends, while the Durable Task SDKs exclusively use the Durable Task Scheduler.
+
+> [!TIP]
+> The **Durable Task Scheduler** is a fully managed Azure service that handles orchestration state persistence and execution. It's provisioned as a separate Azure resource with its own [pricing](./durable-task-scheduler-dedicated-sku.md). It's the recommended backend for Durable Functions and the only supported backend for the Durable Task SDKs.
+
+| Storage provider | Durable Functions | Durable Task SDKs |
+|------------------|-------------------|-------------------|
+| **Durable Task Scheduler** | ✅ Recommended | ✅ Required |
+| **Azure Storage** | ✅ Supported | ❌ Not supported |
+| **Microsoft SQL Server** | ✅ Supported | ❌ Not supported |
+
+Learn more: [Storage providers](../durable-functions-storage-providers.md)
+
+### Task hub configuration
+
+| Feature | Durable Functions | Durable Task SDKs |
+|---------|-------------------|-------------------|
+| **Configuration location** | `host.json` file | Code (connection string/endpoint) |
+| **Task hub creation** | Automatic or via portal | Azure portal or CLI |
+
+Learn more: [Task hubs](../durable-functions-task-hubs.md)
+
+### Diagnostics and versioning
+
+| Feature | Durable Functions | Durable Task SDKs |
+|---------|-------------------|-------------------|
+| **Durable Task Scheduler dashboard** | ✅ Yes | ✅ Yes |
+| **Application Insights** | ✅ Built-in | Manual setup |
+| **Zero-downtime deployment** | ✅ Functions slots | Platform-specific |
+
+Learn more: [Diagnostics](../durable-functions-diagnostics.md) \| [Versioning](../durable-functions-versioning.md)
+
 ### Durable Functions
  
 As a feature of Azure Functions, [Durable Functions](../what-is-durable-task.md) inherits numerous assets, such as:
@@ -75,11 +133,13 @@ Durable Functions persists states in a [storage backend](../durable-functions-st
 
 #### When to use Durable Functions
 
-Consider using Durable Functions if you need to build event-driven apps with workflows. The Azure Functions extensions provide integrations with other Azure services, which make building event-driven scenarios easy. For example, with Durable Functions, you can:
+Consider using Durable Functions if you need to build **serverless, event-driven apps** with workflows. Durable Functions is ideal for:
 
-- Start an orchestration when a message comes into your Azure Service Bus or a file uploads to Azure Blob Storage. 
-- Build an orchestration that runs periodically or in response to an HTTP request with the Azure Functions timer and HTTP trigger, respectively. 
-- Accelerate workflow development for your Azure Function apps, since Durable Functions programming model is similar to Azure Functions.
+- **Event-driven scenarios**: The Azure Functions extensions provide integrations with other Azure services. Start an orchestration when a message comes into your Azure Service Bus, a file uploads to Azure Blob Storage, or run periodically with a timer trigger.
+- **Scale-to-zero workloads**: Durable Functions scales to zero by default, meaning you pay nothing when your orchestrations aren't running. This makes it cost-effective for intermittent or bursty workloads.
+- **Pay-per-execution pricing**: With the consumption plan, you only pay for the compute time your orchestrations actually use, rather than paying for always-on infrastructure.
+- **Quick prototyping**: The declarative trigger and binding model lets you get orchestrations running quickly without building custom infrastructure. This makes Durable Functions excellent for rapid prototyping and proof-of-concept development.
+- **Existing Azure Functions apps**: If you already have Azure Functions, adding Durable Functions accelerates workflow development since the programming model is familiar.
 
 #### Example
 
@@ -189,9 +249,13 @@ The [Durable Task Scheduler](./durable-task-scheduler.md) (Java SDK currently in
 
 #### When to use Durable Task SDKs
 
-If you don't want to use the Azure Functions programming model, the Durable Task SDKs provide a lightweight and relatively unopinionated programming model for authoring workflows. 
+Consider using the Durable Task SDKs if you need **full control over your hosting environment** or are building workflows outside of Azure Functions. The Durable Task SDKs are ideal for:
 
-When you need to run apps on Azure Kubernetes Services or VMs on-premises with official Microsoft support, consider using the Durable Task SDKs. While you can run Durable Functions on these platforms, there's no official support.
+- **Always-on, low-latency workloads**: Since your workers are always running, there's no cold start delay. This is important for latency-sensitive applications.
+- **Existing containerized or Kubernetes applications**: If you already have apps running in Azure Kubernetes Service, Azure Container Apps, or on-premises VMs, add orchestration capabilities without migrating to Azure Functions.
+- **Full control over hosting, networking, and scaling**: You control instance counts, networking configuration, and scaling behavior directly in your platform.
+- **High-throughput scenarios**: The Durable Task Scheduler is optimized for high orchestration throughput, making it suitable for batch processing or high-volume workflows.
+- **Platform flexibility**: Run the same orchestration code on any compute platform with official Microsoft support.
 
 #### Example
 
@@ -304,9 +368,13 @@ The following table shows what client experience is fit for production use.
 | **Burst Traffic** | Scales automatically | Need over-provision |
 | **Durable Task Scheduler** | Same pricing | Same pricing |
 
+Learn more: [Azure Functions pricing](https://azure.microsoft.com/pricing/details/functions/) | [Durable Task Scheduler pricing](./durable-task-scheduler-dedicated-sku.md)
+
 ## Migrate from Durable Functions to Durable Task SDK
 
-The following examples demonstrate how you can migrate your solution from using Durable Functions to using the Durable Task SDKs.
+If you're already using Durable Functions and want to move to a container-based deployment or take advantage of the Durable Task SDKs' hosting flexibility, migration is straightforward. The orchestration code is very similar between both frameworks, as shown in the following examples.
+
+For detailed migration guidance, see [Migrate from Durable Functions to the Durable Task SDKs](../durable-functions-migrate.md).
 
 # [.NET](#tab/csharp)
 
@@ -385,6 +453,13 @@ TaskOrchestration processOrder = ctx -> {
 | Both options work | Choose based on team skills |
 
 ## Next steps
+
+Once you've decided which framework to use, get started with the appropriate quickstart:
+
+- **Durable Functions**: [Create your first Durable Functions app](../durable-functions-isolated-create-first-csharp.md)
+- **Durable Task SDKs**: [Create an app with Durable Task SDKs](./quickstart-portable-durable-task-sdks.md)
+
+For more in-depth information:
 
 - [Durable Functions overview](../what-is-durable-task.md)
 - [Durable Functions types and features](../durable-functions-types-features-overview.md)
