@@ -14,7 +14,7 @@ zone_pivot_groups: azure-durable-approach
 
 # Singleton orchestrators
 
-For background jobs, you often need to ensure that only one instance of a particular orchestrator runs at a time. You can ensure this kind of singleton behavior in [Durable Functions](durable-functions-overview.md) or the [Durable Task SDKs](durable-task-scheduler/quickstart-portable-durable-task-sdks.md) by assigning a specific instance ID to an orchestrator when creating it, and then checking if an instance with that ID is already running before starting a new one.
+For background jobs, you often need to ensure that only one instance of a particular orchestrator runs at a time. You can ensure this kind of singleton behavior in [Durable Functions](what-is-durable-task.md) or the [Durable Task SDKs](durable-task-scheduler/quickstart-portable-durable-task-sdks.md) by assigning a specific instance ID to an orchestrator when creating it, and then checking if an instance with that ID is already running before starting a new one.
 
 ::: zone pivot="durable-task-sdks"
 
@@ -320,11 +320,11 @@ if (existingInstance == null || !existingInstance.isRunning()) {
 
 # [JavaScript](#tab/javascript)
 
-The Durable Task SDK is not available for JavaScript. Use [Durable Functions](durable-functions-overview.md) instead.
+The Durable Task SDK is not available for JavaScript. Use [Durable Functions](what-is-durable-task.md) instead.
 
 # [PowerShell](#tab/powershell)
 
-The Durable Task SDK is not available for PowerShell. Use [Durable Functions](durable-functions-overview.md) instead.
+The Durable Task SDK is not available for PowerShell. Use [Durable Functions](what-is-durable-task.md) instead.
 
 ---
 

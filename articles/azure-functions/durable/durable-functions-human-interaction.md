@@ -15,7 +15,7 @@ The human interaction pattern describes workflows that pause and wait for input 
 
 ::: zone pivot="durable-functions"
 
-This sample shows how to build a [Durable Functions](durable-functions-overview.md) orchestration that includes human interaction. The example implements an SMS based phone verification system. It's common in phone number verification and multifactor authentication (MFA) flows.
+This sample shows how to build a [Durable Functions](what-is-durable-task.md) orchestration that includes human interaction. The example implements an SMS based phone verification system. It's common in phone number verification and multifactor authentication (MFA) flows.
 
 [!INCLUDE [functions-nodejs-durable-model-description](../../../includes/functions-nodejs-durable-model-description.md)]
 

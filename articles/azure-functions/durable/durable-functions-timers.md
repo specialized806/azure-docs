@@ -12,7 +12,7 @@ zone_pivot_groups: azure-durable-approach
 # Durable timers
 
 ::: zone pivot="durable-functions"
-[Durable Functions](durable-functions-overview.md) provides *durable timers* for use in orchestrator functions to implement delays or to set up timeouts on async actions. Use durable timers in orchestrator functions instead of "sleep" or "delay" APIs that might be built into the language.
+[Durable Functions](what-is-durable-task.md) provides *durable timers* for use in orchestrator functions to implement delays or to set up timeouts on async actions. Use durable timers in orchestrator functions instead of "sleep" or "delay" APIs that might be built into the language.
 ::: zone-end
 
 ::: zone pivot="durable-task-sdks"
@@ -96,11 +96,11 @@ ctx.createTimer(Duration.ofHours(72)).await();
 
 # [JavaScript](#tab/javascript)
 
-The Durable Task SDK isn't available for JavaScript. Use [Durable Functions](durable-functions-overview.md) instead.
+The Durable Task SDK isn't available for JavaScript. Use [Durable Functions](what-is-durable-task.md) instead.
 
 # [PowerShell](#tab/powershell)
 
-The Durable Task SDK isn't available for PowerShell. Use [Durable Functions](durable-functions-overview.md) instead.
+The Durable Task SDK isn't available for PowerShell. Use [Durable Functions](what-is-durable-task.md) instead.
 
 ---
 
@@ -274,11 +274,11 @@ public class BillingIssuer implements TaskOrchestration {
 
 # [JavaScript](#tab/javascript)
 
-The Durable Task SDK is not available for JavaScript. Use [Durable Functions](durable-functions-overview.md) instead.
+The Durable Task SDK is not available for JavaScript. Use [Durable Functions](what-is-durable-task.md) instead.
 
 # [PowerShell](#tab/powershell)
 
-The Durable Task SDK is not available for PowerShell. Use [Durable Functions](durable-functions-overview.md) instead.
+The Durable Task SDK is not available for PowerShell. Use [Durable Functions](what-is-durable-task.md) instead.
 
 ---
 
@@ -502,11 +502,11 @@ public class TryGetQuote implements TaskOrchestration {
 
 # [JavaScript](#tab/javascript)
 
-The Durable Task SDK is not available for JavaScript. Use [Durable Functions](durable-functions-overview.md) instead.
+The Durable Task SDK is not available for JavaScript. Use [Durable Functions](what-is-durable-task.md) instead.
 
 # [PowerShell](#tab/powershell)
 
-The Durable Task SDK is not available for PowerShell. Use [Durable Functions](durable-functions-overview.md) instead.
+The Durable Task SDK is not available for PowerShell. Use [Durable Functions](what-is-durable-task.md) instead.
 
 ---
 

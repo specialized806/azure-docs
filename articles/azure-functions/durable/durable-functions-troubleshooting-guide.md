@@ -9,7 +9,7 @@ ms.author: azfuncdf
 
 # Durable Functions Troubleshooting Guide
 
-Durable Functions is an extension of [Azure Functions](../functions-overview.md) that lets you build serverless orchestrations using ordinary code. For more information on Durable Functions, see the [Durable Functions overview](./durable-functions-overview.md).
+Durable Functions is an extension of [Azure Functions](../functions-overview.md) that lets you build serverless orchestrations using ordinary code. For more information on Durable Functions, see the [Durable Functions overview](./what-is-durable-task.md).
 
 This article provides a guide for troubleshooting common scenarios in Durable Functions apps.
 

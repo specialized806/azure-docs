@@ -14,7 +14,7 @@ The monitor pattern refers to a flexible *recurring* process in a workflow - for
 
 ::: zone pivot="durable-functions"
 
-This sample uses [Durable Functions](durable-functions-overview.md) to implement monitoring. The examples include a weather monitoring scenario (C#/JavaScript) and a GitHub issue monitoring scenario (Python).
+This sample uses [Durable Functions](what-is-durable-task.md) to implement monitoring. The examples include a weather monitoring scenario (C#/JavaScript) and a GitHub issue monitoring scenario (Python).
 
 [!INCLUDE [functions-nodejs-durable-model-description](../../../includes/functions-nodejs-durable-model-description.md)]
 

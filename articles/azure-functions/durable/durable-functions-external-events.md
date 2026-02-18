@@ -11,7 +11,7 @@ zone_pivot_groups: azure-durable-approach
 # Handling external events
 
 ::: zone pivot="durable-functions"
-Orchestrator functions can wait and listen for external events. This feature of [Durable Functions](durable-functions-overview.md) is often useful for handling human interaction or other external triggers.
+Orchestrator functions can wait and listen for external events. This feature of [Durable Functions](what-is-durable-task.md) is often useful for handling human interaction or other external triggers.
 
 > [!NOTE]
 > External events are one-way asynchronous operations. They aren't suitable for situations where the client sending the event needs a synchronous response from the orchestrator function.
@@ -217,11 +217,11 @@ public class BudgetApproval implements TaskOrchestration {
 
 # [JavaScript](#tab/javascript)
 
-The Durable Task SDK is not available for JavaScript. Use [Durable Functions](durable-functions-overview.md) instead.
+The Durable Task SDK is not available for JavaScript. Use [Durable Functions](what-is-durable-task.md) instead.
 
 # [PowerShell](#tab/powershell)
 
-The Durable Task SDK is not available for PowerShell. Use [Durable Functions](durable-functions-overview.md) instead.
+The Durable Task SDK is not available for PowerShell. Use [Durable Functions](what-is-durable-task.md) instead.
 
 ---
 
@@ -457,11 +457,11 @@ public class SelectOrchestrator implements TaskOrchestration {
 
 # [JavaScript](#tab/javascript)
 
-The Durable Task SDK is not available for JavaScript. Use [Durable Functions](durable-functions-overview.md) instead.
+The Durable Task SDK is not available for JavaScript. Use [Durable Functions](what-is-durable-task.md) instead.
 
 # [PowerShell](#tab/powershell)
 
-The Durable Task SDK is not available for PowerShell. Use [Durable Functions](durable-functions-overview.md) instead.
+The Durable Task SDK is not available for PowerShell. Use [Durable Functions](what-is-durable-task.md) instead.
 
 ---
 
@@ -659,11 +659,11 @@ public class NewBuildingPermit implements TaskOrchestration {
 
 # [JavaScript](#tab/javascript)
 
-The Durable Task SDK is not available for JavaScript. Use [Durable Functions](durable-functions-overview.md) instead.
+The Durable Task SDK is not available for JavaScript. Use [Durable Functions](what-is-durable-task.md) instead.
 
 # [PowerShell](#tab/powershell)
 
-The Durable Task SDK is not available for PowerShell. Use [Durable Functions](durable-functions-overview.md) instead.
+The Durable Task SDK is not available for PowerShell. Use [Durable Functions](what-is-durable-task.md) instead.
 
 ---
 
@@ -821,11 +821,11 @@ client.raiseEvent(instanceId, "Approval", true);
 
 # [JavaScript](#tab/javascript)
 
-The Durable Task SDK is not available for JavaScript. Use [Durable Functions](durable-functions-overview.md) instead.
+The Durable Task SDK is not available for JavaScript. Use [Durable Functions](what-is-durable-task.md) instead.
 
 # [PowerShell](#tab/powershell)
 
-The Durable Task SDK is not available for PowerShell. Use [Durable Functions](durable-functions-overview.md) instead.
+The Durable Task SDK is not available for PowerShell. Use [Durable Functions](what-is-durable-task.md) instead.
 
 ---
 

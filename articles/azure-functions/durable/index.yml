@@ -23,7 +23,7 @@ landingContent:
       - linkListType: overview
         links:
           - text: What is Durable Task?
-            url: durable-overview.md
+            url: what-is-durable-task.md
       - linkListType: concept
         links:
           - text: Durable Function types

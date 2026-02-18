@@ -14,7 +14,7 @@ ms.devlang: csharp
 
 # Diagnostics in Durable Functions
 
-You have several options for diagnosing issues with [Durable Functions](durable-functions-overview.md). Some of these options are the same for regular functions and some are unique to Durable Functions. This article describes the diagnostic tools and techniques available for troubleshooting orchestrations.
+You have several options for diagnosing issues with [Durable Functions](what-is-durable-task.md). Some of these options are the same for regular functions and some are unique to Durable Functions. This article describes the diagnostic tools and techniques available for troubleshooting orchestrations.
 
 ## Application Insights
 

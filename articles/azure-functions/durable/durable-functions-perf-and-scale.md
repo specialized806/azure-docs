@@ -9,7 +9,7 @@ ms.author: azfuncdf
 
 # Performance and scale in Durable Functions (Azure Functions)
 
-To optimize performance and scalability, understand the scaling behavior of [Durable Functions](durable-functions-overview.md). This article explains how the Functions host scales workers based on load and how to tune different settings.
+To optimize performance and scalability, understand the scaling behavior of [Durable Functions](what-is-durable-task.md). This article explains how the Functions host scales workers based on load and how to tune different settings.
 
 ## Worker scaling
 

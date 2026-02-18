@@ -14,7 +14,7 @@ ms.subservice: durable
 
 # Durable Functions billing
 
-Although [Durable Functions](durable-functions-overview.md) follows the same billing model as [Azure Functions](https://azure.microsoft.com/pricing/details/functions/), you need to be aware of some specific billing behaviors when executing orchestrator functions in the Azure Functions [Consumption plan](../consumption-plan.md).
+Although [Durable Functions](what-is-durable-task.md) follows the same billing model as [Azure Functions](https://azure.microsoft.com/pricing/details/functions/), you need to be aware of some specific billing behaviors when executing orchestrator functions in the Azure Functions [Consumption plan](../consumption-plan.md).
 
 ## Orchestrator function replay billing
 
