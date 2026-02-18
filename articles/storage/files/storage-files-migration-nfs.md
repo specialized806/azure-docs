@@ -16,7 +16,7 @@ ms.author: kendownie
 
 :heavy_multiplication_x: **Doesn't apply to:** All file shares including file shares created with the Microsoft.FileShares resource provider (preview) or classic SMB file shares created with the Microsoft.Storage resource provider
 
-This article covers the basic aspects of migrating from Linux file servers to NFS Azure file shares, which are only available as Premium file shares (SSD media tier). We'll also compare the open source file copy tools fpsync and rsync to understand how they perform when copying data to Azure file shares.
+This article covers the basic aspects of migrating from Linux file servers to NFS Azure file shares, which are only available as SSD (premium) file shares. We'll also compare the open source file copy tools fpsync and rsync to understand how they perform when copying data to Azure file shares.
 
 > [!NOTE]
 > Azure Files doesn't support NFS access control lists (ACLs).

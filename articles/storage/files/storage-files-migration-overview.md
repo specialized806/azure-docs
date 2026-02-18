@@ -87,9 +87,9 @@ After discovery comes the assessment phase, which involves understanding availab
 
 As part of the assessment phase, you'll provision the Azure storage accounts and the SMB Azure file shares within them.
 
-An Azure file share is deployed in the cloud in an Azure storage account. For standard file shares, that arrangement makes the storage account a scale target for performance numbers like IOPS and throughput. If you place multiple file shares in a single storage account, you're creating a shared pool of IOPS and throughput for these shares.
+An Azure file share is deployed in the cloud in an Azure storage account. For HDD (standard) file shares, that arrangement makes the storage account a scale target for performance numbers like IOPS and throughput. If you place multiple file shares in a single storage account, you're creating a shared pool of IOPS and throughput for these shares.
 
-As a general rule, you can pool multiple Azure file shares into the same storage account if you have archival shares or you expect low day-to-day activity in them. However, if you have highly active shares (shares used by many users and/or applications), you'll want to deploy storage accounts with one file share each. These limitations don't apply to FileStorage (premium) storage accounts, where performance is explicitly provisioned and guaranteed for each share.
+As a general rule, you can pool multiple Azure file shares into the same storage account if you have archival shares or you expect low day-to-day activity in them. However, if you have highly active shares (shares used by many users and/or applications), you'll want to deploy storage accounts with one file share each. These limitations don't apply to FileStorage (SSD) storage accounts, where performance is explicitly provisioned and guaranteed for each share.
 
 For more information about performance and cost, see [Understand performance](understand-performance.md) and [Understand billing](understanding-billing.md).
 

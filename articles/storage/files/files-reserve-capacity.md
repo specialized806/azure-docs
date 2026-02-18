@@ -41,11 +41,11 @@ An Azure Files Reservation covers only the amount of data that is stored in a su
 
 ### Reservations and snapshots
 
-If you're taking snapshots of Azure file shares, there are differences in how Reservations work for standard versus premium file shares. If you're taking snapshots of standard file shares, then the snapshot differentials count against the Reservation and are billed as part of the normal used storage meter. However, if you're taking snapshots of premium file shares, then the snapshots are billed using a separate meter and don't count against the Reservation.
+If you're taking snapshots of Azure file shares, there are differences in how Reservations work for HDD (standard) versus SSD (premium) file shares. If you're taking snapshots of HDD file shares, then the snapshot differentials count against the Reservation and are billed as part of the normal used storage meter. However, if you're taking snapshots of SSD file shares, then the snapshots are billed using a separate meter and don't count against the Reservation.
 
 ### Supported tiers and redundancy options
 
-Azure Files Reservations are available for premium, hot, and cool file shares. Reservations aren't available for Azure file shares in the transaction optimized tier. All storage redundancies support Reservations. For more information about redundancy options, see [Azure Files redundancy](storage-files-planning.md#redundancy).
+Azure Files Reservations are available for SSD, hot, and cool file shares. Reservations aren't available for Azure file shares in the transaction optimized tier. All storage redundancies support Reservations. For more information about redundancy options, see [Azure Files redundancy](storage-files-planning.md#redundancy).
 
 ### Security requirements for purchase
 

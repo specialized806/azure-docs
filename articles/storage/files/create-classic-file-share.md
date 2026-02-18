@@ -23,7 +23,7 @@ Before you create an Azure classic file share, you need to answer two questions 
    Azure classic file shares offer two different media tiers of storage, SSD (premium) and HDD (standard), which enable you to tailor your file shares to the performance and price requirements of your scenario. SSD file shares provide consistent high performance and low latency, within single-digit milliseconds for most IO operations. HDD file shares provide cost-effective storage for general purpose use.
 
 - **What are the redundancy requirements for your Azure file share?**  
-   Azure Files offers locally redundant storage (LRS), zone-redundant storage (ZRS), geo-redundant storage (GRS), and geo-zone-redundant storage (GZRS) options for standard SMB file shares (HDD). SSD file shares are only available for the LRS and ZRS redundancy types. See [Azure Files redundancy](./files-redundancy.md) for more information.
+   Azure Files offers locally redundant storage (LRS), zone-redundant storage (ZRS), geo-redundant storage (GRS), and geo-zone-redundant storage (GZRS) options for HDD SMB file shares. SSD file shares are only available for the LRS and ZRS redundancy types. See [Azure Files redundancy](./files-redundancy.md) for more information.
 
 For more information on these choices, see [Planning for an Azure Files deployment](storage-files-planning.md).
 
