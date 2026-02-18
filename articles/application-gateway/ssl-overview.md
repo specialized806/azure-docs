@@ -5,7 +5,7 @@ services: application-gateway
 author: mbender-ms
 ms.service: azure-application-gateway
 ms.topic: concept-article
-ms.date: 10/09/2025
+ms.date: 02/16/2026
 ms.author: mbender
 
 # Customer intent: "As a cloud architect, I want to configure end to end TLS on the application gateway, so that I can ensure secure communication and compliance for sensitive data transmitted between clients and backend servers."
