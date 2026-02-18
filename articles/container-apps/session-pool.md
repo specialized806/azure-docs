@@ -336,7 +336,7 @@ Container probes let you define health checks for session containers so the pool
 
 Session pools support **Liveness** and **Startup** probes. For more information about probe behavior, see [Health probes in Azure Container Apps](https://learn.microsoft.com/en-us/azure/container-apps/health-probes?tabs=arm-template).
 
-When creating or updating a session pool, specify probes in `properties.customContainerTemplate.containers`.
+When creating or updating a session pool, specify probes in `properties.customContainerTemplate.containers`. For the complete request body schema, see the [SessionPools Create or Update API reference](https://learn.microsoft.com/en-us/rest/api/resource-manager/containerapps/container-apps-session-pools/create-or-update?view=rest-resource-manager-containerapps-2025-10-02-preview). The following example shows a partial configuration with probe definitions:
 
 ```json
 {
