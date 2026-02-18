@@ -40,7 +40,7 @@ A site-to-site connection on AWS has two tunnels, each with their own outside IP
 
 On the AWS side, you create a customer gateway and site-to-site connection for **each of the two Azure VPN gateway instances** (total of four outgoing tunnels). In Azure, you need to create four local network gateways and four connections to receive these four AWS tunnels.
 
-:::image type="content" source="./media/vpn-gateway-howto-aws-bgp/Architecture.png" alt-text="Diagram showing architecture for this setup":::
+:::image type="content" source="./media/vpn-gateway-howto-aws-bgp/Architecture.png" alt-text="Diagram showing architecture for this setup.":::
 
 ## <a name="apipa-config"></a>Choosing BGP APIPA addresses
 
