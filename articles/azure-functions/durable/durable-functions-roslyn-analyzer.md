@@ -35,7 +35,7 @@ dotnet add package Microsoft.DurableTask.Analyzers
 
 ## How it works
 
-The analyzer runs automatically in Visual Studio, Visual Studio Code (with the C# Dev Kit extension), and during ``dotnet build`` on the command line. It inspects your orchestrator code and reports diagnostics as warnings or errors in your IDE's error list and in build output.
+The analyzer runs automatically in Visual Studio, Visual Studio Code (with the C# Dev Kit extension), and during `dotnet build` on the command line. It inspects your orchestrator code and reports diagnostics as warnings or errors in your IDE's error list and in build output.
 
 No special IDE configuration is required. The analyzer activates as soon as the NuGet package is present in your project.
 
@@ -50,19 +50,19 @@ The following table lists the analyzer rules that ship with the Durable Task Ros
 
 | Rule ID | Severity | Description |
 | ------- | -------- | ----------- |
-| DURABLE0001 | Warning | Detects non-deterministic ``DateTime`` properties (``DateTime.Now``, ``DateTime.UtcNow``, ``DateTime.Today``, ``DateTimeOffset.Now``, ``DateTimeOffset.UtcNow``) in orchestrations. Use ``context.CurrentUtcDateTime`` instead. |
-| DURABLE0002 | Warning | Detects ``Guid.NewGuid()`` in orchestrations. Use ``context.NewGuid()`` instead. |
-| DURABLE0003 | Warning | Detects ``Task.Delay`` or ``Thread.Sleep`` in orchestrations. Use ``context.CreateTimer`` instead. |
-| DURABLE0004 | Warning | Detects non-deterministic thread and task APIs (``Thread.Start``, ``Task.Run``, ``Task.ContinueWith``, ``TaskFactory.StartNew``) in orchestrations. |
-| DURABLE0005 | Warning | Detects I/O APIs (for example, ``HttpClient``, Azure Storage clients) used directly in orchestrations. Move I/O calls to activities. |
-| DURABLE0006 | Warning | Detects ``System.Environment`` API usage (for example, ``GetEnvironmentVariable``) in orchestrations. |
-| DURABLE0007 | Warning | Detects ``CancellationToken`` parameters in orchestration function signatures. |
-| DURABLE0008 | Warning | Detects non-``[OrchestrationTrigger]`` bindings (for example, ``[EntityTrigger]``, ``[DurableClient]``) in orchestration function parameters. |
-| DURABLE0009 | Info | Suggests using an input parameter instead of ``context.GetInput<T>()``. |
-| DURABLE0010 | Warning | Detects non-contextual ``ILogger`` usage in orchestrations. Use ``context.CreateReplaySafeLogger()`` instead. |
-| DURABLE1001 | Error | Ensures ``[OrchestrationTrigger]`` is only applied to ``TaskOrchestrationContext`` parameters. |
-| DURABLE1002 | Error | Ensures ``[DurableClient]`` is only applied to ``DurableTaskClient`` parameters. |
-| DURABLE1003 | Error | Ensures ``[EntityTrigger]`` is only applied to ``TaskEntityDispatcher`` parameters. |
+| DURABLE0001 | Warning | Detects non-deterministic `DateTime` properties (`DateTime.Now`, `DateTime.UtcNow`, `DateTime.Today`, `DateTimeOffset.Now`, `DateTimeOffset.UtcNow`) in orchestrations. Use `context.CurrentUtcDateTime` instead. |
+| DURABLE0002 | Warning | Detects `Guid.NewGuid()` in orchestrations. Use `context.NewGuid()` instead. |
+| DURABLE0003 | Warning | Detects `Task.Delay` or `Thread.Sleep` in orchestrations. Use `context.CreateTimer` instead. |
+| DURABLE0004 | Warning | Detects non-deterministic thread and task APIs (`Thread.Start`, `Task.Run`, `Task.ContinueWith`, `TaskFactory.StartNew`) in orchestrations. |
+| DURABLE0005 | Warning | Detects I/O APIs (for example, `HttpClient`, Azure Storage clients) used directly in orchestrations. Move I/O calls to activities. |
+| DURABLE0006 | Warning | Detects `System.Environment` API usage (for example, `GetEnvironmentVariable`) in orchestrations. |
+| DURABLE0007 | Warning | Detects `CancellationToken` parameters in orchestration function signatures. |
+| DURABLE0008 | Warning | Detects non-`[OrchestrationTrigger]` bindings (for example, `[EntityTrigger]`, `[DurableClient]`) in orchestration function parameters. |
+| DURABLE0009 | Info | Suggests using an input parameter instead of `context.GetInput<T>()`. |
+| DURABLE0010 | Warning | Detects non-contextual `ILogger` usage in orchestrations. Use `context.CreateReplaySafeLogger()` instead. |
+| DURABLE1001 | Error | Ensures `[OrchestrationTrigger]` is only applied to `TaskOrchestrationContext` parameters. |
+| DURABLE1002 | Error | Ensures `[DurableClient]` is only applied to `DurableTaskClient` parameters. |
+| DURABLE1003 | Error | Ensures `[EntityTrigger]` is only applied to `TaskEntityDispatcher` parameters. |
 | DURABLE2001 | Warning | Detects input type mismatches between activity invocations and activity definitions. |
 | DURABLE2002 | Warning | Detects output type mismatches between activity invocations and activity definitions. |
 | DURABLE2003 | Info | Reports when an activity call references a name that doesn't match any defined activity in the compilation. |
@@ -74,14 +74,14 @@ The following table lists the analyzer rules that ship with the Durable Task Ros
 
 | Rule ID | Severity | Description |
 | ------- | -------- | ----------- |
-| DURABLE0001 | Warning | Detects non-deterministic ``DateTime`` properties (``DateTime.Now``, ``DateTime.UtcNow``, ``DateTime.Today``, ``DateTimeOffset.Now``, ``DateTimeOffset.UtcNow``) in orchestrations. Use ``context.CurrentUtcDateTime`` instead. |
-| DURABLE0002 | Warning | Detects ``Guid.NewGuid()`` in orchestrations. Use ``context.NewGuid()`` instead. |
-| DURABLE0003 | Warning | Detects ``Task.Delay`` or ``Thread.Sleep`` in orchestrations. Use ``context.CreateTimer`` instead. |
-| DURABLE0004 | Warning | Detects non-deterministic thread and task APIs (``Thread.Start``, ``Task.Run``, ``Task.ContinueWith``, ``TaskFactory.StartNew``) in orchestrations. |
-| DURABLE0005 | Warning | Detects I/O APIs (for example, ``HttpClient``, Azure Storage clients) used directly in orchestrations. Move I/O calls to activities. |
-| DURABLE0006 | Warning | Detects ``System.Environment`` API usage (for example, ``GetEnvironmentVariable``) in orchestrations. |
-| DURABLE0009 | Info | Suggests using an input parameter instead of ``context.GetInput<T>()``. |
-| DURABLE0010 | Warning | Detects non-contextual ``ILogger`` usage in orchestrations. Use ``context.CreateReplaySafeLogger()`` instead. |
+| DURABLE0001 | Warning | Detects non-deterministic `DateTime` properties (`DateTime.Now`, `DateTime.UtcNow`, `DateTime.Today`, `DateTimeOffset.Now`, `DateTimeOffset.UtcNow`) in orchestrations. Use `context.CurrentUtcDateTime` instead. |
+| DURABLE0002 | Warning | Detects `Guid.NewGuid()` in orchestrations. Use `context.NewGuid()` instead. |
+| DURABLE0003 | Warning | Detects `Task.Delay` or `Thread.Sleep` in orchestrations. Use `context.CreateTimer` instead. |
+| DURABLE0004 | Warning | Detects non-deterministic thread and task APIs (`Thread.Start`, `Task.Run`, `Task.ContinueWith`, `TaskFactory.StartNew`) in orchestrations. |
+| DURABLE0005 | Warning | Detects I/O APIs (for example, `HttpClient`, Azure Storage clients) used directly in orchestrations. Move I/O calls to activities. |
+| DURABLE0006 | Warning | Detects `System.Environment` API usage (for example, `GetEnvironmentVariable`) in orchestrations. |
+| DURABLE0009 | Info | Suggests using an input parameter instead of `context.GetInput<T>()`. |
+| DURABLE0010 | Warning | Detects non-contextual `ILogger` usage in orchestrations. Use `context.CreateReplaySafeLogger()` instead. |
 | DURABLE2001 | Warning | Detects input type mismatches between activity invocations and activity definitions. |
 | DURABLE2002 | Warning | Detects output type mismatches between activity invocations and activity definitions. |
 | DURABLE2003 | Info | Reports when an activity call references a name that doesn't match any defined activity in the compilation. |
@@ -107,11 +107,11 @@ Add an entry to your `.editorconfig` file to change the severity of a rule or di
 dotnet_diagnostic.DURABLE0001.severity = none
 ```
 
-Valid severity values are ``error``, ``warning``, ``suggestion``, ``silent``, and ``none``.
+Valid severity values are `error`, `warning`, `suggestion`, `silent`, and `none`.
 
 ### Suppress inline with `#pragma`
 
-Use ``#pragma warning disable`` to suppress a specific warning in a section of code:
+Use `#pragma warning disable` to suppress a specific warning in a section of code:
 
 ```csharp
 #pragma warning disable DURABLE0001
@@ -121,7 +121,7 @@ var now = DateTime.UtcNow;
 
 ### Suppress at the project level
 
-Add a ``<NoWarn>`` entry to your ``.csproj`` file to suppress a rule for the entire project:
+Add a `<NoWarn>` entry to your `.csproj` file to suppress a rule for the entire project:
 
 ```xml
 <PropertyGroup>
