@@ -10,7 +10,7 @@ zone_pivot_groups: programming-languages-set-functions
 
 # MCP resource trigger for Azure Functions
 
-Use the MCP resource trigger to define resource endpoints in a [Model Content Protocol (MCP)](https://github.com/modelcontextprotocol) server. Clients can use resources to access information for context, such as file contents, database schemas, or API documentation.
+Use the MCP resource trigger to define resource endpoints in a [Model Context Protocol (MCP)](https://github.com/modelcontextprotocol) server. Clients can use resources to access information for context, such as file contents, database schemas, or API documentation.
 
 For information on setup and configuration details, see the [overview](functions-bindings-mcp.md).
 
@@ -80,6 +80,19 @@ For the complete code example, see [WeatherFunction.cs](https://github.com/Azure
 The following code creates an endpoint to expose a resource named `readme` that reads a markdown file and returns its contents as plain text. Clients can access this resource using the `file://readme.md` URI.
 
 ```csharp
+    private const string ReadmeMetadata = """
+        {
+            "author": "John Doe",
+            "file": {
+                "version": 1.0,
+                "releaseDate": "2024-01-01"
+            },
+            "test": {
+                "example": ["list", "of", "values"]
+            }
+        }
+        """;
+
     [Function(nameof(GetTextResource))]
     public string GetTextResource(
         [McpResourceTrigger(
@@ -96,7 +109,7 @@ The following code creates an endpoint to expose a resource named `readme` that 
     }
 ```
 
-In this example, a folder called `assets` containing the `readme` is bundled with the function app at build time because the following directive is added to the `.csproj` file:
+In this example, a folder called `assets` containing the `readme` is bundled with the function app at build time because the following directive is present in the `.csproj` file:
 
 ```xml
 <ItemGroup>
@@ -223,11 +236,12 @@ The attribute also supports the following named properties:
 |Property | Description|
 |---------|----------------------|
 |**Description**| (Optional) A friendly description of the resource endpoint for clients. |
+|**Title**| (Optional) A human-readable title for display purposes in MCP client interfaces. |
 |**MimeType**| (Optional) The MIME type of the content returned by the resource. For example, `text/html;profile=mcp-app` for MCP App UI resources, `text/plain` for plain text, or `application/json` for JSON data. |
 |**Size**| (Optional) The size of the resource content in bytes. |
 |**Metadata**| (Optional) A JSON-serialized string of metadata for the resource. You can also use the `McpMetadata` attribute as an alternative way to provide metadata. |
 
-You can optionally apply the `McpMetadata` attribute alongside `McpResourceTriggerAttribute` to provide additional metadata for the resource, such as UI display preferences.
+You can use the `[McpMetadata]` attribute to provide additional metadata for resources. This metadata is included in the meta field of each resource when clients call `resources/list`, and can influence how the resource content is displayed or processed.
 
 See [Usage](#usage) to learn how the resource trigger provides data to your function.
 
@@ -319,6 +333,23 @@ private const string ResourceMetadata = """
     }
     """;
 ```
+
+### Return types
+
+The MCP resource trigger supports the following return types:
+
+| Type | Description |
+| --- | --- |
+| `string` | Returned as text content in the MCP `ReadResourceResult`. |
+| `byte[]` | Returned as base64-encoded blob content in the MCP `ReadResourceResult`. |
+
+### Resource discovery
+
+When a function app starts, all functions with `McpResourceTrigger` are registered with the MCP server. Clients discover available resources by calling the MCP `resources/list` method, which returns each resource's URI, name, description, MIME type, size, and metadata (via the `meta` field). Clients read a resource by calling `resources/read` with the resource URI.
+
+### Sessions
+
+The `SessionId` property on `ResourceInvocationContext` identifies the MCP session making the request. This can be used to maintain per-session state or apply session-specific logic when serving resources.
 
 ::: zone-end
 
