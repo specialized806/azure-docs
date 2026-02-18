@@ -6,7 +6,7 @@ author: halkazwini
 ms.author: halkazwini
 ms.service: azure-network-watcher
 ms.topic: quickstart
-ms.date: 09/23/2025
+ms.date: 02/17/2026
 ms.custom: devx-track-azurecli, mode-api
 
 # Customer intent: As a system administrator, I want to diagnose network traffic filter issues on a virtual machine using an IP flow verification tool, so that I can identify and resolve security rules that are blocking communication.
@@ -46,27 +46,6 @@ In this section, you create a virtual network and a subnet in the East US region
     ```azurecli-interactive
     # Create a virtual network and a subnet.
     az network vnet create --resource-group 'myResourceGroup' --name 'myVNet' --subnet-name 'mySubnet' --subnet-prefixes 10.0.0.0/24 
-    ```
-
-1. Create an Azure Bastion subnet using [az network vnet subnet create](/cli/azure/network/vnet/subnet#az-network-vnet-subnet-create).
-
-    ```azurecli-interactive
-    # Create Azure Bastion subnet.
-    az network vnet subnet create --name 'AzureBastionSubnet' --resource-group 'myResourceGroup' --vnet-name 'myVNet' --address-prefix 10.0.1.0/26
-    ```
-
-1. Create a public IP address for Azure Bastion using [az network public-ip create](/cli/azure/network/public-ip#az-network-public-ip-create).
-
-    ```azurecli-interactive
-    # Create a public IP address for Azure Bastion.
-    az network public-ip create --resource-group 'myResourceGroup' --name 'myBastionPublicIP' --sku 'Standard' --location 'eastus'
-    ```
-
-1. Create an Azure Bastion host using [az network bastion create](/cli/azure/network/bastion#az-network-bastion-create).
-
-    ```azurecli-interactive
-    # Create an Azure Bastion host.
-    az network bastion create --name 'myBastion' --public-ip-address 'myBastionPublicIP' --resource-group 'myResourceGroup' --vnet-name 'myVNet' --location 'eastus' --sku 'Basic'
     ```
 
 1. Create a default network security group using [az network nsg create](/cli/azure/network/nsg#az-network-nsg-create).
