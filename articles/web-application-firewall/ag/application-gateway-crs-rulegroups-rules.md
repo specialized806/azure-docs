@@ -48,7 +48,7 @@ DRS 2.2 includes 18 rule groups, as shown in the following table. Each group con
 |AppSec attacks (MS)|**[MS-ThreatIntel-AppSec](?tabs=drs22#drs9903-22)**|
 |SQL-injection attacks (MS)|**[MS-ThreatIntel-SQLI](?tabs=drs22#drs99031-22)**|
 |CVE attacks (MS)|**[MS-ThreatIntel-CVEs](?tabs=drs22#drs99001-22)**|
-|XSS attacks (MS)|**[MS-ThreatIntel-CVEs](?tabs=drs22#drs99032-22)**|
+|XSS attacks (MS)|**[MS-ThreatIntel-XSS](?tabs=drs22#drs99032-22)**|
 
 
 #### Disabled rules
