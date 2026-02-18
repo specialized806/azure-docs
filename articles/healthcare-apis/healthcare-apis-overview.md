@@ -47,7 +47,6 @@ Azure Health Data Services and Azure API for FHIR are two different offerings fr
 In addition, Azure Health Data Services has a business model and infrastructure platform that accommodates the expansion and introduction of different and future healthcare data standards.
 
 
-
 ## Next steps
 
 Proceed to the next article to learn about Azure Health Data workspaces.
