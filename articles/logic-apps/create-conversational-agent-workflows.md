@@ -1,5 +1,5 @@
 ---
-title: Create Conversational AI Agent Workflows
+title: Create Conversational AI Agentic Workflows
 description: Learn to build conversational automation workflows with AI agent loops and LLMs that support human chat interactions in Azure Logic Apps.
 service: ecfan
 services: logic-apps
@@ -7,12 +7,12 @@ ms.suite: integration
 ms.reviewers: estfan, divswa, krmitta, azla
 ms.topic: how-to
 ms.collection: ce-skilling-ai-copilot
-ms.date: 12/12/2025
+ms.date: 02/18/2026
 ms.update-cycle: 180-days
 # Customer intent: As an AI integration developer who uses Azure Logic Apps, I want to build workflows that complete tasks by using AI agent loops, large language models (LLMs), natural language, and chat capabilities in my integration solutions.
 ---
 
-# Create conversational agent workflows with chat interactions in Azure Logic Apps
+# Create conversational agentic workflows with chat interactions in Azure Logic Apps
 
 [!INCLUDE [logic-apps-sku-consumption-standard](../../includes/logic-apps-sku-consumption-standard.md)]
 
@@ -20,13 +20,13 @@ When you need AI-powered automation that interacts with humans, create *conversa
 
 The following example workflow uses a conversational agent to get the current weather and send email notifications:
 
-:::image type="content" source="media/create-conversational-agent-workflows/weather-example.png" alt-text="Screenshot shows Azure portal, workflow designer, and example conversational agent workflow." lightbox="media/create-conversational-agent-workflows/weather-example.png":::
+:::image type="content" source="media/create-conversational-agent-workflows/weather-example.png" alt-text="Screenshot shows Azure portal, workflow designer, and example conversational agentic workflow." lightbox="media/create-conversational-agent-workflows/weather-example.png":::
 
-This guide shows how to create a Consumption or Standard logic app using the **Conversational Agents** workflow type. This workflow runs using human-provided prompts and tools that you build to complete tasks. For a high-level overview about agent workflows, see [AI agent workflows in Azure Logic Apps](/azure/logic-apps/agent-workflows-concepts).
+This guide shows how to create a Consumption or Standard logic app using the **Conversational Agents** workflow type. This workflow runs using human-provided prompts and tools that you build to complete tasks. For a high-level overview about agentic workflows, see [AI agentic workflows in Azure Logic Apps](/azure/logic-apps/agent-workflows-concepts).
 
 > [!IMPORTANT]
 >
-> Consumption conversational agent workflows are in preview and subject to the 
+> Consumption conversational agentic workflows are in preview and subject to the 
 > [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
 ## Prerequisites
@@ -39,13 +39,13 @@ Based on whether you want to create a Consumption or Standard logic app, the fol
 
 - A Consumption logic app resource that uses the workflow type named **Conversational Agents**. See [Create Consumption logic app workflows in the Azure portal](quickstart-create-example-consumption-workflow.md).
 
-  Consumption conversational agent workflows don't require that you manually set up a separate AI model. Your workflow automatically includes an agent action that uses an Azure OpenAI Service model hosted in Microsoft Foundry. Agent workflows support only specific models. See [Supported models](#supported-models).
+  Consumption conversational agentic workflows don't require that you manually set up a separate AI model. Your workflow automatically includes an agent action that uses an Azure OpenAI Service model hosted in Microsoft Foundry. Agentic workflows support only specific models. See [Supported models](#supported-models).
 
   > [!NOTE]
   >
-  > You can use only the Azure portal to build conversational agent workflows, not Visual Studio Code.
+  > You can use only the Azure portal to build conversational agentic workflows, not Visual Studio Code.
 
-For external chat authentication and authorization, Consumption conversational agent workflows use [OAuth 2.0 with Microsoft Entra ID](/entra/architecture/auth-oauth2).
+For external chat authentication and authorization, Consumption conversational agentic workflows use [OAuth 2.0 with Microsoft Entra ID](/entra/architecture/auth-oauth2).
 
 ### [Standard](#tab/standard)
 
@@ -66,7 +66,7 @@ For external chat authentication and authorization, Consumption conversational a
 
   > [!NOTE]
   >
-  > Agent workflows support only specific models. See [Supported models](#supported-models).
+  > agentic workflows support only specific models. See [Supported models](#supported-models).
 
   | Model source | Description |
   |--------------|-------------|
@@ -126,16 +126,16 @@ The following table describes the current limitations and any known issues in th
 | Logic app | Limitations or known issues |
 |-----------|-----------------------------|
 | Both | To create tools for your agent, the following limitations apply: <br><br>- You can add only actions, not triggers. <br>- A tool must start with an action and always contains at least one action. <br>- A tool works only inside the agent where that tool exists. <br>- Control flow actions are unsupported. |
-| Consumption | - You can create Consumption agent workflows only in the Azure portal, not Visual Studio Code. <br>- The AI model that your agent uses can originate from any region, so data residency for a specific region isn't guaranteed for data that the model handles. <br>- The **Agent** action is throttled based on the number of tokens used. |
+| Consumption | - You can create Consumption agentic workflows only in the Azure portal, not Visual Studio Code. <br>- The AI model that your agent uses can originate from any region, so data residency for a specific region isn't guaranteed for data that the model handles. <br>- The **Agent** action is throttled based on the number of tokens used. |
 | Standard | - Unsupported workflow types: **Stateless** <br><br>For general limits in Azure OpenAI Service and Azure Logic Apps, see: <br><br>- [Azure OpenAI Service quotas and limits](/azure/ai-services/openai/quotas-limits) <br>- [Azure Logic Apps limits and configuration](/azure/logic-apps/logic-apps-limits-and-config) |
 
 [!INCLUDE [supported-models](includes/supported-models.md)]
 
 [!INCLUDE [billing-agent-workflows](includes/billing-agent-workflows.md)]
 
-## Create a conversational agent workflow
+## Create a conversational agentic workflow
 
-The following section shows how to start creating your conversational agent workflow.
+The following section shows how to start creating your conversational agentic workflow.
 
 ### [Consumption (preview)](#tab/consumption)
 
@@ -157,7 +157,7 @@ To open this partial workflow, follow these steps:
 
 Based on the development experience that you use, start by creating a new workflow.
 
-#### Create agent workflow in Azure portal
+#### Create agentic workflow in Azure portal
 
 1. In the [Azure portal](https://portal.azure.com), open your Standard logic app resource.
 
@@ -185,7 +185,7 @@ Based on the development experience that you use, start by creating a new workfl
 
 1. Continue to the next section to set up your agent.
 
-#### Create agent workflow in Visual Studio Code
+#### Create agentic workflow in Visual Studio Code
 
 1. In Visual Studio Code, open the workspace for your Standard logic app project.
 
@@ -325,7 +325,7 @@ To make sure your workflow doesn't have errors at this stage, follow these steps
 
 1. Check that the response is what you expect, for example:
 
-   :::image type="content" source="media/create-conversational-agent-workflows/test-chat-portal-consumption.png" alt-text="Screenshot shows the portal-integrated chat interface for a Consumption agent workflow." lightbox="media/create-conversational-agent-workflows/test-chat-portal-consumption.png":::
+   :::image type="content" source="media/create-conversational-agent-workflows/test-chat-portal-consumption.png" alt-text="Screenshot shows the portal-integrated chat interface for a Consumption agentic workflow." lightbox="media/create-conversational-agent-workflows/test-chat-portal-consumption.png":::
 
 1. Return to your workflow in the designer.
 
@@ -337,7 +337,7 @@ To make sure your workflow doesn't have errors at this stage, follow these steps
    >
    > If the page doesn't show any runs, on the toolbar, select **Refresh**.
    >
-   > If the **Status** column shows a **Running** status, the agent workflow is still working.
+   > If the **Status** column shows a **Running** status, the agentic workflow is still working.
 
    The monitoring view opens and shows the workflow operations with their status. The **Agent log** pane is open and shows the agent instructions that you provided earlier. The pane also shows the agent's response.
 
@@ -357,7 +357,7 @@ To make sure your workflow doesn't have errors at this stage, follow these steps
 
 1. Check that the response is what you expect, for example:
 
-   :::image type="content" source="media/create-conversational-agent-workflows/test-chat-portal-standard.png" alt-text="Screenshot shows the portal-integrated chat interface for a Standard agent workflow." lightbox="media/create-conversational-agent-workflows/test-chat-portal-standard.png":::
+   :::image type="content" source="media/create-conversational-agent-workflows/test-chat-portal-standard.png" alt-text="Screenshot shows the portal-integrated chat interface for a Standard agentic workflow." lightbox="media/create-conversational-agent-workflows/test-chat-portal-standard.png":::
 
 1. Return to your workflow in the designer.
 
@@ -369,7 +369,7 @@ To make sure your workflow doesn't have errors at this stage, follow these steps
    >
    > If the page doesn't show any runs, on the toolbar, select **Refresh**.
    >
-   > If the **Status** column shows a **Running** status, the agent workflow is still working.
+   > If the **Status** column shows a **Running** status, the agentic workflow is still working.
 
    The monitoring view opens and shows the workflow operations with their status. The **Agent log** pane is open and shows the agent instructions that you provided earlier. The pane also shows the agent's response.
 
@@ -391,7 +391,7 @@ To make sure your workflow doesn't have errors at this stage, follow these steps
 
 1. Check that the response is what you expect, for example:
 
-   :::image type="content" source="media/create-conversational-agent-workflows/test-chat-visual-studio-code.png" alt-text="Screenshot shows the Visual Studio Code integrated chat interface for a Standard agent workflow." lightbox="media/create-conversational-agent-workflows/test-chat-visual-studio-code.png":::
+   :::image type="content" source="media/create-conversational-agent-workflows/test-chat-visual-studio-code.png" alt-text="Screenshot shows the Visual Studio Code integrated chat interface for a Standard agentic workflow." lightbox="media/create-conversational-agent-workflows/test-chat-visual-studio-code.png":::
 
 1. Return to the **Overview** page.
 
@@ -401,7 +401,7 @@ To make sure your workflow doesn't have errors at this stage, follow these steps
    >
    > If the page doesn't show any runs, on the toolbar, select **Refresh**.
    >
-   > If the **Status** column shows a **Running** status, the agent workflow is still working.
+   > If the **Status** column shows a **Running** status, the agentic workflow is still working.
 
    The monitoring view opens and shows the workflow operations with their status. The **Agent log** pane is open and shows the agent instructions that you provided earlier. The pane also shows the agent's response.
 
@@ -599,7 +599,7 @@ Except for the different agent parameters to set up for the **Send an email (V2)
 
 ## Trigger or run the workflow
 
-You can trigger or run conversational agent workflows in the following ways, based on the deployment environment:
+You can trigger or run conversational agentic workflows in the following ways, based on the deployment environment:
 
 | Environment | Description |
 |-------------|-------------|
@@ -626,7 +626,7 @@ For nonproduction activities, such as design, development, and quick testing, th
 
 - Treat the developer key strictly and only as a design-time convenience for authentication and authorization.
 
-- Before you expose your conversational agent to other agents, automation, or wider user populations, migrate to signed SAS with network restrictions or the following authentication and authorization methods for external chat, based on your conversational agent workflow type:
+- Before you expose your conversational agentic workflow to other agents, automation, or wider user populations, migrate to signed SAS with network restrictions or the following authentication and authorization methods for external chat, based on your conversational agentic workflow type:
 
   | Workflow | Authentication |
   |----------|----------------|
@@ -635,7 +635,7 @@ For nonproduction activities, such as design, development, and quick testing, th
 
   Basically, if anyone or anything outside your Azure portal session needs to call or interact with your workflow, the developer key is no longer appropriate.
 
-When you're ready to release your agent workflow into production, make sure to follow the [migration steps to prepare for production authentication and authorization](#migrate-to-production-authentication). For more information, see [Authentication and authorization](agent-workflows-concepts.md#authentication-and-authorization).
+When you're ready to release your agentic workflow into production, make sure to follow the [migration steps to prepare for production authentication and authorization](#migrate-to-production-authentication). For more information, see [Authentication and authorization](agent-workflows-concepts.md#authentication-and-authorization).
 
 <a name="production-authentication"></a>
 
@@ -681,7 +681,7 @@ The following table describes common problems you might encounter when you try t
 
 ## Related content
 
-- [AI agent workflows in Azure Logic Apps](/azure/logic-apps/agent-workflows-concepts)
-- [Lab: Build your first conversational agent workflow in Azure Logic Apps](https://azure.github.io/logicapps-labs/docs/logicapps-ai-course/build_conversational_agents/create-first-conversational-agent)
+- [AI agentic workflows in Azure Logic Apps](/azure/logic-apps/agent-workflows-concepts)
+- [Lab: Build your first conversational agentic workflow in Azure Logic Apps](https://azure.github.io/logicapps-labs/docs/logicapps-ai-course/build_conversational_agents/create-first-conversational-agent)
 - [Azure Logic Apps limits and configuration](/azure/logic-apps/logic-apps-limits-and-config)
 - [Azure OpenAI Service quotas and limits](/azure/ai-services/openai/quotas-limits)
