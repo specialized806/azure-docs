@@ -43,7 +43,7 @@ A device can also:
 
 A thread could fail to process a message without notifying the IoT hub. In this case, messages automatically transition from the *Invisible* state back to the *Enqueued* state after a visibility timeout (or lock timeout). The length of this timeout is one minute and can't be changed.
 
-The **max delivery count** property on the IoT hub determines the maximum number of times a message can transition between the *Enqueued* and *Invisible* states. After that number of transitions, the IoT hub sets the state of the message to *Dead lettered*. Similarly, the IoT hub sets the state of a message to *Dead lettered* after its expiration time.
+The **max delivery count** property on the IoT hub applies only when a device explicitly abandons a message. Each explicit abandon transitions a message from *Invisible* back to *Enqueued* and increments the delivery count. If the lock expires, the message returns to *Enqueued* but the delivery count does not increment. After the delivery count reaches the max, the IoT hub sets the message state to *Dead lettered*. The IoT hub also sets a message to *Dead lettered* after its expiration time.
 
 ### Understanding delivery count behavior
 
