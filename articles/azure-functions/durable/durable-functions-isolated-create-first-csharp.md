@@ -78,7 +78,7 @@ Another file, *HelloOrchestration.cs*, contains the basic building blocks of a D
 | `SayHello` | A simple function app that returns *hello*. This function contains the business logic that is orchestrated. |
 | `HelloOrchestration_HttpStart` | An [HTTP-triggered function](../functions-bindings-http-webhook.md) that starts an instance of the orchestration and returns a *check status* response. |
 
-For more information about these functions, see [Durable Functions types and features](./durable-functions-types-features-overview.md).
+For more information about these functions, see [Durable Functions types and features](./programming-model-overview.md).
 
 ## Configure storage
 
@@ -222,7 +222,7 @@ In your app folder, a file named *Function1.cs* contains three functions. The th
 | `SayHello` | A simple function app that returns *hello*. This function contains the business logic that is orchestrated. |
 | `HttpStart` | An [HTTP-triggered function](../functions-bindings-http-webhook.md) that starts an instance of the orchestration and returns a *check status* response. |
 
-For more information about these functions, see [Durable Functions types and features](./durable-functions-types-features-overview.md).
+For more information about these functions, see [Durable Functions types and features](./programming-model-overview.md).
 
 ## Test the function locally
 

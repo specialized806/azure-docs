@@ -245,7 +245,7 @@ For more information on how to manage orchestrations and entities using client A
 
 ## Consuming HTTP APIs
 
-As described in the [orchestrator function code constraints](durable-functions-code-constraints.md), orchestrator functions can't do I/O directly. Instead, they typically call [activity functions](durable-functions-types-features-overview.md#activity-functions) that do I/O operations.
+As described in the [orchestrator code constraints](durable-functions-code-constraints.md), orchestrator functions can't do I/O directly. Instead, they typically call [activities](programming-model-overview.md#activities) that do I/O operations.
 
 Starting with Durable Functions 2.0, orchestrations can natively consume HTTP APIs by using the [orchestration trigger binding](durable-functions-bindings.md#orchestration-trigger).
 

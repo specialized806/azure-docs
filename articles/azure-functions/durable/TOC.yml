@@ -39,12 +39,8 @@
   items:
   - name: Fundamentals
     items: 
-    - name: Function types
-      items:
-      - name: Durable Functions
-        href: durable-functions-types-features-overview.md
-      - name: Durable Task SDKs
-        href: what-is-durable-task.md #placeholder
+    - name: Programming model
+      href: programming-model-overview.md
     - name: Orchestration
       items:
       - name: Durable Functions

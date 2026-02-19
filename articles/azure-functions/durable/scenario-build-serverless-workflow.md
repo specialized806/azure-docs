@@ -398,7 +398,7 @@ azd down --no-prompt
 ## Related content
 
 + [Durable Functions overview](what-is-durable-task.md)
-+ [Durable Functions patterns and technical concepts](durable-functions-types-features-overview.md)
++ [Durable Task programming model](programming-model-overview.md)
 + [Azure Functions scenarios](../functions-scenarios.md)
 + [Flex Consumption plan](../flex-consumption-plan.md)
 + [Azure Developer CLI (azd)](/azure/developer/azure-developer-cli/)

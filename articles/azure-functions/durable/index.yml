@@ -26,8 +26,8 @@ landingContent:
             url: what-is-durable-task.md
       - linkListType: concept
         links:
-          - text: Durable Function types
-            url: durable-functions-types-features-overview.md
+          - text: Programming model
+            url: programming-model-overview.md
           - text: Durable Task Scheduler
             url: ./durable-task-scheduler/durable-task-scheduler.md
           - text: Choose your programming model

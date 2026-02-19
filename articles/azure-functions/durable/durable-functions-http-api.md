@@ -11,11 +11,11 @@ ms.author: azfuncdf
 
 # HTTP API reference
 
-The Durable Functions extension exposes a set of built-in HTTP APIs that can perform management tasks on [orchestrations](durable-functions-types-features-overview.md#orchestrator-functions), [entities](durable-functions-types-features-overview.md#entity-functions), and [task hubs](durable-functions-task-hubs.md). These HTTP APIs are extensibility webhooks that the Azure Functions host authorizes, but the Durable Functions extension handles directly.
+The Durable Functions extension exposes a set of built-in HTTP APIs that can perform management tasks on [orchestrations](programming-model-overview.md#orchestrators), [entities](programming-model-overview.md#entities), and [task hubs](durable-functions-task-hubs.md). These HTTP APIs are extensibility webhooks that the Azure Functions host authorizes, but the Durable Functions extension handles directly.
 
 Before using these HTTP APIs, make sure you have:
 
-- A basic understanding of [Durable Functions concepts](durable-functions-types-features-overview.md) (orchestrators, activities, entities)
+- A basic understanding of [Durable Task programming model concepts](programming-model-overview.md) (orchestrators, activities, entities)
 - A [Durable Functions project](what-is-durable-task.md) initialized with configured bindings
 - Access to your function app's base URL, task hub name, connection settings, and authorization key
 
@@ -725,7 +725,7 @@ The responses for this API don't contain any content.
 
 ## Signal entity
 
-Sends a one-way operation message to a [Durable Entity](durable-functions-types-features-overview.md#entity-functions). If the entity doesn't exist, it's created automatically. Entity operations are processed sequentially and durably persisted.
+Sends a one-way operation message to a [Durable Entity](programming-model-overview.md#entities). If the entity doesn't exist, it's created automatically. Entity operations are processed sequentially and durably persisted.
 
 > [!NOTE]
 > Durable entities are available starting in Durable Functions 2.0.
