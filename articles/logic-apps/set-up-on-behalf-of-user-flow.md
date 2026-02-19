@@ -1,15 +1,15 @@
 ---
 title: Authorize Agent Access with On-Behalf-Of Flow
-description: Learn to authorize agent tool access to protected Microsoft resources through the signed-in user's identity and permissions in conversational agent workflows for Azure Logic Apps. Set up OAuth 2.0 On-Behalf-Of (OBO) authorization so that tool actions use delegated permissions and per-user connections.
+description: Authorize agent tool access to protected Microsoft resources through the signed-in user's identity and permissions in conversational agent workflows for Azure Logic Apps. Set up OAuth 2.0 On-Behalf-Of (OBO) authorization so that tool actions use delegated permissions and per-user connections.
 services: logic-apps
 author: ecfan
 ms.topic: how-to
-ms.date: 10/14/2025
+ms.date: 02/18/2026
 ms.update-cycle: 365-days
-#Customer intent: As an integration developer working with conversational agent workflows in Azure Logic Apps, I want to authorize access to protected resources with the signed-in user's identity and permissions. For this task, I can set up delegated permissions with the OAuth 2.0 On-Behalf-Of (OBO) flow for authorization.
+#Customer intent: As an integration developer working with conversational agentic workflows in Azure Logic Apps, I want to authorize access to protected resources with the signed-in user's identity and permissions. For this task, I can set up delegated permissions with the OAuth 2.0 On-Behalf-Of (OBO) flow for authorization.
 ---
 
-# Authorize agent tool access to resources with on-behalf-of (OBO) flow in Azure Logic Apps (Preview)
+# Authorize agent tool access to resources with on-behalf-of (OBO) flow in Azure Logic Apps (preview)
 
 [!INCLUDE [logic-apps-sku-standard](../../includes/logic-apps-sku-standard.md)]
 
@@ -18,11 +18,11 @@ ms.update-cycle: 365-days
 > This capability is in preview and is subject to the 
 > [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
-To access protected, user-specific Microsoft resources, some conversational agent solutions might require agent tools to use the identity and permissions for the person who's signed in to the chat session. For this authorization approach, you need to set up [*delegated permissions*](/entra/identity-platform/delegated-access-primer) with the [OAuth 2.0 On-Behalf-Of (OBO) flow](/entra/identity-platform/v2-oauth2-on-behalf-of-flow). This flow passes the signed-in chat user's identity and permissions through the request chain so that resource connections use the person's identity and permissions to gain access.
+To access protected, user-specific Microsoft resources, some conversational agentic solutions might require agent tools to use the identity and permissions for the person who's signed in to the chat session. For this authorization approach, you need to set up [*delegated permissions*](/entra/identity-platform/delegated-access-primer) with the [OAuth 2.0 On-Behalf-Of (OBO) flow](/entra/identity-platform/v2-oauth2-on-behalf-of-flow). This flow passes the signed-in chat user's identity and permissions through the request chain so that resource connections use the person's identity and permissions to gain access.
 
 This option provides benefits around governance and compliance because resource access, inputs, outputs, and audit logs are linked to a specific person. OBO is also known as *user context* because agent tools apply the signed-in user's specific security context, including personalized licensing and data access rights.
 
-In conversational agent workflows, you can set up an agent with delegated permissions for the signed-in user. Agent tools, backed and powered by connector actions, can then use the delegated permissions if the connector actions support OBO authorization and [*per-user* connections](#limitations-and-known-issues). During chat sessions, connections set up with OBO authorization use the signed-in chat participant's credentials, not the connection creator. This behavior makes sure that OBO-enabled actions run with the signed-in user's identity and permissions.
+In conversational agentic workflows, you can set up an agent tool with delegated permissions for the signed-in user. Agent tools, backed and powered by connector actions, can then use the delegated permissions if the connector actions support OBO authorization and [*per-user* connections](#limitations-and-known-issues). During chat sessions, connections set up with OBO authorization use the signed-in chat participant's credentials, not the connection creator. This behavior makes sure that OBO-enabled actions run with the signed-in user's identity and permissions.
 
 For example, the following list describes common examples where agent tools must respect the user's permissions, licenses, and personal data boundaries:
 
@@ -36,19 +36,19 @@ The following screenshot shows an example agent tool backed by a connector actio
 
 :::image type="content" source="media/set-up-on-behalf-of-user-flow/create-per-user-connection.png" alt-text="Screenshot shows workflow designer, example Get emails (V3) action, and connection pane with selected option for Create as per-user connection." lightbox="media/set-up-on-behalf-of-user-flow/create-per-user-connection.png":::
 
-This guide shows how to set up the OBO authorization, delegated permissions, and per-user connections on supported connector actions in agent tools for conversational agent workflows.
+This guide shows how to set up the OBO authorization, delegated permissions, and per-user connections on supported connector actions in agent tools for conversational agentic workflows.
 
 ## Prerequisites
 
-- An Azure account and subscription. If you don't have a subscription, [sign up for a free Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+- An Azure account and subscription. [Get a free Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
-- A Standard logic app resource and conversational agent workflow
+- A Standard logic app resource and conversational agentic workflow
 
-  Make sure that you have a deployed *large language model* (LLM) per the [prerequisites for conversational agent workflows](create-conversational-agent-workflows.md?tabs=standard#prerequisites) and that you [connect your agent to that model](create-conversational-agent-workflows.md?tabs=standard#agent-model).
+  Make sure that you have a deployed *large language model* (LLM) per the [prerequisites for conversational agentic workflows](create-conversational-agent-workflows.md?tabs=standard#prerequisites) and that you [connect your agent loop to that model](create-conversational-agent-workflows.md?tabs=standard#agent-model).
   
-  This example uses **Admin agent** as the agent name, for example:
+  This example uses **Admin agent** as the name, for example:
 
-  :::image type="content" source="media/set-up-on-behalf-of-user-flow/admin-agent.png" alt-text="Screenshot shows Azure portal, Standard logic app with conversational agent workflow, and empty Admin agent." lightbox="media/set-up-on-behalf-of-user-flow/admin-agent.png":::
+  :::image type="content" source="media/set-up-on-behalf-of-user-flow/admin-agent.png" alt-text="Screenshot shows Azure portal, Standard logic app with conversational agentic workflow, and empty Admin agent." lightbox="media/set-up-on-behalf-of-user-flow/admin-agent.png":::
 
 - Determine the identities that you need to use with the connector actions that power agent tools.
 
@@ -67,21 +67,21 @@ This guide shows how to set up the OBO authorization, delegated permissions, and
   | OBO (per-user) | For user-specific actions like working with personal data, such as "get my emails", "find my account", or "check my order".|
   | App-only | For shared resources, automations, or impersonal operations, such as "Send today's health status to the operations channel". |
 
-- To test the single user scenario in this guide, you only need your Azure account credentials. Testing this scenario happens through the internal chat interface integrated with your agent workflow in the Azure portal.
+- To test the single user scenario in this guide, you only need your Azure account credentials. Testing this scenario happens through the internal chat interface integrated with your agentic workflow in the Azure portal.
 
   To test the two-user scenario in this guide, you must complete the following tasks:
 
   - Set up two user accounts with different permissions to test the same OBO-enabled connection. For example, one user account might have access to a mailbox or website, while the other user account doesn't have access.
 
-    You switch between these accounts when you try conversing with the agent through the *external* chat client outside the Azure portal.
+    You switch between these accounts when you try conversing with the agent tool through the *external* chat client outside the Azure portal.
 
-  - To make the external chat client available, you must set up your logic app resource with [Easy Auth (App Service Authentication)](set-up-authentication-agent-workflows.md). This authentication and authorization flow also requires people to sign in and confirms their identity and permissions before they can access and chat with the agent.
+  - To make the external chat client available, you must set up your logic app resource with [Easy Auth (App Service Authentication)](set-up-authentication-agent-workflows.md). This authentication and authorization flow also requires people to sign in and confirms their identity and permissions before they can access and chat with the agent tool.
 
     > [!NOTE]
     >
     > After you set up your logic app with Easy Auth, the internal chat interface becomes unavailable on your workflow's Chat page. You must use the external chat client. Make sure to complete the single user test scenario and any other testing you want to do in the internal chat interface before you set up Easy Auth.
 
-  For more information about authentication and authorization for agent workflows, see [Authentication and authorization in AI agent workflows](agent-workflows-concepts.md#authentication-and-authorization).
+  For more information about authentication and authorization for agentic workflows, see [Authentication and authorization in AI agentic workflows](agent-workflows-concepts.md#authentication-and-authorization).
 
 ## Limitations and known issues
 
@@ -130,9 +130,9 @@ To use OBO, an agent tool must use at least one managed connector action that su
 
 The following steps show how to set up OBO authorization after you select an OBO-supported connector action to create an agent tool:
 
-1. In the [Azure portal](https://portal.azure.com), open your Standard logic app resource and conversational agent workflow, if not already open.
+1. In the [Azure portal](https://portal.azure.com), open your Standard logic app resource and conversational agentic workflow, if not already open.
 
-1. On the designer, in the agent, complete the following tasks:
+1. On the designer, in the agent action, complete the following tasks:
 
    - Follow the [general steps](create-conversational-agent-workflows.md?tabs=standard#create-tool-weather) to create an agent tool by selecting an OBO-supported managed connector action.
 
@@ -246,5 +246,5 @@ The following table describes common problems you might encounter when you set u
 
 ## Related content
 
-- [Set up Easy Auth (App Service Authentication) for agent workflows](set-up-authentication-agent-workflows.md)
-- [Authentication and authorization in AI agent workflows](agent-workflows-concepts.md#authentication-and-authorization)
+- [Set up Easy Auth (App Service Authentication) for agentic workflows](set-up-authentication-agent-workflows.md)
+- [Authentication and authorization in AI agentic workflows](agent-workflows-concepts.md#authentication-and-authorization)
