@@ -7,6 +7,10 @@ ms.date: 02/12/2026
 ms.topic: how-to
 ms.service: azure-virtual-machines
 ms.subservice: hpc
+ms.collections:
+  - hpc-migration-content
+  - migration
+  - onprem-to-azure
 # Customer intent: "As an HPC administrator, I want to understand the lift and shift process for migrating on-premises infrastructure to the cloud, so that I can efficiently transition workloads while maintaining system performance and management."
 ---
 
