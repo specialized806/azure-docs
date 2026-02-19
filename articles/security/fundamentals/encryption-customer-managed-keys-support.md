@@ -3,7 +3,7 @@ title: Services that support customer managed keys (CMKs) in Azure Key Vault and
 description: Services that support customer managed keys (CMKs) in Azure Key Vault and Azure Managed HSM
 author: msmbaldwin
 ms.author: mbaldwin
-ms.date: 01/12/2026
+ms.date: 02/17/2026
 ms.service: security
 ms.subservice: security-fundamentals
 ms.topic: article
@@ -42,7 +42,7 @@ The following services support server-side encryption with customer managed keys
 | [Azure Data Explorer](/azure/data-explorer/) | Yes | | [Configure customer-managed keys (CMK) in Azure Data Explorer](/azure/data-explorer/customer-managed-keys-portal) |
 | [Azure Data Factory](/azure/data-factory/) | Yes | Yes | [Encryption with customer-managed keys for Azure Data Factory](/azure/data-factory/enable-customer-managed-key) |
 | [Azure Data Lake Store](/azure/data-lake-store/) | Yes (RSA 2048-bit) | | |
-| [Azure Data Manager for Energy](/azure/energy-data-services/) | Yes | | [Manage data security and encryption](/azure/energy-data-services/how-to-manage-data-security-and-encryption) |
+| [Azure Data Manager for Energy](/azure/energy-data-services/) | Yes | Yes | [Manage data security and encryption](/azure/energy-data-services/how-to-manage-data-security-and-encryption) |
 | [Azure Databricks](/azure/databricks/) | Yes | Yes | [Customer-managed keys for managed services](/azure/databricks/security/keys/customer-managed-key-managed-services-azure) |
 | [Azure HDInsight](/azure/hdinsight/) | Yes | | [Azure HDInsight double encryption for data at rest](/azure/hdinsight/disk-encryption) |
 | [Azure Monitor Application Insights](/azure/azure-monitor/app/app-insights-overview) | Yes | | [Customer-managed keys in Azure Monitor](/azure/azure-monitor/logs/customer-managed-keys) |
@@ -92,7 +92,7 @@ The following services support server-side encryption with customer managed keys
 | [SQL Server on Azure VM](/azure/azure-sql/virtual-machines/) | Yes | | [Configure Azure Key Vault integration for SQL Server on Azure VMs](/azure/azure-sql/virtual-machines/windows/azure-key-vault-integration-configure) |
 | [SQL Server on Virtual Machines](/azure/virtual-machines/windows/sql/) | Yes | | [Transparent data encryption for SQL Server on Azure VM](/azure/virtual-machines/windows/sql/virtual-machines-windows-sql-security#transparent-data-encryption) |
 | [SQL Server Stretch Database](/azure/sql-server-stretch-database/) | Yes (RSA 3072-bit) | | |
-| [Table Storage](/azure/storage/tables/) | Yes | | [Customer-managed keys for Azure Storage encryption](/azure/storage/common/customer-managed-keys-overview) |
+| [Table Storage](/azure/storage/tables/) | Yes | Yes | [Customer-managed keys for Azure Storage encryption](/azure/storage/common/customer-managed-keys-overview) |
 
 ## Hybrid + multicloud
 
@@ -105,7 +105,7 @@ The following services support server-side encryption with customer managed keys
 | Product, feature, or service | Key Vault | Managed HSM | Documentation |
 |---|---|---|---|---|
 | [Azure Fluid Relay](/azure/azure-fluid-relay/) | Yes | Yes | [Customer-managed keys for Azure Fluid Relay](/azure/azure-fluid-relay/concepts/customer-managed-keys) |
-| [Azure Health Data Services](/azure/healthcare-apis/) | Yes | | [Configure customer-managed keys for Azure Health Data Services DICOM](/azure/healthcare-apis/dicom/configure-customer-managed-keys), [Configure customer-managed keys for Azure Health Data Services FHIR](/azure/healthcare-apis/fhir/configure-customer-managed-keys) |
+| [Azure Health Data Services](/azure/healthcare-apis/) | Yes | Yes | [Configure customer-managed keys for Azure Health Data Services DICOM](/azure/healthcare-apis/dicom/configure-customer-managed-keys), [Configure customer-managed keys for Azure Health Data Services FHIR](/azure/healthcare-apis/fhir/configure-customer-managed-keys) |
 | [Event Hubs](/azure/event-hubs/) | Yes | Yes | [Configure customer-managed keys for encryption](/azure/event-hubs/configure-customer-managed-key) |
 | [Logic Apps](/azure/logic-apps/) | Yes | |  |
 | [Service Bus](/azure/service-bus-messaging/) | Yes | Yes | [Configure customer-managed keys for encryption](/azure/service-bus-messaging/configure-customer-managed-key) |
@@ -137,8 +137,8 @@ The following services support server-side encryption with customer managed keys
 
 | Product, feature, or service | Key Vault | Managed HSM | Documentation |
 |---|---|---|---|---|
-| [Azure Information Protection](/azure/information-protection/) | Yes | | [How are the Azure Rights Management cryptographic keys managed and secured?](/azure/information-protection/how-does-it-work#how-the-azure-rms-cryptographic-keys-are-stored-and-secured) |
-| [Microsoft Defender for Cloud](/azure/defender-for-cloud/) | Yes | | [Customer-managed keys in Azure Monitor](/azure/azure-monitor/logs/customer-managed-keys) |
+| [Azure Information Protection](/azure/information-protection/) | Yes | Yes | [How are the Azure Rights Management cryptographic keys managed and secured?](/azure/information-protection/how-does-it-work#how-the-azure-rms-cryptographic-keys-are-stored-and-secured) |
+| [Microsoft Defender for Cloud](/azure/defender-for-cloud/) | Yes | Yes | [Customer-managed keys in Azure Monitor](/azure/azure-monitor/logs/customer-managed-keys) |
 | [Microsoft Defender for IoT](/azure/defender-for-iot/) | Yes | | |
 | [Microsoft Sentinel](/azure/sentinel/) | Yes | Yes | [Encryption at rest in Microsoft Sentinel](/azure/sentinel/customer-managed-keys) |
 
@@ -146,7 +146,7 @@ The following services support server-side encryption with customer managed keys
 
 | Product, feature, or service | Key Vault | Managed HSM | Documentation |
 |---|---|---|---|---|
-| [Archive Storage](/azure/storage/blobs/archive-blob) | Yes | | [Customer-managed keys for Azure Storage encryption](/azure/storage/common/customer-managed-keys-overview) |
+| [Archive Storage](/azure/storage/blobs/archive-blob) | Yes | Yes | [Customer-managed keys for Azure Storage encryption](/azure/storage/common/customer-managed-keys-overview) |
 | [Azure Backup](/azure/backup/) | Yes | Yes | [Encrypt backup data using customer-managed keys](/azure/backup/encryption-at-rest-with-cmk) |
 | [Azure Cache for Redis](/azure/azure-cache-for-redis/) | Yes\*\* | Yes | [Configure disk encryption for Azure Cache for Redis instances using customer managed keys](/azure/azure-cache-for-redis/cache-how-to-encryption) |
 | [Azure Data Box](/azure/databox/) | Yes | | [Use a customer-managed key to secure your Data Box](/azure/databox/data-box-customer-managed-encryption-key-portal) |
@@ -167,7 +167,7 @@ The following services support server-side encryption with customer managed keys
 
 | Product, feature, or service | Key Vault | Managed HSM | Documentation |
 |---|---|---|---|---|
-| [Universal Print](/universal-print/) | Yes | | [Data encryption in Universal Print](/universal-print/fundamentals/universal-print-encryption) |
+| [Universal Print](/universal-print/) | Yes | Yes | [Data encryption in Universal Print](/universal-print/fundamentals/universal-print-encryption) |
 
 ## Caveats
 
