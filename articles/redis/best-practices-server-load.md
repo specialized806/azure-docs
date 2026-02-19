@@ -52,7 +52,9 @@ When reviewing metrics over longer time periods, such as several hours or days, 
 
 - Using `percentProcessorTime` instead of **Server Load**
 - Splitting by instance ID of the virtual machines backing the Azure Managed Redis instance
-- Using `Average` aggregation instead of `Maximum`
+- Using **Average** aggregation instead of **Maximum** for these longer time ranges
+You can still use **Maximum** aggregation over short time windows to catch brief spikes or events (such as those that might cause timeouts or failovers), while relying on **Average** over longer windows for trend analysis on small SKUs, especially when using `percentProcessorTime`.
+
 
 ## Test for increased server load after failover
 
