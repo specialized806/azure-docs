@@ -20,11 +20,11 @@ No, the IP address won't change when you migrate by using the Azure portal. You 
 
 ### Do I need to migrate my gateways from the Standard or High Performance SKU right now?
   
-No. You must migrate the Basic IP address on your gateway by using the Azure portal, if you want to retain the IP address. As part of this migration, your gateways are automatically migrated to gateway SKUs that are supported by availability zones.
+No. You must migrate the basic IP address on your gateway by using the Azure portal, if you want to retain the IP address. As part of this migration, your gateways are automatically migrated to gateway SKUs that are supported by availability zones.
 
 ### Will there be any pricing difference for my gateways after migration?
 
-Your SKUs are automatically migrated and upgraded to SKUs that are supported by availability zones, as part of Basic IP migration. See [VPN Gateway pricing](https://azure.microsoft.com/pricing/details/vpn-gateway/) for more details.
+Your SKUs are automatically migrated and upgraded to SKUs that are supported by availability zones, as part of basic IP address migration. See [VPN Gateway pricing](https://azure.microsoft.com/pricing/details/vpn-gateway/) for more details.
 
 ### Will there be any performance impact on my gateways with this migration?
 
@@ -32,7 +32,7 @@ Yes. You get better performance with the VpnGw1AZ and VpnGw2AZ SKUs. For more in
 
 ### What happens if I don't migrate by February 28, 2026?
 
-To ensure a smooth transition, we strongly recommend that customers use the Basic IP migration tool to migrate their Basic IPs and associated gateways. After March, we'll attempt to migrate automatically all gateways that still use the Standard or High Performance SKU:
+To ensure a smooth transition, we strongly recommend that customers use the basic IP migration tool to migrate their basic IPs and associated gateways. After March, we'll attempt to migrate automatically all gateways that still use the Standard or High Performance SKU:
 
 * Gateways on the Standard SKU will be automatically upgraded to VpnGw1AZ
 * Gateways on the High Performance SKU will be automatically upgraded to VpnGw2AZ

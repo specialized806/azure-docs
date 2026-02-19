@@ -36,8 +36,8 @@ The following diagram shows current SKUs and the new SKUs they'll automatically 
 
 ### What actions do I need to take?
 
-* We recommend that you don't change your gateway SKU manually in anticipation of SKU migration unless you want to upgrade to a higher gateway SKU.
-* You can [manually upgrade](gateway-sku-upgrade.md) to a higher gateway SKU. To upgrade SKUs that currently use standard public IP addresses, there's no downtime expected.
+* We recommend that you don't change your gateway SKU manually in anticipation of SKU migration unless you want to upgrade to a later gateway SKU.
+* You can [manually upgrade](gateway-sku-upgrade.md) to a later gateway SKU. To upgrade SKUs that currently use standard public IP addresses, there's no downtime expected.
 * If your gateway currently uses legacy SKUs, see [Working with VPN Gateway legacy SKUs](vpn-gateway-about-skus-legacy.md).
 
 ### How long will my existing gateway SKUs be supported?
@@ -59,7 +59,7 @@ Yes. If a region doesn't currently support availability zones, you can still cre
 
 ### Can I migrate my gateway from one generation to another?
 
-* *For gateways using a basic public IP address*: You'll need to migrate your gateway to use a standard public IP address when the migration tool becomes available. As part of this IP address migration, your gateway is upgraded to the next generation (sometimes called *Generation 2*). You don't need to take any further action.
+* *For gateways using a basic public IP address*: You'll need to migrate your gateway to use a standard public IP address when the migration tool becomes available. As part of this IP address migration, your gateway is upgraded to the next generation (called *Generation 2*). You don't need to take any further action.
 * *For gateways already using a standard public IP address*: We'll migrate these gateways to the next generation separately before September 30, 2026. This happens seamlessly during regular updates, with no downtime involved.
 
 ### Will there be downtime during migration?
