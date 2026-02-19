@@ -2,12 +2,11 @@
 title: Include file
 description: Describes how to install and select specific versions of the Azure API Center extension in Visual Studio Code.
 services: api-center
-author: dlepow
+
 
 ms.service: azure-api-center
 ms.topic: include
 ms.date: 02/19/2026
-ms.author: danlep
 ms.custom: Include file
 ---
 

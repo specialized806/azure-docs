@@ -524,7 +524,7 @@ You should already have IoT Edge installed on your device. If not, follow the st
     type = "docker"
 
     [agent.config]
-    image: "mcr.microsoft.com/azureiotedge-agent:1.5"
+    image = "mcr.microsoft.com/azureiotedge-agent:1.5"
     ```
 
 01. The beginning of your downstream configuration file should look similar to the following example.
@@ -620,7 +620,7 @@ The API proxy module was designed to be customized to handle most common gateway
     | Restart policy     | always                                            |
     | Desired status     | running                                           |
 
-    If you want to use a different version or architecture of the API proxy module, find the available images in the [Microsoft Artifact Registry](https://mcr.microsoft.com/product/azureiotedge-api-proxy).
+    If you want to use a different version or architecture of the API proxy module, find the available images in the [Microsoft Artifact Registry](https://mcr.microsoft.com/en-us/artifact/mar/azureiotedge-api-proxy/tags).
 
    1. In the **Environment variables** tab, add a variable named  `NGINX_DEFAULT_PORT` of type *Text* with a value of `443`.
    1. In the **Container create options** tab, update the port bindings to reference port 443.
@@ -841,7 +841,7 @@ name = "edgeAgent"
 type = "docker"
 
 [agent.config]
-image: "{Parent FQDN or IP}:443/azureiotedge-agent:1.5"
+image = "{Parent FQDN or IP}:443/azureiotedge-agent:1.5"
 ```
 
 If you're using a local container registry, or providing the container images manually on the device, update the config file accordingly.
@@ -866,7 +866,7 @@ The API proxy module was designed to be customized to handle most common gateway
     | Restart policy     | `always`                                          |
     | Desired status     | `running`                                         |
 
-    If you want to use a different version or architecture of the API proxy module, find the available images in the [Microsoft Artifact Registry](https://mcr.microsoft.com/product/azureiotedge-api-proxy).
+    If you want to use a different version or architecture of the API proxy module, find the available images in the [Microsoft Artifact Registry](https://mcr.microsoft.com/en-us/artifact/mar/azureiotedge-api-proxy/tags).
 
    1. In the **Environment variables** tab, add a variable named  `NGINX_DEFAULT_PORT` of type *Text* with a value of `443`.
    1. In the **Container create options** tab, update the port bindings to reference port 443.

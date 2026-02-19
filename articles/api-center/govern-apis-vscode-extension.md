@@ -1,11 +1,10 @@
 ---
 title: Govern APIs - Visual Studio Code Extension
 description: API developers can use the Azure API Center extension for Visual Studio Code to govern their organization's APIs.
-author: dlepow
+
 ms.service: azure-api-center
 ms.topic: how-to
 ms.date: 02/19/2026
-ms.author: danlep 
 ms.custom:
   - sfi-image-nochange
 # Customer intent: As an API developer, I want to use my Visual Studio Code environment to check API compliance in my organization's API center.

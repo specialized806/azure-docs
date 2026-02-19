@@ -2,12 +2,12 @@
 title: Include file
 description: Basic prerequisites for using the Azure API Center extension for Visual Studio Code.
 services: api-center
-author: dlepow
+
 
 ms.service: azure-api-center
 ms.topic: include
 ms.date: 06/25/2025
-ms.author: danlep
+
 ms.custom: Include file
 ---
 
