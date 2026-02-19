@@ -64,7 +64,7 @@ The **WAF logs** view gives a detailed request-level perspective sourced from th
 The **WAF metrics** view provides near real-time visibility into WAF activity using Azure Monitor metrics. It includes visualizations showing total WAF requests, managed rule matches by association (both blocked and non-blocked), JS challenge request counts, and custom rule matches. This data helps detect sudden traffic surges, monitor rule behavior, evaluate JS challenge enforcement, and verify correct policy configuration. Metrics offer an operational perspective that complements the detailed forensic insights provided by logs.
 
 :::image type="content" source="../media/insights/insights-dashboard-waf-metrics.png" alt-text="Screenshot of the Azure WAF metrics tab of the WAF insights dashboard." lightbox="../media/insights/insights-dashboard-waf-metrics.png":::
-
+:::image type="content" source="../media/insights/insights-dashboard-waf-metrics.png" alt-text="Screenshot of the Azure WAF metrics tab of the WAF insights dashboard." lightbox="../media/insights/insights-dashboard-waf-metrics.png":::
 ### Triage tab
 
 The Triage tab is built for investigation and troubleshooting of WAF events. It uses data from AzureDiagnostics within the Log Analytics Workspace (LAW) and supports two investigation modes: **Triage by Rule** and **Triage by URL**.
