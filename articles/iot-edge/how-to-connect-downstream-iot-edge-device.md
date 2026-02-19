@@ -620,7 +620,7 @@ The API proxy module was designed to be customized to handle most common gateway
     | Restart policy     | always                                            |
     | Desired status     | running                                           |
 
-    If you want to use a different version or architecture of the API proxy module, find the available images in the [Microsoft Artifact Registry](https://mcr.microsoft.com/product/azureiotedge-api-proxy).
+    If you want to use a different version or architecture of the API proxy module, find the available images in the [Microsoft Artifact Registry](https://mcr.microsoft.com/artifact/mar/azureiotedge-api-proxy/tags).
 
    1. In the **Environment variables** tab, add a variable named  `NGINX_DEFAULT_PORT` of type *Text* with a value of `443`.
    1. In the **Container create options** tab, update the port bindings to reference port 443.
@@ -866,7 +866,7 @@ The API proxy module was designed to be customized to handle most common gateway
     | Restart policy     | `always`                                          |
     | Desired status     | `running`                                         |
 
-    If you want to use a different version or architecture of the API proxy module, find the available images in the [Microsoft Artifact Registry](https://mcr.microsoft.com/product/azureiotedge-api-proxy).
+    If you want to use a different version or architecture of the API proxy module, find the available images in the [Microsoft Artifact Registry](https://mcr.microsoft.com/artifact/mar/azureiotedge-api-proxy/tags).
 
    1. In the **Environment variables** tab, add a variable named  `NGINX_DEFAULT_PORT` of type *Text* with a value of `443`.
    1. In the **Container create options** tab, update the port bindings to reference port 443.
