@@ -37,7 +37,7 @@ Azure Health Data Services offers a suite of services that include:
 
 Azure Health Data Services and Azure API for FHIR are two different offerings from Microsoft that enable healthcare organizations to manage and exchange health data in a secure, scalable way.
 
-[!INCLUDE [retirement banner](/includes/healthcare-apis-azure-api-fhir-retirement.md)]
+[!INCLUDE [retirement banner](includes/healthcare-apis-azure-api-fhir-retirement.md)]
 
 - **Azure API for FHIR** is a single service that provides a managed platform for exchanging health data using the FHIR standard. **Azure Health Data Services** is a set of managed API services based on open standards and frameworks that enable workflows to improve healthcare and offer scalable and secure healthcare solutions.
 - **Azure API for FHIR** only supports FHIR standard, which mainly covers structured data. **Azure Health Data Services** supports other healthcare industry data standards besides FHIR, such as DICOM, which allows it to work with different types of data, such as imaging and device data.
