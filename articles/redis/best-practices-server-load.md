@@ -50,9 +50,9 @@ On Azure Managed Redis SKUs backed by 2-vCPU VMs (B0–B5, X3, and M10), percent
 
 When reviewing metrics over longer time periods, such as several hours or days, we recommend:
 
-- Using **percentProcessorTime** instead of **Server Load**
+- Using `percentProcessorTime` instead of **Server Load**
 - Splitting by instance ID of the virtual machines backing the Azure Managed Redis instance
-- Using **Average** aggregation instead of **Maximum**
+- Using `Average` aggregation instead of `Maximum`
 
 ## Test for increased server load after failover
 
