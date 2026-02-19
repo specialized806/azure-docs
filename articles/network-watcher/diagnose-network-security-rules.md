@@ -200,13 +200,10 @@ Azure Bastion uses your browser to connect to virtual machines (VMs) in your vir
     | **Instance details** |  |
     | Name | Enter **myVNet-Bastion**. |
     | Region | Select **East US**. |
-    | Tier | Select **Basic**. |
+    | Tier | Select **Developer**. |
     | **Configure virtual networks** |  |
     | Virtual network | Select **myVNet**. |
-    | Subnet | Select **AzureBastionSubnet (10.0.1.0/26)**. |
-    | **Public IP address** |  |
-    | Public IP address | Select **Create new**. |
-    | Public IP address name | Enter **myBastionIp**. |
+    | Subnet | The **AzureBastionSubnet** is created automatically with an address space of **/26** or larger. |
 
 1. Select **Review + create**.
 
@@ -284,7 +281,7 @@ In this section, you create a virtual machine and a network security group appli
     | --- | --- |
     | **Network interface** |  |
     | Virtual network | Select **myVNet**. |
-    | Subnet | Select **default**. |
+    | Subnet | Select **mySubnet**. |
     | Public IP | Select **None**. |
     | NIC network security group | Select **Basic**. |
     | Public inbound ports | Select **None**. |
