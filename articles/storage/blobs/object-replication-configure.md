@@ -328,7 +328,7 @@ Object replication now supports copying source blob's index tags to the destinat
 
 ### Prerequisites
 
-The source storage account must be registered for the EnableObjectReplicationTags preview feature before tag replication can be enabled. Register the preview feature in the Azure portal by following the steps in the [Azure Resource Manager preview features](https://learn.microsoft.com/azure/azure-resource-manager/management/preview-features?tabs=azure-portal) documentation.
+The source storage account must be registered for the EnableObjectReplicationTags preview feature before tag replication can be enabled. Register the preview feature in the Azure portal by following the steps in the [Azure Resource Manager preview features](/azure/azure-resource-manager/management/preview-features?tabs=azure-portal) documentation.
 
 CLI commands to register for preview,
 ```
@@ -358,7 +358,7 @@ N/A.
 
 #### [REST API](#tab/rest-api)
 
-Users can use existing REST APIs: [Object Replication Policies - Create Or Update - REST API](https://learn.microsoft.com/rest/api/storagerp/object-replication-policies/create-or-update) to configure policies for replicating tags set on the Blobs. 
+Users can use existing REST APIs: [Object Replication Policies - Create Or Update - REST API](/api/storagerp/object-replication-policies/create-or-update) to configure policies for replicating tags set on the Blobs. 
 
 Simply add the following line ``` “tagsReplication”: { “enabled”: true }``` when creating or updating the replication 
 rules on the source account.
