@@ -16,11 +16,11 @@ For information on setup and configuration details, see the [overview](functions
 
 ## Example 1
 
+Example 1 shows how to leverage resource to implement the UI element of MCP Apps. 
+
 ::: zone pivot="programming-language-csharp"  
 >[!NOTE]  
 > For C#, the Azure Functions MCP extension supports only the [isolated worker model](dotnet-isolated-process-guide.md). 
-
-Example 1 shows how to leverage resource to implement the UI element of MCP Apps. 
 
 The following code creates an endpoint to expose a resource named `Weather Widget` that serves an interactive weather display as bundled HTML content. The resource uses the `ui://` scheme to indicate it's an MCP App UI resource.
 
@@ -136,17 +136,13 @@ Example code for JavaScript isn't currently available. See the TypeScript exampl
 The following code registers a resource named `Weather Widget` that serves an interactive weather display as bundled HTML content. The resource uses the `ui://` scheme to indicate it's an MCP App UI resource.
 
 ```typescript
-import { app, InvocationContext, arg } from "@azure/functions";
-import * as fs from "fs";
-import * as path from "path";
-
 // Constants for the Weather Widget resource
 const WEATHER_WIDGET_URI = "ui://weather/index.html";
 const WEATHER_WIDGET_NAME = "Weather Widget";
 const WEATHER_WIDGET_DESCRIPTION = "Interactive weather display for MCP Apps";
 const WEATHER_WIDGET_MIME_TYPE = "text/html;profile=mcp-app";
 
-// Metadata for the resource (as valid JSON string)
+// Metadata for the resource 
 const RESOURCE_METADATA = JSON.stringify({
   ui: {
     prefersBorder: true
@@ -214,7 +210,75 @@ For the complete code example, see [weatherMcpApp.ts](https://github.com/Azure-S
 ::: zone-end  
 
 ::: zone pivot="programming-language-python"
-Example code for Python isn't currently available. See the C# examples for general guidance.
+
+> [!NOTE]
+> The MCP resource trigger for Python requires version `1.25.0b3` or later of the [`azure-functions`](https://pypi.org/project/azure-functions/1.25.0b3/) package, which is in _preview_ extension bundle version `[4.32.0, 5.0.0)`. Check `host.json` to make sure the correct bundle version is specified:
+>
+> ```json
+> "extensionBundle": {
+>   "id": "Microsoft.Azure.Functions.ExtensionBundle.Preview",
+>   "version": "[4.32.0, 5.0.0)"
+> }
+> ```
+
+The following code registers a resource named `Weather Widget` that serves an interactive weather display as bundled HTML content. The resource uses the `ui://` scheme to indicate it's an MCP App UI resource.
+
+```python
+# Constants for the Weather Widget resource
+WEATHER_WIDGET_URI = "ui://weather/index.html"
+WEATHER_WIDGET_NAME = "Weather Widget"
+WEATHER_WIDGET_DESCRIPTION = "Interactive weather display for MCP Apps"
+WEATHER_WIDGET_MIME_TYPE = "text/html;profile=mcp-app"
+
+# Metadata for the resource 
+RESOURCE_METADATA = '{"ui": {"prefersBorder": true}}'
+
+@app.mcp_resource_trigger(
+    arg_name="context",
+    uri=WEATHER_WIDGET_URI,
+    resource_name=WEATHER_WIDGET_NAME,
+    description=WEATHER_WIDGET_DESCRIPTION,
+    mime_type=WEATHER_WIDGET_MIME_TYPE,
+    metadata=RESOURCE_METADATA
+)
+def get_weather_widget(context) -> str:
+    """Get the weather widget HTML content."""
+    logging.info("Getting weather widget")
+
+    current_dir = Path(__file__).parent
+    file_path = current_dir / "app" / "dist" / "index.html"
+
+    if file_path.exists():
+        return file_path.read_text(encoding="utf-8")
+    else:
+        logging.warning(f"Weather widget file not found at: {file_path}")
+        return """<!DOCTYPE html>
+        <html>
+        <head><title>Weather Widget</title></head>
+        <body>
+        <h1>Weather Widget</h1>
+        <p>Widget content not found. Please ensure the app/index.html file exists.</p>
+        </body>
+        </html>"""
+```
+
+A tool can reference this resource by declaring a `resourceUri` in its metadata, pointing to `ui://weather/index.html`. When the tool is invoked, the MCP host fetches the resource and renders it:
+
+```python
+# Metadata for the tool
+TOOL_METADATA = '{"ui": {"resourceUri": "ui://weather/index.html"}}'
+
+@app.mcp_tool(metadata=TOOL_METADATA)
+@app.mcp_tool_property(arg_name="location", description="City name to check weather for (e.g., Seattle, New York, Miami)")
+def get_weather(location: str) -> Dict[str, Any]:
+    """Returns current weather for a location via Open-Meteo."""
+    logging.info(f"Getting weather for location: {location}")
+
+    result = weather_service.get_current_weather(location)
+    return json.dumps(result)
+```
+
+For the complete code example, see [function_app.py](https://github.com/Azure-Samples/remote-mcp-functions-python/blob/main/src).
 ::: zone-end
 
 [!INCLUDE [functions-mcp-extension-powershell-note](../../includes/functions-mcp-extension-powershell-note.md)]  
@@ -250,24 +314,38 @@ See [Usage](#usage) to learn how the resource trigger provides data to your func
 
 ## Annotations
 
-Annotations for Java aren't currently available. See the C# documentation for general guidance.
+Annotations for Java aren't currently available.
 
 ::: zone-end  
 ::: zone pivot="programming-language-python"
 ## Decorators
 
-Decorators for Python aren't currently available. See the C# documentation for general guidance.
+> [!NOTE]
+> Applies only to the Python v2 programming model.
+
+The following MCP resource trigger properties are supported on `mcp_resource_trigger`:
+
+| Property    | Description |
+|-------------|-----------------------------|  
+| **arg_name** | The variable name (usually `context`) used in function code to access the trigger payload. |
+| **uri**  | (Required) Unique URI identifier for the resource. Must be an absolute URI. |
+| **resource_name**  | (Required) Human-readable name of the resource. |
+| **title** | An optional title for display purposes in MCP client interfaces. |
+| **description**  | A description of the MCP resource exposed by the function endpoint. |
+| **mime_type** | The MIME type of the content returned by the resource. For example, `text/html;profile=mcp-app` for MCP App UI resources, `text/plain` for plain text. |
+| **size** | The expected size of the resource content in bytes, if known. |
+| **metadata** | A JSON-serialized string of additional metadata for the resource. |
 
 ::: zone-end
 ::: zone pivot="programming-language-javascript,programming-language-typescript"  
 ## Configuration
 
 > [!NOTE]
-> The MCP resource trigger for TypeScript requires version `4.12.0-preview.2` or later of the [`@azure/functions`](https://www.npmjs.com/package/@azure/functions/v/4.12.0-preview.2) package, which is in extension bundle version `[4.32.0, 5.0.0)`. Check `host.json` to make sure the correct bundle version is specified:
+> The MCP resource trigger for TypeScript requires version `4.12.0-preview.2` or later of the [`@azure/functions`](https://www.npmjs.com/package/@azure/functions/v/4.12.0-preview.2) package, which is in _preview_ extension bundle version `[4.32.0, 5.0.0)`. Check `host.json` to make sure the correct bundle version is specified:
 >
 > ```json
 > "extensionBundle": {
->   "id": "Microsoft.Azure.Functions.ExtensionBundle",
+>   "id": "Microsoft.Azure.Functions.ExtensionBundle.Preview",
 >   "version": "[4.32.0, 5.0.0)"
 > }
 > ```
@@ -314,36 +392,17 @@ The `ResourceInvocationContext` type provides the following properties:
 | **SessionId** | `string?` | The session ID associated with the current resource invocation. |
 | **Transport** | `Transport?` | Transport information for the current invocation. |
 
-### Resource URIs
+::: zone-end
 
-MCP resources use URIs to define the address of the resource. The URI uniquely identifies the resource and is what clients use to request it. You can use any URI scheme appropriate for your resource, such as `ui://` for UI resources or `file://` for file-based resources.
+::: zone pivot="programming-language-java"
 
-### Resource metadata
-
-You can use the `McpMetadata` attribute to provide additional metadata for resources. This metadata is communicated to MCP clients and can influence how the resource content is displayed or processed.
-
-### Return types
-
-The MCP resource trigger supports the following return types:
-
-| Type | Description |
-| --- | --- |
-| `string` | Returned as text content in the MCP `ReadResourceResult`. |
-| `byte[]` | Returned as base64-encoded blob content in the MCP `ReadResourceResult`. |
-
-### Resource discovery
-
-When a function app starts, all functions with `McpResourceTrigger` are registered with the MCP server. Clients discover available resources by calling the MCP `resources/list` method, which returns each resource's URI, name, description, MIME type, size, and metadata (via the `meta` field). Clients read a resource by calling `resources/read` with the resource URI.
-
-### Sessions
-
-The `SessionId` property on `ResourceInvocationContext` identifies the MCP session making the request. This can be used to maintain per-session state or apply session-specific logic when serving resources.
+Usage details for Java aren't currently available. 
 
 ::: zone-end
 
-::: zone pivot="programming-language-java,programming-language-python"
+::: zone pivot="programming-language-python"
 
-Usage details for this language aren't currently available. See the C# documentation for general guidance.
+The `mcp_resource_trigger` decorator binds to a context parameter that represents the resource request from the MCP client. The trigger can bind to the following types: `str`, `dict`, or `bytes`.
 
 ::: zone-end
 
@@ -356,7 +415,83 @@ The resource handler function has two parameters:
 | **messages** | `T` (defaults to `unknown`) | The trigger payload passed by the MCP extension. (The example above code names this parameter `resourceContext`.) |
 | **context** | `InvocationContext` | The Azure Functions invocation context, which provides logging and other runtime information. |
 
+::: zone-end
+
+::: zone pivot="programming-language-csharp,programming-language-python,programming-language-javascript,programming-language-typescript"
+
+### Resource URIs
+
+MCP resources use URIs to define the address of the resource. The URI uniquely identifies the resource and is what clients use to request it. You can use any URI scheme appropriate for your resource, such as `ui://` for UI resources or `file://` for file-based resources.
+
+### Resource metadata
+
+::: zone-end
+
+::: zone pivot="programming-language-csharp"
+
+You can use the `McpMetadata` attribute to provide additional metadata for resources. This metadata is communicated to MCP clients and can influence how the resource content is displayed or processed.
+
+::: zone-end
+
+::: zone pivot="programming-language-python"
+
+You can provide additional metadata for resources using the `metadata` parameter on the `mcp_resource_trigger` decorator. This metadata is a JSON-serialized string included in the `meta` field of each resource when clients call `resources/list`, and can influence how the resource content is displayed or processed.
+
+::: zone-end
+
+::: zone pivot="programming-language-javascript,programming-language-typescript"
+
+You can provide additional metadata for resources using the `metadata` option. This metadata is a JSON-serialized string included in the `meta` field of each resource when clients call `resources/list`, and can influence how the resource content is displayed or processed.
+
+::: zone-end
+
+::: zone pivot="programming-language-csharp,programming-language-python,programming-language-javascript,programming-language-typescript"
+
+### Return types
+
+::: zone-end
+
+::: zone pivot="programming-language-csharp"
+
+The MCP resource trigger supports the following return types:
+
+| Type | Description |
+| --- | --- |
+| `string` | Returned as text content in the MCP `ReadResourceResult`. |
+| `byte[]` | Returned as base64-encoded blob content in the MCP `ReadResourceResult`. |
+
+::: zone-end
+
+::: zone pivot="programming-language-python"
+
+The MCP resource trigger supports the following return types:
+
+| Type | Description |
+| --- | --- |
+| `str` | Returned as text content in the MCP `ReadResourceResult`. |
+| `bytes` | Returned as binary content in the MCP `ReadResourceResult`. |
+
+::: zone-end
+
+::: zone pivot="programming-language-javascript,programming-language-typescript"
+
 The function should return a `string` containing the resource content (for example, HTML, JSON, or plain text).
+
+::: zone-end
+
+::: zone pivot="programming-language-csharp,programming-language-python,programming-language-javascript,programming-language-typescript"
+
+### Resource discovery
+
+When a function app starts, all resource trigger functions are registered with the MCP server. Clients discover available resources by calling the MCP `resources/list` method, which returns each resource's URI, name, description, MIME type, size, and metadata (via the `meta` field). Clients read a resource by calling `resources/read` with the resource URI.
+
+::: zone-end
+
+::: zone pivot="programming-language-csharp"
+
+### Sessions
+
+The `SessionId` property on `ResourceInvocationContext` identifies the MCP session making the request. This can be used to maintain per-session state or apply session-specific logic when serving resources.
 
 ::: zone-end
 
