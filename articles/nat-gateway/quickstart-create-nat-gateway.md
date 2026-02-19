@@ -343,17 +343,21 @@ In this section, you create a virtual machine to test the NAT gateway and verify
 Create a virtual machine with [New-AzVM](/powershell/module/az.compute/new-azvm). An SSH key pair is generated during VM creation.
 
 ```azurepowershell-interactive
+$securePassword = ConvertTo-SecureString ' ' -AsPlainText -Force
+$cred = New-Object System.Management.Automation.PSCredential ('azureuser', $securePassword)
+
 $vm = @{
     ResourceGroupName = 'test-rg'
     Location = 'eastus2'
     Name = 'vm-1'
-    Image = 'Canonical:ubuntu-24_04-lts:server:latest'
+    Image = 'Ubuntu2204'
     Size = 'Standard_DS1_v2'
     VirtualNetworkName = 'vnet-1'
     SubnetName = 'subnet-1'
     PublicIpAddressName = ''
     GenerateSshKey = $true
     SshKeyName = 'vm-1_key'
+    Credential = $cred
 }
 New-AzVM @vm
 ```
