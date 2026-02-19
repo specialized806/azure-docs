@@ -54,7 +54,7 @@ Authorization: Bearer <TOKEN>
 
 This request is forwarded to the container in the session with the identifier for the user's ID.
 
-If the session isn't already running, Azure Container Apps automatically allocates a session from the pool before forwarding the request.
+If no session exists for the given identifier, Azure Container Apps automatically allocates one from the pool before forwarding the request.
 
 In this example, the session's container receives the request at `http://0.0.0.0:<INGRESS_PORT>/<API_PATH_EXPOSED_BY_CONTAINER>`.
 
@@ -78,30 +78,25 @@ The identifier must be a string that is 4 to 128 characters long and can contain
 
 ## Security
 
+### Security model
+
 Dynamic sessions are built to run untrusted code and applications in a secure and isolated environment. While sessions are isolated from one another, anything within a single session, including files and environment variables, is accessible by users of the session.
 
 Only configure or upload sensitive data to a session if you trust the users of the session.
 
+### Network access
+
 By default, sessions are prevented from making outbound network requests. You can control network access by configuring network status settings on the session pool.
 
-- **Use strong, unique session identifiers**: Always generate session identifiers that are long and complex to prevent brute-force attacks. Use cryptographic algorithms to create identifiers that are hard to guess.
+### Best practices
 
+- **Secure identifiers**: Use secure [session identifiers](sessions-usage.md#identifiers) at all times. Generate session identifiers using cryptographic methods to ensure unique and unpredictable values. Avoid using sequential IDs that could be guessed by an attacker.
+- **Use HTTPS**: Always use HTTPS to encrypt data in transit. This protects session identifiers and any sensitive data exchanged between the client and server from being intercepted.
+- **Limit session lifetime**: Implement timeouts for sessions. For instance, allow a maximum of 15 minutes of inactivity before the session is automatically terminated. This helps mitigate risks due to a lost or unattended device.
 - **Limit session visibility**: Set strict access controls to ensure that session identifiers are only visible to the session pool. Avoid exposing session IDs in URLs or logs.
-
-- **Implement short expiration times**: Configure session identifiers to expire after a short period of inactivity. This approach minimizes the risk of sessions being hijacked after a user has finished interacting with your application.
-
 - **Regularly rotate session credentials**: Periodically review and update the credentials associated with your sessions. Rotation decreases the risk of unauthorized access.
-
-- **Utilize secure transmission protocols**: Always use HTTPS to encrypt data in transit, including session identifiers. This approach protects against man-in-the-middle attacks.
-
 - **Monitor session activity**: Implement logging and monitoring to track session activities. Use these logs to identify unusual patterns or potential security breaches.
-
 - **Validate user input**: Treat all user input as dangerous. Use input validation and sanitation techniques to protect against injection attacks and ensure that only trusted data is processed.
-
-To fully secure your sessions, you can:
-
-- [Use Microsoft Entra ID authentication and authorization](#authentication)
-- [Protect session identifiers](#protect-session-identifiers)
 
 ### <a name="authentication"></a>Authentication and authorization
 

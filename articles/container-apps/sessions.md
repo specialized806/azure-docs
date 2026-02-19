@@ -26,8 +26,6 @@ With sessions, you get:
 - **Instant Startup**: Prewarmed pools enable subsecond launch times for interactive workloads. New sessions are allocated in milliseconds thanks to pools of ready but unallocated sessions.  
 - **Scalable by Design**: Handle hundreds or thousands of concurrent sessions without manual intervention. 
 - **Managed lifecycle**: Sessions are automatically deprovisioned after use or after a configurable cooldown period, ensuring efficient resource usage. 
-- **Simple Access**: Sessions are accessed through a REST API with a unique identifier. If a session doesn’t exist, a new one is automatically allocated. 
-- **API Access**: Sessions are exposed to your application via a single HTTP endpoint.
 
 
 ## Common Scenarios
@@ -46,30 +44,26 @@ Dynamic sessions are useful in a variety of situations, including:
 - **Session**  
   A session is the actual execution environment where your code or container runs. Sessions are ephemeral and isolated, designed for short-lived tasks. When you create a session, it's allocated from the session pool, ensuring fast startup. After the task completes or the cooldown period expires, the session is destroyed and resources are cleaned up.  
 
-- **Session Lifecycle**  
-Sessions follow a clear flow from creation to cleanup:
+- **Session Lifecycle**
+When your application sends a request with a session identifier, the session pool allocates a session automatically. The session stays active as long as requests continue. Once the cooldown period expires with no activity, the session is destroyed and its resources are cleaned up automatically.
 
-  1. **Request Received**: Your application calls the REST API to create or retrieve a session using a unique identifier.
-  2. **Pending**: The system validates the request and checks for available resources.
-  3. **Unallocated**: A session exists but isn't yet assigned to a workload. If a prewarmed session is available in the pool, it moves quickly to allocation.
-  4. **Allocated**: The session becomes active and runs your code or container. This is the execution phase.
-  5. **Destroyed**: After the task completes or the cooldown period expires, the session is terminated and resources are cleaned up automatically.
+- **Request routing and identifiers**
+  Sessions are accessed through the session pool management endpoint. Requests include an `identifier` query parameter, and the pool routes the request to an existing session or allocates a new one if needed. The request path after the management endpoint is forwarded to the session container.
 
-  This lifecycle ensures fast startup, efficient resource use, and automatic cleanup without manual intervention.
-
-- **Session Types**  
-  - **Code Interpreter Sessions**: These are platform built-in containers that provide preconfigured environments for running code, including AI-generated scripts. Ideal for scenarios like LLM-driven workflows or secure code execution.
-  - **Custom Container Sessions**: Bring-your-own-container for custom workloads that require specific dependencies or runtime environments.
+- **Session Pool Types**
+  - **Code Interpreter Session Pools**: These use platform built-in containers that provide preconfigured environments for running code, including AI-generated scripts. Ideal for scenarios like LLM-driven workflows or secure code execution.
+  - **Custom Container Session Pools**: Bring-your-own-container for custom workloads that require specific dependencies or runtime environments.
 
 
-#### Session Types Comparison
+#### Session Pool Types Comparison
 
-| | **Code Interpreter Session** | **Custom Container Session** |
+| | **Code Interpreter Session Pool** | **Custom Container Session Pool** |
 |---------------|------------------------------|------------------------------|
 | **Best For** | Running AI‑generated code, user-submitted scripts, or quick secure code execution without managing a runtime environment. | Workloads requiring a custom runtime, libraries, binaries, or specialized tools not supported by built-in interpreters. |
 | **Environment** | Preconfigured with common runtimes and tools; no container build or image publishing required. | Fully customizable container image with your own dependencies, packages, and configuration. |
 | **When to Choose** | Choose this for simplicity, fastest startup, and minimal setup. | Choose this when you need full control over the execution environment or rely on custom dependencies. |
 | **Ideal Use Cases** | LLM workflows, code interpretation, educational/sandbox scenarios, safe execution of user code. | Custom compute tasks, proprietary interpreters, specialized environments, or workloads with specific OS/library requirements. |
+| **Language and protocol** | Limited to the built-in runtimes and the REST API surface provided by the code interpreter. | Any language or stack supported by your container, with any TCP protocol you choose to expose. |
 | **Image Requirement** | None—uses platform built‑in interpreter environments. | Required—supply your own container image URI. |
 
 For more information, see [Usage](./sessions-usage.md).
@@ -94,6 +88,8 @@ Dynamic sessions are available in the following regions. Both code interpreter a
 | West US 3 | UK West | | |
 | | West Europe | | |
 
+> [!NOTE]
+> Regional availability may change. To verify current availability, check the **Location** dropdown when creating a session pool in the Azure portal.
 
 ## Security
 Dynamic sessions are designed to run untrusted code in isolated environments. For information about securing your sessions, see [Security](./sessions-usage.md#security).
@@ -105,5 +101,5 @@ Custom container sessions are billed based on the resources consumed by the sess
 
 ## Next Steps
 - Learn how to configure [Session pools](./session-pool.md) 
-- Learn how to use [Dynamic sessions](./sessions-usage.md)
+- Learn how to use [Dynamic sessions](./sessions-usage.md), including security and best practices
 
