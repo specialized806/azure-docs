@@ -675,6 +675,6 @@ For this example, follow these steps:
 ## Related content
 
 - [AI agentic workflows in Azure Logic Apps](/azure/logic-apps/agent-workflows-concepts)
-- [Lab: Build your first autonomous agent workflow in Azure Logic Apps](https://azure.github.io/logicapps-labs/docs/logicapps-ai-course/build_autonomous_agents/create-first-autonomous-agent)
+- [Lab: Build your first autonomous agentic workflow in Azure Logic Apps](https://azure.github.io/logicapps-labs/docs/logicapps-ai-course/build_autonomous_agents/create-first-autonomous-agent)
 - [Azure Logic Apps limits and configuration](/azure/logic-apps/logic-apps-limits-and-config)
 - [Azure OpenAI Service quotas and limits](/azure/ai-services/openai/quotas-limits)
