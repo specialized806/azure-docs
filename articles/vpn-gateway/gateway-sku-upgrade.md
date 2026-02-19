@@ -21,11 +21,11 @@ There are many things to consider when you upgrade to a new gateway SKU. The fol
 
 | Starting SKU | Target SKU | Eligible for SKU upgrade | Delete/re-create only |
 | --- | --- | --- | --- |
-| Basic SKU | Any other SKU | No | Yes  |
-| Generation 1 SKU | Generation 1 AZ SKU | Yes| No |
+| Basic SKU | Any other SKU | No | Yes |
+| Generation 1 SKU | Generation 1 AZ SKU | Yes | No |
 | Generation 1 SKU | Generation 2 AZ SKU | No | Yes |
 | Generation 2 SKU | Generation 2 AZ SKU | Yes | No |
-| Generation 2 SKU | Generation 1 AZ SKU | No |Yes |
+| Generation 2 SKU | Generation 1 AZ SKU | No | Yes |
 
 In the preceding table, *AZ* stands for *availability zone*, and means that the SKU offers support for availability zones. For gateway SKU throughput and connection limits, see [About gateway SKUs](about-gateway-skus.md#benchmark).
 
@@ -33,7 +33,7 @@ In the preceding table, *AZ* stands for *availability zone*, and means that the 
 
 * You can't upgrade a Basic SKU to a new SKU. You must delete the gateway, and then create a new one.
 * You can't downgrade a SKU without deleting the gateway and creating a new one.
-* Legacy gateway SKUs (Standard and High Performance) can't be upgraded to the new SKU families. You must delete the gateway and create a new one. For more information about working with legacy gateway SKUS, see [VPN Gateway legacy SKUs](vpn-gateway-about-skus-legacy.md)
+* Legacy gateway SKUs (Standard and High Performance) can't be upgraded to the new SKU families. You must delete the gateway and create a new one. For more information about working with legacy gateway SKUs, see [VPN Gateway legacy SKUs](vpn-gateway-about-skus-legacy.md)
 
 ## Upgrade a gateway SKU by using the Azure portal
 

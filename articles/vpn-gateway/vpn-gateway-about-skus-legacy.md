@@ -10,7 +10,7 @@ ms.author: cherylmc
 ---
 # Work with VPN Gateway legacy SKUs
 
-This article contains information about the legacy (old) virtual network gateway SKUs. The legacy SKUs still work in both deployment models for existing VPN gateways. Classic VPN gateways continue to use the legacy SKUs, both for existing gateways, and for new gateways. When creating new Resource Manager VPN gateways, use the new gateway SKUs. For information about the new SKUs, see [About VPN Gateway](vpn-gateway-about-vpngateways.md). For the projected gateway SKU deprecation/migration timeline, see the [What's new?](whats-new.md) article.
+This article contains information about the legacy (old) virtual network gateway SKUs. The legacy SKUs still work in both deployment models for existing VPN gateways. Classic VPN gateways continue to use the legacy SKUs, for both existing and new gateways. When you create new Resource Manager VPN gateways, use the new gateway SKUs. For information about the new SKUs, see [About VPN Gateway](vpn-gateway-about-vpngateways.md). For the projected gateway SKU deprecation and migration timeline, see the [What's new?](whats-new.md) article.
 
 ## <a name="gwsku"></a>Legacy gateway SKUs
 
@@ -28,7 +28,7 @@ Pricing differs between gateway SKUs. For more information, see [VPN Gateway Pri
 
 The Ultra Performance gateway SKU isn't represented in this table. For information about the Ultra Performance SKU, see the [ExpressRoute](../expressroute/expressroute-about-virtual-network-gateways.md) documentation.
 
-|  | VPN Gateway throughput (1) | VPN Gateway max IPsec tunnels (2) | ExpressRoute Gateway throughput | VPN Gateway and ExpressRoute coexist |
+| SKU | VPN Gateway throughput (1) | VPN Gateway max IPsec tunnels (2) | ExpressRoute Gateway throughput | VPN Gateway and ExpressRoute coexist |
 | --- | --- | --- | --- | --- |
 | Standard SKU (3)(4) | 100 Mbps | 10 | 1,000 Mbps | Yes |
 | High Performance SKU (3) | 200 Mbps | 30 | 2,000 Mbps | Yes |
@@ -86,7 +86,7 @@ Standard and High Performance SKUs will be deprecated on March 31, 2026. The pro
 
 ## SKU deprecation
 
-The Standard and High Performance SKUs will be deprecated on March 31, 2026. Your legacy SKU will be migrated to a SKU supported by an availability zone as part of Basic IP address migration. All legacy SKUs use Basic IP today, and you can use the Azure portal to [migrate the Basic IP address to Standard IP address](basic-public-ip-migrate-about.md) before the retirement date.
+The Standard and High Performance SKUs will be deprecated on March 31, 2026. Your legacy SKU will be migrated to a SKU supported by an availability zone as part of Basic IP address migration. All legacy SKUs use Basic IP today, and you can use the Azure portal to [migrate a Basic IP address to a Standard IP address](basic-public-ip-migrate-about.md) before the retirement date.
 
 For more information, you can:
 

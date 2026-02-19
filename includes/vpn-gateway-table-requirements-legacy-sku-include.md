@@ -11,7 +11,7 @@
 ---
 The following table lists the requirements for policy-based and route-based VPN gateways. This table applies to both the Resource Manager and classic deployment models. For the classic model, policy-based VPN gateways are the same as static gateways, and route-based gateways are the same as dynamic gateways.
 
-|  | Policy-based Basic VPN Gateway | Route-based Basic VPN Gateway | Route-based Standard VPN Gateway | Route-based High Performance VPN Gateway |
+| Capability or feature | Policy-based Basic VPN Gateway | Route-based Basic VPN Gateway | Route-based Standard VPN Gateway | Route-based High Performance VPN Gateway |
 | --- | --- | --- | --- | --- |
 | Site-to-site connectivity (S2S) | Policy-based VPN configuration | Route-based VPN configuration | Route-based VPN configuration | Route-based VPN configuration |
 | Point-to-site connectivity (P2S) | Not supported | Supported (can coexist with S2S) | Supported (can coexist with S2S) | Supported (can coexist with S2S) |
