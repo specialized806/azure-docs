@@ -7,6 +7,7 @@ ms.author: kgremban
 ms.service: iot-hub
 ms.topic: concept-article
 ms.date: 02/19/2026
+ai-usage: ai-assisted
 ms.custom: [amqp, mqtt, 'Role: Cloud Development', 'Role: System Architecture']
 ---
 
