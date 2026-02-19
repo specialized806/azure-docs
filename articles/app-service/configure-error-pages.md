@@ -4,7 +4,7 @@ description: Learn how to configure the custom error pages available on Azure Ap
 author: jefmarti
 ms.topic: how-to
 ms.custom: linux-related-content
-ms.date: 02/18/2026
+ms.date: 02/19/2026
 ms.author: jefmarti
 ms.service: azure-app-service
 #customer intent: As a website owner and designer, I want to configure custom error pages for my App Service apps so that I can present customized error pages to my website users if they encounter errors.
@@ -46,9 +46,9 @@ Once you upload and apply the custom error page, you can trigger and view the pa
 1. Under **Inbound traffic configuration** on the **Networking** page, copy the IP address next to **IP Addresses** to use in a later step.
 1. Next to **Public access restrictions**, select the link for **Enabled with no access restrictions**.
 1. On the **Access Restrictions** page, under **Site access**, select **Enabled from select virtual networks and IP addresses**.
-1. At the bottom of the page under **Site access and rules**,select **Add** to add an IP restriction.
+1. At the bottom of the page under **Site access and rules**, select **Add** to add an IP restriction.
 1. On the **Add rule** pane, give the rule a **Name** like *Test403*, set **Action** to **Deny**, and set **Priority** to *300*.
-1. Paste the IP address you copied from the main **Networking** page into the **IP Address Block** field, followed by */0*, for example *20.48.204.9/0*.
+1. Paste the IP address you copied from the main **Networking** page into the **IP Address Block** field, followed by */0*, for example *203.0.113.254/0*.
 1. Select **Add rule**.
 1. On the **Access Restrictions** page, select **Save**. If necessary, confirm the action and select **Continue**. This action disables all public access to the site.
 
@@ -58,7 +58,7 @@ Restart the site for the changes to take effect. Return to the **Overview** page
 
 ### Why doesn't my uploaded error page show when the error is triggered?
 
-Make sure you selected **Apply to all requests** when you configured the error page. By default, custom error pages are triggered only from front-end failures. Errors from the app level don't trigger or show the custom error page. Selecting **Apply to all requests** for the configured error code shows the error page for all requests that match the status code, regardless of where they failed. Selecting this option overrides any existing error pages configured for the app.
+Make sure you select **Apply to all requests** when you configure the error page. By default, custom error pages are triggered only from front-end failures. Errors from the app level don't trigger or show the custom error page. Selecting **Apply to all requests** for the configured error code shows the error page for all requests that match the status code, regardless of where they failed. Selecting this option overrides any existing error pages configured for the app.
 
 ### Why is the error page feature grayed out?
 
