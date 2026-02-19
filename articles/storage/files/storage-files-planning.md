@@ -115,7 +115,7 @@ With both SMB and NFS file shares, Azure Files offers enterprise-grade file shar
 |-|-|-|
 | Supported protocol versions | SMB 3.1.1, SMB 3.0, SMB 2.1 | NFS 4.1 |
 | Recommended OS | <ul><li>Windows 11, version 21H2+</li><li>Windows 10, version 21H1+</li><li>Windows Server 2019+</li><li>Linux kernel version 5.3+</li></ul> | Linux kernel version 4.3+ |
-| [Available tiers](storage-files-planning.md#storage-tiers) | SSD and HDD | SSD only |
+| [Available media tiers](storage-files-planning.md#storage-tiers) | SSD and HDD | SSD only |
 | [Redundancy](storage-files-planning.md#redundancy) | <ul><li>Local (LRS)</li><li>Zone (ZRS)</li><li>Geo (GRS)</li><li>GeoZone (GZRS)</li></ul> | <ul><li>Local (LRS)</li><li>Zone (ZRS)</li></ul> |
 | File system semantics | Win32 | POSIX |
 | Authentication | Identity-based authentication (Kerberos), shared key authentication (NTLMv2) | Host-based authentication |
@@ -169,7 +169,7 @@ This means you'll need to consider the following network configurations:
 
 - If the required protocol is SMB and all access over SMB is from clients in Azure, no special networking configuration is required.
 - If the required protocol is SMB and the access is from clients on-premises, then a VPN or ExpressRoute connection from on-premises to your Azure network is required, with Azure Files exposed on your internal network using private endpoints.
-- If the required protocol is NFS, you can use either service endpoints or private endpoints to restrict the network to specified virtual networks. If you need a static IP address and/or your workload requires high availability, use a private endpoint. With service endpoints, a rare event such as a zonal outage could cause the underlying IP address of the storage account to change. While the data is still available on the file share, the client would require a remount of the share.
+- If the required protocol is NFS, you can use either service endpoints or private endpoints to restrict the network to specified virtual networks. If you need a static IP address and/or your workload requires high availability, use a private endpoint. With service endpoints, a rare event such as a zone outage could cause the underlying IP address of the storage account to change. While the data is still available on the file share, the client would require a remount of the share.
 
 To learn more about how to configure networking for Azure Files, see [Azure Files networking considerations](storage-files-networking-overview.md).
 
