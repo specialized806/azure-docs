@@ -3,21 +3,22 @@ title: 'Quickstart: Direct web traffic using a Resource Manager template'
 titleSuffix: Azure Application Gateway
 description: In this quickstart, you learn how to use a Resource Manager template to create an Azure Application Gateway that directs web traffic to virtual machines in a backend pool.
 services: application-gateway
-author: greg-lindsay
-ms.author: greglin
+author: mbender-ms
+ms.author: mbender
 ms.date: 05/30/2024
 ms.topic: quickstart
-ms.service: application-gateway
+ms.service: azure-application-gateway
 ms.custom: mvc, subject-armqs, mode-arm, devx-track-arm-template
+# Customer intent: As a solutions architect, I want to create an Azure Application Gateway using a Resource Manager template, so that I can efficiently direct web traffic to backend virtual machines and ensure optimal performance of my web applications.
 ---
 
 # Quickstart: Direct web traffic with Azure Application Gateway - ARM template
 
 In this quickstart, you use an Azure Resource Manager template (ARM template) to create an Azure Application Gateway. Then you test the application gateway to make sure it works correctly. The Standard v2 SKU is used in this example.
 
-:::image type="content" source="media/quick-create-portal/application-gateway-qs-resources.png" alt-text="application gateway resources":::
+:::image type="content" source="./media/quick-create-portal/application-gateway-qs-resources.png" alt-text="Conceptual diagram of the quickstart setup." lightbox="./media/quick-create-portal/application-gateway-qs-resources.png":::
 
-[!INCLUDE [About Azure Resource Manager](../../includes/resource-manager-quickstart-introduction.md)]
+[!INCLUDE [About Azure Resource Manager](~/reusable-content/ce-skilling/azure/includes/resource-manager-quickstart-introduction.md)]
 
 You can also complete this quickstart using the [Azure portal](quick-create-portal.md), [Azure PowerShell](quick-create-powershell.md), or [Azure CLI](quick-create-cli.md).
 
@@ -30,7 +31,7 @@ If your environment meets the prerequisites and you're familiar with using ARM t
 
 ## Prerequisites
 
-- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 ## Review the template
 
@@ -45,6 +46,9 @@ The template used in this quickstart is from [Azure Quickstart Templates](https:
 
 > [!TIP]
 > You can modify values of the `Name` and `Tier` parameters under `resource\applicationGateWay\properties\sku` to use a different SKU. For example: `Basic`. For information about deploying custom templates, see [Create and deploy ARM templates](../azure-resource-manager/templates/quickstart-create-templates-use-the-portal.md).
+
+> [!NOTE]
+> In regions that support availability zones, if you don't specify zones during creation via CLI, PowerShell, ARM/Bicep, or the REST API—Azure Application Gateway automatically enables zone redundancy, distributing instances across multiple availability zones for enhanced resiliency
 
 Multiple Azure resources are defined in the template:
 

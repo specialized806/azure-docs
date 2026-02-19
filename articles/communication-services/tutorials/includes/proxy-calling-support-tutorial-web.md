@@ -2,7 +2,7 @@
 title: include file
 description: include file
 services: azure-communication-services
-ms.date: 08/14/2023
+ms.date: 06/27/2025
 ms.topic: include
 author: sloanster
 ms.author: micahvivion
@@ -11,9 +11,7 @@ ms.subservice: calling
 ms.custom: mode-other
 ---
 
-The proxy feature is available starting in the public preview version [1.13.0-beta.4](https://www.npmjs.com/package/@azure/communication-calling/v/1.13.0-beta.4) of Azure Communication Services Calling SDK. Make sure that you use this SDK or a later version of the SDK when you try to use this feature. This tutorial uses a version of the Calling SDK version later than 1.13.0.
-
-[!INCLUDE [Public Preview](../../includes/public-preview-include-document.md)]
+The proxy feature is general available starting in the public version [1.25.1](https://www.npmjs.com/package/@azure/communication-calling/v/1.25.1) of Azure Communication Services Calling SDK. Make sure that you use this SDK or a later version of the SDK when you try to use this feature. This tutorial uses a version of the Calling SDK 1.13.0-beta.1 where this feature became first available on public preview.
 
 ## Proxy calling media traffic
 
@@ -66,14 +64,11 @@ const callClient = new CallClient({
     }
 });
 
-
-
-
 // ...continue normally with your SDK setup and usage.
 ```
 
 > [!IMPORTANT]
-> If you provided your TURN server details while you initialized `CallClient`, all the media traffic *exclusively* flows through these TURN servers. Any other ICE candidates that are normally generated when you create a call won't be considered while trying to establish connectivity between peers. That means only `relay` candidates are considered. To learn more about different types of Ice candidates see [RTCIceCandidate: type property](https://developer.mozilla.org/en-US/docs/Web/API/RTCIceCandidate/type).
+> If you provided your TURN server details while you initialized `CallClient`, all the media traffic *exclusively* flows through these TURN servers. Any other ICE candidates that are normally generated when you create a call aren't considered while trying to establish connectivity between peers. That means only `relay` candidates are considered. For more information about different types of Ice candidates, see [RTCIceCandidate: type property](https://developer.mozilla.org/en-US/docs/Web/API/RTCIceCandidate/type).
 
 If the `?transport` query parameter isn't present as part of the TURN URL or isn't one of the `udp`, `tcp`, or `tls` values, the default behavior is UDP.
 

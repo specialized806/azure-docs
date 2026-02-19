@@ -2,8 +2,9 @@
 ms.topic: include
 ms.date: 10/26/2021
 
-ms.reviewer: madsd 
+ms.reviewer: jordanselig 
 ms.custom: devx-track-azurecli
+ms.service: azure-app-service
 ---
 
 [Azure App Service](../../overview.md) can use [managed identities](../../overview-managed-identity.md) to connect to back-end services without a connection string, which eliminates connection secrets to manage and keeps your back-end connectivity secure in a production environment. For back-end services that don't support managed identities and still requires connection secrets, you can use Key Vault to manage connection secrets. This tutorial uses Azure AI services as an example to show you how it's done in practice. When you're finished, you have an app that makes programmatic calls to Azure AI services, without storing any connection secrets inside App Service.
@@ -11,7 +12,7 @@ ms.custom: devx-track-azurecli
 * [Sample application](https://github.com/Azure-Samples/app-service-language-detector)
 
 > [!TIP]
-> Azure AI services do [support authentication through managed identities](../../../ai-services/authentication.md#authorize-access-to-managed-identities), but this tutorial uses the [subscription key authentication](../../../ai-services/authentication.md#authenticate-with-a-single-service-resource-key) to demonstrate how you could connect to an Azure service that doesn't support managed identities from App Services.
+> Azure AI services do [support authentication through managed identities](/azure/ai-services/authentication#authorize-access-to-managed-identities), but this tutorial uses the [subscription key authentication](/azure/ai-services/authentication#authenticate-with-a-single-service-resource-key) to demonstrate how you could connect to an Azure service that doesn't support managed identities from App Services.
 
 ![Architecture diagram for tutorial scenario.](../../media/tutorial-connect-msi-key-vault/architecture.png)
 

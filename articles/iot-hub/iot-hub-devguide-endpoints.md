@@ -1,10 +1,9 @@
 ---
 title: Understand Azure IoT Hub endpoints
 description: This article provides information about IoT Hub device-facing and service-facing endpoints.
-author: kgremban
-
-ms.author: kgremban
-ms.service: iot-hub
+author: cwatson-cat
+ms.author: cwatson
+ms.service: azure-iot-hub
 ms.topic: concept-article
 ms.date: 02/19/2026
 ai-usage: ai-assisted
@@ -27,7 +26,7 @@ You can find the hostname of an IoT hub in the Azure portal, on your IoT hub's *
 
 Azure IoT Hub is a multitenant service that exposes its functionality to various actors. The following diagram shows the various endpoints that IoT Hub exposes.
 
-:::image type="content" source="./media/iot-hub-devguide-endpoints/endpoints.png" alt-text="Diagram showing the list of build-in IoT Hub endpoints." border="false":::
+:::image type="content" source="./media/iot-hub-devguide-endpoints/endpoints.png" alt-text="Diagram showing the list of built-in IoT Hub endpoints." border="false":::
 
 The following list describes the endpoints:
 
@@ -65,18 +64,17 @@ The [Azure IoT Hub SDKs](iot-hub-devguide-sdks.md) article describes the various
 
 All IoT Hub endpoints use the [TLS](https://tools.ietf.org/html/rfc5246) protocol, and no endpoint is ever exposed on unencrypted or unsecured channels.
 
-[!INCLUDE [iot-hub-include-x509-ca-signed-support-note](../../includes/iot-hub-include-x509-ca-signed-support-note.md)]
 
 ## Custom endpoints for message routing
 
 You can link existing Azure services in your Azure subscriptions to your IoT hub to act as endpoints for message routing. These endpoints act as service endpoints and are used as sinks for message routes. Devices can't write directly to these endpoints. For more information about message routing, see [Use IoT Hub message routing to send device-to-cloud messages to different endpoints](../iot-hub/iot-hub-devguide-messages-d2c.md).
 
-IoT Hub currently supports the following Azure services as custom endpoints:
+IoT Hub supports the following Azure services as custom endpoints:
 
 * Storage containers
 * Event Hubs
-* Service Bus Queues
-* Service Bus Topics
+* Service Bus queues
+* Service Bus topics
 * Cosmos DB
    
 For the limits on endpoints per hub, see [Quotas and throttling](iot-hub-devguide-quotas-throttling.md).
@@ -89,7 +87,7 @@ The message payload isn't base64 encoded at the built-in endpoint.
 
 ### Azure Storage as a routing endpoint
 
-IoT Hub can route messages to two storage services: [Azure Blob Storage](../storage/blobs/storage-blobs-introduction.md) and [Azure Data Lake Storage Gen2](../storage/blobs/data-lake-storage-introduction.md) (ADLS Gen2) accounts. Both of these services use blobs for their storage.
+IoT Hub can route messages to two storage services: [Azure Blob Storage](../storage/blobs/storage-blobs-introduction.md) and [Azure Data Lake Storage Gen2](../storage/blobs/data-lake-storage-introduction.md) (ADLS Gen2) accounts. Both of these services use blobs for their storage. To use Azure Data Lake Gen2, your storage account must have hierarchical namespaces enabled. For more information, see [Create a storage account to use with Azure Data Lake Storage](../storage/blobs/create-data-lake-storage-account.md).
 
 IoT Hub supports writing data to Azure Storage in the [Apache Avro](https://avro.apache.org/) format and the JSON format. The default format is Avro. To use JSON encoding, set the `contentType` property to **application/json** and the `contentEncoding` property to **UTF-8** in the message [system properties](iot-hub-devguide-routing-query-syntax.md#system-properties). Both of these values are case-insensitive. 
 
@@ -106,7 +104,7 @@ To ensure that all blobs or files are read without making any assumptions about 
 ```csharp
 public void ListBlobsInContainer(string containerName, string iothub)
 {
-    var storageAccount = CloudStorageAccount.Parse(this.blobConnectionString);
+    var storageAccount = CloudStorageAccount(Microsoft.Azure.Storage.Auth.StorageCredentials storageCredentials, bool useHttps);
     var cloudBlobContainer = storageAccount.CreateCloudBlobClient().GetContainerReference(containerName);
     if (cloudBlobContainer.Exists())
     {
@@ -118,10 +116,6 @@ public void ListBlobsInContainer(string containerName, string iothub)
     }
 }
 ```
-
-To create an Azure Data Lake Gen2-compatible storage account, create a new V2 storage account and select **Enable hierarchical namespace** from the **Data Lake Storage Gen2** section of the **Advanced** tab, as shown in the following image:
-
-:::image type="content" alt-text="Screenshot that shows how to select Azure Date Lake Gen2 storage." source="./media/iot-hub-devguide-messages-d2c/selectadls2storage.png":::
 
 ### Service Bus queues and Service Bus topics as a routing endpoint
 
@@ -141,12 +135,12 @@ You can send data directly to Azure Cosmos DB from IoT Hub. IoT Hub supports wri
 
 Base64 encoding is applied if the necessary system properties aren't set. To write as JSON, set the `contentType` property to **application/json** and the `contentEncoding` property to **UTF-8** in the message system properties. If these properties aren't set, data is base64 encoded when written to Cosmos DB.
 
-To support high-scale scenarios, you can enable [synthetic partition keys](../cosmos-db/nosql/synthetic-partition-keys.md) for the Cosmos DB endpoint. As Cosmos DB is a hyperscale data store, all data/documents written to it must contain a field that represents a logical partition. Each logical partition has a maximum size of 20 GB. You can specify the partition key property name in **Partition key name**. The partition key property name is defined at the container level and can't be changed once it has been set.  
+To support high-scale scenarios, you can enable [synthetic partition keys](/azure/cosmos-db/synthetic-partition-keys) for the Cosmos DB endpoint. As Cosmos DB is a hyperscale data store, all data/documents written to it must contain a field that represents a logical partition. Each logical partition has a maximum size of 20 GB. You can specify the partition key property name in **Partition key name**. The partition key property name is defined at the container level and can't be updated.  
 
 You can configure the synthetic partition key value by specifying a template in **Partition key template** based on your estimated data volume. For example, in manufacturing scenarios, your logical partition might be expected to approach its maximum limit of 20 GB within a month. In that case, you can define a synthetic partition key as a combination of the device ID and the month. The generated partition key value is automatically added to the partition key property for each new Cosmos DB record, ensuring logical partitions are created each month for each device.
 
 > [!CAUTION]
-> If you're using the system assigned managed identity for authenticating to Cosmos DB, you must use Azure CLI or Azure PowerShell to assign the Cosmos DB Built-in Data Contributor built-in role definition to the identity. Role assignment for Cosmos DB isn't currently supported from the Azure portal. For more information about the various roles, see [Configure role-based access for Azure Cosmos DB](../cosmos-db/how-to-setup-rbac.md). To understand assigning roles via CLI, see [Manage Azure Cosmos DB SQL role resources.](/cli/azure/cosmosdb/sql/role)
+> If you're using the system assigned managed identity for authenticating to Cosmos DB, you must use Azure CLI or Azure PowerShell to assign the Cosmos DB Built-in Data Contributor built-in role definition to the identity. Role assignment for Cosmos DB isn't currently supported from the Azure portal. For more information about the various roles, see [Configure role-based access for Azure Cosmos DB](/azure/cosmos-db/how-to-setup-rbac). To understand assigning roles via CLI, see [Manage Azure Cosmos DB SQL role resources.](/cli/azure/cosmosdb/sql/role)
 
 ## Endpoint Health
 

@@ -3,16 +3,17 @@ title: Troubleshoot an Azure S2S VPN connection that cannot connect
 titleSuffix: Azure VPN Gateway
 description: Learn how to troubleshoot a site-to-site VPN connection that suddenly stops working and can't be reconnected.
 author: cherylmc
-ms.service: vpn-gateway
+ms.service: azure-vpn-gateway
 ms.topic: troubleshooting-problem-resolution
-ms.date: 07/31/2023
+ms.date: 03/31/2025
 ms.author: cherylmc 
+# Customer intent: "As a network administrator managing a site-to-site VPN, I want to troubleshoot connection issues effectively, so that I can restore connectivity between our on-premises network and the Azure virtual network."
 ---
 # Troubleshooting: An Azure site-to-site VPN connection can't connect and stops working
 
 After you configure a site-to-site VPN connection between an on-premises network and an Azure virtual network, the VPN connection suddenly stops working and can't be reconnected. This article provides troubleshooting steps to help you resolve this problem.
 
-[!INCLUDE [support-disclaimer](../../includes/support-disclaimer.md)]
+[!INCLUDE [support-disclaimer](~/reusable-content/ce-skilling/azure/includes/support-disclaimer.md)]
 
 ## Troubleshooting steps
 
@@ -46,7 +47,7 @@ To view the shared key for the Azure VPN connection, use one of the following me
 
 **Azure PowerShell**
 
-[!INCLUDE [updated-for-az](../../includes/updated-for-az.md)]
+[!INCLUDE [updated-for-az](~/reusable-content/ce-skilling/azure/includes/updated-for-az.md)]
 
 For the Azure [Resource Manager deployment model](../azure-resource-manager/management/deployment-models.md):
 

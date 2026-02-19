@@ -2,32 +2,33 @@
 title: Restore SAP HANA databases on Azure VMs
 description: In this article, you'll learn how to restore SAP HANA databases that are running on Azure virtual machines. You can also use Cross Region Restore to restore your databases to a secondary region.
 ms.topic: how-to
-ms.date: 03/26/2024
-ms.service: backup
+ms.date: 02/16/2026
+ms.service: azure-backup
 author: AbhishekMallick-MS
-ms.author: v-abhmallick
+ms.author: v-mallicka
+# Customer intent: "As a database administrator, I want to restore SAP HANA databases on Azure VMs so that I can recover lost data and create test environments efficiently."
 ---
 
-# Restore SAP HANA databases on Azure VMs
+# Restore SAP HANA databases on Azure VMs using Azure portal
 
-This article describes how to restore SAP HANA databases that are running on Azure virtual machines (VMs) and that the Azure Backup service has backed up to a Recovery Services vault. You can use the restored data to create copies for development and test scenarios or to return to a previous state.
+This article describes how to restore SAP HANA databases that are running on Azure virtual machines (VMs) using Azure portal and that the Azure Backup service has backed up to a Recovery Services vault. Azure Backup allows you to use the restored data to create copies for development and test scenarios or to return to a previous state. You can also [restore the database using Azure CLI](tutorial-sap-hana-restore-cli.md).
 
-Azure Backup now supports backup and restore of SAP HANA System Replication (HSR) instance.
+Azure Backup now supports backup and restore of SAP HANA System Replication (HSR) instance using Azure portal. You can also do the restore operation using [Azure CLI](quick-restore-hana-cli.md).
 
 >[!Note]
 >- The restore process for HANA databases with HSR is the same as the restore process for HANA databases without HSR. As per SAP advisories, you can restore databases with HSR mode as *standalone* databases. If the target system has the HSR mode enabled, first disable the mode, and then restore the database. However, if you're restoring as files, disabling the HSR mode (breaking the HSR) isn't needed.
 >- Original Location Recovery (OLR) is currently not supported for HSR. Alternatively, select **Alternate location** restore, and then select the source VM as your *Host* from the list.
 >- Restore to HSR instance isn't supported. However, restore only to HANA instance is supported.
 
-For information about the supported configurations and scenarios, see the [SAP HANA backup support matrix](sap-hana-backup-support-matrix.md).
+To learn about the supported SAP HANA database backup and restore scenarios, region availability, and limitations, see the [support matrix](backup-azure-sql-database.md). For common questions, see the [frequently asked questions](sap-hana-faq-backup-azure-vm.yml).
 
 ## Restore to a point in time or to a recovery point
 
 Azure Backup restores SAP HANA databases that are running on Azure VMs. It can:
 
-* Restore them to a specific date or time (to the second) by using log backups. Azure Backup automatically determines the appropriate full backups, differential backups, and chain of log backups that are required to restore based on the selected time.
+* Restore them to a specific date or time (to the second) by using log backups. Azure Backup automatically determines the appropriate full backups, differential backups, and chain of log backups that are required to restore based on the selected time. [Learn more](#restore-to-a-specific-point-in-time).
 
-* Restore them to a specific full or differential backup to restore them to a specific recovery point.
+* Restore them to a specific full or differential backup to restore them to a specific recovery point. [Learn more](#restore-to-a-specific-recovery-point).
 
 ## Prerequisites
 
@@ -417,5 +418,6 @@ Add the parameter `--target-subscription-id` that enables you to provide the tar
 
 ## Next steps
 
-- [Manage SAP HANA databases by using Azure Backup](sap-hana-db-manage.md)
-- [About backing up SAP HANA databases on Azure VMs](sap-hana-database-about.md)
+- [Manage SAP HANA databases by Azure Backup using Azure portal](sap-hana-db-manage.md).
+- [Manage SAP HANA databases that are backed up by Azure Backup using Azure CLI](tutorial-sap-hana-manage-cli.md).
+- [About backing up SAP HANA databases on Azure VMs](sap-hana-database-about.md).

@@ -3,11 +3,12 @@ title: Outbound-only load balancer configuration
 titleSuffix: Azure Load Balancer
 description: This article provides a step-by-step guide on how to configure an "egress only" setup using Azure Load Balancer with outbound NAT and Azure Bastion. Deploy public and internal load balancers to create outbound connectivity for VMs behind an internal load balancer.
 author: mbender-ms
-ms.service: load-balancer
+ms.service: azure-load-balancer
 ms.topic: how-to
-ms.date: 10/24/2023
+ms.date: 09/06/2024
 ms.author: mbender
 ms.custom: template-how-to
+# Customer intent: As an IT administrator, I want to configure an outbound-only load balancer using internal and public load balancers, so that I can enable secure outbound connectivity for virtual machines without allowing inbound public access.
 ---
 
 # Outbound-only load balancer configuration
@@ -29,9 +30,11 @@ This configuration provides outbound NAT for an internal load balancer scenario,
 
 ## Prerequisites
 
-- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
-[!INCLUDE [load-balancer-create-bastion](../../includes/load-balancer-create-bastion.md)]
+## Create a virtual network and bastion host
+
+[!INCLUDE [load-balancer-create-no-gateway](../../includes/load-balancer-create-no-gateway.md)]
 
 ## Create internal load balancer
 
@@ -57,9 +60,11 @@ In this section, you'll create the internal load balancer.
 
 1. Select **Next: Frontend IP configuration** at the bottom of the page.
 
-1. In **Frontend IP configuration**, select **+ Add a frontend IP**.
+1. In **Frontend IP configuration**, select **+ Add a frontend IP configuration**.
 
 1. Enter **lb-int-frontend** in **Name**.
+
+1. Select **lb-vnet** in **Virtual Network**.
 
 1. Select **backend-subnet** in **Subnet**.
 
@@ -68,7 +73,7 @@ In this section, you'll create the internal load balancer.
 1. Select **Zone-redundant** in **Availability zone**.
 
     > [!NOTE]
-    > In regions with [Availability Zones](../availability-zones/az-overview.md?toc=%2fazure%2fvirtual-network%2ftoc.json#availability-zones), you have the option to select no-zone (default option), a specific zone, or zone-redundant. The choice will depend on your specific domain failure requirements. In regions without Availability Zones, this field won't appear. </br> For more information on availability zones, see [Availability zones overview](../availability-zones/az-overview.md).
+    > In regions with [Availability Zones](/azure/reliability/availability-zones-overview?toc=%2fazure%2fvirtual-network%2ftoc.json), you have the option to select no-zone (default option), a specific zone, or zone-redundant. The choice will depend on your specific domain failure requirements. In regions without Availability Zones, this field won't appear. </br> For more information on availability zones, see [Availability zones overview](/azure/reliability/availability-zones-overview).
 
 1. Select **Add**.
 
@@ -131,7 +136,7 @@ In this section, you'll create the public load balancer.
 1. Select **Zone-redundant** in **Availability zone**.
 
     > [!NOTE]
-    > In regions with [Availability Zones](../availability-zones/az-overview.md?toc=%2fazure%2fvirtual-network%2ftoc.json#availability-zones), you have the option to select no-zone (default option), a specific zone, or zone-redundant. The choice will depend on your specific domain failure requirements. In regions without Availability Zones, this field won't appear. </br> For more information on availability zones, see [Availability zones overview](../availability-zones/az-overview.md).
+    > In regions with [Availability Zones](/azure/reliability/availability-zones-overview?toc=%2fazure%2fvirtual-network%2ftoc.json), you have the option to select no-zone (default option), a specific zone, or zone-redundant. The choice will depend on your specific domain failure requirements. In regions without Availability Zones, this field won't appear. </br> For more information on availability zones, see [Availability zones overview](/azure/reliability/availability-zones-overview).
 
 1. Leave the default of **Microsoft Network** for **Routing preference**.
 
@@ -244,7 +249,7 @@ In this section, you'll add the virtual machine you created previously to the ba
 
 1. Select **Connect**.
 
-1. Open Internet Explorer.
+1. Open Microsoft Edge browser.
 
 1.  Enter **https://whatsmyip.org** in the address bar.
 
@@ -290,7 +295,7 @@ In this section, you'll add the virtual machine you created previously to the ba
 
 1. Select **Connect**.
 
-1. Open Internet Explorer.
+1. Open Microsoft Edge browser.
 
 1. Enter **https://whatsmyip.org** in the address bar.
 
@@ -310,4 +315,4 @@ In this article, you created an "egress only" configuration with a combination o
 
 This configuration allows you to load balance incoming internal traffic to your backend pool while still preventing any public inbound connections.
 
-For more information about Azure Load Balancer and Azure Bastion, see [What is Azure Load Balancer?](load-balancer-overview.md) and [What is Azure Bastion?](../bastion/bastion-overview.md).
+For more information about Azure Load Balancer and Azure Bastion, see [What is Azure Load Balancer?](load-balancer-overview.md) and [What is Azure Bastion?](../bastion/bastion-overview.md)

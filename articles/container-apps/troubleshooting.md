@@ -2,11 +2,11 @@
 title: Troubleshooting in Azure Container Apps
 description: Learn to troubleshoot an Azure Container Apps application.
 services: container-apps
-author: v-jaswel
-ms.service: container-apps
+author: craigshoemaker
+ms.service: azure-container-apps
 ms.topic: how-to
-ms.date: 03/14/2024
-ms.author: v-wellsjason
+ms.date: 02/03/2025
+ms.author: cshoe
 ms.custom:
 ---
 
@@ -29,6 +29,7 @@ The following table lists issues you might encounter while using Azure Container
 | Responses not as expected | The container app endpoint responds to requests, but the responses aren't as expected. | [Verify traffic is routed to the correct revision](#verify-traffic-is-routed-to-the-correct-revision)<br><br>[Verify you're using unique tags when deploying images to the container registry](/azure/container-registry/container-registry-image-tag-version) |
 | Missing parameters error | You receive error messages about missing parameters when you run `az containerapp` commands in the Azure CLI, or run cmdlets from the `Az.App` module in Azure PowerShell. | [Verify latest version of Azure Container Apps extension is installed](#verify-latest-version-of-azure-container-apps-extension-is-installed) |
 | Preview features not available | [Preview features](./whats-new.md) are not available when you run `az containerapp` commands in the Azure CLI. | [Verify Azure Container Apps extension allows preview features](#verify-azure-container-apps-extension-allows-preview-features) |
+| Deleting your app or environment doesn't work | This issue is often accompanied by a message such as **provisioningState: ScheduledForDelete**.  | [Manually delete the associated VNet](#manually-delete-the-vnet-being-used-by-the-azure-container-apps-environment) |
 
 ## View logs
 
@@ -57,7 +58,7 @@ You can use the *diagnose and solve problems* tool to find issues with your cont
 If you receive an error message when you try to deploy a new revision, verify that Container Apps is able to pull your container image.
 
 - Ensure your container environment firewall isn't blocking access to the container registry. For more information, see [Control outbound traffic with user defined routes](./user-defined-routes.md).
-- If your existing VNet uses a custom DNS server instead of the default Azure-provided DNS server, verify your DNS server is configured correctly and that DNS lookup of the container registry doesn't fail. For more information, see [DNS](./networking.md#dns).
+- If your existing VNet uses a custom DNS server instead of the default Azure-provided DNS server, verify your DNS server is configured correctly and that DNS lookup of the container registry doesn't fail. For more information, see [DNS](./private-endpoints-with-dns.md).
 - If you used the Container Apps cloud build feature to generate a container image for you (see [Code-to-cloud path for Azure Container Apps](./code-to-cloud-options.md#new-to-containers), your image isn't publicly accessible, so this section doesn't apply.
 
 For a Docker container that can run as a console application, verify that your image is publicly accessible by running the following command in an elevated command prompt. Before you run this command, replace placeholders surrounded by `<>` with your values.
@@ -90,7 +91,7 @@ Your container app's ingress settings are enforced through a set of rules that c
 | Is ingress enabled? | Verify the **Enabled** checkbox is checked. |
 | Do you want to allow external ingress? | Verify that **Ingress Traffic** is set to **Accepting traffic from anywhere**. If your container app doesn't listen for HTTP traffic, set **Ingress Traffic** to **Limited to Container Apps Environment**. |
 | Does your client use HTTP or TCP to access your container app? | Verify **Ingress type** is set to the correct protocol (**HTTP** or **TCP**). |
-| Does your client support mTLS? | Verify **Client certificate mode** is set to **Require** only if your client supports mTLS. For more information, see [Environment level network encryption.](./networking.md#mtls) |
+| Does your client support mTLS? | Verify **Client certificate mode** is set to **Require** only if your client supports mTLS. For more information, see [configure client certificate authentication.](./client-certificate-authorization.md) |
 | Does your client use HTTP/1 or HTTP/2? | Verify **Transport** is set to the correct HTTP version (**HTTP/1** or **HTTP/2**). |
 | Is the target port set correctly? | Verify **Target port** is set to the same port your container app is listening on, or the same port exposed by your container app's Dockerfile. |
 | Is your client IP address denied? | If **IP Security Restrictions Mode** isn't set to **Allow all traffic**, verify your client doesn't have an IP address that is denied. |
@@ -190,7 +191,7 @@ If you receive errors about missing parameters when you run `az containerapp` co
 az extension add --name containerapp --upgrade
 ```
 
-# [Azure PowerShell](#tab/azure-powershell)
+# [PowerShell](#tab/powershell)
 
 ```azurepowershell
 Install-Module -Name Az.App
@@ -212,7 +213,32 @@ If [preview features](./whats-new.md) are not available when you run `az contain
 az extension add --name containerapp --upgrade --allow-preview true
 ```
 
+
+## Manually delete the VNet being used by the Azure Container Apps environment
+
+If you receive the message **provisioningState: ScheduledForDelete**, but your environment fails to actually delete, make sure to delete your associated VNet manually.
+
+1. Identify the VNet being used by the environment you're trying to delete. Replace the \<PLACEHOLDERS\> with your values.
+
+    ```azurecli
+    az containerapp env show --resource-group <RESOURCE_GROUP> --name <ENVIRONMENT>
+    ```
+
+    In the output, look for `infrastructureSubnetId` and note down the VNet ID. An example VNet ID is `vNet::myVNet.id`.
+
+2. Delete the VNet manually:
+
+    ```azurecli
+    az network vnet delete --resource-group <RESOURCE_GROUP> --name <VNET_ID>
+    ```
+
+3. Delete the Azure Container Apps environment:
+
+    ```azurecli
+    az containerapp env delete --resource-group <RESOURCE_GROUP> --name <ENVIRONMENT> --yes
+    ```
+
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Reliability in Azure Container Apps](../reliability/reliability-azure-container-apps.md)
+> [Reliability in Azure Container Apps](/azure/reliability/reliability-azure-container-apps)

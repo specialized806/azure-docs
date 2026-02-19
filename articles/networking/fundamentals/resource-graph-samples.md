@@ -5,8 +5,9 @@ ms.date: 05/28/2023
 ms.topic: sample
 author: asudbring
 ms.author: allensu
-ms.service: virtual-network
+ms.service: azure-virtual-network
 ms.custom: subject-resourcegraph-sample
+# Customer intent: "As a network administrator, I want to utilize sample queries for Azure Resource Graph, so that I can efficiently access and analyze Azure networking resources and properties."
 ---
 
 # Azure Resource Graph sample queries for Azure networking

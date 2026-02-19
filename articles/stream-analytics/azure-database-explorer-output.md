@@ -3,7 +3,7 @@ title: Azure Data Explorer output from Azure Stream Analytics
 description: This article describes using Azure Data Explorer as an output for Azure Stream Analytics.
 author: AliciaLiMicrosoft 
 ms.author: ali 
-ms.service: stream-analytics
+ms.service: azure-stream-analytics
 ms.topic: conceptual
 ms.date: 06/01/2023
 ---
@@ -14,7 +14,7 @@ You can use [Azure Data Explorer](https://azure.microsoft.com/services/data-expl
 
 Azure Data Explorer supports several ingestion methods, including connectors to common services like Azure Event Hubs, programmatic ingestion through SDKs such as .NET and Python, and direct access to the engine for exploration purposes. Azure Data Explorer integrates with analytics and modeling services for additional analysis and visualization of data.
 
-For more information about Azure Data Explorer, see [What is Azure Data Explorer?](/azure/data-explorer/data-explorer-overview/).
+For more information about Azure Data Explorer, see [What is Azure Data Explorer?](/azure/data-explorer/data-explorer-overview/)
 
 To learn more about how to create an Azure Data Explorer cluster by using the Azure portal, see [Quickstart: Create an Azure Data Explorer cluster and database](/azure/data-explorer/create-cluster-database-portal/).
 

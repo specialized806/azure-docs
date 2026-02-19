@@ -3,14 +3,16 @@ title: Troubleshoot MedTech service deployment errors - Azure Health Data Servic
 description: Learn how to troubleshoot and fix MedTech service deployment errors.
 services: healthcare-apis
 author: chachachachami
-ms.service: healthcare-apis
-ms.subservice: iomt
+ms.service: azure-health-data-services
+ms.subservice: medtech-service
 ms.topic: troubleshooting
-ms.date: 07/21/2023
+ms.date: 08/18/2025
 ms.author: chrupa
 ---
 
 # Troubleshoot MedTech service deployment errors
+
+[!INCLUDE [IoT deprecation](../includes/iot-deprecation.md)]
 
 This article provides troubleshooting steps and fixes for MedTech service deployment errors.
 

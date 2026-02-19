@@ -5,6 +5,8 @@ services: automation
 ms.subservice:
 ms.date: 04/22/2024
 ms.topic: troubleshooting
+ms.author: v-rochak2
+author: RochakSingh-blr
 ---
 
 # Troubleshoot Azure Automation managed identity issues
@@ -157,5 +159,5 @@ You must enable an identity for your Automation account before you can use the m
 If this article doesn't resolve your issue, try one of the following channels for additional support:
 
 * Get answers from Azure experts through [Azure Forums](https://azure.microsoft.com/support/forums/).
-* Connect with [@AzureSupport](https://twitter.com/azuresupport). This is the official Microsoft Azure account for connecting the Azure community to the right resources: answers, support, and experts.
+* Connect with [@AzureSupport](https://x.com/azuresupport). This is the official Microsoft Azure account for connecting the Azure community to the right resources: answers, support, and experts.
 * File an Azure support incident. Go to the [Azure support site](https://azure.microsoft.com/support/options/), and select **Get Support**.

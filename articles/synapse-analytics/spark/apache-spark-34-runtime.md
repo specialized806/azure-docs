@@ -1,17 +1,22 @@
 ---
 title: Azure Synapse Runtime for Apache Spark 3.4 
 description: New runtime is in GA stage. Try it and use Spark 3.4.1, Python 3.10, Delta Lake 2.4.
-author: ekote
-ms.author: eskot
-ms.reviewer: wiassaf, sngun
-ms.service: synapse-analytics 
+author: ms-arali
+ms.author: arali
+ms.service: azure-synapse-analytics
 ms.topic: reference
 ms.subservice: spark
 ms.custom: devx-track-python
 ms.date: 11/17/2023 
 ---
 
-# Azure Synapse Runtime for Apache Spark 3.4 (GA)
+# Azure Synapse Runtime for Apache Spark 3.4 (EOSA)
+
+> [!WARNING]
+> End of Support Announcement
+> - End of support announced for Azure Synapse Runtime for Apache Spark 3.4.
+> - Azure Synapse Runtime for Apache Spark 3.4 will be deprecated and disabled March 31, 2026. 
+
 Azure Synapse Analytics supports multiple runtimes for Apache Spark. This document covers the runtime components and versions for the Azure Synapse Runtime for Apache Spark 3.4.
 
 ## Component versions
@@ -26,14 +31,15 @@ Azure Synapse Analytics supports multiple runtimes for Apache Spark. This docume
 | Python | 3.10     |
 | R | 4.2.2    |
 
->[!TIP]
-> For up-to-date information, a detailed list of changes, and specific release notes for Spark runtimes, check and subscribe [Spark Runtimes Releases and Updates](https://github.com/microsoft/synapse-spark-runtime).
-
+> [!TIP]
+> For up-to-date information, a detailed list of changes, and specific release notes for Spark runtimes, check and subscribe [Spark Runtimes Releases and Updates](https://github.com/microsoft/synapse-spark-runtime/tree/main/Synapse/spark3.4).
 ## Libraries
 
-To check the libraries included in Azure Synapse Runtime for Apache Spark 3.4 for Java/Scala, Python and R go to [Azure Synapse Runtime for Apache Spark 3.4 Releases Notes]              (https://github.com/microsoft/synapse-spark-runtime/blob/main/Synapse/spark3.4/Official-Spark3.4-Rel-2024-03-27.2-rc.1.md).
+To check the libraries included in Azure Synapse Runtime for Apache Spark 3.4 for Java/Scala, Python and R go to [Azure Synapse Runtime for Apache Spark 3.4 Releases Notes](https://github.com/microsoft/synapse-spark-runtime/tree/main/Synapse/spark3.4).             
 
-
+> [!TIP]
+> spark.memoryOverheadFactor.preferred: If set to true, Spark will prioritize spark.driver.memoryOverheadFactor and spark.executor.memoryOverheadFactor over the explicit values defined by spark.driver.memoryOverhead and spark.executor.memoryOverhead. When enabled, the overhead is always computed using the factor, and the explicit overhead settings are ignored. The default is false for backward compatibility.
 ## Related content
+
 - [Migration between Apache Spark versions - support](./apache-spark-version-support.md#migration-between-apache-spark-versions---support)
 - [Synapse runtime for Apache Spark lifecycle and supportability](./runtime-for-apache-spark-lifecycle-and-supportability.md)

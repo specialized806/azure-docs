@@ -4,10 +4,11 @@ titleSuffix: Azure Private Link
 description: Learn how to deploy a private endpoint with an Azure Private resolver for an on-premises workload.
 author: abell
 ms.author: abell
-ms.service: private-link
+ms.service: azure-private-link
 ms.topic: tutorial
-ms.date: 08/29/2023
+ms.date: 02/18/2025
 ms.custom: template-tutorial
+# Customer intent: As a network administrator, I want to build a private DNS infrastructure using a resolver with a private endpoint for my on-premises workloads, so that I can securely resolve private IPs without managing VMs or DNS records on-premises.
 ---
 
 # Tutorial: Create a private endpoint DNS infrastructure with Azure Private Resolver for an on-premises workload
@@ -32,7 +33,7 @@ In this tutorial, you learn how to:
 
 ## Prerequisites
 
-- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 ## <a name="create-a-virtual-network"></a> Sign in to Azure
 
@@ -53,7 +54,7 @@ The following resources are used in this tutorial to simulate an on-premises and
 | Virtual network peer | **vnet-1-to-vnet-2** | Virtual network peer between the simulated on-premises network and cloud virtual network. |
 | Virtual network peer | **vnet-2-to-vnet-1** | Virtual network peer between the cloud virtual network and simulated on-premises network. |
 
-[!INCLUDE [virtual-network-create-with-bastion.md](../../includes/virtual-network-create-with-bastion.md)]
+[!INCLUDE [virtual-network-create-with-bastion.md](~/reusable-content/ce-skilling/azure/includes/virtual-network-create-with-bastion.md)]
 
 It takes a few minutes for the Bastion host deployment to complete. The Bastion host is used later in the tutorial to connect to the "on-premises" virtual machine to test the private endpoint. You can proceed to the next steps when the virtual network is created.
 
@@ -72,7 +73,7 @@ Repeat the previous steps to create a cloud virtual network for the Azure Web Ap
 | Subnet name | **subnet-1** |
 | Subnet address range | **10.1.0.0/24** |
 
-[!INCLUDE [virtual-network-create-network-peer.md](../../includes/virtual-network-create-network-peer.md)]
+[!INCLUDE [virtual-network-create-network-peer.md](~/reusable-content/ce-skilling/azure/includes/virtual-network-create-network-peer.md)]
 
 [!INCLUDE [create-webapp.md](../../includes/create-webapp.md)]
 
@@ -199,7 +200,7 @@ In a production environment, these steps aren't needed and are only to simulate 
 
 10. Select **Save**.
 
-[!INCLUDE [create-test-virtual-machine.md](../../includes/create-test-virtual-machine.md)]
+[!INCLUDE [create-test-virtual-machine.md](~/reusable-content/ce-skilling/azure/includes/create-test-virtual-machine.md)]
 
 ## Test connectivity to private endpoint
 
@@ -235,17 +236,13 @@ In this section, you use the virtual machine you created in the previous step to
 
 9. Verify you receive the default web app page.
 
-    :::image type="content" source="./media/tutorial-dns-on-premises-private-resolver/web-app-default-page.png" alt-text="Screenshot of Microsoft Edge showing default web app page." border="true":::
-
 10. Close the connection to **vm-1**.
 
 11. Open a web browser on your local computer and enter the URL of your web app, `https://<webapp-name>.azurewebsites.net`.
 
 12. Verify that you receive a **403** page. This page indicates that the web app isn't accessible externally.
 
-    :::image type="content" source="./media/tutorial-dns-on-premises-private-resolver/web-app-ext-403.png" alt-text="Screenshot of web browser showing a blue page with Error 403 for external web app address." border="true":::
-
-[!INCLUDE [portal-clean-up.md](../../includes/portal-clean-up.md)]
+[!INCLUDE [portal-clean-up.md](~/reusable-content/ce-skilling/azure/includes/portal-clean-up.md)]
 
 ## Next steps
 

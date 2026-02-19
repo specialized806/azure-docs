@@ -5,9 +5,10 @@ author: MightySuz
 ms.service: sap-on-azure
 ms.subservice: sap-monitor
 ms.topic: how-to
-ms.date: 10/27/2022
-ms.author: sujaj
+ms.date: 08/22/2024
+ms.author: jacobjaygbay
 #Customer intent: As a developer, I want to set up an Azure virtual network so that I can use Azure Monitor for SAP solutions.
+# Customer intent: As an IT administrator, I want to configure an Azure virtual network for Azure Monitor for SAP solutions, so that I can ensure proper data collection and monitoring of my SAP environment.
 ---
 # Set up a network for Azure Monitor for SAP solutions
 
@@ -84,7 +85,7 @@ You can use this option after you deploy an Azure Monitor for SAP solutions reso
 1. Select the subnet's name to find the associated NSG. Note the NSG's information.
 1. Set new NSG rules for outbound network traffic:
       1. Go to the NSG resource in the Azure portal.
-      1. On the NSG's menu, under **Settings**, select **Outbound security rules**.
+      1. On the NSG menu, under **Settings**, select **Outbound security rules**.
       1. Select **Add** to add the following new rules:
 
     | Priority | Name                | Port | Protocol | Source | Destination      | Action |

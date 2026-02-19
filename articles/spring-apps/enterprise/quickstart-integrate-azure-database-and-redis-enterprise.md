@@ -3,19 +3,20 @@ title: "Quickstart - Integrate with Azure Database for PostgreSQL and Azure Cach
 titleSuffix: Azure Spring Apps Enterprise plan
 description: Explains how to provision and prepare an Azure Database for PostgreSQL and an Azure Cache for Redis to be used with apps running the Azure Spring Apps Enterprise plan.
 author: KarlErickson
-ms.author: asirveda # external contributor: paly@vmware.com
-ms.service: spring-apps
+ms.author: karler
+ms.reviewer: asirveda # external contributor: paly@vmware.com
+ms.service: azure-spring-apps
 ms.topic: quickstart
-ms.date: 05/31/2022
+ms.date: 08/19/2025
+ms.update-cycle: 1095-days
 ms.custom: devx-track-java, devx-track-extended-java, service-connector, devx-track-azurecli
 ---
 
 # Quickstart: Integrate with Azure Database for PostgreSQL and Azure Cache for Redis
 
-> [!NOTE]
-> Azure Spring Apps is the new name for the Azure Spring Cloud service. Although the service has a new name, you'll see the old name in some places for a while as we work to update assets such as screenshots, videos, and diagrams.
+[!INCLUDE [deprecation-note](../includes/deprecation-note.md)]
 
-**This article applies to:** ❌ Basic/Standard ✔️ Enterprise
+**This article applies to:** ❎ Basic/Standard ✅ Enterprise
 
 This quickstart shows you how to provision and prepare an Azure Database for PostgreSQL and an Azure Cache for Redis to be used with apps running in the Azure Spring Apps Enterprise plan.
 
@@ -23,8 +24,7 @@ This article uses these services for demonstration purposes. You can connect you
 
 ## Prerequisites
 
-- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
-- Understand and fulfill the [Requirements](how-to-enterprise-marketplace-offer.md#requirements) section of [Enterprise plan in Azure Marketplace](how-to-enterprise-marketplace-offer.md).
+- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - [The Azure CLI version 2.45.0 or higher](/cli/azure/install-azure-cli).
 - [Git](https://git-scm.com/).
 - [jq](https://stedolan.github.io/jq/download/)
@@ -38,6 +38,8 @@ To add persistence to the application, create an Azure Cache for Redis and an Az
 ### [Azure CLI](#tab/azure-cli)
 
 The following steps describe how to provision an Azure Cache for Redis instance and an Azure Database for PostgreSQL Flexible Server by using the Azure CLI.
+
+[!INCLUDE [security-note](../includes/security-note.md)]
 
 1. Create variables to hold the resource names by using the following commands. Be sure to replace the placeholders with your own values.
 
@@ -66,6 +68,8 @@ The following steps describe how to provision an Azure Cache for Redis instance 
    > Redis Cache creation takes approximately 20 minutes.
 
 1. Use the following command to create an Azure Database for PostgreSQL Flexible Server instance:
+
+   [!INCLUDE [security-note](../includes/security-note.md)]
 
    ```azurecli
    az postgres flexible-server create \
@@ -120,7 +124,7 @@ The following steps describe how to provision an Azure Cache for Redis instance 
 
 The following instructions describe how to provision an Azure Cache for Redis and an Azure Database for PostgreSQL Flexible Server by using an Azure Resource Manager template (ARM template).
 
-[!INCLUDE [About Azure Resource Manager](../../../includes/resource-manager-quickstart-introduction.md)]
+[!INCLUDE [About Azure Resource Manager](~/reusable-content/ce-skilling/azure/includes/resource-manager-quickstart-introduction.md)]
 
 You can find the template used in this quickstart in the [fitness store sample GitHub repository](https://github.com/Azure-Samples/acme-fitness-store/blob/HEAD/azure-spring-apps-enterprise/resources/json/deploy/azuredeploy.json).
 
@@ -131,6 +135,8 @@ To deploy this template, follow these steps:
    :::image type="content" source="~/reusable-content/ce-skilling/azure/media/template-deployments/deploy-to-azure-button.svg" alt-text="Button to deploy the Resource Manager template to Azure." border="false" link="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure-Samples%2Facme-fitness-store%2FAzure%2Fazure-spring-apps-enterprise%2Fresources%2Fjson%2Fdeploy%2Fazuredeploy.json":::
 
 1. Enter values for the following fields:
+
+   [!INCLUDE [security-note](../includes/security-note.md)]
 
    - **Resource Group:** Select **Create new**, enter a unique name for the **resource group**, and then select **OK**.
    - **cacheName:** Enter the name for the Azure Cache for Redis Server.
@@ -149,6 +155,8 @@ The following steps show how to bind applications running in the Azure Spring Ap
 
 1. Use the following command to create a service connector to Azure Database for PostgreSQL for the Order Service application:
 
+   [!INCLUDE [security-note](../includes/security-note.md)]
+
    ```azurecli
    az spring connection create postgres-flexible \
        --resource-group ${RESOURCE_GROUP} \
@@ -164,6 +172,8 @@ The following steps show how to bind applications running in the Azure Spring Ap
    ```
 
 1. Use the following command to create a service connector to Azure Database for PostgreSQL for the Catalog Service application:
+
+   [!INCLUDE [security-note](../includes/security-note.md)]
 
    ```azurecli
    az spring connection create postgres-flexible \
@@ -220,6 +230,8 @@ The following steps show how to bind applications running in the Azure Spring Ap
 
 1. Use the following command to update the Order Service application:
 
+   [!INCLUDE [security-note](../includes/security-note.md)]
+
    ```azurecli
    az spring app update \
        --resource-group ${RESOURCE_GROUP} \
@@ -229,6 +241,8 @@ The following steps show how to bind applications running in the Azure Spring Ap
    ```
 
 1. Use the following commands to retrieve Redis connection information and update the Cart Service application:
+
+   [!INCLUDE [security-note](../includes/security-note.md)]
 
    ```azurecli
    export REDIS_CONN_STR=$(az spring connection show \

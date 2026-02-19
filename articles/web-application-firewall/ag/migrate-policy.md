@@ -1,13 +1,13 @@
 ---
 title: Upgrade WAF policies for Azure Application Gateway
 description: Learn how to upgrade Azure Web Application Firewall policies using Azure PowerShell.
-services: web-application-firewall
+author: halkazwini
+ms.author: halkazwini
+ms.service: azure-web-application-firewall
 ms.topic: how-to
-author: vhorne
-ms.service: web-application-firewall
 ms.date: 05/18/2023
-ms.author: victorh 
 ms.custom: devx-track-azurepowershell
+# Customer intent: "As a cloud infrastructure administrator, I want to upgrade the WAF policies for my application gateway using a migration script, so that I can utilize new features and enhance security for my web applications."
 ---
 
 # Upgrade Web Application Firewall policies using Azure PowerShell
@@ -182,7 +182,7 @@ function createNewTopLevelWafPolicy ($subscriptionId, $resourceGroupName, $appli
 
     if ($appgw.FirewallPolicy) {
         $customRulePolicyId = $appgw.FirewallPolicy.Id
-        $rg = Get-AzResourceGroup -Id $customRulePolicyId
+        $rg = Get-AzResourceGroup -Name $resourceGroupName
         $crPolicyName = $customRulePolicyId.Substring($customRulePolicyId.LastIndexOf("/") + 1)
         $customRulePolicy = Get-AzApplicationGatewayFirewallPolicy -ResourceGroupName $rg.ResourceGroupName -Name $crPolicyName
         $wafPolicy = New-AzApplicationGatewayFirewallPolicy -ResourceGroupName $rg.ResourceGroupName -Name $wafPolicyName -CustomRule $customRulePolicy.CustomRules -ManagedRule $managedRule -PolicySetting $policySetting -Location $appgw.Location

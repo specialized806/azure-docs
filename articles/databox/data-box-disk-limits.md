@@ -4,11 +4,11 @@ description: Describes system limits and recommended sizes for the Microsoft Azu
 services: databox
 author: stevenmatthew
 
-ms.service: databox
-ms.subservice: disk
-ms.topic: article
+ms.service: azure-data-box-disk
+ms.topic: concept-article
 ms.date: 03/10/2024
 ms.author: shaas
+# Customer intent: As a cloud administrator, I want to understand the limits and requirements for deploying Azure Data Box Disk, so that I can ensure compliance and optimize data transfer to Azure storage.
 ---
 # Azure Data Box Disk limits
 
@@ -62,7 +62,7 @@ Here are the limits on the size of data that can be copied into a storage accoun
 
 | Type of data             | Default limit          |
 |--------------------------|------------------------|
-| block blob, page blob    | For current information about these limits, see [Azure Blob storage scale targets](../storage/blobs/scalability-targets.md#scale-targets-for-blob-storage), [Azure standard storage scale targets](../storage/common/scalability-targets-standard-account.md#scale-targets-for-standard-storage-accounts), and [Azure Files scale targets](../storage/files/storage-files-scale-targets.md). <br /><br /> The limits include data from all the sources, including Data Box Disk.|
+| block blob, page blob    | For current information about these limits, see [Azure Blob storage scale targets](../storage/blobs/scalability-targets.md#scale-targets-for-blob-storage), [Azure standard storage scale targets](../storage/common/scalability-targets-standard-account.md#scale-targets-for-standard-storage-accounts-and-disk-access-resources), and [Azure Files scale targets](../storage/files/storage-files-scale-targets.md). <br /><br /> The limits include data from all the sources, including Data Box Disk.|
 
 ## Azure object size limits
 
@@ -73,7 +73,7 @@ Here are the sizes of the Azure objects that can be written. Make sure that all 
 | Block blob        | 7 TiB                                                  |
 | Page blob         | 4 TiB <br> Every file uploaded in page blob format must be 512 bytes aligned (an integral multiple), else the upload fails. <br> VHD and VHDX are 512 bytes aligned. |
 | Azure Files        | 4 TiB                                                      |
-| Managed disks     | 4 TiB <br> For more information on size and limits, see: <li>[Scalability targets of Standard SSDs](../virtual-machines/disks-types.md#standard-ssds)</li><li>[Scalability targets of Premium SSDs](../virtual-machines/disks-types.md#standard-hdds)</li><li>[Scalability targets of Standard HDDs](../virtual-machines/disks-types.md#premium-ssds)</li><li>[Pricing and billing of managed disks](../virtual-machines/disks-types.md#billing)</li>
+| Managed disks     | 4 TiB <br> For more information on size and limits, see: <li>[Scalability targets of Standard SSDs](/azure/virtual-machines/disks-types#standard-ssds)</li><li>[Scalability targets of Premium SSDs](/azure/virtual-machines/disks-types#standard-hdds)</li><li>[Scalability targets of Standard HDDs](/azure/virtual-machines/disks-types#premium-ssds)</li><li>[Pricing and billing of managed disks](/azure/virtual-machines/disks-types#billing)</li>
 
 ## Azure block blob, page blob, and file naming conventions
 

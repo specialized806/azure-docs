@@ -1,11 +1,12 @@
 ---
-title: Networking FAQs for Azure NetApp Files | Microsoft Docs
+title: Networking FAQs for Azure NetApp Files
 description: Answers frequently asked questions (FAQs) about Azure NetApp Files networking.
 ms.service: azure-netapp-files
-ms.topic: conceptual
+ms.topic: concept-article
 author: b-hchen
 ms.author: anfdocs
-ms.date: 11/08/2021
+ms.date: 05/22/2025
+# Customer intent: As a network administrator, I want to understand the networking requirements and limitations of Azure NetApp Files, so that I can effectively integrate it with my existing Azure Virtual Networks and ensure optimal performance for my applications.
 ---
 # Networking FAQs for Azure NetApp Files
 
@@ -52,7 +53,7 @@ For further flexibility, see [How to use DFS Namespaces with Azure NetApp Files]
 
 - [Microsoft Azure ExpressRoute FAQs](../expressroute/expressroute-faqs.md)
 - [Microsoft Azure Virtual Network FAQ](../virtual-network/virtual-networks-faq.md)
-- [How to create an Azure support request](../azure-portal/supportability/how-to-create-azure-support-request.md)
+- [How to create an Azure support request](/azure/azure-portal/supportability/how-to-create-azure-support-request)
 - [Security FAQs](faq-security.md)
 - [Performance FAQs](faq-performance.md)
 - [NFS FAQs](faq-nfs.md)

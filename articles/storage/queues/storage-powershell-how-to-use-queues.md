@@ -9,6 +9,7 @@ ms.date: 05/21/2024
 ms.topic: how-to
 ms.service: azure-queue-storage
 ms.custom: devx-track-azurepowershell
+# Customer intent: "As a cloud developer, I want to use PowerShell to manage Azure Queue Storage, so that I can efficiently perform operations like creating queues, adding messages, retrieving messages, and clearing resources."
 ---
 
 # How to use Azure Queue Storage from PowerShell
@@ -28,7 +29,7 @@ This how-to guide requires the Azure PowerShell (`Az`) module v12.0.0. Run `Get-
 
 There are no PowerShell cmdlets for the data plane for queues. To perform data plane operations such as add a message, read a message, and delete a message, you have to use the .NET storage client library as it is exposed in PowerShell. You create a message object and then you can use commands such as `AddMessage` to perform operations on that message. This article shows you how to do that.
 
-[!INCLUDE [updated-for-az](../../../includes/updated-for-az.md)]
+[!INCLUDE [updated-for-az](~/reusable-content/ce-skilling/azure/includes/updated-for-az.md)]
 
 ## Sign in to Azure
 
@@ -116,11 +117,11 @@ The following example demonstrates how to add messages to your queue.
 $queueMessage = "This is message 1"
 
 # Add a new message to the queue
-$queue.QueueClient.AddMessageAsync($queueMessage)
+$queue.QueueClient.SendMessageAsync($queueMessage)
 
 # Add two more messages to the queue
 $queueMessages = @("This is message 2","This is message 3")
-$queueMessages | foreach {$queue.QueueClient.AddMessageAsync($_)}
+$queueMessages | foreach {$queue.QueueClient.SendMessageAsync($_)}
 ```
 
 If you use the [Azure Storage Explorer](https://storageexplorer.com), you can connect to your Azure account and view the queues in the storage account, and drill down into a queue to view the messages on the queue.

@@ -7,8 +7,10 @@ manager: juergent
 ms.service: sap-on-azure
 ms.subservice: sap-vm-workloads
 ms.topic: tutorial
-ms.date: 08/16/2022
+ms.date: 06/19/2024
 ms.author: ampatel
+ms.custom: sfi-image-nochange
+# Customer intent: As a system administrator, I want to deploy SAP ASCS/SCS and ERS with SAP HANA in a high-availability configuration on RHEL, so that I can optimize resource usage and ensure uninterrupted service for my SAP environment.
 ---
 
 # Deploy SAP ASCS/ERS with SAP HANA high-availability VMs on RHEL
@@ -104,12 +106,10 @@ This article assumes that you already configured the load balancer for a HANA cl
       1. **Interval**: Enter **5**.
       1. **Probe Threshold**: Enter **2**.
    1. **Idle timeout (minutes)**: Enter **30**.
-   1. **Enable Floating IP**: Select this option.
+   1. **Enable 
+   2.  IP**: Select this option.
 
 The health probe configuration property `numberOfProbes`, otherwise known as **Unhealthy threshold** in the Azure portal, isn't respected. To control the number of successful or failed consecutive probes, set the property `probeThreshold` to `2`. It's currently not possible to set this property by using the Azure portal. Use either the [Azure CLI](/cli/azure/network/lb/probe) or the [PowerShell](/powershell/module/az.network/new-azloadbalancerprobeconfig) command.
-
-> [!IMPORTANT]
-> Floating IP isn't supported on a NIC secondary IP configuration in load-balancing scenarios. For more information, see [Azure Load Balancer limitations](../../load-balancer/load-balancer-multivip-overview.md#limitations). If you need more IP addresses for the VMs, deploy a second NIC.
 
 When VMs without public IP addresses are placed in the back-end pool of an internal (no public IP address) Standard Azure Load Balancer instance, there's no outbound internet connectivity unless more configuration is performed to allow routing to public endpoints. For steps on how to achieve outbound connectivity, see [Public endpoint connectivity for virtual machines using Azure Standard Load Balancer in SAP high-availability scenarios](high-availability-guide-standard-load-balancer-outbound-connections.md).
 

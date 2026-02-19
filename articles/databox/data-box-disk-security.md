@@ -4,11 +4,11 @@ description: Describes security features implemented for Azure Data Box Disk, a 
 services: databox
 author: stevenmatthew
 
-ms.service: databox
-ms.subservice: disk
-ms.topic: conceptual
+ms.service: azure-data-box-disk
+ms.topic: concept-article
 ms.date: 04/16/2024
 ms.author: shaas
+# Customer intent: As a data manager, I want to understand the security features of Azure Data Box Disk, so that I can ensure the protection and compliance of sensitive data during transfer to the cloud.
 ---
 # Azure Data Box Disk security and data protection
 
@@ -57,7 +57,7 @@ The Data Box service is protected by the following features.
 
 ## Managing personal data
 
-[!INCLUDE [GDPR-related guidance](../../includes/gdpr-intro-sentence.md)]
+[!INCLUDE [GDPR-related guidance](~/reusable-content/ce-skilling/azure/includes/gdpr-intro-sentence.md)]
 
 Azure Data Box Disk collects and displays personal information in the following key instances in the service:
 

@@ -1,12 +1,13 @@
 ---
 title: Introduction to Azure Data Factory 
 description: Learn about Azure Data Factory, a cloud data integration service that orchestrates and automates movement and transformation of data.
-author: dcstwh
-ms.author: weetok
-ms.service: data-factory
-ms.subservice: tutorials
+author: whhender
+ms.author: whhender
+ms.reviewer: weetok
 ms.topic: overview
-ms.date: 05/15/2024
+ms.subservice: authoring
+ms.date: 02/13/2025
+#customer intent: As a data engineer, I want to understand what Azure Data Factory is and how to use it so that I can orchestrate and automate data movement and transformation in the cloud.
 ---
 
 # What is Azure Data Factory?
@@ -29,7 +30,7 @@ Data Preview and Validation: During the Data Copy activity, tools are provided f
 
 Customizable Data Flows: Azure Data Factory allows you to create customizable data flows. This feature allows you to add custom actions or steps for data processing.
 
-Integrated Security: Azure Data Factory offers integrated security features such as Azure Active Directory integration and role-based access control to control access to dataflows. This feature increases security in data processing and protects your data.
+Integrated Security: Azure Data Factory offers integrated security features such as Entra ID integration and role-based access control to control access to dataflows. This feature increases security in data processing and protects your data.
 
 ## Usage scenarios 
 
@@ -53,7 +54,8 @@ This visual guide provides a detailed overview of the complete Data Factory arch
 
 :::image type="content" source="media\introduction\data-factory-visual-guide-small.png" alt-text="A detailed visual guide to the complete system architecture for Azure Data Factory, presented in a single high resolution image." lightbox="media\introduction\data-factory-visual-guide.png":::
 
-To see more detail, select the preceding image to zoom in, or browse to the [high resolution image](/azure/data-factory/media/introduction/data-factory-visual-guide.png). 
+To see more detail, select the preceding image to zoom in, or browse to the [high resolution image](/azure/data-factory/media/introduction/data-factory-visual-guide.png).
+Learn about the [development of this visual guide and the sketch the docs project here](https://dev.to/azure/a-visual-guide-to-azure-data-factory-53ik).
 
 ### Connect and collect
 

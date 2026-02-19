@@ -4,9 +4,9 @@ description: Start here to learn how to monitor Azure Synapse Analytics.
 ms.date: 03/25/2024
 ms.custom: horz-monitor
 ms.topic: conceptual
-author: jonburchel
-ms.author: jburchel
-ms.service: synapse-analytics
+author: ajagadish-24
+ms.author: ajagadish
+ms.service: azure-synapse-analytics
 ---
 
 # Monitor Azure Synapse Analytics

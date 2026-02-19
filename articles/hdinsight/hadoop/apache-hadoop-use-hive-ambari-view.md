@@ -1,10 +1,13 @@
 ---
 title: Use Apache Ambari Hive View with Apache Hadoop in Azure HDInsight
 description: Learn how to use the Hive View from your web browser to submit Hive queries. The Hive View is part of the Ambari Web UI provided with your Linux-based HDInsight cluster.
-ms.service: hdinsight
+ms.service: azure-hdinsight
 ms.topic: how-to
 ms.custom: hdinsightactive, linux-related-content
-ms.date: 07/12/2023
+author: hareshg
+ms.author: hgowrisankar
+ms.reviewer: nijelsf
+ms.date: 07/12/2024
 ---
 
 # Use Apache Ambari Hive View with Apache Hadoop in HDInsight
@@ -77,11 +80,11 @@ A Hadoop cluster on HDInsight. See [Get Started with HDInsight on Linux](./apach
    > [!TIP]  
    > Download or save results from the **Actions** drop-down dialog box under the  **Results** tab.
 
-### Visual explain
+### Visual explains
 
-To display a visualization of the query plan, select the **Visual Explain** tab below the worksheet.
+To display a visualization of the query plan, select the **Visual Explains** tab below the worksheet.
 
-The **Visual Explain** view of the query can be helpful in understanding the flow of complex queries.
+The **Visual Explains** view of the query can be helpful in understanding the flow of complex queries.
 
 ### Tez UI
 
@@ -111,7 +114,7 @@ From the **Query** tab, you can optionally save queries. After you save a query,
 > [!TIP]  
 > Saved queries are stored in the default cluster storage. You can find the saved queries under the path `/user/<username>/hive/scripts`. These are stored as plain-text `.hql` files.
 >
-> If you delete the cluster, but keep the storage, you can use a utility like [Azure Storage Explorer](https://azure.microsoft.com/features/storage-explorer/) or Data Lake Storage Explorer (from the [Azure Portal](https://portal.azure.com)) to retrieve the queries.
+> If you delete the cluster, but keep the storage, you can use a utility like [Azure Storage Explorer](https://azure.microsoft.com/features/storage-explorer/) or Data Lake Storage Explorer (from the [Azure portal](https://portal.azure.com)) to retrieve the queries.
 
 ## User-defined functions
 

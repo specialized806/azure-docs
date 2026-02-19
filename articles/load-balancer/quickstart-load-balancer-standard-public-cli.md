@@ -3,12 +3,19 @@ title: "Quickstart: Create a public load balancer - Azure CLI"
 titleSuffix: Azure Load Balancer
 description: This quickstart shows how to create a public load balancer using the Azure CLI.
 author: mbender-ms
-ms.service: load-balancer
+ms.service: azure-load-balancer
 ms.topic: quickstart
-ms.date: 09/25/2023
+ms.date: 01/28/2026
 ms.author: mbender
-ms.custom: mvc, devx-track-azurecli, mode-api, template-quickstart, engagement-fy23
+ms.custom:
+  - mvc
+  - devx-track-azurecli
+  - mode-api
+  - template-quickstart
+  - engagement-fy23
+  - sfi-image-nochange
 #Customer intent: I want to create a load balancer so that I can load balance internet traffic to VMs.
+# Customer intent: As a cloud administrator, I want to create a public load balancer using the Azure CLI, so that I can efficiently distribute internet traffic across multiple virtual machines.
 ---
 
 # Quickstart: Create a public load balancer to load balance VMs using the Azure CLI
@@ -17,7 +24,7 @@ Get started with Azure Load Balancer by using the Azure CLI to create a public l
 
 :::image type="content" source="media/quickstart-load-balancer-standard-public-portal/public-load-balancer-resources.png" alt-text="Diagram of resources deployed for a standard public load balancer." lightbox="media/quickstart-load-balancer-standard-public-portal/public-load-balancer-resources.png":::
 
-[!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)]
+[!INCLUDE [quickstarts-free-trial-note](~/reusable-content/ce-skilling/azure/includes/quickstarts-free-trial-note.md)]
 
 [!INCLUDE [azure-cli-prepare-your-environment.md](~/reusable-content/azure-cli/azure-cli-prepare-your-environment.md)]
 
@@ -195,7 +202,7 @@ Create a network security group rule using [az network nsg rule create](/cli/azu
 In this section, you create the resources for Azure Bastion. Azure Bastion is used to securely manage the virtual machines in the backend pool of the load balancer.
 
 > [!IMPORTANT]
-> [!INCLUDE [Pricing](../../includes/bastion-pricing.md)]
+> [!INCLUDE [Pricing](~/reusable-content/ce-skilling/azure/includes/bastion-pricing.md)]
 
 ### Create a public IP address
 
@@ -286,9 +293,9 @@ Create the virtual machines with [az vm create](/cli/azure/vm#az-vm-create):
     --no-wait
 ```
 
-It may take a few minutes for the VMs to deploy. You can continue to the next steps while the VMs are creating.
+It can take a few minutes for the VMs to deploy. You can continue to the next steps while the VMs are creating.
 
-[!INCLUDE [ephemeral-ip-note.md](../../includes/ephemeral-ip-note.md)]
+[!INCLUDE [ephemeral-ip-note.md](~/reusable-content/ce-skilling/azure/includes/ephemeral-ip-note.md)]
 
 ### Add virtual machines to load balancer backend pool
 
@@ -323,7 +330,7 @@ Use [az network public-ip create](/cli/azure/network/public-ip#az-network-public
     --zone 1 2 3
 ```
 
-To create a zonal redundant public IP address in Zone 1 instead, use the following command:
+To create a zonal public IP address in Zone 1 instead, use the following command:
 
 ```azurecli
   az network public-ip create \
@@ -388,7 +395,7 @@ Copy the public IP address, and then paste it into the address bar of your brows
     --query ipAddress \
     --output tsv
 ```
-:::image type="content" source="./media/load-balancer-standard-public-cli/running-nodejs-app.png" alt-text="Test the load balancer" border="true":::
+:::image type="content" source="./media/load-balancer-standard-public-cli/running-nodejs-app.png" alt-text="Screenshot of browser window displaying the load balancer test page." border="true":::
 
 ## Clean up resources
 

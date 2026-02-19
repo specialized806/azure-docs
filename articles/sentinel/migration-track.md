@@ -1,13 +1,19 @@
 ---
 title: Track your Microsoft Sentinel migration with a workbook | Microsoft Docs
 description: Learn how to track your migration with a workbook, how to customize and manage the workbook, and how to use the workbook tabs for useful Microsoft Sentinel actions.
-author: cwatson
-ms.author: cwatson
+author: EdB-MSFT
+ms.author: edbaynash
 ms.topic: how-to
 ms.date: 06/14/2024
 appliesto:
-- Microsoft Sentinel in the Azure portal and the Microsoft Defender portal
+    - Microsoft Sentinel in the Microsoft Defender portal
+    - Microsoft Sentinel in the Azure portal
 ms.collection: usx-security
+ms.custom: sfi-image-nochange
+
+
+#Customer intent: As a security operations center (SOC) manager, I want to manage the migration to Microsoft Sentinel so that I can ensure a smooth transition and maintain security monitoring effectiveness.
+
 ---
 
 # Track your Microsoft Sentinel migration with a workbook
@@ -81,9 +87,7 @@ To monitor deployed resources and deploy new connectors, in the **Microsoft Sent
 - Current ingestion trends
 - Tables ingesting data
 - How much data each table is reporting
-- Endpoints reporting with Microsoft Monitoring Agent (MMA)
-- Endpoints reporting with Azure Monitoring Agent (AMA)
-- Endpoints reporting with both the MMA and AMA agents
+- Endpoints reporting with Azure Monitor Agent (AMA)
 - Data collection rules in the resource group and the devices linked to the rules
 - Data connector health (changes and failures)
 - Health logs within the specified time range
@@ -188,7 +192,7 @@ The **ArchiveRetention** value is calculated by subtracting the **TotalRetention
 
 If you prefer to make changes in the UI, select **Update Retention in UI** to open the relevant page.
 
-Learn about [data lifecycle management](../azure-monitor/logs/data-retention-archive.md). 
+Learn about [data lifecycle management](/azure/azure-monitor/logs/data-retention-configure). 
 
 ## Enable migration tips and instructions
 

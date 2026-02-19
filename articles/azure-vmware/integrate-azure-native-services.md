@@ -5,6 +5,7 @@ ms.topic: how-to
 ms.service: azure-vmware
 ms.date: 3/21/2024
 ms.custom: engagement-fy23
+# Customer intent: As an IT administrator managing hybrid cloud environments, I want to integrate Azure native services with Azure VMware Solution, so that I can effectively monitor, manage, and protect my virtual machines throughout their lifecycle.
 ---
 
 # Monitor and protect VMs with Azure native services
@@ -77,4 +78,4 @@ When the extension installation steps are completed, they trigger deployment and
 Now that you covered how to integrate services and monitor VMware Solution VMs, you can also learn about:
 
 - [Using the workload protection dashboard](../security-center/azure-defender-dashboard.md)
-- [Advanced multistage attack detection in Microsoft Sentinel](../azure-monitor/logs/quick-create-workspace.md)
+- [Advanced multistage attack detection in Microsoft Sentinel](/azure/azure-monitor/logs/quick-create-workspace)

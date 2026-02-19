@@ -3,10 +3,11 @@ title: 'QuickStart: Create and configure Azure DDoS IP Protection using Azure CL
 description: Learn how to create Azure DDoS IP Protection using Azure CLI
 author: AbdullahBell
 ms.author: abell
-ms.service: ddos-protection
+ms.service: azure-ddos-protection
 ms.topic: quickstart
-ms.date: 03/18/2024
+ms.date: 03/17/2025
 ms.custom: template-quickstart, devx-track-azurecli
+# Customer intent: As a cloud administrator, I want to enable DDoS IP Protection on a public IP address using the CLI, so that I can enhance the security of my applications against distributed denial-of-service attacks.
 ---
 
 # QuickStart: Create and configure Azure DDoS IP Protection using Azure CLI
@@ -18,10 +19,10 @@ In this QuickStart, you'll enable DDoS IP protection and link it to a public IP 
 
 ## Prerequisites
 
-- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - Azure CLI installed locally or Azure Cloud Shell
 
-[!INCLUDE [cloud-shell-try-it.md](../../includes/cloud-shell-try-it.md)]
+[!INCLUDE [cloud-shell-try-it.md](~/reusable-content/ce-skilling/azure/includes/cloud-shell-try-it.md)]
 
 If you choose to install and use the CLI locally, this quickstart requires Azure CLI version 2.0.56 or later. To find the version, run `az --version`. If you need to install or upgrade, see [Install the Azure CLI]( /cli/azure/install-azure-cli).
 

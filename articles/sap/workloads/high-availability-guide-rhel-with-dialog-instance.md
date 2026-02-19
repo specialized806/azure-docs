@@ -7,8 +7,10 @@ manager: rdeltcheva
 ms.service: sap-on-azure
 ms.subservice: sap-vm-workloads
 ms.topic: tutorial
-ms.date: 01/21/2024
+ms.date: 06/19/2024
 ms.author: depadia
+ms.custom: sfi-image-nochange
+# Customer intent: As a cloud administrator, I want to deploy SAP dialog instances on high-availability VMs running Red Hat Enterprise Linux so that I can optimize resource usage and ensure continuous service availability for my SAP environment.
 ---
 
 # Deploy SAP dialog instances with SAP ASCS/SCS high-availability VMs on RHEL
@@ -44,6 +46,7 @@ This article describes how to install and configure Primary Application Server (
 * Azure-specific RHEL documentation:
   * [Support Policies for RHEL High-Availability Clusters - Microsoft Azure Virtual Machines as Cluster Members](https://access.redhat.com/articles/3131341)
   * [Installing and Configuring a Red Hat Enterprise Linux 7.4 (and later) High-Availability Cluster on Microsoft Azure](https://access.redhat.com/articles/3252491)
+  * [What is the fast_stop option for a Filesystem resource in a Pacemaker cluster?](https://access.redhat.com/solutions/4801371)
 
 ## Overview
 
@@ -111,9 +114,6 @@ This article assumes that you already configured the load balancer for the SAP A
    1. **Enable Floating IP**: Select this option.
 
 The health probe configuration property `numberOfProbes`, otherwise known as **Unhealthy threshold** in the Azure portal, isn't respected. To control the number of successful or failed consecutive probes, set the property `probeThreshold` to `2`. It's currently not possible to set this property by using the Azure portal. Use either the [Azure CLI](/cli/azure/network/lb/probe) or the [PowerShell](/powershell/module/az.network/new-azloadbalancerprobeconfig) command.
-
-> [!IMPORTANT]
-> Floating IP isn't supported on a NIC secondary IP configuration in load-balancing scenarios. For more information, see [Azure Load Balancer limitations](../../load-balancer/load-balancer-multivip-overview.md#limitations). If you need more IP addresses for the VMs, deploy a second NIC.
 
 When VMs without public IP addresses are placed in the back-end pool of an internal (no public IP address) Standard Azure Load Balancer instance, there's no outbound internet connectivity unless more configuration is performed to allow routing to public endpoints. For steps on how to achieve outbound connectivity, see [Public endpoint connectivity for virtual machines using Azure Standard Load Balancer in SAP high-availability scenarios](high-availability-guide-standard-load-balancer-outbound-connections.md).
 
@@ -268,7 +268,7 @@ When steps in this document are marked with the following prefixes, they mean:
    # If using NFS on Azure files
    sudo pcs resource create fs_NW1_PAS Filesystem device='sapnfs.file.core.windows.net:/sapnfsafs/sapnw1/usrsapNW1D02' \
      directory='/usr/sap/NW1/D02' fstype='nfs' force_unmount=safe options='noresvport,vers=4,minorversion=1,sec=sys' \
-     op start interval=0 timeout=60 \
+     fast_stop=no op start interval=0 timeout=60 \
      op stop interval=0 timeout=120 \
      op monitor interval=200 timeout=40 \
      --group g-NW1_PAS
@@ -276,7 +276,7 @@ When steps in this document are marked with the following prefixes, they mean:
    # If using NFsv3 on Azure NetApp Files
    sudo pcs resource create fs_NW1_PAS Filesystem device='10.90.91.5:/sapnw1/usrsapNW1D02' \
      directory='/usr/sap/NW1/D02' fstype='nfs' force_unmount=safe \
-     op start interval=0 timeout=60 \
+     fast_stop=no op start interval=0 timeout=60 \
      op stop interval=0 timeout=120 \ 
      op monitor interval=200 timeout=40 \
      --group g-NW1_PAS
@@ -284,7 +284,7 @@ When steps in this document are marked with the following prefixes, they mean:
    # If using NFSv4.1 on Azure NetApp Files
    sudo pcs resource create fs_NW1_PAS Filesystem device='10.90.91.5:/sapnw1/usrsapNW1D02' \
      directory='/usr/sap/NW1/D02' fstype='nfs' force_unmount=safe options='sec=sys,vers=4.1' \
-     op start interval=0 timeout=60 \
+     fast_stop=no op start interval=0 timeout=60 \
      op stop interval=0 timeout=120 \
      op monitor interval=200 timeout=105 \
      --group g-NW1_PAS
@@ -446,7 +446,7 @@ When steps in this document are marked with the following prefixes, they mean:
    # If using NFS on Azure files
    sudo pcs resource create fs_NW1_AAS Filesystem device='sapnfs.file.core.windows.net:/sapnfsafs/sapnw1/usrsapNW1D03' \
      directory='/usr/sap/NW1/D03' fstype='nfs' force_unmount=safe options='noresvport,vers=4,minorversion=1,sec=sys' \
-     op start interval=0 timeout=60 \
+     fast_stop=no op start interval=0 timeout=60 \
      op stop interval=0 timeout=120 \
      op monitor interval=200 timeout=40 \
      --group g-NW1_AAS
@@ -454,7 +454,7 @@ When steps in this document are marked with the following prefixes, they mean:
    # If using NFsv3 on Azure NetApp Files
    sudo pcs resource create fs_NW1_AAS Filesystem device='10.90.91.5:/sapnw1/usrsapNW1D03' \
      directory='/usr/sap/NW1/D03' fstype='nfs' force_unmount=safe \
-     op start interval=0 timeout=60 \
+     fast_stop=no op start interval=0 timeout=60 \
      op stop interval=0 timeout=120 \ 
      op monitor interval=200 timeout=40 \
      --group g-NW1_AAS
@@ -462,7 +462,7 @@ When steps in this document are marked with the following prefixes, they mean:
    # If using NFSv4.1 on Azure NetApp Files
    sudo pcs resource create fs_NW1_AAS Filesystem device='10.90.91.5:/sapnw1/usrsapNW1D03' \
      directory='/usr/sap/NW1/D03' fstype='nfs' force_unmount=safe options='sec=sys,vers=4.1' \
-     op start interval=0 timeout=60 \
+     fast_stop=no op start interval=0 timeout=60 \
      op stop interval=0 timeout=120 \
      op monitor interval=200 timeout=105 \
      --group g-NW1_AAS

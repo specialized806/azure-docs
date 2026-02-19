@@ -1,9 +1,10 @@
 ---
 title: Update or merge records in Azure SQL Database with Azure Functions
 description: This article describes how to use Azure Functions to update or merge records from Azure Stream Analytics to Azure SQL Database
-ms.service: stream-analytics
+ms.service: azure-stream-analytics
 ms.topic: how-to
 ms.date: 02/27/2024
+ms.custom: sfi-ropc-nochange
 ---
 
 # Update or merge records in Azure SQL Database with Azure Functions
@@ -130,7 +131,7 @@ This sample was built on:
 
 To better understand the binding approach, it's recommended to follow [this tutorial](https://github.com/Azure/azure-functions-sql-extension#quick-start).
 
-First, create a default HttpTrigger function app by following this [tutorial](../azure-functions/create-first-function-vs-code-csharp.md?tabs=in-process). The following information is used:
+First, create a default HttpTrigger function app by following this [tutorial](../azure-functions/how-to-create-function-vs-code.md?pivot=programming-language-csharp?tabs=in-process). The following information is used:
 
 - Language: `C#`
 - Runtime: `.NET 6` (under function/runtime v4)
@@ -233,13 +234,13 @@ Update the `Device` class and mapping section to match your own schema:
         public DateTime Timestamp { get; set; }
 ```
 
-You can now test the wiring between the local function and the database by debugging (F5 in Visual Studio Code). The SQL database needs to be reachable from your machine. [SSMS](/sql/ssms/sql-server-management-studio-ssms) can be used to check connectivity. Then a tool like [Postman](https://www.postman.com/) can be used to issue POST requests to the local endpoint. A request with an empty body should return http 204. A request with an actual payload should be persisted in the destination table (in replace / update mode). Here's a sample payload corresponding to the schema used in this sample:
+You can now test the wiring between the local function and the database by debugging (F5 in Visual Studio Code). The SQL database needs to be reachable from your machine. [SSMS](/sql/ssms/sql-server-management-studio-ssms) can be used to check connectivity. Then, send POST requests to the local endpoint. A request with an empty body should return http 204. A request with an actual payload should be persisted in the destination table (in replace / update mode). Here's a sample payload corresponding to the schema used in this sample:
 
 ```JSON
 [{"DeviceId":3,"Value":13.4,"Timestamp":"2021-11-30T03:22:12.991Z"},{"DeviceId":4,"Value":41.4,"Timestamp":"2021-11-30T03:22:12.991Z"}]
 ```
 
-The function can now be [published](../azure-functions/create-first-function-vs-code-csharp.md#publish-the-project-to-azure) to Azure. An [application setting](../azure-functions/functions-how-to-use-azure-function-app-settings.md?tabs=portal#settings) should be set for `SqlConnectionString`. The Azure SQL **Server** firewall should [allow Azure services](/azure/azure-sql/database/network-access-controls-overview) in for the live function to reach it.
+The function can now be [published](../azure-functions/how-to-create-function-vs-code.md?pivot=programming-language-csharp#create-the-function-app-in-azure) to Azure. An [application setting](../azure-functions/functions-how-to-use-azure-function-app-settings.md#settings) should be set for `SqlConnectionString`. The Azure SQL **Server** firewall should [allow Azure services](/azure/azure-sql/database/network-access-controls-overview) in for the live function to reach it.
 
 The function can then be defined as an output in the ASA job, and used to replace records instead of inserting them.
 
@@ -256,7 +257,7 @@ This sample was built on:
 - [.NET 6.0](/dotnet/core/whats-new/dotnet-6)
 - Microsoft.Data.SqlClient [4.0.0](https://www.nuget.org/packages/Microsoft.Data.SqlClient/)
 
-First, create a default HttpTrigger function app by following this [tutorial](../azure-functions/create-first-function-vs-code-csharp.md?tabs=in-process). The following information is used:
+First, create a default HttpTrigger function app by following this [tutorial](../azure-functions/how-to-create-function-vs-code.md?pivot=programming-language-csharp?tabs=in-process). The following information is used:
 
 - Language: `C#`
 - Runtime: `.NET 6` (under function/runtime v4)
@@ -359,13 +360,13 @@ Update the `sqltext` command building section to match your own schema (notice h
     $"WHEN NOT MATCHED BY TARGET THEN INSERT (DeviceId, Value, TimeStamp) VALUES (DeviceId, Value, Timestamp);";
 ```
 
-You can now test the wiring between the local function and the database by debugging (F5 in VS Code). The SQL database needs to be reachable from your machine. [SSMS](/sql/ssms/sql-server-management-studio-ssms) can be used to check connectivity. Then a tool like [Postman](https://www.postman.com/) can be used to issue POST requests to the local endpoint. A request with an empty body should return http 204. A request with an actual payload should be persisted in the destination table (in accumulate / merge mode). Here's a sample payload corresponding to the schema used in this sample:
+You can now test the wiring between the local function and the database by debugging (F5 in VS Code). The SQL database needs to be reachable from your machine. [SSMS](/sql/ssms/sql-server-management-studio-ssms) can be used to check connectivity. Then, issue POST requests to the local endpoint. A request with an empty body should return http 204. A request with an actual payload should be persisted in the destination table (in accumulate / merge mode). Here's a sample payload corresponding to the schema used in this sample:
 
 ```JSON
 [{"DeviceId":3,"Value":13.4,"Timestamp":"2021-11-30T03:22:12.991Z"},{"DeviceId":4,"Value":41.4,"Timestamp":"2021-11-30T03:22:12.991Z"}]
 ```
 
-The function can now be [published](../azure-functions/create-first-function-vs-code-csharp.md#publish-the-project-to-azure) to Azure. An [application setting](../azure-functions/functions-how-to-use-azure-function-app-settings.md?tabs=portal#settings) should be set for `SqlConnectionString`. The Azure SQL **Server** firewall should [allow Azure services](/azure/azure-sql/database/network-access-controls-overview) in for the live function to reach it.
+The function can now be [published](../azure-functions/how-to-create-function-vs-code.md?pivot=programming-language-csharp#create-the-function-app-in-azure) to Azure. An [application setting](../azure-functions/functions-how-to-use-azure-function-app-settings.md#settings) should be set for `SqlConnectionString`. The Azure SQL **Server** firewall should [allow Azure services](/azure/azure-sql/database/network-access-controls-overview) in for the live function to reach it.
 
 The function can then be defined as an output in the ASA job, and used to replace records instead of inserting them.
 
@@ -408,7 +409,7 @@ Azure Cosmos DB [supports UPSERT natively](./stream-analytics-documentdb-output.
 
 If the requirements match, an option is to replace the target SQL database by an Azure Cosmos DB instance. Doing so requires an important change in the overall solution architecture.
 
-For Synapse SQL, Azure Cosmos DB can be used as an intermediary layer via [Azure Synapse Link for Azure Cosmos DB](../cosmos-db/synapse-link.md). Azure Synapse Link can be used to create an [analytical store](../cosmos-db/analytical-store-introduction.md). This data store can then be queried directly in Synapse SQL.
+For Synapse SQL, Azure Cosmos DB can be used as an intermediary layer via [Azure Synapse Link for Azure Cosmos DB](/azure/cosmos-db/synapse-link). Azure Synapse Link can be used to create an [analytical store](/azure/cosmos-db/analytical-store-introduction). This data store can then be queried directly in Synapse SQL.
 
 ### Comparison of the alternatives
 

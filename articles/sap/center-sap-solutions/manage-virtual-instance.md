@@ -7,7 +7,9 @@ ms.topic: how-to
 ms.date: 02/03/2023
 author: sagarkeswani
 ms.author: sagarkeswani
+ms.custom: sfi-image-nochange
 #Customer intent: As a SAP Basis Admin, I want to view and manage my SAP systems using Virtual Instance for SAP solutions resource where I can find SAP system properties.
+# Customer intent: As a SAP Basis Admin, I want to configure and manage a Virtual Instance for SAP solutions in the Azure portal, so that I can monitor system properties and optimize resource connections for effective SAP system management.
 ---
 
 # Manage a Virtual Instance for SAP solutions
@@ -56,6 +58,12 @@ In the sidebar menu, look under the section **SAP resources**:
 - To see properties of database instances, select **Databases**.
 
 :::image type="content" source="media/configure-virtual-instance/sap-resources.png" lightbox="media/configure-virtual-instance/sap-resources.png" alt-text="Screenshot of VIS resource in Azure portal, showing SAP resources pages in the sidebar menu for ASCS, App server, and Database instances.":::
+
+## View Manage identity under VIS
+
+You can view and create/delete the manage identity under the VIS.
+
+:::image type="content" source="media/configure-virtual-instance/manage-identity-under-vis.png" lightbox="media/configure-virtual-instance/manage-identity-under-vis.png" alt-text="Screenshot of Manage Identity view under VIS in Azure portal.":::
 
 ## Default Instance Numbers
 
@@ -139,7 +147,7 @@ To delete a VIS:
 1. [Open the VIS in the Azure portal](#open-vis-in-portal).
 1. On the overview page's menu, select **Delete**.
 
-    :::image type="content" source="media/configure-virtual-instance/delete-vis-button.png" lightbox="media/configure-virtual-instance/delete-vis-button.png" alt-text="Screenshot of VIS resource in the Azure portal, showing delete button in the overview page's menu..":::
+    :::image type="content" source="media/configure-virtual-instance/delete-vis-button.png" lightbox="media/configure-virtual-instance/delete-vis-button.png" alt-text="Screenshot of VIS resource in the Azure portal, showing delete button in the overview page's menu.":::
 
 1. In the deletion pane, make sure that you want to delete this VIS and related resources. You can see a count for each type of resource to be deleted.
     

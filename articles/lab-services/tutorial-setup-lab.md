@@ -4,15 +4,19 @@ titleSuffix: Azure Lab Services
 description: Learn how to set up a lab for classroom training with Azure Lab Services. Customize lab VM image and invite lab users to register for the lab.
 ms.topic: tutorial
 services: lab-services
-ms.service: lab-services
+ms.service: azure-lab-services
 author: RoseHJM
 ms.author: rosemalcolm
 ms.date: 03/13/2024
-ms.custom: subject-rbac-steps
+ms.custom:
+  - subject-rbac-steps
+  - sfi-image-nochange
 #customer intent: As an  administrator or educator, I want to create a lab, schedule teaching events, add users, and invite the users to register for the lab in Azure Lab Services.
 ---
 
 # Tutorial: Create a lab for classroom training with Azure Lab Services
+
+[!INCLUDE [Retirement guide](./includes/retirement-banner.md)]
 
 In this tutorial, you create a lab for classroom training with Azure Lab Services. Azure Lab Services enables you to create labs with infrastructure managed by Azure. Learn how to set up a customized lab template and invite students to register for their lab virtual machine (VM).
 

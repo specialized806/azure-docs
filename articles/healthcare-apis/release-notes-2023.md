@@ -3,11 +3,11 @@ title: Release notes for 2023 Azure Health Data Services monthly releases
 description: 2023 - Find out about features and improvements introduced in 2023 for the FHIR, DICOM, and MedTech services in Azure Health Data Services. Review the monthly release notes and learn how to get the most out of healthcare data.
 services: healthcare-apis
 author: shellyhaverkamp
-ms.service: healthcare-apis
+ms.service: azure-health-data-services
 ms.subservice: workspace
 ms.topic: reference
 ms.date: 03/13/2024
-ms.author: jasteppe 
+ms.author: kesheth 
 ms.custom: references_regions
 ---
 
@@ -60,7 +60,7 @@ Learn more:
 
 #### Unified Azure portal landing page 
 
-In the Azure portal, we launched a unified landing page that lets users access all Microsoft Health Data and AI Services in one place. The landing page makes it easier to find and use all related Health Data and AI Services and includes links to relevant documentation to help users get started. To check out the landing page, sign into your Azure subscription and then search for **Health Data and AI Services**.
+In the Azure portal, we launched a unified landing page that lets users access all Microsoft Health Data and Foundry Tools in one place. The landing page makes it easier to find and use all related Health Data and Foundry Tools and includes links to relevant documentation to help users get started. To check out the landing page, sign into your Azure subscription and then search for **Health Data and AI Services**.
 
 ### FHIR service
 

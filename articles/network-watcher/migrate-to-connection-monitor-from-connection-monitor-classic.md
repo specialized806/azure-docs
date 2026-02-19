@@ -4,11 +4,12 @@ titleSuffix: Azure Network Watcher
 description: Learn how to migrate your connection monitors from Connection monitor (classic) to the new Connection monitor.
 author: halkazwini
 ms.author: halkazwini
-ms.service: network-watcher
+ms.service: azure-network-watcher
 ms.topic: how-to
 ms.date: 03/12/2024
 
 #CustomerIntent: As an Azure administrator, I want to migrate my connection monitors from Connection monitor (classic) to the new Connection monitor so I avoid service disruption. 
+# Customer intent: As an Azure administrator, I want to migrate my connection monitors from Connection monitor (classic) to the new Connection monitor, so that I can ensure continuous monitoring without any service interruptions.
 ---
 
 # Migrate to Connection monitor from Connection monitor (classic)

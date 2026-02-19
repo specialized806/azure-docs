@@ -1,15 +1,20 @@
 ---
 title: Quickstart to create an Azure IoT Edge device on Windows | Microsoft Docs
 description: In this quickstart, learn how to create an IoT Edge device and then deploy prebuilt code remotely from the Azure portal.
-author: PatAltimore
+author: sethmanheim
+ms.author: sethm
 manager: lizross
-ms.author: patricka
-ms.reviewer: fcabrera
-ms.date: 03/25/2024
+ms.date: 01/21/2025
 ms.topic: quickstart
-ms.service: iot-edge
+ms.service: azure-iot-edge
 services: iot-edge
-ms.custom: mvc, devx-track-azurecli, mode-other, linux-related-content
+ms.custom:
+  - mvc
+  - devx-track-azurecli
+  - mode-other
+  - linux-related-content
+  - sfi-image-nochange
+  - sfi-ropc-nochange
 ---
 
 # Quickstart: Deploy your first IoT Edge module to a Windows device
@@ -29,7 +34,7 @@ In this quickstart, you'll learn how to:
 
 This quickstart walks you through how to set up your Azure IoT Edge for Linux on Windows device. Then, you'll deploy a module from the Azure portal to your device. The module you'll use is a simulated sensor that generates temperature, humidity, and pressure data. Other Azure IoT Edge tutorials build on the work you do here by deploying modules that analyze the simulated data for business insights.
 
-If you don't have an active Azure subscription, create a [free account](https://azure.microsoft.com/free) before you begin.
+If you don't have an active Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 
 ## Prerequisites
 
@@ -117,14 +122,14 @@ Run the following PowerShell commands on the target device where you want to dep
       ```powershell
       $msiPath = $([io.Path]::Combine($env:TEMP, 'AzureIoTEdge.msi'))
       $ProgressPreference = 'SilentlyContinue'
-      Invoke-WebRequest "https://aka.ms/AzEFLOWMSI_1_4_LTS_X64" -OutFile $msiPath
+      Invoke-WebRequest "https://aka.ms/AzEFLOWMSI_1_5_LTS_X64" -OutFile $msiPath
       ```
 
    * **ARM64**
       ```powershell
       $msiPath = $([io.Path]::Combine($env:TEMP, 'AzureIoTEdge.msi'))
       $ProgressPreference = 'SilentlyContinue'
-      Invoke-WebRequest "https://aka.ms/AzEFLOWMSI_1_4_LTS_ARM64" -OutFile $msiPath
+      Invoke-WebRequest "https://aka.ms/AzEFLOWMSI_1_5_LTS_ARM64" -OutFile $msiPath
       ```
 
 1. Install IoT Edge for Linux on Windows on your device.
@@ -171,13 +176,13 @@ Manage your Azure IoT Edge device from the cloud to deploy a module that sends t
 
 :::image type="content" source="./media/quickstart/deploy-module.png" alt-text="Diagram that shows the step to deploy a module.":::
 
-One of the key capabilities of Azure IoT Edge is deploying code to your IoT Edge devices from the cloud. *IoT Edge modules* are executable packages implemented as containers. In this section, you'll deploy a pre-built module from the [IoT Edge Modules section of Azure Marketplace](https://azuremarketplace.microsoft.com/marketplace/apps/category/internet-of-things?page=1&subcategories=iot-edge-modules) directly from Azure IoT Hub.
+One of the key capabilities of Azure IoT Edge is deploying code to your IoT Edge devices from the cloud. *IoT Edge modules* are executable packages implemented as containers. In this section, you'll deploy a pre-built module from the [IoT Edge Modules section of Microsoft Artifact Registry](https://mcr.microsoft.com/catalog?cat=IoT%20Edge%20Modules&alphaSort=asc&alphaSortKey=Name).
 
 The module that you deploy in this section simulates a sensor and sends generated data. This module is a useful piece of code when you're getting started with IoT Edge because you can use the simulated data for development and testing. If you want to see exactly what this module does, you can view the [simulated temperature sensor source code](https://github.com/Azure/iotedge/blob/main/edge-modules/SimulatedTemperatureSensor/src/Program.cs).
 
-Follow these steps to deploy your first module from Azure Marketplace.
+Follow these steps to deploy your first module.
 
-1. Sign in to the [Azure portal](https://portal.azure.com) and go to your IoT hub.
+1. Sign in to the [Azure portal](https://portal.azure.com) and go to your IoT Hub.
 
 1. From the menu on the left, select **Devices** under the **Device management** menu.
 
@@ -186,10 +191,9 @@ Follow these steps to deploy your first module from Azure Marketplace.
    >[!NOTE]
    >When you create a new IoT Edge device, it will display the status code `417 -- The device's deployment configuration is not set` in the Azure portal. This status is normal, and means that the device is ready to receive a module deployment.
 
-
 1. On the upper bar, select **Set Modules**.
 
-   Choose which modules you want to run on your device. You can choose from modules that you've already created, modules from Azure Marketplace, or modules that you've built yourself. In this quickstart, you'll deploy a module from Azure Marketplace.
+   Choose which modules you want to run on your device. You can choose from modules that you've already created, modules from Microsoft Artifact Registry, or modules that you've built yourself. In this quickstart, you'll deploy a module from the Microsoft Artifact Registry.
 
 1. In the **IoT Edge modules** section, select **Add** then choose **IoT Edge Module**.
 1. Update the following module settings:

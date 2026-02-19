@@ -6,6 +6,8 @@ ms.author: sherryg
 ms.date: 09/07/2023
 ms.topic: quickstart
 ms.service: azure-operator-service-manager
+ms.custom:
+  - build-2025
 ---
 
 # Quickstart: Publish Nginx container as Containerized Network Function (CNF)
@@ -14,11 +16,11 @@ This quickstart describes how to use the `az aosm` Azure CLI extension to create
 
 ## Prerequisites
 
-- An Azure account with an active subscription is required. If you don't have an Azure subscription, follow the instructions here [Start free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) to create an account before you begin.
-
-- The Contributor and AcrPush roles over this subscription in order to create a Resource Group, or an existing Resource Group where you have the Contributor role.
+- An Azure account with an active subscription is required. If you don't have an Azure subscription, follow the instructions here [Start free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) to create an account before you begin.
 
 - Complete the [Quickstart: Complete the prerequisites to deploy a Containerized Network Function in Azure Operator Service Manager](quickstart-containerized-network-function-prerequisites.md).
+
+- An existing Resource Group where you have the Contributor role, or the Contributor role over this subscription so that the AOSM CLI extension can create the resource group.
 
 ## Create input file
 
@@ -32,8 +34,14 @@ Execution of the preceding command generates an cnf-input.jsonc file.
 
 > [!NOTE]
 > Edit the cnf-input.jsonc file. Replace it with the values shown in the following sample. Save the file as **input-cnf-nfd.jsonc**.
-> [!NOTE]
-> You can use multiple Container Registries as sources for your images in the AOSM CLI. The images to be copied from these Registries are populated automatically based on the helm package schema. To configure these source Registries, fill in `image_sources` list in the cnf-input.jsonc file. When using ACRs, you must have Reader/AcrPull permissions. When using other private Registries, you must run `docker login` to authenticate with all non-ACR Registries before running the `az aosm nfd build` command. In this quickstart we use `docker.io` as the image source Registry. This is a public Registry and does not require authentication.
+>
+> If you are using an existing resource group, change the `publisher_resource_group_name` field to match it.
+
+> [!TIP]
+> You can use multiple container registries as sources for your images in the AOSM CLI. The images to be copied from these registries are selected automatically based on the helm package schema. The source registries are configured in the `image_sources` list of the cnf-input.jsonc file.
+>
+>When using ACRs, you must have the Reader and AcrPull roles on the ACR. When using non-ACR registries, you must run `docker login` to authenticate with each private registry before running the `az aosm nfd build` command.
+> **In this quickstart we use `docker.io` as the image source registry. This is a *public* registry and does not require authentication.**
 
 Here's sample input-cnf-nfd.jsonc file:
 
@@ -45,7 +53,7 @@ Here's sample input-cnf-nfd.jsonc file:
   // Will be created if it does not exist.
   "publisher_name": "nginx-publisher",
   // Resource group for the Publisher resource.
-  // You should create this before running the publish command
+  // Will be created if it does not exist.
   "publisher_resource_group_name": "nginx-publisher-rg",
   // Name of the ACR Artifact Store resource.
   // Will be created if it does not exist.
@@ -63,9 +71,8 @@ Here's sample input-cnf-nfd.jsonc file:
   "helm_packages": [
     {
       "name": "nginxdemo",
-      "path_to_chart": "nginxdemo-0.1.0.tgz",
-      "default_values": "",
-      "depends_on": []
+      "path_to_chart": "nginxdemo-0.3.0.tgz",
+      "default_values": ""
     }
   ]
 }
@@ -92,16 +99,16 @@ To construct the Network Function Definition (NFD), initiate the build process.
 az aosm nfd build -f input-cnf-nfd.jsonc --definition-type cnf
 ```
 
-The Az CLI AOSM extension generates a directory called `cnf-cli-output`. This directory contains the BICEP files defining the AOSM resources required to publish an NFDV and upload the images required to deploy it to AOSM-managed storage. Examine the generated files to gain a better understanding of the Network Function Definition (NFD) structure.
+The Az CLI AOSM extension generates a directory called `cnf-cli-output`. This directory contains the Bicep files defining the AOSM resources required to publish an NFDV and upload the images required to deploy it to AOSM-managed storage. Examine the generated files to gain a better understanding of the Network Function Definition (NFD) structure.
 
 | Directory/File             | Description                                                                                                                                    |
 | -------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
 | nfDefinition/deployParameters.json | Defines the schema for the deployment parameters required to create a Network Function (NF) from this Network Function Definition Version (NFDV). |
 | nfDefinition/nginxdemo-mappings.json   | Maps the deployment parameters for the Network Function Definition Version (NFDV) to the values required for the helm chart.       |
-| nfDefinition/deploy.bicep              | Bicep template for creating the Network Function Definition Version (NFDV) itself.                                                 |
+| nfDefinition/deploy.bicep              | Bicep file for creating the Network Function Definition Version (NFDV) itself.                                                 |
 | artifacts/artifacts.json               | A list of the helm packages and container images required by the NF.                                                               |
-| artifactManifest/deploy.bicep          | Bicep template for creating the artifact manifest.                                                                                 |
-| base/deploy.bicep                      | Bicep template for creating the publisher, network function definition group, and artifact store resources                         |
+| artifactManifest/deploy.bicep          | Bicep file for creating the artifact manifest.                                                                                 |
+| base/deploy.bicep                      | Bicep file for creating the publisher, network function definition group, and artifact store resources                         |
 
 ## Publish the Network Function Definition and upload artifacts
 
@@ -109,6 +116,13 @@ Execute the following command to publish the Network Function Definition (NFD) a
 
 > [!NOTE]
 > If you are using Windows, you must have Docker Desktop running during the publish step.
+
+> [!NOTE]
+> Publisher names must be unique within a region. It is quite likely that the 'nginx-publisher' defined in the example config file already exists.
+>
+>If you get an error saying "**A private publisher resource with the name 'nginx-publisher' already exists in the provided region**", edit the `publisher_name` field in the config file so that it is unique (e.g. add a random string suffix), re-run the `build` command (above), and then re-run this `publish` command.
+>
+>If you go on to create a network service design, you will need to use this new publisher name in the `resource_element_templates` array.
 
 ```azurecli
 az aosm nfd publish -b cnf-cli-output --definition-type cnf

@@ -1,12 +1,14 @@
 ---
 title: Set up Active Directory/DNS disaster recovery with Azure Site Recovery
+ms.reviewer: v-gajeronika
 description: This article describes how to implement a disaster recovery solution for Active Directory and DNS with Azure Site Recovery.
-author: ankitaduttaMSFT
-manager: rochakm
-ms.service: site-recovery
-ms.topic: conceptual
-ms.date: 04/01/2020
-ms.author: ankitadutta
+author: Jeronika-MS
+ms.service: azure-site-recovery
+ms.topic: how-to
+ms.date: 12/08/2025
+ms.author: v-gajeronika
+ms.custom: sfi-image-nochange
+# Customer intent: "As an IT administrator, I want to implement a disaster recovery solution for Active Directory and DNS using cloud services, so that I can ensure business continuity and minimize downtime during disruptions."
 ---
 
 # Set up disaster recovery for Active Directory and DNS
@@ -113,11 +115,7 @@ If virtualization safeguards are triggered after a test failover, you might see 
 
 - The **GenerationID** value changes:
 
-  :::image type="content" source="./media/site-recovery-active-directory/Event2170.png" alt-text="Generation ID Change":::
-
 - The **InvocationID** value changes:
-
-  :::image type="content" source="./media/site-recovery-active-directory/Event1109.png" alt-text="Invocation ID Change":::
 
 - `SYSVOL` folder and `NETLOGON` shares aren't available.
 
@@ -127,7 +125,6 @@ If virtualization safeguards are triggered after a test failover, you might see 
 
 - DFSR databases are deleted.
 
-  :::image type="content" source="./media/site-recovery-active-directory/Event2208.png" alt-text="DFSR databases are deleted":::
 
 ### Troubleshoot domain controller issues during test failover
 

@@ -3,18 +3,19 @@ title: Enable and manage Azure Storage Analytics logs (classic)
 description: Learn how to monitor a storage account in Azure by using Azure Storage Analytics.
 author: normesta
 ms.service: azure-storage
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 09/30/2022
 ms.author: normesta
 ms.reviewer: fryu
 ms.subservice: storage-common-concepts
 ms.devlang: csharp
 ms.custom: monitoring, devx-track-azurepowershell
+# Customer intent: "As a storage account administrator, I want to enable and manage Azure Storage Analytics logs, so that I can monitor and retain log data efficiently while controlling storage costs."
 ---
 
 # Enable and manage Azure Storage Analytics logs (classic)
 
-[Azure Storage Analytics](storage-analytics.md) provides logs for blobs, queues, and tables. You can use the [Azure portal](https://portal.azure.com) to configure logs are recorded for your account. This article shows you how to enable and manage logs. To learn how to enable metrics, see [Enable and manage Azure Storage Analytics metrics (classic)]().  There are costs associated with examining and storing monitoring data in the Azure portal. For more information, see [Storage Analytics](storage-analytics.md).
+[Azure Storage Analytics](storage-analytics.md) provides logs for blobs, queues, and tables. You can use the [Azure portal](https://portal.azure.com) to configure logs are recorded for your account. This article shows you how to enable and manage logs. To learn how to enable metrics, see [Transition to metrics in Azure Monitor](storage-metrics-migration.md). There are costs associated with examining and storing monitoring data in the Azure portal. For more information, see [Storage Analytics](storage-analytics.md).
 
 > [!NOTE]
 > We recommend that you use Azure Storage logs in Azure Monitor instead of Storage Analytics logs. See any of the following articles:
@@ -120,6 +121,9 @@ You can instruct Azure Storage to save diagnostics logs for read, write, and del
 ## Modify log data retention period
 
 Log data can accumulate in your account over time which can increase the cost of storage. If you need log data for only a small period of time, you can reduce your costs by modifying the log data retention period. For example, if you need logs for only three days, set your log data retention period to a value of `3`. That way logs will be automatically deleted from your account after 3 days. This section shows you how to view your current log data retention period, and then update that period if that's what you want to do.
+
+> [!NOTE]
+> The logging version for Azure Storage Analytics (classic) is set automatically by Azure and isn’t configurable. In the Azure portal, the default value might appear as **Logging Version = 2.0**.
 
 ### [Portal](#tab/azure-portal)
 

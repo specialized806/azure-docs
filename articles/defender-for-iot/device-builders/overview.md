@@ -8,7 +8,6 @@ ms.date: 04/17/2024
 
 # What is Microsoft Defender for IoT for device builders?
 
-[!INCLUDE [Banner for top of topics](../includes/banner.md)]
 
 For IoT implementers, security is a near-universal concern. IoT devices have unique needs for endpoint monitoring, security posture management, and threat detection – all with highly specific performance requirements.
 
@@ -21,6 +20,8 @@ Microsoft Defender for IoT provides lightweight security agents so that you can 
 - **Raw events investigation**: Investigate all the raw events sent from your devices in your Log Analytics workspace.
 
 ## Defender for IoT micro agent
+
+[!INCLUDE [device-agents-note](../includes/device-agents-note.md)]
 
 The Defender for IoT micro agent provides deep security protection, and visibility into device behavior.
 

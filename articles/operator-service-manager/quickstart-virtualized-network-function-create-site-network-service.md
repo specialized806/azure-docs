@@ -14,7 +14,7 @@ This quickstart describes the process of creating a Site Network Service (SNS) u
 
 ## Prerequisites
 
-An Azure account with an active subscription is required. If you don't have an Azure subscription, follow the instructions here [Start free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) to create an account before you begin.
+An Azure account with an active subscription is required. If you don't have an Azure subscription, follow the instructions here [Start free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) to create an account before you begin.
 
 This quickstart assumes you followed the prerequisites in these quickstarts:
 
@@ -103,3 +103,8 @@ Wait for the deployment to reach the 'Succeeded' state. After completion, your V
 1. Select the link under **Current State -> Resources**. The link takes you to the managed resource group created by Azure Operator Service Manager.
 
 Congratulations! You have successfully created a Site Network Service for Ubuntu Virtual Machine (VM) as a Virtual Network Function (VNF) in Azure. You can now manage and monitor your Virtual Network Function (VNF) through the Azure portal.
+
+When you have finished, remember to delete the resources. To do this:
+
+1. Delete the Operator Resource Group.
+1. When step 1 is complete, delete the Publisher Resource Group.

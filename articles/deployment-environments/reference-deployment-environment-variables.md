@@ -2,7 +2,7 @@
 title: ADE CLI variables reference
 titleSuffix: Azure Deployment Environments
 description: Learn about the variables available for building custom images using the Azure Deployment Environment (ADE) CLI.
-ms.service: deployment-environments
+ms.service: azure-deployment-environments
 author: RoseHJM
 ms.author: rosemalcolm
 ms.date: 04/12/2024
@@ -47,7 +47,7 @@ Refers to the tenant GUID of the environment.
 Refers to the subscription GUID of the environment.
 
 ## ADE_TEMPLATE_FILE
-Refers to where the main template file specified in the 'templatePath' property in the environment definition lives within the container. This path roughly mirrors the source control of where the catalog, depending on the file path level you connected the catalog at. The file is roughly located at `/ade/repository/{CATALOG_NAME}/{PATH_TO_TEMPLATE_FILE}`. This method is used primarily during the main deployment step as the file referenced to base the deployment off. 
+Refers to where the main template file specified in the 'templatePath' property in the environment definition lives within the container. This path roughly mirrors the source control of where the catalog, depending on the file path level you connected the catalog at. The file is located at `/ade/repository/{CATALOG_NAME}/{PATH_TO_TEMPLATE_FILE}` or at `/ade/repository/{PATH_TO_TEMPLATE_FILE}` if you have only one catalog. This method is used primarily during the main deployment step as the file referenced to base the deployment off. 
 
 Here's an example using the Azure CLI:
 ```bash

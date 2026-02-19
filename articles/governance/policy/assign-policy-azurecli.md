@@ -1,7 +1,7 @@
 ---
 title: "Quickstart: Create policy assignment using Azure CLI"
 description: In this quickstart, you create an Azure Policy assignment to identify non-compliant resources using Azure CLI.
-ms.date: 02/26/2024
+ms.date: 03/04/2025
 ms.topic: quickstart
 ms.custom: devx-track-azurecli
 ---
@@ -12,9 +12,11 @@ The first step in understanding compliance in Azure is to identify the status of
 
 Azure CLI is used to create and manage Azure resources from the command line or in scripts. This guide uses Azure CLI to create a policy assignment and to identify non-compliant resources in your Azure environment.
 
+[!INCLUDE [azure-policy-version-default](../includes/policy/policy-version-default.md)]
+
 ## Prerequisites
 
-- If you don't have an Azure account, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
+- If you don't have an Azure account, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 - [Azure CLI](/cli/azure/install-azure-cli).
 - [Visual Studio Code](https://code.visualstudio.com/).
 - `Microsoft.PolicyInsights` must be [registered](../../azure-resource-manager/management/resource-providers-and-types.md) in your Azure subscription. To register a resource provider, you must have permission to register resource providers. That permission is included in the Contributor and Owner roles.

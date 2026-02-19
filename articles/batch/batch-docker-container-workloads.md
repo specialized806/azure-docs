@@ -5,6 +5,7 @@ ms.topic: how-to
 ms.date: 06/10/2024
 ms.devlang: csharp
 ms.custom: devx-track-csharp, linux-related-content
+# Customer intent: As a cloud developer, I want to run and manage container workloads on Azure Batch, so that I can efficiently scale and automate my batch computing tasks without handling environment complexities.
 ---
 
 # Use Azure Batch to run container workloads
@@ -138,7 +139,7 @@ More considerations for using a custom Linux image:
 
 To enable a Batch pool to run container workloads, you must specify [ContainerConfiguration](/dotnet/api/microsoft.azure.batch.containerconfiguration) settings in the pool's [VirtualMachineConfiguration](/dotnet/api/microsoft.azure.batch.virtualmachineconfiguration) object. This article provides links to the Batch .NET API reference. Corresponding settings are in the [Batch Python](/python/api/overview/azure/batch) API.
 
-You can create a container-enabled pool with or without prefetched container images, as shown in the following examples. The pull (or prefetch) process lets you preload container images from either Docker Hub or another container registry on the Internet. For best performance, use an [Azure container registry](../container-registry/container-registry-intro.md) in the same region as the Batch account.
+You can create a container-enabled pool with or without prefetched container images, as shown in the following examples. The pull (or prefetch) process lets you preload container images from either Docker Hub or another container registry on the Internet. For best performance, use an [Azure Container Registry](/azure/container-registry/container-registry-intro) in the same region as the Batch account.
 
 The advantage of prefetching container images is that when tasks first start running, they don't have to wait for the container image to download. The container configuration pulls container images to the VMs when the pool is created. Tasks that run on the pool can then reference the list of container images and container run options.
 
@@ -146,8 +147,8 @@ The advantage of prefetching container images is that when tasks first start run
 > Docker Hub limits the number of image pulls. Ensure that your workload doesn't
 > [exceed published rate limits](https://docs.docker.com/docker-hub/download-rate-limit/) for Docker
 > Hub-based images. It's recommended to use
-> [Azure Container Registry](../container-registry/container-registry-intro.md) directly or leverage
-> [Artifact cache in ACR](../container-registry/container-registry-artifact-cache.md).
+> [Azure Container Registry](/azure/container-registry/container-registry-intro) directly or leverage
+> [Artifact cache in ACR](/azure/container-registry/container-registry-artifact-cache).
 
 ### Pool without prefetched container images
 
@@ -245,8 +246,7 @@ ImageReference imageReference = new ImageReference(
 
 ContainerRegistry containerRegistry = new ContainerRegistry(
     registryServer: "https://hub.docker.com",
-    userName: "UserName",
-    password: "YourPassword"
+    identityReference: new ComputeNodeIdentityReference() { ResourceId = "/subscriptions/SUB/resourceGroups/RG/providers/Microsoft.ManagedIdentity/userAssignedIdentities/identity-name" }
 );
 
 // Specify container configuration, prefetching Docker images
@@ -276,7 +276,7 @@ pool.StartTask = startTaskContainer;
 
 ### Prefetch images from a private container registry
 
-You can also prefetch container images by authenticating to a private container registry server. In the following examples, the `ContainerConfiguration` and `VirtualMachineConfiguration` objects prefetch a private TensorFlow image from a private Azure container registry. The image reference is the same as in the previous example.
+You can also prefetch container images by authenticating to a private container registry server. In the following examples, the `ContainerConfiguration` and `VirtualMachineConfiguration` objects prefetch a private TensorFlow image from a private Azure Container Registry. The image reference is the same as in the previous example.
 
 ```python
 image_ref_to_use = batch.models.ImageReference(
@@ -286,10 +286,14 @@ image_ref_to_use = batch.models.ImageReference(
     version='latest')
 
 # Specify a container registry
+subscription_id = "yyyy-yyy-yyy-yyy-yyy"
+resource_group_name = "TestRG"
+user_assigned_identity_name = "testUMI"
+resource_id = f"/subscriptions/{subscription_id}/resourceGroups/{resource_group_name}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{user_assigned_identity_name}"
+
 container_registry = batch.models.ContainerRegistry(
         registry_server="myRegistry.azurecr.io",
-        user_name="myUsername",
-        password="myPassword")
+        identity_reference = ComputeNodeIdentityReference(resource_id = resource_id))
 
 # Create container configuration, prefetching Docker images from the container registry
 container_conf = batch.models.ContainerConfiguration(
@@ -310,8 +314,8 @@ new_pool = batch.models.PoolAddParameter(
 // Specify a container registry
 ContainerRegistry containerRegistry = new ContainerRegistry(
     registryServer: "myContainerRegistry.azurecr.io",
-    userName: "myUserName",
-    password: "myPassword");
+    identityReference: new ComputeNodeIdentityReference() { ResourceId = "/subscriptions/SUB/resourceGroups/RG/providers/Microsoft.ManagedIdentity/userAssignedIdentities/identity-name" }
+);
 
 // Create container configuration, prefetching Docker images from the container registry
 ContainerConfiguration containerConfig = new ContainerConfiguration();
@@ -337,7 +341,7 @@ CloudPool pool = batchClient.PoolOperations.CreatePool(
 ### Managed identity support for ACR
 
 When you access containers stored in [Azure Container Registry](https://azure.microsoft.com/services/container-registry),
-either a username/password or a managed identity can be used to authenticate with the service. To use a managed identity,
+a managed identity can be used to authenticate with the service. To use a managed identity,
 first ensure that the identity has been [assigned to the pool](managed-identity-pools.md) and that the identity has the
 `AcrPull` role assigned for the container registry you wish to access. Then, instruct Batch with which identity to use
 when authenticating with ACR.

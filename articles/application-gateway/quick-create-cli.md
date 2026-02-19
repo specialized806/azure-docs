@@ -3,12 +3,17 @@ title: 'Quickstart: Direct web traffic using CLI'
 titleSuffix: Azure Application Gateway
 description: In this quickstart, you learn how to use the Azure CLI to create an Azure Application Gateway that directs web traffic to virtual machines in a backend pool.
 services: application-gateway
-author: greg-lindsay
-ms.service: application-gateway
+author: mbender-ms
+ms.service: azure-application-gateway
 ms.topic: quickstart
 ms.date: 05/30/2024
-ms.author: greglin
-ms.custom: mvc, devx-track-azurecli, mode-api
+ms.author: mbender
+ms.custom:
+  - mvc
+  - devx-track-azurecli
+  - mode-api
+  - sfi-image-nochange
+# Customer intent: "As a cloud engineer, I want to configure an application gateway using the command-line interface, so that I can efficiently direct web traffic to backend servers and verify the setup."
 ---
 
 # Quickstart: Direct web traffic with Azure Application Gateway - Azure CLI
@@ -17,12 +22,12 @@ In this quickstart, you use Azure CLI to create an application gateway. Then you
 
 The application gateway directs application web traffic to specific resources in a backend pool. You assign listeners to ports, create rules, and add resources to a backend pool. For the sake of simplicity, this article uses a simple setup with a public frontend IP address, a basic listener to host a single site on the application gateway, a basic request routing rule, and two virtual machines in the backend pool.
 
-:::image type="content" source="media/quick-create-portal/application-gateway-qs-resources.png" alt-text="application gateway resources":::
+:::image type="content" source="./media/quick-create-portal/application-gateway-qs-resources.png" alt-text="Conceptual diagram of the quickstart setup." lightbox="./media/quick-create-portal/application-gateway-qs-resources.png":::
 
 
 You can also complete this quickstart using [Azure PowerShell](quick-create-powershell.md) or the [Azure portal](quick-create-portal.md).
 
-[!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)]
+[!INCLUDE [quickstarts-free-trial-note](~/reusable-content/ce-skilling/azure/includes/quickstarts-free-trial-note.md)]
 
 [!INCLUDE [azure-cli-prepare-your-environment.md](~/reusable-content/azure-cli/azure-cli-prepare-your-environment.md)]
 
@@ -43,7 +48,7 @@ az group create --name myResourceGroupAG --location eastus
 
 ## Create network resources
 
-For Azure to communicate between the resources that you create, it needs a virtual network.  The application gateway subnet can contain only application gateways. No other resources are allowed.  You can either create a new subnet for Application Gateway or use an existing one. In this example, you create two subnets: one for the application gateway, and another for the backend servers. You can configure the Frontend IP of the Application Gateway to be Public or Private as per your use case. In this example, you'll choose a Public Frontend IP address.
+For Azure to communicate between the resources that you create, it needs a virtual network. The application gateway subnet can contain only application gateways. No other resources are allowed.  You can either create a new subnet for Application Gateway or use an existing one. In this example, you create two subnets: one for the application gateway, and another for the backend servers. You can configure the Frontend IP of the Application Gateway to be Public or Private as per your use case. In this example, you'll choose a Public Frontend IP address.
 
   > [!NOTE]
   > Application Gateway frontend now supports dual-stack IP addresses (Public Preview). You can now create up to four frontend IP addresses: Two IPv4 addresses (public and private) and two IPv6 addresses (public and private).
@@ -78,7 +83,7 @@ A backend can have NICs, virtual machine scale sets, public IP addresses, intern
 #### Create two virtual machines
 
 Install the NGINX web server on the virtual machines to verify the application gateway was successfully created. You can use a cloud-init configuration file to install NGINX and run a "Hello World" Node.js app on a Linux virtual machine. For more information about cloud-init, see
-[Cloud-init support for virtual machines in Azure](../virtual-machines/linux/using-cloud-init.md).
+[Cloud-init support for virtual machines in Azure](/azure/virtual-machines/linux/using-cloud-init).
 
 In your Azure Cloud Shell, copy and paste the following configuration into a file named *cloud-init.txt*. Enter *editor cloud-init.txt* to create the file.
 
@@ -173,6 +178,9 @@ It can take up to 30 minutes for Azure to create the application gateway. After 
 - **appGatewayHttpListener**: Located on the **Listeners page**. It specifies the default listener associated with **appGatewayBackendPool**.
 - **appGatewayFrontendIP**: Located on the **Frontend IP configurations** page. It assigns *myAGPublicIPAddress* to **appGatewayHttpListener**.
 - **rule1**: Located on the **Rules** page. It specifies the default routing rule that's associated with **appGatewayHttpListener**.
+
+> [!NOTE]
+> In regions that support availability zones, if you don't specify zones during creation via CLI, PowerShell, ARM/Bicep, or the REST API—Azure Application Gateway automatically enables zone redundancy, distributing instances across multiple availability zones for enhanced resiliency
 
 ## Test the application gateway
 

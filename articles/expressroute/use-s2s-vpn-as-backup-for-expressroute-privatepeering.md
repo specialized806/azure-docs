@@ -3,11 +3,12 @@ title: 'Using S2S VPN as a backup for Azure ExpressRoute Private Peering | Micro
 description: This page provides architectural recommendations for backing up Azure ExpressRoute private peering with S2S VPN.
 services: networking
 author: duongau
-ms.service: expressroute
+ms.service: azure-expressroute
 ms.custom: devx-track-azurepowershell
 ms.topic: how-to
 ms.date: 04/15/2024
 ms.author: duau 
+# Customer intent: "As a network engineer, I want to configure a site-to-site VPN as a backup for ExpressRoute private peering, so that I can ensure high availability and maintain connectivity during network failures."
 ---
 
 # Using S2S VPN as a backup for ExpressRoute private peering

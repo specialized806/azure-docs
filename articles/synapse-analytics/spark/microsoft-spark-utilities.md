@@ -2,13 +2,17 @@
 title: Introduction to Microsoft Spark utilities
 description: "Tutorial: MSSparkutils in Azure Synapse Analytics notebooks"
 author: JeneZhang
-ms.service: synapse-analytics
+ms.service: azure-synapse-analytics
 ms.topic: reference
 ms.subservice: spark
 ms.date: 09/10/2020
 ms.author: jingzh
 zone_pivot_groups: programming-languages-spark-all-minus-sql
-ms.custom: subject-rbac-steps, devx-track-python
+ms.custom:
+  - subject-rbac-steps
+  - devx-track-python
+  - sfi-image-nochange
+  - sfi-ropc-nochange
 ---
 
 # Introduction to Microsoft Spark Utilities
@@ -31,7 +35,7 @@ Follow these steps to make sure your Microsoft Entra ID and workspace MSI have a
 
 1. Select **Add** > **Add role assignment** to open the Add role assignment page.
 
-1. Assign the following role. For detailed steps, see [Assign Azure roles using the Azure portal](../../role-based-access-control/role-assignments-portal.yml).
+1. Assign the following role. For detailed steps, see [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal).
 
     | Setting | Value |
     | --- | --- |
@@ -42,7 +46,7 @@ Follow these steps to make sure your Microsoft Entra ID and workspace MSI have a
     > [!NOTE]
     > The managed identity name is also the workspace name.
 
-    ![Add role assignment page in Azure portal.](../../../includes/role-based-access-control/media/add-role-assignment-page.png)
+    ![Add role assignment page in Azure portal.](~/reusable-content/ce-skilling/azure/media/role-based-access-control/add-role-assignment-page.png)
 
 1. Select **Save**.
 
@@ -536,6 +540,11 @@ FS.Append("file path", "content to append", true) // Set the last parameter as T
 mssparkutils.fs.append("file path", "content to append", True) # Set the last parameter as True to create the file if it does not exist
 ```
 ::: zone-end
+
+> [!NOTE]
+> - ```mssparkutils.fs.append()``` and ```mssparkutils.fs.put()``` do not support concurrent writing to the same file due to lack of atomicity guarantees.
+> - When using the ``` mssparkutils.fs.append ``` API in a ```for``` loop to write to the same file, we recommend to add a ```sleep``` statement around 0.5s~1s between the recurring writes. This is because the ```mssparkutils.fs.append``` API's internal ```flush``` operation is asynchronous, so a short delay helps ensure data integrity.
+
 
 ### Delete file or directory
 
@@ -1036,7 +1045,6 @@ Returns Microsoft Entra token for a given audience, name (optional). The table b
 | Azure Management                                      | `AzureManagement`                     |
 | Azure SQL Data Warehouse (Dedicated and Serverless)   | `DW`                                  |
 | Azure Synapse                                         | `Synapse`                             |
-| Azure Data Lake Store                                 | `DataLakeStore`                       |
 | Azure Data Factory                                    | `ADF`                                 |
 | Azure Data Explorer                                   | `AzureDataExplorer`                   |
 | Azure Database for MySQL                              | `AzureOSSDB`                          |

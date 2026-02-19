@@ -2,10 +2,11 @@
 title: Moving data to Avere vFXT for Azure
 description: How to add data to a new storage volume for use with the Avere vFXT for Azure 
 author: ekpgh
-ms.service: avere-vfxt
+ms.service: azure-avere-vfxt
 ms.topic: how-to
 ms.date: 12/16/2019
 ms.author: rohogue
+# Customer intent: As a systems administrator, I want to implement parallel data transfer to the Avere vFXT cluster using multiple clients and scripts, so that I can improve the efficiency and speed of moving large datasets to Azure storage.
 ---
 
 # Moving data to the vFXT cluster - Parallel data ingest

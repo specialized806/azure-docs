@@ -1,13 +1,15 @@
 ---
 title: Get SAP installation media 
-description: Learn how to download the necessary SAP media for installing the SAP software and upload it for use with Azure Center for SAP solutions. Please note this is an *optional* step and media and BOM can be obtained with a method preffered by customer.
+description: Learn how to download the necessary SAP media for installing the SAP software and upload it for use with Azure Center for SAP solutions. Please note this is an *optional* step and media and BOM can be obtained with a method preferred by customer.
 ms.service: sap-on-azure
 ms.subservice: center-sap-solutions
 ms.topic: how-to
 ms.date: 04/06/2023
 author: sagarkeswani
 ms.author: sagarkeswani
+ms.custom: sfi-ropc-nochange
 #Customer intent: As a developer, I want to download the necessary SAP media for installing the SAP software and upload it for us with Azure Center for SAP solutions.
+# Customer intent: "As an IT administrator, I want to download and prepare the SAP installation media for upload to an Azure Storage account, so that I can successfully set up the SAP software needed for my organization's infrastructure."
 ---
 
 # Get SAP installation media
@@ -27,7 +29,7 @@ In this how-to guide, you'll learn how to get the SAP software installation medi
 - A deployment of S/4HANA infrastructure.
 - The SSH private key for the virtual machines in the SAP system. You generated this key during the infrastructure deployment.
 - If you're installing a Highly Available (HA) SAP system, get the Service Principal identifier (SPN ID) and password to authorize the Azure fence agent (fencing device) against Azure resources. 
-    - For more information, see [Use Azure CLI to create a Microsoft Entra app and configure it to access Media Services API](/azure/media-services/previous/media-services-cli-create-and-configure-aad-app). 
+    - For more information, see Use Azure CLI to create a Microsoft Entra app and configure it to access Media Services API. 
     - For an example, see the Red Hat documentation for [Creating a Microsoft Entra Application](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/deploying_red_hat_enterprise_linux_7_on_public_cloud_platforms/configuring-rhel-high-availability-on-azure_cloud-content#azure-create-an-azure-directory-application-in-ha_configuring-rhel-high-availability-on-azure).
     - To avoid frequent password expiry, use the Azure Command-Line Interface (Azure CLI) to create the Service Principal identifier and password instead of the Azure portal. 
 
@@ -79,7 +81,7 @@ Before downloading the SAP software, set up an Azure Storage account to store th
 
 Next, set up a virtual machine (VM) where you will download the SAP components later.
 
-1. Create an **Ubuntu 20.04** VM in Azure. For more information, see [how to create a Linux VM in the Azure portal](../../virtual-machines/linux/quick-create-portal.md).
+1. Create an **Ubuntu 20.04** VM in Azure. For more information, see [how to create a Linux VM in the Azure portal](/azure/virtual-machines/linux/quick-create-portal).
 
 1. Sign in to the VM.
 
@@ -89,7 +91,7 @@ Next, set up a virtual machine (VM) where you will download the SAP components l
     curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
     ```
 
-1. If the Azure CLI version is not version 2.30.0 or higher, [Update the Azure CLI](/cli/azure/update-azure-cli). You can run below command to check the version
+1. If the Azure CLI version is not version 2.30.0 or higher(except 2.74.0), [Update the Azure CLI](/cli/azure/update-azure-cli). You can run below command to check the version
 
     ```azurecli
     az --version
@@ -108,20 +110,20 @@ Next, set up a virtual machine (VM) where you will download the SAP components l
     sudo apt install python3-pip
     ```
 
-1. Install Ansible 2.11.12 on the VM.
+1. Install Ansible 2.16.14 on the VM.
 
     ```Bash
-    sudo pip3 install ansible-core==2.11.12
+    sudo pip3 install ansible-core==2.16.14
     ```
 
 1. Install Ansible galaxy collection modules
 
     ```Bash
-   sudo ansible-galaxy collection install ansible.netcommon:==5.0.0 -p /opt/ansible/collections
-   sudo ansible-galaxy collection install ansible.posix:==1.5.1 -p /opt/ansible/collections
-   sudo ansible-galaxy collection install ansible.utils:==2.9.0 -p /opt/ansible/collections
-   sudo ansible-galaxy collection install ansible.windows:==1.13.0 -p /opt/ansible/collections
-   sudo ansible-galaxy collection install community.general:==6.4.0 -p /opt/ansible/collections
+    sudo ansible-galaxy collection install ansible.netcommon:==7.2.0 -p /opt/ansible/collections
+    sudo ansible-galaxy collection install ansible.posix:==2.0.0 -p /opt/ansible/collections
+    sudo ansible-galaxy collection install ansible.utils:==5.1.2 -p /opt/ansible/collections
+    sudo ansible-galaxy collection install ansible.windows:==2.8.0 -p /opt/ansible/collections
+    sudo ansible-galaxy collection install community.general:==10.5.0 -p /opt/ansible/collections
     ```
 
 1. Clone the SAP automation samples repository from GitHub.
@@ -292,13 +294,13 @@ Next, upload the SAP software files to the storage account:
 
     1. For S/4HANA 1909 SPS 03:
 
-        1. [S41909SPS03_v0011ms.yaml](https://raw.githubusercontent.com/Azure/SAP-automation-samples/main/SAP/S41909SPS03_v0011ms/S41909SPS03_v0011ms.yaml)
+        1. [S41909SPS03_v0011ms.yaml](https://raw.githubusercontent.com/Azure/SAP-automation-samples/main/SAP/archives/S41909SPS03_v0011ms/S41909SPS03_v0011ms.yaml)
 
         1. [HANA_2_00_059_v0004ms.yaml](https://raw.githubusercontent.com/Azure/SAP-automation-samples/main/SAP/archives/HANA_2_00_059_v0004ms/HANA_2_00_059_v0004ms.yaml)
 
     1. For S/4HANA 2020 SPS 03:
 
-        1. [S42020SPS03_v0003ms.yaml](https://raw.githubusercontent.com/Azure/SAP-automation-samples/main/SAP/S42020SPS03_v0003ms/S42020SPS03_v0003ms.yaml)
+        1. [S42020SPS03_v0003ms.yaml](https://raw.githubusercontent.com/Azure/SAP-automation-samples/main/SAP/archives/S42020SPS03_v0003ms/S42020SPS03_v0003ms.yaml)
 
         1. [HANA_2_00_064_v0001ms.yaml](https://raw.githubusercontent.com/Azure/SAP-automation-samples/main/SAP/archives/HANA_2_00_064_v0001ms/HANA_2_00_064_v0001ms.yaml)
 
@@ -310,43 +312,43 @@ Next, upload the SAP software files to the storage account:
 
     1. For S/4HANA 1909 SPS 03:
         
-        1. [HANA_2_00_055_v1_install.rsp.j2](https://raw.githubusercontent.com/Azure/SAP-automation-samples/main/SAP/S41909SPS03_v0011ms/templates/HANA_2_00_055_v1_install.rsp.j2)
+        1. [HANA_2_00_055_v1_install.rsp.j2](https://raw.githubusercontent.com/Azure/SAP-automation-samples/main/SAP/archives/S41909SPS03_v0011ms/templates/HANA_2_00_055_v1_install.rsp.j2)
         
-        1. [S41909SPS03_v0011ms-app-inifile-param.j2](https://raw.githubusercontent.com/Azure/SAP-automation-samples/main/SAP/S41909SPS03_v0011ms/templates/S41909SPS03_v0011ms-app-inifile-param.j2)
+        1. [S41909SPS03_v0011ms-app-inifile-param.j2](https://raw.githubusercontent.com/Azure/SAP-automation-samples/main/SAP/archives/S41909SPS03_v0011ms/templates/S41909SPS03_v0011ms-app-inifile-param.j2)
         
-        1. [S41909SPS03_v0011ms-dbload-inifile-param.j2](https://raw.githubusercontent.com/Azure/SAP-automation-samples/main/SAP/S41909SPS03_v0011ms/templates/S41909SPS03_v0011ms-dbload-inifile-param.j2)
+        1. [S41909SPS03_v0011ms-dbload-inifile-param.j2](https://raw.githubusercontent.com/Azure/SAP-automation-samples/main/SAP/archives/S41909SPS03_v0011ms/templates/S41909SPS03_v0011ms-dbload-inifile-param.j2)
         
-        1. [S41909SPS03_v0011ms-ers-inifile-param.j2](https://raw.githubusercontent.com/Azure/SAP-automation-samples/main/SAP/S41909SPS03_v0011ms/templates/S41909SPS03_v0011ms-ers-inifile-param.j2)
+        1. [S41909SPS03_v0011ms-ers-inifile-param.j2](https://raw.githubusercontent.com/Azure/SAP-automation-samples/main/SAP/archives/S41909SPS03_v0011ms/templates/S41909SPS03_v0011ms-ers-inifile-param.j2)
         
-        1. [S41909SPS03_v0011ms-generic-inifile-param.j2](https://raw.githubusercontent.com/Azure/SAP-automation-samples/main/SAP/S41909SPS03_v0011ms/templates/S41909SPS03_v0011ms-generic-inifile-param.j2)
+        1. [S41909SPS03_v0011ms-generic-inifile-param.j2](https://raw.githubusercontent.com/Azure/SAP-automation-samples/main/SAP/archives/S41909SPS03_v0011ms/templates/S41909SPS03_v0011ms-generic-inifile-param.j2)
         
-        1. [S41909SPS03_v0011ms-pas-inifile-param.j2](https://raw.githubusercontent.com/Azure/SAP-automation-samples/main/SAP/S41909SPS03_v0011ms/templates/S41909SPS03_v0011ms-pas-inifile-param.j2)
+        1. [S41909SPS03_v0011ms-pas-inifile-param.j2](https://raw.githubusercontent.com/Azure/SAP-automation-samples/main/SAP/archives/S41909SPS03_v0011ms/templates/S41909SPS03_v0011ms-pas-inifile-param.j2)
         
-        1. [S41909SPS03_v0011ms-scs-inifile-param.j2](https://raw.githubusercontent.com/Azure/SAP-automation-samples/main/SAP/S41909SPS03_v0011ms/templates/S41909SPS03_v0011ms-scs-inifile-param.j2)
+        1. [S41909SPS03_v0011ms-scs-inifile-param.j2](https://raw.githubusercontent.com/Azure/SAP-automation-samples/main/SAP/archives/S41909SPS03_v0011ms/templates/S41909SPS03_v0011ms-scs-inifile-param.j2)
         
-        1. [S41909SPS03_v0011ms-scsha-inifile-param.j2](https://raw.githubusercontent.com/Azure/SAP-automation-samples/main/SAP/S41909SPS03_v0011ms/templates/S41909SPS03_v0011ms-scsha-inifile-param.j2)
+        1. [S41909SPS03_v0011ms-scsha-inifile-param.j2](https://raw.githubusercontent.com/Azure/SAP-automation-samples/main/SAP/archives/S41909SPS03_v0011ms/templates/S41909SPS03_v0011ms-scsha-inifile-param.j2)
         
-        1. [S41909SPS03_v0011ms-web-inifile-param.j2](https://raw.githubusercontent.com/Azure/SAP-automation-samples/main/SAP/S41909SPS03_v0011ms/templates/S41909SPS03_v0011ms-web-inifile-param.j2)
+        1. [S41909SPS03_v0011ms-web-inifile-param.j2](https://raw.githubusercontent.com/Azure/SAP-automation-samples/main/SAP/archives/S41909SPS03_v0011ms/templates/S41909SPS03_v0011ms-web-inifile-param.j2)
     	
     1. For S/4HANA 2020 SPS 03:
     	
-        1. [HANA_2_00_055_v1_install.rsp.j2](https://raw.githubusercontent.com/Azure/SAP-automation-samples/main/SAP/S42020SPS03_v0003ms/templates/HANA_2_00_055_v1_install.rsp.j2)
+        1. [HANA_2_00_055_v1_install.rsp.j2](https://raw.githubusercontent.com/Azure/SAP-automation-samples/main/SAP/archives/S42020SPS03_v0003ms/templates/HANA_2_00_055_v1_install.rsp.j2)
     	
-        1. [HANA_2_00_install.rsp.j2](https://raw.githubusercontent.com/Azure/SAP-automation-samples/main/SAP/S42020SPS03_v0003ms/templates/HANA_2_00_install.rsp.j2)
+        1. [HANA_2_00_install.rsp.j2](https://raw.githubusercontent.com/Azure/SAP-automation-samples/main/SAP/archives/S42020SPS03_v0003ms/templates/HANA_2_00_install.rsp.j2)
     	
-        1. [S42020SPS03_v0003ms-app-inifile-param.j2](https://raw.githubusercontent.com/Azure/SAP-automation-samples/main/SAP/S42020SPS03_v0003ms/templates/S42020SPS03_v0003ms-app-inifile-param.j2)
+        1. [S42020SPS03_v0003ms-app-inifile-param.j2](https://raw.githubusercontent.com/Azure/SAP-automation-samples/main/SAP/archives/S42020SPS03_v0003ms/templates/S42020SPS03_v0003ms-app-inifile-param.j2)
     	
-        1. [S42020SPS03_v0003ms-dbload-inifile-param.j2](https://raw.githubusercontent.com/Azure/SAP-automation-samples/main/SAP/S42020SPS03_v0003ms/templates/S42020SPS03_v0003ms-dbload-inifile-param.j2)
+        1. [S42020SPS03_v0003ms-dbload-inifile-param.j2](https://raw.githubusercontent.com/Azure/SAP-automation-samples/main/SAP/archives/S42020SPS03_v0003ms/templates/S42020SPS03_v0003ms-dbload-inifile-param.j2)
     	
-        1. [S42020SPS03_v0003ms-ers-inifile-param.j2](https://raw.githubusercontent.com/Azure/SAP-automation-samples/main/SAP/S42020SPS03_v0003ms/templates/S42020SPS03_v0003ms-ers-inifile-param.j2)
+        1. [S42020SPS03_v0003ms-ers-inifile-param.j2](https://raw.githubusercontent.com/Azure/SAP-automation-samples/main/SAP/archives/S42020SPS03_v0003ms/templates/S42020SPS03_v0003ms-ers-inifile-param.j2)
     	
-        1. [S42020SPS03_v0003ms-generic-inifile-param.j2](https://raw.githubusercontent.com/Azure/SAP-automation-samples/main/SAP/S42020SPS03_v0003ms/templates/S42020SPS03_v0003ms-generic-inifile-param.j2)
+        1. [S42020SPS03_v0003ms-generic-inifile-param.j2](https://raw.githubusercontent.com/Azure/SAP-automation-samples/main/SAP/archives/S42020SPS03_v0003ms/templates/S42020SPS03_v0003ms-generic-inifile-param.j2)
     	
-        1. [S42020SPS03_v0003ms-pas-inifile-param.j2](https://raw.githubusercontent.com/Azure/SAP-automation-samples/main/SAP/S42020SPS03_v0003ms/templates/S42020SPS03_v0003ms-pas-inifile-param.j2)
+        1. [S42020SPS03_v0003ms-pas-inifile-param.j2](https://raw.githubusercontent.com/Azure/SAP-automation-samples/main/SAP/archives/S42020SPS03_v0003ms/templates/S42020SPS03_v0003ms-pas-inifile-param.j2)
     	
-        1. [S42020SPS03_v0003ms-scs-inifile-param.j2](https://raw.githubusercontent.com/Azure/SAP-automation-samples/main/SAP/S42020SPS03_v0003ms/templates/S42020SPS03_v0003ms-scs-inifile-param.j2)
+        1. [S42020SPS03_v0003ms-scs-inifile-param.j2](https://raw.githubusercontent.com/Azure/SAP-automation-samples/main/SAP/archives/S42020SPS03_v0003ms/templates/S42020SPS03_v0003ms-scs-inifile-param.j2)
     	
-        1. [S42020SPS03_v0003ms-scsha-inifile-param.j2](https://raw.githubusercontent.com/Azure/SAP-automation-samples/main/SAP/S42020SPS03_v0003ms/templates/S42020SPS03_v0003ms-scsha-inifile-param.j2)
+        1. [S42020SPS03_v0003ms-scsha-inifile-param.j2](https://raw.githubusercontent.com/Azure/SAP-automation-samples/main/SAP/archives/S42020SPS03_v0003ms/templates/S42020SPS03_v0003ms-scsha-inifile-param.j2)
     	     
 1. Upload all the files that you downloaded to the `templates` folder.
 
@@ -355,15 +357,11 @@ Next, upload the SAP software files to the storage account:
 1. Download all packages that aren't labeled as `download: false` from the main BOM URL. Choose the packages based on your SAP version. You can use the URL mentioned in the BOM to download each package. Make sure to download the exact package versions listed in each BOM. 
 
     1. For S/4HANA 1909 SPS 03:
-
-        1. [S41909SPS03_v0011ms.yaml](https://github.com/Azure/SAP-automation-samples/blob/main/SAP/S41909SPS03_v0011ms/S41909SPS03_v0011ms.yaml)
-    
+  
         1. [HANA_2_00_059_v0004ms.yaml](https://github.com/Azure/SAP-automation-samples/blob/main/SAP/archives/HANA_2_00_059_v0004ms/HANA_2_00_059_v0004ms.yaml)
     
     1. For S/4HANA 2020 SPS 03: 
-
-        1. [S42020SPS03_v0003ms.yaml](https://github.com/Azure/SAP-automation-samples/blob/main/SAP/S42020SPS03_v0003ms/S42020SPS03_v0003ms.yaml)
-    
+   
         1. [HANA_2_00_064_v0001ms.yaml](https://github.com/Azure/SAP-automation-samples/blob/main/SAP/archives/HANA_2_00_064_v0001ms/HANA_2_00_064_v0001ms.yaml)  
        
 1. Repeat the previous step for the main and dependent BOM files.

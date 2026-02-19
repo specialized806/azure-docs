@@ -3,7 +3,7 @@ title: Quickstart - Create Azure API Management instance - Bicep
 description: Use this quickstart to create an Azure API Management instance in the Developer tier by using Bicep.
 services: azure-resource-manager
 author: mumian
-ms.service: api-management
+ms.service: azure-api-management
 tags: azure-resource-manager, bicep
 ms.custom: devx-track-bicep, subject-bicepqs, devx-track-azurecli, devx-track-azurepowershell
 ms.topic: quickstart-bicep
@@ -19,11 +19,11 @@ This quickstart describes how to use a Bicep file to create an Azure API Managem
 
 [!INCLUDE [api-management-quickstart-intro](../../includes/api-management-quickstart-intro.md)]
 
-[!INCLUDE [About Bicep](../../includes/resource-manager-quickstart-bicep-introduction.md)]
+[!INCLUDE [About Bicep](~/reusable-content/ce-skilling/azure/includes/resource-manager-quickstart-bicep-introduction.md)]
 
 ## Prerequisites
 
-- If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
+- If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 
 - For Azure CLI:
 
@@ -32,7 +32,7 @@ This quickstart describes how to use a Bicep file to create an Azure API Managem
 - For Azure PowerShell:
 
 
-    [!INCLUDE [azure-powershell-requirements-no-header](../../includes/azure-powershell-requirements-no-header.md)]
+    [!INCLUDE [azure-powershell-requirements-no-header](~/reusable-content/ce-skilling/azure/includes/azure-powershell-requirements-no-header.md)]
 
 ## Review the Bicep file
 

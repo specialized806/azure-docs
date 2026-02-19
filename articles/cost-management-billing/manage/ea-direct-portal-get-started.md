@@ -1,13 +1,13 @@
 ---
 title: Get started with your Enterprise Agreement billing account
 description: This article explains how Azure Enterprise Agreement (Azure EA) customers can use the Azure portal to manage their billing.
-author: bandersmsft
-ms.reviewer: sapnakeshari
+author: prashantsaini4
+ms.reviewer: prsaini
 ms.service: cost-management-billing
-ms.subservice: billing
+ms.subservice: enterprise
 ms.topic: conceptual
-ms.date: 04/23/2024
-ms.author: banders
+ms.date: 09/23/2025
+ms.author: prsaini
 ---
 
 # Get started with your Enterprise Agreement billing account
@@ -71,7 +71,7 @@ For more information about paying overages with Azure Prepayment, see [Pay your 
 
 ## View Microsoft Azure Consumption Commitment (MACC)
 
-You view and track your Microsoft Azure Consumption Commitment (MACC) in the Azure portal. If your organization has a MACC for an EA billing account, you can check important aspects of your commitment, including start and end dates, remaining commitment, and eligible spend in the Azure portal. For more information, see [MACC overview](track-consumption-commitment.md?tabs=portal.md#track-your-macc-commitment).
+You view and track your Microsoft Azure Consumption Commitment (MACC) in the Azure portal. If your organization has a MACC for an EA billing account, you can check important aspects of your commitment, including start and end dates, remaining commitment, and eligible spend in the Azure portal. For more information, see [MACC overview](../benefits/macc/track-consumption-commitment.md?tabs=portal.md#track-your-macc-commitment).
 
 ## Now that you're familiar with the basics, here are some more links to help you get onboarded
 

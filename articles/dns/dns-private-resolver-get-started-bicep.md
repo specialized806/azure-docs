@@ -3,20 +3,27 @@ title: 'Quickstart: Create an Azure DNS Private Resolver - Bicep'
 titleSuffix: Azure DNS Private resolver
 description: Learn how to create Azure DNS Private Resolver. This article is a step-by-step quickstart to create and manage your first Azure DNS Private Resolver using Bicep.
 services: dns
-author: greg-lindsay
-ms.author: greglin
+author: asudbring
+ms.author: allensu
 ms.date: 02/28/2024
 ms.topic: quickstart
-ms.service: dns
-ms.custom: devx-track-azurepowershell, subject-armqs, mode-arm, devx-track-azurecli, devx-track-bicep
+ms.service: azure-dns
+ms.custom:
+  - devx-track-azurepowershell
+  - subject-armqs
+  - mode-arm
+  - devx-track-azurecli
+  - devx-track-bicep
+  - sfi-image-nochange
 #Customer intent: As an administrator or developer, I want to learn how to create Azure DNS Private Resolver using Bicep so I can use Azure DNS Private Resolver as forwarder.
+# Customer intent: "As a network administrator, I want to create an Azure DNS Private Resolver using Bicep so that I can manage DNS resolutions for both Azure and on-premises domains efficiently."
 ---
 
 # Quickstart: Create an Azure DNS Private Resolver using Bicep
 
 This quickstart describes how to use Bicep to create Azure DNS Private Resolver.
 
-[!INCLUDE [About Bicep](../../includes/resource-manager-quickstart-bicep-introduction.md)]
+[!INCLUDE [About Bicep](~/reusable-content/ce-skilling/azure/includes/resource-manager-quickstart-bicep-introduction.md)]
 
 The following figure summarizes the general setup used. Subnet address ranges used in templates are slightly different than those shown in the figure.
 
@@ -24,7 +31,7 @@ The following figure summarizes the general setup used. Subnet address ranges us
 
 ## Prerequisites
 
-If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
+If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 
 ## Review the Bicep file
 

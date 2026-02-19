@@ -4,22 +4,23 @@ title: Security best practices for your Azure assets
 titleSuffix: Azure security
 description: This article provides a set of operational best practices for protecting your data, applications, and other assets in Azure.
 services: security
-author: TerryLanfear
-manager: rkarlin
+author: msmbaldwin
 ms.service: security
 ms.subservice: security-fundamentals
 ms.topic: article
-ms.date: 04/18/2023
-ms.author: terrylan
+ms.date: 04/23/2025
+ms.author: mbaldwin
 
 ---
 
 # Azure Operational Security best practices
+
 This article provides a set of operational best practices for protecting your data, applications, and other assets in Azure.
 
 The best practices are based on a consensus of opinion, and they work with current Azure platform capabilities and feature sets. Opinions and technologies change over time and this article is updated on a regular basis to reflect those changes.
 
 ## Define and deploy strong operational security practices
+
 Azure operational security refers to the services, controls, and features available to users for protecting their data, applications, and other assets in Azure. Azure operational security is built on a framework that incorporates the knowledge gained through capabilities that are unique to Microsoft, including the [Security Development Lifecycle (SDL)](https://www.microsoft.com/sdl), the [Microsoft Security Response Center](https://www.microsoft.com/msrc?rtc=1) program, and deep awareness of the cybersecurity threat landscape.
 
 <a name='enforce-multi-factor-verification-for-users'></a>
@@ -28,7 +29,7 @@ Azure operational security refers to the services, controls, and features availa
 
 We recommend that you require two-step verification for all of your users. This includes administrators and others in your organization who can have a significant impact if their account is compromised (for example, financial officers).
 
-There are multiple options for requiring two-step verification. The best option for you depends on your goals, the Microsoft Entra edition you're running, and your licensing program. See [How to require two-step verification for a user](../../active-directory/authentication/howto-mfa-userstates.md) to determine the best option for you. See the [Microsoft Entra ID](https://azure.microsoft.com/pricing/details/active-directory/) and [Microsoft Entra multifactor Authentication](https://azure.microsoft.com/pricing/details/multi-factor-authentication/) pricing pages for more information about licenses and pricing.
+There are multiple options for requiring two-step verification. The best option for you depends on your goals, the Microsoft Entra edition you're running, and your licensing program. See [How to require two-step verification for a user](/entra/identity/authentication/howto-mfa-userstates) to determine the best option for you. See the [Microsoft Entra ID](https://www.microsoft.com/security/business/microsoft-entra-pricing) and [Microsoft Entra multifactor authentication](https://azure.microsoft.com/pricing/details/multi-factor-authentication/) pricing pages for more information about licenses and pricing.
 
 Following are options and benefits for enabling two-step verification:
 
@@ -39,26 +40,26 @@ Following are options and benefits for enabling two-step verification:
 * Require MFA challenge via Microsoft Authenticator for all users
 * Restrict legacy authentication protocols.
 
-This method is available to all licensing tiers but is not able to be mixed with existing Conditional Access policies. You can find more information in [Microsoft Entra Security Defaults](../../active-directory/fundamentals/concept-fundamentals-security-defaults.md)
+This method is available to all licensing tiers but is not able to be mixed with existing Conditional Access policies. You can find more information in [Microsoft Entra Security Defaults](/entra/fundamentals/security-defaults)
 
-**Option 2**: [Enable multifactor authentication by changing user state](../../active-directory/authentication/howto-mfa-userstates.md).   
-**Benefit**: This is the traditional method for requiring two-step verification. It works with both [Microsoft Entra multifactor authentication in the cloud and Azure Multi-Factor Authentication Server](../../active-directory/authentication/concept-mfa-howitworks.md). Using this method requires users to perform two-step verification every time they sign in and overrides Conditional Access policies.
+**Option 2**: [Enable multifactor authentication by changing user state](/entra/identity/authentication/howto-mfa-userstates).   
+**Benefit**: This is the traditional method for requiring two-step verification. It works with both [Microsoft Entra multifactor authentication in the cloud and Azure Multifactor Authentication Server](/entra/identity/authentication/concept-mfa-howitworks). Using this method requires users to perform two-step verification every time they sign in and overrides Conditional Access policies.
 
-To determine where multifactor authentication needs to be enabled, see [Which version of Microsoft Entra multifactor authentication is right for my organization?](../../active-directory/authentication/concept-mfa-howitworks.md).
+To determine where multifactor authentication needs to be enabled, see [Which version of Microsoft Entra multifactor authentication is right for my organization?](/entra/identity/authentication/concept-mfa-howitworks)
 
-**Option 3**: [Enable multifactor authentication with Conditional Access policy](../../active-directory/authentication/howto-mfa-getstarted.md).
-**Benefit**: This option allows you to prompt for two-step verification under specific conditions by using [Conditional Access](../../active-directory/conditional-access/concept-conditional-access-policy-common.md). Specific conditions can be user sign-in from different locations, untrusted devices, or applications that you consider risky. Defining specific conditions where you require two-step verification enables you to avoid constant prompting for your users, which can be an unpleasant user experience.
+**Option 3**: [Enable multifactor authentication with Conditional Access policy](/entra/identity/authentication/howto-mfa-getstarted).
+**Benefit**: This option allows you to prompt for two-step verification under specific conditions by using [Conditional Access](/entra/identity/conditional-access/concept-conditional-access-policy-common). Specific conditions can be user sign-in from different locations, untrusted devices, or applications that you consider risky. Defining specific conditions where you require two-step verification enables you to avoid constant prompting for your users, which can be an unpleasant user experience.
 
-This is the most flexible way to enable two-step verification for your users. Enabling a Conditional Access policy works only for Microsoft Entra multifactor authentication in the cloud and is a premium feature of Microsoft Entra ID. You can find more information on this method in [Deploy cloud-based Microsoft Entra multifactor authentication](../../active-directory/authentication/howto-mfa-getstarted.md).
+This is the most flexible way to enable two-step verification for your users. Enabling a Conditional Access policy works only for Microsoft Entra multifactor authentication in the cloud and is a premium feature of Microsoft Entra ID. You can find more information on this method in [Deploy cloud-based Microsoft Entra multifactor authentication](/entra/identity/authentication/howto-mfa-getstarted).
 
-**Option 4**: Enable multifactor authentication with Conditional Access policies by evaluating [Risk-based Conditional Access policies](../../active-directory/conditional-access/howto-conditional-access-policy-risk.md).   
+**Option 4**: Enable multifactor authentication with Conditional Access policies by evaluating [Risk-based Conditional Access policies](/entra/identity/conditional-access/howto-conditional-access-policy-risk).   
 **Benefit**: This option enables you to:
 
 * Detect potential vulnerabilities that affect your organization's identities.
 * Configure automated responses to detected suspicious actions that are related to your organization's identities.
 * Investigate suspicious incidents and take appropriate action to resolve them.
 
-This method uses the Microsoft Entra ID Protection risk evaluation to determine if two-step verification is required based on user and sign-in risk for all cloud applications. This method requires Microsoft Entra ID P2 licensing. You can find more information on this method in [Microsoft Entra ID Protection](../../active-directory/identity-protection/overview-identity-protection.md).
+This method uses the Microsoft Entra ID Protection risk evaluation to determine if two-step verification is required based on user and sign-in risk for all cloud applications. This method requires Microsoft Entra ID P2 licensing. You can find more information on this method in [Microsoft Entra ID Protection](/entra/id-protection/overview-identity-protection).
 
 > [!Note]
 > Option 2, enabling multifactor authentication by changing the user state, overrides Conditional Access policies. Because options 3 and 4 use Conditional Access policies, you cannot use option 2 with them.
@@ -72,10 +73,10 @@ The following table lists some best practices related to managing user passwords
 **Detail**: Follow the guidance in [Microsoft Password Guidance](https://www.microsoft.com/research/publication/password-guidance/), which is scoped to users of the Microsoft identity platforms (Microsoft Entra ID, Active Directory, and Microsoft account).
 
 **Best practice**: Monitor for suspicious actions related to your user accounts.   
-**Detail**: Monitor for [users at risk](../../active-directory/identity-protection/overview-identity-protection.md) and [risky sign-ins](../../active-directory/identity-protection/overview-identity-protection.md) by using Microsoft Entra security reports.
+**Detail**: Monitor for [users at risk](/entra/id-protection/overview-identity-protection) and [risky sign-ins](/entra/id-protection/overview-identity-protection) by using Microsoft Entra security reports.
 
 **Best practice**: Automatically detect and remediate high-risk passwords.   
-**Detail**: [Microsoft Entra ID Protection](../../active-directory/identity-protection/overview-identity-protection.md) is a feature of the Microsoft Entra ID P2 edition that enables you to:
+**Detail**: [Microsoft Entra ID Protection](/entra/id-protection/overview-identity-protection) is a feature of the Microsoft Entra ID P2 edition that enables you to:
 
 - Detect potential vulnerabilities that affect your organization’s identities
 - Configure automated responses to detected suspicious actions that are related to your organization’s identities
@@ -124,13 +125,13 @@ You should continuously monitor the storage services that your application uses 
 [Azure Storage Analytics](../../storage/common/storage-analytics.md) performs logging and provides metrics data for an Azure storage account. We recommend that you use this data to trace requests, analyze usage trends, and diagnose issues with your storage account.
 
 ## Prevent, detect, and respond to threats
-[Microsoft Defender for Cloud](../../defender-for-cloud/defender-for-cloud-introduction.md) helps you prevent, detect, and respond to threats by providing increased visibility into (and control over) the security of your Azure resources. It provides integrated security monitoring and policy management across your Azure subscriptions, helps detect threats that might otherwise go unnoticed, and works with various security solutions.
+[Microsoft Defender for Cloud](/azure/defender-for-cloud/defender-for-cloud-introduction) helps you prevent, detect, and respond to threats by providing increased visibility into (and control over) the security of your Azure resources. It provides integrated security monitoring and policy management across your Azure subscriptions, helps detect threats that might otherwise go unnoticed, and works with various security solutions.
 
-The Free tier of Defender for Cloud offers limited security for your resources in Azure as well as Arc-enabled resources outside of Azure. The Enahanced Security Features extend these capabilities to include threat and vulnerability management, as well as regulatory compliance reporting. Defender for Cloud Plans help you find and fix security vulnerabilities, apply access and application controls to block malicious activity, detect threats by using analytics and intelligence, and respond quickly when under attack. You can try Defender for Cloud Standard at no cost for the first 30 days. We recommend that you [enable enhanced security features on your Azure subscriptions in Defender for Cloud](../../defender-for-cloud/enable-enhanced-security.md).
+The Free tier of Defender for Cloud offers limited security for your resources in Azure as well as Arc-enabled resources outside of Azure. The Enhanced Security Features extend these capabilities to include threat and vulnerability management, as well as regulatory compliance reporting. Defender for Cloud Plans help you find and fix security vulnerabilities, apply access and application controls to block malicious activity, detect threats by using analytics and intelligence, and respond quickly when under attack. You can try Defender for Cloud Standard at no cost for the first 30 days. We recommend that you [enable enhanced security features on your Azure subscriptions in Defender for Cloud](/azure/defender-for-cloud/enable-enhanced-security).
 
 Use Defender for Cloud to get a central view of the security state of all your resources in your own data centers, Azure and other clouds. At a glance, verify that the appropriate security controls are in place and configured correctly, and quickly identify any resources that need attention.
 
-Defender for Cloud also integrates with [Microsoft Defender for Endpoint](../../defender-for-cloud/integration-defender-for-endpoint.md), which provides comprehensive Endpoint Detection and Response (EDR) capabilities. With Microsoft Defender for Endpoint integration, you can spot abnormalities and detect vulnerabilities. You can also detect and respond to advanced attacks on server endpoints monitored by Defender for Cloud.
+Defender for Cloud also integrates with [Microsoft Defender for Endpoint](/azure/defender-for-cloud/integration-defender-for-endpoint), which provides comprehensive Endpoint Detection and Response (EDR) capabilities. With Microsoft Defender for Endpoint integration, you can spot abnormalities and detect vulnerabilities. You can also detect and respond to advanced attacks on server endpoints monitored by Defender for Cloud.
 
 Almost all enterprise organizations have a security information and event management (SIEM) system to help identify emerging threats by consolidating log information from diverse signal gathering devices. The logs are then analyzed by a data analytics system to help identify what’s “interesting” from the noise that is inevitable in all log gathering and analytics solutions.
 
@@ -153,7 +154,7 @@ The secure score, which is based on Center for Internet Security (CIS) controls,
 **Detail**: Most organizations with a SIEM use it as a central clearinghouse for security alerts that require an analyst response. Processed events produced by Defender for Cloud are published to the Azure Activity Log, one of the logs available through Azure Monitor. Azure Monitor offers a consolidated pipeline for routing any of your monitoring data into a SIEM tool. See [Stream alerts to a SIEM, SOAR, or IT Service Management solution](../../security-center/export-to-siem.md) for instructions. If you’re using Microsoft Sentinel, see [Connect Microsoft Defender for Cloud](../../sentinel/connect-azure-security-center.md).
 
 **Best practice**: Integrate Azure logs with your SIEM.   
-**Detail**: Use [Azure Monitor to gather and export data](../../azure-monitor/overview.md#integrate). This practice is critical for enabling security incident investigation, and online log retention is limited. If you’re using Microsoft Sentinel, see [Connect data sources](../../sentinel/connect-data-sources.md).
+**Detail**: Use [Azure Monitor to gather and export data](/azure/azure-monitor/overview#integrate). This practice is critical for enabling security incident investigation, and online log retention is limited. If you’re using Microsoft Sentinel, see [Connect data sources](../../sentinel/connect-data-sources.md).
 
 **Best practice**: Speed up your investigation and hunting processes and reduce false positives by integrating Endpoint Detection and Response (EDR) capabilities into your attack investigation.   
 **Detail**: [Enable the Microsoft Defender for Endpoint integration](../../security-center/security-center-wdatp.md#enable-the-microsoft-defender-for-endpoint-integration) via your Defender for Cloud security policy. Consider using Microsoft Sentinel for threat hunting and incident response.
@@ -189,7 +190,7 @@ You can use [Azure Resource Manager](../../azure-resource-manager/templates/synt
 **Detail**: [Azure Pipelines](/azure/devops/pipelines/index) is a solution for automating multiple-stage deployment and managing the release process. Create managed continuous deployment pipelines to release quickly, easily, and often. With Azure Pipelines, you can automate your release process, and you can have predefined approval workflows. Deploy on-premises and to the cloud, extend, and customize as required.
 
 **Best practice**: Check your app's performance before you launch it or deploy updates to production.  
-**Detail**: Run cloud-based [load tests](../../load-testing/index.yml) to:
+**Detail**: Run cloud-based [load tests](../../app-testing/index.yml) to:
 
 - Find performance problems in your app.
 - Improve deployment quality.
@@ -199,7 +200,7 @@ You can use [Azure Resource Manager](../../azure-resource-manager/templates/synt
 [Apache JMeter](https://jmeter.apache.org/) is a free, popular open source tool with a strong community backing.
 
 **Best practice**: Monitor application performance.  
-**Detail**: [Azure Application Insights](../../azure-monitor/app/app-insights-overview.md) is an extensible application performance management (APM) service for web developers on multiple platforms. Use Application Insights to monitor your live web application. It automatically detects performance anomalies. It includes analytics tools to help you diagnose issues and to understand what users actually do with your app. It's designed to help you continuously improve performance and usability.
+**Detail**: [Azure Application Insights](/azure/azure-monitor/app/app-insights-overview) is an extensible application performance management (APM) service for web developers on multiple platforms. Use Application Insights to monitor your live web application. It automatically detects performance anomalies. It includes analytics tools to help you diagnose issues and to understand what users actually do with your app. It's designed to help you continuously improve performance and usability.
 
 ## Mitigate and protect against DDoS
 Distributed denial of service (DDoS) is a type of attack that tries to exhaust application resources. The goal is to affect the application’s availability and its ability to handle legitimate requests. These attacks are becoming more sophisticated and larger in size and impact. They can be targeted at any endpoint that is publicly reachable through the internet.
@@ -216,7 +217,7 @@ Ensuring that an application is resilient enough to handle a denial of service t
 
 For Azure Cloud Services, configure each of your roles to use [multiple instances](../../cloud-services/cloud-services-choose-me.md).
 
-For [Azure Virtual Machines](../../virtual-machines/windows/overview.md), ensure that your VM architecture includes more than one VM and that each VM is included in an [availability set](../../virtual-machines/windows/tutorial-availability-sets.md). We recommend using Virtual Machine Scale Sets for autoscaling capabilities.
+For [Azure Virtual Machines](/azure/virtual-machines/windows/overview), ensure that your VM architecture includes more than one VM and that each VM is included in an [availability set](/azure/virtual-machines/windows/tutorial-availability-sets). We recommend using Virtual Machine Scale Sets for autoscaling capabilities.
 
 **Best practice**: Layering security defenses in an application reduces the chance of a successful attack. Implement secure designs for your applications by using the built-in capabilities of the Azure platform.  
 **Detail**: The risk of attack increases with the size (surface area) of the application. You can reduce the surface area by using an approval list to close down the exposed IP address space and listening ports that are not needed on the load balancers ([Azure Load Balancer](../../load-balancer/quickstart-load-balancer-standard-public-portal.md) and [Azure Application Gateway](../../application-gateway/application-gateway-create-probe-portal.md)).
@@ -237,7 +238,10 @@ Azure has two DDoS [service offerings](../../ddos-protection/ddos-protection-ove
 ## Enable Azure Policy
 [Azure Policy](../../governance/policy/overview.md) is a service in Azure that you use to create, assign, and manage policies. These policies enforce rules and effects over your resources, so those resources stay compliant with your corporate standards and service-level agreements. Azure Policy meets this need by evaluating your resources for non-compliance with assigned policies.
 
-Enable Azure Policy to monitor and enforce your organization’s written policy. This will ensure compliance with your company or regulatory security requirements by centrally managing security policies across your hybrid cloud workloads. Learn how to [create and manage policies to enforce compliance](../../governance/policy/tutorials/create-and-manage.md). See [Azure Policy definition structure](../../governance/policy/concepts/definition-structure.md) for an overview of the elements of a policy.
+Enable Azure Policy to monitor and enforce your organization's written policy. This will ensure compliance with your company or regulatory security requirements by centrally managing security policies across your hybrid cloud workloads. Learn how to [create and manage policies to enforce compliance](../../governance/policy/tutorials/create-and-manage.md). See [Azure Policy definition structure](../../governance/policy/concepts/definition-structure.md) for an overview of the elements of a policy.
+
+**Best practice**: Use Azure Policy to enforce Microsoft Cloud Security Benchmark v2 (preview) recommendations across your environment.  
+**Detail**: The [Microsoft Cloud Security Benchmark v2 (preview)](/security/benchmark/azure/overview) provides comprehensive security best practices with expanded Azure Policy coverage (420+ policy-based measurements). Assign Microsoft Cloud Security Benchmark v2 (preview) policies to your subscriptions and management groups to continuously audit and enforce secure configurations. The benchmark includes new controls for AI security, confidential computing, and enhanced threat detection. Use the [Defender for Cloud regulatory compliance dashboard](/azure/defender-for-cloud/regulatory-compliance-dashboard) to track compliance and identify security gaps requiring remediation.
 
 Here are some security best practices to follow after you adopt Azure Policy:
 
@@ -255,11 +259,12 @@ For more information, see [Create and manage policies to enforce compliance](../
 <a name='monitor-azure-ad-risk-reports'></a>
 
 ## Monitor Microsoft Entra risk reports
-The vast majority of security breaches take place when attackers gain access to an environment by stealing a user’s identity. Discovering compromised identities is no easy task. Microsoft Entra ID uses adaptive machine learning algorithms and heuristics to detect suspicious actions that are related to your user accounts. Each detected suspicious action is stored in a record called a [risk detection](../../active-directory/identity-protection/overview-identity-protection.md). Risk detections are recorded in Microsoft Entra security reports. For more information, read about the [users at risk security report](../../active-directory/identity-protection/overview-identity-protection.md) and the [risky sign-ins security report](../../active-directory/identity-protection/overview-identity-protection.md).
+The vast majority of security breaches take place when attackers gain access to an environment by stealing a user's identity. Discovering compromised identities is no easy task. Microsoft Entra ID uses adaptive machine learning algorithms and heuristics to detect suspicious actions that are related to your user accounts. Each detected suspicious action is stored in a record called a [risk detection](/entra/id-protection/overview-identity-protection). Risk detections are recorded in Microsoft Entra security reports. For more information, read about the [users at risk security report](/entra/id-protection/overview-identity-protection) and the [risky sign-ins security report](/entra/id-protection/overview-identity-protection).
 
 ## Next steps
+See [Incident response overview](incident-response-overview.md) for guidance on responding to security incidents in your Azure environment.
 See [Azure security best practices and patterns](best-practices-and-patterns.md) for more security best practices to use when you’re designing, deploying, and managing your cloud solutions by using Azure.
-
+Learn about the [Microsoft Secure Future Initiative (SFI)](/security/zero-trust/sfi/secure-future-initiative-overview), Microsoft's internal security framework based on Zero Trust principles and aligned with NIST CSF 2.0.
 The following resources are available to provide more general information about Azure security and related Microsoft services:
 * [Azure Security Team Blog](/archive/blogs/azuresecurity/) - for up to date information on the latest in Azure Security
 * [Microsoft Security Response Center](https://technet.microsoft.com/library/dn440717.aspx) - where Microsoft security vulnerabilities, including issues with Azure, can be reported or via email to secure@microsoft.com

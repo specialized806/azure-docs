@@ -1,19 +1,20 @@
 ---
 title: Configure Azure IoT Edge for Linux on Windows on a DMZ
 description: How to configure the Azure IoT Edge for Linux (EFLOW) VM to support multiple network interface cards (NICs) and connect to multiple networks.
-author: PatAltimore
-ms.reviewer: fcabrera
-ms.service: iot-edge
-ms.custom: linux-related-content
+author: sethmanheim
+ms.author: sethm
+ms.service: azure-iot-edge
 services: iot-edge
-ms.topic: conceptual
-ms.date: 05/31/2024
-ms.author: patricka
+ms.topic: concept-article
+ms.date: 01/21/2025
+ms.custom:
+  - linux-related-content
+  - sfi-image-nochange
 ---
 
 # How to configure Azure IoT Edge for Linux on Windows on a DMZ
 
-[!INCLUDE [iot-edge-version-1.4](includes/iot-edge-version-1.4.md)]
+[!INCLUDE [iot-edge-version-all-supported](includes/iot-edge-version-all-supported.md)]
 
 This article describes how to configure the Azure IoT Edge for Linux (EFLOW) virtual machine (VM) to support multiple network interface cards (NICs) and connect to multiple networks. By enabling multiple NIC support, applications running on the EFLOW VM can communicate with devices connected to the offline network, while using IoT Edge to send data to the cloud.
 
@@ -28,7 +29,7 @@ Industrial IoT is overtaking the era of information technology (IT) and operatio
 
 Imagine a workflow scenario where you have a networking configuration divided into two different networks or zones. In the first zone, you may have a secure network defined as the offline network. The offline network has no internet connectivity and is limited to internal access. In the second zone, you may have a demilitarized zone (DMZ), in which you may have a couple of devices that have limited internet connectivity. When moving the workflow to run on the EFLOW VM, you may have problems accessing the different networks since the EFLOW VM by default has only one NIC attached.
 
-In this scenario, you have an environment with some devices like programmable logic controllers (PLCs) or open platform communications unified architecture (OPC UA)-compatible devices connected to the offline network, and you want to upload all the devices' information to Azure using the OPC Publisher module running on the EFLOW VM.
+In this scenario, you have an environment with some devices like programmable logic controllers (PLCs) or Open Platform Communications Unified Architecture (OPC UA)-compatible devices connected to the offline network, and you want to upload all the devices' information to Azure using the OPC Publisher module running on the EFLOW VM.
 
 Since the EFLOW host device and the PLC or OPC UA devices are physically connected to the offline network, you can use the [Azure IoT Edge for Linux on Windows virtual multiple NIC configurations](./how-to-configure-multiple-nics.md) to connect the EFLOW VM to the offline network. By using an *external virtual switch*, you can connect the EFLOW VM to the offline network and directly communicate with other offline devices.
 

@@ -3,12 +3,16 @@ title: Tutorial - Run Azure Functions in Azure Stream Analytics jobs
 description: "In this tutorial, you learn how to configure Azure Functions as an output sink to Stream Analytics jobs."
 author: ajetasin
 ms.author: ajetasi
-ms.service: stream-analytics
+ms.service: azure-stream-analytics
 ms.topic: tutorial
-ms.custom: "mvc, devx-track-csharp"
 ms.date: 03/29/2024
+ms.custom:
+  - mvc
+  - devx-track-csharp
+  - sfi-image-nochange
+  - sfi-ropc-nochange
 
-#Customer intent: As an IT admin/developer I want to run Azure Functions with Stream Analytics jobs.
+#Customer intent: As an IT admin or developer, I want to run Azure Functions with Stream Analytics jobs.
 ---
 
 # Tutorial: Run Azure Functions from Azure Stream Analytics jobs
@@ -32,20 +36,20 @@ In this tutorial, you learn how to:
 > * Run the Stream Analytics job
 > * Check Azure Cache for Redis for results
 
-If you don’t have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
+If you don’t have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 
 ## Prerequisites
 
 Before you start, make sure you've completed the following steps:
 
-* If you don't have an **Azure subscription**, create a [free account](https://azure.microsoft.com/free/).
+* If you don't have an **Azure subscription**, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * Download the **phone call event generator app**, [TelcoGenerator.zip](https://aka.ms/asatelcodatagen) from the Microsoft Download Center or get the source code from [GitHub](https://github.com/Azure/azure-stream-analytics/tree/master/DataGenerators/TelcoGeneratorCore).
 
 [!INCLUDE [event-generator-app](./includes/event-generator-app.md)]
 
 ## Create an Azure Cache for Redis instance
 
-1. Create a cache in Azure Cache for Redis by using the steps described in [Create a cache](../azure-cache-for-redis/cache-dotnet-how-to-use-azure-redis-cache.md#create-a-cache).
+1. Create a cache in Azure Cache for Redis by using the steps described in [Create a Azure Cache for Redis instance](/azure/azure-cache-for-redis/quickstart-create-redis).
 
 2. After you create the cache, under **Settings**, select **Access Keys**. Make a note of the **Primary connection string**.
 
@@ -59,7 +63,7 @@ Before you start, make sure you've completed the following steps:
    - [.NET 6.0](/dotnet/core/whats-new/dotnet-6)
    - StackExchange.Redis [2.2.8](https://www.nuget.org/packages/StackExchange.Redis/)
 
-2. Create a default HttpTrigger function app in **Visual Studio Code** by following this [tutorial](../azure-functions/create-first-function-vs-code-csharp.md?tabs=in-process). The following information is used: language: `C#`, runtime: `.NET 6` (under function v4), template:  `HTTP trigger`.
+2. Create a default HttpTrigger function app in **Visual Studio Code** by following this [tutorial](../azure-functions/how-to-create-function-vs-code.md?pivot=programming-language-csharp?tabs=in-process). The following information is used: language: `C#`, runtime: `.NET 6` (under function v4), template:  `HTTP trigger`.
 
 3. Install the Redis client library by running the following command in a terminal located in the project folder:
 
@@ -146,7 +150,7 @@ Before you start, make sure you've completed the following steps:
 
    When Stream Analytics receives the "HTTP Request Entity Too Large" exception from the function, it reduces the size of the batches it sends to functions. The following code ensures that Stream Analytics doesn't send oversized batches. Make sure that the maximum batch count and size values used in the function are consistent with the values entered in the Stream Analytics portal.
 
-5. The function can now be [published](../azure-functions/create-first-function-vs-code-csharp.md#publish-the-project-to-azure) to Azure.
+5. The function can now be [published](../azure-functions/how-to-create-function-vs-code.md?pivot=programming-language-csharp#create-the-function-app-in-azure) to Azure.
 
 6. Open the function on the Azure portal, and set [application settings](../azure-functions/functions-how-to-use-azure-function-app-settings.md?tabs=portal#settings) for `RedisConnectionString` and `RedisDatabaseIndex`.
 
@@ -234,7 +238,7 @@ log.LogInformation($"Object put in database. Key is {key} and value is {data[i].
 If a failure occurs while sending events to Azure Functions, Stream Analytics retries most operations. All http exceptions are retried until success except for http error 413 (entity too large). An entity too large error is treated as a data error that is subjected to the [retry or drop policy](stream-analytics-output-error-policy.md).
 
 > [!NOTE]
-> The timeout for HTTP requests from Stream Analytics to Azure Functions is set to 100 seconds. If your Azure Functions app takes more than 100 seconds to process a batch, Stream Analytics errors out and will rety for the batch.
+> The timeout for HTTP requests from Stream Analytics to Azure Functions is set to 100 seconds. If your Azure Functions app takes more than 100 seconds to process a batch, Stream Analytics errors out and will retry for the batch.
 
 Retrying for timeouts might result in duplicate events written to the output sink. When Stream Analytics retries for a failed batch, it retries for all the events in the batch. For example, consider a batch of 20 events that are sent to Azure Functions from Stream Analytics. Assume that Azure Functions takes 100 seconds to process the first 10 events in that batch. After 100 seconds, Stream Analytics suspends the request since it hasn't received a positive response from Azure Functions, and another request is sent for the same batch. The first 10 events in the batch are processed again by Azure Functions, which causes a duplicate.
 

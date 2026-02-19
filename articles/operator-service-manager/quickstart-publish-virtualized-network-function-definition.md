@@ -6,6 +6,8 @@ ms.author: sherryg
 ms.date: 10/19/2023
 ms.topic: quickstart
 ms.service: azure-operator-service-manager
+ms.custom:
+  - build-2025
 ---
 
 # Quickstart: Publish Ubuntu Virtual Machine (VM) as Virtual Network Function (VNF)
@@ -14,11 +16,11 @@ This quickstart describes how to use the `az aosm` Azure CLI extension to create
 
 ## Prerequisites
 
-- An Azure account with an active subscription is required. If you don't have an Azure subscription, follow the instructions here [Start free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) to create an account before you begin.
+- An Azure account with an active subscription is required. If you don't have an Azure subscription, follow the instructions here [Start free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) to create an account before you begin.
 
-- The Contributor role over this subscription in order to create a Resource Group, or an existing Resource Group where you have the Contributor role.
+- Complete the [Quickstart: Complete the prerequisites to deploy a Virtualized Network Function in Azure Operator Service Manager](quickstart-virtualized-network-function-prerequisites.md)
 
-- It's also assumed that you followed the prerequisites in [Quickstart: Complete the prerequisites to deploy a Virtualized Network Function in Azure Operator Service Manager](quickstart-virtualized-network-function-prerequisites.md)
+- An existing Resource Group where you have the Contributor role, or the Contributor role over this subscription so that the AOSM CLI extension can create the resource group.
 
 ## Create input file
 
@@ -32,6 +34,8 @@ Once you execute this command, a vnf-input.jsonc file is generated.
 
 > [!NOTE]
 > Edit the vnf-input.jsonc file, replacing it with the values shown in the sample. Save the file as **input-vnf-nfd.jsonc**.
+>
+> If you are using an existing resource group, change the `publisher_resource_group_name` field to match it.
 
 Here is a sample input-vnf-nfd.jsonc file:
 
@@ -134,11 +138,11 @@ These files are created in a subdirectory called **vnf-cli-output**:
 | Directory / File                             | Description                                                                                                                                                                                                                                                                                                                       |
 | -------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **vnf-cli-output/artifactManifest**          |                                                                                                                                                                                                                                                                                                                                   |
-| deploy.bicep                                 | Bicep template to create artifact manifest, with artifacts populated from input file                                                                                                                                                                                                                                              |
+| deploy.bicep                                 | Bicep file to create artifact manifest, with artifacts populated from input file                                                                                                                                                                                                                                              |
 | **vnf-cli-output/artifacts**                 |                                                                                                                                                                                                                                                                                                                                   |
 | artifacts.json                               | List of artifacts (images and ARM templates) to be uploaded on publish. Correlates with the artifact manifest                                                                                                                                                                                                                     |
 | **vnf-cli-output/base**                      |                                                                                                                                                                                                                                                                                                                                   |
-| deploy.bicep                                 | Bicep template to create underlying AOSM resources needed to spin up an NF (publisher, acr, nfdg)                                                                                                                                                                                                                                 |
+| deploy.bicep                                 | Bicep file to create underlying AOSM resources needed to spin up an NF (publisher, acr, nfdg)                                                                                                                                                                                                                                 |
 | **vnf-cli-output/nfDefinition**              |                                                                                                                                                                                                                                                                                                                                   |
 | deploy.bicep                                 | Bicep to create the Network Function Definition Version (NFDV), with network function application information from the ARM template provided in input file                                                                                                                                                                        |
 | deployParameters.json                    | Schema defining deployment parameters required to create a Network Function (NF) from this Network Function Definition Version (NFDV)                                                                                                                                                                                             |
@@ -154,6 +158,13 @@ These files are created in a subdirectory called **vnf-cli-output**:
 ## Publish the Network Function Definition and upload artifacts
 
 Execute the following command to publish the Network Function Definition (NFD) and upload the associated artifacts:
+
+> [!NOTE]
+> Publisher names must be unique within a region. It is quite likely that the 'ubuntu-publisher' defined in the example config file already exists.
+>
+>If you get an error saying "**A private publisher resource with the name 'ubuntu-publisher' already exists in the provided region**", edit the `publisher_name` field in the config file so that it is unique (e.g. add a random string suffix), re-run the `build` command (above), and then re-run this `publish` command.
+>
+>If you go on to create a network service design, you will need to use this new publisher name in the `resource_element_templates` array.
 
 ```azurecli
 az aosm nfd publish --build-output-folder vnf-cli-output --definition-type vnf

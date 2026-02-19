@@ -9,6 +9,9 @@ ms.topic: reference
 
 This article describes the Dell Edge 5200 appliance for OT sensors.
 
+> [!NOTE]
+> Legacy appliances are certified but aren't currently offered as pre-configured appliances.
+
 | Appliance characteristic |Details |
 |---------|---------|
 |**Hardware profile** | E500|
@@ -36,7 +39,7 @@ The following image shows the hardware elements on the Dell Edge 5200 that are u
 |Device access|	6x USB 3.0|
 |Power|	DC Input 12–24 V (±10% tolerance) <br>AC Input Optional: 180 W / 220 W, 60 W (for PoE) external AC/DC adapter|
 
-## Appliance BOM
+## Dell Edge 5200 Bill of materials
 
 |Quantity|PN|Description|
 |:----|:----|:----|
@@ -50,9 +53,8 @@ The following image shows the hardware elements on the Dell Edge 5200 that are u
 
 ## Next steps
 
-Continue understanding system requirements for physical or virtual appliances. For more information, see [Which appliances do I need?](../ot-appliance-sizing.md).
+Continue understanding system requirements for physical or virtual appliances. For more information, see [Which appliances do I need?](../ot-appliance-sizing.md)
 
 Then, use any of the following procedures to continue:
 
 - [Download software for an OT sensor](../ot-deploy/install-software-ot-sensor.md#download-software-files-from-the-azure-portal)
-- [Download software files for an on-premises management console](../legacy-central-management/install-software-on-premises-management-console.md#download-software-files-from-the-azure-portal)

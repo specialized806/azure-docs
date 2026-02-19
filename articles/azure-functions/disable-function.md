@@ -12,7 +12,8 @@ This article explains how to disable a function in Azure Functions. To *disable*
 
 You can disable a function in place by creating an app setting in the format `AzureWebJobs.<FUNCTION_NAME>.Disabled` set to `true`. You can create and modify this application setting in several ways, including by using the [Azure CLI](/cli/azure/), [Azure PowerShell](/powershell/azure/), and from your function's **Overview** tab in the [Azure portal](https://portal.azure.com). 
 
-Changes to application settings cause your function app to restart. For more information, see [App settings reference for Azure Functions](functions-app-settings.md).
+> [!NOTE]  
+> Changing application settings causes your function app to restart by default across all hosting plans. For zero-downtime deployments when changing settings, use the [Flex Consumption plan](flex-consumption-plan.md) with [rolling updates as the site update strategy](flex-consumption-site-updates.md). For other hosting plans, see [optimize deployments](functions-best-practices.md#optimize-deployments) for guidance on minimizing downtime.
 
 ## Disable a function
 
@@ -99,11 +100,11 @@ To learn more, see [Azure Functions Deployment slots](functions-deployment-slots
 
 ## Run a disabled function
 
-You can still cause a disabled function to run by supplying the [master key](functions-bindings-http-webhook-trigger.md#master-key-admin-level) in a REST request to the endpoint URL of the disabled function. In this way, you can develop and validate functions in Azure in a disabled state while preventing them from being accessed by others. Using any other type of key in the request returns an HTTP 404 response. 
+You can still cause a disabled function to run by supplying the master access key (`_master`) in a REST request to the endpoint URL of the disabled function. In this way, you can develop and validate functions in Azure in a disabled state while preventing them from being accessed by others. Using any other type of key in the request returns an HTTP 404 response. 
 
 [!INCLUDE [functions-master-key-caution](../../includes/functions-master-key-caution.md)]
 
-To learn more about the master key, see [Obtaining keys](functions-bindings-http-webhook-trigger.md#obtaining-keys). To learn more about calling non-HTTP triggered functions, see [Manually run a non HTTP-triggered function](functions-manually-run-non-http.md).
+To learn more about the master key, see [Understand keys](function-keys-how-to.md#understand-keys). To learn more about calling non-HTTP triggered functions, see [Manually run a non HTTP-triggered function](functions-manually-run-non-http.md).
 
 ## Disable functions locally 
 

@@ -2,22 +2,27 @@
 title: 'Deploy a Blazor app on Azure Static Web Apps'
 description: Learn to deploy a Blazor app on Azure Static Web Apps.
 services: static-web-apps
-ms.custom: engagement-fy23
-author: craigshoemaker
-ms.service: static-web-apps
+author: cjk7989
+ms.service: azure-static-web-apps
 ms.topic: tutorial
-ms.date: 07/21/2023
-ms.author: cshoe
+ms.date: 09/27/2024
+ms.author: jikunchen
+ms.custom:
+  - engagement-fy23
+  - sfi-image-nochange
 ---
 
 # Deploy a Blazor app on Azure Static Web Apps
 
 Azure Static Web Apps publishes a website to a production environment by building apps from a GitHub repository supported by a serverless backend. The following tutorial shows how to deploy C# Blazor WebAssembly app that displays weather data returned by a serverless API.
 
+> [!NOTE]
+> For steps to deploy a Blazor app via Visual Studio, see [Deploy a Blazor app on Azure Static Web Apps](/aspnet/core/blazor/host-and-deploy/webassembly).
+
 ## Prerequisites
 
 - [GitHub](https://github.com) account
-- [Azure](https://portal.azure.com) account. If you don't have an Azure subscription, [create a free trial account](https://azure.microsoft.com/free).
+- [Azure](https://portal.azure.com) account. If you don't have an Azure subscription, [create a free trial account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 ## 1. Create a repository
 

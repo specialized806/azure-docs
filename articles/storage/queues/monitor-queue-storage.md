@@ -3,12 +3,13 @@ title: Monitor Azure Queue Storage
 description: Start here to learn how to monitor Azure Queue Storage.
 ms.date: 02/12/2024
 ms.custom: horz-monitor, devx-track-csharp, devx-track-azurepowershell
-ms.topic: conceptual
+ms.topic: concept-article
 author: normesta
 ms.author: normesta
 ms.service: azure-queue-storage
 ms.devlang: csharp
 # ms.devlang: csharp, powershell, azurecli
+# Customer intent: "As a cloud administrator, I want to monitor Azure Queue Storage metrics and logs, so that I can ensure optimal performance and troubleshoot any issues effectively."
 ---
 
 # Monitor Azure Queue Storage
@@ -178,7 +179,7 @@ The following example shows how to list a metric definition at the account level
 
         foreach (var metricDefinition in metricDefinitions)
         {
-            // Enumrate metric definition:
+            // Enumerate metric definition:
             //    Id
             //    ResourceId
             //    Name
@@ -225,7 +226,7 @@ The following example shows how to read `UsedCapacity` data at the account level
 
         foreach (var metric in Response.Value)
         {
-            // Enumrate metric value
+            // Enumerate metric value
             //    Id
             //    Name
             //    Type
@@ -242,7 +243,7 @@ The following example shows how to read `UsedCapacity` data at the account level
 
 For multidimensional metrics, you need to define metadata filters if you want to read metric data on specific dimension values.
 
-The following example shows how to read metric data on the metric supporting multidimension:
+The following example shows how to read metric data on the metric supporting multidimensional values:
 
 ```csharp
     public static async Task ReadStorageMetricValueTest()
@@ -278,7 +279,7 @@ The following example shows how to read metric data on the metric supporting mul
 
         foreach (var metric in Response.Value)
         {
-            //Enumrate metric value
+            // Enumerate metric value
             //    Id
             //    Name
             //    Type
@@ -327,7 +328,7 @@ Requests made by the Queue Storage service itself, such as log creation or delet
 <!-- ### Sample Kusto queries. Required section. If you have sample Kusto queries for your service, add them after the include. -->
 [!INCLUDE [horz-monitor-kusto-queries](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-kusto-queries.md)]
 <!-- Add sample Kusto queries for your service here. -->
-Here are some queries that you can enter in the **Log search** bar to help you monitor your Queue Storage. These queries work with the [new language](../../azure-monitor/logs/log-query-overview.md). For more information, see [Log Analytics tutorial](/azure/azure-monitor/logs/log-analytics-tutorial).
+Here are some queries that you can enter in the **Log search** bar to help you monitor your Queue Storage. These queries work with the [new language](/azure/azure-monitor/logs/log-query-overview). For more information, see [Log Analytics tutorial](/azure/azure-monitor/logs/log-analytics-tutorial).
 
 - To list the 10 most common errors over the last three days.
 

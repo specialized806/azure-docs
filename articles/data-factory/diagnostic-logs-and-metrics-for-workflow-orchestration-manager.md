@@ -2,28 +2,21 @@
 title: Diagnostics logs and metrics for Workflow Orchestration Manager
 titleSuffix: Azure Data Factory
 description: This article explains how to use diagnostic logs and metrics to monitor the Workflow Orchestration Manager integration runtime.
-ms.service: data-factory
 ms.topic: how-to
 author: nabhishek
 ms.author: abnarain
-ms.date: 09/28/2023
+ms.date: 10/03/2024
+ms.subservice: orchestration
+ms.custom: sfi-image-nochange
 ---
 
 # Diagnostics logs and metrics for Workflow Orchestration Manager
 
-> [!NOTE]
-> Workflow Orchestration Manager is powered by Apache Airflow.
-
-This article walks you through the steps to:
-
-- Enable diagnostics logs and metrics for Workflow Orchestration Manager in Azure Data Factory.
-- View logs and metrics.
-- Run a query.
-- Monitor metrics and set the alert system in directed acyclic graph (DAG) failure.
+[!INCLUDE[apache-airflow-notification](includes/apache-airflow-notification.md)]
 
 ## Prerequisites
 
-You need an Azure subscription. If you don't have an Azure subscription, create a [free Azure account](https://azure.microsoft.com/free/) before you begin.
+You need an Azure subscription. If you don't have an Azure subscription, create a [free Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 
 ## Enable diagnostics logs and metrics for Workflow Orchestration Manager
 
@@ -88,7 +81,7 @@ Similarly, you can create custom queries according to your needs by using any ta
 
 For more information, see:
 
-- [Log Analytics tutorial](../azure-monitor/logs/log-analytics-tutorial.md)
+- [Log Analytics tutorial](/azure/azure-monitor/logs/log-analytics-tutorial)
 - [Kusto Query Language (KQL) overview - Azure Data Explorer | Microsoft Learn](/azure/data-explorer/kusto/query/)
 
 ## Monitor metrics
