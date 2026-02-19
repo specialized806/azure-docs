@@ -6,7 +6,6 @@ ms.author: halkazwini
 ms.service: azure-web-application-firewall
 ms.topic: concept-article
 ms.date: 02/20/2026
-
 ---
 
 # Azure Application Gateway Web Application Firewall (WAF) insights dashboards
@@ -64,7 +63,7 @@ The **WAF logs** view gives a detailed request-level perspective sourced from th
 
 The **WAF metrics** view provides near real-time visibility into WAF activity using Azure Monitor metrics. It includes visualizations showing total WAF requests, managed rule matches by association (both blocked and non-blocked), JS challenge request counts, and custom rule matches. This data helps detect sudden traffic surges, monitor rule behavior, evaluate JS challenge enforcement, and verify correct policy configuration. Metrics offer an operational perspective that complements the detailed forensic insights provided by logs.
 
-:::image type="content" source="../media/insights/insights-dashboard-waf-metrics.png" alt-text="Screenshot of the monitor tab of the WAF insights dashboard." lightbox="../media/insights/insights-dashboard-waf-metrics.png":::
+:::image type="content" source="../media/insights/insights-dashboard-waf-metrics.png" alt-text="Screenshot of the Azure WAF metrics tab of the WAF insights dashboard." lightbox="../media/insights/insights-dashboard-waf-metrics.png":::
 
 ### Triage tab
 
