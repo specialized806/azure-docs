@@ -121,7 +121,7 @@ The following table describes best practices to consider for OBO flow scenarios:
 | Concept | Description |
 |---------|-------------|
 | Mixed identity patterns | Set up OBO authorization for read-only operations. Use app-only authorization for write operations with explicit confirmation. |
-| Clear feedback | Instruct the agent to briefly summarize permission errors and suggest remediation like `You might not have access to this mailbox.` |
+| Clear feedback | Instruct the agent loop to briefly summarize permission errors and suggest remediation like `You might not have access to this mailbox.` |
 | Auditing and logging | Track and analyze the tools that run and the identities they use by reviewing the workflow run history and metrics. |
 
 ## Part 1 - Set up OBO flow on tool actions
@@ -180,7 +180,7 @@ The following steps show how to set up OBO authorization after you select an OBO
 
    1. In the **Description** box, enter a concise but useful tool description that describes the purpose and guidance about the data that the tool works on.
 
-      The tool description helps the agent choose the correct tool when fulfilling requested tasks.
+      The tool description helps the agent loop choose the correct tool when fulfilling requested tasks.
 
       This example uses `Gets the 10 most recent emails from the Inbox for the signed-in user.`
 
@@ -192,7 +192,7 @@ The following steps show how to set up OBO authorization after you select an OBO
 
 ## Part 2 - Test OBO flow with one user
 
-The first time when the agent calls a tool that runs an action set up with per-user connections, the chat user gets an authentication prompt to sign in with their credentials. After the user signs in, reauthentication is required for later calls to the same tool with the same per-user connection.
+The first time when the agent loop calls a tool that runs an action set up with per-user connections, the chat user gets an authentication prompt to sign in with their credentials. After the user signs in, reauthentication is required for later calls to the same tool with the same per-user connection.
 
 The following steps describe how to confirm that your OBO flow setup works as expected:
 
@@ -204,7 +204,7 @@ The following steps describe how to confirm that your OBO flow setup works as ex
 
    This example asks the following question: `What unread emails do I have?`
 
-   If the agent is calling the tool for the first time, the chat interface prompts you to sign in for authentication, for example:
+   If the agent loop is calling the tool for the first time, the chat interface prompts you to sign in for authentication, for example:
 
    :::image type="content" source="media/set-up-on-behalf-of-user-flow/chat-sign-in-prompt.png" alt-text="Screenshot shows internal chat interface with test question and authentication prompt." lightbox="media/set-up-on-behalf-of-user-flow/chat-sign-in-prompt.png":::
 
@@ -214,7 +214,7 @@ The following steps describe how to confirm that your OBO flow setup works as ex
 
    :::image type="content" source="media/set-up-on-behalf-of-user-flow/chat-authentication-success.png" alt-text="Screenshot shows internal chat interface with successful authentication message." lightbox="media/set-up-on-behalf-of-user-flow/chat-authentication-success.png":::
 
-   The agent now returns a summary with unread emails in the chat interface.
+   The agent loop now returns a summary with unread emails in the chat interface.
 
 ## Part 3 - Test OBO flow with two different users
 
@@ -222,7 +222,7 @@ After you test your OBO flow with a single user, try testing with two users that
 
 1. Follow the [general steps](set-up-authentication-agent-workflows.md#external-chat-client) to open the external chat client  outside the Azure portal, 
 
-1. In the chat interface, start a session as a user with permissions, and ask the agent to perform a task that requires authorization.
+1. In the chat interface, start a session as a user with permissions, and ask the agent loop to perform a task that requires authorization.
 
    This example asks the same question from the single-user scenario: `What unread emails do I have?`
 
