@@ -63,7 +63,7 @@ The following steps show how to generate a **Platform Landing Zone** using Azure
 
 This section describes how to generate a Platform Landing Zone in Azure Migrate and review the generated artifacts in Visual Studio Code.
 
-1. In the Azure portal, open **Azure Migrate**, and then navigate to your Azure Migrate project.
+1. In the Azure portal, open **Azure Migrate** and then go to your Azure Migrate project.
 1. Start the **Azure Migrate Agent** experience.
 1. Ask the agent to create a Platform Landing Zone by entering:
     *I want to create a Platform Landing Zone (or PLZ)*.
@@ -89,11 +89,11 @@ To iterate on the platform landing zone using natural language prompts in Copilo
 
 #### Install and configure the Azure MCP Server
 
-1. Open **Visual Studio Code**.
+1. Open the **Visual Studio Code**.
 1. Go to **Extensions** and install the **Azure MCP Server** extension.
 1. If prompted, select **Switch to Pre-Release Version**.
 1. Reload **Visual Studio Code** or restart extensions.
-1. Open **Copilot Chat** and select Tools.
+1. Open the **Copilot Chat** and select Tools.
 1. Enable **Azure MCP**, and then select **Update tools**.
 1. Verify that the `azuremigrate` tool appears in the tools list.
 
@@ -142,8 +142,8 @@ A typical deployment workflow includes:
 
 ## Design document generation
 
-The design document included in the platform landing zone package uses template-based approach. Azure Migrate generates the document based on the selected platform landing zone configuration you select, such as region type, network architecture, firewall type, and region selection. The output is a customized Markdown document that matches your chosen configuration.
+The design document included in the platform landing zone package uses a template-based approach. Azure Migrate generates the document based on the selected platform landing zone configuration you select, such as region type, network architecture, firewall type, and region selection. The output is a customized Markdown document that matches your chosen configuration.
 
 ## Next steps
 
-After deploying the Platform Landing Zone, you can start creating [assessments](concepts-overview.md) or proceed with [migration](server-migrate-overview.md).
+After deploying the Platform Landing Zone, you can start creating [assessments](concepts-overview.md) or proceeding with [migration](server-migrate-overview.md).
