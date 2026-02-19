@@ -92,15 +92,9 @@ flowchart TB
     id1-- Issued by -- -> id2
 -->
 
-The root certificate authority (CA) is the [DigiCert Global Root G2](https://www.digicert.com/kb/digicert-root-certificates.htm) certificate. DigiCert signs this root certificate, and it's widely trusted and stored in many operating systems. For example, both Ubuntu and Windows include it in the default certificate store.
+The root certificate authority (CA) is the [DigiCert Global Root G2](https://www.digicert.com/kb/digicert-root-certificates.htm) certificate. DigiCert signs this root certificate, and it's widely trusted and stored in many operating systems. For example, Ubuntu includes it in the default certificate store:
 
-Windows certificate store:
-
-:::image type="content" source="./media/iot-edge-certs/baltimore-windows.png" alt-text="Screenshot showing DigiCert Global Root G2 certificate listed in the Windows certificate store." lightbox="./media/iot-edge-certs/baltimore-windows.png":::
-
-Ubuntu certificate store:
-
-:::image type="content" source="./media/iot-edge-certs/ubuntu-baltimore.png" alt-text="Screenshot showing DigiCert Global Root G2 certificate listed in the Ubuntu certificate store." lightbox="./media/iot-edge-certs/ubuntu-baltimore.png":::
+:::image type="content" source="./media/iot-edge-certs/ubuntu-digicert.png" alt-text="Screenshot showing DigiCert Global Root G2 certificate listed in the Ubuntu certificate store." lightbox="./media/iot-edge-certs/ubuntu-digicert.png":::
 
 When a device checks for the *DigiCert Global Root G2* certificate, it's already in the OS. From the *EdgeGateway* perspective, since the certificate chain from *ContosoIotHub* is signed by a root CA the OS trusts, the certificate is trustworthy. This certificate is called the **IoT Hub server certificate**. For more about the IoT Hub server certificate, see [Transport Layer Security (TLS) support in IoT Hub](../iot-hub/iot-hub-tls-support.md).
 
