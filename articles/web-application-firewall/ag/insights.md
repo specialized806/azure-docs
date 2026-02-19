@@ -5,9 +5,8 @@ author: halkazwini
 ms.author: halkazwini
 ms.service: azure-web-application-firewall
 ms.topic: concept-article
-ms.date: 09/30/2025
+ms.date: 02/20/2026
 
-#CustomerIntent: As a developer, I want to secure my containerized applications so that I can protect them from web vulnerabilities.
 ---
 
 # Azure Application Gateway Web Application Firewall (WAF) insights dashboards

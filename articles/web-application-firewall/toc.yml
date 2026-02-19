@@ -202,6 +202,8 @@ items:
       href: ./ag/best-practices.md
     - name: Monitoring and logging
       href: ./ag/application-gateway-waf-metrics.md
+    - name: WAF insights dashboards
+      href: ./ag/insights.md
     - name: Resource logs
       href: ./ag/web-application-firewall-logs.md
     - name: Log Analytics
