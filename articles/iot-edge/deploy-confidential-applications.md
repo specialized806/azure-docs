@@ -50,7 +50,7 @@ For more information, see [Getting started with Open Enclave for the Scalys Trus
 
 ## Develop and deploy
 
-When you're ready to develop and deploy your confidential application, the [Microsoft Open Enclave](https://marketplace.visualstudio.com/items?itemName=ms-iot.msiot-vscode-openenclave) extension for Visual Studio Code can help. You can use either Linux or Windows as your development machine to develop modules for the TrustBox.
+When you're ready to develop and deploy your confidential application, the [Open Enclave SDK](https://github.com/openenclave/openenclave) can help. You can use either Linux or Windows as your development machine to develop modules for the TrustBox.
 
 ## Next steps
 
