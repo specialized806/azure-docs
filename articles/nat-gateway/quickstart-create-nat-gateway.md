@@ -402,7 +402,8 @@ In this section, you create the NAT gateway resource and associate it with the s
     | **Instance details** |  |
     | NAT gateway name | Enter **nat-gateway**. |
     | Region | Select **(US) East US 2**. |
-    | Availability Zone | Select **No Zone**. |
+    | SKU | Select **Standard**. |
+    | Availability zone | Select **No Zone**. |
     | TCP idle timeout (minutes) | Leave the default of **4**. |
 
     For information about availability zones and NAT gateway, see [Reliability in Azure NAT Gateway](/azure/reliability/reliability-nat-gateway).
@@ -415,7 +416,7 @@ In this section, you create the NAT gateway resource and associate it with the s
     | --- | --- |
     | Public IP addresses | Select **Create a new public IP address**. </br> In **Name**, enter **public-ip-nat**. </br> Select **OK**. |
 
-1. Select the **Subnet** tab, or select **Next: Subnet**.
+1. Select the **Networking** tab, or select **Next: Networking**.
 
 1. In **Virtual network**, select **vnet-1**.
 
