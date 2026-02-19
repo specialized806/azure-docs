@@ -60,6 +60,8 @@ The Monitor tab provides visibility and reporting through two main views – **W
 
 The **WAF logs** view gives a detailed request-level perspective sourced from the AzureDiagnostics table in LAW. It includes visualizations such as total WAF requests by rule group, WAF actions by type (for example, Blocked), top blocked URIs, top triggered rules, rules over time, and details of triggered rule events with timestamps, hosts, AppGW instances, and client IPs. Analysts can also correlate data by tracking ID, review top offending IPs, and inspect related requests to detect targeted attacks, validate rule effectiveness, and support audits or compliance reviews.
 
+:::image type="content" source="../media/insights/insights-dashboard-monitor-tab.png" alt-text="Screenshot of the monitor tab of the WAF insights dashboard." lightbox="../media/insights/insights-dashboard-monitor-tab.png":::
+
 The **WAF metrics** view provides near real-time visibility into WAF activity using Azure Monitor metrics. It includes visualizations showing total WAF requests, managed rule matches by association (both blocked and non-blocked), JS challenge request counts, and custom rule matches. This data helps detect sudden traffic surges, monitor rule behavior, evaluate JS challenge enforcement, and verify correct policy configuration. Metrics offer an operational perspective that complements the detailed forensic insights provided by logs.
 
 ### Triage tab
@@ -71,10 +73,11 @@ Except for the first visualization, each component dynamically filters based on 
 
 In **Triage by Rule**, investigation starts from a triggered rule. The flow begins with selecting the WAF policy scope (Listener, URI Path, or Global). Next, you can view an overview of triggered rules, including rule ID, action, ruleset version, scope, and the number of impacted requests. From there, the investigation drills down to the affected hosts, URLs, and individual transactions. This approach helps identify which rules are responsible for most of the blocked traffic, detect false positives, and understand which hosts and URLs are most affected.
 
+:::image type="content" source="../media/insights/insights-dashboard-triage-tab.png" alt-text="Screenshot of the triage tab of the WAF insights dashboard." lightbox="../media/insights/insights-dashboard-triage-tab.png":::
+
 #### Triage by URL
 
 In **Triage by URL**, investigation begins with a URL path. Analysts select the relevant Application Gateway and policy scope, identify the hosts or IPs targeting specific URLs, and view the rules triggered for those impacted requests. This approach is useful for investigating suspicious activity on sensitive endpoints such as login pages, verifying whether blocked requests are legitimate or malicious, and mapping attack patterns across URLs.
-
 
 ## Summary of dashboards
 
