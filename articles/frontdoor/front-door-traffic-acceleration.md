@@ -6,7 +6,7 @@ author: johndowns
 ms.author: jodowns
 ms.service: azure-frontdoor
 ms.topic: concept-article
-ms.date: 02/19/2026
+ms.date: 02/20/2026
 zone_pivot_groups: front-door-tiers
 ---
 
@@ -34,7 +34,7 @@ Front Door organizes its edge locations into primary and fallback *rings*. The o
 
 The outer ring is the preferred target for all traffic, and the inner ring is designed to handle traffic overflow from the outer ring. Each frontend host or domain served by Front Door gets assigned primary and fallback VIPs (Virtual Internet Protocol addresses), which gets announced by edge locations in both the inner and outer ring.
 
-Front Door's architecture ensures that requests from your end users always reach the closest Front Door edge locations. If the preferred Front Door edge location is unhealthy, all traffic automatically moves to the next closest edge location.
+Front Door's architecture ensures that requests from your end users always reach the closest Front Door edge locations. If the preferred Front Door edge location is unhealthy, all traffic automatically moves to the next optimal edge location.
 
 ::: zone-end
 
