@@ -14,10 +14,11 @@ Use the MCP resource trigger to define resource endpoints in a [Model Context Pr
 
 For information on setup and configuration details, see the [overview](functions-bindings-mcp.md).
 
+::: zone pivot="programming-language-csharp,programming-language-python,programming-language-typescript"
 ## Example 1
 
 Example 1 shows how to leverage resource to implement the UI element of MCP Apps. 
-
+::: zone-end
 ::: zone pivot="programming-language-csharp"  
 >[!NOTE]  
 > For C#, the Azure Functions MCP extension supports only the [isolated worker model](dotnet-isolated-process-guide.md). 
@@ -207,12 +208,9 @@ app.mcpTool("getWeather", {
 ```
 
 For the complete code example, see [weatherMcpApp.ts](https://github.com/Azure-Samples/remote-mcp-functions-typescript/blob/McpAppDemo/src/functions/weatherMcpApp.ts).
-::: zone-end  
-
-::: zone pivot="programming-language-python"
 
 > [!NOTE]
-> The MCP resource trigger for Python requires version `1.25.0b3` or later of the [`azure-functions`](https://pypi.org/project/azure-functions/1.25.0b3/) package, which is in _preview_ extension bundle version `[4.32.0, 5.0.0)`. Check `host.json` to make sure the correct bundle version is specified:
+> The MCP resource trigger for TypeScript requires version `4.12.0-preview.2` or later of the [`@azure/functions`](https://www.npmjs.com/package/@azure/functions/v/4.12.0-preview.2) package, which is in _preview_ extension bundle version `[4.32.0, 5.0.0)`. Check `host.json` to make sure the correct bundle version is specified:
 >
 > ```json
 > "extensionBundle": {
@@ -220,6 +218,10 @@ For the complete code example, see [weatherMcpApp.ts](https://github.com/Azure-S
 >   "version": "[4.32.0, 5.0.0)"
 > }
 > ```
+
+::: zone-end  
+
+::: zone pivot="programming-language-python"
 
 The following code registers a resource named `Weather Widget` that serves an interactive weather display as bundled HTML content. The resource uses the `ui://` scheme to indicate it's an MCP App UI resource.
 
@@ -279,6 +281,17 @@ def get_weather(location: str) -> Dict[str, Any]:
 ```
 
 For the complete code example, see [function_app.py](https://github.com/Azure-Samples/remote-mcp-functions-python/blob/main/src).
+
+> [!NOTE]
+> The MCP resource trigger for Python requires version `1.25.0b3` or later of the [`azure-functions`](https://pypi.org/project/azure-functions/1.25.0b3/) package, which is in _preview_ extension bundle version `[4.32.0, 5.0.0)`. Check `host.json` to make sure the correct bundle version is specified:
+>
+> ```json
+> "extensionBundle": {
+>   "id": "Microsoft.Azure.Functions.ExtensionBundle.Preview",
+>   "version": "[4.32.0, 5.0.0)"
+> }
+> ```
+
 ::: zone-end
 
 [!INCLUDE [functions-mcp-extension-powershell-note](../../includes/functions-mcp-extension-powershell-note.md)]  
@@ -310,18 +323,8 @@ You can use the `[McpMetadata]` attribute to provide additional metadata for res
 See [Usage](#usage) to learn how the resource trigger provides data to your function.
 
 ::: zone-end  
-::: zone pivot="programming-language-java"  
-
-## Annotations
-
-Annotations for Java aren't currently available.
-
-::: zone-end  
 ::: zone pivot="programming-language-python"
 ## Decorators
-
-> [!NOTE]
-> Applies only to the Python v2 programming model.
 
 The following MCP resource trigger properties are supported on `mcp_resource_trigger`:
 
@@ -336,19 +339,12 @@ The following MCP resource trigger properties are supported on `mcp_resource_tri
 | **size** | The expected size of the resource content in bytes, if known. |
 | **metadata** | A JSON-serialized string of additional metadata for the resource. |
 
+> [!NOTE]
+> Decorators are only available in the Python v2 programming model.
+
 ::: zone-end
 ::: zone pivot="programming-language-javascript,programming-language-typescript"  
 ## Configuration
-
-> [!NOTE]
-> The MCP resource trigger for TypeScript requires version `4.12.0-preview.2` or later of the [`@azure/functions`](https://www.npmjs.com/package/@azure/functions/v/4.12.0-preview.2) package, which is in _preview_ extension bundle version `[4.32.0, 5.0.0)`. Check `host.json` to make sure the correct bundle version is specified:
->
-> ```json
-> "extensionBundle": {
->   "id": "Microsoft.Azure.Functions.ExtensionBundle.Preview",
->   "version": "[4.32.0, 5.0.0)"
-> }
-> ```
 
 The trigger supports these binding options, which are defined in your code: 
 
@@ -366,13 +362,13 @@ The trigger supports these binding options, which are defined in your code:
 
 ::: zone-end
 
-::: zone pivot="programming-language-csharp,programming-language-java,programming-language-python,programming-language-javascript,programming-language-typescript"
+::: zone pivot="programming-language-csharp,programming-language-python,programming-language-typescript"
 
 See the [Example section](#example-1) for complete examples.
 
-::: zone-end
-
 ## Usage
+
+::: zone-end
 
 ::: zone pivot="programming-language-csharp"  
 
@@ -391,12 +387,6 @@ The `ResourceInvocationContext` type provides the following properties:
 | **Uri** | `string` | The URI of the resource being requested. |
 | **SessionId** | `string?` | The session ID associated with the current resource invocation. |
 | **Transport** | `Transport?` | Transport information for the current invocation. |
-
-::: zone-end
-
-::: zone pivot="programming-language-java"
-
-Usage details for Java aren't currently available. 
 
 ::: zone-end
 
@@ -495,12 +485,18 @@ The `SessionId` property on `ResourceInvocationContext` identifies the MCP sessi
 
 ::: zone-end
 
+::: zone pivot="programming-language-csharp,programming-language-python,programming-language-typescript"
+
 For more information, see [Examples](#example-1).
 
 ## host.json settings
 
 The host.json file contains settings that control MCP trigger behaviors. See the [host.json settings](functions-bindings-mcp.md#hostjson-settings) section for details regarding available settings.
 
+::: zone-end
+
 ## Related articles
 
 [MCP tool trigger for Azure Functions](functions-bindings-mcp-tool-trigger.md)
+
+
