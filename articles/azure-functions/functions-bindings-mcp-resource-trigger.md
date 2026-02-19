@@ -14,14 +14,17 @@ Use the MCP resource trigger to define resource endpoints in a [Model Context Pr
 
 For information on setup and configuration details, see the [overview](functions-bindings-mcp.md).
 
+::: zone pivot="programming-language-csharp"
+>[!NOTE]  
+> For C#, the Azure Functions MCP extension supports only the [isolated worker model](dotnet-isolated-process-guide.md). 
+::: zone-end
+
 ::: zone pivot="programming-language-csharp,programming-language-python,programming-language-typescript"
 ## Example 1
 
 Example 1 shows how to leverage resource to implement the UI element of MCP Apps. 
 ::: zone-end
 ::: zone pivot="programming-language-csharp"  
->[!NOTE]  
-> For C#, the Azure Functions MCP extension supports only the [isolated worker model](dotnet-isolated-process-guide.md). 
 
 The following code creates an endpoint to expose a resource named `Weather Widget` that serves an interactive weather display as bundled HTML content. The resource uses the `ui://` scheme to indicate it's an MCP App UI resource.
 
