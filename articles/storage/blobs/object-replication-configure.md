@@ -358,7 +358,7 @@ N/A.
 
 #### [REST API](#tab/rest-api)
 
-Users can use existing REST APIs: [Object Replication Policies - Create Or Update - REST API](/api/storagerp/object-replication-policies/create-or-update) to configure policies for replicating tags set on the Blobs. 
+Users can use existing REST APIs: [Object Replication Policies - Create Or Update - REST API](/rest/api/storagerp/object-replication-policies/create-or-update) to configure policies for replicating tags set on the Blobs. 
 
 Simply add the following line ``` “tagsReplication”: { “enabled”: true }``` when creating or updating the replication 
 rules on the source account.
