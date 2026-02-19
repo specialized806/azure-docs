@@ -43,6 +43,7 @@ Currently, Azure Managed Redis exposes two metrics in **Insights** under **Monit
 
 The **CPU** metric indicates the CPU usage for the node that hosts the cache. The CPU metric also includes processes that aren't strictly Redis server processes. CPU includes background processes for anti-malware and others. As a result, the CPU metric can sometimes spike and might not be a perfect indicator of CPU usage for the Redis server.
 
+The **Server Load** metric reflects the Redis server’s own assessment of overall load and is generally a better indicator of cache saturation than **CPU**, especially when you want to understand Redis-specific workload pressure.
 ### Interpreting Server Load on Small SKUs
 
 On Azure Managed Redis SKUs backed by 2-vCPU VMs (B0–B5, X3, and M10), percentage-based metrics like **Server Load** and **CPU** are inherently more sensitive. A single short-lived background thread can consume a significant percentage of total CPU, causing metrics to appear elevated even when actual workload is light. As a result, these metrics can overestimate actual load on small SKUs and may not indicate workload saturation.
