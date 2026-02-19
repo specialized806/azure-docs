@@ -6,7 +6,7 @@ ms.topic: conceptual
 ms.service: azure-container-apps
 ms.collection: ce-skilling-ai-copilot
 ms.custom: cross-service
-ms.date: 02/18/2026
+ms.date: 02/19/2026
 author: craigshoemaker
 ms.author: cshoe
 ms.reviewer: cshoe
@@ -37,7 +37,7 @@ Add an MCP endpoint to an existing or new web app. App Service supports code-bas
 
 ### Azure Functions
 
-Map function triggers to MCP tools using the [Azure Functions MCP extension](/azure/azure-functions/scenario-custom-remote-mcp-server). Azure Functions is optimized for stateless, event-driven tool execution with per-invocation pricing.
+Map function triggers to MCP tools by using the [Azure Functions MCP extension](/azure/azure-functions/scenario-custom-remote-mcp-server). Azure Functions is optimized for stateless, event-driven tool execution with per-invocation pricing.
 
 ## Compare hosting options
 
@@ -60,7 +60,7 @@ The following table summarizes the key differences between hosting options.
 
 Use the following guidance to narrow your decision based on common workload patterns.
 
-### Build a custom MCP server
+### Build a custom MCP server with Azure
 
 **Recommended: Azure Container Apps (standalone) or Azure App Service**
 
@@ -82,10 +82,11 @@ Tutorials:
 
 Session pools with MCP enabled provide Hyper-V-isolated environments for running untrusted or LLM-generated code. The platform manages the MCP server, so you don't write or deploy server code. The built-in tools cover code execution scenarios without custom development:
 
-- **Shell pools**: `launchShell`, `runShellCommandInRemoteEnvironment`
-- **Python pools**: `launchPythonEnvironment`, `runPythonCodeInRemoteEnvironment`
+- `launchShell`: Creates a new environment
+- `runShellCommandInRemoteEnvironment`: Executes shell commands
+- `runPythonCodeInRemoteEnvironment`: Executes Python code
 
-Dynamic sessions maintain prewarmed instances, so there's no cold-start latency.
+Dynamic sessions maintain prewarmed instances, so you don't experience cold-start latency.
 
 Tutorials:
 

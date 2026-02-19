@@ -5,7 +5,7 @@ description: Learn how to build and deploy a Python MCP server to Azure Containe
 ms.topic: tutorial
 ms.service: azure-container-apps
 ms.collection: ce-skilling-ai-copilot
-ms.date: 02/18/2026
+ms.date: 02/19/2026
 author: craigshoemaker
 ms.author: cshoe
 ms.reviewer: cshoe
@@ -29,7 +29,7 @@ In this tutorial, you:
 - [Azure CLI](/cli/azure/install-azure-cli) version 2.62.0 or later.
 - [Python 3.10](https://www.python.org/downloads/) or later.
 - [Visual Studio Code](https://code.visualstudio.com/) with the [GitHub Copilot](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot) extension.
-- [Docker Desktop](https://www.docker.com/products/docker-desktop/) (for local containerization).
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/) (optional - only needed to test the container locally).
 
 ## Create the app scaffold
 

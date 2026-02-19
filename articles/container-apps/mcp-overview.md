@@ -1,17 +1,17 @@
 ---
-title: MCP servers on Azure Container Apps
-description: Learn how to host Model Context Protocol (MCP) servers on Azure Container Apps as standalone container apps or with platform-managed dynamic sessions.
+title: Host MCP servers on Azure Container Apps
+description: Learn how to host MCP servers on Azure Container Apps as standalone container apps or with dynamic sessions.
 #customer intent: As a developer, I want to deploy an MCP server as a standalone container app so that I can expose custom tools and connect to backend services.
 ms.topic: conceptual
 ms.service: azure-container-apps
 ms.collection: ce-skilling-ai-copilot
-ms.date: 02/18/2026
+ms.date: 02/19/2026
 author: craigshoemaker
 ms.author: cshoe
 ms.reviewer: cshoe
 ---
 
-# MCP servers on Azure Container Apps
+# Host MCP servers on Azure Container Apps
 
 [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) is an open standard that connects AI applications to external data sources and tools. By using MCP, AI clients like GitHub Copilot can discover and invoke capabilities you expose, turning your APIs, databases, and business logic into tools an AI agent can use through natural language.
 
@@ -80,13 +80,12 @@ In this model, the platform manages the MCP server. You don't write or deploy MC
 
 | Tool | Description |
 |---|---|
-| `launchShell` | Creates a new shell environment and returns an `environmentId` |
-| `launchPythonEnvironment` | Creates a new Python environment and returns an `environmentId` |
+| `launchShell` | Creates a new environment and returns an `environmentId` |
 | `runShellCommandInRemoteEnvironment` | Executes a shell command in an existing environment |
 | `runPythonCodeInRemoteEnvironment` | Executes Python code in an existing environment |
 
 > [!NOTE]
-> The available tools depend on the session pool's `containerType`. Shell pools expose `launchShell` and `runShellCommandInRemoteEnvironment`. Python pools expose `launchPythonEnvironment` and `runPythonCodeInRemoteEnvironment`.
+> The platform-managed MCP server exposes all three tools regardless of the session pool's `containerType`. Use `launchShell` to create an environment for both shell and Python pools.
 
 ### Request flow
 

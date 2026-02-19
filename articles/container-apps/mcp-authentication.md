@@ -5,7 +5,7 @@ description: Learn how to authenticate and authorize MCP servers on Azure Contai
 ms.topic: how-to
 ms.service: azure-container-apps
 ms.collection: ce-skilling-ai-copilot
-ms.date: 02/18/2026
+ms.date: 02/19/2026
 author: craigshoemaker
 ms.author: cshoe
 ms.reviewer: cshoe
@@ -21,7 +21,7 @@ This article explains how to authenticate and secure MCP servers running on Azur
 - [Azure CLI](/cli/azure/install-azure-cli) version 2.62.0 or later.
 - An existing container app or session pool. If you don't have one, see the [MCP server tutorials](mcp-overview.md).
 
-## Authentication models at a glance
+## Authentication models overview
 
 Azure Container Apps supports two authentication models for MCP servers. The following table summarizes the key differences.
 
@@ -30,7 +30,7 @@ Azure Container Apps supports two authentication models for MCP servers. The fol
 | Auth mechanism | Container Apps built-in authentication with Microsoft Entra ID | API key via `x-ms-apikey` header |
 | Token type | OAuth 2.0 Bearer token | Opaque API key string |
 | Identity provider | Microsoft Entra ID | Azure Resource Manager |
-| Key/token rotation | Managed by Microsoft Entra ID | Regenerate the Azure Resource Manager API |
+| Key/token rotation | Managed by Microsoft Entra ID | Regenerate via Azure Resource Manager API |
 | Authorization scope | Configurable per application | Session pool level |
 | Transport encryption | TLS (Container Apps ingress) | TLS (Container Apps sessions endpoint) |
 
@@ -95,7 +95,7 @@ When your MCP server requires a bearer token, configure token retrieval in your 
     "servers": {
         "my-mcp-server": {
             "type": "http",
-            "url": "https://<APP_NAME>.<REGION>.azurecontainerapps.io/mcp",
+            "url": "https://<CONTAINER_APP_NAME>.<REGION>.azurecontainerapps.io/mcp",
             "headers": {
                 "Authorization": "Bearer ${input:mcpBearerToken}"
             }
@@ -129,7 +129,7 @@ az containerapp ingress cors update \
     --max-age 3600
 ```
 
-Key headers to allow:
+The following headers are key to allow:
 
 - `Content-Type`: required for JSON-RPC requests
 - `Authorization`: required for bearer token auth
@@ -138,7 +138,7 @@ Key headers to allow:
 > [!NOTE]
 > GitHub Copilot connects to remote MCP servers from the VS Code desktop app, not from a browser. CORS is only needed if you intend to support browser-based MCP clients or VS Code for the Web. The standalone tutorials use wildcard CORS origins for simplicity; for production, restrict to specific trusted origins as shown here.
 
-### Security recommendations
+### Security recommendations for standalone MCP servers
 
 Apply the following best practices to harden your standalone MCP server.
 
@@ -150,15 +150,18 @@ Apply the following best practices to harden your standalone MCP server.
 
 ## Dynamic sessions with API key authentication
 
+> [!IMPORTANT]
+> The platform-managed MCP server for dynamic sessions is in **preview**. The API version `2025-02-02-preview` and `mcpServerSettings` properties are subject to change.
+
 The platform-managed MCP server in dynamic sessions uses API key authentication. The key is scoped to the session pool and grants access to all tools and sessions in the pool.
 
-### Authentication flow
+### API key authentication flow
 
 The following steps describe how API key authentication works for dynamic sessions.
 
 1. The client sends a JSON-RPC request with the `x-ms-apikey` header.
 1. The session pool proxy validates the key against the Azure control plane.
-1. If the key is valid, the request is forwarded to the session. If not, a `401 Unauthorized` response is returned.
+1. If the key is valid, the request is forwarded to the session. If not, an authentication error is returned.
 
 ### Retrieve the API key
 
@@ -171,9 +174,9 @@ API_KEY=$(az rest --method POST \
     --query "apiKey" -o tsv)
 ```
 
-### Key rotation and caching
+### Rotate and cache the API key
 
-You can regenerate the API key at any time. The platform caches validation results, so previously valid keys might continue to work for several minutes after regeneration while the cache expires.
+You can regenerate the API key at any time. The platform caches validation results for up to five minutes, so previously valid keys might continue to work after regeneration until the cache expires.
 
 To rotate the API key, call the `regenerateCredentials` action on the session pool:
 
@@ -185,7 +188,7 @@ az rest --method POST \
 
 After regeneration, retrieve the new key by using `fetchMCPServerCredentials` as shown earlier.
 
-### Security recommendations
+### Security recommendations for dynamic sessions
 
 Apply the following best practices to secure your dynamic sessions MCP deployment.
 
@@ -195,7 +198,7 @@ Apply the following best practices to secure your dynamic sessions MCP deploymen
 - **Session lifetime**: Configure `coolDownPeriodInSeconds` to automatically destroy idle sessions. This setting limits the window of exposure if a session is compromised.
 - **Secret storage**: Store the API key in [Azure Key Vault](/azure/key-vault/general/overview) or [Container Apps secrets](/azure/container-apps/manage-secrets) rather than in code or configuration files.
 
-## Authentication model comparison
+## Common authentication mismatches
 
 A common mistake is using the API key header (`x-ms-apikey`) with a standalone container app, or using a bearer token with the sessions MCP endpoint. The following table shows what happens when you mix them up.
 

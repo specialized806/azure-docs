@@ -5,7 +5,7 @@ description: Learn how to build and deploy a Java MCP server to Azure Container 
 ms.topic: tutorial
 ms.service: azure-container-apps
 ms.collection: ce-skilling-ai-copilot
-ms.date: 02/18/2026
+ms.date: 02/19/2026
 author: craigshoemaker
 ms.author: cshoe
 ms.reviewer: cshoe
@@ -367,7 +367,7 @@ In this section, you define the MCP tools that the AI model can invoke and confi
     > [!NOTE]
     > The MCP Java SDK API surface is evolving. The tool registration pattern shown here uses `SyncToolSpecification` for synchronous tools. Check the [MCP Java SDK documentation](https://github.com/modelcontextprotocol/java-sdk) for the latest idioms and annotations that can simplify tool registration.
 
-2. Create `src/main/java/com/example/tasksmcp/McpConfig.java`:
+1. Create `src/main/java/com/example/tasksmcp/McpConfig.java`:
 
     ```java
     package com.example.tasksmcp;
@@ -421,7 +421,7 @@ In this section, you define the MCP tools that the AI model can invoke and confi
     > [!NOTE]
     > This tutorial uses `WebMvcSseServerTransportProvider` (SSE transport) because the MCP Java SDK doesn't yet offer a stable streamable HTTP transport. The other language tutorials (.NET, Python, Node.js) use streamable HTTP. When the Java SDK adds streamable HTTP support, update the transport provider accordingly. The SSE transport is fully compatible with VS Code Copilot and other MCP clients.
 
-3. Create `src/main/java/com/example/tasksmcp/TasksMcpApplication.java`:
+1. Create `src/main/java/com/example/tasksmcp/TasksMcpApplication.java`:
 
     ```java
     package com.example.tasksmcp;
@@ -456,24 +456,24 @@ Before deploying to Azure, verify the MCP server works by running it locally and
     mvn spring-boot:run
     ```
 
-2. Open VS Code, then open **Copilot Chat** and select **Agent** mode.
+1. Open VS Code, then open **Copilot Chat** and select **Agent** mode.
 
-3. Select the **Tools** button, then **Add More Tools...** > **Add MCP Server**.
+1. Select the **Tools** button, then **Add More Tools...** > **Add MCP Server**.
 
-4. Select **HTTP (HTTP or Server-Sent Events)** and choose **Server-Sent Events (SSE)** when prompted for the transport type.
+1. Select **HTTP (HTTP or Server-Sent Events)** and choose **Server-Sent Events (SSE)** when prompted for the transport type.
 
     > [!IMPORTANT]
     > This tutorial uses the SSE transport, not streamable HTTP. You must select the SSE option in VS Code for the connection to work correctly.
 
-5. Enter the server URL: `http://localhost:8080/mcp`
+1. Enter the server URL: `http://localhost:8080/mcp`
 
-6. Enter a server ID: `tasks-mcp`
+1. Enter a server ID: `tasks-mcp`
 
-7. Select **Workspace Settings**.
+1. Select **Workspace Settings**.
 
-8. Test with: **"Show me all tasks"**
+1. Test with: **"Show me all tasks"**
 
-9. Select **Continue** when Copilot requests MCP tool confirmation.
+1. Select **Continue** when Copilot requests MCP tool confirmation.
 
 You should see the task list returned from your in-memory store.
 
@@ -503,7 +503,7 @@ Package the application as a Docker container so you can test it locally before 
 
     The multi-stage build keeps the final image small by separating the Maven build from the runtime image.
 
-2. Verify locally:
+1. Verify locally:
 
     ```bash
     docker build -t tasks-mcp-server .
@@ -525,7 +525,7 @@ Now you deploy the containerized MCP server to Azure Container Apps using the Az
     APP_NAME="tasks-mcp-server-java"
     ```
 
-2. Create a resource group and Container Apps environment:
+1. Create a resource group and Container Apps environment:
 
     ```azurecli
     az group create --name $RESOURCE_GROUP --location $LOCATION
@@ -536,7 +536,7 @@ Now you deploy the containerized MCP server to Azure Container Apps using the Az
         --location $LOCATION
     ```
 
-3. Deploy the container app:
+1. Deploy the container app:
 
     ```azurecli
     az containerapp up \
@@ -548,7 +548,7 @@ Now you deploy the containerized MCP server to Azure Container Apps using the Az
         --target-port 8080
     ```
 
-4. Configure CORS:
+1. Configure CORS:
 
     ```azurecli
     az containerapp ingress cors enable \
@@ -562,7 +562,7 @@ Now you deploy the containerized MCP server to Azure Container Apps using the Az
     > [!NOTE]
     > For production, replace wildcard origins with specific trusted origins. See [Secure MCP servers on Container Apps](mcp-authentication.md).
 
-5. Verify the deployment:
+1. Verify the deployment:
 
     ```azurecli
     APP_URL=$(az containerapp show \
@@ -593,11 +593,11 @@ Now you deploy the containerized MCP server to Azure Container Apps using the Az
     > [!IMPORTANT]
     > The `"type"` must be `"sse"` because this tutorial uses the SSE transport. Using `"http"` (streamable HTTP) causes connection failures.
 
-2. In VS Code, open Copilot Chat in Agent mode.
+1. In VS Code, open Copilot Chat in Agent mode.
 
-3. Verify `tasks-mcp-server` appears in the Tools list. Select **Start** if needed.
+1. Verify `tasks-mcp-server` appears in the Tools list. Select **Start** if needed.
 
-4. Test with a prompt like **"What tasks do I have?"**
+1. Test with a prompt like **"What tasks do I have?"**
 
 ## Configure scaling for interactive use
 

@@ -5,7 +5,7 @@ description: Learn how to create a Python session pool with the platform-managed
 ms.topic: tutorial
 ms.service: azure-container-apps
 ms.collection: ce-skilling-ai-copilot
-ms.date: 02/18/2026
+ms.date: 02/19/2026
 author: craigshoemaker
 ms.author: cshoe
 ms.reviewer: cshoe
@@ -22,7 +22,7 @@ Unlike the [standalone MCP server tutorials](mcp-overview.md#standalone-containe
 
 | Tool | Description |
 |------|-------------|
-| `launchPythonEnvironment` | Creates a new Python environment and returns an `environmentId` |
+| `launchShell` | Creates a new environment and returns an `environmentId` |
 | `runPythonCodeInRemoteEnvironment` | Executes Python code in an existing environment |
 | `runShellCommandInRemoteEnvironment` | Executes a shell command in an existing environment |
 
@@ -184,7 +184,7 @@ Create a new Python environment:
 ENVIRONMENT_RESPONSE=$(curl -sS -X POST "$MCP_ENDPOINT" \
     -H "Content-Type: application/json" \
     -H "x-ms-apikey: $API_KEY" \
-    -d '{ "jsonrpc": "2.0", "id": "2", "method": "tools/call", "params": { "name": "launchPythonEnvironment", "arguments": {} } }')
+    -d '{ "jsonrpc": "2.0", "id": "2", "method": "tools/call", "params": { "name": "launchShell", "arguments": {} } }')
 
 echo $ENVIRONMENT_RESPONSE
 ```
@@ -197,7 +197,7 @@ echo $ENVIRONMENT_ID
 ```
 
 > [!NOTE]
-> The `launchPythonEnvironment` tool generates a unique environment identifier. The actual session is allocated "lazily". When you execute your first command, the session pool assigns a Hyper-V-isolated container to handle it.
+> The `launchShell` tool generates a unique environment identifier. The actual session is allocated "lazily". When you execute your first command, the session pool assigns a Hyper-V-isolated container to handle it.
 
 ## Execute Python commands
 

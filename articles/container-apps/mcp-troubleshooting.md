@@ -5,7 +5,7 @@ description: Diagnose and fix common issues with MCP servers on Azure Container 
 ms.topic: troubleshooting
 ms.service: azure-container-apps
 ms.collection: ce-skilling-ai-copilot
-ms.date: 02/18/2026
+ms.date: 02/19/2026
 author: craigshoemaker
 ms.author: cshoe
 ms.reviewer: cshoe
@@ -111,7 +111,7 @@ The `id` must be a string or number. The `jsonrpc` field must be exactly `"2.0"`
 
 ### Transport mismatch
 
-**Symptoms**: SSE client gets 404 or 405 errors; HTTP client gets unexpected `text/event-stream` content type.
+**Symptoms**: SSE client gets 404 or 405 errors. HTTP client gets unexpected `text/event-stream` content type.
 
 MCP supports multiple transports. Ensure your client and server use the same transport.
 
@@ -122,6 +122,9 @@ MCP supports multiple transports. Ensure your client and server use the same tra
 | Platform-managed (sessions) | HTTP POST with `x-ms-apikey` header |
 
 Most modern MCP SDKs default to streamable HTTP. If you're connecting to a server that uses SSE (common with older examples), switch your client to SSE mode.
+
+> [!NOTE]
+> The [Java tutorial](tutorial-mcp-server-java.md) uses the SSE transport (`WebMvcSseServerTransportProvider`) because the MCP Java SDK doesn't yet offer a stable streamable HTTP transport. When connecting from VS Code, select SSE and use `"type": "sse"` in `.vscode/mcp.json`.
 
 ## Deployment and scaling
 
@@ -221,15 +224,15 @@ Authentication problems typically happen when you use the wrong credential type 
 1. Check that the Microsoft Entra app registration's `audience` matches the resource you requested.
 1. Verify the `--unauthenticated-client-action` setting. `Return401` blocks unauthenticated requests; `AllowAnonymous` lets them through.
 
-### 401 Unauthorized: dynamic sessions MCP
+### Authentication error: dynamic sessions MCP
 
-**Symptoms**: `401 Unauthorized` when calling the platform-managed MCP endpoint.
+**Symptoms**: Authentication error when calling the platform-managed MCP endpoint. The error might appear as an HTTP `401` response or as a JSON-RPC error message in the response body. The type of error depends on where in the request pipeline the failure occurs.
 
 **Checklist**:
 
 1. Verify the API key is sent via the `x-ms-apikey` header (not `Authorization`).
 1. Verify the key is from `fetchMCPServerCredentials`, not from a different API.
-1. If you recently regenerated the key, wait several minutes for the old key's cache to expire.
+1. If you recently regenerated the key, wait up to five minutes for the old key's cache to expire.
 1. Check that `mcpServerSettings.isMCPServerEnabled` is `true` on the session pool.
 
 For more information, see the [authentication guide](mcp-authentication.md).
@@ -245,10 +248,10 @@ Issues in this section apply only to the platform-managed MCP server in [dynamic
 **Causes**:
 
 - The session expired (exceeded `coolDownPeriodInSeconds`).
-- The `environmentId` wasn't extracted correctly from the `launchShell` or `launchPythonEnvironment` response.
+- The `environmentId` wasn't extracted correctly from the `launchShell` response.
 - You're using an environment ID from a different session pool.
 
-**Solution**: Call `launchShell` or `launchPythonEnvironment` again to create a new environment.
+**Solution**: Call `launchShell` again to create a new environment.
 
 ### MCP not enabled on session pool
 
