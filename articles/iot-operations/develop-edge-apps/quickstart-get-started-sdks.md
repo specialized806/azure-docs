@@ -1,13 +1,13 @@
 ---
-title: "Quickstart: Start developing with the Azure IoT Operations SDKs (preview)"
+title: "Quickstart: Start developing with the Azure IoT Operations SDKs"
 description: Setup up a development environment for building and running the samples, as well as creating and testing your own Azure IoT Operations highly available edge applications.
-author: asergaz
-ms.author: sergaz
+author: dominicbetts
+ms.author: dobett
 ms.topic: quickstart-sdk
 ms.date: 05/08/2025
 ---
 
-# Quickstart: Start developing with the Azure IoT Operations SDKs (preview)
+# Quickstart: Start developing with the Azure IoT Operations SDKs
 
 Get started developing with the Azure IoT Operations SDKs. Follow these steps to set up your development environment for building and running the samples, as well as creating and testing your own highly available edge applications.
 
@@ -17,7 +17,7 @@ Get started developing with the Azure IoT Operations SDKs. Follow these steps to
 
 Before you begin, prepare the following prerequisites:
 
-* An Azure subscription. If you don't have an Azure subscription, [create one for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
+* An Azure subscription. If you don't have an Azure subscription, [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 
 * A [GitHub](https://github.com) account.
 
@@ -31,9 +31,6 @@ Developing with the Azure IoT Operations SDKs requires a Kubernetes cluster with
 > The following development environment setup options, use [K3s](https://k3s.io/) running in [K3d](https://k3d.io/) for a lightweight Kubernetes cluster, and deploys Azure IoT Operations with [test settings](../deploy-iot-ops/overview-deploy.md#test-settings-deployment). For production deployments, choose [secure settings](../deploy-iot-ops/overview-deploy.md#secure-settings-deployment). <br> If you want to use secure settings, we recommend you follow the instructions in [Prepare your Azure Arc-enabled Kubernetes cluster](../deploy-iot-ops/howto-prepare-cluster.md) to create a K3s cluster on Ubuntu and [Deploy Azure IoT Operations to a production cluster](../deploy-iot-ops/howto-deploy-iot-operations.md) to deploy with secure settings. Then proceed to [configure Azure IoT Operations for deployment](#configure-azure-iot-operations-for-development).
 
 ### [Codespaces](#tab/codespaces)
-
-> [!CAUTION]
-> We're currently experiencing container corruption with Azure IoT Operations deployed in a codespace, so we don't recommend this path until we resolve the issue with the GitHub team.
 
 GitHub Codespaces provides the most streamlined experience and can get the development environment up and running in a couple of minutes.
 
@@ -211,7 +208,7 @@ This sample demonstrates a simple communication between a client and a server us
 
 1. Install the [.NET 9.0 SDK](https://dotnet.microsoft.com/download/dotnet/9.0)
 
-1. The samples within [Azure IoT Operations SDKs GitHub repository](https://github.com/Azure/iot-operations-sdks) read configuration from environment variables. We provide an `.env` file in the repository root that exports the variables used by the samples to connect to the MQTT Broker. Edit the `.env` file to set the values for your environment, or use the default values provided in the file.
+1. The samples within [Azure IoT Operations SDKs GitHub repository](https://github.com/Azure/iot-operations-sdks) read configuration from environment variables. We provide an `.env` file in the repository root that exports the variables used by the samples to connect to the MQTT broker. Edit the `.env` file to set the values for your environment, or use the default values provided in the file.
 
 1. Navigate to the `CounterServer` sample directory:
 
@@ -285,8 +282,8 @@ This sample demonstrates a simple communication between a client and a server us
 | Component Type | Name | Description |
 |-|-|-|
 | `Broker` | default | The MQTT broker |
-| `BrokerListener` | default | Provides **cluster access** to the MQTT Broker |
-| `BrokerListener` | default-external | Provides **off-cluster access** to the MQTT Broker |
+| `BrokerListener` | default | Provides **cluster access** to the MQTT broker |
+| `BrokerListener` | default-external | Provides **off-cluster access** to the MQTT broker |
 | `BrokerAuthentication` | default | SAT authentication definition |
 | `BrokerAuthentication` | default-x509 | An x509 authentication definition |
 

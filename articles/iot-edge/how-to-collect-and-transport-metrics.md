@@ -58,7 +58,7 @@ To configure monitoring on your IoT Edge device, follow the [tutorial about moni
 
 A Microsoft-supplied metrics-collector module can be added to an IoT Edge deployment to collect module metrics and send them to Azure Monitor. The module code is open-source and available in the [IoT Edge GitHub repo](https://github.com/Azure/iotedge/tree/main/edge-modules/metrics-collector).
 
-The metrics-collector module is provided as a multi-arch Docker container image that supports Linux X64, ARM32, ARM64, and Windows X64 (version 1809). It's publicly available from the Microsoft Artifact Registry at [`mcr.microsoft.com/azureiotedge-metrics-collector`](https://mcr.microsoft.com/product/azureiotedge-metrics-collector/tags).
+The metrics-collector module is provided as a multi-arch Docker container image that supports Linux X64, ARM32, ARM64, and Windows X64 (version 1809). It's publicly available from the Microsoft Artifact Registry at [`mcr.microsoft.com/azureiotedge-metrics-collector`](https://mcr.microsoft.com/artifact/mar/azureiotedge-metrics-collector/tags).
 
 ## Metrics collector configuration
 
@@ -90,7 +90,7 @@ All configuration for the metrics-collector is done using environment variables.
 | `ScrapeFrequencyInSecs` | Recurring time interval in seconds at which to collect and transport metrics.<br><br>  Example: *600* <br><br>  **Not required** <br><br> Default value: *300* |
 | `MetricsEndpointsCSV` | Comma-separated list of endpoints to collect Prometheus metrics from. All module endpoints to collect metrics from must appear in this list.<br><br>  Example: *http://edgeAgent:9600/metrics, http://edgeHub:9600/metrics, http://MetricsSpewer:9417/metrics* <br><br>  **Not required** <br><br> Default value: *http://edgeHub:9600/metrics, http://edgeAgent:9600/metrics* |
 | `AllowedMetrics` | List of metrics to collect, all other metrics are ignored. Set to an empty string to disable. For more information, see [Allow and disallow lists](#allow-and-disallow-lists). <br><br>Example: *metricToScrape{quantile=0.99}[endpoint=http://MetricsSpewer:9417/metrics]*<br><br>  **Not required** <br><br> Default value: *empty* |
-| `BlockedMetrics` | List of metrics to ignore. Overrides *AllowedMetrics*, so a metric is reported if it's included in both lists. For more information, see [Allow and disallow lists](#allow-and-disallow-lists). <br><br>   Example: *metricToIgnore{quantile=0.5}[endpoint=http://VeryNoisyModule:9001/metrics], docker_container_disk_write_bytes*<br><br>  **Not required**  <br><br>Default value: *empty* |
+| `BlockedMetrics` | List of metrics to ignore. Overrides *AllowedMetrics*, so a metric isn't reported if it's included in both lists. For more information, see [Allow and disallow lists](#allow-and-disallow-lists). <br><br>   Example: *metricToIgnore{quantile=0.5}[endpoint=http://VeryNoisyModule:9001/metrics], docker_container_disk_write_bytes*<br><br>  **Not required**  <br><br>Default value: *empty* |
 | `CompressForUpload` | Controls if compression should be used when uploading metrics. Applies to all upload targets.<br><br>  Example: *true* <br><br>    **Not required** <br><br>  Default value: *true* |
 | `AzureDomain` | Specifies the top-level Azure domain to use when ingesting metrics directly to Log Analytics. <br><br>  Example: *azure.us* <br><br>    **Not required** <br><br>  Default value: *azure.com* |
 

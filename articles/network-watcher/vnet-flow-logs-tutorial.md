@@ -31,7 +31,7 @@ In this tutorial, you learn how to:
 
 ## Prerequisites
 
-- An Azure account with an active subscription. If you don't have one, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
+- An Azure account with an active subscription. If you don't have one, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 
 ## Create a virtual network
 
@@ -148,7 +148,7 @@ In this section, you create a storage account to use it to store the flow logs.
     | Region | Select **(US) East US**. The storage account must be in the same region as the virtual machine and its network security group. |
     | Primary service | Select **Azure Blob Storage or Azure Data Lake Storage Gen 2**. |
     | Performance | Select **Standard**. Flow logs only support Standard-tier storage accounts. |
-    | Redundancy | Select the redundancy you prefer. This tutorial uses **Locally-redundant storage (LRS)**. |
+    | Redundancy | Select the redundancy you prefer (all Azure Storage redundancy configurations are supported). This tutorial uses **Locally-redundant storage (LRS)**. |
 
 1. Select the **Review** tab or select the **Review** button at the bottom.
 

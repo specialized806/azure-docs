@@ -4,7 +4,7 @@ description: A share snapshot is a read-only, point-in-time copy of an Azure fil
 author: khdownie
 ms.service: azure-file-storage
 ms.topic: how-to
-ms.date: 09/16/2025
+ms.date: 12/18/2025
 ms.author: kendownie
 # Customer intent: "As a data administrator, I want to use file share snapshots for Azure Files, so that I can efficiently recover previous versions of files and protect against accidental deletions or data corruption."
 ---
@@ -74,7 +74,7 @@ To conserve space, you can delete the share snapshot for the period when the chu
 
 Even though share snapshots are saved incrementally, you need to retain only the most recent share snapshot in order to restore the share. When you delete a share snapshot, only the data unique to that share snapshot is removed. Active snapshots contain all the information that you need to browse and restore your data (from the time the share snapshot was taken) to the original location or an alternate location. You can restore at the item level.
 
-Snapshots don't count towards the maximum share size limit of 100 TiB. There's no limit to how much space share snapshots occupy in total, or that share snapshots of a particular file share can consume. Storage account limits still apply.
+Snapshots don't count towards the maximum share size limit. There's no limit to how much space share snapshots occupy in total, or that share snapshots of a particular file share can consume. Storage account limits still apply.
 
 ## Limits
 
@@ -95,6 +95,14 @@ The share snapshot remains intact after copying, but the base file share is over
 You can copy a file in a share snapshot to a different destination with a different name. The resulting destination file is a writable file and not a share snapshot. In this case, your base file share will remain intact.
 
 When a destination file is overwritten with a copy, any share snapshots associated with the original destination file remain intact.
+
+## Copying data back to a local drive from share snapshot
+
+If you want to restore data from a snapshot of an SMB Azure file share to a local drive on Windows, you can use Robocopy to copy files and folders from the snapshot.
+
+On Windows, you can access SMB file share snapshots from the **Previous Versions** tab in Windows File Explorer. When you access a snapshot view using this method, you can copy files and folders to a local path using standard file operations or Robocopy.
+
+If you run Robocopy from an elevated command prompt, mapped drives might not be accessible, and referencing a drive letter might fail. In that case, use a UNC path that references the snapshot view. Ensure the path references the snapshot and not the live file share. If you reference the live file share instead of the snapshot, the copy operation will use the current state of the file share rather than the point-in-time state captured in the snapshot.
 
 ## General best practices
 

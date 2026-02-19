@@ -71,12 +71,33 @@ For more information about the `BlobTrigger` attribute, see [Attributes](#attrib
 
 This function uses a byte array to write a log when a blob is added or updated in the `myblob` container.
 
+Polling-based:
+
+The following example uses the default polling trigger:
+
 ```java
 @FunctionName("blobprocessor")
 public void run(
   @BlobTrigger(name = "file",
                dataType = "binary",
                path = "myblob/{name}",
+               connection = "MyStorageAccountAppSetting") byte[] content,
+  @BindingName("name") String filename,
+  final ExecutionContext context
+) {
+  context.getLogger().info("Name: " + filename + " Size: " + content.length + " bytes");
+}
+```
+
+The following example uses an Event Grid trigger:
+
+```java
+@FunctionName("blobprocessor")
+public void run(
+  @BlobTrigger(name = "file",
+               dataType = "binary",
+               path = "myblob/{name}",
+               source = "EventGrid",
                connection = "MyStorageAccountAppSetting") byte[] content,
   @BindingName("name") String filename,
   final ExecutionContext context
@@ -140,6 +161,8 @@ public void run(
 ::: zone pivot="programming-language-typescript"  
 
 # [Model v4](#tab/nodejs-v4)
+
+[!INCLUDE [functions-blob-storage-sdk-types-node](../../includes/functions-blob-storage-sdk-types-node.md)]
 
 The following example shows a blob trigger [TypeScript code](functions-reference-node.md). The function writes a log when a blob is added or updated in the `samples-workitems` container.
 

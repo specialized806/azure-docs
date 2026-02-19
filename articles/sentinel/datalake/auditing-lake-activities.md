@@ -1,8 +1,8 @@
 ---
-title: Audit log for Microsoft Sentinel data lake and graph in Purview portal
+title: Audit log for Microsoft Sentinel data lake and graph in Microsoft Purview portal
 description: Learn how to use the audit log to search for Microsoft Sentinel data lake activities to help with investigation.
 ms.service: microsoft-sentinel
-ms.subservice: sentinel-graph
+ms.subservice: sentinel-platform
 ms.author: edbaynash
 author: EdB-MSFT
 ms.topic: how-to
@@ -12,7 +12,7 @@ ms.date: 09/29/2025
 
 ---
 
-# Audit log for Microsoft Sentinel data lake and graph in Purview portal
+# Audit log for Microsoft Sentinel data lake and graph in Microsoft Purview portal
 
 The audit log helps you investigate specific activities across Microsoft services. Microsoft Sentinel data lake and graph activities are audited and can be searched in the audit log. The audit log provides a record of activities that are performed by users and administrators in Microsoft Sentinel data lake and graph, such as:
 + Accessing data in lake via KQL queries

@@ -8,7 +8,7 @@ ms.date: 07/09/2025
 ms.topic: conceptual
 ms.service: cost-management-billing
 ms.subservice: cost-management
-ms.reviewer: sadoulta
+ms.reviewer: vikdesai
 ---
 
 # How to optimize your cloud investment with Cost Management
@@ -89,7 +89,7 @@ The first step in maximizing your experience within Cost Management is to invest
 
 To learn more about the various options, visit [How to buy Azure](https://azure.microsoft.com/pricing/purchase-options/). Several of the most common billing models are identified below.
 
-#### [Free](https://azure.microsoft.com/free/)
+#### [Free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 
 - 12 months of popular free services
 - $200 credit in your billing currency to explore services for 30 days
@@ -209,7 +209,7 @@ Emphasize the use of tags, management groups, and custom dimensions for cost all
 Take advantage of Azure's cost-saving programs and recommendations:
 
 - **Azure Savings Plans for Compute**: The most flexible savings plan, applying to a broad range of compute services. See [Azure savings plans for compute](../savings-plan/savings-plan-compute-overview.md).
-- **Azure Reservations**: Prepay for one- or three-year terms for VMs or databases to receive significant discounts. See [What are Azure Reservations?](../reservations/save-compute-costs-reservations.md).
+- **Azure Reservations**: Prepay for one- or three-year terms for VMs or databases to receive significant discounts. See [What are Azure Reservations?](../reservations/save-compute-costs-reservations.md)
 - **Azure Hybrid Benefit**: Use existing Windows Server or SQL Server licenses to save on Azure. See [Azure Hybrid Benefit](https://azure.microsoft.com/pricing/hybrid-benefit/).
 - **Benefit Recommendations API**: Use the [Benefit Recommendations API](/rest/api/cost-management/benefit-recommendations) and [Azure Advisor](/azure/advisor/advisor-overview) to proactively identify savings opportunities, such as reserved instances or savings plans, based on your usage patterns.
 
@@ -250,7 +250,7 @@ For more information, see [Azure savings plan for compute](../savings-plan/savin
 
 Azure Reservations allow you to prepay for one-year or three-years of virtual machine or SQL Database compute capacity. Prepaying will allow you to get a discount on the resources you use. Azure reservations can significantly reduce your virtual machine or SQL database compute costs — up to 72 percent on pay-as-you-go prices with one-year or three-year upfront commitment. Reservations provide a billing discount and don't affect the runtime state of your virtual machines or SQL databases.
 
-For more information, see [What are Azure Reservations?](../reservations/save-compute-costs-reservations.md).
+For more information, see [What are Azure Reservations?](../reservations/save-compute-costs-reservations.md)
 
 #### Use Azure Hybrid Benefit
 

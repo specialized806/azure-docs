@@ -34,7 +34,7 @@ Microsoft Sentinel SIEM is available in the Microsoft Defender portal - for cust
 
 The integration of Microsoft Sentinel SIEM with the Defender portal and Security Copilot creates a powerful ecosystem that enhances security operations. Security Copilot enables analysts to interact with Microsoft Sentinel data using natural language, generate hunting queries, and automate investigations, making threat response faster and more accessible.
 
-For more information, see [What is Microsoft Sentinel SIEM?](./overview.md).
+For more information, see [What is Microsoft Sentinel SIEM?](./overview.md)
 
 ### Data connectors
 
@@ -65,13 +65,13 @@ With cost-efficient storage and long-term retention, security teams can investig
 
 Microsoft Sentinel data lake's key capabilities include:
 
-- Centralizes logs from Microsoft 365, Defender, Azure, Microsoft Entra, Purview, Intune, and over 350 data connectors - including Amazon Web Services (AWS) and Google Cloud Platform (GCP) - to eliminate data silos.
+- Centralizes logs from Microsoft 365, Defender, Azure, Microsoft Entra, Microsoft Purview, Microsoft Intune, and over 350 data connectors - including Amazon Web Services (AWS) and Google Cloud Platform (GCP) - to eliminate data silos.
 
 - Optimizes costs by decoupling data ingestion from analytics, so you can store massive volumes of security data and apply the most effective analytic engines for tasks like threat hunting, anomaly detection, and deep forensic investigations.
 
 - Enables multi-modal analytics on a single copy of open-format data using Kusto queries, scheduled jobs, and AI-powered notebooks in Visual Studio Code - no infrastructure setup required.
 
-For more information, see [What is Microsoft Sentinel data lake?](../sentinel/datalake/sentinel-lake-overview.md).
+For more information, see [What is Microsoft Sentinel data lake?](../sentinel/datalake/sentinel-lake-overview.md)
 
 
 ### Microsoft Sentinel graph
@@ -83,9 +83,9 @@ Microsoft Sentinel graph's key capabilities include:
 - Unified graph-based analytics that power built-in experiences across security, compliance, identity, and the Microsoft Security ecosystem.
 - Real-world relationship modeling that uses nodes and edges to represent users, devices, cloud resources, data flows, and attacker actions.
 - Enhanced threat reasoning to help Defenders answer complex questions, such as which vulnerable paths an attacker could take from a compromised entity to a critical asset.
-- End-to-end defense with support for both pre-breach and post-breach scenarios, using interconnected graphs across Microsoft Defender and Purview.
+- End-to-end defense with support for both pre-breach and post-breach scenarios, using interconnected graphs across Microsoft Defender and Microsoft Purview.
 
-For more information, see [What is Microsoft Sentinel graph?](../sentinel/datalake/sentinel-graph-overview.md).
+For more information, see [What is Microsoft Sentinel graph?](../sentinel/datalake/sentinel-graph-overview.md)
 
 ### Microsoft Sentinel model context protocol (MCP) server
 
@@ -98,7 +98,7 @@ Microsoft Sentinel MCP server's key capabilities include:
 - Accelerated agent creation whereby engineers can build customized security agents using natural language, reducing manual effort and speeding up automation.
 - Native integration with Microsoft Sentinel’s data lake enables rich context engineering without compromising on data coverage or cost.
 
-For more information, see [What is Microsoft Sentinel’s support for Model Context Protocol (MCP)?](../sentinel/datalake/sentinel-mcp-overview.md).
+For more information, see [What is Microsoft Sentinel’s support for Model Context Protocol (MCP)?](../sentinel/datalake/sentinel-mcp-overview.md)
 
 ## Microsoft Sentinel developer experience
 

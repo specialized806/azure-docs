@@ -13,7 +13,7 @@ ms.author: alvinhan
 
 ## Prerequisites
 
-- Azure account with an active subscription, for details see [Create an account for free.](https://azure.microsoft.com/free/)
+- Azure account with an active subscription, for details see [Create an account for free.](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 - An Azure Communication Services resource. See [Create an Azure Communication Services resource](../../../quickstarts/create-communication-resource.md?tabs=windows&pivots=platform-azp).
 - A new web service application created using the [Call Automation SDK](../../../quickstarts/call-automation/callflows-for-customer-interactions.md).
 - [Java Development Kit](/java/azure/jdk/?preserve-view=true&view=azure-java-stable) version 17 or above.
@@ -129,7 +129,7 @@ After sending the metadata packet, Azure Communication Services (ACS) will begin
 ```
 
 #### DTMF example 
-When DTMF is enabled Azure Communication Servives sends a `DtmfData` type.
+When DTMF is enabled Azure Communication Services sends a `DtmfData` type.
 
 ``` json
 {
@@ -143,7 +143,7 @@ When DTMF is enabled Azure Communication Servives sends a `DtmfData` type.
 ## Sending audio streaming data to Azure Communication Services
 If bidirectional streaming is enabled using the `EnableBidirectional` flag in the `MediaStreamingOptions`, you can stream audio data back to Azure Communication Services, which plays the audio into the call.
 
-Once Azure Communication Services begins streaming audio to your WebSocket server, you can relay the audio to your AI services. After your AI service processes the audio content, you can stream the audio back to the ongoing call in Azure Communication Services.
+Once Azure Communication Services begins streaming audio to your WebSocket server, you can relay the audio to your Foundry Tools. After your Foundry Tool processes the audio content, you can stream the audio back to the ongoing call in Azure Communication Services.
 
 The example demonstrates how another service, such as Azure OpenAI or other voice-based Large Language Models, processes and transmits the audio data back into the call.
 

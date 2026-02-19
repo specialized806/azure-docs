@@ -135,7 +135,7 @@ NFS on Azure Files runs on top of [Azure Files premium storage][afs-azure-doc]. 
 There are two options for redundancy within an Azure region:
 
 * [Locally redundant storage (LRS)](../../storage/common/storage-redundancy.md#locally-redundant-storage), which offers local, in-zone synchronous data replication.
-* [Zone-redundant storage (ZRS)](../../storage/common/storage-redundancy.md#zone-redundant-storage), which replicates your data synchronously across the three [availability zones](../../reliability/availability-zones-overview.md) in the region.
+* [Zone-redundant storage (ZRS)](../../storage/common/storage-redundancy.md#zone-redundant-storage), which replicates your data synchronously across the three [availability zones](/azure/reliability/availability-zones-overview) in the region.
 
 Check if your selected Azure region offers NFS 4.1 on Azure Files with the appropriate redundancy. Review the [availability of Azure Files by Azure region][afs-avail-matrix] under **Premium Files Storage**. If your scenario benefits from ZRS, [verify that premium file shares with ZRS are supported in your Azure region](../../storage/common/storage-redundancy.md#zone-redundant-storage).
 
@@ -624,7 +624,7 @@ The following items are prefixed with:
 10. **[1]** Run the following step to configure `priority-fencing-delay` (applicable only as of pacemaker-2.0.4-6.el8 or higher).
 
     > [!NOTE]
-    > If you have a two-node cluster, you have the option to configure the `priority-fencing-delay` cluster property. This property introduces additional delay in fencing a node that has higher total resource priority when a split-brain scenario occurs. For more information, see [Can Pacemaker fence the cluster node with the fewest running resources?](https://access.redhat.com/solutions/5110521).
+    > If you have a two-node cluster, you have the option to configure the `priority-fencing-delay` cluster property. This property introduces additional delay in fencing a node that has higher total resource priority when a split-brain scenario occurs. For more information, see [Can Pacemaker fence the cluster node with the fewest running resources?](https://access.redhat.com/solutions/5110521)
     >
     > The property `priority-fencing-delay` is applicable for pacemaker-2.0.4-6.el8 version or higher. If you set up `priority-fencing-delay` on an existing cluster, make sure to clear the `pcmk_delay_max` setting in the fencing device.  
 

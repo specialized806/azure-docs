@@ -133,6 +133,8 @@
                           href: sap/sap-deploy-troubleshoot.md
                         - name: Extra deployment steps
                           items:
+                            - name: Migrate agent to agentless connector
+                              href: sap/sap-agent-migrate.md
                             - name: Collect SAP HANA audit logs
                               href: sap/collect-sap-hana-audit-logs.md
                             - name: Update the data connector agent
@@ -300,10 +302,20 @@
               href: detection-tuning.md
             - name: Troubleshoot analytics rules
               href: troubleshoot-analytics-rules.md
-        - name: Tutorial - Detect threats using analytics rules
-          href: tutorial-log4j-detection.md
-        - name: MITRE ATT&CK coverage
-          href: mitre-coverage.md
+            - name: Tutorial - Detect threats using analytics rules
+              href: tutorial-log4j-detection.md
+            - name: MITRE ATT&CK coverage
+              href: mitre-coverage.md
+            - name: Compare analytics rules and custom detections
+              href: compare-analytics-rules-custom-detections.md
+        - name: Custom detections in the Defender portal
+          items:
+            - name: Overview
+              href: /defender-xdr/custom-detections-overview?toc=/azure/sentinel/TOC.json&bc=/azure/sentinel/breadcrumb/toc.json
+            - name: Create detection rules
+              href: /defender-xdr/custom-detection-rules?toc=/azure/sentinel/TOC.json&bc=/azure/sentinel/breadcrumb/toc.json
+            - name: Manage detection rules
+              href: /defender-xdr/custom-detection-manage?toc=/azure/sentinel/TOC.json&bc=/azure/sentinel/breadcrumb/toc.json
         - name: Data classification with entities
           items:
             - name: Overview
@@ -313,12 +325,14 @@
               href: entity-pages.md
             - name: User and entity behavior analytics (UEBA)
               href: identify-threats-with-entity-behavior-analytics.md
+            - name: Aggregate behavioral insights from raw logs 
+              href: entity-behaviors-layer.md 
             - name: Create custom entity activities
               href: customize-entity-activities.md
         - name: Watchlists
           items:
             - name: Overview
-              href: watchlists.md
+              href: watchlists.md 
             - name: Create watchlists
               href: watchlists-create.md
             - name: Build queries or rules
@@ -385,6 +399,8 @@
               href: notebooks-msticpy-advanced.md
         - name: Bring your own machine learning
           href: bring-your-own-ml.md
+    - name: Track and respond to threats with threat analytics
+      href: threat-analytics-sentinel.md
     - name: Investigate incidents
       items:
         - name: Azure portal
@@ -582,10 +598,22 @@
       displayName: data lake
     - name: Microsoft Sentinel MCP server
       items:
-        - name: Microsoft Sentinel MCP server Overview
+        - name: Microsoft Sentinel MCP server overview
           href: datalake/sentinel-mcp-overview.md
         - name: Get started with Microsoft Sentinel MCP
-          href: datalake/sentinel-mcp-get-started.md
+          items:
+          - name: Overview      
+            href: datalake/sentinel-mcp-get-started.md
+          - name: Use Sentinel MCP tools in Security Copilot   
+            href: datalake/sentinel-mcp-use-tool-security-copilot.md
+          - name: Use Sentinel MCP tools in Copilot Studio
+            href: datalake/sentinel-mcp-use-tool-copilot-studio.md
+          - name: Use Sentinel MCP tools in Microsoft Foundry
+            href: datalake/sentinel-mcp-use-tool-azure-ai-foundry.md
+          - name: Use Sentinel MCP tools in Visual Studio Code
+            href: datalake/sentinel-mcp-use-tool-visual-studio-code.md
+          - name: Use Sentinel MCP connector in ChatGPT
+            href: datalake/sentinel-mcp-chatgpt-connector.md
         - name: Tool collection in Microsoft Sentinel MCP
           items:
           - name: Overview
@@ -594,6 +622,12 @@
             href: datalake/sentinel-mcp-data-exploration-tool.md
           - name: Agent creation
             href: datalake/sentinel-mcp-agent-creation-tool.md
+          - name: Triage
+            href: datalake/sentinel-mcp-triage-tool.md
+          - name: Create your own custom tool
+            href: datalake/sentinel-mcp-create-custom-tool.md
+        - name: Build logic apps with Microsoft Sentinel MCP
+          href: datalake/sentinel-mcp-logic-apps.md
         - name: Troubleshooting
           href: datalake/troubleshoot-sentinel-mcp.md
         - name: Billing, limits, and availability
@@ -651,7 +685,7 @@
       href: configure-data-connector.md
     - name: Set up connectors for the Microsoft Sentinel data lake
       href: datalake/sentinel-lake-connectors.md
-    - name: Enable asset data (Preview)
+    - name: Asset data in the Sentinel data lake
       href: datalake/enable-data-connectors.md
       displayName: data lake
     - name: Unified connectors overview
@@ -684,10 +718,12 @@
               href: cef-syslog-ama-overview.md
             - name: CEF and Syslog via AMA
               href: connect-cef-syslog-ama.md
-            - name: CEF - configure security device
+            - name: Device configuration for CEF via AMA
               href: unified-connector-cef-device.md
             - name: Syslog - configure security device
               href: unified-connector-syslog-device.md
+            - name: Troubleshoot CEF and Syslog via AMA
+              href: cef-syslog-ama-troubleshooting.md  
         - name: Custom log sources (text files)
           items:
             - name: Collect logs from text files via AMA
@@ -708,9 +744,11 @@
               href: connect-aws.md
             - name: AWS S3 WAF logs
               href: connect-aws-s3-waf.md
-        - name: Troubleshoot AWS S3 connector issues
-          href: aws-s3-troubleshoot.md
-        - name: Cisco FTD firewall
+            - name: Enable attack disruption actions on AWS
+              href: aws-disruption.md
+            - name: Troubleshoot AWS S3 connector issues
+              href: aws-s3-troubleshoot.md
+        - name: Cisco firewalls
           href: cisco-ftd-firewall.md
         - name: Google Cloud Platform connectors
           href: connect-google-cloud-platform.md
@@ -726,7 +764,7 @@
           href: connect-microsoft-365-defender.md
         - name: Integrate Microsoft Purview
           href: purview-solution.md
-        - name: Purview Information Protection data
+        - name: Microsoft Purview Information Protection data
           href: connect-microsoft-purview.md
         - name: Windows security events
           href: data-connectors-reference.md#windows-security-events-via-ama
@@ -748,8 +786,12 @@
           href: normalization-ingest-time.md
         - name: Use ASIM
           href: normalization-about-parsers.md
+        - name: Workspace deployed parsers
+          href: normalization-about-workspace-parsers.md
         - name: Manage ASIM parsers
           href: normalization-manage-parsers.md
+        - name: Develop ASIM parsers
+          href: normalization-develop-parsers.md
         - name: Modify content to use ASIM
           href: normalization-modify-content.md
     - name: Aggregate data
@@ -827,7 +869,7 @@
           href: monitor-analytics-rule-integrity.md
     - name: Audit Microsoft Sentinel with Azure Activity Logs
       href: audit-sentinel-data.md
-    - name: Audit Microsoft Sentinel data lake and graph in Purview portal
+    - name: Audit Microsoft Sentinel data lake and graph in Microsoft Purview portal
       href: datalake/auditing-lake-activities.md
       displayName: data lake
     - name: Remove Microsoft Sentinel from your workspaces
@@ -846,6 +888,8 @@
       items:
       - name: Creating codeless data connectors (CCF)
         href: create-codeless-connector.md
+      - name: Creating push codeless data connectors (CCF)
+        href: create-push-codeless-connector.md
       - name: Creating analytics rules
         href: sentinel-analytic-rules-creation.md
       - name: Creating hunting queries
@@ -858,6 +902,7 @@
         href: sentinel-playbook-creation.md
       - name: Creating ASIM parsers
         href: normalization-develop-parsers.md
+        displayName: Build solutions
     - name: Publish solutions
       href: publish-sentinel-solutions.md
     - name: Sentinel SIEM solution lifecycle post publish
@@ -916,6 +961,14 @@
           href: normalization-functions.md
         - name: ASIM known issues
           href: normalization-known-issues.md
+        - name: ASIM entities
+          items:
+            - name: ASIM user entity
+              href: normalization-entity-user.md
+            - name: ASIM device entity
+              href: normalization-entity-device.md
+            - name: ASIM application entity
+              href: normalization-entity-application.md
         - name: ASIM schemas
           items:
             - name: ASIM alert event schema
@@ -952,8 +1005,12 @@
       items:
         - name: Data source schema reference
           href: data-source-schema-reference.md
+        - name: Sentinel tables and connectors
+          href: sentinel-tables-connectors-reference.md
         - name: Security alert schema reference
           href: security-alert-schema.md
+        - name: Standalone vs XDR alert schema reference
+          href: security-alert-schema-differences.md
         - name: CEF log field mapping
           href: cef-name-mapping.md
         - name: Windows security event sets
@@ -994,6 +1051,12 @@
           href: stix-objects-api.md
         - name: Legacy upload indicator API reference
           href: upload-indicators-api.md
+- name: Responsible AI
+  items:
+    - name: Responsible AI FAQ for UEBA behaviors layer
+      href: entity-behaviors-layer-rai-faqs.md
+    - name: Responsible AI FAQ for Microsoft Sentinel MCP
+      href: datalake/sentinel-mcp-responsible-ai-faq.md
 - name: Microsoft Sentinel blog
   href: https://techcommunity.microsoft.com/t5/microsoft-sentinel-blog/bg-p/MicrosoftSentinelBlog
 - name: Pricing

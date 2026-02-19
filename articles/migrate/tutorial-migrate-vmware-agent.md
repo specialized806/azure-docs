@@ -140,11 +140,11 @@ Make sure VMware vSphere VMs comply with requirements for migration to Azure.
 
 Now, the selection experience type is both classic and simplified. We recommend using the [simplified experience](tutorial-migrate-physical-virtual-machines.md#simplified-experience-recommended) for initiating replication of any new agent-based VMware or physical servers.
 
-## Classic experience (To be deprecated soon)
+## Classic experience (Retiring soon)
 
 > [!NOTE]
-> Starting **October 30, 2025**, replication initialization will no longer be supported in the classic experience.
-> For agent-based migration of VMware servers and migration of physical servers, use the simplified experience for all new replications. The classic experience is scheduled for deprecation in **March 2026**. [Learn more](simplified-experience-for-azure-migrate.md).
+> Enabling replications via classic experience appliance will be blocked from **31 March 2026**. Switch to the simplified experience appliance to enable replications.Final recovery point for existing replications will be on **31 May 2026**. Support for migrations will continue until the retirement date (**30 September 2026**)
+> Switch sooner to gain the richer benefits of [simplified experience](simplified-experience-for-azure-migrate.md). [Learn more](tutorial-migrate-physical-virtual-machines.md#simplified-experience-recommended) on how to set up the Simplified Experience.
 
 This procedure describes how to set up the appliance with a downloaded Open Virtualization Application (OVA) template. If you can't use this method, you can set up the appliance [using a script](tutorial-migrate-physical-virtual-machines.md#set-up-the-replication-appliance).
 

@@ -1,14 +1,13 @@
 ---  
 title: Running notebooks on the Microsoft Sentinel data lake
 titleSuffix: Microsoft Security  
-description: This article describes how to explore and interact wit data lake data using Jupyter notebooks in Visual Studio Code.
+description: This article describes how to explore and interact with data lake data using Jupyter notebooks in Visual Studio Code.
 author: EdB-MSFT  
 ms.author: edbaynash 
 ms.topic: how-to  
 ms.service: microsoft-sentinel
-ms.subservice: sentinel-graph
+ms.subservice: sentinel-platform
 ms.date: 07/16/2025
- 
 
 # Customer intent: As a security engineer or data scientist, I want to explore and analyze security data in the Microsoft Sentinel data lake using Jupyter notebooks, so that I can gain insights and build advanced analytics solutions.
 ---

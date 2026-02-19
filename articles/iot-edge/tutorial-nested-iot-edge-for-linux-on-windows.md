@@ -26,7 +26,7 @@ This tutorial shows you how to create a hierarchy of IoT Edge devices using IoT 
 > * Configure the IoT Edge runtime on the devices in your hierarchy.
 > * Install consistent certificates across your device hierarchy.
 > * Add workloads to the devices in your hierarchy.
-> * Use the [IoT Edge API Proxy module](https://mcr.microsoft.com/en-us/artifact/mar/azureiotedge-api-proxy/) to securely route HTTP traffic over a single port from your lower layer devices.
+> * Use the [IoT Edge API Proxy module](https://mcr.microsoft.com/artifact/mar/azureiotedge-api-proxy/) to securely route HTTP traffic over a single port from your lower layer devices.
 
 >[!TIP]
 >This tutorial includes a mixture of manual and automated steps to provide a showcase of nested IoT Edge features.
@@ -61,7 +61,7 @@ To create a hierarchy of IoT Edge devices, you need:
 > For more information about networking, see [Azure IoT Edge for Linux on Windows networking](./iot-edge-for-linux-on-windows-networking.md) and [Networking configuration for Azure IoT Edge for Linux on Windows](./how-to-configure-iot-edge-for-linux-on-windows-networking.md).
 >
 > If you need to set up the EFLOW devices on a DMZ, see [How to configure Azure IoT Edge for Linux on Windows Industrial IoT & DMZ configuration](how-to-configure-iot-edge-for-linux-on-windows-iiot-dmz.md).
-* An Azure account with a valid subscription. If you don't have an [Azure subscription](../guides/developer/azure-developer-guide.md#understanding-accounts-subscriptions-and-billing), create a [free account](https://azure.microsoft.com/free/) before you begin.
+* An Azure account with a valid subscription. If you don't have an [Azure subscription](../guides/developer/azure-developer-guide.md#understanding-accounts-subscriptions-and-billing), create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 * A free or standard tier [IoT Hub](../iot-hub/iot-hub-create-through-portal.md) in Azure.
 * Make sure that the following ports are open inbound for all devices except the lowest layer device: 443, 5671, and 8883:
   * 443: Used between parent and child edge hubs for REST API calls and to pull docker container images.

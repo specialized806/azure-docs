@@ -4,8 +4,8 @@ description: Learn how to track dependencies between APIs and related resources 
 ms.service: azure-api-center
 ms.topic: how-to
 ms.date: 08/28/2025
-ms.author: danlep
-author: dlepow
+
+
 ms.custom: 
 # Customer intent: As an API developer or API program manager, I want to understand the dependencies between API resources in my organization's API center.
 ---
@@ -28,7 +28,7 @@ Each dependency identifies a *source* resource and a related *target* resource t
 ## Prerequisites
 
 * An [Azure API center](overview.md) resource in your Azure subscription.
-* Register one or more APIs in your API center. For instructions, see [Register APIs in your API inventory](register-apis.md).
+* Register one or more APIs in your API center. For instructions, see [Register APIs in your API inventory](./tutorials/register-apis.md).
 
 ## Add a dependency
 
@@ -85,4 +85,4 @@ To delete a dependency:
 ## Related content
 
 * [Overview of Azure API center](overview.md)
-* [Register APIs in your API inventory](register-apis.md)
+* [Register APIs in your API inventory](./tutorials/register-apis.md)
