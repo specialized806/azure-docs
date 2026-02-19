@@ -28,7 +28,7 @@ Without the API proxy, each service module must bind to a separate port on the h
 
 ## Deploy the proxy module
 
-The API proxy module is available from the [Microsoft Container Registry (MCR)](https://mcr.microsoft.com/en-us/artifact/mar/azureiotedge-api-proxy/tags), and the image URI is `mcr.microsoft.com/azureiotedge-api-proxy:latest`. Deploy the module using the [Azure portal](how-to-deploy-modules-portal.md) or [Azure CLI](how-to-deploy-modules-cli.md).
+The API proxy module is available from the [Microsoft Container Registry (MCR)](https://mcr.microsoft.com/artifact/mar/azureiotedge-api-proxy/tags), and the image URI is `mcr.microsoft.com/azureiotedge-api-proxy:latest`. Deploy the module using the [Azure portal](how-to-deploy-modules-portal.md) or [Azure CLI](how-to-deploy-modules-cli.md).
 
 ## Understand the proxy module
 
