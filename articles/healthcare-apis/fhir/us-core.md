@@ -29,9 +29,15 @@ Reference [sample test data](https://github.com/Azure-Samples/azure-health-data-
 
 
 
+
 ## US Core 7.0.0
-### Loading US Core 7
-#### Troubleshooting
+
+### US Core 7 test data
+Reference [sample test data](https://github.com/Azure-Samples/azure-health-data-and-ai-samples/tree/main/samples/USCore7-test-data) that can be used for US Core 7 testing.  
+
+Note: Samples are open-source code, and you should review the information and licensing terms on GitHub before using it. They aren't part of the Azure Health Data Service and aren't supported by Microsoft Support.   
+
+### Troubleshooting
 **How do I avoid a package resolution error when uploading US Core 7?**  
 If you're using [UploadFIG](https://github.com/brianpos/UploadFIG) to upload US Core 7 profiles, you might encounter a package resolution error, as one of the packages needed for US Core 7 (VSAC package) isn't yet available in the tool. To work around this issue, you can upload the required VSAC package to the tool cache following these steps:
 1. Download the VSAC package: 
@@ -43,10 +49,7 @@ Download the us.nlm.vsac package version 0.18.0 from the FHIR package registry a
   - Copy the renamed package into the UploadFIG cache directory (folder created in the last step) 
 3. Continue with the rest of the steps using UploadFIG to upload US Core 7 profiles.
 
-### US Core 7 test data
-Reference [sample test data](https://github.com/Azure-Samples/azure-health-data-and-ai-samples/tree/main/samples/USCore7-test-data) that can be used for US Core 7 testing.  
 
-Note: Samples are open-source code, and you should review the information and licensing terms on GitHub before using it. They aren't part of the Azure Health Data Service and aren't supported by Microsoft Support.   
 
 
 
