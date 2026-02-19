@@ -14,7 +14,7 @@ ms.author: cherylmc
 ---
 # VPN Gateway SKU consolidation and migration
 
-We're simplifying our VPN Gateway SKU portfolio. Due to the lack of redundancy, lower availability, and potential higher costs associated with failover solutions, SKUs that aren't supported by an availability zone are migrating to SKUs that are supported by an availablity zone.
+We're simplifying our VPN Gateway SKU portfolio. Due to the lack of redundancy, lower availability, and potential higher costs associated with failover solutions, SKUs that aren't supported by an availability zone are migrating to SKUs that are supported by an availability zone.
 
 This article helps you understand the changes for VPN Gateway virtual network gateway SKUs. This article expands on the [official announcement](https://azure.microsoft.com/updates/v2/vpngw1-5-non-az-skus-will-be-retired-on-30-september-2026).
 
@@ -53,7 +53,7 @@ Yes. For more information, see the new [Pricing](https://azure.microsoft.com/pri
 * If your existing gateway uses a VpnGw1-5 SKU, new pricing starts after your gateway is migrated.
 * If your existing gateway uses a VpnGw1AZ-5AZ SKU, new pricing is already in effect.
 
-### Can I deploy availabilty zone SKUs in all regions?
+### Can I deploy availability zone SKUs in all regions?
 
 Yes. If a region doesn't currently support availability zones, you can still create VPN Gateway SKUs supported by availability zones, but the deployment will remain regional. When the region supports availability zones, we'll enable zone redundancy for the gateways.
 
@@ -92,7 +92,7 @@ You must migrate your VPN gateway from a SKU not supported by an availability zo
 
 ### Will migrating cause downtime?
 
-No, not if you're migrating from a SKU that is unsupported by an availability zone to one that is supported in the same SKU family. If you're upgrading in addition to migrating, you might experience downtime consistent with existing VPN Gateway resize behavior. This is called *cross-family migration*.
+No, not if you're migrating from a SKU that's unsupported by an availability zone to one that is supported in the same SKU family. If you're upgrading in addition to migrating, you might experience downtime consistent with existing VPN Gateway resize behavior. This is called *cross-family migration*.
 
 ### Are SKUs that are supported by availability zones automatically zone-redundant?
 

@@ -27,7 +27,7 @@ There are many things to consider when you upgrade to a new gateway SKU. The fol
 | Generation 2 SKU | Generation 2 AZ SKU | Yes | No |
 | Generation 2 SKU | Generation 1 AZ SKU | No |Yes |
 
-In the preceding table, *AZ* stands for *availability zone*, and means that the SKU offers support for availabilty zones. For gateway SKU throughput and connection limits, see [About gateway SKUs](about-gateway-skus.md#benchmark).
+In the preceding table, *AZ* stands for *availability zone*, and means that the SKU offers support for availability zones. For gateway SKU throughput and connection limits, see [About gateway SKUs](about-gateway-skus.md#benchmark).
 
 ## Limitations and restrictions
 

@@ -61,7 +61,7 @@ As part of Basic IP address migration, your legacy SKU will be migrated to a new
 
 ### <a name="resize"></a>Upgrade to a gateway SKU in the same SKU family
 
-For legacy gateway SKUs, be aware that there are limitations. You can only upgrade your gateway to a gateway SKU within the same SKU family (except for the Basic SKU).
+For legacy gateway SKUs, there are limitations. You can only upgrade your gateway to a gateway SKU within the same SKU family (except for the Basic SKU).
 
 For example, if you have a Standard SKU, you can upgrade to a High Performance SKU. However, you can't upgrade your VPN gateway between the old SKUs and the new SKU families.
 
@@ -80,7 +80,7 @@ Resize-AzureVirtualNetworkGateway -GatewayId <Gateway ID> -GatewaySKU HighPerfor
 
 ### <a name="change"></a>Change to the new gateway SKUs
 
-Standard and High Performance SKUs will be deprecated on March 31, 2026. The product team will migrate the legacy SKUs. For more information, see the [Legacy SKU deprecation](#sku-deprecation) section. You can choose to change from a legacy SKU to one of the new SKUs at any point. If you change to a new SKU, there are more steps required and you will incur downtime.
+Standard and High Performance SKUs will be deprecated on March 31, 2026. The product team will migrate the legacy SKUs. For more information, see the [Legacy SKU deprecation](#sku-deprecation) section. You can choose to change from a legacy SKU to one of the new SKUs at any point. If you change to a new SKU, there are more steps required and you'll incur downtime.
 
 [!INCLUDE [Change to the new SKUs](../../includes/vpn-gateway-gwsku-change-legacy-sku-include.md)]
 

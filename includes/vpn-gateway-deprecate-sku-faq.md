@@ -41,4 +41,4 @@ If we encounter limitations such as insufficient subnet size, we won’t be able
 
 ### Is the VPN Gateway Basic SKU also retiring?
 
-No, the VPN Gateway Basic SKU isn't retiring. You can create a VPN gateway by using the Basic SKU via Azure PowerShell or the Azure CLI. Be aware that the VPN Gateway Basic SKU currently supports only the Basic SKU public IP address resource.
+No, the VPN Gateway Basic SKU isn't retiring. You can create a VPN gateway by using the Basic SKU via Azure PowerShell or the Azure CLI. The VPN Gateway Basic SKU currently supports only the Basic SKU public IP address resource.
