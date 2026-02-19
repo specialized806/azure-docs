@@ -59,7 +59,7 @@ By default, the `support-bundle` command creates a zip file called **support_bun
 
 For more information about the command, view its help information.
 
-```bash/cmd
+```bash
 iotedge support-bundle --help
 ```
 
@@ -137,7 +137,7 @@ You can retrieve the container logs from several places:
 
 * On the IoT Edge device, run the following command to view logs:
 
-  ```cmd
+  ```bash
   iotedge logs <container name>
   ```
 
@@ -154,7 +154,7 @@ If you're still troubleshooting, wait until after you inspect the container logs
 >[!WARNING]
 >If you force remove the edgeHub container while it has an undelivered message backlog and no [host storage](how-to-access-host-storage-from-module.md) configured, the undelivered messages are lost.
 
-```cmd
+```bash
 docker rm --force <container name>
 ```
 
@@ -183,13 +183,13 @@ After investigating the logs and messages for information, you can try restartin
 
 On the IoT Edge device, use the following commands to restart modules:
 
-```cmd
+```bash
 iotedge restart <container name>
 ```
 
 Restart the IoT Edge runtime containers:
 
-```cmd
+```bash
 iotedge restart edgeAgent && iotedge restart edgeHub
 ```
 
