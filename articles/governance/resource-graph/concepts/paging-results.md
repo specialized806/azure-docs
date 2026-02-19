@@ -102,7 +102,7 @@ By adding id (which is unique for every resource) as a secondary sort column, yo
 
 If you're experiencing duplicate or missing records despite sorting by a unique column, the cause is likely changes occurring in your Azure environment during pagination. When paginating through large result sets, changes to your Azure environment between requests can affect which records appear on each page. 
 
-#### Why this scenario happens
+#### Why this scenario happens:
 
 When resources change between pagination requests, the underlying data shifts. Consider the following example scenario: 
 
