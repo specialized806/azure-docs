@@ -23,10 +23,19 @@ This page is updated with the details about the upcoming release approximately a
 
 <hr width = 100%>
 
-## January 2026
-### Reservoir DDMS - Generally Available
-OSDU Reservoir DMS is now generally available on Azure Data Manager for Energy. Reservoir DMS provides standardized storage and management of reservoir engineering data—including models, grids, and simulation outputs—using OSDU-compliant schemas. It ensures consistent data quality, versioning, and traceability across workflows. The service also enables smooth integration with simulation and analytics tools to support faster, more reliable reservoir decisions. Reservoir DMS is now enabled on all partitions of existing and new instances of Azure Data Manager for Energy. The feature is currently offered in all regions that Azure Data Manager for Energy is available in, except for Indonesia Central.
+## February 2026
+### OSDU&reg; Reservoir DMS - Generally Available
+OSDU&reg; Reservoir DMS is now generally available on Azure Data Manager for Energy.
+Reservoir DMS provides:
+- Standardized storage and management of reservoir engineering data—including models, grids, and simulation outputs—using OSDU-compliant schemas.
+- Consistent data quality, versioning, and traceability across workflows.
+- Seamless integration with simulation and analytics tools to support faster, more reliable reservoir decisions.
+Reservoir DMS is enabled on all partitions of existing and new Azure Data Manager for Energy instances. The feature is available in all regions where Azure Data Manager for Energy is offered, except Indonesia Central.
 
+### Well Delivery DMS - Deprecation Notice
+OSDU Well Delivery DMS will be deprecated on Azure Data Manager for Energy with the release in the month of March. This follows the decision to deprecate the DMS in OSDU with the M26 milestone release.
+ 
+## January 2026
 ### External Data Service - Managed identity workflows
 Azure Data Manager for Energy now supports using managed identities for authentication in External Data Services (EDS) workflows. This enhancement allows you to securely connect to OSDU&reg; compliant external data sources without the need for hardcoding credentials, improving security and simplifying management of authentication in your data integration processes. You can use either system-assigned or user-assigned managed identities to authenticate EDS workflows with supported external data sources. For more information, see [How to enable External Data Services (EDS) Preview?](how-to-enable-external-data-services.md)
 
@@ -45,10 +54,6 @@ To strengthen service resiliency, Azure Data Manager for Energy now applies targ
 When a query is rate limited, clients receive an HTTP 429 – Too Many Requests responses. The response body provides a clear explanation and guidance. The enforcement logic uses a conservative default configuration of two burst tokens, a refill rate of one token every 5 seconds, and an effective allowance of approximately 12 such wildcard queries per minute. 
 
 Users can avoid rate limit conditions by issuing bounded queries with explicit kind values rather than relying on fully open wildcard patterns.
-
-### Well Delivery DMS - Deprecation Notice
-OSDU Well Delivery DMS will be deprecated on Azure Data Manager for Energy with the release in the month of March. This follows the decision to deprecate the DMS in OSDU with the M25 milestone release.
-
 
 ## December 2025
 ### Reference Data Values Automatic Sync - Generally Available
