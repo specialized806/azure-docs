@@ -302,7 +302,7 @@ Published date | `apt-get -s dist-upgrade, yum -q check-update, zypper list-upda
 > To disable discovery of pending updates:
 > 1. Go to `HKLM:\SOFTWARE\Microsoft\AzureAppliance`.
 > 1. Set the `EnablePendingUpdatesDiscovery` registry value (type `REG_DWORD`) to `0`.
-> 1. Restart the appliance for the change to take effect.
+> 1. Restart the appliance for the change to take effect. </be></br>
 > To re-enable discovery of pending updates, set the `EnablePendingUpdatesDiscovery` registry value to `1` and restart the appliance.
 
 ## SQL Server instance and database data
