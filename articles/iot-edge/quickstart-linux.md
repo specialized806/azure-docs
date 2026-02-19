@@ -191,7 +191,7 @@ Manage your Azure IoT Edge device from the cloud to deploy a module that sends d
 
 :::image type="content" source="./media/quickstart-linux/deploy-module.png" alt-text="Diagram of how to deploy a module from cloud to device.":::
 
-A key capability of Azure IoT Edge is deploying code to your IoT Edge devices from the cloud. *IoT Edge modules* are executable packages implemented as containers. In this section, you deploy a pre-built module from the [IoT Edge Modules section of Microsoft Artifact Registry](https://mcr.microsoft.com/catalog?cat=IoT%20Edge%20Modules&alphaSort=asc&alphaSortKey=Name).
+A key capability of Azure IoT Edge is deploying code to your IoT Edge devices from the cloud. *IoT Edge modules* are executable packages implemented as containers. In this section, you deploy a pre-built module from the [IoT Edge Modules section of Microsoft Artifact Registry](https://mcr.microsoft.com/en-us/catalog?cat=IoT%20Edge%20Modules&alphaSort=asc&alphaSortKey=Name).
 
 The module that you deploy in this section simulates a sensor and sends generated data. This module is a useful piece of code when you're getting started with IoT Edge because you can use the simulated data for development and testing. If you want to see exactly what this module does, you can view the [simulated temperature sensor source code](https://github.com/Azure/iotedge/blob/main/edge-modules/SimulatedTemperatureSensor/src/Program.cs).
 
