@@ -84,7 +84,7 @@ Depending on whether you're creating new resources or using existing ones, add t
 
 | Resource | Resource status | Required Azure permissions |
 | --- | --- | --- |
-| Subnet | Create new | `Microsoft.Network/virtualNetworks/subnets/write' <br> 'Microsoft.Network/virtualNetworks/subnets/join/action` |
+| Subnet | Create new | `Microsoft.Network/virtualNetworks/subnets/write` <br> 'Microsoft.Network/virtualNetworks/subnets/join/action` |
 | Subnet | Use existing | `Microsoft.Network/virtualNetworks/subnets/read` <br> `Microsoft.Network/virtualNetworks/subnets/join/action` |
 | IP addresses | Create new | `Microsoft.Network/publicIPAddresses/write` <br> `Microsoft.Network/publicIPAddresses/join/action` |
 | IP addresses | Use existing | `Microsoft.Network/publicIPAddresses/read` <br> `Microsoft.Network/publicIPAddresses/join/action` |
