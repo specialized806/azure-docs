@@ -104,7 +104,7 @@ A Software as a Service (SaaS) platform supports 800 million orchestrations mont
 ### Consumption SKU (preview)
 
 > [!NOTE]
-> The Consumption SKU is currently in preview. [Learn more about the SKU and orchestration framework recommended for production use.](./choose-orchestration-framework.md#orchestration-framework-options)
+> The Consumption SKU is currently in preview. [Learn more about the SKU and orchestration framework recommended for production use.](../choose-orchestration-framework.md#more-considerations)
 
 The Consumption SKU offers a pay-as-you-use model, ideal for variable workloads and development scenarios. 
 
@@ -140,5 +140,5 @@ An e-commerce application experiences dynamic workload scaling during promotiona
 
 - [Understand pricing for Durable Task Scheduler.](https://azure.microsoft.com/pricing/details/function)
 - View [throughput performance benchmarks](./durable-task-scheduler-work-item-throughput.md)
-- [Choose your orchestration framework](./choose-orchestration-framework.md)
+- [Choose your orchestration framework](../choose-orchestration-framework.md)
 - Try out the [Durable Functions quickstart sample](quickstart-durable-task-scheduler.md).

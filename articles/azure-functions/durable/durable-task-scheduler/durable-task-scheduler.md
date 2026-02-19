@@ -33,7 +33,7 @@ Azure provides two developer-oriented orchestration frameworks you can use to bu
 - Durable Functions
 - Durable Task SDKs
 
-[Learn which orchestration works better for your project.](./choose-orchestration-framework.md)
+[Learn which orchestration works better for your project.](../choose-orchestration-framework.md)
 
 ## Architecture
 
@@ -169,4 +169,4 @@ Stale orchestration data should be purged periodically to ensure efficient stora
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Choose your orchestration framework](./choose-orchestration-framework.md)
+> [Choose your orchestration framework](../choose-orchestration-framework.md)
