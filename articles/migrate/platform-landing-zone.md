@@ -19,7 +19,7 @@ A Platform Landing Zone provides foundational Azure capabilities such as resourc
 
 ## Workflow overview
 
-This workflow outlines how to generate a **Platform Landing Zone** from Azure Migrate and iteratively deploy it using Visual Studio Code. The workflow consists of two phases:
+This workflow outlines how to generate a **Platform Landing Zone** from Azure Migrate and then iterate over it and deploy it using Visual Studio Code. The workflow consists of two phases:
 
 - **Generate the Platform Landing Zone**: Generate the design document and Terraform-based infrastructure as code from Azure Migrate.
 - **Iterate and deploy the Platform Landing Zone**: Iterate on and deploy the generated landing zone from Visual Studio Code by using the Azure Model Context Protocol (MCP) server.
