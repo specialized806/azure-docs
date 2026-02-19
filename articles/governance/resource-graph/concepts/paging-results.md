@@ -47,7 +47,7 @@ When paginating results sorted by a non-unique column, you might encounter dupli
 > [!NOTE]
 > When using `skip or first`, it's recommended to order results by at least one column with asc or `desc`. Without sorting, results are random and not repeatable. 
 
-#### Why this happens:
+#### Why this scenario happens:
 
 Consider an example scenario, a query that retrieves virtual machines sorted by location: 
 
@@ -72,7 +72,7 @@ If multiple VMs share the same location value (for example, eastus), their relat
 
 **Page 2 request:** Skip five records and retrieve the next 5.
 
-Because all these VMs share the same location value (eastus), their relative order is not guaranteed to remain consistent across pagination calls. The second page might return: 
+Because all these VMs share the same location value (eastus), their relative order isn't guaranteed to remain consistent across pagination calls. The second page might return: 
 
 | Position | Name| Location|
 |----|-----|-----|
@@ -102,7 +102,7 @@ By adding id (which is unique for every resource) as a secondary sort column, yo
 
 If you're experiencing duplicate or missing records despite sorting by a unique column, the cause is likely changes occurring in your Azure environment during pagination. When paginating through large result sets, changes to your Azure environment between requests can affect which records appear on each page. 
 
-#### Why this happens
+#### Why this scenario happens
 
 When resources change between pagination requests, the underlying data shifts. Consider the following example scenario: 
 
@@ -136,7 +136,7 @@ Similarly, if a new resource is created between requests, you might see duplicat
 If your scenario requires a more consistent retrieval of resources, consider one of the following approaches. These strategies partition your data in a way that's resilient to changes and can also improve performance through parallel execution. 
 
 > [!NOTE]
-> These client-side strategies move the pagination logic to your application, which helps avoid the pagination inconsistencies described above. However, they don't guarantee complete consistency across calls. Resources might be added or deleted between your initial query (for counting or retrieving IDs) and subsequent data fetches. This can result in discrepancies such as a mismatch between expected count and total resources fetched, or missing results if a resource was deleted during the operation. For scenarios requiring strict consistency, consider whether point-in-time accuracy is critical for your use case. 
+> These client-side strategies move the pagination logic to your application, which helps avoid the pagination inconsistencies described previously. However, they don't guarantee complete consistency across calls. Resources might be added or deleted between your initial query (for counting or retrieving IDs) and subsequent data fetches. This can result in discrepancies such as a mismatch between expected count and total resources fetched, or missing results if a resource was deleted during the operation. For scenarios requiring strict consistency, consider whether point-in-time accuracy is critical for your use case. 
 
 #### Option 1: Hash-based data partitioning 
 
@@ -152,7 +152,7 @@ Resources
 | count 
 ``` 
 
-Use the count to determine the number of partitions needed. For example, if your count returns 7,712 records and since Azure Resource Graph returns a maximum of 1,000 records per query, you would need at least 8 partitions. 
+Use the count to determine the number of partitions needed. For example, if your count returns 7,712 records and since Azure Resource Graph returns a maximum of 1,000 records per query, you would need at least eight partitions. 
 
 ##### Step 2: Query each position
 
