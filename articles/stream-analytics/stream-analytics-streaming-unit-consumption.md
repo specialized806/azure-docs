@@ -23,7 +23,7 @@ The **SU V2 model (recommended)** is a simplified structure with favorable prici
 
 The following table shows the underlying compute power for V1 and V2 streaming units:
 
-:::image type="content" source="./media/stream-analytics-scale-jobs/su-conversion-suv2.png" alt-text="Screenshot of SU V1 and SU V2 mapping table.":::
+:::image type="content" source="./media/stream-analytics-scale-jobs/su-conversion-suv2.png" alt-text="Screenshot of SU V1 and SU V2 mapping table." lightbox="./media/stream-analytics-scale-jobs/su-conversion-suv2.png":::
 
 For information on SU pricing, visit the [Azure Stream Analytics Pricing Page](https://azure.microsoft.com/pricing/details/stream-analytics/).
 
@@ -54,7 +54,7 @@ The SU % utilization metric, which ranges from 0% to 100%, describes the memory 
 
 1. In the job page, under the **Configure** heading, select **Scale**. The default number of SUs is 1 when creating a job.
 
-:::image type="content" source="./media/stream-analytics-scale-jobs/stream-analytics-preview-portal-job-settings-new-portal.png" alt-text="Screenshot of menu on Azure Stream Analytics portal.":::
+:::image type="content" source="./media/stream-analytics-scale-jobs/stream-analytics-preview-portal-job-settings-new-portal.png" alt-text="Screenshot of menu on Azure Stream Analytics portal." lightbox="./media/stream-analytics-scale-jobs/stream-analytics-preview-portal-job-settings-new-portal.png":::
     
 1. Choose the SU option in the drop-down list to set the SUs for the job. You're limited to a specific SU range. 
 
@@ -63,7 +63,7 @@ The SU % utilization metric, which ranges from 0% to 100%, describes the memory 
 ## Monitor job performance
 Using the Azure portal, you can track the performance-related metrics of a job. For more information about the metrics definition, see [Azure Stream Analytics job metrics](./monitor-azure-stream-analytics-reference.md#metrics). For more information about metrics monitoring in the portal, see [Monitor Stream Analytics job with Azure portal](./stream-analytics-monitoring.md).
 
-:::image type="content" source="./media/stream-analytics-scale-jobs/stream-analytics-job-monitor-new-portal.png" alt-text="Screenshot of monitor job performance.":::
+:::image type="content" source="./media/stream-analytics-scale-jobs/stream-analytics-job-monitor-new-portal.png" alt-text="Screenshot of monitor job performance." lightbox="./media/stream-analytics-scale-jobs/stream-analytics-job-monitor-new-portal.png":::
 
 Calculate the expected throughput of the workload. If the throughput is less than expected, tune the input partition, tune the query, and add SUs to your job.
 
