@@ -23,7 +23,7 @@ In this quickstart guide, you set up:
 - Establishment of an analytical rule, conduction of a test alert, and visualization of an alert for comprehensive oversight.
 - Migration from Microsoft Sentinel to Microsoft Defender XDR.
 
-:::image type="content" source="media/siem-integration-with-sentinel/sentinel-agc-flowchart.png" lightbox="media/siem-integration-with-sentinel/sentinel-agc-flowchart.png" alt-text="Screenshot of Application Gateway for Containers SIEM integration flowchart.":::
+:::image type="content" source="media/siem-integration-with-sentinel/sentinel-application-gateway-flowchart.png" lightbox="media/siem-integration-with-sentinel/sentinel-application-gateway-flowchart.png" alt-text="Screenshot of Application Gateway for Containers SIEM integration flowchart.":::
 
 > [!NOTE]
 > Starting in July 2026, Microsoft Sentinel support in the Azure portal ends. The Defender portal supports Microsoft Sentinel. Users are automatically redirected to the Defender portal.
@@ -67,7 +67,7 @@ In this quickstart guide, you set up:
 1. Search for **Microsoft Defender XDR** and select **Install**. 
 1. Go to **Data Connectors** under **Configuration**.
 1. Check that **Microsoft Defender XDR** is connected and verify that your prerequisites are all green-checked and available.
-:::image type="content" source="media/siem-integration-with-sentinel/sentinel-prereq.png" lightbox="media/siem-integration-with-sentinel/sentinel-prereq.png" alt-text="Screenshot of Microsoft Sentinel prerequisites check.":::
+:::image type="content" source="media/siem-integration-with-sentinel/sentinel-prerequisites.png" lightbox="media/siem-integration-with-sentinel/sentinel-prerequisites.png" alt-text="Screenshot of Microsoft Sentinel prerequisites check.":::
 1. Go to the **Overview** page of your selected Microsoft Sentinel.
 1. Select **Learn More** on the banner to onboard to Microsoft Defender portal. Another way to access is the link: https://security.microsoft.com/. 
 1. Select **Connect a Workspace** and select your Microsoft Sentinel workspace. 
