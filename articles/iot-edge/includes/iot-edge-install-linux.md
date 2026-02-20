@@ -1,6 +1,6 @@
 ---
 ms.topic: include
-ms.date: 04/29/2025
+ms.date: 02/19/2026
 author: sethmanheim
 ms.author: sethm
 ms.service: azure-iot-edge
@@ -67,7 +67,7 @@ Installing with APT can be done with a few commands. Open a terminal and run the
     ```
 
 > [!TIP]
-> If you gave the "root" account a password during the OS install, you don't need 'sudo' and can run the previous command by starting with 'apt'.
+> If you gave the "root" account a password during the OS install, you don't need `sudo`, and can run the previous command by starting with `apt`.
 
 # [Red Hat Enterprise Linux](#tab/rhel)
 
@@ -154,21 +154,21 @@ The Docker snap is serviced by Canonical and supported for production scenarios.
 
 ---
 
-By default, the container engine doesn't set container log size limits. Over time, this situation can lead to the device filling up with logs and running out of disk space. However, you can configure your log to show locally, though it's optional. To learn more about logging configuration, see [Prepare to deploy your IoT Edge solution in production](../production-checklist.md#set-up-default-logging-driver).
+By default, the container engine doesn't set container log size limits. Over time, this situation can lead to the device filling up with logs and running out of disk space. However, you can configure your log to show locally, though it's optional. For more information about logging configuration, see [Prepare to deploy your IoT Edge solution in production](../production-checklist.md#set-up-default-logging-driver).
 
-The following steps show you how to configure your container to use [`local` logging driver](https://docs.docker.com/config/containers/logging/local/) as the logging mechanism. 
+The following steps show you how to configure your container to use the [`local` logging driver](https://docs.docker.com/config/containers/logging/local/) as the logging mechanism. 
 
 # [Ubuntu / Debian / RHEL](#tab/ubuntu+debian+rhel)
 
-1. Create or edit the existing Docker [daemon's config file](https://docs.docker.com/config/daemon/)
+1. Create or edit the existing Docker [daemon's config file](https://docs.docker.com/config/daemon/):
 
     ```bash
     sudo nano /etc/docker/daemon.json
     ```
 
-1. Set the default logging driver to the `local` logging driver as shown in the example.
+1. Set the default logging driver to the `local` logging driver as shown in the example:
 
-    ```JSON
+    ```json
        {
           "log-driver": "local"
        }

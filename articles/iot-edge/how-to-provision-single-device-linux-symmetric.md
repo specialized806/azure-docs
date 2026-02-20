@@ -7,7 +7,7 @@ ms.author: sethm
 ms.service: azure-iot-edge
 services: iot-edge
 ms.topic: how-to
-ms.date: 04/29/2025
+ms.date: 02/19/2026
 ms.custom:
   - linux-related-content
   - sfi-ropc-nochange
@@ -46,7 +46,7 @@ This article covers using symmetric keys as your authentication method. If you w
 
 ## Prerequisites
 
-This article shows how to register your IoT Edge device and install IoT Edge (also called IoT Edge runtime) on your device. Make sure you have the device management tool of your choice, for example Azure CLI, and device requirements before you register and install your device.
+This article shows how to register your IoT Edge device and install IoT Edge (also called IoT Edge runtime) on your device. Make sure you have the device management tool of your choice; for example Azure CLI, and review device requirements before you register and install your device.
 
 <!-- Device registration prerequisites H3 and content -->
 [!INCLUDE [iot-edge-prerequisites-register-device.md](includes/iot-edge-prerequisites-register-device.md)]
@@ -62,7 +62,6 @@ If you're using Visual Studio Code, there are helpful Azure IoT extensions that 
 Install both the Azure IoT Edge and Azure IoT Hub extensions:
 
 * [Azure IoT Edge](https://marketplace.visualstudio.com/items?itemName=vsciot-vscode.azure-iot-edge). The *Azure IoT Edge tools for Visual Studio Code* extension is in [maintenance mode](https://github.com/microsoft/vscode-azure-iot-edge/issues/639).
-
 * [Azure IoT Hub](https://marketplace.visualstudio.com/items?itemName=vsciot-vscode.azure-iot-toolkit)
 
 <!-- Prerequisites end -->
@@ -81,11 +80,13 @@ Now that the container engine and the IoT Edge runtime are installed on your dev
 
 You can configure your IoT Edge device with symmetric key authentication using the following command:
 
-   ```bash
-   sudo iotedge config mp --connection-string 'PASTE_DEVICE_CONNECTION_STRING_HERE'
-   ```
+```bash
+sudo iotedge config mp --connection-string 'PASTE_DEVICE_CONNECTION_STRING_HERE'
+```
 
-   This `iotedge config mp` command creates a configuration file on the device and enters your connection string in the configuration file.
+The following `iotedge config mp` command creates a configuration file on the device and enters your connection string in the configuration file:
+
+```bash
 
 1. Apply the configuration changes.
 
@@ -156,13 +157,13 @@ Verify that the runtime was successfully installed and configured on your IoT Ed
 
    A successful status response shows the `aziot` services as running or ready.
 
-1. If you need to troubleshoot the service, retrieve the service logs.
+1. If you need to troubleshoot the service, retrieve the service logs:
 
    ```bash
    sudo iotedge system logs
    ```
 
-1. Use the `check` tool to verify configuration and connection status of the device.
+1. Use the `check` tool to verify configuration and connection status of the device:
 
    ```bash
    sudo iotedge check

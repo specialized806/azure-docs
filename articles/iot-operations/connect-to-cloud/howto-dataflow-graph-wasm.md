@@ -6,7 +6,7 @@ ms.author: sethm
 ms.service: azure-iot-operations
 ms.subservice: azure-data-flows
 ms.topic: how-to
-ms.date: 01/15/2026
+ms.date: 02/20/2026
 ai-usage: ai-assisted
 
 ---
@@ -27,7 +27,7 @@ Azure IoT Operations data flow graphs support WebAssembly (WASM) modules for cus
 
 - Deploy an Azure IoT Operations instance on an Arc-enabled Kubernetes cluster. For more information, see [Deploy Azure IoT Operations](../deploy-iot-ops/howto-deploy-iot-operations.md).
 - Configure a registry endpoint to access WASM modules and graph definitions. You have two options:
-  - **Quick start with public registry**: Create a registry endpoint pointing to `ghcr.io/azure-samples/explore-iot-operations` with anonymous authentication. See [Use prebuilt modules from a public registry](../develop-edge-apps/howto-deploy-wasm-graph-definitions.md#use-prebuilt-modules-from-a-public-registry) for instructions.
+  - **Quick start with public registry**: Create a registry endpoint pointing to `ghcr.io/azure-samples/explore-iot-operations` with anonymous authentication. For instructions, see [Use prebuilt modules from a public registry](../develop-edge-apps/howto-deploy-wasm-graph-definitions.md#use-prebuilt-modules-from-a-public-registry).
   - **Private registry**: Set up your own container registry and push the sample modules by following guidance in [Deploy WebAssembly (WASM) modules and graph definitions](../develop-edge-apps/howto-deploy-wasm-graph-definitions.md).
 
 > [!NOTE]
@@ -1060,8 +1060,9 @@ Registry endpoints provide access to container registries for pulling WASM modul
 
 For detailed configuration information, see [Configure registry endpoints](../develop-edge-apps/howto-configure-registry-endpoint.md).
 
-
 ## Troubleshoot data flow graphs
+
+This section provides troubleshooting tips for common issues when working with data flow graphs.
 
 ### RegistryEndpoint not found
 
@@ -1082,7 +1083,7 @@ If the data flow graph fails to start and reports that it can't find the registr
    kubectl describe registryendpoint <REGISTRY_ENDPOINT_NAME> -n azure-iot-operations
    ```
 
-1. **Authentication is configured correctly**: If using managed identity, ensure the Azure IoT Operations Arc extension has `AcrPull` permissions on the registry. If using anonymous authentication with a public registry, verify the host URL is correct.
+1. **Authentication is configured correctly**: If using managed identity, ensure the Azure IoT Operations Arc extension has `AcrPull` permissions on the registry. If you're using anonymous authentication with a public registry, verify the host URL is correct.
 
 1. **Artifacts exist in the registry**: Verify that the graph definition and WASM modules referenced in your graph are available at the expected tags in the registry:
 
