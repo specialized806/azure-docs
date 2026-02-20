@@ -43,6 +43,10 @@ The standalone Durable Task SDKs provide **built-in test infrastructure** that r
 - [unittest.mock](https://docs.python.org/3/library/unittest.mock.html) — mocking library
 - Familiarity with the [Python v2 programming model](../functions-reference-python.md)
 
+# [JavaScript](#tab/javascript)
+
+JavaScript unit testing for Durable Functions isn't covered in this article.
+
 ---
 
 ::: zone-end
@@ -176,6 +180,10 @@ class TestOrchestrator(unittest.TestCase):
         self.assertEqual(context.call_activity.call_args_list, expected_calls)
         self.assertEqual(values[-1], ["Hello Tokyo!", "Hello Seattle!", "Hello London!"])
 ```
+
+# [JavaScript](#tab/javascript)
+
+JavaScript unit testing for Durable Functions isn't covered in this article.
 
 ---
 
@@ -389,6 +397,10 @@ def test_say_hello():
     assert result == "Hello Tokyo!"
 ```
 
+# [JavaScript](#tab/javascript)
+
+JavaScript unit testing for Durable Functions isn't covered in this article.
+
 ---
 
 ::: zone-end
@@ -552,6 +564,10 @@ class TestClientFunction(unittest.TestCase):
         client.start_new.assert_called_once_with("my_orchestrator")
         client.create_check_status_response.assert_called_once_with(req, "test-instance-id")
 ```
+
+# [JavaScript](#tab/javascript)
+
+JavaScript unit testing for Durable Functions isn't covered in this article.
 
 ---
 
