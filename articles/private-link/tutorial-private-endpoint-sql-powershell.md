@@ -85,6 +85,7 @@ $parameters3 = @{
     Name = 'myBastion'
     PublicIpAddress = $publicip
     VirtualNetwork = $vnet
+    Sku = 'Basic'
 }
 New-AzBastion @parameters3
 ```
