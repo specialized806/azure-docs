@@ -774,7 +774,7 @@ Follow these steps to install an SAP application server.
    ```
 
    > [!NOTE]
-   > If you're using SBD as a STONITH mechanism, it could happen that after a reboot, when the node attempts to rejoin the cluster, it receives the message "we were allegendly just fenced" message in /var/log/messages and shut down the Pacemaker and Corosync services. To address the issue, you can follow the workaround described in RedHat KB [A node shuts down pacemaker after getting fenced and restarting corosync and pacemaker](https://access.redhat.com/solutions/5644441). However, in Azure, set a delay of 150 seconds for Corosync service to startup. Ensure that these steps are applied to all cluster nodes.
+   > If you're using SBD as a STONITH mechanism, it could happen that after a reboot, when the node attempts to rejoin the cluster, it receives the message "we were allegedly just fenced" message in /var/log/messages and shut down the Pacemaker and Corosync services. To address the issue, you can follow the workaround described in RedHat KB [A node shuts down pacemaker after getting fenced and restarting corosync and pacemaker](https://access.redhat.com/solutions/5644441). However, in Azure, set a delay of 150 seconds for Corosync service to startup. Ensure that these steps are applied to all cluster nodes.
 
    Use the following command to clean the failed resources.
 

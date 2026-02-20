@@ -168,7 +168,7 @@ Deploy VMs for SAP HANA. Choose a suitable RHEL image that's supported for the H
 
 ### Configure Azure load balancer
 
-During VM configuration, you have an option to create or select exiting load balancer in networking section. Follow below steps, to setup standard load balancer for high availability setup of HANA database.
+During VM configuration, you have an option to create or select exiting load balancer in networking section. Follow below steps, to set up standard load balancer for high availability setup of HANA database.
 
 #### [Azure portal](#tab/lb-portal)
 

@@ -69,7 +69,7 @@ Some readers will benefit from consulting a variety of SAP notes and resources b
   * [High availability add-on administration](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/high_availability_add-on_administration/index).
   * [High availability add-on reference](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/high_availability_add-on_reference/index).
   * [Red Hat Enterprise Linux networking guide](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/networking_guide).
-  * [How do I configure SAP HANA scale-out system replication in a Pacemaker cluster with HANA file systems on NFS shares](https://access.redhat.com/solutions/5423971).
+  * [How do I configure SAP HANA scale-out system replication in a Pacemaker cluster with HANA file systems on NFS shares?](https://access.redhat.com/solutions/5423971).
   * [Active/Active (read-enabled): RHEL HA solution for SAP HANA scale out and system replication](https://access.redhat.com/articles/3004101).
 * Azure-specific RHEL documentation:
   * [Install SAP HANA on Red Hat Enterprise Linux for use in Microsoft Azure](https://access.redhat.com/public-cloud/microsoft-azure).
@@ -90,7 +90,7 @@ The HANA shared file system `/hana/shared` in the presented architecture can be 
 For recommended SAP HANA storage configurations, see [SAP HANA Azure VMs storage configurations](./hana-vm-operations-storage.md).
 
 > [!IMPORTANT]
-> If deploying all HANA file systems on Azure NetApp Files, for production systems, where performance is a key, we recommend to evaluate and consider using [Azure NetApp Files application volume group for SAP HANA](hana-vm-operations-netapp.md#deployment-through-azure-netapp-files-application-volume-group-for-sap-hana-avg).  
+> If deploying all HANA file systems on Azure NetApp Files, for production systems, where performance is a key, we recommend evaluating and considering using [Azure NetApp Files application volume group for SAP HANA](hana-vm-operations-netapp.md#deployment-through-azure-netapp-files-application-volume-group-for-sap-hana-avg).  
 
 [![Diagram of SAP HANA scale-out with HSR and Pacemaker cluster.](./media/sap-hana-high-availability-rhel/sap-hana-high-availability-scale-out-hsr-rhel.png)](./media/sap-hana-high-availability-rhel/sap-hana-high-availability-scale-out-hsr-rhel-detail.png#lightbox)
 
@@ -170,11 +170,11 @@ In the instructions that follow, we assume that you've already created the resou
 
 ### Configure Azure load balancer
 
-During VM configuration, you have an option to create or select exiting load balancer in networking section. Follow below steps, to setup standard load balancer for high availability setup of HANA database.
+During VM configuration, you have an option to create or select exiting load balancer in networking section. Follow below steps to set up standard load balancer for high availability setup of HANA database.
 
 > [!NOTE]
 >
-> * For HANA scale out, select the NIC for the `client` subnet when adding the virtual machines in the backend pool.
+> * For HANA scale-out, select the NIC for the `client` subnet when adding the virtual machines in the backend pool.
 > * The full set of command in Azure CLI and PowerShell adds the VMs with primary NIC in the backend pool.
 
 #### [Azure portal](#tab/lb-portal)
@@ -183,13 +183,13 @@ During VM configuration, you have an option to create or select exiting load bal
 
 #### [Azure CLI](#tab/lb-azurecli)
 
-The full set of Azure CLI codes display the setup of the load balancer, which include two VMs in the backend pool. Depending on the number of VMs in your HANA scale-out, you could add more VMs in the backend pool.
+The full set of Azure CLI codes display the setup of the load balancer, which includes two VMs in the backend pool. Depending on the number of VMs in your HANA scale-out, you could add more VMs in the backend pool.
 
 [!INCLUDE [Configure Azure standard load balancer using Azure CLI](../../../includes/sap-load-balancer-db-azurecli.md)]
 
 #### [PowerShell](#tab/lb-powershell)
 
-The full set of PowerShell code display the setup of the load balancer, which include two VMs in the backend pool. Depending on the number of VMs in your HANA scale-out, you could add more VMs in the backend pool.
+The full set of PowerShell code display the setup of the load balancer, which includes two VMs in the backend pool. Depending on the number of VMs in your HANA scale-out, you could add more VMs in the backend pool.
 
 [!INCLUDE [Configure Azure standard load balancer using PowerShell](../../../includes/sap-load-balancer-db-powershell.md)]
 

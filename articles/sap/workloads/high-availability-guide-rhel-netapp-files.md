@@ -170,6 +170,8 @@ During VM configuration, you have an option to create or select exiting load bal
 
 The instructions in this section are only applicable if you're using Azure NetApp Files volumes with the NFSv4.1 protocol. Perform the configuration on all VMs where Azure NetApp Files NFSv4.1 volumes will be mounted.  
 
+The following **[A]** prefix applies to both PAS and AAS.
+
 1. Verify the NFS domain setting. Make sure that the domain is configured as the default Azure NetApp Files domain, that is, `defaultv4iddomain.com`, and the mapping is set to **nobody**.
 
     > [!IMPORTANT]
@@ -185,8 +187,6 @@ The instructions in this section are only applicable if you're using Azure NetAp
     Nobody-User = nobody
     Nobody-Group = nobody
     ```
-
-The following **[A]** prefix applies to both PAS and AAS.
 
 1. **[A]** Verify `nfs4_disable_idmapping`. It should be set to **Y**. To create the directory structure where `nfs4_disable_idmapping` is located, run the mount command. You won't be able to manually create the directory under `/sys/modules` because access is reserved for the kernel and drivers.
 
