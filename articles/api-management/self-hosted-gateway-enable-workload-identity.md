@@ -6,7 +6,7 @@ author: dlepow
 
 ms.service: azure-api-management
 ms.topic: how-to
-ms.date: 02/12/2026
+ms.date: 02/19/2026
 ms.author: danlep
 ---
 
@@ -16,11 +16,11 @@ ms.author: danlep
 
 The Azure API Management [self-hosted gateway](self-hosted-gateway-overview.md) needs connectivity with its associated cloud-based API Management instance for reporting status, checking for and applying configuration updates, and sending metrics and events. 
 
-This article shows you how to enable the self-hosted gateway to authenticate to its associated cloud instance by using [Microsoft Entra workload identity](/azure/aks/workload-identity-overview). With workload identity authentication, you can eliminate the need to manage secrets or certificates, since authentication is handled through federated identity credentials between your Kubernetes cluster and Microsoft Entra ID. For other authentication options, see [Self-hosted gateway authentication options](self-hosted-gateway-authentication-options.md).
+This article shows you how to enable the self-hosted gateway to authenticate to its associated cloud instance by using [Microsoft Entra workload identity](/azure/aks/workload-identity-overview). By using workload identity authentication, you don't need to manage secrets or certificates, since authentication is handled through federated identity credentials between your Kubernetes cluster and Microsoft Entra ID. For other authentication options, see [Self-hosted gateway authentication options](self-hosted-gateway-authentication-options.md).
 
 ## Scenario overview
 
-The self-hosted gateway configuration API can check Azure role-based access control (RBAC) to determine who has permissions to read the gateway configuration. With workload identity, you create a Microsoft Entra app that is associated with a Kubernetes service account through federated identity credentials. The self-hosted gateway can then authenticate to the API Management instance using this workload identity without requiring secrets.
+The self-hosted gateway configuration API can check Azure role-based access control (RBAC) to determine who has permissions to read the gateway configuration. By using workload identity, you create a Microsoft Entra app that you associate with a Kubernetes service account through federated identity credentials. The self-hosted gateway can then authenticate to the API Management instance by using this workload identity without requiring secrets.
 
 Workload identity uses [OpenID Connect (OIDC)](https://openid.net/connect/) to enable Kubernetes applications to access Azure resources securely.  
 
@@ -38,18 +38,18 @@ To enable workload identity authentication, complete the following steps:
 
 - An API Management instance in the Developer or Premium service tier. If needed, complete the following quickstart: [Create an Azure API Management instance](get-started-create-service-instance.md).
 - An Azure Kubernetes Service (AKS) cluster with [workload identity and OIDC issuer enabled](/azure/aks/workload-identity-deploy-cluster).
-- Provision a [gateway resource](api-management-howto-provision-self-hosted-gateway.md) on the instance.
-- Enable a [system-assigned managed identity](api-management-howto-use-managed-service-identity.md) on the instance.
-- Self-hosted gateway container image version 2.11.0 or later 
+- A [gateway resource](api-management-howto-provision-self-hosted-gateway.md) on the instance.
+- An [system-assigned managed identity](api-management-howto-use-managed-service-identity.md) enabled on the instance.
+- Self-hosted gateway container image version 2.11.0 or later. 
 
-### Limitations and notes
+### Notes
 
-- Only system-assigned managed identity is supported.
 - This article focuses on deployment to Azure Kubernetes Service (AKS).
+- The pattern is applicable to other Kubernetes distributions with the required OIDC support. For more information, see the [Azure workload identity repo](https://github.com/azure/azure-workload-identity).
 
 [!INCLUDE [api-management-gateway-role-assignments](../../includes/api-management-gateway-role-assignments.md)]
 
-### Assign API Management Gateway Configuration Reader Role
+### Assign API Management Gateway Configuration Reader role
 
 <a name='step-1-register-azure-ad-app-and-configure-workload-identity'></a>
 
@@ -58,9 +58,9 @@ To enable workload identity authentication, complete the following steps:
 Create a new Microsoft Entra app. For steps, see [Create a Microsoft Entra application and service principal that can access resources](../active-directory/develop/howto-create-service-principal-portal.md). The Microsoft Entra app is used by the self-hosted gateway to authenticate to the API Management instance.
 
 > [!IMPORTANT]
-> The workload identity does **not** require you to create a client secret. Authentication is handled through federated identity credentials.
+> The workload identity doesn't require you to create a client secret. Authentication is handled through federated identity credentials.
 
-Take note of the application (client) ID for use in the next section when deploying the self-hosted gateway.
+Note the application (client) ID for use in the next section when deploying the self-hosted gateway.
 
 Next, configure federated identity credentials to establish trust between your Microsoft Entra app and the Kubernetes service account:
 
@@ -69,7 +69,7 @@ Next, configure federated identity credentials to establish trust between your M
 1. Select the **Kubernetes accessing Azure resources** scenario.
 1. Configure the federated credential:
    - **Cluster issuer URL**: The OIDC issuer URL from your AKS cluster (obtain using `az aks show --resource-group <resource-group> --name <cluster-name> --query "oidcIssuerProfile.issuerUrl"`)
-   - **Namespace**: The Kubernetes namespace where you'll deploy the gateway (for example, `apim-gateway-wi`)
+   - **Namespace**: The Kubernetes namespace where you deploy the gateway (for example, `apim-gateway-wi`)
    - **Service account**: The name of the Kubernetes service account (for example, `apim-gateway-workload-identity`)
    - **Name**: A descriptive name for the credential (for example, `apim-gateway-federated-credential`)
 1. Select **Add** to create the federated credential.
@@ -86,8 +86,30 @@ For more information, see [Configure a federated identity credential on an app](
 
 ## Deploy the self-hosted gateway
 
-Deploy the self-hosted gateway to Kubernetes using workload identity. 
+Deploy the self-hosted gateway to Kubernetes by using workload identity. 
 
+#### [Helm](#tab/helm)
+
+You can deploy the self-hosted gateway with Microsoft Entra authentication by using a [Helm chart](https://github.com/Azure/api-management-self-hosted-gateway). 
+
+Replace the following values in the `helm install` command with your actual values:
+
+- `<gateway-name>`: Your Azure API Management instance name
+- `<gateway-url>`: The URL of your gateway, in the format `https://<gateway-name>.configuration.azure-api.net`
+- `<entra-id-app-id>`: The application (client) ID of the registered Microsoft Entra app
+
+```console
+helm install --name azure-api-management-gateway azure-apim-gateway/azure-api-management-gateway \
+             --set gateway.name=='<gateway-name>' \
+             --set gateway.configuration.uri='<gateway-url>' \
+             --set gateway.auth.type='WorkloadIdentity' \
+             --set gateway.auth.azureAd.app.id='<entra-id-app-id>'
+```
+
+For prerequisites and details, see [Deploy API Management self-hosted gateway with Helm](how-to-deploy-self-hosted-gateway-kubernetes-helm.md).
+
+
+[!INCLUDE [api-management-self-hosted-gateway-kubernetes-services-helm](../../includes/api-management-self-hosted-gateway-kubernetes-services-helm.md)]
 
 #### [YAML](#tab/yaml)
 
@@ -95,7 +117,7 @@ The following YAML configuration shows the required components and settings.
 
 > [!IMPORTANT]
 > If you're following the existing Kubernetes [deployment guidance](how-to-deploy-self-hosted-gateway-kubernetes.md):
-> - Make sure to omit the step to store the default authentication key using the `kubectl create secret generic` command. 
+> - Omit the step to store the default authentication key by using the `kubectl create secret generic` command. 
 > - Substitute the following basic configuration file for the default YAML file that the Azure portal generates for you. The following file adds Microsoft Entra workspace identity in place of configuration to use an authentication key.
 
 > [!NOTE]
@@ -212,29 +234,6 @@ kubectl logs -n <namespace-name> <pod-name>
 
 [!INCLUDE [api-management-self-hosted-gateway-kubernetes-services](../../includes/api-management-self-hosted-gateway-kubernetes-services.md)]
 
-#### [Helm](#tab/helm)
-
-You can deploy the self-hosted gateway with Microsoft Entra authentication using a [Helm chart](https://github.com/Azure/api-management-self-hosted-gateway). 
-
-Replace the following values in the the `helm install` command with your actual values:
-
-- `<gateway-name>`: Your Azure API Management instance name
-- `<gateway-url>`: The URL of your gateway, in the format `https://<gateway-name>.configuration.azure-api.net`
-- `<entra-id-app-id>`: The application (client) ID of the registered Microsoft Entra app
-
-```console
-helm install --name azure-api-management-gateway azure-apim-gateway/azure-api-management-gateway \
-             --set gateway.name=='<gateway-name>' \
-             --set gateway.configuration.uri='<gateway-url>' \
-             --set gateway.auth.type='WorkloadIdentity' \
-             --set gateway.auth.azureAd.app.id='<entra-id-app-id>'
-```
-
-For prerequisites an details, see [Deploy API Management self-hosted gateway with Helm](how-to-deploy-self-hosted-gateway-kubernetes-helm.md).
-
-
-[!INCLUDE [api-management-self-hosted-gateway-kubernetes-services-helm](../../includes/api-management-self-hosted-gateway-kubernetes-services-helm.md)]
-
 ---
 
 ## Related content
@@ -242,5 +241,4 @@ For prerequisites an details, see [Deploy API Management self-hosted gateway wit
 - Learn more about the API Management [self-hosted gateway](self-hosted-gateway-overview.md).
 - Learn more about [Microsoft Entra workload identity for AKS](/azure/aks/workload-identity-overview).
 - Learn more about guidance for [running the self-hosted gateway on Kubernetes in production](how-to-self-hosted-gateway-on-kubernetes-in-production.md).
-- Learn [how to deploy API Management self-hosted gateway to Azure Arc-enabled Kubernetes clusters](how-to-deploy-self-hosted-gateway-azure-arc.md).
 - Compare with [Microsoft Entra authentication using client secrets](self-hosted-gateway-enable-azure-ad.md).

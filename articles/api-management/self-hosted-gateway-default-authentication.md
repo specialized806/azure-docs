@@ -6,7 +6,7 @@ author: dlepow
 
 ms.service: azure-api-management
 ms.topic: how-to
-ms.date: 02/13/2026
+ms.date: 02/19/2026
 ms.author: danlep
 ---
 
@@ -16,54 +16,76 @@ ms.author: danlep
 
 The Azure API Management [self-hosted gateway](self-hosted-gateway-overview.md) needs connectivity with its associated cloud-based API Management instance for reporting status, checking for and applying configuration updates, and sending metrics and events.
 
-This article shows you how to enable the self-hosted gateway to authenticate using the default token-based authentication method. This approach uses a configuration token and endpoint URL to establish secure communication between the self-hosted gateway and your API Management instance. For other authentication options, see [Self-hosted gateway authentication options](self-hosted-gateway-authentication-options.md).
+This article shows you how to enable the self-hosted gateway to authenticate by using the default token-based authentication method. This approach uses an access token and endpoint URL to establish secure communication between the self-hosted gateway and your API Management instance. For other authentication options, see [Self-hosted gateway authentication options](self-hosted-gateway-authentication-options.md).
 
 
 ## Prerequisites
 
 - An API Management instance in the Developer or Premium service tier. If needed, complete the following quickstart: [Create an Azure API Management instance](get-started-create-service-instance.md).
-- Provision a [gateway resource](api-management-howto-provision-self-hosted-gateway.md) on the instance.
+- A [gateway resource](api-management-howto-provision-self-hosted-gateway.md) on the instance.
 - An Azure Kubernetes Service (AKS) cluster or Kubernetes cluster.
 - Self-hosted gateway container image version 2.0 or later
 
-## Generate the gateway token
+## Generate the access token
 
 When you provision a gateway resource in API Management, a default authentication token is generated automatically. To retrieve the token:
 
-1. In the Azure portal, navigate to your API Management instance.
+1. In the Azure portal, go to your API Management instance.
 1. Select **Deployment and infrastructure** > **Gateways**.
 1. Select your gateway from the list.
 1. On the gateway page, select **Settings** > **Deployment**.
-1. Copy the **Token** value. This token is used to authenticate the self-hosted gateway to the API Management instance.
+1. Copy the **Token** value. Use this token to authenticate the self-hosted gateway to the API Management instance.
 1. Select a deployment script for your environment to copy and use in the next section to deploy the gateway with token authentication.
 
 > [!IMPORTANT]
-> Keep the configuration token secure. This token grants access to your gateway configuration. Do not commit it to source control or expose it publicly.
+> * Keep the access token secure. This token grants access to your gateway configuration. Don't commit it to source control or expose it publicly.
+> * The access token has a defined lifetime and must be rotated periodically. You can subscribe to system events to be notified when a token is near expiration or has expired. See later sections in this article for details.
 
 ## Deploy the self-hosted gateway
 
-Deploy the self-hosted gateway to a containerized environment, such as Kubernetes, using the default token authentication. 
+Deploy the self-hosted gateway to a containerized environment, such as Kubernetes, by using the default token authentication. 
+
+#### [Helm](#tab/helm)
+
+You can deploy the self-hosted gateway with token authentication by using a [Helm chart](https://github.com/Azure/api-management-self-hosted-gateway).  
+
+Replace the following values in the `helm install` command with your actual values:
+
+- `<gateway-name>`: Your Azure API Management instance name
+- `<gateway-url>`: The URL of your gateway, in the format `https://<gateway-name>.configuration.azure-api.net`
+- `<gateway-key>`: Your access token    
+
+For prerequisites and details, see [Deploy API Management self-hosted gateway with Helm](how-to-deploy-self-hosted-gateway-kubernetes-helm.md).
+
+
+```console
+helm install --name azure-api-management-gateway azure-apim-gateway/azure-api-management-gateway \
+             --set gateway.configuration.uri='<gateway-url>' \
+             --set gateway.auth.key='<gateway-key>'
+```
+
+[!INCLUDE [api-management-self-hosted-gateway-kubernetes-services-helm](../../includes/api-management-self-hosted-gateway-kubernetes-services-helm.md)]
 
 #### [YAML](#tab/yaml)
 
 The following sample YAML configuration shows the required components and settings for deployment to Kubernetes with token authentication.
 
 > [!IMPORTANT]
-> For steps to install using a deployment script provided in the Azure portal, see [Deploy a self-hosted gateway to Kubernetes with YAML](how-to-deploy-self-hosted-gateway-kubernetes.md).
+> For steps to install by using a deployment script provided in the Azure portal, see [Deploy a self-hosted gateway to Kubernetes with YAML](how-to-deploy-self-hosted-gateway-kubernetes.md).
 
 > [!NOTE]
 > Make sure to replace the placeholder values with your actual configuration:
 > - `<namespace-name>`: Your Kubernetes namespace
 > - `<service-name>.configuration.azure-api.net`: Your API Management configuration endpoint
 > - `<gateway-name>`: Your gateway name
-> - `<configuration-token>`: Your gateway configuration token
+> - `<configuration-token>`: Your access token
 
-```yml
+```yaml
 ---
 apiVersion: v1
 kind: Secret
 metadata:
-  name: apim-gateway-token
+  name: apim-access-token
   namespace: <namespace-name>
 type: Opaque
 stringData:
@@ -125,7 +147,7 @@ spec:
         - configMapRef:
             name: apim-gateway-env
         - secretRef:
-            name: apim-gateway-token
+            name: apim-access-token
 ---
 apiVersion: v1
 kind: Service
@@ -147,7 +169,6 @@ spec:
     targetPort: 8081
 ```
 
-
 The ConfigMap defines the gateway's authentication and connection settings:
 - **config.service.auth: key** - Specifies token-based authentication as the method
 - **config.service.endpoint** - The API Management configuration endpoint URL
@@ -155,10 +176,10 @@ The ConfigMap defines the gateway's authentication and connection settings:
 
 ### Deploy to Kubernetes
 
-Save the YAML configuration to a file (for example, `apim-gateway-token.yaml`) and deploy it to your Kubernetes cluster:
+Save the YAML configuration to a file (for example, `apim-access-token.yaml`) and deploy it to your Kubernetes cluster:
 
 ```bash
-kubectl apply -f apim-gateway-token.yaml
+kubectl apply -f apim-access-token.yaml
 ```
 
 Verify the deployment:
@@ -170,33 +191,15 @@ kubectl logs -n <namespace-name> <pod-name>
 
 [!INCLUDE [api-management-self-hosted-gateway-kubernetes-services](../../includes/api-management-self-hosted-gateway-kubernetes-services.md)]
 
-#### [Helm](#tab/helm)
-
-You can deploy the self-hosted gateway with Microsoft Entra authentication using a [Helm chart](https://github.com/Azure/api-management-self-hosted-gateway). 
-
-Replace the following values in the the `helm install` command with your actual values:
-
-- `<gateway-name>`: Your Azure API Management instance name
-- `<gateway-url>`: The URL of your gateway, in the format `https://<gateway-name>.configuration.azure-api.net`
-- `<gateway-key>`: Your gateway configuration token    
-
-For prerequisites and details, see [Deploy API Management self-hosted gateway with Helm](how-to-deploy-self-hosted-gateway-kubernetes-helm.md).
-
-
-```console
-helm install --name azure-api-management-gateway azure-apim-gateway/azure-api-management-gateway \
-             --set gateway.configuration.uri='<gateway-url>' \
-             --set gateway.auth.key='<gateway-key>'
-```
 ---
 
 ## Token rotation and management
 
-The configuration token has a defined lifetime. When a token expires, the gateway will lose connectivity to the API Management instance.
+The access token has a defined lifetime. When the token expires, the gateway loses connectivity to the API Management instance.
 
 To rotate the token:
 
-1. In the Azure portal, navigate to your API Management instance.
+1. In the Azure portal, go to your API Management instance.
 1. Select **Deployment and infrastructure** > **Gateways**.
 1. Select your gateway.
 1. On the **Deployment** tab, select **Regenerate token**.
@@ -204,15 +207,12 @@ To rotate the token:
 1. Update the Kubernetes Secret with the new token:
 
 ```bash
-kubectl patch secret apim-gateway-token -n <namespace-name> -p '{"data":{"config.service.auth.key":"'$(echo -n "<new-token>" | base64)'"}}' --type=merge
+kubectl patch secret apim-access-token -n <namespace-name> -p '{"data":{"config.service.auth.key":"'$(echo -n "<new-token>" | base64)'"}}' --type=merge
 ```
-
-[!INCLUDE [api-management-self-hosted-gateway-kubernetes-services-helm](../../includes/api-management-self-hosted-gateway-kubernetes-services-helm.md)]
 
 ## Event Grid events for token expiration
 
-
-API Management generates events when a self-hosted gateway access token is near expiration or has expired. Use these events to ensure that deployed gateways are always able to authenticate with their associated API Management instance. For more information, see [Azure API Management as an Event Grid source](/azure/event-grid/event-schema-api-management).
+API Management generates system events when a self-hosted gateway access token is near expiration or expires. Subscribe to these events to ensure that deployed gateways can always authenticate by using their associated API Management instance. For more information, see [Azure API Management as an Event Grid source](/azure/event-grid/event-schema-api-management).
 
 ## Related content
 

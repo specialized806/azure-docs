@@ -5,7 +5,7 @@ ms.topic: include
 ms.date: 02/17/2026
 ms.author: danlep
 ---
-## Confirm that the gateway is running
+### Confirm that the gateway is running
 
 1. Run the following command to check the gateway pod is running. Your pod name will be different.
 

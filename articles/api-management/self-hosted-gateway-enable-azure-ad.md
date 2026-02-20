@@ -6,7 +6,7 @@ author: dlepow
 
 ms.service: azure-api-management
 ms.topic: how-to
-ms.date: 02/13/2026
+ms.date: 02/19/2026
 ms.author: danlep
 ---
 
@@ -16,11 +16,11 @@ ms.author: danlep
 
 The Azure API Management [self-hosted gateway](self-hosted-gateway-overview.md) needs connectivity with its associated cloud-based API Management instance for reporting status, checking for and applying configuration updates, and sending metrics and events. 
 
-This article shows you how to enable the self-hosted gateway to authenticate to its associated cloud instance by using an [Microsoft Entra ID app](../active-directory/develop/app-objects-and-service-principals.md), using a client secret or certificate. With Microsoft Entra authentication, you can configure longer expiry times for secrets and use standard steps to manage and rotate secrets. For other authentication options, see [Self-hosted gateway authentication options](self-hosted-gateway-authentication-options.md). 
+This article shows you how to enable the self-hosted gateway to authenticate to its associated cloud instance by using an [Microsoft Entra ID app](../active-directory/develop/app-objects-and-service-principals.md), using a client secret or certificate. By using Microsoft Entra authentication, you can configure longer expiry times for secrets and use standard steps to manage and rotate secrets. For other authentication options, see [Self-hosted gateway authentication options](self-hosted-gateway-authentication-options.md). 
 
 ## Scenario overview
 
-The self-hosted gateway configuration API can check Azure role-based access control (RBAC) to determine who has permissions to read the gateway configuration. After you create a Microsoft Entra app with those permissions, the self-hosted gateway can authenticate to the API Management instance using the app. 
+The self-hosted gateway configuration API can check Azure role-based access control (RBAC) to determine who has permissions to read the gateway configuration. After you create a Microsoft Entra app with those permissions, the self-hosted gateway can authenticate to the API Management instance by using the app. 
 
 To enable Microsoft Entra authentication, complete the following steps:
 1. Create two custom roles to:
@@ -37,13 +37,13 @@ To enable Microsoft Entra authentication, complete the following steps:
 - Enable a [system-assigned managed identity](api-management-howto-use-managed-service-identity.md) on the instance.
 - Self-hosted gateway container image version 2.2 or later
 
-### Limitations notes
+### Limitations
 
 - Only system-assigned managed identity is supported.
 
 [!INCLUDE [api-management-gateway-role-assignments](../../includes/api-management-gateway-role-assignments.md)]
 
-### Assign API Management Gateway Configuration Reader Role
+### Assign API Management Gateway Configuration Reader role
 
 <a name='step-1-register-azure-ad-app'></a>
 
@@ -69,13 +69,40 @@ Create a new Microsoft Entra app. For steps, see [Create a Microsoft Entra appli
 
 Deploy the self-hosted gateway to a containerized environment, such as Kubernetes, adding Microsoft Entra app registration settings. 
 
+#### [Helm](#tab/helm)
+
+You can deploy the self-hosted gateway with Microsoft Entra authentication by using a [Helm chart](https://github.com/Azure/api-management-self-hosted-gateway). 
+
+Replace the following values in the the `helm install` command with your actual values:
+
+- `<gateway-name>`: Your Azure API Management instance name
+- `<gateway-url>`: The URL of your gateway, in the format `https://<gateway-name>.configuration.azure-api.net`
+- `<entra-id-tenant-id>`: Your Microsoft Entra tenant ID (directory ID)
+- `<entra-id-app-id>`: The application (client) ID of the registered Microsoft Entra app
+- `<entra-id-secret>`: The client secret generated for the Microsoft Entra app
+
+```Console
+helm install --name azure-api-management-gateway azure-apim-gateway/azure-api-management-gateway \
+             --set gateway.name=='<gateway-name>' \
+             --set gateway.configuration.uri='<gateway-url>' \
+             --set gateway.auth.type='AzureAdApp' \
+             --set gateway.auth.azureAd.tenant.id='<entra-id-tenant-id>' \
+             --set gateway.auth.azureAd.app.id='<entra-id-app-id>'
+             --set config.service.auth.azureAd.clientSecret='<entra-id-secret>' 
+```
+
+
+For prerequisites and details, see [Deploy API Management self-hosted gateway with Helm](how-to-deploy-self-hosted-gateway-kubernetes-helm.md).
+
+[!INCLUDE [api-management-self-hosted-gateway-kubernetes-services-helm](../../includes/api-management-self-hosted-gateway-kubernetes-services-helm.md)]
+
 #### [YAML](#tab/yaml)
 
 In the following example YAML configuration file, Microsoft Entra app registration settings are added to the `data` element of the gateway's `ConfigMap`. The gateway is named *mygw*.
 
 > [!IMPORTANT]
 > If you're following the existing Kubernetes [deployment guidance](how-to-deploy-self-hosted-gateway-kubernetes.md):
-> - Make sure to omit the step to store the default authentication key using the `kubectl create secret generic` command. 
+> - Omit the step to store the default authentication key by using the `kubectl create secret generic` command. 
 > - Substitute the following basic configuration file for the default YAML file that the Azure portal generates for you. The following file adds Microsoft Entra configuration in place of configuration to use an authentication key.
 
 > [!NOTE]
@@ -210,33 +237,6 @@ kubectl apply -f apim-gateway-entra-id.yaml
 
 [!INCLUDE [api-management-self-hosted-gateway-kubernetes-services](../../includes/api-management-self-hosted-gateway-kubernetes-services.md)]
 
-#### [Helm](#tab/helm)
-
-You can deploy the self-hosted gateway with Microsoft Entra authentication using a [Helm chart](https://github.com/Azure/api-management-self-hosted-gateway). 
-
-Replace the following values in the the `helm install` command with your actual values:
-
-- `<gateway-name>`: Your Azure API Management instance name
-- `<gateway-url>`: The URL of your gateway, in the format `https://<gateway-name>.configuration.azure-api.net`
-- `<entra-id-tenant-id>`: Your Microsoft Entra tenant ID (directory ID)
-- `<entra-id-app-id>`: The application (client) ID of the registered Microsoft Entra app
-- `<entra-id-secret>`: The client secret generated for the Microsoft Entra app
-
-```Console
-helm install --name azure-api-management-gateway azure-apim-gateway/azure-api-management-gateway \
-             --set gateway.name=='<gateway-name>' \
-             --set gateway.configuration.uri='<gateway-url>' \
-             --set gateway.auth.type='AzureAdApp' \
-             --set gateway.auth.azureAd.tenant.id='<entra-id-tenant-id>' \
-             --set gateway.auth.azureAd.app.id='<entra-id-app-id>'
-             --set config.service.auth.azureAd.clientSecret='<entra-id-secret>' 
-```
-
-
-For prerequisites and details, see [Deploy API Management self-hosted gateway with Helm](how-to-deploy-self-hosted-gateway-kubernetes-helm.md).
-
-[!INCLUDE [api-management-self-hosted-gateway-kubernetes-services-helm](../../includes/api-management-self-hosted-gateway-kubernetes-services-helm.md)]
-
 ---
 
 
@@ -244,4 +244,3 @@ For prerequisites and details, see [Deploy API Management self-hosted gateway wi
 
 - Learn more about the API Management [self-hosted gateway](self-hosted-gateway-overview.md).
 - Learn more about guidance for [running the self-hosted gateway on Kubernetes in production](how-to-self-hosted-gateway-on-kubernetes-in-production.md).
-- Learn [how to deploy API Management self-hosted gateway to Azure Arc-enabled Kubernetes clusters](how-to-deploy-self-hosted-gateway-azure-arc.md).

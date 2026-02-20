@@ -2,7 +2,7 @@
 author: dlepow
 ms.service: azure-api-management
 ms.topic: include
-ms.date: 02/13/2026
+ms.date: 02/19/2026
 ms.author: danlep
 ---
 
@@ -12,7 +12,7 @@ Create the following two [custom roles](/azure/role-based-access-control/custom-
 
 When configuring the custom roles, update the [`AssignableScopes`](/azure/role-based-access-control/role-definitions#assignablescopes) property with appropriate scope values for your directory, such as a subscription in which your API Management instance is deployed. 
 
-**API Management Configuration API Access Validator Service Role**
+**API Management Configuration API Access Validator Service role**
 
 ```json
 {
@@ -36,7 +36,7 @@ When configuring the custom roles, update the [`AssignableScopes`](/azure/role-b
 }
 ```
 
-**API Management Gateway Configuration Reader Role**
+**API Management Gateway Configuration Reader role**
 
 ```json
 {
@@ -62,9 +62,9 @@ When configuring the custom roles, update the [`AssignableScopes`](/azure/role-b
 
 ## Add role assignments
 
-### Assign API Management Configuration API Access Validator Service Role 
+### Assign API Management Configuration API Access Validator Service role 
 
-Assign the API Management Configuration API Access Validator Service Role to the managed identity of the API Management instance. For detailed steps to assign a role, see [Assign Azure roles using the portal](/azure/role-based-access-control/role-assignments-portal). 
+Assign the API Management Configuration API Access Validator Service role to the managed identity of the API Management instance. For detailed steps to assign a role, see [Assign Azure roles using the portal](/azure/role-based-access-control/role-assignments-portal). 
 
 - Scope: The resource group or subscription in which the API Management instance is deployed
 - Role: API Management Configuration API Access Validator Service Role

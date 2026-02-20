@@ -5,7 +5,7 @@ ms.topic: include
 ms.date: 05/22/2023
 ms.author: danlep
 ---
-## Confirm that the gateway is running
+### Confirm that the gateway is running
 
 1. Run the following command to check if the deployment succeeded. It might take a little time for all the objects to be created and for the pods to initialize.
 
