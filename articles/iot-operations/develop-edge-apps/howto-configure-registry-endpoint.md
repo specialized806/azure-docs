@@ -41,6 +41,8 @@ A registry endpoint defines the connection to your container registry. Data flow
 
 1. Under **Components**, select **Registry endpoints**.
 
+    :::image type="content" source="media/howto-configure-registry-endpoint/registry-endpoints-portal.png" alt-text="Screenshot of the Azure portal showing the Registry endpoints page under Components for an Azure IoT Operations instance." lightbox="media/howto-configure-registry-endpoint/registry-endpoints-portal.png":::
+
 1. Select **+ Create a registry endpoint**.
 
 1. Enter the following settings:
