@@ -28,7 +28,7 @@ You learn how to:
 - Create an [Azure API Management instance](get-started-create-service-instance.md).
 - Create an Azure Kubernetes cluster [using the Azure CLI](/azure/aks/learn/quick-kubernetes-deploy-cli), [using Azure PowerShell](/azure/aks/learn/quick-kubernetes-deploy-powershell), or [using the Azure portal](/azure/aks/learn/quick-kubernetes-deploy-portal).
 - Provision a [self-hosted gateway resource in your API Management instance](api-management-howto-provision-self-hosted-gateway.md).
-* Install [Helm v3 or later][https://helm.sh/docs/intro/install/].
+- Install [Helm](https://helm.sh/docs/intro/install/).
 
 ## Introduction to OpenTelemetry
 
@@ -269,7 +269,7 @@ After you complete the tutorial, you can easily clean up your cluster by using t
    helm uninstall apim-gateway
    ```
 
-2. Uninstall the OpenTelemetry Collector.
+1. Uninstall the OpenTelemetry Collector.
    
    ```console
    helm uninstall opentelemetry-collector
@@ -279,4 +279,4 @@ After you complete the tutorial, you can easily clean up your cluster by using t
 
 * [Self-hosted gateway overview](self-hosted-gateway-overview.md)
 * [Observability in Azure API Management](observability.md)
-- [Deploy an Azure API Management gateway on Azure Arc](how-to-deploy-self-hosted-gateway-azure-arc.md)
+* [Deploy an Azure API Management gateway on Azure Arc](how-to-deploy-self-hosted-gateway-azure-arc.md)
