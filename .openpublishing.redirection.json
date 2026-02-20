@@ -6848,6 +6848,9 @@
     {
       "source_path": "articles/iot-operations/connect-to-cloud/howto-configure-opentelemetry-endpoint.md",
       "redirect_url": "/azure/iot-operations/connect-to-cloud/open-telemetry",
+      "redirect_document_id": false
+    },
+    {
       "source_path": "articles/synapse-analytics/sql/get-started-azure-data-studio.md",
       "redirect_url": "/azure/synapse-analytics/sql/get-started-ssms",
       "redirect_document_id": false
