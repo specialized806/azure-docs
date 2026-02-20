@@ -47,7 +47,6 @@ This article supports version 2 of the Python programming model for Azure Functi
 + [Python 3.11](https://www.python.org/)
 ::: zone-end  
 ::: zone pivot="programming-language-csharp,programming-language-python,programming-language-typescript" 
-
 + [Node.js](https://nodejs.org/) (required to build the MCP Apps UI)
 
 + [Visual Studio Code](https://code.visualstudio.com/) with these extensions:
