@@ -182,7 +182,7 @@ Azure Bastion uses your browser to connect to VMs in your virtual network over S
     New-AzPublicIpAddress @ip
     ```
 
-1. Use the [New-AzBastion](/powershell/module/az.network/new-azbastion) command to create a new standard Bastion host in **AzureBastionSubnet**:
+1. Use the [New-AzBastion](/powershell/module/az.network/new-azbastion) command to create a new Basic SKU Bastion host in **AzureBastionSubnet**:
 
     ```azurepowershell-interactive
     $bastion = @{
@@ -239,6 +239,39 @@ Azure Bastion uses your browser to connect to VMs in your virtual network over S
       --name subnet-private \
       --address-prefix 10.0.1.0/24 \
       --service-endpoints Microsoft.Storage
+    ```
+
+1. Create a Bastion subnet with [az network vnet subnet create](/cli/azure/network/vnet/subnet).
+
+    ```azurecli-interactive
+    az network vnet subnet create \
+      --vnet-name vnet-1 \
+      --resource-group test-rg \
+      --name AzureBastionSubnet \
+      --address-prefix 10.0.2.0/26
+    ```
+
+1. Create a public IP address for the Azure Bastion host with [az network public-ip create](/cli/azure/network/public-ip).
+
+    ```azurecli-interactive
+    az network public-ip create \
+      --resource-group test-rg \
+      --name public-ip-bastion \
+      --sku Standard \
+      --location westus2
+    ```
+
+1. Create an Azure Bastion host with [az network bastion create](/cli/azure/network/bastion).
+
+    ```azurecli-interactive
+    az network bastion create \
+      --resource-group test-rg \
+      --name bastion \
+      --vnet-name vnet-1 \
+      --public-ip-address public-ip-bastion \
+      --location westus2 \
+      --sku Basic \
+      --no-wait
     ```
 
 ---
