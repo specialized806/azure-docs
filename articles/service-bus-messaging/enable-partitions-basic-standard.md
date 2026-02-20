@@ -154,7 +154,7 @@ resource serviceBusNamespace 'Microsoft.ServiceBus/namespaces@2024-01-01' = {
 
 To **create a topic with partitioning enabled**, set `enablePartitioning` to `true` in the topic properties section. For more information, see [Microsoft.ServiceBus namespaces/topics template reference](/azure/templates/microsoft.servicebus/namespaces/topics?tabs=json). 
 
-# [Bicep](#tab/bicep)
+# [Bicep](#tab/bicep-topic)
 
 ```bicep
 @description('Name of the Service Bus namespace')
@@ -182,7 +182,7 @@ resource serviceBusNamespace 'Microsoft.ServiceBus/namespaces@2024-01-01' = {
 }
 ```
 
-# [ARM template](#tab/arm)
+# [ARM template](#tab/arm-topic)
 
 ```json
 {
