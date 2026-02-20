@@ -13,13 +13,13 @@ ms.custom:
 
 # Quickstart: Deploy the FHIR service via the Azure portal
 
-In this quickstart, you learn how to create and deploy a FHIR service instance via the Azure portal. The Azure portal provides a web interface with guided workflows, making it an efficient tool for deploying the FHIR&reg; service, and ensuring accurate configuration within Azure Health Data Services. 
+In this quickstart, you learn how to create and deploy a FHIR service instance via the Azure portal. The Azure portal provides a web interface with guided workflows, making it an efficient tool for deploying the FHIR&reg; service. 
 
 ## Prerequisites
 
 - An Azure subscription. If you don't have an Azure account, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 
-- An Azure Health Data Services workspace. To create and deploy a workspace ps, see [Deploy workspace in the Azure portal](../healthcare-apis-quickstart.md).
+- An Azure Health Data Services workspace. To create and deploy a workspace, see [Deploy workspace in the Azure portal](../healthcare-apis-quickstart.md).
 
 ## Create and deploy a new FHIR service
  
@@ -34,13 +34,13 @@ In this quickstart, you learn how to create and deploy a FHIR service instance v
    - **Additional settings tab (optional)**: This tab allows you to:
      - **View authentication settings**: The default configuration for the FHIR service is **Use Azure RBAC for assigning data plane roles**. When configured in this mode, the authority for the FHIR service is set to the Microsoft Entra tenant for the subscription.
 
-     - **Integration with non-Microsoft Entra ID (optional)**: Use this option when you need to configure up to two additional identity providers other than Microsoft Entra ID to authenticate and access FHIR resources with SMART on FHIR scopes.
+     - **Integration with non-Microsoft Entra ID (optional)**: Use this option when you need to configure up to two more identity providers other than Microsoft Entra ID to authenticate and access FHIR resources with SMART on FHIR scopes.
     
      - **Setting versioning policy (optional)**: The versioning policy controls the history setting for FHIR service at the system level or individual resource type level. For more information, see [FHIR versioning policy and history management](fhir-versioning-policy-and-history-management.md). Choose **Next: Security**.
 
    - On the **Security settings** tab, review the fields. 
 
-       By default, data is encrypted with Microsoft-managed keys. For additional control over encryption keys, you can supply customer-managed keys to use for encryption of data. Customer-managed keys must be stored in an Azure Key Vault. You can either create your own keys and store them in a key vault, or use the Azure Key Vault APIs to generate keys. For more information, see [Configure customer-managed keys for the FHIR service](configure-customer-managed-keys.md). Choose **Next: Tags**. 
+       By default, data is encrypted with Microsoft-managed keys. For more control over encryption keys, you can supply customer-managed keys to use for encryption of data. Customer-managed keys must be stored in an Azure Key Vault. You can either create your own keys and store them in a key vault, or use the Azure Key Vault APIs to generate keys. For more information, see [Configure customer-managed keys for the FHIR service](configure-customer-managed-keys.md). Choose **Next: Tags**. 
 
    - On the **Tags** tab (optional), enter any tags. 
    
@@ -54,11 +54,11 @@ In this quickstart, you learn how to create and deploy a FHIR service instance v
 
 ## Validate the deployment
 
-From the deployment confirmation page, select **Go to reource**.  Copy the **FHIR metadata endpoint** and paste in a brower to fetch the capability statement from your new FHIR service. 
+From the deployment confirmation page, select **Go to resource**  Copy the **FHIR metadata endpoint** and paste in a browser to fetch the capability statement from your new FHIR service. 
 
 ## Clean up resources
 
-To avoid incurring costs, you can delete uneeded resources by deleting the FHIR service, or its containing workspace or resrouce group.
+To avoid incurring costs, you can delete unneeded resources by deleting the FHIR service, or its containing workspace or resource group.
 
 
 ## Related content
