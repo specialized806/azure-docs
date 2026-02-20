@@ -7,7 +7,7 @@ manager: juergent
 ms.service: sap-on-azure
 ms.subservice: sap-vm-workloads
 ms.topic: how-to
-ms.date: 04/29/2025
+ms.date: 02/20/2026
 ms.author: radeltch
 ms.custom:
   - linux-related-content
@@ -211,30 +211,28 @@ This article assumes that:
 
 1. Create the virtual IP and health probe cluster resources for the ASCS instances of the other SAP systems you're deploying to the cluster. This example uses `NW2` and `NW3` ASCS, using NFS on Azure NetApp Files volumes with NFSv3 protocol.  
 
-    ```cmd
+    ```bash
     sudo pcs resource create fs_NW2_ASCS Filesystem device='10.42.0.4:/sapMSIDR/usrsapNW2ascs' \
     directory='/usr/sap/NW2/ASCS10' fstype='nfs' force_unmount=safe fast_stop=no \
-    op start interval=0 timeout=60 op stop interval=0 timeout=120 op monitor interval=200 timeout=40 \
-     --group g-NW2_ASCS
+    op start interval=0 timeout=60 op stop interval=0 timeout=120 op monitor interval=200 timeout=40
 
     sudo pcs resource create vip_NW2_ASCS IPaddr2 \
-    ip=10.3.1.52 \
-     --group g-NW2_ASCS
+    ip=10.3.1.52
     
-    sudo pcs resource create nc_NW2_ASCS azure-lb port=62010 \
-     --group g-NW2_ASCS
+    sudo pcs resource create nc_NW2_ASCS azure-lb port=62010
+
+    sudo pcs resource group add g-NW2_ASCS fs_NW2_ASCS vip_NW2_ASCS nc_NW2_ASCS
 
     sudo pcs resource create fs_NW3_ASCS Filesystem device='10.42.0.4:/sapMSIDR/usrsapNW3ascs' \
     directory='/usr/sap/NW3/ASCS20' fstype='nfs' force_unmount=safe fast_stop=no \
-    op start interval=0 timeout=60 op stop interval=0 timeout=120 op monitor interval=200 timeout=40 \
-    --group g-NW3_ASCS
+    op start interval=0 timeout=60 op stop interval=0 timeout=120 op monitor interval=200 timeout=40
 
     sudo pcs resource create vip_NW3_ASCS IPaddr2 \
-    ip=10.3.1.54 \
-    --group g-NW3_ASCS
+    ip=10.3.1.54
 
-    sudo pcs resource create nc_NW3_ASCS azure-lb port=62020 \
-    --group g-NW3_ASCS
+    sudo pcs resource create nc_NW3_ASCS azure-lb port=62020
+
+    sudo pcs resource group add g-NW3_ASCS fs_NW3_ASCS vip_NW3_ASCS nc_NW3_ASCS
     ```
 
    Make sure the cluster status is ok and that all resources are started. It's not important on which node the resources are running.  
@@ -255,30 +253,28 @@ This article assumes that:
 
 3. **[1]** Create a virtual IP and health-probe cluster resources for the ERS instance of the other SAP system you're deploying to the cluster. This example is for `NW2` and `NW3` ERS, using NFS on Azure NetApp Files volumes with NFSv3 protocol.  
 
-    ```cmd
+    ```bash
     sudo pcs resource create fs_NW2_AERS Filesystem device='10.42.0.4:/sapMSIDR/usrsapNW2ers' \
     directory='/usr/sap/NW2/ERS12' fstype='nfs' force_unmount=safe fast_stop=no \
-    op start interval=0 timeout=60 op stop interval=0 timeout=120 op monitor interval=200 timeout=40 \
-     --group g-NW2_AERS
+    op start interval=0 timeout=60 op stop interval=0 timeout=120 op monitor interval=200 timeout=40
 
     sudo pcs resource create vip_NW2_AERS IPaddr2 \
-    ip=10.3.1.53 \
-     --group g-NW2_AERS
+    ip=10.3.1.53
 
-    sudo pcs resource create nc_NW2_AERS azure-lb port=62112 \
-     --group g-NW2_AERS
+    sudo pcs resource create nc_NW2_AERS azure-lb port=62112
+
+    sudo pcs resource group add g-NW2_AERS fs_NW2_AERS vip_NW2_AERS nc_NW2_AERS
 
     sudo pcs resource create fs_NW3_AERS Filesystem device='10.42.0.4:/sapMSIDR/usrsapNW3ers' \
     directory='/usr/sap/NW3/ERS22' fstype='nfs' force_unmount=safe fast_stop=no \
-    op start interval=0 timeout=60 op stop interval=0 timeout=120 op monitor interval=200 timeout=40 \
-     --group g-NW3_AERS
+    op start interval=0 timeout=60 op stop interval=0 timeout=120 op monitor interval=200 timeout=40
 
     sudo pcs resource create vip_NW3_AERS IPaddr2 \
-    ip=10.3.1.55 \
-     --group g-NW3_AERS
+    ip=10.3.1.55
 
-    sudo pcs resource create nc_NW3_AERS azure-lb port=62122 \
-     --group g-NW3_AERS
+    sudo pcs resource create nc_NW3_AERS azure-lb port=62122
+
+    sudo pcs resource group add g-NW3_AERS fs_NW3_AERS vip_NW3_AERS nc_NW3_AERS
    ```
 
    Make sure the cluster status is ok and that all resources are started.  
@@ -382,16 +378,17 @@ This article assumes that:
     AUTOMATIC_RECOVER=false \
     meta resource-stickiness=5000 migration-threshold=1 failure-timeout=60 \
     op monitor interval=20 on-fail=restart timeout=60 \
-    op start interval=0 timeout=600 op stop interval=0 timeout=600 \
-    --group g-NW2_ASCS
+    op start interval=0 timeout=600 op stop interval=0 timeout=600
 
+    sudo pcs resource group add g-NW2_ASCS rsc_sap_NW2_ASCS10
     sudo pcs resource meta g-NW2_ASCS resource-stickiness=3000
 
     sudo pcs resource create rsc_sap_NW2_ERS12 SAPInstance \
     InstanceName=NW2_ERS12_msnw2ers START_PROFILE="/sapmnt/NW2/profile/NW2_ERS12_msnw2ers" \
     AUTOMATIC_RECOVER=false IS_ERS=true \
-    op monitor interval=20 on-fail=restart timeout=60 op start interval=0 timeout=600 op stop interval=0 timeout=600 \
-    --group g-NW2_AERS
+    op monitor interval=20 on-fail=restart timeout=60 op start interval=0 timeout=600 op stop interval=0 timeout=600
+
+    sudo pcs resource group add g-NW2_AERS rsc_sap_NW2_ERS12
 
     sudo pcs constraint colocation add g-NW2_AERS with g-NW2_ASCS -5000
     sudo pcs constraint location rsc_sap_NW2_ASCS10 rule score=2000 runs_ers_NW2 eq 1
@@ -402,16 +399,17 @@ This article assumes that:
     AUTOMATIC_RECOVER=false \
     meta resource-stickiness=5000 migration-threshold=1 failure-timeout=60 \
     op monitor interval=20 on-fail=restart timeout=60 \
-    op start interval=0 timeout=600 op stop interval=0 timeout=600 \
-    --group g-NW3_ASCS
+    op start interval=0 timeout=600 op stop interval=0 timeout=600
 
+    sudo pcs resource group add g-NW3_ASCS rsc_sap_NW3_ASCS20
     sudo pcs resource meta g-NW3_ASCS resource-stickiness=3000
 
     sudo pcs resource create rsc_sap_NW3_ERS22 SAPInstance \
     InstanceName=NW3_ERS22_msnw3ers START_PROFILE="/sapmnt/NW3/profile/NW2_ERS22_msnw3ers" \
     AUTOMATIC_RECOVER=false IS_ERS=true \
-    op monitor interval=20 on-fail=restart timeout=60 op start interval=0 timeout=600 op stop interval=0 timeout=600 \
-    --group g-NW3_AERS
+    op monitor interval=20 on-fail=restart timeout=60 op start interval=0 timeout=600 op stop interval=0 timeout=600
+
+    sudo pcs resource group add g-NW3_AERS rsc_sap_NW3_ERS22
 
     sudo pcs constraint colocation add g-NW3_AERS with g-NW3_ASCS -5000
     sudo pcs constraint location rsc_sap_NW3_ASCS20 rule score=2000 runs_ers_NW3 eq 1
@@ -430,18 +428,18 @@ This article assumes that:
     AUTOMATIC_RECOVER=false \
     meta resource-stickiness=5000 \
     op monitor interval=20 on-fail=restart timeout=60 \
-    op start interval=0 timeout=600 op stop interval=0 timeout=600 \
-    --group g-NW2_ASCS
+    op start interval=0 timeout=600 op stop interval=0 timeout=600
 
+    sudo pcs resource group add g-NW2_ASCS rsc_sap_NW2_ASCS10
     sudo pcs resource meta g-NW2_ASCS resource-stickiness=3000
 
     sudo pcs resource create rsc_sap_NW2_ERS12 SAPInstance \
     InstanceName=NW2_ERS12_msnw2ers START_PROFILE="/sapmnt/NW2/profile/NW2_ERS12_msnw2ers" \
     AUTOMATIC_RECOVER=false IS_ERS=true \
-    op monitor interval=20 on-fail=restart timeout=60 op start interval=0 timeout=600 op stop interval=0 timeout=600 \
-    --group g-NW2_AERS
+    op monitor interval=20 on-fail=restart timeout=60 op start interval=0 timeout=600 op stop interval=0 timeout=600
 
-    sudo pcs resource meta rsc_sap_NW2_ERS12  resource-stickiness=3000
+    sudo pcs resource group add g-NW2_AERS rsc_sap_NW2_ERS12
+    sudo pcs resource meta rsc_sap_NW2_ERS12 resource-stickiness=3000
 
     sudo pcs constraint colocation add g-NW2_AERS with g-NW2_ASCS -5000
     sudo pcs constraint order start g-NW2_ASCS then stop g-NW2_AERS kind=Optional symmetrical=false
@@ -451,18 +449,18 @@ This article assumes that:
     AUTOMATIC_RECOVER=false \
     meta resource-stickiness=5000 \
     op monitor interval=20 on-fail=restart timeout=60 \
-    op start interval=0 timeout=600 op stop interval=0 timeout=600 \
-    --group g-NW3_ASCS
+    op start interval=0 timeout=600 op stop interval=0 timeout=600
 
+    sudo pcs resource group add g-NW3_ASCS rsc_sap_NW3_ASCS20
     sudo pcs resource meta g-NW3_ASCS resource-stickiness=3000
 
     sudo pcs resource create rsc_sap_NW3_ERS22 SAPInstance \
     InstanceName=NW3_ERS22_msnw3ers START_PROFILE="/sapmnt/NW3/profile/NW2_ERS22_msnw3ers" \
     AUTOMATIC_RECOVER=false IS_ERS=true \
-    op monitor interval=20 on-fail=restart timeout=60 op start interval=0 timeout=600 op stop interval=0 timeout=600 \
-    --group g-NW3_AERS
+    op monitor interval=20 on-fail=restart timeout=60 op start interval=0 timeout=600 op stop interval=0 timeout=600
 
-    sudo pcs resource meta rsc_sap_NW3_ERS22  resource-stickiness=3000
+    sudo pcs resource group add g-NW3_AERS rsc_sap_NW3_ERS22
+    sudo pcs resource meta rsc_sap_NW3_ERS22 resource-stickiness=3000
 
     sudo pcs constraint colocation add g-NW3_AERS with g-NW3_ASCS -5000
     sudo pcs constraint order start g-NW3_ASCS then stop g-NW3_AERS kind=Optional symmetrical=false

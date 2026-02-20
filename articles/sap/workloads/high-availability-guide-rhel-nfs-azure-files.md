@@ -6,7 +6,7 @@ manager: juergent
 ms.service: sap-on-azure
 ms.subservice: sap-vm-workloads
 ms.topic: tutorial
-ms.date: 04/29/2025
+ms.date: 02/20/2026
 ms.author: radeltch
 ms.custom:
   - devx-track-azurecli
@@ -236,7 +236,7 @@ The following items are prefixed with:
      # IP address of cluster node 1
      10.90.90.7    sap-cl1
      # IP address of cluster node 2
-     10.90.90.8     sap-cl2
+     10.90.90.8    sap-cl2
      # IP address of the load balancer frontend configuration for SAP Netweaver ASCS
      10.90.90.10   sapascs
      # IP address of the load balancer frontend configuration for SAP Netweaver ERS
@@ -353,15 +353,14 @@ The following items are prefixed with:
    
     sudo pcs resource create fs_NW1_ASCS Filesystem device='sapnfs.file.core.windows.net:/sapnfsafs/sapnw1/usrsapNW1ascs' \
       directory='/usr/sap/NW1/ASCS00' fstype='nfs' force_unmount=safe options='noresvport,vers=4,minorversion=1,sec=sys' \
-      fast_stop=no op start interval=0 timeout=60 op stop interval=0 timeout=120 op monitor interval=200 timeout=40 \
-      --group g-NW1_ASCS
+      fast_stop=no op start interval=0 timeout=60 op stop interval=0 timeout=120 op monitor interval=200 timeout=40
    
     sudo pcs resource create vip_NW1_ASCS IPaddr2 \
-      ip=10.90.90.10 \
-      --group g-NW1_ASCS
+      ip=10.90.90.10
    
-    sudo pcs resource create nc_NW1_ASCS azure-lb port=62000 \
-      --group g-NW1_ASCS
+    sudo pcs resource create nc_NW1_ASCS azure-lb port=62000
+ 
+    sudo pcs resource group add g-NW1_ASCS fs_NW1_ASCS vip_NW1_ASCS nc_NW1_ASCS
     ```
 
    > [!Note]
@@ -412,15 +411,14 @@ The following items are prefixed with:
     
     sudo pcs resource create fs_NW1_AERS Filesystem device='sapnfs.file.core.windows.net:/sapnfsafs/sapnw1/usrsapNW1ers' \
       directory='/usr/sap/NW1/ERS01' fstype='nfs' force_unmount=safe options='noresvport,vers=4,minorversion=1,sec=sys' \
-      fast_stop=no op start interval=0 timeout=60 op stop interval=0 timeout=120 op monitor interval=200 timeout=40 \
-     --group g-NW1_AERS
+      fast_stop=no op start interval=0 timeout=60 op stop interval=0 timeout=120 op monitor interval=200 timeout=40
    
     sudo pcs resource create vip_NW1_AERS IPaddr2 \
-      ip=10.90.90.9 \
-     --group g-NW1_AERS
+      ip=10.90.90.9
    
-    sudo pcs resource create nc_NW1_AERS azure-lb port=62101 \
-     --group g-NW1_AERS
+    sudo pcs resource create nc_NW1_AERS azure-lb port=62101
+
+    sudo pcs resource group add g-NW1_AERS fs_NW1_AERS vip_NW1_AERS nc_NW1_AERS
     ```
 
    > [!Note]
@@ -543,17 +541,18 @@ The following items are prefixed with:
      AUTOMATIC_RECOVER=false \
      meta resource-stickiness=5000 migration-threshold=1 failure-timeout=60 \
      op monitor interval=20 on-fail=restart timeout=60 \
-     op start interval=0 timeout=600 op stop interval=0 timeout=600 \
-     --group g-NW1_ASCS
+     op start interval=0 timeout=600 op stop interval=0 timeout=600
     
+    sudo pcs resource group add g-NW1_ASCS rsc_sap_NW1_ASCS00
     sudo pcs resource meta g-NW1_ASCS resource-stickiness=3000
 
     sudo pcs resource create rsc_sap_NW1_ERS01 SAPInstance \
      InstanceName=NW1_ERS01_sapers START_PROFILE="/sapmnt/NW1/profile/NW1_ERS01_sapers" \
      AUTOMATIC_RECOVER=false IS_ERS=true \
-     op monitor interval=20 on-fail=restart timeout=60 op start interval=0 timeout=600 op stop interval=0 timeout=600 \
-     --group g-NW1_AERS
-     
+     op monitor interval=20 on-fail=restart timeout=60 op start interval=0 timeout=600 op stop interval=0 timeout=600
+    
+    sudo pcs resource group add g-NW1_AERS rsc_sap_NW1_ERS01
+
     sudo pcs constraint colocation add g-NW1_AERS with g-NW1_ASCS -5000
     sudo pcs constraint location rsc_sap_NW1_ASCS00 rule score=2000 runs_ers_NW1 eq 1
     sudo pcs constraint order start g-NW1_ASCS then stop g-NW1_AERS kind=Optional symmetrical=false
@@ -572,18 +571,18 @@ The following items are prefixed with:
     AUTOMATIC_RECOVER=false \
     meta resource-stickiness=5000 \
     op monitor interval=20 on-fail=restart timeout=60 \
-    op start interval=0 timeout=600 op stop interval=0 timeout=600 \
-    --group g-NW1_ASCS
-   
+    op start interval=0 timeout=600 op stop interval=0 timeout=600
+
+    sudo pcs resource group add g-NW1_ASCS rsc_sap_NW1_ASCS00
     sudo pcs resource meta g-NW1_ASCS resource-stickiness=3000
 
     sudo pcs resource create rsc_sap_NW1_ERS01 SAPInstance \
     InstanceName=NW1_ERS01_sapers START_PROFILE="/sapmnt/NW1/profile/NW1_ERS01_sapers" \
     AUTOMATIC_RECOVER=false IS_ERS=true \
-    op monitor interval=20 on-fail=restart timeout=60 op start interval=0 timeout=600 op stop interval=0 timeout=600 \
-    --group g-NW1_AERS
-      
-    sudo pcs resource meta rsc_sap_NW1_ERS01  resource-stickiness=3000
+    op monitor interval=20 on-fail=restart timeout=60 op start interval=0 timeout=600 op stop interval=0 timeout=600
+    
+    sudo pcs resource group add g-NW1_AERS rsc_sap_NW1_ERS01 
+    sudo pcs resource meta rsc_sap_NW1_ERS01 resource-stickiness=3000
 
     sudo pcs constraint colocation add g-NW1_AERS with g-NW1_ASCS -5000
     sudo pcs constraint order start g-NW1_ASCS then stop g-NW1_AERS kind=Optional symmetrical=false
