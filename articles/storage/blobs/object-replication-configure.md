@@ -363,7 +363,7 @@ Users can use existing REST APIs: [Object Replication Policies - Create Or Updat
 Simply add the following line ``` “tagsReplication”: { “enabled”: true }``` when creating or updating the replication 
 rules on the source account.
 
-Tags replication is supported on API version 2021-08-01 and above. You can add the new tagsReplication field to the replication policy.
+Tags replication is supported on API version 2022-05-01 and above. You can add the new tagsReplication field to the replication policy.
 
 Sample: 
 
