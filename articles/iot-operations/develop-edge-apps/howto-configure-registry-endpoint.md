@@ -180,10 +180,11 @@ This section describes the configuration options available for registry endpoint
 The `host` property specifies the container registry hostname. For ACR, use the format `<registry-name>.azurecr.io`. The host property supports HTTPS URLs or just the hostname.
 
 **Examples**:
-- `myregistry.azurecr.io`
-- `https://myregistry.azurecr.io`
+- `myregistry.azurecr.io` (Azure Container Registry)
+- `ghcr.io/azure-samples/explore-iot-operations` (GitHub Container Registry with path)
+- `docker.io/myorg` (Docker Hub)
 
-**Pattern**: Must match the pattern `^(https:\/\/)?[a-zA-Z0-9\-]+\.azurecr\.io$` for ACR.
+The host property supports any OCI-compatible registry hostname, with an optional path prefix for registries that use repository namespaces.
 
 ### Authentication methods
 
@@ -303,16 +304,65 @@ ACR is the recommended container registry for Azure IoT Operations. ACR provides
 1. **Configure permissions**: Ensure the Azure IoT Operations managed identity has `AcrPull` permissions on the registry.
 1. **Push artifacts**: Upload your WASM modules and graph definitions to the registry using tools like ORAS CLI.
 
+## Use a public registry like GitHub Container Registry (ghcr.io)
+
+You can configure a registry endpoint to point directly at a public OCI-compatible registry. This approach lets you use prebuilt WASM modules and graph definitions without setting up your own private registry, which is ideal for getting started quickly or for evaluation.
+
+For example, the Azure IoT Operations sample WASM modules and graph definitions are published at `ghcr.io/azure-samples/explore-iot-operations`. You can create a registry endpoint that points directly to this public registry by using anonymous authentication.
+
+# [Bicep](#tab/bicep)
+
+```bicep
+resource publicRegistryEndpoint 'Microsoft.IoTOperations/instances/registryEndpoints@2025-10-01-preview' = {
+  parent: aioInstance
+  name: 'public-ghcr'
+  extendedLocation: {
+    name: customLocation.id
+    type: 'CustomLocation'
+  }
+  properties: {
+    host: 'ghcr.io/azure-samples/explore-iot-operations'
+    authentication: {
+      method: 'Anonymous'
+      anonymousSettings: {}
+    }
+  }
+}
+```
+
+# [Kubernetes](#tab/kubernetes)
+
+```yaml
+apiVersion: connectivity.iotoperations.azure.com/v1beta1
+kind: RegistryEndpoint
+metadata:
+  name: public-ghcr
+  namespace: azure-iot-operations
+spec:
+  host: ghcr.io/azure-samples/explore-iot-operations
+  authentication:
+    method: Anonymous
+    anonymousSettings: {}
+```
+
+---
+
+After you create this registry endpoint, you can reference it in your data flow graph as `registryEndpointRef: public-ghcr`. No ORAS pull/push steps are needed because the runtime pulls the artifacts directly from the public registry.
+
+> [!NOTE]
+> Public registries don't require authentication, but they may have rate limits. For production workloads, consider using a private registry like Azure Container Registry.
+
 ## Other container registries
 
-Registry endpoints also support other OCI-compatible container registries such as:
+Registry endpoints support any OCI-compatible container registry, including:
 
 - Docker Hub
+- GitHub Container Registry (ghcr.io)
 - Harbor
 - AWS Elastic Container Registry (ECR)
 - Google Container Registry (GCR)
 
-For these registries, you typically use artifact pull secrets for authentication, unless they support Azure managed identity.
+For public registries, use anonymous authentication. For private registries, use artifact pull secrets or managed identity authentication as appropriate.
 
 ## Next steps
 
