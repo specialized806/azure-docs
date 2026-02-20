@@ -2,12 +2,14 @@
 title: Deploy OSDU Admin UI on top of Azure Data Manager for Energy
 description: Learn how to deploy the OSDU Admin UI on top of your Azure Data Manager for Energy instance.
 ms.service: azure-data-manager-energy
-ms.custom: devx-track-azurecli
 ms.topic: how-to
 ms.reviewer: shikhagarg
 ms.author: eihaugho
 author: EirikHaughom
 ms.date: 02/15/2024
+ms.custom:
+  - devx-track-azurecli
+  - sfi-image-nochange
 ---
 # Deploy OSDU Admin UI on top of Azure Data Manager for Energy
 
@@ -18,7 +20,7 @@ The OSDU Admin UI enables platform administrators to manage the Azure Data Manag
 ## Prerequisites
 
 - An [Azure Data Manager for Energy instance](quickstart-create-microsoft-energy-data-services-instance.md).
-- An [Microsoft Entra ID App Registration](/entra/identity-platform/quickstart-register-app). <br> This App Registration can be the same as the one used for the Azure Data Manager for Energy instance. The following API permissions are required on the App Registration for the Admin UI to function properly.
+- A [Microsoft Entra ID App Registration](/entra/identity-platform/quickstart-register-app). <br> This App Registration can be the same as the one used for the Azure Data Manager for Energy instance. The following API permissions are required on the App Registration for the Admin UI to function properly.
     - [Application.Read.All](/graph/permissions-reference#applicationreadall)
     - [User.Read](/graph/permissions-reference#applicationreadall)
     - [User.ReadBasic.All](/graph/permissions-reference#userreadbasicall)

@@ -20,11 +20,11 @@ This article describes how to create a Linux or Windows virtual machine (VM) wit
 
 ### [Portal](#tab/portal)
 
-- An Azure account with an active subscription. You can [create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+- An Azure account with an active subscription. You can [create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 ### [PowerShell](#tab/powershell)
 
-- An Azure account with an active subscription. You can [create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+- An Azure account with an active subscription. You can [create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 [!INCLUDE [cloud-shell-try-it.md](~/reusable-content/ce-skilling/azure/includes/cloud-shell-try-it.md)]
 
@@ -370,7 +370,12 @@ New-AzBastion @bastionParams -AsJob
 
 ### [Portal](#tab/portal)
 
-Accelerated networking is enabled in the portal during virtual machine creation. Create a virtual machine in the following section.
+Accelerated networking is enabled in the portal during virtual machine creation. Create a virtual machine in the following section. 
+
+>[!NOTE]
+>- The Accelerated Networking setting in the portal shows the user-selected state. Accelerated Networking allows choosing Disabled in the portal even if the VM size requires Accelerated Networking. VM sizes that require Accelerated Networking enable Accelerated Networking at runtime regardless of the user setting in the portal. Accelerated Networking is a required feature for general purpose VM sizes of v5 or higher.
+
+
 
 ### [PowerShell](#tab/powershell)
 

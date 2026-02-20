@@ -4,8 +4,9 @@ description: Learn about how to use service principals to automate workflows for
 author: karengu0
 ms.author: karenguo
 ms.topic: conceptual
-ms.date: 02/07/2025
+ms.date: 09/12/2025
 ms.service: azure
+ms.subservice: azure-firmware-analysis
 ---
  
 # How to Use Service Principals to Automate Workflows in firmware analysis

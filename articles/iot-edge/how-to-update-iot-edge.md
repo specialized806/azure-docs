@@ -1,12 +1,13 @@
 ---
 title: Update IoT Edge version on devices
 description: How to update IoT Edge devices to run the latest versions of the security subsystem and the IoT Edge runtime
-author: PatAltimore
-ms.author: patricka
+author: sethmanheim
+ms.author: sethm
 ms.date: 01/09/2025
 ms.topic: how-to
 ms.service: azure-iot-edge
 services: iot-edge
+ms.custom: sfi-image-nochange
 ---
 
 # Update IoT Edge
@@ -42,7 +43,7 @@ You can [troubleshoot](#troubleshooting) the upgrade process at any time.
 
 When you upgrade between major or minor releases, for example from 1.4 to 1.5, update both the security subsystem and the runtime containers. Before a release, we test the security subsystem and the runtime container version combination. To update between major or minor product releases:
 
-1. On the device, stop IoT Edge using the command `sudo systemctl stop iotedge` and [uninstall](how-to-provision-single-device-windows-symmetric.md#uninstall-iot-edge).
+1. On the device, stop IoT Edge using the command `sudo iotedge system stop` and [uninstall](how-to-provision-single-device-linux-symmetric.md#uninstall-iot-edge).
 
 1. On the device, upgrade your container engine, either [Docker](https://docs.docker.com/engine/install) or [Moby](how-to-provision-single-device-linux-symmetric.md#install-a-container-engine).
 

@@ -9,6 +9,7 @@ ms.subservice: sap-vm-workloads
 ms.topic: article
 ms.date: 06/15/2023
 ms.author: depadia
+# Customer intent: As an IT administrator, I want to plan and deploy the SAP BusinessObjects BI Platform on Azure, so that I can leverage Azure's scalable resources and connectivity to enhance business intelligence reporting and analytics within my organization.
 ---
 
 # SAP BusinessObjects BI platform planning and implementation guide on Azure
@@ -232,7 +233,7 @@ Based on the SAP BI Platform sizing, you need to map your requirement to Azure V
 
 Azure Storage is an Azure-managed cloud service that provides storage that is highly available, secure, durable, scalable, and redundant. Some of the storage types have limited use for SAP scenarios. But several Azure Storage types are well suited or optimized for specific SAP workload scenarios. For more information, refer [Azure Storage types for SAP Workload](planning-guide-storage.md) guide, as it highlights different storage options that are suited for SAP.
 
-Azure Storage has different Storage types available for customers and details for the same can be read in the article [What disk types are available in Azure?](/azure/virtual-machines/disks-types). SAP BOBI Platform uses following Azure Storage to build the application -
+Azure Storage has different Storage types available for customers and details for the same can be read in the article [What disk types are available in Azure?](/azure/virtual-machines/disks-types) SAP BOBI Platform uses following Azure Storage to build the application -
 
 - Azure-managed disks
 

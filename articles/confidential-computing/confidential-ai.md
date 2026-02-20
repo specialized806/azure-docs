@@ -1,14 +1,13 @@
 ---
 title: Confidential AI
 titleSuffix: Azure Confidential Computing
-description: Confidential AI services and solutions
+description: Confidential Foundry Tools and solutions
 services: virtual-machines
 author: kapilv
-ms.service: azure-virtual-machines
-ms.subservice: azure-confidential-computing
+ms.service: azure-confidential-computing
 ms.topic: concept-article
 ms.date: 05/17/2023
-ms.author: kapilv
+ms.author: mattmcinnes
 # Customer intent: "As a data scientist, I want to utilize confidential AI technologies for training and deploying models, so that I can protect sensitive data and ensure compliance while enhancing the performance and accuracy of AI applications."
 ---
 

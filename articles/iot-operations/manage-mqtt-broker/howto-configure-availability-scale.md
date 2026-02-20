@@ -1,17 +1,14 @@
 ---
 title: Configure core MQTT broker settings
 description: Configure core MQTT broker settings for high availability, scale, memory usage, and disk-backed message buffer behavior.
-author: PatAltimore
-ms.author: patricka
+author: sethmanheim
+ms.author: sethm
 ms.topic: how-to
 ms.subservice: azure-mqtt-broker
-ms.custom:
-  - ignite-2023
-  - build-2025
 ms.date: 05/14/2025
-
-#CustomerIntent: As an operator, I want to understand the settings for the MQTT broker so that I can configure it for high availability and scale.
 ms.service: azure-iot-operations
+
+# CustomerIntent: As an operator, I want to understand the settings for the MQTT broker so that I can configure it for high availability and scale.
 ---
 
 # Configure broker settings for high availability, scaling, and memory usage
@@ -129,6 +126,9 @@ The backend chain subfield defines the settings for the backend partitions. The 
 - **Partitions**: The number of partitions to deploy. Through a process called *sharding*, each partition is responsible for a portion of the messages, divided by topic ID and session ID. The frontend pods distribute message traffic across the partitions. Increasing the number of partitions increases the number of messages that the broker can handle.
 - **Redundancy factor**: The number of backend replicas (pods) to deploy per partition. Increasing the redundancy factor increases the number of data copies to provide resiliency against node failures in the cluster.
 - **Workers**: The number of workers to deploy per backend replica. Increasing the number of workers per backend replica might increase the number of messages that the backend pod can handle. Each worker can consume up to two CPU cores at most, so be careful when you increase the number of workers per replica to not exceed the number of CPU cores in the cluster.
+
+> [!IMPORTANT]
+> The backend redundancy factor must be set to **2 or greater**. The broker requires at least two backend replicas per partition for high availability and rolling upgrade support. Setting the redundancy factor to `1` results in a deployment validation error.
 
 #### Considerations
 

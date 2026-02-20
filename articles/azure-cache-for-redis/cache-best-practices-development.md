@@ -1,8 +1,6 @@
 ---
 title: Best practices for development
 description: Learn how to develop code for Azure Cache for Redis.
-
-
 ms.topic: conceptual
 ms.custom:
   - ignite-2024
@@ -13,6 +11,8 @@ appliesto:
 ---
 
 # Development
+
+[!INCLUDE [cache-retirement-alert](includes/cache-retirement-alert.md)]
 
 ## Connection resilience and server load
 
@@ -52,7 +52,7 @@ Resolutions for large response sizes are varied but include:
 
 ## Key distribution
 
-If you're planning to use Redis clustering, first read [Redis Clustering Best Practices with Keys](https://redislabs.com/blog/redis-clustering-best-practices-with-keys/).
+If you're planning to use Redis clustering, first read [Redis Clustering Best Practices with Keys](https://redis.io/blog/redis-clustering-best-practices-with-keys/).
 
 ## Use pipelining
 

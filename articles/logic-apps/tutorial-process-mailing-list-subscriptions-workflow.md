@@ -6,9 +6,11 @@ ms.suite: integration
 ms.reviewer: estfan, azla
 ms.topic: tutorial
 ms.collection: ce-skilling-ai-copilot
-ms.custom: mvc
 ms.update-cycle: 180-days
-ms.date: 03/27/2025
+ms.date: 09/11/2025
+ms.custom:
+  - mvc
+  - sfi-image-nochange
 ---
 
 # Tutorial: Create approval-based workflows using Azure Logic Apps
@@ -36,7 +38,7 @@ You can create a similar workflow with a Standard logic app resource where some 
 
 ## Prerequisites
 
-* An Azure account and subscription. If you don't have a subscription, [sign up for a free Azure account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+* An Azure account and subscription. If you don't have a subscription, [sign up for a free Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 * A MailChimp account where you previously created a list named "test-members-ML" where your logic app can add email addresses for approved members. If you don't have an account, [sign up for a free account](https://login.mailchimp.com/signup/), and then learn [how to create a MailChimp list](https://us17.admin.mailchimp.com/lists/#).
 
@@ -82,8 +84,8 @@ You can create a similar workflow with a Standard logic app resource where some 
    > [!NOTE]
    >
    > Availability zones are automatically enabled for new and existing Consumption logic app workflows in 
-   > [Azure regions that support availability zones](../reliability/availability-zones-region-support.md). 
-   > For more information, see [Reliability in Azure Functions](../reliability/reliability-functions.md#availability-zone-support) and 
+   > [Azure regions that support availability zones](/azure/reliability/availability-zones-region-support). 
+   > For more information, see [Reliability in Azure Functions](/azure/reliability/reliability-functions#availability-zone-support) and 
    > [Protect logic apps from region failures with zone redundancy and availability zones](set-up-zone-redundancy-availability-zones.md).
 
    After you finish, your settings look similar to the following example:

@@ -2,12 +2,11 @@
 title: Best practices for Azure Service Fabric security
 description: This article provides a set of best practices for Azure Service Fabric security.
 author: msmbaldwin
-manager: rkarlin
 ms.author: mbaldwin
 ms.service: security
 ms.subservice: security-fundamentals
 ms.topic: article
-ms.date: 09/29/2024
+ms.date: 12/03/2025
 ---
 # Azure Service Fabric security best practices
 In addition to this article, please also review [Service Fabric security checklist](/azure/service-fabric/service-fabric-best-practices-security) for more information.
@@ -166,7 +165,7 @@ There are two basic steps to set up a key vault:
 
     The key vault must be enabled for deployment. The compute resource provider can then get the certificates from the vault and install them on the VM instances.
 
-To learn more about how to set up a key vault, see [What is Azure Key Vault?](/azure/key-vault/general/overview).
+To learn more about how to set up a key vault, see [What is Azure Key Vault?](/azure/key-vault/general/overview)
 
 ## Assign users to roles
 After you've created the applications to represent your cluster, assign your users to the roles that are supported by Service Fabric: read-only and admin. You can assign these roles by using the Azure portal.

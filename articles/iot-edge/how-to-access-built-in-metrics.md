@@ -2,8 +2,8 @@
 title: Access built-in metrics in Azure IoT Edge
 description: Access built-in metrics from IoT Edge runtime components to monitor device health.
 #customer intent: As a system administrator, I want to access built-in metrics in Azure IoT Edge so that I can monitor and understand the health of my IoT Edge devices.  
-author: PatAltimore
-ms.author: patricka
+author: sethmanheim
+ms.author: sethm
 ms.date: 05/08/2025
 ms.topic: concept-article
 ms.service: azure-iot-edge
@@ -16,7 +16,7 @@ services: iot-edge
 
 The IoT Edge runtime components, IoT Edge hub, and IoT Edge agent, produce built-in metrics in the [Prometheus exposition format](https://prometheus.io/docs/instrumenting/exposition_formats/). Access these metrics remotely to monitor and understand the health of an IoT Edge device.
 
-Use your own solution to access these metrics, or use the [metrics-collector module](https://mcr.microsoft.com/artifact/mar/azureiotedge-metrics-collector), which collects the built-in metrics and sends them to Azure Monitor or Azure IoT Hub. For more information, see [Collect and transport metrics](how-to-collect-and-transport-metrics.md).
+Use your own solution to access these metrics, or use the [metrics-collector module](https://mcr.microsoft.com/artifact/mar/azureiotedge-metrics-collector/tags), which collects the built-in metrics and sends them to Azure Monitor or Azure IoT Hub. For more information, see [Collect and transport metrics](how-to-collect-and-transport-metrics.md).
 
 Metrics are exposed by default on **port 9600** of the **edgeHub** and **edgeAgent** modules (`http://edgeHub:9600/metrics` and `http://edgeAgent:9600/metrics`). They aren't mapped to the host by default.
 

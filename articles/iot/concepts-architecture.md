@@ -4,6 +4,7 @@ description: Understand the key architectural elements of an IoT Plug and Play s
 author: dominicbetts
 ms.author: dobett
 ms.date: 03/13/2025
+ms.update-cycle: 1095-days
 ms.topic: conceptual
 ms.custom: mvc
 ms.service: azure-iot
@@ -21,7 +22,7 @@ Every model and interface has a unique ID.
 
 The following diagram shows the key elements of an IoT Plug and Play solution:
 
-:::image type="content" source="media/concepts-architecture/pnp-architecture.svg" alt-text="Diagram that shows the key elements of the IoT Plug and Play architecture." border="false":::
+:::image type="content" source="media/concepts-architecture/pnp-architecture.svg" alt-text="Diagram that shows the key elements of the IoT Plug and Play architecture." border="false" lightbox="media/concepts-architecture/pnp-architecture.svg":::
 
 ## Model repository
 

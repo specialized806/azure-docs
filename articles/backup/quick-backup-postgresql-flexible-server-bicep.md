@@ -8,8 +8,8 @@ ms.custom:
 ms.topic: quickstart
 ms.date: 06/17/2025
 ms.service: azure-backup
-author: jyothisuri
-ms.author: jsuri
+author: AbhishekMallick-MS
+ms.author: v-mallicka
 # Customer intent: "As a database administrator, I want to configure backup for Azure Database for PostgreSQL using a Bicep file, so that I can automate the backup process and ensure data protection for my database servers."
 ---
 
@@ -149,7 +149,7 @@ resource roleAssignmentReader 'Microsoft.Authorization/roleAssignments@2022-04-0
   }
 }
 
-@description('Step 5: Create Backup Instance for PostgreSQL)
+@description('Step 5: Create Backup Instance for PostgreSQL')
 resource backupInstance 'Microsoft.DataProtection/backupVaults/backupInstances@2023-01-01' = {
   name: 'PostgreSQLBackupInstance'
   location: region

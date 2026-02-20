@@ -7,9 +7,15 @@ manager: juergent
 ms.service: sap-on-azure
 ms.subservice: sap-vm-workloads
 ms.topic: article
-ms.custom: devx-track-python, devx-track-azurecli, devx-track-azurepowershell, linux-related-content
 ms.date: 05/01/2025
 ms.author: radeltch
+ms.custom:
+  - devx-track-python
+  - devx-track-azurecli
+  - devx-track-azurepowershell
+  - linux-related-content
+  - sfi-image-nochange
+# Customer intent: As an SAP administrator, I want to establish high availability for SAP HANA on Azure Virtual Machines using Red Hat Enterprise Linux, so that I can ensure continuous system uptime and reliability for my critical applications.
 ---
 
 # High availability of SAP HANA on Azure VMs on Red Hat Enterprise Linux
@@ -491,7 +497,7 @@ sudo pcs property set maintenance-mode=false
 To configure `priority-fencing-delay` for SAP HANA (applicable only as of pacemaker-2.0.4-6.el8 or higher), the following commands need to be executed.
 
 > [!NOTE]
-> If you have a two-node cluster, you can configure the `priority-fencing-delay` cluster property. This property introduces a delay in fencing a node that has higher total resource priority when a split-brain scenario occurs. For more information, see [Can Pacemaker fence the cluster node with the fewest running resources?](https://access.redhat.com/solutions/5110521).
+> If you have a two-node cluster, you can configure the `priority-fencing-delay` cluster property. This property introduces a delay in fencing a node that has higher total resource priority when a split-brain scenario occurs. For more information, see [Can Pacemaker fence the cluster node with the fewest running resources?](https://access.redhat.com/solutions/5110521)
 >
 > The property `priority-fencing-delay` is applicable for pacemaker-2.0.4-6.el8 version or higher. If you're setting up `priority-fencing-delay` on an existing cluster, make sure to unset the `pcmk_delay_max` option in the fencing device.
 

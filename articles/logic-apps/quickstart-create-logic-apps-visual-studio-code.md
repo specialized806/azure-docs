@@ -5,8 +5,11 @@ services: logic-apps
 ms.suite: integration
 ms.reviewer: estfan, azla
 ms.topic: quickstart
-ms.custom: mvc, mode-ui
 ms.date: 01/04/2024
+ms.custom:
+  - mvc
+  - mode-ui
+  - sfi-image-nochange
 #Customer intent: As a developer, I want to create my first automated workflow by using Azure Logic Apps while working in Visual Studio Code
 ---
 
@@ -26,7 +29,7 @@ For this article, you can create the same logic app from this [quickstart](../lo
 
 Before you start, make sure that you have these items:
 
-* If you don't have an Azure account and subscription, [sign up for a free Azure account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+* If you don't have an Azure account and subscription, [sign up for a free Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 * Basic knowledge about [logic app workflow definitions](../logic-apps/logic-apps-workflow-definition-language.md) and their structure as described with JSON
 
@@ -204,7 +207,7 @@ Before you start, make sure that you have these items:
 
 1. When you're prompted to upload your logic app to your Azure subscription, select **Upload**.
 
-   This step publishes your logic app to the [Azure portal](https://portal.azure.com), which and makes your logic live and running in Azure.
+   This step publishes your logic app to the [Azure portal](https://portal.azure.com), which makes the workflow live and running in Azure.
 
    ![Upload new logic app to your Azure subscription](./media/quickstart-create-logic-apps-visual-studio-code/upload-new-logic-app.png)
 
@@ -224,7 +227,7 @@ To review your logic app in Azure portal, follow these steps:
 
 1. Sign in to the [Azure portal](https://portal.azure.com) by using the same Azure account and subscription that's associated with your logic app.
 
-1. In the Azure portal's search box, enter your logic apps' name. From the results list, select your logic app.
+1. In the Azure portal's search box, enter the logic app name. From the results list, select the logic app.
 
    ![Your new logic app in Azure portal](./media/quickstart-create-logic-apps-visual-studio-code/published-logic-app-in-azure.png)
 

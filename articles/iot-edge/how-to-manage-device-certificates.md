@@ -2,9 +2,8 @@
 title: Manage IoT Edge certificates
 titleSuffix: Azure IoT Edge
 description: How to install and manage certificates on an Azure IoT Edge device to prepare for production deployment. 
-author: PatAltimore
-
-ms.author: patricka
+author: sethmanheim
+ms.author: sethm
 ms.date: 05/07/2025
 ms.topic: concept-article
 ms.service: azure-iot-edge
@@ -563,7 +562,7 @@ Instead of manually managing the certificate files, IoT Edge has the built-in ab
 1. Apply the configuration
 
    ```bash
-   sudo iotege config apply
+   sudo iotedge config apply
    ```
 
 The following table lists what each option in `auto_renew` does:

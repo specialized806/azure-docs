@@ -1,14 +1,15 @@
 ---
 title: Retrieve Azure IoT Edge logs
 description: Retrieve Azure IoT Edge logs and upload them to Azure Blob Storage for remote monitoring.
-author: PatAltimore
-
-ms.author: patricka
+author: sethmanheim
+ms.author: sethm
 ms.date: 06/03/2025
 ms.topic: how-to
 ms.service: azure-iot-edge
-ms.custom: devx-track-azurecli
 services: iot-edge
+ms.custom:
+  - devx-track-azurecli
+  - sfi-image-nochange
 ---
 # Retrieve logs from IoT Edge deployments
 
@@ -332,7 +333,7 @@ az iot hub invoke-module-method --method-name 'UploadSupportBundle' -n <hub name
 '
 ```
 
-In the Azure portal, invoke the method with the method name `UploadSupportBundle` and the following JSON payload after you relace your own SAS URL:
+In the Azure portal, invoke the method with the method name `UploadSupportBundle` and the following JSON payload after you replace your own SAS URL:
 
 ```json
     {

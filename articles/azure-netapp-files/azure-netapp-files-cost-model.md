@@ -1,11 +1,11 @@
 ---
-title: Cost model for Azure NetApp Files | Microsoft Docs
+title: Cost model for Azure NetApp Files
 description: Describes the cost model for Azure NetApp Files for managing expenses from the service.
 services: azure-netapp-files
 author: b-hchen
 ms.service: azure-netapp-files
 ms.topic: concept-article
-ms.date: 07/15/2024
+ms.date: 07/15/2025
 ms.author: anfdocs
 # Customer intent: As a cloud administrator, I want to understand the cost model for Azure NetApp Files, so that I can effectively manage and optimize my storage expenses based on dynamic capacity and performance requirements.
 ---
@@ -13,7 +13,9 @@ ms.author: anfdocs
 
 Understanding the cost model for Azure NetApp Files helps you manage your expenses from the service. 
 
-For cost model specific to cross-region replication, see [Cost model for cross-region replication](cross-region-replication-introduction.md#cost-model-for-cross-region-replication).
+For cost model specific to cross-region replication, see [Cost model for cross-region replication](replication.md#cost-model-for-cross-region-replication).
+
+<!-- ZRS update -->
 
 ## Calculation of capacity consumption
 
@@ -76,6 +78,8 @@ In this case, when costs are billed at $0.000202 per GiB/hour (Standard), $0.000
 
 This scenario constitutes a monthly savings of $3,965.39 compared to static provisioning.
 
+#### Example 3: Elastic zone-redundant storage
+
 ## Capacity consumption of snapshots 
 
 The capacity consumption of snapshots in Azure NetApp Files is charged against the quota of the parent volume.  As a result, it shares the same billing rate as the capacity pool to which the volume belongs.  However, unlike the active volume, snapshot consumption is measured based on the incremental capacity consumed.  Azure NetApp Files snapshots are differential in nature. Depending on the change rate of the data, the snapshots often consume much less capacity than the logical capacity of the active volume. For example, assume that you have a snapshot of a 500-GiB volume that only contains 10 GiB of differential data. 
@@ -100,7 +104,7 @@ The following diagram illustrates the concepts.
 * [Azure NetApp Files pricing page](https://azure.microsoft.com/pricing/details/storage/netapp/)
 * [Service levels for Azure NetApp Files](azure-netapp-files-service-levels.md)
 * [Resource limits for Azure NetApp Files](azure-netapp-files-resource-limits.md)
-* [Cost model for cross-region replication](cross-region-replication-introduction.md#cost-model-for-cross-region-replication)
+* [Cost model for cross-region replication](replication.md#cost-model-for-cross-region-replication)
 * [Understand volume quota](volume-quota-introduction.md)
 * [Monitor the capacity of a volume](monitor-volume-capacity.md)
 * [Resize the capacity pool or a volume](azure-netapp-files-resize-capacity-pools-or-volumes.md)

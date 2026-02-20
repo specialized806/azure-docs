@@ -5,8 +5,10 @@ services: logic-apps
 ms.suite: integration
 ms.reviewer: estfan, azla
 ms.topic: how-to
-ms.date: 12/16/2024
-ms.custom: engagement-fy23
+ms.date: 01/05/2026
+ms.custom:
+  - engagement-fy23
+  - sfi-image-nochange
 ---
 
 # Connect to Azure Service Bus from workflows in Azure Logic Apps
@@ -37,7 +39,7 @@ The Service Bus connector has different versions, based on [logic app workflow t
 
 ## Prerequisites
 
-* An Azure account and subscription. If you don't have an Azure subscription, [sign up for a free Azure account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+* An Azure account and subscription. If you don't have an Azure subscription, [sign up for a free Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 * A Service Bus namespace and messaging entity, such as a queue. For more information, review the following documentation:
 
@@ -165,7 +167,7 @@ For the Service Bus built-in connector, non-session triggers follow a *continuou
 
   * If you enable concurrency on the trigger named **When messages are available in a queue (V1)**, and 100+ messages are sent to the queue, all messages are routed to the [dead-letter queue](../service-bus-messaging/service-bus-dead-letter-queues.md).
 
-  * If you enable concurrency, the **SplitOn** limit is reduced to 100 items. This behavior is true for all triggers, not just the Service Bus trigger. Make sure the specified batch size is less than this limit on any trigger where you enable concurrency.
+  * If you enable concurrency, the limit for debatching or **Split on** behavior is reduced to 100 items. This behavior is true for all triggers, not just the Service Bus trigger. Make sure the specified batch size is less than this limit on any trigger where you enable concurrency.
 
   * If you enable concurrency, by default, a 30-second delay exists between batch reads. This delay slows down the trigger to achieve the following goals:
 
@@ -581,7 +583,7 @@ If a Service Bus trigger's polling interval is small, such as 10 seconds, update
 
 ### No session available or might be locked by another receiver
 
-Occasionally, operations such as completing a message or renewing a session produce the following error:
+Occasionally, operations such as completing a message or renewing a session produce the following error in the managed connector:
 
 ``` json
 {
@@ -592,7 +594,7 @@ Occasionally, operations such as completing a message or renewing a session prod
 }
 ```
 
-Occasionally, a session-based trigger might fail with the following error:
+Occasionally, a session-based trigger might fail with the following error in the managed connector:
 
 ``` json
 {
@@ -603,17 +605,26 @@ Occasionally, a session-based trigger might fail with the following error:
 }
 ```
 
+Occasionally, operations such as completing a message or renewing a session produce the following error in the built-in connector:
+
+``` json
+{
+  "code": "ServiceProviderActionFailed",
+  "message": "The service provider action failed with error code 'ServiceOperationFailed' and error message 'The Service Bus session was not found to perform operation 'getMessagesFromQueueSession' on session id '11115555'.'."
+}
+```
+
 The Service Bus connector uses in-memory cache to support all operations associated with the sessions. The Service Bus message receiver is cached in the memory of the role instance (virtual machine) that receives the messages. To process all requests, all calls for the connection get routed to this same role instance. This behavior is required because all the Service Bus operations in a session require the same receiver that receives the messages for a specific session.
 
 Due to reasons such as an infrastructure update, connector deployment, and so on, the possibility exists for requests to not get routed to the same role instance. If this event happens, requests fail for one of the following reasons:
 
 - The receiver that performs the operations in the session isn't available in the role instance that serves the request.
 
- - The new role instance tries to obtain the session, which either timed out in the old role instance or wasn't closed.
+- The new role instance tries to obtain the session, which either timed out in the old role instance or wasn't closed.
 
-As long as this error happens only occasionally, the error is expected. When the error happens, the message is still preserved in the service bus. The next trigger or workflow run tries to process the message again.
+This behavior can happen in both the managed connector and the built-in connector. As long as this error happens only occasionally, the error is expected. When the error happens, the message is still preserved in the service bus. The next trigger or workflow run tries to process the message again.
 
-## Next steps
+## Related content
 
 * [Managed connectors for Azure Logic Apps](/connectors/connector-reference/connector-reference-logicapps-connectors)
 * [Built-in connectors for Azure Logic Apps](built-in.md)

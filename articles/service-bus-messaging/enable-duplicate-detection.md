@@ -77,7 +77,7 @@ Similarly, to **update a topic with a new detection window size**, use the [`az 
 az servicebus topic update \
     --resource-group myresourcegroup \
     --namespace-name mynamespace \
-    --name myqueue \
+    --name mytopic \
     --duplicate-detection-history-time-window P7D
 ```
  

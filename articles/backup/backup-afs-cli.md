@@ -3,9 +3,9 @@ title: Back up Azure Files with Azure CLI
 description: Learn how to use Azure CLI to back up Azure Files in the Recovery Services vault
 ms.topic: how-to
 ms.custom: devx-track-azurecli, engagement-fy24
-ms.date: 05/22/2025
-author: jyothisuri
-ms.author: jsuri
+ms.date: 02/17/2026
+author: AbhishekMallick-MS
+ms.author: v-mallicka
 # Customer intent: As an IT administrator, I want to back up Azure Files using Azure CLI, so that I can automate the backup process and ensure data protection effectively.
 ---
 

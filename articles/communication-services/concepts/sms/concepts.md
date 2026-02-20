@@ -34,6 +34,8 @@ Key features of Azure Communication Services SMS SDKs include:
 - **Analytics** to track your SMS usage patterns. See [SMS insights](../../concepts/analytics/insights/sms-insights.md) for details.
 - **Opt-Out** handling support to automatically detect and respect opt-outs for toll-free numbers and short codes. US carriers mandate and enforce opt-outs for US toll-free numbers. See [opt-out handling FAQ](./sms-faq.md#opt-out-handling) for details.
 
+:::image type="content" source="./media/sms-concept.png" alt-text="Diagram showing sms dekkivery flow concept." lightbox="./media/sms-concept.png":::
+
 ## Sender types supported
 
 To send SMS, you must have a sender ID—this can be a phone number or an alphanumeric sender ID where supported. Choosing the right sender ID is critical to the success of your messaging campaign. When selecting a number or sender ID type, consider the destination country, regulatory requirements, throughput needs, and your desired timeline for launch. Azure Communication Services enables you to send SMS using various sender types: toll-free number (1-8XX), short codes (12345), 10 digit long codes (1-234-123-1234), mobile numbers (+XX XXXXX XXXXX), and alphanumeric sender ID (CONTOSO). The following table walks you through the features of each sender type:
@@ -62,7 +64,22 @@ To send SMS, you must have a sender ID—this can be a phone number or an alphan
 
 \* For detailed formatting requirements, see [Alphanumeric sender ID FAQ](./sms-faq.md#alphanumeric-sender-id) .
 
-## Sender Type Availability by Country (destination)
+## Sender Type Availability by Country/Region
+
+> [!IMPORTANT]
+> **Sender geographic scope**
+>
+> SMS senders are **country/region-scoped**. A sender can deliver messages only within the country/region (or countries/regions) for which it was provisioned, enabled, or approved.
+>
+> - **Short Codes:**  
+>   US Short Codes send SMS only to the **United States and Puerto Rico**. Short Codes in all other countries/regions can send SMS **only within the country/region where they were obtained**.
+>
+> - **All other sender types** (Toll-Free numbers, 10-digit long codes, mobile numbers, and Alphanumeric Sender IDs) can send SMS **only to the countries/regions where they are purchased, enabled, or registered**.
+>
+> Cross-country/region SMS delivery using a single sender is not supported. For multi-country/region messaging, you can use [Messaging Connect](../sms/messaging-connect.md).
+
+
+
 
 | Supported Destinations           | Toll-Free | Short Code | 10DLC | Mobile Number | Dynamic Alpha | Prereg. Alpha |
 |------------------|-----------|------------|-------|----------------|----------------|----------------|
@@ -70,7 +87,7 @@ To send SMS, you must have a sender ID—this can be a phone number or an alphan
 | Canada           | ✅        | ✅         | –     | –              | –              | –              |
 | Puerto Rico      | ✅        | –          | –     | –              | –              | –              |
 | United Kingdom   | –         | ✅         | –     | ✅             | –             | ✅             |
-| Australia        | –         | –          | –     | ✅             | –              | ✅             |
+| Australia        | –         | –          | –     | ✅             | –              | -             |
 | Austria          | –         | –          | –     | –              | ✅              |–              |
 | Germany          | –         | –          | –     | –              | ✅             | –              |
 | France           | –         | –          | –     | –              | ✅             | –              |
@@ -92,6 +109,9 @@ To send SMS, you must have a sender ID—this can be a phone number or an alphan
 | Norway           | –         | –          | –     | –              | –              | ✅             |
 | Slovakia         | –         | –          | –     | –              | –              | ✅             |
 | Slovenia         | –         | –          | –     | –              | –              | ✅             |
+
+> [!TIP]
+> For global SMS delivery and partner-managed options, check out [Messaging Connect](../sms/messaging-connect.md).
 
 ## Next steps
 

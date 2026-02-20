@@ -7,9 +7,10 @@ ms.assetid: d7c59cc1-b2d0-4d90-9126-628f9c7a5538
 ms.service: sap-on-azure
 ms.subservice: sap-vm-workloads
 ms.topic: article
-ms.date: 07/25/2024
+ms.date: 09/16/2025
 ms.author: juergent
 ms.custom: H1Hack27Feb2017
+# Customer intent: As an IT planner for SAP workloads, I want to evaluate different Azure storage types, so that I can select the best options for performance, resiliency, and cost-effectiveness in supporting my SAP applications.
 ---
 
 # Azure Storage types for SAP workload
@@ -24,7 +25,7 @@ Microsoft Azure storage of Standard HDD, Standard SSD, Azure premium storage, Pr
 There are several more redundancy methods, which are all described in the article [Azure Storage replication](../../storage/common/storage-redundancy.md?toc=%2fazure%2fstorage%2fqueues%2ftoc.json) that applies to some of the different storage types Azure has to offer. 
 
 > [!NOTE]
-> Using Azure storage for storing database data and redo log file, LRS is the only supported resiliency level at this point in time
+> Using Azure storage for storing database data and redo log file, LRS is the only supported resiliency level
 
 Also keep in mind that different Azure storage types influence the single VM availability SLAs as released in [SLA for Virtual Machines](https://azure.microsoft.com/support/legal/sla/virtual-machines).
 
@@ -45,7 +46,7 @@ Persisted storage is needed in SAP workload in various components of the stack t
 - File shares or shared disks that contain your global transport directory for NetWeaver or S/4HANA. Content of those shares is either consumed by software running in multiple VMs or is used to build high-availability failover cluster scenarios
 - The /sapmnt directory or common file shares for EDI (Electronic Data Interchange) processes or similar. Content of those shares is either consumed by software running in multiple VMs or is used to build high-availability failover cluster scenarios
 
-In the next few sections, the different Azure storage types and their usability for the four SAP workload scenarios gets discussed. A general categorization of how the different Azure storage types should be used is documented in the article [What disk types are available in Azure?](/azure/virtual-machines/disks-types). The recommendations for using the different Azure storage types for SAP workload aren't going to be majorly different.
+In the next few sections, the different Azure storage types and their usability for the four SAP workload scenarios gets discussed. A general categorization of how the different Azure storage types should be used is documented in the article [What disk types are available in Azure?](/azure/virtual-machines/disks-types) The recommendations for using the different Azure storage types for SAP workload aren't going to be majorly different.
 
 For support restrictions on Azure storage types for SAP NetWeaver/application layer of S/4HANA, read the [SAP support note 2015553](https://launchpad.support.sap.com/#/notes/2015553). For SAP HANA certified and supported Azure storage types, read the article [SAP HANA Azure virtual machine storage configurations](./hana-vm-operations-storage.md).
 
@@ -68,9 +69,9 @@ Before going into the details, we're presenting the summary and recommendations 
 | DBMS Data volume SAP HANA Esv3/Edsv4 VM families | Not supported | Not supported | Recommended | Recommended | Recommended | Recommended | Not supported |
 | DBMS log volume SAP HANA Esv3/Edsv4 VM families | Not supported | Not supported | Not supported | Recommended | Recommended | Recommended | Not supported |
 | HANA shared volume | Not supported | Not supported | Recommended | Recommended | Recommended | Recommended | Recommended |
-| DBMS Data volume non-HANA | Not supported | Restricted suitable (non-prod) | Recommended | Recommended | Recommended | Only for specific Oracle releases on Oracle Linux, Db2 and SAP ASE on SLES/RHEL Linux | Not supported |
-| DBMS log volume non-HANA M/Mv2 VM families | Not supported | Restricted suitable (non-prod) | Recommended<sup>1</sup> | Recommended | Recommended | Only for specific Oracle releases on Oracle Linux, Db2 and SAP ASE on SLES/RHEL Linux | Not supported |
-| DBMS log volume non-HANA non-M/Mv2 VM families | Not supported | restricted suitable (non-prod) | Suitable for up to medium workload | Recommended | Recommended | Only for specific Oracle releases on Oracle Linux, Db2 and SAP ASE on SLES/RHEL Linux | Not supported |
+| DBMS Data volume non-HANA | Not supported | Restricted suitable (non-prod) | Recommended | Recommended | Recommended | Only for specific Oracle releases on Oracle Linux, Db2 and SAP ASE on SLES/RHEL Linux, SQL Server 2022+ with SMB | Not supported |
+| DBMS log volume non-HANA M/Mv2 VM families | Not supported | Restricted suitable (non-prod) | Recommended<sup>1</sup> | Recommended | Recommended | Only for specific Oracle releases on Oracle Linux, Db2 and SAP ASE on SLES/RHEL Linux, SQL Server 2022+ with SMB | Not supported |
+| DBMS log volume non-HANA non-M/Mv2 VM families | Not supported | restricted suitable (non-prod) | Suitable for up to medium workload | Recommended | Recommended | Only for specific Oracle releases on Oracle Linux, Db2 and SAP ASE on SLES/RHEL Linux, SQL Server 2022+ with SMB | Not supported |
 
 
 <sup>1</sup>  With usage of [Azure Write Accelerator](/azure/virtual-machines/how-to-enable-write-accelerator) for M/Mv2 VM families for log/redo log volumes
@@ -87,8 +88,8 @@ Characteristics you can expect from the different storage types list like:
 | Disk snapshots possible | Yes | Yes | Yes | Yes<sup>3</sup> | No<sup>2</sup> | Yes | No |
 | Allocation of disks on different storage clusters when using availability sets | Through managed disks | Through managed disks | Through managed disks | Disk type not supported with VMs deployed through availability sets | Disk type not supported with VMs deployed through availability sets | No<sup>3</sup> | No |
 | Aligned with Availability Zones | Yes | Yes | Yes | Yes | Yes | In public preview | No |
-| Synchronous Zonal redundancy | Not for managed disks | Not for managed disks | Not supported for DBMS | No | No | No | Yes |
-| Asynchronous Zonal redundancy | Not for managed disks | Not for managed disks | Not supported for DBMS | No | No | In preview | No |
+| Synchronous Zone redundancy | Not for managed disks | Not for managed disks | Not supported for DBMS | No | No | No | Yes |
+| Asynchronous Zone redundancy | Not for managed disks | Not for managed disks | Not supported for DBMS | No | No | In preview | No |
 | Geo redundancy | Not for managed disks | Not for managed disks | No | No | No | Possible | No |
 
 
