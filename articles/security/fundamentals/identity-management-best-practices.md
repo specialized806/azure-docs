@@ -110,7 +110,7 @@ To balance security and productivity, you need to think about how a resource is 
 
 Security is always evolving, and it is important to build into your cloud and identity management framework a way to regularly show growth and discover new ways to secure your environment.
 
-Identity Secure Score is a set of recommended security controls that Microsoft publishes that works to provide you a numerical score to objectively measure your security posture and help plan future security improvements. You can also view your score in comparison to those in other industries as well as your own trends over time.
+Identity Secure Score is a set of recommended security controls that Microsoft publishes that works to provide you with a numerical score to objectively measure your security posture and help plan future security improvements. You can also view your score in comparison to those in other industries as well as your own trends over time.
 
 - **Plan routine security reviews and improvements based on best practices in your industry.**: Use the Identity Secure Score feature to rank your improvements over time.
 
@@ -149,7 +149,7 @@ Following are options and benefits for enabling multifactor authentication:
 This method is available to all licensing tiers but is not able to be mixed with existing Conditional Access policies. You can find more information in [Microsoft Entra Security Defaults](/entra/fundamentals/security-defaults)
 
 **Option 2**: [Enable multifactor authentication by changing user state](/entra/identity/authentication/howto-mfa-userstates).   
-**Benefit**: This is the traditional method for requiring two-step verification. It works with both [Microsoft Entra multifactor authentication in the cloud and Azure Multi-Factor Authentication Server](/entra/identity/authentication/concept-mfa-howitworks). Using this method requires users to perform two-step verification every time they sign in and overrides Conditional Access policies.
+**Benefit**: This is the traditional method for requiring two-step verification. It works with both [Microsoft Entra multifactor authentication in the cloud and Azure Multifactor Authentication server](/entra/identity/authentication/concept-mfa-howitworks). Using this method requires users to perform two-step verification every time they sign in and overrides Conditional Access policies.
 
 To determine where multifactor authentication needs to be enabled, see [Which version of Microsoft Entra multifactor authentication is right for my organization?](/entra/identity/authentication/concept-mfa-howitworks)
 
@@ -218,12 +218,12 @@ The following summarizes the best practices found in [Securing privileged access
 
 - **Identify and categorize accounts that are in highly privileged roles.**: After turning on Microsoft Entra Privileged Identity Management, view the users who are in the global administrator, privileged role administrator, and other highly privileged roles. Remove any accounts that are no longer needed in those roles, and categorize the remaining accounts that are assigned to admin roles:
 
-* Individually assigned to administrative users and can be used for non-administrative purposes (for example, personal email)
-* Individually assigned to administrative users and designated for administrative purposes only
-* Shared across multiple users
-* For emergency access scenarios
-* For automated scripts
-* For external users
+   * Individually assigned to administrative users and can be used for non-administrative purposes (for example, personal email)
+   * Individually assigned to administrative users and designated for administrative purposes only
+   * Shared across multiple users
+   * For emergency access scenarios
+   * For automated scripts
+   * For external users
 
 - **Implement “just in time” (JIT) access to further lower the exposure time of privileges and increase your visibility into the use of privileged accounts.**: Microsoft Entra Privileged Identity Management lets you:
 
