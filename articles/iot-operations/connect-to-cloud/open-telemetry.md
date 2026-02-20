@@ -210,7 +210,7 @@ The dataflow endpoint appears in the list of available dataflow endpoints in the
         - **Disabled**: Disables TLS.
     - **Trusted CA certificate ConfigMap name**: The name of a Kubernetes ConfigMap containing your trusted CA certificate.
 
-   :::image type="content" source="media/howto-connect-opentelemetry/create-open-telemetry-advance.png" alt-text="Screenshot of the operations experience interface showing the advanced tab in create a new OpenTelemetry endpoint." lightbox="media/howto-connect-opentelemetry/create-open-telemetry-advance.png":::
+   :::image type="content" source="media/open-telemetry/create-open-telemetry-advance.png" alt-text="Screenshot of the operations experience interface showing the advanced tab in create a new OpenTelemetry endpoint." lightbox="media/open-telemetry/create-open-telemetry-advance.png":::
 
 1. Select **Apply** to create the OpenTelemetry endpoint.
 
