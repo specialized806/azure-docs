@@ -7,7 +7,7 @@ ms.assetid: 5e514964-c907-4324-b659-16dd825f6f87
 ms.service: sap-on-azure
 ms.subservice: sap-vm-workloads
 ms.topic: article
-ms.date: 05/22/2025
+ms.date: 02/19/2026
 ms.author: radeltch
 ms.custom:
   - devx-track-azurecli
@@ -299,11 +299,11 @@ Configure and prepare your operating system by doing the following:
 
    Configure RHEL, as described in the [Red Hat customer portal](https://access.redhat.com/solutions/2447641) and in the following SAP notes:
 
-   * [2292690 - SAP HANA DB: Recommended OS settings for RHEL 7](https://launchpad.support.sap.com/#/notes/2292690)
-   * [2777782 - SAP HANA DB: Recommended OS settings for RHEL 8](https://launchpad.support.sap.com/#/notes/2777782)
-   * [2455582 - Linux: Running SAP applications compiled with GCC 6.x](https://launchpad.support.sap.com/#/notes/2455582)
-   * [2593824 - Linux: Running SAP applications compiled with GCC 7.x](https://launchpad.support.sap.com/#/notes/2593824)
-   * [2886607 - Linux: Running SAP applications compiled with GCC 9.x](https://launchpad.support.sap.com/#/notes/2886607)
+   * [2292690 - SAP HANA DB: Recommended OS settings for RHEL 7](https://me.sap.com/notes/2292690)
+   * [2777782 - SAP HANA DB: Recommended OS Settings for RHEL 8](https://me.sap.com/notes/2777782)
+   * [3108302 - SAP HANA DB: Recommended OS Settings for RHEL 9](https://me.sap.com/notes/3108302)
+   * [3562919 - SAP HANA DB: Recommended OS Settings for RHEL 10](https://me.sap.com/notes/3562919)
+   * [3057467 - Which compat-sap-c++ package do I need for SAP on RHEL?](https://me.sap.com/notes/3057467)
 
 ## Prepare the file systems
 
@@ -324,7 +324,7 @@ In this example, the shared HANA file systems are deployed on Azure NetApp Files
     net.ipv4.tcp_rmem = 4096 131072 16777216
     net.ipv4.tcp_wmem = 4096 16384 16777216
     net.core.netdev_max_backlog = 300000
-    net.ipv4.tcp_slow_start_after_idle=0
+    net.ipv4.tcp_slow_start_after_idle = 0
     net.ipv4.tcp_no_metrics_save = 1
     net.ipv4.tcp_moderate_rcvbuf = 1
     net.ipv4.tcp_window_scaling = 1
@@ -764,7 +764,7 @@ The following steps get you set up for system replication:
 
       ```bash
       sudo vi /usr/sap/HN1/SYS/global/hdb/custom/config/global.ini
-      #Add the section
+      # Add the section
       [system_replication_hostname_resolution]
       10.23.1.202 = hana-s1-db1
       10.23.1.203 = hana-s1-db2
@@ -891,12 +891,36 @@ For the next part of this process, you need to create file system resources. Her
     ```
 
 5. **[1]** Configure the constraints that determine where the NFS file systems will be mounted, and enable the file system resources.
-  
+
+    ### [RHEL 10.x](#tab/rhel10)
+
+    ```bash
+    # Configure the constraints
+    pcs constraint location fs_hana_shared_s1-clone rule resource-discovery=never score=-INFINITY "NFS_SID_SITE ne S1"
+    pcs constraint location fs_hana_shared_s2-clone rule resource-discovery=never score=-INFINITY "NFS_SID_SITE ne S2"
+    ```
+
+    ### [RHEL 8.x/9.x](#tab/rhel8-9)
+
     ```bash
     # Configure the constraints
     pcs constraint location fs_hana_shared_s1-clone rule resource-discovery=never score=-INFINITY NFS_SID_SITE ne S1
     pcs constraint location fs_hana_shared_s2-clone rule resource-discovery=never score=-INFINITY NFS_SID_SITE ne S2
-    # Enable the file system resources
+    ```
+
+    ### [RHEL 7.x](#tab/rhel7)
+
+    ```bash
+    # Configure the constraints
+    pcs constraint location fs_hana_shared_s1-clone rule resource-discovery=never score=-INFINITY NFS_SID_SITE ne S1
+    pcs constraint location fs_hana_shared_s2-clone rule resource-discovery=never score=-INFINITY NFS_SID_SITE ne S2
+    ```
+
+    ---
+
+    Enable the file system resources
+
+    ```bash
     pcs resource enable fs_hana_shared_s1
     pcs resource enable fs_hana_shared_s2
     ```
@@ -1034,10 +1058,36 @@ Now you're ready to create the cluster resources:
     ```
 
 7. **[1]** Create the HANA cluster resources. Run the following commands as `root`.
-   1. Make sure the cluster is already in maintenance mode.  
 
-   2. Next, create the HANA topology resource.  
-      If you're building a RHEL **7.x** cluster, use the following commands:
+   1. Make sure the cluster is already in maintenance mode.
+
+      ```bash
+      sudo pcs property set maintenance-mode=true
+      ```
+
+   1. Next, create the HANA topology resource.
+
+      ### [RHEL 10.x](#tab/rhel10)
+
+      ```bash
+      pcs resource create SAPHanaTopology_HN1_HDB03 SAPHanaTopology \
+       SID=HN1 InstanceNumber=03 \
+       op methods interval=0s timeout=5 \
+       op start timeout=600 op stop timeout=300 op monitor interval=10 timeout=600 \
+       clone meta clone-node-max=1 interleave=true
+      ```
+
+      ### [RHEL 8.x/9.x](#tab/rhel8-9)
+
+      ```bash
+      pcs resource create SAPHanaTopology_HN1_HDB03 SAPHanaTopology \
+       SID=HN1 InstanceNumber=03 \
+       op methods interval=0s timeout=5 \
+       op start timeout=600 op stop timeout=300 op monitor interval=10 timeout=600 \
+       clone clone-node-max=1 interleave=true
+      ```
+
+      ### [RHEL 7.x](#tab/rhel7)
 
       ```bash
       pcs resource create SAPHanaTopology_HN1_HDB03 SAPHanaTopologyScaleOut \
@@ -1047,87 +1097,127 @@ Now you're ready to create the cluster resources:
       pcs resource clone SAPHanaTopology_HN1_HDB03 meta clone-node-max=1 interleave=true
       ```
 
-      If you're building a RHEL >= **8.x** cluster, use the following commands:
+      ---
 
-      ```bash
-      pcs resource create SAPHanaTopology_HN1_HDB03 SAPHanaTopology \
-       SID=HN1 InstanceNumber=03 meta clone-node-max=1 interleave=true \
-       op methods interval=0s timeout=5 \
-       op start timeout=600 op stop timeout=300 op monitor interval=10 timeout=600
-      
-      pcs resource clone SAPHanaTopology_HN1_HDB03 meta clone-node-max=1 interleave=true
-      ```
-
-   3. Create the HANA instance resource.
+   1. Create the HANA instance resource.
 
       > [!NOTE]
-      > This article contains references to a term that Microsoft no longer uses. When the term is removed from the software, we’ll remove it from this article.  
+      > This article contains references to a term that Microsoft no longer uses. When the term is removed from the software, we’ll remove it from this article.
 
-      If you're building a RHEL **7.x** cluster, use the following commands:
+      ### [RHEL 10.x](#tab/rhel10)
+
+      ```bash
+      pcs resource create SAPHana_HDB_HDB00 SAPHanaController \
+       SID=HDB InstanceNumber=00 PREFER_SITE_TAKEOVER=true DUPLICATE_PRIMARY_TIMEOUT=7200 AUTOMATED_REGISTER=false \
+       op demote interval=0s timeout=320 \
+       op methods interval=0s timeout=5 \
+       op start interval=0 timeout=3600 \
+       op stop interval=0 timeout=3600 \
+       op promote interval=0 timeout=3600 \
+       op monitor interval=60 role="Promoted" timeout=700 \
+       op monitor interval=61 role="Unpromoted" timeout=700
+     
+      pcs resource promotable SAPHana_HDB_HDB00 \
+       meta master-max=1 clone-node-max=1 interleave=true
+      ```
+
+      ### [RHEL 8.x/9.x](#tab/rhel8-9)
 
       ```bash
       pcs resource create SAPHana_HN1_HDB03 SAPHanaController \
        SID=HN1 InstanceNumber=03 PREFER_SITE_TAKEOVER=true DUPLICATE_PRIMARY_TIMEOUT=7200 AUTOMATED_REGISTER=false \
-       op start interval=0 timeout=3600 op stop interval=0 timeout=3600 op promote interval=0 timeout=3600 \
-       op monitor interval=60 role="Master" timeout=700 op monitor interval=61 role="Slave" timeout=700
+       op demote interval=0s timeout=320 \
+       op methods interval=0s timeout=5 \
+       op start interval=0 timeout=3600 \
+       op stop interval=0 timeout=3600 \
+       op promote interval=0 timeout=3600 \
+       op monitor interval=60 role="Master" timeout=700 \
+       op monitor interval=61 role="Slave" timeout=700 \
+         
+      pcs resource promotable SAPHana_HN1_HDB03 \
+       meta master-max=1 clone-node-max=1 interleave=true
+      ```
+  
+      ### [RHEL 7.x](#tab/rhel7)
+
+      ```bash
+      pcs resource create SAPHana_HN1_HDB03 SAPHanaController \
+       SID=HN1 InstanceNumber=03 PREFER_SITE_TAKEOVER=true DUPLICATE_PRIMARY_TIMEOUT=7200 AUTOMATED_REGISTER=false \
+       op start interval=0 timeout=3600 \
+       op stop interval=0 timeout=3600 \
+       op promote interval=0 timeout=3600 \
+       op monitor interval=60 role="Master" timeout=700 \
+       op monitor interval=61 role="Slave" timeout=700
        
       pcs resource master msl_SAPHana_HN1_HDB03 SAPHana_HN1_HDB03 \
-       meta master-max="1" clone-node-max=1 interleave=true
+       meta master-max=1 clone-node-max=1 interleave=true
       ```
 
-      If you're building a RHEL >= **8.x** cluster, use the following commands:
-
-      ```bash
-      pcs resource create SAPHana_HN1_HDB03 SAPHanaController \
-       SID=HN1 InstanceNumber=03 PREFER_SITE_TAKEOVER=true DUPLICATE_PRIMARY_TIMEOUT=7200 AUTOMATED_REGISTER=false \
-       op demote interval=0s timeout=320 op methods interval=0s timeout=5 \
-       op start interval=0 timeout=3600 op stop interval=0 timeout=3600 op promote interval=0 timeout=3600 \
-       op monitor interval=60 role="Master" timeout=700 op monitor interval=61 role="Slave" timeout=700
-       
-      pcs resource promotable SAPHana_HN1_HDB03 \
-       meta master-max="1" clone-node-max=1 interleave=true
-      ```
+      ---
 
       > [!IMPORTANT]
       > It's a good idea to set `AUTOMATED_REGISTER` to `false`, while you're performing failover tests, to prevent a failed primary instance to automatically register as secondary. After testing, as a best practice, set `AUTOMATED_REGISTER` to `true`, so that after takeover, system replication can resume automatically.
 
-   4. Create the virtual IP and associated resources.
+   1. Create the virtual IP and associated resources.
 
       ```bash
-      pcs resource create vip_HN1_03 ocf:heartbeat:IPaddr2 ip=10.23.0.18 op monitor interval="10s" timeout="20s"
+      pcs resource create vip_HN1_03 ocf:heartbeat:IPaddr2 ip=10.23.0.18 \
+       op monitor interval="10s" timeout="20s"
+
       sudo pcs resource create nc_HN1_03 azure-lb port=62503
+
       sudo pcs resource group add g_ip_HN1_03 nc_HN1_03 vip_HN1_03
       ```
 
-   5. Create the cluster constraints.
+   1. Create the cluster constraints.
 
-      If you're building a RHEL **7.x** cluster, use the following commands:
-
-      ```bash
-      #Start HANA topology, before the HANA instance
-      pcs constraint order SAPHanaTopology_HN1_HDB03-clone then msl_SAPHana_HN1_HDB03
-      
-      pcs constraint colocation add g_ip_HN1_03 with master msl_SAPHana_HN1_HDB03 4000
-      #HANA resources are only allowed to run on a node, if the node's NFS file systems are mounted. The constraint also avoids the majority maker node
-      pcs constraint location SAPHanaTopology_HN1_HDB03-clone rule resource-discovery=never score=-INFINITY hana_nfs_s1_active ne true and hana_nfs_s2_active ne true
-      ```
-
-      If you're building a RHEL >= **8.x** cluster, use the following commands:
+      ### [RHEL 10.x](#tab/rhel10)
 
       ```bash
-      #Start HANA topology, before the HANA instance
+      # Start HANA topology, before the HANA instance
       pcs constraint order SAPHanaTopology_HN1_HDB03-clone then SAPHana_HN1_HDB03-clone
       
+      # IP resource group should run with promoted SAPHana clone
+      pcs constraint colocation add g_ip_HN1_03 with Promoted SAPHana_HN1_HDB03-clone score=4000
+
+      # HANA resources are only allowed to run on a node, if the node's NFS file systems are mounted. The constraint also avoids the majority maker node
+      pcs constraint location SAPHanaTopology_HN1_HDB03-clone rule resource-discovery=never score=-INFINITY "hana_nfs_s1_active ne true and hana_nfs_s2_active ne true"
+      ```
+
+      ### [RHEL 8.x/9.x](#tab/rhel8-9)
+
+      ```bash
+      # Start HANA topology, before the HANA instance
+      pcs constraint order SAPHanaTopology_HN1_HDB03-clone then SAPHana_HN1_HDB03-clone
+      
+      # IP resource group should run with promoted SAPHana clone
       pcs constraint colocation add g_ip_HN1_03 with master SAPHana_HN1_HDB03-clone 4000
+
       #HANA resources are only allowed to run on a node, if the node's NFS file systems are mounted. The constraint also avoids the majority maker node
       pcs constraint location SAPHanaTopology_HN1_HDB03-clone rule resource-discovery=never score=-INFINITY hana_nfs_s1_active ne true and hana_nfs_s2_active ne true
       ```
+
+      ### [RHEL 7.x](#tab/rhel7)
+
+      ```bash
+      # Start HANA topology, before the HANA instance
+      pcs constraint order SAPHanaTopology_HN1_HDB03-clone then msl_SAPHana_HN1_HDB03
+      
+      # IP resource group should run with master SAPHana clone
+      pcs constraint colocation add g_ip_HN1_03 with master msl_SAPHana_HN1_HDB03 4000
+
+      # HANA resources are only allowed to run on a node, if the node's NFS file systems are mounted. The constraint also avoids the majority maker node
+      pcs constraint location SAPHanaTopology_HN1_HDB03-clone rule resource-discovery=never score=-INFINITY hana_nfs_s1_active ne true and hana_nfs_s2_active ne true
+      ```
+
+      ---
 
 8. **[1]** Place the cluster out of maintenance mode. Make sure that the cluster status is `ok`, and that all of the resources are started.
 
     ```bash
     sudo pcs property set maintenance-mode=false
-    #If there are failed cluster resources, you may need to run the next command
+
+    # If there are failed cluster resources, you may need to run the next command
     pcs resource cleanup
     ```
   
@@ -1194,23 +1284,42 @@ pcs property set maintenance-mode=true
 pcs resource create secvip_HN1_03 ocf:heartbeat:IPaddr2 ip="10.23.0.19"
 pcs resource create secnc_HN1_03 ocf:heartbeat:azure-lb port=62603
 pcs resource group add g_secip_HN1_03 secnc_HN1_03 secvip_HN1_03
+```
 
-# RHEL 8.x: 
+### [RHEL 10.x](#tab/rhel10)
+
+```bash
+pcs constraint location g_ip_HN1_03 rule score=500 role=Promoted "hana_hn1_roles eq master1:master:worker:master and hana_hn1_clone_state eq PROMOTED"
+pcs constraint location g_secip_HN1_03 rule score=50 "hana_hn1_roles eq master1:master:worker:master"
+pcs constraint order promote SAPHana_HN1_HDB03-clone then start g_ip_HN1_03
+pcs constraint order start g_ip_HN1_03 then start g_secip_HN1_03
+pcs constraint colocation add g_secip_HN1_03 with Unpromoted SAPHana_HN1_HDB03-clone score=5
+pcs property set maintenance-mode=false
+```
+
+### [RHEL 8.x/9.x](#tab/rhel8-9)
+
+```bash
 pcs constraint location g_ip_HN1_03 rule score=500 role=master hana_hn1_roles eq "master1:master:worker:master" and hana_hn1_clone_state eq PROMOTED
-pcs constraint location g_secip_HN1_03 rule score=50  hana_hn1_roles eq 'master1:master:worker:master'
-pcs constraint order promote  SAPHana_HN1_HDB03-clone then start g_ip_HN1_03
+pcs constraint location g_secip_HN1_03 rule score=50 hana_hn1_roles eq 'master1:master:worker:master'
+pcs constraint order promote SAPHana_HN1_HDB03-clone then start g_ip_HN1_03
 pcs constraint order start g_ip_HN1_03 then start g_secip_HN1_03
 pcs constraint colocation add g_secip_HN1_03 with Slave SAPHana_HN1_HDB03-clone 5
+pcs property set maintenance-mode=false
+```
 
-# RHEL 7.x:
+### [RHEL 7.x](#tab/rhel7)
+
+```bash
 pcs constraint location g_ip_HN1_03 rule score=500 role=master hana_hn1_roles eq "master1:master:worker:master" and hana_hn1_clone_state eq PROMOTED
-pcs constraint location g_secip_HN1_03 rule score=50  hana_hn1_roles eq 'master1:master:worker:master'
+pcs constraint location g_secip_HN1_03 rule score=50 hana_hn1_roles eq 'master1:master:worker:master'
 pcs constraint order promote  msl_SAPHana_HN1_HDB03 then start g_ip_HN1_03
 pcs constraint order start g_ip_HN1_03 then start g_secip_HN1_03
 pcs constraint colocation add g_secip_HN1_03 with Slave msl_SAPHana_HN1_HDB03 5
-
 pcs property set maintenance-mode=false
 ```
+
+---
 
 Make sure that the cluster status is `ok`, and that all of the resources are started. The second virtual IP will run on the secondary site along with SAP HANA secondary resource.
 
