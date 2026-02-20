@@ -181,7 +181,7 @@ You can create an OpenTelemetry dataflow endpoint using the IoT Operations exper
 
 The dataflow endpoint appears in the list of available dataflow endpoints in the Azure IoT Operations experience. This addition ensures that you can easily identify and select the OpenTelemetry endpoint when configuring telemetry pipelines, promoting better integration and visibility across monitoring tools. By surfacing the OTEL endpoint along with other dataflow options, you can route telemetry data and maintain consistent observability standards across assets more efficiently.
 
-:::image type="content" source="media/open-telemetry/dataflow-endpoints.png" alt-text="Screenshot showing endpoints screen." lightbox="media/open-telemetry/dataflow-endpoints.png" lightbox="media/open-telemetry/dataflow-endpoints.png":::
+:::image type="content" source="media/open-telemetry/dataflow-endpoints.png" alt-text="Screenshot showing endpoints screen." lightbox="media/open-telemetry/dataflow-endpoints.png" :::
 
 # [Operations experience](#tab/portal)
 
@@ -210,7 +210,7 @@ The dataflow endpoint appears in the list of available dataflow endpoints in the
         - **Disabled**: Disables TLS.
     - **Trusted CA certificate ConfigMap name**: The name of a Kubernetes ConfigMap containing your trusted CA certificate.
 
-   :::image type="content" source="media/open-telemetry/create-open-telemetry-advance.png" alt-text="Screenshot of the operations experience interface showing the advanced tab in create a new OpenTelemetry endpoint." lightbox="media/open-telemetry/create-open-telemetry-advance.png":::
+   :::image type="content" source="media/howto-connect-opentelemetry/create-open-telemetry-advance.png" alt-text="Screenshot of the operations experience interface showing the advanced tab in create a new OpenTelemetry endpoint." lightbox="media/howto-connect-opentelemetry/create-open-telemetry-advance.png":::
 
 1. Select **Apply** to create the OpenTelemetry endpoint.
 
@@ -330,7 +330,7 @@ Replace `<OTEL_AUDIENCE>` with the audience value for your OpenTelemetry collect
 1. In the **Create new data flow endpoint: Open Telemetry** pane, under the **Basic** configuration tab, select **Kubernetes service account token** as the authentication method.
 1. Provide the **Service audience** value for your OpenTelemetry collector configuration.
 
-    :::image type="content" source="media/howto-connect-opentelemetry/service-account-token.png" alt-text="Screenshot of the operations experience interface showing the authentication method selection in create a new OpenTelemetry endpoint." lightbox="media/howto-connect-opentelemetry/service-account-token.png":::
+    :::image type="content" source="media/open-telemetry/service-account-token.png" alt-text="Screenshot of the operations experience interface showing the authentication method selection in create a new OpenTelemetry endpoint." lightbox="media/open-telemetry/service-account-token.png":::
 
 > [!IMPORTANT] 
 > You can only choose the authentication method when creating a new OpenTelemetry data flow endpoint. You can't change the authentication method after the OpenTelemetry data flow endpoint is created.
@@ -372,7 +372,7 @@ X.509 certificate authentication uses client certificates for mutual TLS authent
     - **X509 client key**: The private key for the client certificate.
     - **X509 intermediate certificates**: The intermediate certificates for the client certificate chain.
 
-    :::image type="content" source="media/howto-connect-opentelemetry/x-509-certificate.png" alt-text="Screenshot of the operations experience interface showing the X509 authentication method selection in create a new OpenTelemetry endpoint." lightbox="media/howto-connect-opentelemetry/x-509-certificate.png":::
+    :::image type="content" source="media/open-telemetry/x-509-certificate.png" alt-text="Screenshot of the operations experience interface showing the X509 authentication method selection in create a new OpenTelemetry endpoint." lightbox="media/open-telemetry/x-509-certificate.png":::
 
 # [Bicep](#tab/bicep)
 
