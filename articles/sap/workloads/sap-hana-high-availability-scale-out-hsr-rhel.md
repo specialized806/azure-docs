@@ -1097,7 +1097,7 @@ Now you're ready to create the cluster resources:
       pcs resource clone SAPHanaTopology_HN1_HDB03 meta clone-node-max=1 interleave=true
       ```
 
-      ---
+       ---
 
    1. Create the HANA instance resource.
 
@@ -1153,10 +1153,10 @@ Now you're ready to create the cluster resources:
        meta master-max=1 clone-node-max=1 interleave=true
       ```
 
-      ---
+       ---
 
-      > [!IMPORTANT]
-      > It's a good idea to set `AUTOMATED_REGISTER` to `false`, while you're performing failover tests, to prevent a failed primary instance to automatically register as secondary. After testing, as a best practice, set `AUTOMATED_REGISTER` to `true`, so that after takeover, system replication can resume automatically.
+       > [!IMPORTANT]
+       > It's a good idea to set `AUTOMATED_REGISTER` to `false`, while you're performing failover tests, to prevent a failed primary instance to automatically register as secondary. After testing, as a best practice, set `AUTOMATED_REGISTER` to `true`, so that after takeover, system replication can resume automatically.
 
    1. Create the virtual IP and associated resources.
 
@@ -1210,7 +1210,7 @@ Now you're ready to create the cluster resources:
       pcs constraint location SAPHanaTopology_HN1_HDB03-clone rule resource-discovery=never score=-INFINITY hana_nfs_s1_active ne true and hana_nfs_s2_active ne true
       ```
 
-      ---
+       ---
 
 8. **[1]** Place the cluster out of maintenance mode. Make sure that the cluster status is `ok`, and that all of the resources are started.
 
