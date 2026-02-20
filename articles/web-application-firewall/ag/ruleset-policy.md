@@ -154,4 +154,20 @@ The following tables summarize the current support status and planned end of sup
 
 ::: zone-end
 
+## Related content
+
+::: zone pivot="application-gateway"
+
+- [DRS and CRS rule groups and rules](/azure/web-application-firewall/ag/application-gateway-crs-rulegroups-rules)
+- [Upgrade CRS or DRS ruleset version](/azure/web-application-firewall/ag/upgrade-ruleset-version)
+- [Customize WAF rules](/azure/web-application-firewall/ag/application-gateway-customize-waf-rules-portal)
+
+::: zone-end
+
+::: zone pivot="front-door"
+
+- [DRS rule groups and rules](/azure/web-application-firewall/afds/waf-front-door-drs)
+- [WAF exclusion lists](/azure/web-application-firewall/afds/waf-front-door-exclusion)
+
+::: zone-end
 
