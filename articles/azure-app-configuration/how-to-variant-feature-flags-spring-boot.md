@@ -104,16 +104,6 @@ If you already have a Spring Boot web app with authentication, you can skip to t
                                 <a class="nav-link text-dark" href="/">Home</a>
                             </li>
                         </ul>
-                        <ul class="navbar-nav">
-                            <li class="nav-item" th:if="${isAuthenticated}">
-                                <span class="nav-link text-dark">Hello <span th:text="${user}"></span>!</span>
-                            </li>
-                            <li class="nav-item" th:if="${isAuthenticated}">
-                                <form th:action="@{/logout}" method="post" style="display: inline;">
-                                    <button type="submit" class="nav-link text-dark btn btn-link">Logout</button>
-                                </form>
-                            </li>
-                        </ul>
                     </div>
                 </div>
             </nav>
@@ -206,18 +196,6 @@ If you already have a Spring Boot web app with authentication, you can skip to t
         position: relative;
     }
 
-    .login-container {
-        background-color: #fff;
-        margin: 2em auto;
-        padding: 2em;
-        border-radius: 8px;
-        max-width: 750px;
-        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-        justify-content: space-between;
-        align-items: start;
-        position: relative;
-    }
-
     .vote-container {
         position: absolute;
         top: 10px;
@@ -266,7 +244,6 @@ If you already have a Spring Boot web app with authentication, you can skip to t
 
     ```properties
     spring.application.name=quoteoftheday
-    spring.jpa.hibernate.ddl-auto=create-drop
     ```
 
 ## Use the variant feature flag
@@ -379,19 +356,25 @@ If you already have a Spring Boot web app with authentication, you can skip to t
         }
 
         @GetMapping("/")
-        public String index(Model model, Principal principal) {
-
+        public String index(Model model) {
+            // Get the variant for the Greeting feature flag
+            String greetingMessage = "";
+            Variant variant = featureManager.getVariant("Greeting");
+            if (variant != null) {
                 Object value = variant.getValue();
                 if (value != null) {
                     greetingMessage = value.toString();
                 }
+            } else {
+                LOGGER.warn(
+                        "No variant given. Either the feature flag named 'Greeting' is not defined or the variants are not defined properly.");
             }
 
             model.addAttribute("greetingMessage", greetingMessage);
             model.addAttribute("quote", quotes.get(random.nextInt(quotes.size())));
 
             return "index";
-        }
+            }
     }
     ```
 
