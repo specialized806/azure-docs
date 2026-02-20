@@ -98,13 +98,6 @@ If you already have a Spring Boot web app with authentication, you can skip to t
                         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                        <ul class="navbar-nav flex-grow-1">
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" href="/">Home</a>
-                            </li>
-                        </ul>
-                    </div>
                 </div>
             </nav>
         </header>
@@ -229,15 +222,6 @@ If you already have a Spring Boot web app with authentication, you can skip to t
         font-style: italic;
         color: #4EC2F7;
     }
-
-    .footer {
-        position: absolute;
-        bottom: 0;
-        width: 100%;
-        height: 60px;
-        line-height: 60px;
-        background-color: #f5f5f5;
-    }
     ```
 
 1. Update the *application.properties* file at `src/main/resources/application.properties` with the following content:
@@ -293,7 +277,7 @@ If you already have a Spring Boot web app with authentication, you can skip to t
 
     ---
 
-1. Create a new file named *MyTargetingContextAccessor.java* to provide the targeting context for the current user:
+1. Create a new file named *QueryStringTargetingContextAccessor.java* to provide the targeting context for the current user:
 
     ```java
     package com.example.quoteoftheday;
@@ -306,16 +290,16 @@ If you already have a Spring Boot web app with authentication, you can skip to t
     import com.azure.spring.cloud.feature.management.targeting.TargetingContextAccessor;
 
     @Component
-    public class MyTargetingContextAccessor implements TargetingContextAccessor {
+    public class QueryStringTargetingContextAccessor implements TargetingContextAccessor {
 
         @Override
         public void configureTargetingContext(TargetingContext context) {
             ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder
                     .getRequestAttributes();
             if (attributes != null) {
-                String username = attributes.getRequest().getParameter("username");
-                if (username != null) {
-                    context.setUserId(username);
+                String userId = attributes.getRequest().getParameter("userId");
+                if (userId != null) {
+                    context.setUserId(userId);
                 }
             }
         }
@@ -435,30 +419,17 @@ If you already have a Spring Boot web app with authentication, you can skip to t
     mvn spring-boot:run
     ```
 
-1. Wait for the app to start, and then open a browser and navigate to `http://localhost:8080/`.
+1. Wait for the app to start, and then open a browser and navigate to `http://localhost:8080/`. You should see the default view of the app that doesn't have any greeting message.
 
-1. Once viewing the running application, select **Register** at the top right to register a new user.
+    :::image type="content" source="media/use-variant-feature-flags-spring-boot/default-variant.png" alt-text="Screenshot of the Quote of the day app, showing no greeting message for the user.":::
 
-    :::image type="content" source="media/use-variant-feature-flags-spring-boot/register.png" alt-text="Screenshot of the Quote of the day app, showing Register.":::
+1. You can use `userId` query parameter in the url to specify the user ID. Visit `localhost:8080/?userId=UserA` and you see a long greeting message.
 
-1. Register a new user named *usera@contoso.com*.
+    :::image type="content" source="media/use-variant-feature-flags-spring-boot/long-variant.png" alt-text="Screenshot of the Quote of the day app, showing long greeting message for the user.":::
 
-    > [!NOTE]
-    > It's important for the purpose of this tutorial to use these names exactly. As long as the feature has been configured as expected, the two users should see different variants.
+1. Try different user IDs to see how the variant feature flag changes the greeting message for different segments of users. Visit `localhost:8080/?userId=UserB` and you see a shorter greeting message.
 
-1. Select the **Submit** button after entering user information.
-
-1. You're automatically logged in. You should see that usera@contoso.com sees the long message when viewing the app.
-
-    :::image type="content" source="media/use-variant-feature-flags-spring-boot/special-message.png" alt-text="Screenshot of the Quote of the day app, showing a special message for the user.":::
-
-1. Logout using the **Logout** button in the top right.
-
-1. Register a second user named *userb@contoso.com*.
-
-1. You're automatically logged in. You should see that userb@contoso.com sees the short message when viewing the app.
-
-    :::image type="content" source="media/use-variant-feature-flags-spring-boot/message.png" alt-text="Screenshot of the Quote of the day app, showing a message for the user.":::
+    :::image type="content" source="media/use-variant-feature-flags-spring-boot/simple-variant.png" alt-text="Screenshot of the Quote of the day app, showing simple greeting message for the user.":::
 
 ## Next steps
 
