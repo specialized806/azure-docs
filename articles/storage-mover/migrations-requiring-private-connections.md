@@ -1,6 +1,6 @@
 ---
-title: Get started with Storage Mover Migrations requiring Private Connections
-description: Learn how to migrate sources that require a private connection
+title: Migrate data using private connections in Azure Storage Mover
+description: Learn how to securely migrate AWS S3 data to Azure Storage over private networks using Azure Private Link Service and Private Endpoints in Azure Storage Mover.
 author: stevenmatthew
 ms.author: shaas
 ms.service: azure-storage-mover
@@ -166,3 +166,4 @@ You can modify private connections on an existing job at any time before or afte
 :::image type="content" source="./media/added-private-connection.png" alt-text="Screenshot of the addition of a private connection to a job." lightbox="./media/added-private-connection.png":::
 
 :::image type="content" source="./media/save-pc-edits.png" alt-text="Screenshot of the saved edits of a private connection for a job." lightbox="./media/save-pc-edits.png":::
+
