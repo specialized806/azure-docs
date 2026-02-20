@@ -119,7 +119,7 @@ After you have the service principal, add it as a GitHub secret:
 
    The secret is listed under **Repository secrets**.
 
-   :::image type="content" source="media/register-apis-github-actions/repository-secrets-github.png" alt-text="Screenshot of secrets for Actions in a GitHub repository." lightbox="media/register-apis-github-actions/repository-secrets-github.png":::
+   :::image type="content" source="media/register-apis-github-actions/repository-secrets-github.png" alt-text="Screenshot of secrets for Actions in a GitHub repository.":::
 
 When you configure the GitHub workflow file later, you use the secret for the input `creds` of the [Azure/login](https://github.com/marketplace/actions/azure-login) action. For example:
 
