@@ -165,7 +165,7 @@ This article assumes that:
 
 2. **[A]** Set up name resolution for the more SAP systems. You can either use DNS server or modify */etc/hosts* on all nodes. This example shows how to use the */etc/hosts* file.  Adapt the IP addresses and the host names to your environment.
 
-    ```cmd
+    ```bash
     sudo vi /etc/hosts
     # IP address of the load balancer frontend configuration for NW2 ASCS
     10.3.1.52 msnw2ascs
@@ -179,7 +179,7 @@ This article assumes that:
 
 3. **[A]** Create the shared directories for the `NW2` and `NW3` SAP systems to deploy to the cluster.
 
-    ```cmd
+    ```bash
     sudo mkdir -p /sapmnt/NW2
     sudo mkdir -p /usr/sap/NW2/SYS
     sudo mkdir -p /usr/sap/NW2/ASCS10
@@ -243,7 +243,7 @@ This article assumes that:
 
    You can use the `sapinst` parameter `SAPINST_REMOTE_ACCESS_USER` to allow a non-root user to connect to sapinst. You can use parameter `SAPINST_USE_HOSTNAME` to install SAP, using virtual host name.  
 
-    ```cmd
+    ```bash
     # Allow access to SWPM. This rule is not permanent. If you reboot the machine, you have to run the command again
     sudo firewall-cmd --zone=public --add-port=4237/tcp
     sudo swpm/sapinst SAPINST_REMOTE_ACCESS_USER=sapadmin SAPINST_USE_HOSTNAME=virtual_hostname
@@ -281,7 +281,7 @@ This article assumes that:
 
    Next, make sure that the resources of the newly created ERS group are running on the cluster node, opposite to the cluster node where the ASCS instance for the same SAP system was installed. For example, if NW2 ASCS was installed on `rhelmsscl1`, then make sure the NW2 ERS group is running on `rhelmsscl2`. You can migrate the  NW2 ERS group to `rhelmsscl2` by running the following command for one of the cluster resources in the group:
 
-    ```cmd
+    ```bash
     pcs resource move fs_NW2_AERS rhelmsscl2
     ```
 
@@ -291,7 +291,7 @@ This article assumes that:
 
    You can use the `sapinst` parameter `SAPINST_REMOTE_ACCESS_USER` to allow a non-root user to connect to sapinst. You can use parameter `SAPINST_USE_HOSTNAME` to install SAP, using virtual host name.  
 
-    ```cmd
+    ```bash
     # Allow access to SWPM. This rule is not permanent. If you reboot the machine, you have to run the command again
     sudo firewall-cmd --zone=public --add-port=4237/tcp
     sudo swpm/sapinst SAPINST_REMOTE_ACCESS_USER=sapadmin SAPINST_USE_HOSTNAME=virtual_hostname
@@ -304,7 +304,7 @@ This article assumes that:
 
    If it was necessary for you to migrate the ERS group of the newly deployed SAP system to a different cluster node, don't forget to remove the location constraint for the ERS group. You can remove the constraint by running the following command. This example is given for SAP systems `NW2` and `NW3`. Make sure to remove the temporary constraints for the same resource you used in the command to move the ERS cluster group.
 
-    ```cmd
+    ```bash
     pcs resource clear fs_NW2_AERS
     pcs resource clear fs_NW3_AERS
     ```
@@ -313,7 +313,7 @@ This article assumes that:
 
    * ASCS/SCS profile
 
-     ```cmd
+     ```bash
      sudo vi /sapmnt/NW2/profile/NW2_ASCS10_msnw2ascs
    
      # Change the restart command to a start command
@@ -328,7 +328,7 @@ This article assumes that:
 
    * ERS profile
 
-     ```cmd
+     ```bash
      sudo vi /sapmnt/NW2/profile/NW2_ERS12_msnw2ers
      
      # Change the restart command to a start command
@@ -343,7 +343,7 @@ This article assumes that:
 
    To prevent the start of the instances by the *sapinit* startup script, all instances managed by Pacemaker must be commented out from */usr/sap/sapservices* file. The example shown below is for SAP systems `NW2` and `NW3`.  
 
-   ```cmd
+   ```bash
    # Depending on whether the SAP Startup framework is integrated with systemd, you may observe below entries on the node for ASCS instances. You should comment out the line(s). 
    # LD_LIBRARY_PATH=/usr/sap/NW2/ASCS10/exe:$LD_LIBRARY_PATH; export LD_LIBRARY_PATH; /usr/sap/NW2/ASCS10/exe/sapstartsrv pf=/usr/sap/NW2/SYS/profile/NW2_ASCS10_msnw2ascs -D -u nw2adm
    # LD_LIBRARY_PATH=/usr/sap/NW3/ASCS20/exe:$LD_LIBRARY_PATH; export LD_LIBRARY_PATH; /usr/sap/NW3/ASCS20/exe/sapstartsrv pf=/usr/sap/NW3/SYS/profile/NW3_ASCS20_msnw3ascs -D -u nw3adm
@@ -390,9 +390,12 @@ This article assumes that:
 
     sudo pcs resource group add g-NW2_AERS rsc_sap_NW2_ERS12
 
-    sudo pcs constraint colocation add g-NW2_AERS with g-NW2_ASCS -5000
-    sudo pcs constraint location rsc_sap_NW2_ASCS10 rule score=2000 runs_ers_NW2 eq 1
     sudo pcs constraint order start g-NW2_ASCS then stop g-NW2_AERS kind=Optional symmetrical=false
+    sudo pcs constraint colocation add g-NW2_AERS with g-NW2_ASCS -5000
+    # On RHEL 7.x, 8.x, 9.x
+    sudo pcs constraint location rsc_sap_NW2_ASCS10 rule score=2000 runs_ers_NW2 eq 1
+    # On RHEL 10.x
+    sudo pcs constraint location rsc_sap_NW2_ASCS10 rule score=2000 "runs_ers_NW2 eq 1"
 
     sudo pcs resource create rsc_sap_NW3_ASCS20 SAPInstance \
     InstanceName=NW3_ASCS20_msnw3ascs START_PROFILE="/sapmnt/NW3/profile/NW3_ASCS20_msnw3ascs" \
@@ -560,7 +563,7 @@ Always read the Red Hat best practices guides and perform all other tests that m
 
    Resource state before starting the test:
 
-   ```cmd
+   ```bash
    Online: [ rhelmsscl1 rhelmsscl2 ]
 
    Full list of resources:
@@ -600,7 +603,7 @@ Always read the Red Hat best practices guides and perform all other tests that m
 
    Run the following commands as root to migrate the NW3 ASCS instance.
 
-   ```cmd
+   ```bash
    pcs resource move rsc_sap_NW3_ASCS200
    # Clear temporary migration constraints
    pcs resource clear rsc_sap_NW3_ASCS20
@@ -611,7 +614,7 @@ Always read the Red Hat best practices guides and perform all other tests that m
 
    Resource state after the test:
 
-   ```cmd
+   ```bash
    Online: [ rhelmsscl1 rhelmsscl2 ]
 
    Full list of resources:
@@ -653,7 +656,7 @@ Always read the Red Hat best practices guides and perform all other tests that m
 
    Resource state before starting the test:
 
-   ```cmd
+   ```bash
    Online: [ rhelmsscl1 rhelmsscl2 ]
    
    Full list of resources:
@@ -693,13 +696,13 @@ Always read the Red Hat best practices guides and perform all other tests that m
 
    Run the following command as root on a node where at least one ASCS instance is running. This example runs the command on `rhelmsscl1`, where the ASCS instances for `NW1`, `NW2`, and `NW3` are running.  
 
-   ```cmd
+   ```bash
    echo c > /proc/sysrq-trigger
    ```
 
    The status after the test and after the node that was crashed has started again, should look like these results:
 
-   ```cmd
+   ```Output
    Full list of resources:
    
    rsc_st_azure    (stonith:fence_azure_arm):      Started rhelmsscl2
@@ -737,7 +740,7 @@ Always read the Red Hat best practices guides and perform all other tests that m
 
    If there are messages for failed resources, clean the status of the failed resources. For example:
 
-   ```cmd
+   ```bash
    pcs resource cleanup rsc_sap_NW1_ERS02
    ```
 

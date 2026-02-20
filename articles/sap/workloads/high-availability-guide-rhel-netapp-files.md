@@ -52,7 +52,6 @@ Read the following SAP Notes and papers first:
   * Important capacity information for Azure VM sizes.
   * Supported SAP software and operating system (OS) and database combinations.
   * Required SAP kernel version for Windows and Linux on Microsoft Azure.
-
 * SAP Note [2015553] lists prerequisites for SAP-supported SAP software deployments in Azure.
 * SAP Note [2002167] has recommended OS settings for Red Hat Enterprise Linux.
 * SAP Note [2009879] has SAP HANA Guidelines for Red Hat Enterprise Linux.
