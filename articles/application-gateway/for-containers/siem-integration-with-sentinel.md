@@ -109,9 +109,9 @@ In this quickstart guide, you set up:
 1. Send traffic to the URL to create an incident: 
    - Now you're ready to send some traffic by using **/secret/path** to your sample application, through the **FQDN** (fully qualified domain name) assigned to the frontend. Use the following command to get the FQDN:
 
-```bash
-    fqdn=$(kubectl get gateway gateway-01 -n test-infra -o jsonpath='{.status.addresses[0].value}')
-```
+   ```bash
+       fqdn=$(kubectl get gateway gateway-01 -n test-infra -o jsonpath='{.status.addresses[0].value}')
+   ```
 1. Curling this FQDN returns responses from the backend as configured on the HTTPRoute:
 
     ```bash
@@ -140,4 +140,5 @@ You can now create security barriers on your logs and investigate any incidents.
 
 > [!div class="nextstepaction"]
 > [Respond to incidents rapidly with automated playbooks and alerts](/azure/sentinel/overview?tabs=defender-portal#respond-to-incidents-rapidly)
+
 > [Migrate from Microsoft Sentinel to Microsoft Defender portal](/azure/sentinel/microsoft-sentinel-defender-portal) for migration support. Microsoft Sentinel in the Azure portal ends in July 2026.
