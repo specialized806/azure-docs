@@ -59,7 +59,7 @@ Consider the following points if you want to move to another gateway SKU:
 
 ### <a name="migrate"></a>Migrate a gateway SKU
 
-As part of basic IP address migration, your legacy SKU will be migrated to a newer SKU that's supported by availability zones. All legacy SKUs use basic IP today, and you can use the Azure portal to [migrate a basic IP address to a standard IP address](basic-public-ip-migrate-about.md) before the retirement date. For the most up-to-date timeline, see [What's new in Azure VPN Gateway?](whats-new.md).
+As part of Basic IP address migration, your legacy SKU will be migrated to a newer SKU that's supported by availability zones. All legacy SKUs use Basic IP today, and you can use the Azure portal to [migrate a Basic IP address to a Standard IP address](basic-public-ip-migrate-about.md) before the retirement date. For the most up-to-date timeline, see [What's new in Azure VPN Gateway?](whats-new.md).
 
 ### <a name="resize"></a>Upgrade to a gateway SKU in the same SKU family
 
@@ -88,14 +88,14 @@ Standard and High Performance SKUs will be deprecated on March 31, 2026. The pro
 
 ## SKU deprecation
 
-The Standard and High Performance SKUs will be deprecated on March 31, 2026. Your legacy SKU will be migrated to a SKU supported by an availability zone as part of basic IP address migration. All legacy SKUs use basic IP addresses today, and you can use the Azure portal to [migrate a basic IP address to a standard IP address](basic-public-ip-migrate-about.md) before the retirement date.
+The Standard and High Performance SKUs will be deprecated on March 31, 2026. Your legacy SKU will be migrated to a SKU supported by an availability zone as part of Basic IP address migration. All legacy SKUs use Basic IP addresses today, and you can use the Azure portal to [migrate a Basic IP address to a Standard IP address](basic-public-ip-migrate-about.md) before the retirement date.
 
 For more information, you can:
 
 * View the [announcement](https://go.microsoft.com/fwlink/?linkid=2255127).
 * See the SKU deprecation [FAQs](#sku-deprecation-faqs).
 
-When the migration path becomes available, as part of basic IP address migration, your gateway SKU will automatically migrate to the following SKUs:
+When the migration path becomes available, as part of Basic IP address migration, your gateway SKU will automatically migrate to the following SKUs:
 
 * Standard SKU becomes VpnGw1AZ.
 * High Performance SKU becomes VpnGw2AZ.

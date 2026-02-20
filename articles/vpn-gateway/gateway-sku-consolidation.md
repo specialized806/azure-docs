@@ -19,9 +19,9 @@ We're simplifying our Azure VPN Gateway SKU portfolio. Due to the lack of redund
 This article helps you understand the changes for VPN Gateway virtual network gateway SKUs. This article expands on the [official announcement](https://azure.microsoft.com/updates/v2/vpngw1-5-non-az-skus-will-be-retired-on-30-september-2026).
 
 * *Effective November 1, 2025*: You can no longer create new VPN gateways (VpnGw1-5 SKUs) that aren't supported by an availability zone.
-* *Migration period*: From September 2025 to September 2026, all existing VPN gateways (VpnGw1-5 SKUs) that aren't supported by an availability zone can be seamlessly migrated to VpnGw1-5 SKUs that are supported. In most cases, migration is automatic. You don't need to do it manually.
+* *Migration period*: From September 2025 to September 2026, all existing VPN gateways (VpnGw1-5 SKUs) that aren't supported by an availability zone can be manually upgraded to VpnGw1-5 SKUs that are supported.
 
-To support this migration, we're reducing the prices on SKUs supported by availability zones. For more information about SKUs and pricing, see the [FAQ](#faq) section of this article.
+To support this migration, we're reducing the prices on SKUs supported by availability zones. For more information about SKUs and pricing, see the [FAQs](#faq) section of this article.
 
 > [!NOTE]
 > This article doesn't apply to the following legacy gateway SKUs: Standard or High Performance. For more information, see [Working with VPN Gateway legacy SKUs](vpn-gateway-about-skus-legacy.md).
@@ -36,8 +36,7 @@ The following diagram shows current SKUs and the new SKUs they'll automatically 
 
 ### What actions do I need to take?
 
-* We recommend that you don't change your gateway SKU manually in anticipation of SKU migration unless you want to upgrade to a higher gateway SKU.
-* You can [manually upgrade](gateway-sku-upgrade.md) to a higher gateway SKU. To upgrade SKUs that currently use standard public IP addresses, no downtime is expected.
+* We recommend that you [manually upgrade](gateway-sku-upgrade.md) gateway SKUs that aren't supported by availability zones to those that are. You can use the Azure portal, PowerShell, or Azure CLI. There's no downtime expected to manually upgrade SKUs that currently use Standard public IP addresses. If you're still using Basic IP address, upgrade to Standard IP address.
 * If your gateway currently uses legacy SKUs, see [Working with VPN Gateway legacy SKUs](vpn-gateway-about-skus-legacy.md).
 
 ### How long will my existing gateway SKUs be supported?
@@ -59,8 +58,8 @@ Yes. If a region doesn't currently support availability zones, you can still cre
 
 ### Can I migrate my gateway from one generation to another?
 
-* *For gateways using a basic public IP address*: You'll need to migrate your gateway to use a standard public IP address when the migration tool becomes available. As part of this IP address migration, your gateway is upgraded to the next generation (called *Generation 2*). You don't need to take any further action.
-* *For gateways already using a standard public IP address*: We'll migrate these gateways to the next generation separately before September 30, 2026. This happens seamlessly during regular updates, with no downtime involved.
+* *For gateways using a Basic public IP address*: You'll need to migrate your gateway to use a Standard public IP address when the migration tool becomes available. As part of this IP address migration, your gateway is upgraded to the next generation (called *Generation 2*). You don't need to take any further action.
+* *For gateways already using a Standard public IP address*: We'll migrate these gateways to the next generation separately before September 30, 2026. This happens seamlessly during regular updates, with no downtime involved.
 
 ### Will there be downtime during migration?
 
