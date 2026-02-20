@@ -1,6 +1,6 @@
 ---
 title: Guidance for pagination
-description: Learn about paging results and pagination limits.
+description: Learn about paging results and pagination limitations.
 ms.date: 02/06/2026
 ms.topic: reference
 ms.custom: devx-track-csharp
