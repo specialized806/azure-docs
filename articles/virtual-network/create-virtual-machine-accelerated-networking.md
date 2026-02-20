@@ -40,11 +40,13 @@ If you choose to install and use PowerShell locally, this article requires the A
 
 ---
 
-## Create a virtual network
+## Create a resource group and virtual network
 
 ### [Portal](#tab/portal)
 
 1. Sign in to the [Azure portal](https://portal.azure.com).
+
+### Create a resource group
 
 1. In the search box at the top of the portal, enter **Resource group**. Select **Resource groups** in the search results.
 
@@ -61,6 +63,8 @@ If you choose to install and use PowerShell locally, this article requires the A
 1. Select **Review + create**.
 
 1. Select **Create**.
+
+### Create a virtual network
 
 1. In the search box at the top of the portal, enter **Virtual network**. Select **Virtual networks** in the search results.
 
