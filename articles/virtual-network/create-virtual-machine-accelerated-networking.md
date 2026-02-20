@@ -44,9 +44,9 @@ If you choose to install and use PowerShell locally, this article requires the A
 
 ### [Portal](#tab/portal)
 
-1. Sign in to the [Azure portal](https://portal.azure.com).
-
 ### Create a resource group
+
+1. Sign in to the [Azure portal](https://portal.azure.com).
 
 1. In the search box at the top of the portal, enter **Resource group**. Select **Resource groups** in the search results.
 
