@@ -46,25 +46,25 @@ To configure a private connection, use the Storage Endpoints section of your Sto
 1. Navigate to your Storage Mover instance in the Azure portal.
 2. Under **Storage endpoints**, select **Private Connection** > **Create Private Connection**.
 
-   :::image type="content" source="./media/private-connections/storage-endpoints.png" alt-text="Screenshot of navigation to private connections in Storage Mover." lightbox="./media/private-connections/storage-endpoints.png":::
+   :::image type="content" source="./media/private-connections/private-connections/storage-endpoints.png" alt-text="Screenshot of navigation to private connections in Storage Mover." lightbox="./media/private-connections/private-connections/storage-endpoints.png":::
 
 3. Enter a name for this private connection. This name matches the name of the Private Endpoint that you later approve to connect to the Private Link Service.
 4. Select the appropriate **Private Link Service Direct Connect** that directs you to the correct AWS S3 bucket you want to migrate to Azure.
 
-   :::image type="content" source="./media/create-private-connection.png" alt-text="Screenshot displaying how to create a private connection." lightbox="./media/create-private-connection.png":::
+   :::image type="content" source="./media/private-connections/create-private-connection.png" alt-text="Screenshot displaying how to create a private connection." lightbox="./media/private-connections/create-private-connection.png":::
 
 5. Select **Create** and commit your changes. Creating the private connection takes 20–30 seconds. You might need to refresh manually to view it in the grid.
 
-   :::image type="content" source="./media/confirm-create-pc.png" alt-text="Screenshot of notification confirming the private connection was created." lightbox="./media/confirm-create-pc.png":::
+   :::image type="content" source="./media/private-connections/confirm-create-pc.png" alt-text="Screenshot of notification confirming the private connection was created." lightbox="./media/private-connections/confirm-create-pc.png":::
 
-   :::image type="content" source="./media/private-connections-browse.png" alt-text="Screenshot of the private connection page." lightbox="./media/private-connections-browse.png":::
+   :::image type="content" source="./media/private-connections/private-connections-browse.png" alt-text="Screenshot of the private connection page." lightbox="./media/private-connections/private-connections-browse.png":::
 
 6. Repeat steps 1–5 to set up additional private connections.
 
 > [!TIP]
 > Create multiple private connections to avoid bandwidth limits and ensure efficient, successful data migration.
 
-:::image type="content" source="./media/private-connection-added.png" alt-text="Screenshot of multiple listed private connections." lightbox="./media/private-connection-added.png":::
+:::image type="content" source="./media/private-connections/private-connection-added.png" alt-text="Screenshot of multiple listed private connections." lightbox="./media/private-connections/private-connection-added.png":::
 
 ## Step 2: Approve a private connection
 
@@ -76,13 +76,13 @@ After you create a private connection, you must approve it before it can be used
 > [!IMPORTANT]
 > Only a private connection in an **Approved** state can be used for a migration job. Connections in pending, rejected, or disconnected states don't appear as options when you create a job.
 
-:::image type="content" source="./media/approve-private-connection.png" alt-text="Screenshot of a private connection approving the private endpoint." lightbox="./media/approve-private-connection.png":::
+:::image type="content" source="./media/private-connections/approve-private-connection.png" alt-text="Screenshot of a private connection approving the private endpoint." lightbox="./media/private-connections/approve-private-connection.png":::
 
-:::image type="content" source="./media/pc-approval-pending.png" alt-text="Screenshot of the pending approval of the private endpoint to the private connection." lightbox="./media/pc-approval-pending.png":::
+:::image type="content" source="./media/private-connections/pc-approval-pending.png" alt-text="Screenshot of the pending approval of the private endpoint to the private connection." lightbox="./media/private-connections/pc-approval-pending.png":::
 
-:::image type="content" source="./media/pc-approved-private-endpoint.png" alt-text="Screenshot of the confirmed approval of the private endpoint to the private connection." lightbox="./media/pc-approved-private-endpoint.png":::
+:::image type="content" source="./media/private-connections/pc-approved-private-endpoint.png" alt-text="Screenshot of the confirmed approval of the private endpoint to the private connection." lightbox="./media/private-connections/pc-approved-private-endpoint.png":::
 
-:::image type="content" source="./media/all-pc-approved.png" alt-text="Screenshot of all listed private connections with approved status." lightbox="./media/all-pc-approved.png":::
+:::image type="content" source="./media/private-connections/all-pc-approved.png" alt-text="Screenshot of all listed private connections with approved status." lightbox="./media/private-connections/all-pc-approved.png":::
 
 ## Step 3: Create a project
 
@@ -90,11 +90,11 @@ After you create a private connection, you must approve it before it can be used
 2. Provide a name for your project.
 3. Select **Create**.
 
-:::image type="content" source="./media/mover-projects.png" alt-text="Screenshot of the projects page in Storage Mover." lightbox="./media/mover-projects.png":::
+:::image type="content" source="./media/private-connections/mover-projects.png" alt-text="Screenshot of the projects page in Storage Mover." lightbox="./media/private-connections/mover-projects.png":::
 
-:::image type="content" source="./media/create-project.png" alt-text="Screenshot of creating a new project." lightbox="./media/create-project.png":::
+:::image type="content" source="./media/private-connections/create-project.png" alt-text="Screenshot of creating a new project." lightbox="./media/private-connections/create-project.png":::
 
-:::image type="content" source="./media/project-created.png" alt-text="Screenshot of a new project successfully created." lightbox="./media/project-created.png":::
+:::image type="content" source="./media/private-connections/project-created.png" alt-text="Screenshot of a new project successfully created." lightbox="./media/private-connections/project-created.png":::
 
 ## Step 4: Create a migration job
 
@@ -103,41 +103,41 @@ After your project is ready, create a migration job to define the source, target
 1. Navigate to the **Projects** page and select your project.
 2. Select **Create Job**.
 
-   :::image type="content" source="./media/project-browse.png" alt-text="Screenshot of an available project opened to create a job." lightbox="./media/project-browse.png":::
+   :::image type="content" source="./media/private-connections/project-browse.png" alt-text="Screenshot of an available project opened to create a job." lightbox="./media/private-connections/project-browse.png":::
 
 3. On the **Basics** tab, select your desired migration type.
 
-   :::image type="content" source="./media/create-job-basics.png" alt-text="Screenshot of the Create Job experience with the Basics tab open." lightbox="./media/create-job-basics.png":::
+   :::image type="content" source="./media/private-connections/create-job-basics.png" alt-text="Screenshot of the Create Job experience with the Basics tab open." lightbox="./media/private-connections/create-job-basics.png":::
 
 4. On the **Source** tab, select an existing or newly created source type. Ensure that your selected source is protected by a Virtual Private Cloud.
 5. Select a **Private** type. Some sources don't require you to select **Private**, but they do require you to add one or more private connections for the selected source.
 
-   :::image type="content" source="./media/create-job-source.png" alt-text="Screenshot of the Create Job experience with the Source tab open." lightbox="./media/create-job-source.png":::
+   :::image type="content" source="./media/private-connections/create-job-source.png" alt-text="Screenshot of the Create Job experience with the Source tab open." lightbox="./media/private-connections/create-job-source.png":::
 
 6. Select your existing private connections. Select multiple private connections to avoid bandwidth limits and ensure efficient data migration.
 
-   :::image type="content" source="./media/select-private-connection.png" alt-text="Screenshot of the Create Job experience with the ability to select a private connection." lightbox="./media/select-private-connection.png":::
+   :::image type="content" source="./media/private-connections/select-private-connection.png" alt-text="Screenshot of the Create Job experience with the ability to select a private connection." lightbox="./media/private-connections/select-private-connection.png":::
 
-   :::image type="content" source="./media/pc-selection-confirmed.png" alt-text="Screenshot of the Create Job experience with the selection of private connections confirmed." lightbox="./media/pc-selection-confirmed.png":::
+   :::image type="content" source="./media/private-connections/pc-selection-confirmed.png" alt-text="Screenshot of the Create Job experience with the selection of private connections confirmed." lightbox="./media/private-connections/pc-selection-confirmed.png":::
 
-   :::image type="content" source="./media/pc-listed.png" alt-text="Screenshot of the Create Job experience with the selected private connections listed in the Source tab." lightbox="./media/pc-listed.png":::
+   :::image type="content" source="./media/private-connections/pc-listed.png" alt-text="Screenshot of the Create Job experience with the selected private connections listed in the Source tab." lightbox="./media/private-connections/pc-listed.png":::
 
 7. Select **Next**.
 8. On the **Target** tab, select the target resource where you want your data migrated in Azure.
 
-   :::image type="content" source="./media/create-job-target.png" alt-text="Screenshot of the Create Job experience with the Target tab open." lightbox="./media/create-job-target.png":::
+   :::image type="content" source="./media/private-connections/create-job-target.png" alt-text="Screenshot of the Create Job experience with the Target tab open." lightbox="./media/private-connections/create-job-target.png":::
 
 9. On the **Settings** tab, select the appropriate settings for your migration.
 
-   :::image type="content" source="./media/create-job-settings.png" alt-text="Screenshot of the Create Job experience with the Settings tab open." lightbox="./media/create-job-settings.png":::
+   :::image type="content" source="./media/private-connections/create-job-settings.png" alt-text="Screenshot of the Create Job experience with the Settings tab open." lightbox="./media/private-connections/create-job-settings.png":::
 
-   :::image type="content" source="./media/job-setting-selected.png" alt-text="Screenshot of the Create Job experience with the settings configurations selected." lightbox="./media/job-setting-selected.png":::
+   :::image type="content" source="./media/private-connections/job-setting-selected.png" alt-text="Screenshot of the Create Job experience with the settings configurations selected." lightbox="./media/private-connections/job-setting-selected.png":::
 
 10. Review your configuration on the **Review** tab, then select **Create**.
 
-    :::image type="content" source="./media/create-job-review.png" alt-text="Screenshot of the Create Job experience with the Review tab open." lightbox="./media/create-job-review.png":::
+    :::image type="content" source="./media/private-connections/create-job-review.png" alt-text="Screenshot of the Create Job experience with the Review tab open." lightbox="./media/private-connections/create-job-review.png":::
 
-    :::image type="content" source="./media/job-deploying.png" alt-text="Screenshot displaying the created job pending deployment." lightbox="./media/job-deploying.png":::
+    :::image type="content" source="./media/private-connections/job-deploying.png" alt-text="Screenshot displaying the created job pending deployment." lightbox="./media/private-connections/job-deploying.png":::
 
 ## Step 5: Edit a migration job
 
@@ -145,7 +145,7 @@ You can modify private connections on an existing job at any time before or afte
 
 1. Navigate to the job you created in your project.
 
-   :::image type="content" source="./media/job-created.png" alt-text="Screenshot of a job successfully created." lightbox="./media/job-created.png":::
+   :::image type="content" source="./media/private-connections/job-created.png" alt-text="Screenshot of a job successfully created." lightbox="./media/private-connections/job-created.png":::
 
 2. Select the **Edit** icon.
 3. Under **Private connections**, add or delete private connections by selecting the respective buttons.
@@ -155,15 +155,16 @@ You can modify private connections on an existing job at any time before or afte
 > [!TIP]
 > To locate errors related to private connections, go to the job page and select the **Monitoring** tab after the job completes.
 
-:::image type="content" source="./media/job-overview.png" alt-text="Screenshot of the overview page of the created job." lightbox="./media/job-overview.png":::
+:::image type="content" source="./media/private-connections/job-overview.png" alt-text="Screenshot of the overview page of the created job." lightbox="./media/private-connections/job-overview.png":::
 
-:::image type="content" source="./media/edit-job.png" alt-text="Screenshot of the edit job page." lightbox="./media/edit-job.png":::
+:::image type="content" source="./media/private-connections/edit-job.png" alt-text="Screenshot of the edit job page." lightbox="./media/private-connections/edit-job.png":::
 
-:::image type="content" source="./media/edit-private-connections.png" alt-text="Screenshot of the edit private connections tab for a job." lightbox="./media/edit-private-connections.png":::
+:::image type="content" source="./media/private-connections/edit-private-connections.png" alt-text="Screenshot of the edit private connections tab for a job." lightbox="./media/private-connections/edit-private-connections.png":::
 
-:::image type="content" source="./media/removed-private-connection.png" alt-text="Screenshot of the removal of a private connection from a job." lightbox="./media/removed-private-connection.png":::
+:::image type="content" source="./media/private-connections/removed-private-connection.png" alt-text="Screenshot of the removal of a private connection from a job." lightbox="./media/private-connections/removed-private-connection.png":::
 
-:::image type="content" source="./media/added-private-connection.png" alt-text="Screenshot of the addition of a private connection to a job." lightbox="./media/added-private-connection.png":::
+:::image type="content" source="./media/private-connections/added-private-connection.png" alt-text="Screenshot of the addition of a private connection to a job." lightbox="./media/private-connections/added-private-connection.png":::
 
-:::image type="content" source="./media/save-pc-edits.png" alt-text="Screenshot of the saved edits of a private connection for a job." lightbox="./media/save-pc-edits.png":::
+:::image type="content" source="./media/private-connections/save-pc-edits.png" alt-text="Screenshot of the saved edits of a private connection for a job." lightbox="./media/private-connections/save-pc-edits.png":::
+
 
