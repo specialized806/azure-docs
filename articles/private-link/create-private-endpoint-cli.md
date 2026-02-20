@@ -93,7 +93,8 @@ az network bastion create \
     --name bastion \
     --public-ip-address public-ip \
     --vnet-name vnet-1 \
-    --location eastus2
+    --location eastus2 \
+    --sku Basic
 ```
 
 It can take a few minutes for the Azure Bastion host to deploy.
