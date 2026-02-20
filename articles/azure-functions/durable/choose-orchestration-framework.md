@@ -89,7 +89,7 @@ Learn more: [Storage providers](durable-functions-storage-providers.md)
 
 | Feature | Durable Functions | Durable Task SDKs |
 |---------|-------------------|-------------------|
-| **Configuration location** | `host.json` file | Code (connection string/endpoint) |
+| **Configuration location** | `host.json` file | Code and environment variables (connection string/endpoint) |
 | **Task hub creation** | Automatic or via portal | Azure portal or CLI |
 
 Learn more: [Task hubs](durable-functions-task-hubs.md)
