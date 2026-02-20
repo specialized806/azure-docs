@@ -553,9 +553,12 @@ The following items are prefixed with:
     
     sudo pcs resource group add g-NW1_AERS rsc_sap_NW1_ERS01
 
-    sudo pcs constraint colocation add g-NW1_AERS with g-NW1_ASCS -5000
-    sudo pcs constraint location rsc_sap_NW1_ASCS00 rule score=2000 runs_ers_NW1 eq 1
     sudo pcs constraint order start g-NW1_ASCS then stop g-NW1_AERS kind=Optional symmetrical=false
+    sudo pcs constraint colocation add g-NW1_AERS with g-NW1_ASCS score=-5000
+    # On RHEL 7.x, 8.x, 9.x
+    sudo pcs constraint location rsc_sap_NW1_ASCS00 rule score=2000 runs_ers_NW1 eq 1
+    # On RHEL 10.x
+    sudo pcs constraint location rsc_sap_NW1_ASCS00 rule score=2000 "runs_ers_NW1 eq 1"
     
     sudo pcs node unstandby sap-cl1
     sudo pcs property set maintenance-mode=false
@@ -584,9 +587,9 @@ The following items are prefixed with:
     sudo pcs resource group add g-NW1_AERS rsc_sap_NW1_ERS01 
     sudo pcs resource meta rsc_sap_NW1_ERS01 resource-stickiness=3000
 
-    sudo pcs constraint colocation add g-NW1_AERS with g-NW1_ASCS -5000
     sudo pcs constraint order start g-NW1_ASCS then stop g-NW1_AERS kind=Optional symmetrical=false
-   
+    sudo pcs constraint colocation add g-NW1_AERS with g-NW1_ASCS score=-5000
+
     sudo pcs node unstandby sap-cl1
     sudo pcs property set maintenance-mode=false
     ```

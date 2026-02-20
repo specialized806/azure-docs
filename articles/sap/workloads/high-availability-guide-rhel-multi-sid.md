@@ -411,9 +411,12 @@ This article assumes that:
 
     sudo pcs resource group add g-NW3_AERS rsc_sap_NW3_ERS22
 
-    sudo pcs constraint colocation add g-NW3_AERS with g-NW3_ASCS -5000
-    sudo pcs constraint location rsc_sap_NW3_ASCS20 rule score=2000 runs_ers_NW3 eq 1
     sudo pcs constraint order start g-NW3_ASCS then stop g-NW3_AERS kind=Optional symmetrical=false
+    sudo pcs constraint colocation add g-NW3_AERS with g-NW3_ASCS score=-5000
+    # On RHEL 7.x, 8.x, 9.x
+    sudo pcs constraint location rsc_sap_NW3_ASCS20 rule score=2000 runs_ers_NW3 eq 1
+    # On RHEL 10.x
+    sudo pcs constraint location rsc_sap_NW3_ASCS20 rule score=2000 "runs_ers_NW3 eq 1"
 
     sudo pcs property set maintenance-mode=false
     ```
@@ -441,8 +444,8 @@ This article assumes that:
     sudo pcs resource group add g-NW2_AERS rsc_sap_NW2_ERS12
     sudo pcs resource meta rsc_sap_NW2_ERS12 resource-stickiness=3000
 
-    sudo pcs constraint colocation add g-NW2_AERS with g-NW2_ASCS -5000
     sudo pcs constraint order start g-NW2_ASCS then stop g-NW2_AERS kind=Optional symmetrical=false
+    sudo pcs constraint colocation add g-NW2_AERS with g-NW2_ASCS score=-5000
 
     sudo pcs resource create rsc_sap_NW3_ASCS20 SAPInstance \
     InstanceName=NW3_ASCS20_msnw3ascs START_PROFILE="/sapmnt/NW3/profile/NW3_ASCS20_msnw3ascs" \
@@ -462,8 +465,8 @@ This article assumes that:
     sudo pcs resource group add g-NW3_AERS rsc_sap_NW3_ERS22
     sudo pcs resource meta rsc_sap_NW3_ERS22 resource-stickiness=3000
 
-    sudo pcs constraint colocation add g-NW3_AERS with g-NW3_ASCS -5000
     sudo pcs constraint order start g-NW3_ASCS then stop g-NW3_AERS kind=Optional symmetrical=false
+    sudo pcs constraint colocation add g-NW3_AERS with g-NW3_ASCS score=-5000
 
     sudo pcs property set maintenance-mode=false
     ```

@@ -616,11 +616,14 @@ The following items are prefixed with either:
     op monitor interval=20 on-fail=restart timeout=105 op start interval=0 timeout=600 op stop interval=0 timeout=600
    
     sudo pcs resource group add g-QAS_AERS rsc_sap_QAS_ERS01
-
-    sudo pcs constraint colocation add g-QAS_AERS with g-QAS_ASCS -5000
-    sudo pcs constraint location rsc_sap_QAS_ASCS00 rule score=2000 runs_ers_QAS eq 1
-    sudo pcs constraint order start g-QAS_ASCS then stop g-QAS_AERS kind=Optional symmetrical=false
    
+    sudo pcs constraint order start g-QAS_ASCS then stop g-QAS_AERS kind=Optional symmetrical=false
+    sudo pcs constraint colocation add g-QAS_AERS with g-QAS_ASCS -5000
+    # On RHEL 7.x, 8.x, 9.x
+    sudo pcs constraint location rsc_sap_QAS_ASCS00 rule score=2000 runs_ers_QAS eq 1
+    # On RHEL 10.x
+    sudo pcs constraint location rsc_sap_QAS_ASCS00 rule score=2000 "runs_ers_QAS eq 1"
+
     sudo pcs node unstandby anftstsapcl1
     sudo pcs property set maintenance-mode=false
     ```
@@ -664,8 +667,8 @@ The following items are prefixed with either:
     sudo pcs resource group add g-QAS_AERS rsc_sap_QAS_ERS01
     sudo pcs resource meta rsc_sap_QAS_ERS01 resource-stickiness=3000
    
-    sudo pcs constraint colocation add g-QAS_AERS with g-QAS_ASCS -5000
     sudo pcs constraint order start g-QAS_ASCS then stop g-QAS_AERS kind=Optional symmetrical=false
+    sudo pcs constraint colocation add g-QAS_AERS with g-QAS_ASCS score=-5000
    
     sudo pcs node unstandby anftstsapcl1
     sudo pcs property set maintenance-mode=false
