@@ -421,15 +421,15 @@ If you already have a Spring Boot web app with authentication, you can skip to t
 
 1. Wait for the app to start, and then open a browser and navigate to `http://localhost:8080/`. You should see the default view of the app that doesn't have any greeting message.
 
-    :::image type="content" source="media/use-variant-feature-flags-spring-boot/default-variant.png" alt-text="Screenshot of the Quote of the day app, showing no greeting message for the user.":::
+    :::image type="content" source="media/how-to-variant-feature-flags-spring-boot/default-variant.png" alt-text="Screenshot of the Quote of the day app, showing no greeting message for the user.":::
 
 1. You can use `userId` query parameter in the url to specify the user ID. Visit `localhost:8080/?userId=UserA` and you see a long greeting message.
 
-    :::image type="content" source="media/use-variant-feature-flags-spring-boot/long-variant.png" alt-text="Screenshot of the Quote of the day app, showing long greeting message for the user.":::
+    :::image type="content" source="media/how-to-variant-feature-flags-spring-boot/long-variant.png" alt-text="Screenshot of the Quote of the day app, showing long greeting message for the user.":::
 
 1. Try different user IDs to see how the variant feature flag changes the greeting message for different segments of users. Visit `localhost:8080/?userId=UserB` and you see a shorter greeting message.
 
-    :::image type="content" source="media/use-variant-feature-flags-spring-boot/simple-variant.png" alt-text="Screenshot of the Quote of the day app, showing simple greeting message for the user.":::
+    :::image type="content" source="media/how-to-variant-feature-flags-spring-boot/simple-variant.png" alt-text="Screenshot of the Quote of the day app, showing simple greeting message for the user.":::
 
 ## Next steps
 
