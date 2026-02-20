@@ -25,6 +25,8 @@ In the context of Azure IoT Operations, the terms *asset* and *device* can refer
 
 This diagram shows the key components of asset management in Azure IoT Operations.
 
+<!-- Art Library Source# ConceptArt-0-000-92 -->
+
 :::image type="content" source="media/overview-manage-assets/azure-iot-operations-architecture.svg" alt-text="Diagram that shows services for managing assets." lightbox="media/overview-manage-assets/azure-iot-operations-architecture.png" border="false":::
 
 In the preceding diagram:
@@ -38,6 +40,30 @@ A physical device can connect by using various protocols. It might use a connect
 This diagram shows how physical devices connect to Azure IoT Operations.
 
 :::image type="content" source="media/overview-manage-assets/physical-assets-devices.svg" alt-text="Diagram that shows how physical assets and devices connect." border="false":::
+
+<!--
+```mermaid
+graph LR
+    subgraph Physical devices and assets
+        D2[Device connects directly to<br>the edge-based MQTT broker]
+        D3[Physical device such as an<br>ONVIF compliant camera]
+        D4[OPC UA server]
+        D5[Physical asset<br>such as an oven]
+    end
+
+    subgraph IoT Operations edge cluster
+        B2[MQTT broker]
+        B3[Connectors such as<br>OPC UA or ONVIF]
+    end
+
+    D2 -- Publish --&gt; B2
+
+    B3 -- Publish --&gt; B2
+    D3 -- Communicates using ONVIF protocol --&gt; B3
+    D4 -- Communicates using OPC UA protocol --&gt; B3
+    D5 --&gt; D4
+```
+-->
 
 ## Configuration resources
 

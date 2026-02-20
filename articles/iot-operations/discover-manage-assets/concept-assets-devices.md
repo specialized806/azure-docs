@@ -21,6 +21,25 @@ The following diagram shows the relationships between assets, devices, and conne
 
 :::image type="content" source="media/concept-assets-devices/assets-devices.svg" alt-text="Diagram that shows the relationships between asset and device configuration resources." border="false":::
 
+<!--
+```mermaid
+graph LR
+    CT["`Connector templates
+       such as OPC UA, ONVIF, Media.`"]
+
+    subgraph Device
+        IE1["`Inbound endpoint(s)<br/>- *Address*<br/>- *Connector type*<br/>- *Authentication data*`"]
+    end
+
+
+    A["`Asset<br/>- *Name*<br/>- *Data points/Streams/<br/>Events*`"]
+
+
+    CT -- Used by connector type --&gt; IE1
+    A -- "`References an inbound endpoint`" --&gt; IE1>
+```
+--->
+
 ## Devices
 
 Before you create an asset, define a device. A device is a configuration resource that describes [southbound](overview-manage-assets.md#southbound-and-northbound-connectivity) edge connectivity information for one or more assets.
