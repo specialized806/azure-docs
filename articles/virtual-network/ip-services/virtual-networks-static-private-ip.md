@@ -130,6 +130,12 @@ New-AzVirtualNetwork @vnet
 
 ### Create a virtual machine
 
+Create a credential object for the virtual machine with [Get-Credential](/powershell/module/microsoft.powershell.security/get-credential). Enter a username and password when prompted:
+
+```azurepowershell-interactive
+$cred = Get-Credential
+```
+
 The following command creates a Linux virtual machine without a public IP address with [New-AzVM](/powershell/module/az.compute/new-azvm). The `-GenerateSshKey` parameter generates an SSH key pair for the VM:
 
 ```azurepowershell-interactive
@@ -139,6 +145,7 @@ $vm = @{
     Location = 'East US 2'
     Name = 'myVM'
     Image = 'Ubuntu2204'
+    Credential = $cred
     VirtualNetworkName = 'myVNet'
     SubnetName = 'default'
     PublicIpAddressName = ''
