@@ -6,7 +6,7 @@ ms.author: sethm
 ms.service: azure-iot-operations
 ms.subservice: azure-data-flows
 ms.topic: how-to
-ms.date: 02/09/2026
+ms.date: 02/20/2026
 ai-usage: ai-assisted
 
 #CustomerIntent: As an operator, I want to understand how to configure data flow endpoints for OpenTelemetry destinations in Azure IoT Operations so that I can send metrics and logs to observability platforms like Grafana and Azure Monitor.
@@ -18,7 +18,7 @@ ai-usage: ai-assisted
 
 OpenTelemetry (OTEL) data flow endpoints send metrics and logs to OpenTelemetry collectors, which can then forward the data to observability platforms like Grafana dashboards and Azure Monitor. You can configure the endpoint settings, authentication, Transport Layer Security (TLS), and batching options.
 
-This guide describes how to create and configure an OpenTelemetry dataflow endpoint to export device and asset data from your MQTT broker to an OpenTelemetry collector. The article describes the *OTEL dataflow endpoint*, which routes device and asset data from the MQTT broker to external OTEL collectors. You can also send device and asset data to observability endpoints using the OpenTelemetry dataflow endpoint if you want to route telemetry to platforms like Grafana or Azure Monitor.
+This guide describes how to create and configure an OpenTelemetry dataflow endpoint to export asset data from your MQTT broker to an OpenTelemetry collector. The article describes the *OTEL dataflow endpoint*, which routes asset data from the MQTT broker to external OTEL collectors. You can also send asset data to observability endpoints using the OpenTelemetry dataflow endpoint if you want to route telemetry to platforms like Grafana or Azure Monitor.
  
 This feature is for routing device and asset data, not for collecting Azure IoT Operations component health metrics or logs. For cluster observability (monitoring the health of the MQTT broker, dataflow components, etc.), see [Configure observability and monitoring](../configure-observability-monitoring/howto-configure-observability.md).
 
@@ -32,7 +32,7 @@ This feature is for routing device and asset data, not for collecting Azure IoT 
 
 | Term                    | Definition                                                                                                                                                                         |
 |-------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| OTEL dataflow endpoint                    | A destination‑only dataflow endpoint that exports device/asset telemetry to an OTEL collector using OTLP. Cannot be used as a source.                                                                  |
+| OTEL dataflow endpoint                    | A destination‑only dataflow endpoint that exports asset telemetry to an OTEL collector using OTLP. Cannot be used as a source.                                                                  |
 | OTLP                    | The OpenTelemetry Protocol (OTLP) is the default protocol for sending telemetry data to an OpenTelemetry Collector.                                                                |
 | OTEL Collector (for cluster observability)          | A separate third-party component that collects Azure IoT Operations component metrics and logs for cluster health monitoring. For more information, see [Configure observability and monitoring](../configure-observability-monitoring/howto-configure-observability.md).                                                                                             |
 | OTEL Exporter           | A component that sends observability data to a destination backend.                                                                                                                |
@@ -43,7 +43,7 @@ OpenTelemetry endpoints enable you to export device and asset telemetry data fro
 
 In Azure IoT Operations, OpenTelemetry enables you to:
 
-- Export device and asset telemetry as OTEL metrics: send sensor readings, production data, or equipment status to observability platforms.
+- Export asset telemetry as OTEL metrics: send sensor readings, production data, or equipment status to observability platforms.
 - Route data without modifying devices: transform MQTT messages to OTEL format at the dataflow layer.
 - Collect and export telemetry data to your preferred observability platform.
 - Integrate with existing observability pipelines: send data to any OTLP-compatible backend (Grafana, Prometheus, Azure Monitor, Datadog).
