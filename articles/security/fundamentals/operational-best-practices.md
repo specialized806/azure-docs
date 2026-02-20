@@ -29,7 +29,7 @@ Azure operational security refers to the services, controls, and features availa
 
 We recommend that you require two-step verification for all of your users. This includes administrators and others in your organization who can have a significant impact if their account is compromised (for example, financial officers).
 
-There are multiple options for requiring two-step verification. The best option for you depends on your goals, the Microsoft Entra edition you're running, and your licensing program. See [How to require two-step verification for a user](/entra/identity/authentication/howto-mfa-userstates) to determine the best option for you. See the [Microsoft Entra ID](https://www.microsoft.com/security/business/microsoft-entra-pricing) and [Microsoft Entra multifactor Authentication](https://azure.microsoft.com/pricing/details/multi-factor-authentication/) pricing pages for more information about licenses and pricing.
+There are multiple options for requiring two-step verification. The best option for you depends on your goals, the Microsoft Entra edition you're running, and your licensing program. See [How to require two-step verification for a user](/entra/identity/authentication/howto-mfa-userstates) to determine the best option for you. See the [Microsoft Entra ID](https://www.microsoft.com/security/business/microsoft-entra-pricing) and [Microsoft Entra multifactor authentication](https://azure.microsoft.com/pricing/details/multi-factor-authentication/) pricing pages for more information about licenses and pricing.
 
 Following are options and benefits for enabling two-step verification:
 
@@ -43,9 +43,9 @@ Following are options and benefits for enabling two-step verification:
 This method is available to all licensing tiers but is not able to be mixed with existing Conditional Access policies. You can find more information in [Microsoft Entra Security Defaults](/entra/fundamentals/security-defaults)
 
 **Option 2**: [Enable multifactor authentication by changing user state](/entra/identity/authentication/howto-mfa-userstates).   
-**Benefit**: This is the traditional method for requiring two-step verification. It works with both [Microsoft Entra multifactor authentication in the cloud and Azure Multi-Factor Authentication Server](/entra/identity/authentication/concept-mfa-howitworks). Using this method requires users to perform two-step verification every time they sign in and overrides Conditional Access policies.
+**Benefit**: This is the traditional method for requiring two-step verification. It works with both [Microsoft Entra multifactor authentication in the cloud and Azure Multifactor Authentication Server](/entra/identity/authentication/concept-mfa-howitworks). Using this method requires users to perform two-step verification every time they sign in and overrides Conditional Access policies.
 
-To determine where multifactor authentication needs to be enabled, see [Which version of Microsoft Entra multifactor authentication is right for my organization?](/entra/identity/authentication/concept-mfa-howitworks).
+To determine where multifactor authentication needs to be enabled, see [Which version of Microsoft Entra multifactor authentication is right for my organization?](/entra/identity/authentication/concept-mfa-howitworks)
 
 **Option 3**: [Enable multifactor authentication with Conditional Access policy](/entra/identity/authentication/howto-mfa-getstarted).
 **Benefit**: This option allows you to prompt for two-step verification under specific conditions by using [Conditional Access](/entra/identity/conditional-access/concept-conditional-access-policy-common). Specific conditions can be user sign-in from different locations, untrusted devices, or applications that you consider risky. Defining specific conditions where you require two-step verification enables you to avoid constant prompting for your users, which can be an unpleasant user experience.
@@ -259,9 +259,10 @@ For more information, see [Create and manage policies to enforce compliance](../
 <a name='monitor-azure-ad-risk-reports'></a>
 
 ## Monitor Microsoft Entra risk reports
-The vast majority of security breaches take place when attackers gain access to an environment by stealing a user’s identity. Discovering compromised identities is no easy task. Microsoft Entra ID uses adaptive machine learning algorithms and heuristics to detect suspicious actions that are related to your user accounts. Each detected suspicious action is stored in a record called a [risk detection](/entra/id-protection/overview-identity-protection). Risk detections are recorded in Microsoft Entra security reports. For more information, read about the [users at risk security report](/entra/id-protection/overview-identity-protection) and the [risky sign-ins security report](/entra/id-protection/overview-identity-protection).
+The vast majority of security breaches take place when attackers gain access to an environment by stealing a user's identity. Discovering compromised identities is no easy task. Microsoft Entra ID uses adaptive machine learning algorithms and heuristics to detect suspicious actions that are related to your user accounts. Each detected suspicious action is stored in a record called a [risk detection](/entra/id-protection/overview-identity-protection). Risk detections are recorded in Microsoft Entra security reports. For more information, read about the [users at risk security report](/entra/id-protection/overview-identity-protection) and the [risky sign-ins security report](/entra/id-protection/overview-identity-protection).
 
 ## Next steps
+See [Incident response overview](incident-response-overview.md) for guidance on responding to security incidents in your Azure environment.
 See [Azure security best practices and patterns](best-practices-and-patterns.md) for more security best practices to use when you’re designing, deploying, and managing your cloud solutions by using Azure.
 Learn about the [Microsoft Secure Future Initiative (SFI)](/security/zero-trust/sfi/secure-future-initiative-overview), Microsoft's internal security framework based on Zero Trust principles and aligned with NIST CSF 2.0.
 The following resources are available to provide more general information about Azure security and related Microsoft services:

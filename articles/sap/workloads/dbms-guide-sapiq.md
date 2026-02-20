@@ -82,7 +82,7 @@ Beyond the selection of only supported VM types, you also need to check whether 
 
 ### Storage
 
-Azure Storage has various storage types available for customers. You can find details about them in the article [What disk types are available in Azure?](/azure/virtual-machines/disks-types).
+Azure Storage has various storage types available for customers. You can find details about them in the article [What disk types are available in Azure?](/azure/virtual-machines/disks-types)
 
 Some of the storage types in Azure have limited use for SAP scenarios, but other types are well suited or optimized for specific SAP workload scenarios. For more information, see the [Azure Storage types for SAP workload](planning-guide-storage.md) guide. It highlights the storage options that are suited for SAP.
 
