@@ -127,6 +127,9 @@ The backend chain subfield defines the settings for the backend partitions. The 
 - **Redundancy factor**: The number of backend replicas (pods) to deploy per partition. Increasing the redundancy factor increases the number of data copies to provide resiliency against node failures in the cluster.
 - **Workers**: The number of workers to deploy per backend replica. Increasing the number of workers per backend replica might increase the number of messages that the backend pod can handle. Each worker can consume up to two CPU cores at most, so be careful when you increase the number of workers per replica to not exceed the number of CPU cores in the cluster.
 
+> [!IMPORTANT]
+> The backend redundancy factor must be set to **2 or greater**. The broker requires at least two backend replicas per partition for high availability and rolling upgrade support. Setting the redundancy factor to `1` results in a deployment validation error.
+
 #### Considerations
 
 When you increase the cardinality values, the broker's capacity to handle more connections and messages generally improves, and it enhances high availability if there are pod or node failures. This increased capacity also leads to higher resource consumption. So when you adjust cardinality values, consider the [memory profile settings](#configure-memory-profile) and broker's [CPU resource requests](#cardinality-and-kubernetes-resource-limits). Increasing the number of workers per frontend replica can help increase CPU core utilization if you discover that frontend CPU utilization is a bottleneck. Increasing the number of backend workers can help with the message throughput if backend CPU utilization is a bottleneck.
