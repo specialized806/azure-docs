@@ -280,7 +280,7 @@ If you want a closer look at what modifications are being made to your device's 
 1. Run the configuration and connectivity checks on your devices. For the **lower layer device**, the diagnostics image needs to be manually passed in the command:
 
     ```bash
-    sudo iotedge check --diagnostics-image-name <parent_device_fqdn_or_ip>:443/azureiotedge-diagnostics:1.2
+    sudo iotedge check --diagnostics-image-name <parent_device_fqdn_or_ip>:443/azureiotedge-diagnostics:1.5
     ```
 
 If you completed the earlier steps correctly, you can verify your devices are configured correctly. Once you're satisfied your configurations are correct on each device, you're ready to proceed.
@@ -346,7 +346,7 @@ You can run `iotedge check` in a nested hierarchy, even if the downstream device
 When you run `iotedge check` from the lower layer, the program tries to pull the image from the parent through port 443.
 
 ```bash
-sudo iotedge check --diagnostics-image-name $upstream:443/azureiotedge-diagnostics:1.2
+sudo iotedge check --diagnostics-image-name $upstream:443/azureiotedge-diagnostics:1.5
 ```
 
 The `azureiotedge-diagnostics` value is pulled from the container registry that's linked with the registry module. This tutorial sets it by default to https://mcr.microsoft.com:
