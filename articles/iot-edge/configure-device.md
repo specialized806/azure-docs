@@ -476,7 +476,7 @@ retry = "4%"
 If you need to override the default image garbage collection configuration, use this section and replace the values in this section with your own.
 
 | Parameter | Description |
-|--------------------------|
+|-----------|-------------|
 | `enabled` | Runs image garbage collection |
 | `cleanup_recurrence` | How often you want the image garbage collection to run |
 | `image_age_cleanup_threshold` | The *age* of unused images. Images older than the threshold are removed |

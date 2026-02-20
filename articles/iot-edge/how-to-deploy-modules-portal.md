@@ -58,7 +58,7 @@ The Azure portal has a wizard that walks you through creating the deployment man
 
 #### IoT Edge Module
 
-Use this option to add Microsoft modules, partner modules, or custom modules. You provide the module name and container image URI. The container image URI is the location of the module image in a container registry. For a list of Microsoft IoT Edge module images, see the [Microsoft Artifact Registry](https://mcr.microsoft.com/en-us/catalog?cat=IoT%20Edge%20Modules&alphaSort=asc&alphaSortKey=Name). For partner modules, contact the IoT Edge module publisher to obtain the container image URI.
+Use this option to add Microsoft modules, partner modules, or custom modules. You provide the module name and container image URI. The container image URI is the location of the module image in a container registry. For a list of Microsoft IoT Edge module images, see the [Microsoft Artifact Registry](https://mcr.microsoft.com/catalog?cat=IoT%20Edge%20Modules&alphaSort=asc&alphaSortKey=Name). For partner modules, contact the IoT Edge module publisher to obtain the container image URI.
 
 For example to add the Microsoft simulated temperature sensor module:
 
@@ -109,8 +109,6 @@ Review your deployment information, then select **Create**.
 ## View modules on your device
 
 Once you deploy modules to your device, you can view all of them in the device details page of your IoT hub. This page displays the name of each deployed module, and useful information like the deployment status and exit code.
-
-Select **Next: Routes** and continue with deployment as described by [Specify routes](#specify-routes) and [Review deployment](#review-deployment) earlier in this article.
 
 ## Next steps
 
