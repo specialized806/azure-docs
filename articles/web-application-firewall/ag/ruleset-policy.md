@@ -2,7 +2,7 @@
 title: Managed Ruleset Support Policy
 titleSuffix: Azure Web Application Firewall
 description: Learn about Azure WAF's managed ruleset support policy, including supported versions, upgrade recommendations, and extended support timelines.
-author: undefined
+author: halkazwini
 ms.author: halkazwini
 ms.service: azure-web-application-firewall
 ms.topic: concept-article
@@ -110,8 +110,8 @@ The following tables summarize the current support status and planned end of sup
 |---|---|---|---|
 | **DRS 2.2** | February 2026 | Supported | Not defined yet |
 | **DRS 2.1** | October 2023 | Supported | Not defined yet |
-| **CRS 3.2** | August 2021 | Supported | Not defined yet; Support ends one year after the release of the **first** DRS version newer than DRS 2.2 |
-| **CRS 3.1****CRS 3.0** | N/A | Supported (end date set) | February 26, 2027 |
+| **CRS 3.2** | August 2021 | Supported | Not defined yet. Support ends one year after the release of the **first** DRS version newer than DRS 2.2 |
+| **CRS 3.1****CRS 3.0** | N/A | Supported | February 26, 2027 |
 | **CRS 2.2.9** | N/A | Not supported | March 15, 2025 |
 
 ::: zone-end
@@ -122,34 +122,25 @@ The following tables summarize the current support status and planned end of sup
 |---|---|---|---|
 | **DRS 2.2** | February 2026 | Supported | Not defined yet |
 | **DRS 2.1** | October 2023 | Supported | Not defined yet |
-| **DRS 2.0** | August 2021 | Supported | Not defined yet; Support ends one year after the release of the **first** DRS version newer than DRS 2.2 |
-| **DRS 1.2****DRS 1.1****DRS 1.0** | N/A | Supported (end date set) | February 26, 2027 |
+| **DRS 2.0** | August 2021 | Supported | Not defined yet. Support ends one year after the release of the **first** DRS version newer than DRS 2.2 |
+| **DRS 1.2****DRS 1.1****DRS 1.0** | N/A | Supported | February 26, 2027 |
 
 ::: zone-end
 
 ### Bot Management Ruleset
 
-::: zone pivot="application-gateway"
-
 | **Ruleset version** | **Release date** | **Support status** | **Support end date** |
 |----|----|----|----|
 | **Bot Management 1.1** | October 2024 | Supported | Not defined yet |
 | **Bot Management 1.0** | July 2021 | Supported | Not defined yet |
+
+::: zone pivot="application-gateway"
 
 ### HTTP DDoS Ruleset
 
 | **Ruleset version** | **Release date** | **Support status** | **Support end date** |
 |----|----|----|----|
 | **HTTP DDoS Ruleset 1.0** | November 2025 | Supported | Not defined yet |
-
-::: zone-end
-
-::: zone pivot="front-door"
-
-| **Ruleset version** | **Release date** | **Support status** | **Support end date** |
-|----|----|----|----|
-| **Bot Management 1.1** | October 2024 | Supported | Not defined yet |
-| **Bot Management 1.0** | July 2021 | Supported | Not defined yet |
 
 ::: zone-end
 
