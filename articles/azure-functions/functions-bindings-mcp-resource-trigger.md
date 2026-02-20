@@ -5,6 +5,8 @@ ms.topic: reference
 ms.date: 02/18/2026
 ms.update-cycle: 180-days
 ai-usage: ai-assisted
+ms.collection: 
+  - ce-skilling-ai-copilot
 zone_pivot_groups: programming-languages-set-functions
 ---
 
@@ -123,7 +125,7 @@ In this example, a folder called `assets` containing the `readme` is bundled wit
 </ItemGroup>
 ```
 
-The `PreserveNewest` directive copies everything under `assets` into the build output, preserving the folder structure. When deployed to Azure Functions, these files are extracted to the function app's root directory (`%HOME%\site\wwwroot`), so a file at `assets/readme.md` in the project is accessible at runtime via `Path.Combine(AppContext.BaseDirectory, "assets", "readme.md")`. This works the same way both locally and when deployed to Azure. The asset files are packaged with the deployment artifact rather than uploaded separately to external storage. For the complete code example, see the [Azure Functions MCP Extension repo](https://github.com/Azure/azure-functions-mcp-extension/tree/main/test/TestAppIsolated). 
+The `PreserveNewest` directive copies everything under `assets` into the build output, preserving the folder structure. When deployed to Azure Functions, these files are extracted to the function app root directory (`%HOME%\site\wwwroot`), so a file at `assets/readme.md` in the project is accessible at runtime via `Path.Combine(AppContext.BaseDirectory, "assets", "readme.md")`. This works the same way both locally and when deployed to Azure. The asset files are packaged with the deployment artifact rather than uploaded separately to external storage. For the complete code example, see the [Azure Functions MCP Extension repo](https://github.com/Azure/azure-functions-mcp-extension/tree/main/test/TestAppIsolated). 
 
 ::: zone-end
 
@@ -306,20 +308,20 @@ C# libraries use `McpResourceTriggerAttribute` to define the function trigger.
 
 The attribute's constructor takes the following parameters:
 
-|Parameter | Description|
+| Parameter | Description |
 |---------|----------------------|
-|**Uri**| (Required) The URI of the resource, which defines the resource's address. For example, `ui://weather/index.html` defines a static resource URI. |
-|**ResourceName**| (Required) The name of the resource that's being exposed by the MCP resource trigger endpoint. |
+| **Uri** | (Required) The URI of the resource, which defines the resource's address. For example, `ui://weather/index.html` defines a static resource URI. |
+| **ResourceName** | (Required) The name of the resource that the MCP resource trigger endpoint exposes. |
 
 The attribute also supports the following named properties:
 
-|Property | Description|
+| Property | Description |
 |---------|----------------------|
-|**Description**| (Optional) A friendly description of the resource endpoint for clients. |
-|**Title**| (Optional) A human-readable title for display purposes in MCP client interfaces. |
-|**MimeType**| (Optional) The MIME type of the content returned by the resource. For example, `text/html;profile=mcp-app` for MCP App UI resources, `text/plain` for plain text, or `application/json` for JSON data. |
-|**Size**| (Optional) The size of the resource content in bytes. |
-|**Metadata**| (Optional) A JSON-serialized string of metadata for the resource. You can also use the `McpMetadata` attribute as an alternative way to provide metadata. |
+| **Description** | (Optional) A friendly description of the resource endpoint for clients. |
+| **Title** | (Optional) A human-readable title for display purposes in MCP client interfaces. |
+| **MimeType** | (Optional) The MIME type of the content returned by the resource. For example, `text/html;profile=mcp-app` for MCP App UI resources, `text/plain` for plain text, or `application/json` for JSON data. |
+| **Size** | (Optional) The size of the resource content in bytes. |
+| **Metadata** | (Optional) A JSON-serialized string of metadata for the resource. You can also use the `McpMetadata` attribute as an alternative way to provide metadata. |
 
 You can use the `[McpMetadata]` attribute to provide additional metadata for resources. This metadata is included in the meta field of each resource when clients call `resources/list`, and can influence how the resource content is displayed or processed.
 
@@ -349,15 +351,15 @@ The following MCP resource trigger properties are supported on `mcp_resource_tri
 ::: zone pivot="programming-language-javascript,programming-language-typescript"  
 ## Configuration
 
-The trigger supports these binding options, which are defined in your code: 
+Define the trigger's binding options in your code. The trigger supports the following options: 
 
-| Options | Description |
+| Option | Description |
 |-----------------------|-------------|
-| **type** | Must be set to `mcpResourceTrigger`. Only used with generic definitions. |
-| **uri** | (Required) The URI of the MCP resource exposed by the function endpoint. Must be an absolute URI. |
-| **resourceName** | (Required) The human-readable name of the MCP resource exposed by the function endpoint. |
+| **type** | Set to `mcpResourceTrigger`. Use only with generic definitions. |
+| **uri** | (Required) The URI of the MCP resource that the function endpoint exposes. Must be an absolute URI. |
+| **resourceName** | (Required) The human-readable name of the MCP resource that the function endpoint exposes. |
 | **title** | An optional title for display purposes in MCP client interfaces. |
-| **description**  | A description of the MCP resource exposed by the function endpoint.  |
+| **description**  | A description of the MCP resource that the function endpoint exposes.  |
 | **mimeType** | The MIME type of the content returned by the resource. For example, `text/html;profile=mcp-app`. |
 | **size** | The expected size of the resource content in bytes, if known. |
 | **metadata** | A JSON-serialized string of additional metadata for the resource. |
@@ -405,7 +407,7 @@ The resource handler function has two parameters:
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| **messages** | `T` (defaults to `unknown`) | The trigger payload passed by the MCP extension. (The example above code names this parameter `resourceContext`.) |
+| **messages** | `T` (defaults to `unknown`) | The trigger payload passed by the MCP extension. (The preceding example names this parameter `resourceContext`.) |
 | **context** | `InvocationContext` | The Azure Functions invocation context, which provides logging and other runtime information. |
 
 ::: zone-end
@@ -422,19 +424,19 @@ MCP resources use URIs to define the address of the resource. The URI uniquely i
 
 ::: zone pivot="programming-language-csharp"
 
-You can use the `McpMetadata` attribute to provide additional metadata for resources. This metadata is communicated to MCP clients and can influence how the resource content is displayed or processed.
+Use the `McpMetadata` attribute to provide extra metadata for resources. MCP clients receive this metadata, and it can affect how the resource content is displayed or processed.
 
 ::: zone-end
 
 ::: zone pivot="programming-language-python"
 
-You can provide additional metadata for resources using the `metadata` parameter on the `mcp_resource_trigger` decorator. This metadata is a JSON-serialized string included in the `meta` field of each resource when clients call `resources/list`, and can influence how the resource content is displayed or processed.
+Use the `metadata` parameter on the `mcp_resource_trigger` decorator to provide extra metadata for resources. This metadata is a JSON-serialized string included in the `meta` field of each resource when clients call `resources/list`. It can affect how the resource content is displayed or processed.
 
 ::: zone-end
 
 ::: zone pivot="programming-language-javascript,programming-language-typescript"
 
-You can provide additional metadata for resources using the `metadata` option. This metadata is a JSON-serialized string included in the `meta` field of each resource when clients call `resources/list`, and can influence how the resource content is displayed or processed.
+Use the `metadata` option to provide extra metadata for resources. This metadata is a JSON-serialized string included in the `meta` field of each resource when clients call `resources/list`. It can affect how the resource content is displayed or processed.
 
 ::: zone-end
 
@@ -476,7 +478,7 @@ The function should return a `string` containing the resource content (for examp
 
 ### Resource discovery
 
-When a function app starts, all resource trigger functions are registered with the MCP server. Clients discover available resources by calling the MCP `resources/list` method, which returns each resource's URI, name, description, MIME type, size, and metadata (via the `meta` field). Clients read a resource by calling `resources/read` with the resource URI.
+When a function app starts, it registers all resource trigger functions with the MCP server. Clients discover available resources by calling the MCP `resources/list` method. This method returns each resource's URI, name, description, MIME type, size, and metadata (through the `meta` field). Clients read a resource by calling `resources/read` with the resource URI.
 
 ::: zone-end
 
@@ -484,7 +486,7 @@ When a function app starts, all resource trigger functions are registered with t
 
 ### Sessions
 
-The `SessionId` property on `ResourceInvocationContext` identifies the MCP session making the request. This can be used to maintain per-session state or apply session-specific logic when serving resources.
+The `SessionId` property on `ResourceInvocationContext` identifies the MCP session making the request. Use this property to maintain per-session state or apply session-specific logic when serving resources.
 
 ::: zone-end
 

@@ -2,6 +2,7 @@
 title: Build a custom remote MCP server using Azure Functions
 description: "Learn how to create and deploy a custom Model Context Protocol (MCP) server using Azure Functions. This quickstart uses the Azure Developer CLI to deploy an MCP server project that enables AI clients to access custom tools hosted on Azures Flex Consumption plan."
 ms.date: 12/01/2025
+ms.update-cycle: 180-days
 ms.topic: quickstart
 ai-usage: ai-assisted
 ms.collection: 

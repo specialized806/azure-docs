@@ -2,6 +2,7 @@
 title: Build an MCP Apps server using Azure Functions
 description: "Learn how to create and deploy an MCP Apps server that returns interactive UI using Azure Functions. This quickstart uses the Azure Developer CLI to deploy an MCP Apps project that enables AI clients to access tools with rich interactive interfaces hosted on Azure's Flex Consumption plan."
 ms.date: 02/20/2026
+ms.update-cycle: 180-days
 ms.topic: quickstart
 ai-usage: ai-assisted
 ms.collection: 
@@ -12,7 +13,7 @@ zone_pivot_groups: programming-languages-set-functions
 
 # Quickstart: Build an MCP Apps server using Azure Functions
 
-In this quickstart, you create an [MCP Apps](https://blog.modelcontextprotocol.io/posts/2026-01-26-mcp-apps/) server from a template project using the Azure Developer CLI (`azd`). [MCP Apps](https://blog.modelcontextprotocol.io/posts/2026-01-26-mcp-apps/) is an extension of the Model Context Protocol (MCP) specification that lets tools return interactive user interfaces (HTML/JavaScript in sandboxed iframes) instead of plain text. The MCP server uses the Azure Functions MCP server extension to provide tools with rich UI for AI models, agents, and assistants. After running the project locally and verifying your code using GitHub Copilot, you deploy it to a new serverless function app in Azure Functions that follows current best practices for secure and scalable deployments.
+In this quickstart, you create an [MCP Apps](https://blog.modelcontextprotocol.io/posts/2026-01-26-mcp-apps/) server from a template project by using the Azure Developer CLI (`azd`). [MCP Apps](https://blog.modelcontextprotocol.io/posts/2026-01-26-mcp-apps/) is an extension of the Model Context Protocol (MCP) specification that lets tools return interactive user interfaces (HTML/JavaScript in sandboxed iframes) instead of plain text. The MCP server uses the Azure Functions MCP server extension to provide tools with rich UI for AI models, agents, and assistants. After running the project locally and verifying your code by using GitHub Copilot, you deploy it to a new serverless function app in Azure Functions that follows current best practices for secure and scalable deployments.
 
 >[!TIP]  
 >If you want to create a custom MCP server that uses text-based tools instead of interactive UI, see [Quickstart: Build a custom remote MCP server using Azure Functions](scenario-custom-remote-mcp-server.md).
@@ -100,11 +101,11 @@ Use the `azd init` command to create a local Azure Functions code project from a
 
 ## Build the MCP Apps UI
 
-The MCP Apps weather tool includes a frontend application that must be built before running the project.
+The MCP Apps weather tool includes a frontend application that you must build before running the project.
 ::: zone-end
 ::: zone pivot="programming-language-csharp"  
 
-1. In the terminal, navigate to the UI app folder and build:
+1. In the terminal, go to the UI app folder and build the application:
 
     ```console
     cd src/McpWeatherApp/app
@@ -116,7 +117,7 @@ The MCP Apps weather tool includes a frontend application that must be built bef
 ::: zone-end
 ::: zone pivot="programming-language-python"  
 
-1. In the terminal, navigate to the UI app folder and build:
+1. In the terminal, go to the UI app folder and build the application:
 
     ```console
     cd src/app
@@ -128,7 +129,7 @@ The MCP Apps weather tool includes a frontend application that must be built bef
 ::: zone-end
 ::: zone pivot="programming-language-typescript"  
 
-1. In the terminal, navigate to the UI app folder and build:
+1. In the terminal, go to the UI app folder and build the application:
 
     ```console
     cd src/app
@@ -143,7 +144,7 @@ The MCP Apps weather tool includes a frontend application that must be built bef
 
 [!INCLUDE [run-locally](../../includes/functions-mcp-run-locally.md)]
 
-## Verify using GitHub Copilot
+## Verify by using GitHub Copilot
 
 To verify your code, add the running project as an MCP server for GitHub Copilot in Visual Studio Code: 
 

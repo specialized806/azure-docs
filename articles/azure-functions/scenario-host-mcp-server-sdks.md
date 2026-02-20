@@ -2,6 +2,7 @@
 title: Host servers built with MCP SDKs on Azure Functions
 description: "Learn how to host servers built with Anthropic MCP SDKs on Azure Functions. This quickstart shows how to deploy MCP SDK based servers as custom handlers in Azure Functions, using serverless scale and security features."
 ms.date: 12/02/2025
+ms.update-cycle: 180-days
 ms.topic: quickstart
 ai-usage: ai-assisted
 ms.collection: 
