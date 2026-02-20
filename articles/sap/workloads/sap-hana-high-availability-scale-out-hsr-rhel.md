@@ -1073,8 +1073,9 @@ Now you're ready to create the cluster resources:
       pcs resource create SAPHanaTopology_HN1_HDB03 SAPHanaTopology \
        SID=HN1 InstanceNumber=03 \
        op methods interval=0s timeout=5 \
-       op start timeout=600 op stop timeout=300 op monitor interval=10 timeout=600 \
-       clone meta clone-node-max=1 interleave=true
+       op start timeout=600 op stop timeout=300 op monitor interval=10 timeout=600
+
+      pcs resource clone SAPHanaTopology_HDB_HDB00 meta clone-node-max=1 interleave=true
       ```
 
       ### [RHEL 8.x/9.x](#tab/rhel8-9)
@@ -1083,8 +1084,9 @@ Now you're ready to create the cluster resources:
       pcs resource create SAPHanaTopology_HN1_HDB03 SAPHanaTopology \
        SID=HN1 InstanceNumber=03 \
        op methods interval=0s timeout=5 \
-       op start timeout=600 op stop timeout=300 op monitor interval=10 timeout=600 \
-       clone clone-node-max=1 interleave=true
+       op start timeout=600 op stop timeout=300 op monitor interval=10 timeout=600
+
+      pcs resource clone SAPHanaTopology_HDB_HDB00 meta clone-node-max=1 interleave=true
       ```
 
       ### [RHEL 7.x](#tab/rhel7)
