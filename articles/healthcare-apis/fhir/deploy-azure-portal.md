@@ -61,7 +61,7 @@ From the deployment confirmation page, select **Go to resource**  Copy the **FHI
 To avoid incurring costs, you can delete unneeded resources by deleting the FHIR service, or its containing workspace or resource group.
 
 
-## Related content
+## Next step
 
 [Access the FHIR service](../fhir/get-started-with-fhir.md#access-the-fhir-service)
 
