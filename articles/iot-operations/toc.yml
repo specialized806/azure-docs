@@ -183,8 +183,6 @@ items:
               - name: Azure Data Explorer
                 href: connect-to-cloud/howto-configure-adx-endpoint.md
                 displayName: data flow, endpoint, northbound
-              - name: OpenTelemetry
-                href: connect-to-cloud/howto-configure-opentelemetry-endpoint.md
               - name: OpenTelemetry dataflow endpoints
                 href: connect-to-cloud/open-telemetry.md
                 displayName: data flow, endpoint, observability, metrics, logs, OpenTelemetry, OTLP, northbound
