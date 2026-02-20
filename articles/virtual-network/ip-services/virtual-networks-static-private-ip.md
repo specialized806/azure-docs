@@ -69,13 +69,15 @@ When you create a virtual machine (VM), it's automatically assigned a private IP
     | **Subscription**       | Select your subscription                          |
     | **Resource group**     | Select **myResourceGroup**                        |
     | **Virtual machine name** | Enter *myVM*                                     |
-    | **Region**             | Select **(US) East US**                           |
+    | **Region**             | Select **(US) East US 2**                         |
     | **Availability options** | Select **No infrastructure redundancy required** |
-    | **Image**              | Select **Windows Server 2019 Datacenter - x64 Gen2** |
+    | **Security type**      | Select **Standard**                               |
+    | **Image**              | Select **Ubuntu Server 22.04 LTS - x64 Gen2**    |
     | **Size**               | Accept the default, or drop down and select a size |
-    | **Username**           | Enter an admin username for the VM                |
-    | **Password**           | Enter a password for the VM                       |
-    | **Confirm password**   | Confirm the password for the VM                   |
+    | **Authentication type** | Select **SSH public key**                        |
+    | **Username**           | Enter *azureuser*                                 |
+    | **SSH public key source** | Select **Generate new key pair**                |
+    | **Key pair name**      | Enter *mySSHKey*                                  |
     | **Public inbound ports** | Select **None**                                  |
 
 1. Select the **Networking** tab at the top of the page.
