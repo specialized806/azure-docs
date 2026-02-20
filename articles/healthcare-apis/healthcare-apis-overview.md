@@ -29,8 +29,6 @@ Azure Health Data Services offers a suite of services that include:
 
 - **DICOM service**: A cloud-based solution for storing, managing, and exchanging medical imaging data securely and efficiently with any DICOMweb&reg;-enabled systems or applications. It offers global availability, PHI compliance, scalability to petabytes of data, automatic data replication, and role-based access control (RBAC). For more information, see [What is the DICOM service?](dicom/overview.md)
 
-- **MedTech service**: A Platform as a Service (PaaS) that enables you to ingest device data from multiple and diverse sources, transform it into a unified FHIR format, and store it in a secure, compliant cloud environment. It normalizes device data into a common format for capturing trends, running analytics, and building AI models. Common use cases include remote patient monitoring, virtual health, and clinical trials. For more information, see [What is the MedTech service?](iot/overview.md)
-
 - **De-identification service**: A service that enables healthcare organizations to de-identify clinical data so that the resulting data retains its clinical relevance and distribution while adhering to HIPAA and GDPR requirements. It uses machine learning models to automatically tag, redact, or surrogate protected health information (PHI) entities from unstructured text such as clinical notes, transcripts, and clinical trial studies. For more information, see [What is the de-identification service?](deidentification/overview.md)
 
 ## Differences between Azure Health Data Services and Azure API for FHIR
