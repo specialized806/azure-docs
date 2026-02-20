@@ -109,6 +109,11 @@ X-Powered-By: ASP.NET
 }
 
 ```
-## Next step
+## Next steps
 
-[About Azure Backup](backup-overview.md).
+- [Support matrix for automation in Azure Backup](backup-support-automation.md).
+- [Back up an Azure VM using Azure Backup via REST API](backup-azure-arm-userestapi-backupazurevms.md).
+- [Restore Azure Virtual machines using REST API](backup-azure-arm-userestapi-restoreazurevms.md).
+- [Backup Azure Files using Azure Backup via REST API](backup-azure-file-share-rest-api.md).
+- [Restore Azure Files using REST API](restore-azure-file-share-rest-api.md).
+- [Back up SQL server databases in Azure VMs using Azure Backup via REST API](backup-azure-sql-vm-rest-api.md).
