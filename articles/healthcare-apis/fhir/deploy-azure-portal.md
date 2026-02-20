@@ -1,31 +1,31 @@
 ---
-title: Deploy the FHIR service in Azure Health Data Services
+title: Deploy the FHIR service in Azure Health Data Services via Azure portal
 description: Learn how to deploy the FHIR service in Azure Health Data Services by using the Azure portal. This article covers prerequisites, workspace deployment, service creation, and security settings.
 author: EXPEkesheth
 ms.service: azure-health-data-services
 ms.topic: quickstart
-ms.date: 10/01/2025
+ms.date: 02/23/2026
 ms.author: kesheth
 ms.custom:
   - mode-api
   - sfi-image-nochange
 ---
 
-# Deploy the FHIR service by using the Azure portal
+# Quickstart: Deploy the FHIR service via the Azure portal
 
-The Azure portal provides a web interface with guided workflows, making it an efficient tool for deploying the FHIR&reg; service, and ensuring accurate configuration within Azure Health Data Services.
+In this quickstart, you learn how to create and deploy a FHIR service instance via the Azure portal. The Azure portal provides a web interface with guided workflows, making it an efficient tool for deploying the FHIR&reg; service, and ensuring accurate configuration within Azure Health Data Services. 
 
 ## Prerequisites
 
-- Verify you have an Azure subscription and permissions for creating resource groups and deploy resources.
+- An Azure subscription. If you don't have an Azure account, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 
-- Deploy a workspace for Azure Health Data Services. For steps, see [Deploy workspace in the Azure portal](../healthcare-apis-quickstart.md).
+- An Azure Health Data Services workspace. To create and deploy a workspace ps, see [Deploy workspace in the Azure portal](../healthcare-apis-quickstart.md).
 
-## Create a new FHIR service
+## Create and deploy a new FHIR service
  
-1. From your Azure Health Data Services workspace, choose **Create FHIR service**. 
-1. Choose **Add FHIR service**. 
-1. On the **Create FHIR service** page, complete the fields on each tab. 
+1. Go to your Azure Health Data Services workspace resource.
+1. On the menu, select **Services** > **FHIR service**.
+1. Select **+ Add FHIR service**.
               
    - **Basics tab**: Give the FHIR service a friendly and unique name. Select the **FHIR version** (**STU3** or **R4**), and then choose **Next: Additional settings**.
 
@@ -46,30 +46,20 @@ The Azure portal provides a web interface with guided workflows, making it an ef
    
      Tags are name and value pairs used for categorizing resources and aren't required. For more information, see [Use tags to organize your Azure resources and management hierarchy](../../azure-resource-manager/management/tag-resources.md).
 
-   - Choose **Review + Create** to begin the validation process. Wait until you receive confirmation that the deployment completed successfully. Review the confirmation screen, and then choose **Create** to begin the deployment. 
+1. Choose **Review + Create** to begin the validation process. Wait until you receive confirmation that the deployment completed successfully. Review the confirmation screen, and then choose **Create** to begin the deployment. 
 
    The deployment process might take several minutes. When the deployment completes, you see a confirmation message.
 
    :::image type="content" source="media/fhir-service/deployment-success-fhir-service-sml.png" alt-text="Screenshot showing successful deployment." lightbox="media/fhir-service/deployment-success-fhir-service-sml.png":::
 
-1. Validate the deployment. Fetch the capability statement from your new FHIR service. Fetch a capability statement by browsing to `https://<WORKSPACE-NAME>-<FHIR-SERVICE-NAME>.fhir.azurehealthcareapis.com/metadata`.
+## Validate the deployment
 
-## Troubleshoot FHIR service deployment
- Below are the error messages along with recommended actions to resolve the problems during deployment.
+From the deployment confirmation page, select **Go to reource**.  Copy the **FHIR metadata endpoint** and paste in a brower to fetch the capability statement from your new FHIR service. 
 
-**What should I do if I accidentally deployed the Azure API for FHIR into the wrong subscription, deleted it, and am now facing a deployment failure in the correct subscription with a message stating that the resource name is not available?**
+## Clean up resources
 
-Once a service name has been used, it cannot be reused in a different subscription, even after deletion. This restriction is in place to prevent impersonation and primarily impacts Azure API for FHIR.
+To avoid incurring costs, you can delete uneeded resources by deleting the FHIR service, or its containing workspace or resrouce group.
 
-If deployed to the wrong subscription, you can move the resource to the desired subscription instead of deleting and recreating it. [Move Azure Resources](../../azure-resource-manager/management/move-resource-group-and-subscription.md)
-
-**How can I delete a service and then re-add it with the same settings?**
-
-To replicate settings between FHIR instance, you can follow below steps 
-
-*	Create standard ARM templates with the configurations.
-
-*	Create a service and add configuration as per requirement.
 
 ## Related content
 

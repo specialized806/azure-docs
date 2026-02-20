@@ -5,8 +5,8 @@ services: healthcare-apis
 author: expekesheth
 ms.service: azure-health-data-services
 ms.subservice: fhir
-ms.topic: reference
-ms.date: 05/27/2025
+ms.topic: faq
+ms.date: 02/23/2026
 ms.author: kesheth
 ms.custom: references_regions
 ---
@@ -95,6 +95,21 @@ No. You can't change the URL for the FHIR service.
 
 Please refer to the "Service limits" section in 
 [Azure FHIR service limits](fhir-features-supported.md#service-limits)
+
+**What should I do if I accidentally deployed the Azure API for FHIR into the wrong subscription, deleted it, and am now facing a deployment failure in the correct subscription with a message stating that the resource name is not available?**
+
+Once a service name has been used, it cannot be reused in a different subscription, even after deletion. This restriction is in place to prevent impersonation and primarily impacts Azure API for FHIR.
+
+If deployed to the wrong subscription, you can move the resource to the desired subscription instead of deleting and recreating it. [Move Azure Resources](../../azure-resource-manager/management/move-resource-group-and-subscription.md)
+
+**How can I delete a service and then re-add it with the same settings?**
+
+To replicate settings between FHIR instance, you can follow below steps 
+
+*	Create standard ARM templates with the configurations.
+
+*	Create a service and add configuration as per requirement.
+
 
 ## FHIR Implementations and Specifications
 
