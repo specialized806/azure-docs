@@ -38,7 +38,7 @@ This feature allows promoting any secondary region to primary, at any time. Prom
 
 ## Comparison with Geo-Disaster Recovery
 
-Azure Service Bus offers two features for geographic resilience: Geo-Replication and [Geo-Disaster Recovery](service-bus-geo-dr.md). The key difference is that Geo-Replication replicates both metadata and data (messages, message states, property changes), while Geo-Disaster Recovery replicates metadata only. For most disaster recovery scenarios, Geo-Replication is the recommended choice. For a detailed comparison, see [High-level feature differences](service-bus-outages-disasters.md#high-level-feature-differences).
+Azure Service Bus offers two features for geographic resilience: Geo-Replication and [Geo-Disaster Recovery](service-bus-geo-dr.md). The key difference is that Geo-Replication replicates both metadata and data (messages, message states, property changes), while Geo-Disaster Recovery replicates metadata only. For most disaster recovery scenarios, Geo-Replication is the recommended choice. For a detailed comparison, see [Reliability in Azure Service Bus - Resilience to region-wide failures](/azure/reliability/reliability-service-bus?toc=/azure/service-bus-messaging/TOC.json#resilience-to-region-wide-failures).
 
 ## Scenarios
 The Geo-Replication feature can be used to implement different scenarios, as described here. For guidance on when to trigger a promotion, see [Recommended scenarios to trigger promotion](#recommended-scenarios-to-trigger-promotion).
@@ -208,6 +208,16 @@ It is possible to do a forced promotion at any time after a planned promotion ha
 > When using **Forced** promotion, any data or metadata that has not been replicated may be lost. Additionally, as specific state changes have not been replicated yet, this may also result in duplicate messages being received, for example when a Complete or Defer state change was not replicated.
 >
 > After a forced promotion, the old primary (now secondary) still contains unreplicated data. This data is lost when the old primary resynchronizes as the new secondary.
+
+> [!WARNING]
+> After performing a **forced** promotion, the old primary region may contain unreplicated data and state inconsistencies. To ensure data integrity and avoid potential issues with your application, the current best practice is to **delete the old primary region and recreate it** rather than allowing it to resynchronize as a secondary.
+>
+> **Recommended steps after forced promotion**:
+> 1. Complete the forced promotion to establish the new primary region.
+> 1. Delete the old primary region from the Geo-Replication configuration.
+> 1. Add a new secondary region to restore geo-redundancy.
+>
+> Following these steps helps ensure your namespace operates with consistent data across all regions.
 
 After the promotion is initiated:
 
