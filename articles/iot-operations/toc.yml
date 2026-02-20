@@ -241,7 +241,7 @@ items:
                 href: develop-edge-apps/howto-build-wasm-modules-vscode.md
                 displayName: VS Code, extension, develop, dataflow, graph, connector
               - name: Build WASM modules
-                href: connect-to-cloud/howto-develop-wasm-modules.md
+                href: develop-edge-apps/howto-develop-wasm-modules.md
                 displayName: data flow, WASM, WebAssembly, development, Rust, Python, modules, operators
               - name: Configure graph definitions
                 href: develop-edge-apps/howto-configure-wasm-graph-definitions.md
@@ -253,7 +253,7 @@ items:
                 href: develop-edge-apps/howto-deploy-wasm-graph-definitions.md
                 displayName: data flow, WASM, WebAssembly, graph definitions, deploy, container, registry
               - name: AI inference with ONNX
-                href: connect-to-cloud/howto-wasm-onnx-inference.md
+                href: develop-edge-apps/howto-wasm-onnx-inference.md
                 displayName: data flow, WASM, WebAssembly, ONNX, inference, AI, wasi-nn
           - name: Create custom connectors
             items:
