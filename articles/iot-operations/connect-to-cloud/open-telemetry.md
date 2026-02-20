@@ -20,7 +20,7 @@ OpenTelemetry (OTEL) data flow endpoints send metrics and logs to OpenTelemetry 
 
 This guide describes how to create and configure an OpenTelemetry dataflow endpoint to export asset data from your MQTT broker to an OpenTelemetry collector. The article describes the *OTEL dataflow endpoint*, which routes asset data from the MQTT broker to external OTEL collectors. You can also send asset data to observability endpoints using the OpenTelemetry dataflow endpoint if you want to route telemetry to platforms like Grafana or Azure Monitor.
  
-This feature is for routing device and asset data, not for collecting Azure IoT Operations component health metrics or logs. For cluster observability (monitoring the health of the MQTT broker, dataflow components, etc.), see [Configure observability and monitoring](../configure-observability-monitoring/howto-configure-observability.md).
+This feature is for routing device and asset data, not for collecting Azure IoT Operations component health metrics or logs. For cluster observability (monitoring the health of the MQTT broker, dataflow components, and so on), see [Configure observability and monitoring](../configure-observability-monitoring/howto-configure-observability.md).
 
 ## Prerequisites
 
@@ -32,23 +32,23 @@ This feature is for routing device and asset data, not for collecting Azure IoT 
 
 | Term                    | Definition                                                                                                                                                                         |
 |-------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| OTEL dataflow endpoint                    | A destination‑only dataflow endpoint that exports asset telemetry to an OTEL collector using OTLP. Cannot be used as a source.                                                                  |
+| OTEL dataflow endpoint                    | A destination‑only dataflow endpoint that exports asset telemetry to an OpenTelemetry (OTEL) collector using OTLP. It can't be used as a source.                                                                  |
 | OTLP                    | The OpenTelemetry Protocol (OTLP) is the default protocol for sending telemetry data to an OpenTelemetry Collector.                                                                |
 | OTEL Collector (for cluster observability)          | A separate third-party component that collects Azure IoT Operations component metrics and logs for cluster health monitoring. For more information, see [Configure observability and monitoring](../configure-observability-monitoring/howto-configure-observability.md).                                                                                             |
-| OTEL Exporter           | A component that sends observability data to a destination backend.                                                                                                                |
+| OpenTelemetry Exporter           | A component that sends observability data to a destination backend.                                                                                                                |
 
 ## OpenTelemetry endpoint overview
 
-OpenTelemetry endpoints enable you to export device and asset telemetry data from Azure IoT Operations dataflows to OpenTelemetry collectors using the OpenTelemetry Protocol (OTLP). This allows you to integrate device and system telemetry into your existing observability infrastructure.
+OpenTelemetry endpoints enable you to export device and asset telemetry data from Azure IoT Operations dataflows to OpenTelemetry collectors by using the OpenTelemetry Protocol (OTLP). This allows you to integrate device and system telemetry into your existing observability infrastructure.
 
-In Azure IoT Operations, OpenTelemetry enables you to:
+In Azure IoT Operations, OpenTelemetry lets you:
 
 - Export asset telemetry as OTEL metrics: send sensor readings, production data, or equipment status to observability platforms.
 - Route data without modifying devices: transform MQTT messages to OTEL format at the dataflow layer.
 - Collect and export telemetry data to your preferred observability platform.
-- Integrate with existing observability pipelines: send data to any OTLP-compatible backend (Grafana, Prometheus, Azure Monitor, Datadog).
+- Integrate with existing observability pipelines: send data to any OTLP-compatible backend (Grafana, Prometheus, Azure Monitor, and Datadog).
 
-OTEL dataflow endpoints are first‑class endpoints in Azure IoT Operations. They appear in the list of available dataflow endpoints in the Operations experience portal, and can be selected when configuring modern dataflow graphs. This makes it straightforward to route telemetry to OTEL‑compatible backends while keeping a consistent configuration experience.
+OTEL dataflow endpoints are first-class endpoints in Azure IoT Operations. They appear in the list of available dataflow endpoints in the Operations experience portal and can be selected when configuring modern dataflow graphs. This approach makes it straightforward to route telemetry to OTEL-compatible backends while keeping a consistent configuration experience.
 
 ### Common scenarios
 
@@ -78,7 +78,7 @@ All incoming messages are validated against the required schema. Messages that f
 
 #### Metrics format
 
-Each metric object in the `metrics` array must contain the following fields:
+Each metric object in the `metrics` array must have the following fields:
 
 Required fields:
 - `name` (string): The metric name.
@@ -177,15 +177,15 @@ The following log levels are supported:
 
 ## Create OpenTelemetry endpoint
 
-You can create an OpenTelemetry dataflow endpoint using the IoT operations experience, Bicep, or Kubernetes.
+You can create an OpenTelemetry dataflow endpoint using the IoT Operations experience, Bicep, or Kubernetes.
 
-The dataflow endpoint appears in the list of available dataflow endpoints in the Azure IoT Operations experience. This addition ensures that you can easily identify and select the OTEL endpoint when configuring telemetry pipelines, promoting better integration and visibility across monitoring tools. By surfacing the OTEL endpoint along with other dataflow options, you can more efficiently route telemetry data and maintain consistent observability standards across assets.
+The dataflow endpoint appears in the list of available dataflow endpoints in the Azure IoT Operations experience. This addition ensures that you can easily identify and select the OpenTelemetry endpoint when configuring telemetry pipelines, promoting better integration and visibility across monitoring tools. By surfacing the OTEL endpoint along with other dataflow options, you can route telemetry data and maintain consistent observability standards across assets more efficiently.
 
 :::image type="content" source="media/open-telemetry/dataflow-endpoints.png" alt-text="Screenshot showing endpoints screen." lightbox="media/open-telemetry/dataflow-endpoints.png":::
 
 # [Operations experience](#tab/portal)
 
-1. To create an OpenTelemetry dataflow in the [operations experience](https://iotoperations.azure.com/), select **Dataflow endpoints**.
+1. To create an OpenTelemetry dataflow in the [IoT Operations experience](https://iotoperations.azure.com/), select **Dataflow endpoints**.
 1. From the **Dataflow endpoints** page, select **Open Telemetry**, and then select **+ New**.
 
    :::image type="content" source="media/howto-connect-opentelemetry/create-new-open-telemetry.png" alt-text="Screenshot of the operations experience interface showing the option to create a new OpenTelemetry endpoint":::
@@ -193,7 +193,7 @@ The dataflow endpoint appears in the list of available dataflow endpoints in the
 1. In the **Create new data flow endpoint: Open Telemetry** pane, select the **Basic** configuration tab and provide the following information:
 
     - **Name**: A unique name for the endpoint.
-    - **Host**: The OpenTelemetry collector endpoint in the format`<host>:<port>`; for example, `otel-collector.monitoring.svc.cluster.local:4317`.
+    - **Host**: The OpenTelemetry collector endpoint in the format `<host>:<port>`. For example, `otel-collector.monitoring.svc.cluster.local:4317`.
     - **Authentication method**: Choose one of the following authentication methods:
         - **Kubernetes service account token**: Uses Kubernetes service account tokens to authenticate with the OpenTelemetry collector. Provide the audience value for your OpenTelemetry collector configuration. For more information, see [Service Account Token (SAT)](#service-account-token-sat).
         - **Anonymous**: Use when the OpenTelemetry collector doesn't require authentication.
@@ -206,9 +206,9 @@ The dataflow endpoint appears in the list of available dataflow endpoints in the
     - **Batching latency (in seconds)**: Maximum time to wait before sending a batch. Default is 5 seconds.
     - **Message count**: Maximum number of messages in a batch. Default is 100000 messages.
     - **TLS mode**: Choose one of the following TLS modes:
-        - **Enabled**: Enables TLS for secure communication with the OpenTelemetry collector. Provide the name of a Kubernetes ConfigMap containing your trusted CA certificate.
+        - **Enabled**: Enable TLS for secure communication with the OpenTelemetry collector. Provide the name of a Kubernetes ConfigMap containing your trusted CA certificate.
         - **Disabled**: Disables TLS.
-    - **Trusted CA certificate config map name**: The name of a Kubernetes ConfigMap containing your trusted CA certificate.
+    - **Trusted CA certificate ConfigMap name**: The name of a Kubernetes ConfigMap containing your trusted CA certificate.
 
    :::image type="content" source="media/howto-connect-opentelemetry/create-open-telemetry-advance.png" alt-text="Screenshot of the operations experience interface showing the advanced tab in create a new OpenTelemetry endpoint.":::
 
@@ -216,7 +216,7 @@ The dataflow endpoint appears in the list of available dataflow endpoints in the
 
 # [Bicep](#tab/bicep)
 
-Create a Bicep `.bicep` file with the following content. Update the settings as needed, and replace the placeholder values like `<AIO_INSTANCE_NAME>` with your values. Replace `<OTEL_AUDIENCE>` with the audience value for your OpenTelemetry collector configuration. This value must match the expected audience on the collector.
+Create a Bicep `.bicep` file with the following content. Update the settings as needed and replace the placeholder values like `<AIO_INSTANCE_NAME>` with your values. Replace `<OTEL_AUDIENCE>` with the audience value for your OpenTelemetry collector configuration. This value matches the expected audience on the collector.
 
 ```bicep
 param aioInstanceName string = '<AIO_INSTANCE_NAME>'
@@ -304,7 +304,7 @@ kubectl apply -f <FILE>.yaml
 
 ## Configuration options
 
-This section describes configuration options for OpenTelemetry data flow endpoints.
+This section describes the configuration options for OpenTelemetry data flow endpoints.
 
 ### Host
 
@@ -441,7 +441,7 @@ Configure Transport Layer Security (TLS) settings for secure communication with 
 # [Operations experience](#tab/portal)
 
 1. In the **Create new data flow endpoint: Open Telemetry** pane, under the **Advanced** configuration tab, select **Enabled** as the TLS mode.
-1. In **Trusted CA certificate config map name** provide the name of a Kubernetes ConfigMap containing your trusted CA certificate.
+1. In **Trusted CA certificate config map name**, provide the name of a Kubernetes ConfigMap containing your trusted CA certificate.
 
 # [Bicep](#tab/bicep)
 
@@ -487,7 +487,7 @@ tls:
 
 ### Batching
 
-Configure batching settings to optimize performance by grouping multiple messages before sending to the collector.
+Configure batching settings to optimize performance by grouping multiple messages before sending them to the collector.
 
 # [Operations experience](#tab/portal)
 
@@ -506,7 +506,7 @@ batching: {
 ```
 
 | Property | Description | Default |
-|----------|-------------|---------||
+|----------|-------------|---------|
 | `latencySeconds` | Maximum time to wait before sending a batch. | 60 seconds |
 | `maxMessages` | Maximum number of messages in a batch. | 100000 messages |
 
@@ -527,7 +527,7 @@ batching:
 
 ## Use OpenTelemetry endpoints in dataflow graphs
 
-OTEL dataflow endpoints can be selected as destinations in modern dataflow graphs, allowing metrics and logs to be routed directly to OTEL‑compatible backends. OTEL endpoints aren't available as destinations in classic dataflows. This restriction ensures compatibility with backends that don't support OTEL endpoints.
+OTEL dataflow endpoints can be selected as destinations in modern dataflow graphs, which lets metrics and logs be routed directly to OTEL‑compatible backends. OTEL endpoints aren't available as destinations in classic dataflows. This restriction ensures compatibility with backends that don't support OTEL endpoints.
 
 :::image type="content" source="media/open-telemetry/dataflow-graphs.png" alt-text="Screenshot showing dataflow graphs." lightbox="media/open-telemetry/dataflow-graphs.png":::
 
@@ -535,11 +535,11 @@ OTEL dataflow endpoints can be selected as destinations in modern dataflow graph
 
 ## Walkthrough: Configure an OTEL dataflow endpoint
 
-This section provides a step‑by‑step walkthrough to create and configure an OTEL dataflow endpoint in Azure IoT Operations.
+This section provides a step-by-step walkthrough to create and configure an OTEL dataflow endpoint in Azure IoT Operations.
 
 ### Step 1: Create a new OTEL dataflow endpoint
 
-When you create a new dataflow endpoint, select "OpenTelemetry (OTEL)" as the endpoint type, and make sure the host is prefixed with `http://`.
+When you create a new dataflow endpoint, select **OpenTelemetry (OTEL)** as the endpoint type, and ensure the host is prefixed with `http://`.
 
 :::image type="content" source="media/open-telemetry/create-dataflow.png" alt-text="Screenshot showing configuration of new endpoint." lightbox="media/open-telemetry/create-dataflow.png":::
 
@@ -547,8 +547,8 @@ Follow the steps in [Deploy observability resources and set up logs](../configur
 
 ### Step 2: Create a dataflow graph using the OTEL endpoint
 
-Create a dataflow with the asset as the source. Make sure the metric you want to send to OTEL is a datapoint in the asset. The following example uses a temperature value.
-Select OTEL dataflow graph:
+Create a dataflow with the asset as the source. Ensure the metric you want to send to OTEL is a datapoint in the asset. The following example uses a temperature value.
+Select **OTEL dataflow graph**:
 
 :::image type="content" source="media/open-telemetry/add-graph.png" alt-text="Screenshot of operations experience showing dataflow graph." lightbox="media/open-telemetry/add-graph.png":::
 
@@ -560,7 +560,7 @@ Select the source node and fill in the details. In this example, the temperature
 
 :::image type="content" source="media/open-telemetry/endpoint-details.png" alt-text="Screenshot showing details screen." lightbox="media/open-telemetry/endpoint-details.png":::
 
-Select **OTEL** as the destination and fill in the required details.
+Select **OTEL** as the destination, and fill in the required details.
 
 :::image type="content" source="media/open-telemetry/destination.png" alt-text="Screenshot showing otel as the destination." lightbox="media/open-telemetry/destination.png":::
 
@@ -570,17 +570,17 @@ Select **OTEL** as the destination and fill in the required details.
 
 ### Message validation
 
-OpenTelemetry endpoints validate incoming messages against the required schema. Invalid messages are dropped and acknowledged to prevent message loss in the dataflow pipeline.
+OpenTelemetry endpoints validate incoming messages against the required schema. The system drops invalid messages and acknowledges them to prevent message loss in the dataflow pipeline.
 
 Common validation errors:
-- Missing required fields (`name`, `type`, `value` for metrics; `value`, `level` for logs)
+- Missing required fields (`name`, `type`, and `value` for metrics; `value` and `level` for logs)
 - Invalid metric types or log levels
 - Non-numeric values in metric `value` fields
 - Malformed timestamp values
 
 ### Delivery guarantees
 
-The OpenTelemetry endpoint provides delivery guarantees to the collector itself, but not to upstream services that the collector can forward data to. Once data reaches the collector, Azure IoT Operations doesn't have visibility into whether it reaches the final destination.
+The OpenTelemetry endpoint provides delivery guarantees to the collector itself, but not to upstream services that the collector can forward data to. After data reaches the collector, Azure IoT Operations doesn't have visibility into whether it reaches the final destination.
 
 ## Related content
 
