@@ -68,43 +68,40 @@ Because the new server runs in a Flex Consumption plan, which follows a _pay-for
 The easiest way to get started is to clone an MCP server sample project built with official MCP SDKs:
 
 1. In Visual Studio Code, open a folder or workspace where you want to create your project.
+
+1. Press <kbd>F1</kbd> to open the command palette. Search for and run `Azure Developer CLI (azd): init`.
+
+1. When prompted, select **Select a template**.
+
 ::: zone-end  
 ::: zone pivot="programming-language-csharp"  
-2. In the Terminal, run this command to initialize the .NET sample:
- 
-    ```bash
-    azd init --template mcp-sdk-functions-hosting-dotnet -e mcpsdkserver-dotnet
-    ```
+4. Enter `mcp-sdk-functions-hosting-dotnet` as the template.
 
-    This command pulls the project files from the [template repository](https://github.com/Azure-Samples/mcp-sdk-functions-hosting-dotnet) and initializes the project in the current folder. The `-e` flag sets a name for the current environment. In `azd`, the environment maintains a unique deployment context for your app, and you can define more than one. It's also used in names of the resources you create in Azure.    
+1. When prompted, enter `mcpsdkserver-dotnet` as the environment name.
+
+    The command pulls the project files from the [template repository](https://github.com/Azure-Samples/mcp-sdk-functions-hosting-dotnet) and initializes the project in the current folder. In `azd`, the environment maintains a unique deployment context for your app, and you can define more than one. It's also used in names of the resources you create in Azure.    
 ::: zone-end  
 <!---replace when Java is supported:
 ::: zone pivot="programming-language-java"  
-2. In the Terminal, run this command to initialize the .NET sample:
- 
-    ```bash
-    azd init --template mcp-sdk-functions-hosting-java -e mcpsdkserver-java
-    ```
+4. Enter `mcp-sdk-functions-hosting-java` as the template.
 
-    This command pulls the project files from the [template repository](https://github.com/Azure-Samples/mcp-sdk-functions-hosting-java) and initializes the project in the current folder. The `-e` flag sets a name for the current environment. In `azd`, the environment maintains a unique deployment context for your app, and you can define more than one. It's also used in names of the resources you create in Azure. 
+1. When prompted, enter `mcpsdkserver-java` as the environment name.
+
+    The command pulls the project files from the [template repository](https://github.com/Azure-Samples/mcp-sdk-functions-hosting-java) and initializes the project in the current folder. In `azd`, the environment maintains a unique deployment context for your app, and you can define more than one. It's also used in names of the resources you create in Azure. 
 ::: zone-end  -->
 ::: zone pivot="programming-language-typescript"  
-2. In the Terminal, run this command to initialize the TypeScript sample:
- 
-    ```bash
-    azd init --template mcp-sdk-functions-hosting-node  -e mcpsdkserver-node
-    ```
+4. Enter `mcp-sdk-functions-hosting-node` as the template.
 
-    This command pulls the project files from the [template repository](https://github.com/Azure-Samples/mcp-sdk-functions-hosting-node    ) and initializes the project in the current folder. The `-e` flag sets a name for the current environment. In `azd`, the environment maintains a unique deployment context for your app, and you can define more than one. It's also used in names of the resources you create in Azure.  
+1. When prompted, enter `mcpsdkserver-node` as the environment name.
+
+    The command pulls the project files from the [template repository](https://github.com/Azure-Samples/mcp-sdk-functions-hosting-node) and initializes the project in the current folder. In `azd`, the environment maintains a unique deployment context for your app, and you can define more than one. It's also used in names of the resources you create in Azure.  
 ::: zone-end
 ::: zone pivot="programming-language-python"  
-2. In the Terminal, run this command to initialize the Python sample:
- 
-    ```bash
-    azd init --template mcp-sdk-functions-hosting-python -e mcpsdkserver-python
-    ```
+4. Enter `mcp-sdk-functions-hosting-python` as the template.
 
-    This command pulls the project files from the [template repository](https://github.com/Azure-Samples/mcp-sdk-functions-hosting-java) and initializes the project in the current folder. The `-e` flag sets a name for the current environment. In `azd`, the environment maintains a unique deployment context for your app, and you can define more than one. It's also used in names of the resources you create in Azure.  
+1. When prompted, enter `mcpsdkserver-python` as the environment name.
+
+    The command pulls the project files from the [template repository](https://github.com/Azure-Samples/mcp-sdk-functions-hosting-python) and initializes the project in the current folder. In `azd`, the environment maintains a unique deployment context for your app, and you can define more than one. It's also used in names of the resources you create in Azure.  
 ::: zone-end
 ::: zone pivot="programming-language-csharp,programming-language-python,programming-language-typescript" 
 
@@ -149,15 +146,9 @@ After you verify the tool functionality locally, you can stop the server and dep
 
 ## Deploy to Azure
 
-This project is configured to use the `azd up` command to deploy this project to a new function app in a Flex Consumption plan in Azure. The project includes a set of Bicep files that `azd` uses to create a secure deployment that follows best practices.
+This project is configured to use `azd` to deploy this project to a new function app in a Flex Consumption plan in Azure. The project includes a set of Bicep files that `azd` uses to create a secure deployment that follows best practices.
 
-1. Sign in to Azure:
-
-    ```bash
-    azd login
-    ```
-
-1. Configure Visual Studio Code as a preauthorized client application:
+1. In the Visual Studio Code terminal, configure Visual Studio Code as a preauthorized client application:
 
     ```bash
     azd env set PRE_AUTHORIZED_CLIENT_IDS aebc6443-996d-45c2-90f0-388ff96faa56
@@ -165,7 +156,7 @@ This project is configured to use the `azd up` command to deploy this project to
 
     A preauthorized application can authenticate to and access your MCP server without requiring more consent prompts.
 
-1. In Visual Studio Code, press <kbd>F1</kbd> to open the command palette. Search for and run the command `Azure Developer CLI (azd): Package, Provision and Deploy (up)`. Then, sign in by using your Azure account.
+1. Press <kbd>F1</kbd> to open the command palette. Search for and run the command `Azure Developer CLI (azd): Package, Provision and Deploy (up)`. Then, sign in by using your Azure account.
 
 1. When prompted, provide these required deployment parameters:
 
