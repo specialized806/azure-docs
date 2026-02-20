@@ -46,7 +46,7 @@ To configure a private connection, use the Storage Endpoints section of your Sto
 1. Navigate to your Storage Mover instance in the Azure portal.
 2. Under **Storage endpoints**, select **Private Connection** > **Create Private Connection**.
 
-   :::image type="content" source="./media/private-connections/private-connections/storage-endpoints.png" alt-text="Screenshot of navigation to private connections in Storage Mover." lightbox="./media/private-connections/private-connections/storage-endpoints.png":::
+   :::image type="content" source="./media/private-connections/storage-endpoints.png" alt-text="Screenshot of navigation to private connections in Storage Mover." lightbox="./media/private-connections/storage-endpoints.png":::
 
 3. Enter a name for this private connection. This name matches the name of the Private Endpoint that you later approve to connect to the Private Link Service.
 4. Select the appropriate **Private Link Service Direct Connect** that directs you to the correct AWS S3 bucket you want to migrate to Azure.
@@ -166,5 +166,6 @@ You can modify private connections on an existing job at any time before or afte
 :::image type="content" source="./media/private-connections/added-private-connection.png" alt-text="Screenshot of the addition of a private connection to a job." lightbox="./media/private-connections/added-private-connection.png":::
 
 :::image type="content" source="./media/private-connections/save-pc-edits.png" alt-text="Screenshot of the saved edits of a private connection for a job." lightbox="./media/private-connections/save-pc-edits.png":::
+
 
 
