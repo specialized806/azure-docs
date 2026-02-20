@@ -8,6 +8,7 @@ ms.service: azure-api-management
 ms.topic: how-to
 ms.date: 02/19/2026
 ms.author: danlep
+ai-usage: ai-assisted
 ---
 
 # Use token authentication for the self-hosted gateway
