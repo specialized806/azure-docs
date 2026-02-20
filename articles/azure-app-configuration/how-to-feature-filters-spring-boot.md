@@ -85,7 +85,7 @@ You've added a custom feature filter named **Random** with a **Percentage** para
 
 ## Feature filter in action
 
-When you run the application, the configuration provider loads the *Beta* feature flag from Azure App Configuration. The result of the `isEnabled("Beta")` method is printed to the console. As the `RandomFilter` is implemented and used by the *Beta* feature flag, the result is `True` 50 percent of the time and `False` the other 50 percent of the time.
+When you run the application, the configuration provider loads the *Beta* feature flag from Azure App Configuration. The result of the `isEnabled("Beta")` method is printed to the console. Since the `RandomFilter` is used by the *Beta* feature flag and is configured to 50 percent, the result is `True` 50 percent of the time and `False` the other 50 percent of the time.
 
 Running the application shows that the *Beta* feature flag is sometimes enabled and sometimes not.
 
