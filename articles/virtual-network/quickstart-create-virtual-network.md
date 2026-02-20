@@ -165,7 +165,7 @@ Azure Bastion uses your browser to connect to virtual machines in your virtual n
     New-AzPublicIpAddress @ip
     ```
 
-1. Use the [New-AzBastion](/powershell/module/az.network/new-azbastion) command to create a new Standard SKU Bastion host in **AzureBastionSubnet**:
+1. Use the [New-AzBastion](/powershell/module/az.network/new-azbastion) command to create a new Basic SKU Bastion host in **AzureBastionSubnet**:
 
     ```azurepowershell-interactive
     $bastion = @{
@@ -356,7 +356,8 @@ Azure Bastion uses your browser to connect to virtual machines in your virtual n
         --public-ip-address public-ip \
         --resource-group test-rg \
         --vnet-name vnet-1 \
-        --location eastus2
+        --location eastus2 \
+        --sku Basic
     ```
 
 It takes about 10 minutes to deploy the Bastion resources. You can create virtual machines in the next section while Bastion deploys to your virtual network.
