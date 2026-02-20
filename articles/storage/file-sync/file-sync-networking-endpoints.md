@@ -570,7 +570,7 @@ Access restriction to the public endpoint is done using the storage account fire
 > Storage Sync Services can't be placed inside a perimeter, and full perimeter integration isn't supported.
 >
 > To connect a Storage Sync Service to a storage account protected by an NSP:
-> 1. Configure the Storage Sync Service to use [Managed Identities](../file-sync/file-sync-managed-identities.md).
+> 1. Configure the Storage Sync Service to use [Managed Identities](file-sync-managed-identities.md).
 > 2. Create an NSP inbound profile rule that allowlists the subscription hosting the Storage Sync Service.
 >
 > Storage Sync Services must remain outside the perimeter for sync to function correctly.
