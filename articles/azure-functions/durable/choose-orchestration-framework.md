@@ -47,20 +47,29 @@ The following table summarizes the key differences between the two programming m
 | **Monitoring** | Built-in integration with Azure portal, Application Insights | You set up your own monitoring solution (for example, Azure Monitor, Prometheus, or Grafana) |
 
 > [!NOTE]
-> **Cold start** occurs when a function app starts after being idle. [Premium](../functions-premium-plan.md) and [Dedicated](../dedicated-plan.md) hosting plans keep instances warm to reduce cold start latency. Learn more about [Azure Functions hosting options](../functions-scale.md).
+> **Cold start** occurs when a function app starts after being idle. [Premium](../functions-premium-plan.md) and [Dedicated](../dedicated-plan.md) hosting plans keep instances warm to reduce cold start latency. 
+>
+> The [Flex Consumption](../flex-consumption-plan.md) hosting plan offers [an "always read instances" concept](../flex-consumption-plan.md#always-ready-instances) as cold start mitigation.
+> 
+> Learn more about [Azure Functions hosting options](../functions-scale.md).
 
 ### Built-in HTTP APIs
 
-Durable Functions exposes HTTP endpoints for orchestration management automatically, while the Durable Task SDKs require you to implement your own.
+Azure Functions provides HTTP endpoints for your functions app, which the Durable Functions extension leverages to provide built-in support for instance management over HTTP. 
+
+When using the Durable Task SDKs, you need to implement your own HTTP endpoints depending on your hosting compute.
 
 | Feature | Durable Functions | Durable Task SDKs |
 |---------|-------------------|-------------------|
 | **Management HTTP APIs** | ✅ Built-in | ❌ Implement your own |
-| **Automatic status URLs** | ✅ `CreateCheckStatusResponse()` | ❌ Implement your own |
+| **Automatic status URLs** | ✅ Built-in | ❌ Implement your own |
 
 #### Durable Functions HTTP features
 
 Durable Functions automatically exposes HTTP endpoints for starting orchestrations, querying status, raising events, and terminating instances. These APIs follow the async HTTP polling pattern, making it easy to integrate with external systems.
+
+> [!NOTE]
+> Durable Functions supports using `DurableTaskClient` class directly if you would prefer it to using the built-in HTTP APIs.
 
 Learn more: [HTTP features in Durable Functions](durable-functions-http-features.md) | [HTTP API reference](durable-functions-http-api.md)
 
@@ -82,15 +91,13 @@ Durable Functions supports multiple storage backends, while the Durable Task SDK
 | **Durable Task Scheduler** | ✅ Recommended | ✅ Required |
 | **Azure Storage** | ✅ Supported | ❌ Not supported |
 | **Microsoft SQL Server** | ✅ Supported | ❌ Not supported |
+| **Netherite** | ⚠️ Supported, but being retired | ❌ Not supported |
 
 Learn more: [Storage providers](durable-functions-storage-providers.md)
 
 ### Task hub configuration
 
-| Feature | Durable Functions | Durable Task SDKs |
-|---------|-------------------|-------------------|
-| **Configuration location** | `host.json` file | Code and environment variables (connection string/endpoint) |
-| **Task hub creation** | Automatic or via portal | Azure portal or CLI |
+Durable Functions configures task hubs in the `host.json` file. The Durable Task SDKs configure task hubs in code and environment variables (connection string/endpoint).
 
 Learn more: [Task hubs](durable-functions-task-hubs.md)
 
