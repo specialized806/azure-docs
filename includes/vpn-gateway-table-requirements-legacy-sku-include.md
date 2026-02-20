@@ -13,8 +13,8 @@ The following table lists the requirements for policy-based and route-based VPN 
 
 | Capability or feature | Policy-based Basic VPN Gateway | Route-based Basic VPN Gateway | Route-based Standard VPN Gateway | Route-based High Performance VPN Gateway |
 | --- | --- | --- | --- | --- |
-| Site-to-site connectivity (S2S) | Policy-based VPN configuration | Route-based VPN configuration | Route-based VPN configuration | Route-based VPN configuration |
-| Point-to-site connectivity (P2S) | Not supported | Supported (can coexist with S2S) | Supported (can coexist with S2S) | Supported (can coexist with S2S) |
+| Site-to-site (S2S) connectivity | Policy-based VPN configuration | Route-based VPN configuration | Route-based VPN configuration | Route-based VPN configuration |
+| Point-to-site (P2S) connectivity | Not supported | Supported (can coexist with S2S) | Supported (can coexist with S2S) | Supported (can coexist with S2S) |
 | Authentication method | Pre-shared key | Pre-shared key for S2S connectivity. Certificates for P2S connectivity. | Pre-shared key for S2S connectivity. Certificates for P2S connectivity. | Pre-shared key for S2S connectivity. Certificates for P2S connectivity. |
 | Maximum number of S2S connections | 1 | 10 | 10 | 30 |
 | Maximum number of P2S connections | Not supported | 128 | 128 | 128 |

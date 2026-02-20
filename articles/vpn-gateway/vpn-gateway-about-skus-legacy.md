@@ -10,15 +10,17 @@ ms.author: cherylmc
 ---
 # Work with VPN Gateway legacy SKUs
 
-This article contains information about the legacy (old) virtual network Azure VPN Gateway SKUs. The legacy SKUs still work in both deployment models for existing VPN gateways. Classic VPN gateways continue to use the legacy SKUs, for both existing and new gateways. When you create new VPN gateways in Azure Resource Manager, use the new gateway SKUs. For information about the new SKUs, see [About VPN Gateway](vpn-gateway-about-vpngateways.md). For the projected gateway SKU deprecation and migration timeline, see the [What's new?](whats-new.md) article.
+This article contains information about the legacy (old) virtual network Azure VPN Gateway SKUs. The legacy SKUs still work in both deployment models for existing VPN gateways. Classic VPN gateways continue to use the legacy SKUs, for both existing and new gateways. When you create new VPN gateways in Azure Resource Manager, use the new gateway SKUs.
+
+For information about the new SKUs, see [About VPN Gateway](vpn-gateway-about-vpngateways.md). For the projected gateway SKU deprecation and migration timeline, see the [What's new?](whats-new.md) article.
 
 ## <a name="gwsku"></a>Legacy gateway SKUs
 
 [!INCLUDE [Legacy gateway SKUs](../../includes/vpn-gateway-gwsku-legacy-include.md)]
 
-You can view legacy gateway pricing on the [ExpressRoute pricing page](https://azure.microsoft.com/pricing/details/expressroute). Select the **ExpressRoute Gateways** tab, and refer to the table in the **Virtual Network Gateways** section.
+You can view legacy gateway pricing on the [Azure ExpressRoute pricing page](https://azure.microsoft.com/pricing/details/expressroute). Select the **ExpressRoute Gateways** tab, and refer to the table in the **Virtual Network Gateways** section.
 
-For SKU deprecation, see the [SKU deprecation](#sku-deprecation) and SKU deprecation [FAQs](#sku-deprecation-faqs) sections of this article.
+For SKU deprecation, see the [SKU deprecation](#sku-deprecation) and [FAQs](#sku-deprecation-faqs) sections of this article.
 
 ## <a name="agg"></a>Estimated aggregate throughput by SKU
 
@@ -80,7 +82,7 @@ Resize-AzureVirtualNetworkGateway -GatewayId <Gateway ID> -GatewaySKU HighPerfor
 
 ### <a name="change"></a>Change to the new gateway SKUs
 
-Standard and High Performance SKUs will be deprecated on March 31, 2026. The product team will migrate the legacy SKUs. For more information, see the [Legacy SKU deprecation](#sku-deprecation) section. You can choose to change from a legacy SKU to one of the new SKUs at any point. If you change to a new SKU, there are more steps required and you'll incur downtime.
+Standard and High Performance SKUs will be deprecated on March 31, 2026. The product team will migrate the legacy SKUs. For more information, see the [Legacy SKU deprecation](#sku-deprecation) section. You can choose to change from a legacy SKU to one of the new SKUs at any point. However, changing to a new SKU requires more steps than migrating and incurs downtime.
 
 [!INCLUDE [Change to the new SKUs](../../includes/vpn-gateway-gwsku-change-legacy-sku-include.md)]
 
@@ -95,8 +97,8 @@ For more information, you can:
 
 When the migration path becomes available, as part of basic IP address migration, your gateway SKU will automatically migrate to the following SKUs:
 
-* Standard SKU becomes VpnGw1AZ
-* High Performance SKU becomes VpnGw2AZ
+* Standard SKU becomes VpnGw1AZ.
+* High Performance SKU becomes VpnGw2AZ.
 
 Performance improves after this migration.
 
@@ -107,5 +109,4 @@ Performance improves after this migration.
 ## Related content
 
 * For more information about the new VPN Gateway SKUs, see [Gateway SKUs](vpn-gateway-about-vpngateways.md#gwsku).
-
 * For more information about configuration settings, see [About VPN Gateway configuration settings](vpn-gateway-about-vpn-gateway-settings.md).

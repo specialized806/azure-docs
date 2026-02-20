@@ -4,7 +4,7 @@ titleSuffix: Azure VPN Gateway
 description: Learn about the changes for virtual network gateway SKUs for VPN Gateway.
 author: cherylmc
 ms.service: azure-vpn-gateway
-ms.topic: how-to
+ms.topic: concept-article
 ms.custom: references_regions
 ms.date: 02/03/2026
 
@@ -12,7 +12,7 @@ ms.author: cherylmc
 
 #customer intent: As a network administrator, I want to understand the migration process and benefits of VPN Gateway SKUs transitioning to availability zone support, so that I can ensure my organization's VPN solutions are optimized for reliability and cost-efficiency.
 ---
-# Understand VPN Gateway SKU consolidation and migration
+# VPN Gateway SKU consolidation and migration
 
 We're simplifying our Azure VPN Gateway SKU portfolio. Due to the lack of redundancy, lower availability, and potential higher costs associated with failover solutions, SKUs that aren't supported by an availability zone are migrating to SKUs that are supported by an availability zone.
 
@@ -26,27 +26,27 @@ To support this migration, we're reducing the prices on SKUs supported by availa
 > [!NOTE]
 > This article doesn't apply to the following legacy gateway SKUs: Standard or High Performance. For more information, see [Working with VPN Gateway legacy SKUs](vpn-gateway-about-skus-legacy.md).
 
-## Map old SKUs to new SKUs
+## Mapping old SKUs to new SKUs
 
 The following diagram shows current SKUs and the new SKUs they'll automatically be migrated to.
 
 :::image type="content" source="./media/gateway-sku-consolidation/sku-mapping.png" alt-text="Diagram of gateway SKU mapping." lightbox="./media/gateway-sku-consolidation/sku-mapping-expand.png":::
 
-## FAQ
+## FAQs
 
 ### What actions do I need to take?
 
 * We recommend that you don't change your gateway SKU manually in anticipation of SKU migration unless you want to upgrade to a higher gateway SKU.
-* You can [manually upgrade](gateway-sku-upgrade.md) to a higher gateway SKU. To upgrade SKUs that currently use standard public IP addresses, there's no downtime expected.
+* You can [manually upgrade](gateway-sku-upgrade.md) to a higher gateway SKU. To upgrade SKUs that currently use standard public IP addresses, no downtime is expected.
 * If your gateway currently uses legacy SKUs, see [Working with VPN Gateway legacy SKUs](vpn-gateway-about-skus-legacy.md).
 
 ### How long will my existing gateway SKUs be supported?
 
-The existing gateway SKUs are supported until they're migrated to the new SKUs. The old SKUs are currently scheduled for deprecation on September 16, 2026. Existing SKUs that are supported by availability zones won't be impacted.
+The existing gateway SKUs are supported until they're migrated to the new SKUs. The old SKUs are currently scheduled for deprecation on September 16, 2026. There will be no impact to existing SKUs that are supported by availability zones.
 
 ### Will there be any pricing differences for my gateways after migration?
 
-Yes. For more information, see the new [Pricing](https://azure.microsoft.com/pricing/details/vpn-gateway).
+Yes. For more information, see the new [pricing](https://azure.microsoft.com/pricing/details/vpn-gateway).
 
 ### When does new pricing take effect?
 
@@ -68,7 +68,7 @@ No. This migration is seamless and there's no expected downtime during migration
 
 ### Will there be any performance impact on my gateways with this migration?
 
-Yes. SKUs get the benefits of zone redundancy for VPN gateways in [Azure regions with availability zones](/azure/reliability/availability-zones-region-support). If the region doesn't support zone redundancy, the gateway is regional until the region it's deployed to supports zone redundancy.
+Yes. SKUs get the benefits of zone redundancy for VPN gateways in [Azure regions with availability zones](/azure/reliability/availability-zones-region-support). If the region doesn't support zone redundancy, the gateway is regional until the region it's deployed to support zone redundancy.
 
 ### Is the VPN Gateway Basic SKU retiring?
 
@@ -80,7 +80,7 @@ No. Use a Standard SKU public IP address when you create a Basic SKU VPN gateway
 
 ### When will my legacy gateway be migrated?
 
-See this [announcement](https://azure.microsoft.com/updates/standard-and-highperformance-vpn-gateway-skus-will-be-retired-on-30-september-2025/) and [Working with VPN Gateway legacy SKUs](vpn-gateway-about-skus-legacy.md).
+See [this announcement](https://azure.microsoft.com/updates/standard-and-highperformance-vpn-gateway-skus-will-be-retired-on-30-september-2025/) and [Working with VPN Gateway legacy SKUs](vpn-gateway-about-skus-legacy.md).
 
 ### I have an existing VPN gateway not supported by an availability zone. What changes after this rollout?
 

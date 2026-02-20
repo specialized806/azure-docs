@@ -13,7 +13,9 @@ ms.author: cherylmc
 ---
 # Upgrade a VPN Gateway SKU
 
-This article helps you upgrade an Azure VPN Gateway virtual network gateway SKU. Upgrading a gateway SKU is a relatively fast process with minimal downtime (approximately 45 minutes). You can upgrade a SKU in the Azure portal, or by using PowerShell or the Azure CLI. When you upgrade a SKU, the public IP address assigned to your gateway SKU doesn't change. You don't need to reconfigure your VPN device or your point-to-site (P2S) clients.
+This article helps you upgrade an Azure VPN Gateway virtual network gateway SKU. Upgrading a gateway SKU is a relatively fast process with minimal downtime (approximately 45 minutes). You can upgrade a SKU in the Azure portal, or by using PowerShell or the Azure CLI.
+
+When you upgrade a SKU, the public IP address assigned to your gateway SKU doesn't change. You don't need to reconfigure your VPN device or your point-to-site (P2S) clients.
 
 ## Considerations
 
@@ -33,14 +35,16 @@ In the preceding table, *AZ* stands for *availability zone*, and means that the 
 
 * You can't upgrade a Basic SKU to a new SKU. You must delete the gateway, and then create a new one.
 * You can't downgrade a SKU without deleting the gateway and creating a new one.
-* Legacy gateway SKUs (Standard and High Performance) can't be upgraded to the new SKU families. You must delete the gateway and create a new one. For more information about working with legacy gateway SKUs, see [VPN Gateway legacy SKUs](vpn-gateway-about-skus-legacy.md)
+* Legacy gateway SKUs (Standard and High Performance) can't be upgraded to the new SKU families. You must delete the gateway and create a new one. For more information about working with legacy gateway SKUs, see [VPN Gateway legacy SKUs](vpn-gateway-about-skus-legacy.md).
 
 ## Upgrade a gateway SKU by using the Azure portal
 
 This upgrade takes about 45 minutes to complete. If you're switching to a SKU that supports availability zones within the same tier (for example, from VpnGw1 to VpnGw1AZ), there's no downtime.
 
 1. Go to the **Configuration** page for your virtual network gateway.
-1. On the right side of the page, select the dropdown arrow to show a list of available SKUs. The options listed are based on the starting SKU and SKU generation. Select the SKU you want from the list.
+
+1. On the right side of the page, select the dropdown arrow to show a list of available SKUs. The options listed are based on the starting SKU and SKU generation. Select the SKU that you want from the list.
+
 1. To save your changes and begin the upgrade, select **Save**.
 
 ## Workflow for SKUs that can't be upgraded
@@ -50,11 +54,17 @@ Basic SKUs and legacy gateway SKUs can't be directly upgraded. You must delete t
 The high-level workflow is:
 
 1. Remove any connections to the virtual network gateway.
+
 1. Delete the old VPN gateway.
+
 1. Create the new VPN gateway.
+
 1. Update your on-premises VPN devices with the new VPN gateway IP address (for site-to-site connections).
+
 1. Update the gateway IP address value for any network-to-network local network gateways that connect to this gateway.
+
 1. Download new client VPN configuration packages for point-to-site clients that connect to the virtual network through this VPN gateway.
+
 1. Re-create the connections to the virtual network gateway.
 
 ## Related content

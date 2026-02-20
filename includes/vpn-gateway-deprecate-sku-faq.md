@@ -32,12 +32,12 @@ Yes. You get better performance with the VpnGw1AZ and VpnGw2AZ SKUs. For more in
 
 ### What happens if I don't migrate by February 28, 2026?
 
-To ensure a smooth transition, we strongly recommend that customers use the basic IP migration tool to migrate their basic IPs and associated gateways. After March, we'll attempt to migrate automatically all gateways that still use the Standard or High Performance SKU:
+To ensure a smooth transition, we strongly recommend that customers use the basic IP migration tool to migrate their basic IPs and associated gateways. After March 2026, we'll attempt to migrate automatically all gateways that still use the Standard or High Performance SKU:
 
-* Gateways on the Standard SKU will be automatically upgraded to VpnGw1AZ
-* Gateways on the High Performance SKU will be automatically upgraded to VpnGw2AZ
+* Gateways on the Standard SKU will be automatically upgraded to VpnGw1AZ.
+* Gateways on the High Performance SKU will be automatically upgraded to VpnGw2AZ.
 
-If we encounter limitations such as insufficient subnet size, we won’t be able to complete the gateway migration automatically. In this case, you'll need to take appropriate steps to resolve.
+If we encounter limitations such as insufficient subnet size, we won't be able to complete the gateway migration automatically. In this case, you'll need to take appropriate steps to resolve.
 
 ### Is the VPN Gateway Basic SKU also retiring?
 

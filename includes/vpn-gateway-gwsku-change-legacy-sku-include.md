@@ -15,11 +15,17 @@ If you're working with the Azure Resource Manager deployment model, you can chan
 Workflow:
 
 1. Remove any connections to the virtual network gateway.
+
 1. Delete the old VPN gateway.
+
 1. Create the new VPN gateway.
+
 1. Update your on-premises VPN devices with the new VPN gateway IP address (for site-to-site connections).
+
 1. Update the gateway IP address value for any network-to-network local network gateways that connect to this gateway.
+
 1. Download new client VPN configuration packages for point-to-site clients that connect to the virtual network through this VPN gateway.
+
 1. Re-create the connections to the virtual network gateway.
 
 Considerations:
