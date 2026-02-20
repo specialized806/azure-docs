@@ -123,6 +123,7 @@ $bastionParams = @{
     PublicIpAddressName = "public-ip-bastion"
     PublicIpAddressRgName = "test-rg"
     VirtualNetworkRgName = "test-rg"
+    Sku = "Basic"
 }
 New-AzBastion @bastionParams -AsJob
 ```
@@ -314,7 +315,8 @@ New-AzBastion @bastionParams -AsJob
       --name $BASTION_NAME \
       --vnet-name $VNET_NAME \
       --public-ip-address $PUBLIC_IP_NAME \
-      --location $LOCATION
+      --location $LOCATION \
+      --sku Basic
     ```
 
     Results:
