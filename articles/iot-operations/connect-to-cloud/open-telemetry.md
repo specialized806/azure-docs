@@ -181,14 +181,14 @@ You can create an OpenTelemetry dataflow endpoint using the IoT Operations exper
 
 The dataflow endpoint appears in the list of available dataflow endpoints in the Azure IoT Operations experience. This addition ensures that you can easily identify and select the OpenTelemetry endpoint when configuring telemetry pipelines, promoting better integration and visibility across monitoring tools. By surfacing the OTEL endpoint along with other dataflow options, you can route telemetry data and maintain consistent observability standards across assets more efficiently.
 
-:::image type="content" source="media/open-telemetry/dataflow-endpoints.png" alt-text="Screenshot showing endpoints screen." lightbox="media/open-telemetry/dataflow-endpoints.png":::
+:::image type="content" source="media/open-telemetry/dataflow-endpoints.png" alt-text="Screenshot showing endpoints screen." lightbox="media/open-telemetry/dataflow-endpoints.png" lightbox="media/open-telemetry/dataflow-endpoints.png":::
 
 # [Operations experience](#tab/portal)
 
 1. To create an OpenTelemetry dataflow in the [IoT Operations experience](https://iotoperations.azure.com/), select **Dataflow endpoints**.
 1. From the **Dataflow endpoints** page, select **Open Telemetry**, and then select **+ New**.
 
-   :::image type="content" source="media/howto-connect-opentelemetry/create-new-open-telemetry.png" alt-text="Screenshot of the operations experience interface showing the option to create a new OpenTelemetry endpoint":::
+   :::image type="content" source="media/open-telemetry/create-new-open-telemetry.png" alt-text="Screenshot of the operations experience interface showing the option to create a new OpenTelemetry endpoint":::
 
 1. In the **Create new data flow endpoint: Open Telemetry** pane, select the **Basic** configuration tab and provide the following information:
 
@@ -199,7 +199,7 @@ The dataflow endpoint appears in the list of available dataflow endpoints in the
         - **Anonymous**: Use when the OpenTelemetry collector doesn't require authentication.
         - **X509 certificate**: Uses client certificates for mutual TLS authentication. Provide the name of a Kubernetes secret containing your client certificate. For more information, see [X.509 certificate](#x509-certificate).
 
-   :::image type="content" source="media/howto-connect-opentelemetry/create-new-open-telemetry-basic.png" alt-text="Screenshot of the operations experience interface showing the basic tab in create a new OpenTelemetry endpoint.":::
+   :::image type="content" source="media/open-telemetry/create-new-open-telemetry-basic.png" alt-text="Screenshot of the operations experience interface showing the basic tab in create a new OpenTelemetry endpoint." lightbox="media/open-telemetry/create-new-open-telemetry-basic.png":::
 
 1. Select the **Advanced** configuration tab and provide the following information:
 
@@ -210,13 +210,13 @@ The dataflow endpoint appears in the list of available dataflow endpoints in the
         - **Disabled**: Disables TLS.
     - **Trusted CA certificate ConfigMap name**: The name of a Kubernetes ConfigMap containing your trusted CA certificate.
 
-   :::image type="content" source="media/howto-connect-opentelemetry/create-open-telemetry-advance.png" alt-text="Screenshot of the operations experience interface showing the advanced tab in create a new OpenTelemetry endpoint.":::
+   :::image type="content" source="media/open-telemetry/create-open-telemetry-advance.png" alt-text="Screenshot of the operations experience interface showing the advanced tab in create a new OpenTelemetry endpoint." lightbox="media/open-telemetry/create-open-telemetry-advance.png":::
 
 1. Select **Apply** to create the OpenTelemetry endpoint.
 
 # [Bicep](#tab/bicep)
 
-Create a Bicep `.bicep` file with the following content. Update the settings as needed and replace the placeholder values like `<AIO_INSTANCE_NAME>` with your values. Replace `<OTEL_AUDIENCE>` with the audience value for your OpenTelemetry collector configuration. This value matches the expected audience on the collector.
+Create a Bicep **.bicep** file with the following content. Update the settings as needed and replace the placeholder values like `<AIO_INSTANCE_NAME>` with your values. Replace `<OTEL_AUDIENCE>` with the audience value for your OpenTelemetry collector configuration. This value matches the expected audience on the collector.
 
 ```bicep
 param aioInstanceName string = '<AIO_INSTANCE_NAME>'
@@ -270,7 +270,7 @@ az deployment group create --resource-group <RESOURCE_GROUP> --template-file <FI
 
 # [Kubernetes (preview)](#tab/kubernetes)
 
-Create a Kubernetes manifest `.yaml` file with the following content. Replace `<OTEL_AUDIENCE>` with the audience value for your OpenTelemetry collector configuration. This value must match the expected audience on the collector:
+Create a Kubernetes manifest **.yaml** file with the following content. Replace `<OTEL_AUDIENCE>` with the audience value for your OpenTelemetry collector configuration. This value must match the expected audience on the collector:
 
 ```yaml
 apiVersion: connectivity.iotoperations.azure.com/v1beta1
@@ -330,7 +330,7 @@ Replace `<OTEL_AUDIENCE>` with the audience value for your OpenTelemetry collect
 1. In the **Create new data flow endpoint: Open Telemetry** pane, under the **Basic** configuration tab, select **Kubernetes service account token** as the authentication method.
 1. Provide the **Service audience** value for your OpenTelemetry collector configuration.
 
-    :::image type="content" source="media/howto-connect-opentelemetry/service-account-token.png" alt-text="Screenshot of the operations experience interface showing the authentication method selection in create a new OpenTelemetry endpoint.":::
+    :::image type="content" source="media/howto-connect-opentelemetry/service-account-token.png" alt-text="Screenshot of the operations experience interface showing the authentication method selection in create a new OpenTelemetry endpoint." lightbox="media/howto-connect-opentelemetry/service-account-token.png":::
 
 > [!IMPORTANT] 
 > You can only choose the authentication method when creating a new OpenTelemetry data flow endpoint. You can't change the authentication method after the OpenTelemetry data flow endpoint is created.
@@ -372,7 +372,7 @@ X.509 certificate authentication uses client certificates for mutual TLS authent
     - **X509 client key**: The private key for the client certificate.
     - **X509 intermediate certificates**: The intermediate certificates for the client certificate chain.
 
-    :::image type="content" source="media/howto-connect-opentelemetry/x-509-certificate.png" alt-text="Screenshot of the operations experience interface showing the X509 authentication method selection in create a new OpenTelemetry endpoint.":::
+    :::image type="content" source="media/howto-connect-opentelemetry/x-509-certificate.png" alt-text="Screenshot of the operations experience interface showing the X509 authentication method selection in create a new OpenTelemetry endpoint." lightbox="media/howto-connect-opentelemetry/x-509-certificate.png":::
 
 # [Bicep](#tab/bicep)
 
