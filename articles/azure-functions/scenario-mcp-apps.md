@@ -1,0 +1,234 @@
+---
+title: Build an MCP Apps server using Azure Functions
+description: "Learn how to create and deploy an MCP Apps server that returns interactive UI using Azure Functions. This quickstart uses the Azure Developer CLI to deploy an MCP Apps project that enables AI clients to access tools with rich interactive interfaces hosted on Azure's Flex Consumption plan."
+ms.date: 02/20/2026
+ms.topic: quickstart
+ai-usage: ai-assisted
+ms.collection: 
+  - ce-skilling-ai-copilot
+zone_pivot_groups: programming-languages-set-functions
+#Customer intent: As a developer, I want to create an MCP Apps server that returns interactive UI from my MCP tools, so AI clients can render rich visual experiences using Azure Functions.
+---
+
+# Quickstart: Build an MCP Apps server using Azure Functions
+
+In this quickstart, you create an [MCP Apps](https://blog.modelcontextprotocol.io/posts/2026-01-26-mcp-apps/) server from a template project using the Azure Developer CLI (`azd`). [MCP Apps](https://blog.modelcontextprotocol.io/posts/2026-01-26-mcp-apps/) is an extension of the Model Context Protocol (MCP) specification that lets tools return interactive user interfaces (HTML/JavaScript in sandboxed iframes) instead of plain text. The MCP server uses the Azure Functions MCP server extension to provide tools with rich UI for AI models, agents, and assistants. After running the project locally and verifying your code using GitHub Copilot, you deploy it to a new serverless function app in Azure Functions that follows current best practices for secure and scalable deployments.
+
+>[!TIP]  
+>If you want to create a custom MCP server that uses text-based tools instead of interactive UI, see [Quickstart: Build a custom remote MCP server using Azure Functions](scenario-custom-remote-mcp-server.md).
+
+Because the new app runs on the Flex Consumption plan, which follows a _pay-for-what-you-use_ billing model, completing this quickstart incurs a small cost of a few USD cents or less in your Azure account.
+
+::: zone pivot="programming-language-javascript,programming-language-java,programming-language-powershell"  
+> [!IMPORTANT]  
+> While [creating custom MCP servers](./functions-bindings-mcp.md) is supported for all Functions languages, this MCP Apps quickstart currently only has examples for C#, Python, and TypeScript. To complete this quickstart, select one of these supported languages at the top of the article. 
+::: zone-end  
+::: zone pivot="programming-language-typescript"
+This article supports version 4 of the Node.js programming model for Azure Functions.
+::: zone-end
+::: zone pivot="programming-language-python"
+This article supports version 2 of the Python programming model for Azure Functions.
+::: zone-end
+::: zone pivot="programming-language-csharp,programming-language-python,programming-language-typescript" 
+## Prerequisites
+::: zone-end  
+::: zone pivot="programming-language-csharp"  
++ [.NET 10 SDK](https://dotnet.microsoft.com/download)
+::: zone-end  
+<!-- replace when supported 
+::: zone pivot="programming-language-javascript,programming-language-typescript" -->
+::: zone pivot="programming-language-typescript"
++ [Node.js 20](https://nodejs.org/)  
+::: zone-end  
+::: zone pivot="programming-language-python" 
++ [Python 3.11](https://www.python.org/)
+::: zone-end  
+::: zone pivot="programming-language-csharp,programming-language-python,programming-language-typescript" 
+
++ [Node.js](https://nodejs.org/) (required to build the MCP Apps UI)
+
++ [Visual Studio Code](https://code.visualstudio.com/) with these extensions:
+
+    + [Azure Functions extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions). This extension requires [Azure Functions Core Tools](functions-run-local.md) and attempts to install it when not available. 
+
+    + [Azure Developer CLI extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.azure-dev).
+
++ [Azurite storage emulator](../storage/common/storage-install-azurite.md#install-azurite) 
+
++ [Azure CLI](/cli/azure/install-azure-cli). You can also run Azure CLI commands in [Azure Cloud Shell](../cloud-shell/overview.md).
+
++ An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+
+## Initialize the project
+
+Use the `azd init` command to create a local Azure Functions code project from a template.
+
+1. In Visual Studio Code, open a folder or workspace where you want to create your project.
+
+::: zone-end  
+::: zone pivot="programming-language-csharp"  
+2. In the Terminal, run this `azd init` command:
+ 
+    ```console
+    azd init --template remote-mcp-functions-dotnet -e mcpweather-dotnet
+    ```
+
+    This command pulls the project files from the [template repository](https://github.com/Azure-Samples/remote-mcp-functions-dotnet) and initializes the project in the current folder. The `-e` flag sets a name for the current environment. In `azd`, the environment maintains a unique deployment context for your app, and you can define more than one. It's also used in the name of the resource group you create in Azure.       
+::: zone-end  
+::: zone pivot="programming-language-typescript"  
+2. In your local terminal or command prompt, run this `azd init` command:
+ 
+    ```console
+    azd init --template remote-mcp-functions-typescript -e mcpweather-ts
+    ```
+
+    This command pulls the project files from the [template repository](https://github.com/Azure-Samples/remote-mcp-functions-typescript) and initializes the project in the current folder. The `-e` flag sets a name for the current environment. In `azd`, the environment maintains a unique deployment context for your app, and you can define more than one. It's also used in names of the resources you create in Azure.   
+::: zone-end
+::: zone pivot="programming-language-python"  
+2. In your local terminal or command prompt, run this `azd init` command:
+ 
+    ```console
+    azd init --template remote-mcp-functions-python -e mcpweather-python
+    ```
+
+    This command pulls the project files from the [template repository](https://github.com/Azure-Samples/remote-mcp-functions-python) and initializes the project in the current folder. The `-e` flag sets a name for the current environment. In `azd`, the environment maintains a unique deployment context for your app, and you can define more than one. It's also used in names of the resources you create in Azure. 
+::: zone-end
+::: zone pivot="programming-language-csharp,programming-language-python,programming-language-typescript" 
+## Start the storage emulator
+
+[!INCLUDE [start-storage-emulator](../../includes/functions-mcp-start-storage-emulator.md)]
+
+## Build the MCP Apps UI
+
+The MCP Apps weather tool includes a frontend application that must be built before running the project.
+::: zone-end
+::: zone pivot="programming-language-csharp"  
+
+1. In the terminal, navigate to the UI app folder and build:
+
+    ```console
+    cd src/McpWeatherApp/app
+    npm install
+    npm run build
+    cd ../../..
+    ```
+
+::: zone-end
+::: zone pivot="programming-language-python"  
+
+1. In the terminal, navigate to the UI app folder and build:
+
+    ```console
+    cd src/app
+    npm install
+    npm run build
+    cd ../..
+    ```
+
+::: zone-end
+::: zone pivot="programming-language-typescript"  
+
+1. In the terminal, navigate to the UI app folder and build:
+
+    ```console
+    cd src/app
+    npm install
+    npm run build
+    cd ../..
+    ```
+
+::: zone-end
+::: zone pivot="programming-language-csharp,programming-language-python,programming-language-typescript" 
+## Run your MCP server locally 
+
+[!INCLUDE [run-locally](../../includes/functions-mcp-run-locally.md)]
+
+## Verify using GitHub Copilot
+
+To verify your code, add the running project as an MCP server for GitHub Copilot in Visual Studio Code: 
+
+1. Press <kbd>F1</kbd>. In the command palette, search for and run **MCP: Add Server**.
+
+1. Choose **HTTP (Server-Sent Events)** for the transport type.
+
+1. Enter the URL of the MCP endpoint you copied in the previous step.
+
+1. Use the generated **Server ID** and select **Workspace** to save the MCP server connection to your Workspace settings.
+
+1. Open the command palette and run **MCP: List Servers** and verify that the server you added is listed and running.
+
+1. In Copilot chat, select **Agent** mode and run this prompt:
+
+    ```copilot-prompt
+    What's the weather in Seattle?
+    ```
+
+    When prompted to run the tool, select **Allow in this Workspace** so you don't have to keep granting permission. The prompt runs the `GetWeather` tool, which returns weather data. Because this tool declares UI metadata, the MCP host also fetches the UI resource and renders an interactive weather widget in a sandboxed iframe within the chat.
+
+1. When you're done testing, press Ctrl+C to stop the Functions host.
+
+## Review the code (optional)
+
+You can review the code that defines the MCP Apps tools. An MCP Apps tool requires two components:
+
++ A **tool with UI metadata** that declares a `ui.resourceUri` pointing to a UI resource.
++ A **resource** that serves the bundled HTML/JavaScript at the matching `ui://` URI.
+::: zone-end  
+::: zone pivot="programming-language-csharp"
+The function code for the MCP Apps weather tool is defined in the `src/McpWeatherApp` folder. The `[McpMetadata]` attribute adds UI metadata to the tool, and the `[McpResourceTrigger]` attribute serves the HTML widget:
+
+:::code language="csharp" source="~/functions-scenarios-custom-mcp-dotnet/src/McpWeatherApp/WeatherFunction.cs" range="12-46" :::  
+
+:::code language="csharp" source="~/functions-scenarios-custom-mcp-dotnet/src/McpWeatherApp/WeatherFunction.cs" range="48-55" :::
+
+The `ToolMetadata` constant declares a `ui.resourceUri` that tells the MCP host to fetch the interactive UI from `ui://weather/index.html` after the tool runs. The `GetWeatherWidget` function serves the bundled HTML file at that URI using `[McpResourceTrigger]`.
+
+You can view the complete project template in the [Azure Functions .NET MCP Server](https://github.com/Azure-Samples/remote-mcp-functions-dotnet) GitHub repository.
+::: zone-end  
+::: zone pivot="programming-language-python"
+The function code for the MCP Apps weather tool is defined in the `src/function_app.py` file. The `metadata` parameter on `@app.mcp_tool()` adds UI metadata to the tool, and `@app.mcp_resource_trigger()` serves the HTML widget:
+
+:::code language="python" source="~/functions-scenarios-custom-mcp-python/src/function_app.py" range="14-24" :::
+
+:::code language="python" source="~/functions-scenarios-custom-mcp-python/src/function_app.py" range="85-95" :::
+
+:::code language="python" source="~/functions-scenarios-custom-mcp-python/src/function_app.py" range="118-122" :::
+
+The `TOOL_METADATA` constant declares a `ui.resourceUri` that tells the MCP host to fetch the interactive UI from `ui://weather/index.html` after the tool runs. The `get_weather_widget` function serves the bundled HTML file at that URI using `@app.mcp_resource_trigger()`.
+
+You can view the complete project template in the [Azure Functions Python MCP Server](https://github.com/Azure-Samples/remote-mcp-functions-python) GitHub repository.
+::: zone-end   
+::: zone pivot="programming-language-typescript"
+The function code for the MCP Apps weather tool is defined in the `src/functions/weatherMcpApp.ts` file. The `metadata` property on `app.mcpTool()` adds UI metadata to the tool, and `app.mcpResource()` serves the HTML widget:
+
+:::code language="typescript" source="~/functions-scenarios-custom-mcp-typescript/src/functions/weatherMcpApp.ts" range="6-25" :::
+
+:::code language="typescript" source="~/functions-scenarios-custom-mcp-typescript/src/functions/weatherMcpApp.ts" range="87-106" :::
+
+The `TOOL_METADATA` constant declares a `ui.resourceUri` that tells the MCP host to fetch the interactive UI from `ui://weather/index.html` after the tool runs. The `getWeatherWidget` handler serves the bundled HTML file at that URI when registered with `app.mcpResource()`.
+
+You can view the complete project template in the [Azure Functions TypeScript MCP Server](https://github.com/Azure-Samples/remote-mcp-functions-typescript) GitHub repository.  
+::: zone-end  
+::: zone pivot="programming-language-csharp,programming-language-python,programming-language-typescript" 
+After verifying the MCP Apps tools locally, you can publish the project to Azure.
+
+## Deploy to Azure
+
+[!INCLUDE [deploy-azure](../../includes/functions-mcp-deploy-azure.md)]
+
+## Connect to your remote MCP server
+
+[!INCLUDE [connect-remote](../../includes/functions-mcp-connect-remote.md)]
+
+## Verify your deployment
+
+You can now have GitHub Copilot use your remote MCP tools just as you did locally, but now the code runs securely in Azure. Replay the same commands you used earlier to ensure everything works correctly.
+
+## Clean up resources
+
+[!INCLUDE [cleanup](../../includes/functions-mcp-cleanup.md)]
+::: zone-end  
+## Next steps
+
+> [!div class="nextstepaction"]
+> [Configure built-in MCP server authorization](../app-service/configure-authentication-mcp.md)
