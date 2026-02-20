@@ -10,7 +10,7 @@
  ms.custom: include file
 ---
 
-If you're working with the Resource Manager deployment model, you can change to the new gateway SKUs. When you change from a legacy gateway SKU to a new SKU, you delete the existing VPN gateway and create a new VPN gateway.
+If you're working with the Azure Resource Manager deployment model, you can change to the new gateway SKUs. When you change from a legacy gateway SKU to a new SKU, you delete the existing VPN gateway and create a new VPN gateway.
 
 Workflow:
 

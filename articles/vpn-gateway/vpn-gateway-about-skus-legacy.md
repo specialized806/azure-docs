@@ -10,7 +10,7 @@ ms.author: cherylmc
 ---
 # Work with VPN Gateway legacy SKUs
 
-This article contains information about the legacy (old) virtual network gateway SKUs. The legacy SKUs still work in both deployment models for existing VPN gateways. Classic VPN gateways continue to use the legacy SKUs, for both existing and new gateways. When you create new Resource Manager VPN gateways, use the new gateway SKUs. For information about the new SKUs, see [About VPN Gateway](vpn-gateway-about-vpngateways.md). For the projected gateway SKU deprecation and migration timeline, see the [What's new?](whats-new.md) article.
+This article contains information about the legacy (old) virtual network Azure VPN Gateway SKUs. The legacy SKUs still work in both deployment models for existing VPN gateways. Classic VPN gateways continue to use the legacy SKUs, for both existing and new gateways. When you create new VPN gateways in Azure Resource Manager, use the new gateway SKUs. For information about the new SKUs, see [About VPN Gateway](vpn-gateway-about-vpngateways.md). For the projected gateway SKU deprecation and migration timeline, see the [What's new?](whats-new.md) article.
 
 ## <a name="gwsku"></a>Legacy gateway SKUs
 
@@ -106,6 +106,6 @@ Performance improves after this migration.
 
 ## Related content
 
-For more information about the new VPN Gateway SKUs, see [Gateway SKUs](vpn-gateway-about-vpngateways.md#gwsku).
+* For more information about the new VPN Gateway SKUs, see [Gateway SKUs](vpn-gateway-about-vpngateways.md#gwsku).
 
-For more information about configuration settings, see [About VPN Gateway configuration settings](vpn-gateway-about-vpn-gateway-settings.md).
+* For more information about configuration settings, see [About VPN Gateway configuration settings](vpn-gateway-about-vpn-gateway-settings.md).

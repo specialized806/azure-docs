@@ -12,9 +12,9 @@ ms.author: cherylmc
 
 #customer intent: As a network administrator, I want to understand the migration process and benefits of VPN Gateway SKUs transitioning to availability zone support, so that I can ensure my organization's VPN solutions are optimized for reliability and cost-efficiency.
 ---
-# VPN Gateway SKU consolidation and migration
+# Understand VPN Gateway SKU consolidation and migration
 
-We're simplifying our VPN Gateway SKU portfolio. Due to the lack of redundancy, lower availability, and potential higher costs associated with failover solutions, SKUs that aren't supported by an availability zone are migrating to SKUs that are supported by an availability zone.
+We're simplifying our Azure VPN Gateway SKU portfolio. Due to the lack of redundancy, lower availability, and potential higher costs associated with failover solutions, SKUs that aren't supported by an availability zone are migrating to SKUs that are supported by an availability zone.
 
 This article helps you understand the changes for VPN Gateway virtual network gateway SKUs. This article expands on the [official announcement](https://azure.microsoft.com/updates/v2/vpngw1-5-non-az-skus-will-be-retired-on-30-september-2026).
 
@@ -36,8 +36,8 @@ The following diagram shows current SKUs and the new SKUs they'll automatically 
 
 ### What actions do I need to take?
 
-* We recommend that you don't change your gateway SKU manually in anticipation of SKU migration unless you want to upgrade to a later gateway SKU.
-* You can [manually upgrade](gateway-sku-upgrade.md) to a later gateway SKU. To upgrade SKUs that currently use standard public IP addresses, there's no downtime expected.
+* We recommend that you don't change your gateway SKU manually in anticipation of SKU migration unless you want to upgrade to a higher gateway SKU.
+* You can [manually upgrade](gateway-sku-upgrade.md) to a higher gateway SKU. To upgrade SKUs that currently use standard public IP addresses, there's no downtime expected.
 * If your gateway currently uses legacy SKUs, see [Working with VPN Gateway legacy SKUs](vpn-gateway-about-skus-legacy.md).
 
 ### How long will my existing gateway SKUs be supported?
@@ -100,4 +100,4 @@ These SKUs become zone-redundant only in regions that support availability zones
 
 ## Related content
 
-For more information about SKUs, see [About gateway SKUs](about-gateway-skus.md).
+* For more information about SKUs, see [About gateway SKUs](about-gateway-skus.md).
