@@ -347,12 +347,19 @@ If you already have a Spring Boot web app with authentication, you can skip to t
 
         @Override
         public void configureTargetingContext(TargetingContext context) {
-            ServletRequestAttributes at        ServletRequestAttributes) RequestContextHolder
-                    .getRequestAttribut                f (attributes != null) {
-            String username = attri            ().getParameter("username");
-                if (username != null) {                  context.setUserId(u                       }
+            ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder
+                    .getRequestAttributes();
+            if (attributes != null) {
+                String username = attributes.getRequest().getParameter("username");
+                if (username != null) {
+                    context.setUserId(username);
+                }
             }
-                  ``        te     troller.java* to use the variant feature flag:
+        }
+    }
+    ```
+
+1. Update *HomeController.java* to use the variant feature flag:
 
     ```java
     package com.example.quoteoftheday;
@@ -388,10 +395,6 @@ If you already have a Spring Boot web app with authentication, you can skip to t
         @GetMapping("/")
         public String index(Model model, Principal principal) {
 
-            // Get the variant for the Greeting feature flag
-            String greetingMessage = "";
-            Variant variant = featureManager.getVariant("Greeting");
-            if (variant != null) {
                 Object value = variant.getValue();
                 if (value != null) {
                     greetingMessage = value.toString();
