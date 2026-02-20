@@ -173,7 +173,7 @@ Install cert-manager using Helm:
 ```bash
 helm install \
   cert-manager oci://quay.io/jetstack/charts/cert-manager \
-  --version v1.19.1 \
+  --version v1.19.3 \
   --namespace cert-manager \
   --create-namespace \
   --set config.enableGatewayAPI=true \
