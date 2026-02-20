@@ -45,19 +45,6 @@ If you already have a Spring Boot web app with authentication, you can skip to t
         <artifactId>spring-boot-starter-thymeleaf</artifactId>
         <scope>compile</scope>
     </dependency>
-    <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-security</artifactId>
-    </dependency>
-    <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-data-jpa</artifactId>
-    </dependency>
-    <dependency>
-        <groupId>com.h2database</groupId>
-        <artifactId>h2</artifactId>
-        <scope>runtime</scope>
-    </dependency>
     ```
 
 ## Create the Quote of the Day app
@@ -71,156 +58,11 @@ If you already have a Spring Boot web app with authentication, you can skip to t
     }
     ```
 
-1. Create a new file named *User.java* in the same folder with the following content. It defines the user entity for authentication.
-
-    ```java
-    package com.example.quoteoftheday;
-
-    import jakarta.persistence.Entity;
-    import jakarta.persistence.GeneratedValue;
-    import jakarta.persistence.GenerationType;
-    import jakarta.persistence.Id;
-    import jakarta.persistence.Table;
-
-    @Entity
-    @Table(name = "users")
-    public class User {
-
-        @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        private Long id;
-
-        private String username;
-
-        private String password;
-
-        public User() {
-        }
-
-        public User(String username, String password) {
-            this.username = username;
-            this.password = password;
-        }
-
-        public Long getId() {
-            return id;
-        }
-
-        public void setId(Long id) {
-            this.id = id;
-        }
-
-        public String getUsername() {
-            return username;
-        }
-
-        public void setUsername(String username) {
-            this.username = username;
-        }
-
-        public String getPassword() {
-            return password;
-        }
-
-        public void setPassword(String password) {
-            this.password = password;
-        }
-    }
-    ```
-
-1. Create a new file named *UserRepository.java* with the following content:
-
-    ```java
-    package com.example.quoteoftheday;
-
-    import java.util.Optional;
-
-    import org.springframework.data.jpa.repository.JpaRepository;
-
-    public interface UserRepository extends JpaRepository<User, Long> {
-        Optional<User> findByUsername(String username);
-    }
-    ```
-
-1. Create a new file named *CustomUserDetailsService.java* with the following content:
-
-    ```java
-    package com.example.quoteoftheday;
-
-    import org.springframework.security.core.userdetails.UserDetails;
-    import org.springframework.security.core.userdetails.UserDetailsService;
-    import org.springframework.security.core.userdetails.UsernameNotFoundException;
-    import org.springframework.stereotype.Service;
-
-    @Service
-    public class CustomUserDetailsService implements UserDetailsService {
-
-        private final UserRepository userRepository;
-
-        public CustomUserDetailsService(UserRepository userRepository) {
-            this.userRepository = userRepository;
-        }
-
-        @Override
-        public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-            User user = userRepository.findByUsername(username)
-                    .orElseThrow(() -> new UsernameNotFoundException("User not found: " + username));
-
-            return org.springframework.security.core.userdetails.User.builder()
-                    .username(user.getUsername())
-                    .password(user.getPassword())
-                    .roles("USER")
-                    .build();
-        }
-    }
-    ```
-
-1. Create a new file named *SecurityConfig.java* with the following content to configure Spring Security:
-
-    ```java
-    package com.example.quoteoftheday;
-
-    import org.springframework.context.annotation.Bean;
-    import org.springframework.context.annotation.Configuration;
-    import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-    import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-    import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-    import org.springframework.security.crypto.password.PasswordEncoder;
-    import org.springframework.security.web.SecurityFilterChain;
-
-    @Configuration
-    @EnableWebSecurity
-    public class SecurityConfig {
-
-        @Bean
-        public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-            http
-                    .authorizeHttpRequests(auth -> auth
-                            .requestMatchers("/register", "/css/**").permitAll()
-                            .anyRequest().permitAll())
-                    .formLogin(form -> form
-                            .loginPage("/login")
-                            .defaultSuccessUrl("/", true)
-                            .permitAll())
-                    .logout(logout -> logout
-                            .logoutSuccessUrl("/")
-                            .permitAll());
-            return http.build();
-        }
-
-        @Bean
-        public PasswordEncoder passwordEncoder() {
-            return new BCryptPasswordEncoder();
-        }
-    }
-    ```
-
 1. Create a new file named *HomeController.java* with the following content. It handles the home page display with a random quote.
 
     ```java
     package com.example.quoteoftheday;
 
-    import java.security.Principal;
     import java.util.List;
     import java.util.Random;
 
@@ -238,76 +80,11 @@ If you already have a Spring Boot web app with authentication, you can skip to t
 
         @GetMapping("/")
         public String index(Model model, Principal principal) {
-            String username = "Guest";
-            if (principal != null) {
-                username = principal.getName();
-            }
-            model.addAttribute("user", username);
-            model.addAttribute("isAuthenticated", principal != null);
-
             String greetingMessage = "Hi";
             model.addAttribute("greetingMessage", greetingMessage);
             model.addAttribute("quote", quotes.get(random.nextInt(quotes.size())));
 
             return "index";
-        }
-    }
-    ```
-
-1. Create a new file named *AuthController.java* with the following content to handle user registration:
-
-    ```java
-    package com.example.quoteoftheday;
-
-    import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-    import org.springframework.security.core.context.SecurityContextHolder;
-    import org.springframework.security.core.userdetails.UserDetails;
-    import org.springframework.security.crypto.password.PasswordEncoder;
-    import org.springframework.stereotype.Controller;
-    import org.springframework.web.bind.annotation.GetMapping;
-    import org.springframework.web.bind.annotation.PostMapping;
-    import org.springframework.web.bind.annotation.RequestParam;
-
-    @Controller
-    public class AuthController {
-
-        private final UserRepository userRepository;
-        private final PasswordEncoder passwordEncoder;
-        private final CustomUserDetailsService userDetailsService;
-
-        public AuthController(UserRepository userRepository, PasswordEncoder passwordEncoder,
-                CustomUserDetailsService userDetailsService) {
-            this.userRepository = userRepository;
-            this.passwordEncoder = passwordEncoder;
-            this.userDetailsService = userDetailsService;
-        }
-
-        @GetMapping("/register")
-        public String registerForm() {
-            return "register";
-        }
-
-        @PostMapping("/register")
-        public String register(@RequestParam String username, @RequestParam String password) {
-            if (userRepository.findByUsername(username).isPresent()) {
-                return "redirect:/register?error";
-            }
-
-            User user = new User(username, passwordEncoder.encode(password));
-            userRepository.save(user);
-
-            // Auto-login after registration
-            UserDetails userDetails = userDetailsService.loadUserByUsername(username);
-            UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(userDetails, null,
-                    userDetails.getAuthorities());
-            SecurityContextHolder.getContext().setAuthentication(auth);
-
-            return "redirect:/";
-        }
-
-        @GetMapping("/login")
-        public String loginForm() {
-            return "login";
         }
     }
     ```
@@ -350,12 +127,6 @@ If you already have a Spring Boot web app with authentication, you can skip to t
                                     <button type="submit" class="nav-link text-dark btn btn-link">Logout</button>
                                 </form>
                             </li>
-                            <li class="nav-item" th:unless="${isAuthenticated}">
-                                <a class="nav-link text-dark" href="/register">Register</a>
-                            </li>
-                            <li class="nav-item" th:unless="${isAuthenticated}">
-                                <a class="nav-link text-dark" href="/login">Login</a>
-                            </li>
                         </ul>
                     </div>
                 </div>
@@ -396,104 +167,6 @@ If you already have a Spring Boot web app with authentication, you can skip to t
                 icon.classList.toggle('fas');
             }
         </script>
-    </body>
-    </html>
-    ```
-
-1. Create a new file named *register.html* in the *templates* directory with the following content:
-
-    ```html
-    <!DOCTYPE html>
-    <html lang="en" xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Register - QuoteOfTheDay</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-            integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-        <link rel="stylesheet" th:href="@{/css/site.css}">
-    </head>
-    <body>
-        <header>
-            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-                <div class="container">
-                    <a class="navbar-brand" href="/">QuoteOfTheDay</a>
-                </div>
-            </nav>
-        </header>
-        <div class="container">
-            <main role="main" class="pb-3">
-                <div class="login-container">
-                    <h1>Create an account</h1>
-                    <div th:if="${param.error}" class="alert alert-danger">Username already exists</div>
-                    <form th:action="@{/register}" method="post">
-                        <div class="mb-3">
-                            <label for="username" class="form-label">Username:</label>
-                            <input type="text" name="username" id="username" class="form-control" required />
-                        </div>
-                        <div class="mb-3">
-                            <label for="password" class="form-label">Password:</label>
-                            <input type="password" name="password" id="password" class="form-control" required />
-                        </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>
-                </div>
-            </main>
-        </div>
-        <footer class="border-top footer text-muted">
-            <div class="container">
-                &copy; 2024 - QuoteOfTheDay
-            </div>
-        </footer>
-    </body>
-    </html>
-    ```
-
-1. Create a new file named *login.html* in the *templates* directory with the following content:
-
-    ```html
-    <!DOCTYPE html>
-    <html lang="en" xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Login - QuoteOfTheDay</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-            integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-        <link rel="stylesheet" th:href="@{/css/site.css}">
-    </head>
-    <body>
-        <header>
-            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-                <div class="container">
-                    <a class="navbar-brand" href="/">QuoteOfTheDay</a>
-                </div>
-            </nav>
-        </header>
-        <div class="container">
-            <main role="main" class="pb-3">
-                <div class="login-container">
-                    <h1>Login to your account</h1>
-                    <div th:if="${param.error}" class="alert alert-danger">Invalid username or password</div>
-                    <form th:action="@{/login}" method="post">
-                        <div class="mb-3">
-                            <label for="username" class="form-label">Username:</label>
-                            <input type="text" name="username" id="username" class="form-control" required />
-                        </div>
-                        <div class="mb-3">
-                            <label for="password" class="form-label">Password:</label>
-                            <input type="password" name="password" id="password" class="form-control" required />
-                        </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>
-                </div>
-            </main>
-        </div>
-        <footer class="border-top footer text-muted">
-            <div class="container">
-                &copy; 2024 - QuoteOfTheDay
-            </div>
-        </footer>
     </body>
     </html>
     ```
@@ -607,11 +280,6 @@ If you already have a Spring Boot web app with authentication, you can skip to t
 
     ```properties
     spring.application.name=quoteoftheday
-    spring.datasource.url=jdbc:h2:mem:testdb
-    spring.datasource.driverClassName=org.h2.Driver
-    spring.datasource.username=sa
-    spring.datasource.password=
-    spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
     spring.jpa.hibernate.ddl-auto=create-drop
     ```
 
@@ -667,8 +335,6 @@ If you already have a Spring Boot web app with authentication, you can skip to t
     ```java
     package com.example.quoteoftheday;
 
-    import java.security.Principal;
-
     import org.springframework.stereotype.Component;
     import org.springframework.web.context.request.RequestContextHolder;
     import org.springframework.web.context.request.ServletRequestAttributes;
@@ -681,24 +347,16 @@ If you already have a Spring Boot web app with authentication, you can skip to t
 
         @Override
         public void configureTargetingContext(TargetingContext context) {
-            ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder
-                    .getRequestAttributes();
-            if (attributes != null) {
-                Principal principal = attributes.getRequest().getUserPrincipal();
-                if (principal != null) {
-                    context.setUserId(principal.getName());
-                }
+            ServletRequestAttributes at        ServletRequestAttributes) RequestContextHolder
+                    .getRequestAttribut                f (attributes != null) {
+            String username = attri            ().getParameter("username");
+                if (username != null) {                  context.setUserId(u                       }
             }
-        }
-    }
-    ```
-
-1. Update *HomeController.java* to use the variant feature flag:
+                  ``        te     troller.java* to use the variant feature flag:
 
     ```java
     package com.example.quoteoftheday;
 
-    import java.security.Principal;
     import java.util.List;
     import java.util.Random;
 
@@ -729,12 +387,6 @@ If you already have a Spring Boot web app with authentication, you can skip to t
 
         @GetMapping("/")
         public String index(Model model, Principal principal) {
-            String username = "Guest";
-            if (principal != null) {
-                username = principal.getName();
-            }
-            model.addAttribute("user", username);
-            model.addAttribute("isAuthenticated", principal != null);
 
             // Get the variant for the Greeting feature flag
             String greetingMessage = "";
@@ -744,9 +396,6 @@ If you already have a Spring Boot web app with authentication, you can skip to t
                 if (value != null) {
                     greetingMessage = value.toString();
                 }
-            } else {
-                LOGGER.warn(
-                        "No variant given. Either the feature flag named 'Greeting' is not defined or the variants are not defined properly.");
             }
 
             model.addAttribute("greetingMessage", greetingMessage);
