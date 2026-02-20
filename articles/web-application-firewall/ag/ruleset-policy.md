@@ -31,23 +31,23 @@ Azure Web Application Firewall supports a defined set of managed ruleset version
 Starting February 2026, Azure WAF actively **supports the latest three ruleset releases** in the following format:
 
 
-- **N** – Latest available rule set version (for example, **DRS 2.2**)
+- **N:** Latest available rule set version (for example, **DRS 2.2**)
 
-- **N-1** – Previous rule set version (for example, **DRS 2.1**)
+- **N-1:** Previous rule set version (for example, **DRS 2.1**)
 
 ::: zone pivot="application-gateway"
 
-- **N-2** – Second previous rule set version (for example, **CRS 3.2**)
+- **N-2:** Second previous rule set version (for example, **CRS 3.2**)
 
 ::: zone-end
 
 ::: zone pivot="front-door"
 
-- **N-2** – Second previous rule set version (for example, **DRS 2.0**)
+- **N-2:** Second previous rule set version (for example, **DRS 2.0**)
 
 ::: zone-end
 
-Only these **N, N-1, and N-2 versions** are supported for general use and receive ongoing updates, improvements, and rule tuning from the Azure WAF team.
+Only **N, N-1, and N-2 versions** are supported for general use and receive ongoing updates, improvements, and rule tuning from the Azure WAF team.
 
 ## Extended support for older rule sets
 
@@ -111,7 +111,7 @@ The following tables summarize the current support status and planned end of sup
 | **DRS 2.2** | February 2026 | Supported | Not defined yet |
 | **DRS 2.1** | October 2023 | Supported | Not defined yet |
 | **CRS 3.2** | August 2021 | Supported | Not defined yet. Support ends one year after the release of the **first** DRS version newer than DRS 2.2 |
-| **CRS 3.1****CRS 3.0** | N/A | Supported | February 26, 2027 |
+| **CRS 3.1** <br> **CRS 3.0** | N/A | Supported | February 26, 2027 |
 | **CRS 2.2.9** | N/A | Not supported | March 15, 2025 |
 
 ::: zone-end
@@ -123,24 +123,34 @@ The following tables summarize the current support status and planned end of sup
 | **DRS 2.2** | February 2026 | Supported | Not defined yet |
 | **DRS 2.1** | October 2023 | Supported | Not defined yet |
 | **DRS 2.0** | August 2021 | Supported | Not defined yet. Support ends one year after the release of the **first** DRS version newer than DRS 2.2 |
-| **DRS 1.2****DRS 1.1****DRS 1.0** | N/A | Supported | February 26, 2027 |
+| **DRS 1.2** <br> **DRS 1.1** <br> **DRS 1.0** | N/A | Supported | February 26, 2027 |
 
 ::: zone-end
 
-### Bot Management Ruleset
+### Bot management ruleset
+
+::: zone pivot="application-gateway"
 
 | **Ruleset version** | **Release date** | **Support status** | **Support end date** |
 |----|----|----|----|
 | **Bot Management 1.1** | October 2024 | Supported | Not defined yet |
 | **Bot Management 1.0** | July 2021 | Supported | Not defined yet |
+| **Bot Management 0.1** | N/A | Not supported | Preview version - not supported |
 
-::: zone pivot="application-gateway"
-
-### HTTP DDoS Ruleset
+### HTTP DDoS ruleset
 
 | **Ruleset version** | **Release date** | **Support status** | **Support end date** |
 |----|----|----|----|
 | **HTTP DDoS Ruleset 1.0** | November 2025 | Supported | Not defined yet |
+
+::: zone-end
+
+::: zone pivot="front-door"
+
+| **Ruleset version** | **Release date** | **Support status** | **Support end date** |
+|----|----|----|----|
+| **Bot Management 1.1** | October 2024 | Supported | Not defined yet |
+| **Bot Management 1.0** | July 2021 | Supported | Not defined yet |
 
 ::: zone-end
 
