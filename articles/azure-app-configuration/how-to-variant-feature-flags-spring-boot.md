@@ -29,23 +29,9 @@ If you already have a Spring Boot web app with authentication, you can skip to t
     * Generate a **Maven** project with **Java**.
     * Specify a **Spring Boot** version that's 3.0 or later.
     * Set the **Group** to `com.example` and **Artifact** to `quoteoftheday`.
-    * Add the **Spring Web**, **Thymeleaf**, and **Spring Security** dependencies.
+    * Add the **Spring Web**, and **Thymeleaf** dependencies.
 
 1. After you specify the options, select **Generate** to download the project. Extract the files to your local system.
-
-1. Open the *pom.xml* file and add the Spring Data JPA and H2 dependencies for user authentication:
-
-    ```xml
-    <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-web</artifactId>
-    </dependency>
-    <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-thymeleaf</artifactId>
-        <scope>compile</scope>
-    </dependency>
-    ```
 
 ## Create the Quote of the Day app
 
@@ -79,7 +65,7 @@ If you already have a Spring Boot web app with authentication, you can skip to t
         private final Random random = new Random();
 
         @GetMapping("/")
-        public String index(Model model, Principal principal) {
+        public String index(Model model) {
             String greetingMessage = "Hi";
             model.addAttribute("greetingMessage", greetingMessage);
             model.addAttribute("quote", quotes.get(random.nextInt(quotes.size())));
