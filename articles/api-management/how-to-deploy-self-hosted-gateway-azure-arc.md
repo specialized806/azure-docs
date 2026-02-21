@@ -4,7 +4,9 @@ description: Enable Azure Arc to deploy your self-hosted Azure API Management ga
 author: dlepow
 ms.author: danlep
 ms.service: azure-api-management
-ms.custom: devx-track-azurecli, references_regions
+ms.custom: 
+  - devx-track-azurecli
+  - references_regions
 ms.topic: how-to 
 ms.date: 10/06/2025
 ---
