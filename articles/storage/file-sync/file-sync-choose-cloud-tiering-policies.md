@@ -84,7 +84,7 @@ Because the volume free space policy takes precedence over the date policy, Azur
 Microsoft recommends the following approach:
 - Configure a volume free space policy that aligns with the volume capacity and expected working set to be cached on server.
 - Select a date policy that reflects actual file usage patterns. This setting is optional.
-- Monitor current free space, cache hit rate, recall size, data tiering size and overall workload performance to fine tune the free space policy or the total volume size.
+- Monitor current free space, cache hit rate, recall size, data tiering size, and overall workload performance to fine tune the free space policy or the total volume size.
 
 This approach helps maintain an appropriate balance between local performance and cloud storage utilization.
 
