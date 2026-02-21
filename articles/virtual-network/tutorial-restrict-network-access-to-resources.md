@@ -926,6 +926,7 @@ To test network access to a storage account, deploy a virtual machine to each su
 Create a virtual machine in the *subnet-public* subnet with [New-AzVM](/powershell/module/az.compute/new-azvm).
 
 ```azurepowershell-interactive
+$cred = New-Object System.Management.Automation.PSCredential("azureuser", (ConvertTo-SecureString " " -AsPlainText -Force))
 $vm1 = @{
     ResourceGroupName = "test-rg"
     Location = "westus2"
@@ -933,8 +934,8 @@ $vm1 = @{
     SubnetName = "subnet-public"
     Name = "vm-public"
     Image = "Ubuntu2204"
-    AdminUsername = "azureuser"
-    PublicIpAddressName = $null
+    Credential = $cred
+    PublicIpAddressName = ""
     GenerateSshKey = $true
     SshKeyName = "vm-public-key"
 }
@@ -953,8 +954,8 @@ $vm2 = @{
     SubnetName = "subnet-private"
     Name = "vm-private"
     Image = "Ubuntu2204"
-    AdminUsername = "azureuser"
-    PublicIpAddressName = $null
+    Credential = $cred
+    PublicIpAddressName = ""
     GenerateSshKey = $true
     SshKeyName = "vm-private-key"
 }
