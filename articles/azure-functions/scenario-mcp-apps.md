@@ -52,7 +52,7 @@ This article supports version 2 of the Python programming model for Azure Functi
 ::: zone pivot="programming-language-csharp,programming-language-python,programming-language-typescript" 
 + [Node.js](https://nodejs.org/) (required to build the MCP Apps UI)
 
-+ [Visual Studio Code Insiders](https://code.visualstudio.com/insiders) with these extensions:
++ [Visual Studio Code](https://code.visualstudio.com/) with these extensions:
 
     + [Azure Functions extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions). This extension requires [Azure Functions Core Tools](functions-run-local.md) and attempts to install it when not available. 
     + [Azure Developer CLI extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.azure-dev).
@@ -62,9 +62,6 @@ This article supports version 2 of the Python programming model for Azure Functi
 + [Azure CLI](/cli/azure/install-azure-cli). You can also run Azure CLI commands in [Azure Cloud Shell](../cloud-shell/overview.md).
 
 + An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-
-> [!IMPORTANT]
-> MCP Apps require [Visual Studio Code Insiders](https://code.visualstudio.com/insiders). The stable release of VS Code doesn't yet support rendering MCP App UI resources.
 
 ## Initialize the project
 
@@ -166,19 +163,13 @@ The MCP Apps weather tool includes a frontend application that you must build be
 
 ## Verify by using GitHub Copilot
 
-To verify your code, add the running project as an MCP server for GitHub Copilot in Visual Studio Code: 
+The project template includes a `.vscode/mcp.json` file that already defines a `local-mcp-function` server pointing to your local MCP endpoint. Use this configuration to verify your code with GitHub Copilot in Visual Studio Code:
 
-1. Press <kbd>F1</kbd>. In the command palette, search for and run **MCP: Add Server**.
+1. Open the `.vscode/mcp.json` file and select the **Start** button above the `local-mcp-function` configuration.
 
-1. Choose **HTTP (Server-Sent Events)** for the transport type.
+1. In the Copilot **Chat** window, make sure that the **Agent** mode is selected, select the **Configure tools** icon, and verify that `MCP Server:local-mcp-function` is enabled in the chat.
 
-1. Enter the URL of the MCP endpoint you copied in the previous step.
-
-1. Use the generated **Server ID** and select **Workspace** to save the MCP server connection to your Workspace settings.
-
-1. Open the command palette and run **MCP: List Servers** and verify that the server you added is listed and running.
-
-1. In Copilot chat, select **Agent** mode and run this prompt:
+1. Run this prompt:
 
     ```copilot-prompt
     What's the weather in Seattle?
@@ -207,13 +198,13 @@ The `ToolMetadata` constant declares a `ui.resourceUri` that tells the MCP host 
 You can view the complete project template in the [Azure Functions .NET MCP Server](https://github.com/Azure-Samples/remote-mcp-functions-dotnet) GitHub repository.
 ::: zone-end  
 ::: zone pivot="programming-language-python"
-The function code for the MCP Apps weather tool is defined in the `src/function_app.py` file. The `metadata` parameter on `@app.mcp_tool()` adds UI metadata to the tool, and `@app.mcp_resource_trigger()` serves the HTML widget:
+The function code for the MCP Apps weather tool is defined in the `src/function_app.py` file. The `metadata` parameter on `@app.mcp_tool()` adds UI metadata to the tool:
 
 :::code language="python" source="~/functions-scenarios-custom-mcp-python/src/function_app.py" range="109-130" :::
 
-:::code language="python" source="~/functions-scenarios-custom-mcp-python/src/function_app.py" range="64-105" :::
+The `TOOL_METADATA` constant declares a `ui.resourceUri` that tells the MCP host to fetch the interactive UI from `ui://weather/index.html` after the tool runs. The `@app.mcp_resource_trigger()` method serves the HTML widget.  The `get_weather_widget` function serves the bundled HTML file at that URI using `@app.mcp_resource_trigger()`:
 
-The `TOOL_METADATA` constant declares a `ui.resourceUri` that tells the MCP host to fetch the interactive UI from `ui://weather/index.html` after the tool runs. The `get_weather_widget` function serves the bundled HTML file at that URI using `@app.mcp_resource_trigger()`.
+:::code language="python" source="~/functions-scenarios-custom-mcp-python/src/function_app.py" range="64-105" :::
 
 You can view the complete project template in the [Azure Functions Python MCP Server](https://github.com/Azure-Samples/remote-mcp-functions-python) GitHub repository.
 ::: zone-end   

@@ -121,24 +121,27 @@ Use the `azd init` command to create a local Azure Functions code project from a
 [!INCLUDE [start-storage-emulator](../../includes/functions-mcp-start-storage-emulator.md)]
 
 ## Run your MCP server locally 
+::: zone-end  
+::: zone pivot="programming-language-csharp"  
+In a terminal window, navigate to the `FunctionsMcpTool` project folder:
+
+```console
+cd src/FunctionsMcpTool
+```
+::: zone-end  
+::: zone pivot="programming-language-csharp,programming-language-java,programming-language-python,programming-language-typescript" 
 
 [!INCLUDE [run-locally](../../includes/functions-mcp-run-locally.md)] 
 
 ## Verify using GitHub Copilot
 
-To verify your code, add the running project as an MCP server for GitHub Copilot in Visual Studio Code: 
+The project template includes a `.vscode/mcp.json` file that already defines a `local-mcp-function` server pointing to your local MCP endpoint. Use this configuration to verify your code with GitHub Copilot in Visual Studio Code:
 
-1. Press <kbd>F1</kbd>. In the command palette, search for and run **MCP: Add Server**.
+1. Open the `.vscode/mcp.json` file and select the **Start** button above the `local-mcp-function` configuration.
 
-1. Choose **HTTP (Server-Sent Events)** for the transport type.
+1. In the Copilot **Chat** window, make sure that the **Agent** mode is selected, select the **Configure tools** icon, and verify that `MCP Server:local-mcp-function` is enabled in the chat.
 
-1. Enter the URL of the MCP endpoint you copied in the previous step.
-
-1. Use the generated **Server ID** and select **Workspace** to save the MCP server connection to your Workspace settings.
-
-1. Open the command palette and run **MCP: List Servers** and verify that the server you added is listed and running.
-
-1. In Copilot chat, select **Agent** mode and run this prompt:
+1. Run this prompt:
 
     ```copilot-prompt
     Say Hello
