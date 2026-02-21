@@ -4,7 +4,7 @@ description: Access built-in metrics from IoT Edge runtime components to monitor
 #customer intent: As a system administrator, I want to access built-in metrics in Azure IoT Edge so that I can monitor and understand the health of my IoT Edge devices.  
 author: sethmanheim
 ms.author: sethm
-ms.date: 05/08/2025
+ms.date: 02/20/2026
 ms.topic: concept-article
 ms.service: azure-iot-edge
 services: iot-edge
@@ -82,6 +82,9 @@ The **edgeHub** module generates the following metrics:
 | `edgehub_offline_duration_seconds`| `id` | Type: summary<br> Time edge hub was offline |
 | `edgehub_operation_retry_total` | `id`<br> `operation` (operation name) | Type: counter<br> Total number of times edgeHub operations were retried |
 | `edgehub_client_connect_failed_total` | `id` <br> `reason` (not authenticated)<br> | Type: counter<br> Total number of times clients failed to connect to edgeHub |
+| `edgehub_client_connect_success_total` | `id` | Type: counter<br> Total number of times clients successfully connected to edgeHub |
+| `edgehub_client_disconnect_total` | `id` | Type: counter<br> Total number of times clients disconnected from edgeHub |
+| `edgehub_connected_clients` | | Type: gauge<br> Current number of clients connected to edgeHub |
 
 The **edgeAgent** module generates the following metrics:
 
@@ -91,6 +94,7 @@ The **edgeAgent** module generates the following metrics:
 | `edgeAgent_total_time_expected_running_seconds` | `module_name` | Type: gauge<br> The amount of time the module was specified in the deployment |
 | `edgeAgent_module_start_total` | `module_name`, `module_version` | Type: counter<br> Number of times edgeAgent asked docker to start the module |
 | `edgeAgent_module_stop_total` | `module_name`, `module_version` | Type: counter<br> Number of times edgeAgent asked docker to stop the module |
+| `edgeAgent_module_prepare_update_total` | `module_name`, `module_version` | Type: counter<br> Number of times edgeAgent prepared a module update |
 | `edgeAgent_command_latency_seconds` | `command` | Type: gauge<br> How long it took docker to execute the given command. Possible commands are: create, update, remove, start, stop, and restart |
 | `edgeAgent_iothub_syncs_total` | | Type: counter<br> Number of times edgeAgent attempted to sync its twin with iotHub, both successful and unsuccessful. This number includes both Agent requesting a twin and Hub notifying of a twin update |
 | `edgeAgent_unsuccessful_iothub_syncs_total` | | Type: counter<br> Number of times edgeAgent failed to sync its twin with iotHub. |
