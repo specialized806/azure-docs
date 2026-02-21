@@ -73,21 +73,21 @@ Use the Azure Developer CLI to create an Azure Functions code project from a tem
 
 ::: zone-end  
 ::: zone pivot="programming-language-csharp"  
-4. Enter `remote-mcp-functions-dotnet` as the template.
+4. Search for and select **Remote MCP Functions with .NET**.
 
 5. When prompted, enter `mcpweather-dotnet` as the environment name.
 
     The command pulls the project files from the [template repository](https://github.com/Azure-Samples/remote-mcp-functions-dotnet) and initializes the project in the current folder. In `azd`, the environment maintains a unique deployment context for your app, and you can define more than one. It's also used in the name of the resource group you create in Azure.       
 ::: zone-end  
 ::: zone pivot="programming-language-typescript"  
-4. Enter `remote-mcp-functions-typescript` as the template.
+4. Search for and select **Remote MCP Functions with TypeScript**.
 
 5. When prompted, enter `mcpweather-ts` as the environment name.
 
     The command pulls the project files from the [template repository](https://github.com/Azure-Samples/remote-mcp-functions-typescript) and initializes the project in the current folder. In `azd`, the environment maintains a unique deployment context for your app, and you can define more than one. It's also used in names of the resources you create in Azure.   
 ::: zone-end
 ::: zone pivot="programming-language-python"  
-4. Enter `remote-mcp-functions-python` as the template.
+4. Search for and select **Remote MCP Functions with Python**.
 
 1. When prompted, enter `mcpweather-python` as the environment name.
 
