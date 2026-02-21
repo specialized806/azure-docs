@@ -75,11 +75,9 @@ If you're running Azure CLI locally, use Azure CLI version 2.0.31 or later.
 
 ### [Portal](#tab/portal)
 
-## Sign in to Azure
-
-Sign in to the [Azure portal](https://portal.azure.com) with your Azure account.
-
 ## Create a resource group
+
+1. Sign in to the [Azure portal](https://portal.azure.com) with your Azure account.
 
 1. In the search box at the top of the portal, enter **Resource group**. Select **Resource groups** in the search results.
 
