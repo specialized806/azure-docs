@@ -59,10 +59,10 @@ Create a new Microsoft Entra app. For steps, see [Create a Microsoft Entra appli
 
 #### Step 2: Assign API Management Gateway Configuration Reader Service Role
 
-[Assign](../active-directory/develop/howto-create-service-principal-portal.md#assign-a-role-to-the-application) the API Management Gateway Configuration Reader Service Role to the app.
+[Assign](../active-directory/develop/howto-create-service-principal-portal.md#assign-a-role-to-the-application) the API Management Gateway Configuration Reader Service role to the app.
 
 - Scope: The API Management instance (or resource group or subscription in which the app is deployed)
-- Role: API Management Gateway Configuration Reader Role
+- Role: API Management Gateway Configuration Reader role
 - Assign access to: Microsoft Entra app
 
 ## Deploy the self-hosted gateway
@@ -73,7 +73,7 @@ Deploy the self-hosted gateway to a containerized environment, such as Kubernete
 
 You can deploy the self-hosted gateway with Microsoft Entra authentication by using a [Helm chart](https://github.com/Azure/api-management-self-hosted-gateway). 
 
-Replace the following values in the the `helm install` command with your actual values:
+Replace the following values in the `helm install` command with your actual values:
 
 - `<gateway-name>`: Your Azure API Management instance name
 - `<gateway-url>`: The URL of your gateway, in the format `https://<gateway-name>.configuration.azure-api.net`

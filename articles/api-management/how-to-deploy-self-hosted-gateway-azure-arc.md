@@ -7,6 +7,7 @@ ms.service: azure-api-management
 ms.custom: devx-track-azurecli
 ms.topic: how-to 
 ms.date: 10/06/2025
+ms.custom: references_regions
 ---
 
 # Deploy an Azure API Management gateway on Azure Arc (preview)

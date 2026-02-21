@@ -215,7 +215,6 @@ With v2.1.1 and later, you can manage the ciphers that are being used via config
 
 -   [API gateway overview](api-management-gateways-overview.md)
 -   [Support policy for self-hosted gateway](self-hosted-gateway-support-policies.md)
--   [API Management in a hybrid and multicloud world](https://aka.ms/hybrid-and-multi-cloud-api-management)
 -   [Guidance for running self-hosted gateway on Kubernetes in production](how-to-self-hosted-gateway-on-kubernetes-in-production.md)
 -   [Deploy a self-hosted gateway to Docker](how-to-deploy-self-hosted-gateway-docker.md)
 -   [Deploy a self-hosted gateway to Kubernetes](how-to-deploy-self-hosted-gateway-kubernetes.md)

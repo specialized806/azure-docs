@@ -1,5 +1,5 @@
 ---
-title: Authentication Options for API Management Self-hosted Gateway
+title: Authentication Options for Self-hosted Gateway - Azure API Management
 description: Options for the Azure API Management self-hosted gateway to authenticate to the cloud-based API Management instance.
 services: api-management
 author: dlepow
@@ -12,7 +12,11 @@ ms.author: danlep
 
 # Self-hosted gateway authentication options
 
-The gateway container's [configuration settings](self-hosted-gateway-settings-reference.md) provide the following options for authenticating the connection between the self-hosted gateway and the cloud-based API Management instance's configuration endpoint.
+The gateway container's [configuration settings](self-hosted-gateway-settings-reference.md) provide options for authenticating the connection between the self-hosted gateway and the cloud-based API Management instance's configuration endpoint.
+
+### Options and considerations
+
+THe following table lists authentication options for the self-hosted gateway and considerations for each option. The linked articles provide step-by-step instructions for how to configure each authentication method.
 
 |Option  |Considerations  |
 |---------|---------|

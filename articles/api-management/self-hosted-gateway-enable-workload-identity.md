@@ -54,7 +54,7 @@ To enable workload identity authentication, complete the following steps:
 
 <a name='step-1-register-azure-ad-app-and-configure-workload-identity'></a>
 
-#### Step 1: Register Microsoft Entra app and configure workload identity
+#### Step 1: Register the Microsoft Entra app and configure workload identity
 
 Create a new Microsoft Entra app. For steps, see [Create a Microsoft Entra application and service principal that can access resources](../active-directory/develop/howto-create-service-principal-portal.md). The Microsoft Entra app is used by the self-hosted gateway to authenticate to the API Management instance.
 
@@ -77,12 +77,12 @@ Next, configure federated identity credentials to establish trust between your M
 
 For more information, see [Configure a federated identity credential on an app](/entra/workload-id/workload-identity-federation-create-trust).
 
-#### Step 2: Assign API Management Gateway Configuration Reader Service Role
+#### Step 2: Assign API Management Gateway Configuration Reader Service role
 
-[Assign](../active-directory/develop/howto-create-service-principal-portal.md#assign-a-role-to-the-application) the API Management Gateway Configuration Reader Service Role to the app.
+[Assign](../active-directory/develop/howto-create-service-principal-portal.md#assign-a-role-to-the-application) the API Management Gateway Configuration Reader Service role to the app.
 
 - Scope: The API Management instance (or resource group or subscription in which the app is deployed)
-- Role: API Management Gateway Configuration Reader Role
+- Role: API Management Gateway Configuration Reader role
 - Assign access to: Microsoft Entra app
 
 ## Deploy the self-hosted gateway
