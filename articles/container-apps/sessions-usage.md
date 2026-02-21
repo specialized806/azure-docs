@@ -16,19 +16,17 @@ Azure Container Apps dynamic [sessions](sessions.md) offer isolated, secure cont
 
 This article shows you how to manage and interact with dynamic sessions.
 
-## Session access
+## Management endpoint and routing
 
-Your application interacts with a session using the session pool's management API.
+Your application interacts with a session using the session pool's management API. For a conceptual overview of how requests are routed, see [Key concepts](./sessions.md#key-concepts).
 
-A pool management endpoint follows this format:
+The pool management endpoint follows this format:
 
 ```text
 https://<SESSION_POOL_NAME>.<ENVIRONMENT_ID>.<REGION>.azurecontainerapps.io
 ```
 
-For more information managing session pools, see [session pools management endpoint](./session-pool.md#management-endpoint)
-
-## Forwarding requests to a session's container
+For more information managing session pools, see [session pools management endpoint](./session-pool.md#management-endpoint).
 
 To send a request into a session's container, you use the management endpoint as the root for your request. Anything in the path following the base pool management endpoint is forwarded to the session's container.
 
