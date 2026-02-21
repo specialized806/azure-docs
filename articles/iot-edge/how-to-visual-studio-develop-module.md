@@ -4,7 +4,7 @@ description: Use Visual Studio to develop a custom IoT Edge module and deploy to
 services: iot-edge
 author: sethmanheim
 ms.author: sethm
-ms.date: 06/04/2025
+ms.date: 02/20/2026
 ms.topic: concept-article
 ms.service: azure-iot-edge
 zone_pivot_groups: iotedge-dev
@@ -312,7 +312,7 @@ After you develop and debug your module, build and push the module image to your
    :::image type="content" source="./media/how-to-visual-studio-develop-module/show-env-file.png" alt-text="Screenshot of button that shows all files in the Solution Explorer.":::
 
    ```env
-       DEFAULT_RT_IMAGE=1.2
+       DEFAULT_RT_IMAGE=1.5
        CONTAINER_REGISTRY_USERNAME_myregistry=<my-registry-name>
        CONTAINER_REGISTRY_PASSWORD_myregistry=<my-registry-password>
    ```
@@ -513,8 +513,8 @@ You should see a list of your modules running on your device or virtual machine.
 ```azurecli
    NAME                        STATUS           DESCRIPTION      CONFIG
    SimulatedTemperatureSensor  running          Up a minute      mcr.microsoft.com/azureiotedge-simulated-temperature-sensor:1.0
-   edgeAgent                   running          Up a minute      mcr.microsoft.com/azureiotedge-agent:1.2
-   edgeHub                     running          Up a minute      mcr.microsoft.com/azureiotedge-hub:1.2
+   edgeAgent                   running          Up a minute      mcr.microsoft.com/azureiotedge-agent:1.5
+   edgeHub                     running          Up a minute      mcr.microsoft.com/azureiotedge-hub:1.5
    IotEdgeModule1              running          Up a minute      myacr.azurecr.io/iotedgemodule1:0.0.1-amd64.debug
    myIotEdgeModule2            running          Up a minute      myacr.azurecr.io/myiotedgemodule2:0.0.1-amd64.debug
 ```
