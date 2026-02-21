@@ -127,17 +127,24 @@ The MCP Apps weather tool includes a frontend application that you must build be
     cd src/app
     npm install
     npm run build
-    cd ../
+    cd ..
     ```
 
-1. In the `/src` directory, install Python dependencies:
+1. In the `src` directory, create a virtual environment in which the app runs:
 
-    ```console
-    pip install -r requirements.txt
+    ### [Bash](#tab/bash)
+
+    ```bash
+    python -m venv .venv
     ```
 
-    > [!NOTE]
-    > It is a best practice to create a virtual environment before doing the pip install to avoid dependency issues or collisions, or if you are running in CodeSpaces. See [Python Environments in VS Code](https://code.visualstudio.com/docs/python/environments) for more information.
+    ### [cmd](#tab/cmd)
+
+    ```cmd
+    python -m venv .venv
+    ```
+
+    ---
 
 ::: zone-end
 ::: zone pivot="programming-language-typescript"  
