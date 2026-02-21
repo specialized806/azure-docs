@@ -79,7 +79,7 @@ When configuring Azure File Sync cloud tiering, evaluate the volume free space p
 
 Setting a very high volume free space can significantly reduce the amount of data kept locally on the server. This would mean you expect almost all the files to be tiered. If the local cache contains only a small percentage of the working dataset, users might experience more frequent recalls from Azure. This can increase access latency and might result in additional transaction and data transfer costs for Azure Files.
 
-Because the volume free space policy takes precedence over the date policy, Azure File Sync will tier files as needed to reach the configured free space target, regardless of when those files were accessed recently. Similarly, configuring a small day count for date policy threshold may cause files to be tiered shortly after they become inactive even if volume free space policy does not force excess tiering.
+Because the volume free space policy takes precedence over the date policy, Azure File Sync will tier files as needed to reach the configured free space target, regardless of when those files were accessed recently. Similarly, configuring a small day count for date policy threshold might cause files to be tiered shortly after they become inactive, even if volume free space policy doesn't force excess tiering.
 
 Microsoft recommends the following approach:
 - Configure a volume free space policy that aligns with the volume capacity and expected working set to be cached on server.
