@@ -1,6 +1,6 @@
 ---
 title: Build an MCP Apps server using Azure Functions
-description: "Learn how to create and deploy an MCP Apps server that returns interactive UI using Azure Functions. This quickstart uses the Azure Developer CLI to deploy an MCP Apps project that enables AI clients to access tools with rich interactive interfaces hosted on Azure's Flex Consumption plan."
+description: "Learn how to create and deploy an MCP App that returns interactive UI using Azure Functions. This quickstart uses the Azure Developer CLI to deploy an MCP App project that enables AI clients to access tools with rich interactive interfaces hosted on Azure's Flex Consumption plan."
 ms.date: 02/20/2026
 ms.update-cycle: 180-days
 ms.topic: quickstart
@@ -8,24 +8,27 @@ ai-usage: ai-assisted
 ms.collection: 
   - ce-skilling-ai-copilot
 zone_pivot_groups: programming-languages-set-functions
-#Customer intent: As a developer, I want to create an MCP Apps server that returns interactive UI from my MCP tools, so AI clients can render rich visual experiences using Azure Functions.
+#Customer intent: As a developer, I want to create an MCP Apps  that returns interactive UI from my MCP tools, so AI clients can render rich visual experiences using Azure Functions.
 ---
 
-# Quickstart: Build an MCP Apps server using Azure Functions
+# Quickstart: Build an MCP Apps using Azure Functions
 
-In this quickstart, you create an MCP Apps server from a template project by using the Azure Developer CLI (`azd`). [MCP Apps](https://blog.modelcontextprotocol.io/posts/2026-01-26-mcp-apps/) is an extension of the Model Context Protocol (MCP) specification that lets tools return interactive elements instead of plain text. 
+In this quickstart, you create an [MCP App](https://blog.modelcontextprotocol.io/posts/2026-01-26-mcp-apps/) from a template project by using the Azure Developer CLI (`azd`). [MCP Apps](https://blog.modelcontextprotocol.io/posts/2026-01-26-mcp-apps/) is an extension of the Model Context Protocol (MCP) specification that lets tools return rich, interactive user interfaces (HTML/JavaScript in sandboxed iframes) instead of plain text. 
 
-The MCP server you create uses the Azure Functions MCP server extension to provide tools with rich UI for AI models, agents, and assistants. After running the project locally and verifying your code by using GitHub Copilot, you deploy it to a new serverless function app in Azure Functions that follows current best practices for secure and scalable deployments.
+This quickstart will use the Azure Functions MCP extension to build an MCP App using the MCP tool and resource trigger. After running the project locally and verifying your code by using GitHub Copilot, you deploy it to a new serverless function app in Azure Functions that follows current best practices for secure and scalable deployments.
 
 >[!TIP]  
->If you want to create a custom MCP server that uses text-based tools instead of interactive UI, see [Quickstart: Build a custom remote MCP server using Azure Functions](scenario-custom-remote-mcp-server.md).
+>MCP tools built with the Azure Functions MCP extension don't have to return results in interactive UIs. If your server only needs text-based tools, see [Quickstart: Build a custom remote MCP server using Azure Functions](scenario-custom-remote-mcp-server.md).
 
 Because the new app runs on the Flex Consumption plan, which follows a _pay-for-what-you-use_ billing model, completing this quickstart incurs a small cost of a few USD cents or less in your Azure account.
 
-::: zone pivot="programming-language-javascript,programming-language-java,programming-language-powershell"  
+::: zone pivot="programming-language-javascript,programming-language-java"  
 > [!IMPORTANT]  
-> While [creating custom MCP servers](./functions-bindings-mcp.md) is supported for all Functions languages, this MCP Apps quickstart currently only has examples for C#, Python, and TypeScript. To complete this quickstart, select one of these supported languages at the top of the article. 
+> While [creating custom MCP servers](./functions-bindings-mcp.md) is supported for Java and JavaScript, this MCP Apps quickstart currently only has examples for C#, Python, and TypeScript. To complete this quickstart, select one of these supported languages at the top of the article. 
 ::: zone-end  
+
+[!INCLUDE [functions-mcp-extension-powershell-note](../../includes/functions-mcp-extension-powershell-note.md)]  
+
 ::: zone pivot="programming-language-typescript"
 This article supports version 4 of the Node.js programming model for Azure Functions.
 ::: zone-end
@@ -49,10 +52,9 @@ This article supports version 2 of the Python programming model for Azure Functi
 ::: zone pivot="programming-language-csharp,programming-language-python,programming-language-typescript" 
 + [Node.js](https://nodejs.org/) (required to build the MCP Apps UI)
 
-+ [Visual Studio Code](https://code.visualstudio.com/) with these extensions:
++ [Visual Studio Code Insiders](https://code.visualstudio.com/insiders) with these extensions:
 
     + [Azure Functions extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions). This extension requires [Azure Functions Core Tools](functions-run-local.md) and attempts to install it when not available. 
-
     + [Azure Developer CLI extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.azure-dev).
 
 + [Azurite storage emulator](../storage/common/storage-install-azurite.md#install-azurite) 
@@ -60,6 +62,9 @@ This article supports version 2 of the Python programming model for Azure Functi
 + [Azure CLI](/cli/azure/install-azure-cli). You can also run Azure CLI commands in [Azure Cloud Shell](../cloud-shell/overview.md).
 
 + An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+
+> [!IMPORTANT]
+> MCP Apps require [Visual Studio Code Insiders](https://code.visualstudio.com/insiders). The stable release of VS Code doesn't yet support rendering MCP App UI resources.
 
 ## Initialize the project
 
@@ -110,7 +115,7 @@ The MCP Apps weather tool includes a frontend application that you must build be
     cd src/McpWeatherApp/app
     npm install
     npm run build
-    cd ../../..
+    cd ../
     ```
 
 ::: zone-end
@@ -122,8 +127,17 @@ The MCP Apps weather tool includes a frontend application that you must build be
     cd src/app
     npm install
     npm run build
-    cd ../..
+    cd ../
     ```
+
+1. In the `/src` directory, install Python dependencies:
+
+    ```console
+    pip install -r requirements.txt
+    ```
+
+    > [!NOTE]
+    > It is a best practice to create a virtual environment before doing the pip install to avoid dependency issues or collisions, or if you are running in CodeSpaces. See [Python Environments in VS Code](https://code.visualstudio.com/docs/python/environments) for more information.
 
 ::: zone-end
 ::: zone pivot="programming-language-typescript"  
@@ -177,9 +191,9 @@ You can review the code that defines the MCP Apps tools. An MCP Apps tool requir
 ::: zone pivot="programming-language-csharp"
 The function code for the MCP Apps weather tool is defined in the `src/McpWeatherApp` folder. The `[McpMetadata]` attribute adds UI metadata to the tool, and the `[McpResourceTrigger]` attribute serves the HTML widget:
 
-:::code language="csharp" source="~/functions-scenarios-custom-mcp-dotnet/src/McpWeatherApp/WeatherFunction.cs" range="12-46" :::  
+:::code language="csharp" source="~/functions-scenarios-custom-mcp-dotnet/src/McpWeatherApp/WeatherFunction.cs" range="48-76" :::
 
-:::code language="csharp" source="~/functions-scenarios-custom-mcp-dotnet/src/McpWeatherApp/WeatherFunction.cs" range="48-55" :::
+:::code language="csharp" source="~/functions-scenarios-custom-mcp-dotnet/src/McpWeatherApp/WeatherFunction.cs" range="34-46" :::  
 
 The `ToolMetadata` constant declares a `ui.resourceUri` that tells the MCP host to fetch the interactive UI from `ui://weather/index.html` after the tool runs. The `GetWeatherWidget` function serves the bundled HTML file at that URI using `[McpResourceTrigger]`.
 
@@ -188,11 +202,9 @@ You can view the complete project template in the [Azure Functions .NET MCP Serv
 ::: zone pivot="programming-language-python"
 The function code for the MCP Apps weather tool is defined in the `src/function_app.py` file. The `metadata` parameter on `@app.mcp_tool()` adds UI metadata to the tool, and `@app.mcp_resource_trigger()` serves the HTML widget:
 
-:::code language="python" source="~/functions-scenarios-custom-mcp-python/src/function_app.py" range="14-24" :::
+:::code language="python" source="~/functions-scenarios-custom-mcp-python/src/function_app.py" range="109-130" :::
 
-:::code language="python" source="~/functions-scenarios-custom-mcp-python/src/function_app.py" range="85-95" :::
-
-:::code language="python" source="~/functions-scenarios-custom-mcp-python/src/function_app.py" range="118-122" :::
+:::code language="python" source="~/functions-scenarios-custom-mcp-python/src/function_app.py" range="64-105" :::
 
 The `TOOL_METADATA` constant declares a `ui.resourceUri` that tells the MCP host to fetch the interactive UI from `ui://weather/index.html` after the tool runs. The `get_weather_widget` function serves the bundled HTML file at that URI using `@app.mcp_resource_trigger()`.
 
@@ -201,9 +213,15 @@ You can view the complete project template in the [Azure Functions Python MCP Se
 ::: zone pivot="programming-language-typescript"
 The function code for the MCP Apps weather tool is defined in the `src/functions/weatherMcpApp.ts` file. The `metadata` property on `app.mcpTool()` adds UI metadata to the tool, and `app.mcpResource()` serves the HTML widget:
 
-:::code language="typescript" source="~/functions-scenarios-custom-mcp-typescript/src/functions/weatherMcpApp.ts" range="6-25" :::
+:::code language="typescript" source="~/functions-scenarios-custom-mcp-typescript/src/functions/weatherMcpApp.ts" range="13-17" :::
 
-:::code language="typescript" source="~/functions-scenarios-custom-mcp-typescript/src/functions/weatherMcpApp.ts" range="87-106" :::
+:::code language="typescript" source="~/functions-scenarios-custom-mcp-typescript/src/functions/weatherMcpApp.ts" range="54-87" :::
+
+:::code language="typescript" source="~/functions-scenarios-custom-mcp-typescript/src/functions/weatherMcpApp.ts" range="102-110" :::
+
+:::code language="typescript" source="~/functions-scenarios-custom-mcp-typescript/src/functions/weatherMcpApp.ts" range="29-52" :::
+
+:::code language="typescript" source="~/functions-scenarios-custom-mcp-typescript/src/functions/weatherMcpApp.ts" range="89-97" :::
 
 The `TOOL_METADATA` constant declares a `ui.resourceUri` that tells the MCP host to fetch the interactive UI from `ui://weather/index.html` after the tool runs. The `getWeatherWidget` handler serves the bundled HTML file at that URI when registered with `app.mcpResource()`.
 

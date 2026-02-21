@@ -21,7 +21,7 @@ For information on setup and configuration details, see the [overview](functions
 > For C#, the Azure Functions MCP extension supports only the [isolated worker model](dotnet-isolated-process-guide.md). 
 ::: zone-end
 
-::: zone pivot="programming-language-csharp,programming-language-python,programming-language-typescript"
+::: zone pivot="programming-language-csharp,programming-language-python,programming-language-typescript,programming-language-javascript"
 ## Example 1
 
 Example 1 shows how to leverage resource to implement the UI element of MCP Apps. 
@@ -125,12 +125,15 @@ In this example, a folder called `assets` containing the `readme` is bundled wit
 </ItemGroup>
 ```
 
-The `PreserveNewest` directive copies everything under `assets` into the build output, preserving the folder structure. When deployed to Azure Functions, these files are extracted to the function app root directory (`%HOME%\site\wwwroot`), so a file at `assets/readme.md` in the project is accessible at runtime via `Path.Combine(AppContext.BaseDirectory, "assets", "readme.md")`. This works the same way both locally and when deployed to Azure. The asset files are packaged with the deployment artifact rather than uploaded separately to external storage. For the complete code example, see the [Azure Functions MCP Extension repo](https://github.com/Azure/azure-functions-mcp-extension/tree/main/test/TestAppIsolated). 
+For the complete code example, see the [Azure Functions MCP Extension repo](https://github.com/Azure/azure-functions-mcp-extension/tree/main/test/TestAppIsolated). 
 
 ::: zone-end
 
 ::: zone pivot="programming-language-java"
-The MCP extention in Java does not support resource today. 
+
+> [!IMPORTANT]
+> The MCP extension in Java does _not_ support resource today.
+
 ::: zone-end
 
 ::: zone pivot="programming-language-javascript"  
@@ -215,7 +218,9 @@ app.mcpTool("getWeather", {
 For the complete code example, see [weatherMcpApp.ts](https://github.com/Azure-Samples/remote-mcp-functions-typescript/blob/McpAppDemo/src/functions/weatherMcpApp.ts).
 
 > [!NOTE]
-> The MCP resource trigger for TypeScript requires version `4.12.0-preview.2` or later of the [`@azure/functions`](https://www.npmjs.com/package/@azure/functions/v/4.12.0-preview.2) package, which is in _preview_ extension bundle version `[4.32.0, 5.0.0)`. Check `host.json` to make sure the correct bundle version is specified:
+> The MCP resource trigger for TypeScript requires version `4.12.0-preview.2` or later of the [`@azure/functions`](https://www.npmjs.com/package/@azure/functions/v/4.12.0-preview.2) package.
+>
+> The function app must include the preview extension bundle version `[4.32.0, 5.0.0)`. Check `host.json` to make sure the correct bundle version is specified:
 >
 > ```json
 > "extensionBundle": {
@@ -288,11 +293,15 @@ def get_weather(location: str) -> Dict[str, Any]:
 For the complete code example, see [function_app.py](https://github.com/Azure-Samples/remote-mcp-functions-python/blob/main/src).
 
 > [!NOTE]
-> The MCP resource trigger for Python requires version `1.25.0b3` or later of the [`azure-functions`](https://pypi.org/project/azure-functions/1.25.0b3/) package, which is in _preview_ extension bundle version `[4.32.0, 5.0.0)`. Check `host.json` to make sure the correct bundle version is specified:
+> The MCP resource trigger for Python requires version `1.25.0b3` or later of the [`azure-functions`](https://pypi.org/project/azure-functions/1.25.0b3/) package. 
+>
+> If the app is using Python 3.9 - 3.12, add the following app setting to `local.settings.json` if running locally or as an environment variable if running in production: `PYTHON_ISOLATE_WORKER_DEPENDENCIES: 1`.
+>
+> Using this feature requires the preview extension bundle version `[4.32.0, 5.0.0)`. Check host.json to make sure the correct bundle version is specified:
 >
 > ```json
 > "extensionBundle": {
->   "id": "Microsoft.Azure.Functions.ExtensionBundle.Preview",
+>   "id": "Microsoft.Azure.Functions.ExtensionBundle.Preview"
 >   "version": "[4.32.0, 5.0.0)"
 > }
 > ```
@@ -300,6 +309,7 @@ For the complete code example, see [function_app.py](https://github.com/Azure-Sa
 ::: zone-end
 
 [!INCLUDE [functions-mcp-extension-powershell-note](../../includes/functions-mcp-extension-powershell-note.md)]  
+
 ::: zone pivot="programming-language-csharp"  
 
 ## Attributes

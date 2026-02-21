@@ -36,7 +36,7 @@
       - name: Custom remote MCP server
         displayName: AI, agent, agentic, tools, trigger
         href: scenario-custom-remote-mcp-server.md
-      - name: MCP Apps server
+      - name: MCP Apps
         displayName: AI, agent, agentic, tools, MCP Apps, UI
         href: scenario-mcp-apps.md
       - name: Host MCP server using SDKs
