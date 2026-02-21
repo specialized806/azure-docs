@@ -617,7 +617,7 @@ The following items are prefixed with either:
     sudo pcs resource group add g-QAS_AERS rsc_sap_QAS_ERS01
    
     sudo pcs constraint order start g-QAS_ASCS then stop g-QAS_AERS kind=Optional symmetrical=false
-    sudo pcs constraint colocation add g-QAS_AERS with g-QAS_ASCS -5000
+    sudo pcs constraint colocation add g-QAS_AERS with g-QAS_ASCS score=-5000
     # On RHEL 7.x, 8.x, 9.x
     sudo pcs constraint location rsc_sap_QAS_ASCS00 rule score=2000 runs_ers_QAS eq 1
     # On RHEL 10.x

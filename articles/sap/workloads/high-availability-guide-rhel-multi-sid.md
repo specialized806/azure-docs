@@ -391,7 +391,7 @@ This article assumes that:
     sudo pcs resource group add g-NW2_AERS rsc_sap_NW2_ERS12
 
     sudo pcs constraint order start g-NW2_ASCS then stop g-NW2_AERS kind=Optional symmetrical=false
-    sudo pcs constraint colocation add g-NW2_AERS with g-NW2_ASCS -5000
+    sudo pcs constraint colocation add g-NW2_AERS with g-NW2_ASCS score=-5000
     # On RHEL 7.x, 8.x, 9.x
     sudo pcs constraint location rsc_sap_NW2_ASCS10 rule score=2000 runs_ers_NW2 eq 1
     # On RHEL 10.x
