@@ -53,7 +53,7 @@ For more information, review the [SQL Server managed connector reference](/conne
 
   The SQL Server connector requires that your tables contain data so that the connector operations can return results when called. For example, if you use Azure SQL Database, you can use the included sample databases to try the SQL Server connector operations.
 
-* The information required to create a SQL database connection, such as your SQL server and database name. If you're using Windows Authentication or SQL Server Authentication to authenticate access, you also need your user name and password. You can usually find this information in the connection string.
+* The information required to create a SQL database connection, such as your SQL server and database name. If you're using Windows Authentication or SQL Server Authentication to authenticate access, you also need your user name and password. You can usually find this information in the connection string. The user must have sufficient permissions on the database (for example, the db_owner role). 
 
   > [!IMPORTANT]
   >
