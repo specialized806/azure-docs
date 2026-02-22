@@ -14,9 +14,9 @@ ms.author: danlep
 
 The gateway container's [configuration settings](self-hosted-gateway-settings-reference.md) provide options for authenticating the connection between the self-hosted gateway and the cloud-based API Management instance's configuration endpoint.
 
-### Options and considerations
+## Options and considerations
 
-THe following table lists authentication options for the self-hosted gateway and considerations for each option. The linked articles provide step-by-step instructions for how to configure each authentication method.
+The following table lists authentication options for the self-hosted gateway and considerations for each option. The linked articles provide step-by-step instructions for how to configure each authentication method.
 
 |Option  |Considerations  |
 |---------|---------|
