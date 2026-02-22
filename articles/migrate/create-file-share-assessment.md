@@ -37,7 +37,7 @@ Check [Performance vs. As-is on-premises assessments](target-right-sizing.md) fo
 
 To create an assessment, follow these steps:
 
-1. In the **Azure Migrate** portal, select **Infrastructure** and then select file shares .
+1. In the **Azure Migrate** portal, select **Infrastructure** and then select file shares.
 1. Select the file shares you want to assess.
 1. Apply column-based filters or custom tag–based filters to identify and add file shares to the assessment scope. 
 1. After selecting the required file shares, select **Create assessment**.  

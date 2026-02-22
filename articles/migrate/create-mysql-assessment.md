@@ -115,7 +115,7 @@ To view readiness of MySQL instance for migration to Azure Database for MySQL, a
 - Review the **Readiness** column for the assessed MySQL instances. 
 
     - **Ready**: The instance is ready to be migrated to Azure Database for MySQL without any migration issues or warnings.
-    - **Ready with conditions**: The instance has one or more non-critical compatibility issues or migration warnings for migrating to Azure Database for MySQL. You can select on the hyperlink and review the migration warnings and the recommended remediation guidance.
+    - **Ready with conditions**: The instance has one or more non-critical compatibility issues or migration warnings for migrating to Azure Database for MySQL. You can select the hyperlink and review the migration warnings and the recommended remediation guidance.
     - **Not ready**: The instance has compatibility issues that may block the migration to Azure Database for MySQL, or the assessment couldn't find an Azure Database for MySQL configuration meeting the desired configuration and performance characteristics. Select the hyperlink to review the migration issues and recommendation to make the instance ready for the desired target deployment type.
     - **Unknown**: Azure Migrate can't assess readiness, because the discovery is in progress or there are issues during discovery that need to be fixed from the notifications blade. 
     

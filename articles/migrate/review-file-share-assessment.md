@@ -54,6 +54,7 @@ You can use this path to:
 > - If an error is encountered during assessment, such as volume or size estimation issues, the affected fileshare and all collocated shares on the server are recommended for an Azure virtual machine migration path.
 
 ### Migrate all files shares to Azure Files
+
 This strategy shows readiness and cost estimates for migrating fileshares to Azure Files. Review individual share details, source information, target recommendations, and estimated monthly costs.
 :::image type="content" source="./media/review-fileshare-assessment/fileshare-to-azure-files.jpg" alt-text="A screenshot that shows where the user can start with Azure Files path review." lightbox="./media/review-fileshare-assessment/fileshare-to-azure-files.jpg":::
 
@@ -71,6 +72,7 @@ A drill-down view provides details on readiness states, source properties, and t
 :::image type="content" source="./media/review-fileshare-assessment/instance-level-details.jpg" alt-text="A screenshot that shows where the user can check the instance level details." lightbox="./media/review-fileshare-assessment/instance-level-details.jpg":::
 
 ### Migrate all shares to Azure VM
+
 This strategy lets you rehost all file shares on Azure virtual machines. You can review readiness and cost estimates, using the same readiness and sizing logic as Azure virtual machine assessments. 
 
 This assessment accounts for all the shares on a server to a suitable size Azure VM. It includes: 
@@ -82,6 +84,7 @@ This assessment accounts for all the shares on a server to a suitable size Azure
 
 
 ### Migration issues
+
 - Fileshare size is 0: If the file share size is reported as 0, a target recommendation isn’t generated. Verify that the file share still exists on the on-premises server.
 
 - Fileshare size exceeds maximum size: If the on-premises file share size exceeds the maximum supported size for Azure Files, the share can’t be migrated to Azure Files. Consider splitting the data across multiple file shares before migration.
