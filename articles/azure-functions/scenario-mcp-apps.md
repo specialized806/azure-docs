@@ -158,7 +158,13 @@ The MCP Apps weather tool includes a frontend application that you must build be
 ::: zone-end
 ::: zone pivot="programming-language-csharp,programming-language-python,programming-language-typescript" 
 ## Run your MCP server locally 
+::: zone-end
 
+::: zone pivot="programming-language-csharp"
+When Visual Studio Code asks you to pick a default project because there are two apps in the .NET template, pick **src/McpWeatherApp**. 
+::: zone-end
+
+::: zone pivot="programming-language-csharp,programming-language-python,programming-language-typescript" 
 [!INCLUDE [run-locally](../../includes/functions-mcp-run-locally.md)]
 
 ## Verify by using GitHub Copilot
