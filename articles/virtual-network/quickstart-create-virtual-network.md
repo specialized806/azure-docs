@@ -30,7 +30,7 @@ If you don't have an Azure account with an active subscription, [create one for 
 
 - An Azure account with an active subscription. You can [create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
-### [Powershell](#tab/powershell)
+### [PowerShell](#tab/powershell)
 
 - An Azure account with an active subscription. You can [create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
@@ -225,7 +225,7 @@ The following procedure creates two VMs named **vm-1** and **vm-2** in the virtu
 
 [!INCLUDE [ephemeral-ip-note.md](~/reusable-content/ce-skilling/azure/includes/ephemeral-ip-note.md)]
 
-### [Powershell](#tab/powershell)
+### [PowerShell](#tab/powershell)
 
 ## Create a resource group
 
