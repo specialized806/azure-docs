@@ -65,7 +65,7 @@ When a newer rule set version (**N**) is released to general availability, the r
 
 ::: zone-end
 
-- The **N-3 version continues to be supported for 12 months** from the release date of the new **N** rule set, for existing WAF policies only. During these 12 months period, the N-3 version is eligible to receive **only critical security updates** similarly to the N, N-1 and N-2 versions.
+- The **N-3 version continues to be supported for 12 months** from the release date of the new **N** rule set, for existing WAF policies only. During these 12 months period, the N-3 version is eligible to receive **only critical security updates**.
 
 - After the 12-month period, the N-3 version will no longer be supported. It won't receive any further updates, fixes, or support from the support team.
 
