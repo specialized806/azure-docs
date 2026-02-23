@@ -5,7 +5,7 @@ services: load-balancer
 author: mbender-ms
 ms.service: azure-load-balancer
 ms.topic: concept-article
-ms.date: 12/06/2024
+ms.date: 02/23/2026
 ms.author: mbender
 # Customer intent: "As a cloud infrastructure manager, I want to stay informed about the latest features, improvements, and known issues related to Azure Load Balancer, so that I can effectively manage performance, troubleshoot problems, and ensure optimal functionality of load balancing services in our environment."
 ---
@@ -25,6 +25,7 @@ You can also find the latest Azure Load Balancer updates and subscribe to the RS
 
 | Type |Name |Description  |Date added  |
 | ------ |---------|---------|---------|
+| Feature | [Azure Load Balancer bandwidth metrics now support Protocol dimension](https://azure.microsoft.com/updates?id=536747) | Bandwidth metrics for Azure Load Balancer are now published with metric dimension Protocol. When viewing Byte, Packet, and SYN Count metrics, you can now filter by Protocol dimension where TCP traffic is denoted by Protocol=6 and UDP traffic by Protocol=17. The Protocol dimension is available in all Azure public regions, China cloud regions, and Government cloud regions. Learn more [here](https://learn.microsoft.com/azure/azure-monitor/reference/supported-metrics/microsoft-network-loadbalancers-metrics). | December 2025 |
 | Feature | [Azure Load Balancer health event logs generally available](https://azure.microsoft.com/updates/?id=481818) | Health event logs are now fully available in all public, Azure China, and Government regions under the Azure Monitor resource log category LoadBalancerHealthEvent, providing you with enhanced capabilities to monitor and troubleshoot your load balancer resources. Learn more [here](https://aka.ms/lbhealthoverview). | February 2025 |
 | Feature | [Azure Load Balancer health status general availability](https://azure.microsoft.com/updates?id=467610) | Announcing the general availability of Azure Load Balancer Health Status, a powerful feature designed to provide detailed information about the health of backend instances in your Azure Load Balancer backend pool. The Health Status feature offers valuable insights into the state of health of your backend instances and specific reasons for their health status. Learn more [here](https://go.microsoft.com/fwlink/?linkid=2296757). | November 2024 |
 | Feature | [Azure Load Balancer Admin State general availability](https://azure.microsoft.com/updates?id=467625) | Admin State enables you to override the health probe behavior for each instance without additional configuration changes to your Load Balancer such as changing network security rules or closing ports. This makes management, especially during maintenance easy, allowing you to set instances as up or down and control connection behavior with no additional overhead. Learn more [here](https://go.microsoft.com/fwlink/?linkid=2296089). | November 2024 |
