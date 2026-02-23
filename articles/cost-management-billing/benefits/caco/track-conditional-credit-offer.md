@@ -35,11 +35,11 @@ To view CACO details, you must have any of the following roles:
 
 1. Sign in to the [Azure portal](https://portal.azure.com).
 2. Search for **Cost Management + Billing**.  
-    :::image type="content" source="./media/track-conditional-aco/cost-management-billing-search.png" alt-text="Screenshot showing search in portal for Cost Management + Billing." lightbox="./media/track-conditional-aco/cost-management-billing-search.png" :::
+    :::image type="content" source="../../manage/media/conditional-credit-offer/cost-management-billing-search.png" alt-text="Screenshot showing search in portal for Cost Management + Billing." lightbox="../../manage/media/conditional-credit-offer/cost-management-billing-search.png" :::
 3. In the billing scopes page, select the billing account for which you want to track the commitment. 
-    :::image type="content" source="./media/track-conditional-aco/billing-scopes-list.png" alt-text="Screenshot that shows Billing Scopes." lightbox="./media/track-conditional-aco/billing-scopes-list.png" :::
+    :::image type="content" source="../../manage/media/conditional-credit-offer/billing-scopes-list.png" alt-text="Screenshot that shows Billing Scopes." lightbox="../../manage/media/conditional-credit-offer/billing-scopes-list.png" :::
 4. Select **Benefits** from the left-hand side and then select the **Conditional Azure Credit Offer (CACO)** tile.  
-    :::image type="content" source="./media/track-conditional-aco/benefits-page.png" alt-text="Screenshot that shows selecting the CACO tab for MCA." lightbox="./media/track-conditional-aco/benefits-page.png" :::
+    :::image type="content" source="../../manage/media/conditional-credit-offer/benefits-page.png" alt-text="Screenshot that shows selecting the CACO tab for MCA." lightbox="../../manage/media/conditional-credit-offer/benefits-page.png" :::
 
 ## CACO Page Overview
 
@@ -47,7 +47,7 @@ The Conditional Azure Credit Offer (CACO) tab has the following sections.
 
 #### Overall commitment 
 
-:::image type="content" source="./media/track-conditional-aco/conditional-credit-offer-page.png" alt-text="Screenshot of CACO page." lightbox="./media/track-conditional-aco/conditional-credit-offer-page.png" :::
+:::image type="content" source="../../manage/media/conditional-credit-offer/conditional-credit-offer-page.png" alt-text="Screenshot of CACO page." lightbox="../../manage/media/conditional-credit-offer/conditional-credit-offer-page.png" :::
 
 The overall commitment displays the total commitment amount for your CACO, across milestones.
 
@@ -109,7 +109,7 @@ Every CACO offer consists of one or many milestones with a target amount, date, 
 
 When you select **Show all Milestones**, you can view a comprehensive list of all milestones associated with your CACO commitment. This view provides detailed information about each milestone's progress and status.
 
-:::image type="content" source="./media/track-conditional-aco/conditional-credit-offer-milestones.png" alt-text="Screenshot of all CACO milestones." lightbox="./media/track-conditional-aco/conditional-credit-offer-milestones.png" :::
+:::image type="content" source="../../manage/media/conditional-credit-offer/conditional-credit-offer-milestones.png" alt-text="Screenshot of all CACO milestones." lightbox="../../manage/media/conditional-credit-offer/conditional-credit-offer-milestones.png" :::
 
 | Column | Definition |
 |---|---|
