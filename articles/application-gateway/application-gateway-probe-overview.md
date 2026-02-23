@@ -86,7 +86,6 @@ The following table provides definitions for the properties of a custom health p
 
 [!WARNING]: Use the **MinServers** parameter with caution. When MinServers is set to a value greater than 0, Application Gateway always marks that minimum number of backend servers as healthy, even if their health probes are failing. This can result in traffic being sent to unhealthy servers, potentially causing 502 Bad Gateway errors or other connectivity issues for clients. Only configure MinServers if you have specific availability requirements and understand the implications of overriding health probe results.
 
-
 ### Probe matching
 
 By default, an HTTP(S) response with status code between 200 and 399 is considered healthy. Custom health probes additionally support two matching criteria. Matching criteria can be used to optionally modify the default interpretation of what makes a healthy response.
