@@ -162,12 +162,13 @@ The cmdlets return the key value. Once you have the kerb1 key, create either a [
    ```powershell
    Set-ADUser -Identity $UserSamAccountName -UserPrincipalName cifs/<StorageAccountName>.file.core.windows.net@<DNSRoot>
    ```
-> [!IMPORTANT]
-> **Don't sync users with invalid userPrincipalName (UPN) values**. UPNs must not contain special characters such as `/`, spaces, or other unsupported symbols.
-> Attempting to sync users with invalid UPNs (such as using `/` in the username) results in Microsoft Entra Connect errors.
-> If such identities exist in your on-premises directory, either:
-> - Update the UPN to a valid format (for example, `user@domain.com`), **or**
-> - Exclude the user from synchronization by using filtering rules in Microsoft Entra Connect.
+
+   > [!IMPORTANT]
+   > **Don't sync users with invalid userPrincipalName (UPN) values**. UPNs must not contain special characters such as `/`, spaces, or other unsupported symbols.
+   > Attempting to sync users with invalid UPNs (such as using `/` in the username) results in Microsoft Entra Connect errors.
+   > If such identities exist in your on-premises directory, do one of the following:
+   > - Update the UPN to a valid format (for example, `user@domain.com`).
+   > - Exclude the user from synchronization by using filtering rules in Microsoft Entra Connect.
 
 1. Set the AD account password to the value of the kerb1 key.
 
