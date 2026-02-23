@@ -134,7 +134,6 @@ import com.azure.data.appconfiguration.models.ConfigurationAudience;
 import com.azure.spring.cloud.appconfiguration.config.ConfigurationClientCustomizer;
 
 public class CustomClient implements ConfigurationClientCustomizer {
-    
 
     @Override
     public void customize(ConfigurationClientBuilder builder, String endpoint) {
@@ -169,10 +168,6 @@ public class Application {
 
 }
 ```
-
-> [!NOTE]
-> This same approach is used for configuring the audience the Spring configuration provider uses for modifying the `SecretClient` when Key Vault is used as a reference in App Configuration. Just implement a `SecretClientCustomizer` and register it in the bootstrap registry to configure the audience for Key Vault references.
-
 
 ### [JavaScript](#tab/javascript)
 
