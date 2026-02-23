@@ -11,6 +11,3 @@ When you're done working with your MCP server and related resources, use this co
 ```console
 azd down 
 ```
-
-> [!NOTE]  
-> The `--no-prompt` option instructs `azd` to delete your resource group without confirmation from you. This command doesn't affect your local code project.

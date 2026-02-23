@@ -15,16 +15,15 @@ zone_pivot_groups: programming-languages-set-functions
 
 # Quickstart: Build a custom remote MCP server using Azure Functions
 
-In this quickstart, you create a custom remote Model Context Protocol (MCP) server from a template project using the Azure Developer CLI (`azd`). The MCP server uses the Azure Functions MCP server extension to provide tools for AI models, agents, and assistants. After running the project locally and verifying your code using GitHub Copilot, you deploy it to a new serverless function app in Azure Functions that follows current best practices for secure and scalable deployments.
+In this quickstart, you create a custom remote Model Context Protocol (MCP) server from a template project by using the Azure Developer CLI (`azd`). This MCP server uses the Azure Functions MCP server extension to provide tools for AI models, agents, and assistants. You can also use the MCP server extension to [create MCP Apps endpoints](./scenario-mcp-apps.md).
 
->[!TIP]  
->Functions also enables you to deploy an existing MCP server code project to a Flex Consumption plan app without having to make changes to your code project. For more information, see [Quickstart: Host existing MCP servers on Azure Functions](scenario-host-mcp-server-sdks.md). 
+After running the project locally and verifying your code by using GitHub Copilot, you deploy it to a new serverless function app in Azure Functions that follows current best practices for secure and scalable deployments. 
 
 Because the new app runs on the Flex Consumption plan, which follows a _pay-for-what-you-use_ billing model, completing this quickstart incurs a small cost of a few USD cents or less in your Azure account.
 
 ::: zone pivot="programming-language-javascript,programming-language-powershell"  
 > [!IMPORTANT]  
-> While [creating custom MCP servers](./functions-bindings-mcp.md) is supported for all Functions languages, this quickstart scenario currently only has examples for C#, Python, and TypeScript. To complete this quickstart, select one of these supported languages at the top of the article. 
+> While [creating custom MCP servers](./functions-bindings-mcp.md) is supported for all Functions languages, this quickstart scenario currently only has examples for C#, Java, Python, and TypeScript. To complete this quickstart, select one of these supported languages at the top of the article. 
 ::: zone-end  
 ::: zone pivot="programming-language-typescript"
 This article supports version 4 of the Node.js programming model for Azure Functions.
@@ -40,7 +39,7 @@ This article supports version 2 of the Python programming model for Azure Functi
 ::: zone-end  
 ::: zone pivot="programming-language-java"  
 + [Java 17 Developer Kit](/azure/developer/java/fundamentals/java-support-on-azure)
-    + If you use another [supported version of Java](supported-languages.md?pivots=programming-language-java#languages-by-runtime-version), you must update the project's pom.xml file. 
+    + If you use another [supported version of Java](supported-languages.md?pivots=programming-language-java#languages-by-runtime-version), update the project's `pom.xml` file. 
     + Set the `JAVA_HOME` environment variable to the install location of the correct version of the Java Development Kit (JDK).
 + [Apache Maven 3.8.x](https://maven.apache.org)  
 ::: zone-end  
@@ -123,7 +122,7 @@ Use the `azd init` command to create a local Azure Functions code project from a
 ## Run your MCP server locally 
 ::: zone-end  
 ::: zone pivot="programming-language-csharp"  
-In a terminal window, navigate to the `FunctionsMcpTool` project folder:
+In a terminal window, go to the `FunctionsMcpTool` project folder:
 
 ```console
 cd src/FunctionsMcpTool
@@ -133,9 +132,9 @@ cd src/FunctionsMcpTool
 
 [!INCLUDE [run-locally](../../includes/functions-mcp-run-locally.md)] 
 
-## Verify using GitHub Copilot
+## Verify by using GitHub Copilot
 
-The project template includes a `.vscode/mcp.json` file that already defines a `local-mcp-function` server pointing to your local MCP endpoint. Use this configuration to verify your code with GitHub Copilot in Visual Studio Code:
+The project template includes a `.vscode/mcp.json` file that already defines a `local-mcp-function` server pointing to your local MCP endpoint. Use this configuration to verify your code by using GitHub Copilot in Visual Studio Code:
 
 1. Open the `.vscode/mcp.json` file and select the **Start** button above the `local-mcp-function` configuration.
 
