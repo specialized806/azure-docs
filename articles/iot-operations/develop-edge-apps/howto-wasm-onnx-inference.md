@@ -302,5 +302,6 @@ Inference in WASM data flow graphs has the following limitations:
 ## Next steps
 
 - [Develop WebAssembly modules](./howto-develop-wasm-modules.md)
+- [Build WebAssembly modules with VS Code](./howto-build-wasm-modules-vscode.md)
 - [Configure WebAssembly graph definitions](./howto-configure-wasm-graph-definitions.md)
 - [Use WebAssembly with data flow graphs](../connect-to-cloud/howto-dataflow-graph-wasm.md)

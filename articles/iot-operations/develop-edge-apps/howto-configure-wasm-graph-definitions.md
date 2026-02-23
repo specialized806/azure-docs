@@ -5,7 +5,7 @@ author: sethmanheim
 ms.author: sethm
 ms.service: azure-iot-operations
 ms.topic: how-to
-ms.date: 12/16/2025
+ms.date: 02/25/2026
 ai-usage: ai-assisted
 
 ---
@@ -13,6 +13,11 @@ ai-usage: ai-assisted
 # Configure WebAssembly (WASM) graph definitions for data flow graphs and connectors
 
 Graph definitions are central to WASM development because they define how your modules connect to data flows and connectors. Understanding the relationship between graph definitions and data flow graphs or connectors helps you develop effectively.
+
+## Prerequisites
+
+- Familiarity with [developing custom WASM modules](howto-develop-wasm-modules.md)
+- Basic understanding of YAML syntax
 
 This article focuses on creating and configuring the YAML graph definitions. For information about deploying and testing data flow graphs, see [Deploy WebAssembly (WASM) modules and graph definitions](howto-deploy-wasm-graph-definitions.md).
 
