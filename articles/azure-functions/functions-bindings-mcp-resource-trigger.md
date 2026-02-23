@@ -22,9 +22,7 @@ For information on setup and configuration details, see the [overview](functions
 ::: zone-end
 
 ::: zone pivot="programming-language-csharp,programming-language-python,programming-language-typescript,programming-language-javascript"
-## Example 1
-
-Example 1 shows how to use resource to implement the UI element of MCP Apps. 
+This first example shows how to use resource to implement the UI element of MCP Apps. 
 ::: zone-end
 ::: zone pivot="programming-language-csharp"  
 
@@ -81,9 +79,7 @@ public async Task<object> GetWeather(
 
 For the complete code example, see [WeatherFunction.cs](https://github.com/Azure-Samples/remote-mcp-functions-dotnet/blob/main/src/McpWeatherApp/WeatherFunction.cs).  
 
-## Example 2
-
-The following code creates an endpoint to expose a resource named `readme` that reads a markdown file and returns its contents as plain text. Clients can access this resource using the `file://readme.md` URI.
+This code example creates an endpoint to expose a resource named `readme` that reads a markdown file and returns its contents as plain text. Clients can access this resource using the `file://readme.md` URI.
 
 ```csharp
     private const string ReadmeMetadata = """
@@ -217,10 +213,9 @@ app.mcpTool("getWeather", {
 
 For the complete code example, see [weatherMcpApp.ts](https://github.com/Azure-Samples/remote-mcp-functions-typescript/blob/McpAppDemo/src/functions/weatherMcpApp.ts).
 
-> [!NOTE]
-> The MCP resource trigger for TypeScript requires version `4.12.0-preview.2` or later of the [`@azure/functions`](https://www.npmjs.com/package/@azure/functions/v/4.12.0-preview.2) package.
->
-> The function app must include the preview extension bundle version `[4.32.0, 5.0.0)`. Check `host.json` to make sure the correct bundle version is specified:
+> [!IMPORTANT]
+> The MCP resource trigger for TypeScript currently requires version `4.12.0-preview.2` or later of the [`@azure/functions`](https://www.npmjs.com/package/@azure/functions/v/4.12.0-preview.2) package.
+> It also requires version `[4.32.0, 5.0.0)` of the preview exetnsion bundle. Make sure to update your `host.json` to use this preview bundle and version:
 >
 > ```json
 > "extensionBundle": {
@@ -294,10 +289,7 @@ For the complete code example, see [function_app.py](https://github.com/Azure-Sa
 
 > [!NOTE]
 > The MCP resource trigger for Python requires version `1.25.0b3` or later of the [`azure-functions`](https://pypi.org/project/azure-functions/1.25.0b3/) package. 
->
-> If the app is using Python 3.9 - 3.12, add the following app setting to `local.settings.json` if running locally or as an environment variable if running in production: `PYTHON_ISOLATE_WORKER_DEPENDENCIES: 1`.
->
-> Using this feature requires the preview extension bundle version `[4.32.0, 5.0.0)`. Check host.json to make sure the correct bundle version is specified:
+> It also requires version `[4.32.0, 5.0.0)` of the preview exetnsion bundle. Make sure to update your `host.json` to use this preview bundle and version:
 >
 > ```json
 > "extensionBundle": {
@@ -305,6 +297,8 @@ For the complete code example, see [function_app.py](https://github.com/Azure-Sa
 >   "version": "[4.32.0, 5.0.0)"
 > }
 > ```
+>
+> If the app is using Python 3.9-3.12, add the `PYTHON_ISOLATE_WORKER_DEPENDENCIES: 1` app setting to `local.settings.json` and to app settings when running in Azure.
 
 ::: zone-end
 
