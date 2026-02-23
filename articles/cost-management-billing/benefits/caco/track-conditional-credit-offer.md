@@ -41,7 +41,7 @@ To view CACO details, you must have any of the following roles:
 4. Select **Benefits** from the left-hand side and then select the **Conditional Azure Credit Offer (CACO)** tile.  
     :::image type="content" source="../../manage/media/conditional-credit-offer/benefits-page.png" alt-text="Screenshot that shows selecting the CACO tab for MCA." lightbox="../../manage/media/conditional-credit-offer/benefits-page.png" :::
 
-## CACO Page Overview
+## CACO page overview
 
 The Conditional Azure Credit Offer (CACO) tab has the following sections.
 
@@ -187,15 +187,10 @@ CACO spend eligibility differs from traditional MACC (Microsoft Azure Consumptio
 
 This consumption-focused approach ensures that ACO awards are based on genuine Azure service consumption rather than upfront credit purchases, regardless of the payment method used to cover that consumption.
 
-## Check access to a Microsoft Customer Agreement
-[!INCLUDE [billing-check-mca](../../../../includes/billing-check-mca.md)]
 
 ## Need help? Contact support
 
 If you need help, [contact support](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade) to get your issue resolved quickly.
 
-## Next steps
 
-- [Determine which offers are eligible for Azure consumption commitments (MACC/CTC)](/marketplace/azure-consumption-commitment-benefit#determine-which-offers-are-eligible-for-azure-consumption-commitments-maccctc)
-- [Track your Azure credits balance](mca-check-azure-credits-balance.md)
 
