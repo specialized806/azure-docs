@@ -61,7 +61,7 @@ productDirectory:
         - ai-machine-learning
       url: /azure/ai-services/speech-service/
     # Card
-    - title: Azure AI Language
+    - title: Azure Language in Foundry Tools
       summary: Easily evaluate sentiment and topics to understand what users want
       imageSrc: ./media/index/language.svg
       azureCategories:
@@ -110,7 +110,7 @@ productDirectory:
         - ai-machine-learning
       url: /azure/bot-service/
     # Card
-    - title: Azure AI Document Intelligence
+    - title: Azure Document Intelligence in Foundry Tools
       summary: The AI-powered document extraction service that understands your forms
       imageSrc: ./media/index/document-intelligence.svg
       azureCategories:

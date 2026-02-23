@@ -31,7 +31,7 @@ First, check for an Azure Advisor recommendation:
 
 **If you don't see a recommendation**, your API Management gateway isn't affected by the change.
 
-**If you see a recommendation**, your API Management gateway is affected by the breaking change and you need to take action: 
+**If you see a recommendation**, your API Management gateway has previously sent traffic to the listed Azure services. Because of this, it is considered affected by the breaking change and you need to take action:   
 
 1. Determine if your API Management gateway relies on trusted service connectivity to Azure services. 
 1. If it does, update the networking configuration to eliminate the dependency on trusted service connectivity. If it doesn’t, proceed to the next step. 
@@ -111,6 +111,11 @@ You can configure the networking of target resources to one of the following opt
 
   - [How to front a network security perimeter-protected Azure resource with Azure API Management](../using-network-security-perimeter.md)
 
+> [!IMPORTANT]
+> Customers can continue using trusted services on the target Azure service for non-Azure API Management scenarios. However, Azure API Management will no longer support it so the gateway needs alternative ways to communicate and have network line-of-sight.
+>
+> For example, you can enable trusted service connectivity for an Azure Storage resource and use Network Security Perimeter to access it from API Management's gateway.
+ 
 ### Step 3: Disable trusted service connectivity in API Management gateway
 
 After ensuring that your API Management gateway doesn't access other Azure services using trusted service connectivity, you must explicitly disable trusted connectivity in your gateway to acknowledge you have verified that the service no longer depends on trusted connectivity.
