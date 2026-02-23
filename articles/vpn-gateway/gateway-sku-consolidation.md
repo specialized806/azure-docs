@@ -21,7 +21,7 @@ This article helps you understand the changes for VPN Gateway SKUs. This article
 * *Effective November 1, 2025*: You can no longer create new VPN gateways (VpnGw1-5 SKUs) that aren't supported by an availability zone.
 * *Migration period*: From September 2025 to September 2026, all existing VPN gateways (VpnGw1-5 SKUs) that aren't supported by an availability zone can be manually upgraded to VpnGw1-5 SKUs that are supported.
 
-To support this migration, we're reducing the prices on SKUs supported by availability zones. For more information about SKUs and pricing, see the [FAQs](#faq) section of this article.
+To support this migration, we're reducing the prices on SKUs supported by availability zones. For more information about SKUs and pricing, see the [FAQs](#faqs) section of this article.
 
 > [!NOTE]
 > This article doesn't apply to the following legacy gateway SKUs: Standard or High Performance. For more information, see [Working with VPN Gateway legacy SKUs](vpn-gateway-about-skus-legacy.md).
