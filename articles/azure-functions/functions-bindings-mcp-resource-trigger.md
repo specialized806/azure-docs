@@ -24,7 +24,7 @@ For information on setup and configuration details, see the [overview](functions
 ::: zone pivot="programming-language-csharp,programming-language-python,programming-language-typescript,programming-language-javascript"
 ## Example 1
 
-Example 1 shows how to leverage resource to implement the UI element of MCP Apps. 
+Example 1 shows how to use resource to implement the UI element of MCP Apps. 
 ::: zone-end
 ::: zone pivot="programming-language-csharp"  
 
@@ -132,7 +132,7 @@ For the complete code example, see the [Azure Functions MCP Extension repo](http
 ::: zone pivot="programming-language-java"
 
 > [!IMPORTANT]
-> The MCP extension in Java does _not_ support resource today.
+> The MCP extension in Java doesn't_ support resource today.
 
 ::: zone-end
 
@@ -142,7 +142,7 @@ Example code for JavaScript isn't currently available. See the TypeScript exampl
 
 ::: zone pivot="programming-language-typescript"
 
-The following code registers a resource named `Weather Widget` that serves an interactive weather display as bundled HTML content. The resource uses the `ui://` scheme to indicate it's an MCP App UI resource.
+The code below registers a resource named `Weather Widget` that serves an interactive weather display as bundled HTML content. The resource uses the `ui://` scheme to indicate it's an MCP App UI resource.
 
 ```typescript
 // Constants for the Weather Widget resource
@@ -333,7 +333,7 @@ The attribute also supports the following named properties:
 | **Size** | (Optional) The size of the resource content in bytes. |
 | **Metadata** | (Optional) A JSON-serialized string of metadata for the resource. You can also use the `McpMetadata` attribute as an alternative way to provide metadata. |
 
-You can use the `[McpMetadata]` attribute to provide additional metadata for resources. This metadata is included in the meta field of each resource when clients call `resources/list`, and can influence how the resource content is displayed or processed.
+You can use the `[McpMetadata]` attribute to provide more metadata for resources. This metadata is included in the meta field of each resource when clients call `resources/list`, and can influence how the resource content is displayed or processed.
 
 See [Usage](#usage) to learn how the resource trigger provides data to your function.
 
