@@ -26,8 +26,6 @@ To deploy a workspace, see [Deploy an Azure Health Data Services workspace by us
 > [!NOTE] 
 > You can deploy multiple data services within a workspace, and by design they work seamlessly with one another. Use a workspace to organize all your organization's Azure Health Data Services instances and manage configuration settings that are shared among all the underlying datasets and services where it's applicable. 
 
-:::image type="content" source="media/.png" alt-text="Screenshot showing the Azure Health Data Services workspace." lightbox="media/health-data-services-workspace.png#lightbox":::
-
 ## The role of resource groups 
 
 To use Azure Health Data Services, you need to [create a resource](https://portal.azure.com/#create/hub) in the Azure portal. Enter **Azure Health Data Services** in the **Search services and marketplace** box. Resource groups function as organizational units that group related services and instances.

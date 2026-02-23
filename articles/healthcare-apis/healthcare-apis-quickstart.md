@@ -56,13 +56,10 @@ Before you create a workspace in the Azure portal, you need an Azure account sub
 
       **Optional**: Select **Download a template for automation** of the newly created workspace.
 
-1. After the workspace deployment process is complete, select **Go to resource**.
+1. To see your newly deployed workspace, select **Go to resource** after the workspace deployment process is complete.
 
    :::image type="content" source="media/healthcare-apis-quickstart/workspace-deployment-details.png" alt-text="Screenshot showing the workspace and the Go to resource button." lightbox="media/healthcare-apis-quickstart/workspace-deployment-details.png":::
 
-You can see your newly deployed workspace.
-
-   :::image type="content" source="media/healthcare-apis-quickstart/deploy-health-data-services-workspace.png" alt-text="Screenshot showing the newly created workspace." lightbox="media/healthcare-apis-quickstart/deploy-health-data-services-workspace.png":::
 
 ## Next steps
 
