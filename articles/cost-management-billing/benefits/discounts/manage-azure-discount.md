@@ -6,7 +6,7 @@ ms.reviewer: benshy
 ms.service: cost-management-billing
 ms.subservice: billing
 ms.topic: how-to
-ms.date: 01/29/2025
+ms.date: 02/09/2026
 ms.author: benshy
 #customer intent: As a Microsoft Customer Agreement billing owner, I want learn about managing a discount so that I move the discount when needed.
 service.tree.id: cf90d1aa-e8ca-47a9-a6d0-bc69c7db1d52
@@ -124,6 +124,7 @@ The user who accepted the discount proposal automatically gets owner access to t
 
 ## Related content
  - [Calculate discount in the usage file](../../understand/download-azure-daily-usage.md#calculate-discount-in-the-usage-file)
+ - [Microsoft.BillingBenefits/discounts - Bicep, ARM template & Terraform AzAPI reference](https://aka.ms/DiscountReference)
  - [Understand Cost Management data](../../../cost-management-billing/costs/understand-cost-mgt-data.md)
  - [View and download your organization's Azure pricing](../../../cost-management-billing/manage/ea-pricing.md)
  - [Terms in your Microsoft Customer Agreement price sheet](../../../cost-management-billing/manage/mca-understand-pricesheet.md)

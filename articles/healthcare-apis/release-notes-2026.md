@@ -25,10 +25,10 @@ Release notes describe features, enhancements, and bug fixes released in 2026 fo
 
 **Bug fix for queries combining `_include` and `_revinclude`**: There was an issue where queries combining `_include` and `_revinclude` (for example, `GET /Patient?_include=Patient:organization&_revinclude=Observation:patient`) could return an HTTP 500 Internal Server Error. This issue is fixed, and results are returned correctly now.
 
+**Pagination bug in FHIR search fix**: There was an issue where a pagination bug in FHIR search queries caused resources to be intermittently skipped when results span multiple pages and use continuation tokens. The issue is fixed.
+
 ## January 2026
 ### FHIR service
-
-**Hard delete now supported inside transaction bundles**:  Hard deletes are now allowed inside transaction bundles. Previously, hard deletes and conditional deletes were not supported. Conditional deletes are still not allowed.
 
 **Metadata-only updates and versioning configuration with PATCH**: Introduced new query parameter "_meta-history" for PATCH updates when versioning policy is set to either "versioned" or "version-update." The new query is used to configure whether or not the old version is saved as a historical record. "_meta-history = true" is the default. By default, the resource version is incremented, a new version is created, and the old version is saved as a historical record. "_meta-history=false" can be configured so that the resource version is incremented, a new version is created, but the old version isn't saved as a historical record. For more information, visit [metadata-only updates and versioning](./fhir/fhir-versioning-policy-and-history-management.md#metadata-only-updates-and-versioning).
 
