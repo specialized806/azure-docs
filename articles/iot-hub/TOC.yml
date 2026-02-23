@@ -10,6 +10,7 @@
     - name: Frequently asked questions
       href: iot-hub-faq.md
 - name: Quickstarts
+  expanded: true
   items:
     - name: Get started (ADR integration)
       href: iot-hub-device-registry-setup.md
