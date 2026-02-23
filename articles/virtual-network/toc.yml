@@ -34,7 +34,7 @@
       href: virtual-network-vnet-plan-design-arm.md
     - name: Traffic routing
       href: virtual-networks-udr-overview.md
-    - name: Create a virtual network routing appliance
+    - name: Create a routing appliance
       href: how-to-create-virtual-network-routing-appliance.md
 - name: Security
   items:

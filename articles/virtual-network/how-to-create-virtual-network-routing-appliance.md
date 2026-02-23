@@ -40,7 +40,7 @@ The preview of routing appliances is limited to the following regions:
 
 Azure Feature Exposure Control (AFEC) controls preview access to routing appliances. The AFEC feature name for enabling the preview is `Microsoft.network/AllowVirtualNetworkAppliance`. Register for the preview by activating the AFEC flag in the Azure portal.
 
-After you submit your AFEC registration for `Microsoft.network/AllowVirtualNetworkAppliance`, complete the preview [sign-up form](https://forms.office.com/r/kqEKRr5mpB). The product team reviews and approves requests manually based on availability and capacity. During the preview, creation requests might be denied if there's insufficient inventory or capacity in a region.
+After you submit your AFEC registration for `Microsoft.network/AllowVirtualNetworkAppliance`, complete the preview [sign-up form](https://forms.office.com/r/kqEKRr5mpB). The product team reviews and approves requests manually based on availability and capacity. During the preview, creation requests might be denied if a region has insufficient inventory or capacity.
 
 After Microsoft authorizes your subscription, search for **routing appliance** in the Azure portal's search box. If the feature is enabled, **Azure Virtual Network routing appliances** appears as a selectable service entry.
 

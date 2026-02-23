@@ -96,12 +96,12 @@ The preview is free. We'll provide advance notice before billing is enabled.
 
 ## Registration
 
-After you submit your Azure Feature Exposure Control (AFEC)  registration for `Microsoft.network/AllowVirtualNetworkAppliance`, proceed to finish the preview [sign-up form](https://forms.office.com/r/kqEKRr5mpB).
+After you submit your Azure Feature Exposure Control (AFEC)  registration for `Microsoft.network/AllowVirtualNetworkAppliance`, finish the preview [sign-up form](https://forms.office.com/r/kqEKRr5mpB).
 
 ## Support
 
 During the preview, the product group provides support services. To request support, fill out [this form](https://forms.office.com/r/pvamBMUx25).
 
-## Feedback
+## Feature feedback
 
 To provide feedback, fill out [this form](https://forms.office.com/r/pvamBMUx25).
