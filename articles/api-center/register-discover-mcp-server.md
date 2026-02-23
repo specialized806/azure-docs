@@ -41,7 +41,8 @@ To register a remote MCP server:
 
 1. Sign in to the [Azure portal](https://portal.azure.com) and go to your API center.
 1. In the sidebar menu, under **Inventory**, select **Assets**.
-1. Select **+ Register an asset** > **MCP server**.
+1. Select **+ Register an asset** > **MCP server**.    
+    :::image type="content" source="media/register-discover-mcp-server/register-mcp-server.png" alt-text="Screenshot showing registration of a an MCP server asset in the portal.":::
 1. In the **Register an MCP server** form, provide the information about the MCP server:
     1. Enter a **Title** for the MCP server. An **Identification** used by API Center is generated automatically based on the title, but you can edit it if needed. 
     1. Enter a **Summary** and **Description** for the MCP server to provide more context about it.
@@ -52,12 +53,11 @@ To register a remote MCP server:
         1. Enter a **Runtime URL** for the MCP server. 
         1. Select an API Center **Environment** that corresponds to the location of the MCP server, such as an API management platform or a compute service. 
         1. Select **Save**.
-
             :::image type="content" source="media/register-discover-mcp-server/register-remote.png" alt-text="Screenshot showing registration of a remote MCP server in the portal.":::
         1. Optionally, repeat the previous steps to add more remotes if the MCP server has multiple endpoints or is deployed in multiple environments. 
     1. Optionally, select **Add repository** to provide a URL to a code repository associated with the MCP server.
     1. Under **Version title**, provide a **Version title**, **Version identification**, and **Version lifecycle** for the MCP server. Learn more about [versions in API Center](key-concepts.md#api-version).
-    1. Optionally add **License** and **External documentation** links and associated information for the MCP server.
+    1. Optionally, add **License** and **External documentation** links and associated information for the MCP server.
     1. Select **Create**.
 
 ### Local MCP server
@@ -69,24 +69,24 @@ To register a local MCP server:
 1. Sign in to the [Azure portal](https://portal.azure.com) and go to your API center.
 1. In the sidebar menu, under **Inventory**, select **Assets**.
 1. Select **+ Register an asset** > **MCP server**.
+    :::image type="content" source="media/register-discover-mcp-server/register-mcp-server.png" alt-text="Screenshot showing registration of a an MCP server asset in the portal.":::
 1. In the **Register an MCP server** form, provide the information about the MCP server:
     1. Enter a **Title** for the MCP server. An **Identification** used by API Center is generated automatically based on the title, but you can edit it if needed. 
     1. Enter a **Summary** and **Description** for the MCP server to provide more context about it.
     1. Optionally enter an **Icon URL** to associate an image with the MCP server.
     1. Under **Use Cases**, optionally provide a name and description for one or more use cases for the MCP server. 
-    1. 1. Under **Packages**, do the following:
+    1. Under **Packages**, do the following:
         1. Select **+ Add package**. 
         1. Enter a **Package registry** for installation of the MCP server. Example `npm`.
         1. Enter a **Package name** from the package registry and a **Version**.
         1. In **Runtime hint**, enter the runtime command used to run the MCP server. Example: `npx`.
         1. In **Runtime arguments**, optionally pass arguments when running the MCP server. 
         1. Select **Save**.
-        
             :::image type="content" source="media/register-discover-mcp-server/register-package.png" alt-text="Screenshot showing registration of a MCP server package in the portal.":::
         1. Optionally, repeat the previous steps to add more packages if the MCP server is available in multiple package registries or has multiple versions.
     1. Optionally, select **Add repository** to provide a URL to a code repository associated with the MCP server.
     1. Under **Version title**, provide a **Version title**, **Version identification**, and **Version lifecycle** for the MCP server. Learn more about [versions in API Center](key-concepts.md#api-version).
-    1. Optionally add **License** and **External documentation** links and associated information for the MCP server.
+    1. Optionally, add **License** and **External documentation** links and associated information for the MCP server.
     1. Select **Create**.
 
 ## Definition for remote MCP server
