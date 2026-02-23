@@ -33,7 +33,7 @@ The Discounts view allows you to easily view and manage all discounts in one pla
 For Azure-based discounts, you can verify the discount is appropriately applied by following the instructions outlined in the [Calculate discount in the usage file](../../understand/download-azure-daily-usage.md#calculate-discount-in-the-usage-file) article.
 
 
-## View the additional discount metadata
+### View the additional discount metadata
 
 Additional detailed information regarding the available discount is accessible by viewing the JSON representation of the discount resource. This allows you to examine all relevant fields, such as discount values, eligibility criteria, validity periods, and other pertinent attributes connected to the discount. 
 
@@ -44,7 +44,7 @@ To see the additional discount metadata
 3.	From Overview page, on the ***Essentials*** tab, select **JSON View**.
 
 
-## To view the discount resource URI
+### To view the discount resource URI
 1.	In the [Azure portal](https://portal.azure.com/), search for **Discounts**.
 2.	Select the discount resource.
 3.	On the Overview page, in the left navigation menu, expand **Settings**, and select **Properties**.
