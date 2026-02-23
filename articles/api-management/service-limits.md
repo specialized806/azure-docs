@@ -49,7 +49,7 @@ New limits roll out in a phased approach by tier as follows:
 
 ### Limits policy for existing classic tier customers
 
-After the new limits take effect, you can continue using your pre-existing API Management resources without interruption. 
+After the new limits take effect, you can continue using your preexisting API Management resources without interruption. 
 
 * Existing classic tier services, where current usage exceeds the new limits, are "grandfathered" when the new limits are introduced. (Instances in the v2 tiers are already subject to the new limits.) 
 * Limits in grandfathered services will be set 10% higher than the customer's observed usage at the time new limits take effect. 
