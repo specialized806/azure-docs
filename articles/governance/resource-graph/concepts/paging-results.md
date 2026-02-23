@@ -47,7 +47,7 @@ When paginating results sorted by a non-unique column, you might encounter dupli
 > [!NOTE]
 > When using `skip or first`, it's recommended to order results by at least one column with asc or `desc`. Without sorting, results are random and not repeatable. 
 
-#### Why this scenario happens:
+#### Why this scenario happens
 
 Consider an example scenario, a query that retrieves virtual machines sorted by location: 
 
@@ -102,7 +102,7 @@ By adding id (which is unique for every resource) as a secondary sort column, yo
 
 If you're experiencing duplicate or missing records despite sorting by a unique column, the cause is likely changes occurring in your Azure environment during pagination. When paginating through large result sets, changes to your Azure environment between requests can affect which records appear on each page. 
 
-#### Why this scenario happens:
+#### Why this scenario happens
 
 When resources change between pagination requests, the underlying data shifts. Consider the following example scenario: 
 
@@ -115,9 +115,9 @@ Resources
 | take 100
 ```
 
-This request returns VMs with IDs from vm-001 through vm-100. 
-**Between requests:** Resource vm-050 is deleted from your environment. 
-**Page 2 request:** Skip the first 100 records and retrieve the next 100. 
+This request returns VMs with IDs from vm-001 through vm-100. <br>
+**Between requests:** Resource vm-050 is deleted from your environment. <br>
+**Page 2 request:** Skip the first 100 records and retrieve the next 100. <br>
 
 ```kusto
 Resources 
@@ -142,7 +142,7 @@ If your scenario requires a more consistent retrieval of resources, consider one
 
 This approach partitions your data using a hash function to ensure consistent and non-overlapping results across multiple queries. Each resource belongs to exactly one partition based on its unique identifier. 
 
-#### Step 1: Get the total record count
+##### Step 1: Get the total record count
 
 First, determine how many records match your query: 
 
@@ -186,7 +186,7 @@ Resources
 
 #### Pseudo code
 
-#### Step 1: Get total count and calculate partitions
+##### Step 1: Get total count and calculate partitions
 
 ```kusto
 totalCount = executeQuery("Resources | where type =~ 'microsoft.compute/virtualmachines' | count") 
@@ -194,7 +194,7 @@ totalCount = executeQuery("Resources | where type =~ 'microsoft.compute/virtualm
 numPartitions = ceiling(totalCount / 1000) 
 ```
   
-#### Step 2: Build queries for each partition
+##### Step 2: Build queries for each partition
 
 ```kusto
 queries = [] 
@@ -210,13 +210,13 @@ for i = 0 to numPartitions - 1:
   
 ```
 
-#### Step 3: Execute all queries in parallel and combine results
+##### Step 3: Execute all queries in parallel and combine results
 
 ```kusto
 allResults = executeInParallel(queries) 
 ```
 
-#### Benefits
+##### Benefits
 
 - **No duplicates or missed records:** Each resource ID hashes to exactly one partition. 
 - **Parallel execution:** All partition queries can run simultaneously, reducing total query time. 
@@ -225,7 +225,7 @@ allResults = executeInParallel(queries)
 
 This approach retrieves all resource IDs first, then queries for complete records in smaller batches. This ensures you have a consistent set of identifiers before retrieving the full resource data. 
 
-#### Step 1: Retrieve all resource IDs
+##### Step 1: Retrieve all resource IDs
 
 Use summarize with make_set() to retrieve all resource IDs: 
 
@@ -235,7 +235,7 @@ Resources
 | summarize make_set(id)
 ```
 
-#### Step 2: Query in batches
+##### Step 2: Query in batches
 
 Once you have the list of resource IDs, query for full records in batches of 1,000 or fewer: 
 
@@ -257,7 +257,7 @@ Resources
 
 Continue until all IDs are covered. 
 
-#### Benefits
+##### Benefits
 
 - **Guaranteed completeness:** You have a fixed set of IDs before querying for details. 
 - **Parallel execution:** Batch queries can run simultaneously.
@@ -302,7 +302,7 @@ Resources
  | summarize make_set(id) 
 ```
 
-### Summary
+## Summary
 
 From this article, you were able to learn:
 
