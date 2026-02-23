@@ -56,7 +56,7 @@ JavaScript unit testing for Durable Functions isn't covered in this article.
 # [C#](#tab/csharp)
 
 - [xUnit](https://xunit.net/) — test framework
-- The `Microsoft.DurableTask.Testing` NuGet package
+- The `Microsoft.DurableTask.InProcessTestHost` NuGet package
 
 # [Python](#tab/python)
 
@@ -389,9 +389,7 @@ Activity functions in Azure Functions are regular Python functions. Test them di
 ```python
 def say_hello(name: str) -> str:
     return f"Hello {name}!"
-```
 
-```python
 def test_say_hello():
     result = say_hello("Tokyo")
     assert result == "Hello Tokyo!"
