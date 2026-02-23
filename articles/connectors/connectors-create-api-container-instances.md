@@ -1,6 +1,6 @@
 ---
 title: Connect to Azure Container Instances
-description: Learn how to automate tasks that create and manage container deployments in Azure Container Instances by using Azure Logic Apps.
+description: Learn how to automate container deployments in Azure Container Instances by using Azure Logic Apps. Build workflows to create, manage, and optimize containers.
 services: logic-apps, container-instances
 ms.service: azure-logic-apps
 ms.suite: integration
@@ -17,7 +17,7 @@ ms.custom: sfi-image-nochange
 
 [!INCLUDE [logic-apps-sku-consumption-standard](../../includes/logic-apps-sku-consumption-standard.md)]
 
-When you need to automate tasks that create or manage container deployments, build a logic app workflow that performs those tasks by using the Azure Container Instance connector in Azure Logic Apps. For example, you can automate workflows that deploy and manage [container groups](/azure/container-instances/container-instances-container-groups) and other actions, for example:
+When you need to automate container deployments, build a logic app workflow that uses the Azure Container Instance connector in Azure Logic Apps. For example, automate tasks such as deploying and managing [container groups](/azure/container-instances/container-instances-container-groups), retrieving properties, or accessing logs. The following list includes other tasks you can automate:
 
 - Create, update, or delete a container group and container instances.
 - Get the properties from a container group.
@@ -40,7 +40,7 @@ This guide shows how to add an Azure Container Instance action to your workflow.
 
   The Azure Container Instance connector provides only actions, so your workflow needs to start with a trigger that best suits your business scenario. For example, to run a container workload on a schedule, use the **Recurrence** trigger. Or, to deploy a container group after a specific event, such as when the workflow receives an email in Outlook, use the trigger named **When a new email arrives**. For simplicity, this example uses the **Recurrence** trigger.
 
-  To add a trigger to your workflow, follow the [general steps](../logic-apps/add-trigger-action-workflow.md#add-trigger) for the trigger you want. Set up the corresponding connection, if required.
+  To add a trigger to your workflow, follow the [general steps](../logic-apps/add-trigger-action-workflow.md#add-trigger) for the trigger you want. Set up the corresponding connection, if necessary.
 
   For more information, see:
 
@@ -76,7 +76,7 @@ This section shows how to add an Azure Container Instance connector action to a 
 
    The following screenshot shows an example:
 
-   :::image type="content" source="./media/connectors-create-api-container-instances/create-update-container-group.png" alt-text="Screenshot that shows the Azure portal, workflow designer, selected action, and information for the container group and container instances to create or update.":::
+   :::image type="content" source="./media/connectors-create-api-container-instances/create-update-container-group.png" alt-text="Screenshot that shows the Azure portal, workflow designer, and selected action. Action pane shows information for the container group and container instances to create or update.":::
 
 1. Save your workflow. On the designer toolbar, select **Save**.
 
