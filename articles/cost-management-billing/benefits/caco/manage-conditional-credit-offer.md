@@ -15,7 +15,7 @@ service.tree.id: b69a7832-2929-4f60-bf9d-c6784a865ed8
 
 # Manage a Conditional Azure Credit Offer (CACO) resource under a subscription
 
-When you accept a Conditional Azure Credit Offer (CACO) in a Microsoft Customer Agreement, it creates a CACO commitment and 1 or more provisional (not spendable) credit resources. The CACO commitment and provisional (not spendable) credit resources get placed in a subscription and resource group, and follow the same setup as the other credit resource as mentioned in [Manage a Microsoft Azure credit resource under a subscription](../credits/manage-azure-credits.md). The provisional credit resources will turn into awarded credits if the spending target and other conditions in the CACO are met. Moving a CACO resource does not move any provisional or awarded credits. Those will have to be moved separately as needed.
+When you accept a Conditional Azure Credit Offer (CACO) in a Microsoft Customer Agreement, it creates a CACO commitment and 1 or more provisional (not spendable) credit resources. The CACO commitment and provisional (not spendable) credit resources get placed in a subscription and resource group, and follow the same setup as the other credit resource as mentioned in [Manage a Microsoft Azure credit resource under a subscription](../credits/manage-azure-credits.md). The provisional credit resources turn into awarded credits if the spending target and other conditions in the CACO are met. Moving a CACO resource doesn't move any provisional or awarded credits. Those credit resources have to be moved separately as needed.
 
 On Azure Portal, you can view metadata related to the CACO. Including: status of the CACO, CACO start/end date, spend target, currency, target end date, award credit, award start date, award end date, and System ID. You can view the metadata under the Conditional Credit resource. 
 
@@ -23,11 +23,11 @@ On Azure Portal, you can view metadata related to the CACO. Including: status of
 
 ## Move CACO across resource groups or subscriptions
 
-You can move the CACO to another resource group or subscription just like other Azure resources. This move only changes metadata and does not impact the credit or commitment. 
+You can move the CACO to another resource group or subscription just like other Azure resources. This move only changes metadata and doesn't impact the credit or commitment. 
 
 The new resource group or subscription must remain within the same billing profile as the original billing profile where the CACO is currently located.
 
-Moving a CACO resource does not move any provisional or awarded credits. Those will have to be moved separately as needed.
+Moving a CACO resource doesn't move any provisional or awarded credits. Those credit resources have to be moved separately as needed.
 
 ### To move a CACO
 
@@ -39,7 +39,8 @@ Here are the high-level steps to move a CACO resource. For more information abou
 4. At top of the page select **Move** and then select **Move to another subscription** or **Move to another resource group**.
 5. Follow the instructions to move the CACO resource.
 6. After the move is complete, verify that the CACO resource is in the new resource group or subscription.
-After a CACO moves, its resource URI changes because of the move.
+
+Moving a CACO changes its resource URI.
 
 ### To view the CACO resource URI
 
@@ -54,13 +55,13 @@ Here's an example image:
 
 
 ## Rename CACO
-The CACO's resource name is a part of its Uniform Resource Identifier (URI) and cannot be changed. However, you can use [tags](../../../azure-resource-manager/management/tag-resources.md) to help identify the CACO resource based on a nomenclature relevant to your organization.
+The CACO's resource name is a part of its Uniform Resource Identifier (URI) and can't be changed. However, you can use [tags](../../../azure-resource-manager/management/tag-resources.md) to help identify the CACO resource based on a nomenclature relevant to your organization.
  
 ## Delete CACO
-A CACO resource may only be deleted if its status is _failed_, _canceled_, or _expired_. Deletion of a CACO resource is a permanent action and cannot be undone.  
+A CACO resource may only be deleted if its status is _failed_, _canceled_, or _expired_. Deletion of a CACO resource is a permanent action and can't be undone.  
  
 ## Cancel CACO
-Please contact your Microsoft account team if you have questions about cancelling your CACO.
+Contact your Microsoft account team if you have questions about canceling your CACO.
 
 ## Related content
 - [Move Azure resources to a new resource group or subscription](../../../azure-resource-manager/management/move-resource-group-and-subscription.md)
