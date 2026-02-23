@@ -15,7 +15,7 @@ zone_pivot_groups: programming-languages-set-functions
 
 In this quickstart, you create an [MCP App](https://blog.modelcontextprotocol.io/posts/2026-01-26-mcp-apps/) from a template project by using the Azure Developer CLI (`azd`). [MCP Apps](https://blog.modelcontextprotocol.io/posts/2026-01-26-mcp-apps/) is an extension of the Model Context Protocol (MCP) specification that lets tools return rich, interactive user interfaces (HTML/JavaScript in sandboxed iframes) instead of plain text. 
 
-This quickstart will use the Azure Functions MCP extension to build an MCP App using the MCP tool and resource trigger. After running the project locally and verifying your code by using GitHub Copilot, you deploy it to a new serverless function app in Azure Functions that follows current best practices for secure and scalable deployments.
+This quickstart uses the Azure Functions MCP extension to build an MCP App using the MCP tool and resource trigger. After running the project locally and verifying your code by using GitHub Copilot, you deploy it to a new serverless function app in Azure Functions that follows current best practices for secure and scalable deployments.
 
 >[!TIP]  
 >MCP tools built with the Azure Functions MCP extension don't have to return results in interactive UIs. If your server only needs text-based tools, see [Quickstart: Build a custom remote MCP server using Azure Functions](scenario-custom-remote-mcp-server.md).
@@ -215,7 +215,7 @@ The function code for the MCP Apps weather tool is defined in the `src/function_
 
 :::code language="python" source="~/functions-scenarios-custom-mcp-python/src/function_app.py" range="109-130" :::
 
-The `TOOL_METADATA` constant declares a `ui.resourceUri` that tells the MCP host to fetch the interactive UI from `ui://weather/index.html` after the tool runs. The `@app.mcp_resource_trigger()` method serves the HTML widget.  The `get_weather_widget` function serves the bundled HTML file at that URI using `@app.mcp_resource_trigger()`:
+The `TOOL_METADATA` constant declares a `ui.resourceUri` that tells the MCP host to fetch the interactive UI from `ui://weather/index.html` after the tool runs. The `@app.mcp_resource_trigger()` method serves the HTML widget. The `get_weather_widget` function serves the bundled HTML file at that URI using `@app.mcp_resource_trigger()`:
 
 :::code language="python" source="~/functions-scenarios-custom-mcp-python/src/function_app.py" range="64-105" :::
 
