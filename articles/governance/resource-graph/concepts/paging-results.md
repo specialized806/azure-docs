@@ -88,10 +88,12 @@ Notice that *vm-app-01* appears in both pages (duplicate). Due to the same reord
 
 Always include a unique column such as id in your sort order to ensure deterministic results: 
 
+```kusto
 Resources 
 | where type =~ 'microsoft.compute/virtualmachines' 
 | order by location asc, id asc 
 | project name, location, resourceGroup
+```
 
 By adding id (which is unique for every resource) as a secondary sort column, you establish a stable, deterministic order that remains consistent across pagination calls. 
 
