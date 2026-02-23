@@ -15,7 +15,7 @@ zone_pivot_groups: programming-languages-set-functions
 
 # Quickstart: Build a custom remote MCP server using Azure Functions
 
-In this quickstart, you create a custom remote Model Context Protocol (MCP) server from a template project by using the Azure Developer CLI (`azd`). This MCP server uses the Azure Functions MCP server extension to provide tools for AI models, agents, and assistants. You can also use the MCP server extension to [create MCP Apps endpoints](./scenario-mcp-apps.md).
+In this quickstart, you create a custom remote Model Context Protocol (MCP) server from a template project by using the Azure Developer CLI (`azd`). This MCP server uses the Azure Functions MCP server extension to provide tools for AI models, agents, and assistants. You can also use the MCP server extension to [create interactive MCP Apps](./scenario-mcp-apps.md).
 
 After running the project locally and verifying your code by using GitHub Copilot, you deploy it to a new serverless function app in Azure Functions that follows current best practices for secure and scalable deployments. 
 
