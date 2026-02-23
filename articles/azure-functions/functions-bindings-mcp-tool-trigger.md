@@ -14,9 +14,9 @@ zone_pivot_groups: programming-languages-set-functions
 
 # MCP tool trigger for Azure Functions
 
-Use the MCP tool trigger to define tool endpoints in a [Model Content Protocol (MCP)](https://github.com/modelcontextprotocol) server. Client language models and agents can use tools to perform specific tasks, such as storing or accessing code snippets.
+Use the MCP tool trigger to define tool endpoints in a [Model Content Protocol (MCP)](https://github.com/modelcontextprotocol) server. Client language models and agents can use these tools to perform specific tasks, such as storing or accessing code snippets.
 
-For information on setup and configuration details, see the [overview](functions-bindings-mcp.md).
+For information on setup and configuration, see the [overview](functions-bindings-mcp.md).
 
 ## Example
 
@@ -79,7 +79,7 @@ builder.Build().Run();
 ```
 
 > [!TIP]
-> The example above used literal strings for things like the name of the "get_snippets" tool in both `Program.cs` and the function. Consider instead using shared constant strings to keep things in sync across your project.
+> The example above uses literal strings for things like the name of the "get_snippets" tool in both `Program.cs` and the function. Consider instead using shared constant strings to keep things in sync across your project.
 
 For the complete code example, see [SnippetTool.cs](https://github.com/Azure-Samples/remote-mcp-functions-dotnet/blob/main/src/SnippetsTool.cs).  
 ::: zone-end
@@ -340,9 +340,9 @@ C# libraries use `McpToolTriggerAttribute` to define the function trigger.
 
 The attribute's constructor takes the following parameters:
 
-|Parameter | Description|
+| Parameter | Description |
 |---------|----------------------|
-|**ToolName**| (Required) name of the tool that's being exposed by the MCP trigger endpoint. |
+|**ToolName**| (Required) name of the tool that the MCP trigger endpoint exposes. |
 |**Description**| (Optional) friendly description of the tool endpoint for clients. |
 
 See [Usage](#usage) to learn how to define properties of the endpoint as input parameters.
@@ -352,22 +352,22 @@ See [Usage](#usage) to learn how to define properties of the endpoint as input p
 
 ## Annotations
 
-The `@McpToolTrigger` annotation creates a function that exposes a tool endpoint in your remote MCP server. 
+Use the `@McpToolTrigger` annotation to create a function that exposes a tool endpoint in your remote MCP server. 
 
 The annotation supports the following configuration options:
 
-|Parameter | Description|
+| Parameter | Description |
 |---------|----------------------|
-| **name**| (Required) name of the tool that's being exposed by the MCP trigger endpoint. |
+| **name**| (Required) name of the tool that the MCP trigger endpoint exposes. |
 | **description**| (Optional) friendly description of the tool endpoint for clients. |
 
-The `@McpToolProperty` annotation defines individual properties for your tools. Each property parameter in your function should be annotated with this annotation.
+Use the `@McpToolProperty` annotation to define individual properties for your tools. Annotate each property parameter in your function with this annotation.
 
 The `@McpToolProperty` annotation supports the following configuration options:
 
-|Parameter | Description|
+| Parameter | Description |
 |---------|----------------------|
-| **name**| (Required) name of the tool property that gets exposed to clients. |
+| **name**| (Required) name of the tool property that clients see. |
 | **propertyType**| (Required) type of the tool property. Valid types are: `string`, `number`, `integer`, `boolean`, `object`. |
 | **description**| (Optional) description of what the tool property does. |
 | **required** | (Optional) if set to `true`, the tool property is required as an argument for tool calls. Defaults to `false`. |
@@ -384,20 +384,20 @@ The `mcp_tool_trigger` decorator requires version 1.24.0 or later of the [`azure
 |-------------|-----------------------------|
 | **arg_name** | The variable name (usually `context`) used in function code to access the execution context. |
 | **tool_name**  | (Required) The name of the MCP server tool exposed by the function endpoint. |
-| **description**  | A description of the MCP server tool exposed by the function endpoint.  |
+| **description**  | A description of the MCP server tool that the function endpoint exposes.  |
 | **tool_properties** | The JSON string representation of one or more property objects that expose properties of the tool to clients.  |
 
 ::: zone-end
 ::: zone pivot="programming-language-javascript,programming-language-typescript"  
 ## Configuration
 
-The trigger supports these binding options, which are defined in your code: 
+Define the trigger's binding options in your code. The following table describes each option: 
 
-| Options | Description |
+| Option | Description |
 |-----------------------|-------------|
-| **type** | Must be set to `mcpToolTrigger`. Only used with generic definitions. |
-| **toolName** | (Required) The name of the MCP server tool exposed by the function endpoint. |
-| **description**  | A description of the MCP server tool exposed by the function endpoint.  |
+| **type** | Set to `mcpToolTrigger`. Use only with generic definitions. |
+| **toolName** | (Required) The name of the MCP server tool that the function endpoint exposes. |
+| **description**  | A description of the MCP server tool that the function endpoint exposes.  |
 | **toolProperties** | An array of `toolProperty` objects that expose properties of the tool to clients.  |
 | **extraOutputs** | When defined, sends function output to another binding.  |
 | **handler** | The method that contains the actual function code. | 
@@ -406,7 +406,7 @@ The trigger supports these binding options, which are defined in your code:
 
 ::: zone pivot="programming-language-csharp,programming-language-java,programming-language-python,programming-language-javascript,programming-language-typescript"
 
-See the [Example section](#example) for complete examples.
+For complete examples, see the [Example section](#example).
 
 ::: zone-end
 
@@ -431,10 +431,10 @@ The MCP tool trigger can bind to the following types:
 
 MCP clients invoke tools with arguments to provide data and context for the tool's operation. The clients know how to collect and pass these arguments based on properties that the tool advertises as part of the protocol. You therefore need to define properties of the tool in your function code.
 
-When you define a tool property, it's optional by default, and the client can omit it when invoking the tool. You need to explicitly mark properties as required if the tool can't operate without them.
+When you define a tool property, make it optional by default. The client can omit it when invoking the tool. Explicitly mark properties as required if the tool can't operate without them.
 
 > [!NOTE]
-> Earlier versions of the MCP extension preview made all tool properties required by default. This behavior changed as of version `1.0.0-preview.7`, and now you must explicitly mark properties as required.
+> Earlier versions of the MCP extension preview made all tool properties required by default. This behavior changed as of version `1.0.0-preview.7`. Now, you must explicitly mark properties as required.
 
 ::: zone-end
 
@@ -442,13 +442,13 @@ When you define a tool property, it's optional by default, and the client can om
 
 In C#, you can define properties for your tools in several ways. Which approach you use is a matter of code style preference. The options are:
 
-- Your function takes input parameters using the `McpToolProperty` attribute.
+- Your function takes input parameters by using the `McpToolProperty` attribute.
 - You define a custom type with the properties, and the function binds to that type.
 - You use the `FunctionsApplicationBuilder` to define properties in your `Program.cs` file.
 
 #### [`McpToolProperty` attribute](#tab/attribute)
 
-You can define one or more tool properties by applying the `McpToolProperty` attribute to input binding-style parameters in your function.  
+Define one or more tool properties by applying the `McpToolProperty` attribute to input binding-style parameters in your function.  
 
 The `McpToolPropertyAttribute` type supports these properties:
 
@@ -458,13 +458,13 @@ The `McpToolPropertyAttribute` type supports these properties:
 | **Description** | Description of what the tool property does.  |
 | **IsRequired** | (Optional) If set to `true`, the tool property is required as an argument for tool calls. Defaults to `false`. |
 
-The property type is inferred from the type of the parameter to which you apply the attribute. For example `[McpToolProperty("snippetname", "The name of the snippet.", true)] string name` defines a required tool property named `snippetname` of type `string` in MCP messages.
+The property type is inferred from the type of the parameter to which you apply the attribute. For example, `[McpToolProperty("snippetname", "The name of the snippet.", true)] string name` defines a required tool property named `snippetname` of type `string` in MCP messages.
 
 You can see these attributes used in the `SaveSnippet` tool in the [Examples](#example).
 
 #### [Bind to custom type](#tab/poco)
 
-You can define one or more tool properties by binding to a plain-old CLR object (POCO) type that you define. Properties of that type are automatically exposed as tool properties. You can use the [Description] attribute to provide a description for each property. You can indicate that a property is required using the `required` keyword. The class property type in the informs type used in MCP messages.
+Define one or more tool properties by binding to a plain-old CLR object (POCO) type that you define. Properties of that type automatically expose as tool properties. Use the [Description] attribute to provide a description for each property. Indicate that a property is required by using the `required` keyword. The class property type informs the type used in MCP messages.
 
 This example uses a custom type to define tool properties for the `SaveSnippet` tool:
 
@@ -493,7 +493,7 @@ public string SaveSnippet(
 
 #### [`FunctionsApplicationBuilder`](#tab/builder)
 
-You can define one or more tool properties in your entry point (`Program.cs`) file by using an `McpToolBuilder` returned by the `ConfigureMcpTool()` method on `FunctionsApplicationBuilder`. This example calls the `WithProperty` method on the builder for the `GetSnippet` tool to set the properties of the tool:
+Define one or more tool properties in your entry point (`Program.cs`) file by using an `McpToolBuilder` returned by the `ConfigureMcpTool()` method on `FunctionsApplicationBuilder`. This example calls the `WithProperty` method on the builder for the `GetSnippet` tool to set the properties of the tool:
 
 ```csharp
 var builder = FunctionsApplication.CreateBuilder(args);
@@ -509,7 +509,7 @@ builder
 builder.Build().Run();
 ```
 
-You can call the `WithProperty()` method multiple times to define multiple properties for the tool. Each call to `WithProperty()` includes a string representation of the MCP property type, which may not directly correspond to a CLR type. For example, use `"boolean"` to define a boolean property, even though the corresponding CLR type is `bool`. Valid types are: `"string"`, `"number"`, `"integer"`, `"boolean"`, `"object"`.
+You can call the `WithProperty()` method multiple times to define multiple properties for the tool. Each call to `WithProperty()` includes a string representation of the MCP property type, which might not directly correspond to a CLR type. For example, use `"boolean"` to define a boolean property, even though the corresponding CLR type is `bool`. Valid types are: `"string"`, `"number"`, `"integer"`, `"boolean"`, `"object"`.
 
 For the complete example, see the [`Program.cs` file](https://github.com/Azure-Samples/remote-mcp-functions-dotnet/blob/main/src/Program.cs).
 
@@ -517,7 +517,7 @@ For the complete example, see the [`Program.cs` file](https://github.com/Azure-S
 
 ::: zone-end
 ::: zone pivot="programming-language-java"
-In Java, you define tool properties by using the `@McpToolProperty` annotation on individual function parameters. Each parameter that represents a tool property should be annotated with this annotation, specifying the property name, type, description, and whether it's required.
+In Java, define tool properties by using the `@McpToolProperty` annotation on individual function parameters. Annotate each parameter that represents a tool property with this annotation. Specify the property name, type, description, and whether it's required.
 
 You can see these annotations used in the [Examples](#example).
 ::: zone-end
@@ -540,7 +540,7 @@ The fields of a `ToolProperty` object are:
 
 | Property | Description |
 | ---- | ----- |
-| **propertyName** | Name of the tool property that gets exposed to clients. |
+| **propertyName** | Name of the tool property that you expose to clients. |
 | **propertyType** | Type of the tool property. Valid types are: `string`, `number`, `integer`, `boolean`, `object`. See `isArray` for array types. |
 | **description** | Description of what the tool property does. |
 | **isRequired** | (Optional) If set to `true`, the tool property is required as an argument for tool calls. Defaults to `false`. |
@@ -564,7 +564,7 @@ For more information, see [Examples](#example).
 
 ## host.json settings
 
-The host.json file contains settings that control MCP trigger behaviors. See the [host.json settings](functions-bindings-mcp.md#hostjson-settings) section for details regarding available settings.
+The host.json file contains settings that control MCP trigger behaviors. See the [host.json settings](functions-bindings-mcp.md#hostjson-settings) section for details about available settings.
 
 ## Related articles
 
