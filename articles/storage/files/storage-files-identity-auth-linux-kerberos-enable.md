@@ -1,5 +1,5 @@
 ---
-title: Use Kerberos Authentication for Linux clients with Azure Files
+title: Use Kerberos Authentication for Linux Clients with Azure Files
 description: Learn how to enable identity-based Kerberos authentication for Linux clients over Server Message Block (SMB) for Azure Files using on-premises Active Directory Domain Services (AD DS) or Microsoft Entra Domain Services.
 author: khdownie
 ms.service: azure-file-storage
@@ -32,7 +32,7 @@ You can't use identity-based authentication to mount Azure File shares on Linux 
 
 ## Prerequisites
 
-Before you enable AD authentication over SMB for Azure file shares, make sure you complete the following prerequisites.
+Before you enable Active Directory authentication over SMB for Azure file shares, make sure you complete the following prerequisites.
 
 - A Linux VM running Ubuntu 18.04+, or an equivalent RHEL or SLES VM. If running on Azure, the VM must have at least one network interface on the virtual network containing Microsoft Entra Domain Services. If using an on-premises VM, your AD DS must be synced to Microsoft Entra ID.
 - Root user or user credentials to a local user account that has full sudo rights (for this guide, localadmin).
@@ -116,9 +116,9 @@ MulticastDNS setting: no
           DNS Domain: domain1.contoso.com 
 ```
 
-1. If the command works, skip the following steps and proceed to the next section.
+2. If the command works, skip the following steps and proceed to the next section.
 
-1. If the command doesn't work, make sure that you can ping the domain server IP addresses.
+3. If the command doesn't work, make sure that you can ping the domain server IP addresses.
 
 ```bash
 ping 10.0.2.5
@@ -136,9 +136,9 @@ PING 10.0.2.5 (10.0.2.5) 56(84) bytes of data.
 rtt min/avg/max/mdev = 0.898/0.922/0.946/0.024 ms
 ```
 
-1. If the ping doesn't work, go back to [prerequisites](#prerequisites), and make sure that your VM is on a VNET that has access to the Entra tenant.
+4. If the ping doesn't work, go back to [prerequisites](#prerequisites), and make sure that your VM is on a virtual network that has access to the Entra tenant.
 
-1. If the IP addresses respond to ping but the DNS servers aren't automatically discovered, you can add the DNS servers manually. Edit `/etc/netplan/50-cloud-init.yaml` by using your favorite text editor.
+5. If the IP addresses respond to ping but the DNS servers aren't automatically discovered, you can add the DNS servers manually. Edit `/etc/netplan/50-cloud-init.yaml` by using your favorite text editor.
 
 ```plaintext
 # This file is generated from information provided by the datasource.  Changes
@@ -167,7 +167,7 @@ Then apply the changes:
 sudo netplan --debug apply 
 ```
 
-1. Winbind assumes that the DHCP server keeps the domain DNS records up-to-date. However, this assumption isn't true for Azure DHCP. To set up the client to make DDNS updates, use [this guide](../../virtual-network/virtual-networks-name-resolution-ddns.md#linux-clients) to create a network script. Here's a sample script that resides at `/etc/dhcp/dhclient-exit-hooks.d/ddns-update`.
+6. Winbind assumes that the DHCP server keeps the domain DNS records up-to-date. However, this assumption isn't true for Azure DHCP. To set up the client to make DDNS updates, use [this guide](../../virtual-network/virtual-networks-name-resolution-ddns.md#linux-clients) to create a network script. Here's a sample script that resides at `/etc/dhcp/dhclient-exit-hooks.d/ddns-update`.
 
 ```plaintext
 #!/bin/sh 
@@ -196,7 +196,7 @@ fi
 
 ### Connect to Microsoft Entra Domain Services and make sure the services are discoverable
 
-1. Make sure that you can ping the domain server by the domain name.
+Make sure that you can ping the domain server by the domain name.
 
 ```bash
 ping contosodomain.contoso.com
@@ -216,7 +216,7 @@ PING contosodomain.contoso.com (10.0.2.4) 56(84) bytes of data.
 rtt min/avg/max/mdev = 0.740/1.026/1.419/0.248 ms 
 ```
 
-1. Make sure you can discover the Entra services on the network.
+Make sure you can discover the Entra services on the network.
 
 ```bash
 nslookup
@@ -236,7 +236,7 @@ _ldap._tcp.contosodomain.contoso.com service = 0 100 389 hxt4yo--jb9q529.contoso
 
 ### Set up hostname and fully qualified domain name (FQDN)
 
-1. Using your text editor, update the `/etc/hosts` file with the final FQDN (after joining the domain) and the alias for the host. The IP address doesn't matter for now because this line is mainly used to translate short hostname to FQDN. For more information, see [Setting up Samba as a Domain Member](https://wiki.samba.org/index.php/Setting_up_Samba_as_a_Domain_Member).
+Using your text editor, update the `/etc/hosts` file with the final FQDN (after joining the domain) and the alias for the host. The IP address doesn't matter for now because this line is mainly used to translate short hostname to FQDN. For more information, see [Setting up Samba as a Domain Member](https://wiki.samba.org/index.php/Setting_up_Samba_as_a_Domain_Member).
 
 ```plaintext
 127.0.0.1       contosovm.contosodomain.contoso.com contosovm
@@ -244,7 +244,7 @@ _ldap._tcp.contosodomain.contoso.com service = 0 100 389 hxt4yo--jb9q529.contoso
 #then enter this value instead of localhost "ubuntvm.contosodomain.contoso.com UbuntuVM" 
 ```
 
-1. Now, your hostname should resolve. You can ignore the IP address it resolves to for now. The short hostname should resolve to the FQDN.
+Now, your hostname should resolve. You can ignore the IP address it resolves to for now. The short hostname should resolve to the FQDN.
 
 ```bash
 getent hosts contosovm
@@ -271,13 +271,13 @@ contosovm.contosodomain.contoso.com
 ```
 
 > [!NOTE]
-> Some distros require you to run the `hostnamectl` command in order for `hostname -f` to be updated:
+> Some Linux distros require you to run the `hostnamectl` command in order for `hostname -f` to be updated:
 > 
 > `hostnamectl set-hostname contosovm.contosodomain.contoso.com`
 
 ### Set up krb5.conf
 
-1. Configure `/etc/krb5.conf` so that the Kerberos key distribution center (KDC) with the domain server can be contacted for authentication. For more information, see [MIT Kerberos Documentation](https://web.mit.edu/kerberos/krb5-1.12/doc/admin/conf_files/krb5_conf.html). Here's a sample `/etc/krb5.conf` file.
+Configure `/etc/krb5.conf` so that the Kerberos key distribution center (KDC) with the domain server can be contacted for authentication. For more information, see [MIT Kerberos Documentation](https://web.mit.edu/kerberos/krb5-1.12/doc/admin/conf_files/krb5_conf.html). Here's a sample `/etc/krb5.conf` file.
 
 ```plaintext
 [libdefaults]
@@ -288,7 +288,7 @@ contosovm.contosodomain.contoso.com
 
 ### Set up smb.conf
 
-1. Identify the path to `smb.conf`.
+Identify the path to `smb.conf`.
 
 ```bash
 sudo smbd -b | grep "CONFIGFILE"
@@ -298,7 +298,7 @@ sudo smbd -b | grep "CONFIGFILE"
    CONFIGFILE: /etc/samba/smb.conf
 ```
 
-1. Change the SMB configuration to act as a domain member. For more information, see [Setting up samba as a domain member](https://wiki.samba.org/index.php/Setting_up_Samba_as_a_Domain_Member). Here's a sample `smb.conf` file.
+Change the SMB configuration to act as a domain member. For more information, see [Setting up samba as a domain member](https://wiki.samba.org/index.php/Setting_up_Samba_as_a_Domain_Member). Here's a sample `smb.conf` file.
 
 > [!NOTE]
 > This example is for Microsoft Entra Domain Services, for which setting `backend = rid` is recommended when configuring idmap. On-premises AD DS users might prefer to [choose a different idmap backend](https://wiki.samba.org/index.php/Setting_up_Samba_as_a_Domain_Member#Choosing_an_idmap_backend).
@@ -337,7 +337,7 @@ sudo smbd -b | grep "CONFIGFILE"
    template homedir = /home/%U 
 ```
 
-1. Force winbind to reload the changed config file.
+Force winbind to reload the changed config file.
 
 ```bash
 sudo smbcontrol all reload-config
@@ -345,7 +345,7 @@ sudo smbcontrol all reload-config
 
 ### Join the domain
 
-1. Use the `net ads join` command to join the host to the Microsoft Entra Domain Services domain. If the command returns an error, see [Troubleshooting samba domain members](https://wiki.samba.org/index.php/Troubleshooting_Samba_Domain_Members) to resolve the problem.
+Use the `net ads join` command to join the host to the Microsoft Entra Domain Services domain. If the command returns an error, see [Troubleshooting samba domain members](https://wiki.samba.org/index.php/Troubleshooting_Samba_Domain_Members) to resolve the problem.
 
 ```bash
 sudo net ads join -U contososmbadmin    # user  - garead
@@ -358,7 +358,7 @@ Using short domain name -- CONTOSODOMAIN
 Joined 'CONTOSOVM' to dns domain 'contosodomain.contoso.com' 
 ```
 
-1. Make sure that the DNS record exists for this host on the domain server.
+Make sure that the DNS record exists for this host on the domain server.
 
 ```bash
 nslookup contosovm.contosodomain.contoso.com 10.0.2.5
@@ -376,14 +376,14 @@ If you plan for users to actively sign in to client machines and access the Azur
 
 ### Set up nsswitch.conf
 
-1. After you join the host to the domain, add the winbind libraries to the user and group lookup paths. Use your text editor to edit `/etc/nsswitch.conf` and add the following entries:
+After you join the host to the domain, add the winbind libraries to the user and group lookup paths. Use your text editor to edit `/etc/nsswitch.conf` and add the following entries:
 
 ```plaintext
 passwd:         compat systemd winbind
 group:          compat systemd winbind
 ```
 
-1. Enable the winbind service to start automatically on reboot.
+Enable the winbind service to start automatically on reboot.
 
 ```bash
 sudo systemctl enable winbind
@@ -394,7 +394,7 @@ Synchronizing state of winbind.service with SysV service script with /lib/system
 Executing: /lib/systemd/systemd-sysv-install enable winbind
 ```
 
-1. Restart the service.
+Restart the service.
 
 ```bash
 sudo systemctl restart winbind
@@ -423,7 +423,7 @@ Apr 24 09:34:31 contosovm systemd[1]: Started Samba Winbind Daemon.
 Apr 24 09:34:31 contosovm winbindd[27349]:   STATUS=daemon 'winbindd' finished starting up and ready to serve connections 
 ```
 
-1. Make sure that the domain users and groups are discovered.
+Make sure that the domain users and groups are discovered.
 
 ```bash
 getent passwd contososmbadmin
@@ -449,14 +449,14 @@ wbinfo --ping-dc
 
 ### Configure PAM for winbind
 
-1. Place winbind in the authentication stack so that domain users authenticate through winbind by configuring PAM (Pluggable Authentication Module) for winbind. The second command ensures that the system creates the home directory for a domain user upon first login.
+Place winbind in the authentication stack so that domain users authenticate through winbind by configuring PAM (Pluggable Authentication Module) for winbind. The second command ensures that the system creates the home directory for a domain user upon first login.
 
 ```bash
 sudo pam-auth-update --enable winbind
 sudo pam-auth-update --enable mkhomedir 
 ```
 
-1. Ensure that the PAM authentication config has the following arguments in `/etc/pam.d/common-auth`:
+Ensure that the PAM authentication config has the following arguments in `/etc/pam.d/common-auth`:
 
 ```bash
 grep pam_winbind.so /etc/pam.d/common-auth
@@ -466,7 +466,7 @@ grep pam_winbind.so /etc/pam.d/common-auth
 auth    [success=1 default=ignore]      pam_winbind.so krb5_auth krb5_ccache_type=FILE cached_login try_first_pass 
 ```
 
-1. You can now sign in to this system as the domain user, either through ssh, su, or any other means of authentication.
+You can now sign in to this system as the domain user, either through ssh, su, or any other means of authentication.
 
 ```bash
 su - contososmbadmin
@@ -547,6 +547,6 @@ For newer kernels, consider setting the **actimeo** features more granularly. Yo
 
 ## Next step
 
-For more information on how to mount an SMB file share on Linux, see:
+To learn how to mount an SMB file share on Linux, see:
 
 - [Mount SMB Azure file share on Linux](storage-how-to-use-files-linux.md)
