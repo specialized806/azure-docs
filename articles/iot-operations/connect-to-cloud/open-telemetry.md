@@ -181,14 +181,12 @@ You can create an OpenTelemetry dataflow endpoint by using the IoT Operations ex
 
 The dataflow endpoint appears in the list of available dataflow endpoints in the Azure IoT Operations experience. This addition ensures that you can easily identify and select the OpenTelemetry endpoint when configuring telemetry pipelines, promoting better integration and visibility across monitoring tools. By surfacing the OTEL endpoint along with other dataflow options, you can route telemetry data and maintain consistent observability standards across assets more efficiently.
 
-:::image type="content" source="media/open-telemetry/dataflow-endpoints.png" alt-text="Screenshot showing endpoints screen." lightbox="media/open-telemetry/dataflow-endpoints.png" :::
-
 # [Operations experience](#tab/portal)
 
 1. To create an OpenTelemetry dataflow in the [IoT Operations experience](https://iotoperations.azure.com/), select **Dataflow endpoints**.
 1. From the **Dataflow endpoints** page, select **Open Telemetry**, and then select **+ New**.
 
-   :::image type="content" source="media/open-telemetry/create-new-open-telemetry.png" alt-text="Screenshot of the operations experience interface showing the option to create a new OpenTelemetry endpoint":::
+   :::image type="content" source="media/open-telemetry/dataflow-endpoints.png" alt-text="Screenshot showing endpoints screen." lightbox="media/open-telemetry/dataflow-endpoints.png" :::
 
 1. In the **Create new data flow endpoint: Open Telemetry** pane, select the **Basic** configuration tab and enter the following information:
 
@@ -567,6 +565,8 @@ Select **OTEL** as the destination, and enter the required details.
 :::image type="content" source="media/open-telemetry/destination-alternate.png" alt-text="Screenshot showing destination details." lightbox="media/open-telemetry/destination-alternate.png":::
 
 ## Error handling and troubleshooting
+
+This section describes error handling and troubleshooting information for OpenTelemetry endpoints.
 
 ### Message validation
 
