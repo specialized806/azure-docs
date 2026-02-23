@@ -16,15 +16,15 @@ Use the MCP resource trigger to define resource endpoints in a [Model Context Pr
 
 For information on setup and configuration details, see the [overview](functions-bindings-mcp.md).
 
+## Example
 ::: zone pivot="programming-language-csharp"
 >[!NOTE]  
 > For C#, the Azure Functions MCP extension supports only the [isolated worker model](dotnet-isolated-process-guide.md). 
 ::: zone-end
 
 ::: zone pivot="programming-language-csharp,programming-language-python,programming-language-typescript,programming-language-javascript"
-## Example 1
 
-Example 1 shows how to use resource to implement the UI element of MCP Apps. 
+This first example shows how to use resource to implement the UI element of MCP Apps. 
 ::: zone-end
 ::: zone pivot="programming-language-csharp"  
 
@@ -81,9 +81,7 @@ public async Task<object> GetWeather(
 
 For the complete code example, see [WeatherFunction.cs](https://github.com/Azure-Samples/remote-mcp-functions-dotnet/blob/main/src/McpWeatherApp/WeatherFunction.cs).  
 
-## Example 2
-
-The following code creates an endpoint to expose a resource named `readme` that reads a markdown file and returns its contents as plain text. Clients can access this resource using the `file://readme.md` URI.
+This code example creates an endpoint to expose a resource named `readme` that reads a markdown file and returns its contents as plain text. Clients can access this resource using the `file://readme.md` URI.
 
 ```csharp
     private const string ReadmeMetadata = """
@@ -168,7 +166,7 @@ app.mcpResource("getWeatherWidget", {
 });
 ```
 
-The following is the `getWeatherWidget` handler:
+The following code is the `getWeatherWidget` handler:
 
 ```typescript
 export async function getWeatherWidget(
@@ -217,10 +215,9 @@ app.mcpTool("getWeather", {
 
 For the complete code example, see [weatherMcpApp.ts](https://github.com/Azure-Samples/remote-mcp-functions-typescript/blob/McpAppDemo/src/functions/weatherMcpApp.ts).
 
-> [!NOTE]
-> The MCP resource trigger for TypeScript requires version `4.12.0-preview.2` or later of the [`@azure/functions`](https://www.npmjs.com/package/@azure/functions/v/4.12.0-preview.2) package.
->
-> The function app must include the preview extension bundle version `[4.32.0, 5.0.0)`. Check `host.json` to make sure the correct bundle version is specified:
+> [!IMPORTANT]
+> The MCP resource trigger for TypeScript currently requires version `4.12.0-preview.2` or later of the [`@azure/functions`](https://www.npmjs.com/package/@azure/functions/v/4.12.0-preview.2) package.
+> It also requires version `[4.32.0, 5.0.0)` of the preview exetnsion bundle. Make sure to update your `host.json` to use this preview bundle and version:
 >
 > ```json
 > "extensionBundle": {
@@ -294,10 +291,7 @@ For the complete code example, see [function_app.py](https://github.com/Azure-Sa
 
 > [!NOTE]
 > The MCP resource trigger for Python requires version `1.25.0b3` or later of the [`azure-functions`](https://pypi.org/project/azure-functions/1.25.0b3/) package. 
->
-> If the app is using Python 3.9 - 3.12, add the following app setting to `local.settings.json` if running locally or as an environment variable if running in production: `PYTHON_ISOLATE_WORKER_DEPENDENCIES: 1`.
->
-> Using this feature requires the preview extension bundle version `[4.32.0, 5.0.0)`. Check host.json to make sure the correct bundle version is specified:
+> It also requires version `[4.32.0, 5.0.0)` of the preview exetnsion bundle. Make sure to update your `host.json` to use this preview bundle and version:
 >
 > ```json
 > "extensionBundle": {
@@ -305,6 +299,8 @@ For the complete code example, see [function_app.py](https://github.com/Azure-Sa
 >   "version": "[4.32.0, 5.0.0)"
 > }
 > ```
+>
+> If the app is using Python 3.9-3.12, add the `PYTHON_ISOLATE_WORKER_DEPENDENCIES: 1` app setting to `local.settings.json` and to app settings when running in Azure.
 
 ::: zone-end
 
@@ -352,7 +348,7 @@ The following MCP resource trigger properties are supported on `mcp_resource_tri
 | **description**  | A description of the MCP resource exposed by the function endpoint. |
 | **mime_type** | The MIME type of the content returned by the resource. For example, `text/html;profile=mcp-app` for MCP App UI resources, `text/plain` for plain text. |
 | **size** | The expected size of the resource content in bytes, if known. |
-| **metadata** | A JSON-serialized string of additional metadata for the resource. |
+| **metadata** | A JSON-serialized string of extra metadata for the resource. |
 
 > [!NOTE]
 > Decorators are only available in the Python v2 programming model.
@@ -372,14 +368,14 @@ Define the trigger's binding options in your code. The trigger supports the foll
 | **description**  | A description of the MCP resource that the function endpoint exposes.  |
 | **mimeType** | The MIME type of the content returned by the resource. For example, `text/html;profile=mcp-app`. |
 | **size** | The expected size of the resource content in bytes, if known. |
-| **metadata** | A JSON-serialized string of additional metadata for the resource. |
+| **metadata** | A JSON-serialized string of extra metadata for the resource. |
 | **handler** | The method that contains the actual function code. |
 
 ::: zone-end
 
 ::: zone pivot="programming-language-csharp,programming-language-python,programming-language-typescript"
 
-See the [Example section](#example-1) for complete examples.
+See the [Example section](#example) for complete examples.
 
 ## Usage
 
@@ -440,7 +436,7 @@ Use the `McpMetadata` attribute to provide extra metadata for resources. MCP cli
 
 ::: zone pivot="programming-language-python"
 
-Use the `metadata` parameter on the `mcp_resource_trigger` decorator to provide extra metadata for resources. This metadata is a JSON-serialized string included in the `meta` field of each resource when clients call `resources/list`. It can affect how the resource content is displayed or processed.
+To provide extra metadata for resources, use the `metadata` parameter on the `mcp_resource_trigger` decorator. This metadata is a JSON-serialized string included in the `meta` field of each resource when clients call `resources/list`. It can affect how the resource content is displayed or processed.
 
 ::: zone-end
 
@@ -502,7 +498,7 @@ The `SessionId` property on `ResourceInvocationContext` identifies the MCP sessi
 
 ::: zone pivot="programming-language-csharp,programming-language-python,programming-language-typescript"
 
-For more information, see [Examples](#example-1).
+For more information, see [Examples](#example).
 
 ## host.json settings
 

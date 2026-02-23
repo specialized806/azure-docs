@@ -8,23 +8,27 @@ ai-usage: ai-assisted
 ms.collection: 
   - ce-skilling-ai-copilot
 zone_pivot_groups: programming-languages-set-functions
-#Customer intent: As a developer, I want to create an MCP Apps  that returns interactive UI from my MCP tools, so AI clients can render rich visual experiences using Azure Functions.
+#Customer intent: As a developer, I want to create an MCP Apps server that returns interactive UI from my MCP tools, so AI clients can render rich visual experiences using Azure Functions.
 ---
 
 # Quickstart: Build an MCP Apps using Azure Functions
 
-In this quickstart, you create an [MCP App](https://blog.modelcontextprotocol.io/posts/2026-01-26-mcp-apps/) from a template project by using the Azure Developer CLI (`azd`). [MCP Apps](https://blog.modelcontextprotocol.io/posts/2026-01-26-mcp-apps/) is an extension of the Model Context Protocol (MCP) specification that lets tools return rich, interactive user interfaces (HTML/JavaScript in sandboxed iframes) instead of plain text. 
+In this quickstart, you create a Model Context Protocol (MCP) server from a template project by using the Azure Developer CLI (`azd`). This MCP server uses the Azure Functions MCP extension to create [MCP Apps](https://blog.modelcontextprotocol.io/posts/2026-01-26-mcp-apps/), which are tools that return rich, interactive user interfaces. You can also use the MCP server extension to [create text-based tools](./scenario-custom-remote-mcp-server.md). 
 
+<<<<<<< qs-update
 This quickstart uses the Azure Functions MCP extension to build an MCP App using the MCP tool and resource trigger. After running the project locally and verifying your code by using GitHub Copilot, you deploy it to a new serverless function app in Azure Functions that follows current best practices for secure and scalable deployments.
 
 >[!TIP]  
 >MCP tools built with the Azure Functions MCP extension don't have to return results in interactive UIs. If your server only needs text-based tools, see [Quickstart: Build a custom remote MCP server using Azure Functions](scenario-custom-remote-mcp-server.md).
+=======
+After running the project locally and verifying your code by using GitHub Copilot, you deploy it to a new serverless function app in Azure Functions that follows current best practices for secure and scalable deployments.
+>>>>>>> main
 
 Because the new app runs on the Flex Consumption plan, which follows a _pay-for-what-you-use_ billing model, completing this quickstart incurs a small cost of a few USD cents or less in your Azure account.
 
 ::: zone pivot="programming-language-javascript,programming-language-java"  
 > [!IMPORTANT]  
-> While [creating custom MCP servers](./functions-bindings-mcp.md) is supported for Java and JavaScript, this MCP Apps quickstart currently only has examples for C#, Python, and TypeScript. To complete this quickstart, select one of these supported languages at the top of the article. 
+> While [creating MCP Apps](./functions-bindings-mcp.md) is supported for Java and JavaScript, this quickstart currently only has examples for C#, Python, and TypeScript. To complete this quickstart, select one of these supported languages at the top of the article. 
 ::: zone-end  
 
 [!INCLUDE [functions-mcp-extension-powershell-note](../../includes/functions-mcp-extension-powershell-note.md)]  
@@ -93,14 +97,14 @@ Use the Azure Developer CLI to create an Azure Functions code project from a tem
 
 5. When prompted, enter `mcpweather-ts` as the environment name.
 
-    The command pulls the project files from the [template repository](https://github.com/Azure-Samples/remote-mcp-functions-typescript) and initializes the project in the current folder. In `azd`, the environment maintains a unique deployment context for your app, and you can define more than one. It's also used in names of the resources you create in Azure.   
+    The command pulls the project files from the [template repository](https://github.com/Azure-Samples/remote-mcp-functions-typescript) and initializes the project in the current folder. In `azd`, the environment maintains a unique deployment context for your app, and you can define more than one. It's also used in the names of the resources you create in Azure.   
 ::: zone-end
 ::: zone pivot="programming-language-python"  
 4. Search for and select **Remote MCP Functions with Python**.
 
 5. When prompted, enter `mcpweather-python` as the environment name.
 
-    The command pulls the project files from the [template repository](https://github.com/Azure-Samples/remote-mcp-functions-python) and initializes the project in the current folder. In `azd`, the environment maintains a unique deployment context for your app, and you can define more than one. It's also used in names of the resources you create in Azure. 
+    The command pulls the project files from the [template repository](https://github.com/Azure-Samples/remote-mcp-functions-python) and initializes the project in the current folder. In `azd`, the environment maintains a unique deployment context for your app, and you can define more than one. It's also used in the names of the resources you create in Azure. 
 ::: zone-end
 ::: zone pivot="programming-language-csharp,programming-language-python,programming-language-typescript" 
 ## Start the storage emulator
@@ -134,7 +138,7 @@ The MCP Apps weather tool includes a frontend application that you must build be
     cd ..
     ```
 
-1. In the `src` directory, create a virtual environment in which the app runs:
+1. In the `src` directory, create a virtual environment for running the app:
 
     ### [Bash](#tab/bash)
 
@@ -168,7 +172,7 @@ The MCP Apps weather tool includes a frontend application that you must build be
 ::: zone-end
 
 ::: zone pivot="programming-language-csharp"
-When Visual Studio Code asks you to pick a default project because there are two apps in the .NET template, pick **src/McpWeatherApp**. 
+When Visual Studio Code asks you to pick a default project because there are two apps in the .NET template, select **src/McpWeatherApp**. 
 ::: zone-end
 
 ::: zone pivot="programming-language-csharp,programming-language-python,programming-language-typescript" 
@@ -176,7 +180,7 @@ When Visual Studio Code asks you to pick a default project because there are two
 
 ## Verify by using GitHub Copilot
 
-The project template includes a `.vscode/mcp.json` file that already defines a `local-mcp-function` server pointing to your local MCP endpoint. Use this configuration to verify your code with GitHub Copilot in Visual Studio Code:
+The project template includes a `.vscode/mcp.json` file that defines a `local-mcp-function` server pointing to your local MCP endpoint. Use this configuration to verify your code by using GitHub Copilot in Visual Studio Code:
 
 1. Open the `.vscode/mcp.json` file and select the **Start** button above the `local-mcp-function` configuration.
 
