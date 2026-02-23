@@ -5,7 +5,7 @@ author: mimansasingh
 ms.service: sap-on-azure
 ms.subservice:
 ms.topic: how-to
-ms.date:
+ms.date: 02/23/2026
 ms.author: mimansasingh
 ---
 
