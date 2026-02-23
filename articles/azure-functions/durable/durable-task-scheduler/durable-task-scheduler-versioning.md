@@ -1,5 +1,6 @@
 ---
-title: Configure Versioning for Durable Task Scheduler (preview)
+title: Configure versioning for Durable Task Scheduler
+titleSuffix: Durable Task
 description: Learn how to use orchestration versioning in Durable Task Scheduler.
 ms.topic: how-to
 ms.date: 12/03/2025
@@ -9,7 +10,7 @@ ms.reviewer: hannahhunter
 zone_pivot_groups: df-languages
 ---
 
-# Orchestration Versioning (preview)
+# Orchestration versioning
 
 Upgrading and downgrading orchestrations is a key consideration when working with durable orchestration systems. If an orchestration is interrupted and later resumed (for instance, during a host update), Durable Task Scheduler replays the events of the orchestration, ensuring all previous steps were executed successfully before taking the next step. This action ensures reliability, one of the core promises of the durable execution paradigm. 
 
@@ -19,19 +20,13 @@ _Orchestration versioning_ prevents problems related to nondeterminism, allowing
 - [Client/context-based conditional versioning](#clientcontext-based-conditional-versioning)
 - [Worker-based versioning](#worker-based-versioning)
 
-::: zone pivot="javascript"
-
-[!INCLUDE [preview-sample-limitations](./includes/preview-sample-limitations.md)]
-
-::: zone-end
-
 ::: zone pivot="powershell"
 
 [!INCLUDE [preview-sample-limitations](./includes/preview-sample-limitations.md)]
 
 ::: zone-end
 
-::: zone pivot="java,python,csharp"
+::: zone pivot="java,python,csharp,javascript"
 
 ## Client/context-based conditional versioning
 
@@ -80,6 +75,21 @@ public DurableTaskClient durableTaskClient(DurableTaskProperties properties) {
                                    default_version="1.0.0")
 ```
 
+
+::: zone-end
+
+::: zone pivot="javascript"
+
+```javascript
+import {
+  DurableTaskAzureManagedClientBuilder,
+} from "@microsoft/durabletask-js-azuremanaged";
+
+const client = new DurableTaskAzureManagedClientBuilder()
+  .connectionString(connectionString)
+  .defaultVersion("1.0.0")
+  .build();
+```
 
 ::: zone-end
 
@@ -170,13 +180,41 @@ def orchestrator(ctx: task.OrchestrationContext, _):
 
 ::: zone-end
 
-::: zone pivot="csharp,java"
+::: zone pivot="javascript"
+
+Once you add the version to the client, any orchestration started by this client uses the version `1.0.0`. The version is a simple string and accepts any value.
+
+Supplying the version in the client also makes it available in the `OrchestrationContext`, meaning you can use the version in conditional statements. As long as newer orchestration versions have the appropriate version gating, both the old and new orchestration versions can run together on the same client.
+
+**Example:**
+
+```javascript
+const versionedOrchestrator = async function* (ctx, input) {
+  const cities = ["Seattle", "Amsterdam", "Hyderabad", "Kuala Lumpur", "Shanghai", "Tokyo"];
+  const results = [];
+
+  for (const city of cities) {
+    results.push(yield ctx.callActivity(sayHello, `${city} v${ctx.version}`));
+
+    // Only call sayGoodbye for version 2.0.0 and higher
+    if (ctx.compareVersionTo("2.0.0") >= 0) {
+      results.push(yield ctx.callActivity(sayGoodbye, `${city} v${ctx.version}`));
+    }
+  }
+
+  return results;
+};
+```
+
+::: zone-end
+
+::: zone pivot="csharp,java,javascript"
 
 In this example, we added a `SayGoodbye` activity to the `HelloCities` orchestration. This activity is only called for orchestration versions `2.0.0` and higher. With the simple conditional statement, any orchestration with a version less than `2.0.0` continues to function and any new orchestration includes the new activity.
 
 ::: zone-end
 
-::: zone pivot="csharp,java,python"
+::: zone pivot="csharp,java,python,javascript"
 
 ### When to use client versioning
 
@@ -305,7 +343,43 @@ with DurableTaskSchedulerWorker(host_address=endpoint, secure_channel=secure_cha
 
 ::: zone-end
 
-::: zone pivot="csharp,java,python"
+::: zone pivot="javascript"
+
+> [!NOTE]
+> Available in the JavaScript SDK (@microsoft/durabletask-js-azuremanaged) since v0.2.0.
+
+```javascript
+import {
+  createAzureManagedWorkerBuilder,
+  VersionMatchStrategy,
+  VersionFailureStrategy,
+} from "@microsoft/durabletask-js-azuremanaged";
+
+const workerBuilder = createAzureManagedWorkerBuilder(
+  new DefaultAzureCredential(),
+  endpoint,
+  taskHubName
+);
+
+// Configure worker versioning
+workerBuilder.versioning({
+  version: "2.0.0",
+  defaultVersion: "2.0.0",
+  matchStrategy: VersionMatchStrategy.CurrentOrOlder,
+  failureStrategy: VersionFailureStrategy.Reject,
+});
+
+workerBuilder.addOrchestrator(helloCitiesOrchestrator);
+workerBuilder.addActivity(sayHello);
+workerBuilder.addActivity(sayGoodbye);
+
+const worker = workerBuilder.build();
+await worker.start();
+```
+
+::: zone-end
+
+::: zone pivot="csharp,java,python,javascript"
 
 ### Failure strategies
 
@@ -343,5 +417,10 @@ Use worker versioning in scenarios where unknown or unsupported orchestration ve
 
 ::: zone pivot="python"
 [See more detailed examples and explanations in the code repository.](https://github.com/microsoft/durabletask-python/tree/main)
+
+::: zone-end
+
+::: zone pivot="javascript"
+[See more detailed examples and explanations in the code repository.](https://github.com/microsoft/durabletask-js/tree/main)
 
 ::: zone-end

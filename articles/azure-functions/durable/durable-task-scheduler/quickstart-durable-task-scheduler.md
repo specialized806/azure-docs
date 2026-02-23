@@ -1,12 +1,13 @@
 ---
-title: "Quickstart: Configure a Durable Functions app to use Azure Functions Durable Task Scheduler"
-description: Learn how to configure an existing Durable Functions app to use Azure Functions Durable Task Scheduler.
+title: "Quickstart: Configure a Durable Functions app to use Durable Task Scheduler"
+titleSuffix: Durable Task
+description: Learn how to configure an existing Durable Functions app to use Durable Task Scheduler as a backend.
 ms.topic: how-to
 ms.date: 10/29/2025
 zone_pivot_groups: dts-runtime
 ---
 
-# Quickstart: Configure a Durable Functions app to use Azure Functions Durable Task Scheduler
+# Quickstart: Configure a Durable Functions app to use Durable Task Scheduler
 
 Write stateful functions in a serverless environment using Durable Functions, a feature of [Azure Functions](../../functions-overview.md). Scenarios where Durable Functions is useful include orchestrating microservices and workflows, stateful patterns like fan-out/fan-in, and long-running tasks.  
 

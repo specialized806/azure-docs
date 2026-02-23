@@ -1,5 +1,6 @@
 ---
 title: Choosing an orchestration framework
+titleSuffix: Durable Task
 description: Learn which orchestration framework works for your scenario.
 ms.topic: concept-article
 ms.date: 10/28/2025

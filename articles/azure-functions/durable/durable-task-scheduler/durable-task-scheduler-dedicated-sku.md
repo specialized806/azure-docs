@@ -1,11 +1,12 @@
 ---
-title: Use the Dedicated SKU for Azure Functions Durable Task Scheduler
-description: Learn about how the Dedicated SKU in Azure Functions Durable Task Scheduler.
+title: Durable Task Scheduler pricing and SKU options
+titleSuffix: Durable Task
+description: Learn about the Dedicated and Consumption SKU pricing options in Durable Task Scheduler.
 ms.topic: concept-article
 ms.date: 11/05/2025
 ms.author: franlanglois
 ---
-# Azure Functions Durable Task Scheduler Pricing and SKU Options
+# Durable Task Scheduler pricing and SKU options
 
 The Durable Task Scheduler offers two pricing models to accommodate different workload requirements, usage patterns, and preferred billing models:
 
