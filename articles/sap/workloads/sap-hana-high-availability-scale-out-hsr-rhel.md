@@ -1075,7 +1075,7 @@ Now you're ready to create the cluster resources:
        op methods interval=0s timeout=5 \
        op start timeout=600 op stop timeout=300 op monitor interval=10 timeout=600
 
-      pcs resource clone SAPHanaTopology_HDB_HDB00 meta clone-node-max=1 interleave=true
+      pcs resource clone SAPHanaTopology_HN1_HDB03 meta clone-node-max=1 interleave=true
       ```
 
       ### [RHEL 8.x/9.x](#tab/rhel8-9)
@@ -1086,7 +1086,7 @@ Now you're ready to create the cluster resources:
        op methods interval=0s timeout=5 \
        op start timeout=600 op stop timeout=300 op monitor interval=10 timeout=600
 
-      pcs resource clone SAPHanaTopology_HDB_HDB00 meta clone-node-max=1 interleave=true
+      pcs resource clone SAPHanaTopology_HN1_HDB03 meta clone-node-max=1 interleave=true
       ```
 
       ### [RHEL 7.x](#tab/rhel7)
@@ -1109,7 +1109,7 @@ Now you're ready to create the cluster resources:
       ### [RHEL 10.x](#tab/rhel10)
 
       ```bash
-      pcs resource create SAPHana_HDB_HDB00 SAPHanaController \
+      pcs resource create SAPHana_HN1_HDB03 SAPHanaController \
        SID=HDB InstanceNumber=00 PREFER_SITE_TAKEOVER=true DUPLICATE_PRIMARY_TIMEOUT=7200 AUTOMATED_REGISTER=false \
        op demote interval=0s timeout=320 \
        op methods interval=0s timeout=5 \
@@ -1119,7 +1119,7 @@ Now you're ready to create the cluster resources:
        op monitor interval=60 role="Promoted" timeout=700 \
        op monitor interval=61 role="Unpromoted" timeout=700
      
-      pcs resource promotable SAPHana_HDB_HDB00 \
+      pcs resource promotable SAPHana_HN1_HDB03 \
        meta master-max=1 clone-node-max=1 interleave=true
       ```
 
