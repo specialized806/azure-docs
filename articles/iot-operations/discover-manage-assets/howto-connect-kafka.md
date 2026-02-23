@@ -5,14 +5,14 @@ author: dominicbetts
 ms.author: dobett
 ms.service: azure-iot-operations
 ms.topic: how-to
-ms.date: 02/19/2026
+ms.date: 02/23/2026
 
 #CustomerIntent: As an industrial edge IT or operations user, I want to ingest data from an Azure Event Hubs namespace into Azure IoT Operations using the Kafka protocol so that I can manage event hubs as assets and route the data through the MQTT broker for processing.
 ---
 
 # Connect to a Kafka source
 
-Many messaging services expose a Kafka-compatible endpoint, including Azure Event Hubs, Confluent Cloud, and self-hosted Apache Kafka clusters. Azure IoT Operations doesn't include a dedicated Kafka connector, but you can ingest data from any Kafka-compatible source by combining two components. For simplicity, this article uses an Azure Event Hubs namespace as the Kafka source.
+Many messaging services expose a Kafka-compatible endpoint, including Azure Event Hubs, Confluent Cloud, and self-hosted Apache Kafka clusters. Azure IoT Operations doesn't include a dedicated southbound Kafka connector, but you can ingest data from any Kafka-compatible source by using a data flow and the connector for MQTT (preview). For simplicity, this article uses an Azure Event Hubs namespace as the Kafka source.
 
 To connect to a Kafka source, you combine:
 
@@ -22,9 +22,9 @@ To connect to a Kafka source, you combine:
 
 The following diagram illustrates this architecture:
 
-:::image type="content" source="media/howto-connect-kafka/kafka.png" alt-text="Diagram that shows the architecture of the solution.":::
+:::image type="content" source="media/howto-connect-kafka/kafka.svg" alt-text="Diagram that shows the architecture of the solution." lightbox="media/howto-connect-kafka/kafka.png":::
 
-Messages enter from the Kafka source, such as an Azure Event Hubs namespace, and are ingested into Azure IoT Operations through a data flow with a Kafka source endpoint. The data flow routes messages to topics in the internal MQTT broker. The connector for MQTT (preview) detects the topics in the MQTT broker and creates assets based on the topic names. Each asset can be configured to route data to specific topics in the MQTT broker and apply custom processing.
+Messages enter from the Kafka source, such as an Azure Event Hubs namespace, and are ingested into Azure IoT Operations through a data flow with a Kafka source endpoint. The data flow routes messages to topics in the internal MQTT broker. The connector for MQTT (preview) detects the topics in the MQTT broker and lets you create assets based on the topic names. Each asset can be configured to route data to specific topics in the MQTT broker. You can then perform any routing and custom processing to the messages.
 
 
 > [!TIP]
@@ -33,9 +33,9 @@ Messages enter from the Kafka source, such as an Azure Event Hubs namespace, and
 ## Prerequisites
 
 - A running instance of Azure IoT Operations with the MQTT broker enabled.
-- An Azure Event Hubs namespace with one or more event hubs that contain the data you want to ingest. Event Hubs exposes a Kafka-compatible endpoint at `<namespace>.servicebus.windows.net:9093`. For more information, see [Use Azure Event Hubs from Apache Kafka applications](/azure/event-hubs/event-hubs-for-kafka-ecosystem-overview).
+- An Azure Event Hubs namespace with one or more event hubs that contain the data you want to ingest. Event Hubs exposes a Kafka-compatible endpoint at `<namespace>.servicebus.windows.net:9093`. For more information, see [Use Azure Event Hubs from Apache Kafka applications](/azure/event-hubs/event-hubs-for-kafka-ecosystem-overview). This article uses a set of four event hubs called `factory-f1-robot-r1`, `warehouse-w1-machine-m1`, `warehouse-w1-machine-m2`, and `warehouse-w1-machine-m3` for the examples, but you can use any number of event hubs with your own naming convention.
 - The user-assigned managed identity for your Azure IoT Operations instance must be assigned the **Azure Event Hubs Data Receiver** role on the Event Hubs namespace. For more information, see [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal).
-- The MQTT connector template configured for your Azure IoT Operations instance in the Azure portal. Contact your IT administrator to complete this step.
+- The [MQTT connector template](howto-use-mqtt-connector.md#deploy-the-connector-for-mqtt) configured for your Azure IoT Operations instance in the Azure portal. Contact your IT administrator to complete this step.
 
 [!INCLUDE [iot-operations-entra-id-setup](../includes/iot-operations-entra-id-setup.md)]
 
@@ -49,8 +49,8 @@ Before you create a data flow, you must create a **data flow endpoint** that hol
 
     | Setting | Example value | Description |
     |---------|---------------|-------------|
-    | Name | `contoso-eventhubs` | A name for the data flow endpoint. |
-    | Host | `contoso-namespace.servicebus.windows.net` | The hostname of the Event Hubs namespace. |
+    | Name | `my-kafka-ep` | A name for the data flow endpoint. |
+    | Host | `mykafkasource.servicebus.windows.net` | The hostname of the Event Hubs namespace. |
     | Port | `9093` | The port for the Kafka-compatible Event Hubs endpoint. |
     | Authentication method | User assigned managed identity | Use the user-assigned managed identity configured for Azure IoT Operations cloud connections. |
 
@@ -70,7 +70,7 @@ Create a data flow that reads from your Event Hubs namespace using the Kafka pro
 
     | Setting | Example value |
     |---------|---------------|
-    | Endpoint | `contoso-eventhubs` |
+    | Endpoint | `my-kafka-ep` |
     | Topic | `^(warehouse-w1-.*\|factory-f1-.*)$` |
     | Consumer group | `aio-eventhubs-ingest` |
 
@@ -80,11 +80,13 @@ Create a data flow that reads from your Event Hubs namespace using the Kafka pro
 
     Select **Next** to continue.
 
-1. On the **Destination** page, select **MQTT broker** as the destination. Set the destination topic to `factory/${inputTopic}`. This expression uses the name of the source Kafka topic as the final segment of the MQTT topic path, so messages from each event hub land under the `factory/` prefix — for example, messages from `factory-f1-robot-r1` are routed to `factory/factory-f1-robot-r1`.
+1. On the **Destination** page, select **MQTT broker** as the destination. Set the destination topic to `factory/${inputTopic}`. This expression uses the name of the source Kafka topic as the final segment of the MQTT topic path, so messages from each event hub land under the `factory/` prefix — for example, messages from `factory-f1-robot-r1` are routed to the `factory/factory-f1-robot-r1` topic.
 
     :::image type="content" source="media/howto-connect-kafka/dataflow-destination-mqtt.png" alt-text="Screenshot that shows the MQTT broker destination configuration with the source topic name option enabled." lightbox="media/howto-connect-kafka/dataflow-destination-mqtt.png":::
 
     Select **Next** to continue.
+
+1. Optionally, configure any transformations or filters on the data.
 
 1. On the **Summary** page, review the data flow configuration and select **Create** to create the data flow.
 
@@ -96,7 +98,7 @@ Set up a device in the connector for MQTT (preview) that subscribes to the MQTT 
 
 1. In the operations experience web UI, select **Devices** in the left navigation pane. Then select **Create new**.
 
-1. Enter a name for the device, such as `kafka-source`. To add the inbound endpoint, select **New** on the **Microsoft.Mqtt** tile.
+1. Enter a name for the device, such as `kafka-incoming`. To add the inbound endpoint, select **New** on the **Microsoft.Mqtt** tile.
 
 1. On the **Basic** page, set the URL to the internal MQTT broker address. The data flow routes incoming messages to topics under the `factory/` prefix, such as `factory/factory-f1-robot-r1` and `factory/warehouse-w1-machine-m1`. Enter `mqtt://aio-broker:1883` as the URL.
 
@@ -120,7 +122,7 @@ Set up a device in the connector for MQTT (preview) that subscribes to the MQTT 
 
 Before you can discover assets, messages must arrive at the MQTT broker so the connector for MQTT (preview) can detect the topics. You can use the **Data Explorer** feature built into each event hub in the Azure portal to send test messages.
 
-1. In the [Azure portal](https://portal.azure.com), navigate to your Event Hubs namespace, then select the event hub you want to test, such as `factory-f1-robot-r1`.
+1. In the [Azure portal](https://portal.azure.com), navigate to your Event Hubs namespace, then select the event hub you want to test, such as `warehouse-w1-machine-m1`.
 
 1. In the left navigation pane for the event hub, select **Data Explorer (preview)**.
 
@@ -142,7 +144,10 @@ When the data flow forwards Event Hubs messages to the MQTT broker, the connecto
 
     :::image type="content" source="media/howto-connect-kafka/detected-assets.png" alt-text="Screenshot that shows the list of discovered assets from the Kafka topics." lightbox="media/howto-connect-kafka/detected-assets.png":::
 
-1. Make a note of the discovered asset name. Select the discovered asset and then select **Import and create asset**.
+    > [!TIP]
+    > The name of the discovered asset is determined by the topic path and the asset level you set in the device endpoint configuration. The connector adds a random suffix to the asset name to ensure uniqueness.
+
+1. Make a note of the full discovered asset name including the suffix. Select the discovered asset and then select **Import and create asset**.
 
 1. On the **Asset details** page, the inbound endpoint is already selected from the device. Currently, you must use the name of the discovered asset as the asset name. Add a description, and any custom properties you want. Then select **Next**.
 
@@ -153,7 +158,7 @@ When the data flow forwards Event Hubs messages to the MQTT broker, the connecto
 
     :::image type="content" source="media/howto-connect-kafka/asset-dataset.png" alt-text="Screenshot that shows the dataset created automatically from the detected Kafka asset." lightbox="media/howto-connect-kafka/asset-dataset.png":::
 
-    You can also add more datasets to capture messages from other related topics, or configure data processing such as filtering or transformation on the outgoing data. Select **Next** to continue.
+    You can also add more datasets to capture messages from other related topics. Select **Next** to continue.
 
 1. On the review page, select **Create** to create the asset. After a few minutes, the asset appears in the **Assets** list.
 

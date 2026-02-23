@@ -118,6 +118,9 @@ items:
           - name: Connect to MQTT endpoints
             href: discover-manage-assets/howto-use-mqtt-connector.md
             displayName: southbound, broker, events
+          - name: Connect to Kafka endpoints
+            href: discover-manage-assets/howto-connect-kafka.md
+            displayName: southbound, broker, hubs, MQTT, data flow
           - name: Use asset endpoints to manage assets
             href: /previous-versions/azure/iot-operations/discover-manage-assets/overview-manage-assets
             displayName: connector, tags, southbound, asset endpoint profile
