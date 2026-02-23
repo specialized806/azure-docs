@@ -16,7 +16,7 @@ ms.author: cherylmc
 
 We're simplifying our Azure VPN Gateway SKU portfolio. Due to the lack of redundancy, lower availability, and potential higher costs associated with failover solutions, SKUs that aren't supported by an availability zone are migrating to SKUs that are supported by an availability zone.
 
-This article helps you understand the changes for VPN Gateway virtual network gateway SKUs. This article expands on the [official announcement](https://azure.microsoft.com/updates/v2/vpngw1-5-non-az-skus-will-be-retired-on-30-september-2026).
+This article helps you understand the changes for VPN Gateway SKUs. This article expands on the [official announcement](https://azure.microsoft.com/updates/v2/vpngw1-5-non-az-skus-will-be-retired-on-30-september-2026).
 
 * *Effective November 1, 2025*: You can no longer create new VPN gateways (VpnGw1-5 SKUs) that aren't supported by an availability zone.
 * *Migration period*: From September 2025 to September 2026, all existing VPN gateways (VpnGw1-5 SKUs) that aren't supported by an availability zone can be manually upgraded to VpnGw1-5 SKUs that are supported.
