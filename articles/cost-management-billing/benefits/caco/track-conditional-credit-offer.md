@@ -188,7 +188,7 @@ CACO spend eligibility differs from traditional MACC (Microsoft Azure Consumptio
 This consumption-focused approach ensures that ACO awards are based on genuine Azure service consumption rather than upfront credit purchases, regardless of the payment method used to cover that consumption.
 
 ## Check access to a Microsoft Customer Agreement
-[!INCLUDE [billing-check-mca](../../../includes/billing-check-mca.md)]
+[!INCLUDE [billing-check-mca](../../../../includes/billing-check-mca.md)]
 
 ## Need help? Contact support
 
@@ -198,3 +198,4 @@ If you need help, [contact support](https://portal.azure.com/?#blade/Microsoft_A
 
 - [Determine which offers are eligible for Azure consumption commitments (MACC/CTC)](/marketplace/azure-consumption-commitment-benefit#determine-which-offers-are-eligible-for-azure-consumption-commitments-maccctc)
 - [Track your Azure credits balance](mca-check-azure-credits-balance.md)
+
