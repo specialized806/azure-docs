@@ -81,7 +81,7 @@ This section provides information about limits that apply to Azure API Managemen
 
 ### Limits - API Management classic and v2 tiers
 
-The following limits will be introduced starting March 2026 and replace the existing limits for classic and v2 tiers. Services in the classic tiers that surpass the revised limits are allowed to keep their existing capacity. For more information, see [Understanding API Management service limits](../../api-management/service-limits.md).
+The following limits are introduced starting March 2026. Services in the classic tiers that surpass the revised limits are allowed to keep their existing capacity. For more information, see [Understanding API Management service limits](../../api-management/service-limits.md).
 
 [!INCLUDE [api-management-service-limits](../../../includes/api-management-service-limits.md)]
 
