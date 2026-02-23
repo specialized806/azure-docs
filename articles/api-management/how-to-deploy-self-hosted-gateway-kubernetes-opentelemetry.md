@@ -49,7 +49,7 @@ The self-hosted gateway automatically starts measuring the following metrics:
 - ClientDurationInMs
 - GatewayDurationInMs
 
-They are automatically exported to the configured OpenTelemetry Collector every one minute with additional dimensions.
+They're automatically exported to the configured OpenTelemetry Collector every minute with additional dimensions.
 
 ## Deploy the OpenTelemetry Collector
 
@@ -172,7 +172,7 @@ In this section, you deploy the self-hosted gateway to your cluster with Helm an
    ```
 
     > [!NOTE]
-    > `opentelemetry-collector` in the command above is the name of the OpenTelemetry Collector. Update the name if your service has a different name.
+    > `opentelemetry-collector` in this command is the name of the OpenTelemetry Collector. Update the name if your service has a different name.
 
 1. Verify the installation by getting all the resources for the Helm chart.
  
@@ -231,7 +231,7 @@ Now that both your OpenTelemetry Collector and the self-hosted gateway are deplo
 
     The self-hosted gateway measures the request and sends the metrics to the OpenTelemetry Collector.
 
-1. Query Prometheus endpoint on collector on `http://<collector-service-ip>:8889/metrics`. You should see metrics similar to the following:
+1. Query Prometheus endpoint on collector on `http://<collector-service-ip>:8889/metrics`. You should see metrics similar to the following example:
 
     ```output
     # HELP azure_apim_BackendDurationInMs 
