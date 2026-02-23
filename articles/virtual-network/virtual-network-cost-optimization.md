@@ -5,7 +5,7 @@ services: virtual-network
 author: asudbring
 ms.service: azure-virtual-network
 ms.topic: concept-article
-ms.date: 02/03/2026
+ms.date: 02/23/2026
 ms.author: allensu
 # Customer intent: As a cloud architect or IT administrator, I want to optimize costs for Azure Virtual Network, so that I can maintain effective network connectivity while controlling expenses and maximizing return on investment.
 ---
@@ -20,11 +20,11 @@ When designing your architecture, balance connectivity requirements with financi
 
 A cost-optimized Virtual Network strategy isn't always the lowest cost option. Balance performance and connectivity requirements with financial efficiency. Tactical cost-cutting can create performance bottlenecks or security gaps. To achieve long-term efficiency and financial responsibility, create a strategy with [risk-based prioritization](/azure/well-architected/cost-optimization/principles), continuous monitoring, and repeatable processes.
 
-Start with the recommended approaches and justify the benefits for your connectivity requirements. After you set your strategy, use these principles through regular assessment and optimization cycles. For comprehensive guidance on cost management, see [Azure Cost Management documentation](/azure/cost-management-billing/) and the [Azure pricing calculator](https://azure.microsoft.com/pricing/calculator/).
+Start with the recommended approaches and justify the benefits for your connectivity requirements. After you set your strategy, use these principles through regular assessment and optimization cycles. For comprehensive guidance on cost management, see [Microsoft Cost Management documentation](/azure/cost-management-billing/) and the [Azure pricing calculator](https://azure.microsoft.com/pricing/calculator/).
 
 ## Understanding Virtual Network billing components
 
-Azure Virtual Network costs include several components that directly impact your monthly expenses:
+Azure Virtual Network costs include several components that directly affect your monthly expenses:
 
 | Cost Component | Description | Billing Model |
 |---|---|---|
@@ -63,7 +63,7 @@ Azure Virtual Network offers different connectivity patterns with unique cost st
 
 ## Design for network efficiency
 
-Optimize your network architecture to minimize unnecessary data transfer and peering connections while maintaining required connectivity and performance. Your architectural decisions directly impact network costs. For architectural guidance, see [Azure Well-Architected Framework](/azure/well-architected/) and [Azure Architecture Center](/azure/architecture/).
+Optimize your network architecture to minimize unnecessary data transfer and peering connections while maintaining required connectivity and performance. Your architectural decisions directly affect network costs. For architectural guidance, see [Azure Well-Architected Framework](/azure/well-architected/) and [Azure Architecture Center](/azure/architecture/).
 
 | Recommendation | Benefit |
 |---|---|
@@ -89,10 +89,10 @@ Network usage patterns change as workloads evolve. Set up continuous monitoring 
 
 | Recommendation | Benefit |
 |---|---|
-| **Configure cost alerts** when Virtual Network spending approaches predefined budget thresholds using [Azure Cost Management](/azure/cost-management-billing/). | Proactive notifications prevent budget overruns and enable timely adjustments to network architecture. You can respond to cost increases before they significantly impact other initiatives and maintain predictable network spending. |
+| **Configure cost alerts** when Virtual Network spending approaches predefined budget thresholds using [Microsoft Cost Management](/azure/cost-management-billing/). | Proactive notifications prevent budget overruns and enable timely adjustments to network architecture. You can respond to cost increases before they significantly affect other initiatives and maintain predictable network spending. |
 | **Monitor data transfer patterns** using Azure Monitor and Network Watcher to identify expensive cross-region or cross-VNet traffic. | Understanding actual traffic flows enables data-driven optimization decisions. You can identify opportunities to relocate workloads, implement caching, or optimize application communication patterns. To monitor traffic, see [What is Azure Network Watcher?](../network-watcher/network-watcher-monitoring-overview.md). |
 | **Conduct quarterly network topology reviews** to identify unused peering connections, oversized gateways, or unnecessary network services. | Regular reviews ensure network investments remain aligned with business requirements. You can decommission unused connections, right-size gateways based on actual usage, and identify consolidation opportunities. |
-| **Track network cost allocation** per workload or business unit to drive accountability and identify optimization opportunities. | Cost visibility by workload enables teams to understand their network impact and make informed decisions. You can implement chargebacks or showbacks to drive cost-conscious behavior and justify network optimization initiatives. |
+| **Track network cost allocation** per workload or business unit to drive accountability and identify optimization opportunities. | Cost visibility by workload enables teams to understand their network affect and make informed decisions. You can implement chargebacks or showbacks to drive cost-conscious behavior and justify network optimization initiatives. |
 | **Implement lifecycle management** for network resources, automatically tagging and reviewing resources to prevent sprawl and decommission obsolete infrastructure. | Automated lifecycle processes prevent network resource accumulation that doesn't serve active workloads. You free budget from zombie resources and maintain a clean, efficient network topology. |
 
 ## Best practices checklist
@@ -107,7 +107,7 @@ Use this checklist to validate your Virtual Network cost optimization strategy:
 - ☑ **Right-sized gateways**: Match gateway SKUs to actual throughput needs, not theoretical maximums.
 - ☑ **Subnet peering**: Use subnet level peering when only specific subnets need connectivity.
 - ☑ **Traffic filtering**: Implement NSGs and firewall rules to prevent unnecessary data transfer.
-- ☑ **Cost monitoring**: Track VNet-related costs with Azure Cost Management alerts and regular reviews.
+- ☑ **Cost monitoring**: Track VNet-related costs with Microsoft Cost Management alerts and regular reviews.
 - ☑ **NAT Gateway**: Consolidate outbound internet connectivity through NAT Gateway instead of multiple public IPs.
 - ☑ **Network Watcher**: Use traffic analytics to identify expensive communication patterns and optimization opportunities.
 - ☑ **Lifecycle management**: Regularly review and decommission unused peering connections and network resources.
@@ -118,7 +118,7 @@ Use this checklist to validate your Virtual Network cost optimization strategy:
 - [Create a virtual network](quick-create-portal.md).
 - [Virtual network peering](virtual-network-peering-overview.md).
 - [Configure subnet peering](how-to-configure-subnet-peering.md).
-- [Azure Cost Management documentation](/azure/cost-management-billing/).
+- [Microsoft Cost Management documentation](/azure/cost-management-billing/).
 - [Azure Virtual Network pricing](https://azure.microsoft.com/pricing/details/virtual-network/).
 - [Azure Well-Architected Framework](/azure/well-architected/).
 - [Hub-spoke network topology](/azure/architecture/reference-architectures/hybrid-networking/hub-spoke).
