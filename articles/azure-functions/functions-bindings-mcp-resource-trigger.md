@@ -168,7 +168,7 @@ app.mcpResource("getWeatherWidget", {
 });
 ```
 
-The following is the `getWeatherWidget` handler:
+The following code is the `getWeatherWidget` handler:
 
 ```typescript
 export async function getWeatherWidget(
@@ -352,7 +352,7 @@ The following MCP resource trigger properties are supported on `mcp_resource_tri
 | **description**  | A description of the MCP resource exposed by the function endpoint. |
 | **mime_type** | The MIME type of the content returned by the resource. For example, `text/html;profile=mcp-app` for MCP App UI resources, `text/plain` for plain text. |
 | **size** | The expected size of the resource content in bytes, if known. |
-| **metadata** | A JSON-serialized string of additional metadata for the resource. |
+| **metadata** | A JSON-serialized string of extra metadata for the resource. |
 
 > [!NOTE]
 > Decorators are only available in the Python v2 programming model.
@@ -372,7 +372,7 @@ Define the trigger's binding options in your code. The trigger supports the foll
 | **description**  | A description of the MCP resource that the function endpoint exposes.  |
 | **mimeType** | The MIME type of the content returned by the resource. For example, `text/html;profile=mcp-app`. |
 | **size** | The expected size of the resource content in bytes, if known. |
-| **metadata** | A JSON-serialized string of additional metadata for the resource. |
+| **metadata** | A JSON-serialized string of extra metadata for the resource. |
 | **handler** | The method that contains the actual function code. |
 
 ::: zone-end
@@ -440,7 +440,7 @@ Use the `McpMetadata` attribute to provide extra metadata for resources. MCP cli
 
 ::: zone pivot="programming-language-python"
 
-Use the `metadata` parameter on the `mcp_resource_trigger` decorator to provide extra metadata for resources. This metadata is a JSON-serialized string included in the `meta` field of each resource when clients call `resources/list`. It can affect how the resource content is displayed or processed.
+To provide extra metadata for resources, use the `metadata` parameter on the `mcp_resource_trigger` decorator. This metadata is a JSON-serialized string included in the `meta` field of each resource when clients call `resources/list`. It can affect how the resource content is displayed or processed.
 
 ::: zone-end
 
