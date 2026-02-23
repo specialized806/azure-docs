@@ -40,7 +40,7 @@ The list below mentions the Azure and corresponding OCI regions with the regiona
 | Azure region | OCI region                 | Oracle Exadata Database@Azure | Oracle Autonomous Database@Azure | Oracle Database Autonomous Recovery Service@Azure | Exadata Database Service on Exascale Infrastructure@Azure | BaseDB | Golden Gate | Regional Availability |
 | ------------ | -------------------------- | ----------------------------- | -------------------------------- | ------------------------------------------------- | --------------------------------------------------------- | ------ | --------------------- |-------|
 | Brazil South | Brazil Southeast (Vinhedo) | ✓    | ✓      | ✓   | ✓     | ✓  |    | Dual   |
-| Brazil Southeast | Brazil East (Rio de Janeiro) | ✓    |       |    |      |   |    | Single   |
+| Brazil Southeast | Brazil East (Rio de Janeiro) | ✓    |   ✓    |    |      |   |    | Single   |
 
 ## Europe, Middle East, Africa (EMEA)
 
@@ -59,7 +59,7 @@ The list below mentions the Azure and corresponding OCI regions with the regiona
 | UAE North | UAE North (Dubai) | ✓  | ✓ | ✓ | | | ✓ |   Dual    |
 | UK South| UK South (London)   | ✓   | ✓   | ✓ | ✓ | ✓ | ✓ | Dual |
 | UK West | UK West (Newport)	   | ✓   | ✓  | | ✓ | ✓ |  | Single |
-| West Europe | Netherlands Northwest (Amsterdam)   | ✓   | || | | | Single |
+| West Europe | Netherlands Northwest (Amsterdam)   | ✓   | ✓ | ✓ | ✓ | ✓ | | Single |
 
 
 ## North America (NA)
@@ -74,7 +74,7 @@ The list below mentions the Azure and corresponding OCI regions with the regiona
 | North Central US | US Midwest (Chicago) | ✓  |  ✓ |  |  |  |  | Single   |
 | South Central US | US South (Dallas)| ✓  |  ✓  | |  |   |   | Dual |
 | West US          | US West (San Jose) | ✓    | ✓  | ✓  |  ✓   |  ✓  | ✓ | Single   |
-| West US 2        | US West (Quincy) | ✓  | ✓ |  ✓ |   |  | ✓ | Dual |
+| West US 2        | US West (Quincy) | ✓  | ✓ |  ✓ |   | ✓  | ✓ | Dual |
 | West US 3        | US West (Phoenix) | ✓ | ✓  |  ✓ |   |  |  | Dual   |
 
 

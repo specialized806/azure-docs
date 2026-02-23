@@ -53,7 +53,7 @@ This article explains how to deploy a self-hosted gateway component of Azure API
 
    ```output
    NAME                                            CHART VERSION   APP VERSION     DESCRIPTION
-   azure-apim-gateway/azure-api-management-gateway 1.0.0           2.0.0           A Helm chart to deploy an Azure API Management ...
+   azure-apim-gateway/azure-api-management-gateway 1.15.0           2.11.0           A Helm chart to deploy an Azure API Management ...
    ```
 
 ## Deploy the self-hosted gateway to Kubernetes
@@ -89,32 +89,6 @@ This article explains how to deploy a self-hosted gateway component of Azure API
    > 
    > For example, you can expose it through a load balancer by adding `--set service.type=LoadBalancer`
 
-1. Run the following command to check the gateway pod is running. Your pod name is different.
-
-   ```console
-   kubectl get pods
-   ```
-
-   ```output
-   NAME                                 READY     STATUS    RESTARTS   AGE
-   azure-api-management-gateway-00xxx   1/1       Running   0          1m
-   ```
-
-1. Run the following command to check the gateway service is running. Your service name and IP addresses are different.
-
-    ```console
-    kubectl get services
-   ```
-
-   ```output
-    NAME                           TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)               AGE
-    azure-api-management-gateway   ClusterIP   10.0.229.55     <none>        8080/TCP,8081/TCP     1m
-    ```
-
-1. Return to the Azure portal and confirm that the gateway node you deployed is reporting healthy status.
-
-> [!TIP]
-> Use `kubectl logs <gateway-pod-name>` command to view a snapshot of the self-hosted gateway log.
 
 ## Related content
 

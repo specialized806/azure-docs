@@ -157,9 +157,9 @@ With your OpenTelemetry Collector installed, you can now deploy the self-hosted 
 
 In this section, you deploy the self-hosted gateway to your cluster with Helm and configure it to send OpenTelemetry metrics to the OpenTelemetry Collector.
 
-1. In the Azure portal, navigate to your API Management instance. Select **Deployment and infrastructure** > **Self-hosted gateways**, then take note of your **Token** and **Configuration URL** in your self-hosted gateway resource.
+[!INCLUDE [api-management-self-hosted-gateway-authentication](../../includes/api-management-self-hosted-gateway-authentication.md)]
 
-1. Install the Helm chart and configure it to use OpenTelemetry metrics.
+1. Install the Helm chart and configure it to use OpenTelemetry metrics:
 
    ```console
    helm install azure-api-management-gateway \
