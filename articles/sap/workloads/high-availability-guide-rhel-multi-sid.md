@@ -7,7 +7,7 @@ manager: juergent
 ms.service: sap-on-azure
 ms.subservice: sap-vm-workloads
 ms.topic: how-to
-ms.date: 02/20/2026
+ms.date: 02/23/2026
 ms.author: radeltch
 ms.custom:
   - linux-related-content
