@@ -16,12 +16,14 @@ Use the MCP resource trigger to define resource endpoints in a [Model Context Pr
 
 For information on setup and configuration details, see the [overview](functions-bindings-mcp.md).
 
+## Example
 ::: zone pivot="programming-language-csharp"
 >[!NOTE]  
 > For C#, the Azure Functions MCP extension supports only the [isolated worker model](dotnet-isolated-process-guide.md). 
 ::: zone-end
 
 ::: zone pivot="programming-language-csharp,programming-language-python,programming-language-typescript,programming-language-javascript"
+
 This first example shows how to use resource to implement the UI element of MCP Apps. 
 ::: zone-end
 ::: zone pivot="programming-language-csharp"  
@@ -373,7 +375,7 @@ Define the trigger's binding options in your code. The trigger supports the foll
 
 ::: zone pivot="programming-language-csharp,programming-language-python,programming-language-typescript"
 
-See the [Example section](#example-1) for complete examples.
+See the [Example section](#example) for complete examples.
 
 ## Usage
 
@@ -496,7 +498,7 @@ The `SessionId` property on `ResourceInvocationContext` identifies the MCP sessi
 
 ::: zone pivot="programming-language-csharp,programming-language-python,programming-language-typescript"
 
-For more information, see [Examples](#example-1).
+For more information, see [Examples](#example).
 
 ## host.json settings
 
