@@ -8,7 +8,7 @@ services: azure-communication-services
 
 ms.author: prakulka
 ms.date: 09/29/2023
-ms.topic: conceptual
+ms.topic: concept-article
 ms.service: azure-communication-services
 ms.custom: references_regions
 ---
