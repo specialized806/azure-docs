@@ -34,7 +34,7 @@ For example, if you make a call to: `<POOL_MANAGEMENT_ENDPOINT>/api/uploadfile`,
 
 ## Continuous interaction
 
-As you continue to make calls to the same session, the session remains [allocated](sessions.md#session-lifecycle) in the pool. Once there are no requests to the session after the cooldown period has elapsed, the session is automatically destroyed.
+As you continue to make calls to the same session, the session remains [allocated](sessions.md#key-concepts) in the pool. Once there are no requests to the session after the cooldown period has elapsed, the session is automatically destroyed.
 
 ## Sample request
 
