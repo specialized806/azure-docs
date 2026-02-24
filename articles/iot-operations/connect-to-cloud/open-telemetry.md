@@ -6,7 +6,7 @@ ms.author: sethm
 ms.service: azure-iot-operations
 ms.subservice: azure-data-flows
 ms.topic: how-to
-ms.date: 02/20/2026
+ms.date: 02/24/2026
 ai-usage: ai-assisted
 
 #CustomerIntent: As an operator, I want to understand how to configure data flow endpoints for OpenTelemetry destinations in Azure IoT Operations so that I can send metrics and logs to observability platforms like Grafana and Azure Monitor.
@@ -194,7 +194,7 @@ The dataflow endpoint appears in the list of available dataflow endpoints in the
     - **Host**: The OpenTelemetry collector endpoint in the format `<host>:<port>`. For example, `otel-collector.monitoring.svc.cluster.local:4317`.
     - **Authentication method**: Choose one of the following authentication methods:
         - **Kubernetes service account token**: Uses Kubernetes service account tokens to authenticate with the OpenTelemetry collector. Enter the audience value for your OpenTelemetry collector configuration. For more information, see [Service Account Token (SAT)](#service-account-token-sat).
-        - **Anonymous**: Use when the OpenTelemetry collector doesn't require authentication.
+        - **Anonymous**: Use when the OpenTelemetry collector [doesn't require authentication](#anonymous-authentication).
         - **X509 certificate**: Uses client certificates for mutual TLS authentication. Enter the name of a Kubernetes secret containing your client certificate. For more information, see [X.509 certificate](#x509-certificate).
 
    :::image type="content" source="media/open-telemetry/create-new-open-telemetry-basic.png" alt-text="Screenshot of the operations experience interface showing the basic tab in create a new OpenTelemetry endpoint." lightbox="media/open-telemetry/create-new-open-telemetry-basic.png":::
