@@ -35,6 +35,26 @@ In this tutorial, you learn how to:
 
 Sign in to the [Azure portal](https://portal.azure.com).
 
+## Create a resource group
+
+A resource group is a logical container for Azure resources. This procedure creates a resource group for all resources used in this tutorial.
+
+1. In the portal, search for and select **Resource groups**.
+
+1. On the **Resource groups** page, select **+ Create**.
+
+1. On the **Basics** tab, enter or select the following information:
+
+    | Setting | Value |
+    |---|---|
+    | **Project details** |  |
+    | Subscription | Select your subscription. |
+    | Resource group | Enter **test-rg**. |
+    | **Resource details** |  |
+    | Region | Select **East US 2**. |
+
+1. Select **Review + create**, and then select **Create**.
+
 ## Create a virtual network
 
 The following procedure creates a virtual network with a resource subnet.
@@ -49,7 +69,7 @@ The following procedure creates a virtual network with a resource subnet.
     |---|---|
     | **Project details** |  |
     | Subscription | Select your subscription. |
-    | Resource group | Select **Create new**. </br> Enter **test-rg** for the name. </br> Select **OK**. |
+    | Resource group | Select **test-rg**. |
     | **Instance details** |  |
     | Name | Enter **vnet-1**. |
     | Region | Select **East US 2**. |
