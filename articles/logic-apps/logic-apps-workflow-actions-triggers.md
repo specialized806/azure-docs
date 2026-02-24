@@ -5,7 +5,7 @@ services: logic-apps
 ms.suite: integration
 ms.reviewer: estfan, azla
 ms.topic: reference
-ms.date: 07/17/2025
+ms.date: 02/24/2026
 ---
 
 # Schema reference guide for trigger and action types in Azure Logic Apps
@@ -461,8 +461,7 @@ This trigger runs based on the specified recurrence schedule and provides an eas
    },
    "runtimeConfiguration": {
       "concurrency": {
-         "runs": <max-runs>,
-         "maximumWaitingRuns": <max-runs-queue>
+         "runs": <max-runs>
       }
    },
    "operationOptions": "<operation-option>"
@@ -2523,6 +2522,7 @@ In the underlying trigger definition, add the `runtimeConfiguration.concurrency.
    }
 }
 ```
+Please note that The Recurrence trigger supports concurrency but it does not support waiting runs. Any 'Maximum waiting runs' setting on a Recurrence trigger is ignored.
 
 For more information, see [Runtime configuration settings](#runtime-config-options).
 
