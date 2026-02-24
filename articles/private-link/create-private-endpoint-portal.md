@@ -5,7 +5,7 @@ description: In this quickstart, learn how to create a private endpoint using th
 author: abell
 ms.service: azure-private-link
 ms.topic: quickstart
-ms.date: 03/25/2025
+ms.date: 02/23/2026
 ms.author: abell
 ms.custom:
   - mode-ui
