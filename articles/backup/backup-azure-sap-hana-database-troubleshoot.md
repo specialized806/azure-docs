@@ -154,7 +154,7 @@ See the [prerequisites](tutorial-backup-sap-hana-db.md#prerequisites) and [What 
 
 **Error message** | `recoverSys.py could not be run successfully to restore System DB.`
 -------- | ---------
-**Possible causes** | Possible causes for System DB restore to fail are:<ol><li>Azure Backup is unable to find **recoverSys.py** on the HANA machine. It happens when the HANA environment isn't set up properly.</li><li>**recoverSys.py** is present, but when you trigger this script, it fails to invoke HANA to perform the restore.</li><li>recoverSys.py has successfully invoked HANA to perform the restore, but HANA fails to restore.</li></ol>
+**Possible causes** | Possible causes for System DB restore to fail are:<ul><li>Azure Backup is unable to find **recoverSys.py** on the HANA machine. It happens when the HANA environment isn't set up properly.</li><li>**recoverSys.py** is present, but when you trigger this script, it fails to invoke HANA to perform the restore.</li><li>recoverSys.py has successfully invoked HANA to perform the restore, but HANA fails to restore.</li></ul>
 **Recommended action** | <ul><li>For issue 1, work with the SAP HANA team to fix the issue.</li><li>For 2 and 3, run the HDBsettings.sh command in sid-adm prompt and see the log trace. For example, _/usr/sap/SID/HDB00/HDBsettings.sh_.</li></ul>Share these findings with the SAP HANA team to get the issue fixed.
 
 ### UserErrorDBNameNotInCorrectFormat
