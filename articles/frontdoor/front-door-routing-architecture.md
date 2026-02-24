@@ -36,7 +36,7 @@ The following sections describe these steps in detail.
 
 ::: zone pivot="front-door-standard-premium"
 
-## Name resolution by Azure Front Door's Traffic Manager returns PoP unicast IP
+## Name resolution by Azure Front Door's Traffic Manager profile returns PoP unicast IP
 
 The user or client application initiates a connection to the origin behind Azure Front Door. The domain name resolves to the Front Door's Azure Traffic Manager endpoint. The Traffic Manager consumes health and availability signals from all the Front Door PoPs across the world. It determines the optimal PoP to serve the request and returns the unicast IP of that PoP.
 
