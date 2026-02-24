@@ -89,7 +89,7 @@ Use filters to capture only the traffic that you want to monitor. Filters are ba
 
 In addition to the previous considerations, keep the following considerations in mind when using continuous packet capture (preview):
 
-- Continuous capture is available only for supported VM and VMSS SKUs and regions. 
+- Continuous capture is available only for supported VM and virtual machine scale set SKUs and regions. 
 
 - The target VM must have sufficient space, or the connected storage account must have appropriate quota to accommodate capture data. 
 
