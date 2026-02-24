@@ -81,7 +81,7 @@ Use the following lightweight OpenAPI 3.0 API definition for your MCP server, wh
 }
 ```
 
-### Register a local MCP server
+## Register a local MCP server
 
 You can register an MCP server that's installed locally using a package manager such as `npm` or `pypi`.
 
@@ -128,7 +128,9 @@ When you add a partner MCP server, API Center automatically configures the follo
 
 * Creates an API entry in your API inventory with the API type set to **MCP**.
 * Creates an environment and a deployment for the MCP server.
-* Adds an OpenAPI definition for the MCP server if the partner provides one.
+* Adds OpenAPI definitions for the MCP server if the partner provides them.
+
+## Build and register your own MCP servers
 
 To build MCP servers by using Azure compute services and register them in your API center, see the following examples:
 
