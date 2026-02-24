@@ -2756,6 +2756,11 @@
       "redirect_document_id": false
     },
     {
+      "source_path_from_root": "/articles/azure-resource-manager/bicep/deploy-vscode.md",
+      "redirect_url": "/azure/azure-resource-manager/bicep/deploy-visual-studio-code",
+      "redirect_document_id": false
+    },
+    {
       "source_path_from_root": "/articles/azure-resource-manager/management/control-plane-metrics.md",
       "redirect_url": "/azure/azure-resource-manager/management/monitor-resource-manager",
       "redirect_document_id": false
@@ -5371,51 +5376,6 @@
       "redirect_document_id": false
     },
     {
-      "source_path_from_root": "/articles/scheduler/get-started-portal.md",
-      "redirect_url": "/azure/scheduler/migrate-from-scheduler-to-logic-apps",
-      "redirect_document_id": false
-    },
-    {
-      "source_path_from_root": "/articles/scheduler/scheduler-advanced-complexity.md",
-      "redirect_url": "/azure/scheduler/migrate-from-scheduler-to-logic-apps",
-      "redirect_document_id": false
-    },
-    {
-      "source_path_from_root": "/articles/scheduler/scheduler-concepts-terms.md",
-      "redirect_url": "/azure/scheduler/migrate-from-scheduler-to-logic-apps",
-      "redirect_document_id": false
-    },
-    {
-      "source_path_from_root": "/articles/scheduler/scheduler-high-availability-reliability.md",
-      "redirect_url": "/azure/scheduler/migrate-from-scheduler-to-logic-apps",
-      "redirect_document_id": false
-    },
-    {
-      "source_path_from_root": "/articles/scheduler/scheduler-intro.md",
-      "redirect_url": "/azure/scheduler/migrate-from-scheduler-to-logic-apps",
-      "redirect_document_id": false
-    },
-    {
-      "source_path_from_root": "/articles/scheduler/scheduler-limits-defaults-errors.md",
-      "redirect_url": "/azure/scheduler/migrate-from-scheduler-to-logic-apps",
-      "redirect_document_id": false
-    },
-    {
-      "source_path_from_root": "/articles/scheduler/scheduler-outbound-authentication.md",
-      "redirect_url": "/azure/scheduler/migrate-from-scheduler-to-logic-apps",
-      "redirect_document_id": false
-    },
-    {
-      "source_path_from_root": "/articles/scheduler/scheduler-plans-billing.md",
-      "redirect_url": "/azure/scheduler/migrate-from-scheduler-to-logic-apps",
-      "redirect_document_id": false
-    },
-    {
-      "source_path_from_root": "/articles/scheduler/scheduler-powershell-reference.md",
-      "redirect_url": "/azure/scheduler/migrate-from-scheduler-to-logic-apps",
-      "redirect_document_id": false
-    },
-    {
       "source_path_from_root": "/articles/sdks/index.yml",
       "redirect_url": "https://azure.microsoft.com/downloads/",
       "redirect_document_id": false
@@ -6894,6 +6854,11 @@
       "source_path": "articles/cyclecloud/how-to/collect-custom-metrics-gpu-infiniband-telegraf.md",
       "redirect_url": "/azure/cyclecloud/how-to/monitor-cyclecloud-cluster-using-prometheus-grafana",
       "redirect_document_id": false
-    }    
+    },
+    {
+      "source_path": "articles/application-gateway/for-containers/quickstart-deploy-application-gateway-for-containers-alb-controller.md",
+      "redirect_url": "/azure/application-gateway/for-containers/quickstart-deploy-application-gateway-for-containers-alb-controller-addon",
+      "redirect_document_id": false
+    }
   ]
 }
