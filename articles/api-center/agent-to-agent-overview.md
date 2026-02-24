@@ -5,7 +5,7 @@ description: "Overview of the agent registry for discovering, registering, and m
 
 ms.service: azure-api-center
 ms.topic: overview
-ms.date: 11/03/2025
+ms.date: 02/24/2026
 ms.update-cycle: 180-days
 ms.collection: ce-skilling-ai-copilot
 

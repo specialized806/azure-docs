@@ -45,7 +45,9 @@ The following steps register two sample APIs: Swagger Petstore API and Conferenc
  
 1. Sign in to the [Azure portal](https://portal.azure.com), then navigate to your API center.
 
-1. In the sidebar menu, under **Inventory**, select **Assets**, then select **Register an asset** and choose **API**.
+1. In the sidebar menu, under **Inventory**, select **Assets**.
+
+1. Select **+ Register an asset** > **API**.
 
     :::image type="content" source="./media/register-apis/register-asset.png" alt-text="Screenshot of the Assets page in the Azure portal with the Register an asset menu showing API, MCP server, and A2A agent options." lightbox="./media/register-apis/register-asset.png":::
 
@@ -55,16 +57,16 @@ The following steps register two sample APIs: Swagger Petstore API and Conferenc
     |-------|-----|-----------|
     |**API title**| Enter *Swagger Petstore API*.| Name you choose for the API  |
     |**Identification**|After you enter the preceding title, Azure API Center generates this identifier, which you can override.| Azure resource name for the API |
-    |**API type**| Select **REST** from the dropdown.| Type of API |
+    |**Asset type**| Select **REST** from the dropdown.| Type of API |
     | **Summary** | Optionally enter a summary. | Summary description of the API  |
     | **Description** | Optionally enter a description. | Description of the API |
     | **Version** | | |
     |**Version title**| Enter a version title of your choice, such as *v1*.|Name you choose for the API version |
     |**Version identification**|After you enter the preceding title, Azure API Center generates this identifier, which you can override.| Azure resource name for the version |
     |**Version lifecycle**  | Make a selection from the dropdown, for example, **Testing** or **Production**. | Lifecycle stage of the API version |
-    |**External documentation**     | Optionally add one or more links to external documentation.       | Name, description, and URL of documentation for the API     |
-    |**License**         |  Optionally add license information.       | Name, URL, and ID of a license for the API     |
-    |**Contact information**         |  Optionally add information for one or more contacts.       | Name, email, and URL of a contact for the API     |
+    |**License**         |  Optionally, add license information.       | Name, URL, and ID of a license for the API     |    
+    |**External documentation**     | Optionally, add one or more links to external documentation.       | Name, description, and URL of documentation for the API     |
+    |**Contact information**         |  Optionally. add information for one or more contacts.       | Name, email, and URL of a contact for the API     |
     | **Line of business** | If you added this metadata in the previous tutorial, make a selection from the dropdown, such as **Marketing**. | Custom metadata that identifies the business unit that owns the API  |
     | **Public-facing**  | If you added this metadata, select the checkbox.    |  Custom metadata that identifies whether the API is public-facing or internal only    |
 
@@ -77,11 +79,9 @@ The following steps register two sample APIs: Swagger Petstore API and Conferenc
 
 The APIs appear on the **Assets** page in the portal. If you add a large number of APIs to the API center, use the search box and filters on this page to find the APIs you want.
 
-<!-- :::image type="content" source="./media/register-apis/apis-page.png" alt-text="Screenshot of the APIs page in the portal." lightbox="./media/register-apis/apis-page.png"::: -->
+:::image type="content" source="./media/register-apis/apis-page.png" alt-text="Screenshot of the Assets page in the portal." lightbox="./media/register-apis/apis-page.png":::
 
 After registering an API, you can view or edit the API's properties. On the **Assets** page, select the API to see pages to manage the API registration. 
-
-<a id="add-a-definition-to-your-version"></a>
 
 ## Add an API version
 
@@ -105,18 +105,20 @@ Here you add a version to one of your APIs:
     |**Version identification**|After you enter the preceding title, Azure API Center generates this identifier, which you can override.| Azure resource name for the version |
     |**Version lifecycle**  | Make a selection from the dropdown, such as **Production**. | Lifecycle stage of the API version |
 
-1. Azure API Center supports definitions in common text specification formats, such as OpenAPI 2 and 3 for REST APIs. To add an API definition, enter or select the following information under **Select a specification**:
+1.  under **Select a specification**, add an API definition, enter or select the following information. Azure API Center supports definitions in common text specification formats, such as OpenAPI 2 and 3 for REST APIs.
 
     |Setting|Value|Description|
     |-------|-----|-----------|
     |**Definition title**| Enter a title of your choice, such as *v2 Definition*.|Name you choose for the API definition|
     |**Definition identification**|After you enter the preceding title, Azure API Center generates this identifier, which you can override.| Azure resource name for the definition|
-    |**Description** | Optionally enter a description. | Description of the API definition |
+    |**Description** | Optionally, enter a description. | Description of the API definition |
     |**Specification format** | For the Petstore API, select **OpenAPI**. | Specification format for the API|
     |**Specification version** | Enter a version identifier of your choice, such as *3.0*. | Specification version |
     |**File** or **URL**   | Browse to a local definition file for the Petstore API, or enter a URL. Example URL: `https://raw.githubusercontent.com/swagger-api/swagger-petstore/refs/heads/master/src/main/resources/openapi.yaml`   |  API definition file   |
 
     :::image type="content" source="./media/register-apis/add-definition.png" alt-text="Screenshot of adding an API definition in the portal." lightbox="./media/register-apis/add-definition.png" :::
+
+1. Leave the setting under **Add a deployment** unselected for now. You configure a deployment in the next tutorial, [Add environments and deployments for APIs](./configure-environments-deployments.md).
 
 1. Select **Create**.
 
