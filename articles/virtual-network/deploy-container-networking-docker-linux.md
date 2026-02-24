@@ -6,7 +6,7 @@ author: asudbring
 ms.author: allensu
 ms.service: azure-virtual-network
 ms.topic: how-to
-ms.date: 08/28/2023
+ms.date: 02/23/2026
 ms.custom:
   - template-how-to
   - linux-related-content
@@ -22,6 +22,24 @@ The Azure CNI plugin enables per container/pod networking for stand-alone docker
 
 - An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
+## Create a resource group
+
+1. In the portal, search for and select **Resource groups**.
+
+1. Select **+ Create**.
+
+1. In the **Basics** tab of **Create a resource group**, enter, or select the following information:
+
+    | Setting | Value |
+    | ------- | ----- |
+    | Subscription | Select your subscription. |
+    | Resource group | Enter **test-rg**. |
+    | Region | Select **East US 2**. |
+
+1. Select **Review + create**.
+
+1. Select **Create**.
+
 ## Create a virtual network
 
 The following procedure creates a virtual network with a resource subnet.
@@ -36,7 +54,7 @@ The following procedure creates a virtual network with a resource subnet.
     |---|---|
     | **Project details** |  |
     | Subscription | Select your subscription. |
-    | Resource group | Select **Create new**. </br> Enter **test-rg** for the name. </br> Select **OK**. |
+    | Resource group | Select **test-rg**. |
     | **Instance details** |  |
     | Name | Enter **vnet-1**. |
     | Region | Select **East US 2**. |
@@ -92,7 +110,55 @@ Azure Bastion uses your browser to connect to VMs in your virtual network over S
 
 It can take a few minutes for the Bastion host to deploy. You can continue with the steps while the Bastion host is deploying.
 
-[!INCLUDE [create-test-virtual-machine-linux.md](~/reusable-content/ce-skilling/azure/includes/create-test-virtual-machine-linux.md)]
+## Create a virtual machine
+
+1. In the search box at the top of the portal, enter **Virtual machine**. Select **Virtual machines** in the search results.
+
+1. Select **+ Create** then **Azure virtual machine**.
+
+1. In **Create a virtual machine** enter, or select the following information in the **Basics** tab:
+
+    | Setting | Value |
+    | ------- | ----- |
+    | **Project details** |   |
+    | Subscription | Select your subscription. |
+    | Resource group | Select **test-rg**. |
+    | **Instance details** |   |
+    | Virtual machine name | Enter **vm-1**. |
+    | Region | Select **(US) East US 2**. |
+    | Availability options | Select **No infrastructure redundancy required**. |
+    | Security type | Select **Standard**. |
+    | Image | Select **Ubuntu Server 24.04 LTS - x64 Gen2**. |
+    | VM architecture | Leave the default of **x64**. |
+    | Size | Select a size. |
+    | **Administrator account** |   |
+    | Authentication type | Select **SSH public key**. |
+    | Username | Enter a username. |
+    | SSH public key source | Select **Generate new key pair**. |
+    | Key pair name | Enter **vm-1-key**. |
+    | **Inbound port rules** |  |
+    | Public inbound ports | Select **None**. |
+
+1. Select **Next: Disks** then **Next: Networking**.
+
+1. In the Networking tab, enter, or select the following information:
+
+    | Setting | Value |
+    | ------- | ----- |
+    | **Network interface** |   |
+    | Virtual network | Select **vnet-1**. |
+    | Subnet | Select **subnet-1 (10.0.0.0/24)**. |
+    | Public IP | Select **None**. |
+    | Network interface (NIC) network security group | Select **Advanced**. |
+    | Configure network security group | Select **Create new**.</br> In **Name** enter **nsg-1**.</br> Select **OK**. |
+
+1. Leave the rest of the options at the defaults and select **Review + create**.
+
+1. Select **Create**.
+
+1. A **Generate new key pair** pop-up appears. Select **Download private key and create resource**.
+
+1. The private key file downloads to your computer. Save the private key file to a known location on your computer.  This key is used to connect to the virtual machine with Azure Bastion in a later step.
 
 ## Add IP configuration
 
@@ -145,9 +211,15 @@ Sign-in to the virtual machine you created previously with the Azure Bastion hos
 
 1. Select **vm-1**.
 
-1. In the **Overview** of **vm-1**, select **Connect** then **Bastion**.
+1. In the **Overview** of **vm-1**, select **Connect** then **Connect via Bastion**.
 
-1. Enter the username and password you created when you deployed the virtual machine in the previous steps.
+1. In the **Bastion** connection page, enter or select the following information:
+
+    | Setting | Value |
+    | ------- | ----- |
+    | Authentication Type | Select **SSH Private Key from Local File**. |
+    | Username | Enter the username you created. |
+    | Local File | Select the **vm-1-key** private key file you downloaded. |
 
 1. Select **Connect**.
 
@@ -167,9 +239,15 @@ For more information about the Azure CNI plugin, see [Microsoft Azure Container 
 
 1. Select **vm-1**.
 
-1. In the **Overview** of **vm-1**, select **Connect** then **Bastion**.
+1. In the **Overview** of **vm-1**, select **Connect** then **Connect via Bastion**.
 
-1. Enter the username and password you created when you deployed the virtual machine in the previous steps.
+1. In the **Bastion** connection page, enter or select the following information:
+
+    | Setting | Value |
+    | ------- | ----- |
+    | Authentication Type | Select **SSH Private Key from Local File**. |
+    | Username | Enter the username you created. |
+    | Local File | Select the **vm-1-key** private key file you downloaded. |
 
 1. Select **Connect**.
 
