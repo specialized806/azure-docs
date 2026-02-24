@@ -148,9 +148,9 @@ sections:
           No. For security, Azure Front Door supports only managed identity-based authentication when accessing certificates in Key Vault. For more information, see [Use managed identities in Azure Front Door](managed-identity.md).
 
       - question: |
-          Does Azure Front Door support managed identity with Azure Event Hub?
+          Does Azure Front Door support managed identity with Azure Event Hubs?
         answer: |
-          No. Azure Front Door doesn't currently support managed identity integration with Azure Event Hub.
+          No. Azure Front Door doesn't currently support managed identity integration with Azure Event Hubs.
 
       - question: |
           Does Azure Front Door support custom error pages?
