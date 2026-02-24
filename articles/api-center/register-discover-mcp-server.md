@@ -58,28 +58,12 @@ To register a remote MCP server:
     1. Optionally, add **License** and **External documentation** links and associated information for the MCP server.
     1. Select **Create**.
 
-### Definition for remote MCP server
+### Definitions for remote MCP server
 
-Optionally, add an API definition for a remote MCP server in OpenAPI 3.0 format. The API definition must include a URL endpoint for the MCP server. For an example of adding an OpenAPI definition, see [Tutorial: Register APIs in your API inventory](././tutorials/register-apis.md#add-a-definition-to-your-version).
+API Center automatically generates the following OpenAPI definitions for a remote MCP server and associates them with the server version you register:
 
-Use the following lightweight OpenAPI 3.0 API definition for your MCP server, which includes a `url` endpoint for the MCP server:
-
-
-```json
-{
-  "openapi": "3.0.0",
-  "info": {
-    "title": "Demo MCP server",
-    "description": "Very basic MCP server that exposes mock tools and prompts.",
-    "version": "1.0"
-  },
-  "servers": [
-    {
-      "url": "https://my-mcp-server.contoso.com"
-    }
-  ]
-}
-```
+- SSE definition, for using server-sent events (SSE) as an agentic protocol
+- Streamable definition, for using a transport-agnostic agentic protocol
 
 ## Register a local MCP server
 

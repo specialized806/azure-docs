@@ -74,7 +74,7 @@ Different environment types have different subnet requirements:
 
 - `/23` is the minimum subnet size required for virtual network integration.
 
-- Your subnet must not be delegated to any services.
+- Your subnet MUST NOT be delegated to any services, including `Microsoft.App/environments`.
 
 - The Container Apps runtime reserves a minimum of 60 IPs for infrastructure in your VNet. The reserved amount may increase up to 256 addresses as apps in your environment scale.
 
