@@ -18,7 +18,7 @@ zone_pivot_groups: azure-durable-approach
 Orchestrations are long-running stateful workflows that can be started, queried, suspended, resumed, and terminated using built-in management APIs. In [Durable Functions](what-is-durable-task.md), these APIs are exposed by the [orchestration client binding](durable-functions-bindings.md#orchestration-client). In the [Durable Task SDKs](durable-task-scheduler/quickstart-portable-durable-task-sdks.md), these operations are available through the `DurableTaskClient` class. This article covers all supported instance management operations for both platforms.
 
 > [!TIP]
-> The [Azure Durable Task Scheduler](durable-task-scheduler/durable-task-overview.md) is the recommended backend for both Durable Functions and the Durable Task SDKs, providing a fully managed, serverless experience for running durable workflows at scale.
+> The [Azure Durable Task Scheduler](what-is-durable-task.md) is the recommended backend for both Durable Functions and the Durable Task SDKs, providing a fully managed, serverless experience for running durable workflows at scale.
 
 ## Start instances
 
@@ -2105,5 +2105,5 @@ The Durable Task SDK is not available for PowerShell. Use [Durable Functions](wh
 > [Get started with Durable Task SDKs](durable-task-scheduler/quickstart-portable-durable-task-sdks.md)
 
 > [!div class="nextstepaction"]
-> [Learn about the Durable Task Scheduler](durable-task-scheduler/durable-task-overview.md)
+> [Learn about the Durable Task Scheduler](what-is-durable-task.md)
 ::: zone-end
