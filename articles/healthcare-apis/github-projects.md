@@ -29,41 +29,25 @@ We have many open-source projects on GitHub that provide you with the source cod
 
 ## Data Conversion & Anonymization
 
-#### FHIR Converter
+### FHIR Converter
 
 * [microsoft/FHIR-Converter](https://github.com/microsoft/FHIR-Converter): a data conversion project that uses CLI tool and $convert-data FHIR endpoint to translate healthcare legacy data formats into FHIR
 * Integrated with the FHIR service and FHIR server for Azure in the form of $convert-data operation
 * Ongoing improvements in OSS, and continual integration to the FHIR servers
  
-#### FHIR Converter - VS Code Extension
+### FHIR Converter - VS Code Extension
 
 * [microsoft/vscode-azurehealthcareapis-tools](https://github.com/microsoft/vscode-azurehealthcareapis-tools): a VS Code extension that contains a collection of tools to work with FHIR Converter
 * Released to Visual Studio Marketplace, you can install it here: [FHIR Converter VS Code extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-health-fhir-converter)
 * Used for authoring Liquid conversion templates and managing templates on Azure Container Registry
 
-#### FHIR Tools for Anonymization
+### FHIR Tools for Anonymization
 
 * [microsoft/Tools-for-Health-Data-Anonymization](https://github.com/microsoft/Tools-for-Health-Data-Anonymization): a data anonymization project that provides tools for de-identifying FHIR and DICOM data
 * Integrated with the FHIR service and FHIR server for Azure in the form of `de-identified $export` operation
 * For FHIR data, it can also be used with Azure Data Factory (ADF) pipeline by reading FHIR data from Azure blob storage and writing back the anonymized data
 
-## Analytics Pipelines
-
-FHIR Analytics Pipelines help you build components and pipelines for rectangularizing and moving FHIR data from Azure FHIR servers. You can move data from [Azure Health Data Services FHIR Server](./../healthcare-apis/index.yml), [Azure API for FHIR](./../healthcare-apis/azure-api-for-fhir/index.yml), and [FHIR Server for Azure](https://github.com/microsoft/fhir-server) to [Azure Data Lake](https://azure.microsoft.com/solutions/data-lake/). The data is then available for analytics with [Azure Synapse Analytics](https://azure.microsoft.com/services/synapse-analytics/), [Power BI](https://powerbi.microsoft.com/), and [Azure Machine Learning](https://azure.microsoft.com/services/machine-learning/).
-
-### FHIR to Synapse Sync Agent
-
-The FHIR to Synapse Sync Agent is an Azure function that extracts data from a FHIR Server using FHIR Resource APIs. The agent converts the data to hierarchical Parquet files, and writes them to Azure Data Lake in near real time. This agent also contains a [script](https://github.com/microsoft/FHIR-Analytics-Pipelines/blob/main/FhirToDataLake/scripts/Set-SynapseEnvironment.ps1) to create external tables and views in Synapse Serverless SQL pool pointing to the Parquet files.
-
-This solution enables you to query against the entire FHIR data with tools such as Synapse Studio, SSMS, and Power BI. You can also access the Parquet files directly from a Synapse Spark pool. You should consider using this solution if you want to access all your FHIR data in near real time and want to defer custom transformation to downstream systems.
-
-### FHIR to CDM Pipeline Generator
-
-The FHIR to CDM Pipeline Generator is a tool to generate an ADF pipeline for moving a snapshot of data from a FHIR server using $export API to a [CDM folder](/common-data-model/data-lake) in Azure Data Lake Storage Gen 2 in `.csv` format. The tool requires a user-created configuration file containing instructions to project and flatten FHIR Resources and fields into tables. You can also follow the [instructions](https://github.com/microsoft/FHIR-Analytics-Pipelines/blob/main/FhirToCdm/docs/cdm-to-synapse.md) for creating a downstream pipeline in Synapse workspace to move data from CDM folder to Synapse dedicated SQL pool.
-
-This solution enables you to transform the data into tabular format as it gets written to CDM folder. You should consider this solution if you want to transform FHIR data into a custom schema as it is extracted from the FHIR server.
-
-#### HealthKit and FHIR Integration
+### HealthKit and FHIR Integration
 
 * [microsoft/healthkit-on-fhir](https://github.com/microsoft/healthkit-on-fhir): a Swift library that automates the export of Apple HealthKit Data to a FHIR Server.
 
