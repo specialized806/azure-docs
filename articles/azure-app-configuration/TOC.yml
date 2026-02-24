@@ -248,6 +248,8 @@
       href: howto-variant-feature-flags.md
     - name: ASP.NET Core
       href: howto-variant-feature-flags-aspnet-core.md
+    - name: Spring Boot
+      href: how-to-variant-feature-flags-spring-boot.md
     - name: Python
       href: howto-variant-feature-flags-python.md
     - name: JavaScript
@@ -293,8 +295,6 @@
   items:
   - name: Monitor App Configuration
     href: monitor-app-configuration.md
-  - name: Reference for monitoring data
-    href: monitor-app-configuration-reference.md
 - name: Resource management
   items:
   - name: Move a resource between Azure regions

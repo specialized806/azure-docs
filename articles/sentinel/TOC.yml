@@ -515,6 +515,8 @@
               href: automation/use-playbook-templates.md
             - name: Create and manage playbooks
               href: automation/create-playbooks.md
+            - name: Generate playbooks using AI
+              href: automation/generate-playbook.md
             - name: Supported triggers and actions in playbooks
               href: automation/playbook-triggers-actions.md
             - name: Azure Logic Apps for Microsoft Sentinel playbooks
@@ -1005,8 +1007,12 @@
       items:
         - name: Data source schema reference
           href: data-source-schema-reference.md
+        - name: Sentinel tables and connectors
+          href: sentinel-tables-connectors-reference.md
         - name: Security alert schema reference
           href: security-alert-schema.md
+        - name: Standalone vs XDR alert schema reference
+          href: security-alert-schema-differences.md
         - name: CEF log field mapping
           href: cef-name-mapping.md
         - name: Windows security event sets
