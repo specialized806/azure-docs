@@ -29,7 +29,7 @@ By performing token validation at the edge, Application Gateway simplifies appli
 > [!NOTE]
 > Tokens must be issued by Microsoft Entra ID
 
- :::image type="content" source="media/json-web-token-overview/jwt-validation.png" alt-text="JWT Validation Diagram for Application Gateway.":::
+ :::image type="content" source="media/json-web-token-overview/jwt-validation.png" alt-text="Diagram showing JWT Validation for Application Gateway.":::
 
 ## Prerequisites
 
