@@ -260,7 +260,7 @@ items:
     - name: REST API
       href: /rest/api/
     - name: Azure CLI
-      href: /cli/azure/hanainstance
+      href: /cli/azure
     - name: Azure PowerShell
       href: /powershell/module/az.hanaonazure/#sap-hana-on-azure
     - name: Power BI
