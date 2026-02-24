@@ -36,6 +36,38 @@ To control the size of captured data, use the following options:
 | **Maximum bytes per session (bytes)** | Total number of bytes that are captured, once the value is reached the session ends. |
 | **Time limit (seconds)** | Packet capture session time limit, once the value is reached the session ends. The default value is 18000 seconds (5 hours). |
 
+## Continuous Packet Capture (Preview) 
+
+> [!NOTE]
+> This feature is currently in public preview. Functionality and limitations may change before general availability.
+
+Continuous packet capture allows you to persistently monitor network traffic using a ring buffer–based mechanism. Unlike standard packet captures that stop after reaching a specific time or file size, continuous capture is designed to run over extended durations, making it ideal for diagnosing intermittent or long-tail issues. Currently, you can configure continuous packet capture using the [Azure Portal](/network-watcher/packet-capture-manage?tabs=portal#start-a-packet-capture)
+
+### How It Works
+When continuous packet capture is enabled: 
+
+- Captured packets are written to a rotating set of files on the target VM’s local storage or storage account.
+ 
+- You can configure the maximum number of files and the size of each file. 
+
+- Once the file count limit is reached, the oldest file is automatically deleted to allow space for new packets, maintaining a continuous stream of recent data. 
+
+- The capture runs for the user-specified time duration, or a maximum of 7 days, whichever is earlier. 
+
+This ring buffer–style storage helps reduce manual intervention and avoid excessive storage consumption while ensuring that recent traffic is always available for review. 
+
+### Considerations
+
+- Continuous capture is available only for supported VM and VMSS SKUs and regions. 
+
+- Ensure the target VM has sufficient space, or the connected storage account has appropriate quota to accommodate capture data. 
+
+- Captures with high packet volumes may generate large data sizes quickly. Choose file size and count accordingly to manage buffer length and retention. 
+
+- When using filters, ensure that relevant ports, IPs, and protocols are captured to optimize storage and analysis. 
+
+For step-by-step guidance, see [Manage packet captures](/azure/network-watcher/packet-capture-manage)
+
 ## Filtering (optional)
 
 Use filters to capture only the traffic that you want to monitor. Filters are based on 5-tuple (protocol, local IP address, remote IP address, local port, and remote port) information:
