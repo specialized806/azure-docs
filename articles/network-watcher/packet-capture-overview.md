@@ -85,11 +85,13 @@ Use filters to capture only the traffic that you want to monitor. Filters are ba
 
 - When using filters, ensure that relevant ports, IPs, and protocols are captured to optimize storage and analysis. 
 
-### Continuous capture Considerations
+### Continuous capture considerations
+
+In addition to the above considerations, keep the following in mind when using continuous packet capture (preview):
 
 - Continuous capture is available only for supported VM and VMSS SKUs and regions. 
 
-- Ensure the target VM has sufficient space, or the connected storage account has appropriate quota to accommodate capture data. 
+- The target VM must have sufficient space, or the connected storage account must have appropriate quota to accommodate capture data. 
 
 - Captures with high packet volumes may generate large data sizes quickly. Choose file size and count accordingly to manage buffer length and retention. 
 
