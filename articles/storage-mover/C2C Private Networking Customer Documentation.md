@@ -1,13 +1,14 @@
 ---
 title: Azure-to-private network connectivity options (ExpressRoute, VPN, SD-WAN)
-author: madhurimns
+description: This concept article explains common options for connecting Azure to private networks (including on-premises and AWS), how they compare, and what to consider for latency, bandwidth, security, cost, and operational complexity.
+author: madhurinms
+ms.topic: Azure-to-private network connectivity options (ExpressRoute, VPN, SD-WAN)
+ms.author: madhn
 ms.date: 02/24/2026
 ---
-Azure-to-private network connectivity options (ExpressRoute, VPN, SD-WAN)
 
-This concept article explains common options for connecting Azure to private networks (including on-premises and AWS), how they compare, and what to consider for latency, bandwidth, security, cost, and operational complexity.
-
-# Overview
+# Azure-to-private network connectivity options (ExpressRoute, VPN, SD-WAN)
+## Overview
 
 Azure supports several ways to connect to private networks. The best approach depends on your requirements for latency, bandwidth, security, cost, and operational complexity.
 
@@ -17,7 +18,7 @@ Azure supports several ways to connect to private networks. The best approach de
 
 In general, ExpressRoute is preferred for the highest bandwidth and lowest latency. When ExpressRoute isn't available, use site-to-site VPN or an SD-WAN/NVA-based design.
 
-# Key concepts
+## Key concepts
 
 **ExpressRoute**: Private connectivity to Azure through a connectivity provider; typically used for predictable latency and higher throughput.
 
@@ -43,7 +44,7 @@ In general, ExpressRoute is preferred for the highest bandwidth and lowest laten
 
 **Regional alignment**: Some resources (for example, AWS VPCEs and certain Azure service constructs) are region-scoped and must be deployed in compatible regions.
 
-# When to use each option
+## When to use each option
 
 **ExpressRoute**: Choose when you need predictable performance, private connectivity, and higher throughput for hybrid connectivity.
 
@@ -57,9 +58,9 @@ In general, ExpressRoute is preferred for the highest bandwidth and lowest laten
 | **Site-to-site IPsec VPN** | Encrypted tunnels over public internet | Quick to deploy, good for backup/DR | Variable performance; throughput limits per gateway/SKU |
 | **SD-WAN / NVAs** | Tunnels terminate on third-party appliances | Advanced policy, inspection, vendor features | More components to manage; appliance sizing/licensing |
 
-# Connectivity options in Azure
+## Connectivity options in Azure
 
-## ExpressRoute
+### ExpressRoute
 
 **Learn more:** [ExpressRoute documentation](/azure/expressroute/)
 
@@ -67,7 +68,7 @@ In general, ExpressRoute is preferred for the highest bandwidth and lowest laten
 
 **Connectivity providers:** ExpressRoute is typically provisioned through a colocation or connectivity provider (for example, Equinix, Megaport).
 
-## Site-to-site IPsec VPN (Azure VPN Gateway)
+### Site-to-site IPsec VPN (Azure VPN Gateway)
 
 **Overview:** Use Azure VPN Gateway for encrypted site-to-site IPsec tunnels over the public internet. For higher throughput and resiliency, select an appropriate gateway SKU (for example, Generation2 and zone-redundant SKUs where available).
 
@@ -77,7 +78,7 @@ In general, ExpressRoute is preferred for the highest bandwidth and lowest laten
 
 For a detailed walkthrough of multi-tunnel BGP between Azure VPN Gateway and AWS, see: [Tutorial - Configure a BGP-enabled connection between Azure and AWS](/azure/vpn-gateway/vpn-gateway-howto-aws-bgp).
 
-### Implementation tips (VPN performance)
+#### Implementation tips (VPN performance)
 
 Example custom IPsec/IKE settings (validate against your device compatibility): **GCMAES256** for IPsec encryption/integrity, **SHA256** for IKE integrity, **DHGroup14**, **PFS2048**.
 
@@ -85,7 +86,7 @@ Example custom IPsec/IKE settings (validate against your device compatibility): 
 
 **Learn more:** [Configure custom IPsec/IKE connection policies](https://docs.azure.cn/en-us/vpn-gateway/ipsec-ike-policy-howto).
 
-## SD-WAN with network virtual appliances (NVAs)
+### SD-WAN with network virtual appliances (NVAs)
 
 SD-WAN and firewall NVAs can terminate VPN tunnels, perform inspection, and apply centralized routing and security policy. This approach is useful when you need vendor-specific capabilities or you already operate an SD-WAN platform across sites.
 
@@ -105,7 +106,7 @@ PAYG: Pay as you go
 
 BYOL: Bring your own license
 
-### Example deployment (FortiGate NVA in Azure)
+#### Example deployment (FortiGate NVA in Azure)
 
 **Select a topology** (single VM, active/passive, or active/active) based on availability and throughput requirements.
 
@@ -119,9 +120,9 @@ BYOL: Bring your own license
 
 [How to configure VPN site-to-site between FortiGate devices (Fortinet Community)](https://community.fortinet.com/t5/FortiGate/Technical-Tip-How-to-configure-VPN-Site-to-Site-between/ta-p/197922)
 
-# AWS connectivity to Azure
+## AWS connectivity to Azure
 
-## AWS Direct Connect to Azure ExpressRoute
+### AWS Direct Connect to Azure ExpressRoute
 
 AWS Direct Connect can be paired with Azure ExpressRoute through a colocation/provider to create a private, high-throughput path between AWS and Azure.
 
@@ -133,13 +134,13 @@ AWS Direct Connect can be paired with Azure ExpressRoute through a colocation/pr
 
 [Create an Direct Connect gateway - AWS Direct Connect](https://docs.aws.amazon.com/directconnect/latest/UserGuide/create-direct-connect-gateway.html)
 
-## AWS site-to-site VPN (BGP)
+### AWS site-to-site VPN (BGP)
 
 For AWS-to-Azure VPN, use dynamic routing (BGP) and prefer AWS Transit Gateway (TGW) for scale and performance when applicable.
 
 **Learn more:** [Tutorial - Configure a BGP-enabled connection between Azure and AWS](/azure/vpn-gateway/vpn-gateway-howto-aws-bgp).
 
-## AWS SD-WAN with NVAs
+### AWS SD-WAN with NVAs
 
 If you operate an SD-WAN platform in AWS (for example, FortiGate on EC2), you can terminate tunnels in AWS and connect to Azure using the same SD-WAN policy model used on-premises.
 
@@ -149,13 +150,13 @@ Attach WAN/LAN interfaces, associate an Elastic IP to the WAN interface, and dis
 
 Configure security groups and route tables to allow Azure prefixes and steer traffic through the appliance.
 
-# Implementation details for S3 private access (VPC endpoints)
+## Implementation details for S3 private access (VPC endpoints)
 
-## Configure an AWS VPC endpoint (VPCE) for Amazon S3
+### Configure an AWS VPC endpoint (VPCE) for Amazon S3
 
 An AWS VPC endpoint (VPCE) for S3 lets your VPC reach S3 privately. For this design, you typically enable private DNS and then constrain access using VPCE and bucket policies.
 
-### High-level steps
+#### High-level steps
 
 Verify your VPC has **DNS support** and **DNS hostnames** enabled.
 
@@ -171,13 +172,13 @@ Example: S3 bucket policy restricted to a specific VPCE.
 
 **Note:** Record the VPCE private IP address; it is used as the destination IP for Azure Private Link Service Direct Connect.
 
-### Security group considerations
+#### Security group considerations
 
 Allow required traffic from Azure source prefixes to the VPCE and related AWS resources (principle of least privilege).
 
-# Azure configuration for Private Link Service Direct Connect
+## Azure configuration for Private Link Service Direct Connect
 
-## Create the Private Link Service Direct Connect resource
+### Create the Private Link Service Direct Connect resource
 
 Private Link Service Direct Connect allows Azure to create outbound private connectivity to a destination IP address (for example, an AWS VPCE IP). In this scenario, it enables Storage Mover private connections to reach a private S3 endpoint over your established Azure-to-AWS network path.
 
@@ -187,7 +188,7 @@ Enable the feature in the Azure portal using the provided flight link: [Azure po
 
 Ensure the Azure VNet/subnet selected for source NAT has connectivity to the AWS VPC and the VPCE IP address.
 
-### High-level steps
+#### High-level steps
 
 Create the **Private Link Service (Your Service)** resource for Direct Connect in the correct region.
 
@@ -199,7 +200,7 @@ Select the **source NAT** virtual network and subnet that can route to AWS.
 
 Configure private IP address settings as required for resiliency (for example, two or more addresses in supported increments).
 
-## Create and approve private connections
+### Create and approve private connections
 
 After creating the Direct Connect resource, create a private connection in Storage Mover and approve it before use.
 
@@ -207,7 +208,7 @@ In **Storage Mover**, open **Storage Endpoints** and then the **Private Connecti
 
 Create a private connection that references the Direct Connect private link service, then approve it so it can be associated to jobs.
 
-## Use private connections for cloud-to-cloud migration
+### Use private connections for cloud-to-cloud migration
 
 * Use the above Private connection as part of Create job operation. Select ‘Cloud to Cloud' migration type. 
 
@@ -219,27 +220,27 @@ Only private connections in **Approved** state can be selected.
 
 Remaining job steps are the same as a public S3-to-Blob migration.
 
-# Architecture
+## Architecture
 
-## Cloud-to-cloud migration flow (private networking)
+### Cloud-to-cloud migration flow (private networking)
 
 ![](media/image4.png)
 
 *Note: Above diagram shown with private networking to AWS but same applies for other private networking scenarios.*
 
-## Cloud-to-cloud migration flow (public S3 bucket to Blob)
+### Cloud-to-cloud migration flow (public S3 bucket to Blob)
 
 ![](media/image5.png)
 
-# Troubleshooting
+## Troubleshooting
 
-## Connectivity and IP addressing
+### Connectivity and IP addressing
 
 * **Verify Destination IP in Azure PLS:** Ensure the Azure Private Link Service is pointed specifically to the AWS VPC Endpoint's IP address. A mismatch here will prevent the initial handshake.
 * **Validate Network Path:** Confirm that the underlying network infrastructure (e.g., VPN, ExpressRoute, or Cloud Interconnect) is established and routing traffic correctly between the Azure environment and the AWS VPC.
 * **Check Interface Configurations:** Review the AWS VPC Endpoint configuration to ensure it is active and associated with the correct subnets and security groups.
 
-## VPCE policy configuration
+### VPCE policy configuration
 
 * **Audit Resource Permissions:** Inspect the `Resource` element in your VPCE policy. It must explicitly include the ARN of the target S3 bucket (e.g., `arn:aws:s3:::your-bucket-name` and `arn:aws:s3:::your-bucket-name/*`).
 * **Audit Action Permissions:** Ensure the `Action` element in the VPCE policy permits necessary operations. At a minimum, `s3:Get*` and `s3:List*` are required for reading and browsing data.
@@ -247,7 +248,7 @@ Remaining job steps are the same as a public S3-to-Blob migration.
 
   ![](media/image2.png)
 
-## S3 bucket policy constraints
+### S3 bucket policy constraints
 
 * **VPCE allow listing:** Check the S3 Bucket Policy for a `Condition` block. If the bucket restricts access, it must explicitly allow the `aws:SourceVpce` corresponding to the VPC Endpoint being used.
 * **Principal Access:** Ensure the IAM identity or the anonymous access (if applicable via VPCE) is not blocked by the bucket's Access Control List (ACL) or Public Access Block settings.
@@ -256,17 +257,17 @@ Remaining job steps are the same as a public S3-to-Blob migration.
 
 ![](media/image3.png)
 
-## Regional alignment
+### Regional alignment
 
 * **Region Scope Validation:** AWS VPC Endpoints for S3 are **region scoped**. A VPCE in `us-west` cannot route traffic to an S3 bucket located in `us-east`.
 * **Remediation:** If a regional mismatch is identified, the S3 bucket must be migrated to the same region as the VPCE, or a new VPCE must be established in the bucket's region (noting that this may require additional cross-region routing
 
-# Limits
+## Limits
 
 * Customers can configure a maximum of 10 Private Connections/region. This includes private connection state in Approved/Pending/Disconnected state.
 * PLS direct should be configured in the same region as Storage Mover Resource. 
 
-# Performance
+## Performance
 
 | **Setup** | ** Max Throughput (Apxmt)** |
 |---|---|
@@ -275,13 +276,14 @@ Remaining job steps are the same as a public S3-to-Blob migration.
 | **FortiGate SDWAN with a Private Connection** | 2 Gbps |
 | **2 FortiGate SDWANs each with VPN tunnel and Private Connection** | 2 Gbps * 2 |
 
-# Next steps
+## Next steps
 
 Review ExpressRoute concepts and planning in the [ExpressRoute documentation](/azure/expressroute/).
 
 Create a site-to-site VPN connection in Azure: [Tutorial - Create an S2S VPN connection](/azure/vpn-gateway/tutorial-site-to-site-portal).
 
 For BGP between Azure and AWS, follow: [Tutorial - Configure a BGP-enabled connection between Azure and AWS](/azure/vpn-gateway/vpn-gateway-howto-aws-bgp).
+
 
 
 
