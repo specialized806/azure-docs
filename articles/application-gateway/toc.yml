@@ -293,10 +293,9 @@
     href: configure-web-app.md
   - name: Schedule autoscaling
     href: application-gateway-externally-managed-scheduled-autoscaling.md
-  - name: Relocate
-    items:
+  - name: Relocate items:
     - name: Relocate to another region
-      href: /operational-excellence/relocation-app-gateway.md?toc=/azure/application-gateway/toc.json
+      href: ../operational-excellence/relocation-app-gateway.md?toc=/azure/application-gateway/toc.json
     - name: Migrate to availability zone support
       href: /azure/reliability/migrate-app-gateway-v2?toc=/azure/application-gateway/toc.json
   - name: Proxy buffer configuration
@@ -377,7 +376,7 @@
     href: /rest/api/application-gateway/application-gateways
   - name: Azure Resource Manager
     displayName: ARM
-    href: /azure-resource-manager/management/overview.md
+    href: ../azure-resource-manager/management/overview.md
   - name: Resource Manager template
     displayName: ARM
     href: /azure/templates/microsoft.network/applicationgateways
