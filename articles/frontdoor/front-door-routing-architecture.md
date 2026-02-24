@@ -6,7 +6,7 @@ author: halkazwini
 ms.author: halkazwini
 ms.service: azure-frontdoor
 ms.topic: concept-article
-ms.date: 02/20/2026
+ms.date: 02/24/2026
 zone_pivot_groups: front-door-tiers
 ---
 
@@ -36,13 +36,13 @@ The following sections describe these steps in detail.
 
 ::: zone pivot="front-door-standard-premium"
 
-## Name resolution by Azure Front Door's Traffic Manager returns POP unicast IP
+## Name resolution by Azure Front Door's Traffic Manager returns PoP unicast IP
 
-The user or client application initiates a connection to the origin behind Azure Front Door. The domain name resolves to the Front Door's Azure Traffic Manager endpoint. The Traffic Manager consumes health and availability signals from all the Front Door POPs across the world. It determines the optimal POP to serve the request and returns the unicast IP of that POP.
+The user or client application initiates a connection to the origin behind Azure Front Door. The domain name resolves to the Front Door's Azure Traffic Manager endpoint. The Traffic Manager consumes health and availability signals from all the Front Door PoPs across the world. It determines the optimal PoP to serve the request and returns the unicast IP of that PoP.
 
-## Connect to Azure Front Door POP Unicast IP
+## Connect to Azure Front Door PoP Unicast IP
 
-Client makes a direct connection to the returned IP address of the Front Door POP location.
+Client makes a direct connection to the returned IP address of the Front Door PoP location.
 
 ## Match request to a Front Door profile
 
