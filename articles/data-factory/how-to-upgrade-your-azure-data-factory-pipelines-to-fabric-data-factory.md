@@ -29,7 +29,7 @@ Before you start, make sure you have:
 
 ## 1. Assess your pipelines for migration
 1.	Run the migration assessment
-In your [Azure Data Factory](https://adf.azure.com) authoring canvas, select Migrate to Fabric (Preview), then select **Get started (preview)** to evaluate pipelines and activities for migration readiness.
+In your [Azure Data Factory](https://adf.azure.com) authoring canvas, select **Migrate to Fabric (Preview)**, then select **Get started (preview)** to evaluate pipelines and activities for migration readiness.
 
 :::image type="content" source="media/how-to-assess-and-upgrade-your-azure-data-factory-pipelines-to-fabric/migrate-to-fabric-get-started.png" alt-text="Screenshot showing how to run the Azure Data Factory Migration assessment." lightbox="media/how-to-assess-and-upgrade-your-azure-data-factory-pipelines-to-fabric/migrate-to-fabric-get-started.png":::
 
@@ -134,32 +134,30 @@ Pipelines using these features require redesign or alternate migration approache
 ## FAQ
 **Does the assessment change my factory?**
 
-**Answer:** No. It only scans your configuration and lists findings in the side pane. You can safely run it to understand impact before migration.
-
-**Why do I see Coming soon?**
-
-**Answer:** It means the product team is actively adding support for those items. 
-If they’re critical to your pipeline, see if you could use [PowerShell upgrade tool](/fabric/data-factory/migrate-pipelines-powershell-upgrade-module-for-azure-data-factory-to-fabric) or plan to migrate later or redesign the affected steps.
-
-**What if only one activity is Not compatible?**
-
-**Answer:** You can still migrate the pipeline after you refactor or replace that activity. The assessment helps you identify exactly where to focus.
+**Answer:** No. The assessment is read‑only. It scans your factory configuration and surfaces findings in the side pane without modifying pipelines, activities, or settings. You can safely run it to understand migration impact before taking any action.
 
 **Can I rerun the assessment or migration after making changes?**
 
-**Answer:** Yes, you can rerun anytime to validate updates. Since Pipeline names must be unique, you need to delete your previously migrated pipeline before re-migrating them after making any necessary changes.
+**Answer:** Yes, you can rerun anytime during the validation process. Since Pipeline names must be unique, you need to delete your previously migrated pipelines before re-migrating them after making any necessary changes.
+
+**Does mounting Azure Data Factory migrate my pipelines?**
+
+**Answer:** No. Mounting is just a snapshot of your existing Azure Data Factory in Fabric workspace. No pipelines are migrated until you explicitly start migration by selecting the **Migrate to Fabric (Preview)** button from your mounted data factory in Fabric.
 
 **Will triggers migrate automatically?**
 
-**Answer:** No. Triggers are disabled after migration. You must manually re‑enable and reconfigure them in Fabric.
+**Answer:** Schedule triggers are migrated automatically but disabled after migration by design. You must manually re‑enable them in Fabric. All other triggers must be manually reconfigured and reenabled after validating the migrated pipelines.
 
 **Do unsupported items block the entire migration?**
 
-**Answer:** No. Unsupported activities cause the corresponding pipeline to require redesign, but other pipelines that are supported can migrate independently. The assessment tells you exactly which need redesign.
+**Answer:** No. Unsupported activities affect only the pipelines that contain them. Other supported pipelines can migrate independently. The assessment clearly identifies which pipelines require redesign.
  
 **Can I migrate without mapping connections?**
 
-**Answer:** Yes. Pipelines will still migrate, but all impacted activities will be deactivated until new Fabric connections are configured.
+**Answer:** Yes. Pipelines will still migrate, but activities that depend on unmapped connections will be deactivated. You must configure the required Fabric connections and re‑enable those activities before running the pipelines.
+
+**Can I validate migrations before moving production workloads?**
+**Answer:** Yes. Microsoft recommends validating migrations in a non‑production environment, confirming connections, triggers, and end‑to‑end execution before migrating production pipelines.
 
 ## Related content
 
