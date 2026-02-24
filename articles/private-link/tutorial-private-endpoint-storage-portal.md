@@ -7,7 +7,7 @@ author: abell
 ms.author: abell
 ms.service: azure-private-link
 ms.topic: tutorial
-ms.date: 03/25/2025
+ms.date: 02/23/2026
 ms.custom: template-tutorial
 # Customer intent: "As a cloud architect, I want to securely connect to a storage account using a private endpoint, so that I can ensure private and secure communication within my Azure resources."
 ---
