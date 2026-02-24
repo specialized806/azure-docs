@@ -74,7 +74,7 @@ Follow these steps to deploy and configure the collector module:
 
 1. Sign in to the [Azure portal](https://portal.azure.com), then go to your IoT hub.
 
-1.Under **Device management**, select **Devices**.
+1. Under **Device management**, select **Devices**.
 
 1. Select the device ID of the target device in the list of IoT Edge devices to open the device details page.
 
