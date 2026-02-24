@@ -63,7 +63,7 @@ Use `az containerapp sessionpool create --help` to see the latest CLI arguments 
 
 When you create or update a session pool, you can configure how sessions are terminated by setting `properties.dynamicPoolConfiguration.lifecycleConfiguration`. Starting with API version `2025-01-01`, choose one of two lifecycle types.
 
-For the full API specification, see the [SessionPools API spec](/rest/api/resource-manager/containerapps/container-apps-session-pools/create-or-update?view=rest-resource-manager-containerapps-2025-07-01&tabs=HTTP).
+For the full API specification, see the [SessionPools API spec](/rest/api/resource-manager/containerapps/container-apps-session-pools/create-or-update?tabs=HTTP).
 
 #### Timed (default)
 
@@ -107,7 +107,7 @@ Any changes to the image aren't automatically reflected in the sessions. To upda
 
 ## Code interpreter session pool
 
-# [Azure CLI](#tab/azure-cli)
+# [Azure CLI](#tab/code-interpreter-azure-cli)
 
 Use the `az containerapps sessionpool create` command to create the pool. The following example creates a Python code interpreter session pool named `my-session-pool`. Make sure to replace `<RESOURCE_GROUP>` with your resource group name before you run the command.
 
@@ -131,7 +131,7 @@ You can define the following settings when you create a session pool:
 | `--cooldown-period` | The number of allowed idle seconds before termination. The idle period is reset each time the session's API is called. The allowed range is between `300` and `3600`. |
 | `--network-status` | Specifies whether outbound network traffic is allowed from the session. Valid values are `EgressDisabled` (default) and `EgressEnabled`. |
 
-# [Azure portal](#tab/azure-portal)
+# [Azure portal](#tab/code-interpreter-azure-portal)
 
 1. Sign in to the [Azure portal](https://portal.azure.com).
 
@@ -188,7 +188,7 @@ You build the full URL for each endpoint by concatenating the pool's management 
 
 For example: `{sessionManagementEndpoint}/code/execute?api-version=2024-02-02-preview&identifier=<IDENTIFIER>`
 
-For REST API references, see [Container Apps data-plane APIs](/rest/api/containerapps/#data-plane-apis) and the [Container Apps data-plane operations overview](/rest/api/data-plane/containerapps/operation-groups?view=rest-data-plane-containerapps-2025-10-02-preview).
+For REST API references, see [Container Apps data-plane APIs](/rest/api/containerapps/#data-plane-apis) and the [Container Apps data-plane operations overview](/rest/api/data-plane/containerapps/operation-groups).
 
 ## Custom container session pool
 
@@ -230,7 +230,7 @@ Container probes let you define health checks for session containers so the pool
 
 Session pools support **Liveness** and **Startup** probes. For more information about probe behavior, see [Health probes in Azure Container Apps](/azure/container-apps/health-probes?tabs=arm-template).
 
-When creating or updating a session pool, specify probes in `properties.customContainerTemplate.containers`. For the complete request body schema, see the [SessionPools Create or Update API reference](/rest/api/resource-manager/containerapps/container-apps-session-pools/create-or-update?view=rest-resource-manager-containerapps-2025-10-02-preview). The following example shows a partial configuration with probe definitions:
+When creating or updating a session pool, specify probes in `properties.customContainerTemplate.containers`. For the complete request body schema, see the [SessionPools Create or Update API reference](/rest/api/resource-manager/containerapps/container-apps-session-pools/create-or-update). The following example shows a partial configuration with probe definitions:
 
 ```json
 {
@@ -270,7 +270,7 @@ When creating or updating a session pool, specify probes in `properties.customCo
 }
 ```
 
-# [Azure CLI](#tab/azure-cli)
+# [Azure CLI](#tab/custom-container-azure-cli)
 
 Custom container session pools require a workload profiles-enabled Azure Container Apps environment. If you don't have an environment, use the `az containerapp env create -n <ENVIRONMENT_NAME> -g <RESOURCE_GROUP> --location <LOCATION>` command to create one.
 
@@ -324,7 +324,7 @@ This command creates a session pool with the following settings:
 
 To update the session pool, use the `az containerapp sessionpool update` command.
 
-# [Azure portal](#tab/azure-portal)
+# [Azure portal](#tab/custom-container-azure-portal)
 
 Custom container session pools require a workload profiles-enabled Azure Container Apps environment.
 
@@ -389,9 +389,9 @@ Custom container session pools require a workload profiles-enabled Azure Contain
 
 1. After validation passes, select **Create**.
 
-# [Azure Resource Manager](#tab/arm)
+# [Azure Resource Manager](#tab/custom-container-arm)
 
-To use Azure Resource Manager for session pools, see the [SessionPools REST API overview](/rest/api/resource-manager/containerapps/container-apps-session-pools?view=rest-resource-manager-containerapps-2025-07-01).
+To use Azure Resource Manager for session pools, see the [SessionPools REST API overview](/rest/api/resource-manager/containerapps/container-apps-session-pools).
 
 ## Related content
 
