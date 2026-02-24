@@ -74,7 +74,7 @@ To register a local MCP server:
 1. Sign in to the [Azure portal](https://portal.azure.com) and go to your API center.
 1. In the sidebar menu, under **Inventory**, select **Assets**.
 1. Select **+ Register an asset** > **MCP server**.
-    :::image type="content" source="media/register-discover-mcp-server/register-mcp-server.png" alt-text="Screenshot showing registration of a an MCP server asset in the portal.":::
+    :::image type="content" source="media/register-discover-mcp-server/register-mcp-server.png" alt-text="Screenshot showing registration of an MCP server asset in the portal.":::
 1. In the **Register an MCP server** form, provide the information about the MCP server:
     1. Enter a **Title** for the MCP server. API Center automatically generates an **Identification** based on the title, but you can edit it if needed. 
     1. Enter a **Summary** and **Description** for the MCP server to provide more context about it.
@@ -87,7 +87,7 @@ To register a local MCP server:
         1. In **Runtime hint**, enter the runtime command used to run the MCP server. For example, `npx`.
         1. In **Runtime arguments**, optionally pass arguments when running the MCP server. 
         1. Select **Save**.
-            :::image type="content" source="media/register-discover-mcp-server/register-package.png" alt-text="Screenshot showing registration of a MCP server package in the portal.":::
+            :::image type="content" source="media/register-discover-mcp-server/register-package.png" alt-text="Screenshot showing registration of an MCP server package in the portal.":::
         1. Optionally, repeat the previous steps to add more packages if the MCP server is available in multiple package registries or has multiple versions.
     1. Optionally, select **Add repository** to provide a URL to a code repository associated with the MCP server.
     1. Under **Version title**, provide a **Version title**, **Version identification**, and **Version lifecycle** for the MCP server. Learn more about [versions in API Center](key-concepts.md#api-version).
