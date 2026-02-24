@@ -5,7 +5,7 @@ author: halkazwini
 ms.author: halkazwini
 ms.service: azure-web-application-firewall
 ms.topic: how-to 
-ms.date: 06/23/2022
+ms.date: 02/24/2026
 ms.custom:
   - devx-track-azurecli
   - sfi-image-nochange
