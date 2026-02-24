@@ -13,7 +13,7 @@ ms.date: 02/24/2026
 
 # Packet capture overview
 
-Azure Network Watcher packet capture allows you to create packet capture sessions to track traffic to and from a virtual machine (VM) or a scale set. Packet capture helps to diagnose network anomalies both reactively and proactively. Other uses include gathering network statistics, gaining information on network intrusions, debugging client-server communications and more.
+Azure Network Watcher packet capture allows you to create packet capture sessions to track traffic to and from a virtual machine (VM) or a scale set. Packet capture helps to diagnose network anomalies both reactively and proactively. Other uses include gathering network statistics, gaining information on network intrusions, debugging client-server communications, and more.
 
 Packet capture is an extension that is remotely started through Network Watcher. This capability saves time and eases the burden of running a packet capture manually on the desired virtual machine or virtual machine scale set instances.
 
@@ -31,7 +31,7 @@ You can trigger packet captures through the portal, PowerShell, Azure CLI, or RE
 > Continuous packet capture is currently in PREVIEW.
 > See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
 
-Continuous packet capture allows you to persistently monitor network traffic using a ring buffer–based mechanism. Unlike standard packet captures that stop after reaching a specific time or file size, continuous capture is designed to run over extended durations, making it ideal for diagnosing intermittent or long-tail issues. Currently, you can configure continuous packet capture using the [Azure Portal](packet-capture-manage.md?tabs=portal#start-a-packet-capture)
+Continuous packet capture allows you to persistently monitor network traffic using a ring buffer–based mechanism. Unlike standard packet captures that stop after reaching a specific time or file size, continuous capture is designed to run over extended durations, making it ideal for diagnosing intermittent or long-tail issues. Currently, you can configure continuous packet capture using the [Azure portal](packet-capture-manage.md?tabs=portal#start-a-packet-capture)
 
 ### How it works
 
@@ -43,7 +43,7 @@ When continuous packet capture is enabled:
 
 - Once the file count limit is reached, the oldest file is automatically deleted to allow space for new packets, maintaining a continuous stream of recent data. 
 
-- The capture runs for the user-specified time duration, or a maximum of 7 days, whichever is earlier. 
+- The capture runs for the user-specified time duration, or a maximum of seven days, whichever is earlier. 
 
 This ring buffer–style storage helps reduce manual intervention and avoid excessive storage consumption while ensuring that recent traffic is always available for review. 
 
@@ -54,7 +54,7 @@ To control the size of captured data, use the following options:
 | Property | Description |
 | -------- | ----------- |
 | **Maximum bytes per packet (bytes)** | The number of bytes from each packet. All bytes are captured if left blank. Enter 34 if you only need to capture IPv4 header. |
-| **Time limit per session (seconds)** | Packet capture session time limit, once the value is reached the session ends. The default value is 18000 seconds (5 hours). |
+| **Time limit per session (seconds)** | Packet capture session time limit. Once the value is reached, the session ends. The default value is 18000 seconds (5 hours). |
 
 If you're using continuous capture (preview), use the following options to control the size of captured data:
 
@@ -63,7 +63,7 @@ If you're using continuous capture (preview), use the following options to contr
 | **Maximum bytes per packet (bytes)** | The number of bytes from each packet. All bytes are captured if left blank or set to 0. Enter 34 if you only need to capture IPv4 header. |
 | **New files created** | Total files that can be created. The default value is 10. The maximum value is 10,000.|
 | **Bytes per file** | Total number of bytes per file. The default value is 100 MB. The maximum value is 4 GB. |
-| **Time limit per session (seconds)** | Packet capture session time limit, once the value is reached the session ends. The default value is 86400 seconds (1 day). The maximum value is 604800 seconds (7 days). |
+| **Time limit per session (seconds)** | Packet capture session time limit. Once the value is reached, the session ends. The default value is 86400 seconds (1 day). The maximum value is 604800 seconds (7 days). |
 
 ## Filtering (optional)
 
@@ -87,13 +87,13 @@ Use filters to capture only the traffic that you want to monitor. Filters are ba
 
 ### Continuous capture considerations
 
-In addition to the above considerations, keep the following in mind when using continuous packet capture (preview):
+In addition to the previous considerations, keep the following considerations in mind when using continuous packet capture (preview):
 
 - Continuous capture is available only for supported VM and VMSS SKUs and regions. 
 
 - The target VM must have sufficient space, or the connected storage account must have appropriate quota to accommodate capture data. 
 
-- Captures with high packet volumes may generate large data sizes quickly. Choose file size and count accordingly to manage buffer length and retention. 
+- Captures with high packet volumes might generate large data sizes quickly. Choose file size and count accordingly to manage buffer length and retention. 
 
 ## Related content
 
