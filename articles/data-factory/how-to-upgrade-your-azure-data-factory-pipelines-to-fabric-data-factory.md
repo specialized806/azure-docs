@@ -138,7 +138,7 @@ Pipelines using these features require redesign or alternate migration approache
 
 **Can I rerun the assessment or migration after making changes?**
 
-**Answer:** Yes, you can rerun anytime during the validation process. Since Pipeline names must be unique, you need to delete your previously migrated pipelines before re-migrating them after making any necessary changes.
+**Answer:** Yes. You can rerun the assessment at any time during validation. If you rerun migration for the same pipelines, you must first delete the previously migrated pipelines in Fabric, since pipeline names must be unique within a workspace.
 
 **Does mounting Azure Data Factory migrate my pipelines?**
 
