@@ -31,7 +31,7 @@ You can trigger packet captures through the portal, PowerShell, Azure CLI, or RE
 > Continuous packet capture is currently in PREVIEW.
 > See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
 
-Continuous packet capture allows you to persistently monitor network traffic using a ring buffer–based mechanism. Unlike standard packet captures that stop after reaching a specific time or file size, continuous capture is designed to run over extended durations, making it ideal for diagnosing intermittent or long-tail issues. Currently, you can configure continuous packet capture using the [Azure portal](packet-capture-manage.md?tabs=portal#start-a-packet-capture)
+Continuous packet capture allows you to persistently monitor network traffic using a ring buffer–based mechanism. Unlike standard packet captures that stop after reaching a specific time or file size, continuous capture is designed to run over extended durations, making it ideal for diagnosing intermittent or long-tail issues. Currently, you can configure continuous packet capture using the [Azure portal](packet-capture-manage.md?tabs=portal#start-a-packet-capture).
 
 ### How it works
 
