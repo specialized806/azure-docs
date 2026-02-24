@@ -39,6 +39,24 @@ You can create private endpoints for various Azure services, such as Azure SQL a
 
 Sign in to the [Azure portal](https://portal.azure.com).
 
+## Create a resource group
+
+1. In the portal, search for and select **Resource groups**.
+
+1. Select **+ Create**.
+
+1. In the **Basics** tab of **Create a resource group**, enter, or select the following information:
+
+    | Setting | Value |
+    | ------- | ----- |
+    | Subscription | Select your subscription. |
+    | Resource group | Enter **test-rg**. |
+    | Region | Select **East US 2**. |
+
+1. Select **Review + create**.
+
+1. Select **Create**.
+
 ## Create a virtual network
 
 The following procedure creates a virtual network with a resource subnet.
@@ -53,7 +71,7 @@ The following procedure creates a virtual network with a resource subnet.
     |---|---|
     | **Project details** |  |
     | Subscription | Select your subscription. |
-    | Resource group | Select **Create new**. </br> Enter **test-rg** for the name. </br> Select **OK**. |
+    | Resource group | Select **test-rg**. |
     | **Instance details** |  |
     | Name | Enter **vnet-1**. |
     | Region | Select **East US 2**. |
