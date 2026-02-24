@@ -4,7 +4,7 @@ description: Augment the API inventory in your API center by adding information 
 
 ms.service: azure-api-center
 ms.topic: tutorial
-ms.date: 10/20/2025
+ms.date: 02/12/2026
  
 #customer intent: As the owner of an Azure API center, I want a step by step introduction to adding API environments and deployments to my inventory.
 ---
@@ -66,7 +66,7 @@ Here you add a deployment by associating one of your APIs with the environment y
 
 1. In the Azure portal, navigate to your API center.
 
-1. In the sidebar menu, under **Assets**, select **APIs**.
+1. In the sidebar menu, under **Inventory**, select **Assets**.
 
 1. Select an API, for example, the *Conference API*.
 
