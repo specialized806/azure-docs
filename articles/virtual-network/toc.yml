@@ -6,6 +6,8 @@
       href: virtual-networks-overview.md
     - name: FAQ
       href: virtual-networks-faq.md
+    - name: Cost optimization
+      href: virtual-network-cost-optimization.md
     - name: Accelerated Networking
       href: accelerated-networking-overview.md
     - name: Application security groups
