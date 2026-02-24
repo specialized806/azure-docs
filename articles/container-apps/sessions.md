@@ -12,7 +12,6 @@ ms.custom: references_regions, ignite-2024
 
 # Dynamic sessions in Azure Container Apps
 
-## Overview
 Azure Container Apps dynamic sessions provide fast access to secure sandboxed environments that are ideal for running code or applications that require strong isolation from other workloads.
 
 Dynamic sessions offer prewarmed environments through a [session pools](./session-pool.md) that starts the container in milliseconds, scales on demand, and maintains strong isolation. This makes them ideal for interactive workloads, running LLM generated scripts, and secure execution of custom code.
