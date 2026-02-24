@@ -201,7 +201,7 @@ Providers SHOULD make the Secure Configuration Guide available publicly
 
 ### Azure's response
 
-Azure's Secure Configuration Guide is available publicly and can be accessed at [Secure Configuration Guide](/azure/azure-government/compliance/azure-services-in-fedramp-auditscope?branch=pr-en-us-76518) *[Review comment Ateeque] this link currently points to the scope of the services but will be replaced by the link to the Guide.*
+This article is Azure's Secure Configuration Guide and it is available publicly.
 
 [Back to the top](#secure-configuration-guide)
 
