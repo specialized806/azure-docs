@@ -105,10 +105,10 @@ To start a capture session, use the following steps:
     | Storage accounts | Select your **Standard** storage account<sup>1</sup>. <br> This option is available if you select **in storage account** or **Both** as the capture location. <br> The storage account must be in the same region as the target instance. |
     | Local file path | Enter a valid local file path where you want the capture to be saved in the target virtual machine. <br>If you're using a Linux machine, the path can start with `/var/captures`. <br>If you're using a Windows machine, the path can start with `C:\Captures`. <br> This option is available if you select **in local file storage** or **Both** as the capture location. |
     | **Packet capture configuration** |  |
-    | Enable continuous capture | Check this checkbox if you want to enable continuous packet capture. For more information, see [Continuous packet capture](packet-capture-overview.md#continuous-packet-capture-preview). |
+    | Enable continuous capture<sup>3</sup> | Check this checkbox if you want to enable continuous packet capture. For more information, see [Continuous packet capture](packet-capture-overview.md#continuous-packet-capture-preview). |
     | Maximum bytes per packet | Enter the maximum number of bytes to be captured per each packet. All bytes are captured if left blank or 0 entered. |
-    | New files created | Enter the maximum number of files created. The default value is 100 MB and the maximum value is 4 GB. <br> This option is available if you enable **continuous capture**. |
-    | Bytes per file | Enter the number of bytes per file. Once the value is reached, a new file is created. |
+    | New files created<sup>3</sup> | Enter the maximum number of files created. The default value is 100 MB and the maximum value is 4 GB. <br> This option is available if you enable **continuous capture**. |
+    | Bytes per file<sup>3</sup> | Enter the number of bytes per file. Once the value is reached, a new file is created. |
     | Time limit (seconds) | Enter the time limit of the packet capture session in seconds. Once the value is reached the packet capture stops. <br>If left blank: <br> - Up to 5 hours (18,000 seconds) is captured without enabling continuous capture. <br> - Up to 1 day (86,400 seconds) is captured if you enable continuous capture. The maximum value is 604,800 seconds (7 days). |
     | **Packet filtering (optional)** |  |   
     | Packet filtering | Select **Enable packet filtering** to enable packet filtering. |
@@ -122,12 +122,14 @@ To start a capture session, use the following steps:
     <sup>1</sup> Premium storage accounts are currently not supported for storing packet captures.
     
     <sup>2</sup> Port and IP address values can be a single value, a range such as 80-1024, or multiple values such as 80, 443.
+    
+    <sup>3</sup> Continuous capture is currently in preview. For more information, see [Continuous packet capture](packet-capture-overview.md#continuous-packet-capture-preview).
 
 1. Select **Start packet capture**.
 
     :::image type="content" source="./media/packet-capture-manage/add-packet-capture.png" alt-text="Screenshot of Add packet capture in the Azure portal showing available options." lightbox="./media/packet-capture-manage/add-packet-capture.png":::
 
-1. The packet capture stops once the time limit or the file size (maximum bytes per session) is reached.
+1. The packet capture stops once the time limit is reached.
 
 # [**PowerShell**](#tab/powershell)
 
