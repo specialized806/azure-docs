@@ -141,13 +141,13 @@ The following table describes each routing parameter in the context of the Petst
 
 Using the Petstore API imported in this tutorial:
 
-1. **Client calls API Management:**  
+- **Client calls API Management:**  
    `https://apim-hello-world.azure-api.net/petstore/pet/findByStatus?status=pending`
    - API Management gateway URL: `https://apim-hello-world.azure-api.net`
    - API URL suffix: `petstore`
    - Operation endpoint: `/pet/findByStatus`
 
-1. **API Management routes to backend:**  
+- **API Management routes to backend:**  
    `https://petstore3.swagger.io/api/v3/pet/findByStatus?status=pending`
    - Web service URL: `https://petstore3.swagger.io/api/v3`
    - Operation endpoint: `/pet/findByStatus` (same as in the API Management definition)

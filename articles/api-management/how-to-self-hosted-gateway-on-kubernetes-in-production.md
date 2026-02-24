@@ -11,7 +11,7 @@ ms.custom:
   - build-2025
 ---
 
-# Guidance for running self-hosted gateway on Kubernetes in production
+# Guidance for running a self-hosted gateway on Kubernetes in production
 
 [!INCLUDE [api-management-availability-premium-dev](../../includes/api-management-availability-premium-dev.md)]
 
@@ -38,7 +38,7 @@ There are two ways to autoscale the self-hosted gateway horizontally:
 - Autoscale based on resource usage (CPU and memory)
 - Autoscale based on the number of requests per second
 
-This is possible through native Kubernetes functionality, or by using [Kubernetes Event-driven Autoscaling (KEDA)](https://keda.sh). KEDA is a Cloud Native Computing Foundation (CNCF) incubation project that strives to make application autoscaling simple.
+You can autoscale by using native Kubernetes functionality, or by using [Kubernetes Event-driven Autoscaling (KEDA)](https://keda.sh). KEDA is a Cloud Native Computing Foundation (CNCF) incubation project that strives to make application autoscaling simple.
 
 > [!NOTE]
 > KEDA is an open-source technology that isn't supported by Azure support and must be operated by customers.
@@ -63,7 +63,7 @@ KEDA provides a few ways that can help with traffic-based autoscaling:
 
 ## Configuration backup
 
-Configure a local storage volume for the self-hosted gateway container, so it can persist a backup copy of the latest downloaded configuration. If connectivity is down, the storage volume can use the backup copy upon restart. The volume mount path must be `/apim/config` and must be owned by group ID `1001`. For an example, see [GitHub](https://github.com/Azure/api-management-self-hosted-gateway/blob/main/examples/self-hosted-gateway-with-configuration-backup.yaml).
+Configure a local storage volume for the self-hosted gateway container, so it can persist a backup copy of the latest downloaded configuration. If connectivity is down, the storage volume can use the backup copy upon restart. The volume mount path must be `/apim/config` and must be owned by group ID `1001`. To learn more, see this [GitHub example](https://github.com/Azure/api-management-self-hosted-gateway/blob/main/examples/self-hosted-gateway-with-configuration-backup.yaml).
 
 To learn about storage in Kubernetes, see [Kubernetes volumes](https://kubernetes.io/docs/concepts/storage/volumes/).
 To change ownership for a mounted path, see the [`securityContext.fsGroup` setting](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod).
@@ -102,7 +102,7 @@ We recommend setting resource requests to two cores and 2 GiB as a starting poin
 
 ## Custom domain names and SSL certificates
 
-If you use custom domain names for the [API Management endpoints](self-hosted-gateway-overview.md#fqdn-dependencies), especially if you use a custom domain name for the Management endpoint, you might need to update the value of `config.service.endpoint` in the **\<gateway-name\>.yaml** file to replace the default domain name with the custom domain name. Make sure that the Management endpoint can be accessed from the pod of the self-hosted gateway in the Kubernetes cluster.
+If you use custom domain names for the [API Management endpoints](self-hosted-gateway-overview.md#fqdn-dependencies), especially if you use a custom domain name for the Management endpoint, you might need to update the value of `config.service.endpoint` in the *\<gateway-name\>.yaml* file to replace the default domain name with the custom domain name. Make sure that the Management endpoint can be accessed from the pod of the self-hosted gateway in the Kubernetes cluster.
 
 In this scenario, if the SSL certificate that's used by the Management endpoint isn't signed by a well-known CA certificate, you must make sure that the CA certificate is trusted by the pod of the self-hosted gateway.
 
@@ -170,16 +170,16 @@ Starting with version 2.1.5 or above, the self-hosted gateway provides observabi
 - Verbose logs are provided to provide indication of the request proxy behavior.
 
 > [!NOTE]
-> Due to a known issue with HTTP proxies using basic authentication, using certificate revocation list (CRL) validation isn't supported. To learn how to configure it appropriately, see [Self-Hosted Gateway settings reference](self-hosted-gateway-settings-reference.md).
+> Due to a known issue with HTTP proxies using basic authentication, using certificate revocation list (CRL) validation isn't supported. To learn how to configure it appropriately, see [Self-hosted gateway settings reference](self-hosted-gateway-settings-reference.md).
 
 > [!Warning]
 > Ensure that the [infrastructure requirements](self-hosted-gateway-overview.md#fqdn-dependencies) have been met and that the self-hosted gateway can still connect to them, otherwise certain functionality doesn't work properly.
 
 ## Local logs and metrics
 
-The self-hosted gateway sends telemetry to [Azure Monitor](api-management-howto-use-azure-monitor.md) and [Azure Application Insights](api-management-howto-app-insights.md) according to configuration settings in the associated API Management service. When [connectivity to Azure](self-hosted-gateway-overview.md#connectivity-to-azure) is temporarily lost, the flow of telemetry to Azure is interrupted and the data is lost during the outage.
+The self-hosted gateway sends telemetry to [Azure Monitor](api-management-howto-use-azure-monitor.md) and [Azure Application Insights](api-management-howto-app-insights.md) according to configuration settings in the associated API Management service. When [connectivity to Azure](self-hosted-gateway-overview.md#connectivity-to-azure) is temporarily lost, the flow of data to Azure is interrupted and the data is lost during the outage.
 
-Consider using [Azure Monitor Container Insights](/azure/azure-monitor/containers/container-insights-overview) to monitor your containers or [setting up local monitoring](how-to-configure-local-metrics-logs.md) to ensure the ability to observe API traffic and prevent telemetry loss during Azure connectivity outages.
+Consider using [Azure Monitor Container Insights](/azure/azure-monitor/containers/container-insights-overview) to monitor your containers or [setting up local monitoring](how-to-configure-local-metrics-logs.md) to ensure the ability to observe API traffic and prevent data loss during Azure connectivity outages.
 
 ## Namespace
 
