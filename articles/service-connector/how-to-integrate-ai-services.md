@@ -1,20 +1,19 @@
 ---
-title: Connect Foundry Tools with other Azure services
+title: Connect to Foundry Tools with other Azure services
 titleSuffix: Service Connector
-description: In this document, learn how to integrate Foundry Tools into your application with Service Connector
+description: Learn how to integrate Foundry Tools into your application with Service Connector by using supported authentication methods and clients.
 author: wchigit
 ms.author: wchi
 ms.service: service-connector
 ms.topic: how-to
-ms.date: 09/30/2025
+ms.date: 02/05/2026
 ms.update-cycle: 180-days
 ms.collection: ce-skilling-ai-copilot
 ---
 
 # Connect to Foundry Tools using Service Connector
 
-This page provides information on supported authentication methods and clients, along with sample code for connecting your apps to Foundry Tools using Service Connector. This page also lists default environment variable names and values obtained when creating the service connection. 
-
+In this article, we cover the supported authentication methods and clients that you can use to connect your apps to Foundry Tools using Service Connector. For each supported method, we provide sample code and describe the default environment variable names and values obtained when creating the service connection.
 
 ## Supported compute services
 
@@ -28,8 +27,7 @@ Service Connector can be used to connect the following compute services to Found
 
 ## Supported authentication types and client types
 
-The table below indicates which combinations of authentication methods and clients are supported for connecting your compute service to individual Foundry Tools using Service Connector. A “Yes” indicates that the combination is supported, while a “No” indicates that it is not supported.
-
+The following table indicates which combinations of authentication methods and clients are supported for connecting your compute service to individual Foundry Tools using Service Connector. A *Yes* indicates that the combination is supported, while a *No* indicates that it isn't supported.
 
 | Client type | System-assigned managed identity | User-assigned managed identity | Secret/connection string | Service principal |
 |-------------|:--------------------------------:|:------------------------------:|:------------------------:|:-----------------:|
@@ -43,7 +41,7 @@ This table indicates that all combinations of client types and authentication me
 
 ## Default environment variable names or application properties and sample code
 
-Use the connection details below to connect compute services to Foundry Tools. For more information about naming conventions, refer to the [Service Connector internals](concept-service-connector-internals.md#configuration-naming-convention) article.
+Use the following connection details to connect compute services to Foundry Tools. For more information about naming conventions, see the [Service Connector internals](concept-service-connector-internals.md#configuration-naming-convention) article.
 
 ### System-assigned managed identity (recommended)
 
@@ -55,7 +53,8 @@ Use the connection details below to connect compute services to Foundry Tools. F
 
 #### Sample code
 
-Refer to the steps and code below to connect to Foundry Tools using a system-assigned managed identity.
+To connect to Foundry Tools using a system-assigned managed identity, refer to the following steps and code.
+
 [!INCLUDE [code sample for app config](./includes/code-ai-services-microsoft-entra-id.md)]
 
 ### User-assigned managed identity
@@ -69,8 +68,9 @@ Refer to the steps and code below to connect to Foundry Tools using a system-ass
 
 #### Sample code
 
-Refer to the steps and code below to connect to Foundry Tools using a user-assigned managed identity.
-[!INCLUDE [code sample for Foundry Tools](./includes/code-ai-services-microsoft-entra-id.md)]
+To connect to Foundry Tools using a user-assigned managed identity, refer to the following steps and code.
+
+[!INCLUDE [code sample for azure AI Services](./includes/code-ai-services-microsoft-entra-id.md)]
 
 ### Connection string
 
@@ -84,9 +84,9 @@ Refer to the steps and code below to connect to Foundry Tools using a user-assig
 
 #### Sample code
 
-Refer to the steps and code below to connect to Foundry Tools using a connection string.
-[!INCLUDE [code sample for Foundry Tools](./includes/code-ai-services-secret.md)]
+To connect to Foundry Tools using a connection string, refer to the following steps and code. 
 
+[!INCLUDE [code sample for azure AI Services](./includes/code-ai-services-secret.md)]
 
 ### Service principal
 
@@ -101,8 +101,9 @@ Refer to the steps and code below to connect to Foundry Tools using a connection
 
 #### Sample code
 
-Refer to the steps and code below to connect to Foundry Tools using a service principaL.
-[!INCLUDE [code sample for Foundry Tools](./includes/code-ai-services-microsoft-entra-id.md)]
+To connect to Foundry Tools using a service principaL, refer to the following steps and code.
+
+[!INCLUDE [code sample for azure AI Services](./includes/code-ai-services-microsoft-entra-id.md)]
 
 ## Related content
 

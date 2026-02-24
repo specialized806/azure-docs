@@ -62,6 +62,9 @@ Task | Details
 Create an Azure Migrate project | Your Azure account needs Contributor or Owner permissions to [create a new project](./create-manage-projects.md).
 Verify permissions for your Azure account | Your Azure account needs permissions to create a VM and write to an Azure managed disk.
 
+>[!NOTE]
+> For the required Azure Migrate built‑in roles and permission details to create a project and run discovery, assessments, and migrations, see [Prepare Azure accounts for Azure Migrate](prepare-azure-accounts.md).
+
 ### Assign permissions to create a project
 
 1. In the Azure portal, open the subscription and select **Access control (IAM)**.
@@ -122,7 +125,7 @@ The first step of migration is to set up the replication appliance. To set up th
 ## Classic experience (Retiring)
 
 > [!NOTE]
-> Classic experience is scheduled for retirement on **30 September 2026**. Final recovery point for replications will be on **31 May 2026**. Support for migrations continue until the retirement date. 
+>Enabling replications via classic experience appliance will be blocked from **31 March 2026**. Switch to the simplified experience appliance to enable replications.Final recovery point for existing replications will be on **31 May 2026**. Support for migrations will continue until the retirement date (**30 September 2026**)
 > Switch sooner to gain the richer benefits of [simplified experience](simplified-experience-for-azure-migrate.md). [Learn more](tutorial-migrate-physical-virtual-machines.md#simplified-experience-recommended) on how to set up the Simplified Experience.
 
 

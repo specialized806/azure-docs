@@ -6,6 +6,7 @@ ms.author: karenguo
 ms.topic: conceptual
 ms.date: 09/12/2025
 ms.service: azure
+ms.subservice: azure-firmware-analysis
 ---
  
 # How to Use Service Principals to Automate Workflows in firmware analysis

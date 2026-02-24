@@ -5,7 +5,7 @@ titleSuffix: Azure Data Factory & Azure Synapse
 author: dcstwh
 ms.author: weetok
 ms.reviewer: whhender
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 05/15/2024
 ms.subservice: authoring
 ms.custom:
