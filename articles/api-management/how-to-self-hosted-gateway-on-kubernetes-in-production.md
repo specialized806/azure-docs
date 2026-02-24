@@ -19,14 +19,15 @@ In order to run a self-hosted gateway in production, there are various aspects t
 
 This article provides guidance on how to run a [self-hosted gateway](./self-hosted-gateway-overview.md) on Kubernetes for production workloads to ensure that it runs smoothly and reliably.
 
-## Access token
+## Authentication
+
+By default, an access token (also called an authentication key) is used by the self-hosted gateway to authenticate with the API Management instance.
 
 Without a valid access token, a self-hosted gateway can't access and download configuration data from the endpoint of the associated API Management service. The access token can be valid for a maximum of 30 days. It must be regenerated, and the cluster configured with a fresh token, either manually or via automation before it expires.
 
 When you're automating token refresh, use the [Gateway - Generate Token](/rest/api/apimanagement/current-ga/gateway/generate-token) operation. For information on managing Kubernetes secrets, see [Kubernetes Secrets](https://kubernetes.io/docs/concepts/configuration/secret).
 
-> [!TIP]
-> You can also deploy the self-hosted gateway to Kubernetes and enable authentication to the API Management instance by using [Microsoft Entra ID](self-hosted-gateway-enable-azure-ad.md).
+You can also deploy the self-hosted gateway to Kubernetes and enable authentication to the API Management instance by using Microsoft Entra ID. For more information and considerations, see [Self-hosted gateway authentication options](self-hosted-gateway-authentication-options.md).
 
 ## Autoscaling
 
