@@ -6,7 +6,7 @@ author: abell
 ms.author: abell
 ms.service: azure-private-link
 ms.topic: tutorial
-ms.date: 02/18/2025
+ms.date: 02/23/2026
 ms.custom: template-tutorial
 # Customer intent: As a network administrator, I want to build a private DNS infrastructure using a resolver with a private endpoint for my on-premises workloads, so that I can securely resolve private IPs without managing VMs or DNS records on-premises.
 ---
@@ -54,6 +54,26 @@ The following resources are used in this tutorial to simulate an on-premises and
 | Virtual network peer | **vnet-1-to-vnet-2** | Virtual network peer between the simulated on-premises network and cloud virtual network. |
 | Virtual network peer | **vnet-2-to-vnet-1** | Virtual network peer between the cloud virtual network and simulated on-premises network. |
 
+## Create a resource group
+
+A resource group is a logical container for Azure resources. This procedure creates a resource group for all resources used in this tutorial.
+
+1. In the portal, search for and select **Resource groups**.
+
+1. On the **Resource groups** page, select **+ Create**.
+
+1. On the **Basics** tab, enter or select the following information:
+
+    | Setting | Value |
+    |---|---|
+    | **Project details** |  |
+    | Subscription | Select your subscription. |
+    | Resource group | Enter **test-rg**. |
+    | **Resource details** |  |
+    | Region | Select **East US 2**. |
+
+1. Select **Review + create**, and then select **Create**.
+
 ## Create a virtual network
 
 The following procedure creates a virtual network with a resource subnet.
@@ -68,7 +88,7 @@ The following procedure creates a virtual network with a resource subnet.
     |---|---|
     | **Project details** |  |
     | Subscription | Select your subscription. |
-    | Resource group | Select **Create new**. </br> Enter **test-rg** for the name. </br> Select **OK**. |
+    | Resource group | Select **test-rg**. |
     | **Instance details** |  |
     | Name | Enter **vnet-1**. |
     | Region | Select **East US 2**. |
