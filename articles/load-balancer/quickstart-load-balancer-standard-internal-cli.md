@@ -103,6 +103,7 @@ az network bastion create \
     --public-ip-address myBastionIP \
     --vnet-name myVNet \
     --location westus2 \
+    --sku Basic \
     --only-show-errors \
     --no-wait
 ```
