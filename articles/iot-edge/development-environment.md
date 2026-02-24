@@ -3,7 +3,7 @@ title: Azure IoT Edge development environment
 description: Learn about the supported systems and first-party development tools that help you create IoT Edge modules
 author: sethmanheim
 ms.author: sethm
-ms.date: 04/29/2025
+ms.date: 02/20/2026
 ms.topic: concept-article
 ms.service: azure-iot-edge
 services: iot-edge
@@ -52,18 +52,16 @@ The Azure IoT Edge extension for Visual Studio Code provides IoT Edge module tem
 
 For more information and to download, see [Azure IoT Edge for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=vsciot-vscode.azure-iot-edge).
 
-In addition to the IoT Edge extensions, you might find it helpful to install other extensions for developing. For example, you can use [Docker for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=PeterJausovec.vscode-docker) to manage your images, containers, and registries. Additionally, all the major supported languages have extensions for Visual Studio Code that can help when you're developing modules.
+In addition to the IoT Edge extensions, you might find it helpful to install other extensions for developing. For example, you can use [Docker for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker) to manage your images, containers, and registries. Additionally, all the major supported languages have extensions for Visual Studio Code that can help when you're developing modules.
 
 The [Azure IoT Hub](https://marketplace.visualstudio.com/items?itemName=vsciot-vscode.azure-iot-toolkit) extension is useful as a companion for the Azure IoT Edge extension.
 
-### Visual Studio 2017/2019 extension
+### Visual Studio 2019/2022 extension
 
 The Azure IoT Edge tools for Visual Studio provide an IoT Edge module template built on C# and C.
 
 > [!IMPORTANT]
-> The Azure IoT Edge Visual Studio extensions are in maintenance mode. The *iotedgedev* tool is the recommended tool for developing IoT Edge modules.
-
-For more information and to download, see [Azure IoT Edge Tools for Visual Studio 2017](https://marketplace.visualstudio.com/items?itemName=vsc-iot.vsiotedgetools) or [Azure IoT Edge Tools for Visual Studio 2019](https://marketplace.visualstudio.com/items?itemName=vsc-iot.vs16iotedgetools).
+> The Azure IoT Edge Visual Studio extensions are in maintenance mode and are no longer available in the Visual Studio Marketplace. The *iotedgedev* tool is the recommended tool for developing IoT Edge modules.
 
 ## Testing tools
 
