@@ -39,11 +39,11 @@ For current information about region support, refer to [Products available by re
 
 ### What's the cost of using Azure Virtual Network Manager?
 
-Azure Virtual Network Manager charges are based on the number of virtual networks with an active Virtual Network Manager configuration deployed onto it. For example, if a Virtual Network Manager scope contains 100 virtual networks but configurations have only been deployed onto 5 of those virtual networks, you will be charged for those 5 virtual networks (not all 100). Also note that a charge for peering applies to the traffic volume of virtual networks that are managed by a deployed connectivity configuration (either mesh or hub-and-spoke).
+Azure Virtual Network Manager charges are based on the number of virtual networks with an active Virtual Network Manager configuration deployed onto it. For example, if a Virtual Network Manager scope contains 100 virtual networks but configurations have only been deployed onto five of those virtual networks, you'll be charged for those five virtual networks (not all 100). Also note that a charge for peering applies to the traffic volume of virtual networks that are managed by a deployed connectivity configuration (either mesh or hub-and-spoke).
 
-If a virtual network has multiple configurations deployed onto it by the same Virtual Network Manager instance, that virtual network only incurs a single charge rate; it will not duplicate charges. For example, if a Virtual Network Manager deploys both a connectivity configuration and a security admin configuration onto the same set of 5 virtual networks, you will be charged for those 5 virtual networks, but not charged twice. This cost does not account for multiple configurations unless the configurations originate from different Virtual Network Manager instances. 
+If a virtual network has multiple configurations deployed onto it by the same Virtual Network Manager instance, that virtual network only incurs a single charge rate; it will not duplicate charges. For example, if a Virtual Network Manager deploys both a connectivity configuration and a security admin configuration onto the same set of five virtual networks, you'll be charged for those five virtual networks, but not charged twice. This cost doesn't account for multiple configurations unless the configurations originate from different Virtual Network Manager instances. 
 
-Before February 2025, Azure Virtual Network Manager charges were based by default on the number of subscriptions that contained a virtual network with an active Virtual Network Manager configuration deployed onto it. If you created your Virtual Network Manager instance prior to February 2025, you may choose to [switch your pricing to the virtual network-based pricing](overview.md#pricing).
+Before February 2025, Azure Virtual Network Manager charges were based by default on the number of subscriptions that contained a virtual network with an active Virtual Network Manager configuration deployed onto it. If you created your Virtual Network Manager instance prior to February 2025, you can choose to [switch your pricing to the virtual network-based pricing](overview.md#pricing).
 
 Azure Virtual Network Manager's [**network verifier**](concept-virtual-network-verifier.md) tool charges per reachability analysis run in an Azure Virtual Network Manager verifier workspace. This charge is separate from Azure Virtual Network Manager charges. 
 
@@ -146,7 +146,7 @@ The effect of each method is the same, where bi-directional connectivity is esta
 
 ### When managing virtual networks using virtual network peering, does this result in paying virtual network peering charges twice with Azure Virtual Network Manager?
 
-There's no second or double charge for peering. Your virtual network manager respects all previously created virtual network peerings, and migrates those connections. All peering resources, whether created inside a virtual network manager or outside, will incur a single peering charge.
+There's no second or double charge for peering. Your virtual network manager respects all previously created virtual network peerings, and migrates those connections. All peering resources, whether created inside a virtual network manager or outside, incur a single peering charge.
 
 ### Can I create exceptions to security admin rules?
 
