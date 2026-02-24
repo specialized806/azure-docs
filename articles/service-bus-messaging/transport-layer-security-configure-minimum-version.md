@@ -141,8 +141,8 @@ resource serviceBusNamespace 'Microsoft.ServiceBus/namespaces@2024-01-01' = {
 
 ---
 
-1. Save the template.
-1. Specify the resource group parameter, and then select the  **Review + create**  button to deploy the template and create a namespace with the  `MinimumTlsVersion`  property configured.
+5. Save the template.
+6. Specify the resource group parameter, and then select the  **Review + create**  button to deploy the template and create a namespace with the  `MinimumTlsVersion`  property configured.
 
 > [!NOTE]
 > After you update the minimum TLS version for the Service Bus namespace, it can take up to 30 seconds before the change is fully propagated.

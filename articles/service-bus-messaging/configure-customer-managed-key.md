@@ -18,7 +18,7 @@ You can use Azure Key Vault (including Azure Key Vault Managed Hardware Security
 If you only need to encrypt certain properties of your messages, consider using a library like [NServiceBus](https://docs.particular.net/nservicebus/security/property-encryption).
 
 > [!NOTE]
-> A customer-managed keys for is considered disabled in the following scenarios:
+> A customer-managed key is considered disabled in the following scenarios:
 > - Revoking access: If Service Bus no longer has permission to access the key in Azure Key Vault.
 > - Disabling the key: Manually disabling the key in Key Vault renders it unusable.
 > - Letting the key expire: If the key reaches its expiration date without renewal. Letting a key expire has the same effect as revoking or disabling it. Always rotate or renew keys before they expire to avoid unintended outages.
@@ -737,7 +737,7 @@ You get an error stating that the Service Bus namespace is disabled because the 
 
 ### Cause
 
-You're be using the `resource_id` or `version`, which links to a specific version of the key, which is expired. If a specific version is provided, Service Bus uses that version of the key, even if the key is rotated. 
+You're using the `resource_id` or `version`, which links to a specific version of the key, which is expired. If a specific version is provided, Service Bus uses that version of the key, even if the key is rotated. 
 
 ### Resolution
 
