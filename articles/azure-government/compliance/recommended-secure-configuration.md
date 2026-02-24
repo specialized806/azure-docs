@@ -189,7 +189,7 @@ Providers MUST include instructions in the FedRAMP authorization package that ex
 
 #### Azure's response
 
-Azure supports SCG-CSO-AUP by including Azure's response to the Secure Configuration Guide usage in the FedRAMP authorization packages. Customers can request Azure's FedRAMP authorization package at [Federal Compliance Documentation](/azure/azure-government/compliance/azure-services-in-fedramp-auditscope?branch=pr-en-us-76518)
+Azure supports SCG-CSO-AUP by including Azure's response to the Secure Configuration Guide usage in the FedRAMP authorization packages. Customers can request Azure's FedRAMP authorization package at [Federal Compliance Documentation](/azure/azure-government/compliance/azure-services-in-fedramp-auditscope#federal-compliance-documentation)
 
 [Back to the top](#secure-configuration-guide)
 
