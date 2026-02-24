@@ -209,6 +209,16 @@ It is possible to do a forced promotion at any time after a planned promotion ha
 >
 > After a forced promotion, the old primary (now secondary) still contains unreplicated data. This data is lost when the old primary resynchronizes as the new secondary.
 
+> [!WARNING]
+> After performing a **forced** promotion, the old primary region may contain unreplicated data and state inconsistencies. To ensure data integrity and avoid potential issues with your application, the current best practice is to **delete the old primary region and recreate it** rather than allowing it to resynchronize as a secondary.
+>
+> **Recommended steps after forced promotion**:
+> 1. Complete the forced promotion to establish the new primary region.
+> 1. Delete the old primary region from the Geo-Replication configuration.
+> 1. Add a new secondary region to restore geo-redundancy.
+>
+> Following these steps helps ensure your namespace operates with consistent data across all regions.
+
 After the promotion is initiated:
 
 1. The hostname is updated to point to the secondary region, which can take several minutes.
