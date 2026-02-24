@@ -121,10 +121,19 @@ You can use Akri services to deploy and set up connectivity protocols at the edg
 Connectors include:
 
 - **Connector for OPC UA**. A data ingress and protocol translation service that lets Azure IoT Operations ingest data from OPC UA servers. A key requirement in industrial environments is a common standard or protocol for machine-to-machine and machine-to-cloud data exchange. [OPC UA](https://opcfoundation.org/about/opc-technologies/opc-ua/) is a specification for a platform-independent, service-oriented architecture that enables data exchange in industrial environments. The connector receives messages and events from your assets and publishes the data to topics in the MQTT broker.
+
 - **Media connector**. A service that makes media from sources like edge-attached cameras available to other Azure IoT Operations components.
+
 - **Connector for ONVIF**. A service that discovers and registers ONVIF assets like cameras. You can use the connector to manage and control ONVIF assets connected to your cluster.
+
 - **Connector for HTTP/REST**. A service for connecting to HTTP/REST endpoints and publishing data to the MQTT broker.
+
 - **Connector for SSE**. A service for connecting to server-sent event (SSE) endpoints and publishing event data to the MQTT broker.
+
+- **Connector for MQTT (preview)**. A service for subscribing to topics on MQTT brokers and publishing data to the Azure IoT Operations MQTT broker. This connector is designed for connecting to other MQTT brokers in your environment.
+
+  You can also use a data flow to connect to a Kafka endpoint and route messages to the MQTT broker. Learn how in [Connect to Kafka endpoints](howto-connect-kafka.md).
+
 - **Custom connectors**. Services that you create to connect to other data sources and publish data to the MQTT broker. Use the Azure IoT Operations SDKs to create custom connectors that meet your specific requirements.
 
 #### Discovery
@@ -139,7 +148,7 @@ Akri services provide monitoring capabilities for physical devices and assets. T
 
 ### Operations experience
 
-The operations experience is a web UI where OT users can create and configure devices and assets in an Azure IoT Operations instance. This web UI simplifies managing devices and assets. We recommend it as the service for this task.
+The operations experience is a web UI where OT users can create and configure devices and assets in an Azure IoT Operations instance. This web UI simplifies managing devices and assets, and it's the recommended service for this task.
 
 :::image type="content" source="media/overview-manage-assets/operations-experience.png" alt-text="Screenshot of the operations experience web UI." lightbox="media/overview-manage-assets/operations-experience.png":::
 
