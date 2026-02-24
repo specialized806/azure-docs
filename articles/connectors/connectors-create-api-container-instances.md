@@ -4,11 +4,9 @@ description: Learn how to automate container deployments in Azure Container Inst
 services: logic-apps, container-instances
 ms.service: azure-logic-apps
 ms.suite: integration
-author: dlepow
-ms.author: danlep
 ms.reviewers: estfan, azla
 ms.topic: how-to
-ms.date: 02/23/2026
+ms.date: 02/24/2026
 ms.custom: sfi-image-nochange
 #Customer intent: As an integration developer who works with Azure Logic Apps, I want to connect, create, and manage container deployments in Azure Container Instances by building automation workflows in Azure Logic Apps.
 ---
