@@ -3,7 +3,7 @@ title: Security framework for Azure IoT Edge
 description: Learn about the security, authentication, and authorization standards used to develop Azure IoT Edge for you to consider in your solution design.
 author: sethmanheim
 ms.author: sethm
-ms.date: 05/08/2025
+ms.date: 02/24/2026
 ms.topic: concept-article
 ms.service: azure-iot-edge
 services: iot-edge
@@ -24,7 +24,7 @@ IoT Edge runs on various makes and models of hardware, supports several operatin
 * Application vertical
 * Regulatory requirements
 
-This article provides an overview of the IoT Edge security framework. For more information, see [Securing the intelligent edge](https://azure.microsoft.com/blog/securing-the-intelligent-edge/).
+This article provides an overview of the IoT Edge security framework. For more information, see [Securing the intelligent edge](https://azure.microsoft.com/en-us/blog/securing-the-intelligent-edge/).
 
 ## Standards
 
@@ -89,4 +89,4 @@ Securing the intelligent edge requires collaborative contributions from an open 
 
 ## Next steps
 
-Read more about how Azure IoT Edge is [Securing the intelligent edge](https://azure.microsoft.com/blog/securing-the-intelligent-edge/).
+Read more about how Azure IoT Edge is [Securing the intelligent edge](https://azure.microsoft.com/en-us/blog/securing-the-intelligent-edge/).
