@@ -134,37 +134,45 @@ Pipelines using these features require redesign or alternate migration approache
 ## FAQ
 **Does the assessment change my factory?**
 
-Answer: No. It only scans your configuration and lists findings in the side pane. You can safely run it to understand impact before migration.
+**Answer:** No. It only scans your configuration and lists findings in the side pane. You can safely run it to understand impact before migration.
 
 **Why do I see Coming soon?**
 
-Answer: It means the product team is actively adding support for those items. 
+**Answer:** It means the product team is actively adding support for those items. 
 If they’re critical to your pipeline, see if you could use [PowerShell upgrade tool](/fabric/data-factory/migrate-pipelines-powershell-upgrade-module-for-azure-data-factory-to-fabric) or plan to migrate later or redesign the affected steps.
 
 **What if only one activity is Not compatible?**
 
-Answer: You can still migrate the pipeline after you refactor or replace that activity. The assessment helps you identify exactly where to focus.
+**Answer:** You can still migrate the pipeline after you refactor or replace that activity. The assessment helps you identify exactly where to focus.
 
 **Can I rerun the assessment or migration after making changes?**
 
-Answer: Yes, you can rerun anytime to validate updates. Since Pipeline names must be unique, you need to delete your previously migrated pipeline before re-migrating them after making any necessary changes.
+**Answer:** Yes, you can rerun anytime to validate updates. Since Pipeline names must be unique, you need to delete your previously migrated pipeline before re-migrating them after making any necessary changes.
 
 **Will triggers migrate automatically?**
-No. Triggers are disabled after migration. You must manually re‑enable and reconfigure them in Fabric.
+
+**Answer:** No. Triggers are disabled after migration. You must manually re‑enable and reconfigure them in Fabric.
 
 **Do unsupported items block the entire migration?**
-No. Unsupported activities cause the corresponding pipeline to require redesign, but other pipelines that are supported can migrate independently. The assessment tells you exactly which need redesign.
- 
 
+**Answer:** No. Unsupported activities cause the corresponding pipeline to require redesign, but other pipelines that are supported can migrate independently. The assessment tells you exactly which need redesign.
+ 
 **Can I migrate without mapping connections?**
-Yes. Pipelines will still migrate, but all impacted activities will be deactivated until new Fabric connections are configured.
+
+**Answer:** Yes. Pipelines will still migrate, but all impacted activities will be deactivated until new Fabric connections are configured.
 
 ## Related content
 
 [Compare Azure Data Factory and Fabric Data Factory](/fabric/data-factory/compare-fabric-data-factory-and-azure-data-factory)
 
+[Plan your migration from Azure Data Factory to Fabric Data Factory](/fabric/data-factory/migrate-planning-azure-data-factory)
+
+[Assess your Pipelines for Migration to Fabric Data Factory](how-to-assess-your-azure-data-factory-to-fabric-data-factory-migration)
+
 [Migration best practices](/fabric/data-factory/migration-best-practices)
 
 [Connector parity](/fabric/data-factory/connector-parity)
+
+[Convert global parameters to variable libraries](/fabric/data-factory/convert-global-parameters-to-variable-libraries)
 
 
