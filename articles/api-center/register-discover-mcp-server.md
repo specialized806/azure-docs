@@ -13,7 +13,7 @@ ms.custom:
   - build-2025
 ---
 
-# Register and discover remote MCP servers in your API inventory
+# Register and discover MCP servers in your API inventory
 
 This article describes how to use Azure API Center to maintain an inventory (or *registry*) of remote or local model context protocol (MCP) servers and help stakeholders discover them through the API Center portal. MCP servers expose backend APIs or data sources in a standard way to AI agents and models that consume them.
 
