@@ -55,7 +55,7 @@ When your application sends a request with a session identifier, the session poo
   - **Custom Container Session Pools**: Bring-your-own-container for custom workloads that require specific dependencies or runtime environments.
 
 
-#### Session Pool Types Comparison
+#### Session pool types comparison
 
 | | **Code Interpreter Session Pool** | **Custom Container Session Pool** |
 |---------------|------------------------------|------------------------------|
