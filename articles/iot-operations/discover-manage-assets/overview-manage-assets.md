@@ -132,6 +132,8 @@ Akri services let you deploy and set up connectivity protocols at the edge. Akri
 - The **connector for ONVIF** is a service that discovers and registers ONVIF assets like cameras. The connector lets you manage and control ONVIF assets like cameras connected to your cluster.
 - The **connector for HTTP/REST** is a service that lets you connect to HTTP/REST endpoints and publish data to the MQTT broker.
 - The **connector for SSE** is a service that lets you connect to SSE endpoints and publish event data to the MQTT broker.
+- The **connector for MQTT (preview)** is a service that lets you subscribe to topics on MQTT brokers and publish data to the Azure IoT Operations MQTT broker. This connector is designed for connecting to other MQTT brokers in your environment.
+- You can also use a data flow to connect to a Kafka endpoint and route messages to the MQTT broker. Learn how in [Connect to Kafka endpoints](howto-connect-kafka.md).
 - **Custom connectors** are services that you create to connect to other data sources and publish data to the MQTT broker. Use the Azure IoT Operations SDKs to create custom connectors that meet your specific requirements.
 
 ### Discovery
