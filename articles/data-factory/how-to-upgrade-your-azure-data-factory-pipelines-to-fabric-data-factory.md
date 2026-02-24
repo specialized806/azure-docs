@@ -24,7 +24,7 @@ This assessment first approach helps ensure migrations are intentional, transpar
 Before you start, make sure you have:
 1. An existing Azure Data Factory with pipelines.
 1. Access to a Microsoft Fabric tenant.
-1. A Fabric workspace where pipelines will migrate to.
+1. A Fabric workspace in the same Azure AD tenant as the Azure Data Factory, where pipelines will be migrated.
 
 
 ## 1. Assess your pipelines for migration
