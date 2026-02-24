@@ -87,6 +87,17 @@ In this section, you create a resource group and dual-stack virtual network for 
 
 1. Select **Add**.
 
+1. Select **+ Add a subnet** and enter or select the following information:
+
+    | Setting | Value |
+    | ------- | ----- |
+    | **Subnet** |   |
+    | Subnet name | Enter **AzureBastionSubnet**. |
+    | Starting address | Enter **10.0.1.0**. |
+    | Size | Select **/26 (64 addresses)**. |
+
+1. Select **Add**.
+
 1. Select the **Review + create**.
 
 1. Select **Create**.
@@ -115,6 +126,16 @@ Use [az network vnet create](/cli/azure/network/vnet#az-network-vnet-create) to 
     --subnet-prefixes 10.0.0.0/24 2404:f800:8000:122::/64
 ```
 
+Use [az network vnet subnet create](/cli/azure/network/vnet/subnet#az-network-vnet-subnet-create) to create the AzureBastionSubnet.
+
+```azurecli-interactive
+az network vnet subnet create \
+    --resource-group myResourceGroup \
+    --vnet-name myVNet \
+    --name AzureBastionSubnet \
+    --address-prefix 10.0.1.0/26
+```
+
 # [Azure PowerShell](#tab/azurepowershell/)
 
 
@@ -140,17 +161,124 @@ $subnet = @{
 }
 $subnetConfig = New-AzVirtualNetworkSubnetConfig @subnet 
 
+## Create Azure Bastion subnet config ##
+$bastionSubnet = @{
+    Name = 'AzureBastionSubnet'
+    AddressPrefix = '10.0.1.0/26'
+}
+$bastionSubnetConfig = New-AzVirtualNetworkSubnetConfig @bastionSubnet
+
 ## Create the virtual network ##
 $net = @{
     Name = 'myVNet'
     ResourceGroupName = 'myResourceGroup'
     Location = 'eastus2'
     AddressPrefix = '10.0.0.0/16','2404:f800:8000:122::/63'
-    Subnet = $subnetConfig
+    Subnet = $subnetConfig,$bastionSubnetConfig
 }
 New-AzVirtualNetwork @net
 
 ```
+---
+
+## Deploy Azure Bastion
+
+# [Azure portal](#tab/azureportal)
+
+In this section, you deploy Azure Bastion to securely connect to the virtual machine.
+
+>[!NOTE]
+>[!INCLUDE [Pricing](~/reusable-content/ce-skilling/azure/includes/bastion-pricing.md)]
+
+1. In the search box at the top of the portal, enter **Bastion**. Select **Bastions** in the search results.
+
+1. Select **+ Create**.
+
+1. In the **Basics** tab of **Create a Bastion**, enter, or select the following information:
+
+    | Setting | Value |
+    |---|---|
+    | **Project details** |  |
+    | Subscription | Select your subscription. |
+    | Resource group | Select **myResourceGroup**. |
+    | **Instance details** |  |
+    | Name | Enter **bastion**. |
+    | Region | Select **East US 2**. |
+    | Tier | Select **Developer**. |
+    | **Configure virtual networks** |  |
+    | Virtual network | Select **myVNet**. |
+    | Subnet | The **AzureBastionSubnet** is created automatically with an address space of **/26** or larger. |
+
+1. Select **Review + create**.
+
+1. Select **Create**.
+
+# [Azure CLI](#tab/azurecli/)
+
+In this section, you deploy Azure Bastion to securely connect to the virtual machine.
+
+>[!NOTE]
+>[!INCLUDE [Pricing](~/reusable-content/ce-skilling/azure/includes/bastion-pricing.md)]
+
+Use [az network public-ip create](/cli/azure/network/public-ip#az-network-public-ip-create) to create a public IP address for Azure Bastion.
+
+```azurecli-interactive
+az network public-ip create \
+    --resource-group myResourceGroup \
+    --name public-ip-bastion \
+    --location eastus2 \
+    --allocation-method Static \
+    --sku Standard
+```
+
+Use [az network bastion create](/cli/azure/network/bastion#az-network-bastion-create) to create an Azure Bastion host.
+
+```azurecli-interactive
+az network bastion create \
+    --resource-group myResourceGroup \
+    --name bastion \
+    --vnet-name myVNet \
+    --public-ip-address public-ip-bastion \
+    --location eastus2 \
+    --sku Basic \
+    --no-wait
+```
+
+# [Azure PowerShell](#tab/azurepowershell/)
+
+In this section, you deploy Azure Bastion to securely connect to the virtual machine.
+
+>[!NOTE]
+>[!INCLUDE [Pricing](~/reusable-content/ce-skilling/azure/includes/bastion-pricing.md)]
+
+Use [New-AzPublicIpAddress](/powershell/module/az.network/new-azpublicipaddress) to create a public IP address for Azure Bastion.
+
+```azurepowershell-interactive
+$bastionIpParams = @{
+    ResourceGroupName = "myResourceGroup"
+    Name = "public-ip-bastion"
+    Location = "eastus2"
+    AllocationMethod = "Static"
+    Sku = "Standard"
+}
+New-AzPublicIpAddress @bastionIpParams
+```
+
+Use [New-AzBastion](/powershell/module/az.network/new-azbastion) to create an Azure Bastion host.
+
+```azurepowershell-interactive
+$bastionParams = @{
+    ResourceGroupName = "myResourceGroup"
+    Name = "bastion"
+    VirtualNetworkName = "myVNet"
+    PublicIpAddressName = "public-ip-bastion"
+    PublicIpAddressRgName = "myResourceGroup"
+    VirtualNetworkRgName = "myResourceGroup"
+    Sku = "Basic"
+}
+New-AzBastion @bastionParams -AsJob
+```
+
 ---
 
 ## Create public IP addresses
@@ -520,104 +648,63 @@ New-AzVM @vm -GenerateSshKey
 
 # [Azure portal](#tab/azureportal)
 
-You connect to the virtual machine with SSH to test the IPv4 public IP address.
+You connect to the virtual machine with SSH using Azure Bastion.
 
-1. In the search box at the top of the portal, enter **Public IP address**. Select **Public IP addresses** in the search results.
+1. In the search box at the top of the portal, enter **Virtual machine**. Select **Virtual machines** in the search results.
 
-2. Select **myPublicIP-IPv4**.
+1. Select **myVM**.
 
-3. The public IPv4 address is in the **Overview** in **IP address**. In this example it's, **20.22.46.19**.
+1. Select **Connect** then **Connect via Bastion** in the **Overview** section.
 
-4. Open an SSH connection to the virtual machine by using the following command. Replace the IP address with the IP address of your virtual machine. Replace **`azureuser`** with the username you chose during virtual machine creation. The **`-i`** is the path to the private key that you downloaded earlier. In this example, it's **~/.ssh/mySSHKey.pem**.
+1. In the **Bastion** connection page, enter or select the following information:
 
-    ```bash
-    ssh -i ~/.ssh/mySSHkey.pem azureuser@20.22.46.19
-    ```
+    | Setting | Value |
+    |---|---|
+    | Authentication Type | Select **SSH Private Key from Local File**. |
+    | Username | Enter the username you created. |
+    | Local File | Select the private key file you downloaded. |
+
+1. Select **Connect**.
+
 # [Azure CLI](#tab/azurecli/)
 
-Use [az network public-ip show](/cli/azure/network/public-ip#az-network-public-ip-show) to display the IP addresses of the virtual machine.
+You connect to the virtual machine with SSH using Azure Bastion in the Azure portal.
 
-```azurecli-interactive
-  az network public-ip show \
-    --resource-group myResourceGroup \
-    --name myPublicIP-IPv4 \
-    --query ipAddress \
-    --output tsv
-```
+1. In the search box at the top of the portal, enter **Virtual machine**. Select **Virtual machines** in the search results.
 
-```azurecli-interactive
-user@Azure:~$ az network public-ip show \
->     --resource-group myResourceGroup \
->     --name myPublicIP-IPv4 \
->     --query ipAddress \
->     --output tsv
-20.119.201.208
-```
+1. Select **myVM**.
 
-```azurecli-interactive
-  az network public-ip show \
-    --resource-group myResourceGroup \
-    --name myPublicIP-IPv6 \
-    --query ipAddress \
-    --output tsv
-```
+1. Select **Connect** then **Connect via Bastion** in the **Overview** section.
 
-```azurecli-interactive
-user@Azure:~$ az network public-ip show \
->     --resource-group myResourceGroup \
->     --name myPublicIP-IPv6 \
->     --query ipAddress \
->     --output tsv
-2603:1030:408:6::9d
-```
+1. In the **Bastion** connection page, enter or select the following information:
 
-Open an SSH connection to the virtual machine by using the following command. Replace the IP address with the IP address of your virtual machine.
+    | Setting | Value |
+    |---|---|
+    | Authentication Type | Select **SSH Private Key from Local File**. |
+    | Username | Enter **azureuser**. |
+    | Local File | Select the private key file generated during VM creation. |
 
-```azurecli-interactive
-  ssh azureuser@20.119.201.208
-```
+1. Select **Connect**.
 
 # [Azure PowerShell](#tab/azurepowershell/)
 
-Use [Get-AzPublicIpAddress](/powershell/module/az.network/get-azpublicipaddress) to display the IP addresses of the virtual machine.
+You connect to the virtual machine with SSH using Azure Bastion in the Azure portal.
 
-```azurepowershell-interactive
-$ip4 = @{
-    ResourceGroupName = 'myResourceGroup'
-    Name = 'myPublicIP-IPv4'
-}  
-Get-AzPublicIPAddress @ip4 | select IpAddress
-```
+1. In the search box at the top of the portal, enter **Virtual machine**. Select **Virtual machines** in the search results.
 
-```azurepowershell-interactive
-PS /home/user> Get-AzPublicIPAddress @ip4 | select IpAddress
+1. Select **myVM**.
 
-IpAddress
----------
-20.72.115.187
-```
+1. Select **Connect** then **Connect via Bastion** in the **Overview** section.
 
-```azurepowershell-interactive
-$ip6 = @{
-    ResourceGroupName = 'myResourceGroup'
-    Name = 'myPublicIP-IPv6'
-}  
-Get-AzPublicIPAddress @ip6 | select IpAddress
-```
+1. In the **Bastion** connection page, enter or select the following information:
 
-```azurepowershell-interactive
-PS /home/user> Get-AzPublicIPAddress @ip6 | select IpAddress
+    | Setting | Value |
+    |---|---|
+    | Authentication Type | Select **SSH Private Key from Local File**. |
+    | Username | Enter the username you created. |
+    | Local File | Select the private key file generated during VM creation. |
 
-IpAddress
----------
-2603:1030:403:3::1ca
-```
-
-Open an SSH connection to the virtual machine by using the following command. Replace the IP address with the IP address of your virtual machine.
-
-```azurepowershell-interactive
-ssh azureuser@20.72.115.187
-```
+1. Select **Connect**.
 
 ---
 
