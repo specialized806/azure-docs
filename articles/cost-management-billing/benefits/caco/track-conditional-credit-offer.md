@@ -113,7 +113,7 @@ When you select **Show all Milestones**, you can view a comprehensive list of al
 
 | Column | Definition |
 |---|---|
-| Id | The unique identifier for each milestone (for example, Milestone1, Milestone2, Milestone3) |
+| ID | The unique identifier for each milestone (for example, Milestone1, Milestone2, Milestone3) |
 | End Date | The deadline by which the milestone must be achieved |
 | Consumption target | The total spending amount required to meet this milestone |
 | Progress% | The current progress percentage toward achieving the milestone consumption target |
@@ -191,6 +191,7 @@ This consumption-focused approach ensures that ACO awards are based on genuine A
 ## Need help? Contact support
 
 If you need help, [contact support](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade) to get your issue resolved quickly.
+
 
 
 
