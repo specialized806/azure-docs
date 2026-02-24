@@ -17,7 +17,7 @@ service.tree.id: b69a7832-2929-4f60-bf9d-c6784a865ed8
 
 When you accept a Conditional Azure Credit Offer (CACO) in a Microsoft Customer Agreement, it creates a CACO commitment and 1 or more provisional (not spendable) credit resources. The CACO commitment and provisional (not spendable) credit resources get placed in a subscription and resource group, and follow the same setup as the other credit resource as mentioned in [Manage a Microsoft Azure credit resource under a subscription](../credits/manage-azure-credits.md). The provisional credit resources turn into awarded credits if the spending target and other conditions in the CACO are met. Moving a CACO resource doesn't move any provisional or awarded credits. Those credit resources have to be moved separately as needed.
 
-On Azure Portal, you can view metadata related to the CACO. Including: status of the CACO, CACO start/end date, spend target, currency, target end date, award credit, award start date, award end date, and System ID. You can view the metadata under the Conditional Credit resource. 
+On Azure portal, you can view metadata related to the CACO. Including: status of the CACO, CACO start/end date, spend target, currency, target end date, award credit, award start date, award end date, and System ID. You can view the metadata under the Conditional Credit resource. 
 
 :::image type="content" source="../../manage/media/conditional-credit-offer/view-conditional-credit-offer.png" border="true" alt-text="Screenshot showing the CACO overview page." lightbox="../../manage/media/conditional-credit-offer/view-conditional-credit-offer.png" :::
 
@@ -65,3 +65,4 @@ Contact your Microsoft account team if you have questions about canceling your C
 
 ## Related content
 - [Move Azure resources to a new resource group or subscription](../../../azure-resource-manager/management/move-resource-group-and-subscription.md)
+
