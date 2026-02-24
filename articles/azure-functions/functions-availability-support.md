@@ -367,6 +367,8 @@ After the storage accounts used by your app are updated, you can update the Flex
 
 ### Update zone redundancy settings
 
+#### [Azure portal (Update)](#tab/azure-portal)
+
 1. In the Azure portal, search for and select the function app to update.
 
 1. Under **Settings**, select **Scale and Concurrency**.
@@ -461,7 +463,7 @@ In this template, replace `<YOUR_PLAN_NAME>` and `<YOUR_REGION_NAME>` with the n
 
 ::: zone pivot="premium-plan"
 
-You can't currently change the availability zone support of an Elastic Premium plan for an existing function app. For information on how to migrate the public multitenant Premium plan from non-availability zone to availability zone support, see [Migrate App Service to availability zone support](../reliability/migrate-functions.md).
+You can't currently change the availability zone support of an Elastic Premium plan for an existing function app. For information on how to migrate the public multitenant Premium plan from non-availability zone to availability zone support, see [Migrate App Service to availability zone support](/azure/reliability/migrate-functions).
 
 The migration process typically involves:
 
@@ -473,7 +475,7 @@ The migration process typically involves:
 6. **Cutover**: Update DNS and traffic routing to point to the new zone-redundant function app.
 7. **Cleanup**: Remove the old non-zone-redundant resources after successful validation.
 
-For detailed step-by-step migration guidance, see [Migrate Azure Functions to availability zone support](../reliability/migrate-functions.md).
+For detailed step-by-step migration guidance, see [Migrate Azure Functions to availability zone support](/azure/reliability/migrate-functions).
 
 ::: zone-end
 
