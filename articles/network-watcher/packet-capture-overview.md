@@ -6,9 +6,8 @@ author: halkazwini
 ms.author: halkazwini
 ms.service: azure-network-watcher
 ms.topic: concept-article
-ms.date: 03/21/2025
+ms.date: 02/24/2026
 
-#CustomerIntent: As an administrator, I want to learn about Azure Network Watcher packet capture tool so that I can use it to capture IP packets to and from virtual machines (VMs) and scale sets to diagnose and solve network problems.
 # Customer intent: As an administrator, I want to understand the features and configurations of the packet capture tool in Azure Network Watcher, so that I can effectively diagnose network issues and monitor traffic on my virtual machines.
 ---
 
@@ -26,27 +25,19 @@ You can trigger packet captures through the portal, PowerShell, Azure CLI, or RE
 > - [Network Watcher Agent VM extension for Linux](network-watcher-agent-linux.md).
 > - [Update Network Watcher extension to the latest version](network-watcher-agent-update.md).
 
-## Capture configuration
+## Continuous packet capture (preview) 
 
-To control the size of captured data, use the following options:
+> [!IMPORTANT]
+> Continuous packet capture is currently in PREVIEW.
+> See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
 
-| Property | Description |
-| -------- | ----------- |
-| **Maximum bytes per packet (bytes)** | The number of bytes from each packet. All bytes are captured if left blank. Enter 34 if you only need to capture IPv4 header. |
-| **Maximum bytes per session (bytes)** | Total number of bytes that are captured, once the value is reached the session ends. |
-| **Time limit (seconds)** | Packet capture session time limit, once the value is reached the session ends. The default value is 18000 seconds (5 hours). |
+Continuous packet capture allows you to persistently monitor network traffic using a ring buffer–based mechanism. Unlike standard packet captures that stop after reaching a specific time or file size, continuous capture is designed to run over extended durations, making it ideal for diagnosing intermittent or long-tail issues. Currently, you can configure continuous packet capture using the [Azure Portal](packet-capture-manage.md?tabs=portal#start-a-packet-capture)
 
-## Continuous Packet Capture (Preview) 
+### How it works
 
-> [!NOTE]
-> This feature is currently in public preview. Functionality and limitations may change before general availability.
-
-Continuous packet capture allows you to persistently monitor network traffic using a ring buffer–based mechanism. Unlike standard packet captures that stop after reaching a specific time or file size, continuous capture is designed to run over extended durations, making it ideal for diagnosing intermittent or long-tail issues. Currently, you can configure continuous packet capture using the [Azure Portal](/network-watcher/packet-capture-manage?tabs=portal#start-a-packet-capture)
-
-### How It Works
 When continuous packet capture is enabled: 
 
-- Captured packets are written to a rotating set of files on the target VM’s local storage or storage account.
+- Captured packets are written to a rotating set of files on the target VM's local storage or storage account.
  
 - You can configure the maximum number of files and the size of each file. 
 
@@ -56,17 +47,23 @@ When continuous packet capture is enabled:
 
 This ring buffer–style storage helps reduce manual intervention and avoid excessive storage consumption while ensuring that recent traffic is always available for review. 
 
-### Considerations
+## Capture configuration
 
-- Continuous capture is available only for supported VM and VMSS SKUs and regions. 
+To control the size of captured data, use the following options:
 
-- Ensure the target VM has sufficient space, or the connected storage account has appropriate quota to accommodate capture data. 
+| Property | Description |
+| -------- | ----------- |
+| **Maximum bytes per packet (bytes)** | The number of bytes from each packet. All bytes are captured if left blank. Enter 34 if you only need to capture IPv4 header. |
+| **Time limit per session (seconds)** | Packet capture session time limit, once the value is reached the session ends. The default value is 18000 seconds (5 hours). |
 
-- Captures with high packet volumes may generate large data sizes quickly. Choose file size and count accordingly to manage buffer length and retention. 
+If you're using continuous capture (preview), use the following options to control the size of captured data:
 
-- When using filters, ensure that relevant ports, IPs, and protocols are captured to optimize storage and analysis. 
-
-For step-by-step guidance, see [Manage packet captures](/azure/network-watcher/packet-capture-manage)
+| Property | Description |
+| -------- | ----------- |
+| **Maximum bytes per packet (bytes)** | The number of bytes from each packet. All bytes are captured if left blank or set to 0. Enter 34 if you only need to capture IPv4 header. |
+| **New files created** | Total files that can be created. The default value is 10. The maximum value is 10,000.|
+| **Bytes per file** | Total number of bytes per file. The default value is 100 MB. The maximum value is 4 GB. |
+| **Time limit per session (seconds)** | Packet capture session time limit, once the value is reached the session ends. The default value is 86400 seconds (1 day). The maximum value is 604800 seconds (7 days). |
 
 ## Filtering (optional)
 
@@ -85,6 +82,16 @@ Use filters to capture only the traffic that you want to monitor. Filters are ba
 - There's a limit of 10,000 parallel packet capture sessions per region per subscription. This limit applies only to the sessions and doesn't apply to the saved packet capture files either locally on the VM or in a storage account. See the [Network Watcher service limits page](../azure-resource-manager/management/azure-subscription-service-limits.md#azure-network-watcher-limits) for a full list of limits. 
 
 - Packet capture uses shared access signature (SAS) tokens to access the storage account. Key access must be enabled on the storage account to authorize packet capture's SAS tokens. If key access isn't enabled, packet captures can only be saved to the virtual machine's local disk.
+
+- When using filters, ensure that relevant ports, IPs, and protocols are captured to optimize storage and analysis. 
+
+### Continuous capture Considerations
+
+- Continuous capture is available only for supported VM and VMSS SKUs and regions. 
+
+- Ensure the target VM has sufficient space, or the connected storage account has appropriate quota to accommodate capture data. 
+
+- Captures with high packet volumes may generate large data sizes quickly. Choose file size and count accordingly to manage buffer length and retention. 
 
 ## Related content
 
