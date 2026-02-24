@@ -152,6 +152,10 @@ Stale orchestration data should be purged periodically to ensure efficient stora
     | Orchestration custom status | 1 MB |
     | Entity state | 1 MB |
 
+- **Orchestration instance ID size:**
+  
+  Currently instance ID length is limited to 100 characters.
+
 - **Feature parity:** 
 
     [Extended sessions](../durable-functions-azure-storage-provider.md#extended-sessions) are not available in the Durable Task Scheduler backend yet.
