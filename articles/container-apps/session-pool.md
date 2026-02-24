@@ -52,6 +52,59 @@ When you create or update a pool, you can set a maximum number of concurrent ses
 > [!IMPORTANT]
 > If you enable egress, code running in the session can access the internet. Use caution when the code is untrusted because it can be used to perform malicious activities such as denial-of-service attacks.
 
+> [!IMPORTANT]
+> If the session is used to run untrusted code, don't include information or data that you don't want the untrusted code to access. Assume the code is malicious and has full access to the container, including its environment variables, secrets, and files.
+
+## Configure a pool
+
+Use `az containerapp sessionpool create --help` to see the latest CLI arguments for session pool configuration. This section focuses on advanced configuration options that apply across API versions.
+
+### Session lifecycle configuration
+
+When you create or update a session pool, you can configure how sessions are terminated by setting `properties.dynamicPoolConfiguration.lifecycleConfiguration`. Starting with API version `2025-01-01`, choose one of two lifecycle types.
+
+For the full API specification, see the [SessionPools API spec](/rest/api/resource-manager/containerapps/container-apps-session-pools/create-or-update?view=rest-resource-manager-containerapps-2025-07-01&tabs=HTTP).
+
+#### Timed (default)
+
+With the `Timed` lifecycle, a session is deleted after a period of inactivity. Any request sent to a session resets the cooldown timer, extending the session's time-to-live by `cooldownPeriodInSeconds`.
+
+> [!NOTE]
+> `Timed` is supported for all session pool types and works the same as `executionType: Timed` in earlier API versions.
+
+```json
+{
+  "dynamicPoolConfiguration": {
+    "lifecycleConfiguration": {
+      "cooldownPeriodInSeconds": 600,
+      "lifecycleType": "Timed"
+    }
+  }
+}
+```
+
+| Property | Description |
+| --- | --- |
+| `cooldownPeriodInSeconds` | The session is deleted when there are no requests for this duration. |
+| `maxAlivePeriodInSeconds` | Not supported for `Timed` lifecycle. |
+
+## Management endpoint
+
+> [!IMPORTANT]
+> The session identifier is sensitive information which requires a secure process as you create and manage its value. To protect this value, your application must ensure each user or tenant only has access to their own sessions.
+>
+> Failure to secure access to sessions could result in misuse or unauthorized access to data stored in your users' sessions. For more information, see [Session identifiers](./sessions-usage.md#identifiers)
+
+All requests to the pool management endpoint must include an `Authorization` header with a bearer token. To learn how to authenticate with the pool management API, see [Authentication](sessions-usage.md#authentication).
+
+Each API request must also include the query string parameter `identifier` with the session ID. This unique session ID enables your application to interact with specific sessions. To learn more about session identifiers, see [Session identifiers](./sessions-usage.md#identifiers).
+
+## Image caching
+
+When a session pool is created or updated, Azure Container Apps caches the container image in the pool. This caching helps speed up the process of creating new sessions.
+
+Any changes to the image aren't automatically reflected in the sessions. To update the image, update the session pool with a new image tag. Use a unique tag for each image update to ensure that the new image is pulled.
+
 ## Code interpreter session pool
 
 # [Azure CLI](#tab/azure-cli)
@@ -131,17 +184,91 @@ The following endpoints are available for managing sessions in a pool:
 | `files/content/{filename}` | `GET` | Download a file from a session. |
 | `files` | `GET` | List the files in a session. |
 
-You build the full URL for each endpoint by concatenating the pool's management API endpoint with the endpoint path. The query string must include an `identifier` parameter containing the session identifier, and an `api-version` parameter with the value `2024-02-02-preview`.
+You build the full URL for each endpoint by concatenating the pool's management API endpoint with the endpoint path. The query string must include an `identifier` parameter containing the session identifier, and an `api-version` parameter with the value `2024-02-02-preview`. API versions can change, so always confirm the latest version in the REST API docs before using it in production.
 
-For example: `{sessionManagementEndpoint}code/execute?api-version=2024-02-02-preview&identifier=<IDENTIFIER>`
+For example: `{sessionManagementEndpoint}/code/execute?api-version=2024-02-02-preview&identifier=<IDENTIFIER>`
 
-For REST API references, see [Container Apps data-plane APIs](https://learn.microsoft.com/en-us/rest/api/containerapps/#data-plane-apis) and the [Container Apps data-plane operations overview](https://learn.microsoft.com/en-us/rest/api/data-plane/containerapps/operation-groups?view=rest-data-plane-containerapps-2025-10-02-preview).
+For REST API references, see [Container Apps data-plane APIs](/rest/api/containerapps/#data-plane-apis) and the [Container Apps data-plane operations overview](/rest/api/data-plane/containerapps/operation-groups?view=rest-data-plane-containerapps-2025-10-02-preview).
 
-## Custom session pool
+## Custom container session pool
 
 To create a custom container session pool, you need to provide a container image and pool configuration settings.
 
 You invoke or communicate with each session using HTTP requests. The custom container must expose an HTTP server on a port that you specify to respond to these requests.
+
+The following capabilities apply only to custom container session pools.
+
+### Custom container management endpoint
+
+For custom container session pools, get the management endpoint from the Azure portal or the Azure CLI output. The endpoint is returned as `poolManagementEndpoint`.
+
+The endpoint is in the format `https://<SESSION_POOL_NAME>.<ENVIRONMENT_ID>.<REGION>.azurecontainerapps.io`. 
+
+#### OnContainerExit
+
+With the `OnContainerExit` lifecycle, a session remains active until the container exits on its own or the maximum alive period is reached.
+
+```json
+{
+  "dynamicPoolConfiguration": {
+    "lifecycleConfiguration": {
+      "maxAlivePeriodInSeconds": 6000,
+      "lifecycleType": "OnContainerExit"
+    }
+  }
+}
+```
+
+| Property | Description |
+| --- | --- |
+| `maxAlivePeriodInSeconds` | Maximum time the session can stay alive before being deleted. |
+| `cooldownPeriodInSeconds` | Not supported for `OnContainerExit` lifecycle. |
+
+#### Container probes
+
+Container probes let you define health checks for session containers so the pool can detect unhealthy sessions and replace them to keep the `readySessionInstances` target healthy.
+
+Session pools support **Liveness** and **Startup** probes. For more information about probe behavior, see [Health probes in Azure Container Apps](/azure/container-apps/health-probes?tabs=arm-template).
+
+When creating or updating a session pool, specify probes in `properties.customContainerTemplate.containers`. For the complete request body schema, see the [SessionPools Create or Update API reference](/rest/api/resource-manager/containerapps/container-apps-session-pools/create-or-update?view=rest-resource-manager-containerapps-2025-10-02-preview). The following example shows a partial configuration with probe definitions:
+
+```json
+{
+  "properties": {
+    "customContainerTemplate": {
+      "containers": [
+        {
+          "name": "my-session-container",
+          "image": "myregistry.azurecr.io/my-session-image:latest",
+          "probes": [
+            {
+              "type": "Liveness",
+              "httpGet": {
+                "path": "/health",
+                "port": 8080
+              },
+              "periodSeconds": 10,
+              "failureThreshold": 3
+            },
+            {
+              "type": "Startup",
+              "httpGet": {
+                "path": "/ready",
+                "port": 8080
+              },
+              "periodSeconds": 5,
+              "failureThreshold": 30
+            }
+          ]
+        }
+      ]
+    },
+    "dynamicPoolConfiguration": {
+      "readySessionInstances": 5
+    }
+  }
+}
+```
 
 # [Azure CLI](#tab/azure-cli)
 
@@ -264,136 +391,7 @@ Custom container session pools require a workload profiles-enabled Azure Contain
 
 # [Azure Resource Manager](#tab/arm)
 
-To use Azure Resource Manager for session pools, see the [SessionPools REST API overview](https://learn.microsoft.com/en-us/rest/api/resource-manager/containerapps/container-apps-session-pools?view=rest-resource-manager-containerapps-2025-07-01).
-
----
-
-> [!IMPORTANT]
-> If the session is used to run untrusted code, don't include information or data that you don't want the untrusted code to access. Assume the code is malicious and has full access to the container, including its environment variables, secrets, and files.
-
-## Configure a pool
-
-Use `az containerapp sessionpool create --help` to see the latest CLI arguments for session pool configuration. This section focuses on advanced configuration options that apply across API versions.
-
-### Session lifecycle configuration
-
-When you create or update a session pool, you can configure how sessions are terminated by setting `properties.dynamicPoolConfiguration.lifecycleConfiguration`. Starting with API version `2025-01-01`, choose one of two lifecycle types.
-
-For the full API specification, see the [SessionPools API spec](https://learn.microsoft.com/en-us/rest/api/resource-manager/containerapps/container-apps-session-pools/create-or-update?view=rest-resource-manager-containerapps-2025-07-01&tabs=HTTP).
-
-#### Timed (default)
-
-With the `Timed` lifecycle, a session is deleted after a period of inactivity. Any request sent to a session resets the cooldown timer, extending the session's time-to-live by `cooldownPeriodInSeconds`.
-
-> [!NOTE]
-> `Timed` is supported for all session pool types and works the same as `executionType: Timed` in earlier API versions.
-
-```json
-{
-  "dynamicPoolConfiguration": {
-    "lifecycleConfiguration": {
-      "cooldownPeriodInSeconds": 600,
-      "lifecycleType": "Timed"
-    }
-  }
-}
-```
-
-| Property | Description |
-| --- | --- |
-| `cooldownPeriodInSeconds` | The session is deleted when there are no requests for this duration. |
-| `maxAlivePeriodInSeconds` | Not supported for `Timed` lifecycle. |
-
-#### OnContainerExit
-
-With the `OnContainerExit` lifecycle, a session remains active until the container exits on its own or the maximum alive period is reached.
-
-> [!NOTE]
-> `OnContainerExit` is only supported for **Custom Container Session Pools**.
-
-```json
-{
-  "dynamicPoolConfiguration": {
-    "lifecycleConfiguration": {
-      "maxAlivePeriodInSeconds": 6000,
-      "lifecycleType": "OnContainerExit"
-    }
-  }
-}
-```
-
-| Property | Description |
-| --- | --- |
-| `maxAlivePeriodInSeconds` | Maximum time the session can stay alive before being deleted. |
-| `cooldownPeriodInSeconds` | Not supported for `OnContainerExit` lifecycle. |
-
-### Container probes
-
-Container probes let you define health checks for session containers so the pool can detect unhealthy sessions and replace them to keep the `readySessionInstances` target healthy.
-
-> [!NOTE]
-> Container probes are only supported in **Custom Container Session Pools** and require API version `2025-02-02-preview` or later.
-
-Session pools support **Liveness** and **Startup** probes. For more information about probe behavior, see [Health probes in Azure Container Apps](https://learn.microsoft.com/en-us/azure/container-apps/health-probes?tabs=arm-template).
-
-When creating or updating a session pool, specify probes in `properties.customContainerTemplate.containers`. For the complete request body schema, see the [SessionPools Create or Update API reference](https://learn.microsoft.com/en-us/rest/api/resource-manager/containerapps/container-apps-session-pools/create-or-update?view=rest-resource-manager-containerapps-2025-10-02-preview). The following example shows a partial configuration with probe definitions:
-
-```json
-{
-  "properties": {
-    "customContainerTemplate": {
-      "containers": [
-        {
-          "name": "my-session-container",
-          "image": "myregistry.azurecr.io/my-session-image:latest",
-          "probes": [
-            {
-              "type": "Liveness",
-              "httpGet": {
-                "path": "/health",
-                "port": 8080
-              },
-              "periodSeconds": 10,
-              "failureThreshold": 3
-            },
-            {
-              "type": "Startup",
-              "httpGet": {
-                "path": "/ready",
-                "port": 8080
-              },
-              "periodSeconds": 5,
-              "failureThreshold": 30
-            }
-          ]
-        }
-      ]
-    },
-    "dynamicPoolConfiguration": {
-      "readySessionInstances": 5
-    }
-  }
-}
-```
-
-If the pool isn't maintaining the expected number of healthy ready sessions, review probe paths and thresholds, and check session logs in [sessions usage logging](./sessions-usage.md#logging).
-
-## Management endpoint
-
-> [!IMPORTANT]
-> The session identifier is sensitive information which requires a secure process as you create and manage its value. To protect this value, your application must ensure each user or tenant only has access to their own sessions.
->
-> Failure to secure access to sessions could result in misuse or unauthorized access to data stored in your users' sessions. For more information, see [Session identifiers](./sessions-usage.md#identifiers)
-
-All requests to the pool management endpoint must include an `Authorization` header with a bearer token. To learn how to authenticate with the pool management API, see [Authentication](sessions-usage.md#authentication).
-
-Each API request must also include the query string parameter `identifier` with the session ID. This unique session ID enables your application to interact with specific sessions. To learn more about session identifiers, see [Session identifiers](sessions-usage.md#identifiers).
-
-## Image caching
-
-When a session pool is created or updated, Azure Container Apps caches the container image in the pool. This caching helps speed up the process of creating new sessions.
-
-Any changes to the image aren't automatically reflected in the sessions. To update the image, update the session pool with a new image tag. Use a unique tag for each image update to ensure that the new image is pulled.
+To use Azure Resource Manager for session pools, see the [SessionPools REST API overview](/rest/api/resource-manager/containerapps/container-apps-session-pools?view=rest-resource-manager-containerapps-2025-07-01).
 
 ## Related content
 

@@ -82,7 +82,7 @@ Session pools can manage session lifecycle automatically, but you can also termi
 
 #### Code interpreter session pools (Delete Session API)
 
-To terminate a code interpreter session, use the Delete Session API (`DELETE`). See the data-plane REST reference for the latest endpoint shape and API version: [Container Apps data-plane operations overview](https://learn.microsoft.com/en-us/rest/api/data-plane/containerapps/operation-groups?view=rest-data-plane-containerapps-2025-10-02-preview).
+To terminate a code interpreter session, use the Delete Session API (`DELETE`). See the data-plane REST reference for the latest endpoint shape and API version: [Container Apps data-plane operations overview](/rest/api/data-plane/containerapps/operation-groups?view=rest-data-plane-containerapps-2025-10-02-preview).
 
 #### Custom container session pools (Stop Session API)
 
