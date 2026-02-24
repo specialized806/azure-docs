@@ -5,7 +5,7 @@ services: virtual-network
 author: asudbring
 ms.service: azure-virtual-network
 ms.topic: concept-article
-ms.date: 02/03/2026
+ms.date: 02/23/2026
 ms.author: allensu
 # Customer intent: As a cloud architect or IT administrator, I want to optimize costs for Azure Virtual Network, so that I can maintain effective network connectivity while controlling expenses and maximizing return on investment.
 ---
@@ -29,10 +29,10 @@ Azure Virtual Network costs include several components that directly impact your
 | Cost Component | Description | Billing Model |
 |---|---|---|
 | **Virtual Network** | Base virtual network infrastructure | Free (up to 1,000 VNets per subscription) |
-| **VNet Peering (Same Region)** | Data transfer between peered VNets in same region | $0.01 per GB (inbound and outbound) |
-| **Global VNet Peering** | Data transfer between peered VNets in different regions | Zone-based pricing ($0.035-$0.16 per GB) |
-| **Accelerated Connections** | Enhanced connection performance for network-intensive workloads | Hourly rate per network interface (NIC) ($0.025-$2.50/hr based on SKU) |
-| **Virtual Network TAP** | Traffic mirroring for monitoring | $0.015 per network interface (NIC) per hour |
+| **VNet Peering (Same Region)** | Data transfer between peered VNets in same region | Priced per GB (inbound and outbound) |
+| **Global VNet Peering** | Data transfer between peered VNets in different regions | Zone-based pricing (per GB) |
+| **Accelerated Connections** | Enhanced connection performance for network-intensive workloads | Hourly rate per network interface (NIC) (varies by SKU) |
+| **Virtual Network TAP** | Traffic mirroring for monitoring | Priced per network interface (NIC) per hour |
 | **VPN Gateway** | Hybrid connectivity to on-premises | Hourly compute + data transfer |
 | **NAT Gateway** | Outbound internet connectivity | Hourly + data processing charges |
 | **IP Addresses** | Public IP addresses | Hourly charges per IP |
@@ -57,7 +57,7 @@ Azure Virtual Network offers different connectivity patterns with unique cost st
 | Recommendation | Benefit |
 |---|---|
 | **Use hub-and-spoke topology** with centralized shared services in hub virtual network and workload-specific spoke VNets connected via peering. | Hub-and-spoke reduces complexity and centralizes common services like firewalls, VPN gateways, and monitoring. You pay peering costs only between hubs and spokes, avoiding mesh peering charges. This topology scales efficiently as you add new workloads. To implement hub-and-spoke, see [Hub-spoke network topology in Azure](/azure/architecture/reference-architectures/hybrid-networking/hub-spoke). |
-| **Implement regional VNet peering** instead of global peering when workloads can be colocated in the same Azure region. | Regional peering costs less than global peering ($0.01/GB vs $0.035-$0.16/GB). You reduce latency while minimizing data transfer expenses. Design workload placement to maximize same-region communication when performance requirements permit. |
+| **Implement regional VNet peering** instead of global peering when workloads can be colocated in the same Azure region. | Regional peering costs less than global peering. You reduce latency while minimizing data transfer expenses. Design workload placement to maximize same-region communication when performance requirements permit. |
 | **Use Azure Private Link** for connecting to Azure PaaS services instead of routing traffic through public endpoints. | Private Link eliminates virtual network peering charges for PaaS access and improves security. You pay Private Link endpoint charges but avoid unnecessary peering costs and data transfer over public networks. This approach optimizes both cost and security. For more information, see [What is Azure Private Link?](../private-link/private-link-overview.md). |
 | **Implement subnet peering** when only specific subnets need connectivity between virtual networks. | Subnet peering reduces costs by limiting peering scope to necessary subnets rather than entire virtual network address spaces. You pay for data transfer only on required communication paths. This granular approach prevents paying for unused peering capacity. To configure subnet peering, see [How to configure subnet peering](how-to-configure-subnet-peering.md). |
 
@@ -81,7 +81,7 @@ Gateways and specialized network services add significant costs. Use them judici
 | **Share VPN gateways** across multiple virtual networks using gateway transit in hub-and-spoke topologies instead of deploying gateways in every virtual network. | Gateway consolidation eliminates duplicate gateway costs while maintaining hybrid connectivity. A single gateway can serve multiple spoke VNets through peering with gateway transit enabled. You pay one gateway hourly charge instead of multiple. To configure gateway transit, see [Configure VPN gateway transit in virtual network peering](../vpn-gateway/vpn-gateway-peering-gateway-transit.md). |
 | **Right-size VPN gateways** based on actual throughput requirements rather than over-provisioning for peak capacity. | Gateway stock keeping units (SKUs) have significant price differences. You can start with lower SKUs and scale up if needed, avoiding unnecessary costs for unused capacity. To ensure adequate performance, monitor gateway metrics. |
 | **Use NAT Gateway** for outbound internet connectivity instead of public IPs on individual virtual machines (VMs) when you have many outbound connections. | NAT Gateway provides cost-effective, scalable outbound connectivity with better performance than individual public IPs. You pay per-hour plus data processing charges, which is often more economical than many public IP addresses. For more information, see [What is Azure NAT Gateway?](../nat-gateway/nat-overview.md). |
-| **Evaluate Accelerated Connections** based on actual performance requirements for network-intensive workloads. | Accelerated Connections (SKUs A1-A8) improve connection performance but add hourly charges ($0.025-$2.50/hr). Only enable on workloads that genuinely need enhanced connection performance. Test performance with standard networking first before upgrading. |
+| **Evaluate Accelerated Connections** based on actual performance requirements for network-intensive workloads. | Accelerated Connections (SKUs A1-A8) improve connection performance but add hourly charges that vary by SKU. Only enable on workloads that genuinely need enhanced connection performance. Test performance with standard networking first before upgrading. |
 
 ## Monitor and optimize over time
 
