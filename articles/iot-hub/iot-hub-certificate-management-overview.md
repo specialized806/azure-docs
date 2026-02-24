@@ -100,7 +100,7 @@ The following diagram illustrates the end-to-end process of device provisioning 
 
 End-entity leaf certificates can be renewed using the same mechanism as first-time certificate issuance. When the device detects a need to renew its operational certificate, it must initiate another registration call to DPS, submitting a new Certificate Signing Request (CSR). Once again, the CSR is sent to the appropriate issuing certificate authority (ICA) to request a renewed leaf certificate. Once approved, the renewed operational certificate is returned to the device to be used for secure communications.
 
-Each device is responsible for monitoring the expiration date of its operational certificate and initiating a certificate renewal when needed. As a best practice, we recommend renewing a certificate before its expiration date to ensure uninterrupted communications. The operational certificate includes its `Valid from` and `Valid until` dates, which the device can monitor to determine when a renewal is needed. During this preview, we recommend that devices use their [Device Twin reported properties](iot-hub-devguide-device-twins.md#device-twins) for reporting the certificate issuance and certificate expiration dates. These properties can then be used for observability, like building dashboards.
+Each device is responsible for monitoring the expiration date of its operational certificate and initiating a certificate renewal when needed. As a best practice, we recommend renewing a certificate before its expiration date to ensure uninterrupted communications. The operational certificate includes its `Valid from` and `Valid until` dates, which the device can monitor to determine when a renewal is needed. During this preview, we recommend that devices use their [Device twin reported properties](iot-hub-devguide-device-twins.md#device-twins) for reporting the certificate issuance and certificate expiration dates. These properties can then be used for observability, like building dashboards.
 
 ## Disable a device
 
@@ -110,3 +110,9 @@ Certificate management doesn't support certificate revocation during public prev
 
 See [Azure subscription and service limits](../azure-resource-manager/management/azure-subscription-service-limits.md#azure-iot-hub-limits) for the latest information about limits and quotas for certificate management with IoT Hub.
 
+## Related content
+
+- [FAQ: What is new in Azure IoT Hub?](iot-hub-faq.md)
+- [Key concepts for certificate management](iot-hub-certificate-management-concepts.md)
+- [Get started with ADR and certificate management in IoT Hub](iot-hub-device-registry-setup.md)
+- [Integration with Azure Device Registry](iot-hub-device-registry-overview.md)

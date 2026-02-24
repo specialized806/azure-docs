@@ -17,12 +17,13 @@ This article shows how to configure encryption for an Elastic SAN volume group b
 
 ## Prerequisites
 
-- This article requires the latest version of the Azure CLI. See [How to install the Azure CLI](/cli/azure/install-azure-cli). If you use Azure Cloud Shell, the latest version is already installed. If you run commands locally, use an account with administrative privileges.
-- This article assumes you installed Azure Container Storage version 2.1.0 or later on your Azure Kubernetes Service (AKS) cluster.
+[!INCLUDE [container-storage-prerequisites](../../../includes/container-storage-prerequisites.md)]
+
+- This article assumes you [installed Azure Container Storage version 2.1.0 or later](./install-container-storage-aks.md) on your Azure Kubernetes Service (AKS) cluster.
 
 ## Configure the key vault
 
-You can use a new or existing key vault to store customer-managed keys. The encrypted resource and the key vault can be in different regions or subscriptions in the same Microsoft Entra ID tenant. To learn more, see [Azure Key Vault Overview](/azure/key-vault/general/overview) and [What is Azure Key Vault?](/azure/key-vault/general/basic-concepts).
+You can use a new or existing key vault to store customer-managed keys. The encrypted resource and the key vault can be in different regions or subscriptions in the same Microsoft Entra ID tenant. To learn more, see [Azure Key Vault Overview](/azure/key-vault/general/overview) and [What is Azure Key Vault?](/azure/key-vault/general/basic-concepts)
 
 Encryption with customer-managed keys requires that both soft delete and purge protection are enabled for the key vault. Soft delete is enabled by default when you create a new key vault and can't be disabled. You can enable purge protection when you create the key vault or after it is created. Azure Elastic SAN encryption supports RSA keys of sizes 2048, 3072, and 4096.
 
@@ -165,7 +166,7 @@ Apply the manifest to deploy the pod.
 kubectl apply -f acstor-pod.yaml
 ```
 
-You should see output similar to the following:
+You should see output similar to this example:
 
 ```output
 pod/pod-san-encrypted created

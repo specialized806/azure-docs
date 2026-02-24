@@ -2,7 +2,7 @@
 title: Overview of Azure Disk Backup
 description: Learn about the Azure Disk backup solution.
 ms.topic: overview
-ms.date: 01/30/2026
+ms.date: 02/13/2026
 ms.service: azure-backup
 author: AbhishekMallick-MS
 ms.author: v-mallicka
@@ -21,6 +21,8 @@ Azure Disk Backup is integrated into Resiliency, which provides a **single unifi
 
 >[!Note]
 >- If the target disk is attached as a Persistent Volume to an AKS cluster, choose [Azure Backup for AKS](./azure-kubernetes-service-cluster-backup.md) over the standalone Disk Backup solution. It enables backing up the disk as snapshots along with the containerized application in a Kubernetes-aware manner, all as a single unit.  Additionally, you get Cross Region Restore and ransomware protection capabilities with AKS Backup.
+
+To view the supported Azure Disk backup and restore scenarios, see the [support matrix](disk-backup-support-matrix.md). For common questions, see the [frequently asked questions](disk-backup-faq.yml).
 
 ## Key benefits of Disk Backup
 
@@ -103,7 +105,8 @@ The number of recovery points is determined by the Backup policy used to configu
 
 ## Next steps
 
-[Azure Disk Backup support matrix](disk-backup-support-matrix.md).
+- [Azure Disk Backup support matrix](disk-backup-support-matrix.md).
+- [Troubleshoot Azure Disk backup](disk-backup-troubleshoot.md).
 
 ## Related content
 
