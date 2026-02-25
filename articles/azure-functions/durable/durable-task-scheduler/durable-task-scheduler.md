@@ -1,12 +1,12 @@
 ---
-title: Durable Task Scheduler storage provider
+title: Durable Task Scheduler
 titleSuffix: Durable Task
-description: Learn about the characteristics of the Durable Task Scheduler storage provider.
+description: Learn about the characteristics of the Durable Task Scheduler.
 ms.topic: concept-article
 ms.date: 02/06/2026
 ---
 
-# Durable Task Scheduler storage provider
+# Durable Task Scheduler
 
 The Durable Task Scheduler provides durable execution in Azure. Durable execution is a fault-tolerant approach to running code that handles failures and interruptions through automatic retries and state persistence. Durable execution helps with scenarios such as:
 - Distributed transactions
