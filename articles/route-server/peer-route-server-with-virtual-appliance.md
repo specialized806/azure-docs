@@ -5,7 +5,7 @@ author: duongau
 ms.author: duau
 ms.service: azure-route-server
 ms.topic: tutorial
-ms.date: 09/17/2025
+ms.date: 07/11/2025
 ms.custom: sfi-image-nochange
 
 ---
@@ -21,6 +21,7 @@ In this tutorial, you learn how to:
 > [!div class="checklist"]
 > * Deploy an Azure Route Server in a virtual network
 > * Create and configure a Windows Server virtual machine as an NVA
+> * Deploy Azure Bastion for secure VM access
 > * Configure BGP routing on the network virtual appliance
 > * Establish BGP peering between Route Server and the NVA
 > * Verify route learning and propagation
@@ -119,15 +120,40 @@ Create a Windows Server VM in the virtual network you created earlier to act as 
     | -------- | ----- |
     | Virtual network | Select **myVirtualNetwork**. |
     | Subnet | Select **mySubnet (10.0.0.0/24)**. |
-    | Public IP | Leave as default. |
-    | NIC network security group | Select **Basic**. |
-    | Public inbound ports | Select **Allow selected ports**. |
-    | Select inbound ports | Select **RDP (3389)**. |
-
-    > [!CAUTION]
-    > Leaving the RDP port open to the internet isn't recommended. Restrict access to the RDP port to a specific IP address or range of IP addresses. For production environments, it's recommended to block internet access to the RDP port and use [Azure Bastion](../bastion/bastion-overview.md?toc=/azure/route-server/toc.json) to securely connect to your virtual machine from the Azure portal.
+    | Public IP | Select **None**. |
+    | NIC network security group | Select **Advanced**. |
+    | Configure network security group | Select **Create new**.</br> In **Name** enter **nsg-nva**.</br> Select **OK**. |
 
 1. Select **Review + create** and then **Create** after validation passes.
+
+### Deploy Azure Bastion
+
+Azure Bastion uses your browser to connect to VMs in your virtual network over Secure Shell (SSH) or Remote Desktop Protocol (RDP) by using their private IP addresses. The VMs don't need public IP addresses, client software, or special configuration. For more information about Azure Bastion, see [Azure Bastion](../bastion/bastion-overview.md?toc=/azure/route-server/toc.json).
+
+>[!NOTE]
+>[!INCLUDE [Pricing](~/reusable-content/ce-skilling/azure/includes/bastion-pricing.md)]
+
+1. In the search box at the top of the portal, enter **Bastion**. Select **Bastions** in the search results.
+
+1. Select **+ Create**.
+
+1. In the **Basics** tab of **Create a Bastion**, enter, or select the following information:
+
+    | Setting | Value |
+    |---|---|
+    | **Project details** |  |
+    | Subscription | Select your subscription. |
+    | Resource group | Select **myResourceGroup**. |
+    | **Instance details** |  |
+    | Name | Enter **bastion**. |
+    | Region | Select **East US**. |
+    | Tier | Select **Developer**. |
+    | **Configure virtual networks** |  |
+    | Virtual network | Select **myVirtualNetwork**. |
+
+1. Select **Review + create**.
+
+1. Select **Create**.
 
 ### Configure BGP on the virtual machine
 
@@ -135,13 +161,21 @@ In this section, you configure BGP settings on the VM so it can function as an N
 
 > [!IMPORTANT]
 > The Routing and Remote Access Service (RRAS) isn't supported in Azure for production use. However, in this tutorial, it's used to simulate an NVA and demonstrate how to establish BGP peering with Route Server. For production environments, use supported network virtual appliances from Azure Marketplace. For more information, see [Remote access overview](/windows-server/remote/remote-access/remote-access).
-1. Go to **myNVA** virtual machine and select **Connect**.
+1. In the search box at the top of the portal, enter **Virtual machine**. Select **Virtual machines** in the search results.
 
-1. On the **Connect** page, select **Download RDP file** under **Native RDP**.
+1. Select **myNVA**.
 
-1. Open the downloaded file.
+1. Select **Connect** then **Connect via Bastion** in the **Overview** section.
 
-1. Select **Connect** and then enter the username and password that you created in the previous steps. Accept the certificate if prompted.
+1. In the **Bastion** connection page, enter or select the following information:
+
+    | Setting | Value |
+    | ------- | ----- |
+    | Authentication Type | Select **Password**. |
+    | Username | Enter the username you created. |
+    | Password | Enter the password you created. |
+
+1. Select **Connect**.
 
 1. Run PowerShell as an administrator.
 
