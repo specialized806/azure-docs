@@ -54,7 +54,7 @@ For information on release notes for the connected machine agent, see
 
 #### Fixed
 
-- Resolved an issue where the compliance status did not update correctly until services were restarted.
+- Resolved an issue where the compliance status didn't update correctly until services were restarted.
 - Updated local PATH environment variable to resolve service install/delete errors.
   
 ### Version 1.29.92.0 - April 2025
@@ -100,7 +100,7 @@ In this case the maximum CPU utilization of the service will be 5%. This can be 
 
 #### Fixed
 
-- Added time-outs to address an issue that caused the agent to become unresponsive when
+- Added timeouts to address an issue that caused the agent to become unresponsive when
   trying to read a response from the service. If the agent takes more than 3 minutes to
   read a response or send a request to the service, it will now time out and continue
   execution.
@@ -157,7 +157,7 @@ In this case the maximum CPU utilization of the service will be 5%. This can be 
 
 #### Fixed
 
-- Resolved an issue where the compliance status did not update correctly until services were restarted.
+- Resolved an issue where the compliance status didn't update correctly until services were restarted.
 - Updated Boost on Linux to resolve service start issues caused by compatibility problems.
 - Resolved "No public key" error by adding GPG package signature validation.
 - Resolved gpg installation issues on debian
@@ -205,7 +205,7 @@ In this case the maximum CPU utilization of the service will be 5%. This can be 
 
 ##### Fixed
 
-- Added time-outs to address an issue that caused the agent to become unresponsive when
+- Added timeouts to address an issue that caused the agent to become unresponsive when
   trying to read a response from the service. If the agent takes more than 3 minutes to
   read a response or send a request to the service, it will now time out and continue
   execution.
