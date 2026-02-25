@@ -5,7 +5,7 @@ author: rolyon
 manager: pmwongera
 ms.service: role-based-access-control
 ms.topic: whats-new
-ms.date: 12/30/2025
+ms.date: 02/23/2026
 ms.author: rolyon
 
 ---
@@ -13,6 +13,12 @@ ms.author: rolyon
 # What's new in Azure RBAC documentation
 
 This article provides information about new features and documentation improvements in Azure role-based access control (RBAC).
+
+## 2026
+
+| Date | Area | Description |
+| --- | --- | --- |
+| February 2026 | Roles and permissions | Updated permissions for several roles and resource providers. See [Azure built-in roles](built-in-roles.md) and [Azure permissions](resource-provider-operations.md). |
 
 ## 2025
 
