@@ -506,6 +506,7 @@ public static void Counter([EntityTrigger] IDurableEntityContext ctx)
 ```
 
 </details>
+
 # [JavaScript](#tab/javascript)
 
 ```javascript
