@@ -167,16 +167,15 @@ The Durable Task SDKs are platform-agnostic and can run on different compute pla
 
 For detailed pricing information, see the billing documentation for each compute service:
 
-- [Azure Container Apps billing](../../container-apps/billing.md)
+- [Azure Container Apps billing](../../../container-apps/billing.md)
 - [Understand Azure Kubernetes Service costs](/azure/aks/understand-aks-costs)
-- [Plan and manage costs for Azure App Service](../../app-service/overview-manage-costs.md)
+- [Plan and manage costs for Azure App Service](../../../app-service/overview-manage-costs.md)
 
 ## Next steps
 
 > [!div class="nextstepaction"]
 > [Quickstart: Host a Durable Task SDK app on Azure Container Apps](./quickstart-container-apps-durable-task-sdk.md)
 
-- [Learn about pricing for Durable Task Scheduler](https://azure.microsoft.com/pricing/details/function)
+- [Learn about pricing for Durable Task Scheduler](https://azure.microsoft.com/pricing/details/functions/)
 - [View throughput performance benchmarks](./durable-task-scheduler-work-item-throughput.md)
-- [Choose your orchestration framework](./choose-orchestration-framework.md)
 - [Choose your orchestration framework](./choose-orchestration-framework.md)
