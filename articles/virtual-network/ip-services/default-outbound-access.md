@@ -26,7 +26,7 @@ Examples of explicit outbound connectivity for virtual machines are:
 
 ## How and when default outbound access is provided
 
-If a Virtual Machine (VM) is deployed without an explicit outbound connectivity method, Azure assigns it a default outbound public IP address. This IP, known as the default outbound access IP, is owned by Microsoft and can change without notice. Additionally, default outbound is an implicit behavior and may change due to service updates, so it isn’t recommended for production workloads or scenarios that require deterministic outbound connectivity.
+If a Virtual Machine (VM) is deployed without an explicit outbound connectivity method, Azure assigns it a default outbound public IP address. This IP, known as the default outbound access IP, is owned by Microsoft and can change without notice. Additionally, default outbound connectivity relies on an implicit platform behavior and may be affected by platform‑level changes. For scenarios requiring deterministic outbound behavior, we recommend using an explicit configuration.
 
 :::image type="content" source="./media/default-outbound-access/decision-tree-load-balancer.png"  alt-text="Diagram of decision tree for default outbound access." lightbox="./media/default-outbound-access/decision-tree-load-balancer.png":::
 
