@@ -111,17 +111,26 @@ New-AzNetworkSecurityGroup @nsg
 
 ## Create a virtual machine
 
-The following command creates a Windows Server virtual machine with [New-AzVM](/powershell/module/az.compute/new-azvm). When prompted, provide a username and password to be used as the credentials for the virtual machine:
+Create a virtual machine with [New-AzVM](/powershell/module/az.compute/new-azvm). When prompted, enter the username and password for the virtual machine.
 
 ```azurepowershell-interactive
-## Create virtual machine. ##
-$vm = @{
+# Create a credential object
+$cred = Get-Credential
+
+# Define the virtual machine parameters
+$vmParams = @{
     ResourceGroupName = 'myResourceGroup'
-    Location = 'East US 2'
+    Location = 'EastUS2'
     Name = 'myVM'
+    Image = 'Win2022AzureEditionCore'
+    Size = 'Standard_DS1_v2'
+    Credential = $cred
     SecurityGroupName = 'myNSG'
+    PublicIpAddressName = ''
 }
-New-AzVM @vm
+
+# Create the virtual machine
+New-AzVM @vmParams
 ```
 
 # [Azure CLI](#tab/azurecli)
