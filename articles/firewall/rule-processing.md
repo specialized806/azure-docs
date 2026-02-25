@@ -110,6 +110,12 @@ Session drops done by IDPS blocks the flow silently. So no RST is sent on the TC
 
 When TLS inspection is enabled both unencrypted and encrypted traffic is inspected.  
 
+### Implicit return traffic support (stateful TCP/UDP)
+ 
+User may configure firewall rules to allow traffic in one direction only. For example, Azure Firewall may allow connections initiated from an on‑premises network to an Azure virtual network, while requiring that new connections initiated from the Azure virtual network to on‑premises be blocked. To enforce this policy, user may add an explicit Deny rule for traffic from the Azure virtual network to the on‑premises network.
+ 
+Azure Firewall supports this configuration. Azure Firewall is stateful and return traffic for an established TCP/UDP connection (for example, the SYN‑ACK/ACK packets for a connection initiated from on‑premises) is allowed even when an explicit Deny rule exists in the reverse direction. The explicit Deny rule continues to block new connections initiated from the Azure virtual network to on‑premises.
+
 ## Outbound connectivity
 
 ### Network rules and applications rules
