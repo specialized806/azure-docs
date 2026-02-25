@@ -247,4 +247,4 @@ If you no longer need the resources that you created to complete the quickstart,
 ## Related content
 
 * Learn about [common Durable Functions app patterns](durable-functions-sequence.md).
-* Learn about [Unit Testing Durable Functions in Python](durable-functions-unit-testing-python.md)
+* Learn about [Unit testing](durable-functions-unit-testing.md)

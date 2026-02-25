@@ -137,22 +137,16 @@
       items:
       - name: Manage connections
         href: ../manage-connections.md?toc=/azure/azure-functions/durable/toc.json
+      - name: Unit testing
+        href: durable-functions-unit-testing.md
       - name: C#
         items:
         - name: Roslyn Analyzer (C# only)
           href: durable-functions-roslyn-analyzer.md
         - name: Durable entities
           href: durable-functions-dotnet-entities.md
-        - name: Unit testing (isolated)
-          href: durable-functions-unit-testing-dotnet-isolated.md
-        - name: Unit testing (in-process)
-          href: durable-functions-unit-testing.md
         - name: Migrate from In-Process to Isolated model
           href: durable-functions-migrate.md
-      - name: Python
-        items:
-        - name: Unit testing (Python)
-          href: durable-functions-unit-testing-python.md
       - name: Node.js
         items:
         - name: Upgrade to Node.js model v4
