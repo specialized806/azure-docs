@@ -143,7 +143,18 @@ The version is a simple string and accepts any value. The SDK tries to convert i
 
 # [JavaScript](#tab/javascript)
 
-This sample is available for .NET, Java, and Python.
+```javascript
+const client = new DurableTaskAzureManagedClientBuilder()
+    .connectionString(connectionString)
+    .logger(logger)
+    .build();
+
+// Schedule an orchestration with an explicit version
+const instanceId = await client.scheduleNewOrchestration(
+    myOrchestrator, undefined, { version: "1.0.0" });
+```
+
+The version is a simple string. The SDK uses semantic versioning comparison via `compareVersionTo()` on the orchestration context.
 
 # [Python](#tab/python)
 
@@ -161,7 +172,7 @@ The version is a simple string parsed using `packaging.version`, which supports 
 
 # [PowerShell](#tab/powershell)
 
-This sample is shown for .NET, Java, and Python.
+This sample is shown for .NET, JavaScript, Java, and Python.
 
 # [Java](#tab/java)
 
@@ -342,7 +353,22 @@ class HelloCities : TaskOrchestrator<string, List<string>>
 
 # [JavaScript](#tab/javascript)
 
-This sample is shown for .NET, Java, and Python.
+```javascript
+const versionedOrchestrator = async function* (ctx) {
+    const comparison = ctx.compareVersionTo("2.0.0");
+
+    let result;
+    if (comparison >= 0) {
+        // v2.0.0 or newer — uses new logic
+        result = yield ctx.callActivity(doWork, `v2-logic (version=${ctx.version})`);
+    } else {
+        // Older than v2.0.0 — uses legacy logic
+        result = yield ctx.callActivity(doWork, `v1-logic (version=${ctx.version})`);
+    }
+
+    return { version: ctx.version, result, comparedTo2: comparison };
+};
+```
 
 # [Python](#tab/python)
 
@@ -359,7 +385,7 @@ def orchestrator(ctx: task.OrchestrationContext, _):
 
 # [PowerShell](#tab/powershell)
 
-This sample is shown for .NET, Java, and Python.
+This sample is shown for .NET, JavaScript, Java, and Python.
 
 # [Java](#tab/java)
 
@@ -759,7 +785,19 @@ builder.Services.AddDurableTaskWorker(builder =>
 
 # [JavaScript](#tab/javascript)
 
-This sample is shown for .NET, Java, and Python.
+```javascript
+const worker = new DurableTaskAzureManagedWorkerBuilder()
+    .connectionString(connectionString)
+    .logger(logger)
+    .versioning({
+        version: "2.0.0",
+        matchStrategy: VersionMatchStrategy.Strict,
+        failureStrategy: VersionFailureStrategy.Fail,
+    })
+    .addOrchestrator(myOrchestrator)
+    .addActivity(doWork)
+    .build();
+```
 
 # [Python](#tab/python)
 
@@ -784,7 +822,7 @@ with DurableTaskSchedulerWorker(
 
 # [PowerShell](#tab/powershell)
 
-This sample is shown for .NET, Java, and Python.
+This sample is shown for .NET, JavaScript, Java, and Python.
 
 # [Java](#tab/java)
 
@@ -1042,6 +1080,9 @@ Over time, you might want to remove legacy code paths from your orchestrator fun
 
 > [!div class="nextstepaction"]
 > [See .NET SDK examples](https://github.com/microsoft/durabletask-dotnet/tree/main)
+
+> [!div class="nextstepaction"]
+> [See JavaScript SDK examples](https://github.com/microsoft/durabletask-js/tree/main)
 
 > [!div class="nextstepaction"]
 > [See Python SDK examples](https://github.com/microsoft/durabletask-python/tree/main)
