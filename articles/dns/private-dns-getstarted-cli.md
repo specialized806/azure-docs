@@ -5,7 +5,7 @@ services: dns
 author: asudbring
 ms.service: azure-dns
 ms.topic: quickstart
-ms.date: 11/30/2023
+ms.date: 07/11/2025
 ms.author: allensu
 ms.custom:
   - devx-track-azurecli
@@ -52,6 +52,12 @@ az network vnet create \
   --subnet-name backendSubnet \
   --subnet-prefixes 10.2.0.0/24
 
+az network vnet subnet create \
+  --vnet-name myAzureVNet \
+  --resource-group MyAzureResourceGroup \
+  --name AzureBastionSubnet \
+  --address-prefix 10.2.1.0/24
+
 az network private-dns zone create -g MyAzureResourceGroup \
    -n private.contoso.com
 
@@ -78,6 +84,37 @@ Omitting the resource group lists all zones in the subscription:
 az network private-dns zone list 
 ```
 
+## Deploy Azure Bastion
+
+Azure Bastion uses your browser to connect to VMs in your virtual network over secure shell (SSH) or remote desktop protocol (RDP) by using their private IP addresses. The VMs don't need public IP addresses, client software, or special configuration. For more information about Azure Bastion, see [Azure Bastion](/azure/bastion/bastion-overview).
+
+> [!NOTE]
+> [!INCLUDE [Pricing](~/reusable-content/ce-skilling/azure/includes/bastion-pricing.md)]
+
+Create a public IP address for the Azure Bastion host with [az network public-ip create](/cli/azure/network/public-ip).
+
+```azurecli
+az network public-ip create \
+  --resource-group MyAzureResourceGroup \
+  --name public-ip-bastion \
+  --location eastus \
+  --allocation-method Static \
+  --sku Standard
+```
+
+Create an Azure Bastion host with [az network bastion create](/cli/azure/network/bastion). Azure Bastion is used to securely connect to the virtual machines without exposing them to the public internet.
+
+```azurecli
+az network bastion create \
+  --resource-group MyAzureResourceGroup \
+  --name bastion \
+  --vnet-name myAzureVNet \
+  --public-ip-address public-ip-bastion \
+  --location eastus \
+  --sku Basic \
+  --no-wait
+```
+
 ## Create the test virtual machines
 
 Now, create two virtual machines so you can test your private DNS zone:
@@ -90,9 +127,8 @@ az vm create \
  -l eastus \
  --subnet backendSubnet \
  --vnet-name myAzureVnet \
- --nsg NSG01 \
- --nsg-rule RDP \
- --image win2016datacenter
+ --image win2016datacenter \
+ --public-ip-address ""
 ```
 
 ```azurecli
@@ -103,9 +139,8 @@ az vm create \
  -l eastus \
  --subnet backendSubnet \
  --vnet-name myAzureVnet \
- --nsg NSG01 \
- --nsg-rule RDP \
- --image win2016datacenter
+ --image win2016datacenter \
+ --public-ip-address ""
 ```
 
 Creating a virtual machine will take a few minutes to complete.
@@ -142,18 +177,25 @@ Now you can test the name resolution for your **private.contoso.com** private zo
 
 You can use the ping command to test name resolution. So, configure the firewall on both virtual machines to allow inbound ICMP packets.
 
-1. Connect to myVM01, and open a Windows PowerShell window with administrator privileges.
-2. Run the following command:
+1. In the [Azure portal](https://portal.azure.com), search for and select **Virtual machines**.
+
+1. Select **myVM01**.
+
+1. In **Overview**, select **Connect** > **Connect via Bastion**.
+
+1. Enter the username and password you created when you deployed the virtual machine, then select **Connect**.
+
+1. Open a Windows PowerShell window and run the following command:
 
    ```powershell
    New-NetFirewallRule –DisplayName "Allow ICMPv4-In" –Protocol ICMPv4
    ```
 
-Repeat for myVM02.
+1. Close the Bastion connection to **myVM01** and repeat the previous steps to connect to **myVM02**.
 
 ### Ping the VMs by name
 
-1. From the myVM02 Windows PowerShell command prompt, ping myVM01 using the automatically registered host name:
+1. From the **myVM02** Bastion connection, open a Windows PowerShell command prompt and ping myVM01 using the automatically registered host name:
 
    ```powershell
    ping myVM01.private.contoso.com
