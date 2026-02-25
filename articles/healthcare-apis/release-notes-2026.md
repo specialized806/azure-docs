@@ -19,6 +19,8 @@ Release notes describe features, enhancements, and bug fixes released in 2026 fo
 
 ## February 2026
 ### FHIR service
+**Metadata-only updates and versioning configuration with `$bulk-update`**: Introduced new query parameter "_meta-history" for bulk update when versioning policy is set to either "versioned" or "version-update". The new query parameter is used to configure whether or not the old version is saved as a historical record. "_meta-history=true" is the default. By default, the resource version is incremented, a new version is created, and the old version is saved as a historical record. "_meta-history=false" can be configured so that the resource version is incremented, a new version is created, but the old version isn't saved as a historical record. For more information, visit [metadata-only updates and versioning](./fhir/fhir-versioning-policy-and-history-management.md#metadata-only-updates-and-versioning).  
+
 #### Bug fixes:
 
 **Bug fix for `$bulk-delete` queries with paged results exceeding 100 included items**: There was an issue where some `$bulk-delete` queries that return paged results exceeding 1,000 included items with related links could return an HTTP 500 Internal Server Error. The issue is fixed, and the results are returned correctly now.
@@ -27,10 +29,12 @@ Release notes describe features, enhancements, and bug fixes released in 2026 fo
 
 **Pagination bug in FHIR search fix**: There was an issue where a pagination bug in FHIR search queries caused resources to be intermittently skipped when results span multiple pages and use continuation tokens. The issue is fixed.
 
+**Allow `_meta-history` in transaction bundles**: Previously, there was a limitation where `_meta-history` parameter was not working in [transaction bundles](./fhir/rest-api-capabilities.md#batch-and-transaction-bundles). This issue has been fixed, and the `_meta-history` parameter can now be used in transaction bundles.
+
+**Soft deletes in transaction bundles**: For a [transaction bundle](./fhir/rest-api-capabilities.md#batch-and-transaction-bundles), all supported interactions or operations either succeed or fail together. When a transaction bundle fails, the FHIR service returns a single OperationOutcome. Previously, there was an issue where soft delete operations were not being considered for the transaction bundle scope, which could cause a discrepancy in the all-or-nothing behavior of the transaction bundle if soft delete operations were part of the transaction bundle. The issue has been fixed. 
+
 ## January 2026
 ### FHIR service
-
-**Hard delete now supported inside transaction bundles**:  Hard deletes are now allowed inside transaction bundles. Previously, hard deletes and conditional deletes were not supported. Conditional deletes are still not allowed.
 
 **Metadata-only updates and versioning configuration with PATCH**: Introduced new query parameter "_meta-history" for PATCH updates when versioning policy is set to either "versioned" or "version-update." The new query is used to configure whether or not the old version is saved as a historical record. "_meta-history = true" is the default. By default, the resource version is incremented, a new version is created, and the old version is saved as a historical record. "_meta-history=false" can be configured so that the resource version is incremented, a new version is created, but the old version isn't saved as a historical record. For more information, visit [metadata-only updates and versioning](./fhir/fhir-versioning-policy-and-history-management.md#metadata-only-updates-and-versioning).
 
