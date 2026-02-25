@@ -74,32 +74,39 @@ Select the pipelines you want to migrate.
 ## 5. Map Azure Data Factory Linked Services to Fabric Connections and complete migration
 Select **Review connections** to map Azure Data Factory linked services to Fabric connections. 
 
-The migration experience attempts to automatically create commonly used connections (Azure Blob Storage, ADLS Gen2, SQL Server and Azure SQL Database) that don’t rely on Azure Key Vault.
+The migration experience attempts to automatically create commonly used connections (Azure Blob Storage, ADLS Gen2, SQL Server and Azure SQL Database) that do not rely on Azure Key Vault.
 For other connections, either select an existing Fabric connection or create new connections using the modern Get Data experience or from workspace settings. Then select **Confirm**.
 
-:::image type="content" source="media/how-to-assess-and-upgrade-your-azure-data-factory-pipelines-to-fabric/linkedservices-to-connection-mapping.png" alt-text="Screenshot showing option to select pipelines for migration." lightbox="media/how-to-assess-and-upgrade-your-azure-data-factory-pipelines-to-fabric/linkedservices-to-connection-mapping.png" :::
+:::image type="content" source="media/how-to-assess-and-upgrade-your-azure-data-factory-pipelines-to-fabric/linkedservices-to-connection-mapping.png" alt-text="Screenshot showing mapping of linked services to fabric connections." lightbox="media/how-to-assess-and-upgrade-your-azure-data-factory-pipelines-to-fabric/linkedservices-to-connection-mapping.png" :::
 
+Next, select an existing folder or create a new folder to migrate your Azure Data Factory pipelines, and then select **Confirm**.
+This action starts the migration of the selected Azure Data Factory pipelines to the chosen folder in the Fabric workspace. A confirmation message appears when the migration completes successfully.
+
+:::image type="content" source="media/how-to-assess-and-upgrade-your-azure-data-factory-pipelines-to-fabric/migration-successfully-completed.png" alt-text="Screenshot showing successful completion of migration from ADF to Fabric." lightbox="media/how-to-assess-and-upgrade-your-azure-data-factory-pipelines-to-fabric/migration-successfully-completed.png" :::
+
+After the migration completes, go to the folder you selected in the Fabric workspace to view the pipelines that were successfully migrated. You can open each pipeline to review and validate it before continuing with further configuration or testing.
+
+:::image type="content" source="media/how-to-assess-and-upgrade-your-azure-data-factory-pipelines-to-fabric/validate-migration.png" alt-text="Screenshot for checking the migration folder for validating the pipelines migrated." lightbox="media/how-to-assess-and-upgrade-your-azure-data-factory-pipelines-to-fabric/validate-migration.png" :::
 
 > [!NOTE]
 > If you do not map any connections during this step, pipelines still migrate. Activities within those pipelines would be deactivated and you can configure them later in Fabric. 
 After migration completes, validate the pipelines in the Fabric Data Factory experience.
 
 ## Migration behavior
-•	Pipelines migrate into a Fabric Data Factory workspace.
-•	Pipeline names must be unique within a workspace. 
-•	If a pipeline with the same name already exists, migration tools skips that pipeline.
-•	To ensure uniqueness, migrated pipelines use the following naming format:
-<Source factory or workspace name>_<Pipeline name>
-•	The migration flow includes a mounting step that lets you view your existing factory structure in Fabric before migration
+1. Pipelines migrate into a Fabric Data Factory workspace.
+1. Pipeline names must be unique within a workspace. 
+1. If a pipeline with the same name already exists, migration tools skips that pipeline.
+1. To ensure uniqueness, migrated pipelines use the following naming format: <Source factory or workspace name>_<Pipeline name>
+1. The migration flow includes a mounting step that lets you view your existing factory structure in Fabric before migration
 
 ## Post-migration validation
 
 After migration, you should:
-•	Validate all connections and credentials
-•	Recreate global parameters as Variable Libraries
-•	Re-enable and configure triggers (disabled by default)
-•	Run end-to-end tests to confirm pipeline behavior
-•	Validate migrations in a non-production environment before migrating production workloads.
+1. Validate all connections and credentials
+1. Recreate global parameters as Variable Libraries
+1. Re-enable and configure triggers (disabled by default)
+1. Run end-to-end tests to confirm pipeline behavior
+1. Validate migrations in a non-production environment before migrating production workloads.
 
 ## What's out of scope
 The following items aren’t supported in the UX-based migration experience today:
