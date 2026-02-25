@@ -373,13 +373,13 @@ After you set up the user-assigned managed identity for your Consumption logic a
 
 1. On the logic app sidebar, under **Settings**, select **Identity**, and then select **User assigned**.
 
-   1. On the **User assigned** tab, select the managed identity:
+1. On the **User assigned** tab, select the managed identity:
 
-      :::image type="content" source="media/call-azure-functions-from-workflows/user-identity-consumption.png" alt-text="Screenshot shows Consumption logic app's Identity page with selected tab named User assigned." lightbox="media/call-azure-functions-from-workflows/user-identity-consumption.png":::
+   :::image type="content" source="media/call-azure-functions-from-workflows/user-identity-consumption.png" alt-text="Screenshot shows Consumption logic app's Identity page with selected tab named User assigned." lightbox="media/call-azure-functions-from-workflows/user-identity-consumption.png":::
 
-   1. Copy the identity's **Object (principal) ID**:
+1. Copy the identity's **Object (principal) ID**:
 
-      :::image type="content" source="media/call-azure-functions-from-workflows/user-identity-object-id.png" alt-text="Screenshot shows Consumption logic app's user-assigned identity Overview page with the object (principal) ID selected." lightbox="media/call-azure-functions-from-workflows/user-identity-object-id.png":::
+   :::image type="content" source="media/call-azure-functions-from-workflows/user-identity-object-id.png" alt-text="Screenshot shows Consumption logic app's user-assigned identity Overview page with the object (principal) ID selected." lightbox="media/call-azure-functions-from-workflows/user-identity-object-id.png":::
 
 <a name="find-enterprise-application-id"></a>
 
@@ -413,12 +413,11 @@ After you get the tenant ID and the application ID, set up your function app to 
 
 1. On the **Add an identity provider** page, on the **Basics** tab, from the **Identity provider** list, select **Microsoft**.
 
-1. Under **App registration**, for **App registration type**, select **Provide the details of an existing app registration**, and enter the values that you previously saved.
+1. Under **App registration**, for **App registration type**, select **Provide the details of an existing app registration**, and enter the values that you previously saved where described in the following table:
 
-   | Property | Required | Value | Description |
-   |----------|----------|-------|-------------|
+   | Paremeter | Required | Value | Description |
+   |-----------|----------|-------|-------------|
    | **Application (client) ID** | Yes | <*application-ID*> | The unique identifier to use for this app registration. For this example, use the application ID that you copied for the Enterprise application associated with your managed identity. |
-   | **Federated identity credential** | Yes | <*managed-identity-object-ID*> | The object (principal) ID for your user-assigned managed identity. |
    | **Issuer URL** | No | **<*authentication-endpoint-URL*>/<*Microsoft-Entra-tenant-ID*>/v2.0** | This URL redirects users to the correct Microsoft Entra tenant and downloads the appropriate metadata to determine the appropriate token signing keys and token issuer claim value. For apps that use Azure AD v1, omit **/v2.0** from the URL. <br><br>For this scenario, use the following URL: <br><br>`https://sts.windows.net/`<*Microsoft-Entra-tenant-ID*> |
    | **Allowed token audiences** | No | <*application-ID-URI*> | The application ID URI (resource ID) for the function app. For a cloud or server app where you want to allow authentication tokens from a web app, add the application ID URI for the web app. The configured client ID is always implicitly considered as an allowed audience. <br><br>For this scenario, the value is the following URI: <br><br>`https://management.azure.com` <br><br>Later, use the same URI in the **Audience** property when you [set up your function action in your workflow to use the managed identity](create-managed-service-identity.md#authenticate-access-with-identity). <br><br>**Important**: The application ID URI (resource ID) must exactly match the value that Microsoft Entra ID expects, including any required trailing slashes. |
 
