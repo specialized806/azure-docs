@@ -74,7 +74,7 @@ The identifier must be a string that is 4 to 128 characters long and can contain
 
 ## Session lifecycle in practice
 
-As you continue to make calls to the same session, the session remains [allocated](sessions.md#session-lifecycle) in the pool. Once there are no requests to the session after the cooldown period has elapsed, the session is automatically destroyed.
+As you continue to make calls to the same session, the session remains [allocated](sessions.md#key-concepts) in the pool. Once there are no requests to the session after the cooldown period has elapsed, the session is automatically destroyed.
 
 ### Stop a session
 
