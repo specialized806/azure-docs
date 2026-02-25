@@ -134,7 +134,7 @@ resource aioInstance 'Microsoft.IoTOperations/instances@2025-10-01' existing = {
   name: aioInstanceName
 }
 
-resource customLocation 'Microsoft.ExtendedLocation/customLocations@2021-08-31-15' existing = {
+resource customLocation 'Microsoft.ExtendedLocation/customLocations@2021-08-31-preview' existing = {
   name: customLocationName
 }
 
@@ -406,7 +406,7 @@ resource aioInstance 'Microsoft.IoTOperations/instances@2025-10-01' existing = {
   name: aioInstanceName
 }
 
-resource customLocation 'Microsoft.ExtendedLocation/customLocations@2021-08-15' existing = {
+resource customLocation 'Microsoft.ExtendedLocation/customLocations@2021-08-31-preview' existing = {
   name: customLocationName
 }
 
