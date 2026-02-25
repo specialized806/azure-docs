@@ -68,6 +68,12 @@ Azure Bastion is deployed specifically to ***AzureBastionSubnet***.
 
    :::image type="content" source="./media/bastion-nsg/outbound.png" alt-text="Screenshot shows outbound security rules for Azure Bastion connectivity." lightbox="./media/bastion-nsg/outbound.png":::
 
+### Target VM subnet
+
+This is the subnet that contains the target virtual machine that you want to connect to.
+
+   * **Ingress from AzureBastionSubnet (ports 3389, 22):** Open RDP/SSH ports (3389 and 22 respectively, or custom values if you use the custom port feature with Standard or Premium SKU) inbound on the target VM subnet over private IP. Without this rule, Bastion can't reach your VMs even when it's correctly configured. As a best practice, scope the source to the AzureBastionSubnet IP address range so that only Bastion can open these ports -- not the broader internet.
+
 ### PowerShell script to create NSG rules
 ```
 # Connect to Azure Account
@@ -183,14 +189,11 @@ foreach ($rule in $rules) {
 }
 ```
 
-### Target VM subnet
-
-This is the subnet that contains the target virtual machine that you want to connect to.
-
-   * **Ingress from AzureBastionSubnet (ports 3389, 22):** Open RDP/SSH ports (3389 and 22 respectively, or custom values if you use the custom port feature with Standard or Premium SKU) inbound on the target VM subnet over private IP. Without this rule, Bastion can't reach your VMs even when it's correctly configured. As a best practice, scope the source to the AzureBastionSubnet IP address range so that only Bastion can open these ports -- not the broader internet.
-
-
 ## Next steps
 
-* For a broader set of security recommendations for your Bastion deployment, see [Secure your Azure Bastion deployment](secure-bastion.md).
-* For more information about Azure Bastion, see the [FAQ](bastion-faq.md).
+* [Secure your Azure Bastion deployment](secure-bastion.md) - Apply security hardening recommendations to reduce your Bastion attack surface.
+* [Azure Bastion architecture and design](design-architecture.md) - Understand network topology, trust boundaries, and how Bastion fits within your hub-spoke or flat VNet model.
+* [Private-only Azure Bastion deployment](private-only-deployment.md) - Remove the public-facing IP entirely for stricter network security posture.
+* [Monitor Azure Bastion](monitor-bastion.md) - Enable diagnostic logging and set up alerts to maintain audit visibility for compliance.
+* [Azure Bastion with VNet peering](vnet-peering.md) - Understand NSG rule implications when Bastion and target VMs are in different peered virtual networks.
+* [Azure Bastion FAQ](bastion-faq.md)
