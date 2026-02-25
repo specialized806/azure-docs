@@ -43,25 +43,45 @@ If you choose to install and use PowerShell locally, this article requires the A
 
 ---
 
-## Create virtual machine with a public IP address
+## Create a resource group
 
 # [Azure portal](#tab/azure-portal)
 
-In this section, you create a virtual machine and public IP address in the Azure portal. During the public IP address configuration, you select **Internet** for routing preference.
-
 1. Sign in to the [Azure portal](https://portal.azure.com).
 
-2. In the portal search box, enter **Virtual machine**. In the search results, select **Virtual machines**.
+2. In the portal search box, enter **Resource groups**. In the search results, select **Resource groups**.
 
-3. In **Virtual machines**, select **+ Create**, then **+ Virtual machine**.
+3. Select **+ Create**.
 
-4. In the **Basics** tab of **Create a virtual machine**, enter, or select the following information.
+4. In the **Basics** tab of **Create a resource group**, enter, or select the following information.
 
     | Setting | Value |
     | ------- | ----- |
     | **Project details** |   |
     | Subscription | Select your subscription. |
-    | Resource group | Select **Create new**.</br> Enter **TutorVMRoutePref-rg**. Select **OK**. |
+    | Resource group | Enter **TutorVMRoutePref-rg**. |
+    | **Resource details** |   |
+    | Region | Select **(US) West US 2**. |
+
+5. Select **Review + create**.
+
+6. Select **Create**.
+
+## Create virtual machine with a public IP address
+
+In this section, you create a virtual machine and public IP address in the Azure portal. During the public IP address configuration, you select **Internet** for routing preference.
+
+1. In the portal search box, enter **Virtual machine**. In the search results, select **Virtual machines**.
+
+2. In **Virtual machines**, select **+ Create**, then **+ Virtual machine**.
+
+3. In the **Basics** tab of **Create a virtual machine**, enter, or select the following information.
+
+    | Setting | Value |
+    | ------- | ----- |
+    | **Project details** |   |
+    | Subscription | Select your subscription. |
+    | Resource group | Select **TutorVMRoutePref-rg**. |
     | **Instance details** |   |
     | Virtual machine name | Enter **myVM**. |
     | Region | Select **(US) West US 2**. |
@@ -82,9 +102,9 @@ In this section, you create a virtual machine and public IP address in the Azure
     > [!NOTE]
     > All public inbound ports are closed for this virtual machine. To manage your virtual machines, deploy Azure Bastion. For more information, see [Quickstart: Deploy Azure Bastion from the Azure portal](../../bastion/quickstart-host-portal.md).
 
-5. Select **Next: Disks** then **Next: Networking**, or select the **Networking** tab.
+4. Select **Next: Disks** then **Next: Networking**, or select the **Networking** tab.
 
-6. In the networking tab, enter or select the following information.
+5. In the networking tab, enter or select the following information.
 
     | Setting | Value |
     | ------- | ----- |
@@ -93,9 +113,9 @@ In this section, you create a virtual machine and public IP address in the Azure
     | Subnet | Leave the default of **(new) default (10.1.0.0/24)**. |
     | Public IP | Select **Create new**.</br> In **Name**, enter **myPublicIP**.</br> In **Routing preference**, select **Internet**.</br> In **Availability zone**, select **Zone 1**.</br> Select **OK**. |
 
-7. Select **Review + create**.
+6. Select **Review + create**.
 
-8. Select **Create**.
+7. Select **Create**.
 
 # [Azure CLI](#tab/azure-cli)
 
