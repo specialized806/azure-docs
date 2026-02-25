@@ -5,7 +5,7 @@ description: This quickstart shows how to create an internal load balancer using
 author: mbender-ms
 ms.service: azure-load-balancer
 ms.topic: quickstart
-ms.date: 01/28/2026
+ms.date: 02/25/2026
 ms.author: mbender
 ms.custom:
   - mvc
