@@ -1860,6 +1860,11 @@
           "articles/site-recovery/**/*.md"
         ]
       },
+      "filename-incomplete": {
+        "exclude": [
+          "articles/azure-functions/errors-diagnostics/**/*.md"
+        ]
+      },
       "sensitive-language-sl": {
         "exclude": [
           "articles/azure-netapp-files/azure-netapp-files-create-volumes.md",
