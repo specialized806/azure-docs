@@ -414,6 +414,8 @@ items:
       href: troubleshoot-project.md
     - name: Azure Migrate in unsupported regions
       href: azure-migrate-unsupported-regions.md
+    - name: Troubleshoot Azure Migrate
+      href: troubleshoot-general.md
   - name: Appliance configuration
     items:
     - name: Troubleshoot Azure Migrate appliance
@@ -432,6 +434,8 @@ items:
     items:
     - name: Troubleshoot dependency visualization
       href: troubleshoot-dependencies.md
+    - name: Troubleshoot assessment
+      href: troubleshoot-assessment-faq.md 
   - name: Assessments
     items:
     - name: Common Issues
@@ -572,15 +576,3 @@ items:
 #     items:
 #     - name: Add migration tools
 #       href: how-to-migrate.md
-# - name: Troubleshoot
-#   items:
-#   - name: General
-#     items:
-#     - name: Troubleshoot Azure Migrate
-#       href: troubleshoot-general.md
-#   - name: Assess
-#     items:
-#     - name: Troubleshoot assessment
-#       items:
-#         - name: FAQ
-#           href: troubleshoot-assessment-faq.md
