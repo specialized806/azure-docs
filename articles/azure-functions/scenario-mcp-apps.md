@@ -13,7 +13,7 @@ zone_pivot_groups: programming-languages-set-functions
 
 # Quickstart: Build an MCP Apps using Azure Functions
 
-In this quickstart, you create a Model Context Protocol (MCP) server from a template project by using the Azure Developer CLI (`azd`). This MCP server uses the Azure Functions MCP extension to create [MCP Apps](https://blog.modelcontextprotocol.io/posts/2026-01-26-mcp-apps/), which are tools that return rich, interactive user interfaces. You can also use the MCP server extension to [create text-based tools](./scenario-custom-remote-mcp-server.md). 
+In this quickstart, you create a [Model Context Protocol (MCP) App](https://modelcontextprotocol.io/extensions/apps/overview) from a template project built using the Azure Functions MCP extension. MCP Apps are MCP servers with tools that return results in rich, interactive user interfaces instead of text. You deploy the app using the Azure Developer CLI (`azd`). You can also use the Azure Functions MCP extension to create MCP servers that have [text-based tools](./scenario-custom-remote-mcp-server.md). 
 
 After running the project locally and verifying your code by using GitHub Copilot, you deploy it to a new serverless function app in Azure Functions that follows current best practices for secure and scalable deployments.
 
