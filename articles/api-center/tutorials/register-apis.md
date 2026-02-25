@@ -105,7 +105,7 @@ Here you add a version to one of your APIs:
     |**Version identification**|After you enter the preceding title, Azure API Center generates this identifier, which you can override.| Azure resource name for the version |
     |**Version lifecycle**  | Make a selection from the dropdown, such as **Production**. | Lifecycle stage of the API version |
 
-1.  under **Select a specification**, add an API definition, enter or select the following information. Azure API Center supports definitions in common text specification formats, such as OpenAPI 2 and 3 for REST APIs.
+1. Under **Select a specification**, add an API definition by entering or selecting the following information. Azure API Center supports definitions in common text specification formats, such as OpenAPI 2 and 3 for REST APIs.
 
     |Setting|Value|Description|
     |-------|-----|-----------|
@@ -118,7 +118,7 @@ Here you add a version to one of your APIs:
 
     :::image type="content" source="./media/register-apis/add-definition.png" alt-text="Screenshot of adding an API definition in the portal." lightbox="./media/register-apis/add-definition.png" :::
 
-1. Leave the setting under **Add a deployment** unselected for now. You configure a deployment in the next tutorial, [Add environments and deployments for APIs](./configure-environments-deployments.md).
+1. Under **Add a deployment**, leave the setting unselected for now. You configure a deployment in the next tutorial, [Add environments and deployments for APIs](./configure-environments-deployments.md).
 
 1. Select **Create**.
 
