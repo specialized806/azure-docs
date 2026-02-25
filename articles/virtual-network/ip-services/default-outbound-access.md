@@ -40,7 +40,7 @@ If a Virtual Machine (VM) is deployed without an explicit outbound connectivity 
 
 **Security**: Default internet access contradicts Zero Trust principles.<br>
 **Clarity**: Explicit connectivity is preferred over implicit access.<br>
-**Stability**: The default outbound IP isn't customer-owned and can change, leading to potential disruptions.
+**Stability**: The default outbound IP isn’t customer-owned and can change; service updates may also affect default outbound behavior, both of which can cause disruptions.
 
 Some examples of configurations that don't work when using default outbound access:
 
