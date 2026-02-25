@@ -204,8 +204,17 @@ When the `Strict` or `CurrentOrOlder` strategy is selected (see [Version matchin
 
 - Empty or null versions are treated as equal.
 - An empty or null version is considered older than any defined version.
-- If both versions can be parsed as `System.Version`, comparison uses the `CompareTo` method.
+- If both versions are numeric (for example, `"1.0"` and `"2.0"`), they're compared as version numbers, so `"2.0"` is newer than `"1.0"`.
 - Otherwise, case-insensitive string comparison is performed.
+
+The following examples illustrate how version comparison works:
+
+| Version A | Version B | Result |
+| --- | --- | --- |
+| `"1.0"` | `"2.0"` | A is older |
+| `null` | `"1.0"` | A is older |
+| `null` | `null` | Equal |
+| `"v1-release"` | `"v2-release"` | A is older (alphabetical) |
 
 ::: zone-end
 
@@ -553,8 +562,6 @@ public String processOrder(
 # [C#](#tab/csharp)
 
 ```csharp
-using DurableTask.Core.Settings;
-
 [Function("ProcessOrderOrchestrator")]
 public static async Task<string> ProcessOrder(
     [OrchestrationTrigger] TaskOrchestrationContext context)
@@ -563,7 +570,7 @@ public static async Task<string> ProcessOrder(
 
     await context.CallActivityAsync("ValidateOrder", orderId);
 
-    if (VersioningSettings.CompareVersions(context.Version, "1.0") <= 0)
+    if (TaskOrchestrationVersioningUtils.CompareVersions(context.Version, "1.0") <= 0)
     {
         // Preserve original logic for existing instances
         await context.CallActivityAsync("ProcessPayment", orderId);
@@ -664,7 +671,7 @@ $orderId = $Context.Input
 
 Invoke-DurableActivity -FunctionName "ValidateOrder" -Input $orderId
 
-if (Compare-Version $Context.Version "1.0" -le 0) {
+if ((Compare-Version $Context.Version "1.0") -le 0) {
     # Preserve original logic for existing instances
     Invoke-DurableActivity -FunctionName "ProcessPayment" -Input $orderId
 } else {
