@@ -31,6 +31,24 @@ In this section, you create a virtual machine with a static public IP address us
 
 Sign in to the [Azure portal](https://portal.azure.com).
 
+### Create a resource group
+
+1. In the search box at the top of the portal, enter *Resource group*.
+
+2. In the search results, select **Resource groups**.
+
+3. Select **+ Create**.
+
+4. In the **Basics** tab of **Create a resource group**, enter or select the following:
+
+    | Setting | Value  |
+    | ------- | ------ |
+    | Subscription | Select your Azure subscription |
+    | Resource Group | Enter *myResourceGroup*. |
+    | Region | Select **East US**. |
+
+5. Select **Review + create**, then select **Create**.
+
 ### Create a virtual machine
 
 1. In the search box at the top of the portal, enter *Virtual machine*.
@@ -45,7 +63,7 @@ Sign in to the [Azure portal](https://portal.azure.com).
     | ------- | ------ |
     | **Project Details** |  |
     | Subscription | Select your Azure subscription |
-    | Resource Group | Select **Create new**.</br> In **Name**, enter *myResourceGroup*.</br> Select **OK**. |
+    | Resource Group | Select **myResourceGroup**. |
     | **Instance details** |  |
     | Virtual machine name | Enter *myVM*. |
     | Region | Select **East US**. |
@@ -121,11 +139,29 @@ $ip = @{
 }
 New-AzPublicIpAddress @ip
 ```
+
+### Create a network security group
+
+Create a network security group with [New-AzNetworkSecurityGroup](/powershell/module/az.network/new-aznetworksecuritygroup). The default rules in the network security group deny all inbound access from the internet. 
+
+```azurepowershell-interactive
+## Create network security group. ##
+$nsg = @{
+    Name = 'myNSG'
+    ResourceGroupName = 'myResourceGroup'
+    Location = 'eastus2'
+}
+New-AzNetworkSecurityGroup @nsg
+```
+
+> [!NOTE]
+> All public inbound ports are closed for this virtual machine. To manage your virtual machines, deploy Azure Bastion. For more information, see [Quickstart: Deploy Azure Bastion from the Azure portal](/azure/bastion/quickstart-host-portal).
+
 ### Create a virtual machine
 
 Create a virtual machine with [New-AzVM](/powershell/module/az.Compute/new-azvm). 
 
-The following command creates a Windows Server virtual machine. You enter the name of the public IP address created previously in the **`-PublicIPAddressName`** parameter. When prompted, provide a username and password to be used as the credentials for the virtual machine:
+The following command creates a Windows Server virtual machine. You enter the name of the public IP address and network security group created previously. When prompted, provide a username and password to be used as the credentials for the virtual machine:
 
 ```azurepowershell-interactive
 ## Create virtual machine. ##
@@ -134,6 +170,7 @@ $vm = @{
     Location = 'East US 2'
     Name = 'myVM'
     PublicIpAddressName = 'myPublicIP'
+    SecurityGroupName = 'myNSG'
 }
 New-AzVM @vm
 ```
@@ -186,17 +223,32 @@ az network public-ip create \
     --sku Standard \
     --zone 1 2 3
 ```
+
+### Create a network security group
+
+Create a network security group with [az network nsg create](/cli/azure/network/nsg#az-network-nsg-create). The default rules in the network security group deny all inbound access from the internet.
+
+```azurecli-interactive
+az network nsg create \
+    --resource-group myResourceGroup \
+    --name myNSG
+```
+
+> [!NOTE]
+> All public inbound ports are closed for this virtual machine. To manage your virtual machines, deploy Azure Bastion. For more information, see [Quickstart: Deploy Azure Bastion from the Azure portal](/azure/bastion/quickstart-host-portal).
+
 ### Create a virtual machine
 
 Create a virtual machine with [az vm create](/cli/azure/vm#az-vm-create). 
 
-The following command creates a Windows Server virtual machine. You enter the name of the public IP address created previously in the **`-PublicIPAddressName`** parameter. When prompted, provide a username and password to be used as the credentials for the virtual machine:
+The following command creates a Windows Server virtual machine. You enter the name of the public IP address and network security group created previously. When prompted, provide a username and password to be used as the credentials for the virtual machine:
 
 ```azurecli-interactive
   az vm create \
     --name myVM \
     --resource-group myResourceGroup \
     --public-ip-address myPublicIP \
+    --nsg myNSG \
     --size Standard_A2 \
     --image MicrosoftWindowsServer:WindowsServer:2019-Datacenter:latest \
     --admin-username azureuser
