@@ -1,7 +1,7 @@
 ---
 title: 'Tutorial: Configure routing preference for a virtual machine'
 description: Learn how to create a virtual machine with a public IP address with routing preference choice using the Azure portal.
-ms.date: 12/11/2024
+ms.date: 02/24/2026
 ms.author: mbender
 author: mbender-ms
 ms.service: azure-virtual-network
@@ -79,6 +79,9 @@ In this section, you create a virtual machine and public IP address in the Azure
     | **Inbound port rules** |
     | Public inbound ports | Select **None**. |
 
+    > [!NOTE]
+    > All public inbound ports are closed for this virtual machine. To manage your virtual machines, deploy Azure Bastion. For more information, see [Quickstart: Deploy Azure Bastion from the Azure portal](../../bastion/quickstart-host-portal.md).
+
 5. Select **Next: Disks** then **Next: Networking**, or select the **Networking** tab.
 
 6. In the networking tab, enter or select the following information.
@@ -108,29 +111,18 @@ Create a resource group with [az group create](/cli/azure/group#az-group-create)
     --location westus2
 ```
 
-## Create a virtual network
+## Create a network security group
 
-Use [az network vnet create](/cli/azure/network/vnet#az-network-vnet-create) to create a virtual network named **myVNet** with a subnet named **default** in **TutorVMRoutePref-rg**.
-
-```azurecli-interactive
-az network vnet create \
-    --resource-group TutorVMRoutePref-rg \
-    --name myVNet \
-    --address-prefix 10.0.0.0/16 \
-    --subnet-name default \
-    --subnet-prefix 10.0.0.0/24 \
-    --location westus2
-```
-
-Create the Bastion subnet with [az network vnet subnet create](/cli/azure/network/vnet/subnet).
+Create a network security group with [az network nsg create](/cli/azure/network/nsg#az-network-nsg-create). The default rules in the network security group deny all inbound access from the internet.
 
 ```azurecli-interactive
-az network vnet subnet create \
+az network nsg create \
     --resource-group TutorVMRoutePref-rg \
-    --vnet-name myVNet \
-    --name AzureBastionSubnet \
-    --address-prefix 10.0.1.0/26
+    --name myNSG
 ```
+
+> [!NOTE]
+> All public inbound ports are closed for this virtual machine. To manage your virtual machines, deploy Azure Bastion. For more information, see [Quickstart: Deploy Azure Bastion from the Azure portal](/azure/bastion/quickstart-host-portal).
 
 ## Create a public IP address
 
@@ -155,8 +147,7 @@ az vm create \
 --name myVM \
 --resource-group TutorVMRoutePref-rg \
 --public-ip-address myPublicIP \
---vnet-name myVNet \
---subnet default \
+--nsg myNSG \
 --size Standard_D2a_v4 \
 --image MicrosoftWindowsServer:WindowsServer:2019-Datacenter:latest \
 --admin-username azureuser
@@ -177,23 +168,22 @@ New-AzResourceGroup -Name 'TutorVMRoutePref-rg' -Location 'westus2'
 
 ```
 
-## Create a virtual network
+## Create a network security group
 
-Use [New-AzVirtualNetwork](/powershell/module/az.network/new-azvirtualnetwork) to create a virtual network named **myVNet** with subnets for the virtual machine and Azure Bastion.
+Create a network security group with [New-AzNetworkSecurityGroup](/powershell/module/az.network/new-aznetworksecuritygroup). The default rules in the network security group deny all inbound access from the internet.
 
 ```azurepowershell-interactive
-$bastionSubnet = New-AzVirtualNetworkSubnetConfig -Name "AzureBastionSubnet" -AddressPrefix "10.0.1.0/24"
-$vmSubnet = New-AzVirtualNetworkSubnetConfig -Name "default" -AddressPrefix "10.0.0.0/24"
-
-$vnetParams = @{
-    ResourceGroupName = "TutorVMRoutePref-rg"
-    Location = "westus2"
-    Name = "myVNet"
-    AddressPrefix = "10.0.0.0/16"
-    Subnet = $bastionSubnet, $vmSubnet
+## Create network security group. ##
+$nsg = @{
+    Name = 'myNSG'
+    ResourceGroupName = 'TutorVMRoutePref-rg'
+    Location = 'westus2'
 }
-$vnet = New-AzVirtualNetwork @vnetParams
+New-AzNetworkSecurityGroup @nsg
 ```
+
+> [!NOTE]
+> All public inbound ports are closed for this virtual machine. To manage your virtual machines, deploy Azure Bastion. For more information, see [Quickstart: Deploy Azure Bastion from the Azure portal](/azure/bastion/quickstart-host-portal).
 
 ## Create a public IP address
 
@@ -232,100 +222,9 @@ $vm = @{
     Location = 'West US 2'
     Name = 'myVM'
     PublicIpAddressName = 'myPublicIP'
-    VirtualNetworkName = 'myVNet'
-    SubnetName = 'default'
+    SecurityGroupName = 'myNSG'
 }
 New-AzVM @vm
-```
-
----
-
-## Deploy Azure Bastion
-
-# [Azure portal](#tab/azure-portal)
-
-Azure Bastion uses your browser to connect to VMs in your virtual network over secure shell (SSH) or remote desktop protocol (RDP) by using their private IP addresses. The VMs don't need public IP addresses, client software, or special configuration. For more information about Azure Bastion, see [Azure Bastion](/azure/bastion/bastion-overview).
-
->[!NOTE]
->[!INCLUDE [Pricing](~/reusable-content/ce-skilling/azure/includes/bastion-pricing.md)]
-
-1. In the search box at the top of the portal, enter **Bastion**. Select **Bastions** in the search results.
-
-2. Select **+ Create**.
-
-3. In the **Basics** tab of **Create a Bastion**, enter, or select the following information:
-
-    | Setting | Value |
-    |---|---|
-    | **Project details** |  |
-    | Subscription | Select your subscription. |
-    | Resource group | Select **TutorVMRoutePref-rg**. |
-    | **Instance details** |  |
-    | Name | Enter **bastion**. |
-    | Region | Select **West US 2**. |
-    | Tier | Select **Developer**. |
-    | **Configure virtual networks** |  |
-    | Virtual network | Select **TutorVMRoutePref-rg-vnet**. |
-    | Subnet | The **AzureBastionSubnet** is created automatically with an address space of **/26** or larger. |
-
-4. Select **Review + create**.
-
-5. Select **Create**.
-
-# [Azure CLI](#tab/azure-cli)
-
-Create a public IP address for the Azure Bastion host with [az network public-ip create](/cli/azure/network/public-ip#az-network-public-ip-create). The following example creates a public IP address named **public-ip-bastion** in **TutorVMRoutePref-rg**.
-
-```azurecli-interactive
-az network public-ip create \
-    --resource-group TutorVMRoutePref-rg \
-    --name public-ip-bastion \
-    --location westus2 \
-    --allocation-method Static \
-    --sku Standard
-```
-
-Create an Azure Bastion host with [az network bastion create](/cli/azure/network/bastion). The following example creates an Azure Bastion host named **bastion** in the **AzureBastionSubnet** subnet of the **myVNet** virtual network.
-
-```azurecli-interactive
-az network bastion create \
-    --resource-group TutorVMRoutePref-rg \
-    --name bastion \
-    --vnet-name myVNet \
-    --public-ip-address public-ip-bastion \
-    --location westus2 \
-    --sku Basic \
-    --no-wait
-```
-
-# [Azure PowerShell](#tab/azure-powershell)
-
-Create a public IP address for the Azure Bastion host with [New-AzPublicIpAddress](/powershell/module/az.network/new-azpublicipaddress). The following example creates a public IP address named **public-ip-bastion** in **TutorVMRoutePref-rg**.
-
-```azurepowershell-interactive
-$bastionIpParams = @{
-    ResourceGroupName = "TutorVMRoutePref-rg"
-    Name = "public-ip-bastion"
-    Location = "westus2"
-    AllocationMethod = "Static"
-    Sku = "Standard"
-}
-New-AzPublicIpAddress @bastionIpParams
-```
-
-Create an Azure Bastion host with [New-AzBastion](/powershell/module/az.network/new-azbastion). The following example creates an Azure Bastion host named **bastion** in the **AzureBastionSubnet** subnet of the **myVNet** virtual network.
-
-```azurepowershell-interactive
-$bastionParams = @{
-    ResourceGroupName = "TutorVMRoutePref-rg"
-    Name = "bastion"
-    VirtualNetworkName = "myVNet"
-    PublicIpAddressName = "public-ip-bastion"
-    PublicIpAddressRgName = "TutorVMRoutePref-rg"
-    VirtualNetworkRgName = "TutorVMRoutePref-rg"
-    Sku = "Basic"
-}
-New-AzBastion @bastionParams -AsJob
 ```
 
 ---
