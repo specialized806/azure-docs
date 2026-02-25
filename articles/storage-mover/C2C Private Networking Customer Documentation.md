@@ -74,7 +74,7 @@ In general, ExpressRoute is preferred for the highest bandwidth and lowest laten
 
 **Learn more:** [Tutorial - Create an S2S VPN connection](/azure/vpn-gateway/tutorial-site-to-site-portal)
 
-* **Routing:** Use BGP to exchange routes and support active/active tunnels across multiple connections.
+**Routing:** Use BGP to exchange routes and support active/active tunnels across multiple connections.
 
 For a detailed walkthrough of multi-tunnel BGP between Azure VPN Gateway and AWS, see: [Tutorial - Configure a BGP-enabled connection between Azure and AWS](/azure/vpn-gateway/vpn-gateway-howto-aws-bgp).
 
@@ -144,11 +144,9 @@ For AWS-to-Azure VPN, use dynamic routing (BGP) and prefer AWS Transit Gateway (
 
 If you operate an SD-WAN platform in AWS (for example, FortiGate on EC2), you can terminate tunnels in AWS and connect to Azure using the same SD-WAN policy model used on-premises.
 
-Launch the NVA from AWS Marketplace and size the instance for required throughput.
-
-Attach WAN/LAN interfaces, associate an Elastic IP to the WAN interface, and disable source/destination checks if required by the appliance routing model.
-
-Configure security groups and route tables to allow Azure prefixes and steer traffic through the appliance.
+1. Launch the NVA from AWS Marketplace and size the instance for required throughput.
+2. Attach WAN/LAN interfaces, associate an Elastic IP to the WAN interface, and disable source/destination checks if required by the appliance routing model.
+3. Configure security groups and route tables to allow Azure prefixes and steer traffic through the appliance.
 
 ## Implementation details for S3 private access (VPC endpoints)
 
@@ -182,43 +180,32 @@ Allow required traffic from Azure source prefixes to the VPCE and related AWS re
 
 Private Link Service Direct Connect allows Azure to create outbound private connectivity to a destination IP address (for example, an AWS VPCE IP). In this scenario, it enables Storage Mover private connections to reach a private S3 endpoint over your established Azure-to-AWS network path.
 
-Deploy the PLS Direct Connect resource in the **same Azure region** as the Storage Mover resource and the Azure virtual network used to reach AWS.
-
-Enable the feature in the Azure portal using the provided flight link: [Azure portal flight link (PLS Direct Connect)](https://ms.portal.azure.com/?feature.canmodifystamps=true&exp.plsdirectconnect=true).
-
-Ensure the Azure VNet/subnet selected for source NAT has connectivity to the AWS VPC and the VPCE IP address.
+1. Deploy the PLS Direct Connect resource in the **same Azure region** as the Storage Mover resource and the Azure virtual network used to reach AWS.
+2. Enable the feature in the Azure portal using the provided flight link: [Azure portal flight link (PLS Direct Connect)](https://ms.portal.azure.com/?feature.canmodifystamps=true&exp.plsdirectconnect=true).
+3. Ensure the Azure VNet/subnet selected for source NAT has connectivity to the AWS VPC and the VPCE IP address.
 
 #### High-level steps
 
-Create the **Private Link Service (Your Service)** resource for Direct Connect in the correct region.
-
-Configure **Outbound settings**:
-
-Set connection method to **Destination IP address** and enter the **AWS VPCE IP address**.
-
-Select the **source NAT** virtual network and subnet that can route to AWS.
-
-Configure private IP address settings as required for resiliency (for example, two or more addresses in supported increments).
+1. Create the **Private Link Service (Your Service)** resource for Direct Connect in the correct region.
+2. Configure **Outbound settings**:
+3. Set connection method to **Destination IP address** and enter the **AWS VPCE IP address**.
+4. Select the **source NAT** virtual network and subnet that can route to AWS.
+5. Configure private IP address settings as required for resiliency (for example, two or more addresses in supported increments).
 
 ### Create and approve private connections
 
 After creating the Direct Connect resource, create a private connection in Storage Mover and approve it before use.
 
-In **Storage Mover**, open **Storage Endpoints** and then the **Private Connections** tab.
-
-Create a private connection that references the Direct Connect private link service, then approve it so it can be associated to jobs.
+1. In **Storage Mover**, open **Storage Endpoints** and then the **Private Connections** tab.
+2. Create a private connection that references the Direct Connect private link service, then approve it so it can be associated to jobs.
 
 ### Use private connections for cloud-to-cloud migration
 
-* Use the above Private connection as part of Create job operation. Select ‘Cloud to Cloud' migration type. 
-
-When creating a cloud-to-cloud migration job, set the S3 bucket type to **Private** and associate the approved private connection.
-
-Verify the private connection is listed and in **Approved** state.
-
-Only private connections in **Approved** state can be selected.
-
-Remaining job steps are the same as a public S3-to-Blob migration.
+1. Use the above Private connection as part of Create job operation. Select ‘Cloud to Cloud' migration type.
+2. When creating a cloud-to-cloud migration job, set the S3 bucket type to **Private** and associate the approved private connection.
+3. Verify the private connection is listed and in **Approved** state.
+4. Only private connections in **Approved** state can be selected.
+5. Remaining job steps are the same as a public S3-to-Blob migration.
 
 ## Architecture
 
@@ -283,6 +270,7 @@ Review ExpressRoute concepts and planning in the [ExpressRoute documentation](/a
 Create a site-to-site VPN connection in Azure: [Tutorial - Create an S2S VPN connection](/azure/vpn-gateway/tutorial-site-to-site-portal).
 
 For BGP between Azure and AWS, follow: [Tutorial - Configure a BGP-enabled connection between Azure and AWS](/azure/vpn-gateway/vpn-gateway-howto-aws-bgp).
+
 
 
 
