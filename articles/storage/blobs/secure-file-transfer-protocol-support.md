@@ -12,6 +12,9 @@ ms.author: normesta
 
 # Customer intent: "As a cloud storage administrator, I want to enable SFTP support for Azure Blob Storage, so that I can facilitate secure and efficient file transfers without complex infrastructure management."
 ---
+> [!IMPORTANT]
+> Microsoft Entra ID–based access for Azure Storage SFTP is now in Public Preview. To learn more about configuring entra-id based access, see  [Entra ID based access for Azure Storage SFTP](secure-file-transfer-protocol-support-entra-id-based-access.md). 
+
 
 # SSH File Transfer Protocol (SFTP) support for Azure Blob Storage
 
@@ -43,15 +46,12 @@ Different protocols are supported by the hierarchical namespace. SFTP is one of 
 
 ## SFTP permission model
 
-SFTP clients can't be authorized by using Microsoft Entra identities. Instead, SFTP utilizes a new form of identity management called _local users_.
+SFTP utilizes a new form of identity management called _local users_.
 
 Local users must use either a password or a Secure Shell (SSH) private key credential for authentication. You can have a maximum of 25,000 local users for a storage account.
 
 To set up access permissions, you create a local user, and choose authentication methods. Then, for each container in your account, you can specify the level of access you want to give that user.
 
-> [!IMPORTANT]
-> If you have any feedback on scenarios that require Entra Identities-based authorization, please reach out to us at BlobSFTP@microsoft.com.
->
 
 > [!CAUTION]
 > Local users do not interoperate with other Azure Storage permission models such as RBAC (role based access control) and ABAC (attribute based access control). Access control lists (ACLs) are supported for local users.
