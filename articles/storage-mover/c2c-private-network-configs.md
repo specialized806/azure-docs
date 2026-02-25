@@ -83,7 +83,7 @@ For a detailed walkthrough of multi-tunnel BGP between Azure VPN Gateway and AWS
 
 Example custom IPsec/IKE settings (validate against your device compatibility): **GCMAES256** for IPsec encryption/integrity, **SHA256** for IKE integrity, **DHGroup14**, **PFS2048**.
 
-:::image type="content" source="./media/c2c-networking/ipsec-policy.png" alt-text="Screenshot of the Project Explorer page with the Create a Project pane's fields visible." lightbox="./media/c2c-networking/ipsec-policy.png":::
+:::image type="content" source="./media/cloud-to-cloud-networking/ipsec-policy.png" alt-text="Screenshot of the Project Explorer page with the Create a Project pane's fields visible." lightbox="./media/cloud-to-cloud-networking/ipsec-policy.png":::
 
 **Learn more:** [Configure custom IPsec/IKE connection policies](https://docs.azure.cn/en-us/vpn-gateway/ipsec-ike-policy-howto).
 
@@ -161,11 +161,11 @@ An AWS VPC endpoint (VPCE) for S3 lets your VPC reach S3 privately. For this des
 2. Create an **interface** VPCE for **Amazon S3** in the target VPC and subnets, and enable **private DNS**.
 3. Configure VPCE and bucket policies to allow only required S3 actions and (optionally) restrict access to the specific endpoint using **aws:SourceVpce**.
 
-:::image type="content" source="./media/c2c-networking/vpce-policy.png" alt-text="Screenshot of the Project Explorer page with the Create a Project pane's fields visible." lightbox="./media/c2c-networking/vpce-policy.png":::
+:::image type="content" source="./media/cloud-to-cloud-networking/vpce-policy.png" alt-text="Screenshot of the Project Explorer page with the Create a Project pane's fields visible." lightbox="./media/cloud-to-cloud-networking/vpce-policy.png":::
 
 Example: S3 bucket policy restricted to a specific VPCE.
 
-:::image type="content" source="./media/c2c-networking/s3-bucket-policy.png" alt-text="Screenshot of the Project Explorer page with the Create a Project pane's fields visible." lightbox="./media/c2c-networking/s3-bucket-policy.png":::
+:::image type="content" source="./media/cloud-to-cloud-networking/s3-bucket-policy.png" alt-text="Screenshot of the Project Explorer page with the Create a Project pane's fields visible." lightbox="./media/cloud-to-cloud-networking/s3-bucket-policy.png":::
 
 **Note:** Record the VPCE private IP address; it is used as the destination IP for Azure Private Link Service Direct Connect.
 
@@ -210,13 +210,13 @@ After creating the Direct Connect resource, create a private connection in Stora
 
 ### Cloud-to-cloud migration flow (private networking)
 
-:::image type="content" source="./media/c2c-networking/private-network-architcture.png" alt-text="Image of Network Architecture" lightbox="./media/c2c-networking/private-network-architcture.png":::
+:::image type="content" source="./media/cloud-to-cloud-networking/private-network-architcture.png" alt-text="Image of Network Architecture" lightbox="./media/cloud-to-cloud-networking/private-network-architcture.png":::
 
 *Note: Above diagram shown with private networking to AWS but same applies for other private networking scenarios.*
 
 ### Cloud-to-cloud migration flow (public S3 bucket to Blob)
 
-:::image type="content" source="./media/c2c-networking/publics3-to-blob-architcture.png" alt-text="Image of Network Architecture" lightbox="./media/c2c-networking/publics3-to-blob-architcture.png":::
+:::image type="content" source="./media/cloud-to-cloud-networking/publics3-to-blob-architcture.png" alt-text="Image of Network Architecture" lightbox="./media/cloud-to-cloud-networking/publics3-to-blob-architcture.png":::
 
 
 ## Troubleshooting
@@ -233,14 +233,14 @@ After creating the Direct Connect resource, create a private connection in Stora
 * **Audit Action Permissions:** Ensure the `Action` element in the VPCE policy permits necessary operations. At a minimum, `s3:Get*` and `s3:List*` are required for reading and browsing data.
 * **Policy Logic:** If using a custom policy, ensure there are no "Deny" statements that inadvertently override the "Allow" statements for the Azure-sourced traffic.<br>
 
-:::image type="content" source="./media/c2c-networking/vpce-policy.png" alt-text="Screenshot of the Project Explorer page with the Create a Project pane's fields visible." lightbox="./media/c2c-networking/vpce-policy.png":::
+:::image type="content" source="./media/cloud-to-cloud-networking/vpce-policy.png" alt-text="Screenshot of the Project Explorer page with the Create a Project pane's fields visible." lightbox="./media/cloud-to-cloud-networking/vpce-policy.png":::
 
 ### S3 bucket policy constraints
 
 * **VPCE allow listing:** Check the S3 Bucket Policy for a `Condition` block. If the bucket restricts access, it must explicitly allow the `aws:SourceVpce` corresponding to the VPC Endpoint being used.
 * **Principal Access:** Ensure the IAM identity or the anonymous access (if applicable via VPCE) is not blocked by the bucket's Access Control List (ACL) or Public Access Block settings.
 
-:::image type="content" source="./media/c2c-networking/s3-bucket-policy.png" alt-text="Screenshot of the Project Explorer page with the Create a Project pane's fields visible." lightbox="./media/c2c-networking/s3-bucket-policy.png":::
+:::image type="content" source="./media/cloud-to-cloud-networking/s3-bucket-policy.png" alt-text="Screenshot of the Project Explorer page with the Create a Project pane's fields visible." lightbox="./media/cloud-to-cloud-networking/s3-bucket-policy.png":::
 
 ### Regional alignment
 
