@@ -17,7 +17,7 @@ In this quickstart, you create a Model Context Protocol (MCP) server from a temp
 
 After running the project locally and verifying your code by using GitHub Copilot, you deploy it to a new serverless function app in Azure Functions that follows current best practices for secure and scalable deployments.
 
-:::image type="content" source="media/scenario-mcp-apps/mcp-weather-app-seattle.png" alt-text="Screenshot of a weather app UI for Seattle showing drizzle, temperature, humidity, wind, and report timestamp.":::
+:::image type="content" source="media/scenario-mcp-apps/mcp-weather-app-seattle.png" alt-text="Screenshot of a weather app UI for Seattle showing drizzle, temperature, humidity, wind, and report timestamp." lightbox="media/scenario-mcp-apps/mcp-weather-app-seattle-full.png":::
 
 Because the new app runs on the Flex Consumption plan, which follows a _pay-for-what-you-use_ billing model, completing this quickstart incurs a small cost of a few USD cents or less in your Azure account.
 
