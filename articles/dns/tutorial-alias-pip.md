@@ -5,7 +5,7 @@ services: dns
 author: asudbring
 ms.service: azure-dns
 ms.topic: tutorial
-ms.date: 11/30/2023
+ms.date: 07/11/2025
 ms.author: allensu
 ms.custom: template-tutorial #Required; leave this attribute/value as-is.
 #Customer intent: As an experienced network administrator, I want to configure Azure an DNS alias record to refer to an Azure public IP address.
@@ -20,6 +20,7 @@ In this tutorial, you learn how to:
 
 > [!div class="checklist"]
 > * Create a virtual network and a subnet.
+> * Deploy Azure Bastion.
 > * Create a web server virtual machine with a public IP.
 > * Create an alias record that points to the public IP.
 > * Test the alias record.
@@ -74,6 +75,35 @@ Create a virtual network and a subnet to place your web server in.
 1. Select the **Review + create** tab or select the **Review + create** button.
 1. Select **Create**.
 
+## Deploy Azure Bastion
+
+Azure Bastion uses your browser to connect to VMs in your virtual network over secure shell (SSH) or remote desktop protocol (RDP) by using their private IP addresses. The VMs don't need public IP addresses, client software, or special configuration. For more information about Azure Bastion, see [Azure Bastion](/azure/bastion/bastion-overview).
+
+>[!NOTE]
+>[!INCLUDE [Pricing](~/reusable-content/ce-skilling/azure/includes/bastion-pricing.md)]
+
+1. In the search box at the top of the portal, enter **Bastion**. Select **Bastions** in the search results.
+
+1. Select **+ Create**.
+
+1. In the **Basics** tab of **Create a Bastion**, enter, or select the following information:
+
+    | Setting | Value |
+    |---|---|
+    | **Project details** |  |
+    | Subscription | Select your subscription. |
+    | Resource group | Select **PIPResourceGroup**. |
+    | **Instance details** |  |
+    | Name | Enter **bastion**. |
+    | Region | Select the same region as your virtual network. |
+    | Tier | Select **Developer**. |
+    | **Configure virtual networks** |  |
+    | Virtual network | Select **myPIPVNet**. |
+
+1. Select **Review + create**.
+
+1. Select **Create**.
+
 ## Create a web server virtual machine
 
 Create a Windows Server virtual machine and then install IIS web server on it.
@@ -118,7 +148,7 @@ Create a Windows Server 2019 virtual machine.
     | Public IP | Take the default Standard SKU public IP. |
     | NIC network security group | Select **Basic**. |
     | Public inbound ports | Select **Allow selected ports**. |
-    | Select inbound ports | Select **HTTP (80)**, **HTTPS (443)** and **RDP (3389)**. |
+    | Select inbound ports | Select **HTTP (80)** and **HTTPS (443)**. |
 
 1. Select **Review + create**.
 1. Review the settings, and then select **Create**.
@@ -132,10 +162,17 @@ This deployment may take a few minutes to complete.
 
 Install IIS web server on **Web-01**.
 
-1. In the **Overview** page of **Web-01**, select **Connect** and then **RDP**.
-1. In the **RDP** page, select **Download RDP File**.
-1. Open *Web-01.rdp*, and select **Connect**.
-1. Enter the username and password entered during virtual machine creation.
+1. In the **Overview** page of **Web-01**, select **Connect** then **Connect via Bastion**.
+
+1. In the **Bastion** connection page, enter or select the following information:
+
+    | Setting | Value |
+    |---|---|
+    | **Authentication Type** | Select **Password**. |
+    | **Username** | Enter the username you created during VM creation. |
+    | **Password** | Enter the password you created during VM creation. |
+
+1. Select **Connect**.
 1. On the **Server Manager** dashboard, select **Manage** then **Add Roles and Features**.
 1. Select **Server Roles** or select **Next** three times. On the **Server Roles** screen, select **Web Server (IIS)**.
 1. Select **Add Features**, and then select **Next**.
