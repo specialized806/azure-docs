@@ -3,7 +3,7 @@ title: Update IoT Edge version on devices
 description: How to update IoT Edge devices to run the latest versions of the security subsystem and the IoT Edge runtime
 author: sethmanheim
 ms.author: sethm
-ms.date: 01/09/2025
+ms.date: 02/24/2026
 ms.topic: how-to
 ms.service: azure-iot-edge
 services: iot-edge
@@ -236,4 +236,4 @@ For more information, see [Troubleshoot your IoT Edge device](troubleshoot.md).
 
 View the latest [Azure IoT Edge releases](https://github.com/Azure/azure-iotedge/releases).
 
-Stay up-to-date with recent updates and announcements in the [Internet of Things blog](https://azure.microsoft.com/blog/topics/internet-of-things/)
+Stay up-to-date with recent updates and announcements in the [Internet of Things blog](https://azure.microsoft.com/blog/category/internet-of-things/)

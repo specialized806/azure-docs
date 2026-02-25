@@ -3,7 +3,7 @@ title: IoT Edge version history and release notes
 description: Release history and notes for IoT Edge.
 author: sethmanheim
 ms.author: sethm
-ms.date: 02/20/2026
+ms.date: 02/25/2026
 ms.topic: concept-article
 ms.service: azure-iot-edge
 ---
@@ -61,7 +61,7 @@ This table provides recent version history for IoT Edge package releases, and hi
 | ---------------- | ------------------------- | ------------ | ------------------- | ---------- |
 | 1.5 | [Long-term support (LTS)](https://github.com/Azure/iotedge-eflow/releases/tag/1.5.1.28104) | November 2024 | November 10, 2026 | [Azure IoT Edge 1.5](https://github.com/Azure/azure-iotedge/releases/)<br/> [CBL-Mariner 2.0](https://github.com/microsoft/azurelinux)<br/>Enable [migration from EFLOW 1.4 LTS to EFLOW 1.5 LTS](./iot-edge-for-linux-on-windows-updates.md) |
 | 1.4 | [Long-term support (LTS)](https://github.com/Azure/iotedge-eflow/releases/tag/1.4.1.13112) | November 2022 | November 12, 2024 | [Azure IoT Edge 1.4.0](https://github.com/Azure/azure-iotedge/releases/tag/1.4.0)<br/> [CBL-Mariner 2.0](https://github.com/microsoft/azurelinux)<br/> [USB passthrough using USB-Over-IP](https://aka.ms/AzEFLOW-USBIP)<br/>[File/Folder sharing between Windows OS and the EFLOW VM](https://aka.ms/AzEFLOW-FolderSharing) |
-| 1.3 | [Continuous release (CR)](https://github.com/Azure/iotedge-eflow/releases/tag/1.3.1.02092) | September 2022 | August 2022 | [Azure IoT Edge 1.3.0](https://github.com/Azure/azure-iotedge/releases/tag/1.3.0)<br/> [CBL-Mariner 2.0](https://github.com/microsoft/azurelinux)<br/> [USB passthrough using USB-Over-IP](https://aka.ms/AzEFLOW-USBIP)<br/>[File/Folder sharing between Windows OS and the EFLOW VM](https://aka.ms/AzEFLOW-FolderSharing) |
+| 1.3 | [Continuous release (CR)](https://github.com/Azure/iotedge-eflow/releases/tag/1.3.1.02092) | July 2022 | August 2022 | [Azure IoT Edge 1.3.0](https://github.com/Azure/azure-iotedge/releases/tag/1.3.0)<br/> [CBL-Mariner 2.0](https://github.com/microsoft/azurelinux)<br/> [USB passthrough using USB-Over-IP](https://aka.ms/AzEFLOW-USBIP)<br/>[File/Folder sharing between Windows OS and the EFLOW VM](https://aka.ms/AzEFLOW-FolderSharing) |
 | 1.2 | [Continuous release (CR)](https://github.com/Azure/iotedge-eflow/releases/tag/1.2.7.07022) | January 2022 | September 2022 | [Public Preview](https://techcommunity.microsoft.com/t5/internet-of-things-blog/azure-iot-edge-for-linux-on-windows-eflow-continuous-release/ba-p/3169590) |
 | 1.1 | [Long-term support (LTS)](https://github.com/Azure/iotedge-eflow/releases/tag/1.1.2106.0) | June 2021 | December 13, 2022 | IoT Edge 1.1 LTS is supported through December 13, 2022 to match the [.NET Core 3.1 release lifecycle](https://dotnet.microsoft.com/platform/support/policy/dotnet-core). <br> [Long-term support plan and supported systems updates](support.md) |
 
