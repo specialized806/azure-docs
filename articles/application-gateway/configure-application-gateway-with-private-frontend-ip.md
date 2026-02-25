@@ -6,7 +6,7 @@ services: application-gateway
 author: mbender-ms
 ms.service: azure-application-gateway
 ms.topic: how-to
-ms.date: 08/09/2024
+ms.date: 07/11/2025
 ms.author: mbender
 ms.custom: sfi-image-nochange
 # Customer intent: "As a network administrator, I want to configure an internal load balancer with a private frontend IP for my application gateway, so that I can manage and optimize traffic for internal applications without exposing them to the Internet."
@@ -84,6 +84,36 @@ In this example, you create a new virtual network. You can create a virtual netw
 28. Select **Next: Review + create**.
 29. Review the settings on the summary page, and then select **Create** to create the network resources and the application gateway. It may take several minutes to create the application gateway. Wait until the deployment finishes successfully before moving on to the next section.
 
+## Deploy Azure Bastion
+
+Azure Bastion uses your browser to connect to VMs in your virtual network over remote desktop protocol (RDP) by using their private IP addresses. The VMs don't need public IP addresses, client software, or special configuration. For more information about Azure Bastion, see [Azure Bastion](/azure/bastion/bastion-overview).
+
+>[!NOTE]
+>[!INCLUDE [Pricing](~/reusable-content/ce-skilling/azure/includes/bastion-pricing.md)]
+
+1. In the search box at the top of the portal, enter **Bastion**. Select **Bastions** in the search results.
+
+1. Select **+ Create**.
+
+1. In the **Basics** tab of **Create a Bastion**, enter, or select the following information:
+
+    | Setting | Value |
+    |---|---|
+    | **Project details** |  |
+    | Subscription | Select your subscription. |
+    | Resource group | Select **myResourceGroupAG**. |
+    | **Instance details** |  |
+    | Name | Enter **bastion**. |
+    | Region | Select **Central US**. |
+    | Tier | Select **Developer**. |
+    | **Configure virtual networks** |  |
+    | Virtual network | Select **myVNet**. |
+    | Subnet | The **AzureBastionSubnet** is created automatically with an address space of **/26** or larger. |
+
+1. Select **Review + create**.
+
+1. Select **Create**.
+
 ## Add backend pool
 
 The backend pool is used to route requests to the backend servers that serve the request. The backend can be composed of NICs, virtual machine scale sets, public IP addresses, internal IP addresses, fully qualified domain names (FQDN), and multitenant backends like Azure App Service. In this example, you use virtual machines as the target backend. You can either use existing virtual machines or create new ones. In this example, you create two virtual machines that Azure uses as backend servers for the application gateway.
@@ -106,9 +136,11 @@ To do this:
    - Select **Windows Server 2019 Datacenter** for **Image**.
    - Type a valid **Username**.
    - Type a valid **Password**.
+   - For **Public inbound ports**, select **None**.
 1. Accept the remaining defaults and select **Next: Disks**.
 1. Accept the defaults and select **Next : Networking**.
 1. Ensure that **myVNet** is selected for the virtual network and the subnet is **myBackendSubnet**.
+1. For **Public IP**, select **None**.
 1. Accept the remaining defaults, and select **Next : Management**.
 1. Select **Disable** to disable boot diagnostics.
 1. Select **Review + create**.
@@ -146,7 +178,7 @@ To do this:
 
 ## Create a client virtual machine
 
-The client virtual machine is used to connect to the application gateway backend pool.
+The client virtual machine is used to connect to the application gateway backend pool using Azure Bastion.
 
 - Create a third virtual machine using the previous steps. Use myVM3 for the virtual machine name.
 
@@ -154,7 +186,16 @@ The client virtual machine is used to connect to the application gateway backend
 
 1. On the myAppGateway page, select **Frontend IP Configurations** to note the frontend private IP address.
     ![Frontend IP configurations pane with the Private type highlighted.](./media/configure-application-gateway-with-private-frontend-ip/private-frontendip-5.png)
-2. Copy the private IP address, and then paste it into the browser address bar on myVM3 to access the application gateway backend pool.
+
+1. In the search box at the top of the portal, enter **Virtual machine**. Select **Virtual machines** in the search results.
+
+1. Select **myVM3**.
+
+1. Select **Connect** then **Connect via Bastion** in the **Overview** section.
+
+1. Enter the username and password for the virtual machine. Select **Connect**.
+
+1. Once connected to myVM3, open a web browser. Enter the private IP address of the application gateway in the address bar to access the backend pool.
 
 ## Next steps
 
