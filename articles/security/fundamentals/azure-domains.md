@@ -15,6 +15,14 @@ ms.date: 01/06/2026
 
 This page is a partial list of the Azure domains in use. Some of them are REST API endpoints.
 
+Unlike IP address ranges (which Azure publishes in the [Azure IP Ranges and Service Tags](https://www.microsoft.com/download/details.aspx?id=56519) download), a complete list of all Azure FQDNs isn't feasible because:
+
+- **Dynamic resource names**: Azure creates subdomains dynamically based on customer-provided resource names (for example, `myapp.azurewebsites.net` or `mystorageaccount.blob.core.windows.net`), resulting in millions of unique FQDNs.
+- **Regional variations**: Many services use region-specific endpoints (for example, `*.westus2.cloudapp.azure.com`).
+- **Constant evolution**: New services and endpoints are added regularly.
+
+For firewall configurations, use the wildcard patterns shown in the **Subdomain** column (for example, `*.blob.core.windows.net`) rather than attempting to enumerate all possible FQDNs. For service-specific endpoint requirements, see the individual service documentation.
+
 
 |Service  |Subdomain  |
 |---------|---------|
