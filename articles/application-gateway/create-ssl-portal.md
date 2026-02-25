@@ -5,7 +5,7 @@ services: application-gateway
 author: mbender-ms
 ms.service: azure-application-gateway
 ms.topic: tutorial
-ms.date: 06/30/2022
+ms.date: 07/11/2025
 ms.author: mbender
 ms.custom: sfi-image-nochange
 #Customer intent: As an IT administrator, I want to use the Azure portal to configure Application Gateway with TLS termination so I can secure my application traffic.
@@ -21,6 +21,7 @@ In this tutorial, you learn how to:
 > [!div class="checklist"]
 > * Create a self-signed certificate
 > * Create an application gateway with the certificate
+> * Deploy Azure Bastion for secure VM connectivity
 > * Create the virtual machines used as backend servers
 > * Test the application gateway
 
@@ -173,6 +174,35 @@ On the **Configuration** tab, you'll connect the frontend and backend pool you c
 
 Review the settings on the **Review + create** tab, and then select **Create** to create the virtual network, the public IP address, and the application gateway. It may take several minutes for Azure to create the application gateway. Wait until the deployment finishes successfully before moving on to the next section.
 
+## Deploy Azure Bastion
+
+Azure Bastion uses your browser to connect to VMs in your virtual network over secure shell (SSH) or remote desktop protocol (RDP) by using their private IP addresses. The VMs don't need public IP addresses, client software, or special configuration. For more information about Azure Bastion, see [Azure Bastion](/azure/bastion/bastion-overview).
+
+>[!NOTE]
+>[!INCLUDE [Pricing](~/reusable-content/ce-skilling/azure/includes/bastion-pricing.md)]
+
+1. In the search box at the top of the portal, enter **Bastion**. Select **Bastions** in the search results.
+
+1. Select **+ Create**.
+
+1. In the **Basics** tab of **Create a Bastion**, enter or select the following information:
+
+    | Setting | Value |
+    |---|---|
+    | **Project details** |  |
+    | Subscription | Select your subscription. |
+    | Resource group | Select **myResourceGroupAG**. |
+    | **Instance details** |  |
+    | Name | Enter **myBastionHost**. |
+    | Region | Select the same region as your application gateway. |
+    | Tier | Select **Developer**. |
+    | **Configure virtual networks** |  |
+    | Virtual network | Select **myVNet**. |
+
+1. Select **Review + create**.
+
+1. Select **Create**.
+
 ## Add backend targets
 
 In this example, you'll use virtual machines as the target backend. You can either use existing virtual machines or create new ones. You'll create two virtual machines that Azure uses as backend servers for the application gateway.
@@ -197,9 +227,10 @@ To do this, you'll:
     - **Virtual machine name**: Enter *myVM* for the name of the virtual machine.
     - **Username**: Enter a name for the administrator user name.
     - **Password**: Enter a password for the administrator account.
+    - **Public inbound ports**: Select **None**.
 1. Accept the other defaults and then select **Next: Disks**.  
 2. Accept the **Disks** tab defaults and then select **Next: Networking**.
-3. On the **Networking** tab, verify that **myVNet** is selected for the **Virtual network** and the **Subnet** is set to **myBackendSubnet**. Accept the other defaults and then select **Next: Management**.
+3. On the **Networking** tab, verify that **myVNet** is selected for the **Virtual network** and the **Subnet** is set to **myBackendSubnet**. For **Public IP**, select **None**. Accept the other defaults and then select **Next: Management**.
 
    Application Gateway can communicate with instances outside of the virtual network that it is in, but you need to ensure there's IP connectivity.
 1. On the **Management** tab, set **Boot diagnostics** to **Disable**. Accept the other defaults and then select **Review + create**.
@@ -228,7 +259,7 @@ In this example, you install IIS on the virtual machines only to verify Azure cr
             -Location <location>
    ```
 
-3. Create a second virtual machine and install IIS by using the steps that you previously completed. Use *myVM2* for the virtual machine name and for the **VMName** setting of the **Set-AzVMExtension** cmdlet.
+3. Create a second virtual machine and install IIS by using the steps that you previously completed. Use *myVM2* for the virtual machine name and for the **VMName** setting of the **Set-AzVMExtension** cmdlet. Set **Public inbound ports** to **None** and **Public IP** to **None** as you did for *myVM*.
 
 ### Add backend servers to backend pool
 
