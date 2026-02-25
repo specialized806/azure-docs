@@ -6,7 +6,7 @@ services: application-gateway
 author: mbender-ms
 ms.service: azure-application-gateway
 ms.topic: tutorial
-ms.date: 06/13/2023
+ms.date: 07/11/2025
 ms.author: mbender
 ms.custom: sfi-image-nochange
 #Customer intent: As an IT administrator, I want to use the Azure portal to set up an application gateway so I can host multiple sites.
@@ -21,6 +21,7 @@ In this tutorial, you learn how to:
 
 > [!div class="checklist"]
 > * Create an application gateway
+> * Deploy Azure Bastion
 > * Create virtual machines for backend servers
 > * Create backend pools with the backend servers
 > * Create listeners
@@ -158,6 +159,35 @@ To add backend targets, you'll:
 3. Select **+ Subnet** and in the **Add subnet** pane, enter *myBackendSubnet* for **Name** and accept *10.0.1.0/24* as the **Subnet address range**.
 4. Accept all other default settings and select **Save**.
 
+### Deploy Azure Bastion
+
+Azure Bastion uses your browser to connect to VMs in your virtual network over secure shell (SSH) or remote desktop protocol (RDP) by using their private IP addresses. The VMs don't need public IP addresses, client software, or special configuration. For more information about Azure Bastion, see [Azure Bastion](/azure/bastion/bastion-overview).
+
+>[!NOTE]
+>[!INCLUDE [Pricing](~/reusable-content/ce-skilling/azure/includes/bastion-pricing.md)]
+
+1. In the search box at the top of the portal, enter **Bastion**. Select **Bastions** in the search results.
+
+1. Select **+ Create**.
+
+1. In the **Basics** tab of **Create a Bastion**, enter or select the following information:
+
+    | Setting | Value |
+    |---|---|
+    | **Project details** |  |
+    | Subscription | Select your subscription. |
+    | Resource group | Select **myResourceGroupAG**. |
+    | **Instance details** |  |
+    | Name | Enter **bastion**. |
+    | Region | Select the same region you used previously. |
+    | Tier | Select **Developer**. |
+    | **Configure virtual networks** |  |
+    | Virtual network | Select **myVNet**. |
+
+1. Select **Review + create**.
+
+1. Select **Create**.
+
 ### Create a virtual machine
 
 1. On the Azure portal, select **Create a resource**. The **New** window appears.
@@ -170,9 +200,10 @@ To add backend targets, you'll:
     - **Region**: Select the same region that you used before.
     - **Username**: Enter a name for the administrator user name.
     - **Password**: Enter a password for the administrator.
-1. Accept the other defaults and then select **Next: Disks**.  
+    - **Public inbound ports**: Select **None**.
+1. Accept the other defaults and then select **Next: Disks**.
 2. Accept the **Disks** tab defaults and then select **Next: Networking**.
-3. On the **Networking** tab, verify that **myVNet** is selected for the **Virtual network** and the **Subnet** is set to **myBackendSubnet**. Accept the other defaults and then select **Next: Management**.<br>Application Gateway can communicate with instances outside of the virtual network that it is in, but you need to ensure there's IP connectivity.
+3. On the **Networking** tab, verify that **myVNet** is selected for the **Virtual network** and the **Subnet** is set to **myBackendSubnet**. Set **Public IP** to **None**. Accept the other defaults and then select **Next: Management**.<br>Application Gateway can communicate with instances outside of the virtual network that it is in, but you need to ensure there's IP connectivity.
 4. On the **Management** tab, set **Boot diagnostics** to **Disable**. Accept the other defaults and then select **Review + create**.
 5. On the **Review + create** tab, review the settings, correct any validation errors, and then select **Create**.
 6. Wait for the virtual machine creation to complete before continuing.
