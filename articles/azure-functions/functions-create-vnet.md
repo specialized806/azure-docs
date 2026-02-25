@@ -29,7 +29,9 @@ You create a C# function app in an [Elastic Premium plan](./functions-premium-pl
 
 1. On the Azure portal menu or the **Home** page, select **Create a resource**.
 
-1. On the **New** page, select **Compute** > **Function App**.
+1. On the **New** page, select **Web** > **Function App**.
+
+1. On the hosting options page, select **Functions Premium**.
 
 1. On the **Basics** page, use the following table to configure the function app settings.
 
@@ -40,7 +42,7 @@ You create a C# function app in an [Elastic Premium plan](./functions-premium-pl
     | **Function App name** | Globally unique name | Name that identifies your new function app. Valid characters are `a-z` (case insensitive), `0-9`, and `-`. |
     | **Publish** | Code | Choose to publish code files or a Docker container. |
     | **Runtime stack** | .NET | This tutorial uses .NET. |
-    | **Version** | 6 (LTS) | This tutorial uses .NET 6.0 running [in the same process as the Functions host](./functions-dotnet-class-library.md). |
+    | **Version** | 8 (LTS) | This tutorial uses .NET 8.0 running [in the same process as the Functions host](./functions-dotnet-class-library.md). |
     | **Region** | Preferred region | Choose a [region](https://azure.microsoft.com/explore/global-infrastructure/geographies/) near you or near other services that your functions access. |
     | **Operating system** | Windows | This tutorial uses Windows but also works for Linux. |
     | **[Plan](./functions-scale.md)** | Functions Premium | Hosting plan that defines how resources are allocated to your function app. By default, when you select **Premium**, a new App Service plan is created. The default **Sku and size** is **EP1**, where *EP* stands for _elastic premium_. For more information, see the list of [Premium SKUs](./functions-premium-plan.md#available-instance-skus).<br/><br/>When you run JavaScript functions on a Premium plan, choose an instance that has fewer vCPUs. For more information, see [Choose single-core Premium plans](./functions-reference-node.md#considerations-for-javascript-functions). |
@@ -133,7 +135,7 @@ Next, you create a Service Bus instance that is used to test the functionality o
 
 Create the private endpoint to lock down your Service Bus:
 
-1. In your new Service Bus, in the menu on the left, select **Networking**.
+1. In your new Service Bus, in the menu under Settings, select **Networking**.
 
 1. On the **Private endpoint connections** tab, select **Private endpoint**.
 
@@ -157,9 +159,9 @@ Create the private endpoint to lock down your Service Bus:
     | **Resource** | myServiceBus | The Service Bus you created earlier in the tutorial. |
     | **Target subresource** | namespace | The private endpoint that is used for the namespace from the Service Bus. |
 
-1. On the **Virtual Network** tab, for the **Subnet** setting, choose **default**.
+1. On the **Virtual Network** tab, for the **Subnet** setting, choose the inbound subnet you created.
 
-1. Select **Review + create**. After validation finishes, select **Create**.
+1. Leave **DNS** and **Tags** as default, and then select **Review + create**. After validation finishes, select **Create**.
 1. After the private endpoint is created, return to the **Networking** section of your Service Bus namespace and check the **Public Access** tab.
 1. Ensure **Selected networks** is selected.
 1. Select **+ Add existing virtual network** to add the recently created virtual network.
@@ -186,7 +188,7 @@ Resources in the virtual network can now communicate with the Service Bus using 
 
 Create the queue where your Azure Functions Service Bus trigger gets events:
 
-1. In your Service Bus, in the menu on the left, select **Queues**.
+1. In your Service Bus, in the menu under **Entities**, select **Queues**.
 
 1. Select **Queue**. For the purposes of this tutorial, provide the name *queue* as the name of the new queue.
 
@@ -199,7 +201,7 @@ Create the queue where your Azure Functions Service Bus trigger gets events:
 
 ## Get a Service Bus connection string
 
-1. In your Service Bus, in the menu on the left, select **Shared access policies**.
+1. In your Service Bus, in the menu under **Settings**, select **Shared access policies**.
 
 1. Select **RootManageSharedAccessKey**. Copy and save the **Primary Connection String**. You need this connection string when you configure the app settings.
 
@@ -207,7 +209,7 @@ Create the queue where your Azure Functions Service Bus trigger gets events:
 
 ## Configure your function app settings
 
-1. In your function app, in the menu on the left, select **Configuration**.
+1. In your function app, in the menu under **Settings**, select **Configuration**.
 
 1. To use your function app with virtual networks and service bus, update the app settings shown in the following table. To add or edit a setting, select **+ New application setting** or the **Edit** icon in the rightmost column of the app settings table. When you finish, select **Save**.
 
@@ -216,7 +218,7 @@ Create the queue where your Azure Functions Service Bus trigger gets events:
     | **SERVICEBUS_CONNECTION** | myServiceBusConnectionString | Create this app setting for the connection string of your Service Bus. This storage connection string is from the [Get a Service Bus connection string](#get-a-service-bus-connection-string) section. |
     | **WEBSITE_CONTENTOVERVNET** | 1 | Create this app setting. A value of 1 enables your function app to scale when your storage account is restricted to a virtual network. |
 
-1. Since you're using an Elastic Premium hosting plan, In the **Configuration** view, select the **Function runtime settings** tab. Set **Runtime Scale Monitoring** to **On**. Then select **Save**. Runtime-driven scaling allows you to connect non-HTTP trigger functions to services that run inside your virtual network.
+1. Since you're using an Elastic Premium hosting plan, In the **Configuration** view, select the **Function runtime settings** tab. Set **Runtime Scale Monitoring** to **On**. Then select **Apply**. Runtime-driven scaling allows you to connect non-HTTP trigger functions to services that run inside your virtual network.
 
     :::image type="content" source="./media/functions-create-vnet/11-enable-runtime-scaling.png" alt-text="Screenshot of how to enable runtime-driven scaling for Azure Functions.":::
 
@@ -234,7 +236,7 @@ Create the queue where your Azure Functions Service Bus trigger gets events:
 
 1. At the top of the page, select **Fork** to create a fork of this repository in your own GitHub account or organization.
 
-1. In your function app, in the menu on the left, select **Deployment Center**. Then select **Settings**.
+1. In your function app, in the menu under **Deployment**, select **Deployment Center**. Then select **Settings**.
 
 1. On the **Settings** tab, use the deployment settings shown in the following table.
 
@@ -257,27 +259,19 @@ Congratulations! You successfully deployed your sample function app.
 
 ### Test your locked-down function app
 
-1. In your function app, in the menu on the left, select **Functions**.
+Here's a way to monitor your function by using Application Insights:
 
-1. Select **ServiceBusQueueTrigger**.
-
-1. In the menu on the left, select **Monitor**.
-
-You see that you can't monitor your app. Your browser doesn't have access to the virtual network, so it can't directly access resources within the virtual network.
-
-Here's an alternative way to monitor your function by using Application Insights:
-
-1. In your function app, in the menu on the left, select **Application Insights**. Then select **View Application Insights data**.
+1. In your function app, in the menu under **Monitoring**, select **Application Insights**. Choose **Apply**, and then select **View Application Insights data**.
 
     :::image type="content" source="./media/functions-create-vnet/16-app-insights.png" alt-text="Screenshot of how to view application insights for a function app.":::
 
-1. In the menu on the left, select **Live metrics**.
+1. In the menu under **Investigate**, select **Live metrics**.
 
-1. Open a new tab. In your Service Bus, in the menu on the left, select **Queues**.
+1. Open a new tab. In your Service Bus, in the menu under **Entities**, select **Queues**.
 
 1. Select your queue.
 
-1. In the menu on the left, select **Service Bus Explorer**. Under **Send**, for **Content Type**, choose **Text/Plain**. Then enter a message.
+1. In the menu, select **Service Bus Explorer**. Select **Send messages**, and for **Content Type** choose **Text/Plain**. Then enter a message.
 
 1. Select **Send** to send the message.
 
