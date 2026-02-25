@@ -6,6 +6,7 @@ ms.author: samuelzhang
 ms.reviewer: glenga
 ms.topic: how-to
 ms.date: 02/11/2026
+ms.update-cycle: 180-days
 ms.collection: ce-skilling-ai-copilot
 
 #Customer intent: As a developer, I want to learn how to connect an Azure Functions-hosted MCP server to Foundry Agent Service, so that my agent has access to my MCP tools.
