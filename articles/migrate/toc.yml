@@ -435,7 +435,7 @@ items:
     - name: Troubleshoot dependency visualization
       href: troubleshoot-dependencies.md
     - name: Troubleshoot assessment
-      href: troubleshoot-assessment-faq
+      href: troubleshoot-assessment-faq.md 
   - name: Assessments
     items:
     - name: Common Issues
