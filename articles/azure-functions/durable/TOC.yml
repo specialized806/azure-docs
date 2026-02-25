@@ -50,11 +50,7 @@
       - name: Durable Task SDKs
         href: what-is-durable-task.md #placeholder
     - name: Sub-orchestrations
-      items:
-      - name: Durable Functions
-        href: durable-functions-sub-orchestrations.md
-      - name: Durable Task SDKs
-        href: what-is-durable-task.md #placeholder
+      href: durable-functions-sub-orchestrations.md
     - name: Task hubs
       href: durable-functions-task-hubs.md
     - name: Orchestrator code constraints
