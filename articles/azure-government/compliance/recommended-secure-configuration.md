@@ -12,7 +12,7 @@ ms.date:     02/06/2026
 
 FedRAMP Rev 5 has mandated the following Secure Configuration Guide requirements for all Cloud Service Providers at [Secure Configuration Guide](https://www.fedramp.gov/docs/rev5/balance/secure-configuration-guide/).
 
-Azure provides the instructions and guidelines for the customers to meet these requirements. 
+Azure provides the instructions and guidelines for the customers to meet these requirements. Customers are responsible for ensuring that their services are configured appropriately to meet these requirements.
 
 ## Recommended secure configuration
 
@@ -60,7 +60,7 @@ Microsoft Learn documents the built‑in administrative roles that are authorize
 
 These roles have the ability to alter authentication requirements, disable protections, and grant or revoke privileged access, making their governance critical.
 
-Azure provides guidance to protect administrator sign-in, enforce MFA, conditional access, and protected admin workstations which detail how to securely access top-level administrative accounts in Azure. For more information, see [Privileged roles and permissions](/entra/identity/role-based-access-control/privileged-roles-permissions).
+Azure provides guidance to help customers protect administrator sign-in, enforce MFA, conditional access, and protected admin workstations which detail how to securely access top-level administrative accounts in Azure. For more information, see [Privileged roles and permissions](/entra/identity/role-based-access-control/privileged-roles-permissions).
 
 Azure defines critical roles (Global/Privileged Role Admin), separation of duties, least‑privilege configuration and provides guidance to manage emergency access admin accounts in Entra ID – Guidance on creating and managing highly privileged break-glass global admin accounts (for emergency scenarios) to securely configure top-level administrative accounts with instructions to implement at [Microsoft cloud security benchmark – Privileged access](/security/benchmark/azure/mcsb-privileged-access) and [Azure identity & access security best practices](/azure/security/fundamentals/identity-management-best-practices).
 
@@ -77,7 +77,7 @@ SCG-CSO-RSC Requirement: Explanations of security-related settings that can be o
 
 SCG-CSO-RSC Recommendation: Explanations of security-related settings that can be operated only by privileged accounts and their security implications.
 
-Microsoft Learn publicly documents tenant‑wide identity and access security settings that are **operated only by top‑level administrative roles** (for example, Global Administrator, Privileged Role Administrator, Conditional Access Administrator). These settings have direct and significant security implications because they control how privileged accounts authenticate, how legacy attack paths are blocked, and how identity risk is mitigated across the tenant. The security settings are described below.
+Microsoft Learn publicly documents tenant‑wide identity and access security settings that are **operated only by top‑level administrative roles** (for example, Global Administrator, Privileged Role Administrator, Conditional Access Administrator). It is important for customers to ensure appropriate configuration as these settings have direct and significant security implications because they control how privileged accounts authenticate, how legacy attack paths are blocked, and how identity risk is mitigated across the tenant. The security settings are described below.
 
 #### 1. Security defaults (tenant‑wide secure‑by‑default controls)
 
@@ -203,6 +203,8 @@ When the tenant is first provisioned Azure enforces the below ensuring newly cre
 - Configure two break-glass accounts with restricted usage and continuous monitoring
 - Alignment to **Azure Policy** + **Defender for Cloud** FedRAMP initiatives
 
+These are Microsoft’s recommended secure defaults for newly created admin or high privilege accounts.
+
 When identities, subscriptions, or resources are created, **Security defaults** + **Conditional Access** give a hardened starting posture; **Azure Policy** applies baseline guardrails at MG/sub scopes so new assets inherit secure defaults automatically.
 
 **Microsoft Learn:** 
@@ -233,14 +235,14 @@ Providers SHOULD offer the capability to compare all current settings for top-le
 
 Azure supports SCG-ENH-CMP through built‑in security baseline comparison capabilities across **Microsoft Entra ID** top-level and privileged accounts and tenant‑level security settings.
 
-Azure provides multiple mechanisms that allow customers to compare the current configuration of top-level and privileged identities against Microsoft’s published secure‑by‑default baseline. Azure provides built‑in comparison tools—Secure Score, Microsoft Entra ID Protection, Privileged Identity Management (PIM), Access Reviews, and Defender for Cloud—that continuously evaluate the configuration of all top-level and privileged accounts against Microsoft’s published secure-by-default identity baselines. These services surface deviations, provide gap analyses, and supply prescriptive remediation guidance, ensuring customers can easily compare current settings to recommended secure defaults at any time.
+Azure provides multiple mechanisms that allow customers to compare the current configuration of top-level and privileged identities against Microsoft’s published secure‑by‑default baseline. Azure provides built‑in comparison tools—Secure Score, Microsoft Entra ID Protection, Privileged Identity Management (PIM), Access Reviews, and Defender for Cloud—that continuously evaluate the configuration of all top-level and privileged accounts against Microsoft’s published secure-by-default identity baselines. These services surface deviations, provide gap analyses, and supply prescriptive remediation guidance, allowing customers to easily compare current settings to recommended secure defaults at any time.
 
 #### How Azure fulfills comparison capability
 
 ##### 1. Microsoft Entra ID Protection Baseline
 
 - Microsoft publishes secure configuration baselines for identity.
-- Microsoft Entra compares current tenant settings—including MFA enforcement, risky sign‑in detection, password protection, and conditional access posture—against Microsoft's recommended defaults.
+- Microsoft Entra compares current tenant settings—including MFA enforcement, risky sign‑in detection, password protection, and conditional access posture—to Microsoft's recommended defaults.
 - Deviations surface as alerts or "unmet recommendations".
 
 **Microsoft Learn:**
@@ -266,7 +268,7 @@ Each control includes:
 - Gap analysis
 - Remediation guidance
   
-This directly supports the requirement to compare *all current settings* against recommended defaults.  
+This compares *all current settings* against recommended defaults.  
 
 **Microsoft Learn:** [Microsoft Entra Identity Secure Score](/entra/identity/monitoring-health/concept-identity-secure-score)
 
@@ -306,7 +308,7 @@ PIM provides a built‑in control comparison:
 For hybrid and cloud resources:
 
 - Identity and entitlement management controls map to secure defaults.
-- Defender for Cloud surfaces misconfigurations and recommends compliant baseline settings. Azure supports this requirement through built‑in security baseline comparison capabilities across Microsoft Entra ID privileged accounts and tenant‑level security settings.
+- Defender for Cloud surfaces misconfigurations and recommends compliant baseline settings. Azure employs built‑in security baseline comparison capabilities across Microsoft Entra ID privileged accounts and tenant‑level security settings.
 
 **Microsoft Learn:** [Manage security posture with Microsoft Defender for Cloud (official Learn module)](/training/modules/microsoft-defender-cloud-security-posture/)
   
