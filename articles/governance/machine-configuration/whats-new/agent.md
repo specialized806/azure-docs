@@ -20,6 +20,29 @@ For information on release notes for the connected machine agent, see
 
 ## Windows extension release notes (Microsoft.GuestConfiguration.ConfigurationforWindows)
 
+### Version 1.29.104.0 - January 2026
+
+#### Updated
+
+- Updated bundled PowerShell version from 7.4.7 to 7.4.13.
+- Updated Azure Storage API version from 2019-02-02 to 2025-11-05.
+
+#### Fixed
+
+- Fixed support for security baseline customization on localized operating systems.
+- Enhanced reliability for compliance evaluation for ApplyAndAutoCorrect Machine Configuration
+  policy assignments.
+
+### Version 1.29.101.0 - November 2025
+
+#### New Features
+
+- Baseline customization.
+
+#### Updated
+
+- Updated OpenSSL library from version 3.4.1 to 3.6.0.
+
 ### Version 1.29.98.0 - July 2025
 
 #### New Features
@@ -93,6 +116,35 @@ In this case the maximum CPU utilization of the service will be 5%. This can be 
 
 
 ## Extension for Linux extension release notes (Microsoft.GuestConfiguration.ConfigurationforLinux)
+
+### Version 1.26.104.0 - January 2026
+
+#### Updated
+
+- Updated bundled PowerShell version from 7.4.7 to 7.4.13.
+- Updated Azure Storage API version from 2019-02-02 to 2025-11-05.
+
+#### Fixed
+
+- Fixed support for security baseline customization on localized operating systems.
+- Enhanced reliability for compliance evaluation for ApplyAndAutoCorrect Machine Configuration
+  policy assignments.
+- Fixed bugs that cause Machine Configuration agent and GC worker to crash.
+
+### Version 1.26.101.0 - November 2025
+
+#### New Features
+
+- Baseline customization.
+
+#### Updated
+
+- Updated OpenSSL library from version 3.4.1 to 3.4.3.
+
+#### Fixed
+
+- Use `systemctl daemon-reload` instead of `systemctl daemon-reexec` for better stability and
+  compatibility.
 
 ### Version 1.26.93.0 - July 2025
 
