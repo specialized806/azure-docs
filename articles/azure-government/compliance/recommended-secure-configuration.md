@@ -49,7 +49,7 @@ Azure defines the following top-level administrative accounts.
 
 **SCG-CSO-RSC Requirement:** Instructions about how to securely access, configure, operate, and decommission top-level administrative accounts that control enterprise access to the entire cloud service offering. 
 
-Azure publishes authoritative guidance for top-level admin roles via Microsoft Learn (Microsoft Entra documentation), including privileged role definitions, emergency access ("break-glass") account guidance, and FedRAMP High identity access controls. For more information, see [RBAC and Directory Admin Roles](/role-based-access-control/rbac-and-directory-admin-roles).
+Azure publishes authoritative guidance for top-level admin roles via Microsoft Learn (Microsoft Entra documentation), including privileged role definitions, emergency access ("break-glass") account guidance, and FedRAMP High identity access controls. For more information, see [RBAC and Directory Admin Roles](/azure/role-based-access-control/rbac-and-directory-admin-roles).
 
 Microsoft Learn documents the built‑in administrative roles that are authorized to change tenant‑wide security settings, including:
 
@@ -62,7 +62,7 @@ These roles have the ability to alter authentication requirements, disable prote
 
 Azure provides guidance to protect administrator sign-in, enforce MFA, conditional access, and protected admin workstations which detail how to securely access top-level administrative accounts in Azure. For more information, see [Privileged roles and permissions](/entra/identity/role-based-access-control/privileged-roles-permissions).
 
-Azure defines critical roles (Global/Privileged Role Admin), separation of duties, least‑privilege configuration and provides guidance to manage emergency access admin accounts in Entra ID – Guidance on creating and managing highly privileged “break-glass” global admin accounts (for emergency scenarios) to securely configure top-level administrative accounts with instructions to implement at [Microsoft cloud security benchmark – Privileged access](/security/benchmark/azure/mcsb-privileged-access) and [Azure identity & access security best practices](/azure/security/fundamentals/identity-management-best-practices).
+Azure defines critical roles (Global/Privileged Role Admin), separation of duties, least‑privilege configuration and provides guidance to manage emergency access admin accounts in Entra ID – Guidance on creating and managing highly privileged break-glass global admin accounts (for emergency scenarios) to securely configure top-level administrative accounts with instructions to implement at [Microsoft cloud security benchmark – Privileged access](/security/benchmark/azure/mcsb-privileged-access) and [Azure identity & access security best practices](/azure/security/fundamentals/identity-management-best-practices).
 
 Azure provides operational guardrails for privileged sessions, access reviews, activation workflows, and monitoring to securely operate top-level administrative accounts as well as lifecycle guidance to remove stale assignments and revoke credentials with least standing privilege to securely decommission (retire) top‑level administrative accounts.
 
@@ -780,7 +780,7 @@ Azure provides versioned JSON accessible through:
 - [List Azure role assignments using Azure CLI](/azure/role-based-access-control/role-assignments-list-cli)
 - [Quickstart: Execute a Resource Graph Query Using Azure CLI](/azure/governance/resource-graph/first-query-azurecli)
 
-ARG enables diffing:
+ARG enables diffs:
 
 - RBAC changes
 - Policy updates
