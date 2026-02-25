@@ -2522,7 +2522,10 @@ In the underlying trigger definition, add the `runtimeConfiguration.concurrency.
    }
 }
 ```
-Please note that The Recurrence trigger supports concurrency but it does not support waiting runs. Any 'Maximum waiting runs' setting on a Recurrence trigger is ignored.
+
+> [!NOTE]
+>
+> The **Recurrence** trigger supports concurrency but not waiting runs. The trigger ignores any value in the **Maximum waiting runs** parameter setting.
 
 For more information, see [Runtime configuration settings](#runtime-config-options).
 
