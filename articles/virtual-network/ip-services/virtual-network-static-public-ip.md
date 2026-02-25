@@ -60,7 +60,7 @@ Sign in to the [Azure portal](https://portal.azure.com).
     | Public inbound ports | Select **None**. |
 
     > [!NOTE]
-    > Use Azure Bastion to securely connect to the VM. Azure Bastion is deployed in a later section of this article.
+    > All public inbound ports are closed for this virtual machine. To manage your virtual machines, deploy Azure Bastion. For more information, see [Quickstart: Deploy Azure Bastion from the Azure portal](../../bastion/quickstart-host-portal.md).
 
 5. Select the **Networking** tab, or select **Next: Disks**, then **Next: Networking**.
   
@@ -83,36 +83,6 @@ Sign in to the [Azure portal](https://portal.azure.com).
 > [!WARNING]
 > Do not modify the IP address settings within the virtual machine's operating system. The operating system is unaware of Azure public IP addresses. Though you can add private IP address settings to the operating system, we recommend not doing so unless necessary. For more information, see [Add a private IP address to an operating system](./virtual-network-network-interface-addresses.md#private).
 
-### Deploy Azure Bastion
-
-Azure Bastion uses your browser to connect to VMs in your virtual network over RDP by using their private IP addresses. The VM doesn't need a public IP address for management access, client software, or special configuration. For more information, see [Azure Bastion](/azure/bastion/bastion-overview).
-
->[!NOTE]
->[!INCLUDE [Pricing](~/reusable-content/ce-skilling/azure/includes/bastion-pricing.md)]
-
-1. In the search box at the top of the portal, enter **Bastion**. Select **Bastions** in the search results.
-
-1. Select **+ Create**.
-
-1. In the **Basics** tab of **Create a Bastion**, enter, or select the following information:
-
-    | Setting | Value |
-    |---|---|
-    | **Project details** |  |
-    | Subscription | Select your subscription. |
-    | Resource group | Select **myResourceGroup**. |
-    | **Instance details** |  |
-    | Name | Enter **bastion**. |
-    | Region | Select **East US**. |
-    | Tier | Select **Developer**. |
-    | **Configure virtual networks** |  |
-    | Virtual network | Select the virtual network for **myVM**. |
-    | Subnet | The **AzureBastionSubnet** is created automatically with an address space of **/26** or larger. |
-
-1. Select **Review + create**.
-
-1. Select **Create**.
-
 [!INCLUDE [ephemeral-ip-note.md](~/reusable-content/ce-skilling/azure/includes/ephemeral-ip-note.md)]
 
 # [Azure PowerShell](#tab/azurepowershell)
@@ -130,25 +100,6 @@ $rg =@{
 }
 New-AzResourceGroup @rg
 
-```
-
-### Create a virtual network
-
-Create a virtual network and subnets for the virtual machine and Azure Bastion with [New-AzVirtualNetwork](/powershell/module/az.network/new-azvirtualnetwork) and [New-AzVirtualNetworkSubnetConfig](/powershell/module/az.network/new-azvirtualnetworksubnetconfig).
-
-```azurepowershell-interactive
-## Create virtual network and subnets. ##
-$bastionSubnet = New-AzVirtualNetworkSubnetConfig -Name "AzureBastionSubnet" -AddressPrefix "10.0.1.0/24"
-$vmSubnet = New-AzVirtualNetworkSubnetConfig -Name "default" -AddressPrefix "10.0.0.0/24"
-
-$vnetParams = @{
-    ResourceGroupName = "myResourceGroup"
-    Location = "eastus2"
-    Name = "myVNet"
-    AddressPrefix = "10.0.0.0/16"
-    Subnet = $bastionSubnet, $vmSubnet
-}
-$vnet = New-AzVirtualNetwork @vnetParams
 ```
 
 ### Create a public IP address
@@ -183,38 +134,8 @@ $vm = @{
     Location = 'East US 2'
     Name = 'myVM'
     PublicIpAddressName = 'myPublicIP'
-    VirtualNetworkName = 'myVNet'
-    SubnetName = 'default'
 }
 New-AzVM @vm
-```
-
-### Deploy Azure Bastion
-
-Create a public IP address for the Azure Bastion host with [New-AzPublicIpAddress](/powershell/module/az.network/new-azpublicipaddress), then deploy Azure Bastion with [New-AzBastion](/powershell/module/az.network/new-azbastion).
-
-```azurepowershell-interactive
-## Create public IP for Bastion. ##
-$bastionIpParams = @{
-    ResourceGroupName = "myResourceGroup"
-    Name = "public-ip-bastion"
-    Location = "eastus2"
-    AllocationMethod = "Static"
-    Sku = "Standard"
-}
-New-AzPublicIpAddress @bastionIpParams
-
-## Create Bastion. ##
-$bastionParams = @{
-    ResourceGroupName = "myResourceGroup"
-    Name = "bastion"
-    VirtualNetworkName = "myVNet"
-    PublicIpAddressName = "public-ip-bastion"
-    PublicIpAddressRgName = "myResourceGroup"
-    VirtualNetworkRgName = "myResourceGroup"
-    Sku = "Basic"
-}
-New-AzBastion @bastionParams -AsJob
 ```
 
 For more information on public IP SKUs, see [Public IP address SKUs](public-ip-addresses.md#sku). A virtual machine can be added to the backend pool of an Azure Load Balancer. The SKU of the public IP address must match the SKU of a load balancer's public IP. For more information, see [Azure Load Balancer](../../load-balancer/skus.md).
@@ -251,26 +172,6 @@ Create a resource group with [az group create](/cli/azure/group#az-group-create)
     --location eastus2
 ```
 
-### Create a virtual network
-
-Create a virtual network and subnets for the virtual machine and Azure Bastion with [az network vnet create](/cli/azure/network/vnet#az-network-vnet-create) and [az network vnet subnet create](/cli/azure/network/vnet/subnet#az-network-vnet-subnet-create).
-
-```azurecli-interactive
-az network vnet create \
-    --resource-group myResourceGroup \
-    --name myVNet \
-    --address-prefix 10.0.0.0/16 \
-    --subnet-name default \
-    --subnet-prefix 10.0.0.0/24 \
-    --location eastus2
-
-az network vnet subnet create \
-    --resource-group myResourceGroup \
-    --vnet-name myVNet \
-    --name AzureBastionSubnet \
-    --address-prefix 10.0.1.0/26
-```
-
 ### Create a public IP address
 
 Use [az network public-ip create](/cli/azure/network/public-ip#az-network-public-ip-create) to create a standard public IPv4 address.
@@ -292,37 +193,13 @@ Create a virtual machine with [az vm create](/cli/azure/vm#az-vm-create).
 The following command creates a Windows Server virtual machine. You enter the name of the public IP address created previously in the **`-PublicIPAddressName`** parameter. When prompted, provide a username and password to be used as the credentials for the virtual machine:
 
 ```azurecli-interactive
-az vm create \
+  az vm create \
     --name myVM \
     --resource-group myResourceGroup \
     --public-ip-address myPublicIP \
     --size Standard_A2 \
     --image MicrosoftWindowsServer:WindowsServer:2019-Datacenter:latest \
-    --admin-username azureuser \
-    --vnet-name myVNet \
-    --subnet default
-```
-
-### Deploy Azure Bastion
-
-Create a public IP address for the Azure Bastion host with [az network public-ip create](/cli/azure/network/public-ip#az-network-public-ip-create), then deploy Azure Bastion with [az network bastion create](/cli/azure/network/bastion#az-network-bastion-create).
-
-```azurecli-interactive
-az network public-ip create \
-    --resource-group myResourceGroup \
-    --name public-ip-bastion \
-    --location eastus2 \
-    --allocation-method Static \
-    --sku Standard
-
-az network bastion create \
-    --resource-group myResourceGroup \
-    --name bastion \
-    --vnet-name myVNet \
-    --public-ip-address public-ip-bastion \
-    --location eastus2 \
-    --sku Basic \
-    --no-wait
+    --admin-username azureuser
 ```
 
 For more information on public IP SKUs, see [Public IP address SKUs](public-ip-addresses.md#sku). A virtual machine can be added to the backend pool of an Azure Load Balancer. The SKU of the public IP address must match the SKU of a load balancer's public IP. For more information, see [Azure Load Balancer](../../load-balancer/skus.md).
