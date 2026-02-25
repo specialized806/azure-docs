@@ -7,7 +7,8 @@ ms.author: normesta
 ---
 Getting started - Entra ID based access for Azure Blob Storage SFTP
 
-**This feature is currently in public preview and once enabled it is applicable across all storage accounts within the entire subscription. This feature is currently in public preview and once enabled it is applicable across all storage accounts within the entire subscription. **
+> [!NOTE]
+> This feature is currently in public preview and once enabled it is applicable across all storage accounts within the entire subscription. This feature is currently in public preview and once enabled it is applicable across all storage accounts within the entire subscription. 
 
 Azure Blob Storage SFTP now supports Entra ID-based access in public preview. Previously, Azure Blob Storage SFTP only supported local user-based access, requiring either a password or an SSH private key for authentication. With this new feature, users can leverage their Entra ID or Entra External Identities to connect to Azure storage accounts via SFTP without the need to create and maintain local users.  
 
@@ -19,7 +20,7 @@ Entra ID-based access brings a host of benefits, including Role Based Access Con
 
 With Entra ID-based access, there is no need to create, rotate, or maintain local SFTP users per storage account. Authentication is handled entirely by Entra ID, significantly reducing operational overhead and configuration sprawl
 
-1. Enterprisegrade Identity & Security
+1. Enterprise grade Identity & Security
 
 SFTP access is backed by Entra ID, enabling:
 
@@ -63,8 +64,7 @@ Below is a high-level overview of the key steps involved in this process. In sum
 > [!NOTE]
 > For Step 3 Password based authentication won't be supported since there are no SFTP clients that have native Entra ID integration to allow an Entra ID UX to accept the passwords.
 
-:::image type="content" source="media/secure-file-transfer-protocol-support-entra-id-based-access/overview-flow-chart.png" alt-text="Flow chart demonstrating the Open SSH certificate workflow":::
-
+   > ![Screenshot of the disable SFTP button.](./media/secure-file-transfer-protocol-support/overview-flow-chart.png)
 
 
 # **Connecting to Azure Blob Storage with Entra IDs **
@@ -210,7 +210,7 @@ Use the following command to view the OpenSSH certificate.
 `ssh-keygen -L -f my_cert.pub`
 Username is captured in the _Principals_ section highlighted in red
 
-:::image type="content" source="media/secure-file-transfer-protocol-support-entra-id-based-access/verify-opensshcert.jpg" alt-text="Screenshot of the OpenSSH certificate output showing the Principals section highlighted in red.":::
+   > ![Screenshot of the disable SFTP button.](./media/secure-file-transfer-protocol-support/verify-opensshcert.jpg)
 
 For security reasons, the OpenSSH certificate is valid for 65 minutes. After this period, you will need to request a new certificate to initiate any further transactions. For security reasons, the OpenSSH certificate is valid for 65 minutes. After this period, you will need to request a new certificate to initiate any further transactions.
 
@@ -246,15 +246,18 @@ OpenSSH based login is supported by SFTP clients such as WinSCP and PuTTY. Steps
 2. Obtain the OpenSSH certificate from step 3 above (3. Generate OpenSSH certificate)
 3. In WinSCP enter the Host name Username and click on Advanced
 
-:::image type="content" source="media/secure-file-transfer-protocol-support-entra-id-based-access/winscp-login.png" alt-text="Screenshot of the WinSCP login dialog showing the Host name, Username fields, and the Advanced button.":::
+   > ![Screenshot of the disable SFTP button.](./media/secure-file-transfer-protocol-support/winscp-login.png)
 
-1. Navigate to the Authentication section in the SSH Tab on the left and attach the Private Key and Certificate files obtained from the earlier sections and Click 'Ok.'
 
-:::image type="content" source="media/secure-file-transfer-protocol-support-entra-id-based-access/winscp-advanced-settings.png"  alt-text="Screenshot of the WinSCP Advanced Site Settings dialog showing the Authentication section with Private Key and Certificate file fields.":::
+4. Navigate to the Authentication section in the SSH Tab on the left and attach the Private Key and Certificate files obtained from the earlier sections and Click 'Ok.'
 
-1. Click 'Login' to Login with the Entra ID account and OpenSSH certificate
+   > ![Screenshot of the disable SFTP button.](./media/secure-file-transfer-protocol-support/winscp-advanced-settings.png)
 
-:::image type="content" ssource="media/secure-file-transfer-protocol-support-entra-id-based-access/winscp-login-highlight.png" alt-text="Screenshot of the WinSCP login dialog with the Login button to connect using the Entra ID account and OpenSSH certificate.":::
+
+5. Click 'Login' to Login with the Entra ID account and OpenSSH certificate
+
+   > ![Screenshot of the disable SFTP button.](./media/secure-file-transfer-protocol-support/winscp-login-highlight.png)
+
 
 # [Azure CLI](#tab/azurecli)
 
