@@ -5,6 +5,8 @@ author: padmalathas
 ms.author: padmalathas
 ms.topic: how-to
 ms.date: 02/24/2026
+ms.service: azure-virtual-machines
+ms.subservice: hpc
 ---
 
 # Running your first benchmark using STREAM
