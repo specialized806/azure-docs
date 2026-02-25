@@ -1,5 +1,5 @@
 ---
-title: Inspect and analyze packet capture files
+title: Inspect and Analyze Packet Capture Files
 titleSuffix: Azure Network Watcher
 description: Learn how to inspect and analyze network data that Azure Network Watcher previously captured for packets.
 author: halkazwini

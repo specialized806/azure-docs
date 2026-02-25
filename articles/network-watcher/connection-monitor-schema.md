@@ -1,5 +1,5 @@
 ---
-title: Connection monitor schemas
+title: Connection Monitor Schemas
 titleSuffix: Azure Network Watcher
 description: Learn about the available tests data and path data schemas in Azure Network Watcher connection monitor.
 author: halkazwini

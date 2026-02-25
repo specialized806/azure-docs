@@ -1,5 +1,5 @@
 ---
-title: Diagnose a VM network routing problem - Azure PowerShell
+title: Diagnose a VM Network Routing Problem - Azure PowerShell
 titleSuffix: Azure Network Watcher
 description: In this article, you learn how to diagnose a virtual machine network routing problem using the next hop capability of Azure Network Watcher.
 author: halkazwini

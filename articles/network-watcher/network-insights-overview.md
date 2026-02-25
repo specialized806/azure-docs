@@ -1,5 +1,5 @@
 ---
-title: Network insights
+title: Network Insights
 description: An overview of Azure Monitor Network Insights, which provides a comprehensive view of health and metrics for all deployed network resources without any configuration.
 author: halkazwini
 ms.author: halkazwini

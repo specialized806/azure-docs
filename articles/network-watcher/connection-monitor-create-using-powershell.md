@@ -1,5 +1,5 @@
 ---
-title: Create a connection monitor - PowerShell
+title: Create a Connection Monitor - PowerShell
 titleSuffix: Azure Network Watcher
 description: Learn how to create an Azure Network Watcher connection monitor using Azure PowerShell.
 author: halkazwini

@@ -1,5 +1,5 @@
 ---
-title: 'Quickstart: Configure NSG flow logs using an ARM template'
+title: 'Quickstart: Configure NSG Flow Logs Using an ARM Template'
 titleSuffix: Azure Network Watcher
 description: Learn how to enable network security group (NSG) flow logs programmatically using an Azure Resource Manager (ARM) template and Azure PowerShell.
 author: halkazwini

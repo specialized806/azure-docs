@@ -1,5 +1,5 @@
 ---
-title: Connection monitor overview
+title: Connection Monitor Overview
 titleSuffix: Azure Network Watcher
 description: Learn about Azure Network Watcher connection monitor and how to use it to monitor network communication in a distributed environment.
 author: halkazwini

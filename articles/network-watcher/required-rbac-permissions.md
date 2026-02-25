@@ -1,5 +1,5 @@
 ---
-title: Azure RBAC permissions
+title: Azure RBAC Permissions
 titleSuffix: Azure Network Watcher
 description: Learn about the required Azure role-based access control (Azure RBAC) permissions to have in order to use each of the Azure Network Watcher capabilities.
 author: halkazwini
