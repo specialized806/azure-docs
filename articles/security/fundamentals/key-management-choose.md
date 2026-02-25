@@ -51,15 +51,21 @@ Use the table to compare all the solutions side by side. Begin from top to botto
 
 |  | **AKV Standard** | **AKV Premium** | **Azure Key Vault Managed HSM** | **Azure Cloud HSM** | **Azure Payment HSM** |
 | --- | --- | --- | --- | --- | --- |
+| **Service model** | PaaS | PaaS | PaaS | IaaS-style HSM service | IaaS-style HSM service |
 | What level of **compliance** do you need? | FIPS 140-2 level 1 | FIPS 140-3 level 3 | FIPS 140-3 level 3, PCI DSS, PCI 3DS | FIPS 140-3 level 3 | FIPS 140-2 level 3, PCI HSM v3, PCI PTS HSM v3, PCI DSS, PCI 3DS, PCI PIN |
 | Do you need **key sovereignty**? | No | No | Yes | Yes | Yes |
 | What kind of **tenancy** are you looking for? | Multitenant | Multitenant | Single Tenant | Single Tenant | Single Tenant |
 | What are your **use cases**? | Encryption at Rest, CMK, custom | Encryption at Rest, CMK, custom | Encryption at Rest, TLS Offload, CMK, custom | Lift and shift, PKCS#11, TLS Offload, TDE, code signing | Payment PIN processes, custom |
 | Do you want **HSM hardware protection**? | No | Yes | Yes | Yes | Yes |
 | What is your **budget**? | $ | $$ | $$$ | $$$ | $$$$ |
+| **HSM administrative control** | Microsoft | Microsoft | Microsoft | Customer | Customer |
 | Who takes responsibility for **patching and maintenance**? | Microsoft | Microsoft | Microsoft | Microsoft | Customer |
-| Who takes responsibility for **service health and hardware failover**? | Microsoft | Microsoft | Shared | Microsoft | Customer |
-| What kind of **objects** are you using? | Asym Keys, Secrets, Certs | Asym Keys, Secrets, Certs | Asym/Sym Keys | Asym/Sym Keys, Certs | Local Master Key |
+| Who takes responsibility for **service health and hardware failover**? | Microsoft | Microsoft | Shared | Shared | Customer |
+| **Dedicated capacity** | No | No | Yes | Yes | Yes |
+| **BCDR** | Automatic | Automatic | Automatic | Automatic | Manual |
+| **Backup & Restore** | Built-in service backup | Built-in service backup | Service-managed | Manual HSM backup | Manual HSM backup |
+| **Application direct access** | No | No | No | Yes | Yes |
+| What kind of **objects** are you using? | Asym Keys, Secrets, Certs | Asym Keys, Secrets, Certs | Asym/Sym Keys, Azure services | Asym/Sym Keys, Certs | Keys |
 | **Root of trust control** | Microsoft | Microsoft | Customer | Customer | Customer |
 
 ## Common key management solution uses by industry segments
