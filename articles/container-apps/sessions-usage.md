@@ -26,7 +26,7 @@ The pool management endpoint follows this format:
 https://<SESSION_POOL_NAME>.<ENVIRONMENT_ID>.<REGION>.azurecontainerapps.io
 ```
 
-For more information managing session pools, see [session pools management endpoint](./session-pool.md#management-endpoint).
+For more information on managing session pools, see [session pools management endpoint](./session-pool.md#management-endpoint).
 
 To send a request into a session's container, you use the management endpoint as the root for your request. Anything in the path following the base pool management endpoint is forwarded to the session's container.
 
@@ -38,7 +38,7 @@ As you continue to make calls to the same session, the session remains [allocate
 
 ## Sample request
 
-The following example shows how to send request to a session using a user's ID as the session unique identifier.
+The following example shows how to send a request to a session using a user's ID as the session unique identifier.
 
 Before you send the request, replace the placeholders between the `<>` brackets with values specific to your request.
 
@@ -109,9 +109,9 @@ az role assignment create \
     --scope <SESSION_POOL_RESOURCE_ID>
 ```
 
-If you're using an [large language model (LLM) framework integration](sessions-code-interpreter.md#llm-framework-integrations), the framework handles the token generation and management for you. Ensure that the application is configured with a managed identity with the necessary role assignments on the session pool.
+If you're using a [large language model (LLM) framework integration](sessions-code-interpreter.md#llm-framework-integrations), the framework handles the token generation and management for you. Ensure that the application is configured with a managed identity with the necessary role assignments on the session pool.
 
-If you're using the pool's management API endpoints directly, you must generate a token and include it in the `Authorization` header of your HTTP requests. In addition to the role assignments previously mentioned, token needs to contain an audience (`aud`) claim with the value `https://dynamicsessions.io`.
+If you're using the pool's management API endpoints directly, you must generate a token and include it in the `Authorization` header of your HTTP requests. In addition to the role assignments previously mentioned, the token needs to contain an audience (`aud`) claim with the value `https://dynamicsessions.io`.
 
 ##### [Azure CLI](#tab/cli)
 
@@ -310,7 +310,52 @@ This template contains the following settings for managed identity:
 
 ## Logging
 
-Console logs from containers running in a session are available in the Azure Log Analytics workspace associated with the Azure Container Apps environment in a table named `AppEnvSessionConsoleLogs_CL`.
+Azure Container Apps dynamic sessions integrate with Azure Monitor and Log Analytics to collect logs emitted during session execution. Logging behavior is consistent across code interpreter and custom container session pools, and is distinct from metrics returned via API response headers.
+
+### Log destinations
+
+When Log Analytics is selected as the logging destination for the Container Apps environment, session logs are written to the configured Log Analytics workspace and can be queried using [Kusto Query Language (KQL)](/azure/data-explorer/kusto/query/).
+
+### Available Log Analytics tables
+
+The following Log Analytics tables are created for session logs when logs are emitted. For a full list of supported categories on the environment resource (`Microsoft.App/managedEnvironments`), see [Supported logs for Microsoft.App/managedEnvironments](/azure/azure-monitor/reference/supported-logs/microsoft-app-managedenvironments-logs).
+
+| Session type | Log category | Log Analytics table | Description |
+|-------------|--------------|---------------------|-------------|
+| Code interpreter sessions (platform-managed) | Application logs | `AppEnvSessionConsoleLogs_CL` | Standard output (`stdout`) and standard error (`stderr`) emitted by code running in the session. Logs appear after a session is invoked. |
+| Code interpreter sessions (platform-managed) | Platform logs | Not applicable | Session lifecycle and pool event logs aren't emitted for code interpreter session pools. |
+| Custom container sessions | Application logs | `AppEnvSessionConsoleLogs_CL` | Standard output (`stdout`) and standard error (`stderr`) emitted by the containerized application. Azure Container Apps does not generate application logs for custom containers; you must emit logs from your container. |
+| Custom container sessions | Platform logs | `AppEnvSessionLifecycleLogs_CL`, `AppEnvSessionPoolEventLogs_CL` | Platform-generated events related to session pool allocation, lifecycle, and operational state. |
+
+These tables are created when logs are first emitted. If no sessions have been invoked, the tables might not yet appear in the workspace.
+
+Table names include the _CL suffix when logs are sent directly to Log Analytics. When logs are routed through Azure Monitor diagnostic settings, the table names don't include the _CL suffix.
+
+### Log availability by session type
+
+#### Code interpreter sessions (platform-managed built-in containers)
+
+- **Application logs**  
+  Output written to `stdout` or `stderr` is captured in the `AppEnvSessionConsoleLogs_CL` table.
+
+- **Platform logs**  
+  Session lifecycle and pool event logs aren't emitted for code interpreter session pools.
+
+- **Metrics**  
+  Usage and execution metrics are returned as HTTP response headers for the Execute Code API only. These metrics aren't written to Log Analytics.
+
+#### Custom container sessions
+
+- **Application logs**  
+  Logs are captured only if the containerized application writes output to `stdout` or `stderr`.  
+  These logs appear in the `AppEnvSessionConsoleLogs_CL` table.
+
+- **Platform logs**  
+  Session pool allocation and lifecycle events are captured in `AppEnvSessionLifecycleLogs_CL` and `AppEnvSessionPoolEventLogs_CL`.
+
+- **Customer responsibility**  
+  Azure Container Apps doesn't generate application-level logs for custom containers. You must emit logs from within your containerized applications.
+
 
 ## Related content
 

@@ -34,3 +34,4 @@ When your application requests a session, an instance is instantly allocated fro
 ## Related content
 
 * [Serverless code interpreter sessions in Azure Container Apps](sessions-code-interpreter.md)
+* [Dynamic sessions custom container sample (GitHub)](https://github.com/Azure-Samples/dynamic-sessions-custom-container)
