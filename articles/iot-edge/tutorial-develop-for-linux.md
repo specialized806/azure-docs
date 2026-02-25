@@ -3,7 +3,7 @@ title: Develop Azure IoT Edge modules using Visual Studio Code tutorial
 description: 'Develop IoT Edge modules with Visual Studio Code: Follow step-by-step instructions to create, build, and deploy modules using Azure IoT Edge tools.'
 author: sethmanheim
 ms.author: sethm
-ms.date: 11/03/2025
+ms.date: 02/20/2026
 ms.topic: tutorial
 ms.service: azure-iot-edge
 services: iot-edge
@@ -1029,7 +1029,7 @@ Use the `dotnet publish` command to build the container image for Linux and amd6
 dotnet publish --os linux --arch x64 /t:PublishContainer
 ```
 
-Currently, the **iotedgedev** tool template targets .NET 7.0. If you want to target a different version of .NET, you can edit the **filtermodule.csproj** file and change the `TargetFramework` and `PackageReference` values. For example to target .NET 8.0, your **filtermodule.csproj** file should look like this:
+Currently, the **iotedgedev** tool template targets .NET 7.0, which reached end of support in May 2024. Update the project to target .NET 8.0 (LTS, supported through November 2026) by editing the **filtermodule.csproj** file and changing the `TargetFramework` and `PackageReference` values. Your **filtermodule.csproj** file should look like this:
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk.Worker">
