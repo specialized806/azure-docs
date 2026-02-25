@@ -44,7 +44,7 @@ You need the following prerequisites. Without these prerequisites, you can't aut
 
 - You must disable multifactor authentication (MFA) on the Entra app representing the storage account. For instructions, see [Disable multifactor authentication on the storage account](#disable-multifactor-authentication-on-the-storage-account).
 
-- This feature currently doesn't support cross-tenant access for B2B users or guest users. Users from a Entra tenant other than the one configured won't be able to access the file share.
+- This feature currently doesn't support cross-tenant access for B2B users or guest users. Users from an Entra tenant other than the one configured won't be able to access the file share.
 
 - With Microsoft Entra Kerberos, the Kerberos ticket encryption is always AES-256. But you can set the SMB channel encryption that best fits your needs.
 
