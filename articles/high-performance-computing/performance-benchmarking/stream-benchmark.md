@@ -1,13 +1,13 @@
 ---
 title: Running your first benchmark using STREAM
-descrition: Learn how to run the STREAM benchmark on Azure HPC virtual machines. 
+description: Learn how to run the STREAM benchmark on Azure HPC virtual machines. 
 author: padmalathas
 ms.author: padmalathas
 ms.topic: how-to
 ms.date: 02/24/2026
 ---
 
-# Running your first benchmark: STREAM
+# Running your first benchmark using STREAM
 
 STREAM measures sustainable memory bandwidth, which is critical for memory-bound workloads like computational fluid dynamics (CFD), finite element analysis, and data analytics. STREAM is a simple, synthetic benchmark that measures memory bandwidth for four vector operations:
 
