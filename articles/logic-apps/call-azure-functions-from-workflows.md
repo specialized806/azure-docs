@@ -415,7 +415,7 @@ After you get the tenant ID and the application ID, set up your function app to 
 
 1. Under **App registration**, for **App registration type**, select **Provide the details of an existing app registration**, and enter the values that you previously saved where described in the following table:
 
-   | Paremeter | Required | Value | Description |
+   | Parameter | Required | Value | Description |
    |-----------|----------|-------|-------------|
    | **Application (client) ID** | Yes | <*application-ID*> | The unique identifier to use for this app registration. For this example, use the application ID that you copied for the Enterprise application associated with your managed identity. |
    | **Issuer URL** | No | **<*authentication-endpoint-URL*>/<*Microsoft-Entra-tenant-ID*>/v2.0** | This URL redirects users to the correct Microsoft Entra tenant and downloads the appropriate metadata to determine the appropriate token signing keys and token issuer claim value. For apps that use Azure AD v1, omit **/v2.0** from the URL. <br><br>For this scenario, use the following URL: <br><br>`https://sts.windows.net/`<*Microsoft-Entra-tenant-ID*> |
