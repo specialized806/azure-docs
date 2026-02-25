@@ -103,7 +103,7 @@
     href: performance-benchmarking/optimize-performance.md
 
   - name: Run your first benchmark using STREAM
-    href: stream-benchmark.md   
+    href: performance-benchmarking/stream-benchmark.md   
 
 - name: AI training
   items:
