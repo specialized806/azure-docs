@@ -1,6 +1,6 @@
 ---
 title: "High-Performance Computing (HPC) performance and benchmarking overview"
-description: Learn about understanding and measuring the performance concepts and benchmarking methologies.
+description: Learn about understanding and measuring the performance concepts and benchmarking methodologies.
 author: padmalathas
 ms.author: padmalathas
 ms.date: 02/23/2026
@@ -45,7 +45,7 @@ Memory system efficiency is crucial for overall system performance as it determi
 
 # [Network performance](#tab/networkperf)
 
-In a distributed computing environments, network performance metrics help evaluate the system's ability to communicate between nodes effectively. These metrics are essential for distributed and tightly coupled workloads that span multiple nodes. Network bandwidth defines the maximum data transfer rate between nodes, whereas network latency measures the time required for messages to travel across the interconnect. Message rate, often evaluated with MPI micro-benchmarks, indicates how well the system handles frequent, small communications, which is particularly important for communication-intensive HPC applications.
+In a distributed computing environment, network performance metrics help evaluate the system's ability to communicate between nodes effectively. These metrics are essential for distributed and tightly coupled workloads that span multiple nodes. Network bandwidth defines the maximum data transfer rate between nodes, whereas network latency measures the time required for messages to travel across the interconnect. Message rate, often evaluated with MPI micro-benchmarks, indicates how well the system handles frequent, small communications, which is particularly important for communication-intensive HPC applications.
 
 # [AI specific metrics](#tab/aispecific)
 
