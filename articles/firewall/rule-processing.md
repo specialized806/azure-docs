@@ -92,7 +92,7 @@ Finally, in ChildRCG2, it locates ChAppRC2 (priority 2000) as the APPLICATION ru
 
 This process involves analyzing rule collection groups by priority, and within each group, ordering the rules according to their priorities for each rule type (DNAT, NETWORK, and APPLICATION).
 
-So first all the DNAT rules are processed from all the rule collection groups, analysing the rule collection groups by order of priority and ordering the DNAT rules within each rule collection group by order of priority. Then the same process for NETWORK rules, and finally for APPLICATION rules.
+First, all the DNAT rules are processed from all the rule collection groups, analyzing the rule collection groups by order of priority and ordering the DNAT rules within each rule collection group by order of priority. Then the same process for NETWORK rules, and finally for APPLICATION rules.
 
 For more information about Firewall Policy rule sets, see [Azure Firewall Policy rule sets](policy-rule-sets.md).
 
