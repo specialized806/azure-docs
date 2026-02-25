@@ -1,5 +1,5 @@
 ---
-title: Create, change, or delete a Peering Service connection - Azure CLI 
+title: Manage a Peering Service Connection - Azure CLI
 description: Learn how to create, change, or delete a Peering Service connection using the Azure CLI.
 author: halkazwini
 ms.author: halkazwini

@@ -1,5 +1,5 @@
 ---
-title: Azure Peering Service prefix requirements
+title: Azure Peering Service Prefix Requirements
 description: Learn the technical requirements to optimize your prefixes using Azure Peering Service.
 author: halkazwini
 ms.author: halkazwini

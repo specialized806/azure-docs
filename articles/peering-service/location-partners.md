@@ -1,5 +1,5 @@
 ---
-title: Azure Peering Service locations and partners
+title: Azure Peering Service Locations and Partners
 description: Learn about globally available Microsoft Azure Peering Service locations and partners (ISPs and IXPs).
 author: halkazwini
 ms.author: halkazwini

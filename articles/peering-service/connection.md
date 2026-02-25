@@ -1,5 +1,5 @@
 ---
-title: Azure Peering Service connection 
+title: Azure Peering Service Connection
 description: Learn about Microsoft Azure Peering Service connection.
 author: halkazwini
 ms.author: halkazwini

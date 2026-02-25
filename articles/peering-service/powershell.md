@@ -1,5 +1,5 @@
 ---
-title: Create or change a Peering Service connection - Azure PowerShell
+title: Manage a Peering Service Connection - Azure PowerShell
 description: Learn how to create or change a Peering Service connection using PowerShell.
 author: halkazwini
 ms.author: halkazwini 

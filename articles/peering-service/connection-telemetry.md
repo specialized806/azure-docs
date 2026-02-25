@@ -1,5 +1,5 @@
 ---
-title: Access connection telemetry
+title: Access Connection Telemetry
 titleSuffix: Azure Peering Service
 description: Learn how to access Azure Peering Service connection telemetry including prefix latency and prefix events.
 services: peering-service

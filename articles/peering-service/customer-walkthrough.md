@@ -1,5 +1,5 @@
 ---
-title: Azure Peering Service customer walkthrough
+title: Azure Peering Service Customer Walkthrough
 description: Learn how to activate and optimize your prefixes with Azure Peering Service.
 author: halkazwini
 ms.author: halkazwini
