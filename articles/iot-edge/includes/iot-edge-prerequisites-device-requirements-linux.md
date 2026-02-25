@@ -10,7 +10,7 @@ services: iot-edge
 
 ### Device requirements
 
-An X64, ARM32, or ARM64 Linux device.
+An x64, ARM32, or ARM64 Linux device.
 
 Microsoft publishes installation packages for various operating systems.
 

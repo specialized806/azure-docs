@@ -14,16 +14,16 @@ You can use the Azure portal, Visual Studio Code, or Azure CLI to register your 
 
 # [Portal](#tab/azure-portal)
 
-In your IoT hub in the Azure portal, IoT Edge devices are created and managed separately from IoT devices that aren't edge enabled.
+In your IoT hub in the Azure portal, you create and manage IoT Edge devices separately from IoT devices that aren't edge enabled.
 
-1. Sign in to the [Azure portal](https://portal.azure.com) and navigate to your IoT hub.
+1. Sign in to the [Azure portal](https://portal.azure.com) and go to your IoT hub.
 
-1. In the left pane, select **Devices** from the menu, then select **Add Device**.
+1. In the left pane, select **Devices** from the menu, and then select **Add Device**.
 
-1. On the **Create a device** page, provide the following information:
+1. On **Create a device**, provide the following information:
 
-   * Create a descriptive Device ID, for example `my-edge-device-1` (all lowercase). Copy this Device ID, as you use it later.
-   * Check the **IoT Edge Device** checkbox.
+   * Create a descriptive Device ID, such as `my-edge-device-1` (all lowercase). Copy this Device ID, as you use it later.
+   * Select the **IoT Edge Device** checkbox.
    * Select **Symmetric key** as the authentication type.
    * Use the default settings to autogenerate authentication keys, which connect the new device to your hub.
 
@@ -35,9 +35,9 @@ You should see your new device listed in your IoT hub.
 
 ### Sign in to Azure
 
-You can use the Azure IoT extensions for Visual Studio Code to perform operations with your IoT hub. Make sure you install the Azure IoT extension prerequisites. 
+Use the Azure IoT extensions for Visual Studio Code to perform operations with your IoT hub. Make sure you install the Azure IoT extension prerequisites. 
 
-Once Azure IoT Edge and Azure IoT Hub extensions are installed, you notice an Azure icon gets added to the left icon menu. You can sign in to your Azure account through Visual Studio Code by selecting the Azure icon and then select **Sign in to Azure**. 
+After you install the Azure IoT Edge and Azure IoT Hub extensions, you see an Azure icon in the left icon menu. Sign in to your Azure account through Visual Studio Code by selecting the Azure icon and then selecting **Sign in to Azure**. 
 
 ### Register a new device with Visual Studio Code
 
@@ -46,7 +46,7 @@ Registering a new device is similar to creating an IoT Edge device in the Azure 
 1. In the Visual Studio Code Explorer menu, expand the **Azure IoT Hub** section.
 1. Select the **...** ellipsis in the **Azure IoT Hub** section header. If you don't see the ellipsis, select or hover over the header.
 1. Select **Create IoT Edge Device**.
-1. In the text box that opens, give your device an ID; for example, `my-edge-device-1` (all lowercase), then press **Enter**.
+1. In the text box that opens, give your device an ID, such as `my-edge-device-1` (all lowercase), and press **Enter**.
 
 In the output console of Visual Studio Code, you see the result of the command: a JSON printout. The device information includes the **deviceId** that you provided and generates a **connectionString** value that you can use to connect your physical device to your IoT hub. The output console also shows your keys and other device identifying information.
 
@@ -57,7 +57,7 @@ You can now see your device listed under the **Azure IoT Hub > Devices** section
 
 # [Azure CLI](#tab/azure-cli)
 
-Use the [`az iot hub device-identity create`](/cli/azure/iot/hub/device-identity) command to create a new device identity in your IoT hub. Replace `device_id_here` with your own new and unique device ID; for example, `my-edge-device-1` (all lowercase). Replace `hub_name_here` with your existing IoT hub.
+Use the [`az iot hub device-identity create`](/cli/azure/iot/hub/device-identity) command to create a new device identity in your IoT hub. Replace `device_id_here` with your own new and unique device ID, such as `my-edge-device-1` (all lowercase). Replace `hub_name_here` with your existing IoT hub.
 
 This command includes three parameters:
 
@@ -86,11 +86,11 @@ The edge-enabled devices that connect to your IoT hub are listed on the **Device
 When you're ready to set up your device, you need the connection string that links your physical device with its identity in the IoT hub. Devices that authenticate with symmetric keys have their connection strings available to copy in the portal. To find your connection string in the portal, perform the following steps:
 
 1. From the **Devices** page, select the IoT Edge device ID from the list.
-2. Copy the value of either **Primary Connection String** or **Secondary Connection String**. Either key works.
+1. Copy the value of either **Primary Connection String** or **Secondary Connection String**. Either key works.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-All the devices that connect to your IoT hub are listed in the **Azure IoT Hub** section of the Visual Studio Code Explorer. IoT Edge devices are distinguishable from non-edge devices because they have a different icon, and you can see that the **$edgeAgent** and **$edgeHub** modules are deployed to each IoT Edge device.
+The **Azure IoT Hub** section of the Visual Studio Code Explorer lists all the devices that connect to your IoT hub. IoT Edge devices have a different icon, so you can easily distinguish them from non-edge devices. You can see that the **$edgeAgent** and **$edgeHub** modules are deployed to each IoT Edge device.
 
 When you're ready to set up your device, you need the connection string that links your physical device with its identity in the IoT hub. Here's how to get your connection string from Visual Studio Code:
 
@@ -107,7 +107,7 @@ To see all devices in your IoT hub, use the [`az iot hub device-identity list`](
 az iot hub device-identity list --hub-name hub_name_here
 ```
 
-Any device that is registered as an IoT Edge device has the property **capabilities.iotEdge** set to **true**. You can see a lot of other metadata as JSON output as well, including your device IDs.
+Any device that you register as an IoT Edge device has the property **capabilities.iotEdge** set to **true**. You can see a lot of other metadata as JSON output as well, including your device IDs.
 
 When you're ready to set up your device, you need its connection string that links your physical device with its identity in the IoT hub. Use the following [`az iot hub device-identity connection-string show`](/cli/azure/iot/hub/device-identity/connection-string) command to return the connection string for a single device. Replace `[device_id]` and `[hub_name]` with your own values. The value for the `device-identity` parameter is case-sensitive.
 
@@ -126,6 +126,6 @@ You should see JSON output in the console, similar to the following example:
 >[!TIP]
 >The `connection-string show` command was introduced in version 0.9.8 of the Azure IoT extension, replacing the deprecated `show-connection-string` command. If you get an error running this command, make sure your extension version is updated to 0.9.8 or later. For more information and the latest updates, see [Microsoft Azure IoT extension for Azure CLI](https://github.com/Azure/azure-iot-cli-extension).
 
-When copying the connection string to use on a device, don't include the quotation marks around the connection string.
+When you copy the connection string to use on a device, don't include the quotation marks around the connection string.
 
 ---

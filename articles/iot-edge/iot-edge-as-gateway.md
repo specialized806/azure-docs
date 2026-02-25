@@ -35,7 +35,7 @@ All gateway patterns provide the following benefits:
 
 ## Transparent gateways
 
-In the transparent gateway pattern, devices that theoretically can connect to IoT Hub can connect to a gateway device instead. These devices, called *downstream devices* or *child devices*, have their own IoT Hub identities and connect by using either MQTT or AMQP protocols. The gateway simply passes communications between the devices and IoT Hub. Both the devices and the users interacting with them through IoT Hub are unaware that a gateway is mediating their communications. This lack of awareness means the gateway is considered *transparent*.
+In the transparent gateway pattern, devices that can connect to IoT Hub can connect to a gateway device instead. These devices, called *downstream devices* or *child devices*, have their own IoT Hub identities and connect by using either MQTT or AMQP protocols. The gateway simply passes communications between the devices and IoT Hub. Both the devices and the users interacting with them through IoT Hub are unaware that a gateway is mediating their communications. This lack of awareness means the gateway is considered *transparent*.
 
 For more information about how the IoT Edge hub manages communication between downstream devices and the cloud, see the [Azure IoT Edge runtime and architecture overview](iot-edge-runtime.md).
 
