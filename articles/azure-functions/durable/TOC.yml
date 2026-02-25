@@ -37,8 +37,6 @@
       href: ./durable-task-scheduler/quickstart-container-apps-durable-task-sdk.md
 - name: Core concepts
   items:
-  - name: Concepts shared between Durable Functions and Durable Task SDKs
-    href: what-is-durable-task.md
   - name: Fundamentals
     items: 
     - name: Programming model
