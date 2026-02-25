@@ -705,9 +705,9 @@ Verify nginx is running by connecting to the public IPv4 address of the virtual 
 
 1. Select **myPublicIP-IPv4**.
 
-1. Note the public IPv4 address in the **Overview** under **IP address**. In this example, it's **20.22.46.19**.
+1. Note the public IPv4 address in the **Overview** under **IP address**. In this example, it's **203.0.113.77**.
 
-1. Open your web browser and browse to `http://20.22.46.19`. Replace the IP address with the public IPv4 address of your virtual machine.
+1. Open your web browser and browse to `http://203.0.113.77`. Replace the IP address with the public IPv4 address of your virtual machine.
 
 1. The default nginx welcome page is displayed, confirming that the web server is running and accessible over IPv4.
 
