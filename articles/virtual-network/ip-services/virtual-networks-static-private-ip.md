@@ -90,6 +90,9 @@ When you create a virtual machine (VM), it's automatically assigned a private IP
 
 1. Select **Review + create**. Review the settings, and then select **Create**.
 
+> [!NOTE]
+> The virtual machine is created without a public IP address and with no public inbound ports. To connect to the virtual machine, use Azure Bastion. For more information, see [Quickstart: Deploy Azure Bastion with default settings](../../bastion/quickstart-host-portal.md).
+
 # [Azure PowerShell](#tab/azurepowershell)
 
 Use the following steps to create a resource group, virtual network, and virtual machine.
@@ -143,6 +146,9 @@ $nsg = @{
 }
 New-AzNetworkSecurityGroup @nsg
 ```
+
+> [!NOTE]
+> The default rules of the network security group block all inbound access from the internet, including SSH. To connect to the virtual machine, use Azure Bastion. For more information, see [Quickstart: Deploy Azure Bastion with default settings](../../bastion/quickstart-host-portal.md).
 
 ### Create a virtual machine
 
@@ -208,6 +214,9 @@ az network nsg create \
     --resource-group myResourceGroup \
     --name myNSG
 ```
+
+> [!NOTE]
+> The default rules of the network security group block all inbound access from the internet, including SSH. To connect to the virtual machine, use Azure Bastion. For more information, see [Quickstart: Deploy Azure Bastion with default settings](../../bastion/quickstart-host-portal.md).
 
 ### Create a virtual machine
 
