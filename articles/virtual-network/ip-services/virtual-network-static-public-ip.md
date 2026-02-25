@@ -2,7 +2,7 @@
 title: Create a VM with a static public IP address using the Azure portal, Azure PowerShell, or Azure CLI
 description: Learn how to create a VM with a static public IP address using the Azure portal, Azure PowerShell, or Azure CLI.
 services: virtual-network
-ms.date: 11/14/2024
+ms.date: 02/24/2026
 ms.author: mbender
 author: mbender-ms
 ms.service: azure-virtual-network
