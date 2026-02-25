@@ -102,7 +102,7 @@
   - name: Optimize performance for HPC and AI virtual machines
     href: performance-benchmarking/optimize-performance.md
 
-  - name: Run your first benchmark: STREAM
+  - name: Run your first benchmark using STREAM
     href: stream-benchmark.md   
 
 - name: AI training
