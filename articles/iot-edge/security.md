@@ -24,7 +24,7 @@ IoT Edge runs on various makes and models of hardware, supports several operatin
 * Application vertical
 * Regulatory requirements
 
-This article provides an overview of the IoT Edge security framework. For more information, see [Securing the intelligent edge](https://azure.microsoft.com/en-us/blog/securing-the-intelligent-edge/).
+This article provides an overview of the IoT Edge security framework. For more information, see [Securing the intelligent edge](https://azure.microsoft.com/blog/securing-the-intelligent-edge/).
 
 ## Standards
 
@@ -89,4 +89,4 @@ Securing the intelligent edge requires collaborative contributions from an open 
 
 ## Next steps
 
-Read more about how Azure IoT Edge is [Securing the intelligent edge](https://azure.microsoft.com/en-us/blog/securing-the-intelligent-edge/).
+Read more about how Azure IoT Edge is [Securing the intelligent edge](https://azure.microsoft.com/blog/securing-the-intelligent-edge/).
