@@ -13,7 +13,7 @@ ms.custom: devx-track-azurecli
 
 # Register APIs in your API center by using GitHub Actions
 
-This article shows how to set up a basic [GitHub Actions workflow](https://docs.github.com/en/actions/how-tos/write-workflows) to register an API in your organization's [API center](overview.md). The registration occurs when an API specification file is added to a GitHub repository.
+This article shows how to set up a basic [GitHub Actions workflow](https://docs.github.com/actions/how-tos/write-workflows) to register an API in your organization's [API center](overview.md). The registration occurs when an API specification file is added to a GitHub repository.
 
 Using a GitHub Actions workflow to register APIs in your API center provides a consistent and repeatable CI/CD process for every new or updated API. The workflow can be extended to include steps such as adding metadata to the API registration.
 
@@ -131,7 +131,7 @@ When you configure the GitHub workflow file later, you use the secret for the in
 
 ### Add the workflow file to your GitHub repository
 
-A GitHub Actions workflow is specified in a YAML (_.yml_) definition file. This definition contains the various steps and parameters that make up the workflow. For more information, see [Workflow syntax for GitHub Actions](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax).
+A GitHub Actions workflow is specified in a YAML (_.yml_) definition file. This definition contains the various steps and parameters that make up the workflow. For more information, see [Workflow syntax for GitHub Actions](https://docs.github.com/actions/reference/workflows-and-actions/workflow-syntax).
 
 The following example provides a basic workflow file that you can use or modify.
 
@@ -151,7 +151,7 @@ Follow these steps to configure the workflow file:
 
 1. Add this workflow file in the `/.github/workflows/` path in your GitHub repository.
 
-1. Set the [Actions variables](https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/use-variables) `SERVICE_NAME` and `RESOURCE_GROUP` in your repository for your API center name and resource group name in Azure.
+1. Set the [Actions variables](https://docs.github.com/actions/how-tos/write-workflows/choose-what-workflows-do/use-variables) `SERVICE_NAME` and `RESOURCE_GROUP` in your repository for your API center name and resource group name in Azure.
 
 > [!TIP]
 > Using the [Visual Studio Code extension](build-register-apis-vscode-extension.md) for Azure API Center, you can generate a starting workflow file by running an extension command. In the Command Palette (**Ctrl**+**Shift**+**P**), enter **Azure API Center: Register API** and select **CI/CD** > **GitHub**. You can then modify or extend the file for your scenario.
@@ -215,7 +215,7 @@ jobs:
 
 ## Add API definition file to the repository
 
-Test the workflow by adding an API definition file to the repository. Follow these high-level steps, which are typical of a development workflow. For details on working with GitHub branches, see [About collaborative development models](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/getting-started/about-collaborative-development-models) in the GitHub documentation.
+Test the workflow by adding an API definition file to the repository. Follow these high-level steps, which are typical of a development workflow. For details on working with GitHub branches, see [About collaborative development models](https://docs.github.com/pull-requests/collaborating-with-pull-requests/getting-started/about-collaborative-development-models) in the GitHub documentation.
 
 1. Create a new working branch from the main branch in your repository.
 
@@ -289,5 +289,5 @@ You can extend the GitHub Actions workflow to include other steps, such as addin
 
 ## Related content
 
-* [Secrets in GitHub Actions](https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/use-secrets)
-* [Workflow syntax for GitHub Actions](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax)
+* [Secrets in GitHub Actions](https://docs.github.com/actions/how-tos/write-workflows/choose-what-workflows-do/use-secrets)
+* [Workflow syntax for GitHub Actions](https://docs.github.com/actions/reference/workflows-and-actions/workflow-syntax)
