@@ -5,7 +5,8 @@ author: halkazwini
 ms.author: halkazwini
 ms.service: azure-peering-service
 ms.topic: concept-article
-ms.date: 10/07/2024
+ms.date: 02/25/2026
+
 # Customer intent: As a network administrator, I want to establish a Peering Service connection with specified attributes, so that I can effectively manage and monitor connectivity across multiple geographic locations.
 ---
 

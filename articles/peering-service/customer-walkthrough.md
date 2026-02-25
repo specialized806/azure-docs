@@ -5,8 +5,9 @@ author: halkazwini
 ms.author: halkazwini
 ms.service: azure-peering-service
 ms.topic: how-to
-ms.date: 03/03/2025
+ms.date: 02/25/2026
 ms.custom: sfi-image-nochange
+
 # Customer intent: As a network administrator, I want to activate and optimize prefixes with an Internet Service Provider using Azure Peering Service, so that I can ensure efficient routing and improve network performance.
 ---
 

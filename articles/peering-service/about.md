@@ -5,9 +5,8 @@ author: halkazwini
 ms.author: halkazwini
 ms.service: azure-peering-service
 ms.topic: overview
-ms.date: 10/07/2024
+ms.date: 02/25/2026
 
-#CustomerIntent: As an administrator, I want learn about Azure Peering Service so I can optimize the connectivity to Microsoft.
 # Customer intent: "As a network architect, I want to utilize Azure Peering Service so that I can enhance connectivity to Microsoft cloud services with optimal performance and reliability."
 ---
 

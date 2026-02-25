@@ -5,7 +5,7 @@ author: halkazwini
 ms.author: halkazwini
 ms.service: azure-peering-service
 ms.topic: concept-article
-ms.date: 04/10/2025
+ms.date: 02/25/2026
 ms.custom: references_regions
 
 # Customer intent: "As a network architect, I want to access a list of Azure Peering Service partners by region and metro, so that I can select the optimal connectivity provider for reliable and high-performance cloud network solutions."

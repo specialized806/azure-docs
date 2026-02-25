@@ -5,7 +5,8 @@ author: halkazwini
 ms.author: halkazwini
 ms.service: azure-peering-service
 ms.topic: concept-article
-ms.date: 10/08/2024
+ms.date: 02/25/2026
+
 # Customer intent: As a network administrator, I want to understand the technical requirements for activating prefixes in Azure Peering Service, so that I can ensure compliance and optimization for network performance in my organization.
 ---
 
