@@ -156,11 +156,9 @@ An AWS VPC endpoint (VPCE) for S3 lets your VPC reach S3 privately. For this des
 
 #### High-level steps
 
-Verify your VPC has **DNS support** and **DNS hostnames** enabled.
-
-Create an **interface** VPCE for **Amazon S3** in the target VPC and subnets, and enable **private DNS**.
-
-Configure VPCE and bucket policies to allow only required S3 actions and (optionally) restrict access to the specific endpoint using **aws:SourceVpce**.
+1. Verify your VPC has **DNS support** and **DNS hostnames** enabled.
+2. Create an **interface** VPCE for **Amazon S3** in the target VPC and subnets, and enable **private DNS**.
+3. Configure VPCE and bucket policies to allow only required S3 actions and (optionally) restrict access to the specific endpoint using **aws:SourceVpce**.
 
 * ![](media/image2.png)
 
@@ -270,6 +268,7 @@ Review ExpressRoute concepts and planning in the [ExpressRoute documentation](/a
 Create a site-to-site VPN connection in Azure: [Tutorial - Create an S2S VPN connection](/azure/vpn-gateway/tutorial-site-to-site-portal).
 
 For BGP between Azure and AWS, follow: [Tutorial - Configure a BGP-enabled connection between Azure and AWS](/azure/vpn-gateway/vpn-gateway-howto-aws-bgp).
+
 
 
 
