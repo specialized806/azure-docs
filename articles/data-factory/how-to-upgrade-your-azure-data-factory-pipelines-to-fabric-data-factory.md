@@ -58,7 +58,7 @@ Each pipeline and activity is assigned one of the following statuses. Use these 
 
 After you review the assessment, select **Next** to mount your Azure Data Factory to a Fabric workspace and continue the migration flow in Fabric. Mounting lets you reference your ADF instance inside a Fabric workspace without migrating, copying, or altering the ADF environment.
 
-:::image type="content" source="media/how-to-assess-and-upgrade-your-azure-data-factory-pipelines-to-fabric/mount_azure-data-factory-to-fabric.png" alt-text="Screenshot showing Fabric workspace selection for mounting Azure Data Factory to Fabric." lightbox="media/how-to-assess-and-upgrade-your-azure-data-factory-pipelines-to-fabric/mount_azure-data-factory-to-fabric.png":::
+:::image type="content" source="media/how-to-assess-and-upgrade-your-azure-data-factory-pipelines-to-fabric/mount-azure-data-factory-to-fabric.png" alt-text="Screenshot showing Fabric workspace selection for mounting Azure Data Factory to Fabric." lightbox="media/how-to-assess-and-upgrade-your-azure-data-factory-pipelines-to-fabric/mount-azure-data-factory-to-fabric.png":::
 
 After mounting completes, select **Continue in Fabric** to proceed with migration steps.
 
@@ -68,7 +68,7 @@ After mounting completes, select **Continue in Fabric** to proceed with migratio
 
 Continue migration from the Fabric experience by selecting **Migrate to Fabric (Preview)**.
 
-:::image type="content" source="media/how-to-assess-and-upgrade-your-azure-data-factory-pipelines-to-fabric/migrate_to_fabric_post_mount.png" alt-text="Screenshot showing the Migrate to Fabric option in Fabric." lightbox="media/how-to-assess-and-upgrade-your-azure-data-factory-pipelines-to-fabric/migrate_to_fabric_post_mount.png":::
+:::image type="content" source="media/how-to-assess-and-upgrade-your-azure-data-factory-pipelines-to-fabric/migrate-to-fabric-post-mount.png" alt-text="Screenshot showing the Migrate to Fabric option in Fabric." lightbox="media/how-to-assess-and-upgrade-your-azure-data-factory-pipelines-to-fabric/migrate-to-fabric-post-mount.png":::
 
 Select the pipelines you want to migrate.
 
