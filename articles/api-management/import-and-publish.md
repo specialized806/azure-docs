@@ -18,7 +18,7 @@ This tutorial shows how to import an OpenAPI specification backend API in JSON f
 
 [!INCLUDE [api-management-workspace-try-it](../../includes/api-management-workspace-try-it.md)]
 
-When you import the backend API into API Management, your API Management API becomes the interface for the backend API. You can customize the interface to your needs in API Management without changing the backend API. For more information, see [Transform and protect your API](transform-api.md).
+When you import the backend API into API Management, your API Management API becomes the gateway for the backend API. You can customize the gateway to your needs in API Management without changing the backend API. For more information, see [Transform and protect your API](transform-api.md).
 
 In this tutorial, you learn how to:
 
