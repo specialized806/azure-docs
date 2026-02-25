@@ -10,7 +10,7 @@ ms.custom: pipelines
 
 # Upgrade your Azure Data Factory pipelines to Fabric
 
-In this article, you learn how to assess and upgrade your Azure Data Factory (ADF) pipelines to Microsoft Fabric. The built-in migration experience helps you assess and upgrade supported ADF pipelines in a few simple steps.
+Your Azure Data Factory pipelines already power critical workflows. In this article, you learn how to bring them into Fabric to unlock a more integrated, analytics-ready experience. This built-in migration experience helps you modernize your existing Azure Data Factory workloads in a few simple clicks.
 
 The migration experience helps you:
 
