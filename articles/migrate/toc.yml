@@ -199,9 +199,7 @@ items:
           href: postgresql-assessment-properties.md
       - name: MySQL assessment
         items:
-        - name: Assessment overview
-          href: assessments-overview-migrate-to-azure-db-mysql.md
-        - name: Create MySQL assessment
+        - name: Create and Review MySQL assessment
           href: create-mysql-assessment.md
       - name: Webapp assessment
         items:
@@ -209,10 +207,22 @@ items:
           href: create-web-app-assessment.md
         - name: Review assessment report
           href: review-web-app-assessment.md
-#     - name: AVS assessment
-#       items:
         - name: Enhance web app assessment by adding code scan report
           href: add-copilot-code-insights.md
+      - name: File share assessment
+        items:
+        - name: Create a file share assessment
+          href: create-file-share-assessment.md
+        - name: Review assessment report
+          href: review-file-share-assessment.md
+#     - name: AVS assessment
+#       items:
+#       - name: Create an AVS assessment
+#         href: tutorial-assess-vmware-azure-vmware-solution.md
+#       - name: Customize assessment settings
+#         href: assessment-properties.md
+#       - name: Review assessment report
+#         href: review-azure-vmware-solution-assessment.md
 #      - name: SAP assessment
 #       items:
 #       - name: Review assessment report
@@ -404,6 +414,8 @@ items:
       href: troubleshoot-project.md
     - name: Azure Migrate in unsupported regions
       href: azure-migrate-unsupported-regions.md
+    - name: Troubleshoot Azure Migrate
+      href: troubleshoot-general.md
   - name: Appliance configuration
     items:
     - name: Troubleshoot Azure Migrate appliance
@@ -422,6 +434,8 @@ items:
     items:
     - name: Troubleshoot dependency visualization
       href: troubleshoot-dependencies.md
+    - name: Troubleshoot assessment
+      href: troubleshoot-assessment-faq.md 
   - name: Assessments
     items:
     - name: Common Issues
@@ -562,15 +576,3 @@ items:
 #     items:
 #     - name: Add migration tools
 #       href: how-to-migrate.md
-# - name: Troubleshoot
-#   items:
-#   - name: General
-#     items:
-#     - name: Troubleshoot Azure Migrate
-#       href: troubleshoot-general.md
-#   - name: Assess
-#     items:
-#     - name: Troubleshoot assessment
-#       items:
-#         - name: FAQ
-#           href: troubleshoot-assessment-faq.md
