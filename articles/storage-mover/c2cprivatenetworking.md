@@ -165,7 +165,7 @@ An AWS VPC endpoint (VPCE) for S3 lets your VPC reach S3 privately. For this des
 
 Example: S3 bucket policy restricted to a specific VPCE.
 
-* ![](media/image3.png)
+:::image type="content" source="./media/c2c-networking/s3-bucket-policy.png" alt-text="Screenshot of the Project Explorer page with the Create a Project pane's fields visible." lightbox="./media/c2c-networking/s3-bucket-policy.png":::
 
 **Note:** Record the VPCE private IP address; it is used as the destination IP for Azure Private Link Service Direct Connect.
 
@@ -268,6 +268,7 @@ Review ExpressRoute concepts and planning in the [ExpressRoute documentation](/a
 Create a site-to-site VPN connection in Azure: [Tutorial - Create an S2S VPN connection](/azure/vpn-gateway/tutorial-site-to-site-portal).
 
 For BGP between Azure and AWS, follow: [Tutorial - Configure a BGP-enabled connection between Azure and AWS](/azure/vpn-gateway/vpn-gateway-howto-aws-bgp).
+
 
 
 
