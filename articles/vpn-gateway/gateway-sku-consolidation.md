@@ -28,7 +28,7 @@ To support this migration, we're reducing the prices on SKUs supported by availa
 
 ## Mapping old SKUs to new SKUs
 
-The following diagram shows current SKUs and the new SKUs they'll automatically be migrated to.
+The following diagram shows current SKUs and the new SKUs that they'll automatically be migrated to.
 
 :::image type="content" source="./media/gateway-sku-consolidation/sku-mapping.png" alt-text="Diagram of gateway SKU mapping." lightbox="./media/gateway-sku-consolidation/sku-mapping-expand.png":::
 
@@ -36,7 +36,7 @@ The following diagram shows current SKUs and the new SKUs they'll automatically 
 
 ### What actions do I need to take?
 
-* We recommend that you [manually upgrade](gateway-sku-upgrade.md) gateway SKUs that aren't supported by availability zones to those that are. You can use the Azure portal, PowerShell, or Azure CLI. There's no downtime expected to manually upgrade SKUs that currently use Standard public IP addresses. If you're still using Basic IP address, upgrade to Standard IP address.
+* We recommend that you [manually upgrade](gateway-sku-upgrade.md) gateway SKUs that aren't supported by availability zones to those that are. You can use the Azure portal, PowerShell, or the Azure CLI. There's no downtime expected to manually upgrade SKUs that currently use Standard public IP addresses. If you're still using a Basic IP address, upgrade to a Standard IP address.
 * If your gateway currently uses legacy SKUs, see [Working with VPN Gateway legacy SKUs](vpn-gateway-about-skus-legacy.md).
 
 ### How long will my existing gateway SKUs be supported?
@@ -58,16 +58,16 @@ Yes. If a region doesn't currently support availability zones, you can still cre
 
 ### Can I migrate my gateway from one generation to another?
 
-* *For gateways using a Basic public IP address*: You'll need to migrate your gateway to use a Standard public IP address when the migration tool becomes available. As part of this IP address migration, your gateway is upgraded to the next generation (called *Generation 2*). You don't need to take any further action.
-* *For gateways already using a Standard public IP address*: We'll migrate these gateways to the next generation separately before September 30, 2026. This happens seamlessly during regular updates, with no downtime involved.
+* *For gateways that use a Basic public IP address*: You'll need to migrate your gateway to use a Standard public IP address when the migration tool becomes available. As part of this IP address migration, your gateway is upgraded to the next generation (called *Generation 2*). You don't need to take any further action.
+* *For gateways that already use a Standard public IP address*: We'll migrate these gateways to the next generation separately before September 30, 2026. This migration happens seamlessly during regular updates, with no downtime involved.
 
 ### Will there be downtime during migration?
 
-No. This migration is seamless and there's no expected downtime during migration.
+No. This migration is seamless, and there's no expected downtime during migration.
 
 ### Will there be any performance impact on my gateways with this migration?
 
-Yes. SKUs get the benefits of zone redundancy for VPN gateways in [Azure regions with availability zones](/azure/reliability/availability-zones-region-support). If the region doesn't support zone redundancy, the gateway is regional until the region it's deployed to support zone redundancy.
+Yes. SKUs get the benefits of zone redundancy for VPN gateways in [Azure regions with availability zones](/azure/reliability/availability-zones-region-support). If the region doesn't support zone redundancy, the gateway is regional until the region where it's deployed supports zone redundancy.
 
 ### Is the VPN Gateway Basic SKU retiring?
 
@@ -93,9 +93,9 @@ You must migrate your VPN gateway from a SKU not supported by an availability zo
 
 No, not if you're migrating from a SKU that's unsupported by an availability zone to one that is supported in the same SKU family. If you're upgrading in addition to migrating, you might experience downtime consistent with existing VPN Gateway resize behavior. This is called *cross-family migration*.
 
-### Are SKUs that are supported by availability zones automatically zone-redundant?
+### Are SKUs that are supported by availability zones automatically zone redundant?
 
-These SKUs become zone-redundant only in regions that support availability zones, as described in [this section](gateway-sku-consolidation.md#will-there-be-any-performance-impact-on-my-gateways-with-this-migration) of the article.
+These SKUs become zone redundant only in regions that support availability zones, as described in [this section](gateway-sku-consolidation.md#will-there-be-any-performance-impact-on-my-gateways-with-this-migration) of the article.
 
 ## Related content
 
