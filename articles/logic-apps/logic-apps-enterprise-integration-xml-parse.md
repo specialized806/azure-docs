@@ -8,7 +8,9 @@ author: haroldcampos
 ms.author: hcampos
 ms.reviewers: estfan, azla
 ms.topic: how-to
-ms.date: 11/18/2025
+ai-usage: ai-assisted
+ms.date: 02/25/2026
+#Customer intent: As an integration developer who works with Azure Logic Apps, I want to parse XML documents by using an XSD schema so I can work with individual XML elements in my workflow.
 ---
 
 # Parse XML using schemas with Standard workflows in Azure Logic Apps
@@ -25,7 +27,7 @@ This action is currently not yet supported for the [Consumption logic app resour
 
 ## Prerequisites
 
-* An Azure account and subscription. If you don't have a subscription yet, [sign up for a free Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+* An Azure account and subscription. [Get a free Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 * A Standard logic app workflow that already starts with a trigger so that you can add the **Parse XML with schema** action to your workflow.
 
@@ -98,6 +100,37 @@ The following table describes the advanced parameters available in this action:
 | **Ignore XML Attributes** | **No** or **Yes** | Whether to write or ignore XML attributes. |
 | **Use Fully Qualified Names?** | **No** or **Yes** | Whether to use simpler local names or fully qualified XML names. |
 | **Root Node Qualified Name** | <*root-node-qualified-name*> | The root node's qualified name in case the schema contains multiple unreferenced element definitions. |
+
+## Troubleshoot problems
+
+This section describes problems that you might encounter and possible solutions or workarounds to address these problems.
+
+### XML element order isn't preserved
+
+If your XML has repeating elements in mixed order, the **Parse XML using schema** action might change this order. For example, suppose you have item `A`, item `B`, item `B` again, and then item `A` again. After the action parses the XML, the resulting list is ordered as item `A`, item `A`, item `B`, and item `B`.
+
+This behavior is expected because the **Parse XML using schema** action converts the XML to JSON format. JSON doesn't have a way to represent a single ordered list that has different types of items. Instead, the action groups the elements by name in alphabetical order.
+
+The **Parse XML using schema** action doesn't have any setting that preserves the order of mixed repeating elements. This is a limitation of converting XML into JSON. [\[learn.microsoft.com\]](https://learn.microsoft.com/en-us/azure/logic-apps/logic-apps-enterprise-integration-xml-parse)
+
+The following list describes options for you to fix or work around this problem:
+
+- If you control the schema, design the schema so you have only one repeating list without multiple repeating element types.
+
+  For example, rather than separately repeat `A` and `B`, use a single repeating wrapper element, such as `Item`. Each item then indicates whether `A` or `B` is represented. The system can then keep all the items in a single ordered list and preserve the original order. This option is best for long-term, predictable behavior.
+
+- If the original order is required or critical, don't parse the XML.
+
+  - Avoid breaking up the XML into JSON.
+  - Handle the XML document as a whole.
+  - Pass the XML document unchanged or transform using XML-based tools such as XSLT.
+
+- Stay aware around this limitation.
+
+  If you can't change the schema or workflow, remember the following:
+
+  - Mixed repeating elements result in grouped elements.
+  - Design the downstream logic with this behavior in mind.
 
 ## Related content
 	
