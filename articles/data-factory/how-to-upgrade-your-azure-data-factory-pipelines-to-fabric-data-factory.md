@@ -77,6 +77,9 @@ Select **Review connections** to map Azure Data Factory linked services to Fabri
 The migration experience attempts to automatically create commonly used connections (Azure Blob Storage, ADLS Gen2, SQL Server and Azure SQL Database) that don’t rely on Azure Key Vault.
 For other connections, either select an existing Fabric connection or create new connections using the modern Get Data experience or from workspace settings. Then select **Confirm**.
 
+:::image type="content" source="media/how-to-assess-and-upgrade-your-azure-data-factory-pipelines-to-fabric/linkedservices-to-connection-mapping.png" alt-text="Screenshot showing option to select pipelines for migration." lightbox="media/how-to-assess-and-upgrade-your-azure-data-factory-pipelines-to-fabric/linkedservices-to-connection-mapping.png" :::
+
+
 > [!NOTE]
 > If you do not map any connections during this step, pipelines still migrate. Activities within those pipelines would be deactivated and you can configure them later in Fabric. 
 After migration completes, validate the pipelines in the Fabric Data Factory experience.
