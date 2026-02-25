@@ -30,8 +30,6 @@ Durable Task SDKs support two styles of versioning, which you can use separately
 
 ::: zone-end
 
-> [!IMPORTANT]
-> Orchestration versioning is currently in public preview.
 
 ## Terminology
 
