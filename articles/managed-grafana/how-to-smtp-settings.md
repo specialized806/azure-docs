@@ -54,7 +54,7 @@ Follow these steps to activate SMTP settings, enable email notifications and con
        :::image type="content" source="media/smtp-settings/save-updated-settings.png" alt-text="Screenshot of the Azure platform. Email Settings tab with new data.":::
 
 > [!NOTE]
->**Exchange Online** no longer permits Basic Authorization, see [Depreciation of Basic authentication](/exchange/clients-and-mobile-in-exchange-online/deprecation-of-basic-authentication-exchange-online#what-we-are-changing). Do not use Exchange Online as SMTP relay as you will receive an error message that it failed to send. 
+>**Exchange Online** no longer permits Basic Authorization, see [Deprecation of Basic authentication](/exchange/clients-and-mobile-in-exchange-online/deprecation-of-basic-authentication-exchange-online#what-we-are-changing). Do not use Exchange Online as SMTP relay as you will receive an error message that it failed to send. 
 
  
 
