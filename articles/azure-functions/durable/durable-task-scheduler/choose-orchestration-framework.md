@@ -280,7 +280,7 @@ Walk through one of the following quickstarts to configure your applications to 
 
 #### Support
 
-Knowing which orchestration framework is recommended for production helps you decide which option works best for your project. While the Durable Task backend is fully managed and supported, the Durable Functions extension and Durable Task SDKs vary in stability depending on [the pricing model](./durable-task-scheduler-dedicated-sku.md) and the language SDK you use.
+Knowing which orchestration framework is recommended for production helps you decide which option works best for your project. While the Durable Task backend is fully managed and supported, the Durable Functions extension and Durable Task SDKs vary in stability depending on [the pricing model](./durable-task-scheduler-billing.md) and the language SDK you use.
 
 The following table shows what client experience is fit for production use. 
 

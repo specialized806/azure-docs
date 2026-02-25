@@ -247,8 +247,6 @@
     items:
     - name: Diagnostics
       href: durable-task-diagnostics.md
-  - name: Billing
-    href: durable-task-billing.md
   - name: Reference
     items:
     - name: .NET APIs
@@ -280,7 +278,7 @@
     - name: Throughput benchmarks
       href: ./durable-task-scheduler/durable-task-scheduler-work-item-throughput.md
     - name: Billing
-      href: ./durable-task-scheduler/durable-task-scheduler-dedicated-sku.md
+      href: ./durable-task-scheduler/durable-task-scheduler-billing.md
     - name: Troubleshoot
       href: ./durable-task-scheduler/troubleshoot-durable-task-scheduler.md
   - name: Durable Functions only
