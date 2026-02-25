@@ -26,7 +26,7 @@ This built-in feature provides automatic version isolation with minimal configur
 Durable Task SDKs support two styles of versioning, which you can use separately or together:
 
 - [Client/context-based conditional versioning](#setting-the-default-version)—set a version on the client and branch logic in the orchestrator.
-- [Worker-based versioning](#worker-based-versioning)—let the worker decide which orchestration versions it can process.
+- [Worker-based versioning](#version-matching)—let the worker decide which orchestration versions it can process.
 
 ::: zone-end
 
@@ -202,7 +202,7 @@ When the `Strict` or `CurrentOrOlder` strategy is selected (see [Version matchin
 
 ::: zone pivot="durable-task-sdks"
 
-When the `Strict` or `CurrentOrOlder` match strategy is selected (see [Worker-based versioning](#worker-based-versioning)), version comparison depends on the language:
+When the `Strict` or `CurrentOrOlder` match strategy is selected (see [Version matching](#version-matching)), version comparison depends on the language:
 
 - **.NET**: The SDK tries to parse the version as `System.Version`. If both parse successfully, comparison uses `CompareTo`. Otherwise, the SDK uses string comparison.
 - **Python**: The SDK uses `packaging.version` for semantic versioning comparison.
