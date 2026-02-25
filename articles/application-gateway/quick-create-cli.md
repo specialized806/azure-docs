@@ -6,7 +6,7 @@ services: application-gateway
 author: mbender-ms
 ms.service: azure-application-gateway
 ms.topic: quickstart
-ms.date: 05/30/2024
+ms.date: 07/11/2025
 ms.author: mbender
 ms.custom:
   - mvc
@@ -69,11 +69,42 @@ az network vnet subnet create \
   --resource-group myResourceGroupAG \
   --vnet-name myVNet   \
   --address-prefix 10.21.1.0/24
+az network vnet subnet create \
+  --name AzureBastionSubnet \
+  --resource-group myResourceGroupAG \
+  --vnet-name myVNet \
+  --address-prefix 10.21.2.0/24
 az network public-ip create \
   --resource-group myResourceGroupAG \
   --name myAGPublicIPAddress \
   --allocation-method Static \
   --sku Standard
+```
+
+## Deploy Azure Bastion
+
+Azure Bastion uses your browser to connect to VMs in your virtual network over secure shell (SSH) or remote desktop protocol (RDP) by using their private IP addresses. The VMs don't need public IP addresses, client software, or special configuration. For more information about Azure Bastion, see [Azure Bastion](/azure/bastion/bastion-overview).
+
+>[!NOTE]
+>[!INCLUDE [Pricing](~/reusable-content/ce-skilling/azure/includes/bastion-pricing.md)]
+
+Create a public IP address for the Azure Bastion host with `az network public-ip create`. Then create the Azure Bastion host with `az network bastion create`.
+
+```azurecli-interactive
+az network public-ip create \
+  --resource-group myResourceGroupAG \
+  --name myBastionIP \
+  --location eastus \
+  --allocation-method Static \
+  --sku Standard
+az network bastion create \
+  --resource-group myResourceGroupAG \
+  --name myBastionHost \
+  --vnet-name myVNet \
+  --public-ip-address myBastionIP \
+  --location eastus \
+  --sku Basic \
+  --no-wait
 ```
 
 ## Create the backend servers
