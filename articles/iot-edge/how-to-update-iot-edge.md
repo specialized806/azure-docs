@@ -236,4 +236,4 @@ For more information, see [Troubleshoot your IoT Edge device](troubleshoot.md).
 
 View the latest [Azure IoT Edge releases](https://github.com/Azure/azure-iotedge/releases).
 
-Stay up-to-date with recent updates and announcements in the [Internet of Things blog](https://azure.microsoft.com/en-us/blog/category/internet-of-things/)
+Stay up-to-date with recent updates and announcements in the [Internet of Things blog](https://azure.microsoft.com/blog/category/internet-of-things/)
