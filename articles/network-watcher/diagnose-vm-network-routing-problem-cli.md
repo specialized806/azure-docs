@@ -5,7 +5,7 @@ description: In this article, you learn how to use Azure CLI to diagnose a virtu
 author: halkazwini
 ms.service: azure-network-watcher
 ms.topic: how-to
-ms.date: 10/29/2024
+ms.date: 07/11/2025
 ms.author: halkazwini
 ms.custom: devx-track-azurecli
 
@@ -26,21 +26,75 @@ In this article, you learn how to use Azure Network Watcher [next hop](network-w
 
     You can also [install Azure CLI locally](/cli/azure/install-azure-cli) to run the commands. This article requires the Azure CLI version 2.0 or later. Run [az --version](/cli/azure/reference-index#az-version) command to find the installed version. If you run Azure CLI locally, sign in to Azure using the [az login](/cli/azure/reference-index#az-login) command.
 
-## Create a virtual machine
+## Create a resource group
 
-Before you can create a VM, you must create a resource group to contain the VM. Create a resource group with [az group create](/cli/azure/group#az-group-create). The following example creates a resource group named *myResourceGroup* in the *eastus* location:
+Create a resource group with [az group create](/cli/azure/group#az-group-create). The following example creates a resource group named *myResourceGroup* in the *eastus* location:
 
 ```azurecli-interactive
 az group create --name myResourceGroup --location eastus
 ```
 
-Create a VM with [az vm create](/cli/azure/vm#az-vm-create). If SSH keys do not already exist in a default key location, the command creates them. To use a specific set of keys, use the `--ssh-key-value` option. The following example creates a VM named *myVm*:
+## Create a virtual network
+
+Create a virtual network and subnet with [az network vnet create](/cli/azure/network/vnet#az-network-vnet-create). The following example creates a virtual network named *myVNet* with the address prefix *10.0.0.0/16* and a subnet named *default*:
+
+```azurecli-interactive
+az network vnet create \
+  --resource-group myResourceGroup \
+  --name myVNet \
+  --address-prefixes 10.0.0.0/16 \
+  --subnet-name default \
+  --subnet-prefix 10.0.0.0/24
+```
+
+Create the Bastion subnet with [az network vnet subnet create](/cli/azure/network/vnet/subnet).
+
+```azurecli-interactive
+az network vnet subnet create \
+  --resource-group myResourceGroup \
+  --vnet-name myVNet \
+  --name AzureBastionSubnet \
+  --address-prefix 10.0.1.0/24
+```
+
+## Deploy Azure Bastion
+
+Create a public IP address for the Azure Bastion host with [az network public-ip create](/cli/azure/network/public-ip).
+
+```azurecli-interactive
+az network public-ip create \
+  --resource-group myResourceGroup \
+  --name myBastionIP \
+  --location eastus \
+  --allocation-method Static \
+  --sku Standard
+```
+
+Create an Azure Bastion host with [az network bastion create](/cli/azure/network/bastion). Azure Bastion is used to securely connect to virtual machines without exposing them to the public internet.
+
+```azurecli-interactive
+az network bastion create \
+  --resource-group myResourceGroup \
+  --name myBastion \
+  --vnet-name myVNet \
+  --public-ip-address myBastionIP \
+  --location eastus \
+  --sku Basic \
+  --no-wait
+```
+
+## Create a virtual machine
+
+Create a VM with [az vm create](/cli/azure/vm#az-vm-create). The following example creates a VM named *myVm* in the *myVNet* virtual network. If SSH keys don't already exist in a default key location, the command creates them.
 
 ```azurecli-interactive
 az vm create \
   --resource-group myResourceGroup \
   --name myVm \
   --image Ubuntu2204 \
+  --vnet-name myVNet \
+  --subnet default \
+  --public-ip-address "" \
   --generate-ssh-keys
 ```
 
