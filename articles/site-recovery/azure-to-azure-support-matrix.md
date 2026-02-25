@@ -124,6 +124,7 @@ Ubuntu 16.04 LTS Server | Includes support for all 16.04.*x* versions. [Supporte
 Ubuntu 18.04 LTS Server | Includes support for all 18.04.*x* versions. [Supported kernel versions](#supported-ubuntu-kernel-versions-for-azure-vms).<br/><br/> Ubuntu servers using password-based authentication and sign-in, and the `cloud-init` package to configure cloud VMs, might have password-based sign-in disabled on failover (depending on the `cloud-init` configuration). To re-enable password-based sign-in on the VM, reset the password from the **Support** > **Troubleshooting** > **Settings** menu of the failed-over VM in the Azure portal.
 Ubuntu 20.04 LTS server | Includes support for all 20.04.*x* versions. [Supported kernel versions](#supported-ubuntu-kernel-versions-for-azure-vms).
 Ubuntu 22.04 LTS server | Includes support for all 22.04.*x* versions. [Supported kernel versions](#supported-ubuntu-kernel-versions-for-azure-vms).
+Ubuntu 24.04 LTS server | Includes support for all 24.04.*x* versions. [Supported kernel versions](#supported-ubuntu-kernel-versions-for-azure-vms).
 Debian 7 | Includes support for all 7.*x* versions. [Supported kernel versions](#supported-debian-kernel-versions-for-azure-vms).
 Debian 8 | Includes support for all 8.*x* versions. [Supported kernel versions](#supported-debian-kernel-versions-for-azure-vms).
 Debian 9 | Includes support for 9.1 to 9.13. Debian 9.0 isn't supported. [Supported kernel versions](#supported-debian-kernel-versions-for-azure-vms).
