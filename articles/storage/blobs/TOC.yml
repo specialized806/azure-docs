@@ -228,6 +228,8 @@ items:
             items:
               - name: Overview
                 href: secure-file-transfer-protocol-support.md
+              - name: (Preview) Entra ID based access
+                href: secure-file-transfer-protocol-entra-id-based-access.md
               - name: Enable or disable SFTP
                 href: secure-file-transfer-protocol-support-how-to.md
               - name: Authorize access
