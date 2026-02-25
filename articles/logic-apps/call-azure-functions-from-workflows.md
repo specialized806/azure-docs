@@ -46,7 +46,7 @@ For Azure Functions to operate correctly in your workflow, the following limitat
 
   If your function has an OpenAPI definition, the workflow designer gives you a richer experience when you work with function parameters. Before your workflow can find and access functions that have OpenAPI definitions, [set up your function app with these steps](#open-ai-definition).
 
-- For Azure function call authentication, only Consumption workflows currently support managed identity authentication with Microsoft Entra. For more information, see [how to enable authentication for Azure function calls](#enable-authentication-functions). 
+- For Azure function call authentication, only Consumption workflows currently support managed identity authentication with Microsoft Entra ID. For more information, see [how to enable authentication for Azure function calls](#enable-authentication-functions). 
 
   Standard workflows currently don't support managed identity authentication.
 
@@ -266,11 +266,13 @@ To call an Azure function from your workflow, add that function like any other a
 
       :::image type="content" source="media/call-azure-functions-from-workflows/request-body-example-complete.png" alt-text="Screenshot shows a Standard workflow and a function with a complete Request body example for the context object payload.":::
 
-      If you provide a context object other than a JSON token that passes a string, a JSON object, or a JSON array, you get an error. However, you can cast the context object as a string by enclosing the token in quotation marks (**""**), for example, if you wanted to use the **Received Time** token:
+      If you enter a context object other than a JSON token that passes a string, a JSON object, or a JSON array, you get an error. However, you can cast the context object as a string by enclosing the token in quotation marks (" "), for example, if you wanted to use the **Received Time** output value:
 
-      :::image type="content" source="media/call-azure-functions-from-workflows/function-request-body-string-cast-example.png" alt-text="Screenshot shows Standard workflow and a Request Body example that casts context object as a string.":::
+      :::image type="content" source="media/call-azure-functions-from-workflows/function-request-body-string-cast-example.png" alt-text="Screenshot shows a Standard workflow and a Request body example that casts context object as a string.":::
 
-   1. To specify other details such as the method to use, request headers, query parameters, or authentication, open the **Advanced parameters** list, and select the parameters that you want. For authentication, your options differ based on your selected function. For more information, review [Enable authentication for functions](#enable-authentication-functions).
+   1. To enter other information such as the method to use, request headers, query parameters, or authentication, open the **Advanced parameters** list, and select the parameters you want.
+   
+      For authentication, your options differ based on your selected function. For more information, see [Enable authentication for functions](#enable-authentication-functions).
 
 ---
 
@@ -278,22 +280,18 @@ To call an Azure function from your workflow, add that function like any other a
 
 ## Enable authentication for Azure function calls (Consumption workflows only)
 
-Your Consumption workflow can use a [managed identity](../active-directory/managed-identities-azure-resources/overview.md) to authenticate an Azure function call and access resources protected by Microsoft Entra ID. The managed identity can authenticate access without you having to sign in and provide credentials or secrets. Azure manages this identity for you and helps secure your credentials because you don't have to provide or rotate secrets. You can set up the system-assigned identity or a manually created, user-assigned identity at the logic app resource level. The Azure function that's called from your workflow can use the same managed identity for authentication.
+Your Consumption workflow can use a manually created, [user-assigned managed identity](../active-directory/managed-identities-azure-resources/overview.md) to authenticate the call to the Azure function and access resources protected by Microsoft Entra ID. A managed identity authenticates access without requiring you to sign in and provide credentials or secrets. Azure manages this identity for you and helps keep your credentials secure because you don't have to manage credentials or rotate secrets.
 
-> [!NOTE]
-> 
-> Only Consumption workflows support authentication for an Azure function call using 
-> a managed identity and Microsoft Entra authentication. Standard workflows currently 
-> don't include this support when you use the action to call an Azure function.
+For this scenario, you need to set up a user-assigned managed identity at the logic app resource level. The call that your workflow makes to the Azure function uses this managed identity for authentication.
 
-For more information, see the following documentation:
+For more information, see:
 
-* [Authenticate access with managed identities](create-managed-service-identity.md)
-* [Add authentication to outbound calls](logic-apps-securing-a-logic-app.md#add-authentication-outbound)
+- [Authenticate access with managed identities](create-managed-service-identity.md)
+- [Add authentication to outbound calls](logic-apps-securing-a-logic-app.md#add-authentication-outbound)
 
-To set up your function app and function so they can use your Consumption logic app's managed identity, follow these high-level steps:
+To set up your function app and function so they use the managed identity for your Consumption logic app resource, follow these high-level steps:
 
-1. [Enable and set up your logic app's managed identity](create-managed-service-identity.md).
+1. [Enable and set up the managed identity for your logic app resource](create-managed-service-identity.md).
 
 1. [Set up your function for anonymous authentication](#set-authentication-function-app).
 
@@ -305,41 +303,45 @@ To set up your function app and function so they can use your Consumption logic 
 
 ### Set up your function for anonymous authentication (Consumption workflows only)
 
-For your function to use your Consumption logic app's managed identity, you must set your function's authentication level to **`anonymous`**. Otherwise, your workflow throws a **BadRequest** error.
+For your function to use the managed identity for your Consumption logic app resource, set your function's authentication level to **anonymous**. Otherwise, your workflow throws a **BadRequest** error.
 
-1. In the [Azure portal](https://portal.azure.com), find and select your function app.
+1. In the [Azure portal](https://portal.azure.com), open your function app.
 
    The following steps use an example function app named **FabrikamFunctionApp**.
 
-1. On the function app resource menu, under **Development tools**, select **Advanced Tools** > **Go**.
+1. On the function app sidebar, under **Development Tools**, select **Advanced Tools** > **Go**.
 
    :::image type="content" source="media/call-azure-functions-from-workflows/open-advanced-tools-kudu.png" alt-text="Screenshot shows function app menu with selected options for Advanced Tools and Go." lightbox="media/call-azure-functions-from-workflows/open-advanced-tools-kudu.png":::
 
-1. After the **Kudu Plus** page opens, on the Kudu website's title bar, from the **Debug Console** menu, select **CMD**.
+1. To confirm that you want to leave the Azure portal and go to the website URL for your function app, select **Continue**.
 
-   :::image type="content" source="media/call-azure-functions-from-workflows/open-debug-console-kudu.png" alt-text="Screenshot shows Kudu Services page with opened Debug Console menu and selected option named CMD." lightbox="media/call-azure-functions-from-workflows/open-debug-console-kudu.png":::
+1. After the **Kudu Services** page opens, on the Kudu website's title bar, from the **Debug console** menu, select **CMD**.
 
-1. After the next page appears, from the folder list, select **site** > **wwwroot** > *your-function*.
+   :::image type="content" source="media/call-azure-functions-from-workflows/open-debug-console-kudu.png" alt-text="Screenshot shows the Kudu Services page with opened Debug console menu and selected option named CMD." lightbox="media/call-azure-functions-from-workflows/open-debug-console-kudu.png":::
+
+1. On the next page, from the folder list, select **site** > **wwwroot** > *your-function*.
 
    The following steps use an example function named **FabrikamAzureFunction**.
 
-   :::image type="content" source="media/call-azure-functions-from-workflows/select-site-wwwroot-function-folder.png" alt-text="Screenshot shows folder list with the opened folders for the site, wwwroot, and your function." lightbox="media/call-azure-functions-from-workflows/select-site-wwwroot-function-folder.png":::
+   :::image type="content" source="media/call-azure-functions-from-workflows/select-site-wwwroot-function-folder.png" alt-text="Screenshot shows a folder list with the opened folders for the site, wwwroot, and your function." lightbox="media/call-azure-functions-from-workflows/select-site-wwwroot-function-folder.png":::
 
 1. Open the **function.json** file for editing.
 
    :::image type="content" source="media/call-azure-functions-from-workflows/edit-function-json-file.png" alt-text="Screenshot shows the function.json file with selected edit command." lightbox="media/call-azure-functions-from-workflows/edit-function-json-file.png":::
 
-1. In the **bindings** object, check whether the **authLevel** property exists. If the property exists, set the property value to **`anonymous`**. Otherwise, add that property, and set the value.
+1. In the `bindings` object, confirm whether the `authLevel` property exists.
+
+   If the property exists, set the property value to `anonymous`. Otherwise, add the property, and set the value.
 
    :::image type="content" source="media/call-azure-functions-from-workflows/set-authentication-level-function-app.png" alt-text="Screenshot shows bindings object with authLevel property set to anonymous." lightbox="media/call-azure-functions-from-workflows/set-authentication-level-function-app.png":::
 
-1. When you're done, save your settings. Continue to the next section.
+1. When you finish, on the editor toolbar, select **Save**. Continue to the next section.
 
 <a name="find-required-values"></a>
 
 ### Find the required values to set up Microsoft Entra authentication (Consumption workflows only)
 
-Before you can set up your function app to use the managed identity and Microsoft Entra authentication, you need to find and save the following values by following the steps in this section.
+Before you can set up your function app to use the managed identity and Microsoft Entra authentication, you need to find and save specific IDs by following these high-level steps:
 
 1. [Find the tenant ID for your Microsoft Entra tenant](#find-tenant-id).
 
@@ -357,93 +359,91 @@ Either run the PowerShell command named [**Get-AzContext**](/powershell/module/a
 
    This guide uses **Fabrikam** as the example tenant.
 
-1. On the tenant menu, select **Overview**.
+1. On the tenant sidebar, select **Overview**.
 
 1. Copy and save your tenant ID for later use, for example:
 
-   :::image type="content" source="media/call-azure-functions-from-workflows/tenant-id.png" alt-text="Screenshot shows Microsoft Entra ID Properties page with tenant ID's copy button selected." lightbox="media/call-azure-functions-from-workflows/tenant-id.png":::
+   :::image type="content" source="media/call-azure-functions-from-workflows/tenant-id.png" alt-text="Screenshot shows the tenant's Overview page with the Tenant ID's copy button selected." lightbox="media/call-azure-functions-from-workflows/tenant-id.png":::
 
 <a name="find-object-id"></a>
 
 #### Find the object ID for your managed identity
 
-After you enable the managed identity for your Consumption logic app resource, find the object for your managed identity. You'll use this ID to find the associated Enterprise application in your Microsoft Entra tenant.
+After you set up the user-assigned managed identity for your Consumption logic app resource, find the object ID for the managed identity. You'll use this ID to find the associated Enterprise application in your Microsoft Entra tenant.
 
-1. On the logic app menu, under **Settings**, select **Identity**, and then select either **System assigned** or **User assigned**.
+1. On the logic app sidebar, under **Settings**, select **Identity**, and then select **User assigned**.
 
-   - **System assigned**
+   1. On the **User assigned** tab, select the managed identity:
 
-     Copy the identity's **Object (principal) ID**:
+      :::image type="content" source="media/call-azure-functions-from-workflows/user-identity-consumption.png" alt-text="Screenshot shows Consumption logic app's Identity page with selected tab named User assigned." lightbox="media/call-azure-functions-from-workflows/user-identity-consumption.png":::
 
-     :::image type="content" source="media/call-azure-functions-from-workflows/system-identity-consumption.png" alt-text="Screenshot shows Consumption logic app's Identity page with selected tab named System assigned." lightbox="media/call-azure-functions-from-workflows/system-identity-consumption.png":::
+   1. Copy the identity's **Object (principal) ID**:
 
-   - **User assigned**
-
-     1. Select the identity:
-
-        :::image type="content" source="media/call-azure-functions-from-workflows/user-identity-consumption.png" alt-text="Screenshot shows Consumption logic app's Identity page with selected tab named User assigned." lightbox="media/call-azure-functions-from-workflows/user-identity-consumption.png":::
-
-     1. Copy the identity's **Object (principal) ID**:
-
-        :::image type="content" source="media/call-azure-functions-from-workflows/user-identity-object-id.png" alt-text="Screenshot shows Consumption logic app's user-assigned identity Overview page with the object (principal) ID selected." lightbox="media/call-azure-functions-from-workflows/user-identity-object-id.png":::
+      :::image type="content" source="media/call-azure-functions-from-workflows/user-identity-object-id.png" alt-text="Screenshot shows Consumption logic app's user-assigned identity Overview page with the object (principal) ID selected." lightbox="media/call-azure-functions-from-workflows/user-identity-object-id.png":::
 
 <a name="find-enterprise-application-id"></a>
 
 ### Find the application ID for the Azure Enterprise application associated with your managed identity
 
-When you enable a managed identity on your logic app resource, Azure automatically creates an associated [Azure Enterprise application](/entra/identity/enterprise-apps/add-application-portal) that has the same name. You now need to find the associated Enterprise application and copy its **Application ID**. Later, you use this application ID to add an identity provider for your function app by creating an app registration.
+After you enable the managed identity for your Consumption logic app resource, Azure automatically creates an associated [Azure Enterprise application](/entra/identity/enterprise-apps/add-application-portal) that has the same name.
 
-1. In the [Azure portal](https://portal.azure.com), find and open your Microsoft Entra tenant.
+You need to find the associated Enterprise application and copy its **Application ID**. You'll use this application ID to add an identity provider for your function app by creating an app registration.
 
-1. On the tenant menu, under **Manage**, select **Enterprise applications**.
+1. In the [Azure portal](https://portal.azure.com), open your Microsoft Entra tenant.
+
+1. On the tenant sidebar, under **Manage**, select **Enterprise applications**.
 
 1. On the **All applications** page, in the search box, enter the object ID for your managed identity. From the results, find the matching enterprise application, and copy the **Application ID**:
 
-   :::image type="content" source="media/call-azure-functions-from-workflows/find-enterprise-application-id.png" alt-text="Screenshot shows Microsoft Entra tenant page named All applications, with enterprise application object ID in search box, and selected matching application ID." lightbox="media/call-azure-functions-from-workflows/find-enterprise-application-id.png":::
+   :::image type="content" source="media/call-azure-functions-from-workflows/find-enterprise-application-id.png" alt-text="Screenshot shows the Microsoft Entra tenant page named All applications with the enterprise application object ID in search box, and the selected matching application ID." lightbox="media/call-azure-functions-from-workflows/find-enterprise-application-id.png":::
 
-1. Now, use the copied application ID to [add an identity provider to your function app](#create-app-registration).
+1. Continue to the next section to [add an identity provider to your function app](#create-app-registration) by using the copied application ID.
 
 <a name="create-app-registration"></a>
 
-### Add identity provider for your function app (Consumption workflows only)
+### Add an identity provider for your function app (Consumption workflows only)
 
-Now that you have the tenant ID and the application ID, you can set up your function app to use Microsoft Entra authentication by adding an identity provider and creating an app registration.
+After you get the tenant ID and the application ID, set up your function app to use Microsoft Entra authentication by adding an identity provider and creating an app registration.
 
 1. In the [Azure portal](https://portal.azure.com), open your function app.
 
-1. On the function app menu, under **Settings**, select **Authentication**, and then select **Add identity provider**.
+1. On the function app sidebar, under **Settings**, select **Authentication**, and then select **Add identity provider**, for example:
 
    :::image type="content" source="media/call-azure-functions-from-workflows/add-identity-provider.png" alt-text="Screenshot shows function app menu with Authentication page and selected option named Add identity provider." lightbox="media/call-azure-functions-from-workflows/add-identity-provider.png":::
 
-1. On the **Add an identity provider** pane, under **Basics**, from the **Identity provider** list, select **Microsoft**.
+1. On the **Add an identity provider** page, on the **Basics** tab, from the **Identity provider** list, select **Microsoft**.
 
 1. Under **App registration**, for **App registration type**, select **Provide the details of an existing app registration**, and enter the values that you previously saved.
 
    | Property | Required | Value | Description |
    |----------|----------|-------|-------------|
    | **Application (client) ID** | Yes | <*application-ID*> | The unique identifier to use for this app registration. For this example, use the application ID that you copied for the Enterprise application associated with your managed identity. |
-   | **Client secret** | Optional, but recommended | <*client-secret*> | The secret value that the app uses to prove its identity when requesting a token. The client secret is created and stored in your app's configuration as a slot-sticky [application setting](../app-service/configure-common.md#configure-app-settings) named **MICROSOFT_PROVIDER_AUTHENTICATION_SECRET**. <br><br>- Make sure to regularly rotate secrets and store them securely. For example, manage your secrets in Azure Key Vault where you can use a managed identity to retrieve the key without exposing the value to an unauthorized user. You can update this setting to use [Key Vault references](../app-service/app-service-key-vault-references.md). <br><br>- If you provide a client secret value, sign-in operations use the hybrid flow, returning both access and refresh tokens. <br><br>- If you don't provide a client secret, sign-in operations use the [OAuth 2.0 implicit grant flow](/entra/identity-platform/v2-oauth2-implicit-grant-flow). This method directly returns only an ID token or access token. These tokens are sent by the provider and stored in the EasyAuth token store. <br><br>**Important**: Due to security risks, the implicit grant flow is [no longer a suitable authentication method](/entra/identity-platform/v2-oauth2-implicit-grant-flow#prefer-the-auth-code-flow). Instead, use either [authorization code flow with Proof Key for Code Exchange (PKCE)](/entra/msal/dotnet/advanced/spa-authorization-code) or [single-page application (SPA) authorization codes](/entra/msal/dotnet/advanced/spa-authorization-code). |
-   | **Issuer URL** | No | **<*authentication-endpoint-URL*>/<*Microsoft-Entra-tenant-ID*>/v2.0** | This URL redirects users to the correct Microsoft Entra tenant and downloads the appropriate metadata to determine the appropriate token signing keys and token issuer claim value. For apps that use Azure AD v1, omit **/v2.0** from the URL. <br><br>For this scenario, use the following URL: **`https://sts.windows.net/`<*Microsoft-Entra-tenant-ID*>** |
-   | **Allowed token audiences** | No | <*application-ID-URI*> | The application ID URI (resource ID) for the function app. For a cloud or server app where you want to allow authentication tokens from a web app, add the application ID URI for the web app. The configured client ID is always implicitly considered as an allowed audience. <br><br>For this scenario, the value is **`https://management.azure.com`**. Later, you can use the same URI in the **Audience** property when you [set up your function action in your workflow to use the managed identity](create-managed-service-identity.md#authenticate-access-with-identity). <br><br>**Important**: The application ID URI (resource ID) must exactly match the value that Microsoft Entra ID expects, including any required trailing slashes. |
+   | **Federated identity credential** | Yes | <*managed-identity-object-ID*> | The object (principal) ID for your user-assigned managed identity. |
+   | **Issuer URL** | No | **<*authentication-endpoint-URL*>/<*Microsoft-Entra-tenant-ID*>/v2.0** | This URL redirects users to the correct Microsoft Entra tenant and downloads the appropriate metadata to determine the appropriate token signing keys and token issuer claim value. For apps that use Azure AD v1, omit **/v2.0** from the URL. <br><br>For this scenario, use the following URL: <br><br>`https://sts.windows.net/`<*Microsoft-Entra-tenant-ID*> |
+   | **Allowed token audiences** | No | <*application-ID-URI*> | The application ID URI (resource ID) for the function app. For a cloud or server app where you want to allow authentication tokens from a web app, add the application ID URI for the web app. The configured client ID is always implicitly considered as an allowed audience. <br><br>For this scenario, the value is the following URI: <br><br>`https://management.azure.com` <br><br>Later, use the same URI in the **Audience** property when you [set up your function action in your workflow to use the managed identity](create-managed-service-identity.md#authenticate-access-with-identity). <br><br>**Important**: The application ID URI (resource ID) must exactly match the value that Microsoft Entra ID expects, including any required trailing slashes. |
 
-   At this point, your version looks similar to this example:
+   Your version now looks like the following example:
 
-   :::image type="content" source="media/call-azure-functions-from-workflows/identity-provider-authentication-settings.png" alt-text="Screenshot shows app registration for your logic app and identity provider for your function app." lightbox="media/call-azure-functions-from-workflows/identity-provider-authentication-settings.png":::
+   :::image type="content" source="media/call-azure-functions-from-workflows/identity-provider-authentication-settings.png" alt-text="Screenshot shows the app registration for your logic app and the identity provider for your function app." lightbox="media/call-azure-functions-from-workflows/identity-provider-authentication-settings.png":::
 
-   If you're setting up your function app with an identity provider for the first time, the **App Service authentication settings** section also appears. These options determine how your function app responds to unauthenticated requests. The default selection redirects all requests to log in with the new identity provider. You can customize this behavior now or adjust these settings later from the main **Authentication** page by selecting **Edit** next to **Authentication settings**. To learn more about these options, review [Authentication flow - Authentication and authorization in Azure App Service and Azure Functions](../app-service/overview-authentication-authorization.md#authentication-flow).
+   If you're setting up your function app with an identity provider for the first time, the **App Service authentication settings** section also appears. These options determine how your function app responds to unauthenticated requests. The default selection redirects all requests to sign in with the new identity provider. You can customize this behavior now or adjust these settings later from the main **Authentication** page by selecting **Edit** next to **Authentication settings**. To learn more about these options, see [Authentication flow - Authentication and authorization in Azure App Service and Azure Functions](../app-service/overview-authentication-authorization.md#authentication-flow).
 
-   Otherwise, you can continue with the next step.
+   Otherwise, continue with the next step.
 
 1. To finish creating the app registration, select **Add**.
 
-   When you're done, the **Authentication** page now lists the identity provider and the app registration's application (client) ID. Your function app can now use this app registration for authentication.
+   The **Authentication** page lists the identity provider and the app registration's application (client) ID. Your function app can now use this app registration for authentication.
 
-1. Copy the app registration's **App (client) ID** to use later in the Azure Functions action's **Audience** property for your workflow.
+1. Copy and save the app registration's **App (client) ID**.
 
-   :::image type="content" source="media/call-azure-functions-from-workflows/identity-provider-application-id.png" alt-text="Screenshot shows new identity provider for function app." lightbox="media/call-azure-functions-from-workflows/identity-provider-application-id.png":::
+   :::image type="content" source="media/call-azure-functions-from-workflows/identity-provider-application-id.png" alt-text="Screenshot shows the new identity provider for function app." lightbox="media/call-azure-functions-from-workflows/identity-provider-application-id.png":::
 
-1. Return to the designer and follow the [steps to authenticate access with the managed identity](create-managed-service-identity.md#authenticate-access-with-identity) by using the built-in Azure Functions action.
+   You'll use this ID in the Azure Functions action that you add to your workflow.
 
-## Next steps
+1. Return to the workflow designer, and follow the [steps to authenticate access with the managed identity](create-managed-service-identity.md#authenticate-access-with-identity) by using the Azure Functions action.
+
+   Remember to enter the application (client) ID in the function action's **Audience** property.
+
+## Related content
 
 * [Authentication access to Azure resources with managed identities in Azure Logic Apps](create-managed-service-identity.md#authenticate-access-with-identity)
