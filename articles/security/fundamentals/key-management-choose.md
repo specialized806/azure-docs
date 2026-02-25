@@ -52,6 +52,7 @@ Use the table to compare all the solutions side by side. Begin from top to botto
 |  | **AKV Standard** | **AKV Premium** | **Azure Key Vault Managed HSM** | **Azure Cloud HSM** | **Azure Payment HSM** |
 | --- | --- | --- | --- | --- | --- |
 | **Service model** | PaaS | PaaS | PaaS | IaaS-style HSM service | IaaS-style HSM service |
+| **Authentication** | Entra ID | Entra ID | Entra ID | HSM authentication | HSM authentication |
 | What level of **compliance** do you need? | FIPS 140-2 level 1 | FIPS 140-3 level 3 | FIPS 140-3 level 3, PCI DSS, PCI 3DS | FIPS 140-3 level 3 | FIPS 140-2 level 3, PCI HSM v3, PCI PTS HSM v3, PCI DSS, PCI 3DS, PCI PIN |
 | Do you need **key sovereignty**? | No | No | Yes | Yes | Yes |
 | What kind of **tenancy** are you looking for? | Multitenant | Multitenant | Single Tenant | Single Tenant | Single Tenant |
