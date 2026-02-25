@@ -1,6 +1,6 @@
 ---
 title: What is Durable Task?
-description: Learn about the Durable Task framework that provides durable execution for your applications, including automatic state persistence, fault tolerance, and horizontal scalability.
+description: Learn about Durable Task, the umbrella technology that includes Durable Task SDKs, Durable Functions, and the Durable Task Scheduler to provide durable execution with automatic state persistence, fault tolerance, and horizontal scalability.
 author: cgillum
 ms.author: cgillum
 ms.reviewer: hannahhunter
@@ -14,7 +14,9 @@ titleSuffix: Durable Task
 
 # What is Durable Task?
 
-Durable Task is a developer framework for building stateful applications that are both distributed and fault-tolerant. App logic written using the Durable Task framework recovers automatically from crashes, restarts, and redeployments without losing progress, allowing developers and coding agents to focus on business logic rather than infrastructure concerns. The framework also enables long-running executions that can span hours, days, or even months, unlocking a wide variety of scenarios that are difficult to implement with traditional stateless approaches.
+Durable Task is Microsoft's technology for building workflows and orchestrations as ordinary code that automatically survives failures. Instead of managing complex retry logic, state machines, or message queues, you express your business logic as straightforward functions — Durable Task handles state persistence, automatic recovery, and distributed coordination for you. Workflows can run for hours, days, or even months, reliably resuming from the last completed step after any crash, restart, or redeployment.
+
+Durable Task encompasses the **[Durable Task SDKs](./choose-orchestration-framework.md)** for self-hosted applications, **[Durable Functions](durable-functions-overview.md)** for serverless hosting on Azure Functions, and the **[Durable Task Scheduler](./durable-task-scheduler/durable-task-scheduler.md)** — a fully managed backend service purpose-built for durable workloads.
 
 > [!NOTE]
 > *Durable execution* is an industry-wide approach to making ordinary code fault-tolerant by automatically persisting its progress. Durable Task is Microsoft's implementation of durable execution.
