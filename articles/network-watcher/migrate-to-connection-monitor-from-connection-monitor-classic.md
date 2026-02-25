@@ -6,9 +6,8 @@ author: halkazwini
 ms.author: halkazwini
 ms.service: azure-network-watcher
 ms.topic: how-to
-ms.date: 03/12/2024
+ms.date: 02/25/2026
 
-#CustomerIntent: As an Azure administrator, I want to migrate my connection monitors from Connection monitor (classic) to the new Connection monitor so I avoid service disruption. 
 # Customer intent: As an Azure administrator, I want to migrate my connection monitors from Connection monitor (classic) to the new Connection monitor, so that I can ensure continuous monitoring without any service interruptions.
 ---
 

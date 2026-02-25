@@ -11,6 +11,7 @@ ms.custom:
   - devx-track-azurepowershell
   - devx-track-azurecli
   - sfi-image-nochange
+
 # Customer intent: As a network administrator, I want to use NSG diagnostics to verify security rules on my virtual machine, so that I can troubleshoot traffic access issues effectively.
 ---
 

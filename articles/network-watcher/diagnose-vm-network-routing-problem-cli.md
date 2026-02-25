@@ -5,7 +5,7 @@ description: In this article, you learn how to use Azure CLI to diagnose a virtu
 author: halkazwini
 ms.service: azure-network-watcher
 ms.topic: how-to
-ms.date: 10/29/2024
+ms.date: 02/25/2026
 ms.author: halkazwini
 ms.custom: devx-track-azurecli
 
