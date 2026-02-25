@@ -207,7 +207,7 @@ The function code for the MCP Apps weather tool is defined in the `src/function_
 
 :::code language="python" source="~/functions-scenarios-custom-mcp-python/src/function_app.py" range="109-130" :::
 
-The `TOOL_METADATA` constant declares a `ui.resourceUri` that tells the MCP host to fetch the interactive UI from `ui://weather/index.html` after the tool runs. The `@app.mcp_resource_trigger()` method serves the HTML widget.  The `get_weather_widget` function serves the bundled HTML file at that URI using `@app.mcp_resource_trigger()`:
+The `TOOL_METADATA` constant declares a `ui.resourceUri` that tells the MCP host to fetch the interactive UI from `ui://weather/index.html` after the tool runs. The `@app.mcp_resource_trigger()` method serves the HTML widget. The `get_weather_widget` function serves the bundled HTML file at that URI using `@app.mcp_resource_trigger()`:
 
 :::code language="python" source="~/functions-scenarios-custom-mcp-python/src/function_app.py" range="64-105" :::
 
