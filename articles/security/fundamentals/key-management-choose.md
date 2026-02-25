@@ -60,11 +60,11 @@ Use the table to compare all the solutions side by side. Begin from top to botto
 | What is your **budget**? | $ | $$ | $$$ | $$$ | $$$$ |
 | **HSM administrative control** | Microsoft | Microsoft | Microsoft | Customer | Customer |
 | Who takes responsibility for **patching and maintenance**? | Microsoft | Microsoft | Microsoft | Microsoft | Customer |
-| Who takes responsibility for **service health and hardware failover**? | Microsoft | Microsoft | Shared | Shared | Customer |
+| Who takes responsibility for **service health and hardware failover**? | Microsoft | Microsoft | [Shared](/azure/key-vault/managed-hsm/disaster-recovery-guide) | [Shared](/azure/cloud-hsm/overview#customer-owned-highly-available-single-tenant-hsm-as-a-service) | [Customer](/azure/payment-hsm/deployment-scenarios#high-availability-deployment) |
 | **Dedicated capacity** | No | No | Yes | Yes | Yes |
-| **BCDR** | Automatic | Automatic | Automatic | Automatic | Manual |
-| **Backup & Restore** | Built-in service backup | Built-in service backup | Service-managed | Manual HSM backup | Manual HSM backup |
-| **Application direct access** | No | No | No | Yes | Yes |
+| **BCDR** | Automatic | Automatic | Automatic | Automatic | [Manual](/azure/payment-hsm/deployment-scenarios#disaster-recovery-deployment) |
+| **Backup & Restore** | [Built-in service backup](/azure/key-vault/general/backup) | [Built-in service backup](/azure/key-vault/general/backup) | [Service-managed](/azure/key-vault/managed-hsm/backup-restore) | [Manual HSM backup](/azure/cloud-hsm/backup-restore) | [Manual HSM backup](/azure/payment-hsm/support-guide#support-contacts) |
+| **Application direct access** | No | No | No | [Yes](/azure/cloud-hsm/integration-guides) | [Yes](/azure/payment-hsm/overview#typical-use-cases) |
 | What kind of **objects** are you using? | Asym Keys, Secrets, Certs | Asym Keys, Secrets, Certs | Asym/Sym Keys, Azure services | Asym/Sym Keys, Certs | Keys |
 | **Root of trust control** | Microsoft | Microsoft | Customer | Customer | Customer |
 
