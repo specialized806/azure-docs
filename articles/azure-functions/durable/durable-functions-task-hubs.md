@@ -482,11 +482,15 @@ After you assign the identity, add the following environment variables to your a
 
 For complete identity configuration details, see [Configure managed identity for Durable Task Scheduler](durable-task-scheduler/durable-task-scheduler-identity.md).
 
+### Multiple applications
+
+If multiple applications share the same scheduler, configure each application with a separate task hub. A single scheduler can contain multiple task hubs. Each application should connect to its own task hub to avoid conflicts. Otherwise, the applications compete for messages, which could result in undefined behavior, including orchestrations getting unexpectedly stuck.
+
 ::: zone pivot="durable-functions"
 
-## Task hub management
+## BYO storage provider task hub management
 
-This section describes how task hubs are created or deleted, how to use task hubs correctly when running multiple function apps, and how to inspect task hub contents. This section applies to bring-your-own (BYO) storage providers (Azure Storage, Netherite, and MSSQL).
+This section covers task hub creation and deletion, using task hubs correctly when running multiple function apps, and inspecting task hub contents. It applies to bring-your-own (BYO) storage providers: Azure Storage, Netherite, and MSSQL.
 
 ### Creation and deletion
 
@@ -570,7 +574,7 @@ The following sections describe these components and their roles in more detail.
 
 For more information about how task hubs are represented by the Azure Storage provider, see the [Azure Storage provider](durable-functions-azure-storage-provider.md) documentation.
 
-### Netherite storage provider
+### Netherite storage provider (Retirement path)
 
 Netherite partitions all of the task hub state into a specified number of partitions.
 In storage, these resources store the data:
