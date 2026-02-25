@@ -4,7 +4,7 @@ titleSuffix: Durable Task
 description: Learn how to configure a container app for the Durable Task Scheduler using the Durable Task SDKs and deploy using Azure Developer CLI.
 ms.subservice: durable-task-scheduler
 ms.topic: quickstart
-ms.date: 05/15/2025
+ms.date: 02/25/2026
 zone_pivot_groups: df-languages
 ms.custom:
   - build-2025
@@ -12,19 +12,13 @@ ms.custom:
 
 # Quickstart: Host a Durable Task SDK app on Azure Container Apps
 
-::: zone pivot="javascript"
-
-[!INCLUDE [preview-sample-limitations](./includes/preview-sample-limitations.md)]
-
-::: zone-end
-
 ::: zone pivot="powershell"
 
 [!INCLUDE [preview-sample-limitations](./includes/preview-sample-limitations.md)]
 
 ::: zone-end
 
-::: zone pivot="csharp,python,java"
+::: zone pivot="csharp,python,java,javascript"
 
 In this quickstart, you learn how to:
 
@@ -69,7 +63,16 @@ Before you begin:
 
 ::: zone-end
 
-::: zone pivot="csharp,python,java"
+::: zone pivot="javascript"
+
+- Make sure you have [Node.js 22](https://nodejs.org/) or later.
+- Install [Docker](https://www.docker.com/products/docker-desktop/) for running the emulator.
+- Install [Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd)
+- Clone the [Durable Task Scheduler GitHub repository](https://github.com/Azure-Samples/Durable-Task-Scheduler) to use the quickstart sample.
+
+::: zone-end
+
+::: zone pivot="csharp,python,java,javascript"
 
 ## Prepare the project
 
@@ -101,7 +104,15 @@ cd /samples/durable-task-sdks/java/function-chaining
 
 ::: zone-end
 
-::: zone pivot="csharp,python,java"
+::: zone pivot="javascript"
+
+```bash
+cd /samples/durable-task-sdks/javascript/function-chaining
+```
+
+::: zone-end
+
+::: zone pivot="csharp,python,java,javascript"
 
 ## Deploy using Azure Developer CLI
 
@@ -184,7 +195,7 @@ In the Azure portal, verify the orchestrations are running successfully.
 
 ::: zone-end
 
-::: zone pivot="csharp,python"
+::: zone pivot="csharp,python,javascript"
 
 1. Confirm the client container is logging the function chaining tasks.
 
@@ -208,7 +219,7 @@ In the Azure portal, verify the orchestrations are running successfully.
 
 ::: zone-end
 
-::: zone pivot="csharp,python,java"
+::: zone pivot="csharp,python,java,javascript"
 
 ## Understanding the code
 
@@ -518,6 +529,27 @@ DurableTaskGrpcWorker worker = (credential != null
 // Start the worker
 worker.start();
 ```
+
+::: zone-end
+
+::: zone pivot="javascript"
+
+### Client
+
+The client code:
+
+- Uses the same connection string logic as the worker.
+- Implements a sequential orchestration scheduler.
+- Tracks orchestration instances and waits for completion.
+- Uses standard logging to show progress and results.
+
+### Worker
+
+The worker code:
+
+- Registers the orchestrator and activity functions.
+- Runs the orchestration by calling activities in sequence.
+- Uses the JavaScript Durable Task worker APIs for lifecycle management.
 
 ::: zone-end
 

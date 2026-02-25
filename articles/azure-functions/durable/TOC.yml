@@ -121,8 +121,6 @@
     items: 
     - name: Configure Durable Functions with managed identity
       href: durable-functions-configure-managed-identity.md
-    - name: Configure Durable Functions with Durable Task Scheduler
-      href: ./durable-task-scheduler/quickstart-portable-durable-task-sdks.md
     - name: Configure Durable Functions with MSSQL
       href: quickstart-mssql.md
     - name: Host a Durable Functions app in Container Apps (.NET isolated)
@@ -277,6 +275,12 @@
     items:
     - name: Overview
       href: ./durable-task-scheduler/durable-task-scheduler.md
+    - name: Quickstarts
+      items:
+      - name: Durable Functions
+        href: ./durable-task-scheduler/quickstart-durable-task-scheduler.md
+      - name: Durable Task SDKs
+        href: ./durable-task-scheduler/quickstart-portable-durable-task-sdks.md
     - name: Develop
       href: ./durable-task-scheduler/develop-with-durable-task-scheduler.md
     - name: Identity-based access
