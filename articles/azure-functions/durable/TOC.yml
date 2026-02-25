@@ -44,11 +44,7 @@
     - name: Programming model
       href: programming-model-overview.md
     - name: Orchestration
-      items:
-      - name: Durable Functions
-        href: durable-functions-orchestrations.md
-      - name: Durable Task SDKs
-        href: what-is-durable-task.md #placeholder
+      href: durable-functions-orchestrations.md
     - name: Sub-orchestrations
       href: durable-functions-sub-orchestrations.md
     - name: Task hubs
@@ -90,7 +86,7 @@
       - name: Durable Functions versioning
         href: durable-functions-versioning.md
       - name: Orchestration versioning
-        href: durable-functions-orchestration-versioning.md
+        href: ./durable-task-scheduler/durable-task-scheduler-versioning.md
 - name: Durable Functions
   items:
   - name: Overview
@@ -243,10 +239,6 @@
   items:
   - name: Overview
     href: ./durable-task-scheduler/durable-task-overview.md
-  - name: Concepts
-    items:
-    - name: Versioning
-      href: ./durable-task-scheduler/durable-task-scheduler-versioning.md
   - name: Tutorials
     items:
     - name: Configure autoscale for Azure Container Apps hosting

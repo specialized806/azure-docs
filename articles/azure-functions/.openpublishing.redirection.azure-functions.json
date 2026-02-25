@@ -709,6 +709,11 @@
             "source_path_from_root": "/articles/azure-functions/functions-bindings-mongodb-vcore.md",
             "redirect_url": "/azure/azure-functions/functions-bindings-documentdb",
             "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/azure-functions/durable/durable-functions-orchestration-versioning.md",
+            "redirect_url": "/azure/azure-functions/durable/durable-task-scheduler/durable-task-scheduler-versioning",
+            "redirect_document_id": false
         }
     ]
 }
