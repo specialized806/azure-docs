@@ -6,7 +6,7 @@ services: dns
 author: asudbring
 ms.service: azure-dns
 ms.topic: tutorial
-ms.date: 09/19/2024
+ms.date: 07/11/2025
 ms.author: allensu
 ms.custom:
   - template-tutorial #Required; leave this attribute/value as-is.
@@ -24,6 +24,7 @@ In this tutorial, you learn how to:
 > [!div class="checklist"]
 > * Create a virtual network and a subnet.
 > * Create a web server virtual machine with a public IP.
+> * Deploy Azure Bastion for secure VM access.
 > * Add a DNS label to a public IP.
 > * Create a Traffic Manager profile.
 > * Create an alias record.
@@ -131,7 +132,7 @@ Create two Windows Server 2019 virtual machines.
     | Public IP   | Select **Create new**, and then enter *Web-01-ip* in **Name**. </br> Select **Basic** for the **SKU**, and **Static** for the **Assignment**. |
     | NIC network security group | Select **Basic**. |
     | Public inbound ports  | Select **Allow selected ports**. |
-    | Select inbound ports  | Select **HTTP (80)**, **HTTPS (443)** and **RDP (3389)**. |
+    | Select inbound ports  | Select **HTTP (80)** and **HTTPS (443)**. |
 
 6. Select **Review + create**.
 7. Review the settings, and then select **Create**.
@@ -139,28 +140,56 @@ Create two Windows Server 2019 virtual machines.
 
 Each virtual machine deployment may take a few minutes to complete.
 
+### Deploy Azure Bastion
+
+Azure Bastion uses your browser to connect to VMs in your virtual network over RDP by using their private IP addresses. The VMs don't need client software or special configuration. For more information about Azure Bastion, see [Azure Bastion](/azure/bastion/bastion-overview).
+
+> [!NOTE]
+> [!INCLUDE [Pricing](~/reusable-content/ce-skilling/azure/includes/bastion-pricing.md)]
+
+1. In the search box at the top of the portal, enter **Bastion**. Select **Bastions** in the search results.
+2. Select **+ Create**.
+3. In the **Basics** tab of **Create a Bastion**, enter or select the following information:
+
+    | Setting | Value |
+    |---|---|
+    | **Project details** |  |
+    | Subscription | Select your subscription. |
+    | Resource group | Select **TMResourceGroup**. |
+    | **Instance details** |  |
+    | Name | Enter **bastion**. |
+    | Region | Select **East US**. |
+    | Tier | Select **Developer**. |
+    | **Configure virtual networks** |  |
+    | Virtual network | Select **myTMVNet**. |
+
+4. Select **Review + create**.
+5. Select **Create**.
+
 ### Install IIS web server
 
 Install IIS on both **Web-01** and **Web-02** virtual machines.
 
-1. In the **Connect** page of **Web-01** virtual machine, select **RDP** and then **Download RDP File**.
-2. Open *Web-01.rdp* file, and select **Connect**.
-3. Enter the username and password entered during virtual machine creation.
-4. On the **Server Manager** dashboard, select **Manage** then **Add Roles and Features**.
-5. Select **Server Roles** or select **Next** three times. On the **Server Roles** screen, select **Web Server (IIS)**.
-6. Select **Add Features**, and then select **Next**.
+1. In the search box at the top of the portal, enter **Virtual machine**. Select **Virtual machines** in the search results.
+2. In **Virtual machines**, select **Web-01**.
+3. Select **Connect** then **Connect via Bastion** in the **Overview** section.
+4. Enter the username and password that you created when you created the virtual machine, then select **Connect**.
+5. On the **Server Manager** dashboard, select **Manage** then **Add Roles and Features**.
+6. Select **Server Roles** or select **Next** three times. On the **Server Roles** screen, select **Web Server (IIS)**.
+7. Select **Add Features**, and then select **Next**.
 
     :::image type="content" source="./media/tutorial-alias-tm/iis-web-server-installation.png" alt-text="Screenshot of Add Roles and Features Wizard in Windows Server 2019 showing how to install the I I S Web Server by adding the Web Server role.":::
 
-7. Select **Confirmation** or select **Next** three times, and then select **Install**. The installation process takes a few minutes to finish.
-8. After the installation finishes, select **Close**.
-9. Go to *C:\inetpub\wwwroot* and open *iisstart.htm* with Notepad or any editor of your choice to edit the default IIS web page.
-10. Replace all the text in the file with `Hello World from Web-01` and save the changes to *iisstart.htm*. 
-11. Open a web browser. Browse to **localhost** to verify that the default IIS web page appears.
+8. Select **Confirmation** or select **Next** three times, and then select **Install**. The installation process takes a few minutes to finish.
+9. After the installation finishes, select **Close**.
+10. Go to *C:\inetpub\wwwroot* and open *iisstart.htm* with Notepad or any editor of your choice to edit the default IIS web page.
+11. Replace all the text in the file with `Hello World from Web-01` and save the changes to *iisstart.htm*. 
+12. Open a web browser. Browse to **localhost** to verify that the default IIS web page appears.
 
     :::image type="content" source="./media/tutorial-alias-tm/iis-on-web-01-vm-in-web-browser.png" alt-text="Screenshot of Internet Explorer showing the I I S Web Server default page of first virtual machine.":::
 
-12. Repeat previous steps to install IIS web server on **Web-02** virtual machine. Use `Hello World from Web-02` to replace all the text in *iisstart.htm*.
+13. Close the Bastion session.
+14. Repeat previous steps to install IIS web server on **Web-02** virtual machine. Use `Hello World from Web-02` to replace all the text in *iisstart.htm*.
 
 ### Add a DNS label
 
