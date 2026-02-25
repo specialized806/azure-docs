@@ -4,7 +4,7 @@ titleSuffix: Azure IoT Edge
 description: Use X.509 certificates to test provisioning devices at scale for Azure IoT Edge with device provisioning service
 author: sethmanheim
 ms.author: sethm
-ms.date: 06/09/2025
+ms.date: 02/24/2026
 ms.topic: how-to
 ms.service: azure-iot-edge
 ms.custom: linux-related-content
@@ -26,7 +26,7 @@ Here are the steps to provision IoT Edge devices using X.509 certificates:
 X.509 certificates let you scale production and simplify device provisioning. Typically, X.509 certificates are arranged in a certificate chain of trust. The chain starts with a self-signed or trusted root certificate, and each certificate in the chain signs the next lower certificate. This pattern creates a delegated chain of trust from the root certificate through each intermediate certificate to the final downstream device certificate installed on a device.
 
 > [!TIP]
-> If your device has a Hardware Security Module (HSM) like a TPM 2.0, store the X.509 keys securely in the HSM. Learn how to implement zero-touch provisioning at scale in [this blueprint](https://azure.microsoft.com/blog/the-blueprint-to-securely-solve-the-elusive-zerotouch-provisioning-of-iot-devices-at-scale) with the [iotedge-tpm2cloud](https://aka.ms/iotedge-tpm2cloud) sample.
+> If your device has a Hardware Security Module (HSM) like a TPM 2.0, store the X.509 keys securely in the HSM. Learn how to implement zero-touch provisioning at scale in [this blueprint](https://azure.microsoft.com/blog/the-blueprint-to-securely-solve-the-elusive-zerotouch-provisioning-of-iot-devices-at-scale/) with the [iotedge-tpm2cloud](https://aka.ms/iotedge-tpm2cloud) sample.
 
 ## Prerequisites
 
