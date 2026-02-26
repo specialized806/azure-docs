@@ -14,7 +14,7 @@ ms.custom: H1Hack27Feb2017
 
 # SAP HANA high availability for Azure virtual machines
 
-You can use numerous Azure capabilities to deploy mission-critical databases like SAP HANA on Azure VMs. This article provides guidance on how to achieve availability for SAP HANA instances that are hosted in Azure virtual machines (VMs). The article describes several scenarios that you can implement by using the Azure infrastructure to increase availability of SAP HANA in Azure.
+You can use numerous Azure capabilities to deploy mission-critical databases like SAP HANA on Azure virtual machines (VMs). This article provides guidance on how to achieve availability for SAP HANA instances that are hosted in Azure VMs. The article describes several scenarios that you can implement by using the Azure infrastructure to increase availability of SAP HANA in Azure.
 
 ## Prerequisites
 
@@ -35,7 +35,7 @@ It's also a good idea to be familiar with these articles about SAP HANA:
 
 - [High availability for SAP HANA](https://help.sap.com/viewer/6b94445c94ae495c83a19646e7c3fd56/2.0.02/en-US/6d252db7cdd044d19ad85b46e6c294a4.html)
 - [FAQ: High availability for SAP HANA](https://help.sap.com/docs/SAP_HANA_PLATFORM/6b94445c94ae495c83a19646e7c3fd56/6d252db7cdd044d19ad85b46e6c294a4.html)
-- [Perform system replication for SAP HANA](https://www.sap.com/documents/2017/07/606a676e-c97c-0010-82c7-eda71af511fa.html)
+- [Perform system replication for SAP HANA](https://www.sap.com/documents/2016/06/0ec37684-7a7c-0010-82c7-eda71af511fa.html)
 - [SAP HANA 2.0 SPS 01 What’s new: High availability](https://blogs.sap.com/2017/05/15/sap-hana-2.0-sps-01-whats-new-high-availability-by-the-sap-hana-academy/)
 - [Network recommendations for SAP HANA system replication](https://help.sap.com/docs/SAP_HANA_PLATFORM/4e9b18c116aa42fc84c7dbfd02111aba/9abd88b15d0b4876ab672176011441de.html)
 - [SAP HANA system replication](https://help.sap.com/viewer/6b94445c94ae495c83a19646e7c3fd56/2.0.01/en-US/b74e16a9e09541749a745f41246a065e.html)
