@@ -874,7 +874,7 @@ except TaskFailedError as e:
 
 ## Get support
 
-For questions and support, open an issue in the GitHub repo for the relevant SDK. When you report a bug, include:
+For questions and reporting bugs, open an issue in the GitHub repo for the relevant SDK. When you report a bug, include:
 
 - Affected orchestration instance IDs
 - Time range in UTC that shows the problem
