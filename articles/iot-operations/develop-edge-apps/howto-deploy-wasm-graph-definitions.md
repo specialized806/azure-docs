@@ -5,7 +5,7 @@ author: dominicbetts
 ms.author: dobett
 ms.service: azure-iot-operations
 ms.topic: how-to
-ms.date: 12/16/2025
+ms.date: 02/25/2026
 ai-usage: ai-assisted
 
 ---
@@ -68,7 +68,7 @@ resource publicRegistryEndpoint 'Microsoft.IoTOperations/instances/registryEndpo
 # [Kubernetes](#tab/kubernetes)
 
 ```yaml
-apiVersion: connectivity.iotoperations.azure.com/v1beta1
+apiVersion: connectivity.iotoperations.azure.com/v1
 kind: RegistryEndpoint
 metadata:
   name: public-ghcr

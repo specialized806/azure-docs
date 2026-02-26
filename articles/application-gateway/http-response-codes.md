@@ -55,16 +55,16 @@ HTTP 400 response codes are commonly observed when:
 Some common reasons for the request to be non-compliant to RFC are: 
 
 | Category | Examples |
-| ---------- | ---------- | 
-| Invalid Host in request line  | Host containing two colons (example.com:**8090:8080**) |
+| ---------- | ---------- |
+| Invalid Host in request line | Host containing two colons (example.com:**8090:8080**) |
 | Missing Host Header | Request doesn't have Host Header |
 | Presence of malformed or illegal character | Reserved characters are **&,!.** The workaround is to code it as a percentage. For example: %& |
 | Invalid HTTP version | Get /content.css HTTP/**0.3** |
-| Header field name and URI contain non-ASCII Character | GET /**«úü¡»¿**.doc HTTP/1.1  |
+| Header field name and URI contain non-ASCII Character | GET /**«úü¡»¿**.doc HTTP/1.1 |
 | Missing Content Length header for POST request | Self Explanatory |
 | Invalid HTTP Method | **GET123** /index.html HTTP/1.1 |
 | Duplicate Headers | Authorization:\<base64 encoded content\>, Authorization: \<base64 encoded content\> |
-| Invalid value in Content-Length | Content-Length: **abc**,Content-Length: **-10**|
+| Invalid value in Content-Length | Content-Length: **abc**,Content-Length: **-10** |
 
 For cases when mutual authentication is configured, several scenarios can lead to an HTTP 400 response being returned the client, such as:
 - Mutual authentication is enabled but the Client certificate wasn't presented. 
@@ -93,6 +93,7 @@ An HTTP 401 unauthorized response can be returned to AppGW probe request if the 
 HTTP 403 Forbidden is presented when customers are utilizing WAF (Web Application Firewall) skus and have WAF configured in Prevention mode.  If enabled WAF rulesets or custom deny WAF rules match the characteristics of an inbound request, the client is presented a 403 forbidden response.
 
 Other reasons for clients receiving 403 responses include:
+- **h2c protocol upgrade attempts**: Application Gateway returns 403 errors when clients attempt to upgrade from HTTP/1.1 to HTTP/2.0 using the h2c protocol (HTTP/2 Cleartext). Application Gateway only supports HTTP/2 over TLS (HTTPS listeners); h2c protocol upgrades over HTTP listeners are not supported. This behavior occurs regardless of WAF mode. Clients should use native HTTP/2 connections over HTTPS or remain on HTTP/1.1 without upgrade attempts.
 - You're using App Service as backend and it's configured to allow access only from Application Gateway. This can return a 403 error by App Services. This typically happens due to redirects/href links that point directly to App Services instead of pointing at the Application Gateway's IP address. 
 - If you're accessing a storage blog and the Application Gateway and storage endpoint is in different region, then a 403 error is returned if the Application Gateway's public IP address isn't allow-listed. See [Grant access from an internet IP range](/azure/storage/common/storage-network-security?tabs=azure-portal#grant-access-from-an-internet-ip-range).
 
