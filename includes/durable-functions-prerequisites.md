@@ -37,4 +37,14 @@ ms.author: glenga
 
 * [Complete the quickstart article](../articles/azure-functions/durable/quickstart-python-vscode.md)
 * [Clone or download the samples project from GitHub](https://github.com/Azure/azure-functions-durable-python/tree/master/samples/)
+
+# [PowerShell](#tab/powershell)
+
+* [Complete the quickstart article](../articles/azure-functions/durable/quickstart-powershell-vscode.md)
+* [Clone or download the samples project from GitHub](https://github.com/Azure/azure-functions-durable-powershell/tree/main/samples/)
+
+# [Java](#tab/java)
+
+* [Complete the quickstart article](../articles/azure-functions/durable/quickstart-java.md)
+
 ---
