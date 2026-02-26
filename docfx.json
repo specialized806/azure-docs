@@ -1303,7 +1303,8 @@
         "articles/partner-solutions/qumulo/**/*.yml": "qumulo",
         "articles/partner-solutions/split-experimentation/**/*.md": "split-experimentation",
         "articles/partner-solutions/split-experimentation/**/*.yml": "split-experimentation",
-        "articles/governance/management-groups/**/*.md": "azure-governance"
+        "articles/governance/management-groups/**/*.md": "azure-governance",
+        "articles/sentinel/**/*.md": "sentinel-siem"
       },
       "monikerRange": {
         "articles/migrate/**/*.md": "<=migrate-classic >=migrate"
