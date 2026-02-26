@@ -143,6 +143,7 @@ az functionapp config container set --image <IMAGE_NAME> --registry-password <SE
 In this example, `<IMAGE_NAME>` is the full name of the new image with version. Private registries require you to supply a username and password. Store these credentials securely.
 
 ### [Azure portal](#tab/portal)
+
 :::zone pivot="container-apps"
 
 1. In the [Azure portal], locate your function app. In the left menu, select **Settings** > **Configuration**.
@@ -161,7 +162,7 @@ The specified image version is deployed to your app.
 ::: zone-end  
 
 :::zone pivot="azure-arc"
-This feature is not documented.
+This feature isn't documented.
 ::: zone-end
 
 ---
@@ -265,6 +266,7 @@ Use the following commands to get data about the image or change the deployment 
 - [`az functionapp config container set`](/cli/azure/functionapp/config/container#az-functionapp-config-container-set): change registry settings or update the image used for deployment, as shown in the previous example.
 
 ### [Azure portal](#tab/portal)
+
 :::zone pivot="container-apps"  
 
 1. In the [Azure portal], locate your function app. In the left menu, select **Settings** > **Configuration**.
@@ -287,7 +289,7 @@ The new image is deployed to your app based on your new settings.
 ::: zone-end
 
 :::zone pivot="azure-arc"
-This feature is not documented.
+This feature isn't documented.
 ::: zone-end
 
 ---
@@ -315,7 +317,7 @@ When you create a containerized function app in an environment that has workload
 az functionapp create --name <APP_NAME> --storage-account <STORAGE_NAME> --environment MyContainerappEnvironment --resource-group AzureFunctionsContainers-rg --functions-version 4 --runtime <LANGUAGE_STACK> --image <IMAGE_URI> --workload-profile-name <PROFILE_NAME> --cpu <CPU_COUNT> --memory <MEMORY_SIZE> 
 ```
 
-In the [az functionapp create](/cli/azure/functionapp#az-functionapp-create) command, the `--environment` parameter specifies the Container Apps environment and the `--image` parameter specifies the image to use for the function app. In this example, replace `<STORAGE_NAME>` with the name you used in the previous section for the storage account. Also, replace `<APP_NAME>` with a name appropriate to you that is unique in the environment.
+In the [az functionapp create](/cli/azure/functionapp#az-functionapp-create) command, the `--environment` parameter specifies the Container Apps environment and the `--image` parameter specifies the image to use for the function app. In this example, replace `<STORAGE_NAME>` with the name you used in the previous section for the storage account. Also, replace `<APP_NAME>` with a name appropriate to you that's unique in the environment.
 
 To set the resources allocated to your app, replace `<CPU_COUNT>` with your desired number of virtual CPUs, with a minimum of 0.5 up to the maximum allowed by the profile. For `<MEMORY_SIZE>`, choose a dedicated memory amount from 1 GB up to the maximum allowed by the profile.
 
@@ -373,23 +375,24 @@ You can enable Azure Functions to automatically update your deployment of an ima
 
 ### [Azure CLI](#tab/azure-cli)
 
-    ```azurecli
-    az functionapp deployment container config --enable-cd --query CI_CD_URL --output tsv --name <APP_NAME> --resource-group AzureFunctionsContainers-rg
-    ```
-    
-    The [az functionapp deployment container config](/cli/azure/functionapp/deployment/container#az-functionapp-deployment-container-config) command enables continuous deployment and returns the deployment webhook URL. You can retrieve this URL at any time by using the [az functionapp deployment container show-cd-url](/cli/azure/functionapp/deployment/container#az-functionapp-deployment-container-show-cd-url) command.
-    
-    ### [Azure PowerShell](#tab/azure-powershell)
-    ```azurepowershell
-    Update-AzFunctionAppSetting -Name <APP_NAME> -ResourceGroupName AzureFunctionsContainers-rg -AppSetting @{"DOCKER_ENABLE_CI" = "true"}
-    Get-AzWebAppContainerContinuousDeploymentUrl -Name <APP_NAME> -ResourceGroupName AzureFunctionsContainers-rg
-    ```
-    
-    The `DOCKER_ENABLE_CI` application setting controls whether continuous deployment is enabled from the container repository. The [Get-AzWebAppContainerContinuousDeploymentUrl](/powershell/module/az.websites/get-azwebappcontainercontinuousdeploymenturl) cmdlet returns the URL of the deployment webhook.
-    
-    ---    
-    
-    As before, replace `<APP_NAME>` with your function app name.
+```azurecli
+az functionapp deployment container config --enable-cd --query CI_CD_URL --output tsv --name <APP_NAME> --resource-group AzureFunctionsContainers-rg
+```
+
+The [az functionapp deployment container config](/cli/azure/functionapp/deployment/container#az-functionapp-deployment-container-config) command enables continuous deployment and returns the deployment webhook URL. You can retrieve this URL at any time by using the [az functionapp deployment container show-cd-url](/cli/azure/functionapp/deployment/container#az-functionapp-deployment-container-show-cd-url) command.
+
+### [Azure PowerShell](#tab/azure-powershell)
+
+```azurepowershell
+Update-AzFunctionAppSetting -Name <APP_NAME> -ResourceGroupName AzureFunctionsContainers-rg -AppSetting @{"DOCKER_ENABLE_CI" = "true"}
+Get-AzWebAppContainerContinuousDeploymentUrl -Name <APP_NAME> -ResourceGroupName AzureFunctionsContainers-rg
+```
+
+The `DOCKER_ENABLE_CI` application setting controls whether continuous deployment is enabled from the container repository. The [Get-AzWebAppContainerContinuousDeploymentUrl](/powershell/module/az.websites/get-azwebappcontainercontinuousdeploymenturl) cmdlet returns the URL of the deployment webhook.
+
+---
+
+As before, replace `<APP_NAME>` with your function app name.
 
 1. Copy the deployment webhook URL to the clipboard.
 
