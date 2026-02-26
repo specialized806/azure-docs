@@ -285,7 +285,7 @@ Install-Module -Name AzureADHybridAuthenticationManagement -AllowClobber
 
 1. Add the Trusted Domain Object.
 
-   Run the [Set-AzureAdKerberosServer PowerShell cmdlet](/azure/active-directory/authentication/howto-authentication-passwordless-security-key-on-premises#create-a-kerberos-server-object) to add the Trusted Domain Object. Be sure to include `-SetupCloudTrust` parameter. If there's no Entra service account, this command creates a new Entra service account. This command only creates the requested Trusted Domain object if there's a Entra service account.
+   Run the [Set-AzureAdKerberosServer PowerShell cmdlet](/azure/active-directory/authentication/howto-authentication-passwordless-security-key-on-premises#create-a-kerberos-server-object) to add the Trusted Domain Object. Be sure to include `-SetupCloudTrust` parameter. If there's no Entra service account, this command creates a new Entra service account. This command only creates the requested Trusted Domain object if there's an Entra service account.
 
    ```powershell
    Set-AzureADKerberosServer -Domain $domain -UserPrincipalName $cloudUserName -DomainCredential $domainCred -SetupCloudTrust
