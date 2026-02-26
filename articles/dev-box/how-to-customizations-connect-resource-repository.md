@@ -110,27 +110,25 @@ tasks:
       pat: "{{https://contoso-vault.vault.azure.net/secrets/github-pat}}"
 ```
 
-Or, you can reference the secret directly in the `pat` parameter, as shown in the following example:
+Or, you can reference the secret in-line with a built-in task, as shown in the following example:
 
 ```yaml
-$schema: "1.0"
+$schema: "1.0" 
 name: "example-image-definition"
 image: microsoftvisualstudio_visualstudioplustools_vs-2022-ent-general-win11-m365-gen2
-description: "Clones a private repository by using a PAT stored in Azure Key Vault"
+description: "Clones a public example Git repository"
 
-tasks:
-  - name: git-clone
-    description: Clone this repository into C:\workspaces
-    parameters:
-      repositoryUrl: https://dev.azure.com/<org>/<project>/_git/<repo>
-      directory: C:\workspaces
-      pat: "{{https://<key-vault-name>.vault.azure.net/secrets/<secret-name>}}"
+tasks:  
+- name: git-clone
+    description: Clone this repository into C:\Workspaces 
+    parameters: 
+    command: MyCommand –MyParam "{{KEY_VAULT_SECRET_URI}}"
 ```
 
 
 ### User customizations example
 
-User customizations let you obtain an Azure DevOps token to clone private repositories without explicitly specifying a PAT from the key vault. The service automatically exchanges your Azure token for an Azure DevOps token at run time.
+User customizations let you obtain an Azure DevOps token to clone private repositories without explicitly specifying a PAT from the key vault. 
 
 This example shows the ADO shorthand (`{{ado://...}}`). The service exchanges your Azure token for an Azure DevOps token at runtime, so you don't need to store a PAT in Key Vault.
 
