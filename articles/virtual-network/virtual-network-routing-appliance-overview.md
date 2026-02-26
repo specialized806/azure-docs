@@ -13,7 +13,7 @@ ms.service: azure-virtual-network
 
 # Virtual network routing appliance overview
 
-Azure Virtual Network routing appliance is a high-performance solution that provides a managed, scalable forwarding layer for your virtual networks. Unlike traditional hub-and-spoke architectures that rely on virtual machines for routing, virtual network routing appliance runs on specialized networking hardware to deliver low latency and high throughput for your traffic flows.
+Azure Virtual Network routing appliance is a high-performance solution that provides a managed, scalable forwarding layer for your virtual networks. Virtual network routing appliance runs on specialized networking hardware to deliver low latency and high throughput for your traffic flows.
 
 As a top-level Azure resource, virtual network routing appliance integrates with Azure's management model, so you can deploy, configure, and govern it using familiar Azure tools and processes. You deploy the appliance in a dedicated subnet within your virtual network, where it acts as a high-bandwidth forwarding layer for routed traffic.
 
@@ -21,7 +21,7 @@ Virtual network routing appliance is ideal for organizations that need to:
 
 - Scale routing capacity horizontally to meet growing bandwidth demands
 - Reduce latency for east-west traffic flows
-- Eliminate routing bottlenecks in hub-and-spoke network topologies
+- Eliminate routing bottlenecks in network topologies
 - Maintain Azure-native management and governance
 
 > [!IMPORTANT]
@@ -41,9 +41,15 @@ Key characteristics:
 
 ## Benefits
 
-### High throughput and low latency forwarding layer
+### High throughput, CPS, and low latency forwarding layer
 
-Many hub and spoke designs rely on a centralized forwarder that can become a bottleneck. Virtual network routing appliance is a lightweight, high-performance forwarding layer that reduces the risk of the forwarding layer becoming the choke point for traffic flows.
+Virtual network routing appliance is a lightweight, high-performance forwarding layer that reduces the risk of the forwarding layer becoming the choke point for traffic flows.
+
+| Bandwidth Tier | Max Connections per Second (CPS) | Max Concurrent Flows |
+|----------------|--------------------------------------|----------------------|
+| 50 Gbps        | 250,000 CPS                          | 2,000,000 flows     |
+| 100 Gbps       | 600,000 CPS                          | 4,000,000 flows     |
+| 200 Gbps       | 1,500,000 CPS                        | 8,000,000 flows     |
 
 ### Purpose-built for horizontal scaling and accelerated east–west flows
 
@@ -51,7 +57,7 @@ Virtual network routing appliance is purpose-built for horizontal scaling, accel
 
 ### Azure-native management model
 
-Because Virtual network routing appliance is a top-level Azure resource, you can manage and govern it like other Azure networking resources.
+Because Virtual network routing appliance is a top-level Azure resource, you can manage and govern it like other Azure networking resources. In addition, it provides native support for virtual network features such as NSGs, Admin rules, UDRs and NAT Gateway.
 
 ## High Availability and Load Balancing Guidance
 Virtual network routing appliance provides built‑in high availability and is availability zone resilient by default. It also offers high bandwidth without requiring an additional load balancer in front of it.
@@ -73,15 +79,13 @@ During the public preview, virtual network routing appliance is available in a l
 
 - This preview is intended for testing, evaluation, and feedback purposes. Don't use the preview for production workloads.
 
-- Each subscription can have up to two virtual network routing appliance instances.
+- Each subscription can have up to two virtual network routing appliance instances. For more instances per subscriptions, please request in [this form](https://forms.office.com/r/kqEKRr5mpB).
 
 - During preview, each virtual network appliance supports up to 200 Gbps of configurable bandwidth.
 
 - Select regions offer the preview: West US, East US, East Asia, North Europe, West Europe, East US 2, West Central US, and UK South.
 
-- Traffic routed through a virtual network routing appliance can't reach destinations exposed via Azure Private Link/Private Link Service.
-
-- Global and cross-region Private Endpoint and peering aren't supported.
+- Global and cross-region Private Endpoint aren't supported.
 
 - IPv4 is supported. IPv6 isn't in scope for this public preview.
 
@@ -91,7 +95,8 @@ During the public preview, virtual network routing appliance is available in a l
 
 - During preview, client tools such as Azure CLI, PowerShell, and Terraform aren't supported.
 
-## How to request support and provide feedback
+## How to register for the public preview, request support, and provide feedback
+Once you have submitted your AFEC registration for Microsoft.network/AllowVirtualNetworkAppliance, proceed to finish the public preview [sign-up form](https://forms.office.com/r/kqEKRr5mpB).
 
 ### Support during public preview
 
