@@ -221,6 +221,18 @@ In the Azure portal, verify the orchestrations are running successfully.
 
 ::: zone pivot="csharp,python,java,javascript"
 
+## Clean up resources
+
+When you're done testing, remove the deployed resources:
+
+```azdeveloper
+azd down
+```
+
+::: zone-end
+
+::: zone pivot="csharp,python,java,javascript"
+
 ## Understanding the code
 
 ::: zone-end
@@ -538,18 +550,87 @@ worker.start();
 
 The client code:
 
-- Uses the same connection string logic as the worker.
-- Implements a sequential orchestration scheduler.
-- Tracks orchestration instances and waits for completion.
-- Uses standard logging to show progress and results.
+- Uses the same connection string logic as the worker
+- Implements a sequential orchestration scheduler that:
+    - Schedules 20 orchestration instances, one at a time
+    - Waits 5 seconds between scheduling each orchestration
+    - Tracks all orchestration instances in a list
+    - Waits for all orchestrations to complete before exiting
+- Uses standard logging to show progress and results
+
+```javascript
+const TOTAL_ORCHESTRATIONS = Number(process.env.TOTAL_ORCHESTRATIONS ?? 20);
+const INTERVAL_SECONDS = Number(process.env.ORCHESTRATION_INTERVAL ?? 5);
+
+const orchestrationIds = [];
+
+for (let index = 0; index < TOTAL_ORCHESTRATIONS; index += 1) {
+    const orchestrationInput = `${baseName}_${index + 1}`;
+
+    const instanceId = await client.scheduleNewOrchestration(
+        "functionChainingOrchestrator",
+        orchestrationInput
+    );
+
+    orchestrationIds.push(instanceId);
+
+    if (index < TOTAL_ORCHESTRATIONS - 1) {
+        await sleep(INTERVAL_SECONDS * 1000);
+    }
+}
+
+for (const instanceId of orchestrationIds) {
+    const state = await client.waitForOrchestrationCompletion(instanceId, true, 120);
+}
+```
 
 ### Worker
 
-The worker code:
+#### Orchestration Implementation
 
-- Registers the orchestrator and activity functions.
-- Runs the orchestration by calling activities in sequence.
-- Uses the JavaScript Durable Task worker APIs for lifecycle management.
+The orchestration directly calls each activity in sequence using the standard `callActivity` method:
+
+```javascript
+const functionChainingOrchestrator = async function* functionChainingOrchestrator(ctx, name) {
+    const greeting = yield ctx.callActivity(sayHello, name);
+    const processedGreeting = yield ctx.callActivity(processGreeting, greeting);
+    const finalResponse = yield ctx.callActivity(finalizeResponse, processedGreeting);
+
+    return finalResponse;
+};
+```
+
+Each activity is implemented as a separate function:
+
+```javascript
+const sayHello = async (_ctx, name) => {
+    const safeName = typeof name === "string" && name.length ? name : "User";
+    return `Hello ${safeName}!`;
+};
+
+const processGreeting = async (_ctx, greeting) => {
+    const value = typeof greeting === "string" ? greeting : "Hello User!";
+    return `${value} How are you today?`;
+};
+
+const finalizeResponse = async (_ctx, response) => {
+    const value = typeof response === "string" ? response : "Hello User! How are you today?";
+    return `${value} I hope you're doing well!`;
+};
+```
+
+The worker uses `createAzureManagedWorkerBuilder` for proper lifecycle management:
+
+```javascript
+worker = getWorkerBuilder()
+    .addOrchestrator(functionChainingOrchestrator)
+    .addActivity(sayHello)
+    .addActivity(processGreeting)
+    .addActivity(finalizeResponse)
+    .build();
+
+await worker.start();
+```
 
 ::: zone-end
 
