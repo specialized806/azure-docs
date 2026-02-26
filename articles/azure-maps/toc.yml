@@ -329,6 +329,8 @@ items:
     href: how-to-show-attribution.md
   - name: Manage consent
     href: how-to-manage-consent.md
+  - name: Use private endpoints with Azure Maps
+    href: private-endpoints.md
 - name: Reference
   items:
   - name: API and parameter extensions
