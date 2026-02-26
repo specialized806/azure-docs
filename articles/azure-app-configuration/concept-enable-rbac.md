@@ -64,6 +64,9 @@ Follow these steps to assign App Configuration Data roles to your credential.
 
 When using Entra ID and the following Azure App Configuration libraries in clouds other than Azure cloud, Azure Government, and Microsoft Azure operated by 21Vianet, an appropriate Entra ID audience must be configured to enable authentication.
 
+> [!TIP]
+> If you got the error `AADSTS500011: The resource principal named https://appconfig.azure.com was not found in the tenant named msazurecloud.` when connecting to Azure App Configuration, it's because you're using App Configuration in specific clouds without explicitly configuring the Microsoft Entra ID audience. To resolve the issue, follow the code snippets below.
+
 ### [.NET](#tab/dotnet)
 
 The Audience for the target cloud must be configured for the following packages.
