@@ -32,7 +32,7 @@ An MCP server exposes three types of capabilities to clients:
 | **Resources** | Read-only data the client can fetch | Configuration files, database schemas |
 | **Prompts** | Prewritten templates for common tasks | "Summarize all open tasks" |
 
-Clients communicate with MCP servers over HTTP by using the [streamable HTTP transport](https://modelcontextprotocol.io/docs/learn/transports). The client sends JSON-RPC 2.0 requests. The server responds with tool results, resource content, or prompt templates.
+Clients communicate with MCP servers over HTTP by using the [streamable HTTP transport](https://modelcontextprotocol.io/docs/learn/architecture#transport-layer). The client sends JSON-RPC 2.0 requests. The server responds with tool results, resource content, or prompt templates.
 
 The request flow follows this pattern:
 
