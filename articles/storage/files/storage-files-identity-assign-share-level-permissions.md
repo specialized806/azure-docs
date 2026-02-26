@@ -29,7 +29,7 @@ Use a [default share-level permission](#share-level-permissions-for-all-authenti
 - You're unable to sync your on-premises Active Directory Domain Services (AD DS) to Microsoft Entra ID. Assigning a default share-level permission works around the sync requirement because you don't need to specify the permission to identities in Entra ID. Then you can use Windows ACLs for granular permission enforcement on your files and directories.
         - Identities that are tied to an Active Directory but aren't syncing to Microsoft Entra ID can also leverage the default share-level permission. This condition can include standalone Managed Service Accounts (sMSA), group Managed Service Accounts (gMSA), and computer accounts.
 - The on-premises AD DS you're using is synched to a different Entra ID than the Entra ID the file share is deployed in.
-    - This condition is typical when you're managing multitenant environments. By using a default share-level permission, you bypass the requirement for a Entra ID [hybrid identity](../../active-directory/hybrid/whatis-hybrid-identity.md). You can still use Windows ACLs on your files and directories for granular permission enforcement.
+    - This condition is typical when you're managing multitenant environments. By using a default share-level permission, you bypass the requirement for an Entra ID [hybrid identity](../../active-directory/hybrid/whatis-hybrid-identity.md). You can still use Windows ACLs on your files and directories for granular permission enforcement.
 - You prefer to enforce authentication only by using Windows ACLs at the file and directory level.
 
 ## Azure RBAC roles for Azure Files
@@ -74,7 +74,7 @@ To grant share-level permissions, use the Azure portal, Azure PowerShell, or Azu
 
 # [Portal](#tab/azure-portal)
 
-To assign an Azure role to a Entra identity by using the [Azure portal](https://portal.azure.com), follow these steps:
+To assign an Azure role to an Entra identity by using the [Azure portal](https://portal.azure.com), follow these steps:
 
 1. In the Azure portal, go to your file share, or [create an SMB file share](storage-how-to-create-file-share.md).
 1. Select **Access Control (IAM)**.
@@ -85,7 +85,7 @@ To assign an Azure role to a Entra identity by using the [Azure portal](https://
 
 # [Azure PowerShell](#tab/azure-powershell)
 
-The following PowerShell sample shows how to assign an Azure role to a Entra identity, based on sign-in name. For more information about assigning Azure roles by using PowerShell, see [Add or remove Azure role assignments using the Azure PowerShell module](../../role-based-access-control/role-assignments-powershell.md).
+The following PowerShell sample shows how to assign an Azure role to an Entra identity, based on sign-in name. For more information about assigning Azure roles by using PowerShell, see [Add or remove Azure role assignments using the Azure PowerShell module](../../role-based-access-control/role-assignments-powershell.md).
 
 Before you run the following sample script, replace placeholder values, including brackets, with your values.
 
