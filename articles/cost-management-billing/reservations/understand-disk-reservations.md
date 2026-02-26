@@ -1,6 +1,6 @@
 ---
 title: Understand reservations discount for Azure disk storage
-description: Learn how an Azure reserved disks discount is applied to your Azure premium SSD managed disks.
+description: Learn how an Azure reserved disks discount is applied to your Azure Premium SSD managed disks.
 author: pri-mittal
 ms.author: primittal
 ms.service: cost-management-billing
@@ -37,11 +37,11 @@ Suppose you deploy only 99 of your 100 reserved Azure premium solid-state drive 
 
 ### Overusing your capacity
 
-Suppose that for an hour within the reservation period, you use 101 premium SSD P30 disks. The reservation discount applies only to 100 P30 disks. The remaining P30 disk is charged at pay-as-you-go rates for that hour. For the next hour, if your usage goes down to 100 P30 disks, all usage is covered by the reservation.
+Suppose that for an hour within the reservation period, you use 101 Premium SSD P30 disks. The reservation discount applies only to 100 P30 disks. The remaining P30 disk is charged at pay-as-you-go rates for that hour. For the next hour, if your usage goes down to 100 P30 disks, all usage is covered by the reservation.
 
 ### Tiering your capacity
 
-Suppose that in a given hour within your reservation period, you want to use a total of 200 P30 premium SSDs. Also suppose you use only 100 for the first 30 minutes. During this period, your use is fully covered because you made a reservation for 100 P30 disks. If you then discontinue the use of the first 100 (so that you're using zero) and then begin to use the other 100 for the remaining 30 minutes, that usage is also covered under your reservation.
+Suppose that in a given hour within your reservation period, you want to use a total of 200 P30 Premium SSDs. Also suppose you use only 100 for the first 30 minutes. During this period, your use is fully covered because you made a reservation for 100 P30 disks. If you then discontinue the use of the first 100 (so that you're using zero) and then begin to use the other 100 for the remaining 30 minutes, that usage is also covered under your reservation.
 
 :::image type="content" border="false" source="media/understand-disk-reservations/reserved-disks-example-scenarios.png" alt-text="Diagram showing underusing, overusing, and tiering capacity.":::
 

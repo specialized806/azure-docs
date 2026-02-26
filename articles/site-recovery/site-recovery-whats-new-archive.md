@@ -596,7 +596,7 @@ Features added this month are summarized in the table.
 **Feature** | **Details**
 --- | ---
 **Network mapping** | For Azure VM disaster recovery, you can now use any available target network when you enable replication.
-**Standard SSD** | You can now set up disaster recovery for Azure VMs using [Standard SSD disks](/azure/virtual-machines/disks-types#standard-ssds).
+**Standard SSD** | You can now set up disaster recovery for Azure VMs using [Standard SSDs](/azure/virtual-machines/disks-types#standard-ssds).
 **Storage Spaces Direct** | You can set up disaster recovery for apps running on Azure VM apps by using [Storage Spaces Direct](/windows-server/storage/storage-spaces/storage-spaces-direct-overview) for high availability.  Using Storage Spaces Direct (S2D) together with Site Recovery provides comprehensive protection of Azure VM workloads. S2D lets you host a guest cluster in Azure. This is especially useful when a VM hosts a critical application, such as SAP ASCS layer, SQL Server, or scale-out file server.
 
 
@@ -689,7 +689,7 @@ Updates don't require a VM restart, and don't affect replication. [Learn more](a
 
 ### Pricing calculator for Azure VM disaster recovery
 
-Disaster Recovery of Azure VMs incurs VM licensing costs, and network and storage costs. Azure provides a [pricing calculator](https://aka.ms/a2a-cost-estimator) to help you figure out these costs. Site Recovery now provides an [example pricing estimate](https://aka.ms/a2a-cost-estimator) that prices a sample deployment based on a three-tier app using six VMs with 12 Standard HDD disks and 6 Premium SSD disks.
+Disaster Recovery of Azure VMs incurs VM licensing costs, and network and storage costs. Azure provides a [pricing calculator](https://aka.ms/a2a-cost-estimator) to help you figure out these costs. Site Recovery now provides an [example pricing estimate](https://aka.ms/a2a-cost-estimator) that prices a sample deployment based on a three-tier app using six VMs with 12 Standard HDDs and 6 Premium SSDs.
 
 - The sample presumes a data change of 10 GB a day for standard, and 20 GB for premium.
 - For your particular deployment, you can change the variables to estimate costs.
