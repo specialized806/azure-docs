@@ -79,7 +79,7 @@ To ensure the availability of the HANA system within a specific region, you can 
 
 To illustrate the different SAP HANA availability scenarios, a few of the layers in the diagram are omitted. The diagram shows only layers that depict VMs, hosts, Availability Sets, and Azure regions. Azure Virtual Network instances, resource groups, and subscriptions don't play a role in the scenarios described in this section.
 
-### Replicate backups to a second virtual machine
+### Replicate backups to a second VM
 
 One of the most rudimentary setups is to use backups. In particular, you might have transaction log backups shipped from one VM to another Azure VM. You can choose the Azure Storage type. In this setup, you're responsible for scripting the copy of scheduled backups that are conducted on the first VM to the second VM. If you need to use the second VM instances, you must restore the full, incremental/differential, and transaction log backups to the point that you need.
 
@@ -91,7 +91,7 @@ This setup isn't well suited to achieving great Recovery Point Objective (RPO) a
 
 With this setup, at any time, you can restore to a certain point in time, extract the data, and import the deleted data into your main instance. Hence, it might make sense to use a backup copy method in combination with other high-availability functionality.
 
-While backups are being copied, you might be able to use a smaller VM than the main VM that the SAP HANA instance is running on. Keep in mind that you can attach a smaller number of VHDs to smaller VMs. For information about the limits of individual VM types, see [Sizes for Linux virtual machines in Azure](/azure/virtual-machines/sizes).
+While backups are being copied, you might be able to use a smaller VM than the main VM that the SAP HANA instance is running on. Keep in mind that you can attach a smaller number of VHDs to smaller VMs. For information about the limits of individual VM types, see [Sizes for Linux VMs in Azure](/azure/virtual-machines/sizes).
 
 ### SAP HANA system replication without automatic failover
 
@@ -101,7 +101,7 @@ The scenarios described in this section use SAP HANA system replication. For the
 
 In this scenario, you use SAP HANA system replication to move data in a synchronous manner to achieve an RPO of `0`. On the other hand, you have a long enough RTO that you don't need either failover or data preloading into the HANA instance cache. In this case, it's possible to achieve further economy in your configuration by taking the following actions:
 
-- Run another SAP HANA instance in the second VM. The SAP HANA instance in the second VM takes most of the memory of the virtual machine. In case a failover to the second VM, you need to shut down the running SAP HANA instance that has the data fully loaded in the second VM. Shutting down the SAP HANA instance allows the replicated data to be loaded into the cache of the targeted HANA instance in the second VM.
+- Run another SAP HANA instance in the second VM. The SAP HANA instance in the second VM takes most of the memory of the VM. In case a failover to the second VM, you need to shut down the running SAP HANA instance that has the data fully loaded in the second VM. Shutting down the SAP HANA instance allows the replicated data to be loaded into the cache of the targeted HANA instance in the second VM.
 
 - Use a smaller VM size on the second VM. If a failover occurs, you have an extra step before the manual failover. In this step, you resize the VM to the size of the source VM.
 
