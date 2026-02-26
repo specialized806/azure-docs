@@ -6,7 +6,7 @@ ms.author: sethm
 ms.service: azure-iot-edge
 services: iot-edge
 ms.topic: concept-article
-ms.date: 01/21/2025
+ms.date: 02/25/2026
 ms.custom:
   - linux-related-content
   - sfi-image-nochange
