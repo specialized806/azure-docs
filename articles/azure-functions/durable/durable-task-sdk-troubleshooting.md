@@ -805,41 +805,6 @@ Common causes:
 
 Move all blocking or I/O operations into activities.
 
-#### Protobuf version vulnerabilities
-
-The Java SDK might depend on older versions of `protobuf-java` that have known vulnerabilities. Update to the latest SDK version, or explicitly override the protobuf dependency in your `build.gradle` or `pom.xml`:
-
-```groovy
-// build.gradle
-implementation("com.google.protobuf:protobuf-java:4.29.3")
-```
-
-```xml
-<!-- pom.xml -->
-<dependency>
-  <groupId>com.google.protobuf</groupId>
-  <artifactId>protobuf-java</artifactId>
-  <version>4.29.3</version>
-</dependency>
-```
-
-### JavaScript
-
-#### Worker silently hangs on startup
-
-The JavaScript worker can [silently hang](https://github.com/microsoft/durabletask-js/issues/69) during startup if the gRPC connection to the scheduler isn't established. The worker doesn't throw an error or time out.
-
-**Workaround:** Check that the scheduler endpoint is reachable before starting the worker. Add a startup timeout to detect hangs:
-
-```javascript
-const startTimeout = setTimeout(() => {
-  console.error("Worker failed to start within timeout");
-  process.exit(1);
-}, 30000);
-
-await worker.start();
-clearTimeout(startTimeout);
-```
 
 ### Python
 
