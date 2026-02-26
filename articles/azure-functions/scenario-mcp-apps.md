@@ -36,8 +36,7 @@ This article supports version 2 of the Python programming model for Azure Functi
 ## Prerequisites
 ::: zone-end  
 ::: zone pivot="programming-language-csharp"  
-+ [.NET 10 SDK](https://dotnet.microsoft.com/download)
-+ [Azure Developer CLI](https://learn.microsoft.com/azure/developer/azure-developer-cli/install-azd) version 1.23.x or a later version  
++ [.NET 10 SDK](https://dotnet.microsoft.com/download) 
 ::: zone-end  
 <!-- replace when supported 
 ::: zone pivot="programming-language-javascript,programming-language-typescript" -->
@@ -47,14 +46,22 @@ This article supports version 2 of the Python programming model for Azure Functi
 ::: zone pivot="programming-language-python" 
 + [Python 3.11](https://www.python.org/)
 ::: zone-end  
-::: zone pivot="programming-language-csharp,programming-language-python,programming-language-typescript" 
+::: zone pivot="programming-language-csharp" 
++ [Node.js](https://nodejs.org/) (required to build the MCP Apps UI)
+
++ [Visual Studio Code](https://code.visualstudio.com/) with this extension:
+
+    + [Azure Functions extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions). This extension requires [Azure Functions Core Tools](functions-run-local.md) and attempts to install it when not available. 
+
++ [Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd) version 1.23.x or a later version 
+::: zone-end  
+::: zone pivot="programming-language-python,programming-language-typescript" 
 + [Node.js](https://nodejs.org/) (required to build the MCP Apps UI)
 
 + [Visual Studio Code](https://code.visualstudio.com/) with these extensions:
 
     + [Azure Functions extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions). This extension requires [Azure Functions Core Tools](functions-run-local.md) and attempts to install it when not available. 
-::: zone-end  
-::: zone pivot="programming-language-python,programming-language-typescript" 
+
     + [Azure Developer CLI extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.azure-dev).
 ::: zone-end   
 ::: zone pivot="programming-language-csharp,programming-language-python,programming-language-typescript" 
