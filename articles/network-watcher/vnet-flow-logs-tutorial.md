@@ -6,7 +6,7 @@ author: halkazwini
 ms.author: halkazwini
 ms.service: azure-network-watcher
 ms.topic: tutorial
-ms.date: 07/11/2025
+ms.date: 02/25/2026
 
 # CustomerIntent: As an Azure administrator, I need to log the network traffic to and from a virtual network so I can analyze the data for anomalies.
 ---
