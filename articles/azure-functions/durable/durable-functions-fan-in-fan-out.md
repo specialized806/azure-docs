@@ -40,7 +40,7 @@ Durable Functions gives you these benefits with little overhead.
 
 ::: zone pivot="durable-task-sdks"
 
-In this sample, the orchestrator processes multiple work items in parallel and then aggregates the results. This pattern is useful when you need to:
+In the following example, the orchestrator processes multiple work items in parallel and then aggregates the results. This pattern is useful when you need to:
 
 - Process a batch of items where each item can be processed independently
 - Distribute work across multiple machines for better throughput
@@ -66,7 +66,7 @@ This article describes these functions in the sample app:
 
 ::: zone pivot="durable-task-sdks"
 
-This article describes these components in the sample app:
+This article describes these components in the example code:
 
 * `ParallelProcessingOrchestration`, `fanOutFanInOrchestrator`, `fan_out_fan_in_orchestrator`, or `FanOutFanIn_WordCount`: An orchestrator that fans out work to multiple activities in parallel, waits for all to complete, and then fans in by aggregating the results.
 * `ProcessWorkItemActivity`, `processWorkItem`, `process_work_item`, or `CountWords`: An activity that processes a single work item.
@@ -689,7 +689,7 @@ The response shows that the orchestration is complete and the approximate time t
 
 ::: zone pivot="durable-task-sdks"
 
-To run the sample:
+To run the example:
 
 1. **Start the Durable Task Scheduler emulator** for local development.
 
@@ -792,7 +792,7 @@ This sample shows the fan-out/fan-in pattern. The next sample shows how to imple
 
 ::: zone pivot="durable-task-sdks"
 
-This sample demonstrates the fan-out/fan-in pattern. Explore more patterns and features.
+This article demonstrates the fan-out/fan-in pattern. Explore more patterns and features.
 
 > [!div class="nextstepaction"]
 > [Get started with Durable Task SDKs](durable-task-scheduler/quickstart-portable-durable-task-sdks.md)
