@@ -13,11 +13,11 @@ ms.topic:    # Add the ms.topic value
 ms.date:     02/25/2026
 ---
 
-# ESAN Datastore Performance on AVS
+# Elastic SAN Datastore Performance on Azure VMWare Solutions
 
 ## Overview
 
-This article outlines performance benchmarks that **Azure Elastic SAN (ESAN)** datastores deliver for **Virtual Machines on Azure VMware Solution (AVS)**. Organizations evaluating Elastic SAN can use these results as a reference by comparing their workload profiles to the test results in this document. Environment details and benchmarking instructions are included to help reproduce the tests where appropriate.
+This article outlines performance benchmarks that **Azure Elastic SAN** datastores deliver for **Virtual Machines on Azure VMware Solution**. Organizations evaluating Elastic SAN can use these results as a reference by comparing their workload profiles to the test results in this document. Environment details and benchmarking instructions are included to help reproduce the tests as needed.
 
 The workload categories evaluated are:
 
@@ -25,7 +25,7 @@ The workload categories evaluated are:
 
 - **Throughput‑intensive workloads** – Large, sequential I/O patterns typical of backup, scan, and read‑ahead workloads.
 
-All tests were conducted using sufficiently sized Elastic SAN resources as described in the environment details below. For guidance on configuring Elastic SAN for optimal performance, see [Azure Elastic SAN configuration best practices](/azure/storage/elastic-san/elastic-san-best-practices).
+All tests were conducted using sufficiently sized Elastic SAN as described in the environment details below. For guidance on configuring Elastic SAN for optimal performance, see [Azure Elastic SAN configuration best practices](/azure/storage/elastic-san/elastic-san-best-practices).
 
 ## Environment Details
 
@@ -35,17 +35,17 @@ All tests were conducted using sufficiently sized Elastic SAN resources as descr
 
 - 3 x AV64 ESXi hosts
 
-- Guest virtual machines: Windows and Linux
+- Guest virtual machines: Tests were performed on both Windows and Linux
 
 - Operating systems: Windows Server 2022 & Ubuntu 24.04
 
-  - VM size: 32 vCPU, 256 GB RAM
+- VM size: 32 vCPU, 256 GB RAM
   
   - VM disk: 1 TiB / 500 GiB with eager‑zeroed thick provisioning
   
 ### Azure Elastic SAN configuration
 
-- Elastic SAN deployed in the same region and availability zone as the AVS private cloud
+- Elastic SAN deployed in the same region and availability zone as the AVS cluster
 
 - Elastic SAN base capacity provisioned: **100 TiB**
 
@@ -58,7 +58,7 @@ All tests were conducted using sufficiently sized Elastic SAN resources as descr
 
 For detailed information on scale targets per base unit, see [Azure Elastic SAN scalability and performance targets](/azure/storage/elastic-san/elastic-san-scale-targets).
 
-## Reproducing Benchmark Tests
+## Benchmarking Tools Overview
 
 The results in this article were produced using industry‑standard benchmarking tools:
 
@@ -66,11 +66,11 @@ The results in this article were produced using industry‑standard benchmarking
 
 - **fio (Linux)** – A commonly used Linux storage benchmarking tool that supports random and sequential I/O patterns, configurable I/O sizes, and multi‑threaded workloads. Download from [GitHub – fio](https://github.com/axboe/fio).
 
-For each workload scenario, the benchmark commands shown below were executed on one or more guest VMs connected to the same ESAN‑backed AVS datastore.
+For each workload scenario, the benchmark commands featured below were executed on one or more guest VMs connected to the same ESAN datastore.
 
 ## Running the Featured Benchmark Tests
 
-The following examples illustrate how the featured benchmarks shown later in the **Test Results** section were executed. Separate examples are provided for Windows and Linux for both I/O‑intensive and throughput‑intensive workloads.
+The following examples describe how benchmark tests were executed to reproduce the run data shown in the **Test Results** section below. There are two examples for each of the Windows & Linux tests we ran for I/O Intensive Workloads & Throughput intensive workloads respectively.
 
 ## I/O‑Intensive Workload Example
 
@@ -169,7 +169,7 @@ fio --name=readseq \
 
 ### I/O‑Intensive Workloads
 
-Each guest VM executed the benchmark independently, with all participating VMs running concurrently against the same ESAN‑backed AVS datastore. Reported IOPS and throughput reflect **aggregate datastore‑level performance** observed across all VMs during the steady‑state runtime window.
+Each guest VM executed the benchmark independently, with all participating VMs running concurrently against the same ESAN‑backed datastore. Reported IOPS and throughput reflect **aggregate datastore‑level performance** observed across all VMs during the runtime of the tests.
 
 #### Windows / DiskSPD (Test #1)
 
