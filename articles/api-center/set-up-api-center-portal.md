@@ -56,6 +56,7 @@ To set up the API Center portal with anonymous access enabled, follow these step
     :::image type="content" source="media/set-up-api-center-portal/configure-access-anonymous.png" alt-text="Screenshot showing configuration of anonymous access in the portal.":::
 1. To configure access, select **Confirm and Enable**.
 
+<a id="access-the-portal"></a> 
 ## View the portal
 
 After configuring access, go to the API Center portal in your browser.
