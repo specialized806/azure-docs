@@ -39,11 +39,25 @@ It also refers to these various key management use cases:
 
 The flowchart result is a starting point to identify the solution that best matches your needs.
 
-## Compare other customer requirements
+## Compare key management solutions
 
-Azure provides multiple key management solutions to allow customers to choose a product based on both high-level requirements and management responsibilities. There is a spectrum of management responsibilities ranging from Azure Key Vault, Azure Managed HSM, and Azure Cloud HSM having less customer responsibility (Microsoft handles patching and maintenance), to Azure Payment HSM having the most customer responsibility.
+Azure provides multiple key management solutions to allow customers to choose a product based on both high-level requirements and management responsibilities.
 
 Provisioning and hosting are managed by Microsoft across all solutions. Key generation and management, roles and permissions granting, and monitoring and auditing are the responsibility of the customer across all solutions.
+
+### Service characteristics and responsibilities
+
+Use the following table to compare how each service works and who manages what. This trade-off of management responsibility ranges from Azure Key Vault having the least customer responsibility to Azure Payment HSM having the most.
+
+|  | **AKV Standard** | **AKV Premium** | **Azure Key Vault Managed HSM** | **Azure Cloud HSM** | **Azure Payment HSM** |
+| --- | --- | --- | --- | --- | --- |
+| **Service model** | PaaS | PaaS | PaaS | IaaS-style HSM service | IaaS-style HSM service |
+| **Authentication** | Entra ID | Entra ID | Entra ID | HSM authentication (password) | HSM authentication (password) |
+| **HSM administrative control** | Microsoft | Microsoft | Microsoft | Customer | Customer |
+| **Patching and maintenance** | Microsoft | Microsoft | Microsoft | Microsoft | Customer |
+| **Service health and hardware failover** | Microsoft | Microsoft | [Shared](/azure/key-vault/managed-hsm/disaster-recovery-guide) | [Shared](/azure/cloud-hsm/overview#customer-owned-highly-available-single-tenant-hsm-as-a-service) | [Customer](/azure/payment-hsm/deployment-scenarios#high-availability-deployment) |
+| **BCDR** | Automatic | Automatic | Automatic | Automatic | [Manual](/azure/payment-hsm/deployment-scenarios#disaster-recovery-deployment) |
+| **Backup and restore** | [Built-in service backup](/azure/key-vault/general/backup) | [Built-in service backup](/azure/key-vault/general/backup) | [Service-managed](/azure/key-vault/managed-hsm/backup-restore) | [Manual HSM backup](/azure/cloud-hsm/backup-restore) | [Manual HSM backup](/azure/payment-hsm/support-guide#support-contacts) |
 
 ### Decision criteria
 
@@ -61,20 +75,6 @@ Use the following table to compare all the solutions side by side. Answer each q
 | Do you need **direct application access** to the HSM? | No | No | No | [Yes](/azure/cloud-hsm/integration-guides) | [Yes](/azure/payment-hsm/overview#typical-use-cases) |
 | Do you need **customer control of root of trust**? | No | No | Yes | Yes | Yes |
 | What is your **budget**? | $ | $$ | $$$ | $$$ | $$$$ |
-
-### Service characteristics and responsibilities
-
-Use the following table to compare how each service works and who manages what. This trade-off of management responsibility ranges from Azure Key Vault having the least customer responsibility to Azure Payment HSM having the most.
-
-|  | **AKV Standard** | **AKV Premium** | **Azure Key Vault Managed HSM** | **Azure Cloud HSM** | **Azure Payment HSM** |
-| --- | --- | --- | --- | --- | --- |
-| **Service model** | PaaS | PaaS | PaaS | IaaS-style HSM service | IaaS-style HSM service |
-| **Authentication** | Entra ID | Entra ID | Entra ID | HSM authentication (password) | HSM authentication (password) |
-| **HSM administrative control** | Microsoft | Microsoft | Microsoft | Customer | Customer |
-| **Patching and maintenance** | Microsoft | Microsoft | Microsoft | Microsoft | Customer |
-| **Service health and hardware failover** | Microsoft | Microsoft | [Shared](/azure/key-vault/managed-hsm/disaster-recovery-guide) | [Shared](/azure/cloud-hsm/overview#customer-owned-highly-available-single-tenant-hsm-as-a-service) | [Customer](/azure/payment-hsm/deployment-scenarios#high-availability-deployment) |
-| **BCDR** | Automatic | Automatic | Automatic | Automatic | [Manual](/azure/payment-hsm/deployment-scenarios#disaster-recovery-deployment) |
-| **Backup and restore** | [Built-in service backup](/azure/key-vault/general/backup) | [Built-in service backup](/azure/key-vault/general/backup) | [Service-managed](/azure/key-vault/managed-hsm/backup-restore) | [Manual HSM backup](/azure/cloud-hsm/backup-restore) | [Manual HSM backup](/azure/payment-hsm/support-guide#support-contacts) |
 
 ## Common key management solution uses by industry segments
 
