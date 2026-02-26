@@ -209,6 +209,8 @@
       href: ingress-controller-expose-websocket-server.md
     - name: Autoscale AKS pods with Application Gateway metrics
       href: ingress-controller-autoscale-pods.md
+  - name: Integration with Container Apps
+    href: ../container-apps/waf-app-gateway.md?toc=/azure/application-gateway/toc.json&bc=/azure/application-gateway/breadcrumb/toc.json
   - name: Route by URL
     items:
     - name: Azure PowerShell
@@ -296,7 +298,7 @@
     - name: Relocate to another region
       href: ../operational-excellence/relocation-app-gateway.md?toc=/azure/application-gateway/toc.json
     - name: Migrate to availability zone support
-      href: ../reliability/migrate-app-gateway-v2.md?toc=/azure/application-gateway/toc.json
+      href: /azure/reliability/migrate-app-gateway-v2?toc=/azure/application-gateway/toc.json
   - name: Proxy buffer configuration
     href: proxy-buffers.md
   - name: Custom error pages

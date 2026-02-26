@@ -6,7 +6,7 @@ ms.author: sethm
 ms.service: azure-iot-operations
 ms.subservice: azure-data-flows
 ms.topic: how-to
-ms.date: 01/15/2026
+ms.date: 02/25/2026
 ai-usage: ai-assisted
 
 ---
@@ -26,7 +26,12 @@ Azure IoT Operations data flow graphs support WebAssembly (WASM) modules for cus
 ## Prerequisites
 
 - Deploy an Azure IoT Operations instance on an Arc-enabled Kubernetes cluster. For more information, see [Deploy Azure IoT Operations](../deploy-iot-ops/howto-deploy-iot-operations.md).
-- Configure your container registry and add the sample graph definitions and WASM modules by following guidance in [Deploy WebAssembly (WASM) modules and graph definitions](../develop-edge-apps/howto-deploy-wasm-graph-definitions.md).
+- Configure a registry endpoint to access WASM modules and graph definitions. You have two options:
+  - **Quick start with public registry**: Create a registry endpoint pointing to `ghcr.io/azure-samples/explore-iot-operations` with anonymous authentication. See [Use prebuilt modules from a public registry](../develop-edge-apps/howto-deploy-wasm-graph-definitions.md#use-prebuilt-modules-from-a-public-registry) for instructions.
+  - **Private registry**: Set up your own container registry and push the sample modules by following guidance in [Deploy WebAssembly (WASM) modules and graph definitions](../develop-edge-apps/howto-deploy-wasm-graph-definitions.md).
+
+> [!NOTE]
+> **Data flows vs. data flow graphs**: A *data flow* is a pipeline that moves and transforms data between endpoints using built-in transformations. A *data flow graph* extends data flows with custom processing logic implemented as WebAssembly modules. Data flow graphs use YAML graph definitions that specify how WASM operators connect, while the data flow graph resource wraps this definition and maps its abstract source/sink operations to concrete endpoints (MQTT topics, Kafka topics, etc.). Use data flows for built-in transformations and data flow graphs when you need custom processing logic.
 
 ## Overview
 
@@ -129,7 +134,7 @@ resource aioInstance 'Microsoft.IoTOperations/instances@2025-10-01' existing = {
   name: aioInstanceName
 }
 
-resource customLocation 'Microsoft.ExtendedLocation/customLocations@2021-08-31-15' existing = {
+resource customLocation 'Microsoft.ExtendedLocation/customLocations@2021-08-31-preview' existing = {
   name: customLocationName
 }
 
@@ -401,7 +406,7 @@ resource aioInstance 'Microsoft.IoTOperations/instances@2025-10-01' existing = {
   name: aioInstanceName
 }
 
-resource customLocation 'Microsoft.ExtendedLocation/customLocations@2021-08-15' existing = {
+resource customLocation 'Microsoft.ExtendedLocation/customLocations@2021-08-31-preview' existing = {
   name: customLocationName
 }
 
@@ -1055,6 +1060,50 @@ Registry endpoints provide access to container registries for pulling WASM modul
 
 For detailed configuration information, see [Configure registry endpoints](../develop-edge-apps/howto-configure-registry-endpoint.md).
 
+
+## Troubleshoot data flow graphs
+
+### RegistryEndpoint not found
+
+If the data flow graph fails to start and reports that it can't find the registry endpoint, verify the following:
+
+1. **Registry endpoint name matches**: The `registryEndpointRef` value in your data flow graph must exactly match the `name` of your `RegistryEndpoint` resource. Check for typos and case sensitivity.
+
+   ```bash
+   # List all registry endpoints in the namespace
+   kubectl get registryendpoints -n azure-iot-operations
+   ```
+
+1. **Registry endpoint is in the correct namespace**: The registry endpoint must be in the `azure-iot-operations` namespace (or the same namespace as your data flow graph).
+
+1. **Registry endpoint is ready**: Check the status of your registry endpoint:
+
+   ```bash
+   kubectl describe registryendpoint <REGISTRY_ENDPOINT_NAME> -n azure-iot-operations
+   ```
+
+1. **Authentication is configured correctly**: If using managed identity, ensure the Azure IoT Operations Arc extension has `AcrPull` permissions on the registry. If using anonymous authentication with a public registry, verify the host URL is correct.
+
+1. **Artifacts exist in the registry**: Verify that the graph definition and WASM modules referenced in your graph are available at the expected tags in the registry:
+
+   ```bash
+   # Check if artifacts exist (example with ORAS)
+   oras manifest fetch <REGISTRY_HOST>/graph-simple:1.0.0
+   ```
+
+### Data flow graph is running but not processing data
+
+If the data flow graph is deployed but messages aren't being processed:
+
+1. **Check data flow graph status**: Look for errors in the data flow graph resource status:
+
+   ```bash
+   kubectl get dataflowgraph <GRAPH_NAME> -n azure-iot-operations -o yaml
+   ```
+
+1. **Verify MQTT topics**: Ensure the source topics in your data flow graph match the topics where you're publishing data.
+
+1. **Check timestamps**: Data flow graphs use Hybrid Logical Clock (HLC) timestamps for message processing. Include the `__ts` user property when publishing MQTT messages to ensure timely processing.
 
 ## Related content
 
