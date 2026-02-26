@@ -13,7 +13,7 @@ zone_pivot_groups: programming-languages-set-functions
 
 # Quickstart: Build an MCP Apps using Azure Functions
 
-In this quickstart, you create a Model Context Protocol (MCP) server from a template project by using the Azure Developer CLI (`azd`). This MCP server uses the Azure Functions MCP extension to create [MCP Apps](https://blog.modelcontextprotocol.io/posts/2026-01-26-mcp-apps/), which are tools that return rich, interactive user interfaces. You can also use the MCP server extension to [create text-based tools](./scenario-custom-remote-mcp-server.md). 
+In this quickstart, you create a [Model Context Protocol (MCP) App](https://modelcontextprotocol.io/extensions/apps/overview) from a template project built using the Azure Functions MCP extension. MCP Apps are MCP servers with tools that return results in rich, interactive user interfaces instead of text. You deploy the app using the Azure Developer CLI (`azd`). You can also use the Azure Functions MCP extension to create MCP servers that have [text-based tools](./scenario-custom-remote-mcp-server.md). 
 
 After running the project locally and verifying your code by using GitHub Copilot, you deploy it to a new serverless function app in Azure Functions that follows current best practices for secure and scalable deployments.
 
@@ -38,7 +38,7 @@ This article supports version 2 of the Python programming model for Azure Functi
 ## Prerequisites
 ::: zone-end  
 ::: zone pivot="programming-language-csharp"  
-+ [.NET 10 SDK](https://dotnet.microsoft.com/download)
++ [.NET 10 SDK](https://dotnet.microsoft.com/download) 
 ::: zone-end  
 <!-- replace when supported 
 ::: zone pivot="programming-language-javascript,programming-language-typescript" -->
@@ -48,14 +48,25 @@ This article supports version 2 of the Python programming model for Azure Functi
 ::: zone pivot="programming-language-python" 
 + [Python 3.11](https://www.python.org/)
 ::: zone-end  
-::: zone pivot="programming-language-csharp,programming-language-python,programming-language-typescript" 
+::: zone pivot="programming-language-csharp" 
++ [Node.js](https://nodejs.org/) (required to build the MCP Apps UI)
+
++ [Visual Studio Code](https://code.visualstudio.com/) with this extension:
+
+    + [Azure Functions extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions). This extension requires [Azure Functions Core Tools](functions-run-local.md) and attempts to install it when not available. 
+
++ [Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd) version 1.23.x or a later version 
+::: zone-end  
+::: zone pivot="programming-language-python,programming-language-typescript" 
 + [Node.js](https://nodejs.org/) (required to build the MCP Apps UI)
 
 + [Visual Studio Code](https://code.visualstudio.com/) with these extensions:
 
     + [Azure Functions extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions). This extension requires [Azure Functions Core Tools](functions-run-local.md) and attempts to install it when not available. 
-    + [Azure Developer CLI extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.azure-dev).
 
+    + [Azure Developer CLI extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.azure-dev).
+::: zone-end   
+::: zone pivot="programming-language-csharp,programming-language-python,programming-language-typescript" 
 + [Azurite storage emulator](../storage/common/storage-install-azurite.md#install-azurite) 
 
 + [Azure CLI](/cli/azure/install-azure-cli). You can also run Azure CLI commands in [Azure Cloud Shell](../cloud-shell/overview.md).
@@ -67,18 +78,21 @@ This article supports version 2 of the Python programming model for Azure Functi
 Use the Azure Developer CLI to create an Azure Functions code project from a template.
 
 1. In Visual Studio Code, open a folder or workspace where you want to create your project.
-
+::: zone-end 
+::: zone pivot="programming-language-python,programming-language-typescript" 
 1. Press <kbd>F1</kbd> to open the command palette. Search for and run `Azure Developer CLI (azd): init`.
 
 1. When prompted, select **Select a template**.
 
 ::: zone-end  
 ::: zone pivot="programming-language-csharp"  
-4. Search for and select **Remote MCP Functions with .NET**.
+2. Run the following command in the Terminal: 
 
-5. When prompted, enter `mcpweather-dotnet` as the environment name.
+    ```console
+    azd init --template remote-mcp-functions-dotnet -e mcpweather-dotnet
+    ```
 
-    The command pulls the project files from the [template repository](https://github.com/Azure-Samples/remote-mcp-functions-dotnet) and initializes the project in the current folder. In `azd`, the environment maintains a unique deployment context for your app, and you can define more than one. It's also used in the name of the resource group you create in Azure.       
+    This command pulls the project files from the [template repository](https://github.com/Azure-Samples/remote-mcp-functions-dotnet) and initializes the project in the current folder. The -e flag sets a name for the current environment. In `azd`, the environment maintains a unique deployment context for your app, and you can define more than one. It's also used in names of the resources you create in Azure.
 ::: zone-end  
 ::: zone pivot="programming-language-typescript"  
 4. Search for and select **Remote MCP Functions with TypeScript**.
@@ -90,7 +104,7 @@ Use the Azure Developer CLI to create an Azure Functions code project from a tem
 ::: zone pivot="programming-language-python"  
 4. Search for and select **Remote MCP Functions with Python**.
 
-1. When prompted, enter `mcpweather-python` as the environment name.
+5. When prompted, enter `mcpweather-python` as the environment name.
 
     The command pulls the project files from the [template repository](https://github.com/Azure-Samples/remote-mcp-functions-python) and initializes the project in the current folder. In `azd`, the environment maintains a unique deployment context for your app, and you can define more than one. It's also used in the names of the resources you create in Azure. 
 ::: zone-end
@@ -154,15 +168,13 @@ The MCP Apps weather tool includes a frontend application that you must build be
     cd ../..
     ```
 
-::: zone-end
+::: zone-end  
 ::: zone pivot="programming-language-csharp,programming-language-python,programming-language-typescript" 
 ## Run your MCP server locally 
-::: zone-end
-
+::: zone-end  
 ::: zone pivot="programming-language-csharp"
-When Visual Studio Code asks you to pick a default project because there are two apps in the .NET template, select **src/McpWeatherApp**. 
-::: zone-end
-
+When prompted, select **src/McpWeatherApp**. You see this prompt because there are two projects in the solution, and the other project isn't used by this article.
+::: zone-end  
 ::: zone pivot="programming-language-csharp,programming-language-python,programming-language-typescript" 
 [!INCLUDE [run-locally](../../includes/functions-mcp-run-locally.md)]
 
@@ -234,8 +246,42 @@ You can view the complete project template in the [Azure Functions TypeScript MC
 After verifying the MCP Apps tools locally, you can publish the project to Azure.
 
 ## Deploy to Azure
-
+::: zone-end  
+::: zone pivot="programming-language-python,programming-language-typescript" 
 [!INCLUDE [deploy-azure](../../includes/functions-mcp-deploy-azure.md)]
+::: zone-end
+
+::: zone pivot="programming-language-csharp" 
+This project is configured to use `azd` to deploy this project to a new function app in a Flex Consumption plan in Azure. The project includes a set of Bicep files that `azd` uses to create a secure deployment to a Flex Consumption plan that follows best practices.
+
+1. In the Terminal, run this `azd env set` command: 
+
+    ```console
+    azd env set DEPLOY_SERVICE weather 
+    ```
+
+    This command sets the `DEPLOY_SERVICE` variable to provision `weather` app related resources
+
+
+1. Run the `azd provision` command and supply the required parameters to provision resources: 
+
+    ```console
+    azd provision
+    ```
+
+   | Parameter | Description |
+   | ---- | ---- |
+   | _Azure subscription_ | Subscription in which your resources are created. |
+   | _Azure location_ | Azure region in which to create the resource group that contains the new Azure resources. Only regions that currently support the Flex Consumption plan are shown. |
+   | _vnetEnabled_ | `False` to skip creating virtual network resources, which simplifies the deployment. |
+    When prompted, pick your subscription, an Azure region for the resources, and choose `false` to skip creating virtual network resources to simplify the deployment.
+
+1. Run the `azd deploy` command to deploy the `weather` app to Azure:
+
+    ```console
+    azd deploy --service weather
+    ```
+::: zone-end
 
 ## Connect to your remote MCP server
 
