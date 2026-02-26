@@ -6,7 +6,7 @@ services: application-gateway
 author: mbender-ms
 ms.service: azure-application-gateway
 ms.topic: quickstart
-ms.date: 07/11/2025
+ms.date: 02/25/2026
 ms.author: mbender
 ms.custom:
   - mvc
@@ -69,11 +69,6 @@ az network vnet subnet create \
   --resource-group myResourceGroupAG \
   --vnet-name myVNet   \
   --address-prefix 10.21.1.0/24
-az network vnet subnet create \
-  --name AzureBastionSubnet \
-  --resource-group myResourceGroupAG \
-  --vnet-name myVNet \
-  --address-prefix 10.21.2.0/24
 az network public-ip create \
   --resource-group myResourceGroupAG \
   --name myAGPublicIPAddress \
@@ -81,31 +76,18 @@ az network public-ip create \
   --sku Standard
 ```
 
-## Deploy Azure Bastion
+## Create a network security group
 
-Azure Bastion uses your browser to connect to VMs in your virtual network over secure shell (SSH) or remote desktop protocol (RDP) by using their private IP addresses. The VMs don't need public IP addresses, client software, or special configuration. For more information about Azure Bastion, see [Azure Bastion](/azure/bastion/bastion-overview).
-
->[!NOTE]
->[!INCLUDE [Pricing](~/reusable-content/ce-skilling/azure/includes/bastion-pricing.md)]
-
-Create a public IP address for the Azure Bastion host with `az network public-ip create`. Then create the Azure Bastion host with `az network bastion create`.
+Create a network security group with [az network nsg create](/cli/azure/network/nsg#az-network-nsg-create). The default rules in the network security group block all inbound access from the internet.
 
 ```azurecli-interactive
-az network public-ip create \
+az network nsg create \
   --resource-group myResourceGroupAG \
-  --name myBastionIP \
-  --location eastus \
-  --allocation-method Static \
-  --sku Standard
-az network bastion create \
-  --resource-group myResourceGroupAG \
-  --name myBastionHost \
-  --vnet-name myVNet \
-  --public-ip-address myBastionIP \
-  --location eastus \
-  --sku Basic \
-  --no-wait
+  --name myNSG
 ```
+
+> [!NOTE]
+> The default rules of the network security group block all inbound access from the internet, including SSH. To connect to the virtual machine, use Azure Bastion. For more information, see [Quickstart: Deploy Azure Bastion with default settings](../bastion/quickstart-host-portal.md).
 
 ## Create the backend servers
 
@@ -168,7 +150,8 @@ for i in `seq 1 2`; do
     --resource-group myResourceGroupAG \
     --name myNic$i \
     --vnet-name myVNet \
-    --subnet myBackendSubnet
+    --subnet myBackendSubnet \
+    --network-security-group myNSG
   az vm create \
     --resource-group myResourceGroupAG \
     --name myVM$i \
