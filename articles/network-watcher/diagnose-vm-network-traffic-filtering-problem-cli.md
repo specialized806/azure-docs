@@ -6,7 +6,7 @@ author: halkazwini
 ms.author: halkazwini
 ms.service: azure-network-watcher
 ms.topic: quickstart
-ms.date: 07/11/2025
+ms.date: 02/25/2026
 ms.custom: devx-track-azurecli, mode-api
 
 # Customer intent: As a system administrator, I want to diagnose network traffic filter issues on a virtual machine using an IP flow verification tool, so that I can identify and resolve security rules that are blocking communication.
@@ -48,13 +48,6 @@ In this section, you create a virtual network and a subnet in the East US region
     az network vnet create --resource-group 'myResourceGroup' --name 'myVNet' --subnet-name 'mySubnet' --subnet-prefixes 10.0.0.0/24 
     ```
 
-1. Create a subnet for Azure Bastion using [az network vnet subnet create](/cli/azure/network/vnet/subnet#az-network-vnet-subnet-create).
-
-    ```azurecli-interactive
-    # Create a bastion subnet.
-    az network vnet subnet create --vnet-name 'myVNet' --resource-group 'myResourceGroup' --name 'AzureBastionSubnet' --address-prefix 10.0.1.0/24
-    ```
-
 1. Create a default network security group using [az network nsg create](/cli/azure/network/nsg#az-network-nsg-create).
 
     ```azurecli-interactive
@@ -62,32 +55,14 @@ In this section, you create a virtual network and a subnet in the East US region
     az network nsg create --name 'myVM-nsg' --resource-group 'myResourceGroup' --location 'eastus'
     ```
 
+    > [!NOTE]
+    > The default rules of the network security group block all inbound access from the internet, including SSH. To connect to the virtual machine, use Azure Bastion. For more information, see [Quickstart: Deploy Azure Bastion with default settings](../bastion/quickstart-host-portal.md).
+
 1. Create a virtual machine using [az vm create](/cli/azure/vm#az-vm-create).
 
     ```azurecli-interactive
     # Create a Linux virtual machine using the latest Ubuntu 20.04 LTS image.
     az vm create --resource-group 'myResourceGroup' --name 'myVM' --location 'eastus' --vnet-name 'myVNet' --subnet 'mySubnet' --public-ip-address '' --nsg 'myVM-nsg' --image 'Canonical:0001-com-ubuntu-server-focal:20_04-lts-gen2:latest' --generate-ssh-keys
-    ```
-
-## Deploy Azure Bastion
-
-Azure Bastion uses your browser to connect to VMs in your virtual network over secure shell (SSH) or remote desktop protocol (RDP) by using their private IP addresses. The VMs don't need public IP addresses, client software, or special configuration. For more information about Azure Bastion, see [Azure Bastion](/azure/bastion/bastion-overview).
-
-> [!NOTE]
-> [!INCLUDE [Pricing](~/reusable-content/ce-skilling/azure/includes/bastion-pricing.md)]
-
-1. Create a public IP address for the Azure Bastion host using [az network public-ip create](/cli/azure/network/public-ip#az-network-public-ip-create).
-
-    ```azurecli-interactive
-    # Create a public IP address for the bastion host.
-    az network public-ip create --resource-group 'myResourceGroup' --name 'myBastionIP' --location 'eastus' --allocation-method 'Static' --sku 'Standard'
-    ```
-
-1. Create an Azure Bastion host using [az network bastion create](/cli/azure/network/bastion#az-network-bastion-create).
-
-    ```azurecli-interactive
-    # Create an Azure Bastion host.
-    az network bastion create --resource-group 'myResourceGroup' --name 'myBastion' --vnet-name 'myVNet' --public-ip-address 'myBastionIP' --location 'eastus' --sku 'Basic' --no-wait
     ```
 
 ## Test network communication using IP flow verify
