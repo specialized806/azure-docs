@@ -100,14 +100,14 @@ The table below details the support status:
 | Premium SSD v2<sup>1</sup> | Supported | 4K Native or 512e<sup>2</sup> | ASM Recommended. LVM Supported | No support for ASM on Windows. Change Log File disks from 4K Native to 512e |
 | Standard SSD | Not supported | | | |
 | Standard HDD | Not supported | | | |
-| Ultra disk | Supported | 4K Native | ASM Recommended. LVM Supported | No support for ASM on Windows. Change Log File disks from 4K Native to 512e |
+| Ultra Disk | Supported | 4K Native | ASM Recommended. LVM Supported | No support for ASM on Windows. Change Log File disks from 4K Native to 512e |
 | | | | | |
 | **Network Storage Types** | | | | |
 | Azure NetApp Service (ANF) | Supported | - | Oracle dNFS Required | Not supported |
 | Azure Files NFS | Not supported | | | |
 | Azure files SMB | Not supported | | | |
 
-<sup>1</sup> Azure Premium SSD v2 doesn't have predefined storage sizes. There's no need to allocate multiple disks within an ASM Disk Group or LVM VG. The recommendation is to allocate a single Premium SSD v2 disk with the required size, throughput, and IOPS per ASM Disk Group.
+<sup>1</sup> Azure Premium SSD v2 doesn't have predefined storage sizes. There's no need to allocate multiple disks within an ASM Disk Group or LVM VG. The recommendation is to allocate a single Premium SSD v2 with the required size, throughput, and IOPS per ASM Disk Group.
 
 <sup>2</sup> 512e is supported on Premium SSD v2 for Windows systems. 512e configurations are't recommended for Linux customers. Migrate to 4K Native using procedure in MOS 512/512e sector size to 4K Native Review (Doc ID 1133713.1).
 
@@ -123,7 +123,7 @@ Other considerations that apply:
 * To migrate from 512/512e sector size to 4K Native Review (Doc ID 1133713.1), see section **Offline Migration to 4KB Sector Disks**.
 * SAPInst writes to the pfile during installation. If the $ORACLE_HOME/dbs is on a 4K disk, set `filesystemio_options=asynch` and see the section **Datafile Support of 4kB Sector Disks** in MOS Supporting 4K Sector Disks (Doc ID 1133713.1).
 * No support for ASM on Windows platforms.
-* No support for 4K Native sector size for Log volume on Windows platforms. SSDv2 and Ultra Disk must be changed to 512e via the "Edit Disk" pencil icon in the Azure portal.
+* No support for 4K Native sector size for Log volume on Windows platforms. Premium SSD v2 and Ultra Disk must be changed to 512e via the "Edit Disk" pencil icon in the Azure portal.
 * 4K Native sector size is supported only on Data volumes for Windows platforms. 4K isn't supported for Log volumes on Windows.
 * We recommend reviewing these MOS articles:
 
