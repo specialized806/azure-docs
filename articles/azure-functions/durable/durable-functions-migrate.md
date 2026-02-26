@@ -445,11 +445,17 @@ The following tables provide a comprehensive mapping between the in-process 2.x 
 | `IDurableOrchestrationClient.WaitForCompletionOrCreateCheckStatusResponseAsync` | `DurableTaskClient.WaitForCompletionOrCreateCheckStatusResponseAsync` (extension method, `timeout` replaced by `CancellationToken`) |
 | `IDurableOrchestrationClient.CreateHttpManagementPayload` | `DurableTaskClient.CreateHttpManagementPayload` (extension method) |
 | `IDurableOrchestrationClient.MakeCurrentAppPrimaryAsync` | Removed |
+| `IDurableOrchestrationClient.GetStatusAsync(IEnumerable<string>)` | Removed. Use `GetInstanceAsync` in a loop or `GetAllInstancesAsync` with a query filter. |
+| `IDurableOrchestrationClient.PurgeInstanceHistoryAsync(IEnumerable<string>)` | Removed. Use `PurgeInstanceAsync` in a loop or `PurgeAllInstancesAsync` with a filter. |
+| `IDurableOrchestrationClient.RaiseEventAsync` (cross-task-hub overload with `taskHubName`) | Removed. Only same-task-hub raise event is supported. |
 | `IDurableEntityClient.SignalEntityAsync` | `DurableTaskClient.Entities.SignalEntityAsync` |
+| `IDurableEntityClient.SignalEntityAsync` (cross-task-hub overload with `taskHubName`, `connectionName`) | Removed. Only same-task-hub entity operations are supported. |
 | `IDurableEntityClient.ReadEntityStateAsync` | `DurableTaskClient.Entities.GetEntityAsync` |
+| `IDurableEntityClient.ReadEntityStateAsync` (cross-task-hub overload with `taskHubName`, `connectionName`) | Removed. Only same-task-hub entity operations are supported. |
 | `IDurableEntityClient.ListEntitiesAsync` | `DurableTaskClient.Entities.GetAllEntitiesAsync` |
-| `IDurableEntityClient.CleanEntityStorageAsync` | `DurableTaskClient.Entities.CleanEntityStorageAsync` |
+| `IDurableEntityClient.CleanEntityStorageAsync` | `DurableTaskClient.Entities.CleanEntityStorageAsync` (takes `CleanEntityStorageRequest` object instead of bool parameters) |
 | `DurableOrchestrationStatus` | `OrchestrationMetadata` |
+| `DurableOrchestrationStatus.History` | Removed from status object. Use `DurableTaskClient.GetOrchestrationHistoryAsync` instead. |
 | `PurgeHistoryResult` | `PurgeResult` |
 | `OrchestrationStatusQueryCondition` | `OrchestrationQuery` |
 | `OrchestrationStatusQueryResult` | `AsyncPageable<OrchestrationMetadata>` |
@@ -490,16 +496,16 @@ The following tables provide a comprehensive mapping between the in-process 2.x 
 | `IDurableEntityContext.OperationName` | `TaskEntityOperation.Name` |
 | `IDurableEntityContext.FunctionBindingContext` | Removed. Add `FunctionContext` as an input parameter. |
 | `IDurableEntityContext.HasState` | `TaskEntityOperation.State.HasState` |
-| `IDurableEntityContext.BatchSize` | Removed |
-| `IDurableEntityContext.BatchPosition` | Removed |
 | `IDurableEntityContext.GetState` | `TaskEntityOperation.State.GetState` |
 | `IDurableEntityContext.SetState` | `TaskEntityOperation.State.SetState` |
 | `IDurableEntityContext.DeleteState` | `TaskEntityOperation.State.SetState(null)` |
 | `IDurableEntityContext.GetInput` | `TaskEntityOperation.GetInput` |
 | `IDurableEntityContext.Return` | Removed. Use the method return value instead. |
-| `IDurableEntityContext.SignalEntity` | `TaskEntityContext.SignalEntity` |
-| `IDurableEntityContext.StartNewOrchestration` | `TaskEntityContext.ScheduleNewOrchestration` |
-| `IDurableEntityContext.DispatchAsync` | `TaskEntityDispatcher.DispatchAsync`. Constructor params removed. |
+| `IDurableEntityContext.SignalEntity` | `TaskEntityContext.SignalEntity`. Scheduled signals use `SignalEntityOptions.SignalTime` instead of a `DateTime` parameter overload. |
+| `IDurableEntityContext.StartNewOrchestration` | `TaskEntityContext.ScheduleNewOrchestration`. Instance ID is set via `StartOrchestrationOptions.InstanceId` instead of a string parameter. |
+| `IDurableEntityContext.DispatchAsync` | `TaskEntityDispatcher.DispatchAsync`. Constructor params removed; use standard DI instead. |
+| `IDurableEntityContext.BatchSize` | Removed |
+| `IDurableEntityContext.BatchPosition` | Removed |
 
 ### Behavioral changes
 
@@ -511,8 +517,14 @@ The following tables provide a comprehensive mapping between the in-process 2.x 
 > [!NOTE]
 > **RestartAsync default change**: The `restartWithNewInstanceId` parameter default changed from `true` (2.x) to `false` (isolated). If your code calls `RestartAsync` and depends on a new instance ID being generated, explicitly pass `restartWithNewInstanceId: true`.
 
-- **Entity proxy removal**: `CreateEntityProxy<T>` isn't available in the isolated worker. Call `Entities.CallEntityAsync` or `Entities.SignalEntityAsync` directly instead of using typed proxy interfaces.
+- **Entity proxy removal**: `CreateEntityProxy<T>` and the typed `SignalEntityAsync<TEntityInterface>(Action<T>)` delegate overloads aren't available in the isolated worker. Call `Entities.CallEntityAsync` or `Entities.SignalEntityAsync` directly with string-based operation names instead of using typed proxy interfaces.
 - **WaitForCompletionOrCreateCheckStatusResponseAsync**: The `timeout` parameter was removed. Use a `CancellationToken` with a cancellation timeout instead.
+- **Cross-task-hub operations removed**: The in-process overloads that accepted `taskHubName` and `connectionName` parameters (on `RaiseEventAsync`, `SignalEntityAsync`, and `ReadEntityStateAsync`) aren't available in isolated worker. Only same-task-hub operations are supported.
+- **Batch operations by ID removed**: The in-process `GetStatusAsync(IEnumerable<string>)` and `PurgeInstanceHistoryAsync(IEnumerable<string>)` overloads aren't available in isolated worker. Use `GetAllInstancesAsync` with an `OrchestrationQuery` filter or call `GetInstanceAsync`/`PurgeInstanceAsync` individually.
+- **Orchestration history moved**: `DurableOrchestrationStatus.History` (the embedded `JArray`) is no longer part of the status object. Use the separate `DurableTaskClient.GetOrchestrationHistoryAsync` API to retrieve orchestration history.
+- **Entity DispatchAsync constructor params removed**: The `DispatchAsync<T>(params object[])` constructor parameter overload isn't available. Entity classes are activated through standard dependency injection. Register your entity's dependencies in `Program.cs`.
+- **Entity query filter changes**: `EntityQuery.EntityName` is replaced by `EntityQuery.InstanceIdStartsWith`, and `EntityQuery.IncludeDeleted` is replaced by `EntityQuery.IncludeTransient`.
+- **CleanEntityStorageAsync signature change**: Instead of `(bool removeEmptyEntities, bool releaseOrphanedLocks, CancellationToken)`, the isolated version takes a `CleanEntityStorageRequest` object with `RemoveEmptyEntities` and `ReleaseOrphanedLocks` properties.
 - **New APIs in isolated worker**: `DurableTaskClient.GetOrchestrationHistoryAsync` and the `TaskOrchestrationContext.GetFunctionContext()` extension method are available in the isolated worker but have no in-process equivalent.
 
 ## Update local.settings.json
@@ -713,6 +725,11 @@ Use this checklist to ensure a complete migration:
 - Updated `local.settings.json` with `dotnet-isolated` runtime
 - Removed all `Microsoft.Azure.WebJobs.*` using statements
 - Added `Microsoft.Azure.Functions.Worker` using statements
+- Replaced `CreateEntityProxy<T>` with direct `CallEntityAsync`/`SignalEntityAsync` calls
+- Replaced cross-task-hub operation overloads (if used)
+- Replaced batch `GetStatusAsync`/`PurgeInstanceHistoryAsync` by-ID calls with filter-based or individual calls
+- Migrated `DurableOrchestrationStatus.History` access to `GetOrchestrationHistoryAsync`
+- Updated entity `DispatchAsync` constructor params to use DI
 - Tested all functions locally
 - Deployed to staging slot and verified
 - Swapped to production
