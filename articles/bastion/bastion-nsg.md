@@ -6,7 +6,8 @@ ms.service: azure-bastion
 ms.topic: concept-article
 ms.date: 02/24/2026
 ms.author: abell
-# Customer intent: "As a member of the SecOps team, I want to understand and configure network security groups for Azure Bastion, so that I can manage secure ingress and egress traffic to virtual machines while maintaining compliance and security practices. I want to understand the impact of not having the correct NSG rules in place from a security perspective."
+# Customer intent: "As a member of the SecOps team, I want to understand and configure network security groups for Azure Bastion, so that I can manage secure ingress and egress traffic to virtual machines 
+while maintaining compliance and security practices. I want to understand the impact of not having the correct NSG rules in place from a security perspective."
 ---
 # Configure NSG rules for Azure Bastion
 
@@ -191,9 +192,9 @@ foreach ($rule in $rules) {
 
 ## Next steps
 
-* [Secure your Azure Bastion deployment](secure-bastion.md) - Apply security hardening recommendations to reduce your Bastion attack surface.
-* [Azure Bastion architecture and design](design-architecture.md) - Understand network topology, trust boundaries, and how Bastion fits within your hub-spoke or flat VNet model.
-* [Private-only Azure Bastion deployment](private-only-deployment.md) - Remove the public-facing IP entirely for stricter network security posture.
-* [Monitor Azure Bastion](monitor-bastion.md) - Enable diagnostic logging and set up alerts to maintain audit visibility for compliance.
-* [Azure Bastion with VNet peering](vnet-peering.md) - Understand NSG rule implications when Bastion and target VMs are in different peered virtual networks.
-* [Azure Bastion FAQ](bastion-faq.md)
+* Learn how to [secure your Azure Bastion deployment](secure-bastion.md) using actionable guidance aligned to the Microsoft Cloud Security Benchmark.
+* Learn about the different [deployment architectures available with Azure Bastion](design-architecture.md), depending on the selected SKU and option configurations.
+* Learn how to [deploy Bastion as private-only](private-only-deployment.md) to ensure secure access to virtual machines without allowing outbound access outside of the virtual network.
+* Learn how to [monitor Azure Bastion](monitor-bastion.md) by using Azure Monitor to collect and analyze performance data and logs.
+* Learn how [virtual network peering and Azure Bastion](vnet-peering.md) can be used together to connect to VMs deployed in a peered virtual network without deploying an additional bastion host.
+* Learn about [frequently asked questions for Azure Bastion](bastion-faq.md).
