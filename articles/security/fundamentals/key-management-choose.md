@@ -72,7 +72,7 @@ Use the following table to compare all the solutions side by side. Answer each q
 | Do you need **HSM hardware protection**? | No | Yes | Yes | Yes | Yes |
 | What kind of **objects** do you need to store? | Asym Keys, Secrets, Certs | Asym Keys, Secrets, Certs | Asym/Sym Keys, Azure services | Asym/Sym Keys, Certs | Keys |
 | Do you need **dedicated capacity**? | No | No | Yes | Yes | Yes |
-| Do you need **direct application access** to the HSM? | No | No | No | [Yes](/azure/cloud-hsm/integration-guides) | [Yes](/azure/payment-hsm/overview#typical-use-cases) |
+| Do you need **direct HSM access**? | No (REST API) | No (REST API) | No (REST API) | [Yes, partition-level](/azure/cloud-hsm/integration-guides) | [Yes, appliance-level](/azure/payment-hsm/overview#typical-use-cases) |
 | Do you need **customer control of root of trust**? | No | No | Yes | Yes | Yes |
 | What is your **budget**? | $ | $$ | $$$ | $$$ | $$$$ |
 
