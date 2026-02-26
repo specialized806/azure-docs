@@ -31,8 +31,6 @@
       href: quickstart-java.md
   - name: Durable Task SDKs
     items:
-    - name: Create an app with the Durable Task SDKs
-      href: ./durable-task-scheduler/quickstart-durable-task-scheduler.md
     - name: Host a Durable Task SDK app on Azure Container Apps
       href: ./durable-task-scheduler/quickstart-container-apps-durable-task-sdk.md
 - name: Core concepts
