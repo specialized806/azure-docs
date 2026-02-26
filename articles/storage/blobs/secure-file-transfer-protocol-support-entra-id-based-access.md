@@ -1,345 +1,378 @@
 ---
-title: Getting started - Entra ID based access for Azure Blob Storage SFTP
-author: Jeevan Manoj
+title:  Authorize SFTP access to blobs using Microsoft Entra ID
+titleSuffix: Azure Storage
+author: jeevanbalanmanoj
 ms.date: 02/24/2026
+ms.topic: how-to
+ms.service: azure-blob-storage
+ms.date: 02/26/2026
 ms.author: normesta
-
 ---
-Getting started - Entra ID based access for Azure Blob Storage SFTP
 
-> [!NOTE]
-> This feature is currently in public preview and once enabled it is applicable across all storage accounts within the entire subscription. This feature is currently in public preview and once enabled it is applicable across all storage accounts within the entire subscription. 
+# Authorize SSH File Transfer Protocol (SFTP) access to blobs using Microsoft Entra ID
 
-Azure Blob Storage SFTP now supports Entra ID-based access in public preview. Previously, Azure Blob Storage SFTP only supported local user-based access, requiring either a password or an SSH private key for authentication. With this new feature, users can leverage their Entra ID or Entra External Identities to connect to Azure storage accounts via SFTP without the need to create and maintain local users.  
+Azure Blob Storage SFTP now supports Microsoft Entra ID-based access in public preview. Previously, Azure Blob Storage SFTP supported only local user-based access, requiring either a password or an SSH private key for authentication. By using this new feature, users can apply their Microsoft Entra ID or Entra External Identities to connect to Azure storage accounts through SFTP without needing to create and maintain local users.
 
-Entra ID-based access brings a host of benefits, including Role Based Access Control (RBAC), Multi-factor Authentication, and Entra ID Access Control Lists (ACLs) to Azure Blob Storage SFTP. 
+Microsoft Entra ID-based access brings many benefits to Azure Blob Storage SFTP, including role-based access control (RBAC), multifactor authentication (MFA), and Microsoft Entra ID Access Control Lists (ACLs).
 
-# Key benefits
+> [!IMPORTANT]
+> Microsoft Entra ID-based access for Azure Blob Storage SFTP is currently in PREVIEW.
+> See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability. Once enabled, this feature applies to all storage accounts within the entire subscription.
 
-1. Eliminate Local User Management
+## Key benefits
 
-With Entra ID-based access, there is no need to create, rotate, or maintain local SFTP users per storage account. Authentication is handled entirely by Entra ID, significantly reducing operational overhead and configuration sprawl
-
-1. Enterprise grade Identity & Security
-
-SFTP access is backed by Entra ID, enabling:
-
-- Centralized identity lifecycle management
-- Strong authentication (including MFA via Entra ID)
-- Consistent security posture aligned with enterprise IAM standards
-- This improves security compared to static, longlived local credentials
-
-1. Native Azure RBAC, ABAC & ACL Integration
-
-Authorization for SFTP mirrors Azure Blob Storage's existing access control model:
-
-- RoleBased Access Control (RBAC)
-- AttributeBased Access Control (ABAC)
-- POSIXstyle Access Control Lists (ACLs)
-- Users can apply the same roles and permissions used for REST, SDK, and Portal access—now extended seamlessly to SFTP. 
-
-1. Faster SFTP Onboarding
-
-Because Entra ID accounts are ubiquitous, users can:
-
-- Reuse existing users, groups, and service principals
-- Avoid timeconsuming local user creation and key distribution
-- Get SFTP up and running faster with fewer setup steps
-- This significantly shortens timetovalue for SFTPbased workflows. 
-
-1. Secure External Collaboration
-
-Using Entra ID External Identities, customers can securely grant SFTP access to partners and vendors without managing separate identity systems—while maintaining full control and auditability.
+> [!div class="checklist"]
+>
+> - **Eliminate Local User Management** - By using Microsoft Entra ID-based access, you don't need to create, rotate, or maintain local SFTP users for each storage account. Microsoft Entra ID handles authentication, which significantly reduces operational overhead and configuration complexity.
+>
+> - **Enterprise grade identity and security** - SFTP access uses Microsoft Entra ID, which enables:
+>   - Centralized identity lifecycle management
+>   - Strong authentication, including MFA through Microsoft Entra ID
+>   - Consistent security posture aligned with enterprise IAM standards
+>   - This approach improves security compared to static, long-lived local credentials.
+>
+> - **Native Azure RBAC, ABAC and ACL Integration** - Authorization for SFTP matches Azure Blob Storage's existing access control model:
+>   - Role-based Access Control (RBAC)
+>   - Attribute-based Access Control (ABAC)
+>   - POSIX-style Access Control Lists (ACLs)
+>   - Users can apply the same roles and permissions used for REST, SDK, and Portal access to SFTP.
+>
+> - **Faster SFTP Onboarding** - Because Microsoft Entra ID accounts are ubiquitous, users can:
+>   - Reuse existing users, groups, and service principals
+>   - Avoid time-consuming local user creation and key distribution
+>   - Get SFTP up and running faster with fewer setup steps
+>   - Significantly shorten time-to-value for SFTP-based workflows
+>
+> - **Secure External Collaboration** - By using Microsoft Entra ID External Identities, customers can securely grant SFTP access to partners and vendors without managing separate identity systems, while maintaining full control and auditability.
 
 ## Overview
 
-Below is a high-level overview of the key steps involved in this process. In summary, you'll first authenticate using Entra ID, then obtain an OpenSSH certificate, and finally connect to Azure Blob Storage SFTP using a compatible client or SDK. Each of these steps is outlined in more detail in the following sections.
+The following high-level overview describes the key steps involved in this process. You first authenticate by using Microsoft Entra ID, then obtain an OpenSSH certificate, and finally connect to Azure Blob Storage SFTP by using a compatible client or SDK. The following sections outline each of these steps in more detail.
 
- 
+1. Authenticate with Microsoft Entra ID via Azure CLI, PowerShell, SDK, and more.
+1. Get an OpenSSH certificate from Microsoft Entra ID by passing a public key.
+1. Use any SFTP client or SDK that supports OpenSSH certificates to connect to Azure Storage with the OpenSSH certificate and the public key from step 2.
 
-1. Authenticate with Entra ID via Azure CLI, PS, SDK etc.
-2. Get an OpenSSH Certificate from Entra ID by passing a public key
-3. Use any SFTP Client/SDK which supports OpenSSH certificates to connect to Azure Storage with the OpenSSH Certificate and the public key from step 2. 
+    > [!NOTE]
+    > Password-based authentication isn't supported because no SFTP clients have native Microsoft Entra ID integration to provide a Microsoft Entra ID user experience for password entry.
 
-> [!NOTE]
-> For Step 3 Password based authentication won't be supported since there are no SFTP clients that have native Entra ID integration to allow an Entra ID UX to accept the passwords.
+## Connecting to Azure Blob Storage with Microsoft Entra IDs
 
-   > ![Screenshot of the disable SFTP button.](./media/secure-file-transfer-protocol-support/overview-flow-chart.png)
+### Register the feature
 
+Register the `SFTP Entra ID Support` preview feature on your Azure subscription. For information about how to register a preview feature, see the [preview features guide](../../azure-resource-manager/management/preview-features.md).
 
-# **Connecting to Azure Blob Storage with Entra IDs **
+### Generate OpenSSH certificate
 
-## **Register for the preview feature 'SFTP Entra ID Support' on your Azure subscription**
+#### [Azure CLI](#tab/azurecli)
 
-You can register for public preview features by following this [guide](/azure/azure-resource-manager/management/preview-features). Looks for a preview feature named" SFTP Entra ID Support".    
+Generate the OpenSSH certificate with the Azure CLI [az sftp](/cli/azure/sftp) command as shown in the following example.
 
-## **Generate OpenSSH certificate**
-
-# [Azure CLI](#tab/azurecli)
-
-Generate the OpenSSH certificate with az cli  [az sftp](/cli/azure/sftp) as below 
-
+    ```azurecli
     az login
-    az sftp cert --file /my_cert.pub
+        az sftp cert --file /my_cert.pub
+    ``` 
+For security reasons, the certificate is valid for only 65 minutes. After it expires, you need to rerun the command to get a new certificate.
 
 > [!NOTE]
-> The certificate will be valid only for 65 minutes for security reasons & the command will have to be rerun to obtain certificate again.
+> Currently, only [Azure CLI](/cli/azure/ssh) and Azure PowerShell support retrieving SSH certificates. Azure portal support for downloading SSH certificates isn't yet available.
 
-> [!NOTE]
-> Currently, retrieving SSH certificates is only supported with [az cli](/cli/azure/ssh) or Azure PowerShell. We do not yet have Azure Portal support for downloading SSH certificates.
+Optionally, you can generate your own SSH key pair and use it when downloading the certificate.
 
-    
-Optionally, you can generate your own SSH key pair and use them while downloading the certificate as follows. 
+Generate SSH key pair: You must use RSA keys, as Microsoft Entra ID supports only RSA certificates. 
 
-Generate SSH key pair: You must use RSA keys, since Entra only supports generating RSA certificates. 
-
+    ```bash
     ssh-keygen -t rsa
-1. key files will be generated once the above is executed. They are:
+    ```
 
-| **File Name** | **Key Type** |
-|---|---|
-| **id_rsa** | Private key |
-| **id_rsa.pub** | Public key |
+The following key files will be generated:
 
-    
-Use the command below to generate the SSH certificate with the keys generated 
+| **File Name**  | **Key Type** |
+|----------------|--------------|
+| **id_rsa**     | Private key  |
+| **id_rsa.pub** | Public key   |
 
-`az login`<br>az sftp cert --public-key-file /id_rsa.pub --file /my_cert.pub
+Use the following command to generate the SSH certificate with the generated keys:
 
-If you are using a Service Principal, you can login either using a Client Secret or a Certificate:
+    ```azurecli
+    az login
+    az sftp cert --public-key-file /id_rsa.pub --file /my_cert.pub
+    ```
 
-    Certificate:
+If you're using a service principal, you can sign in by using either a client secret or a certificate:
+
+To sign in by using a certificate, use the following command:
+
+    ```azurecli
     az login --service-principal -u <application_id_or_client_id> --tenant <tenant_id> --certificate <path_to_certificate>
-    Client Secret:
-    az login --service-principal -u <application_id_or_client_id> -p <secret_value> --tenant <tenant_id>
-    Afer this you can just run the same command to download the certificate:
-az sftp cert --public-key-file /id_rsa.pub --file /my_cert.pub
-    
-# [Azure PowerShell](#tab/azurepowershell)
+    ```
 
-Generate the OpenSSH certificate with [PowersShell Az.Sftp](https://www.powershellgallery.com/packages/Az.Sftp/0.1.0)  as below
-    
+To sign in by using a client secret, use the following command:
+
+    ```azurecli
+    az login --service-principal -u <application_id_or_client_id> -p <secret_value> --tenant <tenant_id>
+    ```
+
+After authentication, run the same command to download the certificate:
+
+    ```azurecli
+    az sftp cert --public-key-file /id_rsa.pub --file /my_cert.pub
+    ```
+
+#### [Azure PowerShell](#tab/azurepowershell)
+
+Generate the OpenSSH certificate by using [PowerShell Az.Sftp](https://www.powershellgallery.com/packages/Az.Sftp/0.1.0) as shown in the following example:
+
+    ```powershell
     Connect-AzAccount
     New-AzSftpCertificate -CertificatePath "\my_cert.cert"
-Optionally, use the command below to generate the OpenSSH certificate with your SSH keys
+    ```
 
+Optionally, use the following command to generate the OpenSSH certificate by using your SSH keys:
+
+    ```powershell
     New-AzSftpCertificate -PublicKeyFile "\id_rsa.pub" -CertificatePath "\my_cert.cert"
+    ```
+
 Learn more about the PowerShell module [here](/powershell/module/az.sftp/).
 
 > [!NOTE]
-> Powershell currently does not support Service Principals and managed Identity Sign ins. 
+> PowerShell currently doesn't support Service Principal and Managed Identity sign-ins. 
 
-### MSAL.NET
+#### [.NET](#tab/dotnet)
 
-```dotnetcli
-using Microsoft.Identity.Client;
-using Microsoft.Identity.Client.SSHCertificates;
-using Newtonsoft.Json;
-using System.Security.Cryptography;
-using System.Text;
-public class Program
-{
-    private const string AZURE_CLI_CLIENT_ID = "<your-azure-cli-client-id>";
-    private const string MY_TENANT_ID = "<your-tenant-id>";
-    public static async Task Main(string[] args)
+    ```csharp
+    
+    using Microsoft.Identity.Client;
+    using Microsoft.Identity.Client.SSHCertificates;
+    using Newtonsoft.Json;
+    using System.Security.Cryptography;
+    using System.Text;
+    public class Program
     {
-        var options = new PublicClientApplicationOptions
+        private const string AZURE_CLI_CLIENT_ID = "<your-azure-cli-client-id>";
+        private const string MY_TENANT_ID = "<your-tenant-id>";
+        public static async Task Main(string[] args)
         {
-            ClientId = AZURE_CLI_CLIENT_ID,
-        };
-        var app = PublicClientApplicationBuilder.CreateWithApplicationOptions(options)
-            .WithTenantId(MY_TENANT_ID)
-            .WithDefaultRedirectUri()
-            .Build();
-        var scopes = new string[]
-        {
-            "`<https://pas.windows.net/CheckMyAccess/Linux/.default>`",
-        };
-        var keyId = new byte[32];
-        Random.Shared.NextBytes(keyId);
-        var rsa = RSA.Create();
-        var key = rsa.ExportParameters(includePrivateParameters: true);
-        if (key.Modulus == null || key.Exponent == null)
-            throw new InvalidOperationException("RSA key generation failed: Modulus or Exponent is null.");
-        var localKey = new
-        {
-            kty = "RSA",
-            n = Convert.ToBase64String(key.Modulus).Replace("+", "-").Replace("/", "_"),
-            e = Convert.ToBase64String(key.Exponent).Replace("+", "-").Replace("/", "_"),
-            kid = BitConverter.ToString(keyId).Replace("-", string.Empty).ToLower(),
-        };
-        var localKeyJson = JsonConvert.SerializeObject(localKey);
-        Console.WriteLine("RSA Key:");
-        Console.WriteLine(localKeyJson);
-        Console.WriteLine();
+            var options = new PublicClientApplicationOptions
+            {
+                ClientId = AZURE_CLI_CLIENT_ID,
+            };
+            var app = PublicClientApplicationBuilder.CreateWithApplicationOptions(options)
+                .WithTenantId(MY_TENANT_ID)
+                .WithDefaultRedirectUri()
+                .Build();
+            var scopes = new string[]
+            {
+                "`<https://pas.windows.net/CheckMyAccess/Linux/.default>`",
+            };
+            var keyId = new byte[32];
+            Random.Shared.NextBytes(keyId);
+            var rsa = RSA.Create();
+            var key = rsa.ExportParameters(includePrivateParameters: true);
+            if (key.Modulus == null || key.Exponent == null)
+                throw new InvalidOperationException("RSA key generation failed: Modulus or Exponent is null.");
+            var localKey = new
+            {
+                kty = "RSA",
+                n = Convert.ToBase64String(key.Modulus).Replace("+", "-").Replace("/", "_"),
+                e = Convert.ToBase64String(key.Exponent).Replace("+", "-").Replace("/", "_"),
+                kid = BitConverter.ToString(keyId).Replace("-", string.Empty).ToLower(),
+            };
+            var localKeyJson = JsonConvert.SerializeObject(localKey);
+            Console.WriteLine("RSA Key:");
+            Console.WriteLine(localKeyJson);
+            Console.WriteLine();
 
-        // Get SSH certificate
+            // Get SSH certificate
 
-        AuthenticationResult result = await app.AcquireTokenInteractive(scopes)
-            .WithSSHCertificateAuthenticationScheme(localKeyJson, localKey.kid)
-            .ExecuteAsync();
+            AuthenticationResult result = await app.AcquireTokenInteractive(scopes)
+                .WithSSHCertificateAuthenticationScheme(localKeyJson, localKey.kid)
+                .ExecuteAsync();
 
-        // Define output directory and certificate path
+            // Define output directory and certificate path
 
-        var sshDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), ".ssh", "entra");
-        Directory.CreateDirectory(sshDir);
-        var certPath = Path.Combine(sshDir, "id_rsa-cert.pub");
+            var sshDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), ".ssh", "entra");
+            Directory.CreateDirectory(sshDir);
+            var certPath = Path.Combine(sshDir, "id_rsa-cert.pub");
 
-        // Remove read-only attribute if certificate already exists so it can be overwritten
+            // Remove read-only attribute if certificate already exists so it can be overwritten
 
-        if (File.Exists(certPath))
-        {
-            File.SetAttributes(certPath, FileAttributes.Normal);
-        }
-        // Save the certificate
-        var cert = `[$"ssh-rsa-cert-v01@openssh.com](mailto:$%22ssh-rsa-cert-v01@openssh.com)` {result.AccessToken}";
-        await File.WriteAllTextAsync(certPath, cert);
-        File.SetAttributes(certPath, FileAttributes.ReadOnly);
-        // Dump certificate content to console
-        Console.WriteLine("Cert");
-        Console.WriteLine(cert);
-        Console.WriteLine();
-   }
-}
-```
+            if (File.Exists(certPath))
+            {
+                File.SetAttributes(certPath, FileAttributes.Normal);
+            }
+            // Save the certificate
+            var cert = `[$"ssh-rsa-cert-v01@openssh.com](mailto:$%22ssh-rsa-cert-v01@openssh.com)` {result.AccessToken}";
+            await File.WriteAllTextAsync(certPath, cert);
+            File.SetAttributes(certPath, FileAttributes.ReadOnly);
+            // Dump certificate content to console
+            Console.WriteLine("Cert");
+            Console.WriteLine(cert);
+            Console.WriteLine();
+    }
+    }
+    ```
 
-## Verify the contents of the OpenSSH certificate [Optional]
+---
 
-Use the following command to view the OpenSSH certificate.
+### Verify the contents of the OpenSSH certificate [Optional]
+
+Use the following command to view the OpenSSH certificate:
 
 `ssh-keygen -L -f my_cert.pub`
-Username is captured in the _Principals_ section highlighted in red
 
-   > ![Screenshot of the disable SFTP button.](./media/secure-file-transfer-protocol-support/verify-opensshcert.jpg)
+The _Principals_ section contains the username:
 
-For security reasons, the OpenSSH certificate is valid for 65 minutes. After this period, you will need to request a new certificate to initiate any further transactions. For security reasons, the OpenSSH certificate is valid for 65 minutes. After this period, you will need to request a new certificate to initiate any further transactions.
+:::image type="content" source="./media/secure-file-transfer-protocol-support/verify-opensshcert.jpg" alt-text="Screenshot of the principals section in the command ouput.":::
 
-## Connect to the Storage Account with OpenSSH
+For security reasons, the OpenSSH certificate is valid for 65 minutes. After this period, you need to request a new certificate to initiate any further transactions.
 
-### SFTP command
+### Connect to the Storage Account by using OpenSSH
 
+#### Connect by using an SFTP command
 
+    ```bash
     C:\Users\username> sftp -o PubkeyAcceptedKeyTypes="rsa-sha2-256-cert-v01@openssh.com,rsa-sha2-256" -o IdentityFile="C:\path\to\key\.ssh\id_rsa" -o CertificateFile="C:\path\to\cert\.ssh\my_cert.pub" storageaccountname.username@storageaccountname.blob.core.windows.net
     Connected to storageaccountname.blob.core.windows.net.
     sftp>
+    ```
+
+If the principal uses the format [username@domain.com](mailto:username@domain.com), make sure to exclude the domain section in the command and use only the username portion.
+
+Both [User and Service principals](/entra/identity-platform/app-objects-and-service-principals) are supported. For Service principals, use the service principal ID in place of the username in the connection string.
 
 > [!NOTE]
-> If the Principal is in the format [username@domain.com](mailto:username@domain.com), make sure you don't add the domain section in the command and only use the username portion.
+> Adding the container name directly to the connection string or setting it up via Home directory isn't currently supported.
 
-> [!NOTE]
-> [Both User and Service principals](/entra/identity-platform/app-objects-and-service-principals) are supported. In the case of Service principals, use the service principal id in place of the username in the connection string.
+Once connected, use the following command to upload a file to Azure Storage via SFTP:
 
-> [!NOTE]
-> Adding the container name directly into the connection string or setting it up via Home Directory is currently NOT supported.
+    ```bash
+    sftp> put 'C:\path\to\blob\blog.jpeg'
+    ```
 
-Once connected, use the following to upload a file to the Azure Storage via SFTP.
+If you receive a permission denied error, ensure that you have the necessary Azure roles such as Storage Blob Data Contributor or Storage Blob Data Owner.
 
-`sftp> put 'C:\path\to\blob\blog.jpeg'`
+#### Connect by using an SFTP desktop client
 
-If you get a permission denied error, please make sure you have the necessary RBAC roles such as Storage Blob Data Contributor or Storage Blob Data Owner
+SFTP clients such as WinSCP and PuTTY support OpenSSH-based authentication. The following steps show how to connect by using WinSCP:
 
-### SFTP desktop clients
+1. WinSCP: Support for OpenSSH certificates for user authentication was implemented in version 6.0 (<https://winscp.net/tracker/1873>)
+1. Obtain the OpenSSH certificate from the previous step (Generate OpenSSH certificate)
+1. In WinSCP, enter the Host name and Username, and then select **Advanced**
 
-OpenSSH based login is supported by SFTP clients such as WinSCP and PuTTY. Steps to connect via WinSCP below.
+   :::image type="content" source="./media/secure-file-transfer-protocol-support/winscp-login.png" alt-text="Screenshot of of the Login window and the Advanced option.":::
 
-1. WinSCP: Support for OpenSSH certificates for user authentication was implemented in version 6.0. (<https://winscp.net/tracker/1873>)
-2. Obtain the OpenSSH certificate from step 3 above (3. Generate OpenSSH certificate)
-3. In WinSCP enter the Host name Username and click on Advanced
+1. In the SSH tab, go to the Authentication section. Attach the private key and certificate files obtained from the previous sections, and then select **OK**.
 
-   > ![Screenshot of the disable SFTP button.](./media/secure-file-transfer-protocol-support/winscp-login.png)
+   :::image type="content" source="./media/secure-file-transfer-protocol-support/winscp-advanced-settings.png" alt-text="Screenshot of the Authentication settings in the Advanced Site Settings dialog box.":::
 
+1. Select **Login** to sign in by using the Microsoft Entra ID account and OpenSSH certificate.
 
-4. Navigate to the Authentication section in the SSH Tab on the left and attach the Private Key and Certificate files obtained from the earlier sections and Click 'Ok.'
+   :::image type="content" source="./media/secure-file-transfer-protocol-support/winscp-login-highlight.png" alt-text="Screenshot Login dialog box.":::
 
-   > ![Screenshot of the disable SFTP button.](./media/secure-file-transfer-protocol-support/winscp-advanced-settings.png)
+##### [Azure CLI](#tab/azurecli)
 
+Use the following command to connect by using the OpenSSH certificate obtained in the previous steps:
 
-5. Click 'Login' to Login with the Entra ID account and OpenSSH certificate
+    ```azurecli
+    az sftp connect --storage-account <<account_name>> --certificate-file /my_cert.pub
+    ```
 
-   > ![Screenshot of the disable SFTP button.](./media/secure-file-transfer-protocol-support/winscp-login-highlight.png)
+Additionally, you can get the OpenSSH certificate and connect to SFTP by using a single command as follows:
 
+    ```azurecli
+    az sftp connect
+    az sftp connect --storage-account <<account_name>>
+    ```
 
-# [Azure CLI](#tab/azurecli)
+For more information about the commands, see [here](/cli/azure/sftp).
 
-Use the following command to connect by using the OpenSSH certificate obtained in the previous steps  
+##### [Azure PowerShell](#tab/azurepowershell)
 
-az sftp connect --storage-account `<<account_name>>` --certificate-file /my_cert.pub
+Use the following command to connect by using the OpenSSH certificate obtained in the previous steps:
 
-Additionally, you can also get the OpenSSH certificate and connect to SFTP with a single command as follows
+    ```powershell
+    Connect-AzSftp -StorageAccount "<<account_name>>" -CertificateFile "/my_cert.pub"
+    ```
 
-`az sftp connect`
-`az sftp connect --storage-account <<account_name>>`
+Additionally, you can get the OpenSSH certificate and connect to SFTP by using a single command as follows:
 
-More information regarding the commands, see [here](/cli/azure/sftp)
+    ```powershell
+    Connect-AzAccount
+    Connect-AzSftp -StorageAccount "<<account_name>>"
+    ```
 
-# [Azure PowerShell](#tab/azurepowershell)
+For more information about the commands, see [here](/powershell/module/az.sftp/connect-azsftp).
 
-Use the following command to connect by using the OpenSSH certificate obtained in the previous steps  
+##### [.NET](#tab/dotnet)
 
-Connect-AzSftp -StorageAccount `"<<account_name>>"` -CertificateFile "/my_cert.pub"
+Not applicable.
 
-Additionally, you can also get the OpenSSH certificate and connect to SFTP with a single command as follows
+---
 
-Connect-AzAccount
-Connect-AzSftp –StorageAccount "<<account_name>>"
+## Microsoft Entra ID based access control model in Azure Blob Storage SFTP
 
-More information regarding the commands, see [here](/powershell/module/az.sftp/connect-azsftp)
-
-## Entra ID based access control model in Azure Blob Storage SFTP
-
-| **Mechanism** | **Status** | **Tutorial** |
-|---|---|---|
-| Role-based access control (Azure RBAC) | Supported | [Access control model for Azure Data Lake Storage - Azure Storage &#124; Microsoft Learn](/azure/storage/blobs/data-lake-storage-access-control-model) |
-| Access control lists (ACLs) | Supported | [Access control model for Azure Data Lake Storage - Azure Storage &#124; Microsoft Learn](/azure/storage/blobs/data-lake-storage-access-control-model) |
-| Attribute-based access control (Azure ABAC) | Not supported in private preview. If any ABAC rule exists, for SFTP it will be ignored. |  |
+| **Mechanism**                               | **Status**                                                                              | **Tutorial**                                                                                                                                           |
+|---------------------------------------------|-----------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Role-based access control (Azure RBAC)      | Supported                                                                               | [Access control model for Azure Data Lake Storage - Azure Storage &#124; Microsoft Learn](/azure/storage/blobs/data-lake-storage-access-control-model) |
+| Access control lists (ACLs)                 | Supported                                                                               | [Access control model for Azure Data Lake Storage - Azure Storage &#124; Microsoft Learn](/azure/storage/blobs/data-lake-storage-access-control-model) |
+| Attribute-based access control (Azure ABAC) | Not supported in public preview. If any ABAC rule exists, for SFTP it is ignored. |
 
 ## How permissions are evaluated
 
-**SFTP mirrors the Azure Blob Storage's access control explained** [**here**](/azure/storage/blobs/data-lake-storage-access-control-model)** except that during the private preview, ABAC support is partial. Learn more in the Known issues and limitations section. **
+SFTP mirrors Azure Blob Storage's access control model. For more information, see [Access control model in Azure Data Lake Storage](data-lake-storage-access-control-model.md). However, during the public preview, ABAC support is partial. Learn more in the Known issues and limitations section.
 
-## Sharing access to users outside of the home Entra ID tenant
+## Sharing access to users outside of the home Microsoft Entra ID tenant
 
-Organizations often need to share Azure Blob Storage SFTP access with external partners and customers. Entra External Identities can address this requirement by allowing Azure Blob Storage SFTP to provide secure access to external collaborators. This feature enables efficient and secure connections and interactions with storage resources. By using Entra ID External Identity capabilities, organizations can maintain strong access control and security measures while enabling collaboration with external entities. Learn more [here](/entra/external-id/b2b-quickstart-add-guest-users-portal).
+Organizations often need to share Azure Blob Storage SFTP access with external partners and customers. Microsoft Entra External Identities can address this requirement by enabling Azure Blob Storage SFTP to provide secure access to external collaborators. This feature enables efficient and secure connections and interactions with storage resources. By using Microsoft Entra ID External Identity capabilities, organizations can maintain strong access control and security measures while enabling collaboration with external entities. Learn more about [adding guest users](/entra/external-id/b2b-quickstart-add-guest-users-portal).
 
+## Known issues and limitations
 
-## Known issues & limitations
+- Microsoft Entra ID support is limited to SSH certificates and public key authentication.
 
-Entra ID support is limited to SSH certificates and public key authentication.
+- Only RSA certificates are supported. ECDSA isn't supported.
 
-Only RSA certificates are supported. ECDSA is not supported.
+- [ABAC](/azure/storage/blobs/storage-auth-abac-attributes) behavior is inconsistent when used with the Storage Blob Data Owner role and might lead to timeout errors. To use ABAC, choose the Storage Blob Data Contributor role, or use the Storage Blob Data Owner role without ABAC.
 
-1. [ABAC](/azure/storage/blobs/storage-auth-abac-attributes) behavior is inconsistent when using with the Storage Blob Data Owner role (RBAC) and may lead to timeout errors. To use ABAC, choose the Storage Blob Data Contributor role, or use the Storage Blob Data Owner role without ABAC.
+- ABAC [suboperations](/azure/storage/blobs/storage-auth-abac-attributes) are unsupported and behave incorrectly. Specific behaviors of the suboperations appear in the following list:
 
-ABAC  [sub-operations](/azure/storage/blobs/storage-auth-abac-attributes) are unsupported and will behave incorrectly. Specific behaviours of the sub operations are listed below. 
+  - **List blobs (Blob.List):** Users can list blobs without any restrictions, and the ABAC condition expressions are ignored.
 
-List blobs (Blob.List): Users can list Blobs without any restrictions, and the ABAC condition expression(s) are ignored.
+  - **Read a blob (NOT Blob.List):** Works as expected with the given ABAC condition expressions. However, for all other cases, the List blobs (`Blob.List`) action also inadvertently fails in addition to the expected failure of Read a blob (NOT `Blob.List`).
 
-Read a blob (NOT Blob.List): Works as expected on the given ABAC condition expression(s). However, for all the other cases, List blobs (Blob.List) action will also inadvertently fail in addition to the expected failure of Read a blob (NOT Blob.List). 
+  - **_(Deprecated)_ Read content from a blob with tag conditions (Blob.Read.WithTagConditions):** The ABAC condition expressions are ignored.
 
-_(Deprecated)_ Read content from a blob with tag conditions (Blob.Read.WithTagConditions): The ABAC condition expression(s) are ignored. 
+  - **Set the access tier on a blob (Blob.Write.Tier):** The ABAC condition expressions are ignored.
 
-Sets the access tier on a blob (Blob.Write.Tier): The ABAC condition expression(s) are ignored. 
+  - **Write to a blob with blob index tag (Blob.Write.WithTagHeaders):** The ABAC condition expressions are ignored.
 
-Write to a blob with blob index tag (Blob.Write.WithTagHeaders): The ABAC condition expression(s) are ignored.
+- Setting a home directory isn't supported.
 
-Setting a home directory is not supported.
+- The connection string can't include the container name. The user connects to the root of the storage account and then navigates to the destination container and directories by using 'change directory' (cd) commands.
 
-The connection string cannot include the container name. The user will connect to the root of the Storage Account and then navigate to the destination container and directories with 'change directory' (cd) commands.
+- Currently, `chown` and `chgrp` require either superuser and manage ownership permissions, or manage ownership, read, and write permissions. In the future, only manage ownership or superuser roles are required.
 
-Currently, `chown` & `chgrp` require either superuser and manage ownership, or manage ownership, read, and write. In the future, only manage ownership or superuser roles will suffice.
-
-For `chmod`, the current requirement is either superuser and modify permissions, or modify permissions, read, and write. It will later require only modify permissions or superuser.
+- For `chmod`, the current requirement is either superuser and modify permissions, or modify permissions, read, and write. In the future, only modify permissions or superuser is required.
 
 ## Troubleshooting
 
-- Connections to Storage Accounts via WinSCP works and the list of containers are visible after logging in. However, opening any container fails with Access denied
-  - **Why**: WinSCP automatically tries to **canonicalize every directory** it enters.  That means — for _every_ `cd` or directory listing, it sends one or more extra protocol requests to figure out the "true" absolute path.
-    - The **root directory** shows _containers_
-    - Each container is **a virtual chroot** — once inside it, you can't go above or outside it.
-    - Paths are **virtual**, not physical, and Azure doesn't support `/`-based absolute traversal above containers.
-  - **Fix**: There are two options to resolve this issue
-    - Disable "Resolve Symbolic Links"
-      - Advanced->Environment->Directories -> Untick "Resolve Symbolic Links"
-    - Set Remote Directory
-      - Advanced->Environment->Directories -> Set "Remote Directory" to "\\<container-name>"
-      - By setting this you will directly enter the specified container after logging in
+### Opening any container fails with "Access denied"
+
+An `Access denied` error can happen even if you're able to connect to storage accounts through WinSCP, and you can see the list of containers after signing in.
+
+This error can happen because WinSCP automatically tries to **canonicalize every directory** it enters. That means that for _every_ `cd` or directory listing, it sends one or more extra protocol requests to figure out the "true" absolute path.
+
+    - The **root directory** shows _containers_.
+    - Each container acts as **a virtual chroot**. Once you're inside it, you can't go above or outside it.
+    - Paths are **virtual**, not physical. Azure doesn't support `/`-based absolute traversal above containers.
+
+Resolve this problem by using one of the following options:
+
+- Disable **Resolve Symbolic Links**. Browse to **Advanced->Environment->Directories** and untick **Resolve Symbolic Links**.
+
+- Set the remote directory. Browse to **Advanced->Environment->Directories**, and set **Remote Directory** to "\\\<container-name>". By setting this value, you directly enter the specified container after signing in.
+
+## See also
+
+- [SFTP support for Azure Blob Storage](secure-file-transfer-protocol-support.md)

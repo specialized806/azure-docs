@@ -6,15 +6,12 @@ author: normesta
 
 ms.service: azure-blob-storage
 ms.topic: concept-article
-ms.date: 11/15/2024
+ms.date: 02/26/2026
 ms.custom: references_regions
 ms.author: normesta
 
 # Customer intent: "As a cloud storage administrator, I want to enable SFTP support for Azure Blob Storage, so that I can facilitate secure and efficient file transfers without complex infrastructure management."
 ---
-> [!IMPORTANT]
-> Microsoft Entra ID–based access for Azure Storage SFTP is now in Public Preview. To learn more about configuring entra-id based access, see  [Entra ID based access for Azure Storage SFTP](secure-file-transfer-protocol-support-entra-id-based-access.md). 
-
 
 # SSH File Transfer Protocol (SFTP) support for Azure Blob Storage
 
@@ -52,13 +49,15 @@ Local users must use either a password or a Secure Shell (SSH) private key crede
 
 To set up access permissions, you create a local user, and choose authentication methods. Then, for each container in your account, you can specify the level of access you want to give that user.
 
-
 > [!CAUTION]
 > Local users do not interoperate with other Azure Storage permission models such as RBAC (role based access control) and ABAC (attribute based access control). Access control lists (ACLs) are supported for local users.
 >
 > For example, Jeff has read only permission (can be controlled via RBAC or ABAC) via their Microsoft Entra identity for file _foo.txt_ stored in container _con1_. If Jeff is accessing the storage account via NFS (when not mounted as root/superuser), Blob REST, or Data Lake Storage REST, these permissions will be enforced. However, if Jeff also has a local user identity with delete permission for data in container _con1_, they can delete _foo.txt_ via SFTP using the local user identity.
 
 Enabling SFTP support doesn't prevent other types of clients from using Microsoft Entra ID. For users that access Blob Storage by using the Azure portal, Azure CLI, Azure PowerShell commands, AzCopy, as well as Azure SDKs, and Azure REST APIs, you can continue to use the full breadth of Azure Blob Storage security setting to authorize access. To learn more, see [Access control model in Azure Data Lake Storage](data-lake-storage-access-control-model.md).
+
+> [!TIP]
+> The ability to use Microsoft Entra ID to authorize SFTP transfers is currently now in public preview. To learn more about configuring entra-id based access, see  [Authorize SSH File Transfer Protocol (SFTP) access to blobs using Microsoft Entra ID](secure-file-transfer-protocol-support-entra-id-based-access.md).
 
 ## Authentication methods
 
