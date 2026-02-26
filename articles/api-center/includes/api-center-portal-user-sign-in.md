@@ -11,10 +11,10 @@ ms.date: 02/25/2026
 ms.custom: Include file
 ---
 
-To enable sign-in to the API Center portal to access APIs, assign the **Azure API Center Data Reader** role to users or groups in your organization, scoped to your API center.
+When Microsoft Entra ID is configured for portal access, users must sign in to the API Center portal to access APIs. To enable sign-in, assign the **Azure API Center Data Reader** role to users or groups in your organization, scoped to your API center.
 
-> [!IMPORTANT]
-> * When Microsoft Entra ID is configured for portal access, the user who configures the portal is automatically assigned the **Azure API Center Data Reader** role. 
+> [!NOTE]
+> * When the Microsoft Entra ID app registration is set up automatically, the user who configures the portal is automatically assigned the **Azure API Center Data Reader** role. 
 > * Be sure to assign the **Azure API Center Data Reader** role to other administrators of the API center.  
 
 For detailed prerequisites and steps to assign a role to users and groups, see [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal). Brief steps follow:

@@ -21,7 +21,7 @@ The API Center portal supports and streamlines the work of developers who use an
 * **Search for APIs** by name or use AI-assisted semantic search.
 * **Filter APIs** by type or lifecycle stage.
 * **View API details and definitions** including endpoints, methods, parameters, and response formats.
-* **Download API definitions** to your computer or open in Visual Studio Code.
+* **Download API definitions** to their computer or open in Visual Studio Code.
 * **Try out APIs** with API key or OAuth 2.0 authentication.
 
 :::image type="content" source="media/self-host-api-center-portal/api-center-portal-signed-in.png" alt-text="Screenshot of the API Center portal after user sign-in.":::
@@ -66,6 +66,7 @@ After configuring access, open the API Center portal by selecting **View API Cen
 
 By default, the portal home page is publicly reachable. If Microsoft Entra ID is configured for access, users must select **Sign-in** to access APIs. See [Enable sign-in to portal by Microsoft Entra users and groups](#enable-sign-in) for details on configuring user access.
 
+<a id="enable-sign-in"></a>
 ## Enable sign-in to portal by Microsoft Entra users and groups 
 
 [!INCLUDE [api-center-portal-user-sign-in](includes/api-center-portal-user-sign-in.md)]
@@ -103,7 +104,7 @@ If you enable semantic search on the **Semantic search** tab, the API Center por
 Users can search for APIs by using natural language queries to find APIs based on their intent. For example, if a developer searches for "I need an API for inventory management," the portal can suggest relevant APIs, even if the API names or descriptions don't include those exact words.
 
 > [!TIP]
-> When using the **Free** plan of Azure API Center, you can [upgrade](frequently-asked-questions.yml#how-do-i-upgrade-my-api-center-from-the-free-plan-to-the-standard-plan) to the **Standard** plan to enable full service features including semantic search in the API Center portal.
+> If you use the **Free** plan of Azure API Center, you can [upgrade](frequently-asked-questions.yml#how-do-i-upgrade-my-api-center-from-the-free-plan-to-the-standard-plan) to the **Standard** plan to enable full service features including semantic search in the API Center portal.
 
 To use AI-assisted search when signed in to the API Center portal, select the search box, choose **Search with AI**, and enter a query.
 
