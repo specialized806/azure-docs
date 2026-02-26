@@ -185,8 +185,8 @@ An example of a configuration for a larger SAP ASE DB Server with a database siz
 | Disk aggregation | Storage Spaces | LVM2 | --- |
 | File system | NTFS | XFS |
 | Format block size | Needs workload testing | Needs workload testing | --- |
-| # and type of data disks | Premium storage v1: 4+ x P30 (RAID0) <br /> Premium storage v2: 4+ x 1,000 GiB - 4,000 GiB - plus 3,000 IOPS and 125 MB/sec throughput per disk | Premium storage v1: 4+ x P30 (RAID0) <br /> Premium storage v2: 4+ x 1,000 GiB - 4,000 GiB - plus 3,000 IOPS and 125 MB/sec throughput per disk | Cache = Read Only, Consider Azure Ultra disk |
-| # and type of log disks | Premium storage v1: 1 x P30 <br /> Premium storage v2: 1 x 500 GiB - plus 2,000 IOPS and 125 MB/sec throughput | Premium storage v1: 1 x P30 <br /> Premium storage v2: 1 x 500 GiB - plus 2,000 IOPS and 125 MB/sec throughput | Consider Write Accelerator or Azure Ultra disk |
+| # and type of data disks | Premium storage v1: 4+ x P30 (RAID0) <br /> Premium storage v2: 4+ x 1,000 GiB - 4,000 GiB - plus 3,000 IOPS and 125 MB/sec throughput per disk | Premium storage v1: 4+ x P30 (RAID0) <br /> Premium storage v2: 4+ x 1,000 GiB - 4,000 GiB - plus 3,000 IOPS and 125 MB/sec throughput per disk | Cache = Read Only, Consider Azure Ultra Disk |
+| # and type of log disks | Premium storage v1: 1 x P30 <br /> Premium storage v2: 1 x 500 GiB - plus 2,000 IOPS and 125 MB/sec throughput | Premium storage v1: 1 x P30 <br /> Premium storage v2: 1 x 500 GiB - plus 2,000 IOPS and 125 MB/sec throughput | Consider Write Accelerator or Azure Ultra Disk |
 | ASE MaxMemory parameter | 90% of Physical RAM | 90% of Physical RAM | Assuming single instance |
 | # of backup devices | 16 | 16 | --- |
 | # and type of backup disks | 4 | 4 | Use LVM2/Storage Spaces |
