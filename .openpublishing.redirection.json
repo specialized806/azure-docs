@@ -1,6 +1,11 @@
 {
   "redirections": [
     {
+      "source_path": "articles/extended-zones/arc-enabled-workloads-postgre-sql.md",
+      "redirect_url": "/azure/extended-zones/overview",
+      "redirect_document_id": false
+    },
+    {
       "source_path": "articles/avere-vfxt/avere-vfxt-add-storage.md",
       "redirect_url": "/previous-versions/azure/avere-vfxt/avere-vfxt-add-storage",
       "redirect_document_id": false
