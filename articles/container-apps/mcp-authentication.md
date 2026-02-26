@@ -169,7 +169,7 @@ Use the following command to fetch the API key for your session pool.
 
 ```azurecli
 API_KEY=$(az rest --method POST \
-    --uri "https://management.azure.com/subscriptions/$SUBSCRIPTION_ID/resourceGroups/$RESOURCE_GROUP/providers/Microsoft.App/sessionPools/$SESSION_POOL_NAME/fetchMCPServerCredentials" \
+    --uri "https://management.azure.com/subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<RESOURCE_GROUP>/providers/Microsoft.App/sessionPools/<SESSION_POOL_NAME>/fetchMCPServerCredentials" \
     --uri-parameters api-version=2025-02-02-preview \
     --query "apiKey" -o tsv)
 ```
@@ -182,7 +182,7 @@ To rotate the API key, call the `regenerateCredentials` action on the session po
 
 ```azurecli
 az rest --method POST \
-    --uri "https://management.azure.com/subscriptions/$SUBSCRIPTION_ID/resourceGroups/$RESOURCE_GROUP/providers/Microsoft.App/sessionPools/$SESSION_POOL_NAME/regenerateCredentials" \
+    --uri "https://management.azure.com/subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<RESOURCE_GROUP>/providers/Microsoft.App/sessionPools/<SESSION_POOL_NAME>/regenerateCredentials" \
     --uri-parameters api-version=2025-02-02-preview
 ```
 

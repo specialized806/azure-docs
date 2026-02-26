@@ -122,6 +122,8 @@ In this section, you create a new Python project with FastAPI and the MCP Python
     store = TaskStore()
     ```
 
+    The `TaskItem` dataclass defines the data model with a `to_dict()` method for serialization. The `TaskStore` class manages an in-memory list prepopulated with sample data and provides CRUD methods. The module-level `store` singleton is shared across the application for simplicity.
+
 ## Define the MCP tools
 
 In this section, you define the MCP tools that the AI model can invoke and mount the MCP server in your FastAPI application.
@@ -274,6 +276,8 @@ Package the application as a Docker container so you can test it locally before 
     CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8080"]
     ```
 
+    The Dockerfile uses a Python 3.12 slim base image, installs dependencies from `requirements.txt`, then copies the application code. Uvicorn serves the FastAPI app on port 8080.
+
 1. Verify the container builds and runs locally:
 
     ```bash
@@ -285,7 +289,7 @@ Package the application as a Docker container so you can test it locally before 
 
 ## Deploy to Azure Container Apps
 
-Now you deploy the containerized MCP server to Azure Container Apps by using the Azure CLI.
+After you containerize the application, deploy it to Azure Container Apps by using the Azure CLI. The `az containerapp up` command builds the container image in the cloud, so you don't need Docker on your machine for this step.
 
 1. Set environment variables:
 
@@ -326,7 +330,7 @@ Now you deploy the containerized MCP server to Azure Container Apps by using the
         --name $APP_NAME \
         --resource-group $RESOURCE_GROUP \
         --allowed-origins "*" \
-        --allowed-methods "GET,POST,OPTIONS" \
+        --allowed-methods "GET,POST,DELETE,OPTIONS" \
         --allowed-headers "*"
     ```
 
@@ -345,6 +349,8 @@ Now you deploy the containerized MCP server to Azure Container Apps by using the
     ```
 
 ## Connect GitHub Copilot to the deployed server
+
+Now that the MCP server is running in Azure, configure VS Code to connect GitHub Copilot to the deployed endpoint.
 
 1. Create or update `.vscode/mcp.json`:
 
@@ -397,12 +403,16 @@ If you don't plan to continue using this application, delete the resource group 
 az group delete --resource-group $RESOURCE_GROUP --yes --no-wait
 ```
 
+## Next step
+
+> [!div class="nextstepaction"]
+> [Secure MCP servers on Container Apps](mcp-authentication.md)
+
 ## Related content
 
 - [MCP servers on Azure Container Apps overview](mcp-overview.md)
 - [Deploy an MCP server to Container Apps (.NET)](tutorial-mcp-server-dotnet.md)
 - [Deploy an MCP server to Container Apps (Node.js)](tutorial-mcp-server-nodejs.md)
 - [Deploy an MCP server to Container Apps (Java)](tutorial-mcp-server-java.md)
-- [Secure MCP servers on Container Apps](mcp-authentication.md)
 - [Troubleshoot MCP servers on Container Apps](mcp-troubleshooting.md)
 - [MCP Python SDK](https://github.com/modelcontextprotocol/python-sdk)

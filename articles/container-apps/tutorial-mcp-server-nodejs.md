@@ -67,6 +67,8 @@ In this section, you create a new Node.js project with Express and the MCP TypeS
     }
     ```
 
+    This configuration targets ES2022 with Node.js module resolution, outputs compiled files to `dist/`, and enables strict type checking.
+
 1. Update `package.json` to enable ES modules and add build and start scripts. Add or replace the `type` and `scripts` fields:
 
     ```json
@@ -150,6 +152,8 @@ In this section, you create a new Node.js project with Express and the MCP TypeS
 
     export const store = new TaskStore();
     ```
+
+    The `TaskItem` interface defines the task data shape. The `TaskStore` class manages an in-memory array prepopulated with sample data and provides methods to list, find, create, toggle, and delete tasks. A module-level singleton is exported for use by the MCP tools.
 
 ## Define the MCP tools
 
@@ -331,6 +335,8 @@ Package the application as a Docker container so you can test it locally before 
     CMD ["node", "dist/index.js"]
     ```
 
+    The multi-stage build compiles TypeScript in the first stage, then creates a production image with only runtime dependencies and the compiled JavaScript output. The `PORT` environment variable is set to 8080 to match the Container Apps target port.
+
 1. Verify locally:
 
     ```bash
@@ -432,7 +438,7 @@ Now that the MCP server is running in Azure, configure VS Code to connect GitHub
 
 ## Configure scaling for interactive use
 
-By default, Azure Container Apps scale to zero replicas. For MCP servers that serve interactive clients like Copilot, cold starts cause noticeable delays. Set a minimum replica count to keep at least one instance running:
+By default, Azure Container Apps can scale to zero replicas. For MCP servers that serve interactive clients like Copilot, cold starts cause noticeable delays. Set a minimum replica count to keep at least one instance running:
 
 ```azurecli
 az containerapp update \
@@ -460,12 +466,16 @@ If you don't plan to continue using this application, delete the resource group 
 az group delete --resource-group $RESOURCE_GROUP --yes --no-wait
 ```
 
+## Next step
+
+> [!div class="nextstepaction"]
+> [Secure MCP servers on Container Apps](mcp-authentication.md)
+
 ## Related content
 
 - [MCP servers on Azure Container Apps overview](mcp-overview.md)
 - [Deploy an MCP server to Container Apps (.NET)](tutorial-mcp-server-dotnet.md)
 - [Deploy an MCP server to Container Apps (Python)](tutorial-mcp-server-python.md)
 - [Deploy an MCP server to Container Apps (Java)](tutorial-mcp-server-java.md)
-- [Secure MCP servers on Container Apps](mcp-authentication.md)
 - [Troubleshoot MCP servers on Container Apps](mcp-troubleshooting.md)
 - [MCP TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk)

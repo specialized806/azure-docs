@@ -138,6 +138,8 @@ Next, define the task-management data store and the MCP tools that expose it to 
     }
     ```
 
+    The `TaskItem` record defines the data model with five properties. The `TaskStore` class manages an in-memory list prepopulated with sample data and provides methods to list, find, create, toggle, and delete tasks.
+
 1. Create a file named `TasksMcpTools.cs` with the MCP tool definitions:
 
     ```csharp
@@ -255,6 +257,8 @@ Package the application as a Docker container so you can test it locally before 
     ENTRYPOINT ["dotnet", "TasksMcpServer.dll"]
     ```
 
+    The multi-stage build uses the SDK image to restore, build, and publish the app, then copies only the published output to a smaller ASP.NET runtime image. The `ASPNETCORE_URLS` environment variable configures the app to listen on port 8080.
+
 1. Verify the container builds and runs locally:
 
     ```bash
@@ -311,7 +315,7 @@ After you containerize the application, deploy it to Azure Container Apps by usi
         --name $APP_NAME \
         --resource-group $RESOURCE_GROUP \
         --allowed-origins "*" \
-        --allowed-methods "GET,POST,OPTIONS" \
+        --allowed-methods "GET,POST,DELETE,OPTIONS" \
         --allowed-headers "*"
     ```
 
@@ -384,13 +388,17 @@ If you don't plan to continue using this application, delete the resource group 
 az group delete --resource-group $RESOURCE_GROUP --yes --no-wait
 ```
 
+## Next step
+
+> [!div class="nextstepaction"]
+> [Secure MCP servers on Container Apps](mcp-authentication.md)
+
 ## Related content
 
 - [MCP servers on Azure Container Apps overview](mcp-overview.md)
 - [Deploy an MCP server to Container Apps (Python)](tutorial-mcp-server-python.md)
 - [Deploy an MCP server to Container Apps (Node.js)](tutorial-mcp-server-nodejs.md)
 - [Deploy an MCP server to Container Apps (Java)](tutorial-mcp-server-java.md)
-- [Secure MCP servers on Container Apps](mcp-authentication.md)
 - [Troubleshoot MCP servers on Container Apps](mcp-troubleshooting.md)
 - [ModelContextProtocol.AspNetCore NuGet package](https://www.nuget.org/packages/ModelContextProtocol.AspNetCore)
 - [MCP C# SDK](https://github.com/modelcontextprotocol/csharp-sdk)

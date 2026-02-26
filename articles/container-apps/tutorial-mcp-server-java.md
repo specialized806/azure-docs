@@ -90,6 +90,8 @@ In this section, you create a new Spring Boot project with the MCP Java SDK.
     </project>
     ```
 
+    The `pom.xml` defines a Spring Boot application with two key dependencies: `spring-boot-starter-web` for the web framework and `mcp-spring-webmvc` for the MCP SDK. The Spring Boot Maven plugin packages the app as an executable JAR.
+
     > [!NOTE]
     > The MCP Java SDK is under active development. Check the [MCP Java SDK releases](https://github.com/modelcontextprotocol/java-sdk/releases) for the latest version and update the `<version>` accordingly.
 
@@ -142,6 +144,8 @@ In this section, you define the task data model and an in-memory store.
     }
     ```
 
+    The `TaskItem` class defines the data model with standard getters and a setter for the completion status. The constructor initializes the `createdAt` timestamp automatically.
+
 1. Create `src/main/java/com/example/tasksmcp/TaskStore.java`:
 
     ```java
@@ -191,6 +195,8 @@ In this section, you define the task data model and an in-memory store.
         }
     }
     ```
+
+    The `TaskStore` Spring component manages an in-memory list prepopulated with sample data. It uses `AtomicInteger` for thread-safe ID generation and provides methods for standard CRUD operations.
 
 ## Define the MCP tools
 
@@ -416,7 +422,6 @@ In this section, you define the MCP tools that the AI model can invoke and confi
     - `WebMvcSseServerTransportProvider` registers the SSE transport at the `/mcp` path.
     - `McpServer.sync(transport)` configures tool capabilities and registers each tool specification.
     - CORS is enabled because GitHub Copilot in VS Code makes cross-origin requests to MCP servers.
-    - A `/health` endpoint is added separately for Azure Container Apps health probes. MCP endpoints return JSON-RPC responses that aren't suitable as health checks.
 
     > [!NOTE]
     > This tutorial uses `WebMvcSseServerTransportProvider` (SSE transport) because the MCP Java SDK doesn't yet offer a stable streamable HTTP transport. The other language tutorials (.NET, Python, Node.js) use streamable HTTP. When the Java SDK adds streamable HTTP support, update the transport provider accordingly. The SSE transport is fully compatible with VS Code Copilot and other MCP clients.
@@ -445,6 +450,8 @@ In this section, you define the MCP tools that the AI model can invoke and confi
         }
     }
     ```
+
+    The main class bootstraps the Spring Boot application and exposes a `/health` endpoint for Container Apps health probes. MCP endpoints return JSON-RPC responses, so a separate health endpoint is needed for health checks.
 
 ## Test the MCP server locally
 
@@ -514,7 +521,7 @@ Package the application as a Docker container so you can test it locally before 
 
 ## Deploy to Azure Container Apps
 
-Now you deploy the containerized MCP server to Azure Container Apps using the Azure CLI.
+After you containerize the application, deploy it to Azure Container Apps by using the Azure CLI. The `az containerapp up` command builds the container image in the cloud, so you don't need Docker on your machine for this step.
 
 1. Set environment variables:
 
@@ -575,6 +582,8 @@ Now you deploy the containerized MCP server to Azure Container Apps using the Az
 
 ## Connect GitHub Copilot to the deployed server
 
+Now that the MCP server is running in Azure, configure VS Code to connect GitHub Copilot to the deployed endpoint.
+
 1. Create or update `.vscode/mcp.json`:
 
     ```json
@@ -632,12 +641,16 @@ If you're not going to continue to use this application, delete the resource gro
 az group delete --resource-group $RESOURCE_GROUP --yes --no-wait
 ```
 
+## Next step
+
+> [!div class="nextstepaction"]
+> [Secure MCP servers on Container Apps](mcp-authentication.md)
+
 ## Related content
 
 - [MCP servers on Azure Container Apps overview](mcp-overview.md)
 - [Deploy an MCP server to Container Apps (.NET)](tutorial-mcp-server-dotnet.md)
 - [Deploy an MCP server to Container Apps (Python)](tutorial-mcp-server-python.md)
 - [Deploy an MCP server to Container Apps (Node.js)](tutorial-mcp-server-nodejs.md)
-- [Secure MCP servers on Container Apps](mcp-authentication.md)
 - [Troubleshoot MCP servers on Container Apps](mcp-troubleshooting.md)
 - [MCP Java SDK](https://github.com/modelcontextprotocol/java-sdk)

@@ -47,7 +47,7 @@ The correct endpoint path depends on your MCP SDK and routing configuration.
 | Java (Spring Boot SSE) | `/mcp` | SSE transport; path set in `WebMvcSseServerTransportProvider` constructor |
 | Platform-managed sessions | Value from `mcpServerEndpoint` | Full URL provided by the Azure Resource Manager (ARM) API; retrieve it from the session pool properties |
 
-A common cause of 404 errors in Python is mounting the FastMCP app at `/mcp` instead of `/` on the FastAPI router. Because the SDK adds its own `/mcp` subpath, mounting at `/mcp` results in a `/mcp/mcp` endpoint. Mount at `/` so the final path is `/mcp`.
+A common cause of 404 errors in Python is mounting the FastMCP app at `/mcp` instead of `/` on the FastAPI router. Since the SDK adds its own `/mcp` subpath, mounting at `/mcp` results in a `/mcp/mcp` endpoint. Mount at `/` so the final path is `/mcp`.
 
 Verify the endpoint responds by testing with curl:
 
@@ -274,7 +274,7 @@ If `isMCPServerEnabled` is `false` or the field is absent, redeploy the session 
 
 **Cause**: Dynamic sessions with MCP are available in a subset of Azure regions during preview.
 
-**Solution**: Check the [Azure Container Apps sessions documentation](/azure/container-apps/sessions) for the current list of supported regions.
+**Solution**: Check the [sessions documentation](/azure/container-apps/sessions) for the current list of supported regions.
 
 ## Diagnose and debug
 
