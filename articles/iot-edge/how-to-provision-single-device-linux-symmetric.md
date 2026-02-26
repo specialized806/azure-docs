@@ -84,10 +84,6 @@ You can configure your IoT Edge device with symmetric key authentication by usin
 sudo iotedge config mp --connection-string 'PASTE_DEVICE_CONNECTION_STRING_HERE'
 ```
 
-The following `iotedge config mp` command creates a configuration file on the device and enters your connection string in the configuration file:
-
-```bash
-
 1. Apply the configuration changes.
 
    ```bash
