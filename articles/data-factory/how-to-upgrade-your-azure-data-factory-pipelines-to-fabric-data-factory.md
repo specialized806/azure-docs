@@ -56,7 +56,7 @@ Each pipeline and activity is assigned one of the following statuses. Use these 
 
 ## Step 3: Select a Fabric workspace and mount your Azure Data Factory
 
-After you review the assessment, select **Next** to mount your Azure Data Factory to a Fabric workspace and continue the migration flow in Fabric. Mounting lets you reference your Azure Data Factory (ADF) instance inside a Fabric workspace without migrating, copying, or altering the ADF environment.
+After you review the assessment, select **Next** to mount your Azure Data Factory to a Fabric workspace and continue the migration flow in Fabric. Mounting lets you reference your Azure Data Factory (ADF) instance inside a Fabric workspace without migrating, copying, or altering the Azure Data Factory environment.
 
 :::image type="content" source="media/how-to-assess-and-upgrade-your-azure-data-factory-pipelines-to-fabric/mount-azure-data-factory-to-fabric.png" alt-text="Screenshot showing Fabric workspace selection for mounting Azure Data Factory to Fabric." lightbox="media/how-to-assess-and-upgrade-your-azure-data-factory-pipelines-to-fabric/mount-azure-data-factory-to-fabric.png":::
 
@@ -81,10 +81,31 @@ Select the pipelines you want to migrate.
 
 Select **Review connections** to map Azure Data Factory linked services to Fabric connections.
 
-The migration experience attempts to automatically create commonly used connections (Azure Blob Storage, Azure Data Lake Storage Gen2, SQL Server, and Azure SQL Database) that don't rely on Azure Key Vault.
-For other connections, either select an existing Fabric connection or create new connections by using the modern Get Data experience or from workspace settings. Then select **Confirm**.
+The migration experience attempts to automatically create connections for authentication methods that can be safely and reliably mapped from Azure Data Factory to Fabric’s managed identity and security model without requiring customer‑managed infrastructure or network configuration.
 
 :::image type="content" source="media/how-to-assess-and-upgrade-your-azure-data-factory-pipelines-to-fabric/linkedservices-to-connection-mapping.png" alt-text="Screenshot showing the mapping of linked services to Fabric connections." lightbox="media/how-to-assess-and-upgrade-your-azure-data-factory-pipelines-to-fabric/linkedservices-to-connection-mapping.png":::
+
+### Connections automatically created during migration (supported only)
+
+| Connector | Azure Data Factory authentication | Fabric authentication |
+|------------------------|----------------------------------|----------------------|
+| Azure Blob Storage | Account key; Shared access signature (SAS); Service principal; System-assigned managed identity | Account key; Shared access signature (SAS); Service principal; Workspace identity (system-assigned managed identity) |
+| Azure Data Lake Storage Gen2 | Account key; Shared access signature (SAS); Service principal; System-assigned managed identity | Account key; Shared access signature (SAS); Service principal; Workspace identity (system-assigned managed identity) |
+| SQL Server | Basic authentication (SQL authentication); Service principal; System-assigned managed identity | Basic authentication; Service principal; Workspace identity (system-assigned managed identity) |
+| Azure Data Lake Storage Gen1 (Cosmos Synapse shortcut) | Service principal; System-assigned managed identity | Service principal; Workspace identity (system-assigned managed identity) |
+| Azure Data Lake Storage Gen2 (Cosmos Synapse shortcut) | Service principal; System-assigned managed identity | Service principal; Workspace identity (system-assigned managed identity) |
+| Azure Data Explorer (Kusto) | Service principal; System-assigned managed identity | Service principal; Workspace identity (system-assigned managed identity) |
+| Azure Cosmos DB for NoSQL | Account key | Account key |
+| Azure Cosmos DB for MongoDB | Basic authentication | Basic authentication |
+| Azure SQL Managed Instance | Account key; Service principal | Basic authentication; Service principal |
+| Azure Database for PostgreSQL | Basic authentication | Basic authentication |
+| Azure Database for MySQL | Basic authentication | Basic authentication |
+| MySQL | Basic authentication | Basic authentication |
+| PostgreSQL | Basic authentication | Basic authentication |
+| Azure Data Lake Analytics | Service principal; System-assigned managed identity | Service principal; Workspace identity (system-assigned managed identity) |
+
+
+For other connections, either select an existing Fabric connection or create new connections by using the modern Get Data experience or from workspace settings. Then select **Confirm**.
 
 Next, select an existing folder or create a new folder to migrate your Azure Data Factory pipelines, and then select **Confirm**.
 This action starts the migration of the selected pipelines to the chosen folder in the Fabric workspace. A confirmation message appears when the migration completes successfully.
@@ -122,33 +143,34 @@ After migration, complete the following tasks:
 
 The following items aren't supported in the UX-based migration experience today. Pipelines that use these features require redesign or alternate migration approaches.
 
-| **Category**                 | **Out-of-scope item**                                      | **Details** |
-|-----------------------------|-------------------------------------------------------------|-------------|
-| **Integration Runtimes**    | Self-Hosted Integration Runtime (SHIR)                     | SHIR can't be migrated. Replace it with Fabric On-Premises Data Gateway (OPDG). |
-|                             | Managed Virtual Network IR / VNet injected IR              | Fabric doesn't support migrating Managed VNet IRs. VNet Gateway is a different model that requires re-setup. |
-|                             | SSIS IR                                                     | SSIS IR isn't supported. |
-| **Workload Types**          | ADF CDC (Change Data Capture)                              | CDC workloads are out of scope and don't migrate. |
-|                             | Airflow assets                                              | Airflow DAG-based orchestration can't be migrated to Fabric. |
-|                             | U-SQL / ADLA                                                | ADLA and U-SQL are deprecated and not supported in Fabric. |
-|                             | Cross-cloud / AML refresh                                   | WI support for AML/SPN dual tokens is in progress. These workloads don't migrate. |
-| **Connectors**              | Long-tail connectors (for example, SAP ECC BW MDX, SAP C**)     | Fabric has no equivalent connectors. Redesign is required. |
-|                             | Marketing & Finance SaaS (HubSpot, Google Ads, QuickBooks, Shopify, Xero) | Not supported today. |
-| **Triggers & Orchestration**| Custom Event Triggers                                       | Custom event triggers can't be migrated. |
-|                             | Storage Event Triggers                                      | Support is coming soon. |
-|                             | Tumbling Window Triggers                                    | Interval-based schedule support is coming soon. Watermark/backfill workloads must be redesigned. |
-|                             | Chaining / Dependency Triggers                              | Chaining/dependency trigger semantics aren't supported yet. |
-| **Security & Authentication**| Advanced configurations (CMK, dual tokens, FIC flows)     | WI or SPN auth models not yet supported don't migrate. |
-|                             | Certificate-based authentication (Web activity)             | Unsupported. Requires redesign. |
-|                             | UAMI support                                                | UAMI isn't supported yet. Use Workspace Identity (WI) as a workaround. |
-| **Parameterization & Metadata** | Global Parameters                                      | Coming soon. Recreate by using Fabric Variable Libraries. |
-|                             | Dynamic linked services (parameterized connections)         | Not supported. Each permutation must be a separate connection and can't migrate. |
-|                             | Metadata-driven pipelines                                   | Highly dynamic linked-service/dataset-driven patterns can't migrate. |
-| **Activities & Compute**    | Synapse SJD / Notebook                                      | Partially supported. Requires redesign into Fabric notebook / Spark job. |
-|                             | Mapping Data Flows (MDF)                                    | Support is coming soon. |
-|                             | Web/Webhook/HTTP activities with custom auth/headers        | Complex auth scenarios must be rebuilt manually. |
-|                             | Notebook pool environment settings                          | Not supported. Migration is blocked. |
-|                             | Batch / Custom Activity WI support                          | Missing WI support blocks migration for these activities. |
-|                             | Copy activity upsert into Lakehouse tables                  | Not supported. Requires Copy to staging and Notebook MERGE. |
+| Category | Out-of-scope item | Details |
+|--------|------------------|---------|
+| **Integration runtimes** | Self-hosted integration runtime (SHIR) | Self-hosted integration runtimes can't be migrated. Replace with the Fabric on-premises data gateway (OPDG). |
+| | Managed virtual network integration runtime (Managed virtual network IR) / Virtual network–injected integration runtime (VNet – Virtual network) | Fabric doesn't support migrating managed virtual network integration runtimes. The Fabric virtual network gateway uses a different model and requires reconfiguration. |
+| | SQL Server Integration Services integration runtime (SSIS IR) | Infrastructure migration, including SQL Server Integration Services integration runtimes, isn't supported. |
+| **Workload types** | Azure Data Factory change data capture (CDC ) | Change data capture workloads are out of scope and don't migrate. |
+| | Apache Airflow assets | Directed acyclic graph (DAG)–based orchestration from Apache Airflow can't be migrated to Fabric. |
+| | Unified Structured Query Language (U‑SQL) / Azure Data Lake Analytics | Deprecated services and not supported in Fabric. |
+| | Cross‑cloud or Azure Machine Learning refresh workloads | Workspace identity support is in progress. These workloads don't migrate. |
+| **Connectors** | Long‑tail connectors (for example, SAP ERP Central Component (ECC), SAP Business Warehouse (BW), Multidimensional Expressions (MDX), SAP Core Data Services (CDS)) | Fabric has no equivalent connectors. Redesign is required. |
+| | Marketing and finance software‑as‑a‑service connectors (HubSpot, Google Ads, QuickBooks, Shopify, Xero) | Not supported today. |
+| **Triggers and orchestration** | Custom event triggers | Custom event triggers can't be migrated. |
+| | Storage event triggers | Support is coming soon. |
+| | Tumbling window triggers | Interval‑based scheduling support is coming soon. Watermark and backfill workloads must be redesigned. |
+| | Chaining or dependency triggers | Chaining and dependency trigger semantics aren't supported yet. |
+| **Security and authentication** | Advanced configurations (customer‑managed keys (CMK), dual tokens, federated identity credential (FIC) flows) | Unsupported workspace identity or service principal authentication models don't migrate. |
+| | Certificate‑based authentication (Web activity) | Unsupported and requires redesign. |
+| | User‑assigned managed identity (UAMI) support | Use workspace identity (WI) as a workaround. |
+| **Parameterization and metadata** | Global parameters | Support is coming soon. Recreate by using Fabric variable libraries. |
+| | Dynamic linked services (parameterized connections) | Not supported. Each permutation must be a separate connection and can't migrate. |
+| | Metadata‑driven pipelines | Highly dynamic linked service or dataset‑driven patterns can't migrate. |
+| **Activities and compute** | Azure Synapse Spark job definition (SJD) or notebook | Partially supported. Requires redesign into Fabric notebooks or Spark jobs. |
+| | Mapping data flows (MDF) | Support is coming soon. |
+| | Web, webhook, or HTTP activities with custom authentication or headers | Complex authentication scenarios must be rebuilt manually. |
+| | Notebook pool environment settings | Not supported. Migration is blocked. |
+| | Batch or custom activity workspace identity support | Missing workspace identity support blocks migration for these activities. |
+| | Copy activity upsert into Lakehouse tables | Not supported. Requires copy to staging and a notebook MERGE operation. |
+
 
 
 ## FAQ
@@ -185,7 +207,7 @@ Yes. Microsoft recommends validating migrations in a nonproduction environment, 
 
 - [Compare Azure Data Factory and Fabric Data Factory](/fabric/data-factory/compare-fabric-data-factory-and-azure-data-factory)
 - [Plan your migration from Azure Data Factory to Fabric Data Factory](/fabric/data-factory/migrate-planning-azure-data-factory)
-- [Assess your pipelines for migration to Fabric Data Factory](how-to-assess-your-azure-data-factory-to-fabric-data-factory-migration)
+- [Assess your pipelines for migration to Fabric Data Factory](how-to-assess-your-azure-data-factory-to-fabric-data-factory-migration.md)
 - [Migration best practices](/fabric/data-factory/migration-best-practices)
 - [Connector parity](/fabric/data-factory/connector-parity)
 - [Convert global parameters to variable libraries](/fabric/data-factory/convert-global-parameters-to-variable-libraries)
