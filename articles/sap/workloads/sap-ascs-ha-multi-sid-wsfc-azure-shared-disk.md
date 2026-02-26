@@ -23,7 +23,7 @@ This article focuses on how to move from a single SAP ASCS/SCS installation to c
 
 You can use Azure Premium SSDs as Azure shared disks for the SAP ASCS/SCS instance. The following limitations are currently in place:
 
-- [Azure Ultra Disk Storage disks](/azure/virtual-machines/disks-types#ultra-disks) and [Azure Standard SSDs](/azure/virtual-machines/disks-types#standard-ssds) aren't supported as Azure shared disks for SAP workloads.
+- [Ultra Disks](/azure/virtual-machines/disks-types#ultra-disks) and [Azure Standard SSDs](/azure/virtual-machines/disks-types#standard-ssds) aren't supported as Azure shared disks for SAP workloads.
 - [Azure shared disks](/azure/virtual-machines/disks-shared) with [Premium SSDs](/azure/virtual-machines/disks-types#premium-ssds) are supported for SAP deployment in availability sets and availability zones.
 - Azure shared disks with Premium SSDs come with two storage options:
   - Locally redundant storage (LRS) for Premium SSD shared disks (`skuName` value of `Premium_LRS`) is supported with deployment in availability sets.
