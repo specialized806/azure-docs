@@ -277,7 +277,18 @@ OrchestrationMetadata metadata = client.waitForInstanceStart(instanceId, Duratio
 
 # [JavaScript](#tab/javascript)
 
-The Durable Task SDK is not available for JavaScript. Use [Durable Functions](what-is-durable-task.md) instead.
+```typescript
+import { createAzureManagedClient } from "@microsoft/durabletask-js-azuremanaged";
+
+const client = createAzureManagedClient(connectionString);
+
+// Schedule a new orchestration instance
+const instanceId = await client.scheduleNewOrchestration("HelloWorld", input);
+console.log(`Started orchestration with ID = '${instanceId}'.`);
+
+// Optionally, wait for the orchestration to start
+const state = await client.waitForOrchestrationStart(instanceId, false, 30);
+```
 
 # [PowerShell](#tab/powershell)
 
@@ -484,7 +495,18 @@ if (metadata != null) {
 
 # [JavaScript](#tab/javascript)
 
-The Durable Task SDK is not available for JavaScript. Use [Durable Functions](what-is-durable-task.md) instead.
+```typescript
+import { createAzureManagedClient } from "@microsoft/durabletask-js-azuremanaged";
+
+const client = createAzureManagedClient(connectionString);
+
+// Get the status of an orchestration instance
+const state = await client.getOrchestrationState(instanceId, true);
+if (state) {
+    const status = state.runtimeStatus;
+    // do something based on the current status
+}
+```
 
 # [PowerShell](#tab/powershell)
 
@@ -631,7 +653,18 @@ for (OrchestrationMetadata instance : result.getOrchestrationState()) {
 
 # [JavaScript](#tab/javascript)
 
-The Durable Task SDK is not available for JavaScript. Use [Durable Functions](what-is-durable-task.md) instead.
+```typescript
+import { createAzureManagedClient } from "@microsoft/durabletask-js-azuremanaged";
+
+const client = createAzureManagedClient(connectionString);
+
+// Query all orchestration instances
+const instances = client.getAllInstances();
+
+for await (const instance of instances) {
+    console.log(instance.instanceId);
+}
+```
 
 # [PowerShell](#tab/powershell)
 
@@ -823,7 +856,26 @@ for (OrchestrationMetadata instance : result.getOrchestrationState()) {
 
 # [JavaScript](#tab/javascript)
 
-The Durable Task SDK is not available for JavaScript. Use [Durable Functions](what-is-durable-task.md) instead.
+```typescript
+import { createAzureManagedClient } from "@microsoft/durabletask-js-azuremanaged";
+import { OrchestrationStatus } from "@microsoft/durabletask-js";
+
+const client = createAzureManagedClient(connectionString);
+
+// Get running or pending instances created in the last 7 days
+const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
+const oneDayAgo = new Date(Date.now() - 24 * 60 * 60 * 1000);
+
+const instances = client.getAllInstances({
+    statuses: [OrchestrationStatus.RUNNING, OrchestrationStatus.PENDING],
+    createdFrom: sevenDaysAgo,
+    createdTo: oneDayAgo,
+});
+
+for await (const instance of instances) {
+    console.log(`${instance.instanceId}: ${instance.runtimeStatus}`);
+}
+```
 
 # [PowerShell](#tab/powershell)
 
@@ -945,7 +997,14 @@ client.terminate(instanceId, reason);
 
 # [JavaScript](#tab/javascript)
 
-The Durable Task SDK is not available for JavaScript. Use [Durable Functions](what-is-durable-task.md) instead.
+```typescript
+import { createAzureManagedClient } from "@microsoft/durabletask-js-azuremanaged";
+
+const client = createAzureManagedClient(connectionString);
+
+const reason = "Found a bug";
+await client.terminateOrchestration(instanceId, reason);
+```
 
 # [PowerShell](#tab/powershell)
 
@@ -1112,7 +1171,17 @@ client.resumeInstance(instanceId, resumeReason);
 
 # [JavaScript](#tab/javascript)
 
-The Durable Task SDK is not available for JavaScript. Use [Durable Functions](what-is-durable-task.md) instead.
+```typescript
+import { createAzureManagedClient } from "@microsoft/durabletask-js-azuremanaged";
+
+const client = createAzureManagedClient(connectionString);
+
+// To suspend an orchestration
+await client.suspendOrchestration(instanceId);
+
+// To resume an orchestration
+await client.resumeOrchestration(instanceId);
+```
 
 # [PowerShell](#tab/powershell)
 
@@ -1256,7 +1325,14 @@ client.raiseEvent(instanceId, "MyEvent", eventData);
 
 # [JavaScript](#tab/javascript)
 
-The Durable Task SDK is not available for JavaScript. Use [Durable Functions](what-is-durable-task.md) instead.
+```typescript
+import { createAzureManagedClient } from "@microsoft/durabletask-js-azuremanaged";
+
+const client = createAzureManagedClient(connectionString);
+
+const eventData = [1, 2, 3];
+await client.raiseOrchestrationEvent(instanceId, "MyEvent", eventData);
+```
 
 # [PowerShell](#tab/powershell)
 
@@ -1423,7 +1499,19 @@ try {
 
 # [JavaScript](#tab/javascript)
 
-The Durable Task SDK is not available for JavaScript. Use [Durable Functions](what-is-durable-task.md) instead.
+```typescript
+import { createAzureManagedClient } from "@microsoft/durabletask-js-azuremanaged";
+import { OrchestrationStatus } from "@microsoft/durabletask-js";
+
+const client = createAzureManagedClient(connectionString);
+
+// Wait for orchestration to complete with a timeout
+const state = await client.waitForOrchestrationCompletion(instanceId, true, 30);
+
+if (state?.runtimeStatus === OrchestrationStatus.COMPLETED) {
+    console.log(`Output: ${state.serializedOutput}`);
+}
+```
 
 # [PowerShell](#tab/powershell)
 
@@ -1680,8 +1768,6 @@ public void rewind(
 
 ::: zone pivot="durable-task-sdks"
 
-Currently, only the Durable Task .NET SDK supports rewinding failed orchestration instances.
-
 # [C#](#tab/csharp)
 
 ```csharp
@@ -1693,19 +1779,26 @@ await client.RewindInstanceAsync(instanceId, reason);
 
 # [JavaScript](#tab/javascript)
 
-This sample is shown for .NET only.
+```typescript
+import { createAzureManagedClient } from "@microsoft/durabletask-js-azuremanaged";
+
+const client = createAzureManagedClient(connectionString);
+
+const reason = "Orchestrator failed and needs to be revived.";
+await client.rewindInstance(instanceId, reason);
+```
 
 # [Python](#tab/python)
 
-This sample is shown for .NET only.
+This sample is shown for .NET and JavaScript only.
 
 # [PowerShell](#tab/powershell)
 
-This sample is shown for .NET only.
+This sample is shown for .NET and JavaScript only.
 
 # [Java](#tab/java)
 
-This sample is shown for .NET only.
+This sample is shown for .NET and JavaScript only.
 
 ---
 
@@ -1758,8 +1851,6 @@ public static Task Run(
 
 ::: zone pivot="durable-task-sdks"
 
-Currently, only the Durable Task .NET SDK supports restarting orchestration instances.
-
 # [C#](#tab/csharp)
 
 ```csharp
@@ -1775,19 +1866,30 @@ await client.RestartInstanceAsync(instanceId, restartWithNewInstanceId: false);
 
 # [JavaScript](#tab/javascript)
 
-This sample is shown for .NET only.
+```typescript
+import { createAzureManagedClient } from "@microsoft/durabletask-js-azuremanaged";
+
+const client = createAzureManagedClient(connectionString);
+
+// Restart an orchestration with a new instance ID
+const newInstanceId = await client.restartOrchestration(instanceId, true);
+console.log(`Restarted as new instance: ${newInstanceId}`);
+
+// Restart an orchestration keeping the same instance ID
+await client.restartOrchestration(instanceId, false);
+```
 
 # [Python](#tab/python)
 
-This sample is shown for .NET only.
+This sample is shown for .NET and JavaScript only.
 
 # [PowerShell](#tab/powershell)
 
-This sample is shown for .NET only.
+This sample is shown for .NET and JavaScript only.
 
 # [Java](#tab/java)
 
-This sample is shown for .NET only.
+This sample is shown for .NET and JavaScript only.
 
 ---
 
@@ -1903,7 +2005,15 @@ System.out.println("Purged " + result.getDeletedInstanceCount() + " instance(s).
 
 # [JavaScript](#tab/javascript)
 
-The Durable Task SDK is not available for JavaScript. Use [Durable Functions](what-is-durable-task.md) instead.
+```typescript
+import { createAzureManagedClient } from "@microsoft/durabletask-js-azuremanaged";
+
+const client = createAzureManagedClient(connectionString);
+
+// Purge a single orchestration instance
+const result = await client.purgeOrchestration(instanceId);
+console.log(`Purged ${result?.deletedInstanceCount ?? 0} instance(s).`);
+```
 
 # [PowerShell](#tab/powershell)
 
@@ -2077,7 +2187,22 @@ System.out.println("Purged " + result.getDeletedInstanceCount() + " instance(s).
 
 # [JavaScript](#tab/javascript)
 
-The Durable Task SDK is not available for JavaScript. Use [Durable Functions](what-is-durable-task.md) instead.
+```typescript
+import { createAzureManagedClient } from "@microsoft/durabletask-js-azuremanaged";
+import { OrchestrationStatus, PurgeInstanceCriteria } from "@microsoft/durabletask-js";
+
+const client = createAzureManagedClient(connectionString);
+
+// Purge completed instances older than 30 days
+const thirtyDaysAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000);
+
+const criteria = new PurgeInstanceCriteria();
+criteria.setCreatedTimeTo(thirtyDaysAgo);
+criteria.setRuntimeStatusList([OrchestrationStatus.COMPLETED]);
+
+const result = await client.purgeOrchestration(criteria);
+console.log(`Purged ${result?.deletedInstanceCount ?? 0} instance(s).`);
+```
 
 # [PowerShell](#tab/powershell)
 

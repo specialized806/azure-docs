@@ -96,11 +96,14 @@ ctx.createTimer(Duration.ofHours(72)).await();
 
 # [JavaScript](#tab/javascript)
 
-The Durable Task SDK isn't available for JavaScript. Use [Durable Functions](what-is-durable-task.md) instead.
+```typescript
+// Put the orchestration to sleep for 72 hours
+yield ctx.createTimer(72 * 60 * 60);
+```
 
 # [PowerShell](#tab/powershell)
 
-The Durable Task SDK isn't available for PowerShell. Use [Durable Functions](what-is-durable-task.md) instead.
+The Durable Task SDK is not available for PowerShell. Use [Durable Functions](what-is-durable-task.md) instead.
 
 ---
 
@@ -133,7 +136,7 @@ When you create a timer that expires at 4:30 pm UTC, the underlying Durable Task
 
 > [!NOTE]
 > * Specifying a long delay (for example, a delay of a few days or more) might result in the creation of multiple, internally managed durable timers. The orchestration code doesn't need to be aware of this behavior. However, it may be visible in framework logs and the stored history state.
-> * Don't use built-in date/time APIs to get the current time. When calculating a future date for a timer to expire, always use the orchestration context's current time property (such as `context.CurrentUtcDateTime` in .NET or `ctx.current_utc_datetime` in Python).
+> * Don't use built-in date/time APIs to get the current time. When calculating a future date for a timer to expire, always use the orchestration context's current time property (such as `context.CurrentUtcDateTime` in .NET, `ctx.current_utc_datetime` in Python, or `ctx.currentUtcDateTime` in JavaScript).
 ::: zone-end
 
 ## Usage for delay
@@ -274,7 +277,21 @@ public class BillingIssuer implements TaskOrchestration {
 
 # [JavaScript](#tab/javascript)
 
-The Durable Task SDK is not available for JavaScript. Use [Durable Functions](what-is-durable-task.md) instead.
+```typescript
+import { ActivityContext, OrchestrationContext, TOrchestrator } from "@microsoft/durabletask-js";
+
+const sendBillingEvent = async (_: ActivityContext): Promise<void> => {
+    // Send billing event
+};
+
+const billingIssuer: TOrchestrator = async function* (ctx: OrchestrationContext): any {
+    for (let i = 0; i < 10; i++) {
+        yield ctx.createTimer(24 * 60 * 60); // 1 day
+        yield ctx.callActivity(sendBillingEvent);
+    }
+    return "done";
+};
+```
 
 # [PowerShell](#tab/powershell)
 
@@ -502,7 +519,28 @@ public class TryGetQuote implements TaskOrchestration {
 
 # [JavaScript](#tab/javascript)
 
-The Durable Task SDK is not available for JavaScript. Use [Durable Functions](what-is-durable-task.md) instead.
+```typescript
+import { ActivityContext, OrchestrationContext, TOrchestrator, whenAny } from "@microsoft/durabletask-js";
+
+const getQuote = async (_: ActivityContext): Promise<number> => {
+    // Get quote logic
+    return 100.0;
+};
+
+const tryGetQuote: TOrchestrator = async function* (ctx: OrchestrationContext): any {
+    const activityTask = ctx.callActivity(getQuote);
+    const timeoutTask = ctx.createTimer(30);
+
+    const winner = yield whenAny([activityTask, timeoutTask]);
+    if (winner === activityTask) {
+        // success case
+        return true;
+    } else {
+        // timeout case
+        return false;
+    }
+};
+```
 
 # [PowerShell](#tab/powershell)
 

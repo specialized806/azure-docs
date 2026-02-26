@@ -83,7 +83,7 @@ Keep these considerations in mind when using the `continue-as-new` method in an 
 
 + The results of any incomplete tasks are discarded when an orchestration calls `continue-as-new`. For example, if a timer is scheduled and then `continue-as-new` is called before the timer fires, the timer event will be discarded.
 
-+ You can optionally preserve unprocessed external events across `continue-as-new` restarts. In .NET and Java, `continue-as-new` preserves unprocessed events by default. In Python, `continue_as_new` does not preserve events unless `save_events=True`. In all cases, unprocessed events are delivered when the orchestration next calls `waitForExternalEvent` or `wait_for_external_event`.
++ You can optionally preserve unprocessed external events across `continue-as-new` restarts. In .NET and Java, `continue-as-new` preserves unprocessed events by default. In Python, `continue_as_new` does not preserve events unless `save_events=True`. In JavaScript, `continueAsNew` requires a `saveEvents` parameter (`true` or `false`) to control this behavior. In all cases, unprocessed events are delivered when the orchestration next calls `waitForExternalEvent` or `wait_for_external_event`.
 
 > [!IMPORTANT]
 > If during execution the orchestration encounters an uncaught exception, then the orchestration enters a "failed" state and execution will complete. In particular, this means that a call to *continue-as-new*, even in a `finally` block, will *not* restart the orchestration in the case of an uncaught exception.
@@ -233,7 +233,22 @@ public class PeriodicCleanupLoop implements TaskOrchestration {
 
 # [JavaScript](#tab/javascript)
 
-The Durable Task SDK is not available for JavaScript. Use [Durable Functions](what-is-durable-task.md) instead.
+```typescript
+import { ActivityContext, OrchestrationContext, TOrchestrator } from "@microsoft/durabletask-js";
+
+const doCleanup = async (_: ActivityContext, _input: void): Promise<void> => {
+    // Cleanup logic here
+};
+
+const periodicCleanupLoop: TOrchestrator = async function* (ctx: OrchestrationContext): any {
+    yield ctx.callActivity(doCleanup);
+
+    // sleep for one hour between cleanups
+    yield ctx.createTimer(60 * 60);
+
+    ctx.continueAsNew(null, false);
+};
+```
 
 # [PowerShell](#tab/powershell)
 
@@ -359,7 +374,10 @@ client.scheduleNewOrchestrationInstance("PeriodicCleanupLoop", null, instanceId)
 
 # [JavaScript](#tab/javascript)
 
-The Durable Task SDK is not available for JavaScript. Use [Durable Functions](what-is-durable-task.md) instead.
+```typescript
+const instanceId = "StaticId";
+await client.scheduleNewOrchestration(periodicCleanupLoop, undefined, instanceId);
+```
 
 # [PowerShell](#tab/powershell)
 
@@ -405,7 +423,9 @@ client.terminate(instanceId, "Cleanup no longer needed");
 
 # [JavaScript](#tab/javascript)
 
-The Durable Task SDK is not available for JavaScript. Use [Durable Functions](what-is-durable-task.md) instead.
+```typescript
+await client.terminateOrchestration(instanceId, "Cleanup no longer needed");
+```
 
 # [PowerShell](#tab/powershell)
 

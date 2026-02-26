@@ -253,7 +253,28 @@ public class HelloCities implements TaskOrchestration {
 
 # [JavaScript](#tab/javascript)
 
-The Durable Task SDK is not available for JavaScript. Use [Durable Functions](what-is-durable-task.md) instead.
+```typescript
+import { ActivityContext, OrchestrationContext, TOrchestrator } from "@microsoft/durabletask-js";
+
+const sayHello = async (_: ActivityContext, name: string): Promise<string> => {
+    return `Hello ${name}!`;
+};
+
+const helloCities: TOrchestrator = async function* (ctx: OrchestrationContext): any {
+    let result = "";
+
+    result += (yield ctx.callActivity(sayHello, "Tokyo")) + ", ";
+    ctx.setCustomStatus("Tokyo");
+
+    result += (yield ctx.callActivity(sayHello, "London")) + ", ";
+    ctx.setCustomStatus("London");
+
+    result += yield ctx.callActivity(sayHello, "Seattle");
+    ctx.setCustomStatus("Seattle");
+
+    return result;
+};
+```
 
 # [PowerShell](#tab/powershell)
 
@@ -308,7 +329,19 @@ while (!"London".equals(metadata.readCustomStatusAs(String.class))) {
 
 # [JavaScript](#tab/javascript)
 
-The Durable Task SDK is not available for JavaScript. Use [Durable Functions](what-is-durable-task.md) instead.
+```typescript
+import { createAzureManagedClient } from "@microsoft/durabletask-js-azuremanaged";
+
+const client = createAzureManagedClient(connectionString);
+
+const instanceId = await client.scheduleNewOrchestration(helloCities);
+let state = await client.waitForOrchestrationStart(instanceId, true, 60);
+
+while (!state?.serializedCustomStatus || JSON.parse(state.serializedCustomStatus) !== "London") {
+    await new Promise((resolve) => setTimeout(resolve, 200));
+    state = await client.getOrchestrationState(instanceId, true);
+}
+```
 
 # [PowerShell](#tab/powershell)
 
@@ -749,7 +782,34 @@ class Recommendation {
 
 # [JavaScript](#tab/javascript)
 
-The Durable Task SDK is not available for JavaScript. Use [Durable Functions](what-is-durable-task.md) instead.
+```typescript
+import { OrchestrationContext, TOrchestrator } from "@microsoft/durabletask-js";
+
+const cityRecommender: TOrchestrator = async function* (ctx: OrchestrationContext, userChoice: number): any {
+    switch (userChoice) {
+        case 1:
+            ctx.setCustomStatus({
+                recommendedCities: ["Tokyo", "Seattle"],
+                recommendedSeasons: ["Spring", "Summer"],
+            });
+            break;
+        case 2:
+            ctx.setCustomStatus({
+                recommendedCities: ["Seattle", "London"],
+                recommendedSeasons: ["Summer"],
+            });
+            break;
+        case 3:
+            ctx.setCustomStatus({
+                recommendedCities: ["Tokyo", "London"],
+                recommendedSeasons: ["Spring", "Summer"],
+            });
+            break;
+    }
+
+    // Wait for user selection and refine the recommendation
+};
+```
 
 # [PowerShell](#tab/powershell)
 
@@ -1005,7 +1065,32 @@ class DiscountInfo {
 
 # [JavaScript](#tab/javascript)
 
-The Durable Task SDK is not available for JavaScript. Use [Durable Functions](what-is-durable-task.md) instead.
+```typescript
+import { ActivityContext, OrchestrationContext, TOrchestrator } from "@microsoft/durabletask-js";
+
+const calculateDiscount = async (_: ActivityContext, userId: string): Promise<number> => {
+    // Calculate discount based on user
+    return 10;
+};
+
+const reserveTicket: TOrchestrator = async function* (ctx: OrchestrationContext, userId: string): any {
+    const discount: number = yield ctx.callActivity(calculateDiscount, userId);
+
+    ctx.setCustomStatus({
+        discount,
+        discountTimeout: 60,
+        bookingUrl: "https://www.myawesomebookingweb.com",
+    });
+
+    const isBookingConfirmed: boolean = yield ctx.waitForExternalEvent("BookingConfirmed");
+    ctx.setCustomStatus(isBookingConfirmed
+        ? { message: "Thank you for confirming your booking." }
+        : { message: "The booking was not confirmed on time. Please try again." }
+    );
+
+    return isBookingConfirmed;
+};
+```
 
 # [PowerShell](#tab/powershell)
 
@@ -1185,7 +1270,17 @@ class CustomStatusPayload {
 
 # [JavaScript](#tab/javascript)
 
-The Durable Task SDK is not available for JavaScript. Use [Durable Functions](what-is-durable-task.md) instead.
+```typescript
+import { OrchestrationContext, TOrchestrator } from "@microsoft/durabletask-js";
+
+const myCustomStatusOrchestrator: TOrchestrator = async function* (ctx: OrchestrationContext): any {
+    // ...do work...
+
+    ctx.setCustomStatus({ nextActions: ["A", "B", "C"], foo: 2 });
+
+    // ...do more work...
+};
+```
 
 # [PowerShell](#tab/powershell)
 
@@ -1223,7 +1318,15 @@ CustomStatusPayload payload = metadata.readCustomStatusAs(CustomStatusPayload.cl
 
 # [JavaScript](#tab/javascript)
 
-The Durable Task SDK is not available for JavaScript. Use [Durable Functions](what-is-durable-task.md) instead.
+```typescript
+import { createAzureManagedClient } from "@microsoft/durabletask-js-azuremanaged";
+
+const client = createAzureManagedClient(connectionString);
+
+// Get the custom status of an orchestration instance
+const state = await client.getOrchestrationState(instanceId, true);
+const customStatusJson = state?.serializedCustomStatus;
+```
 
 # [PowerShell](#tab/powershell)
 
