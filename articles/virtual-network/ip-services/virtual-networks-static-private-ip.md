@@ -1,7 +1,7 @@
 ---
 title: Create a VM with a static private IP address using the Azure portal, Azure PowerShell, or Azure CLI
 description: Learn to create a virtual machine with a static private IP address using the Azure portal, Azure PowerShell, or Azure CLI.
-ms.date: 11/19/2024
+ms.date: 02/24/2026
 ms.author: mbender
 author: mbender-ms
 ms.service: azure-virtual-network
@@ -21,66 +21,81 @@ When you create a virtual machine (VM), it's automatically assigned a private IP
 
 # [Azure portal](#tab/azureportal)
 
-Use the following steps to create a virtual network along with a resource group and necessary network resources:
+### Create a resource group
 
 1. Sign in to the [Azure portal](https://portal.azure.com).
+
+1. In the portal, search for and select **Resource groups**.
+
+1. Select **+ Create**.
+
+1. On the **Basics** tab, enter or select the following values:
+
+    | Setting                | Value                                             |
+    |------------------------|---------------------------------------------------|
+    | **Subscription**       | Select your subscription                          |
+    | **Resource group**     | Enter *myResourceGroup*                           |
+    | **Region**             | Select **(US) East US**                           |
+
+1. Select **Review + create**, and then select **Create**.
+
+### Create a virtual network
+
+1. In the portal, search for and select **Virtual networks**.
+
+1. Select **+ Create**.
+
+1. On the **Basics** tab of **Create virtual network**, enter or select the following values:
+
+    | Setting                | Value                                             |
+    |------------------------|---------------------------------------------------|
+    | **Subscription**       | Select your subscription                          |
+    | **Resource group**     | Select **myResourceGroup**                        |
+    | **Virtual network name** | Enter *myVNet*                                  |
+    | **Region**             | Select **(US) East US**                           |
+
+1. Select **Review + create**, and then select **Create**.
+
+### Create a virtual machine
+
 1. In the portal, search for and select **Virtual machines**.
+
 1. Select **Create** > **Azure virtual machine**.
+
 1. On the **Basics** tab of the **Create a virtual machine** screen, enter or select the following values:
 
     | Setting                | Value                                             |
     |------------------------|---------------------------------------------------|
-    | **Subscription**       | Keep the default or select a different subscription |
-    | **Resource group**     | Select **Create new**, and then name the group *myResourceGroup* |
+    | **Subscription**       | Select your subscription                          |
+    | **Resource group**     | Select **myResourceGroup**                        |
     | **Virtual machine name** | Enter *myVM*                                     |
-    | **Region**             | Select **(US) East US**                           |
+    | **Region**             | Select **(US) East US 2**                         |
     | **Availability options** | Select **No infrastructure redundancy required** |
-    | **Image**              | Select **Windows Server 2019 Datacenter - x64 Gen2** |
+    | **Security type**      | Select **Standard**                               |
+    | **Image**              | Select **Ubuntu Server 22.04 LTS - x64 Gen2**    |
     | **Size**               | Accept the default, or drop down and select a size |
-    | **Username**           | Enter an admin username for the VM                |
-    | **Password**           | Enter a password for the VM                       |
-    | **Confirm password**   | Confirm the password for the VM                   |
+    | **Authentication type** | Select **SSH public key**                        |
+    | **Username**           | Enter *azureuser*                                 |
+    | **SSH public key source** | Select **Generate new key pair**                |
+    | **Key pair name**      | Enter *mySSHKey*                                  |
     | **Public inbound ports** | Select **None**                                  |
 
-    > [!NOTE]
-    > Azure Bastion uses your browser to connect to VMs in your virtual network over secure shell (SSH) or remote desktop protocol (RDP). For information about Azure Bastion, see [What is Azure Bastion?](../../bastion/bastion-overview.md).
-
 1. Select the **Networking** tab at the top of the page.
-  
+
 1. On the **Networking** page, enter or select the following values:
 
-   - **Virtual network**: Accept the default network name.
+   - **Virtual network**: Select **myVNet**.
    - **Subnet**: Select **default** if not already selected.
-   - **Public IP**: Accept the default public IP configuration.
-   - **Public inbound ports**: Select **None**.
+   - **Public IP**: Select **None**.
 
 1. Select **Review + create**. Review the settings, and then select **Create**.
 
-[!INCLUDE [ephemeral-ip-note.md](~/reusable-content/ce-skilling/azure/includes/ephemeral-ip-note.md)]
-
-### Deploy Azure Bastion
-
-1. In the portal, search for and select **Bastion**.
-1. Select **+ Create**.
-1. On the **Basics** tab of the **Create a Bastion** screen, enter or select the following values:
-
-    | Setting | Value |
-    |---|---|
-    | **Subscription** | Keep the default or select a different subscription |
-    | **Resource group** | Select **myResourceGroup** |
-    | **Name** | Enter *myBastionHost* |
-    | **Region** | Select **(US) East US** |
-    | **Tier** | Select **Developer** |
-    | **Virtual network** | Select the virtual network created with the VM |
-
-    > [!NOTE]
-    > The **AzureBastionSubnet** is created automatically with the Developer tier.
-
-1. Select **Review + create**. Review the settings, and then select **Create**.
+> [!NOTE]
+> The virtual machine is created without a public IP address and with no public inbound ports. To connect to the virtual machine, use Azure Bastion. For more information, see [Quickstart: Deploy Azure Bastion with default settings](../../bastion/quickstart-host-portal.md).
 
 # [Azure PowerShell](#tab/azurepowershell)
 
-Use the following steps to create a resource group and a virtual machine.
+Use the following steps to create a resource group, virtual network, and virtual machine.
 
 ### Create a resource group
 
@@ -88,35 +103,62 @@ The following command creates a resource group with [New-AzResourceGroup](/power
 
 ```azurepowershell-interactive
 ## Create resource group. ##
-$rg =@{
+$rg = @{
     Name = 'myResourceGroup'
     Location = 'eastus2'
 }
 New-AzResourceGroup @rg
-
 ```
 
-### Create a virtual network
+### Create a virtual network and subnet
 
-The following command creates a virtual network with a subnet for VMs and a subnet for Azure Bastion with [New-AzVirtualNetwork](/powershell/module/az.network/new-azvirtualnetwork):
+The following commands create a virtual network and subnet with [New-AzVirtualNetwork](/powershell/module/az.network/new-azvirtualnetwork) and [Add-AzVirtualNetworkSubnetConfig](/powershell/module/az.network/add-azvirtualnetworksubnetconfig).
 
 ```azurepowershell-interactive
-$bastionSubnet = New-AzVirtualNetworkSubnetConfig -Name "AzureBastionSubnet" -AddressPrefix "10.0.1.0/24"
-$vmSubnet = New-AzVirtualNetworkSubnetConfig -Name "default" -AddressPrefix "10.0.0.0/24"
-
-$vnetParams = @{
-    ResourceGroupName = "myResourceGroup"
-    Location = "eastus2"
-    Name = "myVNet"
-    AddressPrefix = "10.0.0.0/16"
-    Subnet = $bastionSubnet, $vmSubnet
+## Create subnet configuration. ##
+$subnet = @{
+    Name = 'default'
+    AddressPrefix = '10.0.0.0/24'
 }
-$vnet = New-AzVirtualNetwork @vnetParams
+$subnetConfig = New-AzVirtualNetworkSubnetConfig @subnet
+
+## Create virtual network. ##
+$vnet = @{
+    Name = 'myVNet'
+    ResourceGroupName = 'myResourceGroup'
+    Location = 'eastus2'
+    AddressPrefix = '10.0.0.0/16'
+    Subnet = $subnetConfig
+}
+New-AzVirtualNetwork @vnet
 ```
+
+### Create a network security group
+
+Create a network security group with [New-AzNetworkSecurityGroup](/powershell/module/az.network/new-aznetworksecuritygroup). The default rules in the network security group deny all inbound access from the internet.
+
+```azurepowershell-interactive
+## Create network security group. ##
+$nsg = @{
+    Name = 'myNSG'
+    ResourceGroupName = 'myResourceGroup'
+    Location = 'eastus2'
+}
+New-AzNetworkSecurityGroup @nsg
+```
+
+> [!NOTE]
+> The default rules of the network security group block all inbound access from the internet, including SSH. To connect to the virtual machine, use Azure Bastion. For more information, see [Quickstart: Deploy Azure Bastion with default settings](../../bastion/quickstart-host-portal.md).
 
 ### Create a virtual machine
 
-The following command creates a Windows Server virtual machine with [New-AzVM](/powershell/module/az.compute/new-azvm). When prompted, provide a username and password to be used as the credentials for the virtual machine:
+Create a credential object for the virtual machine with [Get-Credential](/powershell/module/microsoft.powershell.security/get-credential). Enter a username and password when prompted:
+
+```azurepowershell-interactive
+$cred = Get-Credential
+```
+
+The following command creates a Linux virtual machine without a public IP address with [New-AzVM](/powershell/module/az.compute/new-azvm). The `-GenerateSshKey` parameter generates an SSH key pair for the VM:
 
 ```azurepowershell-interactive
 ## Create virtual machine. ##
@@ -124,109 +166,73 @@ $vm = @{
     ResourceGroupName = 'myResourceGroup'
     Location = 'East US 2'
     Name = 'myVM'
-    PublicIpAddressName = 'myPublicIP'
+    Image = 'Ubuntu2204'
+    Credential = $cred
     VirtualNetworkName = 'myVNet'
     SubnetName = 'default'
+    PublicIpAddressName = ''
+    GenerateSshKey = $true
+    SshKeyName = 'mySSHKey'
 }
 New-AzVM @vm
 ```
 
-### Deploy Azure Bastion
-
-The following commands create a public IP address and Azure Bastion resource with [New-AzBastion](/powershell/module/az.network/new-azbastion):
-
-```azurepowershell-interactive
-$bastionIpParams = @{
-    ResourceGroupName = "myResourceGroup"
-    Name = "public-ip-bastion"
-    Location = "eastus2"
-    AllocationMethod = "Static"
-    Sku = "Standard"
-}
-New-AzPublicIpAddress @bastionIpParams
-
-$bastionParams = @{
-    ResourceGroupName = "myResourceGroup"
-    Name = "bastion"
-    VirtualNetworkName = "myVNet"
-    PublicIpAddressName = "public-ip-bastion"
-    PublicIpAddressRgName = "myResourceGroup"
-    VirtualNetworkRgName = "myResourceGroup"
-    Sku = "Basic"
-}
-New-AzBastion @bastionParams -AsJob
-```
-
 # [Azure CLI](#tab/azurecli)
 
-Use the following steps to create a resource group and a virtual machine.
+Use the following steps to create a resource group, virtual network, and virtual machine.
 
 ### Create a resource group
 
 The following command creates a resource group with [az group create](/cli/azure/group#az-group-create):
 
-```azurecli
-  az group create --name myResourceGroup --location eastus2
+```azurecli-interactive
+az group create \
+    --name myResourceGroup \
+    --location eastus2
 ```
 
-### Create a virtual network
+### Create a virtual network and subnet
 
-The following commands create a virtual network with a subnet for VMs and a subnet for Azure Bastion with [az network vnet create](/cli/azure/network/vnet#az-network-vnet-create):
+The following command creates a virtual network and subnet with [az network vnet create](/cli/azure/network/vnet#az-network-vnet-create):
 
 ```azurecli-interactive
 az network vnet create \
-    --resource-group myResourceGroup \
     --name myVNet \
-    --address-prefix 10.0.0.0/16 \
-    --subnet-name default \
-    --subnet-prefix 10.0.0.0/24 \
-    --location eastus2
-
-az network vnet subnet create \
     --resource-group myResourceGroup \
-    --vnet-name myVNet \
-    --name AzureBastionSubnet \
-    --address-prefix 10.0.1.0/26
+    --location eastus2 \
+    --address-prefixes 10.0.0.0/16 \
+    --subnet-name default \
+    --subnet-prefixes 10.0.0.0/24
 ```
+
+### Create a network security group
+
+Create a network security group with [az network nsg create](/cli/azure/network/nsg#az-network-nsg-create). The default rules in the network security group deny all inbound access from the internet.
+
+```azurecli-interactive
+az network nsg create \
+    --resource-group myResourceGroup \
+    --name myNSG
+```
+
+> [!NOTE]
+> The default rules of the network security group block all inbound access from the internet, including SSH. To connect to the virtual machine, use Azure Bastion. For more information, see [Quickstart: Deploy Azure Bastion with default settings](../../bastion/quickstart-host-portal.md).
 
 ### Create a virtual machine
 
-The following command creates a Windows Server virtual machine with [az vm create](/cli/azure/vm#az-vm-create). When prompted, provide a username and password to be used as the credentials for the virtual machine:
+The following command creates a Linux virtual machine without a public IP address with [az vm create](/cli/azure/vm#az-vm-create). The `--generate-ssh-keys` parameter generates an SSH key pair for the VM:
 
 ```azurecli-interactive
-  az vm create \
+az vm create \
     --name myVM \
     --resource-group myResourceGroup \
-    --public-ip-address myPublicIP \
-    --public-ip-sku Standard \
-    --image MicrosoftWindowsServer:WindowsServer:2019-Datacenter:latest \
+    --vnet-name myVNet \
+    --subnet default \
+    --image Ubuntu2204 \
+    --public-ip-address "" \
     --admin-username azureuser \
-    --vnet-name myVNet \
-    --subnet default
+    --generate-ssh-keys
 ```
-
-### Deploy Azure Bastion
-
-The following commands create a public IP address and Azure Bastion resource with [az network bastion create](/cli/azure/network/bastion#az-network-bastion-create):
-
-```azurecli-interactive
-az network public-ip create \
-    --resource-group myResourceGroup \
-    --name public-ip-bastion \
-    --location eastus2 \
-    --allocation-method Static \
-    --sku Standard
-
-az network bastion create \
-    --resource-group myResourceGroup \
-    --name bastion \
-    --vnet-name myVNet \
-    --public-ip-address public-ip-bastion \
-    --location eastus2 \
-    --sku Basic \
-    --no-wait
-```
-
 ---
 
 ## Change private IP address to static
@@ -273,14 +279,14 @@ With the following commands, you change the private IP address of the virtual ma
 ```azurepowershell-interactive
 ## Place virtual network configuration into a variable. ##
 $net = @{
-    Name = 'myVM'
+    Name = 'myVNet'
     ResourceGroupName = 'myResourceGroup'
 }
 $vnet = Get-AzVirtualNetwork @net
 
 ## Place subnet configuration into a variable. ##
 $sub = @{
-    Name = 'myVM'
+    Name = 'default'
     VirtualNetwork = $vnet
 }
 $subnet = Get-AzVirtualNetworkSubnetConfig @sub
@@ -298,7 +304,7 @@ $nic = Get-AzNetworkInterface -ResourceId $vm.NetworkProfile.NetworkInterfaces.I
 ## Set interface configuration. ##
 $config =@{
     Name = 'myVM'
-    PrivateIpAddress = '192.168.1.4'
+    PrivateIpAddress = '10.0.0.4'
     Subnet = $subnet
 }
 $nic | Set-AzNetworkInterfaceIpConfig @config -Primary
