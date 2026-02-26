@@ -66,27 +66,11 @@ When using Entra ID and the following Azure App Configuration libraries in cloud
 
 ### [.NET](#tab/dotnet)
 
-The Audience for the target cloud must be configured for the following packages.
+The audience for the target cloud must be configured for the package you use.
 
-- Azure SDK for .NET: Azure.Data.AppConfiguration >= 1.6.0
-- .NET configuration provider: Microsoft.Extensions.Configuration.AzureAppConfiguration >= 8.5.0
+#### .NET configuration provider
 
-In the **Azure SDK for .NET**, audience is configured by utilizing the following API calls:
-
-* The ConfigurationClient constructor [accepts ConfigurationClientOptions](/dotnet/api/azure.data.appconfiguration.configurationclient.-ctor#azure-data-appconfiguration-configurationclient-ctor(system-uri-azure-core-tokencredential-azure-data-appconfiguration-configurationclientoptions))
-* ConfigurationClientOptions allows [Audience](/dotnet/api/azure.data.appconfiguration.configurationclientoptions.audience#azure-data-appconfiguration-configurationclientoptions-audience) to be set
-
-The following code snippet demonstrates how to instantiate a configuration client with a cloud-specific audience.
-
-```csharp
-var configurationClient = new ConfigurationClient(
-    myStoreEndpoint,
-    new DefaultAzureCredential(),
-    new ConfigurationClientOptions
-    {
-        Audience = "{Cloud specific audience here}"
-    });
-```
+**Package requirement**: Microsoft.Extensions.Configuration.AzureAppConfiguration >= 8.5.0
 
 In the **.NET configuration provider**, audience is configured by utilizing the following API calls:
 
@@ -102,6 +86,27 @@ builder.AddAzureAppConfiguration(o =>
             new DefaultAzureCredential());
 
         o.ConfigureClientOptions(clientOptions => clientOptions.Audience = "{Cloud specific audience here}");
+    });
+```
+
+#### Azure SDK for .NET
+
+**Package requirement**: Azure.Data.AppConfiguration >= 1.6.0
+
+In the **Azure SDK for .NET**, audience is configured by utilizing the following API calls:
+
+* The ConfigurationClient constructor [accepts ConfigurationClientOptions](/dotnet/api/azure.data.appconfiguration.configurationclient.-ctor#azure-data-appconfiguration-configurationclient-ctor(system-uri-azure-core-tokencredential-azure-data-appconfiguration-configurationclientoptions))
+* ConfigurationClientOptions allows [Audience](/dotnet/api/azure.data.appconfiguration.configurationclientoptions.audience#azure-data-appconfiguration-configurationclientoptions-audience) to be set
+
+The following code snippet demonstrates how to instantiate a configuration client with a cloud-specific audience.
+
+```csharp
+var configurationClient = new ConfigurationClient(
+    myStoreEndpoint,
+    new DefaultAzureCredential(),
+    new ConfigurationClientOptions
+    {
+        Audience = "{Cloud specific audience here}"
     });
 ```
 
@@ -171,20 +176,11 @@ public class Application {
 
 ### [JavaScript](#tab/javascript)
 
-The Audience for the target cloud must be configured for the following packages.
+The audience for the target cloud must be configured for the package you use.
 
-- Azure SDK for JavaScript: @azure/app-configuration >= 1.9.0
-- JavaScript configuration provider: @azure/app-configuration-provider >= 2.4.0
+#### JavaScript configuration provider
 
-In the **Azure SDK for JavaScript**, audience is configured by passing the `audience` option to the `AppConfigurationClient` constructor.
-
-The following code snippet demonstrates how to instantiate a configuration client with a cloud-specific audience.
-
-```javascript
-const client = new AppConfigurationClient(myStoreEndpoint, new DefaultAzureCredential(), {
-    audience: "{Cloud specific audience here}",
-});
-```
+**Package requirement**: @azure/app-configuration-provider >= 2.4.0
 
 In the **JavaScript configuration provider**, audience is configured by passing the `clientOptions` with the `audience` property to the `load` function.
 
@@ -198,12 +194,23 @@ const appConfig = await load(myStoreEndpoint, credential, {
 });
 ```
 
+#### Azure SDK for JavaScript
+
+**Package requirement**: @azure/app-configuration >= 1.9.0
+
+In the **Azure SDK for JavaScript**, audience is configured by passing the `audience` option to the `AppConfigurationClient` constructor.
+
+The following code snippet demonstrates how to instantiate a configuration client with a cloud-specific audience.
+
+```javascript
+const client = new AppConfigurationClient(myStoreEndpoint, new DefaultAzureCredential(), {
+    audience: "{Cloud specific audience here}",
+});
+```
+
 ### [Go](#tab/go)
 
-The Audience for the target cloud must be configured for the following packages.
-
-- Azure SDK for Go: azappconfig >= 2.1.0
-- Go configuration provider: azureappconfiguration >= 1.5.0
+The audience for the target cloud must be configured for the package you use.
 
 You need to import the following packages:
 
@@ -214,29 +221,9 @@ import (
 )
 ```
 
-In the **Azure SDK for Go**, audience is configured by utilizing the cloud configuration.
+#### Go configuration provider
 
-The following code snippet demonstrates how to instantiate a configuration client with a cloud-specific audience.
-
-```golang
-credential, _:= azidentity.NewDefaultAzureCredential(nil)
-
-cloudConfig := cloud.Configuration{
-    Services: map[cloud.ServiceName]cloud.ServiceConfiguration{
-        azappconfig.ServiceName: {
-            Audience: "{Cloud specific audience here}",
-        },
-    },
-}
-
-clientOptions := &azappconfig.ClientOptions{
-    ClientOptions: policy.ClientOptions{
-        Cloud: cloudConfig,
-    },
-}
-
-client, _ := azappconfig.NewClient(myStoreEndpoint, credential, clientOptions)
-```
+**Package requirement**: azureappconfiguration >= 1.5.0
 
 In the **Go configuration provider**, audience is configured by passing the `ClientOptions` with the cloud configuration to the `Load` function.
 
@@ -267,6 +254,34 @@ options := &azureappconfiguration.Options{
 }
 
 appConfig, _ := azureappconfiguration.Load(context.Background(), authOptions, options)
+```
+
+#### Azure SDK for Go
+
+**Package requirement**: azappconfig >= 2.1.0
+
+In the **Azure SDK for Go**, audience is configured by utilizing the cloud configuration.
+
+The following code snippet demonstrates how to instantiate a configuration client with a cloud-specific audience.
+
+```golang
+credential, _:= azidentity.NewDefaultAzureCredential(nil)
+
+cloudConfig := cloud.Configuration{
+    Services: map[cloud.ServiceName]cloud.ServiceConfiguration{
+        azappconfig.ServiceName: {
+            Audience: "{Cloud specific audience here}",
+        },
+    },
+}
+
+clientOptions := &azappconfig.ClientOptions{
+    ClientOptions: policy.ClientOptions{
+        Cloud: cloudConfig,
+    },
+}
+
+client, _ := azappconfig.NewClient(myStoreEndpoint, credential, clientOptions)
 ```
 
 ---
