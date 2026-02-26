@@ -1,5 +1,5 @@
 ---
-title: Azure-to-private network connectivity options (ExpressRoute, VPN, SD-WAN)
+title: Azure private network connectivity options (ExpressRoute, VPN, SD-WAN)
 description: This concept article explains common options for connecting Azure to private networks (including on-premises and AWS), how they compare, and what to consider for latency, bandwidth, security, cost, and operational complexity.
 author: madhurinms
 ms.service: azure-storage-mover
@@ -8,7 +8,7 @@ ms.author: madhn
 ms.date: 02/24/2026
 ---
 
-# Azure-to-private network connectivity options (ExpressRoute, VPN, SD-WAN)
+# Azure private network connectivity options (ExpressRoute, VPN, SD-WAN)
 ## Overview
 
 Azure supports several ways to connect to private networks. The best approach depends on your requirements for latency, bandwidth, security, cost, and operational complexity.
@@ -268,6 +268,7 @@ Review ExpressRoute concepts and planning in the [ExpressRoute documentation](/a
 Create a site-to-site VPN connection in Azure: [Tutorial - Create an S2S VPN connection](/azure/vpn-gateway/tutorial-site-to-site-portal).
 
 For BGP between Azure and AWS, follow: [Tutorial - Configure a BGP-enabled connection between Azure and AWS](/azure/vpn-gateway/vpn-gateway-howto-aws-bgp).
+
 
 
 
