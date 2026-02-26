@@ -885,7 +885,7 @@ The Durable Task SDK is not available for PowerShell. Use [Durable Functions](wh
 
 ::: zone-end
 
-## End instances
+## Terminate instances
 
 If you have an orchestration instance that's taking too long to run, or you need to stop it before it completes for any reason, you can end it.
 

@@ -31,7 +31,7 @@ When you start an orchestration, a "start" message is written to an internal que
 
 Follow these steps to troubleshoot orchestration instances that remain stuck indefinitely in the "Pending" state. 
 
-*  Check the Durable Task Framework traces for warnings or errors for the affected orchestration instance ID. Find a sample query in the [Trace Errors/Warnings section](#trace-errorswarnings).
+*  Check the Durable Task Framework traces for warnings or errors for the affected orchestration instance ID. Find a sample query in the [Trace Errors/Warnings section](#trace-errors-and-warnings).
 
 *  Check the Azure Storage control queues assigned to the stuck orchestrator to see if its "start message" is still there. For more information on control queues, see the [Azure Storage provider control queue documentation](durable-functions-azure-storage-provider.md#control-queues).
 
@@ -44,7 +44,7 @@ Normally, orchestrations start within a few seconds after they're scheduled. How
 
 *  Refer to the [documentation on delayed orchestrations in Azure Storage](./durable-functions-azure-storage-provider.md#orchestration-start-delays) to check whether the delay is caused by known limitations.
 
-*  Check the Durable Task Framework traces for warnings or errors with the affected orchestration instance ID. Find a sample query in the [Trace Errors/Warnings section](#trace-errorswarnings).
+*  Check the Durable Task Framework traces for warnings or errors with the affected orchestration instance ID. Find a sample query in the [Trace Errors/Warnings section](#trace-errors-and-warnings).
 
 ## Orchestration doesn't complete or is stuck in the `Running` state
 
@@ -64,7 +64,7 @@ Follow these steps to troubleshoot stuck orchestrations:
 
 Heavy data processing, internal errors, and insufficient compute resources can cause orchestrations to run slower than normal. Follow these steps to troubleshoot orchestrations that take longer than expected to run:
 
-*  Check the Durable Task Framework traces for warnings or errors for the impacted orchestration instance ID. A sample query can be found in the [Trace Errors/Warnings section](#trace-errorswarnings).
+*  Check the Durable Task Framework traces for warnings or errors for the impacted orchestration instance ID. A sample query can be found in the [Trace Errors/Warnings section](#trace-errors-and-warnings).
 
 *  If your app uses the .NET in-process model, consider enabling [extended sessions](./durable-functions-azure-storage-provider.md#extended-sessions). 
    Extended sessions minimize history loads, which can slow down processing.
