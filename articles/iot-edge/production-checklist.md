@@ -3,7 +3,7 @@ title: Prepare your Azure IoT Edge solution for production
 description: Ready your Azure IoT Edge solution for production. Learn how to set up your devices with certificates and make a deployment plan for future updates.
 author: sethmanheim
 ms.author: sethm
-ms.date: 06/03/2025
+ms.date: 02/26/2026
 ms.topic: concept-article
 ms.service: azure-iot-edge
 services: iot-edge
@@ -337,6 +337,9 @@ This checklist is a starting point for firewall rules:
 
 <sup>1</sup>Open port 8883 for secure MQTT or port 5671 for secure AMQP. If you can only make connections via port 443 then either of these protocols can be run through a WebSocket tunnel.
 
+> [!TIP]
+> For tighter security, replace wildcard FQDNs with specific endpoints where possible. For example, replace `*.azure-devices.net` with `<your-hub-name>.azure-devices.net`. Replace `*.azurecr.io` with `<your-registry-name>.azurecr.io`. Enterprise security teams often reject wildcard rules, so plan for specific FQDNs in production.
+
 Since the IP address of an IoT hub can change without notice, always use the FQDN to allowlist configuration. To learn more, see [Understanding the IP address of your IoT Hub](../iot-hub/iot-hub-understand-ip-address.md).
 
 Some of these firewall rules are inherited from Azure Container Registry. For more information, see [Configure rules to access an Azure container registry behind a firewall](/azure/container-registry/container-registry-firewall-access-rules).
@@ -372,6 +375,14 @@ Specify the DNS server for your environment in the container engine settings. Th
     ```json
     {
         "dns": ["1.1.1.1"]
+    }
+    ```
+
+    For corporate or private networks that block external DNS, use your internal DNS server instead:
+
+    ```json
+    {
+        "dns": ["10.0.0.53"]
     }
     ```
 
@@ -517,6 +528,17 @@ To balance shared host resources across modules, set limits on resource use for 
 Docker lets you limit resources like memory and CPU usage. For more information, see [Runtime options with memory, CPUs, and GPUs](https://docs.docker.com/config/containers/resource_constraints/).
 
 You can apply these constraints to individual modules by using create options in deployment manifests. For more information, see [How to configure container create options for IoT Edge modules](how-to-use-create-options.md).
+
+For example, to limit a module to 256 MB of memory and 1 CPU core:
+
+```json
+"createOptions": {
+    "HostConfig": {
+        "Memory": 268435456,
+        "NanoCPUs": 1000000000
+    }
+}
+```
 
 ## Next steps
 
