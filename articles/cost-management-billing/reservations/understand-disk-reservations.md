@@ -33,7 +33,7 @@ The following scenarios describe what happens if you underuse, overuse, or tier 
 
 ### Underusing your capacity
 
-Suppose you deploy only 99 of your 100 reserved Azure premium solid-state drive (SSD) P30 disks for an hour within the reservation period. The remaining P30 disk isn't applied during that hour. It also doesn't carry over.
+Suppose you deploy only 99 of your 100 reserved Azure Premium SSD P30 disks for an hour within the reservation period. The remaining P30 disk isn't applied during that hour. It also doesn't carry over.
 
 ### Overusing your capacity
 
