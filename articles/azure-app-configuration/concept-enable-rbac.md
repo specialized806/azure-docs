@@ -112,22 +112,11 @@ var configurationClient = new ConfigurationClient(
 
 ### [Java](#tab/java)
 
-The Audience for the target cloud must be configured for the following packages.
+The audience for the target cloud must be configured for the package you use.
 
-- Azure SDK for Java: azure-data-appconfiguration >= 1.8.0
-- Java configuration provider: spring-cloud-azure-appconfiguration-config >= 5.22.0
+#### Spring configuration provider
 
-In the **Azure SDK for Java**, audience is configured by passing the `audience` option to the `ConfigurationClientBuilder` when building a `ConfigurationClient`.
-
-The following code snippet demonstrates how to instantiate a configuration client with a cloud-specific audience.
-
-```java
-ConfigurationClient configurationClient = new ConfigurationClientBuilder()
-    .endpoint(myStoreEndpoint)
-    .credential(new DefaultAzureCredentialBuilder().build())
-    .audience(ConfigurationAudience.fromString("{Cloud specific audience here}"))
-    .buildClient();
-```
+**Package requirement**: spring-cloud-azure-appconfiguration-config >= 5.22.0
 
 In the **Spring configuration provider**, audience is configured by customizing the `ConfigurationClientBuilder` through the `ConfigurationClientCustomizer` interface, then adding it to the bootstrap registry.
 
@@ -172,6 +161,22 @@ public class Application {
 	}
 
 }
+```
+
+#### Azure SDK for Java
+
+**Package requirement**: azure-data-appconfiguration >= 1.8.0
+
+In the **Azure SDK for Java**, audience is configured by passing the `audience` option to the `ConfigurationClientBuilder` when building a `ConfigurationClient`.
+
+The following code snippet demonstrates how to instantiate a configuration client with a cloud-specific audience.
+
+```java
+ConfigurationClient configurationClient = new ConfigurationClientBuilder()
+    .endpoint(myStoreEndpoint)
+    .credential(new DefaultAzureCredentialBuilder().build())
+    .audience(ConfigurationAudience.fromString("{Cloud specific audience here}"))
+    .buildClient();
 ```
 
 ### [JavaScript](#tab/javascript)
