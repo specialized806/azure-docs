@@ -14,7 +14,15 @@ ms.collection:
 
 # Set up and customize your API Center portal
 
-This article shows you how to set up and customize the *API Center portal* (preview), an Azure-managed website that developers and other stakeholders in your organization use to discover the APIs, MCP servers, and related assets in your [API center](overview.md). Portal users can browse and filter APIs and view API details such as API definitions and documentation. User access to API information can be configured with Microsoft Entra ID and Azure role-based access control.
+This article shows you how to set up and customize the *API Center portal* (preview), an Azure-managed website that developers and other stakeholders in your organization use to discover the APIs, MCP servers, and related assets in your [API center](overview.md). 
+
+The API Center portal supports and streamlines the work of developers who use and create APIs within your organization. Users with access can:
+
+* **Search for APIs** by name or use AI-assisted semantic search.
+* **Filter APIs** by type or lifecycle stage.
+* **View API details and definitions** including endpoints, methods, parameters, and response formats.
+* **Download API definitions** to a local computer or open them in Visual Studio Code.
+* **Try out APIs** that support API key authentication or OAuth 2.0 authorization.
 
 :::image type="content" source="media/self-host-api-center-portal/api-center-portal-signed-in.png" alt-text="Screenshot of the API Center portal after user sign-in.":::
 
@@ -48,7 +56,7 @@ To set up the API Center portal with anonymous access enabled, follow these step
     :::image type="content" source="media/set-up-api-center-portal/configure-access-anonymous.png" alt-text="Screenshot showing configuration of anonymous access in the portal.":::
 1. To configure access, select **Confirm and Enable**.
 
-## Access the portal
+## View the portal
 
 After configuring access, go to the API Center portal in your browser.
 
@@ -76,7 +84,7 @@ On the **Site profile** tab of the API Center portal settings, optionally provid
 
 :::image type="content" source="media/set-up-api-center-portal/custom-name.png" alt-text="Screenshot of custom name in API Center portal.":::
 
-## API visibility
+### API visibility
 
 On the **Visibility** tab, control which APIs are discoverable (visible) to API Center portal users. Visibility settings apply to all users of the API Center portal.
 
@@ -88,7 +96,7 @@ To make only specific APIs visible, add filter conditions for APIs based on buil
 
 :::image type="content" source="media/set-up-api-center-portal/add-visibility-condition.png" alt-text="Screenshot of adding API visibility conditions in the portal.":::
 
-## Semantic search
+### Semantic search
 
 If you enable semantic search on the **Semantic search** tab, the API Center portal supplements basic name-based API search with AI-assisted *semantic search* built on API names, descriptions, and optionally custom metadata. Semantic search is available in the **Standard** plan only.
 
@@ -101,7 +109,7 @@ To use AI-assisted search when signed in to the API Center portal, select the se
 
 :::image type="content" source="media/set-up-api-center-portal/semantic-search.png" alt-text="Screenshot of semantic search results in API Center portal.":::
 
-## Custom metadata
+### Custom metadata
 
 On the **Metadata** tab, optionally select [custom metadata](metadata.md) properties that you want to expose in API details and semantic search.
 
@@ -110,20 +118,6 @@ On the **Metadata** tab, optionally select [custom metadata](metadata.md) proper
 You can configure user settings to granularly authorize access to APIs and their specific versions in your API center. For example, configure certain API versions to use API keys for authentication, and create an access policy that permits only specific users to authenticate by using those keys. 
 
 Access policies also apply to the "Try this API" capability for APIs in the API Center portal, ensuring that only portal users with the appropriate access policy can use the test console for those API versions. [Learn more about authorizing access to APIs](authorize-api-access.md).
-
-## API discovery and consumption in the API Center portal
-
-The API Center portal supports and streamlines the work of developers who use and create APIs within your organization. Signed-in users can:
-
-* **Search for APIs** by name or use [AI-assisted semantic search](customize-api-center-portal.md#semantic-search).
-
-* **Filter APIs** by type or lifecycle stage.
-
-* **View API details and definitions** including endpoints, methods, parameters, and response formats.
-
-* **Download API definitions** to a local computer or open them in Visual Studio Code.
-
-* **Try out APIs** that support API key authentication or OAuth 2.0 authorization.
 
 [!INCLUDE [api-center-portal-compare-apim-dev-portal](includes/api-center-portal-compare-apim-dev-portal.md)]
 
