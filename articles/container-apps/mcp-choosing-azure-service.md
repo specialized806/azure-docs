@@ -102,7 +102,7 @@ If your app already runs on App Service, add the MCP SDK to your existing codeba
 - [Integrate an App Service app as an MCP server (.NET)](/azure/app-service/tutorial-ai-model-context-protocol-server-dotnet)
 - [Integrate an App Service app as an MCP server (Python)](/azure/app-service/tutorial-ai-model-context-protocol-server-python)
 
-If your existing app runs on Container Apps, follow the [standalone tutorials](#build-a-custom-mcp-server).
+If your existing app runs on Container Apps, follow the [standalone tutorials](#build-a-custom-mcp-server-with-azure).
 
 ### Create lightweight, event-driven tool endpoints
 
