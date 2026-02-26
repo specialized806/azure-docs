@@ -157,6 +157,7 @@ for i in `seq 1 2`; do
     --name myVM$i \
     --nics myNic$i \
     --image Ubuntu2204 \
+    --public-ip-address "" \
     --admin-username azureuser \
     --generate-ssh-keys \
     --custom-data cloud-init.txt
