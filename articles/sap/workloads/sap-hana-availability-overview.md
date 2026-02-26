@@ -50,7 +50,7 @@ Azure has different availability SLAs for different components, like networking,
 
 [SLA for Virtual Machines](https://azure.microsoft.com/support/legal/sla/virtual-machines/v1_8/) describes three different SLAs, for three different configurations:
 
-- A single VM that uses [Azure premium SSDs](/azure/virtual-machines/managed-disks-overview) for the OS disk and all data disks. This option provides a monthly uptime of 99.9 percent.
+- A single VM that uses [Azure Premium SSDs](/azure/virtual-machines/managed-disks-overview) for the OS disk and all data disks. This option provides a monthly uptime of 99.9 percent.
 - Multiple (at least two) VMs that are organized in an [Azure availability set](/azure/virtual-machines/windows/tutorial-availability-sets). This option provides a monthly uptime of 99.95 percent.
 - Multiple (at least two) VMs that are organized in an [Availability Zone](/azure/reliability/availability-zones-overview). This option provided a monthly uptime of 99.99 percent.
 

@@ -527,7 +527,7 @@ See the following documentation to learn more about encryption restrictions:
 - [Linux](/azure/virtual-machines/disk-encryption#restrictions)
 - [Windows](/azure/virtual-machines/disk-encryption#restrictions) virtual machines
 
-### Azure-managed virtual machine disks
+### Azure Managed Disks
 
 [!INCLUDE [azure-storage-limits-vm-disks-managed](~/reusable-content/ce-skilling/azure/includes/azure-storage-limits-vm-disks-managed.md)]
 

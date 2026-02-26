@@ -42,7 +42,7 @@ Complete the tasks in the table to prepare Azure for agent-based migration.
 **Task** | **Details**
 --- | ---
 **Create an Azure Migrate project** | Your Azure account needs Contributor or Owner permissions to create a project.
-**Verify Azure account permissions** | Your Azure account needs permissions to create a VM, and write to an Azure managed disk.
+**Verify Azure account permissions** | Your Azure account needs permissions to create a VM, and write to an Azure Managed Disk.
 **Set up an Azure network** | Set up a network that Azure VMs will join after migration.
 
 ### Assign permissions to create project
@@ -62,7 +62,7 @@ Assign the Virtual Machine Contributor role to the account, so that you have per
 
 - Create a VM in the selected resource group.
 - Create a VM in the selected virtual network.
-- Write to an Azure managed disk.
+- Write to an Azure Managed Disk.
 
 
 <a name='assign-permissions-to-register-the-replication-appliance-in-azure-ad'></a>
@@ -76,7 +76,7 @@ If you are following the least privilege principle, assign the **Application Dev
 
 ### Set up an Azure network
 
-[Set up an Azure network](/azure/virtual-network/manage-virtual-network). On-premises machines are replicated to Azure managed disks. When you fail over to Azure for migration, Azure VMs are created from these managed disks, and joined to the Azure network you set up.
+[Set up an Azure network](/azure/virtual-network/manage-virtual-network). On-premises machines are replicated to Azure Managed Disks. When you fail over to Azure for migration, Azure VMs are created from these managed disks, and joined to the Azure network you set up.
 
 
 ## Prepare for migration
