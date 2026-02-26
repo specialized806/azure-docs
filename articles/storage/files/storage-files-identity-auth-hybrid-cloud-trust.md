@@ -77,13 +77,13 @@ To enable Microsoft Entra Kerberos authentication by using the [Azure portal](ht
 
 # [Azure PowerShell](#tab/azure-powershell)
 
-To enable Microsoft Entra Kerberos by using Azure PowerShell, run the following command. Remember to replace placeholder values, including brackets, with your values.
+To enable Microsoft Entra Kerberos by using Azure PowerShell, run the following command. Replace the placeholder values, including brackets, with your values.
 
 ```azurepowershell
 Set-AzStorageAccount -ResourceGroupName <resourceGroupName> -StorageAccountName <storageAccountName> -EnableAzureActiveDirectoryKerberosForFile $true
 ```
 
-**Optional:** If you want to configure directory and file-level permissions through Windows File Explorer, you also need to specify the domain name and domain GUID for your Active Directory. If you'd prefer to configure directory and file-level permissions by using icacls, you can skip this step. However, if you want to use icacls, the client needs line-of-sight to the Active Directory.
+**Optional:** If you want to configure directory and file-level permissions through Windows File Explorer, you also need to specify the domain name and domain GUID for your Active Directory. If you'd prefer to configure directory and file-level permissions by using icacls, you can skip this step. However, if you want to use icacls, the client needs line-of-sight to the on-premises Active Directory.
 
 You can get this information from your domain admin or by running the following Active Directory PowerShell cmdlets from an on-premises Active Directory-joined client:
 
@@ -325,24 +325,24 @@ Identify your [Microsoft Entra tenant ID](/azure/active-directory/fundamentals/h
 
 Set this Group Policy on the clients to "Enabled": `Administrative Templates\System\Kerberos\Specify KDC proxy servers for Kerberos clients`
 
-1. Deploy the following Group Policy setting to client machines by using the incoming trust-based flow:
+Deploy the Group Policy setting to client machines by using the incoming trust-based flow:
 
-   1. Edit the **Administrative Templates\System\Kerberos\Specify KDC proxy servers for Kerberos clients** policy setting.
-   1. Select **Enabled**.
-   1. Under **Options**, select **Show...**. This selection opens the Show Contents dialog box.
+1. Edit the **Administrative Templates\System\Kerberos\Specify KDC proxy servers for Kerberos clients** policy setting.
+1. Select **Enabled**.
+1. Under **Options**, select **Show...**. This selection opens the Show Contents dialog box.
 
-      :::image type="content" source="media/storage-files-identity-auth-hybrid-cloud-trust/configure-policy-kdc-proxy.png" alt-text="Screenshot of dialog box to enable 'Specify KDC proxy servers for Kerberos clients'. The 'Show Contents' dialog allows input of a value name and the related value."  lightbox="media/storage-files-identity-auth-hybrid-cloud-trust/configure-policy-kdc-proxy.png":::
+   :::image type="content" source="media/storage-files-identity-auth-hybrid-cloud-trust/configure-policy-kdc-proxy.png" alt-text="Screenshot of dialog box to enable 'Specify KDC proxy servers for Kerberos clients'. The 'Show Contents' dialog allows input of a value name and the related value."  lightbox="media/storage-files-identity-auth-hybrid-cloud-trust/configure-policy-kdc-proxy.png":::
 
-   1. Define the KDC proxy servers settings using mappings as follows. Substitute your Entra tenant ID for the `your_Azure_AD_tenant_id` placeholder. Note the space following `https` and before the closing `/` in the value mapping.
+1. Define the KDC proxy servers settings using mappings as follows. Substitute your Entra tenant ID for the `your_Entra_ID_tenant_id` placeholder. Note the space following `https` and before the closing `/` in the value mapping.
 
-      | Value name | Value |
-      | --- | --- |
-      | KERBEROS.MICROSOFTONLINE.COM | <https login.microsoftonline.com:443:`your_Azure_AD_tenant_id`/kerberos /> |
+   | Value name | Value |
+   | --- | --- |
+   | KERBEROS.MICROSOFTONLINE.COM | <https login.microsoftonline.com:443:`your_Entra_ID_tenant_id`/kerberos /> |
 
-      :::image type="content" source="media/storage-files-identity-auth-hybrid-cloud-trust/configure-policy-kdc-proxy-server-settings-detail.png" alt-text="Screenshot of the 'Define KDC proxy server settings' dialog box. A table allows input of multiple rows. Each row consists of a value name and a value." lightbox="media/storage-files-identity-auth-hybrid-cloud-trust/configure-policy-kdc-proxy-server-settings-detail.png":::
+   :::image type="content" source="media/storage-files-identity-auth-hybrid-cloud-trust/configure-policy-kdc-proxy-server-settings-detail.png" alt-text="Screenshot of the 'Define KDC proxy server settings' dialog box. A table allows input of multiple rows. Each row consists of a value name and a value." lightbox="media/storage-files-identity-auth-hybrid-cloud-trust/configure-policy-kdc-proxy-server-settings-detail.png":::
 
-   1. Select **OK** to close the 'Show Contents' dialog box.
-   1. Select **Apply** on the 'Specify KDC proxy servers for Kerberos clients' dialog box.
+1. Select **OK** to close the 'Show Contents' dialog box.
+1. Select **Apply** on the 'Specify KDC proxy servers for Kerberos clients' dialog box.
 
 ## Rotate the Kerberos key
 
