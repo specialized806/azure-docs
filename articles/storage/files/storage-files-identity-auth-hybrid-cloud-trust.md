@@ -44,7 +44,7 @@ Before implementing the incoming trust-based authentication flow, make sure that
 | **Prerequisite** | **Description** |
 | --- | --- |
 | Client must run Windows 10, Windows Server 2012, or a higher version of Windows. | |
-| Clients must be joined to Active Directory (AD). The domain must have a functional level of Windows Server 2012 or higher. | You can determine if the client is joined to AD by running the [dsregcmd command](/azure/active-directory/devices/troubleshoot-device-dsregcmd): `dsregcmd.exe /status` |
+| Clients must be joined to Active Directory (AD). The domain must have a functional level of Windows Server 2012 or higher. | You can determine if the client is joined to Active Directory by running the [dsregcmd command](/azure/active-directory/devices/troubleshoot-device-dsregcmd): `dsregcmd.exe /status` |
 | A Microsoft Entra tenant. | A Microsoft Entra Tenant is an identity security boundary that's under the control of your organization's IT department. It's an instance of Microsoft Entra ID in which information about a single organization resides. |
 | An Azure subscription under the same Entra tenant you plan to use for authentication. | |
 | An Azure storage account in the Azure subscription. | An Azure storage account is a resource that acts as a container for grouping all the data services from Azure Storage, including files. |
@@ -142,8 +142,8 @@ You can configure the API permissions from the [Azure portal](https://portal.azu
 1. Select **Grant admin consent for [Directory Name]** to grant consent for the three requested API permissions (openid, profile, and User.Read) for all accounts in the directory.
 1. Select **Yes** to confirm.
 
-  > [!IMPORTANT]
-    > If you're connecting to a storage account through a private endpoint or private link by using Microsoft Entra Kerberos authentication, add the private link FQDN to the storage account's Entra application. For instructions, see the entry in the [troubleshooting guide](/troubleshoot/azure/azure-storage/files-troubleshoot-smb-authentication?toc=/azure/storage/files/toc.json#error-1326---the-username-or-password-is-incorrect-when-using-private-link).
+> [!IMPORTANT]
+> If you're connecting to a storage account through a private endpoint or private link by using Microsoft Entra Kerberos authentication, add the private link FQDN to the storage account's Entra application. For instructions, see the entry in the [troubleshooting guide](/troubleshoot/azure/azure-storage/files-troubleshoot-smb-authentication?toc=/azure/storage/files/toc.json#error-1326---the-username-or-password-is-incorrect-when-using-private-link).
 
 ### Disable multifactor authentication on the storage account
 
@@ -153,8 +153,8 @@ The storage account app should have the same name as the storage account in the 
 
 Remember to replace `<your-storage-account-name>` with the proper value.
 
-  > [!IMPORTANT]
-  > If you don't exclude MFA policies from the storage account app, you can't access the file share. Trying to map the file share by using `net use` results in an error message that says "System error 1327: Account restrictions are preventing this user from signing in. For example: blank passwords aren't allowed, sign-in times are limited, or a policy restriction has been enforced."
+> [!IMPORTANT]
+> If you don't exclude MFA policies from the storage account app, you can't access the file share. Trying to map the file share by using `net use` results in an error message that says "System error 1327: Account restrictions are preventing this user from signing in. For example: blank passwords aren't allowed, sign-in times are limited, or a policy restriction has been enforced."
 
 For guidance on disabling MFA, see the following articles:
 
@@ -217,108 +217,107 @@ Install-Module -Name AzureADHybridAuthenticationManagement -AllowClobber
 
 1. Set the common parameters. Customize the script before running it.
 
-    - Set the `$domain` parameter to your on-premises Active Directory domain name.
-    - When prompted by `Get-Credential`, enter an on-premises Active Directory administrator username and password. This account must either be a member of the Domain Admins group for the domain or a member of the Enterprise Admins group for the domain's forest.
-    - Set the `$cloudUserName` parameter to the username of a Global Administrator privileged account for Entra ID cloud access.
+   - Set the `$domain` parameter to your on-premises Active Directory domain name.
+   - When prompted by `Get-Credential`, enter an on-premises Active Directory administrator username and password. This account must either be a member of the Domain Admins group for the domain or a member of the Enterprise Admins group for the domain's forest.
+   - Set the `$cloudUserName` parameter to the username of a Global Administrator privileged account for Entra ID cloud access.
 
-    > [!NOTE]  
-    > If you want to use your current Windows sign-in account for your on-premises Active Directory access, you can skip the step where you assign credentials to the `$domainCred` parameter. If you take this approach, don't include the `-DomainCredential` parameter in the PowerShell commands following this step.
+   > [!NOTE]  
+   > If you want to use your current Windows sign-in account for your on-premises Active Directory access, you can skip the step where you assign credentials to the `$domainCred` parameter. If you take this approach, don't include the `-DomainCredential` parameter in the PowerShell commands following this step.
 
-    ```powershell
-    $domain = "your on-premises domain name, for example contoso.com"
-    
-    $domainCred = Get-Credential
-    
-    $cloudUserName = "Azure AD user principal name, for example admin@contoso.onmicrosoft.com"
-    ```
+   ```powershell
+   $domain = "your on-premises domain name, for example contoso.com" 
+   $domainCred = Get-Credential
+   $cloudUserName = "Microsoft Entra ID user principal name, for example admin@contoso.onmicrosoft.com"
+   ```
 
 1. Check the current Kerberos Domain Settings.
 
-    Run the following command to check your domain's current Kerberos settings:
+   Run the following command to check your domain's current Kerberos settings:
 
-    ```powershell
-    Get-AzureAdKerberosServer -Domain $domain `
-        -DomainCredential $domainCred `
-        -UserPrincipalName $cloudUserName
-    ```
+   ```powershell
+   Get-AzureAdKerberosServer -Domain $domain `
+    -DomainCredential $domainCred `
+    -UserPrincipalName $cloudUserName
+   ```
 
-        If this is the first time calling any Microsoft Entra Kerberos command, you're prompted for Entra ID cloud access.
-      - Enter the password for your Entra ID Global Administrator account.
-      - If your organization uses other modern authentication methods such as Entra multifactor authentication or Smart Card, follow the instructions as requested for sign in.
+   If this is the first time calling any Microsoft Entra Kerberos command, you're prompted for Entra ID cloud access.
 
-    If this is the first time you're configuring Microsoft Entra Kerberos settings, the [Get-AzureAdKerberosServer cmdlet](/azure/active-directory/authentication/howto-authentication-passwordless-security-key-on-premises#view-and-verify-the-azure-ad-kerberos-server) displays empty information, as in the following sample output:
+   - Enter the password for your Entra ID Global Administrator account.
+   - If your organization uses other modern authentication methods such as Entra multifactor authentication or Smart Card, follow the instructions as requested for sign in.
 
-    ```output
-    ID                  :
-    UserAccount         :
-    ComputerAccount     :
-    DisplayName         :
-    DomainDnsName       :
-    KeyVersion          :
-    KeyUpdatedOn        :
-    KeyUpdatedFrom      :
-    CloudDisplayName    :
-    CloudDomainDnsName  :
-    CloudId             :
-    CloudKeyVersion     :
-    CloudKeyUpdatedOn   :
-    CloudTrustDisplay   :
-    ```
+   If this is the first time you're configuring Microsoft Entra Kerberos settings, the [Get-AzureAdKerberosServer cmdlet](/azure/active-directory/authentication/howto-authentication-passwordless-security-key-on-premises#view-and-verify-the-azure-ad-kerberos-server) displays empty information, as in the following sample output:
 
-    If your domain already supports FIDO authentication, the `Get-AzureAdKerberosServer` cmdlet displays Entra service account information, as in the following sample output. The `CloudTrustDisplay` field returns an empty value.
+   ```output
+   ID                  :
+   UserAccount         :
+   ComputerAccount     :
+   DisplayName         :
+   DomainDnsName       :
+   KeyVersion          :
+   KeyUpdatedOn        :
+   KeyUpdatedFrom      :
+   CloudDisplayName    :
+   CloudDomainDnsName  :
+   CloudId             :
+   CloudKeyVersion     :
+   CloudKeyUpdatedOn   :
+   CloudTrustDisplay   :
+   ```
 
-    ```output
-    ID                  : XXXXX
-    UserAccount         : CN=krbtgt-AzureAD, CN=Users, DC=contoso, DC=com
-    ComputerAccount     : CN=AzureADKerberos, OU=Domain Controllers, DC=contoso, DC=com
-    DisplayName         : XXXXXX_XXXXX
-    DomainDnsName       : contoso.com
-    KeyVersion          : 53325
-    KeyUpdatedOn        : 2/24/2024 9:03:15 AM
-    KeyUpdatedFrom      : ds-aad-auth-dem.contoso.com
-    CloudDisplayName    : XXXXXX_XXXXX
-    CloudDomainDnsName  : contoso.com
-    CloudId             : XXXXX
-    CloudKeyVersion     : 53325
-    CloudKeyUpdatedOn   : 2/24/2024 9:03:15 AM
-    CloudTrustDisplay   :
-    ```
+   If your domain already supports FIDO authentication, the `Get-AzureAdKerberosServer` cmdlet displays Entra service account information, as in the following sample output. The `CloudTrustDisplay` field returns an empty value.
+
+   ```output
+   ID                  : XXXXX
+   UserAccount         : CN=krbtgt-AzureAD, CN=Users, DC=contoso, DC=com
+   ComputerAccount     : CN=AzureADKerberos, OU=Domain Controllers, DC=contoso, DC=com
+   DisplayName         : XXXXXX_XXXXX
+   DomainDnsName       : contoso.com
+   KeyVersion          : 53325
+   KeyUpdatedOn        : 2/24/2024 9:03:15 AM
+   KeyUpdatedFrom      : ds-aad-auth-dem.contoso.com
+   CloudDisplayName    : XXXXXX_XXXXX
+   CloudDomainDnsName  : contoso.com
+   CloudId             : XXXXX
+   CloudKeyVersion     : 53325
+   CloudKeyUpdatedOn   : 2/24/2024 9:03:15 AM
+   CloudTrustDisplay   :
+   ```
 
 1. Add the Trusted Domain Object.
 
-    Run the [Set-AzureAdKerberosServer PowerShell cmdlet](/azure/active-directory/authentication/howto-authentication-passwordless-security-key-on-premises#create-a-kerberos-server-object) to add the Trusted Domain Object. Be sure to include `-SetupCloudTrust` parameter. If there's no Entra service account, this command creates a new Entra service account. This command only creates the requested Trusted Domain object if there's a Entra service account.
+   Run the [Set-AzureAdKerberosServer PowerShell cmdlet](/azure/active-directory/authentication/howto-authentication-passwordless-security-key-on-premises#create-a-kerberos-server-object) to add the Trusted Domain Object. Be sure to include `-SetupCloudTrust` parameter. If there's no Entra service account, this command creates a new Entra service account. This command only creates the requested Trusted Domain object if there's a Entra service account.
 
-    ```powershell
-    Set-AzureADKerberosServer -Domain $domain -UserPrincipalName $cloudUserName -DomainCredential $domainCred -SetupCloudTrust
-    ```
+   ```powershell
+   Set-AzureADKerberosServer -Domain $domain -UserPrincipalName $cloudUserName -DomainCredential $domainCred -SetupCloudTrust
+   ```
 
-    > [!NOTE]  
-    > In a multiple domain forest, to avoid the error *LsaCreateTrustedDomainEx 0x549* when running the command on a child domain:
-    >
-    > 1. Run the command on root domain (include `-SetupCloudTrust` parameter).
-    > 1. Run the same command on the child domain without the `-SetupCloudTrust` parameter.
+   > [!NOTE]  
+   > In a multiple domain forest, to avoid the error *LsaCreateTrustedDomainEx 0x549* when running the command on a child domain:
+   >
+   > 1. Run the command on root domain (include `-SetupCloudTrust` parameter).
+   > 1. Run the same command on the child domain without the `-SetupCloudTrust` parameter.
 
-    After creating the Trusted Domain Object, you can check the updated Kerberos Settings by using the `Get-AzureAdKerberosServer` PowerShell cmdlet, as shown in the previous step. If the `Set-AzureAdKerberosServer` cmdlet runs successfully with the `-SetupCloudTrust` parameter, the `CloudTrustDisplay` field returns `Microsoft.AzureAD.Kdc.Service.TrustDisplay`, as shown in the following sample output:
+   After creating the Trusted Domain Object, you can check the updated Kerberos Settings by using the `Get-AzureAdKerberosServer` PowerShell cmdlet, as shown in the previous step. If the `Set-AzureAdKerberosServer` cmdlet runs successfully with the `-SetupCloudTrust` parameter, the `CloudTrustDisplay` field returns `Microsoft.AzureAD.Kdc.Service.TrustDisplay`, as shown in the following sample output:
 
-    ```output
-    ID                  : XXXXX
-    UserAccount         : CN=krbtgt-AzureAD, CN=Users, DC=contoso, DC=com
-    ComputerAccount     : CN=AzureADKerberos, OU=Domain Controllers, DC=contoso, DC=com
-    DisplayName         : XXXXXX_XXXXX
-    DomainDnsName       : contoso.com
-    KeyVersion          : 53325
-    KeyUpdatedOn        : 2/24/2024 9:03:15 AM
-    KeyUpdatedFrom      : ds-aad-auth-dem.contoso.com
-    CloudDisplayName    : XXXXXX_XXXXX
-    CloudDomainDnsName  : contoso.com
-    CloudId             : XXXXX
-    CloudKeyVersion     : 53325
-    CloudKeyUpdatedOn   : 2/24/2024 9:03:15 AM
-    CloudTrustDisplay   : Microsoft.AzureAD.Kdc.Service.TrustDisplay
-    ```
+   ```output
+   ID                  : XXXXX
+   UserAccount         : CN=krbtgt-AzureAD, CN=Users, DC=contoso, DC=com
+   ComputerAccount     : CN=AzureADKerberos, OU=Domain Controllers, DC=contoso, DC=com
+   DisplayName         : XXXXXX_XXXXX
+   DomainDnsName       : contoso.com
+   KeyVersion          : 53325
+   KeyUpdatedOn        : 2/24/2024 9:03:15 AM
+   KeyUpdatedFrom      : ds-aad-auth-dem.contoso.com
+   CloudDisplayName    : XXXXXX_XXXXX
+   CloudDomainDnsName  : contoso.com
+   CloudId             : XXXXX
+   CloudKeyVersion     : 53325
+   CloudKeyUpdatedOn   : 2/24/2024 9:03:15 AM
+   CloudTrustDisplay   : Microsoft.AzureAD.Kdc.Service.TrustDisplay
+   ```
 
-    > [!NOTE]  
-    > Azure sovereign clouds require setting the `TopLevelNames` property, which is set to `windows.net` by default. Azure sovereign cloud deployments of Azure SQL Managed Instance use a different top-level domain name, such as `usgovcloudapi.net` for Azure US Government. Set your Trusted Domain Object to that top-level domain name by using the following PowerShell command: `Set-AzureADKerberosServer -Domain $domain -DomainCredential $domainCred -CloudCredential $cloudCred -SetupCloudTrust -TopLevelNames "usgovcloudapi.net,windows.net"`. You can verify the setting by using the following PowerShell command: `Get-AzureAdKerberosServer -Domain $domain -DomainCredential $domainCred -UserPrincipalName $cloudUserName | Select-Object -ExpandProperty CloudTrustDisplay`.
+   > [!NOTE]  
+   > Azure sovereign clouds require setting the `TopLevelNames` property, which is set to `windows.net` by default. Azure sovereign cloud deployments of Azure SQL Managed Instance use a different top-level domain name, such as `usgovcloudapi.net` for Azure US Government. Set your Trusted Domain Object to that top-level domain name by using the following PowerShell command: `Set-AzureADKerberosServer -Domain $domain -DomainCredential $domainCred -CloudCredential $cloudCred -SetupCloudTrust -TopLevelNames "usgovcloudapi.net,windows.net"`. You can verify the setting by using the following PowerShell command: `Get-AzureAdKerberosServer -Domain $domain -DomainCredential $domainCred -UserPrincipalName $cloudUserName | Select-Object -ExpandProperty CloudTrustDisplay`.
 
 ## Configure the clients to retrieve Kerberos tickets
 
@@ -328,22 +327,22 @@ Set this Group Policy on the clients to "Enabled": `Administrative Templates\Sys
 
 1. Deploy the following Group Policy setting to client machines by using the incoming trust-based flow:
 
-    1. Edit the **Administrative Templates\System\Kerberos\Specify KDC proxy servers for Kerberos clients** policy setting.
-    1. Select **Enabled**.
-    1. Under **Options**, select **Show...**. This selection opens the Show Contents dialog box.
+   1. Edit the **Administrative Templates\System\Kerberos\Specify KDC proxy servers for Kerberos clients** policy setting.
+   1. Select **Enabled**.
+   1. Under **Options**, select **Show...**. This selection opens the Show Contents dialog box.
 
-        :::image type="content" source="media/storage-files-identity-auth-hybrid-cloud-trust/configure-policy-kdc-proxy.png" alt-text="Screenshot of dialog box to enable 'Specify KDC proxy servers for Kerberos clients'. The 'Show Contents' dialog allows input of a value name and the related value."  lightbox="media/storage-files-identity-auth-hybrid-cloud-trust/configure-policy-kdc-proxy.png":::
+      :::image type="content" source="media/storage-files-identity-auth-hybrid-cloud-trust/configure-policy-kdc-proxy.png" alt-text="Screenshot of dialog box to enable 'Specify KDC proxy servers for Kerberos clients'. The 'Show Contents' dialog allows input of a value name and the related value."  lightbox="media/storage-files-identity-auth-hybrid-cloud-trust/configure-policy-kdc-proxy.png":::
 
-    1. Define the KDC proxy servers settings using mappings as follows. Substitute your Entra tenant ID for the `your_Azure_AD_tenant_id` placeholder. Note the space following `https` and before the closing `/` in the value mapping.
+   1. Define the KDC proxy servers settings using mappings as follows. Substitute your Entra tenant ID for the `your_Azure_AD_tenant_id` placeholder. Note the space following `https` and before the closing `/` in the value mapping.
 
-        | Value name | Value |
-        | --- | --- |
-        | KERBEROS.MICROSOFTONLINE.COM | <https login.microsoftonline.com:443:`your_Azure_AD_tenant_id`/kerberos /> |
+      | Value name | Value |
+      | --- | --- |
+      | KERBEROS.MICROSOFTONLINE.COM | <https login.microsoftonline.com:443:`your_Azure_AD_tenant_id`/kerberos /> |
 
-        :::image type="content" source="media/storage-files-identity-auth-hybrid-cloud-trust/configure-policy-kdc-proxy-server-settings-detail.png" alt-text="Screenshot of the 'Define KDC proxy server settings' dialog box. A table allows input of multiple rows. Each row consists of a value name and a value." lightbox="media/storage-files-identity-auth-hybrid-cloud-trust/configure-policy-kdc-proxy-server-settings-detail.png":::
+      :::image type="content" source="media/storage-files-identity-auth-hybrid-cloud-trust/configure-policy-kdc-proxy-server-settings-detail.png" alt-text="Screenshot of the 'Define KDC proxy server settings' dialog box. A table allows input of multiple rows. Each row consists of a value name and a value." lightbox="media/storage-files-identity-auth-hybrid-cloud-trust/configure-policy-kdc-proxy-server-settings-detail.png":::
 
-    1. Select **OK** to close the 'Show Contents' dialog box.
-    1. Select **Apply** on the 'Specify KDC proxy servers for Kerberos clients' dialog box.
+   1. Select **OK** to close the 'Show Contents' dialog box.
+   1. Select **Apply** on the 'Specify KDC proxy servers for Kerberos clients' dialog box.
 
 ## Rotate the Kerberos key
 
@@ -389,4 +388,4 @@ Remove-AzureAdKerberosServer -Domain $domain `
 
 ## Next step
 
-- [Mount an Azure file share](storage-files-identity-mount-file-share.md)
+- [Mount an SMB Azure file share](storage-files-identity-mount-file-share.md)
