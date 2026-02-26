@@ -68,7 +68,7 @@ The following sections show you how to customize the API Center portal experienc
 
 > [!IMPORTANT]
 > Select **Save + publish** on the API Center portal's **Settings** page each time that you make changes to the settings. Until you publish, your changes aren't visible in the API Center portal.
-> :::image type="content" source="media/set-up-api-center-portal/save-and-publish.png" alt="Screenshot of Save + Publish button in the Azure portal.":::
+> :::image type="content" source="media/set-up-api-center-portal/save-and-publish.png" alt-text="Screenshot of Save + Publish button in the Azure portal.":::
 
 ### Site profile
 
