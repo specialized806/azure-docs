@@ -147,16 +147,12 @@ Follow these steps to check if the Azure Function app can resolve the hostname o
    nslookup hostname
    ```
 
-    :::image type="content" source="./media/set-up-network/hostname-resolution-check.png" alt-text="Screenshot showing the hostname resolution check in the Kudu debug console." lightbox="./media/set-up-network/hostname-resolution-check.png":::
-
 1. To check if the Azure Function app can connect to your SAP system on the required port, run the following command in the terminal, replacing hostname with the actual **hostname** of your SAP system and port with the actual **port** number that your SAP system is listening on. To find the port number, refer to the documentation section on [Allow inbound traffic](#allow-inbound-traffic) and find the port number for your provider type:
 
     ```bash
     timeout 5 bash -c "</dev/tcp/hostname/port" && echo "Port Open" || echo "Port Closed"
     curl -v telnet://hostname:port
     ```
-
-   :::image type="content" source="./media/set-up-network/hostname-port-check.png" alt-text="Screenshot showing the hostname and port check in the Kudu debug console." lightbox="./media/set-up-network/hostname-port-check.png":::
 
 1. If the hostname resolution is working correctly, you should see the IP address of your SAP system in the output of the nslookup command. If the connection to the required port is working correctly, you should see "Port Open" in the output of the timeout command and a successful connection message in the output of the curl command.
 1. If you see any errors in the output of these commands, it indicates that there's a connectivity issue between the Azure Function app and your SAP system. You can use the error messages to further troubleshoot and identify the root cause of the issue. Common issues include incorrect DNS configuration, NSG rules blocking traffic, or firewall rules blocking traffic.
@@ -167,7 +163,6 @@ When trying to resolve connectivity issues, it's important to check the effectiv
 
 1. Go to the Azure portal and navigate to your Virtual Machine that's hosting your SAP system.
 1. Search for **Network Settings** in the left-hand menu and select it.
-   :::image type="content" source="./media/set-up-network/vm-network-settings.png" alt-text="Screenshot showing the network settings of the Virtual Machine." lightbox="./media/set-up-network/vm-network-settings.png":::
 1. Open the **Network Interface** associated with your Virtual Machine.
    :::image type="content" source="./media/set-up-network/vm-network-interface.png" alt-text="Screenshot showing the network interface of the Virtual Machine." lightbox="./media/set-up-network/vm-network-interface.png":::
 1. Search for **Effective routes** in the left-hand menu and select it. This shows you all the effective routes that are applied to your Virtual Machine. Review the routes to check if there are any routes that might be blocking traffic from Azure Monitor for SAP solutions.
