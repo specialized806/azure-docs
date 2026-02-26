@@ -258,7 +258,7 @@ SAP Software provisioning Manager (SWPM) is giving an option to encrypt the data
 - Match the disk IOPS and total VM aggregate throughput quota of the VM with the disk design (deploy sufficient number of disks)
 - Aggregate disks using Windows Storage Spaces or Linux LVM2 with correct stripe size and file system
 - Create sufficient number of devices for data, log, temp, and backup purposes
-- Consider using UltraDisk for x-large systems
+- Consider using Ultra Disk for x-large systems
 - Run `saptune` SAP-ASE on SLES. Tune RHEL VMs per [69988](https://access.redhat.com/solutions/69988)
 - Secure the database with DB Encryption – manually store keys in Azure Key Vault
 - Complete the [SAP on Azure Checklist](./deployment-checklist.md)
