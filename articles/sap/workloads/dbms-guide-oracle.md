@@ -15,7 +15,7 @@ ms.custom: H1Hack27Feb2017, linux-related-content
 
 # Azure virtual machines Oracle database deployment for SAP workload
 
-This article covers several different areas to consider when you deploy Oracle Database for SAP workload in Azure Infrastructure as a Service (IaaS). Before you read this document, we recommend that you read [Considerations for Azure virtual machines (VMs) database management system (DBMS) deployment for SAP workload](./dbms-guide-general.md). We also recommend that you read other guides in the [SAP workload on Azure](./get-started.md) documentation.
+This article covers several different areas to consider when you deploy Oracle Database for SAP workload in Azure infrastructure as a service (IaaS). Before you read this document, we recommend that you read [Considerations for Azure virtual machines (VMs) database management system (DBMS) deployment for SAP workload](./dbms-guide-general.md). We also recommend that you read other guides in the [SAP workload on Azure](./get-started.md) documentation.
 
 You can find information about Oracle versions and corresponding operating system (OS) versions that are supported for running SAP on Oracle on Azure in SAP Note [2039619](https://launchpad.support.sap.com/#/notes/2039619).
 
@@ -367,7 +367,7 @@ SAP on Oracle on Azure also supports Windows. The recommendations for Windows de
   * Windows Server 2022 (only from Oracle Database 19.13.0 on)
   * Windows Server 2019 (only from Oracle Database 19.5.0 on)
 
-* ASM isn't supported on Windows. Use Windows Storage Spaces to aggregate disks for optimal performance.
+* Use Windows Storage Spaces to aggregate disks for optimal performance because ASM isn't supported on Windows.
 * Install Oracle Home on a dedicated independent disk. (Don't install Oracle Home on the `C:\` drive.)
 * Format all disks as NTFS.
 * Follow the Windows Tuning guide from Oracle and enable large pages, lock pages in memory, and make other Windows-specific settings.
