@@ -1,6 +1,6 @@
 ---
-title: Migrate to Azure Trusted Launch VMs using Azure Migrate
-description: Use Azure Migrate to migrate on prem VMs to Azure Trusted Launch VMs
+title: Migrate Gen2 VMs to Azure Trusted Launch VMs using Azure Migrate
+description: Use Azure Migrate to migrate on prem Gen 2 VMs to Azure Trusted Launch VMs
 author: dhananjayanr
 ms.author: dhananjayanr
 ms.topic: how-to
