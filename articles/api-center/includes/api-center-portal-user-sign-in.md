@@ -6,7 +6,7 @@ services: api-center
 
 ms.service: azure-api-center
 ms.topic: include
-ms.date: 08/05/2025
+ms.date: 02/25/2026
 
 ms.custom: Include file
 ---
@@ -14,7 +14,8 @@ ms.custom: Include file
 To enable sign-in to the API Center portal to access APIs, assign the **Azure API Center Data Reader** role to users or groups in your organization, scoped to your API center.
 
 > [!IMPORTANT]
-> By default, you and other administrators of the API center must sign-in to access APIs in the API Center portal. Be sure to assign the **Azure API Center Data Reader** role to yourself and other administrators.  
+> * The API center owner is automatically assigned the **Azure API Center Data Reader** role when Microsoft Entra ID is configured for the portal.
+> * Be sure to assign the **Azure API Center Data Reader** role to other administrators.  
 
 For detailed prerequisites and steps to assign a role to users and groups, see [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal). Brief steps follow:
 
