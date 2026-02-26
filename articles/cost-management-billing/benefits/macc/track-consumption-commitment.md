@@ -22,7 +22,7 @@ Azure Consumption Commitment functionality in the Azure portal is available only
 - If you have an Enterprise Agreement, you must have the Enterprise Administrator role to view the Azure Consumption Commitment balance.
 - If you have a Microsoft Customer Agreement, you must have the Owner, Contributor, or Reader role on the billing account to view the Azure Consumption Commitment balance.
 
-## Track your Azure Consumption Commitment
+## Actions for tracking your Azure Consumption Commitment
 
 ### [Azure portal](#tab/portal)
 
@@ -39,7 +39,7 @@ Azure Consumption Commitment functionality in the Azure portal is available only
     > [!NOTE]
     > The Azure portal remembers the last billing scope that you access and displays the scope the next time you open the list of billing scopes. You don't see the **Billing scopes** pane if you visited **Cost Management + Billing** earlier. If so, check that you're in the [right scope](#check-access-to-a-microsoft-customer-agreement). If not, [switch the scope](../../manage/view-all-accounts.md#switch-billing-scope-in-the-azure-portal) to select the billing account for a Microsoft Customer Agreement.
 
-4. Depending on your agreement type, do one of the following steps:
+4. Depending on your agreement type, take one of the following steps:
 
     - For a Microsoft Customer Agreement, select **Properties** on the left pane, and then select **Microsoft Azure Consumption Commitment (MACC)**.  
 
@@ -69,7 +69,7 @@ The **Details** section displays other important aspects of your commitment.
 | **Purchase date** | Date when you made the commitment. |
 | **Start date** | Date when the commitment became effective. |
 | **End date** | Date when the commitment expired. |
-| **Commitment** amount | Amount that you commit to spending on Azure Consumption Commitment-eligible products and services. |
+| **Commitment amount** | Amount that you commit to spending on Azure Consumption Commitment-eligible products and services. |
 | **Status** | Status of your commitment. |
 
 Your Azure Consumption Commitment can have one of the following statuses:
@@ -81,7 +81,7 @@ Your Azure Consumption Commitment can have one of the following statuses:
 
 #### Events
 
-The **Events** section displays events (invoiced spend) that decremented your Azure Consumption Commitment.
+The **Events** section displays events (invoiced spending) that decremented your Azure Consumption Commitment.
 
 :::image type="content" source="../../manage/media/track-consumption-commitment/macc-events.png" alt-text="Screenshot of Azure Consumption Commitment events." lightbox="../../manage/media/track-consumption-commitment/macc-events.png" :::
 
@@ -95,7 +95,7 @@ The **Events** section displays events (invoiced spend) that decremented your Az
 
 ### [REST API](#tab/rest)
 
-You can use the [Azure Billing](/rest/api/billing/) and [Consumption](/rest/api/consumption/) APIs to programmatically get Azure Consumption Commitment for your billing account.
+You can use the [Azure Billing](/rest/api/billing/) and [Consumption](/rest/api/consumption/) APIs to programmatically get Azure Consumption Commitment information for your billing account.
 
 The following examples use REST APIs. Currently, PowerShell and the Azure CLI aren't supported. The response example is for Microsoft Customer Agreements. The response for Enterprise Agreements differs.
 
@@ -303,7 +303,7 @@ Milestones are predefined financial targets within the Azure Consumption Commitm
 
 Not every Azure Consumption Commitment includes milestones. If your Azure Consumption Commitment has milestones configured, they appear in the Azure portal when you select an event.
 
-:::image type="content" source="../../manage/media/track-consumption-commitment/macc-main-page-milestones.png" alt-text="Screenshot that shows events for Azure Consumption Commitment." lightbox="../../manage/media/track-consumption-commitment/macc-main-page-milestones.png" :::
+:::image type="content" source="../../manage/media/track-consumption-commitment/macc-main-page-milestones.png" alt-text="Screenshot that shows Azure Consumption Commitment events." lightbox="../../manage/media/track-consumption-commitment/macc-main-page-milestones.png" :::
 
 :::image type="content" source="../../manage/media/track-consumption-commitment/macc-milestones-page.png" alt-text="Screenshot that shows Azure Consumption Commitment milestones." lightbox="../../manage/media/track-consumption-commitment/macc-milestones-page.png" :::
 
@@ -320,11 +320,11 @@ Here are key points about Azure Consumption Commitment milestones:
 
 ## Azure Consumption Commitment shortfalls and alerts
 
-Microsoft emails billing account admins to help meet Azure Consumption Commitments and milestones on time. These alerts give advance notice so you can act before getting shortfall charges.
+Microsoft emails billing account admins to help you meet Azure Consumption Commitments and milestones on time. These alerts give advance notice so you can act before getting shortfall charges.
 
 ### Azure Consumption Commitment expiry alerts
 
-If your Azure Consumption Commitment target isn't met, email notifications go to billing account admins at the following intervals before the Azure Consumption Commitment end date:
+If don't meet your Azure Consumption Commitment target, email notifications go to billing account admins at the following intervals before the Azure Consumption Commitment end date:
 
 - 90 days before expiry
 - 60 days before expiry
@@ -332,7 +332,7 @@ If your Azure Consumption Commitment target isn't met, email notifications go to
 
 ### Milestone alerts
 
-If your Azure Consumption Commitment includes milestones, email alerts go to billing account admins at the following intervals before each milestone end date if the milestone target isn't met:
+If your Azure Consumption Commitment includes milestones, email alerts go to billing account admins at the following intervals before each milestone end date if you don't meet the milestone target:
 
 - 90 days before milestone end date
 - 60 days before milestone end date
@@ -340,31 +340,35 @@ If your Azure Consumption Commitment includes milestones, email alerts go to bil
 
 ### Shortfall charges
 
-If the Azure Consumption Commitment or the Azure Consumption Commitment milestone target isn't met by the end date, an email alert is sent notifying you that a shortfall charge for the remaining balance is applied. This shortfall charge is an Azure prepayment credit that is applied to your account to fulfill your remaining commitment.
+If you don't meet the Azure Consumption Commitment or the milestone target by the end date, an email alert notifies you about a shortfall charge for the remaining balance. This shortfall charge is an Azure prepayment credit that's applied to your account to fulfill your remaining commitment.
 
 ---
 
-## Azure Services and Marketplace offers that are eligible for Azure Consumption Commitment
+## Azure services and Marketplace offers that are eligible for Azure Consumption Commitment
 
-You can determine which Azure services and Marketplace offers are eligible for Azure Consumption Commitment decrement in the Azure portal. For more information, see [Determine which offers are eligible for Azure consumption commitments (MACC/CtC)](/marketplace/azure-consumption-commitment-benefit#determine-which-offers-are-eligible-for-azure-consumption-commitments-maccctc).
+You can determine which Azure services and Microsoft Marketplace offers are eligible for Azure Consumption Commitment decrement in the Azure portal. See [Azure Consumption Commitment benefit](/marketplace/azure-consumption-commitment-benefit).
 
 ## Azure credits and Azure Consumption Commitment
 
-If your organization receives Azure credits from Microsoft, consumption or purchases covered by those credits don't contribute toward your Azure Consumption Commitment.
+If your organization receives Azure credits from Microsoft, consumption or purchases that those credits cover don't contribute to your Azure Consumption Commitment.
 
-If your organization purchased Azure Prepayment, consumption or purchases covered by the prepayment don't contribute toward your Azure Consumption Commitment. However, the Azure Prepayment purchase itself decrements your Azure Consumption Commitment.
+If your organization purchased Azure prepayment, consumption or purchases that the prepayment covers don't contribute to your Azure Consumption Commitment. However, the Azure prepayment purchase itself decrements your Azure Consumption Commitment.
 
-**Example:** Contoso makes a Azure Consumption Commitment of $50,000 in May. In June, they purchase an Azure Prepayment of $10,000. This purchase decrements their Azure Consumption Commitment, leaving a remaining balance of $40,000. During June, Contoso consumes $10,000 of Azure Prepayment-eligible services. These service charges are covered by their Azure Prepayment and don't decrement their Azure Consumption Commitment. Once the Azure Prepayment is fully used, all Azure service consumption and other eligible purchases decrement their Azure Consumption Commitment.
+### Example
+
+Contoso makes a Azure Consumption Commitment of $50,000 in May. In June, it purchases an Azure prepayment of $10,000. This purchase decrements the Azure Consumption Commitment, leaving a remaining balance of $40,000.
+
+During June, Contoso consumes $10,000 of Azure prepayment-eligible services. These service charges are covered by the Azure prepayment and don't decrement the Azure Consumption Commitment. After Contoso fully uses the Azure prepayment, all Azure service consumption and other eligible purchases decrement the Azure Consumption Commitment.
 
 ## Check access to a Microsoft Customer Agreement
 
 [!INCLUDE [billing-check-mca](../../../../includes/billing-check-mca.md)]
 
-## Need help? Contact support
+## Support
 
 If you need help, [contact support](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade) to get your issue resolved quickly.
 
 ## Related content
 
-- [Determine which offers are eligible for Azure consumption commitments (MACC/CTC)](/marketplace/azure-consumption-commitment-benefit#determine-which-offers-are-eligible-for-azure-consumption-commitments-maccctc)
-- [Track your Azure credits balance](../credits/mca-check-azure-credits-balance.md)
+- [Determine which offers are eligible for Azure Consumption Commitment](/marketplace/azure-consumption-commitment-benefit#determine-which-offers-are-eligible-for-azure-consumption-commitments-maccctc)
+- [Track your Azure credit balance](../credits/mca-check-azure-credits-balance.md)

@@ -8,7 +8,7 @@ ms.subservice: billing
 ms.topic: how-to
 ms.date: 02/09/2026
 ms.author: benshy
-#customer intent: As a Microsoft Customer Agreement billing owner, I want learn about managing a Azure credit so that I move the credit when necessary.
+#customer intent: As a Microsoft Customer Agreement billing owner, I want to learn about managing a Azure credit so that I can move the credit when necessary.
 service.tree.id: cf90d1aa-e8ca-47a9-a6d0-bc69c7db1d52
 ---
 
@@ -22,7 +22,7 @@ When you accept Azure credit under a Microsoft Customer Agreement, the credit is
 
 ## Move a credit resource
 
-You can move a credit resource to another resource group or subscription, just like other Azure resources. This move only changes metadata and does not affect the credit.
+You can move a credit resource to another resource group or subscription, just like other Azure resources. This move only changes metadata and doesn't affect the credit.
 
 The new resource group or subscription must remain within the same billing profile as the original.
 

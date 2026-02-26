@@ -8,7 +8,7 @@ ms.subservice: billing
 ms.topic: how-to
 ms.date: 02/20/2026
 ms.author: benshy
-#customer intent: As a Microsoft Customer Agreement billing owner, I want learn about managing a discount so that I move the discount when necessary.
+#customer intent: As a Microsoft Customer Agreement billing owner, I want to learn about managing a discount so that I can move the discount when necessary.
 service.tree.id: cf90d1aa-e8ca-47a9-a6d0-bc69c7db1d52
 ---
 
