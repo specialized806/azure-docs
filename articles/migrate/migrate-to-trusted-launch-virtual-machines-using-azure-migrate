@@ -1,0 +1,16 @@
+---
+title: Migrate to Azure Trusted Launch VMs using Azure Migrate
+description: Use Azure Migrate to migrate on prem VMs to Azure Trusted Launch VMs
+author: dhananjayanr
+ms.author: dhananjayanr
+ms.topic: how-to
+ms.service: azure-migrate
+ms.reviewer: v-uhabiba
+ms.date: 26/02/202
+ms.custom: engagement-fy26
+# Customer intent: "As an IT administrator, I want to migrate servers to Azure Trusted Launch VMs so that I can ensure enhanced security for my VMs."
+---
+
+# Migrate to Azure Trusted Launch VMs using Azure Migrate 
+
+
