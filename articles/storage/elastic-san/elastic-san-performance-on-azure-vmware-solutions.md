@@ -5,7 +5,6 @@ author: eshanchomsft
 ms.author: rogarana
 ms.topic: concept-article
 ms.service: azure-vmware
-ms.subservice: storage
 ms.date: 02/25/2026
 ---
 
