@@ -39,5 +39,5 @@ Make sure you also followed the necessary steps to configure the Azure VPN Clien
    ```
 
 ## Next steps
-- Continue back in [Configure Azure VPN Client – Microsoft Entra ID authentication – Windows](point-to-site-entra-vpn-client-windows.md) to import your profile settings and connect to Azure.
-- Learn more [About point-to-site connections](point-to-site-about.md#modify).
+- Continue back in [Configure Azure VPN Client – Microsoft Entra ID authentication – Windows](point-to-site-entra-vpn-client-windows.md#modify) to import your profile settings and connect to Azure.
+- Learn more [About point-to-site connections](point-to-site-about.md).
