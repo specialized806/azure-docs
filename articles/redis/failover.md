@@ -91,7 +91,7 @@ Maintenance includes these updates:
 
 To learn about maintenance history in the Azure portal, check the Azure [Activity log](/azure/azure-monitor/essentials/activity-log) for your cache instance. The "healthevent" event is emitted when an update begins.
 
-:::image type="content" source="media/failover/activity-log-event.png" alt-text="Screenshot of maintenance event in Activity log in the portal."::::::image type="content" source="media/failover/activity-log-event.png" alt-text=""::::::image type="content" source="media/failover/activity-log-event.png":::
+:::image type="content" source="media/failover/activity-log-event.png" alt-text="Screenshot of maintenance event in Activity log in the portal.":::
 
 To receive notifications automatically, [set up an alert](/azure/azure-monitor/alerts/alerts-activity-log) on the Activity log.
 
