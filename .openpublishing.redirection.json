@@ -1,6 +1,116 @@
 {
   "redirections": [
     {
+      "source_path": "articles/extended-zones/arc-enabled-workloads-postgre-sql.md",
+      "redirect_url": "/azure/extended-zones/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/avere-vfxt/avere-vfxt-add-storage.md",
+      "redirect_url": "/previous-versions/azure/avere-vfxt/avere-vfxt-add-storage",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/avere-vfxt/avere-vfxt-additional-resources.md",
+      "redirect_url": "/previous-versions/azure/avere-vfxt/avere-vfxt-additional-resources",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/avere-vfxt/avere-vfxt-cluster-gui.md",
+      "redirect_url": "/previous-versions/azure/avere-vfxt/avere-vfxt-cluster-gui",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/avere-vfxt/avere-vfxt-configure-dns.md",
+      "redirect_url": "/previous-versions/azure/avere-vfxt/avere-vfxt-configure-dns",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/avere-vfxt/avere-vfxt-data-ingest.md",
+      "redirect_url": "/previous-versions/azure/avere-vfxt/avere-vfxt-data-ingest",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/avere-vfxt/avere-vfxt-demo-links.md",
+      "redirect_url": "/previous-versions/azure/avere-vfxt/avere-vfxt-demo-links",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/avere-vfxt/avere-vfxt-deploy-overview.md",
+      "redirect_url": "/previous-versions/azure/avere-vfxt/avere-vfxt-deploy-overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/avere-vfxt/avere-vfxt-deploy-plan.md",
+      "redirect_url": "/previous-versions/azure/avere-vfxt/avere-vfxt-deploy-plan",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/avere-vfxt/avere-vfxt-deploy.md",
+      "redirect_url": "/previous-versions/azure/avere-vfxt/avere-vfxt-deploy",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/avere-vfxt/avere-vfxt-enable-support.md",
+      "redirect_url": "/previous-versions/azure/avere-vfxt/avere-vfxt-enable-support",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/avere-vfxt/avere-vfxt-faq.yml",
+      "redirect_url": "/previous-versions/azure/avere-vfxt/avere-vfxt-faq",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/avere-vfxt/avere-vfxt-manage-cluster.md",
+      "redirect_url": "/previous-versions/azure/avere-vfxt/avere-vfxt-manage-cluster",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/avere-vfxt/avere-vfxt-mount-clients.md",
+      "redirect_url": "/previous-versions/azure/avere-vfxt/avere-vfxt-mount-clients",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/avere-vfxt/avere-vfxt-non-owner.md",
+      "redirect_url": "/previous-versions/azure/avere-vfxt/avere-vfxt-non-owner",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/avere-vfxt/avere-vfxt-open-ticket.md",
+      "redirect_url": "/previous-versions/azure/avere-vfxt/avere-vfxt-open-ticket",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/avere-vfxt/avere-vfxt-overview.md",
+      "redirect_url": "/previous-versions/azure/avere-vfxt/avere-vfxt-overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/avere-vfxt/avere-vfxt-prereqs.md",
+      "redirect_url": "/previous-versions/azure/avere-vfxt/avere-vfxt-prereqs",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/avere-vfxt/avere-vfxt-tuning.md",
+      "redirect_url": "/previous-versions/azure/avere-vfxt/avere-vfxt-tuning",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/avere-vfxt/avere-vfxt-whitepapers.md",
+      "redirect_url": "/previous-versions/azure/avere-vfxt/avere-vfxt-whitepapers",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/avere-vfxt/disaster-recovery.md",
+      "redirect_url": "/previous-versions/azure/avere-vfxt/disaster-recovery",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/avere-vfxt/index.yml",
+      "redirect_url": "/previous-versions/azure/avere-vfxt/index",
+      "redirect_document_id": false
+    },
+    {
       "source_path": "articles/azure-health-insights/configure-containers.md",
       "redirect_url": "/previous-versions/azure/azure-health-insights/configure-containers",
       "redirect_document_id": false
@@ -5376,51 +5486,6 @@
       "redirect_document_id": false
     },
     {
-      "source_path_from_root": "/articles/scheduler/get-started-portal.md",
-      "redirect_url": "/azure/scheduler/migrate-from-scheduler-to-logic-apps",
-      "redirect_document_id": false
-    },
-    {
-      "source_path_from_root": "/articles/scheduler/scheduler-advanced-complexity.md",
-      "redirect_url": "/azure/scheduler/migrate-from-scheduler-to-logic-apps",
-      "redirect_document_id": false
-    },
-    {
-      "source_path_from_root": "/articles/scheduler/scheduler-concepts-terms.md",
-      "redirect_url": "/azure/scheduler/migrate-from-scheduler-to-logic-apps",
-      "redirect_document_id": false
-    },
-    {
-      "source_path_from_root": "/articles/scheduler/scheduler-high-availability-reliability.md",
-      "redirect_url": "/azure/scheduler/migrate-from-scheduler-to-logic-apps",
-      "redirect_document_id": false
-    },
-    {
-      "source_path_from_root": "/articles/scheduler/scheduler-intro.md",
-      "redirect_url": "/azure/scheduler/migrate-from-scheduler-to-logic-apps",
-      "redirect_document_id": false
-    },
-    {
-      "source_path_from_root": "/articles/scheduler/scheduler-limits-defaults-errors.md",
-      "redirect_url": "/azure/scheduler/migrate-from-scheduler-to-logic-apps",
-      "redirect_document_id": false
-    },
-    {
-      "source_path_from_root": "/articles/scheduler/scheduler-outbound-authentication.md",
-      "redirect_url": "/azure/scheduler/migrate-from-scheduler-to-logic-apps",
-      "redirect_document_id": false
-    },
-    {
-      "source_path_from_root": "/articles/scheduler/scheduler-plans-billing.md",
-      "redirect_url": "/azure/scheduler/migrate-from-scheduler-to-logic-apps",
-      "redirect_document_id": false
-    },
-    {
-      "source_path_from_root": "/articles/scheduler/scheduler-powershell-reference.md",
-      "redirect_url": "/azure/scheduler/migrate-from-scheduler-to-logic-apps",
-      "redirect_document_id": false
-    },
-    {
       "source_path_from_root": "/articles/sdks/index.yml",
       "redirect_url": "https://azure.microsoft.com/downloads/",
       "redirect_document_id": false
@@ -6888,6 +6953,11 @@
     {
       "source_path": "articles/nat-gateway/nat-availability-zones.md",
       "redirect_url": "/azure/reliability/reliability-nat-gateway",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/iot-operations/connect-to-cloud/howto-configure-opentelemetry-endpoint.md",
+      "redirect_url": "/azure/iot-operations/connect-to-cloud/open-telemetry",
       "redirect_document_id": false
     },
     {
