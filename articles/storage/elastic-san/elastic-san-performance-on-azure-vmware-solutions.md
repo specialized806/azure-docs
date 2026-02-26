@@ -4,35 +4,33 @@ description: Benchmark results and guidance for Azure Elastic SAN datastores use
 author: eshanchomsft
 ms.author: rogarana
 ms.topic: concept-article
-ms.service: azure-vmware
+ms.service: azure-elastic-san-storage
 ms.date: 02/26/2026
 ---
 
 # Elastic SAN datastore performance on Azure VMware solution
 
-This article describes the performance characteristics of **Azure Elastic SAN** datastores when used with **Azure VMware Solution (AVS)**. It presents benchmark results for common workload patterns and provides sufficient configuration and test details to help you compare results with your own environments or reproduce the tests.
+This article describes the performance characteristics of Azure Elastic SAN datastores when used with Azure VMware Solution. It presents benchmark results for common workload patterns and provides enough configuration and test details to help you compare these results with your own environments results.
 
-The results in this article are intended as **reference data**, not as guaranteed performance targets. Actual performance depends on workload characteristics, VM configuration, and Elastic SAN provisioning.
+The results in this article are intended as **reference** only, not as guaranteed performance targets. Actual performance changes depending on workload characteristics, VM configuration, and Elastic SAN provisioning.
 
 ## Workload categories evaluated
 
-The benchmarks focus on two common storage workload categories:
+This article focuses on two common storage workload categories:
 
-- **I/O‑intensive workloads**  
+- I/O‑intensive workloads
   Small, random I/O patterns that are typically read‑heavy and common in transactional or metadata‑driven workloads.
 
-- **Throughput‑intensive workloads**  
+- Throughput‑intensive workloads
   Large, sequential I/O patterns commonly seen in backup, scanning, analytics, and read‑ahead workloads.
 
 All tests use a single Elastic SAN–backed AVS datastore, sized and configured as described in the following sections.
-
-For guidance on configuring Elastic SAN for optimal performance, see [Azure Elastic SAN configuration best practices](/azure/storage/elastic-san/elastic-san-best-practices).
 
 ## Test environment
 
 ### Azure VMware Solution configuration
 
-The benchmarks were run in the following Azure VMware Solution environment:
+This is the Azure VMware Solution environment used in this article:
 
 - Private cloud generation: **Gen 2**
 - ESXi hosts: **Three AV64 hosts**
@@ -57,28 +55,15 @@ The Elastic SAN environment was configured as follows:
     - **1,280 MBps**
 - Private endpoints: **8**
 
-> [!NOTE]
-> Elastic SAN performance scales with provisioned base capacity. To achieve the maximum performance of **80,000 IOPS** and **1,280 MBps** for a single datastore, configure Elastic SAN with **at least 16 base units**.
-> For detailed scale limits, see [Azure Elastic SAN scalability and performance targets](/azure/storage/elastic-san/elastic-san-scale-targets).
-
+The Elastic SAN used also follows all the best practices outlined in [Optimize the performance of your Elastic SAN](elastic-san-best-practices.md).
 
 ## Benchmarking tools
 
-The benchmarks use industry‑standard storage testing tools:
-
-- **DiskSPD (Windows)**  
-  A Microsoft‑developed tool for generating synthetic storage workloads.  
-  Download: <https://github.com/microsoft/diskspd>
-
-- **fio (Linux)**  
-  A widely used Linux I/O workload generator supporting random and sequential access patterns.  
-  Download: <https://github.com/axboe/fio>
-
-For each workload scenario, the benchmarks are executed on one or more guest VMs connected to the same Elastic SAN datastore.
+The benchmarks use industry‑standard storage testing tools, [DiskSPD](https://github.com/microsoft/diskspd) (used with Windows environments) and [Fio](https://github.com/axboe/fio) (used with Linux environments).
 
 ## Running the benchmark tests
 
-This section provides example commands used to generate the benchmark results shown later in this article. The examples include both **I/O‑intensive** and **throughput‑intensive** scenarios for Windows and Linux.
+This section provides example commands used to generate the benchmark results shown later in this article. The examples include both **I/O‑intensive** and **throughput‑intensive** scenarios for Windows and Linux. For each workload scenario, the benchmarks are executed on one or more guest VMs connected to the same Elastic SAN datastore.
 
 ### I/O‑intensive workload example
 
@@ -98,6 +83,14 @@ Key parameters:
 - `o32` – Queue depth of 32 per thread
 - `d900` – 15‑minute steady‑state runtime
 - `c20G` – Per‑VM test file size
+
+##### Results
+
+In this scenario, multiple guest VMs run concurrently against the same Elastic SAN–backed datastore. Reported results reflect aggregate datastore‑level performance across all participating VMs.
+
+| Number of Guest VMs | I/O Pattern                    | I/O Size | Threads per VM | Queue Depth | IOPS Achieved | MBps Achieved |
+|---------------:|--------------------------------|----------|---------------:|------------:|--------------:|--------------:|
+| 4              | Random (Read/Write 75/25)      | 4K       | 3              | 96          | 100,000       | 414           |
 
 ### Linux (fio)
 
@@ -124,6 +117,14 @@ Key parameters:
 - `iodepth=32` – Outstanding I/Os per thread
 - `runtime=900` – 15‑minute steady‑state runtime
 
+##### Results
+
+In this scenario, multiple guest VMs run concurrently against the same Elastic SAN–backed datastore. Reported results reflect aggregate datastore‑level performance across all participating VMs.
+
+| Number of Guest VMs | I/O Pattern                    | I/O Size | Threads per VM | Queue Depth | IOPS Achieved | MBps Achieved |
+|---------------:|--------------------------------|----------|---------------:|------------:|--------------:|--------------:|
+| 6              | Random (Read/Write 75/25)      | 4K       | 3              | 96          | 85,000        | 356           |
+
 ## Throughput‑intensive workload example
 
 ### Windows (DiskSPD)
@@ -139,6 +140,14 @@ Key parameters:
 - `t3` – Three threads per VM
 - `o32` – Queue depth
 - `d900` – 15‑minute steady‑state runtime
+
+#### Results
+
+In this scenario, a single guest VM runs the benchmark against the Elastic SAN–backed datastore.
+
+| Number of Guest VMs | I/O Pattern               | I/O Size | Threads per VM | Queue Depth | IOPS Achieved | MBps Achieved |
+|---------------:|---------------------------|----------|---------------:|------------:|--------------:|--------------:|
+| 1              | Sequential (Read 100%)    | 1M       | 3              | 96          | 12,790        | 1,648         |
 
 ### Linux (fio)
 
@@ -156,37 +165,9 @@ fio --name=readseq \
     --filename=/mnt/esan/testfile
 ```
 
-## Test results
-
-### I/O‑intensive workloads
-
-In these tests, multiple guest VMs run concurrently against the same Elastic SAN–backed datastore. Reported results reflect aggregate datastore‑level performance across all participating VMs.
-
-#### Windows / DiskSPD (Test #1)
-
-| Number of Guest VMs | I/O Pattern                    | I/O Size | Threads per VM | Queue Depth | IOPS Achieved | MBps Achieved |
-|---------------:|--------------------------------|----------|---------------:|------------:|--------------:|--------------:|
-| 4              | Random (Read/Write 75/25)      | 4K       | 3              | 96          | 100,000       | 414           |
-
-#### Linux / fio (Test #2)
-
-| Number of Guest VMs | I/O Pattern                    | I/O Size | Threads per VM | Queue Depth | IOPS Achieved | MBps Achieved |
-|---------------:|--------------------------------|----------|---------------:|------------:|--------------:|--------------:|
-| 6              | Random (Read/Write 75/25)      | 4K       | 3              | 96          | 85,000        | 356           |
-
-
-
-### Throughput-intensive workloads
+#### Results
 
 In this scenario, a single guest VM runs the benchmark against the Elastic SAN–backed datastore.
-
-#### Windows / DiskSPD (Test #1)
-
-| Number of Guest VMs | I/O Pattern               | I/O Size | Threads per VM | Queue Depth | IOPS Achieved | MBps Achieved |
-|---------------:|---------------------------|----------|---------------:|------------:|--------------:|--------------:|
-| 1              | Sequential (Read 100%)    | 1M       | 3              | 96          | 12,790        | 1,648         |
-
-#### Linux / fio (Test #2)
 
 | Number of Guest VMs | I/O Pattern               | I/O Size | Threads per VM | Queue Depth | IOPS Achieved | MBps Achieved |
 |---------------:|---------------------------|----------|---------------:|------------:|--------------:|--------------:|
