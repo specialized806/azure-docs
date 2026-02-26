@@ -34,66 +34,29 @@ Create a resource group with [az group create](/cli/azure/group#az-group-create)
 az group create --name myResourceGroup --location eastus
 ```
 
-## Create a virtual network
+## Create a network security group
 
-Create a virtual network and subnet with [az network vnet create](/cli/azure/network/vnet#az-network-vnet-create). The following example creates a virtual network named *myVNet* with the address prefix *10.0.0.0/16* and a subnet named *default*:
-
-```azurecli-interactive
-az network vnet create \
-  --resource-group myResourceGroup \
-  --name myVNet \
-  --address-prefixes 10.0.0.0/16 \
-  --subnet-name default \
-  --subnet-prefix 10.0.0.0/24
-```
-
-Create the Bastion subnet with [az network vnet subnet create](/cli/azure/network/vnet/subnet).
+Create a network security group with [az network nsg create](/cli/azure/network/nsg#az-network-nsg-create). The default rules in the network security group block all inbound access from the internet.
 
 ```azurecli-interactive
-az network vnet subnet create \
+az network nsg create \
   --resource-group myResourceGroup \
-  --vnet-name myVNet \
-  --name AzureBastionSubnet \
-  --address-prefix 10.0.1.0/24
+  --name myNSG
 ```
 
-## Deploy Azure Bastion
-
-Create a public IP address for the Azure Bastion host with [az network public-ip create](/cli/azure/network/public-ip).
-
-```azurecli-interactive
-az network public-ip create \
-  --resource-group myResourceGroup \
-  --name myBastionIP \
-  --location eastus \
-  --allocation-method Static \
-  --sku Standard
-```
-
-Create an Azure Bastion host with [az network bastion create](/cli/azure/network/bastion). Azure Bastion is used to securely connect to virtual machines without exposing them to the public internet.
-
-```azurecli-interactive
-az network bastion create \
-  --resource-group myResourceGroup \
-  --name myBastion \
-  --vnet-name myVNet \
-  --public-ip-address myBastionIP \
-  --location eastus \
-  --sku Basic \
-  --no-wait
-```
+> [!NOTE]
+> The default rules of the network security group block all inbound access from the internet, including SSH. To connect to the virtual machine, use Azure Bastion. For more information, see [Quickstart: Deploy Azure Bastion with default settings](../bastion/quickstart-host-portal.md).
 
 ## Create a virtual machine
 
-Create a VM with [az vm create](/cli/azure/vm#az-vm-create). The following example creates a VM named *myVm* in the *myVNet* virtual network. If SSH keys don't already exist in a default key location, the command creates them.
+Create a VM with [az vm create](/cli/azure/vm#az-vm-create). The following example creates a VM named *myVm*. If SSH keys don't already exist in a default key location, the command creates them.
 
 ```azurecli-interactive
 az vm create \
   --resource-group myResourceGroup \
   --name myVm \
   --image Ubuntu2204 \
-  --vnet-name myVNet \
-  --subnet default \
+  --nsg myNSG \
   --public-ip-address "" \
   --generate-ssh-keys
 ```
