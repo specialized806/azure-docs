@@ -6,8 +6,7 @@ ms.service: azure-bastion
 ms.topic: concept-article
 ms.date: 02/24/2026
 ms.author: abell
-# Customer intent: "As a member of the SecOps team, I want to understand and configure network security groups for Azure Bastion, so that I can manage secure ingress and egress traffic to virtual machines 
-while maintaining compliance and security practices. I want to understand the impact of not having the correct NSG rules in place from a security perspective."
+# Customer intent: As a member of the SecOps team, I want to understand and configure network security groups for Azure Bastion, so that I can manage secure ingress and egress traffic to virtual machines while maintaining compliance and security practices. I want to understand the impact of not having the correct NSG rules in place from a security perspective.
 ---
 # Configure NSG rules for Azure Bastion
 
