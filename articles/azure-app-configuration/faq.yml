@@ -237,6 +237,20 @@ sections:
 
           Feature filters can evaluate a feature flag based on the properties of an HTTP Request. This is usually performed by inspecting the `HttpContext` through the singleton `IHttpContextAccessor` [pattern](https://learn.microsoft.com/en-us/azure/azure-app-configuration/howto-targetingfilter-aspnet-core#update-the-web-application-code-to-use-targetingfilter). However, this pattern doesn't work for [Blazor server applications](https://learn.microsoft.com/en-us/aspnet/core/blazor/security/server/interactive-server-side-rendering?view=aspnetcore-7.0#ihttpcontextaccessorhttpcontext-in-razor-components) where scoped services should be used instead. In this case, `AddScopedFeatureManagement` method should be used. 
 
+      - question: Why do I get the AADSTS500011 error when connecting to my Azure App Configuration?
+        answer: |
+          If you get the following error:
+
+          ```bash
+          AADSTS500011: The resource principal named https://appconfig.azure.com was not found in the tenant named msazurecloud. This can happen if the application has not been installed by the administrator of the tenant or consented to by any user in the tenant.
+          ```
+
+          This error occurs when you're using Azure App Configuration in specific clouds, but the Microsoft Entra ID audience isn't explicitly configured.
+
+          The issue doesn't occur in Azure Public Cloud, Azure Government, Microsoft Azure operated by 21Vianet (China). In these clouds, the Azure App Configuration SDK automatically sets the correct Microsoft Entra ID audience. 
+          
+          To resolve the issue, configure the cloud-specific **audience** for Entra ID authentication. For more information, see [Cloud-specific audience for Entra ID authentication](./concept-enable-rbac.md#cloud-specific-audience-for-entra-id-authentication).
+
       - question: How can I receive announcements on new releases and other information related to App Configuration?
         answer: |
           Subscribe to our [GitHub announcements repo](https://github.com/Azure/AppConfiguration-Announcements).
