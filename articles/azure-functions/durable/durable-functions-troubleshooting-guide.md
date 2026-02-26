@@ -194,6 +194,10 @@ Below is a list of the columns projected by the queries above and their respecti
 |taskHub|The name of your [task hub](./durable-functions-task-hubs.md).|
 |newEvents|A comma-separated list of history events that are being written to the History table in storage.|
 
+## Connection management issues in the Consumption plan
+
+Apps running on the Azure Functions Consumption plan are subject to connection limits. If you experience connectivity errors or orchestrations that fail intermittently due to exhausted connections, see [Manage connections in Azure Functions](../manage-connections.md?toc=/azure/azure-functions/durable/toc.json) for guidance on connection pooling and best practices to reduce connection usage.
+
 ## Getting support
 
 For questions and support, you can open an issue in one of the GitHub repos below. When reporting a bug in Azure, including information such as affected instance IDs, time ranges in UTC showing the problem, the application name (if possible), and deployment region greatly speeds up investigations.

@@ -125,8 +125,6 @@
     items:
     - name: Develop
       items:
-      - name: Manage connections
-        href: ../manage-connections.md?toc=/azure/azure-functions/durable/toc.json
       - name: C#
         items:
         - name: Roslyn Analyzer (C# only)
@@ -245,6 +243,8 @@
     items:
     - name: Diagnostics
       href: durable-task-diagnostics.md
+    - name: Troubleshooting guide
+      href: durable-task-sdk-troubleshooting.md
   - name: Reference
     items:
     - name: .NET APIs
