@@ -6,11 +6,28 @@ ms.author: dhananjayanr
 ms.topic: how-to
 ms.service: azure-migrate
 ms.reviewer: v-uhabiba
-ms.date: 26/02/202
+ms.date: 26/02/2026
 ms.custom: engagement-fy26
 # Customer intent: "As an IT administrator, I want to migrate servers to Azure Trusted Launch VMs so that I can ensure enhanced security for my VMs."
 ---
 
 # Migrate to Azure Trusted Launch VMs using Azure Migrate 
 
+Azure Migrate now supports migrating your Gen 2 VMs to Azure Virtual Machines with Trusted Launch. Trusted Launch is Azure’s enhanced security model for virtual machines that helps protect workloads from advanced threats starting at boot time. It uses UEFI-based Secure Boot and a virtual Trusted Platform Module (vTPM) to create a trusted boot chain, so only approved, signed components can load during startup. This reduces risk from bootkits, rootkits, and other low-level malware. Trusted Launch is also the default security type for supported Generation 2 VMs and VM scale sets in Azure wherever available. [Learn more](articles/virtual-machines/trusted-launch.md) about Trusted Launch Virtual Machines.
+
+# Supported operating systems
+Azure Migrate supports all Operating systems that are supported for Trusted Launch in Azure. [Refer here](articles/virtual-machines/trusted-launch.md#virtual-machines-sizes) for Azure supported OS list and VM sizes.
+
+>[!Note]
+>Trusted Launch is a security feature for Generation 2 VMs. Generation 1 VMs use BIOS and MBR, and they do not support Secure Boot or vTPM by design. As a result, Generation 1 VMs cannot use Trusted Launch and Azure migrate does not support migrating Gen 1 VMs to Trusted Launch virtual Machines
+
+# Secure Boot
+At the root of Trusted Launch is Secure Boot for your VM. Secure Boot, which is implemented in platform firmware, protects against the installation of malware-based rootkits and boot kits. Secure Boot works to ensure that only signed operating systems and drivers can boot. It establishes a "root of trust" for the software stack on your VM.
+With Secure Boot enabled, all OS boot components (boot loader, kernel, kernel drivers) require trusted publishers signing. Both Windows and select Linux distributions support Secure Boot. If Secure Boot fails to authenticate that the image is signed with a trusted publisher, the VM fails to boot. 
+
+>[!Note]
+>Secure Boot is controlled only by the target Trusted Launch settings, not by the source VM configuration. Even if Secure Boot was enabled on the source VM, it will not be automatically enabled on the migrated Trusted Launch VM. You must explicitly turn it on in the Trusted Launch configuration during migration.
+
+# How to migrate to Trusted Launch VMs using Azure Migrate:
+[Learn more](articles/migrate/tutorial-migrate-vmware.md#set-up-the-azure-migrate-appliance) on how to migrate to Trusted Launch Virtual machines using Azure Migrate
 
