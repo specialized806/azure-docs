@@ -285,5 +285,10 @@ For Azure App Configuration in the national clouds, use the applicable audience 
 | Microsoft Azure operated by 21Vianet | `https://appconfig.azure.cn`        |
 | Bleu                                 | `https://appconfig.sovcloud-api.fr` |
 
+> [!TIP]
+> If you see the error message `AADSTS500011: The resource principal named https://appconfig.azure.com was not found in the tenant named msazurecloud.` when using Azure App Configuration in a non-public cloud, it's because the Microsoft Entra ID audience isn't configured for your App Configuration client.
+>
+> In older versions of the Azure App Configuration SDKs and configuration providers, this condition surfaces as the raw Microsoft Entra sign-in error `AADSTS500011`, which can be confusing. In the latest versions, this error message is replaced with a more informative one. In all cases, the fix is to configure the audience as described in [Cloud-specific audience for Entra ID authentication](./concept-enable-rbac.md#cloud-specific-audience-for-entra-id-authentication).
+
 ## Next steps
 Learn how to [use managed identities to access your App Configuration store](howto-integrate-azure-managed-service-identity.md).
