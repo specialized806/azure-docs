@@ -92,8 +92,6 @@ The migration experience attempts to automatically create connections for authen
 | Azure Blob Storage | Account key; Shared access signature (SAS); Service principal; System-assigned managed identity | Account key; Shared access signature (SAS); Service principal; Workspace identity (system-assigned managed identity) |
 | Azure Data Lake Storage Gen2 | Account key; Shared access signature (SAS); Service principal; System-assigned managed identity | Account key; Shared access signature (SAS); Service principal; Workspace identity (system-assigned managed identity) |
 | SQL Server | Basic authentication (SQL authentication); Service principal; System-assigned managed identity | Basic authentication; Service principal; Workspace identity (system-assigned managed identity) |
-| Azure Data Lake Storage Gen1 (Cosmos Synapse shortcut) | Service principal; System-assigned managed identity | Service principal; Workspace identity (system-assigned managed identity) |
-| Azure Data Lake Storage Gen2 (Cosmos Synapse shortcut) | Service principal; System-assigned managed identity | Service principal; Workspace identity (system-assigned managed identity) |
 | Azure Data Explorer (Kusto) | Service principal; System-assigned managed identity | Service principal; Workspace identity (system-assigned managed identity) |
 | Azure Cosmos DB for NoSQL | Account key | Account key |
 | Azure Cosmos DB for MongoDB | Basic authentication | Basic authentication |
@@ -102,8 +100,6 @@ The migration experience attempts to automatically create connections for authen
 | Azure Database for MySQL | Basic authentication | Basic authentication |
 | MySQL | Basic authentication | Basic authentication |
 | PostgreSQL | Basic authentication | Basic authentication |
-| Azure Data Lake Analytics | Service principal; System-assigned managed identity | Service principal; Workspace identity (system-assigned managed identity) |
-
 
 For other connections, either select an existing Fabric connection or create new connections by using the modern Get Data experience or from workspace settings. Then select **Confirm**.
 
