@@ -342,7 +342,7 @@ Can approve private endpoint connections to Azure AI common dependency resources
 > | [Microsoft.DBforMySQL](../permissions/databases.md#microsoftdbformysql)/flexibleServers/privateLinkResources/read | Get the private link resources for the corresponding MySQL Server |
 > | [Microsoft.DBforMySQL](../permissions/databases.md#microsoftdbformysql)/flexibleServers/read | Returns the list of servers or gets the properties for the specified server. |
 > | [Microsoft.DocumentDB](../permissions/databases.md#microsoftdocumentdb)/databaseAccounts/privateEndpointConnectionsApproval/action | Manage a private endpoint connection of Database Account |
-> | [Microsoft.DocumentDB](../permissions/databases.md#microsoftdocumentdb)/databaseAccounts/privateEndpointConnections/operationResults/read | Read Status of privateEndpointConnenctions asynchronous operation |
+> | [Microsoft.DocumentDB](../permissions/databases.md#microsoftdocumentdb)/databaseAccounts/privateEndpointConnections/operationResults/read | Read Status of privateEndpointConnections asynchronous operation |
 > | [Microsoft.DocumentDB](../permissions/databases.md#microsoftdocumentdb)/databaseAccounts/privateEndpointConnections/read | Read a private endpoint connection or list all the private endpoint connections of a Database Account |
 > | [Microsoft.DocumentDB](../permissions/databases.md#microsoftdocumentdb)/databaseAccounts/privateEndpointConnections/write | Create or update a private endpoint connection of a Database Account |
 > | [Microsoft.DocumentDB](../permissions/databases.md#microsoftdocumentdb)/databaseAccounts/privateLinkResources/read | Read a private link resource or list all the private link resources of a Database Account |
