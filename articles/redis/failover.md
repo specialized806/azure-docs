@@ -89,7 +89,7 @@ Maintenance includes these updates:
 
 ### Does maintenance history appear in the Azure portal?
 
-To learn about maintenance history in the Azure portal, check the Azure [Activity log](/azure/azure-monitor/essentials/activity-log) for your cache instance. The "healthevent" event is emitted when an update begins.
+To learn about maintenance history in the Azure portal, check the Azure [Activity log](/azure/azure-monitor/essentials/activity-log) for your cache instance. The "healthevent" event is emitted when maintenance begins.
 
 :::image type="content" source="media/failover/activity-log-event.png" alt-text="Screenshot of maintenance event in Activity log in the portal.":::
 
