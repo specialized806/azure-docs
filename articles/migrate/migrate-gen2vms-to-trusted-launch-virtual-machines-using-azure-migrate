@@ -11,7 +11,7 @@ ms.custom: engagement-fy26
 # Customer intent: "As an IT administrator, I want to migrate servers to Azure Trusted Launch VMs so that I can ensure enhanced security for my VMs."
 ---
 
-# Migrate to Azure Trusted Launch VMs using Azure Migrate 
+# Migrate Gen2 VMs to Azure Trusted Launch VMs using Azure Migrate
 
 Azure Migrate now supports migrating your Gen 2 VMs to Azure Virtual Machines with Trusted Launch. Trusted Launch is Azure’s enhanced security model for virtual machines that helps protect workloads from advanced threats starting at boot time. It uses UEFI-based Secure Boot and a virtual Trusted Platform Module (vTPM) to create a trusted boot chain, so only approved, signed components can load during startup. This reduces risk from bootkits, rootkits, and other low-level malware. Trusted Launch is also the default security type for supported Generation 2 VMs and VM scale sets in Azure wherever available. [Learn more](articles/virtual-machines/trusted-launch.md) about Trusted Launch Virtual Machines.
 
