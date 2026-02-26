@@ -15,7 +15,7 @@ The [reliable execution model](./durable-functions-orchestrations.md) of Durable
 
 To prevent these failures from happening, you have several options: 
 - Delay your deployment until all running orchestration instances have completed.
-- Use [orchestration versioning](durable-task-scheduler/durable-task-scheduler-versioning.md) to allow different versions of orchestrations to coexist (recommended).
+- Use [orchestration versioning](durable-orchestration-versioning.md) to allow different versions of orchestrations to coexist (recommended).
 - Make sure that any running orchestration instances use the existing versions of your functions. 
 
 The following chart compares the four main strategies to achieve a zero-downtime deployment for Durable Functions: 
@@ -34,7 +34,7 @@ The remainder of this document describes these strategies in more detail.
 
 ## Orchestration versioning
 
-The [orchestration versioning](durable-task-scheduler/durable-task-scheduler-versioning.md) feature allows you to make breaking changes to orchestrations while avoiding downtime during deployments. This built-in feature enables different versions of orchestrations to coexist and execute concurrently without conflicts.
+The [orchestration versioning](durable-orchestration-versioning.md) feature allows you to make breaking changes to orchestrations while avoiding downtime during deployments. This built-in feature enables different versions of orchestrations to coexist and execute concurrently without conflicts.
 
 With orchestration versioning:
 - Each orchestration instance gets a version permanently associated with it when created.
@@ -44,7 +44,7 @@ With orchestration versioning:
 
 This approach facilitates rolling upgrades where workers running different versions of your application can coexist safely. It's the recommended strategy for applications that need to support breaking changes while maintaining zero-downtime deployments.
 The orchestration versioning feature is **[backend agnostic](./durable-functions-storage-providers.md)**, so you can leverage it regardless of what storage backend your Durable Function app is using. 
-For detailed configuration and implementation guidance, see [Orchestration versioning](durable-task-scheduler/durable-task-scheduler-versioning.md).
+For detailed configuration and implementation guidance, see [Orchestration versioning](durable-orchestration-versioning.md).
 
 ## Name-based versioning
 

@@ -84,7 +84,7 @@
       - name: Durable Functions versioning
         href: durable-functions-versioning.md
       - name: Orchestration versioning
-        href: ./durable-task-scheduler/durable-task-scheduler-versioning.md
+        href: durable-orchestration-versioning.md
 - name: Durable Functions
   items:
   - name: Overview

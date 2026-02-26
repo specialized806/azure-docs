@@ -12,7 +12,7 @@ ms.author: azfuncdf
 Functions are inevitably added, removed, and changed over the lifetime of an application. [Durable Functions](what-is-durable-task.md) lets you chain functions together in ways that weren't previously possible, and this chaining affects how you handle versioning.
 
 > [!TIP]
-> This article explains common versioning challenges and deployment-level strategies for dealing with them. If you're looking for the built-in **orchestration versioning** feature that provides automatic version isolation at the runtime level, see [Orchestration versioning](durable-task-scheduler/durable-task-scheduler-versioning.md).
+> This article explains common versioning challenges and deployment-level strategies for dealing with them. If you're looking for the built-in **orchestration versioning** feature that provides automatic version isolation at the runtime level, see [Orchestration versioning](durable-orchestration-versioning.md).
 
 > [!IMPORTANT]
 > When you deploy code changes that affect running orchestrations, incorrect deployments can lead to orchestrations failing with nondeterministic errors, getting stuck indefinitely, or experiencing performance degradation. Follow the recommended [mitigation strategies](#mitigation-strategies) described in this article when you make changes that might affect in-flight orchestrations.
@@ -221,7 +221,7 @@ With orchestration versioning:
 
 This approach requires minimal configuration (a version string and optional match strategy) and is compatible with any [storage provider](durable-functions-storage-providers.md). It's the recommended strategy for applications that need to support breaking changes while maintaining [zero-downtime deployments](durable-functions-zero-downtime-deployment.md).
 
-For detailed configuration and implementation guidance, see [Orchestration versioning](durable-task-scheduler/durable-task-scheduler-versioning.md).
+For detailed configuration and implementation guidance, see [Orchestration versioning](durable-orchestration-versioning.md).
 
 ### Stop all in-flight instances
 
@@ -253,7 +253,7 @@ When doing side-by-side deployments in Azure Functions or Azure App Service, dep
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Learn about orchestration versioning](durable-task-scheduler/durable-task-scheduler-versioning.md)
+> [Learn about orchestration versioning](durable-orchestration-versioning.md)
 
 > [!div class="nextstepaction"]
 > [Learn about using and choosing storage providers](durable-functions-storage-providers.md)
