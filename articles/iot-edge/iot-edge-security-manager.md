@@ -5,7 +5,7 @@ services: iot-edge
 keywords: security, secure element, enclave, TEE, IoT Edge
 author: sethmanheim
 ms.author: sethm
-ms.date: 06/03/2025
+ms.date: 02/24/2026
 ms.topic: concept-article
 ms.service: azure-iot-edge
 ---

@@ -6,7 +6,7 @@ ms.author: dobett
 ms.service: azure-iot-operations
 ms.subservice: azure-data-flows
 ms.topic: how-to
-ms.date: 12/08/2025
+ms.date: 02/25/2026
 ai-usage: ai-assisted
 ---
 
@@ -247,7 +247,7 @@ Python WASM modules don't require other project configuration files. The Python 
 
 ## Create a simple module
 
-Create a simple module that converts temperature from Celsius to Fahrenheit. This example demonstrates the basic structure and processing logic for both Rust and Python implementations.
+Create a simple module that converts temperature from Fahrenheit to Celsius. This example demonstrates the basic structure and processing logic for both Rust and Python implementations.
 
 # [Rust](#tab/rust)
 
@@ -274,10 +274,10 @@ fn fahrenheit_to_celsius(input: DataModel) -> Result<DataModel, Error> {
     if let Ok(data_str) = std::str::from_utf8(payload) {
         if let Ok(mut data) = serde_json::from_str::<Value>(data_str) {
             if let Some(temp) = data["temperature"]["value"].as_f64() {
-                let fahrenheit = (temp * 9.0 / 5.0) + 32.0; // Celsius -> Fahrenheit
+                let celsius = (temp - 32.0) * 5.0 / 9.0; // Fahrenheit -> Celsius
                 data["temperature"] = json!({
-                    "value_fahrenheit": fahrenheit,
-                    "original_celsius": temp
+                    "value_celsius": celsius,
+                    "original_fahrenheit": temp
                 });
 
                 if let Ok(output_str) = serde_json::to_string(&data) {
@@ -482,16 +482,17 @@ use wasm_graph_sdk::logger::{self, Level};
 use wasm_graph_sdk::ModuleConfiguration;
 
 fn my_operator_init(configuration: ModuleConfiguration) -> bool {
-    // Access required parameters
-    if let Some(threshold_param) = configuration.parameters.get("temperature_threshold") {
-        let threshold: f64 = threshold_param.parse().unwrap_or(25.0);
+    // Access parameters via configuration.properties (a list of key-value tuples)
+    if let Some((_, threshold_value)) = configuration.properties.iter().find(|(k, _)| k == "temperature_threshold") {
+        let threshold: f64 = threshold_value.parse().unwrap_or(25.0);
         logger::log(Level::Info, "my-operator", &format!("Using threshold: {}", threshold));
     }
     
     // Access optional parameters with defaults
-    let unit = configuration.parameters
-        .get("output_unit")
-        .map(|s| s.as_str())
+    let unit = configuration.properties
+        .iter()
+        .find(|(k, _)| k == "output_unit")
+        .map(|(_, v)| v.as_str())
         .unwrap_or("celsius");
     
     logger::log(Level::Info, "my-operator", &format!("Output unit: {}", unit));
@@ -556,9 +557,14 @@ from map_impl.imports import types
 # Implement the operator interface
 class Map(exports.Map):
     def init(self, configuration) -> bool:
-        # Access configuration parameters
-        threshold = configuration.get_parameter("temperature_threshold")
-        unit = configuration.get_parameter("output_unit", default="celsius")
+        # Access configuration parameters via configuration.properties (list of key-value tuples)
+        threshold = None
+        unit = "celsius"
+        for key, value in configuration.properties:
+            if key == "temperature_threshold":
+                threshold = value
+            elif key == "output_unit":
+                unit = value
         
         imports.logger.log(imports.logger.Level.INFO, "my-operator", 
                           f"Initialized with threshold={threshold}, unit={unit}")
