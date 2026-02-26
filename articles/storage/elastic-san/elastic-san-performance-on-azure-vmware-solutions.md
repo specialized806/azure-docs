@@ -5,7 +5,7 @@ author: eshanchomsft
 ms.author: rogarana
 ms.topic: concept-article
 ms.service: azure-vmware
-ms.date: 02/25/2026
+ms.date: 02/26/2026
 ---
 
 # Elastic SAN datastore performance on Azure VMware solution
