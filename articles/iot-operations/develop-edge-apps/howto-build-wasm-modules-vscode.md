@@ -4,7 +4,7 @@ description: Learn how to build WebAssembly (WASM) modules for data flows using 
 author: dominicbetts 
 ms.author: dobett 
 ms.topic: how-to
-ms.date: 12/08/2025
+ms.date: 02/25/2026
 ms.service: azure-iot-operations
 
 # CustomerIntent: As a developer, I want to understand how to use the VS Code extension to build and deploy WASM modules to use in data flow graphs or the HTTP/REST connector.
@@ -480,7 +480,7 @@ Complete the [Schema registry support for WASM modules](#schema-registry-support
 1. Locate the `filter` function and set a breakpoint by clicking in the margin next to the line number or by pressing `F9`.
 
     ```rust
-    fn filter(message: DataModel) -> Result<bool, Error> {
+    fn filter(input: DataModel) -> Result<bool, Error> {
         let DataModel::Message(message) = input else {
             return Err(Error {message: "Unexpected input type.".to_string()});
         };

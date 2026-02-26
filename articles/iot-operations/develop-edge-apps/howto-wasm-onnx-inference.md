@@ -5,7 +5,7 @@ author: dominicbetts
 ms.author: dobett
 ms.service: azure-iot-operations
 ms.topic: how-to
-ms.date: 11/24/2025
+ms.date: 02/25/2026
 ai-usage: ai-assisted
 
 ---
@@ -17,7 +17,7 @@ This article shows how to embed and run small Open Neural Network Exchange (ONNX
 > [!IMPORTANT]
 > Data flow graphs currently only support MQTT (Message Queuing Telemetry Transport), Kafka, and OpenTelemetry endpoints. Other endpoint types like Data Lake, Microsoft Fabric OneLake, Azure Data Explorer, and Local Storage aren't supported. For more information, see [Known issues](../troubleshoot/known-issues.md#data-flow-graphs-only-support-specific-endpoint-types).
 
-## Why use in-band ONNX interference
+## Why use in-band ONNX inference
 
 With Azure IoT Operations data flow graphs, you can embed small ONNX model inference directly in the pipeline instead of calling an external prediction service. This approach offers several practical advantages:
 
