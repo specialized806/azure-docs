@@ -426,8 +426,8 @@ General-purpose V2 storage accounts (hot and cool tiers) | Supported. | Transact
 Generation 2 (UEFI boot) | Supported.
 NVMe disks | Not supported.
 Managed shared disk| Supported. |
-Managed Premium SSD v2 disk| Supported. | Since block blob storage accounts aren't supported in China North and China East regions, Site Recovery for Premium SSD v2 disks can't be supported. 
-Ultra disks | Supported. | Zonal Disaster Recovery isn't supported. Since block blob storage accounts aren't supported in China North and China East regions, Site Recovery for Ultra disks can't be supported.
+Managed Premium SSD v2| Supported. | Since block blob storage accounts aren't supported in China North and China East regions, Site Recovery for Premium SSD v2 disks can't be supported. 
+Ultra Disks | Supported. | Zonal Disaster Recovery isn't supported. Since block blob storage accounts aren't supported in China North and China East regions, Site Recovery for Ultra Disks can't be supported.
 Secure transfer option | Supported.
 Write accelerator enabled disks | Not supported.
 Tags | Supported. | User-generated tags replicate every 24 hours.
