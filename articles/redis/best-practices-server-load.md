@@ -41,20 +41,21 @@ Redis server is a single-threaded system. Long running commands can cause late
 Add monitoring on server load to ensure you get notifications when high server load occurs. Monitoring can help you understand your application constraints. Then, you can work proactively to mitigate issues. We recommend trying to keep server load under 80% to avoid negative performance effects. Sustained server load over 80% can lead to unplanned failovers. 
 Currently, Azure Managed Redis exposes two metrics in **Insights** under **Monitoring** on the Resource menu on the left of the portal: **CPU** and **Server Load**. Understanding what is measured by each metric is important when monitoring server load.
 
-The **CPU** metric indicates the CPU usage for the node that hosts the cache. The CPU metric also includes processes that aren't strictly Redis server processes. CPU includes background processes for anti-malware and others. As a result, the CPU metric can sometimes spike and might not be a perfect indicator of CPU usage for the Redis server.
+The **CPU** (aka-percentProcessorTime) metric indicates the CPU usage for the node that hosts the cache. The CPU metric also includes processes that aren't strictly Redis server processes. CPU includes background processes for anti-malware and others. As a result, the CPU metric can sometimes spike and might not be a perfect indicator of CPU usage for the Redis server.
 
-The **Server Load** metric reflects the Redis server’s own assessment of overall load and is generally a better indicator of cache saturation than **CPU**, especially when you want to understand Redis-specific workload pressure.
+The **Server Load** metric reflects the Redis server's own assessment of overall load and is similar to CPU metric but at a cluster level.
+
 ### Interpreting Server Load on Small SKUs
 
 On Azure Managed Redis SKUs backed by 2-vCPU VMs (B0–B5, X3, and M10), percentage-based metrics like **Server Load** and **CPU** are inherently more sensitive. A single short-lived background thread can consume a significant percentage of total CPU, causing metrics to appear elevated even when actual workload is light. As a result, these metrics can overestimate actual load on small SKUs and may not indicate workload saturation.
 
 When reviewing metrics over longer time periods, such as several hours or days, we recommend:
 
-- Using `percentProcessorTime` instead of **Server Load**
+- Using **CPU** instead of **Server Load** as it can be viewed at instance level adding more granularity
 - Splitting by instance ID of the virtual machines backing the Azure Managed Redis instance
 - Using **Average** aggregation instead of **Maximum** for these longer time ranges
-You can still use **Maximum** aggregation over short time windows to catch brief spikes or events (such as those that might cause timeouts or failovers), while relying on **Average** over longer windows for trend analysis on small SKUs, especially when using `percentProcessorTime`.
 
+You can still use **Maximum** aggregation over short time windows to catch brief spikes or events (such as those that might cause timeouts or failovers), while relying on **Average** over longer windows for trend analysis on small SKUs, especially when using **CPU**.
 
 ## Test for increased server load after failover
 
