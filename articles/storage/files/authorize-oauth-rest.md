@@ -1,6 +1,6 @@
 ---
 title: Enable Access to Azure File Shares Using OAuth Over REST
-description: Authorize admin-level read and write access to Azure file shares and directories via the OAuth authentication protocol over REST APIs using Microsoft Entra ID. Assign Azure RBAC roles for access rights. Access files with a Microsoft Entra account.
+description: Authorize admin-level read and write access to Azure file shares and directories via the OAuth authentication protocol over REST APIs using Microsoft Entra ID. Assign Azure RBAC roles for access rights. Access file data with a Microsoft Entra account.
 author: khdownie
 ms.service: azure-file-storage
 ms.topic: concept-article
@@ -15,7 +15,7 @@ ms.custom:
 
 # Access Azure file shares using Microsoft Entra ID with Azure Files OAuth over REST
 
-By using Azure Files OAuth over REST, users and applications can get admin-level read and write access to Azure file shares through the [OAuth](https://oauth.net/) authentication protocol. This access uses Entra ID for REST API based access. Users, groups, first-party services such as Azure portal, and third-party services and applications using REST interfaces can now use OAuth authentication and authorization with a Microsoft Entra account to access data in Azure Files. PowerShell cmdlets and Azure CLI commands that call REST APIs can also use OAuth to access Azure Files. You must call the REST API using an explicit header to indicate your intent to use the additional privilege. This requirement also applies to Azure PowerShell and Azure CLI access.
+By using Azure Files OAuth over REST, users and applications can get admin-level read and write access to Azure file shares through the [OAuth](https://oauth.net/) authentication protocol. This access method uses Entra ID for REST API based access. Users, groups, first-party services such as Azure portal, and third-party services and applications using REST interfaces can now use OAuth authentication and authorization with a Microsoft Entra account to access data in Azure Files. PowerShell cmdlets and Azure CLI commands that call REST APIs can also use OAuth to access Azure Files. You must call the REST API using an explicit header to indicate your intent to use the additional privilege. This requirement also applies to Azure PowerShell and Azure CLI access.
 
 > [!IMPORTANT]
 > This article explains how to enable admin-level access to Azure file shares for specific [customer use cases](#customer-use-cases). For a more general article on identity-based authentication for end users, see [Overview of Azure Files identity-based authentication for SMB access](storage-files-active-directory-overview.md).
