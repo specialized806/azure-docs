@@ -6,7 +6,7 @@ author: sethmanheim
 ms.author: sethm
 ms.service: azure-iot-edge
 ms.topic: include
-ms.date: 08/28/2025
+ms.date: 02/27/2026
 ms.custom: include file
 ---
 
