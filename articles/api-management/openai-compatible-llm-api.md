@@ -43,9 +43,9 @@ API Management supports two language model API types. Choose the option that mat
 
 Importing the LLM API automatically configures:
 
-* A [backend](backends.md) resource and a [set-backend-service](set-backend-service-policy.md) policy that direct API requests to the LLM endpoint.
-* (optionally) Access to the LLM backend using an access key you provide. The key is protected as a secret [named value](api-management-howto-properties.md).
-* (optionally) Policies to help monitor and manage the API.
+* A [backend](backends.md) resource and [set-backend-service](set-backend-service-policy.md) policy that direct requests to the LLM endpoint.
+* (optionally) Access using an access key (protected as a secret [named value](api-management-howto-properties.md)).
+* (optionally) Policies to monitor and manage the API.
 
 To import a language model API:
 
@@ -80,17 +80,17 @@ API Management creates the API and configures operations for the LLM endpoints. 
 
 ## Test the LLM API
 
-Verify your LLM API in the API Management test console. 
+Verify your LLM API in the test console. 
 1. Select the API you created.
 1. Select the **Test** tab.
 1. Select an operation compatible with the model deployment.
     Fields for parameters and headers appear.
 1. Enter parameters and headers. Depending on the operation, configure or update a **Request body** as needed.
     > [!NOTE]
-    > In the test console, API Management automatically adds an **Ocp-Apim-Subscription-Key** header and sets the subscription key for the built-in [all-access subscription](api-management-subscriptions.md#all-access-subscription). This key provides access to every API in the API Management instance. To display the **Ocp-Apim-Subscription-Key** header, select the "eye" icon next to **HTTP Request**.
+    > The test console automatically adds an **Ocp-Apim-Subscription-Key** header (using the built-in [all-access subscription](api-management-subscriptions.md#all-access-subscription)), which provides access to every API. To display it, select the "eye" icon next to **HTTP Request**.
 1. Select **Send**.
 
-    When the test succeeds, the backend responds with a successful HTTP response code and data. The response includes token usage data to help you monitor and manage language model token consumption.
+    When successful, the backend returns data including token usage metrics to monitor language model consumption.
 
 ## Related content
 
