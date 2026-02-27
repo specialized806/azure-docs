@@ -1,6 +1,6 @@
 ---
 title: Use local small language models (SLMs) in Azure App Service
-description: Deploy a web app with a local small language model (SLM) as a sidecar container to run AI models entirely within your App Service environment. No outbound calls or external Foundry Tool dependencies required.
+description: Deploy a web app with a local small language model (SLM) as a sidecar container to run AI models entirely within your App Service environment. No outbound calls or external AI service dependencies required.
 author: cephalin
 ms.author: cephalin
 ms.service: azure-app-service
@@ -14,7 +14,7 @@ ms.update-cycle: 180-days
 
 # Use a local SLM (sidecar container)
 
-Deploy a web app with a local small language model (SLM) as a sidecar container to run AI models entirely within your App Service environment. No outbound calls or external Foundry Tool dependencies required. This approach is ideal if you have strict data privacy or compliance requirements, as all AI processing and data remain local to your app. App Service offers high-performance, memory-optimized pricing tiers needed for running SLMs in sidecars.
+Deploy a web app with a local small language model (SLM) as a sidecar container to run AI models entirely within your App Service environment. No outbound calls or external AI service dependencies required. This approach is ideal if you have strict data privacy or compliance requirements, as all AI processing and data remain local to your app. App Service offers high-performance, memory-optimized pricing tiers needed for running SLMs in sidecars.
 
 ## Overview
 
@@ -23,7 +23,7 @@ Small Language Models (SLMs) are compact AI models, such as Microsoft's Phi-3 an
 This architecture provides several advantages:
 
 - **Complete data privacy**: All data and AI processing stays within your App Service environment
-- **Zero external dependencies**: No reliance on external Foundry Tools or internet connectivity
+- **Zero external dependencies**: No reliance on external AI services or internet connectivity
 - **Predictable latency**: Responses are consistently fast with no network overhead
 - **Cost control**: Pay only for App Service compute resources, with no per-token charges
 - **Regulatory compliance**: Meet strict data residency and privacy requirements
