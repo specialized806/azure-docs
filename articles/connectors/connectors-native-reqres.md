@@ -373,7 +373,7 @@ Now, continue building your workflow by adding another action as the next step. 
 > [!NOTE]
 >
 > Your workflow keeps an inbound request open only for a [limited time](../logic-apps/logic-apps-limits-and-config.md#http-limits). 
-> Assuming that your workflow also includes a Response action with "Asynchronous response" setting turned off (default), if your workflow 
+> Assuming that your workflow includes a **Response** action with the **Asynchronous response** setting turned off (default), if your workflow 
 > doesn't return a response to the caller after this time expires, your workflow returns the **504 GATEWAY TIMEOUT** status to the caller. 
 > If your workflow doesn't include a Response action or the Response action has "Asynchronous response" setting turned on, your workflow 
 > immediately returns the **202 ACCEPTED** status to the caller.
