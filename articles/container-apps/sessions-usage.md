@@ -312,20 +312,15 @@ This template contains the following settings for managed identity:
 
 Azure Container Apps dynamic sessions integrate with Azure Monitor and Log Analytics to collect logs emitted during session execution. The configuration steps are the same for code interpreter and custom container session pools, but the available log categories differ by session type. Metrics returned via API response headers aren't written to Log Analytics.
 
-### Available Log Analytics tables
+### Logging differences by session type
 
-The following Log Analytics tables are created when logs are first emitted. For a full list of supported categories on the environment resource (`Microsoft.App/managedEnvironments`), see [Supported logs for Microsoft.App/managedEnvironments](/azure/azure-monitor/reference/supported-logs/microsoft-app-managedenvironments-logs).
+Use the following guidance to compare logging behavior and jump to the details that match your session type:
 
-| Session type | Log category | Log Analytics table | Description |
-|-------------|--------------|---------------------|-------------|
-| Code interpreter sessions (platform-managed) | Application logs | `AppEnvSessionConsoleLogs` | Standard output (`stdout`) and standard error (`stderr`) emitted by code running in the session. Logs appear after a session is invoked. |
-|  | Platform logs | Not applicable | Session lifecycle and pool event logs aren't emitted for code interpreter session pools. |
-| Custom container sessions | Application logs | `AppEnvSessionConsoleLogs` | Standard output (`stdout`) and standard error (`stderr`) emitted by the containerized application. Azure Container Apps doesn't generate application logs for custom containers; you must emit logs from your container. |
-|  | Platform logs | `AppEnvSessionLifecycleLogs`, `AppEnvSessionPoolEvents` | Platform-generated events related to session pool allocation, lifecycle, and operational state. |
+- **Code interpreter sessions**: Outputs are returned from execution (including `stdout` and `stderr`), but AppEnvSession Log Analytics tables aren't emitted. See [Code interpreter sessions logging](./sessions-code-interpreter.md#logging).
+- **Custom container sessions**: AppEnvSession Log Analytics tables are emitted when your container writes to `stdout` or `stderr`, and platform logs are available for pool lifecycle and events. See [Custom container sessions logging](./sessions-custom-container.md#logging).
+- **Common**: Metrics returned via API response headers aren't written to Log Analytics. 
 
-If logs are sent directly to Log Analytics, the tables use the _CL suffix (for example, `AppEnvSessionConsoleLogs_CL`). When logs are routed through Azure Monitor diagnostic settings, the table names don't include the _CL suffix.
-
-See also: For logging and metrics details, see [Custom container sessions](./sessions-custom-container.md#logging) and [Code interpreter sessions](./sessions-code-interpreter.md#logging).
+For a full list of supported session categories on the environment resource (`Microsoft.App/managedEnvironments`), see [Supported logs for Microsoft.App/managedEnvironments](/azure/azure-monitor/reference/supported-logs/microsoft-app-managedenvironments-logs).
 
 ## Related content
 

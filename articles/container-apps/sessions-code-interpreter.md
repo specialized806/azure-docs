@@ -305,16 +305,12 @@ Authorization: Bearer <TOKEN>
 
 ## Logging
 
-Code interpreter sessions emit application logs to Log Analytics, but don't emit platform logs. If you need request/response tracing, capture it in the application that calls the session pool management API (for example, log request IDs, inputs, and responses at your app boundary).
+The available outputs are the results you return from code execution, including `stdout` and `stderr`.
 
-### Log Analytics tables
+If you need request or response tracing, capture it in the application that calls the session pool management API (for example, log request IDs, inputs, and responses at your app boundary).
 
-| Log category | Log Analytics table | Description |
-|-------------|---------------------|-------------|
-| Application logs | `AppEnvSessionConsoleLogs` | Standard output (`stdout`) and standard error (`stderr`) emitted by code running in the session. Logs appear after a session is invoked. |
-| Platform logs | Not applicable | Session lifecycle and pool event logs aren't emitted for code interpreter session pools. |
-
-If logs are sent directly to Log Analytics, the table uses the _CL suffix (for example, `AppEnvSessionConsoleLogs_CL`). When logs are routed through Azure Monitor diagnostic settings, the table name doesn't include the _CL suffix.
+> [!NOTE]
+> Code interpreter sessions don't emit AppEnvSession logs to Log Analytics.
 
 ## Metrics
 
