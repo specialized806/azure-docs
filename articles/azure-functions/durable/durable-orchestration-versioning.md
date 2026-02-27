@@ -1076,7 +1076,7 @@ Over time, you might want to remove legacy code paths from your orchestrator fun
 ::: zone pivot="durable-functions"
 
 > [!div class="nextstepaction"]
-> [Learn about zero-downtime deployment strategies](../durable-functions-zero-downtime-deployment.md)
+> [Learn about zero-downtime deployment strategies](durable-functions-zero-downtime-deployment.md)
 
 > [!div class="nextstepaction"]
 > [Learn about versioning strategies](../durable-functions-versioning.md)
