@@ -106,7 +106,7 @@ The following table shows locations by service provider. If you want to view ava
 | **[Elisa](https://elisa.fi/)** |&check; |&check; | Stockholm |
 | **[Embratel](https://www.embratel.com.br/rede-de-dados/cloud-interconnect)** |&check; |&check; | Sao Paulo |
 | **[Epsilon Global Communications](https://epsilontel.com/solutions/cloud-connect/)** | &check; | &check; | Hong Kong2<br/>London2<br/>Singapore<br/>Singapore2<br/>Washington DC |
-| **[Equinix](https://www.equinix.com/partners/microsoft-azure/)** | &check; | &check; | Amsterdam<br/>Amsterdam Metro<br/>Amsterdam2<br/>Atlanta<br/>Atlanta Metro<br/>Berlin<br/>Canberra2<br/>Chicago<br/>Chicago Metro<br/>Dallas<br/>Dubai2<br/>Dublin<br/>Frankfurt<br/>Frankfurt2<br/>Geneva<br/>Hong Kong<br/>Hong Kong2<br/>Kuala Lumpur<br/>London<br/>London2<br/>Los Angeles2<br/>Madrid Metro<br/>Madrid2<br/>Melbourne<br/>Miami<br/>Milan<br/>Milan Metro<br/>Montreal<br/>Mumbai2<br/>New York<br/>Osaka<br/>Paris<br/>Paris2<br/>Perth<br/>Quebec City<br/>Queretaro<br/>Rio de Janeiro<br/>Santiago<br/>Sao Paulo<br/>Seattle<br/>Seoul<br/>Silicon Valley<br/>Singapore<br/>Singapore Metro<br/>Singapore2<br/>Stockholm<br/>Sydney<br/>Tokyo<br/>Tokyo2<br/>Toronto<br/>Warsaw<br/>Washington DC<br/>Zurich<br/>Zurich2 |
+| **[Equinix](https://www.equinix.com/partners/microsoft-azure/)** | &check; | &check; | Amsterdam<br/>Amsterdam Metro<br/>Amsterdam2<br/>Atlanta<br/>Atlanta Metro<br/>Berlin<br/>Canberra2<br/>Chicago<br/>Chicago Metro<br/>Dallas<br/>Dubai2<br/>Dublin<br/>Frankfurt<br/>Frankfurt2<br/>Geneva<br/>Hong Kong<br/>Hong Kong2<br/>Kuala Lumpur<br/>London<br/>London2<br/>Los Angeles2<br/>Madrid Metro<br/>Madrid2<br/>Melbourne<br/>Miami<br/>Milan<br/>Milan Metro<br/>Montreal<br/>Mumbai2<br/>New York<br/>Osaka<br/>Paris<br/>Paris2<br/>Perth<br/>Queretaro<br/>Rio de Janeiro<br/>Santiago<br/>Sao Paulo<br/>Seattle<br/>Seoul<br/>Silicon Valley<br/>Singapore<br/>Singapore Metro<br/>Singapore2<br/>Stockholm<br/>Sydney<br/>Tokyo<br/>Tokyo2<br/>Toronto<br/>Warsaw<br/>Washington DC<br/>Zurich<br/>Zurich2 |
 | **Etisalat UAE** |&check; |&check; | Abu Dhabi<br/>Dubai |
 | **[euNetworks](https://eunetworks.com/services/solutions/cloud-connect/microsoft-azure-expressroute/)** | &check; | &check; | Amsterdam<br/>Amsterdam Metro<br/>Amsterdam2<br/>Dublin<br/>Frankfurt<br/>London<br/>Paris |
 | **[Eurofiber](https://eurofiber.nl/microsoft-azure/)** | &check; | &check; | Brussels<br/>Brussels2 |
@@ -177,7 +177,7 @@ The following table shows locations by service provider. If you want to view ava
 | **Noovle** | &check; | &check; | Milan |
 | **[NTT DOCOMO BUSINESS](https://www.ntt.com/business/services/network/vpn/vpn/global.html?msockid=2c77b10c975466be0227a4ad962e67a1)** | &check; | &check; | Amsterdam<br/>Hong Kong<br/>London<br/>Los Angeles<br/>New York<br/>Singapore<br/>Sydney<br/>Washington DC |
 | **NTT Communications India Network Services Pvt Ltd** | &check; | &check; | Chennai<br/>Mumbai |
-| **[NTT DOCOMO BUSINESS - Flexible InterConnect](https://sdpf.ntt.com/)** |&check; |&check; | Jakarta<br/>Osaka<br/>Singapore2<br/>Tokyo<br/>Tokyo2 |
+| **[NTT DOCOMO BUSINESS - Flexible InterConnect (NTT Communications - Flexible InterConnect)](https://sdpf.ntt.com/)** |&check; |&check; | Jakarta<br/>Osaka<br/>Singapore2<br/>Tokyo<br/>Tokyo2 |
 | **[NTT EAST](https://business.ntt-east.co.jp/service/crossconnect/)** |&check; |&check; | Tokyo |
 | **[NTT Global DataCenters EMEA](https://hello.global.ntt/)** |&check; |&check; | Amsterdam2<br/>Berlin<br/>Frankfurt<br/>London2<br/>Vienna2 |
 | **[NTT Indonesia](https://jktix.com/service_cloudconnect.html)** | &check; | &check; | Jakarta2 |
@@ -375,7 +375,7 @@ If you're remote and don't have fiber connectivity, or you want to explore other
 | **[QSC AG](https://www2.qbeyond.de/en/)** |Interxion | Frankfurt |  
 | **[RETN](https://retn.net/products/cloud-connect)** | Equinix | Amsterdam |
 | **Rogers** | Cologix<br/>Equinix | Montreal<br/>Toronto |
-| **[Spectrum Enterprise](https://enterprise.spectrum.com/services/networking/cloud-connectivity)** | Equinix | Chicago<br/>Dallas<br/>Los Angeles<br/>New York<br/>Silicon Valley | 
+| **[Spectrum Enterprise](https://enterprise.spectrum.com/products/networking/connectivity/cloud-connect.html)** | Equinix | Chicago<br/>Dallas<br/>Los Angeles<br/>New York<br/>Silicon Valley | 
 | **[Tamares Telecom](https://www.exelera.net/)** | Equinix | London | 
 | **[Tata Teleservices](https://www.tatatelebusiness.com/data-services/ez-cloud-connect/)** | Tata Communications | Chennai<br/>Mumbai |
 | **[TDC Erhverv](https://tdc.dk/)** | Equinix | Amsterdam | 

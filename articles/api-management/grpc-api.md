@@ -30,15 +30,13 @@ To add a gRPC API to API Management, you need to:
 API Management supports pass-through with the following types of gRPC service methods: unary, server streaming, client streaming, and bidirectional streaming. To learn more about gRPC, see [Introduction to gRPC](https://grpc.io/docs/what-is-grpc/introduction/).
 
 > [!NOTE]
-> * gRPC APIs are supported in the self-hosted gateway and in the managed gateway for classic tier instances created starting January 2026 (preview). Contact support to enable gRPC API support in classic tier instances created before this date. gRPC APIs currently aren't supported in the v2 tiers.
+> * gRPC APIs are supported in the [self-hosted gateway](self-hosted-gateway-overview.md) and in the managed gateway for classic tier instances created starting January 2026 (preview). Contact support to enable gRPC API support in classic tier instances created before this date. gRPC APIs currently aren't supported in the v2 tiers.
 > * Currently, testing gRPC APIs isn't supported in the test console of the Azure portal or in the API Management developer portal.
 > * Import is limited to a single protobuf (*.proto*) file.  
 
 ## Prerequisites
 
 * An API Management instance. If you don't already have one, complete the following quickstart: [Create an Azure API Management instance](get-started-create-service-instance.md).
-
-* A gateway resource provisioned in your instance. If you don't already have one, see [Provision a self-hosted gateway in Azure API Management](api-management-howto-provision-self-hosted-gateway.md).
 
 * A gRPC protobuf (*.proto*) file available locally, and gRPC service that's accessible over HTTPS.
 

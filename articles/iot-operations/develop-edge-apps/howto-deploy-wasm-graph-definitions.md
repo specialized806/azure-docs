@@ -5,7 +5,7 @@ author: dominicbetts
 ms.author: dobett
 ms.service: azure-iot-operations
 ms.topic: how-to
-ms.date: 12/16/2025
+ms.date: 02/25/2026
 ai-usage: ai-assisted
 
 ---
@@ -23,16 +23,93 @@ Azure IoT Operations data flow graphs support WebAssembly (WASM) modules for cus
 ## Prerequisites
 
 - Deploy an Azure IoT Operations instance on an Arc-enabled Kubernetes cluster. For more information, see [Deploy Azure IoT Operations](../deploy-iot-ops/howto-deploy-iot-operations.md).
-- Use a container registry like Azure Container Registry (ACR) to store WASM modules and graphs.
-- Configure a registry endpoint to enable your Azure IoT Operations instance to access your container registry. For more information, see [Configure registry endpoints](howto-configure-registry-endpoint.md).
+- Configure a registry endpoint to enable your Azure IoT Operations instance to access a container registry. For more information, see [Configure registry endpoints](howto-configure-registry-endpoint.md).
+
+If you want to use a private registry like Azure Container Registry (ACR), you also need:
+
+- Access to a container registry like ACR to store WASM modules and graphs.
 - Install the OCI Registry As Storage (ORAS) CLI to push WASM modules to the registry.
-- Develop custom WASM modules by following guidance in [Build WASM modules for data flows in VS Code](howto-build-wasm-modules-vscode.md) or [Develop WebAssembly (WASM) modules and graph definitions for data flow graphs](howto-develop-wasm-modules.md).
+
+> [!TIP]
+> For a quick start without setting up a private registry, you can use the prebuilt sample modules directly from the public GitHub Container Registry (ghcr.io). See [Use prebuilt modules from a public registry](#use-prebuilt-modules-from-a-public-registry) for instructions.
 
 ## Overview
 
 WASM modules in Azure IoT Operations data flow graphs and connectors let you process data at the edge with high performance and security. WASM runs in a sandboxed environment and supports Rust and Python.
 
-## Set up container registry
+## Use prebuilt modules from a public registry
+
+The fastest way to get started is to use the prebuilt sample WASM modules and graph definitions directly from the public GitHub Container Registry. This approach doesn't require setting up a private registry, ORAS CLI, or any pull/push steps.
+
+### Create a registry endpoint for the public registry
+
+Create a registry endpoint that points to the public registry where the sample modules are hosted:
+
+# [Bicep](#tab/bicep)
+
+```bicep
+resource publicRegistryEndpoint 'Microsoft.IoTOperations/instances/registryEndpoints@2025-10-01-preview' = {
+  parent: aioInstance
+  name: 'public-ghcr'
+  extendedLocation: {
+    name: customLocation.id
+    type: 'CustomLocation'
+  }
+  properties: {
+    host: 'ghcr.io/azure-samples/explore-iot-operations'
+    authentication: {
+      method: 'Anonymous'
+      anonymousSettings: {}
+    }
+  }
+}
+```
+
+# [Kubernetes](#tab/kubernetes)
+
+```yaml
+apiVersion: connectivity.iotoperations.azure.com/v1
+kind: RegistryEndpoint
+metadata:
+  name: public-ghcr
+  namespace: azure-iot-operations
+spec:
+  host: ghcr.io/azure-samples/explore-iot-operations
+  authentication:
+    method: Anonymous
+    anonymousSettings: {}
+```
+
+Apply the manifest:
+
+```bash
+kubectl apply -f registry-endpoint.yaml
+```
+
+---
+
+After you create this registry endpoint, you can reference it in your data flow graphs by using `registryEndpointRef: public-ghcr`. The following sample modules and graph definitions are available:
+
+| Artifact | Description |
+|----------|-------------|
+| `graph-simple:1.0.0` | Simple temperature conversion graph definition |
+| `graph-complex:1.0.0` | Multi-sensor processing graph definition |
+| `temperature:1.0.0` | Temperature conversion module (Fahrenheit to Celsius) |
+| `window:1.0.0` | Time-based windowing module |
+| `snapshot:1.0.0` | Image processing and object detection module |
+| `format:1.0.0` | Image format conversion module |
+| `humidity:1.0.0` | Humidity data processing module |
+| `collection:1.0.0` | Multi-sensor data aggregation module |
+| `enrichment:1.0.0` | Metadata enrichment module |
+| `filter:1.0.0` | Data filtering module |
+
+To use the simple graph with the public registry, see [Example 1: Basic deployment with one WASM module](../connect-to-cloud/howto-dataflow-graph-wasm.md#example-1-basic-deployment-with-one-wasm-module) and use `public-ghcr` as the registry endpoint name.
+
+## Use a private registry
+
+If you need to use custom modules or want to host your own copies of the sample modules, set up a private container registry like Azure Container Registry (ACR).
+
+### Set up container registry
 
 Azure IoT Operations needs a container registry to pull WASM modules and graph definitions. You can use Azure Container Registry (ACR) or another OCI-compatible registry.
 

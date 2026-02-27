@@ -2,9 +2,9 @@
 author: EdB-MSFT
 ms.author: edbaynash
 ms.topic: include
-ms.date: 02/09/2026
+ms.date: 02/26/2026
 
-# This file is auto-generated . Do not edit manually. Changes will be overwritten.
+# This file is auto-generated. Do not edit manually. Changes will be overwritten.
 ---
 
 <a name="1password-serverless"></a><details><summary>**1Password (Serverless)**</summary>
@@ -631,7 +631,7 @@ The Azure DevOps Audit Logs data connector allows you to ingest audit events fro
 
 **Prerequisites:**
 
-- **Azure DevOps Prerequisite**: Please ensure the following:<br> 1. Register an Entra App in Microsoft Entra Admin Center under App Registrations.<br> 2.  In 'API permissions' -  add Permissions to 'Azure DevOps - vso.auditlog'.<br> 3.  In 'Certificates & secrets' - generate 'Client secret'.<br> 4.  In 'Authentication' - add Redirect URI: 'https://portal.azure.com/TokenAuthorize/ExtensionName/Microsoft_Azure_Security_Insights'.<br> 5. In the Azure DevOps settings - enable audit log and set **View audit log** for the user. [Azure DevOps Auditing](/azure/devops/organizations/audit/azure-devops-auditing?view=azure-devops&tabs=preview-page).<br> 6. Ensure the user assigned to connect the data connector has the View audit logs permission explicitly set to Allow at all times. This permission is essential for successful log ingestion. If the permission is revoked or not granted, data ingestion will fail or be interrupted.<br><br>
+- **Azure DevOps Prerequisite**: Please ensure the following:<br> 1. Register an Entra App in Microsoft Entra Admin Center under App Registrations.<br> 2.  In 'API permissions' -  add Permissions to 'Azure DevOps - vso.auditlog'.<br> 3.  In 'Certificates & secrets' - generate 'Client secret'.<br> 4.  In 'Authentication' - add the Redirect URI found below in the corresponding field.<br> 5. In the Azure DevOps settings - enable audit log and set **View audit log** for the user. [Azure DevOps Auditing](/azure/devops/organizations/audit/azure-devops-auditing?view=azure-devops&tabs=preview-page).<br> 6. Ensure the user assigned to connect the data connector has the View audit logs permission explicitly set to Allow at all times. This permission is essential for successful log ingestion. If the permission is revoked or not granted, data ingestion will fail or be interrupted.<br><br>
 </details> 
 
  ---
@@ -876,6 +876,27 @@ The BETTER MTD Connector allows Enterprises to connect their Better MTD instance
 |`BetterMTDAppLog_CL`|No|No|
 
 **Data collection rule support:** Not currently supported<br><br>
+</details> 
+
+ ---
+   
+<a name="bigid-dspm-connector"></a><details><summary>**BigID DSPM connector**</summary>
+
+**Supported by:** [BigID](https://support.bigid.com/)
+
+The [BigID DSPM](https://bigid.com/data-security-posture-management/) data connector provides the capability to ingest BigID DSPM cases with affected objects and datasource information into Microsoft Sentinel.
+
+**Log Analytics table(s):**  
+
+|Table|DCR support|Lake-only ingestion|
+|---|---|---|
+|`BigIDDSPMCatalog_CL`|Yes|Yes|
+
+**Data collection rule support:** [Workspace transform DCR](/azure/azure-monitor/logs/tutorial-workspace-transformations-portal)
+
+**Prerequisites:**
+
+- **BigID DSPM API access**: Access to the BigID DSPM API through a BigID Token is required.<br><br>
 </details> 
 
  ---
@@ -1152,6 +1173,28 @@ The Cisco Umbrella data connector provides the capability to ingest [Cisco Umbre
 
  ---
    
+<a name="cisco-duo-security-using-azure-functions"></a><details><summary>**Cisco Duo Security (using Azure Functions)**</summary>
+
+**Supported by:** [Cisco Systems](https://duo.com/support)
+
+The Cisco Duo Security data connector provides the capability to ingest [authentication logs](https://duo.com/docs/adminapi#authentication-logs), [administrator logs](https://duo.com/docs/adminapi#administrator-logs), [telephony logs](https://duo.com/docs/adminapi#telephony-logs), [offline enrollment logs](https://duo.com/docs/adminapi#offline-enrollment-logs) and [Trust Monitor events](https://duo.com/docs/adminapi#trust-monitor) into Microsoft Sentinel using the Cisco Duo Admin API. Refer to [API documentation](https://duo.com/docs/adminapi) for more information.
+
+**Log Analytics table(s):**  
+
+|Table|DCR support|Lake-only ingestion|
+|---|---|---|
+|`CiscoDuo_CL`|No|No|
+
+**Data collection rule support:** Not currently supported
+
+**Prerequisites:**
+
+- **Microsoft.Web/sites permissions**: Read and write permissions to Azure Functions to create a Function App is required. For more information, see [Azure Functions](/azure/azure-functions/).
+- **Cisco Duo API credentials**: Cisco Duo API credentials with permission *Grant read log* is required for Cisco Duo API. See the [documentation](https://duo.com/docs/adminapi#first-steps) to learn more about creating Cisco Duo API credentials.<br><br>
+</details> 
+
+ ---
+   
 <a name="cisco-etd-using-azure-functions"></a><details><summary>**Cisco ETD (using Azure Functions)**</summary>
 
 **Supported by:** [N/A](https://globalcontacts.cloudapps.cisco.com/contacts/contactDetails/en_US/c1o1-c2o2-c3o8)
@@ -1344,7 +1387,7 @@ The Cohesity function apps provide the ability to ingest Cohesity Datahawk ranso
    
 <a name="commvaultsecurityiq"></a><details><summary>**CommvaultSecurityIQ**</summary>
 
-**Supported by:** [Commvault](https://ma.commvault.com/)
+**Supported by:** [Commvault](https://www.commvault.com/support)
 
 This Azure Function enables Commvault users to ingest alerts/events into their Microsoft Sentinel instance. With Analytic Rules,Microsoft Sentinel can automatically create Microsoft Sentinel incidents from incoming events and logs.
 
@@ -2370,23 +2413,25 @@ This connector allows you to ingest IoCs from Feedly.
 
  ---
    
-<a name="flare"></a><details><summary>**Flare**</summary>
+<a name="flare-push-connector"></a><details><summary>**Flare Push Connector**</summary>
 
 **Supported by:** [Flare](https://flare.io/contact/)
 
-[Flare](https://flare.systems/platform/) connector allows you to receive data and intelligence from Flare on Microsoft Sentinel.
+The [Flare](https://flare.io) connector provides the capability to ingest threat intelligence and exposure data from Flare into Microsoft Sentinel. Flare identifies your company's digital assets made publicly available due to human error or malicious attacks, including leaked credentials, exposed cloud buckets, darkweb mentions, and more.
 
 **Log Analytics table(s):**  
 
 |Table|DCR support|Lake-only ingestion|
 |---|---|---|
-|`Firework_CL`|No|No|
+|`FireworkV2_CL`|No|No|
 
 **Data collection rule support:** Not currently supported
 
 **Prerequisites:**
 
-- **Required Flare permissions**: Only Flare organization administrators may configure the Microsoft Sentinel integration.<br><br>
+- **Microsoft Entra**: Permission to create an app registration in Microsoft Entra ID.
+- **Microsoft Azure**: Permission to assign Monitoring Metrics Publisher role on data collection rule (DCR).
+- **Flare**: Permission to configure Microsoft Sentinel integration in Flare.<br><br>
 </details> 
 
  ---
@@ -3250,6 +3295,29 @@ The [Jamf Protect](https://www.jamf.com/products/jamf-protect/) connector provid
 
  ---
    
+<a name="joesandboxthreatintelligence-using-azure-functions"></a><details><summary>**JoeSandboxThreatIntelligence (using Azure Functions)**</summary>
+
+**Supported by:** [Stefan Bühlmann](https://www.joesecurity.org/support)
+
+JoeSandboxThreatIntelligence connector automatically generates and feeds threat intelligence for all submissions to JoeSandbox, improving threat detection and incident response in Sentinel. This seamless integration empowers teams to proactively address emerging threats.
+
+**Log Analytics table(s):**  
+
+|Table|DCR support|Lake-only ingestion|
+|---|---|---|
+|[`ThreatIntelligenceIndicator`](/azure/azure-monitor/reference/tables/ThreatIntelligenceIndicator)|Yes|No|
+
+**Data collection rule support:** [Workspace transform DCR](/azure/azure-monitor/logs/tutorial-workspace-transformations-portal)
+
+**Prerequisites:**
+
+- **Azure Subscription**: Azure Subscription with owner role is required to register an application in azure active directory() and assign role of contributor to app in resource group.
+- **Microsoft.Web/sites permissions**: Read and write permissions to Azure Functions to create a Function App is required. For more information, see [Azure Functions](/azure/azure-functions/).
+- **REST API Credentials/permissions**: **JoeSandbox API Key** is required.<br><br>
+</details> 
+
+ ---
+   
 <a name="keeper-security-push-connector"></a><details><summary>**Keeper Security Push Connector**</summary>
 
 **Supported by:** [Keeper Security](https://www.keepersecurity.com/support.html)
@@ -3343,9 +3411,9 @@ MailGuard 365 Enhanced Email Security for Microsoft 365. Exclusive to the Micros
 
 |Table|DCR support|Lake-only ingestion|
 |---|---|---|
-|`MailGuard365_Threats_CL`|No|No|
+|`MailGuard365_Threats_CL`|Yes|Yes|
 
-**Data collection rule support:** Not currently supported<br><br>
+**Data collection rule support:** [Workspace transform DCR](/azure/azure-monitor/logs/tutorial-workspace-transformations-portal)<br><br>
 </details> 
 
  ---
@@ -4027,9 +4095,9 @@ The data connector for [Mimecast Cloud Integrated](https://integrations.mimecast
 
 |Table|DCR support|Lake-only ingestion|
 |---|---|---|
-|`Cloud_Integrated_CL`|No|No|
+|`Cloud_Integrated_CL`|Yes|Yes|
 
-**Data collection rule support:** Not currently supported
+**Data collection rule support:** [Workspace transform DCR](/azure/azure-monitor/logs/tutorial-workspace-transformations-portal)
 
 **Prerequisites:**
 
@@ -4250,9 +4318,9 @@ The [MongoDBAtlas](https://www.mongodb.com/products/platform/atlas-database) Log
 
 |Table|DCR support|Lake-only ingestion|
 |---|---|---|
-|`MDBALogTable_CL`|No|No|
+|`MDBALogTable_CL`|Yes|Yes|
 
-**Data collection rule support:** Not currently supported
+**Data collection rule support:** [Workspace transform DCR](/azure/azure-monitor/logs/tutorial-workspace-transformations-portal)
 
 **Prerequisites:**
 
