@@ -1,5 +1,5 @@
 ---
-title:  Authorize SFTP access to blobs using Microsoft Entra ID
+title:  Authorize SFTP access to blobs using Microsoft Entra ID (preview)
 titleSuffix: Azure Storage
 author: jeevanbalanmanoj
 ms.date: 02/24/2026
@@ -9,7 +9,7 @@ ms.date: 02/26/2026
 ms.author: normesta
 ---
 
-# Authorize SSH File Transfer Protocol (SFTP) access to blobs using Microsoft Entra ID
+# Authorize SSH File Transfer Protocol (SFTP) access to blobs using Microsoft Entra ID (preview)
 
 Azure Blob Storage SFTP now supports Microsoft Entra ID-based access in public preview. Previously, Azure Blob Storage SFTP supported only local user-based access, requiring either a password or an SSH private key for authentication. By using this new feature, users can apply their Microsoft Entra ID or Entra External Identities to connect to Azure storage accounts through SFTP without needing to create and maintain local users.
 
