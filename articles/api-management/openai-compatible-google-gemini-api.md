@@ -15,7 +15,7 @@ ms.custom: template-how-to
 
 [!INCLUDE [api-management-availability-all-tiers](../../includes/api-management-availability-all-tiers.md)]
 
-This article shows you how to import an OpenAI-compatible Google Gemini API to access models such as `gemini-2.5 -flash`. For these models, Azure API Management can manage an OpenAI-compatible chat completions endpoint.
+This article shows you how to import an OpenAI-compatible Google Gemini API to access models such as `gemini-2.5-flash-lite`. For these models, Azure API Management can manage an OpenAI-compatible chat completions endpoint.
 
 Learn more about managing AI APIs in API Management:
 
@@ -65,11 +65,11 @@ After importing the API, you can test the chat completions endpoint for the API.
 1. Select the API that you created in the previous step.
 1. Select the **Test** tab.
 1. Select the `POST  Creates a model response for the given chat conversation` operation, which is a `POST` request to the `/chat/completions` endpoint.
-1. In the **Request body** section, enter the following JSON to specify the model and an example prompt. In this example, the `gemini-2.5-flash` model is used.
+1. In the **Request body** section, enter the following JSON to specify the model and an example prompt. In this example, the `gemini-2.5-flash-lite` model is used.
 
     ```json
     {
-        "model": "gemini-2.5-flash",
+        "model": "gemini-2.5-flash-lite",
         "messages": [
             {
                 "role": "system",

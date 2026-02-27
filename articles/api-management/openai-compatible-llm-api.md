@@ -15,7 +15,7 @@ ms.custom: template-how-to
 
 [!INCLUDE [api-management-availability-all-tiers](../../includes/api-management-availability-all-tiers.md)]
 
-You can import OpenAI-compatible language model endpoints or non-compatible models as passthrough APIs to your API Management instance. For example, manage self-hosted LLMs or those hosted on inference providers other than Azure AI services. Use AI gateway policies and other API Management capabilities to simplify integration, improve observability, and enhance control over model endpoints.
+You can import OpenAI-compatible language model endpoints to your API Management instance, or import non-compatible models as passthrough APIs. For example, manage self-hosted LLMs or those hosted on inference providers other than Azure AI services. Use AI gateway policies and other API Management capabilities to simplify integration, improve observability, and enhance control over model endpoints.
 
 Learn more about managing AI APIs in API Management:
 
@@ -23,7 +23,7 @@ Learn more about managing AI APIs in API Management:
 
 ## Language model API types
 
-API Management supports two language model API types. Choose the option that matches your model deployment, which determines how clients call the API and how requests route to the AI service.
+API Management supports two language model API types. Choose the option that matches your model deployment, which determines how clients call the API and how requests get route to the AI service.
 
 * **OpenAI-compatible** - Language model endpoints compatible with OpenAI's API. Examples include [Hugging Face Text Generation Inference (TGI)](https://huggingface.co/docs/text-generation-inference/en/index) and [Google Gemini API](openai-compatible-google-gemini-api.md).
 
