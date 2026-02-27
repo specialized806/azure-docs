@@ -17,7 +17,7 @@ ms.author: cherylmc
 We're simplifying our VPN Gateway SKU portfolio. Due to the lack of redundancy, lower availability, and potential higher costs associated with failover solutions, we're transitioning all non availability zone (AZ) supported SKUs to AZ supported SKUs. This article helps you understand the upcoming changes for VPN Gateway virtual network gateway SKUs. This article expands on the [official announcement.](https://azure.microsoft.com/updates/v2/vpngw1-5-non-az-skus-will-be-retired-on-30-september-2026).
 
 * **Effective November 1, 2025**: Creation of new VPN gateways using VpnGw1-5 SKUs (non-AZ) will no longer be possible. This date has changed from the originally announced January 1, 2025 date.
-* **Migration period**: From September 2025 to September 2026, all existing VPN gateways using VpnGw1-5 SKUs (non-AZ SKUs) could be seamlessly migrated to VpnGw1-5 SKUs (AZ).
+* **Migration period**: From September 2025 to September 2026, all existing VPN gateways using VpnGw1-5 SKUs (non-AZ SKUs) can be manually upgraded to VpnGw1-5 SKUs (AZ).
 
 To support this migration, we're reducing the prices on AZ SKUs. For more information about SKUs and pricing, see the [FAQ](#faq) section of this article.
 
@@ -34,8 +34,7 @@ The following diagram shows current SKUs and the new SKUs they'll automatically 
 
 ### What actions do I need to take?
 
-* We recommend that you don't change your gateway SKU manually in anticipation of SKU migration unless you want to upgrade to a higher gateway SKU.
-* You can [manually upgrade](gateway-sku-upgrade.md) non-AZ gateway SKUs to AZ gateway SKUs using the portal/PowerShell/CLI after Sep 2025. There's no downtime expected to manually upgrade non-AZ SKUs that currently use Standard public IP addresses.
+* We recommend that you [manually upgrade](gateway-sku-upgrade.md) non-AZ gateway SKUs to AZ gateway SKUs using the portal/PowerShell/CLI after Sep 2025. There's no downtime expected to manually upgrade non-AZ SKUs that currently use Standard public IP addresses. If you are still using Basic IP Address, please upgrade to Standard IP address.
 * If your gateway currently uses Legacy Gateway SKUs, see [Working with VPN Gateway legacy SKUs](vpn-gateway-about-skus-legacy.md).
 
 ### What is the timeline?
