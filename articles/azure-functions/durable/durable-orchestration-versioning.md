@@ -17,7 +17,7 @@ _Orchestration versioning_ prevents problems related to nondeterminism, allowing
 
 ::: zone pivot="durable-functions"
 
-This built-in feature provides automatic version isolation with minimal configuration. It's backend agnostic, so any app using any of the Durable Functions [storage providers](../durable-functions-storage-providers.md), including the [Durable Task Scheduler](durable-task-scheduler.md), can use it.
+This built-in feature provides automatic version isolation with minimal configuration. It's backend agnostic, so any app using any of the Durable Functions [storage providers](durable-functions-storage-providers.md), including the [Durable Task Scheduler](./durable-task-scheduler/durable-task-scheduler.md), can use it.
 
 ::: zone-end
 
