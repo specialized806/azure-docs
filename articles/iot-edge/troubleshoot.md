@@ -44,7 +44,7 @@ sudo iotedge check --diagnostics-image-name <parent_device_fqdn_or_ip>:<port_for
 
 For information about each of the diagnostic checks this tool runs, including what to do if you get an error or warning, see [Built-in troubleshooting functionality](https://github.com/Azure/iotedge/blob/main/doc/troubleshoot-checks.md).
 
-## Gather debug information by using the 'support-bundle' command
+## Gather debug information by using the support-bundle command
 
 When you need to gather logs from an IoT Edge device, the most convenient way is to use the `support-bundle` command. By default, this command collects module, IoT Edge security manager, and container engine logs, `iotedge check` JSON output, and other useful debug information. It compresses them into a single file for easy sharing. The `support-bundle` command is available in [release 1.0.9](https://github.com/Azure/azure-iotedge/releases/tag/1.0.9) and later.
 
