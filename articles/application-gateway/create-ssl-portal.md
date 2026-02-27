@@ -5,7 +5,7 @@ services: application-gateway
 author: mbender-ms
 ms.service: azure-application-gateway
 ms.topic: tutorial
-ms.date: 07/11/2025
+ms.date: 02/26/2026
 ms.author: mbender
 ms.custom: sfi-image-nochange
 #Customer intent: As an IT administrator, I want to use the Azure portal to configure Application Gateway with TLS termination so I can secure my application traffic.
@@ -21,7 +21,6 @@ In this tutorial, you learn how to:
 > [!div class="checklist"]
 > * Create a self-signed certificate
 > * Create an application gateway with the certificate
-> * Deploy Azure Bastion for secure VM connectivity
 > * Create the virtual machines used as backend servers
 > * Test the application gateway
 
@@ -174,35 +173,6 @@ On the **Configuration** tab, you'll connect the frontend and backend pool you c
 
 Review the settings on the **Review + create** tab, and then select **Create** to create the virtual network, the public IP address, and the application gateway. It may take several minutes for Azure to create the application gateway. Wait until the deployment finishes successfully before moving on to the next section.
 
-## Deploy Azure Bastion
-
-Azure Bastion uses your browser to connect to VMs in your virtual network over secure shell (SSH) or remote desktop protocol (RDP) by using their private IP addresses. The VMs don't need public IP addresses, client software, or special configuration. For more information about Azure Bastion, see [Azure Bastion](/azure/bastion/bastion-overview).
-
->[!NOTE]
->[!INCLUDE [Pricing](~/reusable-content/ce-skilling/azure/includes/bastion-pricing.md)]
-
-1. In the search box at the top of the portal, enter **Bastion**. Select **Bastions** in the search results.
-
-1. Select **+ Create**.
-
-1. In the **Basics** tab of **Create a Bastion**, enter or select the following information:
-
-    | Setting | Value |
-    |---|---|
-    | **Project details** |  |
-    | Subscription | Select your subscription. |
-    | Resource group | Select **myResourceGroupAG**. |
-    | **Instance details** |  |
-    | Name | Enter **myBastionHost**. |
-    | Region | Select the same region as your application gateway. |
-    | Tier | Select **Developer**. |
-    | **Configure virtual networks** |  |
-    | Virtual network | Select **myVNet**. |
-
-1. Select **Review + create**.
-
-1. Select **Create**.
-
 ## Add backend targets
 
 In this example, you'll use virtual machines as the target backend. You can either use existing virtual machines or create new ones. You'll create two virtual machines that Azure uses as backend servers for the application gateway.
@@ -228,6 +198,10 @@ To do this, you'll:
     - **Username**: Enter a name for the administrator user name.
     - **Password**: Enter a password for the administrator account.
     - **Public inbound ports**: Select **None**.
+
+> [!NOTE]
+> The default rules of the network security group block all inbound access from the internet, including RDP. To connect to the virtual machine, use Azure Bastion. For more information, see [Quickstart: Deploy Azure Bastion with default settings](../bastion/quickstart-host-portal.md).
+
 1. Accept the other defaults and then select **Next: Disks**.  
 2. Accept the **Disks** tab defaults and then select **Next: Networking**.
 3. On the **Networking** tab, verify that **myVNet** is selected for the **Virtual network** and the **Subnet** is set to **myBackendSubnet**. For **Public IP**, select **None**. Accept the other defaults and then select **Next: Management**.
