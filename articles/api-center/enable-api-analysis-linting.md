@@ -241,7 +241,7 @@ If the deployment process doesn't publish the `apicenter-analyer` function to th
 
 ### Configure event subscription with the Azure CLI
 
-After the function is successfully published to the function app in the Azure portal, you can [configure an event subscription](/azure/api-center/enable-api-analysis-linting?tabs=cli#configure-event-subscription-with-the-azure-cli) by using PowerShell or a bash shell. Then browse to your API center in the Azure portal, and confirm the new event subscription under **Events** > **Event Subscriptions**.
+After the function is successfully published to the function app in the Azure portal, you can [configure an event subscription](/azure/api-center/enable-api-analysis-linting?tabs=cli#configure-event-subscription-in-your-api-center) by using PowerShell or a bash shell. Then browse to your API center in the Azure portal, and confirm the new event subscription under **Events** > **Event Subscriptions**.
 
 You can now upload an API definition file to your API center to [trigger the event subscription](#trigger-event-in-your-api-center) and run the linting engine.
 
