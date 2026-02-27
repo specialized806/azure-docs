@@ -27,9 +27,9 @@ The list below mentions the Azure and corresponding OCI regions with the regiona
 | -------------- | ----------------------- | ----------------------------- | -------------------------------- | -------- |---------|---------|---------|-----|
 | Australia East | Australia East (Sydney) | ✓ | ✓ | ✓ | ✓ | ✓ | ✓|  Dual   |
 | Australia Southeast | Australia Southeast (Melbourne) | ✓ | ✓ | | |  | |   Dual   |
-| Central India | India West (Mumbai) | ✓  | ✓ | | | | |   Single   |
+| Central India | India West (Mumbai) | ✓  | ✓ | | | | |   Dual   |
 | Japan East | Japan East (Tokyo) | ✓  | ✓  | ✓ | ✓ | ✓ | ✓ |   Dual   |
-| Japan West | Japan Central (Osaka) | ✓  | ✓ | | | | |   Single   |
+| Japan West | Japan Central (Osaka) | ✓  | ✓ | ✓ | ✓ | | |   Single   |
 | South India | 	India South (Chennai) | ✓  | ✓ | | | | |   Single   |
 | Southeast Asia |Singapore (Singapore) | ✓  | ✓   | ✓ | ✓ | ✓ | ✓ |  Dual   |
 
@@ -53,7 +53,7 @@ The list below mentions the Azure and corresponding OCI regions with the regiona
 | Italy North | Italy North (Milan)   | ✓   | ✓   | ✓ |  ✓ | ✓ | ✓ | Dual |
 | North Europe | Ireland (Dublin) | ✓  | ✓ |   | | | ✓ |   Dual   |
 | Spain Central | 	Spain Central (Madrid) | ✓  | ✓ |  |  | | |   Dual    |
-| Sweden Central | 	Sweden Central (Stockholm) | ✓  | ✓ | ✓ | ✓ | | |   Dual    |
+| Sweden Central | 	Sweden Central (Stockholm) | ✓  | ✓ | ✓ | ✓ | ✓ | ✓ |   Dual    |
 | Switzerland North | Switzerland North (Zurich) | ✓  | ✓ | | | | ✓ |   Single    |
 | UAE Central | UAE Central (Abu Dhabi) | ✓  | ✓ | | | | |   Single    |
 | UAE North | UAE North (Dubai) | ✓  | ✓ | ✓ | | | ✓ |   Dual    |

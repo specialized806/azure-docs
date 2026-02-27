@@ -1,5 +1,5 @@
 ---
-title: Use Azure Files share snapshots
+title: Use Azure Files Share Snapshots
 description: A share snapshot is a read-only, point-in-time copy of an Azure file share that you can use to recover previous versions of a file. Learn how to take snapshots using the Azure portal, Azure PowerShell, and Azure CLI.
 author: khdownie
 ms.service: azure-file-storage
@@ -383,7 +383,7 @@ az storage share list --account-name <storage-account-name> --include-snapshots
 
 ### Restore from an NFS Azure file share snapshot
 
-To mount an NFS Azure file share snapshot to a Linux VM (NFS client) and restore files, follow these steps.
+To mount an NFS Azure file share snapshot to a Linux VM (NFS client) and restore files, follow these steps. 
 
 1. Run the following command in a console. See [Mount options](storage-files-how-to-mount-nfs-shares.md#mount-options) for other recommended mount options. To improve copy performance, mount the snapshot with [nconnect](nfs-performance.md#nfs-nconnect) to use multiple TCP channels.
    
@@ -391,13 +391,13 @@ To mount an NFS Azure file share snapshot to a Linux VM (NFS client) and restore
    sudo mount -o vers=4,minorversion=1,proto=tcp,sec=sys $server:/nfs4account/share /media/nfs
    ```
    
-1. Change the directory to `/media/nfs/.snapshots` so you can view the available snapshots. The `.snapshots` directory is hidden by default, but you can access and read from it like any directory.
+1. Change the directory to `/media/nfs/.snapshots` so you can view the available snapshots. The `.snapshots` directory is hidden by default, but you can access and read from it like any directory. If you just created the snapshot, wait at least 30 seconds for the `.snapshots` directory to become available.
    
    ```bash
    cd /media/nfs/.snapshots
    ```
    
-1. List the contents of the `.snapshots` folder.
+1. List the contents of the `.snapshots` directory.
    
    ```bash
    ls
