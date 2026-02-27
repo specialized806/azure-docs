@@ -187,7 +187,7 @@ This section provides automated steps for the Azure Developer CLI (`azd`) to con
 
    If the `apicenter-analyer` function isn't listed or the **Status** isn't **Enabled**, [publish the function](#publish-apicenter-analyzer-function-with-azure-functions-core-tools) by using the Azure Functions Core Tools.
 
-1. [Configure an event subscription](#configure-event-subscription-programatically) by using PowerShell or a bash shell in Visual Studio Code.
+1. [Configure an event subscription](#configure-event-subscription-with-the-azure-cli) by using PowerShell or a bash shell in Visual Studio Code.
 
 #### Publish apicenter-analyzer function with Azure Functions Core Tools
 
@@ -237,9 +237,9 @@ If the deployment process doesn't publish the `apicenter-analyer` function to th
    apicenter-analyzer - [eventGridTrigger]
    ```
 
-1. In the Azure portal, confirm the `apicenter-analyer` function is now [published and enabled for your function app](#confirm-published-function).
+1. In the Azure portal, confirm the `apicenter-analyer` function is now [published and enabled for your function app](#confirm-function-published-in-azure-portal).
 
-### Configure event subscription programatically
+### Configure event subscription with the Azure CLI
 
 After the function is successfully published to the function app in the Azure portal, you can [configure an event subscription](#configure-event-subscription-programatically) by using PowerShell or a bash shell. Then browse to your API center in the Azure portal, and confirm the new event subscription under **Events** > **Event Subscriptions**.
 
@@ -270,7 +270,7 @@ To deploy the function app that runs the linting function on API definitions:
 
 1. (Optional) Run the function app locally to test it. For more information, see the [README](https://github.com/Azure/APICenter-Analyzer/tree/preview#-configure--run-your-function-locally) file in the repository.
 
-1. Deploy the function app to Azure. For instructions, see [Quickstart: Create and deploy function code to Azure by using Visual Studio Code (TypeScript)](../azure/azure-functions/how-to-create-function-vs-code?pivot=programming-language-typescript&tabs=go%2Cwindows&pivots=programming-language-typescript#sign-in-to-azure).
+1. Deploy the function app to Azure. For instructions, see [Quickstart: Create and deploy function code to Azure by using Visual Studio Code (TypeScript)](/azure/azure-functions/how-to-create-function-vs-code?pivot=programming-language-typescript&tabs=go%2Cwindows&pivots=programming-language-typescript#sign-in-to-azure).
 
    > [!NOTE]
    > Deploying the function app can take several minutes.
@@ -524,7 +524,7 @@ To view the analysis report for an API definition in your API center:
 
 1. Select the **Analysis** tab.
 
-   :::image type="content" source="media/enable-api-analysis-linting/analyze-api-definition.png" alt-text="Screenshot of the Analysis tab for an API definition in the Azure portal." lightbox="media/enable-api-analysis-linting/analyze-api-definition.png":::
+   :::image type="content" source="media/enable-api-analysis-linting/analyze-api-definition.png" alt-text="Screenshot of the Analysis tab for an API definition in the Azure portal.":::
 
 The **API Analysis Report** opens, and it displays the API definition and errors, warnings, and information based on the configured API style guide. The following screenshot shows an example of an API analysis report.
 
