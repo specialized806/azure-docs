@@ -166,7 +166,7 @@ When trying to resolve connectivity issues, it's important to check the effectiv
 1. Open the **Network Interface** associated with your Virtual Machine.
    :::image type="content" source="./media/set-up-network/vm-network-interface.png" alt-text="Screenshot showing the network interface of the Virtual Machine." lightbox="./media/set-up-network/vm-network-interface.png":::
 1. Search for **Effective routes** in the left-hand menu and select it. This shows you all the effective routes that are applied to your Virtual Machine. Review the routes to check if there are any routes that might be blocking traffic from Azure Monitor for SAP solutions.
-   :::image type="content" source="./media/set-up-network/nic-effective-routes.png" alt-text="Screenshot showing the effective routes of the network interface." lightbox="./media/set-up-network/nic-effective-routes.png":::
+   :::image type="content" source="./media/set-up-network/effective-routes.png" alt-text="Screenshot showing the effective routes of the network interface." lightbox="./media/set-up-network/effective-routes.png":::
 
 ## Next steps
 
