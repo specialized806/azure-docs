@@ -51,7 +51,7 @@ cargo install wasm-tools --version '=1.201.0' --locked
 # Install componentize-py for building Python WASM modules
 pip install "componentize-py==0.14"
 
-# Clone the samples repo to get WIT schemas
+# Clone the samples repo (provides WIT schemas and project structure)
 git clone https://github.com/Azure-Samples/explore-iot-operations.git
 ```
 
@@ -73,9 +73,6 @@ Create `.cargo/config.toml` to configure the SDK registry:
 ```toml
 [registries]
 aio-wg = { index = "sparse+https://pkgs.dev.azure.com/azure-iot-sdks/iot-operations/_packaging/preview/Cargo/index/" }
-
-[net]
-git-fetch-with-cli = true
 ```
 
 Edit `Cargo.toml`:
@@ -219,13 +216,42 @@ Push your built module and a graph definition to a container registry.
 First, create a graph definition file `graph-simple.yaml`:
 
 ```yaml
-schema: 1.0
-name: graph-simple
+metadata:
+  name: "Temperature converter"
+  description: "Converts temperature from Fahrenheit to Celsius"
+  version: "1.0.0"
+  $schema: "https://www.schemastore.org/aio-wasm-graph-config-1.0.0.json"
+  vendor: "Contoso"
+
+moduleRequirements:
+  apiVersion: "1.1.0"
+  runtimeVersion: "1.1.0"
+
+moduleConfigurations:
+  - name: module-temperature/map
+    parameters: {}
+
 operations:
-  - name: map
-    type: map
-    module: temperature
-    init: fahrenheit_to_celsius_init
+  - operationType: "source"
+    name: "source"
+
+  - operationType: "map"
+    name: "module-temperature/map"
+    module: "temperature:1.0.0"
+
+  - operationType: "sink"
+    name: "sink"
+
+connections:
+  - from:
+      name: "source"
+    to:
+      name: "module-temperature/map"
+
+  - from:
+      name: "module-temperature/map"
+    to:
+      name: "sink"
 ```
 
 Then push both artifacts:
@@ -254,31 +280,6 @@ Create and apply a DataflowGraph resource that reads from an MQTT topic, process
 
 ```yaml
 apiVersion: connectivity.iotoperations.azure.com/v1
-kind: Dataflow
-metadata:
-  name: temperature-demo
-  namespace: azure-iot-operations
-spec:
-  profileRef: default
-  operations:
-    - operationType: Source
-      sourceSettings:
-        endpointRef: default
-        dataSources:
-          - thermostats/temperature
-    - operationType: BuiltInTransformation
-      builtInTransformationSettings:
-        datasets: []
-        map:
-          - inputs:
-              - '*'
-            output: '*'
-    - operationType: Destination
-      destinationSettings:
-        endpointRef: default
-        dataDestination: thermostats/temperature/processed
----
-apiVersion: connectivity.iotoperations.azure.com/v1
 kind: DataflowGraph
 metadata:
   name: temperature-graph
@@ -302,11 +303,15 @@ spec:
       destinationSettings:
         endpointRef: default
         dataDestination: thermostats/temperature/converted
-  edges:
-    - sourceNodeName: mqtt-source
-      destinationNodeName: temperature-converter
-    - sourceNodeName: temperature-converter
-      destinationNodeName: mqtt-destination
+  nodeConnections:
+    - from:
+        name: mqtt-source
+      to:
+        name: temperature-converter
+    - from:
+        name: temperature-converter
+      to:
+        name: mqtt-destination
 ```
 
 ```bash
@@ -352,12 +357,12 @@ Operators are the processing units in a data flow graph. Each type serves a spec
 
 | Operator | Purpose | Return type |
 |---|---|---|
-| [Map](https://docs.rs/timely/latest/timely/dataflow/operators/map/trait.Map.html) | Transform each data item (for example, convert temperature units) | `DataModel` |
-| [Filter](https://docs.rs/timely/latest/timely/dataflow/operators/filter/trait.Filter.html) | Pass or drop items based on a condition | `bool` |
-| [Branch](https://docs.rs/timely/latest/timely/dataflow/operators/branch/trait.Branch.html) | Route items to two different paths | `bool` |
-| [Accumulate](https://docs.rs/timely/latest/timely/dataflow/operators/count/trait.Accumulate.html) | Aggregate items within time windows | `DataModel` |
-| [Concatenate](https://docs.rs/timely/latest/timely/dataflow/operators/core/concat/trait.Concatenate.html) | Merge multiple streams while preserving order | N/A |
-| [Delay](https://docs.rs/timely/latest/timely/dataflow/operators/delay/trait.Delay.html) | Advance timestamps to control timing | N/A |
+| Map | Transform each data item (for example, convert temperature units) | `DataModel` |
+| Filter | Pass or drop items based on a condition | `bool` |
+| Branch | Route items to two different paths | `bool` |
+| Accumulate | Aggregate items within time windows | `DataModel` |
+| Concatenate | Merge multiple streams while preserving order | N/A |
+| Delay | Advance timestamps to control timing | N/A |
 
 A **module** is the WASM binary that implements one or more operators. For example, a single `temperature.wasm` module can provide both a `map` operator (for conversion) and a `filter` operator (for threshold checking).
 
@@ -750,11 +755,14 @@ state_store::del(key.as_bytes(), None, None)?;
 
 ```python
 # State store access through generated bindings
-from map_impl.imports import state_store
+from map_impl.imports import state_store, state_store_types
 
+options = state_store_types.SetOptions(
+    conditions=state_store_types.SetConditions.UNCONDITIONAL,
+    expires=None)
 state_store.set(key_bytes, value_bytes, None, None, options)
 result = state_store.get(key_bytes, None)
-state_store.delete(key_bytes, None, None)
+state_store.del_(key_bytes, None, None)
 ```
 
 ---
@@ -788,19 +796,22 @@ OpenTelemetry-compatible metrics:
 # [Rust](#tab/rust)
 
 ```rust
-use wasm_graph_sdk::metrics;
+use wasm_graph_sdk::metrics::{self, CounterValue, HistogramValue, Label};
 
-metrics::add_to_counter("requests_total", 1.0, Some(labels))?;
-metrics::record_to_histogram("processing_duration", duration_ms, Some(labels))?;
+let labels = vec![Label { key: "module".to_owned(), value: "my-operator".to_owned() }];
+metrics::add_to_counter("requests_total", CounterValue::U64(1), Some(&labels))?;
+metrics::record_to_histogram("processing_duration", HistogramValue::F64(duration_ms), Some(&labels))?;
 ```
 
 # [Python](#tab/python)
 
 ```python
 from map_impl.imports import metrics
+from map_impl.imports.metrics import CounterValue_U64, HistogramValue_F64, Label
 
-metrics.add_to_counter("requests_total", 1.0, labels)
-metrics.record_to_histogram("processing_duration", duration_ms, labels)
+labels = [Label(key="module", value="my-operator")]
+metrics.add_to_counter("requests_total", CounterValue_U64(1), labels)
+metrics.record_to_histogram("processing_duration", HistogramValue_F64(duration_ms), labels)
 ```
 
 ---
@@ -831,7 +842,8 @@ interface filter {
 }
 
 interface branch {
-    use types.{data-model, hybrid-logical-clock, error, module-configuration};
+    use types.{data-model, error, module-configuration};
+    use hybrid-logical-clock.{hybrid-logical-clock};
     init: func(configuration: module-configuration) -> bool;
     process: func(timestamp: hybrid-logical-clock, message: data-model) -> result<bool, error>;
 }
