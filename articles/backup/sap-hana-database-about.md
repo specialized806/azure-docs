@@ -96,7 +96,7 @@ Azure Backup, now supports backing up a "Scale-out" HANA system distributed acro
 
 #### Managed disk snapshot
 
-Azure Backup uses managed disk snapshots. Azure Backup stores them in a resource group that you specify. Managed disk snapshots use standard hard disk drive (HDD) storage, irrespective of the storage type of the disk, and you're charged according to [Managed disk snapshot pricing](https://azure.microsoft.com/pricing/details/managed-disks/). The first disk snapshot is a full snapshot, and all subsequent snapshots are incremental and consist only of the changes since the last one. 
+Azure Backup uses managed disk snapshots. Azure Backup stores them in a resource group that you specify. Managed disk snapshots use Standard HDD storage, irrespective of the storage type of the disk, and you're charged according to [Managed disk snapshot pricing](https://azure.microsoft.com/pricing/details/managed-disks/). The first disk snapshot is a full snapshot, and all subsequent snapshots are incremental and consist only of the changes since the last one. 
 
 >[!Note]
 >There are no backup storage costs for snapshots, because they're *not* transferred to your Recovery Services vault.
