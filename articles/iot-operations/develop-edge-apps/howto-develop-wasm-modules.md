@@ -603,7 +603,7 @@ use wasm_graph_sdk::macros::branch_operator;
 fn branch_init(_configuration: ModuleConfiguration) -> bool { true }
 
 #[branch_operator(init = "branch_init")]
-fn branch_by_type(timestamp: HybridLogicalClock, input: DataModel) -> Result<bool, Error> {
+fn branch_by_type(_timestamp: HybridLogicalClock, input: DataModel) -> Result<bool, Error> {
     let DataModel::Message(msg) = &input else { return Ok(true); };
     let payload = &msg.payload.read();
     let data: serde_json::Value = serde_json::from_slice(payload)
@@ -751,14 +751,18 @@ Persist data across `process` calls using the distributed state store:
 ```rust
 use wasm_graph_sdk::state_store;
 
-// Set value
-state_store::set(key.as_bytes(), value.as_bytes(), None, None, options)?;
+// Set value (fire-and-forget; state_store returns StateStoreError, not types::Error)
+let options = state_store::SetOptions {
+    conditions: state_store::SetConditions::Unconditional,
+    expires: None,
+};
+let _ = state_store::set(key.as_bytes(), value.as_bytes(), None, None, options);
 
 // Get value
-let response = state_store::get(key.as_bytes(), None)?;
+let response = state_store::get(key.as_bytes(), None);
 
 // Delete key
-state_store::del(key.as_bytes(), None, None)?;
+let _ = state_store::del(key.as_bytes(), None, None);
 ```
 
 # [Python](#tab/python)
@@ -809,8 +813,8 @@ OpenTelemetry-compatible metrics:
 use wasm_graph_sdk::metrics::{self, CounterValue, HistogramValue, Label};
 
 let labels = vec![Label { key: "module".to_owned(), value: "my-operator".to_owned() }];
-metrics::add_to_counter("requests_total", CounterValue::U64(1), Some(&labels))?;
-metrics::record_to_histogram("processing_duration", HistogramValue::F64(duration_ms), Some(&labels))?;
+let _ = metrics::add_to_counter("requests_total", CounterValue::U64(1), Some(&labels));
+let _ = metrics::record_to_histogram("processing_duration", HistogramValue::F64(duration_ms), Some(&labels));
 ```
 
 # [Python](#tab/python)
