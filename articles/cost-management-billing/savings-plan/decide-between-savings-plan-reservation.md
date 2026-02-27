@@ -32,6 +32,11 @@ To improve savings and limit wasted commitments, customers should consider follo
  
 1. Right‑size first – Remove unused or oversized resources before buying any discounts. Discounts reduce rates, not waste.
 2. Exchange underutilized reservations – If workloads changed, reassign existing reservations to better‑fit configurations instead of letting value go unused.
+3. Trade‑in underutilized reservations for savings plans – When usage is variable, convert rigid reservations into more flexible, spend‑based savings plans.
+4. Purchase new reservations – Commit only for stable, well‑understood workloads where usage and configuration are unlikely to change.
+5. Purchase new savings plans – Finally, add flexible, spend‑based commitments sized to a clean, optimized baseline.
+
+This sequence removes waste first, fixes existing commitments next, and only then adds new commitments - ensuring customers realize actual savings, not just theoretical discounts.
 
 ## Related content
 
