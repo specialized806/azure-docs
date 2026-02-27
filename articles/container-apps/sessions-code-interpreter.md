@@ -305,13 +305,34 @@ Authorization: Bearer <TOKEN>
 
 ## Logging
 
-Code interpreter sessions don't support logging directly. The application that's interacting with the sessions can log requests to the session pool management API and its responses.
+Code interpreter sessions emit application logs to Log Analytics, but don't emit platform logs. If you need request/response tracing, capture it in the application that calls the session pool management API (for example, log request IDs, inputs, and responses at your app boundary).
+
+### Log Analytics tables
+
+| Log category | Log Analytics table | Description |
+|-------------|---------------------|-------------|
+| Application logs | `AppEnvSessionConsoleLogs` | Standard output (`stdout`) and standard error (`stderr`) emitted by code running in the session. Logs appear after a session is invoked. |
+| Platform logs | Not applicable | Session lifecycle and pool event logs aren't emitted for code interpreter session pools. |
+
+If logs are sent directly to Log Analytics, the table uses the _CL suffix (for example, `AppEnvSessionConsoleLogs_CL`). When logs are routed through Azure Monitor diagnostic settings, the table name doesn't include the _CL suffix.
+
+## Metrics
+
+Code interpreter usage and execution metrics are returned as HTTP response headers for the Execute Code API. These metrics aren't written to Log Analytics.
+
+### View metrics
+
+1. Call the Execute Code API (`code/execute`).
+2. Inspect the HTTP response headers for usage and execution metrics.
+
+For details about the Execute Code API and endpoints, see [Run code in a session](#run-code-in-a-session) and [Management API endpoints](#management-api-endpoints).
 
 ## Billing
 
 Code interpreter sessions are billed based on the duration of each session. For more information, see [Billing](billing.md#dynamic-sessions).
 
-## Next step
+## Next steps
 
 > [!div class="nextstepaction"]
 > [Use code interpreter sessions with LangChain](./sessions-tutorial-langchain.md)
+
