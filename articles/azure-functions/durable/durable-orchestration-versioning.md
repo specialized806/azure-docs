@@ -67,7 +67,7 @@ If you're using a non-.NET language (JavaScript, Python, PowerShell, or Java) wi
 }
 ```
 
-For details on choosing and updating bundle versions, see the [extension bundle configuration documentation](../../extension-bundles.md).
+For details on choosing and updating bundle versions, see the [extension bundle configuration documentation](../extension-bundles.md).
 
 # [C#](#tab/csharp)
 
