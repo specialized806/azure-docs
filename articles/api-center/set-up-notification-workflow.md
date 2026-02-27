@@ -269,6 +269,8 @@ Add a workflow step to parse the JSON output of the preceding HTTP request.
             }
         }
         ``` 
+   
+   The following image shows the configuration settings in the **Parse JSON** pane:
 
    :::image type="content" source="media/set-up-notification-workflow/parse-json.png" alt-text="Screenshot of the parse JSON action with the schema in the Azure portal.":::
 
