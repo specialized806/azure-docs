@@ -56,16 +56,21 @@ az network vnet subnet create \
   --vnet-name myAzureVNet \
   --resource-group MyAzureResourceGroup \
   --name AzureBastionSubnet \
-  --address-prefix 10.2.1.0/24
+  --address-prefix 10.2.1.0/26
 
-az network private-dns zone create -g MyAzureResourceGroup \
-   -n private.contoso.com
+az network private-dns zone create \
+  --resource-group MyAzureResourceGroup \
+  --name private.contoso.com
 
-az network private-dns link vnet create -g MyAzureResourceGroup -n MyDNSLink \
-   -z private.contoso.com -v myAzureVNet -e true
+az network private-dns link vnet create \
+  --resource-group MyAzureResourceGroup \
+  --name MyDNSLink \
+  --zone-name private.contoso.com \
+  --virtual-network myAzureVNet \
+  --registration-enabled true
 ```
 
-If you want to create a zone just for name resolution (no automatic hostname registration), you could use the `-e false` parameter.
+If you want to create a zone just for name resolution (no automatic hostname registration), you could use the `--registration-enabled false` parameter.
 
 ### List DNS private zones
 
@@ -75,7 +80,7 @@ Specifying the resource group lists only those zones within the resource group:
 
 ```azurecli
 az network private-dns zone list \
-  -g MyAzureResourceGroup
+  --resource-group MyAzureResourceGroup
 ```
 
 Omitting the resource group lists all zones in the subscription:
@@ -121,26 +126,26 @@ Now, create two virtual machines so you can test your private DNS zone:
 
 ```azurecli
 az vm create \
- -n myVM01 \
- --admin-username AzureAdmin \
- -g MyAzureResourceGroup \
- -l eastus \
- --subnet backendSubnet \
- --vnet-name myAzureVnet \
- --image win2016datacenter \
- --public-ip-address ""
+  --name myVM01 \
+  --admin-username AzureAdmin \
+  --resource-group MyAzureResourceGroup \
+  --location eastus \
+  --subnet backendSubnet \
+  --vnet-name myAzureVnet \
+  --image win2016datacenter \
+  --public-ip-address ""
 ```
 
 ```azurecli
 az vm create \
- -n myVM02 \
- --admin-username AzureAdmin \
- -g MyAzureResourceGroup \
- -l eastus \
- --subnet backendSubnet \
- --vnet-name myAzureVnet \
- --image win2016datacenter \
- --public-ip-address ""
+  --name myVM02 \
+  --admin-username AzureAdmin \
+  --resource-group MyAzureResourceGroup \
+  --location eastus \
+  --subnet backendSubnet \
+  --vnet-name myAzureVnet \
+  --image win2016datacenter \
+  --public-ip-address ""
 ```
 
 Creating a virtual machine will take a few minutes to complete.
@@ -153,10 +158,10 @@ To create a DNS record, use the `az network private-dns record-set [record type]
 
 ```azurecli
 az network private-dns record-set a add-record \
-  -g MyAzureResourceGroup \
-  -z private.contoso.com \
-  -n db \
-  -a 10.2.0.4
+  --resource-group MyAzureResourceGroup \
+  --zone-name private.contoso.com \
+  --record-set-name db \
+  --ipv4-address 10.2.0.4
 ```
 
 ### View DNS records
@@ -165,8 +170,8 @@ To list the DNS records in your zone, run:
 
 ```azurecli
 az network private-dns record-set list \
-  -g MyAzureResourceGroup \
-  -z private.contoso.com
+  --resource-group MyAzureResourceGroup \
+  --zone-name private.contoso.com
 ```
 
 ## Test the private zone
