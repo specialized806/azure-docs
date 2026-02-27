@@ -130,7 +130,7 @@ More information:
 
 An AI gateway secures and controls access to your AI APIs. By using the AI gateway, you can:
 
-* Use managed identities to authenticate to AI services, so you don't need API keys for authentication
+* Use managed identities to authenticate to AI services in Azure, so you don't need API keys for authentication
 * Configure OAuth authorization for AI apps and agents to access APIs or MCP servers by using API Management's credential manager
 * Apply policies to automatically moderate LLM prompts by using [Azure AI Content Safety](/azure/ai-services/content-safety/overview)
 
