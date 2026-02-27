@@ -2,7 +2,7 @@
 title: Durable Functions best practices and diagnostic tools
 description: Learn about the best practices when using Durable Functions and the various tools available for diagnosing problems.
 author: lilyjma
-ms.topic: conceptual
+ms.topic: best-practice
 ms.date: 02/15/2023
 ms.author: azfuncdf
 ---
