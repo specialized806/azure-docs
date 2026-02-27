@@ -324,7 +324,7 @@ You can monitor disk performance from inside Oracle Enterprise Manager and via e
 - [Using Views to Display Oracle ASM Information](https://docs.oracle.com/en/database/oracle/oracle-database/19/ostmg/views-asm-info.html#GUID-23E1F0D8-ECF5-4A5A-8C9C-11230D2B4AD4)
 - [ASMCMD Disk Group Management Commands (oracle.com)](https://docs.oracle.com/en/database/oracle/oracle-database/19/ostmg/asmcmd-diskgroup-commands.html#GUID-55F7A91D-2197-467C-9847-82A3308F0392)
 
-OS level monitoring tools can't monitor ASM disks because there's no recognizable file system. You must monitor free space from within Oracle.
+OS-level monitoring tools can't monitor ASM disks because there's no recognizable file system. You must monitor free space from within Oracle.
 
 ## Azure NetApp Files with Oracle dNFS
 
@@ -341,7 +341,7 @@ Mirror Log is required on dNFS Azure NetApp Files production systems.
 
 Even though Azure NetApp Files is highly redundant, Oracle still requires a mirrored `redo-logfile` volume. The recommendation is to create two separate volumes and configure `origlogA` together with `mirrlogB` and configure `origlogB` together with `mirrlogA`. In this case, you make use of a distributed load balancing of `redo-logfiles`.
 
-We don't recommend the mount option `nconnect` when the dNFS client is configured. dNFS manages the IO channel and makes use of multiple sessions. This option is obsolete and can cause many issues. The dNFS client ignores the mount options and handles the IO directly.
+We don't recommend the mount option `nconnect` when the dNFS client is configured. dNFS manages the I/O channel and makes use of multiple sessions. This option is obsolete and can cause many issues. The dNFS client ignores the mount options and handles the I/O directly.
 
 Both NFS versions (v3 and v4.1) with Azure NetApp Files are supported for Oracle binary data files and log files. We highly recommend that you use the Oracle dNFS client for all Oracle volumes.
 
@@ -390,14 +390,14 @@ Using Write Accelerator is optional, but you can enable it if the AWR report ind
 
 ### Azure VM throughput limits
 
-Each Azure VM type has limits for CPU, Disk, Network, and RAM.
+Each Azure VM type has limits for CPU, disk, network, and RAM.
 
 Follow these recommendations when you select a VM type:
 
 * Ensure that the disk throughput and IOPS are sufficient for the workload and at least equal to the aggregate throughput of the disks.
 * Consider enabling paid *bursting*, especially for redo log disks.
-* Recognize that network throughput is important for Azure NetApp Files. All storage traffic is counted as Network rather than Disk throughput.
-* Review [Optimizing Network Throughput on Azure M-series VMs HCMT](https://techcommunity.microsoft.com/t5/running-sap-applications-on-the/optimizing-network-throughput-on-azure-m-series-vms/ba-p/3581129) for Network tuning for M-series.
+* Recognize that network throughput is important for Azure NetApp Files. All storage traffic is counted as network rather than disk throughput.
+* Review [Optimizing Network Throughput on Azure M-series VMs HCMT](https://techcommunity.microsoft.com/t5/running-sap-applications-on-the/optimizing-network-throughput-on-azure-m-series-vms/ba-p/3581129) for network tuning for M-series.
 * Review [Architectures for Oracle Database Enterprise Edition on Azure](/azure/virtual-machines/workloads/oracle/oracle-design) to learn how to use an AWR report to select the correct Azure VM.
 * Learn about Azure Intel Ev5 [Edv5 and Edsv5-series - Azure VMs](/azure/virtual-machines/easv5-eadsv5-series).
 * Learn about Azure AMD Eadsv5 [Easv5 and Eadsv5-series - Azure VMs](/azure/virtual-machines/easv5-eadsv5-series#eadsv5-series).
@@ -418,7 +418,7 @@ For disaster recovery aspects of Oracle databases in Azure, see [Disaster recove
 
 ## HugePages and large Oracle SGA configurations
 
-VLDB SAP on Oracle on Azure deployments apply SGA sizes in excess of 3 TB. Modern versions of Oracle handle large SGA sizes well and significantly reduce IO. Review the AWR report and increase the SGA size to reduce read IO.
+VLDB SAP on Oracle on Azure deployments apply SGA sizes in excess of 3 TB. Modern versions of Oracle handle large SGA sizes well and significantly reduce I/O. Review the AWR report and increase the SGA size to reduce read I/O.
 
 As general guidance, configure Linux HugePages to approximately 75% of the VM RAM size. You can set the SGA to 90% of the HugePage size. For an approximate example, an M192ms VM with 4 TB of RAM would have HugePages set at approximately 3 TB. You can set the SGA to a value that's a little less, such as 2.95 TB.
 
