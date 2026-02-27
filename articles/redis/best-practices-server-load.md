@@ -45,7 +45,7 @@ The **CPU** (aka-percentProcessorTime) metric indicates the CPU usage for the no
 
 The **Server Load** metric reflects the Redis server's own assessment of overall load and is similar to CPU metric but at a cluster level.
 
-### Interpreting Server Load on Small SKUs
+### Recommendations for Smaller SKUs
 
 On Azure Managed Redis SKUs backed by 2-vCPU VMs (B0–B5, X3, and M10), percentage-based metrics like **Server Load** and **CPU** are inherently more sensitive. A single short-lived background thread can consume a significant percentage of total CPU, causing metrics to appear elevated even when actual workload is light. As a result, these metrics can overestimate actual load on small SKUs and may not indicate workload saturation.
 
