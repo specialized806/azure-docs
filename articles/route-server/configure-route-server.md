@@ -310,7 +310,7 @@ The page output shows the following fields:
 
 ### <a name="example"></a>Example
 
-The values in the following example table imply that Route Server has learned the route of 10.2.0.0/24 (a branch prefix). It has learned the route due to the **VPN Next hop type** with **Next hop** VPN Gateway resource ID. **Route Origin** points to the resource ID of the originating VPN gateway/Route table/Connection. **AS Path** indicates the AS Path for the branch.
+The values in the following example table imply that Route Server has learned the route of 10.2.0.0/24 (a branch prefix). It has learned the route due to the **VPN Next hop type** VPN with **Next hop** VPN Gateway IP address. **Origin** points to the resource ID of the originating VPN gateway/Connection. **AS Path** indicates the AS Path for the branch.
 
 Use the scroll bar at the bottom of the table to view the 'AS Path'.
 
