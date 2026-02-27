@@ -1,5 +1,5 @@
 ---
-title: Authorize Access to Azure File Share Data in the Azure Portal
+title: Authorize Access to Azure File Share Data in the Azure portal
 description: When you access file data using the Azure portal, the portal makes requests to Azure Files behind the scenes. These requests can be authenticated and authorized using either your Microsoft Entra account or the storage account access key.
 author: khdownie
 ms.service: azure-file-storage
@@ -58,7 +58,7 @@ To access file data by using the storage account access key, you must have an Az
 When you attempt to access file data in the Azure portal, the portal first checks whether you have a role with **Microsoft.Storage/storageAccounts/listkeys/action**. If you have a role with this action, the portal uses the storage account key for accessing file data. If you don't have a role with this action, the portal attempts to access data by using your Entra account.
 
 > [!IMPORTANT]
-> When you lock a storage account by using an Resource Manager **ReadOnly** lock, you can't perform the [List Keys](/rest/api/storagerp/storageaccounts/listkeys) operation for that storage account. **List Keys** is a POST operation, and all POST operations are prevented when a **ReadOnly** lock is configured for the account. For this reason, when you lock the account by using a **ReadOnly** lock, you must use Entra credentials to access file data in the portal. For information about accessing file data in the Azure portal by using Microsoft Entra ID, see [Use your Microsoft Entra account](#use-your-azure-ad-account).
+> When you lock a storage account by using a Resource Manager **ReadOnly** lock, you can't perform the [List Keys](/rest/api/storagerp/storageaccounts/listkeys) operation for that storage account. **List Keys** is a POST operation, and all POST operations are prevented when a **ReadOnly** lock is configured for the account. For this reason, when you lock the account by using a **ReadOnly** lock, you must use Entra credentials to access file data in the portal. For information about accessing file data in the Azure portal by using Microsoft Entra ID, see [Use your Microsoft Entra account](#use-your-azure-ad-account).
 
 > [!NOTE]
 > The classic subscription administrator roles **Service Administrator** and **Co-Administrator** include the equivalent of the Azure Resource Manager [Owner](../../role-based-access-control/built-in-roles.md#owner) role. The **Owner** role includes all actions, including the **Microsoft.Storage/storageAccounts/listkeys/action** action, so a user with one of these administrative roles can also access file data by using the storage account key. For more information, see [Azure roles, Microsoft Entra roles, and classic subscription administrator roles](../../role-based-access-control/rbac-and-directory-admin-roles.md#classic-subscription-administrator-roles).
