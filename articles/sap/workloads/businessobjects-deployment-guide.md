@@ -235,7 +235,7 @@ Azure Storage is an Azure-managed cloud service that provides storage that is hi
 
 Azure Storage has different Storage types available for customers and details for the same can be read in the article [What disk types are available in Azure?](/azure/virtual-machines/disks-types) SAP BOBI Platform uses following Azure Storage to build the application -
 
-- Azure-managed disks
+- Azure Managed Disks
 
   It's a block-level storage volume that is managed by Azure. You can use the disks for SAP BOBI Platform application servers and databases, when installed on Azure virtual machines. There are different types of [Azure Managed Disks](/azure/virtual-machines/managed-disks-overview) available, but it's recommended to use [Premium SSDs](/azure/virtual-machines/disks-types#premium-ssds) for SAP BOBI Platform application and database.
 
