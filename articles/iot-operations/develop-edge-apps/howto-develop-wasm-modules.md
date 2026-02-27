@@ -60,20 +60,26 @@ Every data item carries a timestamp representing its logical time. The system tr
 
 #### Hybrid logical clock
 
-The timestamp mechanism uses a hybrid approach:
+The timestamp mechanism uses a hybrid logical clock defined in the [WIT schema](https://github.com/Azure-Samples/explore-iot-operations/blob/main/samples/wasm-python/schema/hybrid_logical_clock.wit):
 
-```rust
-pub struct HybridLogicalClock {
-    pub physical_time: u64,  // Wall-clock time when event occurred
-    pub logical_time: u64,   // Logical ordering for events at same physical time
+```wit
+record timespec {
+    secs: seconds,    // Wall-clock seconds (u64)
+    nanos: nanoseconds, // Sub-second precision (u32)
+}
+
+record hybrid-logical-clock {
+    timestamp: timespec,  // Physical time when event occurred
+    counter: u64,         // Logical ordering for events at the same physical time
+    node-id: string,      // Identifies the originating node
 }
 ```
 
 The hybrid logical clock approach ensures several capabilities:
 
-- **Causal ordering**: Effects follow causes
-- **Progress guarantees**: The system knows when processing is complete  
-- **Distributed coordination**: Multiple nodes stay synchronized
+- **Causal ordering**: Effects follow causes, tracked by `counter`
+- **Progress guarantees**: The system knows when processing is complete
+- **Distributed coordination**: Multiple nodes stay synchronized via `node-id`
 
 ## Understand operators and modules
 
@@ -179,6 +185,28 @@ git clone https://github.com/Azure-Samples/explore-iot-operations.git
 ```
 
 The schemas are located at `explore-iot-operations/samples/wasm-python/schema/` and include interface definitions for all supported operator types such as map, filter, and branch.
+
+The `componentize-py` tool needs the `-d` flag to point to this schema directory. The `-w` flag selects which WIT world to use (`map-impl`, `filter-impl`, or `branch-impl`). These world names are defined in the corresponding `.wit` files in the schema directory.
+
+Your project layout should look like this:
+
+```
+my-project/
+├── my_operator.py          # Your operator code
+└── schema/                  # Copy or symlink from samples repo
+    ├── map.wit
+    ├── filter.wit
+    ├── branch.wit
+    ├── processor.wit
+    ├── hybrid_logical_clock.wit
+    ├── logger.wit
+    ├── metrics.wit
+    ├── state_store.wit
+    └── ...
+```
+
+> [!TIP]
+> If you're working outside the cloned samples repo, copy the entire `schema/` directory into your project. All `.wit` files are required because they reference each other. Then use `-d ./schema` in your `componentize-py` commands.
 
 You don't need any other environment configuration beyond installing the prerequisites and obtaining the WIT schemas.
 
@@ -420,27 +448,98 @@ docker run --rm -v "$(pwd):/workspace" ghcr.io/azure-samples/explore-iot-operati
 
 ## More examples
 
+The following patterns show common operator implementations beyond the basic temperature converter.
+
+### Filter: threshold-based filtering
+
+Drop messages that don't meet a condition. The `process` function returns `true` to keep a message or `false` to drop it.
+
 # [Rust](#tab/rust)
 
-For comprehensive examples, see the [Rust examples](https://github.com/Azure-Samples/explore-iot-operations/tree/main/samples/wasm/operators) in the samples repository. Complete implementations include:
+```rust
+use wasm_graph_sdk::macros::filter_operator;
 
-- **Map operators**: Data transformation and conversion logic
-- **Filter operators**: Conditional data processing and validation
-- **Branch operators**: Multi-path routing based on data content
-- **Accumulate operators**: Time-windowed aggregation and statistical processing
-- **Delay operators**: Time-based processing control
+#[filter_operator(init = "filter_temperature_init")]
+fn filter_temperature(input: DataModel) -> Result<bool, Error> {
+    let lower = LOWER_BOUND.get().copied().unwrap_or(-40.0);
+    let upper = UPPER_BOUND.get().copied().unwrap_or(3422.0);
 
-The examples demonstrate working implementations that show the complete structure for each operator type, including proper error handling and logging patterns.
+    let payload = get_payload_bytes(&input)?;
+    let data: serde_json::Value = serde_json::from_slice(&payload)?;
+    
+    if let Some(temp) = data.get("temperature").and_then(|t| t.get("value")).and_then(|v| v.as_f64()) {
+        Ok(temp >= lower && temp <= upper)
+    } else {
+        Ok(true) // Pass through non-temperature messages
+    }
+}
+```
 
 # [Python](#tab/python)
 
-For comprehensive examples, see the [Python examples](https://github.com/Azure-Samples/explore-iot-operations/tree/main/samples/wasm-python/operators) in the samples repository. Complete implementations include:
+```python
+class Filter(exports.Filter):
+    def init(self, configuration) -> bool:
+        self.threshold = 20.0
+        for key, value in configuration.properties:
+            if key == "temperature_threshold":
+                try:
+                    self.threshold = float(value)
+                except ValueError:
+                    pass
+        return True
 
-- **Map operators**: Data transformation and conversion logic
-- **Filter operators**: Conditional data processing and validation
-- **Branch operators**: Multi-path routing based on data content
+    def process(self, message: types.DataModel) -> bool:
+        if not isinstance(message, types.DataModel_Message):
+            return True
+        data = json.loads(to_bytes(message.value.payload).decode("utf-8"))
+        if "temperature" in data and "value" in data["temperature"]:
+            return data["temperature"]["value"] >= self.threshold
+        return True
+```
 
 ---
+
+### Branch: route by message type
+
+Split a stream into two paths. Return `false` for one arm, `true` for the other.
+
+# [Rust](#tab/rust)
+
+```rust
+use wasm_graph_sdk::macros::branch_operator;
+
+#[branch_operator(init = "branch_init")]
+fn branch_by_type(timestamp: HybridLogicalClock, input: DataModel) -> Result<bool, Error> {
+    let payload = get_payload_bytes(&input)?;
+    let data: serde_json::Value = serde_json::from_slice(&payload)?;
+    
+    // false = first arm (temperature), true = second arm (everything else)
+    Ok(!data.get("temperature").is_some())
+}
+```
+
+# [Python](#tab/python)
+
+```python
+class Branch(exports.Branch):
+    def init(self, configuration) -> bool:
+        return True
+
+    def process(self, timestamp: int, input: types.DataModel) -> bool:
+        if not isinstance(input, types.DataModel_Message):
+            return True
+        data = json.loads(to_bytes(input.value.payload).decode("utf-8"))
+        # False = first branch (temperature), True = second branch (other)
+        return "temperature" not in data
+```
+
+---
+
+For more complete implementations including accumulate and delay operators, see the samples repository:
+
+- [Rust operator examples](https://github.com/Azure-Samples/explore-iot-operations/tree/main/samples/wasm/operators)
+- [Python operator examples](https://github.com/Azure-Samples/explore-iot-operations/tree/main/samples/wasm-python/operators)
 
 ## SDK reference and APIs
 
@@ -640,52 +739,88 @@ All WASM operators work with standardized data models defined by using WebAssemb
 
 #### Core data model
 
+The data model types are defined in the [processor WIT schema](https://github.com/Azure-Samples/explore-iot-operations/blob/main/samples/wasm-python/schema/processor.wit) (`wasm-graph:processor@1.1.0`):
+
 ```wit
-// Core timestamp structure using hybrid logical clock
+// Hybrid logical clock timestamp for every data item
 record timestamp {
-    timestamp: timespec,     // Physical time (seconds + nanoseconds)
-    node-id: buffer-or-string,  // Logical node identifier
+    timestamp: timespec,        // Physical time (seconds + nanoseconds)
+    counter: u64,               // Logical counter for ordering
+    node-id: buffer-or-string,  // Originating node identifier
+}
+
+// Structured MQTT message
+record message {
+    timestamp: timestamp,
+    topic: buffer-or-bytes,
+    content-type: option<buffer-or-string>,
+    payload: buffer-or-bytes,
+    properties: message-properties,
+    schema: option<message-schema>,
+}
+
+// Video/image frame
+record snapshot {
+    timestamp: timestamp,
+    format: buffer-or-string,
+    width: u32,
+    height: u32,
+    frame: buffer-or-bytes,
 }
 
 // Union type supporting multiple data formats
 variant data-model {
-    buffer-or-bytes(buffer-or-bytes),    // Raw byte data
-    message(message),                    // Structured messages with metadata
-    snapshot(snapshot),                  // Video/image frames with timestamps
-}
-
-// Structured message format
-record message {
-    timestamp: timestamp,
-    content_type: buffer-or-string,
-    payload: message-payload,
+    buffer-or-bytes(buffer-or-bytes),  // Raw byte data
+    message(message),                  // MQTT messages (most common)
+    snapshot(snapshot),                // Video/image frames
 }
 ```
 
+> [!NOTE]
+> Most WASM operators work with the `message` variant of `data-model`. Check for this type at the start of your `process` function and handle unexpected variants gracefully. The `buffer-or-bytes` payload uses a host buffer handle (`buffer`) for zero-copy reads or module-owned bytes (`bytes`). Use `buffer.read()` to copy host bytes into your module's memory.
+
 #### WIT interface definitions
 
-Each operator type implements a specific WIT interface:
+Each operator type implements a specific WIT interface. Every interface includes an `init` function that receives runtime [configuration parameters](#module-configuration-parameters) and a `process` function that handles data:
 
 ```wit
-// Core operator interfaces
+// Map operator - transforms each data item
 interface map {
-    use types.{data-model};
+    use types.{data-model, error, module-configuration};
+    init: func(configuration: module-configuration) -> bool;
     process: func(message: data-model) -> result<data-model, error>;
 }
 
+// Filter operator - allows/rejects data based on predicate
 interface filter {
-    use types.{data-model};
+    use types.{data-model, error, module-configuration};
+    init: func(configuration: module-configuration) -> bool;
     process: func(message: data-model) -> result<bool, error>;
 }
 
+// Branch operator - routes data to different arms
 interface branch {
-    use types.{data-model, hybrid-logical-clock};
+    use types.{data-model, hybrid-logical-clock, error, module-configuration};
+    init: func(configuration: module-configuration) -> bool;
     process: func(timestamp: hybrid-logical-clock, message: data-model) -> result<bool, error>;
 }
 
+// Accumulate operator - collects and aggregates within time windows
 interface accumulate {
-    use types.{data-model};
+    use types.{data-model, error, module-configuration};
+    init: func(configuration: module-configuration) -> bool;
     process: func(staged: data-model, message: list<data-model>) -> result<data-model, error>;
+}
+```
+
+The `init` function is called once when the module loads. Return `true` to indicate successful initialization, or `false` to signal a configuration error. If `init` returns `false`, the operator won't process any data and the dataflow logs an error. Use `init` to parse configuration parameters, set up state, and validate that the module has everything it needs before processing begins.
+
+The `module-configuration` struct contains:
+
+```wit
+record module-configuration {
+    properties: list<tuple<string, string>>,   // Key-value pairs from graph definition
+    module-schemas: list<module-schema>        // Schema definitions if configured
 }
 ```
 
@@ -702,6 +837,36 @@ Key topics covered in the graph definitions guide:
 - **Complex graph example**: Multi-sensor processing with branching and aggregation
 - **Module configuration parameters**: Runtime customization of WASM operators
 - **Registry deployment**: Packaging and storing graph definitions as OCI artifacts
+
+## Troubleshoot WASM module development
+
+### Build errors
+
+| Error | Cause | Fix |
+|---|---|---|
+| `error[E0463]: can't find crate for std` | Missing WASM target | Run `rustup target add wasm32-wasip2` |
+| `error: no matching package found` for `wasm_graph_sdk` | Missing cargo registry | Add the `[registries]` block to `.cargo/config.toml` as shown in [Configure development environment](#configure-development-environment) |
+| `componentize-py` can't find WIT files | Schema path wrong | Use `-d` flag with the full path to the schema directory. All `.wit` files must be present in the same directory. |
+| `componentize-py` version mismatch | Bindings generated with different version | Regenerate bindings (`bindings` subcommand) and rebuild with the same `componentize-py` version |
+| `wasm-tools` component check fails | Wrong target or missing component adapter | Ensure you're using `wasm32-wasip2` (not `wasm32-wasi` or `wasm32-unknown-unknown`) |
+
+### Runtime errors
+
+| Symptom | Cause | Fix |
+|---|---|---|
+| Operator crashes with WASM backtrace, no clear error | `init` received unexpected or missing configuration parameters | Add defensive parsing in `init` with defaults. Don't use `unwrap()` on config values. See [Module configuration parameters](#module-configuration-parameters). |
+| `init` returns `false`, dataflow won't start | Configuration validation failed in your `init` function | Check dataflow logs for error messages logged before `init` returned. Verify the `moduleConfigurations` in your graph definition match the parameter names your code expects. |
+| Module loads but produces no output | `process` function returning errors, or filter returning `false` for all messages | Add logging in your `process` function to trace what data arrives and what your operator does with it. |
+| `Unexpected input type: Expected DataModel_Message` | Module received a `buffer-or-bytes` or `snapshot` variant instead of `message` | Add a type check at the start of `process` and handle or skip non-message variants gracefully. |
+| Module works in simple graph but crashes in complex graph | Different data shapes or missing config when reused across graph nodes | Ensure each graph node that references your module provides the required configuration. A module used as both a map and filter node needs separate `moduleConfigurations` entries. |
+
+### Testing locally
+
+There's no built-in local test harness for WASM modules yet. To validate your module before deploying to a cluster:
+
+1. **Unit test your logic** separately from the WASM interfaces. Extract your core processing into plain functions that you can test with standard Rust (`cargo test`) or Python (`pytest`) test frameworks.
+2. **Build and inspect** the WASM output: `wasm-tools component wit your-module.wasm` shows the interfaces your module exports, which helps verify it matches the expected WIT world.
+3. **Deploy to a dev cluster** with a simple DataflowGraph that reads from and writes to MQTT topics you control. Use `mosquitto_pub` / `mosquitto_sub` to send test data and verify output.
 
 ## Next steps
 
