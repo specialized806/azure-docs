@@ -90,6 +90,8 @@ Developer SKU is available for development and test environments at no cost. Cho
 - You don't require virtual network peering or concurrent connections
 - You're operating in a [supported region](quickstart-host-portal.md)
 
+For production-level workloads, choose Basic, Standard, or Premium SKU based on the capabilities you need.
+
 > [!WARNING]
 > Developer SKU isn't suitable for production workloads. It provides access to only one VM at a time and doesn't support virtual network peering.
 
