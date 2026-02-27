@@ -84,7 +84,7 @@ After importing the API, you can test the chat completions endpoint for the API.
     }
     ```
     
-    When the test is successful, the backend responds with a successful HTTP response code and some data. The response includes token usage data to help you monitor and manage your language model token consumption.
+    When the test succeeds, the backend responds with a successful HTTP response code and some data. The response includes token usage data to help you monitor and manage your language model token consumption.
 
     :::image type="content" source="media/openai-compatible-google-gemini-api/gemini-test.png" alt-text="Screenshot of testing a Gemini LLM API in the portal.":::
 

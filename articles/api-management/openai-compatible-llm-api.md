@@ -23,7 +23,7 @@ Learn more about managing AI APIs in API Management:
 
 ## Language model API types
 
-API Management supports two language model API types. Choose the option that matches your model deployment—it determines how clients call the API and how requests route to the AI service.
+API Management supports two language model API types. Choose the option that matches your model deployment, which determines how clients call the API and how requests route to the AI service.
 
 * **OpenAI-compatible** - Language model endpoints compatible with OpenAI's API. Examples include [Hugging Face Text Generation Inference (TGI)](https://huggingface.co/docs/text-generation-inference/en/index) and [Google Gemini API](openai-compatible-google-gemini-api.md).
 
@@ -90,7 +90,7 @@ Verify your LLM API in the test console.
     > The test console automatically adds an **Ocp-Apim-Subscription-Key** header (using the built-in [all-access subscription](api-management-subscriptions.md#all-access-subscription)), which provides access to every API. To display it, select the "eye" icon next to **HTTP Request**.
 1. Select **Send**.
 
-    When successful, the backend returns data including token usage metrics to monitor language model consumption.
+    When the test succeeds, the backend returns data including token usage metrics to monitor language model consumption.
 
 ## Related content
 
