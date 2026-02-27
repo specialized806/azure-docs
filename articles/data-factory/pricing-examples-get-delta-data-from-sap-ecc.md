@@ -5,7 +5,7 @@ author: dearandyxu
 ms.author: yexu
 ms.reviewer: whhender
 ms.subservice: pricing
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 05/15/2024
 ---
 
