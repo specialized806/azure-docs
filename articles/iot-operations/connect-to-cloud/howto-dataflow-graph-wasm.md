@@ -268,7 +268,9 @@ kubectl apply -f dataflow-graph.yaml
 
 ### Test the data flow
 
-To test the data flow, send MQTT messages from within the cluster. First, deploy the MQTT client pod by following the instructions in [Test connectivity to MQTT broker with MQTT clients](../manage-mqtt-broker/howto-test-connection.md). The MQTT client provides the authentication tokens and certificates to connect to the broker. To deploy the MQTT client, run the following command:
+To test the data flow, send MQTT messages from within the cluster. The temperature module expects messages in a specific JSON format with a nested `temperature` object containing `value` (numeric) and `unit` (string) fields. For example: `{"temperature":{"value":72,"unit":"F"}}`.
+
+First, deploy the MQTT client pod by following the instructions in [Test connectivity to MQTT broker with MQTT clients](../manage-mqtt-broker/howto-test-connection.md). The MQTT client provides the authentication tokens and certificates to connect to the broker. To deploy the MQTT client, run the following command:
 
 ```bash
 kubectl apply -f https://raw.githubusercontent.com/Azure-Samples/explore-iot-operations/main/samples/quickstarts/mqtt-client.yaml
