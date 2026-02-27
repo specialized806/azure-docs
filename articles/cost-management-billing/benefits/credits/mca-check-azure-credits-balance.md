@@ -30,7 +30,7 @@ This article applies to a billing account for a Microsoft Customer Agreement. [C
 
 In a billing account for a Microsoft Customer Agreement, you use billing profiles to manage your invoices and payment methods. A monthly invoice is generated for each billing profile, and you use the payment methods to pay the invoice.
 
-Credits that you acquire are assigned to a billing profile. When an invoice is generated for the billing profile, credits are automatically applied to the total charges to calculate the amount that you need to pay. You pay the remaining amount with payment methods like check, wire transfer, or credit card.
+Credits that you acquire are assigned to a billing profile. When an invoice is generated for the billing profile, credits are automatically applied to the total charges to calculate the amount that you need to pay. You pay the remaining amount by using payment methods like check, wire transfer, or credit card.
 
 ## Products and services that Azure credits don't cover
 
@@ -57,7 +57,9 @@ For AI models:
 
 1. Sign in to the [Azure portal](https://portal.azure.com).
 
-1. Search for and select **Cost Management + Billing**.
+1. In the search box, enter **cost management + billing**.
+
+1. Under **Services**, select **Cost Management + Billing**.
 
     :::image type="content" border="true" source="../../../cost-management-billing/manage/media/mca-check-azure-credits-balance/billing-search-cost-management-billing.png" alt-text="Screenshot that shows a search for Cost Management + Billing in the Azure portal.":::
 

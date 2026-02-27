@@ -28,18 +28,20 @@ Azure Consumption Commitment functionality in the Azure portal is available only
 
 1. Sign in to the [Azure portal](https://portal.azure.com).
 
-2. Search for and select **Cost Management + Billing**.
+2. In the search box, enter **cost management + billing**.
+
+3. Under **Services**, select **Cost Management + Billing**.
 
     :::image type="content" source="../../manage/media/track-consumption-commitment/billing-search-cost-management-billing.png" alt-text="Screenshot that shows a search for Cost Management + Billing in the portal." lightbox="../../manage/media/track-consumption-commitment/billing-search-cost-management-billing.png" :::
 
-3. On the **Billing scopes** pane, select the billing account for which you want to track the commitment. The billing account type must be **Microsoft Customer Agreement** or **Enterprise Agreement**, depending on your agreement type.
+4. On the **Billing scopes** pane, select the billing account for which you want to track the commitment. The billing account type must be **Microsoft Customer Agreement** or **Enterprise Agreement**, depending on your agreement type.
 
     :::image type="content" source="../../manage/media/track-consumption-commitment/list-of-scopes.png" alt-text="Screenshot that shows billing scopes." lightbox="../../manage/media/track-consumption-commitment/list-of-scopes.png" :::
 
     > [!NOTE]
     > The Azure portal remembers the last billing scope that you access and displays the scope the next time you open the list of billing scopes. You don't see the **Billing scopes** pane if you visited **Cost Management + Billing** earlier. If so, check that you're in the [right scope](#check-access-to-a-microsoft-customer-agreement). If not, [switch the scope](../../manage/view-all-accounts.md#switch-billing-scope-in-the-azure-portal) to select the billing account for a Microsoft Customer Agreement.
 
-4. Depending on your agreement type, take one of the following steps:
+5. Depending on your agreement type, take one of the following steps:
 
     - For a Microsoft Customer Agreement, select **Properties** on the left pane, and then select **Microsoft Azure Consumption Commitment (MACC)**.  
 
@@ -324,15 +326,15 @@ Microsoft emails billing account admins to help you meet Azure Consumption Commi
 
 ### Azure Consumption Commitment expiry alerts
 
-If you don't meet your Azure Consumption Commitment target, billing account admins get email notifications at the following intervals before the Azure Consumption Commitment end date:
+If you don't meet your Azure Consumption Commitment target, billing account admins get email notifications at the following intervals:
 
-- 90 days before expiry
-- 60 days before expiry
-- 30 days before expiry
+- 90 days before commitment expiry
+- 60 days before commitment expiry
+- 30 days before commitment expiry
 
 ### Milestone alerts
 
-If your Azure Consumption Commitment includes milestones, billing account admins get email alerts at the following intervals before each milestone end date if you don't meet the milestone target:
+If your Azure Consumption Commitment includes milestones and you don't meet a milestone target, billing account admins get email alerts at the following intervals:
 
 - 90 days before milestone end date
 - 60 days before milestone end date

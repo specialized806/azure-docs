@@ -28,15 +28,17 @@ To view Conditional Azure Credit Offer details and track milestone progress, you
 
 1. Sign in to the [Azure portal](https://portal.azure.com).
 
-2. Search for and select **Cost Management + Billing**.
+2. In the search box, enter **cost management + billing**.
+
+3. Under **Services**, select **Cost Management + Billing**.
 
     :::image type="content" source="../../manage/media/conditional-credit-offer/cost-management-billing-search.png" alt-text="Screenshot that shows a search for Cost Management + Billing in the portal." lightbox="../../manage/media/conditional-credit-offer/cost-management-billing-search.png" :::
 
-3. On the **Billing scopes** pane, select the billing account for which you want to track the commitment.
+4. On the **Billing scopes** pane, select the billing account for which you want to track the commitment.
 
     :::image type="content" source="../../manage/media/conditional-credit-offer/billing-scopes-list.png" alt-text="Screenshot that shows billing scopes." lightbox="../../manage/media/conditional-credit-offer/billing-scopes-list.png" :::
 
-4. On the left pane, expand **Billing** and select **Benefits**. Then select the **Conditional Azure Credit Offer** tile.  
+5. On the left pane, expand **Billing** and select **Benefits**. Then select the **Conditional Azure Credit Offer** tile.  
 
     :::image type="content" source="../../manage/media/conditional-credit-offer/benefits-page.png" alt-text="Screenshot that shows billing benefits for a Microsoft Customer Agreement, including the Conditional Azure Credit Offer tile." lightbox="../../manage/media/conditional-credit-offer/benefits-page.png" :::
 
@@ -79,7 +81,6 @@ The **Current Milestone** section displays a summary of the current milestone th
 | **Milestone** | Name of the milestone. |
 | **Progress** | Amount of spending so far for the milestone. |
 | **End date** | Date by which you must meet the milestone. |
-| **Consumption target** | Spending amount required to achieve the milestone. |
 | **Status** | Status of the milestone. |
 
 To view the complete list of milestones for your Conditional Azure Credit Offer commitment, select **Show all Milestones**. This view provides detailed information about each milestone's progress and status.
@@ -95,7 +96,7 @@ To view the complete list of milestones for your Conditional Azure Credit Offer 
 | **Credit award** | Azure Credit Offer amount that you get if you meet the milestone. |
 | **Status** | Current status of the milestone. |
 
-The milestone statuses are:
+A milestone can have one of the following statuses:
 
 | Status | Description |
 | ------ | ----------- |
@@ -125,15 +126,15 @@ Microsoft sends email notifications to billing account admins to help ensure tha
 
 ### Conditional Azure Credit Offer expiry alerts
 
-If you don't reach your Conditional Azure Credit Offer target, billing account admins get email notifications at the following intervals before the offer end date:
+If you don't reach your Conditional Azure Credit Offer target, billing account admins get email notifications at the following intervals:
 
-- 90 days before expiry
-- 60 days before expiry
-- 30 days before expiry
+- 90 days before offer expiry
+- 60 days before offer expiry
+- 30 days before offer expiry
 
 ### Milestone alerts
 
-Billing account admins get email alerts at the following intervals before each milestone due date if you don't meet the milestone target:
+If you don't meet the milestone target, billing account admins get email alerts at the following intervals:
 
 - 90 days before milestone due date
 - 60 days before milestone due date
@@ -162,11 +163,11 @@ The following table outlines which Azure services and purchases are eligible for
 | - Purchase | ❌ | ✅ | Conditional Azure Credit Offer doesn't count prepayment purchases. |
 | - Prepayment spending | ✅ | ❌ | Conditional Azure Credit Offer counts spending of prepayment credits. |
 | **Milestone shortfall credit** | | | |
-| - Purchase | ❌ | ✅ | Milestone shortfall credit purchase doesn't count toward Conditional Azure Credit Offer. |
-| - Credit applied | ✅ | ❌ | Milestone shortfall credit use goes toward Conditional Azure Credit Offer. |
+| - Purchase | ❌ | ✅ | Milestone shortfall credit purchase doesn't count toward a Conditional Azure Credit Offer. |
+| - Credit applied | ✅ | ❌ | Milestone shortfall credit use goes toward a Conditional Azure Credit Offer. |
 | **Shortfall charge (credit)** | | | |
-| - Purchase | ❌ | ✅ | Azure Consumption Commitment shortfall credit purchase doesn't count toward Conditional Azure Credit Offer. |
-| - Credit applied | ❌ | ❌ | Azure Consumption Commitment shortfall credit use doesn't go toward Conditional Azure Credit Offer because it's the penalty charge for not fulfilling Azure Consumption Commitment. |
+| - Purchase | ❌ | ✅ | Azure Consumption Commitment shortfall credit purchase doesn't count toward a Conditional Azure Credit Offer. |
+| - Credit applied | ❌ | ❌ | Azure Consumption Commitment shortfall credit use doesn't go toward a Conditional Azure Credit Offer because it's the penalty charge for not fulfilling an Azure Consumption Commitment. |
 | **Awarded credits (Azure Credit Offer, outage, goodwill)** | | | |
 | - Awarded amount | ❌ | ❌ | Any credits that aren't purchased don't count toward commitments. |
 | - Credit applied | ❌ | ❌ | Consumption that awarded credits cover doesn't count. |

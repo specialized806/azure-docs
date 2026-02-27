@@ -15,7 +15,7 @@ service.tree.id: b69a7832-2929-4f60-bf9d-c6784a865ed8
 
 # Manage a Conditional Azure Credit Offer resource under a subscription
 
-When you accept a Conditional Azure Credit Offer in a Microsoft Customer Agreement, it creates a Conditional Azure Credit Offer commitment and one or more provisional (not spendable) credit resources. The commitment and provisional credit resources are placed in a subscription and resource group. They follow the same setup as other credit resources, as described in [Manage an Azure credit resource under a subscription](../credits/manage-azure-credits.md). The provisional credit resources turn into awarded credits if you meet the spending target and other conditions in the Conditional Azure Credit Offer.
+When you accept a Conditional Azure Credit Offer in a Microsoft Customer Agreement, Microsoft creates a Conditional Azure Credit Offer commitment and one or more provisional (not spendable) credit resources. The commitment and provisional credit resources are placed in a subscription and a resource group. They follow the same setup as other credit resources, as described in [Manage an Azure credit resource under a subscription](../credits/manage-azure-credits.md). The provisional credit resources turn into awarded credits if you meet the spending target and other conditions in the Conditional Azure Credit Offer.
 
 In the Azure portal, you can view metadata for a Conditional Azure Credit Offer. The metadata includes the status of the offer, start and end dates, spending target, currency, target end date, award credit, award start date, award end date, and system ID. You can view the metadata under the Conditional Azure Credit Offer resource.
 

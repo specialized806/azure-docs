@@ -51,7 +51,7 @@ You can get detailed information about an available discount by viewing the JSON
 
 4. On the left menu, expand **Settings** and select **Properties**.
 
-5. The discount resource URI is the **ID** value.
+5. The discount resource URI is the **Id** value.
 
 ## Move a discount across resource groups or subscriptions
 

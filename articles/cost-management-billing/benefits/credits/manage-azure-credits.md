@@ -15,7 +15,7 @@ service.tree.id: cf90d1aa-e8ca-47a9-a6d0-bc69c7db1d52
 
 # Manage an Azure credit resource under a subscription
 
-When you accept Azure credit under a Microsoft Customer Agreement, the credit is assigned to a [subscription](../../../cost-management-billing/manage/cloud-subscription.md) and resource group. The associated resource holds metadata such as status, credit amount, currency, start date, and end date. You can access this information in the Azure portal.
+When you accept Azure credit under a Microsoft Customer Agreement, the credit is assigned to a [subscription](../../../cost-management-billing/manage/cloud-subscription.md) and a resource group. The associated resource holds metadata such as status, credit amount, currency, start date, and end date. You can access this information in the Azure portal.
 
 > [!NOTE]
 > This article applies to credits accepted after *August 2025* for Azure credit offers, Azure prepayments, End Customer Investment Funds (ECIF), and support. Credits accepted earlier aren't listed as resources under a subscription.
@@ -72,13 +72,15 @@ When you move a credit, the resource URI associated with it is updated to reflec
 
 ## View the credit resource URI
 
-1. In the [Azure portal](https://portal.azure.com/), search for **credits**.
+1. In the [Azure portal](https://portal.azure.com/), enter **credits** in the search box.
 
-2. Select the credit resource.
+2. Select the **Credits** service.
 
-3. On the left menu, expand **Settings** and select **Properties**.
+3. Select the credit resource.
 
-4. The credit resource URI is the **ID** value.
+4. On the left menu, expand **Settings** and select **Properties**.
+
+5. The credit resource URI is the **Id** value.
 
 ## Rename a credit resource
 
@@ -98,21 +100,23 @@ If you have questions about canceling your credit, contact your Microsoft accoun
 
 By default, the user account that accepted the credit proposal has owner access to the credit resource. You can grant access by adding other users to an Azure role:
 
-1. In the [Azure portal](https://portal.azure.com/), search for **credits**.
+1. In the [Azure portal](https://portal.azure.com/), enter **credits** in the search box.
 
-2. Select the credit resource.
+2. Select the **Credits** service.
 
-3. On the left menu, select **Access control (IAM)**.
+3. Select the credit resource.
 
-4. Select **Add** > **Add role assignment**.
+4. On the left menu, select **Access control (IAM)**.
 
-5. On the **Role** tab, select the appropriate role.
+5. Select **Add** > **Add role assignment**.
 
-6. On the **Members** tab, select another user.
+6. On the **Role** tab, select the appropriate role.
 
-7. On the **Review + assign** tab, review the role assignment settings.
+7. On the **Members** tab, select another user.
 
-8. Select **Review + assign** button to assign the role.
+8. On the **Review + assign** tab, review the role assignment settings.
+
+9. Select **Review + assign** button to assign the role.
 
 > [!NOTE]
 > Currently supported Azure built-in roles are Reader, Contributor, and Owner.
@@ -125,6 +129,6 @@ By default, the user account that accepted the credit proposal has owner access 
 
 ## Related content
 
-- [Track Azure credit balance for a Microsoft Customer Agreement](../../../cost-management-billing/benefits/credits/mca-check-azure-credits-balance.md)
+- [Track your Azure credit balance for a Microsoft Customer Agreement](../../../cost-management-billing/benefits/credits/mca-check-azure-credits-balance.md)
 - [What is a cloud subscription?](../../../cost-management-billing/manage/cloud-subscription.md)
 - [Move Azure resources to a new resource group or subscription](../../../azure-resource-manager/management/move-resource-group-and-subscription.md)
