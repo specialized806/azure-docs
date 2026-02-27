@@ -2,7 +2,7 @@
 title: Orchestration versioning in Durable Functions - Azure
 description: Learn how to use the orchestration versioning feature in Durable Functions for zero-downtime deployments involving breaking changes.
 author: AnatoliB
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 07/03/2025
 ms.author: azfuncdf
 ms.custom: fasttrack-edit
