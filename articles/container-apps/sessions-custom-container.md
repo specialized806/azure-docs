@@ -17,6 +17,9 @@ ms.collection: ce-skilling-ai-copilot
 
 In addition to the built-in code interpreter that Azure Container Apps dynamic sessions provide, you can also use custom containers to define your own session sandboxes.
 
+> [!NOTE]
+> This article applies only to custom container session pools. Unless noted, features described here aren't available for code interpreter session pools.
+
 ## Uses for custom container sessions
 
 Custom containers allow you to build solutions tailored to your needs. They enable you to execute code or run applications in environments that are fast and ephemeral and offer secure, sandboxed spaces with Hyper-V. Additionally, they can be configured with optional network isolation. Some examples include:
@@ -30,6 +33,123 @@ Custom containers allow you to build solutions tailored to your needs. They enab
 To use custom container sessions, you first create a session pool with a custom container image. Azure Container Apps automatically starts containers in their own Hyper-V sandboxes using the provided image. Once the container starts up, it's available to the session pool.
 
 When your application requests a session, an instance is instantly allocated from the pool. The session remains active until it enters an idle state, which is then automatically stopped and destroyed.
+
+## Container probes for session pools
+
+Use container probes to configure health checks for custom container session pools and maintain healthy session instances.
+
+> [!NOTE]
+> Container probes require API version `2025-02-02-preview` or later.
+
+Container probes let you define health checks for session containers, similar to health probes in Azure Container Apps. When configured, the session pool monitors each session instance and removes unhealthy instances.
+
+The session pool:
+
+- Ensures ready session instances are healthy based on the probes.
+- Automatically removes unhealthy session instances.
+- Scales up to maintain the configured `readySessionInstances` count with healthy sessions.
+
+Session pools support **Liveness** and **Startup** probe types. For more information about how probes work, see [Health probes in Azure Container Apps](health-probes.md?tabs=arm-template).
+
+### Configuration
+
+When you create or update a session pool, specify probes in the `properties.customContainerTemplate.containers` section of your request payload.
+
+For the full API specification, see [SessionPools API](/rest/api/resource-manager/containerapps/container-apps-session-pools/create-or-update?view=rest-resource-manager-containerapps-2025-07-01&tabs=HTTP).
+
+#### Example
+
+```json
+{
+  "properties": {
+    "customContainerTemplate": {
+      "containers": [
+        {
+          "name": "my-session-container",
+          "image": "myregistry.azurecr.io/my-session-image:latest",
+          "probes": [
+            {
+              "type": "Liveness",
+              "httpGet": {
+                "path": "/health",
+                "port": 8080
+              },
+              "periodSeconds": 10,
+              "failureThreshold": 3
+            },
+            {
+              "type": "Startup",
+              "httpGet": {
+                "path": "/ready",
+                "port": 8080
+              },
+              "periodSeconds": 5,
+              "failureThreshold": 30
+            }
+          ]
+        }
+      ]
+    },
+    "dynamicPoolConfiguration": {
+      "readySessionInstances": 5
+    }
+  }
+}
+```
+
+### Troubleshooting
+
+If your session pool isn't maintaining the expected number of healthy `readySessionInstances`, consider the following:
+
+1. **Check container logs** - Review session container logs to identify issues with probe endpoints or container startup. See [View logs for custom container session pools](../code-interpreter/bring-your-own-code-interpreter/tutorials/custom-container-logs.md).
+2. **Verify probe configuration** - Ensure probe paths, ports, and thresholds are configured correctly for your application.
+3. **Review container health** - Check for issues inside your container that prevent probe endpoints from responding successfully.
+
+## Stop a session
+
+Use the Stop Session API to terminate a session in a custom container session pool.
+
+
+
+Session pools support automatic session management through `lifecycleConfiguration`, which handles session lifecycle based on your configuration. However, there are scenarios where you may need more control.
+
+After allocating a session, you can call this API to manually terminate it at any time. This is useful when:
+
+- You need to clean up resources before a session reaches its time-to-live.
+- Your session pool has reached its maximum concurrent sessions limit and you need to free up capacity for new sessions.
+- A session has completed its work and you want to release resources immediately.
+
+### API reference
+
+#### Request
+
+```http
+POST {PoolManagementEndpoint}/.management/stopSession?api-version=2025-02-02-preview&identifier={SessionIdentifier}
+```
+
+#### Parameters
+
+| Parameter | Type | Required | Description |
+| --- | --- | --- | --- |
+| `api-version` | string | Yes | The API version to use (for example, `2025-02-02-preview`). |
+| `identifier` | string | Yes | The unique identifier of the session to stop. |
+
+### Examples
+
+#### Request
+
+```http
+POST https://{PoolManagementEndpoint}/.management/stopSession?api-version=2025-02-02-preview&identifier=testSessionIdentifier
+```
+
+#### Response
+
+```text
+HTTP/1.1 200 OK
+Content-Type: text/plain
+
+Session testSessionIdentifier in session pool testSessionPool stopped.
+```
 
 ## Logging
 
