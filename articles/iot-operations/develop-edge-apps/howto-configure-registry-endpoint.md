@@ -5,7 +5,7 @@ author: sethmanheim
 ms.author: sethm
 ms.service: azure-iot-operations
 ms.topic: how-to
-ms.date: 12/16/2025
+ms.date: 02/20/2026
 ai-usage: ai-assisted
 
 #CustomerIntent: As an operator, I want to understand how to configure registry endpoints in Azure IoT Operations so that I can pull custom connectors, WASM modules, and graph definitions from container registries for use in data flow graphs and connectors.
@@ -58,7 +58,7 @@ A registry endpoint defines the connection to your container registry. Data flow
 
     :::image type="content" source="media/howto-configure-registry-endpoint/select-authentication.png" alt-text="Screenshot of the registry endpoint creation form showing name, host, and authentication options." lightbox="media/howto-configure-registry-endpoint/select-authentication.png":::
 
-1. Configure the authentication settings for your chosen method. For details on each method, see [Authentication methods](#authentication-methods).
+1. Configure the authentication settings for your selected method. For information about each method, see [Authentication methods](#authentication-methods).
 
 1. Select **Create**.
 
@@ -160,7 +160,7 @@ Registry endpoints support several authentication methods. The method you choose
 
 #### System-assigned managed identity
 
-System-assigned managed identity uses the Azure IoT Operations instance's built-in identity to authenticate with the registry. Use this approach for ACR because it eliminates the need for managing credentials.
+System-assigned managed identity uses the Azure IoT Operations instance's built-in identity to authenticate with the registry. Use this approach for ACR, because it eliminates the need for managing credentials.
 
 Before configuring the registry endpoint, ensure the Azure IoT Operations system-assigned managed identity has the necessary permissions:
 
