@@ -3,6 +3,7 @@ title: "Quickstart: Create an app with Durable Task SDKs and Durable Task Schedu
 description: Learn how to build a fan-out/fan-in orchestration using the Durable Task SDKs with the Durable Task Scheduler emulator.
 ms.topic: how-to
 ms.date: 07/22/2025
+zone_pivot_groups: df-languages
 ---
 
 # Quickstart: Create an app with Durable Task SDKs and Durable Task Scheduler
