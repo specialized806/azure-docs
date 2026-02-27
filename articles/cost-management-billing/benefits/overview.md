@@ -57,7 +57,7 @@ You can view and manage billing benefits through multiple supported interfaces.
 
 ### Azure portal
 
-You can view and manage billing benefits, including credits and discounts, in the Azure portal. The portal has dedicated experiences within **Cost Management + Billing**, along with dedicated **Credits**, **Discounts**, and **Microsoft Azure Consumption Commitments** service views. The portal views summarize benefit metadata, balance (for credits), and usage impact.
+You can view and manage billing benefits, including credits and discounts, in the Azure portal. The portal provides dedicated experiences within **Cost Management + Billing**, along with dedicated **Credits**, **Discounts**, and **Microsoft Azure Consumption Commitments** service views. The portal views summarize benefit metadata, balance (for credits), and usage impact.
 
 ### Azure Resource Manager
 

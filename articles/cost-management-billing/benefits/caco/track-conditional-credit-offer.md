@@ -75,7 +75,7 @@ The **Current Milestone** section displays a summary of the current milestone th
 | Term | Definition |
 | --- | ----------- |
 | **Spend Target** | Amount that you must spend for this milestone to get the Azure Credit Offer award. |
-| **Credit Award** | Azure Credit Offer award amount that you'll get for meeting the milestone. |
+| **Credit Award** | Azure Credit Offer award amount that you get for meeting the milestone. |
 | **Milestone** | Name of the milestone. |
 | **Progress** | Amount of spending so far for the milestone. |
 | **End date** | Date by which you must meet the milestone. |
@@ -92,7 +92,7 @@ To view the complete list of milestones for your Conditional Azure Credit Offer 
 | **End Date** | Deadline by which you must achieve the milestone. |
 | **Spend target** | Total spending amount required to meet the milestone. |
 | **Progress%** | Current progress percentage toward achieving the milestone consumption target. |
-| **Credit award** | Azure Credit Offer amount you'll receive if you meet the milestone. |
+| **Credit award** | Azure Credit Offer amount that you get if you meet the milestone. |
 | **Status** | Current status of the milestone. |
 
 The milestone statuses are:

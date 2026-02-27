@@ -48,8 +48,8 @@ In addition to those general limitations, Azure Sponsorship credits don't cover:
 
 For AI models:
 
-- Azure Sponsorship credits might cover [models that Azure sells directly](https://learn.microsoft.com/azure/ai-foundry/foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic&tabs=global-standard-aoai%2Cglobal-standard).
-- Azure Sponsorship credits don't cover [models from partners and the community](https://learn.microsoft.com/azure/ai-foundry/foundry-models/concepts/models-from-partners?view=foundry-classic).
+- Azure Sponsorship credits might cover [models that Azure sells directly](/azure/ai-foundry/foundry-models/concepts/models-sold-directly-by-azure).
+- Azure Sponsorship credits don't cover [models from partners and the community](/azure/ai-foundry/foundry-models/concepts/models-from-partners).
 
 ## Check your credit balance
 

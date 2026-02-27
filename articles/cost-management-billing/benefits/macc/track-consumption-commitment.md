@@ -324,7 +324,7 @@ Microsoft emails billing account admins to help you meet Azure Consumption Commi
 
 ### Azure Consumption Commitment expiry alerts
 
-If don't meet your Azure Consumption Commitment target, billing account admins get email notifications at the following intervals before the Azure Consumption Commitment end date:
+If you don't meet your Azure Consumption Commitment target, billing account admins get email notifications at the following intervals before the Azure Consumption Commitment end date:
 
 - 90 days before expiry
 - 60 days before expiry
@@ -356,7 +356,7 @@ If your organization purchased Azure prepayment, consumption or purchases that t
 
 ### Example
 
-Contoso makes a Azure Consumption Commitment of $50,000 in May. In June, it purchases an Azure prepayment of $10,000. This purchase decrements the Azure Consumption Commitment, leaving a remaining balance of $40,000.
+Contoso makes an Azure Consumption Commitment of $50,000 in May. In June, it purchases an Azure prepayment of $10,000. This purchase decrements the Azure Consumption Commitment, leaving a remaining balance of $40,000.
 
 During June, Contoso consumes $10,000 of Azure prepayment-eligible services. These service charges are covered by the Azure prepayment and don't decrement the Azure Consumption Commitment. After Contoso fully uses the Azure prepayment, all Azure service consumption and other eligible purchases decrement the Azure Consumption Commitment.
 
