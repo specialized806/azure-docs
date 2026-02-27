@@ -32,7 +32,7 @@
   - name: Durable Task SDKs
     items:
     - name: Create an app with the Durable Task SDKs
-      href: ./durable-task-scheduler/quickstart-durable-task-scheduler.md
+      href: ./durable-task-scheduler/quickstart-portable-durable-task-sdks.md
     - name: Host a Durable Task SDK app on Azure Container Apps
       href: ./durable-task-scheduler/quickstart-container-apps-durable-task-sdk.md
 - name: Core concepts
@@ -112,7 +112,7 @@
     - name: Configure Durable Functions with managed identity
       href: durable-functions-configure-managed-identity.md
     - name: Configure Durable Functions with Durable Task Scheduler
-      href: ./durable-task-scheduler/quickstart-portable-durable-task-sdks.md
+      href: ./durable-task-scheduler/quickstart-durable-task-scheduler.md
     - name: Configure Durable Functions with MSSQL
       href: quickstart-mssql.md
     - name: Host a Durable Functions app in Container Apps (.NET isolated)

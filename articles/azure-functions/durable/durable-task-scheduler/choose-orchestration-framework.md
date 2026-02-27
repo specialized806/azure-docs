@@ -52,7 +52,7 @@ Both Durable Functions and Durable Task SDK are available in multiple languages,
 | **Compute Platform** | Azure Functions only | Any (.NET, Python, Java apps) |
 | **Scale to Zero** | ✅ Yes | ❌ Minimum 1 instance |
 | **Trigger Types** | HTTP, Queue, Timer, etc. | Custom (you implement) |
-| **Language Support** | C#, JS, Python, Java, PS | .NET, Python, Java (Preview) |
+| **Language Support** | C#, JS, Python, Java, PS | .NET, Python, Java |
 | **Entity Functions** | ✅ Full support | ✅ .NET only |
 | **Deployment** | Function App | Container, VM, any host |
 | **Cold Start** | Yes (mitigated with Premium) | No (always running) |
