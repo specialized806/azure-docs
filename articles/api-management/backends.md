@@ -28,7 +28,7 @@ For other APIs, such as APIs from Azure services, you import an Azure resource w
 
 API Management also supports using other resources as an API backend, such as:
 * A [Service Fabric cluster](how-to-configure-service-fabric-backend.yml).
-* Foundry Tools.
+* AI services.
 * A custom service.
 
 For these backends, you can create a *backend entity* in API Management and reference it in your APIs.  
@@ -51,7 +51,7 @@ You can configure and manage backend entities in the Azure portal, or by using A
 You can create a backend in the Azure portal, or by using Azure APIs or tools.
 
 > [!NOTE]
-> When you import certain APIs, such as APIs from Microsoft Foundry or other Foundry Tools, API Management automatically configures a backend entity.
+> When you import certain APIs, such as APIs from Microsoft Foundry or other AI services, API Management automatically configures a backend entity.
 
 To create a backend in the portal:
 

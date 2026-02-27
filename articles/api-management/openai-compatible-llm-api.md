@@ -23,7 +23,7 @@ Learn more about managing AI APIs in API Management:
 
 ## Language model API types
 
-API Management supports two types of language model APIs for this scenario. Choose the option suitable for your model deployment. The option determines how clients call the API and how the API Management instance routes requests to the Foundry Tool.
+API Management supports two types of language model APIs for this scenario. Choose the option suitable for your model deployment. The option determines how clients call the API and how the API Management instance routes requests to the AI service.
 
 * **OpenAI-compatible** - Language model endpoints that are compatible with OpenAI's API. Examples include certain models exposed by inference providers such as [Hugging Face Text Generation Inference (TGI)](https://huggingface.co/docs/text-generation-inference/en/index) and [Google Gemini API](openai-compatible-google-gemini-api.md).
 
